@@ -79,11 +79,31 @@ and its password interval
 can be set only now.
 
 17
-00:01:07.863 --> 00:01:12.325
+00:01:07.863 --> 00:01:13.516
+For a workload that holds no S P N, the
+program's default is Learn's outbound-only
+
+18
+00:01:13.516 --> 00:01:19.524
+variant, which restricts the G M S A to
+outbound authentication; record that choice.
+
+19
+00:01:19.524 --> 00:01:24.736
+And the program creates G M S As under
+a delegated right to create them on the
+
+20
+00:01:24.736 --> 00:01:30.198
+service-account organizational unit,
+which Learn allows, not as a Domain Admin.
+
+21
+00:01:30.198 --> 00:01:33.812
 A4: after a restart, install
 it on each host and test it.
 
-18
-00:01:12.325 --> 00:01:17.110
+22
+00:01:33.812 --> 00:01:38.620
 Test-A D Service Account must return
 true on every host before you switch.

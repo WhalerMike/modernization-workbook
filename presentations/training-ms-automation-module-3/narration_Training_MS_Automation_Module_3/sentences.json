@@ -617,18 +617,23 @@
   ],
   [
    26.613,
-   7.45,
-   "That finishes the Microsoft Automation learning path: three modules, about four hours and twenty-five minutes with each lab."
-  ],
-  [
-   34.062,
    5.263,
    "To put the checks on a schedule, go to the Intune track implementation guide's Gate 6."
   ],
   [
-   39.325,
-   5.213,
-   "Modules on Azure Arc and Resource Manager, Teams, and monitoring are planned."
+   31.875,
+   7.763,
+   "Next is Module 4, Azure Arc through Azure Resource Manager and Resource Graph, which leaves Graph for the server estate."
+  ],
+  [
+   39.638,
+   7.125,
+   "With it, the Microsoft Automation learning path has four modules, about five hours and fifty-five minutes in all."
+  ],
+  [
+   46.763,
+   4.162,
+   "Modules on Teams, and on monitoring and evidence, are planned."
   ]
  ]
 }

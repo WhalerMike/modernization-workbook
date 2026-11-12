@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.065
+Resource Graph holds a copy of
+every resource's properties,
+
+2
+00:00:04.065 --> 00:00:07.425
+in tables you query with
+the Kusto Query Language.
+
+3
+00:00:07.425 --> 00:00:08.812
+It has four traps.
+
+4
+00:00:08.812 --> 00:00:11.825
+One: an empty result can mean no access.
+
+5
+00:00:11.825 --> 00:00:14.394
+Microsoft Learn says no results come back
+
+6
+00:00:14.394 --> 00:00:16.963
+for objects you can't
+read, without an error.
+
+7
+00:00:16.963 --> 00:00:20.644
+So every check reports machines
+in scope and empty scope,
+
+8
+00:00:20.644 --> 00:00:23.230
+the client refuses a query with no scope,
+
+9
+00:00:23.230 --> 00:00:27.774
+and the command line stops when the
+identity can see no subscriptions.
+
+10
+00:00:27.774 --> 00:00:30.487
+Two: paging is a token in the body.
+
+11
+00:00:30.487 --> 00:00:32.974
+A page holds at most a thousand records;
+
+12
+00:00:32.974 --> 00:00:37.013
+repeat the same query with the
+skip token until none comes back.
+
+13
+00:00:37.013 --> 00:00:42.064
+Three: some queries can't be paged at
+all, when they use limit, sample or take,
+
+14
+00:00:42.064 --> 00:00:46.525
+or when every output column is
+dynamic, as project properties is.
+
+15
+00:00:46.525 --> 00:00:50.863
+Then the client raises an incomplete
+result rather than return part of one.
+
+16
+00:00:50.863 --> 00:00:56.462
+Four: sort by a unique column, or pages
+can repeat some records and skip others.
+
+17
+00:00:56.462 --> 00:00:58.937
+Every query ends ordered by I D.
+
+18
+00:00:58.937 --> 00:01:01.349
+And the data isn't strongly consistent,
+
+19
+00:01:01.349 --> 00:01:04.490
+so a check run minutes after
+a change may not see it.

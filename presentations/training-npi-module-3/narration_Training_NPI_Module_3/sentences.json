@@ -188,8 +188,8 @@
   ],
   [
    56.138,
-   12.787,
-   "And a group managed account needs a K D S root key, created once per domain; Microsoft Learn's Create a K D S root key documentation says domain controllers wait up to ten hours after that."
+   13.0,
+   "And a group managed account needs a K D S root key, created once for the forest; Microsoft Learn's Create a K D S root key documentation says domain controllers wait up to ten hours after that."
   ]
  ],
  "5": [

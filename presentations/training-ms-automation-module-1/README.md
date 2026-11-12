@@ -17,7 +17,7 @@
 | `Training_MS_Automation_Module_1_Narration_Script.md` | The spoken narration, slide by slide (about 2,100 words) |
 | `narration_Training_MS_Automation_Module_1/` | `durations.json` and `sentences.json` (the MP3s are on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
-| `shared.js` | The helpers all three training decks use: the technical deep dive's [`slides.js`](../attribute-driven-migration-technical-part-1/slides.js) builders, the deeper dive's code panel, and the title, objectives and knowledge-check slides |
+| `shared.js` | The helpers all four training decks use: the technical deep dive's [`slides.js`](../attribute-driven-migration-technical-part-1/slides.js) builders, the deeper dive's code panel, and the title, objectives and knowledge-check slides |
 
 The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition, and the module page says so. The narration runs about 14 minutes.
 

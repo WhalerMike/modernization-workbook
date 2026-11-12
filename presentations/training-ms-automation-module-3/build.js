@@ -332,7 +332,7 @@ endModule(SA);
 
 // ================================================================== 16 Summary
 {
-  const s = content(SS, "Summary: you've finished the path");
+  const s = content(SS, "Summary, and next: Module 4, Azure Arc");
   tag(s, "How");
   const l = panel(s, "Did", 0.6, 1.45, 7.0, null, HEX.navy, HEX.navyTint, "IN THIS MODULE YOU", null, [
     "Mapped Book 05's questions to Intune APIs, permissions and stage",
@@ -341,16 +341,16 @@ endModule(SA);
     "Kept remote actions and export jobs out of the collector",
     "Ran the five checks, and saw why Autopilot is a GCC and commercial check",
   ], 13.5);
-  const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "WHERE NEXT", "Put it on a schedule", [
-    "The Intune track guide's Gate 6",
-    "Planned modules: Azure Arc and Resource Manager, Teams, monitoring and evidence",
+  const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "NEXT", "Module 4: Azure Arc through Resource Manager", [
+    "Put these checks on a schedule: the Intune track guide's Gate 6",
+    "Planned modules: Teams, monitoring and evidence",
   ], 13.5);
   callout(s, "Path", Math.max(l, r) + 0.3, 0.85, "FaRoute", HEX.teal, "The learning path: ",
-    "three modules, about 4 hours 25 minutes with each Lab 1.");
-  sources(s, "Sources: Module 3, Unit 11 \"Summary\"; Module 1, Unit 1 (planned modules); Training index; Intune track guide, Gate 6.");
+    "four modules, about 5 hours 55 minutes in all.");
+  sources(s, "Sources: Module 3, Unit 11 \"Summary,\" \"Continue the path\"; Module 1, Unit 1 (the modules); Module 4; Training index; Intune track guide, Gate 6.");
   notes(s,
-`To sum up. You mapped the workbook's device evidence questions to Intune APIs, their least-privileged permissions and their stage. You learned which three things the program relies on are beta-only. You read managed devices and compliance status, and saw why the checks join on device name. You kept remote actions and export jobs out of the collector. And you ran the five checks, and saw why Autopilot is a GCC and commercial check. That finishes the Microsoft Automation learning path: three modules, about four hours and twenty-five minutes with each lab. To put the checks on a schedule, go to the Intune track implementation guide's Gate 6. Modules on Azure Arc and Resource Manager, Teams, and monitoring are planned.`,
-  `${M} — Unit 11 "Summary"; Module 1 — Unit 1 "Introduction" (the planned modules).`);
+`To sum up. You mapped the workbook's device evidence questions to Intune APIs, their least-privileged permissions and their stage. You learned which three things the program relies on are beta-only. You read managed devices and compliance status, and saw why the checks join on device name. You kept remote actions and export jobs out of the collector. And you ran the five checks, and saw why Autopilot is a GCC and commercial check. To put the checks on a schedule, go to the Intune track implementation guide's Gate 6. Next is Module 4, Azure Arc through Azure Resource Manager and Resource Graph, which leaves Graph for the server estate. With it, the Microsoft Automation learning path has four modules, about five hours and fifty-five minutes in all. Modules on Teams, and on monitoring and evidence, are planned.`,
+  `${M} — Unit 11 "Summary," "Continue the path"; Module 1 — Unit 1 "Introduction" (the modules); Module 4.`);
 }
 endModule(SS);
 

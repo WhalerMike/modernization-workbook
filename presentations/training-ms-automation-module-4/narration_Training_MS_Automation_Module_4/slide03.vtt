@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.883
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.883 --> 00:00:05.587
+which takes about ninety-five
+minutes with the lab.
+
+3
+00:00:05.587 --> 00:00:10.250
+You'll explain the four ways Resource
+Manager differs from Graph for a script.
+
+4
+00:00:10.250 --> 00:00:13.014
+You'll page a Resource
+Graph query to the end,
+
+5
+00:00:13.014 --> 00:00:17.237
+and say when Resource Graph can't
+page and why that must stop the run.
+
+6
+00:00:17.237 --> 00:00:21.975
+You'll explain why an empty result can
+mean no access, not a clean estate.
+
+7
+00:00:21.975 --> 00:00:26.140
+You'll read the Arc machine,
+extension, SQL Server instance,
+
+8
+00:00:26.140 --> 00:00:30.550
+policy assignment and policy state
+records, and the traps in each.
+
+9
+00:00:30.550 --> 00:00:35.023
+And you'll say which Windows Server and
+SQL Server versions are past support,
+
+10
+00:00:35.023 --> 00:00:36.988
+and run the five checks on fixtures.
+
+11
+00:00:36.988 --> 00:00:38.299
+You need Module 1.
+
+12
+00:00:38.299 --> 00:00:41.725
+Lab 2 needs a test subscription
+in commercial Azure,
+
+13
+00:00:41.725 --> 00:00:44.980
+never production, with a
+few Arc-enabled servers.

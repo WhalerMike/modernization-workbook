@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.133
+Welcome to Module 4 of the
+Microsoft Automation learning path:
+
+2
+00:00:04.133 --> 00:00:08.138
+Azure Arc through Azure Resource
+Manager and Resource Graph.
+
+3
+00:00:08.138 --> 00:00:13.295
+The Federal Modernization Workbook's
+Devices and Endpoints book puts the agency's
+
+4
+00:00:13.295 --> 00:00:16.435
+servers under Azure Arc,
+and its Data Platform book
+
+5
+00:00:16.435 --> 00:00:19.949
+uses Arc to bring SQL Server
+under Microsoft Entra I D.
+
+6
+00:00:19.949 --> 00:00:23.113
+After onboarding, the
+question becomes evidence.
+
+7
+00:00:23.113 --> 00:00:25.388
+None of that is in Microsoft Graph.
+
+8
+00:00:25.388 --> 00:00:27.277
+Arc servers, their extensions,
+
+9
+00:00:27.277 --> 00:00:32.265
+SQL Server instances and Azure Policy
+are Azure resources, managed through
+
+10
+00:00:32.265 --> 00:00:36.649
+Azure Resource Manager and read in
+bulk through Azure Resource Graph.
+
+11
+00:00:36.649 --> 00:00:40.800
+In this module you'll learn what
+changes when a script leaves Graph for
+
+12
+00:00:40.800 --> 00:00:45.450
+Resource Manager, and how to read Resource
+Graph without silently losing rows.
+
+13
+00:00:45.450 --> 00:00:47.862
+Then you'll run five read-only checks,
+
+14
+00:00:47.862 --> 00:00:51.400
+in Python and PowerShell,
+against a fictional estate.
+
+15
+00:00:51.400 --> 00:00:54.609
+Like the other modules'
+checks, they're illustrative:
+
+16
+00:00:54.609 --> 00:00:58.990
+unit-tested against fixtures, not
+proven against live subscriptions.

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.963
+First: a Resource Graph
+query returns no Arc servers.
+
+3
+00:00:05.963 --> 00:00:07.576
+What's the first thing to check?
+
+4
+00:00:07.576 --> 00:00:12.303
+The answer is b: whether the identity
+has Reader on the scope, because Resource
+
+5
+00:00:12.303 --> 00:00:16.587
+Graph returns nothing for resources
+the caller can't read, and no error.
+
+6
+00:00:16.587 --> 00:00:22.874
+Second: a Windows Server 2012 R2 machine
+has an Arc E S U license assigned.
+
+7
+00:00:22.874 --> 00:00:26.950
+What does lifecycle report
+on November third, 2026?
+
+8
+00:00:26.950 --> 00:00:29.187
+The answer is b, unsupported.
+
+9
+00:00:29.187 --> 00:00:33.000
+The E S U years ended on
+October thirteenth, 2026,
+
+10
+00:00:33.000 --> 00:00:37.301
+so no updates come through
+any channel, license or not.
+
+11
+00:00:37.301 --> 00:00:42.260
+The module page has three more questions,
+each linked to the unit that answers it.

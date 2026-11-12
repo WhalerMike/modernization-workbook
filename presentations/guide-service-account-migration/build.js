@@ -1,11 +1,13 @@
 // Companion guide — Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities.
-// A narrated Why / What / Who / How deck of about 15 minutes (13 narrated slides, then a backup section).
+// A narrated Why / What / Who / How deck of about 17 minutes (14 narrated slides, then a backup section).
 //   Why:   the user account used as a service, and Kerberoasting.
 //   What:  the twelve kinds of service identity compared; what can move to Microsoft Entra ID and what can't; the special cases.
 //   Who:   the decision path and its dispositions; the program's rules; the requirements, KSIs and evidence the ISSO keeps.
-//   How:   Migration A (user account to gMSA), B (to a dMSA), C (to an Entra workload identity); dangers and rollback;
+//   How:   Migration A (user account to gMSA), B (to a dMSA), C (to an Entra workload identity); mail from a gMSA workload;
+//          dangers and rollback;
 //          where the Non-Person Identity kit and the labs take over.
-// Sources: docs/books/guides/service-account-migration.md and the Microsoft Learn pages it footnotes (read November 9, 2026;
+// Sources: docs/books/guides/service-account-migration.md and the Microsoft Learn pages it footnotes (read November 9, 2026, and the
+// mail section and gMSA decisions November 11, 2026;
 // listed with their dates in docs/books/guides/_verification/service-account-migration.md). The commands on the slides are
 // the guide's, which are Learn's; long ones are continued PowerShell-style with a backtick. No new facts.
 // The speaker notes are the narration (spoken by narrate.py), written to be heard: acronyms the voice misreads are spelled out,
@@ -61,10 +63,10 @@ const FULL = 12.15;
   txt(s, "Session map", [
     { text: "Why: the password nobody changes   ·   What: twelve kinds of service identity compared", options: { color: HEX.navy, bold: true, breakLine: true } },
     { text: "Who: the decision path, the program's rules, the evidence", options: { color: HEX.teal, bold: true, breakLine: true } },
-    { text: "How: a user account to a gMSA, to a dMSA, to a Microsoft Entra workload identity; dangers, rollback, the kit", options: { color: HEX.ink } },
+    { text: "How: a user account to a gMSA, to a dMSA, to a Microsoft Entra workload identity; mail; dangers, rollback, the kit", options: { color: HEX.ink } },
   ], { x: 0.8, y: 4.75, w: 11.0, h: 1.3, fontSize: 15, paraSpaceAfter: 2 });
   notes(s,
-`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Service Accounts, from user accounts to group managed service accounts to Microsoft Entra workload identities. The guide's idea fits in one line. A service account's password is the one nobody changes, because changing it breaks something. Every step in the guide replaces a password someone has to keep with a credential that Windows, or Microsoft Entra I D, keeps instead. Every fact and command in this deck comes from Microsoft Learn, read on November ninth, 2026, and the guide footnotes each one. Rules that are the program's own, not Microsoft's, are called design guidance. We'll go in four parts: why this matters, what the kinds of service identity are, who decides and what they keep, and how each migration runs.`,
+`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Service Accounts, from user accounts to group managed service accounts to Microsoft Entra workload identities. The guide's idea fits in one line. A service account's password is the one nobody changes, because changing it breaks something. Every step in the guide replaces a password someone has to keep with a credential that Windows, or Microsoft Entra I D, keeps instead. Every fact and command in this deck comes from Microsoft Learn, read on November ninth and eleventh, 2026, and the guide footnotes each one. Rules that are the program's own, not Microsoft's, are called design guidance. We'll go in four parts: why this matters, what the kinds of service identity are, who decides and what they keep, and how each migration runs.`,
   `${G} — "In this guide," "How to read this guide."`);
 }
 
@@ -243,24 +245,26 @@ endModule(SWHO);
     "Add-ADGroupMember -Identity \"<hosts-group>\" -Members \"<host>$\"",
     "New-ADServiceAccount -Name <gmsa-name> -DNSHostName <gmsa-name>.<domain-fqdn> `",
     "    -PrincipalsAllowedToRetrieveManagedPassword <hosts-group> -KerberosEncryptionType AES256",
+    "#     No SPN: add -RestrictToOutboundAuthenticationOnly, the program's default (WD-154; record it in kerberos-replatform.csv)",
     "# A4  After the host restarts, on each host, elevated (expected: True on every host)",
     "Install-ADServiceAccount -Identity <gmsa-name>",
     "Test-ADServiceAccount -Identity <gmsa-name>",
-  ], { label: "THE GUIDE'S COMMANDS, FROM MICROSOFT LEARN (PLACEHOLDERS IN ANGLE BRACKETS; LONG LINES CONTINUED WITH `)", pt: 10.5 });
+  ], { label: "THE GUIDE'S COMMANDS, FROM MICROSOFT LEARN (PLACEHOLDERS IN ANGLE BRACKETS; LONG LINES CONTINUED WITH `)", pt: 10 });
   const w = 5.95;
   const p1 = panel(s, "Before", 0.6, c + 0.15, w, null, HEX.navy, HEX.navyTint, "BEFORE YOU CREATE IT", null, [
-    "The name is unique in the forest; the password interval (30 days) is set only now",
-    "Retrievers are a group of hosts: that group is the gMSA's blast radius",
+    "Name unique in the forest; the 30-day password interval is set only now",
+    "Created under the delegated create right, not Domain Admins (WD-154)",
+    "Retrievers are a group of hosts: the gMSA's blast radius",
   ], 11.5);
   const p2 = panel(s, "Key", 0.6 + w + 0.25, c + 0.15, w, null, HEX.red, HEX.redTint, "THE KDS ROOT KEY", null, [
     "Never the 10-hour backdated key in production; more than one key makes gMSAs fail after a rotation",
     "False from Test-ADServiceAccount: fix the host before the switch",
   ], 11.5);
   if (process.env.FIT) console.log(`  A panels bottom ${Math.max(p1, p2).toFixed(2)}`);
-  sources(s, "Sources: Guide, Migration A, A1 to A4; Microsoft Learn, Manage gMSAs; Create a KDS root key; Create gMSAs for Windows containers; gMSA overview; SQL Server gMSA checklist.");
+  sources(s, "Sources: Guide, Migration A, A1 to A4 (WD-154); Microsoft Learn, Manage gMSAs; Create a KDS root key; gMSAs for Windows containers; gMSA overview; SQL Server gMSAs.");
   notes(s,
-`Migration A moves a user account to a G M S A, in Microsoft Learn's order: K D S root key, create, install, switch, validate, retire. A1: read the account with Get-A D User, its S P Ns, delegation and groups, and on each host read the service's logon account with S C query config. A2: the forest needs one K D S root key. If there's none, a Domain Admin or Enterprise Admin creates it once, and Learn's K D S page says domain controllers wait up to ten hours before they allow a G M S A, so the key replicates first. Learn offers a key backdated ten hours for a test domain with one domain controller; never use it in production. And Learn's containers page says more than one key makes G M S As fail after a password rotation. A3: create a group of the hosts, then the G M S A with A E S two-fifty-six, which Learn's overview says to always configure. Its name must be unique in the forest, and its password interval can be set only now. A4: after a restart, install it on each host and test it. Test-A D Service Account must return true on every host before you switch.`,
-  `${G} — Migration A, steps A1–A4; Microsoft Learn — "Manage group Managed Service Accounts," "Create a Key Distribution Service (KDS) root key," "Create gMSAs for Windows containers," "Group Managed Service Accounts overview," "Troubleshoot SQL Server setup, startup, and authentication failures with gMSAs."`);
+`Migration A moves a user account to a G M S A, in Microsoft Learn's order: K D S root key, create, install, switch, validate, retire. A1: read the account with Get-A D User, its S P Ns, delegation and groups, and on each host read the service's logon account with S C query config. A2: the forest needs one K D S root key. If there's none, a Domain Admin or Enterprise Admin creates it once, and Learn's K D S page says domain controllers wait up to ten hours before they allow a G M S A, so the key replicates first. Learn offers a key backdated ten hours for a test domain with one domain controller; never use it in production. And Learn's containers page says more than one key makes G M S As fail after a password rotation. A3: create a group of the hosts, then the G M S A with A E S two-fifty-six, which Learn's overview says to always configure. Its name must be unique in the forest, and its password interval can be set only now. For a workload that holds no S P N, the program's default is Learn's outbound-only variant, which restricts the G M S A to outbound authentication; record that choice. And the program creates G M S As under a delegated right to create them on the service-account organizational unit, which Learn allows, not as a Domain Admin. A4: after a restart, install it on each host and test it. Test-A D Service Account must return true on every host before you switch.`,
+  `${G} — Migration A, steps A1–A4; decision register — WD-154; Microsoft Learn — "Manage group Managed Service Accounts," "Create a Key Distribution Service (KDS) root key," "Create gMSAs for Windows containers," "Group Managed Service Accounts overview," "Troubleshoot SQL Server setup, startup, and authentication failures with gMSAs."`);
 }
 
 // ================================================================== 9 Migration A, A5 to A7
@@ -351,7 +355,33 @@ endModule(SWHO);
   `${G} — Migration C, steps C1–C5; Microsoft Learn — "Security best practices for application properties," "What are managed identities for Azure resources?," "Managed identity and access control" (Arc), "Managed identity for SQL Server enabled by Azure Arc," "az ad app," "Configure an app to trust an external identity provider."`);
 }
 
-// ================================================================== 12 Dangers and rollback
+// ================================================================== 12 Mail from a gMSA workload
+{
+  const s = content(SHOW, "Sending mail once the workload runs as a gMSA");
+  tag(s, "How");
+  const tb = table(s, "Mail", 1.4, [2.85, 4.75, 3.35, 1.2], ["Where the mail goes", "Path", "What authenticates", "Step"], [
+    ["Exchange Server on premises", "A receive connector with Integrated Windows authentication (Kerberos); Send As on a shared mailbox", "The gMSA itself", "M1"],
+    ["On premises, a client that can't authenticate", "IP-restricted anonymous internal relay on a dedicated connector", "Nothing: the hosts' IP addresses", "M2"],
+    ["Exchange Online", "Graph sendMail, app-only, scoped to one mailbox with RBAC for Applications", "The C3 app or the C2 Arc identity", "M3"],
+    ["Learn's other options", "High Volume Email; Azure Communication Services Email; hybrid relay", "An HVE account, an ACS resource, or M1/M2", "M4"],
+  ], { fontSize: 11, limit: 4.3 });
+  const w = 5.95;
+  const p1 = panel(s, "Scope", 0.6, tb + 0.2, w, null, HEX.red, HEX.redTint, "NEVER MAIL.SEND IN ENTRA ID", null, [
+    "Learn: the Entra and Exchange grants are a union, so an Entra grant removes the scope",
+    "Test-ServicePrincipalAuthorization: the shared mailbox yes, any other no",
+  ], 11.5);
+  const p2 = panel(s, "Gov", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.navy, HEX.navyTint, "GCC FIRST (LEARN, NOV 11, 2026)", null, [
+    "GCC: Graph sendMail on graph.microsoft.com; RBAC for Applications not yet specified: test it in the tenant",
+    "High Volume Email: Worldwide only. GCC High and DoD: sendMail at L4 and L5",
+  ], 11.5);
+  if (process.env.FIT) console.log(`  mail panels bottom ${Math.max(p1, p2).toFixed(2)}`);
+  sources(s, "Sources: Guide, \"Sending mail from a gMSA workload,\" M1 to M4; Microsoft Learn, user: sendMail; RBAC for Applications in Exchange Online; receive connectors; HVE.");
+  notes(s,
+`One more move the guide covers, because mail breaks when an account becomes a G M S A. A G M S A has no mailbox and no password an S M T P client could type. And Microsoft Learn says basic-authentication S M T P submission to Exchange Online is scheduled for deprecation, so a stored mailbox password isn't the answer either. Choose by where the mail server is. On-premises Exchange: a dedicated receive connector that offers integrated Windows authentication, Kerberos, and Send As on a shared mailbox, never a person's. That's M1. A client that can't authenticate gets an anonymous relay limited to the workload's hosts' addresses, the weakest path. That's M2. Exchange Online: the workload sends through Microsoft Graph send mail as a workload identity, the app with a certificate from C3, or the Arc identity from C2, scoped to one shared mailbox with R B A C for Applications. Don't consent Mail dot Send in Entra I D: Learn says the two grants are a union, so an Entra grant removes the scope. Test the scope both ways. In GCC, send mail runs on the worldwide Graph host, but Learn doesn't yet specify R B A C for Applications for government clouds, so test it in the tenant before relying on it. High Volume Email is listed for Worldwide only.`,
+  `${G} — "Sending mail from a gMSA workload," M1–M4, the government-cloud availability table; Microsoft Learn — "user: sendMail," "Role Based Access Control for Applications in Exchange Online," "Receive connectors in Exchange Server," "Allow anonymous relay on Exchange servers," "How to set up a multifunction device or application to send email using Microsoft 365 or Office 365," "Manage High Volume Email for Microsoft 365."`);
+}
+
+// ================================================================== 13 Dangers and rollback
 {
   const s = content(SHOW, "Dangers, and how to avoid them");
   tag(s, "How");
@@ -364,15 +394,16 @@ endModule(SWHO);
     ["A dMSA completed early, or on a host not on 2025", "The service fails on hosts the dMSA hasn't learned", "30 days; every host on Windows Server 2025"],
     ["The old account deleted during the migration", "No way back", "Disable only; delete through decommission"],
     ["A client secret on the new app registration", "A password in a configuration file again", "Managed identity, then federation, then a certificate"],
+    ["A non-domain-joined container host", "A stored domain password reappears", "Domain-joined hosts only (WD-154); else a reviewed exception"],
     ["A gMSA left behind at the end of AD", "The workload loses its credential with the last DC", "The reconciliation and the island list"],
-  ], { fontSize: 11, limit: 6.55 });
+  ], { fontSize: 10.5, limit: 6.55 });
   sources(s, "Sources: Guide, \"Dangers and how to avoid them\"; Microsoft Learn, Create a KDS root key; Create gMSAs for Windows containers; Manage gMSAs; Setting up delegated MSAs.");
   notes(s,
-`The guide lists the dangers and the guard for each. Create a G M S A before the K D S root key replicates, and password retrieval fails on hosts that ask another domain controller: wait the ten hours. Create a second root key, and G M S As fail after their next password rotation: one key per forest. Leave an S P N on the old account, and Kerberos to the service fails or falls back to N T L M: move the S P Ns in the switch window. Switch a host that can't retrieve the password, and the service won't start: test every host first. Put a G M S A in a privileged group, and every host that retrieves its password holds that privilege. Complete a D M S A migration too early, or with a host not on Windows Server 2025, and the service fails on the hosts it hasn't learned. Delete the old account during the migration, and there's no way back. Put a client secret on the new app registration, and you have a password in a configuration file again. And a G M S A left behind when Active Directory retires loses its credential with the last domain controller.`,
-  `${G} — "Dangers and how to avoid them"; Microsoft Learn pages footnoted in Migrations A and B.`);
+`The guide lists the dangers and the guard for each. Create a G M S A before the K D S root key replicates, and password retrieval fails on hosts that ask another domain controller: wait the ten hours. Create a second root key, and G M S As fail after their next password rotation: one key per forest. Leave an S P N on the old account, and Kerberos to the service fails or falls back to N T L M: move the S P Ns in the switch window. Switch a host that can't retrieve the password, and the service won't start: test every host first. Put a G M S A in a privileged group, and every host that retrieves its password holds that privilege. Complete a D M S A migration too early, or with a host not on Windows Server 2025, and the service fails on the hosts it hasn't learned. Delete the old account during the migration, and there's no way back. Put a client secret on the new app registration, and you have a password in a configuration file again. Run a G M S A container on a host that isn't domain-joined, and Learn's pattern for it keeps a stored domain password again; the program allows domain-joined hosts only, and anything else needs a reviewed exception. And a G M S A left behind when Active Directory retires loses its credential with the last domain controller.`,
+  `${G} — "Dangers and how to avoid them"; "Questions for the program owner" (WD-154); Microsoft Learn pages footnoted in Migrations A and B, and "Create gMSAs for Windows containers."`);
 }
 
-// ================================================================== 13 Kit and labs
+// ================================================================== 14 Kit and labs
 {
   const s = content(SHOW, "Where the kit and the labs take over");
   tag(s, "How");

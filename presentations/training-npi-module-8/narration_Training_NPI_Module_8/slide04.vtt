@@ -24,70 +24,75 @@ Step 2 adds the
 prerequisites for a G M S A.
 
 6
-00:00:17.663 --> 00:00:20.602
+00:00:17.663 --> 00:00:20.919
 The forest needs one K D
 S root key, created once:
 
 7
-00:00:20.602 --> 00:00:24.391
+00:00:20.919 --> 00:00:25.117
 Microsoft Learn calls it a
 one-time operation in the forest,
 
 8
-00:00:24.391 --> 00:00:28.335
+00:00:25.117 --> 00:00:29.486
 and its page on creating the
 key says domain controllers wait
 
 9
-00:00:28.335 --> 00:00:31.970
+00:00:29.486 --> 00:00:33.513
 up to ten hours after it's created
 before they allow a G M S A.
 
 10
-00:00:31.970 --> 00:00:36.456
+00:00:33.513 --> 00:00:38.951
+And a G M S A's name must be unique
+in the forest, not just the domain.
+
+11
+00:00:38.951 --> 00:00:43.118
 Step 3's seventh step covers the
 Active Directory side of credentials:
 
-11
-00:00:36.456 --> 00:00:42.024
+12
+00:00:43.118 --> 00:00:48.292
 Learn's guidance on securing group managed
 service accounts says Windows changes the
 
-12
-00:00:42.024 --> 00:00:44.499
+13
+00:00:48.292 --> 00:00:50.591
 password every thirty days by default,
 
-13
-00:00:44.499 --> 00:00:48.288
+14
+00:00:50.591 --> 00:00:54.112
 and the interval can be set only
 when the account is created.
 
-14
-00:00:48.288 --> 00:00:51.211
+15
+00:00:54.112 --> 00:00:57.035
 The rollback for Step 5 is
 to re-enable the legacy
 
-15
-00:00:51.211 --> 00:00:54.426
+16
+00:00:57.035 --> 00:01:00.250
 account and revert the
 application's configuration.
 
-16
-00:00:54.426 --> 00:00:57.142
+17
+00:01:00.250 --> 00:01:02.967
 A delegated account runs
 the same thirty days:
 
-17
-00:00:57.142 --> 00:01:02.004
+18
+00:01:02.967 --> 00:01:07.829
 Learn's overview of delegated managed
 service accounts recommends waiting four
 
-18
-00:01:02.004 --> 00:01:05.936
+19
+00:01:07.829 --> 00:01:11.761
 ticket lifetimes, and thirty days
 covers four seven-day lifetimes,
 
-19
-00:01:05.936 --> 00:01:08.780
+20
+00:01:11.761 --> 00:01:14.620
 so the program completes
 a migration only then.

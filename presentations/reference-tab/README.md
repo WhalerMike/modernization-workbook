@@ -14,7 +14,7 @@
 | Part | Slides |
 |---|---|
 | **Why** | Why a Reference tab: run it, prove it, trust it |
-| **What** | The six pages at a glance, then one slide each, and how they fit together |
+| **What** | The six core pages at a glance (the tab's two site-only pages, the Learn Coverage Map and the Zero Trust Closure Coverage tracker, are named but not covered), then one slide each, and how they fit together |
 | **Who** | Where to start, by role |
 | **How** | How the pages stay honest: read not counted, status and review date, gaps on the page; the Word editions and the Reference Set |
 

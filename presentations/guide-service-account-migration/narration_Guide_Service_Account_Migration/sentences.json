@@ -27,16 +27,16 @@
   ],
   [
    28.875,
-   9.125,
-   "Every fact and command in this deck comes from Microsoft Learn, read on November ninth, 2026, and the guide footnotes each one."
+   9.825,
+   "Every fact and command in this deck comes from Microsoft Learn, read on November ninth and eleventh, 2026, and the guide footnotes each one."
   ],
   [
-   38.0,
+   38.7,
    4.737,
    "Rules that are the program's own, not Microsoft's, are called design guidance."
   ],
   [
-   42.737,
+   43.438,
    9.137,
    "We'll go in four parts: why this matters, what the kinds of service identity are, who decides and what they keep, and how each migration runs."
   ]
@@ -401,11 +401,16 @@
   ],
   [
    67.862,
-   4.463,
-   "A4: after a restart, install it on each host and test it."
+   11.662,
+   "For a workload that holds no S P N, the program's default is Learn's outbound-only variant, which restricts the G M S A to outbound authentication; record that choice."
   ],
   [
-   72.325,
+   79.525,
+   14.287,
+   "And the program creates G M S As under a delegated right to create them on the service-account organizational unit, which Learn allows, not as a Domain Admin. A4: after a restart, install it on each host and test it."
+  ],
+  [
+   93.812,
    4.737,
    "Test-A D Service Account must return true on every host before you switch."
   ]
@@ -569,6 +574,73 @@
  "12": [
   [
    0.05,
+   6.088,
+   "One more move the guide covers, because mail breaks when an account becomes a G M S A."
+  ],
+  [
+   6.138,
+   6.138,
+   "A G M S A has no mailbox and no password an S M T P client could type."
+  ],
+  [
+   12.275,
+   10.613,
+   "And Microsoft Learn says basic-authentication S M T P submission to Exchange Online is scheduled for deprecation, so a stored mailbox password isn't the answer either."
+  ],
+  [
+   22.887,
+   1.875,
+   "Choose by where the mail server is."
+  ],
+  [
+   24.762,
+   10.775,
+   "On-premises Exchange: a dedicated receive connector that offers integrated Windows authentication, Kerberos, and Send As on a shared mailbox, never a person's."
+  ],
+  [
+   35.538,
+   1.0,
+   "That's M1."
+  ],
+  [
+   36.538,
+   6.875,
+   "A client that can't authenticate gets an anonymous relay limited to the workload's hosts' addresses, the weakest path."
+  ],
+  [
+   43.413,
+   1.038,
+   "That's M2."
+  ],
+  [
+   44.45,
+   14.713,
+   "Exchange Online: the workload sends through Microsoft Graph send mail as a workload identity, the app with a certificate from C3, or the Arc identity from C2, scoped to one shared mailbox with R B A C for Applications."
+  ],
+  [
+   59.163,
+   7.45,
+   "Don't consent Mail dot Send in Entra I D: Learn says the two grants are a union, so an Entra grant removes the scope."
+  ],
+  [
+   66.612,
+   1.975,
+   "Test the scope both ways."
+  ],
+  [
+   68.588,
+   11.938,
+   "In G C C, send mail runs on the worldwide Graph host, but Learn doesn't yet specify R B A C for Applications for government clouds, so test it in the tenant before relying on it."
+  ],
+  [
+   80.525,
+   3.212,
+   "High Volume Email is listed for Worldwide only."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
    3.087,
    "The guide lists the dangers and the guard for each."
   ],
@@ -614,11 +686,16 @@
   ],
   [
    62.575,
+   13.275,
+   "Run a G M S A container on a host that isn't domain-joined, and Learn's pattern for it keeps a stored domain password again; the program allows domain-joined hosts only, and anything else needs a reviewed exception."
+  ],
+  [
+   75.85,
    7.612,
    "And a G M S A left behind when Active Directory retires loses its credential with the last domain controller."
   ]
  ],
- "13": [
+ "14": [
   [
    0.05,
    6.625,

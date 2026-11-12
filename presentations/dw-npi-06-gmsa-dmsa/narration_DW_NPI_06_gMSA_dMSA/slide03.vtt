@@ -16,31 +16,51 @@ domain controllers manage and rotate,
 and which several servers can fetch.
 
 4
-00:00:10.750 --> 00:00:13.967
+00:00:10.750 --> 00:00:15.241
+Learn adds rules the plan respects:
+its name must be unique in the forest,
+
+5
+00:00:15.241 --> 00:00:18.666
+its password interval can be
+set only when it's created,
+
+6
+00:00:18.666 --> 00:00:22.928
+and a forest should have only one
+key distribution service root key,
+
+7
+00:00:22.928 --> 00:00:27.038
+because more than one makes these
+accounts fail after a rotation.
+
+8
+00:00:27.038 --> 00:00:30.255
 The delegated kind is new
 in Windows Server 2025:
 
-5
-00:00:13.967 --> 00:00:18.954
+9
+00:00:30.255 --> 00:00:35.242
 it takes over from an old-style service
 account, and once the move completes,
 
-6
-00:00:18.954 --> 00:00:23.137
+10
+00:00:35.242 --> 00:00:39.425
 the old password stops working
 and the old account is disabled.
 
-7
-00:00:23.137 --> 00:00:27.612
+11
+00:00:39.425 --> 00:00:43.900
 The workbook's migration path matrix
 says which target each account gets.
 
-8
-00:00:27.612 --> 00:00:32.088
+12
+00:00:43.900 --> 00:00:48.375
 And because everything here is an Active
 Directory command against the domain,
 
-9
-00:00:32.088 --> 00:00:35.330
+13
+00:00:48.375 --> 00:00:51.620
 the cloud choice doesn't change
 anything in this chapter.

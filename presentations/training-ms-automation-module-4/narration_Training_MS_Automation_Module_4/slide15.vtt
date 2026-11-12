@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.520
+You learned what changes when a script
+leaves Graph for Resource Manager:
+
+3
+00:00:05.520 --> 00:00:09.022
+another host and token, Azure
+role-based access control
+
+4
+00:00:09.022 --> 00:00:12.525
+instead of a permission list,
+api-versions, and next link.
+
+5
+00:00:12.525 --> 00:00:15.453
+You paged Resource Graph
+without losing rows,
+
+6
+00:00:15.453 --> 00:00:19.613
+and saw when it can't page and why
+an empty result can mean no access.
+
+7
+00:00:19.613 --> 00:00:24.676
+You read the Arc machine, extension,
+SQL Server, policy assignment and policy
+
+8
+00:00:24.676 --> 00:00:29.663
+state records, and checked support dates
+against Microsoft's lifecycle pages.
+
+9
+00:00:29.663 --> 00:00:34.096
+And in Lab 1 you ran the five checks
+on fixtures in Python and PowerShell,
+
+10
+00:00:34.096 --> 00:00:36.725
+and read each finding against its control.
+
+11
+00:00:36.725 --> 00:00:40.998
+That finishes the Microsoft Automation
+learning path as it stands:
+
+12
+00:00:40.998 --> 00:00:44.737
+four modules, about five hours
+and fifty-five minutes in all.
+
+13
+00:00:44.737 --> 00:00:48.074
+To put the checks on a schedule,
+go to the Azure Arc track
+
+14
+00:00:48.074 --> 00:00:51.337
+implementation guide's Step
+8, and its Gate 8 checks it.
+
+15
+00:00:51.337 --> 00:00:54.385
+Modules on Teams Phone
+and Teams administration,
+
+16
+00:00:54.385 --> 00:00:57.120
+and on monitoring and
+evidence, are planned.
