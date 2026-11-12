@@ -717,48 +717,48 @@
  "21": [
   [
    0.05,
-   8.05,
-   "Runbook R05 adds the Entra login beside the Windows one, watches both for thirty days, and disables rather than drops."
+   8.037,
+   "Runbook R05 adds the Entra login beside the Windows one, watches both for thirty days, and disables before it drops."
   ],
   [
-   8.1,
-   7.787,
-   "Don't start until the instance is on SQL Server 2022 or later, connected to Arc, and the estate is consolidated."
+   8.088,
+   7.95,
+   "Don't start until the instance is on sequel Server 2022 or later, connected to Arc, and the estate is consolidated."
   ],
   [
-   15.887,
+   16.038,
    5.237,
    "The one piece of real judgment is mapping each Windows login to an Entra principal."
   ],
   [
-   21.125,
+   21.275,
    7.688,
    "The program builds that from the identity reconciliation, not a spreadsheet, prefers groups, and flags anything unresolved."
   ],
   [
-   28.812,
+   28.962,
    3.688,
    "Then create matching database users with the same permissions."
   ],
   [
-   32.5,
-   7.325,
-   "During the thirty days, capture logins with SQL Server Audit, because a point-in-time query misses short connections."
+   32.65,
+   7.338,
+   "During the thirty days, capture logins with sequel Server Audit, because a point-in-time query misses short connections."
   ],
   [
-   39.825,
+   39.987,
    4.263,
    "You exit when every application also shows up on its Entra login."
   ],
   [
-   44.087,
-   4.775,
-   "Cutover is disabling the old login, so rollback is just re-enabling it."
+   44.25,
+   9.188,
+   "Cutover is disabling the old login, so rollback is just re-enabling it, and the login is dropped only after thirty more days show nothing depends on it."
   ],
   [
-   48.862,
-   2.025,
-   "And close an enabled SA here."
+   53.438,
+   4.088,
+   "And close an enabled SA here: disable it and rename it."
   ]
  ],
  "22": [

@@ -168,7 +168,7 @@ In the next four slides we'll cover how the library is numbered and what it assu
   tag(s, "What");
   table(s, ["Numbers", "What they are"], [
     [k("CA001–CA017"), c("Book 02's migration baseline, identifiers kept; CA002 retired, so 16 policies")],
-    [k("CA018–CA038"), c("Book 04's additions: risk, privileged workstations, segmented apps, workload identities")],
+    [k("CA018–CA039"), c("Book 04's additions: risk, privileged workstations, segmented apps, workload and sync identities")],
     [k("CA090"), c("The permanent report-only coverage probe; 090–099 are reserved for instruments")],
     [k("Name"), c("CA{NNN}-{Population}-{Resource or condition}-{Control}")],
   ], [1.55, 3.85], { y: 1.55, fontSize: 12, rowH: [0.4, 0.55, 0.55, 0.55, 0.5] });
@@ -178,7 +178,7 @@ In the next four slides we'll cover how the library is numbered and what it assu
     [k("Emergency access"), c("CA-Exclude-EmergencyAccess: assigned, two accounts")],
     [k("Persona groups"), c("CA-Persona-Internals and -Admins (dynamic); -WebOnly and -SharedDevice (assigned)")],
     [k("Access groups"), c("CA-Access-ServerAdmins, -AzureOperators, -ProdOperators, -PowerPlatformMakers")],
-    [k("Named locations"), c("NL-TrustedNetworks, NL-TrustedCountries, NL-WorkloadEgress")],
+    [k("Named locations"), c("NL-TrustedNetworks, -TrustedCountries, -WorkloadEgress, -SyncServerEgress")],
     [k("Custom strength"), c("FMP-Privileged-SeparateDevice: FIDO2 keys by AAGUID, or certificate-based auth")],
     [k("Device label"), c("Device extensionAttribute12 = PAW, Kiosk or SharedDevice")],
     [k("App attribute"), c("Custom security attribute FMPAccess.Environment on service principals")],
@@ -186,11 +186,11 @@ In the next four slides we'll cover how the library is numbered and what it assu
   callout(s, "Conventions", 5.3, 1.2, "FaListCheck", HEX.amber, "Every policy: ",
     "excludes the emergency access group; needs Entra ID P1 (P2 for risk, Workload ID Premium for service principals); starts in report-only; never uses the approved-client-app grant, read-only since June 30, 2026.");
   sources(s, "Sources: Microsoft Learn — Conditional Access licensing, workload identities, approved client app migration, authentication strengths. Book 04, Ch. 03 and 07.");
-  notes(s, `The library is one policy set, numbered once. Policies CA001 to CA017 are the baseline that Book 02 builds during the migration, and they keep their identifiers here. CA002 stays retired, so that's sixteen policies. Book 04 adds CA018 to CA038, for risk, privileged workstations, segmented applications and workload identities, plus CA090, the permanent report-only probe. Numbers 001 to 089 are for the library and 090 to 099 for report-only instruments. Numbers are labels, not order, and a retired number is never reused. The earlier library used a different numbering scheme, and the chapter maps every one of its policies to where it went.
+  notes(s, `The library is one policy set, numbered once. Policies CA001 to CA017 are the baseline that Book 02 builds during the migration, and they keep their identifiers here. CA002 stays retired, so that's sixteen policies. Book 04 adds CA018 to CA039, for risk, privileged workstations, segmented applications and workload identities, plus CA090, the permanent report-only probe. Numbers 001 to 089 are for the library and 090 to 099 for report-only instruments. Numbers are labels, not order, and a retired number is never reused. The earlier library used a different numbering scheme, and the chapter maps every one of its policies to where it went.
 
 Every name follows one pattern: number, population, resource or condition, then control. You can read a policy on a call without opening it.
 
-On the right are the prerequisites, and missing ones are the most common reason a report-only policy shows failures that aren't real. The emergency access group. Persona groups, the two big ones dynamic from extension attributes in Book 03's attribute map. Access groups for restricted populations. Three named locations. A custom authentication strength that accepts FIDO2 keys from an approved AAGUID list, or certificate-based authentication. It leaves out Windows Hello for Business on purpose: for privileged accounts, a credential held in the device gaining access doesn't count as a separate device. A device label in extension attribute twelve. And a custom security attribute that tags each application's environment.
+On the right are the prerequisites, and missing ones are the most common reason a report-only policy shows failures that aren't real. The emergency access group. Persona groups, the two big ones dynamic from extension attributes in Book 03's attribute map. Access groups for restricted populations. Four named locations, the newest holding only the Connect servers' egress addresses, for CA039, the synchronization-account location restriction numbered on November 11, 2026. A custom authentication strength that accepts FIDO2 keys from an approved AAGUID list, or certificate-based authentication. It leaves out Windows Hello for Business on purpose: for privileged accounts, a credential held in the device gaining access doesn't count as a separate device. A device label in extension attribute twelve. And a custom security attribute that tags each application's environment.
 
 Four conventions apply everywhere. The emergency access exclusion is implicit. Every policy needs Entra ID P1; risk policies need P2; workload identity policies need Workload ID Premium. Every policy is created in report-only. And none uses the approved client app grant, which became read-only on June 30, 2026.`, "Chapter 07 — The Conditional Access Policy Library; Chapter 03 — The Conditional Access Model.");
 }
@@ -204,7 +204,7 @@ Four conventions apply everywhere. The emergency access exclusion is implicit. E
     [k("Internals"), c("CA-Persona-Internals: dynamic, extensionAttribute11 (worker type) in EMP or CTR"), c("Standard"), c("CA006, CA007, CA008, CA017, CA029; CA023–CA024 web-only; CA028 shared devices; CA031 production operators; CA034 department apps")],
     [k("Externals", HEX.amber), c("B2B guests from partner tenants, by guest or external user type"), c("Elevated"), c("CA009, CA010")],
     [k("Guests", HEX.amber), c("Ad hoc guests from other tenants or identity providers"), c("High"), c("CA011, CA012, CA038")],
-    [k("Workload identities", HEX.slate), c("Single-tenant service principals, assigned to policies directly"), c("Variable"), c("CA015 and CA037 only — no user-scoped policy reaches them")],
+    [k("Workload identities", HEX.slate), c("Single-tenant service principals, assigned to policies directly"), c("Variable"), c("CA015, CA037 and CA039's workload form only — no user-scoped policy reaches them")],
     [k("Break-glass", HEX.teal), c("CA-Exclude-EmergencyAccess: assigned, two members"), c("Excluded"), c("Excluded from every enforced policy; CA090, report-only, still records them")],
   ], [1.75, 4.2, 1.05, 5.15], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.5, 0.62, 0.45, 0.45, 0.5, 0.5] });
   txt(s, "Tenant-wide note", "Tenant-wide policies (CA001, CA013, CA014, CA018–CA022 and others) reach every persona; those scoped to Members leave out guest and external user types.",
@@ -214,7 +214,7 @@ Four conventions apply everywhere. The emergency access exclusion is implicit. E
   sources(s, "Sources: Microsoft Learn — users, groups and workload identities in Conditional Access; Book 03 program attribute map. Book 04, Ch. 03 and 07.");
   notes(s, `Policies target populations, never people, and the populations are personas. They're defined in Book 02 and kept identical here.
 
-Admins are users eligible for or holding privileged roles, from the account-type attribute or the PIM-eligible population. They carry the highest risk and get the strictest policies: phishing-resistant MFA, a compliant device, trusted networks, and privileged workstations. Internals are employees and contractors with standard access, built dynamically from the worker-type attribute. Externals are B2B guests from partner organizations; Guests are ad hoc external users from anywhere else. Workload identities are single-tenant service principals. They must be assigned to a policy directly, because a policy assigned to a group that contains a service principal isn't enforced for it, and only two policies reach them, CA015 and CA037. And break-glass: the two emergency accounts, excluded from every enforced policy, and still recorded by CA090, which is report-only.
+Admins are users eligible for or holding privileged roles, from the account-type attribute or the PIM-eligible population. They carry the highest risk and get the strictest policies: phishing-resistant MFA, a compliant device, trusted networks, and privileged workstations. Internals are employees and contractors with standard access, built dynamically from the worker-type attribute. Externals are B2B guests from partner organizations; Guests are ad hoc external users from anywhere else. Workload identities are single-tenant service principals. They must be assigned to a policy directly, because a policy assigned to a group that contains a service principal isn't enforced for it, and only three policies reach them: CA015, CA037 and the workload form of CA039. And break-glass: the two emergency accounts, excluded from every enforced policy, and still recorded by CA090, which is report-only.
 
 The library adds named sub-populations inside the personas: web-only users without a managed device, shared-device frontline staff, server administrators, Azure operators and production operators. Each is a governed group.
 
@@ -229,7 +229,7 @@ Now the failure mode that drives one of the library's most important design choi
     [k("1 · Foundation"), c("CA001, CA020, CA021, CA090"), c("Legacy authentication; an attacker registering their own MFA; device-code phishing"), c("CA090 is never enforced: it measures the end state and sees the break-glass accounts")],
     [k("2 · Administrators", HEX.red), c("CA003–CA005, CA025–CA027"), c("Separate-device phishing-resistant MFA every 4 hours; compliant devices; trusted networks; PAWs only"), c("CA003 targets the persona and the highly privileged roles; CA027 keeps the Azure management plane to operators")],
     [k("3 · Everyone", HEX.teal), c("CA006–CA011, CA016–CA018, CA038"), c("Workforce MFA and managed devices; country block; partner and guest controls; mobile app protection"), c("CA018 is the catch-all; CA038 makes CA011's limited guest access true")],
-    [k("4 · Risk and workloads", HEX.amber), c("CA012–CA015, CA019, CA036, CA037"), c("High-risk users and sign-ins; elevated insider risk; workloads off their egress or at high risk"), c("CA019 blocks high sign-in risk, so CA014 acts on medium; CA012 then retires")],
+    [k("4 · Risk and workloads", HEX.amber), c("CA012–CA015, CA019, CA036, CA037, CA039"), c("High-risk users and sign-ins; elevated insider risk; workloads off their egress or at high risk; sync identities off the Connect servers"), c("CA019 blocks high sign-in risk, so CA014 acts on medium; CA012 then retires")],
     [k("5 · Segments, end state"), c("CA022–CA024, CA028–CA035"), c("Phishing-resistant MFA for all members; web-only, kiosk, production, staging, Power Platform, department apps"), c("CA030–CA032 select apps by custom security attribute; CA034 and CA035 are the grant-and-block template")],
   ], [1.75, 2.15, 4.0, 4.25], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.66, 0.66, 0.66, 0.66, 0.66] });
   callout(s, "PAW", 5.55, 0.95, "FaLaptop", HEX.amber, "The PAW rule is two policies: ",
@@ -243,7 +243,7 @@ Wave two is administrators. CA003 requires the separate-device strength with a f
 
 Wave three is the one users notice: the workforce MFA baseline, managed devices, the country block, partner and guest policies, mobile app protection, the CA018 catch-all, and CA038, without which CA011's limited guest access isn't limited at all.
 
-Wave four is risk and workloads. Wave five is segments and the end state: CA022, phishing-resistant MFA for every member.`, "Chapter 07 — The Conditional Access Policy Library; Appendix A.");
+Wave four is risk and workloads, including CA039, which blocks the synchronization identities anywhere but the Connect servers' own egress. Wave five is segments and the end state: CA022, phishing-resistant MFA for every member.`, "Chapter 07 — The Conditional Access Policy Library; Appendix A.");
 }
 
 // ------------------------------------------------------------------ 8  BOD 25-01
@@ -496,7 +496,7 @@ One dependency people miss. If the P2 or Governance license lapses, permanent as
   table(s, ["Tier", "Max activation", "On activation", "Ticket", "Approval", "Eligibility expiry"], [
     [k("Tier 0 · control plane", HEX.red), c("4 hours"), c("Context c1"), c("Required"), c("PIM-Approvers-T0"), c("90 days")],
     [k("Tier 1 · management plane"), c("8 hours"), c("Context c1"), c("Required"), c("PIM-Approvers-T1"), c("180 days")],
-    [k("Tier 2 · scoped operations", HEX.teal), c("8 hours"), c("Context c1"), c("Required"), c("Optional, with a risk acceptance per role"), c("180 days")],
+    [k("Tier 2 · scoped operations", HEX.teal), c("8 hours"), c("Context c1"), c("Required"), c("Optional, with a risk acceptance per role; required for Tenant Creator"), c("180 days")],
     [k("Read-only", HEX.slate), c("8 hours"), c("Context c1"), c("Optional"), c("Not required"), c("365 days")],
   ], [2.65, 1.55, 1.6, 1.25, 3.2, 1.9], { y: 1.5, fontSize: 12, rowH: [0.4, 0.45, 0.45, 0.55, 0.45] });
   panel(s, "Really", 0.6, 4.0, 5.95, 2.45, HEX.navyTint, HEX.navy, "What the controls really do", [
@@ -513,7 +513,7 @@ One dependency people miss. If the P2 or Governance license lapses, permanent as
   sources(s, "Sources: Microsoft Learn — configure Entra role settings in PIM. Book 04, Ch. 04 and 08; Appendix B.");
   notes(s, `PIM settings are defined per role. Each role's settings are independent of every other role's, and every assignment of a role follows them. The program sets them by tier, from Chapter 04's tier model.
 
-Tier 0 is the control plane: Global, Privileged Role, Privileged Authentication, Security and Conditional Access Administrator. Four-hour activations, authentication context c1, justification and ticket required, approval by the Tier 0 approver group, and eligibility that expires after ninety days. Tier 1, the management plane, such as Exchange, SharePoint, Intune and Application Administrator, gets eight hours, the Tier 1 approver group, and a hundred and eighty days. Tier 2, scoped operations inside administrative units, gets eight hours, and approval is optional, with a documented risk acceptance per role. Read-only roles need no approval, but still pass c1 with a justification, and their eligibility runs a year.
+Tier 0 is the control plane: Global, Privileged Role, Privileged Authentication, Security and Conditional Access Administrator. Four-hour activations, authentication context c1, justification and ticket required, approval by the Tier 0 approver group, and eligibility that expires after ninety days. Tier 1, the management plane, such as Exchange, SharePoint, Intune and Application Administrator, gets eight hours, the Tier 1 approver group, and a hundred and eighty days. Tier 2, scoped operations inside administrative units, gets eight hours, and approval is optional, with a documented risk acceptance per role. The exception is Tenant Creator, the one tenant-wide Tier 2 role: eligible only, never active, and approval always required, through the Tier 2 approver group. Read-only roles need no approval, but still pass c1 with a justification, and their eligibility runs a year.
 
 Now, what the controls really do, because the old guides got several wrong. The activation maximum runs from one to twenty-four hours, and it's the exposure window, so set the shortest the work needs. Require MFA on activation may not prompt at all if the user authenticated strongly earlier in the session, so it proves nothing at activation time. That's why every role uses the authentication context instead, which is Microsoft's recommendation when the goal is authentication during activation. Ticket information is recorded but never checked against a ticketing system; enforced correlation belongs in the SIEM or ITSM. And approval needs at least one approver, with two recommended.
 
@@ -849,9 +849,10 @@ Keep Appendix A at hand for every policy's template, Appendix B for every role's
     ["CA032", "5", "Staging apps: block off-network"], ["CA033", "5", "Power Platform: block non-makers"],
     ["CA034", "5", "Template: department app, compliant and MFA"], ["CA035", "5", "Template: department app, block unassigned"],
     ["CA036", "4", "Members: block elevated insider risk"], ["CA037", "4", "Workload identities: block high risk"],
-    ["CA038", "3", "Guests: block non-approved apps"], ["CA090", "1", "All users: report-only coverage probe, never enforced"],
+    ["CA038", "3", "Guests: block non-approved apps"], ["CA039", "4", "Sync identities: block off the Connect servers"],
+    ["CA090", "1", "All users: report-only coverage probe, never enforced"],
   ];
-  const half = idx.length / 2;
+  const half = Math.ceil(idx.length / 2);
   [idx.slice(0, half), idx.slice(half)].forEach((part, j) => {
     s.addTable([head(["Policy", "Wave", "Purpose"]), ...part.map((r) => [k(r[0]), c(r[1], { align: "center" }), c(r[2])])],
       tableOpts([0.85, 0.6, 4.5], { x: 0.6 + j * 6.2, y: 1.45, fontSize: 10, rowH: 0.235, margin: [0.02, 0.06, 0.02, 0.06] }));
