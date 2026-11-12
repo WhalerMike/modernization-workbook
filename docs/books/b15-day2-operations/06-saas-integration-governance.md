@@ -284,6 +284,67 @@ The review that keeps the estate current combines the catalog's attestation item
 
 Who approves what is set by [Book 04, Chapter 06](../b04-access/06-who-decides-access.md); who runs the reviews is [Chapter 10](10-who-runs-day-two.md)'s subject.
 
+## Putting the gate in place {#b15-06-putting-the-gate-in-place}
+
+The catalog becomes a control when the connector refuses to configure an integration without a verdict, every enterprise application requires assignment, and a service principal with no record is a finding. That is an enforcement change for every owner whose integration was set up by a portal click, so it follows the workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)). The table points back to where this chapter already covers each step.
+
+**Authority:** Mandated for the consent and registration baseline where BOD 25-01 applies (MS.AAD.5.1v1 to 5.3v1, [above](#consent-restriction-answers-who-not-whether)). Microsoft-recommended for the SAML certificate rollover (the Learn pages cited in Phase 3, read Oct 21, 2026). Risk-based recommended, the program's position: the verdict before configuration, the Class C threshold, assignment required on every application, the replica-only agreement line and the connector's permission set.
+**Applies:** all tenants. Environment-dependent: Office 365 GCC uses Microsoft Entra ID in the commercial cloud and sees the full gallery, while GCC High and DoD use Microsoft Entra ID in Azure Government ([above](#why-the-gate-has-to-be-the-agencys)); the self-signed certificate call isn't available in GCC High or DoD ([above](#the-actuation-surface-least-privilege-first)); Entra ID Governance for the access reviews is available in GCC, GCC High and DoD ([above](#keeping-integrations-authorized)). License-dependent: the gallery's risk scores need Microsoft Entra Suite or Internet Access ([above](#why-the-gate-has-to-be-the-agencys)).
+
+| How-template step | Where this chapter covers it, or what it adds |
+|---|---|
+| Prerequisites | The consent baseline in place ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#governing-consent-over-time)); the CMDB reconciliation ([Chapter 07](07-the-cmdb-and-asset-identity.md)); the connector built with the least-privileged permissions ([The actuation surface](#the-actuation-surface-least-privilege-first)); the Marketplace dataset read on a schedule ([Phase 1](#phase-1-intake-and-authorization)) |
+| Pilot | The negative tests on a sub-production instance ([Tests that would prove the design wrong](#tests-that-would-prove-the-design-wrong)), then new integration requests only |
+| Report-only or audit phase | The read-only inventory and the [Help Desk Kit audit](#the-help-desk-kit-audit) measure the existing population, and each existing integration is recorded with an owner and a verdict before anything about it changes. Nothing is refused or disabled in this phase |
+| Enforcement | The connector's gate refusing unapproved changes; **Assignment required** set to Yes application by application; an unreconciled service principal raised as drift; rings below |
+| Rollback | For one application, set **Assignment required** back to No, or **Enabled for users to sign in** back to Yes, under the owner's change record; the application owner and identity operations can do it in minutes. For the gate, redeploy the previous connector version from source control |
+| Exclusions | Microsoft's own first-party applications, which the kit audit already leaves out. Emergency access accounts aren't affected: Global Administrators can sign in to an application whatever its assignment setting ([Phase 4](#phase-4-provision-and-authorize)). An integration that can't require assignment, or that runs on a lapsed verdict while the authorizing official decides, is an exception with an approver and an expiry |
+| Telemetry | Provisioning and sign-in logs routed at onboarding ([Phase 6](#phase-6-evidence)); audit events for consent grants and app role assignments, which the [Chapter 04](04-help-desk-authority-in-entra.md#evidence-every-action-leaves) rules already watch |
+| Evidence | The checklist below |
+| Day-two ownership | The application owner and the security approver attest each integration on its cadence ([Phase 7](#phase-7-attest-and-exit)); the identity governance officer owns the catalog and the drift queue; the reviews run under [Keeping integrations authorized](#keeping-integrations-authorized) and the cadence in [Chapter 12](12-the-day-two-runbook.md#the-cadence-by-control-family). Drift is a service principal with no record, a tenant-wide grant the catalog didn't produce, or a verdict past its age |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Sub-production instance and test applications | Every negative test passes |
+| 1 | New integration requests | A full quarter of requests through the catalog with no portal-click integration found by the inventory |
+| 2 | Existing sign-in-only integrations: owner and verdict recorded, then assignment required | Each application's owner confirms sign-in still works for the assigned group |
+| 3 | Existing provisioning integrations: agreement attached, attribute scope reviewed, assignment required; unrecorded service principals raised as drift | No enabled provisioning job without an approved agreement; the drift queue owned and worked down |
+
+- **Emergency access:** not affected by assignment changes; no Conditional Access policy is changed by this rollout.
+- **Change window:** each application's change in its owner's agreed window, with the owner on hand to test sign-in.
+- **Backout triggers:** users of a business-critical application unable to sign in after assignment is required, or a provisioning job that stops; set per application before its change.
+- **Post-change validation:** a test sign-in by an assigned user and a refused sign-in by an unassigned test user; for provisioning, one on-demand push of a test user.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The seven phases and the authorization threshold | The catalog design and the threshold the authorizing official set |
+| Configured | The catalog items, the connector and its gate | The catalog's item definitions and the connector's source and permission grant |
+| Enforced | The gate refusing; assignment required on every in-scope application (rings 1 to 3) | The inventory export showing `AssignmentRequired` and provisioning state per application, and the exception register |
+| Evidenced | The negative tests, and the post-change validation per application | Test records with expected and observed outcomes |
+| Operated | Attestation on its cadence, access reviews and the drift queue | Attestation records, review results and drift findings with their closures |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the integration inventory export and the catalog record for each integration (verdict, owner, classification, agreement)
+- [ ] **Operational:** provisioning and sign-in logs in the SIEM, attestation and review records, kept for the program's log retention
+- [ ] **Test:** the negative tests after every change to the catalog, and each application's post-change validation (expected and observed outcome, date, tester)
+- [ ] **Exception:** applications that don't require assignment, integrations on a lapsed verdict, and any connector permission beyond the table, each with approver and expiry
+- [ ] **Assessor-ready artifact:** the inventory joined to verdicts and agreements, filed for SA-9, CA-3 and AC-20 in the package ([Chapter 11](11-attestation-and-the-compliance-app.md))
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Apps, with Identity for consent and assignment
+- **CISA ZTMM pillar:** Applications and Workloads
+- **Depends on:** Book 04's consent settings and approval chain (Identity); the CMDB's reconciled inventory ([Chapter 07](07-the-cmdb-and-asset-identity.md)); Book 12's SIEM for provisioning and sign-in telemetry (SecOps)
+- **Attack chain interrupted:** an over-consented or ungoverned application used for access that outlives its purpose (Persistence), and directory data replicated to an unauthorized service (Exfiltration)
+:::
+
 ## Honest limits
 
 1. **The population is unmeasured.** The source design specified the gate before counting how many gallery integrations exist and how many carry provisioning. Run the read-only inventory above first; if the count is small, scale the catalog down and say so.

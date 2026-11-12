@@ -497,6 +497,7 @@ pages:
   - docs/books/b07-pki/03-hardening-what-stays.md
   - docs/books/b07-pki/05-who-owns-the-certificate-estate.md
   - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
+  - docs/books/b07-pki/_verification/03-hardening-what-stays.md
   - docs/reference/source-register.md
 - path: WindowsServerDocs/identity/ad-cs/secure-monitor-scale-online-responders.md
   url: https://learn.microsoft.com/windows-server/identity/ad-cs/secure-monitor-scale-online-responders
@@ -1715,7 +1716,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/appendix-b-forest-assessment-module.md
@@ -3247,6 +3250,8 @@ pages:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/10-migrating-and-governing.md
@@ -5714,6 +5719,8 @@ pages:
   - docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/laps/laps-concepts-overview.md
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-concepts-overview
@@ -5787,6 +5794,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: WindowsServerDocs/identity/laps/laps-management-powershell.md
   url: https://learn.microsoft.com/windows-server/identity/laps/laps-management-powershell

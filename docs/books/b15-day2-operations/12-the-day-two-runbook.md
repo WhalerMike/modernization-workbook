@@ -209,6 +209,67 @@ The ungoverned shape is common: one well-scoped custom role exists (for example,
 
 A note on the control the source cited here. It named AC-2(7), Privileged User Accounts, for the review. AC-2(7) is about administering privileged accounts under a role-based scheme and isn't in any NIST baseline; the review of privileges is AC-6(7), which is in the Moderate and High baselines, together with AC-2's own account review.[^c12-baselines] The runbook cites AC-6(7).
 
+### Moving the desk onto the governed tasks {#b15-12-moving-the-desk-onto-the-governed-tasks}
+
+The eight procedures replace habits, and the last step of the move is enforcement: standing administrator rights leave day-to-day operations (task 8), and a request that arrives by email no longer gets actioned from the email. That step follows the workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)); the role and scope configuration it relies on is [Chapter 04's](04-help-desk-authority-in-entra.md#b15-04-putting-the-authority-model-in-place), and the integration gate is [Chapter 06's](06-saas-integration-governance.md#b15-06-putting-the-gate-in-place).
+
+**Authority:** Risk-based recommended, the program's position, for the eight procedures. Mandated where the system's baseline selects the controls each task names (IA-5, AC-2, AC-6(7), AU-9 and the others above). Microsoft-recommended for archiving sign-in activity in a SIEM run by security operations (task 7, above).
+**Applies:** all tenants. License-dependent: just-in-time activation needs PIM (Entra ID P2 or Entra ID Governance; [Chapter 04](04-help-desk-authority-in-entra.md#b15-04-putting-the-authority-model-in-place)).
+
+| How-template step | Where this chapter covers it, or what it adds |
+|---|---|
+| Prerequisites | The catalog items ([Chapter 05](05-the-service-catalogs.md)); the scoped roles and PIM ([Chapter 04](04-help-desk-authority-in-entra.md)); the central log platform ([Book 12](../b12-security-operations/index.md)); the evidence pipeline ([Chapter 11](11-attestation-and-the-compliance-app.md#the-evidence-and-continuous-monitoring-pipeline)) |
+| Pilot | One task type first, normally password reset, on one service desk line |
+| Report-only or audit phase | The catalog items run beside the old path for a set period while the SIEM's no-ticket rule ([Chapter 04](04-help-desk-authority-in-entra.md#evidence-every-action-leaves)) counts the changes that still happen outside it, without blocking them |
+| Enforcement | Standing administrator assignments removed from operators, and the shared request mailbox redirected to the front door ([Chapter 03](03-intake-triage-and-routing.md#redirecting-the-mailbox)), task type by task type (rings below) |
+| Rollback | Restore a removed standing assignment from the export taken before the change, through PIM against the change record, for a named operator and a stated period; a Privileged Role Administrator does it in minutes |
+| Exclusions | Emergency access accounts are never used for daily tasks and keep their own design ([Book 04](../b04-access/index.md)); a task without a catalog item yet runs as a change-managed one-off ([task 5](#running-a-script-for-a-requester)) until its item exists |
+| Telemetry | Each task's closing record, PIM activations, directory audit entries and the no-ticket rule, all to the evidence pipeline |
+| Evidence | The checklist below |
+| Day-two ownership | The service desk lead owns the queue and the weekly human-only closure review; identity engineering owns the custom role records reviewed quarterly; the cadence is in [the table by control family](#the-cadence-by-control-family). Drift is a change with no ticket or a standing assignment that came back |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Password reset on the implementing team's line | Every reset closed with its provenance record; no change found outside a ticket |
+| 1 | Password and authenticator resets for the whole desk | Two weeks with the no-ticket rule silent for those tasks |
+| 2 | Account creation, scripts and admin consent requests through their items | The same, per task |
+| 3 | Standing administrator assignments removed; the request mailbox redirected | No standing operator assignment in the export; the redirect's auto-reply sending people to the front door |
+
+- **Emergency access:** untouched by the change; the accounts aren't operator accounts.
+- **Change window:** one task type at a time, in business hours, with the service desk lead and identity engineering on hand.
+- **Backout triggers:** set before each ring, for example a queue backlog past the service level for the task that just moved, or a task the new path can't complete.
+- **Post-change validation:** one test request per moved task, end to end, with its closing record checked.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The eight procedures above | This chapter and the catalog item definitions |
+| Configured | Catalog items, roles and the log forwarding | The item definitions, the role export and the collection configuration |
+| Enforced | Standing rights removed and the mailbox redirected (ring 3) | The role export with no standing operator assignment; the mailbox redirect setting |
+| Evidenced | One test request per task, and the no-ticket rule firing on a deliberate test | Test records with expected and observed outcomes |
+| Operated | The daily queue, the weekly human-only closure review and the quarterly custom role review | Review records and the cadence tasks' closures |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the catalog item definitions and the role export, kept with the change record
+- [ ] **Operational:** each task's closing record and the joined PIM and audit entries, kept for the program's log retention
+- [ ] **Test:** one test request per task after each ring, and the no-ticket rule's yearly test (expected and observed outcome, date, tester)
+- [ ] **Exception:** any restored standing assignment and any task still run outside the catalog, with approver and expiry
+- [ ] **Assessor-ready artifact:** a sample of each task's closure records, filed in the package ([Chapter 11](11-attestation-and-the-compliance-app.md))
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity, with SecOps for the log handling
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** [Chapter 04](04-help-desk-authority-in-entra.md)'s scoped roles and PIM (Identity); Book 12's log platform (SecOps)
+- **Attack chain interrupted:** a spoofed or compromised mailbox used to order a reset, an account or a script (Initial Access, Execution), and standing administrator rights reused by whoever compromises an operator (Privilege Escalation)
+:::
+
 ## Weekly, monthly and quarterly
 
 The daily work produces most of the evidence. The longer cycles check that the evidence still means what it says.

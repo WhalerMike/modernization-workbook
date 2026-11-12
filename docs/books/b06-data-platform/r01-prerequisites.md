@@ -99,6 +99,8 @@ The runbooks draw one bright line, and the code enforces it:
 Anything that touches **service accounts, SQL logins, SPNs, GPOs or the domain** changes a production security posture. Run discovery and the audit first (they are safe), generate the plan or script, capture it, and route it through change control and security review before any enforcement. The discovery scripts are read-only; the remediation steps are not.
 :::
 
+Each runbook that changes production (R04 to R08) ends with a section on control states, change safety and evidence, in the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md): its rings, the emergency access paths it must not cut, the backout triggers set before the change, and the evidence an assessor can inspect. [Runbook R09](r09-continuous-monitoring-and-closure.md#b06-r09-control-states) carries the Evidenced and Operated states for all of them. The read-only runbooks (R02, R03 and R10) enforce nothing and don't carry those sections.
+
 ## Step 4 — The offline snapshot pattern
 
 Every function accepts captured input, a JSON or CSV snapshot of a live read, so the entire chain can be exercised and tested without touching a live estate. Capture once (the `Spec*` audits, the `Export-FMP*` exports, `azcmagent show -j` for the agent's status as JSON,[^r01-azcm-show] a captured managed-identity token response), then run the derivations against the captured files. The program's Pester suite validates the modules the same way, fully offline.

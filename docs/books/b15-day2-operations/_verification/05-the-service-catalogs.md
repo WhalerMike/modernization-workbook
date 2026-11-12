@@ -96,3 +96,11 @@ Brings this chapter in line with the emergency-calling section added to Book 03,
 | F13 | Windows stateful DHCPv6 /128: site match and policies without LIS location; alternatives IPv4 subnet, switch/port, BSSID; no per-device /128 entries | A site match isn't a location | verified | c05-dynamic (IPv6 subnet matching) |
 | F14 | Locations and Networks report: Network Site tab shows site matches; Network Identifier tab shows location match and location ID | Same | verified | c05-loc-report |
 | F15 | Mapping item closes on the Network Identifier tab and a test call | Same | restated-as-design | — |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (implementation conventions)
+
+Section added: Putting emergency calling in place (control states, How-template map, authority labels, change safety, evidence checklist; assessment mapping marked not applicable). It cites no new product fact; the facts it points to are the rows above.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Rings, test-call exit criteria, backout triggers and control-state evidence for emergency calling | Putting emergency calling in place | restated-as-design | Program design under Book 00, Appendix D | Nov 11, 2026 |

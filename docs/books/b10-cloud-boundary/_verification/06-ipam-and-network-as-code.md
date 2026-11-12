@@ -75,3 +75,11 @@ Checked 2026-10-21 against Microsoft Learn (Virtual Network Manager IPAM concept
 | Vol VI Book 01 — Honest Limits | Ch06 "Honest limits" | — |
 | Vol VI Book 01 — Cross-References; Provenance; banners | — | Internal series navigation and stamps |
 | cloud.md — Drift considerations | Ch05 (provenance and authorization drift) | — |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Deny policy is Microsoft's documented fix for overlap with IPAM pools; exemption, rollback and control states | Azure: mirror the authority, enforce the pool | verified (carried; c06-avnm-policy) and restated-as-design | [Prevent overlapping address spaces with Azure Policy and IPAM](https://learn.microsoft.com/azure/virtual-network-manager/prevent-overlapping-ip-address-space-policy-ipam) | Nov 11, 2026 |

@@ -1,0 +1,724 @@
+{
+  "ExecutedAt": "2026-11-10T13:52:08.9013377-05:00",
+  "TenantId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+  "TenantName": "Contoso",
+  "Domain": "contoso.example",
+  "Account": "zta-reader@contoso.onmicrosoft.com",
+  "CurrentVersion": "3.1.0",
+  "LatestVersion": "3.1.0",
+  "TestResultSummary": {
+    "IdentityPassed": 6,
+    "IdentityTotal": 16,
+    "DevicesPassed": 3,
+    "DevicesTotal": 4,
+    "NetworkPassed": 0,
+    "NetworkTotal": 2,
+    "DataPassed": 1,
+    "DataTotal": 2,
+    "InfrastructurePassed": 0,
+    "InfrastructureTotal": 0,
+    "SecOpsPassed": 0,
+    "SecOpsTotal": 2,
+    "AIPassed": 1,
+    "AITotal": 2
+  },
+  "Tests": [
+    {
+      "TestImplementationCost": "High",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21835.",
+      "TestId": "21835",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Application management",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Emergency access accounts are configured appropriately",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21816.",
+      "TestId": "21816",
+      "TestMinimumLicense": [
+        "P2"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Privileged access",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "All Microsoft Entra privileged role assignments are managed with PIM",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "High",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21815.",
+      "TestId": "21815",
+      "TestMinimumLicense": [
+        "P2"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Privileged access",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "All privileged role assignments are activated just in time and not permanently active",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21781.",
+      "TestId": "21781",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Privileged access",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Privileged users sign in with phishing-resistant methods",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21783.",
+      "TestId": "21783",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Access control",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Privileged Microsoft Entra built-in roles are targeted with Conditional Access policies to enforce phishing-resistant methods",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21796.",
+      "TestId": "21796",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "Medium",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Access control",
+      "TestSfiPillar": null,
+      "TestImpact": "High",
+      "TestTitle": "Block legacy authentication policy is configured",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21797.",
+      "TestId": "21797",
+      "TestMinimumLicense": [
+        "P2"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Access control",
+      "TestSfiPillar": null,
+      "TestImpact": "High",
+      "TestTitle": "Restrict access to high risk users",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Skipped",
+      "TestResult": "Skipped. This test is for tenants that are licensed for Entra Workload ID.",
+      "TestSkipped": "NotLicensedEntraWorkloadID",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21883.",
+      "TestId": "21883",
+      "TestMinimumLicense": [
+        "Workload"
+      ],
+      "TestRisk": "Medium",
+      "TestPillar": "Identity",
+      "SkippedReason": "This test is for tenants that are licensed for Entra Workload ID.",
+      "TestCategory": "Access control",
+      "TestSfiPillar": null,
+      "TestImpact": "High",
+      "TestTitle": "Workload Identities are configured with risk-based policies",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21772.",
+      "TestId": "21772",
+      "TestMinimumLicense": [
+        "Free"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Application management",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Applications don't have secrets configured",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21867.",
+      "TestId": "21867",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Application management",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Enterprise applications with high privilege Microsoft Graph API permissions have owners",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "High",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21885.",
+      "TestId": "21885",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Application management",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "App registrations use safe redirect URIs",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Investigate",
+      "TestResult": "Fictional fixture: the result needs a manual review.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21837.",
+      "TestId": "21837",
+      "TestMinimumLicense": [
+        "Free"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Devices",
+      "TestSfiPillar": null,
+      "TestImpact": "Medium",
+      "TestTitle": "Limit the maximum number of devices per user to 10",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21812.",
+      "TestId": "21812",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "Low",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Privileged access",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Maximum number of Global Administrators doesn't exceed eight users",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21839.",
+      "TestId": "21839",
+      "TestMinimumLicense": [
+        "Free"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Credential management",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Passkey authentication method enabled",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "High",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21861.",
+      "TestId": "21861",
+      "TestMinimumLicense": [
+        "P2"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Monitoring",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "All high-risk users are triaged",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Skipped",
+      "TestResult": "Skipped. Not connected to Azure.",
+      "TestSkipped": "NotConnectedAzure",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21860.",
+      "TestId": "21860",
+      "TestMinimumLicense": null,
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": "Not connected to Azure.",
+      "TestCategory": "Monitoring",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Diagnostic settings are configured for all Microsoft Entra logs",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Planned",
+      "TestResult": "",
+      "TestSkipped": "UnderConstruction",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21800.",
+      "TestId": "21800",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "Medium",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Monitoring",
+      "TestSfiPillar": null,
+      "TestImpact": "Medium",
+      "TestTitle": "All user sign-in activity uses strong authentication methods",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Error",
+      "TestResult": "An error occurred while running this test.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21813.",
+      "TestId": "21813",
+      "TestMinimumLicense": [
+        "Free"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Privileged access",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "High Global Administrator to privileged user ratio",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 21941.",
+      "TestId": "21941",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "Medium",
+      "TestPillar": "Identity",
+      "SkippedReason": null,
+      "TestCategory": "Access control",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Token protection policies are configured",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 24824.",
+      "TestId": "24824",
+      "TestMinimumLicense": [
+        "Intune"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Devices",
+      "SkippedReason": null,
+      "TestCategory": "Data",
+      "TestSfiPillar": null,
+      "TestImpact": "Medium",
+      "TestTitle": "Conditional Access policies block access from noncompliant devices",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 24546.",
+      "TestId": "24546",
+      "TestMinimumLicense": [
+        "P1"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Devices",
+      "SkippedReason": null,
+      "TestCategory": "Tenant",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Windows automatic device enrollment is enforced to eliminate risks from unmanaged endpoints",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 24574.",
+      "TestId": "24574",
+      "TestMinimumLicense": [
+        "Intune"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Devices",
+      "SkippedReason": null,
+      "TestCategory": "Devices",
+      "TestSfiPillar": null,
+      "TestImpact": "Medium",
+      "TestTitle": "Attack Surface Reduction rules are applied to Windows devices to prevent exploitation of vulnerable system components",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 24548.",
+      "TestId": "24548",
+      "TestMinimumLicense": [
+        "Intune"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Devices",
+      "SkippedReason": null,
+      "TestCategory": "Data",
+      "TestSfiPillar": null,
+      "TestImpact": "High",
+      "TestTitle": "Data on iOS/iPadOS is protected by app protection policies",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 25381.",
+      "TestId": "25381",
+      "TestMinimumLicense": [
+        "Entra_Premium_Private_Access",
+        "Entra_Premium_Internet_Access"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Network",
+      "SkippedReason": null,
+      "TestCategory": "Global Secure Access",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Network traffic is routed through Global Secure Access for security policy enforcement",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 25533.",
+      "TestId": "25533",
+      "TestMinimumLicense": [
+        "DDoS_Network_Protection",
+        "DDoS_IP_Protection"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Network",
+      "SkippedReason": null,
+      "TestCategory": "Azure Network Security",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "DDoS Protection is enabled for all Public IP Addresses in VNETs",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Skipped",
+      "TestResult": "Skipped. This test is not applicable to the current environment.",
+      "TestSkipped": "NotApplicable",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 27018.",
+      "TestId": "27018",
+      "TestMinimumLicense": [
+        "Azure_WAF"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Network",
+      "SkippedReason": "This test is not applicable to the current environment.",
+      "TestCategory": "Azure Network Security",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Rate Limiting is Enabled in Azure Front Door WAF",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Skipped",
+      "TestResult": "Skipped. This test is not applicable to the current environment.",
+      "TestSkipped": "NotApplicable",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 25416.",
+      "TestId": "25416",
+      "TestMinimumLicense": [
+        "Entra_Premium_Internet_Access"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "Network",
+      "SkippedReason": "This test is not applicable to the current environment.",
+      "TestCategory": "Global Secure Access",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Global Secure Access cloud firewall protects branch office internet traffic",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 35003.",
+      "TestId": "35003",
+      "TestMinimumLicense": [
+        "Microsoft 365 E3"
+      ],
+      "TestRisk": "High",
+      "TestPillar": [
+        "Data",
+        "AI"
+      ],
+      "SkippedReason": null,
+      "TestCategory": "sensitivity-labels",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Sensitivity labels are configured",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Passed",
+      "TestResult": "Fictional fixture: the configuration matched the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 35024.",
+      "TestId": "35024",
+      "TestMinimumLicense": [
+        "Microsoft 365 E3"
+      ],
+      "TestRisk": "High",
+      "TestPillar": [
+        "Data",
+        "AI"
+      ],
+      "SkippedReason": null,
+      "TestCategory": "Rights Management Service",
+      "TestSfiPillar": null,
+      "TestImpact": "High",
+      "TestTitle": "Azure Rights Management service is activated",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Skipped",
+      "TestResult": "Skipped. This test requires connection to the service(s) \"SharePointOnline\" currently disconnected.  Please use _Connect-ZtAssessment_ to connect.",
+      "TestSkipped": "NotConnectedToService",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 35005.",
+      "TestId": "35005",
+      "TestMinimumLicense": [
+        "MIP_P1"
+      ],
+      "TestRisk": "High",
+      "TestPillar": [
+        "Data",
+        "AI"
+      ],
+      "SkippedReason": "This test requires connection to the service(s) \"SharePointOnline\" currently disconnected.  Please use _Connect-ZtAssessment_ to connect.",
+      "TestCategory": "SharePoint Online",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Sensitivity labels are enabled for SharePoint and OneDrive",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Skipped",
+      "TestResult": "Skipped. Not connected to Exchange Online.",
+      "TestSkipped": "NotConnectedExchange",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 41032.",
+      "TestId": "41032",
+      "TestMinimumLicense": [
+        "ATP_ENTERPRISE"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "SecOps",
+      "SkippedReason": "Not connected to Exchange Online.",
+      "TestCategory": "Email and collaboration security",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Safe Links policies in Microsoft Defender for Office 365 are configured to scan and block malicious URLs",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 41045.",
+      "TestId": "41045",
+      "TestMinimumLicense": [
+        "WINDEFATP",
+        "MDE_LITE"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "SecOps",
+      "SkippedReason": null,
+      "TestCategory": "Endpoint threat protection",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "All eligible endpoints are onboarded to Microsoft Defender for Endpoint",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Medium",
+      "TestStatus": "Failed",
+      "TestResult": "Fictional fixture: one or more objects didn't match the recommendation.",
+      "TestSkipped": "",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 41050.",
+      "TestId": "41050",
+      "TestMinimumLicense": [
+        "WINDEFATP"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "SecOps",
+      "SkippedReason": null,
+      "TestCategory": "Endpoint threat protection",
+      "TestSfiPillar": null,
+      "TestImpact": "Medium",
+      "TestTitle": "Attack surface reduction (ASR) rules are enabled in block mode",
+      "TestAppliesTo": null
+    },
+    {
+      "TestImplementationCost": "Low",
+      "TestStatus": "Skipped",
+      "TestResult": "Skipped. This test requires one of the following licenses: (\"AAD_PREMIUM\") OR (\"AGENT_365\").",
+      "TestSkipped": "NoCompatibleLicenseFound",
+      "TestTags": null,
+      "TestDescription": "Fictional fixture for test 61009.",
+      "TestId": "61009",
+      "TestMinimumLicense": [
+        "AAD_PREMIUM",
+        "AGENT_365"
+      ],
+      "TestRisk": "High",
+      "TestPillar": "AI",
+      "SkippedReason": "This test requires one of the following licenses: (\"AAD_PREMIUM\") OR (\"AGENT_365\").",
+      "TestCategory": "AI Identity & Access",
+      "TestSfiPillar": null,
+      "TestImpact": "Low",
+      "TestTitle": "Conditional Access policies cover both agent identities and agent users",
+      "TestAppliesTo": null
+    }
+  ],
+  "TenantInfo": {
+    "TenantOverview": {
+      "Note": "Fictional fixture; the kit doesn't read TenantInfo."
+    }
+  },
+  "EndOfJson": "EndOfJson"
+}

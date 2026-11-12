@@ -180,7 +180,23 @@ And the policy that refuses anything else, assigned at the Landing zones managem
 }
 ```
 
-Roll it out the way [Chapter 05](05-the-landing-zone.md) describes: audit first, list the existing virtual networks that would fail, associate them with the pool, then switch to deny.
+Roll it out the way [Chapter 05](05-the-landing-zone.md#enforcing-without-breaking-things) describes: audit first, list the existing virtual networks that would fail, associate them with the pool, then switch to deny. Chapter 05's How template, rings, backout triggers and evidence checklist apply to this policy unchanged; what differs is below.
+
+- **Authority:** Microsoft-recommended (the deny policy is Microsoft's documented way to prevent overlap with pools[^c06-avnm-policy]); Risk-based recommended for keeping the enterprise IPAM authoritative, which is the program's position. **Applies:** Environment-dependent: the IPAM feature's regional availability and its FedRAMP audit-scope status are recorded in the [boundary check below](#a-boundary-check-on-the-ipam-service-itself).
+- **Exclusions:** a virtual network that can't take a pool allocation (for example one that predates the pool and can't yet be associated with it) gets a policy exemption with an expiry and a static CIDR in the pool, never a hole in the address plan.
+- **Rollback:** set the assignment's effect back to `audit`; existing allocations stay in place.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The three-part pattern above | The enterprise IPAM reservation for the Azure range |
+| Configured | Pools and static CIDRs (the Bicep above) | Pool export or the module's state output |
+| Enforced | The deny policy at the landing-zone scope | Assignment export showing Deny; exemption register |
+| Evidenced | A test virtual network outside the pool is denied | Activity-log deny event (date, tester) |
+| Operated | DDI discovery reconciliation | Reconciliation reports; mismatches raised as findings ([Book 08, Chapter 07](../b08-ddi/07-cloud-private-endpoints-and-ipam.md)) |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
 
 ### A boundary check on the IPAM service itself
 

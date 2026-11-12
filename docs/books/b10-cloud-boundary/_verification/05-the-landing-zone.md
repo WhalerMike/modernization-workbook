@@ -92,3 +92,13 @@ New section "Internet-facing workloads: ingress and resilience": selection and c
 | IN-13 | OCI WAF edge and regional; L3/4 DDoS included; private endpoints and service gateway; Security Zone policies; US Government Cloud endpoints list WAF, Network Firewall, NLB, not the Layer 7 Load Balancer | OCI column | verified; Layer 7 Load Balancer in US Government Cloud not yet specified | Oracle pages in the notes | Nov 11, 2026 |
 | IN-14 | Resource Graph inventory command and its property paths | Inventory | restated-as-design (illustrative; property paths from the public IP resource schema, not executed against a tenant) | — | Nov 11, 2026 |
 | IN-15 | Selection rules, Corp deny of public IPs, evidence and control states | Section | restated-as-design (labeled Risk-based recommended) | Program design | Nov 11, 2026 |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Start with audit or auditIfNotExists before enforcing; exemptions with category and expiry | Enforcing without breaking things (Authority, How template) | verified (carried; c05-overview, c05-exempt) | [What is Azure Policy?](https://learn.microsoft.com/azure/governance/policy/overview); [Exemption structure](https://learn.microsoft.com/azure/governance/policy/concepts/exemption-structure) | Nov 11, 2026 |
+| P4-2 | Rings, backout triggers, control states, evidence checklist for boundary policy | Enforcing without breaking things | restated-as-design | Program design | Nov 11, 2026 |
+| P4-3 | Links to the Azure Security Engineering guide, Steps 1 to 7 and 9 | Where each boundary decision lands; Internet-facing workloads | restated-as-design (cross-reference) | Azure Security Engineering implementation guide | Nov 11, 2026 |

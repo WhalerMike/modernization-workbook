@@ -156,6 +156,39 @@ An orphaned agent is one whose anchors have failed. The program classifies an ag
 
 The response mirrors the orphaned-application policy in [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps), shortened because an agent can act: once the identity governance officer confirms the finding, a person disables the agent rather than waiting 30 days (disabling is never automatic, [Chapter 07](07-monitoring-drift-and-shadow-ai.md)), the sponsoring office has 30 days to name a sponsor or retire it, and the finding stays open until one or the other happens. Disabling is the safe suspension because it stops tokens while keeping configuration, and the admin center can disable many agent identities at once from the **All agent identities** page.[^c05-manage-admin] Detection of orphans is a monitoring task covered in [Chapter 07](07-monitoring-drift-and-shadow-ai.md).
 
+### Putting the lifecycle in place {#b17-05-putting-the-lifecycle-in-place}
+
+Turning the lifecycle on changes what happens to agents already running: blueprint creation closes to ordinary users, access moves to expiring packages, and orphaned agents are disabled. Those steps follow the workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)). The control states, evidence checklist and assessment mapping for the lifecycle are carried once, per agent, in [Chapter 06](06-credentials-and-least-privilege.md#agent-credential-controls) (its **Lifecycle** row); this section adds the rollout.
+
+**Authority:** Microsoft-recommended for a sponsor and owner at creation, the production handshake, expiring access and periodic sponsor attestation (the best-practices page cited above, read Oct 22, 2026). Risk-based recommended, the program's position: the two-human rule, the ten-day grace period and disabling a confirmed orphan without waiting.
+**Applies:** License-dependent: the agent rows of the governance features need Microsoft Agent 365 or Microsoft 365 E7 ([below](#release-stage-and-government-cloud-availability)). Environment-dependent: the agent features are partly available in GCC and not published for GCC High or DoD, where [the fallback below](#where-the-agent-features-arent-available) applies.
+
+| How-template step | Where this chapter covers it, or what it adds |
+|---|---|
+| Prerequisites | The licenses and cloud status in [the table below](#release-stage-and-government-cloud-availability); HR-driven mover and leaver workflows for people ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md)); an identity record per agent |
+| Pilot | One sponsoring office's agents, with its stewards' dynamic group as second sponsor |
+| Report-only or audit phase | [The read-only check below](#a-read-only-check-to-start-from) lists agents with no owner, and the sponsor check lists those with no sponsor; the sponsorship workflow tasks run on demand for a test sponsor before they're scheduled. Nothing is disabled in this phase |
+| Enforcement | **Users can create agent blueprints** set to No; access through expiring packages only; confirmed orphans disabled. Rings below |
+| Rollback | Set the blueprint-creation setting back to Yes for a stated period; re-enable a disabled agent with the same call that disabled it (an owner or Agent ID Administrator, not the sponsor), in minutes ([Chapter 06's kill switch](06-credentials-and-least-privilege.md#the-kill-switch)) |
+| Exclusions | Agents' user accounts are kept out of the human workflows' scope ([Recertification](#recertification-expiry-is-the-review)); an agent that must keep running without a confirmed sponsor is an exception the authorizing official accepts, with an expiry. Emergency access accounts aren't affected |
+| Telemetry | Audit entries for sponsor changes, access package assignments, disables and the cascade deletes ([Retirement](#retirement)); Lifecycle Workflows run history |
+| Evidence | Chapter 06's checklist, with the sponsor attestations and the orphan findings and their closures added |
+| Day-two ownership | The identity governance office runs the sponsor workflows and the quarterly accountability review ([What the program asks of each party](#what-the-program-asks-of-each-party)); drift is an agent with no confirmed sponsor, an access package with no end date, or a record that disagrees with the directory |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Development agents and a test sponsor | The sponsorship tasks transfer and notify as designed; a disable and re-enable complete |
+| 1 | One sponsoring office's production agents | Every agent has a confirmed sponsor, an identity record and expiring access |
+| 2 | The remaining offices, a few at a time | The same, office by office |
+| 3 | Blueprint creation closed to ordinary users; orphan disables run on confirmation | No new blueprint created outside the two roles; every orphan finding either disabled or accepted |
+
+- **Emergency access:** not affected; no human sign-in control changes.
+- **Change window:** before each disable, the sponsoring office is told and the agent's owner is on hand, because Microsoft warns that disabling can make running agents fail ([Chapter 06](06-credentials-and-least-privilege.md#the-kill-switch)).
+- **Backout triggers:** a business process that stops because an agent was disabled or its access expired before its sponsor confirmed it.
+- **Post-change validation:** the read-only check and the sponsor check rerun after each ring, with the counts recorded.
+
 ## A read-only check to start from
 
 ::: {.callout-warning}

@@ -81,7 +81,7 @@ Run the export and the gap report on one system's applications first, chosen bec
 
 ### Report-only or audit phase {#app-report-only}
 
-The export and the gap report change nothing. Run them weekly for four weeks across the tenant before any app is deactivated or restricted, and read three numbers from them: unknown workloads, ownerless high-impact apps and stale apps (no activity in 90 days, the program's threshold, *design guidance*). Each week's report goes to the identity governance office, which confirms or dismisses each row.
+The export and the gap report change nothing. Run them weekly for four weeks across the tenant before any app is deactivated or restricted, and read three numbers from them: unknown workloads, ownerless high-impact apps and stale apps (no activity in 90 days, the program's threshold, *design guidance*, settled as [WD-148](../../about/decision-register.md#wd-148)). Each week's report goes to the identity governance office, which confirms or dismisses each row.
 
 **Step 1. Export what the tenant knows.** Connect, then run the export. Replace `<out-dir>` with a folder the evidence store collects from.
 
@@ -225,7 +225,9 @@ A client secret is a password an application keeps. Microsoft's guidance is not 
 
 **Exception criteria.** An application may hold a client secret only when all four hold, and the exception names them: (1) the software can't use a certificate, a federated credential or a managed identity, shown by the vendor's documentation or a test, not by assertion; (2) the app is not Tier 1, or the CISO approves a Tier 1 exception personally; (3) a replacement date is set, at most one year out, tied to a vendor release, a [Book 18](../b18-application-modernization/index.md) disposition or a conversion wave; and (4) the secret is vaulted and rotated within the windows below. The identity governance office and the CISO approve, as [Book 04, Chapter 06](../b04-access/06-who-decides-access.md#exceptions) sets out, and the exception is per-application, recorded in the application management policy as an app-specific exemption and in the exception register.
 
-| Event | Rotation window (program design) | Who acts |
+The rotation windows below are the program's settled position ([WD-148](../../about/decision-register.md#wd-148), risk-based recommended).
+
+| Event | Rotation window (program decision) | Who acts |
 |---|---|---|
 | Scheduled rotation of an excepted secret | Before 80% of its lifetime has elapsed, and no later than 30 days before expiry | The app's technical owner; raised automatically |
 | Certificate renewal | 30 days before expiry, with the new credential uploaded to the app registration before the old one is removed | Technical owner; [Non-Person Identity guide, Step 3](../guides/non-person-identity-implementation.md#step-3-set-the-credential-rules) item 5 |
@@ -501,7 +503,7 @@ The governance platform team owns the export, the repository and the schedule; e
 
 [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register) converts standing privileged assignments to eligible ones and produces two artifacts: a read-only export of every directory role's PIM settings with its list of permanent active assignments (`role-settings.csv`, `permanent-active.csv`), and a register of the permanent assignments that remain. This section is the governance side of that register: who approves an entry, when it expires, how often it is reviewed, how drift against the export is found, and what evidence the cycle leaves. It doesn't repeat the build or the scripts; it reads their output.
 
-**Authority:** Microsoft-recommended for eligible rather than permanent assignment of privileged roles and for emergency access accounts that stay permanently assigned (Learn, read Nov 11, 2026).[^c14g-pim-exc] Risk-based recommended for the approvers, expiry limits and drift severities below, which are the program's position on the risk of standing privilege.
+**Authority:** Microsoft-recommended for eligible rather than permanent assignment of privileged roles and for emergency access accounts that stay permanently assigned (Learn, read Nov 11, 2026).[^c14g-pim-exc] Risk-based recommended for the approvers, expiry limits and drift severities below, which are the program's settled position on the risk of standing privilege ([WD-149](../../about/decision-register.md#wd-149)).
 **Applies:** License-dependent: Microsoft Entra ID P2 or Entra ID Governance for PIM. Environment-dependent: PIM and the Graph reads the export uses are available in the global service, GCC High and DoD, as [Book 04](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register) records.
 
 **Who approves, for how long, and how often it is reviewed.** The register's `Category` decides the route. The routes reuse [Chapter 09](09-who-governs.md#who-accepts-exceptions)'s split between a bounded exception, which the CISO approves, and a risk acceptance, which the authorizing official decides.

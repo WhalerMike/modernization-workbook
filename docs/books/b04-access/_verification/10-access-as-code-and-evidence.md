@@ -137,3 +137,14 @@ Not cited: [Configure configuration management service permissions](https://lear
 | A8 | Export runbook read-only, scheduled, reviewed as Tier 0 | Governance operations evidence | design position | — |
 | A9 | ID Governance for Government available in GCC, GCC High, DoD | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/licensing-fundamentals) |
 | A10 | Government-cloud availability of dashboard, custom alerts, ADX reports and Automation scenarios | Governance operations evidence | not yet specified | — |
+
+## Zero Trust closure, Phase 4, November 11, 2026
+
+New subsection "The pipeline as a control" (`#b04-10-pipeline-control-states`) after "Drift detection and closure".
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P1 | CM-3 and CM-5 are SP 800-53 Rev. 5 controls in the Moderate baseline | Authority | verified | NIST SP 800-53 Rev. 5 release 5.2.0 OSCAL catalog | Nov 11, 2026 |
+| P2 | Configuration monitoring needs P1 or P2 (30 monitors, 800 resources a day) | Applies | verified (unchanged) | [Licensing for Microsoft Entra Tenant Governance](https://learn.microsoft.com/entra/id-governance/tenant-governance/licensing) | Nov 11, 2026 |
+| P3 | Tenant Governance government-cloud availability | Applies | not yet specified (no statement on the overview, licensing or feature-availability pages) | [What is Microsoft Entra Tenant Governance?](https://learn.microsoft.com/entra/id-governance/tenant-governance/overview); [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) | Nov 11, 2026 |
+| P4 | Read-only first run, deliberate-drift test, control states | Pipeline as a control | restated-as-design | program position | Nov 11, 2026 |

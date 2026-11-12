@@ -1294,6 +1294,67 @@ The commands are the test stage's [step 11](#step-11-roll-back), with `productio
 | Production | Seven days of drift packages per wave, chained and verified, and the sole-source report | First week | 8, 9 |
 | Production | The locked retention policy on the evidence container | Tenant-wide 7 | 9 |
 
+## Control states and change safety for the runbook {#b19-10-control-states-and-change-safety}
+
+This runbook deploys and enforces: dynamic groups that decide access, a leaver workflow, Intune policies that replace GPOs, machine configuration in apply mode. It already carries most of the workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)); this section maps them, so an assessor can find each one, and adds the two it leaves implicit, the exclusions and the control states.
+
+**Authority:** as each step's requirements table states: Mandated where a row names a NIST control at the system's baseline, OMB M-22-09 or a BOD 25-01 required configuration; Microsoft-recommended where a step follows a Learn recommendation (certificate sign-in, locking the retention policy); everything marked *design guidance* is risk-based recommended, the program's position.
+**Applies:** the guide's audience, a civilian agency in Microsoft 365 GCC ([Requirements, KSIs and evidence](#requirements-ksis-and-evidence)). Environment-dependent: GCC High and DoD use the Graph hosts in [Verified facts](#verified-facts) and the Azure Government storage suffix.
+
+| How-template step | Where this runbook covers it |
+|---|---|
+| Prerequisites | [Before you start](#before-you-start) and the [pre-flight checks](#pre-flight-checks) |
+| Pilot | [Stage 1, the live test](#stage-1-live-test), then the pilot division as the first production wave ([Each wave](#each-wave)) |
+| Report-only or audit phase | The dry runs, groups created paused, the workflow created disabled, the Intune policies created unassigned, machine configuration in audit before apply and Ansible in check mode (steps 2 to 7) |
+| Enforcement | [Each wave](#each-wave), after the [go/no-go criteria](#promotion-go-no-go-criteria) |
+| Rollback | [Step 11](#step-11-roll-back) and [Roll back in production](#roll-back-in-production) |
+| Exclusions | The validation kit's inputs name the governed and emergency-access groups ([Made before the runbook starts](#made-before-the-runbook-starts)); the validation kit's VK-CA-01, run in step 1 (`vk-before`) and again in step 9 (`vk-after`), reports any Conditional Access policy that doesn't exclude the emergency-access group, and step 1's Conditional Access export is the record of the exclusions before the change. *Program decision:* emergency access accounts are kept out of every dynamic rule and every wave's population, the program's settled position ([WD-150](../../about/decision-register.md#wd-150)). An enabled account with no worker record is on the validation kit's exception list with an owner, or it is a finding ([guide, Gate 2](../guides/attribute-driven-migration-implementation.md#gate-2-prove-the-attributes)) |
+| Telemetry | The provisioning logs, the workflow's run history and the drift pipeline ([First-week monitoring](#first-week-monitoring-with-drift)) |
+| Evidence | [Evidence the ISSO keeps](#evidence-the-isso-keeps) and the checklist below |
+| Day-two ownership | The drift pipeline, owned by the platform engineer, with the CISO deciding each finding ([guide, Gate 9](../guides/attribute-driven-migration-implementation.md#gate-9-keep-the-attributes-true)) |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The test stage: test tenant, test subscription and test forest | `evidence.py check` passes every row; the go/no-go criteria are met |
+| 1 | The pilot division, the first production wave | Its smoke test is GO and seven days of drift packages verify |
+| 2 | Two or three divisions at a time | The same, wave by wave |
+| 3 | The last wave; the OU tree retired | Every wave drift-clean; the sole-source report for the week |
+
+- **Emergency access:** outside every rule and wave; VK-CA-01 in `vk-before` and `vk-after` shows the emergency-access group still excluded from every policy.
+- **Change window:** each stage's change record and window ([Approvals and the change record](#approvals-and-the-change-record)).
+- **Backout triggers:** [When to roll back a wave](#roll-back-in-production), set before the wave.
+- **Post-change validation:** [Step 9, the smoke test](#step-9-smoke-test), after each wave.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The guide's gates and the settings file | The approved settings file and its SHA-256 |
+| Configured | Steps 2 to 8, each created paused, disabled, unassigned or in audit | Each step's evidence record and the files it cites |
+| Enforced | Each wave | The wave's smoke report and the deploy record |
+| Evidenced | Step 9 and step 12 | `smoke-report.json` per wave and `evidence-check.json` |
+| Operated | The drift pipeline from the first week on | The chained, verified daily packages |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the settings file, the Conditional Access export, the Intune and machine configuration provenance files, kept in the stage's evidence folder
+- [ ] **Operational:** the daily drift packages and the provisioning log extracts, in the container with the locked retention policy
+- [ ] **Test:** each stage's smoke report and the test stage's rollback drill (expected and observed outcome, date, tester)
+- [ ] **Exception:** the validation kit's exception list with owners and dates, and any drift finding the CISO accepted, with approver and expiry
+- [ ] **Assessor-ready artifact:** `evidence-check.json` with `SHA256SUMS`, and the evidence package from step 10
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity, with Devices for the Intune and machine configuration steps
+- **CISA ZTMM pillar:** Identity and Devices
+- **Depends on:** HR as the authoritative source ([Book 03](../b03-hr-identity/index.md)); Conditional Access and emergency access ([Book 04](../b04-access/index.md)); the device baselines ([Book 05](../b05-devices/index.md))
+- **Attack chain interrupted:** access that outlives a person's job or employment because nothing removed it (Persistence), and configuration that drifts from its baseline unnoticed (Defense Evasion)
+:::
+
 ## Step-to-gate map {#step-to-gate-map}
 
 | Step | What it does | Guide gate |

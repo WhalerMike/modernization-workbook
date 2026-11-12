@@ -73,3 +73,11 @@ Microsoft Learn pages the Learn coverage map marked as covered but uncited, read
 | 46 | Dynamic membership groups can be sponsors | The program's rule | verified | Learn, Add and manage owners and sponsors, <https://learn.microsoft.com/entra/agent-id/manage-owners-sponsors-agents> (`c05-owners-sponsors-howto`) |
 | 47 | Legacy Copilot Studio service principals and custom app registrations: agents without agent-specific behavior; migration guidance | Agents that aren't agent identities | verified | Learn, Recreate Copilot Studio agents; Migrate custom app registrations, <https://learn.microsoft.com/entra/agent-id/migrate-copilot-studio-agents-to-agent-id>, <https://learn.microsoft.com/entra/agent-id/migrate-custom-app-registrations-to-agent-id> (`c05-migrate-cs`, `c05-migrate-custom`) |
 | 48 | 30-day restore window, restore before or after cascade cleanup, 250-identity quota | Retirement | verified | Learn, How to delete and restore agent identity objects, <https://learn.microsoft.com/entra/agent-id/howto-delete-agent-identity> (`c05-delete-howto`) |
+
+## Zero Trust closure, Phase 4, November 11, 2026 (implementation conventions)
+
+Section added: Putting the lifecycle in place (How-template map, authority labels, change safety; control states, evidence checklist and assessment mapping carried once in Chapter 06's per-agent record). No new product fact; the best-practices claims are the rows above.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Rings, audit phase, backout triggers for blueprint-creation restriction, expiring access and orphan disables | Putting the lifecycle in place | restated-as-design | Program design under Book 00, Appendix D | Nov 11, 2026 |

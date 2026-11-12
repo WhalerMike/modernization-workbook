@@ -59,12 +59,12 @@ A modernized estate is judged on day two. The test is whether the help desk can 
 | **Who** | Who executes, who approves, and who owns each catalog, runbook and record | [10](10-who-runs-day-two.md) |
 | **How** | Attest and evidence controls through the compliance application, run the day-two runbook with harnesses that test the automation itself, build the automation in-house when there is no funding for new products, and own every provider's notices through to closure | [11](11-attestation-and-the-compliance-app.md), [12](12-the-day-two-runbook.md), [13](13-building-day-two-automation-in-house.md), [14](14-provider-notices.md) |
 
-Appendix: [A — Help desk task reference](appendix-a-help-desk-task-reference.md)
+Appendices: [A — Help desk task reference](appendix-a-help-desk-task-reference.md) · [B — Recovery and escalation runbooks](appendix-b-recovery-and-escalation-runbooks.md)
 
 ## Reading paths
 
 - **Executives (20 minutes):** Chapters 01, 02 and 10, or the 15-minute presentation.
-- **Service desk managers and staff:** Chapters 03 and 04, with Appendix A.
+- **Service desk managers and staff:** Chapters 03 and 04, with Appendices A and B.
 - **ITSM and ServiceNow platform teams:** Chapters 05, 07, 11 and 13.
 - **Cloud and platform engineers:** Chapters 06, 08, 09 and 14.
 - **Operations leads and ISSOs:** Chapters 10, 11, 12 and 14.

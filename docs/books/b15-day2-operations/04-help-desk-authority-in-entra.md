@@ -231,6 +231,67 @@ External partner persons stay inside the same boundary. The help desk may reset 
 
 Who staffs the help desk and cloud services tiers, and how their work is measured, is [Chapter 10](10-who-runs-day-two.md)'s subject. The catalog items that put these tasks in front of users are [Chapter 05](05-the-service-catalogs.md)'s.
 
+## Putting the authority model in place {#b15-04-putting-the-authority-model-in-place}
+
+The sections above describe a configuration: one role-assignable group per role and scope holding an eligible, administrative-unit-scoped assignment; a restricted management unit for executive support; the custom application-assignment role in place of Application Administrator; the SIEM rules; and the recovery sequence. Moving a help desk from standing portal rights onto it is an enforcement change, because a technician who held a tenant-wide role yesterday can reset fewer accounts today. This section gives that move the workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)), pointing back to where the chapter already covers each part.
+
+**Authority:** Microsoft-recommended for the least-privileged role per task, for scoping roles with administrative units and restricted management units, and for removing a lost method after recovery (the Learn pages cited above, read Oct 21 and Nov 9, 2026, and re-read for the Temporary Access Pass facts on Nov 11, 2026); Microsoft's Zero Trust guidance also recommends restricting Temporary Access Pass to one-time use.[^c04-zt-tap] Mandated where the system's baseline selects AC-5 and AC-6(9), which ask for separated duties and logged use of privileged functions (above). Risk-based recommended, the program's position: one group per role and scope, the restricted unit for executives, the two-approver rule and the ticket-to-activation correlation in the SIEM.
+**Applies:** License-dependent: Entra ID P1 for each administrator assigned a role over an administrative unit or a restricted management unit, and for the custom role's assignees; Entra ID P2 or Entra ID Governance for PIM (above). Environment-dependent: Office 365 GCC pairs with Microsoft Entra ID in the commercial cloud, and GCC High and DoD with Microsoft Entra ID in Azure Government;[^c04-pairing] Learn's government feature table lists built-in delegated administration, role-based access control and PIM as available in Azure for US Government, but doesn't list administrative units, restricted management units or Temporary Access Pass separately, so their availability in GCC High and DoD is not yet specified.[^c04-feature-avail]
+
+| How-template step | Where this chapter covers it, or what it adds |
+|---|---|
+| Prerequisites | The licenses and government-cloud status above; [Book 04](../b04-access/index.md)'s tiers and Tier 2 PIM settings; [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md)'s administrative units built and populated; technicians trained before they are made eligible ([Onboarding and offboarding technicians](#onboarding-and-offboarding-technicians)) |
+| Pilot | One administrative unit and its technicians first, with identity engineering keeping its current rights until the pilot unit's tickets close inside the scoped roles |
+| Report-only or audit phase | Entra role assignments have no report-only mode. The audit phase runs the SIEM rules in [Evidence every action leaves](#evidence-every-action-leaves) for two weeks while the old standing assignments still exist, listing every action a technician took that the new scoped role wouldn't have allowed, before any standing assignment is removed |
+| Enforcement | Eligible assignments through the role groups, then removal of standing and tenant-wide help desk assignments, ring by ring (change safety, below) |
+| Rollback | Re-add the technician to the previous role group, or re-create a removed assignment from the export taken before the change; a Privileged Role Administrator does it through PIM against the change record, in minutes. A restricted management unit can't be turned back into an ordinary one, because the setting is fixed at creation ([above](#restricted-management-units-for-the-accounts-the-help-desk-must-not-reset)); its rollback is moving the members out |
+| Exclusions | Emergency access accounts hold Global Administrator, so no help desk role can reset them ([Whose account the role can touch](#whose-account-the-role-can-touch)); they stay out of every help desk group and administrative unit, and an emergency access incident goes to [Appendix B, Runbook 5](appendix-b-recovery-and-escalation-runbooks.md#runbook-emergency-access-incident). No technician is excluded from the role-group model; an exception is a named, expiring assignment approved by the security office |
+| Telemetry | PIM activation records, directory audit entries and the three SIEM rules ([above](#evidence-every-action-leaves)) |
+| Evidence | The checklist below |
+| Day-two ownership | Identity engineering owns the role groups and the restricted unit; the service desk supervisor raises technician membership requests; the quarterly Tier 2 review and the cadence in [Chapter 12](12-the-day-two-runbook.md#the-cadence-by-control-family) keep it current. Drift is a standing help desk assignment, a help desk account acting without a ticket, or a role-group member with no access package assignment |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Identity engineering's own test technician accounts | Each help desk task in [Appendix A](appendix-a-help-desk-task-reference.md) completed inside the scoped role, and each forbidden task refused |
+| 1 | One administrative unit and its technicians | Two weeks with no ticket that couldn't be closed in the scoped role, and no SIEM rule hit left unexplained |
+| 2 | The remaining administrative units, a few at a time | The same criteria, unit by unit |
+| 3 | Standing and tenant-wide help desk assignments removed; executive accounts moved into the restricted unit | No standing help desk assignment in the export; the executive-support group completes a test reset, and the general help desk's attempt fails the target check |
+
+- **Emergency access:** outside every help desk scope; the quarterly emergency access drill ([Chapter 12](12-the-day-two-runbook.md#the-cadence-by-control-family)) confirms the accounts still sign in after the change.
+- **Change window:** business hours with identity engineering on hand, so a ticket the new role can't close is escalated the same day; approved by the change advisory board as a normal change.
+- **Backout triggers:** set before each ring, for example escalations from the help desk to identity engineering above the level the pilot showed, or a recovery that can't be completed within its service level.
+- **Post-change validation:** an in-scope test reset that succeeds and an out-of-scope one that is refused, for each unit, recorded on the change.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The role table, the scope and restricted-unit pattern, and the boundary table | This chapter as adopted by the identity governance officer, and the list of role groups |
+| Configured | Role groups, eligible scoped assignments, the custom role and the restricted unit | An export of role assignments and eligibility schedules by scope, and of the restricted unit's members |
+| Enforced | Standing and tenant-wide help desk assignments removed (ring 3) | The export showing no active help desk assignment outside PIM, and the exception list |
+| Evidenced | The post-change validation, and the SIEM rules firing on a deliberate test | Test records: an in-scope reset that succeeded, an out-of-scope reset that was refused, and a test activation with no ticket that raised the alert |
+| Operated | The quarterly review of help desk role membership; the SIEM rules running | The review records, the alert history and the cadence task's closure |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the role-assignment and eligibility export by scope, the restricted unit's settings and members, and the custom role's definition, kept with the change record
+- [ ] **Operational:** PIM activation records and directory audit entries joined to tickets in the SIEM, kept for the program's log retention
+- [ ] **Test:** the post-change validation for each ring, and a yearly test of each SIEM rule (expected and observed outcome, date, tester)
+- [ ] **Exception:** any named assignment outside the role-group model, with approver and expiry
+- [ ] **Assessor-ready artifact:** the quarterly review record and the exports, filed against AC-2, AC-5 and AC-6 in the package ([Chapter 11](11-attestation-and-the-compliance-app.md))
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Book 04's privileged-access tiers and PIM (Identity); Book 12's SIEM for the ticket correlation (SecOps); the HR-sourced attributes that populate dynamic administrative units ([Book 03](../b03-hr-identity/index.md))
+- **Attack chain interrupted:** a social-engineering call to the help desk that ends in a reset or a new method for the caller (Initial Access, Credential Access), and one technician's account used to take over others (Privilege Escalation, Lateral Movement)
+:::
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 03 — Intake, Triage and Routing](03-intake-triage-and-routing.md) · [Book index](index.md) · [Next: Chapter 05 — The Service Catalogs: ITSM and Teams Telephony →](05-the-service-catalogs.md)
@@ -263,3 +324,6 @@ Who staffs the help desk and cloud services tiers, and how their work is measure
 [^c04-au-manage]: Microsoft Learn, "Create or delete administrative units," section "Create an administrative unit" (the restricted management setting), <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-manage>, and "Add users, groups, or devices to an administrative unit," <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-add> (accessed Nov 9, 2026).
 [^c04-account-recovery]: Microsoft Learn, "Account recovery overview," <https://learn.microsoft.com/entra/identity/authentication/concept-account-recovery-overview>, and "Enable and configure account recovery in Microsoft Entra ID," section "Prerequisites," <https://learn.microsoft.com/entra/identity/authentication/how-to-account-recovery-enable> (accessed Nov 9, 2026).
 [^c04-vid-gcc]: Microsoft Learn, "What's new in Microsoft Entra Verified ID," September 2025 ("Entra Verified ID is supported on Microsoft GCC environments ... GCC only and not GCC High"), <https://learn.microsoft.com/entra/verified-id/whats-new> (accessed Nov 9, 2026).
+[^c04-zt-tap]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," section "Restrict Temporary Access Pass to Single Use," <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities> (accessed Nov 11, 2026).
+[^c04-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers," section "Microsoft 365 integration" (Office 365 GCC is paired with Microsoft Entra ID in Azure; Office 365 GCC High and DoD with Microsoft Entra ID in Azure Government), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Nov 11, 2026).
+[^c04-feature-avail]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government), table "Microsoft Entra ID," rows "Role-based access control (RBAC)," "Delegated administration—built-in roles" and "Privileged Identity Management (PIM)," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).

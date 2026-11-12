@@ -5231,14 +5231,19 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b02-identity/01-why-identity-matters.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
+  - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
   - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
+  - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
+  - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
 - path: docs/fundamentals/zero-trust-protect-networks.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks
   title: Security guidance - Protect networks
@@ -5265,6 +5270,8 @@ pages:
   coverage: cited
   note: Microsoft tenant isolation and engineering-system guidance not covered.
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b11-zero-trust/06-beyond-microsoft-365.md
@@ -6213,6 +6220,7 @@ pages:
   note: VPN and DirectAccess replacement with Private Access; central to remote-access retirement
   cited_by:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  - docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md
 - path: docs/global-secure-access/how-to-migrate-web-content-filtering-policies.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-web-content-filtering-policies
   title: Migrate web content filtering policies from V1 to V2
@@ -6255,7 +6263,9 @@ pages:
   coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
   cited_by:
+  - docs/books/guides/_verification/zero-trust-assessment-implementation.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/books/guides/zero-trust-assessment-implementation.md
 - path: docs/global-secure-access/how-to-operate-microsoft-traffic.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-microsoft-traffic
   title: Operate Microsoft Entra Global Secure Access Microsoft traffic profile
@@ -6274,9 +6284,11 @@ pages:
   ms_date: '2026-05-04'
   ms_topic: how-to
   description: Post-deployment operations guide for Microsoft Entra Private Access, the Zero Trust network access (ZTNA) capability, covering alerting, health checks, integration, automation, and operational metrics.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
-  cited_by: []
+  cited_by:
+  - docs/books/guides/_verification/zero-trust-assessment-implementation.md
+  - docs/books/guides/zero-trust-assessment-implementation.md
 - path: docs/global-secure-access/how-to-operate-remote-networks.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-remote-networks
   title: Operate Microsoft Entra Global Secure Access remote networks
@@ -7688,6 +7700,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/09-access-governance.md
+  - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
 - path: docs/id-governance/conditional-access-exclusion.md
   url: https://learn.microsoft.com/entra/id-governance/conditional-access-exclusion
@@ -7747,6 +7760,7 @@ pages:
   - docs/books/b03-hr-identity/10-from-attributes-to-access.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/10-access-as-code-and-evidence.md
+  - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
 - path: docs/id-governance/create-lifecycle-workflow.md
   url: https://learn.microsoft.com/entra/id-governance/create-lifecycle-workflow
@@ -7867,6 +7881,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/09-access-governance.md
+  - docs/books/b04-access/_verification/09-access-governance.md
   - docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md
 - path: docs/id-governance/download-workflow-history.md
   url: https://learn.microsoft.com/entra/id-governance/download-workflow-history
@@ -9550,7 +9565,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b11-zero-trust/02-governance-principles.md
   - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
   - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
@@ -10449,6 +10466,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/10-access-as-code-and-evidence.md
+  - docs/books/b04-access/_verification/10-access-as-code-and-evidence.md
   - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
   - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
 - path: docs/id-governance/tenant-governance/overview.md
@@ -17103,6 +17121,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b07-pki/06-device-and-user-certificates.md
+  - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b07-pki/appendix-a-deployment-checklists.md
 - path: docs/identity/authentication/concept-certificate-based-authentication-mobile-android.md
   url: https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-mobile-android
@@ -17537,22 +17556,29 @@ pages:
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/b04-access/09-access-governance.md
+  - docs/books/b04-access/10-access-as-code-and-evidence.md
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/08-pim-self-request-with-approval.md
   - docs/books/b04-access/_verification/09-access-governance.md
+  - docs/books/b04-access/_verification/10-access-as-code-and-evidence.md
   - docs/books/b04-access/_verification/appendix-d-phishing-resistant-authentication-runbooks.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md
+  - docs/books/b06-data-platform/_verification/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/b06-data-platform/appendix-c-applicability.md
+  - docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md
+  - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
+  - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
   - docs/books/b14-compliance/06-contingency-and-continuity.md
+  - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
@@ -18264,6 +18290,7 @@ pages:
   - docs/books/b15-day2-operations/03-intake-triage-and-routing.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
+  - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md
   - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
@@ -19053,6 +19080,7 @@ pages:
   - docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md
   - docs/books/b16-people/04-the-implementation-track.md
   - docs/books/b16-people/06-vendor-training-and-labs.md
+  - docs/books/b18-application-modernization/_verification/03-the-target-reference-architecture.md
   - docs/books/guides/intune-track-implementation.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md
@@ -19946,7 +19974,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/appendix-c-identity-assessment-module.md
   - docs/books/b03-hr-identity/appendix-b-security-and-privacy.md
@@ -20296,6 +20326,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b05-devices/06-who-owns-the-endpoint.md
   - docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
 - path: docs/identity/devices/howto-vm-sign-in-azure-ad-linux.md
@@ -21566,6 +21598,7 @@ pages:
   - docs/books/b04-access/03-the-conditional-access-model.md
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
+  - docs/books/b15-day2-operations/_verification/06-saas-integration-governance.md
   - docs/books/b18-application-modernization/_verification/appendix-a-identity-remediation-work-packages.md
   - docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
@@ -21755,6 +21788,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/non-person-identity-implementation.md
   - docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md
@@ -22258,6 +22292,8 @@ pages:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b04-access/06-who-decides-access.md
+  - docs/books/guides/_verification/zero-trust-assessment-implementation.md
+  - docs/books/guides/zero-trust-assessment-implementation.md
   - docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md
   - docs/reference/source-register.md
   - examples/third_party/entra-review-app-permissions-page/SNAPSHOT.md
@@ -22839,6 +22875,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
   - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
 - path: docs/identity/enterprise-apps/tutorial-govern-monitor.md
@@ -24814,6 +24851,7 @@ pages:
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/07-coexistence-and-migration.md
+  - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b07-pki/appendix-a-deployment-checklists.md
   - docs/books/b07-pki/appendix-b-template-migration-matrix.md
   - docs/reference/source-register.md
@@ -25163,7 +25201,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b00-orientation/10-retirement-steady-state-and-success.md
   - docs/books/b02-identity/01-why-identity-matters.md
   - docs/books/b02-identity/09-building-the-entra-target.md
@@ -27911,6 +27951,7 @@ pages:
   - docs/books/b06-data-platform/_verification/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
+  - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md
 - path: docs/identity/role-based-access-control/administrative-units.md
   url: https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units
@@ -28265,7 +28306,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b02-identity/02-the-structural-problem.md
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b03-hr-identity/07-who-owns-workforce-identity.md
@@ -30396,6 +30439,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
+  - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/06-credentials-and-least-privilege.md

@@ -148,6 +148,8 @@ website:
             text: "Guide: Azure Security Engineering"
           - href: docs/books/guides/global-secure-access-implementation.md
             text: "Guide: Global Secure Access Implementation"
+          - href: docs/books/guides/zero-trust-assessment-implementation.md
+            text: "Guide: Zero Trust Assessment Implementation"
           - href: docs/books/guides/ansible-configuration-automation.md
             text: "Guide: Ansible for Configuration Automation"
           - href: docs/books/guides/effective-meetings.md
@@ -322,6 +324,13 @@ website:
             - docs/training/provider-notices/07-routing-to-owners.md
             - docs/training/provider-notices/08-digest-evidence-and-go-no-go.md
             - docs/training/provider-notices/09-deploying-to-test-and-production.md
+        - section: "Zero Trust Assessment learning path"
+          href: docs/training/zero-trust-assessment/index.md
+          contents:
+            - docs/training/zero-trust-assessment/01-evidence-not-a-verdict.md
+            - docs/training/zero-trust-assessment/02-running-the-assessment-safely.md
+            - docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md
+            - docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
@@ -478,6 +487,7 @@ website:
             - docs/books/guides/defender-xdr-implementation.md
             - docs/books/guides/azure-security-implementation.md
             - docs/books/guides/global-secure-access-implementation.md
+            - docs/books/guides/zero-trust-assessment-implementation.md
             - docs/books/guides/ansible-configuration-automation.md
             - docs/books/guides/effective-meetings.md
             - docs/books/guides/hcm-entra-implementation.md

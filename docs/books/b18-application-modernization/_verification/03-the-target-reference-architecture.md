@@ -95,3 +95,11 @@ New sections from the Learn coverage review (Mike, Nov 9, 2026: take all recomme
 | A38 | CAE for application proxy, partner products, beta Graph cmdlets in government clouds | Availability | not yet specified on Learn | none |
 
 Pointer for the Book 03 owner: Chapter 13 (reference deployment) should point back to this section for the HR platform's header-based sign-in pattern (Oracle suites through F5 or Datawiza), said generically.
+
+## Zero Trust closure, Phase 4, November 11, 2026 (implementation conventions)
+
+Section added: Control states, rollback and evidence for the move (control states, How-template map, authority labels, change safety, evidence checklist, assessment mapping). Product facts it points to are the application proxy rows above, read Nov 9, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| 1 | Report-only Conditional Access before enforcing on a published application; DNS rollback to the old proxy; rings and control-state evidence | Control states, rollback and evidence for the move | restated-as-design | Program design under Book 00, Appendix D; report-only behavior per [Analyze Conditional Access policy impact](https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-report-only) | Nov 11, 2026 |

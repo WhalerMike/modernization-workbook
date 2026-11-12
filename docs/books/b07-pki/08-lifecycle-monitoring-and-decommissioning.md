@@ -127,7 +127,7 @@ A certificate on an app registration or service principal is a credential, not a
 
 Microsoft's Zero Trust guidance for Entra ID carries four checks for these credentials: no client secrets on applications, no application certificates with a lifetime over 180 days, application certificates rotated regularly, and standards enforced through application management policies, with a defined list of trusted certificate authorities for application certificates among the remediations.[^c08-zt-protect-identities] A workload that moves off a client secret onto a governed certificate is how this book supports the closure-map row for application secrets; replacing the secret with a managed identity, where the workload can use one, is Book 04's and the service account guide's.
 
-**Authority:** Microsoft-recommended (certificates over secrets, 180-day lifetime, regular rotation, trusted issuers, from "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," read Nov 11, 2026); the issuer list, the HSM criteria and the overlap window below are risk-based recommended, the program's position for the risk that a copied private key impersonates the application.
+**Authority:** Microsoft-recommended (certificates over secrets, 180-day lifetime, regular rotation, trusted issuers, from "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," read Nov 11, 2026); the issuer list, the HSM criteria and the overlap window below are risk-based recommended, the program's position for the risk that a copied private key impersonates the application. The HSM criteria and renewal at 80% of lifetime are the program's settled position ([WD-148](../../about/decision-register.md#wd-148)).
 **Applies:** every app registration and service principal the agency owns that holds a certificate credential. Environment-dependent: the Microsoft Graph application and service principal APIs are available in the US Government L4 and L5 (DoD) deployments;[^c08-graph-sp-update] the trusted-CA restriction for application certificates is a beta API; the Entra credential-expiry recommendations are preview, and their government-cloud availability is not yet specified; Key Vault Premium and Managed HSM availability in GCC High and DoD regions is not yet specified on the pages read.
 
 ### The design
@@ -313,6 +313,40 @@ Decommissioning is the program's last wave, Wave 6. It comes after cutover ([Cha
 9. **Record it.** The CA's records have their own federal retention: NARA's General Records Schedule 3.2 items 060 to 062 cover PKI administrative and transaction records, including the records of "terminating, consolidating, or reorganizing a PKI," and keep a CA's records for 7 years 6 months to 20 years 6 months, depending on its level of operation; the agency records officer confirms the disposition before the archive is ever destroyed ([Book 00, Chapter 10](../b00-orientation/10-retirement-steady-state-and-success.md#records-before-hardware-the-decommissioning-checklist)).[^c08-grs32] Commit a decommission record to the evidence repository. It covers what was retired, the final CRL's next-update time, the archive location and custody, and the trust stores the CA was removed from.
 
 Two variations depend on the target model ([Chapter 04](04-the-target-pki.md)). Under the Cloud PKI root model, an AD CS hierarchy that's being retired keeps its offline root only as long as policy and outstanding certificates require. Its root CRL publication continues on schedule until the last subordinate certificate expires. Under BYOCA, the Cloud PKI issuing CA chains to the agency's private CA hierarchy.[^c08-cpki] The root, and any intermediate that signed the Cloud PKI issuing CA, stay in service. They keep publishing CRLs and keep their keys in custody. Only the AD CS issuing CAs that no longer issue are retired. The source guide said the chain "is still in use" under BYOCA without saying which CA. The CA that must stay is the one that signed Cloud PKI's issuing CA, not necessarily the AD CS issuing CA being retired.
+
+| How template | Decommissioning one AD CS CA |
+|---|---|
+| Prerequisites | The gate above; Enterprise Admins for the uninstall and NTAuth change; the records officer's disposition for the archive (step 9) |
+| Pilot | The first CA retired is the one with the fewest remaining dependents, and the rest wait until its trust cleanup has run a week with no sign-in or validation failures |
+| Report-only or audit phase | Step 2 is the observation phase: issuance stops but nothing is removed, and events 4886 and 4888 show who still asks for the retired templates before the uninstall |
+| Enforcement | Steps 4 to 6: the final CRL, the uninstall and the trust cleanup |
+| Rollback | Restore from the step 3 backup and republish templates; the program plans eight to twelve hours ([Chapter 07](07-coexistence-and-migration.md)). After step 4's revocations, a restored CA can't un-revoke certificates; replacements are issued instead |
+| Exclusions | BRIDGE and RETAIN CAs; under BYOCA, the CA that signed the Cloud PKI issuing CA and the root |
+| Telemetry | CA audit events up to the uninstall; Entra sign-in logs for the retired CA's chain; CRL endpoint checks until the last certificate expires |
+| Evidence | The checklist below |
+| Day-two ownership | The PKI administrators keep the CDP and AIA endpoints serving until the last certificate expires, then remove the remaining objects (step 7); the records officer holds the archive's disposition |
+
+: Decommissioning against the How template {.striped .hover}
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The sponsor's retirement decision per CA ([Chapter 05](05-who-owns-the-certificate-estate.md)) | The decision record, with the dependency check from step 1 |
+| Configured | Step 2: issuance stopped | The CA's template list, empty; GPO links removed |
+| Enforced | Steps 4 to 6 | The final CRL and its next-update time; trust stores without the CA |
+| Evidenced | Step 6's sign-in log check and the CRL endpoint check | Sign-in logs showing the chain unused; endpoint check output |
+| Operated | Step 7's endpoint upkeep until the last expiry | Endpoint freshness history |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** the trust store, NTAuthCertificates and Intune trusted certificate profile exports after cleanup
+- [ ] **Operational:** CA audit events through step 2, and CRL endpoint checks until the last certificate expires
+- [ ] **Test:** a validation of a certificate the CA issued, against the final CRL from a representative client (date, tester)
+- [ ] **Exception:** any CA kept past its planned retirement, with the dependency that holds it and an owner
+- [ ] **Assessor-ready artifact:** the decommission record from step 9, traceable to the four above and to SC-17(b)
 
 ## The evidence an assessor reads
 

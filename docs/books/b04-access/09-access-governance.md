@@ -260,6 +260,67 @@ The program's earlier review procedure was a distributed spreadsheet: the govern
 
 The service-level targets survive as measures. A review is complete when every decision is recorded and applied before the instance closes; denied access still present five business days after close is a finding.
 
+### Turning on auto-apply safely {#b04-ar-rollout}
+
+Auto-apply with "remove access" is the step in this chapter that takes access away without a person acting, so it gets the staged path in [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md). The settings themselves are in the cadence table above.
+
+**Authority:** Mandated for the review itself where the agency's baseline selects AC-2(j) and AC-6(7), at an organization-defined frequency;[^c09-fedramp-ac] Microsoft-recommended for automating removal through auto-apply and for quarterly or more frequent reviews of external access (Learn, "Plan a Microsoft Entra access reviews deployment," and "Create an access review of groups and applications," read Nov 11, 2026);[^c09-p4-deploy][^c09-create-review] risk-based recommended for the cadences, reviewers and no-response defaults, which are the program's.
+**Applies:** License-dependent: Microsoft Entra ID P2 or Entra ID Governance as the table in [What can be reviewed](#what-can-be-reviewed) sets out. Environment-dependent: Learn says Microsoft Entra ID Governance is available in GCC, GCC High and DoD.[^c09-p4-gov]
+
+| Template step | In this rollout |
+|---|---|
+| Prerequisites | Groups as the substrate ([The group-based substrate](#the-group-based-substrate)), owners and fallback reviewers named, and audit logs flowing to the workspace ([Retention](#retention-the-logs-dont-keep-themselves)) |
+| Pilot | One R2 application group and one `CA-Exclude-*` group, with reviewers briefed |
+| Report-only or audit phase | The first instance of each review series runs with **Auto apply results to resource** off and **No change** for non-response; the governance office reads the results and applies them by hand, the manual **Apply** Learn documents[^c09-p4-complete] |
+| Enforcement | From the second instance, the table's settings: auto-apply on, and "remove access" where the table says so, in the rings below |
+| Rollback | Turn auto-apply off for the next instance; restore a wrongly removed membership or assignment from the instance's results CSV through a ticket; re-enable a blocked guest within the 30 days Learn allows[^c09-create-review] |
+| Exclusions | The emergency access accounts' permanent Global Administrator assignment uses **No change** ([Access reviews cadence](#cadence)); synced on-premises groups, mail-enabled groups and dynamic groups can't have results applied, which Learn lists, so the program doesn't put them in auto-apply reviews[^c09-p4-complete] |
+| Telemetry | Access review audit activities (create, end, approve, deny, apply decision) in the workspace,[^c09-p4-deploy] and the three governance alerts below |
+| Evidence | The checklist below and [How the program evidences reviews](#how-the-program-evidences-reviews) |
+| Day-two ownership | The governance office owns the review series and the exception register; [Book 15](../b15-day2-operations/index.md) carries the help-desk path for a user who lost access in a review |
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | The pilot groups, manual apply | Results applied by hand match the decisions; no wrong removal |
+| 1 | The pilot groups, auto-apply on | Result status reaches applied, and denied members are gone within five business days |
+| 2 | R2 and R3 application groups, Microsoft 365 groups, guests | One full instance with no restored removal attributed to the settings |
+| 3 | Privileged groups and roles, "remove access" on non-response | A reviewer response rate the governance office accepts, and the emergency access rule confirmed in the review definition |
+
+- **Emergency access:** the emergency accounts' assignment is never removed on non-response; the review definition is checked for it before ring 3
+- **Change window:** a new instance starts on its schedule; the setting change is made between instances, through the change process in [Chapter 10](10-access-as-code-and-evidence.md#change-control)
+- **Backout triggers:** more than a few restorations after one instance, a review that would remove most of a group because reviewers didn't respond, or a critical application's users losing access
+- **Post-change validation:** after each ring, compare the instance's denied decisions to the group's membership; nothing denied remains and nothing approved is missing
+
+**Evidence checklist**
+
+- [ ] **Configuration:** each review definition, exported with `Get-MgIdentityGovernanceAccessReviewDefinition` and kept as code ([Chapter 10](10-access-as-code-and-evidence.md#an-access-review-definition-in-microsoft-graph-powershell))
+- [ ] **Operational:** review history reports and the access review audit records, at the retention above
+- [ ] **Test:** the ring 1 comparison of decisions to membership, with its date and tester
+- [ ] **Exception:** the exception register entries for moved schedules and for reviews excluded from auto-apply
+- [ ] **Assessor-ready artifact:** the period's evidence package entry, traceable to the four above
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | The cadence table | The approved review schedule |
+| Configured | The review definitions | Definition exports |
+| Enforced | Auto-apply in rings 1 to 3 | Definitions with auto-apply on, and applied results |
+| Evidenced | The decision-to-membership comparison | Comparison record and the apply-decision audit events |
+| Operated | The schedule and the governance alerts | Review history and alert history |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+::: {.callout-note appearance="simple"}
+## Assessment mapping
+- **Microsoft Zero Trust pillar:** Identity
+- **CISA ZTMM pillar:** Identity
+- **Depends on:** Identity (the HR-driven lifecycle that should remove access first, [Book 03](../b03-hr-identity/index.md)); Applications and Workloads (group-assigned applications, [Chapter 06](06-who-decides-access.md#assignment)); SecOps (the audit workspace, [Book 12](../b12-security-operations/index.md))
+- **Attack chain interrupted:** Persistence and Privilege Escalation through access that outlived its need: a dormant membership or a forgotten guest is removed before an attacker can use it
+:::
+
 ## Lifecycle Workflows at the access level
 
 The HR-driven lifecycle (inbound provisioning, joiner, mover, and leaver design, and the attributes that trigger them) is [Book 03](../b03-hr-identity/index.md)'s. What this chapter needs is the set of Lifecycle Workflows tasks that change access, because those tasks are where the mover and leaver problems turn into access decisions.
@@ -321,7 +382,7 @@ Quarantine deals with tenants that already exist. The cheaper control stops the 
 
 **What the setting does.** **Restrict non-admin users from creating tenants**, under **Entra ID** > **Users** > **User settings**, set to **Yes**, limits tenant creation to holders of at least the Tenant Creator role. Creation is still recorded in the audit log, as category `DirectoryManagement` and activity `Create Company`, and the creator is still made Global Administrator of the new tenant.[^c09-default-perms] In Microsoft Graph the setting is the `allowedToCreateTenants` property of the authorization policy's default user role permissions; `false` corresponds to **Yes** in the admin center, and Tenant Creator holders can still create tenants.[^c09-authz-tenants]
 
-**The approved Tenant Creator workflow** (program design). Tenant Creator is an eligible assignment in PIM, never active, requested through the Tier 2 settings with approval required ([Chapter 08](08-pim-self-request-with-approval.md#settings-by-tier)). The request names the purpose (test, development, partner sandbox or a governed workforce tenant), the owner, the end date and the cost center. The governance office approves it and records the new tenant, with its tenant ID, in the tenant inventory that the [tenant strategy](appendix-c-partner-access-profile-entra.md#tenant-strategy-multitenant-organizations-and-tenant-governance) keeps. Where Tenant Governance is adopted, Microsoft's governed workforce tenant flow also requires Tenant Creator and can establish a governance relationship with the home tenant from its default policy template.[^c09-governed-tenant]
+**The approved Tenant Creator workflow** (program decision, settled as [WD-146](../../about/decision-register.md#wd-146)). Tenant Creator is an eligible assignment in PIM, never active, requested through the Tier 2 settings with approval required ([Chapter 08](08-pim-self-request-with-approval.md#settings-by-tier)); [Appendix B](appendix-b-pim-role-settings.md#tier-2-scoped-operations) lists the role's settings. The request names the purpose (test, development, partner sandbox or a governed workforce tenant), the owner, the end date and the cost center. The governance office approves it and records the new tenant, with its tenant ID, in the tenant inventory that the [tenant strategy](appendix-c-partner-access-profile-entra.md#tenant-strategy-multitenant-organizations-and-tenant-governance) keeps. Where Tenant Governance is adopted, Microsoft's governed workforce tenant flow also requires Tenant Creator and can establish a governance relationship with the home tenant from its default policy template.[^c09-governed-tenant]
 
 #### Prerequisites {#b04-tc-prerequisites}
 
@@ -587,3 +648,6 @@ External Partner Persons are guests by default and arrive through a package, so 
 [^c09-default-perms]: Microsoft Learn, "What are the default user permissions in Microsoft Entra ID?," section "Restrict member users' default permissions," row "Restrict non-admin users from creating tenants," <https://learn.microsoft.com/entra/fundamentals/users-default-permissions> (accessed Nov 11, 2026).
 [^c09-authz-tenants]: Microsoft Learn, "defaultUserRolePermissions resource type" (Microsoft Graph v1.0), property `allowedToCreateTenants`, <https://learn.microsoft.com/graph/api/resources/defaultuserrolepermissions?view=graph-rest-1.0>, and "Update authorizationPolicy" (permission `Policy.ReadWrite.Authorization`), <https://learn.microsoft.com/graph/api/authorizationpolicy-update?view=graph-rest-1.0> (both accessed Nov 11, 2026).
 [^c09-governed-tenant]: Microsoft Learn, "Create a governed workforce tenant," section "Prerequisites" (Tenant Creator required regardless of the restriction setting; the default governance policy template establishes the governance relationship), <https://learn.microsoft.com/entra/id-governance/tenant-governance/how-to-create-tenant> (accessed Nov 11, 2026).
+[^c09-p4-deploy]: Microsoft Learn, "Plan a Microsoft Entra access reviews deployment," sections "Automate actions based on access reviews" and "Monitor access reviews" (auto-apply to automate removal; audit activity types Create, Update, Access review ended, Delete, Approve, Deny, Reset and Apply decision), <https://learn.microsoft.com/entra/id-governance/deploy-access-reviews> (accessed Nov 11, 2026).
+[^c09-p4-gov]: Microsoft Learn, "Microsoft Entra feature availability," section "Other Microsoft Entra products" (Microsoft Entra ID Governance is available in GCC, GCC-High and Department of Defense cloud environments), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
+[^c09-p4-complete]: Microsoft Learn, "Complete an access review of groups and applications in access reviews," section "Apply the changes" (manual Apply when auto-apply is off; results can't be applied to on-premises synced, mail-enabled or dynamic groups, or through nested groups), <https://learn.microsoft.com/entra/id-governance/complete-access-review> (accessed Nov 11, 2026).

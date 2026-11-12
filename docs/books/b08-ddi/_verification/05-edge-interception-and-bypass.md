@@ -129,3 +129,14 @@ Checked 2026-10-20 against Cisco documentation (redirect-dns configuration guide
 |---|---|
 | `ch05-redirect-dns.flow.yaml` | Kept unchanged |
 | `ch05-encrypted-dns-paths.flow.yaml` | Kept unchanged (its "Block UDP 853" and "Block port 853" rows match NIST and CISA) |
+
+## Zero Trust closure, Phase 4 (November 11, 2026)
+
+Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 00, Appendix D (G-01 control states, G-02 How template, G-05 authority labels, G-06 evidence checklist, G-07 change safety, G-08 assessment mapping) applied to this page's procedure sections. Product facts the added blocks rely on were re-read on Learn on the date below.
+
+| # | Claim (short) | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| P4-1 | Zero Trust DNS: Windows 11 Enterprise and Education; Windows Enterprise E3/E5 and Education A3/A5 entitlements | Rolling out encrypted DNS enforcement (Applies) | verified (added) | [Zero Trust DNS](https://learn.microsoft.com/windows/security/operating-system-security/network-security/zero-trust-dns/) | Nov 11, 2026 |
+| P4-2 | Zero Trust DNS audit mode first; `netsh ztdns set state` for audit, enforce and disable; Microsoft 365 ranges and WebRTC need IP exceptions; BlockedConnections log | Rolling out encrypted DNS enforcement (How template) | verified (added; footnote c05-ztdns-deploy) | [Deploying Zero Trust DNS](https://learn.microsoft.com/windows/security/operating-system-security/network-security/zero-trust-dns/deploying-zero-trust-dns); [Troubleshooting Zero Trust DNS](https://learn.microsoft.com/windows/security/operating-system-security/network-security/zero-trust-dns/troubleshoot-zero-trust-dns) | Nov 11, 2026 |
+| P4-3 | M-22-09 encrypted DNS labeled Mandated; CISA guidance adopted by the program; Zero Trust DNS Optional | Rolling out encrypted DNS enforcement (Authority) | verified (carried; c05-m2209, c05-cisaedns) | OMB M-22-09; CISA Encrypted DNS Implementation Guidance | Nov 11, 2026 |
+| P4-4 | Rings, backout triggers, control states, evidence, assessment mapping | Rolling out encrypted DNS enforcement | restated-as-design | Program design | Nov 11, 2026 |

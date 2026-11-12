@@ -77,7 +77,7 @@ Subscriptions are the unit of management and scale. Microsoft calls this "subscr
 
 ## Where each boundary decision lands
 
-The authorization package says what's in the boundary. The landing zone has to say the same thing in a form that Azure Resource Manager enforces. Each decision has a mechanism and a scope.
+The authorization package says what's in the boundary. The landing zone has to say the same thing in a form that Azure Resource Manager enforces. Each decision has a mechanism and a scope. The security baseline that sits on top of these boundary policies (protecting the hierarchy, the Microsoft cloud security benchmark and FedRAMP initiatives in audit, platform diagnostic logs and Defender for Cloud) is built, with its commands, in [Step 1 of the Azure Security Engineering implementation guide](../guides/azure-security-implementation.md#step-1-landing-zone-security-baseline).
 
 ![Five boundary decisions and the landing-zone mechanism that enforces each.](../../images/diagrams/b10-cloud-boundary/svg/ch05-boundary-to-policy.svg){#fig-ch05-boundary-to-policy fig-alt="On the left, a slate card for the authorization boundary as written in the package. Five arrows lead to five mechanism cards. Which cloud leads to a blue card: the tenant and subscription choice, Azure commercial or Azure Government, both FedRAMP High. Which regions leads to a green card: the Allowed locations policy with deny at the intermediate root. Which services leads to a green card: Allowed resource types or Not allowed resource types with deny, checked against Microsoft's audit-scope list, with a note that the built-in policy only covers resource types that support tags and location. Which settings leads to a violet card: the FedRAMP Moderate regulatory compliance initiative in audit mode, a partial view. Which exceptions leads to an amber card: a policy exemption with category Mitigated or Waiver and an expiry date, recorded in the package."}
 
@@ -109,7 +109,58 @@ A deliberate deviation is recorded as a **policy exemption**. Exemptions have tw
 
 Azure Policy evaluates a create or update request before it reaches the resource provider. `disabled` is checked first, then `append` and `modify`, then `deny`, then `audit`; `auditIfNotExists` and `deployIfNotExists` run after the provider returns success.[^c05-effects] A `deny` match fails the request with a 403.[^c05-deny] A policy can be assigned at a management group, but only resources in subscriptions and resource groups are evaluated, and Microsoft recommends starting with `audit` or `auditIfNotExists` before switching to an enforcing effect.[^c05-overview] Existing resources are re-evaluated on a 24-hour standard cycle, and a subscription created or moved within the hierarchy is evaluated against subscription-targeted assignments in about 30 minutes.[^c05-compliance-data]
 
-The program's rollout follows that guidance. Each boundary policy goes in at the intermediate root in audit mode, the compliance report is reviewed with the system owner and the information system security officer, non-compliant resources are either fixed or given an exemption, and only then does the effect change to Deny. A policy that blocks a production deployment on day one teaches teams to ask for exemptions instead of fixing designs.
+The program's rollout follows that guidance. Each boundary policy goes in at the intermediate root in audit mode, the compliance report is reviewed with the system owner and the information system security officer, non-compliant resources are either fixed or given an exemption, and only then does the effect change to Deny. A policy that blocks a production deployment on day one teaches teams to ask for exemptions instead of fixing designs. The commands for each stage (assignment with `--enforcement-mode DoNotEnforce`, the switch to `Default`, remediation tasks, exemptions with an expiry and the monthly compliance export) are in [Step 9 of the Azure Security Engineering implementation guide](../guides/azure-security-implementation.md#step-9-policy-and-drift), which applies the same rollout to the security policies.
+
+**Authority:** Microsoft-recommended (start with `audit` or `auditIfNotExists` before an enforcing effect;[^c05-overview] exemptions with a category and an expiry[^c05-exempt]); Risk-based recommended for the rings and the exemption rule below, which are the program's position, for the risk that a deny policy blocks a production deployment nobody tested.
+**Applies:** all subscriptions under the intermediate root; Environment-dependent: built-in definitions differ between Azure and Azure Government, so each definition is looked up in the cloud it's assigned in ([What a landing zone is](#what-a-landing-zone-is)).
+
+| How template | Boundary policy rollout |
+|---|---|
+| Prerequisites | The hierarchy and the default management group in place ([The management group hierarchy](#the-management-group-hierarchy)); Resource Policy Contributor eligible through Privileged Identity Management at the intermediate root |
+| Pilot | The Sandbox management group, then one Corp subscription chosen by the platform owner |
+| Report-only or audit phase | `audit` effect, or the assignment in `DoNotEnforce`, for at least one 24-hour evaluation cycle and one compliance review with the system owner and ISSO |
+| Enforcement | The rings below; the step that enforces is the change of effect to Deny, or of enforcement mode to `Default` |
+| Rollback | Set the assignment back to `DoNotEnforce` (or the effect back to `audit`); minutes; the platform owner runs it |
+| Exclusions | Policy exemptions only, each Mitigated or Waiver, with an expiry and the decision reference ([Which exceptions](#which-exceptions)); no `notScopes` for convenience. Sign-in exclusions such as emergency access accounts don't apply: Azure Policy evaluates resource requests, not sign-ins |
+| Telemetry | Policy compliance state and activity-log deny events, sent to the Management subscription's workspace |
+| Evidence | The checklist below |
+| Day-two ownership | The platform owner for assignments; the ISSO for exemptions, reviewed monthly, expired ones reported ([Chapter 08](08-who-owns-the-boundary.md)) |
+
+: Boundary policy rollout against the How template {.striped .hover}
+
+**Change safety**
+
+| Ring | Scope | Exit criteria |
+|---|---|---|
+| 0 | Sandbox management group | The deny fires on a test deployment with the policy's message; nothing else is blocked |
+| 1 | One Corp subscription | One evaluation cycle with no unexplained non-compliance |
+| 2 | Corp and Online landing zones | Every non-compliant resource fixed or exempted, with an expiry |
+| 3 | The intermediate root | A month of compliance exports with no deny event that wasn't a design error |
+
+- **Emergency access:** not applicable to resource policy; the platform team keeps an eligible Owner path through Privileged Identity Management to change an assignment during an incident ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md)).
+- **Change window:** the switch to Deny is a normal change approved by the platform owner and ISSO, made in a window with the platform team on hand ([Chapter 07](07-the-front-door.md)).
+- **Backout triggers:** a deny that blocks a production deployment of an approved design, or a remediation task that changes resources outside the policy's intent.
+- **Post-change validation:** a test deployment that should be denied is denied, and one that should pass passes, after each ring.
+
+**Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
+
+| State | This page | Evidence |
+|---|---|---|
+| Designed | [Where each boundary decision lands](#where-each-boundary-decision-lands) | The boundary decisions in the package ([Chapter 11](11-the-authorization-package.md)) |
+| Configured | Assignments in audit or `DoNotEnforce` | Assignment exports, or the policy-as-code file and its commit |
+| Enforced | Deny (or `Default`) at the intermediate root | Assignment export showing the effect; the exemption register |
+| Evidenced | The post-change validation | The denied and the allowed test deployments (date, tester) and their activity-log entries |
+| Operated | Monthly compliance review | Compliance exports; exemption review record |
+
+A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
+
+**Evidence checklist**
+
+- [ ] **Configuration:** policy assignment and initiative exports at the intermediate root, or the policy-as-code file and its commit
+- [ ] **Operational:** monthly compliance summaries and deny events in the workspace, kept for the program's log retention
+- [ ] **Test:** the denied and allowed test deployments after each ring (expected and observed result, date, tester)
+- [ ] **Exception:** the exemption register (`az policy exemption list`), each with its category, expiry and decision reference
+- [ ] **Assessor-ready artifact:** the compliance summary for the boundary with its exemptions, linked from the package ([Chapter 11](11-the-authorization-package.md))
 
 ## The same pattern on AWS
 
@@ -129,7 +180,7 @@ Those classes describe what each region was assessed against, not who may use it
 
 ## Internet-facing workloads: ingress and resilience {#internet-facing-workloads}
 
-The **Online** management group holds the workloads that face the internet, and its policy is where the boundary decides how they may be reached. This section covers selection and control patterns only: which ingress, firewall and DDoS service fits which need, the policy that keeps every public endpoint behind one of them, and the evidence. The engineering (WAF rule tuning, origin lock-down, TLS, health probes, Firewall rules, Private Link DNS, response exercises) belongs to the **Azure Security Engineering** implementation guide, and the network paths themselves to [Book 09](../b09-network/index.md).
+The **Online** management group holds the workloads that face the internet, and its policy is where the boundary decides how they may be reached. This section covers selection and control patterns only: which ingress, firewall and DDoS service fits which need, the policy that keeps every public endpoint behind one of them, and the evidence. The engineering (WAF rule tuning, origin lock-down, TLS, health probes, Firewall rules, Private Link DNS, response exercises) belongs to the [Azure Security Engineering implementation guide](../guides/azure-security-implementation.md), and the network paths themselves to [Book 09](../b09-network/index.md).
 
 **Authority:** Microsoft-recommended for putting a web application firewall and DDoS protection in front of internet-facing web workloads;[^c05-ing-waf-afd] Mandated for knowing and attesting what is exposed, which BOD 26-04 asks of agencies quarterly for publicly exposed IP addresses and domains;[^c05-ing-bod2604] Risk-based recommended for the selection rules below, which are the program's position.
 **Applies:** License-dependent (DDoS Protection and Front Door Premium are paid tiers) and Environment-dependent: Azure Front Door Standard and Premium are generally available in Azure Government in US Gov Arizona and US Gov Texas, and Learn records no other networking variation for the services below, deferring to Microsoft's products-by-region list, so their Azure Government availability is checked there when the design is written.[^c05-ing-gov]
@@ -146,6 +197,8 @@ The **Online** management group holds the workloads that face the internet, and 
 | No public endpoint at all | Private Link and private endpoints for PaaS services | The service has no reason to be reached from the internet | Fewer public IPs are fewer DDoS targets[^c05-ing-ddos-secure] | Private endpoint inventory; public network access disabled |
 | Egress and east-west control | Azure Firewall in the Connectivity hub | All spoke traffic to the internet and between spokes | Central, logged application and network rules[^c05-ing-netoverview] | Firewall policy export; logs |
 | Public IP governance | Azure Policy at the landing-zone groups | Always | **Not allowed resource types** with Deny for `Microsoft.Network/publicIPAddresses` in **Corp** (see [Which services](#which-services)); in **Online**, every public IP behind Front Door or an Application Gateway, or registered as an exception | Policy assignment; exemption register; the inventory below |
+
+The guide carries the build for each row, with its pilot, rollback and evidence: DDoS Protection in [Step 3](../guides/azure-security-implementation.md#step-3-ddos-protection), WAF policies and their Detection-to-Prevention move in [Step 4](../guides/azure-security-implementation.md#step-4-web-application-firewall), Front Door and Application Gateway with origin lock-down in [Step 5](../guides/azure-security-implementation.md#step-5-front-door-and-application-gateway), Azure Firewall and segmentation in [Step 6](../guides/azure-security-implementation.md#step-6-firewall-and-segmentation), Private Link and its DNS in [Step 7](../guides/azure-security-implementation.md#step-7-private-link-and-dns), and the policies that hold them in place in [Step 9](../guides/azure-security-implementation.md#step-9-policy-and-drift).
 
 ### The same pattern on other platforms
 
@@ -176,7 +229,7 @@ Resources
 | order by subscriptionId asc, name asc" --output table
 ```
 
-Microsoft recommends exactly this kind of inventory of public IPs and their protection status, with Resource Graph to find the gaps.[^c05-ing-ddos-secure] Each row is matched to an owner in the CMDB ([Book 15, Chapter 07](../b15-day2-operations/07-the-cmdb-and-asset-identity.md)); a row with no owner, or attached to nothing, is a finding. The monthly comparison and the quarterly BOD 26-04 attestation run on [Book 15's operating cadence](../b15-day2-operations/12-the-day-two-runbook.md#the-cadence-by-control-family).
+Microsoft recommends exactly this kind of inventory of public IPs and their protection status, with Resource Graph to find the gaps.[^c05-ing-ddos-secure] [Step 2 of the guide](../guides/azure-security-implementation.md#step-2-public-exposure-inventory) turns the query into the exposure register, adding the owner, the DNS names and certificates that point at each exposure, and whether a WAF covers it. Each row is matched to an owner in the CMDB ([Book 15, Chapter 07](../b15-day2-operations/07-the-cmdb-and-asset-identity.md)); a row with no owner, or attached to nothing, is a finding. The monthly comparison and the quarterly BOD 26-04 attestation run on [Book 15's operating cadence](../b15-day2-operations/12-the-day-two-runbook.md#the-cadence-by-control-family).
 
 The exercise has two parts. A WAF policy starts in Detection mode, which logs and blocks nothing, and moves to Prevention after tuning; Microsoft's design guidance puts that at one to two weeks of clean logs, and is explicit that Detection mode gives no protection.[^c05-ing-wafdesign] A DDoS test is run only through Microsoft's approved simulation partners, against public IPs the agency owns that are already under DDoS Protection; Microsoft's penetration-testing rules prohibit any other denial-of-service testing.[^c05-ing-ddos-sim] The simulation report, the DDoS metrics and alerts it raised, and the response team's record are the exercise evidence.
 
@@ -185,7 +238,7 @@ The exercise has two parts. A WAF policy starts in Detection mode, which logs an
 | State | This page | Evidence |
 |---|---|---|
 | Designed | [Selection](#selection), recorded per workload in the request ([Chapter 07](07-the-front-door.md)) | The workload's ingress decision |
-| Configured | WAF policies, DDoS plan, Private Link, Firewall (the Azure Security Engineering guide) | Exports |
+| Configured | WAF policies, DDoS plan, Private Link, Firewall ([the Azure Security Engineering guide, Steps 3 to 7](../guides/azure-security-implementation.md#step-3-ddos-protection)) | Exports |
 | Enforced | Public IP policy with Deny in Corp; DDoS policy in Modify; WAF in Prevention | Policy assignments; WAF mode; exemption register |
 | Evidenced | The inventory and the exercise above | Inventory output; simulation report; WAF logs |
 | Operated | Monthly inventory comparison, quarterly attestation, annual exercise | Cadence records |

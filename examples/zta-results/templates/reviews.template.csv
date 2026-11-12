@@ -1,0 +1,2 @@
+testId,decision,reviewer,reviewedOn,note
+<test-id of an Investigate result>,<confirmed | dismissed>,<role>,<yyyy-mm-dd>,<what the reviewer checked>
