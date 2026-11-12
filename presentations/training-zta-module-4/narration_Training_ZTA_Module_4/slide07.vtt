@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+Unit 3 is the cadence
+and the evidence package.
+
+2
+00:00:03.362 --> 00:00:05.396
+The cadence is design guidance,
+
+3
+00:00:05.396 --> 00:00:10.012
+from the day-two runbook in Compliance
+Automation and Day-2 Operations.
+
+4
+00:00:10.012 --> 00:00:12.626
+Monthly, a full run, with the results and
+
+5
+00:00:12.626 --> 00:00:15.812
+the plan of action and
+milestones regenerated.
+
+6
+00:00:15.812 --> 00:00:19.903
+After each remediation wave,
+a run of the affected pillar,
+
+7
+00:00:19.903 --> 00:00:23.037
+so a fix is closed by
+evidence, not by a ticket.
+
+8
+00:00:23.037 --> 00:00:25.708
+Before a tool upgrade reaches production,
+
+9
+00:00:25.708 --> 00:00:28.301
+a run of the new version
+in the test tenant.
+
+10
+00:00:28.301 --> 00:00:30.350
+And quarterly, a trend review.
+
+11
+00:00:30.350 --> 00:00:35.003
+Microsoft's operations guidance for
+Global Secure Access includes a weekly
+
+12
+00:00:35.003 --> 00:00:39.875
+scheduled digest; the guide explains two
+cautions before adopting it as written.
+
+13
+00:00:39.875 --> 00:00:43.673
+The evidence package for a run
+holds the export and its hash,
+
+14
+00:00:43.673 --> 00:00:46.385
+the normalized results, the dispositions,
+
+15
+00:00:46.385 --> 00:00:51.190
+the reviews and exceptions with their
+hashes, the register, the comparison,
+
+16
+00:00:51.190 --> 00:00:55.060
+and the chained records with the
+S H A two fifty-six sums file.

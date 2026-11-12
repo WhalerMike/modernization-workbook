@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.425
+You prepared a clean host with the pinned
+module and a restricted report folder.
+
+3
+00:00:05.425 --> 00:00:08.338
+You consented once, as
+a consent administrator,
+
+4
+00:00:08.338 --> 00:00:11.250
+and reviewed the grant
+the consent left behind.
+
+5
+00:00:11.250 --> 00:00:15.275
+You connected in the tenant's
+own cloud, starting with G C C.
+
+6
+00:00:15.275 --> 00:00:17.677
+And you ran the assessment as a reader and
+
+7
+00:00:17.677 --> 00:00:20.150
+hashed its export before anyone opened it.
+
+8
+00:00:20.150 --> 00:00:25.484
+The evidence an I S S O keeps from this
+module: the module and PowerShell versions,
+
+9
+00:00:25.484 --> 00:00:30.010
+the grant review, the reader's role
+assignments and pim activations,
+
+10
+00:00:30.010 --> 00:00:33.000
+the connection context,
+and the export's hash.
+
+11
+00:00:33.000 --> 00:00:36.586
+Next is Module 3, from
+results to a closure register,
+
+12
+00:00:36.586 --> 00:00:40.580
+where the kit turns an export
+into findings with owners.

@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.537
+Step five breaks the seal on purpose.
+
+2
+00:00:02.537 --> 00:00:04.401
+Add one line, the word edited,
+
+3
+00:00:04.401 --> 00:00:08.613
+to the register file inside the
+sealed package, and check again.
+
+4
+00:00:08.613 --> 00:00:11.026
+Two checks fail, and each says why.
+
+5
+00:00:11.026 --> 00:00:13.772
+The sums check fails
+because the register file
+
+6
+00:00:13.772 --> 00:00:16.238
+no longer matches its
+hash in the sums file.
+
+7
+00:00:16.238 --> 00:00:20.900
+The chain check fails because the file no
+longer matches the hash its record holds.
+
+8
+00:00:20.900 --> 00:00:22.375
+That's the point of sealing.
+
+9
+00:00:22.375 --> 00:00:25.901
+Months later, an assessor can
+show that the files are the ones
+
+10
+00:00:25.901 --> 00:00:29.075
+the tool and the kit wrote, or
+see exactly which one isn't.
+
+11
+00:00:29.075 --> 00:00:31.900
+Step six cleans up: delete the out folder.
+
+12
+00:00:31.900 --> 00:00:36.203
+In a real program, the sealed folder
+lives in the evidence repository,
+
+13
+00:00:36.203 --> 00:00:39.650
+and retention follows the
+records officer's schedule.

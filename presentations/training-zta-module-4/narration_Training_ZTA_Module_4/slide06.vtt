@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where are agencies?
+
+2
+00:00:01.362 --> 00:00:03.327
+Most run more than one platform,
+
+3
+00:00:03.327 --> 00:00:06.425
+and each has its own posture
+tool on the same spine.
+
+4
+00:00:06.425 --> 00:00:11.026
+For Microsoft three sixty-five G C C
+and Azure, the workbook's baseline,
+
+5
+00:00:11.026 --> 00:00:13.044
+it's the Zero Trust Assessment,
+
+6
+00:00:13.044 --> 00:00:17.725
+with ScubaGear as the directive's
+tool for Microsoft three sixty-five.
+
+7
+00:00:17.725 --> 00:00:19.391
+On AWS, it's Security Hub,
+
+8
+00:00:19.391 --> 00:00:24.300
+with its standard for NIST eight
+hundred fifty-three, revision five.
+
+9
+00:00:24.300 --> 00:00:27.252
+In AWS GovCloud, Security
+Hub is available,
+
+10
+00:00:27.252 --> 00:00:32.988
+with limits on product integrations, some
+controls, and cross-Region aggregation.
+
+11
+00:00:32.988 --> 00:00:36.117
+On Oracle Cloud Infrastructure,
+it's Cloud Guard,
+
+12
+00:00:36.117 --> 00:00:39.012
+and on Google Cloud,
+Security Command Center.
+
+13
+00:00:39.012 --> 00:00:43.426
+The chapter on cloud-native posture
+in Security Operations and Telemetry
+
+14
+00:00:43.426 --> 00:00:47.626
+compares those two, and how their
+findings enter the evidence contract.
+
+15
+00:00:47.626 --> 00:00:52.227
+The rule is the same everywhere: each
+finding is matched to the setting
+
+16
+00:00:52.227 --> 00:00:56.810
+and the control, with one owner, in
+one row of the reconciliation table.

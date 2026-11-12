@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+Unit 1 compares runs.
+
+2
+00:00:01.812 --> 00:00:06.371
+The kit's comparison sorts
+every test into new, regressed,
+
+3
+00:00:06.371 --> 00:00:11.124
+fixed, still open, no longer
+evaluated, changed or unchanged.
+
+4
+00:00:11.124 --> 00:00:13.500
+New is a finding that wasn't there before.
+
+5
+00:00:13.500 --> 00:00:15.812
+Regressed is a pass that now fails.
+
+6
+00:00:15.812 --> 00:00:18.912
+Fixed now passes, and
+still open still fails.
+
+7
+00:00:18.912 --> 00:00:22.426
+No longer evaluated is
+the one that matters most.
+
+8
+00:00:22.426 --> 00:00:25.185
+It's a finding that's
+now skipped, planned,
+
+9
+00:00:25.185 --> 00:00:28.113
+unable to evaluate, or
+missing from the run.
+
+10
+00:00:28.113 --> 00:00:30.454
+It isn't fixed, and counting it as fixed
+
+11
+00:00:30.454 --> 00:00:33.400
+would turn a lost connection
+into remediation.
+
+12
+00:00:33.400 --> 00:00:35.688
+So fix the run, and run it again.
+
+13
+00:00:35.688 --> 00:00:40.223
+And one more rule: a new tool release
+adds tests and moves every denominator,
+
+14
+00:00:40.223 --> 00:00:43.807
+so the kit refuses to compare
+runs from different versions
+
+15
+00:00:43.807 --> 00:00:47.090
+until someone records that
+they reviewed the change.

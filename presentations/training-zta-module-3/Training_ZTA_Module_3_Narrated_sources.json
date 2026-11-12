@@ -1,0 +1,170 @@
+[
+ {
+  "slide": 3,
+  "title": "What you'll be able to do in Module 3",
+  "links": [
+   {
+    "text": "Book 11, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/08-close-before-you-assess.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Unit 1: normalize every result, then dispose of the rest",
+  "links": [
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   },
+   {
+    "text": "A normalized result taxonomy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html#a-normalized-result-taxonomy"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Unit 2: one register entry per finding",
+  "links": [
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   },
+   {
+    "text": "The closure chain",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html#the-closure-chain"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Routing: each finding family to the page that fixes it",
+  "links": [
+   {
+    "text": "Book 11, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/08-close-before-you-assess.html"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Book 05, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   },
+   {
+    "text": "Book 13, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/14-application-secret-and-configuration-governance.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Weigh the finding, then check each exception's approver",
+  "links": [
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Module 3",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Book 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Check yourself: two questions on Module 3",
+  "links": [
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Sources: Module 3 deck",
+  "links": [
+   {
+    "text": "Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-zero-trust-assessment"
+   },
+   {
+    "text": "Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-zero-trust-assessment"
+   },
+   {
+    "text": "Book 11, Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/08-close-before-you-assess.html"
+   },
+   {
+    "text": "Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   },
+   {
+    "text": "A normalized result taxonomy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html#a-normalized-result-taxonomy"
+   },
+   {
+    "text": "The closure chain",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html#the-closure-chain"
+   },
+   {
+    "text": "exceptions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html#exceptions-belong-in-the-configuration-file-with-an-owner"
+   },
+   {
+    "text": "Book 04, Chapters 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Book 05, Chapter 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   },
+   {
+    "text": "Book 13, Chapter 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/14-application-secret-and-configuration-governance.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Book 13, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-a-requirements-mapping.html"
+   }
+  ]
+ }
+]

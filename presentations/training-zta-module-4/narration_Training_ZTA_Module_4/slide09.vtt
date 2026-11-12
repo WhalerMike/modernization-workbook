@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Step three seals the
+second run's evidence.
+
+2
+00:00:02.950 --> 00:00:06.681
+Each output folder becomes a
+record: the normalized run,
+
+3
+00:00:06.681 --> 00:00:10.088
+the register, and the
+comparison, one after another.
+
+4
+00:00:10.088 --> 00:00:13.476
+Each record names the
+controls its folder supports.
+
+5
+00:00:13.476 --> 00:00:20.232
+The normalized run supports A U nine, C A
+two, C A seven and C M six; the register
+
+6
+00:00:20.232 --> 00:00:22.448
+adds C A five and R A seven;
+
+7
+00:00:22.448 --> 00:00:27.100
+the comparison supports A U
+nine, C A seven and C M six.
+
+8
+00:00:27.100 --> 00:00:30.129
+Each record also holds
+every file's hash and the
+
+9
+00:00:30.129 --> 00:00:33.313
+previous record's hash, so
+the records form a chain.
+
+10
+00:00:33.313 --> 00:00:38.386
+Step four checks the package: sixteen
+files match the sums file, the chain of
+
+11
+00:00:38.386 --> 00:00:43.787
+three records is unbroken, and a passing
+record covers each step for the run date.
+
+12
+00:00:43.787 --> 00:00:46.926
+The I S S O doesn't need
+the kit to check this.
+
+13
+00:00:46.926 --> 00:00:49.570
+In a POSIX shell, in the evidence folder,
+
+14
+00:00:49.570 --> 00:00:54.000
+the standard sha two fifty-six sum
+check reads the same sums file.

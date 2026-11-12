@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.438
+Unit 2 opens the closure register.
+
+2
+00:00:02.438 --> 00:00:07.774
+Every finding gets one entry, with the
+fields of the closure chain from Evidence,
+
+3
+00:00:07.774 --> 00:00:12.545
+Not Verdicts: the finding and the tool
+version, the attack path, the owner,
+
+4
+00:00:12.545 --> 00:00:17.719
+the dependencies, the change, the pilot,
+the enforcement, the test, the evidence,
+
+5
+00:00:17.719 --> 00:00:22.813
+the residual risk, the reassessment,
+the weighting, and the closure decision.
+
+6
+00:00:22.813 --> 00:00:26.141
+The kit fills what it knows from
+the tool and the family table,
+
+7
+00:00:26.141 --> 00:00:28.937
+and leaves placeholders
+for what a person decides.
+
+8
+00:00:28.937 --> 00:00:31.576
+And it never marks a
+finding ready for closure.
+
+9
+00:00:31.576 --> 00:00:36.015
+The authorizing official decides that
+for a plan of action and milestones item,
+
+10
+00:00:36.015 --> 00:00:38.437
+and the assessor for
+an assessment finding.
+
+11
+00:00:38.437 --> 00:00:40.560
+The register records who decided.

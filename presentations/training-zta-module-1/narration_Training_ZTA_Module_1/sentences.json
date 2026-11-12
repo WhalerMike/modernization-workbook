@@ -1,0 +1,665 @@
+{
+ "1": [
+  [
+   0.05,
+   7.062,
+   "Welcome to Module 1 of the learning path, The Zero Trust Assessment as Evidence: evidence, not a verdict."
+  ],
+  [
+   7.112,
+   6.237,
+   "A note first: this module is a draft, awaiting the editor's review, so recheck it after the review."
+  ],
+  [
+   13.35,
+   9.7,
+   "Microsoft's Zero Trust Assessment is a PowerShell module that tests a tenant against hundreds of configuration items drawn from Microsoft's configuration guidance."
+  ],
+  [
+   23.05,
+   3.312,
+   "It produces a reading of the configuration on one day."
+  ],
+  [
+   26.363,
+   3.688,
+   "In this module you'll learn what that reading can and can't tell you."
+  ],
+  [
+   30.05,
+   6.775,
+   "Then, on a fictional export, you'll see why the tool's six statuses have to be sorted before anyone counts them."
+  ],
+  [
+   36.825,
+   9.188,
+   "The path follows the ten steps of the Zero Trust Assessment implementation guide; this module covers Steps 1 and 6, and takes about forty minutes."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   9.512,
+   "The Zero Trust Assessment tests a tenant against hundreds of configuration items from Microsoft's guidance for Entra, Intune, Azure networking and Purview."
+  ],
+  [
+   10.713,
+   7.237,
+   "Release three point one point oh, the current release, holds three hundred sixty-four tests in seven pillars."
+  ],
+  [
+   17.95,
+   5.875,
+   "It's read-only, it's free, and it's the assessment component of Microsoft's Zero Trust Workshop."
+  ],
+  [
+   23.825,
+   2.712,
+   "The report is accurate on the day it runs."
+  ],
+  [
+   26.538,
+   5.737,
+   "What it doesn't do is tell you what a skipped test means, what to fix first, or when a finding is closed."
+  ],
+  [
+   32.275,
+   4.925,
+   "Those are decisions for named people, and the report is the evidence they decide with."
+  ],
+  [
+   37.2,
+   3.775,
+   "That's the title of this module: evidence, not a verdict."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.138,
+   "Here's what you'll be able to do by the end of this module, which takes about forty minutes with the lab."
+  ],
+  [
+   5.188,
+   4.362,
+   "You'll say what the Zero Trust Assessment checks, and name the four things it isn't."
+  ],
+  [
+   9.55,
+   6.237,
+   "You'll explain why it doesn't replace ScubaGear under sis-uh's directive B O D twenty-five oh-one."
+  ],
+  [
+   15.787,
+   5.588,
+   "You'll read Microsoft's rubric: risk level, user impact and implementation cost."
+  ],
+  [
+   21.375,
+   6.812,
+   "And you'll name the six statuses a test can end in, and sort a skip reason into the program's normalized taxonomy."
+  ],
+  [
+   28.188,
+   7.175,
+   "Before you start, read the chapter on the two assessment tools in Zero Trust and Assessment; Unit 1 reads it with you."
+  ],
+  [
+   35.362,
+   7.325,
+   "For the lab you need PowerShell seven point one or later, and the kit's folder, examples slash z t a results."
+  ],
+  [
+   42.688,
+   1.363,
+   "No tenant is needed."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.812,
+   "Unit 1: what it checks, and what it isn't."
+  ],
+  [
+   2.862,
+   9.225,
+   "Microsoft Learn says the assessment tests hundreds of items from Microsoft's configuration guidance for Entra, Intune, Azure networking and Purview."
+  ],
+  [
+   12.088,
+   11.512,
+   "The tool's release three point one point oh sorts its tests into seven pillars: identity, devices, network, data, infrastructure, security operations, and A I."
+  ],
+  [
+   23.6,
+   1.65,
+   "Now the four things it isn't."
+  ],
+  [
+   25.25,
+   7.463,
+   "It isn't a verdict: a finding is evidence for a decision a named person makes, and a pass rate isn't a maturity stage."
+  ],
+  [
+   32.712,
+   3.763,
+   "It isn't a substitute for ScubaGear, which is the next slide."
+  ],
+  [
+   36.475,
+   7.4,
+   "It isn't a supported product: its read me calls it a community project maintained by Microsoft employees, provided as is."
+  ],
+  [
+   43.875,
+   8.55,
+   "And it isn't a detector: Learn's operations guidance for Global Secure Access calls it a configuration-posture check, to be paired with alerts."
+  ],
+  [
+   52.425,
+   7.612,
+   "The program's decision record writes each of these down, with the scope, the run account, the cadence and the pinned tool version."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.288,
+   "The second point deserves its own slide."
+  ],
+  [
+   2.337,
+   7.975,
+   "sis-uh's directive B O D twenty-five oh-one names sis-uh's scuba tools, and the Zero Trust Assessment isn't one of them."
+  ],
+  [
+   10.312,
+   5.088,
+   "The chapter on the two tools in Zero Trust and Assessment lays out where they overlap."
+  ],
+  [
+   15.4,
+   13.675,
+   "Only ScubaGear covers Exchange Online mail flow, such as external forwarding, S P F, D-kim and D-mark; Teams meeting and external-access policies; SharePoint and OneDrive sharing; and Power Platform."
+  ],
+  [
+   29.075,
+   11.363,
+   "Both cover Entra I D identity, such as legacy authentication, M F A, Conditional Access and privileged roles, and Defender for Office three sixty-five threat policies."
+  ],
+  [
+   40.438,
+   8.975,
+   "Only the Zero Trust Assessment covers Intune devices, Azure networking and Global Secure Access, Purview, and security operations."
+  ],
+  [
+   49.413,
+   5.537,
+   "So an agency that already runs the Zero Trust Assessment monthly still runs ScubaGear."
+  ],
+  [
+   54.95,
+   3.487,
+   "The first runs alongside the second, never instead of it."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.812,
+   "Unit 2 reads the report."
+  ],
+  [
+   1.863,
+   3.837,
+   "It opens on an overview tab, then a tab for each pillar."
+  ],
+  [
+   5.7,
+   7.05,
+   "Each test shows its risk and its status, and selecting a test describes what was tested and the recommended remediation."
+  ],
+  [
+   12.75,
+   5.912,
+   "Every test carries three ratings from Microsoft's rubric, defined on Learn's terminology page."
+  ],
+  [
+   18.663,
+   10.512,
+   "Risk level: high means potential environment-wide exposure until it's mitigated; medium, moderate exposure; low, defense in depth or an operational optimization."
+  ],
+  [
+   29.175,
+   7.638,
+   "User impact: high means many non-privileged users have to act or be told; low means only administrators act."
+  ],
+  [
+   36.812,
+   7.438,
+   "And implementation cost: high is a program needing ongoing commitment, medium a project, low a targeted action."
+  ],
+  [
+   44.25,
+   4.638,
+   "The tool's own source adds two more risk levels, critical and unranked."
+  ],
+  [
+   48.888,
+   3.475,
+   "These ratings feed the weighting you'll meet in Module 3."
+  ],
+  [
+   52.362,
+   1.95,
+   "They aren't a priority on their own."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.138,
+   "Each test ends in one of six statuses, from the tool's own source."
+  ],
+  [
+   4.188,
+   2.4,
+   "Passed: the configuration matched."
+  ],
+  [
+   6.588,
+   1.4,
+   "Failed: it didn't."
+  ],
+  [
+   7.987,
+   4.662,
+   "Investigate: the tool needs a person to look before it's a finding or not."
+  ],
+  [
+   12.65,
+   9.125,
+   "Skipped: the test didn't run, and it carries a reason, such as not licensed, not connected, not applicable, not supported, or timed out."
+  ],
+  [
+   21.775,
+   3.438,
+   "Planned: the test is still under construction in the tool."
+  ],
+  [
+   25.212,
+   2.775,
+   "And error: the test couldn't be evaluated."
+  ],
+  [
+   27.988,
+   8.275,
+   "A pillar owner reads their tab with the risk and status filters, and notes every investigate, skipped and error result, with its reason."
+  ],
+  [
+   36.263,
+   5.175,
+   "They also note every failed result whose feature may not exist in the tenant's cloud."
+  ],
+  [
+   41.438,
+   3.825,
+   "That last case matters for federal tenants, and we'll come back to it."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.75,
+   "Unit 3 is the rule this whole path rests on: a skipped test is not a failed control."
+  ],
+  [
+   5.8,
+   12.875,
+   "The program records every result twice: the tool's value, unchanged, and one of seven normalized results, from the taxonomy in Evidence, Not Verdicts, a chapter of Zero Trust and Assessment."
+  ],
+  [
+   18.675,
+   1.288,
+   "Passed is a pass."
+  ],
+  [
+   19.962,
+   4.875,
+   "Failed is a finding, and so is investigate, until a person reviews it."
+  ],
+  [
+   24.837,
+   1.188,
+   "Planned is neither."
+  ],
+  [
+   26.025,
+   3.612,
+   "A test skipped for a missing license is a licensing decision."
+  ],
+  [
+   29.637,
+   3.788,
+   "One skipped because a service wasn't connected is a gap in the run."
+  ],
+  [
+   33.425,
+   3.062,
+   "One skipped as not applicable gets a recorded reason."
+  ],
+  [
+   36.487,
+   8.963,
+   "And an error, a timeout, or any value the taxonomy doesn't list is unable to evaluate: fix the run, or verify by hand."
+  ],
+  [
+   45.45,
+   4.088,
+   "None of those skips is a failed control, and none of them is a pass."
+  ],
+  [
+   49.538,
+   3.112,
+   "Each one goes in its own column, with its reason."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   8.575,
+   "Lab 1 runs on the kit's fixtures, with no tenant: a fictional Contoso export in the shape release three point one point oh writes."
+  ],
+  [
+   9.35,
+   6.763,
+   "Step one reads the export's metadata, from the jay-son file the tool writes under its zt-export folder."
+  ],
+  [
+   16.113,
+   7.537,
+   "It's version three point one point oh, tenant Contoso, thirty-three tests, and it ends with the end-of-jay-son marker."
+  ],
+  [
+   23.65,
+   4.688,
+   "That marker is the last thing the tool writes, so a file without it is incomplete."
+  ],
+  [
+   28.337,
+   8.887,
+   "Step two counts the tool's statuses: one error, sixteen failed, one investigate, eight passed, one planned, and six skipped."
+  ],
+  [
+   37.225,
+   1.587,
+   "Now think about a pass rate."
+  ],
+  [
+   38.812,
+   4.312,
+   "It would divide eight by a total that moves with licensing and connections."
+  ],
+  [
+   43.125,
+   5.1,
+   "Connect one more service next month and the rate changes, though nothing in the tenant did."
+  ],
+  [
+   48.225,
+   2.425,
+   "That's why the program doesn't report one."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.038,
+   "Step three lists what didn't run, with its reason."
+  ],
+  [
+   3.087,
+   2.675,
+   "One test is planned, under construction."
+  ],
+  [
+   5.763,
+   11.062,
+   "The six skips carry five different reasons: not licensed for workload I D, two not applicable, not connected to a service, a timeout, and no compatible license found."
+  ],
+  [
+   16.825,
+   5.2,
+   "Step four sorts those reasons with the kit's own function, convert to Z T A result."
+  ],
+  [
+   22.025,
+   2.638,
+   "Not licensed becomes skipped, licensing."
+  ],
+  [
+   24.663,
+   2.837,
+   "Not connected becomes skipped, disconnected."
+  ],
+  [
+   27.5,
+   2.962,
+   "Not applicable stays skipped, not applicable."
+  ],
+  [
+   30.462,
+   2.7,
+   "The timeout becomes unable to evaluate."
+  ],
+  [
+   33.163,
+   2.513,
+   "And an investigate result becomes fail."
+  ],
+  [
+   35.675,
+   4.037,
+   "So that's four skips, four different meanings, and none of them a failure."
+  ],
+  [
+   39.712,
+   5.713,
+   "The investigate result is a finding until someone reviews it, which you'll do in Module 3."
+  ],
+  [
+   45.425,
+   4.325,
+   "The page lists every command for the lab in order, ready to paste."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.025,
+   "Who decides?"
+  ],
+  [
+   1.075,
+   15.312,
+   "The decision record, from the guide's Step 1, scopes each run: the tenant, the pillars, and the Azure subscriptions for the infrastructure pillar; the run account; the cadence; the pinned tool version; telemetry; and where the output goes."
+  ],
+  [
+   16.387,
+   1.475,
+   "The see-so approves it."
+  ],
+  [
+   17.863,
+   11.463,
+   "Then each pillar owner reads their own tab, with the filters, and notes every investigate, skipped and error result, and every failed result whose feature may not exist in the tenant's cloud."
+  ],
+  [
+   29.325,
+   6.213,
+   "For a G C C tenant, the workbook's baseline, the tool uses the worldwide endpoints."
+  ],
+  [
+   35.538,
+   3.625,
+   "In G C C High and D O D, there's a case to know."
+  ],
+  [
+   39.163,
+   7.862,
+   "Learn's Exchange Online service description says anti-phishing impersonation protection and spoof intelligence aren't yet available there."
+  ],
+  [
+   47.025,
+   6.7,
+   "So a failed impersonation test in those clouds is a boundary finding, not a configuration change to make today."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   12.725,
+   "Scoping and reading the assessment supports two controls in nist special publication eight hundred fifty-three, revision five: C A two, control assessments, and C A seven, continuous monitoring."
+  ],
+  [
+   14.162,
+   4.487,
+   "The approved decision record evidences planning the assessment and its scope."
+  ],
+  [
+   18.65,
+   4.963,
+   "Each pillar owner's dated reading notes evidence that the owners reviewed the results."
+  ],
+  [
+   23.613,
+   5.075,
+   "And the calendar entry, with its owner, evidences the frequency of assessment."
+  ],
+  [
+   28.688,
+   4.225,
+   "Each row also names a fed-ramp twenty X key security indicator."
+  ],
+  [
+   32.913,
+   3.25,
+   "Those indicators are written for cloud service providers."
+  ],
+  [
+   36.163,
+   4.85,
+   "The agency lines its own evidence up with them; it doesn't report them itself."
+  ],
+  [
+   41.013,
+   3.837,
+   "The evidence supports the controls, and the assessor decides."
+  ],
+  [
+   44.85,
+   7.513,
+   "So the evidence an I S S O keeps from this module is the approved decision record and each owner's dated reading notes."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.5,
+   "First: an agency already runs the Zero Trust Assessment monthly."
+  ],
+  [
+   6.525,
+   1.7,
+   "Can it stop running ScubaGear?"
+  ],
+  [
+   8.225,
+   12.838,
+   "The answer is b, no. sis-uh's directive names sis-uh's scuba tools, and ScubaGear covers Exchange Online, Teams, SharePoint and Power Platform policies the Zero Trust Assessment doesn't test."
+  ],
+  [
+   21.062,
+   4.875,
+   "Second: a test is skipped with the reason not licensed Entra I D P two."
+  ],
+  [
+   25.938,
+   1.137,
+   "How is it counted?"
+  ],
+  [
+   27.075,
+   2.913,
+   "The answer is c: skipped, licensing."
+  ],
+  [
+   29.988,
+   3.888,
+   "It's a licensing decision, neither a failure nor a pass."
+  ],
+  [
+   33.875,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   9.15,
+   "You saw what the Zero Trust Assessment checks, and the four things it isn't: a verdict, a substitute for ScubaGear, a supported product, or a detector."
+  ],
+  [
+   10.025,
+   3.163,
+   "You placed it alongside ScubaGear, never instead."
+  ],
+  [
+   13.188,
+   3.538,
+   "You read Microsoft's rubric and the tool's six statuses."
+  ],
+  [
+   16.725,
+   8.0,
+   "And in Lab 1 you sorted a fictional export's skips into the program's taxonomy, and saw why none of them is a failure or a pass."
+  ],
+  [
+   24.725,
+   7.862,
+   "The evidence an I S S O keeps from this module is the approved decision record, and each pillar owner's dated reading notes."
+  ],
+  [
+   32.587,
+   9.425,
+   "Next is Module 2, running the assessment safely: the host, consent and roles, connecting in each cloud, and the run and its hashes."
+  ]
+ ]
+}

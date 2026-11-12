@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:03.025
+A single run is a reading.
+
+3
+00:00:03.025 --> 00:00:05.125
+A program needs three more things.
+
+4
+00:00:05.125 --> 00:00:09.588
+First, the readings over time: which
+findings were fixed, which came back,
+
+5
+00:00:09.588 --> 00:00:13.900
+and which only seemed to disappear
+because the run lost a connection.
+
+6
+00:00:13.900 --> 00:00:16.088
+Second, one finding per setting.
+
+7
+00:00:16.088 --> 00:00:20.861
+The Zero Trust Assessment's findings
+have to line up with ScubaGear's, and,
+
+8
+00:00:20.861 --> 00:00:23.804
+where the agency runs
+AWS, with Security Hub's,
+
+9
+00:00:23.804 --> 00:00:27.862
+so one setting under one control
+is one finding with one owner.
+
+10
+00:00:27.862 --> 00:00:31.450
+And third, every run sealed, so
+an assessor can check months
+
+11
+00:00:31.450 --> 00:00:35.038
+later that the files are the
+ones the tool and the kit wrote.
+
+12
+00:00:35.038 --> 00:00:39.695
+In this module you'll compare two
+runs, reconcile through the control,
+
+13
+00:00:39.695 --> 00:00:44.260
+set a cadence, and seal an evidence
+package, then break it on purpose.

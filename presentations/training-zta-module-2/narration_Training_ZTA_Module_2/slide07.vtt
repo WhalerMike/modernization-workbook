@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.525
+Unit 3 connects.
+
+2
+00:00:01.525 --> 00:00:06.215
+Learn's Zero Trust Assessment pages don't
+mention government clouds; the tool's
+
+3
+00:00:06.215 --> 00:00:11.050
+source does, and the guide matches its
+parameters to Learn's page for each service.
+
+4
+00:00:11.050 --> 00:00:14.488
+Start with G C C, the workbook's baseline.
+
+5
+00:00:14.488 --> 00:00:18.344
+A G C C tenant uses the worldwide
+Graph and Azure endpoints,
+
+6
+00:00:18.344 --> 00:00:23.888
+so it connects with the default Global
+environment, the same command as commercial.
+
+7
+00:00:23.888 --> 00:00:26.855
+G C C High uses the U S Gov environment,
+
+8
+00:00:26.855 --> 00:00:30.812
+with the Exchange environment
+name for G C C High.
+
+9
+00:00:30.812 --> 00:00:36.700
+D O D uses U S Gov D O D, with
+its own Exchange environment name.
+
+10
+00:00:36.700 --> 00:00:41.100
+Then confirm the session's tenant
+and cloud with Get M G Context.
+
+11
+00:00:41.100 --> 00:00:44.264
+Pass the SharePoint admin
+U R L in every cloud;
+
+12
+00:00:44.264 --> 00:00:48.113
+otherwise the tool infers
+one from the initial domain.
+
+13
+00:00:48.113 --> 00:00:53.787
+And in D O D, Learn and the tool give
+different Security and Compliance addresses.
+
+14
+00:00:53.787 --> 00:00:58.010
+If the data pillar's tests come back
+disconnected there, check that first.

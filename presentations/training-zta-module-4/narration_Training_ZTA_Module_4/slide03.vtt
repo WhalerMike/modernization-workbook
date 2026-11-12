@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.654
+You'll compare two runs, and
+explain the kinds of change,
+
+3
+00:00:06.654 --> 00:00:08.787
+including no longer evaluated.
+
+4
+00:00:08.787 --> 00:00:11.327
+You'll say why runs from
+different tool versions
+
+5
+00:00:11.327 --> 00:00:13.550
+aren't compared without a recorded review.
+
+6
+00:00:13.550 --> 00:00:17.327
+You'll reconcile a finding across
+the Zero Trust Assessment,
+
+7
+00:00:17.327 --> 00:00:22.388
+ScubaGear and Security Hub, through the
+control, and state what each tool can't see.
+
+8
+00:00:22.388 --> 00:00:26.016
+And you'll set a cadence and
+seal a run's evidence package,
+
+9
+00:00:26.016 --> 00:00:28.462
+then check it, and see a broken one fail.
+
+10
+00:00:28.462 --> 00:00:32.900
+You need Module 3's Lab 1, because
+this lab uses its out folder.
+
+11
+00:00:32.900 --> 00:00:36.940
+In Unit 2 you'll read the section
+on reconciling at the control,
+
+12
+00:00:36.940 --> 00:00:41.210
+in Evidence, Not Verdicts, a chapter
+of Zero Trust and Assessment.
