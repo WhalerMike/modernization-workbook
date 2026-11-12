@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -37,6 +37,7 @@ listing:
       - "!attribute-driven-migration/**"
       - "!non-person-identity/**"
       - "!provider-notices/**"
+      - "!zero-trust-assessment/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -125,6 +126,10 @@ Eleven modules, one per chapter of the developer workbook *Building Non-Person I
 ## Provider Notices learning path
 
 Nine modules on the notices cloud providers send about the agency's own estate, in the order of the seven gates of the [provider notices implementation guide](../books/guides/provider-notices-implementation.md): why notices go unread and the one record every notice becomes; Azure Service Health with Service Health alerts; the Microsoft 365 Message center; Oracle Cloud Infrastructure announcements; AWS Health and its support plan; Google Cloud incidents and the maintenance gap; routing notices to owners as Ticket-to-Machine tasks; and the weekly digest, evidence and go/no-go. A ninth, optional module dry-runs the deployment to test, then production. Each module runs a chapter's Lab 1 from the developer workbook [*Building Provider Notices*](../project-plans/developer-workbooks/provider-notices/index.md) on fixtures, points to its Lab 2 in a test environment, and ends with a knowledge check. Start at the [learning path](provider-notices/index.md).
+
+## Zero Trust Assessment learning path
+
+Four modules on running Microsoft's Zero Trust Assessment as evidence rather than a verdict, in the order of the ten steps of the [Zero Trust Assessment implementation guide](../books/guides/zero-trust-assessment-implementation.md): what the assessment checks and why a skipped test is neither a failure nor a pass; running it safely, from the host and consent to the connection in each cloud and the hashed export; normalizing the results and opening a closure register routed to the pages that remediate each finding; and comparing runs, reconciling with ScubaGear and AWS Security Hub CSPM, and sealing the evidence. Lab 1 runs on the results kit's fictional fixtures with no tenant; Lab 2 runs in your own test tenant; each module ends with a knowledge check. Start at the [learning path](zero-trust-assessment/index.md).
 
 ## External learning paths
 
