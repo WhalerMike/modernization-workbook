@@ -675,6 +675,7 @@ Learn's operations guidance for Microsoft Entra Private Access and Internet Acce
 3. **Move the unaltered export into the evidence repository and delete the local folder**, as Learn advises; then hash again to show the copy is the original.
 
     ```powershell
+    New-Item -ItemType Directory -Force -Path <evidence-folder>\exports | Out-Null
     Copy-Item -Recurse <report-folder> <evidence-folder>\exports\<run-date>
     Get-FileHash -Algorithm SHA256 -LiteralPath <evidence-folder>\exports\<run-date>\zt-export\ZeroTrustAssessmentReport.json
     Remove-Item -Recurse -Force <report-folder>
