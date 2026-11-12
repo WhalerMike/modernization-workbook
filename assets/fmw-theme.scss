@@ -410,6 +410,23 @@ figure img[src$=".svg"] {
     color: $fmw-muted;
     text-transform: none;
   }
+  // Card header: in a table wrapped in `::: {.fmw-card-head}`, the first value of each card is shown
+  // reversed (white on navy) as the card's title bar (Book 00 Chapter 02's map of the books).
+  .fmw-card-head table.fmw-stack td:first-child {
+    background: $fmw-navy;
+    color: #fff;
+    margin: -0.35rem -0.6rem 0.45rem;
+    width: auto !important;
+    padding: 0.4rem 0.6rem !important;
+    border-radius: 5px 5px 0 0;
+    font-weight: 600;
+  }
+  .fmw-card-head table.fmw-stack td:first-child::before {
+    color: #c9d4e2;
+  }
+  .fmw-card-head table.fmw-stack td:first-child a {
+    color: #fff;
+  }
 }
 
 // Large tables (6 or more columns) use slightly smaller text on wide screens so columns balance

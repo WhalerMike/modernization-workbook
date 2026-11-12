@@ -152,6 +152,8 @@ Two federal obligations do reach the internal systems the program builds, and th
 
 The table below shows the books. The [Workbook Map](../../../workbook-map.qmd) lists every object in the workbook, with what it does, where it lands, and when it was last updated and verified.
 
+::: {.fmw-card-head}
+
 | Book | Topic | Opening question | Group |
 |---|---|---|---|
 | B00 | [Orientation & Program](index.md) | Why modernize, and why now? | Orientation and arc |
@@ -174,6 +176,8 @@ The table below shows the books. The [Workbook Map](../../../workbook-map.qmd) l
 | B17 | [AI Identity Governance](../b17-ai-identity/index.md) | Why do AI agents need identities and owners? | Identity and access |
 | B18 | [Application Modernization](../b18-application-modernization/index.md) | Why is application modernization a portfolio decision, not a rewrite? | Running it |
 | B20 | [Information Protection & Microsoft Purview](../b20-information-protection/index.md) | Why does protection have to travel with the data? | Boundary and assurance |
+
+:::
 
 The [book index](../index.md) shows each book's status and when it was last updated.
 
