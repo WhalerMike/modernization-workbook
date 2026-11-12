@@ -922,7 +922,7 @@
    ],
    [
     245,
-    "How the workbook works: nineteen books, four questions"
+    "How the workbook works: twenty books, four questions"
    ],
    [
     302,
@@ -6520,6 +6520,22 @@
    ]
   ],
   "sources": "presentations/b18-application-modernization-technical/B18_Application_Modernization_Technical_Narrated_sources.json"
+ },
+ {
+  "id": "B20_Information_Protection_Narrated",
+  "title": "Book 20 — Information Protection & Microsoft Purview: presentation",
+  "group": "book",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B20_Information_Protection_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/b20-information-protection/B20_Information_Protection_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b20-information-protection/B20_Information_Protection_Narration_Script.md",
+  "page": "docs/books/b20-information-protection/index.html",
+  "source": "docs/books/b20-information-protection/index.md",
+  "kits": [],
+  "chapters": null,
+  "sources": null
  },
  {
   "id": "TTM_Story_One_Drift_Case_Narrated",

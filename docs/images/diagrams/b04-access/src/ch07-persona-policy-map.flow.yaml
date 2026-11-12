@@ -15,5 +15,5 @@ nodes:
       - [{text: "Internals", tone: blue}, "CA001, CA013, CA014, CA016, CA018 to CA022, CA027, CA030, CA032, CA033, CA035, CA036", "CA006, CA007, CA008, CA017, CA029; CA023 and CA024 for web-only users; CA028 on shared devices; CA031 for production operators; CA034 for department apps"]
       - [{text: "Externals", tone: amber}, "CA001, CA013 in its block form, CA014, CA018, CA019, CA021, CA027, CA030, CA032, CA033, CA035", "CA009, CA010"]
       - [{text: "Guests", tone: amber}, "The same as Externals", "CA011, CA012, CA038"]
-      - [{text: "Workload identities", tone: slate}, "None: user-scoped policies don't apply to service principals", "CA015, CA037"]
+      - [{text: "Workload identities", tone: slate}, "None: user-scoped policies don't apply to service principals", "CA015, CA037; CA039 in its workload form"]
       - [{text: "Emergency access", tone: green}, "Excluded from every enforced policy", "CA090, report-only, still records their sign-ins"]

@@ -21,9 +21,8 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B01** | **[The Transformation Arc: Client-Server to Hybrid Cloud](b01-transformation-arc/index.md)** | **Why is modernization so hard?** | **Baseline** | 12 + 2 app. | 170 | 2026-11-11 |
 | **B02** | **[Identity & Directory: AD to Entra ID](b02-identity/index.md)** | **Why does identity matter?** | **Draft** | 11 + 4 app. | 405 | 2026-11-11 |
 | **B03** | **[HR-Driven Identity](b03-hr-identity/index.md)** | **Why should HR, not IT, decide who exists?** | **Baseline** | 15 + 4 app. | 245 | 2026-11-11 |
-| **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** | 10 + 4 app. | 380 | 2026-11-11 |
-| **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** | 10 + 4 app. | 380 | 2026-11-11 |
-| **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Baseline** | 10 + 1 app. | 340 | 2026-11-11 |
+| **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** | 10 + 4 app. | 385 | 2026-11-11 |
+| **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Baseline** | 10 + 1 app. | 345 | 2026-11-11 |
 | **B06** | **[Data Platform: SQL Server Identity](b06-data-platform/index.md)** | **Why is the database where legacy authentication hides?** | **Baseline** | 33 + 3 app. | 310 | 2026-11-11 |
 | **B07** | **[PKI & Certificates](b07-pki/index.md)** | **Why do certificates outlive every migration?** | **Baseline** | 9 + 3 app. | 230 | 2026-11-11 |
 | **B08** | **[DNS, DHCP & IPAM](b08-ddi/index.md)** | **Why is DNS now the control plane?** | **Baseline** | 12 + 3 app. | 215 | 2026-11-11 |
@@ -33,7 +32,6 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B12** | **[Security Operations & Telemetry](b12-security-operations/index.md)** | **Why can't you defend what you can't see?** | **Draft** | 12 + 2 app. | 345 | 2026-11-11 |
 | **B13** | **[Governance, Drift & Evidence](b13-governance/index.md)** | **Why does compliance decay the day after the audit?** | **Draft** | 14 + 2 app. | 275 | 2026-11-11 |
 | **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 8 app. | 420 | 2026-11-11 |
-| **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 14 + 2 app. | 335 | 2026-11-11 |
 | **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 14 + 2 app. | 335 | 2026-11-11 |
 | **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Baseline** | 10 + 1 app. | 200 | 2026-11-11 |
 | **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Baseline** | 10 + 1 app. | 230 | 2026-11-11 |

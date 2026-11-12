@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.762
+AI changes the problem, not the controls.
+
+2
+00:00:02.762 --> 00:00:06.500
+Microsoft describes Copilot's
+protection in a fixed order.
+
+3
+00:00:06.500 --> 00:00:11.213
+First, permissions: it only uses
+content the user can already reach.
+
+4
+00:00:11.213 --> 00:00:16.494
+Second, encryption: the user needs both
+the VIEW and the EXTRACT usage rights for
+
+5
+00:00:16.494 --> 00:00:19.134
+Copilot to summarize an encrypted item,
+
+6
+00:00:19.134 --> 00:00:22.975
+so the usage rights in each
+sublabel are now an AI decision.
+
+7
+00:00:22.975 --> 00:00:26.822
+Third, labels: Copilot shows
+the label of what it drew on,
+
+8
+00:00:26.822 --> 00:00:30.413
+and new content inherits
+the highest-priority one.
+
+9
+00:00:30.413 --> 00:00:32.875
+That makes oversharing a disclosure path.
+
+10
+00:00:32.875 --> 00:00:36.522
+A site shared with the whole
+agency was always readable;
+
+11
+00:00:36.522 --> 00:00:38.662
+an assistant finds it in seconds.
+
+12
+00:00:38.662 --> 00:00:43.236
+So the policy owner decides four things
+first: which AI apps are approved,
+
+13
+00:00:43.236 --> 00:00:46.819
+which labels Copilot may
+process, what oversharing gets
+
+14
+00:00:46.819 --> 00:00:50.325
+fixed before rollout, and who
+may read captured prompts.
+
+15
+00:00:50.325 --> 00:00:54.725
+D L P for Copilot can keep chosen
+labels out of its responses,
+
+16
+00:00:54.725 --> 00:00:59.125
+though excluding files and
+email needs E5-level licensing.
+
+17
+00:00:59.125 --> 00:01:06.670
+In GCC, Microsoft 365 Copilot and Purview's
+controls for it are listed as available.

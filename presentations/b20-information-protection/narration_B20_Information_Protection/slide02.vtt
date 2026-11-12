@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.450
+A Zero Trust program usually builds
+identity, devices and the network first.
+
+2
+00:00:05.450 --> 00:00:09.762
+Each of those controls passes a
+legitimate user on a compliant device
+
+3
+00:00:09.762 --> 00:00:13.850
+sending a file to an approved
+destination, whatever the file holds.
+
+4
+00:00:13.850 --> 00:00:16.225
+Nothing upstream said
+what the payload was.
+
+5
+00:00:16.225 --> 00:00:21.350
+CISA's Zero Trust Maturity Model makes the
+same point with a Data pillar of its own.
+
+6
+00:00:21.350 --> 00:00:24.250
+Three things make perimeter
+thinking fail for data.
+
+7
+00:00:24.250 --> 00:00:29.511
+It moves more than people do: an export
+becomes an attachment, a OneDrive file,
+
+8
+00:00:29.511 --> 00:00:31.516
+a chat paste and an AI summary,
+
+9
+00:00:31.516 --> 00:00:35.775
+and each copy inherits none of
+the original's access controls.
+
+10
+00:00:35.775 --> 00:00:39.225
+Access is granted to
+containers, not to content.
+
+11
+00:00:39.225 --> 00:00:42.100
+And the agency can't protect
+what it hasn't named.
+
+12
+00:00:42.100 --> 00:00:45.825
+Microsoft's sensitivity label
+is what lets protection travel.
+
+13
+00:00:45.825 --> 00:00:49.860
+It's stored in clear text in the
+item's metadata, it stays with the
+
+14
+00:00:49.860 --> 00:00:54.050
+content wherever it's saved, and
+so does any encryption it applies.
+
+15
+00:00:54.050 --> 00:00:57.550
+But a label is only as good
+as the class it stands for.

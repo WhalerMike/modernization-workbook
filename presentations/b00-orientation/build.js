@@ -168,7 +168,7 @@ The sequence starts with identity, because policy, access, devices and data all 
 
 // ------------------------------------------------------------------ Why 4
 {
-  const s = D.content("Why modernize now", "How the workbook works: nineteen books, four questions");
+  const s = D.content("Why modernize now", "How the workbook works: twenty books, four questions");
   tag(s, "Why");
   rows(s, "Question", "EVERY BOOK ANSWERS THE SAME FOUR QUESTIONS", [
     ["Why", "Why it matters, and why it can't stay as it is"],
@@ -183,13 +183,13 @@ The sequence starts with identity, because policy, access, devices and data all 
     "A verification file per chapter: claims log and ledger",
   ], 13.5);
   callout(s, "Canonical", 5.4, 1.1, "FaSitemap", HEX.navy, "One authoritative home per topic: ",
-    "the nineteen books, B00 to B18, follow the dependency chain, identity first. Book 01 is canonical for the phases and gates, and every book uses its names.");
-  sources(s, "Sources: Book 00, Chapter 02 (Nineteen books; Every book asks four questions; How claims are verified). OMB M-26-14 cited there as an example of a rescission.");
+    "the twenty topic books, B00 to B18 and B20, follow the dependency chain, identity first. Book 01 is canonical for the phases and gates, and every book uses its names.");
+  sources(s, "Sources: Book 00, Chapter 02 (Twenty topic books; Every book asks four questions; How claims are verified). OMB M-26-14 cited there as an example of a rescission.");
   narrate(s,
-`A word on how the workbook works, because this briefing comes from it. It's organized as nineteen books, B00 to B18, numbered along the same dependency chain: identity first, then the estate's infrastructure, then the boundary, assurance and operations. Every book asks the same four questions, why, what, who and how, so a reader who knows one can find their way through any other. One book is the authoritative home for each topic; Book 01, for example, is canonical for the program's phases and gates.
+`A word on how the workbook works, because this briefing comes from it. It's organized as twenty topic books, B00 to B18 and B20, the newest a draft on information protection, numbered along the same dependency chain: identity first, then the estate's infrastructure, then the boundary, assurance and operations. Every book asks the same four questions, why, what, who and how, so a reader who knows one can find their way through any other. One book is the authoritative home for each topic; Book 01, for example, is canonical for the program's phases and gates.
 
 Statements come in three kinds. An external fact is footnoted to a primary source, checked on the day the book was built, here October 21, 2026. A program design position is the program's own view, open to argument rather than fact-checking. And an illustrative example is labeled as one; the case studies are framing patterns, not real engagements. Each chapter keeps a verification file, with a claims log and a carry-forward ledger, so every correction is visible.`,
-  "Book 00, Chapter 02 — How to Use This Workbook (Nineteen books; Every book asks four questions; How claims are verified; Three kinds of statement; The verification record).");
+  "Book 00, Chapter 02 — How to Use This Workbook (Twenty topic books; Every book asks four questions; How claims are verified; Three kinds of statement; The verification record).");
 }
 
 // ------------------------------------------------------------------ What 1
