@@ -51,8 +51,8 @@ The data lives in two files, one per side: [`data/learn-coverage/windows-server-
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 165 | 22 | 12 | 362 | 0 |
-| Microsoft Entra | 2,518 | 1,028 | 446 | 373 | 671 | 0 |
-| **Both sides** | 3,079 | 1,193 | 468 | 385 | 1,033 | 0 |
+| Microsoft Entra | 2,518 | 1,029 | 446 | 372 | 671 | 0 |
+| **Both sides** | 3,079 | 1,194 | 468 | 384 | 1,033 | 0 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -695,7 +695,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [external-id](#entra-external-id) | 148 | 29 | 23 | 0 | 96 | 0 |
 | [fundamentals](#entra-fundamentals) | 62 | 29 | 5 | 6 | 22 | 0 |
 | [general](#entra-general) | 1 | 0 | 0 | 0 | 1 | 0 |
-| [global-secure-access](#entra-global-secure-access) | 199 | 80 | 3 | 109 | 7 | 0 |
+| [global-secure-access](#entra-global-secure-access) | 199 | 81 | 3 | 108 | 7 | 0 |
 | [hybrid](#entra-hybrid) | 243 | 108 | 82 | 18 | 35 | 0 |
 | [id-governance](#entra-id-governance) | 236 | 165 | 38 | 25 | 8 | 0 |
 | [id-protection](#entra-id-protection) | 28 | 8 | 16 | 0 | 4 | 0 |
@@ -1570,7 +1570,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Configure Microsoft Entra SAML token encryption](https://learn.microsoft.com/entra/identity/enterprise-apps/howto-saml-token-encryption) | [Book 07, Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](../books/b07-pki/09-federal-workforce-credentials.md) | Covered, not cited |
 | [Application management documentation](https://learn.microsoft.com/entra/identity/enterprise-apps) | — | Out of scope |
 | [Manage app consent policies](https://learn.microsoft.com/entra/identity/enterprise-apps/manage-app-consent-policies) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); [`docs/books/b04-access/_verification/05-applications-and-workload-identities.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b04-access/_verification/05-applications-and-workload-identities.md) | Cited |
-| [Review permissions granted to enterprise applications](https://learn.microsoft.com/entra/identity/enterprise-apps/manage-application-permissions) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); [Book 04, Chapter 06 — Who Decides Access](../books/b04-access/06-who-decides-access.md); and 5 more | Cited |
+| [Review permissions granted to enterprise applications](https://learn.microsoft.com/entra/identity/enterprise-apps/manage-application-permissions) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); [Book 04, Chapter 06 — Who Decides Access](../books/b04-access/06-who-decides-access.md); and 7 more | Cited |
 | [Application consent management and evaluation of consent requests](https://learn.microsoft.com/entra/identity/enterprise-apps/manage-consent-requests) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#consent); [Book 15, Chapter 06 — SaaS Integration Governance](../books/b15-day2-operations/06-saas-integration-governance.md); and 1 more | Cited |
 | [Manage app consent policies for group owners](https://learn.microsoft.com/entra/identity/enterprise-apps/manage-group-owner-consent-policies) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#consent); [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); and 1 more | Cited |
 | [Enable self-service application assignment](https://learn.microsoft.com/entra/identity/enterprise-apps/manage-self-service-access) | [Book 04, Chapter 06 — Who Decides Access](../books/b04-access/06-who-decides-access.md); [Book 15, Chapter 06 — SaaS Integration Governance](../books/b15-day2-operations/06-saas-integration-governance.md) | Covered, not cited |
@@ -1954,9 +1954,9 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Migrate web content filtering policies from V1 to V2](https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-web-content-filtering-policies) | — | Not covered |
 | [Security Service Edge (SSE) Coexistence With Microsoft and Netskope](https://learn.microsoft.com/entra/global-secure-access/how-to-netskope-coexistence) | [Book 09, Chapter 05 — SD-WAN, SASE and Governed-Path Transport](../books/b09-network/05-sd-wan-sase-and-governed-transport.md) | Cited |
 | [Create content policies for network content filtering](https://learn.microsoft.com/entra/global-secure-access/how-to-network-content-filtering) | [Book 09, Chapter 05 — SD-WAN, SASE and Governed-Path Transport](../books/b09-network/05-sd-wan-sase-and-governed-transport.md) | Cited |
-| [Operate Microsoft Entra Internet Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-internet-access) | [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](../books/guides/global-secure-access-implementation.md) | Cited |
+| [Operate Microsoft Entra Internet Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-internet-access) | [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](../books/guides/global-secure-access-implementation.md); [Zero Trust Assessment: An Implementation Guide](../books/guides/zero-trust-assessment-implementation.md); and 1 more | Cited |
 | [Operate Microsoft Entra Global Secure Access Microsoft traffic profile](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-microsoft-traffic) | [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](../books/guides/global-secure-access-implementation.md) | Cited |
-| [Operate Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access) | — | Not covered |
+| [Operate Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access) | [Zero Trust Assessment: An Implementation Guide](../books/guides/zero-trust-assessment-implementation.md); [`docs/books/guides/_verification/zero-trust-assessment-implementation.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/guides/_verification/zero-trust-assessment-implementation.md) | Cited |
 | [Operate Microsoft Entra Global Secure Access remote networks](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-remote-networks) | — | Not covered |
 | [Common operations for Microsoft Entra Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common) | [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](../books/guides/global-secure-access-implementation.md) | Cited |
 | [Security Service Edge (SSE) coexistence with Microsoft and Palo Alto Networks](https://learn.microsoft.com/entra/global-secure-access/how-to-palo-alto-coexistence) | [Book 09, Chapter 05 — SD-WAN, SASE and Governed-Path Transport](../books/b09-network/05-sd-wan-sase-and-governed-transport.md) | Cited |
@@ -3462,7 +3462,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Use SSH to administer servers with Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-ssh-server-administration) | Microsoft Entra, global-secure-access | — | Private Access features (DNS, local access, sign-in frequency, PIM, Conditional Access, SSH) |
 | [Assign users and devices to traffic forwarding profiles](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-users-groups-assignment) | Microsoft Entra, global-secure-access | — | Traffic forwarding profile configuration |
 | [Migrate web content filtering policies from V1 to V2](https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-web-content-filtering-policies) | Microsoft Entra, global-secure-access | — | Internet Access policy (web filtering, threat intelligence, firewall, DLP) |
-| [Operate Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access) | Microsoft Entra, global-secure-access | — | Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15 |
 | [Operate Microsoft Entra Global Secure Access remote networks](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-remote-networks) | Microsoft Entra, global-secure-access | — | Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters |
 | [Private Access segmentation strategies for Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/how-to-private-access-segmentation-strategies) | Microsoft Entra, global-secure-access | — | Private Access per-app segmentation; workbook names Private Access only as the Kerberos bridge |
 | [How to use the remote network health logs](https://learn.microsoft.com/entra/global-secure-access/how-to-remote-network-health-logs) | Microsoft Entra, global-secure-access | — | Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters |

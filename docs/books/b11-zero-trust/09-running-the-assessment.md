@@ -113,7 +113,7 @@ Microsoft warns that the assessment can take more than 24 hours on a large tenan
 | `zt-export\ZeroTrustWorkshop.json` | Experimental import for Microsoft's Zero Trust Workshop | Optional planning input |
 | `zt-export\` (database, exported entities, logs) | Assessment data, not just logs | Retained only as the records decision allows; contains sensitive tenant data |
 
-Each result carries a status (Passed, Failed, Investigate, Skipped, Planned or Error) and a risk rating.[^c09-zta-status] [Chapter 10](10-evidence-not-verdicts.md) explains which of those are findings. The one rule that matters at ingestion is that a skipped check is not a pass. The tool's own guide says that missing prerequisites can produce skipped checks, "not evidence that the tenant meets a recommendation."[^c09-zta-guide]
+Each result carries a status (Passed, Failed, Investigate, Skipped, Planned or Error) and a risk rating.[^c09-zta-status] [Chapter 10](10-evidence-not-verdicts.md) explains which of those are findings. The one rule that matters at ingestion is that a skipped check is not a pass. The tool's own guide says that missing prerequisites can produce skipped checks, "not evidence that the tenant meets a recommendation."[^c09-zta-guide] The [Zero Trust Assessment implementation guide](../guides/zero-trust-assessment-implementation.md) gives the run step by step, with the results kit that normalizes the export, writes the closure register and seals each run as evidence.
 
 ## ScubaGear as a registered adapter
 

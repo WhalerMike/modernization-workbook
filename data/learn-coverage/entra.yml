@@ -6263,7 +6263,9 @@ pages:
   coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
   cited_by:
+  - docs/books/guides/_verification/zero-trust-assessment-implementation.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/books/guides/zero-trust-assessment-implementation.md
 - path: docs/global-secure-access/how-to-operate-microsoft-traffic.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-microsoft-traffic
   title: Operate Microsoft Entra Global Secure Access Microsoft traffic profile
@@ -6282,9 +6284,11 @@ pages:
   ms_date: '2026-05-04'
   ms_topic: how-to
   description: Post-deployment operations guide for Microsoft Entra Private Access, the Zero Trust network access (ZTNA) capability, covering alerting, health checks, integration, automation, and operational metrics.
-  coverage: not-covered
+  coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
-  cited_by: []
+  cited_by:
+  - docs/books/guides/_verification/zero-trust-assessment-implementation.md
+  - docs/books/guides/zero-trust-assessment-implementation.md
 - path: docs/global-secure-access/how-to-operate-remote-networks.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-remote-networks
   title: Operate Microsoft Entra Global Secure Access remote networks
@@ -22288,6 +22292,8 @@ pages:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b04-access/06-who-decides-access.md
+  - docs/books/guides/_verification/zero-trust-assessment-implementation.md
+  - docs/books/guides/zero-trust-assessment-implementation.md
   - docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md
   - docs/reference/source-register.md
   - examples/third_party/entra-review-app-permissions-page/SNAPSHOT.md
