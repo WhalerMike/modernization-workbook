@@ -40,7 +40,7 @@ const card = (s, name, x, y, w, h, iconName, color, tint, headText, body, size) 
 
 // ------------------------------------------------------------------ 1 Title
 {
-  const s = D.titleSlide("Why a Reference tab", "The Reference Tab", "Six pages you look things up in: why each one matters, and how they fit together");
+  const s = D.titleSlide("Why a Reference tab", "The Reference Tab", "Six core pages you look things up in: why each one matters, and how they fit together");
   D.agenda(s, 0.8, 4.85, 6.6);
   txt(s, "Series line", [
     { text: "Federal Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
@@ -53,7 +53,7 @@ const card = (s, name, x, y, w, h, iconName, color, tint, headText, body, size) 
 {
   const t = "Why a Reference tab";
   const s = slide("Why a Reference tab", "Why", t);
-  txt(s, "Lead", "The books teach in order. The reference pages answer the questions that cut across all twenty books.",
+  txt(s, "Lead", "The books teach in order. The reference pages answer the questions that cut across all twenty-one books.",
     { x: 0.6, y: 1.5, w: 12.15, h: 0.6, fontSize: 18, color: HEX.ink, align: "center" });
   const cols = [
     ["FaListCheck", "Run it", HEX.amber, HEX.amberTint, "Which command does the job, and which chapter teaches it?"],
@@ -63,13 +63,13 @@ const card = (s, name, x, y, w, h, iconName, color, tint, headText, body, size) 
   cols.forEach((c, i) => card(s, `Job ${i + 1}`, 0.6 + i * 4.1, 2.3, 3.95, 2.75, c[0], c[2], c[3], c[1], c[4], 17));
   callout(s, "Rule", 5.3, 1.05, "FaLightbulb", HEX.navy, "One job per page: ",
     "every page on the tab answers one of these three kinds of question, for an engineer, an ISSO or an authorizing official.");
-  sources(s, "Sources: Reference tab landing page; Books 00–19 (the series index).");
+  sources(s, "Sources: Reference tab landing page; Books 00–20 (the series index).");
   notes(s, t, "Reference, index.");
 }
 
 // ------------------------------------------------------------------ 3 What: glance
 {
-  const t = "Six pages at a glance";
+  const t = "Six core pages at a glance";
   const s = slide("The six pages", "What", t);
   const job = (j, c) => ({ text: j, options: { bold: true, color: c } });
   const rows = [
@@ -81,8 +81,10 @@ const card = (s, name, x, y, w, h, iconName, color, tint, headText, body, size) 
     ["Microsoft Practice Crosswalk", job("Prove it", HEX.navy), "Where does Microsoft define each practice, and what check confirms it?"],
     ["Source Register", job("Trust it", HEX.teal), "Is every source the slides and videos cite still where it was?"],
   ];
-  s.addTable(rows, tableOpts([3.6, 1.4, 7.15], { y: 1.6, fontSize: 15.5, rowH: 0.62 }));
-  sources(s, "Sources: Reference tab landing page, November 8, 2026.");
+  s.addTable(rows, tableOpts([3.6, 1.4, 7.15], { y: 1.5, fontSize: 15, rowH: 0.58 }));
+  txt(s, "Site only", "Also on the tab, site only: the Learn Coverage Map and the Zero Trust Closure Coverage tracker.",
+    { x: 0.6, y: 5.65, w: 12.15, h: 0.4, fontSize: 14, bold: true, color: HEX.navy });
+  sources(s, "Sources: Reference tab landing page, November 12, 2026 (the six pages as of November 8).");
   notes(s, t, "Reference, index.");
 }
 
@@ -272,7 +274,7 @@ const card = (s, name, x, y, w, h, iconName, color, tint, headText, body, size) 
   ];
   cols.forEach((c, i) => card(s, `Honest ${i + 1}`, 0.6 + i * 4.1, 2.1, 3.95, 2.85, c[0], c[2], c[3], c[1], c[4], 15.5));
   callout(s, "Download", 5.2, 1.2, "FaBook", HEX.navy, "Take it with you: ",
-    "every page also downloads as a Word document, and the Reference Set has all six in one file, from the Reference tab and the Downloads page.");
+    "each of the six core pages also downloads as a Word document, and the Reference Set has all six in one file, from the Reference tab and the Downloads page.");
   sources(s, "Sources: Microsoft Practice Crosswalk, \"Keeping it fresh\"; Federal Framework Crosswalk, \"How to read the scores\"; Reference tab landing page; Downloads page.");
   notes(s, t, "Reference, index; Microsoft Practice Crosswalk (Status and review).");
 }
@@ -288,7 +290,7 @@ const card = (s, name, x, y, w, h, iconName, color, tint, headText, body, size) 
     "The six Reference pages, as they stood on November 8, 2026: Command Reference; Federal Framework Crosswalk (in review); RMF Map (in review); M-19-17 and FICAM Crosswalk (in review); Microsoft Practice Crosswalk (draft); Source Register.",
     "Counts: the Command Reference's generated body (scripts/command_reference.py); the RMF Map's tally; the M-19-17 and FICAM Crosswalk's marks; the Microsoft Practice Crosswalk's rows; data/source-register.json.",
     "Frameworks named on the slides: OMB M-26-05; OMB M-26-10; Executive Order 14028; OMB Circular A-130; NIST SP 800-37 Rev. 2; OMB M-19-17; FICAM Architecture; CISA ScubaGear.",
-    "Every page also downloads as a Word document; the Reference Set has all six (Reference tab and Downloads page).",
+    "Each of the six also downloads as a Word document; the Reference Set has all six (Reference tab and Downloads page). The Learn Coverage Map and the Zero Trust Closure Coverage tracker, added since, are site only (Reference tab, November 12, 2026).",
     "Full citations with links and access dates are on each page: whalermike.github.io/modernization-workbook/docs/reference/",
   ];
   txt(s, "Source list", D.bullets(src, 14), { x: 0.6, y: 1.55, w: 12.1, h: 5.0, paraSpaceAfter: 8 });

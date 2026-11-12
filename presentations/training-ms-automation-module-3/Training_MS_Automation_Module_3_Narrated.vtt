@@ -59,952 +59,961 @@ tested against fixtures, not
 proven against live tenants.
 
 13
-00:00:50.150 --> 00:00:51.300
+00:00:51.230 --> 00:00:52.380
 Why does this matter?
 
 14
-00:00:51.300 --> 00:00:55.675
+00:00:52.380 --> 00:00:56.755
 Your Conditional Access policies
 already require a compliant device.
 
 15
-00:00:55.675 --> 00:00:59.724
+00:00:56.755 --> 00:01:00.804
 That's only as good as Intune's
 compliance records, and by default,
 
 16
-00:00:59.724 --> 00:01:03.850
+00:01:00.804 --> 00:01:04.930
 a device with no compliance policy
 assigned counts as compliant.
 
 17
-00:01:03.850 --> 00:01:07.062
+00:01:04.930 --> 00:01:08.142
 Microsoft recommends changing
 that to not compliant,
 
 18
-00:01:07.062 --> 00:01:09.488
+00:01:08.142 --> 00:01:10.568
 and targeting every device with a policy.
 
 19
-00:01:09.488 --> 00:01:14.382
+00:01:10.568 --> 00:01:15.462
 The workbook's device evidence guidance
 asks for evidence a script can collect:
 
 20
-00:01:14.382 --> 00:01:18.387
+00:01:15.462 --> 00:01:19.467
 which devices fail which policy,
 which devices no policy reaches,
 
 21
-00:01:18.387 --> 00:01:22.911
+00:01:19.467 --> 00:01:23.991
 which stopped checking in, which aren't
 encrypted or are below the OS floor,
 
 22
-00:01:22.911 --> 00:01:26.249
+00:01:23.991 --> 00:01:27.329
 and which Autopilot registrations
 won't get a profile.
 
 23
-00:01:26.249 --> 00:01:29.521
+00:01:27.329 --> 00:01:30.601
 The validation kit already
 has six Intune checks,
 
 24
-00:01:29.521 --> 00:01:33.750
+00:01:30.601 --> 00:01:34.830
 reading Entra device objects,
 group tags and assignment design.
 
 25
-00:01:33.750 --> 00:01:35.600
+00:01:34.830 --> 00:01:36.680
 This module doesn't repeat them.
 
 26
-00:01:35.600 --> 00:01:38.380
+00:01:36.680 --> 00:01:39.460
 Its checks read Intune's own records.
 
 27
-00:01:41.740 --> 00:01:44.528
+00:01:43.210 --> 00:01:45.998
 Here's what you'll be able to
 do by the end of this module,
 
 28
-00:01:44.528 --> 00:01:47.190
+00:01:45.998 --> 00:01:48.660
 which takes about eighty-five
 minutes with the lab.
 
 29
-00:01:47.190 --> 00:01:50.858
+00:01:48.660 --> 00:01:52.328
 You'll name the Graph API,
 least-privileged permission and
 
 30
-00:01:50.858 --> 00:01:54.602
+00:01:52.328 --> 00:01:56.072
 stage for each of the workbook's
 device evidence questions.
 
 31
-00:01:54.602 --> 00:01:58.402
+00:01:56.072 --> 00:01:59.872
 You'll explain which three things
 the program relies on are beta-only.
 
 32
-00:01:58.402 --> 00:02:02.104
+00:01:59.872 --> 00:02:03.574
 You'll read managed devices and
 per-policy compliance status,
 
 33
-00:02:02.104 --> 00:02:04.790
+00:02:03.574 --> 00:02:06.260
 including why the checks
 join on device name.
 
 34
-00:02:04.790 --> 00:02:09.065
+00:02:06.260 --> 00:02:10.535
 You'll keep remote actions and export
 jobs out of a read-only collector.
 
 35
-00:02:09.065 --> 00:02:14.390
+00:02:10.535 --> 00:02:15.860
 And you'll say what differs in GCC
 High and DoD, and run the five checks.
 
 36
-00:02:14.390 --> 00:02:18.515
+00:02:15.860 --> 00:02:19.985
 You need Module 1, and Module 2
 for the Conditional Access side.
 
 37
-00:02:18.515 --> 00:02:23.510
+00:02:19.985 --> 00:02:24.980
 Lab 2 needs a test tenant with an
 Intune license and a few test devices.
 
 38
-00:02:27.140 --> 00:02:30.118
+00:02:28.730 --> 00:02:31.708
 Here are six of the
 workbook's device evidence
 
 39
-00:02:30.118 --> 00:02:33.252
+00:02:31.708 --> 00:02:34.842
 questions with the Intune
 API that answers each.
 
 40
-00:02:33.252 --> 00:02:38.136
+00:02:34.842 --> 00:02:39.726
 Enrolled devices, with their OS, compliance
 state, encryption and last sync,
 
 41
-00:02:38.136 --> 00:02:42.627
+00:02:39.726 --> 00:02:44.217
 come from managed devices, with the
 managed devices read permission.
 
 42
-00:02:42.627 --> 00:02:46.868
+00:02:44.217 --> 00:02:48.458
 Compliance policies, their assignments
 and their per-device statuses
 
 43
-00:02:46.868 --> 00:02:50.677
+00:02:48.458 --> 00:02:52.267
 need the configuration read
 permission, in version one point oh.
 
 44
-00:02:50.677 --> 00:02:54.002
+00:02:52.267 --> 00:02:55.592
 The Settings Catalog and
 endpoint security policies,
 
 45
-00:02:54.002 --> 00:02:58.214
+00:02:55.592 --> 00:02:59.804
 and assignment filters, use the same
 permission, but they're beta only.
 
 46
-00:02:58.214 --> 00:03:03.127
+00:02:59.804 --> 00:03:04.718
 Autopilot registrations are in version one
 point oh with the service configuration
 
 47
-00:03:03.127 --> 00:03:05.480
+00:03:04.718 --> 00:03:07.070
 read permission, but whether each one has
 
 48
-00:03:05.480 --> 00:03:08.040
+00:03:07.070 --> 00:03:09.630
 been given a deployment
 profile is beta only.
 
 49
-00:03:08.040 --> 00:03:14.050
+00:03:09.630 --> 00:03:15.640
 And every Intune API in Graph needs an
 active Intune license for the tenant.
 
 50
-00:03:17.360 --> 00:03:21.998
+00:03:19.390 --> 00:03:24.028
 Microsoft supports the Intune beta
 APIs, but says they're subject to more
 
 51
-00:03:21.998 --> 00:03:26.635
+00:03:24.028 --> 00:03:28.665
 frequent change, and recommends version
 one point oh where it can be used.
 
 52
-00:03:26.635 --> 00:03:29.773
+00:03:28.665 --> 00:03:31.803
 Three things the program
 relies on are beta-only today.
 
 53
-00:03:29.773 --> 00:03:34.113
+00:03:31.803 --> 00:03:36.143
 The Settings Catalog: the workbook's
 Intune policy library is mostly
 
 54
-00:03:34.113 --> 00:03:38.910
+00:03:36.143 --> 00:03:40.940
 Settings Catalog profiles, so exporting
 the library as code depends on beta.
 
 55
-00:03:38.910 --> 00:03:41.495
+00:03:40.940 --> 00:03:43.525
 Assignment filters: the
 filter list is beta,
 
 56
-00:03:41.495 --> 00:03:45.661
+00:03:43.525 --> 00:03:47.691
 and version one point oh can't tell
 you which filter an assignment uses,
 
 57
-00:03:45.661 --> 00:03:50.185
+00:03:47.691 --> 00:03:52.215
 which is why the validation kit's filter
 check needs its include-beta switch.
 
 58
-00:03:50.185 --> 00:03:54.376
+00:03:52.215 --> 00:03:56.406
 And Autopilot profiles: version
 one point oh lists registrations,
 
 59
-00:03:54.376 --> 00:03:58.947
+00:03:56.406 --> 00:04:00.977
 but the profile assignment status
 and the profiles themselves are beta.
 
 60
-00:03:58.947 --> 00:04:02.492
+00:04:00.977 --> 00:04:04.522
 As design guidance, re-run
 a beta-dependent check after
 
 61
-00:04:02.492 --> 00:04:06.400
+00:04:04.522 --> 00:04:08.430
 each beta change before you
 use its result as evidence.
 
 62
-00:04:09.940 --> 00:04:13.628
+00:04:12.180 --> 00:04:15.868
 A managed device is Intune's
 record of an enrolled device.
 
 63
-00:04:13.628 --> 00:04:16.098
+00:04:15.868 --> 00:04:18.338
 The checks read its compliance state,
 
 64
-00:04:16.098 --> 00:04:21.279
+00:04:18.338 --> 00:04:23.519
 one of seven values from compliant to in
 grace period; its last successful sync;
 
 65
-00:04:21.279 --> 00:04:25.264
+00:04:23.519 --> 00:04:27.504
 its OS version and encryption
 status; and its Entra device ID,
 
 66
-00:04:25.264 --> 00:04:27.815
+00:04:27.504 --> 00:04:30.055
 the join key to the Entra device object.
 
 67
-00:04:27.815 --> 00:04:32.590
+00:04:30.055 --> 00:04:34.830
 The same record also returns a person's
 name, email address and phone number.
 
 68
-00:04:32.590 --> 00:04:36.624
+00:04:34.830 --> 00:04:38.864
 The checks name only what they need
 in select and leave those out,
 
 69
-00:04:36.624 --> 00:04:40.278
+00:04:38.864 --> 00:04:42.518
 so a check's output never carries
 a person's name or address.
 
 70
-00:04:40.278 --> 00:04:41.815
+00:04:42.518 --> 00:04:44.055
 That's design guidance.
 
 71
-00:04:41.815 --> 00:04:45.921
+00:04:44.055 --> 00:04:48.161
 And watch for defaults that look like
 data: some properties, such as the
 
 72
-00:04:45.921 --> 00:04:50.452
+00:04:48.161 --> 00:04:52.692
 MAC address and physical memory, return
 default values when you list devices.
 
 73
-00:04:50.452 --> 00:04:54.930
+00:04:52.692 --> 00:04:57.170
 Their real values come only from
 reading one device and selecting them.
 
 74
-00:04:58.680 --> 00:05:01.742
+00:05:00.920 --> 00:05:03.982
 A compliance policy's
 assignments list its targets.
 
 75
-00:05:01.742 --> 00:05:05.454
+00:05:03.982 --> 00:05:07.694
 In version one point oh a group
 target carries a group ID,
 
 76
-00:05:05.454 --> 00:05:08.117
+00:05:07.694 --> 00:05:10.357
 and beta documents an exclusion target.
 
 77
-00:05:08.117 --> 00:05:13.035
+00:05:10.357 --> 00:05:15.275
 A policy with no assignments, or with
 only exclusions, applies to no device,
 
 78
-00:05:13.035 --> 00:05:17.468
+00:05:15.275 --> 00:05:19.708
 and remember, by default an unassigned
 device counts as compliant.
 
 79
-00:05:17.468 --> 00:05:21.099
+00:05:19.708 --> 00:05:23.339
 Each policy's device statuses
 give one row per device,
 
 80
-00:05:21.099 --> 00:05:24.730
+00:05:23.339 --> 00:05:26.970
 with a status such as
 non-compliant, error or conflict.
 
 81
-00:05:24.730 --> 00:05:28.693
+00:05:26.970 --> 00:05:30.933
 But the row carries a device
 name, and its ID is described
 
 82
-00:05:28.693 --> 00:05:32.742
+00:05:30.933 --> 00:05:34.982
 only as the key of the entity,
 not as the managed device's ID.
 
 83
-00:05:32.742 --> 00:05:36.132
+00:05:34.982 --> 00:05:38.372
 So the checks join status
 rows to devices on the name,
 
 84
-00:05:36.132 --> 00:05:38.892
+00:05:38.372 --> 00:05:41.132
 and flag names held by
 more than one device.
 
 85
-00:05:38.892 --> 00:05:41.605
+00:05:41.132 --> 00:05:43.845
 That's an inference,
 and an open review item.
 
 86
-00:05:41.605 --> 00:05:44.479
+00:05:43.845 --> 00:05:46.719
 Two tenant-wide settings
 sit above every policy;
 
 87
-00:05:44.479 --> 00:05:49.350
+00:05:46.719 --> 00:05:51.590
 their read permission wasn't confirmed
 on Learn, so the checks don't read them.
 
 88
-00:05:53.100 --> 00:05:56.750
+00:05:55.340 --> 00:05:58.990
 Two things look useful and don't
 belong in a read-only collector.
 
 89
-00:05:56.750 --> 00:06:00.638
+00:05:58.990 --> 00:06:02.878
 Remote actions: retire, wipe
 and even sync device all need
 
 90
-00:06:00.638 --> 00:06:05.188
+00:06:02.878 --> 00:06:07.428
 the privileged operations
 permission, delegated or application.
 
 91
-00:06:05.188 --> 00:06:06.999
+00:06:07.428 --> 00:06:09.239
 That's an operator's permission.
 
 92
-00:06:06.999 --> 00:06:10.955
+00:06:09.239 --> 00:06:13.195
 A collector that holds it could wipe
 the fleet, so as design guidance,
 
 93
-00:06:10.955 --> 00:06:14.275
+00:06:13.195 --> 00:06:16.515
 keep it in a separate pipeline
 with its own approval step.
 
 94
-00:06:14.275 --> 00:06:18.466
+00:06:16.515 --> 00:06:20.706
 And report export jobs: creating
 one needs a read-write permission,
 
 95
-00:06:18.466 --> 00:06:22.277
+00:06:20.706 --> 00:06:24.517
 with no read-only option listed,
 and the file it produces sits
 
 96
-00:06:22.277 --> 00:06:26.087
+00:06:24.517 --> 00:06:28.327
 on blob storage behind a signed
 address, not on the Graph host.
 
 97
-00:06:26.087 --> 00:06:29.488
+00:06:28.327 --> 00:06:31.728
 The example client won't send
 its token anywhere else.
 
 98
-00:06:29.488 --> 00:06:33.038
+00:06:31.728 --> 00:06:35.278
 So the checks page through
 the list APIs instead.
 
 99
-00:06:33.038 --> 00:06:36.428
+00:06:35.278 --> 00:06:38.668
 A hundred policies cost about
 two hundred and one requests,
 
 100
-00:06:36.428 --> 00:06:41.160
+00:06:38.668 --> 00:06:43.400
 well under Intune's limit of a thousand
 per twenty seconds per app per tenant.
 
 101
-00:06:44.910 --> 00:06:45.960
+00:06:47.150 --> 00:06:48.200
 Five checks.
 
 102
-00:06:45.960 --> 00:06:50.201
+00:06:48.200 --> 00:06:52.441
 Noncompliant devices lists
 devices that are noncompliant,
 
 103
-00:06:50.201 --> 00:06:54.272
+00:06:52.441 --> 00:06:56.512
 in grace, in error or in conflict,
 with the failing policies.
 
 104
-00:06:54.272 --> 00:06:59.390
+00:06:56.512 --> 00:07:01.630
 Compliance coverage lists policies
 with no assignment or only exclusions,
 
 105
-00:06:59.390 --> 00:07:01.584
+00:07:01.630 --> 00:07:03.824
 and devices no policy reports on.
 
 106
-00:07:01.584 --> 00:07:06.223
+00:07:03.824 --> 00:07:08.463
 Stale check-in lists devices with no
 Intune sync inside the fourteen-day
 
 107
-00:07:06.223 --> 00:07:10.010
+00:07:08.463 --> 00:07:12.250
 validity period or the ninety-day
 cleanup age, or none at all.
 
 108
-00:07:10.010 --> 00:07:14.898
+00:07:12.250 --> 00:07:17.138
 Device posture lists Windows and Mac
 devices not reporting encryption,
 
 109
-00:07:14.898 --> 00:07:16.935
+00:07:17.138 --> 00:07:19.175
 and devices below the OS floor.
 
 110
-00:07:16.935 --> 00:07:19.273
+00:07:19.175 --> 00:07:21.513
 And Autopilot profiles, on beta,
 
 111
-00:07:19.273 --> 00:07:23.860
+00:07:21.513 --> 00:07:26.100
 lists registrations whose profile
 isn't assigned and in sync.
 
 112
-00:07:23.860 --> 00:07:28.927
+00:07:26.100 --> 00:07:31.167
 Every control they evidence is in the
 NIST Moderate baseline: configuration
 
 113
-00:07:28.927 --> 00:07:33.598
+00:07:31.167 --> 00:07:35.838
 settings, the baseline, the inventory,
 encryption, and flaw remediation.
 
 114
-00:07:33.598 --> 00:07:37.072
+00:07:35.838 --> 00:07:39.312
 The mapping is the program's
 reading; the assessor decides.
 
 115
-00:07:37.072 --> 00:07:39.450
+00:07:39.312 --> 00:07:41.690
 The permissions are a reader's set.
 
 116
-00:07:43.200 --> 00:07:43.925
+00:07:45.440 --> 00:07:46.165
 Try it.
 
 117
-00:07:43.925 --> 00:07:47.301
+00:07:46.165 --> 00:07:49.541
 Lab 1 runs each check
 against a fictional fleet
 
 118
-00:07:47.301 --> 00:07:50.850
+00:07:49.541 --> 00:07:53.090
 of nine devices and six
 Autopilot registrations.
 
 119
-00:07:50.850 --> 00:07:53.312
+00:07:53.090 --> 00:07:55.552
 Here's step two, compliance coverage.
 
 120
-00:07:53.312 --> 00:07:58.021
+00:07:55.552 --> 00:08:00.261
 Two policies reach no device: the
 kiosk policy has only an exclusion,
 
 121
-00:07:58.021 --> 00:08:01.049
+00:08:00.261 --> 00:08:03.289
 and an old Mac pilot has
 no assignment at all.
 
 122
-00:08:01.049 --> 00:08:04.956
+00:08:03.289 --> 00:08:07.196
 Two devices, a kiosk and a Mac,
 have no policy reporting on them,
 
 123
-00:08:04.956 --> 00:08:08.862
+00:08:07.196 --> 00:08:11.102
 so with the tenant's default
 setting they count as compliant.
 
 124
-00:08:08.862 --> 00:08:12.548
+00:08:11.102 --> 00:08:14.788
 And W S zero zero zero two
 is flagged as ambiguous:
 
 125
-00:08:12.548 --> 00:08:17.524
+00:08:14.788 --> 00:08:19.764
 two devices share that name, so a
 status row could belong to either.
 
 126
-00:08:17.524 --> 00:08:23.700
+00:08:19.764 --> 00:08:25.940
 Step six asks the client to read the
 Autopilot collection as a GCC High run would.
 
 127
-00:08:23.700 --> 00:08:28.502
+00:08:25.940 --> 00:08:30.742
 It returns not available, with the
 reason, and makes no request, because the
 
 128
-00:08:28.502 --> 00:08:33.462
+00:08:30.742 --> 00:08:35.702
 call list follows Intune's government
 service description, not the API page.
 
 129
-00:08:33.462 --> 00:08:37.950
+00:08:35.702 --> 00:08:40.190
 The lab repeats two checks in
 PowerShell, with the same results.
 
 130
-00:08:41.700 --> 00:08:47.200
+00:08:43.940 --> 00:08:49.440
 Lab 2 runs the checks read-only against
 your own test tenant, worldwide or GCC,
 
 131
-00:08:47.200 --> 00:08:52.438
+00:08:49.440 --> 00:08:54.678
 never production, with an Intune
 license and a few enrolled test devices.
 
 132
-00:08:52.438 --> 00:08:56.549
+00:08:54.678 --> 00:08:58.789
 Register one app in the tenant's
 own cloud, with a certificate.
 
 133
-00:08:56.549 --> 00:08:59.402
+00:08:58.789 --> 00:09:01.642
 Grant only the read permissions
 for the checks you run,
 
 134
-00:08:59.402 --> 00:09:02.000
+00:09:01.642 --> 00:09:04.240
 and never the privileged
 operations permission.
 
 135
-00:09:02.000 --> 00:09:06.048
+00:09:04.240 --> 00:09:08.288
 Run each task in Python, or connect
 in PowerShell and run it there;
 
 136
-00:09:06.048 --> 00:09:09.638
+00:09:08.288 --> 00:09:11.878
 a missing permission stops
 the run before any Graph call.
 
 137
-00:09:09.638 --> 00:09:13.596
+00:09:11.878 --> 00:09:15.836
 Compare the results with the
 Intune admin center's compliance,
 
 138
-00:09:13.596 --> 00:09:17.935
+00:09:15.836 --> 00:09:20.175
 device and Autopilot views, and record
 the module's open review items,
 
 139
-00:09:17.935 --> 00:09:21.513
+00:09:20.175 --> 00:09:23.753
 such as whether a status row's
 ID matches a managed device.
 
 140
-00:09:21.513 --> 00:09:26.108
+00:09:23.753 --> 00:09:28.348
 Then back it out: remove the permissions,
 delete the app registration and its
 
 141
-00:09:26.108 --> 00:09:28.661
+00:09:28.348 --> 00:09:30.901
 certificate, and delete the saved results,
 
 142
-00:09:28.661 --> 00:09:31.287
+00:09:30.901 --> 00:09:33.527
 which hold device names
 and serial numbers.
 
 143
-00:09:31.287 --> 00:09:33.790
+00:09:33.527 --> 00:09:36.030
 The authors haven't run Lab 2.
 
 144
-00:09:37.540 --> 00:09:38.852
+00:09:39.780 --> 00:09:41.092
 Where are agencies?
 
 145
-00:09:38.852 --> 00:09:44.533
+00:09:41.092 --> 00:09:46.773
 The agency the workbook's device plan
 describes manages Windows with Group Policy,
 
 146
-00:09:44.533 --> 00:09:49.390
+00:09:46.773 --> 00:09:51.630
 and often Configuration Manager, and
 is moving to Intune in a GCC tenant.
 
 147
-00:09:49.390 --> 00:09:52.315
+00:09:51.630 --> 00:09:54.555
 GCC has no separate Intune instance.
 
 148
-00:09:52.315 --> 00:09:56.582
+00:09:54.555 --> 00:09:58.822
 In Microsoft's words, GCC is
 the same instance as Intune in
 
 149
-00:09:56.582 --> 00:10:00.940
+00:09:58.822 --> 00:10:03.180
 the commercial space, and it
 uses the worldwide Graph host.
 
 150
-00:10:00.940 --> 00:10:06.456
+00:10:03.180 --> 00:10:08.696
 GCC High and DoD share a separate government
 instance, with their own Graph hosts,
 
 151
-00:10:06.456 --> 00:10:11.890
+00:10:08.696 --> 00:10:14.130
 and moving between instances means
 unenrolling and re-enrolling every device.
 
 152
-00:10:11.890 --> 00:10:15.817
+00:10:14.130 --> 00:10:18.057
 Microsoft's service description
 lists what isn't available there,
 
 153
-00:10:15.817 --> 00:10:20.243
+00:10:18.057 --> 00:10:22.483
 with no plans to add it: Windows Autopilot,
 Remediations, feature update and
 
 154
-00:10:20.243 --> 00:10:25.027
+00:10:22.483 --> 00:10:27.267
 compatibility reports, the ServiceNow
 connector and Subscription Activation.
 
 155
-00:10:25.027 --> 00:10:29.475
+00:10:27.267 --> 00:10:31.715
 Standard device management, compliance,
 configuration and app policies,
 
 156
-00:10:29.475 --> 00:10:34.930
+00:10:31.715 --> 00:10:37.170
 is available, with Log Analytics export
 and Defender security settings management.
 
 157
-00:10:37.600 --> 00:10:39.075
+00:10:40.920 --> 00:10:42.395
 One discrepancy to know.
 
 158
-00:10:39.075 --> 00:10:44.738
+00:10:42.395 --> 00:10:48.058
 The Graph reference pages for Autopilot
 device identities list the API in the GCC
 
 159
-00:10:44.738 --> 00:10:48.569
+00:10:48.058 --> 00:10:51.889
 High and DoD clouds, while
 Intune's service description
 
 160
-00:10:48.569 --> 00:10:51.900
+00:10:51.889 --> 00:10:55.220
 lists Windows Autopilot
 as not available there.
 
 161
-00:10:51.900 --> 00:10:55.470
+00:10:55.220 --> 00:10:58.790
 The service description decides
 whether the feature can be used;
 
 162
-00:10:55.470 --> 00:10:58.775
+00:10:58.790 --> 00:11:02.095
 an endpoint that answers doesn't
 make the feature supported.
 
 163
-00:10:58.775 --> 00:11:03.435
+00:11:02.095 --> 00:11:06.755
 That's an inference, and the kit's call
 list follows the stricter statement,
 
 164
-00:11:03.435 --> 00:11:07.025
+00:11:06.755 --> 00:11:10.345
 so the Autopilot check is for
 GCC and commercial tenants.
 
 165
-00:11:07.025 --> 00:11:11.114
+00:11:10.345 --> 00:11:14.434
 The interim paths: run compliance
 coverage until it lists nothing,
 
 166
-00:11:11.114 --> 00:11:14.163
+00:11:14.434 --> 00:11:17.483
 then change the tenant's
 default to not compliant.
 
 167
-00:11:14.163 --> 00:11:17.265
+00:11:17.483 --> 00:11:20.585
 Devices still on Group
 Policy aren't in Intune yet,
 
 168
-00:11:17.265 --> 00:11:20.974
+00:11:20.585 --> 00:11:24.294
 so track them with the validation
 kit's platform inventory.
 
 169
-00:11:20.974 --> 00:11:24.820
+00:11:24.294 --> 00:11:28.140
 In GCC High or DoD, Chapter
 04 of the Devices and
 
 170
-00:11:24.820 --> 00:11:29.575
+00:11:28.140 --> 00:11:32.895
 Endpoints book compares
 Autopilot device preparation.
 
 171
-00:11:29.575 --> 00:11:32.980
+00:11:32.895 --> 00:11:36.300
 And label the Settings
 Catalog export as beta.
 
 172
-00:11:35.910 --> 00:11:37.297
+00:11:40.050 --> 00:11:41.437
 The federal requirement.
 
 173
-00:11:37.297 --> 00:11:42.382
+00:11:41.437 --> 00:11:46.522
 Every control the checks evidence is in
 the NIST special publication eight hundred
 
 174
-00:11:42.382 --> 00:11:46.594
+00:11:46.522 --> 00:11:50.734
 fifty-three Moderate baseline:
 configuration baseline and settings,
 
 175
-00:11:46.594 --> 00:11:50.443
+00:11:50.734 --> 00:11:54.583
 the component inventory, protection
 of information at rest and
 
 176
-00:11:50.443 --> 00:11:54.510
+00:11:54.583 --> 00:11:58.650
 encryption on mobile devices, and
 flaw remediation for the OS floor.
 
 177
-00:11:54.510 --> 00:12:00.655
+00:11:58.650 --> 00:12:04.795
 Through Entra ID, compliance is the
 device-level signal that M-22-09 asks agencies
 
 178
-00:12:00.655 --> 00:12:03.019
+00:12:04.795 --> 00:12:07.159
 to consider when authorizing users,
 
 179
-00:12:03.019 --> 00:12:06.485
+00:12:07.159 --> 00:12:10.625
 and that ScubaGear's
 managed-device policy relies on.
 
 180
-00:12:06.485 --> 00:12:09.648
+00:12:10.625 --> 00:12:13.788
 ScubaGear has no Intune
 baseline of its own.
 
 181
-00:12:09.648 --> 00:12:14.837
+00:12:13.788 --> 00:12:18.977
 Appendix A of the Zero Trust and
 Assessment book has the M-22-09 mapping,
 
 182
-00:12:14.837 --> 00:12:19.048
+00:12:18.977 --> 00:12:23.188
 and Chapter 10 of Devices and
 Endpoints says what an assessor reads.
 
 183
-00:12:19.048 --> 00:12:22.656
+00:12:23.188 --> 00:12:26.796
 The evidence an ISSO keeps:
 each check's dated output,
 
 184
-00:12:22.656 --> 00:12:27.521
+00:12:26.796 --> 00:12:31.661
 with its evidences list and the beta
 label; the coverage result and the
 
 185
-00:12:27.521 --> 00:12:33.090
+00:12:31.661 --> 00:12:37.230
 changed default; and encryption findings
 confirmed in Intune's own report.
 
 186
-00:12:35.350 --> 00:12:37.325
+00:12:40.980 --> 00:12:42.955
 Check yourself with two questions.
 
 187
-00:12:37.325 --> 00:12:41.825
+00:12:42.955 --> 00:12:47.455
 First: a compliance policy's only
 assignment is an exclusion group.
 
 188
-00:12:41.825 --> 00:12:43.125
+00:12:47.455 --> 00:12:48.755
 Which check reports it?
 
 189
-00:12:43.125 --> 00:12:45.750
+00:12:48.755 --> 00:12:51.380
 The answer is b, compliance coverage.
 
 190
-00:12:45.750 --> 00:12:48.813
+00:12:51.380 --> 00:12:54.443
 A policy with only exclusions
 reaches no device,
 
 191
-00:12:48.813 --> 00:12:52.412
+00:12:54.443 --> 00:12:58.042
 and by default an unassigned
 device counts as compliant.
 
 192
-00:12:52.412 --> 00:12:57.438
+00:12:58.042 --> 00:13:03.068
 Second: what does the Autopilot
 check report in a GCC High tenant?
 
 193
-00:12:57.438 --> 00:13:00.788
+00:13:03.068 --> 00:13:06.418
 The answer is c: not evaluated,
 without calling Graph,
 
 194
-00:13:00.788 --> 00:13:06.400
+00:13:06.418 --> 00:13:12.030
 because Intune's service description lists
 Windows Autopilot as not available there.
 
 195
-00:13:06.400 --> 00:13:11.670
+00:13:12.030 --> 00:13:17.300
 The module page has three more questions,
 each linked to the unit that answers it.
 
 196
-00:13:15.420 --> 00:13:16.245
+00:13:21.050 --> 00:13:21.875
 To sum up.
 
 197
-00:13:16.245 --> 00:13:20.515
+00:13:21.875 --> 00:13:26.145
 You mapped the workbook's device
 evidence questions to Intune APIs,
 
 198
-00:13:20.515 --> 00:13:23.870
+00:13:26.145 --> 00:13:29.500
 their least-privileged
 permissions and their stage.
 
 199
-00:13:23.870 --> 00:13:27.445
+00:13:29.500 --> 00:13:33.075
 You learned which three things the
 program relies on are beta-only.
 
 200
-00:13:27.445 --> 00:13:30.215
+00:13:33.075 --> 00:13:35.845
 You read managed devices
 and compliance status,
 
 201
-00:13:30.215 --> 00:13:32.570
+00:13:35.845 --> 00:13:38.200
 and saw why the checks
 join on device name.
 
 202
-00:13:32.570 --> 00:13:36.220
+00:13:38.200 --> 00:13:41.850
 You kept remote actions and
 export jobs out of the collector.
 
 203
-00:13:36.220 --> 00:13:41.983
+00:13:41.850 --> 00:13:47.613
 And you ran the five checks, and saw why
 Autopilot is a GCC and commercial check.
 
 204
-00:13:41.983 --> 00:13:46.178
-That finishes the Microsoft Automation
-learning path: three modules,
-
-205
-00:13:46.178 --> 00:13:49.433
-about four hours and twenty-five
-minutes with each lab.
-
-206
-00:13:49.433 --> 00:13:51.367
+00:13:47.613 --> 00:13:49.548
 To put the checks on a schedule,
 
-207
-00:13:51.367 --> 00:13:54.695
+205
+00:13:49.548 --> 00:13:52.876
 go to the Intune track
 implementation guide's Gate 6.
 
+206
+00:13:52.876 --> 00:13:57.945
+Next is Module 4, Azure Arc through Azure
+Resource Manager and Resource Graph,
+
+207
+00:13:57.945 --> 00:14:00.638
+which leaves Graph for the server estate.
+
 208
-00:13:54.695 --> 00:13:59.960
-Modules on Azure Arc and Resource Manager,
-Teams, and monitoring are planned.
+00:14:00.638 --> 00:14:04.820
+With it, the Microsoft Automation
+learning path has four modules,
+
+209
+00:14:04.820 --> 00:14:07.763
+about five hours and
+fifty-five minutes in all.
+
+210
+00:14:07.763 --> 00:14:11.980
+Modules on Teams, and on monitoring
+and evidence, are planned.

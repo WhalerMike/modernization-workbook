@@ -2,15 +2,15 @@
 
 ## Slide 1 — The Reference Tab
 
-The Reference tab of the Federal Modernization Workbook holds six pages that nobody reads front to back. You open them when you need an answer: which command does this, which framework applies, where the Risk Management Framework is covered, whether a source is still current. This briefing walks through each page, the question it answers, and why the workbook would be weaker without it. Then it shows how the pages fit together, who should open which one first, and how each page tells you how far to trust it.
+The Reference tab of the Federal Modernization Workbook holds six core pages that nobody reads front to back. You open them when you need an answer: which command does this, which framework applies, where the Risk Management Framework is covered, whether a source is still current. Two newer pages sit beside them on the site only, the Learn Coverage Map and the Zero Trust Closure Coverage tracker. This briefing walks through each of the six core pages, the question it answers, and why the workbook would be weaker without it. Then it shows how the pages fit together, who should open which one first, and how each page tells you how far to trust it.
 
 ## Slide 2 — Why a Reference tab
 
-Each book answers one question in depth, in reading order. But an engineer, an ISSO or an authorizing official usually arrives with a question that cuts across all twenty books. The Reference tab exists for those questions, and they fall into three kinds. Run it: which command does the job, and which chapter teaches it. Prove it: which federal requirement a piece of work supports, and what evidence an assessor would read. Trust it: whether the sources behind all of this are still current. Every page on the tab answers one of those three.
+Each book answers one question in depth, in reading order. But an engineer, an ISSO or an authorizing official usually arrives with a question that cuts across all twenty-one books. The Reference tab exists for those questions, and they fall into three kinds. Run it: which command does the job, and which chapter teaches it. Prove it: which federal requirement a piece of work supports, and what evidence an assessor would read. Trust it: whether the sources behind all of this are still current. Every page on the tab answers one of those three.
 
-## Slide 3 — Six pages at a glance
+## Slide 3 — Six core pages at a glance
 
-Here are the six pages, with the job each one does. One page helps you run the kits: the Command Reference. Four help you prove compliance: the Federal Framework Crosswalk, the RMF Map, the M-19-17 and FICAM Crosswalk, and the Microsoft Practice Crosswalk. And one keeps everything trustworthy: the Source Register. The next six slides take them one at a time.
+Here are the six pages, with the job each one does. One page helps you run the kits: the Command Reference. Four help you prove compliance: the Federal Framework Crosswalk, the RMF Map, the M-19-17 and FICAM Crosswalk, and the Microsoft Practice Crosswalk. And one keeps everything trustworthy: the Source Register. The next six slides take them one at a time. The tab also carries two site-only pages, the Learn Coverage Map and the Zero Trust Closure Coverage tracker, which this briefing doesn't cover.
 
 ## Slide 4 — Run it: the Command Reference
 
@@ -46,4 +46,4 @@ So who should open which page first? An engineer running the kits opens the Comm
 
 ## Slide 12 — How the pages stay honest
 
-Finally, a reference page is only useful if you know how far to trust it, so each one tells you. The marks come from reading the chapters, not counting keywords: every hit is opened in context, and false matches are dropped. Each page shows its status, draft, in review or approved, and the date someone last reviewed it. A page left unreviewed for more than 90 days is flagged on the page and in the weekly source-watch issue until someone reviews it. And the gaps stay on the page. Partial rows, gaps and out-of-scope items are listed with their reasons, and where no automated check exists, the row says so rather than inventing one. Every page also downloads as a Word document, and the Reference Set puts all six in one file, from the Reference tab or the Downloads page. Thank you.
+Finally, a reference page is only useful if you know how far to trust it, so each one tells you. The marks come from reading the chapters, not counting keywords: every hit is opened in context, and false matches are dropped. Each page shows its status, draft, in review or approved, and the date someone last reviewed it. A page left unreviewed for more than 90 days is flagged on the page and in the weekly source-watch issue until someone reviews it. And the gaps stay on the page. Partial rows, gaps and out-of-scope items are listed with their reasons, and where no automated check exists, the row says so rather than inventing one. Each of the six core pages also downloads as a Word document, and the Reference Set puts all six in one file, from the Reference tab or the Downloads page. Thank you.

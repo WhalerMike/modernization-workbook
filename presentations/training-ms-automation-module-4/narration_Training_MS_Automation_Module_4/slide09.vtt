@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.734
+Lab 1 runs each check against the kit's
+fictional estate: one subscription
+
+3
+00:00:05.734 --> 00:00:11.263
+with seven Arc servers, five SQL Server
+instances and four policy assignments.
+
+4
+00:00:11.263 --> 00:00:15.205
+The from-json option evaluates
+saved Resource Graph rows
+
+5
+00:00:15.205 --> 00:00:19.312
+instead of calling Azure, and
+as-of fixes the evaluation date.
+
+6
+00:00:19.312 --> 00:00:21.462
+Here's step three, lifecycle.
+
+7
+00:00:21.462 --> 00:00:22.787
+Two are unsupported.
+
+8
+00:00:22.787 --> 00:00:26.545
+S R V L E G zero one runs
+Windows Server 2012 R2,
+
+9
+00:00:26.545 --> 00:00:31.762
+and it has an Arc E S U license
+assigned, but the E S U years ended
+
+10
+00:00:31.762 --> 00:00:37.501
+on October thirteenth, 2026, so no
+updates come through any channel.
+
+11
+00:00:37.501 --> 00:00:40.450
+And a SQL Server 2012 instance.
+
+12
+00:00:40.450 --> 00:00:44.218
+Two SQL Server instances, 2014 and 2016,
+
+13
+00:00:44.218 --> 00:00:49.063
+are in their E S U years with
+no confirmed subscription.
+
+14
+00:00:49.063 --> 00:00:53.829
+And S R V A P P zero two runs
+Windows Server 2016, ending soon:
+
+15
+00:00:53.829 --> 00:00:57.885
+the case the workbook's
+server standard is about,
+
+16
+00:00:57.885 --> 00:01:03.362
+upgraded before January twelfth,
+2027, or a documented exception.
+
+17
+00:01:03.362 --> 00:01:08.924
+Step seven asks for a query with no scope,
+and the client stops before any request.
+
+18
+00:01:08.924 --> 00:01:11.663
+The lab repeats two checks in PowerShell,
+
+19
+00:01:11.663 --> 00:01:15.190
+with the same results, and
+twenty-four Arc tests pass.

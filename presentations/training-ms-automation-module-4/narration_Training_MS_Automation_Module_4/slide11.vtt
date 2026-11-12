@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where are agencies?
+
+2
+00:00:01.362 --> 00:00:04.459
+The agency in the Devices
+and Endpoints book is
+
+3
+00:00:04.459 --> 00:00:07.951
+onboarding Windows and Linux
+servers to Arc in waves.
+
+4
+00:00:07.951 --> 00:00:11.705
+During the move, some servers are
+onboarded but missing an agent,
+
+5
+00:00:11.705 --> 00:00:16.311
+some connect over the public endpoints
+before the private link scope is ready,
+
+6
+00:00:16.311 --> 00:00:20.987
+and Arc makes end-of-support Windows
+Server and SQL Server versions visible.
+
+7
+00:00:20.987 --> 00:00:25.215
+A GCC Moderate estate's subscriptions
+are in commercial Azure,
+
+8
+00:00:25.215 --> 00:00:29.767
+so its scripts call management dot
+azure dot com and the commercial
+
+9
+00:00:29.767 --> 00:00:33.750
+sign-in endpoint; use the G C C
+cloud option, as in every module.
+
+10
+00:00:33.750 --> 00:00:36.138
+The interim paths are design guidance.
+
+11
+00:00:36.138 --> 00:00:41.159
+Servers onboarded before the private link
+scope exists are findings with a target
+
+12
+00:00:41.159 --> 00:00:43.633
+date; assign the policy that requires the
+
+13
+00:00:43.633 --> 00:00:46.326
+scope in do-not-enforce
+first, then enforce it.
+
+14
+00:00:46.326 --> 00:00:50.713
+Windows Server 2012 servers
+still running are a red finding.
+
+15
+00:00:50.713 --> 00:00:57.023
+And each Windows Server 2016 server is
+upgraded to 2019 or later before January
+
+16
+00:00:57.023 --> 00:01:01.708
+twelfth, 2027, or becomes an
+exception, with E S Us through Arc,
+
+17
+00:01:01.708 --> 00:01:05.500
+a signed risk acceptance
+and a retirement date.

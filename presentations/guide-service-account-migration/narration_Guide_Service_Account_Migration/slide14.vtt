@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.445
+In production, the same
+moves run as reviewed code,
+
+2
+00:00:03.445 --> 00:00:06.675
+in the Non-Person Identity
+developer workbook.
+
+3
+00:00:06.675 --> 00:00:09.675
+Chapter 3 records each
+account's disposition.
+
+4
+00:00:09.675 --> 00:00:13.591
+Chapter 6 does Migration A as
+a plan: create the G M S A,
+
+5
+00:00:13.591 --> 00:00:19.837
+wait for the host change and the thirty
+days, then disable the superseded account.
+
+6
+00:00:19.837 --> 00:00:23.474
+It does Migration B as three
+planned actions, create,
+
+7
+00:00:23.474 --> 00:00:28.550
+start and complete, with every limit
+Microsoft Learn sets checked first.
+
+8
+00:00:28.550 --> 00:00:32.726
+Chapter 5 does Migration C, the
+identity and its credential,
+
+9
+00:00:32.726 --> 00:00:37.413
+and tests a real token exchange,
+and Chapter 7 cuts its permissions.
+
+10
+00:00:37.413 --> 00:00:40.244
+Chapter 6 also keeps
+the island list and the
+
+11
+00:00:40.244 --> 00:00:43.075
+reconciliation for what stays on Kerberos.
+
+12
+00:00:43.075 --> 00:00:45.650
+What the code never does matters as much.
+
+13
+00:00:45.650 --> 00:00:51.012
+It never runs a plan nobody approved,
+because each plan is sent only by its hash.
+
+14
+00:00:51.012 --> 00:00:53.832
+And it never creates a K D S root key,
+
+15
+00:00:53.832 --> 00:00:58.263
+never runs undo or reset,
+and never deletes an account.
+
+16
+00:00:58.263 --> 00:01:03.223
+To try it, take Module 12 of the Non-Person
+Identity learning path, which runs
+
+17
+00:01:03.223 --> 00:01:07.863
+Learn's steps on stand-ins and the
+kit's plans on fixtures, with no tenant.
+
+18
+00:01:07.863 --> 00:01:13.262
+Then Chapter 6's second lab, in a test
+domain, and the guide's checklist.
+
+19
+00:01:13.262 --> 00:01:14.090
+Thank you.

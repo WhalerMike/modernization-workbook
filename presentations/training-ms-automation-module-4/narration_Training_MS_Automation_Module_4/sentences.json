@@ -1,0 +1,727 @@
+{
+ "1": [
+  [
+   0.05,
+   8.088,
+   "Welcome to Module 4 of the Microsoft Automation learning path: Azure Arc through Azure Resource Manager and Resource Graph."
+  ],
+  [
+   8.137,
+   11.812,
+   "The Federal Modernization Workbook's Devices and Endpoints book puts the agency's servers under Azure Arc, and its Data Platform book uses Arc to bring sequel Server under Microsoft Entra I D."
+  ],
+  [
+   19.95,
+   3.163,
+   "After onboarding, the question becomes evidence."
+  ],
+  [
+   23.113,
+   2.275,
+   "None of that is in Microsoft Graph."
+  ],
+  [
+   25.387,
+   11.262,
+   "Arc servers, their extensions, sequel Server instances and Azure Policy are Azure resources, managed through Azure Resource Manager and read in bulk through Azure Resource Graph."
+  ],
+  [
+   36.65,
+   8.8,
+   "In this module you'll learn what changes when a script leaves Graph for Resource Manager, and how to read Resource Graph without silently losing rows."
+  ],
+  [
+   45.45,
+   5.95,
+   "Then you'll run five read-only checks, in Python and PowerShell, against a fictional estate."
+  ],
+  [
+   51.4,
+   7.537,
+   "Like the other modules' checks, they're illustrative: unit-tested against fixtures, not proven against lyve subscriptions."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   4.612,
+   "Once the servers are under Arc, an assessor asks questions a script can answer."
+  ],
+  [
+   5.812,
+   3.75,
+   "Which servers lack the monitoring and endpoint protection agents?"
+  ],
+  [
+   9.562,
+   2.75,
+   "Which still reach Azure over the public internet?"
+  ],
+  [
+   12.312,
+   4.688,
+   "Which run an operating system or sequel Server version past the end of support?"
+  ],
+  [
+   17.0,
+   3.3,
+   "Is each sequel Server instance's host still connected?"
+  ],
+  [
+   20.3,
+   4.138,
+   "And which policy assignments are failing, and which aren't enforcing anything?"
+  ],
+  [
+   24.438,
+   13.25,
+   "The validation kit already has seven Arc-track checks on Resource Graph: tags, agent status, baseline compliance, CMDB coverage, Update Manager, role assignments, and two tools on one setting."
+  ],
+  [
+   37.688,
+   1.85,
+   "This module doesn't repeat them."
+  ],
+  [
+   39.538,
+   1.8,
+   "Its checks read other records."
+  ],
+  [
+   41.337,
+   13.537,
+   "One more thing frames the module: the workbook plans on Windows Server 2016 being gone from production by its January twelfth, 2027 end of support, with Windows Server 2019 the minimum."
+  ],
+  [
+   54.875,
+   7.825,
+   "That's the program's planning assumption, not a federal requirement, and any 2016 server that remains is an exception."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.537,
+   "Here's what you'll be able to do by the end of this module, which takes about ninety-five minutes with the lab."
+  ],
+  [
+   5.588,
+   4.662,
+   "You'll explain the four ways Resource Manager differs from Graph for a script."
+  ],
+  [
+   10.25,
+   6.987,
+   "You'll page a Resource Graph query to the end, and say when Resource Graph can't page and why that must stop the run."
+  ],
+  [
+   17.238,
+   4.737,
+   "You'll explain why an empty result can mean no access, not a clean estate."
+  ],
+  [
+   21.975,
+   8.575,
+   "You'll read the Arc machine, extension, sequel Server instance, policy assignment and policy state records, and the traps in each."
+  ],
+  [
+   30.55,
+   6.438,
+   "And you'll say which Windows Server and sequel Server versions are past support, and run the five checks on fixtures."
+  ],
+  [
+   36.987,
+   1.312,
+   "You need Module 1."
+  ],
+  [
+   38.3,
+   6.612,
+   "Lab 2 needs a test subscription in commercial Azure, never production, with a few Arc-enabled servers."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.1,
+   "A script that already calls Graph correctly has four things to change."
+  ],
+  [
+   4.15,
+   2.725,
+   "First, another host and another token."
+  ],
+  [
+   6.875,
+   10.65,
+   "Resource Manager is management dot azure dot com in commercial Azure, and a G C C tenant's subscriptions are commercial Azure, so a G C C script calls that host."
+  ],
+  [
+   17.525,
+   6.737,
+   "G C C High and D O D use Azure Government, management dot us gov cloud api dot net."
+  ],
+  [
+   24.262,
+   5.487,
+   "A token is issued for one resource, so a Graph token can't call Resource Manager."
+  ],
+  [
+   29.75,
+   4.388,
+   "Second, Azure role-based access control, not a permission list."
+  ],
+  [
+   34.138,
+   6.45,
+   "A Resource Manager token carries no roles list; Azure decides at each call from the roles assigned."
+  ],
+  [
+   40.587,
+   5.175,
+   "Every call here needs only the built-in Reader role, whose only action is read."
+  ],
+  [
+   45.763,
+   5.562,
+   "Third, an api-version on every call, set by each resource provider."
+  ],
+  [
+   51.325,
+   6.7,
+   "Fourth, paging: next link, not the O Data next link, and Resource Graph pages differently again."
+  ],
+  [
+   58.025,
+   7.037,
+   "The five checks make just two calls, and the Resource Graph query is a POST only because the query travels in the body."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   7.375,
+   "Resource Graph holds a copy of every resource's properties, in tables you query with the Kusto Query Language."
+  ],
+  [
+   7.425,
+   1.387,
+   "It has four traps."
+  ],
+  [
+   8.812,
+   3.013,
+   "One: an empty result can mean no access."
+  ],
+  [
+   11.825,
+   5.138,
+   "Microsoft Learn says no results come back for objects you can't read, without an error."
+  ],
+  [
+   16.962,
+   10.812,
+   "So every check reports machines in scope and empty scope, the client refuses a query with no scope, and the command line stops when the identity can see no subscriptions."
+  ],
+  [
+   27.775,
+   2.712,
+   "Two: paging is a token in the body."
+  ],
+  [
+   30.488,
+   6.525,
+   "A page holds at most a thousand records; repeat the same query with the skip token until none comes back."
+  ],
+  [
+   37.013,
+   9.512,
+   "Three: some queries can't be paged at all, when they use limit, sample or take, or when every output column is dynamic, as project properties is."
+  ],
+  [
+   46.525,
+   4.338,
+   "Then the client raises an incomplete result rather than return part of one."
+  ],
+  [
+   50.862,
+   5.6,
+   "Four: sort by a unique column, or pages can repeat some records and skip others."
+  ],
+  [
+   56.462,
+   2.475,
+   "Every query ends ordered by I D."
+  ],
+  [
+   58.938,
+   5.5,
+   "And the data isn't strongly consistent, so a check run minutes after a change may not see it."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.625,
+   "Unit 4 is the records."
+  ],
+  [
+   1.675,
+   18.3,
+   "The Arc machine record carries its status, connected, disconnected, error or awaiting connection; its operating system type, name, S K U and version; the private link scope it's assigned to, if any; and its E S U profile, with eligibility and whether a license is assigned."
+  ],
+  [
+   19.975,
+   7.575,
+   "Each extension is its own resource, whose I D begins with the machine's, which is how Microsoft's own sample joins them."
+  ],
+  [
+   27.55,
+   4.275,
+   "The check reads the publisher, type, version and provisioning state."
+  ],
+  [
+   31.825,
+   9.975,
+   "By default it requires two: Azure Monitor Agent, for log and performance collection, and Microsoft Defender for Endpoint, which Defender for Servers deploys."
+  ],
+  [
+   41.8,
+   7.75,
+   "A sequel Server instance enabled by Arc carries its version, edition and status, and the I D of the machine that hosts it."
+  ],
+  [
+   49.55,
+   4.513,
+   "One rule matters more than the rest: never read an extension's settings."
+  ],
+  [
+   54.062,
+   7.713,
+   "They're public jay-son, and Microsoft's example is a command line, so a collector that reads them copies commands into the evidence."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.888,
+   "Unit 5 covers policy and lifecycle."
+  ],
+  [
+   2.938,
+   4.312,
+   "A policy assignment's enforcement mode decides whether its effect applies."
+  ],
+  [
+   7.25,
+   1.462,
+   "Default enforces it."
+  ],
+  [
+   8.713,
+   12.025,
+   "Do not enforce still evaluates and reports compliance, but prevents nothing: the right way to stage a deny policy, but one left there reports noncompliance forever, so each needs a dated decision."
+  ],
+  [
+   20.738,
+   3.3,
+   "Enroll enforces only for enrolled resources."
+  ],
+  [
+   24.038,
+   9.425,
+   "Running a version past its end of support is nist special publication eight hundred fifty-three's S A twenty-two, unsupported system components."
+  ],
+  [
+   33.462,
+   2.962,
+   "The dates come from Microsoft's lifecycle pages."
+  ],
+  [
+   36.425,
+   11.525,
+   "Windows Server 2012 is unsupported: its extended security updates ended on October thirteenth, 2026, and Arc E S U licenses were deactivated the next day."
+  ],
+  [
+   47.95,
+   11.588,
+   "Windows Server 2016's extended support ends January twelfth, 2027, and under the workbook's server standard, one still in production after that date is an exception."
+  ],
+  [
+   59.538,
+   8.05,
+   "sequel Server 2012 is unsupported, and 2014 and 2016 are in their E S U years."
+  ],
+  [
+   67.588,
+   4.075,
+   "Where two Learn pages disagree, the kit uses the earlier date."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.05,
+   "Five checks."
+  ],
+  [
+   1.1,
+   7.15,
+   "Arc extensions lists servers missing Azure Monitor Agent or Defender for Endpoint, and extensions that didn't deploy."
+  ],
+  [
+   8.25,
+   6.412,
+   "Arc private link lists servers with no private link scope, so they reach Azure over public endpoints."
+  ],
+  [
+   14.662,
+   12.912,
+   "Lifecycle sorts servers and sequel Server instances by support state: unsupported, E S U not confirmed, E S U covered, ending soon, and products not in the table, which are never counted as supported."
+  ],
+  [
+   27.575,
+   7.425,
+   "sequel inventory lists instances by version and edition, and the ones that are disconnected or whose host is out of scope."
+  ],
+  [
+   35.0,
+   4.875,
+   "And policy summary shows each assignment's enforcement mode and compliance counts."
+  ],
+  [
+   39.875,
+   7.412,
+   "Every control they evidence is in the nist Moderate baseline; the mapping is the program's reading, and the assessor decides."
+  ],
+  [
+   47.288,
+   1.875,
+   "All five need only Reader."
+  ],
+  [
+   49.163,
+   8.562,
+   "Two limits to keep in mind: an extension that succeeded isn't proof the agent reports, and a private link scope isn't the whole network path."
+  ],
+  [
+   57.725,
+   2.35,
+   "Confirm those for a sample of servers."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   10.488,
+   "Lab 1 runs each check against the kit's fictional estate: one subscription with seven Arc servers, five sequel Server instances and four policy assignments."
+  ],
+  [
+   11.262,
+   8.05,
+   "The from-json option evaluates saved Resource Graph rows instead of calling Azure, and as-of fixes the evaluation date."
+  ],
+  [
+   19.312,
+   2.15,
+   "Here's step three, lifecycle."
+  ],
+  [
+   21.462,
+   1.325,
+   "Two are unsupported."
+  ],
+  [
+   22.788,
+   14.713,
+   "S R V L E G zero one runs Windows Server 2012 R2, and it has an Arc E S U license assigned, but the E S U years ended on October thirteenth, 2026, so no updates come through any channel."
+  ],
+  [
+   37.5,
+   2.95,
+   "And a sequel Server 2012 instance."
+  ],
+  [
+   40.45,
+   8.613,
+   "Two sequel Server instances, 2014 and 2016, are in their E S U years with no confirmed subscription."
+  ],
+  [
+   49.062,
+   14.3,
+   "And S R V A P P zero two runs Windows Server 2016, ending soon: the case the workbook's server standard is about, upgraded before January twelfth, 2027, or a documented exception."
+  ],
+  [
+   63.362,
+   5.562,
+   "Step seven asks for a query with no scope, and the client stops before any request."
+  ],
+  [
+   68.925,
+   6.2,
+   "The lab repeats two checks in PowerShell, with the same results, and twenty-four Arc tests pass."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   8.512,
+   "Lab 2 runs the checks read-only against your own test subscription in commercial Azure, never production, with a few Arc-enabled servers."
+  ],
+  [
+   8.562,
+   8.05,
+   "One Azure C L I command registers the app with a self-signed certificate and no password, and assigns it Reader on the test subscription."
+  ],
+  [
+   16.613,
+   6.95,
+   "No Graph permission is needed, and never assign Contributor or Owner, which can change every resource in scope."
+  ],
+  [
+   23.562,
+   4.025,
+   "Confirm the app holds one role, Reader, and nothing else."
+  ],
+  [
+   27.587,
+   3.487,
+   "Then run each check, in Python or PowerShell."
+  ],
+  [
+   31.075,
+   7.975,
+   "If machines in scope is zero and you know the subscription has Arc servers, the role hasn't taken effect yet, or it's on the wrong scope."
+  ],
+  [
+   39.05,
+   8.925,
+   "Record two open review items: what operating system S K U your servers report, and whether Reader alone can call Policy Insights' summarize."
+  ],
+  [
+   47.975,
+   5.725,
+   "Compare each result with the portal's Arc, extension, sequel Server and Policy views."
+  ],
+  [
+   53.7,
+   8.95,
+   "Then back it out: remove the role, delete the app and its certificate, and delete the saved results, which hold server names and resource I Ds."
+  ],
+  [
+   62.65,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   6.588,
+   "The agency in the Devices and Endpoints book is onboarding Windows and Linux servers to Arc in waves."
+  ],
+  [
+   7.95,
+   13.037,
+   "During the move, some servers are onboarded but missing an agent, some connect over the public endpoints before the private link scope is ready, and Arc makes end-of-support Windows Server and sequel Server versions visible."
+  ],
+  [
+   20.988,
+   12.762,
+   "A G C C Moderate estate's subscriptions are in commercial Azure, so its scripts call management dot azure dot com and the commercial sign-in endpoint; use the G C C cloud option, as in every module."
+  ],
+  [
+   33.75,
+   2.388,
+   "The interim paths are design guidance."
+  ],
+  [
+   36.138,
+   10.188,
+   "Servers onboarded before the private link scope exists are findings with a target date; assign the policy that requires the scope in do-not-enforce first, then enforce it."
+  ],
+  [
+   46.325,
+   4.388,
+   "Windows Server 2012 servers still running are a red finding."
+  ],
+  [
+   50.712,
+   14.725,
+   "And each Windows Server 2016 server is upgraded to 2019 or later before January twelfth, 2027, or becomes an exception, with E S Us through Arc, a signed risk acceptance and a retirement date."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   12.838,
+   "G C C High and D O D estates use Azure Government: management dot us gov cloud api dot net, the U S Government sign-in authority, and the Azure U S Government environment in PowerShell."
+  ],
+  [
+   12.887,
+   18.275,
+   "Microsoft's Azure Government availability roadmap, read on November eleventh, 2026, shows Resource Manager, Resource Graph, Arc-enabled servers, Azure Policy and Private Link generally available and authorized at fed-ramp High and D O D impact levels four and five."
+  ],
+  [
+   31.163,
+   6.412,
+   "Arc-enabled sequel Server is available at fed-ramp High, and awaiting review at levels four and five."
+  ],
+  [
+   37.575,
+   1.975,
+   "Three differences affect the checks."
+  ],
+  [
+   39.55,
+   11.887,
+   "sequel Server enabled by Arc is a subset there: the U S Gov Virginia region only, on Windows only, with no Entra authentication, so sequel inventory sees only those instances."
+  ],
+  [
+   51.438,
+   3.85,
+   "The private link scope is available, with its own endpoints."
+  ],
+  [
+   55.288,
+   3.825,
+   "And E S U-only Arc servers need a smaller set of endpoints."
+  ],
+  [
+   59.112,
+   7.4,
+   "Learn doesn't say whether Resource Graph's quota, paging or tables differ in Azure Government: not yet specified."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   24.075,
+   "Every control the checks evidence is in the nist special publication eight hundred fifty-three, revision five, Moderate baseline: system monitoring, malicious code protection and audit record generation, through the agents; boundary protection, through the network path; unsupported system components and flaw remediation; the component inventory; and continuous monitoring and configuration settings."
+  ],
+  [
+   25.512,
+   4.188,
+   "The mapping is the program's reading; the agency's assessor decides."
+  ],
+  [
+   29.7,
+   32.975,
+   "The evidence an I S S O keeps: each check's dated output, with its evidences list and machines in scope; the app's Reader role assignment and its scope; a decision for each unsupported server, migrate, upgrade, or isolate and accept the risk; the E S U subscription record for each instance whose coverage isn't confirmed; the dated decision behind each do-not-enforce assignment; and for each Windows Server 2016 server still in production after January twelfth, 2027, the exception record."
+  ],
+  [
+   62.675,
+   4.2,
+   "The Arc track implementation guide's Step 8 puts this on a schedule."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.938,
+   "First: a Resource Graph query returns no Arc servers."
+  ],
+  [
+   5.963,
+   1.613,
+   "What's the first thing to check?"
+  ],
+  [
+   7.575,
+   9.012,
+   "The answer is b: whether the identity has Reader on the scope, because Resource Graph returns nothing for resources the caller can't read, and no error."
+  ],
+  [
+   16.587,
+   6.287,
+   "Second: a Windows Server 2012 R2 machine has an Arc E S U license assigned."
+  ],
+  [
+   22.875,
+   4.075,
+   "What does lifecycle report on November third, 2026?"
+  ],
+  [
+   26.95,
+   2.237,
+   "The answer is b, unsupported."
+  ],
+  [
+   29.188,
+   8.113,
+   "The E S U years ended on October thirteenth, 2026, so no updates come through any channel, license or not."
+  ],
+  [
+   37.3,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   11.65,
+   "You learned what changes when a script leaves Graph for Resource Manager: another host and token, Azure role-based access control instead of a permission list, api-versions, and next link."
+  ],
+  [
+   12.525,
+   7.088,
+   "You paged Resource Graph without losing rows, and saw when it can't page and why an empty result can mean no access."
+  ],
+  [
+   19.613,
+   10.05,
+   "You read the Arc machine, extension, sequel Server, policy assignment and policy state records, and checked support dates against Microsoft's lifecycle pages."
+  ],
+  [
+   29.663,
+   7.062,
+   "And in Lab 1 you ran the five checks on fixtures in Python and PowerShell, and read each finding against its control."
+  ],
+  [
+   36.725,
+   8.012,
+   "That finishes the Microsoft Automation learning path as it stands: four modules, about five hours and fifty-five minutes in all."
+  ],
+  [
+   44.737,
+   6.6,
+   "To put the checks on a schedule, go to the Azure Arc track implementation guide's Step 8, and its Gate 8 checks it."
+  ],
+  [
+   51.337,
+   5.725,
+   "Modules on Teams Phone and Teams administration, and on monitoring and evidence, are planned."
+  ]
+ ]
+}

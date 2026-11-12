@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.391
+GCC High and DoD estates
+use Azure Government:
+
+2
+00:00:03.391 --> 00:00:08.843
+management dot us gov cloud api dot net,
+the US Government sign-in authority,
+
+3
+00:00:08.843 --> 00:00:12.888
+and the Azure US Government
+environment in PowerShell.
+
+4
+00:00:12.888 --> 00:00:18.755
+Microsoft's Azure Government availability
+roadmap, read on November eleventh, 2026,
+
+5
+00:00:18.755 --> 00:00:22.947
+shows Resource Manager, Resource
+Graph, Arc-enabled servers,
+
+6
+00:00:22.947 --> 00:00:26.803
+Azure Policy and Private
+Link generally available and
+
+7
+00:00:26.803 --> 00:00:31.162
+authorized at FedRAMP High and
+DoD impact levels four and five.
+
+8
+00:00:31.162 --> 00:00:34.760
+Arc-enabled SQL Server is
+available at FedRAMP High,
+
+9
+00:00:34.760 --> 00:00:37.575
+and awaiting review at
+levels four and five.
+
+10
+00:00:37.575 --> 00:00:39.550
+Three differences affect the checks.
+
+11
+00:00:39.550 --> 00:00:45.114
+SQL Server enabled by Arc is a subset
+there: the US Gov Virginia region only, on
+
+12
+00:00:45.114 --> 00:00:48.149
+Windows only, with no
+Entra authentication,
+
+13
+00:00:48.149 --> 00:00:51.437
+so SQL inventory sees
+only those instances.
+
+14
+00:00:51.437 --> 00:00:55.288
+The private link scope is
+available, with its own endpoints.
+
+15
+00:00:55.288 --> 00:00:59.113
+And E S U-only Arc servers need
+a smaller set of endpoints.
+
+16
+00:00:59.113 --> 00:01:02.329
+Learn doesn't say whether
+Resource Graph's quota,
+
+17
+00:01:02.329 --> 00:01:06.580
+paging or tables differ in Azure
+Government: not yet specified.

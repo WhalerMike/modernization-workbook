@@ -40,25 +40,34 @@ And you ran the five checks, and saw why
 Autopilot is a GCC and commercial check.
 
 9
-00:00:26.613 --> 00:00:30.808
-That finishes the Microsoft Automation
-learning path: three modules,
-
-10
-00:00:30.808 --> 00:00:34.063
-about four hours and twenty-five
-minutes with each lab.
-
-11
-00:00:34.063 --> 00:00:35.997
+00:00:26.613 --> 00:00:28.548
 To put the checks on a schedule,
 
-12
-00:00:35.997 --> 00:00:39.325
+10
+00:00:28.548 --> 00:00:31.876
 go to the Intune track
 implementation guide's Gate 6.
 
+11
+00:00:31.876 --> 00:00:36.945
+Next is Module 4, Azure Arc through Azure
+Resource Manager and Resource Graph,
+
+12
+00:00:36.945 --> 00:00:39.638
+which leaves Graph for the server estate.
+
 13
-00:00:39.325 --> 00:00:44.590
-Modules on Azure Arc and Resource Manager,
-Teams, and monitoring are planned.
+00:00:39.638 --> 00:00:43.820
+With it, the Microsoft Automation
+learning path has four modules,
+
+14
+00:00:43.820 --> 00:00:46.763
+about five hours and
+fifty-five minutes in all.
+
+15
+00:00:46.763 --> 00:00:50.980
+Modules on Teams, and on monitoring
+and evidence, are planned.

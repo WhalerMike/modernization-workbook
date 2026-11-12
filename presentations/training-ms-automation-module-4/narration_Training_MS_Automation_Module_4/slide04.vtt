@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.150
+A script that already calls Graph
+correctly has four things to change.
+
+2
+00:00:04.150 --> 00:00:06.875
+First, another host and another token.
+
+3
+00:00:06.875 --> 00:00:12.283
+Resource Manager is management dot azure
+dot com in commercial Azure, and a GCC
+
+4
+00:00:12.283 --> 00:00:17.525
+tenant's subscriptions are commercial
+Azure, so a GCC script calls that host.
+
+5
+00:00:17.525 --> 00:00:24.262
+GCC High and DoD use Azure Government,
+management dot us gov cloud api dot net.
+
+6
+00:00:24.262 --> 00:00:29.749
+A token is issued for one resource, so a
+Graph token can't call Resource Manager.
+
+7
+00:00:29.749 --> 00:00:34.138
+Second, Azure role-based access
+control, not a permission list.
+
+8
+00:00:34.138 --> 00:00:37.244
+A Resource Manager token
+carries no roles list;
+
+9
+00:00:37.244 --> 00:00:40.588
+Azure decides at each call
+from the roles assigned.
+
+10
+00:00:40.588 --> 00:00:45.762
+Every call here needs only the built-in
+Reader role, whose only action is read.
+
+11
+00:00:45.762 --> 00:00:51.325
+Third, an api-version on every
+call, set by each resource provider.
+
+12
+00:00:51.325 --> 00:00:54.763
+Fourth, paging: next link,
+not the O Data next link,
+
+13
+00:00:54.763 --> 00:00:58.025
+and Resource Graph
+pages differently again.
+
+14
+00:00:58.025 --> 00:01:01.581
+The five checks make just two
+calls, and the Resource Graph
+
+15
+00:01:01.581 --> 00:01:05.110
+query is a POST only because
+the query travels in the body.

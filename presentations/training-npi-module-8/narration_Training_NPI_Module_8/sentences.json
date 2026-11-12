@@ -59,16 +59,26 @@
   ],
   [
    17.663,
-   30.625,
-   "The forest needs one K D S root key, created once: Microsoft Learn calls it a one-time operation in the forest, and its page on creating the key says domain controllers wait up to ten hours after it's created before they allow a G M S A. Step 3's seventh step covers the Active Directory side of credentials: Learn's guidance on securing group managed service accounts says Windows changes the password every thirty days by default, and the interval can be set only when the account is created."
+   15.85,
+   "The forest needs one K D S root key, created once: Microsoft Learn calls it a one-time operation in the forest, and its page on creating the key says domain controllers wait up to ten hours after it's created before they allow a G M S A."
   ],
   [
-   48.288,
+   33.513,
+   5.438,
+   "And a G M S A's name must be unique in the forest, not just the domain."
+  ],
+  [
+   38.95,
+   15.162,
+   "Step 3's seventh step covers the Active Directory side of credentials: Learn's guidance on securing group managed service accounts says Windows changes the password every thirty days by default, and the interval can be set only when the account is created."
+  ],
+  [
+   54.112,
    6.138,
    "The rollback for Step 5 is to re-enable the legacy account and revert the application's configuration."
   ],
   [
-   54.425,
+   60.25,
    14.3,
    "A delegated account runs the same thirty days: Learn's overview of delegated managed service accounts recommends waiting four ticket lifetimes, and thirty days covers four seven-day lifetimes, so the program completes a migration only then."
   ]

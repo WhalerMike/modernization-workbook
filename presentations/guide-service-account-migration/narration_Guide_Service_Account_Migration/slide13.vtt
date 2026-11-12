@@ -1,92 +1,105 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.445
-In production, the same
-moves run as reviewed code,
+00:00:00.050 --> 00:00:03.137
+The guide lists the dangers
+and the guard for each.
 
 2
-00:00:03.445 --> 00:00:06.675
-in the Non-Person Identity
-developer workbook.
+00:00:03.137 --> 00:00:08.529
+Create a G M S A before the K D S root
+key replicates, and password retrieval
 
 3
-00:00:06.675 --> 00:00:09.675
-Chapter 3 records each
-account's disposition.
+00:00:08.529 --> 00:00:13.650
+fails on hosts that ask another domain
+controller: wait the ten hours.
 
 4
-00:00:09.675 --> 00:00:13.591
-Chapter 6 does Migration A as
-a plan: create the G M S A,
+00:00:13.650 --> 00:00:17.122
+Create a second root key,
+and G M S As fail after
 
 5
-00:00:13.591 --> 00:00:19.837
-wait for the host change and the thirty
-days, then disable the superseded account.
+00:00:17.122 --> 00:00:20.875
+their next password
+rotation: one key per forest.
 
 6
-00:00:19.837 --> 00:00:23.474
-It does Migration B as three
-planned actions, create,
+00:00:20.875 --> 00:00:25.449
+Leave an S P N on the old account,
+and Kerberos to the service
 
 7
-00:00:23.474 --> 00:00:28.550
-start and complete, with every limit
-Microsoft Learn sets checked first.
+00:00:25.449 --> 00:00:30.213
+fails or falls back to N T L M: move
+the S P Ns in the switch window.
 
 8
-00:00:28.550 --> 00:00:32.726
-Chapter 5 does Migration C, the
-identity and its credential,
+00:00:30.213 --> 00:00:33.239
+Switch a host that can't
+retrieve the password,
 
 9
-00:00:32.726 --> 00:00:37.413
-and tests a real token exchange,
-and Chapter 7 cuts its permissions.
+00:00:33.239 --> 00:00:36.425
+and the service won't start:
+test every host first.
 
 10
-00:00:37.413 --> 00:00:40.244
-Chapter 6 also keeps
-the island list and the
+00:00:36.425 --> 00:00:38.700
+Put a G M S A in a privileged group,
 
 11
-00:00:40.244 --> 00:00:43.075
-reconciliation for what stays on Kerberos.
+00:00:38.700 --> 00:00:43.425
+and every host that retrieves its
+password holds that privilege.
 
 12
-00:00:43.075 --> 00:00:45.650
-What the code never does matters as much.
+00:00:43.425 --> 00:00:48.990
+Complete a D M S A migration too early, or
+with a host not on Windows Server 2025,
 
 13
-00:00:45.650 --> 00:00:51.012
-It never runs a plan nobody approved,
-because each plan is sent only by its hash.
+00:00:48.990 --> 00:00:52.700
+and the service fails on
+the hosts it hasn't learned.
 
 14
-00:00:51.012 --> 00:00:53.832
-And it never creates a K D S root key,
+00:00:52.700 --> 00:00:56.550
+Delete the old account during the
+migration, and there's no way back.
 
 15
-00:00:53.832 --> 00:00:58.263
-never runs undo or reset,
-and never deletes an account.
+00:00:56.550 --> 00:00:59.381
+Put a client secret on
+the new app registration,
 
 16
-00:00:58.263 --> 00:01:03.223
-To try it, take Module 12 of the Non-Person
-Identity learning path, which runs
+00:00:59.381 --> 00:01:02.575
+and you have a password in
+a configuration file again.
 
 17
-00:01:03.223 --> 00:01:07.863
-Learn's steps on stand-ins and the
-kit's plans on fixtures, with no tenant.
+00:01:02.575 --> 00:01:05.991
+Run a G M S A container on a
+host that isn't domain-joined,
 
 18
-00:01:07.863 --> 00:01:13.262
-Then Chapter 6's second lab, in a test
-domain, and the guide's checklist.
+00:01:05.991 --> 00:01:10.804
+and Learn's pattern for it keeps a stored
+domain password again; the program
 
 19
-00:01:13.262 --> 00:01:14.090
-Thank you.
+00:01:10.804 --> 00:01:15.850
+allows domain-joined hosts only, and
+anything else needs a reviewed exception.
+
+20
+00:01:15.850 --> 00:01:19.613
+And a G M S A left behind
+when Active Directory retires
+
+21
+00:01:19.613 --> 00:01:23.520
+loses its credential with
+the last domain controller.
