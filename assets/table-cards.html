@@ -22,6 +22,8 @@
     }
     if (cols < 4) return;
     table.classList.add("fmw-stack");
+    // A table whose first column is "Book" shows that value as the card's title bar (navy, white text).
+    if (names[0] === "Book") table.classList.add("fmw-book-cards");
     table.querySelectorAll("tbody tr").forEach(function (tr) {
       Array.prototype.forEach.call(tr.children, function (td, i) {
         if (names[i]) td.setAttribute("data-label", names[i]);
