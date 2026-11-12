@@ -1053,7 +1053,7 @@ The alerts follow from that. Fleet-wide noncompliance above ten percent comes fr
 {
   const s = D.content(P2, "The evidence an assessor reads, and the GCC boundary facts");
   tag(s, "Who");
-  table(s, "Controls", 1.45, [1.55, 5.75], ["Control", "Evidence the program hands over"], [
+  table(s, "Controls", 1.45, [1.5, 5.3], ["Control", "Evidence the program hands over"], [
     ["CM-2 Baseline", "The policy library exported as JSON from Graph, under version control, with review history"],
     ["CM-6 Settings", "Per-setting status; the exception register with approvals; Intune audit logs"],
     ["CM-7 Least function", "ASR rules in block, firewall rule set, Edge extension allow list, consumer features off"],

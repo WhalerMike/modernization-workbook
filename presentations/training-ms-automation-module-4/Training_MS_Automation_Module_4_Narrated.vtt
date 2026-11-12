@@ -1,0 +1,1165 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.133
+Welcome to Module 4 of the
+Microsoft Automation learning path:
+
+2
+00:00:04.133 --> 00:00:08.138
+Azure Arc through Azure Resource
+Manager and Resource Graph.
+
+3
+00:00:08.138 --> 00:00:13.295
+The Federal Modernization Workbook's
+Devices and Endpoints book puts the agency's
+
+4
+00:00:13.295 --> 00:00:16.435
+servers under Azure Arc,
+and its Data Platform book
+
+5
+00:00:16.435 --> 00:00:19.949
+uses Arc to bring SQL Server
+under Microsoft Entra I D.
+
+6
+00:00:19.949 --> 00:00:23.113
+After onboarding, the
+question becomes evidence.
+
+7
+00:00:23.113 --> 00:00:25.388
+None of that is in Microsoft Graph.
+
+8
+00:00:25.388 --> 00:00:27.277
+Arc servers, their extensions,
+
+9
+00:00:27.277 --> 00:00:32.265
+SQL Server instances and Azure Policy
+are Azure resources, managed through
+
+10
+00:00:32.265 --> 00:00:36.649
+Azure Resource Manager and read in
+bulk through Azure Resource Graph.
+
+11
+00:00:36.649 --> 00:00:40.800
+In this module you'll learn what
+changes when a script leaves Graph for
+
+12
+00:00:40.800 --> 00:00:45.450
+Resource Manager, and how to read Resource
+Graph without silently losing rows.
+
+13
+00:00:45.450 --> 00:00:47.862
+Then you'll run five read-only checks,
+
+14
+00:00:47.862 --> 00:00:51.400
+in Python and PowerShell,
+against a fictional estate.
+
+15
+00:00:51.400 --> 00:00:54.609
+Like the other modules'
+checks, they're illustrative:
+
+16
+00:00:54.609 --> 00:00:59.290
+unit-tested against fixtures, not
+proven against live subscriptions.
+
+17
+00:01:03.040 --> 00:01:04.190
+Why does this matter?
+
+18
+00:01:04.190 --> 00:01:08.802
+Once the servers are under Arc, an assessor
+asks questions a script can answer.
+
+19
+00:01:08.802 --> 00:01:12.552
+Which servers lack the monitoring
+and endpoint protection agents?
+
+20
+00:01:12.552 --> 00:01:15.302
+Which still reach Azure
+over the public internet?
+
+21
+00:01:15.302 --> 00:01:19.990
+Which run an operating system or SQL
+Server version past the end of support?
+
+22
+00:01:19.990 --> 00:01:23.290
+Is each SQL Server instance's
+host still connected?
+
+23
+00:01:23.290 --> 00:01:27.428
+And which policy assignments are failing,
+and which aren't enforcing anything?
+
+24
+00:01:27.428 --> 00:01:32.864
+The validation kit already has seven
+Arc-track checks on Resource Graph: tags,
+
+25
+00:01:32.864 --> 00:01:36.346
+agent status, baseline
+compliance, CMDB coverage,
+
+26
+00:01:36.346 --> 00:01:40.678
+Update Manager, role assignments,
+and two tools on one setting.
+
+27
+00:01:40.678 --> 00:01:42.528
+This module doesn't repeat them.
+
+28
+00:01:42.528 --> 00:01:44.328
+Its checks read other records.
+
+29
+00:01:44.328 --> 00:01:46.748
+One more thing frames the module:
+
+30
+00:01:46.748 --> 00:01:52.395
+the workbook plans on Windows Server
+2016 being gone from production by its
+
+31
+00:01:52.395 --> 00:01:57.864
+January twelfth, 2027 end of support,
+with Windows Server 2019 the minimum.
+
+32
+00:01:57.864 --> 00:02:02.430
+That's the program's planning
+assumption, not a federal requirement,
+
+33
+00:02:02.430 --> 00:02:06.050
+and any 2016 server that
+remains is an exception.
+
+34
+00:02:09.800 --> 00:02:12.633
+Here's what you'll be able to
+do by the end of this module,
+
+35
+00:02:12.633 --> 00:02:15.337
+which takes about ninety-five
+minutes with the lab.
+
+36
+00:02:15.337 --> 00:02:20.000
+You'll explain the four ways Resource
+Manager differs from Graph for a script.
+
+37
+00:02:20.000 --> 00:02:22.764
+You'll page a Resource
+Graph query to the end,
+
+38
+00:02:22.764 --> 00:02:26.987
+and say when Resource Graph can't
+page and why that must stop the run.
+
+39
+00:02:26.987 --> 00:02:31.725
+You'll explain why an empty result can
+mean no access, not a clean estate.
+
+40
+00:02:31.725 --> 00:02:35.890
+You'll read the Arc machine,
+extension, SQL Server instance,
+
+41
+00:02:35.890 --> 00:02:40.300
+policy assignment and policy state
+records, and the traps in each.
+
+42
+00:02:40.300 --> 00:02:44.773
+And you'll say which Windows Server and
+SQL Server versions are past support,
+
+43
+00:02:44.773 --> 00:02:46.738
+and run the five checks on fixtures.
+
+44
+00:02:46.738 --> 00:02:48.049
+You need Module 1.
+
+45
+00:02:48.049 --> 00:02:51.475
+Lab 2 needs a test subscription
+in commercial Azure,
+
+46
+00:02:51.475 --> 00:02:55.030
+never production, with a
+few Arc-enabled servers.
+
+47
+00:02:58.780 --> 00:03:02.880
+A script that already calls Graph
+correctly has four things to change.
+
+48
+00:03:02.880 --> 00:03:05.605
+First, another host and another token.
+
+49
+00:03:05.605 --> 00:03:11.013
+Resource Manager is management dot azure
+dot com in commercial Azure, and a GCC
+
+50
+00:03:11.013 --> 00:03:16.255
+tenant's subscriptions are commercial
+Azure, so a GCC script calls that host.
+
+51
+00:03:16.255 --> 00:03:22.992
+GCC High and DoD use Azure Government,
+management dot us gov cloud api dot net.
+
+52
+00:03:22.992 --> 00:03:28.479
+A token is issued for one resource, so a
+Graph token can't call Resource Manager.
+
+53
+00:03:28.479 --> 00:03:32.868
+Second, Azure role-based access
+control, not a permission list.
+
+54
+00:03:32.868 --> 00:03:35.974
+A Resource Manager token
+carries no roles list;
+
+55
+00:03:35.974 --> 00:03:39.318
+Azure decides at each call
+from the roles assigned.
+
+56
+00:03:39.318 --> 00:03:44.492
+Every call here needs only the built-in
+Reader role, whose only action is read.
+
+57
+00:03:44.492 --> 00:03:50.055
+Third, an api-version on every
+call, set by each resource provider.
+
+58
+00:03:50.055 --> 00:03:53.493
+Fourth, paging: next link,
+not the O Data next link,
+
+59
+00:03:53.493 --> 00:03:56.755
+and Resource Graph
+pages differently again.
+
+60
+00:03:56.755 --> 00:04:00.311
+The five checks make just two
+calls, and the Resource Graph
+
+61
+00:04:00.311 --> 00:04:04.140
+query is a POST only because
+the query travels in the body.
+
+62
+00:04:07.890 --> 00:04:11.905
+Resource Graph holds a copy of
+every resource's properties,
+
+63
+00:04:11.905 --> 00:04:15.265
+in tables you query with
+the Kusto Query Language.
+
+64
+00:04:15.265 --> 00:04:16.652
+It has four traps.
+
+65
+00:04:16.652 --> 00:04:19.665
+One: an empty result can mean no access.
+
+66
+00:04:19.665 --> 00:04:22.234
+Microsoft Learn says no results come back
+
+67
+00:04:22.234 --> 00:04:24.803
+for objects you can't
+read, without an error.
+
+68
+00:04:24.803 --> 00:04:28.484
+So every check reports machines
+in scope and empty scope,
+
+69
+00:04:28.484 --> 00:04:31.070
+the client refuses a query with no scope,
+
+70
+00:04:31.070 --> 00:04:35.614
+and the command line stops when the
+identity can see no subscriptions.
+
+71
+00:04:35.614 --> 00:04:38.327
+Two: paging is a token in the body.
+
+72
+00:04:38.327 --> 00:04:40.814
+A page holds at most a thousand records;
+
+73
+00:04:40.814 --> 00:04:44.853
+repeat the same query with the
+skip token until none comes back.
+
+74
+00:04:44.853 --> 00:04:49.904
+Three: some queries can't be paged at
+all, when they use limit, sample or take,
+
+75
+00:04:49.904 --> 00:04:54.365
+or when every output column is
+dynamic, as project properties is.
+
+76
+00:04:54.365 --> 00:04:58.703
+Then the client raises an incomplete
+result rather than return part of one.
+
+77
+00:04:58.703 --> 00:05:04.302
+Four: sort by a unique column, or pages
+can repeat some records and skip others.
+
+78
+00:05:04.302 --> 00:05:06.777
+Every query ends ordered by I D.
+
+79
+00:05:06.777 --> 00:05:09.189
+And the data isn't strongly consistent,
+
+80
+00:05:09.189 --> 00:05:12.630
+so a check run minutes after
+a change may not see it.
+
+81
+00:05:16.380 --> 00:05:18.005
+Unit 4 is the records.
+
+82
+00:05:18.005 --> 00:05:22.749
+The Arc machine record carries its
+status, connected, disconnected,
+
+83
+00:05:22.749 --> 00:05:28.172
+error or awaiting connection; its operating
+system type, name, S K U and version;
+
+84
+00:05:28.172 --> 00:05:32.662
+the private link scope it's assigned
+to, if any; and its E S U profile,
+
+85
+00:05:32.662 --> 00:05:36.305
+with eligibility and whether
+a license is assigned.
+
+86
+00:05:36.305 --> 00:05:40.850
+Each extension is its own resource,
+whose I D begins with the machine's,
+
+87
+00:05:40.850 --> 00:05:43.880
+which is how Microsoft's
+own sample joins them.
+
+88
+00:05:43.880 --> 00:05:48.155
+The check reads the publisher, type,
+version and provisioning state.
+
+89
+00:05:48.155 --> 00:05:53.449
+By default it requires two: Azure Monitor
+Agent, for log and performance collection,
+
+90
+00:05:53.449 --> 00:05:58.130
+and Microsoft Defender for Endpoint,
+which Defender for Servers deploys.
+
+91
+00:05:58.130 --> 00:06:02.125
+A SQL Server instance enabled
+by Arc carries its version,
+
+92
+00:06:02.125 --> 00:06:05.880
+edition and status, and the I
+D of the machine that hosts it.
+
+93
+00:06:05.880 --> 00:06:10.393
+One rule matters more than the rest:
+never read an extension's settings.
+
+94
+00:06:10.393 --> 00:06:14.176
+They're public JSON, and Microsoft's
+example is a command line,
+
+95
+00:06:14.176 --> 00:06:18.450
+so a collector that reads them
+copies commands into the evidence.
+
+96
+00:06:22.200 --> 00:06:25.088
+Unit 5 covers policy and lifecycle.
+
+97
+00:06:25.088 --> 00:06:29.400
+A policy assignment's enforcement mode
+decides whether its effect applies.
+
+98
+00:06:29.400 --> 00:06:30.862
+Default enforces it.
+
+99
+00:06:30.862 --> 00:06:35.673
+Do not enforce still evaluates and
+reports compliance, but prevents nothing:
+
+100
+00:06:35.673 --> 00:06:37.853
+the right way to stage a deny policy,
+
+101
+00:06:37.853 --> 00:06:42.888
+but one left there reports noncompliance
+forever, so each needs a dated decision.
+
+102
+00:06:42.888 --> 00:06:46.188
+Enroll enforces only
+for enrolled resources.
+
+103
+00:06:46.188 --> 00:06:50.782
+Running a version past its end of
+support is NIST special publication
+
+104
+00:06:50.782 --> 00:06:55.613
+eight hundred fifty-three's S A
+twenty-two, unsupported system components.
+
+105
+00:06:55.613 --> 00:06:58.574
+The dates come from
+Microsoft's lifecycle pages.
+
+106
+00:06:58.574 --> 00:07:04.337
+Windows Server 2012 is unsupported:
+its extended security updates ended on
+
+107
+00:07:04.337 --> 00:07:10.100
+October thirteenth, 2026, and Arc E S U
+licenses were deactivated the next day.
+
+108
+00:07:10.100 --> 00:07:15.765
+Windows Server 2016's extended support
+ends January twelfth, 2027, and under the
+
+109
+00:07:15.765 --> 00:07:21.688
+workbook's server standard, one still in
+production after that date is an exception.
+
+110
+00:07:21.688 --> 00:07:29.738
+SQL Server 2012 is unsupported, and
+2014 and 2016 are in their E S U years.
+
+111
+00:07:29.738 --> 00:07:34.160
+Where two Learn pages disagree,
+the kit uses the earlier date.
+
+112
+00:07:37.910 --> 00:07:38.960
+Five checks.
+
+113
+00:07:38.960 --> 00:07:42.535
+Arc extensions lists servers
+missing Azure Monitor Agent
+
+114
+00:07:42.535 --> 00:07:46.110
+or Defender for Endpoint, and
+extensions that didn't deploy.
+
+115
+00:07:46.110 --> 00:07:49.818
+Arc private link lists servers
+with no private link scope,
+
+116
+00:07:49.818 --> 00:07:52.522
+so they reach Azure over public endpoints.
+
+117
+00:07:52.522 --> 00:07:58.171
+Lifecycle sorts servers and SQL Server
+instances by support state: unsupported,
+
+118
+00:07:58.171 --> 00:08:00.995
+E S U not confirmed, E S
+U covered, ending soon,
+
+119
+00:08:00.995 --> 00:08:05.434
+and products not in the table, which
+are never counted as supported.
+
+120
+00:08:05.434 --> 00:08:08.999
+SQL inventory lists instances
+by version and edition,
+
+121
+00:08:08.999 --> 00:08:12.860
+and the ones that are disconnected
+or whose host is out of scope.
+
+122
+00:08:12.860 --> 00:08:17.735
+And policy summary shows each assignment's
+enforcement mode and compliance counts.
+
+123
+00:08:17.735 --> 00:08:21.441
+Every control they evidence is
+in the NIST Moderate baseline;
+
+124
+00:08:21.441 --> 00:08:25.147
+the mapping is the program's
+reading, and the assessor decides.
+
+125
+00:08:25.147 --> 00:08:27.023
+All five need only Reader.
+
+126
+00:08:27.023 --> 00:08:31.380
+Two limits to keep in mind: an
+extension that succeeded isn't proof the
+
+127
+00:08:31.380 --> 00:08:35.585
+agent reports, and a private link
+scope isn't the whole network path.
+
+128
+00:08:35.585 --> 00:08:38.300
+Confirm those for a sample of servers.
+
+129
+00:08:42.050 --> 00:08:42.775
+Try it.
+
+130
+00:08:42.775 --> 00:08:47.734
+Lab 1 runs each check against the kit's
+fictional estate: one subscription
+
+131
+00:08:47.734 --> 00:08:53.263
+with seven Arc servers, five SQL Server
+instances and four policy assignments.
+
+132
+00:08:53.263 --> 00:08:57.205
+The from-json option evaluates
+saved Resource Graph rows
+
+133
+00:08:57.205 --> 00:09:01.312
+instead of calling Azure, and
+as-of fixes the evaluation date.
+
+134
+00:09:01.312 --> 00:09:03.462
+Here's step three, lifecycle.
+
+135
+00:09:03.462 --> 00:09:04.787
+Two are unsupported.
+
+136
+00:09:04.787 --> 00:09:08.545
+S R V L E G zero one runs
+Windows Server 2012 R2,
+
+137
+00:09:08.545 --> 00:09:13.762
+and it has an Arc E S U license
+assigned, but the E S U years ended
+
+138
+00:09:13.762 --> 00:09:19.501
+on October thirteenth, 2026, so no
+updates come through any channel.
+
+139
+00:09:19.501 --> 00:09:22.450
+And a SQL Server 2012 instance.
+
+140
+00:09:22.450 --> 00:09:26.218
+Two SQL Server instances, 2014 and 2016,
+
+141
+00:09:26.218 --> 00:09:31.063
+are in their E S U years with
+no confirmed subscription.
+
+142
+00:09:31.063 --> 00:09:35.829
+And S R V A P P zero two runs
+Windows Server 2016, ending soon:
+
+143
+00:09:35.829 --> 00:09:39.885
+the case the workbook's
+server standard is about,
+
+144
+00:09:39.885 --> 00:09:45.362
+upgraded before January twelfth,
+2027, or a documented exception.
+
+145
+00:09:45.362 --> 00:09:50.924
+Step seven asks for a query with no scope,
+and the client stops before any request.
+
+146
+00:09:50.924 --> 00:09:53.663
+The lab repeats two checks in PowerShell,
+
+147
+00:09:53.663 --> 00:09:57.490
+with the same results, and
+twenty-four Arc tests pass.
+
+148
+00:10:01.240 --> 00:10:05.420
+Lab 2 runs the checks read-only
+against your own test subscription
+
+149
+00:10:05.420 --> 00:10:09.752
+in commercial Azure, never production,
+with a few Arc-enabled servers.
+
+150
+00:10:09.752 --> 00:10:14.031
+One Azure C L I command registers the
+app with a self-signed certificate
+
+151
+00:10:14.031 --> 00:10:17.802
+and no password, and assigns it
+Reader on the test subscription.
+
+152
+00:10:17.802 --> 00:10:22.156
+No Graph permission is needed, and
+never assign Contributor or Owner,
+
+153
+00:10:22.156 --> 00:10:24.753
+which can change every resource in scope.
+
+154
+00:10:24.753 --> 00:10:28.777
+Confirm the app holds one
+role, Reader, and nothing else.
+
+155
+00:10:28.777 --> 00:10:32.264
+Then run each check, in
+Python or PowerShell.
+
+156
+00:10:32.264 --> 00:10:36.811
+If machines in scope is zero and you
+know the subscription has Arc servers,
+
+157
+00:10:36.811 --> 00:10:40.240
+the role hasn't taken effect
+yet, or it's on the wrong scope.
+
+158
+00:10:40.240 --> 00:10:45.172
+Record two open review items: what
+operating system S K U your servers report,
+
+159
+00:10:45.172 --> 00:10:49.165
+and whether Reader alone can
+call Policy Insights' summarize.
+
+160
+00:10:49.165 --> 00:10:54.890
+Compare each result with the portal's Arc,
+extension, SQL Server and Policy views.
+
+161
+00:10:54.890 --> 00:10:59.246
+Then back it out: remove the role,
+delete the app and its certificate,
+
+162
+00:10:59.246 --> 00:11:03.840
+and delete the saved results, which
+hold server names and resource I Ds.
+
+163
+00:11:03.840 --> 00:11:06.340
+The authors haven't run Lab 2.
+
+164
+00:11:10.090 --> 00:11:11.402
+Where are agencies?
+
+165
+00:11:11.402 --> 00:11:14.499
+The agency in the Devices
+and Endpoints book is
+
+166
+00:11:14.499 --> 00:11:17.991
+onboarding Windows and Linux
+servers to Arc in waves.
+
+167
+00:11:17.991 --> 00:11:21.745
+During the move, some servers are
+onboarded but missing an agent,
+
+168
+00:11:21.745 --> 00:11:26.351
+some connect over the public endpoints
+before the private link scope is ready,
+
+169
+00:11:26.351 --> 00:11:31.027
+and Arc makes end-of-support Windows
+Server and SQL Server versions visible.
+
+170
+00:11:31.027 --> 00:11:35.255
+A GCC Moderate estate's subscriptions
+are in commercial Azure,
+
+171
+00:11:35.255 --> 00:11:39.807
+so its scripts call management dot
+azure dot com and the commercial
+
+172
+00:11:39.807 --> 00:11:43.790
+sign-in endpoint; use the G C C
+cloud option, as in every module.
+
+173
+00:11:43.790 --> 00:11:46.178
+The interim paths are design guidance.
+
+174
+00:11:46.178 --> 00:11:51.199
+Servers onboarded before the private link
+scope exists are findings with a target
+
+175
+00:11:51.199 --> 00:11:53.673
+date; assign the policy that requires the
+
+176
+00:11:53.673 --> 00:11:56.366
+scope in do-not-enforce
+first, then enforce it.
+
+177
+00:11:56.366 --> 00:12:00.753
+Windows Server 2012 servers
+still running are a red finding.
+
+178
+00:12:00.753 --> 00:12:07.063
+And each Windows Server 2016 server is
+upgraded to 2019 or later before January
+
+179
+00:12:07.063 --> 00:12:11.748
+twelfth, 2027, or becomes an
+exception, with E S Us through Arc,
+
+180
+00:12:11.748 --> 00:12:15.840
+a signed risk acceptance
+and a retirement date.
+
+181
+00:12:19.590 --> 00:12:22.931
+GCC High and DoD estates
+use Azure Government:
+
+182
+00:12:22.931 --> 00:12:28.383
+management dot us gov cloud api dot net,
+the US Government sign-in authority,
+
+183
+00:12:28.383 --> 00:12:32.428
+and the Azure US Government
+environment in PowerShell.
+
+184
+00:12:32.428 --> 00:12:38.295
+Microsoft's Azure Government availability
+roadmap, read on November eleventh, 2026,
+
+185
+00:12:38.295 --> 00:12:42.487
+shows Resource Manager, Resource
+Graph, Arc-enabled servers,
+
+186
+00:12:42.487 --> 00:12:46.343
+Azure Policy and Private
+Link generally available and
+
+187
+00:12:46.343 --> 00:12:50.702
+authorized at FedRAMP High and
+DoD impact levels four and five.
+
+188
+00:12:50.702 --> 00:12:54.300
+Arc-enabled SQL Server is
+available at FedRAMP High,
+
+189
+00:12:54.300 --> 00:12:57.115
+and awaiting review at
+levels four and five.
+
+190
+00:12:57.115 --> 00:12:59.090
+Three differences affect the checks.
+
+191
+00:12:59.090 --> 00:13:04.654
+SQL Server enabled by Arc is a subset
+there: the US Gov Virginia region only, on
+
+192
+00:13:04.654 --> 00:13:07.689
+Windows only, with no
+Entra authentication,
+
+193
+00:13:07.689 --> 00:13:10.977
+so SQL inventory sees
+only those instances.
+
+194
+00:13:10.977 --> 00:13:14.828
+The private link scope is
+available, with its own endpoints.
+
+195
+00:13:14.828 --> 00:13:18.653
+And E S U-only Arc servers need
+a smaller set of endpoints.
+
+196
+00:13:18.653 --> 00:13:21.869
+Learn doesn't say whether
+Resource Graph's quota,
+
+197
+00:13:21.869 --> 00:13:26.420
+paging or tables differ in Azure
+Government: not yet specified.
+
+198
+00:13:30.170 --> 00:13:31.557
+The federal requirement.
+
+199
+00:13:31.557 --> 00:13:36.529
+Every control the checks evidence is in
+the NIST special publication eight hundred
+
+200
+00:13:36.529 --> 00:13:40.364
+fifty-three, revision five, Moderate
+baseline: system monitoring,
+
+201
+00:13:40.364 --> 00:13:44.838
+malicious code protection and audit
+record generation, through the agents;
+
+202
+00:13:44.838 --> 00:13:47.608
+boundary protection,
+through the network path;
+
+203
+00:13:47.608 --> 00:13:52.295
+unsupported system components and flaw
+remediation; the component inventory;
+
+204
+00:13:52.295 --> 00:13:55.633
+and continuous monitoring
+and configuration settings.
+
+205
+00:13:55.633 --> 00:13:59.820
+The mapping is the program's reading;
+the agency's assessor decides.
+
+206
+00:13:59.820 --> 00:14:03.410
+The evidence an ISSO keeps:
+each check's dated output,
+
+207
+00:14:03.410 --> 00:14:06.582
+with its evidences list
+and machines in scope;
+
+208
+00:14:06.582 --> 00:14:09.754
+the app's Reader role
+assignment and its scope;
+
+209
+00:14:09.754 --> 00:14:13.678
+a decision for each unsupported
+server, migrate, upgrade,
+
+210
+00:14:13.678 --> 00:14:15.765
+or isolate and accept the risk;
+
+211
+00:14:15.765 --> 00:14:21.191
+the E S U subscription record for each
+instance whose coverage isn't confirmed;
+
+212
+00:14:21.191 --> 00:14:26.617
+the dated decision behind each do-not-enforce
+assignment; and for each Windows
+
+213
+00:14:26.617 --> 00:14:30.958
+Server 2016 server still in
+production after January twelfth,
+
+214
+00:14:30.958 --> 00:14:32.795
+2027, the exception record.
+
+215
+00:14:32.795 --> 00:14:37.360
+The Arc track implementation guide's
+Step 8 puts this on a schedule.
+
+216
+00:14:41.110 --> 00:14:43.085
+Check yourself with two questions.
+
+217
+00:14:43.085 --> 00:14:47.023
+First: a Resource Graph
+query returns no Arc servers.
+
+218
+00:14:47.023 --> 00:14:48.636
+What's the first thing to check?
+
+219
+00:14:48.636 --> 00:14:53.363
+The answer is b: whether the identity
+has Reader on the scope, because Resource
+
+220
+00:14:53.363 --> 00:14:57.647
+Graph returns nothing for resources
+the caller can't read, and no error.
+
+221
+00:14:57.647 --> 00:15:03.934
+Second: a Windows Server 2012 R2 machine
+has an Arc E S U license assigned.
+
+222
+00:15:03.934 --> 00:15:08.010
+What does lifecycle report
+on November third, 2026?
+
+223
+00:15:08.010 --> 00:15:10.247
+The answer is b, unsupported.
+
+224
+00:15:10.247 --> 00:15:14.060
+The E S U years ended on
+October thirteenth, 2026,
+
+225
+00:15:14.060 --> 00:15:18.361
+so no updates come through
+any channel, license or not.
+
+226
+00:15:18.361 --> 00:15:23.620
+The module page has three more questions,
+each linked to the unit that answers it.
+
+227
+00:15:27.370 --> 00:15:28.195
+To sum up.
+
+228
+00:15:28.195 --> 00:15:32.840
+You learned what changes when a script
+leaves Graph for Resource Manager:
+
+229
+00:15:32.840 --> 00:15:36.342
+another host and token, Azure
+role-based access control
+
+230
+00:15:36.342 --> 00:15:39.845
+instead of a permission list,
+api-versions, and next link.
+
+231
+00:15:39.845 --> 00:15:42.773
+You paged Resource Graph
+without losing rows,
+
+232
+00:15:42.773 --> 00:15:46.933
+and saw when it can't page and why
+an empty result can mean no access.
+
+233
+00:15:46.933 --> 00:15:51.996
+You read the Arc machine, extension,
+SQL Server, policy assignment and policy
+
+234
+00:15:51.996 --> 00:15:56.983
+state records, and checked support dates
+against Microsoft's lifecycle pages.
+
+235
+00:15:56.983 --> 00:16:01.416
+And in Lab 1 you ran the five checks
+on fixtures in Python and PowerShell,
+
+236
+00:16:01.416 --> 00:16:04.045
+and read each finding against its control.
+
+237
+00:16:04.045 --> 00:16:08.318
+That finishes the Microsoft Automation
+learning path as it stands:
+
+238
+00:16:08.318 --> 00:16:12.057
+four modules, about five hours
+and fifty-five minutes in all.
+
+239
+00:16:12.057 --> 00:16:15.394
+To put the checks on a schedule,
+go to the Azure Arc track
+
+240
+00:16:15.394 --> 00:16:18.657
+implementation guide's Step
+8, and its Gate 8 checks it.
+
+241
+00:16:18.657 --> 00:16:21.705
+Modules on Teams Phone
+and Teams administration,
+
+242
+00:16:21.705 --> 00:16:24.440
+and on monitoring and
+evidence, are planned.

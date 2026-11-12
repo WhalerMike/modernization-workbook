@@ -1,0 +1,78 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the server estate needs its own evidence",
+  "links": [
+   {
+    "text": "Book 00, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Resource Manager isn't Graph: four things change",
+  "links": [
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "Azure built-in roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-built-in-roles"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The five checks and the controls they evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Where agencies are: GCC is commercial Azure",
+  "links": [
+   {
+    "text": "Book 00, Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/01-why-modernize-now.html"
+   },
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "GCC High and DoD: Azure Government differences",
+  "links": [
+   {
+    "text": "Azure Government GA roadmap",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-azure-government-product-general"
+   },
+   {
+    "text": "Arc in US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc-in-us"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and evidence for Arc servers",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ }
+]
