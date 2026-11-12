@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.137
+Step ten makes it repeatable.
+
+2
+00:00:02.137 --> 00:00:05.643
+The kit compares each
+run with the last: new,
+
+3
+00:00:05.643 --> 00:00:09.950
+regressed, fixed, still open,
+and no longer evaluated.
+
+4
+00:00:09.950 --> 00:00:11.938
+That last class matters most.
+
+5
+00:00:11.938 --> 00:00:16.901
+A finding the tool skipped this time
+isn't fixed: fix the run and run it again.
+
+6
+00:00:16.901 --> 00:00:19.594
+Runs from different tool
+versions are refused
+
+7
+00:00:19.594 --> 00:00:22.150
+until someone records
+a review of the change.
+
+8
+00:00:22.150 --> 00:00:27.090
+Then seal the evidence: each output
+folder becomes a chained record with its
+
+9
+00:00:27.090 --> 00:00:30.775
+controls, every file's hash,
+and the previous record's hash,
+
+10
+00:00:30.775 --> 00:00:33.363
+which the I S S O can
+check without the kit.
+
+11
+00:00:33.363 --> 00:00:38.936
+The cadence is design guidance from the
+day-two runbook in Compliance Automation and
+
+12
+00:00:38.936 --> 00:00:42.470
+Day-2 Operations: monthly,
+after each remediation wave,
+
+13
+00:00:42.470 --> 00:00:44.825
+before a tool upgrade, and quarterly.
+
+14
+00:00:44.825 --> 00:00:49.827
+Learn's weekly digest playbook comes with
+two cautions: report counts, not its
+
+15
+00:00:49.827 --> 00:00:55.130
+pass rate, and whether it runs against three
+point one point oh isn't yet specified.

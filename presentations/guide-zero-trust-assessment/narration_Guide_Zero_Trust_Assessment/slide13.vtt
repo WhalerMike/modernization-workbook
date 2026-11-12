@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.713
+Step nine reconciles.
+
+2
+00:00:01.713 --> 00:00:05.177
+Tools with different identifiers
+can't be matched directly,
+
+3
+00:00:05.177 --> 00:00:09.336
+so the program matches each to a common
+spine: the setting, and the control
+
+4
+00:00:09.336 --> 00:00:13.425
+it supports in the NIST special
+publication eight hundred fifty-three.
+
+5
+00:00:13.425 --> 00:00:18.064
+Two tools failing the same setting
+under the same control are one finding,
+
+6
+00:00:18.064 --> 00:00:20.650
+with two pieces of evidence and one owner.
+
+7
+00:00:20.650 --> 00:00:25.900
+CISA maps every SCuBA policy to those
+controls in the fed-ramp High baseline.
+
+8
+00:00:25.900 --> 00:00:30.818
+On AWS, Security Hub's standard for that
+publication supports a subset of it,
+
+9
+00:00:30.818 --> 00:00:32.642
+with automated checks only,
+
+10
+00:00:32.642 --> 00:00:36.925
+and each finding lists its related
+requirements: that's the spine.
+
+11
+00:00:36.925 --> 00:00:41.767
+Its statuses map to the taxonomy, and
+A W S warns that a control with no
+
+12
+00:00:41.767 --> 00:00:47.388
+resources passes at the account level, so
+a pass can mean nothing was evaluated.
+
+13
+00:00:47.388 --> 00:00:51.719
+On the other clouds, Oracle Cloud
+Infrastructure's Cloud Guard and Google
+
+14
+00:00:51.719 --> 00:00:56.740
+Cloud's Security Command Center are compared
+in Security Operations and Telemetry.

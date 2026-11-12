@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.988
+Steps six and seven read the results.
+
+2
+00:00:02.988 --> 00:00:05.037
+Each pillar owner reads their tab.
+
+3
+00:00:05.037 --> 00:00:08.768
+Every test ends in one
+of six statuses: passed,
+
+4
+00:00:08.768 --> 00:00:12.599
+failed, investigate,
+skipped, planned, or error.
+
+5
+00:00:12.599 --> 00:00:15.112
+Investigate means a person needs to look,
+
+6
+00:00:15.112 --> 00:00:19.175
+and skipped carries a reason, such
+as not licensed or not connected.
+
+7
+00:00:19.175 --> 00:00:22.908
+The kit records every result
+twice: the tool's value,
+
+8
+00:00:22.908 --> 00:00:26.375
+unchanged, and one of
+seven normalized results.
+
+9
+00:00:26.375 --> 00:00:28.063
+That's the rule in the title.
+
+10
+00:00:28.063 --> 00:00:31.737
+A skipped test is not a failed
+control, and it's not a pass.
+
+11
+00:00:31.737 --> 00:00:37.576
+It goes in its own column, with its reason:
+a licensing decision, or a run to fix.
+
+12
+00:00:37.576 --> 00:00:43.000
+Investigate counts as a finding until a
+recorded review confirms or dismisses it.
+
+13
+00:00:43.000 --> 00:00:44.413
+Two federal cases.
+
+14
+00:00:44.413 --> 00:00:47.593
+Not dot gov domain
+usually means the agency's
+
+15
+00:00:47.593 --> 00:00:50.601
+dot gov domain isn't
+verified in the tenant.
+
+16
+00:00:50.601 --> 00:00:55.902
+And Learn says impersonation protection
+isn't yet available in G C C High and D O D,
+
+17
+00:00:55.902 --> 00:00:59.900
+so a failed impersonation test
+there is a boundary finding.

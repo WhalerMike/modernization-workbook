@@ -10035,6 +10035,262 @@
      "change": "Added: cited on the narrated deck slides"
     }
    ]
+  },
+  {
+   "id": "get-started-with-the-zero-trust-assessment",
+   "title": "Get started with the Zero Trust Assessment",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/security/zero-trust/assessment/get-started",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Get started with the Zero Trust Assessment"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "zero-trust-assessment-terminology",
+   "title": "Zero Trust assessment terminology",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/security/zero-trust/assessment/glossary",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Zero Trust Assessment terminology",
+    "Zero Trust assessment terminology"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "zero-trust-assessment-release-3-1-0",
+   "title": "Zero Trust Assessment release 3.1.0",
+   "publisher": "Microsoft",
+   "url": "https://github.com/microsoft/zerotrustassessment/releases/tag/3.1.0",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Zero Trust Assessment release 3.1.0"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "zero-trust-assessment-readme-3-1-0",
+   "title": "Zero Trust Assessment repository README (3.1.0)",
+   "publisher": "Microsoft",
+   "url": "https://github.com/microsoft/zerotrustassessment/blob/3.1.0/README.md",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Zero Trust Assessment README"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "run-the-zero-trust-assessment-3-1-0",
+   "title": "Run the Zero Trust Assessment (the tool's guide, 3.1.0)",
+   "publisher": "Microsoft",
+   "url": "https://github.com/microsoft/zerotrustassessment/blob/3.1.0/src/powershell/doc/readme.md",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Run the Zero Trust Assessment"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "operate-microsoft-entra-private-access",
+   "title": "Operate Microsoft Entra Private Access",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Operate Microsoft Entra Private Access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "operate-microsoft-entra-internet-access",
+   "title": "Operate Microsoft Entra Internet Access",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-operate-internet-access",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Operate Microsoft Entra Internet Access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-powershell-authentication-cmdlets",
+   "title": "Authentication module cmdlets in Microsoft Graph PowerShell",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Graph PowerShell authentication cmdlets"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "connect-to-exchange-online-powershell",
+   "title": "Connect to Exchange Online PowerShell",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Connect to Exchange Online PowerShell"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "exchange-app-only-authentication",
+   "title": "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Exchange app-only authentication"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "connect-to-azure-government-with-powershell",
+   "title": "Quickstart: Connect to Azure Government with PowerShell",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-ps",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Connect to Azure Government with PowerShell"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "exchange-online-for-us-government",
+   "title": "Exchange Online for US government environments",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "Exchange Online for US government"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "security-hub-cspm-nist-800-53-r5",
+   "title": "NIST SP 800-53 Revision 5 in Security Hub CSPM",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "NIST SP 800-53 Rev. 5 in Security Hub CSPM"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "security-hub-cspm-compliance-status",
+   "title": "Evaluating compliance status and control status (Security Hub CSPM)",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/securityhub/latest/userguide/controls-overall-status.html",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "AWS Security Hub CSPM compliance status"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "security-hub-cspm-in-govcloud",
+   "title": "AWS Security Hub CSPM in AWS GovCloud (US)",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html",
+   "status": "active",
+   "added": "2026-11-11",
+   "labels": [
+    "AWS Security Hub CSPM in AWS GovCloud (US)"
+   ],
+   "history": [
+    {
+     "date": "2026-11-11",
+     "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    }
+   ]
   }
  ],
  "phrases": {

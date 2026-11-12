@@ -6980,6 +6980,89 @@
   "sources": "presentations/guide-service-account-migration/Guide_Service_Account_Migration_Narrated_sources.json"
  },
  {
+  "id": "Guide_Zero_Trust_Assessment_Narrated",
+  "title": "Companion guide — Zero Trust Assessment: An Implementation Guide",
+  "group": "book",
+  "minutes": 15,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_Zero_Trust_Assessment_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/guide-zero-trust-assessment/Guide_Zero_Trust_Assessment_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-zero-trust-assessment/Guide_Zero_Trust_Assessment_Narration_Script.md",
+  "page": "docs/books/guides/zero-trust-assessment-implementation.html",
+  "source": "docs/books/guides/zero-trust-assessment-implementation.md",
+  "kits": [
+   {
+    "name": "zta-results",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "The Zero Trust Assessment: evidence, not a verdict"
+   ],
+   [
+    51,
+    "Why this matters: a score isn't a verdict"
+   ],
+   [
+    112,
+    "What the tool checks, and four things it isn't"
+   ],
+   [
+    172,
+    "Run it alongside ScubaGear, never instead"
+   ],
+   [
+    232,
+    "The ten steps on one page"
+   ],
+   [
+    291,
+    "Government clouds: where Learn is silent or differs"
+   ],
+   [
+    348,
+    "Consent once, run as a reader: who does what"
+   ],
+   [
+    407,
+    "Step 2: a clean host and a protected output folder"
+   ],
+   [
+    466,
+    "Step 4: connect in the tenant's own cloud"
+   ],
+   [
+    527,
+    "Step 5: run it, then hash the export first"
+   ],
+   [
+    584,
+    "Steps 6 and 7: a skipped test is not a failed control"
+   ],
+   [
+    648,
+    "Step 8: the closure register routes every finding"
+   ],
+   [
+    711,
+    "Step 9: reconcile through the setting and the control"
+   ],
+   [
+    772,
+    "Step 10: re-run, compare and seal the evidence"
+   ],
+   [
+    831,
+    "Dangers, open questions and where training starts"
+   ]
+  ],
+  "sources": "presentations/guide-zero-trust-assessment/Guide_Zero_Trust_Assessment_Narrated_sources.json"
+ },
+ {
   "id": "Guide_DP_Consolidation_Executive_Narrated",
   "title": "Content Delivery Modernization (DP Consolidation): executive decision deck",
   "group": "book",

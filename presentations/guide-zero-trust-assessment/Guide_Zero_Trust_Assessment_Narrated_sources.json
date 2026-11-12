@@ -1,0 +1,240 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: a score isn't a verdict",
+  "links": [
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What the tool checks, and four things it isn't",
+  "links": [
+   {
+    "text": "Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-zero-trust-assessment"
+   },
+   {
+    "text": "Operate Microsoft Entra Private Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#operate-microsoft-entra-private-access"
+   },
+   {
+    "text": "Zero Trust Assessment README",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-assessment-readme-3-1-0"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Run it alongside ScubaGear, never instead",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Book 11, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/05-two-assessment-tools.html"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "CISA ScubaGear",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#scubagear"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Government clouds: where Learn is silent or differs",
+  "links": [
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Connect to Exchange Online PowerShell",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-to-exchange-online-powershell"
+   },
+   {
+    "text": "Exchange app-only authentication",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#exchange-app-only-authentication"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Consent once, run as a reader: who does what",
+  "links": [
+   {
+    "text": "Get started with the Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-started-with-the-zero-trust-assessment"
+   },
+   {
+    "text": "Graph PowerShell authentication cmdlets",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-powershell-authentication-cmdlets"
+   },
+   {
+    "text": "Run the Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#run-the-zero-trust-assessment-3-1-0"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Step 2: a clean host and a protected output folder",
+  "links": [
+   {
+    "text": "Get started with the Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-started-with-the-zero-trust-assessment"
+   },
+   {
+    "text": "Run the Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#run-the-zero-trust-assessment-3-1-0"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Step 4: connect in the tenant's own cloud",
+  "links": [
+   {
+    "text": "Run the Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#run-the-zero-trust-assessment-3-1-0"
+   },
+   {
+    "text": "Microsoft Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Step 5: run it, then hash the export first",
+  "links": [
+   {
+    "text": "Get started with the Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-started-with-the-zero-trust-assessment"
+   },
+   {
+    "text": "Run the Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#run-the-zero-trust-assessment-3-1-0"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Steps 6 and 7: a skipped test is not a failed control",
+  "links": [
+   {
+    "text": "Zero Trust Assessment terminology",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-assessment-terminology"
+   },
+   {
+    "text": "Exchange Online for US government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#exchange-online-for-us-government"
+   },
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Step 8: the closure register routes every finding",
+  "links": [
+   {
+    "text": "Book 11, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/08-close-before-you-assess.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   },
+   {
+    "text": "Book 04, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/04-privileged-roles-and-tiers.html"
+   },
+   {
+    "text": "Book 04, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/08-pim-self-request-with-approval.html"
+   },
+   {
+    "text": "Book 04, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html"
+   },
+   {
+    "text": "Book 13, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/14-application-secret-and-configuration-governance.html"
+   },
+   {
+    "text": "Book 05, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   },
+   {
+    "text": "Book 12, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   },
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Step 9: reconcile through the setting and the control",
+  "links": [
+   {
+    "text": "Book 11, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/05-two-assessment-tools.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5 in Security Hub CSPM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-hub-cspm-nist-800-53-r5"
+   },
+   {
+    "text": "AWS Security Hub CSPM compliance status",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-hub-cspm-compliance-status"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Step 10: re-run, compare and seal the evidence",
+  "links": [
+   {
+    "text": "Book 15, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/12-the-day-two-runbook.html"
+   },
+   {
+    "text": "cadence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/12-the-day-two-runbook.html#the-cadence-by-control-family"
+   },
+   {
+    "text": "Operate Microsoft Entra Private Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#operate-microsoft-entra-private-access"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Dangers, open questions and where training starts",
+  "links": [
+   {
+    "text": "The Zero Trust Assessment as Evidence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/training/zero-trust-assessment/index.html"
+   }
+  ]
+ }
+]

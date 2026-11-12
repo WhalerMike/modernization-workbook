@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.100
+So run it alongside
+ScubaGear, never instead.
+
+2
+00:00:03.100 --> 00:00:07.781
+CISA's directive B O D twenty-five
+oh-one names CISA's SCuBA tools,
+
+3
+00:00:07.781 --> 00:00:11.075
+and the Zero Trust Assessment
+isn't one of them.
+
+4
+00:00:11.075 --> 00:00:15.572
+ScubaGear covers Exchange Online,
+Teams, SharePoint and Power Platform,
+
+5
+00:00:15.572 --> 00:00:18.344
+which the Zero Trust
+Assessment doesn't test,
+
+6
+00:00:18.344 --> 00:00:22.991
+and the Zero Trust and Assessment book
+counts twenty-two of the directive's
+
+7
+00:00:22.991 --> 00:00:27.787
+fifty mandatory Microsoft three sixty-five
+policies in those four products.
+
+8
+00:00:27.787 --> 00:00:31.450
+The Zero Trust Assessment
+brings breadth instead:
+
+9
+00:00:31.450 --> 00:00:34.850
+devices, network, data
+and security operations.
+
+10
+00:00:34.850 --> 00:00:39.630
+The two overlap mostly on Entra I D
+identity and email threat policies,
+
+11
+00:00:39.630 --> 00:00:42.350
+and a shared area isn't a duplicate check.
+
+12
+00:00:42.350 --> 00:00:44.149
+When both fail the same setting,
+
+13
+00:00:44.149 --> 00:00:48.646
+the ScubaGear finding is the directive's
+deviation and carries its reporting;
+
+14
+00:00:48.646 --> 00:00:53.213
+the Zero Trust Assessment finding is
+supporting evidence for the same control.
+
+15
+00:00:53.213 --> 00:00:55.490
+Nothing in this guide reports to CISA.

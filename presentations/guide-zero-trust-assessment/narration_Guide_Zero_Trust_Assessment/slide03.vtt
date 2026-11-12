@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+What does it check?
+
+2
+00:00:01.075 --> 00:00:05.155
+Microsoft Learn says it tests
+hundreds of items from Microsoft's
+
+3
+00:00:05.155 --> 00:00:09.688
+configuration guidance for Entra,
+Intune, Azure networking and Purview.
+
+4
+00:00:09.688 --> 00:00:15.689
+Release three point one point oh holds
+three hundred sixty-four tests across seven
+
+5
+00:00:15.689 --> 00:00:18.558
+pillars: identity, devices, network, data,
+
+6
+00:00:18.558 --> 00:00:21.776
+infrastructure, security
+operations, and A I.
+
+7
+00:00:21.776 --> 00:00:23.887
+The guide names four things it isn't.
+
+8
+00:00:23.887 --> 00:00:27.675
+It isn't a verdict: a pass
+rate isn't a maturity stage.
+
+9
+00:00:27.675 --> 00:00:31.200
+It isn't a substitute for
+ScubaGear, which comes next.
+
+10
+00:00:31.200 --> 00:00:36.200
+It isn't a supported product: its read me
+calls it a community project maintained
+
+11
+00:00:36.200 --> 00:00:41.125
+by Microsoft employees, provided as is,
+outside any Microsoft support program.
+
+12
+00:00:41.125 --> 00:00:44.869
+And it isn't a detector: Learn's
+Global Secure Access guidance
+
+13
+00:00:44.869 --> 00:00:48.838
+calls it a configuration-posture
+check, to be paired with alerts.
+
+14
+00:00:48.838 --> 00:00:50.700
+In federal terms it's optional.
+
+15
+00:00:50.700 --> 00:00:53.517
+The program runs it as
+risk-based recommended,
+
+16
+00:00:53.517 --> 00:00:56.020
+for the breadth ScubaGear doesn't cover.

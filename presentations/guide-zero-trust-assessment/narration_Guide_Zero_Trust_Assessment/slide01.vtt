@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.798
+This is the narrated briefing for
+a companion guide in the Federal
+
+3
+00:00:04.798 --> 00:00:09.274
+Modernization Workbook: Zero Trust
+Assessment, an implementation guide.
+
+4
+00:00:09.274 --> 00:00:12.987
+Microsoft's Zero Trust Assessment
+tells you, test by test,
+
+5
+00:00:12.987 --> 00:00:17.963
+how a tenant's configuration compares
+with Microsoft's Zero Trust guidance.
+
+6
+00:00:17.963 --> 00:00:20.041
+It doesn't tell you what to fix first,
+
+7
+00:00:20.041 --> 00:00:23.124
+what a skipped test means,
+or when a finding is closed.
+
+8
+00:00:23.124 --> 00:00:26.388
+Those are the program's to
+decide, and the guide is how.
+
+9
+00:00:26.388 --> 00:00:31.712
+Its facts come from Microsoft Learn's
+three Zero Trust Assessment pages and the
+
+10
+00:00:31.712 --> 00:00:35.826
+tool's own source and guide at
+release three point one point oh,
+
+11
+00:00:35.826 --> 00:00:37.924
+read on November eleventh, 2026.
+
+12
+00:00:37.924 --> 00:00:40.838
+The program's own rules
+are called design guidance.
+
+13
+00:00:40.838 --> 00:00:43.862
+Nothing in the guide was
+run against a live tenant.
+
+14
+00:00:43.862 --> 00:00:47.420
+We'll go in four parts:
+why, what, who, and how.
