@@ -40,7 +40,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 - [Book 11, Chapter 05](../../books/b11-zero-trust/05-two-assessment-tools.md): what the Zero Trust Assessment and ScubaGear each check. Module 1 reads it with you.
 - [Book 11, Chapter 10's taxonomy](../../books/b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy): ten minutes, and every module refers back to it.
-- PowerShell 7.1 or later and Pester 5 on your laptop for Lab 1; the kit's zip, [zta-results.zip](../../downloads/zta-results.zip), extracted, or this repository cloned.
+- PowerShell 7.1 or later and Pester 5 on your laptop for Lab 1; the kit's zip, [zta-results.zip](../../../downloads/zta-results.zip), extracted, or this repository cloned.
 - For Lab 2: a test tenant, never production, where you can get consent granted and a reader account with the roles of the guide's [Step 3](../../books/guides/zero-trust-assessment-implementation.md#zta-step-3).
 
 ## What you'll be able to do
