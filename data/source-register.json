@@ -4031,12 +4031,17 @@
    "status": "active",
    "added": "2026-11-05",
    "labels": [
-    "Purview audit retention"
+    "Purview audit retention",
+    "audit retention"
    ],
    "history": [
     {
      "date": "2026-11-05",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-12",
+     "change": "Label added: \"audit retention\", as the Book 20 deck source list names it"
     }
    ]
   },
@@ -9448,6 +9453,590 @@
    ]
   },
   {
+   "id": "learn-sensitivity-labels",
+   "title": "Microsoft Learn: Learn about sensitivity labels",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/sensitivity-labels",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Learn about sensitivity labels"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-sensitivity-labels-office-apps",
+   "title": "Microsoft Learn: Manage sensitivity labels in Office apps",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/sensitivity-labels-office-apps",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Manage sensitivity labels in Office apps",
+    "labels in Office apps"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-sensitivity-label-groups",
+   "title": "Microsoft Learn: Migrate parent sensitivity labels to sensitivity label groups",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/migrate-sensitivity-label-scheme",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Migrate parent sensitivity labels to label groups",
+    "label groups"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-sensitivity-labels-groups-sites",
+   "title": "Microsoft Learn: Use sensitivity labels to protect collaborative workspaces (groups and sites)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/sensitivity-labels-teams-groups-sites",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Use sensitivity labels to protect collaborative workspaces",
+    "labels for groups and sites"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-sensitivity-labels-default-sharing-link",
+   "title": "Microsoft Learn: Use sensitivity labels to configure the default sharing link type",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/sensitivity-labels-default-sharing-link",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "default sharing links"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-purview-content-explorer",
+   "title": "Microsoft Learn: Get started with content explorer",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/data-classification-content-explorer",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Content Explorer"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-purview-data-explorer",
+   "title": "Microsoft Learn: Get started with data explorer",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/data-classification-data-explorer",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "data explorer"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-export-contentexplorerdata",
+   "title": "Microsoft Learn: Export-ContentExplorerData (ExchangePowerShell)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/powershell/module/exchangepowershell/export-contentexplorerdata",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Export-ContentExplorerData"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-activate-rights-management",
+   "title": "Microsoft Learn: Activate the Azure Rights Management service",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/activate-rights-management-service",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Activate the Azure Rights Management service",
+    "Activate Azure Rights Management"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-rights-management-super-users",
+   "title": "Microsoft Learn: Configure super users for Azure Rights Management",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/encryption-super-users",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "super users"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-purview-message-encryption",
+   "title": "Microsoft Learn: Microsoft Purview Message Encryption",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/ome",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Message Encryption"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-mail-flow-rules-encrypt-email",
+   "title": "Microsoft Learn: Define mail flow rules to encrypt email messages",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/define-mail-flow-rules-to-encrypt-email",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "mail flow rules"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-sensitivity-labels-sharepoint-onedrive",
+   "title": "Microsoft Learn: Enable sensitivity labels for files in SharePoint and OneDrive",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/sensitivity-labels-sharepoint-onedrive-files",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "sensitivity labels in SharePoint and OneDrive",
+    "labels in SharePoint and OneDrive"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-dlp-plan",
+   "title": "Microsoft Learn: Plan for data loss prevention",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/dlp-overview-plan-for-dlp",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "DLP planning"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-dlp-simulation-mode",
+   "title": "Microsoft Learn: Learn about data loss prevention simulation mode",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/dlp-simulation-mode-learn",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "simulation mode",
+    "DLP simulation"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-dlp-policy-tips",
+   "title": "Microsoft Learn: Send email notifications and show policy tips for DLP policies",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/dlp-use-notifications-and-policy-tips",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "policy tips"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-endpoint-dlp-settings",
+   "title": "Microsoft Learn: Configure endpoint DLP settings",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/dlp-configure-endpoint-settings",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "endpoint DLP"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-sensitive-information-types",
+   "title": "Microsoft Learn: Learn about sensitive information types",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/sit-sensitive-information-type-learn-about",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "sensitive information types"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-exact-data-match",
+   "title": "Microsoft Learn: Learn about exact data match based sensitive information types",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/sit-learn-about-exact-data-match-based-sits",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "exact data match"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-auto-labeling",
+   "title": "Microsoft Learn: Automatically apply a sensitivity label to Microsoft 365 data",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/apply-sensitivity-label-automatically",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "auto-labeling"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-purview-audit",
+   "title": "Microsoft Learn: Learn about auditing solutions in Microsoft Purview",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/audit-solutions-overview",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Purview Audit"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-management-activity-api",
+   "title": "Microsoft Learn: Office 365 Management Activity API reference",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/office/office-365-management-api/office-365-management-activity-api-reference",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Management Activity API"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-insider-risk-management",
+   "title": "Microsoft Learn: Learn about Insider Risk Management",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/insider-risk-management",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Insider Risk Management"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-insider-risk-management-permissions",
+   "title": "Microsoft Learn: Assign permissions in Insider Risk Management",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/insider-risk-management-permissions",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Insider Risk Management permissions"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-irm-communication-compliance-privacy",
+   "title": "Microsoft Learn: Microsoft Purview Insider Risk Management and Communication Compliance privacy guide",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/insider-risk-solution-privacy",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Communication Compliance"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-copilot-data-protection-auditing",
+   "title": "Microsoft Learn: Data protection and auditing for Microsoft Copilot",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/copilot/plan/architecture-data-protection-auditing",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Data protection and auditing for Microsoft Copilot"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-dspm-for-ai",
+   "title": "Microsoft Learn: Considerations for deploying Microsoft Purview Data Security Posture Management (DSPM) for AI",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/dspm-for-ai-considerations",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "DSPM for AI"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-dlp-microsoft-365-copilot",
+   "title": "Microsoft Learn: Microsoft Purview DLP for Microsoft 365 Copilot",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/purview/dlp-microsoft365-copilot-location-learn-about",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "DLP for Microsoft 365 Copilot",
+    "DLP for Copilot"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-purview-service-description",
+   "title": "Microsoft Learn: Microsoft Purview service description",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Microsoft Purview service description",
+    "Purview service description"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-copilot-service-description",
+   "title": "Microsoft Learn: Microsoft Copilot service description",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/microsoft-365-copilot",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Microsoft Copilot service description"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-purview-gcc-plan",
+   "title": "Microsoft Learn: Plan for Microsoft Purview compliance and risk management solutions: GCC deployments",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "GCC planning page",
+    "Purview government planning pages",
+    "government planning pages"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-purview-gcc-high-plan",
+   "title": "Microsoft Learn: Plan for Microsoft Purview compliance and risk management solutions: GCC High deployments",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-purview-dod-plan",
+   "title": "Microsoft Learn: Plan for Microsoft Purview compliance and risk management solutions: DoD deployments",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "nist-sp-800-60-v1r1",
+   "title": "NIST SP 800-60 Vol. 1 Rev. 1, Guide for Mapping Types of Information and Information Systems to Security Categories",
+   "publisher": "NIST",
+   "url": "https://doi.org/10.6028/NIST.SP.800-60v1r1",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "NIST SP 800-60 Vol. 1 Rev. 1"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
    "id": "get-started-with-the-zero-trust-assessment",
    "title": "Get started with the Zero Trust Assessment",
    "publisher": "Microsoft Learn",
@@ -9760,6 +10349,19 @@
   "Required Configurations page; Implementation Guidance": {
    "Required Configurations page": "bod-25-01-required-configurations",
    "Implementation Guidance": "bod-25-01-implementation-guidance"
+  },
+  "Content Explorer and data explorer": {
+   "Content Explorer": "learn-purview-content-explorer",
+   "data explorer": "learn-purview-data-explorer"
+  },
+  "Message Encryption and mail flow rules": {
+   "Message Encryption": "learn-purview-message-encryption",
+   "mail flow rules": "learn-mail-flow-rules-encrypt-email"
+  },
+  "Plan for Microsoft Purview: GCC, GCC High and DoD deployments": {
+   "Plan for Microsoft Purview: GCC": "learn-purview-gcc-plan",
+   "GCC High": "learn-purview-gcc-high-plan",
+   "DoD deployments": "learn-purview-dod-plan"
   }
  },
  "site": {
@@ -9775,8 +10377,6 @@
   "Microsoft Practice Crosswalk": "https://whalermike.github.io/modernization-workbook/docs/reference/graph-practice-crosswalk.html",
   "Source Register": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html",
   "Reference tab landing page": "https://whalermike.github.io/modernization-workbook/docs/reference/index.html",
-  "Downloads page": "https://whalermike.github.io/modernization-workbook/docs/downloads.html",
-  "Zero Trust Assessment: An Implementation Guide": "https://whalermike.github.io/modernization-workbook/docs/books/guides/zero-trust-assessment-implementation.html",
-  "The Zero Trust Assessment as Evidence": "https://whalermike.github.io/modernization-workbook/docs/training/zero-trust-assessment/index.html"
+  "Downloads page": "https://whalermike.github.io/modernization-workbook/docs/downloads.html"
  }
 }
