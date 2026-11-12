@@ -987,7 +987,11 @@ items:
     title: "Zero Trust Assessment tool: implementation guide, narrated deck and training module, with a section reconciling its findings with AWS Security Hub CSPM for agencies that run both"
     wave: null
     book: "guide"
-    status: planned
-    where: []
-    pr: null
-    note: "Phase 5 (Mike, Nov 11, 2026)."
+    status: implemented
+    where:
+      - docs/books/guides/zero-trust-assessment-implementation.md
+      - examples/zta-results/
+      - docs/training/zero-trust-assessment/
+      - presentations/guide-zero-trust-assessment/
+    pr: 586
+    note: "Phase 5 (Mike, Nov 11, 2026). Kit #580, guide #581, training path #585, narrated deck and video #586."
