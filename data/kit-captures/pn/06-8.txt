@@ -1,9 +1,10 @@
 PS> Import-Csv out/day2-route/routing.csv | Where-Object action | Format-Table change, ruleId, action, severity, noticeId
-change  ruleId action severity noticeId
-------  ------ ------ -------- --------
-changed R01    close  P2       aws:arn:aws:health:us-east-1::event/IAM/AWS_IAM_SECURITY_NOTIFICATION/AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04
-absent  R04    update P2       azure:AB1C-2DE
-changed R03    update P3       azure:PM3F-4GH
-changed R05    update P3       m365:MC900003
-new     R05    create P3       m365:MC900005
-changed R03    update P3       oci:chain-example-01
+change  ruleId  action severity noticeId
+------  ------  ------ -------- --------
+changed R01     close  P2       aws:arn:aws:health:us-east-1::event/IAM/AWS_IAM_SECURITY_NOTIFICATION/AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04
+absent  R04     update P2       azure:AB1C-2DE
+changed R03     update P3       azure:PM3F-4GH
+changed default close           m365:EX900101
+changed R05     update P3       m365:MC900003
+new     R05     create P3       m365:MC900005
+changed R03     update P3       oci:chain-example-01
