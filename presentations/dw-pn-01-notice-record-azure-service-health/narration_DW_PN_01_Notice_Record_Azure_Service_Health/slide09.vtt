@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.625
+For alerting between collections, the
+kit follows Learn's built-in policy,
+
+2
+00:00:04.625 --> 00:00:06.950
+but as a plan instead of portal clicks.
+
+3
+00:00:06.950 --> 00:00:10.338
+The script reads the built-in
+definition and checks its name.
+
+4
+00:00:10.338 --> 00:00:13.535
+It writes a plan with two
+steps: the policy assignment,
+
+5
+00:00:13.535 --> 00:00:16.951
+with a managed identity that
+holds the definition's role,
+
+6
+00:00:16.951 --> 00:00:20.875
+and a remediation task for the
+subscriptions that already exist.
+
+7
+00:00:20.875 --> 00:00:24.442
+Learn's remediation page notes
+that only the portal grants
+
+8
+00:00:24.442 --> 00:00:27.937
+that role automatically, so
+the plan names the role itself.
+
+9
+00:00:27.937 --> 00:00:31.906
+The script refuses a resource group
+scope, prints the plan's hash,
+
+10
+00:00:31.906 --> 00:00:35.780
+and changes nothing unless it's
+run again with that exact hash.

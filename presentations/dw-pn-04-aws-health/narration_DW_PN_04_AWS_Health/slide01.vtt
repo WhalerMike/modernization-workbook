@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:08.476
+This is Chapter 4: AWS Health.
+
+4
+00:00:08.476 --> 00:00:13.450
+AWS tells each account which of its
+instances will be retired, and when.
+
+5
+00:00:13.450 --> 00:00:16.104
+The API that says so needs a support plan,
+
+6
+00:00:16.104 --> 00:00:19.562
+a policy you write yourself,
+and the right partition.
+
+7
+00:00:19.562 --> 00:00:23.439
+We'll start from AWS's own
+documentation for the Health API,
+
+8
+00:00:23.439 --> 00:00:26.993
+see what it leaves to you,
+then read the kit's collector,
+
+9
+00:00:26.993 --> 00:00:32.324
+its kinds and its partition guard, and walk
+two labs, the evidence and the dangers.
+
+10
+00:00:32.324 --> 00:00:33.900
+Two notes before we begin.
+
+11
+00:00:33.900 --> 00:00:37.262
+This chapter is a draft,
+awaiting the owner's review.
+
+12
+00:00:37.262 --> 00:00:40.850
+And the code is illustrative,
+tested against fixtures.

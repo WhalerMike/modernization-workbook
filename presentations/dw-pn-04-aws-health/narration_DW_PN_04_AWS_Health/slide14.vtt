@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.950
+Step 8 runs this chapter's tests:
+eleven passed, none failed,
+
+2
+00:00:03.950 --> 00:00:07.850
+and the manifest lists the
+three calls with their actions.
+
+3
+00:00:07.850 --> 00:00:09.350
+Then delete the output.
+
+4
+00:00:09.350 --> 00:00:15.288
+Lab 2 moves to an AWS test account with a
+qualifying support plan, never production.
+
+5
+00:00:15.288 --> 00:00:20.349
+Without the plan, the subscription-required
+error at step 3 is the expected result.
+
+6
+00:00:20.349 --> 00:00:25.488
+Create the policy with exactly the three
+actions and attach it to the reader's role.
+
+7
+00:00:25.488 --> 00:00:30.076
+Check who you're signed in as: the identity
+must be in the commercial partition.
+
+8
+00:00:30.076 --> 00:00:34.263
+Cross-check AWS's own event count
+against the kit's collection.
+
+9
+00:00:34.263 --> 00:00:37.516
+Then detach and delete the
+policy, and delete the run,
+
+10
+00:00:37.516 --> 00:00:40.150
+because it names the account's resources.

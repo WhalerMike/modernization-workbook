@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:07.812
+The quietest failure is the weekly run
+stopping: no digest, no evidence, no tasks.
+
+3
+00:00:07.812 --> 00:00:09.843
+The chain shows the gap in dates,
+
+4
+00:00:09.843 --> 00:00:13.437
+and the go or no-go fails
+without a passing scheduled run.
+
+5
+00:00:13.437 --> 00:00:16.488
+A recorded file edited
+later is caught by the sums
+
+6
+00:00:16.488 --> 00:00:19.613
+and the record's hashes, and
+the check names the file.
+
+7
+00:00:19.613 --> 00:00:22.388
+A record removed from the
+middle breaks the chain.
+
+8
+00:00:22.388 --> 00:00:26.032
+A digest sent outside the
+agency publishes which clouds
+
+9
+00:00:26.032 --> 00:00:29.212
+and services matter, so it
+stays on agency storage.
+
+10
+00:00:29.212 --> 00:00:33.740
+And a pass is not a control decision:
+each record's claim says so.

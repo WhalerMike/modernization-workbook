@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.213
+Step 1.6 is the one write to a cloud.
+
+2
+00:00:03.213 --> 00:00:07.524
+In the test settings, the alert policy's
+scope is the test subscription.
+
+3
+00:00:07.524 --> 00:00:10.925
+Read the real built-in
+definition first, then plan.
+
+4
+00:00:10.925 --> 00:00:14.362
+A reviewer who isn't the operator
+approves the plan's hash,
+
+5
+00:00:14.362 --> 00:00:17.725
+and the policy writer applies
+it with exactly that hash.
+
+6
+00:00:17.725 --> 00:00:21.850
+Expected: both steps applied
+and the remediation complete.
+
+7
+00:00:21.850 --> 00:00:26.699
+Microsoft Learn says the remediation
+creates a resource group holding the Service
+
+8
+00:00:26.699 --> 00:00:31.063
+Health alert rule, with an action group
+that emails the subscription owners.
+
+9
+00:00:31.063 --> 00:00:32.720
+Don't edit that rule by hand:
+
+10
+00:00:32.720 --> 00:00:36.310
+change the assignment's
+parameters and remediate again.

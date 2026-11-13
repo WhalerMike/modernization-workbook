@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.275
+Step 8 reads what each of
+the six payloads is for.
+
+2
+00:00:03.275 --> 00:00:08.510
+Two rescheduled maintenance windows,
+one Azure and one Oracle Cloud,
+
+3
+00:00:08.510 --> 00:00:12.000
+and an updated Microsoft
+365 post are updates.
+
+4
+00:00:12.000 --> 00:00:15.048
+The Azure incident the
+provider no longer lists
+
+5
+00:00:15.048 --> 00:00:17.638
+is an absent update,
+asking for the re-read.
+
+6
+00:00:17.638 --> 00:00:21.512
+The new Microsoft 365 post is a create.
+
+7
+00:00:21.512 --> 00:00:26.021
+And the AWS security notification
+that AWS closed is a close,
+
+8
+00:00:26.021 --> 00:00:28.275
+which also asks for the re-read.
+
+9
+00:00:28.275 --> 00:00:31.795
+Step 9 runs the router's
+tests, including the one that
+
+10
+00:00:31.795 --> 00:00:35.725
+reads the finding contract:
+thirty-one passed, none failed.
+
+11
+00:00:35.725 --> 00:00:37.630
+Then delete the output folder.

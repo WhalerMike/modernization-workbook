@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.812
+Lab 2 uses real run folders from any earlier
+chapter's second lab, in a test tenant,
+
+2
+00:00:05.812 --> 00:00:10.788
+account, tenancy or project, never
+production, kept on agency storage.
+
+3
+00:00:10.788 --> 00:00:15.625
+Route and digest the test collection with
+the lab's routing and a new state file.
+
+4
+00:00:15.625 --> 00:00:18.503
+Record all three runs,
+this time with the test
+
+5
+00:00:18.503 --> 00:00:21.225
+change record's number,
+and check the chain.
+
+6
+00:00:21.225 --> 00:00:24.247
+Then give the digest to the
+test environment's owners,
+
+7
+00:00:24.247 --> 00:00:28.025
+and ask whether each action-required
+row reached the right person.
+
+8
+00:00:28.025 --> 00:00:31.884
+To back it out, keep the stage's
+evidence with its change record,
+
+9
+00:00:31.884 --> 00:00:35.110
+and delete only the copies
+outside agency storage.

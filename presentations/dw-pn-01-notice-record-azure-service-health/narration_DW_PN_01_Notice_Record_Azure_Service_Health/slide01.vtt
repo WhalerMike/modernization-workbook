@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:09.663
+This is Chapter 1: the notice
+record, and Azure Service Health.
+
+4
+00:00:09.663 --> 00:00:15.051
+Five providers publish the same kinds of
+news in five shapes, so the first job is
+
+5
+00:00:15.051 --> 00:00:20.025
+one shape, so you can ask what needs
+action, by when, and who owns it, just once.
+
+6
+00:00:20.025 --> 00:00:25.023
+We'll start from Microsoft Learn's own
+Resource Graph queries and alert policy,
+
+7
+00:00:25.023 --> 00:00:29.791
+see what they leave to you, then read
+the kit's record and its Azure collector,
+
+8
+00:00:29.791 --> 00:00:32.713
+and walk two labs, the
+evidence and the dangers.
+
+9
+00:00:32.713 --> 00:00:34.287
+Two notes before we begin.
+
+10
+00:00:34.287 --> 00:00:37.650
+This chapter is a draft,
+awaiting the owner's review.
+
+11
+00:00:37.650 --> 00:00:41.230
+And the code is illustrative,
+tested against fixtures.

@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.700
+The second gap is about
+government packages.
+
+2
+00:00:02.700 --> 00:00:09.658
+Google Cloud's Assured Workloads
+supported-products page lists Personalized Service
+
+3
+00:00:09.658 --> 00:00:15.948
+Health under twenty-five regional packages,
+including the U S Data Boundary, but
+
+4
+00:00:15.948 --> 00:00:21.000
+not under FedRAMP Moderate, FedRAMP High,
+I L 2, I L 4, I L 5, C J I S or I T A R.
+
+5
+00:00:21.000 --> 00:00:24.418
+So a workload in one of those
+packages has nothing to read,
+
+6
+00:00:24.418 --> 00:00:27.763
+and an empty list there looks
+like good news when it isn't.
+
+7
+00:00:27.763 --> 00:00:31.932
+The kit's answer, which is the program's
+design guidance, is to record the
+
+8
+00:00:31.932 --> 00:00:36.820
+package as a gap with the security officer,
+who decides the compensating channel.

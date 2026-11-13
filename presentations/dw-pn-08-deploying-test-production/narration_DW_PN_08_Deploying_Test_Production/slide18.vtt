@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.431
+Each step ends with the federal
+requirements it supports, checked against
+
+2
+00:00:04.431 --> 00:00:08.812
+NIST's control catalog, and the FedRAMP
+key security indicator it aligns to.
+
+3
+00:00:08.812 --> 00:00:11.812
+Those indicators belong
+to the cloud providers.
+
+4
+00:00:11.812 --> 00:00:16.346
+The agency authorizes its own system
+and lines its evidence up with what its
+
+5
+00:00:16.346 --> 00:00:19.800
+providers report; it doesn't
+report the indicators itself,
+
+6
+00:00:19.800 --> 00:00:22.750
+and every alignment here
+is the program's reading.
+
+7
+00:00:22.750 --> 00:00:25.587
+And the evidence is
+produced, not only named.
+
+8
+00:00:25.587 --> 00:00:28.717
+Every script writes a run
+folder with a manifest,
+
+9
+00:00:28.717 --> 00:00:30.987
+and each is recorded in a hash chain.
+
+10
+00:00:30.987 --> 00:00:34.498
+Each stage's evidence folder
+is kept on agency storage,
+
+11
+00:00:34.498 --> 00:00:39.170
+with the change record, the plan hashes
+and the weekly digests beside it.

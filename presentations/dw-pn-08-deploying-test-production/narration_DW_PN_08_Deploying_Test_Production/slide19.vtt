@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.063
+What breaks in a deployment,
+and what guards against it?
+
+2
+00:00:03.063 --> 00:00:07.068
+Production before test passed puts
+the problems in front of the people
+
+3
+00:00:07.068 --> 00:00:10.599
+who rely on the notices; the
+seventh pre-flight check refuses it.
+
+4
+00:00:10.599 --> 00:00:15.075
+Enabling every provider at once
+lets one failure hide the others.
+
+5
+00:00:15.075 --> 00:00:19.125
+Sending on day one puts duplicate
+or misrouted tasks in the queue.
+
+6
+00:00:19.125 --> 00:00:22.638
+A plan changed after approval
+is refused by the hash.
+
+7
+00:00:22.638 --> 00:00:25.675
+A secret in the settings
+file is refused outright.
+
+8
+00:00:25.675 --> 00:00:29.047
+A scheduled run that loses
+a sign-in stops silently,
+
+9
+00:00:29.047 --> 00:00:31.375
+so the weekly evidence check fails.
+
+10
+00:00:31.375 --> 00:00:36.770
+And remediation's resources are never
+deleted blindly: the change record decides.

@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.300
+So here's the record.
+
+2
+00:00:01.300 --> 00:00:04.768
+Every notice from every
+provider becomes one record,
+
+3
+00:00:04.768 --> 00:00:06.975
+defined in the kit's JSON schema.
+
+4
+00:00:06.975 --> 00:00:10.425
+It has an ID made of the provider
+and the provider's own ID,
+
+5
+00:00:10.425 --> 00:00:12.975
+which is what the router de-duplicates on.
+
+6
+00:00:12.975 --> 00:00:17.470
+It has one of six kinds, a status,
+plain-text title and summary,
+
+7
+00:00:17.470 --> 00:00:22.975
+the impact window in UTC, and the
+services, regions and resources it names.
+
+8
+00:00:22.975 --> 00:00:27.768
+The three action fields matter most:
+whether action is needed, by when,
+
+9
+00:00:27.768 --> 00:00:32.225
+and who said so, the provider's own
+field or a stated rule of the kit.
+
+10
+00:00:32.225 --> 00:00:33.890
+And it ends with a fingerprint.

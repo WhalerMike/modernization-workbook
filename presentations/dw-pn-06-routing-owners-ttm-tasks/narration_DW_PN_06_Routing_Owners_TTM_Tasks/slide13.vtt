@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.337
+Step 5 reads one payload: the
+Azure retirement from Chapter 1.
+
+2
+00:00:04.337 --> 00:00:07.138
+It's a create, with
+the de-duplication key.
+
+3
+00:00:07.138 --> 00:00:10.172
+It's P3, so the response
+window is twenty-four
+
+4
+00:00:10.172 --> 00:00:13.038
+hours and the response
+is due the next day.
+
+5
+00:00:13.038 --> 00:00:18.699
+But the provider's action date is
+September 30, 2027, kept in its own field.
+
+6
+00:00:18.699 --> 00:00:23.269
+It's routed to cloud platform engineering,
+it asks for a contingency review,
+
+7
+00:00:23.269 --> 00:00:26.512
+and it names the controls
+and indicators it supports.
+
+8
+00:00:26.512 --> 00:00:30.838
+Then the five clauses: the human
+decision lane, where it came from,
+
+9
+00:00:30.838 --> 00:00:36.120
+the system owner as approver, what to do,
+the re-read check, and the evidence kept.

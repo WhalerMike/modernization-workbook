@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:06.697
+The workbook's estate is a Microsoft
+365 GCC tenant with commercial Azure,
+
+3
+00:00:06.697 --> 00:00:12.501
+so the Azure CLI is set to Azure Cloud and
+Resource Manager is the commercial host.
+
+4
+00:00:12.501 --> 00:00:15.026
+Azure Government is a side note here:
+
+5
+00:00:15.026 --> 00:00:18.900
+its own CLI cloud name and
+its own Resource Manager host.
+
+6
+00:00:18.900 --> 00:00:23.330
+Learn's sample queries link the Azure
+Government portal, but a statement
+
+7
+00:00:23.330 --> 00:00:27.613
+that the table is available there, in
+so many words, is not yet specified.
+
+8
+00:00:27.613 --> 00:00:32.559
+The kit never guesses: the settings
+name the cloud, an unknown name throws,
+
+9
+00:00:32.559 --> 00:00:36.410
+and the live run refuses a CLI
+that's set to another cloud.

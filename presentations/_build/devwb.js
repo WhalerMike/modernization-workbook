@@ -39,6 +39,7 @@ const WORKBOOKS = {
   npi: { dir: "docs/project-plans/developer-workbooks/non-person-identity", name: "Building Non-Person Identity", kit: "examples/non-person-identity" },
   ttm: { dir: "docs/project-plans/developer-workbooks/ticket-to-machine", name: "Building Ticket-to-Machine", kit: "examples/servicenow-sailpoint" },
   hr: { dir: "docs/project-plans/developer-workbooks/hr-driven-identity", name: "Building HR-Driven Identity", kit: "examples/hr-lifecycle" },
+  pn: { dir: "docs/project-plans/developer-workbooks/provider-notices", name: "Building Provider Notices", kit: "examples/provider-notices" },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b/i;
@@ -52,11 +53,12 @@ function readChapter(wb, n) {
   const fm = md.match(/^---\n([\s\S]*?)\n---/)[1];
   const title = fm.match(/^title:\s*"(.*)"\s*$/m)[1];
   const review = (fm.match(/^review-status:\s*(\S+)/m) || [])[1] || "unknown";
+  const status = (fm.match(/^status:\s*(\S+)/m) || [])[1] || "unknown";
   const notes = {};
   for (const m of md.matchAll(/^\[\^([^\]]+)\]:\s*(.+)$/gm)) notes[m[1]] = m[2].trim();
   // Markdown to plain text for slides and notes: links keep their text, angle-bracket URLs stay as URLs.
   for (const k of Object.keys(notes)) notes[k] = plain(notes[k]);
-  return { file, rel: path.relative(ROOT, path.join(dir, file)).split(path.sep).join("/"), title, review, notes };
+  return { file, rel: path.relative(ROOT, path.join(dir, file)).split(path.sep).join("/"), title, review, status, notes };
 }
 const plain = (t) => String(t).replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/<(https?:[^>]+)>/g, "$1")
   .replace(/`([^`]+)`/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*([^*]+)\*/g, "$1");
@@ -324,7 +326,10 @@ module.exports = function build(spec) {
     const sl = D.titleSlide("Introduction", tt, `${wb.name} — a narrated tour of the chapter`);
     txt(sl, "Tour map", [
       { text: spec.map || "", options: { color: HEX.navy, bold: true, breakLine: true } },
-      { text: `Chapter review status: ${ch.review}  ·  Illustrative code, tested against fixtures`, options: { color: HEX.ink, breakLine: true } },
+      // A draft chapter says so first: the tour is of a page still awaiting the owner's review.
+      ch.status === "draft"
+        ? { text: "Draft chapter, awaiting the owner's review  ·  Illustrative code, tested against fixtures", options: { color: HEX.red, bold: true, breakLine: true } }
+        : { text: `Chapter review status: ${ch.review}  ·  Illustrative code, tested against fixtures`, options: { color: HEX.ink, breakLine: true } },
       { text: `Date Code ${DATECODE}`, options: { color: HEX.teal, bold: true } },
     ], { x: 0.8, y: 4.85, w: 7.0, h: 1.4, fontSize: 14, paraSpaceAfter: 4 });
     neutral("title", tt + (spec.map || ""));

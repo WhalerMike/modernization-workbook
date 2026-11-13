@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.350
+The normalizer maps AWS's
+categories to the record's kinds.
+
+2
+00:00:04.350 --> 00:00:06.850
+Issues and investigations are incidents.
+
+3
+00:00:06.850 --> 00:00:11.668
+A scheduled change whose event type code
+names a retirement, a lifecycle event,
+
+4
+00:00:11.668 --> 00:00:14.707
+a deprecation or an end of
+support is a retirement;
+
+5
+00:00:14.707 --> 00:00:17.375
+any other scheduled change is maintenance.
+
+6
+00:00:17.375 --> 00:00:21.332
+An account notification with the
+security persona is security;
+
+7
+00:00:21.332 --> 00:00:22.975
+otherwise it's an advisory.
+
+8
+00:00:22.975 --> 00:00:27.108
+For every kind, AWS's
+actionability flag decides first,
+
+9
+00:00:27.108 --> 00:00:29.313
+and the record says provider.
+
+10
+00:00:29.313 --> 00:00:33.468
+Only a retirement without that
+flag falls to the kit's own rule:
+
+11
+00:00:33.468 --> 00:00:37.299
+action required, due at its
+start, and the record says rule.
+
+12
+00:00:37.299 --> 00:00:39.310
+The two sources are never mixed.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+Each run compares every
+notice with the state.
+
+2
+00:00:02.850 --> 00:00:04.888
+A new open notice gets a create.
+
+3
+00:00:04.888 --> 00:00:09.401
+A changed one, with a different fingerprint
+or a changed rule, gets an update.
+
+4
+00:00:09.401 --> 00:00:13.800
+When the provider closes it, the task
+gets a close that asks for the re-read.
+
+5
+00:00:13.800 --> 00:00:18.441
+And if an open notice simply disappears
+from a provider the kit read this run,
+
+6
+00:00:18.441 --> 00:00:22.788
+it's marked absent, and its task gets
+an update asking for the same re-read.
+
+7
+00:00:22.788 --> 00:00:25.976
+A provider that wasn't read
+is never marked absent.
+
+8
+00:00:25.976 --> 00:00:28.013
+Unchanged notices write nothing.
+
+9
+00:00:28.013 --> 00:00:31.518
+And the whole run is a dry run:
+nothing is sent unless the
+
+10
+00:00:31.518 --> 00:00:35.090
+scheduled run is told to send
+and the settings allow it.

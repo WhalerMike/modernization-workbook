@@ -1,0 +1,732 @@
+{
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
+  ],
+  [
+   5.688,
+   3.688,
+   "This is Chapter 8: deploying to test and production."
+  ],
+  [
+   9.375,
+   3.663,
+   "Each chapter's second lab proves one provider in isolation."
+  ],
+  [
+   13.037,
+   5.375,
+   "A deployment proves them together, on a schedule, with a rollback someone has already run."
+  ],
+  [
+   18.413,
+   9.15,
+   "This chapter is a runbook: one ordered set of copy-paste commands, run once against test and again, unchanged, against production."
+  ],
+  [
+   27.562,
+   1.675,
+   "Three notes before we begin."
+  ],
+  [
+   29.238,
+   3.225,
+   "The chapter is a draft, awaiting the owner's review."
+  ],
+  [
+   32.462,
+   5.425,
+   "Nobody has run this runbook against a lyve tenant, account, tenancy or project."
+  ],
+  [
+   37.888,
+   3.775,
+   "And the code is illustrative, run only in fixture mode."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.05,
+   "Why a runbook?"
+  ],
+  [
+   1.1,
+   8.012,
+   "Because each earlier lab proves one provider on its own, and production needs all of them together, every week, with a way back."
+  ],
+  [
+   9.113,
+   1.65,
+   "So the goal is concrete."
+  ],
+  [
+   10.762,
+   15.863,
+   "By the end you can deploy the kit to a test environment and then to production, with a change record, an approval at each write, a smoke test whose expected result is written down before you run it, evidence the security officer can check with a hash, and a rollback you've rehearsed."
+  ],
+  [
+   26.625,
+   4.463,
+   "And for every step you can say which of the guide's seven gates it moves forward."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   4.312,
+   "Every command reads the cloud from the settings file, one name per provider."
+  ],
+  [
+   5.725,
+   12.625,
+   "The estate this runbook writes for is Microsoft 365 G C C with commercial Azure, so Graph and Resource Manager are the worldwide hosts, as Microsoft Learn's national cloud page lists them."
+  ],
+  [
+   18.35,
+   8.475,
+   "Oracle Cloud takes its commercial or government realm, AWS its commercial or GovCloud partition, and Google Cloud its global name."
+  ],
+  [
+   26.825,
+   6.825,
+   "As a side note, G C C High and the Defense Department cloud sign in to Graph with their own environment names."
+  ],
+  [
+   33.65,
+   4.225,
+   "Any other name throws, and a session signed in elsewhere is refused."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.7,
+   "The runbook doesn't decide what the gates decide."
+  ],
+  [
+   2.75,
+   5.375,
+   "It turns them on in an order where each step can be undone before the next depends on it."
+  ],
+  [
+   8.125,
+   2.375,
+   "Reads first, one provider at a time."
+  ],
+  [
+   10.5,
+   2.987,
+   "Routing as a dry run before anything is sent."
+  ],
+  [
+   13.488,
+   5.037,
+   "The one write to a cloud, the Azure alert policy, only after the reads work."
+  ],
+  [
+   18.525,
+   1.438,
+   "And the schedule last."
+  ],
+  [
+   19.962,
+   2.612,
+   "That order is the workbook's design guidance."
+  ],
+  [
+   22.575,
+   2.013,
+   "Every collector call is a read."
+  ],
+  [
+   24.587,
+   5.05,
+   "The few writes run only with an approved plan hash, or with an explicit send flag."
+  ],
+  [
+   29.637,
+   5.425,
+   "And three things aren't in the kit: the schedule, the sign-ins, and the ServiceNow endpoint."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.662,
+   "One settings file per stage holds every value the commands need, and the kit checks it before any command runs."
+  ],
+  [
+   6.713,
+   8.45,
+   "No secrets: a secret-like name with a value stops the run, and the ServiceNow token is read at run time from an environment variable."
+  ],
+  [
+   15.162,
+   3.013,
+   "No placeholders left in an enabled provider."
+  ],
+  [
+   18.175,
+   2.288,
+   "The file must be the stage it says it is."
+  ],
+  [
+   20.462,
+   3.462,
+   "Each enabled provider names who receives its notices today."
+  ],
+  [
+   23.925,
+   4.037,
+   "And moving from test to production changes the file and nothing else."
+  ],
+  [
+   27.962,
+   9.387,
+   "To start, copy the template, fill it in, and check it: you get one line with the stage, the change record, the output folder and the file's hash."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.075,
+   "The runbook's scripts are PowerShell, like the rest of the kit, and each has a dry run."
+  ],
+  [
+   5.125,
+   2.975,
+   "The pre-flight checks everything and changes nothing."
+  ],
+  [
+   8.1,
+   6.75,
+   "The alert policy script plans an assignment and a remediation, and applies only with the approved hash."
+  ],
+  [
+   14.85,
+   11.238,
+   "The scheduled run collects every enabled provider, routes, writes the digest, and records each as evidence, and it sends only when both the settings and the command say so."
+  ],
+  [
+   26.087,
+   8.863,
+   "The rollback plans in reverse order: unregister the schedule, delete the assignment, and list what the remediation created, for the change record."
+  ],
+  [
+   34.95,
+   3.425,
+   "Twenty-five tests cover them, all in fixture mode."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.575,
+   "Before any tenant, run the whole thing on the kit's fixtures."
+  ],
+  [
+   3.625,
+   7.55,
+   "It takes the fictional test stage end to end, then the production pre-flight with the test evidence, and nothing leaves the machine."
+  ],
+  [
+   11.175,
+   5.237,
+   "This output is real: the kit printed it on November 9, 2026."
+  ],
+  [
+   16.413,
+   12.812,
+   "The scheduled run collected fifteen notices from Azure, Microsoft 365 and Oracle Cloud, routed eight new tasks as a dry run, and wrote a digest with thirteen open and five needing action."
+  ],
+  [
+   29.225,
+   6.825,
+   "The stage check found every file matching its hash, an unbroken chain, and a passing record for each step."
+  ],
+  [
+   36.05,
+   3.0,
+   "The production pre-flight passed twenty-three checks."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.6,
+   "The pre-flight reads only, and you run it before each stage, after the readers sign in."
+  ],
+  [
+   5.65,
+   12.363,
+   "It checks the settings and routing files, that each provider's tool is installed, that each session is signed in to the right cloud, tenant, partition or realm, and that each reader's first call works."
+  ],
+  [
+   18.012,
+   4.225,
+   "For AWS that includes the support plan the health service needs."
+  ],
+  [
+   22.238,
+   6.037,
+   "It checks that someone is named to receive each provider's notices, and that the output folder can be written."
+  ],
+  [
+   28.275,
+   6.312,
+   "And in production only, the seventh check refuses to go on unless the test stage's evidence passes."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   6.025,
+   "The operator runs the commands and holds no write role in any cloud except where a step says so."
+  ],
+  [
+   7.0,
+   11.213,
+   "Each provider has its own reader with the least privilege its chapter's second lab grants: Azure, Microsoft 365, Oracle Cloud, AWS and Google Cloud."
+  ],
+  [
+   18.212,
+   5.45,
+   "The one write role in Azure belongs to a person, activated only for the change window."
+  ],
+  [
+   23.663,
+   12.438,
+   "Approvals are written down: the change advisory board approves each stage's change record, a reviewer who isn't the operator approves each plan's hash, and the security officer and the board approve promotion."
+  ],
+  [
+   36.1,
+   2.688,
+   "Turning on sending waits for the change manager."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.312,
+   "Stage 1 starts by signing in each enabled provider's reader, in the cloud the settings file names."
+  ],
+  [
+   6.362,
+   5.862,
+   "For a G C C tenant that's the commercial Azure cloud and Graph's global environment."
+  ],
+  [
+   12.225,
+   11.262,
+   "Connecting to Graph with a client I D, a tenant I D and a certificate thumbprint is app-only access, as Microsoft Learn describes it, the same sign-in the scheduled run will use."
+  ],
+  [
+   23.488,
+   4.375,
+   "The AWS caller's identity should start with the partition's prefix."
+  ],
+  [
+   27.863,
+   3.062,
+   "Then run the pre-flight and record it as evidence."
+  ],
+  [
+   30.925,
+   4.775,
+   "Expected: every check passes, and the first evidence record passes."
+  ],
+  [
+   35.7,
+   4.138,
+   "Fix any failure before going on: the detail names what's missing."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.913,
+   "Step 1.3 is the staged enable."
+  ],
+  [
+   2.962,
+   12.113,
+   "Read each enabled provider on its own, cross-check it against the provider's own command, which each chapter's second lab gives, and record it as evidence, before the providers ever run together."
+  ],
+  [
+   15.075,
+   4.463,
+   "Start with the one the agency relies on most: that's design guidance."
+  ],
+  [
+   19.538,
+   6.0,
+   "Expected: each collection prints its provider's row, and its count matches the provider's own."
+  ],
+  [
+   25.538,
+   3.462,
+   "An empty list is a valid result in a test environment."
+  ],
+  [
+   29.0,
+   4.638,
+   "But an empty list where the provider's own command finds notices is a failure."
+  ],
+  [
+   33.638,
+   7.125,
+   "Azure, Microsoft 365 and Oracle Cloud first; then AWS and Google Cloud where enabled."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.088,
+   "Step 1.4 routes the full collection with the agency's own routing file, as a dry run."
+  ],
+  [
+   6.138,
+   3.6,
+   "The service desk reads the payloads before anything is sent."
+  ],
+  [
+   9.738,
+   10.062,
+   "Expected: payloads written, nothing sent; every security advisory and retirement has one, and each assignment group is one the change manager recognizes."
+  ],
+  [
+   19.8,
+   7.263,
+   "Step 1.5 is the smoke test: four checks, each with its expected result written down before you run it."
+  ],
+  [
+   27.062,
+   7.088,
+   "Every provider read; a second routing writes nothing new; every payload valid; and the evidence chain clean."
+  ],
+  [
+   34.15,
+   5.15,
+   "On the fixtures, the first routing created eight tasks and the second created none."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.163,
+   "Step 1.6 is the one write to a cloud."
+  ],
+  [
+   3.212,
+   4.312,
+   "In the test settings, the alert policy's scope is the test subscription."
+  ],
+  [
+   7.525,
+   3.4,
+   "Read the real built-in definition first, then plan."
+  ],
+  [
+   10.925,
+   6.8,
+   "A reviewer who isn't the operator approves the plan's hash, and the policy writer applies it with exactly that hash."
+  ],
+  [
+   17.725,
+   4.125,
+   "Expected: both steps applied and the remediation complete."
+  ],
+  [
+   21.85,
+   9.213,
+   "Microsoft Learn says the remediation creates a resource group holding the Service Health alert rule, with an action group that emails the subscription owners."
+  ],
+  [
+   31.062,
+   5.2,
+   "Don't edit that rule by hand: change the assignment's parameters and remediate again."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.788,
+   "Step 1.7 puts the weekly run on a schedule."
+  ],
+  [
+   3.837,
+   10.637,
+   "The kit doesn't register a schedule itself, so this uses Windows Task Scheduler's own cmdlets, as Microsoft Learn documents them, with the task name the rollback later removes."
+  ],
+  [
+   14.475,
+   11.363,
+   "The scheduled run needs every reader's sign-in in its own session, so you write a small sign-in script for the run-as account, run it once by hand, then register it weekly, Monday at six."
+  ],
+  [
+   25.837,
+   4.088,
+   "Expected: collect, route and digest each pass."
+  ],
+  [
+   29.925,
+   7.338,
+   "One gap is stated plainly: how each other provider's tool signs in unattended is not yet specified in the kit."
+  ],
+  [
+   37.263,
+   2.275,
+   "Then send the digest to the owners."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   9.675,
+   "Step 1.8 checks the stage's evidence: every file matches its hash, the chain is unbroken, and each step the stage needs has a passing record."
+  ],
+  [
+   9.725,
+   2.975,
+   "Step 1.9 rehearses the rollback."
+  ],
+  [
+   12.7,
+   4.5,
+   "Plan it, have the reviewer approve its hash, apply it and record it."
+  ],
+  [
+   17.2,
+   14.725,
+   "Expected: the schedule unregistered, the policy assignment deleted, and the third step left manual: a list of what the remediation created, for the change record to decide on, because deleting the assignment doesn't remove those resources."
+  ],
+  [
+   31.925,
+   4.263,
+   "Nothing else is lost; the state, runs and evidence are kept."
+  ],
+  [
+   36.188,
+   2.962,
+   "If test keeps running, register the schedule again."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.575,
+   "Before production comes the go/no-go, and you promote only when every row passes."
+  ],
+  [
+   5.625,
+   2.125,
+   "The test stage's evidence passes."
+  ],
+  [
+   7.75,
+   3.138,
+   "Every provider's collection matched its own command."
+  ],
+  [
+   10.887,
+   1.538,
+   "The smoke test passed."
+  ],
+  [
+   12.425,
+   5.438,
+   "The routing was reviewed, and every security advisory and retirement became a task."
+  ],
+  [
+   17.863,
+   3.775,
+   "The alert policy was applied, and its rollback rehearsed."
+  ],
+  [
+   21.637,
+   2.487,
+   "Every provider's notice contacts are named."
+  ],
+  [
+   24.125,
+   14.838,
+   "And the known gaps are recorded with the security officer: Google's planned maintenance, any AWS account without a support plan, any workload in an Assured Workloads fed-ramp or impact-level package, and what the guide lists as not yet specified."
+  ],
+  [
+   38.962,
+   3.388,
+   "The security officer and the board record the decision."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   9.075,
+   "Stage 2 is production, with the same commands and the production settings file: sending off for now, and the alert policy scoped to the management group."
+  ],
+  [
+   9.125,
+   6.537,
+   "The pre-flight now includes the seventh check, so production refuses to start unless the test evidence passes."
+  ],
+  [
+   15.662,
+   8.25,
+   "Enable the providers one at a time again, and keep routing a dry run for the first week, while the service desk works from the payloads by hand."
+  ],
+  [
+   23.913,
+   4.825,
+   "Apply the alerts at the management group, schedule the weekly run, and smoke test."
+  ],
+  [
+   28.738,
+   4.438,
+   "Turn on sending only after that week, with the change manager's approval."
+  ],
+  [
+   33.175,
+   1.837,
+   "Each payload is sent once."
+  ],
+  [
+   35.013,
+   2.737,
+   "Then check the production evidence every week."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   8.762,
+   "Each step ends with the federal requirements it supports, checked against nist's control catalog, and the fed-ramp key security indicator it aligns to."
+  ],
+  [
+   8.812,
+   3.0,
+   "Those indicators belong to the cloud providers."
+  ],
+  [
+   11.812,
+   10.938,
+   "The agency authorizes its own system and lines its evidence up with what its providers report; it doesn't report the indicators itself, and every alignment here is the program's reading."
+  ],
+  [
+   22.75,
+   2.837,
+   "And the evidence is produced, not only named."
+  ],
+  [
+   25.587,
+   5.4,
+   "Every script writes a run folder with a manifest, and each is recorded in a hash chain."
+  ],
+  [
+   30.988,
+   8.113,
+   "Each stage's evidence folder is kept on agency storage, with the change record, the plan hashes and the weekly digests beside it."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   3.013,
+   "What breaks in a deployment, and what guards against it?"
+  ],
+  [
+   3.062,
+   7.537,
+   "Production before test passed puts the problems in front of the people who rely on the notices; the seventh pre-flight check refuses it."
+  ],
+  [
+   10.6,
+   4.475,
+   "Enabling every provider at once lets one failure hide the others."
+  ],
+  [
+   15.075,
+   4.05,
+   "Sending on day one puts duplicate or misrouted tasks in the queue."
+  ],
+  [
+   19.125,
+   3.513,
+   "A plan changed after approval is refused by the hash."
+  ],
+  [
+   22.637,
+   3.038,
+   "A secret in the settings file is refused outright."
+  ],
+  [
+   25.675,
+   5.7,
+   "A scheduled run that loses a sign-in stops silently, so the weekly evidence check fails."
+  ],
+  [
+   31.375,
+   5.338,
+   "And remediation's resources are never deleted blindly: the change record decides."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   5.062,
+   "One settings file per stage, with no secrets, filed with the change record."
+  ],
+  [
+   6.463,
+   5.25,
+   "The test pre-flight passed, and every provider was enabled and cross-checked one at a time."
+  ],
+  [
+   11.713,
+   1.538,
+   "The smoke test passed."
+  ],
+  [
+   13.25,
+   4.3,
+   "Both plans were approved by hash, applied and recorded in test."
+  ],
+  [
+   17.55,
+   5.725,
+   "The test evidence passed, and the security officer and the board recorded the go/no-go."
+  ],
+  [
+   23.275,
+   8.863,
+   "Production's pre-flight passed the seventh check, production routed as a dry run for a week before sending, and its evidence passes every week."
+  ],
+  [
+   32.138,
+   2.625,
+   "That's the end of Building Provider Notices."
+  ],
+  [
+   34.763,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

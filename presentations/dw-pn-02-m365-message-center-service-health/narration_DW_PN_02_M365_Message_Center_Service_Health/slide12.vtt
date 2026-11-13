@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.412
+Step 6 collects the second
+week and reads what changed.
+
+2
+00:00:03.412 --> 00:00:04.851
+Seven notices now.
+
+3
+00:00:04.851 --> 00:00:11.113
+A new post arrives with its own action
+date from Microsoft, February 28, 2027.
+
+4
+00:00:11.113 --> 00:00:14.700
+The SharePoint post is updated,
+and its title says so.
+
+5
+00:00:14.700 --> 00:00:17.787
+The email incident from
+week one is now closed.
+
+6
+00:00:17.787 --> 00:00:21.317
+Step 7 builds the live
+request without sending it:
+
+7
+00:00:21.317 --> 00:00:26.913
+the first line is the exact URL a live run
+would call, on the worldwide Graph host.
+
+8
+00:00:26.913 --> 00:00:29.694
+Then it tries a next link on another host,
+
+9
+00:00:29.694 --> 00:00:33.790
+and the kit refuses it, because
+it isn't on the GCC Graph host.

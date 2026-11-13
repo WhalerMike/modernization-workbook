@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:07.089
+Microsoft Learn's service communications
+API overview names the resources and
+
+3
+00:00:07.089 --> 00:00:12.175
+the two permissions: one to read Message
+center posts, one to read service health.
+
+4
+00:00:12.175 --> 00:00:14.794
+Both are granted only by an administrator,
+
+5
+00:00:14.794 --> 00:00:17.712
+and a delegated sign-in
+also needs an admin role.
+
+6
+00:00:17.712 --> 00:00:22.153
+There are three list methods on version
+one point oh: messages, issues and
+
+7
+00:00:22.153 --> 00:00:27.112
+health overviews, each with its permission
+and its national-cloud availability.
+
+8
+00:00:27.112 --> 00:00:31.553
+One caveat from Learn's admin roles
+page: data privacy messages are
+
+9
+00:00:31.553 --> 00:00:36.638
+visible only to Global Administrators
+and Message Center Privacy Readers.
+
+10
+00:00:36.638 --> 00:00:41.470
+And Learn's own cmdlet for posts is the
+one we'll cross-check against in Lab 2.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.038
+Why route at all?
+
+2
+00:00:01.038 --> 00:00:04.650
+Because a notice nobody owns
+is a notice nobody reads.
+
+3
+00:00:04.650 --> 00:00:09.092
+The collectors in Chapters 1 to 5
+fill one record for every provider;
+
+4
+00:00:09.092 --> 00:00:12.344
+this chapter turns the
+ones that need action into
+
+5
+00:00:12.344 --> 00:00:15.437
+work with a named owner,
+and does it exactly once.
+
+6
+00:00:15.437 --> 00:00:20.276
+By the end you can write and check a routing
+file, route a collection as a dry run,
+
+7
+00:00:20.276 --> 00:00:22.317
+read every payload it would send,
+
+8
+00:00:22.317 --> 00:00:25.643
+and explain two behaviors
+that matter in production:
+
+9
+00:00:25.643 --> 00:00:29.196
+why a second run writes nothing,
+and why a task closes only
+
+10
+00:00:29.196 --> 00:00:32.950
+when the agency re-reads, not
+when the provider says it's done.

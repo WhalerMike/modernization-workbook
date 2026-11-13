@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Here's the mapping.
+
+2
+00:00:01.088 --> 00:00:05.649
+A type that mentions maintenance is
+maintenance; one that mentions change,
+
+3
+00:00:05.649 --> 00:00:10.064
+or the action-required type, is a
+change; a production event notification
+
+4
+00:00:10.064 --> 00:00:14.700
+is an incident; and action-recommended
+or information types are advisories.
+
+5
+00:00:14.700 --> 00:00:20.166
+The time fields are read by their types: a
+start or new start time opens the window,
+
+6
+00:00:20.166 --> 00:00:25.300
+an end time closes it, and an action-required-by
+time is Oracle's own deadline.
+
+7
+00:00:25.300 --> 00:00:31.400
+Notice what's different from Azure and
+Microsoft 365: Oracle flags action itself.
+
+8
+00:00:31.400 --> 00:00:35.722
+So every action-required OCI
+notice says the provider decided,
+
+9
+00:00:35.722 --> 00:00:38.110
+and the kit needs no rule of its own.

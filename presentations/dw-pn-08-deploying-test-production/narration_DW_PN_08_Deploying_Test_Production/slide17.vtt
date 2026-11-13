@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.807
+Stage 2 is production, with the same
+commands and the production settings file:
+
+2
+00:00:04.807 --> 00:00:09.125
+sending off for now, and the alert
+policy scoped to the management group.
+
+3
+00:00:09.125 --> 00:00:11.855
+The pre-flight now includes
+the seventh check,
+
+4
+00:00:11.855 --> 00:00:15.662
+so production refuses to start
+unless the test evidence passes.
+
+5
+00:00:15.662 --> 00:00:19.787
+Enable the providers one at a time
+again, and keep routing a dry run for
+
+6
+00:00:19.787 --> 00:00:23.912
+the first week, while the service
+desk works from the payloads by hand.
+
+7
+00:00:23.912 --> 00:00:28.738
+Apply the alerts at the management group,
+schedule the weekly run, and smoke test.
+
+8
+00:00:28.738 --> 00:00:33.176
+Turn on sending only after that week,
+with the change manager's approval.
+
+9
+00:00:33.176 --> 00:00:35.012
+Each payload is sent once.
+
+10
+00:00:35.012 --> 00:00:37.800
+Then check the production
+evidence every week.

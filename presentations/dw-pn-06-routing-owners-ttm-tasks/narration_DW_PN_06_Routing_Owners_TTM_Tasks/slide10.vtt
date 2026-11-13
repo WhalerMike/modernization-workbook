@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:03.082
+The change manager owns this gate,
+
+3
+00:00:03.082 --> 00:00:07.188
+and reviews the routing file and the
+change records the payloads open.
+
+4
+00:00:07.188 --> 00:00:11.701
+The security officer reviews the security
+route and keeps the run folders.
+
+5
+00:00:11.701 --> 00:00:15.012
+In the lab's payload, the
+system owner is the approver,
+
+6
+00:00:15.012 --> 00:00:17.400
+and owns the contingency plan review.
+
+7
+00:00:17.400 --> 00:00:22.260
+And someone builds the ServiceNow side:
+the endpoint that accepts the payload,
+
+8
+00:00:22.260 --> 00:00:25.550
+whose shape is the agency's
+and not yet specified here.
+
+9
+00:00:25.550 --> 00:00:27.899
+One rule about where the routing lives:
+
+10
+00:00:27.899 --> 00:00:31.350
+it names owners and assignment
+groups, so it stays at work.
+
+11
+00:00:31.350 --> 00:00:35.880
+The public repository ships only
+templates and fictional examples.

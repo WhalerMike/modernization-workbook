@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Naming the evidence isn't
+the same as having it.
+
+2
+00:00:02.950 --> 00:00:05.408
+Owners read a page, not a JSON file,
+
+3
+00:00:05.408 --> 00:00:09.900
+so the kit writes the digest as a
+readable page and a spreadsheet.
+
+4
+00:00:09.900 --> 00:00:14.337
+A folder of files can be changed
+after the fact, so each run is checked
+
+5
+00:00:14.337 --> 00:00:18.537
+against its manifest, copied, and
+recorded with every file's hash.
+
+6
+00:00:18.537 --> 00:00:23.713
+Someone has to say which run supports which
+control, so each record names its steps.
+
+7
+00:00:23.713 --> 00:00:26.937
+A record removed from the
+middle would go unnoticed,
+
+8
+00:00:26.937 --> 00:00:29.937
+so each record holds the
+hash of the one before it.
+
+9
+00:00:29.937 --> 00:00:33.940
+And a go/no-go needs to know
+which steps still lack evidence.

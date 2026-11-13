@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:09.376
+This is Chapter 8: deploying
+to test and production.
+
+4
+00:00:09.376 --> 00:00:13.038
+Each chapter's second lab proves
+one provider in isolation.
+
+5
+00:00:13.038 --> 00:00:15.982
+A deployment proves them
+together, on a schedule,
+
+6
+00:00:15.982 --> 00:00:18.412
+with a rollback someone has already run.
+
+7
+00:00:18.412 --> 00:00:23.032
+This chapter is a runbook: one
+ordered set of copy-paste commands,
+
+8
+00:00:23.032 --> 00:00:27.563
+run once against test and again,
+unchanged, against production.
+
+9
+00:00:27.563 --> 00:00:29.237
+Three notes before we begin.
+
+10
+00:00:29.237 --> 00:00:32.463
+The chapter is a draft,
+awaiting the owner's review.
+
+11
+00:00:32.463 --> 00:00:37.887
+Nobody has run this runbook against a
+live tenant, account, tenancy or project.
+
+12
+00:00:37.887 --> 00:00:41.710
+And the code is illustrative,
+run only in fixture mode.

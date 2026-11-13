@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.894
+The tests cover the collector and the live
+pieces: seven tests for the OCI block
+
+2
+00:00:04.894 --> 00:00:09.663
+of the collectors, plus the live tests
+for the list command and the realm guard.
+
+3
+00:00:09.663 --> 00:00:11.224
+The lab runs nine of them.
+
+4
+00:00:11.224 --> 00:00:13.700
+But be clear about what
+this code isn't yet.
+
+5
+00:00:13.700 --> 00:00:17.521
+The live reader was tested
+against stand-in CLI output,
+
+6
+00:00:17.521 --> 00:00:22.275
+not a live tenancy, so review it and
+run Lab 2 before it reads a real one.
+
+7
+00:00:22.275 --> 00:00:25.088
+And two things are
+still not yet specified:
+
+8
+00:00:25.088 --> 00:00:29.347
+which key casing the CLI actually
+prints, so the kit accepts both,
+
+9
+00:00:29.347 --> 00:00:33.740
+and the Announcements endpoint in
+realm O C 3, so the kit refuses it.
