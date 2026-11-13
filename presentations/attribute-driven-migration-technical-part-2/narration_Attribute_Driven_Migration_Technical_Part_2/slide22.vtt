@@ -1,52 +1,48 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.673
-Stage eight keeps the
-statements true after cutover;
+00:00:00.050 --> 00:00:05.462
+Stage seven is a runbook, not a flag day,
+and that's what keeps rollback possible.
 
 2
-00:00:03.673 --> 00:00:06.225
-without it, everything slowly decays.
+00:00:05.462 --> 00:00:08.022
+Waves are defined by attribute values,
 
 3
-00:00:06.225 --> 00:00:10.172
-Two comparisons run on a schedule:
-HR against the directory,
+00:00:08.022 --> 00:00:11.301
+so each wave is a query
+whose groups already exist.
 
 4
-00:00:10.172 --> 00:00:13.475
-and the unit and role
-registry against the tenant.
+00:00:11.301 --> 00:00:15.850
+Start with a pilot division, and keep
+each one drift-clean before the next.
 
 5
-00:00:13.475 --> 00:00:18.558
-Every finding goes to the CISO and is
-fixed at the source, in the HR record or
+00:00:15.850 --> 00:00:20.313
+Do leaver automation first, because
+revocation is where the risk is.
 
 6
-00:00:18.558 --> 00:00:23.887
-the rule, never in the copy, because the
-next cycle would just overwrite your fix.
+00:00:20.313 --> 00:00:23.962
+The gate is the strip across
+the top: a signed report,
 
 7
-00:00:23.887 --> 00:00:26.287
-The callout is the one to act on today.
+00:00:23.962 --> 00:00:29.262
+a dry run with writes off, then seven
+days in which every change traces to HR.
 
 8
-00:00:26.287 --> 00:00:29.117
-Entra's logs don't last
-nearly as long as federal
+00:00:29.262 --> 00:00:31.425
+Only then does the ticket path close.
 
 9
-00:00:29.117 --> 00:00:32.163
-records rules require, and
-they aren't retroactive.
+00:00:31.425 --> 00:00:35.063
+And disable, never delete,
+so you can always go back.
 
 10
-00:00:32.163 --> 00:00:33.651
-Route them out from day one.
-
-11
-00:00:33.651 --> 00:00:35.160
-Now, the limits.
+00:00:35.063 --> 00:00:36.220
+Then, drift.

@@ -1,54 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.459
-Hybrid lasts longer than anyone plans,
+00:00:00.050 --> 00:00:03.909
+At an agency our size, the
+limits bite in predictable ways,
 
 2
-00:00:02.459 --> 00:00:06.298
-so it helps to name exactly what
-still needs Active Directory.
+00:00:03.909 --> 00:00:07.275
+and this is the program's
+design guidance for each.
 
 3
-00:00:06.298 --> 00:00:08.889
-Synced users' attributes
-are still written there.
+00:00:07.275 --> 00:00:10.625
+A workflow per organization
+runs out of a hundred fast,
 
 4
-00:00:08.889 --> 00:00:11.789
-Kerberos applications
-need groups written back.
+00:00:10.625 --> 00:00:13.900
+so build a few general
+workflows that branch on codes.
 
 5
-00:00:11.789 --> 00:00:15.642
-D N S, D H C P and legacy
-apps keep the forest alive,
+00:00:13.900 --> 00:00:17.188
+Build one reusable Logic
+App per integration.
 
 6
-00:00:15.642 --> 00:00:20.812
-and Windows logins to SQL
-Server skip Conditional Access.
+00:00:17.188 --> 00:00:20.706
+Treat every on-demand run as
+a change with a second person,
 
 7
-00:00:20.812 --> 00:00:23.939
-Hybrid-joined devices still
-need some domain policy.
+00:00:20.706 --> 00:00:23.401
+because it can disable
+the wrong ten people.
 
 8
-00:00:23.939 --> 00:00:28.077
-Moving a population's source of
-authority has firm entry checks,
+00:00:23.401 --> 00:00:26.199
+Size execution limits so a reorganization
 
 9
-00:00:28.077 --> 00:00:31.590
-and whether that move works
-in G C C is still unverified.
+00:00:26.199 --> 00:00:29.075
+gets quarantined until
+someone approves it.
 
 10
-00:00:31.590 --> 00:00:36.620
-So retiring AD means clearing a list of
-named dependencies, not reaching a date.
+00:00:29.075 --> 00:00:33.887
+For urgent terminations, don't wait
+for the schedule: disable and revoke.
 
 11
-00:00:36.620 --> 00:00:37.990
-Here's the checklist.
+00:00:33.887 --> 00:00:37.441
+And until PIV revoke and
+device retire are automated,
+
+12
+00:00:37.441 --> 00:00:39.863
+keep a leaver checklist with owners.
+
+13
+00:00:39.863 --> 00:00:41.860
+Next, what still needs AD.
