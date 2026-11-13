@@ -16,7 +16,7 @@
 #>
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+    [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
     [Parameter(Mandatory)][int]$Wave,
     [Parameter(Mandatory)][string]$BindingsPath,
     [Parameter(Mandatory)][string]$EmergencyConfigPath,

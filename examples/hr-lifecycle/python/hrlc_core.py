@@ -22,11 +22,9 @@ SEVERITIES = ("Finding", "Warn", "Info")
 COUNTED = ("Finding", "Warn")
 
 # Graph host per cloud (Learn, "Microsoft Graph national cloud deployments"): Microsoft 365 GCC uses
-# the worldwide service; GCC High and DoD have their own hosts. No default: a tool must be told.
+# the worldwide service. No default: a tool must be told.
 CLOUDS = {
-    "gcc": {"graph": "graph.microsoft.com", "login": "login.microsoftonline.com", "azureGovernment": False},
-    "gcchigh": {"graph": "graph.microsoft.us", "login": "login.microsoftonline.us", "azureGovernment": True},
-    "dod": {"graph": "dod-graph.microsoft.us", "login": "login.microsoftonline.us", "azureGovernment": True},
+    "gcc": {"graph": "graph.microsoft.com", "login": "login.microsoftonline.com"},
 }
 
 
@@ -36,10 +34,10 @@ class HrlcError(Exception):
 
 def cloud(name: str | None) -> dict[str, Any]:
     if not name:
-        raise HrlcError("name the cloud: --cloud gcc, gcchigh or dod (there is no default)")
+        raise HrlcError("name the cloud: --cloud gcc (there is no default)")
     key = name.lower()
     if key not in CLOUDS:
-        raise HrlcError(f"unknown cloud {name!r}; expected gcc, gcchigh or dod")
+        raise HrlcError(f"unknown cloud {name!r}; expected gcc")
     return dict(CLOUDS[key], name=key)
 
 

@@ -15,7 +15,7 @@ Set-StrictMode -Version 3.0
 $script:CoreSchema = 'urn:ietf:params:scim:schemas:core:2.0:User'
 $script:EnterpriseSchema = 'urn:ietf:params:scim:schemas:extension:enterprise:2.0:User'
 $script:BulkSchema = 'urn:ietf:params:scim:api:messages:2.0:BulkRequest'
-$script:EndpointPattern = '^https://(graph\.microsoft\.com|graph\.microsoft\.us|dod-graph\.microsoft\.us)/(v1\.0|beta)/servicePrincipals/[0-9a-fA-F-]{36}/synchronization/jobs/[A-Za-z0-9._-]+/bulkUpload$'
+$script:EndpointPattern = '^https://graph\.microsoft\.com/(v1\.0|beta)/servicePrincipals/[0-9a-fA-F-]{36}/synchronization/jobs/[A-Za-z0-9._-]+/bulkUpload$'
 $script:SecretKeyPattern = '(secret|password|passwd|token|credential|private|apikey|api_key|bearer)'
 $script:DatePattern = '^\d{4}-\d{2}-\d{2}$'
 $script:OffsetPattern = '^[+-](0\d|1[0-4]):[0-5]\d$'
@@ -92,7 +92,7 @@ function Test-HcmEndpoint {
     <#
     .SYNOPSIS
         Return the endpoint unchanged when it is an https Microsoft Graph /bulkUpload URL for one
-        provisioning job (graph.microsoft.com, graph.microsoft.us or dod-graph.microsoft.us);
+        provisioning job on graph.microsoft.com;
         otherwise throw.
     .EXAMPLE
         Test-HcmEndpoint -Endpoint (Get-HcmSettings -Path ./config/settings.example.json).endpoint
@@ -100,7 +100,7 @@ function Test-HcmEndpoint {
     [CmdletBinding()]
     param([AllowEmptyString()][string]$Endpoint)
     if ($Endpoint -cnotmatch $script:EndpointPattern) {
-        throw 'endpoint must be an https Microsoft Graph /bulkUpload URL for one provisioning job (graph.microsoft.com, graph.microsoft.us or dod-graph.microsoft.us)'
+        throw 'endpoint must be an https Microsoft Graph /bulkUpload URL for one provisioning job on graph.microsoft.com'
     }
     return $Endpoint
 }

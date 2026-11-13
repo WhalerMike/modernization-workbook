@@ -182,15 +182,14 @@ Describe 'Shadow diff' {
 Describe 'Pause manifest and resume' {
     BeforeEach { $script:Fake = New-FakeGraph -Collections $script:Collections }
     It 'refuses an unknown cloud instead of defaulting to the worldwide endpoint' {
-        { Get-DrGraphEndpoint -Cloud 'GCCHigh' } | Should -Throw '*Unknown cloud*'
-        Get-DrGraphEndpoint -Cloud 'usgov' | Should -Be 'https://graph.microsoft.us'
-        Get-DrGraphEndpoint -Cloud 'USGovDoD' | Should -Be 'https://dod-graph.microsoft.us'
+        { Get-DrGraphEndpoint -Cloud 'Globl' } | Should -Throw '*Unknown cloud*'
+        Get-DrGraphEndpoint -Cloud 'global' | Should -Be 'https://graph.microsoft.com'
     }
     It 'records every collection''s state before pausing' {
-        $m = New-DrPauseManifest -Invoke $script:Fake.Invoke -Cloud USGov -Reason 'test' -TakenAt '2026-10-30T00:00:00Z'
+        $m = New-DrPauseManifest -Invoke $script:Fake.Invoke -Cloud Global -Reason 'test' -TakenAt '2026-10-30T00:00:00Z'
         @($m.collections).Count | Should -Be 4
         ($m.collections | Where-Object id -EQ 'g2').state_before | Should -Be 'Paused'
-        $script:Fake.Calls[0].Uri | Should -BeLike 'https://graph.microsoft.us/v1.0/groups*'
+        $script:Fake.Calls[0].Uri | Should -BeLike 'https://graph.microsoft.com/v1.0/groups*'
     }
     It 'reports without -Apply and changes nothing' {
         $m = New-DrPauseManifest -Invoke $script:Fake.Invoke -Cloud Global -Reason 'test'

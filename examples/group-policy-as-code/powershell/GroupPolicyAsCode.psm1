@@ -22,13 +22,10 @@
 Set-StrictMode -Version 3.0
 
 # Graph service roots per cloud (Learn, "Microsoft Graph national cloud deployments"). GCC uses
-# the worldwide endpoint; GCC High and DoD have their own. Connect-MgGraph environment names are
-# from Learn, "Get-MgEnvironment".
+# the worldwide endpoint. Connect-MgGraph environment names are from Learn, "Get-MgEnvironment".
 $script:GpcClouds = [ordered]@{
     gcc     = @{ GraphHost = 'https://graph.microsoft.com'; Environment = 'Global' }
     global  = @{ GraphHost = 'https://graph.microsoft.com'; Environment = 'Global' }
-    gcchigh = @{ GraphHost = 'https://graph.microsoft.us'; Environment = 'USGov' }
-    dod     = @{ GraphHost = 'https://dod-graph.microsoft.us'; Environment = 'USGovDoD' }
 }
 
 # Properties the service sets itself. Learn's Create page lists them in the object; Microsoft's
@@ -44,10 +41,10 @@ $script:GpcEndpointSecurityTypes = @('appLockerRuleCollection', 'windowsFirewall
 function Get-GpcCloud {
     <#
     .SYNOPSIS
-        Returns the Graph host and Connect-MgGraph environment name for a cloud: gcc, global, gcchigh
-        or dod. An unknown name throws.
+        Returns the Graph host and Connect-MgGraph environment name for a cloud: gcc or global.
+        An unknown name throws.
     .EXAMPLE
-        Get-GpcCloud -Cloud gcchigh
+        Get-GpcCloud -Cloud gcc
     #>
 
     <# The Graph host and Connect-MgGraph environment for a cloud. Refuses a name it doesn't know. #>

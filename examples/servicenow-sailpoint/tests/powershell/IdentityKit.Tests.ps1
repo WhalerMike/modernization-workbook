@@ -37,8 +37,6 @@ Describe 'Get-KitConfig' {
 Describe 'Endpoints' {
     It 'maps <Cloud> to its national cloud endpoints' -TestCases @(
         @{ Cloud = 'Global'; Login = 'https://login.microsoftonline.com'; Graph = 'https://graph.microsoft.com' }
-        @{ Cloud = 'USGov'; Login = 'https://login.microsoftonline.us'; Graph = 'https://graph.microsoft.us' }
-        @{ Cloud = 'USGovDoD'; Login = 'https://login.microsoftonline.us'; Graph = 'https://dod-graph.microsoft.us' }
     ) {
         $e = Get-KitGraphEndpoint -Config @{ GRAPH_CLOUD = $Cloud }
         $e[0] | Should -Be $Login
@@ -98,10 +96,10 @@ Describe 'Tokens' {
     }
     It 'uses the national-cloud authority and scope for Graph' {
         Mock Invoke-RestMethod -ModuleName IdentityKit { [pscustomobject]@{ access_token = 'g' } }
-        $cfg = @{ GRAPH_CLOUD = 'USGov'; GRAPH_TENANT_ID = 'tid'; GRAPH_CLIENT_ID = 'cid' }
+        $cfg = @{ GRAPH_CLOUD = 'Global'; GRAPH_TENANT_ID = 'tid'; GRAPH_CLIENT_ID = 'cid' }
         (Get-KitGraphHeader -Config $cfg -Environment @{ GRAPH_CLIENT_SECRET = 's' }).Authorization | Should -Be 'Bearer g'
         Should -Invoke Invoke-RestMethod -ModuleName IdentityKit -Times 1 -ParameterFilter {
-            $Uri -eq 'https://login.microsoftonline.us/tid/oauth2/v2.0/token' -and $Body.scope -eq 'https://graph.microsoft.us/.default'
+            $Uri -eq 'https://login.microsoftonline.com/tid/oauth2/v2.0/token' -and $Body.scope -eq 'https://graph.microsoft.com/.default'
         }
     }
     It 'builds a PS256 client assertion from a certificate' {

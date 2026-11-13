@@ -23,7 +23,7 @@
 #>
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+    [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
     [Parameter(Mandatory)][ValidatePattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')][string]$TenantId,
     [Parameter(Mandatory)][string]$OutputPath,
     [Parameter(Mandatory)][string]$EmergencyConfigPath,

@@ -30,11 +30,6 @@ Describe 'Clouds' {
         $c.Login | Should -Be 'https://login.microsoftonline.com'
         $c.Arm | Should -Be 'https://management.azure.com'
     }
-    It 'GCC High and DoD use their own Graph hosts and Azure Government' {
-        (Get-NpiCloud gcchigh).Graph | Should -Be 'https://graph.microsoft.us'
-        (Get-NpiCloud dod).Graph | Should -Be 'https://dod-graph.microsoft.us'
-        (Get-NpiCloud dod).Arm | Should -Be 'https://management.usgovcloudapi.net'
-    }
     It 'refuses a cloud name it doesn''t know: there is no default' {
         { Get-NpiCloud 'GCC' } | Should -Throw '*Unknown cloud*'
     }

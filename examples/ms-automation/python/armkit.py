@@ -4,8 +4,7 @@ It applies Module 1's rules to Azure Resource Manager (ARM), which differs from 
 in four ways that matter to a script:
 
 * **Another host, another token.** ARM is `management.azure.com` in commercial Azure
-  (which a GCC tenant's subscriptions use) and `management.usgovcloudapi.net` in Azure
-  Government (graphkit.CLOUDS). A token is issued for one resource: a Graph token
+  (which a GCC tenant's subscriptions use; graphkit.CLOUDS). A token is issued for one resource: a Graph token
   can't call ARM. The client refuses to send its token to any other host, including a
   `nextLink` that points elsewhere.
 * **Azure RBAC, not token permissions.** An ARM token carries no `roles` claim to

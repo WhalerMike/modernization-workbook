@@ -26,13 +26,12 @@ Describe 'Clouds and declared calls' {
         $c.Arm | Should -Be 'https://management.azure.com'
         $c.AzureEnvironment | Should -Be 'AzureCloud'
     }
-    It 'GCC High and DoD use their own Graph hosts and Azure Government' {
-        (Get-PaCloud gcchigh).Graph | Should -Be 'https://graph.microsoft.us'
-        (Get-PaCloud dod).Graph | Should -Be 'https://dod-graph.microsoft.us'
-        (Get-PaCloud dod).Arm | Should -Be 'https://management.usgovcloudapi.net'
+    It 'global uses the same worldwide hosts as GCC' {
+        (Get-PaCloud global).Graph | Should -Be 'https://graph.microsoft.com'
+        (Get-PaCloud global).Arm | Should -Be 'https://management.azure.com'
     }
     It 'refuses a cloud name it does not know' {
-        { Get-PaCloud 'GCCHigh' } | Should -Throw '*Unknown cloud*'
+        { Get-PaCloud 'GCC' } | Should -Throw '*Unknown cloud*'
     }
     It 'the inventory needs exactly these Graph permissions, all read-only' {
         $p = Get-PaRequiredPermission -Task inventory
@@ -58,12 +57,12 @@ Describe 'Clouds and declared calls' {
         $r = New-PaReader -Cloud gcc -Task inventory -Invoke $evil
         { Invoke-PaList -Reader $r -CallId 'entra-role-definitions' } | Should -Throw '*Refusing to send the token*'
     }
-    It 'in GCC High, sends nothing to graph.microsoft.com' {
+    It 'in GCC, sends the call to the worldwide Graph host' {
         $seen = [Collections.Generic.List[string]]::new()
         $rec = { param($m, $u) $seen.Add($u); @{ value = @() } }.GetNewClosure()
-        $r = New-PaReader -Cloud gcchigh -Task inventory -Invoke $rec
+        $r = New-PaReader -Cloud gcc -Task inventory -Invoke $rec
         $null = Invoke-PaList -Reader $r -CallId 'entra-role-definitions'
-        $seen[0] | Should -BeLike 'https://graph.microsoft.us/v1.0/*'
+        $seen[0] | Should -BeLike 'https://graph.microsoft.com/v1.0/*'
     }
     It 'the fake refuses anything but GET' {
         $fake = New-PaFixtureInvoker -Path $script:Fixture

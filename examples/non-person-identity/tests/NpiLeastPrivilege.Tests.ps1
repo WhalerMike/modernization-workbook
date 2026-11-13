@@ -289,6 +289,6 @@ Describe 'The entry scripts' {
         { & (Join-Path $script:Root 'Invoke-NpiLeastPrivilegeAction.ps1') -Cloud gcc -PlanPath $plan -ApprovedSha256 ('0' * 64) -FixturePath $script:Fixture -OutputPath (Join-Path $script:Tmp 'lp-x') } | Should -Throw '*nobody reviewed*'
     }
     It 'refuses a register read in another cloud' {
-        { & (Join-Path $script:Root 'Invoke-NpiLeastPrivilege.ps1') -Cloud gcchigh -RegisterRun $script:InvRun -FixturePath $script:Fixture -InputPath $script:Inputs -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw '*not ''gcchigh''*'
+        { & (Join-Path $script:Root 'Invoke-NpiLeastPrivilege.ps1') -Cloud global -RegisterRun $script:InvRun -FixturePath $script:Fixture -InputPath $script:Inputs -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw '*not ''global''*'
     }
 }

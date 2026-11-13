@@ -18,7 +18,7 @@ BeforeAll {
     }
     function Get-States($Tenant) { @($Tenant.Collections.Values | ForEach-Object { "$($_.displayName)=$($_.state)" }) }
     # Answers: run the flow, cloud, groups phase, AU phase, confirm the signed-in account.
-    $script:Yes = @('yes', 'USGov', 'yes', 'yes', 'yes')
+    $script:Yes = @('yes', 'Global', 'yes', 'yes', 'yes')
 }
 
 Describe 'Learn sample pages' {
@@ -36,13 +36,13 @@ Describe 'Pause all' {
         @($t.Calls | Where-Object Method -EQ 'PATCH').Count | Should -Be 3
     }
     It 'signs in to the cloud chosen, with only the scopes for the phases chosen' {
-        $t = Invoke-LearnSample -Page (Get-Page 'pause-all') -Tenant (New-Tenant) -Answers @('yes', 'USGov', 'yes', 'no', 'yes')
-        $t.Connected.Environment | Should -Be 'USGov'
+        $t = Invoke-LearnSample -Page (Get-Page 'pause-all') -Tenant (New-Tenant) -Answers @('yes', 'Global', 'yes', 'no', 'yes')
+        $t.Connected.Environment | Should -Be 'Global'
         $t.Connected.Scopes | Should -Be @('Group.ReadWrite.All')
-        $t.Calls[0].Uri | Should -BeLike 'https://graph.microsoft.us/v1.0/groups*'
+        $t.Calls[0].Uri | Should -BeLike 'https://graph.microsoft.com/v1.0/groups*'
     }
-    It 'falls back to the worldwide cloud for an answer it does not recognize, such as GCCHigh' {
-        $t = Invoke-LearnSample -Page (Get-Page 'pause-all') -Tenant (New-Tenant) -Answers @('yes', 'GCCHigh', 'yes', 'no', 'yes')
+    It 'falls back to the worldwide cloud for an answer it does not recognize, such as a typo' {
+        $t = Invoke-LearnSample -Page (Get-Page 'pause-all') -Tenant (New-Tenant) -Answers @('yes', 'Globl', 'yes', 'no', 'yes')
         $t.Connected.Environment | Should -Be 'Global'
         $t.Calls[0].Uri | Should -BeLike 'https://graph.microsoft.com/*'
     }
@@ -91,7 +91,7 @@ Describe 'Resume' {
         $t = New-Tenant
         Invoke-LearnSample -Page (Get-Page 'pause-all') -Tenant $t -Answers $script:Yes | Out-Null
         $t.Connected = $null
-        Invoke-LearnSample -Page (Get-Page 'resume-specific-critical') -Tenant $t -Answers @('yes', 'USGov', 'yes', 'no', 'yes', '11111111-1111-1111-1111-111111111111', 'yes') | Out-Null
+        Invoke-LearnSample -Page (Get-Page 'resume-specific-critical') -Tenant $t -Answers @('yes', 'Global', 'yes', 'no', 'yes', '11111111-1111-1111-1111-111111111111', 'yes') | Out-Null
         Get-States $t | Should -Contain 'FIN-LED all members=On'
         Get-States $t | Should -Contain 'Windows company devices=Paused'
     }

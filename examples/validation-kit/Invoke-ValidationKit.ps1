@@ -41,7 +41,7 @@ param(
     [string]$FixturePath,
     # Folder with the input files (exceptions.csv, hr-export.csv, cmdb.csv, ...). Defaults to -FixturePath.
     [string]$InputPath,
-    [ValidateSet('gcc', 'global', 'gcchigh', 'dod')][string]$Cloud = 'gcc',
+    [ValidateSet('gcc', 'global')][string]$Cloud = 'gcc',
     # The tenant to sign in to. ValidationManifest.json records the tenant the session signed in to (the
     # token's tid claim), or this value when there is no session; a session in another tenant is an error.
     [string]$TenantId,

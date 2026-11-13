@@ -43,8 +43,7 @@ def client(responses, cloud="gcc", **kw):
 
 def test_cloud_endpoints_and_scope():
     assert GraphClient("gcc", lambda s: "t").base == "https://graph.microsoft.com/v1.0"
-    assert GraphClient("gcchigh", lambda s: "t").scope == "https://graph.microsoft.us/.default"
-    assert GraphClient("dod", lambda s: "t").base == "https://dod-graph.microsoft.us/v1.0"
+    assert GraphClient("gcc", lambda s: "t").scope == "https://graph.microsoft.com/.default"
     with pytest.raises(ValueError):
         GraphClient("gcc-moderate", lambda s: "t")
 
@@ -66,12 +65,6 @@ def test_next_link_to_another_host_is_refused():
     g, _, _ = client([(200, {}, {"value": [], "@odata.nextLink": "https://evil.example/steal"})])
     with pytest.raises(ValueError, match="refusing"):
         list(g.get_all("/users"))
-
-
-def test_gcchigh_client_refuses_worldwide_link():
-    g, _, _ = client([], cloud="gcchigh")
-    with pytest.raises(ValueError):
-        g.url("https://graph.microsoft.com/v1.0/users")
 
 
 def test_429_waits_retry_after_then_succeeds():

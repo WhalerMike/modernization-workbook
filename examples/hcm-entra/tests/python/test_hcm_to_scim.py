@@ -275,7 +275,8 @@ def test_settings_refuse_pacing_faster_than_documented_limit():
     "url, ok",
     [
         ("https://graph.microsoft.com/v1.0/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/API2AAD.abc.def/bulkUpload", True),
-        ("https://graph.microsoft.us/beta/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/API2AD.abc/bulkUpload", True),
+        ("https://graph.microsoft.com/beta/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/API2AD.abc/bulkUpload", True),
+        ("https://graph.example.invalid/beta/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/API2AD.abc/bulkUpload", False),
         ("http://graph.microsoft.com/v1.0/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/x/bulkUpload", False),
         ("https://example.com/v1.0/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/x/bulkUpload", False),
         ("https://graph.microsoft.com/v1.0/users", False),

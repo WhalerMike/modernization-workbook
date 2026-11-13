@@ -3,10 +3,9 @@
 It does the things every Graph script has to get right, and nothing else
 (the developer workbook's Chapter 02 explains each one):
 
-* **The right cloud.** A Microsoft 365 GCC tenant uses the worldwide endpoints;
-  GCC High and DoD use their own sign-in and Graph hosts (see CLOUDS). Azure
-  Resource Manager follows the Azure cloud: commercial for GCC, Azure Government
-  for GCC High and DoD. The client refuses to send its token to any other host,
+* **The right cloud.** A Microsoft 365 GCC tenant uses the worldwide endpoints
+  (see CLOUDS), and Azure Resource Manager follows the Azure cloud: commercial for
+  GCC. The client refuses to send its token to any other host,
   including a nextLink that points elsewhere.
 * **Least privilege per call.** `graph-calls.json` lists every call the tasks make,
   with its least-privileged application permission. Given a task's calls, the client
@@ -44,8 +43,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable, Iterator
 
-# Endpoints per cloud: Microsoft Learn, "Microsoft Graph national cloud deployments",
-# "Compare Azure Government and global Azure" and "Get-MgEnvironment". GCC is the
+# Endpoints per cloud: Microsoft Learn, "Microsoft Graph national cloud deployments"
+# and "Get-MgEnvironment". GCC is the
 # worldwide service: Office 365 GCC is paired with Microsoft Entra ID in (commercial)
 # Azure, so its Azure Resource Manager host is the commercial one too.
 CLOUDS: dict[str, dict[str, str]] = {
@@ -53,10 +52,6 @@ CLOUDS: dict[str, dict[str, str]] = {
                "arm": "https://management.azure.com", "ps_env": "Global", "azure_env": "AzureCloud"},
     "gcc": {"login": "https://login.microsoftonline.com", "graph": "https://graph.microsoft.com",
             "arm": "https://management.azure.com", "ps_env": "Global", "azure_env": "AzureCloud"},
-    "gcchigh": {"login": "https://login.microsoftonline.us", "graph": "https://graph.microsoft.us",
-                "arm": "https://management.usgovcloudapi.net", "ps_env": "USGov", "azure_env": "AzureUSGovernment"},
-    "dod": {"login": "https://login.microsoftonline.us", "graph": "https://dod-graph.microsoft.us",
-            "arm": "https://management.usgovcloudapi.net", "ps_env": "USGovDoD", "azure_env": "AzureUSGovernment"},
 }
 VERSIONS = ("v1.0", "beta")
 CALLS_FILE = Path(__file__).resolve().parents[1] / "graph-calls.json"
@@ -76,7 +71,7 @@ def endpoints(cloud: str) -> dict[str, str]:
 
 def scope_for(cloud: str, resource: str = "graph") -> str:
     """The app-only `.default` scope for one resource in one cloud. A token is for one resource:
-    a Graph token can't call Resource Manager, and a worldwide token can't call GCC High."""
+    a Graph token can't call Resource Manager."""
     if resource not in ("graph", "arm"):
         raise ValueError("resource is 'graph' or 'arm'")
     return f"{endpoints(cloud)[resource]}/.default"
@@ -169,12 +164,11 @@ def azure_identity_provider(
     cloud: str, tenant_id: str, client_id: str | None = None, certificate_path: str | None = None
 ) -> Callable[[str], str]:
     """A token provider from azure-identity: a certificate credential, or a managed identity
-    when no certificate is given. Government clouds need the US Government authority: an
-    azure-identity credential signs in to the public cloud unless it is told otherwise."""
+    when no certificate is given. GCC signs in with the public cloud authority."""
     from azure.identity import AzureAuthorityHosts, CertificateCredential, ManagedIdentityCredential
 
     endpoints(cloud)  # refuse an unknown cloud before building anything
-    authority = AzureAuthorityHosts.AZURE_GOVERNMENT if cloud in ("gcchigh", "dod") else AzureAuthorityHosts.AZURE_PUBLIC_CLOUD
+    authority = AzureAuthorityHosts.AZURE_PUBLIC_CLOUD
     if certificate_path:
         cred = CertificateCredential(tenant_id, client_id, certificate_path, authority=authority)
     else:

@@ -165,9 +165,9 @@ class Builders(unittest.TestCase):
         claims = {c["name"]: c["value"] for c in pol["AzureADLifecycleWorkflowsAuthPOPAuthPolicy"]["claims"]}
         self.assertEqual(claims["appid"], "ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7")
 
-    def test_azure_government_policy_values_are_refused_until_learn_documents_them(self):
+    def test_policy_values_for_another_azure_cloud_are_refused(self):
         e = copy.deepcopy(ENTRY)
-        e["azureCloud"] = "AzureUSGovernment"
+        e["azureCloud"] = "AzureOther"
         with self.assertRaises(lcwext.BuildError):
             lcwext.build_access_control(e, TENANT)
 

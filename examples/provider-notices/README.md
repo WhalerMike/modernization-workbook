@@ -38,12 +38,12 @@ tests/fixtures/settings.lab.json        Lab 1's settings: every provider, fictio
 | Provider | What the kit reads | Least privilege | Government cloud |
 |---|---|---|---|
 | Azure | Resource Graph `ServiceHealthResources`: `microsoft.resourcehealth/events` (service issues, planned maintenance, health advisories including retirements, security advisories) and `.../events/impactedresources`, with `az graph query` | Reader on each subscription. The sensitive fields and impacted resources of a security advisory need Service Health Security Reader (Reader and Monitoring Reader can't see them) | Azure Government: `az cloud set --name AzureUSGovernment`, Resource Manager `management.usgovcloudapi.net`. Learn's samples link the Azure Government portal; an explicit availability statement for Resource Graph's Service Health table is not yet specified |
-| Microsoft 365 | Graph v1.0 `/admin/serviceAnnouncement/messages`, `/issues`, `/healthOverviews` | `ServiceMessage.Read.All` (messages), `ServiceHealth.Read.All` (issues, overviews); delegated sign-in also needs an admin role | GCC uses `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` (Learn lists the API in US Government L4 and L5) |
-| Oracle Cloud Infrastructure | Announcements: `oci announce announcements list` (latest in each chain), then `get` for affected resources | `Allow group <group> to read announcements in tenancy` (`inspect` lists summaries only) | US Government Cloud (OC2): `announcements.us-langley-1.oraclegovcloud.com`, `announcements.us-luke-1.oraclegovcloud.com`. OC3: not yet specified |
+| Microsoft 365 | Graph v1.0 `/admin/serviceAnnouncement/messages`, `/issues`, `/healthOverviews` | `ServiceMessage.Read.All` (messages), `ServiceHealth.Read.All` (issues, overviews); delegated sign-in also needs an admin role | GCC uses `graph.microsoft.com` |
+| Oracle Cloud Infrastructure | Announcements: `oci announce announcements list` (latest in each chain), then `get` for affected resources | `Allow group <group> to read announcements in tenancy` (`inspect` lists summaries only) | US Government Cloud (OC2): `announcements.us-langley-1.oraclegovcloud.com`, `announcements.us-luke-1.oraclegovcloud.com` |
 | AWS | AWS Health `describe-events` (open and upcoming), `describe-event-details`, `describe-affected-entities` | A customer managed policy with `health:DescribeEvents`, `health:DescribeEventDetails`, `health:DescribeAffectedEntities` (AWS publishes no read-only Health policy). The account needs a qualifying AWS Support plan (AWS's pages name the plans differently; see the guide's G4) | Commercial: `health.us-east-1.amazonaws.com`. GovCloud (US): one endpoint, `health.us-gov-west-1.amazonaws.com`; EventBridge there doesn't carry public Service Health events |
-| Google Cloud | Personalized Service Health `events` (project) or `organizationEvents` (organization) | `roles/servicehealth.viewer` on the project or organization; the API enabled once on the project | Personalized Service Health isn't in Assured Workloads' FedRAMP Moderate or High, IL4 or IL5 packages. Its API has incidents only: no planned maintenance |
+| Google Cloud | Personalized Service Health `events` (project) or `organizationEvents` (organization) | `roles/servicehealth.viewer` on the project or organization; the API enabled once on the project | Personalized Service Health isn't in Assured Workloads' FedRAMP Moderate or High packages. Its API has incidents only: no planned maintenance |
 
-The settings file names each provider's cloud (`AzureCloud` or `AzureUSGovernment`; `gcc`, `gcchigh` or `dod`; `oc1` or `oc2`; `aws` or `aws-us-gov`). Any other name throws; there is no default. The live invoker refuses to run if a session is signed in to another cloud, tenant, partition or realm.
+The settings file names each provider's cloud (`AzureCloud` or `AzureUSGovernment`; `global` or `gcc`; `oc1` or `oc2`; `aws` or `aws-us-gov`). Any other name throws; there is no default. The live invoker refuses to run if a session is signed in to another cloud, tenant, partition or realm.
 
 ## Lab 1: fixtures, no tenant
 
@@ -73,7 +73,7 @@ Connect-MgGraph -Environment Global -Scopes ServiceMessage.Read.All,ServiceHealt
 ./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider azure, m365 -OutputPath out/live
 ```
 
-`<settings-file>` is your copy of `deploy/settings.template.json` with every placeholder filled for the enabled providers. Use `AzureUSGovernment` and `-Environment USGov` (GCC High) or `USGovDoD` (DoD) for the government clouds. OCI, AWS and Google use their own CLIs' sign-in (`oci`, `aws`, `gcloud`); the collector calls them with the region, partition or project from the settings file.
+`<settings-file>` is your copy of `deploy/settings.template.json` with every placeholder filled for the enabled providers. Use `AzureUSGovernment` for Azure Government. OCI, AWS and Google use their own CLIs' sign-in (`oci`, `aws`, `gcloud`); the collector calls them with the region, partition or project from the settings file.
 
 ## Deploy
 

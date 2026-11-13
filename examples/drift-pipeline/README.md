@@ -40,7 +40,7 @@ Python 3.10 or later; PyYAML for the workflow checks. Work in this folder.
 | `python python/drift_pipeline.py issues --diff <dir>/drift-report.json --out <file>` | Drafts what to open, comment on and close, one entry per finding, keyed by a fingerprint. No object names unless `--include-names` | 0, 1 |
 | `python python/drift_pipeline.py package --kit-run <kit-run> --diff <report> --provenance <kind>=<file> ... [--previous-manifest <file>] --out <dir>` | Writes `<dir>/<run-id>/` with the kit run, the drift report, the provenance files, `EVIDENCE-MANIFEST.json` and `SHA256SUMS` | 0, 1 |
 | `python python/drift_pipeline.py verify <package>` | Rechecks every file, `SHA256SUMS` and the kit run's own manifest | 0, 1 |
-| `python python/drift_pipeline.py cloud --name gcc\|gcchigh\|dod` | Prints the sign-in authority, Graph host, Azure environment, token audience and Graph PowerShell environment for a cloud | 0, 1 |
+| `python python/drift_pipeline.py cloud --name gcc` | Prints the sign-in authority, Graph host, Azure environment, token audience and Graph PowerShell environment for the cloud | 0, 1 |
 | `python python/workflow_lint.py <workflow.yml>` or `--learn-samples` | Checks a workflow offline (rules WF-01 to WF-12) | 0, 2 findings, 1 |
 
 Provenance kinds: `hcm-entra` (`provenance.json`, schema `fmp-hcm-provenance/1`), `machine-configuration` (`provenance.json`, `fmp-mc-provenance/1`) and `dynamic-rules` (`check-results.json`). Anything else is refused.

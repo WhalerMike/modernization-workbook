@@ -42,8 +42,7 @@ def client(responses, cloud="gcc"):
 
 def test_arm_host_and_scope_follow_the_azure_cloud():
     assert ArmClient("gcc", lambda s: "t").root == "https://management.azure.com"
-    assert ArmClient("gcchigh", lambda s: "t").scope == "https://management.usgovcloudapi.net/.default"
-    assert ArmClient("dod", lambda s: "t").root == "https://management.usgovcloudapi.net"
+    assert ArmClient("gcc", lambda s: "t").scope == "https://management.azure.com/.default"
 
 
 def test_resource_graph_pages_with_skiptoken_and_same_query_and_scope():
@@ -94,12 +93,6 @@ def test_next_link_to_another_host_is_refused():
     g, _, _ = client([(200, {}, {"value": [], "nextLink": "https://evil.example/subscriptions"})])
     with pytest.raises(ValueError, match="refusing"):
         g.subscriptions()
-
-
-def test_gcchigh_client_refuses_the_commercial_host():
-    g, _, _ = client([], cloud="gcchigh")
-    with pytest.raises(ValueError):
-        g.url("GET", "https://management.azure.com/subscriptions")
 
 
 def test_undeclared_call_is_refused():

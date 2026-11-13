@@ -35,8 +35,6 @@ $script:Defaults = [ordered]@{
 # Microsoft Learn, "Microsoft Graph national cloud deployments". GCC uses Global.
 $script:GraphClouds = @{
     Global   = @('https://login.microsoftonline.com', 'https://graph.microsoft.com')
-    USGov    = @('https://login.microsoftonline.us', 'https://graph.microsoft.us')
-    USGovDoD = @('https://login.microsoftonline.us', 'https://dod-graph.microsoft.us')
 }
 $script:ClassSeverity = @{
     missing_identity = 'High'; stale_access = 'High'; orphan_account = 'High'; attribute_drift = 'Medium'
@@ -137,16 +135,16 @@ function Get-KitSnBaseUrl {
 function Get-KitGraphEndpoint {
     <#
     .SYNOPSIS
-    Returns @(loginRoot, graphRoot) for GRAPH_CLOUD (Global, USGov, USGovDoD).
+    Returns @(loginRoot, graphRoot) for GRAPH_CLOUD (Global, which GCC uses).
     .EXAMPLE
-    (Get-KitGraphEndpoint -Config @{ GRAPH_CLOUD = 'USGov' })[1]   # https://graph.microsoft.us
+    (Get-KitGraphEndpoint -Config @{ GRAPH_CLOUD = 'Global' })[1]   # https://graph.microsoft.com
     #>
     [OutputType([string[]])]
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Config)
     $cloud = if ($Config.GRAPH_CLOUD) { $Config.GRAPH_CLOUD } else { 'Global' }
     if (-not $script:GraphClouds.ContainsKey($cloud)) {
-        throw "GRAPH_CLOUD must be one of Global, USGov, USGovDoD; got '$cloud'."
+        throw "GRAPH_CLOUD must be Global; got '$cloud'."
     }
     return $script:GraphClouds[$cloud]
 }

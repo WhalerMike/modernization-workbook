@@ -100,7 +100,7 @@ function Invoke-Ch04AzAddExample {
     param([Parameter(Mandatory)]$Fake, [string]$Cloud = 'gcc')
     $code = Get-Ch04AzExample -Page AzAdd
     $commands = @($code -split "\r?\n" | Where-Object { $_ -match '^(\$Policy = |Add-AzKeyVaultCertificate |Get-AzKeyVaultCertificate)' })
-    $global:Ch04Az = [pscustomobject]@{ Fake = $Fake; Suffix = $(if ($Cloud -in 'gcchigh', 'dod') { 'vault.usgovcloudapi.net' } else { 'vault.azure.net' }); Calls = [Collections.Generic.List[object]]::new(); Cert = $null }
+    $global:Ch04Az = [pscustomobject]@{ Fake = $Fake; Suffix = 'vault.azure.net'; Calls = [Collections.Generic.List[object]]::new(); Cert = $null }
     try {
         function global:New-AzKeyVaultCertificatePolicy {
             [CmdletBinding()] param($SecretContentType, $SubjectName, $IssuerName, [int]$ValidityInMonths, [switch]$ReuseKeyOnRenewal, $RenewAtNumberOfDaysBeforeExpiry, $RenewAtPercentageLifetime, $EmailAtNumberOfDaysBeforeExpiry)

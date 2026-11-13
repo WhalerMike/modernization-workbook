@@ -6,8 +6,7 @@
     python/intune_tasks.py, tested against the same fixtures and expected results.
 
 .DESCRIPTION
-    Connect-FmwGraph picks the right cloud (GCC is the worldwide service; GCC High and DoD
-    have their own environments) and signs in with a certificate or a managed identity,
+    Connect-FmwGraph picks the right cloud (GCC is the worldwide service) and signs in with a certificate or a managed identity,
     never a client secret. Get-FmwGraphCollection follows @odata.nextLink, and checks every
     page with Assert-FmwGraphCall: the token stays on the cloud's Graph host, a task makes only
     the calls graph-calls.json declares for it, and a beta call must be declared. Test-FmwTokenRole
@@ -27,14 +26,12 @@ Set-StrictMode -Version Latest
 $script:GlobalAdmin = '62e90394-69f5-4237-9190-012177145e10'   # Global Administrator role template ID
 
 # Microsoft Learn, "Use Microsoft Graph PowerShell authentication commands" (Get-MgEnvironment),
-# "Microsoft Graph national cloud deployments" and "Compare Azure Government and global Azure".
+# and "Microsoft Graph national cloud deployments".
 # GCC is the worldwide service, paired with Microsoft Entra ID in commercial Azure, so its Azure
 # Resource Manager host is the commercial one. The same values as CLOUDS in python/graphkit.py.
 $script:Clouds = @{
     global  = @{ Environment = 'Global';   Login = 'https://login.microsoftonline.com'; Graph = 'https://graph.microsoft.com';    Arm = 'https://management.azure.com';          AzureEnvironment = 'AzureCloud' }
     gcc     = @{ Environment = 'Global';   Login = 'https://login.microsoftonline.com'; Graph = 'https://graph.microsoft.com';    Arm = 'https://management.azure.com';          AzureEnvironment = 'AzureCloud' }
-    gcchigh = @{ Environment = 'USGov';    Login = 'https://login.microsoftonline.us';  Graph = 'https://graph.microsoft.us';     Arm = 'https://management.usgovcloudapi.net'; AzureEnvironment = 'AzureUSGovernment' }
-    dod     = @{ Environment = 'USGovDoD'; Login = 'https://login.microsoftonline.us';  Graph = 'https://dod-graph.microsoft.us'; Arm = 'https://management.usgovcloudapi.net'; AzureEnvironment = 'AzureUSGovernment' }
 }
 $script:ConnectedCloud = $null
 
@@ -56,11 +53,11 @@ function Get-FmwCloud {
     <#
     .SYNOPSIS
         Returns the sign-in, Graph and Azure Resource Manager endpoints and the Connect-MgGraph
-        environment name for a cloud. GCC uses the worldwide service; GCC High and DoD have their own.
+        environment name for a cloud. GCC uses the worldwide service.
     .EXAMPLE
-        (Get-FmwCloud -Cloud gcchigh).Graph   # https://graph.microsoft.us
+        (Get-FmwCloud -Cloud gcc).Graph   # https://graph.microsoft.com
     #>
-    param([Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud)
+    param([Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud)
     $script:Clouds[$Cloud]
 }
 
@@ -70,13 +67,13 @@ function Connect-FmwGraph {
         Signs in to Microsoft Graph app-only in the chosen cloud, with a certificate or a managed
         identity (never a client secret), and remembers the cloud for later calls.
     .EXAMPLE
-        Connect-FmwGraph -Cloud gcchigh -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+        Connect-FmwGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
     #>
 
     <# App-only sign-in: a certificate from the CurrentUser or LocalMachine store, or a managed identity. #>
     [CmdletBinding(DefaultParameterSetName = 'Certificate')]
     param(
-        [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+        [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
         [Parameter(Mandatory, ParameterSetName = 'Certificate')][string]$TenantId,
         [Parameter(Mandatory, ParameterSetName = 'Certificate')][string]$ClientId,
         [Parameter(Mandatory, ParameterSetName = 'Certificate')][string]$CertificateThumbprint,
@@ -143,7 +140,7 @@ function Assert-FmwGraphCall {
     param(
         [Parameter(Mandatory)][string]$Method,
         [Parameter(Mandatory)][string]$Uri,
-        [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+        [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
         [string]$Task
     )
     $graphHost = ([uri](Get-FmwCloud $Cloud).Graph).Host
@@ -193,7 +190,7 @@ function Get-FmwGraphCollection {
         [Parameter(Mandatory)][string]$Uri,
         [switch]$Advanced,
         [string]$Task,
-        [ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud = $script:ConnectedCloud
+        [ValidateSet('global', 'gcc')][string]$Cloud = $script:ConnectedCloud
     )
     if (-not $Cloud) { throw 'No cloud: run Connect-FmwGraph first, or pass -Cloud' }
     $headers = @{ 'x-ms-throttle-priority' = 'Low' }
@@ -213,7 +210,7 @@ function Get-FmwBetaCollection {
         Reads a beta collection without depending on it. A refused call, or a 400, 404 or 501 from
         Graph, returns available = false with the reason instead of an error.
     .EXAMPLE
-        Get-FmwBetaCollection -Path '/deviceManagement/windowsAutopilotDeviceIdentities' -Task autopilot-profiles -Cloud gcchigh
+        Get-FmwBetaCollection -Path '/deviceManagement/windowsAutopilotDeviceIdentities' -Task autopilot-profiles -Cloud gcc
     #>
 
     <#
@@ -224,7 +221,7 @@ function Get-FmwBetaCollection {
     param(
         [Parameter(Mandatory)][string]$Path,
         [Parameter(Mandatory)][string]$Task,
-        [ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud = $script:ConnectedCloud
+        [ValidateSet('global', 'gcc')][string]$Cloud = $script:ConnectedCloud
     )
     $uri = '/beta' + $(if ($Path.StartsWith('/')) { $Path } else { "/$Path" })
     try { $null = Assert-FmwGraphCall -Method GET -Uri $uri -Cloud $Cloud -Task $Task }
@@ -835,7 +832,7 @@ function Invoke-FmwIntuneTask {
     )
     Assert-FmwSessionRole -Task $Task
     if ($Task -eq 'autopilot-profiles') {
-        # Beta, read without depending on it: not offered in GCC High or DoD, or a changed beta shape,
+        # Beta, read without depending on it: not offered in this cloud, or a changed beta shape,
         # gives "not evaluated" instead of a failed run.
         $beta = Get-FmwBetaCollection -Path "/deviceManagement/windowsAutopilotDeviceIdentities?`$select=$script:AutopilotSelect" -Task $Task
         if (-not $beta.available) { return [ordered]@{ stage = 'beta'; evaluated = $false; reason = $beta.reason } }

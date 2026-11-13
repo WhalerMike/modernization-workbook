@@ -96,11 +96,6 @@ def check_cloud(s: dict[str, Any], report: Report) -> None:
         return
     report.add("PASS", "PF-04", f"cloud {c['name']}: Graph {c['graph']}, Azure {c['azure_environment']}, "
                                 f"Graph PowerShell {c['mg_environment']}, Arc playbook {ad.ARC_PLAYBOOK[c['azure_environment']]}")
-    if c["azure_environment"] == "AzureUSGovernment":
-        report.add("WARN", "PF-04", "Azure Government: Arc onboarding uses 02_arc_onboarding.yml, which reads the "
-                                    "onboarding service principal's secret from Ansible Vault at run time, not from this file")
-        report.add("WARN", "PF-04", "dynamic administrative units aren't documented for GCC High or DoD; units keep "
-                                    "assigned membership kept by automation (implementation guide, Gate 4)")
 
 
 def check_certificates(s: dict[str, Any], report: Report) -> None:

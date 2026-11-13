@@ -87,7 +87,7 @@ Describe 'Chapter 09: the settings file' {
     }
     It 'throws for an unknown cloud and for a missing section' {
         $p = Join-Path $TestDrive 'bad.json'
-        (Get-Content $script:SettingsPath -Raw) -replace '"cloud": "gcc"', '"cloud": "GCCHigh"' | Set-Content $p
+        (Get-Content $script:SettingsPath -Raw) -replace '"cloud": "gcc"', '"cloud": "GCC"' | Set-Content $p
         { Read-PaDeploySettings -Path $p } | Should -Throw '*Unknown cloud*'
         $j = Get-Content $script:SettingsPath -Raw | ConvertFrom-Json -AsHashtable; $j.Remove('smokeTest'); $j | ConvertTo-Json -Depth 30 | Set-Content $p
         { Read-PaDeploySettings -Path $p } | Should -Throw "*'smokeTest' is required*"

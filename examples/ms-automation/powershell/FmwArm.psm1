@@ -6,8 +6,7 @@
     fixtures and expected results.
 
 .DESCRIPTION
-    Connect-FmwAzure signs in to the right Azure cloud (commercial for GCC; Azure Government for
-    GCC High and DoD) with a certificate or a managed identity, never a client secret. The
+    Connect-FmwAzure signs in to the right Azure cloud (commercial for GCC) with a certificate or a managed identity, never a client secret. The
     identity needs only the Reader role. Get-FmwArgRows pages a Resource Graph query with
     -SkipToken. The Test-* functions are pure: they take query rows and return findings, so they
     can be tested without a subscription.
@@ -19,7 +18,7 @@
 Set-StrictMode -Version Latest
 
 $script:Kit = Split-Path -Parent $PSScriptRoot
-$script:AzureEnv = @{ global = 'AzureCloud'; gcc = 'AzureCloud'; gcchigh = 'AzureUSGovernment'; dod = 'AzureUSGovernment' }
+$script:AzureEnv = @{ global = 'AzureCloud'; gcc = 'AzureCloud' }
 
 # The same queries as python/arc_tasks.py: a string id on every row so paging works, no take or limit,
 # no extension settings, and each sorted by a unique column so pages don't repeat or skip rows.
@@ -115,17 +114,16 @@ function Connect-FmwAzure {
     .SYNOPSIS
         Signs in to the Azure cloud that matches the tenant, as an app with a certificate or as a managed identity.
     .DESCRIPTION
-        GCC and global use commercial Azure (AzureCloud); GCC High and DoD use Azure Government
-        (AzureUSGovernment). Never a client secret. The identity needs only the Reader role on the
+        GCC and global use commercial Azure (AzureCloud). Never a client secret. The identity needs only the Reader role on the
         subscriptions or management group the checks read.
     .EXAMPLE
         Connect-FmwAzure -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
     .EXAMPLE
-        Connect-FmwAzure -Cloud gcchigh -Identity
+        Connect-FmwAzure -Cloud gcc -Identity
     #>
     [CmdletBinding(DefaultParameterSetName = 'Certificate')]
     param(
-        [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+        [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
         [Parameter(Mandatory, ParameterSetName = 'Certificate')][string]$TenantId,
         [Parameter(Mandatory, ParameterSetName = 'Certificate')][string]$ClientId,
         [Parameter(Mandatory, ParameterSetName = 'Certificate')][string]$CertificateThumbprint,

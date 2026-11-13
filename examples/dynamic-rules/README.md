@@ -10,8 +10,8 @@ Learn publishes five PowerShell samples for pausing and resuming dynamic members
 
 | Learn's samples, on their own | What this example adds |
 |---|---|
-| Handle all three US clouds' Graph hosts and request only the scopes for the phases chosen | Kept: `Get-DrGraphEndpoint` uses the same hosts |
-| An answer the cloud prompt doesn't recognize (`GCCHigh`) selects the worldwide endpoint | `Get-DrGraphEndpoint` refuses an unknown cloud |
+| Request only the scopes for the phases chosen, on the worldwide Graph host GCC uses | Kept: `Get-DrGraphEndpoint` uses the same host |
+| An answer the cloud prompt doesn't recognize (a typo such as `Globl`) selects the worldwide endpoint without saying so | `Get-DrGraphEndpoint` refuses an unknown cloud |
 | Pause all records nothing about what it paused | `New-DrPauseManifest` records every collection's state first |
 | Resume noncritical turns on every paused collection, including one paused on purpose before the incident | `Invoke-DrResume` resumes only what this manifest paused |
 | Nothing enforces the wait Learn asks for before resuming (12 hours on the samples page, 24 in the processing guidance) | Noncritical resumes wait 24 hours by default, the stricter |

@@ -18,21 +18,19 @@ $script:ConfigRoot = Join-Path $PSScriptRoot '../../config'
 
 # ----------------------------------------------------------------------------- clouds
 
-# Case-sensitive on purpose: 'GCC' or 'GCCHigh' isn't a name this module knows, so it throws.
+# Case-sensitive on purpose: 'GCC' or 'Global' isn't a name this module knows, so it throws.
 $script:Clouds = [hashtable]::new([StringComparer]::Ordinal)
 $script:CloudRows = @{
     # Microsoft 365 GCC (Moderate) uses the worldwide endpoints; in this estate Azure is commercial.
     global  = @{ Name = 'global'; Graph = 'https://graph.microsoft.com'; Arm = 'https://management.azure.com'; Login = 'https://login.microsoftonline.com'; GraphEnvironment = 'Global'; AzureEnvironment = 'AzureCloud' }
     gcc     = @{ Name = 'gcc'; Graph = 'https://graph.microsoft.com'; Arm = 'https://management.azure.com'; Login = 'https://login.microsoftonline.com'; GraphEnvironment = 'Global'; AzureEnvironment = 'AzureCloud' }
-    gcchigh = @{ Name = 'gcchigh'; Graph = 'https://graph.microsoft.us'; Arm = 'https://management.usgovcloudapi.net'; Login = 'https://login.microsoftonline.us'; GraphEnvironment = 'USGov'; AzureEnvironment = 'AzureUSGovernment' }
-    dod     = @{ Name = 'dod'; Graph = 'https://dod-graph.microsoft.us'; Arm = 'https://management.usgovcloudapi.net'; Login = 'https://login.microsoftonline.us'; GraphEnvironment = 'USGovDoD'; AzureEnvironment = 'AzureUSGovernment' }
 }
 foreach ($k in $script:CloudRows.Keys) { $script:Clouds[$k] = $script:CloudRows[$k] }
 
 function Get-NpiCloud {
     <#
     .SYNOPSIS
-        Endpoints for global, gcc, gcchigh or dod. Any other name throws: there is no default.
+        Endpoints for global or gcc. Any other name throws: there is no default.
         Returns an object with the Graph, Resource Manager and sign-in URLs and the Graph and Azure
         environment names for that cloud.
     .EXAMPLE
@@ -41,7 +39,7 @@ function Get-NpiCloud {
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud)
-    if (-not $script:Clouds.ContainsKey($Cloud)) { throw "Unknown cloud '$Cloud'. Use global, gcc, gcchigh or dod." }
+    if (-not $script:Clouds.ContainsKey($Cloud)) { throw "Unknown cloud '$Cloud'. Use global or gcc." }
     [pscustomobject]$script:Clouds[$Cloud]
 }
 

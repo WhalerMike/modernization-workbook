@@ -150,10 +150,8 @@ Describe 'The call list (Chapter 08)' {
 }
 
 Describe 'Clouds and hosts (Chapter 08)' {
-    It 'GCC uses the worldwide Graph host; GCC High and DoD their own; any other name throws' {
+    It 'GCC uses the worldwide Graph host; any other name throws' {
         (New-NpiWcaClient -Cloud gcc -Task wca-read -Invoke {}).Cloud.Graph | Should -Be 'https://graph.microsoft.com'
-        (New-NpiWcaClient -Cloud gcchigh -Task wca-read -Invoke {}).Cloud.Graph | Should -Be 'https://graph.microsoft.us'
-        (New-NpiWcaClient -Cloud dod -Task wca-read -Invoke {}).Cloud.Graph | Should -Be 'https://dod-graph.microsoft.us'
         { New-NpiWcaClient -Cloud 'GCC' -Task wca-read -Invoke {} } | Should -Throw '*Unknown cloud*'
     }
     It 'refuses a next link on another host' {
@@ -455,6 +453,6 @@ Describe 'The block alert and the entry script' {
         { Assert-NpiWcaApprovedPlan -Plan $t.Plan -ApprovedSha256 '' } | Should -Throw '*-ApprovedPlanSha256*'
     }
     It 'refuses a scope written for another cloud' {
-        { & (Join-Path $script:Root 'Invoke-NpiWorkloadCa.ps1') -Mode Plan -Cloud gcchigh -ScopePath $script:ScopePath -FixturePath $script:TenantPath -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw "*not 'gcchigh'*"
+        { & (Join-Path $script:Root 'Invoke-NpiWorkloadCa.ps1') -Mode Plan -Cloud global -ScopePath $script:ScopePath -FixturePath $script:TenantPath -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw "*not 'global'*"
     }
 }

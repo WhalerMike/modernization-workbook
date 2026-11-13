@@ -17,7 +17,7 @@
 param(
     [Parameter(Mandatory)][ValidateSet('Check', 'Plan', 'SignIns')][string]$Mode,
     [Parameter(Mandatory)][string]$ScopePath,
-    [ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+    [ValidateSet('global', 'gcc')][string]$Cloud,
     [string]$OutputPath,
     [string]$FixturePath,
     [string]$RepositoryPath = (Join-Path $PSScriptRoot 'workload-ca'),

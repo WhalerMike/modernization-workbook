@@ -12,8 +12,7 @@
 #
 # It stops when:
 #   - no wave is given, or the wave has no ready servers;
-#   - arc_cloud isn't AzureCloud or AzureUSGovernment, or a server's region belongs to the
-#     other cloud (a US Gov or US DoD region needs AzureUSGovernment, and no other region does);
+#   - arc_cloud isn't AzureCloud;
 #   - a production server is planned in a non-production wave (arc_nonproduction_waves);
 #   - a server has no config_owner or patch_owner.
 # Servers of the wave the inventory blocked (arc_onboarding_blocked) are listed with their
@@ -37,8 +36,8 @@
 
     - name: Check the Azure cloud
       ansible.builtin.assert:
-        that: arc_cloud | default('') in ['AzureCloud', 'AzureUSGovernment']
-        fail_msg: arc_cloud must be AzureCloud (commercial Azure, which a GCC tenant uses) or AzureUSGovernment.
+        that: arc_cloud | default('') == 'AzureCloud'
+        fail_msg: arc_cloud must be AzureCloud (commercial Azure, which a GCC tenant uses).
         quiet: true
 
     - name: Find the wave's servers
@@ -57,9 +56,7 @@
       vars:
         hv: "{{ hostvars[record] }}"
         problems: >-
-          {{ ([] if (hv.arc_location | default('') is match('^us(gov|dod)')) == (arc_cloud == 'AzureUSGovernment')
-              else ['region ' ~ (hv.arc_location | default('')) ~ ' is not in ' ~ arc_cloud])
-             + ([] if (wave | int) not in nonproduction_waves or hv.environment | default('') == 'nonproduction'
+          {{ ([] if (wave | int) not in nonproduction_waves or hv.environment | default('') == 'nonproduction'
                 else ['production server in non-production wave ' ~ wave])
              + ([] if hv.config_owner | default('') not in ['', 'none'] else ['no config_owner'])
              + ([] if hv.patch_owner | default('') not in ['', 'none'] else ['no patch_owner']) }}

@@ -14,7 +14,7 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+    [ValidateSet('global', 'gcc')][string]$Cloud,
     [Parameter(Mandatory)][string]$MapPath,
     [string]$PolicyPath = (Join-Path $PSScriptRoot 'ca-policies'),
     [string]$OutputPath,
@@ -36,7 +36,7 @@ if ($CheckOnly) {
     if ((& $count 'Finding') -gt 0) { exit 1 }
     return
 }
-if (-not $Cloud) { throw 'Name the cloud with -Cloud (global, gcc, gcchigh or dod). There is no default.' }
+if (-not $Cloud) { throw 'Name the cloud with -Cloud (global or gcc). There is no default.' }
 if (-not $OutputPath) { throw 'Name an -OutputPath for the plan and its manifest.' }
 
 if ($FixturePath) { $invoke = (New-PaCaFixtureInvoker -Path $FixturePath -Cloud $Cloud).Invoke; $mode = 'Fixture' }

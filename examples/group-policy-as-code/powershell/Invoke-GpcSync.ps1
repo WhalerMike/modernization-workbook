@@ -31,7 +31,7 @@
 [CmdletBinding()]
 param(
     [string]$LibraryPath = (Join-Path $PSScriptRoot '../policies'),
-    [ValidateSet('gcc', 'global', 'gcchigh', 'dod')][string]$Cloud = 'gcc',
+    [ValidateSet('gcc', 'global')][string]$Cloud = 'gcc',
     [switch]$Apply,
     [switch]$WithPlan,
     [string]$FixturePath,

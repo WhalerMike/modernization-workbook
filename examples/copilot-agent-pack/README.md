@@ -35,9 +35,9 @@ The instructions carry the whole method by themselves, and the knowledge files a
 
 | Question | Why it matters |
 |---|---|
-| Do you see **New agent** (or **Create an agent**) in Copilot Chat? | Agent Builder is available in GCC and GCC High, but not in DoD. Your administrator can also turn it off. If you don't see it, use [Option C](#option-c-no-agent-builder). |
+| Do you see **New agent** (or **Create an agent**) in Copilot Chat? | Agent Builder is available in GCC. Your administrator can also turn it off. If you don't see it, use [Option C](#option-c-no-agent-builder). |
 | Do you have a **Microsoft 365 Copilot license**, or only the free Copilot Chat? | Without a license, an agent can use its instructions but not SharePoint or OneDrive knowledge. With a license, it can use SharePoint and OneDrive files as knowledge. |
-| Is the tenant GCC? | GCC doesn't support **uploaded** (embedded) files as knowledge. Put the knowledge files in OneDrive or SharePoint and select them from there instead. Pay-as-you-go billing, which commercial tenants can use to add knowledge without a license, isn't available in GCC or GCC High. |
+| Is the tenant GCC? | GCC doesn't support **uploaded** (embedded) files as knowledge. Put the knowledge files in OneDrive or SharePoint and select them from there instead. Pay-as-you-go billing, which commercial tenants can use to add knowledge without a license, isn't available in GCC. |
 | Is web grounding on? | It's off by default in government clouds, so don't rely on the agent reading the public workbook site. |
 
 Sources: Microsoft Learn, [Agent Builder regional availability](https://learn.microsoft.com/microsoft-365/copilot/extensibility/agent-builder-regional-availability), [Add knowledge sources in Agent Builder](https://learn.microsoft.com/microsoft-365/copilot/extensibility/agent-builder-add-knowledge), [Agent capabilities and licensing models](https://learn.microsoft.com/microsoft-365/copilot/extensibility/prerequisites#agent-capabilities-and-licensing-models), and the [Microsoft Copilot service description](https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/microsoft-365-copilot#feature-availability) (all accessed October 28, 2026). Microsoft changes these often, so check them again before you plan around them.

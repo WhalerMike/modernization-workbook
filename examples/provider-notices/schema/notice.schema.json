@@ -15,7 +15,7 @@
     "schema": { "const": "fmp-provider-notice/1" },
     "noticeId": { "type": "string", "pattern": "^(azure|m365|oci|aws|google):.+$", "description": "<provider>:<sourceId>; the de-duplication key across runs" },
     "provider": { "enum": ["azure", "m365", "oci", "aws", "google"] },
-    "cloud": { "type": "string", "description": "The provider's cloud or partition the notice was read from, such as AzureUSGovernment, gcchigh, oc2 or aws-us-gov" },
+    "cloud": { "type": "string", "description": "The provider's cloud or partition the notice was read from, such as AzureUSGovernment, gcc, oc2 or aws-us-gov" },
     "sourceId": { "type": "string", "minLength": 1, "description": "The provider's own identifier: tracking ID, MC or issue ID, announcement OCID, event ARN or event name" },
     "kind": { "enum": ["maintenance", "retirement", "advisory", "security", "change", "incident"] },
     "status": { "enum": ["open", "closed"] },

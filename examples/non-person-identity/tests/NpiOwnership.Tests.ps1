@@ -226,6 +226,6 @@ Describe 'The entry scripts' {
         @($m.inputs.Keys | Sort-Object) | Should -Be @('application-owners.csv', 'igo-confirmations.csv', 'owner-claims.csv', 'service-records.csv')
     }
     It 'refuses a register read in another cloud' {
-        { & (Join-Path $script:Root 'Invoke-NpiOwnership.ps1') -Cloud gcchigh -RegisterRun $script:InvRun -FixturePath $script:Fixture -InputPath $script:Inputs -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw '*not ''gcchigh''*'
+        { & (Join-Path $script:Root 'Invoke-NpiOwnership.ps1') -Cloud global -RegisterRun $script:InvRun -FixturePath $script:Fixture -InputPath $script:Inputs -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw '*not ''global''*'
     }
 }

@@ -15,11 +15,8 @@
 #      findings and closes the ones a later run shows resolved.
 #
 # GCC uses the worldwide endpoints (login.microsoftonline.com, graph.microsoft.com, AzureCloud,
-# audience api://AzureADTokenExchange). For GCC High set CLOUD: gcchigh, GRAPH_HOST:
-# https://graph.microsoft.us, MG_ENVIRONMENT: USGov, and on azure/login environment:
-# AzureUSGovernment with audience: api://AzureADTokenExchangeUSGov. DoD is the same except
-# CLOUD: dod, GRAPH_HOST: https://dod-graph.microsoft.us and MG_ENVIRONMENT: USGovDoD.
-# `python python/drift_pipeline.py cloud --name <cloud>` prints the values.
+# audience api://AzureADTokenExchange).
+# `python python/drift_pipeline.py cloud --name gcc` prints the values.
 #
 # Repository settings it expects (identifiers, not credentials):
 #   secrets AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID (Learn's sample keeps them as secrets)

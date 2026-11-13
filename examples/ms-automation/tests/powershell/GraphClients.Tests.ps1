@@ -1,5 +1,5 @@
 #Requires -Version 7.5
-# Developer workbook Chapter 02: the client pattern for worldwide, GCC, GCC High and DoD, in
+# Developer workbook Chapter 02: the client pattern for worldwide and GCC, in
 # PowerShell. The same rules as tests/python/test_graph_clients.py. Connect-MgGraph and
 # Invoke-MgGraphRequest are replaced by mocks, so nothing signs in or touches the network.
 
@@ -25,7 +25,7 @@ AfterAll {
 }
 
 Describe 'The right cloud' {
-    It 'matches the shared endpoint fixture for <_>' -ForEach @('global', 'gcc', 'gcchigh', 'dod') {
+    It 'matches the shared endpoint fixture for <_>' -ForEach @('global', 'gcc') {
         $c = Get-FmwCloud $_
         $e = $expectedClouds[$_]
         @($c.Login, $c.Graph, $c.Arm, $c.Environment, $c.AzureEnvironment) | Should -Be @($e.login, $e.graph, $e.arm, $e.ps_env, $e.azure_env)
@@ -37,10 +37,10 @@ Describe 'The right cloud' {
         $gcc.AzureEnvironment | Should -Be 'AzureCloud'
     }
     It 'refuses a cloud name it does not know' {
-        { Get-FmwCloud GCCHigh2 } | Should -Throw
+        { Get-FmwCloud moon } | Should -Throw
     }
     It 'signs in to the environment for the cloud' -ForEach @(
-        @{ Cloud = 'gcc'; Env = 'Global' }, @{ Cloud = 'gcchigh'; Env = 'USGov' }, @{ Cloud = 'dod'; Env = 'USGovDoD' }
+        @{ Cloud = 'gcc'; Env = 'Global' }, @{ Cloud = 'global'; Env = 'Global' }
     ) {
         Mock Connect-MgGraph -ModuleName FmwGraph {}
         Connect-FmwGraph -Cloud $Cloud -Identity
@@ -50,7 +50,6 @@ Describe 'The right cloud' {
 
 Describe 'The token stays on the cloud''s Graph host' {
     It 'refuses an absolute URI on another host' {
-        { Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -Cloud dod } | Should -Throw '*Refusing*'
         { Assert-FmwGraphCall -Method GET -Uri 'https://evil.example/v1.0/users' -Cloud gcc } | Should -Throw '*Refusing*'
     }
     It 'stops paging when a nextLink points at another host' {
@@ -146,9 +145,14 @@ Describe 'Beta without depending on it' {
     }
     It 'makes no call where the feature is not offered' {
         Mock Invoke-MgGraphRequest -ModuleName FmwGraph { @{ value = @() } }
-        $r = Get-FmwBetaCollection -Path '/deviceManagement/windowsAutopilotDeviceIdentities' -Task 'autopilot-profiles' -Cloud gcchigh
+        InModuleScope FmwGraph { ($script:Calls | Where-Object { $_['tasks'] -contains 'autopilot-profiles' })['not_in_clouds'] = @('global') }
+        try {
+            $r = Get-FmwBetaCollection -Path '/deviceManagement/windowsAutopilotDeviceIdentities' -Task 'autopilot-profiles' -Cloud global
+        } finally {
+            InModuleScope FmwGraph { ($script:Calls | Where-Object { $_['tasks'] -contains 'autopilot-profiles' }).Remove('not_in_clouds') }
+        }
         $r.available | Should -BeFalse
-        $r.reason | Should -BeLike "*isn't offered in gcchigh*"
+        $r.reason | Should -BeLike "*isn't offered in global*"
         Should -Invoke Invoke-MgGraphRequest -ModuleName FmwGraph -Times 0 -Exactly
     }
     It 'reports not evaluated when beta answers 404, and throws on 403' {
@@ -156,16 +160,6 @@ Describe 'Beta without depending on it' {
         (Get-FmwBetaCollection -Path '/deviceManagement/windowsAutopilotDeviceIdentities' -Task 'autopilot-profiles' -Cloud gcc).available | Should -BeFalse
         Mock Invoke-MgGraphRequest -ModuleName FmwGraph { throw 'Response status code does not indicate success: 403 (Forbidden).' }
         { Get-FmwBetaCollection -Path '/deviceManagement/windowsAutopilotDeviceIdentities' -Task 'autopilot-profiles' -Cloud gcc } | Should -Throw '*403*'
-    }
-    It 'the Autopilot task says not evaluated in GCC High' {
-        Mock Connect-MgGraph -ModuleName FmwGraph {}
-        Mock Invoke-MgGraphRequest -ModuleName FmwGraph { @{ value = @() } }
-        Mock Get-MgContext -ModuleName FmwGraph { New-TestContext -Scopes 'DeviceManagementServiceConfig.Read.All' }
-        Connect-FmwGraph -Cloud gcchigh -Identity
-        $r = Invoke-FmwIntuneTask -Task 'autopilot-profiles'
-        $r.stage | Should -Be 'beta'
-        $r.evaluated | Should -BeFalse
-        Should -Invoke Invoke-MgGraphRequest -ModuleName FmwGraph -Times 0 -Exactly
     }
     It 'the Autopilot task evaluates and labels the stage in GCC' {
         Mock Connect-MgGraph -ModuleName FmwGraph {}

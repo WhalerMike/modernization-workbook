@@ -20,10 +20,10 @@
       "permissions": ["AuditLog.Read.All"],
       "delegatedRoles": ["Reports Reader", "Security Administrator", "Security Reader"],
       "stage": "v1.0",
-      "clouds": ["global", "gcc", "gcchigh", "dod"],
+      "clouds": ["global", "gcc"],
       "tasks": ["drift"],
       "learn": "https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0",
-      "note": "One GET per activity name, filtered by activityDateTime (ge, le) and activityDisplayName (eq). Directory.Read.All is the higher-privileged alternative and is never requested. Available in the global service, US Government L4 and L5."
+      "note": "One GET per activity name, filtered by activityDateTime (ge, le) and activityDisplayName (eq). Directory.Read.All is the higher-privileged alternative and is never requested."
     },
     {
       "id": "sp-signin-activities",
@@ -37,7 +37,7 @@
       "clouds": ["global", "gcc"],
       "tasks": ["drift"],
       "learn": "https://learn.microsoft.com/graph/api/reportroot-list-serviceprincipalsigninactivities?view=graph-rest-beta",
-      "note": "Beta, and available only in the global service: Learn marks US Government L4 and L5 unavailable, so a gcchigh or dod run doesn't send it and records the unused check as not read (research gaps, row 93)."
+      "note": "Beta, and available in the global service (research gaps, row 93)."
     }
   ],
   "runs": {

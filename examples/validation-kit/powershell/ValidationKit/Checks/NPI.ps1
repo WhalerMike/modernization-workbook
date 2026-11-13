@@ -378,7 +378,7 @@ function Invoke-VkNpi09 {
     .SYNOPSIS
         Implements VK-NPI-09 (optional, preview): lists this tenant's application service
         principals with no sign-in in SpInactiveDays days, from Graph's beta sign-in activity report.
-        NotApplicable without -IncludePreview, and in GCC High and DoD.
+        NotApplicable without -IncludePreview.
     .EXAMPLE
         $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -IncludePreview
         Invoke-VkNpi09 -Context $ctx
@@ -388,14 +388,12 @@ function Invoke-VkNpi09 {
     VK-NPI-09 (optional, preview). This tenant's application service principals with no sign-in,
     as client or resource, delegated or app-only, in SpInactiveDays days, from Graph's beta
     servicePrincipalSignInActivities report (AuditLog.Read.All; Reports Reader). Runs only with
-    -IncludePreview. Learn documents the report for the global service, which GCC uses, but not
-    for US Government L4 or L5.
+    -IncludePreview. Learn documents the report for the global service, which GCC uses.
     #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-NPI-09' $Context {
         param($Context)
         if (-not $Context.IncludePreview) { return Get-VkNotApplicable 'Optional preview check: run with -IncludePreview' }
-        if (@('gcchigh', 'dod') -contains $Context.Cloud) { return Get-VkNotApplicable 'The service principal sign-in activity report is not documented for US Government L4 or L5' }
         $days = [int]$Context.Options['SpInactiveDays']
         $acts = @{}
         foreach ($a in @(Get-VkData -Context $Context -Name 'spSignInActivities' -Uri '/beta/reports/servicePrincipalSignInActivities?$top=999')) {

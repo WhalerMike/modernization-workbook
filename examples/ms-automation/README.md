@@ -41,9 +41,8 @@ No Arc query reads an extension's `settings` or `protectedSettings`, none uses `
 
 The Python version also has a small Graph client, `python/graphkit.py`, standard library only, that:
 
-- picks the endpoints for the cloud: `gcc` and `global` use `login.microsoftonline.com` and `graph.microsoft.com`, `gcchigh` uses `login.microsoftonline.us` and `graph.microsoft.us`, and `dod` uses `login.microsoftonline.us` and `dod-graph.microsoft.us`; an unknown cloud name is an error, never a default;
-- knows the Azure Resource Manager host that goes with each: `management.azure.com` for `gcc` and `global` (GCC runs with commercial Azure), `management.usgovcloudapi.net` for `gcchigh` and `dod`;
-- signs in with the US Government authority for `gcchigh` and `dod`;
+- picks the endpoints for the cloud: `gcc` and `global` use `login.microsoftonline.com` and `graph.microsoft.com`; an unknown cloud name is an error, never a default;
+- knows the Azure Resource Manager host that goes with them: `management.azure.com` (GCC runs with commercial Azure);
 - refuses to send its token to any other host, including an `@odata.nextLink` that points elsewhere;
 - makes only the calls `graph-calls.json` declares for the task, and checks the token's `roles` claim against the task's permissions before a live run (missing stops the run; extra is a warning);
 - follows `@odata.nextLink`, sending the same headers on every page;
@@ -55,7 +54,7 @@ The Python version also has a small Graph client, `python/graphkit.py`, standard
 
 The Azure Resource Manager client, `python/armkit.py`, also standard library only:
 
-- uses the cloud's Resource Manager host (`management.azure.com` for `gcc` and `global`, `management.usgovcloudapi.net` for `gcchigh` and `dod`) and a token for that resource, never a Graph token;
+- uses the cloud's Resource Manager host (`management.azure.com` for `gcc` and `global`) and a token for that resource, never a Graph token;
 - refuses to send its token to any other host, including a `nextLink` that points elsewhere;
 - makes only the calls `arm-calls.json` declares, each with its api-version and the Azure RBAC action it's checked against (Reader covers them all);
 - pages Resource Graph with `$skipToken`, repeating the same query and scopes, and raises instead of returning part of a result when Resource Graph reports `resultTruncated` with no token;
@@ -80,7 +79,7 @@ python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> 
 
 ```powershell
 Import-Module ./powershell/FmwGraph.psm1
-Connect-FmwGraph -Cloud gcchigh -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
+Connect-FmwGraph -Cloud gcc -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
 Invoke-FmwEntraTask -Task pim-report -PrivilegedRoleIds 62e90394-69f5-4237-9190-012177145e10, e8611ab8-c189-46e8-94e1-60213ab1f814
 Invoke-FmwIntuneTask -Task device-posture -OsFloors @{ Windows = '10.0.26100' }
 ```
@@ -139,10 +138,9 @@ Nothing calls the network. The tests prove the code does what this README says a
 - **Sort order.** Both versions sort the same fields, but PowerShell's string comparison is culture-aware and Python's is ordinal. Names that differ only in case or accents may sort differently.
 - **Intune compliance status is joined on device name.** `deviceComplianceDeviceStatus` carries `deviceDisplayName`, and Microsoft doesn't document how its `id` relates to the managed device. Both compliance checks flag names held by more than one device.
 - **`isEncrypted` is what Intune reports.** It doesn't say which method or volume. Confirm a `notEncrypted` finding in Intune's encryption report.
-- **Beta.** `autopilot-profiles` reads `deploymentProfileAssignmentStatus`, which is only in the beta endpoint. Microsoft lists Windows Autopilot as not available in GCC High and DoD.
+- **Beta.** `autopilot-profiles` reads `deploymentProfileAssignmentStatus`, which is only in the beta endpoint.
 - **No export jobs.** Creating an Intune `reports/exportJobs` job needs a write permission, so the checks page through the list APIs instead.
 - **Throttling in PowerShell.** `Invoke-MgGraphRequest` relies on the Graph PowerShell SDK's own retry handling. The PowerShell module doesn't add its own retry loop.
-- **Autopilot in GCC High and DoD.** The beta API page lists the endpoint in the US Government clouds, but Intune's government service description lists Windows Autopilot as not available there. `graph-calls.json` follows the stricter statement, so `autopilot-profiles` reports "not evaluated" in `gcchigh` and `dod` without calling Graph.
 - **The token check reads, it doesn't validate.** `audit_roles` and `Test-FmwTokenRole` decode the `roles` claim of the run's own token as a pre-flight check. They never make an authorization decision. In PowerShell, `Connect-MgGraph` holds the token, so `Test-FmwSessionRole` reads the session's permissions from `Get-MgContext`'s `Scopes`, which in an app-only session holds the token's `roles` claim (Learn, "Use app-only authentication with the Microsoft Graph PowerShell SDK"). `Invoke-FmwEntraTask` and `Invoke-FmwIntuneTask` stop before any call when the session lacks a permission, and warn for each extra one.
 - **Arc: an empty result can mean no access.** Resource Graph returns only resources the caller can read, with no error for the rest. Every Arc result that reads machines carries `machinesInScope` and `emptyScope`; treat `emptyScope: true` as "check the role", never as a clean result.
 - **Arc: the OS is matched on text.** `lifecycle` matches `osSku`, then `osName`, against the product names in `arc-lifecycle.json`, the order Microsoft's own Resource Graph sample uses. A product not in the table is listed under `notInTable`, never counted as supported. Linux distributions aren't in the table.

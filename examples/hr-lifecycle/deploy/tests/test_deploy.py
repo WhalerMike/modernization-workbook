@@ -75,8 +75,7 @@ def test_the_middleware_endpoint_follows_the_cloud_and_passes_the_middlewares_ow
     url = ds.endpoint(s, "employee")
     assert url.startswith("https://graph.microsoft.com/v1.0/servicePrincipals/33333333-3333-4333-8333-333333333301/")
     assert hcm_to_scim.validate_endpoint(url) == url
-    s["cloud"] = "gcchigh"
-    assert ds.endpoint(s, "contractor").startswith("https://graph.microsoft.us/")
+    assert ds.endpoint(s, "contractor").startswith("https://graph.microsoft.com/")
     out = ds.middleware_settings(s, "employee", KIT.parent / "hcm-entra" / "config" / "settings.example.json")
     hcm_to_scim.validate_settings(out)
 
@@ -85,8 +84,7 @@ def test_get_prints_one_value_and_record_workflows_fills_the_ids(tmp_path):
     s = _settings()
     assert ds.get(s, "graphResource") == "https://graph.microsoft.com"
     assert ds.get(s, "identities.uploader.certificateName") == "hrlc-uploader-test"
-    s["cloud"] = "gcchigh"
-    assert ds.get(s, "azureCloud") == "AzureUSGovernment" and ds.get(s, "mgEnvironment") == "USGov"
+    assert ds.get(s, "azureCloud") == "AzureCloud" and ds.get(s, "mgEnvironment") == "Global"
     with pytest.raises(HrlcError):
         ds.get(s, "identities")
     path = shutil.copy(FX / "settings.test.json", tmp_path / "s.json")
@@ -295,11 +293,10 @@ def test_the_rollback_plan_pauses_and_unschedules_but_never_restarts_or_disables
     assert text.count("isSchedulingEnabled = $false") == 6
     assert "Restart" not in text and "isEnabled = $false" not in text and "Remove-MgUser" not in text
     assert "-Environment Global" in text and "if (-not $Apply)" in text
-    s["cloud"] = "gcchigh"
     s["automaticAssignmentPolicies"] = ["aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa"]
     steps, scopes = rollback.plan(s, None)
     text = rollback.script(s, steps, scopes)
-    assert "-Environment USGov " in text and "Remove-MgEntitlementManagementAssignmentPolicy" in text
+    assert "-Environment Global " in text and "Remove-MgEntitlementManagementAssignmentPolicy" in text
     assert "EntitlementManagement.ReadWrite.All" in scopes
 
 

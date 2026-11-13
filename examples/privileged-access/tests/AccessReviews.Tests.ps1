@@ -139,10 +139,9 @@ Describe 'Calls and permissions (config/calls-ch07.json)' {
         $c = New-PaArClient -Cloud gcc -Task access-reviews-plan -Invoke { param($m, $u, $b) @{ value = @(); '@odata.nextLink' = 'https://graph.example.net/v1.0/identityGovernance/accessReviews/definitions?$skiptoken=2' } }
         { Invoke-PaArList -Client $c -CallId 'ar-definitions-list' } | Should -Throw '*Refusing to send the token*'
     }
-    It 'sends GCC to the worldwide hosts and GCC High to its own, and knows no other cloud' {
+    It 'sends GCC to the worldwide hosts, and knows no other cloud' {
         (New-PaArClient -Cloud gcc -Task access-reviews-plan -Invoke {}).Cloud.Graph | Should -Be 'https://graph.microsoft.com'
-        (New-PaArClient -Cloud gcchigh -Task access-reviews-plan -Invoke {}).Cloud.Graph | Should -Be 'https://graph.microsoft.us'
-        { New-PaArClient -Cloud GCCHigh -Task access-reviews-plan -Invoke {} } | Should -Throw '*Unknown cloud*'
+        { New-PaArClient -Cloud GCC -Task access-reviews-plan -Invoke {} } | Should -Throw '*Unknown cloud*'
     }
 }
 
@@ -337,7 +336,8 @@ Describe 'Invoke-PaArApply: writes only with -Apply' {
         Mock -ModuleName PaAccessReviews Get-MgContext { [pscustomobject]@{ Environment = 'Global' } }
         $inv = New-PaArLiveInvoker -Cloud gcc -SkipAzure
         { & $inv 'POST' 'https://graph.microsoft.com/v1.0/identityGovernance/accessReviews/definitions' @{} } | Should -Throw '*writes need -Apply*'
-        { New-PaArLiveInvoker -Cloud gcchigh -SkipAzure } | Should -Throw "*not 'USGov'*"
+        Mock -ModuleName PaAccessReviews Get-MgContext { [pscustomobject]@{ Environment = 'Other' } }
+        { New-PaArLiveInvoker -Cloud gcc -SkipAzure } | Should -Throw "*not 'Global'*"
         Remove-Item function:global:Get-MgContext
     }
 }

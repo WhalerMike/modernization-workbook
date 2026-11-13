@@ -69,10 +69,9 @@ Describe 'Chapter 06 calls and roles' {
         $r.AzureRoles | Should -Be @('Reader', 'User Access Administrator')
         $r.Writes | Should -Be @('PUT azpim-eligibility-request', 'PUT azpim-assignment-request', 'PATCH azpim-policy-update')
     }
-    It 'a GCC client uses commercial Resource Manager; GCC High and DoD use Azure Government' {
+    It 'a GCC client uses commercial Resource Manager' {
         (New-PaAzClient -Cloud gcc -Task azure-pim-read -Invoke {}).Cloud.Arm | Should -Be 'https://management.azure.com'
-        (New-PaAzClient -Cloud gcchigh -Task azure-pim-read -Invoke {}).Cloud.Arm | Should -Be 'https://management.usgovcloudapi.net'
-        { New-PaAzClient -Cloud 'GCCHigh' -Task azure-pim-read -Invoke {} } | Should -Throw '*Unknown cloud*'
+        { New-PaAzClient -Cloud 'GCC' -Task azure-pim-read -Invoke {} } | Should -Throw '*Unknown cloud*'
     }
     It 'a read client refuses a write, and the paged reader refuses a write call' {
         $read = New-PaAzClient -Cloud gcc -Task azure-pim-read -Invoke {}
@@ -81,7 +80,7 @@ Describe 'Chapter 06 calls and roles' {
     }
     It 'refuses a request name that is not a GUID, and the fake refuses another host' {
         { Invoke-PaAzWrite -Client $script:Run.Client -CallId azpim-eligibility-request -Bind @{ scope = $script:WL; name = 'my-request' } -Body @{} } | Should -Throw '*isn''t a GUID*'
-        { & $script:Run.Fake.Invoke 'GET' 'https://management.usgovcloudapi.net/subscriptions/x/providers/Microsoft.Authorization/roleEligibilitySchedules?api-version=2020-10-01' $null } | Should -Throw '*refuses host*'
+        { & $script:Run.Fake.Invoke 'GET' 'https://management.example.net/subscriptions/x/providers/Microsoft.Authorization/roleEligibilitySchedules?api-version=2020-10-01' $null } | Should -Throw '*refuses host*'
     }
 }
 
@@ -315,7 +314,7 @@ Describe 'Dry run and apply' {
         Remove-Item -Recurse -Force $out
     }
     It 'the entry script refuses a desired state written for another cloud' {
-        $p = Save-Desired { param($d) $d.cloud = 'gcchigh' }
-        { & (Join-Path $script:Root 'Invoke-PaAzurePim.ps1') -Cloud gcc -FixturePath $script:Estate -DesiredPath $p -CallerPrincipalId $script:Caller -OutputPath (Join-Path ([IO.Path]::GetTempPath()) 'pa-x') } | Should -Throw "*for 'gcchigh', not 'gcc'*"
+        $p = Save-Desired { param($d) $d.cloud = 'global' }
+        { & (Join-Path $script:Root 'Invoke-PaAzurePim.ps1') -Cloud gcc -FixturePath $script:Estate -DesiredPath $p -CallerPrincipalId $script:Caller -OutputPath (Join-Path ([IO.Path]::GetTempPath()) 'pa-x') } | Should -Throw "*for 'global', not 'gcc'*"
     }
 }

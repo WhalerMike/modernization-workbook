@@ -158,7 +158,7 @@ Describe 'The alert query and rule' {
     }
     It 'the template has no host in it, so the same file deploys in any Azure cloud' {
         $json = New-PaEmergencyAlertRule -AccountId $script:Ea01 -WorkspaceResourceId $script:Ws -ActionGroupResourceId $script:Ag -Location eastus | ConvertTo-Json -Depth 20
-        $json | Should -Not -Match 'management\.(azure\.com|usgovcloudapi\.net)/subscriptions'
+        $json | Should -Not -Match 'management\.azure\.com/subscriptions'
     }
 }
 

@@ -11,7 +11,7 @@
 #>
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+    [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
     [Parameter(Mandatory)][string]$PlanPath,
     [Parameter(Mandatory)][string]$ApprovedSha256,
     [Parameter(Mandatory)][string]$OutputPath,

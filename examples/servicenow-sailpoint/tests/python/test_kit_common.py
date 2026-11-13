@@ -24,8 +24,6 @@ def test_config_file_refuses_secrets(tmp_path):
 
 @pytest.mark.parametrize("cloud,login,graph", [
     ("Global", "https://login.microsoftonline.com", "https://graph.microsoft.com"),
-    ("USGov", "https://login.microsoftonline.us", "https://graph.microsoft.us"),
-    ("USGovDoD", "https://login.microsoftonline.us", "https://dod-graph.microsoft.us"),
 ])
 def test_graph_cloud_endpoints(cloud, login, graph):
     assert kc.graph_endpoints({"GRAPH_CLOUD": cloud}) == (login, graph)
@@ -96,13 +94,13 @@ def test_sn_oauth_then_basic():
 
 
 def test_graph_token_secret_fallback_uses_cloud_authority():
-    session = FakeSession().add("POST", "login.microsoftonline.us", FakeResponse(200, {"access_token": "g"}))
-    cfg = {"GRAPH_CLOUD": "USGov", "GRAPH_TENANT_ID": "tid", "GRAPH_CLIENT_ID": "cid"}
+    session = FakeSession().add("POST", "login.microsoftonline.com", FakeResponse(200, {"access_token": "g"}))
+    cfg = {"GRAPH_CLOUD": "Global", "GRAPH_TENANT_ID": "tid", "GRAPH_CLIENT_ID": "cid"}
     headers = kc.graph_headers(cfg, kc.Http(session), env={"GRAPH_CLIENT_SECRET": "s"})
     assert headers["Authorization"] == "Bearer g"
     call = session.calls[0]
-    assert call["url"] == "https://login.microsoftonline.us/tid/oauth2/v2.0/token"
-    assert call["data"]["scope"] == "https://graph.microsoft.us/.default"
+    assert call["url"] == "https://login.microsoftonline.com/tid/oauth2/v2.0/token"
+    assert call["data"]["scope"] == "https://graph.microsoft.com/.default"
 
 
 def test_client_assertion_shape():

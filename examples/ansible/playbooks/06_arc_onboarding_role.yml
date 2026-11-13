@@ -14,7 +14,7 @@
 #   4. The CMDB's tags, ConfigOwner and PatchOwner included, with the role's own default tag
 #      kept, and the role's signal to Microsoft off unless the program turns it on.
 #   5. Commercial Azure only: the role asks for its token for management.azure.com, the
-#      commercial Resource Manager. For Azure Government use 02_arc_onboarding.yml.
+#      commercial Resource Manager.
 #
 #   ansible-playbook playbooks/06_arc_onboarding_role.yml -e onboarding_wave=0
 #   ansible-playbook playbooks/06_arc_onboarding_role.yml -e onboarding_wave=0 -e confirm_change=true

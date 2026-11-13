@@ -27,8 +27,8 @@ $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot '../NpiCore/NpiCore.psm1') -Force -Global
 
 $script:ConfigRoot = Join-Path $PSScriptRoot '../../config'
-$script:VaultSuffix = @{ global = 'vault.azure.net'; gcc = 'vault.azure.net'; gcchigh = 'vault.usgovcloudapi.net'; dod = 'vault.usgovcloudapi.net' }
-$script:VaultResource = @{ global = 'https://vault.azure.net'; gcc = 'https://vault.azure.net'; gcchigh = 'https://vault.usgovcloudapi.net'; dod = 'https://vault.usgovcloudapi.net' }
+$script:VaultSuffix = @{ global = 'vault.azure.net'; gcc = 'vault.azure.net' }
+$script:VaultResource = @{ global = 'https://vault.azure.net'; gcc = 'https://vault.azure.net' }
 $script:Guid = '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
 # Learn, v1.0: the restriction types each collection takes. Beta adds more (trustedCertificateAuthority, audiences, redirect URI rules).
 $script:V1Types = @{
@@ -261,14 +261,14 @@ function Get-NpiVaultHost {
     <#
     .SYNOPSIS
         Returns the Key Vault data-plane URL for a vault in a cloud: https://<vault>.vault.azure.net
-        for commercial and GCC, .vault.usgovcloudapi.net for Azure Government. Throws for an unknown
+        for commercial and GCC. Throws for an unknown
         cloud or a name that isn't a key vault name.
     .EXAMPLE
         # Returns https://kv-npi-contoso.vault.azure.net
         Get-NpiVaultHost -Cloud gcc -Vault 'kv-npi-contoso'
     #>
 
-    <# https://<vault>.vault.azure.net (commercial, and GCC's commercial Azure) or .vault.usgovcloudapi.net (Azure Government). #>
+    <# https://<vault>.vault.azure.net (commercial, and GCC's commercial Azure). #>
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$Vault)
     $null = Get-NpiCloud -Cloud $Cloud
     if ($Vault -notmatch '^[a-zA-Z][a-zA-Z0-9-]{1,22}[a-zA-Z0-9]$') { throw "'$Vault' isn't a key vault name." }
