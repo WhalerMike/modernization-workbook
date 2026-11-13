@@ -10,27 +10,27 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | Interactive CRL limit 20 MB public (includes GCC), 45 MB Azure US Government (includes GCC High and DoD); 10-second download; service limits 65 MB and 150 MB | Which cloud; rules; verified facts | verified; Learn's FAQ names GCC, GCC High and DoD explicitly, so treating DoD as Azure Government is Learn's statement, not an inference | Learn, CBA CRL page |
+| 1 | Interactive CRL limit 20 MB public (includes GCC); 10-second download; service limit 65 MB | Which cloud; rules; verified facts | verified | Learn, CBA CRL page |
 | 2 | No CRL configured, no revocation check; one endpoint, HTTP or HTTPS; HTTP recommended; a configured CRL that can't be downloaded fails CBA for that CA | Start with Microsoft's procedure; CB-01, CB-02, CB-04 | verified | Learn, CBA CRL page |
 | 3 | Learn recommends enforcing CRL validation and exempting a CA only while troubleshooting | CB-08 | verified | Learn, CBA CRL page (guidance; FAQ) |
 | 4 | CRLs are checked up to 10 CAs toward the root | Verified facts | verified | Learn, CBA CRL page |
 | 5 | Learn is reviewing the size limits and plans to remove them | Differences | verified | Learn, CBA CRL page FAQ |
 | 6 | Federation page gives a single 20 MB limit | Differences | verified | Learn, CBA with federation |
-| 7 | PKI trust store: list containers and CAs, `PublicKeyInfrastructure.Read.All`, Authentication Administrator or Privileged Authentication Administrator, US Gov L4 and L5, v1.0 | Permissions; verified facts | verified | Learn, List certificateBasedAuthPki; List certificateAuthorityDetail |
+| 7 | PKI trust store: list containers and CAs, `PublicKeyInfrastructure.Read.All`, Authentication Administrator or Privileged Authentication Administrator, v1.0 | Permissions; verified facts | verified | Learn, List certificateBasedAuthPki; List certificateAuthorityDetail |
 | 8 | `certificateAuthorityDetail` properties | Start with Microsoft's procedure | verified | Learn, resource type |
-| 9 | X.509 method GET: `Policy.Read.AuthenticationMethod`; Global Reader or Authentication Policy Administrator; L4 and L5 yes, 21Vianet no | Permissions; verified facts | verified | Learn, Get x509CertificateAuthenticationMethodConfiguration |
+| 9 | X.509 method GET: `Policy.Read.AuthenticationMethod`; Global Reader or Authentication Policy Administrator | Permissions; verified facts | verified | Learn, Get x509CertificateAuthenticationMethodConfiguration |
 | 10 | Mode rules by `issuerSubject` or `policyOID` to `x509CertificateMultiFactor`; CRL validation state and exempted SKIs; binding fields `PrincipalName`, `RFC822Name`, `SubjectKeyIdentifier`, `SHA1PublicKey` | Start with Microsoft's procedure; CB-08, CB-09, CB-13 | verified | Learn, resource types |
-| 11 | Authentication strengths list: `Policy.Read.AuthenticationMethod`; Conditional Access Administrator, Security Administrator or Security Reader; L4 and L5 | Permissions | verified | Learn, List authenticationStrengthPolicies |
+| 11 | Authentication strengths list: `Policy.Read.AuthenticationMethod`; Conditional Access Administrator, Security Administrator or Security Reader | Permissions | verified | Learn, List authenticationStrengthPolicies |
 | 12 | Built-in phishing-resistant strength: Windows Hello for Business or platform credential, FIDO2, CBA multifactor; enum values `windowsHelloForBusiness`, `fido2`, `x509CertificateMultiFactor` | CB-10 | verified | Learn, authentication strengths; authenticationMethodModes |
 | 13 | Legacy `certificateBasedAuthConfiguration`: `Organization.Read.All`; Global Administrator the only delegated role | The code | verified | Learn, Get/List certificateBasedAuthConfiguration |
 | 14 | A root CA with no CRL is a Warn (CB-01), an intermediate with none a Finding; Learn's prerequisite is a CRL for each CA | The check; differences | updated November 1, 2026: the code first skipped such a root; it now warns. Open: confirm in Lab 2 whether a root without a CRL blocks or weakens revocation | Learn, setup prerequisites; code |
 | 15 | MB read as decimal bytes | Which cloud | restated-as-design (labeled): Learn doesn't define the unit | config |
 | 16 | "Highest priority" binding order undefined | Differences | verified as unstated | Learn, x509CertificateUserBinding |
 | 17 | List Conditional Access policies: `Policy.Read.All` | Permissions | carried forward from the validation kit's VK-CA-01 and *Building Privileged Access*, Chapter 02 | Learn, List policies |
-| 18 | CBA and Conditional Access available in Azure for US Government | Which cloud | carried forward from the guide's verification log | Learn, feature availability |
+| 18 | CBA and Conditional Access available; GCC commercial | Which cloud | carried forward from the guide's verification log | Learn, feature availability |
 | 19 | SCuBA MS.AAD.3.1v1 and 3.6v1 | Federal requirements | carried forward from the guide | CISA, BOD 25-01 |
 | 20 | 80% warning, 90-day CA expiry warning, measuring from an internet-facing vantage point, issuing CAs by thumbprint | Rules; dangers | restated-as-design (labeled) | — |
-| 21 | Lab 1 outputs (call list; measurement lines; 5/6/0 for gcc; 5/5/0 for gcchigh; 57 passed) | Lab 1 | verified by running the commands as written; the measurement's times vary by machine | local run, November 1, 2026 |
+| 21 | Lab 1 outputs (call list; measurement lines; 5/6/0 for gcc; 57 passed) | Lab 1 | verified by running the commands as written; the measurement's times vary by machine | local run, November 1, 2026 |
 | 22 | Lab 2 behavior (export shapes; revoked certificate refused after publication) | Lab 2 | not run against a tenant | — |
 
 ## Carry-forward ledger

@@ -54,7 +54,7 @@ Learn's own guidance agrees on the order of preference. On premises, use a gMSA 
 
 ### Which cloud, for these reads
 
-The matrix is offline logic over Chapters 01 and 02's files. Its two reads go to Graph at `graph.microsoft.com` for the target estate, Microsoft 365 GCC; GCC High and DoD use `graph.microsoft.us` and `dod-graph.microsoft.us`.[^np03-deployments] List subscribedSkus lists the global service, US Government L4 and US Government L5.[^np03-skus] Workload ID Premium is available to Azure Government customers through their account manager, and its free trial isn't available in the Azure Government clouds.[^np03-wid-faq] A GCC tenant signs in to the worldwide cloud, so the trial question for it is a Lab 2 check (research gaps, row 28).
+The matrix is offline logic over Chapters 01 and 02's files. Its two reads go to Graph at `graph.microsoft.com` for the target estate, Microsoft 365 GCC, which uses the worldwide endpoints.[^np03-deployments] List subscribedSkus lists the global service, which GCC uses.[^np03-skus] Workload ID Premium is available to Azure Government customers through their account manager, and its free trial isn't available in the Azure Government clouds.[^np03-wid-faq] A GCC tenant signs in to the worldwide cloud, so the trial question for it is a Lab 2 check (research gaps, row 28).
 
 ## Start with Microsoft's sample
 
@@ -461,20 +461,20 @@ Remove-Item -Recurse -Force out/matrix-test
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| On-premises choice | gMSA whenever possible; sMSA if not; computer or user account only without an MSA; test the service first; no privileged groups | n/a (Active Directory) | GA | [^np03-onprem] [^np03-gmsa] |
-| Cloud choice | Managed identity in Azure if the service supports one; service principal otherwise; never a user account; certificates over secrets | — | — | [^np03-cloud] |
-| dMSA | Windows Server 2025; can't migrate an MSA or gMSA to one; every machine must support it; unconstrained delegation stops working; one dMSA per account; a Windows Server 2025 domain controller needed; never delete the superseded account; `Undo-ADServiceAccountMigration` | n/a | GA | [^np03-ws-accounts] [^np03-dmsa] [^np03-dmsa-setup] [^np03-dmsa-faq] |
-| Workload identity federation | App registration or user-assigned managed identity; GitHub Actions, Kubernetes, other clouds, other OIDC issuers; an app on Azure compute trusting a user-assigned managed identity | — | GA | [^np03-wif] |
-| Managed identity on an Arc-enabled server | System-assigned, one per server; local administrators and the extension applications group can request tokens | — | GA | [^np03-arc-mi] [^np03-arc-identity] |
-| Workload ID Premium | Standalone; adds access reviews of privileged service principals, app health recommendations, Conditional Access and ID Protection for workload identities; no per-identity assignment | Available through the account manager; no free trial in Azure Government | GA | [^np03-wid-faq] |
-| Conditional Access for workload identities | Single-tenant service principals registered in the tenant only; not managed identities or multitenant apps; assigned directly, not through a group; Premium licenses to create or change | Not stated on the page read | GA | [^np03-ca-wid] |
-| ID Protection for workload identities | Single-tenant, SaaS and multitenant apps; not managed identities | Not stated on the page read | GA | [^np03-idp-wid] |
-| List subscribedSkus | `GET /subscribedSkus`; `LicenseAssignment.Read.All`; `$select` only, no `$filter`; Global Reader or Directory Readers for delegated access | L4 and L5 | v1.0 | [^np03-skus] |
-| Workload ID service plans | `AAD_WRKLDID_P1` (`84c289f0-…`), `AAD_WRKLDID_P2` (`7dc0e92d-…`); products `Workload_Identities_P2` and `Workload_Identities_Premium_CN` | — | — | [^np03-sku-ref] |
-| Get a user | Application `User.Read.All`; `$select` for `userType` and `accountEnabled` | — | v1.0 | [^np03-user-get] |
-| Graph hosts | GCC worldwide; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^np03-deployments] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| On-premises choice | gMSA whenever possible; sMSA if not; computer or user account only without an MSA; test the service first; no privileged groups | GA | [^np03-onprem] [^np03-gmsa] |
+| Cloud choice | Managed identity in Azure if the service supports one; service principal otherwise; never a user account; certificates over secrets | — | [^np03-cloud] |
+| dMSA | Windows Server 2025; can't migrate an MSA or gMSA to one; every machine must support it; unconstrained delegation stops working; one dMSA per account; a Windows Server 2025 domain controller needed; never delete the superseded account; `Undo-ADServiceAccountMigration` | GA | [^np03-ws-accounts] [^np03-dmsa] [^np03-dmsa-setup] [^np03-dmsa-faq] |
+| Workload identity federation | App registration or user-assigned managed identity; GitHub Actions, Kubernetes, other clouds, other OIDC issuers; an app on Azure compute trusting a user-assigned managed identity | GA | [^np03-wif] |
+| Managed identity on an Arc-enabled server | System-assigned, one per server; local administrators and the extension applications group can request tokens | GA | [^np03-arc-mi] [^np03-arc-identity] |
+| Workload ID Premium | Standalone; adds access reviews of privileged service principals, app health recommendations, Conditional Access and ID Protection for workload identities; no per-identity assignment | GA | [^np03-wid-faq] |
+| Conditional Access for workload identities | Single-tenant service principals registered in the tenant only; not managed identities or multitenant apps; assigned directly, not through a group; Premium licenses to create or change | GA | [^np03-ca-wid] |
+| ID Protection for workload identities | Single-tenant, SaaS and multitenant apps; not managed identities | GA | [^np03-idp-wid] |
+| List subscribedSkus | `GET /subscribedSkus`; `LicenseAssignment.Read.All`; `$select` only, no `$filter`; Global Reader or Directory Readers for delegated access | v1.0 | [^np03-skus] |
+| Workload ID service plans | `AAD_WRKLDID_P1` (`84c289f0-…`), `AAD_WRKLDID_P2` (`7dc0e92d-…`); products `Workload_Identities_P2` and `Workload_Identities_Premium_CN` | — | [^np03-sku-ref] |
+| Get a user | Application `User.Read.All`; `$select` for `userType` and `accountEnabled` | v1.0 | [^np03-user-get] |
+| Graph hosts | GCC uses the worldwide host, `graph.microsoft.com` | — | [^np03-deployments] |
 
 Where Learn's pages differ: the on-premises table has no dMSA column where Windows Server's guide has one (research gaps, row 21); the cloud table offers a service principal only certificates and secrets where the federation page offers federated credentials (row 22); the cloud page says managed identities can't be used outside Azure where the Arc pages give every Arc-enabled server one (row 23); and the Workload ID FAQ says one license unlocks every workload identity, that only eligible identities need licenses, and that Premium is priced per workload identity (row 26). The code follows the stricter reading or holds the point open, and a test pins each.
 

@@ -103,7 +103,7 @@ AWS structures its federal cloud offerings differently from Microsoft and Oracle
 | Provider | Moderate Delivery Model | High / Sovereign Model |
 |----------|------------------------|----------------------|
 | AWS | US East/West commercial regions (FedRAMP Certified Class C, formerly Moderate) **or** GovCloud (US) (Class D, formerly High), since a Moderate system may run in a higher-certified region | GovCloud us-gov-east-1 / us-gov-west-1 (FedRAMP Certified Class D, formerly High; ITAR; US-persons operations; physically separate) |
-| Microsoft | Partitioned .com (GCC Moderate on Azure Commercial) | GCC High / DoD on physically separate infrastructure |
+| Microsoft | Partitioned .com (GCC Moderate on Azure Commercial) | — |
 | Oracle | Partitioned .com (OCI Moderate) | OCI Government Cloud (separate) |
 
 AWS has two FedRAMP boundaries, and a Moderate system can sit in either. AWS certifies its US East/West regions at Class C (formerly Moderate) and GovCloud (US) at Class D (formerly High), and its services-in-scope list is checked per service and per region (AWS, "FedRAMP" and "FedRAMP — Services in Scope," <https://aws.amazon.com/compliance/fedramp/>, <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>, accessed 2026-10-29). NIST's control baselines are cumulative, so GovCloud (US) isn't reserved for High systems. Amazon Connect is in scope in both: the commercial regions and **AWS GovCloud (US)**. At the time the agency evaluated platforms for the N8NN contact center, the GovCloud version presented operational capability gaps relative to the commercial (.com) version in three categories:

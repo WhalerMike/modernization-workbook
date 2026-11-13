@@ -288,7 +288,7 @@ unset SAILPOINT_API_BASE SAILPOINT_CLIENT_ID SAILPOINT_CLIENT_SECRET GRAPH_TENAN
 |---|---|---|
 | List users | `GET /v1.0/users`, `User.Read.All` (application) | [^ttm06-users] |
 | Manager | `GET /users?$expand=manager` documented; application permissions not supported on `GET /users/{id}/manager` | [^ttm06-manager] |
-| Directory audit | `GET /v1.0/auditLogs/directoryAudits`, `AuditLog.Read.All` (application); available in US Government L4 and L5 | [^ttm06-audit] |
+| Directory audit | `GET /v1.0/auditLogs/directoryAudits`, `AuditLog.Read.All` (application) | [^ttm06-audit] |
 | ISC identities | `POST /v3/search`, `identities` index, `sp:search:read`; `searchAfter` past 10,000 | [^ttm06-search] |
 | Uncorrelated accounts | `GET /v3/accounts` with the `uncorrelated` filter (`eq`), `idn:accounts:read`; `limit` at most 250 | [^ttm06-accounts] |
 | GCC endpoints | Microsoft 365 GCC uses the worldwide `graph.microsoft.com` | [^ttm06-deployments] |

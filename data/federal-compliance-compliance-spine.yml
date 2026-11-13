@@ -10,7 +10,7 @@
 #
 # Configuration-baseline wording follows the series' Moderate civilian framing:
 # the agency's CM-6 baseline (CIS Benchmarks, vendor hardening guides, the NIST
-# National Checklist Program); DISA STIGs only as "(High only)" references.
+# National Checklist Program); STIGs only as "(High only)" references.
 
 tables:
   book-net-enforce:

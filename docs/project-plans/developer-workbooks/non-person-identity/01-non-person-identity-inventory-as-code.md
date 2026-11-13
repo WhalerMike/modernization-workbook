@@ -62,7 +62,7 @@ The risk, the candidate target and the stale lead come from the program, not fro
 
 ### Which cloud and which directory, for this read
 
-For the target estate, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com`. GCC High uses `graph.microsoft.us`, DoD `dod-graph.microsoft.us`, and both use Azure Government's `management.usgovcloudapi.net`.[^np01-deployments] [^np01-compare] The Graph calls whose pages show a national cloud table (list applications, application owners, federated credentials, delegated permission grants) list the global service, US Government L4 and US Government L5.[^np01-app-list] [^np01-app-owners] [^np01-fic-list] [^np01-grants] The code takes `gcc` as an explicit cloud name and refuses any name it doesn't know, the pattern the first workbook's [Chapter 02](../../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) sets. The Active Directory reads go to the domain named with `-Domain` (here `corp.contoso.example`), never to whatever domain the machine happens to be in.
+For the target estate, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com`.[^np01-deployments] [^np01-compare] The Graph calls whose pages show a national cloud table (list applications, application owners, federated credentials, delegated permission grants) list the global service, which GCC uses.[^np01-app-list] [^np01-app-owners] [^np01-fic-list] [^np01-grants] The code takes `gcc` as an explicit cloud name and refuses any name it doesn't know, the pattern the first workbook's [Chapter 02](../../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) sets. The Active Directory reads go to the domain named with `-Domain` (here `corp.contoso.example`), never to whatever domain the machine happens to be in.
 
 ## Start with Microsoft's sample
 
@@ -437,22 +437,22 @@ Remove-Item -Recurse -Force out/inventory-test
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Finding user-based service accounts | No attribute marks them; criteria: delegation, SPNs, passwords that never expire; may miss accounts; `svc` prefix recommended | n/a (Active Directory) | GA | [^np01-user-svc] |
-| Managed service accounts | `Get-ADServiceAccount -Filter *`; `msDS-GroupManagedServiceAccount` and `msDS-ManagedServiceAccount`; gMSA passwords 240 bytes, changed every 30 days | n/a | GA | [^np01-gmsa] [^np01-get-adsa] |
-| dMSA | Windows Server 2025; supersedes a traditional account, disables its password, authentication tied to mapped machines | n/a | GA | [^np01-dmsa] [^np01-dmsa-setup] |
-| `lastLogonTimestamp` | Updated only when older than the current time minus `msDS-LogonTimeSyncInterval` | n/a | — | [^np01-lastlogon] |
-| List applications | `Application.Read.All`; also returns agent identity blueprints; `$select` of `keyCredentials` throttled at 150 requests a minute per tenant; page size 100 by default, 999 at most | L4 and L5 | v1.0 | [^np01-app-list] |
-| List owners of an application | `Application.Read.All`; owners of unreadable types return `id` and `@odata.type` only | L4 and L5 | v1.0 | [^np01-app-owners] |
-| List federated identity credentials | `Application.Read.All` (the Get page names `Application.ReadWrite.OwnedBy`) | L4 and L5 | v1.0 | [^np01-fic-list] [^np01-fic-get] |
-| List service principals; owners | `Application.Read.All`; owners are users or service principals | Not read for this chapter | v1.0 | [^np01-sp-list] [^np01-sp-owners] |
-| `servicePrincipalType` | `Application`, `ManagedIdentity`, `Legacy`, `ServiceIdentity` (agent identity), `SocialIdp` | — | v1.0 | [^np01-sp-type] |
-| `alternativeNames` | Holds a managed identity's resource group and full resource ID | — | v1.0 | [^np01-sp-update] |
-| List appRoleAssignedTo | `Application.Read.All` | Not read for this chapter | v1.0 | [^np01-approle-to] |
-| List delegated permission grants | `Directory.Read.All` | L4 and L5 | v1.0 | [^np01-grants] |
-| A user-assigned identity's federated credentials | `GET …/userAssignedIdentities/{name}/federatedIdentityCredentials`, `api-version=2024-11-30` | Azure Government host `management.usgovcloudapi.net`; the API's availability there not read | GA | [^np01-arm-fic] [^np01-compare] |
-| Graph hosts | GCC worldwide; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^np01-deployments] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Finding user-based service accounts | No attribute marks them; criteria: delegation, SPNs, passwords that never expire; may miss accounts; `svc` prefix recommended | GA | [^np01-user-svc] |
+| Managed service accounts | `Get-ADServiceAccount -Filter *`; `msDS-GroupManagedServiceAccount` and `msDS-ManagedServiceAccount`; gMSA passwords 240 bytes, changed every 30 days | GA | [^np01-gmsa] [^np01-get-adsa] |
+| dMSA | Windows Server 2025; supersedes a traditional account, disables its password, authentication tied to mapped machines | GA | [^np01-dmsa] [^np01-dmsa-setup] |
+| `lastLogonTimestamp` | Updated only when older than the current time minus `msDS-LogonTimeSyncInterval` | — | [^np01-lastlogon] |
+| List applications | `Application.Read.All`; also returns agent identity blueprints; `$select` of `keyCredentials` throttled at 150 requests a minute per tenant; page size 100 by default, 999 at most | v1.0 | [^np01-app-list] |
+| List owners of an application | `Application.Read.All`; owners of unreadable types return `id` and `@odata.type` only | v1.0 | [^np01-app-owners] |
+| List federated identity credentials | `Application.Read.All` (the Get page names `Application.ReadWrite.OwnedBy`) | v1.0 | [^np01-fic-list] [^np01-fic-get] |
+| List service principals; owners | `Application.Read.All`; owners are users or service principals | v1.0 | [^np01-sp-list] [^np01-sp-owners] |
+| `servicePrincipalType` | `Application`, `ManagedIdentity`, `Legacy`, `ServiceIdentity` (agent identity), `SocialIdp` | v1.0 | [^np01-sp-type] |
+| `alternativeNames` | Holds a managed identity's resource group and full resource ID | v1.0 | [^np01-sp-update] |
+| List appRoleAssignedTo | `Application.Read.All` | v1.0 | [^np01-approle-to] |
+| List delegated permission grants | `Directory.Read.All` | v1.0 | [^np01-grants] |
+| A user-assigned identity's federated credentials | `GET …/userAssignedIdentities/{name}/federatedIdentityCredentials`, `api-version=2024-11-30`; GCC's estate sends it to `management.azure.com` | GA | [^np01-arm-fic] [^np01-compare] |
+| Graph hosts | GCC uses the worldwide host, `graph.microsoft.com` | — | [^np01-deployments] |
 
 Where Learn's pages differ: the List and Get pages for federated identity credentials name different least-privileged permissions (research gaps, row 4); the service principal page's tag filter for "multi-tenant apps" is the Entra PowerShell reference's filter for all enterprise apps (row 6); the export script's explanation describes an expiry prompt the script doesn't have; and the Resource Manager list sample's `nextLink` is on a placeholder host (row 7). The code follows the stricter reading in each case and a test pins each.
 
@@ -493,7 +493,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 | A dMSA left unclassified | The Kerberos island list in Chapter 06 is short | Classified by object class; anything else is NPI-INV-09 |
 | An app counted twice, or a third party's app treated as ours | Inflated HIGH counts; owner findings on apps the tenant can't change | Permissions on the registration row only; external service principals typed by home tenant |
 | A broad permission | `Directory.ReadWrite.All` or `Application.ReadWrite.All` granted "to make it work" | The call list; a test pins the task's exact permissions, none `ReadWrite`; `Directory.Read.All` only for consent grants |
-| The wrong cloud, tenant or domain | A GCC High run reads `graph.microsoft.com`, or the token goes to another tenant | Explicit cloud, no default; host checked on every page; live sessions checked against `-TenantId`; AD reads sent to `-Domain` |
+| The wrong cloud, tenant or domain | A run reads a host other than its cloud's, or the token goes to another tenant | Explicit cloud, no default; host checked on every page; live sessions checked against `-TenantId`; AD reads sent to `-Domain` |
 | Throttling on credentials | Reading `keyCredentials` is limited to 150 requests a minute per tenant[^np01-app-list] | One paged list of applications, never a call per app for its credentials |
 | The register as a leak | It maps which accounts can do what | The manifest names no one; Lab 2 deletes the output |
 
