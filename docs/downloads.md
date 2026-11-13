@@ -108,6 +108,17 @@ Draft, held for review page by page; see [Developer Workbooks](project-plans/dev
 | [Building Ticket-to-Machine](project-plans/developer-workbooks/ticket-to-machine/index.md) | [building-ticket-to-machine-bundle.docx](../downloads/building-ticket-to-machine-bundle.docx) |
 | [Building HR-Driven Identity](project-plans/developer-workbooks/hr-driven-identity/index.md) | [building-hr-driven-identity-bundle.docx](../downloads/building-hr-driven-identity-bundle.docx) |
 
+## For AI tools
+
+The workbook as plain text, for an AI tool your organization already approves: Microsoft 365 Copilot, or any other. Nothing is sent anywhere; your tool reads the files. Each page's text starts with its address, so answers can point back to the page. All of it is rebuilt from the site's sources on every deploy.
+
+| What | Use it for | Download |
+|---|---|---|
+| **Knowledge pack** | Each book, the implementation guides, the training paths, the developer workbooks and the reference pages as one plain-text file each, with a README on loading them. In a GCC tenant, a Copilot agent reads them from OneDrive or SharePoint; the [Copilot agent pack](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/copilot-agent-pack#option-b-agent-with-knowledge-files-microsoft-365-copilot-license) README has the steps. | [fmw-knowledge-pack.zip](../downloads/fmw-knowledge-pack.zip) |
+| **Page index** | [llms.txt](https://whalermike.github.io/modernization-workbook/llms.txt) lists every page in the [llms.txt](https://llmstxt.org/) format. Every page also has a Markdown copy at its own address with `.md` in place of `.html`. | Linked from the index |
+
+Use any AI tool only under your organization's AI policy. The content license still applies: share the text unchanged and credit it ([License](https://github.com/WhalerMike/modernization-workbook/blob/main/LICENSE.md)).
+
 ## Videos and presentations
 
 - **Narrated presentation videos:** watch them on the [Videos](presentations/watch.md) page, or download the MP4s from the [October 23, 2026 video release](https://github.com/WhalerMike/modernization-workbook/releases/tag/videos-2026-10-23).

@@ -81,6 +81,8 @@ FULL_FILES = {
     "bundles.yml": "Word bundle manifests",
     "scripts/bundle-filter.lua": "Word bundle filter",
     ".github/workflows/quarto-pages.yml": "deploy workflow",
+    "scripts/build_ai_exports.py": "exports for AI tools (llms.txt, page Markdown, knowledge pack)",
+    "pagefind.yml": "site search index settings",
 }
 # Folders whose files feed every page.
 FULL_PREFIXES = {
@@ -590,6 +592,8 @@ class Repo:
         self.kits = tuple(build_start_kit_zip.KITS)
         self.kit_bundles = dict(build_start_kit_zip.BUNDLES)
         self.zip_names = {build_start_kit_zip.ZIP_NAMES.get(k, k) + ".zip" for k in self.kits}
+        import build_ai_exports
+        self.zip_names.add(build_ai_exports.PACK_NAME)    # downloads/fmw-knowledge-pack.zip
         cfg = yaml.safe_load((REPO / "scripts/bundles.yml").read_text(encoding="utf-8"))
         self.bundle_names = set()
         for spec in cfg.get("bundles") or []:
@@ -1087,6 +1091,7 @@ class Checker:
                 ("Footnotes (every page and bundle)", self.footnote_check),
                 ("Word bundles (all)", self.bundles_full),
                 ("Kit zips (all)", lambda: self.kits(list(self.repo.kits), "_site/downloads")),
+                ("Exports for AI tools", self.simple([PY, "scripts/build_ai_exports.py", "--site", "_site"])),
                 ("Redirects", self.redirects),
                 ("Video manifest is current", self.simple([PY, "scripts/generate_video_manifest.py", "--check"])),
                 ("Revision histories and the Archive are current",

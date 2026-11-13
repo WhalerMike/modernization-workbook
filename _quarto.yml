@@ -67,6 +67,10 @@ website:
   title: "Federal Modernization Workbook"
   site-url: https://whalermike.github.io/modernization-workbook/
 
+  # Search is Pagefind (pagefind.yml, assets/site-search.html), built after the
+  # render by the deploy workflow. Quarto's own search would load one search.json
+  # of several megabytes into the browser.
+  search: false
   page-navigation: true
   back-to-top-navigation: true
   bread-crumbs: true
@@ -550,6 +554,8 @@ format:
       - file: assets/copy-link.html
       # Tables become stacked cards on phones; very wide ones scroll (assets/table-cards.html).
       - file: assets/table-cards.html
+      # Site search in the navbar: Pagefind (assets/site-search.html, pagefind.yml).
+      - file: assets/site-search.html
       - text: |
           <script>
             document.querySelectorAll("section#footnotes").forEach(function (s) {
