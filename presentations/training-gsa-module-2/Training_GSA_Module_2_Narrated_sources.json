@@ -1,0 +1,146 @@
+[
+ {
+  "slide": 2,
+  "title": "Why: the client and the profile carry everything after",
+  "links": [
+   {
+    "text": "Install the Global Secure Access client for Windows",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-install-windows-client"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Unit 1: where the client runs, and where it can't",
+  "links": [
+   {
+    "text": "Install the Global Secure Access client for Windows",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-install-windows-client"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Unit 2: package the client the way Learn does",
+  "links": [
+   {
+    "text": "Install the Global Secure Access client for Windows",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-install-windows-client"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 2, continued: DNS, hardening and upgrades",
+  "links": [
+   {
+    "text": "Install the Global Secure Access client for Windows",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-install-windows-client"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Unit 3: the Microsoft traffic profile and source IP",
+  "links": [
+   {
+    "text": "Tutorial: Enable the Microsoft traffic profile",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tutorial-microsoft-traffic-profile"
+   },
+   {
+    "text": "Source IP restoration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-source-ip-restoration"
+   },
+   {
+    "text": "forwardingProfile resource type",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-forwarding-profile-resource"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "No report-only mode: the pilot is the audit phase",
+  "links": [
+   {
+    "text": "deployment guide for Microsoft Traffic",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-deployment-guide-microsoft-traffic"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Module 2",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "TIC 3.0 Remote User Use Case v2.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Sources: Module 2 deck",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Install the Global Secure Access client for Windows",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-install-windows-client"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "Tutorial: Enable the Microsoft traffic profile",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tutorial-microsoft-traffic-profile"
+   },
+   {
+    "text": "Source IP restoration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-source-ip-restoration"
+   },
+   {
+    "text": "forwardingProfile resource type",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-forwarding-profile-resource"
+   },
+   {
+    "text": "reports: getDeviceUsageSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-get-device-usage-summary"
+   },
+   {
+    "text": "deployment guide for Microsoft Traffic",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-deployment-guide-microsoft-traffic"
+   },
+   {
+    "text": "TIC 3.0 Remote User Use Case v2.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

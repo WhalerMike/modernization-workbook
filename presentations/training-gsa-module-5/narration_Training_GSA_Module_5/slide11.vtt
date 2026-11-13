@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.292
+First: which certificate
+authority issues the T L S
+
+3
+00:00:05.292 --> 00:00:08.637
+inspection intermediate,
+in the program's position?
+
+4
+00:00:08.637 --> 00:00:13.162
+The answer is b: a dedicated
+issuing C A under the agency's root,
+
+5
+00:00:13.162 --> 00:00:17.325
+never the C A that issues
+authentication certificates.
+
+6
+00:00:17.325 --> 00:00:21.187
+Second: what happens when the
+inspection certificate expires?
+
+7
+00:00:21.187 --> 00:00:25.229
+The answer is b: all T L S
+inspection across the tenant stops,
+
+8
+00:00:25.229 --> 00:00:31.038
+so the guide renews at least ninety days
+ahead and deploys trust before activation.
+
+9
+00:00:31.038 --> 00:00:36.000
+The module page has three more questions,
+each linked to the unit that answers it.

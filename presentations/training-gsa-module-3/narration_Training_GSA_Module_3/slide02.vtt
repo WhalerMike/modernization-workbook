@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Why do these two matter?
+
+2
+00:00:01.400 --> 00:00:06.319
+The compliant network check binds sign-in
+and token use to the agency's own path,
+
+3
+00:00:06.319 --> 00:00:09.875
+so a token stolen and replayed
+from somewhere else fails.
+
+4
+00:00:09.875 --> 00:00:14.325
+In attack terms, it interrupts
+credential access and defense evasion.
+
+5
+00:00:14.325 --> 00:00:18.387
+Universal tenant restrictions
+keep agency devices from signing
+
+6
+00:00:18.387 --> 00:00:22.450
+in to a personal or hostile tenant,
+which interrupts exfiltration.
+
+7
+00:00:22.450 --> 00:00:25.375
+Both are powerful, and
+both can lock people out.
+
+8
+00:00:25.375 --> 00:00:28.647
+So in this module you learn
+their failure modes first,
+
+9
+00:00:28.647 --> 00:00:32.640
+and you run each in report-only or
+a pilot before it blocks anyone.

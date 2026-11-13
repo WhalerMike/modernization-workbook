@@ -17,7 +17,7 @@ the verification log as "manual check" and use another primary source such as th
 whitehouse.gov); guidance, not policy — "requires" only with a cited requirement, program design labeled as design;
 keep line endings as found (Python byte counts); defensive content only. AI vendors and products may be named as examples,
 never endorsed; verify each feature on the vendor's own documentation, including **its availability and release stage
-(preview or generally available) in the government clouds (GCC, GCC High, DoD, Azure Government)** — say so plainly when
+(preview or generally available) in GCC** — say so plainly when
 a feature is commercial-only or preview.
 
 **Translate internal vocabulary** as in Books 13–16: no "canon", "substrate", "doctrine", internal IDs (ADR-nnn, UIAO_nnn,

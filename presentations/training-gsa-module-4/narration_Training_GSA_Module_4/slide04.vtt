@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+Unit 1.
+
+2
+00:00:00.875 --> 00:00:04.461
+Network and Transport, chapter
+five, holds the design:
+
+3
+00:00:04.461 --> 00:00:09.595
+Quick Access as the bridge from the V P
+N, application discovery to find what's
+
+4
+00:00:09.595 --> 00:00:12.611
+actually used, and then
+per-app applications,
+
+5
+00:00:12.611 --> 00:00:15.300
+each with its own assignment and policy.
+
+6
+00:00:15.300 --> 00:00:17.563
+Learn's Graph tutorial is the build.
+
+7
+00:00:17.563 --> 00:00:20.056
+Create the app from the custom application
+
+8
+00:00:20.056 --> 00:00:22.412
+template and mark it a Private Access app.
+
+9
+00:00:22.412 --> 00:00:24.288
+Bind it to one connector group.
+
+10
+00:00:24.288 --> 00:00:29.025
+Add only the segments it uses:
+one host, its ports, its protocol.
+
+11
+00:00:29.025 --> 00:00:31.449
+Assign a group, with the app's User role;
+
+12
+00:00:31.449 --> 00:00:34.812
+not individuals, and nested
+groups aren't supported.
+
+13
+00:00:34.812 --> 00:00:40.052
+Then put Conditional Access on it, in
+report-only first, following Learn's example:
+
+14
+00:00:40.052 --> 00:00:44.587
+multifactor authentication and a
+compliant or hybrid-joined device,
+
+15
+00:00:44.587 --> 00:00:46.699
+with emergency access excluded.
+
+16
+00:00:46.699 --> 00:00:49.975
+Learn's rules: segments may
+not overlap between apps,
+
+17
+00:00:49.975 --> 00:00:54.850
+except that a per-app segment overrides
+an overlapping Quick Access segment.
+
+18
+00:00:54.850 --> 00:00:57.937
+Clients take up to fifteen
+minutes to pick up a change.
+
+19
+00:00:57.937 --> 00:01:03.470
+And Microsoft advises against an M F
+A sign-in frequency on Quick Access,
+
+20
+00:01:03.470 --> 00:01:06.430
+because D N S queries trigger prompts.

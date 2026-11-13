@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-Which Microsoft Entra ID log categories exist, which Log Analytics table each lands in, and which ones the program enables in every tenant. How to deploy the tenant-scope diagnostic setting by portal, Bicep or `az rest`, why the retention block on that setting does nothing, and how to prove emission is working. It closes with the endpoint changes for GCC High and DoD, with Microsoft Graph's audit APIs as a tool for pulling specific evidence, not for feeding a SIEM, and with the signals that sit beside the diagnostic setting: Entra Health and recommendations, Global Secure Access logs and alerts, the Entra Connect server's own audit events, and domain controller monitoring while the forest remains.
+Which Microsoft Entra ID log categories exist, which Log Analytics table each lands in, and which ones the program enables in every tenant. How to deploy the tenant-scope diagnostic setting by portal, Bicep or `az rest`, why the retention block on that setting does nothing, and how to prove emission is working. It closes with the endpoints a GCC tenant uses, with Microsoft Graph's audit APIs as a tool for pulling specific evidence, not for feeding a SIEM, and with the signals that sit beside the diagnostic setting: Entra Health and recommendations, Global Secure Access logs and alerts, the Entra Connect server's own audit events, and domain controller monitoring while the forest remains.
 :::
 
 [Chapter 02](02-the-evidence-contract.md) set the rule that every plane emits deliberately, under one evidence contract. Identity comes first because it is the join key for almost everything else: a mailbox read, a Key Vault secret retrieval and a role assignment all trace back to a sign-in. It is also the plane where the default is most misleading. Entra ID records audit and sign-in activity whether or not anyone configures anything, and the admin center shows it. That makes the tenant look instrumented. But with Entra ID P1 or P2, audit and sign-in data is kept for 30 days (seven days on the Free tier), Microsoft Graph activity logs aren't kept at all unless they are routed somewhere, and an upgrade never recovers data that already expired.[^c03-retention] An agency that hasn't created a diagnostic setting has a rolling 30-day window of identity history and nothing older.
@@ -213,17 +213,15 @@ A Log Analytics workspace maps onto those definitions cleanly. Tables on the Ana
 
 Retention is set per table, by portal, `az monitor log-analytics workspace table update` with `--retention-time` and `--total-retention-time`, or `Update-AzOperationalInsightsTable`.[^c03-la-retention] Shortening a table's total retention takes effect only after a 30-day wait, which protects against mistakes; lengthening it applies to data already in the table.[^c03-la-retention] The Entra admin center's own 30-day window is no substitute: it is a viewing convenience, not evidence storage.
 
-## Sovereign clouds
+## GCC endpoints {#sovereign-clouds}
 
-The endpoint you deploy to depends on which Entra cloud the tenant lives in, and that follows the Microsoft 365 environment. Office 365 GCC is paired with Microsoft Entra ID in commercial Azure; GCC High and DoD are paired with Entra ID in Azure Government.[^c03-feature-avail]
+The endpoint you deploy to depends on which Entra cloud the tenant lives in, and that follows the Microsoft 365 environment. Office 365 GCC is paired with Microsoft Entra ID in commercial Azure.[^c03-feature-avail]
 
 | Microsoft 365 environment | Resource Manager (diagnostic setting) | Microsoft Graph | Sign-in authority |
 |---|---|---|---|
 | GCC | `management.azure.com` | `https://graph.microsoft.com` | `login.microsoftonline.com` |
-| GCC High | `management.usgovcloudapi.net` | `https://graph.microsoft.us` | `login.microsoftonline.us` |
-| DoD | `management.usgovcloudapi.net` | `https://dod-graph.microsoft.us` | `login.microsoftonline.us` |
 
-Graph endpoints and the GCC rule (keep using the worldwide endpoints) are from Microsoft's national cloud deployment page;[^c03-graph-deployments] Resource Manager endpoints from the Azure Government comparison.[^c03-azgov-compare] Microsoft Graph activity logs and the Graph audit log APIs are available in the US Government L4 and L5 (DoD) deployments.[^c03-graph-activity][^c03-signin-list] Microsoft Sentinel's Entra ID connector is generally available in both commercial Azure and Azure Government.[^c03-sentinel-feature] Feature availability still differs by cloud in places, and [Book 10](../b10-cloud-boundary/index.md) is the place to check each capability against the agency's boundary.
+Graph endpoints and the GCC rule (keep using the worldwide endpoints) are from Microsoft's national cloud deployment page.[^c03-graph-deployments] Microsoft Sentinel's Entra ID connector is generally available in commercial Azure, where a GCC tenant's workspace runs.[^c03-sentinel-feature] Feature availability still differs by cloud in places, and [Book 10](../b10-cloud-boundary/index.md) is the place to check each capability against the agency's boundary.
 
 ## Microsoft Graph: targeted evidence, not the feed
 
@@ -264,8 +262,6 @@ Connect-MgGraph -Scopes 'AuditLog.Read.All', 'Policy.Read.ConditionalAccess'
 Get-MgAuditLogDirectoryAudit -All `
   -Filter "category eq 'RoleManagement' and activityDateTime ge 2026-10-01T00:00:00Z"
 ```
-
-In GCC High, the app registration must be created in the Azure Government Entra admin center, and a scope that names the Graph domain must use the national-cloud domain; for app-only access the correct value is `https://graph.microsoft.us/.default`.[^c03-graph-sdk-clouds] In PowerShell that is `Connect-MgGraph -Environment USGov`, as in Microsoft's example.[^c03-graph-sdk-clouds] For DoD, use the `dod-graph.microsoft.us` domain from the table above.[^c03-graph-deployments]
 
 ## Verify emission
 
@@ -315,11 +311,11 @@ GET https://graph.microsoft.com/beta/reports/healthMonitoring/alerts?$filter=sta
 Authorization: Bearer {token}
 ```
 
-That request is Microsoft's own example; it needs `HealthMonitoringAlert.Read.All`.[^c03-health-alerts] Entra recommendations are a separate, daily comparison of the tenant's configuration with Microsoft's best practices. Each recommendation carries an action plan and the affected resources; Reports Reader, Security Reader and Global Reader can read them; and several, most of them in preview, apply directly to the hybrid estate, such as removing non-admin accounts with DCSync permissions, rotating the password of the Entra Connect AD DS Connector account, fixing misconfigured certificate templates and disabling the Print Spooler service on domain controllers.[^c03-recommendations] The program reads the recommendations list at each monthly evidence review and records what it accepted, fixed or deferred. Availability of Entra Health and of recommendations in Azure Government (GCC High and DoD) is not yet specified on Microsoft Learn; check it against the agency's boundary ([Book 10](../b10-cloud-boundary/index.md)).
+That request is Microsoft's own example; it needs `HealthMonitoringAlert.Read.All`.[^c03-health-alerts] Entra recommendations are a separate, daily comparison of the tenant's configuration with Microsoft's best practices. Each recommendation carries an action plan and the affected resources; Reports Reader, Security Reader and Global Reader can read them; and several, most of them in preview, apply directly to the hybrid estate, such as removing non-admin accounts with DCSync permissions, rotating the password of the Entra Connect AD DS Connector account, fixing misconfigured certificate templates and disabling the Print Spooler service on domain controllers.[^c03-recommendations] The program reads the recommendations list at each monthly evidence review and records what it accepted, fixed or deferred.
 
 ### Global Secure Access logs and alerts
 
-Where the agency licenses Internet Access or Private Access, Global Secure Access writes its own categories through the same Entra diagnostic setting: traffic (`NetworkAccessTrafficLogs`), connection events (`NetworkAccessConnectionEvents`), remote-network health (`RemoteNetworkHealthLogs`), generative AI insights (`NetworkAccessGenerativeAIInsights`, preview) and its own alerts (`NetworkAccessAlerts`). Each lands in a table of the same name, except traffic, which lands in `NetworkAccessTraffic`. Microsoft's Global Secure Access solution in the Sentinel content hub adds three workbooks and seven analytics rules over those tables, among them threat-intelligence matches on destinations and a rule for connections outside operational hours.[^c03-gsa-sentinel] The alert types include *Token/Device Inconsistency* (one access token used on more than one device), *Increased External Tenant Activity* and *Unhealthy Remote Network*, and the alert structure follows Sentinel's security alert schema.[^c03-gsa-alerts] The program adds these categories to the setting in Path B or C only once Global Secure Access is deployed, and treats them as Conditional, like the Global Secure Access rows already in the table above. Global Secure Access is available in GCC but not yet supported in GCC High or DoD.[^c03-gsa-gov]
+Where the agency licenses Internet Access or Private Access, Global Secure Access writes its own categories through the same Entra diagnostic setting: traffic (`NetworkAccessTrafficLogs`), connection events (`NetworkAccessConnectionEvents`), remote-network health (`RemoteNetworkHealthLogs`), generative AI insights (`NetworkAccessGenerativeAIInsights`, preview) and its own alerts (`NetworkAccessAlerts`). Each lands in a table of the same name, except traffic, which lands in `NetworkAccessTraffic`. Microsoft's Global Secure Access solution in the Sentinel content hub adds three workbooks and seven analytics rules over those tables, among them threat-intelligence matches on destinations and a rule for connections outside operational hours.[^c03-gsa-sentinel] The alert types include *Token/Device Inconsistency* (one access token used on more than one device), *Increased External Tenant Activity* and *Unhealthy Remote Network*, and the alert structure follows Sentinel's security alert schema.[^c03-gsa-alerts] The program adds these categories to the setting in Path B or C only once Global Secure Access is deployed, and treats them as Conditional, like the Global Secure Access rows already in the table above. Global Secure Access is available in GCC.[^c03-gsa-gov]
 
 ### The Entra Connect server
 
@@ -351,7 +347,7 @@ Microsoft's list of events to monitor rates a handful of events High, meaning a 
 This section applies [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions to the procedure above, Paths A to C and the verification query. It reuses what the chapter already says and adds only what was missing.
 
 **Authority:** Mandated for the retention floor: OMB M-26-14's six months searchable and one year retrievable ([Retention](#retention-what-the-logging-baseline-asks-for)). Microsoft-recommended for routing Graph activity logs to the same workspace as the sign-in logs and for keeping `MicrosoftServicePrincipalSignInLogs` off (Learn pages cited above, read Oct 21, 2026). Risk-based recommended for the Core, High value and Conditional tiers and for deploying from code, which are the program's design.
-**Applies:** All tenants for the Core tier. License-dependent: Entra ID P1 or P2 for Graph activity logs; ID Protection licensing for the High value tier. Environment-dependent: endpoints by cloud, in [Sovereign clouds](#sovereign-clouds); Global Secure Access categories not yet supported in GCC High or DoD.
+**Applies:** All tenants for the Core tier. License-dependent: Entra ID P1 or P2 for Graph activity logs; ID Protection licensing for the High value tier. Environment-dependent: GCC endpoints, in [GCC endpoints](#sovereign-clouds).
 
 **Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
 
@@ -369,7 +365,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 | Subsection | Where, or why not |
 |---|---|
-| Prerequisites | [Before you start](#before-you-start); government-cloud endpoints and availability in [Sovereign clouds](#sovereign-clouds) |
+| Prerequisites | [Before you start](#before-you-start); GCC endpoints and availability in [GCC endpoints](#sovereign-clouds) |
 | Pilot | Path A in a lab or first tenant, then Path B or C in a test tenant, as the illustrative-code warning requires |
 | Report-only or audit phase | Not applicable: emission has no blocking effect to observe first |
 | Enforcement | Not applicable for the same reason; the [Verify emission](#verify-emission) runs at 24 and 72 hours take its place |
@@ -439,12 +435,10 @@ Entra diagnostic settings emit identity events. They don't emit Azure control-pl
 [^c03-la-retention]: Microsoft Learn, "Manage data retention in a Log Analytics workspace," sections "Analytics, long-term, and total retention," "How retention modifications work" and "Configure table-level retention," <https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure> (accessed Oct 21, 2026).
 [^c03-feature-avail]: Microsoft Learn, "Cloud feature availability for US Government customers," section "Microsoft 365 integration," <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Oct 21, 2026).
 [^c03-graph-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," sections "App registration and token service root endpoints" and "Microsoft Graph and Graph Explorer service root endpoints," <https://learn.microsoft.com/graph/deployments> (accessed Oct 21, 2026).
-[^c03-azgov-compare]: Microsoft Learn, "Compare Azure Government and global Azure," section "Guidance for developers" (Azure Resource Manager endpoint), <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 21, 2026).
 [^c03-signin-list]: Microsoft Learn, Microsoft Graph v1.0 reference, "List signIns," sections "Permissions" and "Optional query parameters," and national cloud availability table, <https://learn.microsoft.com/graph/api/signin-list?view=graph-rest-1.0> (accessed Oct 21, 2026).
 [^c03-sentinel-feature]: Microsoft Learn, "Microsoft Sentinel feature support for Azure commercial/other clouds," section "Data collection," <https://learn.microsoft.com/azure/sentinel/feature-availability> (accessed Oct 21, 2026).
 [^c03-graph-analyze]: Microsoft Learn, "How to analyze activity logs with Microsoft Graph," sections "Access reports using Microsoft Graph Explorer," "Sample sign-in queries" and "Access reports using Microsoft Graph PowerShell," <https://learn.microsoft.com/entra/identity/monitoring-health/howto-analyze-activity-logs-with-microsoft-graph> (accessed Oct 21, 2026).
 [^c03-directoryaudit]: Microsoft Learn, Microsoft Graph v1.0 reference, "List directoryAudits," <https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0>, and "Get directoryAudit," <https://learn.microsoft.com/graph/api/directoryaudit-get?view=graph-rest-1.0>, sections "Permissions" (accessed Oct 21, 2026).
-[^c03-graph-sdk-clouds]: Microsoft Learn, "Access national cloud deployments with the Microsoft Graph SDKs," sections "Prerequisites," "Permission scopes" and "Examples" (PowerShell tab), <https://learn.microsoft.com/graph/sdks/national-clouds> (accessed Oct 21, 2026).
 [^c03-kql-union]: Microsoft Learn, Kusto Query Language reference, "union operator," parameter `isfuzzy`, <https://learn.microsoft.com/kusto/query/union-operator> (accessed Oct 21, 2026).
 [^c03-signin-details]: Microsoft Learn, "Learn about the sign-in log activity details" (sections "Who" and "Location and Device"), <https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details> (accessed Nov 2, 2026).
 [^c03-a130]: Office of Management and Budget, Circular A-130, *Managing Information as a Strategic Resource*, July 28, 2016 (§10, definition 57, personally identifiable information; Appendix II §3, Fair Information Practice Principles), <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf> (accessed Nov 2, 2026).

@@ -11,8 +11,8 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Activities *Disable account*, *Enable account*, *Delete user*, *Update StsRefreshTokenValidFrom Timestamp* in Core Directory, UserManagement | Start with Microsoft's procedure; verified facts | verified | Learn, audit activities |
-| 2 | List directoryAudits: `AuditLog.Read.All`; Reports Reader, Security Reader, Security Administrator; `$filter` `eq`, `ge`, `le`, `startswith`; L4 and L5 | Permissions; verified facts | verified | Learn, List directoryAudits |
-| 3 | List userProcessingResults: `LifecycleWorkflows-Reports.Read.All`; Global Reader or Lifecycle Workflows Administrator; L4 and L5 | Permissions; verified facts | verified | Learn, List userProcessingResults |
+| 2 | List directoryAudits: `AuditLog.Read.All`; Reports Reader, Security Reader, Security Administrator; `$filter` `eq`, `ge`, `le`, `startswith` | Permissions; verified facts | verified | Learn, List directoryAudits |
+| 3 | List userProcessingResults: `LifecycleWorkflows-Reports.Read.All`; Global Reader or Lifecycle Workflows Administrator | Permissions; verified facts | verified | Learn, List userProcessingResults |
 | 4 | userProcessingResult properties, including `workflowExecutionType` `scheduled`, `onDemand` | Start with Microsoft's procedure | verified | Learn, resource type |
 | 5 | Scheduled evaluation every three hours by default or the set interval; three-day catch-up window; on-demand runs ignore execution conditions; V2 trigger (preview) has no catch-up window | ST-03; differences | verified | Learn, execution conditions; understanding lifecycle workflows |
 | 6 | *Update StsRefreshTokenValidFrom Timestamp* is the record the revoke task (or the revoke call) writes | The intervals | open: Learn lists the activity but doesn't tie it to the task; Lab 2 confirms | — |
@@ -21,7 +21,7 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | 9 | FIPS 201-3: an uncollected card terminated within 18 hours of notification | ST-04; federal requirements | carried forward from Book 03, Chapter 09 and the guide's Gate 6 | Book 03 |
 | 10 | The two intervals' definitions | Why this gate | carried forward from Book 03, Chapter 11 | Book 03 |
 | 11 | Leaver order checked by `lcwext.py check-workflow`; the custom task extension | Why this gate | carried forward from Book 19, Chapter 05 | Book 19 |
-| 12 | Lifecycle Workflows available in Azure for US Government | Which cloud | carried forward from the guide's verification log | Learn, feature availability |
+| 12 | Lifecycle Workflows available in GCC | Which cloud | carried forward from the guide's verification log | Learn, feature availability |
 | 13 | PS-4, AC-2(3), PS-7, AC-2(13) in the Moderate baseline | Federal requirements | carried forward from the guide's verification log | NIST SP 800-53B |
 | 14 | Thresholds 4 hours and 24 hours; 24-hour lookback; set the threshold and the schedule together; failed runs to a high-priority exception | Rules | restated-as-design (labeled); the thresholds are samples the agency replaces | — |
 | 15 | Lab 1 outputs (call list; 7 separated, 1 cancelled, 1 not blocked; p50/p90/max; 10 Finding, 2 Warn; the findings list; the intervals) | Lab 1 | verified by running the commands as written | local run, November 1, 2026 |

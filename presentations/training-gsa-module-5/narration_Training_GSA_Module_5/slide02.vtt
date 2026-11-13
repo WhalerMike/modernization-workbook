@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:06.404
+With Internet Access, Conditional Access
+decides which security profile a user gets,
+
+3
+00:00:06.404 --> 00:00:09.262
+and the profile decides
+what the user can reach.
+
+4
+00:00:09.262 --> 00:00:13.036
+It comes late in the run order
+because it's separately licensed,
+
+5
+00:00:13.036 --> 00:00:17.899
+and because an agency may keep its current
+gateway; that's a decision from Module 1.
+
+6
+00:00:17.899 --> 00:00:20.438
+T L S inspection comes last of all.
+
+7
+00:00:20.438 --> 00:00:23.199
+It's the step most likely
+to break applications,
+
+8
+00:00:23.199 --> 00:00:26.739
+and the step most likely to read
+content the agency shouldn't,
+
+9
+00:00:26.739 --> 00:00:30.350
+so it starts only after filtering
+works on server names alone.
+
+10
+00:00:30.350 --> 00:00:34.569
+In this module you build a pilot
+security profile, govern every bypass,
+
+11
+00:00:34.569 --> 00:00:38.497
+and then add inspection from a
+dedicated certificate authority,
+
+12
+00:00:38.497 --> 00:00:41.260
+within a scope the
+privacy officer approved.

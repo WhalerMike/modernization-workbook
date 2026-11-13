@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.238
+Unit 2 is the failure modes, which
+you learn before you enforce.
+
+2
+00:00:04.238 --> 00:00:08.444
+A disabled or missing client is
+blocked at the next authentication;
+
+3
+00:00:08.444 --> 00:00:11.825
+existing sessions continue
+until reauthentication.
+
+4
+00:00:11.825 --> 00:00:16.663
+The response is to restrict disabling and
+give the help desk a reinstall script.
+
+5
+00:00:16.663 --> 00:00:18.830
+In a Global Secure Access outage,
+
+6
+00:00:18.830 --> 00:00:22.200
+users can't reach the
+resources the check protects.
+
+7
+00:00:22.200 --> 00:00:26.331
+Microsoft's break-glass scripts
+switch these policies to report-only,
+
+8
+00:00:26.331 --> 00:00:30.462
+and the guide rehearses them and
+records them in the contingency plan.
+
+9
+00:00:30.462 --> 00:00:34.177
+Turning signaling off while
+policies are on blocks users,
+
+10
+00:00:34.177 --> 00:00:37.737
+so the rollback order is
+policies first, signaling last.
+
+11
+00:00:37.737 --> 00:00:40.724
+The check isn't supported
+for Private Access apps,
+
+12
+00:00:40.724 --> 00:00:43.712
+which get the per-app
+policies of Module 4 instead.
+
+13
+00:00:43.712 --> 00:00:48.449
+And mobile devices need Defender
+exclusions, outside this Windows pilot.
+
+14
+00:00:48.449 --> 00:00:52.512
+One more piece: Universal
+Continuous Access Evaluation.
+
+15
+00:00:52.512 --> 00:00:56.681
+The Windows client one point
+eight point two thirty-nine or
+
+16
+00:00:56.681 --> 00:01:00.763
+later uses Universal C A E
+tokens, revoked in near real time.
+
+17
+00:01:00.763 --> 00:01:05.029
+Learn's recommendation is not to
+disable C A E for these workloads,
+
+18
+00:01:05.029 --> 00:01:10.220
+and the guide decides strict location
+enforcement per policy, not tenant-wide.

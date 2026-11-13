@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:06.136
+You published one application and one
+administrative host as their own Private
+
+3
+00:00:06.136 --> 00:00:11.162
+Access apps, each with only its segments,
+its own group, and a report-only policy.
+
+4
+00:00:11.162 --> 00:00:16.105
+You tested the reachable and refused
+ports, read the private sessions and
+
+5
+00:00:16.105 --> 00:00:20.724
+the policies' results, and, where a
+sensor exists, ran Learn's klist test.
+
+6
+00:00:20.724 --> 00:00:24.667
+The evidence an I S S O keeps from
+this module: the app, segment,
+
+7
+00:00:24.667 --> 00:00:30.058
+assignment and policy exports; the port
+test record and the Policy tester result;
+
+8
+00:00:30.058 --> 00:00:35.288
+the private session query; the administrative
+sign-in record; the klist record;
+
+9
+00:00:35.288 --> 00:00:39.713
+and the Quick Access residual list,
+which should shrink to nothing.
+
+10
+00:00:39.713 --> 00:00:43.833
+Next is Module 5, Internet
+Access and T L S inspection,
+
+11
+00:00:43.833 --> 00:00:46.390
+which come last in the run order.

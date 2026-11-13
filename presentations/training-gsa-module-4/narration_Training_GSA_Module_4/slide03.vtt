@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.912
+You'll explain why Quick Access is a
+bridge that should shrink to nothing.
+
+3
+00:00:06.912 --> 00:00:11.090
+You'll build a Private Access
+application: bound to a connector group,
+
+4
+00:00:11.090 --> 00:00:16.074
+with only the segments it uses, a group
+assignment, and a Conditional Access policy.
+
+5
+00:00:16.074 --> 00:00:20.711
+You'll say where connector groups go,
+including for applications in A W S,
+
+6
+00:00:20.711 --> 00:00:23.775
+Google Cloud and Oracle
+Cloud Infrastructure.
+
+7
+00:00:23.775 --> 00:00:26.025
+You'll put administrative hosts behind the
+
+8
+00:00:26.025 --> 00:00:28.463
+phishing-resistant
+authentication strength.
+
+9
+00:00:28.463 --> 00:00:32.554
+And you'll describe the domain
+controller sensor's audit-first order,
+
+10
+00:00:32.554 --> 00:00:34.062
+and run Learn's klist test.
+
+11
+00:00:34.062 --> 00:00:36.974
+You need Module 2; Module
+3 isn't needed here,
+
+12
+00:00:36.974 --> 00:00:42.049
+because the compliant network check
+doesn't apply to Private Access apps.
+
+13
+00:00:42.049 --> 00:00:46.263
+Read Network and Transport,
+chapter five, on Private Access.
+
+14
+00:00:46.263 --> 00:00:49.490
+The lab runs in a test
+tenant, never production.

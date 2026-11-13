@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The question that sorts every AI system: when it calls a resource, whose token does it present? The workload identities an AI system can run as today (service principals, managed identities and federated credentials) and the agent identities Microsoft Entra Agent ID adds: blueprints, agent identities and agents' user accounts. Delegated and autonomous access, and what each means for Conditional Access, risk detection and the logs. What is generally available, what is in preview, what needs extra licensing, and what is documented for GCC, GCC High and DoD as of October 2026. A short contrast with AWS and Google, and the classification the program applies to an agency's AI estate.
+The question that sorts every AI system: when it calls a resource, whose token does it present? The workload identities an AI system can run as today (service principals, managed identities and federated credentials) and the agent identities Microsoft Entra Agent ID adds: blueprints, agent identities and agents' user accounts. Delegated and autonomous access, and what each means for Conditional Access, risk detection and the logs. What is generally available, what is in preview, what needs extra licensing, and what is documented for GCC as of October 2026. A short contrast with AWS and Google, and the classification the program applies to an agency's AI estate.
 :::
 
 [Chapter 03](03-the-inventory-as-an-identity-source.md) ended with a list of AI use cases and a gap: the inventory says what each AI system is for, but not what it signs in as. Closing that gap starts with knowing what to look for. An AI system's identity isn't a property of the model. A large language model has no account. The identity belongs to the software around it: the application that calls the model, the orchestration that decides which tool to use next, and the connector that reads the mailbox. When any of those makes a call, it presents a token, and the token says on whose authority the call is made.
@@ -57,7 +57,7 @@ The order of preference among these credentials is settled in the workbook: a ma
 
 ### Policy on workload identities
 
-Conditional Access can target workload identities, but narrowly. Policies apply only to single-tenant service principals registered in the tenant; Microsoft and third-party SaaS apps, multitenant apps and managed identities aren't covered, and a policy assigned to a group that contains a service principal isn't enforced for it. The available control is to block, by location, by risk or with authentication contexts, and creating or changing these policies requires Workload ID Premium licenses.[^c04-ca-wid] Microsoft states that Workload ID Premium is available in Azure for US Government.[^c04-entra-gov] A vendor's AI service, consented in as a multitenant application, is therefore outside workload-identity Conditional Access altogether. Its controls are consent, permissions and monitoring.
+Conditional Access can target workload identities, but narrowly. Policies apply only to single-tenant service principals registered in the tenant; Microsoft and third-party SaaS apps, multitenant apps and managed identities aren't covered, and a policy assigned to a group that contains a service principal isn't enforced for it. The available control is to block, by location, by risk or with authentication contexts, and creating or changing these policies requires Workload ID Premium licenses.[^c04-ca-wid] A vendor's AI service, consented in as a multitenant application, is therefore outside workload-identity Conditional Access altogether. Its controls are consent, permissions and monitoring.
 
 ## Agent identities: Microsoft Entra Agent ID
 
@@ -121,26 +121,26 @@ Some consequences follow directly:
 
 The agency's cloud decides what it can use. As of October 2026, Microsoft's documentation supports the following reading.
 
-| Capability | Release stage | Licensing | Government-cloud documentation |
+| Capability | Release stage | Licensing | GCC |
 |---|---|---|---|
-| Agent ID platform: blueprints, agent identities, sponsors | Generally available (April 2026) | Available to all Entra customers | No Agent ID entry on Entra's Azure Government feature list |
-| Agent's user account | Preview, Frontier program tenants only | Agent 365 | None |
-| Conditional Access for agents | Agent targeting labeled preview in the policy builder; agent identities Block only | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3 | GCC: available for agents with delegated access |
-| ID Protection for agents | Agent risk condition labeled preview; detections run offline | Entra ID P2 during preview; Agent 365 required "starting soon" | GCC: listed with Conditional Access |
-| ID Governance for agents: access packages, sponsor lifecycle workflows | Sponsor lifecycle workflows generally available (May 2026) | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3 | GCC: available |
-| Network controls for agents; Purview audit and DLP for agent interactions | — | Agent 365 | GCC: not available |
-| Workload identities: managed identities, federation | Generally available | Free | Not listed on Entra's Azure Government feature list; confirm in the agency's cloud |
-| Conditional Access and ID Protection for workload identities | Generally available | Workload ID Premium | Available in Azure for US Government |
+| Agent ID platform: blueprints, agent identities, sponsors | Generally available (April 2026) | Available to all Entra customers | Partial subset (below) |
+| Agent's user account | Preview, Frontier program tenants only | Agent 365 | Not listed |
+| Conditional Access for agents | Agent targeting labeled preview in the policy builder; agent identities Block only | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3 | Available for agents with delegated access |
+| ID Protection for agents | Agent risk condition labeled preview; detections run offline | Entra ID P2 during preview; Agent 365 required "starting soon" | Listed with Conditional Access |
+| ID Governance for agents: access packages, sponsor lifecycle workflows | Sponsor lifecycle workflows generally available (May 2026) | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3 | Available |
+| Network controls for agents; Purview audit and DLP for agent interactions | — | Agent 365 | Not available |
+| Workload identities: managed identities, federation | Generally available | Free | Confirm in the agency's tenant |
+| Conditional Access and ID Protection for workload identities | Generally available | Workload ID Premium | Confirm in the agency's tenant |
 
-: Agent and workload identity capabilities by stage, license and government cloud, October 2026. {.striped .hover}
+: Agent and workload identity capabilities by stage, license and GCC availability, October 2026. {.striped .hover}
 
-Sources for the rows: the Agent ID overview and what's new pages,[^c04-agent-id][^c04-whatsnew] the agent user and Agent 365 identity pages,[^c04-agent-users][^c04-a365-identity] the Conditional Access targeting and licensing pages,[^c04-ca-target][^c04-ca-agents] ID Protection for agents,[^c04-risky-agents] the agent governance overview and Entra what's new for May 2026,[^c04-governance][^c04-whatsnew-entra] the Agent 365 service description,[^c04-a365-sd] the Entra feature availability list for Azure Government,[^c04-entra-gov] and the workload identity pages.[^c04-ca-wid][^c04-wid-faq]
+Sources for the rows: the Agent ID overview and what's new pages,[^c04-agent-id][^c04-whatsnew] the agent user and Agent 365 identity pages,[^c04-agent-users][^c04-a365-identity] the Conditional Access targeting and licensing pages,[^c04-ca-target][^c04-ca-agents] ID Protection for agents,[^c04-risky-agents] the agent governance overview and Entra what's new for May 2026,[^c04-governance][^c04-whatsnew-entra] the Agent 365 service description,[^c04-a365-sd] and the workload identity pages.[^c04-ca-wid][^c04-wid-faq]
 
 Three points need saying plainly.
 
 **GCC has a partial, documented subset.** Microsoft's Agent 365 service description has a GCC column. It lists the agent registry, basic governance actions, policy templates, access packages for agents, sponsor-driven lifecycle policies, Conditional Access and identity protection for agents with delegated access, Defender observability logs and device compliance for agent Conditional Access as available in GCC, and network controls, the Graph registry API, Purview audit, data lifecycle, DLP and insider risk for agents, and most Defender agent detections as not available.[^c04-a365-sd] A GCC agency can build identity and access governance for agents; it can't yet get Microsoft's audit and data-protection coverage of agent interactions in the same tenant.
 
-**GCC High and DoD have no published availability.** The service description covers GCC only. Microsoft's Agent 365 developer documentation explains how to point its tooling at GCC High and DoD endpoints, then warns that configurable endpoints don't guarantee that every service or feature is available in every cloud, and that features available commercially might not yet be available in GCC, GCC High or DoD.[^c04-a365-cli] Entra's feature availability list for Azure Government, which covers GCC High and DoD tenants, has no Agent ID entries.[^c04-entra-gov] An agency in GCC High or DoD should treat agent identities as unavailable until Microsoft confirms otherwise in writing for its tenant.
+**Commercial features may not yet be in GCC.** Microsoft's Agent 365 developer documentation warns that features available commercially might not yet be available in GCC.[^c04-a365-cli] An agency in GCC should treat any agent capability the service description doesn't list for GCC as unavailable until Microsoft confirms otherwise in writing for its tenant.
 
 **Authorization is pending.** Microsoft's service description says that as of October 1, 2026, Agent 365 meets all FedRAMP High controls reviewed by its independent third-party assessor, and that final authorization by Microsoft's accrediting agency is pending.[^c04-a365-sd] An agency authorizing an AI system that depends on Agent 365 should check the service's current FedRAMP status itself rather than assume it ([Book 10, Chapter 03](../b10-cloud-boundary/03-what-changed-at-fedramp.md)). <!-- claims-ok: the vendor's statement, attributed, with authorization pending -->
 
@@ -193,7 +193,6 @@ The last two rows are where most of the risk sits. A vendor-hosted AI service re
 [^c04-migrate-cs]: Microsoft Learn, "Recreate Copilot Studio agents in Microsoft Entra Agent ID," introduction (legacy Copilot Studio service principals treated as standard applications), <https://learn.microsoft.com/entra/agent-id/migrate-copilot-studio-agents-to-agent-id> (accessed Nov 9, 2026).
 [^c04-migrate-custom]: Microsoft Learn, "Migrate custom app registrations to Agent ID," introduction (agents on standard app registrations authenticate like any other application), <https://learn.microsoft.com/entra/agent-id/migrate-custom-app-registrations-to-agent-id> (accessed Nov 9, 2026).
 [^c04-disable]: Microsoft Learn, "Disable agent identities in your tenant," Types of identities used by AI agents, <https://learn.microsoft.com/entra/agent-id/disable-agent-identities> (accessed Oct 21, 2026).
-[^c04-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability," Azure for US Government, including Other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 21, 2026).
 [^c04-protocols]: Microsoft Learn, "Authentication protocols in agents," sections "Core protocol patterns" (on behalf of users, as their own agent identity, as their own user account) and "Oauth protocols," <https://learn.microsoft.com/entra/agent-id/agent-oauth-protocols> (accessed Nov 9, 2026).
 [^c04-key-concepts]: Microsoft Learn, "Microsoft Entra Agent ID key concepts," sections "Core identity concepts" and "Agent's user account," <https://learn.microsoft.com/entra/agent-id/key-concepts> (accessed Nov 9, 2026).
 [^c04-blueprint]: Microsoft Learn, "Agent identity blueprints in Microsoft Entra Agent ID," sections "Agent identity blueprints," "Credentials" and "Inheritable permissions and required resource access," <https://learn.microsoft.com/entra/agent-id/agent-blueprint> (accessed Nov 9, 2026).

@@ -20,10 +20,10 @@ BeforeAll {
 }
 
 Describe 'Day 1: every notice is new' {
-    It 'routes 12 to a task, 9 to the digest and 1 to ignore' {
+    It 'routes 13 to a task, 8 to the digest and 1 to ignore' {
         $R1.Counts.new | Should -Be 22
-        $R1.Counts.task | Should -Be 12; $R1.Counts.digest | Should -Be 9; $R1.Counts.ignore | Should -Be 1
-        $R1.Counts.create | Should -Be 12
+        $R1.Counts.task | Should -Be 13; $R1.Counts.digest | Should -Be 8; $R1.Counts.ignore | Should -Be 1
+        $R1.Counts.create | Should -Be 13
     }
     It 'takes the first matching rule' {
         (Payload $R1 'azure:SA7M-8NP').origin.rule_id | Should -Be 'R01'
@@ -32,6 +32,15 @@ Describe 'Day 1: every notice is new' {
         (Payload $R1 'azure:PM3F-4GH').origin.rule_id | Should -Be 'R03'
         (Payload $R1 'azure:AB1C-2DE').origin.rule_id | Should -Be 'R04'
         (Payload $R1 'oci:chain-example-02').origin.rule_id | Should -Be 'R05'
+    }
+    It 'makes an open Microsoft 365 incident a task, though service health names no resources' {
+        (Payload $R1 'm365:EX900101').origin.rule_id | Should -Be 'R04b'
+        (Payload $R1 'm365:EX900101').severity | Should -Be 'P2'
+        (Payload $R1 'm365:EX900101').assignment_group | Should -Be 'Service Desk (example)'
+    }
+    It 'leaves a resolved Microsoft 365 advisory in the digest' {
+        Payload $R1 'm365:TM900102' | Should -BeNullOrEmpty
+        @($R1.Rows | Where-Object { $_.noticeId -eq 'm365:TM900102' })[0].route | Should -Be 'digest'
     }
     It 'sends nothing to a task for digest-only and ignored notices' {
         Payload $R1 'm365:MC900002' | Should -BeNullOrEmpty
@@ -46,7 +55,7 @@ Describe 'Day 1: every notice is new' {
         (Payload $R1 'azure:SA7M-8NP').controls | Should -Not -Contain 'CP-2'
     }
     It 'writes one file per payload, tasks.json, routing.csv, the state and a manifest, as a dry run' {
-        @(Get-ChildItem (Join-Path $TestDrive 'r1/tasks') -Filter *.json).Count | Should -Be 12
+        @(Get-ChildItem (Join-Path $TestDrive 'r1/tasks') -Filter *.json).Count | Should -Be 13
         (Read-PnJson (Join-Path $TestDrive 'r1/tasks.json')).dryRun | Should -BeTrue
         Test-Path (Join-Path $TestDrive 'r1/sent.json') | Should -BeFalse
         (Read-PnJson (Join-Path $TestDrive 'r1/manifest.json')).mode | Should -Be 'DryRun'
@@ -109,16 +118,17 @@ Describe 'De-duplication across runs' {
     It 'creates a task for a new notice that needs one' { (Payload $R2 'm365:MC900005').action | Should -Be 'create' }
     It 'asks for the re-read check before closing a task whose notice the provider closed' {
         $c = @($R2.Payloads | Where-Object { $_.action -eq 'close' })
-        $c.Count | Should -Be 1
-        $c[0].origin.notice_id | Should -BeLike 'aws:*AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04'
-        $c[0].description | Should -Match 're-read check \(C4\)'
+        $c.Count | Should -Be 2
+        @($c | Where-Object { $_.origin.notice_id -like 'aws:*AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04' }).Count | Should -Be 1
+        @($c | Where-Object { $_.origin.notice_id -eq 'm365:EX900101' }).Count | Should -Be 1
+        foreach ($x in $c) { $x.description | Should -Match 're-read check \(C4\)' }
     }
     It 'updates the task of an open notice the provider no longer lists, and marks it absent' {
         (Payload $R2 'azure:AB1C-2DE').action | Should -Be 'update'
         (Payload $R2 'azure:AB1C-2DE').description | Should -Match 'No longer listed by the provider'
         (Read-PnJson $State).notices['azure:AB1C-2DE'].status | Should -Be 'absent'
     }
-    It 'writes no task for a digest-only notice that closed' { Payload $R2 'm365:EX900101' | Should -BeNullOrEmpty }
+    It 'writes no task for a digest-only notice that didn''t change' { Payload $R2 'm365:TM900102' | Should -BeNullOrEmpty }
     It 'doesn''t mark a provider''s notices absent when that provider wasn''t read' {
         $st = Join-Path $TestDrive 'state-oci.json'; Copy-Item $State $st
         $onlyOci = Join-Path $TestDrive 'oci-only'
@@ -134,9 +144,9 @@ Describe 'Sending' {
         $got = [Collections.Generic.List[string]]::new()
         $st = Join-Path $TestDrive 'send-state.json'
         $r = Invoke-PnRouting -NoticesPath $D1 -RoutingPath $Routing -StatePath $st -OutputPath (Join-Path $TestDrive 'send') -AsOf '2026-11-09T12:00:00Z' -Send -Sender { param($p) $got.Add($p.dedupe_key); 'sys_id-example' }
-        $got.Count | Should -Be 12
+        $got.Count | Should -Be 13
         $r.DryRun | Should -BeFalse
-        (Read-PnJson (Join-Path $TestDrive 'send/sent.json')).Count | Should -Be 12
+        (Read-PnJson (Join-Path $TestDrive 'send/sent.json')).Count | Should -Be 13
         (Read-PnJson $st).notices['azure:RT5J-6KL'].taskSent | Should -BeTrue
         (Read-PnJson (Join-Path $TestDrive 'send/manifest.json')).mode | Should -Be 'Send'
     }

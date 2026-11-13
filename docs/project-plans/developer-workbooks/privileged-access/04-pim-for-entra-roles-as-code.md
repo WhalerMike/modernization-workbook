@@ -64,7 +64,7 @@ Rule IDs, types and the caller each one is enforced for are from Learn's mapping
 
 ### Which cloud, for these calls
 
-Every call in this chapter is Microsoft Graph v1.0. For Microsoft 365 GCC, Graph is the worldwide host, `graph.microsoft.com`, and sign-in is `login.microsoftonline.com`; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa04-deployments] No call here uses Resource Manager; PIM for Azure resources is Chapter 06. Every call's Learn page lists the global service, US Government L4 and US Government L5 as available.[^pa04-list-rmpa] [^pa04-update-rule] [^pa04-res-list] [^pa04-res-request] [^pa04-ras-request] PIM is available in Azure for US Government, and Microsoft Entra ID Governance is available in GCC, GCC High and DoD.[^pa04-availability] The code takes an explicit cloud name and has no default.
+Every call in this chapter is Microsoft Graph v1.0. For Microsoft 365 GCC, Graph is the worldwide host, `graph.microsoft.com`, and sign-in is `login.microsoftonline.com`.[^pa04-deployments] No call here uses Resource Manager; PIM for Azure resources is Chapter 06. Every call's Learn page lists the global service, which GCC uses, as available.[^pa04-list-rmpa] [^pa04-update-rule] [^pa04-res-list] [^pa04-res-request] [^pa04-ras-request] Microsoft Entra ID Governance, which PIM needs, is available in GCC.[^pa04-availability] The code takes an explicit cloud name and has no default.
 
 ## Start with Microsoft's sample
 
@@ -540,24 +540,24 @@ Remove-Item -Recurse -Force out/lab-plan, out/lab-plan2, out/lab-apply, out/lab-
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Role settings | Per role, independent of other roles; Privileged Role Administrator to manage | PIM available | GA | [^pa04-settings] [^pa04-availability] |
-| Policies and rules | One policy per role at tenant scope; 17 rules with fixed IDs; five derived rule types | — | v1.0 | [^pa04-rules] |
-| Find a role's policy | `GET /policies/roleManagementPolicyAssignments`; `$filter` on `scopeId` `/`, `scopeType` `DirectoryRole` (or `Directory`) and `roleDefinitionId`; `$expand=policy($expand=rules)`; `RoleManagementPolicy.Read.Directory` | L4 and L5 | v1.0 | [^pa04-list-rmpa] |
-| Update a rule | `PATCH /policies/roleManagementPolicies/{id}/rules/{ruleId}`; the derived `@odata.type` required; `RoleManagementPolicy.ReadWrite.Directory`; Privileged Role Administrator | L4 and L5 | v1.0 | [^pa04-update-rule] [^pa04-update-rules] |
-| Authentication context rule | `unifiedRoleManagementPolicyAuthenticationContextRule`: `isEnabled`, `claimValue` | — | v1.0 resource; the admin center option is labeled preview in the mapping guide and the deployment plan, and listed as generally available (April 2026) in the release notes; treated as preview | [^pa04-authctx-rule] [^pa04-rules] [^pa04-deploy-plan] [^pa04-whats-new] |
-| Reauthentication on activation | Sign-in frequency **Every time** on the context's Conditional Access policy; a 10-minute window across Microsoft Entra roles, Azure resource roles and PIM for Groups | — | — | [^pa04-settings-reauth] |
-| Activation maximum | 1 to 24 hours (role settings); at most 8 hours (PIM API overview) | — | — | [^pa04-settings] [^pa04-pim-api] |
-| Approval | At least one approver, two recommended; with none, active Privileged Role and Global Administrators approve; the lockout | — | GA | [^pa04-settings] |
-| Context before PIM | The Conditional Access policy must exist and be On first; fallback to MFA only if no policy targets the context | — | — | [^pa04-settings] |
-| Context in a policy's conditions | `includeAuthenticationContextClassReferences` on `conditionalAccessApplications` in beta, not v1.0 | — | beta | [^pa04-ca-apps] [^pa04-ca-apps-beta] |
-| List eligibility schedules | `RoleEligibilitySchedule.Read.Directory` | L4 and L5 | v1.0 | [^pa04-res-list] |
-| Create an eligibility request | `POST /roleManagement/directory/roleEligibilityScheduleRequests`; `adminAssign`, `adminRemove`; `RoleEligibilitySchedule.ReadWrite.Directory` | L4 and L5 | v1.0 | [^pa04-res-request] |
-| Expiration rule enforced on requests | A request that breaks the expiration rule returns `400 Bad Request` | — | v1.0 | [^pa04-pim-api] |
-| List active instances | `RoleAssignmentSchedule.Read.Directory` | L4 and L5 | v1.0 | [^pa04-rasi] |
-| Remove a standing assignment | `POST /roleManagement/directory/roleAssignmentScheduleRequests` with `adminRemove`; `RoleAssignmentSchedule.ReadWrite.Directory`; Privileged Role Administrator | L4 and L5 | v1.0 | [^pa04-ras-request] |
-| Graph hosts | GCC `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^pa04-deployments] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Role settings | Per role, independent of other roles; Privileged Role Administrator to manage | GA | [^pa04-settings] [^pa04-availability] |
+| Policies and rules | One policy per role at tenant scope; 17 rules with fixed IDs; five derived rule types | v1.0 | [^pa04-rules] |
+| Find a role's policy | `GET /policies/roleManagementPolicyAssignments`; `$filter` on `scopeId` `/`, `scopeType` `DirectoryRole` (or `Directory`) and `roleDefinitionId`; `$expand=policy($expand=rules)`; `RoleManagementPolicy.Read.Directory` | v1.0 | [^pa04-list-rmpa] |
+| Update a rule | `PATCH /policies/roleManagementPolicies/{id}/rules/{ruleId}`; the derived `@odata.type` required; `RoleManagementPolicy.ReadWrite.Directory`; Privileged Role Administrator | v1.0 | [^pa04-update-rule] [^pa04-update-rules] |
+| Authentication context rule | `unifiedRoleManagementPolicyAuthenticationContextRule`: `isEnabled`, `claimValue` | v1.0 resource; the admin center option is labeled preview in the mapping guide and the deployment plan, and listed as generally available (April 2026) in the release notes; treated as preview | [^pa04-authctx-rule] [^pa04-rules] [^pa04-deploy-plan] [^pa04-whats-new] |
+| Reauthentication on activation | Sign-in frequency **Every time** on the context's Conditional Access policy; a 10-minute window across Microsoft Entra roles, Azure resource roles and PIM for Groups | — | [^pa04-settings-reauth] |
+| Activation maximum | 1 to 24 hours (role settings); at most 8 hours (PIM API overview) | — | [^pa04-settings] [^pa04-pim-api] |
+| Approval | At least one approver, two recommended; with none, active Privileged Role and Global Administrators approve; the lockout | GA | [^pa04-settings] |
+| Context before PIM | The Conditional Access policy must exist and be On first; fallback to MFA only if no policy targets the context | — | [^pa04-settings] |
+| Context in a policy's conditions | `includeAuthenticationContextClassReferences` on `conditionalAccessApplications` in beta, not v1.0 | beta | [^pa04-ca-apps] [^pa04-ca-apps-beta] |
+| List eligibility schedules | `RoleEligibilitySchedule.Read.Directory` | v1.0 | [^pa04-res-list] |
+| Create an eligibility request | `POST /roleManagement/directory/roleEligibilityScheduleRequests`; `adminAssign`, `adminRemove`; `RoleEligibilitySchedule.ReadWrite.Directory` | v1.0 | [^pa04-res-request] |
+| Expiration rule enforced on requests | A request that breaks the expiration rule returns `400 Bad Request` | v1.0 | [^pa04-pim-api] |
+| List active instances | `RoleAssignmentSchedule.Read.Directory` | v1.0 | [^pa04-rasi] |
+| Remove a standing assignment | `POST /roleManagement/directory/roleAssignmentScheduleRequests` with `adminRemove`; `RoleAssignmentSchedule.ReadWrite.Directory`; Privileged Role Administrator | v1.0 | [^pa04-ras-request] |
+| Graph hosts | GCC `graph.microsoft.com` | — | [^pa04-deployments] |
 
 Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 

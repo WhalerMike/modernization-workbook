@@ -1,0 +1,538 @@
+{
+ "1": [
+  [
+   0.05,
+   7.963,
+   "Welcome to Module 3 of Global Secure Access as the Identity-Aware Network: the compliant network and tenant restrictions."
+  ],
+  [
+   8.012,
+   8.65,
+   "These are the two signals only Microsoft Entra can produce from the network, and both come with the Microsoft traffic profile you enabled in Module 2."
+  ],
+  [
+   16.663,
+   8.412,
+   "Both can lock people out, so this module teaches their failure modes first, and runs them in report-only or a pilot before they block anyone."
+  ],
+  [
+   25.075,
+   9.575,
+   "It covers Steps 7 and 8 of the Global Secure Access implementation guide, and takes about forty-five minutes, plus a lab in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.35,
+   "Why do these two matter?"
+  ],
+  [
+   1.4,
+   8.475,
+   "The compliant network check binds sign-in and token use to the agency's own path, so a token stolen and replayed from somewhere else fails."
+  ],
+  [
+   9.875,
+   4.45,
+   "In attack terms, it interrupts credential access and defense evasion."
+  ],
+  [
+   14.325,
+   8.125,
+   "Universal tenant restrictions keep agency devices from signing in to a personal or hostile tenant, which interrupts exfiltration."
+  ],
+  [
+   22.45,
+   2.925,
+   "Both are powerful, and both can lock people out."
+  ],
+  [
+   25.375,
+   7.213,
+   "So in this module you learn their failure modes first, and you run each in report-only or a pilot before it blocks anyone."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.2,
+   "You'll explain what the compliant network check denies at authentication, and what it denies in near real time."
+  ],
+  [
+   9.162,
+   7.112,
+   "You'll create the pilot policy in report-only, with the emergency access group and the Intune applications excluded."
+  ],
+  [
+   16.275,
+   5.825,
+   "You'll list the five failure modes and the design response to each, including a service outage."
+  ],
+  [
+   22.1,
+   7.487,
+   "You'll turn on universal tenant restrictions after the tenant restrictions version two policy, and say which data planes it reaches."
+  ],
+  [
+   29.587,
+   3.413,
+   "And you'll run Learn's four-case test and read the block log."
+  ],
+  [
+   33.0,
+   9.438,
+   "You need Module 2, with the Microsoft traffic profile and signaling on, and Access and Privilege, appendix C, for the tenant restrictions policy."
+  ],
+  [
+   42.438,
+   3.163,
+   "The lab runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.513,
+   "Unit 1 is the compliant network check."
+  ],
+  [
+   2.562,
+   6.9,
+   "It passes only for users connected through this tenant's Global Secure Access, from the client or a remote network."
+  ],
+  [
+   9.463,
+   3.763,
+   "At authentication, it denies a replayed refresh token."
+  ],
+  [
+   13.225,
+   9.075,
+   "And with services that support Continuous Access Evaluation, such as Microsoft Graph, it rejects a replayed access token in near real time."
+  ],
+  [
+   22.3,
+   5.463,
+   "Turning signaling on creates a named location, All Compliant Network locations."
+  ],
+  [
+   27.762,
+   6.6,
+   "The pilot policy blocks all resources, for the pilot group, from every location except that one."
+  ],
+  [
+   34.362,
+   10.8,
+   "It excludes the emergency access group, and, following Learn, Microsoft Intune Enrollment and Microsoft Intune, to avoid a circular dependency where devices enroll."
+  ],
+  [
+   45.163,
+   2.925,
+   "Learn's example sets the policy straight to on."
+  ],
+  [
+   48.087,
+   5.8,
+   "The guide, like every library policy, starts in report-only, for ten business days."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.188,
+   "Unit 2 is the failure modes, which you learn before you enforce."
+  ],
+  [
+   4.237,
+   7.588,
+   "A disabled or missing client is blocked at the next authentication; existing sessions continue until reauthentication."
+  ],
+  [
+   11.825,
+   4.838,
+   "The response is to restrict disabling and give the help desk a reinstall script."
+  ],
+  [
+   16.663,
+   5.537,
+   "In a Global Secure Access outage, users can't reach the resources the check protects."
+  ],
+  [
+   22.2,
+   8.262,
+   "Microsoft's break-glass scripts switch these policies to report-only, and the guide rehearses them and records them in the contingency plan."
+  ],
+  [
+   30.462,
+   7.275,
+   "Turning signaling off while policies are on blocks users, so the rollback order is policies first, signaling last."
+  ],
+  [
+   37.737,
+   5.975,
+   "The check isn't supported for Private Access apps, which get the per-app policies of Module 4 instead."
+  ],
+  [
+   43.712,
+   4.737,
+   "And mobile devices need Defender exclusions, outside this Windows pilot."
+  ],
+  [
+   48.45,
+   4.062,
+   "One more piece: Universal Continuous Access Evaluation."
+  ],
+  [
+   52.513,
+   8.25,
+   "The Windows client one point eight point two thirty-nine or later uses Universal C A E tokens, revoked in near real time."
+  ],
+  [
+   60.763,
+   9.4,
+   "Learn's recommendation is not to disable C A E for these workloads, and the guide decides strict location enforcement per policy, not tenant-wide."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.013,
+   "Unit 3 is universal tenant restrictions."
+  ],
+  [
+   3.062,
+   12.775,
+   "The tenant restrictions version two policy comes first: default block, with partner policies for the agency's own other tenants and each approved partner, as Access and Privilege, appendix C, sets it."
+  ],
+  [
+   15.838,
+   10.75,
+   "Then tagging applies that policy to devices with the client, or on a remote network, without a proxy, so users can sign in only to tenants and applications the policy allows."
+  ],
+  [
+   26.587,
+   10.65,
+   "Know its reach: it covers the authentication plane and the Microsoft Graph data plane, not the SharePoint or Exchange data planes, which only device-side signaling reaches."
+  ],
+  [
+   37.237,
+   5.062,
+   "The setting is tenant-wide, and the pages the guide read show no report-only mode."
+  ],
+  [
+   42.3,
+   5.625,
+   "So its pilot is the Microsoft traffic profile's assignment, with the block query read daily."
+  ],
+  [
+   47.925,
+   3.6,
+   "The rollback turns tagging off; the policy stays."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.087,
+   "How do you know tenant restrictions work?"
+  ],
+  [
+   2.138,
+   4.287,
+   "Learn's four-case test, run from a pilot device with the client on."
+  ],
+  [
+   6.425,
+   3.45,
+   "A member of the agency's own tenant signs in normally."
+  ],
+  [
+   9.875,
+   2.9,
+   "An account from an allowed partner tenant signs in."
+  ],
+  [
+   12.775,
+   7.412,
+   "An account from a tenant that isn't allowed is blocked, and Learn's block query finds it by error five million two hundred eleven."
+  ],
+  [
+   20.188,
+   3.375,
+   "And a guest in the agency's tenant isn't evaluated."
+  ],
+  [
+   23.562,
+   1.575,
+   "Record each outcome."
+  ],
+  [
+   25.137,
+   1.6,
+   "Now, where are agencies?"
+  ],
+  [
+   26.738,
+   11.25,
+   "Both features come with Entra I D P one or P two and the Microsoft traffic profile, are generally available, and are available in G C C by Learn's product-wide statement."
+  ],
+  [
+   37.987,
+   10.6,
+   "Where the Microsoft traffic profile isn't adopted yet, the interim path is named-location Conditional Access and device-side tenant restrictions version two by Group Policy."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.538,
+   "Here are the two How-sections side by side."
+  ],
+  [
+   2.587,
+   14.463,
+   "The audit phase: the compliant network policy runs in report-only for ten business days, reading the would-be blocks; tenant restrictions have no report-only mode, so the pilot group is the audit phase, with the block query read daily."
+  ],
+  [
+   17.05,
+   10.562,
+   "Enforcement: the compliant network policy's state goes to enabled for the pilot, then ring groups are added; tenant restrictions widen with the Microsoft profile's rings."
+  ],
+  [
+   27.613,
+   10.412,
+   "Rollback: the policy goes back to report-only, and in an outage the break-glass script does it; for tenant restrictions, tagging is disabled and the policy stays."
+  ],
+  [
+   38.025,
+   16.837,
+   "Exclusions: the emergency access group, tested each quarter, and the Intune apps, with service accounts handled by workload identity policies instead; tenant restrictions have none at the tagging layer, and partner allowances are policies with an owner and a review date."
+  ],
+  [
+   54.862,
+   10.525,
+   "Telemetry: the sign-in query and the token or device inconsistency alert, and for tenant restrictions the block query and the increased external tenant activity alert."
+  ],
+  [
+   65.388,
+   12.0,
+   "On day two, the security monitor watches compliant network blocks that didn't come through the service, which are either an attack or a broken client, and the identity engineer reviews the partner list each quarter."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.825,
+   "The lab runs in a test tenant, never production, and the authors haven't run it."
+  ],
+  [
+   4.875,
+   9.075,
+   "You need Module 2's lab done, the emergency access group, a tenant restrictions policy with one allowed partner, and test accounts in three tenants."
+  ],
+  [
+   13.95,
+   4.575,
+   "Step one confirms signaling and reads the compliant network named location."
+  ],
+  [
+   18.525,
+   3.675,
+   "Step two finds the two Intune applications to exclude."
+  ],
+  [
+   22.2,
+   5.513,
+   "Step three creates the pilot policy in report-only, with the guide's exact body."
+  ],
+  [
+   27.712,
+   3.5,
+   "Step four reads the would-be blocks in the workspace."
+  ],
+  [
+   31.212,
+   8.75,
+   "The guide reads them for ten business days; a report-only failure from a sign-in that came through the service is a defect to fix before enforcement."
+  ],
+  [
+   39.962,
+   4.112,
+   "In a test tenant the lab shortens that; in production, never."
+  ],
+  [
+   44.075,
+   2.05,
+   "Step five proves the block."
+  ],
+  [
+   46.125,
+   9.938,
+   "Confirm your emergency access account isn't in the pilot, set the policy on, and on the pilot device disable the client and sign in again in a new browser session."
+  ],
+  [
+   56.062,
+   2.462,
+   "Expect \"You can't access this right now.\""
+  ],
+  [
+   58.525,
+   2.375,
+   "Then put the policy back in report-only."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.225,
+   "Step six reads back the tenant restrictions version two policy, default and partners, and writes both to files."
+  ],
+  [
+   7.275,
+   1.913,
+   "Step seven turns on tagging."
+  ],
+  [
+   9.188,
+   7.713,
+   "Remember it's tenant-wide: it acts on everyone the Microsoft traffic profile carries, which in this lab is the pilot group."
+  ],
+  [
+   16.9,
+   3.95,
+   "The GET should show network packet tagging status enabled."
+  ],
+  [
+   20.85,
+   9.463,
+   "Step eight runs Learn's four-case test from the pilot device with the client on: a member, an allowed partner, a tenant that isn't allowed, and a guest."
+  ],
+  [
+   30.312,
+   1.575,
+   "Record each outcome."
+  ],
+  [
+   31.887,
+   9.0,
+   "Step nine reads the blocks in the workspace, with Learn's query on error five million two hundred eleven; case three's sign-in appears there."
+  ],
+  [
+   40.888,
+   4.25,
+   "Keep the compliant network policy in report-only and tagging on."
+  ],
+  [
+   45.138,
+   3.288,
+   "Module 6 rolls them back, in the guide's order."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.875,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   5.925,
+   9.113,
+   "The compliant network check supports A C three, A C twelve and S C twenty-three: sign-in and token use bound to the agency's path."
+  ],
+  [
+   15.037,
+   9.412,
+   "The evidence is the policy export, the named location, the report-only results, the disable-and-retry test, and the break-glass rehearsal record."
+  ],
+  [
+   24.45,
+   9.725,
+   "Universal tenant restrictions support A C twenty, its enhancement one, and A C four: agency devices sign in only to approved tenants."
+  ],
+  [
+   34.175,
+   5.925,
+   "The evidence is the tenant restrictions exports, the tagging GET, and the four-case test record."
+  ],
+  [
+   40.1,
+   11.012,
+   "Each row lines up with fed-ramp twenty X indicators, and the program's mapping lines Step 7 up with O M B memo M twenty-two oh nine's identity and network verification."
+  ],
+  [
+   51.112,
+   3.8,
+   "The evidence supports the controls; the assessor decides."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.75,
+   "First: in a Global Secure Access outage, what keeps users working?"
+  ],
+  [
+   6.775,
+   8.475,
+   "The answer is b: Microsoft's break-glass scripts that switch the policies to report-only, rehearsed and recorded in the contingency plan."
+  ],
+  [
+   15.25,
+   3.8,
+   "Turning signaling off first would block users, not save them."
+  ],
+  [
+   19.05,
+   4.25,
+   "Second: which data planes do universal tenant restrictions reach?"
+  ],
+  [
+   23.3,
+   6.8,
+   "The answer is b: the authentication plane and the Microsoft Graph data plane, not SharePoint or Exchange."
+  ],
+  [
+   30.1,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   9.312,
+   "You created the compliant network policy in report-only, read what it would have blocked, proved that it blocks a sign-in without the client, and put it back in report-only."
+  ],
+  [
+   10.188,
+   4.8,
+   "Then you turned on universal tenant restrictions and tested all four cases."
+  ],
+  [
+   14.988,
+   18.062,
+   "The evidence an I S S O keeps from this module: the policy export and the named location, the report-only results, the disable-and-retry record, the break-glass rehearsal record, the tenant restrictions exports, the tagging GET, the four-case record, and the block query result."
+  ],
+  [
+   33.05,
+   9.525,
+   "Next is Module 4, private applications and administrative paths, where each application gets its own path instead of the V P N's address pool."
+  ]
+ ]
+}

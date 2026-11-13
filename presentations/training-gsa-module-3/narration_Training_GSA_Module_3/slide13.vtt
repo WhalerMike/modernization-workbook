@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.046
+You created the compliant
+network policy in report-only,
+
+3
+00:00:04.046 --> 00:00:07.083
+read what it would have blocked,
+proved that it blocks a
+
+4
+00:00:07.083 --> 00:00:10.187
+sign-in without the client,
+and put it back in report-only.
+
+5
+00:00:10.187 --> 00:00:14.988
+Then you turned on universal tenant
+restrictions and tested all four cases.
+
+6
+00:00:14.988 --> 00:00:17.917
+The evidence an I S S O
+keeps from this module:
+
+7
+00:00:17.917 --> 00:00:22.310
+the policy export and the named
+location, the report-only results,
+
+8
+00:00:22.310 --> 00:00:27.273
+the disable-and-retry record, the
+break-glass rehearsal record, the tenant
+
+9
+00:00:27.273 --> 00:00:29.877
+restrictions exports, the tagging GET,
+
+10
+00:00:29.877 --> 00:00:33.050
+the four-case record, and
+the block query result.
+
+11
+00:00:33.050 --> 00:00:37.523
+Next is Module 4, private applications
+and administrative paths,
+
+12
+00:00:37.523 --> 00:00:42.620
+where each application gets its own path
+instead of the V P N's address pool.

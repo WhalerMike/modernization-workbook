@@ -46,7 +46,7 @@ The guide's [Step 3](../../../books/guides/hr-driven-identity-implementation.md#
 
 ### Which cloud, for these reads and writes
 
-The tools read Microsoft Graph: `graph.microsoft.com` for GCC, `graph.microsoft.us` for GCC High and `dod-graph.microsoft.us` for DoD, chosen by `--cloud` with no default. Learn marks Create workflow, createNewVersion and the user processing results as available in US Government L4 and L5.[^hw03-create][^hw03-newversion][^hw03-upr] Lifecycle Workflows and entitlement management are available in Azure Government, and GCC uses the commercial service.[^hw03-availability] Learn's Azure Government table has no row for Temporary Access Pass, so its availability in GCC High wasn't confirmed; the guide records the same gap ([What couldn't be verified](../../../books/guides/hr-driven-identity-implementation.md#what-couldnt-be-verified)).
+The tools read Microsoft Graph at `graph.microsoft.com`, the host GCC uses, chosen by `--cloud` with no default. Learn lists Create workflow, createNewVersion and the user processing results for the global service, which GCC uses.[^hw03-create][^hw03-newversion][^hw03-upr] Lifecycle Workflows and entitlement management are part of Microsoft Entra ID Governance, available in GCC.[^hw03-availability]
 
 ## Start with Microsoft's procedure
 
@@ -479,23 +479,23 @@ rm -rf exports out/ch03 out/ch03-vk
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Create workflow | `POST /identityGovernance/lifecycleWorkflows/workflows`; `LifecycleWorkflows-Workflow.ReadWrite.All`; Lifecycle Workflows Administrator; up to 100 workflows | L4 and L5 | v1.0 | [^hw03-create] |
-| Create a new version | `POST /workflows/{workflowId}/createNewVersion`; same permission and role | L4 and L5 | v1.0 | [^hw03-newversion] |
-| Versions, not in-place updates; one tenant schedule, every 3 hours by default, 1 to 24 | — | — | v1.0 | [^hw03-api] |
-| Time-based trigger | `employeeHireDate`, `employeeLeaveDateTime`, `createdDateTime`; offset -180 to 180 | — | v1.0 | [^hw03-timetrigger] |
-| Attribute-change trigger | `triggerAttributes`, each with a `name` | — | v1.0 | [^hw03-attrtrigger] |
-| Scope rule | Listed user properties, including `employeeType` and `onPremisesExtensionAttributes/extensionAttribute1` to `15`; `eq`, `ne`, `in`, `startsWith` | — | v1.0 | [^hw03-scope] |
-| Pass task | `1b555e50-7f65-41d5-b514-5894a026d10d`; lifetime 10 to 43,200 minutes; one-time use; manager and manager's mail; no other methods, sign-ins or role assignments | Not confirmed for GCC High | GA | [^hw03-tasks] |
-| Pass for a new hire | 24-hour maximum recommended | — | — | [^hw03-time] |
-| Other task IDs the files use | Request user access package assignment `c1ec1e76-…`; Disable `1dfdfcc7-…`; Revoke all refresh tokens `509589a4-…`; Delete user `8d18588d-…`; Remove access package assignment `4a0b64f2-…`; Send email to notify manager of user move `aab41899-…`; Remove all access package assignments for user `42ae2956-…` | — | — | [^hw03-tasks] |
-| Tasks per workflow | 25 | — | — | [^hw03-limits-svc] |
-| Execution limits | Tenant or per workflow, percentage or count, quarantine on a scheduled run; on-demand runs aren't limited; a workflow limit "isn't currently reflected in the API" | — | GA | [^hw03-limits] |
-| Catch-up window | A scheduled workflow processes a user up to three days after the trigger date | — | — | [^hw03-catchup] |
-| List userProcessingResults | `LifecycleWorkflows-Reports.Read.All`; Global Reader or Lifecycle Workflows Administrator | L4 and L5 | v1.0 | [^hw03-upr] |
-| List access package assignments | `EntitlementManagement.Read.All` | — | v1.0 | [^hw03-assignments] |
-| Lifecycle Workflows, entitlement management | Available in Azure Government; Entra ID Governance in GCC, GCC High and DoD | Available | GA | [^hw03-availability] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Create workflow | `POST /identityGovernance/lifecycleWorkflows/workflows`; `LifecycleWorkflows-Workflow.ReadWrite.All`; Lifecycle Workflows Administrator; up to 100 workflows | v1.0 | [^hw03-create] |
+| Create a new version | `POST /workflows/{workflowId}/createNewVersion`; same permission and role | v1.0 | [^hw03-newversion] |
+| Versions, not in-place updates; one tenant schedule, every 3 hours by default, 1 to 24 | — | v1.0 | [^hw03-api] |
+| Time-based trigger | `employeeHireDate`, `employeeLeaveDateTime`, `createdDateTime`; offset -180 to 180 | v1.0 | [^hw03-timetrigger] |
+| Attribute-change trigger | `triggerAttributes`, each with a `name` | v1.0 | [^hw03-attrtrigger] |
+| Scope rule | Listed user properties, including `employeeType` and `onPremisesExtensionAttributes/extensionAttribute1` to `15`; `eq`, `ne`, `in`, `startsWith` | v1.0 | [^hw03-scope] |
+| Pass task | `1b555e50-7f65-41d5-b514-5894a026d10d`; lifetime 10 to 43,200 minutes; one-time use; manager and manager's mail; no other methods, sign-ins or role assignments | GA | [^hw03-tasks] |
+| Pass for a new hire | 24-hour maximum recommended | — | [^hw03-time] |
+| Other task IDs the files use | Request user access package assignment `c1ec1e76-…`; Disable `1dfdfcc7-…`; Revoke all refresh tokens `509589a4-…`; Delete user `8d18588d-…`; Remove access package assignment `4a0b64f2-…`; Send email to notify manager of user move `aab41899-…`; Remove all access package assignments for user `42ae2956-…` | — | [^hw03-tasks] |
+| Tasks per workflow | 25 | — | [^hw03-limits-svc] |
+| Execution limits | Tenant or per workflow, percentage or count, quarantine on a scheduled run; on-demand runs aren't limited; a workflow limit "isn't currently reflected in the API" | GA | [^hw03-limits] |
+| Catch-up window | A scheduled workflow processes a user up to three days after the trigger date | — | [^hw03-catchup] |
+| List userProcessingResults | `LifecycleWorkflows-Reports.Read.All`; Global Reader or Lifecycle Workflows Administrator | v1.0 | [^hw03-upr] |
+| List access package assignments | `EntitlementManagement.Read.All` | v1.0 | [^hw03-assignments] |
+| Lifecycle Workflows, entitlement management | Entra ID Governance, available in GCC | GA | [^hw03-availability] |
 
 Places where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
@@ -569,7 +569,7 @@ Accounts still on a pass after the agreed window, when the card should have been
 [← Previous: Chapter 02 — Contractor Sources and Enforced End Dates](02-contractor-sources-and-end-dates.md) · [Workbook index](index.md) · [Next: Chapter 04 — Access from Attributes and the Mover's Residual Review →](04-access-from-attributes-and-the-mover-review.md)
 :::
 
-[^hw03-create]: Microsoft Learn, "Create workflow" (lifecycle workflows), national cloud deployments, permissions, request body and examples, <https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-post-workflows?view=graph-rest-1.0> (read November 1, 2026).
+[^hw03-create]: Microsoft Learn, "Create workflow" (lifecycle workflows), permissions, request body and examples, <https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-post-workflows?view=graph-rest-1.0> (read November 1, 2026).
 [^hw03-newversion]: Microsoft Learn, "workflow: createNewVersion," <https://learn.microsoft.com/graph/api/identitygovernance-workflow-createnewversion?view=graph-rest-1.0> (read November 1, 2026).
 [^hw03-api]: Microsoft Learn, "Overview of Lifecycle Workflows APIs," <https://learn.microsoft.com/graph/api/resources/identitygovernance-lifecycleworkflows-overview?view=graph-rest-1.0> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
 [^hw03-timetrigger]: Microsoft Learn, "timeBasedAttributeTrigger resource type," <https://learn.microsoft.com/graph/api/resources/identitygovernance-timebasedattributetrigger?view=graph-rest-1.0> (read November 1, 2026).

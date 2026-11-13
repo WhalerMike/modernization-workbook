@@ -1534,7 +1534,9 @@ pages:
   coverage: cited
   note: Global Secure Access and Entra Suite deployment guidance; new content if the agency licenses it
   cited_by:
+  - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/architecture/gsa-deployment-guide-private-access.md
   url: https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-private-access
   title: Microsoft Global Secure Access Deployment Guide for Microsoft Entra Private Access
@@ -2987,7 +2989,6 @@ pages:
   cited_by:
   - docs/books/b04-access/_verification/appendix-c-partner-access-profile-entra.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
-  - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
 - path: docs/external-id/b2b-quickstart-add-guest-users-portal.md
   url: https://learn.microsoft.com/entra/external-id/b2b-quickstart-add-guest-users-portal
   title: 'Quickstart: Add a guest user and send an invitation'
@@ -5566,8 +5567,10 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/concept-universal-conditional-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-universal-conditional-access
   title: Learn about Universal Conditional Access Through Global Secure Access
@@ -5628,8 +5631,10 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-access-audit-logs.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-access-audit-logs
   title: How to access Global Secure Access audit logs (preview)
@@ -5907,8 +5912,10 @@ pages:
   coverage: cited
   note: Private Access per-app segmentation; workbook names Private Access only as the Kerberos bridge
   cited_by:
+  - data/source-register.json
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-configure-quick-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-quick-access
   title: How to configure Quick Access for Global Secure Access
@@ -6290,7 +6297,9 @@ pages:
   coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
   cited_by:
+  - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-operate-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access
   title: Operate Microsoft Entra Private Access
@@ -6457,10 +6466,12 @@ pages:
   coverage: cited
   note: Private Access features (DNS, local access, sign-in frequency, PIM, Conditional Access, SSH)
   cited_by:
+  - data/source-register.json
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-transport-layer-security-settings-managed-certificate.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security-settings-managed-certificate
   title: Configure TLS inspection with a Microsoft-managed certificate
@@ -6863,7 +6874,7 @@ pages:
   ms_topic: reference
   description: Global Secure Access maintains a compliance portfolio. This article lists the current, supported certifications.
   coverage: cited
-  note: GSA certifications (FedRAMP, FIPS) not covered; workbook states only GCC availability and the GCC High gap
+  note: GSA certifications (FedRAMP, FIPS) not covered; workbook states only GCC availability
   cited_by:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
@@ -7363,8 +7374,10 @@ pages:
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   cited_by:
+  - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/tutorial-internet-access-url-filtering.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-url-filtering
   title: 'Tutorial: Configure URL Filtering and Custom Block Pages'
@@ -7410,7 +7423,9 @@ pages:
   coverage: cited
   note: Traffic forwarding profile configuration
   cited_by:
+  - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-introduction.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-introduction
   title: 'Tutorial: Get started with Microsoft traffic labs'
@@ -8927,7 +8942,6 @@ pages:
   - docs/books/guides/hr-driven-identity-implementation.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  - docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md
   - docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
   - docs/reference/source-register.md
@@ -17610,23 +17624,12 @@ pages:
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
-  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
-  - docs/books/b14-compliance/06-contingency-and-continuity.md
-  - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
-  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
-  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
-  - docs/books/b16-people/07-end-user-training.md
-  - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
-  - docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md
-  - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
-  - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
-  - docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md
   - docs/books/guides/_verification/hr-driven-identity-implementation.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/hcm-entra-implementation.md
@@ -17642,11 +17645,7 @@ pages:
   - docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/index.md
-  - docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md
-  - docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md
-  - docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md
   - docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md
-  - docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md
   - docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md
   - docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md
   - docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md
@@ -24817,11 +24816,12 @@ pages:
   ms_date: '2026-09-15'
   ms_topic: faq
   description: Answers to frequently asked questions about Microsoft Entra seamless single sign-on.
-  coverage: covered-uncited
+  coverage: cited
   note: Seamless single sign-on.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-sso-how-it-works.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-how-it-works
   title: 'Microsoft Entra Connect: Seamless Single Sign-On - How it works'
@@ -24829,11 +24829,12 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes how the Microsoft Entra seamless single sign-on feature works.
-  coverage: covered-uncited
+  coverage: cited
   note: Seamless single sign-on.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-sso-quick-start.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-quick-start
   title: 'Quickstart: Microsoft Entra seamless single sign-on'
@@ -25405,9 +25406,6 @@ pages:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
-  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
-  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
-  - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
 - path: docs/identity/hybrid/connect/reference-connect-health-faq.yml
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-health-faq
   title: Microsoft Entra Connect Health frequently asked questions
@@ -25454,8 +25452,6 @@ pages:
   cited_by:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/09-building-the-entra-target.md
-  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
-  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/reference-connect-msexchuserholdpolicies.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-msexchuserholdpolicies
   title: 'Microsoft Entra Connect: msExchUserHoldPolicies and cloudMsExchUserHoldPolicies'
@@ -29569,8 +29565,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra identities to meet CMMC Level 1 requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-cmmc-level-2-access-control.md
   url: https://learn.microsoft.com/entra/standards/configure-cmmc-level-2-access-control
@@ -29579,8 +29575,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra identities to meet CMMC Level 2 Access Control (AC) requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-cmmc-level-2-additional-controls.md
   url: https://learn.microsoft.com/entra/standards/configure-cmmc-level-2-additional-controls
@@ -29589,8 +29585,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra identities to meet CMMC Level 2 requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-cmmc-level-2-identification-and-authentication.md
   url: https://learn.microsoft.com/entra/standards/configure-cmmc-level-2-identification-and-authentication
@@ -29599,8 +29595,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra ID to meet CMMC Level 2 Identification and authorization requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-for-cmmc-compliance.md
   url: https://learn.microsoft.com/entra/standards/configure-for-cmmc-compliance
@@ -29609,8 +29605,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra ID to meet CMMC requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-for-fedramp-high-impact.md
   url: https://learn.microsoft.com/entra/standards/configure-for-fedramp-high-impact
@@ -30476,7 +30472,6 @@ pages:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
-  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/06-credentials-and-least-privilege.md
   - docs/books/guides/attribute-driven-migration.md

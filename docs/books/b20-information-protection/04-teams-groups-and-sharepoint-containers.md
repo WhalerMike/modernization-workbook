@@ -76,7 +76,7 @@ What each setting does, from Learn:
 
 - **External sharing** offers anyone, new and existing guests, existing guests, or only people in the organization, the same choices as a site's own external-sharing setting.[^c04-containers] It can only tighten what the tenant allows: the tenant's SharePoint and Entra settings sit above it ([Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#labels-on-teams-groups-and-sites)).
 - **Unmanaged devices** uses SharePoint's app-enforced restrictions with Conditional Access. Without the Conditional Access policy the label setting has no effect, and it also has no effect if it is less restrictive than the tenant-level unmanaged-device setting; choose a label setting equal to or stricter than the tenant's.[^c04-containers]
-- **Authentication context** requires a Conditional Access authentication context already created and published; users of apps that don't support authentication contexts are denied access.[^c04-containers] It is listed with E5/G5-level plans and is on the engineering backlog in GCC, GCC High and DoD ([Prerequisites](#b20-04-prerequisites)), so the program's design uses it only in a commercial tenant and leaves the setting off elsewhere, with the block on unmanaged devices as the compensating control.
+- **Authentication context** requires a Conditional Access authentication context already created and published; users of apps that don't support authentication contexts are denied access.[^c04-containers] It is listed with E5/G5-level plans and is on the engineering backlog in GCC ([Prerequisites](#b20-04-prerequisites)), so the program's design uses it only in a commercial tenant and leaves the setting off elsewhere, with the block on unmanaged devices as the compensating control.
 - **Default sharing link** sets the scope and permission preselected when a user shares; users can override it, but typically don't. Where a site and a document both have a default, the more restrictive scope applies.[^c04-sharing-link]
 - **Members can share** is the label equivalent of the site-sharing permission setting in the SharePoint admin center (`MemberShareAll`, `MemberShareFileAndFolder`, `MemberShareNone`).[^c04-containers]
 
@@ -93,13 +93,13 @@ Where an agency's risk assessment calls for it, creation can be limited to membe
 
 ### Prerequisites {#b20-04-prerequisites}
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| Sensitivity labels for Teams, Microsoft 365 groups and SharePoint sites | Available | Available | Available | Available | Government Purview planning pages[^c04-gcc][^c04-gcch][^c04-dod] |
-| Conditional Access via authentication context for labeled SharePoint sites | Available (E5/G5-level) | On engineering backlog | On engineering backlog | On engineering backlog | Same pages ("Granular conditional access policies via Sensitivity labels for SharePoint Online sites") |
-| Default sharing link and `MembersCanShare` advanced settings | Available | Not yet specified | Not yet specified | Not yet specified | "Use sensitivity labels to configure the default sharing link type"[^c04-sharing-link]; not listed on the government pages |
-| App-enforced restrictions for unmanaged devices | Available | Not yet specified | Not yet specified | Not yet specified | "Use app-enforced restrictions"[^c04-aer]; not listed on the government pages |
-| Restricting Microsoft 365 group creation | Available (Entra ID P1 for the admin and the creators) | Not yet specified | Not yet specified | Not yet specified | "Manage who can create Microsoft 365 Groups"[^c04-creation] |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| Sensitivity labels for Teams, Microsoft 365 groups and SharePoint sites | Available | Available | Government Purview planning pages[^c04-gcc] |
+| Conditional Access via authentication context for labeled SharePoint sites | Available (E5/G5-level) | On engineering backlog | Same pages ("Granular conditional access policies via Sensitivity labels for SharePoint Online sites") |
+| Default sharing link and `MembersCanShare` advanced settings | Available | Not yet specified | "Use sensitivity labels to configure the default sharing link type"[^c04-sharing-link]; not listed on the government pages |
+| App-enforced restrictions for unmanaged devices | Available | Not yet specified | "Use app-enforced restrictions"[^c04-aer]; not listed on the government pages |
+| Restricting Microsoft 365 group creation | Available (Entra ID P1 for the admin and the creators) | Not yet specified | "Manage who can create Microsoft 365 Groups"[^c04-creation] |
 
 : Container features by cloud, read Nov 11, 2026 {.striped .hover}
 
@@ -122,7 +122,7 @@ Container labels have no audit mode. Two observation steps stand in for one. Bef
 
 Commands were checked against Microsoft Learn on Nov 11, 2026; run them against a test tenant first. Placeholders: `<label-guid>` is a label's GUID from `Get-Label`; `<site-url>` a site's URL; `<tenant>` the tenant's SharePoint name.
 
-1. **Turn on label support for groups and synchronize labels.** Use the Graph commands in [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#labels-on-teams-groups-and-sites), connecting with `Connect-MgGraph -Environment USGov` in GCC High or `-Environment USGovDoD` in DoD ([environments](https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands)), then run `Execute-AzureAdLabelSync` in Security & Compliance PowerShell.[^c04-containers][^c04-graph-env] Allow up to 24 hours before the labels appear for groups.
+1. **Turn on label support for groups and synchronize labels.** Use the Graph commands in [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#labels-on-teams-groups-and-sites), then run `Execute-AzureAdLabelSync` in Security & Compliance PowerShell.[^c04-containers] Allow up to 24 hours before the labels appear for groups.
 
 2. **Set each container label's site and group settings** in the Microsoft Purview portal (**Information Protection** > **Sensitivity labels** > the label > **Edit label**, scope **Groups & sites**, then **Privacy and external user access settings**, **External sharing and Conditional Access settings**, and **Private teams discoverability and shared channel controls**), using the values in the design table.[^c04-containers] Then set the PowerShell-only settings, by GUID:
 
@@ -152,8 +152,6 @@ Commands were checked against Microsoft Learn on Nov 11, 2026; run them against 
     ```powershell
     # Commercial and GCC
     Connect-SPOService -Url https://<tenant>-admin.sharepoint.com
-    # GCC High and DoD
-    Connect-SPOService -Url https://<tenant>-admin.sharepoint.us -Region ITAR
 
     Get-SPOTenant | Select-Object ConditionalAccessPolicy
     Set-SPOTenant -ConditionalAccessPolicy AllowLimitedAccess
@@ -266,7 +264,7 @@ The **platform owner** owns the container labels and the tenant sharing settings
 
 - A container label governs the site, not the files in it; pair it with file labels and SharePoint label integration.
 - Three container labels, ordered with the file labels, carry privacy, guest, sharing, unmanaged-device and sharing-link settings for each class.
-- The unmanaged-device setting does nothing without its Conditional Access policy; authentication contexts are still on the engineering backlog in the government clouds.
+- The unmanaged-device setting does nothing without its Conditional Access policy; authentication contexts are still on the engineering backlog in GCC.
 - Label existing sites from an inventory, in batches, with the prior sharing settings exported for rollback.
 
 ::: {.callout-tip}
@@ -278,8 +276,5 @@ The **platform owner** owns the container labels and the tenant sharing settings
 [^c04-sharing-link]: Microsoft Learn, "Use sensitivity labels to configure the default sharing link type for sites and documents in SharePoint and OneDrive" (`DefaultSharingScope`: SpecificPeople, Organization, Anyone; `DefaultShareLinkPermission`: View, Edit; the more restrictive scope applies), <https://learn.microsoft.com/purview/sensitivity-labels-default-sharing-link> (accessed Nov 11, 2026).
 [^c04-aer]: Microsoft Learn (SharePoint), "Use app-enforced restrictions" (Conditional Access policy for Office 365 SharePoint Online with the session control Use app enforced restrictions), <https://learn.microsoft.com/sharepoint/app-enforced-restrictions> (accessed Nov 11, 2026).
 [^c04-creation]: Microsoft Learn, "Manage who can create Microsoft 365 Groups" (all users by default, the recommended approach; one group controls creation; roles that can still create groups; Entra ID P1 for the admin and creators; the Graph script with `EnableGroupCreation` and `GroupCreationAllowedGroupId`; verification and the 30-minute delay), <https://learn.microsoft.com/microsoft-365/enterprise/manage-creation-of-groups> (accessed Nov 11, 2026).
-[^c04-graph-env]: Microsoft Learn, "Authentication module cmdlets in Microsoft Graph PowerShell," section "Use Get-MgEnvironment" (`-Environment` values include USGov and USGovDoD), <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands> (accessed Nov 11, 2026).
 [^c04-purview-sd]: Microsoft Learn, "Microsoft Purview service description," section "Microsoft Purview Information Protection sensitivity labeling" (authentication contexts on SharePoint sites through sensitivity labels with E5/G5-level plans), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description> (accessed Nov 11, 2026).
 [^c04-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c04-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c04-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).

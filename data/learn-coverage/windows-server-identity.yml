@@ -550,9 +550,10 @@ pages:
   ms_date: '2024-10-25'
   ms_topic: concept-article
   description: Learn about Database 32k page optional feature for Active Directory Domain Services and Active Directory Lightweight Domain Services on Windows Server.
-  coverage: out-of-scope
-  note: Database 32k-page feature for large forests; program shrinks AD, does not scale it
-  cited_by: []
+  coverage: cited
+  note: Database 32k-page feature; Book 02 Ch08 records page size and treats enabling it as an irreversible forest decision (backup warning)
+  cited_by:
+  - docs/books/b02-identity/08-assessing-the-forest.md
 - path: WindowsServerDocs/identity/ad-ds/active-directory-functional-levels.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/active-directory-functional-levels
   title: Active Directory Domain Services Functional Levels
@@ -850,9 +851,10 @@ pages:
   ms_date: '2024-10-25'
   ms_topic: how-to
   description: Learn how-to enable the Database 32k pages optional feature in Active Directory Domain Services and how to enable the optional feature using PowerShell.
-  coverage: out-of-scope
-  note: Database 32k-page feature for large forests; program shrinks AD, does not scale it
-  cited_by: []
+  coverage: cited
+  note: Database 32k-page feature; Book 02 Ch08 records page size and treats enabling it as an irreversible forest decision (backup warning)
+  cited_by:
+  - docs/books/b02-identity/08-assessing-the-forest.md
 - path: WindowsServerDocs/identity/ad-ds/enable-sam-client-logging-diagnostics.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/enable-sam-client-logging-diagnostics
   title: Enable SAM Client Event Logging in Windows
@@ -1037,6 +1039,7 @@ pages:
   cited_by:
   - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
+  - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b06-data-platform/r08-application-chain-and-connection-strings.md
 - path: WindowsServerDocs/identity/ad-ds/lsa-lookup-performance-counters.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/lsa-lookup-performance-counters
@@ -1261,6 +1264,9 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
+  - docs/books/b02-identity/08-assessing-the-forest.md
+  - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/reference/source-register.md

@@ -67,7 +67,7 @@ The workbook's outline also names the access packages that grant PRV membership 
 
 ### Which cloud, for these calls
 
-For Microsoft 365 GCC (Moderate), every call goes to `graph.microsoft.com`, the worldwide host, and sign-in to `login.microsoftonline.com`. GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa05-deployments] Every PIM for Groups API page read for this chapter lists the global service, US Government L4 and US Government L5 in its national cloud table,[^pa05-elig-req] [^pa05-asg-req] [^pa05-pa-list] and Microsoft Entra ID Governance, which PIM needs, is available in GCC, GCC High and DoD.[^pa05-availability] The module takes the cloud from Chapter 01's table, by name, with no default.
+For Microsoft 365 GCC (Moderate), every call goes to `graph.microsoft.com`, the worldwide host, and sign-in to `login.microsoftonline.com`.[^pa05-deployments] Every PIM for Groups API page read for this chapter lists the global service, which GCC uses, in its national cloud table,[^pa05-elig-req] [^pa05-asg-req] [^pa05-pa-list] and Microsoft Entra ID Governance, which PIM needs, is available in GCC.[^pa05-availability] The module takes the cloud from Chapter 01's table, by name, with no default.
 
 ## Start with Microsoft's sample
 
@@ -97,7 +97,6 @@ Each row is pinned by a test in the first block of `tests/PimForGroups.Tests.ps1
 | Dated 2023: sent today, the fake refuses both admin examples because the schedule has ended | A copied example fails, or worse, gets its dates edited by hand | Start is the run's time; end is the reviewed `endDateTime` |
 | `action` `AdminAssign`, while the page documents `adminAssign`; no `ticketInfo` | Case-sensitivity isn't stated (research gaps, row 51); no ticket ties the grant to a change | Documented values only; `ticketInfo` from the file, and a Warn for an entry with no ticket (PA-PG-06) |
 | No read before the write | A second run grants twice, and nothing removes what the file no longer lists | Reads schedules and policies first; `adminUpdate` and `adminRemove` where they differ |
-| Hard-coded `graph.microsoft.com` | Wrong for GCC High and DoD; the GCC High fake refuses it | Host from the cloud table |
 | Includes a `selfActivate` request | A user action, not an administrator's | The plan makes admin requests only; guard PA-PG-G7 refuses any `self*` action |
 | Every rule update targets a `DirectoryRole_` policy, and the page says PIM for Groups is beta only | The page predates v1.0 for groups, and gives no group policy ID | v1.0, with the `Group_` policy ID read from `roleManagementPolicyAssignments` |
 | Rule bodies, with a single user among the approvers | — for the shapes; one person as approver is a single point of failure | Same rule shapes; approvers are the tier's `PIM-Approvers-<tier>` group (*Design guidance*) |
@@ -540,27 +539,27 @@ Remove-Item -Recurse -Force out/pim-groups-test
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Role-assignable groups | `isAssignableToRole` set only at creation; immutable; at most 500 per tenant; assigned membership only; no group members; Privileged Role Administrator to create; Privileged Authentication Administrator to change members' and owners' credentials; P1, and P2 for PIM | Entra ID Governance in GCC, GCC High and DoD | GA | [^pa05-rag] [^pa05-availability] |
-| PIM for Groups | Membership and ownership; two policies per group; not for dynamic or on-premises groups; role-assignable not required, but recommended for sensitive groups | Same | GA | [^pa05-concept] |
-| Last active owner | Can't be removed; an activated owner's deactivation is retried for up to 30 days, then stops | — | — | [^pa05-concept] |
-| Nesting | No group as an active member of a role-assignable group; a group can be an eligible member | — | — | [^pa05-concept] [^pa05-rag] |
-| Service principals | Can't be eligible for PIM for Groups; time-limited active is allowed; nesting groups in PIM for Groups isn't recommended | — | — | [^pa05-pim-plan] |
-| Onboarding | Automatic on the first schedule request or policy update; policy IDs change; no offboarding | — | — | [^pa05-overview] |
-| Eligible membership | Not in the group's `members` relationship until activated | — | — | [^pa05-overview] |
-| Activation length | At most 8 hours (Graph overview); 1 to 24 hours (settings page) | — | — | [^pa05-overview] [^pa05-settings] |
-| Reauthentication on activation | With an authentication context: sign-in frequency **Every time** on its Conditional Access policy; a 10-minute window across Microsoft Entra roles, Azure resource roles and PIM for Groups | — | GA in the release notes (April 2026); public preview in the deployment plan; treated as preview | [^pa05-settings-reauth] [^pa05-whats-new] [^pa05-pim-plan-ca] |
-| Approvers | No default approvers; select at least two; can't approve their own requests; service principals can't approve; 24 hours to approve | — | — | [^pa05-settings] [^pa05-approval] |
-| Create eligibilityScheduleRequest | `POST .../group/eligibilityScheduleRequests`; `PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup`; Privileged Role Administrator for role-assignable groups | L4 and L5 | v1.0 | [^pa05-elig-req] |
-| Create assignmentScheduleRequest | `POST .../group/assignmentScheduleRequests`; `PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup` | L4 and L5 | v1.0 | [^pa05-asg-req] |
-| List eligibilitySchedules, assignmentSchedules | `$filter` on `groupId` or `principalId` required; `PrivilegedEligibilitySchedule.Read.AzureADGroup`, `PrivilegedAssignmentSchedule.Read.AzureADGroup` | L4 and L5 | v1.0 | [^pa05-elig-list] [^pa05-asg-list] |
-| List roleManagementPolicyAssignments (groups) | `scopeId` the group, `scopeType` `Group`, `roleDefinitionId` `member` or `owner`; `RoleManagementPolicy.Read.AzureADGroup` | L4 and L5 | v1.0 | [^pa05-pa-list] |
-| Update unifiedRoleManagementPolicyRule (groups) | `PATCH /policies/roleManagementPolicies/{id}/rules/{id}`; `RoleManagementPolicy.ReadWrite.AzureADGroup`; `@odata.type` required in the body; 17 rules per policy | — | v1.0 | [^pa05-rule-update] [^pa05-rules-howto] [^pa05-rules-overview] |
-| `isValidationOnly` | On both request types; documented for checking an activation before submitting it | — | v1.0 | [^pa05-req-resource] |
-| List groups | Learn's least-privileged column: `Group-NestingSupport.ReadWrite.All`; read-only alternative `Group.ReadBasic.All` | — | v1.0 | [^pa05-group-list] |
-| Create group | `Group.Create` (application); `RoleManagement.ReadWrite.Directory` to set `isAssignableToRole` | — | v1.0 | [^pa05-group-create] [^pa05-group-resource] |
-| Graph hosts | `graph.microsoft.com` (worldwide and GCC), `graph.microsoft.us` (GCC High), `dod-graph.microsoft.us` (DoD) | — | — | [^pa05-deployments] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Role-assignable groups | `isAssignableToRole` set only at creation; immutable; at most 500 per tenant; assigned membership only; no group members; Privileged Role Administrator to create; Privileged Authentication Administrator to change members' and owners' credentials; P1, and P2 for PIM | GA | [^pa05-rag] [^pa05-availability] |
+| PIM for Groups | Membership and ownership; two policies per group; not for dynamic or on-premises groups; role-assignable not required, but recommended for sensitive groups | GA | [^pa05-concept] |
+| Last active owner | Can't be removed; an activated owner's deactivation is retried for up to 30 days, then stops | — | [^pa05-concept] |
+| Nesting | No group as an active member of a role-assignable group; a group can be an eligible member | — | [^pa05-concept] [^pa05-rag] |
+| Service principals | Can't be eligible for PIM for Groups; time-limited active is allowed; nesting groups in PIM for Groups isn't recommended | — | [^pa05-pim-plan] |
+| Onboarding | Automatic on the first schedule request or policy update; policy IDs change; no offboarding | — | [^pa05-overview] |
+| Eligible membership | Not in the group's `members` relationship until activated | — | [^pa05-overview] |
+| Activation length | At most 8 hours (Graph overview); 1 to 24 hours (settings page) | — | [^pa05-overview] [^pa05-settings] |
+| Reauthentication on activation | With an authentication context: sign-in frequency **Every time** on its Conditional Access policy; a 10-minute window across Microsoft Entra roles, Azure resource roles and PIM for Groups | GA in the release notes (April 2026); public preview in the deployment plan; treated as preview | [^pa05-settings-reauth] [^pa05-whats-new] [^pa05-pim-plan-ca] |
+| Approvers | No default approvers; select at least two; can't approve their own requests; service principals can't approve; 24 hours to approve | — | [^pa05-settings] [^pa05-approval] |
+| Create eligibilityScheduleRequest | `POST .../group/eligibilityScheduleRequests`; `PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup`; Privileged Role Administrator for role-assignable groups | v1.0 | [^pa05-elig-req] |
+| Create assignmentScheduleRequest | `POST .../group/assignmentScheduleRequests`; `PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup` | v1.0 | [^pa05-asg-req] |
+| List eligibilitySchedules, assignmentSchedules | `$filter` on `groupId` or `principalId` required; `PrivilegedEligibilitySchedule.Read.AzureADGroup`, `PrivilegedAssignmentSchedule.Read.AzureADGroup` | v1.0 | [^pa05-elig-list] [^pa05-asg-list] |
+| List roleManagementPolicyAssignments (groups) | `scopeId` the group, `scopeType` `Group`, `roleDefinitionId` `member` or `owner`; `RoleManagementPolicy.Read.AzureADGroup` | v1.0 | [^pa05-pa-list] |
+| Update unifiedRoleManagementPolicyRule (groups) | `PATCH /policies/roleManagementPolicies/{id}/rules/{id}`; `RoleManagementPolicy.ReadWrite.AzureADGroup`; `@odata.type` required in the body; 17 rules per policy | v1.0 | [^pa05-rule-update] [^pa05-rules-howto] [^pa05-rules-overview] |
+| `isValidationOnly` | On both request types; documented for checking an activation before submitting it | v1.0 | [^pa05-req-resource] |
+| List groups | Learn's least-privileged column: `Group-NestingSupport.ReadWrite.All`; read-only alternative `Group.ReadBasic.All` | v1.0 | [^pa05-group-list] |
+| Create group | `Group.Create` (application); `RoleManagement.ReadWrite.Directory` to set `isAssignableToRole` | v1.0 | [^pa05-group-create] [^pa05-group-resource] |
+| Graph hosts | `graph.microsoft.com` (worldwide and GCC) | — | [^pa05-deployments] |
 
 Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 

@@ -51,10 +51,10 @@ What Learn says about the extension itself sets the contract:
 
 - A custom task extension calls an Azure Logic App on the Consumption plan.[^c05-ext] It runs one of two ways. **Launch and continue** starts the Logic App and moves on; the task succeeds if the Logic App starts. **Launch and wait** starts it and waits for a response; if none arrives within the duration you set, the task is considered failed.[^c05-ext] The response can come from a third-party system if the Logic App is only an intermediary.[^c05-ext]
 - The wait is 30 minutes to 3 hours, written as an ISO 8601 duration.[^c05-callback][^c05-limits] Learn's deployment planning page says 3 minutes to 5 hours;[^c05-deploy] the code follows the narrower range.
-- The response is a `POST` to `taskProcessingResult: resume` with an `operationStatus` of `completed` or `failed`. It is in v1.0 and listed for the global service, US Government L4 and L5.[^c05-resume][^c05-cbdata]
+- The response is a `POST` to `taskProcessingResult: resume` with an `operationStatus` of `completed` or `failed`. It is in v1.0 and listed for the global service, which GCC uses.[^c05-resume][^c05-cbdata]
 - New custom task extensions use proof-of-possession (PoP) tokens to call the Logic App. Extensions created before PoP existed use bearer tokens and can't be migrated: you create new ones.[^c05-configure][^c05-security]
-- A tenant can hold 100 custom task extensions, and a workflow 25 tasks.[^c05-limits] Lifecycle Workflows need Microsoft Entra ID Governance or Microsoft Entra Suite licenses.[^c05-licensing] Microsoft Entra ID Governance is available in GCC, GCC High and DoD, and Lifecycle Workflows are listed as available in Azure for US Government.[^c05-licensing][^c05-availability]
-- GCC keeps the worldwide Graph endpoint, `graph.microsoft.com`. GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`, and a token for one cloud doesn't work in another.[^c05-deployments]
+- A tenant can hold 100 custom task extensions, and a workflow 25 tasks.[^c05-limits] Lifecycle Workflows need Microsoft Entra ID Governance or Microsoft Entra Suite licenses.[^c05-licensing] Microsoft Entra ID Governance is available in GCC.[^c05-licensing]
+- GCC keeps the worldwide Graph endpoint, `graph.microsoft.com`, and a token for one cloud doesn't work in another.[^c05-deployments]
 
 ## Start with Microsoft's sample
 
@@ -82,7 +82,7 @@ Running Learn's definition against the fakes shows what it does well and what it
 | Learn's definition, run as published | Why it matters | What `examples/lifecycle-extensions` adds |
 |---|---|---|
 | Resumes the task with the Logic App's managed identity, no secret | — | Kept as the model, and the trigger schema is kept unchanged (a test compares them) |
-| Calls back to `graph.microsoft.com`, hard-coded, with a matching audience | In a GCC High or DoD tenant the callback goes to the wrong cloud, and the task fails at the end of the wait | A `graphHost` parameter that accepts only the three Graph roots, set from the registry's cloud |
+| Calls back to `graph.microsoft.com`, hard-coded, with a matching audience | Right for GCC, but the host is fixed in the definition rather than taken from the tenant's cloud | A `graphHost` parameter that accepts only the Graph root for a known cloud, set from the registry's cloud |
 | Calls back on `/beta` | Learn doesn't support beta in production;[^c05-resume-beta] resume is in v1.0[^c05-resume] | The callback uses v1.0 |
 | Uses `callbackUriPath` as it arrives | Any path appended to the Graph host gets a `POST` with the managed identity's token (a test sends `/users`) | `Check_request` refuses a path that isn't a resume path for this workflow and task processing result, or a payload with no subject, and makes no call |
 | Always reports `Completed` | A failed revocation reads as done | The status comes from the integration call: `completed` or `failed` |
@@ -94,7 +94,7 @@ Running Learn's definition against the fakes shows what it does well and what it
 
 The `appid` row needs a word. Learn's page says the `appid` claim "represents Lifecycle Workflows and is always the same", and prints `00001111-aaaa-2222-bbbb-3333cccc4444`, the format Learn uses for example GUIDs. The page's own `azp` row, in the bearer-token policy, prints `ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7`, and the page's history shows the `appid` row held that value until a documentation sweep in May 2024.[^c05-configure][^c05-sample-code] Learn's access token claims reference settles it: `azp`, in v2.0 tokens, is "a replacement for `appid`", and both hold the application ID of the client using the token.[^c05-claims] The PoP policy reads a v1.0 token's `appid`, the bearer policy a v2.0 token's `azp`, and the client is Lifecycle Workflows in both, so the value is `ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7`. The entra-docs repository's own list of known GUIDs names that value "Lifecycle Workflows".[^c05-known-guids] The registry uses it, a test pins it to the `azp` row of the pinned page, and Lab 2 still reads the service principal in the tenant before anything depends on it (research gap 10, closed).
 
-**The verdict.** Learn's definition is the right shape and the right trigger, and the program keeps both. It isn't safe to run as the leaver's credential revocation as published: it can report success for work that failed, it reports nothing for work that failed after you add it, and it works only in the worldwide cloud. Use it as the model and run the program's definition.
+**The verdict.** Learn's definition is the right shape and the right trigger, and the program keeps both. It isn't safe to run as the leaver's credential revocation as published: it can report success for work that failed, it reports nothing for work that failed after you add it, and its Graph host is fixed in the definition. Use it as the model and run the program's definition.
 
 ## The code: what `examples/lifecycle-extensions` adds
 
@@ -458,9 +458,9 @@ python tools/lcwext.py build config/integrations.json --name cms-revocation --te
 | Resume | `POST /identityGovernance/lifecycleWorkflows/workflows/{id}/tasks/{id}/taskProcessingResults/{id}/resume`, v1.0, `204 No Content`; `operationStatus` `completed` or `failed` | [^c05-resume] [^c05-cbdata] |
 | Resume permission | `LifecycleWorkflows.ReadWrite.All` (delegated with Lifecycle Workflows Administrator, or application); none for an app in `authorizedApps` | [^c05-resume] |
 | Create an extension | `POST /identityGovernance/lifecycleWorkflows/customTaskExtensions`; `LifecycleWorkflows-CustomExt.ReadWrite.All`; Lifecycle Workflows Administrator; Logic App Contributor, Contributor or Owner on the Logic App | [^c05-create] |
-| National clouds (resume, create) | Global service, US Government L4, US Government L5 (DoD) | [^c05-resume] [^c05-create] |
-| Graph host | `graph.microsoft.com` for worldwide and GCC; `graph.microsoft.us` for GCC High; `dod-graph.microsoft.us` for DoD | [^c05-deployments] |
-| Availability and license | Lifecycle Workflows listed for Azure for US Government; ID Governance in GCC, GCC High and DoD; ID Governance or Entra Suite licenses | [^c05-availability] [^c05-licensing] |
+| Clouds (resume, create) | Global service, which GCC uses | [^c05-resume] [^c05-create] |
+| Graph host | `graph.microsoft.com` for worldwide and GCC | [^c05-deployments] |
+| Availability and license | ID Governance in GCC; ID Governance or Entra Suite licenses | [^c05-licensing] |
 | Limits | 100 custom task extensions per tenant; 25 tasks per workflow; 100 workflows (50 on the licensing page) | [^c05-limits] [^c05-licensing] |
 | Task | *Run a custom task extension*, `4262b724-8dba-4fad-afc3-43fcbb497a0e`, argument `customTaskExtensionID` | [^c05-tasks] [^c05-args] |
 | Logic Apps retries | Default: up to 4 retries, intervals capped between 5 and 45 seconds; retries 408, 429 and 5xx | [^c05-la-retry] |
@@ -482,6 +482,7 @@ A custom task extension carries the part of a leaver that the built-in tasks don
 | What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
 |---|---|---|---|
 | Learn's definition is extracted unchanged and linted: eight results (Lab 1, step 1: `out/learn-sample.workflow.json`, exit `2`) | SA-11; SR-3 | KSI-SCR-MIT; KSI-CMT-VTD | The repository: `snapshot.json` and the test results |
+| Learn's definition resumes on `/beta` and always reports `Completed` (step 2: the callback address and `completed`) | SA-11 | KSI-CMT-VTD | The test results |
 | The program's definition passes, and retries that reach the timeout are refused (step 3: `0 result(s)`; LX-11 at `PT15M`) | CM-3(2) | KSI-CMT-VTD | The pull request's check run |
 | The callback reports what really happened, at once, and a repeat delivery has one effect (step 4: `completed`, `failed`, `1 effect(s)`) | AC-2; PS-4: a failed revocation is recorded as failed | KSI-IAM-AAM | The task processing result in Lifecycle Workflows |
 | The deployment pieces are built from the reviewed registry, SAS off and proof-of-possession on, and a guess for another Azure cloud is refused (step 5: `out/arm-cms-revocation.json`, `out/extension-cms-revocation.json`, exit `1`) | CM-2; CM-6; AC-3 | KSI-CMT-RMV; KSI-IAM-SNU | The repository; the deployment record |
@@ -505,7 +506,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 |---|---|---|
 | A failure that sends no callback | The leaver's revocation fails, and nobody knows until the wait ends | `Resume` runs after failure and time-out; LX-07 |
 | A callback that reports success for failed work | A credential stays valid and the record says revoked | Status computed from the call; LX-08 |
-| The wrong cloud | A GCC High or DoD callback goes to the worldwide Graph and never arrives | `graphHost` limited to three roots, set from the registry; LX-03; tests for every cloud |
+| The wrong cloud | A callback goes to a host that isn't the tenant's Graph, and never arrives | `graphHost` limited to known roots, set from the registry; LX-03; tests for every cloud |
 | A forged or malformed payload | The managed identity's token is sent to a path you didn't intend | PoP authorization with SAS off; `Check_request` before any call; LX-06 |
 | A repeat delivery or a rerun | The downstream system revokes, issues or deletes twice | `Idempotency-Key` from the task processing result; LX-09 |
 | Retries longer than the wait | The callback arrives after the task has already failed | Bounded retries; LX-11 against the registry's timeout |
@@ -547,7 +548,6 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c05-limits]: Microsoft Learn, "Microsoft Entra ID Governance service limits," section "Lifecycle Workflows," <https://learn.microsoft.com/entra/id-governance/governance-service-limits#lifecycle-workflows> (accessed Oct 30, 2026).
 [^c05-deploy]: Microsoft Learn, "Plan a Lifecycle Workflow deployment," section "Limitations and constraints," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflows-deployment> (accessed Oct 30, 2026).
 [^c05-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals" (Lifecycle Workflows; Government availability), <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals>, and "What are lifecycle workflows?" (license requirements), <https://learn.microsoft.com/entra/id-governance/what-are-lifecycle-workflows> (accessed Oct 30, 2026).
-[^c05-availability]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: Lifecycle workflows, in Microsoft Entra ID Governance), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
 [^c05-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
 [^c05-tasks]: Microsoft Learn, "Lifecycle Workflow built-in tasks," <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-tasks> (accessed Oct 30, 2026).
 [^c05-args]: Microsoft Learn, "Configure the arguments for built-in Lifecycle Workflows tasks," <https://learn.microsoft.com/graph/identitygovernance-lifecycleworkflows-task-arguments> (table and example 7, "Run a custom task extension") (accessed Oct 31, 2026).

@@ -35,11 +35,8 @@ Checked October 21, 2026 by writer W2. Source: `docs/operational-guides/siem-tel
 | 27 | Source cited a Data Factory REST page for the retention claim | Path B | corrected | Replaced with Azure Monitor migration page |
 | 28 | `az monitor diagnostic-settings create` cannot create the Entra setting ("opaque failure") | Path C | restated | Learn: the command creates resource-scope settings by resource ID; "opaque failure" dropped as unverified |
 | 29 | GET returns the categories a tenant supports | Path C | verified (reworded) | ARM reference: "perform a GET diagnostic settings operation" to obtain categories |
-| 30 | Azure Government ARM endpoint management.usgovcloudapi.net | Sovereign clouds | verified | Learn, Compare Azure Government and global Azure |
 | 31 | "GCC … stays on the worldwide ARM and Graph endpoints" | Sovereign clouds | verified | Graph national cloud deployments (GCC uses worldwide endpoints); feature-availability (GCC paired with Entra in commercial Azure) |
-| 32 | Graph endpoints: graph.microsoft.us (L4/GCC High), dod-graph.microsoft.us (DoD); login.microsoftonline.us | Sovereign clouds | verified (new DoD row) | Learn, Graph national cloud deployments |
-| 33 | Graph activity logs and signIns API available in US Gov L4/L5 | Sovereign clouds | verified (new) | Learn, Graph activity logs; List signIns |
-| 34 | Sentinel Entra ID connector GA in Azure Government | Sovereign clouds | verified (new) | Learn, Sentinel feature support |
+| 34 | Sentinel Entra ID connector GA in commercial Azure | GCC endpoints | verified (new) | Learn, Sentinel feature support |
 | 35 | Graph API "isn't designed for pulling large amounts of activity data" | Graph | verified | Learn, Analyze activity logs with Graph |
 | 36 | v1.0 `signIns` returns interactive, non-interactive, SP and MI sign-ins | Graph endpoints | corrected | v1.0 List signIns returns interactive and successful federated sign-ins; other streams via beta with `signInEventTypes` filter |
 | 37 | Graph returns only data within Entra default retention; page size max 1,000 | Graph | verified (new) | Learn, List signIns |
@@ -51,7 +48,6 @@ Checked October 21, 2026 by writer W2. Source: `docs/operational-guides/siem-tel
 | 43 | Recommend Policy.Read.ConditionalAccess as narrowest | CA warning | restated-as-design | Program choice among the three permissions Microsoft lists |
 | 44 | Always apply createdDateTime filter; unbounded queries time out | Examples | verified | Learn, List signIns |
 | 45 | `Get-MgAuditLogDirectoryAudit`, `Get-MgAuditLogSignIn` cmdlets | Examples | verified | Learn, Analyze activity logs with Graph |
-| 46 | `Connect-MgGraph -Environment USGov`; `https://graph.microsoft.us/.default`; app registration in the national cloud's admin center | Examples | verified | Learn, Graph SDK national clouds |
 | 47 | KQL used `count` and plain `union`; "absent from the result" means never received data | Verify | corrected | `count()` restored; `union isfuzzy=true` needed or a missing table fails the whole query (Kusto union reference); query rebuilt against an expected-table list with time bound |
 | 48 | "This query is canon … executed by the GCC Boundary Probe adapter … DRIFT-BOUNDARY findings" | Verify | removed | Internal engine material |
 | 49 | Sentinel connector writes same tables; "enabling both does not duplicate data" | Sentinel | removed (no-duplication claim); verified (same tables, needs read/write on diagnostic settings) | Learn, Sentinel Entra connector; duplicate-setting check stated as program design |
@@ -77,12 +73,12 @@ Checked October 21, 2026 by writer W2. Source: `docs/operational-guides/siem-tel
 | Path B — Tenant-scope ARM/Bicep | Path B | Carried; retentionPolicy removed |
 | Important: retentionPolicy does nothing for Log Analytics | Important callout | Carried and corrected (feature disabled Sept 30, 2025) |
 | Path C — az rest (PUT and GET) | Path C | Carried; ARM endpoint variable added for Azure Government |
-| Note: Sovereign clouds | Sovereign clouds | Expanded into a GCC / GCC High / DoD table |
+| Note: Sovereign clouds | GCC endpoints | GCC endpoint table |
 | Microsoft Graph — targeted evidence, not the feed | Microsoft Graph section | Carried |
 | Endpoints table | Endpoints table | Carried; v1.0 signIns scope corrected; beta sign-ups removed |
 | Permissions | Permissions | Carried; roles corrected |
 | Warning: CA data separately gated | Warning callout | Carried; boundary-probe reference removed |
-| Example — CA failures in a bounded window; PowerShell equivalent | Examples | Carried (dates updated); GCC High and DoD scope note expanded |
+| Example — CA failures in a bounded window; PowerShell equivalent | Examples | Carried (dates updated) |
 | Verify emission (KQL, absent vs stale) | Verify emission | Carried; query corrected and rebuilt |
 | Important: this query is canon | — | Not carried: internal engine material |
 | Sentinel data connector | Verify emission, final paragraph | Carried in part; no-duplication and EPS claims removed; link to Vol III Book 06 on GitHub |
@@ -124,11 +120,10 @@ Pages read on 2026-11-09 through the Microsoft Learn documentation service, for 
 | L3 | Entra Health scenarios (MFA, compliant/managed device, SAML, Conditional Access block); anomaly detection; preview | New section, Entra Health | verified | `c03-health-scenarios`; `c03-health-alerts`; Learn "What is Microsoft Entra Health monitoring?" read for the scenario list |
 | L4 | P1/P2 to view signals; non-trial P1/P2 and 100 MAU for alerts; about 30 days of data before alerts; Reports Reader views, Helpdesk Administrator updates; `HealthMonitoringAlert.Read.All`; the active-alerts Graph beta request | Same | verified | `c03-health-alerts`, sections "Prerequisites" and Microsoft Graph tab |
 | L5 | Recommendations: daily comparison with best practices, action plan and affected resources, read roles; hybrid recommendations (DCSync, Connector account password, certificate templates, Print Spooler on DCs), most in preview | Same | verified | `c03-recommendations` |
-| L6 | Entra Health and recommendations availability in GCC High and DoD | Same | not yet specified (Learn's feature-availability page for Azure Government doesn't list them) | Learn "Microsoft Entra feature availability" (searched Nov 9, 2026) |
 | L7 | Monthly review of recommendations; open Health alerts pulled into the evidence record | Same | restated-as-design | Program design |
 | L8 | Global Secure Access diagnostic categories and tables (traffic, connection events, remote network health, generative AI insights, alerts); Sentinel solution with three workbooks and seven analytics rules | New section, Global Secure Access | verified | `c03-gsa-sentinel` |
 | L9 | Alert types Token/Device Inconsistency, Increased External Tenant Activity, Unhealthy Remote Network; schema aligned to Sentinel's security alert schema | Same | verified | `c03-gsa-alerts` |
-| L10 | Global Secure Access available in GCC, not yet supported in GCC High or DoD | Same | verified | `c03-gsa-gov` |
+| L10 | Global Secure Access available in GCC | Same | verified | `c03-gsa-gov` |
 | L11 | Connect Sync admin audit logging from 2.4.129.0, on by default, Application log source "Entra Connect Admin Actions", event IDs 2603 to 2626, log size advice, `AuditEventLogging` registry value (0 off, 1 on) | New section, Entra Connect server | verified | `c03-connect-audit` |
 | L12 | The read-only check commands (`Get-ItemProperty`, `Get-WinEvent` by provider name) | Same | restated-as-design; standard cmdlets, not run against a Connect server; the provider name is the event source Learn names | `c03-connect-audit` |
 | L13 | Administration Agent: deprecated, can't be used with 2.1.12.0 or later; support engineer sees AD data, connector spaces and metaverse for a user; `UserDataEnabled` | Same | verified | `c03-admin-agent` |

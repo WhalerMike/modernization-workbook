@@ -56,7 +56,7 @@ The program's rule, from the plan and Book 02, is *(Design guidance)*:
 
 ### Which cloud, for this sweep and these writes
 
-The reads and writes go to Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com` for the target estate, Microsoft 365 GCC with commercial Azure; GCC High and DoD use `graph.microsoft.us` and `dod-graph.microsoft.us`, with Azure Government's `management.usgovcloudapi.net`.[^np07-deployments] [^np07-compare] Listing a service principal's app role assignments and delegated grants, listing directory role assignments, deleting an app role assignment and updating a delegated grant all list the global service, US Government L4 and US Government L5.[^np07-sp-approles] [^np07-sp-grants] [^np07-dir-roles] [^np07-delete-ara] [^np07-grant-update] Learn's feature availability lists access reviews, Privileged Identity Management and Microsoft Entra Workload ID Premium for Azure for US Government.[^np07-availability]
+The reads and writes go to Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com` for the target estate, Microsoft 365 GCC with commercial Azure, which use the worldwide endpoints.[^np07-deployments] [^np07-compare] Listing a service principal's app role assignments and delegated grants, listing directory role assignments, deleting an app role assignment and updating a delegated grant all list the global service, which GCC uses.[^np07-sp-approles] [^np07-sp-grants] [^np07-dir-roles] [^np07-delete-ara] [^np07-grant-update]
 
 ## Start with Microsoft's sample
 
@@ -83,7 +83,7 @@ Each row is pinned by a test: in `tests/NpiLeastPrivilegeSamples.Tests.ps1` for 
 | Reads every delegated grant in the tenant to find one app's | A tenant-wide read for one row | One client's grants through `GET /servicePrincipals/{id}/oauth2PermissionGrants` |
 | Signs in with `Directory.ReadWrite.All` and three other write permissions to review | Write permissions for a read | The sweep holds `Application.Read.All`, `Directory.Read.All`, `RoleManagement.Read.Directory` and Reader; the writes are a separate, delegated task |
 | Names Cloud Application Administrator | *Delete appRoleAssignedTo* names Privileged Role Administrator for Microsoft Graph app roles (research gaps, row 62) | The write path runs as a person with Privileged Role Administrator |
-| Hard-codes `graph.microsoft.com` | The host is wrong for GCC High and DoD | The host from the cloud table, checked on every request |
+| Hard-codes `graph.microsoft.com` | The host can't be checked against the cloud the run names | The host from the cloud table, checked on every request |
 | Reads no directory roles and no Azure role assignments; names Exchange RBAC only as text | A service principal in a directory role, or a managed identity that is Contributor on a subscription, passes unseen | Directory roles are read and hand the service principal to the Privileged Access plan; managed identities' Azure roles are read at each listed scope and classed by scope |
 
 **The verdict.** Use Learn's requests as the model for the reads and the one removal. Don't run the script against a tenant: it removes everything it can reach, and on Learn's own API contract its application-permission removals miss.
@@ -609,20 +609,20 @@ Remove-Item -Recurse -Force out/lp-test*
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| List a service principal's app role assignments | `GET /servicePrincipals/{id}/appRoleAssignments`; `Application.Read.All`; replication delays for recent changes | L4 and L5 | v1.0 | [^np07-sp-approles] |
-| List a service principal's delegated grants | `GET /servicePrincipals/{id}/oauth2PermissionGrants`; `Directory.Read.All` | L4 and L5 | v1.0 | [^np07-sp-grants] |
-| Get a service principal | `GET /servicePrincipals/{id}`; `Application.Read.All` | — | v1.0 | [^np07-sp-get] |
-| List directory role assignments | `GET /roleManagement/directory/roleAssignments`, `$filter` on `principalId`; `RoleManagement.Read.Directory` | L4 and L5 | v1.0 | [^np07-dir-roles] |
-| Delete appRoleAssignedTo | Through the resource service principal (Learn's recommended way); `AppRoleAssignment.ReadWrite.All`; Privileged Role Administrator is the least privileged role for Microsoft Graph app roles | L4 and L5 | v1.0 | [^np07-delete-ara] |
-| Update a delegated grant | `PATCH /oauth2PermissionGrants/{id}`; `DelegatedPermissionGrant.ReadWrite.All`; the `scope` sent replaces the list | L4 and L5 | v1.0 | [^np07-grant-update] |
-| Escalation permissions | `AppRoleAssignment.ReadWrite.All`, `RoleManagement.ReadWrite.Directory` can grant the app more; `Application.ReadWrite.All` doesn't manage Microsoft Graph app role assignments; `Directory.ReadWrite.All` granted before December 3, 2020 also assigned Directory Writers | — | — | [^np07-perms-ref] |
-| Selected permissions | `Sites.Selected` and `Lists`, `ListItems`, `Files` `.SelectedOperations.Selected`, granted per resource | — | — | [^np07-selected] |
-| RBAC for Applications in Exchange Online | Replaces application access policies; grants are a union with the Microsoft Entra grant | — | — | [^np07-exo-rbac] [^np07-exo-aap] |
-| List Azure role assignments | `{scope}/providers/Microsoft.Authorization/roleAssignments?api-version=2022-04-01`, `$filter=assignedTo('{objectId}')`; `Microsoft.Authorization/roleAssignments/read`, such as Reader | n/a (Resource Manager; GCC uses commercial Azure) | GA | [^np07-arm-list] [^np07-arm-reader] |
-| Narrowest Azure scope | Use a resource group or resource; a parent scope's role is inherited | n/a | — | [^np07-rbac-scope] [^np07-rbac-best] [^np07-mi-best] |
-| Access reviews of service principals | PIM reviews; Workload ID Premium plus Microsoft Entra ID P2 or ID Governance; managed identities included; no free trial in Azure Government | Access reviews, PIM and Workload ID Premium listed for Azure for US Government | Not marked preview on the PIM page; *Securing service principals* says the reviews are in preview, so this chapter treats them as preview | [^np07-pim-review] [^np07-wid-faq] [^np07-availability] [^np07-sp-secure] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| List a service principal's app role assignments | `GET /servicePrincipals/{id}/appRoleAssignments`; `Application.Read.All`; replication delays for recent changes | v1.0 | [^np07-sp-approles] |
+| List a service principal's delegated grants | `GET /servicePrincipals/{id}/oauth2PermissionGrants`; `Directory.Read.All` | v1.0 | [^np07-sp-grants] |
+| Get a service principal | `GET /servicePrincipals/{id}`; `Application.Read.All` | v1.0 | [^np07-sp-get] |
+| List directory role assignments | `GET /roleManagement/directory/roleAssignments`, `$filter` on `principalId`; `RoleManagement.Read.Directory` | v1.0 | [^np07-dir-roles] |
+| Delete appRoleAssignedTo | Through the resource service principal (Learn's recommended way); `AppRoleAssignment.ReadWrite.All`; Privileged Role Administrator is the least privileged role for Microsoft Graph app roles | v1.0 | [^np07-delete-ara] |
+| Update a delegated grant | `PATCH /oauth2PermissionGrants/{id}`; `DelegatedPermissionGrant.ReadWrite.All`; the `scope` sent replaces the list | v1.0 | [^np07-grant-update] |
+| Escalation permissions | `AppRoleAssignment.ReadWrite.All`, `RoleManagement.ReadWrite.Directory` can grant the app more; `Application.ReadWrite.All` doesn't manage Microsoft Graph app role assignments; `Directory.ReadWrite.All` granted before December 3, 2020 also assigned Directory Writers | — | [^np07-perms-ref] |
+| Selected permissions | `Sites.Selected` and `Lists`, `ListItems`, `Files` `.SelectedOperations.Selected`, granted per resource | — | [^np07-selected] |
+| RBAC for Applications in Exchange Online | Replaces application access policies; grants are a union with the Microsoft Entra grant | — | [^np07-exo-rbac] [^np07-exo-aap] |
+| List Azure role assignments | `{scope}/providers/Microsoft.Authorization/roleAssignments?api-version=2022-04-01`, `$filter=assignedTo('{objectId}')`; `Microsoft.Authorization/roleAssignments/read`, such as Reader | GA | [^np07-arm-list] [^np07-arm-reader] |
+| Narrowest Azure scope | Use a resource group or resource; a parent scope's role is inherited | — | [^np07-rbac-scope] [^np07-rbac-best] [^np07-mi-best] |
+| Access reviews of service principals | PIM reviews; Workload ID Premium plus Microsoft Entra ID P2 or ID Governance; managed identities included; no free trial in Azure Government | Not marked preview on the PIM page; *Securing service principals* says the reviews are in preview, so this chapter treats them as preview | [^np07-pim-review] [^np07-wid-faq] [^np07-sp-secure] |
 
 Where Learn's pages differ: the review page's PowerShell script removes application permissions through the client's ID while its own HTTP request and *Delete appRoleAssignedTo* name the resource (research gaps, row 61); the review page names Cloud Application Administrator while *Delete appRoleAssignedTo* and the restore page name Privileged Role Administrator for Microsoft Graph app roles (row 62); and Book 04's application access policy is now legacy on Learn (row 63). The code follows the stricter reading in each case.
 
@@ -701,7 +701,6 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 [^np07-arm-reader]: Microsoft Learn, "List Azure role assignments using the Azure portal," prerequisites, <https://learn.microsoft.com/azure/role-based-access-control/role-assignments-list-portal> (accessed Oct 30, 2026).
 [^np07-pim-review]: Microsoft Learn, "Create an access review of Azure resource and Microsoft Entra roles in PIM," prerequisites, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review> (accessed Oct 30, 2026).
 [^np07-wid-faq]: Microsoft Learn, "Frequently asked questions about Microsoft Entra Workload ID," licensing and free trial, <https://learn.microsoft.com/entra/workload-id/workload-identities-faqs> (accessed Oct 30, 2026).
-[^np07-availability]: Microsoft Learn, "Microsoft Entra feature availability," identity governance; other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
 [^np07-restore]: Microsoft Learn, "Restore revoked permissions granted to applications," restore revoked permissions for an application; restore app-only permissions, <https://learn.microsoft.com/entra/identity/enterprise-apps/restore-permissions> (accessed Oct 30, 2026).
 [^np07-audit]: Microsoft Learn, "View activity logs of application permissions," audit logs, <https://learn.microsoft.com/entra/identity/enterprise-apps/app-perms-audit-logs> (accessed Oct 31, 2026).
 [^np07-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).

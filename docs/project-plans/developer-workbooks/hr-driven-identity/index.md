@@ -33,11 +33,11 @@ All eight chapters are written; Chapter 08, the deployment runbook, is the newes
 
 The [HR-driven identity implementation guide](../../../books/guides/hr-driven-identity-implementation.md) runs the lifecycle that happens to a person after the HR pipeline makes the account exist, as seven gates: one writer for every account state, employees and contractors from their sources, joiners ready on day one, access assigned from HR attributes with a review of what a move leaves behind, PIV and CAC credentials tied to HR events, separations timed, and the record kept true with evidence. It says what to configure and what the ISSO keeps. It doesn't teach anyone to build the software that holds those settings as reviewed code, reads the logs that prove each gate, and hands the ISSO numbers a reviewer can check.
 
-This workbook is for the developers who build that software. It is code first, and it starts from Microsoft. Each chapter begins with Microsoft Learn's own procedure for the gate's feature, and builds only what Learn leaves to you, in the repository's [`examples/hr-lifecycle`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle) folder, with tests. Each has a lab that runs on a laptop against fixtures with no tenant at all, then a short step in a test tenant with a way to back it out. Each lists the Graph facts the code depends on (endpoints, the least-privileged permission, availability in the US Government clouds, release stage), footnoted to Microsoft Learn with the date the page was read, then the federal requirement the gate proves and what the ISSO keeps, the dangers and a checklist.
+This workbook is for the developers who build that software. It is code first, and it starts from Microsoft. Each chapter begins with Microsoft Learn's own procedure for the gate's feature, and builds only what Learn leaves to you, in the repository's [`examples/hr-lifecycle`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hr-lifecycle) folder, with tests. Each has a lab that runs on a laptop against fixtures with no tenant at all, then a short step in a test tenant with a way to back it out. Each lists the Graph facts the code depends on (endpoints, the least-privileged permission, release stage), footnoted to Microsoft Learn with the date the page was read, then the federal requirement the gate proves and what the ISSO keeps, the dangers and a checklist.
 
 Much of the HR lifecycle's code already exists, and this workbook doesn't rebuild it. The first developer workbook, [Book 19](../../../books/b19-developer-workbook/index.md), builds the HR-to-Entra middleware, the Graph client pattern for the government clouds, the validation kit, dynamic rules as code, Lifecycle Workflows custom task extensions and the drift pipeline. [*Building Privileged Access*](../privileged-access/index.md) builds PIM and the reviews of privileged roles. The chapters link to them where a gate needs them, and add only what the gates need that they don't.
 
-The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC uses the worldwide endpoints: `login.microsoftonline.com` and `graph.microsoft.com`. GCC High and DoD have separate hosts.[^hwi-deployments] Every tool takes an explicit cloud name and has no default.
+The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC uses the worldwide endpoints: `login.microsoftonline.com` and `graph.microsoft.com`.[^hwi-deployments] Every tool takes an explicit cloud name and has no default.
 
 ## The pieces and how they connect
 
@@ -63,7 +63,7 @@ The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC use
 | The code | What exists in `examples/` already, what this chapter adds, and the tests |
 | Lab 1: fixtures, no tenant | Commands you can run anywhere, with the output they gave when the chapter was written |
 | Lab 2: test tenant | The smallest step a test tenant needs, and how to back it out; not run by the authors |
-| Verified facts | Endpoints, least-privileged permissions, US Government availability and release stage, each footnoted |
+| Verified facts | Endpoints, least-privileged permissions and release stage, each footnoted |
 | Federal requirements and evidence | The gate and requirement the code helps prove, and what the ISSO keeps |
 | Dangers | What breaks in production, and the guard the code has for it |
 | Checklist | What a reviewer checks before the code ships |
@@ -87,7 +87,7 @@ The outline follows the guide's gates, in order. Chapter 07 reads the outputs of
 | 07 | [Lifecycle drift, metrics and evidence](07-lifecycle-drift-and-evidence.md) | G7 Drift and evidence | IG5 | Book 19, Chapter 09's drift pipeline | The six lifecycle drift classes and six metrics as one run (LD-01 to LD-08), packaged with a hash chain and assembled into a period by `hr_evidence.py` | Written |
 | 08 | [Deploying to a test tenant, then to production](08-deploying-to-test-and-production.md) | G1 to G7 | — | The guide's gate order and rollback table; Learn's pilot and on-demand guidance | One settings file per environment with no secrets (DS-01 to DS-05), a pre-flight (PF-01 to PF-06), a smoke test with a synthetic joiner, mover and leaver (SM-01 to SM-07), go/no-go criteria, first-week monitoring and a rehearsed rollback (RB-01, RB-02) | Written; not run against a live tenant |
 
-Microsoft Entra ID Governance, which Lifecycle Workflows, entitlement management and access reviews use, is available in GCC, GCC High and DoD.[^hwi-availability]
+Microsoft Entra ID Governance, which Lifecycle Workflows, entitlement management and access reviews use, is available in GCC.[^hwi-availability]
 
 <!-- tour:begin (generated by the tour build; not part of the reviewed page) -->
 

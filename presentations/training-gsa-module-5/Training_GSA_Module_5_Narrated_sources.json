@@ -1,0 +1,158 @@
+[
+ {
+  "slide": 4,
+  "title": "Unit 1: security profiles, from Learn's Graph tutorial",
+  "links": [
+   {
+    "text": "Internet Access using Microsoft Graph APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-internet-access-graph-tutorial"
+   },
+   {
+    "text": "Global Secure Access traffic forwarding profiles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-traffic-forwarding-profiles"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Unit 2: Learn's limits, QUIC, and every bypass",
+  "links": [
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "Configure TLS inspection policies",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tls-inspection-policies"
+   },
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 3: TLS inspection, from a dedicated CA",
+  "links": [
+   {
+    "text": "What is TLS inspection?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-what-is-tls-inspection"
+   },
+   {
+    "text": "TLS inspection with your own certificate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tls-own-certificate"
+   },
+   {
+    "text": "Tutorial: Enable TLS inspection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tutorial-tls-inspection"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Privacy, pinned applications and the 1% line",
+  "links": [
+   {
+    "text": "Configure TLS inspection policies",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tls-inspection-policies"
+   },
+   {
+    "text": "FAQ for TLS inspection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tls-inspection-faq"
+   },
+   {
+    "text": "Zero Trust: Protect networks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-protect-networks"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The federal requirement and evidence for Module 5",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "TIC 3.0 Remote User Use Case v2.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Sources: Module 5 deck",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Internet Access using Microsoft Graph APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-internet-access-graph-tutorial"
+   },
+   {
+    "text": "Global Secure Access traffic forwarding profiles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-traffic-forwarding-profiles"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   },
+   {
+    "text": "What is TLS inspection?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-what-is-tls-inspection"
+   },
+   {
+    "text": "TLS inspection with your own certificate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tls-own-certificate"
+   },
+   {
+    "text": "Tutorial: Enable TLS inspection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tutorial-tls-inspection"
+   },
+   {
+    "text": "Configure TLS inspection policies",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tls-inspection-policies"
+   },
+   {
+    "text": "FAQ for TLS inspection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tls-inspection-faq"
+   },
+   {
+    "text": "Operate Microsoft Entra Internet Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#operate-microsoft-entra-internet-access"
+   },
+   {
+    "text": "Zero Trust: Protect networks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-protect-networks"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "TIC 3.0 Remote User Use Case v2.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
+   }
+  ]
+ }
+]

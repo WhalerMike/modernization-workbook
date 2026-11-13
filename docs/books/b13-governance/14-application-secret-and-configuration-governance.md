@@ -73,7 +73,7 @@ Every application and service principal in the tenant has a row in the authorita
 - **The record.** The system inventory or CMDB holds the eight fields keyed by `appId` (the program's `<record.csv>` below: one row per application, with the columns `AppId`, `SystemId`, `Impact`, `BusinessOwner`, `TechnicalOwner`, `DataClassification`, `PermissionJustification`, `ReviewDate` and `RetirementDisposition`). The [Non-Person Identity guide's record](../guides/non-person-identity-implementation.md#the-record-each-identity-joins-to) is the same record; this chapter adds data classification, permissions justification, last activity and retirement disposition to it.
 - **Roles.** Reading needs Global Reader, or Reports Reader plus Application Administrator read scopes; the export below uses the Graph scopes `Application.Read.All`, `Directory.Read.All` and `AuditLog.Read.All`. Run it as an app registration with a certificate, or a managed identity, never a secret.
 - **Licenses.** Reading app registrations, service principals and grants is free. The service principal sign-in activity report reads with `AuditLog.Read.All` and the Reports Reader, Security Reader or Security Administrator role.[^c14g-spactivity] Workload ID Premium is needed only for Conditional Access for workload identities and its app health recommendations ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
-- **Government clouds.** Microsoft Graph's application, service principal and grant APIs serve all three US government environments; a GCC tenant uses the worldwide endpoint, GCC High `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^c14g-graph-clouds] The service principal sign-in activity API is **preview**, in Graph beta, and listed for the global service only, not for US Government L4 or L5 (accessed Nov 11, 2026);[^c14g-spactivity] in GCC High and DoD, last activity comes from the service principal and managed identity sign-in logs instead ([Book 12](../b12-security-operations/index.md)), and the field is marked *measured from logs*.
+- **GCC.** A GCC tenant calls Microsoft Graph's application, service principal and grant APIs at the worldwide endpoint.[^c14g-graph-clouds] The service principal sign-in activity API is **preview**, in Graph beta, and listed for the global service, which GCC uses (accessed Nov 11, 2026).[^c14g-spactivity] Where it returns nothing, last activity comes from the service principal and managed identity sign-in logs instead ([Book 12](../b12-security-operations/index.md)), and the field is marked *measured from logs*.
 
 ### Pilot {#app-pilot}
 
@@ -87,7 +87,7 @@ The export and the gap report change nothing. Run them weekly for four weeks acr
 
 ```powershell
 #Requires -Modules Microsoft.Graph.Applications, Microsoft.Graph.Identity.SignIns, Microsoft.Graph.Beta.Reports
-# Commercial and GCC: no -Environment. GCC High: -Environment USGov. DoD: -Environment USGovDoD.
+# Commercial and GCC: no -Environment.
 Connect-MgGraph -Scopes 'Application.Read.All','Directory.Read.All','AuditLog.Read.All' -NoWelcome
 $out = '<out-dir>'; New-Item -ItemType Directory -Force -Path $out | Out-Null
 $stamp = Get-Date -Format 'yyyyMMdd'
@@ -97,7 +97,7 @@ $highPriv = @('RoleManagement.ReadWrite.Directory','AppRoleAssignment.ReadWrite.
               'Directory.ReadWrite.All','Group.ReadWrite.All','User.ReadWrite.All','Mail.ReadWrite','Mail.Send',
               'Sites.FullControl.All','Files.ReadWrite.All','Policy.ReadWrite.ConditionalAccess')
 
-# Last activity per appId (preview; global service only — leave empty in GCC High and DoD).
+# Last activity per appId (preview; global service, which GCC uses).
 $activity = @{}
 try { Get-MgBetaReportServicePrincipalSignInActivity -All |
         ForEach-Object { $activity[$_.AppId] = $_.LastSignInActivity.LastSignInDateTime } } catch { }
@@ -373,14 +373,14 @@ Safe Links and Safe Attachments need Defender for Office 365 (**license-dependen
 
 **Two ways to collect.** Microsoft now offers configuration monitoring as a service, and the scripted export below works everywhere. The program uses the service where it is available and the script where it isn't, and keeps both outputs in the same evidence store.
 
-- **Tenant Configuration Management (TCM).** Microsoft Graph's Tenant Configuration Management APIs, surfaced in the Entra admin center as configuration management under Microsoft Entra Tenant Governance, take snapshots of current settings across Entra, Exchange Online, Intune, Defender, Purview and Teams, hold a JSON baseline, run monitors every six hours and report each drift with the properties that differ.[^c14g-tcm] A tenant can have up to 30 monitors and 800 monitored resources a day, snapshots are kept for seven days, a fixed drift is deleted 30 days after it is resolved, and changing a monitor's baseline deletes its earlier results and drifts,[^c14g-tcm-limits] so the program copies results to its own store on every run. The Basic capacity comes with Entra ID P1 or P2; ID Governance licenses add capacity (**license-dependent**).[^c14g-tcm-lic] It detects and reports; it doesn't deploy or remediate.[^c14g-m365dsc] **Environment-dependent:** the TCM API pages list the global service only, not US Government L4 or L5 (Nov 11, 2026),[^c14g-tcm-cloud] so it is available to GCC tenants, which use the worldwide endpoint, and not to GCC High or DoD. Learn's pages disagree on its stage: the configuration management overview says the APIs are generally available, while the authentication setup page still refers to public preview;[^c14g-tcm][^c14g-tcm-auth] treat it as preview until Learn is consistent.
-- **Scripted export.** The script below reads each domain with the platform's own read cmdlets or Graph calls, normalizes the output, and commits it to a Git repository whose history is the baseline record. It runs in every cloud the cmdlets support.
+- **Tenant Configuration Management (TCM).** Microsoft Graph's Tenant Configuration Management APIs, surfaced in the Entra admin center as configuration management under Microsoft Entra Tenant Governance, take snapshots of current settings across Entra, Exchange Online, Intune, Defender, Purview and Teams, hold a JSON baseline, run monitors every six hours and report each drift with the properties that differ.[^c14g-tcm] A tenant can have up to 30 monitors and 800 monitored resources a day, snapshots are kept for seven days, a fixed drift is deleted 30 days after it is resolved, and changing a monitor's baseline deletes its earlier results and drifts,[^c14g-tcm-limits] so the program copies results to its own store on every run. The Basic capacity comes with Entra ID P1 or P2; ID Governance licenses add capacity (**license-dependent**).[^c14g-tcm-lic] It detects and reports; it doesn't deploy or remediate.[^c14g-m365dsc] **Environment-dependent:** the TCM API pages list the global service (Nov 11, 2026),[^c14g-tcm-cloud] so it is available to GCC tenants, which use the worldwide endpoint. Learn's pages disagree on its stage: the configuration management overview says the APIs are generally available, while the authentication setup page still refers to public preview;[^c14g-tcm][^c14g-tcm-auth] treat it as preview until Learn is consistent.
+- **Scripted export.** The script below reads each domain with the platform's own read cmdlets or Graph calls, normalizes the output, and commits it to a Git repository whose history is the baseline record. It runs wherever the cmdlets do, including GCC.
 
 ### Prerequisites {#drift-prerequisites}
 
 - Read roles: Global Reader covers Entra and Intune reads; Security Reader or a View-Only role in Exchange Online and Purview covers their cmdlets; Global Secure Access reads need Global Reader, Global Secure Access Log Reader or Security Administrator with `NetworkAccess.Read.All`.[^c14g-gsa] Run the export as an app registration with a certificate or a managed identity; Exchange Online and Security & Compliance PowerShell support certificate-based app-only sign-in.[^c14g-exo-app]
 - PowerShell 7 with `Microsoft.Graph.Authentication` and `ExchangeOnlineManagement`; Git; a private repository for the exports (they describe the tenant's defenses and are Controlled).
-- Government clouds: the Graph v1.0 and Intune beta reads, and the Global Secure Access forwarding-profile reads, are listed for the global service and US Government L4 and L5.[^c14g-intune][^c14g-gsa] Exchange Online and Security & Compliance PowerShell connect to GCC High and DoD with their own parameters (in the script). Conditional Access, PIM and authentication-method reads: the national-cloud table on each Learn API page is the source; where a page omits it, record *not yet specified*. TCM: GCC only, as above.
+- GCC: the Graph v1.0 and Intune beta reads, and the Global Secure Access forwarding-profile reads, are listed for the global service, which GCC uses.[^c14g-intune][^c14g-gsa] Exchange Online and Security & Compliance PowerShell connect to GCC with their default parameters. Conditional Access, PIM and authentication-method reads: the national-cloud table on each Learn API page is the source; where a page omits it, record *not yet specified*. TCM: available in GCC, as above.
 
 ### Pilot {#drift-pilot}
 
@@ -394,10 +394,10 @@ Export one domain, Conditional Access, for four weeks. Compare each week's diff 
 git init <exports> && cd <exports> && git commit --allow-empty -m "Configuration exports: start"
 ```
 
-**Step 2. Export the eight domains.** Save as `Export-SecurityConfig.ps1` in the repository's parent folder and run it from the repository folder. Set `$cloud` to `Global` (commercial and GCC), `USGov` (GCC High) or `USGovDoD` (DoD), and `<org>.onmicrosoft.com` to the tenant's initial domain.
+**Step 2. Export the eight domains.** Save as `Export-SecurityConfig.ps1` in the repository's parent folder and run it from the repository folder. Leave `$cloud` as `Global` (commercial and GCC), and set `<org>.onmicrosoft.com` to the tenant's initial domain.
 
 ```powershell
-param([ValidateSet('Global','USGov','USGovDoD')] [string] $cloud = 'Global', [string] $org = '<org>.onmicrosoft.com',
+param([ValidateSet('Global')] [string] $cloud = 'Global', [string] $org = '<org>.onmicrosoft.com',
       [string] $appId = '<export-app-id>', [string] $thumb = '<cert-thumbprint>', [string] $tenantId = '<tenant-id>')
 $ErrorActionPreference = 'Stop'
 $volatile = '^(@odata\..*|modifiedDateTime|lastModifiedDateTime|createdDateTime|WhenChanged.*|WhenCreated.*|Guid|Identity|ExchangeObjectId|DistinguishedName|RunspaceId|.*Version)$'
@@ -426,17 +426,13 @@ Save 'network/gsa-forwarding-profiles.json'   (GraphAll 'beta/networkAccess/forw
 if (Test-Path '../app-governance-tenant-latest.csv') {
     Save 'entra/application-permissions.json' (Import-Csv '../app-governance-tenant-latest.csv' | Select-Object AppId, DisplayName, AppPermissions, TenantWideDelegated | Sort-Object AppId) }
 
-$exo = @{ Global = @{}; USGov = @{ ExchangeEnvironmentName = 'O365USGovGCCHigh' }; USGovDoD = @{ ExchangeEnvironmentName = 'O365USGovDoD' } }[$cloud]
-Connect-ExchangeOnline -AppId $appId -CertificateThumbprint $thumb -Organization $org -ShowBanner:$false @exo
+Connect-ExchangeOnline -AppId $appId -CertificateThumbprint $thumb -Organization $org -ShowBanner:$false
 foreach ($c in 'Get-AntiPhishPolicy','Get-HostedContentFilterPolicy','Get-MalwareFilterPolicy','Get-SafeLinksPolicy',
                'Get-SafeAttachmentPolicy','Get-TransportRule','Get-DkimSigningConfig','Get-AdminAuditLogConfig') {
     try { Save "exchange/$($c.Substring(4)).json" (& $c) } catch { Save "exchange/$($c.Substring(4)).json" @{ notApplicable = $_.Exception.Message } } }
 Disconnect-ExchangeOnline -Confirm:$false
 
-$scc = @{ Global = @{}
-          USGov = @{ ConnectionUri = 'https://ps.compliance.protection.office365.us/powershell-liveid/'; AzureADAuthorizationEndpointUri = 'https://login.microsoftonline.us/organizations' }
-          USGovDoD = @{ ConnectionUri = 'https://compliance.dod.microsoft.com/powershell-liveid'; AzureADAuthorizationEndpointUri = 'https://login.microsoftonline.us/organizations' } }[$cloud]
-Connect-IPPSSession -AppId $appId -CertificateThumbprint $thumb -Organization $org -ShowBanner:$false @scc
+Connect-IPPSSession -AppId $appId -CertificateThumbprint $thumb -Organization $org -ShowBanner:$false
 foreach ($c in 'Get-Label','Get-LabelPolicy','Get-DlpCompliancePolicy','Get-DlpComplianceRule','Get-RetentionCompliancePolicy') {
     try { Save "purview/$($c.Substring(4)).json" (& $c) } catch { Save "purview/$($c.Substring(4)).json" @{ notApplicable = $_.Exception.Message } } }
 Disconnect-ExchangeOnline -Confirm:$false
@@ -504,7 +500,7 @@ The governance platform team owns the export, the repository and the schedule; e
 [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register) converts standing privileged assignments to eligible ones and produces two artifacts: a read-only export of every directory role's PIM settings with its list of permanent active assignments (`role-settings.csv`, `permanent-active.csv`), and a register of the permanent assignments that remain. This section is the governance side of that register: who approves an entry, when it expires, how often it is reviewed, how drift against the export is found, and what evidence the cycle leaves. It doesn't repeat the build or the scripts; it reads their output.
 
 **Authority:** Microsoft-recommended for eligible rather than permanent assignment of privileged roles and for emergency access accounts that stay permanently assigned (Learn, read Nov 11, 2026).[^c14g-pim-exc] Risk-based recommended for the approvers, expiry limits and drift severities below, which are the program's settled position on the risk of standing privilege ([WD-149](../../about/decision-register.md#wd-149)).
-**Applies:** License-dependent: Microsoft Entra ID P2 or Entra ID Governance for PIM. Environment-dependent: PIM and the Graph reads the export uses are available in the global service, GCC High and DoD, as [Book 04](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register) records.
+**Applies:** License-dependent: Microsoft Entra ID P2 or Entra ID Governance for PIM. Environment-dependent: PIM and the Graph reads the export uses are available in the global service, which GCC uses, as [Book 04](../b04-access/08-pim-self-request-with-approval.md#role-setting-export-and-exception-register) records.
 
 **Who approves, for how long, and how often it is reviewed.** The register's `Category` decides the route. The routes reuse [Chapter 09](09-who-governs.md#who-accepts-exceptions)'s split between a bounded exception, which the CISO approves, and a risk acceptance, which the authorizing official decides.
 
@@ -571,21 +567,21 @@ Deactivating apps, denying vault secrets and enforcing push protection are the s
 - **Backout triggers:** a production workload fails to authenticate; more than two help-desk tickets attributed to the change in the first day; a Tier 1 owner asks for backout.
 - **Post-change validation:** the app's next sign-in succeeds on its expected credential (sign-in log), and the next gap report, inventory and diff show the expected change and nothing else.
 
-## Government-cloud availability {#c14-government-clouds}
+## GCC availability {#c14-government-clouds}
 
-| Capability | GCC | GCC High | DoD | Source (accessed Nov 11, 2026) |
-|---|---|---|---|---|
-| Graph reads of apps, service principals, grants | Yes (worldwide endpoint) | Yes | Yes | Graph national cloud deployments[^c14g-graph-clouds] |
-| Service principal sign-in activity (preview, beta) | Yes | No | No | API page[^c14g-spactivity] |
-| Application management policies | Not yet specified on the Learn tutorial; covered for Azure Government through Workload ID ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)) | Same | Same | [^c14g-amp-tutorial] |
-| Intune Graph reads (v1.0 and beta settings catalog) | Yes | Yes | Yes | API page[^c14g-intune] |
-| Global Secure Access forwarding-profile reads (beta) | Yes | Yes | Yes | API page[^c14g-gsa] |
-| Exchange Online and Security & Compliance PowerShell | Yes | Yes (own parameters) | Yes (own parameters) | Connection pages[^c14g-scc] |
-| Tenant Configuration Management (TCM) | Yes | No | No | API pages[^c14g-tcm-cloud] |
-| GitHub Advanced Security for Azure DevOps | Not yet specified | Not yet specified | Not yet specified | Learn says Azure DevOps Services only[^c14g-ghazdo] |
-| Key Vault built-in policies used in Step 3 | Not yet specified (the lookup checks) | Same | Same | [^c14g-kv-policy] |
+| Capability | GCC | Source (accessed Nov 11, 2026) |
+|---|---|---|
+| Graph reads of apps, service principals, grants | Yes (worldwide endpoint) | Graph national cloud deployments[^c14g-graph-clouds] |
+| Service principal sign-in activity (preview, beta) | Yes | API page[^c14g-spactivity] |
+| Application management policies | Not yet specified on the Learn tutorial | [^c14g-amp-tutorial] |
+| Intune Graph reads (v1.0 and beta settings catalog) | Yes | API page[^c14g-intune] |
+| Global Secure Access forwarding-profile reads (beta) | Yes | API page[^c14g-gsa] |
+| Exchange Online and Security & Compliance PowerShell | Yes | Connection pages[^c14g-scc] |
+| Tenant Configuration Management (TCM) | Yes | API pages[^c14g-tcm-cloud] |
+| GitHub Advanced Security for Azure DevOps | Not yet specified | Learn says Azure DevOps Services only[^c14g-ghazdo] |
+| Key Vault built-in policies used in Step 3 | Not yet specified (the lookup checks) | [^c14g-kv-policy] |
 
-: Availability by government cloud {.striped .hover}
+: Availability in GCC {.striped .hover}
 
 ## Federal requirements this chapter supports {#c14-federal-requirements}
 
@@ -617,8 +613,8 @@ The control statements are from NIST's release 5.2.0 catalog.[^c14g-sp80053] The
 [^c14g-best]: Microsoft Learn, "Security best practices for application properties in Microsoft Entra ID," sections "Credentials (including certificates and secrets)" and "Redirect URIs" (monitor pipelines so credentials aren't committed; maintain ownership of redirect URIs), <https://learn.microsoft.com/entra/identity-platform/security-best-practices-for-app-registration> (accessed Nov 11, 2026).
 [^c14g-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5 (release 5.2.0), controls AC-2, AC-6, CA-7, CM-2, CM-3, CM-6, CM-8, IA-5 and IA-5(7) ("Ensure that unencrypted static authenticators are not embedded in applications or other forms of static storage"), read from NIST's OSCAL catalog, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (accessed Nov 11, 2026).
 [^c14g-assign]: Microsoft Learn, "Restrict a Microsoft Entra app to a set of users," sections "Update the app to require user assignment" and "Restrict access to an app (resource) by assigning other services (client apps)" (`Update-MgServicePrincipal -AppRoleAssignmentRequired:$true`; user consent isn't allowed for an app that requires assignment), <https://learn.microsoft.com/entra/identity-platform/howto-restrict-your-app-to-a-set-of-users> (accessed Nov 11, 2026).
-[^c14g-spactivity]: Microsoft Learn, "List servicePrincipalSignInActivities" (beta; global service only, not US Government L4 or L5; `AuditLog.Read.All`; Reports Reader, Security Reader or Security Administrator), <https://learn.microsoft.com/graph/api/reportroot-list-serviceprincipalsigninactivities?view=graph-rest-beta>; and "What is the Usage and insights report?," section "Service principal sign-in activity (preview)" (last activity can include partial sign-ins), <https://learn.microsoft.com/entra/identity/monitoring-health/concept-usage-insights-report> (both accessed Nov 11, 2026).
-[^c14g-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments" (GCC uses the worldwide endpoints; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us`), <https://learn.microsoft.com/graph/deployments> (accessed Nov 11, 2026).
+[^c14g-spactivity]: Microsoft Learn, "List servicePrincipalSignInActivities" (beta; global service; `AuditLog.Read.All`; Reports Reader, Security Reader or Security Administrator), <https://learn.microsoft.com/graph/api/reportroot-list-serviceprincipalsigninactivities?view=graph-rest-beta>; and "What is the Usage and insights report?," section "Service principal sign-in activity (preview)" (last activity can include partial sign-ins), <https://learn.microsoft.com/entra/identity/monitoring-health/concept-usage-insights-report> (both accessed Nov 11, 2026).
+[^c14g-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments" (GCC uses the worldwide endpoints), <https://learn.microsoft.com/graph/deployments> (accessed Nov 11, 2026).
 [^c14g-kv-rotate]: Microsoft Learn, "Automate the rotation of a secret for resources that use one set of authentication credentials" (Key Vault publishes the near-expiry event to Event Grid thirty days before a secret's expiration date), <https://learn.microsoft.com/azure/key-vault/secrets/tutorial-rotation> (accessed Nov 11, 2026).
 [^c14g-kv-policy]: Microsoft Learn, "Integrate Azure Key Vault with Azure Policy," section "Available Built-In Policy Definitions" (secrets should have an expiration date; specified maximum validity period; more than the specified number of days before expiration; Audit default, Deny supported), <https://learn.microsoft.com/azure/key-vault/general/azure-policy> (accessed Nov 11, 2026).
 [^c14g-gh-api]: GitHub Docs, REST API, "Update a repository" (`security_and_analysis.secret_scanning` and `secret_scanning_push_protection`, `status` enabled or disabled; requires repository admin, or organization owner or security manager), <https://docs.github.com/en/rest/repos/repos#update-a-repository> (accessed Nov 11, 2026).
@@ -626,10 +622,10 @@ The control statements are from NIST's release 5.2.0 catalog.[^c14g-sp80053] The
 [^c14g-ghazdo-scan]: Microsoft Learn, "Set up secret scanning," section "Push a blocked secret" (`skip-secret-scanning:true` bypasses push protection; an alert is still generated), <https://learn.microsoft.com/azure/devops/repos/security/github-advanced-security-secret-scanning> (accessed Nov 11, 2026).
 [^c14g-amp-tutorial]: Microsoft Learn, "Tutorial: Enforce secret and certificate standards using application management policies," section "Read your tenant application management policy" (`Get-MgPolicyDefaultAppManagementPolicy`; `isEnabled` false when no policy applies), <https://learn.microsoft.com/entra/identity/enterprise-apps/tutorial-enforce-secret-standards> (accessed Nov 11, 2026).
 [^c14g-pim]: Microsoft Learn, "Configure Microsoft Entra role settings in Privileged Identity Management," section "Manage role settings by using Microsoft Graph" (`policies/roleManagementPolicies?$filter=scopeId eq '/' and scopeType eq 'DirectoryRole'&$expand=rules`), <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings> (accessed Nov 11, 2026).
-[^c14g-intune]: Microsoft Learn, "List deviceManagementConfigurationPolicies" (Intune beta; available in the global service, US Government L4 and L5; requires an active Intune license), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationpolicy-list?view=graph-rest-beta> (accessed Nov 11, 2026).
-[^c14g-scc]: Microsoft Learn, "Connect to Exchange Online PowerShell" (`-ExchangeEnvironmentName O365USGovGCCHigh` or `O365USGovDoD`) and "Connect to Security & Compliance PowerShell" (GCC High and DoD connection URIs), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> and <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (both accessed Nov 11, 2026).
+[^c14g-intune]: Microsoft Learn, "List deviceManagementConfigurationPolicies" (Intune beta; available in the global service; requires an active Intune license), <https://learn.microsoft.com/graph/api/intune-deviceconfigv2-devicemanagementconfigurationpolicy-list?view=graph-rest-beta> (accessed Nov 11, 2026).
+[^c14g-scc]: Microsoft Learn, "Connect to Exchange Online PowerShell" and "Connect to Security & Compliance PowerShell," <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> and <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (both accessed Nov 11, 2026).
 [^c14g-exo-app]: Microsoft Learn, "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell," section "Connection examples," <https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2> (accessed Nov 11, 2026).
-[^c14g-gsa]: Microsoft Learn, "List forwardingProfiles" (Graph beta; global service, US Government L4 and L5; `NetworkAccess.Read.All`; Global Reader, Global Secure Access Log Reader, Global Secure Access Administrator or Security Administrator), <https://learn.microsoft.com/graph/api/networkaccess-networkaccessroot-list-forwardingprofiles?view=graph-rest-beta> (accessed Nov 11, 2026).
+[^c14g-gsa]: Microsoft Learn, "List forwardingProfiles" (Graph beta; global service; `NetworkAccess.Read.All`; Global Reader, Global Secure Access Log Reader, Global Secure Access Administrator or Security Administrator), <https://learn.microsoft.com/graph/api/networkaccess-networkaccessroot-list-forwardingprofiles?view=graph-rest-beta> (accessed Nov 11, 2026).
 [^c14g-tcm]: Microsoft Learn, "Overview of the Tenant Configuration Management APIs in Microsoft Graph" (supported workloads Defender, Entra, Exchange Online, Intune, Purview and Teams), <https://learn.microsoft.com/graph/unified-tenant-configuration-management-concept-overview>; and "Configuration management" (Microsoft Entra Tenant Governance; built on the TCM APIs, "which are generally available"; monitors, drifts and snapshots), <https://learn.microsoft.com/entra/id-governance/tenant-governance/configuration-management> (both accessed Nov 11, 2026).
 [^c14g-tcm-limits]: Microsoft Learn, "Use the Tenant Configuration Management APIs in Microsoft Graph," section "API limits" (30 monitors; six-hour interval; 800 resources per day; baseline update deletes results and drifts; fixed drifts deleted after 30 days; snapshots kept seven days; 20,000 resources a month), <https://learn.microsoft.com/graph/api/resources/unified-tenant-configuration-management-api-overview?view=graph-rest-1.0> (accessed Nov 11, 2026).
 [^c14g-tcm-lic]: Microsoft Learn, "Licensing for Microsoft Entra Tenant Governance," section "Configuration management" (monitoring and snapshots with Entra ID P1 or P2; ID Governance adds capacity per license), <https://learn.microsoft.com/entra/id-governance/tenant-governance/licensing> (accessed Nov 11, 2026).

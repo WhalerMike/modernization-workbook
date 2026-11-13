@@ -101,14 +101,14 @@ A commercial tenant can choose any taxonomy. A federal agency inherits several d
 | Which records are Privacy Act records, and the systems of records they belong to | The Privacy Act and the agency's system of records notices | Which classes carry PII and which owner answers for them | [Book 14, Chapter 08](../b14-compliance/08-privacy-pii-processing.md) |
 | How long each class is kept | The agency's records schedules under the Federal Records Act | The retention outcome, owned by the records officer; a label never expires federal records by default ([Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#mapping-cui-to-sensitivity-labels)) | This book, [Chapter 12](12-operations-and-evidence.md) |
 | The impact level of the system that holds each class | FIPS 199 categorization, with NIST SP 800-60 for information types; CUI Basic sets a confidentiality floor of moderate[^c01-fips199][^c01-cfr2002] | The system each class lives in, and its categorization | [Book 14, Appendix F](../b14-compliance/appendix-f-categorization-walkthrough.md) |
-| Which cloud the class may live in | The authorization boundary and the tenant's cloud (commercial, GCC, GCC High or DoD) | Whether any class needs a cloud the agency doesn't have | [Book 10](../b10-cloud-boundary/index.md) |
+| Which cloud the class may live in | The authorization boundary and the tenant's cloud (commercial or GCC) | Whether any class needs a cloud the agency doesn't have | [Book 10](../b10-cloud-boundary/index.md) |
 
 : The federal overlay decisions each class records {.striped .hover}
 
 Two rules follow from 32 CFR Part 2002 and are worth stating where the classes are designed. Agencies may not create their own controls for unclassified information outside the CUI program, so an "Internal" class carries no dissemination legend of its own; and authorized holders who designate CUI may not use alternative markings.[^c01-cfr2002] The label names in Chapter 02 therefore use the CUI Registry's markings, not house terms such as "For Official Use Only", for anything that is CUI.
 
 **Authority:** Mandated for CUI marking and handling (32 CFR Part 2002, §2002.20(b)); Mandated for categorization (FIPS 199, applied through RA-2). The way the register records them is the program's design.
-**Applies:** All federal tenants. Environment-dependent: a class whose authority requires a higher-impact environment (for example GCC High) can't be held in a tenant that lacks it, whatever the label says.
+**Applies:** All federal tenants. Environment-dependent: a class whose authority requires an environment the tenant doesn't provide can't be held in that tenant, whatever the label says.
 
 ## Inventory: find where the data already is {#b20-01-inventory-find-where-the-data-already-is}
 
@@ -123,13 +123,7 @@ The procedure exports a dated inventory, one sensitive information type or label
     ```powershell
     # Commercial or GCC:
     Connect-IPPSSession -UserPrincipalName <admin-upn>
-    # GCC High:
-    Connect-IPPSSession -UserPrincipalName <admin-upn> -ConnectionUri https://ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
-    # DoD:
-    Connect-IPPSSession -UserPrincipalName <admin-upn> -ConnectionUri https://l5.ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
     ```
-
-    The GCC High and DoD values are the ones Learn gives for an interactive sign-in.[^c01-connect]
 
 2. List the sensitive information types the tenant can detect, and save the list with the date.
 
@@ -140,7 +134,7 @@ The procedure exports a dated inventory, one sensitive information type or label
       Export-Csv ".\inventory-$stamp\sit-catalog.csv" -NoTypeInformation -Encoding UTF8
     ```
 
-3. Export every item that matches one sensitive information type at high confidence, workload by workload. The example uses the built-in Social Security number type; repeat the block for each type the class register names in its Detection column, and for each workload value Learn's examples use: `EXO` (Exchange), `ODB` (OneDrive) and `SharePoint`. Content explorer coverage of Teams data is still in development in the government clouds (table below).
+3. Export every item that matches one sensitive information type at high confidence, workload by workload. The example uses the built-in Social Security number type; repeat the block for each type the class register names in its Detection column, and for each workload value Learn's examples use: `EXO` (Exchange), `ODB` (OneDrive) and `SharePoint`. Content explorer coverage of Teams data is still in development in GCC (table below).
 
     ```powershell
     $tag      = 'U.S. Social Security Number (SSN)'
@@ -176,14 +170,14 @@ Counts in content explorer can take up to seven days to update, and up to 14 day
 
 ### Government-cloud availability for the inventory
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| Data classification analytics: overview and content explorer | Available | Available | Available | Available | Learn government Purview planning pages[^c01-gcc][^c01-gcch][^c01-dod] |
-| Content explorer includes Teams data | Not yet specified | In development | In development | In development | Same pages |
-| Activity explorer | Available | Available | Available | Available | Same pages |
-| Exact data match sensitive information types | Available | Available | Available | Available | Same pages |
-| Named entity sensitive information types | Not yet specified | In development | On engineering backlog | In development | Same pages |
-| Unified labeling client and scanner (file shares) | Available | Available | Available | Available | Same pages |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| Data classification analytics: overview and content explorer | Available | Available | Learn government Purview planning pages[^c01-gcc] |
+| Content explorer includes Teams data | Not yet specified | In development | Same pages |
+| Activity explorer | Available | Available | Same pages |
+| Exact data match sensitive information types | Available | Available | Same pages |
+| Named entity sensitive information types | Not yet specified | In development | Same pages |
+| Unified labeling client and scanner (file shares) | Available | Available | Same pages |
 
 : Inventory features by cloud, read Nov 11, 2026 {.striped .hover}
 
@@ -212,7 +206,7 @@ Every enforceable control in this book starts with a decision record. The templa
 | Authority label | <Mandated / Microsoft-recommended / Risk-based recommended / Optional>, with the source and passage or the stated risk |
 | Applicability | <all tenants / License-dependent: … / Environment-dependent: …> |
 | License required | <the plan or add-on, from the Learn service description, with the date read; who holds it; how many users it must cover> |
-| Cloud availability | Commercial: <status> · GCC: <status> · GCC High: <status> · DoD: <status> — source page and date read; "not yet specified" where Learn is silent |
+| Cloud availability | Commercial: <status> · GCC: <status> — source page and date read; "not yet specified" where Learn is silent |
 | Preview or GA | <GA / preview, and the date checked> |
 | Prerequisites | <what must exist first, with links: services activated, groups, roles, client versions> |
 | Options considered | <the alternatives, and why each was or wasn't chosen> |
@@ -257,7 +251,4 @@ A license the tenant doesn't hold, or a feature that isn't available in its clou
 [^c01-purview-sd]: Microsoft Learn, "Microsoft Purview service description," section "Microsoft Purview Information Protection: Data classification analytics: Overview Content & Activity Explorer" (E5/A5/G5 licensing for the explorer interfaces; data aggregation continues for E3/A3/G3) and section "Microsoft Purview Information Protection sensitivity labeling" (scanner-based discovery with E3), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description> (accessed Nov 11, 2026).
 [^c01-audit-ce]: Microsoft Learn, "Audit log activities," section "Content explorer activities" (`LabelContentExplorerAccessedItem` and related operations), <https://learn.microsoft.com/purview/audit-log-activities> (accessed Nov 11, 2026).
 [^c01-export]: Microsoft Learn, "Export-ContentExplorerData" (output structure: TotalCount, MorePagesAvailable, RecordsReturned, PageCookie; one SIT or label per script; reconnect after about an hour and restart from the last page cookie), <https://learn.microsoft.com/powershell/module/exchangepowershell/export-contentexplorerdata> (accessed Nov 11, 2026).
-[^c01-connect]: Microsoft Learn, "Connect to Security & Compliance PowerShell," section "Step 2: Connect and authenticate" (ConnectionUri and AzureADAuthorizationEndpointUri values for GCC High and DoD), <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (accessed Nov 11, 2026).
 [^c01-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4 (feature status table; "identified status is subject to change"), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c01-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c01-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).

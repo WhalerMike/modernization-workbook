@@ -9,8 +9,8 @@ Primary sources opened on Nov 11, 2026 through the Microsoft Learn documentation
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
 | 1 | Six work packages, entry conditions, rings, backout triggers, evidence-pack layout | Throughout | restated-as-design | Program design | Nov 11, 2026 |
-| 2 | Graph activity logs: global, L4, L5; Entra ID P1 or P2; Security Administrator for diagnostic settings; AppId, RequestUri columns | Prerequisites; WP2 | verified | <https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview> | Nov 11, 2026 |
-| 3 | GCC uses worldwide Graph; GCC High and DoD roots | Prerequisites | verified | <https://learn.microsoft.com/graph/deployments> | Nov 11, 2026 |
+| 2 | Graph activity logs: global service; Entra ID P1 or P2; Security Administrator for diagnostic settings; AppId, RequestUri columns | Prerequisites; WP2 | verified | <https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview> | Nov 11, 2026 |
+| 3 | GCC uses worldwide Graph | Prerequisites | verified | <https://learn.microsoft.com/graph/deployments> | Nov 11, 2026 |
 | 4 | Group-based assignment needs P1 or P2; assignment requirement doesn't apply to Global Administrators; test with the affected user; AADSTS50105 | Prerequisites; WP5 | verified | <https://learn.microsoft.com/troubleshoot/entra/entra-id/app-integration/error-code-aadsts50105-user-not-assigned-role> | Nov 11, 2026 |
 | 5 | AADSTS501051 for an app-only assignment failure | WP5 | verified (the AADSTS50105 page points to it) | Same | Nov 11, 2026 |
 | 6 | Removing a permission from the registration doesn't revoke an existing grant; tokens stay valid until expiry | WP2 | verified (carried from Book 04 Ch05 admin consent) | Book 04 Ch05 | Nov 11, 2026 |

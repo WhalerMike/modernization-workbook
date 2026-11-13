@@ -62,7 +62,7 @@
   date: 2026-10-18
   question: Which cloud environments and platforms does each guidance set claim to cover?
   options: [Claim general coverage, State scope up front and list what is out of scope with fallbacks]
-  choice: Each series gets an Applicability page stamped with a date. Commercial cloud including GCC-Moderate is in scope. GCC High, DoD, air-gapped networks and some platform configurations are out of scope as written, each with what still applies.
+  choice: Each series gets an Applicability page stamped with a date. Commercial cloud including GCC-Moderate is in scope. Air-gapped networks and some platform configurations are out of scope as written, each with what still applies.
   rationale: Several features differ by cloud, for example GCC-Moderate uses the worldwide Graph endpoint and Arc SQL in Azure Government lacks Entra authentication.
   basis: workbook-design
   sources:
@@ -70,7 +70,8 @@
   - {title: 'Microsoft Learn, SQL Server enabled by Azure Arc overview', url: 'https://learn.microsoft.com/sql/sql-server/azure-arc/overview'}
   pages: [docs/books/b01-transformation-arc/appendix-b-applicability.md, docs/books/b06-data-platform/index.md, docs/books/b08-ddi/index.md]
   prs: [17, 21, 23, 35, 40, 61]
-  status: settled
+  status: superseded
+  superseded_by: WD-155
 
 - id: WD-005
   date: 2026-10-18
@@ -973,9 +974,9 @@
 - id: WD-076
   date: 2026-10-29
   question: Which configuration authority does the workbook treat as the baseline?
-  options: [Defense hardening guides as the baseline, 'CISA SCuBA, NIST SP 800-53 Rev. 5 at Moderate, and CIS or vendor guidance']
-  choice: The workbook is written for FedRAMP Moderate civilian agencies. Microsoft 365 and Google Workspace use CISA SCuBA and BOD 25-01. Hosts and network gear use CIS Benchmarks, the NIST National Checklist Program or vendor hardening guides. Defense-only items stay as references labelled '(High only)'.
-  rationale: The audience is civilian Moderate agencies, so the configuration authority is CISA, not the Defense hardening authority.
+  options: [Other hardening guides as the baseline, 'CISA SCuBA, NIST SP 800-53 Rev. 5 at Moderate, and CIS or vendor guidance']
+  choice: The workbook is written for FedRAMP Moderate civilian agencies. Microsoft 365 and Google Workspace use CISA SCuBA and BOD 25-01. Hosts and network gear use CIS Benchmarks, the NIST National Checklist Program or vendor hardening guides. Items that apply only above Moderate stay as references labelled '(High only)'.
+  rationale: The audience is civilian Moderate agencies, so the configuration authority is CISA.
   basis: workbook-design
   sources:
   - {title: 'CISA, BOD 25-01 secure practices for cloud services', url: 'https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services'}
@@ -983,7 +984,8 @@
   - {title: 'NIST, National Checklist Program', url: 'https://ncp.nist.gov/'}
   pages: [docs/books/guides/ansible-configuration-automation.md, docs/books/b05-devices/08-gpo-to-intune-policy-migration.md, docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md]
   prs: [190, 193]
-  status: settled
+  status: superseded
+  superseded_by: WD-155
 
 - id: WD-077
   date: 2026-10-30
@@ -1091,7 +1093,7 @@
   date: 2026-10-30
   question: Which Azure cloud does an agency with a Microsoft 365 GCC (Moderate) tenant use?
   options: [Azure Government, Commercial Azure]
-  choice: The compliance volumes place the agency's Azure in commercial Azure, paired with the GCC tenant. Azure Government pairs with GCC High and DoD.
+  choice: The compliance volumes place the agency's Azure in commercial Azure, paired with the GCC tenant.
   rationale: A GCC tenant's Entra ID is in the commercial cloud, so its subscriptions are commercial. The Arc guide and the books already said so.
   basis: microsoft-learn
   sources:
@@ -1099,7 +1101,8 @@
   - {title: 'Microsoft Learn, Office 365 GCC service description', url: 'https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc'}
   pages: [docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md, docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md]
   prs: [206]
-  status: settled
+  status: superseded
+  superseded_by: WD-155
 
 - id: WD-086
   date: 2026-10-30
@@ -1169,14 +1172,15 @@
 - id: WD-091
   date: 2026-10-30
   question: Which government clouds must the developer workbooks fully resolve?
-  options: ['Resolve every research gap for GCC, GCC High and DoD', Close gaps that matter for a GCC (Moderate) estate with commercial Azure and record the rest]
-  choice: Gaps that affect a GCC estate are closed. Gaps that apply only to GCC High, DoD or Azure Government stay open, each with a note on what would reopen it.
+  options: [Resolve every research gap for every government cloud, Close gaps that matter for a GCC (Moderate) estate with commercial Azure and record the rest]
+  choice: Gaps that affect a GCC estate are closed. Gaps that apply only outside a GCC estate, such as Azure Government, stay open, each with a note on what would reopen it.
   rationale: The target estate is GCC with commercial Azure.
   basis: workbook-design
   sources: []
   pages: [docs/books/b19-developer-workbook/_verification/research-gaps.md, docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.md]
   prs: [216, 221]
-  status: settled
+  status: superseded
+  superseded_by: WD-155
 
 - id: WD-092
   date: 2026-10-30
@@ -1860,19 +1864,20 @@
 
 - id: WD-145
   date: 2026-11-11
-  question: What does CP-001 rely on in GCC High and DoD, where Device Health Attestation is only planned?
-  options: ["Keep the three boot-measured rules as the only check", "Keep them, and add the checks that don't depend on attestation for GCC High and DoD"]
-  choice: "CP-001 and CP-002 keep Require BitLocker, Require Secure Boot and Require code integrity, but in a GCC High or DoD tenant the program doesn't count them as evidence until Learn lists attestation as available there. It adds Encryption of data storage on a device for BitLocker, reads Secure Boot and code integrity from Defender for Endpoint's device health and vulnerability management reporting as a drift finding, and uses the Defender for Endpoint machine risk score as a risk signal, confirmed in the pilot."
-  rationale: "Intune's government service description lists Windows Device Health Attestation as planned, not available, for GCC High and DoD, while the Windows compliance settings reference says GCC High and DoD devices use it; the program plans on the narrower statement. Learn gives a replacement only for the encryption check, so the Secure Boot and code integrity reads are the program's design guidance."
+  question: What does CP-001 rely on where Device Health Attestation is only planned?
+  options: ["Keep the three boot-measured rules as the only check", "Keep them, and add the checks that don't depend on attestation"]
+  choice: "CP-001 and CP-002 keep Require BitLocker, Require Secure Boot and Require code integrity, with Defender for Endpoint checks planned where attestation was listed as only planned; superseded by WD-155."
+  rationale: "Intune's government service description lists Windows Device Health Attestation as planned, not available, while the Windows compliance settings reference says those devices use it; the program plans on the narrower statement. Learn gives a replacement only for the encryption check, so the Secure Boot and code integrity reads are the program's design guidance."
   basis: workbook-design
   sources:
-  - {title: 'Microsoft Learn, Microsoft Intune for US Government GCC High and DoD service description', url: 'https://learn.microsoft.com/intune/fundamentals/government-service'}
+  - {title: 'Microsoft Learn, Microsoft Intune for US Government service description', url: 'https://learn.microsoft.com/intune/fundamentals/government-service'}
   - {title: 'Microsoft Learn, Device compliance settings for Windows in Intune', url: 'https://learn.microsoft.com/intune/device-security/compliance/ref-windows-settings'}
   - {title: 'Microsoft Learn, Microsoft Defender for Endpoint for US Government customers', url: 'https://learn.microsoft.com/defender-endpoint/gov'}
   pages: [docs/books/b05-devices/08-gpo-to-intune-policy-migration.md, docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md]
   prs: []
-  status: settled
-  note: "Basis: workbook owner decision, November 11, 2026. Learn's two pages disagree on attestation in GCC High and DoD; recheck both when the service description changes."
+  status: superseded
+  superseded_by: WD-155
+  note: "Basis: workbook owner decision, November 11, 2026. Learn's two pages disagree on attestation; recheck both when the service description changes."
 
 - id: WD-146
   date: 2026-11-11
@@ -1987,7 +1992,7 @@
   pages: [docs/books/b05-devices/08-gpo-to-intune-policy-migration.md]
   prs: []
   status: settled
-  note: "Basis: workbook owner decision, November 11, 2026. Learn doesn't state automatic mode's availability by cloud; the GCC High or DoD pilot confirms it."
+  note: "Basis: workbook owner decision, November 11, 2026. Learn doesn't state automatic mode's availability by cloud; the GCC pilot confirms it."
 
 - id: WD-154
   date: 2026-11-11
@@ -2003,3 +2008,19 @@
   prs: []
   status: settled
   note: "Basis: workbook owner decision, November 11, 2026. The Non-Person Identity kit's Chapter 06 write path still names Domain Admins or a delegated right; naming the delegated group there is a kit change, not made here."
+
+- id: WD-155
+  date: 2026-11-13
+  question: Which Microsoft 365 cloud and which federal sources does the workbook cover?
+  options: ["GCC Moderate as the target, with other clouds and their sources as side notes", "GCC Moderate only, with civilian sources"]
+  choice: "The workbook covers Microsoft 365 GCC Moderate only, with commercial Azure: no GCC High or DoD, and none of the DoD policy sources (its zero trust strategy and reference architecture, the cloud computing SRG and impact levels, the 8140 and 8570 workforce directives, CMMC, or STIGs framed as its material). Where a page needs an authority, it cites the civilian source: the CISA Zero Trust Maturity Model, OMB M-22-09, NIST SP 800-207, SP 800-53 and SP 800-63, or FedRAMP."
+  rationale: "GCC Moderate is the only environment the workbook is written for; other clouds and their sources added noise and kept creeping back into pages, decks and kits."
+  basis: workbook-design
+  sources:
+  - {title: 'CISA, Zero Trust Maturity Model', url: 'https://www.cisa.gov/zero-trust-maturity-model'}
+  - {title: 'OMB, M-22-09 Moving the U.S. Government Toward Zero Trust Cybersecurity Principles', url: 'https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf'}
+  - {title: 'NIST, SP 800-207 Zero Trust Architecture', url: 'https://csrc.nist.gov/pubs/sp/800/207/final'}
+  pages: [CONTRIBUTING.md, docs/reference/federal-framework-crosswalk.md, docs/reference/source-register.md]
+  prs: [613, 615, 616, 617]
+  status: settled
+  note: "Basis: workbook owner decision, November 13, 2026. Supersedes WD-004, WD-076, WD-085, WD-091 and WD-145. The kits sweep PR applies it to the example code. On November 13, 2026 the owner also had the superseded entries' recorded wording rewritten to remove GCC High and DoD."

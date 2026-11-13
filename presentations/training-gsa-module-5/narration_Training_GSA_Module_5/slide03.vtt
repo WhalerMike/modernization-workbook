@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.035
+You'll build a filtering
+policy, a security profile,
+
+3
+00:00:06.035 --> 00:00:10.425
+the link between them, and the
+Conditional Access policy that assigns it.
+
+4
+00:00:10.425 --> 00:00:14.710
+You'll explain why both the Microsoft
+and internet profiles are enabled,
+
+5
+00:00:14.710 --> 00:00:16.638
+and what Learn's limits leave out.
+
+6
+00:00:16.638 --> 00:00:20.875
+You'll govern every bypass and
+allow-list entry with an owner,
+
+7
+00:00:20.875 --> 00:00:22.400
+a reason and an expiry.
+
+8
+00:00:22.400 --> 00:00:26.134
+You'll choose the certificate
+authority for T L S inspection,
+
+9
+00:00:26.134 --> 00:00:28.375
+and deploy trust before activation.
+
+10
+00:00:28.375 --> 00:00:32.168
+And you'll set the privacy boundary,
+handle pinned applications,
+
+11
+00:00:32.168 --> 00:00:35.388
+and read the T L S outcomes
+against the one percent line.
+
+12
+00:00:35.388 --> 00:00:41.406
+You need Module 2, Network and Transport,
+chapter five, on Internet Access policy,
+
+13
+00:00:41.406 --> 00:00:47.150
+and a skim of PKI and Certificates, chapter
+four, for the dedicated issuing C A.
+
+14
+00:00:47.150 --> 00:00:50.380
+The lab runs in a test
+tenant, never production.

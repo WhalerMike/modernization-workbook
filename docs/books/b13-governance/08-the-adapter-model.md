@@ -90,7 +90,7 @@ The entry below shows the shape of an adapter declaration in the program's desig
   platform-api:
     name: microsoft-graph
     version: v1.0                  # pinned; never beta in production
-    cloud: global                  # global (also Microsoft 365 GCC) | gcc-high | dod
+    cloud: global                  # global (also Microsoft 365 GCC)
   permissions:                     # application permissions, all read-only
     - User.Read.All
     - GroupMember.Read.All
@@ -141,7 +141,7 @@ An adapter sits between two things that change on different schedules: the progr
 
 **Tolerating additive change.** Microsoft lists additions such as new nullable properties and new enumeration members as backward-compatible, and advises that clients "should be prepared to receive properties and derived types not previously defined."[^c08-graph-versioning] An adapter that fails on an unknown property breaks every time the platform improves. An adapter that silently passes an unknown value into the record corrupts it. The program's design does neither: unknown properties are ignored by the translation, and an unknown enumeration value becomes a semantic drift finding for a person to classify.
 
-**The cloud the platform lives in.** The same API has different endpoints in different clouds. Microsoft Graph's global endpoint, `https://graph.microsoft.com`, also serves Microsoft 365 GCC; GCC High uses `https://graph.microsoft.us` and DoD uses `https://dod-graph.microsoft.us`, and an access token issued for one cloud can't be used in another.[^c08-graph-clouds] An adapter resolves its endpoint from the declared cloud rather than a hard-coded host name, and an unknown cloud fails at start-up instead of falling back to a default. That is what lets one adapter serve tenants in different clouds without per-tenant rewrites, and it is what [Book 10](../b10-cloud-boundary/index.md) means by treating the boundary as a declared fact.
+**The cloud the platform lives in.** The same API can have different endpoints in different clouds. Microsoft Graph's global endpoint, `https://graph.microsoft.com`, also serves Microsoft 365 GCC, and an access token issued for one cloud can't be used in another.[^c08-graph-clouds] An adapter resolves its endpoint from the declared cloud rather than a hard-coded host name, and an unknown cloud fails at start-up instead of falling back to a default. That is what lets one adapter serve tenants in different clouds without per-tenant rewrites, and it is what [Book 10](../b10-cloud-boundary/index.md) means by treating the boundary as a declared fact.
 
 ## Earning active status, and retiring
 
@@ -164,7 +164,7 @@ The adapter model is the program's main defense against lock-in, and it works at
 
 **Between the program and its tools.** The program's own tooling is not exempt. The record, the adapter declarations and the evidence bundles are files in a governed repository the agency owns, in documented formats, and the package artifacts use NIST's OSCAL models. OSCAL's component definition model is a published way for a product's supplier to describe the controls the product supports, and NIST notes that component definitions are authored by the vendors of products or services.[^c08-oscal-component] Where a vendor publishes one, the adapter can consume it instead of the program writing its own description of the product. [Chapter 05](05-deterministic-governance.md#what-changes-for-the-program) makes the related point that evidence assembled this way doesn't depend on one governance, risk and compliance tool to present it.
 
-**Between clouds.** Endpoint resolution by declared cloud, and the boundary invariant, mean the same adapter code serves commercial, GCC, GCC High and DoD tenants where the platform's API exists in each. Where a feature doesn't exist in a cloud, the adapter records a boundary finding rather than a pass or a failure ([Book 11, Chapter 09](../b11-zero-trust/09-running-the-assessment.md#the-government-cloud-boundary-case)).
+**Between clouds.** Endpoint resolution by declared cloud, and the boundary invariant, mean the same adapter code serves commercial and GCC tenants where the platform's API exists in each. Where a feature doesn't exist in a cloud, the adapter records a boundary finding rather than a pass or a failure ([Book 11, Chapter 09](../b11-zero-trust/09-running-the-assessment.md#the-government-cloud-boundary-case)).
 
 The model doesn't make lock-in disappear. It moves it to the adapter, which is small, specified and replaceable, and to the common record's schema, which the agency controls. SP 800-53 SA-9 asks organizations to define their oversight of external service providers and monitor their control compliance on an ongoing basis;[^c08-sp80053] a read-only adapter per provider platform is one concrete way to do the monitoring part.
 

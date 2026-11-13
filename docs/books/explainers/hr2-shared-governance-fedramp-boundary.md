@@ -41,7 +41,7 @@ Every fact was checked against primary sources on October 30, 2026, and is footn
   - information-exchange agreements;[^hb-sp80047]
   - the program's API gateway requirement.[^hb-pws-gw]
 - **Validated cryptography at Moderate is a SHOULD in FedRAMP and a must for the agency.** Under the 2026 rules, Class C (Moderate) providers "SHOULD use" modules with active validations; only Class D must.[^hb-cmu] NIST's validation program says "if cryptography is required, then it must be validated," for all federal agencies.[^hb-cmvp] FIPS 140-2 validations move to the historical list after September 21, 2026.[^hb-cmvp-transition]
-- **Oracle's government cloud is `.com`, not `.us`.** Oracle's US Government cloud regions sign in at hosts such as `console.us-langley-1.oraclegovcloud.com`.[^hb-oci-gov] Oracle doesn't publish the Fusion Applications hostname pattern for its restricted regions.[^hb-ora-url] Microsoft's GCC High uses `.us` endpoints, and GCC uses the worldwide `.com` ones.[^hb-ms-deploy]
+- **Oracle's government cloud is `.com`, not `.us`.** Oracle's US Government cloud regions sign in at hosts such as `console.us-langley-1.oraclegovcloud.com`.[^hb-oci-gov] Oracle doesn't publish the Fusion Applications hostname pattern for its restricted regions.[^hb-ora-url] Microsoft 365 GCC uses the worldwide `.com` endpoints.[^hb-ms-deploy]
 
 ## Part 1: Where agencies can share HR 2.0 work
 
@@ -167,7 +167,7 @@ M-24-15 asks agencies to "presume the security assessment documented in the auth
 
 : FIPS validated cryptography at Moderate {.striped .hover}
 
-*(Inference.)* For a civilian agency at Moderate, FedRAMP's SHOULD is weaker than the agency's own obligation. The agency's authorizing official still needs validated modules wherever cryptography protects the HR feed, and from 2027 the provider's module documentation is how the agency checks. NIST's transition page puts the FIPS 140-2 date at September 21 in its text and September 22 in its schedule table;[^hb-cmvp-transition] either way, modules validated only under 140-2 are now historical, usable for existing systems. Whether DoD's cloud security requirements add more wasn't checked; this page covers civilian agencies.
+*(Inference.)* For a civilian agency at Moderate, FedRAMP's SHOULD is weaker than the agency's own obligation. The agency's authorizing official still needs validated modules wherever cryptography protects the HR feed, and from 2027 the provider's module documentation is how the agency checks. NIST's transition page puts the FIPS 140-2 date at September 21 in its text and September 22 in its schedule table;[^hb-cmvp-transition] either way, modules validated only under 140-2 are now historical, usable for existing systems. This page covers civilian agencies.
 
 ## Part 4: `.com` or `.us`
 
@@ -176,18 +176,17 @@ M-24-15 asks agencies to "presume the security assessment documented in the auth
 | Oracle US Government Cloud | `console.us-langley-1.oraclegovcloud.com`, `identity.us-langley-1.oraclegovcloud.com`[^hb-oci-gov] |
 | Oracle commercial | `oraclecloud.com`; Fusion Applications `systemName.fa.<dc>.oraclecloud.com`, "for commercial regions only. In restricted regions … the patterns are different"[^hb-ora-url] |
 | Microsoft 365 GCC | The worldwide `.com` endpoints[^hb-ms-deploy] |
-| Microsoft GCC High and DoD | `graph.microsoft.us`, `login.microsoftonline.us`; `dod-graph.microsoft.us`[^hb-ms-deploy] |
 
 : Government cloud domains {.striped .hover}
 
-Oracle's US Government Cloud page shows no `.us` hostname.[^hb-oci-gov] Oracle requires government customers to "bring your own identity provider that meets your agency's compliance requirements and supports common access card/personal identity verification card (CAC/PIV)."[^hb-oci-info]
+Oracle's US Government Cloud infrastructure page shows no `.us` or `.mil` hostname.[^hb-oci-gov] Oracle requires government customers to "bring your own identity provider that meets your agency's compliance requirements and supports common access card/personal identity verification card (CAC/PIV)."[^hb-oci-info]
 
 *(Inference.)* The domain matters at the boundary in three places:
 - **Egress allow-lists.** The agency's middleware calls the platform, so its outbound proxy and network policy name the hosts it may reach.
 - **Identity configuration.** Sign-in redirects and federation metadata name the hosts.
 - **Certificate pinning.** The middleware may pin the platform's certificates.
 
-A government-only suffix such as `oraclegovcloud.com` or Microsoft's `.us` lets a rule name government endpoints exactly. If the HR platform's Fusion hosts sit under `oraclecloud.com`, a suffix rule can't tell government from commercial, and the agency has to allow each host by name. Oracle doesn't publish the Fusion government hostname, so ask.
+A government-only suffix such as `oraclegovcloud.com` lets a rule name government endpoints exactly. If the HR platform's Fusion hosts sit under `oraclecloud.com`, a suffix rule can't tell government from commercial, and the agency has to allow each host by name. Oracle doesn't publish the Fusion government hostname, so ask.
 
 ## Questions to ask
 
@@ -206,8 +205,8 @@ A government-only suffix such as `oraclegovcloud.com` or Microsoft's `.us` lets 
 - **Steering Committee and advisory board membership and charters.** None are published.
 - **A Core HCM onboarding playbook or agency community.** None found on opm.gov, the CHCO Council's pages or the eOPF help desk.
 - **The Fusion US Government hostname.** Oracle says only that restricted-region patterns differ.
-- **Any statement that no Oracle government service uses `.us`.** Only the two infrastructure pages were scanned.
-- **The legacy FedRAMP Rev5 Moderate SC-13 parameter, and DoD's additional requirements.** Neither could be loaded from an allowed source.
+- **Any statement that no Oracle government service uses `.us`.** Only Oracle's infrastructure pages were scanned.
+- **The legacy FedRAMP Rev5 Moderate SC-13 parameter.** It couldn't be loaded from an allowed source.
 - **The FedRAMP Authorization Act's sunset.** The code notes repeal 44 U.S.C. 3607–3616 five years after December 23, 2022;[^hb-usc3609] whether Congress has extended it couldn't be checked (congress.gov refused automated access).
 - **OPM's personnel-records notice text.** Not reloaded here; [Book 03](../b03-hr-identity/appendix-b-security-and-privacy.md) and the [contractor-source research](../../evaluations/oracle-contingent-worker-contractor-source.md#privacy-act) cite it.
 
@@ -280,4 +279,4 @@ Related:
 [^hb-oci-gov]: Oracle, *Oracle Cloud Infrastructure Documentation*, "FedRAMP Authorized Services" for US Government Cloud (regions us-langley-1 and us-luke-1; console and API endpoints on oraclegovcloud.com), <https://docs.oracle.com/en-us/iaas/Content/gov-cloud/govfedramp.htm>, accessed October 30, 2026.
 [^hb-oci-info]: Oracle, *Oracle Cloud Infrastructure Documentation*, "Information for US Government Cloud Customers" (bring your own CAC/PIV-capable identity provider; customers enable FIPS mode), <https://docs.oracle.com/en-us/iaas/Content/gov-cloud/govinfo.htm>, accessed October 30, 2026.
 [^hb-ora-url]: Oracle, *Enterprise Performance Management Cloud*, "Sample URLs" ("This pattern is for commercial regions only. In restricted regions (for example OC2 and OC4), the patterns are different"), <https://docs.oracle.com/en/cloud/saas/enterprise-performance-management-common/cgsad/1_epm_cloud_accessing_sample_urls.html>; and *Oracle Integration*, "Obtain the Event Catalog URL" (Fusion Applications `systemName.fa.<dc>.oraclecloud.com`), <https://docs.oracle.com/en/cloud/paas/application-integration/erp-adapter/obtaining-event-catalog-url.html>, accessed October 30, 2026.
-[^hb-ms-deploy]: Microsoft Learn, "Microsoft Graph national cloud deployments" (GCC uses the worldwide endpoints; GCC High `graph.microsoft.us` and `login.microsoftonline.us`; DoD `dod-graph.microsoft.us`), <https://learn.microsoft.com/en-us/graph/deployments>, accessed October 30, 2026.
+[^hb-ms-deploy]: Microsoft Learn, "Microsoft Graph national cloud deployments" (GCC uses the worldwide endpoints), <https://learn.microsoft.com/en-us/graph/deployments>, accessed October 30, 2026.

@@ -56,7 +56,7 @@ The orphan rule is the plan's decision D-NP2, which the CISO owns: disable once 
 
 ### Which cloud, for this check and these writes
 
-The reads and writes in this chapter go to Graph at `graph.microsoft.com` for the target estate, Microsoft 365 GCC; GCC High and DoD use `graph.microsoft.us` and `dod-graph.microsoft.us`.[^np02-deployments] Listing an application's owners, adding an owner and updating a service principal all list the global service, US Government L4 and US Government L5.[^np02-app-owners] [^np02-add-owner] [^np02-sp-update] The disables in Active Directory go to the domain named with `-Domain`; `Disable-ADAccount` doesn't work against a read-only domain controller.[^np02-disable-adaccount]
+The reads and writes in this chapter go to Graph at `graph.microsoft.com` for the target estate, Microsoft 365 GCC, which uses the worldwide endpoints.[^np02-deployments] Listing an application's owners, adding an owner and updating a service principal all list the global service, which GCC uses.[^np02-app-owners] [^np02-add-owner] [^np02-sp-update] The disables in Active Directory go to the domain named with `-Domain`; `Disable-ADAccount` doesn't work against a read-only domain controller.[^np02-disable-adaccount]
 
 ## Start with Microsoft's sample
 
@@ -82,7 +82,7 @@ Each row is pinned by a test: in `tests/MicrosoftSamples.Tests.ps1` for the samp
 | Counts a guest and a service principal as owners, like any person | An app owned by a guest and one member, or a person and a bot, passes the query | Each owner read with `userType` and `accountEnabled`; service principals, guests and disabled users don't count (NPI-OWN-03 to -05) |
 | Labels this read with the least-privileged delegated permission `Application.ReadWrite.All` | A write permission for a read; List servicePrincipals names `Application.Read.All`[^np02-sp-list] | Owners are read in Chapter 01 with `Application.Read.All`; the people with `User.Read.All` (research gaps, row 13) |
 | Adds any directory object as an owner, a service principal included | Learn allows it;[^np02-add-owner] the program's rule doesn't | An owner is added only from a claim, only if the nominee is an enabled member, and only through the reviewed write path |
-| Hard-codes `graph.microsoft.com` | The host is wrong for GCC High and DoD | The host from the cloud table, checked on every request |
+| Hard-codes `graph.microsoft.com` | The host can't be checked against the cloud the run names | The host from the cloud table, checked on every request |
 | Sets `serviceManagementReference` to free-text owner aliases | Learn's own guidance is a reference to the service management database;[^np02-ownership] free text can't be checked | A record key that must name an active record in the service records file (NPI-OWN-06, -07; research gaps, row 17) |
 | Nothing about Active Directory service accounts | Half of Gate 1 | An application owner from the owners file, checked as an enabled member, and its record (NPI-OWN-08) |
 | No step that disables an orphan, or records a claim window | The orphan rule is left to you | The rule as a dry-run plan, with the identity governance officer's confirmation, the 30-day claim window, and a separate write path |
@@ -509,21 +509,21 @@ Remove-Item -Recurse -Force out/ownership-test, out/orphan-test, out/orphan-test
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Ownerless service principals | `GET /servicePrincipals?$filter=owners/$count eq 0 or owners/$count eq 1&$count=true`, `ConsistencyLevel: eventual` | — | v1.0 | [^np02-tutorial] |
-| Applications with fewer than two owners | The same filter on `GET /applications` | L4 and L5 | v1.0 | [^np02-app-list] |
-| List owners of an application | `Application.Read.All`; unreadable owners return `id` and `@odata.type` only | L4 and L5 | v1.0 | [^np02-app-owners] |
-| Owners of a service principal | Users or service principals | — | v1.0 | [^np02-sp-owners-cmdlet] |
-| Add owner | `POST /applications/{id}/owners/$ref`; delegated `Application.ReadWrite.All` and `Directory.Read.All`; `Application.ReadWrite.OwnedBy` not sufficient to add another owner; Hybrid Identity, Cloud Application or Application Administrator | L4 and L5 | v1.0 | [^np02-add-owner] |
-| Get a user | Application `User.Read.All`; properties outside the default set need `$select`; encode `#` as `%23` in a guest's UPN | — | v1.0 | [^np02-user-get] |
-| Update servicePrincipal | Delegated `Application.ReadWrite.All`; application `Application.ReadWrite.OwnedBy` | L4 and L5 | v1.0 | [^np02-sp-update] |
-| Disable sign-in | `accountEnabled` false blocks tokens in this tenant only; Cloud Application Administrator, Application Administrator or the service principal's owner; restore by setting `true` | — | v1.0 | [^np02-disable-signin] |
-| Deactivate an app registration | `isDisabled` on beta; reactivation shown on v1.0; existing tokens stay valid until they expire; remove owners to prevent reactivation | — | Beta (deactivate) | [^np02-deactivate] |
-| Activation status | Shows Deactivated for `accountEnabled` false, `isDisabled` true, or Microsoft's disablement | — | — | [^np02-app-props] |
-| `serviceManagementReference`; two owners | Reference the team contact in the service or asset management database; monitor for at least two owners | — | — | [^np02-ownership] |
-| Disable, don't delete | Disable until the review is complete; delete after a defined period and warning | — | — | [^np02-govern-entra] [^np02-govern-onprem] |
-| `Disable-ADAccount` | Disables a user, computer or service account; not against a read-only domain controller | n/a (Active Directory) | GA | [^np02-disable-adaccount] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Ownerless service principals | `GET /servicePrincipals?$filter=owners/$count eq 0 or owners/$count eq 1&$count=true`, `ConsistencyLevel: eventual` | v1.0 | [^np02-tutorial] |
+| Applications with fewer than two owners | The same filter on `GET /applications` | v1.0 | [^np02-app-list] |
+| List owners of an application | `Application.Read.All`; unreadable owners return `id` and `@odata.type` only | v1.0 | [^np02-app-owners] |
+| Owners of a service principal | Users or service principals | v1.0 | [^np02-sp-owners-cmdlet] |
+| Add owner | `POST /applications/{id}/owners/$ref`; delegated `Application.ReadWrite.All` and `Directory.Read.All`; `Application.ReadWrite.OwnedBy` not sufficient to add another owner; Hybrid Identity, Cloud Application or Application Administrator | v1.0 | [^np02-add-owner] |
+| Get a user | Application `User.Read.All`; properties outside the default set need `$select`; encode `#` as `%23` in a guest's UPN | v1.0 | [^np02-user-get] |
+| Update servicePrincipal | Delegated `Application.ReadWrite.All`; application `Application.ReadWrite.OwnedBy` | v1.0 | [^np02-sp-update] |
+| Disable sign-in | `accountEnabled` false blocks tokens in this tenant only; Cloud Application Administrator, Application Administrator or the service principal's owner; restore by setting `true` | v1.0 | [^np02-disable-signin] |
+| Deactivate an app registration | `isDisabled` on beta; reactivation shown on v1.0; existing tokens stay valid until they expire; remove owners to prevent reactivation | Beta (deactivate) | [^np02-deactivate] |
+| Activation status | Shows Deactivated for `accountEnabled` false, `isDisabled` true, or Microsoft's disablement | — | [^np02-app-props] |
+| `serviceManagementReference`; two owners | Reference the team contact in the service or asset management database; monitor for at least two owners | — | [^np02-ownership] |
+| Disable, don't delete | Disable until the review is complete; delete after a defined period and warning | — | [^np02-govern-entra] [^np02-govern-onprem] |
+| `Disable-ADAccount` | Disables a user, computer or service account; not against a read-only domain controller | GA | [^np02-disable-adaccount] |
 
 Where Learn's pages differ: the tutorial labels its ownerless read with `Application.ReadWrite.All` while List servicePrincipals names `Application.Read.All` (research gaps, row 13); Add owner's permission table and its note disagree about `Application.ReadWrite.OwnedBy` (row 14); the tutorial's `serviceManagementReference` sample is free text where the ownership overview says to reference the service management database (row 17); and deactivation is shown on beta while reactivation is shown on v1.0 (row 12). The code follows the stricter reading in each case.
 

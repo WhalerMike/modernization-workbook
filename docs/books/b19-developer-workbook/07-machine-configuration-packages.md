@@ -465,7 +465,6 @@ To try an enforcing version, rebuild with the registry mode set to `ApplyAndMoni
 | Signing | `Protect-GuestConfigurationPackage`; public key in Trusted Publishers (Windows) or `/usr/local/share/ca-certificates/gc` (Linux); tag `GuestConfigPolicyCertificateValidation` = `enabled` on machines that must require it | [^c07-sign] |
 | Turning off remediation of custom content on one machine | Tag `CustomGuestConfigurationSetPolicy` = `disable` | [^c07-remediation] |
 | Commercial Azure (the GCC estate) | `Connect-AzAccount -Environment AzureCloud`; Arc-enabled servers need `*.guestconfiguration.azure.com`; each region has `agentserviceapi.guestconfiguration.azure.com` and a regional endpoint, such as `eastus-gas.guestconfiguration.azure.com` | [^c07-govident] [^c07-connect] [^c07-arcnet] [^c07-network] |
-| Azure Government | Arc-enabled servers need `*.guestconfiguration.azure.us`; machine configuration endpoints are listed for US Gov Arizona, Texas and Virginia | [^c07-arcnet] [^c07-network] |
 | Cost on Arc | Included at no extra cost for Arc-enabled Windows servers with Software Assurance or a subscription license once attested, or enrolled in Windows Server pay-as-you-go; otherwise purchased separately. Activation isn't available in US Gov Virginia or US Gov Arizona (Learn lists those and three China regions as the exceptions), so in those regions plan to buy it | [^c07-billing] |
 
 The GuestConfiguration module version, its command list and its behavior described above come from the PowerShell Gallery and from running it, not from Learn.[^c07-module]

@@ -58,7 +58,7 @@ The tier comes from the program, not from Microsoft. Microsoft marks some Entra 
 
 ### Which cloud, for this read
 
-For the target estate, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com`. GCC High uses `graph.microsoft.us`, DoD `dod-graph.microsoft.us`, and both use Azure Government's `management.usgovcloudapi.net`.[^pa01-deployments] [^pa01-compare] Microsoft Entra ID P1 and P2 for GCC are hosted in the Azure commercial environment,[^pa01-ems-gcc] and Microsoft Entra ID Governance, which PIM needs, is available in GCC, GCC High and DoD.[^pa01-availability] Every Graph call in this chapter lists the global service, US Government L4 and US Government L5 in its national cloud table.[^pa01-rasi] [^pa01-res] [^pa01-roledefs] [^pa01-list-ra] The code takes `gcc` as an explicit cloud name and refuses any name it doesn't know, the pattern the first workbook's [Chapter 02](../../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) sets.
+For the target estate, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: Graph at `graph.microsoft.com` and Resource Manager at `management.azure.com`.[^pa01-deployments] Microsoft Entra ID P1 and P2 for GCC are hosted in the Azure commercial environment,[^pa01-ems-gcc] and Microsoft Entra ID Governance, which PIM needs, is available in GCC.[^pa01-availability] Every Graph call in this chapter lists the global service, which GCC uses, in its national cloud table.[^pa01-rasi] [^pa01-res] [^pa01-roledefs] [^pa01-list-ra] The code takes `gcc` as an explicit cloud name and refuses any name it doesn't know, the pattern the first workbook's [Chapter 02](../../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) sets.
 
 ## Start with Microsoft's sample
 
@@ -87,7 +87,7 @@ Running the samples against the fixture tenant shows what they do and what they 
 | Returns a role-assignable group as one principal and never reads its members | The people who hold the role are invisible | Expands each group once, marks member rows `Via Group`, and never drops a member it can't name (PA-INV-09) |
 | Prints role definition and principal IDs; no names, no tier | A reviewer can't act on a GUID | Names from the definitions and the expanded principal, a tier from `config/tiers.json`, and Unclassified for anything else (PA-INV-05) |
 | Signs in with `Connect-MgGraph` and no environment or scopes | The worldwide cloud and whatever scopes the session already has | An explicit cloud, the call list in `config/calls.json` with each call's least-privileged permission, and a refusal of any call the task doesn't declare |
-| Reads transitive assignments from beta, on a hard-coded `graph.microsoft.com` | Beta can change;[^pa01-versioning] the host is wrong for GCC High and DoD | v1.0 only, with the host from the cloud table |
+| Reads transitive assignments from beta, on a hard-coded `graph.microsoft.com` | Beta can change;[^pa01-versioning] the host is fixed in code, not checked | v1.0 only, with the host from the cloud table |
 | Nothing for Azure | Owner, User Access Administrator and Contributor are privileged too[^pa01-azure-roles] | Resource Manager schedules by scope, placed in tiers by role and scope, with PA-INV-07 and PA-INV-08 |
 
 **The verdict.** Use Learn's page as the model for what to read and as the admin center's cross-check (Lab 2 compares the two). Don't use its all-roles loop for the inventory: it can't see eligibility, which is the state the project is moving every human assignment into.
@@ -380,24 +380,24 @@ Remove-Item -Recurse -Force out/inventory-test
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| List roleDefinitions | `GET /roleManagement/directory/roleDefinitions`; `RoleManagement.Read.Directory` | L4 and L5 | v1.0 | [^pa01-roledefs] |
-| List roleAssignmentScheduleInstances | Active assignments made through PIM or directly; `RoleAssignmentSchedule.Read.Directory`; Global Reader for a delegated read | L4 and L5 | v1.0 | [^pa01-rasi] |
-| Active instance properties | `assignmentType` `Assigned` or `Activated`; `memberType` `Inherited`, `Direct` or `Group`; `endDateTime` | — | v1.0 | [^pa01-rasi-type] |
-| List roleEligibilitySchedules | `RoleEligibilitySchedule.Read.Directory`; `scheduleInfo.expiration` | L4 and L5 | v1.0 | [^pa01-res] |
-| List unifiedRoleAssignments (Learn's sample) | Active assignments; `RoleManagement.Read.Directory` | L4 and L5 | v1.0 | [^pa01-list-ra] |
-| Transitive role assignments (Learn's sample) | `/beta/roleManagement/directory/transitiveRoleAssignments` | — | Beta | [^pa01-view] [^pa01-versioning] |
-| List group members | `GroupMember.ReadBasic.All`; members of unreadable types return `id` and `@odata.type` only; `User.ReadBasic.All` for user members' basic properties; known issue: v1.0 doesn't return service principal members | L4 and L5 | v1.0 | [^pa01-members] [^pa01-limited] [^pa01-members-known-issue] |
-| Privileged label | `isPrivileged` on role definitions, listed through the beta endpoint | — | Preview | [^pa01-privileged] |
-| Global Administrators | Fewer than five | — | — | [^pa01-best] |
-| Permanent active assignments | Zero, except the emergency access accounts | — | — | [^pa01-pim-plan] |
-| Azure eligibility and active schedules | `Get-AzRoleEligibilitySchedule`, `Get-AzRoleAssignmentSchedule`; no single command lists both | — | GA | [^pa01-azure-pim] |
-| Azure PIM REST types | Role assignment and eligibility schedules GA in `2020-10-01` | Azure Government host `management.usgovcloudapi.net` | GA | [^pa01-azure-api] [^pa01-compare] |
-| Azure privileged administrator roles | Owner, Contributor, Reservations Administrator, Role Based Access Control Administrator, User Access Administrator, with their IDs | — | — | [^pa01-azure-roles] |
-| Subscription owners | A maximum of three | — | — | [^pa01-azure-best] |
-| Elevate access | A Global Administrator who elevates gets User Access Administrator on all subscriptions | — | — | [^pa01-elevate] |
-| Licensing and clouds | Entra ID P1 and P2 for GCC hosted in Azure commercial; Entra ID Governance in GCC, GCC High and DoD | GCC High and DoD in Azure Government | — | [^pa01-ems-gcc] [^pa01-availability] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| List roleDefinitions | `GET /roleManagement/directory/roleDefinitions`; `RoleManagement.Read.Directory` | v1.0 | [^pa01-roledefs] |
+| List roleAssignmentScheduleInstances | Active assignments made through PIM or directly; `RoleAssignmentSchedule.Read.Directory`; Global Reader for a delegated read | v1.0 | [^pa01-rasi] |
+| Active instance properties | `assignmentType` `Assigned` or `Activated`; `memberType` `Inherited`, `Direct` or `Group`; `endDateTime` | v1.0 | [^pa01-rasi-type] |
+| List roleEligibilitySchedules | `RoleEligibilitySchedule.Read.Directory`; `scheduleInfo.expiration` | v1.0 | [^pa01-res] |
+| List unifiedRoleAssignments (Learn's sample) | Active assignments; `RoleManagement.Read.Directory` | v1.0 | [^pa01-list-ra] |
+| Transitive role assignments (Learn's sample) | `/beta/roleManagement/directory/transitiveRoleAssignments` | Beta | [^pa01-view] [^pa01-versioning] |
+| List group members | `GroupMember.ReadBasic.All`; members of unreadable types return `id` and `@odata.type` only; `User.ReadBasic.All` for user members' basic properties; known issue: v1.0 doesn't return service principal members | v1.0 | [^pa01-members] [^pa01-limited] [^pa01-members-known-issue] |
+| Privileged label | `isPrivileged` on role definitions, listed through the beta endpoint | Preview | [^pa01-privileged] |
+| Global Administrators | Fewer than five | — | [^pa01-best] |
+| Permanent active assignments | Zero, except the emergency access accounts | — | [^pa01-pim-plan] |
+| Azure eligibility and active schedules | `Get-AzRoleEligibilitySchedule`, `Get-AzRoleAssignmentSchedule`; no single command lists both | GA | [^pa01-azure-pim] |
+| Azure PIM REST types | Role assignment and eligibility schedules GA in `2020-10-01` | GA | [^pa01-azure-api] |
+| Azure privileged administrator roles | Owner, Contributor, Reservations Administrator, Role Based Access Control Administrator, User Access Administrator, with their IDs | — | [^pa01-azure-roles] |
+| Subscription owners | A maximum of three | — | [^pa01-azure-best] |
+| Elevate access | A Global Administrator who elevates gets User Access Administrator on all subscriptions | — | [^pa01-elevate] |
+| Licensing and clouds | Entra ID P1 and P2 for GCC hosted in Azure commercial; Entra ID Governance in GCC | — | [^pa01-ems-gcc] [^pa01-availability] |
 
 No two Learn pages read for this chapter disagree on a fact the code depends on. The paging question first raised on October 30, 2026 (research gaps, row 1) is narrower now: the full reference page for `Get-MgRoleManagementDirectoryRoleAssignment` lists both `-PageSize` and `-All`, and describes `-All` as listing all pages, with a default of off.[^pa01-cmdlet] Learn doesn't state in words what a call without `-All` returns; the switch's default is the evidence that the sample's loop can stop at the first page of each role. The example doesn't depend on the answer, because it reads through Graph and follows the next links itself.
 
@@ -435,7 +435,7 @@ AC-2(7), which asks for privileged accounts under a role-based or attribute-base
 | An exception list nobody owns | Standing privilege hides behind an "exception" | An exception without an owner doesn't count (PA-INV-01) |
 | Reading only some Azure scopes | A management group or subscription you didn't list isn't read | The manifest lists every request, so the reviewer sees the scopes read; discovering every scope is open (research gaps, row 4) |
 | Counting an Azure assignment twice | A schedule returned at two scopes inflates Owner counts | De-duplicated by schedule ID; inherited rows skipped |
-| The wrong cloud | A GCC High run reads `graph.microsoft.com`, or the token goes to another host | Explicit cloud, no default, host checked on every page, live sessions checked before the run |
+| The wrong host | The token goes to a host other than the cloud's own | Explicit cloud, no default, host checked on every page, live sessions checked before the run |
 | A broad permission | `Directory.Read.All` or a write permission granted "to make it work" | The call list; the test pins the task's exact permissions, none `ReadWrite` |
 | The inventory as a leak | The folder names every privileged holder | The manifest names no one; Lab 2 deletes the output |
 
@@ -447,7 +447,7 @@ AC-2(7), which asks for privileged accounts under a role-based or attribute-base
 - [ ] `exceptions.csv` lists only the emergency accounts and service principals that can't activate, each with an owner and a reason.
 - [ ] The Azure scopes read are the agency's whole hierarchy, or the gap is written down.
 - [ ] The app holds exactly the five Graph permissions and Reader, with a certificate or managed identity, never a secret.
-- [ ] The cloud is explicit, and nothing in a GCC configuration is a `.us` host.
+- [ ] The cloud is explicit, and every host in the configuration is a worldwide one.
 - [ ] The manifest's hashes match the files handed to the ISSO.
 - [ ] The pinned Learn page matches its manifest, and every upstream commit since the pin has been reviewed.
 
@@ -469,7 +469,6 @@ AC-2(7), which asks for privileged accounts under a role-based or attribute-base
 [^pa01-azure-api]: Microsoft Learn, "API versions of Azure RBAC REST APIs," release notes for 2020-10-01, <https://learn.microsoft.com/rest/api/authorization/versions> (accessed Oct 30, 2026).
 [^pa01-privileged]: Microsoft Learn, "Privileged roles and permissions in Microsoft Entra ID (preview)," <https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions> (accessed Oct 30, 2026).
 [^pa01-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
-[^pa01-compare]: Microsoft Learn, "Compare Azure Government and global Azure," guidance for developers, <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 30, 2026; read for the first workbook's Chapter 02).
 [^pa01-ems-gcc]: Microsoft Learn, "Enterprise Mobility + Security for US Government service description," EMS for US GCC customers, <https://learn.microsoft.com/enterprise-mobility-security/solutions/ems-govt-service-description> (accessed Oct 30, 2026).
 [^pa01-availability]: Microsoft Learn, "Microsoft Entra feature availability," other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
 [^pa01-list-ra]: Microsoft Learn, "List unifiedRoleAssignments," <https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0> (accessed Oct 30, 2026).

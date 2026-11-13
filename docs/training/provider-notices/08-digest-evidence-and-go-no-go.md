@@ -126,7 +126,7 @@ Remove-Item -Recurse -Force out
     ./Invoke-PnRoute.ps1 -NoticesPath out/day2/notices.json -RoutingPath config/routing.json -StatePath out/state.json -OutputPath out/day2-route -AsOf 2026-11-16T12:00:00Z
     ```
 
-    The same output as Module 7's steps 3, 4 and 7: 22 notices and 12 creates, then 23 notices and `Payloads: 1 create, 4 update, 1 close`.
+    The same output as Module 7's steps 3, 4 and 7: 22 notices and 13 creates, then 23 notices and `Payloads: 1 create, 4 update, 2 close`.
 
 2. **Write the digest for the second week:**
 
@@ -164,7 +164,7 @@ Remove-Item -Recurse -Force out
     ```
 
     ```text
-    SUMS           Pass  25 files match SHA256SUMS
+    SUMS           Pass  26 files match SHA256SUMS
     CHAIN          Pass  3 records, chain unbroken
     ```
 
@@ -175,7 +175,7 @@ Remove-Item -Recurse -Force out
     ```
 
     ```text
-    SUMS           Pass  25 files match SHA256SUMS
+    SUMS           Pass  26 files match SHA256SUMS
     CHAIN          Pass  3 records, chain unbroken
     STEP-PRE       Fail  no passing record
     STEP-RUN       Fail  no passing record
@@ -213,7 +213,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests -Output None -PassThru | Select-Object PassedCount, FailedCount
     ```
 
-    Expect `PassedCount 139`, `FailedCount 0`.
+    Expect `PassedCount 142`, `FailedCount 0`.
 
 Delete `out` when you're done:
 

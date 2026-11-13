@@ -49,7 +49,7 @@ Method, all on October 21, 2026. The 149 crosswalk rows were parsed from the sou
 | 39 | Source note: CR26 public preview May 4, 2026 | Questionnaire | removed (not needed; launch date cited instead) | — |
 | 40 | Class D-only = flag | Scope rule | corrected: usable; M-24-15 presumption "at or below" the impact level; NTC-0004 agencies may use a package at any category they deem appropriate | M-24-15 §IV.a; NTC-0004 |
 | 41 | On-prem gear not a FedRAMP item | Scope rule | verified | FedRAMP "Scope of FedRAMP" (cloud computing products and services) |
-| 42 | Source: on-prem gear accredited via NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL | Scope rule | not carried here; pointed to Appendix B (W7 verifies the instrument list) | — |
+| 42 | Source: on-prem gear accredited via NIAP CC + STIG + FIPS 140-3 | Scope rule | not carried here; pointed to Appendix B (W7 verifies the instrument list) | — |
 | 43 | Uncertified commercial SaaS "not eligible" | Scope rule | corrected/restated-as-design: agencies must promote certified services within scope; some uses are out of scope; program treats it as an AO decision | FedRAMP Scope page |
 | 44 | Questionnaire ships empty; incumbent-suite preference earned, not automatic | Questionnaire | restated-as-design (agency name and Microsoft EA specifics removed) | Source §2 note, §3 |
 | 45 | Source flags list naming specific products and their FedRAMP classes (Riverbed, Confluence, ServiceNow, Prisma Cloud) | Questionnaire | not carried in the chapter (agency-edition content, dated vendor status; Appendix B owns the instrument) | — |

@@ -1,6 +1,6 @@
 # Verification — Chapter 04, Kinds of AI Identity: Workloads, Agents and Delegated Access
 
-Checked October 21, 2026 by writer W2. This chapter is new research; the brief assigns it no source page. Microsoft facts from Microsoft Learn via the MCP search and fetch tools; release stage and dates confirmed on the Entra "What's new" page (downloaded and parsed for month headings) and the Agent ID "What's new" page; government-cloud facts from the Entra feature availability page for Azure Government (downloaded and searched for agent entries; none found), the Agent 365 service description (GCC column) and the Agent 365 CLI page for US Government clouds. AWS facts from the AgentCore developer guide and the AWS GovCloud (US) User Guide page for AgentCore. Google facts from the Google Cloud IAM agent identity overview. Where a search result's text differed from the fetched page (the Agent ID overview's search snippet still carried a "currently in PREVIEW" banner; the fetched page doesn't), the fetched page and the Entra what's new GA announcement were used. No personal data was sent to any site.
+Checked October 21, 2026 by writer W2. This chapter is new research; the brief assigns it no source page. Microsoft facts from Microsoft Learn via the MCP search and fetch tools; release stage and dates confirmed on the Entra "What's new" page (downloaded and parsed for month headings) and the Agent ID "What's new" page; GCC facts from the Agent 365 service description (GCC column) and the Agent 365 CLI page for US Government clouds. AWS facts from the AgentCore developer guide and the AWS GovCloud (US) User Guide page for AgentCore. Google facts from the Google Cloud IAM agent identity overview. Where a search result's text differed from the fetched page (the Agent ID overview's search snippet still carried a "currently in PREVIEW" banner; the fetched page doesn't), the fetched page and the Entra what's new GA announcement were used. No personal data was sent to any site.
 
 ## Claims log
 
@@ -15,7 +15,6 @@ Checked October 21, 2026 by writer W2. This chapter is new research; the brief a
 | 7 | WIF scenarios incl. AWS outbound federation, SPIFFE/SPIRE; exact issuer/subject/audience match; Entra-issued tokens not accepted | WIF | verified | Learn, Workload identity federation concepts |
 | 8 | Credential order of preference | WIF | verified (settled) | Book 02 Ch09, Book 04 Ch05 |
 | 9 | CA for workload IDs: single-tenant only; not SaaS/multitenant/MI; group assignment not enforced; block by location/risk/auth context; Premium to create/modify | Policy on workload identities | verified | Learn, Conditional Access for workload identities |
-| 10 | Workload ID Premium available in Azure for US Government | Policy on workload identities; table | verified | Learn, Entra feature availability |
 | 11 | App identities expect stability; agents dynamic, minutes, thousands per day (quote) | Agent identities | verified | Learn, What are agent identities |
 | 12 | Agent ID platform GA April 2026; available to all Entra customers | Agent identities | verified | Learn, Entra what's new April 2026; Agent ID overview |
 | 13 | Four object types | Object model | verified | Learn, Governing agent identities |
@@ -42,9 +41,8 @@ Checked October 21, 2026 by writer W2. This chapter is new research; the brief a
 | 34 | Sponsor lifecycle workflows GA May 2026 | Release-stage table | verified | Learn, Entra what's new May 2026 (month heading confirmed in page HTML) |
 | 35 | Agent 365 GCC column: listed yes and no rows | Government clouds | verified | Learn, Agent 365 service description |
 | 36 | Agent 365 meets FedRAMP High controls reviewed by assessor as of Oct 1, 2026; final authorization pending | Government clouds | verified | Learn, Agent 365 service description |
-| 37 | Agent 365 CLI: endpoints configurable but features may not be available in GCC, GCC High, DoD | Government clouds | verified | Learn, Configure the Agent 365 CLI for US Government clouds |
-| 38 | No Agent ID entries on Entra Azure Government availability page | Government clouds | verified (absence) | Learn, Entra feature availability, page text searched |
-| 39 | Treat agent identities as unavailable in GCC High/DoD until confirmed | Government clouds | restated-as-design | Program position |
+| 37 | Agent 365 CLI: features available commercially may not yet be available in GCC | Government clouds | verified | Learn, Configure the Agent 365 CLI for US Government clouds |
+| 39 | Treat agent capabilities not listed for GCC as unavailable until confirmed | Government clouds | restated-as-design | Program position |
 | 40 | Build on GA in agency's cloud; preview as watch items | Government clouds | restated-as-design | Consistent with Book 04 Ch03 |
 | 41 | Book 04 Ch03 statement still accurate; additions (Agent 365 license; agent-user compliant-device grant, preview) | Note for readers of Book 04 | verified | Learn, Target agent identities; CA Grant |
 | 42 | AgentCore Identity: agent identities as workload identities with specialized attributes; inbound JWT authorizer; outbound credential providers; on behalf of users | AWS | verified | AWS AgentCore developer guide |

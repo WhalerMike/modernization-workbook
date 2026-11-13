@@ -1,6 +1,6 @@
 ---
 title: "Chapter 03 — Label Publication and Defaults"
-description: "How the agency publishes its sensitivity labels and sets defaults it can justify: a pilot label policy before the tenant-wide one, a default label for documents, email, meetings, new groups and sites, and Power BI content, each with its reason and the label it should not be; mandatory labeling and downgrade justification; the exact portal steps and Security & Compliance PowerShell commands, the rings, rollback and exclusions; the telemetry and evidence that show labels are being applied; and each feature's licensing and government-cloud availability, including the SharePoint library default label that is still in development in GCC, GCC High and DoD."
+description: "How the agency publishes its sensitivity labels and sets defaults it can justify: a pilot label policy before the tenant-wide one, a default label for documents, email, meetings, new groups and sites, and Power BI content, each with its reason and the label it should not be; mandatory labeling and downgrade justification; the exact portal steps and Security & Compliance PowerShell commands, the rings, rollback and exclusions; the telemetry and evidence that show labels are being applied; and each feature's licensing and government-cloud availability, including the SharePoint library default label that is still in development in GCC."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b20-information-protection
@@ -67,7 +67,7 @@ Behaviors to know before choosing:
 - **Outlook has its own default.** Where the Outlook client supports it, the email default is set independently of the document default; where it doesn't, Outlook uses the document default.[^c03-office-apps] Meeting defaults are independent of the email default.[^c03-meetings]
 - **Teams applies the meeting default only to new events.** Outlook applies it to new events and to existing unlabeled events when they are updated; Teams applies it to new events only.[^c03-meetings]
 - **Power BI's default isn't retroactive and doesn't apply to service principals, APIs or B2B guests.** A new default applies to content created or edited after it is published.[^c03-pbi-default]
-- **The SharePoint document library default label is a separate, licensed feature** (E5/G5-level) and is still in development in GCC, GCC High and DoD;[^c03-purview-sd][^c03-gcc] [Chapter 07](07-sharepoint-and-onedrive.md) covers it for commercial tenants and the interim path for government ones.
+- **The SharePoint document library default label is a separate, licensed feature** (E5/G5-level) and is still in development in GCC;[^c03-purview-sd][^c03-gcc] [Chapter 07](07-sharepoint-and-onedrive.md) covers it for commercial tenants and the interim path for government ones.
 
 **Authority:** Microsoft-recommended for the cautions (don't default to an encrypting label; pair mandatory labeling with a default) (Microsoft Learn, "Learn about sensitivity labels," accessed Nov 11, 2026). The choice of defaults is risk-based recommended, the program's position, for the risk that content stays unlabeled and invisible to DLP.
 **Applies:** License-dependent: manual labeling and label policies from Microsoft 365 E3/G3; Power BI labels with E3/G3 or EMS E3; the SharePoint library default with E5/G5-level plans.[^c03-purview-sd] Environment-dependent: see the availability table below.
@@ -84,16 +84,16 @@ A help link ("Learn more") points users from the label menu to the agency's own 
 
 ### Prerequisites {#b20-03-prerequisites}
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| Manual labels and label policies | Available | Available | Available | Available | Government Purview planning pages[^c03-gcc][^c03-gcch][^c03-dod] |
-| Mandatory labels | Available | Available | Available | Available | Same pages |
-| Default label for unlabeled file uploaded to a SharePoint library | Available | In development | In development | In development | Same pages |
-| "Apply default label policies to ensure documents being edited" | Not yet specified | In development | In development | In development | Same pages |
-| Sensitivity labels for Teams, Microsoft 365 groups and SharePoint sites (container default) | Available | Available | Available | Available | Same pages |
-| Labels for meetings and calendar events | Available | Not yet specified | Not yet specified | Not yet specified | "Use sensitivity labels to protect calendar items, Teams meetings, and chat"[^c03-meetings]; not listed on the government pages |
-| Teams Premium meeting protections in labels | License-dependent (Teams Premium) | Not yet specified | Not yet specified | Not yet specified | Same page |
-| Power BI default and mandatory label | Available | Not yet specified | Not yet specified | Not yet specified | Fabric "Default label policy" and "Mandatory label policy"[^c03-pbi-default][^c03-pbi-mandatory]; Activity explorer's Power BI label data is listed as available in all three government clouds |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| Manual labels and label policies | Available | Available | Government Purview planning pages[^c03-gcc] |
+| Mandatory labels | Available | Available | Same pages |
+| Default label for unlabeled file uploaded to a SharePoint library | Available | In development | Same pages |
+| "Apply default label policies to ensure documents being edited" | Not yet specified | In development | Same pages |
+| Sensitivity labels for Teams, Microsoft 365 groups and SharePoint sites (container default) | Available | Available | Same pages |
+| Labels for meetings and calendar events | Available | Not yet specified | "Use sensitivity labels to protect calendar items, Teams meetings, and chat"[^c03-meetings]; not listed on the government pages |
+| Teams Premium meeting protections in labels | License-dependent (Teams Premium) | Not yet specified | Same page |
+| Power BI default and mandatory label | Available | Not yet specified | Fabric "Default label policy" and "Mandatory label policy"[^c03-pbi-default][^c03-pbi-mandatory]; Activity explorer's Power BI label data is listed as available in GCC |
 
 : Publication features by cloud, read Nov 11, 2026 {.striped .hover}
 
@@ -288,5 +288,3 @@ The **platform owner** owns the label policies and their settings; each class's 
 [^c03-create]: Microsoft Learn, "Create and configure sensitivity labels and their policies," sections "Publish sensitivity labels by creating a label policy" (portal path; publishing on completion), "Additional label policy settings with Security & Compliance PowerShell," "PowerShell tips for specifying the advanced settings" (use the label GUID) and "When to expect new labels and changes to take effect" (allow 24 hours), <https://learn.microsoft.com/purview/create-sensitivity-labels> (accessed Nov 11, 2026).
 [^c03-versions]: Microsoft Learn, "Minimum versions for sensitivity labels in Office apps," section "Sensitivity label capabilities in Outlook" (row "Different settings for default label and mandatory labeling"), <https://learn.microsoft.com/purview/sensitivity-labels-versions> (accessed Nov 11, 2026).
 [^c03-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c03-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c03-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).

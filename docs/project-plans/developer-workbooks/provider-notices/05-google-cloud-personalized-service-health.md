@@ -1,6 +1,6 @@
 ---
 title: "Chapter 05 — Google Cloud Personalized Service Health"
-description: "Google Cloud's Personalized Service Health read for a project (or an organization) with the viewer role Google documents: every event an incident, because the API has one category and no planned maintenance; products and locations from the event's impacts; a summary from the latest update; and two gaps recorded honestly, the missing maintenance and the product's absence from the Assured Workloads FedRAMP Moderate, FedRAMP High, IL4 and IL5 packages, plus an organization-level call the kit runs only when told it is unverified. Labs against fixtures and a test project."
+description: "Google Cloud's Personalized Service Health read for a project (or an organization) with the viewer role Google documents: every event an incident, because the API has one category and no planned maintenance; products and locations from the event's impacts; a summary from the latest update; and two gaps recorded honestly, the missing maintenance and the product's absence from the Assured Workloads FedRAMP Moderate and FedRAMP High packages, plus an organization-level call the kit runs only when told it is unverified. Labs against fixtures and a test project."
 doc-type: workbook-chapter
 audience: [Technical]
 family: dw-provider-notices
@@ -44,7 +44,7 @@ The Google Cloud collector behind the guide's [G5 Google Cloud](../../../books/g
 
 ### What Google gives you
 
-Google's REST reference documents `projects.locations.events.list` (permission `servicehealth.events.list`) and the organization equivalent.[^pn05-list] The Event resource has a category whose only value is `INCIDENT`, a state, a detailed category, relevance, impacts (product and location) and updates; planned maintenance isn't in it.[^pn05-event] The API is enabled once per project (`servicehealth.googleapis.com`),[^pn05-enable] and `roles/servicehealth.viewer`, Personalized Service Health Viewer, reads it.[^pn05-iam] `gcloud service-health events list --project --location=global` lists a project's events.[^pn05-gcloud] Assured Workloads' supported-products page lists Personalized Service Health under 25 regional packages, including US Data Boundary, but not under FedRAMP Moderate, FedRAMP High, IL2, IL4, IL5, CJIS or ITAR.[^pn05-aw]
+Google's REST reference documents `projects.locations.events.list` (permission `servicehealth.events.list`) and the organization equivalent.[^pn05-list] The Event resource has a category whose only value is `INCIDENT`, a state, a detailed category, relevance, impacts (product and location) and updates; planned maintenance isn't in it.[^pn05-event] The API is enabled once per project (`servicehealth.googleapis.com`),[^pn05-enable] and `roles/servicehealth.viewer`, Personalized Service Health Viewer, reads it.[^pn05-iam] `gcloud service-health events list --project --location=global` lists a project's events.[^pn05-gcloud] Assured Workloads' supported-products page lists Personalized Service Health under 25 regional packages, including US Data Boundary, but not under FedRAMP Moderate, FedRAMP High, CJIS or ITAR.[^pn05-aw]
 
 ### What it leaves to you
 
@@ -285,7 +285,7 @@ Remove-Item -Recurse -Force out/google-test
    Import-Csv out/google-test/notices.csv | Format-Table kind, status, title, services, regions
    ```
 
-   Then record the gaps with the ISSO: if the project is in an Assured Workloads FedRAMP Moderate, FedRAMP High, IL4 or IL5 folder, Personalized Service Health isn't in that package; and in every case, Google's planned maintenance doesn't come through this API.
+   Then record the gaps with the ISSO: if the project is in an Assured Workloads FedRAMP Moderate or FedRAMP High folder, Personalized Service Health isn't in that package; and in every case, Google's planned maintenance doesn't come through this API.
 
 4. **Back it out.** Remove the role binding and delete the run; leave the API enabled unless the project owner decides otherwise:
 
@@ -303,7 +303,7 @@ Remove-Item -Recurse -Force out/google-test
 | Enable | `servicehealth.googleapis.com` | — | [^pn05-enable] |
 | Role | `roles/servicehealth.viewer`, Personalized Service Health Viewer | — | [^pn05-iam] |
 | gcloud | `gcloud service-health events list --project --location=global` | — | [^pn05-gcloud] |
-| Assured Workloads | Not in FedRAMP Moderate, FedRAMP High, IL2, IL4, IL5, CJIS or ITAR | Gap | [^pn05-aw] |
+| Assured Workloads | Not in FedRAMP Moderate, FedRAMP High, CJIS or ITAR | Gap | [^pn05-aw] |
 | Sign-in and back-out | `gcloud auth login`; `gcloud projects remove-iam-policy-binding` | — | [^pn05-auth] |
 
 Not yet specified: the gcloud flags for organization events (the REST call is verified; the kit runs the gcloud call only with `-AllowUnverified`).

@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.995
+Step six finds the
+Microsoft traffic profile
+
+2
+00:00:02.995 --> 00:00:05.862
+with Learn's filtered
+request and enables it.
+
+3
+00:00:05.862 --> 00:00:09.724
+This writes to the test tenant,
+and Module 6 rolls it back.
+
+4
+00:00:09.724 --> 00:00:13.123
+Step seven assigns the pilot
+group in the admin center,
+
+5
+00:00:13.123 --> 00:00:15.238
+as an Application Administrator.
+
+6
+00:00:15.238 --> 00:00:19.192
+Step eight turns on signaling and
+records the setting to a file;
+
+7
+00:00:19.192 --> 00:00:21.626
+signaling status should read enabled.
+
+8
+00:00:21.626 --> 00:00:23.650
+Step nine is the validation.
+
+9
+00:00:23.650 --> 00:00:27.484
+On the pilot device, sign in to
+SharePoint with the client running,
+
+10
+00:00:27.484 --> 00:00:32.100
+then disable the client from the tray and
+sign in again in a new browser session.
+
+11
+00:00:32.100 --> 00:00:37.113
+With source I P restoration, the two
+sign-ins show the same I P address.
+
+12
+00:00:37.113 --> 00:00:38.537
+Re-enable the client.
+
+13
+00:00:38.537 --> 00:00:42.228
+Then, in the workspace, run
+the guide's sign-in query:
+
+14
+00:00:42.228 --> 00:00:46.638
+P C T through G S A is the share
+of sign-ins the service carried.
+
+15
+00:00:46.638 --> 00:00:49.413
+Run Module 1's freshness query again too.
+
+16
+00:00:49.413 --> 00:00:53.450
+Keep the profile and signaling
+on; Module 3 needs them.

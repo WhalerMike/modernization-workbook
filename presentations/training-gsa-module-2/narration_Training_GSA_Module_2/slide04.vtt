@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.262
+Unit 1 is where the client runs.
+
+2
+00:00:02.262 --> 00:00:07.208
+Learn's client page: Windows ten L
+T S C 2021 or later, Windows eleven,
+
+3
+00:00:07.208 --> 00:00:12.611
+and Windows eleven on Arm, which has
+a separate installer; Azure Virtual
+
+4
+00:00:12.611 --> 00:00:18.563
+Desktop single-session and Windows three
+sixty-five, but not A V D multi-session.
+
+5
+00:00:18.563 --> 00:00:21.173
+It can't be installed
+on a machine that hosts
+
+6
+00:00:21.173 --> 00:00:24.075
+virtual machines with a
+Hyper-V external switch.
+
+7
+00:00:24.075 --> 00:00:28.561
+The device must be joined, hybrid
+joined or registered in the tenant,
+
+8
+00:00:28.561 --> 00:00:31.925
+and registered devices
+carry only Private Access.
+
+9
+00:00:31.925 --> 00:00:38.131
+The client tunnels I P version four only,
+and it doesn't support secure D N S,
+
+10
+00:00:38.131 --> 00:00:44.337
+D N S over T C P from browsers' built-in
+resolvers, or Group Policy N R P T rules.
+
+11
+00:00:44.337 --> 00:00:47.880
+Like the rest of the service,
+it's available in G C C.
+
+12
+00:00:47.880 --> 00:00:51.068
+Hosts it can't run on go
+on the exception list,
+
+13
+00:00:51.068 --> 00:00:53.690
+each with an owner and a review date.

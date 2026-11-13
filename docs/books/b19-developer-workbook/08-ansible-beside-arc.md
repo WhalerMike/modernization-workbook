@@ -51,7 +51,7 @@ Arc doesn't change who owns what. It makes the server an Azure resource, and the
 
 So the tags are written once, at the connect, from the CMDB. That makes the onboarding run the place where owners are read, checked and carried. A server connected without them is open to whichever tool reaches it first.
 
-**Which Azure.** The program's estate is a Microsoft 365 GCC tenant. Learn says Office 365 GCC uses Microsoft Entra Public, and an Azure Government subscription can't be associated with a directory there.[^c08-govident] So a GCC estate's Arc servers go to a commercial subscription, and the agent connects with `--cloud AzureCloud`, the default.[^c08-connect] The agent then needs the commercial endpoints: `login.microsoftonline.com`, `*.login.microsoft.com`, `pas.windows.net`, `management.azure.com` (only to connect or disconnect), `*.his.arc.azure.com` and `*.guestconfiguration.azure.com`, among others.[^c08-network] GCC High and DoD tenants use Microsoft Entra Government and Azure Government: `AzureUSGovernment`, US Gov regions, and the `.us` endpoints.[^c08-govident] [^c08-network]
+**Which Azure.** The program's estate is a Microsoft 365 GCC tenant. Learn says Office 365 GCC uses Microsoft Entra Public, and an Azure Government subscription can't be associated with a directory there.[^c08-govident] So a GCC estate's Arc servers go to a commercial subscription, and the agent connects with `--cloud AzureCloud`, the default.[^c08-connect] The agent then needs the commercial endpoints: `login.microsoftonline.com`, `*.login.microsoft.com`, `pas.windows.net`, `management.azure.com` (only to connect or disconnect), `*.his.arc.azure.com` and `*.guestconfiguration.azure.com`, among others.[^c08-network]
 
 ## Start with Microsoft's sample
 
@@ -134,7 +134,7 @@ Three rules fail closed. An owner value the script doesn't know stops it: `updat
 `playbooks/05_arc_wave_plan.yml` runs only on the control node. It takes `-e onboarding_wave=N`, lists the wave's ready servers and the ones the CMDB blocked, and writes `arc-wave-N-plan-<time>.json` and `.csv` under `reports/`: host, configuration item, environment, resource group, region, cloud, both owners, the exact tag string, and a state. It stops when:
 
 - no wave is given, or the wave has no ready server;
-- `arc_cloud` isn't `AzureCloud` or `AzureUSGovernment`, or a server's region belongs to the other cloud (a `usgov` or `usdod` region needs `AzureUSGovernment`, and no other region does);
+- `arc_cloud` isn't `AzureCloud` or `AzureUSGovernment`, or a server's region belongs to the other cloud (a US Government region needs `AzureUSGovernment`, and no other region does);
 - a production server is planned in wave 0 or 1, which the Arc track keeps for non-production (*design guidance*).
 
 A server with no `config_owner` or `patch_owner` doesn't stop the plan: the inventory blocks that server before the plan sees it, and the plan lists it as blocked.
@@ -440,7 +440,6 @@ az group delete --name rg-arc-test-dev
 | Authentication | `msi` recommended for production; `cli` for development; service principal through Automation Platform | [^c08-ansible] |
 | Cloud for a GCC tenant | Commercial: Office 365 GCC uses Microsoft Entra Public, and an Azure Government subscription can't be associated with it; `--cloud` defaults to `AzureCloud` | [^c08-govident] [^c08-connect] |
 | Commercial endpoints | `login.microsoftonline.com`, `*.login.microsoft.com`, `pas.windows.net`, `management.azure.com` (connect and disconnect only), `*.his.arc.azure.com`, `*.guestconfiguration.azure.com`, notification service endpoints | [^c08-network] |
-| Azure Government (GCC High, DoD) | `AzureUSGovernment`; `login.microsoftonline.us`, `management.usgovcloudapi.net`, `*.his.arc.azure.us`, `*.guestconfiguration.azure.us` | [^c08-connect] [^c08-network] |
 | Tags at connect | `--tags`, comma-delimited `Name=Value` pairs; at most 50 tags per resource, values up to 256 characters | [^c08-connect] [^c08-tags] |
 | Secrets at connect | Microsoft recommends a configuration file (`--config`) for a service principal secret; access tokens are short-lived | [^c08-connect] |
 | Pilot | A representative, non-critical set, at least 30 days, with a rollback plan | [^c08-plan] |
@@ -491,7 +490,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 ## Checklist
 
 - [ ] The CMDB export carries `config_owner`, `patch_owner` and `arc_wave` for every tier 1 server; `config_owner_missing` and `patch_owner_missing` are empty, or each entry has a ticket.
-- [ ] `arc_cloud` matches the tenant: `AzureCloud` for GCC, `AzureUSGovernment` for GCC High and DoD (and `02_arc_onboarding.yml` there).
+- [ ] `arc_cloud` matches the tenant: `AzureCloud` for GCC.
 - [ ] The wave plan for this wave was reviewed and filed before the run, and its blocked list is understood.
 - [ ] The dry run was run, and its output matches the plan.
 - [ ] The onboarding identity holds only Azure Connected Machine Onboarding, on the wave's resource groups; a managed identity where the control node can have one.

@@ -469,6 +469,7 @@ pages:
   - docs/books/b01-transformation-arc/09-who-leads-the-transformation.md
   - docs/books/b01-transformation-arc/10-analyzing-the-estate.md
   - docs/books/b01-transformation-arc/appendix-b-applicability.md
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b08-ddi/04-active-directory-dns-departure.md
   - docs/reference/source-register.md

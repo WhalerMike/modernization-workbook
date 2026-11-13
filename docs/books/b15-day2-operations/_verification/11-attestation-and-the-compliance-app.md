@@ -35,7 +35,7 @@ Writer W7. Sources: `docs/compliance/Vol_VII_Book_04_Control_Attestation_Evidenc
 | 27 | Scoped app record model (ingest, reconcile, gate, REST, map, flows, MID script, ATF, update set) | If you build one | restated-as-design | Source (Vol VII Book 05); internal names translated |
 | 28 | MID Server is a Java application running as a Windows service; mediator between network and instance | Boundary | verified | ServiceNow MID Server doc (Xanadu) |
 | 29 | Least-privilege connector identities; no standing tenant admin | Boundary | restated-as-design | Source |
-| 30 | GCC uses worldwide Graph/portal endpoints; GCC High/DoD use their own | Standing it up | verified (source said "commercial endpoints that serve the GCC Moderate boundary"; reworded to Microsoft's terms) | MS Learn Graph deployments |
+| 30 | GCC uses worldwide Graph/portal endpoints | Standing it up | verified (source said "commercial endpoints that serve the GCC Moderate boundary"; reworded to Microsoft's terms) | MS Learn Graph deployments |
 | 31 | ATF purpose; run property disabled by default; run only on non-production | Standing it up | verified | ServiceNow "Test your apps with the ATF" (Xanadu) |
 | 32 | ATF test_mode proves the workflow, not native surfaces | Standing it up | restated-as-design | Source honest limit |
 | 33 | Control map as JSON; CI check of control set vs map; per-entry attributes are review items | Control map | restated-as-design | Source; source's script/file names removed |

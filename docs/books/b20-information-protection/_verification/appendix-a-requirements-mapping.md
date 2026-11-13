@@ -15,6 +15,6 @@ Writer: Book 20 build (Nov 11, 2026). All sources opened Nov 11, 2026. Claims so
 | 7 | Mapping of evidence to KSIs | KSI table | restated-as-design | Program design, following Book 12 Ch09 | Nov 11, 2026 |
 | 8 | Closure-map rows CM-12, CM-13 and CM-14 minimum evidence | Closure-map rows | verified | The workbook's Zero Trust Assessment closure update instructions, v1.0 (editorial specification) | Nov 11, 2026 |
 
-## Government-cloud gaps
+## GCC gaps
 
 - None for this page.

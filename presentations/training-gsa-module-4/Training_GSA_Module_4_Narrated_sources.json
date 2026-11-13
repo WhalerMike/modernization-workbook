@@ -1,0 +1,128 @@
+[
+ {
+  "slide": 4,
+  "title": "Unit 1: Quick Access is the bridge, per-app the goal",
+  "links": [
+   {
+    "text": "Private Access using Microsoft Graph APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-private-access-graph-tutorial"
+   },
+   {
+    "text": "How to configure per-app access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-per-app-access"
+   },
+   {
+    "text": "Conditional Access for Private Access apps",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-conditional-access-private-access-apps"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Connectors: on premises, and in every cloud network",
+  "links": [
+   {
+    "text": "What is Global Secure Access?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-global-secure-access"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Least privilege, measured: the Quick Access residual",
+  "links": [
+   {
+    "text": "access reviews",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-are-access-reviews"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Unit 2: administrative RDP as its own application",
+  "links": [
+   {
+    "text": "Zero Trust: Protect networks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-protect-networks"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Unit 3: domain controllers, for as long as they remain",
+  "links": [
+   {
+    "text": "Private Access for domain controllers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-private-access-domain-controllers"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Module 4",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Sources: Module 4 deck",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Private Access using Microsoft Graph APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-private-access-graph-tutorial"
+   },
+   {
+    "text": "How to configure per-app access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-per-app-access"
+   },
+   {
+    "text": "Conditional Access for Private Access apps",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-conditional-access-private-access-apps"
+   },
+   {
+    "text": "What is Global Secure Access?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-global-secure-access"
+   },
+   {
+    "text": "Zero Trust: Protect networks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-protect-networks"
+   },
+   {
+    "text": "Private Access for domain controllers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-private-access-domain-controllers"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   }
+  ]
+ }
+]

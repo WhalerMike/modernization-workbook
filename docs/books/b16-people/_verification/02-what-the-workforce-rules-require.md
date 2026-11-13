@@ -5,7 +5,6 @@ Writer W1. No source pages: new research from primary sources, opened October 22
 Notes on access:
 
 - **eCFR**: the human page redirected to a bot-check; the eCFR versioner API (`/api/versioner/v1/full/2026-10-01/title-5.xml?part=930&subpart=C`) returned the official text.
-- **DoD issuances**: `www.esd.whs.mil` and `public.cyber.mil` did not resolve from this machine (DNS failure); `dodcio.defense.gov` returned 403. DoDD 8140.01 and DoDM 8140.03 were read from the Internet Archive's copies of the official esd.whs.mil URLs (`web.archive.org/web/2026id_/…`). Both footnotes cite the official URL and say so. The editor may want to re-check both PDFs on esd.whs.mil for any later change notice.
 - **NICE current-versions page date**: the page reads "CURRENT VERSION: 2.2.0 (April 28, 2025)"; NIST's news release, the v2.2.0 summary of changes and the change log all date v2.2.0 to April 28, 2026. The chapter uses 2026 and doesn't repeat the page's date.
 - **NICE v2.2.0 summary**: its first page says v2.2.0 "replaces v2.0.0 as the authoritative catalog"; the change log calls it a minor update after v2.1.0. The chapter says only that v2.2.0 is current and a minor update.
 - **Counts** in the NICE paragraph were made by parsing NIST's v2.2.0 JSON file (`documents[0].version = "2.2.0"`): 5 category, 42 work_role, 11 competency_area, 962 task, 693 knowledge, 556 skill, 40 opm_code elements; work-role-to-code relationships via `relationships` (type "projection").
@@ -38,7 +37,7 @@ Notes on access:
 | 22 | Components maintained in the NICE Framework Resource Center | NICE | verified | CSRC page planning note (June 26, 2025); current-versions page |
 | 23 | Current components v2.2.0, April 28, 2026 | NICE | verified | NIST news release; v2.2.0 summary; change log (see date note above) |
 | 24 | v2.2.0 counts: 5 categories, 42 work roles, 11 competency areas, 962 tasks, 693 knowledge, 556 skills; five category names | NICE | verified | v2.2.0 JSON, parsed |
-| 25 | v2.0.0, March 5, 2025, major update; removed Cyberspace Effects and Cyberspace Intelligence, maintained in DoD's DCWF; titles 10 and 50; NICE intended for broad use | NICE; DoD contrast | verified | v2.0.0 Summary of Changes PDF; change log |
+| 25 | v2.0.0, March 5, 2025, major update; removed Cyberspace Effects and Cyberspace Intelligence; titles 10 and 50; NICE intended for broad use | NICE | verified | v2.0.0 Summary of Changes PDF; change log |
 | 26 | v2.1.0, December 3, 2025: Cybercrime Investigation revised, AI Security competency updated | NICE | verified | Change log |
 | 27 | v2.2.0: added C-SCRM work role OG-WRL-017; Cryptography (NF-COM-006) and DevSecOps (NF-COM-008) competency areas updated with K&S statements; minor update | NICE | verified | v2.2.0 summary PDF; news release said "added" competency areas — summary PDF says "Updated"; chapter follows the PDF ("published knowledge and skill statements for") |
 | 28 | Current-versions page lists companion resources (CSF crosswalk) against earlier versions | NICE | verified | Current-versions page (crosswalk v2.0.0; translations v1.0.0) |
@@ -49,7 +48,7 @@ Notes on access:
 | 33 | SP 800-50r1: NICE identifies K&S for tasks of work roles for staff needing additional training; NICE as complementary tool for identifying who needs more training; SP 800-16 content moved into SP 800-50r1 or SP 800-181r1 | Work roles | verified | SP 800-50r1 PDF, Introduction and §1.6 |
 | 34 | The Act: Title III of Division N, Pub. L. 114-113, December 18, 2015, 129 Stat. 2975–2977; 5 U.S.C. 301 note | The Act | verified | govinfo PLAW-114publ113 HTML; Cornell 5 U.S.C. 301 note |
 | 35 | § 303(a) identify positions "that require the performance of cybersecurity or other cyber-related functions" and assign codes | The Act | verified | Same |
-| 36 | § 303(b)(1)(A) OPM with NIST, 180 days; (B) civilian procedures, 9 months; (C) DoD noncivilian, 18 months | The Act | verified | Same |
+| 36 | § 303(b)(1)(A) OPM with NIST, 180 days; (B) civilian procedures, 9 months | The Act | verified | Same |
 | 37 | § 303(b)(1)(D) baseline report: % holding appropriate certifications; readiness of others; mitigation strategy | The Act; what the rules don't require | verified | Same |
 | 38 | § 303(b)(1)(E) agency procedures within 3 months; (b)(2) assignment within 1 year | The Act | verified | Same |
 | 39 | § 304 critical need annually "through 2022"; OPM guidance on acute and emerging shortages | The Act | verified | Same; Cornell note shows the text as amended by Pub. L. 116-283 § 9401(g)(4)(A) still reads "through 2022" |
@@ -63,10 +62,7 @@ Notes on access:
 | 47 | No civilian source in the chapter requires a particular certification; the Act asked for a percentage report | What the rules don't require | verified (scoped) | § 303(b)(1)(D); scoped to "the civilian sources in this chapter" — a negative claim limited to what was read |
 | 48 | Only "annual" in these sources is 930.301's awareness floor | Same | verified (scoped) | 930.301(a)(1), (c); SP 800-53 frequencies are organization-defined (Book 14 Ch09 claim 20) |
 | 49 | SP 800-181r1 competency examples "in part, all together, or not at all" | Same | verified | SP 800-181r1 §3.3 |
-| 50 | DoDD 8140.01 effective October 5, 2020; implements §§ 303–304 of the Act; DCWF authoritative reference and foundation for baseline qualifications | DoD contrast | verified | DoDD 8140.01 PDF (Internet Archive copy of official URL) |
-| 51 | DoDM 8140.03 effective February 15, 2023; applies to DoD components and personnel in DCWF-coded positions incl. service members, civilians, "personnel who provide contracted services"; contractors fully qualified; incorporates and cancels DoD 8570.01-M | DoD contrast | verified | DoDM 8140.03 PDF (Internet Archive copy), cover, §§1.1–1.2 |
-| 52 | DoDM 8140.03 model: foundational (one of education, training, personnel certification; experience within limits) + residential; CPD ≥ 20 hours/year; basic/intermediate/advanced proficiency, no connection to rank or grade | DoD contrast | verified | DoDM 8140.03 §3.2, §3.3 |
-| 53 | Civilian sources set no per-role qualification standard; borrow DoD's idea as design; don't cite 8140 as a civilian requirement | DoD contrast | restated-as-design (scoped) | — |
+| 53 | Civilian sources set no per-role qualification standard; define "qualified" per role as program design | What the rules don't require | restated-as-design (scoped) | — |
 | 54 | Owners table (agency head, CIO, CHCO, SAISO, SAOP, HR/CIO staff/managers, OPM, NIST) | Who owns which part | verified | Footnoted per row |
 
 ## Carry-forward ledger

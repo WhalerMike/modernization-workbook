@@ -13,11 +13,11 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Four assignment types; keep zero permanently active assignments except the emergency accounts | What the inventory has to hold; PA-INV-01 | verified | Learn, Plan a PIM deployment |
-| 2 | roleAssignmentScheduleInstances returns active assignments made through PIM or directly; `RoleAssignmentSchedule.Read.Directory`; L4 and L5; Global Reader among read roles | Table; reader; Verified facts | verified | Learn, List roleAssignmentScheduleInstances |
+| 2 | roleAssignmentScheduleInstances returns active assignments made through PIM or directly; `RoleAssignmentSchedule.Read.Directory`; Global Reader among read roles | Table; reader; Verified facts | verified | Learn, List roleAssignmentScheduleInstances |
 | 3 | `assignmentType` Assigned or Activated; `memberType` Inherited, Direct or Group; `$expand` of principal supported | Table; the rows | verified | Learn, unifiedRoleAssignmentScheduleInstance |
-| 4 | roleEligibilitySchedules: `RoleEligibilitySchedule.Read.Directory`; L4 and L5; `scheduleInfo.expiration` | Table; Verified facts | verified | Learn, List roleEligibilitySchedules |
-| 5 | roleDefinitions: `RoleManagement.Read.Directory`; Directory Readers, Global Reader, Privileged Role Administrator; L4 and L5 | Table; Verified facts | verified | Learn, List roleDefinitions |
-| 6 | List unifiedRoleAssignments: `RoleManagement.Read.Directory`; L4 and L5 | Sample section; Verified facts | verified | Learn, List unifiedRoleAssignments |
+| 4 | roleEligibilitySchedules: `RoleEligibilitySchedule.Read.Directory`; `scheduleInfo.expiration` | Table; Verified facts | verified | Learn, List roleEligibilitySchedules |
+| 5 | roleDefinitions: `RoleManagement.Read.Directory`; Directory Readers, Global Reader, Privileged Role Administrator | Table; Verified facts | verified | Learn, List roleDefinitions |
+| 6 | List unifiedRoleAssignments: `RoleManagement.Read.Directory` | Sample section; Verified facts | verified | Learn, List unifiedRoleAssignments |
 | 7 | Group members: `GroupMember.ReadBasic.All`; inaccessible member types return `id` and `@odata.type` only; `User.ReadBasic.All` for user basic properties | Reader; PA-INV-09 | verified | Learn, List group members; permissions overview |
 | 8 | Privileged label is preview; listing through beta | What the inventory has to hold; Verified facts | verified | Learn, Privileged roles and permissions (preview) |
 | 9 | Global Administrators fewer than five; groups recommended for role assignments | PA-INV-02, PA-INV-04 | verified | Learn, Best practices for Microsoft Entra roles |
@@ -26,8 +26,8 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 12 | Azure privileged administrator roles and IDs; Reader `*/read` | Tiers; reader; `config/tiers.json` | verified | Learn, Azure built-in roles |
 | 13 | Maximum of three subscription owners | PA-INV-08 | verified | Learn, Best practices for Azure RBAC |
 | 14 | Elevated Global Administrator gets User Access Administrator on all subscriptions | PA-INV-07 | verified | Learn, Azure roles, Microsoft Entra roles, and classic subscription administrator roles |
-| 15 | Entra ID P1/P2 for GCC hosted in Azure commercial; Entra ID Governance in GCC, GCC High, DoD | Which cloud; Verified facts | verified | Learn, EMS US Government service description; Microsoft Entra feature availability |
-| 16 | Graph hosts per cloud; Azure Government Resource Manager host; paging; beta policy | Which cloud; gap table | carried forward from the first workbook's Chapter 02 (read October 30, 2026) | Learn pages cited there |
+| 15 | Entra ID P1/P2 for GCC hosted in Azure commercial; Entra ID Governance in GCC | Which cloud; Verified facts | verified | Learn, EMS US Government service description; Microsoft Entra feature availability |
+| 16 | Graph hosts per cloud; paging; beta policy | Which cloud; gap table | carried forward from the first workbook's Chapter 02 (read October 30, 2026) | Learn pages cited there |
 | 17 | Learn's page: admin center, PowerShell and Graph API samples; all-roles loop; bulk download up to 1 hour with limits | Sample section; Lab 2 | verified in the pinned page source | pinned `view-assignments.md` |
 | 18 | Sample behavior: active only, one call per role, no `-All`/`-PageSize`, group not expanded, IDs only, `Connect-MgGraph` with no environment or scopes, transitive on beta on `graph.microsoft.com`, no Azure | Gap table | verified by running the pinned samples against stand-ins; pinned in `MicrosoftSamples.Tests.ps1` | local run |
 | 19 | Whether the cmdlet returns every page without `-All` | Verified facts; gap table | open (research gaps, row 1) | Learn, Get-MgRoleManagementDirectoryRoleAssignment (excerpt) |
@@ -37,7 +37,6 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 23 | Lab 2 behavior (admin center CSV contains every active row; expanded principal carries a type; Azure schedules appear once) | Lab 2 | not run against a tenant; rows 2 and 3 of research-gaps.md | — |
 | 24 | `Get-MgRoleManagementDirectoryRoleAssignment` has `-All` ("List all pages", default off) and `-PageSize` | Gap table; Verified facts paragraph | updated October 31, 2026: the full reference page shows `-All`, which the October 30 excerpt didn't; row 19's question narrowed (what a call without `-All` returns is inferred from the default, not stated) | Learn, Get-MgRoleManagementDirectoryRoleAssignment, October 31, 2026 |
 | 25 | List group members on v1.0 doesn't return service principal members (known issue); workarounds are beta or `$expand=members`, and `$expand` on directory-object relationships returns at most 20 objects with no next link | Verified facts paragraph and table; Dangers | updated October 31, 2026: new claim; the example's v1.0 member read misses service principal members of a role-assignable group, so the "never drops a member" guard doesn't cover them | Learn, List group members; Known issues in Microsoft Graph, October 31, 2026 |
-| 26 | List group members available in US Government L4 and L5 | Verified facts | updated October 31, 2026: the national cloud table was read; the row said "Not read for this chapter" | Learn, List group members, October 31, 2026 |
 
 ## Carry-forward ledger
 

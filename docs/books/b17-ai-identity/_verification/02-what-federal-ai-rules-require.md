@@ -15,7 +15,7 @@ Manual checks: the NSA/CISA *AI Data Security* information sheet PDF on media.de
 | 5 | M-26-04 dated Dec 11, 2025; new solicitations; existing contracts by next option; policies by March 11, 2026; minimum vendor documentation; sunsets two years after issuance | M-26-04 section | verified | M-26-04 |
 | 6 | Source: M-26-04 "self-sunsets on 11 December 2027" | M-26-04 section | verified (two years after Dec 11, 2025, unless OMB provides otherwise) | M-26-04 (d) |
 | 7 | M-26-04 footnote 1 cites "Executive Order 14139" for the Woke AI order | — | not carried; noted: typo in the memo, the order is EO 14319 (Federal Register) | M-26-04; FR |
-| 8 | EO 14409 (June 2, 2026): CNSS and War prioritize cyber defense; CISA BODs and guidance; clearinghouse; voluntary frontier-model framework, up to 30 days' access; no licensing requirement | 2026 orders | verified | EO 14409, 91 FR 34565 |
+| 8 | EO 14409 (June 2, 2026): CNSS prioritizes cyber defense of national security systems; CISA BODs and guidance; clearinghouse; voluntary frontier-model framework, up to 30 days' access; no licensing requirement | 2026 orders | verified | EO 14409, 91 FR 34565 |
 | 9 | BOD 26-04 (June 10, 2026) cites EO 14409 among priorities | 2026 orders | verified | CISA BOD 26-04 page |
 | 10 | EO 14434 (Sept 29, 2026): use "Super Intelligence"/"SI" in non-statutory documents; doesn't alter previous documents; defines SI by the statutory AI definition | 2026 orders | verified | EO 14434, 91 FR 63129 |
 | 11 | NIST renamed COSAiS to COSIS on Oct 20, 2026; CISA AI pages now use SI | 2026 orders; NIST | verified | CSRC project page; CISA AI page |
@@ -58,7 +58,7 @@ Manual checks: the NSA/CISA *AI Data Security* information sheet PDF on media.de
 | 48 | Two decisions (M-25-21 risk acceptance and ATO) tied to one identity record | No AI-specific ATO | M-25-21 parts verified; tying record restated-as-design | M-25-21 fn 21, 22, 29; §4(b)(ii)(G) |
 | 49 | `have_ato` = No on a deployed use case is a finding against agency policy, not M-25-21 | No AI-specific ATO | restated-as-design (carried from source; consistent with Ch03) | Whitepaper |
 | 50 | Rules-as-identity-obligations table | Reading the rules | restated-as-design | — |
-| 51 | DoD doesn't inventory individual use cases; IC outside practices; NSS outside both memos | Honest limits | verified | M-25-21 Consolidated Table notes and §1(c), §4; M-25-22 §2(d) |
+| 51 | IC outside practices; NSS outside both memos | Honest limits | verified | M-25-21 Consolidated Table notes and §1(c), §4; M-25-22 §2(d) |
 
 ## Carry-forward ledger
 

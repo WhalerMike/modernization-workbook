@@ -93,12 +93,12 @@ Run on this book's HR fixture (19 rows, Lab 1 below), CSV2SCIM sends all 19. Tha
 | Future hires | Sent active | Sent disabled until the hire date ([Book 03, Appendix C](../b03-hr-identity/appendix-c-acceptance-and-cutover.md)) | An account works before day one |
 | Mass change | No limit | `max_disables_per_run` holds the run | One bad extract disables everyone |
 | Pacing and budget | No pacing of its own; relies on the Graph SDK's retry handling | 40 calls in any 5 seconds, a daily call budget, `Retry-After`, stop on first failure | Throttling, and the tenant's daily quota |
-| Clouds | `/bulkUpload` and the schema update are hard-coded to `https://graph.microsoft.com/beta`, and sign-in names no cloud | The endpoint must be one of the three Graph hosts; v1.0 or beta | Works in GCC (worldwide endpoint); can't reach GCC High or DoD as written[^c01-deployments] |
+| Clouds | `/bulkUpload` and the schema update are hard-coded to `https://graph.microsoft.com/beta`, and sign-in names no cloud | The endpoint must be on the Graph host allow-list; v1.0 or beta | Works in GCC, which uses the worldwide endpoint[^c01-deployments] |
 | Least privilege | Delegated sign-in asks for `Application.ReadWrite.All`, `AuditLog.Read.All` and `SynchronizationData-User.Upload` | One permission to send; a separate log reader | `Application.ReadWrite.All` can change any app in the tenant |
 | Repeatability | Each operation's `bulkId` is a new random GUID | `bulkId` is the person key, so the same input gives the same batch hash | Without that, a batch can't be traced to its inputs |
 | Evidence | Console output | `validation-report.json`, `quarantine.json`, `provenance.json`, `apply-results.json` | The ISSO needs records, not a screen |
 
-*Design guidance:* use CSV2SCIM where it is strong and the tenant is worldwide or GCC: validating a mapping file, extending the provisioning app's schema with `-UpdateSchema`, and reading cycle logs while you test. Use the hardened client for production sends, and everywhere in GCC High and DoD. If you would rather extend CSV2SCIM itself, the table is the list of changes to make; contribute them upstream through Microsoft's repository, as Learn invites.[^c01-csv2scim]
+*Design guidance:* use CSV2SCIM where it is strong and the tenant is worldwide or GCC: validating a mapping file, extending the provisioning app's schema with `-UpdateSchema`, and reading cycle logs while you test. Use the hardened client for production sends. If you would rather extend CSV2SCIM itself, the table is the list of changes to make; contribute them upstream through Microsoft's repository, as Learn invites.[^c01-csv2scim]
 
 ## The code: what `examples/hcm-entra` adds
 
@@ -415,7 +415,7 @@ unset HCM_ENTRA_BEARER_TOKEN
        -TenantId <tenant-id> -ServicePrincipalId <provisioning-app-object-id> -UpdateSchema
    ```
 
-   It adds every extract column to the app's attribute list. Then map the attributes you need in the admin center. In GCC High or DoD, add the attributes in the admin center instead: the sample can't reach those clouds as written.
+   It adds every extract column to the app's attribute list. Then map the attributes you need in the admin center.
 3. **Grant the least privilege to the sender.** Use a managed identity or an app with a certificate, never a secret. The least-privileged application permission is `SynchronizationData-User.Upload.OwnedBy` when the app owns the provisioning service principal; otherwise `SynchronizationData-User.Upload`.[^c01-bulkupload] Don't give the production sender CSV2SCIM's sign-in scopes. For CSV2SCIM's certificate flow, Learn adds `Application.Read.All` and `Synchronization.Read.All` so the script can look up the job;[^c01-csv2scim] keep that identity for testing.
 4. **Start the job and set its safety nets.** Start the job, set the notification email, and turn on accidental-deletions prevention.
 5. **Send five records with the hardened client.** The commands put the endpoint in `config/settings.json`, the token in `HCM_ENTRA_BEARER_TOKEN`, write the fixture's first five rows (all valid) to `five.csv`, and send them with `--apply`:
@@ -451,12 +451,12 @@ unset HCM_ENTRA_BEARER_TOKEN
 
 ## Verified facts
 
-| Call | Endpoint | Least-privileged permission | US Government clouds | Stage |
+| Call | Endpoint | Least-privileged permission | GCC | Stage |
 |---|---|---|---|---|
-| Send a batch | `POST /servicePrincipals/{id}/synchronization/jobs/{jobId}/bulkUpload`, `Content-Type: application/scim+json` | Application: `SynchronizationData-User.Upload.OwnedBy`; delegated: `SynchronizationData-User.Upload` with User Administrator[^c01-bulkupload] | API-driven inbound provisioning is listed as available for Azure Government tenants[^c01-availability] | v1.0 |
-| Read results | `GET /auditLogs/provisioning` with `$filter` on `jobId` | `AuditLog.Read.All` and `Directory.Read.All`; delegated callers also need a role such as Reports Reader or Global Reader[^c01-provlogs] | Global, US Government L4 and L5[^c01-provlogs] | v1.0 |
+| Send a batch | `POST /servicePrincipals/{id}/synchronization/jobs/{jobId}/bulkUpload`, `Content-Type: application/scim+json` | Application: `SynchronizationData-User.Upload.OwnedBy`; delegated: `SynchronizationData-User.Upload` with User Administrator[^c01-bulkupload] | Available: GCC uses the worldwide service[^c01-deployments] | v1.0 |
+| Read results | `GET /auditLogs/provisioning` with `$filter` on `jobId` | `AuditLog.Read.All` and `Directory.Read.All`; delegated callers also need a role such as Reports Reader or Global Reader[^c01-provlogs] | Available: GCC uses the worldwide service[^c01-provlogs] | v1.0 |
 | CSV2SCIM, certificate flow | the script's own sign-in | `Application.Read.All` and `Synchronization.Read.All` added to the app, to look up the provisioning job[^c01-csv2scim] | worldwide endpoint only, as written[^c01-csv2scim-code] | sample |
-| Graph host | `graph.microsoft.com` (worldwide and Microsoft 365 GCC), `graph.microsoft.us` (GCC High), `dod-graph.microsoft.us` (DoD); token authority `login.microsoftonline.us` for the US Government clouds | — | Tokens from one cloud don't work in another[^c01-deployments] | — |
+| Graph host | `graph.microsoft.com` (worldwide and Microsoft 365 GCC); token authority `login.microsoftonline.com` | — | GCC uses the worldwide endpoints[^c01-deployments] | — |
 
 Limits the hardened client enforces: at most 50 operations a request;[^c01-bulkupload] 40 calls in any 5 seconds (the stricter of Learn's two statements); 2,000 or 6,000 calls in 24 hours by license;[^c01-concepts] `Retry-After` on `429` and `503`.[^c01-throttling]
 
@@ -495,7 +495,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 | Sending a sample's output to production unchanged | Pending workers, duplicates and blank keys reach the directory | The hardened client for production sends; the baseline tests show what the sample doesn't check |
 | A sample that changes under you | Labs and behavior drift without anyone deciding | The pinned copy, its hash test, and the weekly upstream watch |
 | Over-broad sign-in scopes | `Application.ReadWrite.All` on an identity that only needs to upload | One permission for the sender; the sample's identity kept to the test tenant |
-| Wrong cloud | A GCC High tenant can't be reached, or a token goes to the wrong host | The endpoint allow-list of the three Graph hosts |
+| Wrong cloud | A token goes to the wrong host | The Graph host allow-list |
 | Partial records | An omitted attribute clears the target when clearing is on (preview)[^c01-concepts] | Every record is built complete |
 | Mass disable from a bad extract | Hundreds of accounts disabled before anyone looks | `max_disables_per_run` holds the run |
 | Treating `202` as success | A record that failed in the job is never followed up | Reconcile against the logs, using the manifest's person keys |
@@ -516,7 +516,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 
 ::: {.callout-tip}
 ## Continue the book
-[Workbook index](index.md) · [Next: Chapter 02 — Graph Clients for the Government Clouds →](02-graph-clients-for-government-clouds.md)
+[Workbook index](index.md) · [Next: Chapter 02 — Graph Clients for GCC →](02-graph-clients-for-government-clouds.md)
 :::
 
 [^c01-csv2scim]: Microsoft Learn, "API-driven inbound provisioning with PowerShell script," <https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-powershell> (accessed Oct 30, 2026).
@@ -525,7 +525,6 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c01-concepts]: Microsoft Learn, "API-driven inbound provisioning concepts," <https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-concepts> (accessed Oct 30, 2026).
 [^c01-issues]: Microsoft Learn, "Troubleshoot inbound provisioning API issues," <https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-issues> (accessed Oct 30, 2026).
 [^c01-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals," <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> (accessed Oct 30, 2026).
-[^c01-availability]: Microsoft Learn, "Microsoft Entra feature availability," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
 [^c01-provlogs]: Microsoft Learn, "List provisioningObjectSummary," <https://learn.microsoft.com/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^c01-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
 [^c01-throttling]: Microsoft Learn, "Microsoft Graph throttling guidance," <https://learn.microsoft.com/graph/throttling> (accessed Oct 30, 2026).

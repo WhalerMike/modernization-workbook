@@ -6,7 +6,7 @@ Checked October 21, 2026 by writer W2. Sources: `docs/operational-guides/ai-iden
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | M-25-21: annual inventory, submit to OMB, post publicly; DoD and IC excepted; OMB to issue instructions | Opening | verified | M-25-21 §3(b)(v) |
+| 1 | M-25-21: annual inventory, submit to OMB, post publicly; covered agencies; OMB to issue instructions | Opening | verified | M-25-21 §3(b)(v) |
 | 2 | 2025 guidance cites Advancing American AI Act, EO 13960, M-25-21 | What the inventory is | verified | OMB 2025 guidance, intro |
 | 3 | Individually reported: all stages, standalone or embedded, agency or third party; err toward inclusion | What the inventory is | verified | Guidance §1(a)(ii) |
 | 4 | Consolidated COTS reporting: 20 tasks; examples; high-impact not eligible | What the inventory is | verified | Guidance §1(a)(i); repository README |

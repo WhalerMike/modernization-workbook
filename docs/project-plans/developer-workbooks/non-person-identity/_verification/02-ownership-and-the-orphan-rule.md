@@ -25,9 +25,9 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 11 | `Disable-ADAccount` disables a user, computer or service account; not against a read-only DC | The rule; Verified facts | verified | Learn, Disable-ADAccount |
 | 12 | The tutorial's ownerless query, `ConsistencyLevel: eventual`; owner assignment to app and service principal; free-text `serviceManagementReference`; the `Application.ReadWrite.All` label | Sample section; gap table | verified in the pinned source and by sending the samples to the fake | pinned tutorial |
 | 13 | List applications has the same `owners/$count` query | Sample section; Verified facts | verified | Learn, List applications |
-| 14 | List owners: `Application.Read.All`; L4 and L5 | Which cloud; Verified facts | verified | Learn, List owners of an application |
-| 15 | Add owner: delegated `Application.ReadWrite.All` and `Directory.Read.All`; `OwnedBy` not sufficient; admin roles; L4 and L5 | Write path; Verified facts | verified; table and note differ (row 14) | Learn, Add owner |
-| 16 | Update servicePrincipal: delegated `Application.ReadWrite.All`, application `Application.ReadWrite.OwnedBy`; L4 and L5 | Write path; Verified facts | verified | Learn, Update servicePrincipal |
+| 14 | List owners: `Application.Read.All` | Which cloud; Verified facts | verified | Learn, List owners of an application |
+| 15 | Add owner: delegated `Application.ReadWrite.All` and `Directory.Read.All`; `OwnedBy` not sufficient; admin roles | Write path; Verified facts | verified; table and note differ (row 14) | Learn, Add owner |
+| 16 | Update servicePrincipal: delegated `Application.ReadWrite.All`, application `Application.ReadWrite.OwnedBy` | Write path; Verified facts | verified | Learn, Update servicePrincipal |
 | 17 | Get a user: application `User.Read.All`; non-default properties need `$select`; encode `#` as `%23` | The check; Verified facts | verified | Learn, Get a user; Get-MgUser |
 | 18 | `Application.ReadWrite.All` lets an app act as other entities | Write path | verified | Learn, Microsoft Graph permissions reference |
 | 19 | Sample behavior: noise in the ownerless list; service principal owners, not registration owners; guests and service principals counted; any directory object added; hard-coded host; free-text reference; no disable step | Gap table | verified by sending the pinned samples to the fake; pinned in `MicrosoftSamples.Tests.ps1` | local run |

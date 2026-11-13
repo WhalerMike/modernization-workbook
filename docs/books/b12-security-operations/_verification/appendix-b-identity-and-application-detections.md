@@ -29,12 +29,10 @@ New page, written November 11, 2026 for the Zero Trust Assessment closure update
 | 21 | Order of owner and application in `TargetResources` for owner events | DET-40 | unverifiable on Learn; the page says to confirm on the synthetic test event | — | Nov 11, 2026 |
 | 22 | Workload risk: single-tenant, non-Microsoft SaaS and multitenant apps; not managed identities; full detail with Workload Identities Premium, limited detail without | Prerequisites; DET-44 | verified | Learn, Securing workload identities | Nov 11, 2026 |
 | 23 | Sample active service principal risk query (`arg_max(LastUpdatedDateTime, *) by RequestId, ServicePrincipalId`, `RiskState == "atRisk"`) | DET-44 | verified (lookback added) | Learn, Queries for the AADServicePrincipalRiskEvents table | Nov 11, 2026 |
-| 24 | Sentinel availability: Entra ID and ID Protection connectors, scheduled and NRT rules, automation rules, watchlists GA in commercial and Azure Government; Defender portal GA features in GCC, GCC High, DoD; preview commercial only | Government-cloud availability | verified | Learn, Microsoft Sentinel feature support | Nov 11, 2026 |
+| 24 | Sentinel availability: Entra ID and ID Protection connectors, scheduled and NRT rules, automation rules, watchlists GA in commercial and GCC; Defender portal GA features in GCC; preview commercial only | GCC availability | verified | Learn, Microsoft Sentinel feature support | Nov 11, 2026 |
 | 25 | Entra in Azure for US Government: ID Protection detections available except Microsoft Entra threat intelligence; Workload Identities Premium available | Government-cloud availability | verified | Learn, Microsoft Entra feature availability | Nov 11, 2026 |
-| 26 | Workload ID free trial unavailable in Azure Government | Government-cloud availability | verified | Learn, Workload ID FAQ | Nov 11, 2026 |
-| 27 | Azure Monitor log search alert availability in Azure Government | Government-cloud availability | unverifiable on the pages read; written "not yet specified" | — | Nov 11, 2026 |
 | 28 | `_GetWatchlist` with `SearchKey` | Watchlists | verified | Learn, Build queries or detection rules with watchlists | Nov 11, 2026 |
-| 29 | `Connect-MgGraph -Environment` values Global, USGov, USGovDoD | Synthetic tests | verified | Learn, Connect-MgGraph | Nov 11, 2026 |
+| 29 | `Connect-MgGraph -Environment` value Global for GCC | Synthetic tests | verified | Learn, Connect-MgGraph | Nov 11, 2026 |
 | 30 | `Add-MgApplicationPassword -ApplicationId <object id> -PasswordCredential` | Synthetic tests | verified | Learn, Add-MgApplicationPassword | Nov 11, 2026 |
 | 31 | `New-MgApplicationOwnerByRef -OdataId`, `Remove-MgApplicationOwnerByRef -DirectoryObjectId`, `Update-MgApplication -Web`, `New-/Remove-MgUserAuthenticationPhoneMethod`, `az login --use-device-code` | Synthetic tests | restated-as-design (standard Graph PowerShell and Azure CLI usage; not individually read on Nov 11) | — | Nov 11, 2026 |
 | 32 | Tables on the Auxiliary plan or data lake tier don't raise alerts | Prerequisites | verified (as Chapter 12 records) | Chapter 12 | Nov 11, 2026 |
@@ -43,10 +41,6 @@ New page, written November 11, 2026 for the Zero Trust Assessment closure update
 ## Learn pages read for this page (Nov 11, 2026)
 
 Manage emergency access accounts; Security operations for privileged accounts; Security operations for applications; Security operations for infrastructure; Security operations for consumer accounts (privileged table only); Microsoft Entra audit log categories and activities; Reporting options for password management; Default user permissions; Configure Microsoft Entra for Zero Trust: Protect tenants; Monitor changes to federation configuration; Conditional Access: Authentication flows; Restrict device code flow for Teams devices; SigninLogs; AADNonInteractiveUserSignInLogs; How To: Export risk data; AADRiskyServicePrincipals; AADServicePrincipalRiskEvents and its sample queries; Securing workload identities; Workload ID FAQ; riskyServicePrincipal resource type; View activity logs of application permissions; Microsoft Entra feature availability; Cloud feature availability for US Government customers; Microsoft Sentinel feature support; Build queries with watchlists; Connect-MgGraph; Add-MgApplicationPassword; Remove-MgServicePrincipalOwnerByRef.
-
-## Not yet specified by Learn
-
-- Azure Monitor log search alerts in Azure Government (Learn's emergency access page doesn't say; Sentinel rules are the program's path and are GA there).
 
 ## Zero Trust closure, Phase 4, November 11, 2026
 

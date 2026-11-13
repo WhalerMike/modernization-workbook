@@ -159,15 +159,7 @@ The steps are Microsoft's deployment plan, with the program's choices marked.
 
 1. **Inventory what the old proxy publishes.** For each application record the service type, platform, internal URL, current external publishing, certificate, authentication type, the connector group it will use and the users and groups who need it; Microsoft's plan lists these fields and offers an inventory spreadsheet.[^c03-ap-plan] The rows join the evidence map of [Chapter 02](02-triaging-the-portfolio.md#recording-dependencies-as-an-evidence-map).
 2. **Build connector groups before the first application.** At least two connectors per group, three for servicing headroom; deploy connectors in the same network segment as the applications; allow outbound TCP 443 and 80 and don't inspect or terminate the connectors' TLS to the service.[^c03-ap-plan] Microsoft recommends four CPU cores and 8 GiB of memory per connector, with sustained use under 70 percent.[^c03-ap-connectors] Connectors need a domain-joined server only for Kerberos single sign-on, and their services must keep their default accounts (Network Service for the connector, Local System for the updater).[^c03-ap-connectors][^c03-ap-faq] The program's design puts connectors on Windows Server 2019 or later, the workbook's server baseline.
-3. **Install and register.** Installation needs local administrator rights on the server and at least the Application Administrator role to register; Cloud Application Administrator can't manage application proxy settings.[^c03-ap-plan] In GCC High or DoD the tenant is in Azure Government, and the installer takes an extra parameter and different URLs (`*.msappproxy.us`, `*.servicebus.usgovcloudapi.net`):[^c03-ap-govcloud]
-
-    ```powershell
-    # On the connector server, from the folder that holds the downloaded installer.
-    # Commercial and GCC tenants: run the installer without a parameter.
-    # GCC High and DoD (Azure Government):
-    .\MicrosoftEntraPrivateNetworkConnectorInstaller.exe ENVIRONMENTNAME="AzureUSGovernment"
-    ```
-
+3. **Install and register.** Installation needs local administrator rights on the server and at least the Application Administrator role to register; Cloud Application Administrator can't manage application proxy settings.[^c03-ap-plan]
 4. **Publish and test in increments.** Microsoft's order is to confirm the application works with preauthentication off, then turn on Microsoft Entra ID preauthentication and assign users and groups, then add single sign-on, then Conditional Access, testing after each step.[^c03-ap-plan] The program's design allows passthrough only on a pilot application that isn't reachable by production users: Conditional Access can't apply to passthrough, because no Entra authentication happens.[^c03-ap-faq] New application proxy apps default to *Assignment required = Yes*;[^c03-ap-faq] the program leaves it there.
 5. **Keep one URL.** Microsoft's advice is to publish under a verified custom domain so the internal and external URLs are identical, which avoids link translation and its cost; it needs a public certificate and a public CNAME record, both with lead time.[^c03-ap-plan][^c03-ap-faq]
 6. **Cut over and retire.** Move the public DNS name, watch sign-ins for the application, and remove the application from the old proxy. A WAP server is retired when its last published application has moved and nothing else depends on it.
@@ -178,7 +170,7 @@ Continuous access evaluation (CAE) for application proxy is on by default for ev
 
 ### Guests reaching on-premises applications
 
-Partners invited through B2B collaboration can use published applications. A SAML application published through application proxy needs only an assignment of the guest. An application that uses Integrated Windows Authentication needs more: Kerberos constrained delegation impersonates a user object in Active Directory, so each guest needs a "footprint" account there, created and removed by Microsoft Identity Manager with its Microsoft Graph connector or by Microsoft's B2B sample script, and lifecycle actions on the cloud guest (access reviews, deletion) then carry to the footprint. Microsoft also points out that guests who use on-premises applications may need client access licenses or external connectors.[^c03-ap-b2b] Guests have no on-premises UPN or SAM account name, so the single sign-on identity falls back to the user principal name.[^c03-ap-faq] In Azure Government, B2B collaboration works between Azure Government tenants that support it, and with the commercial cloud only after both tenants enable it in their Microsoft cloud settings.[^c03-ap-b2b-gov] [Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md) covers the partner identity record the footprint account hangs from.
+Partners invited through B2B collaboration can use published applications. A SAML application published through application proxy needs only an assignment of the guest. An application that uses Integrated Windows Authentication needs more: Kerberos constrained delegation impersonates a user object in Active Directory, so each guest needs a "footprint" account there, created and removed by Microsoft Identity Manager with its Microsoft Graph connector or by Microsoft's B2B sample script, and lifecycle actions on the cloud guest (access reviews, deletion) then carry to the footprint. Microsoft also points out that guests who use on-premises applications may need client access licenses or external connectors.[^c03-ap-b2b] Guests have no on-premises UPN or SAM account name, so the single sign-on identity falls back to the user principal name.[^c03-ap-faq] [Book 03, Chapter 15](../b03-hr-identity/15-external-partner-identity.md) covers the partner identity record the footprint account hangs from.
 
 ### Read-only inventory as evidence
 
@@ -190,8 +182,6 @@ Install-Module Microsoft.Graph.Beta.Applications -Scope CurrentUser -MinimumVers
 Import-Module Microsoft.Graph.Beta.Applications
 # Commercial and GCC tenants:
 Connect-MgGraph -Scopes Directory.Read.All -NoWelcome
-# GCC High instead:  Connect-MgGraph -Environment USGov -Scopes Directory.Read.All -NoWelcome
-# DoD instead:       Connect-MgGraph -Environment USGovDoD -Scopes Directory.Read.All -NoWelcome
 
 # 1. Connector groups and their connectors
 Get-MgBetaOnPremisePublishingProfileConnectorGroup -OnPremisesPublishingProfileId "applicationProxy" -All |
@@ -314,20 +304,20 @@ The program's design picks the first of these that works for each application, a
 
 Every path ends with the application behind Entra ID sign-in and Conditional Access; only the adapter differs.
 
-### Availability in the government clouds
+### Availability in GCC {#availability-in-the-government-clouds}
 
-Commercial and GCC tenants use Microsoft Entra ID in the commercial cloud; GCC High and DoD tenants use Microsoft Entra ID in Azure Government.[^c03-ap-pairing]
+Commercial and GCC tenants use Microsoft Entra ID in the commercial cloud.[^c03-ap-pairing]
 
-| Feature | GCC (commercial Entra ID) | GCC High and DoD (Azure Government) |
-|---|---|---|
-| Application proxy, including header-based and Integrated Windows Authentication | Available with the commercial service | Listed as available;[^c03-ap-feature-gov] connector installs with `ENVIRONMENTNAME="AzureUSGovernment"`[^c03-ap-govcloud] |
-| Continuous access evaluation for application proxy | Not yet specified | Not yet specified |
-| B2B guests reaching on-premises applications | Available with B2B collaboration | B2B between Azure Government tenants that support it, or cross-cloud after both tenants enable Microsoft cloud settings[^c03-ap-b2b-gov] |
-| Application proxy PowerShell samples (Microsoft Graph beta) | Worldwide Graph endpoint | Graph `-Environment USGov` or `USGovDoD`; beta availability for these cmdlets not yet specified |
-| Secure hybrid access partnerships (Kerberos, NTLM, LDAP, RDP and SSH) | Available with the commercial service | Listed as available[^c03-ap-feature-gov] |
-| A specific partner product (F5, Datawiza, Silverfort, Cloudflare) | Not yet specified by Microsoft Learn; check the product's own FedRAMP status | Not yet specified by Microsoft Learn; check the product's own FedRAMP status |
+| Feature | GCC (commercial Entra ID) |
+|---|---|
+| Application proxy, including header-based and Integrated Windows Authentication | Available with the commercial service |
+| Continuous access evaluation for application proxy | Not yet specified |
+| B2B guests reaching on-premises applications | Available with B2B collaboration |
+| Application proxy PowerShell samples (Microsoft Graph beta) | Worldwide Graph endpoint |
+| Secure hybrid access partnerships (Kerberos, NTLM, LDAP, RDP and SSH) | Available with the commercial service |
+| A specific partner product (F5, Datawiza, Silverfort, Cloudflare) | Not yet specified by Microsoft Learn; check the product's own FedRAMP status |
 
-: Government-cloud availability for application proxy and secure hybrid access, from Microsoft Learn on November 9, 2026. {.striped .hover}
+: GCC availability for application proxy and secure hybrid access, from Microsoft Learn on November 9, 2026. {.striped .hover}
 
 ## How the dispositions use the architecture
 
@@ -387,15 +377,12 @@ Commercial and GCC tenants use Microsoft Entra ID in the commercial cloud; GCC H
 [^c03-ap-faq]: Microsoft Learn, "Microsoft Entra application proxy frequently asked questions," General, Connector configuration, Application configuration, Integrated Windows authentication, Passthrough preauthentication and AD FS publishing, <https://learn.microsoft.com/entra/identity/app-proxy/application-proxy-faq> (accessed Nov 9, 2026).
 [^c03-ap-adfs-migrate]: Microsoft Learn, "Best practices to migrate applications and authentication to Microsoft Entra ID," Migrate applications (Web Application Proxy; Phase 2, classify apps), <https://learn.microsoft.com/entra/architecture/migration-best-practices> (accessed Nov 9, 2026).
 [^c03-ap-connectors]: Microsoft Learn, "Microsoft Entra private network connectors," Specifications and sizing requirements and Domain joining, <https://learn.microsoft.com/entra/global-secure-access/concept-connectors> (accessed Nov 9, 2026).
-[^c03-ap-govcloud]: Microsoft Learn, "Hybrid identity considerations for the Azure Government cloud," Allow access to URLs and Install the agent for the Azure Government cloud (applies to the private network connector), <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud> (accessed Nov 9, 2026).
 [^c03-ap-cae]: Microsoft Learn, "Learn about Continuous Access Evaluation (CAE) for Application Proxy," <https://learn.microsoft.com/entra/identity/app-proxy/concept-continuous-access-evaluation> (accessed Nov 9, 2026).
 [^c03-ap-b2b]: Microsoft Learn, "Grant Microsoft Entra B2B users access to your on-premises applications," <https://learn.microsoft.com/entra/external-id/hybrid-cloud-to-on-premises> (accessed Nov 9, 2026).
-[^c03-ap-b2b-gov]: Microsoft Learn, "Microsoft Entra B2B in government and national clouds," <https://learn.microsoft.com/entra/external-id/b2b-government-national-clouds> (accessed Nov 9, 2026).
 [^c03-ap-ps]: Microsoft Learn, "Microsoft Entra application proxy PowerShell examples," <https://learn.microsoft.com/entra/identity/app-proxy/application-proxy-powershell-samples> (accessed Nov 9, 2026).
 [^c03-ap-ps-connectors]: Microsoft Learn, "Get all private network connector groups and connectors in the directory," <https://learn.microsoft.com/entra/identity/app-proxy/scripts/powershell-get-all-connectors> (accessed Nov 9, 2026).
 [^c03-ap-ps-extended]: Microsoft Learn, "Get all application proxy apps and list extended information," <https://learn.microsoft.com/entra/identity/app-proxy/scripts/powershell-get-all-app-proxy-apps-extended> (accessed Nov 9, 2026).
-[^c03-ap-feature-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government), Applications access: "Application Proxy for on-premises, header-based, and Integrated Windows Authentication" and "Secure hybrid access partnerships (Kerberos, NTLM, LDAP, RDP, and SSH authentication)," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
-[^c03-ap-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers," Microsoft 365 integration (Office 365 GCC pairs with Microsoft Entra ID in Azure; GCC High and DoD pair with Microsoft Entra ID in Azure Government), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Oct 21, 2026, for Book 01 Appendix B).
+[^c03-ap-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers," Microsoft 365 integration (Office 365 GCC pairs with Microsoft Entra ID in Azure), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Oct 21, 2026, for Book 01 Appendix B).
 [^c03-sha]: Microsoft Learn, "Secure hybrid access: Protect legacy apps with Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/enterprise-apps/secure-hybrid-access> (accessed Nov 9, 2026).
 [^c03-sha-integrations]: Microsoft Learn, "Secure hybrid access with Microsoft Entra integration," introduction and Partnerships, <https://learn.microsoft.com/entra/identity/enterprise-apps/secure-hybrid-access-integrations> (accessed Nov 9, 2026).
 [^c03-sha-f5]: Microsoft Learn, "Integrate F5 BIG-IP with Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/enterprise-apps/f5-integration>; and "Configure F5 BIG-IP Easy Button for Header-based and LDAP SSO," <https://learn.microsoft.com/entra/identity/enterprise-apps/f5-big-ip-ldap-header-easybutton> (accessed Nov 9, 2026).

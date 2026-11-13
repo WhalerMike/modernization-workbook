@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:07.186
+You'll explain what the compliant
+network check denies at authentication,
+
+3
+00:00:07.186 --> 00:00:09.162
+and what it denies in near real time.
+
+4
+00:00:09.162 --> 00:00:11.903
+You'll create the pilot
+policy in report-only,
+
+5
+00:00:11.903 --> 00:00:16.274
+with the emergency access group and
+the Intune applications excluded.
+
+6
+00:00:16.274 --> 00:00:20.360
+You'll list the five failure modes
+and the design response to each,
+
+7
+00:00:20.360 --> 00:00:22.100
+including a service outage.
+
+8
+00:00:22.100 --> 00:00:25.639
+You'll turn on universal tenant
+restrictions after the tenant
+
+9
+00:00:25.639 --> 00:00:29.587
+restrictions version two policy, and
+say which data planes it reaches.
+
+10
+00:00:29.587 --> 00:00:33.000
+And you'll run Learn's four-case
+test and read the block log.
+
+11
+00:00:33.000 --> 00:00:37.639
+You need Module 2, with the Microsoft
+traffic profile and signaling on,
+
+12
+00:00:37.639 --> 00:00:42.438
+and Access and Privilege, appendix C,
+for the tenant restrictions policy.
+
+13
+00:00:42.438 --> 00:00:45.650
+The lab runs in a test
+tenant, never production.

@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.075
+Unit 2 packages the client.
+
+2
+00:00:02.075 --> 00:00:06.440
+Download it from the Global Secure
+Access admin center, put it beside
+
+3
+00:00:06.440 --> 00:00:11.188
+Learn's installation script, and wrap
+both with the Win32 Content Prep Tool.
+
+4
+00:00:11.188 --> 00:00:14.247
+Learn's script sets I P
+version four preferred,
+
+5
+00:00:14.247 --> 00:00:19.238
+runs the installer quietly, and returns
+thirty ten when a restart is needed.
+
+6
+00:00:19.238 --> 00:00:23.638
+Then create the Win32 app in
+Intune with Learn's values.
+
+7
+00:00:23.638 --> 00:00:26.737
+The install command runs the
+script through PowerShell.
+
+8
+00:00:26.737 --> 00:00:32.313
+The uninstall command runs the client with
+uninstall, quiet and no-restart switches.
+
+9
+00:00:32.313 --> 00:00:34.149
+Install behavior is System.
+
+10
+00:00:34.149 --> 00:00:36.737
+The return codes are zero for success,
+
+11
+00:00:36.737 --> 00:00:40.825
+thirty ten for a soft reboot,
+and sixteen eighteen for retry.
+
+12
+00:00:40.825 --> 00:00:45.750
+The detection rule is the client's file,
+by version, at least the packaged version.
+
+13
+00:00:45.750 --> 00:00:48.867
+And the assignment is
+Required, to the pilot group,
+
+14
+00:00:48.867 --> 00:00:51.360
+with the restart grace period enabled.

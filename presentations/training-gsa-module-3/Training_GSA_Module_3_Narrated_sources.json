@@ -1,0 +1,148 @@
+[
+ {
+  "slide": 2,
+  "title": "Why: a stolen token, and a personal tenant",
+  "links": [
+   {
+    "text": "Enable compliant network check with Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-compliant-network-check"
+   },
+   {
+    "text": "Turn on Universal Tenant Restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-universal-tenant-restrictions"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Unit 1: what the compliant network check denies",
+  "links": [
+   {
+    "text": "Enable compliant network check with Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-compliant-network-check"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Unit 2: five failure modes, before you enforce",
+  "links": [
+   {
+    "text": "Enable compliant network check with Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-compliant-network-check"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "Zero Trust: Protect networks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-protect-networks"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 3: universal tenant restrictions",
+  "links": [
+   {
+    "text": "Turn on Universal Tenant Restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-universal-tenant-restrictions"
+   },
+   {
+    "text": "crossTenantAccessSettings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-cross-tenant-access-settings"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Learn's four-case test, and where agencies are",
+  "links": [
+   {
+    "text": "Turn on Universal Tenant Restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-universal-tenant-restrictions"
+   },
+   {
+    "text": "Operate the Microsoft traffic profile",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-operate-microsoft-traffic"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Module 3",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Sources: Module 3 deck",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Enable compliant network check with Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-compliant-network-check"
+   },
+   {
+    "text": "Tutorial: Enable the compliant network check",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tutorial-compliant-network"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "Zero Trust: Protect networks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-protect-networks"
+   },
+   {
+    "text": "Turn on Universal Tenant Restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-universal-tenant-restrictions"
+   },
+   {
+    "text": "crossTenantAccessSettings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-cross-tenant-access-settings"
+   },
+   {
+    "text": "Operate the Microsoft traffic profile",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-operate-microsoft-traffic"
+   },
+   {
+    "text": "tenant restrictions v2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-tenant-restrictions-v2"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   }
+  ]
+ }
+]

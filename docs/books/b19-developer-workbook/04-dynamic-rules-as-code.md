@@ -89,7 +89,7 @@ Running the five samples against the fake tenant shows what they do well and wha
 | Pause all skips a group that is already paused, pauses the rest, and signs in to the cloud chosen with only the scopes needed | — | Kept as the model: the same cloud hosts and the same two phases |
 | Pause all records nothing about what it paused | Afterwards, nobody can tell which groups the incident paused and which were paused before it | `New-DrPauseManifest` records every collection's state before anything changes; `Invoke-DrPause` records what it paused |
 | Resume noncritical turns on every paused group, including one that was paused on purpose before the incident | A group held for review, or frozen while its rule was being fixed, starts moving members again | `Invoke-DrResume` resumes only collections this manifest paused, and refuses any other ID |
-| An answer the cloud prompt doesn't recognize, such as `GCCHigh`, selects the worldwide endpoint | In a GCC High or DoD tenant, the run signs in to the wrong cloud | `Get-DrGraphEndpoint` refuses a cloud name it doesn't know |
+| An answer the cloud prompt doesn't recognize, such as `GCC`, selects the worldwide endpoint without saying so | Right for GCC by accident: a typo isn't caught, and nothing records which cloud the run was meant for | `Get-DrGraphEndpoint` refuses a cloud name it doesn't know |
 | Nothing in the resume scripts enforces a wait | Learn asks for one: 12 hours on the samples page,[^c04-samples] at least 24 in its processing guidance[^c04-processing] | Noncritical resumes wait 24 hours after the pause by default, the stricter of the two |
 | A throttled request is retried once, then counted as failed | In a large tenant some collections stay unpaused; the summary shows the count | The manifest lists every collection, so a second pause run picks up the rest |
 | Interactive only | Fine at 2 a.m. by hand; not testable, not repeatable | `-Apply` to act and a dry run without it; the Graph call is a script block, so the tests use a fake tenant |
@@ -395,7 +395,7 @@ Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud <
 
 <!-- labs:end -->
 
-1. **Sign in to the right cloud with the least you need.** Creating groups needs `Group.ReadWrite.All` delegated (or `Group.Create` for an application) with Groups Administrator.[^c04-newgroup] Reading test results with Graph's evaluator needs only `User.Read.All` (or `Device.Read.All`) when you supply the rule. The action is beta and delegated only. It is listed for the global service, US Government L4 and L5.[^c04-evaluate]
+1. **Sign in to the right cloud with the least you need.** Creating groups needs `Group.ReadWrite.All` delegated (or `Group.Create` for an application) with Groups Administrator.[^c04-newgroup] Reading test results with Graph's evaluator needs only `User.Read.All` (or `Device.Read.All`) when you supply the rule. The action is beta and delegated only. It is listed for the global service, which GCC uses.[^c04-evaluate]
 
    ```powershell
    Connect-MgGraph -Scopes 'Group.ReadWrite.All', 'User.Read.All' -Environment <environment>
@@ -479,7 +479,7 @@ Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud <
 | License | Microsoft Entra ID P1 for each unique user in a dynamic group | [^c04-rules] |
 | Processing time | Usually within a few hours; can exceed 24; `Match`, `Contains` and `memberOf` slow it | [^c04-processing] |
 | `memberOf` | Preview ending November 3, 2026; then stops updating; public cloud only; 500 per tenant | [^c04-memberof] |
-| Evaluate a rule | `POST /beta/groups/evaluateDynamicMembership`; delegated only; `User.Read.All` or `Device.Read.All` with a rule, plus `Group.Read.All` with a group ID; global, US Government L4 and L5 | [^c04-evaluate] |
+| Evaluate a rule | `POST /beta/groups/evaluateDynamicMembership`; delegated only; `User.Read.All` or `Device.Read.All` with a rule, plus `Group.Read.All` with a group ID; global service, which GCC uses | [^c04-evaluate] |
 | Pause and resume | `membershipRuleProcessingState` `On` or `Paused`; Groups Administrator for groups, Privileged Role Administrator for administrative units | [^c04-samples] [^c04-group] |
 | Waiting before resuming | At least 12 hours (samples page) or at least 24 hours (processing guidance) | [^c04-samples] [^c04-processing] |
 | Create a dynamic group | `Group.ReadWrite.All` delegated, `Group.Create` application | [^c04-newgroup] |
@@ -519,7 +519,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 | An empty slot under `-ne` | A worker with no type passes "everyone but contractors" | DR-10, and the `-ne null` clause where an empty slot must not qualify |
 | `memberOf` after November 3, 2026 | The group stops updating and holds stale access | DR-06 in the pull request; VK-DG-06 live |
 | Resuming everything after an incident | Groups paused on purpose start moving members again | The pause manifest; resume only what it paused |
-| The wrong cloud | A GCC High tenant is signed in to as worldwide | `Get-DrGraphEndpoint` refuses unknown names |
+| The wrong cloud | A run signs in to a cloud nobody chose | `Get-DrGraphEndpoint` refuses unknown names |
 | Resuming too soon | The backlog returns | 24-hour default for noncritical resumes; critical ones by name |
 | Trusting the offline evaluator | A difference from the engine goes unnoticed | Lab 2 step 3 compares it with Graph's evaluator for every test |
 | Agents' user accounts in access groups | User rules include them by default | Open: add the clause when Learn names the property; review membership of access groups until then |
