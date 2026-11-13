@@ -146,6 +146,48 @@ The assessment should flag two conditions:
 - **A functional level below Windows Server 2016.** A Windows Server 2025 domain controller can join only a domain at the Windows Server 2016 functional level or higher, so a lower level blocks the domain controller refresh before any cloud work starts.[^c08-fl-upgrade]
 - **Mixed domain levels across the forest.** If every domain controller in the forest runs Windows Server 2025, raising the forest level to Windows Server 2025 raises every domain with it.[^c08-raise-fl]
 
+#### The 32k database page decision
+
+The 32k page size lets a multivalued attribute hold about 2.6 times as many values, around 3,200. It's an optional feature you turn on for the whole forest, and it can't be turned off.[^c08-32k] Its prerequisites are a Windows Server 2025 functional level in every domain and the forest, and a 32k-capable database on every domain controller. A domain controller upgraded in place keeps its 8k database, so it has to be replaced or promoted again first.[^c08-32k] Microsoft's warning is the one to plan around: once the feature is on, any 8k-page backup taken before it is unusable unless you perform a complete authoritative forest recovery.[^c08-32k]
+
+The assessment records each domain controller's page size, which `msDS-JetDBPageSize` on its NTDS Settings object holds: 32768 is 32k-capable, 8192 is 8k, and empty means Windows Server 2022 or earlier.[^c08-32k-enable]
+
+```powershell
+$config = (Get-ADRootDSE).configurationNamingContext
+Get-ADObject -LDAPFilter '(objectClass=nTDSDSA)' -SearchBase $config -Properties msDS-JetDBPageSize |
+    Select-Object DistinguishedName, msDS-JetDBPageSize
+```
+
+Treat it as a decision for the forest owner, not a step in the domain controller refresh. Don't turn it on until a forest needs the larger attribute limits, the backup product has been tested with 32k databases, and a fresh full backup exists of every global catalog and operations master.[^c08-32k-enable]
+
+### Running old and new domain controllers side by side {#running-old-and-new-domain-controllers-side-by-side}
+
+A Windows Server 2025 domain controller can run beside domain controllers on Windows Server 2019 and 2022 for as long as the forest needs. The functional level stays at Windows Server 2016 until the last older domain controller is gone.[^c08-fl] The program doesn't plan to raise it before then, and nothing in this workbook needs the Windows Server 2025 level. A dMSA needs a reachable Windows Server 2025 domain controller, not the level.[^c08-dmsa-faq]
+
+The two generations don't behave the same, so a client's result can depend on which domain controller answers it:
+
+- **RC4.** A Windows Server 2025 domain controller issues no RC4 ticket-granting tickets, while an older one still can for an account configured that way.[^c08-ws2025] A service account with no AES keys can work against one domain controller and fail against the next, which looks like an intermittent fault. Fix the accounts first, using the events in [Chapter 03](03-ad-and-entra-side-by-side.md#where-the-old-protocols-stand-in-2026).
+- **LDAP signing.** A domain controller upgraded in place to Windows Server 2025 with no signing policy set starts requiring LDAP signing.[^c08-ldap-signing] Set the policy explicitly in the domain controllers' Group Policy before the first one.
+- **Provisioning and password tools.** Windows Server 2025 domain controllers allow confidential attributes only over encrypted connections, block the legacy remote password-change methods by default, and refuse a computer account's default password.[^c08-ws2025] An old provisioning or password tool may fail only when it reaches a Windows Server 2025 domain controller. Test each one against it.
+- **Trusts.** Test each trust against a Windows Server 2025 domain controller, and turn on AES for the trust on both sides first; Microsoft's troubleshooting article says a trust supports RC4 but not AES by default.[^c08-trust-etype]
+- **Patch level.** Install the August 2025 update on every Windows Server 2025 domain controller before anyone creates a dMSA ([service account guide](../guides/service-account-migration.md#migration-b)).
+
+To keep the new domain controllers to the clients you choose while you test, use the domain controller locator. A client prefers a domain controller in its own site, and falls back to the domain controllers that register the site-less DNS records.[^c08-dc-location]
+
+1. **Give the Windows Server 2025 domain controllers their own site.** Map to it only the subnets of the machines that should use them: test servers and dMSA hosts.
+2. **Keep them out of the site-less records.** Set the Group Policy "DC locator DNS records not registered by the DCs" (the registry value `DnsAvoidRegisterRecords`) on them to `LdapIpAddress Ldap DcByGuid Kdc Dc Rfc1510Kdc Rfc1510UdpKdc Rfc1510Kpwd Rfc1510UdpKpwd`, adding `Gc GcIpAddress GenericGc` for a global catalog.[^c08-dc-location]
+3. **If they must cover another site, rank them last.** The policy "Priority Set in the domain controller locator DNS SRV Records" (`LdapSrvPriority`) gives a lower priority, but it applies to every record the domain controller registers, its own site's included.[^c08-dc-location]
+
+From a client in another site, check that the locator doesn't return them:
+
+```powershell
+nltest /dsgetdc:contoso.com
+Resolve-DnsName -Name _ldap._tcp.contoso.com -Type SRV
+Resolve-DnsName -Name _kerberos._tcp.contoso.com -Type SRV
+```
+
+The locator controls only discovery. A client or application that names a domain controller directly still reaches it, replication partners still use it, and the PDC emulator receives password changes from every site, so don't move that role to a Windows Server 2025 domain controller during the test. And don't hide it from the dMSA hosts, which have to find it.[^c08-dmsa-faq]
+
 ### Sites, site links and subnets
 
 `Get-ADReplicationSite`, `Get-ADReplicationSiteLink` and `Get-ADReplicationSubnet` capture the replication topology and the subnet-to-site map.[^c08-admodule][^c08-replconcepts] The subnet map matters beyond replication: domain controller location for clients depends on it, and an unmapped subnet sends clients to arbitrary domain controllers. Record site link cost and replication interval; they explain authentication latency at remote sites better than any network diagram.
@@ -330,7 +372,7 @@ Service accounts come in four kinds, and the inventory records all of them:
 | User account with SPNs | `Get-ADUser` where `ServicePrincipalName` is set | Kerberoastable; highest priority to replace |
 | Standalone MSA | `Get-ADServiceAccount` | Single computer; password managed by the computer |
 | Group MSA (gMSA) | `Get-ADServiceAccount` | Multiple servers; password managed by the domain |
-| Delegated MSA (dMSA) | `Get-ADServiceAccount` | Windows Server 2025 domains only |
+| Delegated MSA (dMSA) | `Get-ADServiceAccount` | Needs a Windows Server 2025 domain controller and Windows Server 2025 hosts; no functional level |
 
 A dMSA is the Windows Server 2025 account type that replaces a traditional service account with a machine-bound managed identity and disables the original account's password, which defends against Kerberoasting.[^c08-dmsa] gMSAs remain the default for services that run on more than one server.[^c08-gmsa] Record the raw `ObjectClass` that `Get-ADServiceAccount` returns rather than guessing the type from the name. Learn's Entra guidance counts four kinds of on-premises service account (gMSAs, standalone MSAs, computer accounts and user accounts), and finds user accounts used as services by an SPN, by delegation, or by a password that never expires; services running as a computer account (LocalSystem) or a virtual account (`NT SERVICE\<name>`) act on the network as the computer, so they show up in each host's service configuration, not in an AD query, and a computer account can't tell you which service on the host used it.[^c08-govern-svc] [^c08-user-svc][^c08-computer-svc] The [service account guide](../guides/service-account-migration.md) compares every kind with its Microsoft Entra equivalents and walks each migration with Learn's commands.
 
@@ -555,6 +597,12 @@ Every JSON file is either a root object with an `AssessmentTimestamp` and named 
 [^c08-fl]: Microsoft Learn, "Active Directory Domain Services functional levels," <https://learn.microsoft.com/windows-server/identity/ad-ds/active-directory-functional-levels> (accessed Oct 20, 2026).
 [^c08-fl-upgrade]: Microsoft Learn, "Identifying your functional level upgrade," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/identifying-your-functional-level-upgrade> (accessed Oct 20, 2026).
 [^c08-raise-fl]: Microsoft Learn, "Raise domain and forest functional levels in Active Directory Domain Services," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/raise-domain-forest-functional-levels> (accessed Oct 20, 2026).
+[^c08-32k]: Microsoft Learn, "Active Directory Database 32k pages optional feature," <https://learn.microsoft.com/windows-server/identity/ad-ds/32k-pages-optional-feature> (accessed Nov 13, 2026).
+[^c08-32k-enable]: Microsoft Learn, "Enable the Active Directory Database 32k pages optional feature," <https://learn.microsoft.com/windows-server/identity/ad-ds/enable-32k-pages-optional-feature> (accessed Nov 13, 2026).
+[^c08-dmsa-faq]: Microsoft Learn, "Delegated Managed Service Accounts frequently asked questions" (at least one Windows Server 2025 domain controller, discoverable by the client or member server), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-faq> (accessed Nov 13, 2026).
+[^c08-ldap-signing]: Microsoft Learn, "LDAP signing overview for Active Directory Domain Services" (upgrades keep existing policy; with no policy set, Windows Server 2025 requires signing), <https://learn.microsoft.com/windows-server/identity/ad-ds/ldap-signing> (accessed Nov 13, 2026).
+[^c08-trust-etype]: Microsoft Learn, "Kerberos unsupported etype error when you access a resource in a trusted domain," <https://learn.microsoft.com/troubleshoot/windows-server/windows-security/unsupported-etype-error-accessing-trusted-domain> (accessed Nov 13, 2026).
+[^c08-dc-location]: Microsoft Learn, "Optimize domain controller location" (KB 306602; `DnsAvoidRegisterRecords` mnemonics, `LdapSrvPriority`, site-less records), <https://learn.microsoft.com/troubleshoot/windows-server/active-directory/optimize-dc-location-global-catalog> (accessed Nov 13, 2026).
 [^c08-admodule]: Microsoft Learn, "ActiveDirectory Module," cmdlet index, <https://learn.microsoft.com/powershell/module/activedirectory/?view=windowsserver2025-ps> (accessed Oct 20, 2026).
 [^c08-gpinheritance]: Microsoft Learn, "Get-GPInheritance," <https://learn.microsoft.com/powershell/module/grouppolicy/get-gpinheritance?view=windowsserver2025-ps> (accessed Oct 20, 2026).
 [^c08-gpscope]: Microsoft Learn, "Group Policy scope," section "GPO scope types," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-scope> (accessed Oct 20, 2026).

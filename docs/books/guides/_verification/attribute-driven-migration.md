@@ -261,3 +261,7 @@ A new subsection, "Where each non-person identity lives: attributes or tags," pu
 ## Removal, November 13, 2026 (non-person map table)
 
 The table added the same day duplicated the [Service Account Migration guide's comparison table](../service-account-migration.md#comparison) (#533), which already covers every kind of service identity and where it lives. At the author's decision, the table and its footnote `adm-uami-tags` are removed; the subsection keeps its `#non-person-map` anchor and now points to that comparison, restating only the attribute and tag rules this page already carries in "Attributes." Claim 1 above (user-assigned identity tags) is no longer stated on this page; claims 2 to 6 remain stated where they were before the addition.
+
+## Revision 2026-11-13 — Windows Server 2025 retirements
+
+Mike's approval, Nov 13, 2026. The dates and events for each protocol now live in one place, the status table in Book 02, Chapter 03; this page links there. dMSA wording, where present, now says a dMSA needs a Windows Server 2025 domain controller (and Windows Server 2025 hosts), not a functional level (Learn, Delegated Managed Service Accounts FAQ, read Nov 13, 2026). An RC4 date, where present, follows KB5073381 (read Nov 13, 2026): AES only assumed from the April 14, 2026 updates, rollback no longer read from the July 2026 updates.
