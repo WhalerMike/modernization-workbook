@@ -1,7 +1,7 @@
 ---
 title: "Reference"
 subtitle: "Commands, crosswalks, the RMF Map, the Source Register and the Learn Coverage Map, on the site and as Word documents"
-description: "The Federal Modernization Workbook's reference pages: the command reference, the federal framework, M-19-17 and FICAM, and Microsoft practice crosswalks, the RMF Map and the Source Register, each with a Word edition and all six in one Reference Set, and the Learn Coverage Map of Microsoft Learn's identity pages."
+description: "The Federal Modernization Workbook's reference pages: the command reference, the federal framework, M-19-17 and FICAM, and Microsoft practice crosswalks, the RMF Map and the Source Register, each with a Word edition and all six in one Reference Set, and the Learn Coverage Map of Microsoft Learn's identity, Windows Server release, security and SMB pages."
 doc-type: section-landing
 ---
 
@@ -17,7 +17,7 @@ These pages are looked up rather than read in order. Each one except the Learn C
 | [RMF Map](rmf-map.md) | The NIST Risk Management Framework's steps and tasks mapped to the books, with the evidence each produces (under review) | [reference-rmf-map.docx](../../downloads/reference-rmf-map.docx) |
 | [M-19-17 and FICAM Crosswalk](m-19-17-ficam-crosswalk.md) | OMB M-19-17 and the FICAM Architecture mapped to the books, guides and kits (under review) | [reference-m-19-17-ficam-crosswalk.docx](../../downloads/reference-m-19-17-ficam-crosswalk.docx) |
 | [Microsoft Practice Crosswalk](graph-practice-crosswalk.md) | Entra ID, Intune, national-cloud, Azure Arc and SQL practices mapped to Microsoft Learn, ScubaGear and Azure Policy (draft) | [reference-graph-practice-crosswalk.docx](../../downloads/reference-graph-practice-crosswalk.docx) |
-| [Learn Coverage Map](learn-coverage.md) | Every Microsoft Learn page on Windows Server identity and Microsoft Entra, the workbook pages that cite or cover it, and the gaps (under review) | Site only; its data is in [`data/learn-coverage/`](https://github.com/WhalerMike/modernization-workbook/tree/main/data/learn-coverage) |
+| [Learn Coverage Map](learn-coverage.md) | Every Microsoft Learn page on Windows Server identity, Microsoft Entra, and Windows Server releases, security and SMB, the workbook pages that cite or cover it, and the gaps (under review) | Site only; its data is in [`data/learn-coverage/`](https://github.com/WhalerMike/modernization-workbook/tree/main/data/learn-coverage) |
 | [Zero Trust Closure Coverage](zta-closure-coverage.md) | Each item of the Zero Trust Assessment closure update, from the global conventions to the closure map, with the workbook pages that carry it; guidance coverage, not any tenant's implementation (draft) | Site only; its data is in [`data/zta-closure/`](https://github.com/WhalerMike/modernization-workbook/tree/main/data/zta-closure) |
 
 A narrated presentation, *The Reference Tab*, walks through why each page matters, how the six fit together and where to start by role. It's listed, with its script, on the [Presentations](../presentations/index.md#reference-tab) page; the deck and the video are coming.

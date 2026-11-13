@@ -287,7 +287,7 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
             add("decisions", p)
         if p.startswith(("docs/", "examples/", "data/")) or LEARN_SCANNED_DECK_FILE.fullmatch(p) or p in (
                 "scripts/learn_coverage.py", "scripts/source_watch/learn_pages.py", "scripts/check_claims.py"):
-            add("learn-coverage", p)             # any of them can add or drop a Learn identity citation
+            add("learn-coverage", p)             # any of them can add or drop a Learn citation the map tracks
         if p.startswith(("docs/project-plans/developer-workbooks/", "docs/books/b19-developer-workbook/",
                          "docs/training/", "docs/books/guides/")) or p == "scripts/generate_labs.py":
             add("labs", p)
