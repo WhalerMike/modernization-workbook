@@ -126,6 +126,17 @@ jobs:
             python3 scripts/build_start_kit_zip.py --kit "$kit" --out _site/downloads
           done
 
+      - name: Build the exports for AI tools
+        # llms.txt, a Markdown copy of every page beside its .html, llms-full/<area>.md
+        # (each book or section as one file) and downloads/fmw-knowledge-pack.zip,
+        # linked from the Downloads page.
+        run: python3 scripts/build_ai_exports.py --site _site
+
+      - name: Build the search index
+        # Pagefind indexes the finished HTML into _site/pagefind/ (settings in
+        # pagefind.yml); assets/site-search.html puts the search box in the navbar.
+        run: npx --yes pagefind@1.5.2 --site _site
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

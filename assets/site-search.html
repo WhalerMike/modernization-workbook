@@ -1,0 +1,51 @@
+<!--
+  Site search: Pagefind's Component UI (https://pagefind.app/), in the navbar.
+  The deploy workflow builds the index into _site/pagefind/ after the render
+  (see pagefind.yml). Quarto's own search is off (_quarto.yml, website.search),
+  so the browser no longer downloads one large search.json: Pagefind fetches only
+  the index pieces a search needs. Ctrl+K (Cmd+K on a Mac) opens it too.
+  In a local render that skipped Pagefind, the button doesn't appear.
+-->
+<style>
+  .fmw-search { display: flex; align-items: center; margin-left: .75rem; order: 3; }
+  @media (max-width: 991.98px) {
+    .fmw-search { order: 1; margin-left: auto; margin-right: .5rem; }
+    .navbar-toggler { order: 2; }
+  }
+</style>
+<script>
+  (function () {
+    var bar = document.querySelector("#quarto-header nav.navbar .navbar-container");
+    if (!bar) return;
+    // The site root, from Quarto's offset meta, or from where site_libs is loaded.
+    var offset = (document.querySelector('meta[name="quarto:offset"]') || {}).content;
+    if (!offset) {
+      var lib = document.querySelector('script[src*="site_libs/"]');
+      offset = lib ? lib.getAttribute("src").split("site_libs/")[0] : "./";
+    }
+    var root = new URL(offset || "./", window.location.href);
+    var bundle = new URL("pagefind/", root);
+    fetch(new URL("pagefind-entry.json", bundle), { method: "HEAD" }).then(function (r) {
+      if (!r.ok) return;
+      var config = document.createElement("pagefind-config");
+      config.setAttribute("bundle-path", bundle.pathname);
+      config.setAttribute("base-url", root.pathname);
+      var wrap = document.createElement("div");
+      wrap.className = "fmw-search";
+      var trigger = document.createElement("pagefind-modal-trigger");
+      trigger.setAttribute("placeholder", "Search the workbook");
+      wrap.appendChild(trigger);
+      document.body.appendChild(config);
+      document.body.appendChild(document.createElement("pagefind-modal"));
+      bar.appendChild(wrap);
+      var css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = new URL("pagefind-component-ui.css", bundle).href;
+      document.head.appendChild(css);
+      var js = document.createElement("script");
+      js.type = "module";
+      js.src = new URL("pagefind-component-ui.js", bundle).href;
+      document.head.appendChild(js);
+    }).catch(function () {});
+  })();
+</script>
