@@ -148,6 +148,22 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 : The Zero Trust Assessment: labs by module {.striped .hover}
 
+## The Defender XDR learning path {#xdr}
+
+[The learning path](defender-xdr/index.md) · [its implementation guide](../books/guides/defender-xdr-implementation.md)
+
+The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixtures: each module's lab runs the guide's own Validate commands in a test tenant.
+
+| Module | Lab 2, a test tenant |
+|---|---|
+| [Module 1: Architecture, access and onboarding](defender-xdr/01-architecture-access-and-onboarding.md) | [Lab 2](defender-xdr/01-architecture-access-and-onboarding.md#xdr-m1-lab-2) |
+| [Module 2: Prevention and Attack Surface Reduction](defender-xdr/02-prevention-and-attack-surface-reduction.md) | [Lab 2](defender-xdr/02-prevention-and-attack-surface-reduction.md#xdr-m2-lab-2) |
+| [Module 3: Exposure and incidents](defender-xdr/03-exposure-and-incidents.md) | [Lab 2](defender-xdr/03-exposure-and-incidents.md#xdr-m3-lab-2) |
+| [Module 4: Hunting, detections as code and identity signals](defender-xdr/04-hunting-detections-and-identity-signals.md) | [Lab 2](defender-xdr/04-hunting-detections-and-identity-signals.md#xdr-m4-lab-2) |
+| [Module 5: Automation, operations and evidence](defender-xdr/05-automation-operations-and-evidence.md) | [Lab 2](defender-xdr/05-automation-operations-and-evidence.md#xdr-m5-lab-2) |
+
+: Defender XDR: labs by module {.striped .hover}
+
 ## The Azure Security Engineering learning path {#azs}
 
 [The learning path](azure-security/index.md) · [its implementation guide](../books/guides/azure-security-implementation.md). The guide has no kit or developer workbook yet, so there is no Lab 1: each module's Lab 2 runs the guide's own checks in a test subscription.
