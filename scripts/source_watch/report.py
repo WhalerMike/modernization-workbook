@@ -213,7 +213,7 @@ def register_rows(results: dict) -> list[str]:
 
 
 def learn_rows(results: dict) -> list[str]:
-    """New and retired Learn identity pages (learn_pages.py), one row each, then any listing that failed."""
+    """New and retired Learn pages (learn_pages.py), one row each, then any listing that failed."""
     lp = results.get("learn_pages") or {}
     rows = []
     for kind, label in (("added", "New"), ("removed", "Retired")):
@@ -316,7 +316,7 @@ def render(results: dict, budget: int | None = None) -> str:
         "",
         f"**{n['changed']} changed, {n['moved']} moved, {n['gone']} gone** of {c.get('checked', 0):,} cited sources checked; "
         f"**{len(results.get('feed_items', []))} new publications**; **{len(manual)} need a manual check**; **{len(reviews)} status-labeled pages due for review**; **{len(lifecycle)} pages past their lifecycle review date**; **{len(gated)} developer workbook pages awaiting review**; "
-        f"**{len(learn)} new or retired Learn identity pages**.",
+        f"**{len(learn)} new or retired Learn pages**.",
         "",
         "Each run compares against the previous one, so each change is reported once. Review the chapters below, "
         "then close this issue. See [how to read this issue](https://github.com/"
@@ -404,9 +404,9 @@ def render(results: dict, budget: int | None = None) -> str:
             add(row, "gated")
     if learn:
         add(
-            "\n## New and retired Learn identity pages\n\nMicrosoft added these pages to, or removed them from, the Learn folders the "
+            "\n## New and retired Learn pages\n\nMicrosoft added these pages to, or removed them from, the Learn folders the "
             "[Learn Coverage Map](https://github.com/" + REPO + "/blob/main/docs/reference/learn-coverage.md) tracks "
-            "(Windows Server identity and Microsoft Entra, without the per-application SaaS tutorials) since the previous run. "
+            "(Windows Server identity, releases, security and file server, and Microsoft Entra; the map says what each leaves out) since the previous run. "
             "Run `python scripts/learn_coverage.py` to add the new pages to the map as not reviewed and mark the retired ones gone, "
             "then review them. A retired page the workbook cites needs a new source.\n\n"
             "| Learn page | Side | Change | Source file |\n|---|---|---|---|",

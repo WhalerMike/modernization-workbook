@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
-"""The Learn coverage map: every Microsoft Learn identity page, and where the workbook covers it.
+"""The Learn coverage map: every Microsoft Learn page in the tracked folders, and where the workbook covers it.
 
-Two Learn folders are mapped, page by page (the rules for what counts as a page
+Five Learn folders are mapped, page by page (the rules for what counts as a page
 and how its URL is derived are in scripts/source_watch/learn_pages.py):
 
 - Windows Server identity: MicrosoftDocs/windowsserverdocs, WindowsServerDocs/identity/
   -> data/learn-coverage/windows-server-identity.yml
 - Microsoft Entra: MicrosoftDocs/entra-docs, docs/ (without docs/identity/saas-apps/)
   -> data/learn-coverage/entra.yml
+- Windows Server releases: MicrosoftDocs/windowsserverdocs, WindowsServerDocs/get-started/
+  -> data/learn-coverage/windows-server-get-started.yml
+- Windows Server security: MicrosoftDocs/windowsserverdocs, WindowsServerDocs/security/
+  (without guarded-fabric-shielded-vm/ and gdpr/) -> data/learn-coverage/windows-server-security.yml
+- Windows Server file server and SMB: MicrosoftDocs/windowsserverdocs,
+  WindowsServerDocs/storage/file-server/ -> data/learn-coverage/windows-server-file-server.yml
 
 Each data file has one entry per Learn page. The script writes: `path` (the
 source file in the Learn repository), `url`, `title`, `area` (the page's top
@@ -47,7 +53,7 @@ Learn content is read from a shallow, sparse clone of each repository (only
 the tracked folder's .md and .yml files and the redirect files, no images)
 in a cache directory outside the repository: --cache, or $LEARN_COVERAGE_CACHE,
 or ~/.cache/fmw-learn-coverage. Later runs fetch the latest commit into the
-same clones. That is two git fetches instead of thousands of API calls. Needs
+same clones. That is one git fetch per folder instead of thousands of API calls. Needs
 git and PyYAML.
 """
 
@@ -439,7 +445,7 @@ def render_block(sites: list[tuple[lp.Site, dict]], root: Path = ROOT) -> str:
     for site, data in sites:
         out.append(counts_row(site.name, data["pages"]))
         every += data["pages"]
-    out.append(counts_row("**Both sides**", every))
+    out.append(counts_row("**All sides**", every))
     out.append("")
     for site, data in sites:
         anchor = site.key
