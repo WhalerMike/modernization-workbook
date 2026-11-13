@@ -465,7 +465,7 @@ This register lists 772 sources. A slide or a video description links to a sourc
 | [Microsoft Graph throttling guidance](https://learn.microsoft.com/graph/throttling){#microsoft-graph-throttling-guidance} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-graph-throttling-guidance"} |
 | [Microsoft Identity Manager 2016 news and updates](https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016){#microsoft-identity-manager-2016-news-and} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-identity-manager-2016-news-and"} |
 | [Microsoft identity platform and the OAuth 2.0 client credentials flow](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-client-creds-grant-flow){#microsoft-identity-platform-and-the-oauth-2} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-identity-platform-and-the-oauth-2"} |
-| [Microsoft Intune for US Government GCC High and DoD service description](https://learn.microsoft.com/intune/fundamentals/government-service){#microsoft-intune-for-us-government-gcc-high} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-intune-for-us-government-gcc-high"} |
+| [Microsoft Intune Government Service overview](https://learn.microsoft.com/intune/fundamentals/government-service){#microsoft-intune-for-us-government-gcc-high} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-intune-for-us-government-gcc-high"} |
 | [Microsoft Learn: accessPackageAssignmentPolicy resource type (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0){#learn-accesspackageassignmentpolicy} | Active | November 8, 2026 | [Not read yet]{.fmw-scan data-source="learn-accesspackageassignmentpolicy"} |
 | [Microsoft Learn: Activate the Azure Rights Management service](https://learn.microsoft.com/purview/activate-rights-management-service){#learn-activate-rights-management} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-activate-rights-management"} |
 | [Microsoft Learn: Assign permissions in Insider Risk Management](https://learn.microsoft.com/purview/insider-risk-management-permissions){#learn-insider-risk-management-permissions} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-insider-risk-management-permissions"} |
@@ -930,6 +930,7 @@ This register lists 772 sources. A slide or a video description links to a sourc
 | Date | Source | Change |
 |---|---|---|
 | November 13, 2026 | 4 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
+| November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |
 | November 13, 2026 | 4 sources | Added: cited in the Azure Security guide and training labs |
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |

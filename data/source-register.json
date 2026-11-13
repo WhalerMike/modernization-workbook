@@ -4657,7 +4657,7 @@
   },
   {
    "id": "microsoft-intune-for-us-government-gcc-high",
-   "title": "Microsoft Intune for US Government GCC High and DoD service description",
+   "title": "Microsoft Intune Government Service overview",
    "publisher": "Microsoft Learn",
    "url": "https://learn.microsoft.com/intune/fundamentals/government-service",
    "status": "retired",
@@ -4671,6 +4671,10 @@
     {
      "date": "2026-11-13",
      "change": "Retired: the workbook covers GCC Moderate only (Nov 13, 2026)"
+    },
+    {
+     "date": "2026-11-13",
+     "change": "Title updated to Learn's current title, Microsoft Intune Government Service overview"
     }
    ]
   },

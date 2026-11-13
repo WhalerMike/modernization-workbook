@@ -56,11 +56,11 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
-| Microsoft Entra | 2,518 | 1,028 | 444 | 367 | 676 | 3 |
+| Microsoft Entra | 2,513 | 1,028 | 444 | 367 | 671 | 3 |
 | Windows Server releases | 44 | 4 | 4 | 7 | 29 | 0 |
 | Windows Server security | 47 | 7 | 16 | 10 | 14 | 0 |
 | Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
-| **All sides** | 3,196 | 1,209 | 487 | 407 | 1,090 | 3 |
+| **All sides** | 3,191 | 1,209 | 487 | 407 | 1,085 | 3 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -714,7 +714,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [multi-tenant-organizations](#entra-multi-tenant-organizations) | 16 | 9 | 2 | 2 | 3 | 0 |
 | [role-based-access-control](#entra-role-based-access-control) | 40 | 29 | 7 | 0 | 3 | 1 |
 | [security-copilot](#entra-security-copilot) | 25 | 0 | 0 | 0 | 25 | 0 |
-| [standards](#entra-standards) | 38 | 10 | 7 | 5 | 16 | 0 |
+| [standards](#entra-standards) | 33 | 10 | 7 | 5 | 11 | 0 |
 | [users](#entra-users) | 62 | 26 | 4 | 12 | 20 | 0 |
 | [verified-id](#entra-verified-id) | 44 | 2 | 0 | 23 | 19 | 0 |
 | [workload-id](#entra-workload-id) | 16 | 11 | 4 | 0 | 1 | 0 |
@@ -3201,11 +3201,6 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 
 | Learn page | Workbook home | Coverage |
 |---|---|---|
-| [Configure CMMC Level 1 controls](https://learn.microsoft.com/entra/standards/configure-cmmc-level-1-controls) | — | Out of scope |
-| [Configure CMMC Level 2 Access Control (AC) controls](https://learn.microsoft.com/entra/standards/configure-cmmc-level-2-access-control) | — | Out of scope |
-| [Configure identity access controls to meet CMMC Level 2](https://learn.microsoft.com/entra/standards/configure-cmmc-level-2-additional-controls) | — | Out of scope |
-| [Configure CMMC Level 2 Identification and Authentication (IA) controls](https://learn.microsoft.com/entra/standards/configure-cmmc-level-2-identification-and-authentication) | — | Out of scope |
-| [Configure Microsoft Entra ID for CMMC compliance](https://learn.microsoft.com/entra/standards/configure-for-cmmc-compliance) | — | Out of scope |
 | [Configure Microsoft Entra ID to meet FedRAMP High Impact level](https://learn.microsoft.com/entra/standards/configure-for-fedramp-high-impact) <!-- claims-ok: Microsoft's page title, as Learn publishes it --> | [Book 01, Appendix B — Applicability](../books/b01-transformation-arc/appendix-b-applicability.md); [Book 06, Chapter 17 — Dynamic Membership, Delegation and Privileged Access](../books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md) | Cited |
 | [Configure identity access controls to meet FedRAMP High Impact level with Microsoft Entra ID](https://learn.microsoft.com/entra/standards/fedramp-access-controls) <!-- claims-ok: Microsoft's page title, as Learn publishes it --> | [Book 02, Appendix A — Federal Requirements Crosswalk](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md); [`docs/books/b02-identity/_verification/appendix-a-federal-requirements-crosswalk.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b02-identity/_verification/appendix-a-federal-requirements-crosswalk.md) | Cited |
 | [Configure identification and authentication controls to meet FedRAMP High Impact level with Microsoft Entra ID](https://learn.microsoft.com/entra/standards/fedramp-identification-and-authentication-controls) <!-- claims-ok: Microsoft's page title, as Learn publishes it --> | [Book 02, Appendix A — Federal Requirements Crosswalk](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md); [`docs/books/b02-identity/_verification/appendix-a-federal-requirements-crosswalk.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b02-identity/_verification/appendix-a-federal-requirements-crosswalk.md) | Cited |

@@ -38,6 +38,19 @@ class Pages(unittest.TestCase):
         self.assertFalse(lp.is_page(ENTRA, "docs/zone-pivot-groups.yml"))
         self.assertTrue(lp.is_page(ENTRA, "docs/identity/hybrid/connect/how-to-connect-install-roadmap.md"))
 
+    def test_a_skipped_page_is_not_a_page_and_leaves_the_data(self):
+        import dataclasses
+        site = dataclasses.replace(ENTRA, skip=("docs/standards/left-out-*",))
+        self.assertFalse(lp.is_page(site, "docs/standards/left-out-level-1.md"))
+        self.assertTrue(lp.is_page(site, "docs/standards/nist-overview.md"))
+        old = {"pages": [
+            {"path": "docs/standards/left-out-level-1.md", "url": "https://learn.microsoft.com/entra/standards/left-out-level-1",
+             "title": "Left out", "area": "standards", "coverage": "out-of-scope", "note": ""},
+            {"path": "docs/standards/nist-overview.md", "url": "https://learn.microsoft.com/entra/standards/nist-overview",
+             "title": "NIST", "area": "standards", "coverage": "unreviewed", "note": ""}]}
+        data = lc.merge(site, None, old, {}, "")
+        self.assertEqual([p["path"] for p in data["pages"]], ["docs/standards/nist-overview.md"])
+
     def test_the_windows_server_release_security_and_smb_folders(self):
         self.assertTrue(lp.is_page(START, "WindowsServerDocs/get-started/removed-deprecated-features-windows-server.md"))
         self.assertFalse(lp.is_page(START, "WindowsServerDocs/identity/laps/laps-overview.md"))

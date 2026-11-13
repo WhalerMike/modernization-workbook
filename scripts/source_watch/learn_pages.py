@@ -40,6 +40,7 @@ Standard library only, so the workflow needs no extra Python packages.
 
 from __future__ import annotations
 
+import fnmatch
 import posixpath
 import re
 import sys
@@ -62,6 +63,7 @@ class Site:
     dest: str           # docfx.json build.dest: the URL path the docset publishes under
     folder: str         # the tracked folder, relative to the repository root
     exclude: tuple[str, ...] = ()   # folders under it that are left out, relative to the repository root
+    skip: tuple[str, ...] = ()      # single pages left out (fnmatch patterns on the repository path), not listed
     area_depth: dict = None  # top folder -> how many folder levels name the area (default 1)
 
     def area(self, path: str) -> str:
@@ -93,6 +95,7 @@ SITES = (
         dest="entra",
         folder="docs",
         exclude=("docs/identity/saas-apps",),
+        skip=("docs/standards/configure-cmmc-*", "docs/standards/configure-for-cmmc-*"),
         area_depth={"identity": 2},
     ),
     Site(
@@ -135,12 +138,17 @@ def is_page(site: Site, path: str) -> bool:
     """True if docfx publishes this repository file as a page of the tracked folder."""
     if not path.startswith(site.folder + "/") or not path.lower().endswith((".md", ".yml")):
         return False
-    if any(path == x or path.startswith(x + "/") for x in site.exclude):
+    if any(path == x or path.startswith(x + "/") for x in site.exclude) or skipped(site, path):
         return False
     parts = path[len(site.folder) + 1:].split("/")
     if parts[-1].lower() in NOT_PAGES:
         return False
     return not any(p.lower() in NOT_PAGE_FOLDERS or p.startswith((".", "_")) for p in parts[:-1])
+
+
+def skipped(site: Site, path: str) -> bool:
+    """True for a single page the map leaves out (outside the workbook's scope)."""
+    return any(fnmatch.fnmatchcase(path, x) for x in site.skip)
 
 
 def page_url(site: Site, path: str) -> str:
