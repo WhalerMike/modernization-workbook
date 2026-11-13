@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.841
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.841 --> 00:00:05.188
+which takes about forty
+minutes with the lab.
+
+3
+00:00:05.188 --> 00:00:09.550
+You'll say what the Zero Trust Assessment
+checks, and name the four things it isn't.
+
+4
+00:00:09.550 --> 00:00:12.709
+You'll explain why it
+doesn't replace ScubaGear
+
+5
+00:00:12.709 --> 00:00:15.787
+under CISA's directive B
+O D twenty-five oh-one.
+
+6
+00:00:15.787 --> 00:00:21.375
+You'll read Microsoft's rubric: risk level,
+user impact and implementation cost.
+
+7
+00:00:21.375 --> 00:00:24.327
+And you'll name the six
+statuses a test can end in,
+
+8
+00:00:24.327 --> 00:00:28.187
+and sort a skip reason into the
+program's normalized taxonomy.
+
+9
+00:00:28.187 --> 00:00:31.699
+Before you start, read the
+chapter on the two assessment
+
+10
+00:00:31.699 --> 00:00:35.363
+tools in Zero Trust and Assessment;
+Unit 1 reads it with you.
+
+11
+00:00:35.363 --> 00:00:39.326
+For the lab you need PowerShell
+seven point one or later,
+
+12
+00:00:39.326 --> 00:00:42.687
+and the kit's folder,
+examples slash z t a results.
+
+13
+00:00:42.687 --> 00:00:44.110
+No tenant is needed.

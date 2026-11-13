@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:05.250
+The assessment only reads, but
+running it takes real privilege.
+
+3
+00:00:05.250 --> 00:00:09.876
+An administrator consents to the tool's
+Microsoft Graph read permissions,
+
+4
+00:00:09.876 --> 00:00:13.159
+and the run account needs a
+set of roles: Global Reader,
+
+5
+00:00:13.159 --> 00:00:17.412
+Security Reader, Reader on the Azure
+subscriptions in scope, and more.
+
+6
+00:00:17.412 --> 00:00:20.326
+One of them, SharePoint
+Administrator, can write.
+
+7
+00:00:20.326 --> 00:00:22.150
+And the output is sensitive.
+
+8
+00:00:22.150 --> 00:00:24.462
+It's a map of where the tenant is weak.
+
+9
+00:00:24.462 --> 00:00:29.212
+Microsoft's get-started page on Learn says
+to share the report and export folder
+
+10
+00:00:29.212 --> 00:00:32.882
+only with authorized personnel,
+to store the report securely,
+
+11
+00:00:32.882 --> 00:00:36.624
+and to delete the local folder
+once the assessment is complete.
+
+12
+00:00:36.624 --> 00:00:42.036
+So this module treats the run like any
+other privileged operation: a clean host,
+
+13
+00:00:42.036 --> 00:00:45.199
+consent once, a reader
+account, the right cloud,
+
+14
+00:00:45.199 --> 00:00:48.170
+and a hash taken before
+anyone opens a file.

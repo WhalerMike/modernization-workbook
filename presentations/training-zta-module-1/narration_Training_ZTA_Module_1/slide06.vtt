@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.862
+Unit 2 reads the report.
+
+2
+00:00:01.862 --> 00:00:05.700
+It opens on an overview tab,
+then a tab for each pillar.
+
+3
+00:00:05.700 --> 00:00:07.979
+Each test shows its risk and its status,
+
+4
+00:00:07.979 --> 00:00:12.750
+and selecting a test describes what was
+tested and the recommended remediation.
+
+5
+00:00:12.750 --> 00:00:16.388
+Every test carries three
+ratings from Microsoft's rubric,
+
+6
+00:00:16.388 --> 00:00:18.662
+defined on Learn's terminology page.
+
+7
+00:00:18.662 --> 00:00:23.959
+Risk level: high means potential
+environment-wide exposure until it's mitigated;
+
+8
+00:00:23.959 --> 00:00:29.175
+medium, moderate exposure; low, defense
+in depth or an operational optimization.
+
+9
+00:00:29.175 --> 00:00:34.267
+User impact: high means many non-privileged
+users have to act or be told;
+
+10
+00:00:34.267 --> 00:00:36.813
+low means only administrators act.
+
+11
+00:00:36.813 --> 00:00:41.634
+And implementation cost: high is a
+program needing ongoing commitment,
+
+12
+00:00:41.634 --> 00:00:44.250
+medium a project, low a targeted action.
+
+13
+00:00:44.250 --> 00:00:48.888
+The tool's own source adds two more
+risk levels, critical and unranked.
+
+14
+00:00:48.888 --> 00:00:52.363
+These ratings feed the weighting
+you'll meet in Module 3.
+
+15
+00:00:52.363 --> 00:00:54.380
+They aren't a priority on their own.

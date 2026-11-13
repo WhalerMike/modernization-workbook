@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.612
+Unit 1 normalizes and disposes.
+
+2
+00:00:02.612 --> 00:00:07.537
+The kit writes each result twice: the
+tool's status and the normalized one.
+
+3
+00:00:07.537 --> 00:00:12.587
+It never copies the tool's result text,
+because that text can name tenant objects.
+
+4
+00:00:12.587 --> 00:00:15.888
+Everything that is neither
+a pass nor a finding lands
+
+5
+00:00:15.888 --> 00:00:18.738
+in a dispositions file,
+with what to do about it.
+
+6
+00:00:18.738 --> 00:00:21.863
+A skip for licensing needs
+a licensing decision.
+
+7
+00:00:21.863 --> 00:00:26.445
+A skip because a service was
+disconnected, or a result the kit is
+
+8
+00:00:26.445 --> 00:00:30.675
+unable to evaluate, needs a fix
+and a re-run, or a check by hand.
+
+9
+00:00:30.675 --> 00:00:33.632
+A skip as not applicable
+needs a recorded reason,
+
+10
+00:00:33.632 --> 00:00:36.737
+and not supported is flagged
+as a boundary finding.
+
+11
+00:00:36.737 --> 00:00:37.775
+One more guard.
+
+12
+00:00:37.775 --> 00:00:42.593
+If the export comes from a version the
+kit's taxonomy wasn't reviewed for,
+
+13
+00:00:42.593 --> 00:00:46.513
+or carries a status or reason it
+doesn't know, the kit says so.
+
+14
+00:00:46.513 --> 00:00:50.930
+It counts that result as unable to
+evaluate, rather than guessing.

@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.521
+You'll prepare a clean host with
+PowerShell seven point six,
+
+3
+00:00:06.521 --> 00:00:09.499
+the pinned module, and a
+restricted report folder.
+
+4
+00:00:09.499 --> 00:00:14.700
+You'll explain who consents, who runs, and
+why the two sources' role lists differ.
+
+5
+00:00:14.700 --> 00:00:18.416
+You'll review the delegated
+grant the consent leaves behind,
+
+6
+00:00:18.416 --> 00:00:20.125
+and say when not to revoke it.
+
+7
+00:00:20.125 --> 00:00:24.289
+You'll connect in Commercial,
+G C C, G C C High or D O D,
+
+8
+00:00:24.289 --> 00:00:28.025
+and confirm the session's
+tenant and cloud.
+
+9
+00:00:28.025 --> 00:00:30.862
+And you'll run the assessment
+and hash its export.
+
+10
+00:00:30.862 --> 00:00:35.025
+You need Module 1, and a skim of
+the Privileged Access implementation
+
+11
+00:00:35.025 --> 00:00:38.238
+guide's pim model, for the
+run account's eligible roles.
+
+12
+00:00:38.238 --> 00:00:41.660
+Lab 2 runs in a test
+tenant, never production.

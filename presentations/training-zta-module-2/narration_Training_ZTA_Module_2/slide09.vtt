@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.050
+Unit 4 is the run itself.
+
+2
+00:00:02.050 --> 00:00:05.508
+On a large tenant it can take
+more than twenty-four hours,
+
+3
+00:00:05.508 --> 00:00:07.537
+and Microsoft says not to stop it.
+
+4
+00:00:07.537 --> 00:00:12.064
+The disable-telemetry switch suppresses
+the tool's one telemetry event,
+
+5
+00:00:12.064 --> 00:00:13.800
+which carries the tenant I D.
+
+6
+00:00:13.800 --> 00:00:18.362
+Whether to use it is the see-so's
+decision, written in the decision record.
+
+7
+00:00:18.362 --> 00:00:21.813
+The no-browser switch keeps the
+report from opening on screen.
+
+8
+00:00:21.813 --> 00:00:26.884
+As soon as the run ends, before
+anyone opens or copies a file,
+
+9
+00:00:26.884 --> 00:00:29.737
+hash the export, S H A two fifty-six.
+
+10
+00:00:29.737 --> 00:00:32.963
+That hash is what later shows
+the output wasn't changed.
+
+11
+00:00:32.963 --> 00:00:35.669
+And if the run fails,
+capture a support package
+
+12
+00:00:35.669 --> 00:00:37.949
+in the same session, before you close it.
+
+13
+00:00:37.949 --> 00:00:39.892
+The guide's Step 5 has the command,
+
+14
+00:00:39.892 --> 00:00:43.540
+and says to write the package
+to a separate protected folder.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.449
+Welcome to Module 3 of The Zero
+Trust Assessment as Evidence:
+
+2
+00:00:04.449 --> 00:00:07.000
+from results to a closure register.
+
+3
+00:00:07.000 --> 00:00:10.322
+This module is a draft,
+awaiting the editor's review,
+
+4
+00:00:10.322 --> 00:00:12.300
+so recheck it after the review.
+
+5
+00:00:12.300 --> 00:00:15.825
+In this module the guide's results
+kit does the mechanical part.
+
+6
+00:00:15.825 --> 00:00:20.145
+It normalizes every result, lists what
+didn't run with what to do about it,
+
+7
+00:00:20.145 --> 00:00:24.538
+and writes a closure-register entry
+for each finding, routed and weighed.
+
+8
+00:00:24.538 --> 00:00:27.375
+People do the rest, and
+the register shows where.
+
+9
+00:00:27.375 --> 00:00:32.390
+It covers Steps 7 and 8 of the Zero
+Trust Assessment implementation guide,
+
+10
+00:00:32.390 --> 00:00:35.980
+and takes about fifty-five
+minutes, most of it in Lab 1.

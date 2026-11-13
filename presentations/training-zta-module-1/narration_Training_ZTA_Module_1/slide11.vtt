@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+Who decides?
+
+2
+00:00:01.075 --> 00:00:05.669
+The decision record, from the guide's
+Step 1, scopes each run: the tenant,
+
+3
+00:00:05.669 --> 00:00:10.988
+the pillars, and the Azure subscriptions
+for the infrastructure pillar; the run
+
+4
+00:00:10.988 --> 00:00:16.387
+account; the cadence; the pinned tool version;
+telemetry; and where the output goes.
+
+5
+00:00:16.387 --> 00:00:17.862
+The see-so approves it.
+
+6
+00:00:17.862 --> 00:00:21.510
+Then each pillar owner reads
+their own tab, with the filters,
+
+7
+00:00:21.510 --> 00:00:24.860
+and notes every investigate,
+skipped and error result,
+
+8
+00:00:24.860 --> 00:00:29.326
+and every failed result whose feature
+may not exist in the tenant's cloud.
+
+9
+00:00:29.326 --> 00:00:35.538
+For a G C C tenant, the workbook's baseline,
+the tool uses the worldwide endpoints.
+
+10
+00:00:35.538 --> 00:00:39.163
+In G C C High and D O D,
+there's a case to know.
+
+11
+00:00:39.163 --> 00:00:42.731
+Learn's Exchange Online service
+description says anti-phishing
+
+12
+00:00:42.731 --> 00:00:47.025
+impersonation protection and spoof
+intelligence aren't yet available there.
+
+13
+00:00:47.025 --> 00:00:51.222
+So a failed impersonation test in
+those clouds is a boundary finding,
+
+14
+00:00:51.222 --> 00:00:53.780
+not a configuration change to make today.

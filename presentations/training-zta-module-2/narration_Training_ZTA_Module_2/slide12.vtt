@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.661
+The federal requirement, from NIST special
+
+2
+00:00:02.661 --> 00:00:05.925
+publication eight hundred
+fifty-three, revision five.
+
+3
+00:00:05.925 --> 00:00:08.150
+C M six, configuration settings:
+
+4
+00:00:08.150 --> 00:00:13.200
+the host's pinned module and PowerShell
+versions, recorded for each run.
+
+5
+00:00:13.200 --> 00:00:17.378
+A C six, least privilege: read
+roles only, activated just in time,
+
+6
+00:00:17.378 --> 00:00:21.637
+with the consent administrator
+separate from the run account;
+
+7
+00:00:21.637 --> 00:00:26.962
+the evidence is the role assignments, the
+pim activations, and the grant review.
+
+8
+00:00:26.962 --> 00:00:31.570
+C A two and C A seven: the assessment
+run, in the tenant's own cloud;
+
+9
+00:00:31.570 --> 00:00:36.087
+the evidence is the connection
+context and the export's hash.
+
+10
+00:00:36.087 --> 00:00:39.219
+And A U nine, protection
+of audit information:
+
+11
+00:00:39.219 --> 00:00:42.350
+hashes taken before
+anyone opened the files.
+
+12
+00:00:42.350 --> 00:00:46.637
+Each row lines up with a fed-ramp
+twenty X key security indicator.
+
+13
+00:00:46.637 --> 00:00:50.500
+The evidence supports the
+controls; the assessor decides.

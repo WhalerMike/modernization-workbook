@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.525
+First: an agency already runs the
+Zero Trust Assessment monthly.
+
+3
+00:00:06.525 --> 00:00:08.225
+Can it stop running ScubaGear?
+
+4
+00:00:08.225 --> 00:00:09.400
+The answer is b, no.
+
+5
+00:00:09.400 --> 00:00:15.105
+CISA's directive names CISA's SCuBA tools,
+and ScubaGear covers Exchange Online,
+
+6
+00:00:15.105 --> 00:00:18.378
+Teams, SharePoint and
+Power Platform policies
+
+7
+00:00:18.378 --> 00:00:21.063
+the Zero Trust Assessment doesn't test.
+
+8
+00:00:21.063 --> 00:00:25.937
+Second: a test is skipped with the
+reason not licensed Entra I D P two.
+
+9
+00:00:25.937 --> 00:00:27.075
+How is it counted?
+
+10
+00:00:27.075 --> 00:00:29.988
+The answer is c: skipped, licensing.
+
+11
+00:00:29.988 --> 00:00:33.876
+It's a licensing decision,
+neither a failure nor a pass.
+
+12
+00:00:33.876 --> 00:00:38.860
+The module page has three more questions,
+each linked to the unit that answers it.

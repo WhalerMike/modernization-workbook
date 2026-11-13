@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.113
+Lab 1 normalizes and
+registers two fictional
+
+3
+00:00:04.113 --> 00:00:07.012
+runs of a Contoso tenant, two weeks apart.
+
+4
+00:00:07.012 --> 00:00:09.488
+Step one normalizes the first run.
+
+5
+00:00:09.488 --> 00:00:14.881
+Thirty-three tests: eight pass, seventeen
+fail, one planned, two skipped for
+
+6
+00:00:14.881 --> 00:00:20.363
+licensing, one disconnected, two not
+applicable, and two unable to evaluate.
+
+7
+00:00:20.363 --> 00:00:23.188
+Seventeen findings, one
+of them investigate.
+
+8
+00:00:23.188 --> 00:00:28.113
+The tool marked sixteen failed; the
+investigate result makes seventeen.
+
+9
+00:00:28.113 --> 00:00:32.113
+The eight that are neither pass nor
+finding are in their own columns.
+
+10
+00:00:32.113 --> 00:00:34.462
+Step two reads the dispositions.
+
+11
+00:00:34.462 --> 00:00:39.562
+Two skips for licensing, two not
+applicable, one disconnected, one planned.
+
+12
+00:00:39.562 --> 00:00:44.766
+And two unable to evaluate: test two
+four five four eight ended in error,
+
+13
+00:00:44.766 --> 00:00:47.099
+and four one oh five oh timed out.
+
+14
+00:00:47.099 --> 00:00:50.662
+Both of those are a run to
+fix, not a control to fail.
+
+15
+00:00:50.662 --> 00:00:53.222
+The slide leaves out
+the written-to line and
+
+16
+00:00:53.222 --> 00:00:55.700
+the table's underline;
+the page shows them.

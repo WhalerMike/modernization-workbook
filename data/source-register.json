@@ -10293,6 +10293,23 @@
    ]
   },
   {
+   "id": "grant-and-revoke-api-permissions",
+   "title": "Grant and revoke API permissions programmatically in Microsoft Entra ID",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/powershell/microsoftgraph/how-to-grant-revoke-api-permissions",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Grant and revoke API permissions in Microsoft Entra ID"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
    "id": "azure-service-health-portal",
    "title": "Azure Service Health portal",
    "publisher": "Microsoft",

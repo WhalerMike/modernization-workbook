@@ -14,7 +14,7 @@ last-reviewed: 2026-11-09
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 630 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 631 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -286,6 +286,7 @@ This register lists 630 sources. A slide or a video description links to a sourc
 | [Get-MgRoleManagementDirectoryRoleAssignment](https://learn.microsoft.com/powershell/module/microsoft.graph.identity.governance/get-mgrolemanagementdirectoryroleassignment){#get-mgrolemanagementdirectoryroleassignment} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="get-mgrolemanagementdirectoryroleassignment"} |
 | [Get-MgServicePrincipalOwner](https://learn.microsoft.com/powershell/module/microsoft.graph.applications/get-mgserviceprincipalowner?view=graph-powershell-1.0){#get-mgserviceprincipalowner} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="get-mgserviceprincipalowner"} |
 | [Govern on-premises service accounts](https://learn.microsoft.com/entra/architecture/service-accounts-govern-on-premises){#govern-on-premises-service-accounts} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="govern-on-premises-service-accounts"} |
+| [Grant and revoke API permissions programmatically in Microsoft Entra ID](https://learn.microsoft.com/powershell/microsoftgraph/how-to-grant-revoke-api-permissions){#grant-and-revoke-api-permissions} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="grant-and-revoke-api-permissions"} |
 | [Grant or revoke API permissions programmatically](https://learn.microsoft.com/graph/permissions-grant-via-msgraph){#grant-or-revoke-api-permissions} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="grant-or-revoke-api-permissions"} |
 | [Group Policy application rules for domain controllers](https://learn.microsoft.com/troubleshoot/windows-server/active-directory/group-policy-application-rules-for-domain-controller){#group-policy-application-rules-for-domain} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="group-policy-application-rules-for-domain"} |
 | [Group Policy overview for Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview){#group-policy-overview-for-windows-server} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="group-policy-overview-for-windows-server"} |
@@ -774,7 +775,7 @@ This register lists 630 sources. A slide or a video description links to a sourc
 | Date | Source | Change |
 |---|---|---|
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
-| November 12, 2026 | 75 sources | Added: cited on the narrated deck slides |
+| November 12, 2026 | 76 sources | Added: cited on the narrated deck slides |
 | November 11, 2026 | 15 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |

@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.625
+Unit 2 reconciles.
+
+2
+00:00:01.625 --> 00:00:05.425
+Tools with different identifiers can't
+be matched to each other directly.
+
+3
+00:00:05.425 --> 00:00:09.249
+Instead, each is matched to a
+common spine: the setting itself,
+
+4
+00:00:09.249 --> 00:00:14.525
+and the control it supports in NIST special
+publication eight hundred fifty-three.
+
+5
+00:00:14.525 --> 00:00:18.402
+When two tools fail the same
+setting under the same control,
+
+6
+00:00:18.402 --> 00:00:22.675
+that's one finding, with two pieces
+of evidence, routed to one owner.
+
+7
+00:00:22.675 --> 00:00:27.294
+CISA maps every SCuBA policy to
+those controls, and where both fail,
+
+8
+00:00:27.294 --> 00:00:30.841
+the ScubaGear finding is
+the directive's deviation
+
+9
+00:00:30.841 --> 00:00:33.975
+and carries B O D twenty-five
+oh-one's reporting.
+
+10
+00:00:33.975 --> 00:00:38.823
+On AWS, each Security Hub finding
+lists its related requirements,
+
+11
+00:00:38.823 --> 00:00:41.337
+such as A C four, and that's the spine.
+
+12
+00:00:41.337 --> 00:00:43.812
+Two cautions from AWS itself.
+
+13
+00:00:43.812 --> 00:00:47.497
+Its NIST standard supports only
+a subset of the framework,
+
+14
+00:00:47.497 --> 00:00:49.262
+with automated checks only.
+
+15
+00:00:49.262 --> 00:00:54.303
+And a control with no corresponding resources
+reports passed at the account level,
+
+16
+00:00:54.303 --> 00:00:56.713
+so a pass can mean nothing was evaluated.
+
+17
+00:00:56.713 --> 00:00:59.180
+Each tool sees only its own platform.

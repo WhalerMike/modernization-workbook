@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:07.000
+First: a finding failed last month, and
+this month it's skipped, disconnected.
+
+3
+00:00:07.000 --> 00:00:07.800
+What is it?
+
+4
+00:00:07.800 --> 00:00:10.813
+The answer is b: no longer evaluated.
+
+5
+00:00:10.813 --> 00:00:12.050
+It's not fixed.
+
+6
+00:00:12.050 --> 00:00:14.537
+Fix the run's connection,
+and run it again.
+
+7
+00:00:14.537 --> 00:00:18.824
+Second: a Security Hub control
+reports passed at the account level.
+
+8
+00:00:18.824 --> 00:00:19.962
+What should you check?
+
+9
+00:00:19.962 --> 00:00:24.357
+The answer is b: whether any
+resource corresponds to the control,
+
+10
+00:00:24.357 --> 00:00:28.337
+because AWS produces an
+account-level pass when none does.
+
+11
+00:00:28.337 --> 00:00:30.837
+Read the pass with the resource inventory.
+
+12
+00:00:30.837 --> 00:00:35.810
+The module page has three more questions,
+each linked to the unit that answers it.

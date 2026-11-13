@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.700
+Lab 1 picks up Module 3's two runs.
+
+3
+00:00:03.700 --> 00:00:08.117
+Step one compares them: two new,
+one regressed, three fixed,
+
+4
+00:00:08.117 --> 00:00:14.038
+twelve still open, two no longer evaluated,
+two changed, and twelve unchanged.
+
+5
+00:00:14.038 --> 00:00:16.187
+Step two lists the ones to look at.
+
+6
+00:00:16.187 --> 00:00:20.063
+Two one seven eight three
+regressed, from pass to fail.
+
+7
+00:00:20.063 --> 00:00:24.250
+Two one nine four one is new: it
+wasn't in the first run at all.
+
+8
+00:00:24.250 --> 00:00:26.475
+Now the two no longer evaluated.
+
+9
+00:00:26.475 --> 00:00:30.632
+Two one eight six oh and four one
+oh three two both failed last time,
+
+10
+00:00:30.632 --> 00:00:33.712
+and this time they were
+skipped as disconnected.
+
+11
+00:00:33.712 --> 00:00:37.150
+The second run lost its Azure
+and Exchange connections.
+
+12
+00:00:37.150 --> 00:00:40.788
+Those findings aren't fixed; they
+still need a run that connects.
+
+13
+00:00:40.788 --> 00:00:43.865
+And four one oh five oh
+shows as new only because the
+
+14
+00:00:43.865 --> 00:00:47.088
+first run timed out on it,
+not because something broke.
+
+15
+00:00:47.088 --> 00:00:51.070
+The slide shortens step two's
+command; the page has it in full.

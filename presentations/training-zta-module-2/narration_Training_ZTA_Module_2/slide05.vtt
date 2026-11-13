@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.325
+Unit 2 is consent and roles,
+and the two sources don't agree.
+
+2
+00:00:04.325 --> 00:00:09.400
+Learn's get-started page says the first
+connection needs a Global Administrator,
+
+3
+00:00:09.400 --> 00:00:11.369
+lists four roles for later runs,
+
+4
+00:00:11.369 --> 00:00:14.475
+and on the same page says
+a Global Reader is enough.
+
+5
+00:00:14.475 --> 00:00:19.402
+The tool's guide for three point one point
+oh says a Cloud Application Administrator
+
+6
+00:00:19.402 --> 00:00:23.132
+or Application Administrator
+can grant the delegated consent,
+
+7
+00:00:23.132 --> 00:00:25.525
+and that consent assigns no runtime role.
+
+8
+00:00:25.525 --> 00:00:29.223
+It says the module validates Global
+Reader for the Graph context,
+
+9
+00:00:29.223 --> 00:00:33.400
+and that the SharePoint tenant commands
+need SharePoint Administrator.
+
+10
+00:00:33.400 --> 00:00:36.246
+Learn lists twenty-one Graph permissions;
+
+11
+00:00:36.246 --> 00:00:41.125
+Get Z T Graph Scope in three point one
+point oh prints thirty-four, all read.
+
+12
+00:00:41.125 --> 00:00:45.925
+The program follows the tool's guide,
+because it describes the version being run.
+
+13
+00:00:45.925 --> 00:00:49.912
+The consent administrator consents
+and doesn't run the assessment.
+
+14
+00:00:49.912 --> 00:00:52.459
+The run account is a
+dedicated reader whose
+
+15
+00:00:52.459 --> 00:00:55.340
+roles are activated through
+pim before each run.

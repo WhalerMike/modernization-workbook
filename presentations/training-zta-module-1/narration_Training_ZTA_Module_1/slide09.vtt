@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.855
+Lab 1 runs on the kit's
+fixtures, with no tenant:
+
+3
+00:00:03.855 --> 00:00:09.350
+a fictional Contoso export in the shape
+release three point one point oh writes.
+
+4
+00:00:09.350 --> 00:00:11.824
+Step one reads the export's metadata,
+
+5
+00:00:11.824 --> 00:00:16.113
+from the jay-son file the tool
+writes under its zt-export folder.
+
+6
+00:00:16.113 --> 00:00:19.636
+It's version three point one
+point oh, tenant Contoso,
+
+7
+00:00:19.636 --> 00:00:23.650
+thirty-three tests, and it ends
+with the end-of-jay-son marker.
+
+8
+00:00:23.650 --> 00:00:28.338
+That marker is the last thing the tool
+writes, so a file without it is incomplete.
+
+9
+00:00:28.338 --> 00:00:32.871
+Step two counts the tool's
+statuses: one error, sixteen failed,
+
+10
+00:00:32.871 --> 00:00:37.224
+one investigate, eight passed,
+one planned, and six skipped.
+
+11
+00:00:37.224 --> 00:00:38.812
+Now think about a pass rate.
+
+12
+00:00:38.812 --> 00:00:43.124
+It would divide eight by a total that
+moves with licensing and connections.
+
+13
+00:00:43.124 --> 00:00:46.364
+Connect one more service next
+month and the rate changes,
+
+14
+00:00:46.364 --> 00:00:48.225
+though nothing in the tenant did.
+
+15
+00:00:48.225 --> 00:00:50.710
+That's why the program doesn't report one.

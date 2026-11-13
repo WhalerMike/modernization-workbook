@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.765
+Lab 2 makes one real change
+and proves it with evidence,
+
+2
+00:00:03.765 --> 00:00:06.325
+in your test tenant, never production.
+
+3
+00:00:06.325 --> 00:00:07.887
+The authors haven't run it.
+
+4
+00:00:07.887 --> 00:00:13.030
+Step one: make one change that a finding
+in Module 3's Lab 2 register points to,
+
+5
+00:00:13.030 --> 00:00:17.675
+through the page its remediation
+field names, under a change record.
+
+6
+00:00:17.675 --> 00:00:21.041
+Step two: re-run the
+assessment into a new folder,
+
+7
+00:00:21.041 --> 00:00:23.975
+then normalize it and write its register.
+
+8
+00:00:23.975 --> 00:00:26.645
+Step three: compare it with the first run,
+
+9
+00:00:26.645 --> 00:00:30.125
+seal all three output folders,
+and check the package.
+
+10
+00:00:30.125 --> 00:00:32.650
+The finding you fixed
+should show as fixed.
+
+11
+00:00:32.650 --> 00:00:34.827
+If it shows as no longer evaluated,
+
+12
+00:00:34.827 --> 00:00:38.637
+the second run didn't connect
+to the service that test reads.
+
+13
+00:00:38.637 --> 00:00:43.850
+Step four is optional: where you have an
+AWS test account with Security Hub and its
+
+14
+00:00:43.850 --> 00:00:46.962
+NIST standard enabled,
+pull its active findings,
+
+15
+00:00:46.962 --> 00:00:49.763
+and add one row to the
+reconciliation table.
+
+16
+00:00:49.763 --> 00:00:51.275
+Step five backs it out.
+
+17
+00:00:51.275 --> 00:00:55.300
+The slide shortens the lab;
+the page lists every command.

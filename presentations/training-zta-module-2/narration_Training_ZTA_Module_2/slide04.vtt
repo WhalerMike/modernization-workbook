@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.625
+Unit 1 is the host and the output.
+
+2
+00:00:02.625 --> 00:00:04.750
+Learn asks for PowerShell seven.
+
+3
+00:00:04.750 --> 00:00:09.443
+Release three point one point oh's own
+guide asks for seven point six or later,
+
+4
+00:00:09.443 --> 00:00:12.200
+because its pinned
+Exchange module needs it,
+
+5
+00:00:12.200 --> 00:00:15.850
+and recommends a dedicated,
+clean Windows virtual machine.
+
+6
+00:00:15.850 --> 00:00:18.516
+On other platforms, the
+SharePoint Online and
+
+7
+00:00:18.516 --> 00:00:21.462
+Azure Information Protection
+checks are skipped.
+
+8
+00:00:21.462 --> 00:00:25.725
+Install the module version the decision
+record pins, and nothing newer.
+
+9
+00:00:25.725 --> 00:00:28.719
+Every run gets a new,
+empty folder that only the
+
+10
+00:00:28.719 --> 00:00:31.950
+run account and the evidence
+custodians can read.
+
+11
+00:00:31.950 --> 00:00:35.855
+And one thing people miss: deleting
+the report folder doesn't remove
+
+12
+00:00:35.855 --> 00:00:39.900
+PowerShell's separate logging folder,
+which can also hold tenant data.
+
+13
+00:00:39.900 --> 00:00:44.740
+The tool's guide says so, and the program
+treats that folder as part of the output.

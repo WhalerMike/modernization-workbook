@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:05.883
+The Zero Trust Assessment tests a tenant
+against hundreds of configuration
+
+3
+00:00:05.883 --> 00:00:10.712
+items from Microsoft's guidance for Entra,
+Intune, Azure networking and Purview.
+
+4
+00:00:10.712 --> 00:00:14.291
+Release three point one point
+oh, the current release,
+
+5
+00:00:14.291 --> 00:00:17.950
+holds three hundred sixty-four
+tests in seven pillars.
+
+6
+00:00:17.950 --> 00:00:19.360
+It's read-only, it's free,
+
+7
+00:00:19.360 --> 00:00:23.825
+and it's the assessment component
+of Microsoft's Zero Trust Workshop.
+
+8
+00:00:23.825 --> 00:00:26.537
+The report is accurate on the day it runs.
+
+9
+00:00:26.537 --> 00:00:29.693
+What it doesn't do is tell
+you what a skipped test means,
+
+10
+00:00:29.693 --> 00:00:32.275
+what to fix first, or
+when a finding is closed.
+
+11
+00:00:32.275 --> 00:00:34.456
+Those are decisions for named people,
+
+12
+00:00:34.456 --> 00:00:37.200
+and the report is the
+evidence they decide with.
+
+13
+00:00:37.200 --> 00:00:41.040
+That's the title of this
+module: evidence, not a verdict.

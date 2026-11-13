@@ -1,0 +1,590 @@
+{
+ "1": [
+  [
+   0.05,
+   6.15,
+   "Welcome to Module 2 of The Zero Trust Assessment as Evidence: running the assessment safely."
+  ],
+  [
+   6.2,
+   5.3,
+   "This module is a draft, awaiting the editor's review, so recheck it after the review."
+  ],
+  [
+   11.5,
+   7.925,
+   "The assessment is read-only, but running it takes more privilege than that suggests, and its output is a map of where the tenant is weak."
+  ],
+  [
+   19.425,
+   9.113,
+   "In this module you prepare a host, consent once, run as a reader, connect in the tenant's own cloud, and hash the output before anyone opens it."
+  ],
+  [
+   28.538,
+   9.412,
+   "It covers Steps 2 to 5 of the Zero Trust Assessment implementation guide, and takes about thirty-five minutes, plus Lab 2 in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   4.05,
+   "The assessment only reads, but running it takes real privilege."
+  ],
+  [
+   5.25,
+   12.162,
+   "An administrator consents to the tool's Microsoft Graph read permissions, and the run account needs a set of roles: Global Reader, Security Reader, Reader on the Azure subscriptions in scope, and more."
+  ],
+  [
+   17.413,
+   2.913,
+   "One of them, SharePoint Administrator, can write."
+  ],
+  [
+   20.325,
+   1.825,
+   "And the output is sensitive."
+  ],
+  [
+   22.15,
+   2.312,
+   "It's a map of where the tenant is weak."
+  ],
+  [
+   24.462,
+   12.162,
+   "Microsoft's get-started page on Learn says to share the report and export folder only with authorized personnel, to store the report securely, and to delete the local folder once the assessment is complete."
+  ],
+  [
+   36.625,
+   11.488,
+   "So this module treats the run like any other privileged operation: a clean host, consent once, a reader account, the right cloud, and a hash taken before anyone opens a file."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.537,
+   "You'll prepare a clean host with PowerShell seven point six, the pinned module, and a restricted report folder."
+  ],
+  [
+   9.5,
+   5.2,
+   "You'll explain who consents, who runs, and why the two sources' role lists differ."
+  ],
+  [
+   14.7,
+   5.425,
+   "You'll review the delegated grant the consent leaves behind, and say when not to revoke it."
+  ],
+  [
+   20.125,
+   7.9,
+   "You'll connect in Commercial, G C C, G C C High or D O D, and confirm the session's tenant and cloud."
+  ],
+  [
+   28.025,
+   2.837,
+   "And you'll run the assessment and hash its export."
+  ],
+  [
+   30.863,
+   7.375,
+   "You need Module 1, and a skim of the Privileged Access implementation guide's pim model, for the run account's eligible roles."
+  ],
+  [
+   38.237,
+   3.362,
+   "Lab 2 runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.575,
+   "Unit 1 is the host and the output."
+  ],
+  [
+   2.625,
+   2.125,
+   "Learn asks for PowerShell seven."
+  ],
+  [
+   4.75,
+   11.1,
+   "Release three point one point oh's own guide asks for seven point six or later, because its pinned Exchange module needs it, and recommends a dedicated, clean Windows virtual machine."
+  ],
+  [
+   15.85,
+   5.612,
+   "On other platforms, the SharePoint Online and Azure Information Protection checks are skipped."
+  ],
+  [
+   21.462,
+   4.263,
+   "Install the module version the decision record pins, and nothing newer."
+  ],
+  [
+   25.725,
+   6.225,
+   "Every run gets a new, empty folder that only the run account and the evidence custodians can read."
+  ],
+  [
+   31.95,
+   7.95,
+   "And one thing people miss: deleting the report folder doesn't remove PowerShell's separate logging folder, which can also hold tenant data."
+  ],
+  [
+   39.9,
+   4.775,
+   "The tool's guide says so, and the program treats that folder as part of the output."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.275,
+   "Unit 2 is consent and roles, and the two sources don't agree."
+  ],
+  [
+   4.325,
+   10.15,
+   "Learn's get-started page says the first connection needs a Global Administrator, lists four roles for later runs, and on the same page says a Global Reader is enough."
+  ],
+  [
+   14.475,
+   11.05,
+   "The tool's guide for three point one point oh says a Cloud Application Administrator or Application Administrator can grant the delegated consent, and that consent assigns no runtime role."
+  ],
+  [
+   25.525,
+   7.875,
+   "It says the module validates Global Reader for the Graph context, and that the SharePoint tenant commands need SharePoint Administrator."
+  ],
+  [
+   33.4,
+   7.725,
+   "Learn lists twenty-one Graph permissions; Get Z T Graph Scope in three point one point oh prints thirty-four, all read."
+  ],
+  [
+   41.125,
+   4.8,
+   "The program follows the tool's guide, because it describes the version being run."
+  ],
+  [
+   45.925,
+   3.987,
+   "The consent administrator consents and doesn't run the assessment."
+  ],
+  [
+   49.913,
+   5.375,
+   "The run account is a dedicated reader whose roles are activated through pim before each run."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.35,
+   "Consent leaves something behind: a delegated permission grant, on the application the tool signs in through."
+  ],
+  [
+   6.4,
+   8.8,
+   "By default that's the Microsoft Graph PowerShell application, which other scripts in the tenant share, so every script that uses it inherits the consent."
+  ],
+  [
+   15.2,
+   11.025,
+   "Learn's page on the Graph PowerShell authentication commands recommends a custom application when you need to isolate the consent it holds, and the tool accepts one with the client I D parameter."
+  ],
+  [
+   26.225,
+   4.138,
+   "The program uses a dedicated application; that's design guidance."
+  ],
+  [
+   30.363,
+   6.688,
+   "Review the grant after every version change, and compare its scopes with the list Get Z T Graph Scope prints."
+  ],
+  [
+   37.05,
+   6.275,
+   "When the tool is retired, revoke a dedicated application's grant, with Learn's revocation command."
+  ],
+  [
+   43.325,
+   4.162,
+   "Never revoke the shared one without asking who else relies on it."
+  ],
+  [
+   47.487,
+   5.487,
+   "Learn also notes that existing tokens stay valid for their lifetime after a grant is deleted."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.475,
+   "Unit 3 connects."
+  ],
+  [
+   1.525,
+   9.525,
+   "Learn's Zero Trust Assessment pages don't mention government clouds; the tool's source does, and the guide matches its parameters to Learn's page for each service."
+  ],
+  [
+   11.05,
+   3.438,
+   "Start with G C C, the workbook's baseline."
+  ],
+  [
+   14.488,
+   9.4,
+   "A G C C tenant uses the worldwide Graph and Azure endpoints, so it connects with the default Global environment, the same command as commercial."
+  ],
+  [
+   23.887,
+   6.925,
+   "G C C High uses the U S Gov environment, with the Exchange environment name for G C C High."
+  ],
+  [
+   30.812,
+   5.888,
+   "D O D uses U S Gov D O D, with its own Exchange environment name."
+  ],
+  [
+   36.7,
+   4.4,
+   "Then confirm the session's tenant and cloud with Get M G Context."
+  ],
+  [
+   41.1,
+   7.013,
+   "Pass the SharePoint admin U R L in every cloud; otherwise the tool infers one from the initial domain."
+  ],
+  [
+   48.112,
+   5.675,
+   "And in D O D, Learn and the tool give different Security and Compliance addresses."
+  ],
+  [
+   53.788,
+   4.15,
+   "If the data pillar's tests come back disconnected there, check that first."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.325,
+   "Here's where each service stands, cloud by cloud, from the guide's availability table."
+  ],
+  [
+   5.375,
+   12.613,
+   "Microsoft Graph: G C C uses the worldwide graph dot microsoft dot com, G C C High uses graph dot microsoft dot U S, and D O D its own D O D graph host."
+  ],
+  [
+   17.988,
+   6.25,
+   "Exchange Online: no parameter in G C C, and an environment name for each of the other two."
+  ],
+  [
+   24.238,
+   13.387,
+   "Security and Compliance: the default endpoint in G C C; a dot U S address in G C C High; and in D O D, Learn and the tool's source give different addresses, and which one works wasn't tested."
+  ],
+  [
+   37.625,
+   5.162,
+   "Azure: Azure Cloud for G C C, Azure U S Government for the other two."
+  ],
+  [
+   42.788,
+   5.05,
+   "SharePoint admin: pass it explicitly; D O D's isn't yet specified."
+  ],
+  [
+   47.837,
+   9.238,
+   "Until a run has been proved in your own cloud, run one pillar at a time in a test tenant of the same cloud, and keep ScubaGear as the federal baseline tool."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.0,
+   "Unit 4 is the run itself."
+  ],
+  [
+   2.05,
+   5.487,
+   "On a large tenant it can take more than twenty-four hours, and Microsoft says not to stop it."
+  ],
+  [
+   7.537,
+   6.263,
+   "The disable-telemetry switch suppresses the tool's one telemetry event, which carries the tenant I D."
+  ],
+  [
+   13.8,
+   4.562,
+   "Whether to use it is the see-so's decision, written in the decision record."
+  ],
+  [
+   18.363,
+   3.45,
+   "The no-browser switch keeps the report from opening on screen."
+  ],
+  [
+   21.812,
+   7.925,
+   "As soon as the run ends, before anyone opens or copies a file, hash the export, S H A two fifty-six."
+  ],
+  [
+   29.738,
+   3.225,
+   "That hash is what later shows the output wasn't changed."
+  ],
+  [
+   32.962,
+   4.987,
+   "And if the run fails, capture a support package in the same session, before you close it."
+  ],
+  [
+   37.95,
+   5.537,
+   "The guide's Step 5 has the command, and says to write the package to a separate protected folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.112,
+   "Lab 2 runs the real tool in a test tenant, never production."
+  ],
+  [
+   4.162,
+   2.925,
+   "The authors haven't run it, as the page says."
+  ],
+  [
+   7.088,
+   15.375,
+   "You need a test tenant in the cloud you'll assess, with fictional users; a consent administrator; a reader account with Global Reader, Security Reader and SharePoint Administrator, eligible through pim; and a Windows host with PowerShell seven point six."
+  ],
+  [
+   22.462,
+   2.712,
+   "Values you supply are in angle brackets."
+  ],
+  [
+   25.175,
+   7.812,
+   "Step one prepares the host: check the PowerShell version, install the pinned module, create the report folder, and restrict it."
+  ],
+  [
+   32.987,
+   8.762,
+   "Step two consents once, as the consent administrator: print the scopes the tool will request, then connect to Graph and accept the prompt."
+  ],
+  [
+   41.75,
+   3.25,
+   "Step three reviews the grant while you're still signed in."
+  ],
+  [
+   45.0,
+   5.138,
+   "The scope field lists every permission the tool's application now holds in the tenant."
+  ],
+  [
+   50.138,
+   4.588,
+   "Compare it with the list Get Z T Graph Scope printed, and keep the output."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.325,
+   "Step four connects as the reader, after activating its roles in pim, in a new PowerShell session."
+  ],
+  [
+   6.375,
+   9.162,
+   "The command on the slide is for G C C and commercial; for G C C High or D O D, use the connection commands from the guide's Step 4 instead."
+  ],
+  [
+   15.537,
+   3.763,
+   "Then confirm the session's tenant, environment and account."
+  ],
+  [
+   19.3,
+   3.538,
+   "Step five runs the assessment and hashes the export."
+  ],
+  [
+   22.837,
+   3.737,
+   "Keep the report folder: Modules 3 and 4 read it."
+  ],
+  [
+   26.575,
+   3.275,
+   "Step six backs it all out, when you finish the path."
+  ],
+  [
+   29.85,
+   4.275,
+   "Disconnect, and remove the reader's role assignments in the test tenant."
+  ],
+  [
+   34.125,
+   8.025,
+   "If you consented on a dedicated application, remove its grant as a Cloud Application Administrator, with the grant I D from step three."
+  ],
+  [
+   42.15,
+   6.1,
+   "Don't revoke the shared Microsoft Graph PowerShell grant if anything else in the tenant uses it."
+  ],
+  [
+   48.25,
+   1.825,
+   "Then delete the report folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.875,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   5.925,
+   7.275,
+   "C M six, configuration settings: the host's pinned module and PowerShell versions, recorded for each run."
+  ],
+  [
+   13.2,
+   13.762,
+   "A C six, least privilege: read roles only, activated just in time, with the consent administrator separate from the run account; the evidence is the role assignments, the pim activations, and the grant review."
+  ],
+  [
+   26.962,
+   9.125,
+   "C A two and C A seven: the assessment run, in the tenant's own cloud; the evidence is the connection context and the export's hash."
+  ],
+  [
+   36.087,
+   6.263,
+   "And A U nine, protection of audit information: hashes taken before anyone opened the files."
+  ],
+  [
+   42.35,
+   4.287,
+   "Each row lines up with a fed-ramp twenty X key security indicator."
+  ],
+  [
+   46.638,
+   3.8,
+   "The evidence supports the controls; the assessor decides."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   7.688,
+   "First: Learn lists twenty-one Graph permissions, and Get Z T Graph Scope in three point one point oh prints thirty-four."
+  ],
+  [
+   9.713,
+   3.1,
+   "Which list does the consent review compare against?"
+  ],
+  [
+   12.812,
+   5.75,
+   "The answer is b: Get Z T Graph Scope's, because it's what the version you're running requests."
+  ],
+  [
+   18.562,
+   4.188,
+   "Second: a G C C tenant connects with which environment value?"
+  ],
+  [
+   22.75,
+   6.375,
+   "The answer is a, Global, because G C C uses the worldwide Graph and Azure endpoints."
+  ],
+  [
+   29.125,
+   5.575,
+   "U S Gov is for G C C High, and U S Gov D O D for D O D."
+  ],
+  [
+   34.7,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   4.55,
+   "You prepared a clean host with the pinned module and a restricted report folder."
+  ],
+  [
+   5.425,
+   5.825,
+   "You consented once, as a consent administrator, and reviewed the grant the consent left behind."
+  ],
+  [
+   11.25,
+   4.025,
+   "You connected in the tenant's own cloud, starting with G C C."
+  ],
+  [
+   15.275,
+   4.875,
+   "And you ran the assessment as a reader and hashed its export before anyone opened it."
+  ],
+  [
+   20.15,
+   12.85,
+   "The evidence an I S S O keeps from this module: the module and PowerShell versions, the grant review, the reader's role assignments and pim activations, the connection context, and the export's hash."
+  ],
+  [
+   33.0,
+   7.513,
+   "Next is Module 3, from results to a closure register, where the kit turns an export into findings with owners."
+  ]
+ ]
+}

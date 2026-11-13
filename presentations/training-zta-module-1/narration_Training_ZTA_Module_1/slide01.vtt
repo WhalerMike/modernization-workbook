@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.824
+Welcome to Module 1 of the learning path,
+
+2
+00:00:02.824 --> 00:00:07.112
+The Zero Trust Assessment as
+Evidence: evidence, not a verdict.
+
+3
+00:00:07.112 --> 00:00:09.380
+A note first: this module is a draft,
+
+4
+00:00:09.380 --> 00:00:13.349
+awaiting the editor's review,
+so recheck it after the review.
+
+5
+00:00:13.349 --> 00:00:18.305
+Microsoft's Zero Trust Assessment is a
+PowerShell module that tests a tenant against
+
+6
+00:00:18.305 --> 00:00:23.050
+hundreds of configuration items drawn
+from Microsoft's configuration guidance.
+
+7
+00:00:23.050 --> 00:00:26.362
+It produces a reading of the
+configuration on one day.
+
+8
+00:00:26.362 --> 00:00:30.051
+In this module you'll learn what
+that reading can and can't tell you.
+
+9
+00:00:30.051 --> 00:00:33.207
+Then, on a fictional export,
+you'll see why the tool's
+
+10
+00:00:33.207 --> 00:00:36.825
+six statuses have to be sorted
+before anyone counts them.
+
+11
+00:00:36.825 --> 00:00:42.075
+The path follows the ten steps of the Zero
+Trust Assessment implementation guide;
+
+12
+00:00:42.075 --> 00:00:46.080
+this module covers Steps 1 and 6,
+and takes about forty minutes.

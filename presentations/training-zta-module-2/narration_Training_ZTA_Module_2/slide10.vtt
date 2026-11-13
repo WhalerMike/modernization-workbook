@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.162
+Lab 2 runs the real tool in a
+test tenant, never production.
+
+2
+00:00:04.162 --> 00:00:07.087
+The authors haven't run
+it, as the page says.
+
+3
+00:00:07.087 --> 00:00:11.301
+You need a test tenant in the cloud
+you'll assess, with fictional users;
+
+4
+00:00:11.301 --> 00:00:15.071
+a consent administrator; a reader
+account with Global Reader,
+
+5
+00:00:15.071 --> 00:00:19.358
+Security Reader and SharePoint
+Administrator, eligible through pim;
+
+6
+00:00:19.358 --> 00:00:22.463
+and a Windows host with
+PowerShell seven point six.
+
+7
+00:00:22.463 --> 00:00:25.174
+Values you supply are in angle brackets.
+
+8
+00:00:25.174 --> 00:00:28.740
+Step one prepares the host:
+check the PowerShell version,
+
+9
+00:00:28.740 --> 00:00:32.987
+install the pinned module, create
+the report folder, and restrict it.
+
+10
+00:00:32.987 --> 00:00:36.429
+Step two consents once, as
+the consent administrator:
+
+11
+00:00:36.429 --> 00:00:41.749
+print the scopes the tool will request, then
+connect to Graph and accept the prompt.
+
+12
+00:00:41.749 --> 00:00:45.000
+Step three reviews the grant
+while you're still signed in.
+
+13
+00:00:45.000 --> 00:00:47.605
+The scope field lists every permission the
+
+14
+00:00:47.605 --> 00:00:50.138
+tool's application now
+holds in the tenant.
+
+15
+00:00:50.138 --> 00:00:54.790
+Compare it with the list Get Z T Graph
+Scope printed, and keep the output.
