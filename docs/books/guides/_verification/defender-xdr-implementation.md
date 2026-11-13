@@ -2,22 +2,22 @@
 
 New guide, first pass of 2026-11-11, written for the Zero Trust Assessment closure update (instruction IDs XDR-01 to XDR-10, and the guide's part of closure-map rows CM-09 and CM-14). Owner approval of the work: Nov 11, 2026 ("run all phases"; the trimmed plan makes the instructions' Book 21 this guide). Every Microsoft fact was read on Microsoft Learn through the Microsoft Learn documentation service on 2026-11-11, except the Graph national-cloud hosts, read 2026-11-09 for the Provider Notices guide. No personal name, email address or agency detail was sent in any request. Nothing was run in a tenant.
 
-Facts carried from the books (the ES-001 to ES-005 values, the response ladder, the KSI mappings, M-22-09's device actions, M-26-14's retention floor, the Sentinel connector's DoD conflict) are cited by link and rely on those pages' own verification logs.
+Facts carried from the books (the ES-001 to ES-005 values, the response ladder, the KSI mappings, M-22-09's device actions, M-26-14's retention floor, the Sentinel connector's cloud table) are cited by link and rely on those pages' own verification logs.
 
 ## Claims log
 
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
-| 1 | Defender for US Government built in Azure US Government; GCC, GCC High, DoD; portals `security.microsoft.com`, `security.microsoft.us`, `security.apps.mil` | Architecture, availability | verified | Microsoft Defender for US Government, <https://learn.microsoft.com/defender-xdr/usgov> | Nov 11, 2026 |
-| 2 | Defender XDR API hosts `api-gcc.security.microsoft.us`, `api-gov.security.microsoft.us`; login hosts | Availability | verified | same | Nov 11, 2026 |
-| 3 | Threat Experts and Defender for IoT enterprise IoT security not available in GCC, GCC High, DoD | Availability | verified | same | Nov 11, 2026 |
+| 1 | Defender for US Government built in Azure US Government; GCC; portal `security.microsoft.com` | Architecture, availability | verified | Microsoft Defender for US Government, <https://learn.microsoft.com/defender-xdr/usgov> | Nov 11, 2026 |
+| 2 | Defender XDR API host `api-gcc.security.microsoft.us`; login hosts | Availability | verified | same | Nov 11, 2026 |
+| 3 | Threat Experts and Defender for IoT enterprise IoT security not available in GCC | Availability | verified | same | Nov 11, 2026 |
 | 4 | GCC customers transition Endpoint, Cloud Apps, Identity to GCC versions | Availability | verified | same | Nov 11, 2026 |
 | 5 | Defender for Endpoint government licensing offers; G3 includes Plan 1 | Prerequisites | verified | Defender for Endpoint for US Government customers, <https://learn.microsoft.com/defender-endpoint/gov> | Nov 11, 2026 |
-| 6 | MDE API hosts `api-gcc.securitycenter.microsoft.us`, `api-gov.securitycenter.microsoft.us` | Availability | verified | same | Nov 11, 2026 |
-| 7 | Supported OS in all three clouds; Server 2019 needs KB4586839 before onboarding | Gate 2 | verified | same | Nov 11, 2026 |
+| 6 | MDE API host `api-gcc.securitycenter.microsoft.us` | Availability | verified | same | Nov 11, 2026 |
+| 7 | Supported OS in GCC; Server 2019 needs KB4586839 before onboarding | Gate 2 | verified | same | Nov 11, 2026 |
 | 8 | Standard and streamlined (preview) government URL lists | Gate 2, availability | verified | same | Nov 11, 2026 |
 | 9 | Secure Score available with some recommendations missing; security configuration management available | Availability, Gate 5 | verified | same | Nov 11, 2026 |
-| 10 | DVM core and premium available in GCC, GCC High, DoD, without report inaccuracy and request CVE support | Availability, Gate 5 | verified | same | Nov 11, 2026 |
+| 10 | DVM core and premium available in GCC, without report inaccuracy and request CVE support | Availability, Gate 5 | verified | same | Nov 11, 2026 |
 | 11 | Web content filtering report listed only in the mobile table | Availability, couldn't verify | verified (as an absence) | same | Nov 11, 2026 |
 | 12 | Intune recommended; endpoint security policy; device objects only, not users | Architecture, Gate 4, Dangers | verified | Configure ASR rules and exclusions, <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-configure> | Nov 11, 2026 |
 | 13 | ASR precedence: local lowest; Group Policy wins over MDM unless MDMWinsOverGP; don't configure in both | Architecture, Dangers | verified | same | Nov 11, 2026 |
@@ -48,14 +48,14 @@ Facts carried from the books (the ES-001 to ES-005 values, the response ladder, 
 | 38 | `Get-NetFirewallProfile -PolicyStore ActiveStore` | Gate 3 | verified (code sample from the NetSecurity reference) | NetSecurity module reference | Nov 11, 2026 |
 | 39 | Security Exposure Management: Public Cloud only; not in national or sovereign clouds (US Gov) | Gate 5, availability, Dangers | verified | What is Microsoft Security Exposure Management? | Nov 11, 2026 |
 | 40 | `DeviceTvmSoftwareVulnerabilities` columns; not ingested into Sentinel | Gate 5 | verified | DeviceTvmSoftwareVulnerabilities | Nov 11, 2026 |
-| 41 | List incidents: v1.0, Global/L4/L5; `SecurityIncident.Read.All`; four Entra roles; filterable properties; `Get-MgSecurityIncident`, `-ExpandProperty alerts`; correlation | Gates 1, 6, 10 | verified | List incidents, <https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0> | Nov 11, 2026 |
+| 41 | List incidents: v1.0, Global; `SecurityIncident.Read.All`; four Entra roles; filterable properties; `Get-MgSecurityIncident`, `-ExpandProperty alerts`; correlation | Gates 1, 6, 10 | verified | List incidents, <https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0> | Nov 11, 2026 |
 | 42 | `Get-MgSecurityIncident -IncidentId` | Gate 6 | partly verified: `-IncidentId` is in Learn's Update-MgSecurityIncident sample; for Get it is inferred from the same SDK key | Microsoft.Graph.Security reference | Nov 11, 2026 |
-| 43 | runHuntingQuery: Global/L4/L5; `ThreatHunting.Read.All`; `Timespan` default 30 days, ISO 8601; `Start-MgSecurityHuntingQuery` | Gates 1, 2, 7, 10 | verified | security: runHuntingQuery | Nov 11, 2026 |
+| 43 | runHuntingQuery: Global; `ThreatHunting.Read.All`; `Timespan` default 30 days, ISO 8601; `Start-MgSecurityHuntingQuery` | Gates 1, 2, 7, 10 | verified | security: runHuntingQuery | Nov 11, 2026 |
 | 44 | Create detectionRule: `POST /security/rules/detectionRules`; `CustomDetection.ReadWrite.All`; Detection tuning (Manage), Security Administrator, Security Operator conditions; example body; status values; no national-cloud table | Gate 7, availability | verified; guide's example is Learn's, trimmed, status set to disabled, automated actions removed | Create detectionRule | Nov 11, 2026 |
 | 45 | Custom detection quotas (create 10 per minute per application) | Gate 7 | verified | Graph security API overview, Custom detections | Nov 11, 2026 |
 | 46 | Unified RBAC: permission groups; create role; activation needs Security Administrator; default for new MDE/MDI tenants since 2025; permission names (Security data basics, Alerts, Response, live response) | Gate 1 | verified | Create custom roles; Permissions; Activate unified RBAC | Nov 11, 2026 |
 | 47 | Defender for Identity government: Azure Government; sensor endpoints; service tag; no data migrated; 90-day feature lag; previews may not be supported | Gate 8, availability | verified | Defender for Identity for US Government offerings | Nov 11, 2026 |
-| 48 | Defender for Cloud Apps government: parity except App Governance alerts (roadmap for GCC, GCC High, DoD); three-month lag | Gate 8, availability | verified | Defender for Cloud Apps for US Government offerings | Nov 11, 2026 |
+| 48 | Defender for Cloud Apps government: parity except App Governance alerts (roadmap for GCC) | Gate 8, availability | verified | Defender for Cloud Apps for US Government offerings | Nov 11, 2026 |
 | 49 | BehaviorInfo/BehaviorEntities: Cloud Apps behaviors not available for GCC | Gate 8, availability | verified | Advanced hunting schema | Nov 11, 2026 |
 | 50 | Identity tables available only in Microsoft Defender; AlertInfo–AlertEvidence join | Gate 8 | verified | Migrate advanced hunting queries | Nov 11, 2026 |
 | 51 | AlertEvidence and AlertInfo columns (EntityType, AccountObjectId, AccountUpn, ServiceSource, Severity) | Gate 8 | verified | AlertEvidence; AlertInfo; Azure Monitor table reference | Nov 11, 2026 |
@@ -71,14 +71,13 @@ Facts carried from the books (the ES-001 to ES-005 values, the response ladder, 
 
 | # | Item | Learn says | Guide does |
 |---|---|---|---|
-| N1 | Graph `detectionRules` in GCC High and DoD | No national-cloud table | Not yet specified; portal creation from the same file |
-| N2 | Automatic attack disruption in GCC, GCC High, DoD | Not mentioned on the government pages | Not yet specified |
+| N1 | Graph `detectionRules` in GCC | No national-cloud table | Not yet specified; portal creation from the same file |
+| N2 | Automatic attack disruption in GCC | Not mentioned on the government pages | Not yet specified |
 | N3 | Automated investigation and response in government clouds | Not listed as a gap; no explicit statement | Says so |
 | N4 | Web content filtering on Windows in government clouds | Report listed only for mobile | Not yet specified |
 | N5 | Exposure Management in GCC specifically | "US Gov" not available; GCC not named | Treated as not available; flagged |
 | N6 | Detection test on Windows 10/11 | Supported list shows servers only | Missing alert on a client treated as inconclusive |
 | N7 | `OnboardingStatus` and `VulnerabilitySeverityLevel` value strings | Not enumerated | Group by OnboardingStatus; check severity strings in tenant |
-| N8 | Cloud Apps behaviors in GCC High and DoD | Only GCC stated | Not yet specified |
 
 ## Review gate
 

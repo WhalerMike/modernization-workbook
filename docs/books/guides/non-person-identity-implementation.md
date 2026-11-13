@@ -404,7 +404,7 @@ An application is orphaned when it has no named owner in the registry or the Own
 
 *Access & Privilege*, Chapter 06's policy runs the other way round: 30 days to assign an owner, then access suspended on day 31 ([Access & Privilege, Chapter 06](../b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps)). The program takes the stricter order, which *AI Identity Governance* already uses for agents because an agent can act ([AI Identity Governance, Chapter 05](../b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-orphaned-agent)). For AD service accounts, an account with no owner after Step 1 is a retirement candidate, disabled under the same rule.
 
-**Inactivity is a second orphan signal.** Microsoft's service principal sign-in activity report gives the last time each service principal was used, as client or resource, app-only or delegated. The report is in preview and its Graph API is in beta. The API page lists it for the global service and not for the US Government L4 or L5 clouds, so in a GCC tenant, which uses the commercial service, it's available.[^npi-sp-activity] Workload ID Premium adds app health recommendations for unused and inactive workload identities ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
+**Inactivity is a second orphan signal.** Microsoft's service principal sign-in activity report gives the last time each service principal was used, as client or resource, app-only or delegated. The report is in preview and its Graph API is in beta. The API page lists it for the global service, so in a GCC tenant, which uses the commercial service, it's available.[^npi-sp-activity] Workload ID Premium adds app health recommendations for unused and inactive workload identities ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
 
 ### Access reviews of owners
 
@@ -483,7 +483,7 @@ AI agents are non-person identities and follow this guide, with these additions 
   | Agent's user account | Preview, Frontier program tenants only | — |
   | Agent 365 FedRAMP High authorization | Pending as of October 1, 2026 | — |
 
-  For GCC High and DoD (High only), Microsoft has published no availability, so treat the agent features as unavailable there. Where they aren't available, run this guide's lifecycle on the service principals the agents run as.
+  Where an agent feature isn't available, run this guide's lifecycle on the service principals the agents run as.
 
 ## Control states, change safety and assessment mapping {#npi-control-states}
 

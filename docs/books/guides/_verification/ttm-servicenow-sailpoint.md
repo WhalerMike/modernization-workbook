@@ -20,9 +20,8 @@ Method. Every vendor page footnoted "read November 1, 2026" was opened on that d
 | 10 | IdentityIQ's ServiceNow integration offers ticket types serviceRequest, incident, changeRequest | Gap 3; G1 | verified at a new address; the Oct 24 address returns 404. No release or revision date on the page | `ttm-iiq-itsm` |
 | 11 | Entra ID spoke: ten action categories; Integration Hub subscription; custom Entra app, delegated (auth code) or application (client credentials); connection alias `https://graph.microsoft.com`; no US Government cloud mentioned | Prerequisites; G5 step 2 and availability; What couldn't be verified | verified | `ttm-spoke` |
 | 12 | ServiceNow government cloud has an isolated Store instance | G1 step 5 | verified (the page names the environment "Government Security Cloud (GCC)"; the guide says "government cloud") | `ttm-store` |
-| 13 | SailPoint Entra connector GCC High endpoints `graph.microsoft.us` and `login.microsoftonline.us`, set through the source-update API | Prerequisites; G3 step 2; G5 availability | verified | `ttm-gov` |
-| 14 | GCC uses worldwide Graph endpoints; GCC High `graph.microsoft.us`; US Gov sign-in `login.microsoftonline.us` | How to read; G2, G3, G6 availability | verified | `ttm-graph` |
-| 15 | Azure for US Government: PIM, access reviews, entitlement management, Lifecycle Workflows, API-driven inbound provisioning available; ID Governance in GCC, GCC High, DoD | G2 and G5 availability | verified | `ttm-entra-gov` |
+| 14 | GCC uses worldwide Graph endpoints | How to read; G2, G3, G6 availability | verified | `ttm-graph` |
+| 15 | Azure for US Government: PIM, access reviews, entitlement management, Lifecycle Workflows, API-driven inbound provisioning available; ID Governance in GCC | G2 and G5 availability | verified | `ttm-entra-gov` |
 | 16 | Native Change Detection: out-of-band create, update, delete detected on aggregation; one event per changed account; not for NELM sources; page now says "SailPoint Human Fabric" | G1 step 3; G3 step 4 | verified | `ttm-ncd-help` |
 | 17 | Entra SaaS connector features, including MFA attribute management and session sign-out on disable | G3 step 2; G5 steps 1, 6; G7 fixes; dangers | verified | `ttm-entra` |
 | 18 | ServiceNow change types: standard pre-authorized (no group, peer or CAB step); normal two levels of approval; emergency straight to CAB authorization; unauthorized change request on unplanned CI change | G2 lane table | verified | `ttm-chg` |
@@ -70,7 +69,7 @@ The lane-to-product mapping (G2), the approver-per-class example, the one-writer
 ## Removed from the page in this rewrite
 
 - The "loop, step by step" table and the "federal availability and cautions" section: their content moved into the loop at a glance and each gate's Availability and steps.
-- The availability matrix row for SailPoint's ServiceNow apps in GCC and GCC High ("not confirmed"): replaced by the government-Store check in G1 and the What couldn't be verified list.
+- The availability matrix row for SailPoint's ServiceNow apps in GCC ("not confirmed"): replaced by the government-Store check in G1 and the What couldn't be verified list.
 - The March 4, 2025 SailPoint press release on Non-Employee Risk Management: replaced by SailPoint's current FedRAMP page (claim 5).
 
 ## Requirements and KSI pass, November 2, 2026

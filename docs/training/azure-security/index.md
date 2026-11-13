@@ -37,7 +37,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 | Security monitor | The DDoS alert and runbook, the WAF and firewall logs, and the audit log's allowed and denied reads |
 | Policy owner and ISSO reviewer | The initiative, exemptions that expire, the monthly export, the metrics, the requirements and KSIs each step supports, and the evidence you keep |
 
-**Level:** intermediate. **Products:** Azure Resource Graph, Azure Policy, Azure DDoS Protection, Azure Web Application Firewall, Azure Front Door, Azure Application Gateway, Azure Firewall, Azure Private Link and private DNS, Azure Key Vault, Microsoft Defender for Cloud and Azure Monitor, through Azure CLI and Az PowerShell. **Scope:** a civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure; Azure Government, which pairs with GCC High and DoD, appears as side notes. Each module that compares clouds names the AWS, Google Cloud and Oracle Cloud Infrastructure equivalents from the guide.
+**Level:** intermediate. **Products:** Azure Resource Graph, Azure Policy, Azure DDoS Protection, Azure Web Application Firewall, Azure Front Door, Azure Application Gateway, Azure Firewall, Azure Private Link and private DNS, Azure Key Vault, Microsoft Defender for Cloud and Azure Monitor, through Azure CLI and Az PowerShell. **Scope:** a civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure; Azure Government appears as side notes. Each module that compares clouds names the AWS, Google Cloud and Oracle Cloud Infrastructure equivalents from the guide.
 
 ## Prerequisites
 

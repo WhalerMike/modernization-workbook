@@ -1,6 +1,6 @@
 ---
 title: "Global Secure Access & Zero Trust Network Engineering: An Implementation Guide"
-description: "A gated guide for deploying Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, in twelve steps that match the twelve network topics of the Zero Trust closure update: the decision and licensing, the reference architecture, the Windows client, Microsoft traffic, internet traffic, private applications, the compliant network check, universal tenant restrictions, TLS inspection, privileged protocols, coexistence and migration, and telemetry and evidence. Each step carries Microsoft Learn's commands (Microsoft Graph PowerShell and the beta network access API), its government-cloud availability, the federal requirements and KSIs it supports, a pilot and report-only phase, rollback, exclusions, the evidence an ISSO keeps and a day-two owner. With the six artifacts: the reference architecture, a decision record, the implementation checklist, a RACI, the evidence catalog and coverage metrics. Global Secure Access is available in GCC and not yet supported in GCC High or DoD."
+description: "A gated guide for deploying Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, in twelve steps that match the twelve network topics of the Zero Trust closure update: the decision and licensing, the reference architecture, the Windows client, Microsoft traffic, internet traffic, private applications, the compliant network check, universal tenant restrictions, TLS inspection, privileged protocols, coexistence and migration, and telemetry and evidence. Each step carries Microsoft Learn's commands (Microsoft Graph PowerShell and the beta network access API), its GCC availability, the federal requirements and KSIs it supports, a pilot and report-only phase, rollback, exclusions, the evidence an ISSO keeps and a day-two owner. With the six artifacts: the reference architecture, a decision record, the implementation checklist, a RACI, the evidence catalog and coverage metrics. Global Secure Access is available in GCC."
 doc-type: workbook-guide
 audience: [Technical, Customer]
 family: guides
@@ -35,7 +35,7 @@ How an agency on Microsoft 365 GCC deploys Microsoft's security service edge, Gl
 
 **Where the facts come from.** Every product fact, command, permission and government-cloud statement was read on Microsoft Learn on November 11, 2026, through the Microsoft Learn documentation service; facts the books verified on November 9 are cited by link to the chapter that holds them. TIC 3.0 statements were read from CISA's own documents the same day, and KSI statements and related controls from fedramp.gov. The [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/guides/_verification/global-secure-access-implementation.md) lists each claim with its source and date. Where Learn is silent, the guide says *not yet specified* and lists it under [What couldn't be verified](#what-couldnt-be-verified). Recommendations carry an authority label from [Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#authority-labels): *Mandated*, *Microsoft-recommended*, *Risk-based recommended* (the program's position) or *Optional*, with *License-dependent* and *Environment-dependent* where they apply.
 
-**The starting state the guide assumes.** A civilian agency at FedRAMP Moderate on Microsoft 365 GCC, which uses the commercial Microsoft Entra ID service and the worldwide Microsoft Graph endpoint, `https://graph.microsoft.com`; Windows 11 devices joined or hybrid joined to Microsoft Entra ID and managed by Intune ([Book 05](../b05-devices/index.md)); a full-tunnel VPN, possibly DirectAccess, and an on-premises or MTIPS web proxy; Active Directory still in service; and the program's standard of Windows Server 2019 or later for connector hosts, with 2016 gone by January 12, 2027 ([Book 00, Chapter 01](../b00-orientation/01-why-modernize-now.md#the-workbooks-server-standard)). That standard is the program's assumption, not a fact about any estate. An agency in GCC High or DoD stops at [Step 1](#step-1-decision-and-licensing): Global Secure Access isn't yet supported there. Examples use the fictional `contoso.example`.
+**The starting state the guide assumes.** A civilian agency at FedRAMP Moderate on Microsoft 365 GCC, which uses the commercial Microsoft Entra ID service and the worldwide Microsoft Graph endpoint, `https://graph.microsoft.com`; Windows 11 devices joined or hybrid joined to Microsoft Entra ID and managed by Intune ([Book 05](../b05-devices/index.md)); a full-tunnel VPN, possibly DirectAccess, and an on-premises or MTIPS web proxy; Active Directory still in service; and the program's standard of Windows Server 2019 or later for connector hosts, with 2016 gone by January 12, 2027 ([Book 00, Chapter 01](../b00-orientation/01-why-modernize-now.md#the-workbooks-server-standard)). That standard is the program's assumption, not a fact about any estate. Examples use the fictional `contoso.example`.
 
 **The Graph API is beta.** Microsoft's network access APIs are in preview on the `/beta` endpoint, and Learn says beta APIs "are subject to change" and that their use in production applications "is not supported."[^gsai-graph-overview] The commands below are Learn's own requests. Run them interactively by an administrator, with the result kept as evidence; don't build unattended production automation on them until they reach v1.0 *(Risk-based recommended: an unsupported API in a production pipeline is a change-control risk)*. Conditional Access, named locations and app role assignments use v1.0 where Learn's examples do.
 
@@ -105,32 +105,30 @@ The Zero Trust closure update lists twelve network topics, GSA-01 to GSA-12. Eac
 
 The steps are numbered to match the topics. Run them in this order, so the logs exist before anything is enforced and nothing blocks before its path exists: 1, 2, 12 (logging only), 3, 4, 7, 8, 6, 10, 5, 9, 11, then 12 again for the evidence package.
 
-## Government cloud and licensing, feature by feature {#availability}
+## GCC and licensing, feature by feature {#availability}
 
-Learn's statement covers the whole product: "Global Secure Access is available in the US Government Community Cloud (GCC), but isn't yet supported in the US Government Community Cloud High (GCC-H), Department of Defense cloud, or other government or sovereign cloud environments."[^gsai-limits] No feature page read for this guide narrows or widens that for a feature, so the GCC column below rests on the product-wide sentence alone; where a feature is in preview, its GCC availability is *not yet specified*. Re-read the limitations page before each ring; this table is as of November 11, 2026.
+Learn's limitations page states, for the whole product, that Global Secure Access is available in the US Government Community Cloud (GCC).[^gsai-limits] No feature page read for this guide narrows or widens that for a feature, so the GCC column below rests on the product-wide sentence alone; where a feature is in preview, its GCC availability is *not yet specified*. Re-read the limitations page before each ring; this table is as of November 11, 2026.
 
-| Feature | GCC | GCC High | DoD | License (with Entra ID P1 or P2) | Status on Learn | Step |
-|---|---|---|---|---|---|---|
-| Windows client | Available (product-wide) | Not yet supported | Not yet supported | Per the profiles it carries | Generally available; Entra registered devices (preview) carry Private Access only | 3 |
-| Microsoft traffic profile; source IP restoration | Available (product-wide) | Not yet supported | Not yet supported | Included in P1 or P2 | Generally available | 4 |
-| Internet Access: web content filtering, threat intelligence, security profiles | Available (product-wide) | Not yet supported | Not yet supported | Internet Access or Microsoft Entra Suite | Generally available | 5 |
-| Internet Access: cloud firewall for clients, Explicit Forward Proxy, source traffic type and HTTP method filtering | Not yet specified | Not yet supported | Not yet supported | Internet Access or Suite | Preview | 5 |
-| Private Access: Quick Access, per-app access, private DNS, application discovery | Available (product-wide) | Not yet supported | Not yet supported | Private Access or Suite | Generally available; custom Private Access profiles are preview | 6 |
-| Compliant network check | Available (product-wide) | Not yet supported | Not yet supported | Included in P1 or P2 (Microsoft traffic profile) | Generally available; not supported for Private Access apps | 7 |
-| Universal tenant restrictions | Available (product-wide) | Not yet supported | Not yet supported | Included in P1 or P2 (Microsoft traffic profile) | Generally available | 8 |
-| TLS inspection, Microsoft-managed or agency certificate | Available (product-wide) | Not yet supported | Not yet supported | Internet Access or Suite | Generally available | 9 |
-| Private Access sensor on domain controllers | Available (product-wide) | Not yet supported | Not yet supported | Private Access or Suite | Not labeled preview on the page read | 10 |
-| Remote networks (branch IPsec) | Available (product-wide) | Not yet supported | Not yet supported | At least 50 P1 and Internet Access licenses combined ([Book 09, Ch. 05](../b09-network/05-sd-wan-sase-and-governed-transport.md#remote-networks-for-branches)) | Generally available | 11 |
-| Traffic logs and the `NetworkAccessTrafficLogs` category | Available (product-wide) | Not yet supported | Not yet supported | Internet Access or Private Access | The traffic logs page is titled "(preview)" | 12 |
-| Microsoft Graph network access API | Usable from GCC on `graph.microsoft.com` | See note | See note | As for the feature it configures | Beta | All |
+| Feature | GCC | License (with Entra ID P1 or P2) | Status on Learn | Step |
+|---|---|---|---|---|
+| Windows client | Available (product-wide) | Per the profiles it carries | Generally available; Entra registered devices (preview) carry Private Access only | 3 |
+| Microsoft traffic profile; source IP restoration | Available (product-wide) | Included in P1 or P2 | Generally available | 4 |
+| Internet Access: web content filtering, threat intelligence, security profiles | Available (product-wide) | Internet Access or Microsoft Entra Suite | Generally available | 5 |
+| Internet Access: cloud firewall for clients, Explicit Forward Proxy, source traffic type and HTTP method filtering | Not yet specified | Internet Access or Suite | Preview | 5 |
+| Private Access: Quick Access, per-app access, private DNS, application discovery | Available (product-wide) | Private Access or Suite | Generally available; custom Private Access profiles are preview | 6 |
+| Compliant network check | Available (product-wide) | Included in P1 or P2 (Microsoft traffic profile) | Generally available; not supported for Private Access apps | 7 |
+| Universal tenant restrictions | Available (product-wide) | Included in P1 or P2 (Microsoft traffic profile) | Generally available | 8 |
+| TLS inspection, Microsoft-managed or agency certificate | Available (product-wide) | Internet Access or Suite | Generally available | 9 |
+| Private Access sensor on domain controllers | Available (product-wide) | Private Access or Suite | Not labeled preview on the page read | 10 |
+| Remote networks (branch IPsec) | Available (product-wide) | At least 50 P1 and Internet Access licenses combined ([Book 09, Ch. 05](../b09-network/05-sd-wan-sase-and-governed-transport.md#remote-networks-for-branches)) | Generally available | 11 |
+| Traffic logs and the `NetworkAccessTrafficLogs` category | Available (product-wide) | Internet Access or Private Access | The traffic logs page is titled "(preview)" | 12 |
+| Microsoft Graph network access API | Usable from GCC on `graph.microsoft.com` | As for the feature it configures | Beta | All |
 
-: Government-cloud availability and licensing by feature, as of November 11, 2026 {.striped .hover}
+: GCC availability and licensing by feature, as of November 11, 2026 {.striped .hover}
 
 Sources: the limitations, licensing, traffic forwarding, client, feature and Graph reference pages cited in each step.[^gsai-limits][^gsai-forwarding][^gsai-client][^gsai-graph-overview] Remote network licensing and the certification facts are [Book 09, Chapter 05's](../b09-network/05-sd-wan-sase-and-governed-transport.md#the-gates-come-first), verified November 9.
 
-**A conflict between Learn pages.** The Graph reference pages for the network access settings and reports list the API as available in "US Government L4" and "US Government L5 (DOD)."[^gsai-ca-settings][^gsai-device-usage] The product's limitations page says the service isn't yet supported in GCC High or DoD. The guide follows the product statement: an API that answers in a national cloud doesn't make the service it configures supported there *(Risk-based recommended)*. The question goes to the agency's Microsoft account team before any GCC High or DoD planning.
-
-**Authorization.** Microsoft's certifications page lists FedRAMP High and DoD SRG Level 2 for Global Secure Access without naming the environment; [Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md#the-gates-come-first) records that, and [Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md#a-worked-case-global-secure-accesss-network-and-privacy-facts) records that a GCC tenant's traffic is processed in the commercial regions Microsoft lists. The agency reads the authorization package before Step 1's decision is signed.
+**Authorization.** Microsoft's certifications page lists FedRAMP High for Global Secure Access without naming the environment; [Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md#the-gates-come-first) records that, and [Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md#a-worked-case-global-secure-accesss-network-and-privacy-facts) records that a GCC tenant's traffic is processed in the commercial regions Microsoft lists. The agency reads the authorization package before Step 1's decision is signed.
 
 ## TIC 3.0 alignment {#tic-alignment}
 
@@ -214,7 +212,7 @@ Recommendations for preview features (Intelligent Local Access, the AI gateway's
 
 ## Step 1: Decision and licensing {#step-1-decision-and-licensing}
 
-**Authority:** Risk-based recommended (the program's position that a network control is adopted by a written decision with exit criteria, not by enabling a toggle). **Applies:** Environment-dependent: GCC only; GCC High and DoD record "not yet supported" and choose a compensating path.
+**Authority:** Risk-based recommended (the program's position that a network control is adopted by a written decision with exit criteria, not by enabling a toggle). **Applies:** GCC.
 
 The decision is whether to adopt each Global Secure Access function, keep the current VPN or SSE for it, or run both. It is made per function (Microsoft traffic, internet, private, branch), because the gates differ: the Microsoft traffic profile comes with P1, while Internet Access and Private Access are separately licensed.
 
@@ -236,7 +234,7 @@ Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/network
 decision_id: NET-GSA-<nn>
 function: microsoft-traffic | internet | private | branch
 decision: adopt | retain-current | coexist | defer
-cloud_environment: GCC | GCC-High | DoD
+cloud_environment: GCC
 availability: "Learn, Known limitations for Global Secure Access, read <date>: <quote>"
 license_required: "<P1 or P2 | Internet Access | Private Access | Entra Suite>"
 license_held: "<count and SKU from gsa-01-licenses.csv>"
@@ -253,7 +251,7 @@ tic_alignment: "<Remote User / Branch Office pattern and option; telemetry path 
 pilot_exit_criteria:
   - "<e.g., 20 pilot users 10 business days, no Sev-2 tickets, client active on 100% of pilot devices>"
 exit_criteria:                      # when the agency would reverse or revisit the decision
-  - "Learn's government-cloud statement changes"
+  - "Learn's GCC statement changes"
   - "Authorization package doesn't cover the agency's environment or class"
   - "Beta API change breaks evidence collection"
 owner: "<policy owner role>"
@@ -261,8 +259,6 @@ approver: "<AO or delegated official>"
 approved_on: <date>
 review_on: <date + 12 months>
 ```
-
-**1.3 For GCC High and DoD.** Don't build. Record `decision: defer`, cite the limitations sentence and keep a compensating path: a FedRAMP-authorized SSE offering at the right class ([Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md#authorization-status-is-not-uniform)), per-application VPN access lists, named-location Conditional Access ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md)), and device-side tenant restrictions v2 by Group Policy ([Book 09, Chapter 12](../b09-network/12-microsoft-365-traffic.md#tenant-restrictions-the-case-an-assessor-will-build)).
 
 **Validate.** The decision record names a license count no smaller than the pilot and first ring, an availability quote dated within 30 days, and an approver; `gsa-01-tenant-status.json` shows the tenant onboarded.
 
@@ -947,7 +943,6 @@ KSIs are FedRAMP's indicators for cloud service providers. The agency authorizes
 
 | Danger | What happens | The guard |
 |---|---|---|
-| Building in GCC High or DoD | An unsupported service in the boundary | Step 1 stops; compensating path recorded |
 | Compliant network enforced before the client is everywhere in scope | Users without a working client are blocked | Report-only for 10 days; ring by ring; client coverage metric first |
 | Signaling turned off with policies On | Users blocked | Policies out of enforcement first, signaling last |
 | Global Secure Access outage | Compliant-network-protected resources unreachable | Microsoft's break-glass scripts rehearsed; contingency plan entry |
@@ -989,7 +984,7 @@ The third artifact.
 ## What couldn't be verified {#what-couldnt-be-verified}
 
 - **The commands weren't run against a tenant for this guide.** Each Graph request is Learn's, with the program's values; the PowerShell wrappers use `Invoke-MgGraphRequest` with Learn's URIs and bodies rather than beta cmdlets whose parameters weren't all read.
-- **Government cloud, feature by feature.** Learn states availability for the product only. GCC availability of each feature is inferred from that sentence; preview features are *not yet specified*. The Graph reference pages' L4 and L5 availability conflicts with the product statement and isn't relied on.
+- **GCC, feature by feature.** Learn states availability for the product only. GCC availability of each feature is inferred from that sentence; preview features are *not yet specified*.
 - **Assigning users to a traffic profile through Graph.** The pages read give a portal procedure only (4.2).
 - **Report-only and security profiles.** Whether a report-only Conditional Access policy applies or logs a Global Secure Access security profile isn't stated on the pages read (Step 5).
 - **`TlsStatus` values.** Learn's TLS concept page lists Success and Failure; its operations page filters on `Inspected`. The query groups by actual values.
@@ -1024,12 +1019,11 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 <!-- revisions:end -->
 
 [^gsai-graph-overview]: Microsoft Learn, "Secure access to cloud, public, and private apps using Microsoft Graph network access APIs (preview)," building blocks, onboarding, access controls, logs and monitoring; and the beta notice on each API page, <https://learn.microsoft.com/graph/api/resources/networkaccess-global-secure-access-api-overview?view=graph-rest-beta> (accessed Nov 11, 2026).
-[^gsai-ca-settings]: Microsoft Learn, "Update conditionalAccessSettings" (Microsoft Graph beta), national cloud table (Global service, US Government L4, US Government L5 (DOD)), permission `NetworkAccess.ReadWrite.All`, roles Global Secure Access Administrator and Security Administrator, `PATCH /networkAccess/settings/conditionalAccess` with `signalingStatus`, <https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-update?view=graph-rest-beta> (accessed Nov 11, 2026).
+[^gsai-ca-settings]: Microsoft Learn, "Update conditionalAccessSettings" (Microsoft Graph beta), national cloud table (Global service), permission `NetworkAccess.ReadWrite.All`, roles Global Secure Access Administrator and Security Administrator, `PATCH /networkAccess/settings/conditionalAccess` with `signalingStatus`, <https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-update?view=graph-rest-beta> (accessed Nov 11, 2026).
 [^gsai-limits]: Microsoft Learn, "Known limitations for Global Secure Access," sections Windows client, Remote network, Access controls, Traffic forwarding profile, Private Access, Internet Access, Global Secure Access In Government Cloud and Explicit Forward Proxy (preview) limitations, <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (accessed Nov 11, 2026).
 [^gsai-forwarding]: Microsoft Learn, "Global Secure Access traffic forwarding profiles," Private access and Internet access sections (licensing; custom Private Access profiles in preview; the internet profile excludes Microsoft traffic destinations), <https://learn.microsoft.com/entra/global-secure-access/concept-traffic-forwarding> (accessed Nov 11, 2026).
 [^gsai-forwarding-profile]: Microsoft Learn, "forwardingProfile resource type" (Microsoft Graph beta), `trafficForwardingType` values `m365`, `internet`, `private`, <https://learn.microsoft.com/graph/api/resources/networkaccess-forwardingprofile?view=graph-rest-beta> (accessed Nov 11, 2026).
 [^gsai-client]: Microsoft Learn, "Install the Global Secure Access client for Windows," prerequisites, Intune packaging script and Win32 app values, client version updates, client settings by remediation scripts, DNS over HTTPS by settings catalog, client registry keys and security recommendations, <https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client> (accessed Nov 11, 2026).
-[^gsai-device-usage]: Microsoft Learn, "reports: getDeviceUsageSummary" (Microsoft Graph beta), national cloud table, permission `NetworkAccessPolicy.Read.All`, roles including Global Secure Access Log Reader, <https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta> (accessed Nov 11, 2026).
 [^gsai-overview]: Microsoft Learn, "What is Global Secure Access?," Microsoft Entra Private Access key features ("across hybrid and multicloud environments") and licensing overview, <https://learn.microsoft.com/entra/global-secure-access/overview-what-is-global-secure-access> (accessed Nov 11, 2026).
 [^gsai-tic-ruc]: Cybersecurity and Infrastructure Security Agency, *Trusted Internet Connections 3.0 Remote User Use Case*, Version 2.2, publication September 2026 (revision history: v2.2 July 2025), §6.1 to §6.3 (Security Patterns 1 to 3 and their options), §8 and §8.1 (Telemetry Requirements and Considerations, citing OMB M-26-14), <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Remote_User_Use_Case_September_2026_61.pdf>, linked from <https://www.cisa.gov/resources-tools/resources/trusted-internet-connections-tic-30-core-guidance-documents> (accessed Nov 11, 2026).
 [^gsai-ops-common]: Microsoft Learn, "Common operations for Microsoft Entra Global Secure Access," roles and responsibilities (RACI matrix), change management (categories; allow-list entries with expiration or review date), configuration backup strategy, <https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common> (accessed Nov 11, 2026).

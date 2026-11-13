@@ -1,6 +1,6 @@
 ---
 title: "Module 2: Running the assessment safely"
-description: "Guide Steps 2 to 5: a clean host with the pinned version and a protected report folder; consent once, with the sources' different role lists side by side, then a dedicated reader account; reviewing the delegated grant consent leaves behind; connecting in Commercial, GCC, GCC High and DoD with the parameters from the tool's source; running it and hashing the export before anyone opens it. Lab 2 runs the real tool in your test tenant. About 35 minutes, plus Lab 2, with a knowledge check."
+description: "Guide Steps 2 to 5: a clean host with the pinned version and a protected report folder; consent once, with the sources' different role lists side by side, then a dedicated reader account; reviewing the delegated grant consent leaves behind; connecting in Commercial or GCC with the parameters from the tool's source; running it and hashing the export before anyone opens it. Lab 2 runs the real tool in your test tenant. About 35 minutes, plus Lab 2, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -35,7 +35,7 @@ After this module, you'll be able to:
 - prepare a clean host with PowerShell 7.6 and the pinned module, and a restricted report folder;
 - explain who consents, who runs, and why the two sources' role lists differ;
 - review the delegated grant the consent left behind, and say when not to revoke it;
-- connect in Commercial, GCC, GCC High or DoD, and confirm the session's tenant and cloud;
+- connect in Commercial or GCC, and confirm the session's tenant and cloud;
 - run the assessment and hash its export.
 
 ## Prerequisites (1 minute)
@@ -53,9 +53,9 @@ Read the guide's [Step 3](../../books/guides/zero-trust-assessment-implementatio
 
 Consent leaves a delegated permission grant on the application the tool signs in through, by default the Microsoft Graph PowerShell application that other scripts in the tenant share. Learn recommends a custom application for Microsoft Graph PowerShell when you need to isolate the consent it holds, and the tool accepts one with `-ClientId`. Review the grant after every version change; revoke a dedicated application's grant when the tool is retired, never the shared one without asking who else relies on it.
 
-## Unit 3: Connecting in each cloud (6 minutes)
+## Unit 3: Connecting in GCC (6 minutes)
 
-Read the guide's [Step 4](../../books/guides/zero-trust-assessment-implementation.md#zta-step-4) and its [availability table](../../books/guides/zero-trust-assessment-implementation.md#zta-gov-availability). Learn's Zero Trust Assessment pages don't mention government clouds; the tool's source does. GCC uses the worldwide endpoints and the default `Global` environment; GCC High uses `-Environment USGov` with `-ExchangeEnvironmentName O365USGovGCCHigh`; DoD uses `USGovDoD` with `O365USGovDoD`. Pass `-SharePointAdminUrl` in every cloud. In DoD, Learn and the tool give different Security & Compliance addresses: if the Data pillar's tests come back disconnected there, check that first.
+Read the guide's [Step 4](../../books/guides/zero-trust-assessment-implementation.md#zta-step-4) and its [availability table](../../books/guides/zero-trust-assessment-implementation.md#zta-gov-availability). Learn's Zero Trust Assessment pages don't mention government clouds; the tool's source does. GCC uses the worldwide endpoints and the default `Global` environment. Pass `-SharePointAdminUrl`.
 
 ## Unit 4: The run (4 minutes)
 
@@ -110,7 +110,7 @@ Remove-Item -Recurse -Force <report-folder>
 You run the real Zero Trust Assessment in a test tenant, as a reader, after a consent administrator consents once.
 
 - **You need:** a test tenant in the cloud you'll assess, with fictional users; a consent administrator (Cloud Application Administrator, or as your tenant requires); a reader account with Global Reader, Security Reader and SharePoint Administrator, eligible through PIM; a Windows host with PowerShell 7.6 or later and the Visual C++ Redistributable (x64); for the Infrastructure pillar, Reader on a test subscription tagged as the guide's [Step 1](../../books/guides/zero-trust-assessment-implementation.md#zta-step-1) shows.
-- **You'll replace:** `<tenant>` (the test tenant's initial domain), `<report-folder>` (a new folder, for example `D:\Assessments\ZTA\lab`), `<spo-admin-url>` (the tenant's SharePoint admin URL), `<upn>` (the reader account) and `<grant-id>` (from step 3's output). For GCC High or DoD, use the connection commands of the guide's [Step 4](../../books/guides/zero-trust-assessment-implementation.md#zta-step-4) instead of step 4's.
+- **You'll replace:** `<tenant>` (the test tenant's initial domain), `<report-folder>` (a new folder, for example `D:\Assessments\ZTA\lab`), `<spo-admin-url>` (the tenant's SharePoint admin URL), `<upn>` (the reader account) and `<grant-id>` (from step 3's output).
 
 1. **Prepare the host.** In a fresh PowerShell 7 session:
 
@@ -180,8 +180,8 @@ You run the real Zero Trust Assessment in a test tenant, as a reader, after a co
 
 3. A GCC tenant connects with which `-Environment` value?
     a. `Global`, because GCC uses the worldwide Graph and Azure endpoints.
-    b. `USGov`.
-    c. `USGovDoD`.
+    b. `Commercial`.
+    c. `GCC`.
 
 4. When do you hash the export?
     a. When the assessor asks for it.

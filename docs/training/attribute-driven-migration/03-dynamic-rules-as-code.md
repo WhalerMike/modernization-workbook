@@ -60,7 +60,7 @@ In this module, you'll:
 
 *8 minutes*
 
-Every governed rule uses one of two patterns, requires `accountEnabled`, excludes guests, and reads codes, never display names. Learn's dynamic membership processing samples (pause [all](https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-all-dynamic-membership), [all except some](https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-all-except-dynamic-membership) or [specific](https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-specific-dynamic-membership) collections; resume the [noncritical](https://learn.microsoft.com/entra/identity/users/scripts/powershell-resume-noncritical-dynamic-membership) or [specific critical](https://learn.microsoft.com/entra/identity/users/scripts/powershell-resume-specific-critical-dynamic-membership) ones) pause and resume groups in an incident, but record nothing about what they paused, resume a group that was held for review, and fall back to the worldwide endpoint on an answer they don't recognize. Read:
+Every governed rule uses one of two patterns, requires `accountEnabled`, excludes guests, and reads codes, never display names. Learn's dynamic membership processing samples (pause [all](https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-all-dynamic-membership), [all except some](https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-all-except-dynamic-membership) or [specific](https://learn.microsoft.com/entra/identity/users/scripts/powershell-pause-specific-dynamic-membership) collections; resume the [noncritical](https://learn.microsoft.com/entra/identity/users/scripts/powershell-resume-noncritical-dynamic-membership) or [specific critical](https://learn.microsoft.com/entra/identity/users/scripts/powershell-resume-specific-critical-dynamic-membership) ones) pause and resume groups in an incident, but record nothing about what they paused, and resume a group that was held for review. Read:
 
 - The guide's [Gate 4](../../books/guides/attribute-driven-migration-implementation.md#gate-4-the-dynamic-group-library-and-administrative-units), steps 1 to 6.
 - [Chapter 04: where the rules sit](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#where-the-rules-sit).
@@ -93,17 +93,11 @@ $pages = '../third_party/dynamic-membership-samples/scripts'
 $t = New-FakeTenant -Collections @(
     @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' },
     @{ id = '22222222-2222-2222-2222-222222222222'; displayName = 'Held for review'; kind = 'group'; state = 'Paused' })
-$answers = 'yes', 'USGov', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
+$answers = 'yes', 'Global', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
 Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
 $t.Connected = $null
 Invoke-LearnSample -Page "$pages/powershell-resume-noncritical-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
 $t.Collections.Values | Select-Object displayName, state
-
-# Step 1: Run Learn's samples against the fake tenant
-$t = New-FakeTenant -Collections @(
-    @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' })
-Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers 'yes', 'GCCHigh', 'yes', 'yes', 'yes' | Out-Null
-$t.Calls[0].Uri
 
 # Step 2: Lint Book 03's rule table
 Import-Module ./powershell/DynamicRules.psm1
@@ -146,7 +140,7 @@ You run Learn's samples against a fake tenant, lint Book 03's rule table, evalua
    $t = New-FakeTenant -Collections @(
        @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' },
        @{ id = '22222222-2222-2222-2222-222222222222'; displayName = 'Held for review'; kind = 'group'; state = 'Paused' })
-   $answers = 'yes', 'USGov', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
+   $answers = 'yes', 'Global', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
    Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
    $t.Connected = $null
    Invoke-LearnSample -Page "$pages/powershell-resume-noncritical-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
@@ -162,16 +156,7 @@ You run Learn's samples against a fake tenant, lint Book 03's rule table, evalua
    Held for review     On
    ```
 
-   "Held for review" was paused on purpose, and the resume turned it on. Now run the pause with `GCCHigh` as the cloud answer, and read the first call's address:
-
-   ```powershell
-   $t = New-FakeTenant -Collections @(
-       @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' })
-   Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers 'yes', 'GCCHigh', 'yes', 'yes', 'yes' | Out-Null
-   $t.Calls[0].Uri
-   ```
-
-   Expected: the address starts `https://graph.microsoft.com/v1.0/groups`, the worldwide host.
+   "Held for review" was paused on purpose, and the resume turned it on.
 
 2. **Lint Book 03's rule table.**
 

@@ -40,7 +40,7 @@ The guide replaces the separate Azure security book the Zero Trust Assessment cl
 
 **Labels.** Each step carries the authority label of [Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#authority-labels): *Mandated* only where a federal source requires it, *Microsoft-recommended* where Learn recommends it, *Risk-based recommended* where it is this program's position. *(Design guidance)* marks the program's own choices in prose. A control a tenant isn't licensed for, or a feature a cloud doesn't offer, is a licensing or environment decision, not a failed control: an assessment test that can't run against it is *Skipped*, not *Fail* ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy)).
 
-**The audience.** A civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure, and agencies that run workloads in Azure Government (which pairs with GCC High and DoD). [Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md) explains the pairing. The examples use the fictional Contoso and `contoso.example`.
+**The audience.** A civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure, and agencies that run workloads in Azure Government. [Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md) explains the pairing. The examples use the fictional Contoso and `contoso.example`.
 
 **The placeholders.** Replace these once, everywhere:
 
@@ -123,7 +123,7 @@ The guide replaces the separate Azure security book the Zero Trust Assessment cl
 
 ### Government-cloud availability {#gov-availability}
 
-Microsoft 365 GCC pairs with commercial Azure, so a GCC agency's subscriptions are usually commercial and the left column applies; GCC High and DoD pair with Azure Government ([Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md)). Learn's comparison page says a service available in Azure Government has all its features unless the page lists a variation, and that it doesn't cover Azure Government Secret or Top Secret.[^azs-gov-compare]
+Microsoft 365 GCC pairs with commercial Azure, so a GCC agency's subscriptions are usually commercial and the left column applies ([Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md)). Learn's comparison page says a service available in Azure Government has all its features unless the page lists a variation.[^azs-gov-compare]
 
 | Service | Commercial Azure | Azure Government | Difference to plan for |
 |---|---|---|---|
@@ -620,7 +620,7 @@ Front Door is global and sits at the Microsoft edge with built-in L3/L4 DDoS pro
 ## Validate (Step 6)
 - `az network nic show-effective-route-table` on a workload VM's NIC shows `0.0.0.0/0` to `<fw-private-ip>`.
 - `az network firewall policy show --name <fw-policy> --resource-group <rg> --query "{ti:threatIntelMode, idps:intrusionDetection.mode}"` shows `Deny` and `Deny`.
-- A request from the pilot subnet to a test domain on the threat-intelligence feed is denied and logged.
+- A request from the pilot subnet to a test domain on the threat-intelligence feed is denied and logged in the `AZFWThreatIntel` table.[^azs-fw-monref]
 - Gate owner: the platform owner, with the security monitor.
 :::
 
@@ -754,7 +754,7 @@ Managed identities are covered in the [service account guide](service-account-mi
 ::: {.callout-important}
 ## Validate (Step 8)
 - `az keyvault show --name <vault> --query "{rbac:properties.enableRbacAuthorization, purge:properties.enablePurgeProtection, net:properties.networkAcls.defaultAction, pna:properties.publicNetworkAccess}"` shows `true`, `true`, `Deny` and, where public access is off, `Disabled`.
-- AuditEvent rows show the managed identity reading the secret, and a read from an unassigned identity denied.
+- AuditEvent rows in the workspace's `AzureDiagnostics` table, filtered to `ResourceProvider == "MICROSOFT.KEYVAULT"`, show the managed identity reading the secret, and a read from an unassigned identity denied (`ResultSignature` `Forbidden`).[^azs-kv-monitor]
 - Gate owner: the application owner, with the platform owner.
 :::
 
@@ -833,7 +833,7 @@ Managed identities are covered in the [service account guide](service-account-mi
 - [ ] **Configuration:** initiative definition and assignment exports (or policy-as-code and its commit)
 - [ ] **Operational:** monthly compliance exports; deny events
 - [ ] **Test:** the denied test deployment (date, tester)
-- [ ] **Exception:** the exemption register from `az policy exemption list`
+- [ ] **Exception:** the exemption register from `az policy exemption list --management-group <mg-id> --filter "atScopeAndBelow()"`[^azs-cli-exemption]
 - [ ] **Assessor-ready artifact:** the monthly summary, with exemptions and their decision records
 
 ## Step 10: Operations and evidence {#step-10-operations-and-evidence}
@@ -897,7 +897,7 @@ R responsible, A accountable, C consulted, I informed. Roles follow [Book 10, Ch
 
 : Evidence catalog by step and kind {.striped .hover}
 
-File each item with its date, the cloud and subscription, and the tester; the evidence pattern is [Appendix D's](../b00-orientation/appendix-d-control-states-and-evidence.md#evidence-pattern).
+Query the workspace for the log rows with `az monitor log-analytics query`, an Azure CLI extension command that takes the workspace's GUID.[^azs-cli-la] File each item with its date, the cloud and subscription, and the tester; the evidence pattern is [Appendix D's](../b00-orientation/appendix-d-control-states-and-evidence.md#evidence-pattern).
 
 ### Metrics {#metrics}
 
@@ -1038,7 +1038,7 @@ Each line has its pilot, enforcement, rollback, exception and validation step in
 
 ## What couldn't be verified {#what-couldnt-be-verified}
 
-- **Front Door in Azure Government, region by region.** Learn's comparison page says Standard and Premium are generally available in US Gov Arizona and US Gov Texas; the Front Door overview says Standard, Premium and classic are available in Azure Government without naming regions. Whether US Gov Virginia or the DoD regions host Front Door profiles is not yet specified.
+- **Front Door in Azure Government, region by region.** Learn's comparison page says Standard and Premium are generally available in US Gov Arizona and US Gov Texas; the Front Door overview says Standard, Premium and classic are available in Azure Government without naming regions. Whether US Gov Virginia hosts Front Door profiles is not yet specified.
 - **Front Door Private Link in US Gov Arizona and Texas.** Learn lists them, but the same page limits the feature to regions with availability zones, and Learn's Azure Government region list shows zones only in US Gov Virginia. Unresolved; test before relying on it.
 - **Front Door WAF in sovereign clouds.** Learn's sovereign-cloud limits (no bot protection, no geo-filtering custom rules) are on the Application Gateway WAF FAQ; Front Door's are not yet specified.
 - **DDoS Protection tiers and simulation partners in Azure Government.** Whether IP Protection is available there, and which partners other than Red Button (public cloud only) test Azure Government, are not yet specified.
@@ -1060,7 +1060,7 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 
 <!-- revisions:end -->
 
-[^azs-gov-compare]: Microsoft Learn, "Compare Azure Government and global Azure" (endpoints; a listed service has all features unless a variation is listed; Front Door Standard and Premium generally available in US Gov Arizona and US Gov Texas; Private Link DNS zone names; Lighthouse without PIM or cross-cloud delegation; Secret and Top Secret not covered), <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Nov 11, 2026).
+[^azs-gov-compare]: Microsoft Learn, "Compare Azure Government and global Azure" (endpoints; a listed service has all features unless a variation is listed; Front Door Standard and Premium generally available in US Gov Arizona and US Gov Texas; Private Link DNS zone names; Lighthouse without PIM or cross-cloud delegation), <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Nov 11, 2026).
 [^azs-gov-regions]: Microsoft Learn, "What is Azure Government?," section "List of regions" (availability zone support shown for US Gov Virginia only), <https://learn.microsoft.com/azure/azure-government/documentation-government-welcome> (accessed Nov 11, 2026).
 [^azs-afd-overview]: Microsoft Learn, "What is Azure Front Door?" (built-in layer 3-4 DDoS protection; Standard, Premium and classic available in Azure (Commercial) and Azure Government (US)), <https://learn.microsoft.com/azure/frontdoor/front-door-overview> (accessed Nov 11, 2026).
 [^azs-afd-classic]: Microsoft Learn, "Migrate Azure Front Door (classic) to Standard or Premium tier" (classic retires March 31, 2027; no new profiles, domains or managed certificates; Standard and Premium require HTTPS on custom domains), <https://learn.microsoft.com/azure/frontdoor/migrate-tier> (accessed Nov 11, 2026).
@@ -1110,6 +1110,10 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^azs-mg-protect]: Microsoft Learn, "Protect your resource hierarchy" and Az PowerShell `New-AzManagementGroupHierarchySetting` (`-Authorization`, `-DefaultManagementGroup`), <https://learn.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy> (accessed Nov 11, 2026).
 [^azs-enforcement]: Microsoft Learn, "Azure Policy assignment structure," section "Enforcement mode" (`DoNotEnforce` evaluates without enforcing; remediation still possible for `deployIfNotExists`), <https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure> (accessed Nov 11, 2026).
 [^azs-exemption]: Microsoft Learn, "Azure Policy exemption structure" (Mitigated and Waiver; `expiresOn`; expired exemptions kept for the record) and the `az policy exemption create` reference, <https://learn.microsoft.com/azure/governance/policy/concepts/exemption-structure> (accessed Nov 11, 2026).
+[^azs-fw-monref]: Microsoft Learn, "Monitoring data reference for Azure Firewall" (resource logs and resource-specific tables; `AZFWThreatIntel` contains all threat intelligence events), <https://learn.microsoft.com/azure/firewall/monitor-firewall-reference> (accessed Nov 13, 2026).
+[^azs-kv-monitor]: Microsoft Learn, "Monitor Azure Key Vault" (sample queries on `AzureDiagnostics` filtered by `ResourceProvider == "MICROSOFT.KEYVAULT"`; `ResultSignature` contains the HTTP status, such as `OK` or `Forbidden`), <https://learn.microsoft.com/azure/key-vault/general/monitor-key-vault> (accessed Nov 13, 2026).
+[^azs-cli-exemption]: Microsoft Learn, Azure CLI reference, "az policy exemption" (`list --management-group <name> --filter atScopeAndBelow()`; `create` with `--exemption-category` Mitigated or Waiver and `--expires-on`), <https://learn.microsoft.com/cli/azure/policy/exemption> (accessed Nov 13, 2026).
+[^azs-cli-la]: Microsoft Learn, Azure CLI reference, "az monitor log-analytics" (`query` is an extension command; `--workspace` is the GUID of the Log Analytics workspace), <https://learn.microsoft.com/cli/azure/monitor/log-analytics> (accessed Nov 13, 2026).
 [^azs-arg-starter]: Microsoft Learn, "Starter Resource Graph query samples," section "List all public IP addresses," <https://learn.microsoft.com/azure/governance/resource-graph/samples/starter> (accessed Nov 11, 2026).
 [^azs-aws-shield]: Amazon Web Services, "How AWS Shield and Shield Advanced work" and "What are AWS WAF, AWS Shield Advanced...?" (Shield Standard automatic; Shield Advanced protections, Shield Response Team, cost protection; AWS WAF resources), <https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html> (accessed Nov 11, 2026).
 [^azs-aws-govwaf]: Amazon Web Services, *AWS GovCloud (US) User Guide*, "AWS WAF in AWS GovCloud (US)" (available in both GovCloud regions; only AWS managed rule groups, no Marketplace rule groups), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-waf.html> (accessed Nov 11, 2026).

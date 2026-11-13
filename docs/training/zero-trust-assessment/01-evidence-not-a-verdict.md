@@ -71,7 +71,7 @@ Read the guide's [Step 6](../../books/guides/zero-trust-assessment-implementatio
 
 : The Zero Trust Assessment's statuses {.striped .hover}
 
-A pillar owner reads their tab with those filters and notes every Investigate, Skipped and Error result, and every Failed result whose feature may not exist in the tenant's cloud. The guide's example: Microsoft's Exchange Online service description says impersonation protection and spoof intelligence aren't yet available in GCC High and DoD, so a failed impersonation test there is a boundary finding.
+A pillar owner reads their tab with those filters and notes every Investigate, Skipped and Error result, and every Failed result whose feature may not exist in GCC.
 
 ## Unit 3: Why skipped isn't failed (6 minutes)
 
@@ -190,7 +190,7 @@ foreach ($s in 'NotLicensedEntraWorkloadID', 'NotConnectedToService', 'NotApplic
 1. An agency already runs the Zero Trust Assessment monthly. Can it stop running ScubaGear?
     a. Yes: the Zero Trust Assessment covers identity, which is most of the SCuBA baselines.
     b. No: BOD 25-01 names CISA's SCuBA tools, and ScubaGear covers Exchange Online, Teams, SharePoint and Power Platform policies the Zero Trust Assessment doesn't test.
-    c. Only in GCC High.
+    c. Only in commercial tenants.
 
 2. A test is Skipped with `NotLicensedEntraIDP2`. How is it counted?
     a. As a failed control.
@@ -202,12 +202,7 @@ foreach ($s in 'NotLicensedEntraWorkloadID', 'NotConnectedToService', 'NotApplic
     b. The tool needs a person to look; it counts as a finding until the review confirms or dismisses it.
     c. The test is under construction.
 
-4. A failed anti-phishing impersonation test in a GCC High tenant is most likely:
-    a. a boundary finding, because Microsoft's service description says the feature isn't yet available there;
-    b. a configuration change to make today;
-    c. a reason to report the tenant to CISA.
-
-5. Which of these does the Zero Trust Assessment do?
+4. Which of these does the Zero Trust Assessment do?
     a. Detect an attack in real time.
     b. Read the tenant's configuration and compare it with Microsoft's guidance, without changing anything.
     c. Close a finding when the next run passes.
@@ -217,8 +212,7 @@ foreach ($s in 'NotLicensedEntraWorkloadID', 'NotConnectedToService', 'NotApplic
 1. **b.** See [Book 11, Chapter 05](../../books/b11-zero-trust/05-two-assessment-tools.md#where-they-overlap-and-where-they-dont) and Unit 1.
 2. **c.** See Unit 3 and the guide's [Step 7](../../books/guides/zero-trust-assessment-implementation.md#zta-step-7).
 3. **b.** See Unit 2.
-4. **a.** See Unit 2 and the guide's [Step 6](../../books/guides/zero-trust-assessment-implementation.md#zta-step-6).
-5. **b.** It is read-only and a posture check; closure is the authorizing official's or assessor's decision ([Book 11, Chapter 10](../../books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain)).
+4. **b.** It is read-only and a posture check; closure is the authorizing official's or assessor's decision ([Book 11, Chapter 10](../../books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain)).
 :::
 
 ## Summary (2 minutes)

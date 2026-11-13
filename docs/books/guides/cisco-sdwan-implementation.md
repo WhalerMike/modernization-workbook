@@ -337,9 +337,6 @@ The Manager web certificate is a separate certificate-signing-request flow.[^cs-
 | Common Criteria (NIAP) | Catalyst 8200, 8300, 8400 and 8500 Secure Routers (G2 hardware) on IOS XE 17.18, certified April 9, 2026; Catalyst 8200, 8300 and 8500 with ASR 1000 on 17.15, certified September 29, 2025, maintained to 17.18; protection profiles NDcPP 3.0e, VPN Gateway 1.3, MACsec 1.0 and SSH 1.0. No Cisco SD-WAN product is listed, and the router listings don't mention controller mode[^cs-niap] |
 | Common Criteria (other) | Cisco lists "Cisco cEdge Routers running IOS XE 17.12 with SD-WAN 20.12," EAL2+, certified December 18, 2024, expiring December 18, 2029; the certificate was issued under the Canadian scheme, with no protection profile claimed[^cs-cc] |
 | Configuration baseline (CM-6) | NIST SP 800-53 CM-6 leaves the agency to choose its common secure configurations and record its deviations.[^cs-cm6] For the control components, that's Cisco's Catalyst SD-WAN Hardening Guide and CISA's supplemental guidance (the table above).[^cs-harden][^cs-supp] For the edges, draw the settings from the CIS Cisco IOS XE 17.x Benchmark (2.2.1) and Cisco's IOS XE Software Hardening Guide (revision 3.2, December 8, 2025), and check each against SD-WAN mode, in which Manager pushes the edge configuration *(design guidance)*.[^cs-cis][^cs-iosxe-harden] CIS lists no Catalyst SD-WAN Manager benchmark[^cs-cis] |
-| DISA STIGs (High only) | No SD-WAN STIG exists. The Cisco IOS XE Router NDM STIG V3R7 (April 1, 2026) and RTR STIG V3R5 (October 1, 2025) are written for IOS XE and don't mention SD-WAN mode. They're an optional cross-check, not the civilian baseline and not something a Moderate assessor expects to match *(inference)*[^cs-stig] |
-
-*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
 For Chapter 10's requirement that acquisitions state a FIPS 140-3 expectation, the honest statement today has two halves:
 
@@ -386,7 +383,7 @@ The single region is a physics problem as well as a resilience one. A western of
 
 ### Microsoft Global Secure Access as the SSE
 
-**Availability.** Microsoft says Global Secure Access is available in GCC, but not in GCC High or DoD.[^cs-gsa-limits]
+**Availability.** Microsoft says Global Secure Access is available in GCC.[^cs-gsa-limits]
 
 **Cisco as a partner.** Microsoft lists "Cisco Catalyst" as a template-based remote-network partner.[^cs-gsa-partners] Cisco's integration guide uses the generic SIG tunnel and says that only the Microsoft 365 traffic forwarding profile can be selected.[^cs-msse]
 
@@ -400,7 +397,7 @@ So a Catalyst edge can deliver branch Microsoft 365 traffic to Microsoft's SSE. 
 
 ### Microsoft 365 in GCC
 
-**Informed network routing.** Microsoft's page still says it supports worldwide commercial tenants "but not the GCC Moderate, GCC High, DoD" clouds. Cisco IOS XE SD-WAN 20.4/17.4 or later is the one listed partner.[^cs-inr]
+**Informed network routing.** Microsoft's page still says it supports worldwide commercial tenants but not GCC Moderate. Cisco IOS XE SD-WAN 20.4/17.4 or later is the one listed partner.[^cs-inr]
 
 **Cloud OnRamp for SaaS:**[^cs-cor]
 - It can steer Microsoft 365 by Microsoft's categories (Optimize, Optimize and Allow, or All).
@@ -573,7 +570,6 @@ A finding this page addresses is ready for closure when every applicable state h
 - **SDWAN-G remediation of CVE-2026-76504.** The advisory names only Cisco's managed cloud.
 - **Cflowd and IPFIX export details on IOS XE 17.x.** Cisco's page returned 404; flow support is taken from Microsoft's connector page and Cisco's high-speed logging section.
 - **The release-20.18 disaster-recovery procedure for Manager.** The design guide found is from 2021.
-- **The DoDIN Approved Products List entry, if any (High only).** The list site was unreachable and Cisco's page returned 404.
 - **SD-WAN mode in edge FIPS validation and in NIAP's evaluated configurations.**
 - **Product-wide versus GCC-specific availability.** Whether Global Secure Access remote networks, specifically, are generally available in GCC; Microsoft's statement is product-wide.
 - **Cisco SD-WAN's Sentinel solution in Azure Government,** and whether Umbrella for Government still automates Catalyst SD-WAN tunnels.
@@ -585,7 +581,7 @@ A finding this page addresses is ready for closure when every applicable state h
 - CISA's ED 26-03 pages and KEV catalog
 - Cisco's security advisories, hardening guide, configuration guides, sizing chapter, government guide, certification pages and DevNet references
 - the Cisco Secure Access for Government help center
-- FedRAMP Marketplace data, the NIST CMVP, the NIAP Product Compliant List and the DISA STIG library
+- FedRAMP Marketplace data, the NIST CMVP and the NIAP Product Compliant List
 - on October 29, 2026: NIST SP 800-53 CM-6, the CIS Benchmarks list, Cisco's IOS XE Software Hardening Guide and AWS's FedRAMP pages
 - Microsoft Learn
 
@@ -652,7 +648,6 @@ Related: [Book 09 — Network & Transport](../b09-network/index.md), [Book 07 �
 [^cs-cis]: Center for Internet Security, "CIS Benchmarks" (benchmark list, including Cisco IOS XE 17.x (2.2.1); no Cisco Catalyst SD-WAN Manager benchmark listed), <https://www.cisecurity.org/cis-benchmarks>, accessed October 29, 2026.
 [^cs-iosxe-harden]: Cisco, *Cisco IOS XE Software Hardening Guide*, revision 3.2, December 8, 2025 (management, control and data plane hardening; checklist), <https://sec.cloudapps.cisco.com/security/center/resources/IOS_XE_hardening>, accessed October 29, 2026.
 [^cs-aws-fr]: Amazon Web Services, "FedRAMP" (US East/West FedRAMP Certified Class C, formerly Moderate; GovCloud (US) Class D, formerly High), <https://aws.amazon.com/compliance/fedramp/>; and "FedRAMP — Services in Scope" (per-service, per-Region columns), <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>, accessed October 29, 2026.
-[^cs-stig]: Defense Information Systems Agency, STIG library, Cisco IOS XE Router STIG bundle `U_Cisco_IOS-XE_Router_Y26M04_STIG` (NDM STIG V3R7, April 1, 2026; RTR STIG V3R5, October 1, 2025), <https://public.cyber.mil/stigs/downloads/>, accessed October 24, 2026.
 [^cs-api-auth]: Cisco DevNet, "Authentication" for the Catalyst SD-WAN Manager API (JWT from 20.18.1 at `/jwt/login`, duration 1–604,800 seconds, default 1,800, `csrf` claim, no JWT logout; session flow with `/j_security_check`, `/dataservice/client/token` and `/logout`; 24-hour session and 30-minute inactivity timeout), <https://developer.cisco.com/docs/sdwan/authentication/>, accessed October 24, 2026.
 [^cs-api-examples]: Cisco DevNet, "Cisco Catalyst SD-WAN Manager API Examples" (`/dataservice/device`, `/dataservice/alarms`, `/statistics/approute/fields` with latency, jitter and loss percentage), <https://developer.cisco.com/docs/sdwan/basic-management-examples/>, accessed October 24, 2026.
 [^cs-sdk]: Cisco, `catalystwan` Python SDK, `catalystwan/dataclasses.py` (device fields `host-name`, `site-id`, `device-model`, `board-serial`, `reachability`, `personality`; alarm and event fields), <https://github.com/cisco-en-programmability/catalystwan-sdk>, accessed October 24, 2026.
@@ -667,7 +662,7 @@ Related: [Book 09 — Network & Transport](../b09-network/index.md), [Book 07 �
 [^cs-gsa-limits]: Microsoft Learn, "Known limitations for Global Secure Access" (remote network limitations; access controls limitations; "available in the US Government Community Cloud (GCC)"), ms.date September 29, 2026, <https://learn.microsoft.com/en-us/entra/global-secure-access/reference-current-known-limitations>, accessed October 24, 2026.
 [^cs-gsa-partners]: Microsoft Learn, "Global Secure Access partner ecosystem" (Cisco Catalyst as a template-based integration), <https://learn.microsoft.com/en-us/entra/global-secure-access/partner-ecosystems-overview>, accessed October 24, 2026.
 [^cs-msse]: Cisco, "Cisco Catalyst SD-WAN and Microsoft Security Service Edge Integration User Guide," September 17, 2024 (SIG generic tunnels; tested on 17.12/20.12; only the Microsoft 365 traffic forwarding profile selectable), <https://www.cisco.com/c/en/us/solutions/collateral/enterprise-networks/sd-wan/catalyst-sd-wan-ms-sse-int-ug.html>, accessed October 24, 2026.
-[^cs-inr]: Microsoft Learn, "Microsoft 365 informed network routing" (supports WW Commercial "but not the GCC Moderate, GCC High, DoD, Germany, or China clouds"; Cisco IOS XE SD-WAN 20.4/17.4 or later), <https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe>, accessed October 24, 2026.
+[^cs-inr]: Microsoft Learn, "Microsoft 365 informed network routing" (supports WW Commercial, not GCC Moderate; Cisco IOS XE SD-WAN 20.4/17.4 or later), <https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe>, accessed October 24, 2026.
 [^cs-cor]: Cisco, *Cisco Catalyst SD-WAN Cloud OnRamp Configuration Guide, IOS XE 17.x*, "Cloud OnRamp for SaaS" (Microsoft 365 traffic categories; Microsoft telemetry from 17.4.1a/20.4.1; telemetry not supported on sites using SIG tunnels), updated December 19, 2025, <https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/cloudonramp/ios-xe-17/cloud-onramp-book-xe/cor-saas.html>, accessed October 24, 2026.
 [^cs-umbrella-dns]: Cisco, *Security Configuration Guide, IOS XE 17.x*, "Cisco Umbrella Integration" (DNS security policy; Umbrella default or custom DNS server per VRF; local domain bypass, 64 domains, UDP only, A/AAAA/TXT), updated January 12, 2026, <https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/security/ios-xe-17/security-book-xe/umbrella-integration.html>, accessed October 24, 2026.
 [^cs-sentinel]: Microsoft Learn, "Find your Microsoft Sentinel data connector," "Cisco Software Defined WAN" (supported by Cisco Systems; Syslog through the Azure Monitor Agent on an Azure Arc server; NetFlow through Filebeat and Logstash into `CiscoSDWANNetflow_CL`, no DCR support), <https://learn.microsoft.com/en-us/azure/sentinel/data-connectors-reference#cisco-software-defined-wan>, accessed October 24, 2026.

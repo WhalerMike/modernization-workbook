@@ -131,7 +131,7 @@ Every Microsoft fact and command was read on Microsoft Learn on November 9, 2026
 | R1 | Server standard: 2016 gone by January 12, 2027, 2019 minimum, as the workbook's planning assumption | How to read | Book 00, Chapter 01 |
 | R2 | Two owners, a federal-employee sponsor; 30-day parallel run; disable, then delete through decommission | Rules; A6–A7 | Non-Person Identity guide, Steps 1f, 5 and 6 |
 | R3 | Dispositions `Retire`, `Replatform`, `Keep`, `KeepKerberos`; end-date bounds D08 and program G5 | Decision path | Developer workbook, Chapters 03 and 06 |
-| R4 | Federated credential and managed identity facts, government clouds L4 and L5 for Graph | Comparison; C4 | Developer workbook, Chapter 05 |
+| R4 | Federated credential and managed identity facts | Comparison; C4 | Developer workbook, Chapter 05 |
 | R5 | Workload ID Premium licensing and Azure Government availability | Comparison; What couldn't be verified | Book 04, Chapter 05 |
 | R6 | Agent ID licensing and government clouds | Comparison | Book 17, Chapter 04 |
 | R7 | KSI mapping and control rows | Evidence | Non-Person Identity guide, Evidence; Chapter 06 |
@@ -155,17 +155,17 @@ Every Microsoft fact and command was read on Microsoft Learn on November 9, 2026
 |---|---|---|---|---|---|
 | M-1 | Microsoft Identity Manager with managed accounts asks for a different user for Exchange; LogonUser doesn't work for managed accounts | Intro | verified; the general "a gMSA has no mailbox" is marked *(inference)* | `sam-mim-gmsa` | Nov 11, 2026 |
 | M-2 | Basic-auth client SMTP submission scheduled for deprecation, not compatible with security defaults; HVE (internal), ACS Email, or on-premises relay recommended; Graph named as an alternative | Intro; M4 | verified | `sam-mfd` | Nov 11, 2026 |
-| M-3 | Graph `sendMail`: `Mail.Send` application permission; global, L4, L5; `202 Accepted` isn't delivery; `Send-MgUserMail` sample | M3; availability table | verified | `sam-sendmail` | Nov 11, 2026 |
-| M-4 | RBAC for Applications: replaces Application Access Policies; Organization Management and Exchange Administrator; `New-ServicePrincipal`, `New-ManagementScope`, `New-ManagementRoleAssignment -App -Role "Application Mail.Send" -CustomResourceScope`, `Test-ServicePrincipalAuthorization`; union with Entra grants; `MemberOfGroup`, nested members out of scope; 30-minute to 2-hour cache; don't use App registrations IDs | M3 | verified; the page states no cloud availability, so GCC, GCC High and DoD are "not yet specified" | `sam-app-rbac` | Nov 11, 2026 |
-| M-5 | SMTP relay support in Exchange Online: GCC, GCC High, DoD | Availability table | verified | `sam-exo-gov` | Nov 11, 2026 |
+| M-3 | Graph `sendMail`: `Mail.Send` application permission; global service; `202 Accepted` isn't delivery; `Send-MgUserMail` sample | M3; availability table | verified | `sam-sendmail` | Nov 11, 2026 |
+| M-4 | RBAC for Applications: replaces Application Access Policies; Organization Management and Exchange Administrator; `New-ServicePrincipal`, `New-ManagementScope`, `New-ManagementRoleAssignment -App -Role "Application Mail.Send" -CustomResourceScope`, `Test-ServicePrincipalAuthorization`; union with Entra grants; `MemberOfGroup`, nested members out of scope; 30-minute to 2-hour cache; don't use App registrations IDs | M3 | verified; the page states no cloud availability, so GCC is "not yet specified" | `sam-app-rbac` | Nov 11, 2026 |
+| M-5 | SMTP relay support in Exchange Online: GCC | Availability table | verified | `sam-exo-gov` | Nov 11, 2026 |
 | M-6 | HVE: internal recipients only, 50 recipients a message, OAuth recommended; Microsoft 365 Worldwide only, other clouds under evaluation | Availability table; M4 | verified | `sam-hve` | Nov 11, 2026 |
-| M-7 | ACS Email GA in Azure Government through the SDK; SMTP endpoint not supported there; DoD not distinguished | Availability table; M4 | verified; DoD "not yet specified" | `sam-acs-gov` | Nov 11, 2026 |
+| M-7 | ACS Email GA in Azure Government through the SDK; SMTP endpoint not supported there | Availability table; M4 | verified | `sam-acs-gov` | Nov 11, 2026 |
 | M-8 | Receive connector: `Integrated` = NTLM and Kerberos; Client usage type includes it; `ExchangeUsers` = authenticated users with submit and relay | M1 | verified | `sam-rc` | Nov 11, 2026 |
 | M-9 | `New-ReceiveConnector -Custom -Bindings -RemoteIPRanges -AuthMechanism -PermissionGroups` | M1 | verified (Learn syntax; values the guide's) | `sam-rc-custom` | Nov 11, 2026 |
 | M-10 | Exchange requires Send As to send from a shared mailbox; `Add-ADPermission -ExtendedRights "Send As"`; verify with `Get-ADPermission` | M1 | verified | `sam-sendas-ts`, `sam-sendas` | Nov 11, 2026 |
 | M-11 | Anonymous relay: dedicated Front End Transport connector limited to listed hosts; anonymous versus externally secured; commands and verification | M2 | verified; choosing the anonymous method is restated as design (risk-based) | `sam-relay` | Nov 11, 2026 |
-| M-12 | `Connect-ExchangeOnline -ExchangeEnvironmentName O365USGovGCCHigh` / `O365USGovDoD`; none for GCC | M3 | verified | `sam-exo-connect` | Nov 11, 2026 |
-| M-13 | `Connect-MgGraph -ClientId -TenantId -CertificateThumbprint`; `-Environment USGov` / `USGovDoD`; certificate from the user or machine store | M3 | verified | `sam-mg-connect` | Nov 11, 2026 |
+| M-12 | `Connect-ExchangeOnline`: no `-ExchangeEnvironmentName` needed for GCC | M3 | verified | `sam-exo-connect` | Nov 11, 2026 |
+| M-13 | `Connect-MgGraph -ClientId -TenantId -CertificateThumbprint`; certificate from the user or machine store | M3 | verified | `sam-mg-connect` | Nov 11, 2026 |
 | M-14 | Arc: local token endpoint; only Administrators and *Hybrid agent extension applications* | M3 | carried from row 27 | `sam-arc-identity` | Nov 9, 2026 |
 | M-15 | A gMSA submitting SMTP over Integrated Windows authentication; `Connect-MgGraph -Identity` on an Arc agent | M1; M3 | unverifiable on the pages read; listed under What couldn't be verified | — | Nov 11, 2026 |
 

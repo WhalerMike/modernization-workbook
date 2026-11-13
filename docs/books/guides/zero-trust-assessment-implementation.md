@@ -1,6 +1,6 @@
 ---
 title: "Zero Trust Assessment: An Implementation Guide"
-description: "An implementation guide for running Microsoft's Zero Trust Assessment as evidence rather than a verdict: scoping what it is and isn't, preparing a dedicated host and protecting the output, consenting with least privilege and reviewing what consent leaves behind, connecting in Commercial, GCC, GCC High and DoD, running it and reading the report, normalizing every result to Book 11's taxonomy so a skipped test never counts as a failed control, opening a closure register routed to the pages that remediate each finding family, reconciling with ScubaGear and with AWS Security Hub CSPM through the setting and the NIST SP 800-53 control, and re-running on a schedule with a hashed evidence package. Ten steps with copy-paste commands from Microsoft Learn and the tool's own source, the results kit in examples/zta-results, government-cloud availability for each step, the federal requirements and KSIs each supports, and the decision record, RACI, evidence catalog and metrics."
+description: "An implementation guide for running Microsoft's Zero Trust Assessment as evidence rather than a verdict: scoping what it is and isn't, preparing a dedicated host and protecting the output, consenting with least privilege and reviewing what consent leaves behind, connecting in Commercial and GCC, running it and reading the report, normalizing every result to Book 11's taxonomy so a skipped test never counts as a failed control, opening a closure register routed to the pages that remediate each finding family, reconciling with ScubaGear and with AWS Security Hub CSPM through the setting and the NIST SP 800-53 control, and re-running on a schedule with a hashed evidence package. Ten steps with copy-paste commands from Microsoft Learn and the tool's own source, the results kit in examples/zta-results, GCC availability for each step, the federal requirements and KSIs each supports, and the decision record, RACI, evidence catalog and metrics."
 doc-type: workbook-guide
 audience: [Technical, Customer]
 family: guides
@@ -36,7 +36,7 @@ How an agency runs Microsoft's Zero Trust Assessment and turns its report into e
 
 **Labels.** Each step carries an authority label from [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#authority-labels). The Zero Trust Assessment itself is **Optional** in federal terms: no directive requires it, and it isn't a substitute for the SCuBA tools BOD 25-01 names ([Chapter 05](../b11-zero-trust/05-two-assessment-tools.md#where-they-overlap-and-where-they-dont)). The program runs it as **Risk-based recommended**, for breadth across devices, network, data and security operations that ScubaGear doesn't cover. *(Design guidance)* marks the program's own choices.
 
-**The audience.** A civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure, and agencies in GCC High or DoD. The examples use the fictional Contoso, `contoso.onmicrosoft.com` and `contoso.example`.
+**The audience.** A civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure. The examples use the fictional Contoso, `contoso.onmicrosoft.com` and `contoso.example`.
 
 **The placeholders.** The commands are exact; replace these values once, everywhere:
 
@@ -93,22 +93,22 @@ The hands-on work is in the learning path [*The Zero Trust Assessment as Evidenc
 - **For the kit:** PowerShell 7.1 or later and, for its tests, Pester 5. The kit reads files only.
 - **For Step 9's AWS part:** the AWS CLI and a role that can read Security Hub CSPM findings, where the agency runs AWS.
 
-### Government-cloud availability {#zta-gov-availability}
+### GCC availability {#zta-gov-availability}
 
-Learn's Zero Trust Assessment pages don't mention government clouds. The tool's 3.1.0 source does: `Connect-ZtAssessment` takes `-Environment` (`Global`, `USGov`, `USGovDoD`, among others) and `-ExchangeEnvironmentName` (`O365Default`, `O365USGovGCCHigh`, `O365USGovDoD`).[^zta-connect] The services it signs in to are documented per cloud on Learn. Where neither says, this guide says *not yet specified*.
+Learn's Zero Trust Assessment pages don't mention GCC. GCC uses the worldwide endpoints,[^zta-graph-clouds] so a GCC run uses the tool's defaults: `-Environment Global` and `-ExchangeEnvironmentName O365Default`.[^zta-connect] The services it signs in to are documented on Learn. Where neither says, this guide says *not yet specified*.
 
-| Capability | Commercial and GCC | GCC High | DoD | Source |
-|---|---|---|---|---|
-| The Zero Trust Assessment tool | Default `Global` environment; GCC uses the worldwide Graph and Azure endpoints | `-Environment USGov` in the source; not yet specified on Learn | `-Environment USGovDoD` in the source; not yet specified on Learn | Tool source; Learn silent[^zta-connect] |
-| Microsoft Graph | `graph.microsoft.com` | `graph.microsoft.us` (`Connect-MgGraph -Environment USGov`) | `dod-graph.microsoft.us` (`-Environment USGovDoD`) | Learn[^zta-graph-clouds][^zta-mg-env] |
-| Exchange Online | `O365Default` (no parameter needed) | `O365USGovGCCHigh` | `O365USGovDoD` | Learn[^zta-exo] |
-| Security & Compliance (Purview) | Default endpoint | `ps.compliance.protection.office365.us` | Learn: `compliance.dod.microsoft.com`; the tool's source uses `l5.ps.compliance.protection.office365.us` | Learn and tool source differ[^zta-ipps][^zta-connect] |
-| Azure | `AzureCloud` | `AzureUSGovernment` | `AzureUSGovernment` | Learn[^zta-azgov] |
-| SharePoint Online admin | `-admin.sharepoint.com` | The tool infers `-admin.sharepoint.us`; pass `-SharePointAdminUrl` explicitly | The tool infers `-admin.sharepoint.us`; DoD's admin URL not yet specified | Tool source; Learn not read for the URL[^zta-connect] |
-| Azure Information Protection | Default | The tool uses `AzureUSGovernment` | The tool uses `AzureUSGovernment` | Tool source; not yet specified on Learn[^zta-connect] |
-| AWS Security Hub CSPM (Step 9) | Commercial Regions | GovCloud (US): available, with product integrations, some controls and cross-Region aggregation limited | Same | AWS[^zta-sh-gov] |
+| Capability | Commercial and GCC | Source |
+|---|---|---|
+| The Zero Trust Assessment tool | Default `Global` environment; GCC uses the worldwide Graph and Azure endpoints | Tool source; Learn silent[^zta-connect] |
+| Microsoft Graph | `graph.microsoft.com` (`Connect-MgGraph -Environment Global`) | Learn[^zta-graph-clouds][^zta-mg-env] |
+| Exchange Online | `O365Default` (no parameter needed) | Learn[^zta-exo] |
+| Security & Compliance (Purview) | Default endpoint | Learn[^zta-ipps] |
+| Azure | `AzureCloud` | Tool source[^zta-connect] |
+| SharePoint Online admin | `-admin.sharepoint.com` | Tool source; Learn not read for the URL[^zta-connect] |
+| Azure Information Protection | Default | Tool source; not yet specified on Learn[^zta-connect] |
+| AWS Security Hub CSPM (Step 9) | Commercial Regions; GovCloud (US) is available, with product integrations, some controls and cross-Region aggregation limited | AWS[^zta-sh-gov] |
 
-: Government-cloud availability for the run and the reconciliation {.striped .hover}
+: GCC availability for the run and the reconciliation {.striped .hover}
 
 **Interim path.** Until a run has been proved in the agency's own cloud, run one pillar at a time (`-Pillar Identity` needs only Microsoft Graph) in a test tenant of the same cloud, record what connected and what was skipped, and keep ScubaGear as the federal baseline tool throughout ([Chapter 05](../b11-zero-trust/05-two-assessment-tools.md#what-this-means-for-an-agency)).
 
@@ -302,7 +302,7 @@ The program follows the tool's guide, because it describes the version being run
 
 : Step 3 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** The grants and roles work the same way in each cloud; Graph permission availability in GCC High and DoD for every scope the tool requests is not yet specified.
+**Government-cloud availability.** The grants and roles work the same way in GCC as in commercial tenants.
 
 ::: {.callout-important}
 ## Validate (G3 Consent and roles)
@@ -317,26 +317,14 @@ The program follows the tool's guide, because it describes the version being run
 
 **Authority:** Microsoft-recommended for the per-cloud endpoints (Learn). **Applies:** Environment-dependent.
 
-`Connect-ZtAssessment` signs in separately to Microsoft Graph, Azure, Exchange Online, Security & Compliance, SharePoint Online and Azure Information Protection, and a Graph connection doesn't grant access to the others.[^zta-guide] Learn's *Get started* page shows only the commercial command; the per-cloud parameters below are the tool's 3.1.0 source, matched to Learn's per-service pages.[^zta-connect]
+`Connect-ZtAssessment` signs in separately to Microsoft Graph, Azure, Exchange Online, Security & Compliance, SharePoint Online and Azure Information Protection, and a Graph connection doesn't grant access to the others.[^zta-guide] Learn's *Get started* page shows only the commercial command, which GCC also uses; the parameters below are the tool's 3.1.0 source, matched to Learn's per-service pages.[^zta-connect]
 
-**Steps.** Run the block for the tenant's cloud, as the run account, in the session that will run the assessment.
+**Steps.** Run this block as the run account, in the session that will run the assessment.
 
 - Commercial and GCC (GCC uses the worldwide endpoints[^zta-graph-clouds]):
 
     ```powershell
     Connect-ZtAssessment -Tenant <tenant> -Environment Global -SharePointAdminUrl <spo-admin-url> -UserPrincipalName <upn>
-    ```
-
-- GCC High:
-
-    ```powershell
-    Connect-ZtAssessment -Tenant <tenant> -Environment USGov -ExchangeEnvironmentName O365USGovGCCHigh -SharePointAdminUrl <spo-admin-url> -UserPrincipalName <upn>
-    ```
-
-- DoD:
-
-    ```powershell
-    Connect-ZtAssessment -Tenant <tenant> -Environment USGovDoD -ExchangeEnvironmentName O365USGovDoD -SharePointAdminUrl <spo-admin-url> -UserPrincipalName <upn>
     ```
 
 Then confirm which tenant and cloud the session is in:
@@ -346,7 +334,7 @@ Get-MgContext | Format-List TenantId, Environment, Account, Scopes
 Get-AzContext | Format-List Tenant, Environment, Subscription
 ```
 
-Pass `-SharePointAdminUrl` explicitly in every cloud: the tool otherwise infers it from the tenant's initial domain, and in GCC High and DoD it infers a `sharepoint.us` address. For DoD, Learn and the tool's source give different Security & Compliance connection addresses ([availability table](#zta-gov-availability)); if the Purview tests are skipped as disconnected in DoD, that is the first thing to check, and the result is a boundary finding until the tool and Learn agree.
+Pass `-SharePointAdminUrl` explicitly: the tool otherwise infers it from the tenant's initial domain.
 
 **Federal requirements and evidence.**
 
@@ -356,7 +344,7 @@ Pass `-SharePointAdminUrl` explicitly in every cloud: the tool otherwise infers 
 
 : Step 4 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** As in the [table](#zta-gov-availability): Graph, Exchange, Security & Compliance and Azure from Learn; the tool's own support for GCC High and DoD, SharePoint's DoD admin URL and Azure Information Protection's environment are not yet specified on Learn.
+**Government-cloud availability.** As in the [table](#zta-gov-availability): Graph, Exchange and Security & Compliance from Learn; the SharePoint admin URL and Azure Information Protection's environment from the tool's source.
 
 **Interim path.** If a service won't connect in the tenant's cloud, connect the rest with `-Service` (for example `-Service Graph,Azure`), run, and record each service's tests as Skipped-Disconnected with the reason ([Step 7](#zta-step-7)).
 
@@ -453,7 +441,7 @@ The tool's source adds Critical and Unranked to the risk levels.[^zta-class] Eac
     Invoke-Item <report-folder>\ZeroTrustAssessmentReport.html
     ```
 
-2. **Each pillar owner reads their tab** with the risk and status filters, and notes every Investigate result, every Skipped and Error result with its reason, and every Failed result whose feature may not be available in the tenant's cloud ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#absence-of-evidence-is-a-different-claim)). For example, Learn's Exchange Online service description says anti-phishing impersonation protection and spoof intelligence aren't yet available in GCC High and DoD,[^zta-exo-gov] so a failed impersonation test there is a boundary finding, not a configuration gap.
+2. **Each pillar owner reads their tab** with the risk and status filters, and notes every Investigate result, every Skipped and Error result with its reason, and every Failed result whose feature may not be available in the tenant's cloud ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#absence-of-evidence-is-a-different-claim)).
 
 **Federal requirements and evidence.**
 
@@ -789,7 +777,7 @@ One record per tenant, kept in the agency's repository inside its boundary. The 
 ```yaml
 # decision-record: Zero Trust Assessment, one per tenant (program template)
 tenant: "<tenant>"
-cloud: "<Commercial | GCC | GCC High | DoD>"
+cloud: "<Commercial | GCC>"
 tool: {name: "Zero Trust Assessment", version: "<x.y.z>", source: "PowerShell Gallery"}
 scope:
   pillars: ["<All | Identity | Devices | Network | Data | Infrastructure | SecOps | AI>"]
@@ -899,9 +887,7 @@ The Zero Trust Assessment is not a BOD 25-01 tool, and nothing in this guide rep
 | **Consent on the shared Graph PowerShell app** | Scripts in the tenant inherit the assessment's permissions | A dedicated application (Step 3); review the grants each run |
 | **The report folder left on the host or shared** | A map of the tenant's weaknesses, readable by anyone with the folder | Step 2's restricted folder; Step 10's move and delete |
 | **Raw reports or logs in a public issue** | Tenant data published; the tool's guide warns against it | Share only through an approved private channel, reviewed and redacted |
-| **Wrong cloud** | A GCC High tenant read with commercial parameters connects nothing, and every test is skipped | Step 4's per-cloud commands; `Get-MgContext` before the run |
 | **Scores compared across tool versions** | A new release adds tests and moves the denominator; the score moves though the tenant didn't | The comparison refuses mixed versions without a recorded review |
-| **A DoD Purview run that silently connects nothing** | Learn and the tool give different Security & Compliance addresses | Check the Data pillar's skips first; record a boundary finding |
 | **Infrastructure "clean" with no tagged subscription** | The Infrastructure test is skipped as not applicable | Step 1's tags; Step 7's dispositions |
 
 : Dangers in running the Zero Trust Assessment {.striped .hover}
@@ -937,11 +923,8 @@ The assessment changes nothing in the tenant. What the procedure leaves behind, 
 
 ## What couldn't be verified {#zta-what-couldnt-be-verified}
 
-- **Government clouds on Learn.** Learn's three Zero Trust Assessment pages don't mention GCC High or DoD. The parameters here are the tool's 3.1.0 source, matched to Learn's per-service pages; a run in either cloud is unproved by the authors.
-- **Security & Compliance in DoD.** Learn gives `compliance.dod.microsoft.com`; the tool's source uses `l5.ps.compliance.protection.office365.us`. Which one the service accepts was not tested.
-- **SharePoint's admin URL in DoD**, and whether the tool's SharePoint connection needs a region parameter in GCC High or DoD: not yet specified.
-- **Azure Information Protection's environment name** in the government clouds: the tool's source only.
-- **Graph permission availability** in GCC High and DoD for each of the 34 scopes the tool requests: not yet specified.
+- **GCC on Learn.** Learn's three Zero Trust Assessment pages don't mention GCC. The parameters here are the tool's 3.1.0 source, matched to Learn's per-service pages; a GCC run is unproved by the authors.
+- **Azure Information Protection's environment name:** the tool's source only.
 - **The run roles.** Learn's *Get started* page lists four roles for later runs and also says Global Reader is enough; the tool's guide gives a different set. Test which applies in your tenant before writing the run book ([Book 11, Chapter 05](../b11-zero-trust/05-two-assessment-tools.md#the-zero-trust-assessment)).
 - **Learn's scheduled digest playbook against 3.1.0.** It gives a managed identity four Graph permissions; the module checks its full list and documents user, device code and certificate sign-in, not managed identity.
 - **The export's schema.** Microsoft doesn't publish one. The kit reads the fields the 3.1.0 source writes (`Get-ZtAssessmentResults.ps1`, `Add-ZtTestResultDetail.ps1`); a new release can change them, which is why the kit checks the version.
@@ -965,20 +948,19 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^zta-release]: Microsoft, Zero Trust Assessment release 3.1.0, published October 20, 2026, the latest release on November 11, 2026 (module manifest version 3.1.0, `PowerShellVersion = '7.6'`; 364 `Test-Assessment.*.ps1` tests by declared pillar), <https://github.com/microsoft/zerotrustassessment/releases/tag/3.1.0> (accessed Nov 11, 2026).
 [^zta-guide]: Microsoft, Zero Trust Assessment repository, "Run the Zero Trust Assessment," tag 3.1.0, `src/powershell/doc/readme.md` (prerequisites; data handling and telemetry; permissions and roles; install, update and remove; connect; run, resume and parameters; infrastructure scope; outputs; logs and support package), <https://github.com/microsoft/zerotrustassessment/blob/3.1.0/src/powershell/doc/readme.md> (accessed Nov 11, 2026).
 [^zta-repo]: Microsoft, Zero Trust Assessment repository, README, tag 3.1.0 (a community project maintained by Microsoft employees, not an official Microsoft product, not supported through any Microsoft support program), <https://github.com/microsoft/zerotrustassessment/blob/3.1.0/README.md> (accessed Nov 11, 2026).
-[^zta-connect]: Microsoft, Zero Trust Assessment source, tag 3.1.0, `src/powershell/public/Connect-ZtAssessment.ps1` (`-Environment` values; `-ExchangeEnvironmentName` values; `-ClientId`; Azure `AzureUSGovernment` for `USGov` and `USGovDoD`; Security & Compliance connection URIs; SharePoint admin URL inference; AIP environment) and `Get-ZtGraphScope.ps1` (34 scopes), <https://github.com/microsoft/zerotrustassessment/tree/3.1.0/src/powershell/public> (accessed Nov 11, 2026).
+[^zta-connect]: Microsoft, Zero Trust Assessment source, tag 3.1.0, `src/powershell/public/Connect-ZtAssessment.ps1` (`-Environment` values; `-ExchangeEnvironmentName` values; `-ClientId`; Security & Compliance connection; SharePoint admin URL inference; AIP environment) and `Get-ZtGraphScope.ps1` (34 scopes), <https://github.com/microsoft/zerotrustassessment/tree/3.1.0/src/powershell/public> (accessed Nov 11, 2026).
 [^zta-class]: Microsoft, Zero Trust Assessment source, tag 3.1.0, `src/powershell/classes/ZtTest.ps1` (`RiskLevel` values Critical, High, Medium, Low, Unranked), <https://github.com/microsoft/zerotrustassessment/blob/3.1.0/src/powershell/classes/ZtTest.ps1> (accessed Nov 11, 2026).
 [^zta-status]: Microsoft, Zero Trust Assessment source, tag 3.1.0, `src/powershell/private/core/Get-ZtTestStatus.ps1` and `Get-ZtTestResultStatus.ps1` (Passed, Failed, Investigate, Skipped, Planned, Error), <https://github.com/microsoft/zerotrustassessment/tree/3.1.0/src/powershell/private/core> (accessed Nov 11, 2026).
 [^zta-skip]: Microsoft, Zero Trust Assessment source, tag 3.1.0, `src/powershell/private/core/Add-ZtTestResultDetail.ps1` (the 16 `SkippedBecause` values) and `Get-ZtSkippedReason.ps1` (their texts, including `NotDotGovDomain`), <https://github.com/microsoft/zerotrustassessment/tree/3.1.0/src/powershell/private/core> (accessed Nov 11, 2026).
 [^zta-infra-test]: Microsoft, Zero Trust Assessment source, tag 3.1.0, `src/powershell/tests/Test-Assessment.50001.ps1` (subscriptions where `tags['ZeroTrustAssessment'] =~ 'Infrastructure'`; none tagged is skipped as `NotApplicable`), <https://github.com/microsoft/zerotrustassessment/blob/3.1.0/src/powershell/tests/Test-Assessment.50001.ps1> (accessed Nov 11, 2026).
-[^zta-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments" (GCC uses the worldwide endpoints; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us`), <https://learn.microsoft.com/graph/deployments> (accessed Nov 11, 2026).
-[^zta-mg-env]: Microsoft Learn, "Authentication module cmdlets in Microsoft Graph PowerShell," section "Use Get-MgEnvironment" (`-Environment` values `Global`, `USGov`, `USGovDoD`), <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands> (accessed Nov 11, 2026).
+[^zta-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments" (GCC uses the worldwide endpoints), <https://learn.microsoft.com/graph/deployments> (accessed Nov 11, 2026).
+[^zta-mg-env]: Microsoft Learn, "Authentication module cmdlets in Microsoft Graph PowerShell," section "Use Get-MgEnvironment" (`-Environment Global`), <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands> (accessed Nov 11, 2026).
 [^zta-mg-custom]: Microsoft Learn, "Authentication module cmdlets in Microsoft Graph PowerShell," section "Use delegated access with a custom application for Microsoft Graph PowerShell" ("if you need to isolate and limit the consent permissions granted for Microsoft Graph PowerShell usage"), <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands> (accessed Nov 11, 2026).
 [^zta-mg-revoke]: Microsoft Learn, "Grant and revoke API permissions in Microsoft Entra ID" (`Get-MgOauth2PermissionGrant`, `Remove-MgOauth2PermissionGrant`; existing tokens stay valid for their lifetime), <https://learn.microsoft.com/powershell/microsoftgraph/how-to-grant-revoke-api-permissions>, and "Review permissions granted to enterprise applications" (Cloud Application Administrator), <https://learn.microsoft.com/entra/identity/enterprise-apps/manage-application-permissions> (both accessed Nov 11, 2026).
-[^zta-exo]: Microsoft Learn, "Connect to Exchange Online PowerShell," step 2 (`-ExchangeEnvironmentName`: none needed in Microsoft 365 or GCC; `O365USGovGCCHigh`; `O365USGovDoD`), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> (accessed Nov 11, 2026).
-[^zta-ipps]: Microsoft Learn, "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell," connection examples (GCC High `ps.compliance.protection.office365.us`; DoD `compliance.dod.microsoft.com`; `login.microsoftonline.us/organizations`), <https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2> (accessed Nov 11, 2026).
+[^zta-exo]: Microsoft Learn, "Connect to Exchange Online PowerShell," step 2 (`-ExchangeEnvironmentName`: none needed in Microsoft 365 or GCC), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> (accessed Nov 11, 2026).
+[^zta-ipps]: Microsoft Learn, "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell," connection examples (the default Security & Compliance connection), <https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2> (accessed Nov 11, 2026).
 [^zta-azgov]: Microsoft Learn, "Quickstart: Connect to Azure Government with PowerShell" (`Connect-AzAccount -Environment AzureUSGovernment`), <https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-ps> (accessed Nov 11, 2026).
 [^zta-tags]: Microsoft Learn, "Use tags to organize your Azure resources and management hierarchy," Azure PowerShell (`Update-AzTag` with `-Operation Merge` and `Delete` on a subscription resource ID), <https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources-powershell> (accessed Nov 11, 2026).
-[^zta-exo-gov]: Microsoft Learn, "Exchange Online for US government environments," Exchange Online features (Microsoft Defender for Office 365: anti-phishing for user and domain impersonation and spoof intelligence aren't yet available in GCC High and DoD), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments> (accessed Nov 11, 2026).
 [^zta-gsa-ops]: Microsoft Learn, "Operate Microsoft Entra Private Access," sections "Automated posture assessment" (a configuration-posture check, not a real-time detector) and "Playbook 7: Scheduled Zero Trust Assessment digest," <https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access>, and "Operate Microsoft Entra Internet Access," the same playbook, <https://learn.microsoft.com/entra/global-secure-access/how-to-operate-internet-access> (both accessed Nov 11, 2026).
 [^zta-sh-nist]: AWS, AWS Security Hub CSPM User Guide, "NIST SP 800-53 Revision 5 in Security Hub CSPM," <https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html> (accessed Nov 11, 2026).
 [^zta-sh-asff]: AWS, AWS Security Hub CSPM User Guide, "Optional top-level ASFF attributes," `Compliance` (`AssociatedStandards` with `standards/nist-800-53/v/5.0.0`; `RelatedRequirements` such as `NIST.800-53.r5 AC-4`; `SecurityControlId`; `Status`), <https://docs.aws.amazon.com/securityhub/latest/userguide/asff-top-level-attributes.html>, and the AWS SDK reference for `GetFindings` filters (`ComplianceAssociatedStandardsId`), <https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SecurityHub.html> (both accessed Nov 11, 2026).

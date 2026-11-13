@@ -135,7 +135,7 @@ Each record says whether action is required and by when, and whether the provide
 | Least-privileged reader | Reader | `ServiceMessage.Read.All`, `ServiceHealth.Read.All` | `read announcements` | Three `health:Describe*` actions | `roles/servicehealth.viewer` |
 | Cost or plan | None stated for Resource Graph | None stated | None stated | A qualifying AWS Support plan | None stated |
 | Push alternative | Service Health alerts, at scale through Azure Policy[^pn-policy] | Message center email | Announcement subscriptions (not used by the kit) | EventBridge `aws.health` events[^pn-aws-eb] | Not used by the kit |
-| Government cloud | Azure Government (`management.usgovcloudapi.net`); Learn's samples link the Azure Government portal[^pn-arg-samples] | GCC on the global endpoint; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us`[^pn-graph-overview][^pn-graph-deployments] | US Government Cloud (OC2) endpoints in us-langley-1 and us-luke-1; OC3 not yet specified[^pn-oci-gov] | GovCloud (US): one endpoint in us-gov-west-1[^pn-aws-gov] | Not in Assured Workloads' FedRAMP Moderate, High, IL4 or IL5 packages[^pn-gcp-aw] |
+| Government cloud | Azure Government (`management.usgovcloudapi.net`); Learn's samples link the Azure Government portal[^pn-arg-samples] | GCC on the global endpoint[^pn-graph-overview][^pn-graph-deployments] | US Government Cloud (OC2) endpoints in us-langley-1 and us-luke-1[^pn-oci-gov] | GovCloud (US): one endpoint in us-gov-west-1[^pn-aws-gov] | Not in Assured Workloads' FedRAMP Moderate or High packages[^pn-gcp-aw] |
 
 : Provider notices across Azure, Microsoft 365, OCI, AWS and Google Cloud {.striped .hover}
 
@@ -252,7 +252,7 @@ Message center is where Microsoft announces changes, retirements and actions for
 
 **Steps.**
 
-1. **Install the module and sign in to the tenant's own cloud.** GCC uses `Global`; GCC High `USGov`; DoD `USGovDoD`.
+1. **Install the module and sign in to the tenant's own cloud.** GCC uses `Global`.
 
     ```powershell
     Install-Module Microsoft.Graph.Authentication -Scope CurrentUser
@@ -274,7 +274,7 @@ Message center is where Microsoft announces changes, retirements and actions for
 
 : Gate 2 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Learn's overview says the service communications API is available on Microsoft Graph national clouds, and each list method's table shows US Government L4 and L5.[^pn-graph-overview] GCC keeps the worldwide endpoint, `graph.microsoft.com`; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pn-graph-deployments] The kit sends each call only to the cloud's own host and refuses a Graph session in another environment or tenant.
+**Government-cloud availability.** Learn's overview says the service communications API is available on Microsoft Graph national clouds.[^pn-graph-overview] GCC keeps the worldwide endpoint, `graph.microsoft.com`.[^pn-graph-deployments] The kit sends each call only to the cloud's own host and refuses a Graph session in another environment or tenant.
 
 **Interim path.** Learn's own cmdlets, from `Microsoft.Graph.Devices.ServiceAnnouncement`, list the same posts:[^pn-graph-messages]
 
@@ -349,7 +349,7 @@ Allow group <group> to read announcements in tenancy
 
 : Gate 3 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Oracle's US Government Cloud page lists the Announcements API at `announcements.us-langley-1.oraclegovcloud.com` and `announcements.us-luke-1.oraclegovcloud.com`, in realm OC2.[^pn-oci-gov] OC3's endpoint is not yet specified; the kit refuses that realm.
+**Government-cloud availability.** Oracle's US Government Cloud page lists the Announcements API at `announcements.us-langley-1.oraclegovcloud.com` and `announcements.us-luke-1.oraclegovcloud.com`, in realm OC2.[^pn-oci-gov]
 
 **Interim path.** The announcement email Oracle sends to the tenancy's notification recipients, filed with the change record until the reader exists. Name who receives it in the settings file's `noticeContacts`; the preflight checks it.
 
@@ -496,7 +496,7 @@ gcloud projects add-iam-policy-binding <project-id> --member=group:<group-email>
 
 : Gate 5 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Assured Workloads' supported-products page lists Personalized Service Health under 25 regional packages, including US Data Boundary, but not under FedRAMP Moderate, FedRAMP High, IL2, IL4, IL5, CJIS or ITAR.[^pn-gcp-aw] A workload in one of those packages has no Personalized Service Health to read; record that as a gap with the ISSO.
+**Government-cloud availability.** Assured Workloads' supported-products page lists Personalized Service Health under 25 regional packages, including US Data Boundary, but not under FedRAMP Moderate, FedRAMP High, CJIS or ITAR.[^pn-gcp-aw] A workload in one of those packages has no Personalized Service Health to read; record that as a gap with the ISSO.
 
 **Interim path.** The organization-events call is verified on Google's REST reference, but the gcloud flags for it weren't read, so the kit marks it unverified and runs it only with `-AllowUnverified`.
 
@@ -737,7 +737,7 @@ The guide addresses no Zero Trust Assessment test family, so it carries no asses
 |---|---|---|
 | **A notice acted on from email alone** | Attackers send look-alike provider mail; a technician follows a link ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md)) | Act only on the notice the kit read from the provider's API, linked in the task |
 | **Security advisories read without the elevated role** | Reader sees the advisory but not its summary, description or impacted resources[^pn-sec-elevated] | Grant Service Health Security Reader (G1); an empty summary in a security notice is the sign |
-| **A reader in the wrong cloud** | A GCC High tenant read from `graph.microsoft.com` returns nothing, and the gate passes on an empty list | The settings name each cloud; the kit refuses a session in another cloud, tenant, partition or realm |
+| **A reader in the wrong cloud** | A tenant read from another cloud's host returns nothing, and the gate passes on an empty list | The settings name each cloud; the kit refuses a session in another cloud, tenant, partition or realm |
 | **A task closed because the provider closed the notice** | The provider's fix isn't the agency's: a retirement can close while the resource still runs the retired SKU | A `close` payload asks for the re-read (C4); the task closes on the agency's own check *(design guidance)* |
 | **Google maintenance assumed covered** | Personalized Service Health has no planned maintenance[^pn-gcp-event] | Record the gap with the ISSO; Google's maintenance reaches the project by other channels |
 | **AWS without a support plan** | `SubscriptionRequiredException`; nothing is read[^pn-aws-plan] | The preflight's first call fails (PF-04-aws); use the dashboard until the plan is in place |
@@ -806,7 +806,7 @@ The kit's records support these controls; they don't by themselves decide them, 
 - **The alert resource type the Service Health policy creates,** and its parameter names for a parameters file. Learn names the alert rule and action group, not the resource type or the parameter names; read them with `az policy definition show` before writing a parameters file.
 - **Microsoft 365 Message center tags.** Learn doesn't enumerate them; the kit treats a post tagged `Retirement` as a retirement.
 - **Which admin roles Graph accepts for a delegated read.** Learn says the signed-in user needs an admin role and doesn't name them.
-- **OCI CLI output keys** (camelCase or kebab-case): not shown in Oracle's CLI reference. The kit accepts both. **OCI realm OC3**: Oracle's page wasn't readable; the kit refuses the realm.
+- **OCI CLI output keys** (camelCase or kebab-case): not shown in Oracle's CLI reference. The kit accepts both.
 - **The gcloud flags for organization events.** The REST call is verified; the kit marks the gcloud call unverified and runs it only with `-AllowUnverified`.
 - **The ServiceNow side.** The router's payload is the kit's; the endpoint that takes it is the agency's to build.
 - **The scheduler.** The kit doesn't register a schedule; rollback's step to unregister a Windows scheduled task assumes the agency used one.
@@ -831,7 +831,7 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^pn-policy]: Microsoft Learn, "Deploy Service Health alerts at scale using Azure Policy" (the built-in definition, management group or subscription scope, remediation for existing subscriptions, default resources, manual edits overwritten), <https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy> (accessed Nov 9, 2026).
 [^pn-remediate]: Microsoft Learn, "Remediate non-compliant resources with Azure Policy" (`az policy assignment create` with `--location` and `--mi-system-assigned`; roles granted automatically only through the portal), <https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources>, and Azure CLI reference for `az policy assignment create` (`--role`, `--identity-scope`) and `az policy remediation create`, <https://learn.microsoft.com/cli/azure/policy/assignment> and <https://learn.microsoft.com/cli/azure/policy/remediation> (accessed Nov 9, 2026).
 [^pn-gov-cli]: Microsoft Learn, "Connect to Azure Government with Azure CLI," <https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-cli>, and "Azure CLI endpoints" (resource manager `https://management.usgovcloudapi.net/`), <https://learn.microsoft.com/cli/azure/azure-cli-endpoints> (accessed Nov 9, 2026).
-[^pn-graph-overview]: Microsoft Learn, "Use the Microsoft Graph API to access service communications" (permissions, granted only by an administrator; a delegated user needs an admin role; available on national clouds, with the US Government L4 and L5 URLs), <https://learn.microsoft.com/graph/api/resources/service-communications-api-overview> (accessed Nov 9, 2026).
+[^pn-graph-overview]: Microsoft Learn, "Use the Microsoft Graph API to access service communications" (permissions, granted only by an administrator; a delegated user needs an admin role; available on national clouds), <https://learn.microsoft.com/graph/api/resources/service-communications-api-overview> (accessed Nov 9, 2026).
 [^pn-graph-deployments]: Microsoft Learn, "National cloud deployments" (GCC continues using the worldwide endpoints), <https://learn.microsoft.com/graph/deployments> (accessed Nov 9, 2026).
 [^pn-graph-messages]: Microsoft Learn, "List serviceAnnouncement messages" (`ServiceMessage.Read.All`; national cloud availability; the PowerShell module and cmdlet), <https://learn.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0> (accessed Nov 9, 2026).
 [^pn-graph-issues]: Microsoft Learn, "List serviceAnnouncement issues" and "List healthOverviews" (`ServiceHealth.Read.All`), <https://learn.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0> and <https://learn.microsoft.com/graph/api/serviceannouncement-list-healthoverviews?view=graph-rest-1.0> (accessed Nov 9, 2026).

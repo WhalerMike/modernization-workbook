@@ -19,7 +19,7 @@ The case is a framing pattern: about 1,500 offices, about 70,000 endpoints, a re
 | 9 | DP role supported on Windows Server 2019, 2022 and 2025 | Target architecture | verified (opened) | `dpc-siteos` |
 | 10 | Connected Cache for Enterprise and Education: Windows Server 2022+, Windows 11 or Ubuntu 24.04; Azure subscription; nothing else on port 80 | Target architecture | verified (carried, Book 09 Ch 11) | `dpc-mcc-ent`, `dpc-mcc-prereq` |
 | 11 | CM-integrated cache on a DP with no other roles serves only Intune-shifted content, including Win32 apps | Target architecture | verified (carried) | `dpc-mcc-cm` |
-| 12 | GCC uses commercial Intune; Connected Cache for Enterprise not available in GCC High and DoD | Availability | verified (carried) | `dpc-intune-gov` |
+| 12 | GCC uses commercial Intune; Connected Cache for Enterprise not listed as unavailable for GCC | Availability | verified (carried) | `dpc-intune-gov` |
 | 13 | After the client apps workload moves, CM-deployed apps stay in Software Center | Retirement gates; Packaging | verified (opened) | `dpc-comanage` |
 | 14 | After switching an app workload you can still deploy from CM | Packaging | verified (opened) | `dpc-comanage-faq` |
 | 15 | PSAppDeployToolkit: "A PowerShell-based framework to simplify and standardize deploying software to Windows, at scale"; supports Intune and ConfigMgr | Packaging | verified (opened; **not a Learn source**) | `dpc-psadt` (project site) |

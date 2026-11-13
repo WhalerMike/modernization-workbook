@@ -55,7 +55,7 @@ When you finish this path, you'll be able to:
 ## Prerequisites
 
 - **The migration.** Read the guide's [path on one page](../../books/guides/attribute-driven-migration-implementation.md#the-path-on-one-page) and its [one identifier through every gate](../../books/guides/attribute-driven-migration-implementation.md#one-identifier-through-every-gate): ten minutes, and every module refers back to them. [This workbook or the implementation guide?](../../books/b19-developer-workbook/index.md#workbook-or-guide) says how the two documents divide the work.
-- **Microsoft Graph and the government clouds.** Work through [Microsoft Automation, Module 1: Graph and Azure Foundations](../ms-automation-foundations.md) first. It is this path's lesson for [Book 19, Chapter 02](../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md): see [Chapter 02 is taught elsewhere](#chapter-02-is-taught-elsewhere).
+- **Microsoft Graph in GCC.** Work through [Microsoft Automation, Module 1: Graph and Azure Foundations](../ms-automation-foundations.md) first. It is this path's lesson for [Book 19, Chapter 02](../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md): see [Chapter 02 is taught elsewhere](#chapter-02-is-taught-elsewhere).
 - **Code.** You can read PowerShell 7 and Python, run commands in a terminal, and read JSON. Module 6 also reads Ansible playbooks, and Module 8 a GitHub Actions workflow.
 
 ## Modules

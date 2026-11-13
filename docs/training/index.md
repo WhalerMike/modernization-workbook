@@ -68,7 +68,7 @@ Four modules that teach you to script Microsoft Entra ID and Intune through Micr
 | **Level** | Intermediate |
 | **Roles** | Developer, identity engineer, endpoint (Intune) engineer, server (Arc) engineer, ISSO reviewer |
 | **Products** | Microsoft Graph, Microsoft Entra ID, Microsoft Intune, Azure Resource Manager, Azure Resource Graph, Azure Arc, Azure Policy |
-| **Scope** | A FedRAMP Moderate civilian agency, most often in Microsoft 365 GCC with commercial Azure; each module says what differs in GCC High and DoD |
+| **Scope** | A FedRAMP Moderate civilian agency, most often in Microsoft 365 GCC with commercial Azure |
 | **Modules** | 4 (two more are planned) |
 | **Time** | About 5 hours 55 minutes, not counting the Lab 2 exercises |
 
@@ -134,7 +134,7 @@ Nine modules on the notices cloud providers send about the agency's own estate, 
 
 ## Zero Trust Assessment learning path
 
-Four modules on running Microsoft's Zero Trust Assessment as evidence rather than a verdict, in the order of the ten steps of the [Zero Trust Assessment implementation guide](../books/guides/zero-trust-assessment-implementation.md): what the assessment checks and why a skipped test is neither a failure nor a pass; running it safely, from the host and consent to the connection in each cloud and the hashed export; normalizing the results and opening a closure register routed to the pages that remediate each finding; and comparing runs, reconciling with ScubaGear and AWS Security Hub CSPM, and sealing the evidence. Lab 1 runs on the results kit's fictional fixtures with no tenant; Lab 2 runs in your own test tenant; each module ends with a knowledge check. Start at the [learning path](zero-trust-assessment/index.md).
+Four modules on running Microsoft's Zero Trust Assessment as evidence rather than a verdict, in the order of the ten steps of the [Zero Trust Assessment implementation guide](../books/guides/zero-trust-assessment-implementation.md): what the assessment checks and why a skipped test is neither a failure nor a pass; running it safely, from the host and consent to the connection in GCC and the hashed export; normalizing the results and opening a closure register routed to the pages that remediate each finding; and comparing runs, reconciling with ScubaGear and AWS Security Hub CSPM, and sealing the evidence. Lab 1 runs on the results kit's fictional fixtures with no tenant; Lab 2 runs in your own test tenant; each module ends with a knowledge check. Start at the [learning path](zero-trust-assessment/index.md).
 
 **Watch:** each module has a narrated deck, about 12 minutes, linked from the module's page.
 

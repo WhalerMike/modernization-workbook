@@ -2,7 +2,7 @@
 
 File: `docs/training/ms-automation-intune.md`
 Example code: `examples/ms-automation/python/intune_tasks.py`, the Intune functions in `examples/ms-automation/powershell/FmwGraph.psm1`, and `examples/ms-automation/tests/fixtures/intune.json`
-Verified: 2026-10-30; restructured into the learning-path form, with Lab 1 run, on 2026-11-01 (claims 64 to 70)
+Verified: 2026-10-30; restructured into the learning-path form, with Lab 1 run, on 2026-11-01 (claims 59 to 64)
 
 Method:
 - Microsoft Learn pages were read on 2026-10-30 with the Microsoft Learn tools (`microsoft_docs_fetch` for full pages, `microsoft_docs_search` for section text). Where a search returned two versions of one page, the full page was fetched and the fetched text used.
@@ -20,8 +20,8 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Intune Graph APIs need an active Intune license for the tenant | APIs at a glance | verified | m3-mdlist (note on every Intune page) |
-| 2 | List managedDevices: `GET /deviceManagement/managedDevices`; least-privileged application permission `DeviceManagementManagedDevices.Read.All`; v1.0; global, L4, L5 | APIs table | verified | m3-mdlist |
-| 3 | List deviceCompliancePolicies: `DeviceManagementConfiguration.Read.All`; v1.0; global, L4, L5 | APIs table | verified | m3-cplist |
+| 2 | List managedDevices: `GET /deviceManagement/managedDevices`; least-privileged application permission `DeviceManagementManagedDevices.Read.All`; v1.0; global (which GCC uses) | APIs table | verified | m3-mdlist |
+| 3 | List deviceCompliancePolicies: `DeviceManagementConfiguration.Read.All`; v1.0; global (which GCC uses) | APIs table | verified | m3-cplist |
 | 4 | List deviceCompliancePolicyAssignments: `.../{id}/assignments`; `DeviceManagementConfiguration.Read.All`; v1.0 | APIs table | verified | m3-cpassign |
 | 5 | List deviceComplianceDeviceStatuses: `.../{id}/deviceStatuses`; `DeviceManagementConfiguration.Read.All`; v1.0 | APIs table | verified | m3-cpstatus |
 | 6 | List deviceConfigurations: `DeviceManagementConfiguration.Read.All`; v1.0 | APIs table; configuration profiles | verified | m3-dclist |
@@ -33,7 +33,7 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 12 | v1.0 deviceAndAppManagementAssignmentTarget: "Properties: None" | v1.0 versus beta | verified | m3-targetv1 |
 | 13 | v1.0 groupAssignmentTarget has `groupId` | Compliance policies | verified | m3-grouptarget |
 | 14 | Exclusion target type exists in v1.0 responses | Code (EXCLUSION_TARGET) | not verified for v1.0 (documented in beta only); the code treats any non-exclusion type as an include | m3-exclbeta |
-| 15 | List windowsAutopilotDeviceIdentities: `DeviceManagementServiceConfig.Read.All`; v1.0; global, L4, L5 | APIs table; Autopilot | verified | m3-aplist |
+| 15 | List windowsAutopilotDeviceIdentities: `DeviceManagementServiceConfig.Read.All`; v1.0; global (which GCC uses) | APIs table; Autopilot | verified | m3-aplist |
 | 16 | v1.0 Autopilot identity properties: groupTag, purchaseOrderIdentifier, serialNumber, enrollmentState, lastContactedDateTime, managedDeviceId, userPrincipalName, addressableUserName; no deploymentProfileAssignmentStatus | Autopilot; v1.0 versus beta | verified | m3-apv1 |
 | 17 | Beta adds deploymentProfileAssignmentStatus (seven values, including Microsoft's spelling `assignedUnkownSyncState`), deploymentProfileAssignmentDetailedStatus (e.g. `hardwareRequirementsNotMet`), deploymentProfile and intendedDeploymentProfile | Autopilot | verified | m3-apbeta |
 | 18 | windowsAutopilotDeploymentProfiles list: beta; `DeviceManagementServiceConfig.Read.All` | APIs table; Autopilot | verified (azureAD profile list page) | m3-approfiles |
@@ -64,31 +64,25 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 43 | Create deviceManagementExportJob least-privileged application permission is `DeviceManagementConfiguration.ReadWrite.All`; no read permission listed; url "Temporary location"; expirationDateTime | APIs table; large exports | verified | m3-exportcreate |
 | 44 | Report names DeviceNonCompliance, DevicesWithoutCompliancePolicy (and V3), Devices, DevicesWithInventory, TpmAttestationStatus, AutopilotV1DeploymentStatus | Large exports | verified | m3-reportnames |
 | 45 | Don't send the Graph token to the download host; graphkit refuses other hosts | Large exports | design (labelled); graphkit behaviour is tested in the existing suite | — |
-| 46 | GCC is the same Intune instance as commercial; no separate GCC instance | US Government clouds | verified (quote) | m3-govsvc |
-| 47 | GCC uses `https://graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | US Government clouds | verified | m3-deploy |
-| 48 | Government instance shared by GCC High and DoD; moving needs unenroll and re-enroll | US Government clouds | verified | m3-govsvc |
-| 49 | Not available, no plans: Windows Autopilot, Remediations, feature update reports, app and driver compatibility reports, ServiceNow connector, Windows Subscription Activation | US Government clouds | verified (full page fetched; an older search snippet differed and wasn't used) | m3-govsvc |
-| 50 | Planned: Autopatch and feature, quality, expedite and driver updates; DHA; BIOS and DFCI; some device preparation features | US Government clouds | verified | m3-govsvc |
-| 51 | Available: standard MDM, Log Analytics, Defender security settings management, EPM and other add-ons; Cloud PKI and Remote Help GCC High only | US Government clouds | verified | m3-govsvc |
-| 52 | Graph Autopilot page lists L4/L5 while the service description lists Autopilot unavailable; the service description governs | US Government clouds | verified (both sources); conclusion is inference (labelled) | m3-aplist, m3-govsvc |
-| 53 | Windows Update for Business reports don't meet GCC requirements | US Government clouds | verified in Book 05 Ch 10 (linked, not re-checked) | Book 05 Ch 10 |
-| 54 | ScubaGear has no Intune baseline (folder lists aad, exo, powerbi, powerplatform, removedpolicies, securitysuite, sharepoint, teams) | The five checks | verified | m3-scubalist |
-| 55 | MS.AAD.3.7v1 "Managed devices SHOULD be required for authentication"; rationale quotes M-22-09 "at least one device-level signal" | The five checks | verified | m3-scuba |
-| 56 | AC-19(5), CM-2, CM-6, CM-8, CM-8(1), SC-28, SC-28(1), SI-2 are in the Moderate baseline; titles | The five checks | verified (OSCAL 5.2.0) | m3-nistmod |
-| 57 | The check-to-control mapping | The five checks | design (the program's mapping, labelled as such) | — |
-| 58 | Book 05 CP-001 floor 10.0.26100; compliance validity 14 days; cleanup 90 days | The five checks; code defaults | verified (Book 05 Ch 08 and Ch 10 in the repository) | internal |
-| 59 | VK-INT-01 to VK-INT-06 scope; VK-INT-04 reads the Settings Catalog only with `-IncludeBeta` | Intro; v1.0 versus beta | verified (validation kit README and catalog in the repository) | internal |
-| 60 | Book 05 naming builds Autopilot names from the serial number | The five checks | verified (Book 05 Ch 04); "duplicates rare" is inference (labelled) | internal |
-| 61 | isEncrypted doesn't say method or volumes; BitLocker measured at boot via DHA | The five checks | inference (labelled); the DHA statement is Book 05 Ch 08's | m3-mdres, internal |
-| 62 | A sync date before 1971 is a placeholder | The five checks; code | design (labelled); the placeholder isn't documented | — |
-| 63 | 100 policies cost about 201 requests | Paging and limits | arithmetic from the code (1 + 2 per policy) | — |
-| 64 | Restructure into the learning-path form (November 1, 2026): units, objectives, Where agencies are, Lab 1, Lab 2, knowledge check, summary; existing facts and footnotes kept | Whole page | no new external facts; claims 1 to 63 unchanged | — |
-| 65 | Lab 1 commands and output for the five checks in Python, the GCC High `try_beta` call, two checks in PowerShell, and the Intune tests (17 passed) | Unit 8 | verified (run 2026-11-01 with Python 3.14.3 and PowerShell 7.6.9) | the kit, run locally |
-| 66 | Fixture: nine managed devices, two named WS-0002, KSK-0001 with sync date 0001-01-01; six Autopilot registrations | Unit 8 | verified (fixture read) | `tests/fixtures/intune.json` |
-| 67 | Book 05, Chapter 04's table lists Autopilot device preparation, not classic Autopilot, for GCC High and DoD | Unit 6, interim paths | verified in Book 05, Chapter 04 (linked, not re-checked) | internal |
-| 68 | Interim paths: coverage before changing the tenant-wide setting; VK-INT-06 for devices not yet in Intune; label the Settings Catalog export beta | Unit 6 | design (labelled) | m3-reports |
-| 69 | Lab 2 steps and back-out | Unit 9 | not verified: not run by the authors | — |
-| 70 | Knowledge-check answers; unit and module times | Unit 10; each unit | answers verified against the linked sections; times are estimates | the page |
+| 46 | GCC uses the commercial Intune service; no separate GCC instance | GCC | verified in Book 05 Ch 04 (linked, not re-checked) | internal |
+| 47 | GCC uses `https://graph.microsoft.com` | GCC | verified | m3-deploy |
+| 48 | Windows Update for Business reports don't meet GCC requirements | GCC | verified in Book 05 Ch 10 (linked, not re-checked) | Book 05 Ch 10 |
+| 49 | ScubaGear has no Intune baseline (folder lists aad, exo, powerbi, powerplatform, removedpolicies, securitysuite, sharepoint, teams) | The five checks | verified | m3-scubalist |
+| 50 | MS.AAD.3.7v1 "Managed devices SHOULD be required for authentication"; rationale quotes M-22-09 "at least one device-level signal" | The five checks | verified | m3-scuba |
+| 51 | AC-19(5), CM-2, CM-6, CM-8, CM-8(1), SC-28, SC-28(1), SI-2 are in the Moderate baseline; titles | The five checks | verified (OSCAL 5.2.0) | m3-nistmod |
+| 52 | The check-to-control mapping | The five checks | design (the program's mapping, labelled as such) | — |
+| 53 | Book 05 CP-001 floor 10.0.26100; compliance validity 14 days; cleanup 90 days | The five checks; code defaults | verified (Book 05 Ch 08 and Ch 10 in the repository) | internal |
+| 54 | VK-INT-01 to VK-INT-06 scope; VK-INT-04 reads the Settings Catalog only with `-IncludeBeta` | Intro; v1.0 versus beta | verified (validation kit README and catalog in the repository) | internal |
+| 55 | Book 05 naming builds Autopilot names from the serial number | The five checks | verified (Book 05 Ch 04); "duplicates rare" is inference (labelled) | internal |
+| 56 | isEncrypted doesn't say method or volumes; BitLocker measured at boot via DHA | The five checks | inference (labelled); the DHA statement is Book 05 Ch 08's | m3-mdres, internal |
+| 57 | A sync date before 1971 is a placeholder | The five checks; code | design (labelled); the placeholder isn't documented | — |
+| 58 | 100 policies cost about 201 requests | Paging and limits | arithmetic from the code (1 + 2 per policy) | — |
+| 59 | Restructure into the learning-path form (November 1, 2026): units, objectives, Where agencies are, Lab 1, Lab 2, knowledge check, summary; existing facts and footnotes kept | Whole page | no new external facts; claims 1 to 58 unchanged | — |
+| 60 | Lab 1 commands and output for the five checks in Python, two checks in PowerShell, and the Intune tests (17 passed) | Unit 8 | verified (run 2026-11-01 with Python 3.14.3 and PowerShell 7.6.9) | the kit, run locally |
+| 61 | Fixture: nine managed devices, two named WS-0002, KSK-0001 with sync date 0001-01-01; six Autopilot registrations | Unit 8 | verified (fixture read) | `tests/fixtures/intune.json` |
+| 62 | Interim paths: coverage before changing the tenant-wide setting; VK-INT-06 for devices not yet in Intune; label the Settings Catalog export beta | Unit 6 | design (labelled) | m3-reports |
+| 63 | Lab 2 steps and back-out | Unit 9 | not verified: not run by the authors | — |
+| 64 | Knowledge-check answers; unit and module times | Unit 10; each unit | answers verified against the linked sections; times are estimates | the page |
 
 ## What couldn't be verified
 
@@ -101,7 +95,6 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 ## Not carried
 
 - Pages for `managedDeviceEncryptionState` and the device encryption report weren't read, so the page names the `TpmAttestationStatus` export only by its report name.
-- No DISA STIG content is used. The Intune government page's STIG link isn't cited.
 
 ## Source watch, November 9, 2026
 

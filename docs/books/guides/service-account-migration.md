@@ -80,7 +80,7 @@ Learn's Entra architecture guidance names four kinds of on-premises service acco
 | System-assigned managed identity | Entra ID, tied to one Azure resource | Azure; credentials aren't accessible to you | That one Azure resource; deleted with it | OAuth to any resource that supports Entra authentication | Automatic | None | No extra cost | [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#managed-identities) | [^sam-mi-overview] |
 | User-assigned managed identity | Entra ID, a standalone Azure resource | Azure | Any Azure resource it's assigned to; outlives them and must be deleted explicitly | OAuth to Entra-protected resources | Automatic | None | No extra cost | Same | [^sam-mi-overview] |
 | Arc-enabled server's system-assigned managed identity | Entra ID, tied to the Arc server resource | The Connected Machine agent; a 90-day certificate it renews at 45 days | The on-premises or other-cloud server; apps in the local *Hybrid agent extension applications* group can request tokens | OAuth to Azure and to Graph | Automatic while the agent stays connected | None | No extra cost for the identity | [Arc track guide](arc-track-implementation.md) | [^sam-arc-identity] |
-| App registration or user-assigned managed identity with a federated credential | Entra ID | The external issuer (GitHub Actions, Kubernetes, another cloud) signs a token Entra ID trusts | Wherever that issuer runs | OAuth through token exchange | No secret to rotate | None | Free | L4 and L5 for the Graph API ([Chapter 05](../../project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md#verified-facts)) | [^sam-wif] |
+| App registration or user-assigned managed identity with a federated credential | Entra ID | The external issuer (GitHub Actions, Kubernetes, another cloud) signs a token Entra ID trusts | Wherever that issuer runs | OAuth through token exchange | No secret to rotate | None | Free | [Chapter 05](../../project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md#verified-facts)) | [^sam-wif] |
 | Agent identity (Microsoft Entra Agent ID) | Entra ID, a special service principal created from an agent identity blueprint | The blueprint holds the credentials; the agent identity has none of its own | Where the agent runs | OAuth | The blueprint's credential | None | See [Book 17, Chapter 04](../b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds) | Same | [^sam-agent] |
 
 : Every kind of service identity, compared {.striped .hover}
@@ -430,15 +430,15 @@ Choose by where the mail server is:
 
 : Sending mail from a gMSA workload {.striped .hover}
 
-**Government-cloud availability**, as Learn states it (read November 11, 2026):
+**GCC availability**, as Learn states it (read November 11, 2026):
 
-| Option | Commercial | GCC | GCC High | DoD |
-|---|---|---|---|---|
-| Graph `sendMail`[^sam-sendmail] | Yes (global service) | Yes (global service, `graph.microsoft.com`) | Yes (US Government L4) | Yes (US Government L5) |
-| RBAC for Applications in Exchange Online[^sam-app-rbac] | Yes | Not yet specified | Not yet specified | Not yet specified |
-| SMTP relay support in Exchange Online[^sam-exo-gov] | Yes | Yes | Yes | Yes |
-| High Volume Email[^sam-hve] | Yes (Microsoft 365 Worldwide) | Not listed: Learn names Worldwide only; other clouds "under evaluation" | Not listed | Not listed |
-| Azure Communication Services Email[^sam-acs-gov] | Yes, SDK and SMTP (commercial Azure) | Yes, in commercial Azure | Azure Government: generally available through the SDK; the SMTP endpoint isn't supported | Not yet specified: the page names Azure Government without distinguishing DoD |
+| Option | Commercial | GCC |
+|---|---|---|
+| Graph `sendMail`[^sam-sendmail] | Yes (global service) | Yes (global service, `graph.microsoft.com`) |
+| RBAC for Applications in Exchange Online[^sam-app-rbac] | Yes | Not yet specified |
+| SMTP relay support in Exchange Online[^sam-exo-gov] | Yes | Yes |
+| High Volume Email[^sam-hve] | Yes (Microsoft 365 Worldwide) | Not listed: Learn names Worldwide only; other clouds "under evaluation" |
+| Azure Communication Services Email[^sam-acs-gov] | Yes, SDK and SMTP (commercial Azure) | Yes, in commercial Azure |
 
 : Mail options by cloud {.striped .hover}
 
@@ -509,7 +509,7 @@ Test-ServicePrincipalAuthorization -Identity <sp-object-id> -Resource <shared-ma
 Test-ServicePrincipalAuthorization -Identity <sp-object-id> -Resource <other-mailbox>
 ```
 
-In GCC High, connect with `Connect-ExchangeOnline -ExchangeEnvironmentName O365USGovGCCHigh`, and in DoD with `-ExchangeEnvironmentName O365USGovDoD`.[^sam-exo-connect] `<sp-object-id>` is the `Id` from the read above; Learn warns not to take the IDs from the App registrations page.[^sam-app-rbac]
+GCC needs no `-ExchangeEnvironmentName` on `Connect-ExchangeOnline`.[^sam-exo-connect] `<sp-object-id>` is the `Id` from the read above; Learn warns not to take the IDs from the App registrations page.[^sam-app-rbac]
 
 **Expected:** `Application Mail.Send` with `InScope` `True` for `<shared-mailbox>` and `False` for `<other-mailbox>`. A change can take 30 minutes to 2 hours to reach a running app, though the test cmdlet bypasses that cache.[^sam-app-rbac]
 
@@ -528,7 +528,7 @@ $params = @{
 Send-MgUserMail -UserId <shared-mailbox> -BodyParameter $params
 ```
 
-In GCC High add `-Environment USGov` to `Connect-MgGraph`, and in DoD `-Environment USGovDoD`.[^sam-mg-connect] **Expected:** no error; Graph returns `202 Accepted`, which means accepted, not delivered, so confirm the message in the recipient's mailbox or in message trace.[^sam-sendmail] The same call with `-UserId <other-mailbox>` must fail.
+**Expected:** no error; Graph returns `202 Accepted`, which means accepted, not delivered, so confirm the message in the recipient's mailbox or in message trace.[^sam-sendmail] The same call with `-UserId <other-mailbox>` must fail.
 
 On an Arc-enabled host, the workload gets its Graph token from the Arc agent's local endpoint as C2 describes (only local Administrators and the *Hybrid agent extension applications* group can request it) and calls `POST /users/<shared-mailbox>/sendMail` with the same body; no certificate is involved.[^sam-arc-identity]
 
@@ -536,7 +536,7 @@ On an Arc-enabled host, the workload gets its Graph token from the Arc agent's l
 
 ### M4. Learn's other options {#sam-m4}
 
-- **High Volume Email** sends from dedicated HVE accounts to internal recipients only, at most 50 recipients a message, with OAuth recommended; Learn lists it for Microsoft 365 Worldwide only.[^sam-hve] It doesn't serve a GCC, GCC High or DoD tenant today.
+- **High Volume Email** sends from dedicated HVE accounts to internal recipients only, at most 50 recipients a message, with OAuth recommended; Learn lists it for Microsoft 365 Worldwide only.[^sam-hve] It doesn't serve a GCC tenant today.
 - **Azure Communication Services Email** sends to internal and external recipients from a verified domain.[^sam-mfd] In Azure Government it is generally available through the SDK, and its SMTP endpoint isn't supported.[^sam-acs-gov] It brings its own resource, connection and identity to govern, and it sends from outside Exchange Online, so its mail isn't in the tenant's message trace.
 - **Hybrid relay.** A workload that keeps sending to the on-premises servers (M1 or M2) reaches Exchange Online mailboxes through the hybrid mail flow while the on-premises servers remain; when they retire, the workload moves to M3.
 
@@ -682,8 +682,8 @@ A finding this page addresses is ready for closure when every applicable state h
 - **The gMSA name length.** Learn's gMSA pages don't state a maximum name length; keep names short and test the create in the test domain.
 - **A gMSA on an Integrated Windows authentication receive connector (M1).** Learn documents the connector's Kerberos mechanism and the Send As permission, but no page shows a gMSA submitting SMTP end to end, and whether a given application's mail library authenticates with its process's credentials is the application's. Test M1 in the test domain before the switch.
 - **Graph tokens on an Arc-enabled host (M3).** The Arc page documents the local token endpoint; no page read shows `Connect-MgGraph -Identity` against an Arc agent, so the step calls the endpoint as C2 describes rather than giving a PowerShell connection.
-- **RBAC for Applications, High Volume Email and Azure Communication Services Email in the US Government clouds.** The RBAC for Applications page names no cloud; High Volume Email lists Microsoft 365 Worldwide only; ACS Email's government page names Azure Government without distinguishing DoD (read November 11, 2026). The [availability table](#mail-from-gmsa) says "not yet specified" or "not listed" where Learn does.
-- **Government-cloud availability of managed identities** isn't stated on the managed identity pages read; the Graph federated credential APIs list L4 and L5 (Chapter 05's verified facts), and Workload ID Premium is available in Azure Government through the account manager ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
+- **RBAC for Applications and High Volume Email in GCC.** The RBAC for Applications page names no cloud; High Volume Email lists Microsoft 365 Worldwide only (read November 11, 2026). The [availability table](#mail-from-gmsa) says "not yet specified" or "not listed" where Learn does.
+- **Government-cloud availability of managed identities** isn't stated on the managed identity pages read, and Workload ID Premium is available in Azure Government through the account manager ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
 
 ## Questions for the program owner {#questions}
 
@@ -745,9 +745,9 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^sam-az-ad]: Microsoft Learn, Azure CLI reference, "az ad app" (`create`, `--sign-in-audience`, `credential reset --cert --append`), <https://learn.microsoft.com/cli/azure/ad/app>, and "az ad sp" (`create --id`), <https://learn.microsoft.com/cli/azure/ad/sp> (accessed Nov 9, 2026).
 [^sam-mim-gmsa]: Microsoft Learn, "Convert Microsoft Identity Manager-specific services to use group Managed Service Accounts," Microsoft Identity Manager Service (a different user for Exchange for managed accounts; the LogonUser function doesn't work for managed accounts), <https://learn.microsoft.com/microsoft-identity-manager/microsoft-identity-manager-2016-gmsa> (accessed Nov 11, 2026).
 [^sam-mfd]: Microsoft Learn, "How to set up a multifunction device or application to send email using Microsoft 365 or Office 365," client SMTP submission (Basic authentication scheduled for deprecation; not compatible with security defaults; High Volume Email, Azure Communication Services Email, or an on-premises server with anonymous relay instead), <https://learn.microsoft.com/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365>, and "Deprecation of Basic authentication in Exchange Online," POP, IMAP, and SMTP AUTH (retirement of Basic authentication for SMTP AUTH announced; Graph as an alternative), <https://learn.microsoft.com/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online> (both accessed Nov 11, 2026).
-[^sam-sendmail]: Microsoft Learn, "user: sendMail" (Graph v1.0; global service, US Government L4 and L5; `Mail.Send` application permission; `202 Accepted` doesn't mean delivered; PowerShell `Send-MgUserMail` sample), <https://learn.microsoft.com/graph/api/user-sendmail?view=graph-rest-1.0> (accessed Nov 11, 2026).
+[^sam-sendmail]: Microsoft Learn, "user: sendMail" (Graph v1.0; global service; `Mail.Send` application permission; `202 Accepted` doesn't mean delivered; PowerShell `Send-MgUserMail` sample), <https://learn.microsoft.com/graph/api/user-sendmail?view=graph-rest-1.0> (accessed Nov 11, 2026).
 [^sam-app-rbac]: Microsoft Learn, "Role Based Access Control for Applications in Exchange Online" (replaces Application Access Policies; Organization Management and Exchange Administrator; `New-ServicePrincipal`, `New-ManagementScope`, `New-ManagementRoleAssignment -App -Role "Application Mail.Send" -CustomResourceScope`, `Test-ServicePrincipalAuthorization`; Entra and Exchange grants are a union; `MemberOfGroup` scopes, nested members out of scope; cache of 30 minutes to 2 hours; no cloud availability stated), <https://learn.microsoft.com/exchange/permissions-exo/application-rbac> (accessed Nov 11, 2026).
-[^sam-exo-gov]: Microsoft Learn, "Exchange Online for US government environments," Exchange Online features (SMTP relay support: GCC, GCC High, DoD), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments> (accessed Nov 11, 2026).
+[^sam-exo-gov]: Microsoft Learn, "Exchange Online for US government environments," Exchange Online features (SMTP relay support: GCC), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments> (accessed Nov 11, 2026).
 [^sam-hve]: Microsoft Learn, "Manage High Volume Email for Microsoft 365" (internal recipients only; 50 recipients per message; OAuth recommended; supported in Microsoft 365 Worldwide, other cloud environments under evaluation), <https://learn.microsoft.com/exchange/mail-flow-best-practices/high-volume-mails-m365> (accessed Nov 11, 2026).
 [^sam-acs-gov]: Microsoft Learn, "Azure Communication Services for US Government" (Email generally available in Azure Government through SDK-based integration; SMTP endpoint not supported in Azure US Government cloud), <https://learn.microsoft.com/azure/communication-services/concepts/government> (accessed Nov 11, 2026).
 [^sam-rc]: Microsoft Learn, "Receive connectors in Exchange Server," usage types (Client includes `Integrated`), authentication mechanisms (`Integrated`: NTLM and Kerberos), permission groups (`ExchangeUsers`: authenticated users, with submit and relay), <https://learn.microsoft.com/exchange/mail-flow/connectors/receive-connectors> (accessed Nov 11, 2026).
@@ -755,6 +755,6 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^sam-sendas-ts]: Microsoft Learn, "Can't send an email message when Full Access permission is granted to a shared mailbox in Exchange Server" (Exchange requires Send As to send from a shared mailbox), <https://learn.microsoft.com/troubleshoot/exchange/mailflow/cannot-send-email-with-full-access> (accessed Nov 11, 2026).
 [^sam-sendas]: Microsoft Learn, "Manage permissions for recipients," use the Exchange Management Shell to assign the Send As permission (`Add-ADPermission -ExtendedRights "Send As"`; verify with `Get-ADPermission`), <https://learn.microsoft.com/exchange/recipients/mailbox-permissions> (accessed Nov 11, 2026).
 [^sam-relay]: Microsoft Learn, "Allow anonymous relay on Exchange servers" (Exchange Server 2016, 2019 and Subscription Edition; a dedicated Front End Transport connector limited to listed hosts; the anonymous and externally secured methods compared; commands and verification), <https://learn.microsoft.com/exchange/mail-flow/connectors/allow-anonymous-relay> (accessed Nov 11, 2026).
-[^sam-exo-connect]: Microsoft Learn, "Connect to Exchange Online PowerShell," step 2 (`-ExchangeEnvironmentName O365USGovGCCHigh` and `O365USGovDoD`; none needed for GCC), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> (accessed Nov 11, 2026).
-[^sam-mg-connect]: Microsoft Learn, "Connect-MgGraph" (app-only with `-CertificateThumbprint`; `-Environment USGov` and `USGovDoD`), <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph>, and "Authentication module cmdlets in Microsoft Graph PowerShell," app-only access (certificate from the current user's or local machine's store), <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands> (both accessed Nov 11, 2026).
+[^sam-exo-connect]: Microsoft Learn, "Connect to Exchange Online PowerShell," step 2 (no `-ExchangeEnvironmentName` needed for GCC), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> (accessed Nov 11, 2026).
+[^sam-mg-connect]: Microsoft Learn, "Connect-MgGraph" (app-only with `-CertificateThumbprint`), <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph>, and "Authentication module cmdlets in Microsoft Graph PowerShell," app-only access (certificate from the current user's or local machine's store), <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands> (both accessed Nov 11, 2026).
 [^sam-agent]: Microsoft Learn, "Agent identities in Microsoft Entra Agent ID," <https://learn.microsoft.com/entra/agent-id/agent-identities>, and "Microsoft Entra Agent ID key concepts," <https://learn.microsoft.com/entra/agent-id/key-concepts> (accessed Nov 9, 2026).

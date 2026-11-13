@@ -1,6 +1,6 @@
 ---
 title: "Module 6: Google incidents and the maintenance gap"
-description: "Gate G5 and workbook Chapter 05: read a Google Cloud project's Personalized Service Health incidents with roles/servicehealth.viewer, and write down what the API doesn't cover: it has one event category, INCIDENT, so planned maintenance never arrives, and Personalized Service Health isn't in Assured Workloads' FedRAMP Moderate, FedRAMP High, IL4 or IL5 packages. See the kit refuse a call nobody verified. About 45 minutes, with a lab on fixtures and a test project lab."
+description: "Gate G5 and workbook Chapter 05: read a Google Cloud project's Personalized Service Health incidents with roles/servicehealth.viewer, and write down what the API doesn't cover: it has one event category, INCIDENT, so planned maintenance never arrives, and Personalized Service Health isn't in Assured Workloads' FedRAMP Moderate or FedRAMP High packages. See the kit refuse a call nobody verified. About 45 minutes, with a lab on fixtures and a test project lab."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -20,7 +20,7 @@ last-reviewed: 2026-11-09
 
 ## Introduction (3 minutes)
 
-Personalized Service Health lists the Google Cloud incidents relevant to a project or organization. Its API has one event category, `INCIDENT`: planned maintenance and security notices reach a Google Cloud project by other channels, such as the Essential Contacts categories. And Assured Workloads' supported-products page lists Personalized Service Health under 25 regional packages but not under FedRAMP Moderate, FedRAMP High, IL2, IL4, IL5, CJIS or ITAR.
+Personalized Service Health lists the Google Cloud incidents relevant to a project or organization. Its API has one event category, `INCIDENT`: planned maintenance and security notices reach a Google Cloud project by other channels, such as the Essential Contacts categories. And Assured Workloads' supported-products page lists Personalized Service Health under 25 regional packages but not under FedRAMP Moderate, FedRAMP High, CJIS or ITAR.
 
 So this gate is half collection and half honesty. In this module you read the fixture project's incidents, show that only one kind can ever arrive, and see the kit refuse the organization-level call that nobody has verified. The gap is written down with the ISSO, not papered over.
 

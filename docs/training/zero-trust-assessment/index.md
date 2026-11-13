@@ -1,7 +1,7 @@
 ---
 title: "Learning path: The Zero Trust Assessment as Evidence"
 subtitle: "Four modules: what the assessment is and isn't, running it safely, turning its results into a closure register, and reconciling and re-running it, with labs on fixtures and in your own test tenant"
-description: "A learning path in four modules for assessment operators, pillar owners, the Zero Trust program lead and ISSO reviewers, built from the Zero Trust Assessment implementation guide: what Microsoft's Zero Trust Assessment checks and why a result is evidence, not a verdict; preparing the host, consenting with least privilege and connecting in Commercial, GCC, GCC High and DoD; normalizing every result so a skipped test never counts as a failed control, and opening a closure register routed to the pages that remediate each finding; and comparing runs, reconciling with ScubaGear and AWS Security Hub CSPM, and sealing the evidence. Each module has a knowledge check; Lab 1 runs on the results kit's fictional fixtures with no tenant, and Lab 2 runs in your own test tenant."
+description: "A learning path in four modules for assessment operators, pillar owners, the Zero Trust program lead and ISSO reviewers, built from the Zero Trust Assessment implementation guide: what Microsoft's Zero Trust Assessment checks and why a result is evidence, not a verdict; preparing the host, consenting with least privilege and connecting in Commercial or GCC; normalizing every result so a skipped test never counts as a failed control, and opening a closure register routed to the pages that remediate each finding; and comparing runs, reconciling with ScubaGear and AWS Security Hub CSPM, and sealing the evidence. Each module has a knowledge check; Lab 1 runs on the results kit's fictional fixtures with no tenant, and Lab 2 runs in your own test tenant."
 doc-type: training-path
 research-status: draft
 research-type: training module
@@ -31,12 +31,12 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 | Role | What you get from the path |
 |---|---|
-| Assessment operator | The host, the pinned version, consent and the run account, the connection in each cloud, the run and its hashes, and the kit's commands |
+| Assessment operator | The host, the pinned version, consent and the run account, the connection in GCC, the run and its hashes, and the kit's commands |
 | Pillar owner | How to read your pillar's tab, review an Investigate result, and work your entries in the closure register |
 | Zero Trust program lead | Routing findings to the page that remediates them, weighing them, and the cadence |
 | ISSO reviewer | The normalized counts, the exceptions and their approvers, the comparison between runs, and the evidence check you can run yourself |
 
-**Level:** intermediate. **Products:** Microsoft's Zero Trust Assessment (release 3.1.0), Microsoft Graph PowerShell, Exchange Online and Security & Compliance PowerShell, Azure PowerShell; AWS Security Hub CSPM for the reconciliation. **Scope:** a civilian agency at FedRAMP Moderate in Microsoft 365 GCC with commercial Azure, and agencies in GCC High or DoD.
+**Level:** intermediate. **Products:** Microsoft's Zero Trust Assessment (release 3.1.0), Microsoft Graph PowerShell, Exchange Online and Security & Compliance PowerShell, Azure PowerShell; AWS Security Hub CSPM for the reconciliation. **Scope:** a civilian agency at FedRAMP Moderate in Microsoft 365 GCC with commercial Azure.
 
 ## Prerequisites
 
@@ -50,7 +50,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 When you finish the path, you'll be able to:
 
 - explain what the Zero Trust Assessment checks, why it isn't a substitute for ScubaGear, and why its result is evidence, not a verdict;
-- prepare a host, consent once with least privilege, review what the consent left behind, and connect in Commercial, GCC, GCC High or DoD;
+- prepare a host, consent once with least privilege, review what the consent left behind, and connect in Commercial or GCC;
 - run the assessment, hash its output before anyone opens it, and keep it inside the boundary;
 - normalize every result to Book 11's seven results, so a skipped test is neither a failure nor a pass;
 - open a closure register that routes each finding to the page that remediates it, and check each exception's approver;

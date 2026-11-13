@@ -28,8 +28,8 @@ Facts carried from the chapters and books are cited by link and rely on those pa
 | 18 | Auto-apply with a default decision can revoke all access | Step 7 | carried | `pag-ar-settings` |
 | 19 | PIM for Groups reviews preview; Azure review API preview only | Step 7 | carried | `pag-ar-pim-groups`, `pag-ar-arm` |
 | 20 | `roleAssignmentRequestId` correlation; outside-PIM high risk; alert on PIM setting changes | Step 8 | carried | `pag-pim-audit`, `pag-secops` |
-| 21 | Feature availability in Azure for US Government; ID Governance in GCC, GCC High, DoD | Every gate | carried | `pag-availability` |
-| 22 | Graph and Resource Manager hosts per cloud | How to read | carried | `pag-deployments` |
+| 21 | Feature availability: Entra ID P1 and P2 for GCC in Azure commercial; ID Governance in GCC | Every gate | carried | `pag-availability` |
+| 22 | Graph host for GCC | How to read | carried | `pag-deployments` |
 | 23 | Moderate baseline membership of every control named; AC-2(7) not selected | Every gate; Evidence | carried (union of the chapters' OSCAL reads, Nov 2, 2026) | `pag-moderate` |
 | 24 | KSI related controls | Every gate | carried (chapters' KSI reads, Nov 2, 2026) | `pag-ksi` |
 | 25 | BOD 25-01 MS.AAD.3.6v1, 7.1v1, 7.3v1, 7.4v1, 7.5v1, 7.6v1; ScubaGear 7.4v1 emergency exception | Gates 1–5, 8 | carried | `pag-bod`, `pag-scuba` |
@@ -60,8 +60,8 @@ Facts carried from the chapters and books are cited by link and rely on those pa
 ### Closed by PR #326 (2026-11-02)
 
 - **MS.AAD.7.1v1.** PA-INV-04 now also flags fewer than two users (Chapter 01's rule table). The guide's G1 row, Dangers and What couldn't be verified were updated; the *(inference)* note is gone.
-- **MS.AAD.7.7v1 and MS.AAD.7.8v1.** `Invoke-PaPimAlertCheck.ps1` adds PA-PIM-10 and PA-PIM-11 (Chapter 04, "The alert check"; AU-6 and KSI-MLA-RVL as Chapter 04 cites them). The guide adds a G4 Validate line, a G4 requirement row and the evidence row. The danger is reworded to the alert nobody reads. What couldn't be verified keeps what the check doesn't reach: PIM for Groups member settings, delivery of the mail, and GCC High and DoD.
-- **MS.AAD.7.7v1 and MS.AAD.7.8v1 on PIM for Groups (added November 2, 2026).** The check now also reads the PIM for Groups member policy of each group that holds one of the eight roles, eligible or active, and reports PA-PIM-12 and PA-PIM-13 (Chapter 04, "The alert check"; its log, F8; research gaps, rows 111 and 113). CISA's `aad.md` implementation steps and ScubaGear's provider and Rego were read at commit `997f933`. The G4 Validate line, the G4 requirement row, the read permissions table and the danger name PA-PIM-12 and PA-PIM-13. What couldn't be verified drops PIM for Groups and keeps delivery of the mail and GCC High and DoD, which now also covers the group read.
+- **MS.AAD.7.7v1 and MS.AAD.7.8v1.** `Invoke-PaPimAlertCheck.ps1` adds PA-PIM-10 and PA-PIM-11 (Chapter 04, "The alert check"; AU-6 and KSI-MLA-RVL as Chapter 04 cites them). The guide adds a G4 Validate line, a G4 requirement row and the evidence row. The danger is reworded to the alert nobody reads. What couldn't be verified keeps what the check doesn't reach: PIM for Groups member settings and delivery of the mail.
+- **MS.AAD.7.7v1 and MS.AAD.7.8v1 on PIM for Groups (added November 2, 2026).** The check now also reads the PIM for Groups member policy of each group that holds one of the eight roles, eligible or active, and reports PA-PIM-12 and PA-PIM-13 (Chapter 04, "The alert check"; its log, F8; research gaps, rows 111 and 113). CISA's `aad.md` implementation steps and ScubaGear's provider and Rego were read at commit `997f933`. The G4 Validate line, the G4 requirement row, the read permissions table and the danger name PA-PIM-12 and PA-PIM-13. What couldn't be verified drops PIM for Groups and keeps delivery of the mail.
 
 ### Chapter 09 linked (2026-11-02)
 
