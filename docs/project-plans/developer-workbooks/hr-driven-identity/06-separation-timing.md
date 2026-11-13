@@ -48,7 +48,7 @@ Two pieces already exist. The leaver workflow's order, *Disable user account*, t
 
 ### Which cloud, for this read
 
-The audit log and the user processing results are read from Microsoft Graph: `graph.microsoft.com` for GCC, `graph.microsoft.us` and `dod-graph.microsoft.us` for GCC High and DoD.[^hw06-deployments] Both APIs are listed for US Government L4 and L5.[^hw06-audits] [^hw06-upr-list] Lifecycle Workflows is available in Azure for US Government.[^hw06-availability] The card system's and Intune's records come as exports; this code doesn't read either service.
+The audit log and the user processing results are read from Microsoft Graph: `graph.microsoft.com` for GCC.[^hw06-deployments] Both APIs are listed for the global service.[^hw06-audits] [^hw06-upr-list] Lifecycle Workflows is part of Microsoft Entra ID Governance, available in GCC.[^hw06-availability] The card system's and Intune's records come as exports; this code doesn't read either service.
 
 ## Start with Microsoft's procedure
 
@@ -354,15 +354,15 @@ rm -rf exports out my-separation.json my-separations.csv my-card-revocations.csv
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Audit activities | *Disable account*, *Enable account*, *Delete user*, *Update StsRefreshTokenValidFrom Timestamp* (Core Directory, UserManagement) | — | GA | [^hw06-activities] |
-| List directoryAudits | `AuditLog.Read.All`; Reports Reader, Security Reader or Security Administrator; `$filter` on `eq`, `ge`, `le`, `startswith` | L4 and L5 | v1.0 | [^hw06-audits] |
-| List userProcessingResults | `LifecycleWorkflows-Reports.Read.All`; Global Reader or Lifecycle Workflows Administrator | L4 and L5 | v1.0 | [^hw06-upr-list] |
-| userProcessingResult | `processingStatus`, `scheduledDateTime`, `startedDateTime`, `completedDateTime`, `failedTasksCount`, `workflowExecutionType` (`scheduled`, `onDemand`), `subject` | — | v1.0 | [^hw06-upr] |
-| Schedule and catch-up | Evaluated every three hours by default, or the interval set; a user whose trigger date passed no more than three days ago is still processed; on-demand runs ignore the execution conditions | — | GA (the V2 time-based trigger, in preview, has no catch-up window) | [^hw06-conditions] [^hw06-understanding] |
-| *Disable user account* task | Doesn't support users with role assignments, or members or owners of role-assignable groups | — | GA | [^hw06-tasks] |
-| Lifecycle Workflows | Available in Azure for US Government | Available | GA | [^hw06-availability] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Audit activities | *Disable account*, *Enable account*, *Delete user*, *Update StsRefreshTokenValidFrom Timestamp* (Core Directory, UserManagement) | GA | [^hw06-activities] |
+| List directoryAudits | `AuditLog.Read.All`; Reports Reader, Security Reader or Security Administrator; `$filter` on `eq`, `ge`, `le`, `startswith` | v1.0 | [^hw06-audits] |
+| List userProcessingResults | `LifecycleWorkflows-Reports.Read.All`; Global Reader or Lifecycle Workflows Administrator | v1.0 | [^hw06-upr-list] |
+| userProcessingResult | `processingStatus`, `scheduledDateTime`, `startedDateTime`, `completedDateTime`, `failedTasksCount`, `workflowExecutionType` (`scheduled`, `onDemand`), `subject` | v1.0 | [^hw06-upr] |
+| Schedule and catch-up | Evaluated every three hours by default, or the interval set; a user whose trigger date passed no more than three days ago is still processed; on-demand runs ignore the execution conditions | GA (the V2 time-based trigger, in preview, has no catch-up window) | [^hw06-conditions] [^hw06-understanding] |
+| *Disable user account* task | Doesn't support users with role assignments, or members or owners of role-assignable groups | GA | [^hw06-tasks] |
+| Lifecycle Workflows | Available in GCC | GA | [^hw06-availability] |
 
 Places Learn says nothing or differs, recorded so a later edit doesn't loosen the code:
 
@@ -429,9 +429,9 @@ KSIs are FedRAMP 20x indicators for cloud service providers: the agency authoriz
 [^hw06-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 1, 2026; carried from Book 19, Chapter 02).
 [^hw06-availability]: Microsoft Learn, "Microsoft Entra feature availability," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
 [^hw06-activities]: Microsoft Learn, "Microsoft Entra audit log categories and activities," Core Directory, <https://learn.microsoft.com/entra/identity/monitoring-health/reference-audit-activities> (read November 1, 2026).
-[^hw06-audits]: Microsoft Learn, "List directoryAudits," permissions, national clouds and query parameters, <https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0> (read November 1, 2026).
+[^hw06-audits]: Microsoft Learn, "List directoryAudits," permissions and query parameters, <https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0> (read November 1, 2026).
 [^hw06-upr]: Microsoft Learn, "userProcessingResult resource type," <https://learn.microsoft.com/graph/api/resources/identitygovernance-userprocessingresult?view=graph-rest-1.0> (read November 1, 2026).
-[^hw06-upr-list]: Microsoft Learn, "List userProcessingResults," permissions and national clouds, <https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0> (read November 1, 2026).
+[^hw06-upr-list]: Microsoft Learn, "List userProcessingResults," permissions, <https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0> (read November 1, 2026).
 [^hw06-conditions]: Microsoft Learn, "Lifecycle workflows execution conditions and scheduling," workflow scheduling, catch-up window and time-based attribute trigger, <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-conditions> (read November 1, 2026).
 [^hw06-understanding]: Microsoft Learn, "Understanding lifecycle workflows," scheduling and on-demand scheduling, <https://learn.microsoft.com/entra/id-governance/understanding-lifecycle-workflows> (read November 1, 2026).
 [^hw06-tasks]: Microsoft Learn, "Lifecycle Workflow built-in tasks," Disable user account, <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-tasks> (read November 1, 2026).

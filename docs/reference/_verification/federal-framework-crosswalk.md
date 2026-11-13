@@ -17,8 +17,7 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 3 | CM-6: the agency sets settings from organization-defined common secure configurations, which can come from vendors, federal agencies, consortia and others; no STIG requirement | Additions, October 29 | verified | cm6 (SP 800-53 Rev. 5 OSCAL catalog) |
 | 4 | CIS Benchmarks: prescriptive configuration recommendations for more than 25 vendor product families | Additions, October 29 | verified | cis (CIS Benchmarks page) |
 | 5 | SP 800-70 Rev. 5 (May 2026) superseded Rev. 4; NCP repository at ncp.nist.gov | NIST table, NCP row | verified | ncp (SP 800-70 Rev. 5; NIST NCP page) |
-| 6 | DISA STIGs reclassified from "Cited as current" to an optional High-only reference; Book 11 removed from its citing books (Book 11 Chapter 09 no longer names STIGs) | Other federal sources, DISA STIGs row | restated (workbook policy, Moderate civilian not DoD) | Brief; Book 11 Chapter 09 |
-| 7 | DoD Cloud Computing SRG (IL4/IL5) labelled a High-only tier comparison | Other federal sources, DoD SRG row | restated | Brief |
+| 6 | STIGs reclassified from "Cited as current" to an optional High-only reference; Book 11 removed from its citing books (Book 11 Chapter 09 no longer names STIGs) | Other federal sources, STIGs row | restated (workbook policy, Moderate civilian) | Brief; Book 11 Chapter 09 |
 
 Kept unchanged: the FedRAMP Rev5 Low/Moderate/High baselines row (a tier list, not a target).
 

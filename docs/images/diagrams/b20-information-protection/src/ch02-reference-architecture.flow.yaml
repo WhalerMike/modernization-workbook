@@ -1,6 +1,6 @@
 # Book 20 Chapter 02 — the information protection reference architecture
 # (program design). Trust boundaries: the agency's Microsoft 365 tenant in its
-# cloud (commercial, GCC, GCC High or DoD), the managed endpoint, and the
+# cloud (commercial or GCC), the managed endpoint, and the
 # outside world. Control planes: identity (Microsoft Entra ID), policy
 # (Microsoft Purview), protection (Azure Rights Management and the tenant key)
 # and monitoring (audit to the log platform, Book 12). Product behavior as
@@ -9,7 +9,7 @@ rankdir: TB
 graph: {nodesep: 0.3, ranksep: 0.4}
 clusters:
   - id: tenant
-    label: "Trust boundary: the Microsoft 365 tenant (commercial, GCC, GCC High or DoD)"
+    label: "Trust boundary: the Microsoft 365 tenant (commercial or GCC)"
     tone: blue
     filled: false
     nodes: [owners, entra, purview, rms, work, audit]

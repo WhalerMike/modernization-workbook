@@ -54,7 +54,7 @@ The code behind the project plan's tasks NP3.1, "new client secrets and symmetri
 
 ### Which cloud, for these reads and writes
 
-The policy and application calls go to Graph at `graph.microsoft.com` for Microsoft 365 GCC; GCC High and DoD use `graph.microsoft.us` and `dod-graph.microsoft.us`.[^np04-deployments] Every policy page this chapter calls lists the global service, US Government L4 and US Government L5.[^np04-tenant-get] [^np04-tenant-update] [^np04-amp-post] [^np04-amp-assign] Key Vault's data plane is `<vault>.vault.azure.net` in commercial Azure, which GCC's estate uses, and `<vault>.vault.usgovcloudapi.net` in Azure Government.[^np04-kv-dns] The code takes the cloud as a required parameter and builds both hosts from it.
+The policy and application calls go to Graph at `graph.microsoft.com` for Microsoft 365 GCC, which uses the worldwide endpoints.[^np04-deployments] Every policy page this chapter calls lists the global service, which GCC uses.[^np04-tenant-get] [^np04-tenant-update] [^np04-amp-post] [^np04-amp-assign] Key Vault's data plane is `<vault>.vault.azure.net` in commercial Azure, which GCC's estate uses.[^np04-kv-dns] The code takes the cloud as a required parameter and builds both hosts from it.
 
 ## Start with Microsoft's sample
 
@@ -91,7 +91,7 @@ Each row is pinned by a test in the Microsoft samples block of `tests/NpiCredent
 | Assign appliesTo sends a literal `{id}`, and a second policy on the same app is refused | An app takes one policy | The plan checks every policy's assignments first (`ForeignPolicyAssigned`, NPI-POL-04) |
 | The Graph tutorial's default policy sample uses `certificateLifetime`, which v1.0 refuses, and labels a PATCH with a read permission | Copied, it fails, or it's run with the wrong permission | Only v1.0 restriction types; the call list holds `Policy.ReadWrite.ApplicationConfiguration` for writes and `Policy.Read.All` for reads |
 | The tutorial locks one app's properties on `/beta` and reads nothing first | The plan's task is every app the program owns | The lock state of every app registration in the register, read on v1.0; only unlocked or partly locked apps are written |
-| Every Graph sample hard-codes `graph.microsoft.com` | The host is wrong for GCC High and DoD | The host from the cloud table, checked on every request |
+| Every Graph sample hard-codes `graph.microsoft.com` | The host can't be checked against the cloud the run names | The host from the cloud table, checked on every request |
 | Add a certificate's first PATCH replaces every certificate the app had | The old certificate disappears the moment the new one is added: no overlap | An attach keeps every existing certificate with its key and adds exactly one |
 | Its second PATCH keeps the old certificate by a thumbprint written as hex text, with no `keyId` | How Graph matches a kept entry isn't stated (research gaps, row 37) | Kept certificates are sent with `keyId`, `type`, `usage`, `key` and `displayName` |
 | Its certificate lasts 364 days; the page allows up to a year | Over the 180-day cap for new apps | Lifetime checked against the app's cap before the attach (`LifetimeOverCap`) |
@@ -747,26 +747,26 @@ Copy-Item config/app-management-policy.json, config/rotation.json <test-copy>/
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Tenant default and app management policies | Default always exists, disabled by default; one app policy per app overrides it; restrictions by creation date; no token blocked for existing apps | — | v1.0 | [^np04-amp-overview] [^np04-tenant-resource] |
-| Restriction types | v1.0: `passwordAddition`, `passwordLifetime`, `symmetricKeyAddition`, `symmetricKeyLifetime`, `customPasswordAddition`, `asymmetricKeyLifetime`; `state` `enabled` or `disabled` | — | v1.0 | [^np04-pwcfg] [^np04-keycfg] |
-| More restrictions, `audit` | `trustedCertificateAuthority`, `audiences`, redirect URI rules; `audit` evaluates without enforcing | — | Beta | [^np04-amp-overview-beta] |
-| Get the default policy | `GET /policies/defaultAppManagementPolicy`; `Policy.Read.All`; Global Reader | L4 and L5 | v1.0 | [^np04-tenant-get] |
-| Update the default policy | `PATCH`; `Policy.ReadWrite.ApplicationConfiguration`; Cloud Application Administrator or Application Administrator; a service principal with a null `createdDateTime` counts as created January 1, 2019 | L4 and L5 | v1.0 | [^np04-tenant-update] |
-| List policies; list what one applies to | `Policy.Read.All`; `Application.Read.All` and `Policy.Read.All`; Global Reader | L4 and L5 | v1.0 | [^np04-amp-list] [^np04-amp-appliesto] |
-| Create a policy | `POST /policies/appManagementPolicies`; `Policy.ReadWrite.ApplicationConfiguration`; `displayName` and `description` required | L4 and L5 | v1.0 | [^np04-amp-post] |
-| Assign a policy | `POST /applications/{id}/appManagementPolicies/$ref`; `Application.Read.All` and `Policy.ReadWrite.ApplicationConfiguration`; one policy per app | L4 and L5 | v1.0 | [^np04-amp-assign] |
-| Admin center | Expects the application and service principal copies of a restriction in the same state; Security Administrator and Cloud Application or Application Administrator | — | GA | [^np04-configure] |
-| Licensing | Application management policies are in both the free edition and Workload ID Premium | Premium through the account manager; no trial in Azure Government | — | [^np04-wid-faq] |
-| App instance property lock | `servicePrincipalLockConfiguration` (`isEnabled`, `allProperties`, …); enabled by default for new apps since June 2026; Cloud Application Administrator | — | v1.0 | [^np04-lock-howto] [^np04-splock] |
-| Get and update an application | `Application.Read.All`; delegated `Application.ReadWrite.All`, application `Application.ReadWrite.OwnedBy`; a collection in the body replaces the existing one | L4 and L5 | v1.0 | [^np04-app-get] [^np04-app-update] |
-| `keyCredential` | `key` only on a single-object read with `$select=keyCredentials`; `customKeyIdentifier` defaults to the thumbprint | — | v1.0 | [^np04-keycred] |
-| Add a certificate | Include the current and the new certificate, or the PATCH replaces them; end date up to a year after the start | — | v1.0 | [^np04-addcert] |
-| `addKey` | Proof of possession signed by an existing valid certificate; not for apps with none; no permission needed to roll its own keys | L4 and L5 | v1.0 | [^np04-addkey] |
-| Key Vault certificate creation | Asynchronous, `202`; poll the pending object; without a policy, the vault's policy makes the next version | Commercial `vault.azure.net`; Azure Government `vault.usgovcloudapi.net` | GA (`2025-07-01`) | [^np04-kv-create] [^np04-kv-create-rest] [^np04-kv-pending] [^np04-kv-dns] |
-| Key Vault roles | Certificates Officer: any action on certificates except permissions; Reader: metadata, no sensitive values | — | GA | [^np04-kv-rbac] [^np04-kv-cert-access] |
-| Key Vault renewal | Validity in months; lifetime action at a percentage or days before expiry; autorotation through partnered CAs | — | GA | [^np04-kv-tutorial] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Tenant default and app management policies | Default always exists, disabled by default; one app policy per app overrides it; restrictions by creation date; no token blocked for existing apps | v1.0 | [^np04-amp-overview] [^np04-tenant-resource] |
+| Restriction types | v1.0: `passwordAddition`, `passwordLifetime`, `symmetricKeyAddition`, `symmetricKeyLifetime`, `customPasswordAddition`, `asymmetricKeyLifetime`; `state` `enabled` or `disabled` | v1.0 | [^np04-pwcfg] [^np04-keycfg] |
+| More restrictions, `audit` | `trustedCertificateAuthority`, `audiences`, redirect URI rules; `audit` evaluates without enforcing | Beta | [^np04-amp-overview-beta] |
+| Get the default policy | `GET /policies/defaultAppManagementPolicy`; `Policy.Read.All`; Global Reader | v1.0 | [^np04-tenant-get] |
+| Update the default policy | `PATCH`; `Policy.ReadWrite.ApplicationConfiguration`; Cloud Application Administrator or Application Administrator; a service principal with a null `createdDateTime` counts as created January 1, 2019 | v1.0 | [^np04-tenant-update] |
+| List policies; list what one applies to | `Policy.Read.All`; `Application.Read.All` and `Policy.Read.All`; Global Reader | v1.0 | [^np04-amp-list] [^np04-amp-appliesto] |
+| Create a policy | `POST /policies/appManagementPolicies`; `Policy.ReadWrite.ApplicationConfiguration`; `displayName` and `description` required | v1.0 | [^np04-amp-post] |
+| Assign a policy | `POST /applications/{id}/appManagementPolicies/$ref`; `Application.Read.All` and `Policy.ReadWrite.ApplicationConfiguration`; one policy per app | v1.0 | [^np04-amp-assign] |
+| Admin center | Expects the application and service principal copies of a restriction in the same state; Security Administrator and Cloud Application or Application Administrator | GA | [^np04-configure] |
+| Licensing | Application management policies are in both the free edition and Workload ID Premium | — | [^np04-wid-faq] |
+| App instance property lock | `servicePrincipalLockConfiguration` (`isEnabled`, `allProperties`, …); enabled by default for new apps since June 2026; Cloud Application Administrator | v1.0 | [^np04-lock-howto] [^np04-splock] |
+| Get and update an application | `Application.Read.All`; delegated `Application.ReadWrite.All`, application `Application.ReadWrite.OwnedBy`; a collection in the body replaces the existing one | v1.0 | [^np04-app-get] [^np04-app-update] |
+| `keyCredential` | `key` only on a single-object read with `$select=keyCredentials`; `customKeyIdentifier` defaults to the thumbprint | v1.0 | [^np04-keycred] |
+| Add a certificate | Include the current and the new certificate, or the PATCH replaces them; end date up to a year after the start | v1.0 | [^np04-addcert] |
+| `addKey` | Proof of possession signed by an existing valid certificate; not for apps with none; no permission needed to roll its own keys | v1.0 | [^np04-addkey] |
+| Key Vault certificate creation | Asynchronous, `202`; poll the pending object; without a policy, the vault's policy makes the next version; commercial host `<vault>.vault.azure.net` | GA (`2025-07-01`) | [^np04-kv-create] [^np04-kv-create-rest] [^np04-kv-pending] [^np04-kv-dns] |
+| Key Vault roles | Certificates Officer: any action on certificates except permissions; Reader: metadata, no sensitive values | GA | [^np04-kv-rbac] [^np04-kv-cert-access] |
+| Key Vault renewal | Validity in months; lifetime action at a percentage or days before expiry; autorotation through partnered CAs | GA | [^np04-kv-tutorial] |
 
 Where Learn's pages differ: the Graph pages name Cloud Application Administrator or Application Administrator to manage the policies, Learn's procedure asks for Security Administrator as well, and the Graph tutorial labels its policy PATCH with the read permission `Policy.Read.ApplicationConfiguration` and Security Administrator (research gaps, row 33); the v1.0 update sample sets no `state` while the create sample does (row 32); Create appManagementPolicy says it returns `201 Created` and shows `200 OK`;[^np04-amp-post] the certificate how-to names Application Developer and Application Administrator while Update application lists Cloud Application Administrator too;[^np04-addcert] [^np04-app-update] and the procedure and the tutorial's lock samples use beta where v1.0 has the same resources. The code follows the stricter reading in each case and uses v1.0.
 

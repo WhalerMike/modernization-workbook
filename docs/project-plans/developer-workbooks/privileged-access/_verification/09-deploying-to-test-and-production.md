@@ -16,7 +16,7 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 |---|---|---|---|---|
 | 1 | PIM needs Microsoft Entra ID P2 or ID Governance licenses, for eligible users, approvers, users assigned to and performing access reviews | Before you start; PA-DEP-03; verified facts | verified | Learn, ID Governance licensing fundamentals |
 | 2 | Service plan IDs `AAD_PREMIUM_P2` `eec0eb4f-…` and `Entra_Identity_Governance` `e866a266-…` | Code (`$script:PimPlans`); verified facts | verified in the plan reference's rows (Microsoft Entra ID P2; Microsoft Entra Suite Add-on) | Learn, product names and service plan identifiers |
-| 3 | List subscribedSkus: `LicenseAssignment.Read.All` least privileged, application and delegated; L4 and L5 | Pre-flight; `calls-deploy.json`; verified facts | verified | Learn, List subscribedSkus |
+| 3 | List subscribedSkus: `LicenseAssignment.Read.All` least privileged, application and delegated | Pre-flight; `calls-deploy.json`; verified facts | verified | Learn, List subscribedSkus |
 | 4 | `capabilityStatus` values; `prepaidUnits`, `consumedUnits`, `servicePlans` | Code; verified facts | verified | Learn, subscribedSku resource type |
 | 5 | Emergency access guardrails: two or more cloud-only accounts, phishing-resistant methods, permanent active GA, exclusion from policies that block or restrict, report-only needing none, monitoring, validation every 90 days | Before you start; pre-flight; Step 1.1 | verified | Learn, Manage emergency access accounts |
 | 6 | The lockout: all PRA and GA eligible, approval required, no approvers | Pre-flight; Step 1.2 | verified (search result of the role settings page) | Learn, Configure Microsoft Entra role settings in PIM |

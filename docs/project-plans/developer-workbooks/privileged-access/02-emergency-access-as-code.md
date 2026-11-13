@@ -46,7 +46,7 @@ Book 04, Chapter 08's Step 0 is the only step that can't move: approval switched
 
 ### Which cloud, for this check and this alert
 
-The check reads Microsoft Graph: `graph.microsoft.com` for GCC, `graph.microsoft.us` for GCC High and `dod-graph.microsoft.us` for DoD.[^pa02-deployments] The alert runs in Azure Monitor, over the Log Analytics workspace that receives the tenant's Entra logs. For Microsoft 365 GCC with commercial Azure, that workspace and the alert sit in a commercial subscription, deployed through `management.azure.com`. The template the code writes names no host, so the same file deploys in Azure Government for a GCC High or DoD tenant; whether every piece of it is available there wasn't confirmed (research gaps, row 7). Passkeys (FIDO2) and certificate-based authentication, the two methods Learn names for these accounts, are available in Azure for US Government.[^pa02-availability]
+The check reads Microsoft Graph at `graph.microsoft.com`, the worldwide host GCC uses.[^pa02-deployments] The alert runs in Azure Monitor, over the Log Analytics workspace that receives the tenant's Entra logs. For Microsoft 365 GCC with commercial Azure, that workspace and the alert sit in a commercial subscription, deployed through `management.azure.com`.
 
 ## Start with Microsoft's sample
 
@@ -407,22 +407,21 @@ Remove-Item -Recurse -Force out/emergency-test
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Emergency access standard | Two or more cloud-only accounts on `*.onmicrosoft.com`; passkey or CBA, different from normal admin methods; Global Administrator active and permanent; excluded from policies that block or restrict, through one group; report-only needs no exclusion; monitor sign-in and audit logs; validate at least every 90 days | — | GA | [^pa02-emergency] |
-| Sample alert | `SigninLogs` filtered by `UserId` or `UserPrincipalName`; severity 0; threshold greater than 0; at least Monitoring Contributor to create | — | — | [^pa02-emergency] |
-| Permanent active assignments | Zero, except the emergency access accounts | — | — | [^pa02-pim-plan] |
-| Log categories | `AuditLogs`, `SignInLogs`, `NonInteractiveUserSignInLogs` (and others) through a diagnostic setting; Security Administrator to create one | — | — | [^pa02-streams] [^pa02-integrate] |
-| Non-interactive sign-ins | Done on behalf of a user, for example a token refresh; table `AADNonInteractiveUserSignInLogs` | — | — | [^pa02-noninteractive] [^pa02-table-ni] |
-| `AuditLogs` | `InitiatedBy` and `TargetResources` are dynamic columns | — | — | [^pa02-table-audit] |
-| Log Analytics for sign-in logs | Microsoft Entra ID P1 or P2 | — | — | [^pa02-analyze] |
-| Log search alert rule | `Microsoft.Insights/scheduledQueryRules` `2023-12-01`; `criteria.allOf` with `query`, `timeAggregation`, `operator`, `threshold`, `failingPeriods` | Not confirmed for Azure Government | GA | [^pa02-sqr] |
-| Get a user | `User.Read.All` (application); basic profile excludes `accountEnabled` and `onPremisesSyncEnabled` | — | v1.0 | [^pa02-user-get] [^pa02-users-basic] |
-| List authentication methods | `UserAuthenticationMethod.Read.All` for other users; Global Reader, Authentication Administrator or Privileged Authentication Administrator | Passkey methods list: L4 and L5 | v1.0 | [^pa02-methods] [^pa02-fido2] |
-| List roleAssignmentScheduleInstances | `RoleAssignmentSchedule.Read.Directory`; filter on `principalId` | L4 and L5 | v1.0 | [^pa02-rasi] |
-| List group members | `GroupMember.ReadBasic.All` | — | v1.0 | [^pa02-members] |
-| List Conditional Access policies | `Policy.Read.All` | — | v1.0 | [^pa02-ca-list] |
-| Passkeys and CBA | Available in Azure for US Government | Available | GA | [^pa02-availability] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Emergency access standard | Two or more cloud-only accounts on `*.onmicrosoft.com`; passkey or CBA, different from normal admin methods; Global Administrator active and permanent; excluded from policies that block or restrict, through one group; report-only needs no exclusion; monitor sign-in and audit logs; validate at least every 90 days | GA | [^pa02-emergency] |
+| Sample alert | `SigninLogs` filtered by `UserId` or `UserPrincipalName`; severity 0; threshold greater than 0; at least Monitoring Contributor to create | — | [^pa02-emergency] |
+| Permanent active assignments | Zero, except the emergency access accounts | — | [^pa02-pim-plan] |
+| Log categories | `AuditLogs`, `SignInLogs`, `NonInteractiveUserSignInLogs` (and others) through a diagnostic setting; Security Administrator to create one | — | [^pa02-streams] [^pa02-integrate] |
+| Non-interactive sign-ins | Done on behalf of a user, for example a token refresh; table `AADNonInteractiveUserSignInLogs` | — | [^pa02-noninteractive] [^pa02-table-ni] |
+| `AuditLogs` | `InitiatedBy` and `TargetResources` are dynamic columns | — | [^pa02-table-audit] |
+| Log Analytics for sign-in logs | Microsoft Entra ID P1 or P2 | — | [^pa02-analyze] |
+| Log search alert rule | `Microsoft.Insights/scheduledQueryRules` `2023-12-01`; `criteria.allOf` with `query`, `timeAggregation`, `operator`, `threshold`, `failingPeriods` | GA | [^pa02-sqr] |
+| Get a user | `User.Read.All` (application); basic profile excludes `accountEnabled` and `onPremisesSyncEnabled` | v1.0 | [^pa02-user-get] [^pa02-users-basic] |
+| List authentication methods | `UserAuthenticationMethod.Read.All` for other users; Global Reader, Authentication Administrator or Privileged Authentication Administrator | v1.0 | [^pa02-methods] [^pa02-fido2] |
+| List roleAssignmentScheduleInstances | `RoleAssignmentSchedule.Read.Directory`; filter on `principalId` | v1.0 | [^pa02-rasi] |
+| List group members | `GroupMember.ReadBasic.All` | v1.0 | [^pa02-members] |
+| List Conditional Access policies | `Policy.Read.All` | v1.0 | [^pa02-ca-list] |
 
 Two places where the sources differ, recorded so a later edit doesn't loosen the code:
 
@@ -487,7 +486,6 @@ KSIs are FedRAMP 20x indicators for cloud service providers.[^pa02-ksi] The agen
 [^pa02-emergency]: Microsoft Learn, "Manage emergency access accounts in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access> (accessed Oct 30, 2026).
 [^pa02-pim-plan]: Microsoft Learn, "Plan a Privileged Identity Management deployment," type of assignments, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan> (accessed Oct 30, 2026).
 [^pa02-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
-[^pa02-availability]: Microsoft Learn, "Microsoft Entra feature availability," Microsoft Entra ID, authentication, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
 [^pa02-sample-src]: Microsoft, MicrosoftDocs/entra-docs, `docs/identity/role-based-access-control/security-emergency-access.md` at commit `07cb73d6c6380414eecd040ba5e14c1c94d48b66` (October 30, 2026; the page last changed June 4, 2026), MIT License, <https://github.com/MicrosoftDocs/entra-docs/blob/07cb73d6c6380414eecd040ba5e14c1c94d48b66/docs/identity/role-based-access-control/security-emergency-access.md> (accessed Oct 30, 2026); pinned copy in `examples/third_party/entra-emergency-access-page`.
 [^pa02-noninteractive]: Microsoft Learn, "What are non-interactive user sign-ins in Microsoft Entra?," log details and special considerations, <https://learn.microsoft.com/entra/identity/monitoring-health/concept-noninteractive-sign-ins> (accessed Oct 31, 2026).
 [^pa02-report-only]: Microsoft Learn, "Analyze Conditional Access policy impact" (report-only mode), overview and warning, <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-report-only> (accessed Oct 31, 2026).

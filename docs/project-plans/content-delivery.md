@@ -295,7 +295,7 @@ Who owns what in this plan. Each row has one owner; consulted and informed parti
 - Hub distribution points and any Connected Cache host run Windows Server 2019 or later, the workbook's minimum server standard (a planning assumption). Microsoft supports the distribution point role on Windows Server 2019, 2022 and 2025; Connected Cache for Enterprise and Education needs Windows Server 2022 or later, Windows 11 or Ubuntu 24.04 ([decision guide](../books/guides/dp-consolidation.md#target-architecture)).
 - Office waves follow circuit readiness. The Network & Access plan covers the ten-site pilot only; the circuit waves for the remaining offices, keyed to renewal dates over months 18 to 48 in Book 09, Chapter 11, aren't in any sample plan. Each wave here assumes its offices are on circuits sized to pull from a hub, or that measured peer traffic shows they don't need to.
 - Air-gapped and separately accredited enclaves keep Configuration Manager and local distribution points, as in Book 09, Chapter 11, and are outside this plan.
-- The tenant is GCC (Moderate), which uses the commercial Intune service; Connected Cache for Enterprise and Education is listed as unavailable only in GCC High and DoD.
+- The tenant is GCC (Moderate), which uses the commercial Intune service, where Connected Cache for Enterprise and Education is available.
 - Durations are illustrative, including the four office waves and the packaging work, which scale with office count and catalog size.
 
 ## Schedule risks

@@ -18,9 +18,9 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 2 | Grants of highly privileged permissions high; end-user consent low; the consent activity names | NPI-DRF-08; Verified facts | verified | Learn, security operations guide for applications |
 | 3 | Activity names, Core Directory, ApplicationManagement; hyphen in `Update application - Certificates and secrets management` | config/drift-ch10.json; Verified facts | verified in the page source | Learn, audit log categories and activities |
 | 4 | The security operations guide writes the name differently and names `Update Service principal/Update Application` | Where Learn's pages differ; rows 91, 92 | verified | Learn, security operations guide for applications |
-| 5 | List directoryAudits: `AuditLog.Read.All`, higher `Directory.Read.All`; Reports Reader, Security Administrator, Security Reader; filters; L4 and L5 | The reads; Verified facts | verified | Learn, List directoryAudits |
+| 5 | List directoryAudits: `AuditLog.Read.All`, higher `Directory.Read.All`; Reports Reader, Security Administrator, Security Reader; filters | The reads; Verified facts | verified | Learn, List directoryAudits |
 | 6 | `activityDateTime` `eq`, `ge`, `le`; `activityDisplayName` `eq`, `startswith`; `result` values | The reads; Verified facts | verified | Learn, directoryAudit resource type |
-| 7 | servicePrincipalSignInActivities: beta; `AuditLog.Read.All`; the three roles; global only, L4 and L5 not available | Which cloud; Verified facts; row 93 | verified | Learn, List servicePrincipalSignInActivities |
+| 7 | servicePrincipalSignInActivities: beta; `AuditLog.Read.All`; the three roles; global service | Which cloud; Verified facts; row 93 | verified | Learn, List servicePrincipalSignInActivities |
 | 8 | Expiring: on an app registration and within the next 30 days; preview | NPI-DRF-05; Verified facts | verified | Learn, Renew expiring application credentials |
 | 9 | Unused: over 90 days; managed identities and apps under 90 days exempt; soft delete then permanent delete after 15 days; preview | NPI-DRF-04; Verified facts; rows 94, 95 | verified | Learn, Remove unused applications |
 | 10 | Audit logs: Free seven days, P1 and P2 30 days | The reads; Dangers | verified | Learn, Microsoft Entra data retention |

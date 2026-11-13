@@ -13,7 +13,7 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | Strength restated: a published product-specific hardening checklist for NIOS 9.x (DISA STIG, High only) to cross-check the agency's settings; CIS has no NIOS benchmark | Findings in brief | verified (absence) + reframed | ibx-cis |
+| 1 | Strength restated: a published product-specific hardening checklist for NIOS 9.x (a STIG, High only) to cross-check the agency's settings; CIS has no NIOS benchmark | Findings in brief | verified (absence) + reframed | ibx-cis |
 | 2 | CM-6 leaves the choice of common secure configuration to the agency | Footnote ibx-cis | verified | NIST SP 800-53 Rev. 5 CM-6 |
 | 3 | Module 2 description: hardening baseline (CM-6 settings from SP 800-81r3; STIGs optional, High only) | What it covers | reframed | — |
 | 4 | Deck: Assurance slide retitled "Assurance: baselines, FIPS 140, NIAP and SP 800-81r3"; Trinzic decision row split into Moderate (commercial, GovCloud or Azure Gov: confirm government-edition support) and High/IL4–5 (A + C only) | Deck | reframed; facts carried from the Oct 22 check | — |

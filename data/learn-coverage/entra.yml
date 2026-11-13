@@ -6875,7 +6875,7 @@ pages:
   ms_topic: reference
   description: Global Secure Access maintains a compliance portfolio. This article lists the current, supported certifications.
   coverage: cited
-  note: GSA certifications (FedRAMP, FIPS) not covered; workbook states only GCC availability and the GCC High gap
+  note: GSA certifications (FedRAMP, FIPS) not covered; workbook states only GCC availability
   cited_by:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
@@ -8943,7 +8943,6 @@ pages:
   - docs/books/guides/hr-driven-identity-implementation.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
-  - docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md
   - docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
   - docs/reference/source-register.md
@@ -17658,11 +17657,7 @@ pages:
   - docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/index.md
-  - docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md
-  - docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md
-  - docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md
   - docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md
-  - docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md
   - docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md
   - docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md
   - docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md
@@ -29587,8 +29582,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra identities to meet CMMC Level 1 requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-cmmc-level-2-access-control.md
   url: https://learn.microsoft.com/entra/standards/configure-cmmc-level-2-access-control
@@ -29597,8 +29592,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra identities to meet CMMC Level 2 Access Control (AC) requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-cmmc-level-2-additional-controls.md
   url: https://learn.microsoft.com/entra/standards/configure-cmmc-level-2-additional-controls
@@ -29607,8 +29602,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra identities to meet CMMC Level 2 requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-cmmc-level-2-identification-and-authentication.md
   url: https://learn.microsoft.com/entra/standards/configure-cmmc-level-2-identification-and-authentication
@@ -29617,8 +29612,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra ID to meet CMMC Level 2 Identification and authorization requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-for-cmmc-compliance.md
   url: https://learn.microsoft.com/entra/standards/configure-for-cmmc-compliance
@@ -29627,8 +29622,8 @@ pages:
   ms_date: '2023-01-03'
   ms_topic: concept-article
   description: Learn how to configure Microsoft Entra ID to meet CMMC requirements.
-  coverage: not-covered
-  note: 'Framework named in the federal framework crosswalk; control-level Entra mapping is left to Learn. Reset Nov 9, 2026 (citation pass): crosswalk only names the framework; no configuration content.'
+  coverage: out-of-scope
+  note: Outside the workbook's scope (FedRAMP Moderate civilian agencies on GCC Moderate)
   cited_by: []
 - path: docs/standards/configure-for-fedramp-high-impact.md
   url: https://learn.microsoft.com/entra/standards/configure-for-fedramp-high-impact
