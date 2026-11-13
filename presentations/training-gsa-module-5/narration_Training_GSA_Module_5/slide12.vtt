@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:03.793
+You enabled the internet
+profile for the pilot,
+
+3
+00:00:03.793 --> 00:00:09.104
+built a security profile with one blocked
+category and assigned it with Conditional
+
+4
+00:00:09.104 --> 00:00:11.797
+Access, proved the block,
+added the QUIC rule,
+
+5
+00:00:11.797 --> 00:00:15.313
+checked the inspection issuer,
+and read the T L S outcomes.
+
+6
+00:00:15.313 --> 00:00:19.732
+The evidence an I S S O keeps from
+this module: the filtering profile,
+
+7
+00:00:19.732 --> 00:00:22.384
+policy and Conditional Access exports;
+
+8
+00:00:22.384 --> 00:00:26.965
+the blocked-category test and the
+traffic query; the bypass register;
+
+9
+00:00:26.965 --> 00:00:32.028
+the certificate and chain, the trust
+profile's deployment status, the issuer
+
+10
+00:00:32.028 --> 00:00:36.850
+check and the failure share; and the
+privacy approval and the user notice.
+
+11
+00:00:36.850 --> 00:00:42.101
+Next is Module 6, rings, rollback and the
+evidence package, where the pilot becomes
+
+12
+00:00:42.101 --> 00:00:47.090
+a migration, and where you roll the whole
+test tenant back in the guide's order.

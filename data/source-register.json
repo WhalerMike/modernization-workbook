@@ -12792,6 +12792,193 @@
      "change": "Added: cited on the narrated deck slides"
     }
    ]
+  },
+  {
+   "id": "gsa-update-conditional-access-settings",
+   "title": "Update conditionalAccessSettings (Microsoft Graph beta)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-update?view=graph-rest-beta",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Update conditionalAccessSettings"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-forwarding-profile-resource",
+   "title": "forwardingProfile resource type (Microsoft Graph beta)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/resources/networkaccess-forwardingprofile?view=graph-rest-beta",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "forwardingProfile resource type"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-tutorial-microsoft-traffic-profile",
+   "title": "Tutorial: Enable the Microsoft traffic profile",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-enable-profile",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Tutorial: Enable the Microsoft traffic profile"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-deployment-guide-microsoft-traffic",
+   "title": "Microsoft Global Secure Access deployment guide for Microsoft Traffic",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-microsoft-traffic",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "deployment guide for Microsoft Traffic"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-operate-microsoft-traffic",
+   "title": "Operate Microsoft Entra Global Secure Access Microsoft traffic profile",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-operate-microsoft-traffic",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Operate the Microsoft traffic profile"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-cross-tenant-access-settings",
+   "title": "crossTenantAccessSettings resource type (Microsoft Graph beta)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/resources/networkaccess-crosstenantaccesssettings?view=graph-rest-beta",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "crossTenantAccessSettings"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-per-app-access",
+   "title": "How to configure per-app access using Global Secure Access applications",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-configure-per-app-access",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "How to configure per-app access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-conditional-access-private-access-apps",
+   "title": "How to Apply Conditional Access Policies to Microsoft Entra Private Access Apps",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-private-access-apps",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Conditional Access for Private Access apps"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-what-is-tls-inspection",
+   "title": "What is Transport Layer Security inspection?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/concept-transport-layer-security",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "What is TLS inspection?"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-tutorial-tls-inspection",
+   "title": "Tutorial: Enable TLS inspection",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-tls-inspection",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Tutorial: Enable TLS inspection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-tls-inspection-faq",
+   "title": "Frequently asked questions for Transport Layer Security inspection",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/faq-transport-layer-security",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "FAQ for TLS inspection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
   }
  ],
  "phrases": {

@@ -1,0 +1,508 @@
+{
+ "1": [
+  [
+   0.05,
+   7.612,
+   "Welcome to Module 1 of Global Secure Access as the Identity-Aware Network: decide, design and log first."
+  ],
+  [
+   7.662,
+   10.425,
+   "Global Secure Access is Microsoft's security service edge, Entra Internet Access and Entra Private Access, used as the agency's identity-aware network layer."
+  ],
+  [
+   18.087,
+   8.225,
+   "This path teaches the twelve steps of the Global Secure Access implementation guide in six modules, in the order the guide runs them."
+  ],
+  [
+   26.312,
+   8.525,
+   "This first module covers Step 1, the decision and licensing, Step 2, the reference architecture, and the logging half of Step 12."
+  ],
+  [
+   34.837,
+   4.237,
+   "It takes about forty-five minutes, plus a lab in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.038,
+   "Why start here?"
+  ],
+  [
+   1.087,
+   3.45,
+   "Global Secure Access is three things under one name."
+  ],
+  [
+   4.537,
+   5.037,
+   "The Microsoft traffic profile comes with Entra I D P one or P two."
+  ],
+  [
+   9.575,
+   6.075,
+   "Internet Access and Private Access are licensed separately, or come with the Microsoft Entra Suite."
+  ],
+  [
+   15.65,
+   4.85,
+   "Each has its own gate, so the decision is made per function, not for the product."
+  ],
+  [
+   20.5,
+   7.162,
+   "And because nothing should block before there is a record of what it blocked, the network logs go on before the first pilot user does."
+  ],
+  [
+   27.663,
+   3.913,
+   "Every later Validate step in this path reads those logs."
+  ],
+  [
+   31.575,
+   9.1,
+   "So in this module you decide each function, write the architecture down for your tenant, take the first hashed configuration export, and turn on the telemetry."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   3.625,
+   "You'll explain why the guide runs its steps out of numeric order."
+  ],
+  [
+   6.588,
+   7.537,
+   "You'll decide each function on its own gate, and record the decision with a dated availability quote and exit criteria."
+  ],
+  [
+   14.125,
+   4.763,
+   "You'll name the reference architecture's seven zones and planes, and who owns each."
+  ],
+  [
+   18.887,
+   6.963,
+   "You'll export the configuration as hashed evidence, and say why the beta network access A P I is run by hand."
+  ],
+  [
+   25.85,
+   4.487,
+   "And you'll turn on the four network log categories and check that each is fresh."
+  ],
+  [
+   30.337,
+   9.938,
+   "Before you start, read Network and Transport, chapter five, for the gates, and skim Security Operations and Telemetry, chapter three, for the log categories."
+  ],
+  [
+   40.275,
+   3.163,
+   "The lab runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.475,
+   "Unit 1 is the order."
+  ],
+  [
+   1.525,
+   12.787,
+   "The guide's steps are numbered to match the twelve network topics of the Zero Trust closure update, but they run in a different order, so the logs exist before anything is enforced, and nothing blocks before its path exists."
+  ],
+  [
+   14.312,
+   3.825,
+   "First the decision, the architecture, and Step twelve's logging."
+  ],
+  [
+   18.137,
+   5.213,
+   "Then the client, Microsoft traffic, the compliant network, and tenant restrictions."
+  ],
+  [
+   23.35,
+   6.088,
+   "Then private applications, privileged protocols, internet traffic, and T L S inspection."
+  ],
+  [
+   29.438,
+   5.562,
+   "Last, coexistence and migration, and Step twelve again, for the evidence package."
+  ],
+  [
+   35.0,
+   1.712,
+   "This path follows that order."
+  ],
+  [
+   36.712,
+   5.575,
+   "One more rule: Microsoft's network access A P I's are on the Graph beta endpoint."
+  ],
+  [
+   42.288,
+   5.888,
+   "Learn says beta A P I's are subject to change and not supported in production applications."
+  ],
+  [
+   48.175,
+   6.662,
+   "So the guide runs Learn's requests by hand, as an administrator, and keeps each result as evidence."
+  ],
+  [
+   54.837,
+   3.013,
+   "Every lab uses the guide's placeholder table."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.85,
+   "Unit 2 is the decision, one row per function, because the gates differ."
+  ],
+  [
+   4.9,
+   10.438,
+   "The Microsoft traffic profile is included in P one or P two, and with it come source I P restoration, the compliant network check, and universal tenant restrictions."
+  ],
+  [
+   15.338,
+   9.225,
+   "Internet Access needs its own license or the Microsoft Entra Suite, and carries web content filtering, threat intelligence, and T L S inspection."
+  ],
+  [
+   24.562,
+   10.075,
+   "Private Access is the same: its own license or the Suite, for Quick Access, per-app access, private D N S, and the domain controller sensors."
+  ],
+  [
+   34.638,
+   8.463,
+   "Branches use remote networks, which need at least fifty P one and Internet Access licenses combined, and carry no Private Access."
+  ],
+  [
+   43.1,
+   8.325,
+   "For each row, the decision record says adopt, retain the current V P N or S S E, coexist, or defer."
+  ],
+  [
+   51.425,
+   7.525,
+   "And it carries a dated availability quote, the license held, compensating controls, exit criteria, and an approver."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   6.963,
+   "Learn's known limitations page covers the whole product: Global Secure Access is available in G C C."
+  ],
+  [
+   8.325,
+   6.875,
+   "No feature page read for the guide narrows or widens that, so the G C C column rests on that one sentence."
+  ],
+  [
+   15.2,
+   12.188,
+   "A preview feature, such as the cloud firewall for clients or the Explicit Forward Proxy, has a G C C availability that is not yet specified, and the guide adopts one only by a decision record."
+  ],
+  [
+   27.387,
+   6.9,
+   "The table is as of November eleventh, 2026, so re-read the limitations page before each ring."
+  ],
+  [
+   34.288,
+   16.413,
+   "And where a row of the decision record says retain the current service, or defer, it names its compensating controls: for example, the current fed-ramp authorized S S E, per-application V P N access lists, and named-location Conditional Access."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.775,
+   "Unit 3 is the reference architecture, the first of the guide's six artifacts."
+  ],
+  [
+   4.825,
+   2.075,
+   "It has seven zones and planes."
+  ],
+  [
+   6.9,
+   5.35,
+   "Managed endpoints carry the Windows client, Intune policy and the device identity."
+  ],
+  [
+   12.25,
+   5.612,
+   "Branches send traffic over an I P sec tunnel, with no user identity on it."
+  ],
+  [
+   17.863,
+   4.95,
+   "The control plane, Conditional Access, decides, and never carries traffic."
+  ],
+  [
+   22.812,
+   6.275,
+   "The policy plane holds the forwarding and security profiles, the T L S policies and signaling."
+  ],
+  [
+   29.087,
+   5.562,
+   "The data plane is Microsoft's service edge in commercial Azure regions, and the provider owns it."
+  ],
+  [
+   34.65,
+   9.0,
+   "The agency's private network holds connector groups, private D N S, applications and domain controller sensors, all outbound only."
+  ],
+  [
+   43.65,
+   4.325,
+   "And the evidence zone is the workspace, Sentinel and the evidence store."
+  ],
+  [
+   47.975,
+   15.0,
+   "Step 2 makes it the agency's: which profiles each population gets, how many connector groups and where, with two connectors minimum each, the private D N S suffixes, which branches use remote networks, and where telemetry lands."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.725,
+   "Unit 4 is the logs, before the pilot."
+  ],
+  [
+   2.775,
+   8.938,
+   "Learn says the service keeps traffic and remote network health logs for thirty days; longer retention needs export through diagnostic settings."
+  ],
+  [
+   11.713,
+   11.787,
+   "So a dedicated Entra diagnostic setting sends four categories to the workspace: network access traffic logs, connection events, remote network health logs, and network access alerts."
+  ],
+  [
+   23.5,
+   3.075,
+   "Sign-in and audit logs stay on the core setting."
+  ],
+  [
+   26.575,
+   10.15,
+   "A freshness query runs daily, and a sudden drop in traffic volume is an alert in itself, because it covers offboarding, a disabled profile, or an outage."
+  ],
+  [
+   36.725,
+   1.488,
+   "And there's a federal reason."
+  ],
+  [
+   38.212,
+   9.85,
+   "sis-uh's Remote User Use Case says that as users connect more directly to external services, sis-uh's visibility must be preserved through telemetry sharing."
+  ],
+  [
+   48.062,
+   11.662,
+   "Moving users off a full-tunnel V P N moves their telemetry to Microsoft, so agree how it reaches sis-uh with the agency's tick delegates before the V P N's web path is retired."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.275,
+   "The lab runs in a test tenant, never production, and the authors haven't run it, as the page says."
+  ],
+  [
+   6.325,
+   4.037,
+   "There's no fixture lab in this path, because the guide has no kit yet."
+  ],
+  [
+   10.363,
+   20.125,
+   "You need a test tenant with Global Secure Access onboarded, an administrator with the Global Secure Access Administrator or Security Administrator role activated through pim, Graph PowerShell, and Azure C L I. Steps one and two make a lab folder, connect with read scopes, and export the licenses and the tenant's onboarding status."
+  ],
+  [
+   30.488,
+   4.062,
+   "Compare the licenses by product name with Learn's licensing section."
+  ],
+  [
+   34.55,
+   9.85,
+   "Step three takes the baseline export: nine Graph requests, each written to a file, then a S H A two fifty-six hash manifest."
+  ],
+  [
+   44.4,
+   4.35,
+   "The slide abbreviates; the module page has every command in full."
+  ],
+  [
+   48.75,
+   9.225,
+   "The guide's Validate: the tenant shows onboarded, the license count covers the pilot and the first ring, and the export folder and its manifest exist."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.763,
+   "Step four turns on the telemetry, in Bash, as a Security Administrator."
+  ],
+  [
+   4.812,
+   9.688,
+   "The guide's command puts a diagnostic setting named G S A network telemetry on the tenant, pointing at your test workspace, with the four categories enabled."
+  ],
+  [
+   14.5,
+   4.612,
+   "This is the lab's first write to the tenant, and Module 6 removes it."
+  ],
+  [
+   19.113,
+   5.2,
+   "The GET that follows should list the setting, with the four categories and your workspace."
+  ],
+  [
+   24.312,
+   1.837,
+   "Step five checks freshness."
+  ],
+  [
+   26.15,
+   4.938,
+   "In the workspace's Logs, run the guide's union query across the four tables."
+  ],
+  [
+   31.087,
+   5.05,
+   "The guide's Validate is that each category has rows within an hour of pilot traffic."
+  ],
+  [
+   36.138,
+   4.125,
+   "There's no pilot traffic yet, so expect few or no rows now."
+  ],
+  [
+   40.263,
+   5.013,
+   "Run the query again after Module 2's lab, and keep both results as evidence."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.875,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   5.925,
+   12.262,
+   "The decision supports P L two, S A nine and C A three: each function decided and approved, with its availability, license, compensating controls and exit criteria."
+  ],
+  [
+   18.188,
+   3.85,
+   "A decision record isn't mapped to a key security indicator."
+  ],
+  [
+   22.038,
+   12.775,
+   "The architecture supports S C seven, A C four, C M two and C M eight: boundaries, planes and flows documented and exported, lined up with two fed-ramp twenty X indicators."
+  ],
+  [
+   34.812,
+   10.713,
+   "And the telemetry supports A U two, A U six, A U twelve and S I four: the network logs exported and fresh, lined up with three monitoring indicators."
+  ],
+  [
+   45.525,
+   9.812,
+   "The evidence supports the controls; your organization still sets their parameters and owns the policy, and the assessor decides whether each is satisfied."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   2.625,
+   "First: a preview feature is in your plan."
+  ],
+  [
+   4.65,
+   3.487,
+   "What is its G C C availability in the guide's table?"
+  ],
+  [
+   8.137,
+   9.05,
+   "The answer is b: not yet specified, because the G C C column rests on Learn's product-wide sentence, and that doesn't cover preview features."
+  ],
+  [
+   17.188,
+   4.162,
+   "Second: why does the guide run Step twelve's logging before Step three?"
+  ],
+  [
+   21.35,
+   7.713,
+   "The answer is b: so the logs exist before anything is enforced, and every later Validate step has a record to read."
+  ],
+  [
+   29.062,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   11.325,
+   "You decided each function on its own gate, wrote the architecture down for your tenant, took the first hashed configuration export, and turned on the network telemetry before anyone was in a pilot."
+  ],
+  [
+   12.2,
+   16.65,
+   "The evidence an I S S O keeps from this module: the decision record with its dated availability quote and approver, the license and tenant status exports, the architecture record, the export folder with its manifest, the diagnostic setting GET, and the freshness result."
+  ],
+  [
+   28.85,
+   10.787,
+   "Next is Module 2, the client and Microsoft traffic, where you package the client, count the devices the service sees, and enable the Microsoft traffic profile for the pilot."
+  ]
+ ]
+}

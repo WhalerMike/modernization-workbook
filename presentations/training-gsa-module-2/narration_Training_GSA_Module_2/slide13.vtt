@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.110
+You packaged the client with Learn's
+values, checked it on a pilot device,
+
+3
+00:00:05.110 --> 00:00:09.705
+counted the devices the service sees,
+enabled the Microsoft traffic profile
+
+4
+00:00:09.705 --> 00:00:13.725
+for the pilot, turned on signaling,
+and proved source I P restoration.
+
+5
+00:00:13.725 --> 00:00:16.504
+The evidence an I S S O
+keeps from this module:
+
+6
+00:00:16.504 --> 00:00:19.977
+the Intune app's assignment
+export and detection rule,
+
+7
+00:00:19.977 --> 00:00:25.149
+the client health check export, the device
+usage summary with the coverage ratio,
+
+8
+00:00:25.149 --> 00:00:28.854
+the profile export and its
+assignments, the signaling GET,
+
+9
+00:00:28.854 --> 00:00:31.787
+the source I P comparison,
+and the sign-in share.
+
+10
+00:00:31.787 --> 00:00:36.078
+Next is Module 3, the compliant
+network and tenant restrictions,
+
+11
+00:00:36.078 --> 00:00:39.801
+the two signals only Entra
+can produce from the network,
+
+12
+00:00:39.801 --> 00:00:43.420
+run in report-only or a pilot
+before they block anyone.

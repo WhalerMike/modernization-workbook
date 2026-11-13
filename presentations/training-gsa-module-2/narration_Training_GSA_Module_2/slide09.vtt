@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.875
+The lab runs in a test tenant, never
+production, and the authors haven't run it.
+
+2
+00:00:04.875 --> 00:00:10.146
+You need Module 1's lab done, one Windows
+eleven test device joined to Entra I D,
+
+3
+00:00:10.146 --> 00:00:12.991
+enrolled in Intune and in the pilot group,
+
+4
+00:00:12.991 --> 00:00:17.175
+the client and Learn's script,
+and the Win32 Content Prep Tool.
+
+5
+00:00:17.175 --> 00:00:20.313
+Step one packages the
+client in Command Prompt.
+
+6
+00:00:20.313 --> 00:00:26.089
+Steps two and three are in Intune:
+the Win32 app with Learn's values,
+
+7
+00:00:26.089 --> 00:00:30.262
+and the D N S over H T T P
+S profile; no hardening yet.
+
+8
+00:00:30.262 --> 00:00:32.294
+Step four checks the pilot device:
+
+9
+00:00:32.294 --> 00:00:35.705
+the file version should be
+the packaged version or later,
+
+10
+00:00:35.705 --> 00:00:39.987
+Disabled Components should read hex
+twenty, I P version four preferred,
+
+11
+00:00:39.987 --> 00:00:42.600
+and the four hardening
+values aren't set yet.
+
+12
+00:00:42.600 --> 00:00:47.288
+Open the client's health check, keep the
+export, and the tray must read Connected.
+
+13
+00:00:47.288 --> 00:00:50.330
+Step five asks Graph for
+the device usage summary,
+
+14
+00:00:50.330 --> 00:00:52.990
+which is the numerator of client coverage.
