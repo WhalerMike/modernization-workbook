@@ -148,6 +148,21 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 : The Zero Trust Assessment: labs by module {.striped .hover}
 
+## The Global Secure Access learning path {#gsa}
+
+[The learning path](global-secure-access/index.md) · [its implementation guide](../books/guides/global-secure-access-implementation.md). The guide has no kit and no developer workbook yet, so there is no Lab 1: each module's lab is a Lab 2, the guide's own commands and Validate steps in a test tenant.
+
+| Module | Lab 1, no tenant | Lab 2 |
+|---|---|---|
+| [Module 1: Decide, design and log first](global-secure-access/01-decide-design-and-log-first.md) | — | [Lab 2](global-secure-access/01-decide-design-and-log-first.md#gsa-m1-lab-2) |
+| [Module 2: The client and Microsoft traffic](global-secure-access/02-the-client-and-microsoft-traffic.md) | — | [Lab 2](global-secure-access/02-the-client-and-microsoft-traffic.md#gsa-m2-lab-2) |
+| [Module 3: The compliant network and tenant restrictions](global-secure-access/03-compliant-network-and-tenant-restrictions.md) | — | [Lab 2](global-secure-access/03-compliant-network-and-tenant-restrictions.md#gsa-m3-lab-2) |
+| [Module 4: Private applications and administrative paths](global-secure-access/04-private-apps-and-admin-paths.md) | — | [Lab 2](global-secure-access/04-private-apps-and-admin-paths.md#gsa-m4-lab-2) |
+| [Module 5: Internet Access and TLS inspection](global-secure-access/05-internet-access-and-tls-inspection.md) | — | [Lab 2](global-secure-access/05-internet-access-and-tls-inspection.md#gsa-m5-lab-2) |
+| [Module 6: Rings, rollback and the evidence package](global-secure-access/06-rings-rollback-and-the-evidence-package.md) | — | [Lab 2](global-secure-access/06-rings-rollback-and-the-evidence-package.md#gsa-m6-lab-2) |
+
+: Global Secure Access: labs by module {.striped .hover}
+
 ## What Lab 2 needs {#lab-2-environments}
 
 Each Lab 2 names its environment and its prerequisites in its first paragraph. Use synthetic data like the kit's fixtures, and never production:

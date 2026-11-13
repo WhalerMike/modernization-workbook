@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Global Secure Access learning path in six modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -38,6 +38,7 @@ listing:
       - "!non-person-identity/**"
       - "!provider-notices/**"
       - "!zero-trust-assessment/**"
+      - "!global-secure-access/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -130,6 +131,10 @@ Nine modules on the notices cloud providers send about the agency's own estate, 
 ## Zero Trust Assessment learning path
 
 Four modules on running Microsoft's Zero Trust Assessment as evidence rather than a verdict, in the order of the ten steps of the [Zero Trust Assessment implementation guide](../books/guides/zero-trust-assessment-implementation.md): what the assessment checks and why a skipped test is neither a failure nor a pass; running it safely, from the host and consent to the connection in each cloud and the hashed export; normalizing the results and opening a closure register routed to the pages that remediate each finding; and comparing runs, reconciling with ScubaGear and AWS Security Hub CSPM, and sealing the evidence. Lab 1 runs on the results kit's fictional fixtures with no tenant; Lab 2 runs in your own test tenant; each module ends with a knowledge check. Start at the [learning path](zero-trust-assessment/index.md).
+
+## Global Secure Access learning path
+
+Six modules on deploying Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, in the run order of the twelve steps of the [Global Secure Access implementation guide](../books/guides/global-secure-access-implementation.md): deciding each function and turning the network logs on before anything is enforced; the Windows client and the Microsoft traffic profile with source IP restoration; the compliant network check and universal tenant restrictions, in report-only or a pilot first; per-app Private Access and phishing-resistant administrative paths; Internet Access security profiles and TLS inspection within a privacy scope; and cutover rings, rollback in order and the evidence package. The guide has no kit or developer workbook yet, so there is no fixture lab: each module's lab runs the guide's own commands and Validate steps in your own test tenant, and ends with a knowledge check. Global Secure Access is available in GCC and not yet supported in GCC High or DoD. Start at the [learning path](global-secure-access/index.md).
 
 ## External learning paths
 
