@@ -25,7 +25,7 @@ How an agency engineers the security of its Azure estate on top of the landing z
 
 ::: {.callout-tip}
 ## Watch, present or train
-**Narrated deck (about @@Guide_Azure_Security@@ minutes, captions)**: why a landing zone isn't a defense, what the books design and what this guide engineers, the ten steps on one page, commercial Azure for a GCC tenant and what differs in Azure Government, the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure, the eligible roles and the RACI, then each step from the baseline and the exposure inventory to Key Vault, policy and operations, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-azure-security) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Azure_Security_Narrated). The deck says this guide is a draft awaiting the editor's review.
+**Narrated deck (about 17 minutes, captions)**: why a landing zone isn't a defense, what the books design and what this guide engineers, the ten steps on one page, commercial Azure for a GCC tenant and what differs in Azure Government, the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure, the eligible roles and the RACI, then each step from the baseline and the exposure inventory to Key Vault, policy and operations, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-azure-security) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Azure_Security_Narrated). The deck says this guide is a draft awaiting the editor's review.
 :::
 
 ## How to read this guide
@@ -64,7 +64,7 @@ The guide replaces the separate Azure security book the Zero Trust Assessment cl
 | Piece | State |
 |---|---|
 | This guide | Draft, November 11, 2026 |
-| Narrated guide deck and video | Built: 17 narrated slides, about @@Guide_Azure_Security@@ minutes, with captions; see *Watch, present or train* at the top |
+| Narrated guide deck and video | Built: 17 narrated slides, about 17 minutes, with captions; see *Watch, present or train* at the top |
 | Narrated deck series, one per step | Planned |
 | Developer workbook with Lab 1 on fixtures and Lab 2 in a test subscription | Planned |
 | Training path | Planned |

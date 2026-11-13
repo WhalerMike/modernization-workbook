@@ -1,0 +1,110 @@
+[
+ {
+  "slide": 2,
+  "title": "A notice needs an owner, once, until the re-read",
+  "links": [
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "From notice to task to closure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#from-notice-to-task-to-closure"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The routing file: rules tried in order",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.html"
+   },
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "From notice to task to closure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#from-notice-to-task-to-closure"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The payload: a typed task with two dates",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.html"
+   },
+   {
+    "text": "Book 13, App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "severity and tempo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#severity-and-tempo"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Runs and state: routed once, closed on the re-read",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: read the Azure retirement's payload",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: one payload to a developer instance",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Gate G6",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Summary, and next: Module 8, digest and evidence",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.html"
+   }
+  ]
+ }
+]

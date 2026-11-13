@@ -14,9 +14,9 @@ last-reviewed: 2026-11-09
 
 *Part of the [Provider Notices learning path](index.md). Gate G6 Routing. Workbook [Chapter 06](../../project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.md). About 65 minutes.*
 
-**Watch:** the narrated deck for this module (about @@Training_PN_Module_7@@ minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_PN_Module_7_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PN_Module_7_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pn-module-7) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-7/Training_PN_Module_7_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-7/Training_PN_Module_7_Narrated.vtt). The deck files join the next edition.
+**Watch:** the narrated deck for this module (about 14 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_PN_Module_7_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PN_Module_7_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pn-module-7) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-7/Training_PN_Module_7_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-7/Training_PN_Module_7_Narrated.vtt). The deck files join the next edition.
 
-**Also:** the chapter's narrated tour, about @@DW_PN_06_Routing_Owners_TTM_Tasks@@ minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_06_Routing_Owners_TTM_Tasks_Narrated).
+**Also:** the chapter's narrated tour, about 13 minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_06_Routing_Owners_TTM_Tasks_Narrated).
 
 ## Introduction (3 minutes)
 

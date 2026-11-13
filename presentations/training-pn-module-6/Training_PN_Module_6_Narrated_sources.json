@@ -1,0 +1,138 @@
+[
+ {
+  "slide": 2,
+  "title": "One category, and a gap in the federal packages",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.html"
+   },
+   {
+    "text": "Personalized Service Health Event resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-event"
+   },
+   {
+    "text": "Assured Workloads supported products",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assured-workloads-supported-products"
+   },
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "Google Cloud contacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#google-cloud-notification-contacts"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Gate G5: enable, grant the viewer, then collect",
+  "links": [
+   {
+    "text": "Google Cloud, List events",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-list-events"
+   },
+   {
+    "text": "Service Health roles and permissions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-iam-roles"
+   },
+   {
+    "text": "gcloud service-health events list",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gcloud-service-health-events-list"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The incident reader: what Google leaves to you",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.html"
+   },
+   {
+    "text": "Personalized Service Health REST reference, Event resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-event"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "A call nobody verified isn't run; the gaps go on file",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.html"
+   },
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "Honest limits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#honest-limits"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: a second week, and still one kind",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.html"
+   },
+   {
+    "text": "Personalized Service Health Event resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-event"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test project, and the gaps recorded",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.html"
+   },
+   {
+    "text": "gcloud auth login",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gcloud-auth-login"
+   },
+   {
+    "text": "gcloud projects remove-iam-policy-binding",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gcloud-projects-remove-iam-policy-binding"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Gate G5",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Summary, and next: Module 7, routing to owners",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.html"
+   }
+  ]
+ }
+]

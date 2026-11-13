@@ -14,9 +14,9 @@ last-reviewed: 2026-11-09
 
 *Part of the [Provider Notices learning path](index.md). Gate G2 Microsoft 365. Workbook [Chapter 02](../../project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.md). About 50 minutes.*
 
-**Watch:** the narrated deck for this module (about @@Training_PN_Module_3@@ minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_PN_Module_3_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PN_Module_3_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pn-module-3) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-3/Training_PN_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-3/Training_PN_Module_3_Narrated.vtt). The deck files join the next edition.
+**Watch:** the narrated deck for this module (about 13 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_PN_Module_3_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PN_Module_3_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pn-module-3) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-3/Training_PN_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-3/Training_PN_Module_3_Narrated.vtt). The deck files join the next edition.
 
-**Also:** the chapter's narrated tour, about @@DW_PN_02_M365_Message_Center_Service_Health@@ minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_02_M365_Message_Center_Service_Health_Narrated).
+**Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_02_M365_Message_Center_Service_Health_Narrated).
 
 ## Introduction (3 minutes)
 

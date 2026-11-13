@@ -1,0 +1,298 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: a license is not a defended endpoint",
+  "links": [
+   {
+    "text": "Book 00",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/index.html"
+   },
+   {
+    "text": "Book 11, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html"
+   },
+   {
+    "text": "the closure chain",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b11-zero-trust/10-evidence-not-verdicts.html#the-closure-chain"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Two boundaries, one control plane per setting",
+  "links": [
+   {
+    "text": "Microsoft Defender for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-us-government"
+   },
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   },
+   {
+    "text": "Monitor ASR rule activity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-monitor"
+   },
+   {
+    "text": "Book 05, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/09-servers-under-azure-arc.html"
+   },
+   {
+    "text": "10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/10-operating-and-evidencing-the-fleet.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Government clouds: what's there and what Learn doesn't say",
+  "links": [
+   {
+    "text": "Microsoft Defender for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-us-government"
+   },
+   {
+    "text": "Defender for Endpoint for US Government customers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-endpoint-us-government"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who does what: roles through PIM and the RACI",
+  "links": [
+   {
+    "text": "Create custom roles with Defender unified RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-urbac-create-custom-roles"
+   },
+   {
+    "text": "Activate Defender unified RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-urbac-activate"
+   },
+   {
+    "text": "Book 12, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/10-who-runs-security-operations.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Gate 1: activate the roles, then read in the right cloud",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "security: runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Activate Defender unified RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-urbac-activate"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Gate 2: prove the sensor is on and healthy everywhere",
+  "links": [
+   {
+    "text": "Troubleshoot Defender for Endpoint onboarding",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-troubleshoot-onboarding"
+   },
+   {
+    "text": "DeviceInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
+   },
+   {
+    "text": "Device inventory field reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-device-inventory-field-reference"
+   },
+   {
+    "text": "Onboard Windows devices by using Intune",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-onboard-windows-intune"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Gate 3: prevention goes through audit before it blocks",
+  "links": [
+   {
+    "text": "Configure tamper protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-tamper-protection"
+   },
+   {
+    "text": "Configure network protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-network-protection"
+   },
+   {
+    "text": "Configure controlled folder access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-controlled-folder-access"
+   },
+   {
+    "text": "Get-NetFirewallProfile",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-netfirewallprofile"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Gate 4: Attack Surface Reduction: audit, warn, block",
+  "links": [
+   {
+    "text": "ASR rules overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-overview"
+   },
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   },
+   {
+    "text": "Test your ASR rules deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-deployment-test"
+   },
+   {
+    "text": "Monitor ASR rule activity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-monitor"
+   },
+   {
+    "text": "Book 05, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
+   },
+   {
+    "text": "ES-005",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html#es-005-attack-surface-reduction"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Gate 5: exposure management without Exposure Management",
+  "links": [
+   {
+    "text": "What is Microsoft Security Exposure Management?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-exposure-management-overview"
+   },
+   {
+    "text": "Defender for Endpoint for US Government customers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-endpoint-us-government"
+   },
+   {
+    "text": "DeviceInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
+   },
+   {
+    "text": "DeviceTvmSoftwareVulnerabilities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-devicetvmsoftwarevulnerabilities"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Gate 6: one incident queue and a severity table",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "Book 12, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/11-detection-engineering-and-response.html"
+   },
+   {
+    "text": "the response ladder",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/11-detection-engineering-and-response.html#the-response-ladder"
+   },
+   {
+    "text": "Book 13, App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Gate 7: detections as code, tested before they're enabled",
+  "links": [
+   {
+    "text": "Create detectionRule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-create-detectionrule"
+   },
+   {
+    "text": "security: runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Use the Microsoft Graph security API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-api-overview"
+   },
+   {
+    "text": "Book 12, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/11-detection-engineering-and-response.html"
+   },
+   {
+    "text": "rule lifecycle",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/11-detection-engineering-and-response.html#rule-lifecycle-and-testing"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Gates 8 and 9: correlate the signals, bound the automation",
+  "links": [
+   {
+    "text": "Defender for Identity for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-identity-us-government"
+   },
+   {
+    "text": "Configure automatic attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-automatic-attack-disruption"
+   },
+   {
+    "text": "Exclude assets from automated responses",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#attack-disruption-exclusions"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Gate 10: measure protected coverage, not settings",
+  "links": [
+   {
+    "text": "Book 12, Ch 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.html"
+   },
+   {
+    "text": "the metric set",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.html#the-metric-set"
+   },
+   {
+    "text": "the reporting rhythm",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.html#the-reporting-rhythm"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Dangers, open questions and where to go next",
+  "links": [
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   },
+   {
+    "text": "Run a detection test",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-run-detection-test"
+   }
+  ]
+ }
+]

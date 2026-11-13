@@ -14,9 +14,9 @@ last-reviewed: 2026-11-09
 
 *Part of the [Provider Notices learning path](index.md). Gate G5 Google Cloud. Workbook [Chapter 05](../../project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.md). About 45 minutes.*
 
-**Watch:** the narrated deck for this module (about @@Training_PN_Module_6@@ minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_PN_Module_6_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PN_Module_6_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pn-module-6) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-6/Training_PN_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-6/Training_PN_Module_6_Narrated.vtt). The deck files join the next edition.
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_PN_Module_6_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PN_Module_6_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pn-module-6) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-6/Training_PN_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-6/Training_PN_Module_6_Narrated.vtt). The deck files join the next edition.
 
-**Also:** the chapter's narrated tour, about @@DW_PN_05_Google_Personalized_Service_Health@@ minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_05_Google_Personalized_Service_Health_Narrated).
+**Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_05_Google_Personalized_Service_Health_Narrated).
 
 ## Introduction (3 minutes)
 

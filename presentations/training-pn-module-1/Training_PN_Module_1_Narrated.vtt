@@ -1,0 +1,1066 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.804
+Welcome to Module 1 of the
+Provider Notices learning path:
+
+2
+00:00:03.804 --> 00:00:05.837
+why provider notices go unread.
+
+3
+00:00:05.837 --> 00:00:11.316
+Every cloud provider tells the agency, in
+writing and ahead of time, what it will
+
+4
+00:00:11.316 --> 00:00:16.625
+change, retire or patch in the agency's
+own tenant, account, tenancy or project.
+
+5
+00:00:16.625 --> 00:00:21.475
+The notices land in a portal or one
+person's inbox, and nobody owns them.
+
+6
+00:00:21.475 --> 00:00:26.103
+This path teaches you to read each
+provider's notices from its own record,
+
+7
+00:00:26.103 --> 00:00:29.574
+hold every notice as one
+record, give the ones that need
+
+8
+00:00:29.574 --> 00:00:32.813
+action an owner and a due
+date, and keep the evidence.
+
+9
+00:00:32.813 --> 00:00:37.020
+It follows the seven gates of the
+provider notices implementation guide,
+
+10
+00:00:37.020 --> 00:00:40.262
+with the developer workbook
+Building Provider Notices.
+
+11
+00:00:40.262 --> 00:00:42.713
+This first module comes before the gates.
+
+12
+00:00:42.713 --> 00:00:46.387
+It takes about forty-five
+minutes, with a lab on fixtures.
+
+13
+00:00:46.387 --> 00:00:52.240
+The code is illustrative: tested against
+fixtures, not run against a live tenant.
+
+14
+00:00:55.990 --> 00:00:58.178
+Why do provider notices go unread?
+
+15
+00:00:58.178 --> 00:00:59.665
+Providers don't hide them.
+
+16
+00:00:59.665 --> 00:01:01.821
+Azure shows them in Service Health,
+
+17
+00:01:01.821 --> 00:01:05.837
+but nobody is told unless someone
+created a Service Health alert,
+
+18
+00:01:05.837 --> 00:01:09.034
+and Microsoft's own F A Q
+gives a rule that left out the
+
+19
+00:01:09.034 --> 00:01:12.603
+affected subscription as a
+reason an alert never arrived.
+
+20
+00:01:12.603 --> 00:01:17.932
+Microsoft 365 posts them in the Message
+center, where each administrator's view
+
+21
+00:01:17.932 --> 00:01:23.341
+is their own, and the weekly digest goes
+to each administrator's own primary email.
+
+22
+00:01:23.341 --> 00:01:27.240
+Oracle Cloud Infrastructure
+emails the tenancy administrator.
+
+23
+00:01:27.240 --> 00:01:32.390
+AWS writes to the root user's address
+and up to three alternate contacts.
+
+24
+00:01:32.390 --> 00:01:35.540
+And Google Cloud writes to
+its Essential Contacts.
+
+25
+00:01:35.540 --> 00:01:39.852
+Every one of those channels ends at
+a person or a page, not a queue.
+
+26
+00:01:39.852 --> 00:01:44.566
+The notice carries no owner, no due date
+and no way to show it was dealt with.
+
+27
+00:01:44.566 --> 00:01:47.415
+Attackers imitate provider email, too.
+
+28
+00:01:47.415 --> 00:01:51.332
+And a retirement announced a year
+ahead is easy to agree with,
+
+29
+00:01:51.332 --> 00:01:53.340
+and easy to miss on the day.
+
+30
+00:01:57.090 --> 00:02:00.003
+Here's what you'll be able to
+do by the end of this module.
+
+31
+00:02:00.003 --> 00:02:04.331
+You'll explain why each provider's
+notices end at a person or a page,
+
+32
+00:02:04.331 --> 00:02:08.340
+and why email stays an early
+warning, not the system of record.
+
+33
+00:02:08.340 --> 00:02:11.978
+You'll name the six kinds of
+notice, and who owns each one.
+
+34
+00:02:11.978 --> 00:02:13.676
+You'll read the record's fields,
+
+35
+00:02:13.676 --> 00:02:17.478
+and tell a provider's own action date
+from one the kit's rule inferred.
+
+36
+00:02:17.478 --> 00:02:21.753
+And you'll show that a second read of
+the same notices changes no fingerprint.
+
+37
+00:02:21.753 --> 00:02:25.052
+There's nothing to take first:
+this is the first module.
+
+38
+00:02:25.052 --> 00:02:26.947
+If you have time, read the intake,
+
+39
+00:02:26.947 --> 00:02:31.976
+triage and routing chapter of Compliance
+Automation and Day-Two Operations, which
+
+40
+00:02:31.976 --> 00:02:36.714
+routes Microsoft's service health email
+today and never acts on an email alone.
+
+41
+00:02:36.714 --> 00:02:42.903
+Lab 1 needs PowerShell 7.1 or later with
+Pester 5, and a copy of the repository.
+
+42
+00:02:42.903 --> 00:02:44.190
+No tenant.
+
+43
+00:02:47.940 --> 00:02:50.378
+Each provider names its
+notices differently.
+
+44
+00:02:50.378 --> 00:02:52.748
+The program sorts them into six kinds,
+
+45
+00:02:52.748 --> 00:02:57.414
+because the kind decides who owns the
+notice and what it asks of the agency.
+
+46
+00:02:57.414 --> 00:03:00.941
+Maintenance: work is scheduled
+that may affect availability,
+
+47
+00:03:00.941 --> 00:03:04.190
+so check the window against
+the systems that depend on it.
+
+48
+00:03:04.190 --> 00:03:08.897
+Retirement: a feature, version or
+resource type is ending, with a date,
+
+49
+00:03:08.897 --> 00:03:12.427
+so plan and approve the
+migration before that date,
+
+50
+00:03:12.427 --> 00:03:16.378
+and review the contingency plan
+if a system depends on it.
+
+51
+00:03:16.378 --> 00:03:20.985
+Advisory: information or a
+recommendation, often with no deadline;
+
+52
+00:03:20.985 --> 00:03:24.503
+decide whether it applies,
+and record the decision.
+
+53
+00:03:24.503 --> 00:03:29.390
+Security: assess the exposure and act
+within the security response window.
+
+54
+00:03:29.390 --> 00:03:32.660
+Change: treat it as a proposed
+change to the system,
+
+55
+00:03:32.660 --> 00:03:36.090
+with an impact analysis and
+then the change process.
+
+56
+00:03:36.090 --> 00:03:38.503
+And incident: something is broken now.
+
+57
+00:03:38.503 --> 00:03:40.827
+Not every provider has every kind.
+
+58
+00:03:40.827 --> 00:03:45.122
+Google Cloud's Personalized Service
+Health reports incidents only:
+
+59
+00:03:45.122 --> 00:03:49.700
+its event category has one value,
+for service outage or degradation.
+
+60
+00:03:53.450 --> 00:03:54.813
+Who owns each kind?
+
+61
+00:03:54.813 --> 00:03:58.073
+The Compliance Automation
+and Day-Two Operations
+
+62
+00:03:58.073 --> 00:04:01.100
+book uses the roles it
+already has, and adds none.
+
+63
+00:04:01.100 --> 00:04:04.219
+An incident belongs to the
+service desk supervisor,
+
+64
+00:04:04.219 --> 00:04:06.250
+as service health is routed today.
+
+65
+00:04:06.250 --> 00:04:11.256
+Maintenance belongs to the platform
+owner of the affected platform:
+
+66
+00:04:11.256 --> 00:04:16.525
+the cloud platform owner for Azure, AWS,
+Google Cloud and each O C I tenancy,
+
+67
+00:04:16.525 --> 00:04:19.950
+and the collaboration
+owner for Microsoft 365.
+
+68
+00:04:19.950 --> 00:04:24.552
+A retirement belongs to the system owner
+of each affected system, who decides
+
+69
+00:04:24.552 --> 00:04:28.938
+the schedule, and the platform owner
+does the work through a normal change.
+
+70
+00:04:28.938 --> 00:04:33.328
+A change is proposed by the platform
+owner and authorized by the
+
+71
+00:04:33.328 --> 00:04:37.801
+change advisory board, after the
+ISSO's security impact analysis.
+
+72
+00:04:37.801 --> 00:04:41.137
+Security notices belong
+to security operations.
+
+73
+00:04:41.137 --> 00:04:45.549
+And an advisory belongs to the platform
+owner of the platform it names.
+
+74
+00:04:45.549 --> 00:04:49.338
+Two decisions have no owner yet,
+and the book doesn't invent one:
+
+75
+00:04:49.338 --> 00:04:52.458
+who receives each provider's
+notices at the source,
+
+76
+00:04:52.458 --> 00:04:57.560
+and who reviews the contingency plan when
+a notice names a system's resources.
+
+77
+00:05:01.310 --> 00:05:03.735
+Here's the loop the rest
+of the path builds.
+
+78
+00:05:03.735 --> 00:05:06.395
+Collect from the
+provider, not the mailbox:
+
+79
+00:05:06.395 --> 00:05:10.575
+a read-only identity reads each
+provider's notices at least weekly,
+
+80
+00:05:10.575 --> 00:05:15.135
+through the provider's own interface,
+and each notice becomes one record.
+
+81
+00:05:15.135 --> 00:05:19.318
+Route by rules, in order: security
+advisories, then retirements,
+
+82
+00:05:19.318 --> 00:05:22.776
+then maintenance that names
+the agency's resources,
+
+83
+00:05:22.776 --> 00:05:28.085
+then open incidents that name them, then
+anything else marked as needing action.
+
+84
+00:05:28.085 --> 00:05:32.997
+The first match wins, and a notice that
+matches none goes to the weekly digest.
+
+85
+00:05:32.997 --> 00:05:37.769
+A notice that needs action becomes a
+typed task in the I T S M front door,
+
+86
+00:05:37.769 --> 00:05:42.122
+not a second queue, with an owner,
+a severity and response window,
+
+87
+00:05:42.122 --> 00:05:45.135
+and the provider's own
+date kept separately.
+
+88
+00:05:45.135 --> 00:05:47.481
+It's keyed to the provider's notice I D,
+
+89
+00:05:47.481 --> 00:05:50.610
+so an unchanged notice
+never makes a second task.
+
+90
+00:05:50.610 --> 00:05:54.599
+And a task closes only on the
+re-read: when the next collection
+
+91
+00:05:54.599 --> 00:05:59.147
+shows the notice closed, or the
+agency's resources no longer affected.
+
+92
+00:05:59.147 --> 00:06:01.899
+A retirement can close
+on the provider's side
+
+93
+00:06:01.899 --> 00:06:05.230
+while the agency still
+runs the retired version.
+
+94
+00:06:08.980 --> 00:06:13.423
+Unit 2 is the answer: one record
+for every provider's notice,
+
+95
+00:06:13.423 --> 00:06:19.255
+called f m p provider notice, version
+one, defined by a JSON schema in the kit.
+
+96
+00:06:19.255 --> 00:06:22.792
+The notice I D is the provider
+and the provider's own I D,
+
+97
+00:06:22.792 --> 00:06:25.605
+and it's the key the
+router de-duplicates on.
+
+98
+00:06:25.605 --> 00:06:29.717
+The kind is one of the six, and
+the status is open or closed.
+
+99
+00:06:29.717 --> 00:06:33.140
+The window is the impact
+window, always in U T C.
+
+100
+00:06:33.140 --> 00:06:37.580
+Services, regions and resources
+are what the notice names.
+
+101
+00:06:37.580 --> 00:06:41.990
+Then three fields that matter
+most: whether action is required,
+
+102
+00:06:41.990 --> 00:06:45.468
+by when, and the action basis,
+which says who said so.
+
+103
+00:06:45.468 --> 00:06:48.761
+Either the provider said it,
+in a field the record names,
+
+104
+00:06:48.761 --> 00:06:52.493
+or a rule of the kit's inferred
+it, and the record states the rule.
+
+105
+00:06:52.493 --> 00:06:55.542
+First seen is when the
+kit first read the notice.
+
+106
+00:06:55.542 --> 00:06:58.822
+And the fingerprint is
+a SHA-256 of the record
+
+107
+00:06:58.822 --> 00:07:02.279
+without first seen and
+the fingerprint itself.
+
+108
+00:07:02.279 --> 00:07:04.764
+So a provider's edit
+changes the fingerprint,
+
+109
+00:07:04.764 --> 00:07:07.718
+and reading the same notice
+again a week later doesn't.
+
+110
+00:07:07.718 --> 00:07:11.850
+That's how the router tells a changed
+notice from one it has already seen.
+
+111
+00:07:15.600 --> 00:07:18.041
+The guide compares the five providers,
+
+112
+00:07:18.041 --> 00:07:21.625
+and one row matters most here:
+who says action is required.
+
+113
+00:07:21.625 --> 00:07:25.339
+Azure's Service Health, read
+through Azure Resource Graph,
+
+114
+00:07:25.339 --> 00:07:27.737
+has no field the kit reads that says so.
+
+115
+00:07:27.737 --> 00:07:32.517
+So the kit applies a stated rule:
+a retirement is action required,
+
+116
+00:07:32.517 --> 00:07:36.484
+due at the advisory's end
+time, and a security advisory
+
+117
+00:07:36.484 --> 00:07:40.451
+is action required with no
+date, for the ISSO to review.
+
+118
+00:07:40.451 --> 00:07:44.512
+Microsoft 365 has its act-by date field.
+
+119
+00:07:44.512 --> 00:07:47.274
+Oracle Cloud Infrastructure has its action
+
+120
+00:07:47.274 --> 00:07:49.887
+required type and action required by date.
+
+121
+00:07:49.887 --> 00:07:52.737
+AWS has its actionability field.
+
+122
+00:07:52.737 --> 00:07:56.434
+And Google Cloud's Personalized
+Service Health doesn't say,
+
+123
+00:07:56.434 --> 00:08:01.413
+and has no planned maintenance at all: its
+event category has one value, incident.
+
+124
+00:08:01.413 --> 00:08:03.517
+Wherever the provider doesn't say,
+
+125
+00:08:03.517 --> 00:08:07.350
+the record's action basis begins
+with rule, and states the rule.
+
+126
+00:08:07.350 --> 00:08:11.150
+Nobody mistakes the kit's inference
+for the provider's own word.
+
+127
+00:08:14.900 --> 00:08:15.625
+Try it.
+
+128
+00:08:15.625 --> 00:08:19.438
+Lab 1 runs in the provider
+notices folder of the examples,
+
+129
+00:08:19.438 --> 00:08:24.550
+in PowerShell 7, against two fictional
+weeks of notices from every provider.
+
+130
+00:08:24.550 --> 00:08:27.563
+Nothing signs in to anything
+or sends a request.
+
+131
+00:08:27.563 --> 00:08:32.005
+Step one imports the kit's module
+and collects every provider
+
+132
+00:08:32.005 --> 00:08:35.663
+from the day-one fixtures,
+as of November ninth, 2026.
+
+133
+00:08:35.663 --> 00:08:40.029
+Five from Azure, six from
+Microsoft 365 in the G C C cloud,
+
+134
+00:08:40.029 --> 00:08:46.337
+four from Oracle Cloud Infrastructure,
+five from AWS and two from Google Cloud.
+
+135
+00:08:46.337 --> 00:08:50.190
+Twenty-two notices in all,
+each valid against the schema,
+
+136
+00:08:50.190 --> 00:08:55.801
+written as JSON and as a spreadsheet file,
+with the raw responses and a manifest.
+
+137
+00:08:55.801 --> 00:08:57.225
+Notice the cloud column.
+
+138
+00:08:57.225 --> 00:09:01.587
+Every provider names its own cloud in
+the settings, and there is no default.
+
+139
+00:09:01.587 --> 00:09:05.090
+Five providers, five shapes, one list.
+
+140
+00:09:08.840 --> 00:09:14.509
+Step two counts the notices by kind, across
+providers: five advisories, two changes,
+
+141
+00:09:14.509 --> 00:09:20.428
+six incidents, three maintenance windows,
+four retirements and two security notices.
+
+142
+00:09:20.428 --> 00:09:24.663
+The kind decides the owner, so the
+four retirements go to each affected
+
+143
+00:09:24.663 --> 00:09:28.752
+system's owner, and the two security
+notices to security operations.
+
+144
+00:09:28.752 --> 00:09:31.940
+Step three asks who said
+each one needs action.
+
+145
+00:09:31.940 --> 00:09:33.240
+Eight notices do.
+
+146
+00:09:33.240 --> 00:09:38.214
+Four times the provider said so:
+two from AWS's actionability field,
+
+147
+00:09:38.214 --> 00:09:44.002
+one from Microsoft 365's act-by date, and
+one from Oracle's action required type.
+
+148
+00:09:44.002 --> 00:09:46.007
+And four times a kit rule did:
+
+149
+00:09:46.007 --> 00:09:51.500
+an AWS scheduled change whose code names
+a retirement, the Azure retirement,
+
+150
+00:09:51.500 --> 00:09:56.993
+due at the advisory's end, the Azure
+security advisory, which the ISSO reviews,
+
+151
+00:09:56.993 --> 00:10:01.440
+and a Microsoft 365 post in the
+prevent or fix issues category.
+
+152
+00:10:01.440 --> 00:10:03.728
+The record says which, every time.
+
+153
+00:10:03.728 --> 00:10:08.950
+And where the provider gave no date,
+the kit makes none up: it says no date.
+
+154
+00:10:12.700 --> 00:10:15.687
+Step four reads the
+Azure retirement in full.
+
+155
+00:10:15.687 --> 00:10:19.925
+Its notice I D is azure,
+R T five J six K L.
+
+156
+00:10:19.925 --> 00:10:22.866
+It's due on September thirtieth, 2027,
+
+157
+00:10:22.866 --> 00:10:26.200
+by the kit's rule, at
+the advisory's end time.
+
+158
+00:10:26.200 --> 00:10:32.150
+It names one public I P address,
+and its fingerprint is a SHA-256.
+
+159
+00:10:32.150 --> 00:10:35.015
+Step five reads the same
+fixtures a day later,
+
+160
+00:10:35.015 --> 00:10:39.275
+as of November tenth, and compares
+the fingerprints of the two runs.
+
+161
+00:10:39.275 --> 00:10:41.412
+The same twenty-two notices come back,
+
+162
+00:10:41.412 --> 00:10:44.238
+and the count of fingerprints
+that differ is zero.
+
+163
+00:10:44.238 --> 00:10:48.287
+A second read changes first seen
+in the run, but no fingerprint,
+
+164
+00:10:48.287 --> 00:10:52.575
+so the router in Module 7 sees
+nothing new and makes no second task.
+
+165
+00:10:52.575 --> 00:10:56.495
+Step six runs the record's
+tests, for the notice record,
+
+166
+00:10:56.495 --> 00:11:00.950
+the fingerprint, and times and
+text: seventeen pass, none fail.
+
+167
+00:11:00.950 --> 00:11:03.160
+Then delete the output folder.
+
+168
+00:11:06.910 --> 00:11:09.147
+This module has no Lab 2 of its own,
+
+169
+00:11:09.147 --> 00:11:12.710
+because the record is the
+same in a test environment.
+
+170
+00:11:12.710 --> 00:11:15.667
+Each provider's Lab 2, in Modules 2 to 6,
+
+171
+00:11:15.667 --> 00:11:21.285
+fills it from a test subscription,
+tenant, tenancy, account or project.
+
+172
+00:11:21.285 --> 00:11:23.997
+Never production, and only fictional data.
+
+173
+00:11:23.997 --> 00:11:26.174
+Before you start them, do one thing:
+
+174
+00:11:26.174 --> 00:11:29.284
+list who receives each
+provider's notices today.
+
+175
+00:11:29.284 --> 00:11:33.187
+The guide's prerequisites start with
+that decision, and the deployment
+
+176
+00:11:33.187 --> 00:11:37.685
+runbook's pre-flight checks that each
+enabled provider names its notice contacts.
+
+177
+00:11:37.685 --> 00:11:39.997
+And remember where the real work happens.
+
+178
+00:11:39.997 --> 00:11:42.511
+The labs use the kit's fictional routing.
+
+179
+00:11:42.511 --> 00:11:45.880
+The agency's own routing,
+settings files, notices,
+
+180
+00:11:45.880 --> 00:11:50.934
+digests and evidence are written at
+work, from the kit's templates and its
+
+181
+00:11:50.934 --> 00:11:56.770
+Copilot prompts in Microsoft 365 Copilot
+Chat, and they stay on agency storage.
+
+182
+00:12:00.520 --> 00:12:01.907
+The federal requirement.
+
+183
+00:12:01.907 --> 00:12:08.051
+Every gate's collection supports NIST
+special publication eight hundred fifty-three
+
+184
+00:12:08.051 --> 00:12:13.255
+S A nine, part c, monitoring external
+service providers on an ongoing basis,
+
+185
+00:12:13.255 --> 00:12:17.521
+and S I five, part a, receiving
+security alerts and advisories.
+
+186
+00:12:17.521 --> 00:12:22.408
+The record supports S I five and
+C A seven, continuous monitoring.
+
+187
+00:12:22.408 --> 00:12:26.795
+The evidence is the raw responses,
+the notices and the manifest,
+
+188
+00:12:26.795 --> 00:12:32.447
+which lists every call with its role; the
+notices as one record each, valid against
+
+189
+00:12:32.447 --> 00:12:37.846
+the schema; and a re-read that changes no
+fingerprint, so a notice is routed once.
+
+190
+00:12:37.846 --> 00:12:40.358
+The record is evidence for these controls.
+
+191
+00:12:40.358 --> 00:12:44.797
+Your organization still sets their
+parameters, policy and procedures,
+
+192
+00:12:44.797 --> 00:12:48.033
+and the assessor decides
+whether each is satisfied.
+
+193
+00:12:48.033 --> 00:12:52.670
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+194
+00:12:52.670 --> 00:12:57.179
+The agency lines this evidence up
+with what its providers report;
+
+195
+00:12:57.179 --> 00:12:59.183
+it doesn't report K S I's itself.
+
+196
+00:12:59.183 --> 00:13:02.790
+Which file supports which
+indicator is the program's mapping.
+
+197
+00:13:06.540 --> 00:13:08.515
+Check yourself with two questions.
+
+198
+00:13:08.515 --> 00:13:13.515
+First: why does the program read each
+provider's A P I instead of its email?
+
+199
+00:13:13.515 --> 00:13:14.554
+The answer is b.
+
+200
+00:13:14.554 --> 00:13:17.412
+Email reaches a person who may have left,
+
+201
+00:13:17.412 --> 00:13:20.790
+carries no owner or due
+date, and can be imitated.
+
+202
+00:13:20.790 --> 00:13:25.803
+The provider's own record is the source of
+truth, and email stays an early warning.
+
+203
+00:13:25.803 --> 00:13:29.789
+Second: the Azure retirement's
+action basis starts with rule.
+
+204
+00:13:29.789 --> 00:13:30.890
+What does that mean?
+
+205
+00:13:30.890 --> 00:13:32.115
+The answer is b.
+
+206
+00:13:32.115 --> 00:13:35.666
+The kit inferred that action
+is required by a stated rule,
+
+207
+00:13:35.666 --> 00:13:38.915
+because Azure has no field
+the kit reads that says so.
+
+208
+00:13:38.915 --> 00:13:40.960
+Microsoft didn't set that date;
+
+209
+00:13:40.960 --> 00:13:45.215
+the kit's rule took the advisory's
+end time, and the record says so.
+
+210
+00:13:45.215 --> 00:13:47.642
+The module page has three more questions,
+
+211
+00:13:47.642 --> 00:13:50.490
+each linked to the
+section that answers it.
+
+212
+00:13:54.240 --> 00:13:55.065
+To sum up.
+
+213
+00:13:55.065 --> 00:13:59.874
+You collected twenty-two fictional
+notices from five providers into one list,
+
+214
+00:13:59.874 --> 00:14:04.165
+counted them by the six kinds, saw
+eight that need action and who said so,
+
+215
+00:14:04.165 --> 00:14:07.790
+and showed that reading them
+again changes no fingerprint.
+
+216
+00:14:07.790 --> 00:14:13.295
+The evidence an ISSO keeps from this module's
+pattern is each run's raw responses,
+
+217
+00:14:13.295 --> 00:14:17.715
+the notices as JSON and as a
+spreadsheet file, and the manifest
+
+218
+00:14:17.715 --> 00:14:22.302
+that lists every call with its role
+and hashes every file, all dated.
+
+219
+00:14:22.302 --> 00:14:26.816
+Modules 2 to 6 produce it for each
+provider, and Module 8 chains it.
+
+220
+00:14:26.816 --> 00:14:30.677
+Next is Module 2: Azure
+Service Health and alerts.
+
+221
+00:14:30.677 --> 00:14:35.367
+That's Gate 1, with the workbook's first
+chapter: the Azure reader, the elevated
+
+222
+00:14:35.367 --> 00:14:37.303
+role security advisories need,
+
+223
+00:14:37.303 --> 00:14:40.870
+and Service Health alerts at
+scale through Azure Policy.

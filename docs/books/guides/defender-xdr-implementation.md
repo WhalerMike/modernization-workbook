@@ -25,7 +25,7 @@ How an agency turns Microsoft Defender XDR from a license into hardened Windows 
 
 ::: {.callout-tip}
 ## Watch, present or train
-**Narrated deck (about @@Guide_Defender_XDR@@ minutes, captions)**: why a license is not a defended endpoint, the two boundaries and one control plane per setting, government-cloud availability by feature, the ten gates on one page, Unified RBAC roles through PIM and the RACI, then each gate from roles and onboarding to detections as code, automation and the metrics, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-defender-xdr) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Defender_XDR_Narrated). The deck says this guide is a draft awaiting the editor's review.
+**Narrated deck (about 17 minutes, captions)**: why a license is not a defended endpoint, the two boundaries and one control plane per setting, government-cloud availability by feature, the ten gates on one page, Unified RBAC roles through PIM and the RACI, then each gate from roles and onboarding to detections as code, automation and the metrics, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-defender-xdr) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Defender_XDR_Narrated). The deck says this guide is a draft awaiting the editor's review.
 **Training:** the learning path [*Defender XDR Engineering and Operations*](../../training/defender-xdr/index.md) teaches this guide in five modules, each with a lab in a test tenant and a knowledge check.
 :::
 

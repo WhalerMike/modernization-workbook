@@ -1,0 +1,899 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.824
+Welcome to Module 1 of the learning path,
+
+2
+00:00:02.824 --> 00:00:07.112
+The Zero Trust Assessment as
+Evidence: evidence, not a verdict.
+
+3
+00:00:07.112 --> 00:00:12.067
+Microsoft's Zero Trust Assessment is a
+PowerShell module that tests a tenant against
+
+4
+00:00:12.067 --> 00:00:16.812
+hundreds of configuration items drawn
+from Microsoft's configuration guidance.
+
+5
+00:00:16.812 --> 00:00:20.124
+It produces a reading of the
+configuration on one day.
+
+6
+00:00:20.124 --> 00:00:23.813
+In this module you'll learn what
+that reading can and can't tell you.
+
+7
+00:00:23.813 --> 00:00:26.969
+Then, on a fictional export,
+you'll see why the tool's
+
+8
+00:00:26.969 --> 00:00:30.587
+six statuses have to be sorted
+before anyone counts them.
+
+9
+00:00:30.587 --> 00:00:35.837
+The path follows the ten steps of the Zero
+Trust Assessment implementation guide;
+
+10
+00:00:35.837 --> 00:00:40.140
+this module covers Steps 1 and 6,
+and takes about forty minutes.
+
+11
+00:00:43.890 --> 00:00:45.040
+Why does this matter?
+
+12
+00:00:45.040 --> 00:00:49.723
+The Zero Trust Assessment tests a tenant
+against hundreds of configuration
+
+13
+00:00:49.723 --> 00:00:54.552
+items from Microsoft's guidance for Entra,
+Intune, Azure networking and Purview.
+
+14
+00:00:54.552 --> 00:00:58.131
+Release three point one point
+oh, the current release,
+
+15
+00:00:58.131 --> 00:01:01.790
+holds three hundred sixty-four
+tests in seven pillars.
+
+16
+00:01:01.790 --> 00:01:03.200
+It's read-only, it's free,
+
+17
+00:01:03.200 --> 00:01:07.665
+and it's the assessment component
+of Microsoft's Zero Trust Workshop.
+
+18
+00:01:07.665 --> 00:01:10.377
+The report is accurate on the day it runs.
+
+19
+00:01:10.377 --> 00:01:13.533
+What it doesn't do is tell
+you what a skipped test means,
+
+20
+00:01:13.533 --> 00:01:16.115
+what to fix first, or
+when a finding is closed.
+
+21
+00:01:16.115 --> 00:01:18.296
+Those are decisions for named people,
+
+22
+00:01:18.296 --> 00:01:21.040
+and the report is the
+evidence they decide with.
+
+23
+00:01:21.040 --> 00:01:25.180
+That's the title of this
+module: evidence, not a verdict.
+
+24
+00:01:28.930 --> 00:01:31.721
+Here's what you'll be able to
+do by the end of this module,
+
+25
+00:01:31.721 --> 00:01:34.068
+which takes about forty
+minutes with the lab.
+
+26
+00:01:34.068 --> 00:01:38.430
+You'll say what the Zero Trust Assessment
+checks, and name the four things it isn't.
+
+27
+00:01:38.430 --> 00:01:41.589
+You'll explain why it
+doesn't replace ScubaGear
+
+28
+00:01:41.589 --> 00:01:44.667
+under CISA's directive B
+O D twenty-five oh-one.
+
+29
+00:01:44.667 --> 00:01:50.255
+You'll read Microsoft's rubric: risk level,
+user impact and implementation cost.
+
+30
+00:01:50.255 --> 00:01:53.207
+And you'll name the six
+statuses a test can end in,
+
+31
+00:01:53.207 --> 00:01:57.067
+and sort a skip reason into the
+program's normalized taxonomy.
+
+32
+00:01:57.067 --> 00:02:00.579
+Before you start, read the
+chapter on the two assessment
+
+33
+00:02:00.579 --> 00:02:04.243
+tools in Zero Trust and Assessment;
+Unit 1 reads it with you.
+
+34
+00:02:04.243 --> 00:02:08.206
+For the lab you need PowerShell
+seven point one or later,
+
+35
+00:02:08.206 --> 00:02:11.567
+and the kit's folder,
+examples slash z t a results.
+
+36
+00:02:11.567 --> 00:02:13.290
+No tenant is needed.
+
+37
+00:02:17.040 --> 00:02:19.852
+Unit 1: what it checks, and what it isn't.
+
+38
+00:02:19.852 --> 00:02:24.649
+Microsoft Learn says the assessment
+tests hundreds of items from Microsoft's
+
+39
+00:02:24.649 --> 00:02:29.077
+configuration guidance for Entra,
+Intune, Azure networking and Purview.
+
+40
+00:02:29.077 --> 00:02:34.879
+The tool's release three point one point
+oh sorts its tests into seven pillars:
+
+41
+00:02:34.879 --> 00:02:40.590
+identity, devices, network, data,
+infrastructure, security operations, and A I.
+
+42
+00:02:40.590 --> 00:02:42.240
+Now the four things it isn't.
+
+43
+00:02:42.240 --> 00:02:47.243
+It isn't a verdict: a finding is evidence
+for a decision a named person makes,
+
+44
+00:02:47.243 --> 00:02:49.703
+and a pass rate isn't a maturity stage.
+
+45
+00:02:49.703 --> 00:02:53.465
+It isn't a substitute for
+ScubaGear, which is the next slide.
+
+46
+00:02:53.465 --> 00:02:57.165
+It isn't a supported product:
+its read me calls it a community
+
+47
+00:02:57.165 --> 00:03:00.865
+project maintained by Microsoft
+employees, provided as is.
+
+48
+00:03:00.865 --> 00:03:05.066
+And it isn't a detector: Learn's
+operations guidance for Global Secure
+
+49
+00:03:05.066 --> 00:03:09.415
+Access calls it a configuration-posture
+check, to be paired with alerts.
+
+50
+00:03:09.415 --> 00:03:12.782
+The program's decision record
+writes each of these down,
+
+51
+00:03:12.782 --> 00:03:17.390
+with the scope, the run account, the
+cadence and the pinned tool version.
+
+52
+00:03:21.140 --> 00:03:23.428
+The second point deserves its own slide.
+
+53
+00:03:23.428 --> 00:03:28.108
+CISA's directive B O D twenty-five
+oh-one names CISA's SCuBA tools,
+
+54
+00:03:28.108 --> 00:03:31.402
+and the Zero Trust Assessment
+isn't one of them.
+
+55
+00:03:31.402 --> 00:03:33.873
+The chapter on the two tools in Zero Trust
+
+56
+00:03:33.873 --> 00:03:36.490
+and Assessment lays
+out where they overlap.
+
+57
+00:03:36.490 --> 00:03:42.266
+Only ScubaGear covers Exchange Online mail
+flow, such as external forwarding, S P F,
+
+58
+00:03:42.266 --> 00:03:46.428
+D-kim and D-mark; Teams meeting
+and external-access policies;
+
+59
+00:03:46.428 --> 00:03:50.165
+SharePoint and OneDrive
+sharing; and Power Platform.
+
+60
+00:03:50.165 --> 00:03:55.512
+Both cover Entra I D identity, such as
+legacy authentication, M F A, Conditional
+
+61
+00:03:55.512 --> 00:03:57.518
+Access and privileged roles,
+
+62
+00:03:57.518 --> 00:04:01.528
+and Defender for Office three
+sixty-five threat policies.
+
+63
+00:04:01.528 --> 00:04:05.233
+Only the Zero Trust Assessment
+covers Intune devices,
+
+64
+00:04:05.233 --> 00:04:10.503
+Azure networking and Global Secure
+Access, Purview, and security operations.
+
+65
+00:04:10.503 --> 00:04:12.964
+So an agency that already runs the Zero
+
+66
+00:04:12.964 --> 00:04:16.040
+Trust Assessment monthly
+still runs ScubaGear.
+
+67
+00:04:16.040 --> 00:04:19.880
+The first runs alongside the
+second, never instead of it.
+
+68
+00:04:23.630 --> 00:04:25.442
+Unit 2 reads the report.
+
+69
+00:04:25.442 --> 00:04:29.280
+It opens on an overview tab,
+then a tab for each pillar.
+
+70
+00:04:29.280 --> 00:04:31.559
+Each test shows its risk and its status,
+
+71
+00:04:31.559 --> 00:04:36.330
+and selecting a test describes what was
+tested and the recommended remediation.
+
+72
+00:04:36.330 --> 00:04:39.968
+Every test carries three
+ratings from Microsoft's rubric,
+
+73
+00:04:39.968 --> 00:04:42.242
+defined on Learn's terminology page.
+
+74
+00:04:42.242 --> 00:04:47.539
+Risk level: high means potential
+environment-wide exposure until it's mitigated;
+
+75
+00:04:47.539 --> 00:04:52.755
+medium, moderate exposure; low, defense
+in depth or an operational optimization.
+
+76
+00:04:52.755 --> 00:04:57.847
+User impact: high means many non-privileged
+users have to act or be told;
+
+77
+00:04:57.847 --> 00:05:00.393
+low means only administrators act.
+
+78
+00:05:00.393 --> 00:05:05.214
+And implementation cost: high is a
+program needing ongoing commitment,
+
+79
+00:05:05.214 --> 00:05:07.830
+medium a project, low a targeted action.
+
+80
+00:05:07.830 --> 00:05:12.468
+The tool's own source adds two more
+risk levels, critical and unranked.
+
+81
+00:05:12.468 --> 00:05:15.943
+These ratings feed the weighting
+you'll meet in Module 3.
+
+82
+00:05:15.943 --> 00:05:18.260
+They aren't a priority on their own.
+
+83
+00:05:22.010 --> 00:05:26.148
+Each test ends in one of six
+statuses, from the tool's own source.
+
+84
+00:05:26.148 --> 00:05:28.548
+Passed: the configuration matched.
+
+85
+00:05:28.548 --> 00:05:29.948
+Failed: it didn't.
+
+86
+00:05:29.948 --> 00:05:34.609
+Investigate: the tool needs a person
+to look before it's a finding or not.
+
+87
+00:05:34.609 --> 00:05:39.650
+Skipped: the test didn't run, and it
+carries a reason, such as not licensed,
+
+88
+00:05:39.650 --> 00:05:43.735
+not connected, not applicable,
+not supported, or timed out.
+
+89
+00:05:43.735 --> 00:05:47.173
+Planned: the test is still
+under construction in the tool.
+
+90
+00:05:47.173 --> 00:05:49.947
+And error: the test couldn't be evaluated.
+
+91
+00:05:49.947 --> 00:05:53.860
+A pillar owner reads their tab
+with the risk and status filters,
+
+92
+00:05:53.860 --> 00:05:58.223
+and notes every investigate, skipped
+and error result, with its reason.
+
+93
+00:05:58.223 --> 00:06:00.773
+They also note every failed result whose
+
+94
+00:06:00.773 --> 00:06:03.398
+feature may not exist
+in the tenant's cloud.
+
+95
+00:06:03.398 --> 00:06:07.570
+That last case matters for federal
+tenants, and we'll come back to it.
+
+96
+00:06:11.320 --> 00:06:17.070
+Unit 3 is the rule this whole path rests
+on: a skipped test is not a failed control.
+
+97
+00:06:17.070 --> 00:06:21.698
+The program records every result
+twice: the tool's value, unchanged,
+
+98
+00:06:21.698 --> 00:06:26.327
+and one of seven normalized results,
+from the taxonomy in Evidence,
+
+99
+00:06:26.327 --> 00:06:29.945
+Not Verdicts, a chapter of
+Zero Trust and Assessment.
+
+100
+00:06:29.945 --> 00:06:31.233
+Passed is a pass.
+
+101
+00:06:31.233 --> 00:06:36.107
+Failed is a finding, and so is
+investigate, until a person reviews it.
+
+102
+00:06:36.107 --> 00:06:37.295
+Planned is neither.
+
+103
+00:06:37.295 --> 00:06:40.907
+A test skipped for a missing
+license is a licensing decision.
+
+104
+00:06:40.907 --> 00:06:44.695
+One skipped because a service wasn't
+connected is a gap in the run.
+
+105
+00:06:44.695 --> 00:06:47.757
+One skipped as not applicable
+gets a recorded reason.
+
+106
+00:06:47.757 --> 00:06:52.238
+And an error, a timeout, or
+any value the taxonomy doesn't
+
+107
+00:06:52.238 --> 00:06:56.720
+list is unable to evaluate:
+fix the run, or verify by hand.
+
+108
+00:06:56.720 --> 00:07:00.808
+None of those skips is a failed
+control, and none of them is a pass.
+
+109
+00:07:00.808 --> 00:07:04.270
+Each one goes in its own
+column, with its reason.
+
+110
+00:07:08.020 --> 00:07:08.745
+Try it.
+
+111
+00:07:08.745 --> 00:07:11.825
+Lab 1 runs on the kit's
+fixtures, with no tenant:
+
+112
+00:07:11.825 --> 00:07:17.320
+a fictional Contoso export in the shape
+release three point one point oh writes.
+
+113
+00:07:17.320 --> 00:07:19.794
+Step one reads the export's metadata,
+
+114
+00:07:19.794 --> 00:07:24.083
+from the jay-son file the tool
+writes under its zt-export folder.
+
+115
+00:07:24.083 --> 00:07:27.606
+It's version three point one
+point oh, tenant Contoso,
+
+116
+00:07:27.606 --> 00:07:31.620
+thirty-three tests, and it ends
+with the end-of-jay-son marker.
+
+117
+00:07:31.620 --> 00:07:36.308
+That marker is the last thing the tool
+writes, so a file without it is incomplete.
+
+118
+00:07:36.308 --> 00:07:40.841
+Step two counts the tool's
+statuses: one error, sixteen failed,
+
+119
+00:07:40.841 --> 00:07:45.194
+one investigate, eight passed,
+one planned, and six skipped.
+
+120
+00:07:45.194 --> 00:07:46.782
+Now think about a pass rate.
+
+121
+00:07:46.782 --> 00:07:51.094
+It would divide eight by a total that
+moves with licensing and connections.
+
+122
+00:07:51.094 --> 00:07:54.334
+Connect one more service next
+month and the rate changes,
+
+123
+00:07:54.334 --> 00:07:56.195
+though nothing in the tenant did.
+
+124
+00:07:56.195 --> 00:07:58.980
+That's why the program doesn't report one.
+
+125
+00:08:02.730 --> 00:08:05.768
+Step three lists what didn't
+run, with its reason.
+
+126
+00:08:05.768 --> 00:08:08.442
+One test is planned, under construction.
+
+127
+00:08:08.442 --> 00:08:13.932
+The six skips carry five different reasons:
+not licensed for workload I D, two not
+
+128
+00:08:13.932 --> 00:08:19.505
+applicable, not connected to a service, a
+timeout, and no compatible license found.
+
+129
+00:08:19.505 --> 00:08:24.705
+Step four sorts those reasons with the
+kit's own function, convert to Z T A result.
+
+130
+00:08:24.705 --> 00:08:27.343
+Not licensed becomes skipped, licensing.
+
+131
+00:08:27.343 --> 00:08:30.180
+Not connected becomes
+skipped, disconnected.
+
+132
+00:08:30.180 --> 00:08:33.142
+Not applicable stays
+skipped, not applicable.
+
+133
+00:08:33.142 --> 00:08:35.842
+The timeout becomes unable to evaluate.
+
+134
+00:08:35.842 --> 00:08:38.356
+And an investigate result becomes fail.
+
+135
+00:08:38.356 --> 00:08:42.392
+So that's four skips, four different
+meanings, and none of them a failure.
+
+136
+00:08:42.392 --> 00:08:46.439
+The investigate result is a
+finding until someone reviews it,
+
+137
+00:08:46.439 --> 00:08:48.105
+which you'll do in Module 3.
+
+138
+00:08:48.105 --> 00:08:52.780
+The page lists every command for
+the lab in order, ready to paste.
+
+139
+00:08:56.530 --> 00:08:57.555
+Who decides?
+
+140
+00:08:57.555 --> 00:09:02.149
+The decision record, from the guide's
+Step 1, scopes each run: the tenant,
+
+141
+00:09:02.149 --> 00:09:07.468
+the pillars, and the Azure subscriptions
+for the infrastructure pillar; the run
+
+142
+00:09:07.468 --> 00:09:12.867
+account; the cadence; the pinned tool version;
+telemetry; and where the output goes.
+
+143
+00:09:12.867 --> 00:09:14.342
+The see-so approves it.
+
+144
+00:09:14.342 --> 00:09:17.990
+Then each pillar owner reads
+their own tab, with the filters,
+
+145
+00:09:17.990 --> 00:09:21.340
+and notes every investigate,
+skipped and error result,
+
+146
+00:09:21.340 --> 00:09:25.806
+and every failed result whose feature
+may not exist in the tenant's cloud.
+
+147
+00:09:25.806 --> 00:09:32.018
+For a G C C tenant, the workbook's baseline,
+the tool uses the worldwide endpoints.
+
+148
+00:09:32.018 --> 00:09:35.643
+In G C C High and D O D,
+there's a case to know.
+
+149
+00:09:35.643 --> 00:09:39.211
+Learn's Exchange Online service
+description says anti-phishing
+
+150
+00:09:39.211 --> 00:09:43.505
+impersonation protection and spoof
+intelligence aren't yet available there.
+
+151
+00:09:43.505 --> 00:09:47.702
+So a failed impersonation test in
+those clouds is a boundary finding,
+
+152
+00:09:47.702 --> 00:09:50.560
+not a configuration change to make today.
+
+153
+00:09:54.310 --> 00:09:55.697
+The federal requirement.
+
+154
+00:09:55.697 --> 00:10:01.504
+Scoping and reading the assessment supports
+two controls in NIST special publication
+
+155
+00:10:01.504 --> 00:10:04.605
+eight hundred fifty-three,
+revision five: C A two,
+
+156
+00:10:04.605 --> 00:10:08.423
+control assessments, and C A
+seven, continuous monitoring.
+
+157
+00:10:08.423 --> 00:10:12.909
+The approved decision record evidences
+planning the assessment and its scope.
+
+158
+00:10:12.909 --> 00:10:15.185
+Each pillar owner's dated reading notes
+
+159
+00:10:15.185 --> 00:10:17.873
+evidence that the owners
+reviewed the results.
+
+160
+00:10:17.873 --> 00:10:22.948
+And the calendar entry, with its owner,
+evidences the frequency of assessment.
+
+161
+00:10:22.948 --> 00:10:27.173
+Each row also names a fed-ramp
+twenty X key security indicator.
+
+162
+00:10:27.173 --> 00:10:30.423
+Those indicators are written
+for cloud service providers.
+
+163
+00:10:30.423 --> 00:10:35.273
+The agency lines its own evidence up with
+them; it doesn't report them itself.
+
+164
+00:10:35.273 --> 00:10:39.110
+The evidence supports the
+controls, and the assessor decides.
+
+165
+00:10:39.110 --> 00:10:42.511
+So the evidence an I S S O
+keeps from this module is the
+
+166
+00:10:42.511 --> 00:10:46.980
+approved decision record and each
+owner's dated reading notes.
+
+167
+00:10:50.730 --> 00:10:52.705
+Check yourself with two questions.
+
+168
+00:10:52.705 --> 00:10:57.205
+First: an agency already runs the
+Zero Trust Assessment monthly.
+
+169
+00:10:57.205 --> 00:10:58.905
+Can it stop running ScubaGear?
+
+170
+00:10:58.905 --> 00:11:00.080
+The answer is b, no.
+
+171
+00:11:00.080 --> 00:11:05.785
+CISA's directive names CISA's SCuBA tools,
+and ScubaGear covers Exchange Online,
+
+172
+00:11:05.785 --> 00:11:09.058
+Teams, SharePoint and
+Power Platform policies
+
+173
+00:11:09.058 --> 00:11:11.743
+the Zero Trust Assessment doesn't test.
+
+174
+00:11:11.743 --> 00:11:16.617
+Second: a test is skipped with the
+reason not licensed Entra I D P two.
+
+175
+00:11:16.617 --> 00:11:17.755
+How is it counted?
+
+176
+00:11:17.755 --> 00:11:20.668
+The answer is c: skipped, licensing.
+
+177
+00:11:20.668 --> 00:11:24.556
+It's a licensing decision,
+neither a failure nor a pass.
+
+178
+00:11:24.556 --> 00:11:29.840
+The module page has three more questions,
+each linked to the unit that answers it.
+
+179
+00:11:33.590 --> 00:11:34.415
+To sum up.
+
+180
+00:11:34.415 --> 00:11:39.028
+You saw what the Zero Trust Assessment
+checks, and the four things it isn't:
+
+181
+00:11:39.028 --> 00:11:43.565
+a verdict, a substitute for ScubaGear,
+a supported product, or a detector.
+
+182
+00:11:43.565 --> 00:11:46.728
+You placed it alongside
+ScubaGear, never instead.
+
+183
+00:11:46.728 --> 00:11:50.266
+You read Microsoft's rubric
+and the tool's six statuses.
+
+184
+00:11:50.266 --> 00:11:55.356
+And in Lab 1 you sorted a fictional
+export's skips into the program's taxonomy,
+
+185
+00:11:55.356 --> 00:11:58.265
+and saw why none of them
+is a failure or a pass.
+
+186
+00:11:58.265 --> 00:12:03.268
+The evidence an I S S O keeps from this
+module is the approved decision record,
+
+187
+00:12:03.268 --> 00:12:06.127
+and each pillar owner's
+dated reading notes.
+
+188
+00:12:06.127 --> 00:12:10.336
+Next is Module 2, running the
+assessment safely: the host,
+
+189
+00:12:10.336 --> 00:12:15.610
+consent and roles, connecting in each
+cloud, and the run and its hashes.

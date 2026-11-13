@@ -1,0 +1,142 @@
+[
+ {
+  "slide": 2,
+  "title": "AWS writes to email; the API needs a support plan",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/04-aws-health.html"
+   },
+   {
+    "text": "AWS Health concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-concepts"
+   },
+   {
+    "text": "AWS Health API Reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-reference"
+   },
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "AWS contacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-alternate-contacts"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Gate G4: three read actions, then collect",
+  "links": [
+   {
+    "text": "AWS Health API Reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-reference"
+   },
+   {
+    "text": "AWS Health identity-based policy examples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-identity-policy-examples"
+   },
+   {
+    "text": "AWS managed policies for AWS Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-managed-policies"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Event categories to kinds, and who said act",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/04-aws-health.html"
+   },
+   {
+    "text": "AWS Health API Reference, Event",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-event"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Ten events at a time, in the partition's own region",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/04-aws-health.html"
+   },
+   {
+    "text": "DescribeEventDetails",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-describe-event-details"
+   },
+   {
+    "text": "Accessing the AWS Health API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-access"
+   },
+   {
+    "text": "AWS Health in GovCloud (US)",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-govcloud"
+   },
+   {
+    "text": "EventBridge events for AWS Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#eventbridge-aws-health-events"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: five events, and who said act",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/04-aws-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test account with a support plan",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/04-aws-health.html"
+   },
+   {
+    "text": "AWS CLI IAM examples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-cli-iam-examples"
+   },
+   {
+    "text": "sts get-caller-identity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-cli-sts-get-caller-identity"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Gate G4",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/04-aws-health.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Summary, and next: Module 6, Google incidents",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/04-aws-health.html"
+   }
+  ]
+ }
+]

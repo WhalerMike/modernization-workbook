@@ -1,0 +1,974 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.072
+Welcome to Module 5 of the
+Provider Notices learning path:
+
+2
+00:00:04.072 --> 00:00:06.250
+AWS Health and the support plan.
+
+3
+00:00:06.250 --> 00:00:10.104
+This is Gate 4 of the provider
+notices implementation guide,
+
+4
+00:00:10.104 --> 00:00:12.725
+with Chapter 4 of the developer workbook.
+
+5
+00:00:12.725 --> 00:00:16.378
+AWS Health publishes issues,
+scheduled changes and account
+
+6
+00:00:16.378 --> 00:00:20.250
+notifications for each account,
+with the resources they affect.
+
+7
+00:00:20.250 --> 00:00:24.459
+The A P I is the scheduled, recorded
+read of them, but it comes with a
+
+8
+00:00:24.459 --> 00:00:29.700
+condition the other providers don't have:
+it needs a qualifying AWS Support plan.
+
+9
+00:00:29.700 --> 00:00:33.116
+In this module you'll read a
+fictional account's events,
+
+10
+00:00:33.116 --> 00:00:37.671
+see which ones AWS marked action required
+and which the kit's rule marked,
+
+11
+00:00:37.671 --> 00:00:40.631
+build the GovCloud request
+without sending it,
+
+12
+00:00:40.631 --> 00:00:44.275
+and watch the kit refuse eleven
+events in one details call.
+
+13
+00:00:44.275 --> 00:00:49.525
+It takes about fifty minutes, with a lab
+on fixtures and a lab in a test account.
+
+14
+00:00:49.525 --> 00:00:55.360
+The code is illustrative: tested against
+fixtures, not run against a live account.
+
+15
+00:00:59.110 --> 00:01:01.310
+Why does AWS need its own module?
+
+16
+00:01:01.310 --> 00:01:05.330
+Today, AWS sends account email
+to the root user's address,
+
+17
+00:01:05.330 --> 00:01:11.273
+plus up to three alternate contacts, one
+each for billing, operations and security.
+
+18
+00:01:11.273 --> 00:01:15.611
+The AWS Health dashboard keeps
+events for up to ninety days.
+
+19
+00:01:15.611 --> 00:01:18.661
+So the notices reach
+whoever opened the account,
+
+20
+00:01:18.661 --> 00:01:20.873
+or a page nobody opens on a schedule.
+
+21
+00:01:20.873 --> 00:01:23.859
+The A P I fixes that, with a condition.
+
+22
+00:01:23.859 --> 00:01:28.007
+It needs a qualifying AWS Support
+plan, and without one it answers
+
+23
+00:01:28.007 --> 00:01:31.847
+with a subscription required
+exception, and nothing is read.
+
+24
+00:01:31.847 --> 00:01:34.935
+Then the dashboard and its
+email are the only path.
+
+25
+00:01:34.935 --> 00:01:38.922
+And AWS's own pages don't
+agree on which plans qualify.
+
+26
+00:01:38.922 --> 00:01:42.700
+The AWS Health concepts page
+names Business Support plus,
+
+27
+00:01:42.700 --> 00:01:46.950
+Enterprise Support or Unified
+Operations; the A P I reference and
+
+28
+00:01:46.950 --> 00:01:51.122
+the GovCloud page name the older
+Business and Enterprise plans.
+
+29
+00:01:51.122 --> 00:01:54.930
+So the guide cites all three, and
+tells you to check the account's
+
+30
+00:01:54.930 --> 00:01:59.240
+plan against the current pages,
+and to confirm it with AWS Support.
+
+31
+00:02:02.990 --> 00:02:05.903
+Here's what you'll be able to
+do by the end of this module.
+
+32
+00:02:05.903 --> 00:02:10.164
+You'll write the reader's policy
+with exactly three read actions,
+
+33
+00:02:10.164 --> 00:02:14.265
+and say why not the AWS Health
+full access policy, or a wildcard.
+
+34
+00:02:14.265 --> 00:02:18.628
+You'll explain the support-plan
+requirement, the error you get without one,
+
+35
+00:02:18.628 --> 00:02:21.703
+and why to check the plan
+against AWS's current pages.
+
+36
+00:02:21.703 --> 00:02:25.765
+You'll map AWS Health event
+categories to the record's kinds,
+
+37
+00:02:25.765 --> 00:02:30.077
+keeping AWS's own actionability
+field apart from the kit's rule.
+
+38
+00:02:30.077 --> 00:02:33.497
+And you'll name each partition's
+Health endpoint region,
+
+39
+00:02:33.497 --> 00:02:37.364
+and say why GovCloud relies on
+the A P I rather than EventBridge.
+
+40
+00:02:37.364 --> 00:02:41.749
+Before you start, finish Module 1,
+on the record and its action basis,
+
+41
+00:02:41.749 --> 00:02:45.815
+and read the AWS column of the
+guide's five providers compared.
+
+42
+00:02:45.815 --> 00:02:49.977
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+43
+00:02:49.977 --> 00:02:51.310
+No account.
+
+44
+00:02:55.060 --> 00:02:57.285
+Unit 1 is the guide's Step 4.
+
+45
+00:02:57.285 --> 00:02:59.610
+The prerequisite is the support plan.
+
+46
+00:02:59.610 --> 00:03:01.023
+Then three steps.
+
+47
+00:03:01.023 --> 00:03:03.273
+One: create the read policy.
+
+48
+00:03:03.273 --> 00:03:06.949
+It's a customer managed policy
+with exactly three actions:
+
+49
+00:03:06.949 --> 00:03:11.622
+describe events, describe event
+details and describe affected entities.
+
+50
+00:03:11.622 --> 00:03:15.375
+AWS publishes no read-only
+managed policy for Health,
+
+51
+00:03:15.375 --> 00:03:21.173
+and the AWS Health full access policy includes
+writes, so the reader never holds it.
+
+52
+00:03:21.173 --> 00:03:24.841
+AWS's own examples grant
+describe with a wildcard,
+
+53
+00:03:24.841 --> 00:03:30.298
+but a wildcard grows as AWS adds actions,
+so the kit names the three it calls.
+
+54
+00:03:30.298 --> 00:03:32.798
+Two: cross-check from the Health endpoint.
+
+55
+00:03:32.798 --> 00:03:38.098
+Commercial accounts use u s east
+one; GovCloud, u s gov west one.
+
+56
+00:03:38.098 --> 00:03:39.597
+Three: collect.
+
+57
+00:03:39.597 --> 00:03:42.122
+The kit reads open and upcoming events,
+
+58
+00:03:42.122 --> 00:03:46.147
+then their details and affected
+entities, ten events at a time.
+
+59
+00:03:46.147 --> 00:03:50.617
+The gate validates when the instance
+retirement comes out as a retirement,
+
+60
+00:03:50.617 --> 00:03:53.573
+due at its start, with the
+instance as its resource.
+
+61
+00:03:53.573 --> 00:03:56.650
+The gate owner is the AWS account owner.
+
+62
+00:04:00.400 --> 00:04:02.413
+Unit 2 is the event reader.
+
+63
+00:04:02.413 --> 00:04:05.383
+AWS Health's event type
+categories are issue,
+
+64
+00:04:05.383 --> 00:04:09.399
+scheduled change, account
+notification and investigation.
+
+65
+00:04:09.399 --> 00:04:13.150
+None of them says retirement or
+security, so the kit maps them.
+
+66
+00:04:13.150 --> 00:04:16.137
+An issue or an investigation
+is an incident.
+
+67
+00:04:16.137 --> 00:04:20.070
+A scheduled change whose event
+type code names a retirement,
+
+68
+00:04:20.070 --> 00:04:24.475
+a lifecycle event, a deprecation or
+an end of support is a retirement.
+
+69
+00:04:24.475 --> 00:04:25.713
+That's the kit's rule.
+
+70
+00:04:25.713 --> 00:04:28.313
+Any other scheduled change is maintenance.
+
+71
+00:04:28.313 --> 00:04:32.238
+An account notification with the
+security persona is security,
+
+72
+00:04:32.238 --> 00:04:35.349
+and any other account
+notification is an advisory.
+
+73
+00:04:35.349 --> 00:04:36.275
+Then action.
+
+74
+00:04:36.275 --> 00:04:40.001
+AWS's own actionability field,
+when it says action required,
+
+75
+00:04:40.001 --> 00:04:45.095
+makes the record action required, with an
+action basis that starts with provider,
+
+76
+00:04:45.095 --> 00:04:48.213
+and a scheduled change's
+start time is its due date.
+
+77
+00:04:48.213 --> 00:04:52.115
+A retirement without AWS's
+flag is still action required,
+
+78
+00:04:52.115 --> 00:04:55.437
+by the kit's rule, due at
+its start, and labeled rule.
+
+79
+00:04:55.437 --> 00:05:04.110
+And AWS gives times as epoch seconds; the
+record holds them in U T C, I S O 8601.
+
+80
+00:05:07.860 --> 00:05:09.835
+Two more things the reader handles.
+
+81
+00:05:09.835 --> 00:05:11.172
+First, batching.
+
+82
+00:05:11.172 --> 00:05:15.185
+An event list without its description
+or resources can't be routed,
+
+83
+00:05:15.185 --> 00:05:18.834
+and descriptions and affected
+entities are separate calls.
+
+84
+00:05:18.834 --> 00:05:22.947
+Describe event details takes
+one to ten event A R Ns.
+
+85
+00:05:22.947 --> 00:05:27.855
+So the kit asks ten at a time, and
+refuses eleven before it calls anything,
+
+86
+00:05:27.855 --> 00:05:30.684
+rather than have the A
+P I refuse it mid-run.
+
+87
+00:05:30.684 --> 00:05:32.360
+Second, partitions.
+
+88
+00:05:32.360 --> 00:05:37.584
+The settings name the partition, and the
+region comes from it: u s east one for
+
+89
+00:05:37.584 --> 00:05:40.364
+commercial accounts, and u s gov west one,
+
+90
+00:05:40.364 --> 00:05:43.397
+a single regional
+endpoint, in AWS GovCloud.
+
+91
+00:05:43.397 --> 00:05:47.998
+A GovCloud account read from u s east
+one fails, or worse, reads nothing,
+
+92
+00:05:47.998 --> 00:05:52.760
+so the kit checks once that the caller's
+A R N is in the settings' partition.
+
+93
+00:05:52.760 --> 00:05:55.775
+In GovCloud there's one more
+reason to use the A P I:
+
+94
+00:05:55.775 --> 00:06:00.448
+EventBridge there doesn't send public
+events from the Service Health view.
+
+95
+00:06:00.448 --> 00:06:03.987
+Elsewhere, the interim path
+is an EventBridge rule
+
+96
+00:06:03.987 --> 00:06:07.273
+on AWS Health events, which
+the kit doesn't build.
+
+97
+00:06:07.273 --> 00:06:11.330
+And with no support plan, it's
+the dashboard and its email.
+
+98
+00:06:15.080 --> 00:06:15.805
+Try it.
+
+99
+00:06:15.805 --> 00:06:21.055
+Lab 1 runs in the provider notices
+folder of the examples, in PowerShell 7.
+
+100
+00:06:21.055 --> 00:06:25.732
+The account is AWS's documentation
+account, one one one one two
+
+101
+00:06:25.732 --> 00:06:30.592
+two two two three three three
+three, in the commercial partition.
+
+102
+00:06:30.592 --> 00:06:32.980
+Nothing signs in or sends a request.
+
+103
+00:06:32.980 --> 00:06:35.555
+Step one lists what AWS needs.
+
+104
+00:06:35.555 --> 00:06:41.317
+Three calls: describe events, describe event
+details and describe affected entities,
+
+105
+00:06:41.317 --> 00:06:46.430
+each with its one read action, and each
+verified against AWS's documentation.
+
+106
+00:06:46.430 --> 00:06:48.742
+Three read actions, one per call.
+
+107
+00:06:48.742 --> 00:06:51.005
+That's the whole policy,
+and it's what you'd
+
+108
+00:06:51.005 --> 00:06:53.680
+show an assessor who asks
+what the reader may do.
+
+109
+00:06:53.680 --> 00:06:57.130
+Step two shows each partition's
+Health endpoint region.
+
+110
+00:06:57.130 --> 00:07:01.476
+The commercial partition
+reads from u s east one,
+
+111
+00:07:01.476 --> 00:07:04.518
+with A R Ns that start A R N colon A W S.
+
+112
+00:07:04.518 --> 00:07:09.023
+The GovCloud partition
+reads from u s gov west one,
+
+113
+00:07:09.023 --> 00:07:13.890
+with A R Ns that start A R N
+colon A W S dash U S dash gov.
+
+114
+00:07:17.640 --> 00:07:21.281
+Step three collects AWS
+from the day-one fixtures:
+
+115
+00:07:21.281 --> 00:07:24.478
+five events, four open,
+three needing action.
+
+116
+00:07:24.478 --> 00:07:29.765
+One incident, one maintenance window,
+two retirements and one security notice.
+
+117
+00:07:29.765 --> 00:07:31.765
+Step four reads the records.
+
+118
+00:07:31.765 --> 00:07:37.276
+The E C 2 instance retirement is due
+December first, 2026, and the Lambda
+
+119
+00:07:37.276 --> 00:07:42.978
+planned lifecycle event January
+fifteenth, 2027, each with its resource.
+
+120
+00:07:42.978 --> 00:07:46.252
+The R D S maintenance is
+scheduled on a database.
+
+121
+00:07:46.252 --> 00:07:50.240
+The I A M security notification
+needs action, with no date.
+
+122
+00:07:50.240 --> 00:07:53.165
+And the S 3 operational issue is closed.
+
+123
+00:07:53.165 --> 00:07:56.303
+Step five asks who said
+each one needs action.
+
+124
+00:07:56.303 --> 00:08:00.330
+AWS did, twice, through
+its actionability field:
+
+125
+00:08:00.330 --> 00:08:04.152
+the E C 2 retirement and
+the I A M notification.
+
+126
+00:08:04.152 --> 00:08:08.002
+The R D S maintenance and
+the S 3 issue need none.
+
+127
+00:08:08.002 --> 00:08:11.295
+And the Lambda event is action
+required by the kit's rule:
+
+128
+00:08:11.295 --> 00:08:16.091
+a scheduled change whose event type code
+names a retirement, due at its start time.
+
+129
+00:08:16.091 --> 00:08:21.010
+The record says rule, so nobody
+mistakes it for AWS's own flag.
+
+130
+00:08:24.760 --> 00:08:28.285
+Step six builds the GovCloud
+request without sending it.
+
+131
+00:08:28.285 --> 00:08:32.572
+You read the lab settings, change
+the partition to A W S U S gov,
+
+132
+00:08:32.572 --> 00:08:35.110
+and ask the kit for the live command.
+
+133
+00:08:35.110 --> 00:08:37.961
+It's describe events in u s gov west one,
+
+134
+00:08:37.961 --> 00:08:41.548
+filtered to open and
+upcoming events, as JSON.
+
+135
+00:08:41.548 --> 00:08:44.472
+The region came from the
+partition; you never typed it.
+
+136
+00:08:44.472 --> 00:08:48.672
+Step seven asks for the details
+of eleven events in one call.
+
+137
+00:08:48.672 --> 00:08:51.407
+The kit refuses before anything runs:
+
+138
+00:08:51.407 --> 00:08:56.347
+describe event details takes one to
+ten event A R Ns, and it got eleven.
+
+139
+00:08:56.347 --> 00:08:59.474
+In a live run the kit never
+asks for more than ten,
+
+140
+00:08:59.474 --> 00:09:04.285
+so this is the guard that keeps a coding
+mistake from reaching AWS mid-run.
+
+141
+00:09:04.285 --> 00:09:08.982
+Step eight runs this chapter's
+tests, for the AWS Health block
+
+142
+00:09:08.982 --> 00:09:13.210
+and the AWS rows of the live
+tests: eleven pass, none fail.
+
+143
+00:09:13.210 --> 00:09:15.410
+Then delete the output folder.
+
+144
+00:09:19.160 --> 00:09:21.360
+Lab 2 reads a real test account.
+
+145
+00:09:21.360 --> 00:09:27.676
+You need an AWS test account, never
+production, with a qualifying AWS Support plan,
+
+146
+00:09:27.676 --> 00:09:32.860
+an I A M administrator, and an I A M
+role and C L I profile for the reader.
+
+147
+00:09:32.860 --> 00:09:37.020
+Step one writes the read policy
+with exactly the three actions,
+
+148
+00:09:37.020 --> 00:09:40.060
+creates it, and attaches
+it to the reader's role.
+
+149
+00:09:40.060 --> 00:09:42.878
+Step two checks who you're signed in as:
+
+150
+00:09:42.878 --> 00:09:48.060
+the A R N must start with A R N colon
+A W S, the partition the settings name.
+
+151
+00:09:48.060 --> 00:09:49.785
+Step three cross-checks.
+
+152
+00:09:49.785 --> 00:09:53.889
+Count AWS's own open and upcoming
+events from u s east one,
+
+153
+00:09:53.889 --> 00:09:56.923
+then collect, and the counts should agree.
+
+154
+00:09:56.923 --> 00:10:01.818
+If the account has no qualifying
+support plan, the subscription required
+
+155
+00:10:01.818 --> 00:10:06.553
+exception is the expected result, and
+that's a gap to record with the ISSO.
+
+156
+00:10:06.553 --> 00:10:09.923
+Step four backs it out:
+detach and delete the policy,
+
+157
+00:10:09.923 --> 00:10:13.535
+and delete the run, which
+names the account's resources.
+
+158
+00:10:13.535 --> 00:10:15.685
+The authors haven't run Lab 2.
+
+159
+00:10:15.685 --> 00:10:19.220
+The workbook's Chapter 4
+has the exact commands.
+
+160
+00:10:22.970 --> 00:10:24.357
+The federal requirement.
+
+161
+00:10:24.357 --> 00:10:30.364
+Gate 4 supports NIST special publication
+eight hundred fifty-three S A nine, part c,
+
+162
+00:10:30.364 --> 00:10:34.780
+monitoring external service
+providers on an ongoing basis,
+
+163
+00:10:34.780 --> 00:10:39.196
+and S I five, part a, receiving
+security alerts and advisories.
+
+164
+00:10:39.196 --> 00:10:44.250
+For events AWS marks action required,
+it also supports S I five, part d:
+
+165
+00:10:44.250 --> 00:10:48.583
+implementing directives in
+the established time frames,
+
+166
+00:10:48.583 --> 00:10:51.020
+through the task Module 7 routes.
+
+167
+00:10:51.020 --> 00:10:56.368
+The evidence is the permission list and
+the policy document with its three read
+
+168
+00:10:56.368 --> 00:11:00.257
+actions; the raw AWS response,
+the notices and the manifest,
+
+169
+00:11:00.257 --> 00:11:05.524
+read on the partition's own endpoint; and
+the events AWS marked action required,
+
+170
+00:11:05.524 --> 00:11:09.170
+with AWS's due date, and the
+kit's rule labeled as the kit's.
+
+171
+00:11:09.170 --> 00:11:12.132
+The gate's output is
+evidence for these controls.
+
+172
+00:11:12.132 --> 00:11:15.053
+Your organization still
+sets their parameters,
+
+173
+00:11:15.053 --> 00:11:18.194
+and the assessor decides
+whether each is satisfied.
+
+174
+00:11:18.194 --> 00:11:22.589
+K S I's are FedRAMP twenty X indicators
+for cloud service providers;
+
+175
+00:11:22.589 --> 00:11:27.730
+the agency lines its evidence up with
+them, and doesn't report them itself.
+
+176
+00:11:31.480 --> 00:11:33.455
+Check yourself with two questions.
+
+177
+00:11:33.455 --> 00:11:36.651
+First: what does the AWS
+Health A P I answer for
+
+178
+00:11:36.651 --> 00:11:40.192
+an account without a
+qualifying AWS Support plan?
+
+179
+00:11:40.192 --> 00:11:43.605
+The answer is b, a subscription
+required exception.
+
+180
+00:11:43.605 --> 00:11:47.830
+Not an empty list: nothing is read
+at all, and the error says why.
+
+181
+00:11:47.830 --> 00:11:50.957
+Check the account's plan
+against AWS's current pages,
+
+182
+00:11:50.957 --> 00:11:53.430
+because they name the plans differently.
+
+183
+00:11:53.430 --> 00:11:57.267
+Second: the Lambda lifecycle
+event is action required.
+
+184
+00:11:57.267 --> 00:11:58.179
+Who said so?
+
+185
+00:11:58.179 --> 00:12:00.443
+The answer is b, the kit's rule.
+
+186
+00:12:00.443 --> 00:12:03.296
+A scheduled change whose
+event type code names
+
+187
+00:12:03.296 --> 00:12:06.004
+a retirement is a
+retirement, due at its start.
+
+188
+00:12:06.004 --> 00:12:09.543
+AWS didn't set the actionability
+field on that event,
+
+189
+00:12:09.543 --> 00:12:13.492
+so the record's action basis
+begins with rule, and states it.
+
+190
+00:12:13.492 --> 00:12:15.919
+The module page has three more questions,
+
+191
+00:12:15.919 --> 00:12:18.770
+each linked to the
+section that answers it.
+
+192
+00:12:22.520 --> 00:12:23.345
+To sum up.
+
+193
+00:12:23.345 --> 00:12:27.770
+You read the reader's three actions,
+saw each partition's endpoint,
+
+194
+00:12:27.770 --> 00:12:32.276
+collected five events, told AWS's
+actionability from the kit's rule,
+
+195
+00:12:32.276 --> 00:12:37.520
+built the GovCloud request, and watched
+the kit refuse eleven A R Ns in one call.
+
+196
+00:12:37.520 --> 00:12:41.785
+The evidence an ISSO keeps for
+Gate 4 is the raw AWS response,
+
+197
+00:12:41.785 --> 00:12:47.095
+the notices as JSON and as a spreadsheet
+file, and the manifest, all dated;
+
+198
+00:12:47.095 --> 00:12:51.534
+the policy document; and a record
+of the account's support plan,
+
+199
+00:12:51.534 --> 00:12:54.145
+checked against AWS's current pages.
+
+200
+00:12:54.145 --> 00:12:58.233
+An account without one is a
+gap to record with the ISSO.
+
+201
+00:12:58.233 --> 00:13:01.308
+Before you ship, work through
+the chapter's checklist.
+
+202
+00:13:01.308 --> 00:13:05.607
+Next is Module 6: Google
+incidents and the maintenance gap.
+
+203
+00:13:05.607 --> 00:13:08.535
+Google Cloud's notices
+come in only one kind,
+
+204
+00:13:08.535 --> 00:13:13.060
+and that module is about writing
+down honestly what doesn't arrive.

@@ -1,0 +1,154 @@
+[
+ {
+  "slide": 2,
+  "title": "Each administrator's Message center is their own",
+  "links": [
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "Why provider notices go unread",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#why-provider-notices-go-unread"
+   },
+   {
+    "text": "Message center",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m365-message-center"
+   },
+   {
+    "text": "Graph service communications API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-service-communications-api"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Microsoft gives you: three calls, two permissions",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.html"
+   },
+   {
+    "text": "Graph service communications API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-service-communications-api"
+   },
+   {
+    "text": "List serviceAnnouncement messages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-serviceannouncement-list-messages"
+   },
+   {
+    "text": "issues",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-serviceannouncement-list-issues"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Each cloud has its own Graph host",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.html"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Posts and issues become kinds, with their basis",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.html"
+   },
+   {
+    "text": "List serviceAnnouncement messages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-serviceannouncement-list-messages"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: Microsoft's date, or the kit's rule",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: the second week, and a refused next link",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test tenant, delegated, two read scopes",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.html"
+   },
+   {
+    "text": "Graph service communications API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-service-communications-api"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Dangers the gate guards against",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.html"
+   },
+   {
+    "text": "Microsoft 365 admin roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m365-admin-roles"
+   },
+   {
+    "text": "Book 15, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/03-intake-triage-and-routing.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Gate G2",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Summary, and next: Module 4, OCI announcements",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.html"
+   }
+  ]
+ }
+]

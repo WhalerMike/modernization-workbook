@@ -6,7 +6,7 @@
 |---|---|
 | `DW_PN_01_Notice_Record_Azure_Service_Health.pptx` | The deck: 18 narrated slides (the title and 17 content slides in Why, What, Who and How order), then a backup section with the chapter's footnotes in full |
 | `DW_PN_01_Notice_Record_Azure_Service_Health_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped |
-| `DW_PN_01_Notice_Record_Azure_Service_Health_Narrated.mp4` | The video, for the videos release (not uploaded yet) |
+| `DW_PN_01_Notice_Record_Azure_Service_Health_Narrated.mp4` | The video, about 12 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PN_01_Notice_Record_Azure_Service_Health_Narrated.mp4) |
 | `DW_PN_01_Notice_Record_Azure_Service_Health_Narrated.vtt` | The video's caption track |
 | `DW_PN_01_Notice_Record_Azure_Service_Health_Narration_Script.md` | The spoken narration, slide by slide (about 1,749 words) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the chapter footnotes each slide cites (`cite`) |

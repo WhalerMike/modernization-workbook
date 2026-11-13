@@ -1,0 +1,941 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.384
+Welcome to Module 3 of the
+Provider Notices learning path:
+
+2
+00:00:04.384 --> 00:00:06.912
+the Microsoft 365 Message center.
+
+3
+00:00:06.912 --> 00:00:10.411
+This is Gate 2 of the provider
+notices implementation guide,
+
+4
+00:00:10.411 --> 00:00:13.350
+with the second chapter of
+the developer workbook.
+
+5
+00:00:13.350 --> 00:00:18.596
+The Message center is where Microsoft
+announces changes, retirements and actions
+
+6
+00:00:18.596 --> 00:00:23.538
+for a Microsoft 365 tenant, and service
+health lists incidents and advisories.
+
+7
+00:00:23.538 --> 00:00:27.532
+Microsoft Graph's service
+communications A P I reads both,
+
+8
+00:00:27.532 --> 00:00:29.363
+with two read permissions.
+
+9
+00:00:29.363 --> 00:00:32.942
+In this module you read the
+fixture tenant's posts and issues,
+
+10
+00:00:32.942 --> 00:00:37.237
+see which ones Microsoft said need
+action and which the kit's rule marked,
+
+11
+00:00:37.237 --> 00:00:41.675
+and watch the kit refuse to follow a next
+link off the tenant's own Graph host.
+
+12
+00:00:41.675 --> 00:00:46.900
+It takes about fifty minutes, with a lab
+on fixtures and a lab for a test tenant.
+
+13
+00:00:46.900 --> 00:00:52.760
+The code is illustrative: tested against
+fixtures, not run against a live tenant.
+
+14
+00:00:56.510 --> 00:00:59.710
+Why does Microsoft 365 need its own gate?
+
+15
+00:00:59.710 --> 00:01:04.522
+In the admin center, each administrator's
+view of the Message center is their own.
+
+16
+00:01:04.522 --> 00:01:08.709
+Archiving a post removes it only
+from that administrator's view,
+
+17
+00:01:08.709 --> 00:01:13.922
+and the weekly digest goes, by default, to
+each administrator's own primary email.
+
+18
+00:01:13.922 --> 00:01:18.779
+Microsoft gives at least thirty days'
+notice of a major update that needs action,
+
+19
+00:01:18.779 --> 00:01:21.723
+and the act-by date is
+rare enough that Microsoft
+
+20
+00:01:21.723 --> 00:01:24.372
+says to pay extra
+attention when it appears.
+
+21
+00:01:24.372 --> 00:01:28.270
+So the program reads the posts
+from Microsoft Graph instead,
+
+22
+00:01:28.270 --> 00:01:32.635
+through the service communications
+A P I, with two read permissions.
+
+23
+00:01:32.635 --> 00:01:33.647
+There's a trap.
+
+24
+00:01:33.647 --> 00:01:38.391
+A GCC High tenant read on the
+worldwide Graph host returns nothing,
+
+25
+00:01:38.391 --> 00:01:41.236
+and an empty list looks like a quiet week.
+
+26
+00:01:41.236 --> 00:01:44.188
+So the kit reads only the
+cloud the settings name,
+
+27
+00:01:44.188 --> 00:01:47.950
+and refuses a session in
+another environment or tenant.
+
+28
+00:01:51.700 --> 00:01:54.613
+Here's what you'll be able to
+do by the end of this module.
+
+29
+00:01:54.613 --> 00:01:57.623
+You'll name the two Graph
+permissions the reader needs,
+
+30
+00:01:57.623 --> 00:02:00.099
+and the role that data
+privacy messages need.
+
+31
+00:02:00.099 --> 00:02:04.312
+You'll say which Graph host
+each Microsoft 365 cloud uses,
+
+32
+00:02:04.312 --> 00:02:07.000
+and why the wrong one fails silently.
+
+33
+00:02:07.000 --> 00:02:11.350
+You'll map Message center posts and service
+health issues to the record's kinds.
+
+34
+00:02:11.350 --> 00:02:13.719
+You'll tell a date Microsoft set from the
+
+35
+00:02:13.719 --> 00:02:16.087
+kit's rule for a
+prevent-or-fix-issue post.
+
+36
+00:02:16.087 --> 00:02:19.876
+And you'll show that the kit
+refuses a next link on another host.
+
+37
+00:02:19.876 --> 00:02:23.807
+You need Module 1, for the record
+and its action basis, and the intake,
+
+38
+00:02:23.807 --> 00:02:28.381
+triage and routing chapter of Compliance
+Automation and Day-Two Operations,
+
+39
+00:02:28.381 --> 00:02:32.313
+which explains why nothing is
+approved on the strength of an email.
+
+40
+00:02:32.313 --> 00:02:36.475
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+41
+00:02:36.475 --> 00:02:37.770
+No tenant.
+
+42
+00:02:41.520 --> 00:02:44.020
+Unit 2 starts with what
+Microsoft gives you.
+
+43
+00:02:44.020 --> 00:02:48.973
+Learn's service communications overview
+names three list calls on Graph version one
+
+44
+00:02:48.973 --> 00:02:53.577
+point oh: messages, for Message center
+posts, which need Service Message dot Read
+
+45
+00:02:53.577 --> 00:02:55.879
+dot All; and issues and health overviews,
+
+46
+00:02:55.879 --> 00:02:58.320
+which need Service
+Health dot Read dot All.
+
+47
+00:02:58.320 --> 00:03:02.251
+The kit keeps the health overviews
+in the raw record for the run;
+
+48
+00:03:02.251 --> 00:03:04.670
+the notices come from posts and issues.
+
+49
+00:03:04.670 --> 00:03:08.032
+Both permissions are granted
+only by an administrator,
+
+50
+00:03:08.032 --> 00:03:10.883
+and a delegated sign-in
+also needs an admin role.
+
+51
+00:03:10.883 --> 00:03:15.282
+One exception matters: data privacy
+messages are visible only to Global
+
+52
+00:03:15.282 --> 00:03:18.509
+Administrators and Message
+Center Privacy Readers,
+
+53
+00:03:18.509 --> 00:03:21.808
+so where they matter, name a
+privacy reader to read them.
+
+54
+00:03:21.808 --> 00:03:26.669
+And Learn has its own cmdlet for posts,
+Get M g Service Announcement Message.
+
+55
+00:03:26.669 --> 00:03:31.620
+It's the interim path before the reader
+exists, and Lab 2's cross-check.
+
+56
+00:03:35.370 --> 00:03:39.857
+Each Microsoft 365 cloud
+has its own Graph host.
+
+57
+00:03:39.857 --> 00:03:44.170
+GCC keeps the worldwide endpoint,
+graph dot microsoft dot com,
+
+58
+00:03:44.170 --> 00:03:47.045
+and signs in with the Global environment.
+
+59
+00:03:47.045 --> 00:03:48.895
+That's the workbook's baseline.
+
+60
+00:03:48.895 --> 00:03:54.204
+As a side note, GCC High uses graph
+dot microsoft dot U S, and DoD uses
+
+61
+00:03:54.204 --> 00:03:59.907
+dod dash graph dot microsoft dot U S,
+each with its own environment name.
+
+62
+00:03:59.907 --> 00:04:03.153
+The A P I is available
+on the national clouds,
+
+63
+00:04:03.153 --> 00:04:07.932
+and each list method's table shows
+U S Government L four and L five.
+
+64
+00:04:07.932 --> 00:04:09.507
+The kit has two guards.
+
+65
+00:04:09.507 --> 00:04:12.623
+Before the first call, it
+compares the Graph session's
+
+66
+00:04:12.623 --> 00:04:16.446
+environment and tenant with the
+settings, and refuses a mismatch.
+
+67
+00:04:16.446 --> 00:04:19.174
+And a next link is a U
+R L the response chose,
+
+68
+00:04:19.174 --> 00:04:23.107
+so the kit follows it only if it's
+on the cloud's own Graph host.
+
+69
+00:04:23.107 --> 00:04:24.759
+Anything else is refused,
+
+70
+00:04:24.759 --> 00:04:28.900
+so the token never goes somewhere
+the agency didn't choose.
+
+71
+00:04:32.650 --> 00:04:37.838
+No post category says retirement, so
+the kit maps posts and issues to kinds.
+
+72
+00:04:37.838 --> 00:04:40.375
+A post tagged Retirement is a retirement.
+
+73
+00:04:40.375 --> 00:04:44.050
+Plan-for-change and
+prevent-or-fix-issue posts are changes.
+
+74
+00:04:44.050 --> 00:04:46.425
+Stay-informed posts are advisories.
+
+75
+00:04:46.425 --> 00:04:49.754
+A service health issue is
+an incident or an advisory,
+
+76
+00:04:49.754 --> 00:04:53.237
+by its classification, and it
+closes when it's resolved.
+
+77
+00:04:53.237 --> 00:04:57.957
+Action required comes from one field:
+Microsoft's action-required-by date,
+
+78
+00:04:57.957 --> 00:05:02.987
+the only field that says Microsoft wants
+action, and the record's basis names it.
+
+79
+00:05:02.987 --> 00:05:07.248
+The one kit rule is for a
+prevent-or-fix-issue post without a date:
+
+80
+00:05:07.248 --> 00:05:10.362
+it's action required, with
+no date, labeled rule.
+
+81
+00:05:10.362 --> 00:05:12.175
+No date is ever made up.
+
+82
+00:05:12.175 --> 00:05:15.783
+The kit also matches enum
+values without regard to case,
+
+83
+00:05:15.783 --> 00:05:20.961
+strips the markup from a post's body, caps
+the summary at two thousand characters,
+
+84
+00:05:20.961 --> 00:05:23.863
+and closes a post once
+its end date has passed.
+
+85
+00:05:23.863 --> 00:05:29.660
+One gap remains: Learn doesn't enumerate
+the tags, so that's not yet specified.
+
+86
+00:05:33.410 --> 00:05:34.135
+Try it.
+
+87
+00:05:34.135 --> 00:05:38.012
+Lab 1 runs in the provider
+notices folder of the examples,
+
+88
+00:05:38.012 --> 00:05:41.394
+in PowerShell 7, against a
+fictional tenant in G C C.
+
+89
+00:05:41.394 --> 00:05:46.674
+Step one lists what Microsoft 365 needs:
+three calls, and only two permissions,
+
+90
+00:05:46.674 --> 00:05:49.808
+Service Message dot Read
+dot All for the posts,
+
+91
+00:05:49.808 --> 00:05:54.923
+and Service Health dot Read dot All for
+the issues and the health overviews.
+
+92
+00:05:54.923 --> 00:05:58.222
+All three are marked
+verified, and nothing writes.
+
+93
+00:05:58.222 --> 00:06:03.776
+Step two prints each cloud's Graph
+host: the worldwide host for G C C with
+
+94
+00:06:03.776 --> 00:06:09.520
+the Global environment, then the U S
+Government hosts for GCC High and DoD.
+
+95
+00:06:09.520 --> 00:06:14.307
+Step three collects Microsoft
+365 from the day-one fixtures,
+
+96
+00:06:14.307 --> 00:06:19.573
+as of November ninth, 2026: six
+notices, five open, two needing action.
+
+97
+00:06:19.573 --> 00:06:23.840
+Three advisories, a change,
+an incident and a retirement.
+
+98
+00:06:27.590 --> 00:06:29.540
+Step four reads the records.
+
+99
+00:06:29.540 --> 00:06:35.634
+M C nine hundred thousand and one is
+a retirement, of Basic authentication
+
+100
+00:06:35.634 --> 00:06:41.028
+for S M T P AUTH client submission,
+due on January thirty-first, 2027.
+
+101
+00:06:41.028 --> 00:06:43.878
+M C nine hundred thousand
+and three is a change,
+
+102
+00:06:43.878 --> 00:06:48.678
+an update to SharePoint Framework solutions,
+and it needs action with no date.
+
+103
+00:06:48.678 --> 00:06:52.727
+The incident is open, and the
+resolved Teams issue is closed.
+
+104
+00:06:52.727 --> 00:06:55.866
+Step five asks who said
+each one needs action.
+
+105
+00:06:55.866 --> 00:06:58.358
+For the retirement, it was Microsoft:
+
+106
+00:06:58.358 --> 00:07:01.515
+the basis is provider,
+action-required-by date.
+
+107
+00:07:01.515 --> 00:07:06.057
+For the SharePoint change, it was the
+kit's rule: a prevent-or-fix-issue post
+
+108
+00:07:06.057 --> 00:07:10.827
+without a date is action required, and
+the record says rule, with the category.
+
+109
+00:07:10.827 --> 00:07:12.453
+Everything else says none.
+
+110
+00:07:12.453 --> 00:07:16.285
+So when someone asks where a date
+came from, the record answers,
+
+111
+00:07:16.285 --> 00:07:19.800
+and where Microsoft gave
+none, the kit makes none up.
+
+112
+00:07:23.550 --> 00:07:28.800
+Step six collects the second week, as
+of November sixteenth: seven notices.
+
+113
+00:07:28.800 --> 00:07:32.198
+A new post, M C nine
+hundred thousand and five,
+
+114
+00:07:32.198 --> 00:07:37.200
+is a change due February twenty-eighth,
+2027, a date Microsoft set.
+
+115
+00:07:37.200 --> 00:07:40.465
+The SharePoint post's title
+now starts with updated,
+
+116
+00:07:40.465 --> 00:07:44.262
+so its fingerprint changes, and
+Module 7 will update its task.
+
+117
+00:07:44.262 --> 00:07:45.962
+And the incident is closed.
+
+118
+00:07:45.962 --> 00:07:49.350
+Step seven builds the live
+request without sending it.
+
+119
+00:07:49.350 --> 00:07:52.928
+The first line prints
+the messages U R L on the
+
+120
+00:07:52.928 --> 00:07:56.313
+worldwide Graph host,
+the right one for G C C.
+
+121
+00:07:56.313 --> 00:08:01.179
+Then it tries a next link on another
+host, graph dot example dot net,
+
+122
+00:08:01.179 --> 00:08:04.874
+and the kit refuses it: it
+isn't on the G C C Graph host.
+
+123
+00:08:04.874 --> 00:08:08.050
+That's the guard that keeps the
+token on the tenant's own host.
+
+124
+00:08:08.050 --> 00:08:12.662
+Step eight runs this chapter's
+tests: fifteen pass, none fail.
+
+125
+00:08:12.662 --> 00:08:14.850
+Then delete the output folder.
+
+126
+00:08:18.600 --> 00:08:23.331
+Lab 2 runs the same read in
+a Microsoft 365 test tenant,
+
+127
+00:08:23.331 --> 00:08:27.525
+in the worldwide or G C C
+cloud, never production.
+
+128
+00:08:27.525 --> 00:08:31.050
+Sign in as a test administrator
+who holds an admin role.
+
+129
+00:08:31.050 --> 00:08:35.059
+Learn doesn't name which admin roles
+Graph accepts for a delegated read,
+
+130
+00:08:35.059 --> 00:08:38.388
+so the Message center reader
+roles are the narrowest to try.
+
+131
+00:08:38.388 --> 00:08:41.739
+Sign in delegated, with
+only the two read scopes;
+
+132
+00:08:41.739 --> 00:08:44.575
+an administrator consents to them once.
+
+133
+00:08:44.575 --> 00:08:47.783
+Cross-check Learn's own cmdlet
+against the kit's collection,
+
+134
+00:08:47.783 --> 00:08:49.812
+and look at the posts that need action.
+
+135
+00:08:49.812 --> 00:08:51.564
+Then record one open item:
+
+136
+00:08:51.564 --> 00:08:55.737
+the tags you see on retirement
+posts, which Learn doesn't list.
+
+137
+00:08:55.737 --> 00:08:59.676
+To back it out, sign out, delete
+the run, and remove the consent in
+
+138
+00:08:59.676 --> 00:09:04.000
+the Microsoft Entra admin center if
+it was granted only for this lab.
+
+139
+00:09:04.000 --> 00:09:06.150
+The authors haven't run Lab 2.
+
+140
+00:09:06.150 --> 00:09:09.560
+The workbook's Chapter 2
+has the exact commands.
+
+141
+00:09:13.310 --> 00:09:17.147
+The workbook chapter lists six
+dangers, and each has a guard.
+
+142
+00:09:17.147 --> 00:09:21.686
+A GCC High or DoD tenant read on
+the worldwide host returns nothing,
+
+143
+00:09:21.686 --> 00:09:27.050
+and the gate passes on an empty list; the
+guard is the cloud named in the settings,
+
+144
+00:09:27.050 --> 00:09:31.011
+the session guard, and every
+request on the cloud's own host.
+
+145
+00:09:31.011 --> 00:09:35.919
+A next link to another host would send the
+token somewhere the agency didn't choose;
+
+146
+00:09:35.919 --> 00:09:38.735
+next links are followed
+only on the cloud's host.
+
+147
+00:09:38.735 --> 00:09:43.088
+A broad Graph scope for convenience
+would let the reader change the tenant;
+
+148
+00:09:43.088 --> 00:09:45.897
+it holds two read permissions,
+declared per call.
+
+149
+00:09:45.897 --> 00:09:49.793
+A kit rule mistaken for Microsoft's
+deadline would give a post
+
+150
+00:09:49.793 --> 00:09:53.536
+with no date an invented one;
+the action basis names the rule.
+
+151
+00:09:53.536 --> 00:09:56.555
+Data privacy posts go unseen
+by the reader's role,
+
+152
+00:09:56.555 --> 00:09:59.197
+so name a privacy reader
+where they matter.
+
+153
+00:09:59.197 --> 00:10:01.344
+And look-alike email gets acted on,
+
+154
+00:10:01.344 --> 00:10:05.254
+so the task links the post the kit
+read from Graph, as the intake,
+
+155
+00:10:05.254 --> 00:10:11.140
+triage and routing chapter of Compliance
+Automation and Day-Two Operations requires.
+
+156
+00:10:14.890 --> 00:10:16.277
+The federal requirement.
+
+157
+00:10:16.277 --> 00:10:22.925
+Gate 2 supports NIST special publication
+eight hundred fifty-three S A nine,
+
+158
+00:10:22.925 --> 00:10:26.090
+part c, and S I five,
+part a, as Gate 1 does.
+
+159
+00:10:26.090 --> 00:10:30.364
+And for posts that announce a change,
+it supports C M three, part b:
+
+160
+00:10:30.364 --> 00:10:35.377
+reviewing proposed changes with a
+security and privacy impact analysis,
+
+161
+00:10:35.377 --> 00:10:37.678
+through the tasks Module 7 routes.
+
+162
+00:10:37.678 --> 00:10:43.075
+The evidence is the permission list, two
+read permissions, and the consent record;
+
+163
+00:10:43.075 --> 00:10:47.104
+the raw Microsoft 365 response,
+the notices and the manifest,
+
+164
+00:10:47.104 --> 00:10:50.326
+with every request on the
+tenant's own Graph host;
+
+165
+00:10:50.326 --> 00:10:54.677
+and the change and retirement
+notices, each with its action basis.
+
+166
+00:10:54.677 --> 00:10:57.589
+The gate's output is
+evidence for these controls;
+
+167
+00:10:57.589 --> 00:11:01.884
+your organization still sets their
+parameters, policy and procedures,
+
+168
+00:11:01.884 --> 00:11:05.015
+and the assessor decides
+whether each is satisfied.
+
+169
+00:11:05.015 --> 00:11:09.052
+K S I's are FedRAMP twenty X indicators
+for cloud service providers,
+
+170
+00:11:09.052 --> 00:11:13.360
+and which file supports which
+indicator is the program's mapping.
+
+171
+00:11:17.110 --> 00:11:19.085
+Check yourself with two questions.
+
+172
+00:11:19.085 --> 00:11:23.322
+First: a G C C tenant is
+read on which Graph host?
+
+173
+00:11:23.322 --> 00:11:28.461
+The answer is c: graph dot microsoft
+dot com, the worldwide endpoint.
+
+174
+00:11:28.461 --> 00:11:34.497
+GCC High and DoD have their own hosts,
+but G C C keeps the worldwide one.
+
+175
+00:11:34.497 --> 00:11:39.560
+Second: M C nine hundred thousand and
+three is action required with no date.
+
+176
+00:11:39.560 --> 00:11:40.248
+Why?
+
+177
+00:11:40.248 --> 00:11:41.473
+The answer is b.
+
+178
+00:11:41.473 --> 00:11:44.881
+The kit's rule marks a
+prevent-or-fix-issue post without
+
+179
+00:11:44.881 --> 00:11:48.061
+a date as action required,
+and labels the basis rule.
+
+180
+00:11:48.061 --> 00:11:51.585
+Microsoft didn't set a date,
+and the kit doesn't make one up.
+
+181
+00:11:51.585 --> 00:11:54.012
+The module page has three more questions,
+
+182
+00:11:54.012 --> 00:11:56.860
+each linked to the
+section that answers it.
+
+183
+00:12:00.610 --> 00:12:01.435
+To sum up.
+
+184
+00:12:01.435 --> 00:12:05.556
+You listed the reader's two permissions,
+saw each cloud's Graph host,
+
+185
+00:12:05.556 --> 00:12:10.502
+collected six posts and issues and then
+the second week's seven, told Microsoft's
+
+186
+00:12:10.502 --> 00:12:15.298
+dates from the kit's rule, and watched the
+kit refuse a next link on another host.
+
+187
+00:12:15.298 --> 00:12:20.668
+The evidence an ISSO keeps for Gate
+2 is the raw Microsoft 365 response,
+
+188
+00:12:20.668 --> 00:12:26.316
+the notices as JSON and as a spreadsheet
+file, and the manifest, all dated;
+
+189
+00:12:26.316 --> 00:12:31.223
+the permission list from step one;
+and in Lab 2, the consent record.
+
+190
+00:12:31.223 --> 00:12:34.298
+Before you ship, work through
+the chapter's checklist.
+
+191
+00:12:34.298 --> 00:12:38.810
+Next is Module 4: Oracle Cloud
+Infrastructure announcements.
+
+192
+00:12:38.810 --> 00:12:41.768
+That's Gate 3, with the
+workbook's third chapter:
+
+193
+00:12:41.768 --> 00:12:46.360
+one policy statement, announcement
+chains, and the realms the kit reads.
+
+194
+00:12:46.360 --> 00:12:49.480
+For an agency whose HR
+platform runs on Oracle Cloud,
+
+195
+00:12:49.480 --> 00:12:52.380
+that's where its maintenance
+notices come from.

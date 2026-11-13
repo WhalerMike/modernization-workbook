@@ -1,0 +1,1024 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:09.376
+This is Chapter 8: deploying
+to test and production.
+
+4
+00:00:09.376 --> 00:00:13.038
+Each chapter's second lab proves
+one provider in isolation.
+
+5
+00:00:13.038 --> 00:00:15.982
+A deployment proves them
+together, on a schedule,
+
+6
+00:00:15.982 --> 00:00:18.412
+with a rollback someone has already run.
+
+7
+00:00:18.412 --> 00:00:23.032
+This chapter is a runbook: one
+ordered set of copy-paste commands,
+
+8
+00:00:23.032 --> 00:00:27.563
+run once against test and again,
+unchanged, against production.
+
+9
+00:00:27.563 --> 00:00:29.237
+Three notes before we begin.
+
+10
+00:00:29.237 --> 00:00:32.463
+The chapter is a draft,
+awaiting the owner's review.
+
+11
+00:00:32.463 --> 00:00:37.887
+Nobody has run this runbook against a
+live tenant, account, tenancy or project.
+
+12
+00:00:37.887 --> 00:00:42.010
+And the code is illustrative,
+run only in fixture mode.
+
+13
+00:00:45.760 --> 00:00:46.810
+Why a runbook?
+
+14
+00:00:46.810 --> 00:00:50.423
+Because each earlier lab proves
+one provider on its own,
+
+15
+00:00:50.423 --> 00:00:54.822
+and production needs all of them
+together, every week, with a way back.
+
+16
+00:00:54.822 --> 00:00:56.473
+So the goal is concrete.
+
+17
+00:00:56.473 --> 00:01:00.894
+By the end you can deploy the kit to a
+test environment and then to production,
+
+18
+00:01:00.894 --> 00:01:03.561
+with a change record, an
+approval at each write,
+
+19
+00:01:03.561 --> 00:01:08.053
+a smoke test whose expected result is
+written down before you run it, evidence
+
+20
+00:01:08.053 --> 00:01:12.335
+the security officer can check with a
+hash, and a rollback you've rehearsed.
+
+21
+00:01:12.335 --> 00:01:17.160
+And for every step you can say which of
+the guide's seven gates it moves forward.
+
+22
+00:01:20.910 --> 00:01:22.273
+Next, which cloud.
+
+23
+00:01:22.273 --> 00:01:26.585
+Every command reads the cloud from the
+settings file, one name per provider.
+
+24
+00:01:26.585 --> 00:01:31.949
+The estate this runbook writes for is
+Microsoft 365 G C C with commercial Azure,
+
+25
+00:01:31.949 --> 00:01:35.662
+so Graph and Resource Manager
+are the worldwide hosts,
+
+26
+00:01:35.662 --> 00:01:39.210
+as Microsoft Learn's national
+cloud page lists them.
+
+27
+00:01:39.210 --> 00:01:42.820
+Oracle Cloud takes its
+commercial or government realm,
+
+28
+00:01:42.820 --> 00:01:47.685
+AWS its commercial or GovCloud partition,
+and Google Cloud its global name.
+
+29
+00:01:47.685 --> 00:01:50.901
+As a side note, G C C High
+and the Defense Department
+
+30
+00:01:50.901 --> 00:01:54.510
+cloud sign in to Graph with
+their own environment names.
+
+31
+00:01:54.510 --> 00:01:59.100
+Any other name throws, and a session
+signed in elsewhere is refused.
+
+32
+00:02:02.850 --> 00:02:05.550
+The runbook doesn't decide
+what the gates decide.
+
+33
+00:02:05.550 --> 00:02:08.238
+It turns them on in an
+order where each step
+
+34
+00:02:08.238 --> 00:02:10.925
+can be undone before
+the next depends on it.
+
+35
+00:02:10.925 --> 00:02:13.300
+Reads first, one provider at a time.
+
+36
+00:02:13.300 --> 00:02:16.287
+Routing as a dry run
+before anything is sent.
+
+37
+00:02:16.287 --> 00:02:21.325
+The one write to a cloud, the Azure
+alert policy, only after the reads work.
+
+38
+00:02:21.325 --> 00:02:22.763
+And the schedule last.
+
+39
+00:02:22.763 --> 00:02:25.374
+That order is the
+workbook's design guidance.
+
+40
+00:02:25.374 --> 00:02:27.388
+Every collector call is a read.
+
+41
+00:02:27.388 --> 00:02:32.437
+The few writes run only with an approved
+plan hash, or with an explicit send flag.
+
+42
+00:02:32.437 --> 00:02:35.300
+And three things aren't
+in the kit: the schedule,
+
+43
+00:02:35.300 --> 00:02:38.210
+the sign-ins, and the ServiceNow endpoint.
+
+44
+00:02:41.960 --> 00:02:45.883
+One settings file per stage holds
+every value the commands need,
+
+45
+00:02:45.883 --> 00:02:48.622
+and the kit checks it
+before any command runs.
+
+46
+00:02:48.622 --> 00:02:52.210
+No secrets: a secret-like name
+with a value stops the run,
+
+47
+00:02:52.210 --> 00:02:57.073
+and the ServiceNow token is read at
+run time from an environment variable.
+
+48
+00:02:57.073 --> 00:03:00.085
+No placeholders left in
+an enabled provider.
+
+49
+00:03:00.085 --> 00:03:02.373
+The file must be the stage it says it is.
+
+50
+00:03:02.373 --> 00:03:05.834
+Each enabled provider names
+who receives its notices today.
+
+51
+00:03:05.834 --> 00:03:09.872
+And moving from test to production
+changes the file and nothing else.
+
+52
+00:03:09.872 --> 00:03:14.395
+To start, copy the template, fill it
+in, and check it: you get one line
+
+53
+00:03:14.395 --> 00:03:19.630
+with the stage, the change record,
+the output folder and the file's hash.
+
+54
+00:03:23.380 --> 00:03:25.728
+The runbook's scripts are PowerShell,
+
+55
+00:03:25.728 --> 00:03:28.455
+like the rest of the kit,
+and each has a dry run.
+
+56
+00:03:28.455 --> 00:03:31.430
+The pre-flight checks
+everything and changes nothing.
+
+57
+00:03:31.430 --> 00:03:35.559
+The alert policy script plans an
+assignment and a remediation,
+
+58
+00:03:35.559 --> 00:03:38.180
+and applies only with the approved hash.
+
+59
+00:03:38.180 --> 00:03:43.354
+The scheduled run collects every enabled
+provider, routes, writes the digest,
+
+60
+00:03:43.354 --> 00:03:45.295
+and records each as evidence,
+
+61
+00:03:45.295 --> 00:03:49.418
+and it sends only when both the
+settings and the command say so.
+
+62
+00:03:49.418 --> 00:03:53.184
+The rollback plans in reverse
+order: unregister the schedule,
+
+63
+00:03:53.184 --> 00:03:58.280
+delete the assignment, and list what the
+remediation created, for the change record.
+
+64
+00:03:58.280 --> 00:04:02.050
+Twenty-five tests cover
+them, all in fixture mode.
+
+65
+00:04:05.800 --> 00:04:09.375
+Before any tenant, run the whole
+thing on the kit's fixtures.
+
+66
+00:04:09.375 --> 00:04:13.115
+It takes the fictional test stage
+end to end, then the production
+
+67
+00:04:13.115 --> 00:04:16.925
+pre-flight with the test evidence,
+and nothing leaves the machine.
+
+68
+00:04:16.925 --> 00:04:22.162
+This output is real: the kit
+printed it on November 9, 2026.
+
+69
+00:04:22.162 --> 00:04:26.125
+The scheduled run collected
+fifteen notices from Azure,
+
+70
+00:04:26.125 --> 00:04:30.676
+Microsoft 365 and Oracle Cloud,
+routed eight new tasks as a dry run,
+
+71
+00:04:30.676 --> 00:04:34.975
+and wrote a digest with thirteen
+open and five needing action.
+
+72
+00:04:34.975 --> 00:04:38.347
+The stage check found every
+file matching its hash,
+
+73
+00:04:38.347 --> 00:04:41.800
+an unbroken chain, and a
+passing record for each step.
+
+74
+00:04:41.800 --> 00:04:45.170
+The production pre-flight
+passed twenty-three checks.
+
+75
+00:04:48.920 --> 00:04:50.649
+The pre-flight reads only,
+
+76
+00:04:50.649 --> 00:04:54.520
+and you run it before each stage,
+after the readers sign in.
+
+77
+00:04:54.520 --> 00:04:59.620
+It checks the settings and routing files,
+that each provider's tool is installed,
+
+78
+00:04:59.620 --> 00:05:03.174
+that each session is signed in
+to the right cloud, tenant,
+
+79
+00:05:03.174 --> 00:05:06.883
+partition or realm, and that
+each reader's first call works.
+
+80
+00:05:06.883 --> 00:05:11.107
+For AWS that includes the support
+plan the health service needs.
+
+81
+00:05:11.107 --> 00:05:14.839
+It checks that someone is named to
+receive each provider's notices,
+
+82
+00:05:14.839 --> 00:05:17.145
+and that the output folder can be written.
+
+83
+00:05:17.145 --> 00:05:20.380
+And in production only,
+the seventh check refuses
+
+84
+00:05:20.380 --> 00:05:23.830
+to go on unless the test
+stage's evidence passes.
+
+85
+00:05:27.580 --> 00:05:28.505
+Who does what?
+
+86
+00:05:28.505 --> 00:05:31.713
+The operator runs the
+commands and holds no write
+
+87
+00:05:31.713 --> 00:05:34.530
+role in any cloud except
+where a step says so.
+
+88
+00:05:34.530 --> 00:05:40.089
+Each provider has its own reader with
+the least privilege its chapter's
+
+89
+00:05:40.089 --> 00:05:45.743
+second lab grants: Azure, Microsoft 365,
+Oracle Cloud, AWS and Google Cloud.
+
+90
+00:05:45.743 --> 00:05:48.743
+The one write role in
+Azure belongs to a person,
+
+91
+00:05:48.743 --> 00:05:51.192
+activated only for the change window.
+
+92
+00:05:51.192 --> 00:05:52.866
+Approvals are written down:
+
+93
+00:05:52.866 --> 00:05:56.648
+the change advisory board approves
+each stage's change record,
+
+94
+00:05:56.648 --> 00:06:00.140
+a reviewer who isn't the operator
+approves each plan's hash,
+
+95
+00:06:00.140 --> 00:06:03.631
+and the security officer and
+the board approve promotion.
+
+96
+00:06:03.631 --> 00:06:06.690
+Turning on sending waits
+for the change manager.
+
+97
+00:06:10.440 --> 00:06:14.355
+Stage 1 starts by signing in
+each enabled provider's reader,
+
+98
+00:06:14.355 --> 00:06:16.752
+in the cloud the settings file names.
+
+99
+00:06:16.752 --> 00:06:22.614
+For a G C C tenant that's the commercial
+Azure cloud and Graph's global environment.
+
+100
+00:06:22.614 --> 00:06:25.011
+Connecting to Graph with a client ID,
+
+101
+00:06:25.011 --> 00:06:28.925
+a tenant ID and a certificate
+thumbprint is app-only access,
+
+102
+00:06:28.925 --> 00:06:33.877
+as Microsoft Learn describes it, the
+same sign-in the scheduled run will use.
+
+103
+00:06:33.877 --> 00:06:38.253
+The AWS caller's identity should
+start with the partition's prefix.
+
+104
+00:06:38.253 --> 00:06:41.315
+Then run the pre-flight
+and record it as evidence.
+
+105
+00:06:41.315 --> 00:06:46.090
+Expected: every check passes, and
+the first evidence record passes.
+
+106
+00:06:46.090 --> 00:06:50.580
+Fix any failure before going on:
+the detail names what's missing.
+
+107
+00:06:54.330 --> 00:06:57.243
+Step 1.3 is the staged enable.
+
+108
+00:06:57.243 --> 00:06:59.634
+Read each enabled provider on its own,
+
+109
+00:06:59.634 --> 00:07:04.572
+cross-check it against the provider's
+own command, which each chapter's second
+
+110
+00:07:04.572 --> 00:07:09.355
+lab gives, and record it as evidence,
+before the providers ever run together.
+
+111
+00:07:09.355 --> 00:07:13.818
+Start with the one the agency relies
+on most: that's design guidance.
+
+112
+00:07:13.818 --> 00:07:17.213
+Expected: each collection
+prints its provider's row,
+
+113
+00:07:17.213 --> 00:07:19.818
+and its count matches the provider's own.
+
+114
+00:07:19.818 --> 00:07:23.280
+An empty list is a valid
+result in a test environment.
+
+115
+00:07:23.280 --> 00:07:27.918
+But an empty list where the provider's
+own command finds notices is a failure.
+
+116
+00:07:27.918 --> 00:07:31.635
+Azure, Microsoft 365
+and Oracle Cloud first;
+
+117
+00:07:31.635 --> 00:07:35.400
+then AWS and Google Cloud where enabled.
+
+118
+00:07:39.150 --> 00:07:42.194
+Step 1.4 routes the full collection with
+
+119
+00:07:42.194 --> 00:07:45.238
+the agency's own routing
+file, as a dry run.
+
+120
+00:07:45.238 --> 00:07:48.838
+The service desk reads the
+payloads before anything is sent.
+
+121
+00:07:48.838 --> 00:07:54.226
+Expected: payloads written, nothing sent;
+every security advisory and retirement
+
+122
+00:07:54.226 --> 00:07:58.900
+has one, and each assignment group is
+one the change manager recognizes.
+
+123
+00:07:58.900 --> 00:08:01.624
+Step 1.5 is the smoke test: four checks,
+
+124
+00:08:01.624 --> 00:08:06.163
+each with its expected result
+written down before you run it.
+
+125
+00:08:06.163 --> 00:08:09.948
+Every provider read; a second
+routing writes nothing new;
+
+126
+00:08:09.948 --> 00:08:13.250
+every payload valid; and
+the evidence chain clean.
+
+127
+00:08:13.250 --> 00:08:18.760
+On the fixtures, the first routing created
+eight tasks and the second created none.
+
+128
+00:08:22.510 --> 00:08:25.673
+Step 1.6 is the one write to a cloud.
+
+129
+00:08:25.673 --> 00:08:29.984
+In the test settings, the alert policy's
+scope is the test subscription.
+
+130
+00:08:29.984 --> 00:08:33.385
+Read the real built-in
+definition first, then plan.
+
+131
+00:08:33.385 --> 00:08:36.822
+A reviewer who isn't the operator
+approves the plan's hash,
+
+132
+00:08:36.822 --> 00:08:40.185
+and the policy writer applies
+it with exactly that hash.
+
+133
+00:08:40.185 --> 00:08:44.310
+Expected: both steps applied
+and the remediation complete.
+
+134
+00:08:44.310 --> 00:08:49.159
+Microsoft Learn says the remediation
+creates a resource group holding the Service
+
+135
+00:08:49.159 --> 00:08:53.523
+Health alert rule, with an action group
+that emails the subscription owners.
+
+136
+00:08:53.523 --> 00:08:55.180
+Don't edit that rule by hand:
+
+137
+00:08:55.180 --> 00:08:59.070
+change the assignment's
+parameters and remediate again.
+
+138
+00:09:02.820 --> 00:09:06.608
+Step 1.7 puts the weekly
+run on a schedule.
+
+139
+00:09:06.608 --> 00:09:09.210
+The kit doesn't register
+a schedule itself,
+
+140
+00:09:09.210 --> 00:09:12.260
+so this uses Windows Task
+Scheduler's own cmdlets,
+
+141
+00:09:12.260 --> 00:09:17.244
+as Microsoft Learn documents them, with
+the task name the rollback later removes.
+
+142
+00:09:17.244 --> 00:09:21.398
+The scheduled run needs every
+reader's sign-in in its own session,
+
+143
+00:09:21.398 --> 00:09:25.003
+so you write a small sign-in
+script for the run-as account,
+
+144
+00:09:25.003 --> 00:09:28.608
+run it once by hand, then register
+it weekly, Monday at six.
+
+145
+00:09:28.608 --> 00:09:32.695
+Expected: collect, route
+and digest each pass.
+
+146
+00:09:32.695 --> 00:09:36.197
+One gap is stated plainly:
+how each other provider's
+
+147
+00:09:36.197 --> 00:09:40.033
+tool signs in unattended is
+not yet specified in the kit.
+
+148
+00:09:40.033 --> 00:09:42.670
+Then send the digest to the owners.
+
+149
+00:09:46.420 --> 00:09:50.952
+Step 1.8 checks the stage's evidence:
+every file matches its hash,
+
+150
+00:09:50.952 --> 00:09:56.095
+the chain is unbroken, and each step
+the stage needs has a passing record.
+
+151
+00:09:56.095 --> 00:09:59.070
+Step 1.9 rehearses the rollback.
+
+152
+00:09:59.070 --> 00:10:03.570
+Plan it, have the reviewer approve
+its hash, apply it and record it.
+
+153
+00:10:03.570 --> 00:10:07.852
+Expected: the schedule unregistered,
+the policy assignment deleted,
+
+154
+00:10:07.852 --> 00:10:12.135
+and the third step left manual: a
+list of what the remediation created,
+
+155
+00:10:12.135 --> 00:10:14.238
+for the change record to decide on,
+
+156
+00:10:14.238 --> 00:10:18.295
+because deleting the assignment
+doesn't remove those resources.
+
+157
+00:10:18.295 --> 00:10:22.558
+Nothing else is lost; the state,
+runs and evidence are kept.
+
+158
+00:10:22.558 --> 00:10:25.890
+If test keeps running,
+register the schedule again.
+
+159
+00:10:29.640 --> 00:10:35.215
+Before production comes the go/no-go, and
+you promote only when every row passes.
+
+160
+00:10:35.215 --> 00:10:37.340
+The test stage's evidence passes.
+
+161
+00:10:37.340 --> 00:10:40.478
+Every provider's collection
+matched its own command.
+
+162
+00:10:40.478 --> 00:10:42.015
+The smoke test passed.
+
+163
+00:10:42.015 --> 00:10:47.453
+The routing was reviewed, and every security
+advisory and retirement became a task.
+
+164
+00:10:47.453 --> 00:10:51.228
+The alert policy was applied,
+and its rollback rehearsed.
+
+165
+00:10:51.228 --> 00:10:53.714
+Every provider's notice
+contacts are named.
+
+166
+00:10:53.714 --> 00:10:57.276
+And the known gaps are recorded
+with the security officer:
+
+167
+00:10:57.276 --> 00:11:01.505
+Google's planned maintenance, any
+AWS account without a support plan,
+
+168
+00:11:01.505 --> 00:11:05.808
+any workload in an Assured Workloads
+FedRAMP or impact-level package,
+
+169
+00:11:05.808 --> 00:11:08.553
+and what the guide lists
+as not yet specified.
+
+170
+00:11:08.553 --> 00:11:12.300
+The security officer and the
+board record the decision.
+
+171
+00:11:16.050 --> 00:11:20.807
+Stage 2 is production, with the same
+commands and the production settings file:
+
+172
+00:11:20.807 --> 00:11:25.125
+sending off for now, and the alert
+policy scoped to the management group.
+
+173
+00:11:25.125 --> 00:11:27.855
+The pre-flight now includes
+the seventh check,
+
+174
+00:11:27.855 --> 00:11:31.662
+so production refuses to start
+unless the test evidence passes.
+
+175
+00:11:31.662 --> 00:11:35.787
+Enable the providers one at a time
+again, and keep routing a dry run for
+
+176
+00:11:35.787 --> 00:11:39.912
+the first week, while the service
+desk works from the payloads by hand.
+
+177
+00:11:39.912 --> 00:11:44.738
+Apply the alerts at the management group,
+schedule the weekly run, and smoke test.
+
+178
+00:11:44.738 --> 00:11:49.176
+Turn on sending only after that week,
+with the change manager's approval.
+
+179
+00:11:49.176 --> 00:11:51.012
+Each payload is sent once.
+
+180
+00:11:51.012 --> 00:11:54.100
+Then check the production
+evidence every week.
+
+181
+00:11:57.850 --> 00:12:02.231
+Each step ends with the federal
+requirements it supports, checked against
+
+182
+00:12:02.231 --> 00:12:06.612
+NIST's control catalog, and the FedRAMP
+key security indicator it aligns to.
+
+183
+00:12:06.612 --> 00:12:09.612
+Those indicators belong
+to the cloud providers.
+
+184
+00:12:09.612 --> 00:12:14.146
+The agency authorizes its own system
+and lines its evidence up with what its
+
+185
+00:12:14.146 --> 00:12:17.600
+providers report; it doesn't
+report the indicators itself,
+
+186
+00:12:17.600 --> 00:12:20.550
+and every alignment here
+is the program's reading.
+
+187
+00:12:20.550 --> 00:12:23.387
+And the evidence is
+produced, not only named.
+
+188
+00:12:23.387 --> 00:12:26.517
+Every script writes a run
+folder with a manifest,
+
+189
+00:12:26.517 --> 00:12:28.787
+and each is recorded in a hash chain.
+
+190
+00:12:28.787 --> 00:12:32.298
+Each stage's evidence folder
+is kept on agency storage,
+
+191
+00:12:32.298 --> 00:12:37.270
+with the change record, the plan hashes
+and the weekly digests beside it.
+
+192
+00:12:41.020 --> 00:12:44.033
+What breaks in a deployment,
+and what guards against it?
+
+193
+00:12:44.033 --> 00:12:48.038
+Production before test passed puts
+the problems in front of the people
+
+194
+00:12:48.038 --> 00:12:51.569
+who rely on the notices; the
+seventh pre-flight check refuses it.
+
+195
+00:12:51.569 --> 00:12:56.045
+Enabling every provider at once
+lets one failure hide the others.
+
+196
+00:12:56.045 --> 00:13:00.095
+Sending on day one puts duplicate
+or misrouted tasks in the queue.
+
+197
+00:13:00.095 --> 00:13:03.608
+A plan changed after approval
+is refused by the hash.
+
+198
+00:13:03.608 --> 00:13:06.645
+A secret in the settings
+file is refused outright.
+
+199
+00:13:06.645 --> 00:13:10.017
+A scheduled run that loses
+a sign-in stops silently,
+
+200
+00:13:10.017 --> 00:13:12.345
+so the weekly evidence check fails.
+
+201
+00:13:12.345 --> 00:13:18.040
+And remediation's resources are never
+deleted blindly: the change record decides.
+
+202
+00:13:21.790 --> 00:13:23.140
+Here's what done looks like.
+
+203
+00:13:23.140 --> 00:13:28.202
+One settings file per stage, with no
+secrets, filed with the change record.
+
+204
+00:13:28.202 --> 00:13:29.785
+The test pre-flight passed,
+
+205
+00:13:29.785 --> 00:13:33.453
+and every provider was enabled
+and cross-checked one at a time.
+
+206
+00:13:33.453 --> 00:13:34.991
+The smoke test passed.
+
+207
+00:13:34.991 --> 00:13:39.290
+Both plans were approved by hash,
+applied and recorded in test.
+
+208
+00:13:39.290 --> 00:13:41.007
+The test evidence passed,
+
+209
+00:13:41.007 --> 00:13:45.015
+and the security officer and
+the board recorded the go/no-go.
+
+210
+00:13:45.015 --> 00:13:49.523
+Production's pre-flight passed the
+seventh check, production routed as
+
+211
+00:13:49.523 --> 00:13:53.878
+a dry run for a week before sending,
+and its evidence passes every week.
+
+212
+00:13:53.878 --> 00:13:56.503
+That's the end of Building
+Provider Notices.
+
+213
+00:13:56.503 --> 00:13:57.670
+Thanks for watching.

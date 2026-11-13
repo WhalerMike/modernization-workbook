@@ -1,0 +1,967 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.692
+Welcome to Module 4 of the
+Provider Notices learning path:
+
+2
+00:00:03.692 --> 00:00:06.575
+Oracle Cloud Infrastructure announcements.
+
+3
+00:00:06.575 --> 00:00:10.174
+This is Gate 3 of the provider
+notices implementation guide,
+
+4
+00:00:10.174 --> 00:00:13.125
+with the third chapter of
+the developer workbook.
+
+5
+00:00:13.125 --> 00:00:16.948
+Oracle Cloud Infrastructure
+publishes maintenance, changes,
+
+6
+00:00:16.948 --> 00:00:21.800
+action-required notices and production
+events for a tenancy as announcements.
+
+7
+00:00:21.800 --> 00:00:24.296
+Updates to one announcement form a chain,
+
+8
+00:00:24.296 --> 00:00:28.700
+and a rescheduled window arrives as
+a new announcement in the same chain.
+
+9
+00:00:28.700 --> 00:00:32.189
+In this module you read the
+fixture tenancy's announcements,
+
+10
+00:00:32.189 --> 00:00:36.654
+see Oracle's own action-required date,
+and watch the second week's rescheduled
+
+11
+00:00:36.654 --> 00:00:39.166
+maintenance replace
+the first in its chain,
+
+12
+00:00:39.166 --> 00:00:41.538
+so it stays one notice
+with the new window.
+
+13
+00:00:41.538 --> 00:00:43.860
+It takes about forty-five minutes,
+
+14
+00:00:43.860 --> 00:00:47.176
+with a lab on fixtures and
+a lab for a test tenancy.
+
+15
+00:00:47.176 --> 00:00:53.170
+The code is illustrative: tested against
+fixtures, not run against a live tenancy.
+
+16
+00:00:56.920 --> 00:00:59.782
+Why does Oracle Cloud
+Infrastructure need its own gate?
+
+17
+00:00:59.782 --> 00:01:04.371
+Oracle emails service status announcements
+to the tenancy administrator.
+
+18
+00:01:04.371 --> 00:01:07.087
+Anyone else receives them
+only through managed
+
+19
+00:01:07.087 --> 00:01:10.008
+email preferences or
+announcement subscriptions.
+
+20
+00:01:10.008 --> 00:01:14.186
+So an agency whose HR platform runs
+on Oracle Cloud gets that platform's
+
+21
+00:01:14.186 --> 00:01:18.932
+maintenance and change notices at whatever
+address the tenancy was opened with.
+
+22
+00:01:18.932 --> 00:01:21.620
+That might be the mailbox of
+someone who has moved on.
+
+23
+00:01:21.620 --> 00:01:24.997
+Reading the tenancy's
+announcements here means platform
+
+24
+00:01:24.997 --> 00:01:28.445
+maintenance reaches the HR
+system's owners before it lands.
+
+25
+00:01:28.445 --> 00:01:30.733
+And there's a wrinkle
+the kit has to handle.
+
+26
+00:01:30.733 --> 00:01:33.170
+Updates to one announcement form a chain.
+
+27
+00:01:33.170 --> 00:01:35.900
+When Oracle reschedules
+a maintenance window,
+
+28
+00:01:35.900 --> 00:01:40.031
+the new time arrives as a new announcement
+in the same chain, and a reader
+
+29
+00:01:40.031 --> 00:01:44.590
+that keeps every announcement would
+hold the old date next to the new one.
+
+30
+00:01:48.340 --> 00:01:51.253
+Here's what you'll be able to
+do by the end of this module.
+
+31
+00:01:51.253 --> 00:01:54.384
+You'll write the one policy
+statement the reader needs,
+
+32
+00:01:54.384 --> 00:01:57.377
+and say what granting inspect
+instead of read loses.
+
+33
+00:01:57.377 --> 00:02:01.075
+You'll map Oracle's announcement
+types to the record's kinds,
+
+34
+00:02:01.075 --> 00:02:03.490
+with Oracle's own action-required date.
+
+35
+00:02:03.490 --> 00:02:07.753
+You'll explain why the kit keeps only
+the latest announcement in each chain.
+
+36
+00:02:07.753 --> 00:02:11.965
+And you'll name the realms the kit
+reads, and the one it refuses, and why.
+
+37
+00:02:11.965 --> 00:02:15.085
+You need Module 1, for the
+record and its action basis,
+
+38
+00:02:15.085 --> 00:02:19.728
+and the Oracle Cloud column of the guide's
+table comparing the five providers.
+
+39
+00:02:19.728 --> 00:02:23.890
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+40
+00:02:23.890 --> 00:02:25.310
+No tenancy.
+
+41
+00:02:29.060 --> 00:02:31.310
+Unit 1 is the guide's Step 3.
+
+42
+00:02:31.310 --> 00:02:33.696
+The reader needs one policy statement,
+
+43
+00:02:33.696 --> 00:02:38.319
+added by an I A M administrator to a
+policy in the tenancy's root compartment:
+
+44
+00:02:38.319 --> 00:02:41.898
+allow the reader's group to
+read announcements in tenancy.
+
+45
+00:02:41.898 --> 00:02:45.589
+Oracle's policy reference makes
+announcements a resource type,
+
+46
+00:02:45.589 --> 00:02:48.097
+and its own common policy
+reads the same way.
+
+47
+00:02:48.097 --> 00:02:49.309
+The verb matters.
+
+48
+00:02:49.309 --> 00:02:51.266
+Inspect lists summaries only,
+
+49
+00:02:51.266 --> 00:02:55.335
+without the affected resources
+that the details call returns.
+
+50
+00:02:55.335 --> 00:02:59.773
+With inspect, nothing can be routed
+as naming the agency's resources.
+
+51
+00:02:59.773 --> 00:03:04.228
+The kit's calls are Oracle's own: the
+list command, for the whole tenancy,
+
+52
+00:03:04.228 --> 00:03:08.919
+showing only the latest announcement
+in each chain; then the get command,
+
+53
+00:03:08.919 --> 00:03:12.985
+once per announcement, for its
+details and affected resources.
+
+54
+00:03:12.985 --> 00:03:17.368
+The command line is configured for
+the reader with O C I setup config,
+
+55
+00:03:17.368 --> 00:03:22.350
+in the tenancy's home region, and
+Oracle's list command is the cross-check.
+
+56
+00:03:26.100 --> 00:03:28.275
+Unit 2 reads the workbook chapter.
+
+57
+00:03:28.275 --> 00:03:31.101
+Oracle has several
+announcement types that mean
+
+58
+00:03:31.101 --> 00:03:33.375
+the same kind of news,
+so the kit maps them.
+
+59
+00:03:33.375 --> 00:03:36.275
+A type that contains
+maintenance is maintenance.
+
+60
+00:03:36.275 --> 00:03:40.043
+A type that contains change,
+or action required itself,
+
+61
+00:03:40.043 --> 00:03:44.062
+is a change, and action required
+is always Oracle's own flag.
+
+62
+00:03:44.062 --> 00:03:47.024
+A production event
+notification is an incident.
+
+63
+00:03:47.024 --> 00:03:50.400
+Action recommended and
+information are advisories.
+
+64
+00:03:50.400 --> 00:03:54.588
+Oracle puts the window and the
+deadline in two generic time fields,
+
+65
+00:03:54.588 --> 00:03:57.025
+each with a type that says what it means.
+
+66
+00:03:57.025 --> 00:04:00.396
+A start time, or a new start
+time, starts the window;
+
+67
+00:04:00.396 --> 00:04:05.537
+the end-time types end it; and action
+required by is Oracle's own action date.
+
+68
+00:04:05.537 --> 00:04:08.226
+So for Oracle Cloud,
+no kit rule is needed:
+
+69
+00:04:08.226 --> 00:04:13.524
+the provider says when action is required,
+and the record's basis says provider.
+
+70
+00:04:13.524 --> 00:04:16.516
+An inactive lifecycle
+state closes the notice,
+
+71
+00:04:16.516 --> 00:04:21.240
+and the source link is the announcement
+on Oracle's own regional host.
+
+72
+00:04:24.990 --> 00:04:26.678
+Two more things the kit adds.
+
+73
+00:04:26.678 --> 00:04:28.153
+First, chains.
+
+74
+00:04:28.153 --> 00:04:32.290
+The list call asks for only the
+latest announcement in each chain,
+
+75
+00:04:32.290 --> 00:04:36.964
+and the kit keeps only the latest by its
+update time in each chain I D as well.
+
+76
+00:04:36.964 --> 00:04:40.949
+The record's I D is the chain's, so
+when Oracle reschedules a window,
+
+77
+00:04:40.949 --> 00:04:43.806
+the notice keeps its I D
+and gets the new window,
+
+78
+00:04:43.806 --> 00:04:47.715
+and the router updates its task
+instead of opening a second one.
+
+79
+00:04:47.715 --> 00:04:52.188
+The command line's output key casing
+isn't shown in Oracle's reference,
+
+80
+00:04:52.188 --> 00:04:57.053
+so the kit accepts both styles; which one
+the C L I prints is not yet specified.
+
+81
+00:04:57.053 --> 00:04:58.602
+Second, realms.
+
+82
+00:04:58.602 --> 00:05:02.553
+A government tenancy read in the
+commercial realm returns nothing.
+
+83
+00:05:02.553 --> 00:05:07.095
+The kit knows the commercial realm
+and Oracle's U S Government Cloud,
+
+84
+00:05:07.095 --> 00:05:11.152
+whose Announcements endpoints
+are in U S Langley and U S Luke.
+
+85
+00:05:11.152 --> 00:05:14.021
+As a side note, Oracle
+lists that cloud with
+
+86
+00:05:14.021 --> 00:05:17.627
+FedRAMP High and DISA Impact
+Level 4 authorizations.
+
+87
+00:05:17.627 --> 00:05:22.886
+The third realm is refused, because its
+Announcements endpoint is not yet specified,
+
+88
+00:05:22.886 --> 00:05:26.030
+and a region outside the
+realm is refused too.
+
+89
+00:05:29.780 --> 00:05:30.505
+Try it.
+
+90
+00:05:30.505 --> 00:05:35.561
+Lab 1 runs in the provider notices
+folder of the examples, in PowerShell 7,
+
+91
+00:05:35.561 --> 00:05:40.955
+against a fictional tenancy in the
+commercial realm, in the U S Ashburn region.
+
+92
+00:05:40.955 --> 00:05:42.743
+Nothing signs in to anything.
+
+93
+00:05:42.743 --> 00:05:45.392
+Step one lists what Oracle Cloud needs.
+
+94
+00:05:45.392 --> 00:05:46.380
+Two calls.
+
+95
+00:05:46.380 --> 00:05:49.330
+The list call needs only
+inspect announcements.
+
+96
+00:05:49.330 --> 00:05:54.142
+The get call, the details with their affected
+resources, needs read announcements.
+
+97
+00:05:54.142 --> 00:05:55.626
+So the policy grants read,
+
+98
+00:05:55.626 --> 00:05:59.581
+because inspect alone would give
+summaries without the resources.
+
+99
+00:05:59.581 --> 00:06:01.167
+Both are marked verified.
+
+100
+00:06:01.167 --> 00:06:04.181
+Step two asks for each
+realm the kit knows.
+
+101
+00:06:04.181 --> 00:06:07.422
+The commercial realm, on
+oracle cloud dot com.
+
+102
+00:06:07.422 --> 00:06:12.242
+The government realm, on oracle gov
+cloud dot com, in its two regions.
+
+103
+00:06:12.242 --> 00:06:17.595
+And the third realm is refused, with the
+reason: its Announcements endpoint is
+
+104
+00:06:17.595 --> 00:06:23.380
+not yet specified, because Oracle's page
+wasn't readable on November ninth, 2026.
+
+105
+00:06:27.130 --> 00:06:31.591
+Step three collects Oracle
+Cloud from the day-one fixtures,
+
+106
+00:06:31.591 --> 00:06:36.780
+as of November ninth, 2026: four
+notices, three open, one needing action.
+
+107
+00:06:36.780 --> 00:06:40.817
+One each of advisory, change,
+incident and maintenance.
+
+108
+00:06:40.817 --> 00:06:42.818
+Step four reads the records.
+
+109
+00:06:42.818 --> 00:06:46.253
+Chain example one is
+maintenance, starting November
+
+110
+00:06:46.253 --> 00:06:50.156
+twenty-second at four in the morning,
+U T C, on a database system.
+
+111
+00:06:50.156 --> 00:06:54.286
+Because the details call named that
+resource, Module 7's routing can
+
+112
+00:06:54.286 --> 00:06:58.343
+ask for a contingency plan review
+for the system that depends on it.
+
+113
+00:06:58.343 --> 00:07:03.605
+Chain example two is a change, action
+required by December fifteenth,
+
+114
+00:07:03.605 --> 00:07:08.129
+2026, by Oracle's own action
+required type, on a load balancer.
+
+115
+00:07:08.129 --> 00:07:10.617
+That date is Oracle's, not the kit's.
+
+116
+00:07:10.617 --> 00:07:16.720
+Chain example three is an advisory, and the
+incident, chain example four, is closed.
+
+117
+00:07:20.470 --> 00:07:24.370
+Step five collects the second
+week, as of November sixteenth.
+
+118
+00:07:24.370 --> 00:07:25.908
+Still four notices.
+
+119
+00:07:25.908 --> 00:07:30.596
+But chain example one, the maintenance,
+now runs on November twenty-ninth,
+
+120
+00:07:30.596 --> 00:07:32.940
+from four to eight in the morning, U T C.
+
+121
+00:07:32.940 --> 00:07:38.020
+Oracle rescheduled it, and the chain's
+latest announcement replaced the first.
+
+122
+00:07:38.020 --> 00:07:42.000
+It's one notice with the new
+window, so Module 7 updates its task
+
+123
+00:07:42.000 --> 00:07:46.370
+instead of opening a second one, and
+nobody prepares for the old date.
+
+124
+00:07:46.370 --> 00:07:49.982
+Step six builds the live list
+command without running it.
+
+125
+00:07:49.982 --> 00:07:54.728
+It's Oracle's own list command for
+the fictional tenancy, with all pages,
+
+126
+00:07:54.728 --> 00:07:59.720
+only the latest in each chain, the region
+from the settings, and J SON output.
+
+127
+00:07:59.720 --> 00:08:02.207
+A reviewer can see exactly what would run.
+
+128
+00:08:02.207 --> 00:08:06.733
+Step seven runs this chapter's
+tests: nine pass, none fail.
+
+129
+00:08:06.733 --> 00:08:08.940
+Then delete the output folder.
+
+130
+00:08:12.690 --> 00:08:15.349
+Lab 2 runs the same
+read in an Oracle Cloud
+
+131
+00:08:15.349 --> 00:08:18.477
+Infrastructure test
+tenancy, never production.
+
+132
+00:08:18.477 --> 00:08:23.178
+You need an I A M administrator, and
+a test I A M group for the reader.
+
+133
+00:08:23.178 --> 00:08:26.170
+The administrator adds
+the read announcements in
+
+134
+00:08:26.170 --> 00:08:29.377
+tenancy statement to a policy
+in the root compartment.
+
+135
+00:08:29.377 --> 00:08:31.956
+Then configure the command
+line as the reader,
+
+136
+00:08:31.956 --> 00:08:35.891
+and cross-check Oracle's own list
+command against the kit's collection.
+
+137
+00:08:35.891 --> 00:08:38.211
+Record one open item while you're there:
+
+138
+00:08:38.211 --> 00:08:42.853
+the key casing the command line printed,
+which Oracle's reference doesn't show.
+
+139
+00:08:42.853 --> 00:08:47.402
+The kit accepts both, but the verification
+log should say which one is real.
+
+140
+00:08:47.402 --> 00:08:51.082
+To back it out, the I A M
+administrator deletes the policy,
+
+141
+00:08:51.082 --> 00:08:55.241
+and you delete the run, because
+it names the tenancy's resources.
+
+142
+00:08:55.241 --> 00:08:57.390
+The authors haven't run Lab 2.
+
+143
+00:08:57.390 --> 00:09:00.890
+The workbook's Chapter 3
+has the exact commands.
+
+144
+00:09:04.640 --> 00:09:07.252
+The workbook chapter lists five dangers.
+
+145
+00:09:07.252 --> 00:09:09.587
+If inspect is granted instead of read,
+
+146
+00:09:09.587 --> 00:09:13.050
+the reader gets summaries
+without affected resources,
+
+147
+00:09:13.050 --> 00:09:16.287
+and nothing routes as naming
+the agency's resources;
+
+148
+00:09:16.287 --> 00:09:20.353
+an empty resources field on every
+maintenance notice is the sign.
+
+149
+00:09:20.353 --> 00:09:24.281
+If every announcement in a
+chain is read as its own notice,
+
+150
+00:09:24.281 --> 00:09:29.715
+the old window lingers next to the new one;
+the kit keeps the latest in each chain.
+
+151
+00:09:29.715 --> 00:09:33.948
+A government tenancy read in the
+commercial realm returns nothing;
+
+152
+00:09:33.948 --> 00:09:37.803
+the settings name the realm, and
+a region outside it is refused.
+
+153
+00:09:37.803 --> 00:09:41.635
+If the HR platform's maintenance
+is seen only by the help desk,
+
+154
+00:09:41.635 --> 00:09:46.234
+the HR system's owners learn of it after
+it lands; the design guidance is to
+
+155
+00:09:46.234 --> 00:09:51.064
+route Oracle maintenance that names the
+HR system's resources to its owners.
+
+156
+00:09:51.064 --> 00:09:55.052
+And the announcement email can be
+spoofed and isn't in the evidence.
+
+157
+00:09:55.052 --> 00:09:58.343
+It's the interim path only,
+filed with the change record,
+
+158
+00:09:58.343 --> 00:10:02.300
+with the recipients named in
+the settings' notice contacts.
+
+159
+00:10:06.050 --> 00:10:07.437
+The federal requirement.
+
+160
+00:10:07.437 --> 00:10:12.317
+Gate 3 supports NIST special
+publication eight hundred
+
+161
+00:10:12.317 --> 00:10:15.950
+fifty-three S A nine, part
+c, and S I five, part a.
+
+162
+00:10:15.950 --> 00:10:20.976
+And when maintenance names the agency's
+resources, it supports C P two, part e:
+
+163
+00:10:20.976 --> 00:10:24.057
+updating the contingency
+plan for changes to
+
+164
+00:10:24.057 --> 00:10:26.975
+the system or its
+environment of operation.
+
+165
+00:10:26.975 --> 00:10:30.787
+The evidence is the permission
+list and the policy statement;
+
+166
+00:10:30.787 --> 00:10:35.121
+the raw Oracle response, with the
+list and each announcement's details,
+
+167
+00:10:35.121 --> 00:10:36.915
+the notices and the manifest,
+
+168
+00:10:36.915 --> 00:10:40.726
+every chain's latest announcement
+read in the tenancy's realm;
+
+169
+00:10:40.726 --> 00:10:43.641
+maintenance that names
+the agency's resources,
+
+170
+00:10:43.641 --> 00:10:47.079
+so Module 7's routing asks
+for a contingency plan review;
+
+171
+00:10:47.079 --> 00:10:51.638
+and a rescheduled window that replaces
+the original and stays one notice.
+
+172
+00:10:51.638 --> 00:10:54.450
+The gate's output is
+evidence for these controls;
+
+173
+00:10:54.450 --> 00:10:58.738
+your organization still sets their
+parameters, and the assessor decides.
+
+174
+00:10:58.738 --> 00:11:02.774
+K S I's are FedRAMP twenty X indicators
+for cloud service providers,
+
+175
+00:11:02.774 --> 00:11:07.090
+and which file supports which
+indicator is the program's mapping.
+
+176
+00:11:10.840 --> 00:11:12.815
+Check yourself with two questions.
+
+177
+00:11:12.815 --> 00:11:16.377
+First: what does granting
+inspect instead of read lose?
+
+178
+00:11:16.377 --> 00:11:17.603
+The answer is b.
+
+179
+00:11:17.603 --> 00:11:20.052
+The details call's affected resources.
+
+180
+00:11:20.052 --> 00:11:24.635
+Inspect lists summaries only, so
+no notice can be routed as naming
+
+181
+00:11:24.635 --> 00:11:28.964
+the agency's resources, and no
+contingency review is asked for.
+
+182
+00:11:28.964 --> 00:11:32.253
+Second: Oracle reschedules
+a maintenance window.
+
+183
+00:11:32.253 --> 00:11:34.652
+How many notices does the kit hold for it?
+
+184
+00:11:34.652 --> 00:11:40.091
+The answer is b, one: the latest announcement
+in the chain, with the new window.
+
+185
+00:11:40.091 --> 00:11:44.902
+The record's I D is the chain's, so
+the task is updated, not doubled.
+
+186
+00:11:44.902 --> 00:11:47.329
+The module page has three more questions,
+
+187
+00:11:47.329 --> 00:11:50.190
+each linked to the
+section that answers it.
+
+188
+00:11:53.940 --> 00:11:54.765
+To sum up.
+
+189
+00:11:54.765 --> 00:11:57.208
+You read the reader's
+one policy statement,
+
+190
+00:11:57.208 --> 00:12:00.070
+saw the realms the kit reads
+and the one it refuses,
+
+191
+00:12:00.070 --> 00:12:03.560
+collected four announcements
+with Oracle's own action date,
+
+192
+00:12:03.560 --> 00:12:07.190
+and watched a rescheduled
+maintenance window stay one notice.
+
+193
+00:12:07.190 --> 00:12:11.828
+The evidence an ISSO keeps for
+Gate 3 is the raw Oracle response,
+
+194
+00:12:11.828 --> 00:12:17.270
+with the list and each announcement's
+details, the notices as JSON and as
+
+195
+00:12:17.270 --> 00:12:22.265
+a spreadsheet file, and the manifest,
+all dated; and in Lab 2, the policy.
+
+196
+00:12:22.265 --> 00:12:26.201
+For a system that runs on Oracle
+Cloud, such as an HR platform,
+
+197
+00:12:26.201 --> 00:12:31.503
+route maintenance that names its resources
+to its owners, which Module 7 builds.
+
+198
+00:12:31.503 --> 00:12:34.577
+Before you ship, work through
+the chapter's checklist.
+
+199
+00:12:34.577 --> 00:12:38.878
+Next is Module 5: AWS Health
+and the support plan.
+
+200
+00:12:38.878 --> 00:12:42.223
+That's Gate 4, with the
+workbook's fourth chapter:
+
+201
+00:12:42.223 --> 00:12:45.900
+three read actions, and a
+support plan the A P I needs.
