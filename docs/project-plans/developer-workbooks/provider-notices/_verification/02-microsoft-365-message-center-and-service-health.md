@@ -8,9 +8,9 @@ Lab 1 was run with `python scripts/kit_captures.py pn` on Windows 11, PowerShell
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | `ServiceMessage.Read.All`, `ServiceHealth.Read.All`; admin consent only; a delegated user needs an admin role; national clouds L4 and L5 | Start with; Verified facts | carried (guide row 12) | `pn02-overview` |
+| 1 | `ServiceMessage.Read.All`, `ServiceHealth.Read.All`; admin consent only; a delegated user needs an admin role | Start with; Verified facts | carried (guide row 12) | `pn02-overview` |
 | 2 | List messages, issues, health overviews on v1.0 | Start with; The code | carried (guide row 12) | `pn02-messages`, `pn02-issues` |
-| 3 | GCC on `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | Start with; Lab 1 step 2 | carried (guide rows 12 and 13) | `pn02-deployments` |
+| 3 | GCC on `graph.microsoft.com` | Start with; Lab 1 step 2 | carried (guide rows 12 and 13) | `pn02-deployments` |
 | 4 | Data privacy messages: Global Administrator, Message Center Privacy Reader | Start with; Dangers | carried (guide row 15) | `pn02-roles` |
 | 5 | `Get-MgServiceAnnouncementMessage` in `Microsoft.Graph.Devices.ServiceAnnouncement` | Lab 2 step 2 | carried (guide row 16); `-All`, the SDK's paging switch, not re-read | `pn02-messages` |
 | 6 | Kind mapping, action basis, case-insensitive enums, host guard | The code; gap table | read in the kit's source and tests | kit |

@@ -50,7 +50,7 @@ A review set up by hand drifts. A reviewer leaves, a duration is shortened, auto
 
 Access reviews are a feature of Microsoft Entra ID Governance.[^pa07-overview] Learn's licensing page asks for Microsoft Entra ID Governance for every member user who reviews access or has it reviewed, with some capabilities still working on Microsoft Entra ID P2, and reviews of PIM for Groups (preview) need Governance.[^pa07-licensing] Learn's tutorial asks only for P2 or Governance.[^pa07-tutorial] The program follows the stricter page: budget Governance for every reviewer and every reviewed privileged user. Reviews of service principals also need Microsoft Entra Workload ID Premium.[^pa07-pim-review]
 
-Microsoft Entra ID Governance is available in GCC, GCC High and DoD.[^pa07-availability] The Graph access reviews APIs used here list the global service, US Government L4 and US Government L5 (DoD).[^pa07-create] [^pa07-decisions] Microsoft 365 GCC uses the worldwide endpoints, `login.microsoftonline.com` and `graph.microsoft.com`, and this program's Azure is commercial, `management.azure.com`. GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa07-deployments] The code takes the cloud by name and has no default. Azure role reviews go through a Resource Manager API that Learn publishes only in preview versions; whether it is available in Azure Government wasn't confirmed (research gaps, row 72).[^pa07-arm-template]
+Microsoft Entra ID Governance is available in GCC.[^pa07-availability] The Graph access reviews APIs used here list the global service, which GCC uses.[^pa07-create] [^pa07-decisions] Microsoft 365 GCC uses the worldwide endpoints, `login.microsoftonline.com` and `graph.microsoft.com`, and this program's Azure is commercial, `management.azure.com`.[^pa07-deployments] The code takes the cloud by name and has no default. Azure role reviews go through a Resource Manager API that Learn publishes only in preview versions.[^pa07-arm-template]
 
 ## Start with Microsoft's sample
 
@@ -71,7 +71,6 @@ Each row is pinned by a test in the Chapter 07 sample block of `tests/AccessRevi
 | Learn's sample, as published | Why it matters | What `examples/privileged-access` adds |
 |---|---|---|
 | One role per review: a `principalResourceMembershipsScope` over `/users` and `/groups` and one `roleDefinitions/{id}` resource, active and eligible | — | Kept, with the `/groups` principal scope left out: a role series reviews users, and each group that holds the role has its own membership series (the owner's decision) |
-| Requests on a hard-coded `https://graph.microsoft.com` | GCC High and DoD use other hosts | The cloud table from Chapter 01, by name, no default |
 | A POST each run, with no read first; run twice, the fake holds two series of the same name | Reviewers get two reviews, and evidence splits | A dry run that reads first and says Create, Update, Replace or NoChange; two series with one name stop `-Apply` (PA-AR-12) |
 | One user as reviewer, no fallback reviewer | One person leaving stops the review | Reviewer groups, a fallback always (PA-AR-01, PA-AR-02) |
 | No default decision and no auto-apply; Step 5 applies decisions by hand | Silence keeps privilege, and a denial changes nothing until someone applies it | Auto-apply and "Deny" on silence, the program's setting (PA-AR-05, PA-AR-07), with one exception for the emergency accounts (PA-AR-06) |
@@ -532,23 +531,23 @@ Remove-Item -Recurse -Force out/t-*
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Create a definition | `POST /identityGovernance/accessReviews/definitions`; `AccessReview.ReadWrite.All`; `descriptionForReviewers` required, up to 256 characters in email | Global, L4, L5 | v1.0 | [^pa07-create] |
-| Update a definition | `PUT`, the full object; future instances only; reviewers only if individual users; no scope in the updatable list | Global, L4, L5 | v1.0 | [^pa07-update] |
-| List definitions, instances, decisions | `AccessReview.Read.All`; role reviews readable by Security Reader, Identity Governance Administrator, Privileged Role Administrator, Security Administrator; default page 100, `$skip` and `$top` | Global, L4, L5 | v1.0 | [^pa07-list] [^pa07-instances] [^pa07-decisions] |
-| `$filter` on definitions | `contains` on the scope query; not supported on `principalResourceMembershipsScope` | — | v1.0 | [^pa07-list] |
-| Role review scopes | Users and groups, active and eligible (tutorial); eligible-only and active-only for users (Example 12.2); group transitive members (Example 1) | — | v1.0 | [^pa07-tutorial] [^pa07-scope] |
-| Reviewers | Empty is a self-review; group members as reviewers (`/groups/{id}/transitiveMembers`) | — | v1.0 | [^pa07-reviewers] |
-| Settings | Auto-apply defaults to `false`; default decision `Approve`, `Deny` or `Recommendation`; caution that both together can revoke all access; recurrence supports `type`, `interval`, `dayOfMonth` only | — | v1.0 | [^pa07-settings] |
-| Decision item | `decision`: Approve, Deny, NotReviewed, DontKnow; `applyResult`: New, AppliedSuccessfully, AppliedWithUnknownFailure, AppliedSuccessfullyButObjectNotFound, ApplyNotSupported | — | v1.0 | [^pa07-decision-item] |
-| PIM role reviews | One review per role; monthly duration at most 27 days; Entra role reviews need at least Privileged Role Administrator, Azure ones Owner or User Access Administrator; groups on Entra roles shown unexpanded; Azure groups expanded but denied members stay in the group | — | GA | [^pa07-pim-review] |
-| PIM for Groups reviews | Eligible and active members; owners as reviewers need a fallback | Not stated | Preview | [^pa07-pim-groups] |
-| Azure role review definitions | `Microsoft.Authorization/accessReviewScheduleDefinitions`, PUT by ID at a subscription; reviewers users or service principals; scope `assignmentState` eligible or active | Not confirmed | Preview (`2021-12-01-preview`; every listed version is a preview) | [^pa07-arm-put] [^pa07-arm-list] [^pa07-arm-template] |
-| Azure instances and decisions | List at the definition and instance; decisions have `applyResult` and `reviewedBy.principalId` | Not confirmed | Preview | [^pa07-arm-instances] [^pa07-arm-decisions] |
-| Licenses | ID Governance for member users who review or are reviewed; some capabilities on P2; PIM for Groups reviews need Governance; service principal reviews also need Workload ID Premium | ID Governance in GCC, GCC High, DoD | — | [^pa07-licensing] [^pa07-pim-review] [^pa07-availability] |
-| Graph hosts | `graph.microsoft.com` (global and GCC), `graph.microsoft.us` (GCC High), `dod-graph.microsoft.us` (DoD) | — | — | [^pa07-deployments] |
-| Azure roles | Reader holds `*/read`; User Access Administrator holds `Microsoft.Authorization/*` | — | — | [^pa07-roles-general] [^pa07-roles-privileged] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Create a definition | `POST /identityGovernance/accessReviews/definitions`; `AccessReview.ReadWrite.All`; `descriptionForReviewers` required, up to 256 characters in email | v1.0 | [^pa07-create] |
+| Update a definition | `PUT`, the full object; future instances only; reviewers only if individual users; no scope in the updatable list | v1.0 | [^pa07-update] |
+| List definitions, instances, decisions | `AccessReview.Read.All`; role reviews readable by Security Reader, Identity Governance Administrator, Privileged Role Administrator, Security Administrator; default page 100, `$skip` and `$top` | v1.0 | [^pa07-list] [^pa07-instances] [^pa07-decisions] |
+| `$filter` on definitions | `contains` on the scope query; not supported on `principalResourceMembershipsScope` | v1.0 | [^pa07-list] |
+| Role review scopes | Users and groups, active and eligible (tutorial); eligible-only and active-only for users (Example 12.2); group transitive members (Example 1) | v1.0 | [^pa07-tutorial] [^pa07-scope] |
+| Reviewers | Empty is a self-review; group members as reviewers (`/groups/{id}/transitiveMembers`) | v1.0 | [^pa07-reviewers] |
+| Settings | Auto-apply defaults to `false`; default decision `Approve`, `Deny` or `Recommendation`; caution that both together can revoke all access; recurrence supports `type`, `interval`, `dayOfMonth` only | v1.0 | [^pa07-settings] |
+| Decision item | `decision`: Approve, Deny, NotReviewed, DontKnow; `applyResult`: New, AppliedSuccessfully, AppliedWithUnknownFailure, AppliedSuccessfullyButObjectNotFound, ApplyNotSupported | v1.0 | [^pa07-decision-item] |
+| PIM role reviews | One review per role; monthly duration at most 27 days; Entra role reviews need at least Privileged Role Administrator, Azure ones Owner or User Access Administrator; groups on Entra roles shown unexpanded; Azure groups expanded but denied members stay in the group | GA | [^pa07-pim-review] |
+| PIM for Groups reviews | Eligible and active members; owners as reviewers need a fallback | Preview | [^pa07-pim-groups] |
+| Azure role review definitions | `Microsoft.Authorization/accessReviewScheduleDefinitions`, PUT by ID at a subscription; reviewers users or service principals; scope `assignmentState` eligible or active | Preview (`2021-12-01-preview`; every listed version is a preview) | [^pa07-arm-put] [^pa07-arm-list] [^pa07-arm-template] |
+| Azure instances and decisions | List at the definition and instance; decisions have `applyResult` and `reviewedBy.principalId` | Preview | [^pa07-arm-instances] [^pa07-arm-decisions] |
+| Licenses | ID Governance for member users who review or are reviewed; some capabilities on P2; PIM for Groups reviews need Governance; service principal reviews also need Workload ID Premium | — | [^pa07-licensing] [^pa07-pim-review] [^pa07-availability] |
+| Graph hosts | `graph.microsoft.com` (global and GCC) | — | [^pa07-deployments] |
+| Azure roles | Reader holds `*/read`; User Access Administrator holds `Microsoft.Authorization/*` | — | [^pa07-roles-general] [^pa07-roles-privileged] |
 
 Four places where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 

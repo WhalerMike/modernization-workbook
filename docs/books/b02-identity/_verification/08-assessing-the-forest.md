@@ -240,3 +240,19 @@ Microsoft Learn pages the coverage map listed as covered but uncited, read on No
 | L2 | Functional levels tell you which DC operating systems the forest accepts and which features are available | Functional levels | verified (Learn read Nov 9, 2026) | c08-lower-fl <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/lower-domain-forest-functional-levels> |
 | L3 | Sites, site links and subnets make up the replication topology and the subnet-to-site map | Sites, site links and subnets | verified (Learn read Nov 9, 2026) | c08-replconcepts <https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/replication/active-directory-replication-concepts> |
 | L4 | Services running as LocalSystem act on the network as the computer account | Service accounts | verified (Learn read Nov 9, 2026) | c08-computer-svc <https://learn.microsoft.com/entra/architecture/service-accounts-computer> |
+
+## Revision 2026-11-13 — 32k pages and running old and new domain controllers side by side
+
+Added with Mike's approval, Nov 13, 2026. All Learn pages read Nov 13, 2026. Line 146 ("a domain at the Windows Server 2016 functional level") was checked and left as is: the functional-levels page states the requirement for the existing domain.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| W1 | 32k pages: about 2.6 times as many values (around 3,200); forest-wide; irreversible; WS2025 FL and a 32k-capable database on every DC; in-place upgrades stay 8k; older 8k backups unusable without a complete authoritative forest recovery | 32k decision | verified | 32k pages optional feature |
+| W2 | `msDS-JetDBPageSize` on nTDSDSA: 32768, 8192, empty for 2022 and earlier; prerequisites include tested backup software and backups of GC and FSMO holders | 32k decision | verified | Enable 32k pages optional feature |
+| W3 | WS2025 DCs coexist with 2019/2022 DCs; FL stays 2016 until the last older DC is gone; dMSA needs a reachable WS2025 DC, not the FL | Side by side | verified (FL: functional levels page; dMSA: dMSA FAQ). "The program doesn't plan to raise it" is design guidance | c08-fl; c08-dmsa-faq |
+| W4 | WS2025 KDC issues no RC4 TGTs; confidential attributes only over encrypted connections; legacy remote password-change methods blocked; default machine password refused | Side by side | verified | What's new in Windows Server 2025 |
+| W5 | In-place upgrade to WS2025 with no LDAP signing policy set requires signing | Side by side | verified | LDAP signing overview |
+| W6 | Trusts support RC4 not AES by default; turn on AES both sides | Side by side | verified as Microsoft's statement (see Chapter 03 log R9 for the open question) | Kerberos unsupported etype error |
+| W7 | DC locator: clients prefer own-site DCs, fall back to site-less records; `DnsAvoidRegisterRecords` mnemonics; `LdapSrvPriority` applies to every record the DC registers | Side by side | verified (KB 306602, updated Feb 2026) | Optimize domain controller location |
+| W8 | Discovery-only limits: direct naming, replication partners, PDC emulator receiving password changes | Side by side | restated-as-design (follows from the locator design; the PDC behavior is standard AD and not re-read here) | — |
+| W9 | dMSA table row: needs a WS2025 DC and WS2025 hosts; no functional level | Service accounts | corrected (was "Windows Server 2025 domains only") | dMSA FAQ; Setting up dMSA |

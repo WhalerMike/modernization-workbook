@@ -64,7 +64,7 @@ The schedules a request produces are read back from `roleEligibilitySchedules` a
 
 ### Which cloud, for these calls
 
-The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC uses the worldwide endpoints: sign-in at `login.microsoftonline.com`, Graph at `graph.microsoft.com`, and Resource Manager at `management.azure.com`, which is the host for every call in this chapter. GCC High and DoD use their own Graph hosts, and their Azure subscriptions are in Azure Government, whose Resource Manager host is `management.usgovcloudapi.net`.[^pa06-deployments] [^pa06-compare] Microsoft Entra ID P1 and P2 for GCC are hosted in the Azure commercial environment,[^pa06-ems-gcc] and Microsoft Entra ID Governance, which PIM needs, is available in GCC, GCC High and DoD.[^pa06-availability] No Learn page read for this chapter states the PIM Resource Manager API's availability in Azure Government in so many words (research gaps, row 65). The code takes the cloud as a required parameter, with no default, uses Chapter 01's cloud table, and refuses a desired-state file written for another cloud.
+The target estate is Microsoft 365 GCC (Moderate) with commercial Azure. GCC uses the worldwide endpoints: sign-in at `login.microsoftonline.com`, Graph at `graph.microsoft.com`, and Resource Manager at `management.azure.com`, which is the host for every call in this chapter.[^pa06-deployments] Microsoft Entra ID P1 and P2 for GCC are hosted in the Azure commercial environment,[^pa06-ems-gcc] and Microsoft Entra ID Governance, which PIM needs, is available in GCC.[^pa06-availability] The code takes the cloud as a required parameter, with no default, uses Chapter 01's cloud table, and refuses a desired-state file written for another cloud.
 
 ## Start with Microsoft's sample
 
@@ -95,7 +95,6 @@ Replaying the examples, and reading them beside the walkthroughs, shows what the
 | Every example shows one subscription | Settings don't inherit,[^pa06-settings] so a resource group under a governed subscription keeps the defaults | Each role's policy read and set at every scope in the desired state |
 | Nothing finds standing assignments or converts them | Standing Owner is the state the project exists to remove | PA-AZ-01 to PA-AZ-06; eligible replacement first, then `AdminRemove`; service principals, root elevation and the caller left alone, with the reason |
 | Each write is a request you send by hand | Nothing to review before it lands | A plan and a diff, a dry run by default, and writes only through an apply client with `-Apply` |
-| Every request goes to `management.azure.com` | Right for GCC; wrong for GCC High and DoD | The host comes from the cloud table |
 
 **The verdict.** Use Learn's walkthroughs as the procedure and the examples as the contract for request and response shapes. Don't drive the estate from them: they make one change at a time, at one scope, with nothing to review first.
 
@@ -157,7 +156,7 @@ Each request is named with a GUID derived from the run ID and the operation, so 
 
 Pester 5 under PowerShell 7: 38 tests in `tests/AzurePim.Tests.ps1`, none needing a module, a tenant or a network:
 
-- 6 on the call list and the client: one API version, GET only for reads, exactly Reader and User Access Administrator, the GCC and Azure Government hosts, a write refused by a read client, a name that isn't a GUID refused.
+- 6 on the call list and the client: one API version, GET only for reads, exactly Reader and User Access Administrator, the GCC host, a write refused by a read client, a name that isn't a GUID refused.
 - 6 replaying Microsoft's examples, one for each row of the gap table above that the examples show.
 - 4 on the read, 5 on the desired state, 10 on the plan, and 7 on the dry run, the apply against the fake, the fake's policy and principal checks, and the entry script.
 
@@ -436,24 +435,24 @@ Remove-Item -Recurse -Force out/ch06-test-*
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Where PIM for Azure resources lives | Azure Resource Manager, not Graph; no Graph permissions; the caller needs at least Owner or User Access Administrator on the resource | Resource Manager host `management.usgovcloudapi.net` in Azure Government; API availability there not stated on the pages read | GA (iteration 3) | [^pa06-pim-apis] [^pa06-compare] |
-| The old Azure resources API | `/beta/privilegedAccess/azureResources` deprecated; stops returning data October 28, 2026 | — | Deprecated | [^pa06-pim-apis] |
-| API version | `2020-10-01`: GA of every PIM resource type; `2022-04-01` adds no PIM change | — | GA | [^pa06-versions] |
-| Later versions | `roleEligibilityScheduleRequests` also in `2022-04-01-preview`, `2024-02-01-preview`, `2024-09-01-preview` | — | Preview | [^pa06-templates] |
-| List schedules and policies | GET at management group, subscription, resource group or resource scope; `Microsoft.Authorization/roleAssignments/read`, held by every built-in role | — | GA | [^pa06-rest-eligible] [^pa06-rest-active] [^pa06-rest-policy] |
-| Create a schedule request | PUT with a GUID name; `AdminAssign` or `AdminRemove`; `roleAssignments/write`; only Owner and User Access Administrator among built-in roles | — | GA | [^pa06-rest-eligible] [^pa06-rest-active] |
-| Update a role management policy | PATCH; Owner or User Access Administrator; action `roleManagementPolicies/write` | — | GA | [^pa06-policy-update] [^pa06-settings] [^pa06-operations] |
-| Policy errors | `ExpirationRule`, `JustificationRule`, `TicketingRule`, `MfaRule`, `EligibilityRule` | — | — | [^pa06-rest-eligible] |
-| Role settings | Per role and per resource; not inherited from subscription to resource group; activation 1 to 24 hours; create the authentication context's policy first | — | GA | [^pa06-settings] |
-| Who can be eligible | Users and groups, not applications, service principals or managed identities; P2 or ID Governance license | — | GA | [^pa06-integration] |
-| Removing an assignment | Not within five minutes of its creation | — | — | [^pa06-assign] |
-| Built-in privileged roles | User Access Administrator: `*/read`, `Microsoft.Authorization/*`; Role Based Access Control Administrator: `roleAssignments/write` and `delete`, `*/read` | — | — | [^pa06-privileged-roles] |
-| Subscription owners | At most three | — | — | [^pa06-azure-best] |
-| Permanent active assignments | Zero, except the emergency access accounts; only Owner or User Access Administrator manage Azure resource role assignments | — | — | [^pa06-pim-plan] |
-| Elevate access | User Access Administrator at root scope; remove it when done | — | — | [^pa06-elevate] |
-| Licensing and clouds | Entra ID P1 and P2 for GCC hosted in Azure commercial; Entra ID Governance in GCC, GCC High and DoD | GCC High and DoD in Azure Government | — | [^pa06-ems-gcc] [^pa06-availability] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Where PIM for Azure resources lives | Azure Resource Manager, not Graph; no Graph permissions; the caller needs at least Owner or User Access Administrator on the resource | GA (iteration 3) | [^pa06-pim-apis] |
+| The old Azure resources API | `/beta/privilegedAccess/azureResources` deprecated; stops returning data October 28, 2026 | Deprecated | [^pa06-pim-apis] |
+| API version | `2020-10-01`: GA of every PIM resource type; `2022-04-01` adds no PIM change | GA | [^pa06-versions] |
+| Later versions | `roleEligibilityScheduleRequests` also in `2022-04-01-preview`, `2024-02-01-preview`, `2024-09-01-preview` | Preview | [^pa06-templates] |
+| List schedules and policies | GET at management group, subscription, resource group or resource scope; `Microsoft.Authorization/roleAssignments/read`, held by every built-in role | GA | [^pa06-rest-eligible] [^pa06-rest-active] [^pa06-rest-policy] |
+| Create a schedule request | PUT with a GUID name; `AdminAssign` or `AdminRemove`; `roleAssignments/write`; only Owner and User Access Administrator among built-in roles | GA | [^pa06-rest-eligible] [^pa06-rest-active] |
+| Update a role management policy | PATCH; Owner or User Access Administrator; action `roleManagementPolicies/write` | GA | [^pa06-policy-update] [^pa06-settings] [^pa06-operations] |
+| Policy errors | `ExpirationRule`, `JustificationRule`, `TicketingRule`, `MfaRule`, `EligibilityRule` | — | [^pa06-rest-eligible] |
+| Role settings | Per role and per resource; not inherited from subscription to resource group; activation 1 to 24 hours; create the authentication context's policy first | GA | [^pa06-settings] |
+| Who can be eligible | Users and groups, not applications, service principals or managed identities; P2 or ID Governance license | GA | [^pa06-integration] |
+| Removing an assignment | Not within five minutes of its creation | — | [^pa06-assign] |
+| Built-in privileged roles | User Access Administrator: `*/read`, `Microsoft.Authorization/*`; Role Based Access Control Administrator: `roleAssignments/write` and `delete`, `*/read` | — | [^pa06-privileged-roles] |
+| Subscription owners | At most three | — | [^pa06-azure-best] |
+| Permanent active assignments | Zero, except the emergency access accounts; only Owner or User Access Administrator manage Azure resource role assignments | — | [^pa06-pim-plan] |
+| Elevate access | User Access Administrator at root scope; remove it when done | — | [^pa06-elevate] |
+| Licensing and clouds | Entra ID P1 and P2 for GCC hosted in Azure commercial; Entra ID Governance in GCC | — | [^pa06-ems-gcc] [^pa06-availability] |
 
 Two places where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
@@ -493,7 +492,7 @@ Lab 2, step 5, the test of the narrower role, is a single request recorded again
 | A rerun after a partial failure | Requests repeat, and `RoleAssignmentExists` errors hide the real one | The plan reads the estate first, so done work isn't planned again; request names are stable within a run ID |
 | Owner instead of User Access Administrator for the apply | The automation can change every resource it governs | The call list declares User Access Administrator; the manifest records the roles the task needed |
 | Root elevation treated as a normal assignment | Elevate access is converted, or quietly kept | PA-AZ-03: reported for removal, never converted |
-| The wrong cloud | A GCC High run sends tokens to `management.azure.com` | Explicit cloud, no default; the live invoker checks the Az session and the host; the desired state names its cloud |
+| The wrong host | Tokens go to a host other than the cloud's own | Explicit cloud, no default; the live invoker checks the Az session and the host; the desired state names its cloud |
 | The old beta API | Code built on `/beta/privilegedAccess/azureResources` stops returning data | Only the Resource Manager API at the GA version |
 
 ## Checklist
@@ -504,7 +503,7 @@ Lab 2, step 5, the test of the narrower role, is a single request recorded again
 - [ ] Every PA-AZ-02, PA-AZ-03 and PA-AZ-05 has a decision and a ticket.
 - [ ] No subscription has more than three Owners (PA-AZ-06).
 - [ ] The dry run ran as Reader and the apply as User Access Administrator, time-bound, never Owner, with a certificate or managed identity.
-- [ ] The cloud is explicit, and nothing in a GCC configuration is a `.us` or `usgovcloudapi.net` host.
+- [ ] The cloud is explicit, and every host in the configuration is a worldwide one.
 - [ ] The reviewer read `diff.txt` and `plan.json` before `-Apply`, and the manifest's hashes match the files kept as evidence.
 - [ ] The pinned examples match their manifest, and every upstream commit since the pin has been reviewed.
 
@@ -532,7 +531,6 @@ Lab 2, step 5, the test of the narrower role, is a single request recorded again
 [^pa06-azure-best]: Microsoft Learn, "Best practices for Azure RBAC," limit the number of subscription owners, <https://learn.microsoft.com/azure/role-based-access-control/best-practices> (accessed Oct 30, 2026; read for Chapter 01).
 [^pa06-elevate]: Microsoft Learn, "Azure roles, Microsoft Entra roles, and classic subscription administrator roles," do Azure roles and Microsoft Entra roles overlap, <https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles> (accessed Oct 30, 2026; read for Chapter 01).
 [^pa06-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026; read for Chapter 01).
-[^pa06-compare]: Microsoft Learn, "Compare Azure Government and global Azure," guidance for developers, <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 30, 2026; read for the first workbook's Chapter 02).
 [^pa06-ems-gcc]: Microsoft Learn, "Enterprise Mobility + Security for US Government service description," EMS for US GCC customers, <https://learn.microsoft.com/enterprise-mobility-security/solutions/ems-govt-service-description> (accessed Oct 30, 2026; read for Chapter 01).
 [^pa06-availability]: Microsoft Learn, "Microsoft Entra feature availability," other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
 [^pa06-sample-src]: Microsoft, Azure/azure-rest-api-specs, `specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples` at commit `411fb227a905864f972d26ab88b21ef69e1f67b2` (October 30, 2026; the files last changed February 12, 2026), MIT License, <https://github.com/Azure/azure-rest-api-specs/tree/411fb227a905864f972d26ab88b21ef69e1f67b2/specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples> (accessed Oct 30, 2026); pinned copy in `examples/third_party/azure-pim-rest-examples`.

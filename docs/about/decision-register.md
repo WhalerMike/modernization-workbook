@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
+There are **155** workbook decisions: 146 settled, 0 challenged and 9 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -37,7 +37,7 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | [WD-001](#wd-001) | 2026-10-18 | Should material about the original source system stay on the public site? | Workbook design | settled |
 | [WD-002](#wd-002) | 2026-10-18 | How are Word downloads produced? | Workbook design | settled |
 | [WD-003](#wd-003) | 2026-10-18 | Should the earlier organizational-attribute model (OrgPath, LocPath) and the governance-suite content stay in the workbook? | Workbook design | settled |
-| [WD-004](#wd-004) | 2026-10-18 | Which cloud environments and platforms does each guidance set claim to cover? | Workbook design | settled |
+| [WD-004](#wd-004) | 2026-10-18 | Which cloud environments and platforms does each guidance set claim to cover? | Workbook design | superseded by WD-155 |
 | [WD-005](#wd-005) | 2026-10-18 | May the guidance rely on preview features? | Microsoft Learn | settled |
 | [WD-006](#wd-006) | 2026-10-18 | How are figures produced? | Workbook design | settled |
 | [WD-007](#wd-007) | 2026-10-18 | How does the database series define 'closed' to legacy authentication? | Microsoft Learn | settled |
@@ -109,7 +109,7 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | [WD-073](#wd-073) | 2026-10-29 | Where should contractor identities be sourced from for the HR-driven pipeline? | Workbook design | settled |
 | [WD-074](#wd-074) | 2026-10-29 | How is the identity migration organized so readers know which population a step applies to? | Workbook design | settled |
 | [WD-075](#wd-075) | 2026-10-29 | How much of the site does a pull request check render? | Workbook design | settled |
-| [WD-076](#wd-076) | 2026-10-29 | Which configuration authority does the workbook treat as the baseline? | Workbook design | settled |
+| [WD-076](#wd-076) | 2026-10-29 | Which configuration authority does the workbook treat as the baseline? | Workbook design | superseded by WD-155 |
 | [WD-077](#wd-077) | 2026-10-30 | What starts the leaver process for a contractor who holds a PIV card? | External requirement | settled |
 | [WD-078](#wd-078) | 2026-10-30 | How are overlaps between Intune, Arc, Ansible and Configuration Manager prevented? | Workbook design | settled |
 | [WD-079](#wd-079) | 2026-10-30 | How does the workbook keep agency and system names out of public pages? | Workbook design | settled |
@@ -118,13 +118,13 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | [WD-082](#wd-082) | 2026-10-30 | How are application dependencies recorded for triage? | Workbook design | settled |
 | [WD-083](#wd-083) | 2026-10-30 | How should Group Policy be moved to Intune and Azure Policy? | Microsoft Learn | settled |
 | [WD-084](#wd-084) | 2026-10-30 | What does a chapter do when Microsoft's pages disagree or say nothing? | Workbook design | settled |
-| [WD-085](#wd-085) | 2026-10-30 | Which Azure cloud does an agency with a Microsoft 365 GCC (Moderate) tenant use? | Microsoft Learn | settled |
+| [WD-085](#wd-085) | 2026-10-30 | Which Azure cloud does an agency with a Microsoft 365 GCC (Moderate) tenant use? | Microsoft Learn | superseded by WD-155 |
 | [WD-086](#wd-086) | 2026-10-30 | Do the multi-line telephone 911 rules bind a federal agency's softphone system? | External requirement | settled |
 | [WD-087](#wd-087) | 2026-10-30 | How is each developer workbook chapter built? | Workbook design | settled |
 | [WD-088](#wd-088) | 2026-10-30 | Can developer workbook pages publish without an editor's approval? | Workbook design | settled |
 | [WD-089](#wd-089) | 2026-10-30 | How do narrated videos play on the site? | Workbook design | settled |
 | [WD-090](#wd-090) | 2026-10-30 | Does the private DNS platform comparison cover Oracle Cloud Infrastructure? | Workbook design | settled |
-| [WD-091](#wd-091) | 2026-10-30 | Which government clouds must the developer workbooks fully resolve? | Workbook design | settled |
+| [WD-091](#wd-091) | 2026-10-30 | Which government clouds must the developer workbooks fully resolve? | Workbook design | superseded by WD-155 |
 | [WD-092](#wd-092) | 2026-10-30 | How do the example code kits change a tenant? | Workbook design | settled |
 | [WD-093](#wd-093) | 2026-10-31 | What does the weekly source watch monitor? | Workbook design | settled |
 | [WD-094](#wd-094) | 2026-10-31 | Which line endings do the kits write so approved hashes match on every platform? | Workbook design | settled |
@@ -178,7 +178,7 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | [WD-142](#wd-142) | 2026-11-06 | When are the cloud pair for Government-cloud partners and the unverified source items settled? | Workbook design | settled |
 | [WD-143](#wd-143) | 2026-11-06 | When do the sources for the partner chapter enter the Source Register? | Workbook design | settled |
 | [WD-144](#wd-144) | 2026-11-06 | Does the drift pipeline keep the OSCAL Assessment Results and POA&M export added in | Workbook design | settled |
-| [WD-145](#wd-145) | 2026-11-11 | What does CP-001 rely on in GCC High and DoD, where Device Health Attestation is only planned? | Workbook design | settled |
+| [WD-145](#wd-145) | 2026-11-11 | What does CP-001 rely on where Device Health Attestation is only planned? | Workbook design | superseded by WD-155 |
 | [WD-146](#wd-146) | 2026-11-11 | Where does the Tenant Creator role sit in the PIM tiers? | Workbook design | settled |
 | [WD-147](#wd-147) | 2026-11-11 | Are the program values Book 04 and Book 05 proposed confirmed? | Workbook design | settled |
 | [WD-148](#wd-148) | 2026-11-11 | Are the credential, test and triage thresholds in Books 02, 07, 08, 13, 17 and 18 confirmed? | Workbook design | settled |
@@ -188,6 +188,7 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | [WD-152](#wd-152) | 2026-11-11 | How long does the program plan for a federated domain's conversion to managed to take effect? | Microsoft Learn | settled |
 | [WD-153](#wd-153) | 2026-11-11 | Does the Windows LAPS policy move to automatic account management? | Microsoft Learn | settled |
 | [WD-154](#wd-154) | 2026-11-11 | How are group managed service accounts created and restricted? | Workbook design | settled |
+| [WD-155](#wd-155) | 2026-11-13 | Which Microsoft 365 cloud and which federal sources does the workbook cover? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -246,14 +247,15 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | | |
 |---|---|
 | **Options considered** | Claim general coverage; State scope up front and list what is out of scope with fallbacks |
-| **Choice** | Each series gets an Applicability page stamped with a date. Commercial cloud including GCC-Moderate is in scope. GCC High, DoD, air-gapped networks and some platform configurations are out of scope as written, each with what still applies. |
+| **Choice** | Each series gets an Applicability page stamped with a date. Commercial cloud including GCC-Moderate is in scope. Air-gapped networks and some platform configurations are out of scope as written, each with what still applies. |
 | **Rationale** | Several features differ by cloud, for example GCC-Moderate uses the worldwide Graph endpoint and Arc SQL in Azure Government lacks Entra authentication. |
 | **Basis** | Workbook design |
 | **Sources** | [Microsoft Learn, Microsoft Graph national cloud deployments](https://learn.microsoft.com/graph/deployments); [Microsoft Learn, SQL Server enabled by Azure Arc overview](https://learn.microsoft.com/sql/sql-server/azure-arc/overview) |
 | **Pages affected** | [Appendix B — Applicability](../books/b01-transformation-arc/appendix-b-applicability.md), [Data Platform: SQL Server Identity](../books/b06-data-platform/index.md), [DNS, DHCP and IPAM](../books/b08-ddi/index.md) |
 | **Date** | 2026-10-18 |
-| **Status** | settled |
+| **Status** | superseded |
 | **Defined in** | [#17](https://github.com/WhalerMike/modernization-workbook/pull/17), [#21](https://github.com/WhalerMike/modernization-workbook/pull/21), [#23](https://github.com/WhalerMike/modernization-workbook/pull/23), [#35](https://github.com/WhalerMike/modernization-workbook/pull/35), [#40](https://github.com/WhalerMike/modernization-workbook/pull/40), [#61](https://github.com/WhalerMike/modernization-workbook/pull/61) |
+| **Superseded by** | [WD-155](#wd-155): Which Microsoft 365 cloud and which federal sources does the workbook cover? |
 
 [Agree, disagree or send evidence on WD-004](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-004%3A+)
 
@@ -1402,15 +1404,16 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 
 | | |
 |---|---|
-| **Options considered** | Defense hardening guides as the baseline; CISA SCuBA, NIST SP 800-53 Rev. 5 at Moderate, and CIS or vendor guidance |
-| **Choice** | The workbook is written for FedRAMP Moderate civilian agencies. Microsoft 365 and Google Workspace use CISA SCuBA and BOD 25-01. Hosts and network gear use CIS Benchmarks, the NIST National Checklist Program or vendor hardening guides. Defense-only items stay as references labelled '(High only)'. |
-| **Rationale** | The audience is civilian Moderate agencies, so the configuration authority is CISA, not the Defense hardening authority. |
+| **Options considered** | Other hardening guides as the baseline; CISA SCuBA, NIST SP 800-53 Rev. 5 at Moderate, and CIS or vendor guidance |
+| **Choice** | The workbook is written for FedRAMP Moderate civilian agencies. Microsoft 365 and Google Workspace use CISA SCuBA and BOD 25-01. Hosts and network gear use CIS Benchmarks, the NIST National Checklist Program or vendor hardening guides. Items that apply only above Moderate stay as references labelled '(High only)'. |
+| **Rationale** | The audience is civilian Moderate agencies, so the configuration authority is CISA. |
 | **Basis** | Workbook design |
 | **Sources** | [CISA, BOD 25-01 secure practices for cloud services](https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services); [CISA, Secure Cloud Business Applications project](https://www.cisa.gov/resources-tools/services/secure-cloud-business-applications-scuba-project); [NIST, National Checklist Program](https://ncp.nist.gov/) |
 | **Pages affected** | [Ansible for Configuration Automation](../books/guides/ansible-configuration-automation.md), [Chapter 08 — GPO to Intune Policy Migration](../books/b05-devices/08-gpo-to-intune-policy-migration.md), [`docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md) |
 | **Date** | 2026-10-29 |
-| **Status** | settled |
+| **Status** | superseded |
 | **Defined in** | [#190](https://github.com/WhalerMike/modernization-workbook/pull/190), [#193](https://github.com/WhalerMike/modernization-workbook/pull/193) |
+| **Superseded by** | [WD-155](#wd-155): Which Microsoft 365 cloud and which federal sources does the workbook cover? |
 
 [Agree, disagree or send evidence on WD-076](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-076%3A+)
 
@@ -1547,14 +1550,15 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | | |
 |---|---|
 | **Options considered** | Azure Government; Commercial Azure |
-| **Choice** | The compliance volumes place the agency's Azure in commercial Azure, paired with the GCC tenant. Azure Government pairs with GCC High and DoD. |
+| **Choice** | The compliance volumes place the agency's Azure in commercial Azure, paired with the GCC tenant. |
 | **Rationale** | A GCC tenant's Entra ID is in the commercial cloud, so its subscriptions are commercial. The Arc guide and the books already said so. |
 | **Basis** | Microsoft Learn |
 | **Sources** | [Microsoft Learn, Cloud feature availability for US Government customers](https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration); [Microsoft Learn, Office 365 GCC service description](https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc) |
 | **Pages affected** | [`docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md), [Chapter 04 — GCC and the Commercial Feature Gap](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) |
 | **Date** | 2026-10-30 |
-| **Status** | settled |
+| **Status** | superseded |
 | **Defined in** | [#206](https://github.com/WhalerMike/modernization-workbook/pull/206) |
+| **Superseded by** | [WD-155](#wd-155): Which Microsoft 365 cloud and which federal sources does the workbook cover? |
 
 [Agree, disagree or send evidence on WD-085](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-085%3A+)
 
@@ -1642,15 +1646,16 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 
 | | |
 |---|---|
-| **Options considered** | Resolve every research gap for GCC, GCC High and DoD; Close gaps that matter for a GCC (Moderate) estate with commercial Azure and record the rest |
-| **Choice** | Gaps that affect a GCC estate are closed. Gaps that apply only to GCC High, DoD or Azure Government stay open, each with a note on what would reopen it. |
+| **Options considered** | Resolve every research gap for every government cloud; Close gaps that matter for a GCC (Moderate) estate with commercial Azure and record the rest |
+| **Choice** | Gaps that affect a GCC estate are closed. Gaps that apply only outside a GCC estate, such as Azure Government, stay open, each with a note on what would reopen it. |
 | **Rationale** | The target estate is GCC with commercial Azure. |
 | **Basis** | Workbook design |
 | **Sources** | None external: the choice rests on the pages it shaped. |
 | **Pages affected** | [`docs/books/b19-developer-workbook/_verification/research-gaps.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b19-developer-workbook/_verification/research-gaps.md), [Chapter 02 — Graph Clients for the Government Clouds](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) |
 | **Date** | 2026-10-30 |
-| **Status** | settled |
+| **Status** | superseded |
 | **Defined in** | [#216](https://github.com/WhalerMike/modernization-workbook/pull/216), [#221](https://github.com/WhalerMike/modernization-workbook/pull/221) |
+| **Superseded by** | [WD-155](#wd-155): Which Microsoft 365 cloud and which federal sources does the workbook cover? |
 
 [Agree, disagree or send evidence on WD-091](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-091%3A+)
 
@@ -2513,20 +2518,21 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 
 [Agree, disagree or send evidence on WD-144](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-144%3A+)
 
-### WD-145: What does CP-001 rely on in GCC High and DoD, where Device Health Attestation is only planned? {#wd-145}
+### WD-145: What does CP-001 rely on where Device Health Attestation is only planned? {#wd-145}
 
 | | |
 |---|---|
-| **Options considered** | Keep the three boot-measured rules as the only check; Keep them, and add the checks that don't depend on attestation for GCC High and DoD |
-| **Choice** | CP-001 and CP-002 keep Require BitLocker, Require Secure Boot and Require code integrity, but in a GCC High or DoD tenant the program doesn't count them as evidence until Learn lists attestation as available there. It adds Encryption of data storage on a device for BitLocker, reads Secure Boot and code integrity from Defender for Endpoint's device health and vulnerability management reporting as a drift finding, and uses the Defender for Endpoint machine risk score as a risk signal, confirmed in the pilot. |
-| **Rationale** | Intune's government service description lists Windows Device Health Attestation as planned, not available, for GCC High and DoD, while the Windows compliance settings reference says GCC High and DoD devices use it; the program plans on the narrower statement. Learn gives a replacement only for the encryption check, so the Secure Boot and code integrity reads are the program's design guidance. |
+| **Options considered** | Keep the three boot-measured rules as the only check; Keep them, and add the checks that don't depend on attestation |
+| **Choice** | CP-001 and CP-002 keep Require BitLocker, Require Secure Boot and Require code integrity, with Defender for Endpoint checks planned where attestation was listed as only planned; superseded by WD-155. |
+| **Rationale** | Intune's government service description lists Windows Device Health Attestation as planned, not available, while the Windows compliance settings reference says those devices use it; the program plans on the narrower statement. Learn gives a replacement only for the encryption check, so the Secure Boot and code integrity reads are the program's design guidance. |
 | **Basis** | Workbook design |
-| **Sources** | [Microsoft Learn, Microsoft Intune for US Government GCC High and DoD service description](https://learn.microsoft.com/intune/fundamentals/government-service); [Microsoft Learn, Device compliance settings for Windows in Intune](https://learn.microsoft.com/intune/device-security/compliance/ref-windows-settings); [Microsoft Learn, Microsoft Defender for Endpoint for US Government customers](https://learn.microsoft.com/defender-endpoint/gov) |
+| **Sources** | [Microsoft Learn, Microsoft Intune for US Government service description](https://learn.microsoft.com/intune/fundamentals/government-service); [Microsoft Learn, Device compliance settings for Windows in Intune](https://learn.microsoft.com/intune/device-security/compliance/ref-windows-settings); [Microsoft Learn, Microsoft Defender for Endpoint for US Government customers](https://learn.microsoft.com/defender-endpoint/gov) |
 | **Pages affected** | [Chapter 08 — GPO to Intune Policy Migration](../books/b05-devices/08-gpo-to-intune-policy-migration.md), [Chapter 10 — Operating and Evidencing the Fleet](../books/b05-devices/10-operating-and-evidencing-the-fleet.md) |
 | **Date** | 2026-11-11 |
-| **Status** | settled |
+| **Status** | superseded |
 | **Defined in** | — |
-| **Note** | Basis: workbook owner decision, November 11, 2026. Learn's two pages disagree on attestation in GCC High and DoD; recheck both when the service description changes. |
+| **Superseded by** | [WD-155](#wd-155): Which Microsoft 365 cloud and which federal sources does the workbook cover? |
+| **Note** | Basis: workbook owner decision, November 11, 2026. Learn's two pages disagree on attestation; recheck both when the service description changes. |
 
 [Agree, disagree or send evidence on WD-145](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-145%3A+)
 
@@ -2662,7 +2668,7 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | **Date** | 2026-11-11 |
 | **Status** | settled |
 | **Defined in** | — |
-| **Note** | Basis: workbook owner decision, November 11, 2026. Learn doesn't state automatic mode's availability by cloud; the GCC High or DoD pilot confirms it. |
+| **Note** | Basis: workbook owner decision, November 11, 2026. Learn doesn't state automatic mode's availability by cloud; the GCC pilot confirms it. |
 
 [Agree, disagree or send evidence on WD-153](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-153%3A+)
 
@@ -2682,6 +2688,23 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | **Note** | Basis: workbook owner decision, November 11, 2026. The Non-Person Identity kit's Chapter 06 write path still names Domain Admins or a delegated right; naming the delegated group there is a kit change, not made here. |
 
 [Agree, disagree or send evidence on WD-154](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-154%3A+)
+
+### WD-155: Which Microsoft 365 cloud and which federal sources does the workbook cover? {#wd-155}
+
+| | |
+|---|---|
+| **Options considered** | GCC Moderate as the target, with other clouds and their sources as side notes; GCC Moderate only, with civilian sources |
+| **Choice** | The workbook covers Microsoft 365 GCC Moderate only, with commercial Azure: no GCC High or DoD, and none of the DoD policy sources (its zero trust strategy and reference architecture, the cloud computing SRG and impact levels, the 8140 and 8570 workforce directives, CMMC, or STIGs framed as its material). Where a page needs an authority, it cites the civilian source: the CISA Zero Trust Maturity Model, OMB M-22-09, NIST SP 800-207, SP 800-53 and SP 800-63, or FedRAMP. |
+| **Rationale** | GCC Moderate is the only environment the workbook is written for; other clouds and their sources added noise and kept creeping back into pages, decks and kits. |
+| **Basis** | Workbook design |
+| **Sources** | [CISA, Zero Trust Maturity Model](https://www.cisa.gov/zero-trust-maturity-model); [OMB, M-22-09 Moving the U.S. Government Toward Zero Trust Cybersecurity Principles](https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf); [NIST, SP 800-207 Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final) |
+| **Pages affected** | [`CONTRIBUTING.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md), [Federal Framework Crosswalk](../reference/federal-framework-crosswalk.md), [Source Register](../reference/source-register.md) |
+| **Date** | 2026-11-13 |
+| **Status** | settled |
+| **Defined in** | [#613](https://github.com/WhalerMike/modernization-workbook/pull/613), [#615](https://github.com/WhalerMike/modernization-workbook/pull/615), [#616](https://github.com/WhalerMike/modernization-workbook/pull/616), [#617](https://github.com/WhalerMike/modernization-workbook/pull/617) |
+| **Note** | Basis: workbook owner decision, November 13, 2026. Supersedes [WD-004](#wd-004), [WD-076](#wd-076), [WD-085](#wd-085), [WD-091](#wd-091) and [WD-145](#wd-145). The kits sweep PR applies it to the example code. On November 13, 2026 the owner also had the superseded entries' recorded wording rewritten to remove GCC High and DoD. |
+
+[Agree, disagree or send evidence on WD-155](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-155%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 

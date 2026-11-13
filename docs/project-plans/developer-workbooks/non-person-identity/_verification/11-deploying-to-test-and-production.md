@@ -19,11 +19,11 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 | 5 | A restriction applied to specific applications through a custom policy and `appManagementPolicies/$ref`; the admin center path; an app already holding a custom policy refuses another | Step 1.2 | verified | Learn, Configure restrictions |
 | 6 | No report-only mode is documented for app management policies | Safe order; Step 1.2; Dangers | verified by absence on the configure page and the API overview read; recorded as "Learn documents none" | Learn, Configure restrictions; API overview |
 | 7 | A policy blocks only a create or update that violates it, never token issuance for existing apps; one custom policy per app; the custom policy's restriction takes precedence | Safe order; Step 1.2; ST-03 | verified | Learn, API overview (v1.0) |
-| 8 | Update appManagementPolicy: `PATCH`, `Policy.ReadWrite.ApplicationConfiguration`, Cloud Application Administrator or Application Administrator, L4 and L5 | Rollback; Verified facts | verified | Learn, Update appManagementPolicy |
-| 9 | Update a Conditional Access policy: `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`, Security Administrator or Conditional Access Administrator, L4 and L5 | Rollback; Verified facts | verified | Learn, Update conditionalaccesspolicy |
+| 8 | Update appManagementPolicy: `PATCH`, `Policy.ReadWrite.ApplicationConfiguration`, Cloud Application Administrator or Application Administrator | Rollback; Verified facts | verified | Learn, Update appManagementPolicy |
+| 9 | Update a Conditional Access policy: `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`, Security Administrator or Conditional Access Administrator | Rollback; Verified facts | verified | Learn, Update conditionalaccesspolicy |
 | 10 | Report-only result values and the `Prefer: include-unknown-enum-members` header | ST-06; Verified facts | verified | Learn, appliedConditionalAccessPolicy (beta) |
-| 11 | addPassword and removePassword: delegated `Application.ReadWrite.All`, application `Application.ReadWrite.OwnedBy`, L4 and L5; `secretText` can't be retrieved later | ST-03; call list | verified | Learn, addPassword; removePassword |
-| 12 | List roleEligibilityScheduleInstances: `RoleEligibilitySchedule.Read.Directory`, `$filter` supported, L4 and L5 | PF-06; call list | verified | Learn |
+| 11 | addPassword and removePassword: delegated `Application.ReadWrite.All`, application `Application.ReadWrite.OwnedBy`; `secretText` can't be retrieved later | ST-03; call list | verified | Learn, addPassword; removePassword |
+| 12 | List roleEligibilityScheduleInstances: `RoleEligibilitySchedule.Read.Directory`, `$filter` supported | PF-06; call list | verified | Learn |
 | 13 | Built-in role template IDs for the four roles the preflight checks | PF-06 code; Verified facts | verified | Learn, Microsoft Entra built-in roles |
 | 14 | Service plan IDs for Entra ID P1 and P2 | PF-04 code; Verified facts | verified | Learn, licensing service plan reference |
 | 15 | Workload ID service plan IDs | PF-03 code | carried forward from Chapter 03 (`config/migration-matrix.json`), not re-read | Chapter 03's log |
@@ -34,8 +34,7 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 | 20 | `az login --service-principal --certificate <pem>`; the certificate appended to the private key | Sign-ins | verified | Learn, Sign into Azure with a service principal |
 | 21 | `az identity federated-credential create` parameters and the default audience | Verified facts | verified | Learn, Azure CLI reference |
 | 22 | `az identity create --name --resource-group --location` | Step 1.3 | partly verified: the trust page's CLI section and the CLI reference name the group; the exact `create` flags weren't on a page opened today (research gaps, row 105) | Learn, user-assigned identity trust page |
-| 23 | Audience `api://AzureADTokenExchangeUSGov` for Entra ID for US Government | Which cloud; Verified facts | verified | Learn, Configure an application to trust a managed identity |
-| 24 | Azure Login action: audience default, `environment` for Azure Government | Step 1.6; Verified facts | verified | Learn, Use the Azure Login action with OpenID Connect |
+| 24 | Azure Login action: audience default | Step 1.6; Verified facts | verified | Learn, Use the Azure Login action with OpenID Connect |
 | 25 | `allow-no-subscriptions` on the Azure Login action | Step 1.6 workflow | not verified on Learn: the action's own input (research gaps, row 105) | — |
 | 26 | `New-ADUser -AccountPassword -Enabled -PasswordNeverExpires`; not on a read-only DC | Prepare, step 4 | verified | Learn, New-ADUser |
 | 27 | Federated credential rules, case-sensitive match, `AADSTS70021` propagation | Step 1.3; ST-04 | carried forward from Chapter 05 | Chapter 05's log |

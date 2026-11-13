@@ -36,12 +36,8 @@ Verdicts: **verified** (the source says it; checked 2026-10-25); **inference** (
 | 19 | Windows Autopilot onboarding; no ScubaGear policy | Intune table | verified | autopilot (Microsoft Learn, "Overview of Windows Autopilot"); scubarepo |
 | 20 | Intune role-based access control and Multi Admin Approval; no ScubaGear policy | Intune table | verified | irbac (Microsoft Learn, "Role-based access control (RBAC) with Microsoft Intune"); maa (Microsoft Learn, "Use Multi Admin Approval in Intune"); scubarepo |
 | 21 | Intune configuration is read and evidenced through Microsoft Graph; no ScubaGear policy | Intune table | verified | igraph (Microsoft Learn, "Working with Intune in Microsoft Graph"); scubarepo |
-| 22 | A Microsoft 365 GCC tenant uses the worldwide endpoints | National-cloud endpoints table | verified | deploy (Microsoft Learn, "Microsoft Graph national cloud deployments") |
-| 23 | A GCC High tenant uses `graph.microsoft.us`, `portal.azure.us` and sign-in at `login.microsoftonline.us` | National-cloud endpoints table | verified | deploy |
-| 24 | A DoD tenant uses `dod-graph.microsoft.us` and `portal.azure.us` | National-cloud endpoints table | verified | deploy |
-| 25 | Intune has no separate GCC instance; GCC High and DoD share the government instance; no built-in migration between them | National-cloud endpoints table | verified | igov (Microsoft Learn, "Microsoft Intune Government Service overview") |
-| 26 | Graph Explorer isn't supported on the GCC High, DoD or China endpoints | National-cloud endpoints, after the table | verified | deploy |
-| 27 | A query tested in Graph Explorer is retested against the government endpoint before a collector uses it | National-cloud endpoints, after the table | design | — (labelled *design guidance* on the page) |
+| 22 | A Microsoft 365 GCC tenant uses the worldwide endpoints | GCC endpoints table | verified | deploy (Microsoft Learn, "Microsoft Graph national cloud deployments") |
+| 25 | Intune has no separate GCC instance; a GCC tenant uses the commercial service | GCC endpoints table | verified | igov (Microsoft Learn, "Microsoft Intune Government Service overview") |
 | 28 | The Arc policy names are the display names in Microsoft's built-in reference for Arc-enabled servers | Azure Arc, opening sentence | verified | arcpol (Microsoft Learn, "Azure Policy built-in definitions for Azure Arc-enabled servers") |
 | 29 | Private Link for Arc: the two Private Link Scope built-ins as named | Azure Arc table | verified | arcpl (Microsoft Learn, "Use Azure Private Link to connect servers to Azure Arc by using a private endpoint"); arcpol |
 | 30 | Agent network path: no built-in; review the endpoint list for the cloud in use | Azure Arc table | verified | arcnet (Microsoft Learn, "Connected Machine agent network requirements"); arcpol |

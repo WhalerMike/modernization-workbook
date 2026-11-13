@@ -10,9 +10,9 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | Create workflow: POST path, body properties, up to 100 workflows, `LifecycleWorkflows-Workflow.ReadWrite.All`, Lifecycle Workflows Administrator, L4 and L5 | Start with Microsoft; verified facts | verified | Learn, Create workflow |
+| 1 | Create workflow: POST path, body properties, up to 100 workflows, `LifecycleWorkflows-Workflow.ReadWrite.All`, Lifecycle Workflows Administrator | Start with Microsoft; verified facts | verified | Learn, Create workflow |
 | 2 | Category values `joiner`, `leaver` in the property table; example 3 creates a `mover` workflow | Differences | verified (both on the page) | same |
-| 3 | createNewVersion: POST path, same permission and role, L4 and L5; body `{"workflow": ...}` | Plan; verified facts | verified (path, permission); body shape from the cmdlet examples | Learn, createNewVersion; New-MgIdentityGovernanceLifecycleWorkflowNewVersion |
+| 3 | createNewVersion: POST path, same permission and role; body `{"workflow": ...}` | Plan; verified facts | verified (path, permission); body shape from the cmdlet examples | Learn, createNewVersion; New-MgIdentityGovernanceLifecycleWorkflowNewVersion |
 | 4 | Versions instead of in-place updates; tenant schedule default 3 h, 1 to 24 | Why this gate | carried forward | the guide's verification log (Overview of Lifecycle Workflows APIs) |
 | 5 | Time trigger attributes and offset -180 to 180 | JW-03, JW-04 | verified | Learn, timeBasedAttributeTrigger |
 | 6 | Attribute-change trigger with `triggerAttributes[].name` | Mover file; verified facts | verified (shape); the name for an extension attribute isn't documented | Learn, attributeChangeTrigger, triggerAttribute |
@@ -26,9 +26,9 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | 14 | 50 workflows on the licensing page | JW-07; differences | carried forward | the guide's verification log (licensing fundamentals) |
 | 15 | Execution limits: tenant or workflow, percentage or count, OR logic, quarantine; on-demand runs not limited; an updated workflow limit isn't reflected in the API | JW-08; Lab 2 | verified | Learn, execution limits |
 | 16 | Catch-up window of three days | Verified facts | verified | Learn, execution conditions and scheduling |
-| 17 | List userProcessingResults: `LifecycleWorkflows-Reports.Read.All`; Global Reader or Lifecycle Workflows Administrator; L4 and L5 | Readiness permissions | verified | Learn, List userProcessingResults |
+| 17 | List userProcessingResults: `LifecycleWorkflows-Reports.Read.All`; Global Reader or Lifecycle Workflows Administrator | Readiness permissions | verified | Learn, List userProcessingResults |
 | 18 | List access package assignments with `EntitlementManagement.Read.All` | Readiness permissions | verified | Learn, View, add, and remove assignments |
-| 19 | Lifecycle Workflows and entitlement management available in Azure Government; Governance in GCC, GCC High, DoD; no Azure Government row for TAP | Which cloud | carried forward | the guide's verification log (feature availability) |
+| 19 | Lifecycle Workflows and entitlement management: Governance in GCC | Which cloud | carried forward | the guide's verification log (feature availability) |
 | 20 | Cmdlets New-MgIdentityGovernanceLifecycleWorkflow, ...NewVersion, Remove-...Workflow (restorable 30 days) | Lab 2 | verified | Learn, cmdlet pages |
 | 21 | Scope by code, one-time pass, access by package, delete apart from disable, execution limit recorded, budget of 50, plan refuses on Findings, readiness on a start-of-day export | Rules | restated-as-design (labeled) | Book 03, Ch08; Book 04, Ch09; the guide |
 | 22 | Lab 1 outputs (permission lists; 0/0/0 lint; 7 Finding 4 Warn on the bad folder; plan actions and JW-15; readiness 1 of 4; 57 tests) | Lab 1 | verified by running the commands as written | local run, November 1, 2026 |
@@ -39,7 +39,7 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | Source | Went to | Or why not carried |
 |---|---|---|
 | The guide, Step 3 (workflows by code, schedule, TAP bridge, package not group, execution limits, readiness) | Rules JW-02, JW-05, JW-08, JW-09; readiness | The tenant schedule is one setting, not a workflow file; not linted |
-| The guide, What couldn't be verified (TAP in GCC High; ceiling 50 vs 100) | Which cloud; differences | — |
+| The guide, What couldn't be verified (ceiling 50 vs 100) | Which cloud; differences | — |
 | Book 03, Chapter 08 (guardrails, triggers, deletion) | Why this gate; JW-11 | The rehire workflow's own path is design, left to the guide |
 | Book 03, Chapter 11 (joiner readiness rate) | Readiness; Chapter 07 reads it | — |
 | Book 19, Chapter 05 (custom task extensions; leaver order check) | Linked | Not rebuilt; this chapter's files carry no custom task |

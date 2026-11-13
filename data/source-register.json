@@ -4660,18 +4660,17 @@
    "title": "Microsoft Intune for US Government GCC High and DoD service description",
    "publisher": "Microsoft Learn",
    "url": "https://learn.microsoft.com/intune/fundamentals/government-service",
-   "status": "active",
+   "status": "retired",
    "added": "2026-11-05",
-   "labels": [
-    "Intune for US Government service description",
-    "Intune for US Government",
-    "Intune government service",
-    "Intune GCC High and DoD"
-   ],
+   "labels": [],
    "history": [
     {
      "date": "2026-11-05",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-13",
+     "change": "Retired: the workbook covers GCC Moderate only (Nov 13, 2026)"
     }
    ]
   },
@@ -10004,13 +10003,17 @@
    "title": "Microsoft Learn: Plan for Microsoft Purview compliance and risk management solutions: GCC High deployments",
    "publisher": "Microsoft Learn",
    "url": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments",
-   "status": "active",
+   "status": "retired",
    "added": "2026-11-12",
    "labels": [],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-13",
+     "change": "Retired: the workbook covers GCC Moderate only (Nov 13, 2026)"
     }
    ]
   },
@@ -10019,13 +10022,17 @@
    "title": "Microsoft Learn: Plan for Microsoft Purview compliance and risk management solutions: DoD deployments",
    "publisher": "Microsoft Learn",
    "url": "https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments",
-   "status": "active",
+   "status": "retired",
    "added": "2026-11-12",
    "labels": [],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-13",
+     "change": "Retired: the workbook covers GCC Moderate only (Nov 13, 2026)"
     }
    ]
   },
@@ -13589,11 +13596,6 @@
   "Message Encryption and mail flow rules": {
    "Message Encryption": "learn-purview-message-encryption",
    "mail flow rules": "learn-mail-flow-rules-encrypt-email"
-  },
-  "Plan for Microsoft Purview: GCC, GCC High and DoD deployments": {
-   "Plan for Microsoft Purview: GCC": "learn-purview-gcc-plan",
-   "GCC High": "learn-purview-gcc-high-plan",
-   "DoD deployments": "learn-purview-dod-plan"
   },
   "List serviceAnnouncement messages, issues": {
    "List serviceAnnouncement messages": "graph-serviceannouncement-list-messages",

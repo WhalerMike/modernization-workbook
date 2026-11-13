@@ -281,11 +281,36 @@ A dMSA supersedes the old account: once the migration completes, the old account
 
 **Before you start, check Learn's limits:**[^sam-dmsa-overview] [^sam-dmsa-setup]
 
-- At least one Windows Server 2025 domain controller, a read-write domain controller for the migration, and every machine that uses the account updated to support dMSA; a machine that doesn't fails authentication once the old account is disabled.
-- You can't migrate an MSA or a gMSA to a dMSA: those go to a gMSA (Migration A) or stay.
-- Unconstrained delegation stops working once the migration completes.
+- At least one Windows Server 2025 domain controller that the host can discover, a read-write domain controller for the migration, and every machine that uses the account updated to support dMSA; a machine that doesn't fails authentication once the old account is disabled. Extending the schema alone isn't enough.[^sam-dmsa-faq] Learn names no functional level for dMSA, so the domain and forest can stay at Windows Server 2016 while older domain controllers remain ([Book 02, Chapter 08](../b02-identity/08-assessing-the-forest.md#running-old-and-new-domain-controllers-side-by-side)).
+- You can't migrate an MSA or a gMSA to a dMSA: those go to a gMSA (Migration A) or stay. Each dMSA supersedes one account.
+- Unconstrained delegation stops working once the migration completes, and on a host where Credential Guard protects the dMSA.
 - A KDS root key (A2).
 - Domain Admins or Enterprise Admins, or equivalent rights, to create or migrate to a dMSA.
+- Every Windows Server 2025 domain controller has the August 2025 update or later (see [Who may create a dMSA](#sam-dmsa-create-right)).
+- The old account has AES keys (B0).
+
+### Who may create a dMSA {#sam-dmsa-create-right}
+
+In May 2025, researchers published an attack they called BadSuccessor. Anyone who could create a dMSA, or write its attributes, could point it at any account, Domain Admins included, and the KDC would treat the dMSA as that account's successor without a real migration. Any domain with one Windows Server 2025 domain controller was exposed, whether or not it used dMSAs.[^sam-badsuccessor] Microsoft fixed it as CVE-2025-53779 in the August 12, 2025 updates (KB5063878, and the hotpatch KB5064010), for Windows Server 2025 only. Its FAQ says the attacker needs write access to two dMSA attributes, `msDS-groupMSAMembership` and `msDS-ManagedAccountPrecededByLink`, and that success "could gain domain administrator privileges."[^sam-cve-53779]
+
+Learn gives no guidance on delegating the right to create dMSAs beyond its create step's "Domain Admins or Enterprise Admins, or equivalent AD permissions."[^sam-dmsa-setup] The program treats that right as Tier 0 *(design guidance)*:
+
+- Install the August 2025 update or later on every Windows Server 2025 domain controller before the first one is promoted into production.
+- dMSAs are created and migrated by Domain Admins only, as the program decided for dMSA steps ([WD-154](../../about/decision-register.md#wd-154)); the delegated create right for gMSAs doesn't extend to dMSAs.
+- Review who holds create-child rights on each OU, including generic "create all child objects," because that right also creates a dMSA.[^sam-badsuccessor] The researchers publish a script for this; it isn't Microsoft's, so run it in the test domain first.
+- Audit writes to `msDS-ManagedAccountPrecededByLink` and the creation of `msDS-DelegatedManagedServiceAccount` objects with directory service change auditing (events 5136 and 5137). That pairing comes from the researchers, not from Learn.[^sam-badsuccessor]
+
+### B0. Check that the old account has AES keys
+
+Since the April 14, 2026 updates, domain controllers assume AES only for an account with no `msDS-SupportedEncryptionTypes` value, and since the July 2026 updates the rollback setting is gone ([Book 02, Chapter 03](../b02-identity/03-ad-and-entra-side-by-side.md#where-the-old-protocols-stand-in-2026)).[^sam-kb5073381] The accounts a dMSA replaces are the ones most likely to have a password older than their domain's AES keys. Learn doesn't say whether a dMSA migration repairs an account with no AES keys, and it says not to reset the password during the migration.[^sam-dmsa-faq] So check before B1, on each domain controller:
+
+```powershell
+Get-WinEvent -FilterHashtable @{ LogName = 'System'; Id = 202, 204, 207, 209 } -MaxEvents 500 |
+    Where-Object { $_.ProviderName -match 'Kdc|Key-Distribution' -and $_.Message -match '<old-account>' } |
+    Select-Object TimeCreated, Id, Message
+```
+
+**Expected:** no events. An event 202 or 207 (warning) or 204 or 209 (error) naming the account means it has no AES keys.[^sam-kb5073381] Microsoft's `List-AccountKeys.ps1` lists the keys each account has.[^sam-rc4-detect] If the account has none, change its password through the service's own change process, which creates the AES keys,[^sam-rc4-detect] then confirm the service gets AES tickets (event 4769 with ticket encryption type 0x12 or 0x11, not 0x17) before you start the migration. Leave the password alone from B2 until the migration completes.
 
 ### B1. Create the dMSA
 
@@ -652,6 +677,8 @@ A finding this page addresses is ready for closure when every applicable state h
 | Retrievers widened by hand | Another host can act as the service | Retrievers are a reviewed group; Chapter 06's NPI-KRB-03 |
 | A dMSA completed too early, or with a host not on Windows Server 2025 | The old account is disabled and the service fails on hosts the dMSA hasn't learned | 30 days; every host on 2025; Chapter 06's NPI-KRB-04 |
 | The old account deleted during the migration | No way back | Disable only; delete through the decommission process |
+| A dMSA migrated from an account with no AES keys | Since the 2026 RC4 change, the service's tickets fail before the migration completes | Check for events 202 to 209 and change the password first; never during the migration (B0) |
+| Create-child rights on an OU in a domain with a Windows Server 2025 domain controller | Whoever holds them could create a dMSA and take over another account (BadSuccessor) | The August 2025 update on every Windows Server 2025 domain controller; dMSAs created by Domain Admins only; create-child rights reviewed ([Who may create a dMSA](#sam-dmsa-create-right)) |
 | A client secret on the new app registration | A password in a configuration file again | Managed identity, then federation, then a certificate; the application management policy ([Non-Person Identity guide, Step 3](non-person-identity-implementation.md#step-3-set-the-credential-rules)) |
 | A non-domain-joined container host's portable user account | A stored domain password reappears | Domain-joined hosts only, a program decision ([WD-154](../../about/decision-register.md#wd-154)); a non-domain-joined host needs a reviewed exception |
 | A gMSA left behind at program G5 | The workload loses its credential when the last domain controller is demoted | Chapter 06's reconciliation and island list |
@@ -669,6 +696,8 @@ A finding this page addresses is ready for closure when every applicable state h
 - [ ] Every SPN moved in the switch window and has one owner.
 - [ ] No gMSA or dMSA is in a privileged group.
 - [ ] Every dMSA migration ran 30 days before it was completed, on hosts that all run Windows Server 2025.
+- [ ] Every Windows Server 2025 domain controller has the August 2025 update or later, and no one but Domain Admins can create a dMSA.
+- [ ] Every account migrated to a dMSA had AES keys before the migration started (no events 202 to 209 for it).
 - [ ] Every old account was disabled, not deleted, and has a decommission record.
 - [ ] Every cloud identity uses a managed identity, a federated credential or a certificate, never a secret, with only the permissions its workload calls.
 - [ ] Every account that stays on Kerberos is on Chapter 06's island list with an end date.
@@ -720,6 +749,11 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^sam-kcd]: Microsoft Learn, "Configuring Kerberos delegation for group Managed Service Accounts," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/configure-kerberos-delegation-group-managed-service-accounts> (accessed Nov 9, 2026).
 [^sam-dmsa-overview]: Microsoft Learn, "Delegated Managed Service Accounts overview," dMSA and gMSA comparison; migration flow; account attributes, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> (accessed Nov 9, 2026).
 [^sam-dmsa-setup]: Microsoft Learn, "Setting up delegated Managed Service Accounts," prerequisites; create; migrate; complete; undo and reset; event logs, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa> (accessed Nov 9, 2026).
+[^sam-dmsa-faq]: Microsoft Learn, "Delegated Managed Service Accounts frequently asked questions" (at least one discoverable Windows Server 2025 domain controller; schema extension alone isn't enough; don't reset the password during migration), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-faq> (accessed Nov 13, 2026).
+[^sam-cve-53779]: Microsoft Security Response Center, "CVE-2025-53779: Windows Kerberos Elevation of Privilege Vulnerability," released August 12, 2025, affected products, KB5063878 and KB5064010, and FAQ, <https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-53779> (accessed Nov 13, 2026).
+[^sam-badsuccessor]: Akamai, "BadSuccessor: Abusing dMSA to Escalate Privileges in Active Directory," May 21, 2025, and "BadSuccessor Is Dead? Analyzing the BadSuccessor Patch," August 27, 2025, <https://www.akamai.com/blog/security-research/abusing-dmsa-for-privilege-escalation-in-active-directory> and <https://www.akamai.com/blog/security-research/2025/aug/badsuccessor-is-dead-analyzing-badsuccessor-patch> (accessed Nov 13, 2026). Not a Microsoft source; used because Learn gives no guidance on the create right.
+[^sam-kb5073381]: Microsoft Support, "How to manage Kerberos KDC usage of RC4 for service account ticket issuance changes related to CVE-2026-20833" (KB5073381), timeline and events 201–209, <https://support.microsoft.com/kb/5073381> (accessed Nov 13, 2026).
+[^sam-rc4-detect]: Microsoft Learn, "Detect and remediate RC4 usage in Kerberos" (accounts without AES keys; a password change generates them; `List-AccountKeys.ps1`; ticket encryption types), <https://learn.microsoft.com/windows-server/security/kerberos/detect-remediate-rc4-kerberos> (accessed Nov 13, 2026).
 [^sam-set-adsa]: Microsoft Learn, "Set-ADServiceAccount," `-ServicePrincipalNames`, <https://learn.microsoft.com/powershell/module/activedirectory/set-adserviceaccount> (accessed Nov 9, 2026).
 [^sam-set-aduser]: Microsoft Learn, "Set-ADUser," `-ServicePrincipalNames`, <https://learn.microsoft.com/powershell/module/activedirectory/set-aduser> (accessed Nov 9, 2026).
 [^sam-sql-spn]: Microsoft Learn, "Troubleshoot SQL Server Kerberos and authentication failures with gMSAs," `setspn -L` on the gMSA, <https://learn.microsoft.com/troubleshoot/sql/database-engine/startup-shutdown/gmsa-kerberos-authentication-failures> (accessed Nov 9, 2026).

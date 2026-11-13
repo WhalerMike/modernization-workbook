@@ -46,7 +46,7 @@ The guide's [Step 4](../../../books/guides/hr-driven-identity-implementation.md#
 
 ### Which cloud, for these reads
 
-The tools read Microsoft Graph on the cloud `--cloud` names: `graph.microsoft.com` for GCC, `graph.microsoft.us` for GCC High, `dod-graph.microsoft.us` for DoD. Learn marks Create assignmentPolicies as available in US Government L4 and L5,[^hw04-create] and entitlement management, access reviews and dynamic groups as available in Azure Government; GCC uses the commercial service.[^hw04-availability] One gap matters to this gate: administrative units with dynamic membership rules exist only in the global Azure cloud, not in Azure Government, so a GCC High tenant can't scope administration by a rule-based unit; the guide's interim path covers it.[^hw04-audyn]
+The tools read Microsoft Graph on the cloud `--cloud` names: `graph.microsoft.com` for GCC. Learn lists Create assignmentPolicies for the global service, which GCC uses,[^hw04-create] and entitlement management, access reviews and dynamic groups are part of the commercial Entra ID service GCC uses.[^hw04-availability] Administrative units with dynamic membership rules are available in the global Azure cloud, which GCC uses.[^hw04-audyn]
 
 ## Start with Microsoft's procedure
 
@@ -445,18 +445,18 @@ rm -rf exports out/ch04 out/ch04-vk-before out/ch04-vk-after my-access my-access
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Automatic assignment policy | Rule on user attributes; assignments created and removed; grace period; one per package unless scopes never overlap; hidden dynamic group per policy; at most 15,000 identities; Identity Governance Administrator, not catalog owners or access package managers | — | GA | [^hw04-auto] |
-| `memberOf` in a policy rule | Quarantined from November 3, 2026: no assignments added or removed until removed; read-only script | — | — | [^hw04-auto] |
-| Create assignmentPolicies | `POST /identityGovernance/entitlementManagement/assignmentPolicies`; `EntitlementManagement.ReadWrite.All`; example 3 with `attributeRuleMembers` and `automaticRequestSettings` | L4 and L5 | v1.0 | [^hw04-create] |
-| `accessPackageAutomaticRequestSettings` | `requestAccessForAllowedTargets`, `removeAccessWhenTargetLeavesAllowedTargets`, `gracePeriodBeforeAccessRemoval` | — | v1.0 | [^hw04-ars] |
-| `requestorManager` | The requester's manager as approver, `managerLevel` 1 or 2; include another approver | — | v1.0 | [^hw04-mgr] |
-| List assignments and policies | `EntitlementManagement.Read.All` (application, across catalogs) | — | v1.0 | [^hw04-assign] |
-| A user's memberships, direct and transitive | `User.Read.All` (application) | L4 and L5 | v1.0 | [^hw04-transitive] |
-| A user's direct memberships | `Directory.Read.All` (application) | — | v1.0 | [^hw04-memberof] |
-| Dynamic administrative units | Global Azure only, not Azure Government | Not available | — | [^hw04-audyn] |
-| Entitlement management, access reviews, PIM, dynamic groups | Available in Azure Government | Available | GA | [^hw04-availability] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Automatic assignment policy | Rule on user attributes; assignments created and removed; grace period; one per package unless scopes never overlap; hidden dynamic group per policy; at most 15,000 identities; Identity Governance Administrator, not catalog owners or access package managers | GA | [^hw04-auto] |
+| `memberOf` in a policy rule | Quarantined from November 3, 2026: no assignments added or removed until removed; read-only script | — | [^hw04-auto] |
+| Create assignmentPolicies | `POST /identityGovernance/entitlementManagement/assignmentPolicies`; `EntitlementManagement.ReadWrite.All`; example 3 with `attributeRuleMembers` and `automaticRequestSettings` | v1.0 | [^hw04-create] |
+| `accessPackageAutomaticRequestSettings` | `requestAccessForAllowedTargets`, `removeAccessWhenTargetLeavesAllowedTargets`, `gracePeriodBeforeAccessRemoval` | v1.0 | [^hw04-ars] |
+| `requestorManager` | The requester's manager as approver, `managerLevel` 1 or 2; include another approver | v1.0 | [^hw04-mgr] |
+| List assignments and policies | `EntitlementManagement.Read.All` (application, across catalogs) | v1.0 | [^hw04-assign] |
+| A user's memberships, direct and transitive | `User.Read.All` (application) | v1.0 | [^hw04-transitive] |
+| A user's direct memberships | `Directory.Read.All` (application) | v1.0 | [^hw04-memberof] |
+| Dynamic administrative units | Global Azure, which GCC uses | — | [^hw04-audyn] |
+| Entitlement management, access reviews, PIM, dynamic groups | Available; GCC uses the commercial service | GA | [^hw04-availability] |
 
 Places where Learn's pages differ or stop, recorded so a later edit doesn't loosen the code:
 
@@ -518,7 +518,6 @@ KSIs are FedRAMP 20x indicators for cloud service providers: the agency authoriz
 - [ ] Every request policy routes to the manager with a fallback approver.
 - [ ] Every move in the period has a residual sheet, a decision for each item and a transfer-to-review interval within the threshold.
 - [ ] The reader app holds only `EntitlementManagement.Read.All` and `User.Read.All`.
-- [ ] In GCC High, the interim path for administrative units (a scheduled job, compared in Gate 7) is in place.
 
 ::: {.callout-tip}
 ## Continue the book
@@ -526,7 +525,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers: the agency authoriz
 :::
 
 [^hw04-auto]: Microsoft Learn, "Configure an automatic assignment policy for an access package in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-auto-assignment-policy> (read November 1, 2026).
-[^hw04-create]: Microsoft Learn, "Create assignmentPolicies," national cloud deployments, permissions and example 3, <https://learn.microsoft.com/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0> (read November 1, 2026).
+[^hw04-create]: Microsoft Learn, "Create assignmentPolicies," permissions and example 3, <https://learn.microsoft.com/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0> (read November 1, 2026).
 [^hw04-ars]: Microsoft Learn, "accessPackageAutomaticRequestSettings resource type," <https://learn.microsoft.com/graph/api/resources/accesspackageautomaticrequestsettings?view=graph-rest-1.0> (read November 1, 2026).
 [^hw04-mgr]: Microsoft Learn, "requestorManager resource type," <https://learn.microsoft.com/graph/api/resources/requestormanager?view=graph-rest-1.0> (read November 1, 2026).
 [^hw04-assign]: Microsoft Learn, "View, add, and remove assignments for an access package in entitlement management," view assignments programmatically, <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-assignments>, and "Change request settings for an access package in entitlement management," create an access package assignment policy programmatically, <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-request-policy> (read November 1, 2026).

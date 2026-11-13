@@ -45,3 +45,7 @@ Checked October 20, 2026. Source: the existing page ("Applicability — Where th
 | Fallback protections for out-of-scope servers | Same | edited: Book 02 → Chapter 06, Book 06 → Chapter 14, Book 07 → Chapter 16 links; claims 21–24 |
 | Footnotes (`[^app-…]`) | Footnotes (`[^aC-…]`) | edited: re-keyed, re-opened, format aligned with the brief (accessed dates); two added (FCI, Arc unsupported configurations) |
 | Continue the series callout | Continue the book | edited: Previous → Appendix B; Book index; no Next (end of reading order) |
+
+## Revision 2026-11-13 — Windows Server 2025 retirements
+
+Mike's approval, Nov 13, 2026. The dates and events for each protocol now live in one place, the status table in Book 02, Chapter 03; this page links there. dMSA wording, where present, now says a dMSA needs a Windows Server 2025 domain controller (and Windows Server 2025 hosts), not a functional level (Learn, Delegated Managed Service Accounts FAQ, read Nov 13, 2026). An RC4 date, where present, follows KB5073381 (read Nov 13, 2026): AES only assumed from the April 14, 2026 updates, rollback no longer read from the July 2026 updates.

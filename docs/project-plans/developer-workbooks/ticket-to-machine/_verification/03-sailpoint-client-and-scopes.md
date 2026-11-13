@@ -15,8 +15,8 @@ Vendor pages opened on November 1, 2026: SailPoint Developer, Authentication; Sa
 | 5 | Index list; no `accounts` index | What exists; facts | verified | `Index.yaml` |
 | 6 | Accounts list and get: scopes, user levels, `uncorrelated` with `eq`, limit 250 | Facts | verified | `accounts.yaml`, `account.yaml`, `limit.yaml` |
 | 7 | Create workflow `sp:workflow:manage`; list read or manage | Facts | verified | `workflows.yaml` (v2025) |
-| 8 | `User.Read.All` least for list and get; Get a user available in L4 and L5 | Facts | verified | Learn, List users; Get a user |
-| 9 | `AuditLog.Read.All` least; L4 and L5 | Facts | verified | Learn, List directoryAudits |
+| 8 | `User.Read.All` least for list and get | Facts | verified | Learn, List users; Get a user |
+| 9 | `AuditLog.Read.All` least | Facts | verified | Learn, List directoryAudits |
 | 10 | List manager: application not supported; `$expand=manager` shown | Facts | verified | Learn, List manager |
 | 11 | GCC uses worldwide Graph | Facts | verified | Learn, deployments |
 | 12 | A separate workflow client, removed after use | What this chapter adds | restated-as-design (labeled) | — |

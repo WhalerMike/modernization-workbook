@@ -175,3 +175,9 @@ Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 0
 |---|---|---|---|---|---|
 | P4-1 | IA-3 labeled Mandated where the baseline selects it; the 802.1X design Risk-based recommended | Rolling it out (Authority) | verified (carried; c07-sp80053) | NIST SP 800-53 Rev. 5 IA-3 | Nov 11, 2026 |
 | P4-2 | How template, rings, RADIUS-unreachable behavior and out-of-band management, backout triggers, control states, evidence, assessment mapping | Rolling it out | restated-as-design (RADIUS-unreachable setting labeled design guidance; vendor-specific) | Program design | Nov 11, 2026 |
+
+## Revision 2026-11-13 — Credential Guard default on Windows Server 2025
+
+| # | Claim | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| W1 | Credential Guard is on by default only on domain-joined WS2025 machines that meet the requirements and aren't domain controllers | Password-based methods paragraph | corrected (was "on Windows Server 2025") | Learn, Credential Guard overview | Nov 13, 2026 |

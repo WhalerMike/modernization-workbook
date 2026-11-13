@@ -73,3 +73,7 @@ The Start Kit gained transaction profiling. Microsoft source opened October 29, 
 ## Server standard, November 5, 2026
 
 Added the exception sentence; dates carried from row 11. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.
+
+## Revision 2026-11-13 — Windows Server 2025 retirements
+
+Mike's approval, Nov 13, 2026. The dates and events for each protocol now live in one place, the status table in Book 02, Chapter 03; this page links there. dMSA wording, where present, now says a dMSA needs a Windows Server 2025 domain controller (and Windows Server 2025 hosts), not a functional level (Learn, Delegated Managed Service Accounts FAQ, read Nov 13, 2026). An RC4 date, where present, follows KB5073381 (read Nov 13, 2026): AES only assumed from the April 14, 2026 updates, rollback no longer read from the July 2026 updates.

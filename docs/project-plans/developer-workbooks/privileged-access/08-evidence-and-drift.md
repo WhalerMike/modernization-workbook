@@ -56,7 +56,7 @@ Chapters 03 to 07 add Conditional Access, PIM role settings, PIM for Groups, Azu
 
 ### Which cloud, for this read
 
-The audit read calls Microsoft Graph: `graph.microsoft.com` for GCC, which uses the worldwide endpoints, as do sign-in at `login.microsoftonline.com` and Azure Resource Manager at `management.azure.com`. GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa08-deployments] List directoryAudits is available in the global service, US Government L4 and US Government L5.[^pa08-list] PIM is part of Microsoft Entra ID Governance, available in GCC, GCC High and DoD.[^pa08-availability] The run takes the cloud as a required parameter with no default, and uses Chapter 01's reader, which sends the token only to that cloud's host.
+The audit read calls Microsoft Graph: `graph.microsoft.com` for GCC, which uses the worldwide endpoints, as do sign-in at `login.microsoftonline.com` and Azure Resource Manager at `management.azure.com`.[^pa08-deployments] List directoryAudits is available in the global service, which GCC uses.[^pa08-list] PIM is part of Microsoft Entra ID Governance, available in GCC.[^pa08-availability] The run takes the cloud as a required parameter with no default, and uses Chapter 01's reader, which sends the token only to that cloud's host.
 
 ## Start with Microsoft's sample
 
@@ -637,18 +637,18 @@ In production, lock the evidence container's retention policy once Lab 2 passes;
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| List directoryAudits | `GET /auditLogs/directoryAudits`; `AuditLog.Read.All` (higher: `Directory.Read.All`); delegated roles Reports Reader, Security Reader, Security Administrator; `$filter` (`eq`, `ge`, `le`, `startswith`), `$top`, `$orderby`, `skiptoken` | L4 and L5 | v1.0 | [^pa08-list] |
-| directoryAudit filters | `activityDateTime` `eq`, `ge`, `le`; `activityDisplayName` `eq`, `startswith`; `loggedByService` `eq`; `loggedByService` example `Privileged Identity Management` | — | v1.0 | [^pa08-resource] |
-| PIM activity names | `Add member to role requested / approval requested / request approved / request denied / completed (PIM activation)`, `Add member to role outside of PIM (permanent)`, `Remove member from role (PIM activation expired)`, `Update role setting in PIM`, and others, category RoleManagement | — | — | [^pa08-activities] |
-| PIM audit history | Resource audit covers the past 30 days; correlate an activation by `roleAssignmentRequestId`, which stays the same across asynchronous steps; deactivation events log the original request ID under additional details | — | GA | [^pa08-pim-audit] |
-| Audit log retention | Free seven days; P1 and P2 30 days; route to storage or Log Analytics to keep longer; retention changes aren't retroactive | — | — | [^pa08-retention] |
-| Monitoring PIM | Alert on roles assigned outside PIM (high); always alert on PIM setting changes for Privileged Role Administrator and Global Administrator; baseline requires approval to activate | — | — | [^pa08-secops] |
-| Graph hosts | GCC `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^pa08-deployments] |
-| Microsoft Entra ID Governance | Available in GCC, GCC High and DoD | Available | GA | [^pa08-availability] |
-| Sign-in from GitHub Actions | Azure Login with a federated credential; the job needs `id-token: write`; US Government audience `api://AzureADTokenExchangeUSGov` | Azure Government environment | Learn's samples use `azure/login@v2`; the sample workflow pins v3.1.0 by commit, as the first workbook's [Chapter 09](../../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#verified-facts) does | [^pa08-oidc] |
-| Immutable evidence | Time-based retention; a locked policy can't be deleted or shortened; unlocked is for testing | — | GA | [^pa08-immutable] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| List directoryAudits | `GET /auditLogs/directoryAudits`; `AuditLog.Read.All` (higher: `Directory.Read.All`); delegated roles Reports Reader, Security Reader, Security Administrator; `$filter` (`eq`, `ge`, `le`, `startswith`), `$top`, `$orderby`, `skiptoken` | v1.0 | [^pa08-list] |
+| directoryAudit filters | `activityDateTime` `eq`, `ge`, `le`; `activityDisplayName` `eq`, `startswith`; `loggedByService` `eq`; `loggedByService` example `Privileged Identity Management` | v1.0 | [^pa08-resource] |
+| PIM activity names | `Add member to role requested / approval requested / request approved / request denied / completed (PIM activation)`, `Add member to role outside of PIM (permanent)`, `Remove member from role (PIM activation expired)`, `Update role setting in PIM`, and others, category RoleManagement | — | [^pa08-activities] |
+| PIM audit history | Resource audit covers the past 30 days; correlate an activation by `roleAssignmentRequestId`, which stays the same across asynchronous steps; deactivation events log the original request ID under additional details | GA | [^pa08-pim-audit] |
+| Audit log retention | Free seven days; P1 and P2 30 days; route to storage or Log Analytics to keep longer; retention changes aren't retroactive | — | [^pa08-retention] |
+| Monitoring PIM | Alert on roles assigned outside PIM (high); always alert on PIM setting changes for Privileged Role Administrator and Global Administrator; baseline requires approval to activate | — | [^pa08-secops] |
+| Graph hosts | GCC `graph.microsoft.com` | — | [^pa08-deployments] |
+| Microsoft Entra ID Governance | Available in GCC | GA | [^pa08-availability] |
+| Sign-in from GitHub Actions | Azure Login with a federated credential; the job needs `id-token: write` | Learn's samples use `azure/login@v2`; the sample workflow pins v3.1.0 by commit, as the first workbook's [Chapter 09](../../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#verified-facts) does | [^pa08-oidc] |
+| Immutable evidence | Time-based retention; a locked policy can't be deleted or shortened; unlocked is for testing | GA | [^pa08-immutable] |
 
 Two places where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
@@ -696,7 +696,7 @@ Lab 2, step 5, the cross-check against PIM's resource audit in the admin center,
 | A run edited, or swapped with another tenant's | The evidence describes a run that never happened | Every file checked against its manifest, each manifest against `run.json`; tenant, cloud and mode must match |
 | A replaced package | A bad day is quietly rewritten | The hash chain; `period` reports the break; a locked retention policy |
 | An activation counted as drift | Every activation opens a Tier 0 incident, and the incident queue is ignored | Activated rows are left out of the assignment comparison; the audit evidence covers them |
-| The wrong cloud | A GCC High run reads `graph.microsoft.com` | Required cloud, no default; Chapter 01's reader checks the host on every page |
+| The wrong host | A run reads a host other than the cloud's own | Required cloud, no default; Chapter 01's reader checks the host on every page |
 
 ## Checklist
 

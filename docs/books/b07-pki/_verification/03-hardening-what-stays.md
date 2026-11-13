@@ -157,3 +157,9 @@ Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 0
 | P4-2 | Remediation rings, backout triggers, 90-day request check, control states and evidence for the migration gate | The risk-scoring matrix | restated-as-design (program position) | Program design | Nov 11, 2026 |
 | P4-3 | HSM-held CA keys and dual control relabeled Risk-based recommended (SC-12 and SC-13 leave the mechanism to the organization) | Hardening the AD CS that remains | corrected (authority label; was 'The program also requires') | NIST SP 800-53 Rev. 5 SC-12, SC-13 | Nov 11, 2026 |
 | P4-4 | Affinity, CRL validation and CA scoping roll out through Chapter 06's staged sequence; Microsoft-recommended | Hardening Entra CBA | restated-as-design | Chapter 06; Learn pages already cited | Nov 11, 2026 |
+
+## Revision 2026-11-13 — strong mapping bullet
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| W1 | No compatibility mode left; non-forest CAs (PIV) carry no SID extension; explicit mapping or the name-based strong mapping policy; KDC events 39, 40, 41 | Hardening the AD CS that remains | verified (KB5014754 read Nov 13, 2026); links to Chapter 06, which carries the detail | c03-kb5014754 |
