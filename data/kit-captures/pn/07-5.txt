@@ -1,3 +1,3 @@
 PS> ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check
-SUMS           Pass  25 files match SHA256SUMS
+SUMS           Pass  26 files match SHA256SUMS
 CHAIN          Pass  3 records, chain unbroken

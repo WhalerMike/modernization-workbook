@@ -1,10 +1,11 @@
 PS> Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
 PS> (Read-PnRouting -Path config/routing.json).rules | ForEach-Object { [pscustomobject]@{ id = $_.id; route = $_.route; severity = $_.severity; group = $_.assignmentGroup } } | Format-Table
-id  route  severity group
---  -----  -------- -----
-R01 task   P2       Security Operations (example)
-R02 task   P3       Cloud Platform Engineering (example)
-R03 task   P3       Cloud Platform Engineering (example)
-R04 task   P2       Service Desk (example)
-R05 task   P3       Cloud Operations (example)
-R06 ignore
+id   route  severity group
+--   -----  -------- -----
+R01  task   P2       Security Operations (example)
+R02  task   P3       Cloud Platform Engineering (example)
+R03  task   P3       Cloud Platform Engineering (example)
+R04  task   P2       Service Desk (example)
+R04b task   P2       Service Desk (example)
+R05  task   P3       Cloud Operations (example)
+R06  ignore

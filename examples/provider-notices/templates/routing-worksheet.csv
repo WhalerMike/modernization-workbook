@@ -3,6 +3,7 @@
 "R02","","","retirement","","","","","","task","P3","","","yes","",""
 "R03","","","maintenance","","","yes","","","task","P3","","","yes","",""
 "R04","","","incident","open","","yes","","","task","P2","","","no","",""
+"R04b","","m365","incident","open","","","","","task","P2","","","no","","Microsoft 365 service health issues are tenant-wide and name no resources, so R04 never matches them"
 "R05","","","","","yes","","","","task","P3","","","no","",""
 "R06","","","","","","","","","ignore","","","","","",""
 "default","","","","","","","","","digest","P4","","","no","",""

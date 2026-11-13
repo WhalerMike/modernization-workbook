@@ -125,17 +125,18 @@ Remove-Item -Recurse -Force out
     ```
 
     ```text
-    id  route  severity group
-    --  -----  -------- -----
-    R01 task   P2       Security Operations (example)
-    R02 task   P3       Cloud Platform Engineering (example)
-    R03 task   P3       Cloud Platform Engineering (example)
-    R04 task   P2       Service Desk (example)
-    R05 task   P3       Cloud Operations (example)
-    R06 ignore
+    id   route  severity group
+    --   -----  -------- -----
+    R01  task   P2       Security Operations (example)
+    R02  task   P3       Cloud Platform Engineering (example)
+    R03  task   P3       Cloud Platform Engineering (example)
+    R04  task   P2       Service Desk (example)
+    R04b task   P2       Service Desk (example)
+    R05  task   P3       Cloud Operations (example)
+    R06  ignore
     ```
 
-    Six rules, in the order they are tried.
+    Seven rules, in the order they are tried. R04b makes every open Microsoft 365 incident a task: Microsoft 365 service health names no resources, so R04, which needs them, never matches one.
 
 2. **Try the template as it ships:**
 
@@ -161,11 +162,11 @@ Remove-Item -Recurse -Force out
 
     ```text
     Notices: 22 new, 0 changed, 0 unchanged, 0 no longer listed
-    Routes:  12 task, 9 digest only, 1 ignored
-    Payloads: 12 create, 0 update, 0 close
+    Routes:  13 task, 8 digest only, 1 ignored
+    Payloads: 13 create, 0 update, 0 close
     ```
 
-    Then one line per payload, and `Dry run: 12 payloads written to out/day1-route/tasks, nothing sent.` The Microsoft Viva post is ignored by R06; the rest that need no task go to the digest.
+    Then one line per payload, and `Dry run: 13 payloads written to out/day1-route/tasks, nothing sent.` The open Exchange Online incident is a P2 task for the service desk by R04b. The Microsoft Viva post is ignored by R06; the rest that need no task go to the digest.
 
 5. **Read one payload:**
 
@@ -196,7 +197,7 @@ Remove-Item -Recurse -Force out
     ```text
     Notices: 2 new, 6 changed, 15 unchanged, 1 no longer listed
     Routes:  12 task, 10 digest only, 1 ignored
-    Payloads: 1 create, 4 update, 1 close
+    Payloads: 1 create, 4 update, 2 close
     ```
 
 8. **Read what each payload is for:**
@@ -205,7 +206,7 @@ Remove-Item -Recurse -Force out
     Import-Csv out/day2-route/routing.csv | Where-Object action | Format-Table change, ruleId, action, severity, noticeId
     ```
 
-    Six rows. The Azure and OCI rescheduled maintenance windows and the updated Microsoft 365 post are `changed` updates; the Azure incident the provider no longer lists is an `absent` update asking for the re-read; the new Microsoft 365 post `m365:MC900005` is a `new` create; and the AWS security notification AWS closed is a `close` that also asks for the re-read.
+    Seven rows. The Azure and OCI rescheduled maintenance windows and the updated Microsoft 365 post are `changed` updates; the Azure incident the provider no longer lists is an `absent` update asking for the re-read; the new Microsoft 365 post `m365:MC900005` is a `new` create; and the AWS security notification AWS closed and the Exchange Online incident Microsoft resolved are each a `close` that also asks for the re-read. The resolved incident shows `ruleId` `default`, since no task rule matches it now; its close payload keeps the task's severity and group.
 
 9. **Run the router's tests,** including the one that reads the finding contract:
 
@@ -213,7 +214,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests/Router.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
     ```
 
-    Expect `PassedCount 31`, `FailedCount 0`.
+    Expect `PassedCount 33`, `FailedCount 0`.
 
 Delete `out` when you're done:
 
@@ -242,10 +243,10 @@ Remove-Item -Recurse -Force out
     c. `action_due` overrides `response_due`
     d. The kit should set both to the provider's date
 3. You route the same collection twice. What does the second run write?
-    a. The same 12 payloads again
+    a. The same 13 payloads again
     b. Nothing: the state holds each notice's fingerprint, and unchanged notices write no payload
-    c. 12 update payloads
-    d. 12 close payloads
+    c. 13 update payloads
+    d. 13 close payloads
 4. AWS closes its security notification. What does the router do?
     a. Closes the task
     b. Deletes the task
@@ -268,7 +269,7 @@ Remove-Item -Recurse -Force out
 
 ## Summary (2 minutes)
 
-You checked six routing rules, saw the template refused, routed 22 notices into 12 task payloads, read one with both its dates and its five clauses, watched a re-run write nothing, and read the second week's create, updates and close.
+You checked seven routing rules, saw the template refused, routed 22 notices into 13 task payloads, read one with both its dates and its five clauses, watched a re-run write nothing, and read the second week's create, updates and closes.
 
 **The evidence an ISSO keeps** for G6 from this module: each routing run's `tasks/`, `tasks.json`, `routing.csv`, `state.json` and manifest, dated; the reviewed routing file's SHA-256; and the change records the payloads open. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.md#checklist).
 
