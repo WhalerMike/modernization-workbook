@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.139
+Welcome to Module 2 of Global Secure
+Access as the Identity-Aware Network:
+
+2
+00:00:05.139 --> 00:00:07.475
+the client and Microsoft traffic.
+
+3
+00:00:07.475 --> 00:00:10.860
+Everything after this module
+depends on two things:
+
+4
+00:00:10.860 --> 00:00:15.819
+a client on every managed Windows
+device, and the Microsoft traffic profile
+
+5
+00:00:15.819 --> 00:00:20.463
+carrying that device's Microsoft three
+sixty-five and Entra I D traffic.
+
+6
+00:00:20.463 --> 00:00:26.324
+This module covers Steps 3 and 4 of the
+Global Secure Access implementation guide.
+
+7
+00:00:26.324 --> 00:00:30.620
+It takes about forty-five minutes,
+plus a lab in your own test tenant.

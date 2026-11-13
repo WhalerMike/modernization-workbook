@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.975
+Unit 2 is administrative remote desktop.
+
+2
+00:00:02.975 --> 00:00:09.563
+Administrative R D P, S S H and S M B
+are the paths an attacker wants most.
+
+3
+00:00:09.563 --> 00:00:14.233
+Private Access makes each a per-app
+application with its own assignment and its own
+
+4
+00:00:14.233 --> 00:00:17.549
+Conditional Access, so an
+administrator authenticates to
+
+5
+00:00:17.549 --> 00:00:21.137
+Entra with a phishing-resistant
+method before the tunnel opens.
+
+6
+00:00:21.137 --> 00:00:26.183
+Publish administrative hosts as their own
+applications, separate from user apps:
+
+7
+00:00:26.183 --> 00:00:30.783
+one app per tier or host group, with the
+host on port thirty-three eighty-nine,
+
+8
+00:00:30.783 --> 00:00:35.087
+assigned only to the privileged
+group whose pim activation grants it.
+
+9
+00:00:35.087 --> 00:00:40.376
+The policy requires the built-in
+phishing-resistant authentication strength,
+
+10
+00:00:40.376 --> 00:00:44.624
+whose I D ends in four, and a
+compliant device, in report-only first.
+
+11
+00:00:44.624 --> 00:00:50.312
+Enforcement ends the old path: the policy
+goes on, and then direct R D P is removed
+
+12
+00:00:50.312 --> 00:00:55.540
+from the V P N and from the server
+firewall, except from the connector I P's.

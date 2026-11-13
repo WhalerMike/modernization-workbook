@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.825
+Unit 3 is the reference architecture,
+the first of the guide's six artifacts.
+
+2
+00:00:04.825 --> 00:00:06.900
+It has seven zones and planes.
+
+3
+00:00:06.900 --> 00:00:12.250
+Managed endpoints carry the Windows client,
+Intune policy and the device identity.
+
+4
+00:00:12.250 --> 00:00:17.862
+Branches send traffic over an I P sec
+tunnel, with no user identity on it.
+
+5
+00:00:17.862 --> 00:00:22.813
+The control plane, Conditional Access,
+decides, and never carries traffic.
+
+6
+00:00:22.813 --> 00:00:26.968
+The policy plane holds the
+forwarding and security profiles,
+
+7
+00:00:26.968 --> 00:00:29.087
+the T L S policies and signaling.
+
+8
+00:00:29.087 --> 00:00:31.692
+The data plane is
+Microsoft's service edge in
+
+9
+00:00:31.692 --> 00:00:34.649
+commercial Azure regions,
+and the provider owns it.
+
+10
+00:00:34.649 --> 00:00:39.192
+The agency's private network holds
+connector groups, private D N S,
+
+11
+00:00:39.192 --> 00:00:43.650
+applications and domain controller
+sensors, all outbound only.
+
+12
+00:00:43.650 --> 00:00:47.975
+And the evidence zone is the workspace,
+Sentinel and the evidence store.
+
+13
+00:00:47.975 --> 00:00:52.296
+Step 2 makes it the agency's: which
+profiles each population gets,
+
+14
+00:00:52.296 --> 00:00:57.839
+how many connector groups and where, with
+two connectors minimum each, the private
+
+15
+00:00:57.839 --> 00:01:03.020
+D N S suffixes, which branches use remote
+networks, and where telemetry lands.

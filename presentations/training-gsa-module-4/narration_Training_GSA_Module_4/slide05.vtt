@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.425
+Where do connectors go?
+
+2
+00:00:01.425 --> 00:00:04.185
+They're outbound only,
+with no inbound ports,
+
+3
+00:00:04.185 --> 00:00:08.786
+they run on the program's server standard
+of Windows Server 2019 or later,
+
+4
+00:00:08.786 --> 00:00:11.009
+and they come at least two to a group,
+
+5
+00:00:11.009 --> 00:00:14.613
+so a patch or an outage doesn't
+take the applications down.
+
+6
+00:00:14.613 --> 00:00:15.801
+Now the clouds.
+
+7
+00:00:15.801 --> 00:00:20.911
+Learn describes Private Access as reaching
+private apps across hybrid and multicloud
+
+8
+00:00:20.911 --> 00:00:23.572
+environments, through
+connectors on Windows
+
+9
+00:00:23.572 --> 00:00:26.513
+Server hosts with line of
+sight to the application.
+
+10
+00:00:26.513 --> 00:00:31.587
+So an application in A W S, Google Cloud,
+or Oracle Cloud Infrastructure gets
+
+11
+00:00:31.587 --> 00:00:36.662
+a connector group in that cloud's network,
+exactly as an on-premises one does.
+
+12
+00:00:36.662 --> 00:00:41.189
+But Learn has no connector procedure
+specific to any of those three clouds,
+
+13
+00:00:41.189 --> 00:00:43.524
+so the guide marks it not yet specified,
+
+14
+00:00:43.524 --> 00:00:47.160
+and it doesn't compare those
+providers' own access services.

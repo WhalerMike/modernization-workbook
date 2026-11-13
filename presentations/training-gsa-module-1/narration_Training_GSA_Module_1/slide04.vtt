@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.525
+Unit 1 is the order.
+
+2
+00:00:01.525 --> 00:00:06.329
+The guide's steps are numbered to match
+the twelve network topics of the Zero Trust
+
+3
+00:00:06.329 --> 00:00:10.144
+closure update, but they run in a
+different order, so the logs exist
+
+4
+00:00:10.144 --> 00:00:14.312
+before anything is enforced, and
+nothing blocks before its path exists.
+
+5
+00:00:14.312 --> 00:00:18.137
+First the decision, the architecture,
+and Step twelve's logging.
+
+6
+00:00:18.137 --> 00:00:23.350
+Then the client, Microsoft traffic, the
+compliant network, and tenant restrictions.
+
+7
+00:00:23.350 --> 00:00:26.853
+Then private applications,
+privileged protocols,
+
+8
+00:00:26.853 --> 00:00:29.438
+internet traffic, and T L S inspection.
+
+9
+00:00:29.438 --> 00:00:35.000
+Last, coexistence and migration, and Step
+twelve again, for the evidence package.
+
+10
+00:00:35.000 --> 00:00:36.712
+This path follows that order.
+
+11
+00:00:36.712 --> 00:00:42.287
+One more rule: Microsoft's network access
+A P I's are on the Graph beta endpoint.
+
+12
+00:00:42.287 --> 00:00:45.073
+Learn says beta A P I's
+are subject to change
+
+13
+00:00:45.073 --> 00:00:48.176
+and not supported in
+production applications.
+
+14
+00:00:48.176 --> 00:00:51.042
+So the guide runs
+Learn's requests by hand,
+
+15
+00:00:51.042 --> 00:00:54.837
+as an administrator, and
+keeps each result as evidence.
+
+16
+00:00:54.837 --> 00:00:57.910
+Every lab uses the
+guide's placeholder table.

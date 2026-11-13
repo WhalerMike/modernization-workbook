@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:03.063
+A pilot isn't a deployment.
+
+3
+00:00:03.063 --> 00:00:07.581
+In this module the pilot becomes a
+migration: users move ring by ring,
+
+4
+00:00:07.581 --> 00:00:12.423
+each ring exits on criteria you measure,
+the V P N route for an application
+
+5
+00:00:12.423 --> 00:00:17.587
+goes only after its wave holds, and anything
+can be rolled back in a known order.
+
+6
+00:00:17.587 --> 00:00:22.319
+Then each network finding gets an
+evidence package an assessor can check:
+
+7
+00:00:22.319 --> 00:00:26.974
+configuration, test, operational,
+exception, and reassessment evidence.
+
+8
+00:00:26.974 --> 00:00:30.014
+The assessor recommends a
+finding ready for closure,
+
+9
+00:00:30.014 --> 00:00:32.225
+and the authorizing official decides.
+
+10
+00:00:32.225 --> 00:00:35.476
+In the lab, you rehearse the
+rollback on your test tenant,
+
+11
+00:00:35.476 --> 00:00:39.000
+and keep the exports that show
+the state before and after it.

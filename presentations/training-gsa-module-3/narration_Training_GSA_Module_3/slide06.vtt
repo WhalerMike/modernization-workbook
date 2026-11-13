@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.063
+Unit 3 is universal tenant restrictions.
+
+2
+00:00:03.063 --> 00:00:07.686
+The tenant restrictions version two
+policy comes first: default block,
+
+3
+00:00:07.686 --> 00:00:13.094
+with partner policies for the agency's own
+other tenants and each approved partner,
+
+4
+00:00:13.094 --> 00:00:15.837
+as Access and Privilege,
+appendix C, sets it.
+
+5
+00:00:15.837 --> 00:00:21.059
+Then tagging applies that policy to devices
+with the client, or on a remote network,
+
+6
+00:00:21.059 --> 00:00:23.593
+without a proxy, so users can sign in only
+
+7
+00:00:23.593 --> 00:00:26.588
+to tenants and applications
+the policy allows.
+
+8
+00:00:26.588 --> 00:00:31.537
+Know its reach: it covers the authentication
+plane and the Microsoft Graph data
+
+9
+00:00:31.537 --> 00:00:34.612
+plane, not the SharePoint
+or Exchange data planes,
+
+10
+00:00:34.612 --> 00:00:37.237
+which only device-side signaling reaches.
+
+11
+00:00:37.237 --> 00:00:42.299
+The setting is tenant-wide, and the pages
+the guide read show no report-only mode.
+
+12
+00:00:42.299 --> 00:00:45.975
+So its pilot is the Microsoft
+traffic profile's assignment,
+
+13
+00:00:45.975 --> 00:00:47.925
+with the block query read daily.
+
+14
+00:00:47.925 --> 00:00:51.580
+The rollback turns tagging
+off; the policy stays.

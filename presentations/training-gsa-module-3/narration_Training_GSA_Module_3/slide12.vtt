@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.775
+First: in a Global Secure Access
+outage, what keeps users working?
+
+3
+00:00:06.775 --> 00:00:10.710
+The answer is b: Microsoft's
+break-glass scripts that switch the
+
+4
+00:00:10.710 --> 00:00:15.250
+policies to report-only, rehearsed
+and recorded in the contingency plan.
+
+5
+00:00:15.250 --> 00:00:19.050
+Turning signaling off first
+would block users, not save them.
+
+6
+00:00:19.050 --> 00:00:23.300
+Second: which data planes do
+universal tenant restrictions reach?
+
+7
+00:00:23.300 --> 00:00:26.463
+The answer is b: the
+authentication plane and the
+
+8
+00:00:26.463 --> 00:00:30.100
+Microsoft Graph data plane,
+not SharePoint or Exchange.
+
+9
+00:00:30.100 --> 00:00:35.060
+The module page has three more questions,
+each linked to the unit that answers it.
