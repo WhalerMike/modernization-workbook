@@ -163,6 +163,24 @@
  },
  {
   "slide": 14,
+  "title": "Non-person identities: where they live, attributes or tags",
+  "links": [
+   {
+    "text": "Book 02, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/09-building-the-entra-target.html"
+   },
+   {
+    "text": "Book 06, Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html"
+   },
+   {
+    "text": "Book 17, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/04-kinds-of-ai-identity.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
   "title": "Beyond users: service principals and custom attributes",
   "links": [
    {
@@ -176,7 +194,7 @@
   ]
  },
  {
-  "slide": 15,
+  "slide": 16,
   "title": "The object-type crosswalk: stores, writers, consumers",
   "links": [
    {
@@ -190,7 +208,7 @@
   ]
  },
  {
-  "slide": 16,
+  "slide": 17,
   "title": "PIV and CAC: the certificate binding is an attribute",
   "links": [
    {
@@ -212,7 +230,7 @@
   ]
  },
  {
-  "slide": 17,
+  "slide": 18,
   "title": "certificateUserIds: who writes it, and the open pilot",
   "links": [
    {
@@ -234,7 +252,7 @@
   ]
  },
  {
-  "slide": 19,
+  "slide": 20,
   "title": "Worked example: one analyst, every mechanism",
   "links": [
    {
@@ -268,7 +286,7 @@
   ]
  },
  {
-  "slide": 20,
+  "slide": 21,
   "title": "The mover event: one personnel action, no ticket",
   "links": [
    {
@@ -306,7 +324,7 @@
   ]
  },
  {
-  "slide": 21,
+  "slide": 22,
   "title": "Stage 7: cut over in phases, wave by wave",
   "links": [
    {
@@ -332,7 +350,7 @@
   ]
  },
  {
-  "slide": 22,
+  "slide": 23,
   "title": "Stage 8: detect drift and fix it at the source",
   "links": [
    {
@@ -382,7 +400,7 @@
   ]
  },
  {
-  "slide": 23,
+  "slide": 24,
   "title": "Limits: administrative units",
   "links": [
    {
@@ -404,7 +422,7 @@
   ]
  },
  {
-  "slide": 24,
+  "slide": 25,
   "title": "Lifecycle Workflows: the pieces and the limits",
   "links": [
    {
@@ -414,7 +432,7 @@
   ]
  },
  {
-  "slide": 25,
+  "slide": 26,
   "title": "Lifecycle Workflows at our scale: what could break",
   "links": [
    {
@@ -428,7 +446,7 @@
   ]
  },
  {
-  "slide": 26,
+  "slide": 27,
   "title": "What still needs AD during hybrid",
   "links": [
    {
@@ -442,7 +460,7 @@
   ]
  },
  {
-  "slide": 27,
+  "slide": 28,
   "title": "The checklist, stage by stage",
   "links": [
    {
@@ -464,7 +482,7 @@
   ]
  },
  {
-  "slide": 28,
+  "slide": 29,
   "title": "Decisions, owners, and where to start",
   "links": [
    {

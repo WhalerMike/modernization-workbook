@@ -1,53 +1,49 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.240
-This crosswalk is the
-reference you'll come back to,
+00:00:00.050 --> 00:00:03.537
+Applications and service
+principals are the partial answer.
 
 2
-00:00:03.240 --> 00:00:06.582
-the store table seen by object
-type: every object type,
+00:00:03.537 --> 00:00:07.375
+The table repeats the recap's
+store table for these consumers.
 
 3
-00:00:06.582 --> 00:00:10.760
-the store its attributes live in,
-who writes them and what reads them.
+00:00:07.375 --> 00:00:10.425
+Extension attributes drive dynamic groups.
 
 4
-00:00:10.760 --> 00:00:14.176
-Users, devices, Arc servers
-and service principals
+00:00:10.425 --> 00:00:15.372
+Custom security attributes can't, but
+Conditional Access can filter applications
 
 5
-00:00:14.176 --> 00:00:17.596
-each have their own stores
-and their own consumers.
+00:00:15.372 --> 00:00:19.888
+by them, and they suit sensitive values
+that only specific roles should read.
 
 6
-00:00:17.596 --> 00:00:19.581
-The highpoint is the third column.
+00:00:19.888 --> 00:00:24.336
+For service principals, workload
+Conditional Access only blocks,
 
 7
-00:00:19.581 --> 00:00:23.292
-Every row names one writer,
-whether that's HR provisioning,
+00:00:24.336 --> 00:00:29.512
+applies only to direct assignment, and
+needs the Workload I D Premium license.
 
 8
-00:00:23.292 --> 00:00:27.546
-device registration, the Arc agent
-or an attribute administrator.
+00:00:29.512 --> 00:00:33.812
+And Microsoft documents no dynamic
+groups of service principals at all.
 
 9
-00:00:27.546 --> 00:00:30.923
-That's the same single-writer
-rule we set for the user schema,
+00:00:33.812 --> 00:00:37.162
+So access codes stay in
+the user extension slots.
 
 10
-00:00:30.923 --> 00:00:32.232
-applied to everything.
-
-11
-00:00:32.232 --> 00:00:35.500
-And one user row leads straight into PIV.
+00:00:37.162 --> 00:00:39.190
+Here's everything on one page.

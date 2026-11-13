@@ -90,14 +90,14 @@ endModule("Module 1");
 section(M2);
 {
   const s = divider(M2, "Module 2: The non-person track and PIV", "Service accounts, workload identities, AI agents  ·  Books 02, 06 and 17",
-    ["Service accounts, MSAs and gMSAs; workload identities and AI agents", "Service principals, custom security attributes, the object-type crosswalk", "PIV and CAC certificate binding as an attribute"], 14);
+    ["Service accounts, MSAs and gMSAs; workload identities and AI agents", "Service principals, custom security attributes, the object-type crosswalk", "PIV and CAC certificate binding as an attribute"], 16);
   notes(s,
 `Module 2: the non-person track. Service accounts, service principals, managed and workload identities and AI agents have no HR record. Their accountability is a named owner and sponsor, and their lifecycle runs on the owning system's record and on credential expiry, not on a hire or leave date.
 
 So: the AD service accounts, MSAs and gMSAs and the target for each; service principals, managed identities, workload identity federation and AI agent identities, each with its owner and sponsor, credentials and lifecycle; what Microsoft documents for targeting service principals by attribute, with custom security attributes; the object-type crosswalk across all four tracks; and PIV and CAC certificate binding, the people's credential, which is attribute-driven too.`,
   `${G}, "Non-person identity track," "Which attribute store each mechanism can read," "Object types, stores, writers and consumers," "PIV and CAC certificates as attributes"; Book 02, Chapters 06, 09 and 10; Book 17, Chapters 04–06.`);
 }
-["npi1", "npi2", "sp", "crosswalk", "piv", "cuid"].forEach((k) => SL[k]());
+["npi1", "npi2", "npiMap", "sp", "crosswalk", "piv", "cuid"].forEach((k) => SL[k]());
 endModule("Module 2");
 
 // ================================================================== Module 3

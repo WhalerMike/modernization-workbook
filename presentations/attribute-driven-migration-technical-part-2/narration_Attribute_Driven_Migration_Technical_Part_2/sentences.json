@@ -415,7 +415,7 @@
    "Next, how attributes reach applications."
   ]
  ],
- "14": [
+ "15": [
   [
    0.05,
    3.487,
@@ -457,7 +457,7 @@
    "Here's everything on one page."
   ]
  ],
- "15": [
+ "16": [
   [
    0.05,
    10.762,
@@ -489,7 +489,7 @@
    "And one user row leads straight into piv."
   ]
  ],
- "16": [
+ "17": [
   [
    0.05,
    4.825,
@@ -531,7 +531,7 @@
    "So where does that value come from?"
   ]
  ],
- "17": [
+ "18": [
   [
    0.05,
    9.45,
@@ -573,7 +573,7 @@
    "Now let's run it."
   ]
  ],
- "18": [
+ "19": [
   [
    0.05,
    2.237,
@@ -585,7 +585,7 @@
    "We'll follow one analyst through a reassignment with no ticket, cut over in phases, keep the attributes true with drift detection, and finish with the limits, the checklist and the decisions for every track."
   ]
  ],
- "19": [
+ "20": [
   [
    0.05,
    3.975,
@@ -632,7 +632,7 @@
    "Now HR moves her."
   ]
  ],
- "20": [
+ "21": [
   [
    0.05,
    2.125,
@@ -674,7 +674,7 @@
    "Next, cutting over at scale."
   ]
  ],
- "21": [
+ "22": [
   [
    0.05,
    5.412,
@@ -716,7 +716,7 @@
    "Then, drift."
   ]
  ],
- "22": [
+ "23": [
   [
    0.05,
    6.175,
@@ -753,7 +753,7 @@
    "Now, the limits."
   ]
  ],
- "23": [
+ "24": [
   [
    0.05,
    5.987,
@@ -790,7 +790,7 @@
    "Next, Lifecycle Workflows."
   ]
  ],
- "24": [
+ "25": [
   [
    0.05,
    5.275,
@@ -832,7 +832,7 @@
    "So what could break at our size?"
   ]
  ],
- "25": [
+ "26": [
   [
    0.05,
    7.225,
@@ -874,7 +874,7 @@
    "Next, what still needs A D."
   ]
  ],
- "26": [
+ "27": [
   [
    0.05,
    6.287,
@@ -916,7 +916,7 @@
    "Here's the checklist."
   ]
  ],
- "27": [
+ "28": [
   [
    0.05,
    5.487,
@@ -973,7 +973,7 @@
    "Finally, who decides."
   ]
  ],
- "28": [
+ "29": [
   [
    0.05,
    4.925,
@@ -1013,6 +1013,48 @@
    40.212,
    0.762,
    "Thank you."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.6,
+   "Before that, one map of every non-person identity."
+  ],
+  [
+   3.65,
+   14.075,
+   "The four A D kinds, service accounts, M S As, g M S As and d M S As, liv only in Active Directory, and they're described only by A D attributes; none of them carries an Azure tag."
+  ],
+  [
+   17.725,
+   16.2,
+   "Everything else lives in Entra I D: app registrations, managed identities, federated credentials and agent identities, each described by attributes on the object, such as its owners, the record it points to, and custom security attributes."
+  ],
+  [
+   33.925,
+   7.975,
+   "Tags come in only where there's an Azure resource: a user-assigned managed identity, or the Arc machine behind a server's identity."
+  ],
+  [
+   41.9,
+   1.312,
+   "The difference matters."
+  ],
+  [
+   43.212,
+   2.263,
+   "Attributes are fields on the object."
+  ],
+  [
+   45.475,
+   5.062,
+   "Tags are plain-text labels that Azure tools read, and they're never a security boundary."
+  ],
+  [
+   50.538,
+   2.8,
+   "Now, how attributes reach applications."
   ]
  ]
 }
