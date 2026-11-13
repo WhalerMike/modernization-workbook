@@ -2989,7 +2989,6 @@ pages:
   cited_by:
   - docs/books/b04-access/_verification/appendix-c-partner-access-profile-entra.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
-  - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
 - path: docs/external-id/b2b-quickstart-add-guest-users-portal.md
   url: https://learn.microsoft.com/entra/external-id/b2b-quickstart-add-guest-users-portal
   title: 'Quickstart: Add a guest user and send an invitation'
@@ -17625,23 +17624,12 @@ pages:
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
-  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
-  - docs/books/b14-compliance/06-contingency-and-continuity.md
-  - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
-  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
-  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
-  - docs/books/b16-people/07-end-user-training.md
-  - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
-  - docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md
-  - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
-  - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
-  - docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/hcm-entra-implementation.md
   - docs/books/guides/hr-driven-identity-implementation.md
@@ -25416,9 +25404,6 @@ pages:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
-  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
-  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
-  - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
 - path: docs/identity/hybrid/connect/reference-connect-health-faq.yml
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-health-faq
   title: Microsoft Entra Connect Health frequently asked questions
@@ -25465,8 +25450,6 @@ pages:
   cited_by:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/09-building-the-entra-target.md
-  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
-  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
 - path: docs/identity/hybrid/connect/reference-connect-msexchuserholdpolicies.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-msexchuserholdpolicies
   title: 'Microsoft Entra Connect: msExchUserHoldPolicies and cloudMsExchUserHoldPolicies'
@@ -30485,7 +30468,6 @@ pages:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
-  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/06-credentials-and-least-privilege.md
   - docs/books/guides/attribute-driven-migration.md

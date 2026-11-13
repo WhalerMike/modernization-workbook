@@ -1,6 +1,6 @@
 ---
 title: "Chapter 02 — What Federal Workforce Rules Require"
-description: "The federal workforce requirements behind training: FISMA's duties to train and staff, OPM's training rule at 5 CFR 930.301, OMB Circular A-130's workforce and training provisions, the NICE Workforce Framework for Cybersecurity and its current components, and the position coding the Federal Cybersecurity Workforce Assessment Act requires, with DoD 8140 as a contrast."
+description: "The federal workforce requirements behind training: FISMA's duties to train and staff, OPM's training rule at 5 CFR 930.301, OMB Circular A-130's workforce and training provisions, the NICE Workforce Framework for Cybersecurity and its current components, and the position coding the Federal Cybersecurity Workforce Assessment Act requires."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b16-people
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The workforce side of the federal training requirements. It covers what FISMA asks of the agency head and the CIO, what OPM's rule at 5 CFR 930.301 requires for each audience, and what OMB Circular A-130 adds on competency requirements and workforce planning. It describes the NICE Workforce Framework for Cybersecurity in NIST SP 800-181 Rev. 1 and its current components, and the position coding the Federal Cybersecurity Workforce Assessment Act of 2015 requires, with the record of how well agencies have done it. The Department of Defense's 8140 program appears at the end as a contrast, with its scope stated. The training controls themselves, AT-1 to AT-4, IR-2 and CP-3, are in [Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md) and aren't repeated here.
+The workforce side of the federal training requirements. It covers what FISMA asks of the agency head and the CIO, what OPM's rule at 5 CFR 930.301 requires for each audience, and what OMB Circular A-130 adds on competency requirements and workforce planning. It describes the NICE Workforce Framework for Cybersecurity in NIST SP 800-181 Rev. 1 and its current components, and the position coding the Federal Cybersecurity Workforce Assessment Act of 2015 requires, with the record of how well agencies have done it. The training controls themselves, AT-1 to AT-4, IR-2 and CP-3, are in [Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md) and aren't repeated here.
 :::
 
 [Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md) asks whether the right people were trained and whether the record proves it. This chapter asks the questions that come before that one. Which people does the agency have to identify? How must it describe their work? Who in the agency, and who in government, owns each part? The answers come from four kinds of source: two statutes, an OMB circular, an OPM regulation and its coding guidance, and NIST's workforce framework. They were written over twenty years by different authors, and they fit together better than their ages suggest.
@@ -31,7 +31,7 @@ The workforce side of the federal training requirements. It covers what FISMA as
 | Source | Date | Binds | What it adds for the workforce |
 |---|---|---|---|
 | FISMA, 44 U.S.C. § 3554 | 2014 | The agency head, through the CIO | Trained personnel sufficient to comply; a qualified senior agency information security officer; training for people with significant security responsibilities; awareness training for all users, contractors included |
-| Federal Cybersecurity Workforce Assessment Act | December 18, 2015 | Agency heads, OPM, DoD | Identify every position that does cyber work and assign it a code under the NICE coding structure |
+| Federal Cybersecurity Workforce Assessment Act | December 18, 2015 | Agency heads, OPM | Identify every position that does cyber work and assign it a code under the NICE coding structure |
 | OMB Circular A-130 | July 2016 | Agencies; OPM | Competency requirements and workforce planning for information resources staff; awareness and role-based training programs |
 | 5 CFR 930.301 | June 14, 2004 | Executive agencies | A training plan; role-specific training by audience; awareness before access and at least annually; training on significant change |
 | OPM coding guidance | January 2017, April 2022 | Agencies (as OPM's procedures under the Act) | Three-digit cybersecurity data standard codes on position descriptions, reported to OPM |
@@ -84,7 +84,7 @@ The data elements, the NICE Framework Components, are published separately in th
 
 Three recent versions explain the current shape.
 
-- **Version 2.0.0, March 5, 2025**, was a major update that removed two categories, Cyberspace Effects and Cyberspace Intelligence, and their work roles. NIST explained that those roles fall under titles 10 and 50 of the U.S. Code, military and intelligence operations, and that they continue to be maintained in the Department of Defense's Cyber Workforce Framework. NIST describes the NICE Framework, by contrast, as intended for broad use across government, the private sector and academia.[^c02-nice-200][^c02-nice-changelog]
+- **Version 2.0.0, March 5, 2025**, was a major update that removed two categories, Cyberspace Effects and Cyberspace Intelligence, and their work roles. NIST explained that those roles fall under titles 10 and 50 of the U.S. Code, military and intelligence operations. NIST describes the NICE Framework, by contrast, as intended for broad use across government, the private sector and academia.[^c02-nice-200][^c02-nice-changelog]
 - **Version 2.1.0, December 3, 2025**, revised the Cybercrime Investigation work role and the AI Security competency area.[^c02-nice-changelog]
 - **Version 2.2.0, April 28, 2026**, added a Cybersecurity Supply Chain Risk Management work role (OG-WRL-017) and published knowledge and skill statements for the Cryptography and DevSecOps competency areas. NIST calls it a minor update with minimal effect on backward compatibility.[^c02-nice-220]
 
@@ -121,7 +121,7 @@ SP 800-50 Rev. 1 makes the same connection from the training side. It says that 
 The Federal Cybersecurity Workforce Assessment Act of 2015 is Title III of Division N of the Consolidated Appropriations Act, 2016, signed December 18, 2015, and carried as a note to 5 U.S.C. 301.[^c02-fcwaa][^c02-usc301] It turns the NICE vocabulary into a reporting obligation.
 
 - **Identify and code.** The head of each agency must identify all positions "that require the performance of cybersecurity or other cyber-related functions" and assign each the corresponding employment code under the NICE initiative.[^c02-fcwaa]
-- **OPM builds the structure.** OPM, coordinating with NIST, had 180 days to develop a coding structure, and nine months to establish procedures for identifying all federal civilian positions that require IT, cybersecurity or other cyber-related functions. DoD had 18 months to do the same for noncivilian positions.[^c02-fcwaa]
+- **OPM builds the structure.** OPM, coordinating with NIST, had 180 days to develop a coding structure, and nine months to establish procedures for identifying all federal civilian positions that require IT, cybersecurity or other cyber-related functions.[^c02-fcwaa]
 - **A baseline report.** Within three months of the procedures, each agency had to report the percentage of its IT, cybersecurity and cyber-related personnel who held the appropriate industry-recognized certifications identified under the NICE initiative, the readiness of the others to take certification exams, and a strategy for closing those gaps through training and certification.[^c02-fcwaa]
 - **Agency procedures and assignment.** Agencies had three months to set procedures for coding all encumbered and vacant positions, and one year after that to finish assigning codes.[^c02-fcwaa]
 - **Critical needs.** Beginning a year after codes were assigned, and annually "through 2022," each agency had to identify its IT, cybersecurity and cyber-related work roles of critical need and report them to OPM, with OPM issuing guidance on roles with acute and emerging skill shortages.[^c02-fcwaa][^c02-usc301]
@@ -159,19 +159,9 @@ The code on a position description is the HR system's statement of what cyber wo
 
 Three common claims go further than the sources do.
 
-- **Certification.** None of the civilian sources in this chapter requires a civilian employee to hold a particular industry certification. The Act asked agencies to report the percentage of their cyber workforce who held the certifications identified under the NICE initiative, and their plan for gaps.[^c02-fcwaa] That is a measurement duty. Certifications are a useful form of evidence of competence, and [Chapter 05](05-assessment-and-certification.md) treats them that way.
+- **Certification.** None of the civilian sources in this chapter requires a civilian employee to hold a particular industry certification. The Act asked agencies to report the percentage of their cyber workforce who held the certifications identified under the NICE initiative, and their plan for gaps.[^c02-fcwaa] That is a measurement duty, and the sources set no qualification standard per role. An agency can define what "qualified" means for its highest-risk roles as program design, as [Chapter 05](05-assessment-and-certification.md) does for the program's own tracks. Certifications are a useful form of evidence of competence, and [Chapter 05](05-assessment-and-certification.md) treats them that way.
 - **An annual number for everyone.** The only "annual" in these sources is 930.301's floor for awareness material.[^c02-cfr930] Role-based refresher frequency is the agency's to set, based on the sensitivity of the information people use.
 - **NICE as a mandate.** SP 800-181 Rev. 1 is guidance, and its own examples of competencies are meant to be used "in part, all together, or not at all," depending on the organization.[^c02-sp800181] What is required is coding positions under the NICE initiative's structure, which the Act and OPM's procedures make mandatory.[^c02-fcwaa][^c02-opm2017] How the agency uses the framework to design its curriculum is its own choice.
-
-## DoD 8140, as a contrast
-
-Agencies and contractors often hear about DoD's 8140 program, and training vendors often advertise courses against it. It is useful to understand, and it doesn't apply to civilian agencies.
-
-DoD Directive 8140.01, effective October 5, 2020, implements sections 303 and 304 of the Federal Cybersecurity Workforce Assessment Act for DoD. It establishes the DoD Cyber Workforce Framework as the department's authoritative reference for identifying, tracking and reporting cyberspace positions and as the foundation for baseline qualifications.[^c02-dodd814001] DoD Manual 8140.03, effective February 15, 2023, sets those qualifications. It applies to DoD components and to all DoD personnel in positions coded to cyberspace work roles, including service members, civilian employees and "personnel who provide contracted services," and it requires contractors to be fully qualified. It replaced the older DoD 8570.01-M program.[^c02-dodm814003]
-
-The manual's model is a qualification standard per work role and proficiency level. Qualification has a foundational part, met by any one of education, training or a personnel certification, or by documented experience within limits, and a residential part demonstrated on the job. After qualification, people must complete at least 20 hours a year of continuous professional development. Proficiency levels run from basic through intermediate to advanced, and the manual says they need have no connection to rank or grade.[^c02-dodm814003]
-
-The contrast with the civilian rules is the point. Civilian agencies must identify and code positions, train people by role, and plan their workforce, but the sources in this chapter set no qualification standard per role. DoD does, for its own workforce and its contractors. A civilian agency can borrow the idea, as program design, by defining what "qualified" means for its highest-risk roles, and [Chapter 05](05-assessment-and-certification.md) does that for the program's own tracks. It shouldn't cite DoD 8140 as its requirement. And when NICE moved the cyberspace effects and intelligence roles into DoD's framework in 2025, the two frameworks were separated further: civilian agencies code to NICE, and DoD qualifies against its own framework.[^c02-nice-200]
 
 ## Who owns which part
 
@@ -196,7 +186,7 @@ The contrast with the civilian rules is the point. Civilian agencies must identi
 | "Significant security responsibilities" as a fixed list | The list reviewed whenever a workstream changes what a position does |
 | Position codes treated as an HR data field | Codes used as a roster input, with disagreements against role assignments resolved by HR and the CIO's office |
 | Competencies written by the training office | Competency requirements set jointly by the CHCO and CIO, as A-130 asks, and fed into the workforce plan |
-| "The rules require certification" | Certification as evidence of competence; DoD's qualification model borrowed as design where it helps, never cited as a civilian requirement |
+| "The rules require certification" | Certification as evidence of competence; a per-role definition of "qualified" set as program design where it helps |
 | OPM's 2004 audience categories read literally | The categories mapped to today's roles, with non-cyber roles covered by awareness and role-based modules |
 
 ::: {.callout-tip}
@@ -221,5 +211,3 @@ The contrast with the civilian rules is the point. Civilian agencies must identi
 [^c02-opm2022]: Office of Personnel Management, memorandum for human resources directors, *Cybersecurity Workforce Management Updates and Resources*, April 11, 2022, Attachment 1, items 2 and 3, <https://sfs.opm.gov/docs/Cybersecurity%20Workforce%20Management%20Resources.pdf> (accessed Oct 22, 2026).
 [^c02-opm-ig]: Office of Personnel Management, *Interpretive Guidance for Cybersecurity Positions*, October 2018, <https://www.opm.gov/policy-data-oversight/classification-qualifications/reference-materials/interpretive-guidance-for-cybersecurity-positions.pdf>; listed as the current edition on "Classification & Qualifications: Reference Materials," <https://www.opm.gov/policy-data-oversight/classification-qualifications/reference-materials/> (both accessed Oct 22, 2026).
 [^c02-gao19144]: Government Accountability Office, GAO-19-144, *Cybersecurity Workforce: Agencies Need to Accurately Categorize Positions to Effectively Identify Critical Staffing Needs*, March 12, 2019, <https://www.gao.gov/products/gao-19-144> (accessed Oct 22, 2026).
-[^c02-dodd814001]: Department of Defense, DoD Directive 8140.01, *Cyberspace Workforce Management*, effective October 5, 2020, purpose statement, <https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodd/814001p.pdf> (accessed Oct 22, 2026, through the Internet Archive's copy of that address because the DoD site didn't resolve from the research environment).
-[^c02-dodm814003]: Department of Defense, DoD Manual 8140.03, *Cyberspace Workforce Qualification and Management Program*, effective February 15, 2023, §1.1 (Applicability), §1.2 (Policy), §3.2 (qualification program, foundational and residential qualification, continuous professional development) and §3.3 (Proficiency Levels), <https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodm/814003p.PDF> (accessed Oct 22, 2026, through the Internet Archive's copy of that address because the DoD site didn't resolve from the research environment).

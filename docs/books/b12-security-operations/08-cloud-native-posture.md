@@ -53,7 +53,7 @@ No single posture tool sees every provider equally well, and every provider ship
 
 The table below gives the mechanism for each platform and what the FedRAMP Marketplace lists for the offering that includes it, as of the dataset published October 21, 2026.[^c08-marketplace] Whether a platform is "owned" is agency-specific; the right-hand column states the program's treatment either way.
 
-*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
+*High only* marks material that applies to FedRAMP High environments, such as STIGs, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
 | Platform | Posture mechanism | FedRAMP listing of the offering that includes it | Program treatment |
 |---|---|---|---|

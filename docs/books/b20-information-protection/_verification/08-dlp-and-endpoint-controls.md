@@ -27,16 +27,14 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read: 18. Sources opened Nov 1
 | 19 | Incident handling steps and roles | DLP incidents | restated-as-design | Program design | Nov 11, 2026 |
 | 20 | Trial adds Teams and devices; after trial these locations can't be edited or added | Prerequisites | verified | Learn about the Microsoft Purview Suite trial, <https://learn.microsoft.com/purview/purview-trial> | Nov 11, 2026 |
 | 21 | Endpoint DLP included plans | Prerequisites (endpoint) | verified | Microsoft Purview service description | Nov 11, 2026 |
-| 22 | Government availability: DLP files/email, Teams, endpoint, alerts, Activity Explorer, MDCA integration, on-premises scanner Available in GCC, GCC High, DoD | Prerequisites | verified | Learn Purview GCC / GCC High / DoD planning pages, Step 4 | Nov 11, 2026 |
-| 23 | Connection URIs for GCC High and DoD (interactive) | Prerequisites | verified | Connect to Security & Compliance PowerShell | Nov 11, 2026 |
+| 22 | GCC availability: DLP files/email, Teams, endpoint, alerts, Activity Explorer, MDCA integration, on-premises scanner Available in GCC | Prerequisites | verified | Learn Purview GCC planning page, Step 4 | Nov 11, 2026 |
 | 24 | ExchangeEnvironmentName values | Telemetry | verified | App-only authentication page, Connection examples | Nov 11, 2026 |
 | 25 | DLP audit record types | Telemetry | verified | Microsoft services that support auditing, <https://learn.microsoft.com/purview/audit-supported-services> | Nov 11, 2026 |
 | 26 | Set-DlpCompliancePolicy has ExchangeSenderMemberOf and Mode; Disable example | Enforcement, Rollback | verified | Set-DlpCompliancePolicy, <https://learn.microsoft.com/powershell/module/exchangepowershell/set-dlpcompliancepolicy> | Nov 11, 2026 |
 | 27 | EndpointDlpLocation requires Compliance Administrator or Compliance Data Administrator in Entra ID | Prerequisites (endpoint) | verified | New-DlpCompliancePolicy | Nov 11, 2026 |
 | 28 | Control requirement rows (AC-4, SI-4, MP-7, CM-3) | Requirements | restated-as-design | Mapping is the program's; control titles checked against SP 800-53 Rev. 5 OSCAL 5.2.0 | Nov 11, 2026 |
 
-## Government-cloud gaps
+## GCC gaps
 
-- DLP simulation mode (the dashboard experience) isn't listed separately on the GCC, GCC High or DoD planning pages: "not yet specified" in all three.
-- Licensing differences between GCC, GCC High and DoD plans for Teams and endpoint DLP: the service description doesn't separate them by cloud; not yet specified.
-- The DoD Security & Compliance PowerShell URI differs between Learn's interactive connection page (`l5.ps.compliance.protection.office365.us`) and its app-only page (`compliance.dod.microsoft.com`); the chapter uses the interactive form.
+- DLP simulation mode (the dashboard experience) isn't listed separately on the GCC planning page: "not yet specified".
+- Licensing differences between commercial and GCC plans for Teams and endpoint DLP: the service description doesn't separate them by cloud; not yet specified.

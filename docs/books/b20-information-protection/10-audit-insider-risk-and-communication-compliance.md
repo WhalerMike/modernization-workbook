@@ -1,6 +1,6 @@
 ---
 title: "Chapter 10 — Audit, Insider Risk and Communication Compliance"
-description: "The tools that watch activity and behavior around the agency's data, and the governance they need first: Purview Audit Standard and Premium, retention and routing; Insider Risk Management and Communication Compliance under a charter that settles privacy, legal and labor-relations questions, role separation, pseudonymization, triage, retention and evidence; and the How sections that turn on, retain and test Purview Audit with searchable synthetic events, and stand up Insider Risk Management and Communication Compliance, with government-cloud availability, licensing, change safety, rollback, telemetry and evidence."
+description: "The tools that watch activity and behavior around the agency's data, and the governance they need first: Purview Audit Standard and Premium, retention and routing; Insider Risk Management and Communication Compliance under a charter that settles privacy, legal and labor-relations questions, role separation, pseudonymization, triage, retention and evidence; and the How sections that turn on, retain and test Purview Audit with searchable synthetic events, and stand up Insider Risk Management and Communication Compliance, with GCC availability, licensing, change safety, rollback, telemetry and evidence."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b20-information-protection
@@ -71,11 +71,11 @@ Three facts shape the design:
 - **Turning auditing off is a blind spot everywhere.** With auditing off, the Management Activity API and Microsoft Sentinel can't read audit data, Purview audit search returns nothing, and `Search-UnifiedAuditLog` returns nothing.[^c10-enable] An event that changes the auditing state is itself audited, and the program detects it.
 
 **Authority:** Mandated for the agency's logging obligations, which [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md) sets out with their sources. Microsoft-recommended for verifying the auditing status of a new organization.[^c10-enable] Risk-based recommended (the program's position): retain Purview audit records in the tenant for one year through Audit (Premium) where licensed, and in the agency's log platform for the period the evidence contract sets, because the tenant copy is limited by license and the log platform's isn't.
-**Applies:** License-dependent (Audit Premium, 10-year add-on). Environment-dependent: Audit (Standard) and Audit (Premium), including one-year and 10-year retention and increased Management Activity API bandwidth, are listed as Available in GCC, GCC High and DoD.[^c10-gcc][^c10-gcch][^c10-dod]
+**Applies:** License-dependent (Audit Premium, 10-year add-on). Environment-dependent: Audit (Standard) and Audit (Premium), including one-year and 10-year retention and increased Management Activity API bandwidth, are listed as Available in GCC.[^c10-gcc]
 
 ### Routing audit data out of the tenant
 
-The log platform, not the tenant, is where audit data is kept for the evidence contract's full period and correlated with everything else. [Book 12, Chapter 04](../b12-security-operations/04-platform-and-m365-telemetry.md) builds that path. Two Purview facts bear on it. The Management Activity API serves only the last seven days of content, so a collector that stops for longer than that loses data the tenant still holds but the API won't return; and it has no guaranteed latency.[^c10-api-faq] And each cloud has its own API endpoint: `manage.office.com` (commercial), `manage-gcc.office.com` (GCC), `manage.office365.us` (GCC High) and `manage.protection.apps.mil` (DoD).[^c10-api-ref] A collector pointed at the commercial endpoint from a GCC High tenant collects nothing.
+The log platform, not the tenant, is where audit data is kept for the evidence contract's full period and correlated with everything else. [Book 12, Chapter 04](../b12-security-operations/04-platform-and-m365-telemetry.md) builds that path. Two Purview facts bear on it. The Management Activity API serves only the last seven days of content, so a collector that stops for longer than that loses data the tenant still holds but the API won't return; and it has no guaranteed latency.[^c10-api-faq] And GCC has its own API endpoint: `manage-gcc.office.com`, where the commercial one is `manage.office.com`.[^c10-api-ref]
 
 ## The charter comes first
 
@@ -110,7 +110,7 @@ The program's assignment:
 - **The reviewers are reviewed.** The Auditors role group belongs to someone outside the investigation team (the privacy office or the inspector general's liaison), who reviews the insider risk audit trail on a set cadence.
 - **Never zero administrators.** Microsoft warns to keep at least one user in *Insider Risk Management* or *Insider Risk Management Admins* so the configuration isn't orphaned when people leave.[^c10-irm-perms] The program keeps two named Admins, assigned through PIM-for-Groups or recorded in the role register where groups aren't supported.
 
-Microsoft notes that adding **security groups** to Purview role groups is supported only in Microsoft 365 commercial cloud organizations.[^c10-purview-perms] GCC High and DoD aren't commercial cloud organizations, and Learn's wording doesn't settle GCC, so in all three government clouds the program assigns individual users and keeps the role register as the record of who holds each role and why.
+Microsoft notes that adding **security groups** to Purview role groups is supported only in Microsoft 365 commercial cloud organizations.[^c10-purview-perms] Learn's wording doesn't settle GCC, so in GCC the program assigns individual users and keeps the role register as the record of who holds each role and why.
 
 ### Pseudonymization
 
@@ -129,7 +129,7 @@ The program keeps anonymization on. De-anonymizing a case is an escalation step 
 
 : Insider risk triage (program design) {.striped .hover}
 
-Communication Compliance's ability to set a retention period on a policy is listed as on engineering backlog in GCC, GCC High and DoD,[^c10-gcc][^c10-gcch][^c10-dod] so retention of its review data follows the product default there, and the records officer records that as a known limit.
+Communication Compliance's ability to set a retention period on a policy is listed as on engineering backlog in GCC,[^c10-gcc] so retention of its review data follows the product default there, and the records officer records that as a known limit.
 
 ## How: turn on, retain and test Purview Audit
 
@@ -141,32 +141,24 @@ This procedure turns auditing on (or confirms it is on), sets retention to the e
 - **Licensing (License-dependent).** Audit (Premium) retention for each user whose actions must be kept beyond 180 days; the 10-year add-on where the evidence contract requires it.[^c10-retention]
 - **Modules.** The Exchange Online PowerShell module, for `Connect-ExchangeOnline` and `Connect-IPPSSession`.
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| Audit (Standard) | Available | Available | Available | Available | Learn government Purview pages[^c10-gcc][^c10-gcch][^c10-dod] |
-| Audit (Premium): crucial events such as MailItemsAccessed | Available | Available | Available | Available | Same |
-| Audit (Premium): one-year retention | Available | Available | Available | Available | Same |
-| Audit (Premium): 10-year retention | Available | Available | Available | Available | Same |
-| Increased Management Activity API bandwidth | Available | Available | Available | Available | Same |
-| Audit search enhancements | Available | On engineering backlog | On engineering backlog | On engineering backlog | Same |
-| Management Activity API endpoint | `manage.office.com` | `manage-gcc.office.com` | `manage.office365.us` | `manage.protection.apps.mil` | Management Activity API reference[^c10-api-ref] |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| Audit (Standard) | Available | Available | Learn GCC Purview page[^c10-gcc] |
+| Audit (Premium): crucial events such as MailItemsAccessed | Available | Available | Same |
+| Audit (Premium): one-year retention | Available | Available | Same |
+| Audit (Premium): 10-year retention | Available | Available | Same |
+| Increased Management Activity API bandwidth | Available | Available | Same |
+| Audit search enhancements | Available | On engineering backlog | Same |
+| Management Activity API endpoint | `manage.office.com` | `manage-gcc.office.com` | Management Activity API reference[^c10-api-ref] |
 
-: Government-cloud availability for Purview Audit (read Nov 11, 2026; Microsoft states the government status is subject to change) {.striped .hover}
+: GCC availability for Purview Audit (read Nov 11, 2026; Microsoft states the GCC status is subject to change) {.striped .hover}
 
-Connect (checked against Learn on Nov 11, 2026; run against a test tenant first):[^c10-connect][^c10-apponly]
+Connect (checked against Learn on Nov 11, 2026; run against a test tenant first):[^c10-connect]
 
 ```powershell
 # Commercial and GCC
 Connect-ExchangeOnline -UserPrincipalName <admin-upn>
 Connect-IPPSSession -UserPrincipalName <admin-upn>
-
-# GCC High
-Connect-ExchangeOnline -UserPrincipalName <admin-upn> -ExchangeEnvironmentName O365USGovGCCHigh
-Connect-IPPSSession -UserPrincipalName <admin-upn> -ConnectionUri https://ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
-
-# DoD
-Connect-ExchangeOnline -UserPrincipalName <admin-upn> -ExchangeEnvironmentName O365USGovDoD
-Connect-IPPSSession -UserPrincipalName <admin-upn> -ConnectionUri https://l5.ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
 ```
 
 ### Pilot
@@ -293,19 +285,19 @@ This procedure stands up both tools only after the [charter](#the-charter-comes-
 - **Devices** onboarded for endpoint indicators ([Chapter 08](08-dlp-and-endpoint-controls.md#endpoint-dlp-on-windows)).[^c10-onboard]
 - **Auditing on** ([How: turn on, retain and test Purview Audit](#how-turn-on-retain-and-test-purview-audit)).
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| IRM: data theft by departing users; general data leaks | Available | Available | Available | Available | Learn government Purview pages[^c10-gcc][^c10-gcch][^c10-dod] |
-| IRM: forensic evidence; case dashboard; "watch the watchers" audit trail | Available | Available | Available | Available | Same |
-| IRM: Office and Windows 10 endpoint indicators; Entra account-deletion trigger | Available | Available | Available | Available | Same |
-| IRM: analytics; priority user groups; Teams integration | Available | Public Preview | Public Preview | Public Preview | Same |
-| IRM: Defender for Endpoint alert indicators; security policy violation templates | Available | In development | In development | In development | Same |
-| HR data connector | Available | Available | Available | Available | Same |
-| Communication Compliance: Exchange and Teams; templates; remove Teams message | Available | Available | Available | Available | Same |
-| Communication Compliance: policy retention period setting | Not yet specified | On engineering backlog | On engineering backlog | On engineering backlog | Same |
-| Security groups as Purview role-group members | Available | Not yet specified | Not supported | Not supported | Permissions in the Microsoft Purview portal[^c10-purview-perms] |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| IRM: data theft by departing users; general data leaks | Available | Available | Learn GCC Purview page[^c10-gcc] |
+| IRM: forensic evidence; case dashboard; "watch the watchers" audit trail | Available | Available | Same |
+| IRM: Office and Windows 10 endpoint indicators; Entra account-deletion trigger | Available | Available | Same |
+| IRM: analytics; priority user groups; Teams integration | Available | Public Preview | Same |
+| IRM: Defender for Endpoint alert indicators; security policy violation templates | Available | In development | Same |
+| HR data connector | Available | Available | Same |
+| Communication Compliance: Exchange and Teams; templates; remove Teams message | Available | Available | Same |
+| Communication Compliance: policy retention period setting | Not yet specified | On engineering backlog | Same |
+| Security groups as Purview role-group members | Available | Not yet specified | Permissions in the Microsoft Purview portal[^c10-purview-perms] |
 
-: Government-cloud availability for Insider Risk Management and Communication Compliance (read Nov 11, 2026; status subject to change) {.striped .hover}
+: GCC availability for Insider Risk Management and Communication Compliance (read Nov 11, 2026; status subject to change) {.striped .hover}
 
 ### Pilot {#b20-10-pilot-irm}
 
@@ -414,7 +406,7 @@ These rows say what the chapter contributes. The agency still sets each control'
 [^c10-search]: Microsoft Learn, "Search the audit log," section "Before you search the audit log" (no guaranteed latency; typically 60 to 90 minutes for core services), <https://learn.microsoft.com/purview/audit-search> (accessed Nov 11, 2026).
 [^c10-enable]: Microsoft Learn, "Turn auditing on or off" (verify with `Get-AdminAuditLogConfig` in Exchange Online PowerShell, always False in Security & Compliance PowerShell; `Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true`, up to 60 minutes; Audit Logs role; with auditing off the API, Sentinel and searches return nothing; changes to auditing status are audited), <https://learn.microsoft.com/purview/audit-log-enable-disable> (accessed Nov 11, 2026).
 [^c10-api-faq]: Microsoft Learn, "Office 365 Management Activity API FAQs and troubleshooting" (API returns the last seven days; no guaranteed latency; auditing must be on), <https://learn.microsoft.com/office/office-365-management-api/troubleshooting-the-office-365-management-activity-api> (accessed Nov 11, 2026).
-[^c10-api-ref]: Microsoft Learn, "Office 365 Management Activity API reference," section "Activity API operations" (endpoints for enterprise, GCC, GCC High and DoD plans), <https://learn.microsoft.com/office/office-365-management-api/office-365-management-activity-api-reference> (accessed Nov 11, 2026).
+[^c10-api-ref]: Microsoft Learn, "Office 365 Management Activity API reference," section "Activity API operations" (endpoints for enterprise and GCC plans), <https://learn.microsoft.com/office/office-365-management-api/office-365-management-activity-api-reference> (accessed Nov 11, 2026).
 [^c10-irm]: Microsoft Learn, "Learn about Insider Risk Management," <https://learn.microsoft.com/purview/insider-risk-management> (accessed Nov 11, 2026).
 [^c10-cc-sd]: Microsoft Learn, "Microsoft Purview service description," section "Microsoft Purview Communications Compliance" (channels, investigator actions, pseudonymization, included plans), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description> (accessed Nov 11, 2026).
 [^c10-privacy]: Microsoft Learn, "Microsoft Purview Insider Risk Management and Communication Compliance privacy guide" (pseudonymization, role-based access, admin opt-in, audit logs; pseudonyms on by default for analyst and investigator roles), <https://learn.microsoft.com/purview/insider-risk-solution-privacy> (accessed Nov 11, 2026).
@@ -425,11 +417,8 @@ These rows say what the chapter contributes. The agency still sets each control'
 [^c10-irm-privacy]: Microsoft Learn, "Manage username privacy in Insider Risk Management" (anonymized usernames; what isn't anonymized; exports; data risk graph unavailable with anonymization; portal path), <https://learn.microsoft.com/purview/insider-risk-management-settings-privacy> (accessed Nov 11, 2026).
 [^c10-risk-graph]: Microsoft Learn, "Data risk graph in Insider Risk Management" (retirement on November 24, 2026), <https://learn.microsoft.com/purview/insider-risk-management-data-risk-graph> (accessed Nov 11, 2026).
 [^c10-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4 (status subject to change), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c10-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c10-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).
 [^c10-best-practice]: Microsoft Learn, "Best Practices using the Search-UnifiedAuditLog cmdlet tool" (View-Only Audit Logs or Audit Logs role; 100 records by default, up to 5,000 per request), <https://learn.microsoft.com/office/office-365-management-api/aip-unified-audit-logs-best-practices> (accessed Nov 11, 2026).
-[^c10-connect]: Microsoft Learn, "Connect to Security & Compliance PowerShell," Step 2 (ConnectionUri and AzureADAuthorizationEndpointUri for GCC High and DoD), <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (accessed Nov 11, 2026).
-[^c10-apponly]: Microsoft Learn, "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell," section "Connection examples" (`ExchangeEnvironmentName` O365USGovGCCHigh and O365USGovDoD), <https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2> (accessed Nov 11, 2026).
+[^c10-connect]: Microsoft Learn, "Connect to Security & Compliance PowerShell," Step 2 (connecting in Microsoft 365 and GCC), <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (accessed Nov 11, 2026).
 [^c10-new-retention]: Microsoft Learn, "New-UnifiedAuditLogRetentionPolicy" (RetentionDuration accepted values ThreeMonths, SixMonths, NineMonths, TwelveMonths, TenYears; examples including the 90-day SearchQueryPerformed policy), <https://learn.microsoft.com/powershell/module/exchangepowershell/new-unifiedauditlogretentionpolicy> (accessed Nov 11, 2026).
 [^c10-supported]: Microsoft Learn, "Microsoft services that support auditing" (record types, including DLP and Communication Compliance), <https://learn.microsoft.com/purview/audit-supported-services> (accessed Nov 11, 2026).
 [^c10-sentinel-types]: Microsoft Learn, "Microsoft Purview Information Protection connector reference - audit log record types and activities support" (SensitivityLabelAction, MipLabel, AipSensitivityLabelAction, AipProtectionAction and related record types), <https://learn.microsoft.com/azure/sentinel/microsoft-purview-record-types-activities> (accessed Nov 11, 2026).

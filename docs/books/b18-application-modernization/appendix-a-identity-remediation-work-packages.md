@@ -51,18 +51,17 @@ A finding these work packages address is ready for closure when every applicable
 - **Inputs.** The application's row in `portfolio-identity-rank.csv` ([Chapter 02](02-triaging-the-portfolio.md#identity-and-access-intake-fields)) and in the governance record, and a change record. The placeholders used throughout: `<app-id>` is the application (client) ID; `<sp-object-id>` the service principal's object ID; `<out-dir>` the application's evidence folder, `<evidence-root>\<app-id>\<yyyymmdd>`; `<change-id>` the change record.
 - **Roles, activated through PIM for the change window.** Cloud Application Administrator or Application Administrator for app registrations and service principals (owners, credentials, redirect URIs, assignment); Privileged Role Administrator only where an app role assignment to Microsoft Graph is removed; Reports Reader or Security Reader for sign-in logs.
 - **Licenses.** The changes are free. Reading sign-in logs through Microsoft Graph and collecting Microsoft Graph activity logs need Entra ID P1 or P2.[^b18aA-graph-activity] Group-based assignment to an application needs P1 or P2.[^b18aA-50105] Conditional Access for workload identities, if WP5 adds it, needs Workload ID Premium ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
-- **Government clouds.** Connect each session to the right cloud, and use the matching Graph root wherever a command builds a URL:
+- **GCC endpoints.** Connect each session to the worldwide endpoints, and use the matching Graph root wherever a command builds a URL:
 
   ```powershell
-  $cloud = 'Global'   # 'Global' for commercial and GCC; 'USGov' for GCC High; 'USGovDoD' for DoD
-  $graph = @{ Global = 'https://graph.microsoft.com'; USGov = 'https://graph.microsoft.us'; USGovDoD = 'https://dod-graph.microsoft.us' }[$cloud]
-  Connect-MgGraph -Environment $cloud -Scopes 'Application.ReadWrite.All','AppRoleAssignment.ReadWrite.All','DelegatedPermissionGrant.ReadWrite.All','AuditLog.Read.All' -NoWelcome
+  $graph = 'https://graph.microsoft.com'   # GCC uses the worldwide Graph endpoint
+  Connect-MgGraph -Scopes 'Application.ReadWrite.All','AppRoleAssignment.ReadWrite.All','DelegatedPermissionGrant.ReadWrite.All','AuditLog.Read.All' -NoWelcome
   $app = Get-MgApplication -Filter "appId eq '<app-id>'"
   $sp  = Get-MgServicePrincipal -Filter "appId eq '<app-id>'"
   New-Item -ItemType Directory -Force -Path '<out-dir>' | Out-Null
   ```
 
-  GCC uses the worldwide endpoint.[^b18aA-graph-clouds] The application, service principal, owner, grant and app role assignment APIs used here serve all three US government environments; Microsoft Graph activity logs are listed for the global service and US Government L4 and L5.[^b18aA-graph-activity] The service principal sign-in activity report is preview and global-only, so in GCC High and DoD the sign-in logs stand in for it ([Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#app-prerequisites)).
+  GCC uses the worldwide endpoint.[^b18aA-graph-clouds] The application, service principal, owner, grant and app role assignment APIs used here serve the worldwide endpoint; Microsoft Graph activity logs are listed for the global service.[^b18aA-graph-activity] The service principal sign-in activity report is preview ([Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#app-prerequisites)).
 
 ## Pilot {#wp-pilot}
 
@@ -211,10 +210,10 @@ Removing a permission from the registration doesn't revoke an existing grant, wh
 
    Leave a platform's list empty (`@()`) when it has none. Where a wildcard served many subdomains, Microsoft's alternative is one shared redirect URI with the destination carried, protected, in the `state` parameter;[^b18aA-reply] that is an application change for its developers, scheduled before the wildcard is removed.
 
-4. **OAuth regression test.** For each kept web or SPA URI, start a sign-in with it and confirm the identity platform accepts it; then confirm a removed URI is refused. `<tenant-id>` is the tenant's ID; use `login.microsoftonline.us` in GCC High and DoD.
+4. **OAuth regression test.** For each kept web or SPA URI, start a sign-in with it and confirm the identity platform accepts it; then confirm a removed URI is refused. `<tenant-id>` is the tenant's ID.
 
    ```powershell
-   $login = @{ Global = 'https://login.microsoftonline.com'; USGov = 'https://login.microsoftonline.us'; USGovDoD = 'https://login.microsoftonline.us' }[$cloud]
+   $login = 'https://login.microsoftonline.com'   # GCC uses the worldwide sign-in endpoint
    foreach ($test in @(@{ Uri = '<keep-web>'; Expect = 'accepted' }, @{ Uri = '<removed-uri>'; Expect = 'AADSTS50011' })) {
        $url = "$login/<tenant-id>/oauth2/v2.0/authorize?client_id=<app-id>&response_type=code&scope=openid&redirect_uri=$([uri]::EscapeDataString($test.Uri))&state=regression"
        $body = (Invoke-WebRequest -Uri $url -MaximumRedirection 0 -SkipHttpErrorCheck).Content
@@ -343,16 +342,16 @@ The identity platform team runs the work packages; the application's technical o
 - **Backout triggers:** a sign-in error code that began with the change; the application's own health check failing; more than two help-desk tickets for the application in the first day; the business owner asks.
 - **Post-change validation:** WP6, after each work package and again after the last.
 
-## Government-cloud availability {#wp-government-clouds}
+## GCC availability {#wp-government-clouds}
 
-| Capability | GCC | GCC High | DoD | Source (accessed Nov 11, 2026) |
-|---|---|---|---|---|
-| Graph application, service principal, owner, grant and assignment operations | Yes (worldwide endpoint) | Yes | Yes | [^b18aA-graph-clouds] |
-| Microsoft Graph activity logs | Yes | Yes | Yes | [^b18aA-graph-activity] |
-| Sign-in logs through Graph beta (`clientCredentialType`) | Requires P1 or P2; cloud availability not stated on the resource page (*not yet specified*) | Same | Same | [^b18aA-signin] |
-| Service principal sign-in activity report | Yes (preview) | No | No | [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#app-prerequisites) |
+| Capability | GCC | Source (accessed Nov 11, 2026) |
+|---|---|---|
+| Graph application, service principal, owner, grant and assignment operations | Yes (worldwide endpoint) | [^b18aA-graph-clouds] |
+| Microsoft Graph activity logs | Yes | [^b18aA-graph-activity] |
+| Sign-in logs through Graph beta (`clientCredentialType`) | Requires P1 or P2; cloud availability not stated on the resource page (*not yet specified*) | [^b18aA-signin] |
+| Service principal sign-in activity report | Yes (preview) | [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#app-prerequisites) |
 
-: Availability by government cloud {.striped .hover}
+: Availability in GCC {.striped .hover}
 
 ## Federal requirements these work packages support {#wp-federal-requirements}
 
@@ -374,7 +373,7 @@ Control names are from NIST's release 5.2.0 catalog.[^b18aA-sp80053] The packs s
 [← Previous: Chapter 10 — Running the Portfolio in Waves](10-running-the-portfolio-in-waves.md) · [Book index](index.md)
 :::
 
-[^b18aA-graph-activity]: Microsoft Learn, "Access Microsoft Graph activity logs" (available in the global service and US Government L4 and L5; requires Entra ID P1 or P2; Security Administrator configures the diagnostic settings; `AppId` and `RequestUri` columns), <https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview> (accessed Nov 11, 2026).
+[^b18aA-graph-activity]: Microsoft Learn, "Access Microsoft Graph activity logs" (available in the global service; requires Entra ID P1 or P2; Security Administrator configures the diagnostic settings; `AppId` and `RequestUri` columns), <https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview> (accessed Nov 11, 2026).
 [^b18aA-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Nov 11, 2026).
 [^b18aA-50105]: Microsoft Learn, "Error AADSTS50105 — The signed-in user isn't assigned to a role for the application" (group-based assignment needs Entra ID P1 or P2; the requirement doesn't apply to Global Administrators, so test with the affected user), <https://learn.microsoft.com/troubleshoot/entra/entra-id/app-integration/error-code-aadsts50105-user-not-assigned-role> (accessed Nov 11, 2026).
 [^b18aA-signin]: Microsoft Learn, "signIn resource type" (Graph beta; P1 or P2 to read sign-in logs through Graph; `clientCredentialType` values; `servicePrincipalCredentialKeyId`; `signInEventTypes` filter), <https://learn.microsoft.com/graph/api/resources/signin?view=graph-rest-beta> (accessed Nov 11, 2026).

@@ -48,9 +48,9 @@ Writer W3. Sources: `docs/compliance/Vol_VI_Book_03_Detection_Engineering.md`, `
 | 40 | SI-4(7) "least-disruptive actions"; IR-3, IR-4, IR-8, AC-12, AC-2(13) text | Ladder; IR plan; controls | verified | NIST OSCAL catalog |
 | 41 | Response ladder mapping and permanent-L3 additions (server isolation, privileged/emergency accounts) | Response ladder | restated-as-design | — |
 | 42 | Attack disruption actions, logging, undo, exclusions | Response ladder | verified | Learn: Automatic attack disruption; exclusions |
-| 43 | Attack disruption availability in GCC/GCC High | Response ladder | unverifiable (not found on the US Government pages; chapter says confirm) | — |
+| 43 | Attack disruption availability in GCC | Response ladder | unverifiable (not found on the US Government pages; chapter says confirm) | — |
 | 44 | Automation rules: triggers, actions, order, expiration, Sentinel service account permission on resource group; playbooks are Logic Apps (Standard or Consumption) | Playbooks | verified | Learn: Automate threat response with automation rules |
-| 45 | `revokeSignInSessions`: what it invalidates, few-minute delay, not external users, `User.RevokeSessions.All`, US Gov L4/L5 | Session revocation | verified | Learn: Graph user revokeSignInSessions |
+| 45 | `revokeSignInSessions`: what it invalidates, few-minute delay, not external users, `User.RevokeSessions.All` | Session revocation | verified | Learn: Graph user revokeSignInSessions |
 | 46 | Source: confirmCompromised as `PATCH` | Session revocation | corrected (`POST /identityProtection/riskyUsers/confirmCompromised`; `IdentityRiskyUser.ReadWrite.All`; P2; sets risk high) | Learn: Graph riskyUser confirmCompromised |
 | 47 | Source: CAE is "sub-second" revocation | Session revocation; limits | corrected (near real time, latency up to 15 minutes; admin refresh-token revocation is a critical event) | Learn: Continuous access evaluation |
 | 48 | Default access token 60–90 min; CAE tokens up to 28 h | Session revocation | verified | Learn: Access tokens; Configurable token lifetimes |
@@ -60,7 +60,7 @@ Writer W3. Sources: `docs/compliance/Vol_VI_Book_03_Detection_Engineering.md`, `
 | 52 | Synced user's cloud-only disable is undone by sync | Account disablement; limits | restated-as-design (inference from Microsoft's hybrid procedure; not quoted as Microsoft text) | Learn: Revoke user access |
 | 53 | `Connect-MgGraph -Identity -NoWelcome` | Account disablement | verified | Learn: Connect-MgGraph |
 | 54 | Isolate API: Comment required; IsolationType Full/Selective/UnManagedDevice; `Machine.Isolate`; 100/min, 1,500/h; full-VPN caveat; `api.security.microsoft.com` | Device isolation | verified (source used `api.securitycenter.microsoft.com` and client secret) | Learn: Isolate machine API |
-| 55 | MDE API hosts GCC `api-gcc.securitycenter.microsoft.us`, GCC High/DoD `api-gov.securitycenter.microsoft.us`, login `login.microsoftonline.us` | Device isolation | verified | Learn: Defender for Endpoint for US Government |
+| 55 | MDE API hosts GCC `api-gcc.securitycenter.microsoft.us` | Device isolation | verified | Learn: Defender for Endpoint for US Government |
 | 56 | Isolate only on active-exploitation alert; never servers in playbook | Device isolation | restated-as-design | — |
 | 57 | NIST SP 800-61r3, April 2025, supersedes Rev 2, CSF 2.0 Community Profile | IR plan | verified | csrc.nist.gov |
 | 58 | Seven IR artifacts | IR plan | restated-as-design | — |

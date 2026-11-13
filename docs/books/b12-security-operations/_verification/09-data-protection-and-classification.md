@@ -27,7 +27,7 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | 19 | Label encrypted-content expiry parameter accepts days or Never | Mapping rules; code | verified | New-Label help (EncryptionContentExpiredOnDateInDaysOrNever) |
 | 20 | Source: CUI-Specified labels expire content after 365 / 90 days | Mapping; code | corrected / restated | Expiry made a records-officer decision; code uses Never |
 | 21 | Content markings inserted by Office apps; labels applied outside Office (incl. SharePoint/OneDrive auto-labeling) apply metadata and encryption, not markings | Mapping rules | verified (new) | Learn, "Manage sensitivity labels in Office apps" |
-| 22 | `Connect-IPPSSession` GCC needs no ConnectionUri; GCC High URIs | Code | verified | Connect-IPPSSession help |
+| 22 | `Connect-IPPSSession` GCC needs no ConnectionUri | Code | verified | Connect-IPPSSession help |
 | 23 | Source: `-LabelActions` hashtable for content marking | Code | corrected | New-Label help: LabelActions "reserved for internal Microsoft use"; replaced by ApplyContentMarkingHeader* |
 | 24 | New-Label requires Name, DisplayName, Tooltip; ParentId accepts name; ContentType values; EncryptionProtectionType Template; EncryptionRightsDefinitions syntax | Code | verified | New-Label help |
 | 25 | Usage-right encodings VIEW, VIEWRIGHTSDATA, DOCEDIT, EDIT, PRINT, EXTRACT, REPLY, REPLYALL, FORWARD, OBJMODEL | Code | verified | Learn, "Configure usage rights for the Azure Rights Management service" |
@@ -38,11 +38,11 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | 30 | Source custom SIT built as hashtable → JSON with New-DlpSensitiveInformationType | SITs | corrected | Custom SITs import as XML rule packages via New-DlpSensitiveInformationTypeRulePackage -FileData; script not carried |
 | 31 | Trainable classifiers: 50–500 positive, 150–1,500 negative; custom English only; seeded from SharePoint folders | Classifiers | verified / corrected | Learn, trainable classifiers get-started and learn-about. Source gave "50–500 sample documents" only |
 | 32 | Source: "Plan for 3–4 weeks of training and validation" | Classifiers | removed | Not documented; Learn states processing within 24 hours and a preview shortened workflow |
-| 33 | Auto-labeling for Exchange, SharePoint, OneDrive and Office apps available in GCC and GCC High; ML classifiers client-side available | Auto-labeling | verified (new) | Learn, Purview GCC and GCC High planning pages, Step 4 |
+| 33 | Auto-labeling for Exchange, SharePoint, OneDrive and Office apps available in GCC; ML classifiers client-side available | Auto-labeling | verified (new) | Learn, Purview GCC planning page, Step 4 |
 | 34 | Auto-label Mode values and meaning | Auto-labeling code | verified | New-AutoSensitivityLabelPolicy help |
 | 35 | Auto-label rule requires -Workload (Exchange, SharePoint, OneDriveForBusiness); ContentContainsSensitiveInformation syntax with minCount/minConfidence | Auto-labeling code | verified / corrected | New-AutoSensitivityLabelRule help. Source omitted -Workload, used `confidenceLevel` and `-SentToScope` (not a parameter) |
 | 36 | Source: "SharePoint scanner" crawls libraries for service-side labeling | Auto-labeling | corrected | Restated as service-side auto-labeling policies; "scanner" is the on-premises scanner product |
-| 37 | DLP for files and email, Teams, endpoint DLP, on-premises scanner, Defender for Cloud Apps integration available in GCC and GCC High | DLP | verified (new) | Learn Purview GCC and GCC High pages |
+| 37 | DLP for files and email, Teams, endpoint DLP, on-premises scanner, Defender for Cloud Apps integration available in GCC | DLP | verified (new) | Learn Purview GCC page |
 | 38 | Device onboarding shared with Defender for Endpoint; Windows 10/11, macOS; Windows Server 2019+ with server support off by default | DLP | verified / corrected | Learn, device onboarding overview; endpoint DLP get started. Source said Endpoint DLP "requires the device to be onboarded to Defender for Endpoint" |
 | 39 | Defender for Cloud Apps session policies require apps onboarded to Conditional Access app control | DLP surfaces | verified | Learn, information protection policies page |
 | 40 | Minimum DLP baseline table | DLP | restated-as-design | Program design; source's "50 files in 10 minutes" threshold generalized |
@@ -59,7 +59,7 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | 51 | Availability key fallback logged as CustomerKeyServiceEncryption / "Fallback to availability key" | Keys | verified (new) | Learn, availability key page |
 | 52 | Source: SharePoint BYOK and Exchange Customer Key from a single Key Vault key | Keys | corrected | Customer Key requires two keys in two vaults in two subscriptions per workload |
 | 53 | DKE: two keys, both required; loses eDiscovery, search/indexing, Office web/coauthoring, Copilot | Keys | verified (new) | Learn, "What is Double Key Encryption (DKE)?" |
-| 54 | Customer Key, BYOK, DKE available in GCC and GCC High | Keys | verified | Learn Purview GCC and GCC High pages, Encryption rows |
+| 54 | Customer Key, BYOK, DKE available in GCC | Keys | verified | Learn Purview GCC page, Encryption rows |
 | 55 | Key Vault Premium: FIPS 140-3 Level 3 Marvell LiquidSecurity HSMs; Managed HSM single-tenant FIPS 140-3 Level 3, customer-held security domain | Keys | verified / corrected | Learn, About Azure Key Vault; Managed HSM control-your-data. Source said "FIPS 140-3 validated; 140-2 modules while CMVP Active" |
 | 56 | Source: "pending the 2026-09-21 Historical transition" | Keys | corrected (stale) | CSRC FIPS 140-3 transition page: 140-2 validations to Historical List September 21, 2026 (timeline shows September 22); CMVP supports use for existing systems |
 | 57 | Source: "Premium tier with HSM-protected keys is required to satisfy SC-12 and SC-13 at Moderate" | Keys | restated | No such requirement found; chapter says SC-13 depends on the validated module |
@@ -74,7 +74,7 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | 66 | Source: "the Purview Data Map reaches multi-cloud sources" | Other clouds | corrected / restated | Labeling in Data Map is preview (Learn); program doesn't rely on it for evidence |
 | 67 | Source: OCI Vault / Dedicated KMS; External Key Store / HYOK pattern | Other clouds | removed | Not verified this pass; chapter keeps the per-platform custody principle generically |
 | 68 | Source: Audit (Premium) provides immutable storage and cryptographic signatures bound to a trusted timestamp, satisfying AU-10 | Non-repudiation | removed / corrected | Learn audit solutions overview lists retention policies, longer retention, intelligent insights, API bandwidth; no signing or immutability feature |
-| 69 | Audit (Premium) one-year default for some workloads, ten years with add-on; available in GCC and GCC High | Non-repudiation | verified | Learn audit solutions overview; Purview GCC/GCC High pages |
+| 69 | Audit (Premium) one-year default for some workloads, ten years with add-on; available in GCC | Non-repudiation | verified | Learn audit solutions overview; Purview GCC page |
 | 70 | Source: "Standard audit log retention is 90 days" (control table) | Non-repudiation | corrected (not carried) | Audit (Standard) is 180 days (Learn comparison table); retention detail left to Ch04, which states the same |
 | 71 | AU-10 and SC-12(1) in High baseline only; AC-16 in no baseline | Non-repudiation; control map | verified | SP 800-53B Moderate and High OSCAL profiles, release 5.2.0 |
 | 72 | AU-10 design (export to write-once storage) | Non-repudiation | restated-as-design | Program design |
@@ -139,15 +139,13 @@ Pages read on 2026-11-09 through the Microsoft Learn documentation service, for 
 |---|---|---|---|---|
 | L1 | Container labels on groups, teams and sites set privacy, guest access and unmanaged-device access; content in the container doesn't inherit the label | New subsection "Labels on Teams, groups and sites" | verified (new) | `c09-container-labels`, Learn "Control external access to resources in Microsoft Entra ID with sensitivity labels" |
 | L2 | `EnableMIPLabels` must be set; at least one P1 license; labels synchronized with `Execute-AzureAdLabelSync`, up to 24 hours; don't change a published label's group settings afterwards | Same, and command block | verified; command block is Microsoft's steps, not run against a tenant | `c09-group-labels`, Learn "Assign sensitivity labels to Microsoft 365 groups in Microsoft Entra ID" |
-| L3 | Automatic classification and labeling for Teams, Microsoft 365 groups and SharePoint sites: Available in GCC and GCC High | Same | verified | `c09-gcc`, `c09-gcch` (Step 4 tables, re-read Nov 9, 2026) |
-| L4 | DoD availability of container labels | Same | not yet specified | No DoD table among the pages checked |
+| L3 | Automatic classification and labeling for Teams, Microsoft 365 groups and SharePoint sites: Available in GCC | Same | verified | `c09-gcc` (Step 4 tables, re-read Nov 9, 2026) |
 | L5 | Entra external collaboration settings override Microsoft 365 sharing; Teams can be stricter but not looser; B2B integration for SharePoint and OneDrive; "New and existing guests" over "Anyone"; default links to people in the organization; Guest Inviter role | Same | verified | `c09-teams-sp-external`, Learn "Secure external access to Microsoft Teams, SharePoint, and OneDrive with Microsoft Entra ID" |
 | L6 | CUI lives in sites whose container label blocks guests, with item labels from auto-labeling | Same | restated-as-design | Program design |
 | L7 | AD RMS no longer in active development; migrate to Azure Information Protection without re-protecting content | New subsection "AD RMS has to leave before the domain does" | verified (new) | `c09-adrms`, Learn "Upgrading AD RMS to Windows Server 2016" |
 | L8 | Migration moves TPDs, keys, templates and URLs; reconfigures clients, Exchange and SharePoint; partners plan in step | Same | verified | `c09-adrms-migrate` |
 | L9 | Export and import every TPD, not only the active one; HSM key that can't be exported: read-only cluster for old content | Same | verified | `c09-adrms-phase2` |
 | L10 | An AD RMS cluster blocks domain retirement and is migrated before the last DC goes | Same | restated-as-design | Program design |
-| L11 | Government-cloud configuration for AIP in GCC High and DoD needs extra steps | Not added to the text | noted | Learn "Azure Information Protection Premium Government Service Description" (search result, Nov 9, 2026) |
 
 Left listed but uncited in the coverage map: groups-sensitivity-labels (sensitivity labels on Entra security groups, preview).
 

@@ -21,7 +21,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 9 | Pause all skips paused collections, pauses the rest, signs in to the cloud chosen with only the scopes chosen | What they leave to you | verified by running the pinned script against the fake tenant; pinned in `LearnSamples.Tests.ps1` | local run |
 | 10 | Pause all records nothing | What they leave to you | verified by running and by reading the script (no file or output object) | local run; pinned page |
 | 11 | Resume noncritical resumes a collection paused before the incident | What they leave to you | verified by running; pinned in tests | local run |
-| 12 | Unrecognized cloud answer (GCCHigh) selects Global | What they leave to you | verified by running; pinned in tests | local run; pinned script's `GetEnvironmentAndEndpoint` |
+| 12 | Unrecognized cloud answer (GCC) selects Global | What they leave to you | verified by running; pinned in tests | local run; pinned script's `GetEnvironmentAndEndpoint` |
 | 13 | Resume scripts enforce no wait | What they leave to you | verified (no time test in either script); pinned in tests | pinned pages |
 | 14 | Samples page: 12 hours; processing guidance: at least 24 hours | What they leave to you; Verified facts | verified; Learn pages differ (recorded in research-gaps.md) | Learn, samples page; manage dynamic group processing |
 | 15 | Throttled request retried once, then counted as failed | What they leave to you | verified by running with two 429 responses; pinned in tests | local run |
@@ -30,7 +30,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 18 | Direct reports rule can't be combined; adds the manager | Lint; evaluator; Verified facts | verified | Learn, rules page; Book 03, Chapter 10 |
 | 19 | Extension attributes 1–15 as string properties; multi-value extension properties unsupported | Verified facts | verified | Learn, rules page |
 | 20 | Book 03 table: Legal employer lacked userType (now fixed, owner approved) and reads companyName; Exclusion admitted an empty worker type (now fixed, owner decided October 30, 2026: an empty worker type must not qualify) | Lint | verified by running the linter on the table; the Legal employer row was corrected in the same pull request as this chapter, and the Exclusion row gained `-and (user.extensionAttribute11 -ne null)` in a later one (research-gaps.md row 9); the fixture follows the published table (a test compares them), and the linter now finds nothing in Exclusion | Book 03, Chapter 10 (October 30, 2026) |
-| 21 | evaluateDynamicMembership permissions and clouds (global, L4, L5) | Lab 2; Verified facts | verified | Learn, evaluateDynamicMembership |
+| 21 | evaluateDynamicMembership permissions and clouds (global service) | Lab 2; Verified facts | verified | Learn, evaluateDynamicMembership |
 | 22 | New-MgGroup permissions: Group.ReadWrite.All delegated, Group.Create application | Lab 2; Verified facts | verified | Learn, New-MgGroup |
 | 23 | Processing state values On and Paused; Update complete status | Lab 2; Verified facts | verified | Learn, group resource type; create or update a dynamic group |
 | 24 | Guards ANDed at the top; `-ne` on coded slots and empty slots; 24-hour default | Lint; pause manifest; Dangers | restated-as-design (labeled where stated) | — |

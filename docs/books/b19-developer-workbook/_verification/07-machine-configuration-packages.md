@@ -36,7 +36,6 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 24 | `contentHash` appears four times in an enforcing definition | Check the definition | verified (fixture `deploy.json`: metadata plus three deployment resources) | local run |
 | 25 | Resource Policy Contributor recommended for `New-AzPolicyDefinition` | Procedure; Lab 2; Verified facts | verified | Learn, create policy definition |
 | 26 | Local testing installs the agent under `C:\ProgramData\GuestConfig\bin`, needs elevation; remediation changes the local machine | Lab 2 | verified | Learn, test |
-| 27 | `*.guestconfiguration.azure.us` for Arc in Azure Government; endpoints for US Gov Arizona, Texas, Virginia | Lab 2; Verified facts | verified; DoD not listed (research-gaps.md row 6) | Learn, network requirements; Arc network requirements |
 | 28 | Deleting a policy assignment deletes its guest assignment; removing a definition from an initiative leaves them | Lab 2; Dangers | verified | Learn, assignments |
 | 29 | Signing: Protect cmdlet, Trusted Publishers / Linux path, `GuestConfigPolicyCertificateValidation` tag; tagged machines allow only signed content | Verified facts; Dangers | verified | Learn, sign |
 | 30 | `CustomGuestConfigurationSetPolicy` = `disable` turns off remediation of custom content | Verified facts | verified | Learn, remediation options |

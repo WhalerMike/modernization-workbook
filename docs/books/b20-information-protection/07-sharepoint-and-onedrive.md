@@ -1,6 +1,6 @@
 ---
 title: "Chapter 07 — SharePoint and OneDrive"
-description: "How the agency makes labeled and encrypted files work where most of them live: why SharePoint and OneDrive can't search, scan, co-author or apply DLP to encrypted files until label integration is on; turning it on, with PDF support, and the encryption settings it can't process; inventorying legacy SharePoint IRM libraries and moving their protection to sensitivity labels, with the government-cloud gap in default library labels; turning on co-authoring for encrypted files only after the labeling-metadata change is safe for every app that reads labels; and the rollback, telemetry, evidence and ownership for each, with feature availability in GCC, GCC High and DoD."
+description: "How the agency makes labeled and encrypted files work where most of them live: why SharePoint and OneDrive can't search, scan, co-author or apply DLP to encrypted files until label integration is on; turning it on, with PDF support, and the encryption settings it can't process; inventorying legacy SharePoint IRM libraries and moving their protection to sensitivity labels, with the GCC gap in default library labels; turning on co-authoring for encrypted files only after the labeling-metadata change is safe for every app that reads labels; and the rollback, telemetry, evidence and ownership for each, with feature availability in GCC."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b20-information-protection
@@ -20,7 +20,7 @@ lifecycle_review: 2027-05-01
 
 ::: {.callout-note}
 ## In this chapter
-What changes when SharePoint and OneDrive can read the files that sensitivity labels encrypt, and what stays broken until they can. How to turn label integration on, add PDF support, and avoid the label encryption settings the service can't process. How to find libraries still protected by SharePoint Information Rights Management (IRM), and how to move them to labels, including what to do in GCC, GCC High and DoD, where the default library label is still in development. How to turn on co-authoring for encrypted files without breaking the apps that read labels the old way. Each procedure follows the How template, with rollback, telemetry, evidence and ownership.
+What changes when SharePoint and OneDrive can read the files that sensitivity labels encrypt, and what stays broken until they can. How to turn label integration on, add PDF support, and avoid the label encryption settings the service can't process. How to find libraries still protected by SharePoint Information Rights Management (IRM), and how to move them to labels, including what to do in GCC, where the default library label is still in development. How to turn on co-authoring for encrypted files without breaking the apps that read labels the old way. Each procedure follows the How template, with rollback, telemetry, evidence and ownership.
 :::
 
 [Chapter 04](04-teams-groups-and-sharepoint-containers.md) governed sites and teams as containers: privacy, guests, external sharing and unmanaged devices. This chapter is about the files inside them. A container label doesn't label the files in the container;[^c07-b12-containers] the files carry their own labels, applied by people ([Chapter 03](03-label-publication-and-defaults.md)) or by policy ([Chapter 09](09-auto-labeling-and-sensitive-information-types.md)). When one of those labels encrypts, the file in SharePoint or OneDrive is ciphertext to the service unless the agency has told SharePoint and OneDrive to process labeled content.
@@ -79,7 +79,7 @@ What it doesn't change matters as much, because each item below is a way a prote
 | Label integration for Office files | On, before the first encrypting label reaches users beyond the pilot | Microsoft-recommended[^c07-spo-labels] |
 | PDF support | On, after the auto-labeling policies in [Chapter 09](09-auto-labeling-and-sensitive-information-types.md) have been simulated with PDFs in scope, because enabling PDFs can increase how many files existing auto-labeling policies label[^c07-spo-labels] | Microsoft-recommended, with the program's staging |
 | OneNote labeling (section level) | Optional; decided with the records officer | Optional |
-| Legacy SharePoint IRM libraries | Each one migrated to labels, then IRM disabled on it; in GCC, GCC High and DoD, IRM stays on a library until its files are labeled, because the default library label isn't available there yet | Risk-based recommended |
+| Legacy SharePoint IRM libraries | Each one migrated to labels, then IRM disabled on it; in GCC, IRM stays on a library until its files are labeled, because the default library label isn't available there yet | Risk-based recommended |
 | Co-authoring for encrypted files | On, only after every app, service and tool that reads labels supports the new metadata location | Microsoft-recommended, with Microsoft's own caution[^c07-coauth] |
 
 ## How: turn on label integration for SharePoint and OneDrive
@@ -90,18 +90,18 @@ What it doesn't change matters as much, because each item below is a way a prote
 - **Labels replicated.** Microsoft's safeguard: publish new labels to a few test users, wait at least an hour, verify behavior in SharePoint and OneDrive, and wait at least a day before widening the policy, so labels have synchronized to the service before standard users apply them.[^c07-spo-labels]
 - **OneDrive sync app** 19.002.0121.0008 or later on Windows; older clients are prompted to update.[^c07-spo-labels]
 - **License.** As for encrypting labels ([Chapter 05](05-rights-management-and-recovery.md#prerequisites)). A missing license is a licensing decision, not a failed control ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy)).
-- **Government-cloud availability.**
+- **GCC availability.**
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| Sensitivity labels for Office files in SharePoint and OneDrive (`EnableAIPIntegration`) | Available | not yet specified (not listed separately; auto-labeling for SharePoint and OneDrive and co-authoring, which depend on it, are listed Available) | not yet specified (as GCC) | not yet specified (as GCC) | Purview planning pages, Sensitivity labeling rows[^c07-gcc][^c07-gcch][^c07-dod] |
-| Co-authoring on encrypted documents | Available | Available | Available | Available | Same pages[^c07-gcc][^c07-gcch][^c07-dod] |
-| Default label for an unlabeled file uploaded to a SharePoint library | Available | In development | In development | In development | Same pages[^c07-gcc][^c07-gcch][^c07-dod] |
-| Encrypted labeled PDFs searchable and eDiscoverable | Available | not yet specified (row not on the GCC page) | On engineering backlog | On engineering backlog | Same pages[^c07-gcc][^c07-gcch][^c07-dod] |
-| SharePoint IRM | Available | not yet specified | not yet specified | not yet specified | Not on the government pages |
-| `Unlock-SPOSensitivityLabelEncryptedFile` | Available | not yet specified | not yet specified | not yet specified | Not on the government pages |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| Sensitivity labels for Office files in SharePoint and OneDrive (`EnableAIPIntegration`) | Available | not yet specified (not listed separately; auto-labeling for SharePoint and OneDrive and co-authoring, which depend on it, are listed Available) | Purview GCC planning page, Sensitivity labeling rows[^c07-gcc] |
+| Co-authoring on encrypted documents | Available | Available | Same page[^c07-gcc] |
+| Default label for an unlabeled file uploaded to a SharePoint library | Available | In development | Same page[^c07-gcc] |
+| Encrypted labeled PDFs searchable and eDiscoverable | Available | not yet specified (row not on the GCC page) | Same page[^c07-gcc] |
+| SharePoint IRM | Available | not yet specified | Not on the GCC page |
+| `Unlock-SPOSensitivityLabelEncryptedFile` | Available | not yet specified | Not on the GCC page |
 
-Government feature status "is subject to change"; read the pages again at each reassessment.
+GCC feature status "is subject to change"; read the pages again at each reassessment.
 
 Connect to SharePoint Online. Placeholders in this chapter: `<tenant>` (the tenant's SharePoint name), `<site-url>`, `<library-name>`, `<file-url>`, `<ticket-number>`, `<app-id>` (an app registration for the inventory script) and `<inventory-file>`. Commands were checked against Microsoft Learn on Nov 11, 2026; run them against a test tenant first.
 
@@ -111,11 +111,7 @@ Update-Module -Name Microsoft.Online.SharePoint.PowerShell
 
 # Commercial and GCC:
 Connect-SPOService -Url https://<tenant>-admin.sharepoint.com
-# GCC High and DoD (SharePoint is under sharepoint.us; authenticate in the ITAR region):
-Connect-SPOService -Url https://<tenant>-admin.sharepoint.us -Region ITAR
 ```
-
-`-Region ITAR` is the authentication region parameter Learn's `Connect-SPOService` examples show, and `*.sharepoint.us` is the GCC High SharePoint endpoint.[^c07-connect-spo][^c07-gcch-endpoints]
 
 Read the current state:
 
@@ -207,7 +203,6 @@ Inventory every site, then migrate one library whose owner volunteers. Run the i
 $sites = Get-SPOSite -Limit All | Select-Object -ExpandProperty Url
 
 # 2. For each site, read IrmEnabled on every list (PnP PowerShell, read-only).
-#    GCC High and DoD: add -AzureEnvironment USGovernmentHigh or USGovernmentDoD to Connect-PnPOnline.
 Install-Module -Name PnP.PowerShell -Scope CurrentUser
 $rows = foreach ($site in $sites) {
   Connect-PnPOnline -Url $site -Interactive -ClientId <app-id>
@@ -231,7 +226,7 @@ Per library, in this order:
 
 1. **Label the files.**
    - *Commercial:* set the library's default sensitivity label (Library settings in SharePoint) so new and unlabeled uploads take the target label, then have owners label existing files from the details pane, which supports labeling without opening each file.[^c07-spo-labels]
-   - *GCC, GCC High and DoD:* the default library label is **In development** on all three government pages,[^c07-gcc][^c07-gcch][^c07-dod] so owners apply the target label to existing files from the details pane or in Office for the web, and a service-side auto-labeling policy scoped to the site ([Chapter 09](09-auto-labeling-and-sensitive-information-types.md)) catches files that match its conditions. IRM stays on the library during this step, so downloads remain protected.
+   - *GCC:* the default library label is **In development** on the GCC page,[^c07-gcc] so owners apply the target label to existing files from the details pane or in Office for the web, and a service-side auto-labeling policy scoped to the site ([Chapter 09](09-auto-labeling-and-sensitive-information-types.md)) catches files that match its conditions. IRM stays on the library during this step, so downloads remain protected.
 2. **Check coverage.** Search the library for files without the target label. The managed property `InformationProtectionLabelId:<label-guid>` finds files that carry a label; `Get-Label | Format-Table Name, Guid` in Security & Compliance PowerShell gives the GUID.[^c07-spo-labels]
 3. **Turn IRM off on the library**, in **Library Settings > Information Rights Management**, by clearing **Restrict permission to documents in this library on download**.[^c07-irm-apply] From then on, downloads carry the label's protection rather than IRM's.
 4. **Edit or re-upload** any file that was labeled and encrypted before integration was turned on, so the service processes it.[^c07-spo-labels]
@@ -294,7 +289,7 @@ The setting changes where Office saves labeling metadata for Word, Excel and Pow
 | Apps and services built on the MIP SDK | 1.7 |
 | Exchange mail flow rules | None that read label custom properties on attachments (the rules in [Chapter 06](06-exchange-message-encryption.md) don't) |
 
-Roles: at least DLP Compliance Management or Information Protection Admin; Security Administrator or Compliance Administrator also work.[^c07-coauth] Availability: co-authoring on encrypted documents is Available in GCC, GCC High and DoD.[^c07-gcc][^c07-gcch][^c07-dod] Co-authoring isn't supported for labels with expiry or Double Key Encryption, which the program keeps out of SharePoint anyway.[^c07-coauth]
+Roles: at least DLP Compliance Management or Information Protection Admin; Security Administrator or Compliance Administrator also work.[^c07-coauth] Availability: co-authoring on encrypted documents is Available in GCC.[^c07-gcc] Co-authoring isn't supported for labels with expiry or Double Key Encryption, which the program keeps out of SharePoint anyway.[^c07-coauth]
 
 ### Pilot {#b20-07-pilot-coauth}
 
@@ -311,15 +306,11 @@ Turn the setting on in the Microsoft Purview portal: **Settings > Solution setti
 ```powershell
 # Commercial and GCC:
 Connect-IPPSSession -UserPrincipalName <admin-upn>
-# GCC High:
-Connect-IPPSSession -UserPrincipalName <admin-upn> -ConnectionUri https://ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
-# DoD:
-Connect-IPPSSession -UserPrincipalName <admin-upn> -ConnectionUri https://l5.ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
 
 Get-PolicyConfig | Format-List EnableLabelCoauth
 ```
 
-The connection URIs are the ones Learn gives for GCC High and DoD.[^c07-connect-scc] `EnableLabelCoauth` is the `Set-PolicyConfig` parameter that controls the setting.[^c07-policyconfig]
+`EnableLabelCoauth` is the `Set-PolicyConfig` parameter that controls the setting.[^c07-policyconfig]
 
 **Change safety**
 
@@ -390,7 +381,7 @@ Because that cmdlet bypasses the file's permissions, the program holds it to the
 
 - Turn label integration on before encrypting labels go wide; until it is on, encrypted files are invisible to search, eDiscovery and DLP and can't be co-authored.
 - Labels with expiry or Double Key Encryption can't be processed in SharePoint; keep them out of collaboration.
-- Move IRM libraries to labels library by library. In the government clouds, where default library labels are still in development, keep IRM on until the files are labeled.
+- Move IRM libraries to labels library by library. In GCC, where default library labels are still in development, keep IRM on until the files are labeled.
 - Co-authoring for encrypted files changes labeling metadata and can't be cleanly reversed; inventory every label-reading app first.
 
 ::: {.callout-tip}
@@ -406,9 +397,4 @@ Because that cmdlet bypasses the file's permissions, the program holds it to the
 [^c07-irm-apply]: Microsoft Learn, "Apply Information Rights Management (IRM) to a list or library," section "Apply IRM to a list or library" (Library Settings > Information Rights Management; "Restrict permission to documents in this library on download"), <https://learn.microsoft.com/purview/apply-irm-to-a-list-or-library> (accessed Nov 11, 2026).
 [^c07-csom]: Microsoft Learn, ".NET API reference, List.IrmEnabled Property (Microsoft.SharePoint.Client)," <https://learn.microsoft.com/dotnet/api/microsoft.sharepoint.client.list.irmenabled> (accessed Nov 11, 2026).
 [^c07-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4 table, Sensitivity labeling rows (status "subject to change"), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c07-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4 table, Sensitivity labeling rows, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c07-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4 table, Sensitivity labeling rows, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).
-[^c07-connect-spo]: Microsoft Learn, "Connect-SPOService," Example 4 (`-Region ITAR`, the authentication region) and Description (SharePoint Administrator required), <https://learn.microsoft.com/powershell/module/microsoft.online.sharepoint.powershell/connect-sposervice> (accessed Nov 11, 2026).
-[^c07-gcch-endpoints]: Microsoft Learn, "Microsoft 365 U.S. Government GCC High endpoints," section "SharePoint Online and OneDrive for Business" (`*.sharepoint.us`), <https://learn.microsoft.com/microsoft-365/enterprise/microsoft-365-u-s-government-gcc-high-endpoints> (accessed Nov 11, 2026).
-[^c07-connect-scc]: Microsoft Learn, "Connect to Security & Compliance PowerShell," section "Step 2: Connect and authenticate" (GCC High and DoD *ConnectionUri* and *AzureADAuthorizationEndpointUri* values for an interactive sign-in; the app-only page gives a different DoD address, `https://compliance.dod.microsoft.com/powershell-liveid`, for unattended scripts), <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (accessed Nov 11, 2026).
 [^c07-policyconfig]: Microsoft Learn, "Set-PolicyConfig" (Security & Compliance PowerShell; `-EnableLabelCoauth` parameter) and "Get-PolicyConfig," <https://learn.microsoft.com/powershell/module/exchangepowershell/set-policyconfig> (accessed Nov 11, 2026).

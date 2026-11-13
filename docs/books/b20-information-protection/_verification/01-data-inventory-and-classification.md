@@ -22,9 +22,8 @@ Writer: Book 20 build (Nov 11, 2026). All sources opened Nov 11, 2026. Claims so
 | 14 | Export-ContentExplorerData output; one SIT per script; reconnect after about an hour; page cookie | Inventory | verified | Learn, "Export-ContentExplorerData" | Nov 11, 2026 |
 | 15 | Workload values EXO, ODB, SharePoint | Inventory | verified | Learn, "Export-ContentExplorerData," examples (the page lists no accepted values) | Nov 11, 2026 |
 | 16 | TagType value Sensitivity for labels | Inventory | unverifiable | Not listed on the Learn page; the chapter tells the reader to confirm it on a test tenant | Nov 11, 2026 |
-| 17 | Connect-IPPSSession GCC High and DoD URIs (interactive) | Inventory | verified | Learn, "Connect to Security & Compliance PowerShell," Step 2. Learn's app-only page gives a different DoD URI (compliance.dod.microsoft.com); the book uses the interactive value | Nov 11, 2026 |
 | 18 | Explorer interfaces need E5/A5/G5; aggregation continues for E3; scanner discovery with E3 | Inventory | verified | Learn, "Microsoft Purview service description" | Nov 11, 2026 |
-| 19 | Government availability rows (content explorer, Teams data, activity explorer, EDM, named entities, scanner) | Inventory | verified | Learn, "Plan for Microsoft Purview compliance and risk management solutions" for GCC, GCC High and DoD deployments, Step 4 | Nov 11, 2026 |
+| 19 | Government availability rows (content explorer, Teams data, activity explorer, EDM, named entities, scanner) | Inventory | verified | Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments", Step 4 | Nov 11, 2026 |
 | 20 | Decision record template fields | Decision record template | restated-as-design | Program design from the closure instructions' required fields | Nov 11, 2026 |
 
 ## Government-cloud gaps

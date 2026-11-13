@@ -152,7 +152,7 @@ The sequence below is the program's design, written for a sub-production instanc
 
 1. Create the scoped application, or import the update set, in sub-production.
 2. Add the three server-side scripts and the two outbound REST messages.
-3. Create connection and credential aliases for Graph and Azure Resource Manager, each bound to the in-boundary MID Server and pointing at the endpoints that serve the agency's cloud. (Microsoft's guidance is that a Microsoft 365 GCC environment keeps using the worldwide endpoints, `https://graph.microsoft.com` and `https://portal.azure.com`, while GCC High and DoD use their own Graph endpoints and the Azure US Government portal; those are a separate exercise.)[^c11-graph-clouds]
+3. Create connection and credential aliases for Graph and Azure Resource Manager, each bound to the in-boundary MID Server and pointing at the endpoints that serve the agency's cloud. (Microsoft's guidance is that a Microsoft 365 GCC environment keeps using the worldwide endpoints, `https://graph.microsoft.com` and `https://portal.azure.com`.)[^c11-graph-clouds]
 4. Set the application properties: which MID Server, which boundary, where the MID scripts live, and the SaaS-acknowledgement flag.
 5. Load the control map and run the continuous-integration check against the authoritative map.
 6. Copy the validation script and per-surface read scripts to the MID Server.
