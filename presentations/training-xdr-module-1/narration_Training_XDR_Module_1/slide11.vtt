@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+The federal requirement, from
+the guide's requirements table.
+
+2
+00:00:03.362 --> 00:00:08.657
+Gate one supports A C two and A C six from
+NIST special publication eight hundred
+
+3
+00:00:08.657 --> 00:00:13.150
+fifty-three, revision five: account
+management and least privilege,
+
+4
+00:00:13.150 --> 00:00:15.637
+here for the security tooling itself.
+
+5
+00:00:15.637 --> 00:00:21.075
+It also supports A U nine, enhancement
+four, which limits access to audit tools.
+
+6
+00:00:21.075 --> 00:00:24.875
+The evidence is the role export
+and the pim assignment report.
+
+7
+00:00:24.875 --> 00:00:30.029
+Gate two supports C M eight, the system
+component inventory, and S I four,
+
+8
+00:00:30.029 --> 00:00:35.449
+system monitoring, along with O M B
+memorandum M twenty-two oh-nine's device
+
+9
+00:00:35.449 --> 00:00:40.603
+actions, including endpoint detection
+and response deployed widely,
+
+10
+00:00:40.603 --> 00:00:42.913
+as M twenty-two oh-one describes.
+
+11
+00:00:42.913 --> 00:00:46.601
+The evidence is the coverage
+file and the exception register.
+
+12
+00:00:46.601 --> 00:00:51.535
+Each row lines up with a fed-ramp twenty
+X key security indicator, which binds
+
+13
+00:00:51.535 --> 00:00:56.862
+cloud service providers; the agency uses
+them as a vocabulary for its own evidence.
+
+14
+00:00:56.862 --> 00:00:58.900
+The gates support these controls.
+
+15
+00:00:58.900 --> 00:01:01.970
+The assessor decides
+whether each is satisfied.

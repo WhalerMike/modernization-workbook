@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.612
+Step four exports the open incidents.
+
+2
+00:00:02.612 --> 00:00:07.930
+The filter asks for incidents whose status
+is active, and the export keeps the I D,
+
+3
+00:00:07.930 --> 00:00:12.200
+the name, the severity, who it's
+assigned to, and when it was created.
+
+4
+00:00:12.200 --> 00:00:16.362
+The second command reads the file
+back, so you can see the owner column.
+
+5
+00:00:16.362 --> 00:00:19.738
+The guide's pass: every
+open incident has an owner.
+
+6
+00:00:19.738 --> 00:00:22.876
+Step five exports one
+incident with its alerts.
+
+7
+00:00:22.876 --> 00:00:25.575
+Use an incident number
+from step four's output.
+
+8
+00:00:25.575 --> 00:00:29.352
+Microsoft Learn's page shows
+the expand property for alerts,
+
+9
+00:00:29.352 --> 00:00:33.581
+so the file carries every alert in
+the incident and its evidence, and,
+
+10
+00:00:33.581 --> 00:00:37.962
+once the incident is resolved, its
+classification and determination.
+
+11
+00:00:37.962 --> 00:00:41.625
+That file is what an assessor
+traces from alert to closure.
+
+12
+00:00:41.625 --> 00:00:43.163
+Step six backs it out.
+
+13
+00:00:43.163 --> 00:00:46.351
+Nothing changed in the tenant,
+so you only disconnect.
+
+14
+00:00:46.351 --> 00:00:49.630
+Keep the evidence folder with
+the rest of the path's files.

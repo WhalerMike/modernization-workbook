@@ -1,0 +1,576 @@
+{
+ "1": [
+  [
+   0.05,
+   9.113,
+   "Welcome to Module 5, the last module of Defender X D R Engineering and Operations: automation, operations and evidence."
+  ],
+  [
+   9.162,
+   2.938,
+   "Automation is where speed and outage meet."
+  ],
+  [
+   12.1,
+   7.438,
+   "The same setting that contains a compromised laptop in minutes can lock out the account the security operations center needs to respond."
+  ],
+  [
+   19.538,
+   7.862,
+   "In this module you set Defender's automation to the program's response ladder, and exclude what must never be contained automatically."
+  ],
+  [
+   27.4,
+   7.7,
+   "Then you run the platform: the cadence, the monthly evidence run, the synthetic events, and the metrics an assessor reads."
+  ],
+  [
+   35.1,
+   5.237,
+   "The module covers Steps 9 and 10 of the Defender X D R implementation guide."
+  ],
+  [
+   40.337,
+   4.15,
+   "It takes about forty minutes, plus Lab 2 in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.0,
+   "Why does automation need a boundary?"
+  ],
+  [
+   2.05,
+   1.663,
+   "Because it cuts both ways."
+  ],
+  [
+   3.712,
+   14.262,
+   "On the speed side: Microsoft Learn recommends the full remediation level for device groups, so threats on workstations are remediated automatically, and Learn says every automatic attack disruption action can be undone by the security team."
+  ],
+  [
+   17.975,
+   8.3,
+   "On the outage side: a contained server is an outage, and a contained emergency access account is a lockout, in the middle of the incident."
+  ],
+  [
+   26.275,
+   2.075,
+   "The guide names both as dangers."
+  ],
+  [
+   28.35,
+   5.8,
+   "And Learn itself cautions that exclusions reduce protection, so you can't exclude your way out either."
+  ],
+  [
+   34.15,
+   5.675,
+   "The Security Operations and Telemetry book's response ladder decides what may act without a person."
+  ],
+  [
+   39.825,
+   10.425,
+   "This module sets Defender's own automation to match it, with two settings: each device group's remediation level, and the exclusions for automatic attack disruption."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   5.325,
+   "Name the five automation levels, and set each device group's level to the response ladder."
+  ],
+  [
+   8.287,
+   7.362,
+   "Record attack disruption exclusions for emergency access and service accounts, with the authorizing official's approval."
+  ],
+  [
+   15.65,
+   3.888,
+   "Run the monthly evidence run, and check its hashes a month later."
+  ],
+  [
+   19.538,
+   7.763,
+   "And use the synthetic events, the metrics and the evidence catalog to show that the controls work, not just that they exist."
+  ],
+  [
+   27.3,
+   1.762,
+   "You need Modules 1 to 4."
+  ],
+  [
+   29.062,
+   7.875,
+   "Skim the Security Operations and Telemetry book's Chapter 11, for the response ladder, and Chapter 12, for the metric set."
+  ],
+  [
+   36.938,
+   3.362,
+   "Lab 2 runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.737,
+   "Unit 1 is automated investigation and response, set per device group."
+  ],
+  [
+   4.787,
+   2.525,
+   "Microsoft Learn lists five levels."
+  ],
+  [
+   7.312,
+   2.913,
+   "Full, remediate threats automatically."
+  ],
+  [
+   10.225,
+   6.537,
+   "Three semi levels, requiring approval for core folders, for non-temp folders, or for all folders."
+  ],
+  [
+   16.762,
+   1.85,
+   "And no automated response."
+  ],
+  [
+   18.613,
+   3.25,
+   "The program's choices are risk-based recommendations."
+  ],
+  [
+   21.863,
+   10.3,
+   "The pilot puts ring one's workstation group at semi, require approval for all folders, so every remediation is proposed and an analyst approves it in the Action center."
+  ],
+  [
+   32.163,
+   5.45,
+   "Those two weeks of pending actions, with the approval rate recorded, are the audit phase."
+  ],
+  [
+   37.612,
+   3.45,
+   "Then workstation groups go to full, which Learn recommends."
+  ],
+  [
+   41.062,
+   6.875,
+   "Server groups stay at a semi level, because isolating a server is never autonomous in the program's ladder."
+  ],
+  [
+   47.938,
+   8.5,
+   "Rollback sets a device group back to a semi level, on the Devices page under automated responses in the Defender X D R settings."
+  ],
+  [
+   56.438,
+   5.312,
+   "Learn says changing device groups needs Global Administrator or Security Administrator."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   14.6,
+   "Automatic attack disruption has its own exclusions, under the automated response settings in Defender X D R. Microsoft Learn says the identities page holds user exclusions, and the devices page holds device groups and I P ranges."
+  ],
+  [
+   14.65,
+   8.262,
+   "Learn names service accounts and emergency admin accounts as the use for user exclusions, and cautions that exclusions reduce protection."
+  ],
+  [
+   22.913,
+   9.9,
+   "So the program excludes exactly two kinds of identity: the emergency access accounts, and the service accounts whose disablement would stop the S O C itself."
+  ],
+  [
+   32.812,
+   7.438,
+   "Learn adds that excluding a device group from attack disruption also affects automated investigation and response for that group."
+  ],
+  [
+   40.25,
+   6.338,
+   "Each exclusion goes in the register with the authorizing official's approval, and is reviewed every quarter."
+  ],
+  [
+   46.587,
+   1.538,
+   "Two more facts from Learn."
+  ],
+  [
+   48.125,
+   6.85,
+   "The contain user action needs sensor version ten point eight four seven zero or later, which the lab checks."
+  ],
+  [
+   54.975,
+   10.137,
+   "And attack disruption's availability in G C C, G C C High and D O D isn't specified on Learn's government pages, so confirm it in the tenant."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.825,
+   "Unit 2 is operations."
+  ],
+  [
+   1.875,
+   10.738,
+   "The operating rhythm belongs to the Security Operations and Telemetry book; this gate produces Defender's part of it, on a cadence that's the program's risk-based recommendation."
+  ],
+  [
+   12.613,
+   11.1,
+   "Weekly: sensor health and coverage, with a ticket for every device not active, and prevention and Attack Surface Reduction drift, with the policy export compared against the last approved one."
+  ],
+  [
+   23.712,
+   8.662,
+   "Quarterly: detection tuning for each rule, the exception register review, and an exercise, a tabletop plus the synthetic events."
+  ],
+  [
+   32.375,
+   3.763,
+   "Monthly: the metrics and the evidence package, hashed."
+  ],
+  [
+   36.138,
+   3.3,
+   "The monthly evidence run is a short script from the guide."
+  ],
+  [
+   39.438,
+   11.85,
+   "It runs the read-only coverage, Attack Surface Reduction and prevention queries, exports the last thirty days of incidents with their classification and determination, and hashes every file."
+  ],
+  [
+   51.288,
+   1.425,
+   "Why file the results?"
+  ],
+  [
+   52.712,
+   3.95,
+   "Because Microsoft Learn says advanced hunting keeps thirty days."
+  ],
+  [
+   56.663,
+   3.487,
+   "The monthly run is how anyone can answer for an older month."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.0,
+   "The metrics measure protected coverage and effectiveness, not whether a setting exists."
+  ],
+  [
+   5.05,
+   5.812,
+   "They join Security Operations and Telemetry's metric set, and the targets are the program's to set."
+  ],
+  [
+   10.863,
+   2.038,
+   "Four examples from the guide's seven."
+  ],
+  [
+   12.9,
+   11.762,
+   "Protected coverage is onboarded devices with an active sensor, divided by in-scope devices in the inventory, because a policy assigned to a group says nothing about devices that never checked in."
+  ],
+  [
+   24.663,
+   11.537,
+   "Enforcement depth is devices with every Attack Surface Reduction rule in block, or an approved exception, divided by onboarded devices, because audit mode is configured but protects nothing."
+  ],
+  [
+   36.2,
+   7.125,
+   "Detection validity is enabled detections with a passing known-bad test this quarter, divided by enabled detections."
+  ],
+  [
+   43.325,
+   5.95,
+   "And synthetic-event success is events that produced their expected alert, divided by events run."
+  ],
+  [
+   49.275,
+   15.675,
+   "The synthetic events, run on ring zero devices under a change record, are the detection test, the network protection test site, a controlled folder access write by an untrusted app, a demonstration for each rule, and a custom detection's known-bad replay."
+  ],
+  [
+   64.95,
+   4.75,
+   "They show an assessor that telemetry, detection and routing work end to end."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.8,
+   "Lab 2 runs the guide's validate steps in a test tenant, never production."
+  ],
+  [
+   4.85,
+   3.0,
+   "The authors haven't run them, as the page says."
+  ],
+  [
+   7.85,
+   4.325,
+   "Every step reads, apart from the evidence files it writes in your own folder."
+  ],
+  [
+   12.175,
+   11.912,
+   "You need Module 1's test tenant, reader account and test device, an account that can view the Defender portal's settings, and the ladder decision record for the test tenant, or the guide's Step 9 as the reference."
+  ],
+  [
+   24.087,
+   2.35,
+   "Step one runs on the test device."
+  ],
+  [
+   26.438,
+   4.625,
+   "It's Microsoft Learn's command that reads the sensor version from the registry."
+  ],
+  [
+   31.062,
+   3.962,
+   "Contain user needs ten point eight four seven zero or later."
+  ],
+  [
+   35.025,
+   3.737,
+   "Step two is a click path in the Defender portal for your cloud."
+  ],
+  [
+   38.763,
+   5.263,
+   "Open the devices page under automated responses and note each device group's level."
+  ],
+  [
+   44.025,
+   3.8,
+   "Then open the identities page and note the excluded users."
+  ],
+  [
+   47.825,
+   2.438,
+   "Compare both with the ladder decision record."
+  ],
+  [
+   50.263,
+   10.938,
+   "The guide's pass: every server group at a semi level, every workstation group at full or a recorded exception, and the emergency access accounts in the identity exclusions."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.975,
+   "Step three is the guide's monthly evidence run, shortened on the slide; the page has it in full."
+  ],
+  [
+   6.025,
+   5.25,
+   "Use a new, empty evidence folder, because the run hashes every file in it."
+  ],
+  [
+   11.275,
+   8.25,
+   "It connects, runs the three read-only queries for coverage, Attack Surface Reduction and prevention, and writes each to a file."
+  ],
+  [
+   19.525,
+   12.125,
+   "It exports the last thirty days of incidents, filtered on the created date time, which Microsoft Learn lists as filterable, with their severity, status, classification and determination."
+  ],
+  [
+   31.65,
+   3.875,
+   "Then it hashes every file in the folder into a checksum file."
+  ],
+  [
+   35.525,
+   5.725,
+   "You should see the coverage, A S R, prevention and incidents files, and the checksum file."
+  ],
+  [
+   41.25,
+   4.588,
+   "Step four checks the hashes, the way next month's run checks last month's."
+  ],
+  [
+   45.837,
+   9.8,
+   "It reads the checksum file, leaves out the checksum file's own entry, since the run writes it into the folder it hashes, and compares each recorded hash with a fresh one."
+  ],
+  [
+   55.638,
+   2.825,
+   "Matches should be true for every evidence file."
+  ],
+  [
+   58.462,
+   2.625,
+   "False means a file changed after it was filed."
+  ],
+  [
+   61.087,
+   4.525,
+   "Step five backs it out: nothing changed in the tenant, so disconnect."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.312,
+   "The federal requirement, from the guide's requirements table."
+  ],
+  [
+   3.362,
+   15.637,
+   "Gate nine supports I R four, enhancement one, automated incident handling processes, and S I four, enhancement seven, automated response to suspicious events, from nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   19.0,
+   5.513,
+   "The evidence is the device group levels, the exclusions, and the Action center export."
+  ],
+  [
+   24.512,
+   9.238,
+   "Gate ten supports C A seven, continuous monitoring; A U eleven, audit record retention; and I R three, incident response testing."
+  ],
+  [
+   33.75,
+   3.775,
+   "The evidence is the monthly package and the exercise record."
+  ],
+  [
+   37.525,
+   9.375,
+   "Each row lines up with fed-ramp twenty X key security indicators, which bind cloud service providers; the agency lines its own evidence up with them."
+  ],
+  [
+   46.9,
+   7.737,
+   "The guide counts Gates two, seven and ten, with the synthetic events, as the closure map's audit and visibility row."
+  ],
+  [
+   54.638,
+   5.3,
+   "The gates support these controls, and the assessor decides whether each is satisfied."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.975,
+   "First: what level does the program set for a server device group?"
+  ],
+  [
+   6.0,
+   2.425,
+   "The answer is b, a semi level."
+  ],
+  [
+   8.425,
+   8.762,
+   "Microsoft recommends full, and the program uses full for workstations, but isolating a server is never autonomous in the program's ladder."
+  ],
+  [
+   17.188,
+   4.875,
+   "Second: an assessor asks for the coverage query result from four months ago."
+  ],
+  [
+   22.062,
+   1.175,
+   "Where does it come from?"
+  ],
+  [
+   23.238,
+   2.95,
+   "The answer is b: that month's evidence run."
+  ],
+  [
+   26.188,
+   7.45,
+   "Advanced hunting keeps thirty days, so the filed and hashed result is the record, and its checksum shows it hasn't changed."
+  ],
+  [
+   33.638,
+   4.8,
+   "The module page has two more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   3.0,
+   "You checked the sensor version that contain user needs."
+  ],
+  [
+   3.875,
+   5.575,
+   "You compared the device group levels and the attack disruption exclusions with the ladder decision record."
+  ],
+  [
+   9.45,
+   5.237,
+   "You ran the monthly evidence run, and you checked its hashes the way next month's run will."
+  ],
+  [
+   14.688,
+   16.262,
+   "The evidence an I S S O keeps from this module: the device group list with each remediation level, the attack disruption exclusions with their approvals, the monthly Action center export, the quarterly exercise record, and the monthly package with its checksum file."
+  ],
+  [
+   30.95,
+   1.875,
+   "That completes the learning path."
+  ],
+  [
+   32.825,
+   8.1,
+   "From here, work the implementation guide's checklist, gate by gate, from one to ten, and keep the evidence each gate names."
+  ],
+  [
+   40.925,
+   4.412,
+   "Thank you for following Defender X D R Engineering and Operations."
+  ]
+ ]
+}

@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.564
+Name Defender X D R's components,
+its two trust boundaries,
+
+3
+00:00:06.564 --> 00:00:09.400
+and which control plane
+holds which setting.
+
+4
+00:00:09.400 --> 00:00:12.474
+Read the guide's government-cloud
+availability table,
+
+5
+00:00:12.474 --> 00:00:17.050
+and record a feature your cloud doesn't have
+as a disposition, not a failed control.
+
+6
+00:00:17.050 --> 00:00:20.738
+Describe the program's unified
+role-based access control roles,
+
+7
+00:00:20.738 --> 00:00:22.825
+and why they're assigned through pim.
+
+8
+00:00:22.825 --> 00:00:29.812
+Connect to Microsoft Graph in G C C, G
+C C High or D O D, and read incidents.
+
+9
+00:00:29.812 --> 00:00:34.250
+And prove onboarding and sensor health,
+on one device and across the fleet.
+
+10
+00:00:34.250 --> 00:00:38.132
+Before you start, read the guide's
+How to read this guide section and its
+
+11
+00:00:38.132 --> 00:00:40.742
+prerequisites, and skim
+the Privileged Access
+
+12
+00:00:40.742 --> 00:00:43.887
+implementation guide's pim
+model for the eligible roles.
+
+13
+00:00:43.887 --> 00:00:47.300
+Lab 2 runs in a test
+tenant, never production.

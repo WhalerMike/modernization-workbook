@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.850
+Step four is the lab's only
+write: it posts the file to the
+
+2
+00:00:03.850 --> 00:00:07.988
+detection rules endpoint, then
+reads the rule back by its I D.
+
+3
+00:00:07.988 --> 00:00:10.548
+It should come back with the file's query
+
+4
+00:00:10.548 --> 00:00:13.187
+text and status disabled,
+so it never runs.
+
+5
+00:00:13.187 --> 00:00:17.590
+Step five exports everything deployed,
+which is the guide's validate step:
+
+6
+00:00:17.590 --> 00:00:21.704
+every rule in the repository deployed
+with the same query and status,
+
+7
+00:00:21.704 --> 00:00:24.663
+and nothing deployed that
+isn't in the repository.
+
+8
+00:00:24.663 --> 00:00:27.438
+Step six is the guide's
+cross-source query.
+
+9
+00:00:27.438 --> 00:00:31.809
+It takes the user entities in the
+last seven days of alert evidence,
+
+10
+00:00:31.809 --> 00:00:36.180
+joins the alert info, and counts,
+for each user, the distinct service
+
+11
+00:00:36.180 --> 00:00:40.313
+sources that raised alerts, keeping
+users seen by more than one.
+
+12
+00:00:40.313 --> 00:00:42.482
+An identity seen by the endpoint,
+
+13
+00:00:42.482 --> 00:00:46.099
+identity and cloud-app sensors
+together is a priority.
+
+14
+00:00:46.099 --> 00:00:51.037
+The guide's pass: the query runs and returns
+rows from more than one service source
+
+15
+00:00:51.037 --> 00:00:55.900
+across the fleet, showing the identity
+and cloud-app sources are feeding alerts.
+
+16
+00:00:55.900 --> 00:00:58.925
+A test tenant with few
+alerts may return none.
+
+17
+00:00:58.925 --> 00:01:00.550
+Step seven backs it out.
+
+18
+00:01:00.550 --> 00:01:02.540
+The rule is deployed disabled,
+
+19
+00:01:02.540 --> 00:01:06.650
+which is the guide's rollback
+state; leave it so, and disconnect.

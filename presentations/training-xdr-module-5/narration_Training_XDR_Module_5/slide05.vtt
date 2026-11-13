@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.449
+Automatic attack disruption
+has its own exclusions,
+
+2
+00:00:03.449 --> 00:00:07.002
+under the automated response
+settings in Defender X D R.
+
+3
+00:00:07.002 --> 00:00:11.174
+Microsoft Learn says the identities
+page holds user exclusions,
+
+4
+00:00:11.174 --> 00:00:14.650
+and the devices page holds
+device groups and I P ranges.
+
+5
+00:00:14.650 --> 00:00:18.781
+Learn names service accounts and
+emergency admin accounts as the use
+
+6
+00:00:18.781 --> 00:00:22.912
+for user exclusions, and cautions
+that exclusions reduce protection.
+
+7
+00:00:22.912 --> 00:00:27.748
+So the program excludes exactly two
+kinds of identity: the emergency access
+
+8
+00:00:27.748 --> 00:00:32.813
+accounts, and the service accounts whose
+disablement would stop the S O C itself.
+
+9
+00:00:32.813 --> 00:00:36.463
+Learn adds that excluding a device
+group from attack disruption
+
+10
+00:00:36.463 --> 00:00:40.250
+also affects automated investigation
+and response for that group.
+
+11
+00:00:40.250 --> 00:00:43.630
+Each exclusion goes in the
+register with the authorizing
+
+12
+00:00:43.630 --> 00:00:46.588
+official's approval, and
+is reviewed every quarter.
+
+13
+00:00:46.588 --> 00:00:48.125
+Two more facts from Learn.
+
+14
+00:00:48.125 --> 00:00:51.706
+The contain user action needs
+sensor version ten point
+
+15
+00:00:51.706 --> 00:00:54.975
+eight four seven zero or
+later, which the lab checks.
+
+16
+00:00:54.975 --> 00:00:59.668
+And attack disruption's availability
+in G C C, G C C High and D O D
+
+17
+00:00:59.668 --> 00:01:05.180
+isn't specified on Learn's government
+pages, so confirm it in the tenant.

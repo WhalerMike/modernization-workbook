@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.425
+Lab 2 runs the guide's own validate commands
+in a test tenant, never production.
+
+2
+00:00:05.425 --> 00:00:08.422
+The authors haven't run
+them, as the page says,
+
+3
+00:00:08.422 --> 00:00:13.000
+and the path has no Lab 1 on fixtures,
+because the guide has no kit yet.
+
+4
+00:00:13.000 --> 00:00:17.695
+You need a test tenant licensed for Defender
+for Endpoint Plan 2, a reader account
+
+5
+00:00:17.695 --> 00:00:22.600
+activated through pim, and a ring zero
+Windows test device onboarded through Intune.
+
+6
+00:00:22.600 --> 00:00:25.312
+Values you supply are in angle brackets.
+
+7
+00:00:25.312 --> 00:00:30.131
+Step one, on your workstation: install
+the two Graph modules, connect with the
+
+8
+00:00:30.131 --> 00:00:34.949
+environment for your cloud, and create
+a folder for this lab's evidence files.
+
+9
+00:00:34.949 --> 00:00:36.837
+Step two reads incidents.
+
+10
+00:00:36.837 --> 00:00:40.226
+As the guide states it, a
+pass is up to five incidents,
+
+11
+00:00:40.226 --> 00:00:43.937
+or an empty list in a new
+tenant, with no permission error.
+
+12
+00:00:43.937 --> 00:00:48.188
+An error naming the role means the
+account lacks one of the reader roles.
+
+13
+00:00:48.188 --> 00:00:51.773
+Step three runs on the test
+device, in an elevated session:
+
+14
+00:00:51.773 --> 00:00:56.350
+query the sense service, and read the
+onboarding state from the registry.
+
+15
+00:00:56.350 --> 00:01:00.360
+Microsoft Learn gives the value
+one for an onboarded device.

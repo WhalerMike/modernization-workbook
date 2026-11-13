@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.025
+Unit 3 is exclusions, and the traps.
+
+2
+00:00:03.025 --> 00:00:07.307
+When a rule in block breaks an
+application, Microsoft's advice in Learn
+
+3
+00:00:07.307 --> 00:00:11.662
+is that an exclusion is better than
+turning the rule off or back to audit.
+
+4
+00:00:11.662 --> 00:00:16.720
+Per-rule exclusions go in the same policy,
+under A S R only per rule exclusions,
+
+5
+00:00:16.720 --> 00:00:20.091
+as a file path rather than
+a folder wherever you can,
+
+6
+00:00:20.091 --> 00:00:24.025
+and each one goes in the register
+with an owner and an expiry.
+
+7
+00:00:24.025 --> 00:00:27.257
+Learn adds that if Disable
+Local Admin Merge is true,
+
+8
+00:00:27.257 --> 00:00:29.587
+local per-rule exclusions don't apply.
+
+9
+00:00:29.587 --> 00:00:33.694
+Rollback, when you need it,
+moves a rule one stage back:
+
+10
+00:00:33.694 --> 00:00:35.987
+block to warn, or warn to audit.
+
+11
+00:00:35.987 --> 00:00:37.225
+Then the dangers.
+
+12
+00:00:37.225 --> 00:00:41.245
+Configure a rule in Intune or
+in Group Policy, never both:
+
+13
+00:00:41.245 --> 00:00:46.663
+Learn says Group Policy wins by default,
+so the Intune value silently loses.
+
+14
+00:00:46.663 --> 00:00:50.780
+And on Windows Server, Learn lists
+a known issue, with no fix date,
+
+15
+00:00:50.780 --> 00:00:54.263
+where a rule shows compliant
+without being enforced.
+
+16
+00:00:54.263 --> 00:00:58.009
+So on servers, trust the
+device-side check and the events,
+
+17
+00:00:58.009 --> 00:00:59.860
+not the compliance report.

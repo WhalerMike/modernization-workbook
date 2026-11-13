@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.000
+First: an auditor asks
+for a rule's validation
+
+3
+00:00:05.000 --> 00:00:07.975
+against the last ninety
+days of hunting data.
+
+4
+00:00:07.975 --> 00:00:09.000
+What's the limit?
+
+5
+00:00:09.000 --> 00:00:11.225
+The answer is b, thirty days.
+
+6
+00:00:11.225 --> 00:00:13.692
+Advanced hunting keeps thirty days,
+
+7
+00:00:13.692 --> 00:00:18.462
+and Microsoft Learn says the run
+hunting query A P I defaults to thirty.
+
+8
+00:00:18.462 --> 00:00:23.237
+That's also why the monthly evidence
+run in Module 5 files its results.
+
+9
+00:00:23.237 --> 00:00:28.050
+Second: a G C C High S O C
+wants to deploy rules as code.
+
+10
+00:00:28.050 --> 00:00:29.475
+What does the program do?
+
+11
+00:00:29.475 --> 00:00:30.414
+The answer is b.
+
+12
+00:00:30.414 --> 00:00:35.425
+Learn doesn't specify the detection rules
+A P I's national-cloud availability,
+
+13
+00:00:35.425 --> 00:00:39.731
+so the interim path is to create the
+rule in the portal, from the same
+
+14
+00:00:39.731 --> 00:00:44.663
+repository file, and keep comparing
+the deployed rules with the repository.
+
+15
+00:00:44.663 --> 00:00:49.630
+The module page has three more questions,
+each linked to the unit that answers it.

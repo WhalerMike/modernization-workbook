@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.586
+Lab 2 runs the guide's validate
+commands on a ring zero test device,
+
+2
+00:00:04.586 --> 00:00:06.938
+in a test tenant, never production.
+
+3
+00:00:06.938 --> 00:00:09.938
+The authors haven't run
+them, as the page says.
+
+4
+00:00:09.938 --> 00:00:14.083
+You need Module 1's test tenant and
+test device, with the antivirus,
+
+5
+00:00:14.083 --> 00:00:19.225
+firewall and Attack Surface Reduction
+policies assigned to its ring zero group.
+
+6
+00:00:19.225 --> 00:00:23.175
+Steps one to five run on the
+device, in an elevated session.
+
+7
+00:00:23.175 --> 00:00:26.270
+Step one shows tamper
+and real-time protection;
+
+8
+00:00:26.270 --> 00:00:28.888
+both should be true, which means enabled.
+
+9
+00:00:28.888 --> 00:00:34.203
+Step two shows the network protection
+and controlled folder access modes:
+
+10
+00:00:34.203 --> 00:00:37.975
+zero off, one block, two audit,
+matching the ring's stage.
+
+11
+00:00:37.975 --> 00:00:41.388
+Step three shows the firewall
+profiles as enforced,
+
+12
+00:00:41.388 --> 00:00:44.087
+with the values the firewall policy sets.
+
+13
+00:00:44.087 --> 00:00:47.757
+Step four is Microsoft Learn's
+network protection test:
+
+14
+00:00:47.757 --> 00:00:51.587
+in a browser other than Edge,
+open the test site on the slide.
+
+15
+00:00:51.587 --> 00:00:56.085
+In block mode the connection is blocked
+with a notification, event eleven
+
+16
+00:00:56.085 --> 00:01:00.362
+twenty-six; in audit it isn't blocked,
+and the event is eleven twenty-five.
+
+17
+00:01:00.362 --> 00:01:04.889
+Step five is Learn's command that
+lists each rule and its mode:
+
+18
+00:01:04.889 --> 00:01:07.787
+two for audit, six for
+warn, one for block.
+
+19
+00:01:07.787 --> 00:01:10.510
+On a server, this is the check to trust.

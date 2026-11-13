@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+Step four files the fleet's coverage.
+
+2
+00:00:02.400 --> 00:00:05.679
+The query takes the latest
+record for each Windows device
+
+3
+00:00:05.679 --> 00:00:09.163
+and counts them by onboarding
+status and sensor health state.
+
+4
+00:00:09.163 --> 00:00:12.774
+It runs through Graph so the
+result is a file you can keep.
+
+5
+00:00:12.774 --> 00:00:17.437
+On the slide it's wrapped to fit; on
+the page each command is one line.
+
+6
+00:00:17.437 --> 00:00:21.424
+The guide's pass: every device
+onboarded with an active sensor,
+
+7
+00:00:21.424 --> 00:00:23.300
+or in the exception register.
+
+8
+00:00:23.300 --> 00:00:26.556
+Learn doesn't list the exact
+onboarding status strings,
+
+9
+00:00:26.556 --> 00:00:29.813
+so the query groups by them
+rather than filtering on one.
+
+10
+00:00:29.813 --> 00:00:34.199
+Step five is Microsoft's detection
+test, on the test device, under its
+
+11
+00:00:34.199 --> 00:00:39.212
+change record, from an elevated Command
+Prompt, exactly as Learn publishes it.
+
+12
+00:00:39.212 --> 00:00:42.187
+Learn says an alert appears
+in about ten minutes.
+
+13
+00:00:42.187 --> 00:00:44.213
+One caution the guide records:
+
+14
+00:00:44.213 --> 00:00:49.723
+Learn's page lists Windows Server versions
+as supported, not Windows ten or eleven,
+
+15
+00:00:49.723 --> 00:00:52.801
+so on a client a missing
+alert is inconclusive;
+
+16
+00:00:52.801 --> 00:00:57.176
+rely on the coverage query and
+Module 2's network protection test.
+
+17
+00:00:57.176 --> 00:00:58.713
+Step six backs it out.
+
+18
+00:00:58.713 --> 00:01:01.484
+Nothing changed but the
+alert the test raised:
+
+19
+00:01:01.484 --> 00:01:04.970
+resolve that incident in the
+test tenant, and disconnect.

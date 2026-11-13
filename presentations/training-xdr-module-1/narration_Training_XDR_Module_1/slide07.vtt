@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.938
+Unit 4 is onboarding, by management plane.
+
+2
+00:00:02.938 --> 00:00:08.235
+Windows clients onboard through Intune's
+endpoint detection and response policy,
+
+3
+00:00:08.235 --> 00:00:12.226
+E S oh-oh-four in the Devices and
+Endpoints book's policy library,
+
+4
+00:00:12.226 --> 00:00:14.913
+with the package type Auto from connector.
+
+5
+00:00:14.913 --> 00:00:19.662
+Assign it to ring zero, then ring
+one, then rings two and three.
+
+6
+00:00:19.662 --> 00:00:23.552
+Windows Server onboards through
+Defender for Servers on Azure Arc.
+
+7
+00:00:23.552 --> 00:00:28.553
+Microsoft Learn's government page says
+Windows Server twenty nineteen needs update K
+
+8
+00:00:28.553 --> 00:00:31.817
+B four five eight six eight
+three nine before onboarding,
+
+9
+00:00:31.817 --> 00:00:33.901
+so it reaches the right environment.
+
+10
+00:00:33.901 --> 00:00:37.913
+The program's own standard assumes
+twenty nineteen as the minimum.
+
+11
+00:00:37.913 --> 00:00:42.688
+Rollback is the offboarding package,
+deployed as an E D R policy.
+
+12
+00:00:42.688 --> 00:00:46.057
+Learn says the package expires
+seven days after download,
+
+13
+00:00:46.057 --> 00:00:50.901
+and you never deploy onboarding and offboarding
+to the same device at the same time.
+
+14
+00:00:50.901 --> 00:00:54.615
+A device the sensor can't reach,
+such as an unsupported system,
+
+15
+00:00:54.615 --> 00:00:56.844
+an isolated network or an appliance,
+
+16
+00:00:56.844 --> 00:01:00.560
+goes in the exception register
+with a compensating control:
+
+17
+00:01:00.560 --> 00:01:04.721
+the streamlined connectivity set or
+a proxy, or, where no path exists,
+
+18
+00:01:04.721 --> 00:01:08.362
+Windows Event Forwarding of
+the Defender operational log,
+
+19
+00:01:08.362 --> 00:01:12.360
+which Learn names for centralizing
+events without the service.

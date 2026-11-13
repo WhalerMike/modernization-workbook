@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:07.113
+First: which two Attack Surface Reduction
+rules go from audit straight to block?
+
+3
+00:00:07.113 --> 00:00:11.630
+The answer is a: the rule that blocks
+credential stealing from the local security
+
+4
+00:00:11.630 --> 00:00:15.069
+authority, and the rule that
+blocks Office applications from
+
+5
+00:00:15.069 --> 00:00:18.912
+injecting code into other processes,
+because neither supports warn.
+
+6
+00:00:18.912 --> 00:00:23.213
+Second: a Windows Server shows
+a rule as compliant in Intune.
+
+7
+00:00:23.213 --> 00:00:24.612
+Is that enough evidence?
+
+8
+00:00:24.612 --> 00:00:26.151
+The answer is b, no.
+
+9
+00:00:26.151 --> 00:00:30.933
+Microsoft lists a known issue where the
+server shows compliant without the rule
+
+10
+00:00:30.933 --> 00:00:33.574
+being enforced, so check
+on the server itself,
+
+11
+00:00:33.574 --> 00:00:35.787
+with Get M P Preference and the events.
+
+12
+00:00:35.787 --> 00:00:39.938
+Setting the rule in Group Policy
+too would only add the other danger.
+
+13
+00:00:39.938 --> 00:00:44.900
+The module page has three more questions,
+each linked to the unit that answers it.

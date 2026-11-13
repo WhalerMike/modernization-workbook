@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:07.029
+Say which exposure features
+are available in G C C,
+
+3
+00:00:07.029 --> 00:00:12.087
+G C C High and D O D, and record the
+one that isn't as not applicable.
+
+4
+00:00:12.087 --> 00:00:15.722
+Prioritize vulnerabilities
+with the guide's interim path,
+
+5
+00:00:15.722 --> 00:00:18.688
+and give every device
+group a remediation owner.
+
+6
+00:00:18.688 --> 00:00:21.331
+Triage an incident to the severity table,
+
+7
+00:00:21.331 --> 00:00:23.975
+pick its containment
+rung, and hand it off.
+
+8
+00:00:23.975 --> 00:00:28.938
+And export the open incidents, and one
+incident with its alerts, as evidence.
+
+9
+00:00:28.938 --> 00:00:31.263
+You need Module 1's Graph read path.
+
+10
+00:00:31.263 --> 00:00:35.384
+Skim the Security Operations
+and Telemetry book's Chapter 06,
+
+11
+00:00:35.384 --> 00:00:40.799
+for the remediation program and its clock,
+and Chapter 11, for the response ladder.
+
+12
+00:00:40.799 --> 00:00:44.230
+Lab 2 runs in a test
+tenant, never production.

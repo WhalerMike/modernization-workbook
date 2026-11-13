@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.875
+Unit 2 is operations.
+
+2
+00:00:01.875 --> 00:00:06.582
+The operating rhythm belongs to the
+Security Operations and Telemetry book;
+
+3
+00:00:06.582 --> 00:00:09.009
+this gate produces Defender's part of it,
+
+4
+00:00:09.009 --> 00:00:12.613
+on a cadence that's the program's
+risk-based recommendation.
+
+5
+00:00:12.613 --> 00:00:17.039
+Weekly: sensor health and coverage, with
+a ticket for every device not active,
+
+6
+00:00:17.039 --> 00:00:20.060
+and prevention and Attack
+Surface Reduction drift,
+
+7
+00:00:20.060 --> 00:00:23.713
+with the policy export compared
+against the last approved one.
+
+8
+00:00:23.713 --> 00:00:28.744
+Quarterly: detection tuning for each
+rule, the exception register review,
+
+9
+00:00:28.744 --> 00:00:32.374
+and an exercise, a tabletop
+plus the synthetic events.
+
+10
+00:00:32.374 --> 00:00:36.138
+Monthly: the metrics and the
+evidence package, hashed.
+
+11
+00:00:36.138 --> 00:00:39.438
+The monthly evidence run is a
+short script from the guide.
+
+12
+00:00:39.438 --> 00:00:44.431
+It runs the read-only coverage, Attack
+Surface Reduction and prevention queries,
+
+13
+00:00:44.431 --> 00:00:47.711
+exports the last thirty days
+of incidents with their
+
+14
+00:00:47.711 --> 00:00:51.288
+classification and determination,
+and hashes every file.
+
+15
+00:00:51.288 --> 00:00:52.713
+Why file the results?
+
+16
+00:00:52.713 --> 00:00:56.662
+Because Microsoft Learn says
+advanced hunting keeps thirty days.
+
+17
+00:00:56.662 --> 00:01:00.220
+The monthly run is how anyone
+can answer for an older month.
