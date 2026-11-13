@@ -83,7 +83,7 @@ Follows the weekly source watch (issue #160). Sources: ScubaGear tag `v2.0.0` (b
 
 ## Moderate-civilian sweep, October 29, 2026
 
-The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only or Defense-specific was checked.
+The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only was checked.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|

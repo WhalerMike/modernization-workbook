@@ -1,6 +1,6 @@
 ---
 title: "Chapter 05 — Rights Management and Recovery"
-description: "How the agency turns on the encryption service behind every protecting sensitivity label and every encrypted message, and how it keeps the ability to read what it encrypted: confirming and activating the Azure Rights Management service, onboarding controls for a phased start, the government-cloud connection and DNS steps, licensing as a stated dependency, the super user feature held off by default and enabled just in time through Privileged Identity Management, and a decryption-continuity test that proves a holder can open, a non-holder can't and a recovery operator can, with the evidence each step leaves."
+description: "How the agency turns on the encryption service behind every protecting sensitivity label and every encrypted message, and how it keeps the ability to read what it encrypted: confirming and activating the Azure Rights Management service, onboarding controls for a phased start, licensing as a stated dependency, the super user feature held off by default and enabled just in time through Privileged Identity Management, and a decryption-continuity test that proves a holder can open, a non-holder can't and a recovery operator can, with the evidence each step leaves."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b20-information-protection
@@ -20,7 +20,7 @@ lifecycle_review: 2027-05-01
 
 ::: {.callout-note}
 ## In this chapter
-What the Azure Rights Management service is for, and why activation is a decision even though most tenants arrive with it on. How to confirm and activate it, stage who can apply encryption, and connect to it from GCC High and DoD, where clients also need DNS records to find the right instance. Licensing as a dependency, not a finding. The super user feature: what it can do, why Microsoft advises keeping it off, and how the program enables it only for a named recovery, approved through Privileged Identity Management. A decryption-continuity test the agency runs on a schedule, and the evidence the whole chapter leaves for the Rights Management part of closure-map row CM-13.
+What the Azure Rights Management service is for, and why activation is a decision even though most tenants arrive with it on. How to confirm and activate it, stage who can apply encryption, and connect to it. Licensing as a dependency, not a finding. The super user feature: what it can do, why Microsoft advises keeping it off, and how the program enables it only for a named recovery, approved through Privileged Identity Management. A decryption-continuity test the agency runs on a schedule, and the evidence the whole chapter leaves for the Rights Management part of closure-map row CM-13.
 :::
 
 Every sensitivity label that encrypts, and every encrypted message in [Chapter 06](06-exchange-message-encryption.md), depends on one tenant service: Azure Rights Management, the encryption technology that Microsoft Purview Information Protection uses. [Chapter 02](02-sensitivity-label-architecture.md) decides which labels encrypt and for whom; [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#keys-the-agency-controls) explains the three meanings of "customer-managed key" and which one the program uses for the tenant root key. This chapter doesn't repeat either. It covers the service those decisions run on: whether it is on, who may use it to encrypt, and who can get content back out when the person who encrypted it is gone.
@@ -56,7 +56,7 @@ When the Azure Rights Management service is active, all users in the organizatio
 - **Deactivation isn't an undo.** Microsoft's decommissioning guidance tells an organization that has encrypted production content to keep a copy of its root key and trusted publishing domain before deactivating; turning the service off doesn't decrypt anything.[^c05-deactivate]
 
 **Authority:** Microsoft-recommended (Microsoft Learn, "Activate the Azure Rights Management service," accessed Nov 11, 2026) for confirming the service state and for onboarding controls in a phased deployment.
-**Applies:** License-dependent: a service plan that includes Azure Rights Management ([Prerequisites](#prerequisites)). Environment-dependent: GCC High and DoD clients need DNS records to reach the government instance.
+**Applies:** License-dependent: a service plan that includes Azure Rights Management ([Prerequisites](#prerequisites)).
 
 ## Decide: activation, onboarding and recovery {#b20-05-decide-activation-onboarding-and-recovery}
 
@@ -94,14 +94,14 @@ The procedure below is the Rights Management part of CM-13: activate protection,
 - **No AD RMS in use.** Confirm before activating ([What the service does](#what-the-service-does-and-why-activation-is-a-decision)).
 - **Government-cloud availability.**
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| Azure Rights Management service (encryption for labels and Message Encryption) | Available | Available (Message Encryption E3 row) | Available; connect with `-EnvironmentName AzureUSGovernment` and publish DNS SRV records | Available; same connection and DNS steps as GCC High | GCC, GCC High and DoD Purview planning pages, Encryption rows; AIP Premium Government service description[^c05-gcc][^c05-gcch][^c05-dod][^c05-aip-gov] |
-| Co-authoring on encrypted documents | Available | Available | Available | Available | Same pages, Sensitivity labeling rows[^c05-gcc][^c05-gcch][^c05-dod] |
-| BYOK for the tenant key; Double Key Encryption | Available | Available | Available | Available | Same pages, Encryption rows[^c05-gcc][^c05-gcch][^c05-dod] |
-| Super user feature | Available | not yet specified | not yet specified | not yet specified | The government pages don't list it; `Connect-AipService` accepts `AzureUSGovernment`, so the cmdlets run there[^c05-connect] |
-| Rights Management usage logging (`Get-AipServiceUserLog`) | Available | not yet specified | not yet specified | not yet specified | The government pages don't list it[^c05-usage] |
-| eDiscovery decryption of encrypted content ("RMS decryption") | Available | Available | Available | Available | Same pages, eDiscovery (Standard) rows[^c05-gcc][^c05-gcch][^c05-dod] |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| Azure Rights Management service (encryption for labels and Message Encryption) | Available | Available (Message Encryption E3 row) | GCC Purview planning page, Encryption rows[^c05-gcc] |
+| Co-authoring on encrypted documents | Available | Available | Same pages, Sensitivity labeling rows[^c05-gcc] |
+| BYOK for the tenant key; Double Key Encryption | Available | Available | Same pages, Encryption rows[^c05-gcc] |
+| Super user feature | Available | not yet specified | The GCC page doesn't list it[^c05-connect] |
+| Rights Management usage logging (`Get-AipServiceUserLog`) | Available | not yet specified | The government pages don't list it[^c05-usage] |
+| eDiscovery decryption of encrypted content ("RMS decryption") | Available | Available | Same pages, eDiscovery (Standard) rows[^c05-gcc] |
 
 The government pages say feature status "is subject to change as project plans and priorities are reevaluated." Read them again at each reassessment ([Chapter 12](12-operations-and-evidence.md)).
 
@@ -114,25 +114,6 @@ Update-Module -Name AIPService
 
 # Commercial and GCC:
 Connect-AipService
-
-# GCC High and DoD:
-Connect-AipService -EnvironmentName AzureUSGovernment
-```
-
-In GCC High and DoD, Office clients bootstrap to the commercial instance unless DNS redirects them. Learn's government service description gives two SRV records per user domain: `_rmsredir._http._tcp` pointing to `<service-id>.rms.aadrm.us` on port 80 for Windows clients, and `_rmsdisco._http._tcp` pointing to `api.aadrm.us` on port 80 for other platforms, where `<service-id>` is the tenant's Rights Management service ID.[^c05-aip-gov] Read the ID, then ask the DNS owner ([Book 08](../b08-ddi/index.md)) to publish the records:
-
-```powershell
-# GCC High and DoD only: the value for the _rmsredir SRV target.
-(Get-AipServiceConfiguration).RightsManagementServiceId
-```
-
-The same page says not to terminate TLS to the `rms.aadrm.us` endpoint at a proxy or firewall, and gives a check that the certificate the client sees was issued by a Microsoft CA.[^c05-aip-gov] Run it from a pilot workstation:
-
-```powershell
-# GCC High and DoD: the issuer should be a Microsoft CA, not an inspection proxy.
-$request = [System.Net.HttpWebRequest]::Create("https://admin.aadrm.us/admin/admin.svc")
-$request.GetResponse()
-$request.ServicePoint.Certificate.Issuer
 ```
 
 ### Pilot
@@ -141,7 +122,6 @@ Restrict who can *apply* encryption to the onboarding group while the encrypting
 
 ```powershell
 # Find the onboarding group's object ID (Microsoft Graph PowerShell).
-# GCC High and DoD: Connect-MgGraph -Environment USGov (GCC High) or USGovDoD (DoD).
 Connect-MgGraph -Scopes "Group.Read.All"
 $groupId = (Get-MgGroup -Filter "displayName eq '<pilot-group>'").Id
 
@@ -189,7 +169,7 @@ Get-AipServiceOnboardingControlPolicy
 
 | Ring | Scope | Exit criteria |
 |---|---|---|
-| 0 | The platform owner's test accounts | Each encrypting label encrypts and opens on every supported client; GCC High and DoD DNS records resolve |
+| 0 | The platform owner's test accounts | Each encrypting label encrypts and opens on every supported client |
 | 1 | `<pilot-group>` (label pilot users) | Two weeks with no unexplained denials in the usage log; decryption-continuity test passed |
 | 2 | Early adopters: records, legal and the help desk | Help-desk tickets about opening protected content within the agreed threshold; recovery drill done once |
 | 3 | All licensed users (`-UseRmsUserLicense $True`) | Post-change validation passed |
@@ -224,7 +204,7 @@ Deactivating the service is not a rollback. It stops new encryption, but content
 
 **Evidence checklist**
 
-- [ ] **Configuration:** `Get-AipService`, `Get-AipServiceConfiguration`, `Get-AipServiceOnboardingControlPolicy`, `Get-AipServiceSuperUserFeature` and `Get-AipServiceSuperUser` output, dated, in the evidence store; in GCC High and DoD, the two DNS SRV records
+- [ ] **Configuration:** `Get-AipService`, `Get-AipServiceConfiguration`, `Get-AipServiceOnboardingControlPolicy`, `Get-AipServiceSuperUserFeature` and `Get-AipServiceSuperUser` output, dated, in the evidence store
 - [ ] **Operational:** daily usage log and weekly admin log exports, kept for the period [Book 13, Chapter 13](../b13-governance/13-records-evidence-and-retention.md) sets
 - [ ] **Test:** the decryption-continuity test record, with the usage-log lines for each open, denial and recovery
 - [ ] **Exception:** the super user exception register (service principals only) and any user without a qualifying license, each with approver and review date
@@ -255,7 +235,7 @@ Not applicable: a recovery acts on a named item and has nothing to observe befor
 After the recovery role is activated and approved in PIM:
 
 ```powershell
-Connect-AipService            # GCC High and DoD: -EnvironmentName AzureUSGovernment
+Connect-AipService
 
 # 1. Record the starting state: expect Disabled and no super users.
 Get-AipServiceSuperUserFeature
@@ -322,7 +302,6 @@ A failure at step 3 is a design error in the label; a failure at step 4 is a rec
 ## Key takeaways
 
 - Rights Management is usually already on; the decisions are who may encrypt during rollout, which tenant key, and who can recover.
-- In GCC High and DoD, connect with `-EnvironmentName AzureUSGovernment` and publish the two SRV records, or Office clients look for the commercial instance.
 - Keep the super user feature off. Enable it for a named recovery through a PIM-approved role, add the operator individually, and remove both when done; a PIM-managed super user group lags by up to three hours.
 - The decryption-continuity test, with its usage-log and admin-log lines, is the Rights Management evidence for CM-13.
 
@@ -342,11 +321,8 @@ A failure at step 3 is a design error in the label; a failure at step 4 is a rec
 [^c05-pim-settings]: Microsoft Learn, "Configure PIM for Groups settings," section "Require approval to activate" ("Select at least two approvers for redundancy"); justification and ticket information on activation, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-role-settings> (accessed Nov 11, 2026).
 [^c05-pim-approve]: Microsoft Learn, "Approve activation requests for group members and owners," section "Approve requests" ("Approvers can't approve their own role activation requests"), <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-approval-workflow> (accessed Nov 11, 2026).
 [^c05-ome-license]: Microsoft Learn, "Message encryption FAQ," section "What subscriptions do I need to use Microsoft Purview Message Encryption?" (Office 365 and Microsoft 365 E3 and E5, Office 365 Government G3 and G5, among others; each user needs a license), <https://learn.microsoft.com/purview/ome-faq> (accessed Nov 11, 2026).
-[^c05-connect]: Microsoft Learn, "Connect-AipService" (roles that can connect; `-EnvironmentName` accepts `AzureCloud`, `AzureChinaCloud`, `AzureUSGovernment`), <https://learn.microsoft.com/powershell/module/aipservice/connect-aipservice> (accessed Nov 11, 2026).
+[^c05-connect]: Microsoft Learn, "Connect-AipService" (roles that can connect), <https://learn.microsoft.com/powershell/module/aipservice/connect-aipservice> (accessed Nov 11, 2026).
 [^c05-install]: Microsoft Learn, "Install the AIPService PowerShell module for the Azure Rights Management service," sections "Prerequisites" and "PowerShell editions," <https://learn.microsoft.com/purview/install-aipservice-powershell> (accessed Nov 11, 2026).
 [^c05-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4 table (Encryption, Sensitivity labeling and eDiscovery rows; status "subject to change"), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c05-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4 table, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c05-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4 table, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).
-[^c05-aip-gov]: Microsoft Learn, "Azure Information Protection Premium Government Service Description," sections "Enable Rights Management for the tenant" (`Connect-AIPService -EnvironmentName AzureUSGovernment`), "DNS configuration for encryption (Windows)" and "(Mac, iOS, Android)" (SRV records) and "Firewalls and network infrastructure" (don't terminate TLS to rms.aadrm.us; issuer check), <https://learn.microsoft.com/enterprise-mobility-security/solutions/ems-aip-premium-govt-service-description> (accessed Nov 11, 2026).
 [^c05-usage]: Microsoft Learn, "Usage logging for the Azure Rights Management service" (on by default; most logs within 15 minutes; previous dates only; definitive source for forensic analysis; file access and denied events don't include the file name and aren't in the unified audit log; admin log), <https://learn.microsoft.com/purview/rights-management-usage-logging> (accessed Nov 11, 2026).
 [^c05-remove-filelabel]: Microsoft Learn, "Remove-FileLabel" (PurviewInformationProtection module; `-RemoveLabel` removes a template-based label and its protection; `-RemoveProtection` for custom permissions; `-JustificationMessage`), <https://learn.microsoft.com/powershell/module/purviewinformationprotection/remove-filelabel> (accessed Nov 11, 2026).

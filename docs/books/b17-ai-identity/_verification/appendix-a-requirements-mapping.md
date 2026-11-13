@@ -7,7 +7,7 @@ Writer W5, October 21, 2026. Method: as for Chapter 10. NIST baselines were comp
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | M-25-21 rescinds and replaces M-24-10; applies to executive agencies incl. independent regulatory agencies | M-25-21 intro | verified | M-25-21 Overview, Scope |
-| 2 | IC not required to implement high-impact practices; DoD and IC excepted from inventory | M-25-21 intro | verified | M-25-21 fn 25; §3(b)(v); table of actions |
+| 2 | IC not required to implement high-impact practices; some agencies, including the IC, excepted from inventory | M-25-21 intro | verified | M-25-21 fn 25; §3(b)(v); table of actions |
 | 3 | No later OMB memo through M-26-19 replaces M-25-21 | M-25-21 intro | verified (index read; M-26-10 and M-26-14 checked for AI content) | OMB memoranda index |
 | 4 | CAIO within 60 days; item E maintain inventory; item F centrally track high-impact | M-25-21 table | verified | §3(a)(i) |
 | 5 | CFO Act AI governance board within 90 days | M-25-21 table | verified | §3(a)(ii); table of actions |

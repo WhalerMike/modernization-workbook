@@ -21,9 +21,9 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read: 24. Sources opened Nov 1
 | 13 | Anonymization behavior, exceptions, exports; portal path | Pseudonymization; Pilot | verified | Manage username privacy in IRM | Nov 11, 2026 |
 | 14 | Data risk graph retires Nov 24, 2026; unavailable with anonymization | Pseudonymization | verified | Data risk graph in IRM | Nov 11, 2026 |
 | 15 | Triage stages and roles | Triage | restated-as-design | Program design | Nov 11, 2026 |
-| 16 | CC retention period setting on engineering backlog in GCC, GCC High, DoD | Triage; Prerequisites | verified | Learn Purview government planning pages, Step 4 | Nov 11, 2026 |
+| 16 | CC retention period setting on engineering backlog in GCC | Triage; Prerequisites | verified | Learn Purview GCC planning page, Step 4 | Nov 11, 2026 |
 | 17 | Audit Logs role (Exchange) to turn on/off; Organization Configuration for retention; View-Only Audit Logs to search | Prerequisites | verified | Turn auditing on or off; Manage audit log retention policies; Best practices using Search-UnifiedAuditLog | Nov 11, 2026 |
-| 18 | Government availability for Audit and IRM/CC rows | Prerequisites | verified | Learn Purview GCC / GCC High / DoD planning pages, Step 4 | Nov 11, 2026 |
+| 18 | GCC availability for Audit and IRM/CC rows | Prerequisites | verified | Learn Purview GCC planning page, Step 4 | Nov 11, 2026 |
 | 19 | Connection parameters per cloud | Prerequisites | verified | Connect to Security & Compliance PowerShell; App-only authentication connection examples | Nov 11, 2026 |
 | 20 | RetentionDuration accepted values; TwelveMonths example; noisy-event example | Enforcement; Exclusions | verified | New-UnifiedAuditLogRetentionPolicy | Nov 11, 2026 |
 | 21 | Record type names used in the retention policy | Enforcement | verified | Microsoft services that support auditing; Purview Information Protection connector reference | Nov 11, 2026 |
@@ -37,10 +37,9 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read: 24. Sources opened Nov 1
 | 29 | Sharing IRM data with SIEM and Defender XDR | Telemetry (IRM) | verified | Share Insider Risk Management data with other solutions | Nov 11, 2026 |
 | 30 | Control requirement rows (AU-2, AU-6, AU-11, AU-12, PM-12, AC-5) | Requirements | restated-as-design | Mapping is the program's; titles checked against SP 800-53 Rev. 5 OSCAL 5.2.0 | Nov 11, 2026 |
 
-## Government-cloud gaps
+## GCC gaps
 
-- Security groups as members of Purview role groups: Learn says commercial cloud organizations only; GCC isn't named either way (written as not yet specified); GCC High and DoD written as not supported.
-- Communication Compliance policy retention period: on engineering backlog in GCC, GCC High and DoD; commercial status not confirmed on a feature page (not yet specified).
-- Insider Risk Management portal procedures (privacy setting, policy on/off) aren't documented separately for government portals; the government portal URLs differ (for example `purview.microsoft.us` for GCC High), which the chapter doesn't spell out.
+- Security groups as members of Purview role groups: Learn says commercial cloud organizations only; GCC isn't named either way (written as not yet specified).
+- Communication Compliance policy retention period: on engineering backlog in GCC; commercial status not confirmed on a feature page (not yet specified).
+- Insider Risk Management portal procedures (privacy setting, policy on/off) aren't documented separately for GCC.
 - No Learn page reviewed gives a PowerShell interface for turning IRM or CC policies on and off; the rollback is a portal procedure.
-- DoD Security & Compliance PowerShell URI: Learn's interactive page uses `l5.ps.compliance.protection.office365.us`; its app-only page uses `compliance.dod.microsoft.com`. The chapter uses the interactive form.

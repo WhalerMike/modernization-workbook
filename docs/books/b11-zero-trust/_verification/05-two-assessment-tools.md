@@ -17,13 +17,13 @@ Writer W3. All sources opened October 21, 2026. Microsoft Learn pages read with 
 | 9 | Policy ID vs numeric TestId; SHALL/SHOULD vs High/Medium/Low | At a glance | verified | `aad.md`; ZTA 3.1.0 `TestId`/`RiskLevel` attributes (215 High, 129 Medium, 20 Low) |
 | 10 | Both read-only | At a glance | verified, qualified | Learn get-started ("read-only"); ScubaGear reads settings. Qualified by role requirements (rows 13, 16) |
 | 11 | ScubaGear runs in PowerShell 5, `Install-Module`, `Invoke-SCuBA` | ScubaGear | verified | v1.8.0 README |
-| 12 | Default ProductNames aad, defender, exo, sharepoint, teams; powerplatform optional; `-M365Environment` commercial/gcc/gcchigh/dod; required for Power Platform, GCC High, DoD | ScubaGear | verified (new) | v1.8.0 `parameters.md` |
+| 12 | Default ProductNames aad, defender, exo, sharepoint, teams; powerplatform optional; `-M365Environment` commercial/gcc | ScubaGear | verified (new) | v1.8.0 `parameters.md` |
 | 13 | Roles: Global Reader for most; Power Platform Administrator + license; Fabric Admin for Power BI; Graph read permissions consent | ScubaGear | verified (new) | `interactive.md` |
 | 14 | CISA requires results from most recent tool version (manual reporting) | ScubaGear | verified | Implementation guidance |
 | 15 | ZTA module `ZeroTrustAssessment`; open source; part of Zero Trust Workshop | ZTA | verified | Learn overview; Learn Zero Trust Workshop |
 | 16 | PowerShell 7 (3.1.0 needs 7.6+); Global Admin for first consent; later runs Global Reader, Security Reader, Exchange Admin, SharePoint Admin vs "Global Reader" on same page | ZTA | verified (inconsistency recorded) | Learn get-started; 3.1.0 release notes |
 | 17 | 21 Graph permissions; `Connect-ZtAssessment`, `Invoke-ZtAssessment`, report path; >24 h for large tenants | ZTA | verified | Learn get-started |
-| 18 | `-Environment` (Global, USGov, USGovDoD, China, Germany) and `-ExchangeEnvironmentName` in 3.1.0 | ZTA | verified (new) | 3.1.0 `Connect-ZtAssessment.ps1`. Learn doesn't document government clouds; GCC-on-commercial-endpoints stated as guidance to confirm |
+| 18 | `-Environment` (default `Global` for GCC) in 3.1.0 | ZTA | verified (new) | 3.1.0 `Connect-ZtAssessment.ps1`. Learn doesn't document government clouds; GCC-on-commercial-endpoints stated as guidance to confirm |
 | 19 | 3.1.0 has 364 tests: Identity 135, Network 70, SecOps 57, Devices 43; smaller Data, AI, Infrastructure | ZTA | verified (writer's count) | 3.1.0 test definitions (first `Pillar` value per file; some files carry combined values such as Data/AI) |
 | 20 | Learn still describes Identity, Devices, Network, Data tabs | ZTA | verified | Learn get-started |
 | 21 | SCuBA-only: EXO mail flow (forwarding, SPF, DKIM, DMARC, SMTP AUTH), Teams, SharePoint sharing, Power Platform/BI | Overlap table | verified | v1.8.0 baselines; 3.1.0 tests grep (no SPF, DKIM, forwarding, sharing or Power Platform tests; one DMARC mention inside an anti-phishing test) |
@@ -76,14 +76,14 @@ Follows the source watch above (issue #160). Sources: ScubaGear tag `v2.0.0` (ba
 |---|---|---|---|---|
 | 1 | Scope: Security Suite replaced Defender in 2.0.0 | Comparison table | verified | v2.0.0 README |
 | 2 | Default products aad, securitysuite, exo, sharepoint, teams; Power Platform and Power BI by `-ProductNames` | ScubaGear | verified (Power BI added) | v2.0.0 parameters.md |
-| 3 | `-M365Environment` required for interactive GCC, GCC High, DoD; not required with service principal (auto-detected) | ScubaGear | corrected (1.8.0 text said required for Power Platform and GCC High/DoD) | v2.0.0 parameters.md; v2.0.0 release notes |
+| 3 | `-M365Environment` required for interactive GCC; not required with service principal (auto-detected) | ScubaGear | corrected (1.8.0 text said otherwise) | v2.0.0 parameters.md; v2.0.0 release notes |
 | 4 | Entra baseline 34 policies at 2.0.0; 20 on CISA's list; 22 marked required | Two caveats | verified | v2.0.0 `aad.md`; Required Configurations page |
 | 5 | 22 of 50 listed mandatory policies in EXO, Teams, SharePoint, Power Platform; 26 of 56 marked in 2.0.0 | Two caveats | verified (writer's count) | Required Configurations page; v2.0.0 baselines |
 | 6 | Interactive permissions and mappings unchanged in substance at 2.0.0 (Security Suite row replaces Defender; Power BI row added) | Footnotes | verified | v1.8.0 vs v2.0.0 interactive.md and mappings.md diff |
 
 ## Moderate-civilian sweep, October 29, 2026
 
-The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only or Defense-specific was checked.
+The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only was checked.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|

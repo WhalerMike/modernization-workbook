@@ -163,7 +163,7 @@ The workbook's example path, the [Ticket-to-Machine example guide](../guides/ttm
 - **The native integration fits** an agency whose access governance already runs on Entra ID Governance and whose access packages cover the resources that matter. It keeps one governance system of record and adds no second identity governance product to the authorization boundary.
 - **The SailPoint path fits** an agency that already governs identities and entitlements across many non-Microsoft systems in SailPoint, or whose source-of-authority design puts the governance platform upstream of Entra ID.
 
-Neither changes this chapter's rule. Ticketed provisioning resumes on the ticket's closure, and in this chapter's terms that closure is an assertion until the execution layer's re-read agrees with the record. Both paths support CM-3 and AC-2; the evidence still comes from the approval, the execution and the re-read, not from the product. Microsoft lists Entra ID Governance as available in GCC, GCC High and DoD;[^c10-idgov-avail] government-cloud availability of the ServiceNow Store integration and of the ticketed-provisioning path is not yet specified.
+Neither changes this chapter's rule. Ticketed provisioning resumes on the ticket's closure, and in this chapter's terms that closure is an assertion until the execution layer's re-read agrees with the record. Both paths support CM-3 and AC-2; the evidence still comes from the approval, the execution and the re-read, not from the product. Microsoft lists Entra ID Governance as available in GCC;[^c10-idgov-avail] government-cloud availability of the ServiceNow Store integration and of the ticketed-provisioning path is not yet specified.
 
 ## The operations team's view
 

@@ -32,7 +32,7 @@ The program's scan script isn't published with the workbook. Everything below de
 
 ## What the scan reads
 
-M-25-21 requires each agency other than the Department of Defense and the Intelligence Community to inventory its AI use cases at least annually, submit the inventory to OMB and post a public version; it encourages agencies to update the public version on an ongoing basis.[^c09-m2521] For the 2025 cycle, OMB's guidance set December 22, 2025 for submissions and January 28, 2026 for a machine-readable CSV at each agency's `/ai` page.[^c09-guidance] OMB then compiled the public inventories into one repository. As of April 13, 2026 it holds 3,611 individually reported use cases from the 41 agencies that reported use cases individually, of which 1,818 are deployed or piloted and 445 are high-impact.[^c09-repo]
+M-25-21 requires each covered agency to inventory its AI use cases at least annually, submit the inventory to OMB and post a public version; it encourages agencies to update the public version on an ongoing basis.[^c09-m2521] For the 2025 cycle, OMB's guidance set December 22, 2025 for submissions and January 28, 2026 for a machine-readable CSV at each agency's `/ai` page.[^c09-guidance] OMB then compiled the public inventories into one repository. As of April 13, 2026 it holds 3,611 individually reported use cases from the 41 agencies that reported use cases individually, of which 1,818 are deployed or piloted and 445 are high-impact.[^c09-repo]
 
 There are therefore two files the scan can read, and they aren't the same.
 
@@ -301,7 +301,7 @@ Two properties make Tiers 0 to 2 credible. The findings are derived, not asserte
 The central scan works on the inventory record, not on the credential. That limit is structural, and the program states it plainly rather than let a clean central report imply more than it measured:
 
 - **Credentials.** It can see that a use case has no contact. It can't see whether the system has an identity, whether its secret was rotated, whether its certificate expired, or whether its access was revoked when it retired.
-- **What wasn't published.** Withheld use cases and fields, national security systems, the Intelligence Community, Department of Defense use cases and most research are outside the public file.[^c09-repo] Common commercial AI is reported in aggregate, not as individual use cases.[^c09-guidance]
+- **What wasn't published.** Withheld use cases and fields, national security systems, the Intelligence Community and most research are outside the public file.[^c09-repo] Common commercial AI is reported in aggregate, not as individual use cases.[^c09-guidance]
 - **What was never inventoried.** Shadow AI appears in the directory, in consent grants and in network logs, not in an inventory. Only the agency's own discovery finds it ([Chapter 07](07-monitoring-drift-and-shadow-ai.md)).
 - **Change between vintages.** The inventory is annual. An agent created in February and given broad permissions in March is invisible to the central scan until the following year's file, if it's reported at all.
 - **Stable identity across years.** Without use case IDs in the public file, the central scan can't run the vintage comparison, and so can't run the leaver check.

@@ -48,7 +48,7 @@ Writer W4. Source: `docs/operational-guides/end-user-training.md` (6,109 words b
 | 40 | Access approvals come from owners/approvers, not help desk | Module 4 | verified | Book 04 Ch06 (linked) |
 | 41 | SP 800-37: system user reports anomalous or suspicious behavior | Module 5 | verified | SP 800-37r2 App. D, System User |
 | 42 | Built-in Report button versions; requires user reporting on and built-in button selected; phishing reports deleted | Module 5 | verified | Microsoft Learn, report phishing in Outlook |
-| 43 | GCC, GCC High, DoD: only "My reporting mailbox only" | Module 5 | verified | Microsoft Learn, User reported settings |
+| 43 | GCC: only "My reporting mailbox only" | Module 5 | verified | Microsoft Learn, User reported settings |
 | 44 | Admin "Mark as and notify" results email to users | Module 5 | verified | Same |
 | 45 | Report Message / Report Phishing add-ins in maintenance mode | Module 5; currency section | verified | Microsoft Learn, transition from add-ins |
 | 46 | Phishing exercise rules (legal review, no impersonation, non-punitive) | Module 5 | verified | Book 14 Ch09 (linked; settled) |
@@ -138,7 +138,6 @@ Instruction B16-01 (user adoption training): Authenticator additional context in
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
 | 1 | Additional context shows application name and IP-based location; enabled separately; only Authenticator-enabled users see it | Module 1 | verified | Learn, "Use additional context in Authenticator notifications" | Nov 11, 2026 |
-| 2 | Additional context availability in Azure Government | Module 1 note | unverifiable: not named on Entra's US Government feature page; recorded as not yet specified | Learn, "Microsoft Entra feature availability" | Nov 11, 2026 |
 | 3 | Default label, justification to remove or lower (readable in activity explorer), mandatory labeling | Module 4 | verified | Learn, "Learn about sensitivity labels" | Nov 11, 2026 |
 | 4 | Mandatory labeling prompts at save/send; labels can be changed but not removed | Module 4 | verified | Learn, "Manage sensitivity labels in Office apps" | Nov 11, 2026 |
 | 5 | Do Not Forward and Encrypt-only usage rights | Module 4 | verified | Learn, "Configure usage rights for the Azure Rights Management service" | Nov 11, 2026 |
@@ -146,8 +145,8 @@ Instruction B16-01 (user adoption training): Authenticator additional context in
 | 7 | One-time passcode can land in junk or quarantine; admins control OTP | Module 4 | verified | Learn, "Message encryption FAQ"; "Manage message encryption" | Nov 11, 2026 |
 | 8 | Policy tips while composing; notify, block, override with justification, false positive; logged | Module 4 | verified | Learn, "Send email notifications and show policy tips for DLP policies" | Nov 11, 2026 |
 | 9 | Policy tips not supported in Outlook for Mac and iOS; use Outlook on the web | Module 4 | verified | Learn, "Resolve issues that affect DLP policy tips" | Nov 11, 2026 |
-| 10 | Purview availability in GCC, GCC High and DoD (labels, Message Encryption, DLP) | Module 4 | verified | Learn, Purview planning pages for GCC, GCC High and DoD | Nov 11, 2026 |
-| 11 | Exchange Online DLP requires G3 or G5; Message Encryption behavior across the GCC High/DoD boundary | Module 4 | verified | Learn, "Exchange Online for US government environments" | Nov 11, 2026 |
+| 10 | Purview availability in GCC (labels, Message Encryption, DLP) | Module 4 | verified | Learn, Purview planning page for GCC | Nov 11, 2026 |
+| 11 | Exchange Online DLP requires G3 or G5 | Module 4 | verified | Learn, "Exchange Online for US government environments" | Nov 11, 2026 |
 | 12 | Blocked-access table, timing note, measures and thresholds | Module 3; Timing; Proving | restated-as-design | program design | Nov 11, 2026 |
 
 ## Zero Trust closure, Phase 4, November 11, 2026

@@ -55,9 +55,8 @@ Checked October 21, 2026 by writer W2. Sources: `docs/operational-guides/siem-te
 | 47 | Search-UnifiedAuditLog default 100; ReturnLargeSet to 50,000; Microsoft recommends Management Activity API for programmatic download | Step 2 | verified (new) | Learn, Search-UnifiedAuditLog |
 | 48 | Management Activity API is "app-only" | Step 3 | corrected | Learn FAQ: most collectors use client credentials; Microsoft says enable both application and delegated permissions for the first two permission sets |
 | 49 | ActivityFeed.Read claim / Read activity data permission | Step 3 | verified (new) | Learn, API reference; FAQ |
-| 50 | API roots: manage.office.com, manage-gcc.office.com, manage.office365.us, manage.protection.apps.mil | Step 3 | verified | Learn, API reference; FAQ |
+| 50 | API roots: manage.office.com, manage-gcc.office.com | Step 3 | verified | Learn, API reference; FAQ |
 | 51 | GCC authority `https://login.windows.net` | Step 3 | corrected | GCC is paired with commercial Entra ID (feature availability); Microsoft's samples and Graph deployments use login.microsoftonline.com |
-| 52 | GCC High / DoD authority login.microsoftonline.us | Step 3 | verified | Learn, Graph national cloud deployments |
 | 53 | Source cited a Power Platform CoE page for endpoints | Step 3 | corrected (source) | Replaced with the API reference |
 | 54 | Five content types; subscriptions per tenant; no per-event selection | Step 4 | verified | Learn, API reference; FAQ |
 | 55 | Workload descriptions for content types (Audit.General = Teams, Power Platform, Purview, Forms) | Step 4 | corrected | Microsoft says Audit.General includes "all other workloads"; Teams under Audit.General verified on the Teams–Sentinel page; other examples dropped |
@@ -83,12 +82,12 @@ Checked October 21, 2026 by writer W2. Sources: `docs/operational-guides/siem-te
 | 75 | Policies not retroactive | Retention warning | verified | Learn, retention policies; audit solutions |
 | 76 | Custom policies outrank default, can shorten retention; license required for >180 days | Retention warning | verified (new) | Learn, retention policies |
 | 77 | Audit (Premium) licensing incl. G5 and E5/G5 eDiscovery & Audit | Retention | verified (new) | Learn, Purview service description |
-| 78 | GCC and GCC High: Audit Standard/Premium, 1-year, 10-year, API bandwidth available | Retention | verified (new) | Learn, Plan for Purview – GCC; – GCC High |
+| 78 | GCC: Audit Standard/Premium, 1-year, 10-year, API bandwidth available | Retention | verified (new) | Learn, Plan for Purview – GCC |
 | 79 | M-21-31 / AU-11 framing | Retention | corrected | M-26-14 Appendix B item 1 (6 months searchable, 1 year retrievable) |
 | 80 | Purview retention tier is not the evidence store; collector to workspace | Retention | restated-as-design | Program position |
 | 81 | Sentinel Microsoft 365 connector → OfficeActivity; Exchange, SharePoint, Teams | Sentinel | verified | Learn, OfficeActivity table; Sentinel tables reference |
 | 82 | Those data types free | Sentinel | verified (new) | Learn, Sentinel billing |
-| 83 | Office 365 connector GA in GCC, GCC High, DoD | Sentinel | verified (new) | Learn, feature availability |
+| 83 | Office 365 connector GA in GCC | Sentinel | verified (new) | Learn, feature availability |
 | 84 | "substrate's evidence path … SIEM adapter spec requires a provenance envelope" | Sentinel | restated-as-design | Engine terms removed; restated as the program's evidence contract (Ch02) |
 | 85 | "connector does not consume blobs in a way that hides them from an API subscription" | Sentinel | removed | Not verifiable |
 | 86 | OfficeActivity verify KQL (`count`, OfficeWorkload, RecordType) | Verify | corrected | `count()`; columns verified on table reference |
@@ -122,7 +121,7 @@ Checked October 21, 2026 by writer W2. Sources: `docs/operational-guides/siem-te
 | 03 intro | Part 4 opening | Carried, workload list corrected |
 | 03 Step 1 + warning | Step 1 | Carried |
 | 03 Step 2 + important | Step 2 | Carried; ReturnLargeSet added |
-| 03 Step 3 + endpoint table + GCC note | Step 3 | Carried; GCC authority corrected; DoD retained; commercial row added |
+| 03 Step 3 + endpoint table + GCC note | Step 3 | Carried; GCC authority corrected; commercial row added |
 | 03 Step 4 content types, start loop, list | Step 4 | Carried; PublisherIdentifier corrected and added to calls |
 | 03 Warning: two timing rules | Warning callout | Carried; latency facts added |
 | 03 Step 5 retrieve + constraints | Step 5 | Carried; availability-time and 7-day facts added |

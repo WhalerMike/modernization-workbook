@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What federal policy asks monitoring to do for AI, and what it doesn't. Where workload and agent identities show up in Microsoft Entra sign-in and audit logs, and what ID Protection detects for them. Four places shadow AI hides and the tools that see each one, with their release stage and government-cloud availability. The program's AI drift findings, among them a high-priority finding for an agentic AI system with no governed identity and one for a deployed system with no recorded authorization, and how each finding becomes a record in the evidence contract of [Book 12](../b12-security-operations/02-the-evidence-contract.md) and the drift model of [Book 13](../b13-governance/06-the-drift-engine.md).
+What federal policy asks monitoring to do for AI, and what it doesn't. Where workload and agent identities show up in Microsoft Entra sign-in and audit logs, and what ID Protection detects for them. Four places shadow AI hides and the tools that see each one, with their release stage and GCC availability. The program's AI drift findings, among them a high-priority finding for an agentic AI system with no governed identity and one for a deployed system with no recorded authorization, and how each finding becomes a record in the evidence contract of [Book 12](../b12-security-operations/02-the-evidence-contract.md) and the drift model of [Book 13](../b13-governance/06-the-drift-engine.md).
 :::
 
 The earlier chapters of this book give every AI system an identity record, an accountable owner, a lifecycle and credentials scoped to the work ([Chapter 05](05-owners-sponsors-and-lifecycle.md), [Chapter 06](06-credentials-and-least-privilege.md)). None of that stays true by itself. A sponsor changes jobs. A developer adds a client secret to unblock a test and never removes it. A team connects a new tool to an agent and the agent's permissions grow to match. A program office signs up for a generative AI service with a purchase card. The identity record says one thing and the estate says another, and the gap widens quietly.
@@ -68,8 +68,6 @@ The request below is the one Microsoft documents for retrieving agent identity s
 GET https://graph.microsoft.com/beta/auditLogs/signIns?$filter=signInEventTypes/any(t: t eq 'servicePrincipal') and agent/agentType eq 'AgentIdentity'
 ```
 
-In a GCC High or DoD tenant the Graph host is different (`graph.microsoft.us` or `dod-graph.microsoft.us`),[^c07-a365-cli] and the Agent ID features themselves need to be confirmed for that cloud first, as the release table later in this chapter explains.
-
 ### What to alert on
 
 Microsoft's own guidance for Agent ID lists the signals worth an alert: sudden spikes in token requests, access to unexpected APIs, sign-ins from unfamiliar IP ranges, changes to blueprints, credential additions, permission grants and role assignments "that happen outside your normal deployment pipeline," credentials nearing expiry, an agent blocked by Conditional Access or ID Protection, excessive failed token acquisition, and unexpected permission or role changes.[^c07-agent-bp] The list applies just as well to AI systems running on ordinary service principals and managed identities. In the program's design, security operations owns these detections like any other ([Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md)), and two of them double as drift findings below: a credential added outside the pipeline, and a permission that grew without a change record.
@@ -80,7 +78,7 @@ Other clouds offer the same raw material in their own shape. AWS CloudTrail's `u
 
 ### Workload identities
 
-Microsoft Entra ID Protection detects risk on workload identities as well as users. Its detections for service principals include leaked credentials, suspicious sign-ins against a learned baseline, anomalous service principal activity such as suspicious directory changes, suspicious Microsoft Graph traffic or directory enumeration, threat-intelligence matches, malicious or suspicious applications, and an administrator's confirmation of compromise. Every detection is offline. Single-tenant, non-Microsoft SaaS and multitenant apps are in scope; managed identities aren't. All customers receive the detections, but full risk details and risk-based Conditional Access need Workload ID Premium, and the Conditional Access response can block only single-tenant service principals registered in the tenant.[^c07-idp-workload] Workload ID Premium is listed as available in Azure Government.[^c07-feature-gov] The remediation Microsoft describes is the one the program uses: inventory the identity's credentials, add a new one, remove the compromised ones, rotate any Key Vault secrets the identity could read, and disable the service principal if it must stop at once.[^c07-idp-workload]
+Microsoft Entra ID Protection detects risk on workload identities as well as users. Its detections for service principals include leaked credentials, suspicious sign-ins against a learned baseline, anomalous service principal activity such as suspicious directory changes, suspicious Microsoft Graph traffic or directory enumeration, threat-intelligence matches, malicious or suspicious applications, and an administrator's confirmation of compromise. Every detection is offline. Single-tenant, non-Microsoft SaaS and multitenant apps are in scope; managed identities aren't. All customers receive the detections, but full risk details and risk-based Conditional Access need Workload ID Premium, and the Conditional Access response can block only single-tenant service principals registered in the tenant.[^c07-idp-workload] The remediation Microsoft describes is the one the program uses: inventory the identity's credentials, add a new one, remove the compromised ones, rotate any Key Vault secrets the identity could read, and disable the service principal if it must stop at once.[^c07-idp-workload]
 
 ### Agents
 
@@ -104,22 +102,22 @@ Shadow AI is not one problem. It shows up on four surfaces, each seen by a diffe
 
 One gap no tool closes. Conditional Access, and every Entra signal in this chapter, protects only resources secured by Microsoft Entra ID: "if an agent accesses resources using an API key, it bypasses the Microsoft Entra ID authentication and token issuance pipeline entirely."[^c07-ca-agents] An agent that reaches a model provider or a third-party API with a static key is invisible to identity monitoring. That is one reason [Chapter 06](06-credentials-and-least-privilege.md) treats stored secrets as a finding in their own right, and why the endpoint and network surfaces above are not optional.
 
-### Release stage and government-cloud availability
+### Release stage and GCC availability {#release-stage-and-government-cloud-availability}
 
-Every tool above is in a different place, and several are absent from the higher government clouds. The table is as of October 2026; the program's rule is to re-check the vendor's own availability page at procurement and at every annual inventory refresh.
+Every tool above is in a different place, and several are absent from GCC. The table is as of October 2026; the program's rule is to re-check the vendor's own availability page at procurement and at every annual inventory refresh.
 
-| Capability | Release stage | GCC (commercial Entra) | GCC High and DoD (Azure Government) |
-|---|---|---|---|
-| Agent ID platform: agent identities, blueprints, sponsors, agent sign-in and audit logging | Generally available (April 2026)[^c07-whatsnew] | Agent 365's registry, lifecycle and Entra features listed as available in GCC[^c07-a365] | Not listed on the Entra availability page for Azure Government;[^c07-feature-gov] confirm with Microsoft |
-| ID Protection for workload identities | Generally available | Available | Workload ID Premium listed as available in Azure Government[^c07-feature-gov] |
-| ID Protection for agents; agent risk in Conditional Access | Preview[^c07-agent-manage][^c07-ca-target] | Listed for agents with delegated access[^c07-a365] | Not stated; confirm |
-| Defender for Cloud Apps generative AI discovery | Generally available | Available | Parity with commercial except listed app governance detections[^c07-mdca-gov] |
-| Global Secure Access shadow AI discovery | Not labeled preview on its page[^c07-gsa-shadow] | Global Secure Access available in GCC[^c07-gsa-limits] | Not yet supported[^c07-gsa-limits] |
-| Global Secure Access AI agent discovery | Preview[^c07-gsa-agents] | As above | Not yet supported |
-| Global Secure Access Generative AI Insights (prompt and MCP logging) | Preview[^c07-gsa-insights] | As above | Not yet supported |
-| Entra Health monitoring for agent sign-ins | Preview[^c07-health-autonomous] | Not stated; Health monitoring needs P1 or P2 | Not stated; confirm |
-| Defender for Endpoint local AI agent discovery | Generally available on Windows and macOS, except VS Code extensions on macOS and Windows Subsystem for Linux, in preview[^c07-mde-matrix] | Agent 365's "sync shadow AI endpoint agents" and "block unsanctioned local endpoint agents" listed as not available in GCC[^c07-a365] | Not stated; confirm |
-| Defender CSPM AI security posture management | Generally available | Azure commercial | Generally available in Azure Government[^c07-mdc-ai] |
+| Capability | Release stage | GCC (commercial Entra) |
+|---|---|---|
+| Agent ID platform: agent identities, blueprints, sponsors, agent sign-in and audit logging | Generally available (April 2026)[^c07-whatsnew] | Agent 365's registry, lifecycle and Entra features listed as available in GCC[^c07-a365] |
+| ID Protection for workload identities | Generally available | Available |
+| ID Protection for agents; agent risk in Conditional Access | Preview[^c07-agent-manage][^c07-ca-target] | Listed for agents with delegated access[^c07-a365] |
+| Defender for Cloud Apps generative AI discovery | Generally available | Available |
+| Global Secure Access shadow AI discovery | Not labeled preview on its page[^c07-gsa-shadow] | Global Secure Access available in GCC[^c07-gsa-limits] |
+| Global Secure Access AI agent discovery | Preview[^c07-gsa-agents] | As above |
+| Global Secure Access Generative AI Insights (prompt and MCP logging) | Preview[^c07-gsa-insights] | As above |
+| Entra Health monitoring for agent sign-ins | Preview[^c07-health-autonomous] | Not stated; Health monitoring needs P1 or P2 |
+| Defender for Endpoint local AI agent discovery | Generally available on Windows and macOS, except VS Code extensions on macOS and Windows Subsystem for Linux, in preview[^c07-mde-matrix] | Agent 365's "sync shadow AI endpoint agents" and "block unsanctioned local endpoint agents" listed as not available in GCC[^c07-a365] |
+| Defender CSPM AI security posture management | Generally available | Azure commercial |
 
 Microsoft states that as of October 1, 2026, Agent 365 "meets all FedRAMP High controls reviewed by Microsoft's independent third-party assessor" and that final authorization "is pending."[^c07-a365] Until a certification appears on the FedRAMP Marketplace, an agency treating Agent 365 as in its boundary is relying on a pending decision. The agency still authorizes its own system, as [Book 10, Chapter 03](../b10-cloud-boundary/03-what-changed-at-fedramp.md) explains.
 
@@ -129,7 +127,7 @@ Microsoft states that as of October 1, 2026, Agent 365 "meets all FedRAMP High c
 
 The declared side of an AI system has two halves. The federal AI use-case inventory supplies the agency's own reported facts about it; [Chapter 03](03-the-inventory-as-an-identity-source.md) reads those fields as identity obligations. The 2025 inventory's data dictionary includes the use case's development stage, its classification (with "Agentic AI" defined as "AI systems that perform tasks or make decisions autonomously with minimal human intervention"), whether it has an associated authorization to operate (`have_ato`) and the name of that system (`system_name_ato`), whether it involves PII maintained by the agency (`has_pii`), an optional link to its privacy impact assessment (`pia_url`), the agency bureau, and a contact email for the responsible individual or team.[^c07-inventory] The program's identity record ([Chapter 05](05-owners-sponsors-and-lifecycle.md)) supplies the rest: the directory objects the system uses, its sponsor and technical owner, its organizational placement and its credentials.
 
-M-25-21 requires each agency (other than the Department of Defense and the Intelligence Community) to inventory its AI use cases at least annually.[^c07-m2521] The inventory is therefore a slow, self-reported source. The program uses it as a declaration to check, not as an observation, and it marks any inventory vintage older than 13 months as stale, which is a design choice, not a federal rule.
+M-25-21 requires each covered agency to inventory its AI use cases at least annually.[^c07-m2521] The inventory is therefore a slow, self-reported source. The program uses it as a declaration to check, not as an observation, and it marks any inventory vintage older than 13 months as stale, which is a design choice, not a federal rule.
 
 ### The findings
 
@@ -209,7 +207,7 @@ The `disposition` rules are Book 12's. A record is applied only when a later obs
 - **Discovery is partial by design.** Endpoint discovery needs observed activity and an onboarded device; network discovery needs the client and TLS inspection; cloud posture discovery sees only subscriptions it is connected to. An agency that can't see a surface should say so in its continuous monitoring strategy rather than report a clean result.
 - **API keys are invisible to identity monitoring.** Any AI that authenticates with a static key outside Entra produces no sign-in, no risk detection and no Conditional Access decision.
 - **The inventory is self-reported and annual.** It is a declaration, and the comparison can only be as current as its last vintage.
-- **The higher government clouds lag.** Several capabilities in this chapter are commercial or GCC only, and some Agent ID features aren't listed for Azure Government at all. A GCC High or DoD agency may have to rely on ordinary workload identity telemetry and the identity record for longer.
+- **GCC lags commercial.** Several capabilities in this chapter are commercial only. A GCC agency may have to rely on ordinary workload identity telemetry and the identity record for longer.
 - **Preview signals change.** Agent risk, the agent Conditional Access targets and network agent discovery are preview. The program collects them and doesn't build enforcement on them.
 
 ## What this chapter establishes
@@ -245,10 +243,8 @@ The `disposition` rules are Book 12's. A record is applied only when a later obs
 [^c07-idp-agents]: Microsoft Learn, "ID Protection for agents," <https://learn.microsoft.com/entra/id-protection/concept-risky-agents> (accessed Oct 22, 2026).
 [^c07-ca-agents]: Microsoft Learn, "Conditional Access for agents," section "Boundaries and limitations," <https://learn.microsoft.com/entra/identity/conditional-access/agent-id> (accessed Oct 22, 2026).
 [^c07-ca-target]: Microsoft Learn, "Target agent identities in Microsoft Entra Conditional Access policies," <https://learn.microsoft.com/entra/identity/conditional-access/howto-target-agent-identities>; and "Secure autonomous agents with Conditional Access," section "Block high-risk agent identities" ("Agent risk is in Preview"), <https://learn.microsoft.com/entra/identity/conditional-access/policy-autonomous-agents> (both accessed Oct 22, 2026).
-[^c07-feature-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government), updated February 13, 2026, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 22, 2026).
 [^c07-a365]: Microsoft Learn, "Microsoft Agent 365" service description, section "Feature availability," <https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365> (accessed Oct 22, 2026).
 [^c07-mdca-genai]: Microsoft Learn, "Discover AI apps and data," step 3, "Discover, sanction, and block AI apps with Microsoft Defender for Cloud Apps," <https://learn.microsoft.com/security/security-for-ai/discover> (accessed Oct 22, 2026).
-[^c07-mdca-gov]: Microsoft Learn, "Microsoft Defender for Cloud Apps for US Government offerings," section "Feature variations," <https://learn.microsoft.com/defender-cloud-apps/editions-cloud-app-security-gcc> (accessed Oct 22, 2026).
 [^c07-gsa-shadow]: Microsoft Learn, "Shadow AI discovery in Global Secure Access," <https://learn.microsoft.com/entra/global-secure-access/concept-shadow-ai-discovery> (accessed Oct 22, 2026).
 [^c07-gsa-limits]: Microsoft Learn, "Known limitations for Global Secure Access," section "Global Secure Access In Government Cloud limitations," <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (accessed Oct 22, 2026).
 [^c07-gsa-agents]: Microsoft Learn, "AI agent discovery in Global Secure Access (preview)," <https://learn.microsoft.com/entra/global-secure-access/concept-ai-agent-discovery> (accessed Oct 22, 2026).
@@ -259,7 +255,6 @@ The `disposition` rules are Book 12's. A record is applied only when a later obs
 [^c07-inventory]: Office of Management and Budget, 2025 Federal Agency AI Use Case Inventory, `Validation/data_dictionary.md` (fields `contact_email`, `development_stage`, `classification`, `have_ato`, `system_name_ato`, `has_pii`, `pia_url`), <https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory> (accessed Oct 22, 2026).
 [^c07-owners]: Microsoft Learn, "Administrative relationships in Microsoft Entra Agent ID (Owners, sponsors, and managers)," <https://learn.microsoft.com/entra/agent-id/agent-owners-sponsors-managers> (accessed Oct 22, 2026).
 [^c07-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, release 5.2.0, controls AC-2, AC-2(12), CA-6, CM-8, CM-8(3), CM-8(4), IA-4, IA-5, IA-9, PT-2 and RA-8, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; control text checked against the release 5.2.0 OSCAL catalog, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json> (both accessed Oct 22, 2026).
-[^c07-a365-cli]: Microsoft Learn, "Configure the Agent 365 CLI for US Government clouds," section "Configure GCC High or DoD," <https://learn.microsoft.com/microsoft-agent-365/developer/configure-cloud-endpoints> (accessed Oct 22, 2026).
 [^c07-m365-genai]: Microsoft Learn, "Manage generative AI apps for your organization," section "Use Defender for Cloud Apps to discover, monitor, or block generative AI apps," <https://learn.microsoft.com/microsoft-365/copilot/manage-generative-ai-apps> (accessed Oct 22, 2026).
 [^c07-health-autonomous]: Microsoft Learn, "How to investigate Agent ID autonomous sign-ins," Understand what autonomous means, Prerequisites and Investigate the signals and alert, <https://learn.microsoft.com/entra/identity/monitoring-health/scenario-health-agent-id-autonomous-sign-ins> (accessed Nov 9, 2026).
 [^c07-health-interactive]: Microsoft Learn, "Investigate Agent ID interactive sign-ins," <https://learn.microsoft.com/entra/identity/monitoring-health/scenario-health-agent-id-interactive-sign-ins> (accessed Nov 9, 2026).

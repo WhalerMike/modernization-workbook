@@ -25,7 +25,7 @@ Checked October 21–22, 2026 by writer W3. No source page was assigned to this 
 | 17 | Best practices: plan blueprints, unique identity per instance, sponsor+owner at creation, metadata, production handshake | Creation | verified | Learn, Best practices for Agent ID |
 | 18 | Tenant setting "Users can create agent blueprints"; otherwise Agent ID Developer/Administrator | Creation | verified | Learn, Create an agent identity blueprint |
 | 19 | Access package policy option "For users, service principals, and agent identities…/All agents"; resources: groups, API permissions, Entra roles | Creation | verified | Learn, Governing agent identities |
-| 20 | Three request pathways (agent, sponsor/owner, admin); My Access US Gov domain myaccess.microsoft.us | Creation | verified | Learn, Access packages for agent identities |
+| 20 | Three request pathways (agent, sponsor/owner, admin) | Creation | verified | Learn, Access packages for agent identities |
 | 21 | Sponsor leaving → sponsorship transfers to manager | Sponsor moves or leaves | verified | Learn, Governing agent identities |
 | 22 | Three LCW tasks; mover/leaver only | Same | verified | Learn, Agent identity sponsor tasks in Lifecycle Workflows |
 | 23 | Two LCW templates for sponsor leaving / role change | Same | verified | Learn, Lifecycle Workflows templates and categories |
@@ -39,11 +39,11 @@ Checked October 21–22, 2026 by writer W3. No source page was assigned to this 
 | 31 | Multi-select disable from All agent identities page | Orphaned | verified | Learn, Manage agent identities in your organization |
 | 32 | List agentIdentity: `AgentIdentity.Read.All` least privileged; Agent ID Administrator for nonowners delegated; `$expand` supported; owners supports `$expand` | Script callout | verified | Graph, List agentIdentity objects; agentIdentity resource type |
 | 33 | List sponsors: application `AgentIdentity.ReadWrite.All` only; delegated not supported | Script callout | verified | Graph, List agentIdentity sponsors |
-| 34 | Agent ID platform GA April 2026; GCC partial; GCC High/DoD unpublished; Agent 365 FedRAMP High pending | Release stage (by reference to Ch04) | verified | Entra What's new (April 2026); Agent 365 service description; consistent with Ch04's table |
+| 34 | Agent ID platform GA April 2026; GCC partial; Agent 365 FedRAMP High pending | Release stage (by reference to Ch04) | verified | Entra What's new (April 2026); Agent 365 service description; consistent with Ch04's table |
 | 35 | Access packages for agents and sponsor lifecycle policies available in GCC | Release table | verified | Agent 365 service description, GCC column |
 | 36 | Agent-specific governance licensing: E7, or Agent 365 with Entra ID P1 or M365 E3 | Release table | verified | Learn, Governing agent identities; Agent identity sponsor tasks; licensing table (Agent 365 and E7 columns) |
 | 37 | Manage agents (My Account) announced preview Nov 2025; no GA found | Release table | verified | Entra What's new archive, November 2025 |
-| 38 | Entra ID Governance for Government available in GCC, GCC High, DoD | Release table | verified | Learn, Entra ID Governance licensing fundamentals |
+| 38 | Entra ID Governance for Government available in GCC | Release table | verified | Learn, Entra ID Governance licensing fundamentals |
 | 39 | Agent-specific governance rows marked for Agent 365 and E7, not Entra ID Governance | Release section | verified | Same, feature-by-license table |
 | 40 | "All Service principals" policy option for agents not using agent identities | Where features aren't available | verified | Learn, Governing agent identities |
 | 41 | LCW custom extensions licensed under Entra ID Governance | Same | verified | Licensing fundamentals table |

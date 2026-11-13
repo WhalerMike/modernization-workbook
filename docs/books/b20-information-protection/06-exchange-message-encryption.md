@@ -1,6 +1,6 @@
 ---
 title: "Chapter 06 — Exchange Message Encryption"
-description: "How the agency encrypts the mail that leaves it without asking every sender to remember: when to use a sensitivity label and when a mail flow rule, the approved message scenarios, verifying Microsoft Purview Message Encryption with Test-IRMConfiguration, branding, one-time passcodes and social sign-in, the Encrypt button in Outlook on the web, Advanced Message Encryption's custom templates, expiry and revocation, mail flow rules staged from audit to enforcement by ring, rollback, exclusions, telemetry, and the encrypted test and transport-rule evidence that closure-map row CM-13 asks for, with each feature's availability in GCC, GCC High and DoD."
+description: "How the agency encrypts the mail that leaves it without asking every sender to remember: when to use a sensitivity label and when a mail flow rule, the approved message scenarios, verifying Microsoft Purview Message Encryption with Test-IRMConfiguration, branding, one-time passcodes and social sign-in, the Encrypt button in Outlook on the web, Advanced Message Encryption's custom templates, expiry and revocation, mail flow rules staged from audit to enforcement by ring, rollback, exclusions, telemetry, and the encrypted test and transport-rule evidence that closure-map row CM-13 asks for, with each feature's availability in GCC."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b20-information-protection
@@ -94,29 +94,23 @@ Three recipient-experience decisions go in the same record:
 - **Hybrid.** On-premises senders get Message Encryption only if their mail routes through Exchange Online, which needs the Hybrid Configuration wizard and connectors in both directions.[^c06-rules]
 - **Government-cloud availability.**
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| Microsoft Purview Message Encryption (E3) | Available | Available | Available | Available | Purview planning pages, Encryption rows[^c06-gcc][^c06-gcch][^c06-dod] |
-| Advanced Message Encryption (E5): custom templates, expiry, revocation | Available | Available | Available | not yet specified (not listed on the DoD page) | Same pages[^c06-gcc][^c06-gcch][^c06-dod] |
-| Advanced Message Encryption: extension of email revocation | Available | Available | Available | not yet specified (not listed on the DoD page) | Same pages[^c06-gcc][^c06-gcch][^c06-dod] |
-| Exchange Online mail flow rules | Available | Available | Available | Available | Exchange Online for US government environments[^c06-exo-gov] |
-| One-time passcodes and social ID sign-in to the portal | Available | not yet specified | not yet specified | not yet specified | The government pages don't list them separately[^c06-manage] |
-| Encrypt button in Outlook on the web (`SimplifiedClientAccessEnabled`) | Available | not yet specified | not yet specified | not yet specified | As above |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| Microsoft Purview Message Encryption (E3) | Available | Available | Purview planning pages, Encryption rows[^c06-gcc] |
+| Advanced Message Encryption (E5): custom templates, expiry, revocation | Available | Available | Same pages[^c06-gcc] |
+| Advanced Message Encryption: extension of email revocation | Available | Available | Same pages[^c06-gcc] |
+| Exchange Online mail flow rules | Available | Available | Exchange Online for US government environments[^c06-exo-gov] |
+| One-time passcodes and social ID sign-in to the portal | Available | not yet specified | The government pages don't list them separately[^c06-manage] |
+| Encrypt button in Outlook on the web (`SimplifiedClientAccessEnabled`) | Available | not yet specified | As above |
 
-In DoD, until Learn lists Advanced Message Encryption, the expiry and revocation scenario in the table above is designed but not configured; the compensating control is the **Do Not Forward** option and the DLP block on external send of CUI ([Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#the-minimum-policy-baseline)). Government feature status "is subject to change"; read the pages again at each reassessment.
+Government feature status "is subject to change"; read the pages again at each reassessment.
 
 Connect to Exchange Online PowerShell. Placeholders used in this chapter: `<admin-upn>`; `<test-sender>@contoso.example` and `<test-recipient>@contoso.example` (two licensed test mailboxes); `<external-test>@<external-domain>` (a mailbox the agency controls outside the tenant); `<pilot-group>` (the ring 1 mail-enabled group); `<ring2-group>`; `<rule-name>`; `<incident-mailbox>@contoso.example` (where incident reports go); `<partner-domain>`; `<branding-template>`. Commands were checked against Microsoft Learn on Nov 11, 2026; run them against a test tenant first.
 
 ```powershell
 # Commercial and GCC:
 Connect-ExchangeOnline -UserPrincipalName <admin-upn>
-# GCC High:
-Connect-ExchangeOnline -UserPrincipalName <admin-upn> -ExchangeEnvironmentName O365USGovGCCHigh
-# DoD:
-Connect-ExchangeOnline -UserPrincipalName <admin-upn> -ExchangeEnvironmentName O365USGovDoD
 ```
-
-The environment names are Learn's.[^c06-connect-exo]
 
 Verify the tenant is configured for Message Encryption, then run Microsoft's end-to-end test, which acquires the templates and verifies encryption, decryption and IRM:[^c06-setup]
 
@@ -284,7 +278,7 @@ This is the minimum evidence for the mail-encryption part of CM-13: an encrypted
 - [ ] **Configuration:** `Get-IRMConfiguration`, `Get-OMEConfiguration` and `Get-TransportRule | Format-List` exports, dated, with each rule's mode, conditions, template and branding template, matched to the decision record
 - [ ] **Operational:** the transport rule report and the audit-log record of rule changes for the period, kept as [Book 13, Chapter 13](../b13-governance/13-records-evidence-and-retention.md) sets
 - [ ] **Test:** the `Test-IRMConfiguration` output showing PASS, and the [encrypted test](#validate-the-encrypted-test) record with each test message's message trace
-- [ ] **Exception:** the exception register (excepted domains and senders, unlicensed senders, DoD scenarios held for Advanced Message Encryption), each with approver and review date
+- [ ] **Exception:** the exception register (excepted domains and senders, unlicensed senders), each with approver and review date
 - [ ] **Assessor-ready artifact:** the CM-13 register entry ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain)) linking the four items above and the Rights Management evidence in [Chapter 05](05-rights-management-and-recovery.md#evidence)
 
 ### Day-two ownership
@@ -318,7 +312,7 @@ Get-OMEMessageStatus -MessageId "<message-id>" | Format-Table -AutoSize Subject,
 - Labels carry classification; mail flow rules carry approved scenarios. The program uses both, and neither depends on a sender remembering.
 - `Test-IRMConfiguration` and an encrypted test to a mailbox the agency controls outside the tenant are the test evidence; the `Get-TransportRule` export is the configuration evidence. Together they are CM-13's minimum for mail.
 - Stage each rule in `Audit` with an incident report, then enforce by ring; disabling a rule is the rollback.
-- Advanced Message Encryption adds expiry and revocation but is license-dependent and not yet listed for DoD; plan a compensating control there.
+- Advanced Message Encryption adds expiry and revocation but is license-dependent.
 
 ::: {.callout-tip}
 ## Continue the book
@@ -334,10 +328,7 @@ Get-OMEMessageStatus -MessageId "<message-id>" | Format-Table -AutoSize Subject,
 [^c06-revoke]: Microsoft Learn, "Revoke email encrypted by Advanced Message Encryption," section "How to revoke an encrypted message as an administrator" (`Get-OMEMessageStatus`, `Set-OMEMessageRevocation`; Compliance or Exchange Administrator), <https://learn.microsoft.com/purview/revoke-ome-encrypted-mail> (accessed Nov 11, 2026).
 [^c06-revoke-cmd]: Microsoft Learn, "Set-OMEMessageRevocation," Description (revocation works for link-based, branded messages; not for messages read in the native inline experience of a supported Outlook client), <https://learn.microsoft.com/powershell/module/exchangepowershell/set-omemessagerevocation> (accessed Nov 11, 2026).
 [^c06-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4 table, Encryption rows (status "subject to change"), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c06-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4 table, Encryption rows, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c06-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4 table, Encryption rows (Message Encryption (E3) listed; Advanced Message Encryption and the revocation extension not listed), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).
-[^c06-exo-gov]: Microsoft Learn, "Exchange Online for US government environments," Exchange Online features table (Mail flow rules: GCC, GCC High and DoD Yes), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments> (accessed Nov 11, 2026).
-[^c06-connect-exo]: Microsoft Learn, "Connect to Exchange Online PowerShell," section "Step 2: Connect and authenticate" (`-ExchangeEnvironmentName` values `O365USGovGCCHigh` and `O365USGovDoD`; none needed for commercial and GCC), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> (accessed Nov 11, 2026).
+[^c06-exo-gov]: Microsoft Learn, "Exchange Online for US government environments," Exchange Online features table (Mail flow rules: GCC Yes), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments> (accessed Nov 11, 2026).
 [^c06-brand]: Microsoft Learn, "Add your organization's brand to your Microsoft Purview Message Encryption encrypted messages," sections "Work with branding templates" (modify the default template; create and remove custom templates with Advanced Message Encryption only) and "Modify a branding template," <https://learn.microsoft.com/purview/add-your-organization-brand-to-encrypted-messages> (accessed Nov 11, 2026).
 [^c06-expire]: Microsoft Learn, "Set an expiration date for email encrypted by Microsoft Purview Advanced Message Encryption" (external recipients only; custom branding required; `New-OMEConfiguration -ExternalMailExpiryInDays`, 1 to 730 days), <https://learn.microsoft.com/purview/ome-advanced-expiration> (accessed Nov 11, 2026).
 [^c06-test-rules]: Microsoft Learn, "Test mail flow rules in Exchange Online," steps 1 to 3 (test modes with incident report or policy tip; wait at least 30 minutes; set to Enforce) and "Troubleshooting suggestions" and "Other testing options" (rules can take longer than 15 minutes; transport rule report needs a severity; data within 24 hours, some up to five days), <https://learn.microsoft.com/exchange/security-and-compliance/mail-flow-rules/test-mail-flow-rules> (accessed Nov 11, 2026).

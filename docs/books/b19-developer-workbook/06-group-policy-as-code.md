@@ -88,7 +88,7 @@ Running the two scripts against the fake Graph shows what they do well and what 
 |---|---|---|
 | Import creates the policy with one POST to `/beta/deviceManagement/configurationPolicies`; export follows `@odata.nextLink`; a policy exported from one tenant imports into another with the same settings | — | Kept as the model: the same call, the same `technologies has 'mdm'` filter, the same paging |
 | Import drops `assignments`, so the policy is created unassigned | Book 05 builds the library unassigned | Kept; GPC-04 also refuses assignments in a library file, so the review sees what is sent |
-| Import sends to `graph.microsoft.com` whatever cloud the session signed in to | Right for GCC. In GCC High or DoD the call goes to the wrong host, and Learn says tokens for one cloud don't work in another[^c06-deployments] | `Get-GpcCloud` maps each cloud to its host and refuses a name it doesn't know |
+| Import sends to `graph.microsoft.com` whatever cloud the session signed in to | Right for GCC, which uses the worldwide endpoint, but the host isn't taken from the session's cloud; Learn says tokens for one cloud don't work in another[^c06-deployments] | `Get-GpcCloud` maps each cloud to its host and refuses a name it doesn't know |
 | Import doesn't sign in or choose a permission; it uses the caller's session | A session opened with broad scopes does the write | `Get-GpcRequiredScope`: `DeviceManagementConfiguration.Read.All` for the plan and the dry run, `ReadWrite.All` only with `-Apply` |
 | Import asks only for the file and creates at once | No dry run, and no view of what will change | A dry run by default; `-Apply` to write |
 | Run twice, import creates a second policy with the same name; it never reads the tenant | Two policies set the same settings, and the second one is invisible to review | The sync reads the tenant first, creates only what is missing, and refuses when two tenant policies share a library name |
@@ -519,19 +519,18 @@ When the policies are assigned later, Learn's guidance applies: use an assignmen
 
 | Item | Value | Source |
 |---|---|---|
-| List Group Policy analytics reports | `GET /beta/deviceManagement/groupPolicyMigrationReports`; beta; least privileged `DeviceManagementConfiguration.Read.All`, delegated and application; global, US Government L4 and L5 | [^c06-gpmr-list] |
+| List Group Policy analytics reports | `GET /beta/deviceManagement/groupPolicyMigrationReports`; beta; least privileged `DeviceManagementConfiguration.Read.All`, delegated and application; global service, which GCC uses | [^c06-gpmr-list] |
 | Report properties | `migrationReadiness`: `none`, `partial`, `complete`, `error`, `notApplicable`; `targetedInActiveDirectory`; supported-setting counts; relationships `groupPolicySettingMappings` and `unsupportedGroupPolicyExtensions` | [^c06-gpmr] |
-| List setting mappings | `GET …/groupPolicyMigrationReports/{id}/groupPolicySettingMappings`; beta; `DeviceManagementConfiguration.Read.All`; global, L4 and L5 | [^c06-gpsm-list] |
+| List setting mappings | `GET …/groupPolicyMigrationReports/{id}/groupPolicySettingMappings`; beta; `DeviceManagementConfiguration.Read.All`; global service | [^c06-gpsm-list] |
 | Mapping properties | `mdmSupportedState`: `unknown`, `supported`, `unsupported`, `deprecated`; `settingScope`: `unknown`, `device`, `user`; `intuneSettingDefinitionId`; `settingType` includes `appLockerRuleCollection` and `windowsFirewallSettings` | [^c06-gpsm] |
-| List settings catalog policies | `GET /beta/deviceManagement/configurationPolicies`; `DeviceManagementConfiguration.Read.All` least privileged; global, L4 and L5 | [^c06-cp-list] |
+| List settings catalog policies | `GET /beta/deviceManagement/configurationPolicies`; `DeviceManagementConfiguration.Read.All` least privileged; global service | [^c06-cp-list] |
 | List a policy's settings | `GET /beta/deviceManagement/configurationPolicies/{id}/settings`; `DeviceManagementConfiguration.Read.All` | [^c06-settings-list] |
-| Create a settings catalog policy | `POST /beta/deviceManagement/configurationPolicies`; `DeviceManagementConfiguration.ReadWrite.All` least privileged; `201 Created`; global, L4 and L5 | [^c06-cp-create] |
+| Create a settings catalog policy | `POST /beta/deviceManagement/configurationPolicies`; `DeviceManagementConfiguration.ReadWrite.All` least privileged; `201 Created`; global service | [^c06-cp-create] |
 | Update and delete | `PATCH` and `DELETE` on `/configurationPolicies/{id}`; `DeviceManagementConfiguration.ReadWrite.All` (the sync uses neither) | [^c06-cp-update] [^c06-cp-delete] |
-| Change one setting | `PATCH /beta/deviceManagement/configurationPolicies/{policyId}/settings/{settingId}`, body a `deviceManagementConfigurationSetting` with its `settingInstance`; `DeviceManagementConfiguration.ReadWrite.All`; beta; global, US Government L4 and L5 (the sync doesn't use it) | [^c06-setting-update] |
+| Change one setting | `PATCH /beta/deviceManagement/configurationPolicies/{policyId}/settings/{settingId}`, body a `deviceManagementConfigurationSetting` with its `settingInstance`; `DeviceManagementConfiguration.ReadWrite.All`; beta; global service (the sync doesn't use it) | [^c06-setting-update] |
 | Release stage | Beta for every call above; Microsoft supports Intune beta APIs, but they change more often; the Graph API for Intune needs an active Intune license | [^c06-gpmr-list] [^c06-cp-create] |
-| Graph host per cloud | GCC: `https://graph.microsoft.com`; GCC High: `https://graph.microsoft.us`; DoD: `https://dod-graph.microsoft.us`; a token for one cloud doesn't work in another | [^c06-deployments] |
-| `Connect-MgGraph -Environment` | `Global`, `USGov`, `USGovDoD` | [^c06-mgenv] |
-| Intune per cloud | GCC is the commercial Intune instance; GCC High and DoD share the government instance; government admin center `intune.microsoft.us` | [^c06-govsvc] [^c06-govendpoints] |
+| Graph host | GCC: `https://graph.microsoft.com`; a token for one cloud doesn't work in another | [^c06-deployments] |
+| `Connect-MgGraph -Environment` | `Global` for GCC | [^c06-mgenv] |
 | Group Policy analytics | Windows only; XML under 4 MB per GPO; Intune Administrator or a role with Security baselines and Device configuration; non-ADMX settings parsed in English only | [^c06-gpa] |
 | Migrate | Best effort; stops on conflicting values; disabled for AppLocker and firewall rules; review before including every setting | [^c06-migrate] |
 | Roles | Policy and Profile Manager manages configuration profiles; Read Only Operator views and can't change | [^c06-roles] |
@@ -541,7 +540,7 @@ When the policies are assigned later, Learn's guidance applies: use an assignmen
 
 What the samples do, and what the module does, come from running them, not from Learn. The setting definition IDs in the library come from Learn's settings catalog examples; the fixture's mappings that point to them are fictional.
 
-Two things Learn doesn't say yet, recorded so a later edit doesn't assume them, and one it now does. A policy's settings can be changed one at a time through the setting's own `PATCH`;[^c06-setting-update] the code still never updates, by design. Learn documents no Graph equivalent of the Migrate step, so Lab 2 compares the two by hand. And no Learn page states that the Group Policy analytics import works in GCC High and DoD, although the Graph pages list both clouds; confirm it in a GCC High test tenant first.
+One thing Learn doesn't say yet, recorded so a later edit doesn't assume it, and one it now does. A policy's settings can be changed one at a time through the setting's own `PATCH`;[^c06-setting-update] the code still never updates, by design. Learn documents no Graph equivalent of the Migrate step, so Lab 2 compares the two by hand.
 
 ## Federal requirements and evidence
 
@@ -576,7 +575,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 | Two policies set one setting | Devices report a conflict, and neither policy owns the value | GPC-06 in the pull request; VK-INT-05 after assignment |
 | A setting another tool owns | Intune and Configuration Manager, or Intune and Ansible, flip one value back and forth | GPC-02; `config_owner` in the CMDB decides which devices an assignment may reach |
 | Running the create twice | A second policy with the same name and settings | The sync reads first and creates only `Create` rows; `Duplicate` stops it |
-| The wrong cloud | A GCC High tenant is called on the worldwide host | `Get-GpcCloud` per cloud; unknown names refused |
+| The wrong cloud | A tenant is called on a host nobody chose | `Get-GpcCloud` per cloud; unknown names refused |
 | An edit in the admin center | Git and the tenant disagree, and the next release overwrites one or the other | `Drift` stops the release and names the setting; the sync never updates |
 | Moving every setting without review | Learn advises against it; stale settings move to every device | The move plan decides nothing; GPC-09 needs a decision per setting |
 | Two GPOs with different values | Migrate stops; a script would pick one silently | `Conflict` rows; the decision record picks the value; GPC-08 shows it |

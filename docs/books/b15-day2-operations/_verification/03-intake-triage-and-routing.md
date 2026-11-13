@@ -22,7 +22,7 @@ Internal vocabulary translated: "SAM (Systems Access Management)" → "the ident
 | 12 | Authority classes and triage tests | Triage | verified (against workbook) | Book 04 Ch06 table |
 | 13 | Fixed triage order (Microsoft mail, privileged target/out of scope, A3, A2, A1, A0) | Same | restated-as-design | New ordering synthesized from source rules; labeled program design |
 | 14 | PIM notifications sent from `MSSecurity-noreply@microsoft.com` | Notifications | verified | Microsoft Learn "Email notifications in PIM" |
-| 15 | Source: "confirm sender is exactly MSSecurity-noreply@microsoft.com" as legitimacy check | Same | corrected | Microsoft also uses `azure-noreply@microsoft.com` (ops guide) and SSPR-specific and US Government addresses (SSPR how-it-works); sender check reframed as a filter, audit-log match as the real check |
+| 15 | Source: "confirm sender is exactly MSSecurity-noreply@microsoft.com" as legitimacy check | Same | corrected | Microsoft also uses `azure-noreply@microsoft.com` (ops guide) and SSPR-specific addresses (SSPR how-it-works); sender check reframed as a filter, audit-log match as the real check |
 | 16 | Notification-type action/escalation table; unauthorized grant → IGO + SOC | Same | restated-as-design | Source tables |
 | 17 | Four-business-hour verify / one-hour escalate clocks | Same | verified (against workbook) | Book 04 Ch06 |
 | 18 | ServiceNow Ask for Approval sends sign-off request and tracks result; due date auto-approves/rejects/cancels | Routing | verified | ServiceNow "Ask for Approval action" (Yokohama) |
@@ -57,7 +57,7 @@ Internal vocabulary translated: "SAM (Systems Access Management)" → "the ident
 | 47 | Entra account recovery: third-party IDV, government ID + liveness, Verified ID, name match by default, custom extension, TAP | Same | verified | Microsoft Learn "Account recovery overview" |
 | 48 | Account recovery GA May 2026 | Same | verified | Verified ID what's new, May 2026 (public preview was November 2025 per Entra what's-new archive) |
 | 49 | Requires Entra ID P1 and Face Check license | Same | verified | Account recovery FAQ |
-| 50 | Verified ID supported in GCC, not GCC High, since September 2025 | Same | verified | Verified ID what's new, September 2025 |
+| 50 | Verified ID supported in GCC since September 2025 | Same | verified | Verified ID what's new, September 2025 |
 | 51 | Account recovery availability in GCC | Same | unverifiable | No Microsoft page found stating it; chapter tells reader to confirm |
 | 52 | TAP: Authentication Admins for members, Privileged Authentication Admins for admins; lifetime 10 min–30 days; one-time-use policy; value shown once | Same | verified | Microsoft Learn TAP how-to |
 | 53 | Verification ladder; CISO owns it | Same | restated-as-design | Program design; Book 01 Ch09 for CISO ownership |

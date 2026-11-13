@@ -386,10 +386,6 @@ Get-GuestConfigurationPackageComplianceStatus -Path ./TlsServerProtocols_1.0.0.z
 # Step 2: Sign in to the right cloud
 Connect-AzAccount -Environment AzureCloud
 
-# Step 2: Sign in to the right cloud
-# Only for a test subscription in Azure Government
-Connect-AzAccount -Environment AzureUSGovernment
-
 # Step 3: Publish the exact bytes
 $ctx = New-AzStorageContext -StorageAccountName <storage-account> -UseConnectedAccount
 Set-AzStorageBlobContent -Container <container> -File ./out/TlsServerProtocols_1.0.0/TlsServerProtocols_1.0.0.zip -Blob TlsServerProtocols_1.0.0.zip -Context $ctx
@@ -427,15 +423,6 @@ New-AzPolicyDefinition -Name ca593085-dfcb-425d-ac9c-12870a55bbaa -Policy ./out/
    ```
 
    Check the server can reach the cloud's machine configuration endpoints. For commercial Azure, Learn lists `*.guestconfiguration.azure.com` for Arc-enabled servers,[^c07-arcnet] [^c07-network] and for each region `agentserviceapi.guestconfiguration.azure.com` and a regional endpoint, such as `eastus-gas.guestconfiguration.azure.com` and `eus-gas.guestconfiguration.azure.com` for East US, with package storage in that region's `oaasguestconfig*.blob.core.windows.net` accounts.[^c07-network]
-
-   If the test subscription is in Azure Government instead, the alternative for a GCC High or DoD estate, sign in to that cloud:
-
-   ```powershell
-   # Only for a test subscription in Azure Government
-   Connect-AzAccount -Environment AzureUSGovernment
-   ```
-
-   For Azure Government, Learn lists `*.guestconfiguration.azure.us` for Arc-enabled servers[^c07-arcnet] and regional endpoints for US Gov Arizona, Texas and Virginia.[^c07-network]
 3. **Publish the exact bytes.** Create a storage account and container in the test subscription with anonymous blob access disabled, and upload the package Lab 1 built with Learn's `Set-AzStorageBlobContent` step.[^c07-publish] Don't rebuild it. Download it back and compare its SHA-256 with `package.sha256` in `provenance.json`. From `examples/machine-configuration`:
 
    ```powershell
@@ -478,7 +465,6 @@ To try an enforcing version, rebuild with the registry mode set to `ApplyAndMoni
 | Signing | `Protect-GuestConfigurationPackage`; public key in Trusted Publishers (Windows) or `/usr/local/share/ca-certificates/gc` (Linux); tag `GuestConfigPolicyCertificateValidation` = `enabled` on machines that must require it | [^c07-sign] |
 | Turning off remediation of custom content on one machine | Tag `CustomGuestConfigurationSetPolicy` = `disable` | [^c07-remediation] |
 | Commercial Azure (the GCC estate) | `Connect-AzAccount -Environment AzureCloud`; Arc-enabled servers need `*.guestconfiguration.azure.com`; each region has `agentserviceapi.guestconfiguration.azure.com` and a regional endpoint, such as `eastus-gas.guestconfiguration.azure.com` | [^c07-govident] [^c07-connect] [^c07-arcnet] [^c07-network] |
-| Azure Government | Arc-enabled servers need `*.guestconfiguration.azure.us`; machine configuration endpoints are listed for US Gov Arizona, Texas and Virginia | [^c07-arcnet] [^c07-network] |
 | Cost on Arc | Included at no extra cost for Arc-enabled Windows servers with Software Assurance or a subscription license once attested, or enrolled in Windows Server pay-as-you-go; otherwise purchased separately. Activation isn't available in US Gov Virginia or US Gov Arizona (Learn lists those and three China regions as the exceptions), so in those regions plan to buy it | [^c07-billing] |
 
 The GuestConfiguration module version, its command list and its behavior described above come from the PowerShell Gallery and from running it, not from Learn.[^c07-module]

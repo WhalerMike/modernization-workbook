@@ -147,7 +147,7 @@ When an agency reaches validation in that order, the tool confirms what the desi
 Four limits keep this chapter's argument in proportion.
 
 - **This is guidance, not legal advice.** It is a way of sorting obligations and evidence, not a substitute for the agency's own legal, privacy and ISSO review of its posture.
-- **Moderate is where most civilian cloud systems sit, not where all of them sit.** High-impact systems, national security systems and Defense impact levels have their own baselines and rules, and are out of scope here.
+- **Moderate is where most civilian cloud systems sit, not where all of them sit.** High-impact systems and national security systems have their own baselines and rules, and are out of scope here.
 - **Proof doesn't remove judgment.** A record can show that a control ran and what it found. Whether the remaining risk is acceptable is still the authorizing official's decision, and no evidence pipeline makes it for them.
 - **The program's design isn't the only way to produce proof.** The four properties above can be met with many tools. What matters is that the evidence comes from the systems, stays current and can be checked again, not which product emits it.
 

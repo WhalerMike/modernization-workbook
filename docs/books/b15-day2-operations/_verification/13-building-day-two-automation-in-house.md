@@ -52,9 +52,9 @@ New chapter; no source pages. It extends [Chapter 11](../11-attestation-and-the-
 | 44 | SA-11(c) quote: produce evidence of the execution of the assessment plan and results | Evidence | verified | 800-53 r5 catalog |
 | 45 | Ticket-to-machine evidence model (owner, clock, approval, result) | Evidence | verified (by cross-reference) | Book 13 Ch10, App B |
 | 46 | A Copilot agent built in Agent Builder carries standing instructions (8,000-character limit) and starter prompts; the agency can't retrain the model | Copilot section | verified | Microsoft Learn, Build agents in Agent Builder; declarative agent manifest (accessed Oct 28, 2026) |
-| 47 | Agent Builder available in GCC and GCC High, not DoD | Copilot section | verified | Microsoft Learn, Agent Builder regional availability; Copilot service description |
+| 47 | Agent Builder available in GCC | Copilot section | verified | Microsoft Learn, Agent Builder regional availability; Copilot service description |
 | 48 | Embedded (uploaded) files not supported as knowledge in GCC | Copilot section | verified | Microsoft Learn, Add knowledge sources in Agent Builder |
-| 49 | SharePoint/OneDrive knowledge needs a Microsoft 365 Copilot license or usage-based billing; usage-based billing not supported in GCC/GCC High | Copilot section (pack README) | verified | Microsoft Learn, Agent capabilities and licensing models |
+| 49 | SharePoint/OneDrive knowledge needs a Microsoft 365 Copilot license or usage-based billing; usage-based billing not supported in GCC | Copilot section (pack README) | verified | Microsoft Learn, Agent capabilities and licensing models |
 | 50 | The pack's agent drafts only; every gate in the chapter still applies | Copilot section | restated-as-design | Program design; examples/copilot-agent-pack |
 
 ## Not carried, and why

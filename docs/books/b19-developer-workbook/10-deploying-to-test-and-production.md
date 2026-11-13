@@ -131,7 +131,7 @@ Copy the template once per stage, fill it in, and keep the filled-in files with 
 | Key | Placeholder in the template | What it holds |
 |---|---|---|
 | `environment` | `<test-or-production>` | `test` or `production` |
-| `cloud` | `<cloud>` | `gcc`, `gcchigh` or `dod`. The guide's audience is usually Microsoft 365 GCC, where Entra ID runs in Microsoft's commercial cloud, so most production files say `gcc` |
+| `cloud` | `<cloud>` | `gcc`: Microsoft 365 GCC, where Entra ID runs in Microsoft's commercial cloud |
 | `tenant_id`, `tenant_domain`, `subscription_id`, `location`, `resource_group` | `<tenant-id>`, `<tenant-domain>`, `<subscription-id>`, `<azure-region>`, `<resource-group>` | The stage's tenant, subscription, region and resource group |
 | `change_record` | `<change-record-id>` | The stage's change record ID |
 | `evidence_dir` | `<evidence-folder>` | Where the stage's evidence goes; the runbook writes under `<evidence_dir>/<environment>/<change_record>` |
@@ -170,7 +170,7 @@ eval "$(python ./examples/drift-pipeline/deploy/adm_deploy.py env --settings <se
 mkdir -p "$ADM_EVIDENCE_DIR"
 ```
 
-`MSYS_NO_PATHCONV=1` stops Git Bash from rewriting arguments that start with `/`, such as Azure resource IDs; on Linux it does nothing. In production, add `--wave <wave-id>` to the `env` command for the wave steps. The command prints `ADM_*` variables, including values derived from the cloud: the Graph host, the Azure environment, the Graph PowerShell environment, the blob host and the Arc onboarding playbook. Learn lists a different Graph host for GCC High and DoD, and a different storage suffix in Azure Government.[^c10-graph-clouds][^c10-storage-suffix]
+`MSYS_NO_PATHCONV=1` stops Git Bash from rewriting arguments that start with `/`, such as Azure resource IDs; on Linux it does nothing. In production, add `--wave <wave-id>` to the `env` command for the wave steps. The command prints `ADM_*` variables, including values derived from the cloud: the Graph host, the Azure environment, the Graph PowerShell environment, the blob host and the Arc onboarding playbook. For GCC, Learn gives the worldwide Graph host and commercial Azure's storage suffix.[^c10-graph-clouds][^c10-storage-suffix]
 
 **The machine configuration version.** The package version isn't in the settings file. Steps 9 and 10 read it from `ADM_MC_VERSION`, the version of the build that carries the stage's final mode. Set it once per shell, after the settings are loaded. In the test stage it is `1.1.0`, the apply build of [step 6d](#step-6-machine-configuration-audit-before-apply). In production it is the version in [the production list](#stage-2-production), which must be higher than the registry's `published` value, because the build refuses a version that isn't ([Chapter 07](07-machine-configuration-packages.md)).
 
@@ -522,7 +522,7 @@ unset HCM_ENTRA_BEARER_TOKEN
 cat "$ADM_EVIDENCE_DIR/hr-first-five/apply-results.json"
 ```
 
-The token is requested for the stage's own Graph host (`--resource "$ADM_GRAPH"`), never the Azure CLI's default for the cloud: in DoD the two differ.[^c10-graph-clouds] Then, as the reader in PowerShell 7, save the job's provisioning log entries:
+The token is requested for the stage's own Graph host (`--resource "$ADM_GRAPH"`), never the Azure CLI's default for the cloud (*design guidance*). Then, as the reader in PowerShell 7, save the job's provisioning log entries:
 
 ```powershell
 Invoke-MgGraphRequest -Method GET -Uri "/v1.0/auditLogs/provisioning?`$filter=jobId eq '$env:ADM_PROV_JOB_ID'&`$top=50" -OutputType Json | Set-Content "$env:ADM_EVIDENCE_DIR/hr-first-five-provisioning-log.json"
@@ -715,7 +715,7 @@ foreach ($id in (Get-Content "$env:ADM_EVIDENCE_DIR/gpc-apply/sync-record.json" 
 
 **Expected:** the dry run lists each library policy as missing and changes nothing; the apply creates only those, unassigned, and `sync-record.json` lists their IDs ([Chapter 06](06-group-policy-as-code.md)).
 
-**5c. Assign the new policies to the test group.** In the Intune admin center, for each policy the apply created: **Devices** > **Manage devices** > **Configuration** > the policy > **Properties** > **Assignments** > **Edit**; under **Included groups**, **Add groups**, the group in `group_policy.intune_group_id`; **Review + Save**, then **Save**.[^c10-intune-assign] In GCC High and DoD, use the government admin center ([Chapter 06](06-group-policy-as-code.md#lab-2-test-tenant)).
+**5c. Assign the new policies to the test group.** In the Intune admin center, for each policy the apply created: **Devices** > **Manage devices** > **Configuration** > the policy > **Properties** > **Assignments** > **Edit**; under **Included groups**, **Add groups**, the group in `group_policy.intune_group_id`; **Review + Save**, then **Save**.[^c10-intune-assign]
 
 **5d. Rehearse the cut-over: disable the test OU's links.** After a test device in the group has checked in and shows the settings, in the test forest:[^c10-setgplink]
 
@@ -857,7 +857,7 @@ for h in $(python -c "import csv, os; print(' '.join(r['name'] for r in csv.Dict
 done
 ```
 
-**Expected:** the canary host connects first, then the rest in batches; on each server, `azcmagent show` reports `Connected` with the CMDB's `ConfigOwner` and `PatchOwner` tags ([Chapter 08](08-ansible-beside-arc.md)). In GCC High and DoD, `ADM_ARC_PLAYBOOK` is `02_arc_onboarding.yml`, which reads the onboarding service principal's secret from Ansible Vault at run time: Microsoft's role requests its token for commercial Azure only ([Chapter 08](08-ansible-beside-arc.md)), and the pre-flight check warns about it.
+**Expected:** the canary host connects first, then the rest in batches; on each server, `azcmagent show` reports `Connected` with the CMDB's `ConfigOwner` and `PatchOwner` tags ([Chapter 08](08-ansible-beside-arc.md)).
 
 **Evidence.** In a POSIX shell:
 
@@ -1299,7 +1299,7 @@ The commands are the test stage's [step 11](#step-11-roll-back), with `productio
 This runbook deploys and enforces: dynamic groups that decide access, a leaver workflow, Intune policies that replace GPOs, machine configuration in apply mode. It already carries most of the workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)); this section maps them, so an assessor can find each one, and adds the two it leaves implicit, the exclusions and the control states.
 
 **Authority:** as each step's requirements table states: Mandated where a row names a NIST control at the system's baseline, OMB M-22-09 or a BOD 25-01 required configuration; Microsoft-recommended where a step follows a Learn recommendation (certificate sign-in, locking the retention policy); everything marked *design guidance* is risk-based recommended, the program's position.
-**Applies:** the guide's audience, a civilian agency in Microsoft 365 GCC ([Requirements, KSIs and evidence](#requirements-ksis-and-evidence)). Environment-dependent: GCC High and DoD use the Graph hosts in [Verified facts](#verified-facts) and the Azure Government storage suffix.
+**Applies:** the guide's audience, a civilian agency in Microsoft 365 GCC ([Requirements, KSIs and evidence](#requirements-ksis-and-evidence)).
 
 | How-template step | Where this runbook covers it |
 |---|---|
@@ -1385,8 +1385,8 @@ A finding this page addresses is ready for closure when every applicable state h
 | Azure PowerShell sign-in with a certificate | `Connect-AzAccount -ServicePrincipal -ApplicationId -Tenant -CertificateThumbprint`; the certificate is read from the local store | [^c10-azps-cert] |
 | Graph PowerShell app-only | `Connect-MgGraph -ClientId -TenantId -CertificateThumbprint`; `Get-MgContext` shows `AuthType` `AppOnly`; `-Environment` and `-LoginHint` are parameters | [^c10-mggraph] |
 | Graph token from the Azure CLI | `az account get-access-token --resource <endpoint>` | [^c10-gettoken] |
-| Graph hosts | GCC on the worldwide endpoints; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | [^c10-graph-clouds] |
-| Storage suffix | `core.windows.net` commercial; `core.usgovcloudapi.net` Azure Government | [^c10-storage-suffix] |
+| Graph host | GCC on the worldwide endpoints | [^c10-graph-clouds] |
+| Storage suffix | `core.windows.net` commercial | [^c10-storage-suffix] |
 | Sending HR records | `SynchronizationData-User.Upload` (application), or `.OwnedBy` | [^c10-bulkupload] |
 | Provisioning job safety | Notification email mandatory (empty quarantines the job at start); **Start provisioning** puts the job in listen mode; accidental-deletions prevention with a threshold, set by at least an Application Administrator | [^c10-inbound-configure] [^c10-accidental] |
 | Pausing the job | `POST /servicePrincipals/{id}/synchronization/jobs/{jobId}/pause`; state persisted; `Synchronization.ReadWrite.All`, or `Application.ReadWrite.OwnedBy` for an owner | [^c10-pause] |
@@ -1394,7 +1394,7 @@ A finding this page addresses is ready for closure when every applicable state h
 | Creating a group | Delegated `Group.ReadWrite.All`; application `Group.Create` | [^c10-newgroup] |
 | Evaluating a rule | `POST /beta/groups/evaluateDynamicMembership`; delegated only (`User.Read.All` or `Device.Read.All` with a rule); application not supported; beta | [^c10-evaluate] |
 | Creating a workflow | Admin center: **ID Governance** > **Lifecycle workflows** > **Create a workflow**; a new workflow is disabled by default; Graph: `isEnabled` optional, default `true`; up to 100 workflows a tenant on the limits page (50 on the licensing page; the program plans for 50, as [Chapter 05](05-lifecycle-workflows-custom-extensions.md) does) | [^c10-lcw-create] [^c10-lcw-resource] |
-| Running on demand | `POST …/workflows/{id}/activate` with `subjects`; the workflow must be enabled; conditions ignored; `LifecycleWorkflows-Workflow.Activate`; Lifecycle Workflows Administrator; real-time termination workflows on demand only; global, US Government L4 and L5 | [^c10-lcw-activate] |
+| Running on demand | `POST …/workflows/{id}/activate` with `subjects`; the workflow must be enabled; conditions ignored; `LifecycleWorkflows-Workflow.Activate`; Lifecycle Workflows Administrator; real-time termination workflows on demand only; global service, which GCC uses | [^c10-lcw-activate] |
 | Run results | `GET …/workflows/{id}/userProcessingResults` | [^c10-lcw-status] |
 | Scheduling | `isEnabled` and `isSchedulingEnabled` both true; checks every three hours by default, configurable from 1 to 24 | [^c10-lcw-schedule] |
 | GPOs | `Import-GPO -BackupGpoName -Path -TargetName -CreateIfNeeded`; `New-GPLink` and `Set-GPLink -LinkEnabled Yes|No`; Link GPOs permission, by default domain and enterprise administrators | [^c10-importgpo] [^c10-newgplink] [^c10-setgplink] |
@@ -1419,7 +1419,7 @@ A finding this page addresses is ready for closure when every applicable state h
 | A GPO deleted at cut-over | The one-command rollback is gone | Links disabled and recorded as `gpo-link-disabled`; the rollback re-enables |
 | Apply before audit | A server changes before anyone knows what the package does there | Audit assignment first; apply and monitor only after its result, as a new version |
 | An Ansible run that connects servers by accident | Servers onboard outside the wave | Wave plan, then the playbook's own check mode; `confirm_change=true` only on the third command |
-| A DoD token from the wrong Graph host | Calls fail, or go to the wrong cloud | The token is requested for `ADM_GRAPH`, from the settings' cloud |
+| A token from the wrong Graph host | Calls fail, or go to the wrong cloud | The token is requested for `ADM_GRAPH`, from the settings' cloud |
 | Evidence named but never produced | The ISSO receives a list of file names, and the files are missing or changed | Each step writes an evidence record with the cited files' hashes; `evidence.py check` fails a missing, failing, fixture-mode or changed record; promotion needs a passing check |
 | A rollback nobody wrote down | The change can't be undone in the window | Every step records its change; the smoke test fails a change with no rollback (`SM-13`) |
 | A locked policy in the test stage | The test account can't be deleted until retention ends | Locked only in production; the test stage leaves it unlocked |

@@ -16,7 +16,7 @@ Checked October 21, 2026 by writer W4. Sources: `docs/compliance/Vol_IX_Book_01_
 | 8 | Entra ID spoke: Disable User, Revoke User SignIn Sessions; sample offboarding flow disables user and removes groups on deactivation | Leaver | verified | ServiceNow Washington DC docs, Microsoft Entra ID Spoke |
 | 9 | MFA method reset has no spoke action | What the catalog doesn't fix | verified (by link) | Chapter 03 crosswalk (verified there) |
 | 10 | Four PSTN options: Calling Plans, Operator Connect, Teams Phone Mobile, Direct Routing | Telephony | verified | Learn, PSTN connectivity options |
-| 11 | PSTN calling via Teams Phone listed available in GCC; Direct Routing must be configured in GCC High and DoD | Telephony | verified | Learn, Teams service description footnote 2; Office 365 GCC High and DoD service description |
+| 11 | PSTN calling via Teams Phone listed available in GCC | Telephony | verified | Learn, Teams service description footnote 2 |
 | 12 | Source: telephony items carry "lawful-access logging" implications | Telephony | removed | No primary source located; not carried |
 | 13 | Kari's Law: direct 911 dialing without prefix, notification; applies to MLTS manufactured, imported, offered/first sold or leased, or installed after Feb 16, 2020 | Emergency calling | verified | FCC 19-76 paras 8–12 |
 | 14 | RAY BAUM'S Act §506 directed FCC to consider dispatchable-location rules; FCC adopted Aug 1, 2019 | Emergency calling | verified | FCC 19-76 cover and para 12 |
@@ -33,7 +33,7 @@ Checked October 21, 2026 by writer W4. Sources: `docs/compliance/Vol_IX_Book_01_
 | 25 | Direct Routing: emergency call routing policy, PIDF-LO on SBC, ERS provider (US/Canada) or ELIN | How Teams meets the rules | verified | Learn, dynamic emergency calling |
 | 26 | Web client unsupported; turn off Web PSTN calling via calling policy | How Teams meets the rules | verified | Learn, dynamic emergency calling |
 | 27 | 933 test for Calling Plan, Operator Connect, Teams Phone Mobile in US/Canada; Direct Routing coordinates with ERSP | How Teams meets the rules | verified | Learn, dynamic emergency calling |
-| 28 | Government support: GCC all clients; GCCH desktop, mobile, phones from a stated version; DoD desktop, mobile, Teams phone app via TAC | How Teams meets the rules | verified | Learn, dynamic emergency calling, Government support |
+| 28 | GCC support: all clients | How Teams meets the rules | verified | Learn, dynamic emergency calling, Government support |
 | 29 | Network-to-location mapping raised when DDI records a new subnet or access point | How Teams meets the rules | restated-as-design (new) | Program design; links Book 08 |
 | 30 | Graph call records retained 30 days; subscription for near-real-time reporting and emergency-call alerts | Call records | verified (new) | Learn, Call records (Graph) |
 | 31 | PSTN usage report retention by country; all other countries 365 days Calling Plans, 150 days Direct Routing | Call records | verified (new) | Learn, Teams PSTN usage report |

@@ -67,7 +67,7 @@ source's "CISA BOD 26-04 and the KEV Catalog" — confirm the directive number a
   machine configuration (formerly Guest Configuration) ([Book 05](../b05-devices/index.md)). Defender for Servers Plan 1
   and Plan 2 both provide Defender for Endpoint Plan 2 capabilities (Microsoft's FAQ).
 - **Boundary:** FedRAMP 2026 — services "certified" in Classes A–D; feature availability differs by cloud; verify each
-  Sentinel/Defender/Purview capability's availability in GCC, the Moderate tenant (GCC High only as a comparison) ([Book 10](../b10-cloud-boundary/index.md)).
+  Sentinel/Defender/Purview capability's availability in GCC, the Moderate tenant ([Book 10](../b10-cloud-boundary/index.md)).
 - **Program:** Book 01's seven phases and six gates G0–G5 ([Book 01 Ch12](../b01-transformation-arc/12-migration-roadmap.md));
   decision rights in [Book 01 Ch09](../b01-transformation-arc/09-who-leads-the-transformation.md) and
   [Book 00 Ch07](../b00-orientation/07-who-runs-the-program.md); the authorizing official alone accepts residual risk.

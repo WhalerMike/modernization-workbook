@@ -63,7 +63,7 @@ Checked October 21, 2026 by writer W4. Sources: `docs/compliance/Vol_III_Book_03
 | 55 | Deployment sequence and honest limits | Deployment; limits | restated-as-design | From Vol VI Book 06 |
 | 56 | Overlay trade (Tanium, BigFix, Ivanti) | Overlay | restated-as-design | No authorization claim; Marketplace check |
 | 57 | Source: native stacks "each FedRAMP-authorized CSP capabilities" | Accreditation | restated | Verify each at procurement (Book 10); not asserted |
-| 58 | Source: customer-operated stacks accredited via "DISA STIG hardening, FIPS 140-3 validated modules" | Accreditation | restated-as-design | Kept as "agency-operated components, hardened and evidenced" without asserting product validations |
+| 58 | Source: customer-operated stacks accredited via "STIG hardening, FIPS 140-3 validated modules" | Accreditation | restated-as-design | Kept as "agency-operated components, hardened and evidenced" without asserting product validations |
 | 59 | CA-3 text | Accreditation | verified | SP 800-53 r5.2.0 |
 | 60 | Hybrid agent = documented external connection | Accreditation | restated-as-design | — |
 | 61 | Source "Phase 5 — The RedHat-on-AWS Estate Lands Here"; quote "VMs are currently RedHat in AWS..." | RHEL on AWS | restated | Phase label and internal quote dropped; three invariants and contract kept as design |
@@ -77,7 +77,7 @@ Checked October 21, 2026 by writer W4. Sources: `docs/compliance/Vol_III_Book_03
 | 69 | SCuBA covers Microsoft 365 and Google Workspace only | Baseline lifecycle | verified 2026-10-29 | CISA SCuBA project page |
 | 70 | NCP checklists typically created by IT vendors for their own products; SP 800-70 Rev. 5 (May 2026) | Baseline lifecycle | verified 2026-10-29 | SP 800-70 Rev. 5; NIST NCP page |
 | 71 | CIS Benchmarks list RHEL 9 3.0.0, Windows Server 2022 5.1.0 and 2025 2.1.0, Cisco IOS XE 17.x 2.2.1, AWS Foundations 7.1.0 | Baseline lifecycle | verified 2026-10-29 | CIS Benchmarks list |
-| 72 | Source/earlier text "DISA STIGs and CIS Benchmarks are the usual sources"; lifecycle table, figure ch07-baseline-lifecycle and limits naming STIG | Baseline lifecycle; diagram | restated 2026-10-29: CIS, NCP and vendor guides are the civilian sources; STIG kept once as optional High-only reference; diagram box now "SCuBA, CIS, agency CM-6" | Brief (Moderate civilian, not DoD) |
+| 72 | Source/earlier text "STIGs and CIS Benchmarks are the usual sources"; lifecycle table, figure ch07-baseline-lifecycle and limits naming STIG | Baseline lifecycle; diagram | restated 2026-10-29: CIS, NCP and vendor guides are the civilian sources; STIG kept once as optional High-only reference; diagram box now "SCuBA, CIS, agency CM-6" | Brief (Moderate civilian) |
 
 ## Carry-forward ledger
 

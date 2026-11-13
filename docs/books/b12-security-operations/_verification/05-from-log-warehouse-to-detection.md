@@ -22,15 +22,15 @@ Writer W3. Source: `docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md` (the 
 | 14 | Assessor asks for "an alert in the last 30 days, the incident, and documentation" | Evidence standard | restated-as-design (practitioner experience, not a published FedRAMP procedure; adopted as program standard) | — |
 | 15 | Four-part evidence record | Evidence standard | restated-as-design | — |
 | 16 | Sentinel supported only in Defender portal after March 31, 2027; GA in Defender portal with or without XDR | Where Sentinel runs | verified (source predates; date extended from July 2026) | Learn: Sentinel in the Defender portal |
-| 17 | Defender portal: GA features in commercial, GCC, GCC High, DoD; preview only commercial | Where Sentinel runs | verified | Learn: Sentinel feature availability |
-| 18 | GCC pairs with Entra ID in commercial Azure; GCC High/DoD with Azure Government | Where Sentinel runs | verified | Learn: Cloud feature availability for US Government |
+| 17 | Defender portal: GA features in commercial, GCC; preview only commercial | Where Sentinel runs | verified | Learn: Sentinel feature availability |
+| 18 | GCC pairs with Entra ID in commercial Azure | Where Sentinel runs | verified | Learn: Cloud feature availability for US Government |
 | 19 | Azure Gov availability: ASIM preview both; Repositories not in Gov; peer/blast-radius not in Gov; Entra ID, ID Protection, XDR, CEF/Syslog via AMA, Windows Security Events via AMA, TAXII, automation rules, NRT, UEBA anomalies GA both; MDTI matching analytics not in Gov | Several | verified | Learn: Sentinel feature availability |
-| 20 | Defender XDR connector: GCC GA (Azure), GCC High GA (Azure Gov), DoD not available | Where Sentinel runs | verified | Learn: Cloud feature availability for US Government, Sentinel table |
+| 20 | Defender XDR connector: GCC GA (Azure) | Where Sentinel runs | verified | Learn: Cloud feature availability for US Government, Sentinel table |
 | 21 | Entra ID connector log types and tables (incl. AADProvisioningLogs, MicrosoftGraphActivityLogs, NetworkAccessTraffic); P1/P2 for sign-in logs; Workload ID Premium for risky SP tables | Entra ID | verified | Learn: Entra ID data connector |
 | 22 | Source: "Azure Active Directory connector" | Entra ID | corrected (Microsoft Entra ID connector) | Same |
 | 23 | `SigninLogs.ResultType` string, "0" success; `MfaDetail` deprecated; `AuthenticationDetails` | Entra ID | verified (source used numeric comparison and MfaDetail) | Learn: SigninLogs table reference |
 | 24 | Defender XDR connector streams incidents, alerts, hunting events; auto-enabled when onboarded to Defender portal | Defender XDR | verified | Learn: Connect Defender XDR |
-| 25 | Streamable tables list, GA in GCC/GCC High/DoD | Defender XDR | verified | Learn: Supported streaming event types |
+| 25 | Streamable tables list, GA in GCC | Defender XDR | verified | Learn: Supported streaming event types |
 | 26 | Source tables `DeviceAlertEvents`, `DeviceVulnerabilityAssessmentEvent` | Defender XDR | corrected (not in streamable list; vulnerability tables not streamed; KEV rule moved to Defender alerts/Ch06) | Same |
 | 27 | Source: "Microsoft 365 Defender connector" | Defender XDR | corrected (Microsoft Defender XDR) | Same |
 | 28 | Source: Infoblox via CEF to "Log Analytics agent"; `CommonSecurityLog` `DeviceVendor == "Infoblox"`; event classes `DNS_RPZ`, `DHCP_LEASE`, `DNS_DNSSEC_FAIL` | DNS and DDI | corrected (NIOS sends syslog to `Syslog` with solution parser, works with Syslog via AMA, legacy agent deprecated; Infoblox cloud via CDC via AMA to `CommonSecurityLog`; event-class names not verifiable, dropped) | Learn: Syslog via AMA device config (Infoblox NIOS); Sentinel tables and connectors |
