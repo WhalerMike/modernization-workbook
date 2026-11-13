@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -38,6 +38,7 @@ listing:
       - "!non-person-identity/**"
       - "!provider-notices/**"
       - "!zero-trust-assessment/**"
+      - "!defender-xdr/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -130,6 +131,10 @@ Nine modules on the notices cloud providers send about the agency's own estate, 
 ## Zero Trust Assessment learning path
 
 Four modules on running Microsoft's Zero Trust Assessment as evidence rather than a verdict, in the order of the ten steps of the [Zero Trust Assessment implementation guide](../books/guides/zero-trust-assessment-implementation.md): what the assessment checks and why a skipped test is neither a failure nor a pass; running it safely, from the host and consent to the connection in each cloud and the hashed export; normalizing the results and opening a closure register routed to the pages that remediate each finding; and comparing runs, reconciling with ScubaGear and AWS Security Hub CSPM, and sealing the evidence. Lab 1 runs on the results kit's fictional fixtures with no tenant; Lab 2 runs in your own test tenant; each module ends with a knowledge check. Start at the [learning path](zero-trust-assessment/index.md).
+
+## Defender XDR learning path
+
+Five modules on engineering and operating Microsoft Defender XDR on Windows clients and Windows Server, in the order of the ten gates of the [Defender XDR implementation guide](../books/guides/defender-xdr-implementation.md): the service architecture, government-cloud availability, unified RBAC roles and onboarding with proof of sensor health; endpoint prevention and Attack Surface Reduction through audit, warn and block; exposure management without Security Exposure Management, and incidents triaged to a severity table; advanced hunting, custom detections deployed as code through Microsoft Graph, and identity and cloud-app signals; and automation levels set to the response ladder, with the monthly evidence run. The guide has no kit or developer workbook yet, so each module's lab runs the guide's own Validate commands in your own test tenant; each module ends with a knowledge check. Start at the [learning path](defender-xdr/index.md).
 
 ## External learning paths
 
