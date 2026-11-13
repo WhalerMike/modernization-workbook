@@ -23,6 +23,8 @@ last-reviewed: 2026-11-11
 How an agency turns Microsoft Defender XDR from a license into hardened Windows endpoints, tuned detections and repeatable response, as gated steps an operator can run. First, how to read the guide, what the books already cover, the reference architecture with its trust boundaries and control planes, government-cloud availability feature by feature, a decision record, the RACI and the path on one page. Then ten gates, one for each topic: service architecture and access, endpoint onboarding, endpoint prevention, Attack Surface Reduction, exposure management, XDR incidents, advanced hunting, identity and cloud-app signals, automation, and operations and evidence. Each gate carries its prerequisites, pilot, audit phase, enforcement, rollback, exclusions, telemetry, evidence and day-two owner, with copy-paste commands and a **Validate** step. Then the metrics, the evidence catalog, the requirements and KSIs, the dangers, rollback, the implementation checklist and what couldn't be verified. Windows clients and Windows Server only; macOS and Linux are out of scope.
 :::
 
+**Training:** the learning path [*Defender XDR Engineering and Operations*](../../training/defender-xdr/index.md) teaches this guide in five modules, each with a lab in a test tenant and a knowledge check.
+
 ## How to read this guide
 
 The books already own most of this subject; this guide builds what they decide. [Book 12](../b12-security-operations/index.md) owns security operations: the Defender XDR connector and the division of labor with Microsoft Sentinel ([Chapter 05](../b12-security-operations/05-from-log-warehouse-to-detection.md#what-defender-xdr-contributes)), Defender Vulnerability Management and the remediation queue ([Chapter 06](../b12-security-operations/06-vulnerability-management.md#defender-vulnerability-management-on-arc-enabled-servers)), who runs the SOC ([Chapter 10](../b12-security-operations/10-who-runs-security-operations.md)), the rule lifecycle, the response ladder and device isolation ([Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md#the-response-ladder)), and the metric set ([Chapter 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md#the-metric-set)). [Book 05](../b05-devices/index.md) owns the endpoint policy library: the antivirus, firewall, EDR and Attack Surface Reduction policies ES-001 to ES-005 ([Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#endpoint-security-policies)), servers under Azure Arc ([Chapter 09](../b05-devices/09-servers-under-azure-arc.md)), and the Defender settings that live in the portal ([Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#microsoft-defender-for-endpoint)). This guide links to those pages for the design and the setting values, and adds what they don't give: the order of work, the commands that prove each step, the warn stage for Attack Surface Reduction, detections as code, the government-cloud check per feature, and the evidence.
@@ -43,6 +45,17 @@ The books already own most of this subject; this guide builds what they decide. 
 : Placeholders used in this guide {.striped .hover}
 
 **The checks.** There is no kit for this guide. Each **Validate** step is a read-only command or KQL query from Learn that an operator runs and files; the only writes are the policy changes each gate names, made through Intune or the Defender portal under a change record.
+
+**The pieces.** An implementation guide is finished when it has its deck series, developer workbook and training path ([CONTRIBUTING](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces)):
+
+| Piece | State |
+|---|---|
+| This guide | Draft, November 11, 2026 |
+| Narrated deck and video | Deck built, November 13, 2026: 16 narrated slides, about 15 minutes, with captions; the video is planned |
+| Developer workbook with Lab 1 on fixtures and Lab 2 in a test tenant | Planned; until it exists, the training path's labs run this guide's Validate commands in a test tenant |
+| Training path | Draft, November 13, 2026: [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md), five modules |
+
+: The guide's pieces {.striped .hover}
 
 ## What the books cover, and where each topic lives
 
