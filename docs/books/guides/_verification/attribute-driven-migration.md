@@ -257,3 +257,7 @@ A new subsection, "Where each non-person identity lives: attributes or tags," pu
 | 4 | Arc server's system-assigned managed identity behind an Arc resource whose tags `azcmagent connect --tags` sets | Non-person map, Arc row | carried | Book 06 Ch 09; `adm-azcmagent` |
 | 5 | Federated credentials: issuer, subject, audience; at most 20 per object | Non-person map, federation row | carried | Book 02 Ch 09 |
 | 6 | Conditional Access can't target managed identities; access reviews cover them | Non-person map, system-assigned row | carried | `adm-ca-workload`; `adm-wid-faq` |
+
+## Revision 2026-11-13 — Windows Server 2025 retirements
+
+Mike's approval, Nov 13, 2026. The dates and events for each protocol now live in one place, the status table in Book 02, Chapter 03; this page links there. dMSA wording, where present, now says a dMSA needs a Windows Server 2025 domain controller (and Windows Server 2025 hosts), not a functional level (Learn, Delegated Managed Service Accounts FAQ, read Nov 13, 2026). An RC4 date, where present, follows KB5073381 (read Nov 13, 2026): AES only assumed from the April 14, 2026 updates, rollback no longer read from the July 2026 updates.

@@ -115,7 +115,7 @@ This section is the **non-person identity track**: a service account's attribute
 | Traditional (user object, often an `svc-` prefix) | Password-based, often "password never expires," often allowed to log on interactively | Application registration with a certificate or federated credential; managed identity where the workload runs in Azure | High: static credentials, often over-privileged |
 | Managed service account (MSA) | Automatically managed password, bound to one server | gMSA on-premises; managed identity if the workload moves to Azure | Medium: server-scoped, little governance visibility |
 | Group managed service account (gMSA) | Automatically managed password, usable by several servers | Retain for on-premises Kerberos workloads; workload identity federation when the workload moves | Medium: better than traditional, still AD-dependent |
-| Delegated managed service account (dMSA) | Windows Server 2025 domains only; supersedes a traditional account, binds authentication to mapped machine identities, and disables the original account's password[^c09-dmsa] | Retain for on-premises Kerberos workloads; same cloud path as a gMSA when the workload moves | Low to medium: resists Kerberoasting, still AD-dependent |
+| Delegated managed service account (dMSA) | Needs at least one Windows Server 2025 domain controller and Windows Server 2025 hosts, not a functional level; supersedes a traditional account, binds authentication to mapped machine identities, and disables the original account's password[^c09-dmsa][^c09-dmsa-faq] | Retain for on-premises Kerberos workloads; same cloud path as a gMSA when the workload moves | Low to medium: resists Kerberoasting, still AD-dependent |
 
 ### Computer objects
 
@@ -351,6 +351,27 @@ Microsoft recommends PHS for cloud authentication, and recommends enabling it wh
 ## Recommendation: PHS everywhere
 PHS is the program's sign-in method. Where PTA or federation is still in place, turn PHS on anyway so that the fallback and risk detections exist before they're needed.[^c09-phs-backup]
 :::
+
+#### If Seamless SSO stays: its computer account's Kerberos key {#seamless-sso-key}
+
+Seamless SSO works through a computer account, `AZUREADSSOACC`, that Entra Connect creates in each Active Directory forest; its Kerberos decryption key is shared with Microsoft Entra ID.[^c09-sso-how] Two things follow from the 2026 Kerberos changes ([Chapter 03](03-ad-and-entra-side-by-side.md#where-the-old-protocols-stand-in-2026)):
+
+- **Move the account to AES256.** Learn recommends AES256 for it and asks organizations to move it off RC4 as soon as possible. If the account still uses RC4, roll over its Kerberos decryption key first and change the encryption type after, or Seamless SSO breaks.[^c09-sso-how]
+- **Roll the key over at least every 30 days.** Use `Update-AzureADSSOForest` from the Entra Connect server, once for each forest, as a domain administrator who isn't in the Protected Users group, with a Hybrid Identity Administrator in the tenant.[^c09-sso-faq]
+
+```powershell
+$creds = Get-Credential
+Update-AzureADSSOForest -OnPremCredentials $creds
+```
+
+Check the account's encryption type before and after:
+
+```powershell
+Get-ADComputer -Identity AZUREADSSOACC -Properties msDS-SupportedEncryptionTypes |
+    Select-Object Name, msDS-SupportedEncryptionTypes
+```
+
+Treat the account as Tier 0: Learn says to keep it in an OU only Domain Admins can manage, with no Kerberos delegation on it.[^c09-sso-how] Where every device is Entra joined or hybrid joined, Seamless SSO adds nothing ([Chapter 10](10-migrating-and-governing.md), Phase 2 step 3).
 
 #### What CISA's hybrid identity guidance adds
 
@@ -1239,6 +1260,9 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c09-protected-actions]: Microsoft Learn, "What are protected actions in Microsoft Entra ID?," <https://learn.microsoft.com/entra/identity/role-based-access-control/protected-actions-overview> (accessed Oct 20, 2026).
 [^c09-managed-identity]: Microsoft Learn, "What is managed identities for Azure resources?," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview> (accessed Oct 20, 2026).
 [^c09-dmsa]: Microsoft Learn, "Delegated Managed Service Accounts overview," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> (accessed Oct 21, 2026).
+[^c09-dmsa-faq]: Microsoft Learn, "Delegated Managed Service Accounts frequently asked questions" (at least one Windows Server 2025 domain controller, discoverable by the client or member server), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-faq> (accessed Nov 13, 2026).
+[^c09-sso-how]: Microsoft Learn, "Microsoft Entra Connect: Seamless single sign-on: How it works" (the `AZUREADSSOACC` computer account; AES256 recommended; roll over the key before changing from RC4; protect the account), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-how-it-works> (accessed Nov 13, 2026).
+[^c09-sso-faq]: Microsoft Learn, "Microsoft Entra seamless single sign-on: Frequently asked questions" (roll over the Kerberos decryption key at least every 30 days with `Update-AzureADSSOForest`), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-faq> (accessed Nov 13, 2026).
 [^c09-connect-hardening]: Microsoft Learn, "Hardening update to Microsoft Entra Connect Sync," <https://learn.microsoft.com/entra/identity/hybrid/connect/harden-update-ad-fs-pingfederate> (accessed Oct 21, 2026).
 [^c09-connect-versions]: Microsoft Learn, "Microsoft Entra Connect: Version release history," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-version-history> (accessed Oct 21, 2026).
 [^c09-cloud-sync-decision]: Microsoft Learn, "Microsoft Entra Cloud Sync migration decision guide," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/connect-to-cloud-sync-decision-guide> (accessed Oct 20, 2026).

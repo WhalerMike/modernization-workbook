@@ -24817,11 +24817,12 @@ pages:
   ms_date: '2026-09-15'
   ms_topic: faq
   description: Answers to frequently asked questions about Microsoft Entra seamless single sign-on.
-  coverage: covered-uncited
+  coverage: cited
   note: Seamless single sign-on.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-sso-how-it-works.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-how-it-works
   title: 'Microsoft Entra Connect: Seamless Single Sign-On - How it works'
@@ -24829,11 +24830,12 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This article describes how the Microsoft Entra seamless single sign-on feature works.
-  coverage: covered-uncited
+  coverage: cited
   note: Seamless single sign-on.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/09-building-the-entra-target.md
 - path: docs/identity/hybrid/connect/how-to-connect-sso-quick-start.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-quick-start
   title: 'Quickstart: Microsoft Entra seamless single sign-on'
