@@ -6,7 +6,7 @@ Checked October 20–21, 2026 by writer W1. Sources: the twin papers `docs/white
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | DIA = direct internet access; not a DISA circuit; DISA's network is DISN; DIA is also the Defense Intelligence Agency | The false versus | verified | DISA, DISN Connection Process Guide acronyms (search result); branch-edge-gap Appendix A correction re-confirmed |
+| 1 | DIA = direct internet access | The false versus | restated-as-design | — |
 | 2 | TIC 3.0 no longer requires routing through access points where an alternative gives the agency and CISA situational awareness | What DIA solves | verified | CISA SASE guidance v1.0 (June 2026), Preface |
 | 3 | DIA solves exactly one problem (the hairpin) and satisfies none of the protection controls | Decision makers; DIA sections | restated-as-design | Program argument (twins); supported by #4–#6 |
 | 4 | SC-7, SC-7(4), SC-8, SC-8(1), AC-4, SI-3, SI-4 statements as summarized in the table | Controls table | verified | NIST SP 800-53 Rev. 5 release 5.2.0 (Aug 27, 2025), OSCAL catalog |
@@ -30,7 +30,7 @@ Checked October 20–21, 2026 by writer W1. Sources: the twin papers `docs/white
 | 22 | SD-WAN alone doesn't satisfy the Branch Office use case; boundary/flow/malware closures come from SASE | Governor | restated-as-design | Program argument; consistent with #7, #10 |
 | 23 | EIS provides SD-WAN networking and connectivity options | Governor | verified | CISA TIC FAQ (FAQ 3). GSA's EIS page itself doesn't mention SD-WAN; trade press (Route Fifty, Nov 16, 2020) reports SD-WAN as EIS's first post-award service — not cited |
 | 24 | Agencies must consider FedRAMP authorization when selecting providers | Governor | verified (new) | CISA TIC FAQ (FAQ 6) |
-| 25 | Palo Alto NSP incl. Prisma Access/SASE/SD-WAN FedRAMP High "19 December 2024" | FedRAMP table | corrected | Marketplace: GCS-HIGH, High / Class D, status changed to FedRAMP Certified 2024-12-09; description includes Prisma Access and Prisma SD-WAN. IL5 claim not re-verified and not carried |
+| 25 | Palo Alto NSP incl. Prisma Access/SASE/SD-WAN FedRAMP High "19 December 2024" | FedRAMP table | corrected | Marketplace: GCS-HIGH, High / Class D, status changed to FedRAMP Certified 2024-12-09; description includes Prisma Access and Prisma SD-WAN |
 | 26 | Zscaler ZIA and ZPA High "1 August 2022" | FedRAMP table | corrected | ZIA Gov (High) certified 2022-07-02; ZPA Gov (High) certified 2020-04-29 |
 | 27 | Netskope GovCloud High "9 January 2024" | FedRAMP table | corrected | Listing is Netskope NewEdge Government, High / Class D, certified 2023-12-19 |
 | 28 | Cisco Meraki for Government incl. SD-WAN Moderate "25 February 2025" | FedRAMP table | corrected | Cisco Meraki US Government Region, Moderate / Class C, certified 2025-02-18 |

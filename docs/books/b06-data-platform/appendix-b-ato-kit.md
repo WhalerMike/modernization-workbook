@@ -24,7 +24,7 @@ What runs inside the agency boundary and what it reaches outside it, the outboun
 
 ::: {.callout-important}
 ## Supports an authorization decision; doesn't make one
-The SQL Server estate is part of the agency's own system, and its authorization is a risk decision by the agency's authorizing official under the Risk Management Framework.[^aB-rmf] FedRAMP authorizes the cloud services the design leverages, not the agency's system. The authorization boundary, the interconnection and leveraged-authorization language, and the risk decision belong to the authorizing official. This kit collects the facts an assessor will ask for. Platform facts were checked on October 20, 2026, and apply to Microsoft's commercial cloud, including GCC-Moderate; SQL Server needs access to the Azure public cloud to use Microsoft Entra authentication.[^aB-miov] See [Appendix C — Applicability](appendix-c-applicability.md) for GCC High and DoD.
+The SQL Server estate is part of the agency's own system, and its authorization is a risk decision by the agency's authorizing official under the Risk Management Framework.[^aB-rmf] FedRAMP authorizes the cloud services the design leverages, not the agency's system. The authorization boundary, the interconnection and leveraged-authorization language, and the risk decision belong to the authorizing official. This kit collects the facts an assessor will ask for. Platform facts were checked on October 20, 2026, and apply to Microsoft's commercial cloud, including GCC-Moderate; SQL Server needs access to the Azure public cloud to use Microsoft Entra authentication.[^aB-miov] See [Appendix C — Applicability](appendix-c-applicability.md) for where the book applies as written.
 :::
 
 ## Boundary

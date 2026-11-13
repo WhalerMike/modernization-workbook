@@ -57,7 +57,7 @@ The constraints that shape design:
 - **Keys and algorithms.** RSA 2048, 3072 or 4096 with SHA-256, SHA-384 or SHA-512; licensed CAs use Azure Managed HSM keys, while CAs created during a trial use software keys that can't be converted later.[^c06-cpki] Don't build production CAs during a trial.
 - **Revocation.** Intune hosts each CA's CRL, valid for seven days, republished every 3.5 days and updated with every revocation.[^c06-cpki] This matches what [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md) records.
 
-Licensing changed in 2026. Cloud PKI requires a subscription on top of Intune Plan 1 or Plan 2,[^c06-cpki] and from July 2026 Microsoft 365 E5 and E7 include it for commercial customers; Microsoft says Government plans are planned to align with the enterprise packaging subject to compliance requirements, so confirm the entitlement for a GCC tenant rather than assume it.[^c06-intune-plan][^c06-whatsnew] Cloud PKI is available in GCC High (announced for the week of September 28, 2026) and not in DoD environments.[^c06-whatsnew][^c06-cpki]
+Licensing changed in 2026. Cloud PKI requires a subscription on top of Intune Plan 1 or Plan 2,[^c06-cpki] and from July 2026 Microsoft 365 E5 and E7 include it for commercial customers; Microsoft says Government plans are planned to align with the enterprise packaging subject to compliance requirements, so confirm the entitlement for a GCC tenant rather than assume it.[^c06-intune-plan][^c06-whatsnew]
 
 ### SCEP with AD CS through NDES and the Certificate Connector
 
@@ -110,7 +110,7 @@ Attestation works only with an enterprise CA (not standalone), RSA keys and the 
 
 **How it relates to the Intune paths.** Microsoft's attestation procedure is written for Windows clients enrolling against an enterprise CA's templates. Microsoft Learn doesn't say whether a SCEP request relayed by NDES and the Certificate Connector, or a Cloud PKI SCEP request, carries the attestation the CA needs, so whether an Intune-delivered certificate can carry the attestation OIDs is not yet specified; prove it in a lab before any relying party depends on the OID. PKCS can't carry it: the connector generates the key on the connector server, not in the device's TPM.[^c06-pkcs] So the program uses the TPM KSP setting for Intune SCEP, and where a relying party must *know* the key is in a TPM, it uses an AD CS template with attestation **Required** for the Windows devices that still enroll from AD CS and gates the relying party on the OID *(design guidance)*.
 
-**Government clouds.** Attestation runs on the organization's own CA and doesn't depend on a cloud service. For attested certificates delivered through Intune or Cloud PKI in GCC, GCC High or DoD, availability is not yet specified.
+**Government clouds.** Attestation runs on the organization's own CA and doesn't depend on a cloud service. For attested certificates delivered through Intune or Cloud PKI in GCC, availability is not yet specified.
 
 The endorsement-key trust model, illustrated (run it first in a test scope). On the device, from an elevated session, read its EKpub hash:
 
@@ -423,7 +423,7 @@ The device side leaves a list of certificates Intune can't deliver: domain contr
 [^c06-scep-infra]: Microsoft Learn, "Configure infrastructure to support SCEP with Intune," <https://learn.microsoft.com/intune/fundamentals/certificates/scep-infrastructure> (accessed Oct 20, 2026).
 [^c06-intune-platforms]: Microsoft Learn, "Operating systems and browsers supported by Microsoft Intune," <https://learn.microsoft.com/intune/fundamentals/ref-supported-platforms> (accessed Oct 20, 2026).
 [^c06-intune-plan]: Microsoft Learn, "Microsoft Intune planning guide," Step 3, Determine costs and licensing, <https://learn.microsoft.com/intune/fundamentals/planning-guide#step-3---determine-costs-and-licensing> (accessed Oct 20, 2026).
-[^c06-whatsnew]: Microsoft Learn, "What's new in Microsoft Intune," weeks of June 29, 2026 (service release 2606: Intune capabilities added to Microsoft 365 E3 and E5) and September 28, 2026 (service release 2609: Cloud PKI support for GCC High), <https://learn.microsoft.com/intune/whats-new/> (accessed Oct 20, 2026).
+[^c06-whatsnew]: Microsoft Learn, "What's new in Microsoft Intune," week of June 29, 2026 (service release 2606: Intune capabilities added to Microsoft 365 E3 and E5), <https://learn.microsoft.com/intune/whats-new/> (accessed Oct 20, 2026).
 [^c06-ndes-aadj]: Microsoft Learn, "Using Certificates for Microsoft Entra joined on-premises single-sign on," Requirements and High Availability, <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/hello-hybrid-aadj-sso-cert#requirements> (accessed Oct 20, 2026).
 [^c06-ndes-ra]: Microsoft Learn, "Renewal of 'Enrollment Agent' certificate used by NDES may fail," <https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/renewal-of-enrollment-agent-certificate-fail> (accessed Oct 20, 2026).
 [^c06-connector]: Microsoft Learn, "Certificate Connector for Microsoft Intune" (capabilities, lifecycle, what's new), <https://learn.microsoft.com/intune/fundamentals/certificates/connector/overview> (accessed Nov 9, 2026).

@@ -29,7 +29,7 @@ Writer: W4. Verified 2026-10-21. New chapter, following the pattern of Book 09 C
 | 21 | USDA Connect package access request signed by AO; .gov/.mil address; trust-center providers must offer certification data via APIs | Roles in each system | verified | fedramp.gov/2026/agencies/use/packages (c08-fedramp-packages) |
 | 22 | Four impact dimensions and drift classes | Dimension owners | restated-as-design | Program's Boundary Impact Model and drift taxonomy (linked by GitHub URL) |
 | 23 | Owner per dimension; matrix; three-party split between platform and workload teams; role map | Throughout | restated-as-design | Program model |
-| 24 | A certification class or second listing isn't a commitment that excluded features arrive | Sponsor role | verified (by reference) | Chapter 04 and Chapter 09 own it (MSO365MTA; admin-center network connectivity also unavailable in GCC High) |
+| 24 | A certification class or second listing isn't a commitment that excluded features arrive | Sponsor role | verified (by reference) | Chapter 04 and Chapter 09 own it (MSO365MTA; admin-center network connectivity exclusion documented per feature) |
 
 ## 2. Carry-forward ledger
 

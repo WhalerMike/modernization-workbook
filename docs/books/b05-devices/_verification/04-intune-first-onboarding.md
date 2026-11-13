@@ -11,9 +11,9 @@ Sources: `docs/reference-architecture/intune-first.md` (all sections) and its sh
 | 3 | Pillar 4 "Arc + Intune Settings Catalog for servers" | Five pillars | corrected (Intune doesn't support Windows Server; servers via Azure Policy machine configuration; Intune endpoint security reaches servers only via MDE security settings management) | Intune supported platforms; MDE security settings management |
 | 4 | Phase 3 output "pre-staged Entra ID device object placeholder" | Five-phase process | corrected (Autopilot registration creates the Entra object automatically; phase 3 confirms it) | Autopilot registration overview |
 | 5 | Windows annex: "Windows Autopilot Device Preparation (v2)" with Group Tag as carrier | Windows section; platforms table | corrected (device preparation has no registration and no group tag; devices join a device group at enrollment; carrier = mapping table). Recommendation restated as design: classic Autopilot default in GCC | device-preparation/compare; device-preparation/overview |
-| 6 | Device preparation vs Autopilot feature comparison (registration, hybrid join, modes, Windows 10, 10 apps/scripts, ESP vs device group, GCCH/DoD, DFCI) | Windows comparison table | verified | device-preparation/compare |
+| 6 | Device preparation vs Autopilot feature comparison (registration, hybrid join, modes, Windows 10, 10 apps/scripts, ESP vs device group, DFCI) | Windows comparison table | verified | device-preparation/compare |
 | 7 | Device preparation is a re-architecture; less feature-rich initially | Windows section | verified | device-preparation/faq |
-| 8 | Intune has no separate GCC instance; GCC uses commercial service; classic Autopilot not available in GCC High/DoD | Which one, in a GCC tenant | verified | Intune government service overview |
+| 8 | Intune has no separate GCC instance; GCC uses commercial service | Which one, in a GCC tenant | verified | Intune government service overview |
 | 9 | Device prep OS requirements (24H2; 23H2/22H2 with KB5035942; media April 2024+); auto-enrollment; first user needs Entra join permission | Which one | verified | device-preparation/requirements |
 | 10 | OEM/reseller registration requires Global Administrator consent; Microsoft recommends least privilege elsewhere | Registration and group tags | verified | Autopilot OEM registration |
 | 11 | Manual registration intended mainly for testing/evaluation | Registration and group tags | verified | Autopilot manual registration |
@@ -24,7 +24,6 @@ Sources: `docs/reference-architecture/intune-first.md` (all sections) and its sh
 | 16 | Device-prep devices blocked by personal restriction unless corporate identifiers or device association | Enrollment restrictions | verified | Identify devices as corporate-owned; device-preparation overview |
 | 17 | Allow personal Windows enrollment only for groups that need it | Enrollment restrictions | verified | troubleshoot-windows-work-school |
 | 18 | Name template ≤15 chars, letters/numbers/hyphens, not all numbers; %SERIAL%, %RAND:x% | Naming | verified | Autopilot user-driven profile tutorial |
-| 19 | Rename by org structure during device prep listed as planned (GCC High/DoD) | Naming | verified | Intune government service overview |
 | 20 | Prefix + %SERIAL% convention; position not in name | Naming | restated-as-design | program convention |
 | 21 | ESP two phases; default ESP doesn't show progress; Microsoft recommends custom ESP | ESP | verified | Autopilot user-driven ESP tutorial |
 | 22 | Max 51 ESP profiles; blocking list filters tracking, doesn't assign | ESP | verified | Set up the Enrollment Status Page |
@@ -34,7 +33,7 @@ Sources: `docs/reference-architecture/intune-first.md` (all sections) and its sh
 | 26 | Security baselines: Windows 10 and later (25H2 latest), MDE baseline; profiles don't auto-update; overlapping defaults | Baseline | verified | Intune security baselines overview; Intune what's new (2603) |
 | 27 | Corporate-owned automatic for ADE, Autopilot, KME, Android Enterprise corporate, Google zero-touch | Other platforms | verified | Identify devices as corporate-owned |
 | 28 | Intune Linux: Ubuntu Desktop 24.04/26.04 LTS, RHEL 9/10 | Other platforms; exception B | verified (source said "GA but limited") | Intune supported platforms |
-| 29 | DFCI needs classic Autopilot; planned for GCC High/DoD | Other platforms | verified | device-preparation/compare; Intune government service |
+| 29 | DFCI needs classic Autopilot | Other platforms | verified | device-preparation/compare |
 | 30 | Surface row: named resellers (CDW, Insight, Connection), Pluton attestation on specific models | Other platforms | removed (vendor positioning; unverified) | — |
 | 31 | Exception C: Server 2019/2022 can't use AADLoginForWindows (source cited a program decision) | Exception paths | verified and re-sourced (Arc Entra sign-in requires Server 2025+ with Desktop Experience) | howto-arc-sign-in-windows |
 | 32 | Five drift classes; HMAC-signed evidence; control-family mapping | Validation | restated-as-design (control IDs verified as NIST SP 800-53 Rev 5 controls; mapping is the program's assertion) | NIST SP 800-53 Rev 5 |
@@ -102,7 +101,6 @@ Re-checked after the weekly source watch (issue #499) reported changes in the de
 
 | Claim | Result | Source |
 |---|---|---|
-| Device preparation supports GCC High and DoD; device association isn't yet available in sovereign cloud environments, so a tenant moving to GCC High can't plan on association or the association-only name template | added (new statement in the source's "Cloud environments" section) | c04-ap-overview, "Overview of Windows Autopilot device preparation," Cloud environments |
 | Requirements: Windows 11 24H2, or 23H2/22H2 with KB5035942 (media dated April 2024 or later); Entra automatic enrollment; first user allowed to join devices | re-verified, no change | c04-ap-dp-req |
 | Name template up to 63 characters, only for associated devices | re-verified, no change | c04-ap-dp-name |
 
@@ -132,7 +130,7 @@ Instruction B05-04 (enrollment) of the Zero Trust Assessment closure update. Add
 | 10 | Microsoft's command for manufacturer, model and serial | Enforcement | verified (Microsoft's command reused) | same, section "Resources" | Nov 11, 2026 |
 | 11 | Deleting an identifier doesn't change ownership; corporate-to-personal deletes app inventory within 7 days | Rollback | verified | same | Nov 11, 2026 |
 | 12 | Enrollment failure reason "Enrollment restriction not met"; identifier statuses | Pilot; Telemetry | verified | same | Nov 11, 2026 |
-| 13 | Government cloud availability: standard MDM in GCC High/DoD; classic Autopilot not available; device association planned | Prerequisites | verified | Learn, "Microsoft Intune for US Government GCC High and DoD service description" | Nov 11, 2026 |
+| 13 | GCC availability: GCC is the commercial Intune instance; enrollment features and Autopilot available | Prerequisites | verified | Learn, Intune service description for US Government (https://learn.microsoft.com/intune/fundamentals/government-service) | Nov 11, 2026 |
 | 14 | importedDeviceIdentities Graph beta endpoint, permission, national clouds, properties | Evidence | verified | Graph beta reference, "List importedDeviceIdentities"; "importedDeviceIdentity resource type" | Nov 11, 2026 |
 | 15 | managedDeviceOwnerType values unknown, company, personal | Evidence | verified | Graph v1.0, "managedDevice resource type" | Nov 11, 2026 |
 | 16 | windowsAutopilotDeviceIdentities v1.0 list | Evidence | verified (endpoint already used by the book's Intune track guide) | Graph v1.0, "List windowsAutopilotDeviceIdentities" | Nov 11, 2026 |

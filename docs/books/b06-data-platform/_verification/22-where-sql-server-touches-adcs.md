@@ -1,6 +1,6 @@
 # Verification — Chapter 22, Where SQL Server Touches AD CS
 
-Sources: the existing page `22-where-sql-server-touches-adcs.md` (former narrative Book 10, Chapter 1) and the archived front page `docs/case-studies/sql-server-narrative/Book_10.md`. PKI facts kept consistent with Book 02 Chapter 04 (Cloud PKI, Entra CBA as relying party) and Book 03 Chapter 09 (PIV issued under Federal PKI Common Policy; Cloud PKI in GCC High not DoD). All sources accessed Oct 20, 2026.
+Sources: the existing page `22-where-sql-server-touches-adcs.md` (former narrative Book 10, Chapter 1) and the archived front page `docs/case-studies/sql-server-narrative/Book_10.md`. PKI facts kept consistent with Book 02 Chapter 04 (Cloud PKI, Entra CBA as relying party) and Book 03 Chapter 09 (PIV issued under Federal PKI Common Policy). All sources accessed Oct 20, 2026.
 
 ## Claims log
 
@@ -14,7 +14,7 @@ Sources: the existing page `22-where-sql-server-touches-adcs.md` (former narrati
 | 6 | Certificate requirements: Server Auth EKU, KeySpec AT_KEYEXCHANGE/legacy CSP, SAN incl. AG listener; AD CS template warning | TLS | added (verified) | Learn, Certificate Requirements for SQL Server |
 | 7 | When the ADCS certificate expires, validating clients reject the connection | TLS | corrected: SQL Server checks validity only at configuration and keeps running; clients that check each connection (e.g., Power BI) error; Microsoft recommends against expired certificates | same, "Expired certificates" |
 | 8 | Cloud PKI issues through Intune SCEP to Intune-enrolled devices; "check that each SQL Server host qualifies" | TLS | corrected: Intune doesn't support Windows Server, so Cloud PKI can't issue SQL Server TLS certificates directly; BYOCA can share a root; server issuer is a separate decision | Learn, Cloud PKI overview; Supported operating systems in Intune; consistent with Book 05 Ch03/Ch09 |
-| 9 | Cloud PKI licensing and cloud availability (GCC High yes, DoD no) | TLS | added (verified), consistent with Book 03 Ch09 | Learn, Cloud PKI overview |
+| 9 | Cloud PKI licensing | TLS | added (verified), consistent with Book 03 Ch09 | Learn, Cloud PKI overview |
 | 10 | Type-C login via `CREATE LOGIN ... FROM CERTIFICATE`; "used only for code signing", "can't be used to connect" | Type-C | verified (quotes exact) | Learn, CREATE LOGIN Remarks |
 | 11 | Type-K (asymmetric key) logins behave the same | Type-C | added (verified) | Learn, sys.server_principals; CREATE LOGIN |
 | 12 | Most such certificates are created inside SQL Server | Type-C | verified in part (`CREATE CERTIFICATE` can generate a self-signed cert); "most" kept as the author's judgment | Learn, CREATE CERTIFICATE |
@@ -43,7 +43,7 @@ Sources: the existing page `22-where-sql-server-touches-adcs.md` (former narrati
 | Book_10.md diagram `book-10-adcs-dependencies.svg` | Placed after the callouts | kept (moved) |
 | Book_10.md Download bundle callout | Not carried; bundles are linked from the book index | removed |
 | Book_10.md chapter listing; dependency-chain line ("behind steps 4 and 8") | Replaced by book navigation; dependency-chain page archived | removed |
-| Book_10.md Authoritative references (Cloud PKI, Intune Government, encrypt connections, CREATE LOGIN, Entra CBA) | Footnoted where used; Intune Government page not cited because the Cloud PKI page itself states GCC High/DoD availability | kept (as footnotes) |
+| Book_10.md Authoritative references (Cloud PKI, Intune Government, encrypt connections, CREATE LOGIN, Entra CBA) | Footnoted where used; Intune Government page not cited | kept (as footnotes) |
 | Book_10.md Continue-the-series links | Chapter 21 / index / Chapter 23 | edited |
 | Diagram sources `book-10-*.flow.yaml` | Not changed: they say "ADCS issues ... certificates for certificate-based authentication", which is still true where AD CS issues DC or non-PIV certificates; editor may wish to say "DC and smart-card certificates" on next render | kept |
 

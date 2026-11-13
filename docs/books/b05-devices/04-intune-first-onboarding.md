@@ -123,15 +123,14 @@ Microsoft now ships two Windows provisioning solutions. Windows Autopilot device
 | More than 25 apps or 10 PowerShell scripts during setup | No | Yes |
 | Block the desktop until user-based configuration is applied | No | Yes |
 | What admins configure | Device preparation policy, plus a device security group owned by the Intune Provisioning Client | Deployment profile, plus the Enrollment Status Page |
-| GCC High and DoD | Yes | No |
 
 ### Which one, in a GCC tenant
 
-The workbook assumes a Microsoft 365 GCC tenant. Intune doesn't have a separate GCC instance; GCC uses the commercial Intune service, so both solutions are available. GCC High and DoD use a separate government instance in which classic Windows Autopilot isn't available.[^c04-intune-gov]
+The workbook assumes a Microsoft 365 GCC tenant. Intune doesn't have a separate GCC instance; GCC uses the commercial Intune service, so both solutions are available.[^c04-intune-gov]
 
 The program's recommendation for a GCC tenant is **classic Windows Autopilot, user-driven, with Microsoft Entra join, and OEM or reseller registration carrying a group tag**, as the default for standard hardware. The reason is pillar 2. Classic Autopilot's registration carries the procurement attribute (group tag and purchase order ID) from the vendor to the Entra ID device object before the device is powered on. Device preparation has no registration and no group tag. Since August 2026 it offers *device association*, which binds a device to the tenant before enrollment, marks it corporate-owned, and can assign it a device-targeted policy and a name template; but association starts from device information exported on the device itself during setup and uploaded one device per file, so it's an administrator-side binding, not a vendor-side carrier.[^c04-ap-assoc] Without a vendor carrier, devices are added to a device group at enrollment time,[^c04-ap-overview] and the organizational assignment has to come from the procurement mapping table after enrollment.
 
-Use device preparation where its advantages matter (a simpler policy, faster provisioning, mixing Win32 and line-of-business apps in one deployment, or a tenant that might later move to GCC High), and carry the attribute from the serial-number mapping table in phase 3. Device preparation itself supports GCC High and DoD, but device association isn't yet available in sovereign cloud environments, so a tenant that moves to GCC High can't plan on association or the device name template that depends on it.[^c04-ap-overview] Don't use either solution with hybrid join for new devices; that's what pillar 4 forbids.
+Use device preparation where its advantages matter (a simpler policy, faster provisioning, or mixing Win32 and line-of-business apps in one deployment), and carry the attribute from the serial-number mapping table in phase 3. Don't use either solution with hybrid join for new devices; that's what pillar 4 forbids.
 
 Device preparation requires Windows 11 version 24H2 or later, or version 23H2 or 22H2 with KB5035942 or later. Installation media dated April 2024 or later includes that update. It needs Microsoft Entra automatic enrollment configured, and the first user who signs in must be allowed to join devices to Entra ID.[^c04-ap-dp-req] That last requirement is a governance point: on the device preparation path, the user's own join permission is what brings the device in.
 
@@ -173,8 +172,6 @@ That gives the doctrine its enforcement point. With personal Windows enrollment 
 
 Classic Autopilot profiles can apply a device name template. Names must be 15 characters or fewer, use letters, numbers and hyphens, and can't be all numbers. The `%SERIAL%` macro inserts the hardware serial number and `%RAND:x%` inserts x random digits.[^c04-ap-profile] The program's convention is a short, fixed prefix for the asset class followed by `%SERIAL%`, truncated to fit 15 characters, because the serial number is the procurement join key ([Chapter 03](03-where-device-and-server-data-lives.md)). Device preparation can also apply a name template, up to 63 characters with the same macros, but only to devices bound through device association; it has no effect on devices onboarded with corporate identifiers only.[^c04-ap-dp-name] Organizational position doesn't go in the name. It goes in the group tag, where it can change without renaming the device.
 
-In GCC High and DoD, renaming devices during device preparation based on organizational structure is still listed as a planned feature.[^c04-intune-gov] Check device preparation's current capabilities before you rely on it for naming.
-
 ### The Enrollment Status Page
 
 The Enrollment Status Page (ESP) shows provisioning progress and can block the device until required policies and apps are installed. It runs in two phases: device setup during the out-of-box experience, then account setup for the first user. The default ESP assigned to all devices doesn't show app and profile progress; Microsoft recommends a custom ESP that does, because a user who signs in before the device is fully provisioned can cause problems.[^c04-ap-esp] A tenant can hold up to 51 ESP profiles (the default plus 50).[^c04-esp]
@@ -209,7 +206,7 @@ A few facts behind the table, current as of October 2026:
 
 - Devices enrolled through an Apple device enrollment program, Windows Autopilot, Knox Mobile Enrollment, Android Enterprise corporate-owned methods and Google zero-touch are marked corporate-owned automatically.[^c04-corp-ids]
 - Intune supports Linux on Ubuntu Desktop 24.04 and 26.04 LTS and Red Hat Enterprise Linux 9 and 10.[^c04-platforms]
-- DFCI management for Surface works only with classic Autopilot; device preparation doesn't support it. DFCI is in the planned list for GCC High and DoD.[^c04-ap-compare][^c04-intune-gov]
+- DFCI management for Surface works only with classic Autopilot; device preparation doesn't support it.[^c04-ap-compare]
 
 ## The four exception paths
 
@@ -268,7 +265,7 @@ A finding this section addresses is ready for closure when every applicable stat
 | Control | What it does | Authority and applicability |
 |---|---|---|
 | Automatic enrollment (MDM user scope) | Enrolls a Windows device in Intune when a user in scope joins it to Microsoft Entra ID or adds a work account. **Some** scopes it to named groups, **All** to every user.[^c04-z-automdm] | Microsoft-recommended for Intune-managed Windows; **license-dependent**: automatic MDM enrollment is a Microsoft Entra ID P1 feature.[^c04-z-automdm-quick] |
-| Windows Autopilot | Registers the hardware before first boot and marks the device corporate; [above](#windows-autopilot-or-autopilot-device-preparation) | Risk-based recommended (pillar 2); **environment-dependent**: not available in GCC High or DoD[^c04-intune-gov] |
+| Windows Autopilot | Registers the hardware before first boot and marks the device corporate; [above](#windows-autopilot-or-autopilot-device-preparation) | Risk-based recommended (pillar 2); available in GCC, which uses the commercial Intune instance[^c04-intune-gov] |
 | Ownership classification | Records each device as corporate or personal, which decides what Intune collects and which restrictions apply[^c04-corp-ids] | Microsoft-documented behavior; the classification table below is the program's design |
 | Corporate identifiers | Pre-registers serial numbers (or, for Windows, manufacturer, model and serial) so that a device enrolling outside Autopilot is treated as corporate[^c04-corp-ids] | Optional where Autopilot or Automated Device Enrollment already marks the device corporate; risk-based recommended for device preparation |
 | Platform restriction | Blocks personally owned Windows enrollment and sets OS floors per platform[^c04-z-platform] | Risk-based recommended. Microsoft states enrollment restrictions aren't security features: a compromised device can misrepresent itself, so they are a best-effort barrier for non-malicious users[^c04-restrictions] |
@@ -291,7 +288,7 @@ Two facts about identifiers shape the design. Windows corporate identifiers appl
 - **Licenses:** Intune Plan 1 for every user who enrolls; Microsoft Entra ID P1 for automatic MDM enrollment.[^c04-z-automdm-quick]
 - **Roles:** Intune Administrator for platform restrictions and Intune Service Administrator for device limit restrictions (other built-in Intune roles are read-only for them);[^c04-z-platform][^c04-z-limit] Policy and Profile Manager or Intune Administrator for corporate identifiers.[^c04-corp-ids]
 - **In place first:** the procurement intake fields from phase 1, so that every identifier upload has a purchase order behind it; the emergency access design in [Book 04](../b04-access/index.md), although nothing in this section blocks sign-in.
-- **Government cloud availability**, from the Intune government service description (read Nov 11, 2026):[^c04-intune-gov] automatic enrollment, enrollment restrictions and corporate identifiers are standard MDM features, available in GCC (the commercial instance) and in GCC High and DoD; classic Windows Autopilot is not available in GCC High or DoD, and Autopilot device preparation's device association is listed as planned there. The Graph endpoint for corporate identifiers is documented for the global service and both US Government clouds.[^c04-z-graph-ids]
+- **GCC availability**, from the Intune service description for US Government (read Nov 11, 2026):[^c04-intune-gov] automatic enrollment, enrollment restrictions, corporate identifiers and Windows Autopilot are available in GCC, which uses the commercial Intune instance. The Graph endpoint for corporate identifiers is documented for the global service.[^c04-z-graph-ids]
 
 ### Pilot
 
@@ -338,7 +335,7 @@ Not applicable to emergency access: enrollment controls don't block sign-in, and
 
 ::: {.callout-warning}
 ## Illustrative, not tested against a production tenant
-The script below is read-only and illustrative. Run it first against a test tenant. In GCC High, connect with `-Environment USGov` and replace `graph.microsoft.com` with `graph.microsoft.us`.
+The script below is read-only and illustrative. Run it first against a test tenant.
 :::
 
 Replace `<procurement-export.csv>` with the procurement system's export of open and delivered orders; it needs a `SerialNumber` column. The corporate identifier call uses the beta endpoint, which Microsoft supports but changes more often.[^c04-z-graph-ids]

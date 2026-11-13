@@ -17,7 +17,7 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (Appendices
 | 9 | Extension attribute assignments | Extension attributes | restated-as-design | program design |
 | 10 | HireDate/TermDate in ext7/ext8 drive workflows | Extension attributes | corrected (LCW reads native employeeHireDate/employeeLeaveDateTime; ext7/8 are AD carriers mapped by sync) | lifecycle-workflow-on-premises |
 | 11 | Built-in auth strength listing via Graph (beta) | CA templates | verified | concept-authentication-strengths |
-| 12 | GCC uses graph.microsoft.com; graph.microsoft.us is GCC High | CA templates | verified | graph/deployments |
+| 12 | GCC uses graph.microsoft.com | CA templates | verified | graph/deployments |
 | 13 | CA JSON schema (clientAppTypes, grantControls, sessionControls) | CA templates | unverifiable in full (structure carried from source; CA015 matches Microsoft's sample) | conditional-access/workload-identity |
 | 14 | CA013 password change + MFA | CA templates | corrected (riskRemediation; needs Prefer header; auth strength and every-time sign-in frequency applied) | conditionalaccessgrantcontrols; howto-identity-protection-configure-risk-policies |
 | 15 | CA015 workload identity JSON, beta endpoint | CA templates | verified | conditional-access/workload-identity |

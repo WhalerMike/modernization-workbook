@@ -7,7 +7,7 @@ Sources: `docs/operational-guides/access-plane/conditional-access-library.md` Ap
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Create needs Policy.Read.All + Policy.ReadWrite.ConditionalAccess; Application.Read.All for app conditions | How to use | verified | conditionalaccessroot-post-policies |
-| 2 | GCC uses graph.microsoft.com; GCC High graph.microsoft.us | How to use | verified | graph/deployments |
+| 2 | GCC uses graph.microsoft.com | How to use | verified | graph/deployments |
 | 3 | Endpoints list/get/create/update/delete | How to use | verified | conditionalAccessPolicy resource |
 | 4 | Authentication strength endpoint `/policies/authenticationStrengthPolicies` | How to use | corrected (source implied the `identity/conditionalAccess/authenticationStrength` beta path only) | authenticationstrengthroot-list-policies |
 | 5 | State values enabled/disabled/enabledForReportingButNotEnforced | How to use | verified | conditionalAccessPolicy resource |

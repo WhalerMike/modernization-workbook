@@ -26,7 +26,7 @@ A set of requests an agency can put to a cloud provider about its government off
 
 The productive conversation with a provider isn't "grant us commercial parity." It is a short list of questions, each of which the provider can answer yes, no, or with a date. Three habits make a request hard to deflect:
 
-1. **Name the item.** One feature, one package, one rule. "GCC withholds telemetry" invites a general reply; "the admin center's network connectivity layer is documented as unavailable in GCC, GCC High and DoD"[^aA-netconn] doesn't.
+1. **Name the item.** One feature, one package, one rule. "GCC withholds telemetry" invites a general reply; "the admin center's network connectivity layer is documented as unavailable in GCC"[^aA-netconn] doesn't.
 2. **Cite the basis.** Quote the provider's own documentation or the FedRAMP rule, with a link. Microsoft's ExpressRoute for Microsoft 365 process is the model: Microsoft reviews each request and authorizes it only "when a customer's regulatory requirement mandates direct connectivity," and asks the customer for "the text excerpt and web link to the regulation."[^aA-er] A provider that uses that standard for its own exceptions can't object to it being used in return.
 3. **Ask for data, not documents.** The 2026 FedRAMP rules make much of a provider's certification data machine-readable by requirement.[^aA-cds][^aA-scn] Ask for the feed and its documentation, not a PDF.
 
@@ -54,7 +54,7 @@ Each request below follows the same layout: what to ask, why the provider can an
 
 **Ask.** Make the Microsoft 365 admin center's network connectivity layer available in GCC: network assessments per location, network insights, network provider attribution and the Network Provider Index. If it can't be, publish the specific obstacle (which data, which processing location, which control) that prevents it.
 
-**Basis.** Microsoft documents the feature as supporting commercial and 21Vianet tenants "but not GCC Moderate, GCC High, or DoD."[^aA-netconn] It is the broadest documented loss for network decisions: it is the source of the per-location assessments and of the attribution of performance to named network providers, classified as ISP, Overlay ("VPN, Cloud Proxy, SD-WAN, and SASE") or Corporate.[^aA-npp] Without it, an agency funds its own measurement to choose between transport and SASE providers ([Book 09 Chapter 12](../b09-network/12-microsoft-365-traffic.md)).
+**Basis.** Microsoft documents the feature as supporting commercial and 21Vianet tenants and not GCC Moderate.[^aA-netconn] It is the broadest documented loss for network decisions: it is the source of the per-location assessments and of the attribution of performance to named network providers, classified as ISP, Overlay ("VPN, Cloud Proxy, SD-WAN, and SASE") or Corporate.[^aA-npp] Without it, an agency funds its own measurement to choose between transport and SASE providers ([Book 09 Chapter 12](../b09-network/12-microsoft-365-traffic.md)).
 
 **A useful answer.** A target date for GCC, or a named obstacle specific enough that the agency can judge whether a compensating capability or an alternative path is the better use of its money.
 
@@ -125,7 +125,7 @@ Each request is answerable, none needs a boundary argument, and A1, A5, A6, A7 a
 [^aA-cds]: FedRAMP, "Certification Data Sharing," *FedRAMP Consolidated Rules for 2026* (CDS-CSO-PUB, CDS-CSO-SVC, CDS-CSO-UTC, CDS-TRC-USH, -PAC, -ACL), <https://www.fedramp.gov/2026/reference/certification-data-sharing/> (accessed Oct 21, 2026).
 [^aA-scn]: FedRAMP, "Significant Change Notification," *FedRAMP Consolidated Rules for 2026* (SCN-CSO-EVA, -HIS, -HRM, -NOM), <https://www.fedramp.gov/2026/reference/significant-change-notification/> (accessed Oct 21, 2026).
 [^aA-npp]: Microsoft Learn, "Network provider details and connectivity attribution in the Microsoft 365 Admin Center," <https://learn.microsoft.com/microsoft-365/enterprise/office-365-network-mac-perf-nppdetails?view=o365-worldwide> (accessed Oct 21, 2026).
-[^aA-fr]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT, MSO365MTA and FR1824057433; count of listings with a populated `trust_center` field computed from the same file.
+[^aA-fr]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, dataset last changed October 21, 2026 (accessed Oct 21, 2026). Records MSO365MT and MSO365MTA; count of listings with a populated `trust_center` field computed from the same file.
 [^aA-gccsd]: Microsoft Learn, "Office 365 GCC" (service description), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc> (accessed Oct 21, 2026).
 [^aA-mas]: FedRAMP, "Minimum Assessment Scope," *FedRAMP Consolidated Rules for 2026* (MAS-CSO-IIR and its notes), <https://www.fedramp.gov/2026/reference/minimum-assessment-scope/> (accessed Oct 21, 2026).
 [^aA-crjson]: FedRAMP, *FedRAMP Consolidated Rules for 2026*, machine-readable ruleset `fedramp-consolidated-rules.json`, version 2026.10.13.01 (agency rule CCM-AGM-ROR), <https://github.com/FedRAMP/rules> (accessed Oct 21, 2026).

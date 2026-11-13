@@ -22,7 +22,7 @@ Writer: W5. Sources: `docs/operational-guides/program-management/master-project-
 | 14 | R-002 critical before pilot (Week 9) | R-002 | re-keyed: Critical before G0 (no open P1 findings), High before pilot | Book 01 Ch12 G0 |
 | 15 | R-003 "application exception policies in Conditional Access" for NTLM | R-003 | corrected: CA can't evaluate NTLM | Book 01 Ch08 (settled) |
 | 16 | R-004 Entra Connect staging mode | R-004 | updated: Cloud Sync default, Connect Sync with staging server where needed | Book 02 Ch09 (settled) |
-| 17 | R-005 "procure Intune Suite licenses" | R-005 | updated: Cloud PKI add-on to Plan 1/2 (Suite or standalone), in M365 E5/E7 from July 2026; add-ons not supported in sovereign clouds (agency to confirm for its cloud; Cloud PKI page says available in GCC High) | MS Learn Cloud PKI overview; Intune planning guide; Intune add-ons |
+| 17 | R-005 "procure Intune Suite licenses" | R-005 | updated: Cloud PKI add-on to Plan 1/2 (Suite or standalone), in M365 E5/E7 from July 2026; add-ons not supported in sovereign clouds (agency to confirm for its cloud; in GCC, Cloud PKI follows the commercial service) | MS Learn Cloud PKI overview; Intune planning guide; Intune add-ons |
 | 18 | R-008 "follow-on document P2" active-passive replication | R-008 | removed reference; standby replica per Book 01 Ch03 | Book 01 Ch03 (settled) |
 | 19 | R-011 strong-mapping failures as a future risk "before enabling CBA" | R-011 | corrected: Full Enforcement with Feb 2025 update; Compatibility fallback ended with Sept 9, 2025 update; Entra CBA is a separate binding check | Microsoft Support KB5014754 |
 | 20 | R-016 dynamic group processing can exceed 24 h | R-016 | verified (settled) | Book 01 Ch04 |

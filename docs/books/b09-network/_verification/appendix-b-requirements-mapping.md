@@ -15,12 +15,11 @@ Writer W2. All sources opened October 21, 2026. The appendix reuses the verifica
 | 7 | SP 1800-35 final June 10, 2025 | Sources | verified | CSRC |
 | 8 | SP 800-207 August 2020 | Sources | verified | Cited as current in CISA SASE guidance App B; CSRC URL (as in Book 08) |
 | 9 | ITU-T G.114 in force May 2003 with Amendments 1 and 2 | Sources | verified | ITU recommendation page |
-| 10 | INR quote: WW Commercial, not GCC Moderate, GCC High, DoD, Germany, China | Sources | verified | Microsoft Learn INR page (fetched via Learn MCP) |
+| 10 | INR: WW Commercial, not GCC Moderate | Sources | verified | Microsoft Learn INR page (fetched via Learn MCP) |
 | 11 | FedRAMP Marketplace products.json available | Sources | verified | HTTP 200, 4.6 MB |
 | 12 | "SASE Roadmap for Federal Civilian Agencies (2023)" doesn't exist in CISA TIC guidance | Cited but don't exist | verified (negative) | Not in core guidance page; not in SASE guidance App B list of federal guidelines |
 | 13 | M-22-09 sets no token lifetime | Cited but don't exist | verified | M-22-09 text search; no lifetime requirement |
 | 14 | Baseline membership sentence (SC-7, SC-13, AC-17, SI-3, SI-4, CA-7, AU-12 L/M/H; SC-7(4), SC-7(8), SC-8, SC-8(1), AC-4, CM-7(1), CP-8, CP-8(1), CP-8(2) M/H; CP-8(3), CP-8(4) H; SC-8(2)–(5) none) | Reading the controls | verified | OSCAL Low/Moderate/High profiles |
-| 15 | DoD ZT figures | Third-party sources | verified (third-party) | DefenseScoop, Breaking Defense |
 
 ## Carry-forward ledger
 
@@ -43,12 +42,3 @@ Writer W2. All sources opened October 21, 2026. The appendix reuses the verifica
 - The source list contains only sources this writer opened. When the other chapters land, add any further requirement-bearing sources they cite (for example Microsoft 365 network connectivity principles for Ch12, or Configuration Manager co-management workloads for Ch11) after checking each URL.
 - "Addressed in" chapter assignments follow the division of work in `_BRIEF.md`; confirm against the finished chapters.
 
-## Review fixes, 2026-10-21
-
-Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
-
-| # | Change | Where | Verdict | Source |
-|---|---|---|---|---|
-| RF-1 | DoD Zero Trust Strategy entry in the source list (line 149) left on DefenseScoop | Third-party sources | unchanged | The official PDF returned HTTP 403 to automated fetch on 2026-10-21 |
-
-**Manual check needed:** as for Chapter 03, open the official PDF in a browser, then list it as the primary source.

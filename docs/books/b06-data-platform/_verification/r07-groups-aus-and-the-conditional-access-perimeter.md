@@ -11,7 +11,7 @@ Microsoft claims were checked on Microsoft Learn on 2026-10-20. Function claims 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | `Export-FMPEntraGroups` reads via `Get-MgGroup` or a snapshot; parameters `-TenantId`, `-SnapshotPath`, `-IncludeDynamic`, `-OutputPath`, `-Cloud`, `-GraphApiVersion`, `-GraphEndpoint` | Export-FMPEntraGroups | verified (function and parameters exist); `Get-MgGroup` verified | program source; Get-MgGroup |
-| 2 | "GCC-Moderate uses the cloud-correct Graph base" | Export-FMPEntraGroups; Phase 2 callout | corrected/clarified: GCC uses the worldwide `graph.microsoft.com`; only GCC High/DoD use `.us` endpoints. Internal `Resolve-FMPGraphBase`/`resolve_graph_base`, `[api]` extra and AGENTS.md references removed | Microsoft Graph national cloud deployments |
+| 2 | "GCC-Moderate uses the cloud-correct Graph base" | Export-FMPEntraGroups; Phase 2 callout | corrected/clarified: GCC uses the worldwide `graph.microsoft.com`. Internal `Resolve-FMPGraphBase`/`resolve_graph_base`, `[api]` extra and AGENTS.md references removed | Microsoft Graph national cloud deployments |
 | 3 | `security_enabled` + `mail_enabled` distinguish the types; `is_dynamic`/`membership_rule` | Export-FMPEntraGroups | verified against Graph properties (`groupTypes` Unified/DynamicMembership, `membershipRule`) | group resource type |
 | 4 | `Export-FMPConditionalAccess` via `Get-MgIdentityConditionalAccessPolicy`; emits `id`, `display_name`, `state` | Export-FMPConditionalAccess | verified; added that `state` alone doesn't show coverage of the SQL resource | program source; Get-MgIdentityConditionalAccessPolicy |
 | 5 | Four-type taxonomy | Mapping table | restated-as-design (program taxonomy, Chapter 16) | — |
@@ -73,7 +73,6 @@ Phase 4 of the Zero Trust closure update. Added "Control states, change safety a
 
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
-| 1 | Conditional Access, advanced group management (dynamic groups) and delegated administration with built-in roles available in Azure for US Government; administrative units not listed | Control states (Applies) | added (verified); AUs and restricted management AUs recorded as not yet specified for GCC High and DoD | Learn, "Microsoft Entra feature availability," https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
 | 2 | AU-scoped administrators need P1; members need Free | Control states (Applies) | added (verified) | Learn, "Administrative units in Microsoft Entra ID," License requirements | Nov 11, 2026 |
 | 3 | FIDO2 not currently supported for Entra authentication to SQL Server on Arc | Change safety (emergency access) | verified, unchanged (cross-reference to Chapter 20) | Learn, "Managed identity for SQL Server enabled by Azure Arc," Limitations | Nov 11, 2026 |
 | 4 | GCC uses worldwide Graph endpoints | Control states (Applies) | verified, unchanged | Learn, "Microsoft Graph national cloud deployments" | Nov 11, 2026 |

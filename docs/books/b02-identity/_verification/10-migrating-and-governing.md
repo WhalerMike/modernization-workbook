@@ -32,7 +32,6 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (§9–§15
 | 24 | ToU cadences | Terms of use | restated-as-design | program design |
 | 25 | Guest lifecycle; EM removes guests at expiry | B2B | verified (EM removal) | identity-governance-overview |
 | 26 | Guest Inviter role; allowlist "in GCC-Moderate environments" | B2B | corrected (allowlist is a program choice; B2B supports allow/block lists) | external-id/faq |
-| 27 | Cross-cloud invitations must use UPN | B2B | verified (added) | external-id/faq |
 | 28 | CTAS defaults: B2B collaboration allowed, direct connect blocked | CTAS | verified (source said default "all", correct) | cross-tenant-access-overview |
 | 29 | Trust MFA/compliant/hybrid joined claims | CTAS | verified | cross-tenant-access-overview |
 | 30 | Automatic redemption setting | CTAS | verified (added) | cross-tenant-access-overview |
@@ -73,7 +72,7 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (§9–§15
 | 65 | Detection KQL patterns | Detections | corrected (PIM operation name; CA "notApplied" uses ConditionalAccessStatus; stale accounts via signInActivity; SP credential filter client-side) | reference-audit-activities; Graph user resource |
 | 66 | Alert on elevations outside normal pattern | Detections | verified (added) | security-operations-privileged-accounts |
 | 67 | Workbook list ("built-in templates") | Workbooks | corrected (actual public templates listed; need Log Analytics) | overview-workbooks; CA insights |
-| 68 | Compliance Manager templates (NIST 800-53, FedRAMP Moderate, CMMC L2) | Compliance Manager | corrected (Rev. 5, FedRAMP Moderate, CMMC available; CMMC included for GCC; others premium) | compliance-manager-regulations-list |
+| 68 | Compliance Manager templates (NIST 800-53, FedRAMP Moderate) | Compliance Manager | corrected (Rev. 5 and FedRAMP Moderate available; both premium) | compliance-manager-regulations-list |
 | 69 | AU-2 "Audit Events" | Compliance Manager | corrected (Rev. 5 title Event Logging) | NIST SP 800-53 Rev. 5 (FedRAMP catalog) |
 | 70 | KSI IDs AAM, ELP, JIT, APM, MLA-LET, MLA-RVL; CR26 launched June 24, 2026 | 20x table | verified; KSI-IAM-SNU added | fedramp.gov 20x IAM and MLA KSI pages |
 | 71 | Control-to-KSI mapping | 20x table | restated-as-design | program design |
@@ -216,12 +215,11 @@ New subsections "Banned passwords in the cloud and on the domain controllers," "
 | G9 | Install and registration commands; device code on Server Core; forest registration needs Enterprise Admin | §Banned passwords | verified | howto-password-ban-bad-on-premises-deploy |
 | G10 | Portal path to enable on premises; audit mode | §Banned passwords | verified | <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-operations> |
 | G11 | Log path and events 10014-10017, 10024-10025 | §Banned passwords | verified | <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-monitor> |
-| G12 | Supported in Azure Government; lists available in Azure Government; Azure Government proxy endpoints not yet specified on the deploy page | §Banned passwords | verified | <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-faq>; feature-availability; deploy page |
+| G12 | GCC uses the commercial service; commercial proxy endpoints listed on the deploy page | §Banned passwords | verified | <https://learn.microsoft.com/entra/identity/authentication/howto-password-ban-bad-on-premises-faq>; deploy page |
 | G13 | Mandatory MFA phases and dates; read operations exempt in Phase 2; postponement to July 1, 2026; no opt-out | §Mandatory MFA | verified | <https://learn.microsoft.com/entra/identity/authentication/concept-mandatory-multifactor-authentication> |
 | G14 | "As of November 2026 both phases apply" | §Mandatory MFA | restated-as-design (inferred from the latest postponement date) | — |
 | G15 | Break-glass in scope (passkey or CBA); workload identities out, user service accounts in; federated IdP must send `multipleauthn` | §Mandatory MFA | verified | concept-mandatory-multifactor-authentication |
 | G16 | Prepare: sign-in logs by app ID; CA on Microsoft Admin Portals and Windows Azure Service Management API, report-only; CLI 2.76+, PowerShell 14.3+ | §Mandatory MFA | verified | concept-mandatory-multifactor-authentication; <https://learn.microsoft.com/entra/identity/authentication/how-to-mandatory-multifactor-authentication> |
-| G17 | Enforced only in the public Azure cloud; not currently in Azure for US Government | §Mandatory MFA | verified | concept-mandatory-multifactor-authentication |
 | G18 | Domain conversion leaves other relying parties on AD FS; Appendix D | §AD FS applications; Phase 9 | restated-as-design; Appendix D claims log | <https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-apps-phases-overview> |
 
 ## Revision 2026-11-09 — Learn citation pass

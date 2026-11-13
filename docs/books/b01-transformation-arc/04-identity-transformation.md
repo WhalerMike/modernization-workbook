@@ -154,7 +154,7 @@ Active Directory delegated OU-level rights through access-control lists on the O
 
 Assign the Tier 1 reader roles at tenant scope, not at the enterprise unit. Those roles can't be scoped to an administrative unit, and because units don't restrict reading anyway, a tenant-scoped reader role delivers the same visibility.[^c04-au-roles]
 
-Each unit uses a dynamic membership rule that mirrors the corresponding dynamic-group rule, so it holds the same users. Dynamic units have limits of their own: one object type per unit (users or devices), a Microsoft Entra ID P1 license count covering every unique user in one or more dynamic units, and availability only in the global Azure cloud, not in specialized clouds such as Azure Government.[^c04-dynau] Microsoft 365 GCC pairs with Microsoft Entra ID in the global cloud, so a GCC Moderate tenant can use dynamic units; GCC High and DoD tenants, which pair with Entra ID in Azure Government, can't, and must maintain membership another way.[^c04-gov-pairing]
+Each unit uses a dynamic membership rule that mirrors the corresponding dynamic-group rule, so it holds the same users. Dynamic units have limits of their own: one object type per unit (users or devices), a Microsoft Entra ID P1 license count covering every unique user in one or more dynamic units, and availability only in the global Azure cloud, not in specialized clouds such as Azure Government.[^c04-dynau] Microsoft 365 GCC pairs with Microsoft Entra ID in the global cloud, so a GCC Moderate tenant can use dynamic units.[^c04-gov-pairing]
 
 ### Restricted management
 

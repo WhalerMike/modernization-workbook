@@ -12,7 +12,7 @@ Checked October 21, 2026. External definitions verified against rfc-editor.org (
 | 4 | BOD 26-04 revoked BOD 19-02 and 22-01 | BOD | verified | bod2604 |
 | 5 | CAE tokens up to 28 hours | CAE | verified | cae |
 | 6 | CLAW expansion | CLAW | corrected: current name is Comprehensive Log Aggregation Warehouse (SASE guidance, Program Guidebook v1.2); "Cloud" was the earlier name (2021 NCPS CIRA). The source glossary (BEG §9) had it backward | sase |
-| 7 | DIA ≠ DISA circuit; DISA's network is DISN | DIA | verified via Ch02 (footnoted there); DISN entry folded into DIA | Ch02 |
+| 7 | DIA = direct internet access | DIA | restated-as-design | — |
 | 8 | DoH RFC 8484, DoT RFC 7858 | DoH and DoT | verified | rfc8484; rfc7858 |
 | 9 | EAP-TLS RFC 5216, RFC 9190 | EAP-TLS | verified | eaptls |
 | 10 | ED 26-03 date | ED | corrected: February 25, 2026 (source: February 26) | ed2603 |
@@ -41,7 +41,6 @@ Checked October 21, 2026. External definitions verified against rfc-editor.org (
 | 33 | Significant change definition | Significant change | verified | sp80037 |
 | 34 | SQL Server default instance TCP 1433 | TDS | verified (Microsoft doesn't use "TDS" on that page; the protocol name is the book's) | sqlport |
 | 35 | Tenant restrictions v2 enforcement options | Tenant restrictions v2 | verified | trv2 |
-| 36 | Thunderdome components (SASE, SD-WAN, CESS, app stacks) | Thunderdome | removed (disa.mil unreachable; components only in secondary coverage) | — |
 | 37 | M-19-26 established TIC 3.0, rescinded M-08-05 | TIC 3.0 | verified | m1926 |
 | 38 | Four TIC 3.0 use cases | TIC 3.0 use cases | verified | tic |
 | 39 | TICAP definition | TICAP | verified (quoted from the SCC) | scc |
@@ -73,7 +72,7 @@ Terms added from the other sources and chapters: access point, address continuit
 
 ## 3. Moderate-civilian additions, October 29, 2026
 
-Added because Book 09 and its research pages now name civilian configuration baselines and keep STIGs only as an optional (High only) reference. Each claim was checked against the primary source on October 29, 2026. DISA's own STIG pages (public.cyber.mil, cyber.mil) didn't resolve from this machine, so the STIG definition is cited from the NIST CSRC Glossary.
+Added because Book 09 and its research pages now name civilian configuration baselines and keep STIGs only as a reference. Each claim was checked against the primary source on October 29, 2026. The STIG definition is cited from the NIST CSRC Glossary.
 
 | # | Claim (short) | Entry | Verdict | Source |
 |---|---|---|---|---|
@@ -81,8 +80,8 @@ Added because Book 09 and its research pages now name civilian configuration bas
 | 2 | "Typically" CM-6 settings for network gear come from a CIS Benchmark and the vendor's hardening guide | CIS Benchmarks | design guidance (program position) | — |
 | 3 | CM-6: most restrictive mode consistent with operations, organization-defined common secure configurations, deviations approved; discussion names vendors, federal agencies, consortia as sources | CM-6 | verified (OSCAL Rev. 5 catalog) | cm6 |
 | 4 | NCP described in SP 800-70 Rev. 5 (May 2026); checklists typically created by IT vendors, also consortia, academia, government agencies | NCP | verified | ncp |
-| 5 | STIG: based on DoD policy and security controls; geared to a specific product and version (CNSSI 4009-2022) | STIG | verified (CSRC Glossary) | stig |
-| 6 | Some civilian agencies borrow a STIG where no other product checklist exists | STIG | design guidance / program position, not footnoted | — |
+| 5 | STIG: geared to a specific product and version (CNSSI 4009-2022) | STIG | verified (CSRC Glossary) | stig |
+| 6 | The program uses the IIS STIGs as its IIS baseline | STIG | program decision (Nov 9, 2026; see Chapter 11 log) | — |
 
 ## Claim language, November 8, 2026
 
