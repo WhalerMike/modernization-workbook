@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.553
+Step six adds the QUIC rule on the pilot
+device, Learn's Windows Firewall command;
+
+2
+00:00:05.553 --> 00:00:10.138
+in production the same rule goes
+out through Intune, piloted first.
+
+3
+00:00:10.138 --> 00:00:14.457
+Steps seven and eight need a T L
+S inspection certificate created,
+
+4
+00:00:14.457 --> 00:00:17.017
+enabled and trusted on the test device,
+
+5
+00:00:17.017 --> 00:00:22.217
+and a pilot T L S policy linked to the
+pilot security profile, never the baseline,
+
+6
+00:00:22.217 --> 00:00:24.217
+as the guide's Step 9 describes,
+
+7
+00:00:24.217 --> 00:00:27.737
+with the privacy officer's
+approval of the test scope.
+
+8
+00:00:27.737 --> 00:00:32.691
+Step seven checks the issuer of an
+inspected site in the browser's certificate
+
+9
+00:00:32.691 --> 00:00:37.263
+viewer: Microsoft Global Secure Access
+Intermediate, or your test chain.
+
+10
+00:00:37.263 --> 00:00:42.857
+Step eight reads the T L S outcomes: T L
+S action reads bypassed or intercepted,
+
+11
+00:00:42.857 --> 00:00:46.675
+and the failure share should
+stay under one percent.
+
+12
+00:00:46.675 --> 00:00:49.787
+Step nine exports the
+profiles and policies.
+
+13
+00:00:49.787 --> 00:00:51.138
+Keep it all in place.
+
+14
+00:00:51.138 --> 00:00:55.097
+Module 6 removes it, and the
+T L S policy in Learn's order:
+
+15
+00:00:55.097 --> 00:00:59.830
+the link from the profile, then
+the policy, then the certificate.

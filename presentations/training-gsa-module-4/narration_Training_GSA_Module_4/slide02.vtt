@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:05.538
+A V P N address pool gives a
+user an address on the network.
+
+3
+00:00:05.538 --> 00:00:07.827
+If that user or device is compromised,
+
+4
+00:00:07.827 --> 00:00:12.849
+the attacker can discover and move laterally
+across everything the pool reaches.
+
+5
+00:00:12.849 --> 00:00:18.101
+Private Access replaces the pool with
+one path per application: its own hosts,
+
+6
+00:00:18.101 --> 00:00:22.285
+ports and protocol, its own
+assigned group, never individuals,
+
+7
+00:00:22.285 --> 00:00:25.813
+and its own Conditional
+Access, in report-only first.
+
+8
+00:00:25.813 --> 00:00:30.500
+A compromised user or device can reach
+what it was assigned, and nothing else.
+
+9
+00:00:30.500 --> 00:00:34.387
+Then the module does the same for
+the paths an attacker wants most:
+
+10
+00:00:34.387 --> 00:00:38.995
+administrative remote desktop, behind
+phishing-resistant authentication,
+
+11
+00:00:38.995 --> 00:00:42.500
+and domain controllers, behind
+the Private Access sensor.

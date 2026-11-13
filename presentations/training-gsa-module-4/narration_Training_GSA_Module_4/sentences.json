@@ -1,0 +1,503 @@
+{
+ "1": [
+  [
+   0.05,
+   8.213,
+   "Welcome to Module 4 of Global Secure Access as the Identity-Aware Network: private applications and administrative paths."
+  ],
+  [
+   8.262,
+   5.35,
+   "A V P N gives a user an address on the network and lets the network decide the rest."
+  ],
+  [
+   13.613,
+   8.15,
+   "Private Access gives each application its own path: its own hosts and ports, its own assigned group, its own Conditional Access."
+  ],
+  [
+   21.762,
+   10.0,
+   "This module covers Steps 6 and 10 of the Global Secure Access implementation guide, and takes about fifty minutes, plus a lab in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   4.338,
+   "A V P N address pool gives a user an address on the network."
+  ],
+  [
+   5.537,
+   7.312,
+   "If that user or device is compromised, the attacker can discover and move laterally across everything the pool reaches."
+  ],
+  [
+   12.85,
+   12.963,
+   "Private Access replaces the pool with one path per application: its own hosts, ports and protocol, its own assigned group, never individuals, and its own Conditional Access, in report-only first."
+  ],
+  [
+   25.812,
+   4.688,
+   "A compromised user or device can reach what it was assigned, and nothing else."
+  ],
+  [
+   30.5,
+   11.95,
+   "Then the module does the same for the paths an attacker wants most: administrative remote desktop, behind phishing-resistant authentication, and domain controllers, behind the Private Access sensor."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   3.95,
+   "You'll explain why Quick Access is a bridge that should shrink to nothing."
+  ],
+  [
+   6.912,
+   9.162,
+   "You'll build a Private Access application: bound to a connector group, with only the segments it uses, a group assignment, and a Conditional Access policy."
+  ],
+  [
+   16.075,
+   7.7,
+   "You'll say where connector groups go, including for applications in A W S, Google Cloud and Oracle Cloud Infrastructure."
+  ],
+  [
+   23.775,
+   4.688,
+   "You'll put administrative hosts behind the phishing-resistant authentication strength."
+  ],
+  [
+   28.462,
+   5.6,
+   "And you'll describe the domain controller sensor's audit-first order, and run Learn's klist test."
+  ],
+  [
+   34.062,
+   7.987,
+   "You need Module 2; Module 3 isn't needed here, because the compliant network check doesn't apply to Private Access apps."
+  ],
+  [
+   42.05,
+   4.213,
+   "Read Network and Transport, chapter five, on Private Access."
+  ],
+  [
+   46.263,
+   3.163,
+   "The lab runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   0.825,
+   "Unit 1."
+  ],
+  [
+   0.875,
+   14.425,
+   "Network and Transport, chapter five, holds the design: Quick Access as the bridge from the V P N, application discovery to find what's actually used, and then per-app applications, each with its own assignment and policy."
+  ],
+  [
+   15.3,
+   2.263,
+   "Learn's Graph tutorial is the build."
+  ],
+  [
+   17.562,
+   4.85,
+   "Create the app from the custom application template and mark it a Private Access app."
+  ],
+  [
+   22.413,
+   1.875,
+   "Bind it to one connector group."
+  ],
+  [
+   24.288,
+   4.737,
+   "Add only the segments it uses: one host, its ports, its protocol."
+  ],
+  [
+   29.025,
+   5.787,
+   "Assign a group, with the app's User role; not individuals, and nested groups aren't supported."
+  ],
+  [
+   34.812,
+   11.887,
+   "Then put Conditional Access on it, in report-only first, following Learn's example: multifactor authentication and a compliant or hybrid-joined device, with emergency access excluded."
+  ],
+  [
+   46.7,
+   8.15,
+   "Learn's rules: segments may not overlap between apps, except that a per-app segment overrides an overlapping Quick Access segment."
+  ],
+  [
+   54.85,
+   3.087,
+   "Clients take up to fifteen minutes to pick up a change."
+  ],
+  [
+   57.938,
+   8.438,
+   "And Microsoft advises against an M F A sign-in frequency on Quick Access, because D N S queries trigger prompts."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.375,
+   "Where do connectors go?"
+  ],
+  [
+   1.425,
+   13.188,
+   "They're outbound only, with no inbound ports, they run on the program's server standard of Windows Server 2019 or later, and they come at least two to a group, so a patch or an outage doesn't take the applications down."
+  ],
+  [
+   14.613,
+   1.188,
+   "Now the clouds."
+  ],
+  [
+   15.8,
+   10.713,
+   "Learn describes Private Access as reaching private apps across hybrid and multicloud environments, through connectors on Windows Server hosts with line of sight to the application."
+  ],
+  [
+   26.512,
+   10.15,
+   "So an application in A W S, Google Cloud, or Oracle Cloud Infrastructure gets a connector group in that cloud's network, exactly as an on-premises one does."
+  ],
+  [
+   36.663,
+   10.438,
+   "But Learn has no connector procedure specific to any of those three clouds, so the guide marks it not yet specified, and it doesn't compare those providers' own access services."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.762,
+   "How do you know it's least privilege?"
+  ],
+  [
+   1.812,
+   14.075,
+   "The guide's Validate for Step 6: from a pilot device off the corporate network, reach the application on its port, and confirm that a port outside the segment fails; the client's Policy tester shows which rule handles the destination."
+  ],
+  [
+   15.887,
+   6.938,
+   "The app's policy runs in report-only for five business days, read in the sign-in log's report-only results."
+  ],
+  [
+   22.825,
+   8.65,
+   "Enforcement sets the policy on, adds ring groups, and then turns off the V P N route for that application, which Module 6 covers."
+  ],
+  [
+   31.475,
+   8.188,
+   "Rollback removes the group's assignment, or puts the policy back in report-only, and the V P N route stays until the wave holds."
+  ],
+  [
+   39.663,
+   10.438,
+   "On day two, the application owner reviews the assignment each quarter, as an access review, and the platform owner keeps at least two healthy, current connectors per group."
+  ],
+  [
+   50.1,
+   7.463,
+   "The metric is the Quick Access residual: segments left in Quick Access, and apps without an assignment or a policy."
+  ],
+  [
+   57.562,
+   2.5,
+   "The starting target for both is zero."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.925,
+   "Unit 2 is administrative remote desktop."
+  ],
+  [
+   2.975,
+   6.588,
+   "Administrative R D P, S S H and S M B are the paths an attacker wants most."
+  ],
+  [
+   9.562,
+   11.575,
+   "Private Access makes each a per-app application with its own assignment and its own Conditional Access, so an administrator authenticates to Entra with a phishing-resistant method before the tunnel opens."
+  ],
+  [
+   21.137,
+   13.95,
+   "Publish administrative hosts as their own applications, separate from user apps: one app per tier or host group, with the host on port thirty-three eighty-nine, assigned only to the privileged group whose pim activation grants it."
+  ],
+  [
+   35.087,
+   9.537,
+   "The policy requires the built-in phishing-resistant authentication strength, whose I D ends in four, and a compliant device, in report-only first."
+  ],
+  [
+   44.625,
+   10.85,
+   "Enforcement ends the old path: the policy goes on, and then direct R D P is removed from the V P N and from the server firewall, except from the connector I P's."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.388,
+   "Unit 3 is domain controllers."
+  ],
+  [
+   2.438,
+   5.112,
+   "The program retires its domain controllers; until then, they're Tier zero."
+  ],
+  [
+   7.55,
+   8.713,
+   "Learn's procedure: publish the D C's on T C P eighty-eight, in Quick Access or an app, and name the service principal names to protect."
+  ],
+  [
+   16.262,
+   4.35,
+   "Open inbound T C P thirteen thirty-seven on the D C's."
+  ],
+  [
+   20.613,
+   4.85,
+   "Install one sensor per D C, silently, and register it with a token."
+  ],
+  [
+   25.462,
+   5.938,
+   "The sensor installs in Audit mode, so you read its event log before anything is enforced."
+  ],
+  [
+   31.4,
+   12.938,
+   "Learn's advice is to test with application S P N's first, and protect the D C's own S P N only later, to avoid admin lockout, and to assess N T L M use before restricting it."
+  ],
+  [
+   44.337,
+   7.975,
+   "The rollback is the sensor's break-glass mode, from the admin center, or a registry value set to one and the sensor restarted."
+  ],
+  [
+   52.312,
+   7.838,
+   "And the registration token is a credential: acquire it on a privileged access workstation, use it once, and clear the session."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.825,
+   "The lab runs in a test tenant, never production, and the authors haven't run it."
+  ],
+  [
+   4.875,
+   18.387,
+   "You need Module 2's lab done, a Private Access test license, a test connector group with two connectors on Windows Server 2019 or later, a test application server and a test administrative host reachable from the connectors, and a privileged test group whose members have phishing-resistant methods registered."
+  ],
+  [
+   23.262,
+   7.662,
+   "Step one lists the connector groups and connectors; the guide's resilience metric wants at least two active connectors in the group."
+  ],
+  [
+   30.925,
+   5.35,
+   "Step two creates the application from the custom template and marks it a Private Access app."
+  ],
+  [
+   36.275,
+   11.125,
+   "Step three binds it to the connector group and adds one segment: the application's host name, its ports, and T C P. Step four assigns the pilot group with the app's User role."
+  ],
+  [
+   47.4,
+   5.037,
+   "And step five puts the device and M F A policy on it, in report-only."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.85,
+   "Step six publishes the administrative host the same way, on thirty-three eighty-nine, assigned only to the privileged group."
+  ],
+  [
+   7.9,
+   8.113,
+   "Step seven creates the phishing-resistant policy in report-only, then enables the private forwarding profile and assigns the groups."
+  ],
+  [
+   16.012,
+   11.812,
+   "Step eight tests the path from the pilot device off the corporate network, about fifteen minutes after the last change: the application's port should be reachable, and a port outside the segment should fail."
+  ],
+  [
+   27.825,
+   4.0,
+   "The client's Policy tester shows which rule handles the destination."
+  ],
+  [
+   31.825,
+   3.4,
+   "Step nine reads the private sessions in the workspace."
+  ],
+  [
+   35.225,
+   7.213,
+   "Step ten connects with remote desktop as a privileged user, and the sign-in log shows the policy's report-only result."
+  ],
+  [
+   42.438,
+   5.55,
+   "Step eleven reads both policies' report-only results; leave them in report-only."
+  ],
+  [
+   47.987,
+   5.537,
+   "And step twelve is optional, where a test domain has the sensor: Learn's klist test."
+  ],
+  [
+   53.525,
+   3.375,
+   "With client and sensor off, the ticket is issued."
+  ],
+  [
+   56.9,
+   3.975,
+   "With the sensor on and the client off, S M B is blocked."
+  ],
+  [
+   60.875,
+   4.338,
+   "With both on, the ticket is issued after the Conditional Access prompt."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.875,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   5.925,
+   13.125,
+   "Private applications support A C three, A C six, A C seventeen, and its enhancement three: each application reachable only by its assigned group, on its ports, under Conditional Access."
+  ],
+  [
+   19.05,
+   9.6,
+   "The evidence is the app, segment, assignment and policy exports, the reachable and unreachable port tests, and the Quick Access residual list."
+  ],
+  [
+   28.65,
+   11.412,
+   "Administrative paths support I A two enhancements one and two, A C six enhancement nine, and A C seventeen: phishing-resistant authentication and a compliant device."
+  ],
+  [
+   40.062,
+   7.25,
+   "The evidence is the app and policy exports, the sensor mode, the klist test record, and the break-glass rehearsal."
+  ],
+  [
+   47.312,
+   14.3,
+   "The program's mapping lines Step 6 up with O M B memo M twenty-two oh nine's application access without a V P N, and tick three point oh's Remote User Pattern one, and Step 10 with the memo's phishing-resistant M F A."
+  ],
+  [
+   61.612,
+   3.8,
+   "The evidence supports the controls; the assessor decides."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.925,
+   "First: an application runs in Oracle Cloud Infrastructure."
+  ],
+  [
+   5.95,
+   1.45,
+   "How does the guide reach it?"
+  ],
+  [
+   7.4,
+   7.75,
+   "The answer is a: through a connector group in that cloud's network, with line of sight to the application, as for an on-premises one."
+  ],
+  [
+   15.15,
+   6.175,
+   "Second: in what order does Learn protect service principal names with the domain controller sensor?"
+  ],
+  [
+   21.325,
+   7.737,
+   "The answer is b: application S P N's first, the D C's own S P N later, to avoid admin lockout."
+  ],
+  [
+   29.062,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   10.287,
+   "You published one application and one administrative host as their own Private Access apps, each with only its segments, its own group, and a report-only policy."
+  ],
+  [
+   11.162,
+   9.562,
+   "You tested the reachable and refused ports, read the private sessions and the policies' results, and, where a sensor exists, ran Learn's klist test."
+  ],
+  [
+   20.725,
+   18.988,
+   "The evidence an I S S O keeps from this module: the app, segment, assignment and policy exports; the port test record and the Policy tester result; the private session query; the administrative sign-in record; the klist record; and the Quick Access residual list, which should shrink to nothing."
+  ],
+  [
+   39.712,
+   6.612,
+   "Next is Module 5, Internet Access and T L S inspection, which come last in the run order."
+  ]
+ ]
+}

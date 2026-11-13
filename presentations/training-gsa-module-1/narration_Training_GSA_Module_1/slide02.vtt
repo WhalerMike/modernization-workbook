@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Why start here?
+
+2
+00:00:01.088 --> 00:00:04.537
+Global Secure Access is
+three things under one name.
+
+3
+00:00:04.537 --> 00:00:09.574
+The Microsoft traffic profile comes
+with Entra I D P one or P two.
+
+4
+00:00:09.574 --> 00:00:13.308
+Internet Access and Private
+Access are licensed separately,
+
+5
+00:00:13.308 --> 00:00:15.650
+or come with the Microsoft Entra Suite.
+
+6
+00:00:15.650 --> 00:00:20.500
+Each has its own gate, so the decision is
+made per function, not for the product.
+
+7
+00:00:20.500 --> 00:00:24.678
+And because nothing should block before
+there is a record of what it blocked,
+
+8
+00:00:24.678 --> 00:00:27.662
+the network logs go on before
+the first pilot user does.
+
+9
+00:00:27.662 --> 00:00:31.576
+Every later Validate step in
+this path reads those logs.
+
+10
+00:00:31.576 --> 00:00:36.195
+So in this module you decide each function,
+write the architecture down for your
+
+11
+00:00:36.195 --> 00:00:40.730
+tenant, take the first hashed configuration
+export, and turn on the telemetry.

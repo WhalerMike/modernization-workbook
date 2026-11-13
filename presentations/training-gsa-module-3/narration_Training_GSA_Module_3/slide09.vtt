@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.875
+The lab runs in a test tenant, never
+production, and the authors haven't run it.
+
+2
+00:00:04.875 --> 00:00:09.715
+You need Module 2's lab done, the emergency
+access group, a tenant restrictions
+
+3
+00:00:09.715 --> 00:00:13.950
+policy with one allowed partner,
+and test accounts in three tenants.
+
+4
+00:00:13.950 --> 00:00:18.525
+Step one confirms signaling and reads
+the compliant network named location.
+
+5
+00:00:18.525 --> 00:00:22.200
+Step two finds the two Intune
+applications to exclude.
+
+6
+00:00:22.200 --> 00:00:27.713
+Step three creates the pilot policy in
+report-only, with the guide's exact body.
+
+7
+00:00:27.713 --> 00:00:31.212
+Step four reads the would-be
+blocks in the workspace.
+
+8
+00:00:31.212 --> 00:00:35.441
+The guide reads them for ten business
+days; a report-only failure from a
+
+9
+00:00:35.441 --> 00:00:39.962
+sign-in that came through the service
+is a defect to fix before enforcement.
+
+10
+00:00:39.962 --> 00:00:44.074
+In a test tenant the lab shortens
+that; in production, never.
+
+11
+00:00:44.074 --> 00:00:46.125
+Step five proves the block.
+
+12
+00:00:46.125 --> 00:00:51.018
+Confirm your emergency access account
+isn't in the pilot, set the policy on, and
+
+13
+00:00:51.018 --> 00:00:56.063
+on the pilot device disable the client and
+sign in again in a new browser session.
+
+14
+00:00:56.063 --> 00:01:00.960
+Expect "You can't access this right now."
+Then put the policy back in report-only.

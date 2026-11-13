@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:05.493
+The client goes on every managed
+Windows device, deployed by Intune,
+
+3
+00:00:05.493 --> 00:00:09.862
+and opens a tunnel to the service edge
+after the user signs in to Entra.
+
+4
+00:00:09.862 --> 00:00:14.963
+How many devices actually carry it is the
+first metric every later step leans on.
+
+5
+00:00:14.963 --> 00:00:20.064
+The Microsoft traffic profile is what makes
+the real source address visible to Entra
+
+6
+00:00:20.064 --> 00:00:23.368
+I D, and it is the prerequisite
+for the compliant network
+
+7
+00:00:23.368 --> 00:00:27.176
+check and universal tenant
+restrictions, which come in Module 3.
+
+8
+00:00:27.176 --> 00:00:30.652
+So in this module you package
+the client the way Learn does,
+
+9
+00:00:30.652 --> 00:00:34.491
+scope the profile to a pilot group,
+turn on source I P restoration,
+
+10
+00:00:34.491 --> 00:00:38.900
+and measure how much of the pilot's
+traffic the service actually carries.

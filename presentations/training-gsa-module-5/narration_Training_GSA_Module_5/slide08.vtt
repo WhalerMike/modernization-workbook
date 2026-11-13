@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.875
+The lab runs in a test tenant, never
+production, and the authors haven't run it.
+
+2
+00:00:04.875 --> 00:00:09.125
+You need Module 2's lab done and
+an Internet Access test license.
+
+3
+00:00:09.125 --> 00:00:13.237
+Step one finds the internet profile
+with Learn's filtered request,
+
+4
+00:00:13.237 --> 00:00:16.825
+enables it, and assigns the
+pilot group in the admin center.
+
+5
+00:00:16.825 --> 00:00:19.278
+Step two creates the filtering policy,
+
+6
+00:00:19.278 --> 00:00:23.187
+blocking Learn's example
+category, artificial intelligence.
+
+7
+00:00:23.187 --> 00:00:26.260
+Step three creates the
+pilot security profile
+
+8
+00:00:26.260 --> 00:00:28.938
+and links the policy to
+it, with logging on.
+
+9
+00:00:28.938 --> 00:00:32.537
+Step four assigns the profile
+with Conditional Access,
+
+10
+00:00:32.537 --> 00:00:35.901
+scoped to the pilot, with
+emergency access excluded.
+
+11
+00:00:35.901 --> 00:00:39.698
+Step five tests it: on the
+pilot device, as a pilot user,
+
+12
+00:00:39.698 --> 00:00:43.937
+browse to a site in that category
+and expect the block page.
+
+13
+00:00:43.937 --> 00:00:46.671
+Then the guide's traffic
+query in the workspace
+
+14
+00:00:46.671 --> 00:00:49.540
+should show a denied count
+on the pilot user's row.

@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.762
+Unit 3 is T L S inspection.
+
+2
+00:00:02.762 --> 00:00:06.618
+It decrypts H T T P S at the
+service edge, so full U R L's,
+
+3
+00:00:06.618 --> 00:00:12.260
+files and content can be filtered, then
+re-encrypts; it's the prerequisite
+
+4
+00:00:12.260 --> 00:00:17.338
+for U R L rules, file and content
+policies, and A I prompt inspection.
+
+5
+00:00:17.338 --> 00:00:21.437
+Learn offers a Microsoft-managed
+certificate, or the agency's own.
+
+6
+00:00:21.437 --> 00:00:25.215
+With the agency's own, the agency
+signs an intermediate C A,
+
+7
+00:00:25.215 --> 00:00:29.313
+and the service issues short-lived
+leaf certificates from it.
+
+8
+00:00:29.313 --> 00:00:33.710
+Learn's limits: valid at least six
+months, only one active at a time,
+
+9
+00:00:33.710 --> 00:00:38.025
+with server authentication and
+the C A extensions Learn lists.
+
+10
+00:00:38.025 --> 00:00:39.013
+Which C A?
+
+11
+00:00:39.013 --> 00:00:43.963
+Learn's tutorial suggests a dedicated
+C A, not your production P K I.
+
+12
+00:00:43.963 --> 00:00:48.685
+The program issues it from a dedicated
+issuing C A under the agency's root,
+
+13
+00:00:48.685 --> 00:00:53.250
+never from the C A that issues
+authentication certificates, because a
+
+14
+00:00:53.250 --> 00:00:58.287
+compromised inspection C A can impersonate
+any site to every managed device.
+
+15
+00:00:58.287 --> 00:01:00.465
+Deploy trust before activation:
+
+16
+00:01:00.465 --> 00:01:05.463
+the root and intermediate go to clients
+by Intune first, because an expired
+
+17
+00:01:05.463 --> 00:01:10.300
+inspection certificate disables all
+T L S inspection across the tenant.
+
+18
+00:01:10.300 --> 00:01:12.530
+Renew at least ninety days ahead.

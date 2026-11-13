@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.667
+Step six publishes the
+administrative host the same way,
+
+2
+00:00:03.667 --> 00:00:07.900
+on thirty-three eighty-nine, assigned
+only to the privileged group.
+
+3
+00:00:07.900 --> 00:00:11.847
+Step seven creates the phishing-resistant
+policy in report-only,
+
+4
+00:00:11.847 --> 00:00:16.013
+then enables the private forwarding
+profile and assigns the groups.
+
+5
+00:00:16.013 --> 00:00:20.276
+Step eight tests the path from the
+pilot device off the corporate network,
+
+6
+00:00:20.276 --> 00:00:24.190
+about fifteen minutes after the
+last change: the application's port
+
+7
+00:00:24.190 --> 00:00:27.824
+should be reachable, and a port
+outside the segment should fail.
+
+8
+00:00:27.824 --> 00:00:31.825
+The client's Policy tester shows
+which rule handles the destination.
+
+9
+00:00:31.825 --> 00:00:35.225
+Step nine reads the private
+sessions in the workspace.
+
+10
+00:00:35.225 --> 00:00:38.945
+Step ten connects with remote
+desktop as a privileged user,
+
+11
+00:00:38.945 --> 00:00:42.438
+and the sign-in log shows the
+policy's report-only result.
+
+12
+00:00:42.438 --> 00:00:47.988
+Step eleven reads both policies' report-only
+results; leave them in report-only.
+
+13
+00:00:47.988 --> 00:00:53.524
+And step twelve is optional, where a test
+domain has the sensor: Learn's klist test.
+
+14
+00:00:53.524 --> 00:00:56.900
+With client and sensor
+off, the ticket is issued.
+
+15
+00:00:56.900 --> 00:01:00.875
+With the sensor on and the
+client off, S M B is blocked.
+
+16
+00:01:00.875 --> 00:01:05.280
+With both on, the ticket is issued
+after the Conditional Access prompt.

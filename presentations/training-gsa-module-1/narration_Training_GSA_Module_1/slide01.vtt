@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.765
+Welcome to Module 1 of
+Global Secure Access as the
+
+2
+00:00:03.765 --> 00:00:07.662
+Identity-Aware Network:
+decide, design and log first.
+
+3
+00:00:07.662 --> 00:00:13.115
+Global Secure Access is Microsoft's security
+service edge, Entra Internet Access
+
+4
+00:00:13.115 --> 00:00:18.087
+and Entra Private Access, used as the
+agency's identity-aware network layer.
+
+5
+00:00:18.087 --> 00:00:22.011
+This path teaches the twelve
+steps of the Global Secure Access
+
+6
+00:00:22.011 --> 00:00:26.312
+implementation guide in six modules,
+in the order the guide runs them.
+
+7
+00:00:26.312 --> 00:00:30.368
+This first module covers Step
+1, the decision and licensing,
+
+8
+00:00:30.368 --> 00:00:34.837
+Step 2, the reference architecture,
+and the logging half of Step 12.
+
+9
+00:00:34.837 --> 00:00:39.140
+It takes about forty-five minutes,
+plus a lab in your own test tenant.

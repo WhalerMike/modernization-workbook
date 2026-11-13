@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.813
+Step four turns on the telemetry, in
+Bash, as a Security Administrator.
+
+2
+00:00:04.813 --> 00:00:09.656
+The guide's command puts a diagnostic
+setting named G S A network telemetry on
+
+3
+00:00:09.656 --> 00:00:14.500
+the tenant, pointing at your test workspace,
+with the four categories enabled.
+
+4
+00:00:14.500 --> 00:00:19.112
+This is the lab's first write to
+the tenant, and Module 6 removes it.
+
+5
+00:00:19.112 --> 00:00:21.713
+The GET that follows
+should list the setting,
+
+6
+00:00:21.713 --> 00:00:24.313
+with the four categories
+and your workspace.
+
+7
+00:00:24.313 --> 00:00:26.149
+Step five checks freshness.
+
+8
+00:00:26.149 --> 00:00:31.088
+In the workspace's Logs, run the guide's
+union query across the four tables.
+
+9
+00:00:31.088 --> 00:00:36.137
+The guide's Validate is that each category
+has rows within an hour of pilot traffic.
+
+10
+00:00:36.137 --> 00:00:40.263
+There's no pilot traffic yet,
+so expect few or no rows now.
+
+11
+00:00:40.263 --> 00:00:45.340
+Run the query again after Module 2's
+lab, and keep both results as evidence.
