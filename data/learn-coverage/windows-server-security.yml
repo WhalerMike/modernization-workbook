@@ -103,9 +103,11 @@ pages:
   ms_date: '2026-02-06'
   ms_topic: how-to
   description: Learn how to detect and limit or disable RC4 usage in Kerberos to enhance security in Active Directory domain environments.
-  coverage: not-covered
-  note: RC4 is named as an estate finding (Book 01 Chapter 10, Book 02 Chapter 03) but there's no detect-and-remediate procedure
-  cited_by: []
+  coverage: cited
+  note: Book 02 Chapter 03 status table (events 201-209, 4768/4769, Kerberos-Crypto scripts); service account guide B0 checks a dMSA candidate's AES keys
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
+  - docs/books/guides/service-account-migration.md
 - path: WindowsServerDocs/security/kerberos/domain-joined-device-public-key-authentication.md
   url: https://learn.microsoft.com/windows-server/security/kerberos/domain-joined-device-public-key-authentication
   title: Domain-joined Device Public Key Authentication

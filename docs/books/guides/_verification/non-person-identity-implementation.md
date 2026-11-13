@@ -112,3 +112,7 @@ Applied the conventions of Book 00, Appendix D (`docs/books/b00-orientation/appe
 **G-05 musts relabeled.** None. The four uses of *must* left are product constraints (a user-assigned identity must be deleted explicitly; a gMSA name must be unique in the forest; multitenant app objects must be removed by hand) or not directive.
 
 **G-03 re-verification.** None. Every statement in the new section is carried from the guide's own gates (Steps 1 to 6, Evidence, Rollback) or from the privileged access guide's G2; no new product, licensing or government-cloud claim was added, so no Learn page was re-read. The guide's product claims keep their footnoted access dates (October 29 to November 7, 2026) and the rows above.
+
+## Revision 2026-11-13 — Windows Server 2025 retirements
+
+Mike's approval, Nov 13, 2026. The dates and events for each protocol now live in one place, the status table in Book 02, Chapter 03; this page links there. dMSA wording, where present, now says a dMSA needs a Windows Server 2025 domain controller (and Windows Server 2025 hosts), not a functional level (Learn, Delegated Managed Service Accounts FAQ, read Nov 13, 2026). An RC4 date, where present, follows KB5073381 (read Nov 13, 2026): AES only assumed from the April 14, 2026 updates, rollback no longer read from the July 2026 updates.

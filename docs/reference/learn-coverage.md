@@ -55,12 +55,12 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
-| Windows Server identity | 561 | 165 | 22 | 12 | 362 | 0 |
-| Microsoft Entra | 2,518 | 1,028 | 446 | 367 | 676 | 1 |
+| Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
+| Microsoft Entra | 2,518 | 1,030 | 444 | 367 | 676 | 1 |
 | Windows Server releases | 44 | 4 | 4 | 7 | 29 | 0 |
-| Windows Server security | 47 | 6 | 16 | 11 | 14 | 0 |
-| Windows Server file server and SMB | 26 | 0 | 2 | 13 | 11 | 0 |
-| **All sides** | 3,196 | 1,203 | 490 | 410 | 1,092 | 1 |
+| Windows Server security | 47 | 7 | 16 | 10 | 14 | 0 |
+| Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
+| **All sides** | 3,196 | 1,211 | 487 | 407 | 1,090 | 1 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -69,7 +69,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | Area | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | [ad-cs](#windows-server-identity-ad-cs) | 41 | 31 | 9 | 0 | 1 | 0 |
-| [ad-ds](#windows-server-identity-ad-ds) | 227 | 102 | 10 | 4 | 111 | 0 |
+| [ad-ds](#windows-server-identity-ad-ds) | 227 | 104 | 10 | 4 | 109 | 0 |
 | [ad-fs](#windows-server-identity-ad-fs) | 246 | 13 | 1 | 4 | 228 | 0 |
 | [ad-rms](#windows-server-identity-ad-rms) | 1 | 1 | 0 | 0 | 0 | 0 |
 | [general](#windows-server-identity-general) | 3 | 1 | 0 | 0 | 2 | 0 |
@@ -128,7 +128,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 
 | Learn page | Workbook home | Coverage |
 |---|---|---|
-| [Database 32k pages for Active Directory on Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/32k-pages-optional-feature) | — | Out of scope |
+| [Database 32k pages for Active Directory on Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/32k-pages-optional-feature) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md) | Cited |
 | [Active Directory Domain Services Functional Levels](https://learn.microsoft.com/windows-server/identity/ad-ds/active-directory-functional-levels) | [Book 00, Chapter 01 — Why Modernize, and Why Now](../books/b00-orientation/01-why-modernize-now.md); [Book 01, Chapter 10 — Analyzing the Estate](../books/b01-transformation-arc/10-analyzing-the-estate.md); and 1 more | Cited |
 | [Configure certificates for LDAP over SSL in Active Directory Domain Services](https://learn.microsoft.com/windows-server/identity/ad-ds/configure-ldap-signing-certificates) | [Book 06, Runbook R10 — Certificate Discovery for SQL Server's AD CS Dependencies](../books/b06-data-platform/r10-certificate-discovery-for-adcs.md); [Book 07, Chapter 01 — Why Certificates Outlive Every Migration](../books/b07-pki/01-why-certificates-outlive-every-migration.md); and 8 more | Cited |
 | [Active Directory DC Locator performance counters in Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/dc-locator-performance-counters) | — | Out of scope |
@@ -155,7 +155,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [Install Active Directory Domain Services on an Azure virtual machine](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm) | [Book 01, Chapter 06 — Network Services: DNS, DHCP and IPAM](../books/b01-transformation-arc/06-network-services.md) | Cited |
 | [Virtualized Domain Controller Technical Reference (Level 300)](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/virtual-dc/virtualized-domain-controller-technical-reference--level-300-) | — | Out of scope |
 | [What's New in Active Directory Domain Services Installation and Removal](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/what-s-new-in-active-directory-domain-services-installation-and-removal) | — | Out of scope |
-| [Enable Database 32k pages optional feature in Active Directory Domain Services on Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/enable-32k-pages-optional-feature) | — | Out of scope |
+| [Enable Database 32k pages optional feature in Active Directory Domain Services on Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/enable-32k-pages-optional-feature) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md) | Cited |
 | [Enable SAM Client Event Logging in Windows](https://learn.microsoft.com/windows-server/identity/ad-ds/enable-sam-client-logging-diagnostics) | [Book 06, Runbook R06 — NTLM Detection & Remediation](../books/b06-data-platform/r06-ntlm-detection-and-remediation.md) | Cited |
 | [Enable Active Directory Recycle Bin in Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/adac/active-directory-recycle-bin) | [Book 02, Chapter 07 — Read-Only Discovery](../books/b02-identity/07-read-only-discovery.md); [Book 02, Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md); and 1 more | Cited |
 | [Advanced AD DS Management Using Active Directory Administrative Center (Level 200)](https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/adac/advanced-ad-ds-management-using-active-directory-administrative-center--level-200-) | [Book 02, Chapter 07 — Read-Only Discovery](../books/b02-identity/07-read-only-discovery.md) | Cited |
@@ -171,7 +171,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [Safely virtualizing Active Directory Domain Services (AD DS)](https://learn.microsoft.com/windows-server/identity/ad-ds/introduction-to-active-directory-domain-services-ad-ds-virtualization-level-100) | [Book 01, Chapter 06 — Network Services: DNS, DHCP and IPAM](../books/b01-transformation-arc/06-network-services.md) | Cited |
 | [LDAP Channel Binding in Active Directory](https://learn.microsoft.com/windows-server/identity/ad-ds/ldap-channel-binding) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md) | Cited |
 | [Active Directory LDAP client performance counters in Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/ldap-client-performance-counters) | — | Out of scope |
-| [LDAP Signing Overview for Active Directory](https://learn.microsoft.com/windows-server/identity/ad-ds/ldap-signing) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md); [Book 02, Chapter 04 — The Hidden Migration Surface](../books/b02-identity/04-the-hidden-migration-surface.md); and 1 more | Cited |
+| [LDAP Signing Overview for Active Directory](https://learn.microsoft.com/windows-server/identity/ad-ds/ldap-signing) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md); [Book 02, Chapter 04 — The Hidden Migration Surface](../books/b02-identity/04-the-hidden-migration-surface.md); and 2 more | Cited |
 | [LSA Lookup performance counters in Windows and Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/lsa-lookup-performance-counters) | — | Out of scope |
 | [Manage User Accounts with Active Directory Users and Computers in Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/manage-user-accounts-in-windows-server) | — | Out of scope |
 | [Active Directory domain join permissions in Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/active-directory-domain-join-permissions) | [Book 05, Chapter 02 — The Hybrid Join Trap](../books/b05-devices/02-the-hybrid-join-trap.md) | Cited |
@@ -191,7 +191,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [Winlogon automatic restart sign-on (ARSO)](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/winlogon-automatic-restart-sign-on--arso-) | — | Out of scope |
 | [Locating Active Directory Domain Controllers in Windows and Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/dc-locator) | [Book 01, Chapter 06 — Network Services: DNS, DHCP and IPAM](../books/b01-transformation-arc/06-network-services.md); [Book 02, Chapter 04 — The Hidden Migration Surface](../books/b02-identity/04-the-hidden-migration-surface.md); and 2 more | Cited |
 | [Credential Guard protected machine accounts in Windows Server 2025](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/credential-guard-protected-machine-accounts) | [Chapter 06 — gMSAs, dMSAs and the Kerberos Island](../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md); [Module 8: Convert Kerberos accounts to gMSAs and dMSAs](../training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md) | Covered, not cited |
-| [Delegated Managed Service Accounts FAQ](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-faq) | [Chapter 03 — The Migration Path Matrix as Code](../project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md); [Chapter 06 — gMSAs, dMSAs and the Kerberos Island](../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md); and 2 more | Cited |
+| [Delegated Managed Service Accounts FAQ](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-faq) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md); and 5 more | Cited |
 | [Delegated Managed Service Accounts overview in Windows Server 2025](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md); and 13 more | Cited |
 | [Setting up delegated Managed Service Accounts (dMSA) in Windows Server 2025](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa) | [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md); [Chapter 01 — Non-Person Identity Inventory as Code](../project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md); and 7 more | Cited |
 | [Delegation of Control in AD DS on Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegation-control-wizard) | [Book 02, Chapter 05 — Delegation Without OUs](../books/b02-identity/05-delegation-without-ous.md); [`docs/books/b02-identity/_verification/05-delegation-without-ous.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b02-identity/_verification/05-delegation-without-ous.md) | Cited |
@@ -704,7 +704,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [fundamentals](#entra-fundamentals) | 62 | 29 | 5 | 6 | 22 | 0 |
 | [general](#entra-general) | 1 | 0 | 0 | 0 | 1 | 0 |
 | [global-secure-access](#entra-global-secure-access) | 199 | 81 | 3 | 108 | 7 | 0 |
-| [hybrid](#entra-hybrid) | 243 | 108 | 82 | 18 | 35 | 0 |
+| [hybrid](#entra-hybrid) | 243 | 110 | 80 | 18 | 35 | 0 |
 | [id-governance](#entra-id-governance) | 236 | 165 | 38 | 25 | 8 | 0 |
 | [id-protection](#entra-id-protection) | 28 | 8 | 16 | 0 | 4 | 0 |
 | [identity](#entra-identity) | 1 | 0 | 0 | 0 | 1 | 0 |
@@ -2213,8 +2213,8 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Microsoft Entra Connect: Pass-through Authentication](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md); [`docs/books/b02-identity/_verification/09-building-the-entra-target.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b02-identity/_verification/09-building-the-entra-target.md) | Cited |
 | [Selective Password Hash Synchronization for Microsoft Entra Connect](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-selective-password-hash-synchronization) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Covered, not cited |
 | [Microsoft Entra Connect Single Object Sync](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-single-object-sync) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Covered, not cited |
-| [Microsoft Entra seamless single sign-on: Frequently asked questions](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-faq) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Covered, not cited |
-| [Microsoft Entra Connect: Seamless Single Sign-On - How it works](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-how-it-works) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Covered, not cited |
+| [Microsoft Entra seamless single sign-on: Frequently asked questions](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-faq) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Cited |
+| [Microsoft Entra Connect: Seamless Single Sign-On - How it works](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-how-it-works) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Cited |
 | [Quickstart: Microsoft Entra seamless single sign-on](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-quick-start) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Covered, not cited |
 | [User Privacy and Microsoft Entra seamless single sign-on](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-user-privacy) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Not covered |
 | [Microsoft Entra Connect: Seamless single sign-on](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md); [`docs/books/b02-identity/_verification/09-building-the-entra-target.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b02-identity/_verification/09-building-the-entra-target.md) | Cited |
@@ -3431,7 +3431,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [What's new in Windows Server 2016](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2016) | — | Out of scope |
 | [What's new in Windows Server 2019](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2019) | — | Not covered |
 | [What's New in Windows Server 2022](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2022) | — | Not covered |
-| [What's new in Windows Server 2025](https://learn.microsoft.com/windows-server/get-started/whats-new-windows-server-2025) | [Book 01, Chapter 01 — Why Modernization Is Hard](../books/b01-transformation-arc/01-why-modernization-is-hard.md); [Book 01, Chapter 02 — The Problem: Governance Hidden in the Directory](../books/b01-transformation-arc/02-the-problem.md); and 9 more | Cited |
+| [What's new in Windows Server 2025](https://learn.microsoft.com/windows-server/get-started/whats-new-windows-server-2025) | [Book 01, Chapter 01 — Why Modernization Is Hard](../books/b01-transformation-arc/01-why-modernization-is-hard.md); [Book 01, Chapter 02 — The Problem: Governance Hidden in the Directory](../books/b01-transformation-arc/02-the-problem.md); and 10 more | Cited |
 | [Configure Windows Server Pay-as-you-go with Azure Arc](https://learn.microsoft.com/windows-server/get-started/windows-server-pay-as-you-go) | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md) | Covered, not cited |
 
 ## Windows Server security {#windows-server-security}
@@ -3442,7 +3442,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 |---|---:|---:|---:|---:|---:|---:|
 | [credentials-protection-and-management](#windows-server-security-credentials-protection-and-management) | 4 | 1 | 0 | 2 | 1 | 0 |
 | [general](#windows-server-security-general) | 7 | 0 | 1 | 1 | 5 | 0 |
-| [kerberos](#windows-server-security-kerberos) | 10 | 4 | 1 | 4 | 1 | 0 |
+| [kerberos](#windows-server-security-kerberos) | 10 | 5 | 1 | 3 | 1 | 0 |
 | [osconfig](#windows-server-security-osconfig) | 3 | 0 | 0 | 3 | 0 | 0 |
 | [tls](#windows-server-security-tls) | 8 | 0 | 5 | 0 | 3 | 0 |
 | [token-binding](#windows-server-security-token-binding) | 1 | 0 | 0 | 0 | 1 | 0 |
@@ -3477,7 +3477,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | Learn page | Workbook home | Coverage |
 |---|---|---|
 | [Configuring Kerberos for IP Address](https://learn.microsoft.com/windows-server/security/kerberos/configuring-kerberos-over-ip) | — | Not covered |
-| [Detect and Remediate RC4 Usage in Kerberos](https://learn.microsoft.com/windows-server/security/kerberos/detect-remediate-rc4-kerberos) | — | Not covered |
+| [Detect and Remediate RC4 Usage in Kerberos](https://learn.microsoft.com/windows-server/security/kerberos/detect-remediate-rc4-kerberos) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md); [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md) | Cited |
 | [Domain-joined Device Public Key Authentication](https://learn.microsoft.com/windows-server/security/kerberos/domain-joined-device-public-key-authentication) | — | Not covered |
 | [Kerberos authentication overview in Windows Server](https://learn.microsoft.com/windows-server/security/kerberos/kerberos-authentication-overview) | [Book 01, Chapter 04 — Identity Transformation](../books/b01-transformation-arc/04-identity-transformation.md); [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md); and 1 more | Cited |
 | [Kerberos Constrained Delegation Overview in Windows Server](https://learn.microsoft.com/windows-server/security/kerberos/kerberos-constrained-delegation-overview) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 02, Appendix B — Forest Assessment Module](../books/b02-identity/appendix-b-forest-assessment-module.md); and 1 more | Cited |
@@ -3555,8 +3555,8 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | Area | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | [best-practices-analyzer](#windows-server-file-server-best-practices-analyzer) | 1 | 0 | 0 | 0 | 1 | 0 |
-| [general](#windows-server-file-server-general) | 21 | 0 | 0 | 12 | 9 | 0 |
-| [troubleshoot](#windows-server-file-server-troubleshoot) | 4 | 0 | 2 | 1 | 1 | 0 |
+| [general](#windows-server-file-server-general) | 21 | 2 | 0 | 10 | 9 | 0 |
+| [troubleshoot](#windows-server-file-server-troubleshoot) | 4 | 1 | 1 | 1 | 1 | 0 |
 
 ### best-practices-analyzer {#windows-server-file-server-best-practices-analyzer}
 
@@ -3586,8 +3586,8 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [Secure SMB Traffic in Windows Server](https://learn.microsoft.com/windows-server/storage/file-server/smb-secure-traffic) | — | Not covered |
 | [SMB security hardening in Windows Server and Windows Client](https://learn.microsoft.com/windows-server/storage/file-server/smb-security-hardening) | — | Not covered |
 | [SMB Security Enhancements](https://learn.microsoft.com/windows-server/storage/file-server/smb-security) | — | Not covered |
-| [Overview of Server Message Block signing in Windows](https://learn.microsoft.com/windows-server/storage/file-server/smb-signing-overview) | — | Not covered |
-| [Control SMB signing behavior](https://learn.microsoft.com/windows-server/storage/file-server/smb-signing) | — | Not covered |
+| [Overview of Server Message Block signing in Windows](https://learn.microsoft.com/windows-server/storage/file-server/smb-signing-overview) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md) | Cited |
+| [Control SMB signing behavior](https://learn.microsoft.com/windows-server/storage/file-server/smb-signing) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md) | Cited |
 | [Volume Shadow Copy Service (VSS)](https://learn.microsoft.com/windows-server/storage/file-server/volume-shadow-copy-service) | — | Out of scope |
 
 ### troubleshoot {#windows-server-file-server-troubleshoot}
@@ -3596,7 +3596,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 |---|---|---|
 | [Detect, enable, and disable SMBv1, SMBv2, and SMBv3 in Windows](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3) | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md) | Covered, not cited |
 | [SMB known issues](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/smb-known-issues) | — | Not covered |
-| [SMBv1 Not Installed by Default in Windows Server and Windows](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/smbv1-not-installed-by-default-in-windows) | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md) | Covered, not cited |
+| [SMBv1 Not Installed by Default in Windows Server and Windows](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/smbv1-not-installed-by-default-in-windows) | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md); [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md) | Cited |
 | [Advanced Troubleshooting Server Message Block (SMB)](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/troubleshooting-smb) | — | Out of scope |
 
 ## Gaps {#gaps}
@@ -3996,7 +3996,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Authentication Policies and Authentication Policy Silos](https://learn.microsoft.com/windows-server/security/credentials-protection-and-management/authentication-policies-and-authentication-policy-silos) | Windows Server security, credentials-protection-and-management | — | Restricting Tier 0 accounts to Tier 0 hosts; would fit Book 04 Chapter 04 beside Protected Users |
 | [Configure added LSA protection](https://learn.microsoft.com/windows-server/security/credentials-protection-and-management/configuring-additional-lsa-protection) | Windows Server security, credentials-protection-and-management | — | LSA protection is only mentioned in passing; would fit the endpoint security settings in Book 05 Chapter 08 beside Credential Guard |
 | [Configuring Kerberos for IP Address](https://learn.microsoft.com/windows-server/security/kerberos/configuring-kerberos-over-ip) | Windows Server security, kerberos | — | Book 06 Chapter 01 names IP-address access as an NTLM fallback; the Kerberos-for-IP fix isn't given |
-| [Detect and Remediate RC4 Usage in Kerberos](https://learn.microsoft.com/windows-server/security/kerberos/detect-remediate-rc4-kerberos) | Windows Server security, kerberos | — | RC4 is named as an estate finding (Book 01 Chapter 10, Book 02 Chapter 03) but there's no detect-and-remediate procedure |
 | [Domain-joined Device Public Key Authentication](https://learn.microsoft.com/windows-server/security/kerberos/domain-joined-device-public-key-authentication) | Windows Server security, kerberos | — | Device certificate (PKINIT) sign-in to domain controllers; not covered |
 | [Preventing Kerberos change password that use RC4 secret keys](https://learn.microsoft.com/windows-server/security/kerberos/preventing-kerberos-change-password-that-uses-rc4-secret-keys) | Windows Server security, kerberos | — | Part of the RC4 gap: no RC4 remediation procedure yet |
 | [Configure App Control policies in Windows Server](https://learn.microsoft.com/windows-server/security/osconfig/osconfig-how-to-configure-app-control-for-business) | Windows Server security, osconfig | — | App Control on Windows Server 2025 through OSConfig; not covered |
@@ -4014,8 +4013,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Secure SMB Traffic in Windows Server](https://learn.microsoft.com/windows-server/storage/file-server/smb-secure-traffic) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
 | [SMB security hardening in Windows Server and Windows Client](https://learn.microsoft.com/windows-server/storage/file-server/smb-security-hardening) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
 | [SMB Security Enhancements](https://learn.microsoft.com/windows-server/storage/file-server/smb-security) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
-| [Overview of Server Message Block signing in Windows](https://learn.microsoft.com/windows-server/storage/file-server/smb-signing-overview) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
-| [Control SMB signing behavior](https://learn.microsoft.com/windows-server/storage/file-server/smb-signing) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
 | [SMB known issues](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/smb-known-issues) | Windows Server file server and SMB, troubleshoot | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
 
 ### Covered, not cited {#gaps-covered-uncited}
@@ -4386,8 +4383,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Microsoft Entra Connect: Pass-through Authentication - How it works](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-pta-how-it-works) | Microsoft Entra, hybrid | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Pass-through authentication. |
 | [Selective Password Hash Synchronization for Microsoft Entra Connect](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-selective-password-hash-synchronization) | Microsoft Entra, hybrid | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Password hash synchronization. |
 | [Microsoft Entra Connect Single Object Sync](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-single-object-sync) | Microsoft Entra, hybrid | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Connect Sync architecture, rules, filtering and objects. |
-| [Microsoft Entra seamless single sign-on: Frequently asked questions](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-faq) | Microsoft Entra, hybrid | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Seamless single sign-on. |
-| [Microsoft Entra Connect: Seamless Single Sign-On - How it works](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-how-it-works) | Microsoft Entra, hybrid | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Seamless single sign-on. |
 | [Quickstart: Microsoft Entra seamless single sign-on](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sso-quick-start) | Microsoft Entra, hybrid | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Seamless single sign-on. |
 | [Microsoft Entra Connect Sync V2 endpoint](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-endpoint-api-v2) | Microsoft Entra, hybrid | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Connect Sync architecture, rules, filtering and objects. |
 | [Microsoft Entra Connect Sync: Prevent accidental deletes](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-feature-prevent-accidental-deletes) | Microsoft Entra, hybrid | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Device options/writeback and deletion protection. |
@@ -4511,6 +4506,5 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Windows Logon Scenarios](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-logon-scenarios) | Windows Server security, windows-authentication | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows authentication: SSPI, Kerberos, NTLM and logon processes, as background for the NTLM work |
 | [Windows Defender Overview for Windows Server](https://learn.microsoft.com/windows-server/security/windows-defender/windows-defender-overview-windows-server) | Windows Server security, windows-defender | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md); [Defender XDR Engineering & Operations: An Implementation Guide](../books/guides/defender-xdr-implementation.md) | Defender on servers through Defender for Servers and the Defender XDR guide |
 | [Detect, enable, and disable SMBv1, SMBv2, and SMBv3 in Windows](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3) | Windows Server file server and SMB, troubleshoot | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md) | The server baseline sets the SMB v1 client driver off |
-| [SMBv1 Not Installed by Default in Windows Server and Windows](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/smbv1-not-installed-by-default-in-windows) | Windows Server file server and SMB, troubleshoot | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md) | The server baseline sets the SMB v1 client driver off |
 
 <!-- learn-coverage:end -->

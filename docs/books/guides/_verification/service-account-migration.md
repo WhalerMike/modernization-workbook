@@ -170,3 +170,19 @@ Every Microsoft fact and command was read on Microsoft Learn on November 9, 2026
 | M-15 | A gMSA submitting SMTP over Integrated Windows authentication; `Connect-MgGraph -Identity` on an Arc agent | M1; M3 | unverifiable on the pages read; listed under What couldn't be verified | — | Nov 11, 2026 |
 
 **Conventions (Book 00, Appendix D).** New section `#sam-control-states`: G-01 control states, G-02 How-template coverage (pilot filled as design guidance; emergency access not applicable with the reason), G-07 change safety (rings 0 to 3, backout triggers as design guidance), G-08 assessment mapping. G-06: the evidence checklist ends `#evidence`. G-05: no "must" relabeled; the remaining uses are product constraints (SPN ownership, federated credential matching, AD FS container, a user-assigned identity's deletion) or questions in the decision table. G-03: every product claim already carried a date of Nov 9, 2026; the new mail claims are dated Nov 11, 2026 above.
+
+## Revision 2026-11-13 — dMSA requirements, BadSuccessor and AES keys
+
+Mike's approval, Nov 13, 2026 (Windows Server 2025 retirements research). Sources read Nov 13, 2026.
+
+| # | Claim | Where | Verdict | Source | Checked |
+|---|---|---|---|---|---|
+| W-01 | At least one discoverable WS2025 DC; schema extension alone isn't enough; Learn names no functional level | Migration B limits | verified (FAQ); "names no functional level" checked against the overview, set-up and FAQ pages | `sam-dmsa-faq` | Nov 13, 2026 |
+| W-02 | Credential Guard protecting a dMSA stops unconstrained delegation | Migration B limits | verified | `sam-dmsa-overview` | Nov 13, 2026 |
+| W-03 | CVE-2025-53779: WS2025 only; Aug 12, 2025; KB5063878 and hotpatch KB5064010; write access to `msDS-groupMSAMembership` and `msDS-ManagedAccountPrecededByLink`; could gain domain administrator privileges | Who may create a dMSA | verified (MSRC data) | `sam-cve-53779` | Nov 13, 2026 |
+| W-04 | BadSuccessor mechanics; any domain with one WS2025 DC exposed; generic create-child also creates a dMSA; 5136/5137 auditing | Who may create a dMSA | non-Microsoft source (Akamai), labeled in the text; Learn has no guidance on the create right | `sam-badsuccessor` | Nov 13, 2026 |
+| W-05 | dMSAs created by Domain Admins only; the gMSA delegated create right doesn't extend to dMSAs | Who may create a dMSA | restated-as-design (WD-154, decision 3) | WD-154 | Nov 13, 2026 |
+| W-06 | KB5073381 phases; events 202/204/207/209 mean no AES keys | B0 | verified | `sam-kb5073381` | Nov 13, 2026 |
+| W-07 | A password change creates AES keys; `List-AccountKeys.ps1`; ticket types 0x11/0x12 AES, 0x17 RC4 | B0 | verified | `sam-rc4-detect` | Nov 13, 2026 |
+| W-08 | Learn doesn't say whether a dMSA migration repairs an account without AES keys; don't reset the password during migration | B0 | verified (absence checked on the three dMSA pages; FAQ for the reset rule) | `sam-dmsa-faq` | Nov 13, 2026 |
+| W-09 | The `Get-WinEvent` filter (provider name matched as `Kdc` or `Key-Distribution`) | B0 | unverifiable without a domain: KB5073381 names the source "Kdcsvc"; the filter matches either provider name. Test in the test domain | — | Nov 13, 2026 |

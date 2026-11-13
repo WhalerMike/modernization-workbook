@@ -322,3 +322,15 @@ Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-
 | P4-1 | PIM standards: authority labels; rollout, rings, evidence and control states kept in Book 04 (Appendix B, Chapter 08, privileged access guide) | PIM configuration standards | restated-as-design (cross-reference) | Book 04 | Nov 11, 2026 |
 | P4-2 | Emergency access reference architecture, evidence and control states in Book 04, Chapter 04 | Emergency access accounts | restated-as-design (cross-reference) | Book 04 | Nov 11, 2026 |
 | P4-3 | CA testing and rollout: authority label; change safety, rollback, evidence and control states in Book 04, Chapter 07; Microsoft's one-week report-only is a deployment tip | Testing and rollout | restated-as-design (cross-reference; Book 04 carries the Learn source) | Book 04, Chapter 07 | Nov 11, 2026 |
+
+## Revision 2026-11-13 — dMSA requirement and the Seamless SSO key
+
+Mike's approval, Nov 13, 2026. Learn read Nov 13, 2026.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| W1 | dMSA needs at least one WS2025 DC and WS2025 hosts, not a functional level | Service accounts table | corrected (was "Windows Server 2025 domains only") | dMSA FAQ |
+| W2 | `AZUREADSSOACC` computer account per forest; AES256 recommended; move off RC4 as soon as possible; roll over the key before changing from RC4 | Seamless SSO key | verified. The page also says the AD DS default changes to AES-256 "starting with the July 2026 Windows Server update," which differs from KB5073381 (April 2026, AES128 and AES256); the date is left out and tracked as open research | Seamless SSO: How it works |
+| W3 | Roll over at least every 30 days with `Update-AzureADSSOForest`; once per forest; domain admin not in Protected Users; Hybrid Identity Administrator | Seamless SSO key | verified | Seamless SSO FAQ |
+| W4 | Keep the account in a Domain Admins-only OU with no delegation | Seamless SSO key | verified | Seamless SSO: How it works |
+| W5 | Seamless SSO adds nothing where devices are Entra joined or hybrid joined | Seamless SSO key | carried from Chapter 10 Phase 2 step 3 | c10-choose-authn |

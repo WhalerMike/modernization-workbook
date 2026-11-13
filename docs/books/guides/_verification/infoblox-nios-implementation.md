@@ -23,3 +23,7 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 7 | "The NIOS DNSSEC defaults fail that STIG" restated as "The NIOS DNSSEC defaults are weak" against SP 800-81r3 | Findings | reframed | nimp-80081-t1 |
 | 8 | Cloud HA documentation omits government regions; confirm vNIOS failover in GovCloud and Azure Government | Findings | kept (vendor-ask; GovCloud is a valid Moderate location, so the gap matters at Moderate) | earlier check |
 | 9 | Deck: slide 19 retitled "Hardening NIOS: the agency's settings baseline"; DNSSEC slide cites SP 800-81r3 §3.8.1–3.8.3 (signature validity "kept short (e.g., 5-7 days)" by policy; NSEC "more prudent") | Deck | verified (PDF §3.8.2, §3.8.3) | SP 800-81r3 |
+
+## Revision 2026-11-13 — Windows Server 2025 retirements
+
+Mike's approval, Nov 13, 2026. The dates and events for each protocol now live in one place, the status table in Book 02, Chapter 03; this page links there. dMSA wording, where present, now says a dMSA needs a Windows Server 2025 domain controller (and Windows Server 2025 hosts), not a functional level (Learn, Delegated Managed Service Accounts FAQ, read Nov 13, 2026). An RC4 date, where present, follows KB5073381 (read Nov 13, 2026): AES only assumed from the April 14, 2026 updates, rollback no longer read from the July 2026 updates.

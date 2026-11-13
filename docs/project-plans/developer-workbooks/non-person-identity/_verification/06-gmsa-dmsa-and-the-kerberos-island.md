@@ -95,3 +95,13 @@ Every Learn page on gMSAs, dMSAs and the KDS root key was read again on November
 | G4 | No Delegation tab on MSAs; `Set-ADAccountControl` and `msDS-AllowedToDelegateTo`; never both flags | Verified facts | verified (ms.date 2025-07-09) | Learn, Configuring Kerberos delegation for gMSAs |
 | G5 | AD FS's farm wizard offers the backdated key | Where Learn's pages differ | verified (ms.date 2024-02-13) | Learn, Configure a federation server |
 | G6 | Links to the new guide for the hand procedure and the Entra comparison | Context; plan table | link added | — |
+
+## Revision 2026-11-13 — dMSA requirement wording, CVE-2025-53779 and RC4
+
+Mike's approval, Nov 13, 2026. Sources read Nov 13, 2026. The kit's NPI-KRB-04 doesn't yet check the August 2025 update or AES keys; the new dangers rows say so and leave the check to a person.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| W1 | dMSA: a discoverable WS2025 DC; schema alone isn't enough; no functional level named | Verified facts | verified | Learn, dMSA FAQ |
+| W2 | CVE-2025-53779: WS2025 only; Aug 12, 2025; KB5063878, hotpatch KB5064010; the two attributes; domain administrator privileges | Verified facts | verified | MSRC |
+| W3 | KB5073381 AES-only assumed default from Apr 14, 2026; rollback not read from July 2026; events 202/204/207/209; password change creates AES keys; Learn silent on whether migration repairs keys | Verified facts | verified | KB5073381; Learn, Detect and remediate RC4; dMSA FAQ |
