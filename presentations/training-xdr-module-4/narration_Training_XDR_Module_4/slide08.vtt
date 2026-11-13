@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.738
+Lab 2 runs the guide's own commands
+in a test tenant, never production.
+
+2
+00:00:04.738 --> 00:00:07.737
+The authors haven't run
+them, as the page says.
+
+3
+00:00:07.737 --> 00:00:13.487
+You need Module 1's test tenant, in the
+worldwide or G C C cloud; for G C C High or
+
+4
+00:00:13.487 --> 00:00:19.425
+D O D, create the rule in the portal from
+the file instead of steps four and five.
+
+5
+00:00:19.425 --> 00:00:24.416
+You need an account with Detection
+tuning, manage, or Security Administrator,
+
+6
+00:00:24.416 --> 00:00:27.769
+activated through pim, and
+Defender for Identity or
+
+7
+00:00:27.769 --> 00:00:30.888
+Cloud Apps connected, for
+step six to return rows.
+
+8
+00:00:30.888 --> 00:00:34.949
+Step one connects with the hunting
+and custom detection permissions.
+
+9
+00:00:34.949 --> 00:00:40.062
+Step two writes the guide's example rule
+to a file, with its status disabled.
+
+10
+00:00:40.062 --> 00:00:45.025
+The slide shortens it; the page has the
+whole file, exactly as the guide gives it.
+
+11
+00:00:45.025 --> 00:00:49.987
+Step three reads the file back and runs
+its query against the last thirty days,
+
+12
+00:00:49.987 --> 00:00:52.700
+saving the output as
+the rule's test record.
+
+13
+00:00:52.700 --> 00:00:55.825
+In a quiet test tenant it returns no rows.
+
+14
+00:00:55.825 --> 00:00:58.125
+That shows the known-good window only.
+
+15
+00:00:58.125 --> 00:01:01.970
+A rule isn't finished until its
+known-bad event is shown to fire.

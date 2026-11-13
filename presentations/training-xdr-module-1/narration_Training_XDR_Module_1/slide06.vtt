@@ -1,0 +1,102 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.000
+Unit 3 is who can do what.
+
+2
+00:00:02.000 --> 00:00:07.373
+Microsoft Learn describes four permission
+groups in Defender's unified role-based
+
+3
+00:00:07.373 --> 00:00:10.903
+access control: security
+operations, security posture,
+
+4
+00:00:10.903 --> 00:00:14.050
+authorization and settings,
+and data operations.
+
+5
+00:00:14.050 --> 00:00:18.537
+The program builds four roles from them;
+that's its risk-based recommendation.
+
+6
+00:00:18.537 --> 00:00:21.136
+A read role, called Security data basics,
+
+7
+00:00:21.136 --> 00:00:24.363
+for analysts and the
+assessor's read-only account.
+
+8
+00:00:24.363 --> 00:00:29.025
+A responder role that adds alerts,
+response and basic live response.
+
+9
+00:00:29.025 --> 00:00:32.382
+A detection engineer role
+with Detection tuning,
+
+10
+00:00:32.382 --> 00:00:35.575
+manage, which the custom
+detection A P I accepts.
+
+11
+00:00:35.575 --> 00:00:39.238
+And advanced live response
+only for Tier zero analysts.
+
+12
+00:00:39.238 --> 00:00:43.737
+Each role is assigned to groups that pim
+governs, so no one holds it standing.
+
+13
+00:00:43.737 --> 00:00:48.012
+Create every role and assignment
+before you activate the workloads;
+
+14
+00:00:48.012 --> 00:00:52.587
+Learn says activation needs at least
+Security Administrator in Entra I D.
+
+15
+00:00:52.587 --> 00:00:55.512
+Then connect the S O C's read path.
+
+16
+00:00:55.512 --> 00:00:59.549
+Learn names Security Incident dot
+Read dot All as the least-privileged
+
+17
+00:00:59.549 --> 00:01:04.063
+permission to list incidents, and Threat
+Hunting dot Read dot All to run queries.
+
+18
+00:01:04.063 --> 00:01:08.920
+Connect with the environment
+of the tenant's cloud:
+
+19
+00:01:08.920 --> 00:01:13.662
+Global for G C C, U S Gov for G C
+C High, U S Gov D O D for D O D.
+
+20
+00:01:13.662 --> 00:01:16.796
+A session in the wrong
+cloud returns an empty list,
+
+21
+00:01:16.796 --> 00:01:19.010
+and an empty list looks like a pass.

@@ -1,0 +1,95 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Three rules complete the gate.
+
+2
+00:00:01.762 --> 00:00:05.040
+First, what's never contained
+by a playbook: servers,
+
+3
+00:00:05.040 --> 00:00:08.475
+privileged accounts and
+emergency access accounts.
+
+4
+00:00:08.475 --> 00:00:10.663
+For those, a human decides.
+
+5
+00:00:10.663 --> 00:00:13.075
+Second, how an incident closes.
+
+6
+00:00:13.075 --> 00:00:16.996
+Every incident closes with a
+classification and a determination,
+
+7
+00:00:16.996 --> 00:00:20.845
+and Microsoft Learn says the Graph
+incident record carries both,
+
+8
+00:00:20.845 --> 00:00:23.625
+along with who it's assigned
+to and the comments.
+
+9
+00:00:23.625 --> 00:00:25.288
+Third, the way back.
+
+10
+00:00:25.288 --> 00:00:28.964
+Containment actions are reversible
+from the Action center,
+
+11
+00:00:28.964 --> 00:00:32.786
+such as releasing a device from
+isolation or re-enabling a user,
+
+12
+00:00:32.786 --> 00:00:35.800
+as Security Operations
+and Telemetry describes.
+
+13
+00:00:35.800 --> 00:00:39.362
+An incident closed by mistake
+is reopened with a comment.
+
+14
+00:00:39.362 --> 00:00:42.649
+The pilot is two weeks of
+the day shift triaging every
+
+15
+00:00:42.649 --> 00:00:45.787
+incident to the table and
+recording time to triage.
+
+16
+00:00:45.787 --> 00:00:48.688
+The S O C lead reviews the queue daily.
+
+17
+00:00:48.688 --> 00:00:53.343
+And the evidence: the severity table and
+the incident response plan's version,
+
+18
+00:00:53.343 --> 00:00:57.998
+the monthly incident export with alerts,
+classification and timestamps, the
+
+19
+00:00:57.998 --> 00:00:59.817
+quarterly exercise incident,
+
+20
+00:00:59.817 --> 00:01:03.580
+and every incident closed outside
+its window, with the reason.

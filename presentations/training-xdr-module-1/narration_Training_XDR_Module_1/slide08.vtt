@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.800
+How do you know the sensor is healthy?
+
+2
+00:00:01.800 --> 00:00:04.425
+On the device, the
+sense service is running
+
+3
+00:00:04.425 --> 00:00:07.350
+and the onboarding state
+in the registry is one.
+
+4
+00:00:07.350 --> 00:00:11.031
+In the service, the device info
+table carries two columns:
+
+5
+00:00:11.031 --> 00:00:13.850
+onboarding status, and
+sensor health state.
+
+6
+00:00:13.850 --> 00:00:19.113
+Microsoft Learn's device inventory field
+reference lists five sensor health values.
+
+7
+00:00:19.113 --> 00:00:20.563
+Active is the pass.
+
+8
+00:00:20.563 --> 00:00:24.787
+Inactive means no contact,
+typically for seven days or more.
+
+9
+00:00:24.787 --> 00:00:29.150
+Then no sensor data, impaired
+communications, and misconfigured.
+
+10
+00:00:29.150 --> 00:00:33.164
+Every value but active is a ticket;
+for impaired communications,
+
+11
+00:00:33.164 --> 00:00:36.950
+start with the government U R L
+list the firewall has to allow.
+
+12
+00:00:36.950 --> 00:00:42.362
+Intune's E D R onboarding status report
+shows the same thing from the Intune side.
+
+13
+00:00:42.362 --> 00:00:46.446
+The guide sets the day-two rule: the
+operator reviews coverage weekly,
+
+14
+00:00:46.446 --> 00:00:50.674
+and every device that hasn't been
+active for seven days becomes a ticket.
+
+15
+00:00:50.674 --> 00:00:53.487
+The weekly coverage file
+is kept twelve months.
+
+16
+00:00:53.487 --> 00:00:57.400
+The platform owner reviews the
+exception register every quarter.
+
+17
+00:00:57.400 --> 00:01:00.925
+And the assessor-ready
+artifact is coverage by ring,
+
+18
+00:01:00.925 --> 00:01:04.510
+against the inventory the
+C M eight control asks for.

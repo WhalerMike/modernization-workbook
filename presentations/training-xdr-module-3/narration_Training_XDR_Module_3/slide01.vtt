@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.933
+Welcome to Module 3 of Defender
+X D R Engineering and Operations:
+
+2
+00:00:04.933 --> 00:00:06.775
+exposure and incidents.
+
+3
+00:00:06.775 --> 00:00:10.006
+Two queues decide whether the
+platform you built is used:
+
+4
+00:00:10.006 --> 00:00:14.750
+the vulnerabilities waiting for an owner,
+and the incidents waiting for an analyst.
+
+5
+00:00:14.750 --> 00:00:18.343
+In this module you learn what
+Defender adds to the vulnerability
+
+6
+00:00:18.343 --> 00:00:21.338
+program in a government cloud,
+and what it can't do there.
+
+7
+00:00:21.338 --> 00:00:25.996
+Then you learn how the security
+operations center triages, contains,
+
+8
+00:00:25.996 --> 00:00:29.837
+hands off and closes every
+incident, to a table it can show.
+
+9
+00:00:29.837 --> 00:00:35.112
+The module covers Steps 5 and 6 of the
+Defender X D R implementation guide.
+
+10
+00:00:35.112 --> 00:00:39.650
+It takes about thirty-five minutes,
+plus Lab 2 in your own test tenant.

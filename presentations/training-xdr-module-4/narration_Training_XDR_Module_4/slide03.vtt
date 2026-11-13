@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:08.050
+Write a custom detection as a repository
+file, and say why it starts disabled.
+
+3
+00:00:08.050 --> 00:00:12.738
+Test a rule against a validation window,
+and explain the thirty-day limit.
+
+4
+00:00:12.738 --> 00:00:17.540
+Deploy a rule through the Graph detection
+rules A P I, and use the portal,
+
+5
+00:00:17.540 --> 00:00:23.088
+from the same file, where the A P I's
+government-cloud availability isn't specified.
+
+6
+00:00:23.088 --> 00:00:26.160
+Name Defender for Identity's
+and Defender for Cloud
+
+7
+00:00:26.160 --> 00:00:29.162
+Apps' government-cloud gaps,
+and their interim path.
+
+8
+00:00:29.162 --> 00:00:31.594
+And run the cross-source
+query that finds a
+
+9
+00:00:31.594 --> 00:00:34.025
+user with alerts from
+more than one source.
+
+10
+00:00:34.025 --> 00:00:35.450
+You need Module 3.
+
+11
+00:00:35.450 --> 00:00:41.050
+Skim the rule lifecycle in the Security
+Operations and Telemetry book's Chapter 11.
+
+12
+00:00:41.050 --> 00:00:44.420
+Lab 2 runs in a test
+tenant, never production.

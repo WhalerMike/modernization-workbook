@@ -1,0 +1,673 @@
+{
+ "1": [
+  [
+   0.05,
+   8.175,
+   "Welcome to Module 1 of the learning path Defender X D R Engineering and Operations: architecture, access and onboarding."
+  ],
+  [
+   8.225,
+   3.95,
+   "Before any prevention setting matters, two things have to be true."
+  ],
+  [
+   12.175,
+   4.35,
+   "The right people can see and act on the service, in the tenant's own cloud."
+  ],
+  [
+   16.525,
+   2.7,
+   "And the sensor is on every device it should be."
+  ],
+  [
+   19.225,
+   9.7,
+   "In this module you learn the service's shape and its government-cloud limits, you set who can do what, and you prove the sensor's coverage with a query whose result you can file."
+  ],
+  [
+   28.925,
+   5.138,
+   "The module covers Steps 1 and 2 of the Defender X D R implementation guide."
+  ],
+  [
+   34.062,
+   4.15,
+   "It takes about forty minutes, plus Lab 2 in your own test tenant."
+  ],
+  [
+   38.212,
+   11.075,
+   "The path covers Windows clients and Windows Server only, for a civilian agency in Microsoft three sixty-five G C C, with notes for G C C High and D O D."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.038,
+   "Why start here?"
+  ],
+  [
+   1.087,
+   1.8,
+   "The guide opens with one idea."
+  ],
+  [
+   2.888,
+   2.875,
+   "A Defender license is not a defended endpoint."
+  ],
+  [
+   5.763,
+   10.025,
+   "The sensor has to be on every device and healthy, the prevention settings have to be enforced and not just configured, and every alert has to end in a decision someone can show."
+  ],
+  [
+   15.787,
+   3.587,
+   "A license gives you the right to run the sensor and the service."
+  ],
+  [
+   19.375,
+   9.113,
+   "It doesn't put the sensor on every device, it doesn't give anyone the right role, and it doesn't connect the security operations center to the tenant's own cloud."
+  ],
+  [
+   28.488,
+   4.062,
+   "So this module proves three things before anything else is built."
+  ],
+  [
+   32.55,
+   5.25,
+   "The right people can see and act, through roles assigned with privileged identity management."
+  ],
+  [
+   37.8,
+   5.125,
+   "The S O C reads incidents through Microsoft Graph, in the tenant's own cloud."
+  ],
+  [
+   42.925,
+   6.312,
+   "And every in-scope device is onboarded with an active sensor, or is in the exception register with a reason."
+  ],
+  [
+   49.237,
+   4.825,
+   "Gates 1 and 2 come first in the guide, and every later gate depends on them."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.438,
+   "Name Defender X D R's components, its two trust boundaries, and which control plane holds which setting."
+  ],
+  [
+   9.4,
+   7.65,
+   "Read the guide's government-cloud availability table, and record a feature your cloud doesn't have as a disposition, not a failed control."
+  ],
+  [
+   17.05,
+   5.775,
+   "Describe the program's unified role-based access control roles, and why they're assigned through pim."
+  ],
+  [
+   22.825,
+   6.987,
+   "Connect to Microsoft Graph in G C C, G C C High or D O D, and read incidents."
+  ],
+  [
+   29.812,
+   4.438,
+   "And prove onboarding and sensor health, on one device and across the fleet."
+  ],
+  [
+   34.25,
+   9.637,
+   "Before you start, read the guide's How to read this guide section and its prerequisites, and skim the Privileged Access implementation guide's pim model for the eligible roles."
+  ],
+  [
+   43.888,
+   3.362,
+   "Lab 2 runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.312,
+   "Unit 1 is the shape of the service."
+  ],
+  [
+   2.362,
+   10.938,
+   "Defender X D R joins Defender for Endpoint, Defender for Identity, Defender for Office three sixty-five and Defender for Cloud Apps in one portal and one incident queue."
+  ],
+  [
+   13.3,
+   1.8,
+   "Two trust boundaries matter."
+  ],
+  [
+   15.1,
+   5.925,
+   "The agency's boundary holds the devices, the S O C's tools and the evidence store."
+  ],
+  [
+   21.025,
+   1.962,
+   "Microsoft's holds the service."
+  ],
+  [
+   22.988,
+   13.75,
+   "Microsoft Learn's page on Defender for U S Government says that for a U S Government tenant it's built in the Azure U S Government environment, and G C C, G C C High and D O D each have their own portal."
+  ],
+  [
+   36.737,
+   1.562,
+   "Then the control planes."
+  ],
+  [
+   38.3,
+   11.738,
+   "Learn says Intune is the recommended tool for distributing Defender for Endpoint settings, and that its policies apply to device objects only, so they're assigned to Entra device groups, never user groups."
+  ],
+  [
+   50.038,
+   6.688,
+   "Settings Intune doesn't hold, like automation levels and custom detections, liv in the Defender portal."
+  ],
+  [
+   56.725,
+   11.55,
+   "Servers in Azure, A W S, Google Cloud or Oracle Cloud Infrastructure reach Defender through Defender for Servers and Azure Arc, as the Devices and Endpoints book describes."
+  ],
+  [
+   68.275,
+   6.8,
+   "And one rule above all: one control plane per setting, because Group Policy wins over Intune by default."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   9.012,
+   "Unit 2 is what each government cloud has, from the guide's availability table, read on Microsoft Learn on November eleventh, 2026."
+  ],
+  [
+   9.062,
+   11.938,
+   "Learn's page on Defender for Endpoint for U S Government customers says prevention, detection, investigation and remediation are available in G C C, G C C High and D O D."
+  ],
+  [
+   21.0,
+   17.75,
+   "Each cloud has its own portal: security dot microsoft dot com for G C C, security dot microsoft dot U S for G C C High, and security dot apps dot mil for D O D. Graph's incident and hunting A P I's are available, with G C C on the worldwide Graph host."
+  ],
+  [
+   38.75,
+   0.975,
+   "Then the gap."
+  ],
+  [
+   39.725,
+   10.162,
+   "Learn's page on Security Exposure Management says it's available in Public Cloud only, not in U S Government clouds, so attack paths and the exposure graph aren't there."
+  ],
+  [
+   49.888,
+   9.238,
+   "And Learn doesn't say whether custom detection rules through Graph, automatic attack disruption, or web content filtering on Windows reach these clouds."
+  ],
+  [
+   59.125,
+   5.213,
+   "The guide's rule: not yet specified means Learn doesn't say, not that it's available."
+  ],
+  [
+   64.338,
+   7.963,
+   "A feature your cloud doesn't offer goes in the decision record and the closure register as not applicable, never as a failed control."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.95,
+   "Unit 3 is who can do what."
+  ],
+  [
+   2.0,
+   12.05,
+   "Microsoft Learn describes four permission groups in Defender's unified role-based access control: security operations, security posture, authorization and settings, and data operations."
+  ],
+  [
+   14.05,
+   4.487,
+   "The program builds four roles from them; that's its risk-based recommendation."
+  ],
+  [
+   18.538,
+   5.825,
+   "A read role, called Security data basics, for analysts and the assessor's read-only account."
+  ],
+  [
+   24.363,
+   4.662,
+   "A responder role that adds alerts, response and basic live response."
+  ],
+  [
+   29.025,
+   6.55,
+   "A detection engineer role with Detection tuning, manage, which the custom detection A P I accepts."
+  ],
+  [
+   35.575,
+   3.663,
+   "And advanced live response only for Tier zero analysts."
+  ],
+  [
+   39.237,
+   4.5,
+   "Each role is assigned to groups that pim governs, so no one holds it standing."
+  ],
+  [
+   43.737,
+   8.85,
+   "Create every role and assignment before you activate the workloads; Learn says activation needs at least Security Administrator in Entra I D."
+  ],
+  [
+   52.587,
+   2.925,
+   "Then connect the S O C's read path."
+  ],
+  [
+   55.513,
+   8.55,
+   "Learn names Security Incident dot Read dot All as the least-privileged permission to list incidents, and Threat Hunting dot Read dot All to run queries."
+  ],
+  [
+   64.062,
+   9.6,
+   "Connect with the environment of the tenant's cloud: Global for G C C, U S Gov for G C C High, U S Gov D O D for D O D."
+  ],
+  [
+   73.662,
+   5.275,
+   "A session in the wrong cloud returns an empty list, and an empty list looks like a pass."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.888,
+   "Unit 4 is onboarding, by management plane."
+  ],
+  [
+   2.938,
+   11.975,
+   "Windows clients onboard through Intune's endpoint detection and response policy, E S oh-oh-four in the Devices and Endpoints book's policy library, with the package type Auto from connector."
+  ],
+  [
+   14.912,
+   4.75,
+   "Assign it to ring zero, then ring one, then rings two and three."
+  ],
+  [
+   19.663,
+   14.238,
+   "Windows Server onboards through Defender for Servers on Azure Arc. Microsoft Learn's government page says Windows Server twenty nineteen needs update K B four five eight six eight three nine before onboarding, so it reaches the right environment."
+  ],
+  [
+   33.9,
+   4.013,
+   "The program's own standard assumes twenty nineteen as the minimum."
+  ],
+  [
+   37.913,
+   4.775,
+   "Rollback is the offboarding package, deployed as an E D R policy."
+  ],
+  [
+   42.688,
+   8.213,
+   "Learn says the package expires seven days after download, and you never deploy onboarding and offboarding to the same device at the same time."
+  ],
+  [
+   50.9,
+   21.4,
+   "A device the sensor can't reach, such as an unsupported system, an isolated network or an appliance, goes in the exception register with a compensating control: the streamlined connectivity set or a proxy, or, where no path exists, Windows Event Forwarding of the Defender operational log, which Learn names for centralizing events without the service."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.75,
+   "How do you know the sensor is healthy?"
+  ],
+  [
+   1.8,
+   5.55,
+   "On the device, the sense service is running and the onboarding state in the registry is one."
+  ],
+  [
+   7.35,
+   6.5,
+   "In the service, the device info table carries two columns: onboarding status, and sensor health state."
+  ],
+  [
+   13.85,
+   5.263,
+   "Microsoft Learn's device inventory field reference lists five sensor health values."
+  ],
+  [
+   19.113,
+   1.45,
+   "Active is the pass."
+  ],
+  [
+   20.562,
+   4.225,
+   "Inactive means no contact, typically for seven days or more."
+  ],
+  [
+   24.788,
+   4.362,
+   "Then no sensor data, impaired communications, and misconfigured."
+  ],
+  [
+   29.15,
+   7.8,
+   "Every value but active is a ticket; for impaired communications, start with the government U R L list the firewall has to allow."
+  ],
+  [
+   36.95,
+   5.412,
+   "Intune's E D R onboarding status report shows the same thing from the Intune side."
+  ],
+  [
+   42.362,
+   8.312,
+   "The guide sets the day-two rule: the operator reviews coverage weekly, and every device that hasn't been active for seven days becomes a ticket."
+  ],
+  [
+   50.675,
+   2.812,
+   "The weekly coverage file is kept twelve months."
+  ],
+  [
+   53.487,
+   3.913,
+   "The platform owner reviews the exception register every quarter."
+  ],
+  [
+   57.4,
+   7.05,
+   "And the assessor-ready artifact is coverage by ring, against the inventory the C M eight control asks for."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.375,
+   "Lab 2 runs the guide's own validate commands in a test tenant, never production."
+  ],
+  [
+   5.425,
+   7.575,
+   "The authors haven't run them, as the page says, and the path has no Lab 1 on fixtures, because the guide has no kit yet."
+  ],
+  [
+   13.0,
+   9.6,
+   "You need a test tenant licensed for Defender for Endpoint Plan 2, a reader account activated through pim, and a ring zero Windows test device onboarded through Intune."
+  ],
+  [
+   22.6,
+   2.712,
+   "Values you supply are in angle brackets."
+  ],
+  [
+   25.312,
+   9.637,
+   "Step one, on your workstation: install the two Graph modules, connect with the environment for your cloud, and create a folder for this lab's evidence files."
+  ],
+  [
+   34.95,
+   1.887,
+   "Step two reads incidents."
+  ],
+  [
+   36.837,
+   7.1,
+   "As the guide states it, a pass is up to five incidents, or an empty list in a new tenant, with no permission error."
+  ],
+  [
+   43.938,
+   4.25,
+   "An error naming the role means the account lacks one of the reader roles."
+  ],
+  [
+   48.188,
+   8.162,
+   "Step three runs on the test device, in an elevated session: query the sense service, and read the onboarding state from the registry."
+  ],
+  [
+   56.35,
+   3.95,
+   "Microsoft Learn gives the value one for an onboarded device."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.35,
+   "Step four files the fleet's coverage."
+  ],
+  [
+   2.4,
+   6.763,
+   "The query takes the latest record for each Windows device and counts them by onboarding status and sensor health state."
+  ],
+  [
+   9.162,
+   3.612,
+   "It runs through Graph so the result is a file you can keep."
+  ],
+  [
+   12.775,
+   4.662,
+   "On the slide it's wrapped to fit; on the page each command is one line."
+  ],
+  [
+   17.438,
+   5.862,
+   "The guide's pass: every device onboarded with an active sensor, or in the exception register."
+  ],
+  [
+   23.3,
+   6.513,
+   "Learn doesn't list the exact onboarding status strings, so the query groups by them rather than filtering on one."
+  ],
+  [
+   29.812,
+   9.4,
+   "Step five is Microsoft's detection test, on the test device, under its change record, from an elevated Command Prompt, exactly as Learn publishes it."
+  ],
+  [
+   39.212,
+   2.975,
+   "Learn says an alert appears in about ten minutes."
+  ],
+  [
+   42.188,
+   14.988,
+   "One caution the guide records: Learn's page lists Windows Server versions as supported, not Windows ten or eleven, so on a client a missing alert is inconclusive; rely on the coverage query and Module 2's network protection test."
+  ],
+  [
+   57.175,
+   1.538,
+   "Step six backs it out."
+  ],
+  [
+   58.712,
+   6.2,
+   "Nothing changed but the alert the test raised: resolve that incident in the test tenant, and disconnect."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.312,
+   "The federal requirement, from the guide's requirements table."
+  ],
+  [
+   3.362,
+   12.275,
+   "Gate one supports A C two and A C six from nist special publication eight hundred fifty-three, revision five: account management and least privilege, here for the security tooling itself."
+  ],
+  [
+   15.637,
+   5.438,
+   "It also supports A U nine, enhancement four, which limits access to audit tools."
+  ],
+  [
+   21.075,
+   3.8,
+   "The evidence is the role export and the pim assignment report."
+  ],
+  [
+   24.875,
+   18.038,
+   "Gate two supports C M eight, the system component inventory, and S I four, system monitoring, along with O M B memorandum M twenty-two oh-nine's device actions, including endpoint detection and response deployed widely, as M twenty-two oh-one describes."
+  ],
+  [
+   42.913,
+   3.688,
+   "The evidence is the coverage file and the exception register."
+  ],
+  [
+   46.6,
+   10.262,
+   "Each row lines up with a fed-ramp twenty X key security indicator, which binds cloud service providers; the agency uses them as a vocabulary for its own evidence."
+  ],
+  [
+   56.862,
+   2.038,
+   "The gates support these controls."
+  ],
+  [
+   58.9,
+   3.013,
+   "The assessor decides whether each is satisfied."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.312,
+   "First: an Attack Surface Reduction policy in Intune is assigned to a user group."
+  ],
+  [
+   7.338,
+   1.012,
+   "What happens?"
+  ],
+  [
+   8.35,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   9.575,
+   6.7,
+   "It never applies, because Microsoft Learn says Defender for Endpoint management supports device objects only."
+  ],
+  [
+   16.275,
+   2.1,
+   "Assign it to an Entra device group."
+  ],
+  [
+   18.375,
+   8.238,
+   "Second: a G C C High S O C connects to Graph without the environment parameter and lists incidents, and the list is empty."
+  ],
+  [
+   26.613,
+   1.613,
+   "What's the most likely reason?"
+  ],
+  [
+   28.225,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   29.45,
+   8.012,
+   "The session read the worldwide host instead of the tenant's own cloud; connect with U S Gov. A missing role would have produced an error naming it."
+  ],
+  [
+   37.462,
+   4.325,
+   "An empty list with no error is exactly the danger the guide warns about."
+  ],
+  [
+   41.788,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   9.312,
+   "You placed each setting in its control plane: Intune for endpoint policy, the Defender portal for what Intune doesn't hold, and one plane per setting."
+  ],
+  [
+   10.188,
+   4.013,
+   "You checked what your government cloud offers, and how to record what it doesn't."
+  ],
+  [
+   14.2,
+   4.138,
+   "You read incidents through Microsoft Graph, in the tenant's own cloud."
+  ],
+  [
+   18.337,
+   3.612,
+   "And you proved the sensor, on one device and across the fleet."
+  ],
+  [
+   21.95,
+   16.775,
+   "The evidence an I S S O keeps from this module: the role export and the pim assignment report, the E D R policy export and its assignments, the weekly coverage file, the detection test with the alert it raised, and the exception register for every device not onboarded."
+  ],
+  [
+   38.725,
+   8.675,
+   "Next is Module 2, prevention and Attack Surface Reduction, where the settings move through audit, warn and block, ring by ring."
+  ]
+ ]
+}

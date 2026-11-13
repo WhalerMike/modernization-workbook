@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+The federal requirement, from
+the guide's requirements table.
+
+2
+00:00:03.362 --> 00:00:08.652
+Gate five supports R A five, vulnerability
+monitoring and scanning, S I two,
+
+3
+00:00:08.652 --> 00:00:13.161
+flaw remediation, and C M eight,
+the system component inventory,
+
+4
+00:00:13.161 --> 00:00:18.624
+all from NIST special publication eight
+hundred fifty-three, revision five.
+
+5
+00:00:18.624 --> 00:00:23.075
+The evidence is the vulnerability
+query output and the remediation queue.
+
+6
+00:00:23.075 --> 00:00:28.574
+Gate six supports the incident response
+family: I R four, incident handling;
+
+7
+00:00:28.574 --> 00:00:32.920
+I R five, incident monitoring;
+and I R six, incident reporting;
+
+8
+00:00:32.920 --> 00:00:37.000
+with A U six, audit record
+review, analysis and reporting.
+
+9
+00:00:37.000 --> 00:00:40.987
+The evidence is the incident
+exports, with their classification.
+
+10
+00:00:40.987 --> 00:00:45.093
+Each row lines up with fed-ramp
+twenty X key security indicators,
+
+11
+00:00:45.093 --> 00:00:50.362
+which bind cloud service providers; the
+agency lines its own evidence up with them.
+
+12
+00:00:50.362 --> 00:00:52.452
+The gates support these controls,
+
+13
+00:00:52.452 --> 00:00:55.730
+and the assessor decides
+whether each is satisfied.

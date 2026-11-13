@@ -1,0 +1,98 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.428
+The metrics measure protected
+coverage and effectiveness,
+
+2
+00:00:03.428 --> 00:00:05.050
+not whether a setting exists.
+
+3
+00:00:05.050 --> 00:00:08.537
+They join Security Operations
+and Telemetry's metric set,
+
+4
+00:00:08.537 --> 00:00:10.862
+and the targets are the program's to set.
+
+5
+00:00:10.862 --> 00:00:12.901
+Four examples from the guide's seven.
+
+6
+00:00:12.901 --> 00:00:16.772
+Protected coverage is onboarded
+devices with an active sensor,
+
+7
+00:00:16.772 --> 00:00:20.498
+divided by in-scope devices in
+the inventory, because a policy
+
+8
+00:00:20.498 --> 00:00:24.662
+assigned to a group says nothing
+about devices that never checked in.
+
+9
+00:00:24.662 --> 00:00:29.525
+Enforcement depth is devices with every
+Attack Surface Reduction rule in block,
+
+10
+00:00:29.525 --> 00:00:32.862
+or an approved exception,
+divided by onboarded devices,
+
+11
+00:00:32.862 --> 00:00:36.200
+because audit mode is configured
+but protects nothing.
+
+12
+00:00:36.200 --> 00:00:39.726
+Detection validity is enabled
+detections with a passing
+
+13
+00:00:39.726 --> 00:00:43.325
+known-bad test this quarter,
+divided by enabled detections.
+
+14
+00:00:43.325 --> 00:00:46.598
+And synthetic-event success
+is events that produced
+
+15
+00:00:46.598 --> 00:00:49.275
+their expected alert,
+divided by events run.
+
+16
+00:00:49.275 --> 00:00:53.536
+The synthetic events, run on ring
+zero devices under a change record,
+
+17
+00:00:53.536 --> 00:00:57.112
+are the detection test, the
+network protection test site,
+
+18
+00:00:57.112 --> 00:01:00.461
+a controlled folder access
+write by an untrusted app,
+
+19
+00:01:00.461 --> 00:01:04.950
+a demonstration for each rule, and a
+custom detection's known-bad replay.
+
+20
+00:01:04.950 --> 00:01:09.770
+They show an assessor that telemetry,
+detection and routing work end to end.

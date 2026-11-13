@@ -13166,6 +13166,176 @@
      "change": "Added: cited on the narrated deck slides"
     }
    ]
+  },
+  {
+   "id": "mde-evaluate-network-protection",
+   "title": "Evaluate network protection",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/evaluate-network-protection",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Evaluate network protection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-network-protection",
+   "title": "Use network protection to help prevent connections to malicious or suspicious sites",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/network-protection",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Use network protection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-monitor-controlled-folder-access",
+   "title": "Monitor controlled folder access (CFA) activity",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/controlled-folder-access-monitor",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Monitor controlled folder access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-tamper-protection-overview",
+   "title": "Tamper protection overview",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/tamper-protection-overview",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Tamper protection overview"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "asr-rules-reference",
+   "title": "Attack surface reduction (ASR) rules reference",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "ASR rules reference"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-schema-changes",
+   "title": "Advanced hunting schema - Naming changes",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-schema-changes",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Advanced hunting schema naming changes"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-schema-tables",
+   "title": "Understand the advanced hunting schema",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-schema-tables",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Understand the advanced hunting schema"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-migrate-from-mde",
+   "title": "Migrate advanced hunting queries from Microsoft Defender for Endpoint",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-migrate-from-mde",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Migrate advanced hunting queries"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-alertevidence-table",
+   "title": "AlertEvidence",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-alertevidence-table",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "AlertEvidence"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-alertinfo-table",
+   "title": "AlertInfo",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-alertinfo-table",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "AlertInfo"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
   }
  ],
  "phrases": {

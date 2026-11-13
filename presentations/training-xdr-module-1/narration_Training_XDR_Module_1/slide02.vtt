@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Why start here?
+
+2
+00:00:01.088 --> 00:00:02.887
+The guide opens with one idea.
+
+3
+00:00:02.887 --> 00:00:05.763
+A Defender license is
+not a defended endpoint.
+
+4
+00:00:05.763 --> 00:00:08.516
+The sensor has to be on
+every device and healthy,
+
+5
+00:00:08.516 --> 00:00:12.540
+the prevention settings have to be
+enforced and not just configured,
+
+6
+00:00:12.540 --> 00:00:15.788
+and every alert has to end in
+a decision someone can show.
+
+7
+00:00:15.788 --> 00:00:19.374
+A license gives you the right to
+run the sensor and the service.
+
+8
+00:00:19.374 --> 00:00:23.860
+It doesn't put the sensor on every device,
+it doesn't give anyone the right role,
+
+9
+00:00:23.860 --> 00:00:28.488
+and it doesn't connect the security
+operations center to the tenant's own cloud.
+
+10
+00:00:28.488 --> 00:00:32.550
+So this module proves three things
+before anything else is built.
+
+11
+00:00:32.550 --> 00:00:34.300
+The right people can see and act,
+
+12
+00:00:34.300 --> 00:00:37.800
+through roles assigned with
+privileged identity management.
+
+13
+00:00:37.800 --> 00:00:42.925
+The S O C reads incidents through
+Microsoft Graph, in the tenant's own cloud.
+
+14
+00:00:42.925 --> 00:00:46.553
+And every in-scope device is
+onboarded with an active sensor,
+
+15
+00:00:46.553 --> 00:00:49.237
+or is in the exception
+register with a reason.
+
+16
+00:00:49.237 --> 00:00:54.120
+Gates 1 and 2 come first in the guide,
+and every later gate depends on them.

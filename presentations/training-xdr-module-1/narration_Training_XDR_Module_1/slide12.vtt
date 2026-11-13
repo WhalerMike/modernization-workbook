@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:07.337
+First: an Attack Surface Reduction policy
+in Intune is assigned to a user group.
+
+3
+00:00:07.337 --> 00:00:08.350
+What happens?
+
+4
+00:00:08.350 --> 00:00:09.575
+The answer is b.
+
+5
+00:00:09.575 --> 00:00:12.961
+It never applies, because
+Microsoft Learn says Defender
+
+6
+00:00:12.961 --> 00:00:16.275
+for Endpoint management
+supports device objects only.
+
+7
+00:00:16.275 --> 00:00:18.375
+Assign it to an Entra device group.
+
+8
+00:00:18.375 --> 00:00:21.979
+Second: a G C C High S O C
+connects to Graph without the
+
+9
+00:00:21.979 --> 00:00:26.613
+environment parameter and lists
+incidents, and the list is empty.
+
+10
+00:00:26.613 --> 00:00:28.226
+What's the most likely reason?
+
+11
+00:00:28.226 --> 00:00:29.450
+The answer is b.
+
+12
+00:00:29.450 --> 00:00:32.121
+The session read the
+worldwide host instead of
+
+13
+00:00:32.121 --> 00:00:34.449
+the tenant's own cloud;
+connect with U S Gov.
+
+14
+00:00:34.449 --> 00:00:37.462
+A missing role would have
+produced an error naming it.
+
+15
+00:00:37.462 --> 00:00:41.787
+An empty list with no error is exactly
+the danger the guide warns about.
+
+16
+00:00:41.787 --> 00:00:46.750
+The module page has three more questions,
+each linked to the unit that answers it.

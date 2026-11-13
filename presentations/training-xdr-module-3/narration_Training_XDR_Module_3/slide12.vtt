@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.456
+You recorded Exposure Management as
+not applicable in a government cloud,
+
+3
+00:00:05.456 --> 00:00:07.525
+and used the interim path instead.
+
+4
+00:00:07.525 --> 00:00:10.534
+You filed the vulnerability
+and exposure queries,
+
+5
+00:00:10.534 --> 00:00:14.187
+and checked that each exposed
+device has an owner and a ticket.
+
+6
+00:00:14.187 --> 00:00:16.395
+And you exported the open incidents,
+
+7
+00:00:16.395 --> 00:00:19.263
+and one incident with its
+alerts, for the record.
+
+8
+00:00:19.263 --> 00:00:22.064
+The evidence an I S S O
+keeps from this module:
+
+9
+00:00:22.064 --> 00:00:25.878
+the vulnerability query output
+and the remediation queue;
+
+10
+00:00:25.878 --> 00:00:29.770
+the severity table and the
+incident response plan's version;
+
+11
+00:00:29.770 --> 00:00:34.517
+the monthly incident export, with
+alerts, classification and timestamps;
+
+12
+00:00:34.517 --> 00:00:38.487
+and every incident closed outside
+its window, with the reason.
+
+13
+00:00:38.487 --> 00:00:45.000
+Next is Module 4: hunting, detections as
+code, and identity and cloud-app signals.

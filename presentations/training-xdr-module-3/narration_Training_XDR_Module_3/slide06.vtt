@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.175
+Unit 2 is the incident queue.
+
+2
+00:00:02.175 --> 00:00:06.715
+Microsoft Learn's page on listing
+incidents says Defender X D R correlates
+
+3
+00:00:06.715 --> 00:00:10.962
+alerts that share attack techniques
+or an attacker into one incident.
+
+4
+00:00:10.962 --> 00:00:14.663
+With Sentinel onboarded to the
+Defender portal, there's one queue.
+
+5
+00:00:14.663 --> 00:00:19.237
+The severity table is the program's
+design, a risk-based recommendation.
+
+6
+00:00:19.237 --> 00:00:22.013
+A high incident is
+triaged within one hour.
+
+7
+00:00:22.013 --> 00:00:24.634
+Its containment rung is L three, gated:
+
+8
+00:00:24.634 --> 00:00:29.287
+the playbook prepares the action,
+and a named approver releases it.
+
+9
+00:00:29.287 --> 00:00:33.077
+It's handed off to the incident
+response lead and the I S S O,
+
+10
+00:00:33.077 --> 00:00:38.075
+with the U S cert reporting decision
+made under the incident response plan.
+
+11
+00:00:38.075 --> 00:00:42.795
+A medium incident is triaged within
+twenty-four hours, at L two,
+
+12
+00:00:42.795 --> 00:00:47.237
+advise: enrich it and open a
+ticket, and the analyst decides.
+
+13
+00:00:47.237 --> 00:00:51.252
+A low or informational incident
+within seventy-two hours,
+
+14
+00:00:51.252 --> 00:00:55.350
+at L one, observe, with a tuning
+review if it keeps coming back.
+
+15
+00:00:55.350 --> 00:00:57.987
+The rungs come from the response ladder in
+
+16
+00:00:57.987 --> 00:01:01.060
+Security Operations and
+Telemetry's Chapter 11.
