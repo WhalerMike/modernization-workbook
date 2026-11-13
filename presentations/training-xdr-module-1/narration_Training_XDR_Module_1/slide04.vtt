@@ -1,0 +1,102 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.362
+Unit 1 is the shape of the service.
+
+2
+00:00:02.362 --> 00:00:06.642
+Defender X D R joins Defender for
+Endpoint, Defender for Identity,
+
+3
+00:00:06.642 --> 00:00:09.971
+Defender for Office three
+sixty-five and Defender
+
+4
+00:00:09.971 --> 00:00:13.300
+for Cloud Apps in one portal
+and one incident queue.
+
+5
+00:00:13.300 --> 00:00:15.100
+Two trust boundaries matter.
+
+6
+00:00:15.100 --> 00:00:21.025
+The agency's boundary holds the devices,
+the S O C's tools and the evidence store.
+
+7
+00:00:21.025 --> 00:00:22.987
+Microsoft's holds the service.
+
+8
+00:00:22.987 --> 00:00:28.982
+Microsoft Learn's page on Defender for U S
+Government says that for a U S Government
+
+9
+00:00:28.982 --> 00:00:33.124
+tenant it's built in the Azure
+U S Government environment,
+
+10
+00:00:33.124 --> 00:00:36.738
+and G C C, G C C High and D O
+D each have their own portal.
+
+11
+00:00:36.738 --> 00:00:38.299
+Then the control planes.
+
+12
+00:00:38.299 --> 00:00:43.092
+Learn says Intune is the recommended tool
+for distributing Defender for Endpoint
+
+13
+00:00:43.092 --> 00:00:46.565
+settings, and that its policies
+apply to device objects only,
+
+14
+00:00:46.565 --> 00:00:50.038
+so they're assigned to Entra
+device groups, never user groups.
+
+15
+00:00:50.038 --> 00:00:53.500
+Settings Intune doesn't
+hold, like automation levels
+
+16
+00:00:53.500 --> 00:00:56.726
+and custom detections, live
+in the Defender portal.
+
+17
+00:00:56.726 --> 00:01:02.295
+Servers in Azure, A W S, Google Cloud or
+Oracle Cloud Infrastructure reach Defender
+
+18
+00:01:02.295 --> 00:01:05.244
+through Defender for
+Servers and Azure Arc,
+
+19
+00:01:05.244 --> 00:01:08.275
+as the Devices and
+Endpoints book describes.
+
+20
+00:01:08.275 --> 00:01:11.756
+And one rule above all: one
+control plane per setting,
+
+21
+00:01:11.756 --> 00:01:15.140
+because Group Policy wins
+over Intune by default.

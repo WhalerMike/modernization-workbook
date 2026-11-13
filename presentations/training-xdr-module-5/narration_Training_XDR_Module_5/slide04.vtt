@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.787
+Unit 1 is automated investigation
+and response, set per device group.
+
+2
+00:00:04.787 --> 00:00:07.312
+Microsoft Learn lists five levels.
+
+3
+00:00:07.312 --> 00:00:10.225
+Full, remediate threats automatically.
+
+4
+00:00:10.225 --> 00:00:14.080
+Three semi levels, requiring
+approval for core folders,
+
+5
+00:00:14.080 --> 00:00:16.762
+for non-temp folders, or for all folders.
+
+6
+00:00:16.762 --> 00:00:18.612
+And no automated response.
+
+7
+00:00:18.612 --> 00:00:21.863
+The program's choices are
+risk-based recommendations.
+
+8
+00:00:21.863 --> 00:00:26.599
+The pilot puts ring one's workstation
+group at semi, require approval for all
+
+9
+00:00:26.599 --> 00:00:29.456
+folders, so every
+remediation is proposed and
+
+10
+00:00:29.456 --> 00:00:32.163
+an analyst approves it
+in the Action center.
+
+11
+00:00:32.163 --> 00:00:34.358
+Those two weeks of pending actions,
+
+12
+00:00:34.358 --> 00:00:37.613
+with the approval rate
+recorded, are the audit phase.
+
+13
+00:00:37.613 --> 00:00:41.062
+Then workstation groups go to
+full, which Learn recommends.
+
+14
+00:00:41.062 --> 00:00:43.275
+Server groups stay at a semi level,
+
+15
+00:00:43.275 --> 00:00:47.937
+because isolating a server is never
+autonomous in the program's ladder.
+
+16
+00:00:47.937 --> 00:00:51.239
+Rollback sets a device
+group back to a semi level,
+
+17
+00:00:51.239 --> 00:00:56.438
+on the Devices page under automated
+responses in the Defender X D R settings.
+
+18
+00:00:56.438 --> 00:00:58.814
+Learn says changing device groups needs
+
+19
+00:00:58.814 --> 00:01:01.800
+Global Administrator or
+Security Administrator.

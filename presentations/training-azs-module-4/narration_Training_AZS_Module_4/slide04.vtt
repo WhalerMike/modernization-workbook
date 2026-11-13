@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.387
+Unit 1 is the guide's Step 7.
+
+2
+00:00:02.387 --> 00:00:05.447
+Create each private link
+zone once, centrally,
+
+3
+00:00:05.447 --> 00:00:09.151
+in the connectivity subscription,
+and link it to the hub.
+
+4
+00:00:09.151 --> 00:00:13.863
+The example is Key Vault's zone, from
+Learn's Private Link integration page.
+
+5
+00:00:13.863 --> 00:00:18.225
+Then create the private endpoint,
+with a private D N S zone group.
+
+6
+00:00:18.225 --> 00:00:23.125
+Learn's D N S integration page says the
+zone group registers the A record with the
+
+7
+00:00:23.125 --> 00:00:27.950
+endpoint and removes it when the endpoint
+goes, so nobody edits records by hand.
+
+8
+00:00:27.950 --> 00:00:31.312
+Once the private path works,
+turn public access off;
+
+9
+00:00:31.312 --> 00:00:35.075
+for Key Vault, the firewall's
+default action becomes deny.
+
+10
+00:00:35.075 --> 00:00:38.392
+On premises, add conditional
+forwarders for the
+
+11
+00:00:38.392 --> 00:00:41.875
+vault's public zones to
+Azure D N S Private Resolver.
+
+12
+00:00:41.875 --> 00:00:46.909
+And one exfiltration note: a private
+endpoint reaches only its own resource,
+
+13
+00:00:46.909 --> 00:00:49.625
+but traffic to it can bypass the firewall.
+
+14
+00:00:49.625 --> 00:00:53.399
+Where inspection is required,
+Learn's troubleshooting page shows a
+
+15
+00:00:53.399 --> 00:00:57.430
+slash thirty-two route for the
+endpoint's address through the firewall.

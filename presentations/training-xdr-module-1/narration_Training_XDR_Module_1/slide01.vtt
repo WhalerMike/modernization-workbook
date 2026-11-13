@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.683
+Welcome to Module 1 of the
+learning path Defender X D R
+
+2
+00:00:03.683 --> 00:00:08.225
+Engineering and Operations:
+architecture, access and onboarding.
+
+3
+00:00:08.225 --> 00:00:12.175
+Before any prevention setting
+matters, two things have to be true.
+
+4
+00:00:12.175 --> 00:00:16.525
+The right people can see and act on
+the service, in the tenant's own cloud.
+
+5
+00:00:16.525 --> 00:00:19.225
+And the sensor is on
+every device it should be.
+
+6
+00:00:19.225 --> 00:00:23.559
+In this module you learn the service's
+shape and its government-cloud limits,
+
+7
+00:00:23.559 --> 00:00:26.242
+you set who can do what,
+and you prove the sensor's
+
+8
+00:00:26.242 --> 00:00:28.925
+coverage with a query
+whose result you can file.
+
+9
+00:00:28.925 --> 00:00:34.063
+The module covers Steps 1 and 2 of the
+Defender X D R implementation guide.
+
+10
+00:00:34.063 --> 00:00:38.212
+It takes about forty minutes, plus
+Lab 2 in your own test tenant.
+
+11
+00:00:38.212 --> 00:00:44.313
+The path covers Windows clients and
+Windows Server only, for a civilian agency
+
+12
+00:00:44.313 --> 00:00:49.340
+in Microsoft three sixty-five G C C,
+with notes for G C C High and D O D.

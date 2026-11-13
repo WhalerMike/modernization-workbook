@@ -1,0 +1,248 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: a VPN proves only that a device arrived",
+  "links": [
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "Microsoft Graph network access APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-graph-network-access-apis"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "TIC 3.0: one way to build three remote-user options",
+  "links": [
+   {
+    "text": "TIC 3.0 Remote User Use Case v2.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
+   },
+   {
+    "text": "TIC 3.0 Branch Office Use Case v3.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-branch-office"
+   },
+   {
+    "text": "CISA SASE guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-sase-tic"
+   },
+   {
+    "text": "Book 09, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/03-what-tic-3-requires.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Beside a third-party SSE, and across clouds",
+  "links": [
+   {
+    "text": "What is Global Secure Access?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-global-secure-access"
+   },
+   {
+    "text": "Book 09, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html"
+   },
+   {
+    "text": "FedRAMP Marketplace",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Government cloud and licensing, feature by feature",
+  "links": [
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "Global Secure Access traffic forwarding profiles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-traffic-forwarding-profiles"
+   },
+   {
+    "text": "Book 09, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html"
+   },
+   {
+    "text": "Book 10, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The reference architecture: planes and boundaries",
+  "links": [
+   {
+    "text": "Book 09, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/08-reference-architecture.html"
+   },
+   {
+    "text": "Book 10, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Who does what: the RACI and the closure decision",
+  "links": [
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   },
+   {
+    "text": "Global Secure Access operations guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-operations-guide"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Steps 1 and 2: decide per function, export a baseline",
+  "links": [
+   {
+    "text": "What is Global Secure Access?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-global-secure-access"
+   },
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Step 3: package, harden and count the client",
+  "links": [
+   {
+    "text": "Install the Global Secure Access client for Windows",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-install-windows-client"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "reports: getDeviceUsageSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-get-device-usage-summary"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Steps 4 and 7: Microsoft traffic and the compliant network",
+  "links": [
+   {
+    "text": "Source IP restoration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-source-ip-restoration"
+   },
+   {
+    "text": "Enable compliant network check with Conditional Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-compliant-network-check"
+   },
+   {
+    "text": "Tutorial: Enable the compliant network check",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tutorial-compliant-network"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Step 5: Internet Access through security profiles",
+  "links": [
+   {
+    "text": "Internet Access using Microsoft Graph APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-internet-access-graph-tutorial"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Steps 6 and 10: per-app private access and admin paths",
+  "links": [
+   {
+    "text": "Private Access using Microsoft Graph APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-private-access-graph-tutorial"
+   },
+   {
+    "text": "Private Access for domain controllers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-private-access-domain-controllers"
+   },
+   {
+    "text": "authentication strengths",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-authentication-strengths"
+   },
+   {
+    "text": "Book 09, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Steps 8 and 9: tenant restrictions and TLS inspection",
+  "links": [
+   {
+    "text": "Turn on Universal Tenant Restrictions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-universal-tenant-restrictions"
+   },
+   {
+    "text": "Configure TLS inspection policies",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tls-inspection-policies"
+   },
+   {
+    "text": "TLS inspection with your own certificate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tls-own-certificate"
+   },
+   {
+    "text": "Book 04, App. C",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/appendix-c-partner-access-profile-entra.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Steps 11 and 12: rings, rollback and telemetry",
+  "links": [
+   {
+    "text": "Global Secure Access logs and monitoring",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-logs-and-monitoring"
+   },
+   {
+    "text": "Security operations for network access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-security-operations"
+   },
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   }
+  ]
+ }
+]

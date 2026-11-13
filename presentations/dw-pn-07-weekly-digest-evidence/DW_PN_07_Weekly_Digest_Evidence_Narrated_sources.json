@@ -1,0 +1,206 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the digest and the evidence share the runs",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What the guide asks the ISSO to keep",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OSCAL catalog 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What the guide leaves to you, and the verdict",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The digest: five sections for the owners",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The evidence record: one run, every file hashed",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Which run covers which step, and the chain",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The check, and the stage check for a go/no-go",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Who reads the digest, who keeps the evidence",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 1: a week of runs, then the digest",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 1: read the digest's action-required table",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: upcoming, new, and closed this week",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: record three runs as evidence",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: check the chain and the test stage",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: change a recorded file; run every test",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test environment's runs",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OSCAL catalog 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:05.701
+Governance, Drift and Evidence makes the
+case that drift is the primary threat,
+
+3
+00:00:05.701 --> 00:00:09.025
+and the guide's dangers table
+shows what it looks like here.
+
+4
+00:00:09.025 --> 00:00:12.296
+A new public I P appears in
+a workload subscription,
+
+5
+00:00:12.296 --> 00:00:16.113
+outside DDoS protection and
+the web application firewall.
+
+6
+00:00:16.113 --> 00:00:19.175
+A firewall policy gets
+switched back to detection.
+
+7
+00:00:19.175 --> 00:00:21.825
+A vault is created with public access on.
+
+8
+00:00:21.825 --> 00:00:25.900
+Nothing you engineered in Modules
+1 to 4 stays put on its own.
+
+9
+00:00:25.900 --> 00:00:27.088
+Three things hold it.
+
+10
+00:00:27.088 --> 00:00:32.162
+Policy: one security initiative,
+enforced, with exemptions that expire.
+
+11
+00:00:32.162 --> 00:00:36.888
+Operations: an owner, a cadence
+and a test for every control.
+
+12
+00:00:36.888 --> 00:00:39.213
+And evidence an assessor can inspect.
+
+13
+00:00:39.213 --> 00:00:43.835
+This module turns Steps 3 to 8 into
+policy, runs them, measures coverage
+
+14
+00:00:43.835 --> 00:00:49.010
+rather than settings, and gets each
+finding ready for the assessor's decision.

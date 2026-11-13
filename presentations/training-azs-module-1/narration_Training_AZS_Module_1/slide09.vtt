@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.000
+The guide also compares the same controls
+on other clouds, because an agency's
+
+2
+00:00:05.000 --> 00:00:09.950
+estate spans them, and its HR platform
+may run on Oracle Cloud Infrastructure.
+
+3
+00:00:09.950 --> 00:00:16.058
+For layer three and four DDoS: Azure's
+infrastructure, Network or I P Protection;
+
+4
+00:00:16.058 --> 00:00:20.475
+AWS Shield Standard and
+Advanced; and Google Cloud Armor.
+
+5
+00:00:20.475 --> 00:00:22.187
+Oracle's isn't compared.
+
+6
+00:00:22.187 --> 00:00:28.721
+For a web application firewall: Azure W A
+F on Front Door and Application Gateway;
+
+7
+00:00:28.721 --> 00:00:34.166
+AWS W A F; Cloud Armor security
+policies with the OWASP core rule set;
+
+8
+00:00:34.166 --> 00:00:39.313
+and O C I W A F, as a regional policy
+on a load balancer or at the edge.
+
+9
+00:00:39.313 --> 00:00:44.763
+For an inspecting firewall: Azure Firewall
+Premium, and O C I Network Firewall,
+
+10
+00:00:44.763 --> 00:00:49.702
+built on Palo Alto Networks, with
+intrusion detection and prevention,
+
+11
+00:00:49.702 --> 00:00:52.087
+TLS inspection and URL filtering.
+
+12
+00:00:52.087 --> 00:00:54.953
+For private access to pass: Private Link,
+
+13
+00:00:54.953 --> 00:00:58.687
+Private Service Connect,
+and O C I private endpoints.
+
+14
+00:00:58.687 --> 00:01:01.863
+Each provider's own
+documentation carries the build.
+
+15
+00:01:01.863 --> 00:01:05.075
+O C I Government Cloud
+availability of its W
+
+16
+00:01:05.075 --> 00:01:08.350
+A F and Network Firewall
+isn't yet specified.

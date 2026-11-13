@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Why both?
+
+2
+00:00:00.975 --> 00:00:05.382
+Learn's overview, What is Azure DDoS
+Protection, says it works at layers
+
+3
+00:00:05.382 --> 00:00:09.713
+three and four, and that layer seven
+needs a web application firewall.
+
+4
+00:00:09.713 --> 00:00:12.688
+So an internet-facing workload needs both.
+
+5
+00:00:12.688 --> 00:00:17.250
+And each has to be in the mode that
+acts, not only the mode that logs.
+
+6
+00:00:17.250 --> 00:00:22.303
+Learn's Zero Trust recommendations for
+the Application Gateway web application
+
+7
+00:00:22.303 --> 00:00:26.167
+firewall put it plainly: in
+detection mode it logs and forwards;
+
+8
+00:00:26.167 --> 00:00:27.950
+only prevention mode blocks.
+
+9
+00:00:27.950 --> 00:00:32.737
+A firewall left in detection mode is the
+first danger in the guide's dangers table.
+
+10
+00:00:32.737 --> 00:00:38.039
+So this module takes every public I P in
+the register to DDoS protection with logs
+
+11
+00:00:38.039 --> 00:00:42.471
+and an alert, and every web endpoint
+to a firewall in prevention mode,
+
+12
+00:00:42.471 --> 00:00:45.700
+tuned first so it doesn't
+block legitimate users.

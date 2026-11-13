@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.937
+Unit 1 is the rule file.
+
+2
+00:00:01.937 --> 00:00:07.159
+It follows the example shape on Microsoft
+Learn's page for creating a detection
+
+3
+00:00:07.159 --> 00:00:11.905
+rule: the type, a short client-chosen I
+D, a display name, the status, the query,
+
+4
+00:00:11.905 --> 00:00:15.306
+a schedule, and the alert
+template, with its severity,
+
+5
+00:00:15.306 --> 00:00:18.075
+entity mappings and the attack technique.
+
+6
+00:00:18.075 --> 00:00:22.605
+The guide's example looks for
+encoded PowerShell launched by Word,
+
+7
+00:00:22.605 --> 00:00:24.500
+Excel or Outlook, every hour.
+
+8
+00:00:24.500 --> 00:00:25.725
+Four rules apply.
+
+9
+00:00:25.725 --> 00:00:29.575
+The file starts with status
+disabled, until its test passes.
+
+10
+00:00:29.575 --> 00:00:32.271
+Automated actions such
+as isolate are left out,
+
+11
+00:00:32.271 --> 00:00:35.175
+because containment stays
+on the response ladder.
+
+12
+00:00:35.175 --> 00:00:40.425
+Enabling a rule is a change to the status
+in the file, reviewed and redeployed.
+
+13
+00:00:40.425 --> 00:00:43.400
+And rollback sets the
+status back to disabled.
+
+14
+00:00:43.400 --> 00:00:48.936
+Learn says deploying needs the Custom
+Detection dot Read Write dot All permission,
+
+15
+00:00:48.936 --> 00:00:52.306
+and a role the A P I accepts:
+Detection tuning, manage,
+
+16
+00:00:52.306 --> 00:00:56.638
+in unified role-based access
+control, or Security Administrator.
+
+17
+00:00:56.638 --> 00:01:01.750
+The Graph security A P I's quota is
+ten new rules a minute per application.

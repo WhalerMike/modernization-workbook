@@ -7,26 +7,21 @@
   ],
   [
    7.0,
-   5.3,
-   "This module is a draft, awaiting the editor's review, so recheck it after the review."
-  ],
-  [
-   12.3,
    3.525,
    "In this module the guide's results kit does the mechanical part."
   ],
   [
-   15.825,
+   10.525,
    8.713,
    "It normalizes every result, lists what didn't run with what to do about it, and writes a closure-register entry for each finding, routed and weighed."
   ],
   [
-   24.538,
+   19.238,
    2.837,
    "People do the rest, and the register shows where."
   ],
   [
-   27.375,
+   22.075,
    8.55,
    "It covers Steps 7 and 8 of the Zero Trust Assessment implementation guide, and takes about fifty-five minutes, most of it in Lab 1."
   ]

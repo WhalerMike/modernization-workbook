@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 1: Evidence, not a verdict
 
-Welcome to Module 1 of the learning path, The Zero Trust Assessment as Evidence: evidence, not a verdict. A note first: this module is a draft, awaiting the editor's review, so recheck it after the review. Microsoft's Zero Trust Assessment is a PowerShell module that tests a tenant against hundreds of configuration items drawn from Microsoft's configuration guidance. It produces a reading of the configuration on one day. In this module you'll learn what that reading can and can't tell you. Then, on a fictional export, you'll see why the tool's six statuses have to be sorted before anyone counts them. The path follows the ten steps of the Zero Trust Assessment implementation guide; this module covers Steps 1 and 6, and takes about forty minutes.
+Welcome to Module 1 of the learning path, The Zero Trust Assessment as Evidence: evidence, not a verdict. Microsoft's Zero Trust Assessment is a PowerShell module that tests a tenant against hundreds of configuration items drawn from Microsoft's configuration guidance. It produces a reading of the configuration on one day. In this module you'll learn what that reading can and can't tell you. Then, on a fictional export, you'll see why the tool's six statuses have to be sorted before anyone counts them. The path follows the ten steps of the Zero Trust Assessment implementation guide; this module covers Steps 1 and 6, and takes about forty minutes.
 
 ## Slide 2 — Why: a reading on one day, not a verdict
 

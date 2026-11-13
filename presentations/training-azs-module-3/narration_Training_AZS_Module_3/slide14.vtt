@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.699
+You chose the edge for an
+application and locked its origin,
+
+3
+00:00:04.699 --> 00:00:06.650
+so a direct request is refused.
+
+4
+00:00:06.650 --> 00:00:09.588
+You checked TLS, and tested failover.
+
+5
+00:00:09.588 --> 00:00:13.664
+You checked that the pilot subnet's
+egress routes to Azure Firewall,
+
+6
+00:00:13.664 --> 00:00:17.521
+with threat intelligence and
+intrusion detection in deny mode,
+
+7
+00:00:17.521 --> 00:00:19.850
+and found the denied request in its log.
+
+8
+00:00:19.850 --> 00:00:24.784
+The evidence an I S S O keeps from this
+module: the profile, origin group,
+
+9
+00:00:24.784 --> 00:00:28.593
+route and access-restriction
+exports; the TLS policy;
+
+10
+00:00:28.593 --> 00:00:32.142
+the refused direct request
+and the failover test;
+
+11
+00:00:32.142 --> 00:00:35.344
+the firewall policy
+export and route tables;
+
+12
+00:00:35.344 --> 00:00:40.538
+the denied request and its log row;
+and the bypass and allow-list register.
+
+13
+00:00:40.538 --> 00:00:44.031
+Next is Module 4: Private
+Link, D N S and Key Vault,
+
+14
+00:00:44.031 --> 00:00:49.700
+taking pass off the internet and
+putting vaults behind role-based access.

@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.850
+First: why does Step 1 assign the security
+initiatives in do-not-enforce mode?
+
+3
+00:00:06.850 --> 00:00:11.892
+The answer is b: to evaluate compliance
+without enforcing the effect,
+
+4
+00:00:11.892 --> 00:00:17.288
+until at least one evaluation cycle and
+a compliance review with the I S S O.
+
+5
+00:00:17.288 --> 00:00:18.438
+Step 9 enforces.
+
+6
+00:00:18.438 --> 00:00:21.238
+Second: where does the
+exposure register live?
+
+7
+00:00:21.238 --> 00:00:26.400
+The answer is b, inside the boundary,
+because it's a map of the attack surface.
+
+8
+00:00:26.400 --> 00:00:28.813
+It never goes in a public repository.
+
+9
+00:00:28.813 --> 00:00:33.790
+The module page has three more questions,
+each linked to the unit that answers it.

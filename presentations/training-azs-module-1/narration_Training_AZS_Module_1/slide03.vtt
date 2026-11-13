@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.330
+You'll say which parts of Azure
+security the books design and
+
+3
+00:00:06.330 --> 00:00:09.900
+which the guide engineers, and
+read the guide's authority labels.
+
+4
+00:00:09.900 --> 00:00:13.392
+You'll protect the management
+group hierarchy and assign the
+
+5
+00:00:13.392 --> 00:00:17.363
+security initiatives in do-not-enforce
+mode at the intermediate root.
+
+6
+00:00:17.363 --> 00:00:21.600
+You'll find platform resources that
+don't send their logs to the workspace.
+
+7
+00:00:21.600 --> 00:00:23.930
+You'll build the exposure register from
+
+8
+00:00:23.930 --> 00:00:26.613
+Resource Graph and find
+the rows with no owner.
+
+9
+00:00:26.613 --> 00:00:29.622
+And you'll name what
+differs in Azure Government,
+
+10
+00:00:29.622 --> 00:00:34.738
+and the equivalent controls on AWS, Google
+Cloud and Oracle Cloud Infrastructure.
+
+11
+00:00:34.738 --> 00:00:39.225
+Before you start, skim Chapter 05
+of Cloud Boundary and Landing Zone,
+
+12
+00:00:39.225 --> 00:00:43.312
+and the guide's prerequisites:
+the roles, eligible through pim.
+
+13
+00:00:43.312 --> 00:00:46.750
+The lab runs in a test
+subscription, never production.

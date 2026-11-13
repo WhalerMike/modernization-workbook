@@ -75,7 +75,7 @@ const W3 = 3.9, G3 = 0.225;
     { text: "Why: a landing zone doesn't decide what the internet reaches   ·   What: ten steps, two clouds, four providers", options: { color: HEX.navy, bold: true, breakLine: true } },
     { text: "Who: eligible roles and the RACI", options: { color: HEX.teal, bold: true, breakLine: true } },
     { text: "How: baseline, exposure, DDoS, WAF, ingress, firewall, Private Link, Key Vault, policy, operations", options: { color: HEX.ink } },
-  ], { x: 0.8, y: 4.75, w: 11.0, h: 1.3, fontSize: 15, paraSpaceAfter: 2 });
+  ], { x: 0.8, y: 5.05, w: 11.0, h: 1.15, fontSize: 14, paraSpaceAfter: 2 });
   notes(s,
 `Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Azure Security Engineering. One thing first: the guide is a draft, awaiting the editor's review, so recheck it after that review. The guide engineers the security of an agency's Azure estate on top of the landing zone, as ten gated steps an operator can run: from the security baseline and an inventory of public exposure, through DDoS protection, the web application firewall, ingress, Azure Firewall, Private Link and Key Vault, to policy, operations and evidence. Its commands and service behavior come from Microsoft Learn, read on November eleventh, 2026, and its control statements from NIST. The program's own choices are called design guidance. Nothing in it was run against a live subscription. We'll go in four parts: why, what, who, and how.`,
   `${G} — opening statement, "In this guide," "How to read this guide" (Where the facts come from); status: draft.`);

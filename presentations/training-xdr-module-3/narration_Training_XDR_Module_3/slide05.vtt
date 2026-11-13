@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.700
+The guide's interim path for
+attack paths uses what is there.
+
+2
+00:00:03.700 --> 00:00:07.476
+From the device info table:
+exposure level and whether the
+
+3
+00:00:07.476 --> 00:00:11.725
+device is internet-facing, with
+its asset value and machine group.
+
+4
+00:00:11.725 --> 00:00:15.243
+From Defender Vulnerability
+Management: its recommendations,
+
+5
+00:00:15.243 --> 00:00:19.625
+and the high and critical vulnerabilities
+by software and recommended update.
+
+6
+00:00:19.625 --> 00:00:23.542
+And as the critical-asset list,
+the Tier zero inventory from the
+
+7
+00:00:23.542 --> 00:00:27.912
+Access and Privilege book, standing
+in for critical asset management.
+
+8
+00:00:27.912 --> 00:00:29.063
+Then ownership.
+
+9
+00:00:29.063 --> 00:00:34.097
+Each device group or device tag maps to a
+remediation owner in the decision record,
+
+10
+00:00:34.097 --> 00:00:36.984
+and the vulnerability
+manager works Security
+
+11
+00:00:36.984 --> 00:00:39.724
+Operations and Telemetry's
+queue every week.
+
+12
+00:00:39.724 --> 00:00:43.121
+One trap from Microsoft
+Learn's table reference:
+
+13
+00:00:43.121 --> 00:00:45.837
+the device T V M tables stay in Defender.
+
+14
+00:00:45.837 --> 00:00:49.926
+They aren't ingested into Sentinel,
+so a Sentinel query that names them
+
+15
+00:00:49.926 --> 00:00:53.874
+returns nothing, and a silent rule
+there is not a clean bill of health.
+
+16
+00:00:53.874 --> 00:00:58.320
+Run these queries in Defender, or
+through Graph, as the lab does.

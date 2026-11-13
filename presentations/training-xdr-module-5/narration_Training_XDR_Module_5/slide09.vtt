@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.077
+Step three is the guide's
+monthly evidence run,
+
+2
+00:00:03.077 --> 00:00:06.025
+shortened on the slide;
+the page has it in full.
+
+3
+00:00:06.025 --> 00:00:11.275
+Use a new, empty evidence folder,
+because the run hashes every file in it.
+
+4
+00:00:11.275 --> 00:00:15.120
+It connects, runs the three
+read-only queries for coverage,
+
+5
+00:00:15.120 --> 00:00:19.525
+Attack Surface Reduction and
+prevention, and writes each to a file.
+
+6
+00:00:19.525 --> 00:00:24.643
+It exports the last thirty days of incidents,
+filtered on the created date time,
+
+7
+00:00:24.643 --> 00:00:27.477
+which Microsoft Learn lists as filterable,
+
+8
+00:00:27.477 --> 00:00:31.650
+with their severity, status,
+classification and determination.
+
+9
+00:00:31.650 --> 00:00:35.525
+Then it hashes every file in
+the folder into a checksum file.
+
+10
+00:00:35.525 --> 00:00:37.621
+You should see the coverage, A S R,
+
+11
+00:00:37.621 --> 00:00:41.250
+prevention and incidents
+files, and the checksum file.
+
+12
+00:00:41.250 --> 00:00:45.838
+Step four checks the hashes, the way
+next month's run checks last month's.
+
+13
+00:00:45.838 --> 00:00:49.830
+It reads the checksum file, leaves
+out the checksum file's own entry,
+
+14
+00:00:49.830 --> 00:00:52.733
+since the run writes it
+into the folder it hashes,
+
+15
+00:00:52.733 --> 00:00:55.637
+and compares each recorded
+hash with a fresh one.
+
+16
+00:00:55.637 --> 00:00:58.463
+Matches should be true
+for every evidence file.
+
+17
+00:00:58.463 --> 00:01:01.087
+False means a file changed
+after it was filed.
+
+18
+00:01:01.087 --> 00:01:05.660
+Step five backs it out: nothing
+changed in the tenant, so disconnect.

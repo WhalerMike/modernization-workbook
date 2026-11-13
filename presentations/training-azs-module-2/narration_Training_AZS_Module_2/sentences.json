@@ -1,0 +1,545 @@
+{
+ "1": [
+  [
+   0.05,
+   7.412,
+   "Welcome to Module 2 of the Azure Security Engineering learning path: DDoS protection and the web application firewall."
+  ],
+  [
+   7.463,
+   2.85,
+   "In Module 1 you built the exposure register."
+  ],
+  [
+   10.312,
+   11.412,
+   "In this module you take every public I P in it to DDoS protection, with logs and an alert, and every internet-facing web endpoint to a web application firewall in prevention mode."
+  ],
+  [
+   21.725,
+   9.637,
+   "It covers Steps 3 and 4 of the Azure Security Engineering implementation guide, and takes about fifty minutes, plus a lab in your own test subscription."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.925,
+   "Why both?"
+  ],
+  [
+   0.975,
+   8.738,
+   "Learn's overview, What is Azure DDoS Protection, says it works at layers three and four, and that layer seven needs a web application firewall."
+  ],
+  [
+   9.713,
+   2.975,
+   "So an internet-facing workload needs both."
+  ],
+  [
+   12.688,
+   4.562,
+   "And each has to be in the mode that acts, not only the mode that logs."
+  ],
+  [
+   17.25,
+   10.7,
+   "Learn's Zero Trust recommendations for the Application Gateway web application firewall put it plainly: in detection mode it logs and forwards; only prevention mode blocks."
+  ],
+  [
+   27.95,
+   4.787,
+   "A firewall left in detection mode is the first danger in the guide's dangers table."
+  ],
+  [
+   32.737,
+   12.9,
+   "So this module takes every public I P in the register to DDoS protection with logs and an alert, and every web endpoint to a firewall in prevention mode, tuned first so it doesn't block legitimate users."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   7.513,
+   "You'll say what DDoS infrastructure protection, I P Protection and Network Protection each give, and what neither paid tier covers."
+  ],
+  [
+   10.475,
+   4.562,
+   "You'll check that every public I P is protected, logged and alerting."
+  ],
+  [
+   15.037,
+   6.725,
+   "You'll explain why a simulation runs only through an approved partner, and only against your own protected I Ps."
+  ],
+  [
+   21.762,
+   8.463,
+   "You'll take a web application firewall policy from detection to prevention, with request body inspection, the current rule set and a rate limit."
+  ],
+  [
+   30.225,
+   5.025,
+   "And you'll prove it blocks a test request, and roll it back if it blocks legitimate traffic."
+  ],
+  [
+   35.25,
+   9.012,
+   "You need Module 1 and its public I P query, and the guide's decision record template, because the DDoS tier and the Front Door tier are recorded there."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.25,
+   "Unit 1 is the guide's Step 3."
+  ],
+  [
+   2.3,
+   3.0,
+   "Learn's tier comparison is the source for this table."
+  ],
+  [
+   5.3,
+   4.55,
+   "Every public I P in Azure gets infrastructure protection at no cost."
+  ],
+  [
+   9.85,
+   11.4,
+   "I P Protection, billed per protected I P, and Network Protection, billed per plan, both add adaptive tuning, attack analytics, metrics, alerts and mitigation reports."
+  ],
+  [
+   21.25,
+   11.412,
+   "Network Protection also adds the DDoS Rapid Response team, cost protection and a web application firewall discount, and it protects Basic public I Ps, which I P Protection doesn't."
+  ],
+  [
+   32.663,
+   10.25,
+   "Learn's cost optimization guidance suggests Network Protection when many public I Ps across subscriptions need coverage, and I P Protection for a few critical ones."
+  ],
+  [
+   42.913,
+   1.012,
+   "Two limits."
+  ],
+  [
+   43.925,
+   6.338,
+   "Neither covers a public I P attached to a NAT gateway; the guide lists those as an exclusion."
+  ],
+  [
+   50.263,
+   2.825,
+   "And both work at layers three and four only."
+  ],
+  [
+   53.087,
+   3.237,
+   "Whichever you choose, record it in the decision record."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.4,
+   "Here are the guide's Step 3 commands, from Learn's DDoS quickstarts."
+  ],
+  [
+   4.45,
+   7.55,
+   "Create one Network Protection plan in the connectivity subscription, and link each virtual network that holds public I Ps."
+  ],
+  [
+   12.0,
+   9.775,
+   "Or, for I P Protection, enable it on one Standard public I P. Turn on diagnostic logs for each protected public I P, to the workspace."
+  ],
+  [
+   21.775,
+   1.438,
+   "Then alert on attack."
+  ],
+  [
+   23.212,
+   8.075,
+   "The metric called Under DDoS attack or not reads one during mitigation, and Learn's tutorial alerts at a maximum of one or more."
+  ],
+  [
+   31.288,
+   11.825,
+   "One caution from Learn's quickstart: a virtual network with DDoS protection can't be moved between resource groups or subscriptions, and disabling protection to move it resets the tuned thresholds."
+  ],
+  [
+   43.112,
+   15.275,
+   "Then hold it with policy in Step 9: Learn's page, Secure your Azure DDoS Protection deployment, names the built-in policies, one that protects virtual networks with a Modify or Audit effect, and one that requires the DDoS resource logs."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.375,
+   "The response has to be exercised, and Learn sets the rules in its tutorial on DDoS simulation testing."
+  ],
+  [
+   6.425,
+   13.438,
+   "Simulations run only through Microsoft's approved partners, MazeBolt, Red Button and RedWolf, only against the agency's own protected Azure public I Ps, and preferably in staging or off-peak windows."
+  ],
+  [
+   19.863,
+   12.887,
+   "Before the exercise, write the response team and runbook that Learn's page on securing a DDoS deployment recommends, including how to raise a severity A support request to the Rapid Response team under Network Protection."
+  ],
+  [
+   32.75,
+   10.062,
+   "The exercise proves three things the guide's Validate step asks for: the alert fired, the action group paged the security monitor, and the logs show the mitigation."
+  ],
+  [
+   42.812,
+   14.262,
+   "The rollout itself is gentle: one non-production network first, the policy in audit for an evaluation cycle, then rings, the hub, then Online and Corp landing zones, and only then the policy's Modify effect."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.062,
+   "Unit 2 is the guide's Step 4, the web application firewall."
+  ],
+  [
+   4.112,
+   9.5,
+   "Azure W A F runs in two places: on Front Door, which is global, and on Application Gateway W A F version two, which is regional."
+  ],
+  [
+   13.613,
+   4.15,
+   "Either way it's a policy of managed rules, custom rules and settings."
+  ],
+  [
+   17.762,
+   2.788,
+   "Front Door's managed rules need the Premium tier."
+  ],
+  [
+   20.55,
+   15.338,
+   "Microsoft's Azure network security Zero Trust recommendations check the same things on both: prevention mode, request body inspection, the default rule set, the bot protection rule set, rate limiting, a JavaScript challenge, and diagnostic logging."
+  ],
+  [
+   35.888,
+   6.487,
+   "Application Gateway adds the H T T P DDoS rule set; Front Door adds a CAPTCHA challenge."
+  ],
+  [
+   42.375,
+   6.188,
+   "The Zero Trust Assessment automates these checks, so a policy that misses one shows up as a finding."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.575,
+   "Here are the guide's Application Gateway commands, from Learn's Azure C L I reference."
+  ],
+  [
+   5.625,
+   4.475,
+   "Create the policy in detection mode, with request body inspection on."
+  ],
+  [
+   10.1,
+   12.8,
+   "The C L I's default rule set is version two point one; Learn's page, Secure your Azure Application Gateway, recommends the latest, two point two at the guide's reading, validated in log mode before blocking."
+  ],
+  [
+   22.9,
+   2.05,
+   "So name the version you've validated."
+  ],
+  [
+   24.95,
+   8.812,
+   "Add the bot protection rule set, in commercial Azure, and a rate limit grouped by client address on the login path, from Learn's rate limit examples."
+  ],
+  [
+   33.763,
+   12.438,
+   "Then tune: detection for at least one full business cycle, two weeks by the program's default, reading the firewall log for matches on legitimate traffic, and scoping each exception to the narrowest rule."
+  ],
+  [
+   46.2,
+   3.275,
+   "Then switch to prevention, one application at a time."
+  ],
+  [
+   49.475,
+   5.9,
+   "Rollback is the same command with the mode back to detection, which Learn documents for false positives."
+  ],
+  [
+   55.375,
+   4.725,
+   "The guide also gives the policy as Bicep, from Azure Verified Modules."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   5.938,
+   "In commercial Azure, which a G C C tenant uses, everything in this module is available."
+  ],
+  [
+   7.3,
+   12.062,
+   "As a side note for Azure Government: Learn's frequently asked questions for the Application Gateway firewall say it's supported in sovereign clouds, but geo-filtering custom rules and bot protection rule sets aren't."
+  ],
+  [
+   19.363,
+   8.65,
+   "So leave the bot manager rule set out, and record that Zero Trust test as skipped, not applicable, for the environment, not as a failure."
+  ],
+  [
+   28.012,
+   8.125,
+   "Front Door's own sovereign-cloud limits aren't yet specified; assume the Application Gateway ones until a test policy shows otherwise."
+  ],
+  [
+   36.138,
+   9.35,
+   "DDoS Protection has no variation listed, but which simulation partners serve Azure Government isn't specified, and Red Button is public cloud only."
+  ],
+  [
+   45.487,
+   11.8,
+   "On other clouds, the guide names AWS Shield and AWS W A F, Google Cloud Armor, and O C I W A F as a regional policy on a load balancer or at the edge."
+  ],
+  [
+   57.288,
+   4.325,
+   "DDoS protection on Oracle Cloud Infrastructure isn't compared there."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.987,
+   "The lab runs the guide's Step 3 and Step 4 checks in a test subscription where someone has applied those steps to a test application."
+  ],
+  [
+   8.037,
+   3.2,
+   "Nothing in Azure changes, and the authors haven't run it."
+  ],
+  [
+   11.238,
+   13.8,
+   "You need a DDoS Network Protection plan linked to a test virtual network, a protected Standard public I P with its diagnostic setting and alert, and a test application behind an Application Gateway firewall in prevention mode."
+  ],
+  [
+   25.038,
+   3.612,
+   "Step one lists every public I P's DDoS state."
+  ],
+  [
+   28.65,
+   6.388,
+   "The guide's Validate step says each should show Enabled, or Virtual Network Inherited in a linked network."
+  ],
+  [
+   35.038,
+   5.862,
+   "Step two exports the plan and its linked networks, which the guide's evidence checklist names."
+  ],
+  [
+   40.9,
+   6.025,
+   "Step three checks the protected I P's diagnostic setting and the alert on the under-attack metric."
+  ],
+  [
+   46.925,
+   5.362,
+   "The simulation isn't part of the lab: Learn allows it only through an approved partner."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   8.137,
+   "Step four checks the policy, with the guide's own Validate query: mode, request body inspection and the managed rule sets."
+  ],
+  [
+   8.188,
+   3.337,
+   "Expect Prevention, true, and the rule sets."
+  ],
+  [
+   11.525,
+   6.95,
+   "Step five sends a test request carrying a benign sequel injection string to a path on the test application."
+  ],
+  [
+   18.475,
+   5.1,
+   "That request is the path's; the guide says to send one and expect a four oh three."
+  ],
+  [
+   23.575,
+   3.587,
+   "Step six finds the matching row in the firewall log."
+  ],
+  [
+   27.163,
+   11.375,
+   "The guide's Step 4 sends the log to resource-specific tables, and Learn's page, Diagnostic logs for Application Gateway, names the firewall table A G W Firewall Logs."
+  ],
+  [
+   38.538,
+   11.325,
+   "The query command comes from the Azure C L I's log analytics extension, and takes the workspace's I D, a GUID, not its resource I D. Logs can take a few minutes to arrive."
+  ],
+  [
+   49.862,
+   3.9,
+   "Step seven: nothing changed, so there's nothing to undo."
+  ],
+  [
+   53.763,
+   8.625,
+   "If step five returned anything but four oh three, the firewall isn't blocking: report it to the application owner, and don't fix it in the lab."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.425,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five, as the guide's requirements table maps it."
+  ],
+  [
+   8.475,
+   16.387,
+   "Step 3 supports S C five, denial-of-service protection, and S I four, system monitoring, aligned with the fed-ramp twenty X key security indicators the guide names; the evidence is the coverage, the metrics and logs, and the simulation report."
+  ],
+  [
+   24.863,
+   13.9,
+   "The guide labels the control itself Mandated, because S C five is in the Moderate baseline that FIPS two hundred requires, and the way to meet it, DDoS Protection on every public I P, as Microsoft's recommendation."
+  ],
+  [
+   38.763,
+   12.275,
+   "Step 4 supports S C seven, boundary protection, and S I ten, information input validation; its evidence is the policy exports, the logs and the blocked test request."
+  ],
+  [
+   51.038,
+   5.263,
+   "The steps support these controls, and the assessor decides whether each is satisfied."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.95,
+   "First: a public I P is attached to a NAT gateway."
+  ],
+  [
+   5.975,
+   2.487,
+   "What does DDoS Network Protection do for it?"
+  ],
+  [
+   8.463,
+   1.887,
+   "The answer is b, nothing."
+  ],
+  [
+   10.35,
+   6.9,
+   "Learn's tier comparison says NAT gateway I Ps aren't supported, so the guide lists them as an exclusion."
+  ],
+  [
+   17.25,
+   3.975,
+   "Second: a web application firewall policy shows Detection."
+  ],
+  [
+   21.225,
+   2.05,
+   "What happens to an attack request?"
+  ],
+  [
+   23.275,
+   3.625,
+   "The answer is b: it's logged and forwarded to the backend."
+  ],
+  [
+   26.9,
+   1.887,
+   "Only prevention mode blocks."
+  ],
+  [
+   28.788,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   3.288,
+   "You chose a DDoS tier and named what it doesn't cover."
+  ],
+  [
+   4.162,
+   4.562,
+   "You checked that every public I P is protected, logged and alerting."
+  ],
+  [
+   8.725,
+   4.812,
+   "You took the web application firewall from detection to prevention, tuned first."
+  ],
+  [
+   13.537,
+   4.312,
+   "And you proved it blocks a test request, with the matching row in its log."
+  ],
+  [
+   17.85,
+   19.312,
+   "The evidence an I S S O keeps from this module: the plan and its linked networks, the per-I P mode export, DDoS metrics, logs and alert history, the simulation report when the exercise runs, the firewall policy exports and logs, the blocked test request, and the rule-exception register."
+  ],
+  [
+   37.163,
+   8.537,
+   "Next is Module 3, the edge and the egress: an origin nothing can reach around Front Door, and egress through Azure Firewall."
+  ]
+ ]
+}

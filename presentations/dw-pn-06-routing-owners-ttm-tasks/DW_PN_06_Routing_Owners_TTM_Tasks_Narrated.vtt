@@ -1,0 +1,927 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:10.438
+This is Chapter 6: routing to
+owners, and Ticket-to-Machine tasks.
+
+4
+00:00:10.438 --> 00:00:13.534
+A notice nobody owns is
+a notice nobody reads,
+
+5
+00:00:13.534 --> 00:00:17.300
+so routing gives each one an
+owner once, and never twice.
+
+6
+00:00:17.300 --> 00:00:21.284
+We'll start from the Ticket-to-Machine
+pattern and its finding contract,
+
+7
+00:00:21.284 --> 00:00:25.403
+see what they leave to you for provider
+notices, then read the routing file,
+
+8
+00:00:25.403 --> 00:00:29.725
+the task payload and the state that makes
+the router de-duplicate across runs.
+
+9
+00:00:29.725 --> 00:00:33.075
+Then two labs, the
+evidence and the dangers.
+
+10
+00:00:33.075 --> 00:00:34.650
+Two notes before we begin.
+
+11
+00:00:34.650 --> 00:00:38.012
+This chapter is a draft,
+awaiting the owner's review.
+
+12
+00:00:38.012 --> 00:00:41.890
+And the code is illustrative,
+tested against fixtures.
+
+13
+00:00:45.640 --> 00:00:46.628
+Why route at all?
+
+14
+00:00:46.628 --> 00:00:50.240
+Because a notice nobody owns
+is a notice nobody reads.
+
+15
+00:00:50.240 --> 00:00:54.682
+The collectors in Chapters 1 to 5
+fill one record for every provider;
+
+16
+00:00:54.682 --> 00:00:57.934
+this chapter turns the
+ones that need action into
+
+17
+00:00:57.934 --> 00:01:01.027
+work with a named owner,
+and does it exactly once.
+
+18
+00:01:01.027 --> 00:01:05.866
+By the end you can write and check a routing
+file, route a collection as a dry run,
+
+19
+00:01:05.866 --> 00:01:07.907
+read every payload it would send,
+
+20
+00:01:07.907 --> 00:01:11.233
+and explain two behaviors
+that matter in production:
+
+21
+00:01:11.233 --> 00:01:14.786
+why a second run writes nothing,
+and why a task closes only
+
+22
+00:01:14.786 --> 00:01:18.840
+when the agency re-reads, not
+when the provider says it's done.
+
+23
+00:01:22.590 --> 00:01:24.215
+Here's where notices go today.
+
+24
+00:01:24.215 --> 00:01:29.258
+Compliance Automation and Day-2 Operations
+routes Microsoft's service health email
+
+25
+00:01:29.258 --> 00:01:30.892
+to the help desk supervisor,
+
+26
+00:01:30.892 --> 00:01:34.727
+and it's clear that nothing is
+approved on the strength of an email.
+
+27
+00:01:34.727 --> 00:01:37.978
+There's no owner, no
+due date and no closure.
+
+28
+00:01:37.978 --> 00:01:42.537
+With the router, every provider,
+Azure, Microsoft 365 in GCC,
+
+29
+00:01:42.537 --> 00:01:46.527
+Oracle Cloud Infrastructure,
+AWS and Google Cloud,
+
+30
+00:01:46.527 --> 00:01:52.416
+arrives as the same record, and one
+routing file decides what becomes a task.
+
+31
+00:01:52.416 --> 00:01:54.915
+Notice that routing calls no cloud at all.
+
+32
+00:01:54.915 --> 00:01:56.578
+It adds no provider fact;
+
+33
+00:01:56.578 --> 00:02:01.020
+it writes down the agency's own
+decision about who owns what.
+
+34
+00:02:04.770 --> 00:02:08.058
+The router implements a pattern
+the workbook already has.
+
+35
+00:02:08.058 --> 00:02:11.749
+Ticket-to-Machine, from
+Governance, Drift and Evidence,
+
+36
+00:02:11.749 --> 00:02:15.278
+turns a finding into a typed
+task with an owner, a lane,
+
+37
+00:02:15.278 --> 00:02:19.791
+and a request chain of five clauses:
+where it came from, who approves,
+
+38
+00:02:19.791 --> 00:02:24.632
+what to do, the re-read check that proves
+it was done, and the evidence kept.
+
+39
+00:02:24.632 --> 00:02:29.393
+Its finding contract sets four
+severities and their response windows:
+
+40
+00:02:29.393 --> 00:02:33.346
+immediate, one hour, twenty-four
+hours and seventy-two hours.
+
+41
+00:02:33.346 --> 00:02:35.395
+Be clear about what those windows are.
+
+42
+00:02:35.395 --> 00:02:38.930
+They're the program's design,
+not a federal requirement.
+
+43
+00:02:42.680 --> 00:02:45.068
+What does the pattern
+leave to you for notices?
+
+44
+00:02:45.068 --> 00:02:48.222
+A provider's own deadline is
+a different date from the
+
+45
+00:02:48.222 --> 00:02:51.305
+agency's response window, so
+the kit keeps them apart.
+
+46
+00:02:51.305 --> 00:02:53.961
+A provider repeats the
+same notice every week,
+
+47
+00:02:53.961 --> 00:02:58.643
+so the kit keeps state with fingerprints,
+and an unchanged notice writes nothing.
+
+48
+00:02:58.643 --> 00:03:02.781
+A provider closing its notice
+isn't the agency's work being done,
+
+49
+00:03:02.781 --> 00:03:04.692
+so a close asks for the re-read.
+
+50
+00:03:04.692 --> 00:03:09.380
+Five providers and six kinds mean many
+owners, so there's a routing file.
+
+51
+00:03:09.380 --> 00:03:13.917
+And a retirement that names your
+resources is a contingency plan change.
+
+52
+00:03:13.917 --> 00:03:18.310
+The verdict: keep the contract
+exactly, and build the rest.
+
+53
+00:03:22.060 --> 00:03:25.248
+The routing is a JSON file
+the agency writes at work,
+
+54
+00:03:25.248 --> 00:03:29.596
+from the kit's template or from a
+worksheet with the kit's Copilot prompts,
+
+55
+00:03:29.596 --> 00:03:32.060
+and it stays inside the agency's boundary.
+
+56
+00:03:32.060 --> 00:03:34.660
+The lab's copy uses fictional teams.
+
+57
+00:03:34.660 --> 00:03:40.435
+Each rule has an ID, a match, and
+a route: task, digest or ignore.
+
+58
+00:03:40.435 --> 00:03:43.519
+A task rule adds a severity,
+an assignment group,
+
+59
+00:03:43.519 --> 00:03:47.472
+an approver role and whether a
+contingency review is needed.
+
+60
+00:03:47.472 --> 00:03:51.563
+Matches can be on provider, kind
+and status, on whether action is
+
+61
+00:03:51.563 --> 00:03:56.047
+required or resources are named, or
+a pattern on services and regions.
+
+62
+00:03:56.047 --> 00:03:59.130
+And the file is checked
+before anything runs.
+
+63
+00:04:02.880 --> 00:04:07.430
+Order matters, because rules are tried
+in order and the first match wins.
+
+64
+00:04:07.430 --> 00:04:11.176
+The workbook's design guidance is
+to put security advisories and
+
+65
+00:04:11.176 --> 00:04:15.130
+retirements before the general rule
+for anything that needs action.
+
+66
+00:04:15.130 --> 00:04:20.006
+Here are the lab's six rules: security
+to a security operations team at P2,
+
+67
+00:04:20.006 --> 00:04:24.552
+retirements and maintenance to
+cloud platform engineering at P3,
+
+68
+00:04:24.552 --> 00:04:28.932
+incidents to the service desk at
+P2, changes to cloud operations,
+
+69
+00:04:28.932 --> 00:04:32.155
+and one rule that ignores
+a Microsoft Viva post.
+
+70
+00:04:32.155 --> 00:04:35.019
+Get the order wrong,
+with a broad rule first,
+
+71
+00:04:35.019 --> 00:04:38.820
+and security advisories
+land in the general queue.
+
+72
+00:04:42.570 --> 00:04:45.526
+For each notice that needs
+a task, the kit writes one
+
+73
+00:04:45.526 --> 00:04:49.045
+ServiceNow-shaped payload, and
+checks it before it's written.
+
+74
+00:04:49.045 --> 00:04:52.480
+It says whether this is a
+create, an update or a close,
+
+75
+00:04:52.480 --> 00:04:56.733
+and carries a de-duplication key
+made of the provider and its ID.
+
+76
+00:04:56.733 --> 00:05:00.835
+It has the severity, priority,
+response window and assignment group,
+
+77
+00:05:00.835 --> 00:05:03.692
+a description with
+everything the owner needs,
+
+78
+00:05:03.692 --> 00:05:08.233
+and the Ticket-to-Machine part: the
+human decision lane and the five clauses.
+
+79
+00:05:08.233 --> 00:05:10.095
+Look closely at the two dates.
+
+80
+00:05:10.095 --> 00:05:13.657
+The response due date is the
+agency's, from the severity.
+
+81
+00:05:13.657 --> 00:05:16.119
+The action due date is the provider's.
+
+82
+00:05:16.119 --> 00:05:19.760
+Mix them up, and a routine
+task looks due in a year.
+
+83
+00:05:23.510 --> 00:05:26.310
+Each run compares every
+notice with the state.
+
+84
+00:05:26.310 --> 00:05:28.348
+A new open notice gets a create.
+
+85
+00:05:28.348 --> 00:05:32.861
+A changed one, with a different fingerprint
+or a changed rule, gets an update.
+
+86
+00:05:32.861 --> 00:05:37.260
+When the provider closes it, the task
+gets a close that asks for the re-read.
+
+87
+00:05:37.260 --> 00:05:41.901
+And if an open notice simply disappears
+from a provider the kit read this run,
+
+88
+00:05:41.901 --> 00:05:46.248
+it's marked absent, and its task gets
+an update asking for the same re-read.
+
+89
+00:05:46.248 --> 00:05:49.436
+A provider that wasn't read
+is never marked absent.
+
+90
+00:05:49.436 --> 00:05:51.473
+Unchanged notices write nothing.
+
+91
+00:05:51.473 --> 00:05:54.978
+And the whole run is a dry run:
+nothing is sent unless the
+
+92
+00:05:54.978 --> 00:05:58.850
+scheduled run is told to send
+and the settings allow it.
+
+93
+00:06:02.600 --> 00:06:03.650
+Who's involved?
+
+94
+00:06:03.650 --> 00:06:05.632
+The change manager owns this gate,
+
+95
+00:06:05.632 --> 00:06:09.738
+and reviews the routing file and the
+change records the payloads open.
+
+96
+00:06:09.738 --> 00:06:14.251
+The security officer reviews the security
+route and keeps the run folders.
+
+97
+00:06:14.251 --> 00:06:17.562
+In the lab's payload, the
+system owner is the approver,
+
+98
+00:06:17.562 --> 00:06:19.950
+and owns the contingency plan review.
+
+99
+00:06:19.950 --> 00:06:24.810
+And someone builds the ServiceNow side:
+the endpoint that accepts the payload,
+
+100
+00:06:24.810 --> 00:06:28.100
+whose shape is the agency's
+and not yet specified here.
+
+101
+00:06:28.100 --> 00:06:30.449
+One rule about where the routing lives:
+
+102
+00:06:30.449 --> 00:06:33.900
+it names owners and assignment
+groups, so it stays at work.
+
+103
+00:06:33.900 --> 00:06:38.730
+The public repository ships only
+templates and fictional examples.
+
+104
+00:06:42.480 --> 00:06:46.265
+Lab 1 needs PowerShell 7 with
+Pester, in the kit's folder,
+
+105
+00:06:46.265 --> 00:06:49.630
+against fictional notices
+and fictional teams.
+
+106
+00:06:49.630 --> 00:06:50.805
+Nothing is sent.
+
+107
+00:06:50.805 --> 00:06:54.318
+The finding contract the router
+mirrors comes in the same download.
+
+108
+00:06:54.318 --> 00:06:58.923
+Step 1 checks the lab's routing: six
+rules, in the order they're tried,
+
+109
+00:06:58.923 --> 00:07:02.505
+each with its route, severity
+and assignment group.
+
+110
+00:07:02.505 --> 00:07:05.614
+Step 2 tries the template
+exactly as it ships,
+
+111
+00:07:05.614 --> 00:07:08.555
+and it's refused: it
+still has a placeholder.
+
+112
+00:07:08.555 --> 00:07:09.705
+That's deliberate.
+
+113
+00:07:09.705 --> 00:07:14.050
+The template can't run until every
+placeholder is filled in at work.
+
+114
+00:07:17.800 --> 00:07:22.194
+Step 3 collects every provider
+from the day-one fixtures:
+
+115
+00:07:22.194 --> 00:07:27.336
+twenty-two notices from five providers,
+Azure, Microsoft 365 in GCC,
+
+116
+00:07:27.336 --> 00:07:33.600
+Oracle Cloud Infrastructure, AWS and Google
+Cloud, each valid against the schema.
+
+117
+00:07:33.600 --> 00:07:36.062
+Step 4 routes them as a dry run.
+
+118
+00:07:36.062 --> 00:07:37.487
+All twenty-two are new.
+
+119
+00:07:37.487 --> 00:07:41.177
+Twelve route to a task,
+nine go to the digest only,
+
+120
+00:07:41.177 --> 00:07:44.488
+and one is ignored, the
+Microsoft Viva post.
+
+121
+00:07:44.488 --> 00:07:48.621
+So the run writes twelve create
+payloads, each with its severity
+
+122
+00:07:48.621 --> 00:07:53.040
+and assignment group, and the last
+line says it: nothing was sent.
+
+123
+00:07:56.790 --> 00:08:01.077
+Step 5 reads one payload: the
+Azure retirement from Chapter 1.
+
+124
+00:08:01.077 --> 00:08:03.878
+It's a create, with
+the de-duplication key.
+
+125
+00:08:03.878 --> 00:08:06.912
+It's P3, so the response
+window is twenty-four
+
+126
+00:08:06.912 --> 00:08:09.778
+hours and the response
+is due the next day.
+
+127
+00:08:09.778 --> 00:08:15.439
+But the provider's action date is
+September 30, 2027, kept in its own field.
+
+128
+00:08:15.439 --> 00:08:20.009
+It's routed to cloud platform engineering,
+it asks for a contingency review,
+
+129
+00:08:20.009 --> 00:08:23.252
+and it names the controls
+and indicators it supports.
+
+130
+00:08:23.252 --> 00:08:27.578
+Then the five clauses: the human
+decision lane, where it came from,
+
+131
+00:08:27.578 --> 00:08:33.160
+the system owner as approver, what to do,
+the re-read check, and the evidence kept.
+
+132
+00:08:36.910 --> 00:08:40.972
+Step 6 routes the same collection
+again, on a copy of the state.
+
+133
+00:08:40.972 --> 00:08:44.653
+All twenty-two are unchanged,
+so nothing is written:
+
+134
+00:08:44.653 --> 00:08:48.685
+no payloads, because nothing
+new or changed needs a task.
+
+135
+00:08:48.685 --> 00:08:50.548
+That's what keeps the queue readable.
+
+136
+00:08:50.548 --> 00:08:53.486
+Step 7 collects and
+routes the second week.
+
+137
+00:08:53.486 --> 00:08:59.448
+Two notices are new, six changed, fifteen
+unchanged, and one is no longer listed.
+
+138
+00:08:59.448 --> 00:09:05.272
+The router writes just six payloads:
+one create, four updates and one close.
+
+139
+00:09:05.272 --> 00:09:09.391
+The routing hasn't changed, so the
+same twelve notices route to tasks,
+
+140
+00:09:09.391 --> 00:09:13.140
+but only the six with something
+new to say make a payload.
+
+141
+00:09:16.890 --> 00:09:20.115
+Step 8 reads what each of
+the six payloads is for.
+
+142
+00:09:20.115 --> 00:09:25.350
+Two rescheduled maintenance windows,
+one Azure and one Oracle Cloud,
+
+143
+00:09:25.350 --> 00:09:28.840
+and an updated Microsoft
+365 post are updates.
+
+144
+00:09:28.840 --> 00:09:31.888
+The Azure incident the
+provider no longer lists
+
+145
+00:09:31.888 --> 00:09:34.478
+is an absent update,
+asking for the re-read.
+
+146
+00:09:34.478 --> 00:09:38.352
+The new Microsoft 365 post is a create.
+
+147
+00:09:38.352 --> 00:09:42.861
+And the AWS security notification
+that AWS closed is a close,
+
+148
+00:09:42.861 --> 00:09:45.115
+which also asks for the re-read.
+
+149
+00:09:45.115 --> 00:09:48.635
+Step 9 runs the router's
+tests, including the one that
+
+150
+00:09:48.635 --> 00:09:52.565
+reads the finding contract:
+thirty-one passed, none failed.
+
+151
+00:09:52.565 --> 00:09:54.770
+Then delete the output folder.
+
+152
+00:09:58.520 --> 00:10:02.973
+Lab 2 sends one payload to a ServiceNow
+personal developer instance or a
+
+153
+00:10:02.973 --> 00:10:08.020
+sub-production instance, never production,
+with an endpoint you build to accept it.
+
+154
+00:10:08.020 --> 00:10:11.620
+Its shape is the agency's,
+and not yet specified here.
+
+155
+00:10:11.620 --> 00:10:14.519
+Put a token for a test
+integration user in the
+
+156
+00:10:14.519 --> 00:10:17.732
+environment for this session
+only, never in a file.
+
+157
+00:10:17.732 --> 00:10:21.613
+Then send the Azure retirement
+payload through the kit's sender,
+
+158
+00:10:21.613 --> 00:10:24.982
+which posts it as JSON with
+the token as a bearer token.
+
+159
+00:10:24.982 --> 00:10:27.780
+Open the record and check
+the assignment group,
+
+160
+00:10:27.780 --> 00:10:30.794
+the priority, the description
+and the five clauses.
+
+161
+00:10:30.794 --> 00:10:34.890
+Then delete the record, clear
+the token and delete the output.
+
+162
+00:10:38.640 --> 00:10:42.352
+Here's what the routing proves,
+against NIST's control catalog.
+
+163
+00:10:42.352 --> 00:10:45.474
+A routing file checked before
+it runs supports reviewing
+
+164
+00:10:45.474 --> 00:10:48.465
+proposed changes under
+configuration change control.
+
+165
+00:10:48.465 --> 00:10:53.445
+A task with an owner, a severity and a
+window for every notice that needs action
+
+166
+00:10:53.445 --> 00:10:58.815
+supports disseminating security advisories
+and acting on them in set time frames.
+
+167
+00:10:58.815 --> 00:11:03.089
+Reviewing a retirement before it
+lands also supports impact analysis,
+
+168
+00:11:03.089 --> 00:11:07.653
+and the contingency review supports
+keeping the contingency plan current.
+
+169
+00:11:07.653 --> 00:11:10.225
+The key security indicators are FedRAMP's,
+
+170
+00:11:10.225 --> 00:11:13.165
+and the mapping is the
+program's design guidance.
+
+171
+00:11:13.165 --> 00:11:18.200
+The kit's records support these controls;
+the agency's assessor decides them.
+
+172
+00:11:21.950 --> 00:11:23.350
+What breaks in production?
+
+173
+00:11:23.350 --> 00:11:27.740
+The biggest one: a task resolved because
+the provider resolved its notice,
+
+174
+00:11:27.740 --> 00:11:30.762
+while the resource still
+runs the retired product.
+
+175
+00:11:30.762 --> 00:11:35.663
+That's why a close and an absent notice
+both ask for the agency's own re-read.
+
+176
+00:11:35.663 --> 00:11:39.499
+Ticket the same notice every week
+and people stop reading the queue.
+
+177
+00:11:39.499 --> 00:11:44.200
+Put a broad rule first and security
+advisories land in the general queue.
+
+178
+00:11:44.200 --> 00:11:47.037
+Publish the routing and
+you publish who owns what.
+
+179
+00:11:47.037 --> 00:11:51.487
+Put a token in the settings file and a
+secret gets filed with the change record.
+
+180
+00:11:51.487 --> 00:11:55.004
+Confuse the two dates, or let
+the finding contract drift,
+
+181
+00:11:55.004 --> 00:11:57.820
+and priorities stop meaning anything.
+
+182
+00:12:01.570 --> 00:12:02.920
+Here's what done looks like.
+
+183
+00:12:02.920 --> 00:12:07.393
+The agency's routing was written at work
+from the template, passes the kit's check,
+
+184
+00:12:07.393 --> 00:12:09.562
+and was reviewed by the change manager,
+
+185
+00:12:09.562 --> 00:12:12.408
+and by the security officer
+for the security route.
+
+186
+00:12:12.408 --> 00:12:16.707
+Security advisories and retirements
+route before the general rule.
+
+187
+00:12:16.707 --> 00:12:20.033
+Someone read a dry run's
+payloads before any were sent.
+
+188
+00:12:20.033 --> 00:12:22.820
+A second run on the same
+collection writes nothing.
+
+189
+00:12:22.820 --> 00:12:26.733
+Tasks are resolved on the re-read,
+not on the provider's closure.
+
+190
+00:12:26.733 --> 00:12:30.995
+And the token lives only in the
+environment of the run that sends.
+
+191
+00:12:30.995 --> 00:12:36.633
+Next, Chapter 7 writes the weekly digest
+and records every run as evidence.
+
+192
+00:12:36.633 --> 00:12:37.780
+Thanks for watching.

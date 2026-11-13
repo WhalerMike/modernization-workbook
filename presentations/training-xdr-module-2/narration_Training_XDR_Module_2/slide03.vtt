@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:07.087
+Name the prevention settings that have
+an audit mode, and the ones that don't.
+
+3
+00:00:07.087 --> 00:00:11.965
+Move network protection and controlled
+folder access from audit to block,
+
+4
+00:00:11.965 --> 00:00:15.426
+ring by ring, with exit
+criteria and backout triggers.
+
+5
+00:00:15.426 --> 00:00:19.907
+Run every Attack Surface Reduction rule
+through audit and warn into block,
+
+6
+00:00:19.907 --> 00:00:22.075
+and name the two rules that skip warn.
+
+7
+00:00:22.075 --> 00:00:26.725
+Record per-rule exclusions, and
+prefer an exclusion to a step back.
+
+8
+00:00:26.725 --> 00:00:31.537
+And verify each setting on the device, and
+read the fleet's audit and block events.
+
+9
+00:00:31.537 --> 00:00:35.000
+You need Module 1, so the
+ring's devices are onboarded.
+
+10
+00:00:35.000 --> 00:00:39.847
+Skim the Devices and Endpoints book's
+policies E S oh-oh-one for antivirus,
+
+11
+00:00:39.847 --> 00:00:44.936
+E S oh-oh-three for the firewall, and E S
+oh-oh-five for Attack Surface Reduction:
+
+12
+00:00:44.936 --> 00:00:47.925
+the setting values live
+there, not in the guide.
+
+13
+00:00:47.925 --> 00:00:51.340
+Lab 2 runs in a test
+tenant, never production.

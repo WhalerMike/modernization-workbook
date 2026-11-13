@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.662
+Unit 2 is the guide's Step
+10, the operating model.
+
+2
+00:00:03.662 --> 00:00:08.325
+Its DDoS runbook is design guidance,
+built on Learn's response strategy.
+
+3
+00:00:08.325 --> 00:00:11.389
+The under-attack alert
+pages the security monitor,
+
+4
+00:00:11.389 --> 00:00:14.525
+and Defender for Cloud
+raises the mitigation alert.
+
+5
+00:00:14.525 --> 00:00:16.753
+The monitor checks application health,
+
+6
+00:00:16.753 --> 00:00:19.520
+and the firewall logs for
+a layer seven component,
+
+7
+00:00:19.520 --> 00:00:24.178
+with the top-talker queries from Learn's
+page on application layer DDoS protection;
+
+8
+00:00:24.178 --> 00:00:28.700
+the platform owner lowers the rate limits
+through an emergency change if needed.
+
+9
+00:00:28.700 --> 00:00:30.513
+If mitigation isn't enough,
+
+10
+00:00:30.513 --> 00:00:35.375
+open a severity A request for Rapid
+Response, under Network Protection.
+
+11
+00:00:35.375 --> 00:00:38.491
+Afterwards: the mitigation
+logs, the timeline,
+
+12
+00:00:38.491 --> 00:00:42.100
+any cost-protection claim,
+and an after-action report.
+
+13
+00:00:42.100 --> 00:00:47.106
+The review calendar is design guidance
+too: the exposure register weekly;
+
+14
+00:00:47.106 --> 00:00:52.358
+compliance, exemptions and firewall
+false positives monthly; coverage, cost,
+
+15
+00:00:52.358 --> 00:00:56.132
+firewall rules, vault access
+and the rule set quarterly;
+
+16
+00:00:56.132 --> 00:01:01.138
+failover and a vault restore twice a
+year; and a DDoS simulation every year.
+
+17
+00:01:01.138 --> 00:01:03.580
+The guide's RACI names who does each.

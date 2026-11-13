@@ -1,0 +1,230 @@
+[
+ {
+  "slide": 2,
+  "title": "Why: two layers, and a mode that acts, not only logs",
+  "links": [
+   {
+    "text": "What is Azure DDoS Protection?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-protection-overview"
+   },
+   {
+    "text": "Zero Trust recommendations for Application Gateway WAF",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-application-gateway-waf"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Unit 1: three DDoS tiers, and what none covers",
+  "links": [
+   {
+    "text": "Azure DDoS Protection tier comparison",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-protection-tier-comparison"
+   },
+   {
+    "text": "DDoS Protection cost optimization principles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-cost-optimization"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "One plan, linked networks, logs and the attack alert",
+  "links": [
+   {
+    "text": "DDoS Network Protection CLI quickstart",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-network-protection-cli"
+   },
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   },
+   {
+    "text": "Supported metrics for public IPs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#public-ip-supported-metrics"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Exercise the response: approved partners only",
+  "links": [
+   {
+    "text": "DDoS simulation testing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-simulation-testing"
+   },
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Unit 2: the WAF, and what Zero Trust checks",
+  "links": [
+   {
+    "text": "Azure network security Zero Trust recommendations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-network-security-zero-trust"
+   },
+   {
+    "text": "Zero Trust recommendations for Application Gateway WAF",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-application-gateway-waf"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Detection first, then tune, then prevention",
+  "links": [
+   {
+    "text": "az network application-gateway waf-policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cli-application-gateway-waf-policy"
+   },
+   {
+    "text": "rate limit custom rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#waf-rate-limit-application-gateway"
+   },
+   {
+    "text": "Secure your Azure Application Gateway",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-application-gateway"
+   },
+   {
+    "text": "WAF troubleshooting",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#troubleshoot-waf-blocking-legitimate"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Where agencies are: the WAF's sovereign-cloud gaps",
+  "links": [
+   {
+    "text": "Application Gateway WAF FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-gateway-waf-faq"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2, steps 4 to 7: the WAF blocks a test request",
+  "links": [
+   {
+    "text": "Diagnostic logs for Application Gateway",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-gateway-diagnostics"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Module 2",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "FIPS 200",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-200"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Sources: Module 2 deck",
+  "links": [
+   {
+    "text": "Azure DDoS Protection tier comparison",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-protection-tier-comparison"
+   },
+   {
+    "text": "What is Azure DDoS Protection?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-protection-overview"
+   },
+   {
+    "text": "DDoS Network Protection CLI quickstart",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-network-protection-cli"
+   },
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   },
+   {
+    "text": "DDoS Protection cost optimization principles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-cost-optimization"
+   },
+   {
+    "text": "DDoS simulation testing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-simulation-testing"
+   },
+   {
+    "text": "Supported metrics for public IPs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#public-ip-supported-metrics"
+   },
+   {
+    "text": "Azure network security Zero Trust recommendations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-network-security-zero-trust"
+   },
+   {
+    "text": "Zero Trust recommendations for Application Gateway WAF",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-application-gateway-waf"
+   },
+   {
+    "text": "az network application-gateway waf-policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cli-application-gateway-waf-policy"
+   },
+   {
+    "text": "rate limit custom rules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#waf-rate-limit-application-gateway"
+   },
+   {
+    "text": "Secure your Azure Application Gateway",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-application-gateway"
+   },
+   {
+    "text": "Application Gateway WAF FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-gateway-waf-faq"
+   },
+   {
+    "text": "WAF troubleshooting",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#troubleshoot-waf-blocking-legitimate"
+   },
+   {
+    "text": "Azure Verified Modules",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#avm-waf-policy-module"
+   },
+   {
+    "text": "Diagnostic logs for Application Gateway",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-gateway-diagnostics"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "SP 800-53B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53b"
+   },
+   {
+    "text": "FIPS 200",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fips-200"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

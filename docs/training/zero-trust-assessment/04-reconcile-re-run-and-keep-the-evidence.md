@@ -13,6 +13,8 @@ last-reviewed: 2026-11-11
 
 *Part of the [Zero Trust Assessment learning path](index.md). Guide [Step 9](../../books/guides/zero-trust-assessment-implementation.md#zta-step-9) and [Step 10](../../books/guides/zero-trust-assessment-implementation.md#zta-step-10). About 50 minutes.*
 
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_ZTA_Module_4_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ZTA_Module_4_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-zta-module-4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-zta-module-4/Training_ZTA_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-zta-module-4/Training_ZTA_Module_4_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes)
 
 A single run is a reading. A program needs the readings over time: which findings were fixed, which came back, and which only seemed to disappear because the run lost a connection. It also needs the Zero Trust Assessment's findings lined up with ScubaGear's, and, where the agency runs AWS, with Security Hub CSPM's, so one setting under one control is one finding with one owner. And it needs every run sealed so an assessor can check months later that the files are the ones the tool and the kit wrote. This module does all three.

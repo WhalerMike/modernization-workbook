@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.913
+The lab runs the guide's Step 7 and Step
+8 checks in a test subscription where
+
+2
+00:00:04.913 --> 00:00:09.071
+someone has applied them to a test
+vault, with a private endpoint,
+
+3
+00:00:09.071 --> 00:00:13.150
+public access off, a test secret
+and a key with a rotation policy.
+
+4
+00:00:13.150 --> 00:00:16.450
+The authors haven't run it,
+and nothing in Azure changes.
+
+5
+00:00:16.450 --> 00:00:20.652
+Step one runs on a Windows test
+V M inside a linked network:
+
+6
+00:00:20.652 --> 00:00:22.350
+look up the vault's name.
+
+7
+00:00:22.350 --> 00:00:25.661
+The guide's Validate step says
+it returns a private address,
+
+8
+00:00:25.661 --> 00:00:27.350
+through the private link zone.
+
+9
+00:00:27.350 --> 00:00:30.312
+Step two runs on your
+own machine, outside:
+
+10
+00:00:30.312 --> 00:00:35.625
+the lookup returns the public frontend,
+and the secret request is refused.
+
+11
+00:00:35.625 --> 00:00:38.475
+Step three lists the
+endpoint's zone group.
+
+12
+00:00:38.475 --> 00:00:43.625
+Step four reruns Module 1's public pass
+query; the vault shouldn't appear.
+
+13
+00:00:43.625 --> 00:00:48.293
+Step five checks the vault's
+posture with the guide's own query:
+
+14
+00:00:48.293 --> 00:00:52.687
+expect true, true, Deny, and,
+with public access off, Disabled.
+
+15
+00:00:52.687 --> 00:00:57.120
+Step six exports the key's rotation
+policy, which is evidence.

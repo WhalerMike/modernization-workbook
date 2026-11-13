@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.787
+Unit 1 is the government-cloud
+fact that shapes this gate.
+
+2
+00:00:03.787 --> 00:00:07.988
+Microsoft Learn's page on Security
+Exposure Management says it's
+
+3
+00:00:07.988 --> 00:00:11.800
+available in Public Cloud only,
+not in U S Government clouds.
+
+4
+00:00:11.800 --> 00:00:14.363
+That's the product that
+holds attack paths,
+
+5
+00:00:14.363 --> 00:00:17.438
+the exposure graph and
+critical asset management.
+
+6
+00:00:17.438 --> 00:00:22.837
+Learn doesn't name G C C explicitly, but
+Defender for U S Government customers,
+
+7
+00:00:22.837 --> 00:00:27.465
+G C C included, is built in Azure U
+S Government, so the guide treats G
+
+8
+00:00:27.465 --> 00:00:32.350
+C C as not available too, and lists
+that as something it couldn't verify.
+
+9
+00:00:32.350 --> 00:00:34.503
+What the government clouds do have,
+
+10
+00:00:34.503 --> 00:00:37.696
+from Learn's Defender for
+Endpoint government page:
+
+11
+00:00:37.696 --> 00:00:42.373
+Defender Vulnerability Management, core
+and premium, without two features,
+
+12
+00:00:42.373 --> 00:00:45.046
+report inaccuracy and
+request C V E support;
+
+13
+00:00:45.046 --> 00:00:48.313
+and Secure Score, with some
+recommendations missing.
+
+14
+00:00:48.313 --> 00:00:51.622
+So a Zero Trust Assessment
+test that needs Exposure
+
+15
+00:00:51.622 --> 00:00:55.624
+Management is recorded as not
+applicable in the tenant's cloud.
+
+16
+00:00:55.624 --> 00:01:00.050
+It goes in the closure register as
+a disposition, not a failed control.

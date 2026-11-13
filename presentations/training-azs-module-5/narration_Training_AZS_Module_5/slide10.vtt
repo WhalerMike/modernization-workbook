@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.388
+Step five computes two of the guide's
+metrics from the exposure register.
+
+2
+00:00:04.388 --> 00:00:08.313
+It reruns Module 1's public
+I P query, then counts.
+
+3
+00:00:08.313 --> 00:00:12.312
+Exposure ownership is the rows
+with an owner over all rows.
+
+4
+00:00:12.312 --> 00:00:15.422
+DDoS coverage is the
+rows whose DDoS mode is
+
+5
+00:00:15.422 --> 00:00:19.137
+Enabled or Virtual Network
+Inherited, over all rows.
+
+6
+00:00:19.137 --> 00:00:24.037
+The arithmetic is the path's own; the
+definitions are the guide's metrics table.
+
+7
+00:00:24.037 --> 00:00:27.092
+Exclude public I Ps on
+NAT gateways by hand,
+
+8
+00:00:27.092 --> 00:00:32.588
+as the DDoS coverage metric says, because
+DDoS protection doesn't cover them.
+
+9
+00:00:32.588 --> 00:00:35.424
+The guide's target for
+both is a hundred percent.
+
+10
+00:00:35.424 --> 00:00:36.963
+Step six backs it out.
+
+11
+00:00:36.963 --> 00:00:39.125
+The lab created nothing in Azure.
+
+12
+00:00:39.125 --> 00:00:42.559
+If this is a real review, file
+the exports with their date,
+
+13
+00:00:42.559 --> 00:00:47.412
+the cloud and subscription, and the tester,
+as the guide's evidence pattern asks.
+
+14
+00:00:47.412 --> 00:00:49.490
+Otherwise, delete the folder.

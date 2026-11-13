@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.385
+Every rule has a validation dataset,
+
+2
+00:00:02.385 --> 00:00:05.575
+and a rule that can't be
+shown to fire isn't finished.
+
+3
+00:00:05.575 --> 00:00:08.830
+The known-bad half is an
+event the rule must find,
+
+4
+00:00:08.830 --> 00:00:13.338
+from the guide's synthetic events
+or a replay on a ring zero device.
+
+5
+00:00:13.338 --> 00:00:17.022
+The known-good half is a window
+the rule must stay quiet in,
+
+6
+00:00:17.022 --> 00:00:18.825
+or stay under its threshold.
+
+7
+00:00:18.825 --> 00:00:22.850
+Then schema governance, the
+program's risk-based recommendation.
+
+8
+00:00:22.850 --> 00:00:26.261
+Each rule file names the
+tables and columns it reads,
+
+9
+00:00:26.261 --> 00:00:31.338
+and a weekly review runs each rule's query
+and fails it when a column is renamed.
+
+10
+00:00:31.338 --> 00:00:36.037
+Microsoft Learn keeps a list of naming
+changes in the advanced hunting schema.
+
+11
+00:00:36.037 --> 00:00:37.888
+One limit shapes all of this.
+
+12
+00:00:37.888 --> 00:00:43.425
+Advanced hunting keeps thirty days, so a
+validation window is at most thirty days.
+
+13
+00:00:43.425 --> 00:00:49.153
+Learn's page for the run hunting query A
+P I says it defaults to thirty days, and
+
+14
+00:00:49.153 --> 00:00:54.770
+takes an I S O eighty-six oh one time span,
+such as P thirty D, which the lab uses.

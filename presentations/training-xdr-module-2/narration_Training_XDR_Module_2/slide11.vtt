@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+The federal requirement, from
+the guide's requirements table.
+
+2
+00:00:03.362 --> 00:00:09.225
+Gate three supports four controls from
+NIST special publication eight hundred
+
+3
+00:00:09.225 --> 00:00:14.387
+fifty-three, revision five: S I three,
+malicious code protection; S C seven,
+
+4
+00:00:14.387 --> 00:00:18.062
+boundary protection, here
+the host firewall; C M six,
+
+5
+00:00:18.062 --> 00:00:23.312
+configuration settings; and S I seven,
+integrity, here tamper protection.
+
+6
+00:00:23.312 --> 00:00:28.400
+The evidence is the policy exports, the
+device checks and the audit results.
+
+7
+00:00:28.400 --> 00:00:34.975
+Gate four supports C M seven, least
+functionality, with C M six and S I three.
+
+8
+00:00:34.975 --> 00:00:37.567
+The evidence is the rule-by-ring matrix,
+
+9
+00:00:37.567 --> 00:00:41.537
+with the date each rule entered
+block, and the per-rule tests.
+
+10
+00:00:41.537 --> 00:00:45.644
+Each row lines up with fed-ramp
+twenty X key security indicators,
+
+11
+00:00:45.644 --> 00:00:50.913
+which bind cloud service providers; the
+agency lines its own evidence up with them.
+
+12
+00:00:50.913 --> 00:00:53.003
+The gates support these controls,
+
+13
+00:00:53.003 --> 00:00:56.280
+and the assessor decides
+whether each is satisfied.

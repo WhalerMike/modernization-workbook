@@ -1,0 +1,891 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:09.500
+This is Chapter 7: the
+weekly digest, and evidence.
+
+4
+00:00:09.500 --> 00:00:14.062
+The digest is for the people who act;
+the evidence is for the people who check.
+
+5
+00:00:14.062 --> 00:00:18.337
+Both come from the same runs, so neither
+can drift from what was actually read.
+
+6
+00:00:18.337 --> 00:00:23.419
+We'll start from what the implementation
+guide asks the security officer to keep,
+
+7
+00:00:23.419 --> 00:00:26.984
+then read the digest's five
+sections, the evidence record,
+
+8
+00:00:26.984 --> 00:00:31.687
+the chain and the stage check, and walk
+two labs, the evidence and the dangers.
+
+9
+00:00:31.687 --> 00:00:33.263
+Two notes before we begin.
+
+10
+00:00:33.263 --> 00:00:36.625
+This chapter is a draft,
+awaiting the owner's review.
+
+11
+00:00:36.625 --> 00:00:40.500
+And the code is illustrative,
+tested against fixtures.
+
+12
+00:00:44.250 --> 00:00:47.350
+Why put the digest and the
+evidence in one chapter?
+
+13
+00:00:47.350 --> 00:00:50.875
+Because they serve two different
+audiences from the same runs.
+
+14
+00:00:50.875 --> 00:00:53.813
+The digest is for the
+people who act on notices.
+
+15
+00:00:53.813 --> 00:00:56.938
+The evidence is for the people
+who check that the work happened.
+
+16
+00:00:56.938 --> 00:00:59.161
+If both come from the same run folders,
+
+17
+00:00:59.161 --> 00:01:02.100
+neither can drift from what
+the kit actually read.
+
+18
+00:01:02.100 --> 00:01:06.819
+By the end of this chapter you can write
+the weekly digest from a collection and the
+
+19
+00:01:06.819 --> 00:01:10.775
+routing state, record every run as
+evidence the security officer can
+
+20
+00:01:10.775 --> 00:01:15.150
+verify with a hash, and say which of
+a stage's steps have a passing record.
+
+21
+00:01:18.900 --> 00:01:23.762
+Start from what the implementation guide's
+evidence section asks for, gate by gate.
+
+22
+00:01:23.762 --> 00:01:29.719
+From each provider, Azure, Microsoft
+365, Oracle Cloud Infrastructure,
+
+23
+00:01:29.719 --> 00:01:35.162
+AWS and Google Cloud, the raw
+output, the notices and the manifest.
+
+24
+00:01:35.162 --> 00:01:38.974
+From routing, the payloads, the
+routing table and the state.
+
+25
+00:01:38.974 --> 00:01:43.024
+And the digests, preflight
+results and evidence records,
+
+26
+00:01:43.024 --> 00:01:45.350
+with an index and a file of hashes.
+
+27
+00:01:45.350 --> 00:01:49.732
+The guide maps them to NIST controls
+for external services, advisories,
+
+28
+00:01:49.732 --> 00:01:53.148
+change control, contingency
+planning, risk assessment,
+
+29
+00:01:53.148 --> 00:01:57.975
+monitoring and audit protection, and to
+the indicators FedRAMP lists for them.
+
+30
+00:01:57.975 --> 00:02:02.450
+The kit's records support those
+controls; the assessor decides them.
+
+31
+00:02:06.200 --> 00:02:09.100
+Naming the evidence isn't
+the same as having it.
+
+32
+00:02:09.100 --> 00:02:11.558
+Owners read a page, not a JSON file,
+
+33
+00:02:11.558 --> 00:02:16.050
+so the kit writes the digest as a
+readable page and a spreadsheet.
+
+34
+00:02:16.050 --> 00:02:20.487
+A folder of files can be changed
+after the fact, so each run is checked
+
+35
+00:02:20.487 --> 00:02:24.687
+against its manifest, copied, and
+recorded with every file's hash.
+
+36
+00:02:24.687 --> 00:02:29.863
+Someone has to say which run supports which
+control, so each record names its steps.
+
+37
+00:02:29.863 --> 00:02:33.087
+A record removed from the
+middle would go unnoticed,
+
+38
+00:02:33.087 --> 00:02:36.087
+so each record holds the
+hash of the one before it.
+
+39
+00:02:36.087 --> 00:02:40.390
+And a go/no-go needs to know
+which steps still lack evidence.
+
+40
+00:02:44.140 --> 00:02:47.398
+The digest reads a collection
+and the routing state,
+
+41
+00:02:47.398 --> 00:02:50.278
+and writes a page, a
+spreadsheet and a manifest.
+
+42
+00:02:50.278 --> 00:02:52.141
+The page has five sections.
+
+43
+00:02:52.141 --> 00:02:57.228
+Open notices by provider, counted by
+kind and by whether action is required.
+
+44
+00:02:57.228 --> 00:02:59.531
+Action required, soonest due first,
+
+45
+00:02:59.531 --> 00:03:02.789
+each with the assignment
+group the routing named.
+
+46
+00:03:02.789 --> 00:03:06.127
+Maintenance and changes starting
+in the next thirty days.
+
+47
+00:03:06.127 --> 00:03:09.653
+What's new in the last seven days,
+by when the kit first saw it.
+
+48
+00:03:09.653 --> 00:03:13.665
+And what closed, or stopped being
+listed, in the last seven days.
+
+49
+00:03:13.665 --> 00:03:18.160
+The two windows are parameters, set
+in the scheduled run's settings.
+
+50
+00:03:21.910 --> 00:03:23.372
+Now the evidence record.
+
+51
+00:03:23.372 --> 00:03:25.947
+Recording a run folder does four things.
+
+52
+00:03:25.947 --> 00:03:30.023
+It re-hashes every file the
+run's own manifest lists.
+
+53
+00:03:30.023 --> 00:03:32.672
+It copies the folder
+into the evidence store.
+
+54
+00:03:32.672 --> 00:03:37.938
+It writes a record with the time, the
+environment, the mode, the change record, the
+
+55
+00:03:37.938 --> 00:03:43.122
+command, and the result, which is a pass
+only if every file matches its manifest.
+
+56
+00:03:43.122 --> 00:03:47.641
+The record names the steps it covers,
+with their controls and indicators,
+
+57
+00:03:47.641 --> 00:03:52.085
+the claim language, every file's hash,
+and the hash of the record before it.
+
+58
+00:03:52.085 --> 00:03:54.735
+Then it appends the
+index and rewrites a sums
+
+59
+00:03:54.735 --> 00:03:57.750
+file that a standard
+checksum tool can check.
+
+60
+00:04:01.500 --> 00:04:03.763
+Each kind of run covers named steps.
+
+61
+00:04:03.763 --> 00:04:08.975
+A collection covers one collect step for
+each provider it read, plus normalizing.
+
+62
+00:04:08.975 --> 00:04:10.795
+A routing run covers routing,
+
+63
+00:04:10.795 --> 00:04:14.587
+and the contingency step if a
+payload asked for a plan review.
+
+64
+00:04:14.587 --> 00:04:16.987
+A digest covers the digest step.
+
+65
+00:04:16.987 --> 00:04:19.799
+The runbook in Chapter 8 adds pre-flight,
+
+66
+00:04:19.799 --> 00:04:23.037
+the scheduled run, the
+alert plan and rollback.
+
+67
+00:04:23.037 --> 00:04:26.187
+And every record covers
+the evidence step itself.
+
+68
+00:04:26.187 --> 00:04:29.394
+Two things make the folder
+checkable: the sums file,
+
+69
+00:04:29.394 --> 00:04:32.524
+which says every file still
+matches, and the chain,
+
+70
+00:04:32.524 --> 00:04:37.920
+where each record holds the previous record's
+hash, so a removed record breaks it.
+
+71
+00:04:41.670 --> 00:04:42.820
+Then there's the check.
+
+72
+00:04:42.820 --> 00:04:48.033
+On its own, it verifies the sums file
+against every file and walks the chain.
+
+73
+00:04:48.033 --> 00:04:51.970
+With a stage, it adds a row
+for each step that stage needs.
+
+74
+00:04:51.970 --> 00:04:55.266
+A test stage needs
+pre-flight, the scheduled run,
+
+75
+00:04:55.266 --> 00:04:59.070
+routing and the digest;
+production adds the alert plan.
+
+76
+00:04:59.070 --> 00:05:01.490
+Any failing row exits with an error,
+
+77
+00:05:01.490 --> 00:05:04.995
+which is exactly what the
+runbook's go or no-go reads.
+
+78
+00:05:04.995 --> 00:05:08.278
+The tests cover the digest's
+sections and counts,
+
+79
+00:05:08.278 --> 00:05:13.695
+the record's fields and claim language, the
+chain, a changed file, a removed record,
+
+80
+00:05:13.695 --> 00:05:18.980
+a failed run, a stage's missing steps,
+and the requirements catalog itself.
+
+81
+00:05:22.730 --> 00:05:23.780
+Who's involved?
+
+82
+00:05:23.780 --> 00:05:27.605
+The owners read the digest each
+week and act on their rows.
+
+83
+00:05:27.605 --> 00:05:32.023
+The security officer owns this
+gate: files each week's digest,
+
+84
+00:05:32.023 --> 00:05:35.380
+keeps the records, and runs
+the go or no-go check.
+
+85
+00:05:35.380 --> 00:05:39.117
+Developers maintain the digest,
+the record and the chain.
+
+86
+00:05:39.117 --> 00:05:41.705
+One caution matters here
+more than anywhere.
+
+87
+00:05:41.705 --> 00:05:45.317
+The evidence chain protects
+files from undetected change.
+
+88
+00:05:45.317 --> 00:05:47.005
+It doesn't decide a control.
+
+89
+00:05:47.005 --> 00:05:49.851
+Keep the evidence folder
+on agency storage,
+
+90
+00:05:49.851 --> 00:05:52.980
+with the access the security officer sets.
+
+91
+00:05:56.730 --> 00:06:00.842
+Lab 1 needs PowerShell 7 with
+Pester, in the kit's folder.
+
+92
+00:06:00.842 --> 00:06:03.095
+Step 1 makes a week of runs:
+
+93
+00:06:03.095 --> 00:06:07.817
+Chapter 6's two collections
+and two routings, in one go.
+
+94
+00:06:07.817 --> 00:06:10.038
+Day one routes twelve creates;
+
+95
+00:06:10.038 --> 00:06:14.392
+the second week makes one create,
+four updates and one close.
+
+96
+00:06:14.392 --> 00:06:17.280
+Step 2 writes the digest
+for the second week.
+
+97
+00:06:17.280 --> 00:06:22.970
+Sixteen open notices, eight needing action,
+five starting in the next thirty days,
+
+98
+00:06:22.970 --> 00:06:25.942
+two new, and four closed
+or no longer listed.
+
+99
+00:06:25.942 --> 00:06:29.600
+It writes the page, the
+spreadsheet and a manifest.
+
+100
+00:06:33.350 --> 00:06:36.613
+Step 3 reads the digest
+as the owners will.
+
+101
+00:06:36.613 --> 00:06:42.718
+The first table counts open notices by
+provider and kind: Azure, Microsoft 365,
+
+102
+00:06:42.718 --> 00:06:45.389
+Oracle Cloud Infrastructure, AWS,
+
+103
+00:06:45.389 --> 00:06:49.300
+and Google Cloud, which
+has nothing open this week.
+
+104
+00:06:49.300 --> 00:06:52.563
+Then the action-required
+table, soonest due first,
+
+105
+00:06:52.563 --> 00:06:54.950
+each with the team the routing named.
+
+106
+00:06:54.950 --> 00:06:59.339
+An Oracle Cloud certificate
+bundle to replace by December 15,
+
+107
+00:06:59.339 --> 00:07:05.106
+a Microsoft 365 retirement of basic
+authentication for SMTP client submission,
+
+108
+00:07:05.106 --> 00:07:07.688
+the Azure retirement from Chapter 1.
+
+109
+00:07:07.688 --> 00:07:12.000
+And at the bottom, the two with
+no date, shown as not stated.
+
+110
+00:07:15.750 --> 00:07:18.475
+The rest of the digest
+looks ahead and back.
+
+111
+00:07:18.475 --> 00:07:23.461
+Maintenance and changes starting in the
+next thirty days: an AWS database window,
+
+112
+00:07:23.461 --> 00:07:25.396
+two Azure maintenance windows,
+
+113
+00:07:25.396 --> 00:07:29.563
+and the rescheduled Oracle Cloud
+database maintenance in Ashburn.
+
+114
+00:07:29.563 --> 00:07:35.475
+New in the last seven days: an Azure
+maintenance and a Microsoft 365 change.
+
+115
+00:07:35.475 --> 00:07:40.943
+And closed or no longer listed: the AWS
+security notification and other notices
+
+116
+00:07:40.943 --> 00:07:46.163
+the providers closed, plus the Azure
+incident that's simply no longer listed.
+
+117
+00:07:46.163 --> 00:07:49.348
+The last line says the
+digest is neutral by design:
+
+118
+00:07:49.348 --> 00:07:53.000
+what providers published and
+the routing the agency set.
+
+119
+00:07:53.000 --> 00:07:55.290
+File it with the run's evidence.
+
+120
+00:07:59.040 --> 00:08:01.712
+Step 4 records three runs as evidence:
+
+121
+00:08:01.712 --> 00:08:05.678
+the second week's collection,
+its routing, and the digest.
+
+122
+00:08:05.678 --> 00:08:09.262
+Each prints its record number,
+a pass, the steps it covers,
+
+123
+00:08:09.262 --> 00:08:12.691
+and the controls and indicators
+those steps support.
+
+124
+00:08:12.691 --> 00:08:16.515
+The collection covers all five
+providers and normalizing.
+
+125
+00:08:16.515 --> 00:08:20.590
+The digest covers the digest
+step, and adds risk assessment.
+
+126
+00:08:20.590 --> 00:08:25.368
+Notice the routing run: it adds the
+contingency step, and contingency planning
+
+127
+00:08:25.368 --> 00:08:30.800
+among its controls, because one of its
+payloads asked for a contingency plan review.
+
+128
+00:08:34.550 --> 00:08:38.847
+Step 5 checks the chain:
+twenty-five files match the sums,
+
+129
+00:08:38.847 --> 00:08:41.462
+and three records, chain unbroken.
+
+130
+00:08:41.462 --> 00:08:46.426
+Step 6 checks the test stage's coverage,
+and here a failure is the right answer.
+
+131
+00:08:46.426 --> 00:08:50.933
+A lab has no pre-flight and no
+scheduled run, so those two steps fail,
+
+132
+00:08:50.933 --> 00:08:55.275
+routing and the digest pass, and
+the command exits with an error.
+
+133
+00:08:55.275 --> 00:08:59.713
+That's exactly what a go or no-go
+would see: the gap, by name.
+
+134
+00:08:59.713 --> 00:09:03.872
+Step 7 reads the records'
+index: three records, collect,
+
+135
+00:09:03.872 --> 00:09:08.300
+route and digest, each a pass,
+with the steps it covers.
+
+136
+00:09:12.050 --> 00:09:14.287
+Step 8 is the one to remember.
+
+137
+00:09:14.287 --> 00:09:15.782
+Change a recorded file,
+
+138
+00:09:15.782 --> 00:09:19.713
+by appending one line to the
+recorded digest, and check again.
+
+139
+00:09:19.713 --> 00:09:20.876
+Both checks fail.
+
+140
+00:09:20.876 --> 00:09:22.817
+The sums say the digest changed,
+
+141
+00:09:22.817 --> 00:09:26.850
+and the chain says it no longer
+matches its record, naming the file.
+
+142
+00:09:26.850 --> 00:09:30.075
+That's what protects the evidence
+from an edit after the fact.
+
+143
+00:09:30.075 --> 00:09:35.588
+Step 9 runs the kit's whole test suite:
+a hundred and forty passed, none failed.
+
+144
+00:09:35.588 --> 00:09:38.260
+Before step 8, you had
+an evidence folder whose
+
+145
+00:09:38.260 --> 00:09:41.074
+sums file you could hand
+to the security officer.
+
+146
+00:09:41.074 --> 00:09:43.640
+Delete the output folder when you're done.
+
+147
+00:09:47.390 --> 00:09:53.152
+Lab 2 uses real run folders from any earlier
+chapter's second lab, in a test tenant,
+
+148
+00:09:53.152 --> 00:09:58.128
+account, tenancy or project, never
+production, kept on agency storage.
+
+149
+00:09:58.128 --> 00:10:02.965
+Route and digest the test collection with
+the lab's routing and a new state file.
+
+150
+00:10:02.965 --> 00:10:05.843
+Record all three runs,
+this time with the test
+
+151
+00:10:05.843 --> 00:10:08.565
+change record's number,
+and check the chain.
+
+152
+00:10:08.565 --> 00:10:11.587
+Then give the digest to the
+test environment's owners,
+
+153
+00:10:11.587 --> 00:10:15.365
+and ask whether each action-required
+row reached the right person.
+
+154
+00:10:15.365 --> 00:10:19.224
+To back it out, keep the stage's
+evidence with its change record,
+
+155
+00:10:19.224 --> 00:10:22.750
+and delete only the copies
+outside agency storage.
+
+156
+00:10:26.500 --> 00:10:30.312
+Here's what this gate proves,
+against NIST's control catalog.
+
+157
+00:10:30.312 --> 00:10:34.620
+The digest shows the owners got the
+week's notices, what needs action,
+
+158
+00:10:34.620 --> 00:10:38.775
+by when and who owns it, which
+supports disseminating advisories,
+
+159
+00:10:38.775 --> 00:10:42.237
+monitoring external services,
+and responding to risk.
+
+160
+00:10:42.237 --> 00:10:44.656
+Each record, with its
+hashes and the chain,
+
+161
+00:10:44.656 --> 00:10:48.712
+supports continuous monitoring
+and protecting audit information.
+
+162
+00:10:48.712 --> 00:10:53.150
+A folder that's unchanged, and a change
+that's caught, is audit protection.
+
+163
+00:10:53.150 --> 00:10:56.149
+And a stage check that
+names every gap supports
+
+164
+00:10:56.149 --> 00:10:58.687
+continuous monitoring at the go or no-go.
+
+165
+00:10:58.687 --> 00:11:01.987
+The indicators are FedRAMP's,
+mapped by the program.
+
+166
+00:11:01.987 --> 00:11:06.160
+The records support these controls;
+the assessor decides them.
+
+167
+00:11:09.910 --> 00:11:11.310
+What breaks in production?
+
+168
+00:11:11.310 --> 00:11:17.672
+The quietest failure is the weekly run
+stopping: no digest, no evidence, no tasks.
+
+169
+00:11:17.672 --> 00:11:19.703
+The chain shows the gap in dates,
+
+170
+00:11:19.703 --> 00:11:23.297
+and the go or no-go fails
+without a passing scheduled run.
+
+171
+00:11:23.297 --> 00:11:26.348
+A recorded file edited
+later is caught by the sums
+
+172
+00:11:26.348 --> 00:11:29.473
+and the record's hashes, and
+the check names the file.
+
+173
+00:11:29.473 --> 00:11:32.248
+A record removed from the
+middle breaks the chain.
+
+174
+00:11:32.248 --> 00:11:35.892
+A digest sent outside the
+agency publishes which clouds
+
+175
+00:11:35.892 --> 00:11:39.072
+and services matter, so it
+stays on agency storage.
+
+176
+00:11:39.072 --> 00:11:43.900
+And a pass is not a control decision:
+each record's claim says so.
+
+177
+00:11:47.650 --> 00:11:49.000
+Here's what done looks like.
+
+178
+00:11:49.000 --> 00:11:53.075
+The digest reaches every owner
+the routing names, every week.
+
+179
+00:11:53.075 --> 00:11:56.361
+Every collection, routing
+run and digest is recorded,
+
+180
+00:11:56.361 --> 00:11:58.900
+with the change record where there is one.
+
+181
+00:11:58.900 --> 00:12:01.137
+The check passes on the evidence folder.
+
+182
+00:12:01.137 --> 00:12:06.249
+The stage check lists every step the go
+or no-go needs, and each one passes.
+
+183
+00:12:06.249 --> 00:12:09.345
+And the evidence folder
+lives on agency storage,
+
+184
+00:12:09.345 --> 00:12:11.975
+with the access the security officer set.
+
+185
+00:12:11.975 --> 00:12:17.600
+Next, Chapter 8 runs all of it, first in
+a test environment and then in production.
+
+186
+00:12:17.600 --> 00:12:18.750
+Thanks for watching.

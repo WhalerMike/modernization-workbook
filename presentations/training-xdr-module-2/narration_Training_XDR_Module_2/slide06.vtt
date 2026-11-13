@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.575
+Unit 2 is Attack Surface Reduction.
+
+2
+00:00:02.575 --> 00:00:06.788
+Microsoft Learn's rule modes
+are zero for off, one for block,
+
+3
+00:00:06.788 --> 00:00:10.650
+two for audit, five for not
+configured, and six for warn.
+
+4
+00:00:10.650 --> 00:00:13.478
+Before you audit, Learn
+says to turn off any
+
+5
+00:00:13.478 --> 00:00:16.387
+related rule that's
+already in block or warn.
+
+6
+00:00:16.387 --> 00:00:19.340
+Then put every rule in
+audit at once on ring one,
+
+7
+00:00:19.340 --> 00:00:23.924
+which Learn recommends, to see which
+rules everyday business triggers.
+
+8
+00:00:23.924 --> 00:00:27.175
+The program's stages are
+risk-based recommendations.
+
+9
+00:00:27.175 --> 00:00:29.617
+Audit on ring one for thirty days,
+
+10
+00:00:29.617 --> 00:00:34.412
+until every audited rule hit has
+an exclusion, a fix or a decision.
+
+11
+00:00:34.412 --> 00:00:38.790
+Then warn, first on ring one and
+then on ring two, for fourteen days,
+
+12
+00:00:38.790 --> 00:00:42.589
+counting unblock requests,
+until no business-critical
+
+13
+00:00:42.589 --> 00:00:45.975
+application is left without
+a per-rule exclusion.
+
+14
+00:00:45.975 --> 00:00:49.572
+Then block, ring by ring,
+until blocks per rule per week
+
+15
+00:00:49.572 --> 00:00:53.250
+are stable and help-desk
+volume is under the threshold.
+
+16
+00:00:53.250 --> 00:00:56.202
+Microsoft's own position,
+from its rules overview,
+
+17
+00:00:56.202 --> 00:01:01.027
+is that the standard protection rules can
+go to block without extensive testing,
+
+18
+00:01:01.027 --> 00:01:03.475
+and other rules are tested in audit first.
+
+19
+00:01:03.475 --> 00:01:07.560
+The program runs all three
+stages anyway, and says so.

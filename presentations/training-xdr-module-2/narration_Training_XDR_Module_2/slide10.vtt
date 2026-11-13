@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.550
+Steps six to eight run on your workstation,
+through Graph, so each result is a file.
+
+2
+00:00:05.550 --> 00:00:09.888
+The slide shortens them to fit;
+the page has every command in full.
+
+3
+00:00:09.888 --> 00:00:14.482
+Step six connects and counts the fleet's
+prevention events over seven days:
+
+4
+00:00:14.482 --> 00:00:17.002
+network protection audited and blocked,
+
+5
+00:00:17.002 --> 00:00:21.375
+controlled folder access audited
+and blocked, and tampering attempts.
+
+6
+00:00:21.375 --> 00:00:23.800
+Step four's test should appear among them.
+
+7
+00:00:23.800 --> 00:00:26.959
+Step seven is Microsoft
+Learn's query for Attack
+
+8
+00:00:26.959 --> 00:00:30.275
+Surface Reduction events
+by rule over thirty days.
+
+9
+00:00:30.275 --> 00:00:33.672
+Each rule has its own audited
+and blocked action types,
+
+10
+00:00:33.672 --> 00:00:38.050
+and Learn says the events are throttled
+to unique processes each hour.
+
+11
+00:00:38.050 --> 00:00:41.219
+Step eight is Learn's pattern
+for one rule's detail,
+
+12
+00:00:41.219 --> 00:00:45.392
+here the Office child-process rule:
+the devices, files and command
+
+13
+00:00:45.392 --> 00:00:49.875
+lines it audited or blocked, which
+is what an exclusion decision reads.
+
+14
+00:00:49.875 --> 00:00:52.087
+Step nine is the only write.
+
+15
+00:00:52.087 --> 00:00:56.087
+It's the guide's rollback for a
+single device under investigation:
+
+16
+00:00:56.087 --> 00:00:59.050
+Learn's local command sets
+one rule back to audit.
+
+17
+00:00:59.050 --> 00:01:02.100
+Step five's command now
+shows the rule at two.
+
+18
+00:01:02.100 --> 00:01:06.070
+Intune overwrites the local
+value at the next policy refresh,
+
+19
+00:01:06.070 --> 00:01:09.000
+and that's the back-out;
+nothing else is needed.

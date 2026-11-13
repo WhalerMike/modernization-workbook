@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.387
+Unit 1 is prevention through audit.
+
+2
+00:00:02.387 --> 00:00:06.688
+Antivirus, firewall and tamper
+protection carry the values from the
+
+3
+00:00:06.688 --> 00:00:11.138
+Devices and Endpoints book's policy
+library, and they have no audit mode.
+
+4
+00:00:11.138 --> 00:00:15.462
+They go straight to ring one, with
+backout triggers set before the change.
+
+5
+00:00:15.462 --> 00:00:18.401
+Two settings do have an
+audit mode, value two.
+
+6
+00:00:18.401 --> 00:00:23.630
+Microsoft Learn says network protection
+in audit logs the connections it would
+
+7
+00:00:23.630 --> 00:00:26.909
+block, as event eleven
+twenty-five, and in block mode,
+
+8
+00:00:26.909 --> 00:00:29.875
+value one, the block is
+event eleven twenty-six.
+
+9
+00:00:29.875 --> 00:00:35.206
+Controlled folder access in audit logs
+untrusted writes to protected folders, event
+
+10
+00:00:35.206 --> 00:00:40.012
+eleven twenty-four, and blocks them in
+block mode as event eleven twenty-three.
+
+11
+00:00:40.012 --> 00:00:44.567
+Network protection has prerequisites:
+Defender Antivirus in active mode,
+
+12
+00:00:44.567 --> 00:00:48.900
+behavior monitoring, and cloud
+protection with working connectivity.
+
+13
+00:00:48.900 --> 00:00:51.508
+On Windows Server twenty
+nineteen and later,
+
+14
+00:00:51.508 --> 00:00:55.950
+it also needs the setting that allows
+network protection on Windows Server.
+
+15
+00:00:55.950 --> 00:01:01.036
+And on servers with heavy U D P traffic,
+such as domain controllers, D N S,
+
+16
+00:01:01.036 --> 00:01:06.360
+file and sequel servers, Learn says
+to set datagram processing to false.

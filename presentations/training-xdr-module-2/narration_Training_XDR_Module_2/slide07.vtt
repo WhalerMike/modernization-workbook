@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+Warn shows the user the
+block, with a way to proceed.
+
+2
+00:00:03.313 --> 00:00:07.880
+Microsoft Learn's rules overview
+says warn needs Windows ten, version
+
+3
+00:00:07.880 --> 00:00:13.000
+eighteen oh nine or later, and a recent
+Defender Antivirus platform and engine.
+
+4
+00:00:13.000 --> 00:00:15.898
+It isn't available in
+Configuration Manager,
+
+5
+00:00:15.898 --> 00:00:19.188
+and on older Windows a rule
+set to warn acts as block.
+
+6
+00:00:19.188 --> 00:00:21.075
+Warn isn't a safety valve, though.
+
+7
+00:00:21.075 --> 00:00:24.772
+Since platform four point
+eighteen point two six oh six oh,
+
+8
+00:00:24.772 --> 00:00:29.471
+using Unblock on a warn rule needs
+administrator approval, and Microsoft
+
+9
+00:00:29.471 --> 00:00:34.400
+says a persistent need belongs in a
+per-rule exclusion, not repeated unblocks.
+
+10
+00:00:34.400 --> 00:00:36.995
+So brief the help desk
+before the warn ring;
+
+11
+00:00:36.995 --> 00:00:41.295
+the guide's RACI makes the help desk
+responsible for unblock requests
+
+12
+00:00:41.295 --> 00:00:45.150
+and user impact, and the policy
+owner accountable for the rings.
+
+13
+00:00:45.150 --> 00:00:49.425
+Two rules don't support warn at all,
+and go from audit straight to block.
+
+14
+00:00:49.425 --> 00:00:54.388
+One blocks credential stealing from the
+Windows local security authority subsystem.
+
+15
+00:00:54.388 --> 00:00:59.210
+The other blocks Office applications from
+injecting code into other processes.

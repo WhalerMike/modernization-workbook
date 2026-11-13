@@ -1,0 +1,250 @@
+[
+ {
+  "slide": 2,
+  "title": "Why this matters: a landing zone isn't a defense",
+  "links": [
+   {
+    "text": "Book 10, Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/05-the-landing-zone.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The books design it; the guide engineers each service",
+  "links": [
+   {
+    "text": "Azure network security Zero Trust recommendations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-network-security-zero-trust"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "GCC uses commercial Azure; Azure Government differs",
+  "links": [
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "Application Gateway WAF FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-gateway-waf-faq"
+   },
+   {
+    "text": "Front Door Private Link origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-private-link-origins"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The same controls on AWS, Google Cloud and Oracle",
+  "links": [
+   {
+    "text": "AWS Shield and AWS WAF",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-shield-and-waf"
+   },
+   {
+    "text": "Google Cloud Armor overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#google-cloud-armor-overview"
+   },
+   {
+    "text": "OCI Web Application Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-web-application-firewall"
+   },
+   {
+    "text": "OCI Network Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-network-firewall"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Eligible roles, named owners: who does what",
+  "links": [
+   {
+    "text": "Book 10, Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/08-who-owns-the-boundary.html"
+   },
+   {
+    "text": "Book 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/index.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Steps 1 and 2: baseline in audit, then inventory",
+  "links": [
+   {
+    "text": "Protect your resource hierarchy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#protect-resource-hierarchy"
+   },
+   {
+    "text": "Azure Policy assignment structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-assignment-structure"
+   },
+   {
+    "text": "Starter Resource Graph query samples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#resource-graph-starter-queries"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Step 3: DDoS protection on every public IP",
+  "links": [
+   {
+    "text": "Azure DDoS Protection tier comparison",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-protection-tier-comparison"
+   },
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   },
+   {
+    "text": "DDoS simulation testing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-simulation-testing"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Step 4: the WAF, from detection to prevention",
+  "links": [
+   {
+    "text": "Zero Trust recommendations for Application Gateway WAF",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-application-gateway-waf"
+   },
+   {
+    "text": "Secure your Azure Application Gateway",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-application-gateway"
+   },
+   {
+    "text": "Application Gateway WAF FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-gateway-waf-faq"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Step 5: an origin nothing can reach around the edge",
+  "links": [
+   {
+    "text": "Secure traffic to Azure Front Door origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-origin-security"
+   },
+   {
+    "text": "Front Door Private Link origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-private-link-origins"
+   },
+   {
+    "text": "Internet ingress",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#internet-ingress-design-guide"
+   },
+   {
+    "text": "Migrate Azure Front Door (classic)",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-front-door-classic"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Step 6: egress through Azure Firewall, then deny",
+  "links": [
+   {
+    "text": "Zero Trust recommendations for Azure Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-azure-firewall"
+   },
+   {
+    "text": "Azure Firewall Draft + Deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-draft-deployment"
+   },
+   {
+    "text": "Azure Firewall Premium features",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-premium-features"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Step 7: Private Link works only if DNS does",
+  "links": [
+   {
+    "text": "Integrate Key Vault with Azure Private Link",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#key-vault-private-link"
+   },
+   {
+    "text": "Private Link and DNS integration at scale",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-link-dns-at-scale"
+   },
+   {
+    "text": "Private Endpoint private DNS zone values",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-endpoint-dns-zone-values"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Step 8: vaults behind RBAC, with purge protection",
+  "links": [
+   {
+    "text": "Secure your Azure Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-azure-key-vault"
+   },
+   {
+    "text": "Integrate Key Vault with Azure Private Link",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#key-vault-private-link"
+   },
+   {
+    "text": "Enable Key Vault logging",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enable-key-vault-logging"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Step 9: policy holds it; exemptions expire",
+  "links": [
+   {
+    "text": "Azure Policy assignment structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-assignment-structure"
+   },
+   {
+    "text": "Azure Policy exemption structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-exemption-structure"
+   },
+   {
+    "text": "Azure Policy remediation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#remediate-non-compliant-resources-with-azure"
+   },
+   {
+    "text": "Book 13, Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/02-drift-is-the-primary-threat.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Step 10: owners, cadence, metrics and requirements",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   }
+  ]
+ }
+]

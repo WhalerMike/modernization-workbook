@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 3: From results to a closure register
 
-Welcome to Module 3 of The Zero Trust Assessment as Evidence: from results to a closure register. This module is a draft, awaiting the editor's review, so recheck it after the review. In this module the guide's results kit does the mechanical part. It normalizes every result, lists what didn't run with what to do about it, and writes a closure-register entry for each finding, routed and weighed. People do the rest, and the register shows where. It covers Steps 7 and 8 of the Zero Trust Assessment implementation guide, and takes about fifty-five minutes, most of it in Lab 1.
+Welcome to Module 3 of The Zero Trust Assessment as Evidence: from results to a closure register. In this module the guide's results kit does the mechanical part. It normalizes every result, lists what didn't run with what to do about it, and writes a closure-register entry for each finding, routed and weighed. People do the rest, and the register shows where. It covers Steps 7 and 8 of the Zero Trust Assessment implementation guide, and takes about fifty-five minutes, most of it in Lab 1.
 
 ## Slide 2 — Why: "17 failed" can't be acted on
 

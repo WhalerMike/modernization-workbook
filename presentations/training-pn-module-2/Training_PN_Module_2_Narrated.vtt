@@ -1,0 +1,1048 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.818
+Welcome to Module 2 of the
+Provider Notices learning path:
+
+2
+00:00:03.818 --> 00:00:05.938
+Azure Service Health and alerts.
+
+3
+00:00:05.938 --> 00:00:09.358
+This is Gate 1 of the provider
+notices implementation guide,
+
+4
+00:00:09.358 --> 00:00:12.163
+with the first chapter of
+the developer workbook.
+
+5
+00:00:12.163 --> 00:00:17.108
+Service Health is where Azure publishes
+service issues, planned maintenance, health
+
+6
+00:00:17.108 --> 00:00:21.775
+advisories, retirements among them, and
+security advisories for a subscription.
+
+7
+00:00:21.775 --> 00:00:25.912
+In this module you read the fixture
+subscriptions with the kit's query,
+
+8
+00:00:25.912 --> 00:00:28.337
+built from Microsoft Learn's own samples.
+
+9
+00:00:28.337 --> 00:00:32.843
+Then you plan the built-in Azure Policy
+that creates Service Health alerts in
+
+10
+00:00:32.843 --> 00:00:37.700
+every subscription, as a plan that changes
+nothing until someone approves its hash.
+
+11
+00:00:37.700 --> 00:00:39.963
+It takes about fifty-five minutes,
+
+12
+00:00:39.963 --> 00:00:43.600
+with a lab on fixtures and a
+lab for a test subscription.
+
+13
+00:00:43.600 --> 00:00:49.450
+The code is illustrative: tested against
+fixtures, not run against a live tenant.
+
+14
+00:00:53.200 --> 00:00:55.150
+Why does Azure need a gate of its own?
+
+15
+00:00:55.150 --> 00:00:58.475
+Service Health shows service
+issues, planned maintenance,
+
+16
+00:00:58.475 --> 00:01:02.275
+health advisories and security
+advisories for each subscription.
+
+17
+00:01:02.275 --> 00:01:06.734
+But the portal tells nobody unless
+someone created a Service Health alert,
+
+18
+00:01:06.734 --> 00:01:11.625
+and an alert fires only for the subscriptions,
+services and regions its rule names.
+
+19
+00:01:11.625 --> 00:01:14.977
+Microsoft's own F A Q gives
+a rule that left out the
+
+20
+00:01:14.977 --> 00:01:19.000
+affected subscription as a
+reason an alert never arrived.
+
+21
+00:01:19.000 --> 00:01:24.117
+Azure Resource Graph answers the same
+questions for every subscription in scope with
+
+22
+00:01:24.117 --> 00:01:27.315
+one query, against its Service
+Health resources table,
+
+23
+00:01:27.315 --> 00:01:30.300
+and Microsoft Learn
+publishes the sample queries.
+
+24
+00:01:30.300 --> 00:01:32.375
+So this module does two things.
+
+25
+00:01:32.375 --> 00:01:36.013
+It collects with the kit's query,
+built from Learn's samples.
+
+26
+00:01:36.013 --> 00:01:39.844
+And it plans Service Health alerts
+at scale with Azure Policy,
+
+27
+00:01:39.844 --> 00:01:43.270
+as a plan that's applied
+only with an approved hash.
+
+28
+00:01:47.020 --> 00:01:49.933
+Here's what you'll be able to
+do by the end of this module.
+
+29
+00:01:49.933 --> 00:01:53.318
+You'll name the least-privileged
+roles that read Service Health,
+
+30
+00:01:53.318 --> 00:01:56.257
+and the one a security advisory's
+sensitive fields need.
+
+31
+00:01:56.257 --> 00:01:59.494
+You'll compare the kit's events
+query with Learn's samples.
+
+32
+00:01:59.494 --> 00:02:04.545
+You'll collect the fixture subscriptions
+and read each event's kind and action date.
+
+33
+00:02:04.545 --> 00:02:08.125
+And you'll plan Service Health
+alerts at scale with Azure Policy,
+
+34
+00:02:08.125 --> 00:02:10.895
+and show that fixture mode
+never applies the plan.
+
+35
+00:02:10.895 --> 00:02:14.570
+You need Module 1, for the
+record and its action basis.
+
+36
+00:02:14.570 --> 00:02:19.994
+If you have time, read the Azure platform
+and Microsoft 365 audit telemetry chapter
+
+37
+00:02:19.994 --> 00:02:22.510
+of Security Operations and Telemetry,
+
+38
+00:02:22.510 --> 00:02:27.620
+which sends the Azure activity log's
+Service Health category to the workspace.
+
+39
+00:02:27.620 --> 00:02:31.782
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+40
+00:02:31.782 --> 00:02:33.060
+No tenant.
+
+41
+00:02:36.810 --> 00:02:40.022
+Unit 1 is the guide's
+Step 1, in four parts.
+
+42
+00:02:40.022 --> 00:02:43.923
+First, grant the reader its roles:
+Reader on each subscription
+
+43
+00:02:43.923 --> 00:02:47.135
+in scope is enough to see
+its Service Health events.
+
+44
+00:02:47.135 --> 00:02:49.870
+But a security advisory's
+sensitive fields,
+
+45
+00:02:49.870 --> 00:02:53.973
+and its impacted resources, need
+Service Health Security Reader.
+
+46
+00:02:53.973 --> 00:02:56.410
+Reader and Monitoring
+Reader can't see them.
+
+47
+00:02:56.410 --> 00:03:00.972
+Second, sign in in the right cloud,
+with the Resource Graph extension.
+
+48
+00:03:00.972 --> 00:03:04.358
+A GCC agency's subscriptions
+are commercial Azure,
+
+49
+00:03:04.358 --> 00:03:07.985
+the Azure Cloud setting;
+Azure Government uses its own.
+
+50
+00:03:07.985 --> 00:03:13.397
+Third, collect, with the kit's events
+query and Learn's impacted-resources query.
+
+51
+00:03:13.397 --> 00:03:16.688
+And fourth, alert at scale:
+plan the built-in policy
+
+52
+00:03:16.688 --> 00:03:19.898
+at the management group,
+with a remediation task.
+
+53
+00:03:19.898 --> 00:03:23.224
+The gate passes when every
+subscription's events are
+
+54
+00:03:23.224 --> 00:03:26.398
+listed and each security
+advisory has its summary.
+
+55
+00:03:26.398 --> 00:03:30.770
+An empty summary is the sign that
+the reader lacks the elevated role.
+
+56
+00:03:34.520 --> 00:03:36.482
+Unit 2 reads the workbook chapter,
+
+57
+00:03:36.482 --> 00:03:40.195
+starting with what Microsoft gives
+you and what it leaves to you.
+
+58
+00:03:40.195 --> 00:03:45.407
+Learn publishes one sample query per question:
+all active events, health advisories,
+
+59
+00:03:45.407 --> 00:03:50.545
+upcoming retirements and planned maintenance,
+each returning different columns.
+
+60
+00:03:50.545 --> 00:03:54.514
+The kit builds one events query from
+the all-active sample, adding the
+
+61
+00:03:54.514 --> 00:03:58.970
+retirement sample's event subtype and
+the advisory sample's time conversion.
+
+62
+00:03:58.970 --> 00:04:02.195
+Learn's samples return one row
+per event per subscription,
+
+63
+00:04:02.195 --> 00:04:05.420
+so the same outage would be
+counted once per subscription.
+
+64
+00:04:05.420 --> 00:04:09.270
+The kit merges rows by
+tracking I D into one notice.
+
+65
+00:04:09.270 --> 00:04:12.386
+Learn gives event types,
+not what to do about them,
+
+66
+00:04:12.386 --> 00:04:14.645
+so the kit maps them to the six kinds.
+
+67
+00:04:14.645 --> 00:04:19.620
+Nothing says action is required, so the
+kit states a rule, and the record names it.
+
+68
+00:04:19.620 --> 00:04:22.857
+And for the alert policy,
+Learn gives portal steps.
+
+69
+00:04:22.857 --> 00:04:27.040
+The kit writes a plan file a
+reviewer can approve before it runs.
+
+70
+00:04:30.790 --> 00:04:33.669
+The Azure collector
+makes two declared calls:
+
+71
+00:04:33.669 --> 00:04:36.852
+the events query and the
+impacted-resources query.
+
+72
+00:04:36.852 --> 00:04:41.902
+Each is an Azure Resource Graph query in
+live mode, and a file in fixture mode.
+
+73
+00:04:41.902 --> 00:04:44.702
+Then it maps each event type to a kind.
+
+74
+00:04:44.702 --> 00:04:46.566
+Service issues are incidents.
+
+75
+00:04:46.566 --> 00:04:48.715
+Planned maintenance is maintenance.
+
+76
+00:04:48.715 --> 00:04:53.101
+A health advisory whose event subtype
+is Retirement is a retirement,
+
+77
+00:04:53.101 --> 00:04:55.641
+and it's action required
+by the kit's rule,
+
+78
+00:04:55.641 --> 00:05:00.027
+due at the advisory's end time, which
+Learn says is its mitigation time.
+
+79
+00:05:00.027 --> 00:05:02.728
+Any other health advisory is an advisory.
+
+80
+00:05:02.728 --> 00:05:07.056
+A security advisory is action
+required by the kit's rule,
+
+81
+00:05:07.056 --> 00:05:09.691
+with no date, for the ISSO to review.
+
+82
+00:05:09.691 --> 00:05:13.677
+And anything else, such as
+billing, is left out and counted.
+
+83
+00:05:13.677 --> 00:05:18.528
+Resources come from the impacted-resources
+rows with the same tracking I D.
+
+84
+00:05:18.528 --> 00:05:22.991
+The source link is the event on the
+cloud's own Resource Manager host.
+
+85
+00:05:22.991 --> 00:05:26.790
+An unknown cloud name
+throws; there is no default.
+
+86
+00:05:30.540 --> 00:05:33.440
+Between collections,
+alerts carry the news.
+
+87
+00:05:33.440 --> 00:05:37.635
+Learn's page on deploying Service
+Health alerts at scale names a built-in
+
+88
+00:05:37.635 --> 00:05:42.740
+definition: configure subscriptions to enable
+Service Health monitoring alert rules.
+
+89
+00:05:42.740 --> 00:05:47.435
+It's assigned at a management group or
+subscription, never a resource group,
+
+90
+00:05:47.435 --> 00:05:50.692
+with a remediation task
+so existing subscriptions
+
+91
+00:05:50.692 --> 00:05:53.115
+get the alert rule too, not only new ones.
+
+92
+00:05:53.115 --> 00:05:57.002
+With no parameters, the remediation
+creates a resource group,
+
+93
+00:05:57.002 --> 00:06:00.508
+the alert rule and an action
+group in each subscription,
+
+94
+00:06:00.508 --> 00:06:04.090
+and emails the subscription
+owners for every event type.
+
+95
+00:06:04.090 --> 00:06:08.594
+The kit's alert policy script reads the
+definition, checks its display name,
+
+96
+00:06:08.594 --> 00:06:11.428
+and writes a plan with
+two steps: the assignment,
+
+97
+00:06:11.428 --> 00:06:15.714
+with a system-assigned managed identity
+granted the definition's role,
+
+98
+00:06:15.714 --> 00:06:19.928
+because only the portal grants it
+automatically, and the remediation.
+
+99
+00:06:19.928 --> 00:06:23.629
+It prints the plan's
+SHA-256 and changes nothing
+
+100
+00:06:23.629 --> 00:06:27.141
+unless it's run again
+with apply and that hash.
+
+101
+00:06:27.141 --> 00:06:31.160
+And never edit the alert rules
+by hand: change the assignment's
+
+102
+00:06:31.160 --> 00:06:36.020
+parameters and remediate again, or
+the policy may overwrite the edit.
+
+103
+00:06:39.770 --> 00:06:40.495
+Try it.
+
+104
+00:06:40.495 --> 00:06:44.376
+Lab 1 runs in the provider
+notices folder of the examples,
+
+105
+00:06:44.376 --> 00:06:47.845
+in PowerShell 7, against
+fictional subscriptions.
+
+106
+00:06:47.845 --> 00:06:49.633
+Nothing signs in to anything.
+
+107
+00:06:49.633 --> 00:06:51.795
+Step one lists what Azure needs.
+
+108
+00:06:51.795 --> 00:06:55.850
+Two calls, the Service Health
+events and the impacted resources,
+
+109
+00:06:55.850 --> 00:06:59.445
+and each needs only Reader on
+each subscription in scope.
+
+110
+00:06:59.445 --> 00:07:03.686
+The elevated role is Service Health
+Security Reader, to see the sensitive
+
+111
+00:07:03.686 --> 00:07:07.857
+fields of security advisories, which
+Reader and Monitoring Reader can't.
+
+112
+00:07:07.857 --> 00:07:09.444
+Both are marked verified.
+
+113
+00:07:09.444 --> 00:07:11.332
+Notice that nothing here writes.
+
+114
+00:07:11.332 --> 00:07:13.846
+Step two prints the kit's events query.
+
+115
+00:07:13.846 --> 00:07:16.675
+It starts the way Learn's
+all-active sample does,
+
+116
+00:07:16.675 --> 00:07:21.320
+from the Service Health resources table,
+filtered to Resource Health events.
+
+117
+00:07:21.320 --> 00:07:24.286
+It adds the retirement
+sample's event subtype,
+
+118
+00:07:24.286 --> 00:07:28.345
+converts the impact times the
+way Learn's advisory sample does,
+
+119
+00:07:28.345 --> 00:07:32.840
+and ends ordered by tracking I D,
+so the rows page in a stable order.
+
+120
+00:07:36.590 --> 00:07:42.665
+Step three collects Azure from the day-one
+fixtures, as of November ninth, 2026.
+
+121
+00:07:42.665 --> 00:07:47.499
+Five notices, all open, two needing
+action: one each of advisory,
+
+122
+00:07:47.499 --> 00:07:51.290
+incident, maintenance,
+retirement and security.
+
+123
+00:07:51.290 --> 00:07:56.487
+Five notices from six rows, because the
+incident appears in two subscriptions,
+
+124
+00:07:56.487 --> 00:07:58.965
+and the kit merges rows by tracking I D.
+
+125
+00:07:58.965 --> 00:08:02.728
+Without that merge, the same
+outage would become two tasks.
+
+126
+00:08:02.728 --> 00:08:04.728
+Step four reads the records.
+
+127
+00:08:04.728 --> 00:08:09.228
+The incident is a virtual machine
+connectivity issue in East U S.
+
+128
+00:08:09.228 --> 00:08:15.078
+The advisory asks clients of Azure
+Storage to move to T L S 1.2 or later.
+
+129
+00:08:15.078 --> 00:08:19.216
+The maintenance is planned work on
+virtual machines in East U S 2.
+
+130
+00:08:19.216 --> 00:08:23.221
+The retirement, of Basic S
+K U public I P addresses,
+
+131
+00:08:23.221 --> 00:08:27.828
+is due on September thirtieth,
+2027, at the advisory's end.
+
+132
+00:08:27.828 --> 00:08:32.845
+And the security advisory, for
+Azure Kubernetes Service clusters,
+
+133
+00:08:32.845 --> 00:08:36.770
+needs action with no date,
+for the ISSO to review.
+
+134
+00:08:40.520 --> 00:08:42.817
+Step five plans the Service Health alert
+
+135
+00:08:42.817 --> 00:08:45.520
+policy for a fictional
+production environment.
+
+136
+00:08:45.520 --> 00:08:47.470
+Two steps, both would apply.
+
+137
+00:08:47.470 --> 00:08:51.815
+A L oh one creates the policy assignment
+for the built-in definition at the
+
+138
+00:08:51.815 --> 00:08:56.658
+management group, with a system-assigned
+identity, its role and its identity scope.
+
+139
+00:08:56.658 --> 00:08:59.183
+A L oh two creates the remediation.
+
+140
+00:08:59.183 --> 00:09:05.707
+Then the plan's SHA-256, and the line
+that matters: dry run, nothing changed.
+
+141
+00:09:05.707 --> 00:09:10.671
+To apply, add apply and the approved
+hash, after the change record approves it.
+
+142
+00:09:10.671 --> 00:09:15.407
+The role I D in the fixture is
+made up; Lab 2 reads the real one.
+
+143
+00:09:15.407 --> 00:09:19.891
+Step six tries to apply the plan in
+fixture mode, with a hash of zeros,
+
+144
+00:09:19.891 --> 00:09:25.271
+and the script refuses before it even
+reads the hash: fixture mode never applies.
+
+145
+00:09:25.271 --> 00:09:30.057
+Step seven runs this chapter's
+tests: twenty-six pass, none fail.
+
+146
+00:09:30.057 --> 00:09:32.250
+Then delete the output folder.
+
+147
+00:09:36.000 --> 00:09:39.659
+Lab 2 runs the same gate in
+an Azure test subscription,
+
+148
+00:09:39.659 --> 00:09:41.987
+in a test tenant, never production.
+
+149
+00:09:41.987 --> 00:09:45.886
+You need a reader identity, a person
+who can create policy and role
+
+150
+00:09:45.886 --> 00:09:49.712
+assignments there, and a second
+person to approve the plan's hash.
+
+151
+00:09:49.712 --> 00:09:53.109
+The subscription may have no
+Service Health events at all,
+
+152
+00:09:53.109 --> 00:09:54.524
+and that's a valid result.
+
+153
+00:09:54.524 --> 00:09:58.447
+Grant the reader Reader and Service
+Health Security Reader, sign in,
+
+154
+00:09:58.447 --> 00:10:03.068
+and cross-check Learn's own query against
+the kit's collection; the counts should
+
+155
+00:10:03.068 --> 00:10:07.550
+agree, once the merge of one event across
+subscriptions is taken into account.
+
+156
+00:10:07.550 --> 00:10:10.557
+Then plan the alert policy
+at the test subscription,
+
+157
+00:10:10.557 --> 00:10:14.962
+apply it with the approved hash, and
+check the remediation and the alert rule.
+
+158
+00:10:14.962 --> 00:10:18.649
+To back it out, plan the rollback,
+have it approved, apply it,
+
+159
+00:10:18.649 --> 00:10:22.963
+delete what the remediation created,
+and remove the reader's roles.
+
+160
+00:10:22.963 --> 00:10:26.851
+Deleting the assignment doesn't
+delete what its remediation made.
+
+161
+00:10:26.851 --> 00:10:32.390
+The authors haven't run Lab 2; the
+workbook's Chapter 1 has the exact commands.
+
+162
+00:10:36.140 --> 00:10:37.040
+Which cloud?
+
+163
+00:10:37.040 --> 00:10:41.865
+A GCC Moderate estate's subscriptions
+are commercial Azure, so the settings
+
+164
+00:10:41.865 --> 00:10:46.690
+name the Azure Cloud, and the source
+links are on management dot azure dot com.
+
+165
+00:10:46.690 --> 00:10:49.677
+There's no default: an
+unknown cloud name throws.
+
+166
+00:10:49.677 --> 00:10:55.418
+As a side note for GCC High and DoD estates,
+Azure Government uses its own cloud
+
+167
+00:10:55.418 --> 00:11:01.428
+setting and its own Resource Manager host,
+management dot us gov cloud api dot net.
+
+168
+00:11:01.428 --> 00:11:06.243
+Every Service Health sample on Learn links
+the Azure Government portal as well as
+
+169
+00:11:06.243 --> 00:11:09.502
+the global one, but an explicit
+availability statement
+
+170
+00:11:09.502 --> 00:11:12.689
+for the table in Azure
+Government is not yet specified.
+
+171
+00:11:12.689 --> 00:11:15.228
+The danger is a reader in the wrong cloud.
+
+172
+00:11:15.228 --> 00:11:19.729
+Azure Government subscriptions read from
+the commercial cloud return nothing,
+
+173
+00:11:19.729 --> 00:11:21.878
+and the gate would pass on an empty list.
+
+174
+00:11:21.878 --> 00:11:26.840
+So the live invoker refuses an Azure
+command line set to another cloud.
+
+175
+00:11:30.590 --> 00:11:31.977
+The federal requirement.
+
+176
+00:11:31.977 --> 00:11:38.241
+Gate 1 supports NIST special publication
+eight hundred fifty-three S A nine, part c,
+
+177
+00:11:38.241 --> 00:11:42.661
+monitoring the provider on an
+ongoing basis; S I five, part a,
+
+178
+00:11:42.661 --> 00:11:48.740
+receiving security alerts and advisories;
+and C A seven, continuous monitoring.
+
+179
+00:11:48.740 --> 00:11:51.657
+The evidence starts with
+the permission list: Reader,
+
+180
+00:11:51.657 --> 00:11:56.365
+and Service Health Security Reader for
+security advisories, and nothing that writes.
+
+181
+00:11:56.365 --> 00:11:58.320
+Then the raw Azure response,
+
+182
+00:11:58.320 --> 00:12:02.315
+the notices and the manifest,
+with every call and its role.
+
+183
+00:12:02.315 --> 00:12:06.109
+For the alert path that runs
+between collections, the alert plan,
+
+184
+00:12:06.109 --> 00:12:10.190
+the results of the apply, and the
+change record that approved the hash.
+
+185
+00:12:10.190 --> 00:12:13.616
+And in Lab 2, the change
+record for the rollback,
+
+186
+00:12:13.616 --> 00:12:16.140
+which supports C M three and C P two.
+
+187
+00:12:16.140 --> 00:12:18.952
+The gate's output is
+evidence for these controls;
+
+188
+00:12:18.952 --> 00:12:23.240
+your organization still sets their
+parameters, and the assessor decides.
+
+189
+00:12:23.240 --> 00:12:27.277
+K S I's are FedRAMP twenty X indicators
+for cloud service providers,
+
+190
+00:12:27.277 --> 00:12:31.610
+and which file supports which
+indicator is the program's mapping.
+
+191
+00:12:35.360 --> 00:12:37.335
+Check yourself with two questions.
+
+192
+00:12:37.335 --> 00:12:41.610
+First: a security advisory's
+summary is empty in the record.
+
+193
+00:12:41.610 --> 00:12:43.160
+What's the likely cause?
+
+194
+00:12:43.160 --> 00:12:44.385
+The answer is b.
+
+195
+00:12:44.385 --> 00:12:47.963
+The reader holds Reader but not
+Service Health Security Reader,
+
+196
+00:12:47.963 --> 00:12:49.785
+which the sensitive fields need.
+
+197
+00:12:49.785 --> 00:12:53.095
+Reader and Monitoring Reader
+can list the advisory,
+
+198
+00:12:53.095 --> 00:12:56.097
+but can't see its summary
+or impacted resources.
+
+199
+00:12:56.097 --> 00:12:59.798
+Second: the same incident
+appears in two subscriptions.
+
+200
+00:12:59.798 --> 00:13:01.898
+How many notices does the kit write?
+
+201
+00:13:01.898 --> 00:13:03.734
+The answer is b, one.
+
+202
+00:13:03.734 --> 00:13:07.725
+Rows are merged by tracking I
+D, so one event is one notice,
+
+203
+00:13:07.725 --> 00:13:10.847
+and later one task, not
+one per subscription.
+
+204
+00:13:10.847 --> 00:13:13.275
+The module page has three more questions,
+
+205
+00:13:13.275 --> 00:13:16.120
+each linked to the
+section that answers it.
+
+206
+00:13:19.870 --> 00:13:20.695
+To sum up.
+
+207
+00:13:20.695 --> 00:13:23.262
+You listed the two roles
+Azure's reader needs,
+
+208
+00:13:23.262 --> 00:13:25.760
+read the kit's query
+against Learn's samples,
+
+209
+00:13:25.760 --> 00:13:30.618
+collected five notices from the fixture
+subscriptions, and planned Service Health
+
+210
+00:13:30.618 --> 00:13:34.920
+alerts at the management group, as a
+plan that fixture mode refuses to apply.
+
+211
+00:13:34.920 --> 00:13:39.313
+The evidence an ISSO keeps for
+Gate 1 is the raw Azure response,
+
+212
+00:13:39.313 --> 00:13:44.567
+the notices as JSON and as a spreadsheet
+file, and the manifest, all dated;
+
+213
+00:13:44.567 --> 00:13:49.391
+the permission list from step one;
+and the alert plan with its SHA-256,
+
+214
+00:13:49.391 --> 00:13:54.645
+and in Lab 2, the change record that
+approved it and the results of the apply.
+
+215
+00:13:54.645 --> 00:13:57.720
+Before you ship, work through
+the chapter's checklist.
+
+216
+00:13:57.720 --> 00:14:02.795
+Next is Module 3: the
+Microsoft 365 Message center.
+
+217
+00:14:02.795 --> 00:14:07.574
+That's Gate 2, with the workbook's
+second chapter: two Graph permissions,
+
+218
+00:14:07.574 --> 00:14:10.940
+and why a tenant must be
+read on its own Graph host.

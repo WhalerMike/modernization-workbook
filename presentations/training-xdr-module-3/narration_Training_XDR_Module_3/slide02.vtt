@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+Why these two together?
+
+2
+00:00:01.387 --> 00:00:05.912
+Because both are queues, and a queue
+without an owner is where risk waits.
+
+3
+00:00:05.912 --> 00:00:11.104
+The vulnerability queue: the remediation
+program, its clock and the Known Exploited
+
+4
+00:00:11.104 --> 00:00:16.074
+Vulnerabilities catalog belong to the
+Security Operations and Telemetry book.
+
+5
+00:00:16.074 --> 00:00:18.745
+The guide adds what Defender contributes,
+
+6
+00:00:18.745 --> 00:00:23.779
+and its rule that a vulnerability without
+an owner is a finding against C M eight,
+
+7
+00:00:23.779 --> 00:00:27.975
+the inventory control, not just R
+A five, vulnerability monitoring.
+
+8
+00:00:27.975 --> 00:00:30.800
+That's the program's
+risk-based recommendation.
+
+9
+00:00:30.800 --> 00:00:34.837
+And in a U S Government cloud, the
+attack-path features aren't there.
+
+10
+00:00:34.837 --> 00:00:36.603
+The incident queue: one queue,
+
+11
+00:00:36.603 --> 00:00:40.798
+with Sentinel onboarded to the
+Defender portal if the agency uses it,
+
+12
+00:00:40.798 --> 00:00:44.257
+a triage window and a containment
+rung for each severity,
+
+13
+00:00:44.257 --> 00:00:48.525
+and every incident closed with a
+classification and a determination.
+
+14
+00:00:48.525 --> 00:00:54.595
+The response ladder and device isolation
+stay in Security Operations and Telemetry;
+
+15
+00:00:54.595 --> 00:00:58.680
+this module fixes severity,
+triage, evidence and hand-off.

@@ -1,0 +1,91 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.457
+Unit 2 is what each government cloud has,
+from the guide's availability table,
+
+2
+00:00:05.457 --> 00:00:09.062
+read on Microsoft Learn on
+November eleventh, 2026.
+
+3
+00:00:09.062 --> 00:00:15.164
+Learn's page on Defender for Endpoint for
+U S Government customers says prevention,
+
+4
+00:00:15.164 --> 00:00:18.347
+detection, investigation and remediation
+
+5
+00:00:18.347 --> 00:00:21.000
+are available in G C C,
+G C C High and D O D.
+
+6
+00:00:21.000 --> 00:00:26.948
+Each cloud has its own portal: security
+dot microsoft dot com for G C C, security
+
+7
+00:00:26.948 --> 00:00:32.245
+dot microsoft dot U S for G C C High,
+and security dot apps dot mil for D O D.
+
+8
+00:00:32.245 --> 00:00:35.962
+Graph's incident and hunting
+A P I's are available,
+
+9
+00:00:35.962 --> 00:00:38.750
+with G C C on the worldwide Graph host.
+
+10
+00:00:38.750 --> 00:00:39.725
+Then the gap.
+
+11
+00:00:39.725 --> 00:00:44.731
+Learn's page on Security Exposure Management
+says it's available in Public Cloud
+
+12
+00:00:44.731 --> 00:00:46.749
+only, not in U S Government clouds,
+
+13
+00:00:46.749 --> 00:00:49.887
+so attack paths and the
+exposure graph aren't there.
+
+14
+00:00:49.887 --> 00:00:53.961
+And Learn doesn't say whether custom
+detection rules through Graph,
+
+15
+00:00:53.961 --> 00:00:59.126
+automatic attack disruption, or web content
+filtering on Windows reach these clouds.
+
+16
+00:00:59.126 --> 00:01:02.837
+The guide's rule: not yet
+specified means Learn doesn't say,
+
+17
+00:01:02.837 --> 00:01:04.338
+not that it's available.
+
+18
+00:01:04.338 --> 00:01:08.319
+A feature your cloud doesn't offer
+goes in the decision record and
+
+19
+00:01:08.319 --> 00:01:12.360
+the closure register as not
+applicable, never as a failed control.

@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where are agencies?
+
+2
+00:00:01.362 --> 00:00:04.613
+The workbook's baseline is G C C Moderate.
+
+3
+00:00:04.613 --> 00:00:07.947
+Microsoft 365 G C C pairs
+with commercial Azure,
+
+4
+00:00:07.947 --> 00:00:11.880
+so a G C C agency's subscriptions
+are usually commercial,
+
+5
+00:00:11.880 --> 00:00:16.924
+and the guide's commands run as written,
+with the cloud set to Azure Cloud.
+
+6
+00:00:16.924 --> 00:00:21.038
+Azure Government is a side note: it
+pairs with G C C High and D O D.
+
+7
+00:00:21.038 --> 00:00:25.809
+Learn's page, Compare Azure Government
+and global Azure, says a service
+
+8
+00:00:25.809 --> 00:00:30.663
+available there has all its features
+unless the page lists a variation.
+
+9
+00:00:30.663 --> 00:00:34.739
+The differences that matter for
+this module: the endpoints differ,
+
+10
+00:00:34.739 --> 00:00:38.667
+with Resource Manager at management
+dot U S gov cloud A P I dot net;
+
+11
+00:00:38.667 --> 00:00:42.372
+the landing zone accelerators
+aren't supported unmodified,
+
+12
+00:00:42.372 --> 00:00:45.781
+so the code has to be adapted;
+and Azure Lighthouse has no
+
+13
+00:00:45.781 --> 00:00:49.338
+pim for delegated access and
+no delegation across clouds.
+
+14
+00:00:49.338 --> 00:00:52.320
+Later modules name the
+gaps for their own steps.

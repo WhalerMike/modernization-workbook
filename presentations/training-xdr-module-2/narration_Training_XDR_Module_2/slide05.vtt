@@ -1,0 +1,97 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.213
+Then enforcement.
+
+2
+00:00:01.213 --> 00:00:04.713
+The pilot runs on rings zero
+and one for at least two weeks,
+
+3
+00:00:04.713 --> 00:00:08.661
+with network protection and
+controlled folder access in audit;
+
+4
+00:00:08.661 --> 00:00:12.087
+that length is the program's
+risk-based recommendation.
+
+5
+00:00:12.087 --> 00:00:14.916
+Read the audit events
+every week and add allowed
+
+6
+00:00:14.916 --> 00:00:18.663
+applications for controlled
+folder access before you enforce.
+
+7
+00:00:18.663 --> 00:00:23.063
+Then turn each setting to block in
+the Intune policy, ring by ring.
+
+8
+00:00:23.063 --> 00:00:27.672
+Ring zero, the implementing team, exits
+when the audit events are reviewed,
+
+9
+00:00:27.672 --> 00:00:31.300
+the test site is blocked and no
+one has called the help desk.
+
+10
+00:00:31.300 --> 00:00:34.034
+Ring one, the pilot
+group, after two weeks,
+
+11
+00:00:34.034 --> 00:00:39.087
+when every audited line-of-business
+block has an allow entry or a decision.
+
+12
+00:00:39.087 --> 00:00:42.905
+Ring two, early adopters, after
+one week, with help-desk calls
+
+13
+00:00:42.905 --> 00:00:47.112
+tagged Defender block under the
+threshold set before the change.
+
+14
+00:00:47.112 --> 00:00:49.064
+Ring three, everyone in scope,
+
+15
+00:00:49.064 --> 00:00:53.050
+when post-change validation
+passes on a sample at each site.
+
+16
+00:00:53.050 --> 00:00:57.766
+The backout triggers are a blocked
+critical application with no allow path,
+
+17
+00:00:57.766 --> 00:01:00.162
+or help-desk volume over the threshold.
+
+18
+00:01:00.162 --> 00:01:03.500
+Rollback sets the mode back
+to audit in the same policy.
+
+19
+00:01:03.500 --> 00:01:06.132
+Microsoft Learn says tamper protection is
+
+20
+00:01:06.132 --> 00:01:08.830
+turned off only from
+the console that set it.

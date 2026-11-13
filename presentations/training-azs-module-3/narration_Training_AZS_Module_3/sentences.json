@@ -1,0 +1,555 @@
+{
+ "1": [
+  [
+   0.05,
+   6.15,
+   "Welcome to Module 3 of the Azure Security Engineering learning path: the edge and the egress."
+  ],
+  [
+   6.2,
+   4.612,
+   "Module 2 put a web application firewall in front of each web workload."
+  ],
+  [
+   10.812,
+   11.425,
+   "This module makes sure nothing can go around it, and then turns to the other direction: traffic leaving Azure, through Azure Firewall, with threat intelligence and intrusion detection denying."
+  ],
+  [
+   22.238,
+   9.85,
+   "It covers Steps 5 and 6 of the Azure Security Engineering implementation guide, and takes about fifty-five minutes, plus a lab in your own test subscription."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   6.312,
+   "A web application firewall in prevention mode protects nothing if an attacker can call the origin directly."
+  ],
+  [
+   7.513,
+   16.462,
+   "The guide's dangers table puts it this way: attackers bypass the firewall and the DDoS controls by calling the origin, and the Front Door backend service tag alone admits any customer's Front Door, as Learn's page, Secure traffic to Azure Front Door origins, explains."
+  ],
+  [
+   23.975,
+   2.513,
+   "The other direction matters just as much."
+  ],
+  [
+   26.488,
+   7.362,
+   "A workload whose traffic leaves Azure without inspection can reach a command-and-control server, or send data out, unseen."
+  ],
+  [
+   33.85,
+   15.812,
+   "So this module covers both: origins only the edge can reach, with TLS one point two or later and tested failover, and every workload subnet's default route through Azure Firewall, with threat intelligence and intrusion detection in deny mode."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.2,
+   "You'll choose Front Door Premium, Application Gateway, or both, for an application, and say why."
+  ],
+  [
+   9.162,
+   6.188,
+   "You'll lock an origin to the edge, and explain why the Front Door backend service tag alone isn't enough."
+  ],
+  [
+   15.35,
+   3.35,
+   "You'll check TLS, health probes and failover."
+  ],
+  [
+   18.7,
+   5.938,
+   "You'll route a workload subnet's default route to Azure Firewall, and check it with the effective routes."
+  ],
+  [
+   24.637,
+   7.65,
+   "And you'll move threat intelligence and intrusion detection from alert to deny through a draft, and say what deploying a draft replaces."
+  ],
+  [
+   32.288,
+   9.375,
+   "You need Module 2, and a skim of Network and Transport, which owns the agency's own edge and the trusted internet connection; the guide leaves those to it."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.225,
+   "Unit 1 is the guide's Step 5."
+  ],
+  [
+   2.275,
+   14.375,
+   "Learn's overview, What is Azure Front Door, says Front Door is global and sits at the Microsoft edge with built-in layer three and four DDoS protection, while Application Gateway is regional, in the agency's own virtual network."
+  ],
+  [
+   16.65,
+   3.638,
+   "Either carries the web application firewall from Module 2."
+  ],
+  [
+   20.288,
+   2.525,
+   "The guide's selection is design guidance."
+  ],
+  [
+   22.812,
+   7.675,
+   "Front Door Premium for internet-facing applications that need global reach, Private Link origins or managed firewall rules."
+  ],
+  [
+   30.488,
+   8.438,
+   "Application Gateway for regional applications, for traffic that must enter through the agency's own network, or where Front Door isn't in the region."
+  ],
+  [
+   38.925,
+   7.575,
+   "And both, with Front Door reaching Application Gateway over Private Link, where the application needs regional inspection too."
+  ],
+  [
+   46.5,
+   11.15,
+   "One date to plan around: Learn's migration page says classic Front Door retires on March thirty-first, twenty twenty-seven, and already accepts no new profiles or domains."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.087,
+   "Now the origin."
+  ],
+  [
+   1.137,
+   3.038,
+   "Use Private Link where the origin type supports it."
+  ],
+  [
+   4.175,
+   11.125,
+   "Learn's page on Private Link in Front Door Premium lists App Service, Blob Storage, internal load balancers, A P I Management, Application Gateway and Container Apps."
+  ],
+  [
+   15.3,
+   7.088,
+   "Approve the private endpoint connection Front Door requests, and don't mix public and private origins in one origin group."
+  ],
+  [
+   22.387,
+   15.025,
+   "Where Private Link doesn't apply, Learn's page on securing traffic to Front Door origins says to use the Front Door backend service tag and the X Azure F D I D header together, because the tag's addresses are shared by every Front Door customer."
+  ],
+  [
+   37.413,
+   3.075,
+   "The header carries your own profile's Front Door I D."
+  ],
+  [
+   40.487,
+   6.55,
+   "For an App Service origin, one access restriction does both, as Learn's multi-region tutorial shows."
+  ],
+  [
+   47.038,
+   8.175,
+   "For an application gateway behind Front Door, an N S G rule allows only the tag, and a firewall custom rule checks the header."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.613,
+   "Next, TLS."
+  ],
+  [
+   1.663,
+   8.912,
+   "Learn's internet ingress design guide says TLS one point two or one point three only, and on Application Gateway, a predefined policy."
+  ],
+  [
+   10.575,
+   15.637,
+   "The guide's command, from Learn's Az PowerShell page, sets the predefined policy twenty twenty-two oh one oh one S. Front Door Standard and Premium require H T T P S on every custom domain, with custom certificates kept in Key Vault."
+  ],
+  [
+   26.212,
+   2.188,
+   "Then health probes and failover."
+  ],
+  [
+   28.4,
+   10.625,
+   "Learn's Front Door quickstart builds an origin group with probes and two origins in different regions, then stops one origin to show the application stays available through the other."
+  ],
+  [
+   39.025,
+   2.45,
+   "The program exercises that twice a year."
+  ],
+  [
+   41.475,
+   11.15,
+   "Cutting over is gentle too: run Front Door beside the old public endpoint and compare logs before you change D N S, then close the origin's public path one application at a time."
+  ],
+  [
+   52.625,
+   4.575,
+   "Rollback removes the access restriction and restores D N S."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.337,
+   "Unit 2 is the guide's Step 6."
+  ],
+  [
+   2.388,
+   9.3,
+   "Network and Transport owns the agency's own edge; inside Azure, Azure Firewall is the inspection point for egress and east-west traffic."
+  ],
+  [
+   11.688,
+   15.875,
+   "Learn's Zero Trust recommendations for Azure Firewall check that outbound traffic from workloads routes through the firewall, that threat intelligence and intrusion detection are in alert-and-deny mode, that outbound TLS is inspected, and that diagnostic logs are on."
+  ],
+  [
+   27.562,
+   1.288,
+   "The SKU matters."
+  ],
+  [
+   28.85,
+   3.225,
+   "Threat intelligence deny needs Standard or Premium."
+  ],
+  [
+   32.075,
+   10.225,
+   "Intrusion detection and prevention, TLS inspection and full URL filtering need Premium, and Learn says Standard upgrades to Premium without redeployment."
+  ],
+  [
+   42.3,
+   7.513,
+   "For high-volume egress, Learn suggests a NAT gateway on the firewall subnet, to avoid running out of source ports."
+  ],
+  [
+   49.812,
+   11.238,
+   "And TLS inspection needs an intermediate C A certificate in Key Vault that clients trust; it doesn't decrypt the Education, Finance, Government and Health categories."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.288,
+   "Here are the guide's Step 6 commands."
+  ],
+  [
+   2.337,
+   5.688,
+   "Create the firewall policy in alert mode, on Premium, from Learn's C L I reference."
+  ],
+  [
+   8.025,
+   10.025,
+   "Route each workload subnet's default route, zero dot zero dot zero dot zero slash zero, to the firewall's private I P, with Learn's route table commands."
+  ],
+  [
+   18.05,
+   1.975,
+   "Send the logs to the workspace."
+  ],
+  [
+   20.025,
+   7.463,
+   "Leave threat intelligence and intrusion detection in alert for two weeks, reading their logs for hits on legitimate traffic."
+  ],
+  [
+   27.488,
+   11.15,
+   "Then move to deny through a draft, so every change lands at once and can be reviewed: create the draft, update both modes to Deny, show it, and deploy it in a change window."
+  ],
+  [
+   38.638,
+   14.775,
+   "Learn's page, Azure Firewall Draft plus Deployment, carries one warning that the guide repeats: deploying replaces the whole applied policy, so changes made to the lyve policy after the draft was created are lost unless they're in the draft too."
+  ],
+  [
+   53.413,
+   2.575,
+   "Keep one change path, drafts only."
+  ],
+  [
+   55.987,
+   7.487,
+   "And east-west, as design guidance: spoke to spoke through the hub firewall, with N S Gs denying by default."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   5.037,
+   "In commercial Azure, which a G C C tenant uses, both steps run as written."
+  ],
+  [
+   6.4,
+   3.45,
+   "As side notes for Azure Government, check regions first."
+  ],
+  [
+   9.85,
+   8.2,
+   "Learn's comparison page says Front Door Standard and Premium are generally available in U S Gov Arizona and U S Gov Texas."
+  ],
+  [
+   18.05,
+   13.975,
+   "Front Door Private Link lists three government regions, but the same page limits it to regions with availability zones, and Learn's Azure Government region list shows zones only in U S Gov Virginia, so test before relying on it."
+  ],
+  [
+   32.025,
+   8.488,
+   "Azure Firewall Premium's government regions are on the products-by-region page, not Learn, so the guide records them as not yet specified."
+  ],
+  [
+   40.513,
+   13.8,
+   "On other clouds, the guide names O C I Network Firewall, built on Palo Alto Networks, with intrusion detection and prevention, TLS inspection and URL filtering, reached through V C N route tables."
+  ],
+  [
+   54.312,
+   5.35,
+   "AWS Network Firewall and Google's Cloud N G F W aren't compared there."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   9.275,
+   "The lab runs the guide's Step 5 and Step 6 checks in a test subscription where someone has applied those steps to a test application and a pilot spoke."
+  ],
+  [
+   9.325,
+   1.562,
+   "The authors haven't run it."
+  ],
+  [
+   10.887,
+   2.188,
+   "One part writes, and it's labeled."
+  ],
+  [
+   13.075,
+   5.725,
+   "Step one calls the origin's own host name directly, then the same request through Front Door."
+  ],
+  [
+   18.8,
+   8.35,
+   "The guide's Validate step says the direct request is refused, a four oh three or no route, and the one through Front Door succeeds."
+  ],
+  [
+   27.15,
+   6.25,
+   "Step two exports the origin's access restriction: look for the service tag and the header together."
+  ],
+  [
+   33.4,
+   6.213,
+   "Step three checks the application gateway's TLS policy, the predefined one the guide sets."
+  ],
+  [
+   39.612,
+   8.188,
+   "Step four is the failover test, and it writes, so use only the test application: stop the second origin and call Front Door again."
+  ],
+  [
+   47.8,
+   3.325,
+   "The application should stay available through the other origin."
+  ],
+  [
+   51.125,
+   2.575,
+   "Step five starts the stopped origin again."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.538,
+   "Step six reads the test V M's effective routes."
+  ],
+  [
+   3.587,
+   15.85,
+   "The guide's Validate step says the default route, zero dot zero dot zero dot zero slash zero, goes to the firewall's private I P. Step seven checks the firewall policy, with the guide's own query: threat intelligence and intrusion detection should both read Deny."
+  ],
+  [
+   19.438,
+   7.55,
+   "Step eight runs on the test V M: request a test domain your security monitor confirms is on the threat intelligence feed."
+  ],
+  [
+   26.988,
+   5.425,
+   "The request should be denied; curl prints three zeros when the connection is refused."
+  ],
+  [
+   32.413,
+   4.662,
+   "Step nine, back on your machine, finds the denied request in the log."
+  ],
+  [
+   37.075,
+   10.713,
+   "The guide sends the firewall's logs to resource-specific tables, and Learn's Azure Firewall monitoring reference names the threat intelligence table A Z F W Threat Intel."
+  ],
+  [
+   47.788,
+   7.7,
+   "Step ten backs it out: step five already started the origin, so confirm it reads Running and answers through Front Door again."
+  ],
+  [
+   55.487,
+   1.35,
+   "Nothing else changed."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.425,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five, as the guide's requirements table maps it."
+  ],
+  [
+   8.475,
+   13.0,
+   "Step 5 supports S C seven, boundary protection, S C eight, transmission confidentiality and integrity, and C P two, the contingency plan, which the failover test exercises."
+  ],
+  [
+   21.475,
+   5.7,
+   "Its evidence is the origin lock-down test, the TLS policy and the failover test."
+  ],
+  [
+   27.175,
+   12.6,
+   "Step 6 supports S C seven and its enhancement five, deny by default, and S I four, system monitoring; its evidence is the firewall policy, the routes and the denied test request."
+  ],
+  [
+   39.775,
+   5.55,
+   "Each row lines up with the fed-ramp twenty X key security indicators the guide names."
+  ],
+  [
+   45.325,
+   8.113,
+   "The steps support these controls; the organization still sets their parameters, and the assessor decides whether each is satisfied."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.625,
+   "First: an App Service origin allows traffic only from the Front Door backend service tag."
+  ],
+  [
+   7.65,
+   1.637,
+   "Is it locked to your Front Door?"
+  ],
+  [
+   9.287,
+   1.538,
+   "The answer is b, no."
+  ],
+  [
+   10.825,
+   8.075,
+   "The tag's addresses are shared by every Front Door customer, so check the X Azure F D I D header too, or use Private Link."
+  ],
+  [
+   18.9,
+   4.8,
+   "Second: someone changed the live firewall policy after a draft was created."
+  ],
+  [
+   23.7,
+   2.175,
+   "What happens when the draft is deployed?"
+  ],
+  [
+   25.875,
+   7.312,
+   "The answer is b: the draft replaces the whole applied policy, and the live change is lost unless it's in the draft too."
+  ],
+  [
+   33.188,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   5.775,
+   "You chose the edge for an application and locked its origin, so a direct request is refused."
+  ],
+  [
+   6.65,
+   2.938,
+   "You checked TLS, and tested failover."
+  ],
+  [
+   9.588,
+   10.262,
+   "You checked that the pilot subnet's egress routes to Azure Firewall, with threat intelligence and intrusion detection in deny mode, and found the denied request in its log."
+  ],
+  [
+   19.85,
+   20.688,
+   "The evidence an I S S O keeps from this module: the profile, origin group, route and access-restriction exports; the TLS policy; the refused direct request and the failover test; the firewall policy export and route tables; the denied request and its log row; and the bypass and allow-list register."
+  ],
+  [
+   40.538,
+   9.1,
+   "Next is Module 4: Private Link, D N S and Key Vault, taking pass off the internet and putting vaults behind role-based access."
+  ]
+ ]
+}

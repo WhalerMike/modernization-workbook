@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:05.745
+You'll say what DDoS
+infrastructure protection,
+
+3
+00:00:05.745 --> 00:00:10.475
+I P Protection and Network Protection each
+give, and what neither paid tier covers.
+
+4
+00:00:10.475 --> 00:00:15.037
+You'll check that every public I P
+is protected, logged and alerting.
+
+5
+00:00:15.037 --> 00:00:19.323
+You'll explain why a simulation runs
+only through an approved partner,
+
+6
+00:00:19.323 --> 00:00:21.762
+and only against your own protected I Ps.
+
+7
+00:00:21.762 --> 00:00:26.280
+You'll take a web application firewall
+policy from detection to prevention,
+
+8
+00:00:26.280 --> 00:00:30.225
+with request body inspection, the
+current rule set and a rate limit.
+
+9
+00:00:30.225 --> 00:00:32.497
+And you'll prove it blocks a test request,
+
+10
+00:00:32.497 --> 00:00:35.250
+and roll it back if it
+blocks legitimate traffic.
+
+11
+00:00:35.250 --> 00:00:39.681
+You need Module 1 and its public I P
+query, and the guide's decision record
+
+12
+00:00:39.681 --> 00:00:44.330
+template, because the DDoS tier and
+the Front Door tier are recorded there.

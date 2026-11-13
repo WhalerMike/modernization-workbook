@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.888
+Deploying is a post of the file to the
+detection rules endpoint, then a read-back.
+
+2
+00:00:04.888 --> 00:00:09.776
+Validation is an export of everything
+deployed, compared with the repository.
+
+3
+00:00:09.776 --> 00:00:14.167
+The guide's pass: every rule in the
+repository is deployed with the same
+
+4
+00:00:14.167 --> 00:00:18.787
+query text and status, and nothing is
+deployed that isn't in the repository.
+
+5
+00:00:18.787 --> 00:00:20.401
+Now the government clouds.
+
+6
+00:00:20.401 --> 00:00:26.036
+Microsoft Learn's run hunting query page
+has a national-cloud table: available
+
+7
+00:00:26.036 --> 00:00:31.238
+on the global service, which G C C uses,
+and in U S Government L four and L five.
+
+8
+00:00:31.238 --> 00:00:34.897
+Learn's detection rules pages
+have no national-cloud table,
+
+9
+00:00:34.897 --> 00:00:39.975
+so the guide records the A P I's government-cloud
+availability as not yet specified,
+
+10
+00:00:39.975 --> 00:00:42.888
+and lists it among the
+things it couldn't verify.
+
+11
+00:00:42.888 --> 00:00:46.247
+The interim path in G C C
+High and D O D is to create
+
+12
+00:00:46.247 --> 00:00:49.950
+the rule in the portal from
+the same repository file.
+
+13
+00:00:49.950 --> 00:00:52.459
+The file stays the source
+of truth either way,
+
+14
+00:00:52.459 --> 00:00:55.440
+and the deployed-rules check
+still compares the two.

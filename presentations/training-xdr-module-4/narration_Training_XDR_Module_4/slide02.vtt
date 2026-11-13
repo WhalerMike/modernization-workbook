@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.562
+Why detections as code?
+
+2
+00:00:01.562 --> 00:00:05.037
+A rule that lives only in a
+portal has three problems.
+
+3
+00:00:05.037 --> 00:00:07.175
+No one reviews it before it runs.
+
+4
+00:00:07.175 --> 00:00:10.113
+No one can compare what's
+deployed with what was approved.
+
+5
+00:00:10.113 --> 00:00:11.838
+And there's no clean way back.
+
+6
+00:00:11.838 --> 00:00:14.425
+A rule kept as a file fixes all three.
+
+7
+00:00:14.425 --> 00:00:19.350
+It's reviewed, deployed disabled, and
+enabled by a reviewed change to the file.
+
+8
+00:00:19.350 --> 00:00:22.435
+It's tested against a
+known-bad event it must find,
+
+9
+00:00:22.435 --> 00:00:25.212
+and a known-good window
+it must stay quiet in.
+
+10
+00:00:25.212 --> 00:00:28.962
+And a weekly export compares what's
+deployed with the repository.
+
+11
+00:00:28.962 --> 00:00:33.217
+The lifecycle itself, author, test,
+alert-only, promote and review,
+
+12
+00:00:33.217 --> 00:00:38.758
+comes from the Security Operations and
+Telemetry book's Chapter 11, which also says
+
+13
+00:00:38.758 --> 00:00:44.137
+a rule that reads only Defender tables is
+written as a Defender custom detection.
+
+14
+00:00:44.137 --> 00:00:47.263
+This module puts those
+detections in a repository
+
+15
+00:00:47.263 --> 00:00:49.644
+and deploys them through the Graph A P I.
+
+16
+00:00:49.644 --> 00:00:52.323
+Rules that correlate across other sources
+
+17
+00:00:52.323 --> 00:00:55.200
+stay as Sentinel analytics
+rules, in that book.

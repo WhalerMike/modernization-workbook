@@ -1,0 +1,1061 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.664
+Welcome to Module 8 of the
+Provider Notices learning path:
+
+2
+00:00:04.664 --> 00:00:06.875
+digest, evidence and go/no-go.
+
+3
+00:00:06.875 --> 00:00:09.075
+Most notices shouldn't be tasks.
+
+4
+00:00:09.075 --> 00:00:12.109
+The weekly digest is how
+the owners see the rest,
+
+5
+00:00:12.109 --> 00:00:14.987
+and how they see what
+needs action and by when.
+
+6
+00:00:14.987 --> 00:00:17.582
+The evidence is what the ISSO keeps:
+
+7
+00:00:17.582 --> 00:00:23.129
+every run recorded with the controls and
+K S I's it supports, every file's hash,
+
+8
+00:00:23.129 --> 00:00:28.676
+and the hash of the record before it, so
+a changed file or a removed week shows.
+
+9
+00:00:28.676 --> 00:00:33.508
+This module is Gate 7 of the provider
+notices implementation guide, with Chapter
+
+10
+00:00:33.508 --> 00:00:38.125
+7 of the developer workbook, and the
+deployment runbook's promotion criteria.
+
+11
+00:00:38.125 --> 00:00:39.913
+It takes about sixty minutes.
+
+12
+00:00:39.913 --> 00:00:44.070
+You'll write a week's digest,
+record three runs, check the chain,
+
+13
+00:00:44.070 --> 00:00:49.225
+see a lab stage fail the go/no-go, and
+catch a file edited after it was recorded.
+
+14
+00:00:49.225 --> 00:00:55.090
+The code is illustrative: tested against
+fixtures, not run against a live tenant.
+
+15
+00:00:58.840 --> 00:01:01.103
+Why a digest, and why evidence?
+
+16
+00:01:01.103 --> 00:01:04.414
+Not every notice is a task,
+and most shouldn't be.
+
+17
+00:01:04.414 --> 00:01:07.065
+The digest is how the owners see the rest.
+
+18
+00:01:07.065 --> 00:01:10.500
+Once a week it lists, for each
+provider, the open notices;
+
+19
+00:01:10.500 --> 00:01:14.164
+every notice that needs action,
+with its due date and owner;
+
+20
+00:01:14.164 --> 00:01:18.056
+the maintenance and changes
+starting in the next thirty days;
+
+21
+00:01:18.056 --> 00:01:22.178
+what's new in the last week; and
+what closed or stopped being listed.
+
+22
+00:01:22.178 --> 00:01:25.389
+It goes to the owners,
+not to a shared mailbox.
+
+23
+00:01:25.389 --> 00:01:30.183
+The Compliance Automation and Day-Two
+Operations book gives it a natural home in
+
+24
+00:01:30.183 --> 00:01:31.828
+reviews that already exist:
+
+25
+00:01:31.828 --> 00:01:36.621
+the service desk supervisor's weekly review
+of the queue, and the change advisory
+
+26
+00:01:36.621 --> 00:01:41.128
+board's agenda, where the next thirty
+days of maintenance and changes belong.
+
+27
+00:01:41.128 --> 00:01:43.782
+Two numbers from it are
+worth watching over time:
+
+28
+00:01:43.782 --> 00:01:48.097
+notices that needed action and reached
+their due date with the task still open,
+
+29
+00:01:48.097 --> 00:01:51.615
+and notices that were never routed
+because no rule matched them.
+
+30
+00:01:51.615 --> 00:01:53.153
+That's design guidance.
+
+31
+00:01:53.153 --> 00:01:57.081
+The evidence is the other
+half: what the ISSO keeps,
+
+32
+00:01:57.081 --> 00:02:00.120
+recorded so a change or a gap shows.
+
+33
+00:02:03.870 --> 00:02:06.783
+Here's what you'll be able to
+do by the end of this module.
+
+34
+00:02:06.783 --> 00:02:11.232
+You'll write the weekly digest, and read
+its five sections as an owner would.
+
+35
+00:02:11.232 --> 00:02:15.983
+You'll record a collection, a
+routing run and a digest as evidence,
+
+36
+00:02:15.983 --> 00:02:20.107
+and say which steps, controls
+and K S I's each record names.
+
+37
+00:02:20.107 --> 00:02:23.074
+You'll check the evidence
+chain and the checksum file,
+
+38
+00:02:23.074 --> 00:02:25.770
+and show that an edit
+after recording fails both.
+
+39
+00:02:25.770 --> 00:02:27.525
+You'll check a stage's coverage,
+
+40
+00:02:27.525 --> 00:02:30.895
+and name the steps a test stage
+and a production stage need.
+
+41
+00:02:30.895 --> 00:02:34.516
+And you'll read the runbook's
+promotion go/no-go criteria,
+
+42
+00:02:34.516 --> 00:02:37.507
+and say which ones the
+evidence check answers.
+
+43
+00:02:37.507 --> 00:02:43.158
+You need Module 7 first, because this lab
+repeats its two collections and routings.
+
+44
+00:02:43.158 --> 00:02:48.457
+Lab 1 needs PowerShell 7.1 or
+later with Pester 5, and no tenant.
+
+45
+00:02:48.457 --> 00:02:54.470
+Lab 2 uses a run folder from an earlier
+module's Lab 2, kept on agency storage.
+
+46
+00:02:58.220 --> 00:03:00.495
+Unit 1 is the digest as code.
+
+47
+00:03:00.495 --> 00:03:04.075
+The digest script reads a
+collection and the routing state,
+
+48
+00:03:04.075 --> 00:03:06.120
+and writes a page in five sections.
+
+49
+00:03:06.120 --> 00:03:11.458
+One: open notices by provider, counted
+by kind and by action required.
+
+50
+00:03:11.458 --> 00:03:15.555
+Two: action required, soonest
+due first, with the assignment
+
+51
+00:03:15.555 --> 00:03:19.820
+group the routing named, or the
+word digest when there's no task.
+
+52
+00:03:19.820 --> 00:03:23.833
+Three: maintenance and changes
+starting in the next thirty days.
+
+53
+00:03:23.833 --> 00:03:26.192
+Four: what's new in the last seven days,
+
+54
+00:03:26.192 --> 00:03:28.945
+by the first-seen time
+in the routing state.
+
+55
+00:03:28.945 --> 00:03:32.868
+And five: what closed or stopped
+being listed in the last seven days,
+
+56
+00:03:32.868 --> 00:03:36.220
+including notices the provider
+simply stopped listing.
+
+57
+00:03:36.220 --> 00:03:39.060
+It writes the page as
+Markdown for the owners,
+
+58
+00:03:39.060 --> 00:03:43.358
+a spreadsheet file with each notice's
+route and owner, and a manifest.
+
+59
+00:03:43.358 --> 00:03:45.290
+The window lengths are parameters,
+
+60
+00:03:45.290 --> 00:03:49.220
+and in the scheduled run they come
+from the settings file's digest block.
+
+61
+00:03:49.220 --> 00:03:52.201
+The guide's validation
+for the digest is simple:
+
+62
+00:03:52.201 --> 00:03:56.240
+every action-required notice
+shows its due date and owner.
+
+63
+00:03:59.990 --> 00:04:02.615
+Unit 2 starts with what
+the guide leaves to you.
+
+64
+00:04:02.615 --> 00:04:07.095
+The guide says the digest goes to
+the owners, but owners read a page,
+
+65
+00:04:07.095 --> 00:04:11.078
+not a JSON file, so the kit
+writes a page and a spreadsheet.
+
+66
+00:04:11.078 --> 00:04:13.627
+It says every run is in the evidence,
+
+67
+00:04:13.627 --> 00:04:18.814
+but a folder of files can be changed
+after the fact, so the kit checks each
+
+68
+00:04:18.814 --> 00:04:24.177
+run folder against its manifest, copies
+it, and records every file's SHA-256.
+
+69
+00:04:24.177 --> 00:04:26.584
+It lists controls and K S I's per gate,
+
+70
+00:04:26.584 --> 00:04:31.479
+but someone has to say which run
+supports which, so each record names its
+
+71
+00:04:31.479 --> 00:04:36.291
+steps and their controls and K S I's,
+from the kit's requirements catalog.
+
+72
+00:04:36.291 --> 00:04:41.142
+Records are kept over time, but a record
+removed from the middle goes unnoticed,
+
+73
+00:04:41.142 --> 00:04:44.352
+so each record holds the hash
+of the record before it.
+
+74
+00:04:44.352 --> 00:04:46.372
+And the guide asks for a go/no-go,
+
+75
+00:04:46.372 --> 00:04:50.491
+which raises the question of
+which steps still lack evidence.
+
+76
+00:04:50.491 --> 00:04:53.215
+The stage check answers it, step by step.
+
+77
+00:04:53.215 --> 00:04:58.540
+The workbook's verdict: a list of files
+isn't evidence until someone can check it.
+
+78
+00:05:02.290 --> 00:05:05.365
+The evidence script records
+one run folder at a time.
+
+79
+00:05:05.365 --> 00:05:10.603
+It re-hashes every file the run's manifest
+lists, copies the folder under runs,
+
+80
+00:05:10.603 --> 00:05:15.841
+and writes a record with the time, the
+environment, the mode, the change record,
+
+81
+00:05:15.841 --> 00:05:21.328
+the command, and the result, which is pass
+only if every file matches its manifest.
+
+82
+00:05:21.328 --> 00:05:27.424
+The record names the steps the run
+covers, with their controls and K S I's,
+
+83
+00:05:27.424 --> 00:05:33.627
+the claim language, every file's SHA-256,
+and the previous record's SHA-256.
+
+84
+00:05:33.627 --> 00:05:36.983
+It appends an index file
+and rewrites a checksum
+
+85
+00:05:36.983 --> 00:05:40.340
+file that the standard
+sha256sum tool can check.
+
+86
+00:05:40.340 --> 00:05:44.790
+A collection covers one collection step
+per provider and the normalize step.
+
+87
+00:05:44.790 --> 00:05:49.952
+A routing run covers route, and contingency
+if a payload asks for a plan review.
+
+88
+00:05:49.952 --> 00:05:51.914
+A digest covers digest.
+
+89
+00:05:51.914 --> 00:05:54.376
+The runbook's pre-flight, scheduled run,
+
+90
+00:05:54.376 --> 00:05:57.452
+alert plan and rollback
+each have their own step.
+
+91
+00:05:57.452 --> 00:06:00.664
+The check verifies the
+checksums and walks the chain.
+
+92
+00:06:00.664 --> 00:06:04.586
+With a stage, it adds a row
+for each step that stage needs:
+
+93
+00:06:04.586 --> 00:06:10.000
+test needs pre-flight, run, route and
+digest, and production adds alerts.
+
+94
+00:06:13.750 --> 00:06:18.998
+The runbook promotes to production only
+when seven criteria pass, and the ISSO and
+
+95
+00:06:18.998 --> 00:06:24.400
+the change advisory board record the decision
+with the test stage's evidence folder.
+
+96
+00:06:24.400 --> 00:06:28.838
+One: the test stage's evidence
+passes the stage check, every row.
+
+97
+00:06:28.838 --> 00:06:32.156
+Two: every enabled provider's
+collection matched the
+
+98
+00:06:32.156 --> 00:06:35.475
+provider's own command,
+recorded in the change record.
+
+99
+00:06:35.475 --> 00:06:37.712
+Three: the smoke test passed.
+
+100
+00:06:37.712 --> 00:06:39.783
+Four: the routing was reviewed,
+
+101
+00:06:39.783 --> 00:06:43.925
+and every security advisory and
+retirement routed to a task.
+
+102
+00:06:43.925 --> 00:06:48.513
+Five: the alert policy applied,
+and its rollback was rehearsed.
+
+103
+00:06:48.513 --> 00:06:51.887
+Six: each provider's
+notice contacts are named.
+
+104
+00:06:51.887 --> 00:06:56.296
+And seven: the known gaps are recorded
+with the ISSO, such as Google
+
+105
+00:06:56.296 --> 00:07:01.113
+Cloud's planned maintenance and any
+AWS account without a support plan.
+
+106
+00:07:01.113 --> 00:07:04.538
+The evidence check answers
+the first criterion directly.
+
+107
+00:07:04.538 --> 00:07:07.524
+The chapter's dangers explain
+the rest of the design.
+
+108
+00:07:07.524 --> 00:07:13.000
+A weekly run that stops silently shows as
+a gap in dates and a missing run record.
+
+109
+00:07:13.000 --> 00:07:15.362
+A file edited later fails its hash.
+
+110
+00:07:15.362 --> 00:07:17.551
+A removed record breaks the chain.
+
+111
+00:07:17.551 --> 00:07:22.041
+And a pass read as a control decision
+is guarded by each record's claim:
+
+112
+00:07:22.041 --> 00:07:25.710
+it supports the controls,
+and the assessor decides.
+
+113
+00:07:29.460 --> 00:07:30.185
+Try it.
+
+114
+00:07:30.185 --> 00:07:34.229
+Lab 1 runs in the provider
+notices folder of the examples,
+
+115
+00:07:34.229 --> 00:07:37.585
+in PowerShell 7, on the
+kit's fictional fixtures.
+
+116
+00:07:37.585 --> 00:07:41.970
+Step one repeats Module 7's two
+collections and routings in one go:
+
+117
+00:07:41.970 --> 00:07:45.706
+twenty-two notices and twelve
+creates in the first week,
+
+118
+00:07:45.706 --> 00:07:51.147
+then twenty-three notices and one create,
+four updates and one close in the second.
+
+119
+00:07:51.147 --> 00:07:56.765
+Step two writes the digest for the second
+week, as of November sixteenth, 2026:
+
+120
+00:07:56.765 --> 00:08:02.203
+sixteen open, eight that need action,
+five starting in the next thirty days,
+
+121
+00:08:02.203 --> 00:08:05.323
+two new, and four closed
+or no longer listed.
+
+122
+00:08:05.323 --> 00:08:07.986
+Step three reads it as the owners will.
+
+123
+00:08:07.986 --> 00:08:13.184
+In action required, soonest first, the
+EC2 instance retirement on December first,
+
+124
+00:08:13.184 --> 00:08:18.615
+the Oracle Cloud Infrastructure certificate
+bundle change on December fifteenth,
+
+125
+00:08:18.615 --> 00:08:22.262
+and so on to the Azure retirement
+on September thirtieth,
+
+126
+00:08:22.262 --> 00:08:24.822
+2027, each with the
+group it was routed to.
+
+127
+00:08:24.822 --> 00:08:28.073
+The two with no date sit at
+the bottom as not stated.
+
+128
+00:08:28.073 --> 00:08:31.623
+And the Google Cloud row of
+the first table is all zeros,
+
+129
+00:08:31.623 --> 00:08:34.270
+because both its incidents closed.
+
+130
+00:08:38.020 --> 00:08:40.842
+Step four records three runs as evidence:
+
+131
+00:08:40.842 --> 00:08:44.908
+the second week's collection,
+its routing run, and the digest.
+
+132
+00:08:44.908 --> 00:08:46.058
+Each passes.
+
+133
+00:08:46.058 --> 00:08:50.170
+The collection covers all five
+providers and the normalize step.
+
+134
+00:08:50.170 --> 00:08:54.948
+The routing run covers route and
+contingency, and so it adds C P two and the
+
+135
+00:08:54.948 --> 00:09:00.045
+recovery planning K S I, because a payload
+asked for a contingency plan review.
+
+136
+00:09:00.045 --> 00:09:02.070
+The digest covers digest.
+
+137
+00:09:02.070 --> 00:09:05.882
+Each record also names
+its controls and K S I's.
+
+138
+00:09:05.882 --> 00:09:10.577
+Step five checks the chain: twenty-five
+files match the checksum file,
+
+139
+00:09:10.577 --> 00:09:13.295
+and the three records' chain is unbroken.
+
+140
+00:09:13.295 --> 00:09:16.107
+Step six checks the test stage's coverage.
+
+141
+00:09:16.107 --> 00:09:19.776
+The checksums and chain
+pass, route and digest pass,
+
+142
+00:09:19.776 --> 00:09:23.008
+but pre-flight and run
+fail: no passing record.
+
+143
+00:09:23.008 --> 00:09:24.508
+The command exits one.
+
+144
+00:09:24.508 --> 00:09:25.346
+That's right.
+
+145
+00:09:25.346 --> 00:09:31.332
+A lab has no pre-flight or scheduled run,
+so the go/no-go's first criterion fails.
+
+146
+00:09:31.332 --> 00:09:33.169
+Module 9 runs both.
+
+147
+00:09:33.169 --> 00:09:36.178
+Step seven reads the records' index:
+
+148
+00:09:36.178 --> 00:09:40.480
+three rows, collect, route
+and digest, each pass.
+
+149
+00:09:44.230 --> 00:09:47.055
+Step eight is the one an
+assessor cares about.
+
+150
+00:09:47.055 --> 00:09:49.258
+You add a line to the recorded digest,
+
+151
+00:09:49.258 --> 00:09:52.930
+as if someone edited it after it
+was recorded, and check again.
+
+152
+00:09:52.930 --> 00:09:55.542
+Both checks fail, and both name the file.
+
+153
+00:09:55.542 --> 00:09:58.231
+The checksum row says the digest changed.
+
+154
+00:09:58.231 --> 00:10:02.255
+The chain row says the digest no
+longer matches the third record.
+
+155
+00:10:02.255 --> 00:10:03.892
+And the command exits one.
+
+156
+00:10:03.892 --> 00:10:08.532
+That's the guard against the workbook's
+danger of a recorded file edited later:
+
+157
+00:10:08.532 --> 00:10:12.592
+the evidence would no longer show
+what was read, and the check says so.
+
+158
+00:10:12.592 --> 00:10:15.965
+The same design catches a
+record removed from the middle,
+
+159
+00:10:15.965 --> 00:10:19.193
+because each record holds the
+hash of the one before it.
+
+160
+00:10:19.193 --> 00:10:24.743
+Step nine runs the kit's whole test
+suite: one hundred forty pass, none fail.
+
+161
+00:10:24.743 --> 00:10:28.101
+The tests cover the digest's
+sections and counts,
+
+162
+00:10:28.101 --> 00:10:32.467
+the record's fields and claim
+language, the chain, a changed file,
+
+163
+00:10:32.467 --> 00:10:36.330
+a removed record, a failed run,
+and a stage's missing steps.
+
+164
+00:10:36.330 --> 00:10:38.530
+Then delete the output folder.
+
+165
+00:10:42.280 --> 00:10:45.930
+Lab 2 does the same with a
+real test environment's runs.
+
+166
+00:10:45.930 --> 00:10:50.682
+You need the run folder from an earlier
+module's Lab 2, in a test tenant,
+
+167
+00:10:50.682 --> 00:10:55.518
+account, tenancy or project, never
+production, kept on agency storage.
+
+168
+00:10:55.518 --> 00:10:57.696
+You also need a new evidence folder,
+
+169
+00:10:57.696 --> 00:11:01.379
+a new routing state file, and
+the test change record's number.
+
+170
+00:11:01.379 --> 00:11:04.867
+Route and digest the test
+collection with the lab's routing.
+
+171
+00:11:04.867 --> 00:11:08.817
+Record all three runs with the
+change record, and check the chain.
+
+172
+00:11:08.817 --> 00:11:13.604
+Then do the step no script can: give the
+digest to the test environment's owners,
+
+173
+00:11:13.604 --> 00:11:17.717
+and ask whether each action-required
+row reached the right person.
+
+174
+00:11:17.717 --> 00:11:22.084
+To back it out, keep the evidence of
+the test stage with its change record,
+
+175
+00:11:22.084 --> 00:11:25.192
+and delete only the copies
+outside agency storage.
+
+176
+00:11:25.192 --> 00:11:27.342
+The authors haven't run Lab 2.
+
+177
+00:11:27.342 --> 00:11:30.910
+The workbook's Chapter 7
+has the exact commands.
+
+178
+00:11:34.660 --> 00:11:36.047
+The federal requirement.
+
+179
+00:11:36.047 --> 00:11:42.711
+Gate 7 supports NIST special publication
+eight hundred fifty-three S I five, part c;
+
+180
+00:11:42.711 --> 00:11:44.965
+S A nine, part c; R A three, part f,
+
+181
+00:11:44.965 --> 00:11:50.550
+updating the risk assessment when
+the environment changes; C A seven,
+
+182
+00:11:50.550 --> 00:11:56.135
+continuous monitoring; and A U nine,
+protection of audit information.
+
+183
+00:11:56.135 --> 00:12:01.047
+The pre-flight's named contacts support
+S R eight, notification agreements.
+
+184
+00:12:01.047 --> 00:12:04.998
+The digest, each week, is the
+evidence for the first three.
+
+185
+00:12:04.998 --> 00:12:09.953
+The records and their index, with every
+file's hash and the previous record's hash,
+
+186
+00:12:09.953 --> 00:12:14.534
+support continuous monitoring and
+the protection of audit information.
+
+187
+00:12:14.534 --> 00:12:17.406
+The checksum file and the
+check show the folder is
+
+188
+00:12:17.406 --> 00:12:20.347
+unchanged since it was
+recorded, and catch a change.
+
+189
+00:12:20.347 --> 00:12:24.697
+The stage check shows each step has
+a passing record, or names the gap.
+
+190
+00:12:24.697 --> 00:12:29.122
+Your organization still sets the
+parameters, and the assessor decides.
+
+191
+00:12:29.122 --> 00:12:33.761
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+192
+00:12:33.761 --> 00:12:37.677
+The agency lines its evidence up
+with them and doesn't report them,
+
+193
+00:12:37.677 --> 00:12:41.080
+and each record carries
+that sentence as its claim.
+
+194
+00:12:44.830 --> 00:12:46.805
+Check yourself with two questions.
+
+195
+00:12:46.805 --> 00:12:51.980
+First: a lab's evidence passes the check,
+but fails the check for the test stage.
+
+196
+00:12:51.980 --> 00:12:52.668
+Why?
+
+197
+00:12:52.668 --> 00:12:53.893
+The answer is b.
+
+198
+00:12:53.893 --> 00:12:57.315
+The test stage needs passing
+pre-flight and run records,
+
+199
+00:12:57.315 --> 00:13:01.406
+from the pre-flight and the scheduled
+run, and a lab doesn't make them.
+
+200
+00:13:01.406 --> 00:13:02.755
+Module 9 does.
+
+201
+00:13:02.755 --> 00:13:06.342
+Second: every row of the
+production stage check passes.
+
+202
+00:13:06.342 --> 00:13:07.917
+What does that tell the agency?
+
+203
+00:13:07.917 --> 00:13:09.142
+The answer is b.
+
+204
+00:13:09.142 --> 00:13:12.790
+Every step the production stage
+needs has a passing record,
+
+205
+00:13:12.790 --> 00:13:15.618
+in an unbroken chain,
+with matching checksums.
+
+206
+00:13:15.618 --> 00:13:19.305
+The records support the controls,
+and the assessor decides them.
+
+207
+00:13:19.305 --> 00:13:22.636
+A pass isn't a control
+decision, and it doesn't mean
+
+208
+00:13:22.636 --> 00:13:26.717
+FedRAMP approved anything or
+that the agency reports K S I's.
+
+209
+00:13:26.717 --> 00:13:29.145
+The module page has three more questions,
+
+210
+00:13:29.145 --> 00:13:32.000
+each linked to the
+section that answers it.
+
+211
+00:13:35.750 --> 00:13:36.575
+To sum up.
+
+212
+00:13:36.575 --> 00:13:40.763
+You wrote a week's digest, recorded
+three runs as chained evidence,
+
+213
+00:13:40.763 --> 00:13:45.728
+checked the chain, saw a lab stage fail the
+go/no-go for the two steps it never ran,
+
+214
+00:13:45.728 --> 00:13:48.675
+and caught a file edited
+after it was recorded.
+
+215
+00:13:48.675 --> 00:13:52.962
+The evidence an ISSO keeps for
+Gate 7 is each week's digest,
+
+216
+00:13:52.962 --> 00:13:58.709
+as a page and a spreadsheet file; the
+evidence folder's records, runs, index and
+
+217
+00:13:58.709 --> 00:14:04.638
+checksum file; and, at promotion, the stage
+check's output with the go/no-go record.
+
+218
+00:14:04.638 --> 00:14:07.713
+Before shipping, work through
+the chapter's checklist.
+
+219
+00:14:07.713 --> 00:14:12.851
+Next, and optional, is Module 9:
+deploying to test and production.
+
+220
+00:14:12.851 --> 00:14:14.800
+It's for whoever deploys the kit.
+
+221
+00:14:14.800 --> 00:14:18.433
+It records a pre-flight and a
+weekly run, so the stage check that
+
+222
+00:14:18.433 --> 00:14:22.350
+failed here passes, and then takes
+the same commands to production.
+
+223
+00:14:22.350 --> 00:14:24.200
+Or go back to the learning path.

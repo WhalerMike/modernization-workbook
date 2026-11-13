@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.409
+The lab runs the guide's Step
+3 and Step 4 checks in a test
+
+2
+00:00:03.409 --> 00:00:08.037
+subscription where someone has applied
+those steps to a test application.
+
+3
+00:00:08.037 --> 00:00:11.237
+Nothing in Azure changes, and
+the authors haven't run it.
+
+4
+00:00:11.237 --> 00:00:15.666
+You need a DDoS Network Protection
+plan linked to a test virtual network,
+
+5
+00:00:15.666 --> 00:00:19.946
+a protected Standard public I P with
+its diagnostic setting and alert,
+
+6
+00:00:19.946 --> 00:00:25.038
+and a test application behind an Application
+Gateway firewall in prevention mode.
+
+7
+00:00:25.038 --> 00:00:28.650
+Step one lists every
+public I P's DDoS state.
+
+8
+00:00:28.650 --> 00:00:32.028
+The guide's Validate step says
+each should show Enabled,
+
+9
+00:00:32.028 --> 00:00:35.038
+or Virtual Network Inherited
+in a linked network.
+
+10
+00:00:35.038 --> 00:00:38.159
+Step two exports the plan
+and its linked networks,
+
+11
+00:00:38.159 --> 00:00:40.900
+which the guide's
+evidence checklist names.
+
+12
+00:00:40.900 --> 00:00:43.913
+Step three checks the
+protected I P's diagnostic
+
+13
+00:00:43.913 --> 00:00:46.925
+setting and the alert on
+the under-attack metric.
+
+14
+00:00:46.925 --> 00:00:49.146
+The simulation isn't part of the lab:
+
+15
+00:00:49.146 --> 00:00:52.340
+Learn allows it only
+through an approved partner.

@@ -1,0 +1,208 @@
+[
+ {
+  "slide": 2,
+  "title": "Why: a WAF around which traffic flows protects nothing",
+  "links": [
+   {
+    "text": "Secure traffic to Azure Front Door origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-origin-security"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Unit 1: Front Door, Application Gateway, or both",
+  "links": [
+   {
+    "text": "What is Azure Front Door?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-overview"
+   },
+   {
+    "text": "Migrate Azure Front Door (classic)",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-front-door-classic"
+   },
+   {
+    "text": "Front Door Private Link origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-private-link-origins"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Lock the origin: Private Link, or tag plus header",
+  "links": [
+   {
+    "text": "Front Door Private Link origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-private-link-origins"
+   },
+   {
+    "text": "Secure traffic to Azure Front Door origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-origin-security"
+   },
+   {
+    "text": "multi-region App Service tutorial",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#app-service-multi-region-tutorial"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "TLS 1.2 or later, health probes, and failover",
+  "links": [
+   {
+    "text": "Internet ingress",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#internet-ingress-design-guide"
+   },
+   {
+    "text": "TLS policy on Application Gateway",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-gateway-tls-policy-powershell"
+   },
+   {
+    "text": "Front Door CLI quickstart",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-cli-quickstart"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Unit 2: Azure Firewall for egress and east-west",
+  "links": [
+   {
+    "text": "Zero Trust recommendations for Azure Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-azure-firewall"
+   },
+   {
+    "text": "Azure Firewall and traffic inspection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-traffic-inspection"
+   },
+   {
+    "text": "Azure Firewall Premium features",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-premium-features"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Alert first, then deny through one reviewed draft",
+  "links": [
+   {
+    "text": "az network firewall policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cli-network-firewall-policy"
+   },
+   {
+    "text": "Integrate NAT gateway with Azure Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-nat-gateway"
+   },
+   {
+    "text": "Azure Firewall Draft + Deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-draft-deployment"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Where agencies are: regions to check first",
+  "links": [
+   {
+    "text": "OCI Network Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-network-firewall"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Module 3",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Sources: Module 3 deck",
+  "links": [
+   {
+    "text": "What is Azure Front Door?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-overview"
+   },
+   {
+    "text": "Front Door Private Link origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-private-link-origins"
+   },
+   {
+    "text": "Secure traffic to Azure Front Door origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-origin-security"
+   },
+   {
+    "text": "Migrate Azure Front Door (classic)",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-front-door-classic"
+   },
+   {
+    "text": "Front Door CLI quickstart",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-cli-quickstart"
+   },
+   {
+    "text": "multi-region App Service tutorial",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#app-service-multi-region-tutorial"
+   },
+   {
+    "text": "Internet ingress",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#internet-ingress-design-guide"
+   },
+   {
+    "text": "TLS policy on Application Gateway",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-gateway-tls-policy-powershell"
+   },
+   {
+    "text": "Zero Trust recommendations for Azure Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-azure-firewall"
+   },
+   {
+    "text": "Azure Firewall and traffic inspection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-traffic-inspection"
+   },
+   {
+    "text": "Azure Firewall Premium features",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-premium-features"
+   },
+   {
+    "text": "az network firewall policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cli-network-firewall-policy"
+   },
+   {
+    "text": "Integrate NAT gateway with Azure Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-nat-gateway"
+   },
+   {
+    "text": "Azure Firewall Draft + Deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-firewall-draft-deployment"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "OCI Network Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-network-firewall"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

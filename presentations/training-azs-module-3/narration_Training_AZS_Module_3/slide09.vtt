@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where are agencies?
+
+2
+00:00:01.362 --> 00:00:06.400
+In commercial Azure, which a G C C
+tenant uses, both steps run as written.
+
+3
+00:00:06.400 --> 00:00:09.850
+As side notes for Azure
+Government, check regions first.
+
+4
+00:00:09.850 --> 00:00:14.074
+Learn's comparison page says
+Front Door Standard and Premium
+
+5
+00:00:14.074 --> 00:00:18.050
+are generally available in U S
+Gov Arizona and U S Gov Texas.
+
+6
+00:00:18.050 --> 00:00:21.600
+Front Door Private Link lists
+three government regions,
+
+7
+00:00:21.600 --> 00:00:25.529
+but the same page limits it to
+regions with availability zones,
+
+8
+00:00:25.529 --> 00:00:28.852
+and Learn's Azure Government
+region list shows zones
+
+9
+00:00:28.852 --> 00:00:32.025
+only in U S Gov Virginia, so
+test before relying on it.
+
+10
+00:00:32.025 --> 00:00:37.027
+Azure Firewall Premium's government
+regions are on the products-by-region page,
+
+11
+00:00:37.027 --> 00:00:40.513
+not Learn, so the guide records
+them as not yet specified.
+
+12
+00:00:40.513 --> 00:00:44.356
+On other clouds, the guide
+names O C I Network Firewall,
+
+13
+00:00:44.356 --> 00:00:49.422
+built on Palo Alto Networks, with
+intrusion detection and prevention,
+
+14
+00:00:49.422 --> 00:00:54.313
+TLS inspection and URL filtering,
+reached through V C N route tables.
+
+15
+00:00:54.313 --> 00:00:59.710
+AWS Network Firewall and Google's
+Cloud N G F W aren't compared there.
