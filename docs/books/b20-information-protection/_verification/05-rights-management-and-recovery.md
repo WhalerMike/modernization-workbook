@@ -22,17 +22,14 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read for this chapter: 21. Sou
 | 14 | Roles: Compliance Administrator / Compliance Data Administrator; AIP administrator accepted by Connect-AipService | Prerequisites | verified | Activate page; Connect-AipService, https://learn.microsoft.com/powershell/module/aipservice/connect-aipservice | Nov 11, 2026 |
 | 15 | AIPService 3.1.0.0+ for PowerShell 7.4; .NET 4.8 for 5.1 | Prerequisites | verified | Install the AIPService module, https://learn.microsoft.com/purview/install-aipservice-powershell | Nov 11, 2026 |
 | 16 | Message Encryption licensing (E3/E5, G3/G5; per user) | Prerequisites | verified | Message encryption FAQ, https://learn.microsoft.com/purview/ome-faq | Nov 11, 2026 |
-| 17 | GCC High/DoD: Connect-AipService -EnvironmentName AzureUSGovernment; SRV records _rmsredir and _rmsdisco; don't terminate TLS to rms.aadrm.us; issuer check | Prerequisites | verified | AIP Premium Government Service Description, https://learn.microsoft.com/enterprise-mobility-security/solutions/ems-aip-premium-govt-service-description | Nov 11, 2026 |
-| 18 | Government availability rows (Message Encryption, co-authoring, BYOK, DKE, eDiscovery RMS decryption) | Prerequisites table | verified | Purview GCC, GCC High, DoD planning pages, Step 4 tables | Nov 11, 2026 |
+| 18 | Government availability rows (Message Encryption, co-authoring, BYOK, DKE, eDiscovery RMS decryption) | Prerequisites table | verified | Purview GCC planning page, Step 4 table | Nov 11, 2026 |
 | 19 | Usage logging on by default; 15 minutes; previous dates only; forensic source; file access/denied events lack file name and aren't in unified audit log | Report-only; Telemetry | verified | Usage logging for the Azure Rights Management service, https://learn.microsoft.com/purview/rights-management-usage-logging | Nov 11, 2026 |
 | 20 | Admin log records super user enablement and additions; super user decryptions not marked as such | Telemetry | verified | Configure super users page, "Security best practices" | Nov 11, 2026 |
 | 21 | Remove-FileLabel removes template label and protection; -RemoveProtection for custom permissions | Recovery | verified | Remove-FileLabel, https://learn.microsoft.com/powershell/module/purviewinformationprotection/remove-filelabel | Nov 11, 2026 |
 | 22 | eDiscovery decrypts on export through super user integration with Exchange Online | Recovery prerequisites; Validate | verified | Configure super users page, "Removing encryption from PST files" | Nov 11, 2026 |
 | 23 | Microsoft recommends completing BYOK before setting up Message Encryption | Decide | verified | Set up Message Encryption, "Configure management of your Azure Rights Management tenant key" | Nov 11, 2026 |
-| 24 | Connect-MgGraph -Environment USGov / USGovDoD | Pilot | unverifiable on a page read this session | Microsoft Graph PowerShell environment names; standard values, not re-read Nov 11 | Nov 11, 2026 |
 | 25 | Decryption-continuity test steps and ring exit criteria | Validate; Enforcement | restated-as-design | Program design | Nov 11, 2026 |
 
 ## Government-cloud gaps
-- Super user feature: not listed on the GCC, GCC High or DoD Purview planning pages (written "not yet specified"); the cmdlets accept `AzureUSGovernment`.
+- Super user feature: not listed on the GCC Purview planning page (written "not yet specified").
 - Rights Management usage logging (`Get-AipServiceUserLog`): not listed on the government pages (not yet specified).
-- The planning pages describe GCC High and DoD DNS steps only on the AIP Premium Government service description; GCC needs no DNS step there.

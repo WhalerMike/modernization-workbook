@@ -12,18 +12,17 @@ Primary sources opened on 2026-11-09: Microsoft Learn through the Microsoft Lear
 | 2 | An alert fires only for the subscriptions, services and regions the rule names; a rule missing the subscription is a reason an alert never arrived | Why unread | verified | `c14-ash-faq` |
 | 3 | Azure notification types include action required; incident notifications, labeled informational, may mean activating contingency plans | Six kinds | verified | `c14-ash-notify` |
 | 4 | Message center: archiving affects only that admin's view; weekly digest on by default to each admin's primary email; major updates at least 30 days ahead when action is required; Act by rare; Retirement tag; categories Prevent or fix issues, Plan for change, Stay informed (including planned maintenance) | Why unread; six kinds | verified | `c14-m365-mc` |
-| 5 | Graph service communications: service health and Message center posts; national cloud URLs for L4 and L5 | Six kinds; government clouds | verified | `c14-graph-sc` |
+| 5 | Graph service communications: service health and Message center posts | Six kinds; government clouds | verified | `c14-graph-sc` |
 | 6 | GCC uses the worldwide Graph endpoint | Government clouds | carried from the guide (its claim 13, `pn-graph-deployments`) | Guide's verification log |
 | 7 | OCI contacts the tenancy administrator by email; other delivery through email preferences or announcement subscriptions | Why unread | verified | `c14-oci-console` |
 | 8 | OCI `announcement_type` values (ACTION_RECOMMENDED, ACTION_REQUIRED, INFORMATION, PLANNED_CHANGE*, SCHEDULED_MAINTENANCE, EMERGENCY_*, PRODUCTION_EVENT_NOTIFICATION); "An announcement's type signals its severity" | Six kinds | verified | `c14-oci-model` |
-| 9 | Oracle US Government Cloud: FedRAMP High and DISA IL4; Announcements endpoints us-langley-1, us-luke-1 | Government clouds | verified | `c14-oci-gov` |
-| 10 | OCI DoD realm endpoint not yet specified | Government clouds | carried from the guide (N9) | Guide |
+| 9 | Oracle US Government Cloud: FedRAMP High; Announcements endpoints us-langley-1, us-luke-1 | Government clouds | verified | `c14-oci-gov` |
 | 11 | AWS: root email plus up to three alternate contacts (billing, operations, security) | Why unread | verified | `c14-aws-contacts` |
 | 12 | AWS Health categories (account notification, issue, scheduled change incl. planned lifecycle and end of support); 90 days; actionability values; personas; API needs a support plan, else `SubscriptionRequiredException` | Why unread; six kinds; limits | verified | `c14-aws-concepts` |
 | 13 | GovCloud: single endpoint us-gov-west-1; EventBridge doesn't send public Service Health view events | Government clouds | verified | `c14-aws-gov` |
 | 14 | Google Cloud Essential Contacts categories; fallback by IAM role | Why unread; six kinds | verified | `c14-gcp-contacts` |
 | 15 | Personalized Service Health tracks incidents; `EventCategory` has only `INCIDENT` (besides unspecified) | Six kinds; limits | verified | `c14-gcp-psh`, `c14-gcp-event` |
-| 16 | Personalized Service Health not in Assured Workloads' FedRAMP Moderate, FedRAMP High, IL2, IL4, IL5, CJIS, ITAR or IRS 1075 packages; listed for regional data boundary packages (including US Data Boundary) | Government clouds | verified (each package's rows parsed from the page's HTML) | `c14-gcp-aw` |
+| 16 | Personalized Service Health not in Assured Workloads' FedRAMP Moderate, FedRAMP High, CJIS, ITAR or IRS 1075 packages; listed for regional data boundary packages (including US Data Boundary) | Government clouds | verified (each package's rows parsed from the page's HTML) | `c14-gcp-aw` |
 
 ## Claims log: controls and KSIs
 

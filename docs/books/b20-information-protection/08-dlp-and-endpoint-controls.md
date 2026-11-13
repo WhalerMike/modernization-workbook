@@ -1,6 +1,6 @@
 ---
 title: "Chapter 08 — DLP and Endpoint Controls"
-description: "How to design Microsoft Purview Data Loss Prevention from data outcomes rather than from templates: the outcome statement, the surface and the action for each one; simulation mode as the pilot; policy tips, overrides and business justification; false positives and tuning; exceptions that don't become holes; endpoint DLP on onboarded Windows devices; DLP incident handling; and the How sections, with government-cloud availability, licensing, change safety, rollback, telemetry and evidence."
+description: "How to design Microsoft Purview Data Loss Prevention from data outcomes rather than from templates: the outcome statement, the surface and the action for each one; simulation mode as the pilot; policy tips, overrides and business justification; false positives and tuning; exceptions that don't become holes; endpoint DLP on onboarded Windows devices; DLP incident handling; and the How sections, with GCC availability, licensing, change safety, rollback, telemetry and evidence."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b20-information-protection
@@ -20,7 +20,7 @@ lifecycle_review: 2027-05-01
 
 ::: {.callout-note}
 ## In this chapter
-How to design data loss prevention (DLP) from the outcomes the agency wants for its data, not from the policy templates. Simulation mode as the pilot, and what it does and doesn't evaluate. Policy tips, overrides and business justification, and how they become tuning data. False positives, exceptions that stay narrow and expire, endpoint DLP on onboarded Windows devices, and how a DLP alert becomes a handled incident. Then two How sections, one for workload DLP and one for endpoint DLP, each with government-cloud availability, licensing, change safety, rollback, telemetry, evidence and day-two ownership.
+How to design data loss prevention (DLP) from the outcomes the agency wants for its data, not from the policy templates. Simulation mode as the pilot, and what it does and doesn't evaluate. Policy tips, overrides and business justification, and how they become tuning data. False positives, exceptions that stay narrow and expire, endpoint DLP on onboarded Windows devices, and how a DLP alert becomes a handled incident. Then two How sections, one for workload DLP and one for endpoint DLP, each with GCC availability, licensing, change safety, rollback, telemetry, evidence and day-two ownership.
 :::
 
 [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md) sets the program's minimum DLP baseline for a Moderate system: block external sharing and external send of CUI, block print and removable media for CUI Specified, audit copies to network shares, block CUI uploads to unapproved cloud apps, alert on bulk download and detect Social Security numbers in Teams. It also gives the PowerShell that creates those policies and corrects the parameters earlier program scripts got wrong. This chapter doesn't repeat that baseline. It covers what the baseline leaves to the implementer: how each policy is derived from a data outcome, how it moves from simulation to enforcement without stopping the agency's work, how overrides and false positives are handled, how exceptions are kept honest, and what the operator, the security monitor and the help desk do once it's on.
@@ -164,29 +164,23 @@ This procedure takes one outcome from the register through simulation to enforce
 - **Labels published** to the users in scope ([Chapter 03](03-label-publication-and-defaults.md)).
 - **Licensing (License-dependent).** DLP for Exchange, SharePoint and OneDrive is in a broader set of plans than DLP for Teams and devices; Microsoft's trial guidance lists Teams and device coverage among the capabilities a trial adds, and states that when a trial ends existing policies stay on but Teams and Devices locations can't be added or edited.[^c08-trial] Confirm each location against the Purview service description before scoping it.[^c08-licensing] An unlicensed location is a licensing decision recorded in the decision record, not a failed control ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy)).
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| DLP for files (SharePoint, OneDrive) and email | Available | Available | Available | Available | Learn government Purview pages[^c08-gcc][^c08-gcch][^c08-dod] |
-| DLP for Teams chat and channel messages | Available | Available | Available | Available | Same |
-| Endpoint DLP | Available | Available | Available | Available | Same |
-| DLP alerts dashboard; data in Activity explorer | Available | Available | Available | Available | Same |
-| Defender for Cloud Apps integration | Available | Available | Available | Available | Same |
-| On-premises scanner (DLP) | Available | Available | Available | Available | Same |
-| DLP simulation mode (dashboard experience) | Available | Not yet specified | Not yet specified | Not yet specified | Learn, simulation mode[^c08-sim]; the government pages don't list it separately |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| DLP for files (SharePoint, OneDrive) and email | Available | Available | Learn GCC Purview page[^c08-gcc] |
+| DLP for Teams chat and channel messages | Available | Available | Same |
+| Endpoint DLP | Available | Available | Same |
+| DLP alerts dashboard; data in Activity explorer | Available | Available | Same |
+| Defender for Cloud Apps integration | Available | Available | Same |
+| On-premises scanner (DLP) | Available | Available | Same |
+| DLP simulation mode (dashboard experience) | Available | Not yet specified | Learn, simulation mode[^c08-sim]; the GCC page doesn't list it separately |
 
-: Government-cloud availability for workload DLP (read Nov 11, 2026; Microsoft states the government status is subject to change) {.striped .hover}
+: GCC availability for workload DLP (read Nov 11, 2026; Microsoft states the GCC status is subject to change) {.striped .hover}
 
 Connect (checked against Learn on Nov 11, 2026; run against a test tenant first):[^c08-connect]
 
 ```powershell
 # Commercial and GCC
 Connect-IPPSSession -UserPrincipalName <admin-upn>
-
-# GCC High
-Connect-IPPSSession -UserPrincipalName <admin-upn> -ConnectionUri https://ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
-
-# DoD
-Connect-IPPSSession -UserPrincipalName <admin-upn> -ConnectionUri https://l5.ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
 ```
 
 ### Pilot
@@ -315,8 +309,6 @@ Search-UnifiedAuditLog -StartDate (Get-Date).AddDays(-1) -EndDate (Get-Date) -Re
   Select-Object CreationDate,UserIds,Operations,AuditData | Export-Csv .\dlp-exchange-last-day.csv -NoTypeInformation
 ```
 
-For GCC High add `-ExchangeEnvironmentName O365USGovGCCHigh` to `Connect-ExchangeOnline`; for DoD, `-ExchangeEnvironmentName O365USGovDoD`.[^c08-apponly]
-
 ### Evidence
 
 **Evidence checklist**
@@ -341,7 +333,7 @@ This procedure turns endpoint DLP on for onboarded Windows devices and takes the
 - **Servers:** endpoint DLP support for onboarded servers turned on in endpoint DLP settings, where servers are in scope.[^c08-onboard]
 - **Roles:** the `-EndpointDlpLocation` parameter requires membership in the Compliance Administrator or Compliance Data Administrator role in Microsoft Entra ID.[^c08-policy]
 - **Licensing (License-dependent):** endpoint DLP is included in Microsoft 365 E5/A5/G5, the Microsoft Purview Suite and the E5/A5/F5/G5 Information Protection & Governance plans, per the Purview service description.[^c08-licensing]
-- **Government cloud:** endpoint DLP is listed as Available in GCC, GCC High and DoD.[^c08-gcc][^c08-gcch][^c08-dod]
+- **GCC:** endpoint DLP is listed as Available in GCC.[^c08-gcc]
 
 ### Pilot {#b20-08-pilot-endpoint}
 
@@ -464,9 +456,6 @@ These rows say what the chapter contributes. The agency still sets each control'
 [^c08-trial]: Microsoft Learn, "Learn about the Microsoft Purview Suite trial," section "Data Loss Prevention" (trial extends DLP to Teams and devices; after the trial, Teams and Devices locations can't be edited or added), <https://learn.microsoft.com/purview/purview-trial> (accessed Nov 11, 2026).
 [^c08-licensing]: Microsoft Learn, "Microsoft Purview service description," section "Microsoft Data Loss Prevention Endpoint Data Loss Protection (DLP)" (included plans), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description> (accessed Nov 11, 2026).
 [^c08-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4 (Data Loss Prevention rows; status subject to change), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c08-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c08-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).
-[^c08-connect]: Microsoft Learn, "Connect to Security & Compliance PowerShell," Step 2 (ConnectionUri and AzureADAuthorizationEndpointUri for Microsoft 365, GCC, GCC High and DoD), <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (accessed Nov 11, 2026).
-[^c08-apponly]: Microsoft Learn, "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell," section "Connection examples" (`ExchangeEnvironmentName` O365USGovGCCHigh and O365USGovDoD), <https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2> (accessed Nov 11, 2026).
+[^c08-connect]: Microsoft Learn, "Connect to Security & Compliance PowerShell," Step 2 (connecting in Microsoft 365 and GCC), <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (accessed Nov 11, 2026).
 [^c08-audit-types]: Microsoft Learn, "Microsoft services that support auditing" (DLP record types ComplianceDLPSharePoint, ComplianceDLPExchange, DLPEndpoint), <https://learn.microsoft.com/purview/audit-supported-services> (accessed Nov 11, 2026).
 [^c08-53]: NIST SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls AC-4, SI-4, MP-7 and CM-3, checked against the release 5.2.0 OSCAL catalog, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (accessed Nov 11, 2026).

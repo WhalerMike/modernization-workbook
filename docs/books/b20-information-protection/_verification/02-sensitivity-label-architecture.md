@@ -24,8 +24,8 @@ Writer: Book 20 build (Nov 11, 2026). All sources opened Nov 11, 2026. Claims so
 | 16 | Deleting a label doesn't remove it from content; the applied version is enforced | How | verified | Same, Editing or deleting | Nov 11, 2026 |
 | 17 | Set-Label -Priority | How | verified | Learn, "Set-Label" syntax | Nov 11, 2026 |
 | 18 | Sensitivity labels supported for all platforms in US Government tenants | Prerequisites | verified | Learn, "Learn about sensitivity labels" note | Nov 11, 2026 |
-| 19 | Government availability rows | Prerequisites | verified | Learn, "Plan for Microsoft Purview compliance and risk management solutions" for GCC, GCC High and DoD deployments, Step 4 | Nov 11, 2026 |
+| 19 | Government availability rows | Prerequisites | verified | Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments", Step 4 | Nov 11, 2026 |
 
 ## Government-cloud gaps
 
-- Label-group migration rollout in GCC, GCC High and DoD: not yet specified.
+- Label-group migration rollout in GCC: not yet specified.

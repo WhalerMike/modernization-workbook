@@ -1,6 +1,6 @@
 ---
 title: "Appendix B — Identity and Application Detections for Zero Trust Findings"
-description: "The detections a Zero Trust assessment's identity and application findings need behind them, as a rule pack for the library in Chapter 11: emergency access use and change, privileged activation, administrator password resets, authentication method changes, tenant creation, federation changes, device code flow, risky users and sign-ins, then new application credentials, owner changes, consent, high-privilege grants, service principal role assignments and risk, and redirect URI changes. Each with its KQL from Microsoft Learn or Microsoft's published rule templates, its data source and its availability in GCC, GCC High and DoD; then the How-section steps, the synthetic tests that prove each rule fires, the evidence an assessor reads and who runs it on day two."
+description: "The detections a Zero Trust assessment's identity and application findings need behind them, as a rule pack for the library in Chapter 11: emergency access use and change, privileged activation, administrator password resets, authentication method changes, tenant creation, federation changes, device code flow, risky users and sign-ins, then new application credentials, owner changes, consent, high-privilege grants, service principal role assignments and risk, and redirect URI changes. Each with its KQL from Microsoft Learn or Microsoft's published rule templates, its data source and its availability in GCC; then the How-section steps, the synthetic tests that prove each rule fires, the evidence an assessor reads and who runs it on day two."
 doc-type: workbook-chapter
 audience: [Technical, Customer]
 family: b12-security-operations
@@ -38,7 +38,7 @@ The rules extend the library in [Chapter 11](11-detection-engineering-and-respon
 
 **Authority:** Microsoft-recommended for every detection below: each row cites the Learn page or Microsoft rule template that recommends monitoring the event (accessed Nov 11, 2026). Logging and monitoring themselves are mandated for federal systems by OMB M-26-14 and supported here; the specific rules, thresholds and severities are the program's risk-based choices. NIST SP 800-53 Rev. 5 controls are named as the controls a rule *supports* (AC-2(4), AU-6, SI-4 and others in [Appendix A](appendix-a-requirements-mapping.md)), never as controls it settles.
 
-**Applies:** All tenants with Entra diagnostic settings sent to a Log Analytics workspace. License-dependent rows say so (Microsoft Entra ID P2 for user risk, Workload Identities Premium for full workload risk detail). Environment-dependent rows give GCC, GCC High and DoD availability below.
+**Applies:** All tenants with Entra diagnostic settings sent to a Log Analytics workspace. License-dependent rows say so (Microsoft Entra ID P2 for user risk, Workload Identities Premium for full workload risk detail). Environment-dependent rows give GCC availability below.
 
 ## Prerequisites {#detection-prerequisites}
 
@@ -54,18 +54,18 @@ The rules extend the library in [Chapter 11](11-detection-engineering-and-respon
 
 The category-to-table names for the risk tables are Microsoft's;[^aB-risk-export] the sign-in license requirement and the Workload ID Premium requirement for the risky service principal tables are as [Chapter 05](05-from-log-warehouse-to-detection.md#microsoft-entra-id) records them. Workload identity risk reaches tenants without the Premium license as detections with limited reporting detail.[^aB-wid-risk]
 
-### Government-cloud availability {#detection-gov-availability}
+### GCC availability {#detection-gov-availability}
 
-GCC tenants pair with Microsoft Entra ID in commercial Azure, so their workspace and Sentinel use the commercial column; GCC High and DoD pair with Entra ID in Azure Government ([Chapter 03](03-identity-telemetry.md#sovereign-clouds)).
+GCC tenants pair with Microsoft Entra ID in commercial Azure, so their workspace and Sentinel use the commercial column ([Chapter 03](03-identity-telemetry.md#sovereign-clouds)).
 
-| Capability | Commercial and GCC | GCC High and DoD (Azure Government) | Source, accessed Nov 11, 2026 |
-|---|---|---|---|
-| Microsoft Entra ID connector (sign-in and audit tables) | GA | GA | Sentinel feature availability[^aB-sentinel-feature] |
-| Microsoft Entra ID Protection connector and risk tables | GA | GA; every listed risk detection available except Microsoft Entra threat intelligence | Sentinel feature availability; Entra feature availability[^aB-sentinel-feature][^aB-entra-gov] |
-| Workload Identities Premium (workload risk detail) | Available | Available in Azure for US Government; no free trial there | Entra feature availability; Workload ID FAQ[^aB-entra-gov][^aB-wid-faq] |
-| Scheduled and NRT analytics rules, automation rules, watchlists | GA | GA | Sentinel feature availability[^aB-sentinel-feature] |
-| Sentinel in the Defender portal | GA features available | GA features available in GCC High and DoD; preview features commercial only | Sentinel feature availability[^aB-sentinel-feature] |
-| Azure Monitor log search alert (Learn's emergency access alert method) | Available | Not yet specified on the pages read | Emergency access accounts page[^aB-emergency] |
+| Capability | Commercial and GCC | Source, accessed Nov 11, 2026 |
+|---|---|---|
+| Microsoft Entra ID connector (sign-in and audit tables) | GA | Sentinel feature availability[^aB-sentinel-feature] |
+| Microsoft Entra ID Protection connector and risk tables | GA | Sentinel feature availability[^aB-sentinel-feature] |
+| Workload Identities Premium (workload risk detail) | Available | GCC uses the commercial Entra service ([Chapter 03](03-identity-telemetry.md#sovereign-clouds)) |
+| Scheduled and NRT analytics rules, automation rules, watchlists | GA | Sentinel feature availability[^aB-sentinel-feature] |
+| Sentinel in the Defender portal | GA features available | Sentinel feature availability[^aB-sentinel-feature] |
+| Azure Monitor log search alert (Learn's emergency access alert method) | Available | Emergency access accounts page[^aB-emergency] |
 
 Every rule below runs in Sentinel's analytics tier. A table moved to the Auxiliary plan or the data lake tier stops raising alerts ([Chapter 12](12-evidence-metrics-and-continuous-monitoring.md#retention-tiers-and-tamper-protected-copies)), so every table above stays on the Analytics plan.
 
@@ -440,7 +440,7 @@ A detection is evidenced when a deliberate, recorded test produces its alert. Ru
 - `<test-user-object-id>`: a test user's object ID, used only as a temporary owner
 - `<test-admin-upn>`: a test account in `FMP-PrivilegedAccounts`, holding an eligible role and no standing access
 - `<workspace-id>`: the Log Analytics workspace ID
-- `Global` in `-Environment`: use `USGov` for GCC High and `USGovDoD` for DoD; GCC uses `Global`.[^aB-connect]
+- `Global` in `-Environment`: GCC uses `Global`.[^aB-connect]
 
 **1. Connect with the least permission the tests need.**
 
@@ -482,7 +482,7 @@ $Phone = New-MgUserAuthenticationPhoneMethod -UserId '<test-admin-upn>' -PhoneTy
 Remove-MgUserAuthenticationPhoneMethod -UserId '<test-admin-upn>' -PhoneAuthenticationMethodId $Phone.Id
 ```
 
-**6. FMP-DET-37: a device code sign-in with the test administrator** (not in `FMP-DeviceCodeApproved`). Sign in with `<test-admin-upn>` at the prompt; for GCC High or DoD run `az cloud set --name AzureUSGovernment` first. If a Conditional Access policy blocks device code flow, the sign-in fails and the rule (which looks for successes) stays quiet; record that as the policy's test, and test the rule from a pilot account in the policy's exclusion.
+**6. FMP-DET-37: a device code sign-in with the test administrator** (not in `FMP-DeviceCodeApproved`). Sign in with `<test-admin-upn>` at the prompt. If a Conditional Access policy blocks device code flow, the sign-in fails and the rule (which looks for successes) stays quiet; record that as the policy's test, and test the rule from a pilot account in the policy's exclusion.
 
 ```powershell
 az login --use-device-code --allow-no-subscriptions
@@ -557,11 +557,9 @@ For the emergency access finding family, this appendix carries the alert (DET-30
 [^aB-signinlogs]: Microsoft Learn, Azure Monitor Logs table reference, "SigninLogs" (`AuthenticationProtocol` values including `deviceCode`; `OriginalTransferMethod`; `ResultType`), <https://learn.microsoft.com/azure/azure-monitor/reference/tables/signinlogs>, and "AADNonInteractiveUserSignInLogs," <https://learn.microsoft.com/azure/azure-monitor/reference/tables/aadnoninteractiveusersigninlogs> (both accessed Nov 11, 2026).
 [^aB-risk-export]: Microsoft Learn, "How To: Export risk data," section "Log Analytics" (diagnostic categories RiskyUsers, UserRiskEvents, RiskyServicePrincipals, ServicePrincipalRiskEvents and their tables), <https://learn.microsoft.com/entra/id-protection/howto-export-risk-data> (accessed Nov 11, 2026).
 [^aB-wid-risk]: Microsoft Learn, "Securing workload identities" (detections for single-tenant, non-Microsoft SaaS and multitenant apps; managed identities not in scope; full detail for Workload Identities Premium, limited detail without), <https://learn.microsoft.com/entra/id-protection/concept-workload-identity-risk> (accessed Nov 11, 2026).
-[^aB-wid-faq]: Microsoft Learn, "Frequently asked questions about Microsoft Entra Workload ID" (free trial unavailable in Azure Government), <https://learn.microsoft.com/entra/workload-id/workload-identities-faqs> (accessed Nov 11, 2026).
 [^aB-sp-risk-q]: Microsoft Learn, "Queries for the AADServicePrincipalRiskEvents table," "Active service principal risk detections," <https://learn.microsoft.com/azure/azure-monitor/reference/queries/aadserviceprincipalriskevents> (accessed Nov 11, 2026).
 [^aB-app-perms]: Microsoft Learn, "View activity logs of application permissions," section "Audit logs" (Add app role assignment, Add delegated permission grant, Consent to application), <https://learn.microsoft.com/entra/identity/enterprise-apps/app-perms-audit-logs> (accessed Nov 11, 2026).
 [^aB-sentinel-feature]: Microsoft Learn, "Microsoft Sentinel feature support for Azure commercial/other clouds" (Defender portal statement; Analytics, Data collection, Incidents and Watchlists tables), <https://learn.microsoft.com/azure/sentinel/feature-availability> (accessed Nov 11, 2026).
-[^aB-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government; ID Protection risk detections, Microsoft Entra threat intelligence not available; Workload Identities Premium available), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
 [^aB-watchlist]: Microsoft Learn, "Build queries or detection rules with watchlists in Microsoft Sentinel," <https://learn.microsoft.com/azure/sentinel/watchlists-queries> (accessed Nov 11, 2026).
-[^aB-connect]: Microsoft Learn, "Connect-MgGraph," `-Environment` (Global, USGov, USGovDoD), <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph> (accessed Nov 11, 2026).
+[^aB-connect]: Microsoft Learn, "Connect-MgGraph," `-Environment` (`Global` for GCC), <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph> (accessed Nov 11, 2026).
 [^aB-addpwd]: Microsoft Learn, "Add-MgApplicationPassword," Microsoft.Graph.Applications module, <https://learn.microsoft.com/powershell/module/microsoft.graph.applications/add-mgapplicationpassword> (accessed Nov 11, 2026).

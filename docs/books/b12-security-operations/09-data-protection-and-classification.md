@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The classification gap that remains after network and identity hardening, and why a cloud access security broker (CASB) can't close it alone. What the federal CUI framework in 32 CFR Part 2002 and the CUI Registry actually define, and how the program maps CUI Basic and CUI Specified to Microsoft Purview sensitivity labels, deployed as code. Automatic labeling, DLP on three enforcement surfaces, and the three different things "customer-managed key" can mean in Microsoft 365, with each feature's availability in GCC and GCC High checked on Microsoft Learn.
+The classification gap that remains after network and identity hardening, and why a cloud access security broker (CASB) can't close it alone. What the federal CUI framework in 32 CFR Part 2002 and the CUI Registry actually define, and how the program maps CUI Basic and CUI Specified to Microsoft Purview sensitivity labels, deployed as code. Automatic labeling, DLP on three enforcement surfaces, and the three different things "customer-managed key" can mean in Microsoft 365, with each feature's availability in GCC checked on Microsoft Learn.
 :::
 
 Network controls decide which paths traffic can take. Authentication decides who is asserting an identity, Conditional Access decides whether that identity may reach a workload from a given device, and privileged access management decides how long an administrator holds elevated scope. [Book 09](../b09-network/index.md), [Book 02](../b02-identity/index.md) and [Book 04](../b04-access/index.md) build those controls. None of them answers a different question: what is in the file?
@@ -99,9 +99,7 @@ The PowerShell in this chapter is illustrative. It hasn't been tested against a 
 
 ```powershell
 # Security & Compliance PowerShell (ExchangeOnlineManagement module).
-# GCC: no extra parameters. GCC High: add
-#   -ConnectionUri 'https://ps.compliance.protection.office365.us/powershell-liveid/'
-#   -AzureADAuthorizationEndpointUri 'https://login.microsoftonline.us/organizations'
+# GCC: no extra parameters.
 Connect-IPPSSession -UserPrincipalName 'labels-admin@example.gov'
 
 # Rights granted to everyone in the tenant for CUI Basic.
@@ -143,7 +141,7 @@ Four corrections to the program's earlier scripts are built into that block. `-L
 
 ### Labels on Teams, groups and sites
 
-A label on a document travels with the document. A label on a container does something different: applied to a Microsoft 365 group, a team or a SharePoint site, it sets the container's privacy, whether owners can add guests, and how unmanaged devices reach the content, but the files inside don't inherit it. Content taken out of a labeled site is unprotected unless it carries its own label.[^c09-container-labels] That is how the program answers the "sharing is set per container" gap above: CUI lives in sites and teams whose container label blocks guests, and the files in them still carry item labels from auto-labeling. Container labels depend on group label support being turned on in Entra ID (the `EnableMIPLabels` directory setting, which needs at least one Entra ID P1 license) and on the labels being synchronized to Entra ID, which can take up to 24 hours to show.[^c09-group-labels] Microsoft advises against changing a published label's group settings afterwards, because the change isn't applied to groups that already carry the label.[^c09-group-labels] Automatic classification and labeling for Teams, Microsoft 365 groups and SharePoint sites is listed as available in GCC and GCC High;[^c09-gcc][^c09-gcch] its DoD status is not yet specified on the pages the program checked.
+A label on a document travels with the document. A label on a container does something different: applied to a Microsoft 365 group, a team or a SharePoint site, it sets the container's privacy, whether owners can add guests, and how unmanaged devices reach the content, but the files inside don't inherit it. Content taken out of a labeled site is unprotected unless it carries its own label.[^c09-container-labels] That is how the program answers the "sharing is set per container" gap above: CUI lives in sites and teams whose container label blocks guests, and the files in them still carry item labels from auto-labeling. Container labels depend on group label support being turned on in Entra ID (the `EnableMIPLabels` directory setting, which needs at least one Entra ID P1 license) and on the labels being synchronized to Entra ID, which can take up to 24 hours to show.[^c09-group-labels] Microsoft advises against changing a published label's group settings afterwards, because the change isn't applied to groups that already carry the label.[^c09-group-labels] Automatic classification and labeling for Teams, Microsoft 365 groups and SharePoint sites is listed as available in GCC.[^c09-gcc]
 
 To turn on label support for groups (Microsoft's steps; run once per tenant by an administrator):
 
@@ -179,7 +177,7 @@ For categories that have no pattern, such as case notes, budget working papers o
 
 ### Auto-labeling policies
 
-Service-side auto-labeling labels content at rest in SharePoint and OneDrive and messages in Exchange. Client-side labeling in Office apps recommends or applies a label as the author works. Both are available in GCC and GCC High, along with machine learning classifiers for client-side auto-labeling.[^c09-gcc][^c09-gcch]
+Service-side auto-labeling labels content at rest in SharePoint and OneDrive and messages in Exchange. Client-side labeling in Office apps recommends or applies a label as the author works. Both are available in GCC, along with machine learning classifiers for client-side auto-labeling.[^c09-gcc]
 
 ```powershell
 # Service-side auto-labeling for SharePoint and OneDrive, in simulation first.
@@ -204,7 +202,7 @@ Set-AutoSensitivityLabelPolicy -Identity 'FMP-Auto-CUI-Basic' -Mode 'Enable'
 
 ## DLP on three enforcement surfaces
 
-DLP acts at three points in the data's life, each with a different reach. All three are available in GCC and GCC High: DLP for files and email, Teams chat and channel messages, endpoint DLP, the on-premises scanner and the Defender for Cloud Apps integration.[^c09-gcc][^c09-gcch]
+DLP acts at three points in the data's life, each with a different reach. All three are available in GCC: DLP for files and email, Teams chat and channel messages, endpoint DLP, the on-premises scanner and the Defender for Cloud Apps integration.[^c09-gcc]
 
 | Surface | Where it's enforced | What it catches | Prerequisite |
 |---|---|---|---|
@@ -294,7 +292,7 @@ Once DLP is enforcing, the override path becomes something to watch. A user who 
 
 ## Keys the agency controls
 
-"Bring your own key" means three different things in Microsoft 365, and an assessor will ask which one the system security plan means. All three are listed as available in GCC and GCC High.[^c09-gcc][^c09-gcch]
+"Bring your own key" means three different things in Microsoft 365, and an assessor will ask which one the system security plan means. All three are listed as available in GCC.[^c09-gcc]
 
 | Option | What it protects | Where the key lives | What the agency gives up |
 |---|---|---|---|
@@ -393,7 +391,7 @@ The order matters because each step depends on the one before it. It is the prog
 [Book 20, Information Protection & Microsoft Purview](../b20-information-protection/index.md), now carries each of these steps as a full procedure with its own pilot, simulation, enforcement, rollback, exclusions and evidence: the taxonomy in a test tenant ([Chapter 02](../b20-information-protection/02-sensitivity-label-architecture.md#b20-02-how-build-the-taxonomy-in-a-test-tenant)), publication and defaults ([Chapter 03](../b20-information-protection/03-label-publication-and-defaults.md#how-publish-labels-and-set-defaults)), Rights Management ([Chapter 05](../b20-information-protection/05-rights-management-and-recovery.md#how-activate-and-stage-the-rights-management-service)), workload and endpoint DLP ([Chapter 08](../b20-information-protection/08-dlp-and-endpoint-controls.md#how-workload-dlp-from-simulation-to-enforcement)), service-side auto-labeling ([Chapter 09](../b20-information-protection/09-auto-labeling-and-sensitive-information-types.md#how-service-side-auto-labeling-from-simulation-to-rollout)) and Purview Audit ([Chapter 10](../b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#how-turn-on-retain-and-test-purview-audit)). Follow those for the build; this chapter keeps the security-operations view, and the sequence above states the order. [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions apply to the sequence as below.
 
 **Authority:** Mandated in substance: the CUI program's marking and safeguarding rules ([The federal CUI framework](#the-federal-cui-framework)). Microsoft-recommended for running auto-labeling in simulation before enabling it (Learn, read Oct 21, 2026). Risk-based recommended for the CUI label mapping, the minimum DLP baseline and the key choices, which are the program's design.
-**Applies:** License-dependent: Purview Information Protection and DLP licensing per surface; Customer Key and DKE need their own licenses. Environment-dependent: the surfaces and key options are listed as available in GCC and GCC High above; DoD and the Information Protection Sentinel connector by cloud are in [Chapter 02](02-the-evidence-contract.md#data-and-endpoint-telemetry).
+**Applies:** License-dependent: Purview Information Protection and DLP licensing per surface; Customer Key and DKE need their own licenses. Environment-dependent: the surfaces and key options are listed as available in GCC above; the Information Protection Sentinel connector is in [Chapter 02](02-the-evidence-contract.md#data-and-endpoint-telemetry).
 
 **Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
 
@@ -505,7 +503,6 @@ The control-level depth for this chapter is in two Federal Compliance volumes: [
 [^c09-sit-rulepack]: Microsoft Learn, "New-DlpSensitiveInformationTypeRulePackage," source <https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-DlpSensitiveInformationTypeRulePackage.md>, published at <https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpsensitiveinformationtyperulepackage> (accessed Oct 21, 2026).
 [^c09-classifier]: Microsoft Learn, "Get started with trainable classifiers," <https://learn.microsoft.com/purview/trainable-classifiers-get-started-with>, and "Learn about trainable classifiers," <https://learn.microsoft.com/purview/trainable-classifiers-learn-about> (accessed Oct 21, 2026).
 [^c09-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Oct 21, 2026).
-[^c09-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Oct 21, 2026).
 [^c09-autolabel-policy]: Microsoft Learn, "New-AutoSensitivityLabelPolicy" (parameter Mode), source <https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-AutoSensitivityLabelPolicy.md>, published at <https://learn.microsoft.com/powershell/module/exchangepowershell/new-autosensitivitylabelpolicy> (accessed Oct 21, 2026).
 [^c09-autolabel-rule]: Microsoft Learn, "New-AutoSensitivityLabelRule" (parameters Workload and ContentContainsSensitiveInformation), source <https://github.com/MicrosoftDocs/office-docs-powershell/blob/main/exchange/exchange-ps/ExchangePowerShell/New-AutoSensitivityLabelRule.md>, published at <https://learn.microsoft.com/powershell/module/exchangepowershell/new-autosensitivitylabelrule> (accessed Oct 21, 2026).
 [^c09-device-onboarding]: Microsoft Learn, "Onboard Windows devices into Microsoft 365 overview," <https://learn.microsoft.com/purview/device-onboarding-overview> (accessed Oct 21, 2026).

@@ -367,7 +367,7 @@ Every command in this lab, in order, from `examples/validation-kit`. Each step b
 
 ```powershell
 # Step 1: Export
-Connect-MgGraph -Scopes 'OnPremDirectorySynchronization.Read.All' -Environment Global   # USGov for GCC High
+Connect-MgGraph -Scopes 'OnPremDirectorySynchronization.Read.All' -Environment Global
 Invoke-MgGraphRequest -Method GET -Uri '/v1.0/directory/onPremisesSynchronization' |
     ConvertTo-Json -Depth 10 | Set-Content -Path ./inputs/onprem-sync-export.json
 Disconnect-MgGraph
@@ -389,7 +389,7 @@ Remove-Item ./inputs/onprem-sync-export.json
 1. **Export.** A Global Administrator of the test tenant signs in and saves the response:
 
    ```powershell
-   Connect-MgGraph -Scopes 'OnPremDirectorySynchronization.Read.All' -Environment Global   # USGov for GCC High
+   Connect-MgGraph -Scopes 'OnPremDirectorySynchronization.Read.All' -Environment Global
    Invoke-MgGraphRequest -Method GET -Uri '/v1.0/directory/onPremisesSynchronization' |
        ConvertTo-Json -Depth 10 | Set-Content -Path ./inputs/onprem-sync-export.json
    Disconnect-MgGraph
@@ -423,14 +423,14 @@ Remove-Item ./inputs/onprem-sync-export.json
 
 ## Verified facts
 
-| Call | Endpoint | Least-privileged permission | Role | US Government clouds | Stage |
+| Call | Endpoint | Least-privileged permission | Role | GCC | Stage |
 |---|---|---|---|---|---|
-| Read sync features | `GET /directory/onPremisesSynchronization` | `OnPremDirectorySynchronization.Read.All`, delegated only; no application permission[^c03-onpremsync] | Global Administrator, the only supported role[^c03-onpremsync] | Global, US Government L4 and L5[^c03-onpremsync] | v1.0 |
+| Read sync features | `GET /directory/onPremisesSynchronization` | `OnPremDirectorySynchronization.Read.All`, delegated only; no application permission[^c03-onpremsync] | Global Administrator, the only supported role[^c03-onpremsync] | Available on the worldwide service, which GCC uses[^c03-onpremsync] [^c03-deployments] | v1.0 |
 | Block soft or hard match (remediation, not in the kit) | `Update-MgDirectoryOnPremiseSynchronization` with `BlockSoftMatchEnabled` or `BlockCloudObjectTakeoverThroughHardMatchEnabled` | `OnPremDirectorySynchronization.ReadWrite.All`[^c03-existing] | Global Administrator (Entra PowerShell)[^c03-entraps] | as above | v1.0 |
-| Rule evaluation (VK-DG-03, the kit's one POST) | `POST /groups/{id}/evaluateDynamicMembership`, `POST /groups/evaluateDynamicMembership` | `Group.Read.All` and `User.Read.All` (or `Device.Read.All`), delegated only[^c03-evaluate] | — | Global, US Government L4 and L5[^c03-evaluate] | **beta** |
+| Rule evaluation (VK-DG-03, the kit's one POST) | `POST /groups/{id}/evaluateDynamicMembership`, `POST /groups/evaluateDynamicMembership` | `Group.Read.All` and `User.Read.All` (or `Device.Read.All`), delegated only[^c03-evaluate] | — | Available on the worldwide service, which GCC uses[^c03-evaluate] [^c03-deployments] | **beta** |
 | Paging | follow `@odata.nextLink` as an opaque URL until it is absent[^c03-paging] | — | — | — | — |
 | Throttling | on `429`, wait `Retry-After`, then retry; back off exponentially if the header is missing[^c03-throttling] | — | — | — | — |
-| Graph host per cloud | `graph.microsoft.com` (worldwide and Microsoft 365 GCC), `graph.microsoft.us` (GCC High), `dod-graph.microsoft.us` (DoD)[^c03-deployments] | — | — | — | — |
+| Graph host | `graph.microsoft.com` (worldwide and Microsoft 365 GCC)[^c03-deployments] | — | — | — | — |
 
 ## Federal requirements and evidence
 

@@ -1,6 +1,6 @@
 ---
 title: "Chapter 05 — Owners, Sponsors and the AI Identity Lifecycle"
-description: "Who is accountable for an AI identity and how its lifecycle runs: the owner, sponsor and manager relationships in Microsoft Entra Agent ID, the joiner, mover and leaver events applied to AI systems and agents (creation, sponsor change, reorganization, retirement and orphaned agents), expiring access and recertification with Entra ID Governance, release stage and government-cloud availability, and the program's design where the agent features aren't available."
+description: "Who is accountable for an AI identity and how its lifecycle runs: the owner, sponsor and manager relationships in Microsoft Entra Agent ID, the joiner, mover and leaver events applied to AI systems and agents (creation, sponsor change, reorganization, retirement and orphaned agents), expiring access and recertification with Entra ID Governance, release stage and GCC availability, and the program's design where the agent features aren't available."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b17-ai-identity
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-Why an AI identity needs an accountable human before it needs anything else, and what Microsoft Entra Agent ID provides for that: owners, sponsors and managers, what each can do, and what creation sets automatically. Then the lifecycle event by event (creation, sponsor change, reorganization, change of purpose, recertification, retirement and the orphaned agent), the Entra ID Governance features that carry each event, their release stage and their availability in the government clouds, and the program's design for agents that can't use those features. [Chapter 06](06-credentials-and-least-privilege.md) covers credentials and access policy; this chapter covers who answers for the identity and when it ends.
+Why an AI identity needs an accountable human before it needs anything else, and what Microsoft Entra Agent ID provides for that: owners, sponsors and managers, what each can do, and what creation sets automatically. Then the lifecycle event by event (creation, sponsor change, reorganization, change of purpose, recertification, retirement and the orphaned agent), the Entra ID Governance features that carry each event, their release stage and their availability in GCC, and the program's design for agents that can't use those features. [Chapter 06](06-credentials-and-least-privilege.md) covers credentials and access policy; this chapter covers who answers for the identity and when it ends.
 :::
 
 A person's identity in the program begins with a record nobody in IT creates. Human resources hires someone, the hire is an effective-dated event, and provisioning turns it into an account; a transfer or a separation later does the same in reverse ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md)). Nobody has to remember to disable a leaver, because the separation record causes the disablement.
@@ -101,7 +101,7 @@ Creation is the joiner event, and the program's rule is that nothing is created 
 
 Two creation defaults need a decision. The tenant setting **Users can create agent blueprints**, when set to Yes, lets any user create a blueprint and its principal; otherwise only the Agent ID Developer and Agent ID Administrator roles can.[^c05-create-blueprint] The program sets it to No, the same choice it makes for app registrations under CISA's MS.AAD.5.1v1 ([Chapter 06](06-credentials-and-least-privilege.md#admin-consent-and-the-scuba-consent-baseline)). And the shared Foundry project identity means that, until an agent is published, several agents can act under one identity;[^c05-gov-overview] the program treats an unpublished project as a development environment and doesn't connect its shared identity to production data.
 
-Access at creation comes through access packages, not direct grants. An access package policy can be opened to agent identities (**For users, service principals, and agent identities in your directory**, then **All agents**), and the package can carry security group memberships, delegated and application API permissions for Microsoft Graph and other applications, and Microsoft Entra roles.[^c05-gov-overview] The agent identity can request a package itself, the sponsor or owner can request one on its behalf through the My Access portal, or an administrator can assign it directly; the request then goes to the package's approvers.[^c05-access-packages] For US Government tenants, the My Access portal is at `myaccess.microsoft.us`.[^c05-access-packages]
+Access at creation comes through access packages, not direct grants. An access package policy can be opened to agent identities (**For users, service principals, and agent identities in your directory**, then **All agents**), and the package can carry security group memberships, delegated and application API permissions for Microsoft Graph and other applications, and Microsoft Entra roles.[^c05-gov-overview] The agent identity can request a package itself, the sponsor or owner can request one on its behalf through the My Access portal, or an administrator can assign it directly; the request then goes to the package's approvers.[^c05-access-packages]
 
 ### When the sponsor moves or leaves
 
@@ -161,7 +161,7 @@ The response mirrors the orphaned-application policy in [Book 04, Chapter 06](..
 Turning the lifecycle on changes what happens to agents already running: blueprint creation closes to ordinary users, access moves to expiring packages, and orphaned agents are disabled. Those steps follow the workbook's implementation conventions ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)). The control states, evidence checklist and assessment mapping for the lifecycle are carried once, per agent, in [Chapter 06](06-credentials-and-least-privilege.md#agent-credential-controls) (its **Lifecycle** row); this section adds the rollout.
 
 **Authority:** Microsoft-recommended for a sponsor and owner at creation, the production handshake, expiring access and periodic sponsor attestation (the best-practices page cited above, read Oct 22, 2026). Risk-based recommended, the program's position: the two-human rule, the ten-day grace period and disabling a confirmed orphan without waiting.
-**Applies:** License-dependent: the agent rows of the governance features need Microsoft Agent 365 or Microsoft 365 E7 ([below](#release-stage-and-government-cloud-availability)). Environment-dependent: the agent features are partly available in GCC and not published for GCC High or DoD, where [the fallback below](#where-the-agent-features-arent-available) applies.
+**Applies:** License-dependent: the agent rows of the governance features need Microsoft Agent 365 or Microsoft 365 E7 ([below](#release-stage-and-government-cloud-availability)). Environment-dependent: the agent features are partly available in GCC; where one isn't, [the fallback below](#where-the-agent-features-arent-available) applies.
 
 | How-template step | Where this chapter covers it, or what it adds |
 |---|---|
@@ -224,26 +224,24 @@ $agents | ForEach-Object {
 } | Sort-Object NoOwner, DisplayName -Descending | Format-Table -AutoSize
 ```
 
-For a GCC High or DoD tenant the Graph host differs ([Chapter 06](06-credentials-and-least-privilege.md#release-stage-and-government-cloud-availability)), and Agent ID isn't published as available there ([Chapter 04](04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds)).
+## Release stage and GCC availability {#release-stage-and-government-cloud-availability}
 
-## Release stage and government-cloud availability
+[Chapter 04](04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds) sets out the general picture for Microsoft Entra Agent ID: the platform generally available since April 2026, a documented partial subset in GCC, and Agent 365's FedRAMP High authorization still pending. The table below covers only the lifecycle features this chapter relies on, as published on October 22, 2026.
 
-[Chapter 04](04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds) sets out the general picture for Microsoft Entra Agent ID: the platform generally available since April 2026, a documented partial subset in GCC, no published availability in GCC High or DoD (treat it as unavailable there), and Agent 365's FedRAMP High authorization still pending. The table below covers only the lifecycle features this chapter relies on, as published on October 22, 2026.
+| Capability | Release stage | License | GCC |
+|---|---|---|---|
+| Access packages for agents, including sponsor and owner requests on the agent's behalf | Documented without a preview label | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3[^c05-gov-overview][^c05-licensing] | Available[^c05-a365-sd] |
+| Sponsor lifecycle workflow tasks and templates | Generally available (May 2026)[^c05-entra-whatsnew] | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3[^c05-sponsor-tasks] | Available[^c05-a365-sd] |
+| Manage agents in My Account for sponsors and owners[^c05-my-account] | Announced as preview in November 2025; no general-availability announcement found[^c05-entra-archive] | Not stated separately | Not published |
+| Entra ID Governance for people (Lifecycle Workflows, access reviews, entitlement management) | Generally available | Entra ID Governance | Available[^c05-licensing] |
 
-| Capability | Release stage | License | GCC | GCC High, DoD |
-|---|---|---|---|---|
-| Access packages for agents, including sponsor and owner requests on the agent's behalf | Documented without a preview label | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3[^c05-gov-overview][^c05-licensing] | Available[^c05-a365-sd] | Not published |
-| Sponsor lifecycle workflow tasks and templates | Generally available (May 2026)[^c05-entra-whatsnew] | Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3[^c05-sponsor-tasks] | Available[^c05-a365-sd] | Not published |
-| Manage agents in My Account for sponsors and owners[^c05-my-account] | Announced as preview in November 2025; no general-availability announcement found[^c05-entra-archive] | Not stated separately | Not published | Not published |
-| Entra ID Governance for people (Lifecycle Workflows, access reviews, entitlement management) | Generally available | Entra ID Governance | Available[^c05-licensing] | Available[^c05-licensing] |
+: Lifecycle features for AI identities by release stage and GCC availability. "Not published" means Microsoft's documentation states no availability. {.striped .hover}
 
-: Lifecycle features for AI identities by release stage and cloud. "Not published" means Microsoft's documentation states no availability. {.striped .hover}
-
-One point is specific to the lifecycle. **Governance of people doesn't license governance of agents.** Entra ID Governance for Government is available in GCC, GCC High and DoD,[^c05-licensing] but the agent-specific rows in Microsoft's governance licensing table (agents in access packages, owners and sponsors requesting for agents, agent sponsors as approvers, Lifecycle Workflows agent sponsorship tasks) are marked for Microsoft Agent 365 and Microsoft 365 E7, not for Entra ID Governance.[^c05-licensing] A tenant fully licensed for governance of people has no governance of agents until it also licenses Agent 365.
+One point is specific to the lifecycle. **Governance of people doesn't license governance of agents.** Entra ID Governance for Government is available in GCC,[^c05-licensing] but the agent-specific rows in Microsoft's governance licensing table (agents in access packages, owners and sponsors requesting for agents, agent sponsors as approvers, Lifecycle Workflows agent sponsorship tasks) are marked for Microsoft Agent 365 and Microsoft 365 E7, not for Entra ID Governance.[^c05-licensing] A tenant fully licensed for governance of people has no governance of agents until it also licenses Agent 365.
 
 ### Where the agent features aren't available
 
-In GCC High and DoD, and for agents built on ordinary service principals anywhere, the program runs the same lifecycle with the tools it already has. Each agent is an application with two named owners and a `serviceManagementReference` pointing at the identity record, which also names the sponsor ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#ownership)). Access is granted through access packages whose policies admit service principals; Microsoft notes that agents not using agent identities need a policy option of **All Service principals**,[^c05-gov-overview] and lists agents and service principals in access packages under the Agent 365 and E7 columns,[^c05-licensing] so this path also depends on licensing the agency must confirm. Where it isn't available, the program grants access directly with an end date recorded in the inventory and a scheduled removal. The sponsor's HR leaver and mover workflows include a custom task extension that opens a ticket for each agent the departing person sponsors, which is the program's substitute for the native sponsorship tasks; Lifecycle Workflows supports custom extensions under Entra ID Governance.[^c05-licensing] The orphan rules above apply unchanged.
+Where an agent feature isn't available in GCC, and for agents built on ordinary service principals anywhere, the program runs the same lifecycle with the tools it already has. Each agent is an application with two named owners and a `serviceManagementReference` pointing at the identity record, which also names the sponsor ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#ownership)). Access is granted through access packages whose policies admit service principals; Microsoft notes that agents not using agent identities need a policy option of **All Service principals**,[^c05-gov-overview] and lists agents and service principals in access packages under the Agent 365 and E7 columns,[^c05-licensing] so this path also depends on licensing the agency must confirm. Where it isn't available, the program grants access directly with an end date recorded in the inventory and a scheduled removal. The sponsor's HR leaver and mover workflows include a custom task extension that opens a ticket for each agent the departing person sponsors, which is the program's substitute for the native sponsorship tasks; Lifecycle Workflows supports custom extensions under Entra ID Governance.[^c05-licensing] The orphan rules above apply unchanged.
 
 ## What the program asks of each party
 
@@ -263,7 +261,7 @@ In GCC High and DoD, and for agents built on ordinary service principals anywher
 2. **Transfer to a manager isn't accountability.** The platform guarantees a human is named; only the confirmation step makes that human accountable in fact.
 3. **Expiry needs an end date.** The recertification model works only for access granted through packages with end dates. Direct grants, inherited blueprint permissions and consents made outside the packages don't expire, and [Chapter 06](06-credentials-and-least-privilege.md) treats them as exceptions.
 4. **Ephemeral agents strain the record.** An agent that exists for minutes can't have a meaningful inventory entry of its own. The program records the blueprint and its sponsor as the governed unit for such agents and requires the blueprint, not each instance, to carry the use case.
-5. **The higher clouds are a gap.** Until Microsoft publishes availability for GCC High and DoD, agencies there run the lifecycle on application objects and a ticket, which is weaker and should be stated as such in the authorization package.
+5. **GCC lags commercial.** Until Microsoft publishes GCC availability for an agent feature, agencies run that part of the lifecycle on application objects and a ticket, which is weaker and should be stated as such in the authorization package.
 
 ::: {.callout-tip}
 ## Continue the book

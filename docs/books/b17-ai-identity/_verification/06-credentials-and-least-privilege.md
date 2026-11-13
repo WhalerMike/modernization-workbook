@@ -49,7 +49,7 @@ Checked October 21–22, 2026 by writer W3. No source page was assigned to this 
 | 41 | ID Protection for agents: detection list, offline, learning mode, OBO attribution to user, 90-day retention, actions | ID Protection | verified | Learn, ID Protection for agents |
 | 42 | Agent risk preview; P2 during preview; Agent 365 "starting soon" | ID Protection | verified | Learn, Secure autonomous agents; Manage agent identities in your organization; ID Protection for agents |
 | 43 | Risky-agent alerts to sponsor | ID Protection | restated-as-design | Program design |
-| 44 | Workload identity CA limits; Workload ID Premium; gov via account manager; no gov trial | Workload identities | verified | Learn, CA for workload identities; Workload ID FAQ |
+| 44 | Workload identity CA limits; Workload ID Premium | Workload identities | verified | Learn, CA for workload identities; Workload ID FAQ |
 | 45 | No standing privileged role for AI; order of three paths | Privileged roles | restated-as-design | Program design |
 | 46 | M365 Admin agent honors admin's existing Entra role assignments | Privileged roles | verified | Learn, Use Microsoft 365 Admin agent |
 | 47 | Access packages can grant Entra roles to agents; agent can request programmatically; human approvers; end date | Privileged roles | verified | Learn, Governing agent identities |
@@ -64,8 +64,6 @@ Checked October 21–22, 2026 by writer W3. No source page was assigned to this 
 | 56 | Purview labels/DLP/insider risk for agents, network controls, Defender tool-invocation blocking not available in GCC | Layer 3 | verified | Agent 365 service description |
 | 57 | Three-boundary model and table | Tool boundaries | restated-as-design | Program design |
 | 58 | Release-stage table rows | Release stage | verified | Rows cite the sources above; general Agent ID rows removed in favor of a link to Chapter 04 per editor note; overlapping facts match Ch04 |
-| 59 | App management policies in GCC High/DoD | Release table | unverifiable | No Microsoft page found stating it; cell says "Not stated on the pages checked; confirm in the tenant" |
-| 60 | GCC High/DoD Graph and authority endpoints; configurable endpoints don't guarantee availability | Release stage | verified | Learn, Configure the Agent 365 CLI for US Government clouds |
 
 ## Carry-forward ledger
 
@@ -97,7 +95,7 @@ ScubaGear 2.0.0 was released October 22, 2026 (weekly source watch, issue #160).
 |---|---|---|---|---|
 | 1 | MS.AAD.5.5v1–5.7v1 released in ScubaGear 2.0.0 (Oct 22, 2026); SHOULD; April 2026; no BOD 25-01 indicator; not on CISA's page (supersedes row 12 and the "New SCuBA drafts" note) | Enforcing the order | verified (updated) | v2.0.0 `aad.md`; v2.0.0 release notes; Required Configurations page |
 | 2 | v1.8.0 section 5 had only 5.1–5.3 | Enforcing the order | verified | v1.8.0 `aad.md` |
-| 3 | MS.AAD.9.1v1 "Risky AI agents SHALL be blocked": CA policy, all agent identities, all resources, agent risk High, block; P2 plus Agent 365 or M365 E7; not applicable to GCC High and DoD; BOD 25-01 indicator; last modified March 2026 | Enforcing the order | verified (new) | v2.0.0 `aad.md` section 9; v2.0.0 release notes |
+| 3 | MS.AAD.9.1v1 "Risky AI agents SHALL be blocked": CA policy, all agent identities, all resources, agent risk High, block; P2 plus Agent 365 or M365 E7; BOD 25-01 indicator; last modified March 2026 | Enforcing the order | verified (new) | v2.0.0 `aad.md` section 9; v2.0.0 release notes |
 | 4 | MS.AAD.9.1v1 not on CISA's Required Configurations page on Oct 26, 2026 | Same | verified | Required Configurations page (20 Entra IDs; no 9.1) |
 | 5 | Program treats 9.1v1 as notice; records ScubaGear result per tenant; blocks when the agent risk condition is GA in the agency's cloud | Same | restated-as-design | Book 17 Ch04 position (preview capabilities are watch items; agent risk condition in preview; GCC licensing and availability rows) |
 | 6 | MS.AAD.5.2v1 wording and the two compliant options unchanged at v2.0.0 (`c06-scuba-main` renamed `c06-scuba-v2` and pinned to the tag) | Admin consent | verified | v2.0.0 `aad.md` |
@@ -115,8 +113,8 @@ Learn coverage pass (citations for pages the coverage map marked covered-uncited
 | L5 | Prompt injection protection: blocks adversarial prompts and jailbreaks; preconfigured models incl. ChatGPT, Claude, Gemini; custom JSON model by URL and JSON path; Internet Access license, TLS inspection, client on Entra joined/hybrid joined Windows; text only, 64,000 characters | Network edge | verified; page not labeled preview | Learn, "Protect enterprise generative AI applications with prompt injection protection" |
 | L6 | MCP firewall (preview): remote MCP servers; allow/block servers, tools, resources, prompts, methods, transports, versions; default-Block-with-allow-list example; TLS inspection required; stdio/local servers and JSON-RPC batches not inspected | Network edge | verified | Learn, "Configure Global Secure Access MCP firewall to secure MCP traffic (preview)" |
 | L7 | Secure Web and AI Gateway: Copilot Studio agent traffic (HTTP node, custom connectors, MCP server connector) forwarded per Power Platform environment; web content, threat intelligence and file filtering; requires Agent 365 | Network edge | verified; page not labeled preview | Learn, "Learn about Secure Web And AI Gateway for Microsoft Copilot Studio agents" |
-| L8 | Global Secure Access available in GCC, not yet supported in GCC High, DoD or other government clouds | Network edge; release table | verified | Learn, "Known limitations for Global Secure Access" |
-| L9 | Default-Block MCP posture from the identity records; block event as drift signal; GCC/GCC High consequences | Network edge | restated-as-design | Program design from L6, L8 and the Agent 365 service description |
+| L8 | Global Secure Access available in GCC | Network edge; release table | verified | Learn, "Known limitations for Global Secure Access" |
+| L9 | Default-Block MCP posture from the identity records; block event as drift signal; GCC consequences | Network edge | restated-as-design | Program design from L6, L8 and the Agent 365 service description |
 
 Learn pages left uncited but listed for this chapter in the coverage map: the individual agent OAuth flow pages, the sidecar setup and local-development pages, control-user-access, grant-agent-access-microsoft-365, manage-owners-sponsors, manage-agents-without-identity, the Bedrock and n8n pages and fundamentals/zero-trust-ai (topic-level matches; the chapter cites the more specific pages).
 
@@ -127,14 +125,10 @@ Added for the Zero Trust Assessment closure update (B17-01). Each row uses the v
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
 | Z1 | Disable an agent identity or blueprint (object kept, tokens stopped); three tenant-wide block policies, report-only first, P1; consequences; audit logging under base identity types | The kill switch | verified | Learn, Disable agent identities in your tenant | Nov 11, 2026 |
-| Z2 | PATCH servicePrincipals/{id}/microsoft.graph.agentIdentity; AgentIdentity.EnableDisable.All; Agent ID Administrator; US Gov L4 and L5 listed | The kill switch | verified | Learn, Graph Update agentIdentity; agentIdentity resource type | Nov 11, 2026 |
+| Z2 | PATCH servicePrincipals/{id}/microsoft.graph.agentIdentity; AgentIdentity.EnableDisable.All; Agent ID Administrator | The kill switch | verified | Learn, Graph Update agentIdentity; agentIdentity resource type | Nov 11, 2026 |
 | Z3 | Per-agent control table; who may pull the switch; yearly disable test | Workload-identity controls per agent | restated-as-design | Program design from Chapters 04-07 and Book 04 Chapter 05 | Nov 11, 2026 |
 | Z4 | M-25-21 fail-safe "when practicable" | Authority label | verified (carried from Chapter 02's verified reading) | Chapter 02 verification log | Nov 11, 2026 |
 
 ## Zero Trust closure, Phase 4, November 11, 2026 (implementation conventions)
 
-Follow-up: the agent-credential section's Applies line now links Book 04's governed consent process and tenant-creation restriction for GCC High and DoD, where Agent ID isn't published.
-
-| # | Claim (short) | Where | Verdict | Source | Checked |
-|---|---|---|---|---|---|
-| 1 | Book 04 records GCC High and DoD availability of the consent settings and the tenant-creation setting as not yet specified | The workload-identity controls, applied per agent, Applies | carried from Book 04, Chapters 05 and 09 | Book 04 pages and their verification files (read Nov 11, 2026) | Nov 11, 2026 |
+Follow-up: the agent-credential section's Applies line now links Book 04's governed consent process and tenant-creation restriction for AI systems governed as workload identities, where an Agent ID feature isn't available in GCC.

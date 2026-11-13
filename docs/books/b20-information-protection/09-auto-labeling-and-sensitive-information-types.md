@@ -1,6 +1,6 @@
 ---
 title: "Chapter 09 — Auto-Labeling and Sensitive Information Types"
-description: "How the agency detects sensitive content it never labeled: the classifier ladder from built-in sensitive information types to custom types, exact data match and trainable classifiers; confidence, count and proximity; custom types and rule packages as code; exact data match with the two-computer hash and upload; client-side and service-side auto-labeling; and the How section that takes a service-side auto-labeling policy from simulation to rollout, with government-cloud availability, licensing, limits, rollback, telemetry and evidence."
+description: "How the agency detects sensitive content it never labeled: the classifier ladder from built-in sensitive information types to custom types, exact data match and trainable classifiers; confidence, count and proximity; custom types and rule packages as code; exact data match with the two-computer hash and upload; client-side and service-side auto-labeling; and the How section that takes a service-side auto-labeling policy from simulation to rollout, with GCC availability, licensing, limits, rollback, telemetry and evidence."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b20-information-protection
@@ -20,7 +20,7 @@ lifecycle_review: 2027-05-01
 
 ::: {.callout-note}
 ## In this chapter
-The classifier ladder: built-in sensitive information types, custom types, exact data match and trainable classifiers, and when each is the right tool. How confidence, count and proximity trade false positives for false negatives. Custom types and their rule packages kept as code, and exact data match with the two-computer hash-and-upload method. Client-side and service-side auto-labeling. Then a How section that takes a service-side auto-labeling policy from simulation to rollout, with government-cloud availability, licensing, limits, rollback, telemetry and evidence.
+The classifier ladder: built-in sensitive information types, custom types, exact data match and trainable classifiers, and when each is the right tool. How confidence, count and proximity trade false positives for false negatives. Custom types and their rule packages kept as code, and exact data match with the two-computer hash-and-upload method. Client-side and service-side auto-labeling. Then a How section that takes a service-side auto-labeling policy from simulation to rollout, with GCC availability, licensing, limits, rollback, telemetry and evidence.
 :::
 
 [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#automatic-labeling) introduces sensitive information types, trainable classifiers and auto-labeling, gives a first service-side policy in simulation, and notes that there's no built-in U.S. employer identification number type, so agency identifiers need custom types. This chapter is the engineering behind that: how to choose a classifier, how to tune it, how to keep it in source control, how to use exact data match for the agency's own records, and how to roll auto-labeling out without stamping CUI on the wrong ten thousand files.
@@ -163,7 +163,7 @@ EDM matches content against the agency's own table of values. The schema and the
 
 The program uses the **two-computer method** Microsoft names as best practice: one computer, in a secured enclave with no direct connection to the tenant, hashes the clear-text table; a second computer uploads only the hash and salt files, so the clear-text values are never on a computer connected to the tenant.[^c09-edm-upload] Both computers must run the same version of the EDM Upload Agent.[^c09-edm-upload]
 
-Microsoft publishes a separate EDM Upload Agent for each cloud: Commercial and GCC, GCC High, and DoD.[^c09-edm-upload] Install the one that matches the tenant.
+Microsoft publishes the EDM Upload Agent for Commercial and GCC as one download.[^c09-edm-upload] Install that agent.
 
 Preparation, once:
 
@@ -193,11 +193,11 @@ EdmUploadAgent.exe /GetSession /DataStoreName <datastore>
 After the upload, test the EDM type with `Test-DataClassification` and wait 24 hours before testing it in a DLP policy, as Microsoft advises.[^c09-edm-schema] Delete the clear-text export from the hashing computer when the hash is made; the data owner, not the platform owner, decides how long the hashing computer keeps anything.
 
 **Authority:** Microsoft-recommended (the two-computer method and the 24-hour wait). Risk-based recommended (the program's position): the refresh schedule follows the source system's change rate, and the data owner signs off each refresh, because a stale table produces false negatives silently.
-**Applies:** License-dependent; Environment-dependent: EDM is listed as Available in GCC, GCC High and DoD, with a cloud-specific upload agent for each.[^c09-gcc][^c09-gcch][^c09-dod]
+**Applies:** License-dependent; Environment-dependent: EDM is listed as Available in GCC, with the Commercial and GCC upload agent.[^c09-gcc]
 
 ## Trainable classifiers
 
-Trainable classifiers recognize categories that have no pattern. [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#trainable-classifiers) gives the sample requirements for a custom classifier and warns that samples must come from the real document population. Two government-cloud points shape the decision. Machine-learning classifiers used for client-side auto-labeling in Office apps are listed as Available in GCC, GCC High and DoD.[^c09-gcc][^c09-gcch][^c09-dod] Applying retention or record policies automatically with trainable classifiers is listed as In development in all three, and the government pages don't list custom trainable-classifier creation as a separate row, so its status there is **not yet specified**. The program treats a custom trainable classifier as a pilot capability in GCC High and DoD until Learn states its status, and records the decision in the decision record.
+Trainable classifiers recognize categories that have no pattern. [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md#trainable-classifiers) gives the sample requirements for a custom classifier and warns that samples must come from the real document population. Two GCC points shape the decision. Machine-learning classifiers used for client-side auto-labeling in Office apps are listed as Available in GCC.[^c09-gcc] Applying retention or record policies automatically with trainable classifiers is listed as In development, and the GCC page doesn't list custom trainable-classifier creation as a separate row, so its status there is **not yet specified**.
 
 ## Client-side and service-side auto-labeling
 
@@ -209,7 +209,7 @@ Purview applies labels automatically in two places, and they complement each oth
 | Behavior | Recommends a label or applies it, per the label's settings | Applies the label without user interaction |
 | Conditions | Sensitive information types, trainable classifiers | The same, plus contextual conditions such as sharing state, file extension, document name, property, size and creator[^c09-depmod3] |
 | Scale | Each open document | A tenant-wide throughput ceiling of 500,000 files a day across all policies (not a guaranteed rate); 100 policies; 1,000 explicitly selected sites; 20,000,000 matched files per simulation[^c09-autolabel] |
-| Gov clouds | Available (Office apps across platforms; mobile clients on engineering backlog) | Available for Exchange, SharePoint and OneDrive[^c09-gcc][^c09-gcch][^c09-dod] |
+| GCC | Available (Office apps across platforms; mobile clients on engineering backlog) | Available for Exchange, SharePoint and OneDrive[^c09-gcc] |
 
 : Two places labels are applied automatically {.striped .hover}
 
@@ -225,23 +225,23 @@ This procedure takes one auto-labeling outcome (for example, "an unlabeled file 
 - **Roles.** Turning a policy from **Ready to turn on** to **On** requires Compliance Administrator or Compliance Data Administrator; viewing file contents in simulation requires the Data Classification Content Viewer role, which global admins don't have by default.[^c09-autolabel] Activate through PIM ([Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md)).
 - **Licensing (License-dependent).** Automatic labeling is a premium Information Protection capability; Microsoft also requires the standard (Plan 1) license to be assigned alongside the premium one for labeling to be available.[^c09-licensing] An unlicensed population is a licensing decision, not a failed control ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy)).
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| Auto-labeling for Exchange, SharePoint, OneDrive | Available | Available | Available | Available | Learn government Purview pages[^c09-gcc][^c09-gcch][^c09-dod] |
-| Enhanced simulations and location support (SharePoint, OneDrive) | Available | Available | Available | Available | Same |
-| Overwriting manual labels; encrypting mail from any organization | Available | Available | Available | Available | Same |
-| New conditions for auto-labeling in Exchange | Not yet specified | In development | In development | In development | Same |
-| Client-side auto-labeling in Office apps | Available | Available | Available | Available | Same |
-| Client-side auto-labeling in Office mobile clients | Available | On engineering backlog | On engineering backlog | On engineering backlog | Same |
-| Exact data match sensitive information types | Available | Available | Available | Available | Same |
-| Named entity sensitive information types | Available | In development | On engineering backlog | In development | Same |
-| Machine-learning classifiers, client-side | Available | Available | Available | Available | Same |
-| Content explorer including Teams data | Not yet specified | In development | In development | In development | Same |
-| Custom trainable classifier creation | Available | Not yet specified | Not yet specified | Not yet specified | Not listed on the government pages |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| Auto-labeling for Exchange, SharePoint, OneDrive | Available | Available | Learn GCC Purview page[^c09-gcc] |
+| Enhanced simulations and location support (SharePoint, OneDrive) | Available | Available | Same |
+| Overwriting manual labels; encrypting mail from any organization | Available | Available | Same |
+| New conditions for auto-labeling in Exchange | Not yet specified | In development | Same |
+| Client-side auto-labeling in Office apps | Available | Available | Same |
+| Client-side auto-labeling in Office mobile clients | Available | On engineering backlog | Same |
+| Exact data match sensitive information types | Available | Available | Same |
+| Named entity sensitive information types | Available | In development | Same |
+| Machine-learning classifiers, client-side | Available | Available | Same |
+| Content explorer including Teams data | Not yet specified | In development | Same |
+| Custom trainable classifier creation | Available | Not yet specified | Not listed on the GCC page |
 
-: Government-cloud availability for auto-labeling and classification (read Nov 11, 2026; Microsoft states the government status is subject to change) {.striped .hover}
+: GCC availability for auto-labeling and classification (read Nov 11, 2026; Microsoft states the GCC status is subject to change) {.striped .hover}
 
-Connect to Security & Compliance PowerShell as in [Chapter 08](08-dlp-and-endpoint-controls.md#prerequisites) (GCC High and DoD need the `-ConnectionUri` and `-AzureADAuthorizationEndpointUri` values given there).
+Connect to Security & Compliance PowerShell as in [Chapter 08](08-dlp-and-endpoint-controls.md#prerequisites).
 
 ### Pilot
 
@@ -371,7 +371,7 @@ These rows say what the chapter contributes. The agency still sets each control'
 [^c09-fp-step1]: Microsoft Learn, "Step 1: Configure pattern-based sensitive data detection," section "Refine using proximity elements, confidence level, and exclusions" (300-character proximity for new custom types; avoid unlimited proximity), <https://learn.microsoft.com/purview/deploymentmodels/depmod-reduce-false-positives-step1> (accessed Nov 11, 2026).
 [^c09-modify]: Microsoft Learn, "Modify a custom sensitive information type using PowerShell" (`Set-DlpSensitiveInformationTypeRulePackage`), <https://learn.microsoft.com/purview/sit-modify-a-custom-sensitive-information-type-in-powershell> (accessed Nov 11, 2026).
 [^c09-edm-schema]: Microsoft Learn, "Create an EDM SIT schema and rule package (New experience)," section "Recommendations" (wait an hour after creating or editing a schema; `Test-DataClassification`; wait 24 hours before testing in DLP), <https://learn.microsoft.com/purview/sit-create-edm-sit-unified-ux-schema-rule-package> (accessed Nov 11, 2026).
-[^c09-edm-upload]: Microsoft Learn, "Hash and upload the sensitive information source table for exact data match sensitive information types" (EDM_DataUploaders group; least-privilege roles; agent versions for Commercial + GCC, GCC High and DoD; two-computer method with the same agent version; `/ValidateData`, `/CreateHash`, `/Authorize`, `/UploadHash`, `/GetDataStore`, `/GetSession`; `/SaveSchema`), <https://learn.microsoft.com/purview/sit-get-started-exact-data-match-hash-upload> (accessed Nov 11, 2026).
+[^c09-edm-upload]: Microsoft Learn, "Hash and upload the sensitive information source table for exact data match sensitive information types" (EDM_DataUploaders group; least-privilege roles; agent version for Commercial + GCC; two-computer method with the same agent version; `/ValidateData`, `/CreateHash`, `/Authorize`, `/UploadHash`, `/GetDataStore`, `/GetSession`; `/SaveSchema`), <https://learn.microsoft.com/purview/sit-get-started-exact-data-match-hash-upload> (accessed Nov 11, 2026).
 [^c09-depmod3]: Microsoft Learn, "Step 3: Expand to your entire Microsoft 365 data estate," section "Simulate auto-labeling sensitive files at rest" (service-side contextual conditions; batch rollout by sites, higher sensitivity first), <https://learn.microsoft.com/purview/deploymentmodels/depmod-secure-by-default-step3> (accessed Nov 11, 2026).
 [^c09-autolabel]: Microsoft Learn, "Automatically apply a sensitivity label to Microsoft 365 data" (limits: 500,000 files a day ceiling, 100 policies, 1,000 sites, 20,000,000 matched files per simulation; 12-hour simulation target; single-policy simulation versus enforced result; auto-turn-on after seven days; prerequisites including auditing and roles; label removal policies remove encryption; review pages and 30-day coverage report), <https://learn.microsoft.com/purview/apply-sensitivity-label-automatically> (accessed Nov 11, 2026).
 [^c09-sim-results]: Microsoft Learn, "Review simulation results for auto-labeling policies in Microsoft Purview," sections "Failed simulations and partial results" and "Preserve results before editing or rerunning," <https://learn.microsoft.com/purview/auto-label-simulation-results> (accessed Nov 11, 2026).
@@ -379,6 +379,4 @@ These rows say what the chapter contributes. The agency still sets each control'
 [^c09-set-policy]: Microsoft Learn, "Set-AutoSensitivityLabelPolicy" (`StartSimulation`, `Mode`, `AddSharePointLocation`, `AutoEnableAfter`), <https://learn.microsoft.com/powershell/module/exchangepowershell/set-autosensitivitylabelpolicy> (accessed Nov 11, 2026).
 [^c09-audit-activities]: Microsoft Learn, "Audit log activities," section "Sensitivity label activities" (FileSensitivityLabelApplied, FileSensitivityLabelChanged, FileSensitivityLabelRemoved, FileSensitivityLabelAppliedFailed and FailureReason), <https://learn.microsoft.com/purview/audit-log-activities> (accessed Nov 11, 2026).
 [^c09-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4 (status subject to change), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c09-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c09-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4, <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).
 [^c09-53]: NIST SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls RA-2, AC-16 and CM-3, checked against the release 5.2.0 OSCAL catalog, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (accessed Nov 11, 2026).

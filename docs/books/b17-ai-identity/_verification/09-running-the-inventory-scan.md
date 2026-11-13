@@ -7,7 +7,7 @@ Writer W5, October 21, 2026. Method: OMB M-25-21 PDF from whitehouse.gov (pdftot
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | M-25-21 requires the inventory, not a scan of it | Intro | verified | M-25-21 §3(b)(v) |
-| 2 | Inventory at least annually, submit to OMB, post publicly; DoD and IC excepted; public version encouraged to be updated continuously | What the scan reads | verified | M-25-21 §3(b)(v) |
+| 2 | Inventory at least annually, submit to OMB, post publicly; covered agencies; public version encouraged to be updated continuously | What the scan reads | verified | M-25-21 §3(b)(v) |
 | 3 | 2025 cycle: submissions December 22, 2025; public CSV at `/ai` by January 28, 2026 | What the scan reads | verified | 2025 reporting guidance §1(a), §1(b) |
 | 4 | 3,611 individually reported, 41 agency submissions with individual use cases, 1,818 deployed or piloted, 445 high-impact, as of April 13, 2026 | What the scan reads | verified | Repository README Summary |
 | 5 | Use case ID required; may be removed from public version; email may be replaced with public inquiry address; withheld use cases and fields removed | Two-files table | verified | Data dictionary cols 3, 6; guidance §1(b)(i) |
@@ -35,7 +35,7 @@ Writer W5, October 21, 2026. Method: OMB M-25-21 PDF from whitehouse.gov (pdftot
 | 27 | Four tiers; 72-hour/30-day windows recast as acknowledgment windows | Four tiers | restated-as-design | Source proposal; reconciled with Book 13 Ch06 response targets |
 | 28 | Source: central scan "under two minutes for all 1,480 live systems" | — | removed | Unverifiable performance claim |
 | 29 | Source: OFCIO runs the scan "for all 56 agencies" | — | restated-as-design | No federal program runs it; 56 is agency submissions, 41 with individual use cases (README) |
-| 30 | Excluded categories: NSS, IC, DoD (Department of War) use cases, most research, withheld | Central limits | verified | README Exclusion Criteria |
+| 30 | Excluded categories: NSS, IC, most research, withheld | Central limits | verified | README Exclusion Criteria |
 | 31 | Common COTS AI reported in aggregate | Central limits | verified | Guidance §1(a)(i) |
 | 32 | Source finding codes (`DRIFT-COMPLIANCE::…`) | — | removed (translated to plain finding names per brief) | Brief |
 

@@ -68,7 +68,6 @@ New sections from the Learn coverage review (Mike, Nov 9, 2026: take all recomme
 | A11 | Connector services: Network Service (connector), NT Authority System (updater); changing them not supported | Step 2 | verified | Learn FAQ |
 | A12 | Connectors on Windows Server 2019 or later | Step 2 | restated-as-design | Workbook server baseline (program assumption) |
 | A13 | Local admin plus at least Application Administrator to register; Cloud Application Administrator can't manage application proxy settings | Step 3 | verified | Learn deployment plan |
-| A14 | Azure Government installer parameter `ENVIRONMENTNAME="AzureUSGovernment"`; URLs `*.msappproxy.us`, `*.servicebus.usgovcloudapi.net` | Step 3 | verified (search excerpt) | Learn, "Hybrid identity considerations for the Azure Government cloud" |
 | A15 | Incremental test order (preauthentication off, then preauthentication and assignment, then SSO, then CA) | Step 4 | verified | Learn deployment plan |
 | A16 | CA can't apply to passthrough; Assignment required defaults to Yes | Step 4 | verified | Learn FAQ |
 | A17 | Passthrough only for an isolated pilot; leave assignment required on | Step 4 | restated-as-design | Program design |
@@ -77,7 +76,6 @@ New sections from the Learn coverage review (Mike, Nov 9, 2026: take all recomme
 | A20 | Leave CAE on; disabling it is an exception | CAE | restated-as-design | Program design |
 | A21 | B2B: SAML apps need assignment; IWA/KCD need an on-premises footprint user via the MIM Graph connector or the B2B sample script; lifecycle carries; client access or external connector licensing | Guests | verified | Learn, "Grant Microsoft Entra B2B users access to your on-premises applications" |
 | A22 | Guests lack on-premises UPN and SAM name; falls back to UPN | Guests | verified | Learn FAQ |
-| A23 | Azure Government B2B: between Azure Government tenants that support B2B; cross-cloud with Microsoft cloud settings | Guests; availability table | verified (search excerpt) | Learn, "Microsoft Entra B2B in government and national clouds" |
 | A24 | PowerShell samples list apps, URLs, preauthentication, SSO mode, connector groups, connectors, default-domain, wildcard, custom-domain certificates; need Microsoft.Graph.Beta 2.10 or later | Inventory | verified | Learn, "Microsoft Entra application proxy PowerShell examples" |
 | A25 | A service principal can't manage application proxy through PowerShell or Graph | Inventory | verified | Learn FAQ |
 | A26 | Commands adapted from the connector-group and extended-information samples (same cmdlets, tag filter and onPremisesPublishing properties) | Inventory | adapted; not run | Learn sample pages |
@@ -90,9 +88,8 @@ New sections from the Learn coverage review (Mike, Nov 9, 2026: take all recomme
 | A33 | Oracle EBS, JDE and PeopleSoft recipes for F5 and Datawiza; JDE header `JDE_SSO_UID`; EBS LDAP lookup to OID, AccessGate issues the EBS cookie | ERP and HR suites | verified (search excerpts) | Learn F5 and Datawiza Oracle pages |
 | A34 | HR platform self-service on such a suite; pointer to Book 03 Ch13 | ERP and HR suites | restated-as-design (generic; no platform named) | Program design |
 | A35 | Path order: modern protocol, application proxy, partner, refactor | Choosing the path | restated-as-design | Program design |
-| A36 | Application proxy and secure hybrid access partnerships listed available in Azure for US Government | Availability | verified | Learn, "Microsoft Entra feature availability" |
-| A37 | GCC pairs with commercial Entra ID; GCC High and DoD with Azure Government | Availability | verified Oct 21, 2026 for Book 01 Appendix B; the Learn MCP server didn't respond on Nov 9 for a re-read | Learn, "Cloud feature availability for US Government customers" |
-| A38 | CAE for application proxy, partner products, beta Graph cmdlets in government clouds | Availability | not yet specified on Learn | none |
+| A37 | GCC pairs with commercial Entra ID | Availability | verified Oct 21, 2026 for Book 01 Appendix B; the Learn MCP server didn't respond on Nov 9 for a re-read | Learn, "Cloud feature availability for US Government customers" |
+| A38 | CAE for application proxy, partner products in GCC | Availability | not yet specified on Learn | none |
 
 Pointer for the Book 03 owner: Chapter 13 (reference deployment) should point back to this section for the HR platform's header-based sign-in pattern (Oracle suites through F5 or Datawiza), said generically.
 

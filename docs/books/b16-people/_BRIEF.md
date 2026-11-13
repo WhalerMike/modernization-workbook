@@ -44,7 +44,7 @@ pays twice. Training is also a control (AT-2, AT-3, AT-4, IR-2, CP-3) with evide
 | Source | Words | Feeds |
 |---|---|---|
 | `docs/compliance/Vol_V_Book_00_Training_Certification_Overview.md`, `docs/compliance/training-index.md`, `docs/program/education.md`, `docs/program/training.md` | 3,550 | Ch01, Ch09 |
-| (new research) federal workforce requirements: FISMA, 5 CFR 930.301, NICE Framework (NIST SP 800-181 Rev. 1 and the current NICE Framework components), OPM cybersecurity workforce coding, the Federal Cybersecurity Workforce Assessment Act, DoD 8140 only as a contrast | — | Ch02 |
+| (new research) federal workforce requirements: FISMA, 5 CFR 930.301, NICE Framework (NIST SP 800-181 Rev. 1 and the current NICE Framework components), OPM cybersecurity workforce coding, the Federal Cybersecurity Workforce Assessment Act | — | Ch02 |
 | `docs/compliance/Vol_V_Book_01_Compliance_Track.md` | 3,140 | Ch03 |
 | `docs/compliance/Vol_V_Book_02_Implementation_Track.md` | 2,230 | Ch04 |
 | `docs/compliance/Vol_V_Book_03_Assessment_Certification.md` | 2,340 | Ch05 |

@@ -37,7 +37,7 @@ This appendix helps an agency use the book's design in its own AI governance, se
 
 ## OMB M-25-21: agency duties
 
-M-25-21, *Accelerating Federal Use of AI through Innovation, Governance, and Public Trust* (April 3, 2025), rescinded and replaced M-24-10.[^aA-m2521] It applies to executive branch agencies, including independent regulatory agencies; elements of the Intelligence Community aren't required to implement the high-impact practices, and the Department of Defense and the Intelligence Community are excepted from the inventory.[^aA-m2521] No later OMB memorandum through M-27-01 replaces it.[^aA-omb-memos]
+M-25-21, *Accelerating Federal Use of AI through Innovation, Governance, and Public Trust* (April 3, 2025), rescinded and replaced M-24-10.[^aA-m2521] It applies to executive branch agencies, including independent regulatory agencies; elements of the Intelligence Community aren't required to implement the high-impact practices, and some agencies, including the Intelligence Community, are excepted from the inventory.[^aA-m2521] No later OMB memorandum through M-27-01 replaces it.[^aA-omb-memos]
 
 | Requirement | Section | Identity control | Carried in | Other books |
 |---|---|---|---|---|

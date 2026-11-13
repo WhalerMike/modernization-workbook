@@ -21,17 +21,14 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read: 14. Sources opened Nov 1
 | 13 | DLP for Copilot: four protections; external email preview; email from Jan 1, 2025; no calendar; one condition type per rule; Custom template only; simulation; up to 4 hours; evaluated at file open | DLP for Microsoft 365 Copilot | verified | "Learn about using Microsoft Purview DLP to protect interactions with Microsoft 365 Copilot…," https://learn.microsoft.com/purview/dlp-microsoft365-copilot-location-learn-about | Nov 11, 2026 |
 | 14 | Licensing: DLP restricting files/emails in E5/Purview suites not E3; DLP for prompts to all Copilot users | DLP for Microsoft 365 Copilot; Prerequisites | verified | "Microsoft Purview service description," DLP for Microsoft Copilot section | Nov 11, 2026 |
 | 15 | PowerShell for the Copilot DLP policy (location ID, EnforcementPlanes, AdvancedRule, RestrictAccess ExcludeContentProcessing) | Step 4 | verified; `-Mode TestWithoutNotifications` added (valid Mode value of New-DlpCompliancePolicy); label GUID replaced with placeholder | "New-DlpCompliancePolicy," Example 4 | Nov 11, 2026 |
-| 16 | Copilot availability by cloud (Teams and SharePoint not in GCCH; declarative agents not in DoD; web grounding off by default; Purview controls Yes ×4; IRM not in GCCH per footnote; Purview license G3/G5) | Prerequisites table | verified | "Microsoft Copilot" service description, Feature availability | Nov 11, 2026 |
-| 17 | DSPM for AI availability with "browse to URL" footnotes per cloud | Prerequisites table | verified | Purview GCC, GCC High, DoD planning pages, Step 4 note 2 | Nov 11, 2026 |
+| 16 | Copilot availability in Commercial and GCC (web grounding off by default in GCC; Purview controls Yes; Purview license G3/G5) | Prerequisites table | verified | "Microsoft Copilot" service description, Feature availability | Nov 11, 2026 |
+| 17 | DSPM for AI availability with the "browse to URL" footnote for GCC | Prerequisites table | verified | Purview GCC planning page, Step 4 note 2 | Nov 11, 2026 |
 | 18 | Auditing verify/turn on commands; value always False in SCC PowerShell; Audit Logs role | Step 1 | verified | "Turn auditing on or off," https://learn.microsoft.com/purview/audit-log-enable-disable | Nov 11, 2026 |
-| 19 | GCC High / DoD connection parameters | Steps | verified | "Connect to Security & Compliance PowerShell"; "Connect to Exchange Online PowerShell" | Nov 11, 2026 |
 | 20 | `Search-UnifiedAuditLog -RecordType DLPEndpoint` for endpoint DLP events | Step 6 | unverifiable on the pages read (record type name from the audit schema, not re-read today); the activity explorer step is the primary check | — | Nov 11, 2026 |
 | 21 | AI data decisions, rings, exclusions, backout triggers | Decisions; How | restated-as-design | Program design | Nov 11, 2026 |
 
-## Government-cloud gaps
-- Current (non-classic) Data Security Posture Management, AI observability and data risk assessments: Learn's government planning pages list only "DSPM for AI"; written "not yet specified" for GCC, GCC High and DoD.
-- DLP for Microsoft 365 Copilot location: no row of its own on the government pages; covered only by the Copilot service description's "Microsoft Purview controls" row. Written "not yet specified as its own row".
-- DLP to restrict Copilot from processing external email (commercial preview): not yet specified in any government cloud.
-- SharePoint Restricted Content Discovery: not yet specified for GCC, GCC High, DoD (not read on a government page).
-- **Source conflict:** Insider Risk Management in GCC High — Purview GCC High planning page lists core IRM features Available; Microsoft Copilot service description note 11 says "Insider Risk Management isn't currently available for GCC-High." Chapter tells GCC High tenants to treat IRM as unavailable until reconciled. Needs Mike's attention / Microsoft confirmation.
-- Minor: Learn's app-only authentication page gives a different DoD `ConnectionUri` (`https://compliance.dod.microsoft.com/powershell-liveid`) from the interactive connection page (`https://l5.ps.compliance.protection.office365.us/powershell-liveid/`); the chapter uses the interactive page's value.
+## GCC gaps
+- Current (non-classic) Data Security Posture Management, AI observability and data risk assessments: Learn's GCC planning page lists only "DSPM for AI"; written "not yet specified" for GCC.
+- DLP for Microsoft 365 Copilot location: no row of its own on the GCC page; covered only by the Copilot service description's "Microsoft Purview controls" row. Written "not yet specified as its own row".
+- DLP to restrict Copilot from processing external email (commercial preview): not yet specified in GCC.
+- SharePoint Restricted Content Discovery: not yet specified for GCC (not read on the GCC page).

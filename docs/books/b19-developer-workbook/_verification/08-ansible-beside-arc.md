@@ -19,9 +19,9 @@ Non-Learn sources, used only where Learn has nothing: the role's code on GitHub 
 | 5 | Automation Platform: constructed inventories, including from a CMDB; schedule the job nightly | What Learn gives you | verified | Learn, onboard with Ansible |
 | 6 | Learn's `requirements.yml` sample names the collection and Galaxy, with no version | What it leaves to you | verified | Learn, onboard with Ansible |
 | 7 | Pilot a representative, non-critical set for at least 30 days, with a rollback plan | What Learn gives you; What it leaves to you; Checklist | verified | Learn, plan and deploy |
-| 8 | Office 365 GCC uses Microsoft Entra Public; an Azure Government subscription can't be associated with a directory there; GCC High and DoD use Microsoft Entra Government | Where Ansible sits; Verified facts | verified | Learn, planning identity for Azure Government |
+| 8 | Office 365 GCC uses Microsoft Entra Public; an Azure Government subscription can't be associated with a directory there | Where Ansible sits; Verified facts | verified | Learn, planning identity for Azure Government |
 | 9 | `--cloud` values `AzureCloud`, `AzureUSGovernment`, `AzureChinaCloud`; default `AzureCloud` when not connected | Where Ansible sits; Verified facts | verified | Learn, azcmagent connect |
-| 10 | Commercial and Azure Government endpoint lists | Where Ansible sits; Verified facts | verified | Learn, network requirements |
+| 10 | Commercial endpoint list | Where Ansible sits; Verified facts | verified | Learn, network requirements |
 | 11 | `--tags` comma-delimited `Name=Value`; config file recommended for a secret; access tokens short-lived; `--enable-automatic-upgrade` public preview | The inventory; What it leaves to you; Verified facts | verified | Learn, azcmagent connect |
 | 12 | 50 tags per resource; values up to 256 characters | The inventory; Verified facts | verified | Learn, use tags |
 | 13 | Onboarding role can read and create Arc servers, not delete; Resource Administrator can delete | Lab 2; Verified facts | verified | Learn, identity and authorization; built-in roles |
