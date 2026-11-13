@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+The architecture has two trust boundaries.
+
+2
+00:00:02.588 --> 00:00:06.922
+The agency's holds the devices,
+the S O C's Sentinel workspace,
+
+3
+00:00:06.922 --> 00:00:09.487
+automation and the evidence store.
+
+4
+00:00:09.487 --> 00:00:13.550
+Microsoft's holds Defender X
+D R and its control planes.
+
+5
+00:00:13.550 --> 00:00:19.404
+Microsoft Learn says that for a U S
+Government tenant it's built in the Azure U S
+
+6
+00:00:19.404 --> 00:00:25.075
+Government environment, and G C C, G C C
+High and D O D each have their own portal.
+
+7
+00:00:25.075 --> 00:00:28.075
+Intune is the recommended
+tool for Defender settings,
+
+8
+00:00:28.075 --> 00:00:32.542
+through endpoint security policies, and
+they're assigned to Entra device groups,
+
+9
+00:00:32.542 --> 00:00:35.875
+because Defender management
+supports device objects only.
+
+10
+00:00:35.875 --> 00:00:41.150
+Automation levels, device groups and custom
+detections live in the Defender portal.
+
+11
+00:00:41.150 --> 00:00:43.734
+Telemetry flows to the tenant's instance,
+
+12
+00:00:43.734 --> 00:00:47.838
+alerts become incidents, and
+advanced hunting keeps thirty days.
+
+13
+00:00:47.838 --> 00:00:50.932
+Servers in A W S, Google
+Cloud or Oracle Cloud
+
+14
+00:00:50.932 --> 00:00:54.800
+Infrastructure arrive the
+way Azure Arc reaches them.
+
+15
+00:00:54.800 --> 00:01:00.120
+And use one control plane per setting:
+Group Policy wins over Intune by default.

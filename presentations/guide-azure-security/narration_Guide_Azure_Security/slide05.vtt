@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.950
+Which cloud?
+
+2
+00:00:00.950 --> 00:00:06.200
+Microsoft three sixty-five G C C pairs
+with commercial Azure, so a G C C agency's
+
+3
+00:00:06.200 --> 00:00:11.450
+subscriptions are usually commercial,
+and every service here is available.
+
+4
+00:00:11.450 --> 00:00:16.042
+G C C High and D O D pair with Azure
+Government, and Microsoft Learn's page,
+
+5
+00:00:16.042 --> 00:00:18.892
+Compare Azure Government and global Azure,
+
+6
+00:00:18.892 --> 00:00:23.800
+says a service there has all its features
+unless the page lists a variation.
+
+7
+00:00:23.800 --> 00:00:24.850
+A few matter.
+
+8
+00:00:24.850 --> 00:00:29.654
+Front Door Standard and Premium are
+generally available in two U S Gov regions,
+
+9
+00:00:29.654 --> 00:00:33.350
+and Private Link origins outside
+Virginia are unconfirmed.
+
+10
+00:00:33.350 --> 00:00:38.791
+On Application Gateway, Learn's web application
+firewall F A Q says sovereign clouds
+
+11
+00:00:38.791 --> 00:00:43.067
+have no bot protection rule sets
+and no geo-filtering custom rules,
+
+12
+00:00:43.067 --> 00:00:48.275
+so that Zero Trust test is recorded as
+skipped, not applicable, rather than failed.
+
+13
+00:00:48.275 --> 00:00:53.812
+Private DNS zone names differ, and
+Lighthouse has no pim for delegated access.
+
+14
+00:00:53.812 --> 00:00:57.740
+Whatever the cloud, sign in to
+the one the subscription lives in.

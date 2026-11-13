@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.709
+Gate five covers what Defender adds to
+the vulnerability program that Security
+
+2
+00:00:04.709 --> 00:00:08.812
+Operations and Telemetry runs, and what
+it can't do in a government cloud.
+
+3
+00:00:08.812 --> 00:00:13.800
+Microsoft Learn says Security Exposure
+Management, which holds attack paths,
+
+4
+00:00:13.800 --> 00:00:17.023
+the exposure graph and
+critical asset management,
+
+5
+00:00:17.023 --> 00:00:20.937
+is available in Public Cloud only,
+not in U S Government clouds.
+
+6
+00:00:20.937 --> 00:00:23.925
+So a Zero Trust Assessment
+test that needs it is
+
+7
+00:00:23.925 --> 00:00:26.988
+recorded as not applicable
+in the tenant's cloud.
+
+8
+00:00:26.988 --> 00:00:29.401
+That's a disposition, not a failure.
+
+9
+00:00:29.401 --> 00:00:33.925
+What the government clouds do have is
+Vulnerability Management, core and premium,
+
+10
+00:00:33.925 --> 00:00:38.050
+without two features, and Secure Score
+with some recommendations missing.
+
+11
+00:00:38.050 --> 00:00:40.160
+The interim path for attack paths:
+
+12
+00:00:40.160 --> 00:00:45.512
+prioritize by exposure level and internet-facing
+devices from the device info table,
+
+13
+00:00:45.512 --> 00:00:48.225
+and use the Tier zero
+inventory from Access
+
+14
+00:00:48.225 --> 00:00:50.788
+and Privilege as the critical-asset list.
+
+15
+00:00:50.788 --> 00:00:53.658
+A vulnerability without
+an owner is a finding
+
+16
+00:00:53.658 --> 00:00:56.150
+against the inventory control, C M eight.
+
+17
+00:00:56.150 --> 00:00:59.350
+And Sentinel can't query
+the vulnerability tables.

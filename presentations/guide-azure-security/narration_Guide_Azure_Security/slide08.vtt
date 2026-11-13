@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.800
+Now how, starting with steps one and two.
+
+2
+00:00:02.800 --> 00:00:06.825
+Step one adds the security
+settings the landing zone needs.
+
+3
+00:00:06.825 --> 00:00:11.713
+Protect the hierarchy, as Learn's page,
+Protect your resource hierarchy, shows:
+
+4
+00:00:11.713 --> 00:00:15.073
+require authorization to
+create management groups
+
+5
+00:00:15.073 --> 00:00:17.975
+and send new subscriptions
+to a default group.
+
+6
+00:00:17.975 --> 00:00:22.881
+Assign the Microsoft cloud security
+benchmark and the fed-ramp initiative at the
+
+7
+00:00:22.881 --> 00:00:27.138
+intermediate root in do-not-enforce
+mode, which, per Learn's Azure Policy
+
+8
+00:00:27.138 --> 00:00:32.188
+assignment structure, evaluates compliance
+without enforcing; step nine enforces.
+
+9
+00:00:32.188 --> 00:00:35.536
+Send every platform resource's
+logs to the workspace,
+
+10
+00:00:35.536 --> 00:00:37.438
+and turn on Defender for Cloud.
+
+11
+00:00:37.438 --> 00:00:41.543
+Step two builds what nothing else
+can be proved complete without:
+
+12
+00:00:41.543 --> 00:00:42.988
+a list of what's exposed.
+
+13
+00:00:42.988 --> 00:00:46.166
+Learn recommends an
+inventory of every public I P
+
+14
+00:00:46.166 --> 00:00:49.500
+and its protection status,
+kept with Resource Graph.
+
+15
+00:00:49.500 --> 00:00:53.356
+The register adds the owner, the
+D N S names and certificates,
+
+16
+00:00:53.356 --> 00:00:56.975
+and whether a web application
+firewall covers each one.
+
+17
+00:00:56.975 --> 00:01:00.740
+It's a map of the attack surface,
+so keep it inside the boundary.

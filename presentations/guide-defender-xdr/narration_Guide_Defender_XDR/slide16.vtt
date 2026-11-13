@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.913
+To close, the dangers.
+
+2
+00:00:01.913 --> 00:00:04.486
+A rule assigned to user
+groups never applies,
+
+3
+00:00:04.486 --> 00:00:07.963
+because Defender management
+supports device objects only.
+
+4
+00:00:07.963 --> 00:00:13.525
+Intune and Group Policy both setting a
+rule means Group Policy silently wins.
+
+5
+00:00:13.525 --> 00:00:16.232
+A server's compliance
+report can show a rule
+
+6
+00:00:16.232 --> 00:00:18.788
+enforced when it isn't,
+so check the server.
+
+7
+00:00:18.788 --> 00:00:22.757
+Exposure Management assumed in a
+government cloud stalls the work,
+
+8
+00:00:22.757 --> 00:00:25.238
+or makes an assessment
+test read as failed.
+
+9
+00:00:25.238 --> 00:00:27.909
+Attack disruption
+containing a server or an
+
+10
+00:00:27.909 --> 00:00:30.725
+emergency account means
+an outage or a lockout.
+
+11
+00:00:30.725 --> 00:00:34.057
+And hunting evidence older
+than thirty days isn't there,
+
+12
+00:00:34.057 --> 00:00:35.650
+so the monthly run files it.
+
+13
+00:00:35.650 --> 00:00:40.034
+The guide is plain about what it couldn't
+verify: the detection rules A P I,
+
+14
+00:00:40.034 --> 00:00:44.195
+attack disruption and web content
+filtering in government clouds,
+
+15
+00:00:44.195 --> 00:00:49.025
+and the detection test on Windows ten and
+eleven, which Learn's page doesn't list.
+
+16
+00:00:49.025 --> 00:00:50.725
+Nothing was run in a tenant.
+
+17
+00:00:50.725 --> 00:00:53.733
+Next, read Security
+Operations and Telemetry
+
+18
+00:00:53.733 --> 00:00:56.425
+and the devices book,
+which own the design.
+
+19
+00:00:56.425 --> 00:00:57.240
+Thank you.

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.158
+This is the narrated briefing
+for a companion guide in the
+
+3
+00:00:04.158 --> 00:00:07.837
+Federal Modernization Workbook:
+Azure Security Engineering.
+
+4
+00:00:07.837 --> 00:00:10.119
+One thing first: the guide is a draft,
+
+5
+00:00:10.119 --> 00:00:14.051
+awaiting the editor's review, so
+recheck it after that review.
+
+6
+00:00:14.051 --> 00:00:19.321
+The guide engineers the security of an
+agency's Azure estate on top of the landing
+
+7
+00:00:19.321 --> 00:00:22.075
+zone, as ten gated steps
+an operator can run:
+
+8
+00:00:22.075 --> 00:00:26.245
+from the security baseline and
+an inventory of public exposure,
+
+9
+00:00:26.245 --> 00:00:30.415
+through DDoS protection, the web
+application firewall, ingress,
+
+10
+00:00:30.415 --> 00:00:35.450
+Azure Firewall, Private Link and Key
+Vault, to policy, operations and evidence.
+
+11
+00:00:35.450 --> 00:00:39.511
+Its commands and service behavior
+come from Microsoft Learn,
+
+12
+00:00:39.511 --> 00:00:44.050
+read on November eleventh, 2026, and
+its control statements from NIST.
+
+13
+00:00:44.050 --> 00:00:47.175
+The program's own choices
+are called design guidance.
+
+14
+00:00:47.175 --> 00:00:49.950
+Nothing in it was run
+against a live subscription.
+
+15
+00:00:49.950 --> 00:00:53.520
+We'll go in four parts:
+why, what, who, and how.

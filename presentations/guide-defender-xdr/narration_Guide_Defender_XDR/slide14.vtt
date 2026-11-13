@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Gates eight and nine.
+
+2
+00:00:01.362 --> 00:00:04.592
+Gate eight puts identity
+and S A A S behavior
+
+3
+00:00:04.592 --> 00:00:07.551
+into the same incidents as the endpoint.
+
+4
+00:00:07.551 --> 00:00:12.040
+Defender for Identity's sensors go
+on domain controllers, A D F S,
+
+5
+00:00:12.040 --> 00:00:17.738
+A D C S and Entra Connect servers, starting
+with one domain controller per domain.
+
+6
+00:00:17.738 --> 00:00:21.450
+Microsoft Learn gives each
+cloud its own sensor endpoint.
+
+7
+00:00:21.450 --> 00:00:24.914
+Two gaps: App Governance
+alerts are roadmap items,
+
+8
+00:00:24.914 --> 00:00:27.533
+and Cloud Apps behaviors aren't in G C C.
+
+9
+00:00:27.533 --> 00:00:33.025
+Validate with a correlation query: users
+with alerts from more than one source.
+
+10
+00:00:33.025 --> 00:00:36.975
+Gate nine sets Defender's automation
+to match the response ladder.
+
+11
+00:00:36.975 --> 00:00:40.655
+Pilot ring one's device group
+at the semi level that requires
+
+12
+00:00:40.655 --> 00:00:44.262
+approval for all folders, and
+review two weeks of approvals.
+
+13
+00:00:44.262 --> 00:00:48.777
+Then workstations go to full, which
+Learn recommends, and servers stay
+
+14
+00:00:48.777 --> 00:00:53.525
+at a semi level, because the program
+never isolates a server autonomously.
+
+15
+00:00:53.525 --> 00:00:56.605
+Exclude the emergency
+access accounts and the S
+
+16
+00:00:56.605 --> 00:00:59.762
+O C's own service accounts
+from attack disruption.
+
+17
+00:00:59.762 --> 00:01:02.350
+Every disruption action can be undone.

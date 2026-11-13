@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.025
+Step five.
+
+2
+00:00:01.025 --> 00:00:05.620
+Internet Access groups web content
+filtering, threat intelligence,
+
+3
+00:00:05.620 --> 00:00:09.489
+T L S inspection and file
+policies into security profiles,
+
+4
+00:00:09.489 --> 00:00:12.875
+and Conditional Access
+assigns a profile to users.
+
+5
+00:00:12.875 --> 00:00:15.365
+Learn's Graph tutorial is the procedure:
+
+6
+00:00:15.365 --> 00:00:20.495
+a filtering policy that blocks the categories
+the agency's acceptable-use policy
+
+7
+00:00:20.495 --> 00:00:23.437
+names, a security profile,
+the link between them,
+
+8
+00:00:23.437 --> 00:00:27.662
+and a Conditional Access policy that
+assigns it, scoped to the pilot.
+
+9
+00:00:27.662 --> 00:00:29.041
+Enable both profiles,
+
+10
+00:00:29.041 --> 00:00:33.176
+because the internet profile
+doesn't include Microsoft traffic.
+
+11
+00:00:33.176 --> 00:00:37.425
+Put threat intelligence in the baseline
+profile so it covers everyone.
+
+12
+00:00:37.425 --> 00:00:41.169
+Learn's limits: H T T P and
+H T T P S on ports eighty
+
+13
+00:00:41.169 --> 00:00:45.114
+and four forty-three, no I
+P version six and no U D P.
+
+14
+00:00:45.114 --> 00:00:47.745
+Quick isn't forwarded end to end,
+
+15
+00:00:47.745 --> 00:00:53.512
+so the guide blocks U D P four
+forty-three with a Windows firewall rule.
+
+16
+00:00:53.512 --> 00:00:57.550
+And every bypass gets an
+owner, a reason and an expiry.

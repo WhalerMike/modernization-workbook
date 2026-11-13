@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.250
+Step five finishes the ingress.
+
+2
+00:00:02.250 --> 00:00:07.497
+Front Door is global, at the Microsoft
+edge with built-in network-layer DDoS
+
+3
+00:00:07.497 --> 00:00:12.575
+protection; Application Gateway is
+regional, in the agency's own network.
+
+4
+00:00:12.575 --> 00:00:15.137
+Either works with the
+firewall from step four.
+
+5
+00:00:15.137 --> 00:00:19.031
+What matters is that nothing can
+reach the origin around the edge,
+
+6
+00:00:19.031 --> 00:00:22.637
+or an attacker skips both the
+firewall and the DDoS controls.
+
+7
+00:00:22.637 --> 00:00:27.345
+Use Private Link where the origin
+supports it: Front Door Premium reaches
+
+8
+00:00:27.345 --> 00:00:31.975
+App Service, Blob Storage, internal
+load balancers and others privately.
+
+9
+00:00:31.975 --> 00:00:36.343
+Where it doesn't, Learn's page, Secure
+traffic to Azure Front Door origins,
+
+10
+00:00:36.343 --> 00:00:40.267
+says to use the service tag and
+the Front Door I D header together,
+
+11
+00:00:40.267 --> 00:00:44.413
+because the tag's addresses are
+shared by every Front Door customer.
+
+12
+00:00:44.413 --> 00:00:48.076
+Set T L S one point two
+or one point three only.
+
+13
+00:00:48.076 --> 00:00:51.853
+Build health probes and two
+origins in different regions,
+
+14
+00:00:51.853 --> 00:00:53.900
+then stop one to prove failover.
+
+15
+00:00:53.900 --> 00:00:59.060
+And migrate any classic Front Door
+before March thirty-first, 2027.

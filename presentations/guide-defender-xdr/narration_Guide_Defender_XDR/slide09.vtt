@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.950
+Gate three is prevention.
+
+2
+00:00:01.950 --> 00:00:07.047
+Antivirus, firewall and tamper protection
+carry the values from the devices book's
+
+3
+00:00:07.047 --> 00:00:10.149
+policy library; the guide
+adds network protection,
+
+4
+00:00:10.149 --> 00:00:14.138
+web protection and controlled
+folder access, and proves each one.
+
+5
+00:00:14.138 --> 00:00:18.784
+Network protection and controlled
+folder access both have an audit mode,
+
+6
+00:00:18.784 --> 00:00:21.374
+value two, that logs
+what they would block.
+
+7
+00:00:21.374 --> 00:00:25.088
+Run them in audit on rings zero
+and one for at least two weeks,
+
+8
+00:00:25.088 --> 00:00:29.937
+read the audit events weekly, and add
+allowed applications before enforcing.
+
+9
+00:00:29.937 --> 00:00:33.743
+Antivirus, firewall and tamper
+protection have no audit mode,
+
+10
+00:00:33.743 --> 00:00:37.026
+so they go straight to ring
+one with backout triggers.
+
+11
+00:00:37.026 --> 00:00:40.963
+Then enforce ring by ring,
+with exit criteria for each.
+
+12
+00:00:40.963 --> 00:00:45.993
+On a device, Microsoft Learn's commands
+show tamper and real-time protection,
+
+13
+00:00:45.993 --> 00:00:49.187
+the modes, and the firewall
+profiles as enforced.
+
+14
+00:00:49.187 --> 00:00:51.451
+Rollback sets the mode back to audit.
+
+15
+00:00:51.451 --> 00:00:56.060
+Learn says tamper protection is turned
+off only from the console that set it.

@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+What does the government cloud give you?
+
+2
+00:00:01.900 --> 00:00:07.670
+Microsoft Learn says Defender for
+Endpoint, prevention through remediation,
+
+3
+00:00:07.670 --> 00:00:10.245
+is available in G C C,
+G C C High and D O D,
+
+4
+00:00:10.245 --> 00:00:14.062
+and so is security settings
+management for servers.
+
+5
+00:00:14.062 --> 00:00:15.800
+Each cloud has its own portal.
+
+6
+00:00:15.800 --> 00:00:20.950
+G C C reads incidents and runs hunting
+through the worldwide Graph host.
+
+7
+00:00:20.950 --> 00:00:24.625
+Vulnerability Management is
+there, minus two features.
+
+8
+00:00:24.625 --> 00:00:28.738
+Defender for Identity and Defender
+for Cloud Apps are available,
+
+9
+00:00:28.738 --> 00:00:32.013
+with App Governance alerts
+listed as roadmap items.
+
+10
+00:00:32.013 --> 00:00:33.126
+Then the gaps.
+
+11
+00:00:33.126 --> 00:00:35.745
+Microsoft Security Exposure Management,
+
+12
+00:00:35.745 --> 00:00:40.013
+which holds attack paths and the
+exposure graph, is Public Cloud only.
+
+13
+00:00:40.013 --> 00:00:43.394
+Learn doesn't say whether
+Graph custom detection rules,
+
+14
+00:00:43.394 --> 00:00:48.613
+automatic attack disruption, or web content
+filtering on Windows reach these clouds.
+
+15
+00:00:48.613 --> 00:00:52.324
+The guide's rule: not yet
+specified means Learn doesn't say,
+
+16
+00:00:52.324 --> 00:00:53.825
+not that it's available.
+
+17
+00:00:53.825 --> 00:00:58.440
+And an unlicensed feature is a licensing
+decision, not a failed control.

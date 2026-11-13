@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:05.894
+This is the narrated briefing for a
+companion guide in the Federal Modernization
+
+3
+00:00:05.894 --> 00:00:10.725
+Workbook: Defender X D R Engineering
+and Operations, an implementation guide.
+
+4
+00:00:10.725 --> 00:00:13.016
+One thing first: the guide is a draft,
+
+5
+00:00:13.016 --> 00:00:16.887
+awaiting the editor's review,
+so recheck it after the review.
+
+6
+00:00:16.887 --> 00:00:19.037
+Its idea fits in a sentence.
+
+7
+00:00:19.037 --> 00:00:21.801
+A Defender license is
+not a defended endpoint:
+
+8
+00:00:21.801 --> 00:00:24.637
+the sensor has to be on
+every device and healthy,
+
+9
+00:00:24.637 --> 00:00:28.781
+the prevention settings have to be
+enforced and not just configured,
+
+10
+00:00:28.781 --> 00:00:32.126
+and every alert has to end in
+a decision someone can show.
+
+11
+00:00:32.126 --> 00:00:36.211
+The guide covers Windows
+clients and Windows Server only,
+
+12
+00:00:36.211 --> 00:00:41.575
+for a civilian agency at fed-ramp Moderate
+in Microsoft three sixty-five G C C.
+
+13
+00:00:41.575 --> 00:00:45.859
+Its facts were read on Microsoft
+Learn on November eleventh,
+
+14
+00:00:45.859 --> 00:00:48.687
+2026, and nothing in it
+was run in a tenant.
+
+15
+00:00:48.687 --> 00:00:52.250
+We'll go in four parts:
+why, what, who, and how.

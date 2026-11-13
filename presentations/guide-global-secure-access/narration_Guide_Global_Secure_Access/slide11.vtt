@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.537
+Steps four and seven belong together.
+
+2
+00:00:02.537 --> 00:00:06.370
+The Microsoft traffic profile
+acquires Microsoft three
+
+3
+00:00:06.370 --> 00:00:09.963
+sixty-five and Entra traffic,
+and only that profile can.
+
+4
+00:00:09.963 --> 00:00:14.366
+Enable it, assign the pilot group in
+the portal, and turn on signaling,
+
+5
+00:00:14.366 --> 00:00:19.163
+which carries source I P restoration,
+so Entra sees the user's real address.
+
+6
+00:00:19.163 --> 00:00:24.763
+Learn's test: a SharePoint sign-in shows
+the same I P with the client on or off.
+
+7
+00:00:24.763 --> 00:00:28.637
+The compliant network check then
+passes only for users who come
+
+8
+00:00:28.637 --> 00:00:32.950
+through this tenant's Global Secure
+Access, and denies a replayed token.
+
+9
+00:00:32.950 --> 00:00:38.103
+Learn's example policy goes straight to on;
+the guide runs it in report-only for ten
+
+10
+00:00:38.103 --> 00:00:43.487
+business days, excluding the Intune enrollment
+apps and the emergency access group.
+
+11
+00:00:43.487 --> 00:00:45.262
+Know the failure modes first.
+
+12
+00:00:45.262 --> 00:00:48.151
+A disabled client is
+blocked at the next sign-in.
+
+13
+00:00:48.151 --> 00:00:53.250
+In an outage, Microsoft's break-glass
+scripts switch the policies to report-only.
+
+14
+00:00:53.250 --> 00:00:56.788
+Turning signaling off while
+policies are on blocks users.
+
+15
+00:00:56.788 --> 00:00:59.760
+And the check doesn't apply
+to Private Access apps.

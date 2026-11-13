@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:05.710
+This is the narrated briefing for a
+companion guide in the Federal Modernization
+
+3
+00:00:05.710 --> 00:00:09.784
+Workbook: Global Secure Access and
+Zero Trust Network Engineering,
+
+4
+00:00:09.784 --> 00:00:11.312
+an implementation guide.
+
+5
+00:00:11.312 --> 00:00:13.603
+One thing first: the guide is a draft,
+
+6
+00:00:13.603 --> 00:00:17.474
+awaiting the editor's review,
+so recheck it after the review.
+
+7
+00:00:17.474 --> 00:00:19.625
+Its idea fits in a sentence.
+
+8
+00:00:19.625 --> 00:00:22.444
+A V P N proves that a
+device reached the network;
+
+9
+00:00:22.444 --> 00:00:26.449
+the work in this guide makes every
+connection prove who is asking,
+
+10
+00:00:26.449 --> 00:00:30.825
+from which device, for which application,
+and leaves a record that it did.
+
+11
+00:00:30.825 --> 00:00:34.212
+The guide assumes a
+civilian agency at fed-ramp
+
+12
+00:00:34.212 --> 00:00:37.338
+Moderate on Microsoft
+three sixty-five G C C.
+
+13
+00:00:37.338 --> 00:00:41.968
+Its product facts come from Microsoft
+Learn, its tick three point oh
+
+14
+00:00:41.968 --> 00:00:47.012
+statements from CISA's own documents,
+all read on November eleventh, 2026.
+
+15
+00:00:47.012 --> 00:00:49.151
+Nothing in it was run against a tenant.
+
+16
+00:00:49.151 --> 00:00:52.700
+We'll go in four parts:
+why, what, who, and how.

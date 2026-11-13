@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.287
+Most agencies already hold a
+fed-ramp authorized S S E or V P N,
+
+2
+00:00:04.287 --> 00:00:09.562
+so the question is usually which functions
+to move, not which vendor to buy.
+
+3
+00:00:09.562 --> 00:00:14.935
+Global Secure Access decides policy
+in Entra Conditional Access, the same
+
+4
+00:00:14.935 --> 00:00:20.134
+engine as sign-in; a third party uses
+its own engine, usually fed by Entra I D.
+
+5
+00:00:20.134 --> 00:00:23.341
+Global Secure Access
+reaches G C C only today;
+
+6
+00:00:23.341 --> 00:00:27.587
+several third-party offerings
+hold fed-ramp High listings.
+
+7
+00:00:27.587 --> 00:00:31.884
+Three signals only Entra can produce:
+the compliant network check,
+
+8
+00:00:31.884 --> 00:00:35.712
+universal tenant restrictions,
+and source I P restoration.
+
+9
+00:00:35.712 --> 00:00:37.325
+Running both is supported.
+
+10
+00:00:37.325 --> 00:00:42.462
+Private apps in A W S, Google Cloud or
+Oracle Cloud Infrastructure are reached like
+
+11
+00:00:42.462 --> 00:00:47.146
+on-premises ones, through connectors
+with line of sight to the application,
+
+12
+00:00:47.146 --> 00:00:49.563
+one connector group per cloud network.
+
+13
+00:00:49.563 --> 00:00:53.060
+Learn has no procedure specific
+to any of those clouds.

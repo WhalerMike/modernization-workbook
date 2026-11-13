@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.100
+Here's the idea the guide starts from.
+
+2
+00:00:02.100 --> 00:00:05.254
+A landing zone decides what
+can be deployed, and where:
+
+3
+00:00:05.254 --> 00:00:08.981
+the management group hierarchy,
+the boundary policies and the
+
+4
+00:00:08.981 --> 00:00:12.637
+exemption rule that Cloud Boundary
+and Landing Zone designs.
+
+5
+00:00:12.637 --> 00:00:15.316
+It doesn't decide what
+the internet can reach,
+
+6
+00:00:15.316 --> 00:00:17.850
+what leaves the estate,
+or who can read a key.
+
+7
+00:00:17.850 --> 00:00:22.363
+Those are engineered one service at a
+time, and each one has to be proved.
+
+8
+00:00:22.363 --> 00:00:24.151
+So the guide's goal is this.
+
+9
+00:00:24.151 --> 00:00:27.844
+Every internet-facing service is
+in an inventory with an owner,
+
+10
+00:00:27.844 --> 00:00:32.249
+behind DDoS protection and a web
+application firewall in prevention mode,
+
+11
+00:00:32.249 --> 00:00:34.238
+and nothing can reach around them.
+
+12
+00:00:34.238 --> 00:00:37.833
+Workloads leave Azure only
+through an inspecting firewall
+
+13
+00:00:37.833 --> 00:00:41.500
+and reach platform services
+only through private endpoints.
+
+14
+00:00:41.500 --> 00:00:46.812
+Keys sit in vaults that only managed identities
+and eligible administrators can use.
+
+15
+00:00:46.812 --> 00:00:49.350
+And Azure Policy holds it all in place.
+
+16
+00:00:49.350 --> 00:00:53.805
+A finding is ready for closure when
+every applicable state has evidence;
+
+17
+00:00:53.805 --> 00:00:56.760
+the authorizing official
+or assessor decides.

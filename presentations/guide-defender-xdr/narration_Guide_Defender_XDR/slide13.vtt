@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.259
+Gate seven puts detections in a repository
+and deploys them through the Graph A P I,
+
+2
+00:00:05.259 --> 00:00:09.625
+following the rule lifecycle in
+Security Operations and Telemetry.
+
+3
+00:00:09.625 --> 00:00:13.452
+Each rule file starts disabled,
+and leaves out automated actions,
+
+4
+00:00:13.452 --> 00:00:15.862
+because containment stays on the ladder.
+
+5
+00:00:15.862 --> 00:00:20.310
+Every rule has a validation dataset:
+a known-bad event it must find,
+
+6
+00:00:20.310 --> 00:00:23.275
+and a known-good window
+it must stay quiet in.
+
+7
+00:00:23.275 --> 00:00:26.125
+A rule that can't be shown
+to fire isn't finished.
+
+8
+00:00:26.125 --> 00:00:30.907
+Test the query against the last thirty
+days, which is all advanced hunting keeps,
+
+9
+00:00:30.907 --> 00:00:33.950
+then post the file to the
+detection rules endpoint.
+
+10
+00:00:33.950 --> 00:00:39.025
+Enabling is a change to the status in
+the repository, reviewed and redeployed.
+
+11
+00:00:39.025 --> 00:00:44.790
+Microsoft Learn's hunting A P I is available
+in U S Government L four and L five,
+
+12
+00:00:44.790 --> 00:00:49.000
+but the detection rules A P I
+has no national cloud table,
+
+13
+00:00:49.000 --> 00:00:54.125
+so in G C C High and D O D, create the
+rule in the portal from the same file.
+
+14
+00:00:54.125 --> 00:00:58.300
+Pass: the deployed rules
+match the repository, exactly.

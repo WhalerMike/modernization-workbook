@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.888
+Now, who.
+
+2
+00:00:00.888 --> 00:00:06.382
+Microsoft's operations guide gives a RACI
+with a service owner, network security
+
+3
+00:00:06.382 --> 00:00:11.549
+engineer, identity engineer, S O C analyst,
+help desk and platform operations.
+
+4
+00:00:11.549 --> 00:00:15.086
+The guide maps those to six
+roles and adds the assessor,
+
+5
+00:00:15.086 --> 00:00:17.050
+who is independent of the work.
+
+6
+00:00:17.050 --> 00:00:20.818
+The policy owner, the service
+owner with the I S S O consulted,
+
+7
+00:00:20.818 --> 00:00:26.123
+is accountable for the decision record,
+the architecture, the traffic profiles, the
+
+8
+00:00:26.123 --> 00:00:31.275
+Conditional Access policies and their
+exclusions, and the T L S inspection scope.
+
+9
+00:00:31.275 --> 00:00:34.906
+The platform owner, the network
+security and identity engineers,
+
+10
+00:00:34.906 --> 00:00:36.788
+is responsible for building them.
+
+11
+00:00:36.788 --> 00:00:41.976
+Operators run the client rings, the
+connectors and the domain controller sensors.
+
+12
+00:00:41.976 --> 00:00:46.313
+The security monitor owns alerts,
+log freshness and the metrics.
+
+13
+00:00:46.313 --> 00:00:49.062
+The help desk takes tier-one user issues.
+
+14
+00:00:49.062 --> 00:00:53.717
+The assessor assesses the evidence and
+recommends a finding ready for closure,
+
+15
+00:00:53.717 --> 00:00:55.974
+and the authorizing official decides.
+
+16
+00:00:55.974 --> 00:00:59.260
+Learn's advice is at least
+two people for every role.

@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.000
+The workbook's books
+already design most of this.
+
+2
+00:00:03.000 --> 00:00:06.186
+Cloud Boundary and Landing
+Zone builds the hierarchy,
+
+3
+00:00:06.186 --> 00:00:09.938
+the boundary policies, the
+provisioning loop and the ownership.
+
+4
+00:00:09.938 --> 00:00:14.000
+Security Operations and Telemetry
+chooses the posture tool.
+
+5
+00:00:14.000 --> 00:00:17.877
+Network and Transport
+owns the agency edge,
+
+6
+00:00:17.877 --> 00:00:21.862
+and DNS, DHCP and IPAM
+owns name resolution.
+
+7
+00:00:21.862 --> 00:00:27.038
+What none of them gives is the service-by-service
+engineering of the Azure controls
+
+8
+00:00:27.038 --> 00:00:31.088
+a Zero Trust assessment tests: DDoS
+protection on every public I P,
+
+9
+00:00:31.088 --> 00:00:35.963
+a web application firewall in prevention
+mode, origins only the edge can reach,
+
+10
+00:00:35.963 --> 00:00:40.988
+egress through an inspecting firewall,
+platform services reached only through
+
+11
+00:00:40.988 --> 00:00:45.713
+private endpoints, and keys behind
+role-based access with purge protection.
+
+12
+00:00:45.713 --> 00:00:50.315
+Microsoft Learn's Azure network
+security Zero Trust recommendations
+
+13
+00:00:50.315 --> 00:00:53.880
+list those checks, and the
+guide takes each one as a step.
