@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.975
+After a week of runs, write the digest
+for the second week and read it.
+
+3
+00:00:04.975 --> 00:00:10.380
+Under action required, our row:
+due 2027-09-30, Azure, retirement,
+
+4
+00:00:10.380 --> 00:00:15.362
+routed to Cloud Platform
+Engineering, with its notice ID.
+
+5
+00:00:15.362 --> 00:00:20.428
+Then, with the collection, the routing
+and the digest each recorded, check the
+
+6
+00:00:20.428 --> 00:00:25.413
+evidence: twenty-five files match their
+sums, three records, chain unbroken.
+
+7
+00:00:25.413 --> 00:00:29.163
+Now append one line to the
+recorded digest and check again.
+
+8
+00:00:29.163 --> 00:00:32.515
+The sums fail on that file,
+the chain fails on its record,
+
+9
+00:00:32.515 --> 00:00:34.660
+and the check exits with a failure.

@@ -1,0 +1,794 @@
+{
+ "1": [
+  [
+   0.05,
+   4.175,
+   "Welcome to Part 2 of the implementation series for provider notices."
+  ],
+  [
+   4.225,
+   9.825,
+   "As in Part 1, one thing first: Provider Notices, An Implementation Guide, is a draft, awaiting the owner's review, so check it again after that review."
+  ],
+  [
+   14.05,
+   10.012,
+   "Part 1 collected four providers into one record: Azure Service Health, Microsoft 365, Oracle Cloud Infrastructure and AWS Health."
+  ],
+  [
+   24.062,
+   1.712,
+   "Part 2 finishes the loop."
+  ],
+  [
+   25.775,
+   5.025,
+   "Gate five adds Google Cloud's incidents, and records the gap for planned maintenance."
+  ],
+  [
+   30.8,
+   6.088,
+   "Gate six routes every notice that needs action to an owner, as a task, without duplicates."
+  ],
+  [
+   36.888,
+   6.412,
+   "Gate seven writes the weekly digest the owners read, and the evidence chain the security officer keeps."
+  ],
+  [
+   43.3,
+   8.188,
+   "Then how to run it safely: control states and change rings, the dangers, the evidence file, rollback, and what couldn't be verified."
+  ],
+  [
+   51.487,
+   5.5,
+   "The kit's code is illustrative, tested against fixtures, not against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   4.675,
+   "Here's where Part 1 left off, on the kit's fixtures with every provider enabled."
+  ],
+  [
+   4.725,
+   13.4,
+   "One collection gives twenty-two notices: five from Azure, six from Microsoft 365, four from Oracle Cloud, five from AWS and two from Google Cloud, and every one is valid against the same schema."
+  ],
+  [
+   18.125,
+   8.912,
+   "Each record says what kind of notice it is, its window, the resources it names, and whether action is required, by when, and on whose word."
+  ],
+  [
+   27.038,
+   3.925,
+   "What the collection doesn't give you yet is the part that closes the gap."
+  ],
+  [
+   30.962,
+   8.062,
+   "Nobody owns these notices until each one that needs action has an owner and a due date, and a second run mustn't make a second task."
+  ],
+  [
+   39.025,
+   2.775,
+   "The owners need something to read every week."
+  ],
+  [
+   41.8,
+   4.0,
+   "And the security officer needs evidence that can't be quietly edited."
+  ],
+  [
+   45.8,
+   1.712,
+   "That's gates six and seven."
+  ],
+  [
+   47.513,
+   1.725,
+   "First, Google Cloud."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   7.312,
+   "Gate five is Google Cloud's Personalized Service Health, which lists the incidents relevant to a project or organization."
+  ],
+  [
+   7.362,
+   6.463,
+   "Google's documentation sets one hard limit: the A P I has a single event category, incident."
+  ],
+  [
+   13.825,
+   7.225,
+   "Planned maintenance isn't in it, so this gate covers incidents only, and the gap is recorded with the security officer."
+  ],
+  [
+   21.05,
+   5.638,
+   "The project owner enables the A P I once and grants the reader's group the viewer role."
+  ],
+  [
+   26.688,
+   3.513,
+   "Then cross-check with Google's own list command, and collect."
+  ],
+  [
+   30.2,
+   5.55,
+   "For an organization, the settings say so and the role is granted on the organization."
+  ],
+  [
+   35.75,
+   7.425,
+   "But the gcloud flags for organization events weren't read, so the kit marks that call unverified and runs it only when told to."
+  ],
+  [
+   43.175,
+   8.562,
+   "And for government workloads: Google's Assured Workloads page lists this product under regional packages, but not under fed-ramp Moderate or High."
+  ],
+  [
+   51.737,
+   3.175,
+   "A workload in those packages has nothing to read here."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.962,
+   "On the fixtures, Google Cloud looks like this."
+  ],
+  [
+   3.013,
+   2.725,
+   "The kit declares two calls with the viewer role."
+  ],
+  [
+   5.737,
+   3.675,
+   "The project call is verified against Google's documentation."
+  ],
+  [
+   9.412,
+   5.562,
+   "The organization call says verified, false, which is why it runs only when you allow it."
+  ],
+  [
+   14.975,
+   9.225,
+   "The collection gives two incidents, one open and one closed, and none needs action: Google's A P I has no field that says action is required."
+  ],
+  [
+   24.2,
+   7.138,
+   "The records show where the products and locations come from, the event's impacts, which is what the guide's validate step checks."
+  ],
+  [
+   31.337,
+   4.912,
+   "Cloud sequel in one region is open; Cloud Storage in another is closed."
+  ],
+  [
+   36.25,
+   1.375,
+   "And that's the whole gate."
+  ],
+  [
+   37.625,
+   6.338,
+   "It supports the same two controls as gate one, monitoring the provider and receiving its advisories."
+  ],
+  [
+   43.962,
+   4.475,
+   "Rollback is simply removing the role binding when the kit is retired."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.55,
+   "Gate six turns notices into work."
+  ],
+  [
+   2.6,
+   5.237,
+   "A notice that needs action becomes a task with an owner; the rest go in the digest."
+  ],
+  [
+   7.838,
+   8.175,
+   "First, the routing is written at work, inside the agency's boundary, from the kit's template, with its prompts in Copilot Chat."
+  ],
+  [
+   16.012,
+   8.2,
+   "Rules are tried in order and the first match wins, so security advisories and retirements come before the general action-required rule."
+  ],
+  [
+   24.212,
+   8.625,
+   "Second, check it: the kit refuses an unknown match key, a task rule with no severity or group, and a placeholder left in."
+  ],
+  [
+   32.837,
+   2.175,
+   "Third, route as a dry run."
+  ],
+  [
+   35.013,
+   12.238,
+   "Each task is shaped for ServiceNow, with a severity and a response window from the program's finding contract, the provider's own date kept separate, and the five clauses of the Ticket-to-Machine request chain."
+  ],
+  [
+   47.25,
+   3.3,
+   "Fourth, send once the agency's endpoint exists."
+  ],
+  [
+   50.55,
+   5.237,
+   "And a task closes only on the re-read, never because the provider closed the notice."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.775,
+   "Here's routing on the fixtures."
+  ],
+  [
+   1.825,
+   2.575,
+   "Day one's twenty-two notices are all new."
+  ],
+  [
+   4.4,
+   8.775,
+   "Twelve route to a task, nine are digest only and one is ignored, so the dry run writes twelve create payloads and sends nothing."
+  ],
+  [
+   13.175,
+   12.562,
+   "You can see the routing working: the security notifications go to security operations at P2, the retirements and maintenance to cloud platform engineering at P3, and the Azure incident to the service desk."
+  ],
+  [
+   25.738,
+   1.525,
+   "Then the important test."
+  ],
+  [
+   27.262,
+   7.938,
+   "Route the same collection again, against a copy of the state, and every notice is unchanged, so no payload is written at all."
+  ],
+  [
+   35.2,
+   9.363,
+   "That's what the guide's validate step asks for: every security advisory and retirement routes to a task, and a second run on the same collection writes nothing."
+  ],
+  [
+   44.562,
+   4.013,
+   "The provider hasn't changed the notice, so nobody gets a second task."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.325,
+   "A week later, the providers have moved."
+  ],
+  [
+   2.375,
+   6.85,
+   "Day two's routing finds two new notices, six changed, fifteen unchanged and one no longer listed."
+  ],
+  [
+   9.225,
+   5.787,
+   "So it writes one create, four updates and one close, and nothing for the fifteen unchanged."
+  ],
+  [
+   15.012,
+   8.863,
+   "The updates are two rescheduled maintenance windows, an updated Microsoft 365 post, and an incident the provider no longer lists."
+  ],
+  [
+   23.875,
+   8.387,
+   "The close is the AWS security notification the provider closed, and that close payload asks for the re-read rather than closing the task."
+  ],
+  [
+   32.263,
+   5.15,
+   "Below it is the request chain on the Azure retirement's task, in the Human decision lane."
+  ],
+  [
+   37.413,
+   1.913,
+   "Clause one says where it came from."
+  ],
+  [
+   39.325,
+   2.925,
+   "Two names the approver role, the system owner."
+  ],
+  [
+   42.25,
+   2.763,
+   "Three is the action, under change control."
+  ],
+  [
+   45.013,
+   2.487,
+   "Four is the re-read check that closes it."
+  ],
+  [
+   47.5,
+   2.163,
+   "And five says what evidence is kept."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.363,
+   "What does routing support?"
+  ],
+  [
+   1.413,
+   1.925,
+   "Three things in nist's catalog."
+  ],
+  [
+   3.337,
+   6.362,
+   "Getting advisories to the people who act on them, and acting within set time frames or reporting the gap."
+  ],
+  [
+   9.7,
+   7.225,
+   "Configuration change control and impact analysis, so a change a provider announces is reviewed before it lands."
+  ],
+  [
+   16.925,
+   7.162,
+   "And contingency planning, because retirements and maintenance that name the agency's resources prompt a review of the plan."
+  ],
+  [
+   24.087,
+   5.1,
+   "The security officer keeps the task payloads, the routing file's output and the state."
+  ],
+  [
+   29.188,
+   8.3,
+   "One honest note from fed-ramp's pages: no key security indicator cites the base impact-analysis control, only its enhancement."
+  ],
+  [
+   37.487,
+   7.263,
+   "Routing calls no cloud at all, so there's no government-cloud question here; the ServiceNow endpoint is the agency's own."
+  ],
+  [
+   44.75,
+   4.213,
+   "Until it exists, the service desk works from the dry run's files."
+  ],
+  [
+   48.962,
+   3.888,
+   "And rollback is reverting the routing file, while keeping the state."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.163,
+   "Gate seven makes it a weekly habit and proves it ran."
+  ],
+  [
+   3.212,
+   6.013,
+   "The digest is what the owners read every week; the evidence is what the security officer keeps."
+  ],
+  [
+   9.225,
+   7.825,
+   "The deployment runbook takes both to a test environment and then production, with the same commands and one settings file per environment."
+  ],
+  [
+   17.05,
+   1.125,
+   "Three steps."
+  ],
+  [
+   18.175,
+   15.062,
+   "First, a preflight that only reads: the settings and routing files, each provider's tool and signed-in cloud, the reader's first call, and for AWS the support plan, the named notice contacts, and in production the test stage's evidence."
+  ],
+  [
+   33.237,
+   6.825,
+   "Second, the weekly run: collection, routing and the digest, each step recorded as evidence."
+  ],
+  [
+   40.062,
+   2.237,
+   "Third, the go or no-go."
+  ],
+  [
+   42.3,
+   8.762,
+   "It needs a passing record for every step the stage lists, with production adding the alert policy, an unbroken chain, and matching hashes."
+  ],
+  [
+   51.062,
+   3.763,
+   "The scheduler is the agency's; the kit doesn't register one."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.725,
+   "Here's gate seven on the fixtures, after routing both days."
+  ],
+  [
+   3.775,
+   9.7,
+   "The digest shows sixteen open notices, eight needing action, five starting in the next thirty days, two new, and four closed or no longer listed."
+  ],
+  [
+   13.475,
+   6.6,
+   "Every action-required notice shows its due date and the group it was routed to, which is the guide's pass condition."
+  ],
+  [
+   20.075,
+   1.238,
+   "Then the evidence."
+  ],
+  [
+   21.312,
+   6.475,
+   "Each run folder becomes a numbered record: the collection, the routing and the digest, each passing."
+  ],
+  [
+   27.788,
+   6.312,
+   "The check confirms that every file matches the hash list and the three records form an unbroken chain."
+  ],
+  [
+   34.1,
+   3.212,
+   "And watch what happens when you check them as the test stage."
+  ],
+  [
+   37.312,
+   7.263,
+   "The chain still passes, but the preflight and the scheduled run have no passing record, because on a laptop nobody ran them."
+  ],
+  [
+   44.575,
+   3.837,
+   "So the go or no-go fails, and the script exits with an error."
+  ],
+  [
+   48.413,
+   3.325,
+   "That's the point: the stage can't pass on a partial run."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.6,
+   "What does gate seven support?"
+  ],
+  [
+   1.65,
+   9.387,
+   "Each week's digest supports getting advisories to the people who act, monitoring the providers, and updating the risk assessment when the environment changes significantly."
+  ],
+  [
+   11.037,
+   15.338,
+   "The evidence chain supports continuous monitoring and the protection of audit information: each record holds the time, the environment, the change record, the command, the result, the controls, every file's hash, and the previous record's hash."
+  ],
+  [
+   26.375,
+   7.487,
+   "And the preflight's check that each provider's notice contacts are named and current supports nist's control for notification agreements."
+  ],
+  [
+   33.862,
+   1.613,
+   "Here's why the chain matters."
+  ],
+  [
+   35.475,
+   4.737,
+   "In the workbook's lab, someone appends a line to the digest after it was recorded."
+  ],
+  [
+   40.212,
+   6.287,
+   "The next check fails twice: the file no longer matches the hash list, and it no longer matches its record."
+  ],
+  [
+   46.5,
+   3.675,
+   "Nobody can quietly edit the evidence an assessor will read."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.537,
+   "Before the dangers, how the guide states itself against the workbook's control-state conventions."
+  ],
+  [
+   5.588,
+   3.163,
+   "Provider notices are a detective, operating loop."
+  ],
+  [
+   8.75,
+   3.663,
+   "They inform owners and open tasks, and they block nothing."
+  ],
+  [
+   12.412,
+   4.112,
+   "So the design is the owners, the routing and the notice contacts."
+  ],
+  [
+   16.525,
+   4.25,
+   "The configuration is a reader per provider holding only its read role."
+  ],
+  [
+   20.775,
+   4.438,
+   "Enforcement doesn't apply, except G1's alert policy at scope."
+  ],
+  [
+   25.212,
+   3.812,
+   "The evidence is each gate's validate step and the stage check."
+  ],
+  [
+   29.025,
+   4.888,
+   "And operation is the weekly run, with tasks closed only on the re-read."
+  ],
+  [
+   33.913,
+   4.287,
+   "Change safety, which is design guidance, runs in three rings."
+  ],
+  [
+   38.2,
+   4.9,
+   "Ring zero is the test stage, which exits when its evidence check passes."
+  ],
+  [
+   43.1,
+   6.662,
+   "Ring one is production with collection and dry-run routing only, until the owners have read a week's digest."
+  ],
+  [
+   49.763,
+   3.513,
+   "Ring two applies the alert policy and turns on sending."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.425,
+   "Nine dangers, each with its guard."
+  ],
+  [
+   2.475,
+   14.325,
+   "Never act on a notice from email alone: attackers send look-alike provider mail, so act only on the notice the kit read from the provider's own A P I. Read security advisories without the elevated role and you miss their details."
+  ],
+  [
+   16.8,
+   8.412,
+   "Read from the wrong cloud and you get nothing, and the gate passes on an empty list, so every cloud is named and the kit refuses any other."
+  ],
+  [
+   25.212,
+   9.488,
+   "Don't close a task because the provider closed the notice: a retirement can close while the resource still runs the retired product, so the close asks for the re-read."
+  ],
+  [
+   34.7,
+   3.062,
+   "Don't assume Google maintenance is covered; it isn't."
+  ],
+  [
+   37.763,
+   4.65,
+   "AWS without a support plan reads nothing, and the preflight catches it."
+  ],
+  [
+   42.413,
+   2.575,
+   "Hand-edited alert rules can be overwritten."
+  ],
+  [
+   44.987,
+   3.625,
+   "The agency's routing never goes in a public repository."
+  ],
+  [
+   48.612,
+   4.338,
+   "And if the weekly run stops silently, the evidence chain shows the gap."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.0,
+   "Each gate's table names what the security officer keeps, and together they make one file."
+  ],
+  [
+   5.05,
+   6.862,
+   "The collection gates keep each provider's raw response, the notices and a manifest, with Azure's alert plan."
+  ],
+  [
+   11.912,
+   4.0,
+   "Routing keeps the task payloads, the routing output and the state."
+  ],
+  [
+   15.912,
+   6.638,
+   "And the digest gate keeps the weekly digests, the preflight results and the evidence chain with its hash list."
+  ],
+  [
+   22.55,
+   15.412,
+   "The controls run from monitoring external providers and receiving their advisories, through change control, impact analysis and contingency planning, to risk assessment, continuous monitoring, protection of audit information and notification agreements."
+  ],
+  [
+   37.962,
+   4.688,
+   "The kit's records support those controls; the agency's assessor decides them."
+  ],
+  [
+   42.65,
+   13.9,
+   "The guide's evidence checklist has five parts: the configuration, the weekly operational files, each test result, the exceptions, including providers not enabled and Google's maintenance gap, and the evidence chain for the period."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.913,
+   "Rollback is short, because almost everything only reads."
+  ],
+  [
+   3.962,
+   7.888,
+   "For Azure, plan and apply the deletion of the policy assignment, and let the change record decide on what its remediation created."
+  ],
+  [
+   11.85,
+   6.5,
+   "Gates two to five have nothing to roll back; when the kit is retired, remove each reader's permission."
+  ],
+  [
+   18.35,
+   3.85,
+   "Routing reverts to the last reviewed file and keeps its state."
+  ],
+  [
+   22.2,
+   5.338,
+   "And the digest gate unregisters the schedule and keeps every run and its evidence."
+  ],
+  [
+   27.538,
+   3.125,
+   "The guide is also candid about what it couldn't verify."
+  ],
+  [
+   30.663,
+   8.213,
+   "Several Azure details aren't stated on Learn, including Resource Graph's full column schema and the alert policy's parameter names."
+  ],
+  [
+   38.875,
+   2.975,
+   "Learn doesn't enumerate the message center tags."
+  ],
+  [
+   41.85,
+   7.213,
+   "Oracle's CLI output keys and its third realm, and the gcloud flags for organization events, weren't confirmed."
+  ],
+  [
+   49.062,
+   3.862,
+   "The ServiceNow side and the scheduler are the agency's to build."
+  ],
+  [
+   52.925,
+   2.462,
+   "And nothing in the guide was run in a tenant."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   2.35,
+   "Here's what done looks like, gate by gate."
+  ],
+  [
+   2.4,
+   8.363,
+   "Every Azure subscription read by a Reader, security advisories by the elevated role, and the alert policy assigned and remediated."
+  ],
+  [
+   10.762,
+   4.45,
+   "Microsoft 365 read on the tenant's own Graph host."
+  ],
+  [
+   15.213,
+   5.525,
+   "Every Oracle tenancy read, latest in each chain, with affected resources."
+  ],
+  [
+   20.738,
+   5.412,
+   "Every AWS account with a qualifying support plan, read from its partition's endpoint."
+  ],
+  [
+   26.15,
+   3.413,
+   "Google's incidents read, and the maintenance gap recorded."
+  ],
+  [
+   29.562,
+   8.35,
+   "The routing reviewed, every notice that needs action with a task, no duplicates on a re-run, and tasks closed only on the re-read."
+  ],
+  [
+   37.913,
+   7.075,
+   "And the weekly run scheduled, the digest reaching the owners, and each stage's evidence passing the go or no-go."
+  ],
+  [
+   44.987,
+   5.562,
+   "To build it, use the developer workbook, Building Provider Notices, and its training path."
+  ],
+  [
+   50.55,
+   6.525,
+   "And one last time: this guide is a draft, awaiting the owner's review, so check it again after that review."
+  ],
+  [
+   57.075,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

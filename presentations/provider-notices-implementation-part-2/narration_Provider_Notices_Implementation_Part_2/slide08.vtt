@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+What does routing support?
+
+2
+00:00:01.413 --> 00:00:03.338
+Three things in NIST's catalog.
+
+3
+00:00:03.338 --> 00:00:06.331
+Getting advisories to the
+people who act on them,
+
+4
+00:00:06.331 --> 00:00:09.699
+and acting within set time
+frames or reporting the gap.
+
+5
+00:00:09.699 --> 00:00:13.041
+Configuration change
+control and impact analysis,
+
+6
+00:00:13.041 --> 00:00:16.925
+so a change a provider announces
+is reviewed before it lands.
+
+7
+00:00:16.925 --> 00:00:20.680
+And contingency planning, because
+retirements and maintenance
+
+8
+00:00:20.680 --> 00:00:24.087
+that name the agency's resources
+prompt a review of the plan.
+
+9
+00:00:24.087 --> 00:00:26.856
+The security officer
+keeps the task payloads,
+
+10
+00:00:26.856 --> 00:00:29.187
+the routing file's output and the state.
+
+11
+00:00:29.187 --> 00:00:33.378
+One honest note from FedRAMP's
+pages: no key security indicator
+
+12
+00:00:33.378 --> 00:00:37.488
+cites the base impact-analysis
+control, only its enhancement.
+
+13
+00:00:37.488 --> 00:00:42.054
+Routing calls no cloud at all, so there's
+no government-cloud question here;
+
+14
+00:00:42.054 --> 00:00:44.750
+the ServiceNow endpoint
+is the agency's own.
+
+15
+00:00:44.750 --> 00:00:48.963
+Until it exists, the service desk
+works from the dry run's files.
+
+16
+00:00:48.963 --> 00:00:52.920
+And rollback is reverting the routing
+file, while keeping the state.

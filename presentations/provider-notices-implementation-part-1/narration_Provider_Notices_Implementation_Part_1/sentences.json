@@ -1,0 +1,769 @@
+{
+ "1": [
+  [
+   0.05,
+   4.0,
+   "Welcome to Part 1 of the implementation series for provider notices."
+  ],
+  [
+   4.05,
+   5.062,
+   "One thing first: Provider Notices, An Implementation Guide, is a draft."
+  ],
+  [
+   9.113,
+   3.925,
+   "It's awaiting the owner's review, so check it again after that review."
+  ],
+  [
+   13.037,
+   2.388,
+   "The guide's premise fits in one line."
+  ],
+  [
+   15.425,
+   6.575,
+   "Every provider tells you, in writing and ahead of time, what it will change, retire or patch in your tenant."
+  ],
+  [
+   22.0,
+   3.663,
+   "The gap is that nobody reads it, owns it or closes it."
+  ],
+  [
+   25.663,
+   2.788,
+   "The guide closes that gap in seven gates."
+  ],
+  [
+   28.45,
+   10.188,
+   "Part 1 covers the orientation and the four collection gates for Azure Service Health, Microsoft 365, Oracle Cloud Infrastructure and AWS Health."
+  ],
+  [
+   38.638,
+   7.55,
+   "Part 2 covers Google Cloud, routing to owners, the digest and the evidence, then the dangers and rollback."
+  ],
+  [
+   46.188,
+   8.225,
+   "For each gate you'll see the steps, what the kit really prints on its fixtures, the federal requirement, the evidence and the government cloud."
+  ],
+  [
+   54.413,
+   5.5,
+   "The kit's code is illustrative, tested against fixtures, not against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.35,
+   "Why does this need a guide?"
+  ],
+  [
+   1.4,
+   3.837,
+   "Because the workbook mentions provider notices but doesn't run them."
+  ],
+  [
+   5.237,
+   9.525,
+   "The day-two operations book routes Microsoft's service health email to the help desk supervisor, and warns that nothing is approved or changed on the strength of an email."
+  ],
+  [
+   14.762,
+   5.487,
+   "The security operations book sends Azure's service health log category to the workspace."
+  ],
+  [
+   20.25,
+   4.888,
+   "Neither collects the notices, assigns an owner, or tracks one to closure."
+  ],
+  [
+   25.137,
+   3.263,
+   "So the goal, which is design guidance, is a loop."
+  ],
+  [
+   28.4,
+   4.037,
+   "Every notice is collected on a schedule and held as one record."
+  ],
+  [
+   32.438,
+   5.013,
+   "It either goes to an owner as a task with a due date, or into a weekly digest."
+  ],
+  [
+   37.45,
+   6.45,
+   "And a task closes only when the next collection shows the notice closed or the resource no longer affected."
+  ],
+  [
+   43.9,
+   3.212,
+   "That's the re-read, never someone's word that it's done."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   10.225,
+   "The kit turns every provider's notice into one record with one of six kinds: maintenance, retirement, advisory, security, change and incident."
+  ],
+  [
+   10.275,
+   3.125,
+   "The table maps each provider's own types onto them."
+  ],
+  [
+   13.4,
+   1.913,
+   "Two rows are worth a closer look."
+  ],
+  [
+   15.312,
+   9.762,
+   "A retirement in Azure is a health advisory with the subtype retirement, and in AWS the kit infers it from a scheduled change whose event code names a retirement."
+  ],
+  [
+   25.075,
+   3.337,
+   "That second one is the kit's rule, not AWS's."
+  ],
+  [
+   28.413,
+   7.763,
+   "And Google Cloud's column is almost empty: its Personalized Service Health A P I has a single category, incident."
+  ],
+  [
+   36.175,
+   4.987,
+   "Each record also says whether action is required, by when, and who said so."
+  ],
+  [
+   41.163,
+   5.425,
+   "Microsoft 365, Oracle and AWS each have a field for that."
+  ],
+  [
+   46.587,
+   9.262,
+   "Azure doesn't, so the kit applies its own stated rule: a retirement is due at the advisory's end, which Microsoft Learn says is its end time."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   6.175,
+   "Here are the five providers side by side, including Oracle Cloud, where the H R platform runs."
+  ],
+  [
+   6.225,
+   17.387,
+   "Each keeps its notices in its own place: Azure's Service Health through Resource Graph, Microsoft 365's message center and service health through Microsoft Graph, Oracle's Announcements service, the AWS Health A P I, and Google Cloud's Personalized Service Health."
+  ],
+  [
+   23.613,
+   12.525,
+   "The least-privileged reader is small everywhere: Reader in Azure, two read permissions in Graph, a read statement in Oracle, three describe actions in AWS, and a viewer role in Google Cloud."
+  ],
+  [
+   36.138,
+   4.025,
+   "Only AWS has a cost: a qualifying support plan."
+  ],
+  [
+   40.163,
+   10.7,
+   "On government clouds, Microsoft 365 G C C stays on the worldwide Graph endpoint, while G C C High and the Defense Department have their own hosts."
+  ],
+  [
+   50.862,
+   3.575,
+   "Oracle's U S Government Cloud has its own endpoints."
+  ],
+  [
+   54.438,
+   2.138,
+   "AWS GovCloud has one."
+  ],
+  [
+   56.575,
+   6.45,
+   "And Google's documentation doesn't list Personalized Service Health in its fed-ramp Moderate or High packages."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.275,
+   "Before the first gate, three things."
+  ],
+  [
+   2.325,
+   10.312,
+   "Decisions first: who owns each provider's notices, which notices become tasks, for which group and at which severity, and who receives each provider's email today."
+  ],
+  [
+   12.637,
+   2.263,
+   "That routing belongs to the agency."
+  ],
+  [
+   14.9,
+   8.537,
+   "It's written at work from the kit's template, with its prompts in Microsoft 365 Copilot Chat, and it never goes in a public repository."
+  ],
+  [
+   23.438,
+   3.15,
+   "Second, a change process that takes the tasks."
+  ],
+  [
+   26.587,
+   7.9,
+   "The router writes ServiceNow-shaped payloads, and until the agency builds an endpoint for them, they're files the service desk reads."
+  ],
+  [
+   34.487,
+   4.213,
+   "Third, a reader per provider, holding only its read role."
+  ],
+  [
+   38.7,
+   4.112,
+   "The roles come from each provider's own documentation, and they're short."
+  ],
+  [
+   42.812,
+   8.438,
+   "The writes, meaning the Azure Policy assignment and rollback, run as a different identity, and only with an explicit apply switch."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.237,
+   "Here are all seven gates on one page."
+  ],
+  [
+   2.288,
+   10.537,
+   "The first five are collection, one per provider: Azure Service Health, Microsoft 365, Oracle Cloud Infrastructure, AWS Health and Google Cloud."
+  ],
+  [
+   12.825,
+   4.213,
+   "They're independent, so enable only the providers the agency uses."
+  ],
+  [
+   17.038,
+   7.35,
+   "Gate six routes what they collect: every notice that needs action gets a task, and a second run doesn't make a second task."
+  ],
+  [
+   24.387,
+   6.888,
+   "Gate seven schedules the weekly run, sends the digest to the owners and checks the evidence for each stage."
+  ],
+  [
+   31.275,
+   3.55,
+   "Each gate is validated with one of the kit's entry scripts."
+  ],
+  [
+   34.825,
+   2.337,
+   "Every one of those checks only reads."
+  ],
+  [
+   37.163,
+   6.638,
+   "The only writes are in the kit's deploy folder, and they run only with an apply switch and the plan's approved hash."
+  ],
+  [
+   43.8,
+   4.513,
+   "And the checks are tested against fixtures, not proven against a lyve tenant."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.15,
+   "Gate one is Azure Service Health."
+  ],
+  [
+   2.2,
+   8.125,
+   "Resource Graph answers the same questions for every subscription in scope with one query, and Microsoft Learn publishes the queries."
+  ],
+  [
+   10.325,
+   1.012,
+   "Four steps."
+  ],
+  [
+   11.338,
+   5.55,
+   "A subscription owner grants the reader two roles: Reader, and Service Health Security Reader."
+  ],
+  [
+   16.887,
+   8.775,
+   "Learn explains why the second one matters: with Reader alone you see a security advisory, but not its sensitive fields or the resources it affects."
+  ],
+  [
+   25.663,
+   4.125,
+   "Then sign in to the right cloud, with the Resource Graph extension."
+  ],
+  [
+   29.788,
+   4.9,
+   "The workbook's estate is G C C with commercial Azure, so that's Azure Cloud."
+  ],
+  [
+   34.688,
+   1.312,
+   "Third, collect."
+  ],
+  [
+   36.0,
+   3.688,
+   "The kit's query starts from Learn's sample for all active events."
+  ],
+  [
+   39.688,
+   7.112,
+   "Fourth, alert between collections with Learn's built-in policy, assigned at the management group with a remediation task."
+  ],
+  [
+   46.8,
+   5.075,
+   "The kit writes it as a plan, and applies it only with the hash the change record approved."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.237,
+   "Here's what the kit really prints, from the workbook's first chapter, on fictional fixtures with no tenant."
+  ],
+  [
+   6.287,
+   7.037,
+   "One collection gives five notices from six rows: an incident that appeared in two subscriptions became one notice."
+  ],
+  [
+   13.325,
+   2.425,
+   "Every record is valid against the schema."
+  ],
+  [
+   15.75,
+   2.638,
+   "The records show the two that need action."
+  ],
+  [
+   18.387,
+   7.125,
+   "The retirement of basic public IP addresses is due September 30, 2027, by the kit's rule."
+  ],
+  [
+   25.512,
+   5.4,
+   "The security advisory needs action with no date, for the security officer to review."
+  ],
+  [
+   30.913,
+   6.438,
+   "The incident, the advisory and the maintenance window need no action, so they'll go to the weekly digest."
+  ],
+  [
+   37.35,
+   9.5,
+   "Then the alert plan: two steps, the policy assignment at the management group and its remediation, the plan's hash, and a dry run that changes nothing."
+  ],
+  [
+   46.85,
+   3.55,
+   "And in fixture mode, the script refuses to apply at all."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.413,
+   "What does gate one support?"
+  ],
+  [
+   1.462,
+   1.925,
+   "Three things in nist's catalog."
+  ],
+  [
+   3.388,
+   4.625,
+   "Monitoring an external provider's control compliance on an ongoing basis."
+  ],
+  [
+   8.012,
+   4.425,
+   "Receiving security alerts and advisories from outside organizations."
+  ],
+  [
+   12.438,
+   4.65,
+   "And continuous monitoring, through the alert path that runs between collections."
+  ],
+  [
+   17.087,
+   6.312,
+   "The key security indicators are fed-ramp's, and which record supports which indicator is the program's mapping."
+  ],
+  [
+   23.4,
+   10.488,
+   "The security officer keeps the raw Azure file, the notices, and the manifest with every call and its permission, plus the alert plan and the change record that approved its hash."
+  ],
+  [
+   33.888,
+   9.562,
+   "As a side note, Azure Government has its own CLI cloud and Resource Manager host, and Learn hasn't stated the table's availability there in so many words."
+  ],
+  [
+   43.45,
+   6.125,
+   "Until the reader identity exists, a person with Reader runs Learn's own query and keeps the output."
+  ],
+  [
+   49.575,
+   5.688,
+   "And rollback: the collection only reads, and the alert policy has a planned rollback."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.962,
+   "Gate two is Microsoft 365."
+  ],
+  [
+   3.013,
+   8.238,
+   "The message center is where Microsoft announces changes, retirements and actions for a tenant, and service health lists incidents and advisories."
+  ],
+  [
+   11.25,
+   4.15,
+   "Microsoft Graph's service communications A P I reads both."
+  ],
+  [
+   15.4,
+   7.875,
+   "Two steps: sign in to the tenant's own cloud with two read permissions, and collect three lists, following every next link."
+  ],
+  [
+   23.275,
+   7.575,
+   "Microsoft Learn says both permissions are granted only by an administrator, and a delegated sign-in also needs an admin role."
+  ],
+  [
+   30.85,
+   6.562,
+   "Data privacy messages are visible only to Global Administrators and Message Center Privacy Readers."
+  ],
+  [
+   37.413,
+   1.062,
+   "Now the cloud."
+  ],
+  [
+   38.475,
+   6.4,
+   "A G C C tenant keeps the worldwide Graph endpoint, which Learn's national cloud page confirms."
+  ],
+  [
+   44.875,
+   7.275,
+   "G C C High and the Defense Department have their own hosts, and the workbook's capture shows the kit's map of all three."
+  ],
+  [
+   52.15,
+   6.825,
+   "The kit sends each call only to the cloud's own host, and refuses a session in another environment or tenant."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   11.963,
+   "On the fixtures, Microsoft 365 gives six notices: a retirement with a provider date, a change the kit marks action required by its rule, three advisories and an incident."
+  ],
+  [
+   12.012,
+   2.75,
+   "The next capture shows the difference that matters."
+  ],
+  [
+   14.762,
+   9.7,
+   "The retirement of basic authentication for SMTP client submission is action required because Microsoft said so, in its action-required-by date field."
+  ],
+  [
+   24.462,
+   6.2,
+   "The SharePoint Framework change is action required because of a stated kit rule about a message center category."
+  ],
+  [
+   30.663,
+   5.6,
+   "The record says which, so nobody argues with Microsoft about a date Microsoft never set."
+  ],
+  [
+   36.263,
+   11.113,
+   "This gate supports the same two controls as gate one, plus configuration change control: a change Microsoft announces is reviewed, with an impact analysis, before it lands."
+  ],
+  [
+   47.375,
+   4.325,
+   "Until the reader exists, Learn's own cmdlet lists the same posts."
+  ],
+  [
+   51.7,
+   3.725,
+   "And there's nothing to roll back: the collection only reads."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.862,
+   "Gate three is Oracle Cloud Infrastructure, and it matters here because the H R platform runs on Oracle Cloud."
+  ],
+  [
+   6.912,
+   6.525,
+   "Reading that tenancy's announcements means platform maintenance reaches the H R system's owners before it lands."
+  ],
+  [
+   13.438,
+   8.65,
+   "Oracle publishes maintenance, changes, action-required notices and production events as announcements, and updates to one announcement form a chain."
+  ],
+  [
+   22.087,
+   2.9,
+   "The kit keeps only the latest in each chain."
+  ],
+  [
+   24.988,
+   6.825,
+   "Oracle's documentation gives the policy statement: allow the reader's group to read announcements in the tenancy."
+  ],
+  [
+   31.812,
+   6.425,
+   "Read, not inspect, because inspect lists summaries only, without the affected resources."
+  ],
+  [
+   38.237,
+   3.688,
+   "Then cross-check with Oracle's own list command, and collect."
+  ],
+  [
+   41.925,
+   8.338,
+   "For government, Oracle's U S Government Cloud page lists the Announcements endpoints in two regions, in the realm called OC2."
+  ],
+  [
+   50.263,
+   7.062,
+   "The third realm's endpoint isn't specified, because Oracle's page wasn't readable, so the kit refuses that realm."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.038,
+   "Here's Oracle on the fixtures."
+  ],
+  [
+   2.087,
+   2.85,
+   "Day one gives four notices, one per chain."
+  ],
+  [
+   4.938,
+   3.188,
+   "The maintenance names a database system and its window."
+  ],
+  [
+   8.125,
+   8.363,
+   "The change is action required, by December 15, because Oracle's own action-required fields say so, and it names a load balancer."
+  ],
+  [
+   16.488,
+   3.587,
+   "A week later, the provider has rescheduled the maintenance."
+  ],
+  [
+   20.075,
+   9.363,
+   "Because the kit keeps only the latest in each chain, the new announcement replaces the original, with the new window, rather than becoming a second notice."
+  ],
+  [
+   29.438,
+   3.212,
+   "That's exactly what the guide's try-it says to look for."
+  ],
+  [
+   32.65,
+   13.287,
+   "Beyond monitoring the provider and receiving advisories, this gate supports contingency planning: maintenance that names the agency's resources prompts a contingency plan review, and the task carries a flag that says so."
+  ],
+  [
+   45.938,
+   6.963,
+   "Until the reader exists, Oracle's announcement email is the interim path, and the settings file names who receives it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   8.662,
+   "Gate four is AWS Health, which publishes issues, scheduled changes and account notifications per account, with the affected resources."
+  ],
+  [
+   8.713,
+   2.062,
+   "It's the one provider with a cost."
+  ],
+  [
+   10.775,
+   8.637,
+   "AWS's documentation says the account needs a qualifying support plan, and without one the A P I answers with a subscription-required error."
+  ],
+  [
+   19.413,
+   6.325,
+   "AWS's own pages name the qualifying plans differently, so check the account against the current pages."
+  ],
+  [
+   25.738,
+   11.188,
+   "The reader holds a customer managed policy with three describe actions, because AWS publishes no read-only managed policy for Health, and its full-access policy includes writes."
+  ],
+  [
+   36.925,
+   7.013,
+   "Then cross-check from the Health endpoint, which is U S East for commercial accounts and the GovCloud West region for GovCloud."
+  ],
+  [
+   43.938,
+   0.975,
+   "And collect."
+  ],
+  [
+   44.913,
+   6.175,
+   "Until the reader exists, an EventBridge rule on AWS Health events pushes scheduled changes."
+  ],
+  [
+   51.087,
+   5.475,
+   "Without a support plan, the AWS Health Dashboard and its email are the only path."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   9.088,
+   "On the fixtures, AWS gives five notices: two retirements, a maintenance window, a security notification and a closed incident."
+  ],
+  [
+   9.137,
+   1.163,
+   "Three need action."
+  ],
+  [
+   10.3,
+   1.238,
+   "Look at the basis."
+  ],
+  [
+   11.537,
+   9.2,
+   "The EC2 instance retirement and the IAM security notification are action required because AWS said so, in its actionability field."
+  ],
+  [
+   20.738,
+   8.463,
+   "The Lambda lifecycle event is action required by the kit's rule: a scheduled change whose event code names a retirement, due at its start time."
+  ],
+  [
+   29.2,
+   4.588,
+   "Again, the record tells you which is AWS's word and which is the kit's."
+  ],
+  [
+   33.788,
+   9.688,
+   "And the kit holds AWS's documented limit: the details call takes one to ten event identifiers, so eleven is refused before anything is sent."
+  ],
+  [
+   43.475,
+   10.7,
+   "Beyond monitoring and receiving advisories, this gate supports implementing directives in the established time frames: an action-required event becomes a task with its due date."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.562,
+   "To close Part 1, here's what the four collection gates leave in the evidence file."
+  ],
+  [
+   4.612,
+   7.15,
+   "Each one keeps the provider's raw response, the normalized notices and a manifest with every call and its permission."
+  ],
+  [
+   11.762,
+   2.812,
+   "Azure adds the alert plan and its results."
+  ],
+  [
+   14.575,
+   11.438,
+   "Together they support monitoring external providers, receiving their advisories, continuous monitoring, configuration change control for announced changes, and contingency planning for maintenance."
+  ],
+  [
+   26.012,
+   14.25,
+   "Part 2 picks up from there: Google Cloud's incidents and its maintenance gap, then routing every notice that needs action to an owner as a task, the weekly digest, and the evidence chain the security officer keeps, with the dangers and rollback."
+  ],
+  [
+   40.263,
+   8.213,
+   "To build Part 1's code, use the developer workbook, Building Provider Notices, chapters one to four, each with a fixture lab."
+  ],
+  [
+   48.475,
+   4.525,
+   "And a last reminder: this guide is a draft, awaiting the owner's review."
+  ],
+  [
+   53.0,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

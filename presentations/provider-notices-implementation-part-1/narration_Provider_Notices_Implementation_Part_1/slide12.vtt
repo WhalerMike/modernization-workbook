@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.826
+Gate three is Oracle Cloud Infrastructure,
+
+2
+00:00:02.826 --> 00:00:06.912
+and it matters here because the
+HR platform runs on Oracle Cloud.
+
+3
+00:00:06.912 --> 00:00:10.036
+Reading that tenancy's
+announcements means platform
+
+4
+00:00:10.036 --> 00:00:13.437
+maintenance reaches the HR
+system's owners before it lands.
+
+5
+00:00:13.437 --> 00:00:18.074
+Oracle publishes maintenance, changes,
+action-required notices and production
+
+6
+00:00:18.074 --> 00:00:22.088
+events as announcements, and updates
+to one announcement form a chain.
+
+7
+00:00:22.088 --> 00:00:24.987
+The kit keeps only the
+latest in each chain.
+
+8
+00:00:24.987 --> 00:00:28.110
+Oracle's documentation
+gives the policy statement:
+
+9
+00:00:28.110 --> 00:00:31.813
+allow the reader's group to read
+announcements in the tenancy.
+
+10
+00:00:31.813 --> 00:00:35.861
+Read, not inspect, because
+inspect lists summaries only,
+
+11
+00:00:35.861 --> 00:00:38.237
+without the affected resources.
+
+12
+00:00:38.237 --> 00:00:41.925
+Then cross-check with Oracle's
+own list command, and collect.
+
+13
+00:00:41.925 --> 00:00:45.931
+For government, Oracle's US
+Government Cloud page lists the
+
+14
+00:00:45.931 --> 00:00:50.263
+Announcements endpoints in two
+regions, in the realm called OC2.
+
+15
+00:00:50.263 --> 00:00:53.009
+The third realm's
+endpoint isn't specified,
+
+16
+00:00:53.009 --> 00:00:57.380
+because Oracle's page wasn't readable,
+so the kit refuses that realm.

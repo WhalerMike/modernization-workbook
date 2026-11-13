@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.269
+Welcome to the story deck for
+Building Provider Notices,
+
+2
+00:00:03.269 --> 00:00:06.763
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.763 --> 00:00:09.468
+Instead of eight chapters one at a time,
+
+4
+00:00:09.468 --> 00:00:14.118
+we'll follow one notice all the way
+through: an Azure Service Health
+
+5
+00:00:14.118 --> 00:00:19.613
+retirement of basic public IP addresses,
+action required by September 30, 2027.
+
+6
+00:00:19.613 --> 00:00:23.734
+It's fictional: every value comes
+from the kit's own test fixtures,
+
+7
+00:00:23.734 --> 00:00:27.388
+and every output on a slide is
+what the kit really printed.
+
+8
+00:00:27.388 --> 00:00:28.962
+Two notes before we begin.
+
+9
+00:00:28.962 --> 00:00:32.312
+The workbook is a draft,
+awaiting the owner's review.
+
+10
+00:00:32.312 --> 00:00:37.680
+And the code is illustrative, tested
+against fixtures, not against a live tenant.

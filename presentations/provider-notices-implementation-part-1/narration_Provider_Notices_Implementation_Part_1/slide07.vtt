@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.200
+Gate one is Azure Service Health.
+
+2
+00:00:02.200 --> 00:00:06.299
+Resource Graph answers the same
+questions for every subscription
+
+3
+00:00:06.299 --> 00:00:10.325
+in scope with one query, and
+Microsoft Learn publishes the queries.
+
+4
+00:00:10.325 --> 00:00:11.337
+Four steps.
+
+5
+00:00:11.337 --> 00:00:14.293
+A subscription owner grants
+the reader two roles:
+
+6
+00:00:14.293 --> 00:00:16.888
+Reader, and Service
+Health Security Reader.
+
+7
+00:00:16.888 --> 00:00:21.055
+Learn explains why the second one
+matters: with Reader alone you see a
+
+8
+00:00:21.055 --> 00:00:25.662
+security advisory, but not its sensitive
+fields or the resources it affects.
+
+9
+00:00:25.662 --> 00:00:29.788
+Then sign in to the right cloud,
+with the Resource Graph extension.
+
+10
+00:00:29.788 --> 00:00:34.688
+The workbook's estate is GCC with
+commercial Azure, so that's Azure Cloud.
+
+11
+00:00:34.688 --> 00:00:36.000
+Third, collect.
+
+12
+00:00:36.000 --> 00:00:39.688
+The kit's query starts from Learn's
+sample for all active events.
+
+13
+00:00:39.688 --> 00:00:43.386
+Fourth, alert between collections
+with Learn's built-in policy,
+
+14
+00:00:43.386 --> 00:00:46.800
+assigned at the management
+group with a remediation task.
+
+15
+00:00:46.800 --> 00:00:48.301
+The kit writes it as a plan,
+
+16
+00:00:48.301 --> 00:00:51.940
+and applies it only with the
+hash the change record approved.

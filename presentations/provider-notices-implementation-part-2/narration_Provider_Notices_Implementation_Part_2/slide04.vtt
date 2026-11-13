@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.012
+On the fixtures, Google
+Cloud looks like this.
+
+2
+00:00:03.012 --> 00:00:05.738
+The kit declares two calls
+with the viewer role.
+
+3
+00:00:05.738 --> 00:00:09.412
+The project call is verified
+against Google's documentation.
+
+4
+00:00:09.412 --> 00:00:12.272
+The organization call
+says verified, false,
+
+5
+00:00:12.272 --> 00:00:14.974
+which is why it runs
+only when you allow it.
+
+6
+00:00:14.974 --> 00:00:19.047
+The collection gives two incidents,
+one open and one closed,
+
+7
+00:00:19.047 --> 00:00:24.200
+and none needs action: Google's API has
+no field that says action is required.
+
+8
+00:00:24.200 --> 00:00:27.632
+The records show where the
+products and locations come from,
+
+9
+00:00:27.632 --> 00:00:31.338
+the event's impacts, which is what
+the guide's validate step checks.
+
+10
+00:00:31.338 --> 00:00:36.249
+Cloud SQL in one region is open;
+Cloud Storage in another is closed.
+
+11
+00:00:36.249 --> 00:00:37.625
+And that's the whole gate.
+
+12
+00:00:37.625 --> 00:00:40.450
+It supports the same two
+controls as gate one,
+
+13
+00:00:40.450 --> 00:00:43.963
+monitoring the provider and
+receiving its advisories.
+
+14
+00:00:43.963 --> 00:00:48.500
+Rollback is simply removing the role
+binding when the kit is retired.

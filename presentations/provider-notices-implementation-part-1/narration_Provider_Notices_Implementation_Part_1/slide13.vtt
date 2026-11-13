@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.088
+Here's Oracle on the fixtures.
+
+2
+00:00:02.088 --> 00:00:04.937
+Day one gives four notices, one per chain.
+
+3
+00:00:04.937 --> 00:00:08.126
+The maintenance names a
+database system and its window.
+
+4
+00:00:08.126 --> 00:00:11.159
+The change is action
+required, by December 15,
+
+5
+00:00:11.159 --> 00:00:16.488
+because Oracle's own action-required fields
+say so, and it names a load balancer.
+
+6
+00:00:16.488 --> 00:00:20.075
+A week later, the provider has
+rescheduled the maintenance.
+
+7
+00:00:20.075 --> 00:00:24.534
+Because the kit keeps only the latest
+in each chain, the new announcement
+
+8
+00:00:24.534 --> 00:00:29.438
+replaces the original, with the new window,
+rather than becoming a second notice.
+
+9
+00:00:29.438 --> 00:00:32.650
+That's exactly what the guide's
+try-it says to look for.
+
+10
+00:00:32.650 --> 00:00:36.188
+Beyond monitoring the provider
+and receiving advisories,
+
+11
+00:00:36.188 --> 00:00:40.882
+this gate supports contingency planning:
+maintenance that names the agency's
+
+12
+00:00:40.882 --> 00:00:43.626
+resources prompts a
+contingency plan review,
+
+13
+00:00:43.626 --> 00:00:45.937
+and the task carries a flag that says so.
+
+14
+00:00:45.937 --> 00:00:50.290
+Until the reader exists, Oracle's
+announcement email is the interim path,
+
+15
+00:00:50.290 --> 00:00:52.970
+and the settings file
+names who receives it.

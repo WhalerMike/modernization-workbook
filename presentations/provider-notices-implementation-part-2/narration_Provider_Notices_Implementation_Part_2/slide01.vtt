@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.225
+Welcome to Part 2 of the implementation
+series for provider notices.
+
+2
+00:00:04.225 --> 00:00:09.054
+As in Part 1, one thing first: Provider
+Notices, An Implementation Guide,
+
+3
+00:00:09.054 --> 00:00:14.050
+is a draft, awaiting the owner's review,
+so check it again after that review.
+
+4
+00:00:14.050 --> 00:00:19.477
+Part 1 collected four providers into
+one record: Azure Service Health,
+
+5
+00:00:19.477 --> 00:00:24.062
+Microsoft 365, Oracle Cloud
+Infrastructure and AWS Health.
+
+6
+00:00:24.062 --> 00:00:25.774
+Part 2 finishes the loop.
+
+7
+00:00:25.774 --> 00:00:28.144
+Gate five adds Google Cloud's incidents,
+
+8
+00:00:28.144 --> 00:00:30.800
+and records the gap for
+planned maintenance.
+
+9
+00:00:30.800 --> 00:00:34.859
+Gate six routes every notice
+that needs action to an owner,
+
+10
+00:00:34.859 --> 00:00:36.888
+as a task, without duplicates.
+
+11
+00:00:36.888 --> 00:00:40.132
+Gate seven writes the weekly
+digest the owners read,
+
+12
+00:00:40.132 --> 00:00:43.300
+and the evidence chain the
+security officer keeps.
+
+13
+00:00:43.300 --> 00:00:47.000
+Then how to run it safely:
+control states and change rings,
+
+14
+00:00:47.000 --> 00:00:51.488
+the dangers, the evidence file,
+rollback, and what couldn't be verified.
+
+15
+00:00:51.488 --> 00:00:57.050
+The kit's code is illustrative, tested
+against fixtures, not against a live tenant.

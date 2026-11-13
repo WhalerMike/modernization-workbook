@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.109
+On the fixtures, AWS gives
+five notices: two retirements,
+
+2
+00:00:04.109 --> 00:00:09.138
+a maintenance window, a security
+notification and a closed incident.
+
+3
+00:00:09.138 --> 00:00:10.300
+Three need action.
+
+4
+00:00:10.300 --> 00:00:11.538
+Look at the basis.
+
+5
+00:00:11.538 --> 00:00:16.264
+The EC2 instance retirement and
+the IAM security notification are
+
+6
+00:00:16.264 --> 00:00:20.737
+action required because AWS said
+so, in its actionability field.
+
+7
+00:00:20.737 --> 00:00:24.565
+The Lambda lifecycle event is
+action required by the kit's rule:
+
+8
+00:00:24.565 --> 00:00:29.201
+a scheduled change whose event code names
+a retirement, due at its start time.
+
+9
+00:00:29.201 --> 00:00:33.788
+Again, the record tells you which is
+AWS's word and which is the kit's.
+
+10
+00:00:33.788 --> 00:00:38.503
+And the kit holds AWS's documented
+limit: the details call takes one
+
+11
+00:00:38.503 --> 00:00:43.476
+to ten event identifiers, so eleven
+is refused before anything is sent.
+
+12
+00:00:43.476 --> 00:00:46.204
+Beyond monitoring and
+receiving advisories,
+
+13
+00:00:46.204 --> 00:00:50.800
+this gate supports implementing directives
+in the established time frames:
+
+14
+00:00:50.800 --> 00:00:54.240
+an action-required event becomes
+a task with its due date.

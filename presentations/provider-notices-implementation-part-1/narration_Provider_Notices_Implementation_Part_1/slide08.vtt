@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.039
+Here's what the kit really prints,
+from the workbook's first chapter,
+
+2
+00:00:04.039 --> 00:00:06.287
+on fictional fixtures with no tenant.
+
+3
+00:00:06.287 --> 00:00:09.250
+One collection gives five
+notices from six rows:
+
+4
+00:00:09.250 --> 00:00:13.324
+an incident that appeared in two
+subscriptions became one notice.
+
+5
+00:00:13.324 --> 00:00:15.750
+Every record is valid against the schema.
+
+6
+00:00:15.750 --> 00:00:18.388
+The records show the two that need action.
+
+7
+00:00:18.388 --> 00:00:23.782
+The retirement of basic public IP
+addresses is due September 30,
+
+8
+00:00:23.782 --> 00:00:25.512
+2027, by the kit's rule.
+
+9
+00:00:25.512 --> 00:00:30.912
+The security advisory needs action with no
+date, for the security officer to review.
+
+10
+00:00:30.912 --> 00:00:35.282
+The incident, the advisory and the
+maintenance window need no action,
+
+11
+00:00:35.282 --> 00:00:37.351
+so they'll go to the weekly digest.
+
+12
+00:00:37.351 --> 00:00:42.337
+Then the alert plan: two steps, the
+policy assignment at the management group
+
+13
+00:00:42.337 --> 00:00:46.850
+and its remediation, the plan's hash,
+and a dry run that changes nothing.
+
+14
+00:00:46.850 --> 00:00:50.450
+And in fixture mode, the script
+refuses to apply at all.

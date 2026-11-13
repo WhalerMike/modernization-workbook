@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.213
+Gate seven makes it a weekly
+habit and proves it ran.
+
+2
+00:00:03.213 --> 00:00:06.101
+The digest is what the
+owners read every week;
+
+3
+00:00:06.101 --> 00:00:09.225
+the evidence is what the
+security officer keeps.
+
+4
+00:00:09.225 --> 00:00:13.580
+The deployment runbook takes both to a
+test environment and then production,
+
+5
+00:00:13.580 --> 00:00:17.050
+with the same commands and one
+settings file per environment.
+
+6
+00:00:17.050 --> 00:00:18.175
+Three steps.
+
+7
+00:00:18.175 --> 00:00:22.524
+First, a preflight that only reads:
+the settings and routing files,
+
+8
+00:00:22.524 --> 00:00:27.679
+each provider's tool and signed-in cloud,
+the reader's first call, and for AWS the
+
+9
+00:00:27.679 --> 00:00:30.337
+support plan, the named notice contacts,
+
+10
+00:00:30.337 --> 00:00:33.237
+and in production the
+test stage's evidence.
+
+11
+00:00:33.237 --> 00:00:35.855
+Second, the weekly run: collection,
+
+12
+00:00:35.855 --> 00:00:40.062
+routing and the digest, each
+step recorded as evidence.
+
+13
+00:00:40.062 --> 00:00:42.299
+Third, the go or no-go.
+
+14
+00:00:42.299 --> 00:00:45.899
+It needs a passing record for
+every step the stage lists,
+
+15
+00:00:45.899 --> 00:00:51.062
+with production adding the alert policy,
+an unbroken chain, and matching hashes.
+
+16
+00:00:51.062 --> 00:00:54.890
+The scheduler is the agency's;
+the kit doesn't register one.

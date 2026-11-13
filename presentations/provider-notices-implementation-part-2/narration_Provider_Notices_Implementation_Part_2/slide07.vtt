@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.375
+A week later, the providers have moved.
+
+2
+00:00:02.375 --> 00:00:06.063
+Day two's routing finds two
+new notices, six changed,
+
+3
+00:00:06.063 --> 00:00:09.225
+fifteen unchanged and
+one no longer listed.
+
+4
+00:00:09.225 --> 00:00:12.475
+So it writes one create,
+four updates and one close,
+
+5
+00:00:12.475 --> 00:00:15.012
+and nothing for the fifteen unchanged.
+
+6
+00:00:15.012 --> 00:00:18.739
+The updates are two rescheduled
+maintenance windows,
+
+7
+00:00:18.739 --> 00:00:23.875
+an updated Microsoft 365 post, and an
+incident the provider no longer lists.
+
+8
+00:00:23.875 --> 00:00:27.844
+The close is the AWS security
+notification the provider closed,
+
+9
+00:00:27.844 --> 00:00:32.262
+and that close payload asks for the
+re-read rather than closing the task.
+
+10
+00:00:32.262 --> 00:00:35.817
+Below it is the request chain
+on the Azure retirement's task,
+
+11
+00:00:35.817 --> 00:00:37.413
+in the Human decision lane.
+
+12
+00:00:37.413 --> 00:00:39.326
+Clause one says where it came from.
+
+13
+00:00:39.326 --> 00:00:42.250
+Two names the approver
+role, the system owner.
+
+14
+00:00:42.250 --> 00:00:45.013
+Three is the action, under change control.
+
+15
+00:00:45.013 --> 00:00:47.500
+Four is the re-read check that closes it.
+
+16
+00:00:47.500 --> 00:00:49.730
+And five says what evidence is kept.

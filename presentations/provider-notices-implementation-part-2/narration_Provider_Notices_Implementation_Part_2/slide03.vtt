@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.453
+Gate five is Google Cloud's
+Personalized Service Health,
+
+2
+00:00:03.453 --> 00:00:07.362
+which lists the incidents relevant
+to a project or organization.
+
+3
+00:00:07.362 --> 00:00:10.549
+Google's documentation
+sets one hard limit:
+
+4
+00:00:10.549 --> 00:00:13.825
+the API has a single
+event category, incident.
+
+5
+00:00:13.825 --> 00:00:17.964
+Planned maintenance isn't in it, so
+this gate covers incidents only,
+
+6
+00:00:17.964 --> 00:00:21.050
+and the gap is recorded
+with the security officer.
+
+7
+00:00:21.050 --> 00:00:23.910
+The project owner enables the API once and
+
+8
+00:00:23.910 --> 00:00:26.688
+grants the reader's group the viewer role.
+
+9
+00:00:26.688 --> 00:00:30.201
+Then cross-check with Google's
+own list command, and collect.
+
+10
+00:00:30.201 --> 00:00:31.567
+For an organization,
+
+11
+00:00:31.567 --> 00:00:35.750
+the settings say so and the role
+is granted on the organization.
+
+12
+00:00:35.750 --> 00:00:39.244
+But the gcloud flags for
+organization events weren't read,
+
+13
+00:00:39.244 --> 00:00:43.175
+so the kit marks that call unverified
+and runs it only when told to.
+
+14
+00:00:43.175 --> 00:00:47.491
+And for government workloads: Google's
+Assured Workloads page lists this
+
+15
+00:00:47.491 --> 00:00:51.737
+product under regional packages, but
+not under FedRAMP Moderate or High.
+
+16
+00:00:51.737 --> 00:00:54.980
+A workload in those packages
+has nothing to read here.

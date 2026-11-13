@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.600
+Gate six turns notices into work.
+
+2
+00:00:02.600 --> 00:00:07.837
+A notice that needs action becomes a task
+with an owner; the rest go in the digest.
+
+3
+00:00:07.837 --> 00:00:12.253
+First, the routing is written at
+work, inside the agency's boundary,
+
+4
+00:00:12.253 --> 00:00:16.013
+from the kit's template, with
+its prompts in Copilot Chat.
+
+5
+00:00:16.013 --> 00:00:18.941
+Rules are tried in order
+and the first match wins,
+
+6
+00:00:18.941 --> 00:00:24.212
+so security advisories and retirements come
+before the general action-required rule.
+
+7
+00:00:24.212 --> 00:00:28.157
+Second, check it: the kit
+refuses an unknown match key,
+
+8
+00:00:28.157 --> 00:00:32.837
+a task rule with no severity or
+group, and a placeholder left in.
+
+9
+00:00:32.837 --> 00:00:35.012
+Third, route as a dry run.
+
+10
+00:00:35.012 --> 00:00:37.101
+Each task is shaped for ServiceNow,
+
+11
+00:00:37.101 --> 00:00:41.492
+with a severity and a response window
+from the program's finding contract,
+
+12
+00:00:41.492 --> 00:00:43.724
+the provider's own date kept separate,
+
+13
+00:00:43.724 --> 00:00:47.251
+and the five clauses of the
+Ticket-to-Machine request chain.
+
+14
+00:00:47.251 --> 00:00:50.550
+Fourth, send once the
+agency's endpoint exists.
+
+15
+00:00:50.550 --> 00:00:55.850
+And a task closes only on the re-read, never
+because the provider closed the notice.

@@ -1,0 +1,27 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Check seven.
+
+2
+00:00:00.988 --> 00:00:04.734
+In the lab, the stage check
+for test passes the sums,
+
+3
+00:00:04.734 --> 00:00:07.201
+the chain, routing and the digest.
+
+4
+00:00:07.201 --> 00:00:08.550
+Why does it still fail?
+
+5
+00:00:08.550 --> 00:00:12.735
+An edited file, no pre-flight
+or scheduled-run record yet,
+
+6
+00:00:12.735 --> 00:00:15.790
+mismatched indicators, or an old digest?
