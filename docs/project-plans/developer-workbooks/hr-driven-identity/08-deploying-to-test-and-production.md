@@ -146,7 +146,7 @@ Every value that differs between environments lives in the settings file, and th
 | Placeholder | What it is | Where to find it |
 |---|---|---|
 | `<test-or-production>` | `test` or `production` | Your choice per file |
-| `<cloud>` | `gcc`, `gcchigh` or `dod` | The tenant's cloud: Microsoft 365 GCC uses the worldwide Graph host; GCC High and DoD have their own[^hw08-deployments] |
+| `<cloud>` | `gcc` | The tenant's cloud: Microsoft 365 GCC uses the worldwide Graph host[^hw08-deployments] |
 | `<tenant-id>` | The test tenant's ID (`<test-tenant-id>`) in `settings.test.json`, the production tenant's (`<production-tenant-id>`) in `settings.production.json` | **Entra ID** > **Overview** |
 | `<change-record-id>` | The change record's ID | The change system |
 | `<hcm-pod-host>`, `<hcm-integration-user>`, `<hcm-assertion-key-name>` | The HCM pod, its integration user and the name of the key that signs its JWT assertion | The HR platform team |
@@ -197,7 +197,7 @@ Every value that differs between environments lives in the settings file, and th
 
    Until Stage 1 creates the workflows, the test file fails DS-02 and DS-05 for the six workflow IDs alone; that is expected.
 
-3. **Open a session for the stage.** These lines set the environment, make a private folder for the session, sign the operator in to read the key vault, convert the two integration identities' certificates to the PEM form the Azure CLI signs in with (Learn's procedure for a certificate held in Key Vault),[^hw08-azlogin] and define two helpers: `cfg` prints one value from the settings file, and `hrlc_token` signs in as an integration identity with its certificate and prints a Microsoft Graph token for the tenant's cloud.[^hw08-azgov] For Stage 2, run the same block with `SETTINGS=deploy/settings.production.json`:
+3. **Open a session for the stage.** These lines set the environment, make a private folder for the session, sign the operator in to read the key vault, convert the two integration identities' certificates to the PEM form the Azure CLI signs in with (Learn's procedure for a certificate held in Key Vault),[^hw08-azlogin] and define two helpers: `cfg` prints one value from the settings file, and `hrlc_token` signs in as an integration identity with its certificate and prints a Microsoft Graph token for the tenant's cloud. For Stage 2, run the same block with `SETTINGS=deploy/settings.production.json`:
 
    ```bash
    SETTINGS=deploy/settings.test.json
@@ -240,7 +240,7 @@ Every value that differs between environments lives in the settings file, and th
 | CM-6, configuration settings | One reviewed settings file per environment; `check` refuses a placeholder, an unknown cloud or a missing ID | KSI-SVC-ACM | `settings-check-*.json`; the settings file's SHA-256 in every later manifest |
 | IA-5, authenticator management for the integration identities | Refuses any secret in the file; certificates stay in the key vault and reach the session as PEM files deleted at its end | KSI-SVC-ASM *(design guidance: the crosswalk pairs IA-5(2) with it)* | `settings-check-*.json` with no DS-01; the key vault's access log |
 | CM-3, configuration change control | The change record's ID is in the file, and in every manifest and record | KSI-CMT-LMC | Every record's `changeRecord`; the change record |
-| FedRAMP AGU-USE-ABU, agency use of certified cloud services | The file names the cloud (`gcc`, `gcchigh`, `dod`) whose providers' authorizations the system's package relies on | — (an agency rule, not an indicator) | The system's ATO package listing the providers' authorizations |
+| FedRAMP AGU-USE-ABU, agency use of certified cloud services | The file names the cloud (`gcc`) whose providers' authorizations the system's package relies on | — (an agency rule, not an indicator) | The system's ATO package listing the providers' authorizations |
 
 : One environment settings file: requirements, KSIs and evidence {.striped .hover}
 
@@ -844,7 +844,7 @@ It passes only when the settings check, the pre-flight after deploy, the recorde
 
 ## Stage 2: production
 
-The production HR feed and the production tenant: Microsoft 365 GCC (Moderate) for the target estate, or GCC High where the guide's [starting state](../../../books/guides/hr-driven-identity-implementation.md#where-agencies-start) says so. Only the settings file changes. The synthetic workers never go into the production HR feed; production checks real records in the first scope.
+The production HR feed and the production tenant: Microsoft 365 GCC (Moderate). Only the settings file changes. The synthetic workers never go into the production HR feed; production checks real records in the first scope.
 
 ### Change record and pre-flight
 
@@ -1058,21 +1058,21 @@ Names and personal data stay in the access-controlled store: the exports under e
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Get synchronizationJob | `GET /servicePrincipals/{id}/synchronization/jobs/{jobId}`; application least privileged `Application.ReadWrite.OwnedBy`, higher `Synchronization.Read.All` | US Government L4 and L5 | v1.0 | [^hw08-jobget] |
-| Job status codes | `NotConfigured`, `NotRun`, `Active`, `Paused`, `Quarantine`; paused keeps the job's state | — | v1.0 | [^hw08-jobstatus] |
-| Pause and start a job | `POST .../pause` (`Suspend-MgServicePrincipalSynchronizationJob`); start continues a paused job and clears quarantine (`Start-MgServicePrincipalSynchronizationJob`); `Synchronization.ReadWrite.All` delegated | US Government L4 and L5 | v1.0 | [^hw08-pause] [^hw08-start] |
-| API-driven app | Notification email mandatory or the job quarantines on start; Restart purges pending payloads; Provision on demand not supported | API-driven inbound provisioning available in Azure Government | GA | [^hw08-config] [^hw08-feat] |
-| Scoping filters | Clauses AND, filters OR; saving starts a full sync; out-of-scope users can be disabled | — | GA | [^hw08-scoping] |
-| Accidental deletions | **Edit provisioning** > **Settings** > **Prevent accidental deletions**; held objects as `StagedAction` or `StagedDelete` | — | GA | [^hw08-accdel] |
-| List subscribedSkus | `GET /subscribedSkus`; `LicenseAssignment.Read.All` | US Government L4 and L5 | v1.0 | [^hw08-skus] |
-| List roleEligibilitySchedules | `GET /roleManagement/directory/roleEligibilitySchedules`; `RoleEligibilitySchedule.Read.Directory` | US Government L4 and L5 | v1.0 | [^hw08-elig] |
-| Workflow enable and schedule | `isEnabled` true allows on-demand runs; `isSchedulingEnabled` can't be true for a disabled workflow; update with `Update-MgIdentityGovernanceLifecycleWorkflow`, `LifecycleWorkflows-Workflow.ReadWrite.All` | Lifecycle Workflows available in Azure Government | v1.0 | [^hw08-wf] [^hw08-wfupdate] [^hw08-feat] |
-| On-demand run | The workflow must be enabled; up to 10 users; runs regardless of execution conditions; `Initialize-MgIdentityGovernanceLifecycleWorkflow`, least privileged `LifecycleWorkflows-Workflow.Activate` | US Government L4 and L5 | v1.0 | [^hw08-ondemand] |
-| Delete a user | `User.ReadWrite.All`; User Administrator; restorable for 30 days | US Government L4 and L5 | v1.0 | [^hw08-delete] |
-| Graph PowerShell clouds | `Global`, `USGov`, `USGovDoD` | — | — | [^hw08-mgenv] |
-| Oracle key and sign-in | `PersonNumber`, not `PersonID`, which varies across environments; JWT for feeds; tokens from the Fusion instance's OCI IAM identity domain; client assertion recommended over a client secret | — | — | [^hw08-ora-ems] [^hw08-ora-oauth] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Get synchronizationJob | `GET /servicePrincipals/{id}/synchronization/jobs/{jobId}`; application least privileged `Application.ReadWrite.OwnedBy`, higher `Synchronization.Read.All` | v1.0 | [^hw08-jobget] |
+| Job status codes | `NotConfigured`, `NotRun`, `Active`, `Paused`, `Quarantine`; paused keeps the job's state | v1.0 | [^hw08-jobstatus] |
+| Pause and start a job | `POST .../pause` (`Suspend-MgServicePrincipalSynchronizationJob`); start continues a paused job and clears quarantine (`Start-MgServicePrincipalSynchronizationJob`); `Synchronization.ReadWrite.All` delegated | v1.0 | [^hw08-pause] [^hw08-start] |
+| API-driven app | Notification email mandatory or the job quarantines on start; Restart purges pending payloads; Provision on demand not supported | GA | [^hw08-config] [^hw08-feat] |
+| Scoping filters | Clauses AND, filters OR; saving starts a full sync; out-of-scope users can be disabled | GA | [^hw08-scoping] |
+| Accidental deletions | **Edit provisioning** > **Settings** > **Prevent accidental deletions**; held objects as `StagedAction` or `StagedDelete` | GA | [^hw08-accdel] |
+| List subscribedSkus | `GET /subscribedSkus`; `LicenseAssignment.Read.All` | v1.0 | [^hw08-skus] |
+| List roleEligibilitySchedules | `GET /roleManagement/directory/roleEligibilitySchedules`; `RoleEligibilitySchedule.Read.Directory` | v1.0 | [^hw08-elig] |
+| Workflow enable and schedule | `isEnabled` true allows on-demand runs; `isSchedulingEnabled` can't be true for a disabled workflow; update with `Update-MgIdentityGovernanceLifecycleWorkflow`, `LifecycleWorkflows-Workflow.ReadWrite.All` | v1.0 | [^hw08-wf] [^hw08-wfupdate] [^hw08-feat] |
+| On-demand run | The workflow must be enabled; up to 10 users; runs regardless of execution conditions; `Initialize-MgIdentityGovernanceLifecycleWorkflow`, least privileged `LifecycleWorkflows-Workflow.Activate` | v1.0 | [^hw08-ondemand] |
+| Delete a user | `User.ReadWrite.All`; User Administrator; restorable for 30 days | v1.0 | [^hw08-delete] |
+| Graph PowerShell cloud | `Global` | — | [^hw08-mgenv] |
+| Oracle key and sign-in | `PersonNumber`, not `PersonID`, which varies across environments; JWT for feeds; tokens from the Fusion instance's OCI IAM identity domain; client assertion recommended over a client secret | — | [^hw08-ora-ems] [^hw08-ora-oauth] |
 
 Places the sources differ or say nothing, recorded so a later edit doesn't loosen the runbook:
 
@@ -1114,18 +1114,18 @@ Places the sources differ or say nothing, recorded so a later edit doesn't loose
 :::
 
 [^hw08-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 1, 2026; carried from Book 19, Chapter 02).
-[^hw08-feat]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: Lifecycle Workflows and API-driven inbound provisioning available; Entra ID Governance in GCC, GCC High and DoD), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
+[^hw08-feat]: Microsoft Learn, "Microsoft Entra feature availability" (Entra ID Governance in GCC), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
 [^hw08-config]: Microsoft Learn, "Configure API-driven inbound provisioning app" (roles; mandatory notification email or quarantine on start; Start, Stop, Restart and Edit provisioning; Provision on demand not supported; the Provisioning API Endpoint), <https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-configure-app> (read November 2, 2026).
 [^hw08-faq]: Microsoft Learn, "Frequently asked questions about API-driven inbound provisioning" (scoping filters to exclude users; no deletion through `/bulkUpload`; turn off the Delete target action; accidental deletion threshold; soft-deleted Entra users restorable for 30 days), <https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-faqs> (read November 2, 2026).
 [^hw08-scoping]: Microsoft Learn, "Scoping users or groups to be provisioned with scoping filters in Microsoft Entra ID" (menu path; clauses combine with AND, filters with OR; operators; saving a new filter triggers a full sync and out-of-scope users can be disabled or deprovisioned), <https://learn.microsoft.com/entra/identity/app-provisioning/define-conditional-rules-for-provisioning-user-accounts> (read November 2, 2026).
 [^hw08-accdel]: Microsoft Learn, "Enable accidental deletions prevention in the Microsoft Entra provisioning service" (menu path; threshold per cycle; disables count; `StagedAction` and `StagedDelete`), <https://learn.microsoft.com/entra/identity/app-provisioning/accidental-deletions> (read November 2, 2026).
 [^hw08-bulk]: Microsoft Learn, "Perform bulkUpload" (`202 Accepted` with a `Location` header to the provisioning logs), <https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-post-bulkupload?view=graph-rest-1.0> (read November 1, 2026; carried from Chapter 02).
-[^hw08-jobget]: Microsoft Learn, "Get synchronizationJob" (national clouds; application least privileged `Application.ReadWrite.OwnedBy`, higher `Synchronization.Read.All`; the example response's `synchronizationJobSettings`), <https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-get?view=graph-rest-1.0> (read November 2, 2026).
+[^hw08-jobget]: Microsoft Learn, "Get synchronizationJob" (application least privileged `Application.ReadWrite.OwnedBy`, higher `Synchronization.Read.All`; the example response's `synchronizationJobSettings`), <https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-get?view=graph-rest-1.0> (read November 2, 2026).
 [^hw08-jobstatus]: Microsoft Learn, "synchronizationStatus resource type" (status codes and their meaning), <https://learn.microsoft.com/graph/api/resources/synchronization-synchronizationstatus?view=graph-rest-1.0> (read November 2, 2026).
-[^hw08-pause]: Microsoft Learn, "synchronizationJob: pause" (state persisted; national clouds; `Synchronization.ReadWrite.All` delegated; `Suspend-MgServicePrincipalSynchronizationJob`), <https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-pause?view=graph-rest-1.0> (read November 2, 2026).
+[^hw08-pause]: Microsoft Learn, "synchronizationJob: pause" (state persisted; `Synchronization.ReadWrite.All` delegated; `Suspend-MgServicePrincipalSynchronizationJob`), <https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-pause?view=graph-rest-1.0> (read November 2, 2026).
 [^hw08-start]: Microsoft Learn, "Start-MgServicePrincipalSynchronizationJob" (continues a paused job; clears quarantine; don't call it continuously), <https://learn.microsoft.com/powershell/module/microsoft.graph.applications/start-mgserviceprincipalsynchronizationjob?view=graph-powershell-1.0> (read November 2, 2026).
-[^hw08-skus]: Microsoft Learn, "List subscribedSkus" (`LicenseAssignment.Read.All`; national clouds; `skuPartNumber`, `capabilityStatus`, `prepaidUnits`, `consumedUnits`), <https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0> (read November 2, 2026).
-[^hw08-elig]: Microsoft Learn, "List roleEligibilitySchedules" (`RoleEligibilitySchedule.Read.Directory`; national clouds; `roleDefinitionId`, `directoryScopeId`, `status`), <https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0> (read November 2, 2026).
+[^hw08-skus]: Microsoft Learn, "List subscribedSkus" (`LicenseAssignment.Read.All`; `skuPartNumber`, `capabilityStatus`, `prepaidUnits`, `consumedUnits`), <https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0> (read November 2, 2026).
+[^hw08-elig]: Microsoft Learn, "List roleEligibilitySchedules" (`RoleEligibilitySchedule.Read.Directory`; `roleDefinitionId`, `directoryScopeId`, `status`), <https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0> (read November 2, 2026).
 [^hw08-roles]: Microsoft Learn, "Microsoft Entra built-in roles," all roles (template IDs of Application Administrator, Hybrid Identity Administrator, Lifecycle Workflows Administrator, Identity Governance Administrator, Authentication Policy Administrator and User Administrator), <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference> (read November 2, 2026).
 [^hw08-pim]: Microsoft Learn, "Activate a Microsoft Entra role in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-activate-role> (read November 2, 2026).
 [^hw08-wf]: Microsoft Learn, "workflow resource type" (`isEnabled`: the workflow can run on demand, or on schedule when `isSchedulingEnabled` is true; `isSchedulingEnabled` can't be true for a disabled workflow), <https://learn.microsoft.com/graph/api/resources/identitygovernance-workflow?view=graph-rest-1.0> (read November 2, 2026).
@@ -1133,12 +1133,11 @@ Places the sources differ or say nothing, recorded so a later edit doesn't loose
 [^hw08-ondemand]: Microsoft Learn, "Run a workflow on-demand" (to test before the scheduled run; up to 10 users; the workflow must be enabled; execution conditions not considered), <https://learn.microsoft.com/entra/id-governance/on-demand-workflow>, and "workflow: activate" (`LifecycleWorkflows-Workflow.Activate`; `Initialize-MgIdentityGovernanceLifecycleWorkflow`), <https://learn.microsoft.com/graph/api/identitygovernance-workflow-activate?view=graph-rest-1.0> (read November 2, 2026).
 [^hw08-lcwplan]: Microsoft Learn, "Plan a Lifecycle Workflow deployment" (pilot with a small group or a single test user; test on demand), <https://learn.microsoft.com/entra/id-governance/lifecycle-workflows-deployment>; "Create a lifecycle workflow" ("By default, a newly created workflow is disabled"), <https://learn.microsoft.com/entra/id-governance/create-lifecycle-workflow>; and "Understanding lifecycle workflows" ("newly created workflows are enabled by default"), <https://learn.microsoft.com/entra/id-governance/understanding-lifecycle-workflows> (read November 2, 2026).
 [^hw08-users]: Microsoft Learn, "user resource type," `employeeId` (supports `$filter` with `eq`), <https://learn.microsoft.com/graph/api/resources/user?view=graph-rest-1.0> (read November 2, 2026).
-[^hw08-upr]: Microsoft Learn, "List userProcessingResults," permissions and national clouds, <https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0> (read November 1, 2026; carried from Chapter 06).
+[^hw08-upr]: Microsoft Learn, "List userProcessingResults," permissions, <https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0> (read November 1, 2026; carried from Chapter 06).
 [^hw08-prov]: Microsoft Learn, "List provisioningObjectSummary," permissions, <https://learn.microsoft.com/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0> (read November 1, 2026; carried from Chapter 01).
 [^hw08-delete]: Microsoft Learn, "Delete a user" (`User.ReadWrite.All`; User Administrator or Privileged Authentication Administrator; restorable within 30 days; `Remove-MgUser`), <https://learn.microsoft.com/graph/api/user-delete?view=graph-rest-1.0> (read November 2, 2026).
-[^hw08-mgenv]: Microsoft Learn, "Authentication module cmdlets in Microsoft Graph PowerShell," Use Get-MgEnvironment (`Global`, `USGov`, `USGovDoD`), <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0> (read November 2, 2026).
+[^hw08-mgenv]: Microsoft Learn, "Authentication module cmdlets in Microsoft Graph PowerShell," Use Get-MgEnvironment (`Global`), <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0> (read November 2, 2026).
 [^hw08-azlogin]: Microsoft Learn, "Sign into Azure with a service principal using the Azure CLI" and "Create a service principal containing a certificate using Azure CLI," Retrieve a certificate from Azure Key Vault (`az keyvault secret download` with `--encoding base64`, then `openssl pkcs12 ... -nodes`; `az login --service-principal --certificate`), <https://learn.microsoft.com/cli/azure/azure-cli-sp-tutorial-3?view=azure-cli-latest>; and "az account get-access-token" (valid at most 60 minutes), <https://learn.microsoft.com/cli/azure/account?view=azure-cli-latest> (read November 2, 2026).
-[^hw08-azgov]: Microsoft Learn, "Quickstart: Connect to Azure Government with Azure CLI" (`az cloud set --name AzureUSGovernment`), <https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-cli> (read November 2, 2026).
 [^hw08-perms]: Microsoft Learn, "Configure app permissions for a web API," add permissions to access Microsoft Graph (application permissions; Grant admin consent), <https://learn.microsoft.com/entra/identity-platform/quickstart-configure-app-access-web-apis> (read November 2, 2026).
 [^hw08-diag]: Microsoft Learn, "How to archive Microsoft Entra activity logs to an Azure storage account" (menu path), <https://learn.microsoft.com/entra/identity/monitoring-health/howto-archive-logs-to-storage-account> (read November 2, 2026).
 [^hw08-upload]: Microsoft Learn, "az storage blob," upload-batch and download-batch (`--destination-path`, `--pattern`, `--auth-mode login`), <https://learn.microsoft.com/cli/azure/storage/blob?view=azure-cli-latest> (read November 2, 2026).

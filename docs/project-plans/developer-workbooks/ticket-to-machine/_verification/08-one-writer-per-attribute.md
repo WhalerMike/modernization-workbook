@@ -10,7 +10,7 @@ Vendor pages opened on November 1, 2026: Microsoft Learn, through the Learn MCP 
 |---|---|---|---|---|
 | 1 | Gap 4 and its design guidance | Why this is a build | carried forward | example guide |
 | 2 | The one-writer check is planned for Pass 2 | Why this is a build | verified | implementation example |
-| 3 | The schema read: endpoint, permissions (application least `CustomSecAttributeProvisioning.Read.All`), roles, L4 and L5 | Lab 2; facts | verified; the least-privileged entry is surprising (research gaps, row 71) | Learn, Get synchronizationSchema |
+| 3 | The schema read: endpoint, permissions (application least `CustomSecAttributeProvisioning.Read.All`), roles | Lab 2; facts | verified; the least-privileged entry is surprising (research gaps, row 71) | Learn, Get synchronizationSchema |
 | 4 | `flowType` values and default; AD-to-Entra jobs ignore it | What this chapter adds; facts | verified | Learn, attributeMapping |
 | 5 | objectMapping `enabled` and `flowTypes` | Facts | verified | Learn, objectMapping |
 | 6 | Learn's examples name the directory "Azure Active Directory"; one page says "Microsoft Entra ID" | What couldn't be verified | verified (both seen) | Learn, Get synchronizationSchema; directory extension attributes |

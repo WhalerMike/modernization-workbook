@@ -11,6 +11,8 @@
       "route": "task", "severity": "P3", "assignmentGroup": "<platform-engineering-group>", "approverRole": "<system-owner-role>", "contingencyReview": true },
     { "id": "R04", "name": "Open incidents that name our resources", "match": { "kind": ["incident"], "status": ["open"], "hasResources": true },
       "route": "task", "severity": "P2", "assignmentGroup": "<service-desk-group>", "approverRole": "<help-desk-supervisor-role>", "contingencyReview": false },
+    { "id": "R04b", "name": "Open Microsoft 365 incidents (tenant-wide; service health names no resources)", "match": { "provider": ["m365"], "kind": ["incident"], "status": ["open"] },
+      "route": "task", "severity": "P2", "assignmentGroup": "<service-desk-group>", "approverRole": "<help-desk-supervisor-role>", "contingencyReview": false },
     { "id": "R05", "name": "Anything else the provider says needs action", "match": { "actionRequired": true },
       "route": "task", "severity": "P3", "assignmentGroup": "<cloud-operations-group>", "approverRole": "<service-owner-role>", "contingencyReview": false },
     { "id": "R06", "name": "Services we don't use", "match": { "servicePattern": "<regex-of-services-not-in-use>" },

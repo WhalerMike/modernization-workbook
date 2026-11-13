@@ -13,7 +13,7 @@ Lab 1 was run with `python scripts/kit_captures.py pn` on Windows 11, PowerShell
 | 3 | `gcloud service-health events list --project --location=global` | Start with; Lab 2 | carried (guide row 29) | `pn05-gcloud` |
 | 4 | `roles/servicehealth.viewer` | Start with; Lab 2 | carried (guide row 30) | `pn05-iam` |
 | 5 | Enable `servicehealth.googleapis.com` | Lab 2 | carried (guide row 31) | `pn05-enable` |
-| 6 | Not in Assured Workloads FedRAMP Moderate or High, IL2, IL4, IL5, CJIS, ITAR | Start with; Lab 2; Dangers | carried (guide row 32) | `pn05-aw` |
+| 6 | Not in Assured Workloads FedRAMP Moderate or High, CJIS, ITAR | Start with; Lab 2; Dangers | carried (guide row 32) | `pn05-aw` |
 | 7 | `gcloud auth login`; `remove-iam-policy-binding` | Lab 2 | verified November 9 | `pn05-auth` |
 | 8 | The unverified organization call is refused without `-AllowUnverified` | Lab 1 step 6 | verified by running the command | `data/kit-captures/pn/05-6.txt` |
 | 9 | Lab 1 outputs (permissions, 2 incidents, both closed on day two, one kind, the refusal, the project command, 8 tests) | Lab 1 | verified by running the commands as written | `data/kit-captures/pn/05-*.txt` |

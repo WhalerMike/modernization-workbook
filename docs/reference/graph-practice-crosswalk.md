@@ -1,7 +1,7 @@
 ---
-title: "Microsoft Practice Crosswalk: Entra, Intune, National Clouds, Arc and SQL"
+title: "Microsoft Practice Crosswalk: Entra, Intune, GCC Endpoints, Arc and SQL"
 subtitle: "An explainer: each practice the books recommend, the Microsoft page that defines it, the ScubaGear policy or Azure Policy built-in that checks it, and when the row was last reviewed"
-description: "Research draft: a crosswalk from the Entra ID, Intune, national-cloud endpoint, Azure Arc and SQL practices in Books 02, 04, 05, 06, 10 and 15 to the canonical Microsoft Learn page, the CISA ScubaGear policy ID or Azure Policy built-in definition that checks each one, and the date each row was last reviewed."
+description: "Research draft: a crosswalk from the Entra ID, Intune, GCC endpoint, Azure Arc and SQL practices in Books 02, 04, 05, 06, 10 and 15 to the canonical Microsoft Learn page, the CISA ScubaGear policy ID or Azure Policy built-in definition that checks each one, and the date each row was last reviewed."
 research-status: draft
 research-type: reference
 research-book: "Books 02, 04, 05, 06, 10, 15"
@@ -11,7 +11,7 @@ aliases:
   - /docs/research/graph-practice-crosswalk.html
 ---
 
-# Microsoft Practice Crosswalk: Entra, Intune, National Clouds, Arc and SQL {.unnumbered}
+# Microsoft Practice Crosswalk: Entra, Intune, GCC Endpoints, Arc and SQL {.unnumbered}
 
 The books recommend Microsoft practices chapter by chapter: block legacy authentication, require phishing-resistant MFA, put privileged roles behind PIM, make device compliance the access signal, connect servers through Azure Arc, and move SQL Server to Entra authentication. This page puts those practices in one table, so that a reviewer can see for each one where Microsoft defines it, which automated check confirms it, and how fresh the row is.
 
@@ -59,18 +59,14 @@ The ScubaGear Entra ID baseline (`aad.md`) is the source for every ID below, as 
 | Intune role-based access control and Multi Admin Approval | [Book 05, Ch 06](../books/b05-devices/06-who-owns-the-endpoint.md) | Role-based access control with Microsoft Intune[^gpc-irbac]; Use Multi Admin Approval in Intune[^gpc-maa] | No ScubaGear policy | 2026-10-25 |
 | Read and evidence Intune configuration through Microsoft Graph | [Book 15, Ch 08](../books/b15-day2-operations/08-control-automation-m365-and-azure.md) | Working with Intune in Microsoft Graph[^gpc-igraph] | No ScubaGear policy | 2026-10-25 |
 
-## National-cloud endpoints
+## GCC endpoints
 
 These rows aren't settings, so there's no check to map. They decide which endpoints every script and collector in the books has to call, so they're reviewed on the same schedule.
 
 | Practice | Book | Microsoft page | What the page says | Reviewed |
 |---|---|---|---|---|
 | A Microsoft 365 GCC tenant uses the worldwide endpoints | [Book 10, Ch 04](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) | Microsoft Graph national cloud deployments[^gpc-deploy] | `https://graph.microsoft.com` and `https://portal.azure.com` | 2026-10-25 |
-| A GCC High tenant uses the US Government L4 endpoints | [Book 10, Ch 04](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) | Microsoft Graph national cloud deployments[^gpc-deploy] | `https://graph.microsoft.us`, `https://portal.azure.us`, sign-in at `https://login.microsoftonline.us` | 2026-10-25 |
-| A DoD tenant uses the US Government L5 endpoints | [Book 10, Ch 04](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) | Microsoft Graph national cloud deployments[^gpc-deploy] | `https://dod-graph.microsoft.us` and `https://portal.azure.us` | 2026-10-25 |
-| Intune GCC is the commercial instance; GCC High and DoD are a separate government instance, with no built-in migration between them | [Book 05, Ch 04](../books/b05-devices/04-intune-first-onboarding.md) | Microsoft Intune Government Service overview[^gpc-igov] | Devices moving between the two must unenroll and re-enroll | 2026-10-25 |
-
-Graph Explorer isn't supported on the GCC High, DoD or China endpoints,[^gpc-deploy] so a query written and tested in Graph Explorer has to be retested against the government endpoint before a GCC High or DoD collector uses it *(design guidance)*.
+| Intune GCC is the commercial instance | [Book 05, Ch 04](../books/b05-devices/04-intune-first-onboarding.md) | Microsoft Intune Government Service overview[^gpc-igov] | A GCC tenant uses the commercial Intune service | 2026-10-25 |
 
 ## Azure Arc
 
@@ -134,8 +130,8 @@ Related: the Microsoft automation reference, [Module 1: Foundations](../training
 [^gpc-irbac]: Microsoft Learn, "Role-based access control (RBAC) with Microsoft Intune" (updated March 24, 2026), <https://learn.microsoft.com/en-us/intune/fundamentals/role-based-access-control/overview>, accessed October 25, 2026.
 [^gpc-maa]: Microsoft Learn, "Use Multi Admin Approval in Intune" (updated July 30, 2026), <https://learn.microsoft.com/en-us/intune/fundamentals/role-based-access-control/multi-admin-approval>, accessed October 25, 2026.
 [^gpc-igraph]: Microsoft Learn, "Working with Intune in Microsoft Graph" (updated September 25, 2024), <https://learn.microsoft.com/en-us/graph/api/resources/intune-graph-overview>, accessed October 25, 2026.
-[^gpc-deploy]: Microsoft Learn, "Microsoft Graph national cloud deployments" (updated January 30, 2025): GCC tenants "continue using the worldwide endpoints"; GCC High uses `graph.microsoft.us` and `portal.azure.us`; DoD uses `dod-graph.microsoft.us`; Graph Explorer is not supported on the national clouds, <https://learn.microsoft.com/en-us/graph/deployments>, accessed October 25, 2026.
-[^gpc-igov]: Microsoft Learn, "Microsoft Intune Government Service overview" (updated October 2, 2026): Intune has no separate GCC instance, GCC High and DoD share the government instance, and there's no built-in migration between the commercial service and the government cloud, <https://learn.microsoft.com/en-us/intune/fundamentals/government-service>, accessed October 25, 2026.
+[^gpc-deploy]: Microsoft Learn, "Microsoft Graph national cloud deployments" (updated January 30, 2025): GCC tenants "continue using the worldwide endpoints", <https://learn.microsoft.com/en-us/graph/deployments>, accessed October 25, 2026.
+[^gpc-igov]: Microsoft Learn, "Microsoft Intune Government Service overview" (updated October 2, 2026): Intune has no separate GCC instance; a GCC tenant uses the commercial service, <https://learn.microsoft.com/en-us/intune/fundamentals/government-service>, accessed October 25, 2026.
 [^gpc-arcpol]: Microsoft Learn, "Azure Policy built-in definitions for Azure Arc-enabled servers" (updated February 12, 2026), <https://learn.microsoft.com/en-us/azure/azure-arc/servers/policy-reference>, accessed October 25, 2026.
 [^gpc-arcpl]: Microsoft Learn, "Use Azure Private Link to connect servers to Azure Arc by using a private endpoint" (updated May 4, 2026), <https://learn.microsoft.com/en-us/azure/azure-arc/servers/private-link-security>, accessed October 25, 2026.
 [^gpc-arcnet]: Microsoft Learn, "Connected Machine agent network requirements" (updated April 1, 2026), <https://learn.microsoft.com/en-us/azure/azure-arc/servers/network-requirements>, accessed October 25, 2026.

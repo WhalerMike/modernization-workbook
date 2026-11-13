@@ -59,7 +59,7 @@ Learn is short and firm about what Conditional Access for workload identities ca
 
 ### Which cloud, for these calls
 
-The target estate is Microsoft 365 GCC, whose Microsoft Entra tenant uses the worldwide endpoints: Graph at `graph.microsoft.com`. GCC High and DoD use `graph.microsoft.us` and `dod-graph.microsoft.us`.[^np08-deployments] Listing and changing Conditional Access policies and named locations list the global service, US Government L4 and US Government L5,[^np08-ca-list] [^np08-ca-create] [^np08-ca-update] [^np08-nl-list] [^np08-nl-create] [^np08-nl-update] and so does the beta sign-in log read.[^np08-signins] Learn's feature availability page for Azure for US Government lists Conditional Access as available and says Workload ID Premium is available there; the Workload ID FAQ says to contact the account manager in the Azure Government clouds, where the free trial isn't offered.[^np08-availability] [^np08-faq] That page's ID Protection table lists user risk detections only; whether workload identity risk detections, which CA037 depends on, run in GCC High and DoD is open (research gaps, row 75). The code takes the cloud as an explicit name and has no default.
+The target estate is Microsoft 365 GCC, whose Microsoft Entra tenant uses the worldwide endpoints: Graph at `graph.microsoft.com`.[^np08-deployments] Listing and changing Conditional Access policies and named locations list the global service, which GCC uses,[^np08-ca-list] [^np08-ca-create] [^np08-ca-update] [^np08-nl-list] [^np08-nl-create] [^np08-nl-update] and so does the beta sign-in log read.[^np08-signins] The Workload ID FAQ says the free trial isn't offered in the Azure Government clouds.[^np08-faq] The code takes the cloud as an explicit name and has no default.
 
 ## Start with Microsoft's sample
 
@@ -703,24 +703,24 @@ Remove-Item my-scope.json
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Conditional Access for workload identities | Block from outside known IP ranges, on ID Protection risk, or with authentication contexts; block is the only grant; report-only available; Premium licenses to create or modify; single-tenant service principals registered in the tenant; not SaaS, multitenant or managed identities; group assignment not enforced; enterprise application's object ID, not the registration's | Conditional Access available; Workload ID Premium available in Azure for US Government | No preview label on the page | [^np08-wid] [^np08-availability] |
-| Learn's Graph sample | Location-based policy JSON "using the Microsoft Graph beta endpoint" | — | Labeled beta | [^np08-wid] |
-| `conditionalAccessClientApplications` | `includeServicePrincipals`: service principal IDs or `ServicePrincipalsInMyTenant`; `excludeServicePrincipals`; `servicePrincipalFilter` | — | v1.0 | [^np08-clientapps] |
-| `conditionalAccessConditionSet` | `clientApplications` or `users` required; `servicePrincipalRiskLevels` low, medium, high, none; `clientAppTypes` required | — | v1.0 | [^np08-conditionset] |
-| List policies | `Policy.Read.All` | L4 and L5 | v1.0 | [^np08-ca-list] |
-| Create and update a policy | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess` | L4 and L5 | v1.0 | [^np08-ca-create] [^np08-ca-update] |
-| List named locations | `Policy.Read.All`; Global Reader, Security Reader, Security Administrator, Conditional Access Administrator, Global Secure Access Administrator | L4 and L5 | v1.0 | [^np08-nl-list] |
-| Create a named location | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; Security Administrator or Conditional Access Administrator; `@odata.type` of the derived type required; IPv4 CIDR or IPv6 ranges | L4 and L5 | v1.0 | [^np08-nl-create] |
-| Update an ipNamedLocation | Same permissions and roles | L4 and L5 | v1.0 | [^np08-nl-update] |
-| List signIns | `AuditLog.Read.All`; only interactive sign-ins without an event type filter; service principal filter `signInEventTypes/any(t: t eq 'servicePrincipal')`; Conditional Access results need `Policy.Read.All`, `Policy.Read.ConditionalAccess` or `Policy.ReadWrite.ConditionalAccess`; descending by time; page size up to 1,000 | L4 and L5 | Beta | [^np08-signins] |
-| `appliedConditionalAccessPolicy` | `result` includes `reportOnlySuccess`, `reportOnlyFailure`, `reportOnlyNotApplied`, `reportOnlyInterrupted`, returned with `Prefer: include-unknown-enum-members` | — | Beta | [^np08-applied] |
-| Block error | AADSTS53003 BlockedByConditionalAccess | — | — | [^np08-errors] |
-| ID Protection for workload identities | Offline detections; full details and risk-based controls with Premium; single-tenant, SaaS and multitenant apps detected; managed identities not in scope | Not stated for workload identities | No preview label on the page | [^np08-risk] [^np08-availability] |
-| Workload ID Premium | Standalone; only eligible workload identities need licenses; no license assignment; CA for single-tenant apps; Microsoft apps and managed identities ineligible; Azure Government through the account manager; no trial there | Available; no trial | GA | [^np08-faq] |
-| `AADServicePrincipalSignInLogs` | `ServicePrincipalId`, `AppId`, `IPAddress`, `ConditionalAccessStatus`, `ConditionalAccessPolicies`; Learn's sample queries filter on `ResultType` | — | — | [^np08-la-table] [^np08-la-queries] |
-| Get and list service principals | `Application.Read.All` | — | v1.0 | [^np08-sp-get] [^np08-sp-list] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Conditional Access for workload identities | Block from outside known IP ranges, on ID Protection risk, or with authentication contexts; block is the only grant; report-only available; Premium licenses to create or modify; single-tenant service principals registered in the tenant; not SaaS, multitenant or managed identities; group assignment not enforced; enterprise application's object ID, not the registration's | No preview label on the page | [^np08-wid] |
+| Learn's Graph sample | Location-based policy JSON "using the Microsoft Graph beta endpoint" | Labeled beta | [^np08-wid] |
+| `conditionalAccessClientApplications` | `includeServicePrincipals`: service principal IDs or `ServicePrincipalsInMyTenant`; `excludeServicePrincipals`; `servicePrincipalFilter` | v1.0 | [^np08-clientapps] |
+| `conditionalAccessConditionSet` | `clientApplications` or `users` required; `servicePrincipalRiskLevels` low, medium, high, none; `clientAppTypes` required | v1.0 | [^np08-conditionset] |
+| List policies | `Policy.Read.All` | v1.0 | [^np08-ca-list] |
+| Create and update a policy | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess` | v1.0 | [^np08-ca-create] [^np08-ca-update] |
+| List named locations | `Policy.Read.All`; Global Reader, Security Reader, Security Administrator, Conditional Access Administrator, Global Secure Access Administrator | v1.0 | [^np08-nl-list] |
+| Create a named location | `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; Security Administrator or Conditional Access Administrator; `@odata.type` of the derived type required; IPv4 CIDR or IPv6 ranges | v1.0 | [^np08-nl-create] |
+| Update an ipNamedLocation | Same permissions and roles | v1.0 | [^np08-nl-update] |
+| List signIns | `AuditLog.Read.All`; only interactive sign-ins without an event type filter; service principal filter `signInEventTypes/any(t: t eq 'servicePrincipal')`; Conditional Access results need `Policy.Read.All`, `Policy.Read.ConditionalAccess` or `Policy.ReadWrite.ConditionalAccess`; descending by time; page size up to 1,000 | Beta | [^np08-signins] |
+| `appliedConditionalAccessPolicy` | `result` includes `reportOnlySuccess`, `reportOnlyFailure`, `reportOnlyNotApplied`, `reportOnlyInterrupted`, returned with `Prefer: include-unknown-enum-members` | Beta | [^np08-applied] |
+| Block error | AADSTS53003 BlockedByConditionalAccess | — | [^np08-errors] |
+| ID Protection for workload identities | Offline detections; full details and risk-based controls with Premium; single-tenant, SaaS and multitenant apps detected; managed identities not in scope | No preview label on the page | [^np08-risk] |
+| Workload ID Premium | Standalone; only eligible workload identities need licenses; no license assignment; CA for single-tenant apps; Microsoft apps and managed identities ineligible; Azure Government through the account manager; no trial there | GA | [^np08-faq] |
+| `AADServicePrincipalSignInLogs` | `ServicePrincipalId`, `AppId`, `IPAddress`, `ConditionalAccessStatus`, `ConditionalAccessPolicies`; Learn's sample queries filter on `ResultType` | — | [^np08-la-table] [^np08-la-queries] |
+| Get and list service principals | `Application.Read.All` | v1.0 | [^np08-sp-get] [^np08-sp-list] |
 
 Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
@@ -791,7 +791,6 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 [^np08-wid]: Microsoft Learn, "Conditional Access for workload identities," overview, implementation, roll back, sign-in logs, reference, <https://learn.microsoft.com/entra/identity/conditional-access/workload-identity> (accessed Oct 30, 2026).
 [^np08-risk]: Microsoft Learn, "Securing workload identities" (Microsoft Entra ID Protection), <https://learn.microsoft.com/entra/id-protection/concept-workload-identity-risk> (accessed Oct 30, 2026).
 [^np08-faq]: Microsoft Learn, "Frequently asked questions about Microsoft Entra Workload ID," <https://learn.microsoft.com/entra/workload-id/workload-identities-faqs> (accessed Oct 30, 2026).
-[^np08-availability]: Microsoft Learn, "Microsoft Entra feature availability," Microsoft Entra ID, ID Protection, and other Microsoft Entra products, <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026).
 [^np08-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
 [^np08-clientapps]: Microsoft Learn, "conditionalAccessClientApplications resource type," <https://learn.microsoft.com/graph/api/resources/conditionalaccessclientapplications?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^np08-conditionset]: Microsoft Learn, "conditionalAccessConditionSet resource type," <https://learn.microsoft.com/graph/api/resources/conditionalaccessconditionset?view=graph-rest-1.0> (accessed Oct 30, 2026).

@@ -116,7 +116,7 @@ For {{< meta agency.short >}} operating under FedRAMP Moderate, the landing zone
 | Environment | Platform | SDN Technology | DHCP/IP Model | FedRAMP Boundary |
 |---|---|---|---|---|
 | On-Premises DC | VMware VCF / ESXi | NSX-T overlay (VXLAN/Geneve) | NSX-T DHCP Server Profiles on T1/T0 Gateways | Agency ATO |
-| Azure (commercial) | Microsoft Azure | Azure VNet (SDN fabric, no broadcast) | Azure fabric assigns IPs; DHCP is abstracted away | Azure commercial regions (FedRAMP High, hosting the agency's Moderate workloads; a Microsoft 365 GCC tenant pairs with commercial Azure, and Azure Government pairs with GCC High and DoD) |
+| Azure (commercial) | Microsoft Azure | Azure VNet (SDN fabric, no broadcast) | Azure fabric assigns IPs; DHCP is abstracted away | Azure commercial regions (FedRAMP High, hosting the agency's Moderate workloads; a Microsoft 365 GCC tenant pairs with commercial Azure) |
 | AWS GovCloud | Amazon AWS | VPC with ENI/Nitro hypervisor | VPC DHCP Options Sets; EC2 metadata service | AWS GovCloud (a FedRAMP High region, hosting the agency's Moderate workloads) |
 | Oracle Cloud OCI (OPM HRIT) | Oracle OCI | VCN with VNIC overlay | OCI DHCP options; instance metadata at 169.254.169.254 | OPM ATO (external) |
 
@@ -245,13 +245,13 @@ InfoBlox and Microsoft have a formal **Azure Technology Alliance Partnership** w
 
 #### M365 GCC Boundary Enforcement
 
-Microsoft publishes M365 endpoint changes (IP ranges + FQDNs) via the Office 365 IP and URL Web Service API. For GCC Moderate specifically, Microsoft publishes no separate list: the Worldwide instance of the service ("Worldwide, including GCC") is the list a GCC tenant uses, and it is the same list Vol I Book 05 builds Cloud OnRamp on. Microsoft publishes separate lists only for GCC High, DoD and the 21Vianet cloud, and those ranges must not be mixed in. A workstation accidentally reaching an endpoint of another Microsoft 365 cloud, or one outside the published list, is a **FedRAMP boundary violation**.
+Microsoft publishes M365 endpoint changes (IP ranges + FQDNs) via the Office 365 IP and URL Web Service API. For GCC Moderate specifically, Microsoft publishes no separate list: the Worldwide instance of the service ("Worldwide, including GCC") is the list a GCC tenant uses, and it is the same list Vol I Book 05 builds Cloud OnRamp on. Microsoft publishes separate lists for its other Microsoft 365 clouds, and those ranges must not be mixed in. A workstation accidentally reaching an endpoint of another Microsoft 365 cloud, or one outside the published list, is a **FedRAMP boundary violation**.
 
 InfoBlox provides the automated enforcement pipeline:
 
 1. **Daily poll** of the Microsoft M365 GCC endpoint API (version-change detection)
 2. **RPZ passthrough allow-list** — GCC FQDNs explicitly allowed through threat blocking
-3. **RPZ block list** — FQDNs of the other Microsoft 365 clouds (GCC High, DoD, 21Vianet) blocked at DNS layer
+3. **RPZ block list** — FQDNs of the other Microsoft 365 clouds blocked at DNS layer
 4. **Azure NSG IP Group** update — GCC Optimize IP ranges pushed to Azure
 5. **AWS GovCloud Security Group** update — GCC IP ranges for outbound rules
 6. **VPN split-tunnel DNS** — M365 Optimize FQDNs route via local interface, not VPN tunnel
