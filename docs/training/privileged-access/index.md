@@ -64,7 +64,7 @@ So Module 2 checks the emergency access accounts before any module changes a set
 | Platform engineer (Azure) | Module 1's Azure read and Module 6's PIM for Azure resources |
 | ISSO reviewer | The federal requirements each chapter supports, and the evidence you keep for them |
 
-**Level:** intermediate. **Products:** Microsoft Entra ID with Privileged Identity Management, Microsoft Entra ID Governance, Azure Resource Manager and Azure Monitor. **Scope:** Microsoft 365 GCC (Moderate) with commercial Azure, as the [workbook](../../project-plans/developer-workbooks/privileged-access/index.md) assumes. GCC uses the worldwide endpoints; GCC High and DoD have separate hosts, and each chapter says so where an endpoint matters.
+**Level:** intermediate. **Products:** Microsoft Entra ID with Privileged Identity Management, Microsoft Entra ID Governance, Azure Resource Manager and Azure Monitor. **Scope:** Microsoft 365 GCC (Moderate) with commercial Azure, as the [workbook](../../project-plans/developer-workbooks/privileged-access/index.md) assumes. GCC uses the worldwide endpoints.
 
 ## Prerequisites
 

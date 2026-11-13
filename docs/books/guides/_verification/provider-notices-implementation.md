@@ -19,7 +19,7 @@ Facts carried from the books are cited by link and rely on those pages' own veri
 | 9 | `az policy assignment create` `--mi-system-assigned`, `--location`, `--role`, `--identity-scope`, `--params`; roles granted automatically only through the portal; `az policy remediation create --name --policy-assignment --management-group` | G1 step 4; kit plan | verified | `pn-remediate` |
 | 10 | `az cloud set --name AzureUSGovernment`; resource manager `management.usgovcloudapi.net` | G1 | verified | `pn-gov-cli` |
 | 11 | `az extension add --name resource-graph`; `--first` 1 to 1,000; `--skip-token`; `--subscriptions`, `--management-groups` | G1 step 2; kit | verified (Resource Graph CLI quickstart; `az graph` reference; paging guidance) | Learn, linked in `config/calls.json` |
-| 12 | Graph service communications: `ServiceMessage.Read.All` (messages), `ServiceHealth.Read.All` (issues, health overviews); no higher-privileged permission; granted only by an administrator; delegated user needs an admin role; national clouds with L4 `graph.microsoft.us` and L5 `dod-graph.microsoft.us` | Prerequisites, G2 | verified | `pn-graph-overview`, `pn-graph-messages`, `pn-graph-issues` |
+| 12 | Graph service communications: `ServiceMessage.Read.All` (messages), `ServiceHealth.Read.All` (issues, health overviews); no higher-privileged permission; granted only by an administrator; delegated user needs an admin role; available on national clouds | Prerequisites, G2 | verified | `pn-graph-overview`, `pn-graph-messages`, `pn-graph-issues` |
 | 13 | GCC uses the worldwide endpoint `graph.microsoft.com` | G2, comparison | verified | `pn-graph-deployments` |
 | 14 | serviceUpdateMessage and serviceHealthIssue fields and enumerations; Learn's samples use PascalCase values | Track at a glance; kit normalizer | verified | `pn-graph-messages`, `pn-graph-issues` |
 | 15 | Data privacy messages: Global Administrator and Message Center Privacy Reader | Prerequisites | verified | `pn-m365-roles` |
@@ -39,7 +39,7 @@ Facts carried from the books are cited by link and rely on those pages' own veri
 | 29 | `gcloud service-health events list --project --location=global` (GA) | G5 | verified | `pn-gcp-gcloud` |
 | 30 | `roles/servicehealth.viewer` "Personalized Service Health Viewer" | Prerequisites, G5 | verified | `pn-gcp-iam` |
 | 31 | Enable `servicehealth.googleapis.com` | G5 | verified | `pn-gcp-list` |
-| 32 | Assured Workloads: Personalized Service Health not in FedRAMP Moderate, High, IL2, IL4, IL5, CJIS, ITAR | G5, comparison | verified (supported-products page parsed) | `pn-gcp-aw` |
+| 32 | Assured Workloads: Personalized Service Health not in FedRAMP Moderate, High, CJIS, ITAR | G5, comparison | verified (supported-products page parsed) | `pn-gcp-aw` |
 
 ## Claims log: controls and KSIs
 

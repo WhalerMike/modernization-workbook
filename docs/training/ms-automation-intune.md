@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Automation, Module 3: Intune through Microsoft Graph"
 subtitle: "Learn the Graph APIs, least-privileged permissions and v1.0-versus-beta status behind managed devices, compliance, configuration, assignment filters, Autopilot, apps and remote actions, then run five read-only checks mapped to NIST SP 800-53 Moderate, ScubaGear and M-22-09 on fixtures and in your test tenant"
-description: "Research draft: Module 3 of the Microsoft Automation learning path, for Book 05. You learn managed devices, compliance policies and per-device compliance status, configuration profiles and the beta-only Settings Catalog, assignment filters, Windows Autopilot device identities and profiles, apps, remote actions and their privileged permission, which endpoints are beta-only, Intune's throttling limits and the reports export-jobs API, and what differs in US Government clouds. Lab 1 runs five read-only checks, which complement the validation kit's VK-INT checks, in Python and PowerShell against fixtures; Lab 2 runs them read-only against your test tenant."
+description: "Research draft: Module 3 of the Microsoft Automation learning path, for Book 05. You learn managed devices, compliance policies and per-device compliance status, configuration profiles and the beta-only Settings Catalog, assignment filters, Windows Autopilot device identities and profiles, apps, remote actions and their privileged permission, which endpoints are beta-only, Intune's throttling limits and the reports export-jobs API, and why GCC follows commercial Intune. Lab 1 runs five read-only checks, which complement the validation kit's VK-INT checks, in Python and PowerShell against fixtures; Lab 2 runs them read-only against your test tenant."
 research-status: draft
 research-type: training module
 research-book: "Book 05"
@@ -49,7 +49,7 @@ In this module, you'll:
 - Explain which of the things the program relies on are beta-only, and what that means for evidence.
 - Read managed devices and per-policy compliance status, and the traps in each, including the join on device name.
 - Explain why remote actions and report export jobs don't belong in a read-only collector.
-- Say what differs in GCC High and DoD, why Windows Autopilot is a GCC and commercial check, and why GCC follows commercial Intune.
+- Say why GCC follows commercial Intune.
 - Run the five checks on fixtures in Python and PowerShell, and read each finding against its control.
 
 ### Prerequisites
@@ -61,7 +61,7 @@ In this module, you'll:
 
 *10 minutes*
 
-Every Intune API in Graph needs an active Intune license for the tenant.[^m3-mdlist] The permission is the least-privileged *application* permission the API's reference page lists. Each page's national cloud table lists the API in the global service (which GCC uses) and in US Government L4 and L5.[^m3-cloudtables] The Stage column says whether the API is in v1.0 or only in beta. The Book column is where the workbook uses it.
+Every Intune API in Graph needs an active Intune license for the tenant.[^m3-mdlist] The permission is the least-privileged *application* permission the API's reference page lists. Each page's national cloud table lists the API in the global service, which GCC uses.[^m3-cloudtables] The Stage column says whether the API is in v1.0 or only in beta. The Book column is where the workbook uses it.
 
 | Question | Graph API | Least-privileged application permission | Stage | Book |
 |---|---|---|---|---|
@@ -200,36 +200,12 @@ The `Devices` and `DevicesWithInventory` exports ignore the `localizationType` p
 
 **The starting state.** Book 05's agency manages Windows with Group Policy and, often, Configuration Manager, and is moving the fleet to Intune in a Microsoft 365 GCC tenant. During the move some devices have no compliance policy, the tenant-wide default may still mark them compliant, and stale records pile up.
 
-**GCC.** Intune has no separate GCC instance. "GCC is the same instance as Microsoft Intune in the commercial space," and Intune's government feature table doesn't apply to GCC.[^m3-govsvc] GCC uses the worldwide Graph endpoint, `https://graph.microsoft.com`, as Module 1 sets out.[^m3-deploy] The Intune feature gaps a GCC tenant does have are Book 05's subject ([Chapter 10, GCC (Moderate) boundary facts](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#gcc-moderate-boundary-facts)). For example, Windows Update for Business reports don't meet GCC requirements.
-
-**GCC High and DoD (High only).** These tenants use their own Graph hosts, `https://graph.microsoft.us` and `https://dod-graph.microsoft.us`.[^m3-deploy] Intune runs a separate government instance shared by GCC High and DoD tenants, and moving between the commercial and government instances means unenrolling and re-enrolling every device.[^m3-govsvc] Microsoft's service description, read on October 30, 2026, lists these differences that affect the APIs on this page:[^m3-govsvc]
-
-- **Not available, with no plans to add them:**
-  - Windows Autopilot;
-  - Remediations;
-  - reports for feature update policies;
-  - app and driver compatibility reports;
-  - the ServiceNow connector;
-  - Windows Subscription Activation.
-- **Not available yet, with planning started:**
-  - Windows Autopatch and feature, quality, expedite and driver updates;
-  - Windows Device Health Attestation;
-  - BIOS configuration and DFCI;
-  - some Windows Autopilot device preparation features.
-- **Available:**
-  - standard MDM features (compliance, configuration profiles and app policies);
-  - Log Analytics export;
-  - Defender for Endpoint security settings management;
-  - Endpoint Privilege Management and some other add-ons.
-  - Cloud PKI and Remote Help are listed for GCC High only, not DoD.
-
-One discrepancy to note. The Graph reference pages for Autopilot device identities list the API as available in US Government L4 and L5,[^m3-aplist] while the service description lists Windows Autopilot as not available in GCC High and DoD.[^m3-govsvc] The service description decides whether the feature can be used. That an endpoint answers doesn't mean the feature is supported *(inference)*. The `autopilot-profiles` check is therefore for GCC and commercial tenants: in `gcchigh` and `dod` it reports "not evaluated" without calling Graph, as Lab 1 shows.
+**GCC.** Intune has no separate GCC instance: GCC uses the commercial Intune service ([Book 05, Chapter 04](../books/b05-devices/04-intune-first-onboarding.md#windows-autopilot-or-autopilot-device-preparation)). GCC uses the worldwide Graph endpoint, `https://graph.microsoft.com`, as Module 1 sets out.[^m3-deploy] The Intune feature gaps a GCC tenant does have are Book 05's subject ([Chapter 10, GCC (Moderate) boundary facts](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#gcc-moderate-boundary-facts)). For example, Windows Update for Business reports don't meet GCC requirements.
 
 **Interim paths** *(design guidance)*:
 
 - **Devices with no compliance policy yet.** Run `compliance-coverage` until it lists none, then change the tenant-wide setting to *Not compliant*, as Microsoft recommends;[^m3-reports] until then, Conditional Access treats an unassigned device as compliant.
 - **Devices still managed by Group Policy or Configuration Manager.** Their records aren't in Intune yet, so these checks don't see them; VK-INT-06's platform inventory and the [companion guide's coverage matrix](../books/guides/attribute-driven-migration.md#intune-coverage) track what's left.
-- **A GCC High or DoD tenant.** Classic Autopilot isn't available; [Book 05, Chapter 04](../books/b05-devices/04-intune-first-onboarding.md#windows-autopilot-or-autopilot-device-preparation) compares it with Autopilot device preparation, which its table lists for GCC High and DoD. Evidence the enrollment with the other four checks.
 - **Settings Catalog export depends on beta.** Keep the export, label it beta in the evidence, and re-run it after a beta change before relying on it.
 
 ## Unit 7: The five checks {#the-five-checks}
@@ -509,12 +485,7 @@ You run the checks read-only against a test tenant and compare them with the Int
    b. Export jobs aren't available in v1.0.
    c. Export jobs can't return JSON.
 
-4. What does `autopilot-profiles` report in a GCC High tenant?
-   a. Every registration as `notAssigned`.
-   b. An error from Graph.
-   c. "Not evaluated," without calling Graph, because the service description lists Windows Autopilot as not available there.
-
-5. Why do both compliance checks flag device names held by more than one device?
+4. Why do both compliance checks flag device names held by more than one device?
    a. Intune rejects duplicate names.
    b. Status rows are joined to devices on the name, because the status row's `id` isn't documented as the managed device ID.
    c. M-22-09 forbids duplicate device names.
@@ -524,15 +495,14 @@ You run the checks read-only against a test tenant and compare them with the Int
 1. **c.** The profile assignment status, the profiles, the Settings Catalog and assignment filters are beta-only. See [v1.0 versus beta](#v1.0-versus-beta).
 2. **b.** A policy with only exclusions reaches no device. See [Compliance policies and compliance status](#compliance-policies-and-compliance-status), and `CP-005` in Lab 1, step 2.
 3. **a.** See [Reports export jobs](#reports-export-jobs).
-4. **c.** See [Unit 6: Where agencies are](#unit-6-where-agencies-are), and Lab 1, step 6.
-5. **b.** See [Compliance policies and compliance status](#compliance-policies-and-compliance-status), and `WS-0002` in Lab 1, step 1.
+4. **b.** See [Compliance policies and compliance status](#compliance-policies-and-compliance-status), and `WS-0002` in Lab 1, step 1.
 :::
 
 ## Unit 11: Summary
 
 *3 minutes*
 
-You mapped Book 05's evidence questions to Graph APIs, their least-privileged permissions and their stage, learned the traps in managed devices and compliance status, kept remote actions and export jobs out of the collector, and saw why Autopilot is a GCC and commercial check. In Lab 1 you ran the five checks on fixtures in Python and PowerShell and read each finding against its control.
+You mapped Book 05's evidence questions to Graph APIs, their least-privileged permissions and their stage, learned the traps in managed devices and compliance status, and kept remote actions and export jobs out of the collector. In Lab 1 you ran the five checks on fixtures in Python and PowerShell and read each finding against its control.
 
 **Evidence an ISSO keeps from this module:** each check's dated output, with its `evidences` list, the app's permissions and consent record, and the beta label on `autopilot-profiles`; the coverage result showing every device under a policy, and the record of the tenant-wide setting changed to *Not compliant*; the encryption findings confirmed in Intune's encryption report; and the validation kit's VK-INT results beside them. [Book 05, Chapter 10](../books/b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads) lists what an assessor reads, and the [Intune track guide's Gate 6](../books/guides/intune-track-implementation.md#gate-6-operating-it) puts it on a schedule.
 
@@ -582,7 +552,6 @@ Related: [Module 1: Foundations](ms-automation-foundations.md), [Module 2: Micro
 [^m3-exportcreate]: Microsoft Learn, "Create deviceManagementExportJob" (v1.0), <https://learn.microsoft.com/en-us/graph/api/intune-reporting-devicemanagementexportjob-create?view=graph-rest-1.0>, accessed October 30, 2026.
 [^m3-reportnames]: Microsoft Learn, "Intune reports and properties available using Graph API", <https://learn.microsoft.com/en-us/intune/device-management/reports/ref-graph-available-reports>, accessed October 30, 2026.
 [^m3-reports]: Microsoft Learn, "Intune reports", section "Devices without compliance policy (Organizational)", <https://learn.microsoft.com/en-us/intune/device-management/reports/overview#device-compliance-reports>, accessed October 30, 2026.
-[^m3-govsvc]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description", <https://learn.microsoft.com/en-us/intune/fundamentals/government-service>, accessed October 30, 2026.
 [^m3-deploy]: Microsoft Learn, "Microsoft Graph national cloud deployments", <https://learn.microsoft.com/en-us/graph/deployments>, accessed October 30, 2026.
 [^m3-nistmod]: NIST, SP 800-53 Rev. 5 Moderate baseline, OSCAL profile version 5.2.0 (includes AC-19(5), CM-2, CM-6, CM-8, CM-8(1), SC-28, SC-28(1) and SI-2), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json>, accessed October 30, 2026.
 [^m3-scubalist]: CISA, ScubaGear baselines folder (`aad.md`, `exo.md`, `powerbi.md`, `powerplatform.md`, `securitysuite.md`, `sharepoint.md`, `teams.md`, plus `removedpolicies.md`), <https://github.com/cisagov/ScubaGear/tree/main/PowerShell/ScubaGear/baselines>, accessed October 30, 2026; re-read November 9, 2026, when it also held `si.md`, a Super Intelligence (SI) and SI agents baseline added at commit `8c954fc` with its description and policies marked TBD.

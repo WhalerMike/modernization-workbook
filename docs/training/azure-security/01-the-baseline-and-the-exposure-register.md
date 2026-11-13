@@ -71,7 +71,7 @@ Two cautions from the guide. The `publicNetworkAccess` query is a starting list,
 Read the guide's [government-cloud availability](../../books/guides/azure-security-implementation.md#gov-availability) table and [the same controls on AWS, Google Cloud and Oracle Cloud](../../books/guides/azure-security-implementation.md#other-clouds).
 
 - **GCC Moderate first.** Microsoft 365 GCC pairs with commercial Azure, so a GCC agency's subscriptions are usually commercial, and the guide's commands run as written with `<cloud>` set to `AzureCloud`.
-- **Azure Government, as a side note.** GCC High and DoD pair with Azure Government. Its endpoints differ; the landing zone accelerators need adapting; Lighthouse has no PIM for delegated access. Later modules name the gaps that matter to their steps.
+- **Azure Government, as a side note.** Its endpoints differ; the landing zone accelerators need adapting; Lighthouse has no PIM for delegated access. Later modules name the gaps that matter to their steps.
 - **Other clouds.** The table compares DDoS protection, the web application firewall, the inspecting firewall and private access to PaaS across Azure, AWS, Google Cloud and Oracle Cloud Infrastructure. An agency whose HR platform runs on Oracle Cloud Infrastructure has OCI WAF, OCI Network Firewall and OCI private endpoints to engineer the same way; their availability in OCI Government Cloud is not yet specified.
 
 **Watch.** The guide's narrated deck covers this module in its first eight slides, from *Azure security, engineered one service at a time* to *Steps 1 and 2: baseline in audit, then inventory*. Its video is being exported; until it is on the [Presentations](../../presentations/index.md) page, read the slides' narration in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
@@ -205,7 +205,7 @@ You run the guide's Step 1 and Step 2 checks in a test subscription. Every comma
 
 5. A GCC agency's subscriptions are usually in which cloud?
     a. Azure Government, because GCC is a government cloud.
-    b. Commercial Azure, which Microsoft 365 GCC pairs with; GCC High and DoD pair with Azure Government.
+    b. Commercial Azure, which Microsoft 365 GCC pairs with.
     c. Either, chosen per subscription by the tenant.
 
 ::: {.callout-tip collapse="true"}

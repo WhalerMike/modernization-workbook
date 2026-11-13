@@ -1,6 +1,6 @@
 ---
 title: "Module 3: Microsoft 365 Message center"
-description: "Gate G2 and workbook Chapter 02: read a tenant's Message center posts and service health issues through the Microsoft Graph service communications API with only ServiceMessage.Read.All and ServiceHealth.Read.All, on the Graph host for the tenant's cloud (GCC on the worldwide endpoint, GCC High and DoD on their own); map posts to kinds; keep Microsoft's actionRequiredByDateTime apart from the kit's rule; and refuse a next link on another host. About 50 minutes, with a lab on fixtures and a test tenant lab."
+description: "Gate G2 and workbook Chapter 02: read a tenant's Message center posts and service health issues through the Microsoft Graph service communications API with only ServiceMessage.Read.All and ServiceHealth.Read.All, on the worldwide Graph host that GCC uses; map posts to kinds; keep Microsoft's actionRequiredByDateTime apart from the kit's rule; and refuse a next link on another host. About 50 minutes, with a lab on fixtures and a test tenant lab."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -22,7 +22,7 @@ last-reviewed: 2026-11-09
 
 The Message center is where Microsoft announces changes, retirements and actions for a Microsoft 365 tenant; service health lists incidents and advisories. Each administrator's view of the Message center is their own, and the "Act by" date is rare enough that Microsoft says to pay extra attention when it appears. Graph's service communications API reads both, with two read permissions.
 
-In this module you read the fixture tenant's posts and issues, see which ones Microsoft said need action and which the kit's rule marked, and watch the kit refuse to follow a next link off the tenant's own Graph host. A GCC High tenant read on the worldwide host returns nothing, and an empty list looks like a quiet week.
+In this module you read the fixture tenant's posts and issues, see which ones Microsoft said need action and which the kit's rule marked, and watch the kit refuse to follow a next link off the tenant's own Graph host.
 
 **The federal requirement.** Gate G2 supports SA-9 c, SI-5 a and, for posts that announce a change, CM-3 b. The gate's output is evidence for these controls; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied. The guide's [Step 2](../../books/guides/provider-notices-implementation.md#step-2-microsoft-365-message-center-and-service-health) names them, and the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.md#federal-requirements-and-evidence) table has a row for every lab step.
 
@@ -39,7 +39,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines th
 After this module, you'll be able to:
 
 - name the two Graph permissions the reader needs, and the role data privacy messages need;
-- say which Graph host each Microsoft 365 cloud uses, and why the wrong one fails silently;
+- say which Graph host a GCC tenant uses;
 - map Message center posts and service health issues to the record's kinds;
 - tell a date Microsoft set from the kit's rule for a `preventOrFixIssue` post;
 - show that the kit refuses a next link on another host.
@@ -51,7 +51,7 @@ After this module, you'll be able to:
 
 ## Unit 1: What the gate asks for (7 minutes)
 
-Read the guide's [Step 2](../../books/guides/provider-notices-implementation.md#step-2-microsoft-365-message-center-and-service-health): consent to the two permissions, sign in to the tenant's own cloud (`Global` for GCC, `USGov` for GCC High, `USGovDoD` for DoD), and collect. Then read its Government-cloud availability and Interim path paragraphs, and the Validate (G2) callout: a post with an action-required date is action required with that date and the basis `provider: actionRequiredByDateTime`.
+Read the guide's [Step 2](../../books/guides/provider-notices-implementation.md#step-2-microsoft-365-message-center-and-service-health): consent to the two permissions, sign in with the `Global` environment, which GCC uses, and collect. Then read its availability and Interim path paragraphs, and the Validate (G2) callout: a post with an action-required date is action required with that date and the basis `provider: actionRequiredByDateTime`.
 
 ## Unit 2: The Graph reader (10 minutes)
 
@@ -76,8 +76,8 @@ Every command in this lab, in order, from `examples/provider-notices`. Each step
 Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
 Get-PnRequiredPermission -Provider m365 | Format-Table Call, Permissions, Verified
 
-# Step 2: See each cloud's Graph host
-foreach ($c in 'global', 'gcc') { $x = Get-PnCloud -Provider m365 -Cloud $c; '{0,-8} {1,-32} {2}' -f $c, $x.Graph, $x.GraphEnvironment }
+# Step 2: See GCC's Graph host
+foreach ($c in 'gcc') { $x = Get-PnCloud -Provider m365 -Cloud $c; '{0,-8} {1,-32} {2}' -f $c, $x.Graph, $x.GraphEnvironment }
 
 # Step 3: Collect Microsoft 365 from the day-one fixtures
 ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider m365 -AsOf 2026-11-09T12:00:00Z -OutputPath out/m365
@@ -123,14 +123,13 @@ Remove-Item -Recurse -Force out
     m365-health-overviews ServiceHealth.Read.All      True
     ```
 
-2. **See each cloud's Graph host:**
+2. **See GCC's Graph host:**
 
     ```powershell
-    foreach ($c in 'global', 'gcc') { $x = Get-PnCloud -Provider m365 -Cloud $c; '{0,-8} {1,-32} {2}' -f $c, $x.Graph, $x.GraphEnvironment }
+    foreach ($c in 'gcc') { $x = Get-PnCloud -Provider m365 -Cloud $c; '{0,-8} {1,-32} {2}' -f $c, $x.Graph, $x.GraphEnvironment }
     ```
 
     ```text
-    global   https://graph.microsoft.com      Global
     gcc      https://graph.microsoft.com      Global
     ```
 
@@ -192,7 +191,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'Microsoft 365 service communications*', '*Graph*' -Output None -PassThru | Select-Object PassedCount, FailedCount
     ```
 
-    Expect `PassedCount 14`, `FailedCount 0`.
+    Expect `PassedCount 15`, `FailedCount 0`.
 
 Delete `out` when you're done:
 
@@ -216,8 +215,8 @@ Remove-Item -Recurse -Force out
     c. Global Administrator
     d. `ServiceHealth.ReadWrite.All`
 2. A GCC tenant is read on which Graph host?
-    a. `graph.microsoft.us`
-    b. `dod-graph.microsoft.us`
+    a. `management.azure.com`
+    b. `login.microsoftonline.com`
     c. `graph.microsoft.com`, the worldwide endpoint
     d. Any of them; the API is the same
 3. `m365:MC900003` is action required with no date. Why?
@@ -247,7 +246,7 @@ Remove-Item -Recurse -Force out
 
 ## Summary (2 minutes)
 
-You listed the reader's two permissions, saw each cloud's Graph host, collected six posts and issues and then the second week's seven, told Microsoft's dates from the kit's rule, and watched the kit refuse a next link on another host.
+You listed the reader's two permissions, saw GCC's Graph host, collected six posts and issues and then the second week's seven, told Microsoft's dates from the kit's rule, and watched the kit refuse a next link on another host.
 
 **The evidence an ISSO keeps** for G2 from this module: `raw/m365.json`, `notices.json`, `notices.csv` and `manifest.json`, dated; the permission list from step 1; and in Lab 2 the consent record. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.md#checklist).
 

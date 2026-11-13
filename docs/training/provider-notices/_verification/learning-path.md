@@ -26,9 +26,9 @@ Method:
 | 6 | Each gate's requirements and KSIs | Every module's introduction | carried | The guide's Steps 1 to 7 tables and Evidence table; each chapter's Federal requirements and evidence |
 | 7 | Module 1's requirement table (SA-9 c, SI-5 a; SI-5, CA-7; CA-7) | Module 1 | carried | Chapter 01, Federal requirements and evidence, rows 2 to 4 |
 | 8 | AWS Health needs a qualifying AWS Support plan, and AWS's pages name the plans differently | Module 5; path | carried | The guide's Step 4 prerequisites (three AWS pages, updated in #532); Chapter 04, What AWS gives you |
-| 9 | Personalized Service Health has one category, `INCIDENT`, and isn't in Assured Workloads' FedRAMP Moderate, FedRAMP High, IL2, IL4, IL5, CJIS or ITAR packages | Module 6 | carried | The guide's Step 5; Chapter 05, What Google gives you |
+| 9 | Personalized Service Health has one category, `INCIDENT`, and isn't in Assured Workloads' FedRAMP Moderate, FedRAMP High, CJIS or ITAR packages | Module 6 | carried | The guide's Step 5; Chapter 05, What Google gives you |
 | 10 | OC2 endpoints in us-langley-1 and us-luke-1 | Module 4 | carried | The guide's Step 3; Chapter 03 |
-| 11 | Graph hosts: GCC worldwide, GCC High `graph.microsoft.us`, DoD `dod-graph.microsoft.us` | Module 3 | carried | The guide's Step 2; Chapter 02 |
+| 11 | Graph host: GCC worldwide | Module 3 | carried | The guide's Step 2; Chapter 02 |
 | 12 | Finding contract windows P1 immediate, P2 one hour, P3 24 hours, P4 72 hours (program design) | Module 7 | carried | Chapter 06, What the program gives you; Book 13, Appendix B |
 | 13 | The digest's home: the supervisor's weekly queue review and the change advisory board's agenda (design guidance) | Module 8 | carried | Book 15, Chapter 14, The weekly digest |
 | 14 | The test stage needs PRE, RUN, ROUTE, DIGEST; production adds ALERTS; PF-07 runs in production only | Modules 8 and 9 | carried | Chapter 07, The evidence record; Chapter 08, Pre-flight checks |

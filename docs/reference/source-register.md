@@ -14,7 +14,7 @@ last-reviewed: 2026-11-09
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 769 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 772 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -216,7 +216,9 @@ This register lists 769 sources. A slide or a video description links to a sourc
 | [Authorization in Microsoft Entra Agent ID](https://learn.microsoft.com/entra/agent-id/authorization-agent-id){#authorization-in-microsoft-entra-agent-id} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="authorization-in-microsoft-entra-agent-id"} |
 | [Automatic attack disruption in Microsoft Defender](https://learn.microsoft.com/defender-xdr/automatic-attack-disruption){#automatic-attack-disruption-in-microsoft} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="automatic-attack-disruption-in-microsoft"} |
 | [az monitor activity-log alert (Azure CLI reference)](https://learn.microsoft.com/cli/azure/monitor/activity-log/alert){#learn-cli-az-monitor-activity-log-alert} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-cli-az-monitor-activity-log-alert"} |
+| [az monitor log-analytics](https://learn.microsoft.com/cli/azure/monitor/log-analytics){#az-monitor-log-analytics} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="az-monitor-log-analytics"} |
 | [az policy assignment (Azure CLI reference)](https://learn.microsoft.com/cli/azure/policy/assignment){#learn-cli-az-policy-assignment} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-cli-az-policy-assignment"} |
+| [az policy exemption](https://learn.microsoft.com/cli/azure/policy/exemption){#az-policy-exemption} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="az-policy-exemption"} |
 | [az policy remediation (Azure CLI reference)](https://learn.microsoft.com/cli/azure/policy/remediation){#learn-cli-az-policy-remediation} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-cli-az-policy-remediation"} |
 | [azcmagent connect](https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-connect){#azcmagent-connect} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azcmagent-connect"} |
 | [azcmagent disconnect](https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-disconnect){#azcmagent-disconnect} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azcmagent-disconnect"} |
@@ -517,7 +519,9 @@ This register lists 769 sources. A slide or a video description links to a sourc
 | [Migrate from Microsoft Entra Connect to Cloud Sync: Decision Guide](https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/connect-to-cloud-sync-decision-guide){#migrate-from-microsoft-entra-connect-to} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="migrate-from-microsoft-entra-connect-to"} |
 | [Monitor attack surface reduction (ASR) rule activity](https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-monitor){#asr-rules-monitor} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="asr-rules-monitor"} |
 | [Monitor Azure App Service: types of alerts](https://learn.microsoft.com/azure/app-service/monitor-app-service#alerts){#learn-monitor-app-service-alerts} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-monitor-app-service-alerts"} |
+| [Monitor Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/monitor-key-vault){#monitor-azure-key-vault} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="monitor-azure-key-vault"} |
 | [Monitor controlled folder access (CFA) activity](https://learn.microsoft.com/defender-endpoint/controlled-folder-access-monitor){#mde-monitor-controlled-folder-access} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="mde-monitor-controlled-folder-access"} |
+| [Monitoring data reference for Azure Firewall](https://learn.microsoft.com/azure/firewall/monitor-firewall-reference){#azure-firewall-monitoring-data-reference} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="azure-firewall-monitoring-data-reference"} |
 | [ms-Kds-Prov-RootKey class](https://learn.microsoft.com/windows/win32/adschema/c-mskds-provrootkey){#ms-kds-prov-rootkey-class} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="ms-kds-prov-rootkey-class"} |
 | [Mutable subjects in federated identity credentials](https://learn.microsoft.com/entra/workload-id/workload-identities-federated-credential-mutable-subjects){#mutable-subjects-in-federated-identity} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="mutable-subjects-in-federated-identity"} |
 | [National cloud deployments](https://learn.microsoft.com/graph/deployments){#national-cloud-deployments} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="national-cloud-deployments"} |
@@ -567,7 +571,7 @@ This register lists 769 sources. A slide or a video description links to a sourc
 | [Remediate non-compliant resources with Azure Policy](https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources){#remediate-non-compliant-resources-with-azure} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="remediate-non-compliant-resources-with-azure"} |
 | [Remove-DhcpServerInDC](https://learn.microsoft.com/powershell/module/dhcpserver/remove-dhcpserverindc?view=windowsserver2025-ps){#remove-dhcpserverindc} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="remove-dhcpserverindc"} |
 | [Renewal of 'Enrollment Agent' certificate used by NDES may fail](https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/renewal-of-enrollment-agent-certificate-fail){#renewal-of-enrollment-agent-certificate-used} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="renewal-of-enrollment-agent-certificate-used"} |
-| [reports: getDeviceUsageSummary (Microsoft Graph beta)](https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta){#gsa-get-device-usage-summary} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gsa-get-device-usage-summary"} |
+| [reports: getDeviceUsageSummary (Microsoft Graph beta)](https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta){#gsa-get-device-usage-summary} | Retired | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gsa-get-device-usage-summary"} |
 | [requestorManager resource type](https://learn.microsoft.com/graph/api/resources/requestormanager?view=graph-rest-1.0){#requestormanager-resource-type} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="requestormanager-resource-type"} |
 | [Resolve-DnsName](https://learn.microsoft.com/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps){#resolve-dnsname} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="resolve-dnsname"} |
 | [Resource Graph sample queries for impacted resources](https://learn.microsoft.com/azure/service-health/resource-graph-impacted-samples){#learn-service-health-impacted-resources-samples} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-service-health-impacted-resources-samples"} |
@@ -925,8 +929,9 @@ This register lists 769 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
-| November 13, 2026 | 3 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
+| November 13, 2026 | 4 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |
+| November 13, 2026 | 4 sources | Added: cited in the Azure Security guide and training labs |
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
 | November 12, 2026 | 22 sources | More slide wording links here |
 | November 12, 2026 | 174 sources | Added: cited on the narrated deck slides |

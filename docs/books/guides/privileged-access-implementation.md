@@ -1,6 +1,6 @@
 ---
 title: "Privileged Access: An Implementation Guide"
-description: "A gated guide for making privileged access just-in-time in Microsoft Entra ID and Azure: inventory every privileged assignment by tier; build and test the emergency access accounts first, so nobody is locked out; put the administrators behind Conditional Access, report-only then enforced, with the PIM activation gate; hold PIM role settings for Microsoft Entra roles as code and convert standing assignments; govern the PRV role-assignable groups with PIM for Groups; bring Azure Owner, Contributor and User Access Administrator under PIM; run access reviews of every privileged role and group; and keep evidence and drift on a schedule for the ISSO. Each gate states the federal requirement it supports with its KSI, the evidence an ISSO keeps, availability in GCC and GCC High, an interim path, and the read-only check in the privileged access kit that proves it."
+description: "A gated guide for making privileged access just-in-time in Microsoft Entra ID and Azure: inventory every privileged assignment by tier; build and test the emergency access accounts first, so nobody is locked out; put the administrators behind Conditional Access, report-only then enforced, with the PIM activation gate; hold PIM role settings for Microsoft Entra roles as code and convert standing assignments; govern the PRV role-assignable groups with PIM for Groups; bring Azure Owner, Contributor and User Access Administrator under PIM; run access reviews of every privileged role and group; and keep evidence and drift on a schedule for the ISSO. Each gate states the federal requirement it supports with its KSI, the evidence an ISSO keeps, availability in GCC, an interim path, and the read-only check in the privileged access kit that proves it."
 doc-type: workbook-guide
 audience: [Technical, Customer]
 family: guides
@@ -21,7 +21,7 @@ last-reviewed: 2026-11-09
 
 ::: {.callout-note}
 ## In this guide
-How an agency makes every human privileged assignment in Microsoft Entra ID and Azure eligible, approved and time-bound, as gated steps an operator can run. First, how to read the guide and its checks, the track at a glance, prerequisites and the path on one page. Then eight gates: inventory every privileged assignment by tier; build and test the emergency access accounts before anything else; put administrators behind Conditional Access and the PIM activation gate; hold PIM role settings for Microsoft Entra roles as code and convert standing assignments; govern the PRV groups with PIM for Groups; bring Azure resource roles under PIM; review every privileged role and group; and keep evidence and drift on a schedule. Each gate carries its federal requirements with their KSIs, availability in GCC and GCC High, an interim path, a **Validate** step that names the kit's read-only check, a *Try it* box and rollback. Then the dangers, the evidence, rollback, a checklist and what couldn't be verified.
+How an agency makes every human privileged assignment in Microsoft Entra ID and Azure eligible, approved and time-bound, as gated steps an operator can run. First, how to read the guide and its checks, the track at a glance, prerequisites and the path on one page. Then eight gates: inventory every privileged assignment by tier; build and test the emergency access accounts before anything else; put administrators behind Conditional Access and the PIM activation gate; hold PIM role settings for Microsoft Entra roles as code and convert standing assignments; govern the PRV groups with PIM for Groups; bring Azure resource roles under PIM; review every privileged role and group; and keep evidence and drift on a schedule. Each gate carries its federal requirements with their KSIs, availability in GCC, an interim path, a **Validate** step that names the kit's read-only check, a *Try it* box and rollback. Then the dangers, the evidence, rollback, a checklist and what couldn't be verified.
 :::
 
 ## How to read this guide
@@ -30,7 +30,7 @@ How an agency makes every human privileged assignment in Microsoft Entra ID and 
 
 The [Privileged Access & Administrative Identity plan](../../project-plans/privileged-access.md) schedules the work. Its five gates (Gate 0 to Gate 4) are the CISO's approvals; this guide's eight gates (G1 to G8) are the operator's checkpoints inside them. [The path on one page](#the-path-on-one-page) maps one to the other.
 
-**Where the facts come from.** Facts carried from Book 04 and from the workbook's chapters rely on their own verification logs. Microsoft Learn facts reuse the chapters' footnotes, with the date each chapter read the page. The one Learn page this guide read again was checked on November 2, 2026; the [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/guides/_verification/privileged-access-implementation.md) lists every claim. *(Design guidance)* marks the program's recommendations; *(inference)* marks a conclusion the sources support but don't state. The audience is a civilian agency at FedRAMP Moderate in Microsoft 365 GCC with commercial Azure, where Entra ID runs in Microsoft's commercial cloud and Graph is `graph.microsoft.com`; GCC High uses `graph.microsoft.us` and Azure Government's `management.usgovcloudapi.net`.[^pag-deployments] The examples use the fictional tenant `contoso.example`.
+**Where the facts come from.** Facts carried from Book 04 and from the workbook's chapters rely on their own verification logs. Microsoft Learn facts reuse the chapters' footnotes, with the date each chapter read the page. The one Learn page this guide read again was checked on November 2, 2026; the [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/guides/_verification/privileged-access-implementation.md) lists every claim. *(Design guidance)* marks the program's recommendations; *(inference)* marks a conclusion the sources support but don't state. The audience is a civilian agency at FedRAMP Moderate in Microsoft 365 GCC with commercial Azure, where Entra ID runs in Microsoft's commercial cloud and Graph is `graph.microsoft.com`.[^pag-deployments] The examples use the fictional tenant `contoso.example`.
 
 **The checks.** Each **Validate** step names a read-only check from the privileged access kit, [`examples/privileged-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access). The kit has no `VK-` IDs; its checks are the chapters' entry scripts and their rule IDs. Where a script can also write, the check is its dry run: the client refuses every method but `GET` unless `-Apply` is given ([Chapter 04, the calls](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-calls-and-their-permissions)). The checks are fixture-tested, not proven against a live tenant.
 
@@ -148,7 +148,7 @@ You can't make privilege just-in-time until you can list it. A role reaches a pe
 
 The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^pag-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its evidence up with what its providers report against them; it doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). Which record supports which indicator is the program's mapping *(design guidance)*.
 
-**Government-cloud availability.** Every Graph call in the read lists the global service, US Government L4 and L5. Entra ID P1 and P2 for GCC are hosted in Azure commercial; Microsoft Entra ID Governance, which PIM needs, is available in GCC, GCC High and DoD ([Chapter 01, which cloud](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#which-cloud-for-this-read)).[^pag-availability] The code takes the cloud as an explicit name, with no default.
+**GCC availability.** Every Graph call in the read is on the global service GCC uses. Entra ID P1 and P2 for GCC are hosted in Azure commercial; Microsoft Entra ID Governance, which PIM needs, is available in GCC ([Chapter 01, which cloud](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#which-cloud-for-this-read)).[^pag-availability] The code takes the cloud as an explicit name, with no default.
 
 **Interim path.** Before the reader app is consented, a Global Reader can download active assignments from the admin center as a CSV; Lab 2 compares it with the inventory. That file has no eligible rows, so it is a cross-check, not the inventory ([Chapter 01](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#what-microsoft-gives-you)).
 
@@ -197,7 +197,7 @@ This is the one step that can't move. Learn documents the lockout: every Global 
 
 : Gate 2 requirements and evidence. Mapping from [Chapter 02](../../project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md#federal-requirements-and-evidence) {.striped .hover}
 
-**Government-cloud availability.** Passkeys (FIDO2) and certificate-based authentication are available in Azure for US Government.[^pag-availability] The alert template names no host, but its API version and Entra diagnostic settings to an Azure Government workspace weren't confirmed for GCC High (workbook research gaps, row 7).
+**GCC availability.** Passkeys (FIDO2) and certificate-based authentication are part of the commercial Entra service GCC uses.[^pag-availability]
 
 **Interim path.** If an older account holds only a password, replace it before this gate closes: mandatory MFA for the admin portals stops a password alone from signing in where Microsoft enforces it ([Book 04, Chapter 04](../b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts)). Until the alert is deployed, review the accounts' sign-ins and audit rows by hand every day with the same query *(design guidance)*.
 
@@ -250,7 +250,7 @@ Book 04's Wave 2 is the administrator set of six policies: CA003 (phishing-resis
 
 : Gate 3 requirements and evidence. Mapping from [Chapter 03](../../project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md#federal-requirements-and-evidence) {.striped .hover}
 
-**Government-cloud availability.** Conditional Access and PIM are available in Azure for US Government; the policy, context, strength and template calls list L4 and L5.[^pag-availability] In Azure Government, Azure management is a different application from the one CA025 and CA027 name, so a GCC High program changes those two files ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#government-cloud-notes)). Protected actions' availability in the US Government clouds isn't stated on the pages read (research gaps, row 38).
+**GCC availability.** Conditional Access and PIM are part of the commercial Entra service GCC uses, and the policy, context, strength and template calls are on the global Graph service.[^pag-availability] Protected actions' availability in GCC isn't stated on the pages read (research gaps, row 38).
 
 **Interim path.** Where PAWs aren't issued yet, D-A7 allows enforcing CA004 and CA025 with a time-bound exclusion group for those administrators ([plan, decisions](../../project-plans/privileged-access.md#decision-points)). Until protected actions are assigned, G8's drift comparison is what catches an edit to the gate.
 
@@ -302,7 +302,7 @@ Each role has its own settings, and in Graph each role's policy has 17 rules wit
 
 : Gate 4 requirements and evidence. Mapping from [Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#federal-requirements-and-evidence) {.striped .hover}
 
-**Government-cloud availability.** Every call is Graph v1.0 and lists the global service, L4 and L5; PIM is available in Azure for US Government.[^pag-availability] The authentication context on activation is labeled preview on two Learn pages and generally available in the release notes; the workbook treats it as preview (research gaps, row 42).
+**GCC availability.** Every call is Graph v1.0 on the global service GCC uses; PIM is part of the commercial Entra service.[^pag-availability] The authentication context on activation is labeled preview on two Learn pages and generally available in the release notes; the workbook treats it as preview (research gaps, row 42).
 
 **Interim path.** Book 04's [Appendix B script](../b04-access/appendix-b-pim-role-settings.md#applying-a-tiers-settings-with-powershell) applies five rules to a list of roles with `-WhatIf`. Use it only for a role the code doesn't cover yet, and record the change for G8's drift baseline *(design guidance)*.
 
@@ -355,7 +355,7 @@ Two Microsoft features meet in a PRV group. Only a group created role-assignable
 
 : Gate 5 requirements and evidence. Mapping from [Chapter 05](../../project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md#federal-requirements-and-evidence) {.striped .hover}
 
-**Government-cloud availability.** Every PIM for Groups API page read lists the global service, L4 and L5; Entra ID Governance is available in GCC, GCC High and DoD.[^pag-availability]
+**GCC availability.** Every PIM for Groups API page read lists the global service; Entra ID Governance is available in GCC.[^pag-availability]
 
 **Interim path.** Until the PRV groups are in PIM for Groups, assign members directly with an end date in the reviewed file, and review the groups in G7 *(design guidance)*.
 
@@ -405,7 +405,7 @@ PIM for Azure resources runs through Azure Resource Manager, not Graph. The call
 
 : Gate 6 requirements and evidence. Mapping from [Chapter 06](../../project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.md#federal-requirements-and-evidence). BOD 25-01's Entra ID policies cover Entra roles, not Azure roles {.striped .hover}
 
-**Government-cloud availability.** Entra ID Governance is available in GCC, GCC High and DoD.[^pag-availability] No Learn page read states the PIM Resource Manager API's availability in Azure Government (research gaps, row 65). The API version is `2020-10-01`. The older `/beta/privilegedAccess/azureResources` endpoint is deprecated; Learn still says, as of November 2, 2026, that it "will stop returning data on October 28, 2026," a date now past. Don't use it.[^pag-pim-apis]
+**GCC availability.** Entra ID Governance is available in GCC.[^pag-availability] The API version is `2020-10-01`. The older `/beta/privilegedAccess/azureResources` endpoint is deprecated; Learn still says, as of November 2, 2026, that it "will stop returning data on October 28, 2026," a date now past. Don't use it.[^pag-pim-apis]
 
 **Interim path.** Until a scope is governed, G1's inventory reports its standing Owners (PA-INV-01, PA-INV-08) on every run, and each one carries a ticket *(design guidance)*.
 
@@ -455,7 +455,7 @@ The approval gate controls the use of privilege; reviews control who keeps it. B
 
 : Gate 7 requirements and evidence. Mapping from [Chapter 07](../../project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md#federal-requirements-and-evidence) {.striped .hover}
 
-**Government-cloud availability.** Entra ID Governance is available in GCC, GCC High and DoD; the Graph access reviews APIs list L4 and L5.[^pag-availability] The Azure role review API's availability in Azure Government wasn't confirmed (research gaps, row 72).
+**GCC availability.** Entra ID Governance is available in GCC; the Graph access reviews APIs list the global service.[^pag-availability]
 
 **Interim path.** Until the Azure series run, G1's inventory and G6's PA-AZ-04 are the monthly check on Azure eligibility; the subscription owner attests in the ticket *(design guidance)*.
 
@@ -508,7 +508,7 @@ Configuration evidence proves a setting existed; operational evidence proves it 
 
 : Gate 8 requirements and evidence. Mapping from [Chapter 08](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md#federal-requirements-and-evidence) {.striped .hover}
 
-**Government-cloud availability.** List directoryAudits is available in the global service, L4 and L5; Entra ID Governance in GCC, GCC High and DoD.[^pag-availability] The sample workflow signs in with a federated credential; in Azure Government its audience differs ([Chapter 08, verified facts](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md#verified-facts)).
+**GCC availability.** List directoryAudits is available in the global service; Entra ID Governance in GCC.[^pag-availability]
 
 **Interim path.** Until G3 to G7's outputs join the run (research gaps, row 88), run each chapter's dry run on the same schedule and file its `manifest.json` with the package *(design guidance)*. A gap older than 30 days can only be read from the workspace; attach it to the package by hand.
 
@@ -612,7 +612,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 | Subsection | Where this guide covers it |
 |---|---|
-| Prerequisites | [Prerequisites](#prerequisites), with each gate's own **Prerequisites** and **Government-cloud availability** |
+| Prerequisites | [Prerequisites](#prerequisites), with each gate's own **Prerequisites** and **GCC availability** |
 | Pilot | Tier 1 is the pilot class (D-A5); Tier 0 follows once the pilot matches its files ([the track at a glance](#the-track-at-a-glance)) |
 | Report-only or audit phase | G3 steps 3 and 4 (every policy report-only, a week of sign-in results read); every G4 to G7 run is a dry run before `-Apply` |
 | Enforcement | G3 step 5 (`-AllowEnforce`, ring by ring); G4 steps 3 to 5 (waves); G6 step 3 (eligible first, removal last) |
@@ -659,10 +659,9 @@ A finding this page addresses is ready for closure when every applicable state h
 
 ## What couldn't be verified {#what-couldnt-be-verified}
 
-- **The alert check's reach (MS.AAD.7.7v1, MS.AAD.7.8v1).** `Invoke-PaPimAlertCheck.ps1` reads the PIM notification settings of the eight highly privileged roles ([Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-alert-check)). It reads the same settings in the PIM for Groups member policy of each group that holds one of those roles, as CISA's baseline asks. That a recipient is set doesn't show the mail arrives; only a live activation in the test tenant does. The check hasn't been run in GCC High or DoD, where the PIM for Groups read isn't confirmed either (Chapter 04's research gaps, row 113).
+- **The alert check's reach (MS.AAD.7.7v1, MS.AAD.7.8v1).** `Invoke-PaPimAlertCheck.ps1` reads the PIM notification settings of the eight highly privileged roles ([Chapter 04](../../project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md#the-alert-check)). It reads the same settings in the PIM for Groups member policy of each group that holds one of those roles, as CISA's baseline asks. That a recipient is set doesn't show the mail arrives; only a live activation in the test tenant does.
 - **G3 to G7 in the scheduled run.** The evidence run reads the inventory, emergency access and the PIM audit only. Conditional Access, PIM settings, PIM for Groups, Azure PIM and reviews aren't in it yet (research gaps, row 88).
 - **Azure PIM activations and elevate access in the audit evidence.** The directory audit log covers Entra roles; the run doesn't read Azure's own logs, and no alert is built on the elevate-access event (rows 69 and 89).
-- **Azure Government.** Not confirmed: the alert template's API version (row 7), the PIM Resource Manager API (row 65), the Azure review API (row 72), and protected actions (row 38).
 - **Stages.** The authentication context on activation is preview on two Learn pages and generally available in the release notes (row 42). Reviews of PIM for Groups groups are preview.
 - **Service principal members of PRV groups.** Graph v1.0 doesn't return them as group members, so the inventory doesn't list them (row 91).
 - **Where approvals are logged.** If an approval is logged only under the access review service, PA-AUD-02 fires: it fails closed (row 85).
@@ -694,7 +693,7 @@ The row numbers are the workbook's [research gaps log](https://github.com/Whaler
 
 <!-- revisions:end -->
 
-[^pag-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments>, and "Compare Azure Government and global Azure," guidance for developers, <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 30, 2026, as read for the workbook's Chapter 01).
+[^pag-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026, as read for the workbook's Chapter 01).
 [^pag-pim-plan]: Microsoft Learn, "Plan a Privileged Identity Management deployment," type of assignments, <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan> (accessed Oct 30, 2026, as read for the workbook's Chapter 01).
 [^pag-rag]: Microsoft Learn, "Use Microsoft Entra groups to manage role assignments" (role-assignable at creation only; at most 500; P1, and P2 for PIM activation), <https://learn.microsoft.com/entra/identity/role-based-access-control/groups-concept> (accessed Oct 30, 2026, as read for the workbook's Chapter 05).
 [^pag-az-integration]: Microsoft Learn, "Eligible and time-bound role assignments in Azure RBAC," PIM functionality (users only can be eligible; P2 or ID Governance), <https://learn.microsoft.com/azure/role-based-access-control/pim-integration> (accessed Oct 30, 2026, as read for the workbook's Chapter 06).
@@ -705,7 +704,7 @@ The row numbers are the workbook's [research gaps log](https://github.com/Whaler
 [^pag-streams]: Microsoft Learn, "What are the identity logs you can stream to an endpoint?," <https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options>, and "Integrate Microsoft Entra logs with Azure Monitor logs," prerequisites, <https://learn.microsoft.com/entra/identity/monitoring-health/howto-integrate-activity-logs-with-azure-monitor-logs> (accessed Oct 30, 2026, as read for the workbook's Chapter 02).
 [^pag-az-roles]: Microsoft Learn, "Azure built-in roles for Privileged," <https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged> (accessed Oct 30, 2026, as read for the workbook's Chapter 01).
 [^pag-best]: Microsoft Learn, "Best practices for Microsoft Entra roles," sections 5 to 7 (fewer than five Global Administrators), <https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices> (accessed Oct 30, 2026, as read for the workbook's Chapter 01).
-[^pag-availability]: Microsoft Learn, "Microsoft Entra feature availability" (Conditional Access, PIM, passkeys and CBA available in Azure for US Government; Microsoft Entra ID Governance in GCC, GCC High and DoD), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026, as read for the workbook's Chapters 01 to 08). The L4 and L5 rows are each Graph method's national cloud table, as the chapters cite them.
+[^pag-availability]: Microsoft Learn, "Microsoft Entra feature availability" (Entra ID P1 and P2 for GCC hosted in Azure commercial; Microsoft Entra ID Governance in GCC), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 30, 2026, as read for the workbook's Chapters 01 to 08).
 [^pag-pim-settings]: Microsoft Learn, "Configure Microsoft Entra role settings in Privileged Identity Management" (the lockout; approvers; activation 1 to 24 hours; authentication context before PIM; fallback; every-time sign-in frequency and the 10-minute window; Conditional Access roles as highly privileged), <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings> (accessed Oct 30 and 31, 2026, as read for the workbook's Chapters 03 and 04).
 [^pag-pim-api]: Microsoft Learn, "Manage Microsoft Entra role assignments by using PIM APIs" (activation at most eight hours), <https://learn.microsoft.com/graph/api/resources/privilegedidentitymanagementv3-overview?view=graph-rest-1.0> (accessed Oct 30, 2026, as read for the workbook's Chapter 04).
 [^pag-emergency]: Microsoft Learn, "Manage emergency access accounts in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access> (accessed Oct 30, 2026, as read for the workbook's Chapter 02).

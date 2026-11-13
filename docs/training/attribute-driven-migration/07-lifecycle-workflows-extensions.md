@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 7: Extend Lifecycle Workflows"
 subtitle: "Build the Logic App a custom task extension calls, so it calls back to the right cloud, reports failure at once, does its work once, and runs only after the leaver is blocked"
-description: "Research draft: Module 7 of the Attribute-Driven Migration learning path. You learn where custom task extensions sit in Book 03's leaver, what Learn's Logic App definition leaves to you, the integration registry, proof-of-possession authorization and the leaver order, then lint and run Learn's definition and the program's for a GCC High tenant, through failures and repeat deliveries, build the deployment pieces and check the read-backs. Guide Gates 7 and 8; Book 19, Chapter 05."
+description: "Research draft: Module 7 of the Attribute-Driven Migration learning path. You learn where custom task extensions sit in Book 03's leaver, what Learn's Logic App definition leaves to you, the integration registry, proof-of-possession authorization and the leaver order, then lint and run Learn's definition and the program's for a GCC tenant, through failures and repeat deliveries, build the deployment pieces and check the read-backs. Guide Gates 7 and 8; Book 19, Chapter 05."
 research-status: draft
 research-type: training module
 research-book: "Book 19"
@@ -23,7 +23,7 @@ last-reviewed: 2026-11-07
 
 *5 minutes, with the objectives and prerequisites*
 
-Gate 7 proves one personnel action changes access only through the attributes, with the mover workflow's run history as evidence. Gate 8 puts leaver automation first in every wave and sizes Lifecycle Workflows for the agency. The built-in tasks cover the account. The rest of a leaver, such as the PIV credential, the devices and the servers, goes through a custom task extension that calls a Logic App. Learn's definition calls back to the worldwide Graph on beta, and always says it completed. In this module you see what that costs a GCC High leaver, and run the definition that fixes it.
+Gate 7 proves one personnel action changes access only through the attributes, with the mover workflow's run history as evidence. Gate 8 puts leaver automation first in every wave and sizes Lifecycle Workflows for the agency. The built-in tasks cover the account. The rest of a leaver, such as the PIV credential, the devices and the servers, goes through a custom task extension that calls a Logic App. Learn's definition calls back on beta, and always says it completed. In this module you see what that costs a leaver, and run the definition that fixes it.
 
 This module comes after Modules 4 to 6 because the path follows the gates: Chapter 05 serves Gates 7 and 8, after the Gate 5 work.
 
@@ -49,7 +49,7 @@ In this module, you'll:
 - Describe where custom task extensions sit in Book 03's leaver, and the three rules this chapter builds in code.
 - Explain what Learn's Logic App definition leaves to you.
 - Run a definition for a cloud, through transient failures and repeat deliveries, and read what Lifecycle Workflows records.
-- Build the deployment pieces from the registry, and explain why an Azure Government build is refused.
+- Build the deployment pieces from the registry.
 - Check a workflow read-back for the leaver order.
 
 ### Prerequisites
@@ -71,7 +71,7 @@ One parameterized Logic App per integration, not one per component. Block first:
 
 *8 minutes*
 
-The registry holds one entry per integration, and the builder refuses settings outside Learn's ranges. `lcwext.py` lints, runs, builds and checks. The builder writes Learn's proof-of-possession policy with SAS off, and refuses Azure Government, where Learn documents no such policy. `check-workflow` requires the block before the custom task. Read:
+The registry holds one entry per integration, and the builder refuses settings outside Learn's ranges. `lcwext.py` lints, runs, builds and checks. The builder writes Learn's proof-of-possession policy with SAS off. `check-workflow` requires the block before the custom task. Read:
 
 - [The registry](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#the-registry).
 - [Lint, run, build, check](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#lint-run-build-check).
@@ -253,9 +253,9 @@ Create the extension and its Logic App in the admin center, record what the admi
 
 *5 minutes*
 
-1. Learn's definition runs for a GCC High leaver. What does Lifecycle Workflows record?
-   a. Completed.
-   b. Failed, at the end of the wait, because the callback went to the worldwide Graph on beta.
+1. Learn's definition runs for a GCC leaver. What does Lifecycle Workflows record?
+   a. Completed, though nothing downstream was called.
+   b. Failed, at the end of the wait.
    c. Failed at once.
 
 2. The downstream system fails five times in a row. What does the program's definition do?
@@ -263,22 +263,16 @@ Create the extension and its Logic App in the admin center, record what the admi
    b. It calls back `failed`, so the task fails at once.
    c. It calls back `completed`.
 
-3. Why does the builder refuse a Logic App in Azure Government?
-   a. Logic Apps don't run there.
-   b. Learn documents the proof-of-possession policy only for Azure commercial, so the builder refuses rather than guess.
-   c. The registry doesn't allow it.
-
-4. What does WX-03 report?
+3. What does WX-03 report?
    a. The custom task runs before *Disable user account* or *Revoke all refresh tokens for user*.
    b. The extension uses a bearer token.
    c. The workflow isn't in the registry.
 
 ::: {.callout-tip collapse="true"}
 ## Check your answers
-1. **b.** See [what Learn's definition leaves to you](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#what-it-leaves-to-you) and step 2 of the lab.
+1. **a.** See [what Learn's definition leaves to you](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#what-it-leaves-to-you) and step 2 of the lab.
 2. **b.** See step 4 of [Chapter 05, Lab 1](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#lab-1-fixtures-no-tenant).
-3. **b.** See [authorization, built and checked](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#authorization-built-and-checked) and step 5 of the lab.
-4. **a.** See [the leaver order](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#the-leaver-order) and step 6 of the lab.
+3. **a.** See [the leaver order](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#the-leaver-order) and step 6 of the lab.
 :::
 
 ## Unit 7: Summary

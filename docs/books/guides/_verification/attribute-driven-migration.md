@@ -10,7 +10,7 @@ New guide, first pass of 2026-10-29. The guide is a map over Book 01 Ch 04, Book
 | 2 | API-driven inbound provisioning is available with Entra ID P1, P2 and ID Governance | Stage 1, licensing | verified | `adm-api-concepts` (License requirements) |
 | 3 | `/bulkUpload` daily cap 2,000 calls (P1/P2), 6,000 (ID Governance), up to 50 operations per call | Stage 1, licensing | verified (also in Book 03 Ch 05 and Ch 12) | `adm-api-concepts` |
 | 4 | API-driven provisioning GA in US Gov cloud, June 2025 | Stage 1, licensing | verified | `adm-whatsnew` (whats-new-archive, June 2025) |
-| 5 | Feature-availability table lists API-driven inbound provisioning and provisioning-agent registration for US Government tenants; ID Governance available in GCC, GCC High, DoD | Stage 1, licensing | verified | `adm-feature-avail` |
+| 5 | Feature-availability table lists API-driven inbound provisioning and provisioning-agent registration for US Government tenants; ID Governance available in GCC | Stage 1, licensing | verified | `adm-feature-avail` |
 | 6 | Lifecycle Workflows require ID Governance or Entra Suite | Stage 1, licensing | verified | `adm-lcw` |
 | 7 | Intune policies are assigned to user or device groups; user-owned settings to user groups, device-bound settings to device groups | Stage 6 | verified | `adm-intune-assign` ("User groups vs. device groups") |
 | 8 | Device membership rules reference only device attributes; can't use the device owner's user attributes | Stage 6; worked example step 5 | verified | `adm-dyn-rules` (Considerations, limitations) |

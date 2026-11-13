@@ -56,11 +56,11 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
-| Microsoft Entra | 2,518 | 1,029 | 444 | 367 | 676 | 2 |
+| Microsoft Entra | 2,518 | 1,028 | 444 | 367 | 676 | 3 |
 | Windows Server releases | 44 | 4 | 4 | 7 | 29 | 0 |
 | Windows Server security | 47 | 7 | 16 | 10 | 14 | 0 |
 | Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
-| **All sides** | 3,196 | 1,210 | 487 | 407 | 1,090 | 2 |
+| **All sides** | 3,196 | 1,209 | 487 | 407 | 1,090 | 3 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -712,7 +712,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [managed-identities-azure-resources](#entra-managed-identities-azure-resources) | 40 | 12 | 15 | 1 | 12 | 0 |
 | [monitoring-health](#entra-monitoring-health) | 81 | 40 | 29 | 7 | 5 | 0 |
 | [multi-tenant-organizations](#entra-multi-tenant-organizations) | 16 | 9 | 2 | 2 | 3 | 0 |
-| [role-based-access-control](#entra-role-based-access-control) | 40 | 30 | 7 | 0 | 3 | 0 |
+| [role-based-access-control](#entra-role-based-access-control) | 40 | 29 | 7 | 0 | 3 | 1 |
 | [security-copilot](#entra-security-copilot) | 25 | 0 | 0 | 0 | 25 | 0 |
 | [standards](#entra-standards) | 38 | 10 | 7 | 5 | 16 | 0 |
 | [users](#entra-users) | 62 | 26 | 4 | 12 | 20 | 0 |
@@ -1168,7 +1168,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Risk-based anti-bot verification (CAPTCHA) for telephony-based sign-in](https://learn.microsoft.com/entra/identity/authentication/concept-telephony-risk-based-captcha) | — | Out of scope |
 | [Microsoft Entra multifactor authentication prompts and session lifetime](https://learn.microsoft.com/entra/identity/authentication/concepts-azure-multi-factor-authentication-prompts-session-lifetime) | [Book 12, Chapter 11 — Detection Engineering and Response Automation](../books/b12-security-operations/11-detection-engineering-and-response.md) | Cited |
 | [Configure Microsoft Entra Kerberos trust](https://learn.microsoft.com/entra/identity/authentication/configure-microsoft-entra-kerberos-trust) | [Book 02, Chapter 04 — The Hidden Migration Surface](../books/b02-identity/04-the-hidden-migration-surface.md); [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Covered, not cited |
-| [Microsoft Entra feature availability in Azure for US Government](https://learn.microsoft.com/entra/identity/authentication/feature-availability) | [Book 02, Chapter 06 — Who Owns the Migration](../books/b02-identity/06-who-owns-the-migration.md); [Book 03, Chapter 12 — Execution Plan](../books/b03-hr-identity/12-execution-plan.md); and 44 more | Cited |
+| [Microsoft Entra feature availability in Azure for US Government](https://learn.microsoft.com/entra/identity/authentication/feature-availability) | [Book 02, Chapter 06 — Who Owns the Migration](../books/b02-identity/06-who-owns-the-migration.md); [Book 03, Chapter 12 — Execution Plan](../books/b03-hr-identity/12-execution-plan.md); and 42 more | Cited |
 | [Estimate Cost Savings for Account Recovery in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/authentication/how-to-account-recovery-cost-savings-estimator) | — | Not covered |
 | [Enable and configure account recovery in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/authentication/how-to-account-recovery-enable) | [Book 15, Chapter 04 — Help Desk Authority in Entra ID](../books/b15-day2-operations/04-help-desk-authority-in-entra.md); [`docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md) | Cited |
 | [Perform Account Recovery in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/authentication/how-to-account-recovery-for-users) | — | Not covered |
@@ -3154,7 +3154,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Microsoft Entra RBAC documentation](https://learn.microsoft.com/entra/identity/role-based-access-control) | — | Out of scope |
 | [Roles across Microsoft services](https://learn.microsoft.com/entra/identity/role-based-access-control/m365-workload-docs) | [Chapter 07 — Least Privilege for Service Principals](../project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md) | Cited |
 | [Assign Microsoft Entra roles](https://learn.microsoft.com/entra/identity/role-based-access-control/manage-roles-portal) | [Book 01, Chapter 04 — Identity Transformation](../books/b01-transformation-arc/04-identity-transformation.md); [Book 02, Chapter 02 — The Structural Problem](../books/b02-identity/02-the-structural-problem.md); and 5 more | Cited |
-| [Use My Staff to delegate user management](https://learn.microsoft.com/entra/identity/role-based-access-control/my-staff-configure) | [Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph](../training/ms-automation-entra.md); [`docs/training/_verification/ms-automation-entra.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/training/_verification/ms-automation-entra.md) | Cited |
+| [Use My Staff to delegate user management](https://learn.microsoft.com/entra/identity/role-based-access-control/my-staff-configure) | [Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph](../training/ms-automation-entra.md) | Not reviewed yet |
 | [Microsoft Entra Built-in Roles](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference) | [Book 02, Chapter 02 — The Structural Problem](../books/b02-identity/02-the-structural-problem.md); [Book 02, Chapter 06 — Who Owns the Migration](../books/b02-identity/06-who-owns-the-migration.md); and 19 more | Cited |
 | [Prerequisites to use PowerShell or Graph Explorer for Microsoft Entra roles](https://learn.microsoft.com/entra/identity/role-based-access-control/prerequisites) | — | Out of scope |
 | [Privileged roles and permissions in Microsoft Entra ID (preview) - Microsoft Entra ID](https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md); [Book 04, Chapter 04 — Privileged Roles and Tiers](../books/b04-access/04-privileged-roles-and-tiers.md); and 10 more | Cited |

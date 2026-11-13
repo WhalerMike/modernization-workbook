@@ -148,7 +148,7 @@ The gates are this guide's numbering. The companion guide numbers [stages](attri
 
 : Who decides what in this guide {.striped .hover}
 
-**Licenses and cloud.** API-driven inbound provisioning comes with Entra ID P1, P2 and ID Governance. Lifecycle Workflows need ID Governance or Entra Suite. Dynamic administrative units are documented for the global cloud, which GCC uses, and not for GCC High or DoD ([companion guide, licensing and GCC](attribute-driven-migration.md#building-the-attributes-from-federal-hr-2.0); [administrative unit limits](attribute-driven-migration.md#administrative-units)).
+**Licenses and cloud.** API-driven inbound provisioning comes with Entra ID P1, P2 and ID Governance. Lifecycle Workflows need ID Governance or Entra Suite. Dynamic administrative units are documented for the global cloud, which GCC uses ([companion guide, licensing and GCC](attribute-driven-migration.md#building-the-attributes-from-federal-hr-2.0); [administrative unit limits](attribute-driven-migration.md#administrative-units)).
 
 **Tools, all read-only until a gate says otherwise.**
 
@@ -350,7 +350,7 @@ Instead of asking who sits under the Finance branch, you ask who carries the Fin
 
 7. **Decide restriction before each unit exists (D-AT4).** The default is no. Restriction can't be changed afterward, and it takes the unit's members out of PIM, entitlement management, Lifecycle Workflows and access reviews ([Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#restricted-management-a-per-au-decision)).
 8. **Build the unit registry (AT4.3).** Use three tiers: readers across the tenant, then department units, then division units, each with a dynamic rule that mirrors its group's rule. Division units read the division code in slot 6 ([Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#division-aus-tier-3-created-on-demand)). Assign scoped roles to role-assignable groups whose members are PIM-eligible ([role assignment matrix](../b02-identity/05-delegation-without-ous.md#role-assignment-matrix)). Create each unit and its scoped assignment before the groups it holds ([Book 06, Runbook R07](../b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md#sequencing-the-administrative-unit-comes-first)).
-9. **Know what a unit doesn't do.** Units don't nest, so the tree becomes a flat set. They limit who can change members, not who can see them. Only some roles can be scoped to a unit. In GCC High and DoD, where dynamic units aren't available, an automation job has to keep membership current ([companion guide, administrative units](attribute-driven-migration.md#administrative-units)).
+9. **Know what a unit doesn't do.** Units don't nest, so the tree becomes a flat set. They limit who can change members, not who can see them. Only some roles can be scoped to a unit ([companion guide, administrative units](attribute-driven-migration.md#administrative-units)).
 
 Dynamic **device** groups are the Intune track's, on the device's own attributes. They're designed in the [Intune guide's Gate 2](intune-track-implementation.md#gate-2-the-targeting-design), under the conventions Gate 5 sets.
 

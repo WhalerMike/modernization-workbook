@@ -1,6 +1,6 @@
 ---
 title: "Module 4: Hunting, detections as code and identity signals"
-description: "Guide Steps 7 and 8: custom detections kept as files in a repository, tested against a validation window with a known-bad event and a known-good window, deployed disabled through the Microsoft Graph detectionRules API and enabled after review, with schema governance and the 30-day hunting limit; the interim path where the API's government-cloud availability isn't specified; Defender for Identity and Defender for Cloud Apps feeding the same incidents, their government-cloud gaps, and one query that finds a user seen by more than one source. Lab 2 writes, tests and deploys a disabled rule in a test tenant and runs the correlation query. About 45 minutes, plus Lab 2, with a knowledge check."
+description: "Guide Steps 7 and 8: custom detections kept as files in a repository, tested against a validation window with a known-bad event and a known-good window, deployed disabled through the Microsoft Graph detectionRules API and enabled after review, with schema governance and the 30-day hunting limit; Defender for Identity and Defender for Cloud Apps feeding the same incidents, their GCC gaps, and one query that finds a user seen by more than one source. Lab 2 writes, tests and deploys a disabled rule in a test tenant and runs the correlation query. About 45 minutes, plus Lab 2, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -31,7 +31,7 @@ After this module, you'll be able to:
 - write a custom detection as a repository file and say why it starts disabled;
 - test a rule against a validation window, and explain the 30-day limit;
 - deploy a rule through the Graph `detectionRules` API, and use the portal from the same file where the API's availability isn't specified;
-- name Defender for Identity's and Defender for Cloud Apps' government-cloud gaps and their interim path;
+- name Defender for Identity's and Defender for Cloud Apps' GCC gaps and their interim path;
 - run the cross-source query that finds a user with alerts from more than one source.
 
 ## Prerequisites (1 minute) {#xdr-m4-prerequisites}
@@ -45,13 +45,11 @@ Read the guide's [Step 7](../../books/guides/defender-xdr-implementation.md#step
 
 Each rule has a validation dataset: a known-bad event it must find (from the guide's [synthetic events](../../books/guides/defender-xdr-implementation.md#synthetic-events) or a ring 0 replay) and a known-good window it must stay quiet in. Advanced hunting keeps 30 days, so a validation window is at most 30 days. Schema governance *(risk-based recommended)*: each rule file names the tables and columns it reads, and the weekly review runs each rule's query and fails it when a column is renamed.
 
-**Government clouds.** The hunting API is available in US Government L4 and L5. The `detectionRules` API's national-cloud availability isn't specified on Learn, so in GCC High and DoD the interim path is to create the rule in the portal from the same repository file.
-
 ## Unit 2: Identity and cloud-app signals (10 minutes) {#xdr-m4-unit-2}
 
-Read the guide's [Step 8](../../books/guides/defender-xdr-implementation.md#step-8-identity-and-cloud-app-signals). Defender for Identity's sensors on domain controllers, AD FS, AD CS and Entra Connect servers, and Defender for Cloud Apps' connectors, put identity and SaaS behavior into the same incidents as the endpoint. Sensors reach `<workspace>sensorapi.atp.gcc.azure.com` in GCC and `<workspace>sensorapi.atp.azure.us` in GCC High and DoD, or the `AzureAdvancedThreatProtection` service tag. Pilot on one domain controller per domain first; domain controllers remain Tier 0 until retired.
+Read the guide's [Step 8](../../books/guides/defender-xdr-implementation.md#step-8-identity-and-cloud-app-signals). Defender for Identity's sensors on domain controllers, AD FS, AD CS and Entra Connect servers, and Defender for Cloud Apps' connectors, put identity and SaaS behavior into the same incidents as the endpoint. Sensors reach `<workspace>sensorapi.atp.gcc.azure.com` in GCC, or the `AzureAdvancedThreatProtection` service tag. Pilot on one domain controller per domain first; domain controllers remain Tier 0 until retired.
 
-The gaps: Defender for Cloud Apps lists App Governance's predefined policy alerts and threat-detection alerts as roadmap items for GCC, GCC High and DoD, and its behaviors in `BehaviorInfo` aren't available for GCC. The interim path for OAuth-app abuse is the application detections in Sentinel that [Security Operations](../../books/b12-security-operations/index.md) describes. Defender for Identity says new features reach the government clouds within 90 days of commercial release, and previews may not be supported there.
+The gaps: Defender for Cloud Apps lists App Governance's predefined policy alerts and threat-detection alerts as roadmap items for GCC, and its behaviors in `BehaviorInfo` aren't available for GCC. The interim path for OAuth-app abuse is the application detections in Sentinel that [Security Operations](../../books/b12-security-operations/index.md) describes. Defender for Identity says new features reach GCC within 90 days of commercial release, and previews may not be supported there.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m4-lab-2}
 *Not timed. Not run by the authors. Never production.*
@@ -115,7 +113,7 @@ Disconnect-MgGraph
 
 You write the guide's example rule as a file, test its query against 30 days, deploy it **disabled** through Graph, check what's deployed, and run the cross-source query. The deploy is the only write, and the rule never runs while disabled.
 
-- **You need:** Module 1's test tenant, in the worldwide or GCC cloud (for GCC High or DoD, create the rule in the portal from the file instead of steps 4 and 5); an account with **Detection tuning (Manage)** or Security Administrator, activated through PIM; Defender for Identity or Defender for Cloud Apps connected, for step 6 to return rows.
+- **You need:** Module 1's test tenant, in the worldwide or GCC cloud; an account with **Detection tuning (Manage)** or Security Administrator, activated through PIM; Defender for Identity or Defender for Cloud Apps connected, for step 6 to return rows.
 - **You'll replace:** `<graph-environment>` and `<evidence-folder>` as in Module 1, and `<rule-file>` (a path for the rule's JSON file, for example `C:\Detections\contoso-office-encoded-powershell.json`). `<rule-id>` is the rule's `id`, `contoso-office-encoded-powershell`.
 
 1. **Connect with the detection permissions.**
@@ -205,17 +203,12 @@ You write the guide's example rule as a file, test its query against 30 days, de
     b. 30 days: advanced hunting keeps 30 days, and `runHuntingQuery` defaults to 30.
     c. 7 days.
 
-3. A GCC High SOC wants to deploy rules as code. What does the program do?
-    a. Deploy through `detectionRules` as in GCC.
-    b. The API's national-cloud availability isn't specified, so create the rule in the portal from the same repository file.
-    c. Write the rule in Sentinel instead.
-
-4. A GCC agency needs OAuth-app abuse alerts that App Governance would give. What's the interim path?
+3. A GCC agency needs OAuth-app abuse alerts that App Governance would give. What's the interim path?
     a. Turn on App Governance's predefined policies.
-    b. The application detections in Sentinel, because App Governance's alerts are on the roadmap for GCC, GCC High and DoD.
+    b. The application detections in Sentinel, because App Governance's alerts are on the roadmap for GCC.
     c. None is needed.
 
-5. Which rules may set automated actions such as isolate?
+4. Which rules may set automated actions such as isolate?
     a. Every High-severity rule.
     b. None in this program: containment stays on the response ladder.
     c. Only rules on servers.
@@ -224,9 +217,8 @@ You write the guide's example rule as a file, test its query against 30 days, de
 ## Check your answers
 1. **b.** See Unit 1 and the guide's [Step 7](../../books/guides/defender-xdr-implementation.md#step-7-advanced-hunting-and-detections-as-code).
 2. **b.** See Unit 1.
-3. **b.** See Unit 1 and the guide's [What couldn't be verified](../../books/guides/defender-xdr-implementation.md#what-couldnt-be-verified).
-4. **b.** See Unit 2 and the guide's [Step 8](../../books/guides/defender-xdr-implementation.md#step-8-identity-and-cloud-app-signals).
-5. **b.** See Unit 1.
+3. **b.** See Unit 2 and the guide's [Step 8](../../books/guides/defender-xdr-implementation.md#step-8-identity-and-cloud-app-signals).
+4. **b.** See Unit 1.
 :::
 
 ## Summary (2 minutes) {#xdr-m4-summary}

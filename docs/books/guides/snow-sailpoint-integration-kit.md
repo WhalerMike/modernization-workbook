@@ -110,7 +110,7 @@ Output is JSON (the findings, and which classes were and weren't computed) and C
 | ISC token | Client credentials at `https://{tenant}.api.identitynow.com/oauth/token`; or a token from a vault. A personal access token's client ID and secret also work; client-credentials tokens carry no user context, so some APIs may return 403 | [^sp-auth] |
 | ServiceNow token | `POST /oauth_token.do`, `grant_type=client_credentials`, form-encoded; or basic on a developer instance | [^sn-cc-flow][^sn-oauth-params] |
 | Graph token | Client credentials with a certificate-signed assertion (`client_assertion_type` `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`, PS256 with an `x5t#S256` header); a client secret only as a fallback | [^ms-cc][^ms-cert] |
-| National clouds | Worldwide `graph.microsoft.com` and `login.microsoftonline.com` (also for Microsoft 365 GCC); GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us`; both US Government clouds sign in at `login.microsoftonline.us` | [^ms-deploy] |
+| GCC endpoints | Worldwide `graph.microsoft.com` and `login.microsoftonline.com`, which Microsoft 365 GCC uses | [^ms-deploy] |
 | Paging | Graph: follow `@odata.nextLink` as an opaque URL (users: up to 999 per page); ISC Search: `searchAfter` on a sorted field (offset paging stops at 10,000); ISC lists: `limit` and `offset`; ServiceNow: `sysparm_limit` and `sysparm_offset` | [^ms-paging][^ms-users][^sp-search][^sn-table] |
 | Throttling | On 429 (and 503), wait the `Retry-After` seconds or date, then retry, up to a limit | [^ms-throttle] |
 
