@@ -20,7 +20,7 @@ last-reviewed: 2026-11-11
 
 ::: {.callout-note}
 ## In this guide
-How an agency runs Microsoft's Zero Trust Assessment and turns its report into evidence, as ten steps an operator can follow. First, how to read the guide, the placeholders, the track at a glance, prerequisites, government-cloud availability and the path on one page. Then the steps: decide and scope; prepare the host and protect the output; consent and roles; connect in each cloud; run it; read the report; normalize the results with the kit; open the closure register and route each finding; reconcile with ScubaGear and AWS Security Hub CSPM; and re-run on a schedule and keep the evidence. Each step has its authority label, exact commands, the federal requirements and KSIs it supports, government-cloud availability, a **Validate** step and rollback. Then the control states, the decision record, RACI, evidence catalog and metrics, the dangers, rollback, a checklist and what couldn't be verified.
+How an agency runs Microsoft's Zero Trust Assessment and turns its report into evidence, as ten steps an operator can follow. First, how to read the guide, the placeholders, the track at a glance, prerequisites, government-cloud availability and the path on one page. Then the steps: decide and scope; prepare the host and protect the output; consent and roles; connect in the GCC tenant; run it; read the report; normalize the results with the kit; open the closure register and route each finding; reconcile with ScubaGear and AWS Security Hub CSPM; and re-run on a schedule and keep the evidence. Each step has its authority label, exact commands, the federal requirements and KSIs it supports, government-cloud availability, a **Validate** step and rollback. Then the control states, the decision record, RACI, evidence catalog and metrics, the dangers, rollback, a checklist and what couldn't be verified.
 :::
 
 ::: {.callout-tip}
@@ -119,7 +119,7 @@ Learn's Zero Trust Assessment pages don't mention GCC. GCC uses the worldwide en
 | [1 Decide and scope](#zta-step-1) | The decision record is approved: scope, account, cadence, version, output handling | The signed record |
 | [2 Prepare the host](#zta-step-2) | A clean host has PowerShell 7.6 and the pinned module, and a protected report folder | `Get-Module -ListAvailable ZeroTrustAssessment` |
 | [3 Consent and roles](#zta-step-3) | Consent granted once; the run account holds read roles only; the grants reviewed | The grant review's output |
-| [4 Connect in each cloud](#zta-step-4) | Every service connects in the tenant's own cloud | `Get-MgContext` and the connection messages |
+| [4 Connect in the GCC tenant](#zta-step-4) | Every service connects in the tenant's own cloud | `Get-MgContext` and the connection messages |
 | [5 Run it](#zta-step-5) | The report and export exist and are hashed | The export's SHA-256 |
 | [6 Read the report](#zta-step-6) | Pillar owners have read their tabs; skips and errors are noted | The reading notes |
 | [7 Normalize](#zta-step-7) | Every result normalized; no unmapped value | `Invoke-ZtaNormalize.ps1` |
@@ -262,7 +262,7 @@ The program follows the tool's guide, because it describes the version being run
 
 **Steps.**
 
-1. **Consent once, as the consent administrator**, in the tenant's cloud ([Step 4](#zta-step-4) has the other clouds' parameters).
+1. **Consent once, as the consent administrator**, in the tenant's cloud ([Step 4](#zta-step-4) has the connection parameters).
 
     ```powershell
     Import-Module ZeroTrustAssessment
@@ -313,9 +313,9 @@ The program follows the tool's guide, because it describes the version being run
 
 **Rollback.** Remove the dedicated application's grant (step 4) and the run account's role assignments. Nothing else in the tenant changed.
 
-## Step 4: Connect in each cloud {#zta-step-4}
+## Step 4: Connect in the GCC tenant {#zta-step-4}
 
-**Authority:** Microsoft-recommended for the per-cloud endpoints (Learn). **Applies:** Environment-dependent.
+**Authority:** Microsoft-recommended for the GCC endpoints (Learn). **Applies:** Environment-dependent.
 
 `Connect-ZtAssessment` signs in separately to Microsoft Graph, Azure, Exchange Online, Security & Compliance, SharePoint Online and Azure Information Protection, and a Graph connection doesn't grant access to the others.[^zta-guide] Learn's *Get started* page shows only the commercial command, which GCC also uses; the parameters below are the tool's 3.1.0 source, matched to Learn's per-service pages.[^zta-connect]
 

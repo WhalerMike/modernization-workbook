@@ -6,7 +6,8 @@ and how its URL is derived are in scripts/source_watch/learn_pages.py):
 
 - Windows Server identity: MicrosoftDocs/windowsserverdocs, WindowsServerDocs/identity/
   -> data/learn-coverage/windows-server-identity.yml
-- Microsoft Entra: MicrosoftDocs/entra-docs, docs/ (without docs/identity/saas-apps/)
+- Microsoft Entra: MicrosoftDocs/entra-docs, docs/ (without docs/identity/saas-apps/ and the pages
+  its Site.skip patterns leave out)
   -> data/learn-coverage/entra.yml
 - Windows Server releases: MicrosoftDocs/windowsserverdocs, WindowsServerDocs/get-started/
   -> data/learn-coverage/windows-server-get-started.yml
@@ -287,7 +288,7 @@ def citations(root: Path = ROOT, files: list[str] | None = None) -> dict[str, se
 def merge(site: lp.Site, fresh: dict[str, dict] | None, old: dict, cited: dict[str, set[str]],
           today: str, redirects: dict[str, str] | None = None) -> dict:
     """The site's data: fresh pages (or the stored ones when offline), hand fields kept, citations recomputed."""
-    old_pages = {p["url"]: p for p in old.get("pages", [])}
+    old_pages = {p["url"]: p for p in old.get("pages", []) if not lp.skipped(site, p["path"])}
     redirects = dict(old.get("redirects") or {}) if redirects is None else redirects
     if fresh is None:  # offline: the stored list is the page list
         fresh = {u: {k: v for k, v in p.items() if k in ("path", "url", "title", "area", "ms_date", "ms_topic",
