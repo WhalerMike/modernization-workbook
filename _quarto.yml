@@ -331,6 +331,14 @@ website:
             - docs/training/zero-trust-assessment/02-running-the-assessment-safely.md
             - docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md
             - docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md
+        - section: "Azure Security Engineering learning path"
+          href: docs/training/azure-security/index.md
+          contents:
+            - docs/training/azure-security/01-the-baseline-and-the-exposure-register.md
+            - docs/training/azure-security/02-ddos-protection-and-the-waf.md
+            - docs/training/azure-security/03-the-edge-and-the-egress.md
+            - docs/training/azure-security/04-private-link-dns-and-key-vault.md
+            - docs/training/azure-security/05-policy-drift-and-evidence.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
