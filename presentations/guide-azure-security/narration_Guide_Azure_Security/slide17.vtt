@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.913
+To close, the dangers.
+
+2
+00:00:01.913 --> 00:00:04.909
+A web application firewall
+left in detection mode,
+
+3
+00:00:04.909 --> 00:00:07.263
+logging attacks that reach the backend.
+
+4
+00:00:07.263 --> 00:00:09.622
+An origin reachable around the edge,
+
+5
+00:00:09.622 --> 00:00:14.026
+or protected only by a service tag
+every Front Door customer shares.
+
+6
+00:00:14.026 --> 00:00:16.025
+A public I P nobody knows about.
+
+7
+00:00:16.025 --> 00:00:19.213
+A firewall draft deployed
+over newer changes.
+
+8
+00:00:19.213 --> 00:00:22.150
+Commercial features assumed
+in Azure Government.
+
+9
+00:00:22.150 --> 00:00:26.937
+And disabling a key to contain a compromise,
+which takes its dependents offline.
+
+10
+00:00:26.937 --> 00:00:28.775
+Each has its guard in the steps.
+
+11
+00:00:28.775 --> 00:00:31.563
+The guide is plain about
+what it couldn't verify:
+
+12
+00:00:31.563 --> 00:00:36.137
+Front Door and its Private Link origins
+region by region in Azure Government,
+
+13
+00:00:36.137 --> 00:00:39.067
+Front Door's firewall
+limits in sovereign clouds,
+
+14
+00:00:39.067 --> 00:00:43.213
+and which DDoS tiers and simulation
+partners serve Azure Government.
+
+15
+00:00:43.213 --> 00:00:45.312
+Nothing was run in a subscription.
+
+16
+00:00:45.312 --> 00:00:48.850
+Remember that the guide is a draft
+awaiting the editor's review.
+
+17
+00:00:48.850 --> 00:00:52.800
+Its developer workbook with labs
+and its training path are planned.
+
+18
+00:00:52.800 --> 00:00:53.620
+Thank you.

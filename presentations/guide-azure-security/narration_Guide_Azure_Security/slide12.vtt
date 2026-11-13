@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Step six inspects what leaves.
+
+2
+00:00:02.150 --> 00:00:06.166
+Network and Transport owns the
+agency's edge; inside Azure,
+
+3
+00:00:06.166 --> 00:00:11.187
+Azure Firewall is the inspection point
+for egress and east-west traffic.
+
+4
+00:00:11.187 --> 00:00:16.328
+Learn's Zero Trust recommendations for
+Azure Firewall check that outbound traffic
+
+5
+00:00:16.328 --> 00:00:20.954
+routes through it, that threat intelligence
+and intrusion detection are in
+
+6
+00:00:20.954 --> 00:00:25.213
+alert and deny mode, that outbound T L
+S is inspected, and that logs are on.
+
+7
+00:00:25.213 --> 00:00:28.710
+Threat intelligence deny
+needs Standard or Premium;
+
+8
+00:00:28.710 --> 00:00:32.287
+intrusion detection and T L
+S inspection need Premium.
+
+9
+00:00:32.287 --> 00:00:34.767
+Create a Premium policy in alert mode,
+
+10
+00:00:34.767 --> 00:00:40.126
+add a default route from each workload
+subnet to the firewall, and log everything.
+
+11
+00:00:40.126 --> 00:00:44.261
+After two weeks of reading the
+alerts, move to deny through a draft,
+
+12
+00:00:44.261 --> 00:00:47.325
+so every change lands at
+once and can be reviewed.
+
+13
+00:00:47.325 --> 00:00:51.605
+Learn warns that deploying a draft
+replaces the whole applied policy,
+
+14
+00:00:51.605 --> 00:00:54.187
+so live edits made after
+the draft are lost.
+
+15
+00:00:54.187 --> 00:00:58.346
+T L S inspection needs a trusted
+certificate authority in Key Vault,
+
+16
+00:00:58.346 --> 00:01:00.340
+and spokes talk through the hub.

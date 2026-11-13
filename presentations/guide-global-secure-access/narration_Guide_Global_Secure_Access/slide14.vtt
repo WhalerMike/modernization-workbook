@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.588
+Steps eight and nine.
+
+2
+00:00:01.588 --> 00:00:06.933
+Universal tenant restrictions apply the
+tenant restrictions version two policy to
+
+3
+00:00:06.933 --> 00:00:10.774
+devices with the client, or on a
+remote network, without a proxy,
+
+4
+00:00:10.774 --> 00:00:14.087
+so users can sign in only to
+tenants the policy allows.
+
+5
+00:00:14.087 --> 00:00:17.751
+The policy comes first,
+default block, then tagging.
+
+6
+00:00:17.751 --> 00:00:21.085
+It reaches sign-in and the
+Microsoft Graph data plane,
+
+7
+00:00:21.085 --> 00:00:23.737
+not the SharePoint or Exchange data plane.
+
+8
+00:00:23.737 --> 00:00:26.290
+Learn's four-case test checks a member,
+
+9
+00:00:26.290 --> 00:00:29.501
+an allowed partner, a
+blocked tenant, and a guest.
+
+10
+00:00:29.501 --> 00:00:35.000
+T L S inspection is the step most likely
+to break applications, so it comes last.
+
+11
+00:00:35.000 --> 00:00:39.807
+Learn suggests a dedicated certificate
+authority, not your production P K I.
+
+12
+00:00:39.807 --> 00:00:45.300
+Deploy trust before activation, because an
+expired certificate stops all inspection.
+
+13
+00:00:45.300 --> 00:00:49.222
+The privacy officer approves
+the scope, users are told first,
+
+14
+00:00:49.222 --> 00:00:53.040
+and a failure rate above one
+percent is a systemic problem.

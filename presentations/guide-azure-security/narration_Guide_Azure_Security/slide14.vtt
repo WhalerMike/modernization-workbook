@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.650
+Step eight covers the vault
+that managed identities read.
+
+2
+00:00:03.650 --> 00:00:07.247
+The identities themselves are
+in the Service Accounts guide:
+
+3
+00:00:07.247 --> 00:00:11.266
+a workload that moves to Azure gets
+a user-assigned managed identity,
+
+4
+00:00:11.266 --> 00:00:14.863
+and continuous delivery uses
+workload identity federation.
+
+5
+00:00:14.863 --> 00:00:20.327
+Learn's page, Secure your Azure Key Vault,
+recommends one vault per application,
+
+6
+00:00:20.327 --> 00:00:25.202
+region and environment; role-based
+access, not legacy access policies;
+
+7
+00:00:25.202 --> 00:00:30.245
+pim for administrators; soft delete
+and purge protection; autorotation;
+
+8
+00:00:30.245 --> 00:00:34.700
+audit logging and alerts; private
+endpoints; and tested backups.
+
+9
+00:00:34.700 --> 00:00:38.749
+So create each vault on role-based
+access with purge protection,
+
+10
+00:00:38.749 --> 00:00:40.200
+and close its firewall.
+
+11
+00:00:40.200 --> 00:00:44.925
+Give the workload's identity a data-plane
+role at the vault, not the subscription.
+
+12
+00:00:44.925 --> 00:00:49.813
+Rotate keys by a policy file, and
+send audit events to the workspace.
+
+13
+00:00:49.813 --> 00:00:54.726
+If a key is suspected compromised,
+rotate and migrate its dependents first;
+
+14
+00:00:54.726 --> 00:00:57.310
+disabling it first takes them offline.

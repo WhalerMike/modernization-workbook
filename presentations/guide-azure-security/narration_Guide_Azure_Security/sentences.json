@@ -1,0 +1,751 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.075,
+   "This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Azure Security Engineering."
+  ],
+  [
+   7.838,
+   6.213,
+   "One thing first: the guide is a draft, awaiting the editor's review, so recheck it after that review."
+  ],
+  [
+   14.05,
+   21.4,
+   "The guide engineers the security of an agency's Azure estate on top of the landing zone, as ten gated steps an operator can run: from the security baseline and an inventory of public exposure, through DDoS protection, the web application firewall, ingress, Azure Firewall, Private Link and Key Vault, to policy, operations and evidence."
+  ],
+  [
+   35.45,
+   8.6,
+   "Its commands and service behavior come from Microsoft Learn, read on November eleventh, 2026, and its control statements from nist."
+  ],
+  [
+   44.05,
+   3.125,
+   "The program's own choices are called design guidance."
+  ],
+  [
+   47.175,
+   2.775,
+   "Nothing in it was run against a lyve subscription."
+  ],
+  [
+   49.95,
+   3.5,
+   "We'll go in four parts: why, what, who, and how."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.05,
+   "Here's the idea the guide starts from."
+  ],
+  [
+   2.1,
+   10.537,
+   "A landing zone decides what can be deployed, and where: the management group hierarchy, the boundary policies and the exemption rule that Cloud Boundary and Landing Zone designs."
+  ],
+  [
+   12.637,
+   5.213,
+   "It doesn't decide what the internet can reach, what leaves the estate, or who can read a key."
+  ],
+  [
+   17.85,
+   4.513,
+   "Those are engineered one service at a time, and each one has to be proved."
+  ],
+  [
+   22.363,
+   1.788,
+   "So the guide's goal is this."
+  ],
+  [
+   24.15,
+   10.088,
+   "Every internet-facing service is in an inventory with an owner, behind DDoS protection and a web application firewall in prevention mode, and nothing can reach around them."
+  ],
+  [
+   34.237,
+   7.263,
+   "Workloads leave Azure only through an inspecting firewall and reach platform services only through private endpoints."
+  ],
+  [
+   41.5,
+   5.312,
+   "Keys sit in vaults that only managed identities and eligible administrators can use."
+  ],
+  [
+   46.812,
+   2.538,
+   "And Azure Policy holds it all in place."
+  ],
+  [
+   49.35,
+   7.35,
+   "A finding is ready for closure when every applicable state has evidence; the authorizing official or assessor decides."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.95,
+   "The workbook's books already design most of this."
+  ],
+  [
+   3.0,
+   6.938,
+   "Cloud Boundary and Landing Zone builds the hierarchy, the boundary policies, the provisioning loop and the ownership."
+  ],
+  [
+   9.938,
+   4.062,
+   "Security Operations and Telemetry chooses the posture tool."
+  ],
+  [
+   14.0,
+   7.862,
+   "Network and Transport owns the agency edge, and D N S, DHCP and eye-pam owns name resolution."
+  ],
+  [
+   21.863,
+   23.85,
+   "What none of them gives is the service-by-service engineering of the Azure controls a Zero Trust assessment tests: DDoS protection on every public I P, a web application firewall in prevention mode, origins only the edge can reach, egress through an inspecting firewall, platform services reached only through private endpoints, and keys behind role-based access with purge protection."
+  ],
+  [
+   45.712,
+   8.113,
+   "Microsoft Learn's Azure network security Zero Trust recommendations list those checks, and the guide takes each one as a step."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.05,
+   "Here's the path on one page, each step with a done-when and a way to validate it."
+  ],
+  [
+   5.1,
+   5.737,
+   "One: protect the hierarchy, assign the security initiative, and get platform logs flowing."
+  ],
+  [
+   10.838,
+   6.763,
+   "Two: put every public I P, Front Door endpoint and application gateway in a register with an owner."
+  ],
+  [
+   17.6,
+   6.812,
+   "Three: DDoS protection on every public I P, logged and alerting, with one exercise run."
+  ],
+  [
+   24.413,
+   3.438,
+   "Four: the web application firewall in prevention mode."
+  ],
+  [
+   27.85,
+   6.912,
+   "Five: origins that only the edge can reach, T L S one point two at least, and failover tested."
+  ],
+  [
+   34.763,
+   6.438,
+   "Six: default routes to Azure Firewall, with threat intelligence and intrusion detection in deny."
+  ],
+  [
+   41.2,
+   5.862,
+   "Seven: platform services with public access off, resolving through central private zones."
+  ],
+  [
+   47.062,
+   3.688,
+   "Eight: vaults on role-based access with purge protection."
+  ],
+  [
+   50.75,
+   3.975,
+   "Nine: policy that holds it, with exemptions that expire."
+  ],
+  [
+   54.725,
+   3.15,
+   "Ten: owners, cadence and evidence."
+  ],
+  [
+   57.875,
+   5.138,
+   "Steps one and two come first; three to eight can run in parallel by workload."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   0.9,
+   "Which cloud?"
+  ],
+  [
+   0.95,
+   10.5,
+   "Microsoft three sixty-five G C C pairs with commercial Azure, so a G C C agency's subscriptions are usually commercial, and every service here is available."
+  ],
+  [
+   11.45,
+   12.35,
+   "G C C High and D O D pair with Azure Government, and Microsoft Learn's page, Compare Azure Government and global Azure, says a service there has all its features unless the page lists a variation."
+  ],
+  [
+   23.8,
+   1.05,
+   "A few matter."
+  ],
+  [
+   24.85,
+   8.5,
+   "Front Door Standard and Premium are generally available in two U S Gov regions, and Private Link origins outside Virginia are unconfirmed."
+  ],
+  [
+   33.35,
+   14.925,
+   "On Application Gateway, Learn's web application firewall F A Q says sovereign clouds have no bot protection rule sets and no geo-filtering custom rules, so that Zero Trust test is recorded as skipped, not applicable, rather than failed."
+  ],
+  [
+   48.275,
+   5.537,
+   "Private D N S zone names differ, and Lighthouse has no pim for delegated access."
+  ],
+  [
+   53.812,
+   3.875,
+   "Whatever the cloud, sign in to the one the subscription lives in."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   7.5,
+   "An agency's H R platform may run on Oracle Cloud Infrastructure, so the guide lines up the equivalents on four clouds."
+  ],
+  [
+   7.55,
+   13.887,
+   "For network-layer DDoS, Azure's infrastructure protection is free, with Network or I P Protection on top; A W S has Shield Standard and Shield Advanced; Google Cloud Armor is always on behind load balancers."
+  ],
+  [
+   21.438,
+   11.575,
+   "For the web application firewall: Azure W A F, A W S W A F, Cloud Armor policies, and the O C I web application firewall, regional or at the edge."
+  ],
+  [
+   33.013,
+   8.312,
+   "For inspection, Azure Firewall Premium and the O C I Network Firewall both offer intrusion detection and T L S inspection."
+  ],
+  [
+   41.325,
+   7.85,
+   "For private access to platform services: Private Link, Google's Private Service Connect, and O C I private endpoints."
+  ],
+  [
+   49.175,
+   11.225,
+   "In the government clouds, A W S W A F in GovCloud offers only A W S managed rule groups, and Oracle's government availability isn't yet specified."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.838,
+   "Now, who."
+  ],
+  [
+   0.887,
+   17.288,
+   "Every role this work needs is eligible through pim, not standing, as the Privileged Access guide sets up: Network Contributor for the connectivity work, Resource Policy Contributor for Azure Policy, Key Vault Administrator for vault settings, and Security Admin for Defender for Cloud."
+  ],
+  [
+   18.175,
+   6.888,
+   "The guide's RACI follows Cloud Boundary and Landing Zone's chapter on who owns the boundary, and it's design guidance."
+  ],
+  [
+   25.062,
+   5.65,
+   "The policy owner is accountable for the decision records, the baseline and the evidence package."
+  ],
+  [
+   30.712,
+   10.825,
+   "The platform owner is accountable for the register, the DDoS plan, the web application firewall and firewall policies, and the private D N S zones, with the operator doing the work."
+  ],
+  [
+   41.538,
+   4.037,
+   "The security monitor owns alert response and DDoS incidents."
+  ],
+  [
+   45.575,
+   6.912,
+   "Application owners answer for their origins, certificates and vault contents, and the assessor decides closure."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.75,
+   "Now how, starting with steps one and two."
+  ],
+  [
+   2.8,
+   4.025,
+   "Step one adds the security settings the landing zone needs."
+  ],
+  [
+   6.825,
+   11.15,
+   "Protect the hierarchy, as Learn's page, Protect your resource hierarchy, shows: require authorization to create management groups and send new subscriptions to a default group."
+  ],
+  [
+   17.975,
+   14.213,
+   "Assign the Microsoft cloud security benchmark and the fed-ramp initiative at the intermediate root in do-not-enforce mode, which, per Learn's Azure Policy assignment structure, evaluates compliance without enforcing; step nine enforces."
+  ],
+  [
+   32.188,
+   5.25,
+   "Send every platform resource's logs to the workspace, and turn on Defender for Cloud."
+  ],
+  [
+   37.438,
+   5.55,
+   "Step two builds what nothing else can be proved complete without: a list of what's exposed."
+  ],
+  [
+   42.987,
+   6.513,
+   "Learn recommends an inventory of every public I P and its protection status, kept with Resource Graph."
+  ],
+  [
+   49.5,
+   7.475,
+   "The register adds the owner, the D N S names and certificates, and whether a web application firewall covers each one."
+  ],
+  [
+   56.975,
+   3.712,
+   "It's a map of the attack surface, so keep it inside the boundary."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.325,
+   "Step three is DDoS protection."
+  ],
+  [
+   2.375,
+   4.55,
+   "Every public I P in Azure gets infrastructure protection at no cost."
+  ],
+  [
+   6.925,
+   13.887,
+   "Learn's tier comparison says Network Protection and I P Protection add adaptive tuning, attack analytics, metrics, alerts and mitigation reports; Network Protection also adds the Rapid Response team and cost protection."
+  ],
+  [
+   20.812,
+   7.95,
+   "Choose Network Protection when many public I Ps need coverage, and I P Protection for a few critical ones, and record the choice."
+  ],
+  [
+   28.762,
+   8.787,
+   "Both work at layers three and four, so layer seven needs the web application firewall, and neither covers a public I P on a NAT gateway."
+  ],
+  [
+   37.55,
+   9.262,
+   "Create one plan, link each virtual network, turn on diagnostic logs, and alert on the metric that reads one while an attack is mitigated."
+  ],
+  [
+   46.812,
+   2.275,
+   "Then hold it with policy in step nine."
+  ],
+  [
+   49.087,
+   11.088,
+   "Exercise the response: Learn allows simulations only through approved partners, only against your own protected I Ps, and one partner, Red Button, is public cloud only."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.287,
+   "Step four is the web application firewall, on Front Door globally or Application Gateway regionally."
+  ],
+  [
+   6.338,
+   9.55,
+   "Learn's Zero Trust recommendations for Application Gateway say it plainly: detection mode logs an attack and forwards it; only prevention mode blocks."
+  ],
+  [
+   15.887,
+   8.562,
+   "The checks cover prevention mode, request body inspection, the default rule set, bot protection, rate limiting and diagnostic logging."
+  ],
+  [
+   24.45,
+   7.112,
+   "Learn recommends the latest default rule set, two point two when read, validated in log mode before blocking."
+  ],
+  [
+   31.562,
+   7.112,
+   "So create the policy in detection mode with request body inspection on, naming the rule set version you validated."
+  ],
+  [
+   38.675,
+   5.425,
+   "Add bot protection, which is commercial Azure only, and a rate limit on the login path."
+  ],
+  [
+   44.1,
+   9.162,
+   "Attach the policy, send the firewall log to the workspace, and tune for at least a full business cycle, scoping every exception to the narrowest rule."
+  ],
+  [
+   53.263,
+   1.613,
+   "Then switch to prevention."
+  ],
+  [
+   54.875,
+   2.337,
+   "Front Door's managed rules need Premium."
+  ],
+  [
+   57.212,
+   2.85,
+   "In Azure Government, leave out the bot rule set."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.2,
+   "Step five finishes the ingress."
+  ],
+  [
+   2.25,
+   10.325,
+   "Front Door is global, at the Microsoft edge with built-in network-layer DDoS protection; Application Gateway is regional, in the agency's own network."
+  ],
+  [
+   12.575,
+   2.562,
+   "Either works with the firewall from step four."
+  ],
+  [
+   15.137,
+   7.5,
+   "What matters is that nothing can reach the origin around the edge, or an attacker skips both the firewall and the DDoS controls."
+  ],
+  [
+   22.637,
+   9.338,
+   "Use Private Link where the origin supports it: Front Door Premium reaches App Service, Blob Storage, internal load balancers and others privately."
+  ],
+  [
+   31.975,
+   12.438,
+   "Where it doesn't, Learn's page, Secure traffic to Azure Front Door origins, says to use the service tag and the Front Door I D header together, because the tag's addresses are shared by every Front Door customer."
+  ],
+  [
+   44.413,
+   3.663,
+   "Set T L S one point two or one point three only."
+  ],
+  [
+   48.075,
+   5.825,
+   "Build health probes and two origins in different regions, then stop one to prove failover."
+  ],
+  [
+   53.9,
+   5.112,
+   "And migrate any classic Front Door before March thirty-first, 2027."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.1,
+   "Step six inspects what leaves."
+  ],
+  [
+   2.15,
+   9.037,
+   "Network and Transport owns the agency's edge; inside Azure, Azure Firewall is the inspection point for egress and east-west traffic."
+  ],
+  [
+   11.188,
+   14.025,
+   "Learn's Zero Trust recommendations for Azure Firewall check that outbound traffic routes through it, that threat intelligence and intrusion detection are in alert and deny mode, that outbound T L S is inspected, and that logs are on."
+  ],
+  [
+   25.212,
+   7.075,
+   "Threat intelligence deny needs Standard or Premium; intrusion detection and T L S inspection need Premium."
+  ],
+  [
+   32.288,
+   7.838,
+   "Create a Premium policy in alert mode, add a default route from each workload subnet to the firewall, and log everything."
+  ],
+  [
+   40.125,
+   7.2,
+   "After two weeks of reading the alerts, move to deny through a draft, so every change lands at once and can be reviewed."
+  ],
+  [
+   47.325,
+   6.862,
+   "Learn warns that deploying a draft replaces the whole applied policy, so live edits made after the draft are lost."
+  ],
+  [
+   54.188,
+   6.088,
+   "T L S inspection needs a trusted certificate authority in Key Vault, and spokes talk through the hub."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.912,
+   "Step seven gives platform services a private address in the agency's network."
+  ],
+  [
+   4.963,
+   4.425,
+   "A private endpoint does that; D N S decides whether clients use it."
+  ],
+  [
+   9.387,
+   13.762,
+   "Learn's Key Vault Private Link page is clear that name resolution is where private endpoints fail: the zone must exist, be linked to the virtual network and hold the record, and on-premises D N S must forward to Azure."
+  ],
+  [
+   23.15,
+   6.8,
+   "So create each private link zone once, centrally, in the connectivity subscription, and link it to the hub."
+  ],
+  [
+   29.95,
+   6.0,
+   "Create the private endpoint with a zone group, which registers the record and removes it with the endpoint."
+  ],
+  [
+   35.95,
+   10.762,
+   "At scale, the Cloud Adoption Framework's pattern lets policy do it: deny private link zones and public endpoints in workload subscriptions, and deploy the zone group automatically."
+  ],
+  [
+   46.712,
+   4.55,
+   "Then turn public access off, and add conditional forwarders on premises."
+  ],
+  [
+   51.263,
+   4.737,
+   "In Azure Government the zone names differ, so policy needs those names."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.6,
+   "Step eight covers the vault that managed identities read."
+  ],
+  [
+   3.65,
+   11.213,
+   "The identities themselves are in the Service Accounts guide: a workload that moves to Azure gets a user-assigned managed identity, and continuous delivery uses workload identity federation."
+  ],
+  [
+   14.863,
+   19.837,
+   "Learn's page, Secure your Azure Key Vault, recommends one vault per application, region and environment; role-based access, not legacy access policies; pim for administrators; soft delete and purge protection; autorotation; audit logging and alerts; private endpoints; and tested backups."
+  ],
+  [
+   34.7,
+   5.5,
+   "So create each vault on role-based access with purge protection, and close its firewall."
+  ],
+  [
+   40.2,
+   4.725,
+   "Give the workload's identity a data-plane role at the vault, not the subscription."
+  ],
+  [
+   44.925,
+   4.888,
+   "Rotate keys by a policy file, and send audit events to the workspace."
+  ],
+  [
+   49.812,
+   7.45,
+   "If a key is suspected compromised, rotate and migrate its dependents first; disabling it first takes them offline."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   8.412,
+   "Step nine turns steps three to eight into policy, because drift is the threat, as Governance, Drift and Evidence explains."
+  ],
+  [
+   8.463,
+   16.613,
+   "Gather the security definitions into one initiative at the intermediate root: DDoS protection on virtual networks and its logs, the web application firewall enabled and in the specified mode, the private D N S and public-access policies, and the Key Vault policies."
+  ],
+  [
+   25.075,
+   5.062,
+   "Look up each definition's name in the cloud you're in, because built-ins differ by cloud."
+  ],
+  [
+   30.137,
+   5.612,
+   "Assign it in do-not-enforce mode, review compliance with the owners, then switch to default."
+  ],
+  [
+   35.75,
+   3.163,
+   "Run a remediation task for what already exists."
+  ],
+  [
+   38.913,
+   3.05,
+   "Every exemption gets a category and an expiry."
+  ],
+  [
+   41.962,
+   12.925,
+   "Learn's Azure Policy exemption structure says mitigated means the intent is met another way, waiver means non-compliance is accepted for a time, and an expired exemption is kept for the record but no longer honored."
+  ],
+  [
+   54.888,
+   2.188,
+   "Export compliance every month."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.3,
+   "Step ten puts every owner, cadence and test in one place."
+  ],
+  [
+   4.35,
+   23.7,
+   "The cadence is design guidance: weekly, rerun the exposure register; monthly, the policy compliance export, exemptions due, and false positives; quarterly, DDoS coverage and cost, firewall rules, vault access and the rule-set version; twice a year, a Front Door failover and a vault restore; and yearly, a DDoS simulation with an approved partner."
+  ],
+  [
+   28.05,
+   8.562,
+   "In a DDoS attack, the alert pages the security monitor, and under Network Protection a severity A request goes to Rapid Response."
+  ],
+  [
+   36.612,
+   4.162,
+   "The metrics measure protected coverage, not whether a setting exists."
+  ],
+  [
+   40.775,
+   12.85,
+   "And each step supports controls in nist special publication eight hundred fifty-three, such as denial-of-service and boundary protection, with the fed-ramp twenty X key security indicators as a vocabulary."
+  ],
+  [
+   53.625,
+   3.638,
+   "The steps support those controls; the assessor decides."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.863,
+   "To close, the dangers."
+  ],
+  [
+   1.913,
+   5.35,
+   "A web application firewall left in detection mode, logging attacks that reach the backend."
+  ],
+  [
+   7.263,
+   6.763,
+   "An origin reachable around the edge, or protected only by a service tag every Front Door customer shares."
+  ],
+  [
+   14.025,
+   2.0,
+   "A public I P nobody knows about."
+  ],
+  [
+   16.025,
+   3.188,
+   "A firewall draft deployed over newer changes."
+  ],
+  [
+   19.212,
+   2.938,
+   "Commercial features assumed in Azure Government."
+  ],
+  [
+   22.15,
+   4.787,
+   "And disabling a key to contain a compromise, which takes its dependents offline."
+  ],
+  [
+   26.938,
+   1.837,
+   "Each has its guard in the steps."
+  ],
+  [
+   28.775,
+   14.438,
+   "The guide is plain about what it couldn't verify: Front Door and its Private Link origins region by region in Azure Government, Front Door's firewall limits in sovereign clouds, and which DDoS tiers and simulation partners serve Azure Government."
+  ],
+  [
+   43.212,
+   2.1,
+   "Nothing was run in a subscription."
+  ],
+  [
+   45.312,
+   3.538,
+   "Remember that the guide is a draft awaiting the editor's review."
+  ],
+  [
+   48.85,
+   3.95,
+   "Its developer workbook with labs and its training path are planned."
+  ],
+  [
+   52.8,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.155
+An agency's H R platform may run
+on Oracle Cloud Infrastructure,
+
+2
+00:00:04.155 --> 00:00:07.550
+so the guide lines up the
+equivalents on four clouds.
+
+3
+00:00:07.550 --> 00:00:12.124
+For network-layer DDoS, Azure's
+infrastructure protection is free,
+
+4
+00:00:12.124 --> 00:00:16.531
+with Network or I P Protection on
+top; A W S has Shield Standard and
+
+5
+00:00:16.531 --> 00:00:21.437
+Shield Advanced; Google Cloud Armor
+is always on behind load balancers.
+
+6
+00:00:21.437 --> 00:00:27.752
+For the web application firewall: Azure
+W A F, A W S W A F, Cloud Armor policies,
+
+7
+00:00:27.752 --> 00:00:33.013
+and the O C I web application
+firewall, regional or at the edge.
+
+8
+00:00:33.013 --> 00:00:37.086
+For inspection, Azure Firewall
+Premium and the O C I Network
+
+9
+00:00:37.086 --> 00:00:41.325
+Firewall both offer intrusion
+detection and T L S inspection.
+
+10
+00:00:41.325 --> 00:00:45.043
+For private access to platform
+services: Private Link,
+
+11
+00:00:45.043 --> 00:00:49.175
+Google's Private Service Connect,
+and O C I private endpoints.
+
+12
+00:00:49.175 --> 00:00:54.739
+In the government clouds, A W S W A F
+in GovCloud offers only A W S managed
+
+13
+00:00:54.739 --> 00:01:00.460
+rule groups, and Oracle's government
+availability isn't yet specified.

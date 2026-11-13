@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.375
+Step three is DDoS protection.
+
+2
+00:00:02.375 --> 00:00:06.925
+Every public I P in Azure gets
+infrastructure protection at no cost.
+
+3
+00:00:06.925 --> 00:00:12.009
+Learn's tier comparison says Network
+Protection and I P Protection add adaptive
+
+4
+00:00:12.009 --> 00:00:16.107
+tuning, attack analytics, metrics,
+alerts and mitigation reports;
+
+5
+00:00:16.107 --> 00:00:20.812
+Network Protection also adds the Rapid
+Response team and cost protection.
+
+6
+00:00:20.812 --> 00:00:24.787
+Choose Network Protection when
+many public I Ps need coverage,
+
+7
+00:00:24.787 --> 00:00:28.762
+and I P Protection for a few critical
+ones, and record the choice.
+
+8
+00:00:28.762 --> 00:00:32.911
+Both work at layers three and
+four, so layer seven needs the web
+
+9
+00:00:32.911 --> 00:00:37.549
+application firewall, and neither
+covers a public I P on a NAT gateway.
+
+10
+00:00:37.549 --> 00:00:42.181
+Create one plan, link each virtual
+network, turn on diagnostic logs,
+
+11
+00:00:42.181 --> 00:00:46.812
+and alert on the metric that reads
+one while an attack is mitigated.
+
+12
+00:00:46.812 --> 00:00:49.087
+Then hold it with policy in step nine.
+
+13
+00:00:49.087 --> 00:00:54.914
+Exercise the response: Learn allows simulations
+only through approved partners, only
+
+14
+00:00:54.914 --> 00:01:00.240
+against your own protected I Ps, and one
+partner, Red Button, is public cloud only.

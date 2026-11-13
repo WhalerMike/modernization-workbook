@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.125
+Steps six and ten replace the V P N's
+address pool with one path per application.
+
+2
+00:00:06.125 --> 00:00:11.008
+Learn's Graph tutorial creates each
+application from the custom template,
+
+3
+00:00:11.008 --> 00:00:15.103
+binds it to a connector group, and
+adds only the segments it uses:
+
+4
+00:00:15.103 --> 00:00:17.150
+one host, its ports, its protocol.
+
+5
+00:00:17.150 --> 00:00:19.232
+Assign a group, not individuals,
+
+6
+00:00:19.232 --> 00:00:23.075
+and put Conditional Access on
+the app, in report-only first.
+
+7
+00:00:23.075 --> 00:00:27.525
+Quick Access is the bridge: application
+discovery shows what's used,
+
+8
+00:00:27.525 --> 00:00:31.737
+and each piece moves into its own
+app until Quick Access is empty.
+
+9
+00:00:31.737 --> 00:00:35.438
+Step ten does the same for the
+paths an attacker wants most.
+
+10
+00:00:35.438 --> 00:00:39.776
+Administrative hosts get their own apps
+on R D P, and their policy requires
+
+11
+00:00:39.776 --> 00:00:44.113
+the phishing-resistant authentication
+strength and a compliant device.
+
+12
+00:00:44.113 --> 00:00:47.038
+Domain controllers, for
+as long as they remain,
+
+13
+00:00:47.038 --> 00:00:50.812
+get the Private Access sensor,
+which installs in audit mode.
+
+14
+00:00:50.812 --> 00:00:55.793
+Learn's advice: protect application S
+P N's first and the domain controller's
+
+15
+00:00:55.793 --> 00:01:00.260
+own later, to avoid locking out
+administrators, and test with klist.

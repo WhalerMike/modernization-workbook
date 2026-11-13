@@ -1,0 +1,799 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   9.963,
+   "This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Defender X D R Engineering and Operations, an implementation guide."
+  ],
+  [
+   10.725,
+   6.162,
+   "One thing first: the guide is a draft, awaiting the editor's review, so recheck it after the review."
+  ],
+  [
+   16.887,
+   2.15,
+   "Its idea fits in a sentence."
+  ],
+  [
+   19.038,
+   13.088,
+   "A Defender license is not a defended endpoint: the sensor has to be on every device and healthy, the prevention settings have to be enforced and not just configured, and every alert has to end in a decision someone can show."
+  ],
+  [
+   32.125,
+   9.45,
+   "The guide covers Windows clients and Windows Server only, for a civilian agency at fed-ramp Moderate in Microsoft three sixty-five G C C."
+  ],
+  [
+   41.575,
+   7.112,
+   "Its facts were read on Microsoft Learn on November eleventh, 2026, and nothing in it was run in a tenant."
+  ],
+  [
+   48.688,
+   3.5,
+   "We'll go in four parts: why, what, who, and how."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   4.5,
+   "Here's the goal the guide sets, as the program's own risk-based position."
+  ],
+  [
+   4.55,
+   4.225,
+   "Every Windows device the agency owns is onboarded and reporting."
+  ],
+  [
+   8.775,
+   3.938,
+   "Its prevention settings are enforced at the strength the design chose."
+  ],
+  [
+   12.713,
+   4.912,
+   "Every Attack Surface Reduction rule is in block, or in a recorded exception."
+  ],
+  [
+   17.625,
+   3.5,
+   "Every alert lands in one incident queue with an owner."
+  ],
+  [
+   21.125,
+   3.263,
+   "And the evidence for all of it can be produced on request."
+  ],
+  [
+   24.387,
+   3.5,
+   "The guide walks each feature through five control states."
+  ],
+  [
+   27.887,
+   2.038,
+   "Designed is the decision record."
+  ],
+  [
+   29.925,
+   4.588,
+   "Configured is the audit and pilot phase, shown by policy exports."
+  ],
+  [
+   34.513,
+   4.075,
+   "Enforced is block mode on the rings, with the exclusion register."
+  ],
+  [
+   38.587,
+   3.25,
+   "Evidenced is a test record and the event it produced."
+  ],
+  [
+   41.837,
+   3.638,
+   "Operated is an owner, a cadence and drift alerts."
+  ],
+  [
+   45.475,
+   7.425,
+   "A finding is ready for closure when every applicable state has evidence; the authorizing official or the assessor decides."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.538,
+   "The architecture has two trust boundaries."
+  ],
+  [
+   2.587,
+   6.9,
+   "The agency's holds the devices, the S O C's Sentinel workspace, automation and the evidence store."
+  ],
+  [
+   9.488,
+   4.062,
+   "Microsoft's holds Defender X D R and its control planes."
+  ],
+  [
+   13.55,
+   11.525,
+   "Microsoft Learn says that for a U S Government tenant it's built in the Azure U S Government environment, and G C C, G C C High and D O D each have their own portal."
+  ],
+  [
+   25.075,
+   10.8,
+   "Intune is the recommended tool for Defender settings, through endpoint security policies, and they're assigned to Entra device groups, because Defender management supports device objects only."
+  ],
+  [
+   35.875,
+   5.275,
+   "Automation levels, device groups and custom detections liv in the Defender portal."
+  ],
+  [
+   41.15,
+   6.688,
+   "Telemetry flows to the tenant's instance, alerts become incidents, and advanced hunting keeps thirty days."
+  ],
+  [
+   47.837,
+   6.963,
+   "Servers in A W S, Google Cloud or Oracle Cloud Infrastructure arrive the way Azure Arc reaches them."
+  ],
+  [
+   54.8,
+   5.263,
+   "And use one control plane per setting: Group Policy wins over Intune by default."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.85,
+   "What does the government cloud give you?"
+  ],
+  [
+   1.9,
+   12.162,
+   "Microsoft Learn says Defender for Endpoint, prevention through remediation, is available in G C C, G C C High and D O D, and so is security settings management for servers."
+  ],
+  [
+   14.062,
+   1.738,
+   "Each cloud has its own portal."
+  ],
+  [
+   15.8,
+   5.15,
+   "G C C reads incidents and runs hunting through the worldwide Graph host."
+  ],
+  [
+   20.95,
+   3.675,
+   "Vulnerability Management is there, minus two features."
+  ],
+  [
+   24.625,
+   7.388,
+   "Defender for Identity and Defender for Cloud Apps are available, with App Governance alerts listed as roadmap items."
+  ],
+  [
+   32.013,
+   1.113,
+   "Then the gaps."
+  ],
+  [
+   33.125,
+   6.888,
+   "Microsoft Security Exposure Management, which holds attack paths and the exposure graph, is Public Cloud only."
+  ],
+  [
+   40.013,
+   8.6,
+   "Learn doesn't say whether Graph custom detection rules, automatic attack disruption, or web content filtering on Windows reach these clouds."
+  ],
+  [
+   48.612,
+   5.213,
+   "The guide's rule: not yet specified means Learn doesn't say, not that it's available."
+  ],
+  [
+   53.825,
+   4.55,
+   "And an unlicensed feature is a licensing decision, not a failed control."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.6,
+   "Here's the path on one page: ten gates, each with a done-when and a validate step."
+  ],
+  [
+   5.65,
+   8.25,
+   "Gate one, architecture and access: unified roles are active and the S O C reads incidents through Graph in its own cloud."
+  ],
+  [
+   13.9,
+   5.5,
+   "Two, onboarding: every in-scope device has an active sensor, or an exception."
+  ],
+  [
+   19.4,
+   8.55,
+   "Three, prevention: antivirus, firewall, tamper protection, network protection and controlled folder access, enforced."
+  ],
+  [
+   27.95,
+   5.138,
+   "Four, Attack Surface Reduction: every rule through audit and warn into block."
+  ],
+  [
+   33.087,
+   4.088,
+   "Five, exposure: vulnerabilities flow to an owner."
+  ],
+  [
+   37.175,
+   5.388,
+   "Six, incidents: one queue, a severity table, everything classified."
+  ],
+  [
+   42.562,
+   6.175,
+   "Seven, hunting: detections liv in a repository and deploy through Graph after a test."
+  ],
+  [
+   48.737,
+   3.888,
+   "Eight, identity and cloud-app signals in the same incidents."
+  ],
+  [
+   52.625,
+   3.075,
+   "Nine, automation set to the response ladder."
+  ],
+  [
+   55.7,
+   2.75,
+   "Ten, metrics and evidence every month."
+  ],
+  [
+   58.45,
+   5.3,
+   "Gates one and two come first; gate ten runs once the others have evidence."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   0.838,
+   "Now, who."
+  ],
+  [
+   0.887,
+   10.475,
+   "The guide builds custom roles in Defender's unified role-based access control, assigned to groups that privileged identity management governs, so no one holds a standing role."
+  ],
+  [
+   11.363,
+   5.825,
+   "A read role, called Security data basics, for analysts and the assessor's read-only account."
+  ],
+  [
+   17.188,
+   4.662,
+   "A responder role that adds alerts, response and basic live response."
+  ],
+  [
+   21.85,
+   6.55,
+   "A detection engineer role with Detection tuning, manage, which the custom detection A P I accepts."
+  ],
+  [
+   28.4,
+   3.525,
+   "Advanced live response only for Tier zero analysts."
+  ],
+  [
+   31.925,
+   9.825,
+   "Intune's Endpoint Security Manager creates the policies, and Microsoft Learn says activating unified roles needs at least Security Administrator in Entra I D."
+  ],
+  [
+   41.75,
+   4.65,
+   "The RACI follows Security Operations and Telemetry and the devices book."
+  ],
+  [
+   46.4,
+   7.713,
+   "The policy owner, an I S S O or see-so delegate, is accountable for decisions, policies and exclusions."
+  ],
+  [
+   54.112,
+   8.55,
+   "The S O C owns incidents and detections, the help desk owns warn-mode unblock requests, and the assessor owns the assessment."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.712,
+   "Now how, gate by gate."
+  ],
+  [
+   1.762,
+   7.513,
+   "Gate one builds the roles in the Defender portal, then activates unified role-based access control workload by workload."
+  ],
+  [
+   9.275,
+   2.8,
+   "Create every role and assignment first."
+  ],
+  [
+   12.075,
+   4.175,
+   "Rollback is to deactivate the workload, and the earlier roles return."
+  ],
+  [
+   16.25,
+   20.9,
+   "Then connect the S O C's read path in the tenant's own cloud: Global for G C C, U S Gov for G C C High, U S Gov D O D for D O D. Microsoft Learn names Security Incident dot Read dot All as the least-privileged permission to list incidents, and the signed-in user also needs a reader or operator role."
+  ],
+  [
+   37.15,
+   3.45,
+   "Threat Hunting dot Read dot All runs hunting queries."
+  ],
+  [
+   40.6,
+   2.487,
+   "Validate by listing five incidents."
+  ],
+  [
+   43.087,
+   5.138,
+   "A pass is a list, or an empty one in a new tenant, with no permission error."
+  ],
+  [
+   48.225,
+   8.25,
+   "But watch the danger the guide names: read a G C C High tenant from the worldwide host, and the empty list looks like a pass."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.112,
+   "Gate two proves the sensor is on."
+  ],
+  [
+   2.163,
+   18.188,
+   "Clients onboard through Intune's E D R policy, ring zero, then one, then two and three; servers through Defender for Servers on Azure Arc. Microsoft Learn says Windows Server twenty nineteen needs a specific update before onboarding, so it reaches the right government environment."
+  ],
+  [
+   20.35,
+   5.6,
+   "On a pilot device, query the sense service and read the onboarding state, which should be one."
+  ],
+  [
+   25.95,
+   4.675,
+   "Across the fleet, run the coverage query through Graph and file the result."
+  ],
+  [
+   30.625,
+   11.137,
+   "Learn lists five sensor health values: active; inactive, typically after seven days without contact; no sensor data; impaired communications; and misconfigured."
+  ],
+  [
+   41.763,
+   3.375,
+   "A device that isn't active for seven days becomes a ticket."
+  ],
+  [
+   45.138,
+   5.513,
+   "A device the sensor can't reach goes in the exception register with a compensating control."
+  ],
+  [
+   50.65,
+   8.037,
+   "And rollback is an offboarding package, which expires seven days after download and must never go to a device with the onboarding one."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.9,
+   "Gate three is prevention."
+  ],
+  [
+   1.95,
+   12.188,
+   "Antivirus, firewall and tamper protection carry the values from the devices book's policy library; the guide adds network protection, web protection and controlled folder access, and proves each one."
+  ],
+  [
+   14.137,
+   7.237,
+   "Network protection and controlled folder access both have an audit mode, value two, that logs what they would block."
+  ],
+  [
+   21.375,
+   8.562,
+   "Run them in audit on rings zero and one for at least two weeks, read the audit events weekly, and add allowed applications before enforcing."
+  ],
+  [
+   29.938,
+   7.088,
+   "Antivirus, firewall and tamper protection have no audit mode, so they go straight to ring one with backout triggers."
+  ],
+  [
+   37.025,
+   3.938,
+   "Then enforce ring by ring, with exit criteria for each."
+  ],
+  [
+   40.962,
+   8.225,
+   "On a device, Microsoft Learn's commands show tamper and real-time protection, the modes, and the firewall profiles as enforced."
+  ],
+  [
+   49.188,
+   2.263,
+   "Rollback sets the mode back to audit."
+  ],
+  [
+   51.45,
+   4.562,
+   "Learn says tamper protection is turned off only from the console that set it."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.4,
+   "Gate four is Attack Surface Reduction."
+  ],
+  [
+   2.45,
+   5.175,
+   "The devices book's policy names the rules; this guide carries each stage."
+  ],
+  [
+   7.625,
+   7.612,
+   "Microsoft Learn recommends putting all rules in audit at once on ring one, to see which ones everyday business triggers."
+  ],
+  [
+   15.238,
+   4.875,
+   "Audit for thirty days, and decide an exclusion or a fix for every hit."
+  ],
+  [
+   20.113,
+   4.95,
+   "Then warn for fourteen days, which shows users the block with a way to proceed."
+  ],
+  [
+   25.062,
+   11.825,
+   "Warn is friction, not a bypass: since platform four point eighteen point two six oh six oh, unblocking needs administrator approval, and a persistent need belongs in a per-rule exclusion."
+  ],
+  [
+   36.888,
+   9.162,
+   "Two rules don't support warn, the credential-stealing rule for the local security authority and the Office code-injection rule, so they go from audit straight to block."
+  ],
+  [
+   46.05,
+   5.275,
+   "Rollback moves a rule one stage back, but Microsoft says an exclusion is better."
+  ],
+  [
+   51.325,
+   7.312,
+   "On servers, Learn lists a known issue where a rule shows compliant without being enforced, so check the device itself."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   8.762,
+   "Gate five covers what Defender adds to the vulnerability program that Security Operations and Telemetry runs, and what it can't do in a government cloud."
+  ],
+  [
+   8.812,
+   12.125,
+   "Microsoft Learn says Security Exposure Management, which holds attack paths, the exposure graph and critical asset management, is available in Public Cloud only, not in U S Government clouds."
+  ],
+  [
+   20.938,
+   6.05,
+   "So a Zero Trust Assessment test that needs it is recorded as not applicable in the tenant's cloud."
+  ],
+  [
+   26.988,
+   2.413,
+   "That's a disposition, not a failure."
+  ],
+  [
+   29.4,
+   8.65,
+   "What the government clouds do have is Vulnerability Management, core and premium, without two features, and Secure Score with some recommendations missing."
+  ],
+  [
+   38.05,
+   12.738,
+   "The interim path for attack paths: prioritize by exposure level and internet-facing devices from the device info table, and use the Tier zero inventory from Access and Privilege as the critical-asset list."
+  ],
+  [
+   50.788,
+   5.362,
+   "A vulnerability without an owner is a finding against the inventory control, C M eight."
+  ],
+  [
+   56.15,
+   3.138,
+   "And Sentinel can't query the vulnerability tables."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.625,
+   "Gate six is incidents."
+  ],
+  [
+   1.675,
+   7.475,
+   "Microsoft Learn says Defender X D R correlates alerts that share attack techniques or an attacker into one incident."
+  ],
+  [
+   9.15,
+   10.213,
+   "The response ladder and device isolation belong to Security Operations and Telemetry; this gate fixes severity, triage, evidence and hand-off."
+  ],
+  [
+   19.363,
+   2.65,
+   "The severity table is the program's design."
+  ],
+  [
+   22.012,
+   13.05,
+   "A high incident is triaged within an hour and contained on a gated rung, where the playbook prepares and a named approver releases, with the incident response lead and the I S S O deciding on U S cert reporting."
+  ],
+  [
+   35.062,
+   4.0,
+   "A medium one within twenty-four hours, enriched and ticketed."
+  ],
+  [
+   39.062,
+   5.625,
+   "A low one within seventy-two hours, observed, with a tuning review if it recurs."
+  ],
+  [
+   44.688,
+   6.138,
+   "Servers and privileged or emergency accounts are never contained by a playbook; a human decides."
+  ],
+  [
+   50.825,
+   4.737,
+   "To validate, export the open incidents and one incident with its alerts."
+  ],
+  [
+   55.562,
+   6.15,
+   "Every open incident has an owner, and every closed one carries a classification and determination."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   9.575,
+   "Gate seven puts detections in a repository and deploys them through the Graph A P I, following the rule lifecycle in Security Operations and Telemetry."
+  ],
+  [
+   9.625,
+   6.237,
+   "Each rule file starts disabled, and leaves out automated actions, because containment stays on the ladder."
+  ],
+  [
+   15.863,
+   7.412,
+   "Every rule has a validation dataset: a known-bad event it must find, and a known-good window it must stay quiet in."
+  ],
+  [
+   23.275,
+   2.85,
+   "A rule that can't be shown to fire isn't finished."
+  ],
+  [
+   26.125,
+   7.825,
+   "Test the query against the last thirty days, which is all advanced hunting keeps, then post the file to the detection rules endpoint."
+  ],
+  [
+   33.95,
+   5.075,
+   "Enabling is a change to the status in the repository, reviewed and redeployed."
+  ],
+  [
+   39.025,
+   15.1,
+   "Microsoft Learn's hunting A P I is available in U S Government L four and L five, but the detection rules A P I has no national cloud table, so in G C C High and D O D, create the rule in the portal from the same file."
+  ],
+  [
+   54.125,
+   4.112,
+   "Pass: the deployed rules match the repository, exactly."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.312,
+   "Gates eight and nine."
+  ],
+  [
+   1.363,
+   6.188,
+   "Gate eight puts identity and S A A S behavior into the same incidents as the endpoint."
+  ],
+  [
+   7.55,
+   10.188,
+   "Defender for Identity's sensors go on domain controllers, A D F S, A D C S and Entra Connect servers, starting with one domain controller per domain."
+  ],
+  [
+   17.738,
+   3.712,
+   "Microsoft Learn gives each cloud its own sensor endpoint."
+  ],
+  [
+   21.45,
+   11.575,
+   "Two gaps: App Governance alerts are roadmap items, and Cloud Apps behaviors aren't in G C C. Validate with a correlation query: users with alerts from more than one source."
+  ],
+  [
+   33.025,
+   3.95,
+   "Gate nine sets Defender's automation to match the response ladder."
+  ],
+  [
+   36.975,
+   7.287,
+   "Pilot ring one's device group at the semi level that requires approval for all folders, and review two weeks of approvals."
+  ],
+  [
+   44.263,
+   9.262,
+   "Then workstations go to full, which Learn recommends, and servers stay at a semi level, because the program never isolates a server autonomously."
+  ],
+  [
+   53.525,
+   6.237,
+   "Exclude the emergency access accounts and the S O C's own service accounts from attack disruption."
+  ],
+  [
+   59.763,
+   2.538,
+   "Every disruption action can be undone."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.675,
+   "Gate ten makes it operate."
+  ],
+  [
+   1.725,
+   5.475,
+   "The guide's metrics measure protected coverage and effectiveness, not whether a setting exists."
+  ],
+  [
+   7.2,
+   9.588,
+   "Protected coverage is devices with an active sensor over the in-scope devices in the inventory, because a policy says nothing about devices that never checked in."
+  ],
+  [
+   16.788,
+   7.1,
+   "Enforcement depth counts devices with every Attack Surface Reduction rule in block, because audit mode protects nothing."
+  ],
+  [
+   23.887,
+   5.838,
+   "Mean time to triage and contain, by severity: detection that waits is a warehouse."
+  ],
+  [
+   29.725,
+   4.463,
+   "Detection validity: a rule that can't be shown to fire isn't a control."
+  ],
+  [
+   34.188,
+   11.125,
+   "And synthetic-event success: the detection test, the network protection test site, and each rule's demonstration, run on ring zero, each producing its expected event."
+  ],
+  [
+   45.312,
+   14.65,
+   "The cadence is weekly for sensor health and drift, quarterly for tuning, exceptions and an exercise, and monthly for the evidence run, which runs the read-only queries, exports the incidents and hashes every file for the I S S O."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.863,
+   "To close, the dangers."
+  ],
+  [
+   1.913,
+   6.05,
+   "A rule assigned to user groups never applies, because Defender management supports device objects only."
+  ],
+  [
+   7.963,
+   5.562,
+   "Intune and Group Policy both setting a rule means Group Policy silently wins."
+  ],
+  [
+   13.525,
+   5.263,
+   "A server's compliance report can show a rule enforced when it isn't, so check the server."
+  ],
+  [
+   18.788,
+   6.45,
+   "Exposure Management assumed in a government cloud stalls the work, or makes an assessment test read as failed."
+  ],
+  [
+   25.238,
+   5.487,
+   "Attack disruption containing a server or an emergency account means an outage or a lockout."
+  ],
+  [
+   30.725,
+   4.925,
+   "And hunting evidence older than thirty days isn't there, so the monthly run files it."
+  ],
+  [
+   35.65,
+   13.375,
+   "The guide is plain about what it couldn't verify: the detection rules A P I, attack disruption and web content filtering in government clouds, and the detection test on Windows ten and eleven, which Learn's page doesn't list."
+  ],
+  [
+   49.025,
+   1.7,
+   "Nothing was run in a tenant."
+  ],
+  [
+   50.725,
+   5.7,
+   "Next, read Security Operations and Telemetry and the devices book, which own the design."
+  ],
+  [
+   56.425,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

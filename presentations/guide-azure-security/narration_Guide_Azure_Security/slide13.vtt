@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.962
+Step seven gives platform services a
+private address in the agency's network.
+
+2
+00:00:04.962 --> 00:00:09.388
+A private endpoint does that; D N
+S decides whether clients use it.
+
+3
+00:00:09.388 --> 00:00:14.765
+Learn's Key Vault Private Link page is
+clear that name resolution is where private
+
+4
+00:00:14.765 --> 00:00:19.194
+endpoints fail: the zone must exist,
+be linked to the virtual network
+
+5
+00:00:19.194 --> 00:00:23.149
+and hold the record, and on-premises
+D N S must forward to Azure.
+
+6
+00:00:23.149 --> 00:00:26.313
+So create each private
+link zone once, centrally,
+
+7
+00:00:26.313 --> 00:00:29.950
+in the connectivity subscription,
+and link it to the hub.
+
+8
+00:00:29.950 --> 00:00:32.541
+Create the private endpoint
+with a zone group,
+
+9
+00:00:32.541 --> 00:00:35.950
+which registers the record and
+removes it with the endpoint.
+
+10
+00:00:35.950 --> 00:00:39.850
+At scale, the Cloud Adoption
+Framework's pattern lets policy do it:
+
+11
+00:00:39.850 --> 00:00:44.256
+deny private link zones and public
+endpoints in workload subscriptions,
+
+12
+00:00:44.256 --> 00:00:46.712
+and deploy the zone group automatically.
+
+13
+00:00:46.712 --> 00:00:51.262
+Then turn public access off, and add
+conditional forwarders on premises.
+
+14
+00:00:51.262 --> 00:00:56.060
+In Azure Government the zone names
+differ, so policy needs those names.

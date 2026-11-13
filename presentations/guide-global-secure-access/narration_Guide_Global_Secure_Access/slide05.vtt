@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.538
+Here are the twelve steps.
+
+2
+00:00:01.538 --> 00:00:05.093
+One: a decision record per
+function, with licenses,
+
+3
+00:00:05.093 --> 00:00:08.388
+a dated availability
+quote, and exit criteria.
+
+4
+00:00:08.388 --> 00:00:12.118
+Two: the reference architecture
+written down for this tenant,
+
+5
+00:00:12.118 --> 00:00:13.874
+with a configuration export.
+
+6
+00:00:13.874 --> 00:00:16.925
+Three: the client on every managed device.
+
+7
+00:00:16.925 --> 00:00:21.675
+Four: the Microsoft traffic profile,
+with source I P restoration.
+
+8
+00:00:21.675 --> 00:00:25.287
+Five: internet traffic,
+through security profiles.
+
+9
+00:00:25.287 --> 00:00:30.763
+Six: private applications, each with
+its own segments, group and policy.
+
+10
+00:00:30.763 --> 00:00:33.175
+Seven: the compliant network check.
+
+11
+00:00:33.175 --> 00:00:35.088
+Eight: tenant restrictions.
+
+12
+00:00:35.088 --> 00:00:37.600
+Nine: T L S inspection.
+
+13
+00:00:37.600 --> 00:00:39.675
+Ten: privileged protocols.
+
+14
+00:00:39.675 --> 00:00:43.613
+Eleven: coexistence and
+migration, ring by ring.
+
+15
+00:00:43.613 --> 00:00:46.174
+Twelve: telemetry and evidence.
+
+16
+00:00:46.174 --> 00:00:49.207
+They run in a different
+order: logging first,
+
+17
+00:00:49.207 --> 00:00:52.630
+and internet filtering
+and T L S inspection last.

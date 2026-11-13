@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.100
+The reference architecture
+has seven zones and planes.
+
+2
+00:00:03.100 --> 00:00:08.125
+Managed Windows endpoints open a tunnel
+to the service edge after Entra sign-in.
+
+3
+00:00:08.125 --> 00:00:13.737
+Branches send traffic over an I P sec
+tunnel, with no user identity on it.
+
+4
+00:00:13.737 --> 00:00:18.525
+The control plane, Conditional Access,
+decides and never carries traffic.
+
+5
+00:00:18.525 --> 00:00:23.470
+The policy plane holds the traffic
+forwarding profiles, security profiles,
+
+6
+00:00:23.470 --> 00:00:27.238
+T L S policies and signaling,
+and configures the data plane.
+
+7
+00:00:27.238 --> 00:00:31.826
+The data plane is Microsoft's service
+edge in commercial Azure regions,
+
+8
+00:00:31.826 --> 00:00:34.626
+and it holds the agency's
+traffic in transit.
+
+9
+00:00:34.626 --> 00:00:39.223
+The agency's private network holds
+connector groups, private D N S,
+
+10
+00:00:39.223 --> 00:00:44.162
+applications and domain controllers
+with sensors, all outbound-only.
+
+11
+00:00:44.162 --> 00:00:48.263
+And the evidence zone is the Log
+Analytics workspace and Sentinel.
+
+12
+00:00:48.263 --> 00:00:49.900
+D N S stays split.
+
+13
+00:00:49.900 --> 00:00:53.455
+The client doesn't support
+D N S over H T T P S,
+
+14
+00:00:53.455 --> 00:00:58.540
+so secure D N S in browsers is
+turned off on managed devices.

@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.675
+Gate six is incidents.
+
+2
+00:00:01.675 --> 00:00:05.451
+Microsoft Learn says Defender
+X D R correlates alerts that
+
+3
+00:00:05.451 --> 00:00:09.150
+share attack techniques or an
+attacker into one incident.
+
+4
+00:00:09.150 --> 00:00:14.430
+The response ladder and device
+isolation belong to Security Operations
+
+5
+00:00:14.430 --> 00:00:19.363
+and Telemetry; this gate fixes
+severity, triage, evidence and hand-off.
+
+6
+00:00:19.363 --> 00:00:22.013
+The severity table is
+the program's design.
+
+7
+00:00:22.013 --> 00:00:26.491
+A high incident is triaged within an
+hour and contained on a gated rung,
+
+8
+00:00:26.491 --> 00:00:30.274
+where the playbook prepares
+and a named approver releases,
+
+9
+00:00:30.274 --> 00:00:35.062
+with the incident response lead and the
+I S S O deciding on U S cert reporting.
+
+10
+00:00:35.062 --> 00:00:39.062
+A medium one within twenty-four
+hours, enriched and ticketed.
+
+11
+00:00:39.062 --> 00:00:44.687
+A low one within seventy-two hours,
+observed, with a tuning review if it recurs.
+
+12
+00:00:44.687 --> 00:00:47.910
+Servers and privileged or
+emergency accounts are
+
+13
+00:00:47.910 --> 00:00:50.826
+never contained by a
+playbook; a human decides.
+
+14
+00:00:50.826 --> 00:00:55.562
+To validate, export the open incidents
+and one incident with its alerts.
+
+15
+00:00:55.562 --> 00:00:57.587
+Every open incident has an owner,
+
+16
+00:00:57.587 --> 00:01:01.780
+and every closed one carries a
+classification and determination.

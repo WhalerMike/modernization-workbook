@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.162
+Gate two proves the sensor is on.
+
+2
+00:00:02.162 --> 00:00:06.275
+Clients onboard through Intune's
+E D R policy, ring zero, then one,
+
+3
+00:00:06.275 --> 00:00:10.783
+then two and three; servers through
+Defender for Servers on Azure Arc.
+
+4
+00:00:10.783 --> 00:00:15.448
+Microsoft Learn says Windows Server
+twenty nineteen needs a specific
+
+5
+00:00:15.448 --> 00:00:20.351
+update before onboarding, so it reaches
+the right government environment.
+
+6
+00:00:20.351 --> 00:00:23.113
+On a pilot device, query
+the sense service and
+
+7
+00:00:23.113 --> 00:00:25.950
+read the onboarding state,
+which should be one.
+
+8
+00:00:25.950 --> 00:00:30.625
+Across the fleet, run the coverage
+query through Graph and file the result.
+
+9
+00:00:30.625 --> 00:00:36.068
+Learn lists five sensor health values:
+active; inactive, typically after seven
+
+10
+00:00:36.068 --> 00:00:41.762
+days without contact; no sensor data;
+impaired communications; and misconfigured.
+
+11
+00:00:41.762 --> 00:00:45.138
+A device that isn't active for
+seven days becomes a ticket.
+
+12
+00:00:45.138 --> 00:00:47.637
+A device the sensor
+can't reach goes in the
+
+13
+00:00:47.637 --> 00:00:50.651
+exception register with
+a compensating control.
+
+14
+00:00:50.651 --> 00:00:54.595
+And rollback is an offboarding
+package, which expires seven days
+
+15
+00:00:54.595 --> 00:00:58.750
+after download and must never go to
+a device with the onboarding one.

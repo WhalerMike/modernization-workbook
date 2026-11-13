@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.449
+Step nine turns steps
+three to eight into policy,
+
+2
+00:00:03.449 --> 00:00:08.462
+because drift is the threat, as
+Governance, Drift and Evidence explains.
+
+3
+00:00:08.462 --> 00:00:13.493
+Gather the security definitions into
+one initiative at the intermediate root:
+
+4
+00:00:13.493 --> 00:00:16.617
+DDoS protection on virtual
+networks and its logs,
+
+5
+00:00:16.617 --> 00:00:20.656
+the web application firewall
+enabled and in the specified mode,
+
+6
+00:00:20.656 --> 00:00:25.076
+the private D N S and public-access
+policies, and the Key Vault policies.
+
+7
+00:00:25.076 --> 00:00:28.112
+Look up each definition's
+name in the cloud you're in,
+
+8
+00:00:28.112 --> 00:00:30.137
+because built-ins differ by cloud.
+
+9
+00:00:30.137 --> 00:00:32.109
+Assign it in do-not-enforce mode,
+
+10
+00:00:32.109 --> 00:00:35.749
+review compliance with the
+owners, then switch to default.
+
+11
+00:00:35.749 --> 00:00:38.913
+Run a remediation task
+for what already exists.
+
+12
+00:00:38.913 --> 00:00:41.963
+Every exemption gets a
+category and an expiry.
+
+13
+00:00:41.963 --> 00:00:46.882
+Learn's Azure Policy exemption structure
+says mitigated means the intent is met
+
+14
+00:00:46.882 --> 00:00:50.701
+another way, waiver means
+non-compliance is accepted for a time,
+
+15
+00:00:50.701 --> 00:00:54.887
+and an expired exemption is kept for
+the record but no longer honored.
+
+16
+00:00:54.887 --> 00:00:57.140
+Export compliance every month.

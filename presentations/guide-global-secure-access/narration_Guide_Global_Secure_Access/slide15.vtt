@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.738
+Steps eleven and twelve
+make it a migration.
+
+2
+00:00:02.738 --> 00:00:05.125
+Ring zero is the implementing team.
+
+3
+00:00:05.125 --> 00:00:09.850
+Ring one is a pilot of fewer than
+twenty users, for ten business days.
+
+4
+00:00:09.850 --> 00:00:14.300
+Ring two is about ten percent,
+including one branch, for twenty.
+
+5
+00:00:14.300 --> 00:00:17.058
+Ring three is everyone, in waves,
+
+6
+00:00:17.058 --> 00:00:21.513
+and a V P N route is removed
+only after its wave holds.
+
+7
+00:00:21.513 --> 00:00:25.190
+The emergency access group is
+excluded from every policy,
+
+8
+00:00:25.190 --> 00:00:27.412
+and tested at the start of each ring.
+
+9
+00:00:27.412 --> 00:00:31.391
+Rolling back runs newest first:
+policies to report-only,
+
+10
+00:00:31.391 --> 00:00:36.233
+security profile links removed, the
+wave's group out of the profiles,
+
+11
+00:00:36.233 --> 00:00:40.038
+the V P N route restored, and
+signaling turned off last.
+
+12
+00:00:40.038 --> 00:00:42.226
+Telemetry comes before any of it.
+
+13
+00:00:42.226 --> 00:00:47.169
+Learn keeps traffic logs in the service
+for thirty days, so a diagnostic setting
+
+14
+00:00:47.169 --> 00:00:50.540
+exports the four network
+categories to the workspace,
+
+15
+00:00:50.540 --> 00:00:52.563
+and a freshness query runs daily.
+
+16
+00:00:52.563 --> 00:00:56.281
+A sudden drop in traffic
+volume is an alert in itself:
+
+17
+00:00:56.281 --> 00:01:00.240
+it covers offboarding, a
+disabled profile, or an outage.

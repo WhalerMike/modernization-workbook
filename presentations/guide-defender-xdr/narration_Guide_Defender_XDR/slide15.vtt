@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.725
+Gate ten makes it operate.
+
+2
+00:00:01.725 --> 00:00:05.557
+The guide's metrics measure
+protected coverage and effectiveness,
+
+3
+00:00:05.557 --> 00:00:07.200
+not whether a setting exists.
+
+4
+00:00:07.200 --> 00:00:11.994
+Protected coverage is devices with an
+active sensor over the in-scope devices in
+
+5
+00:00:11.994 --> 00:00:16.788
+the inventory, because a policy says
+nothing about devices that never checked in.
+
+6
+00:00:16.788 --> 00:00:20.338
+Enforcement depth counts devices
+with every Attack Surface
+
+7
+00:00:20.338 --> 00:00:23.888
+Reduction rule in block, because
+audit mode protects nothing.
+
+8
+00:00:23.888 --> 00:00:29.725
+Mean time to triage and contain, by severity:
+detection that waits is a warehouse.
+
+9
+00:00:29.725 --> 00:00:34.188
+Detection validity: a rule that can't
+be shown to fire isn't a control.
+
+10
+00:00:34.188 --> 00:00:39.792
+And synthetic-event success: the detection
+test, the network protection test site,
+
+11
+00:00:39.792 --> 00:00:45.313
+and each rule's demonstration, run on ring
+zero, each producing its expected event.
+
+12
+00:00:45.313 --> 00:00:50.035
+The cadence is weekly for sensor health
+and drift, quarterly for tuning,
+
+13
+00:00:50.035 --> 00:00:54.999
+exceptions and an exercise, and monthly
+for the evidence run, which runs the
+
+14
+00:00:54.999 --> 00:01:00.020
+read-only queries, exports the incidents
+and hashes every file for the I S S O.

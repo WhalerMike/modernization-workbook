@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.100
+Here's the path on one page, each step
+with a done-when and a way to validate it.
+
+2
+00:00:05.100 --> 00:00:08.899
+One: protect the hierarchy,
+assign the security initiative,
+
+3
+00:00:08.899 --> 00:00:10.837
+and get platform logs flowing.
+
+4
+00:00:10.837 --> 00:00:14.177
+Two: put every public I P,
+Front Door endpoint and
+
+5
+00:00:14.177 --> 00:00:17.601
+application gateway in a
+register with an owner.
+
+6
+00:00:17.601 --> 00:00:20.957
+Three: DDoS protection
+on every public I P,
+
+7
+00:00:20.957 --> 00:00:24.412
+logged and alerting,
+with one exercise run.
+
+8
+00:00:24.412 --> 00:00:27.851
+Four: the web application
+firewall in prevention mode.
+
+9
+00:00:27.851 --> 00:00:31.114
+Five: origins that only
+the edge can reach,
+
+10
+00:00:31.114 --> 00:00:34.762
+T L S one point two at
+least, and failover tested.
+
+11
+00:00:34.762 --> 00:00:37.258
+Six: default routes to Azure Firewall,
+
+12
+00:00:37.258 --> 00:00:41.201
+with threat intelligence and
+intrusion detection in deny.
+
+13
+00:00:41.201 --> 00:00:44.326
+Seven: platform services
+with public access off,
+
+14
+00:00:44.326 --> 00:00:47.062
+resolving through central private zones.
+
+15
+00:00:47.062 --> 00:00:50.750
+Eight: vaults on role-based
+access with purge protection.
+
+16
+00:00:50.750 --> 00:00:54.725
+Nine: policy that holds it,
+with exemptions that expire.
+
+17
+00:00:54.725 --> 00:00:57.875
+Ten: owners, cadence and evidence.
+
+18
+00:00:57.875 --> 00:01:03.070
+Steps one and two come first; three to
+eight can run in parallel by workload.

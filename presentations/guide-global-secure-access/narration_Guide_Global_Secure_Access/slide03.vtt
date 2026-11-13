@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Where does this sit in federal terms?
+
+2
+00:00:02.150 --> 00:00:07.137
+Tick three point oh is technology-neutral:
+it sets goals, not products.
+
+3
+00:00:07.137 --> 00:00:10.454
+CISA's Remote User Use Case
+has three security patterns,
+
+4
+00:00:10.454 --> 00:00:14.688
+and each has an option that runs through
+a security-as-a-service provider.
+
+5
+00:00:14.688 --> 00:00:18.608
+In the program's reading, Private
+Access is that option for the campus,
+
+6
+00:00:18.608 --> 00:00:23.354
+the Microsoft traffic profile with the
+compliant network check is the option for a
+
+7
+00:00:23.354 --> 00:00:27.480
+sanctioned cloud provider, and Internet
+Access is the option for the web,
+
+8
+00:00:27.480 --> 00:00:29.750
+which CISA calls the riskiest pattern.
+
+9
+00:00:29.750 --> 00:00:34.860
+For branches, remote networks get only
+the baseline profile and no Conditional
+
+10
+00:00:34.860 --> 00:00:39.738
+Access, so parity between a branch user
+and a client user is a design question.
+
+11
+00:00:39.738 --> 00:00:43.137
+The part a design most
+often loses is telemetry.
+
+12
+00:00:43.137 --> 00:00:47.993
+The use case says CISA's visibility
+must be preserved, so agree the path
+
+13
+00:00:47.993 --> 00:00:52.601
+with the agency's tick delegates before
+the V P N's web path is retired.
+
+14
+00:00:52.601 --> 00:00:56.483
+And none of this makes Global
+Secure Access a tick product:
+
+15
+00:00:56.483 --> 00:00:58.490
+CISA certifies no products.

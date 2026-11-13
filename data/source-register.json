@@ -10308,6 +10308,1349 @@
      "change": "Added: cited on the narrated deck slides"
     }
    ]
+  },
+  {
+   "id": "defender-for-us-government",
+   "title": "Microsoft Defender for US Government",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/usgov",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Microsoft Defender for US Government"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "defender-for-endpoint-us-government",
+   "title": "Microsoft Defender for Endpoint for US Government customers",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/gov",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Defender for Endpoint for US Government customers"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "defender-for-identity-us-government",
+   "title": "Microsoft Defender for Identity for US Government offerings",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-for-identity/us-govt-gcc-high",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Defender for Identity for US Government"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "defender-for-cloud-apps-us-government",
+   "title": "Microsoft Defender for Cloud Apps for US Government offerings",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-cloud-apps/editions-cloud-app-security-gcc",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Defender for Cloud Apps for US Government"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "security-exposure-management-overview",
+   "title": "What is Microsoft Security Exposure Management?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/security-exposure-management/microsoft-security-exposure-management",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "What is Microsoft Security Exposure Management?"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-onboard-windows-intune",
+   "title": "Onboard Windows devices to Microsoft Defender for Endpoint by using Microsoft Intune",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/configure-endpoints-mdm",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Onboard Windows devices by using Intune"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-troubleshoot-onboarding",
+   "title": "Troubleshoot Microsoft Defender for Endpoint onboarding issues",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/troubleshoot-onboarding",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Troubleshoot Defender for Endpoint onboarding"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-run-detection-test",
+   "title": "Run a detection test on a device recently onboarded to Microsoft Defender for Endpoint",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/run-detection-test",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Run a detection test"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-device-inventory-field-reference",
+   "title": "Device inventory field reference",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/device-inventory-field-reference",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Device inventory field reference"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-configure-tamper-protection",
+   "title": "Configure tamper protection for Microsoft Defender Antivirus on Windows",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/tamper-protection-windows-configure",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Configure tamper protection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-configure-network-protection",
+   "title": "Configure network protection in Microsoft Defender Antivirus",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/enable-network-protection",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Configure network protection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-configure-controlled-folder-access",
+   "title": "Configure controlled folder access (CFA)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/controlled-folder-access-configure",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Configure controlled folder access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "asr-rules-overview",
+   "title": "Attack surface reduction (ASR) rules overview",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-overview",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "ASR rules overview"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "asr-rules-configure",
+   "title": "Configure attack surface reduction (ASR) rules and exclusions",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-configure",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Configure ASR rules and exclusions"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "asr-rules-deployment-test",
+   "title": "Test your attack surface reduction (ASR) rules deployment",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment-test",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Test your ASR rules deployment"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "asr-rules-monitor",
+   "title": "Monitor attack surface reduction (ASR) rule activity",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-monitor",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Monitor ASR rule activity"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "defender-urbac-create-custom-roles",
+   "title": "Create custom roles with Microsoft Defender unified RBAC",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/create-custom-rbac-roles",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Create custom roles with Defender unified RBAC"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "defender-urbac-activate",
+   "title": "Activate Microsoft Defender unified role-based access control (URBAC)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/activate-defender-rbac",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Activate Defender unified RBAC"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-security-list-incidents",
+   "title": "List incidents (Microsoft Graph security API)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "List incidents"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-security-runhuntingquery",
+   "title": "security: runHuntingQuery",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/security-security-runhuntingquery?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "security: runHuntingQuery"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-security-create-detectionrule",
+   "title": "Create detectionRule",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/security-rulesroot-post-detectionrules?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Create detectionRule"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-security-api-overview",
+   "title": "Use the Microsoft Graph security API",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/resources/security-api-overview?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Use the Microsoft Graph security API"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-deviceinfo-table",
+   "title": "DeviceInfo (advanced hunting table)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-deviceinfo-table",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "DeviceInfo"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-devicetvmsoftwarevulnerabilities",
+   "title": "DeviceTvmSoftwareVulnerabilities (advanced hunting table)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-devicetvmsoftwarevulnerabilities-table",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "DeviceTvmSoftwareVulnerabilities"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "configure-automatic-attack-disruption",
+   "title": "Configure automatic attack disruption in Microsoft Defender XDR",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/configure-attack-disruption",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Configure automatic attack disruption"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "attack-disruption-exclusions",
+   "title": "Exclude assets from automated responses in automatic attack disruption",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/automatic-attack-disruption-exclusions",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Exclude assets from automated responses"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "get-netfirewallprofile",
+   "title": "Get-NetFirewallProfile (NetSecurity module)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/powershell/module/netsecurity/get-netfirewallprofile",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Get-NetFirewallProfile"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-known-limitations",
+   "title": "Known limitations for Global Secure Access",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Known limitations for Global Secure Access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-graph-network-access-apis",
+   "title": "Secure access to cloud, public, and private apps using Microsoft Graph network access APIs (preview)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/resources/networkaccess-global-secure-access-api-overview?view=graph-rest-beta",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Microsoft Graph network access APIs"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "tic-3-remote-user-use-case",
+   "title": "Trusted Internet Connections 3.0 Remote User Use Case, Version 2.2",
+   "publisher": "Cybersecurity and Infrastructure Security Agency",
+   "url": "https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Remote_User_Use_Case_September_2026_61.pdf",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "TIC 3.0 Remote User Use Case v2.2"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "what-is-global-secure-access",
+   "title": "What is Global Secure Access?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/overview-what-is-global-secure-access",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "What is Global Secure Access?"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-traffic-forwarding-profiles",
+   "title": "Global Secure Access traffic forwarding profiles",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/concept-traffic-forwarding",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Global Secure Access traffic forwarding profiles"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-common-operations",
+   "title": "Common operations for Microsoft Entra Global Secure Access",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Common operations for Global Secure Access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-operations-guide",
+   "title": "Microsoft Entra Global Secure Access operations guide",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/overview-operations",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Global Secure Access operations guide"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-install-windows-client",
+   "title": "Install the Global Secure Access client for Windows",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Install the Global Secure Access client for Windows"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-get-device-usage-summary",
+   "title": "reports: getDeviceUsageSummary (Microsoft Graph beta)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "reports: getDeviceUsageSummary"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-source-ip-restoration",
+   "title": "Source IP restoration",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-source-ip-restoration",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Source IP restoration"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-compliant-network-check",
+   "title": "Enable compliant network check with Conditional Access",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Enable compliant network check with Conditional Access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-tutorial-compliant-network",
+   "title": "Tutorial: Enable the compliant network check",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-compliant-network",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Tutorial: Enable the compliant network check"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-internet-access-graph-tutorial",
+   "title": "Configure Microsoft Entra Internet Access using Microsoft Graph APIs",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/tutorial-entra-internet-access",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Internet Access using Microsoft Graph APIs"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-private-access-graph-tutorial",
+   "title": "Configure Microsoft Entra Private Access using Microsoft Graph APIs",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/tutorial-entra-private-access",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Private Access using Microsoft Graph APIs"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-private-access-domain-controllers",
+   "title": "Configure Microsoft Entra Private Access for Active Directory domain controllers",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-configure-domain-controllers",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Private Access for domain controllers"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-universal-tenant-restrictions",
+   "title": "Turn on Universal Tenant Restrictions",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-universal-tenant-restrictions",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Turn on Universal Tenant Restrictions"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-tls-inspection-policies",
+   "title": "Configure Transport Layer Security inspection policies",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Configure TLS inspection policies"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-tls-own-certificate",
+   "title": "Configure TLS inspection with your own certificate",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security-settings",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "TLS inspection with your own certificate"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-logs-and-monitoring",
+   "title": "Global Secure Access logs and monitoring",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/concept-global-secure-access-logs-monitoring",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Global Secure Access logs and monitoring"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gsa-security-operations",
+   "title": "Security operations for network access",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/global-secure-access/how-to-security-operations",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Security operations for network access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "zero-trust-protect-networks",
+   "title": "Configure Microsoft Entra for Zero Trust: Protect networks",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Zero Trust: Protect networks"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-network-security-zero-trust",
+   "title": "Azure network security Zero Trust recommendations",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/networking/security/zero-trust-network-security",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Azure network security Zero Trust recommendations"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "zero-trust-application-gateway-waf",
+   "title": "Zero Trust recommendations for Application Gateway WAF",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/networking/security/zero-trust-application-gateway-waf",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Zero Trust recommendations for Application Gateway WAF"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "zero-trust-azure-firewall",
+   "title": "Zero Trust recommendations for Azure Firewall",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/networking/security/zero-trust-azure-firewall",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Zero Trust recommendations for Azure Firewall"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "application-gateway-waf-faq",
+   "title": "Frequently asked questions for Azure Web Application Firewall on Application Gateway",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-faq",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Application Gateway WAF FAQ"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "front-door-private-link-origins",
+   "title": "Secure your origin with Private Link in Azure Front Door Premium",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/frontdoor/private-link",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Front Door Private Link origins"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "protect-resource-hierarchy",
+   "title": "Protect your resource hierarchy",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Protect your resource hierarchy"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-policy-assignment-structure",
+   "title": "Azure Policy assignment structure",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Azure Policy assignment structure"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-policy-exemption-structure",
+   "title": "Azure Policy exemption structure",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/governance/policy/concepts/exemption-structure",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Azure Policy exemption structure"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "resource-graph-starter-queries",
+   "title": "Starter Resource Graph query samples",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/governance/resource-graph/samples/starter",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Starter Resource Graph query samples"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "ddos-protection-tier-comparison",
+   "title": "About Azure DDoS Protection tier comparison",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Azure DDoS Protection tier comparison"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "secure-ddos-protection-deployment",
+   "title": "Secure your Azure DDoS Protection deployment",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/ddos-protection/secure-ddos-protection",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Secure your Azure DDoS Protection deployment"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "ddos-simulation-testing",
+   "title": "Tutorial: Azure DDoS Protection simulation testing",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/ddos-protection/test-through-simulations",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "DDoS simulation testing"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "secure-application-gateway",
+   "title": "Secure your Azure Application Gateway",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/application-gateway/secure-application-gateway",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Secure your Azure Application Gateway"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "front-door-origin-security",
+   "title": "Secure traffic to Azure Front Door origins",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/frontdoor/origin-security",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Secure traffic to Azure Front Door origins"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "internet-ingress-design-guide",
+   "title": "Internet ingress: expose your application to the internet",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/networking/design-guide/internet-ingress",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Internet ingress"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "migrate-front-door-classic",
+   "title": "Migrate Azure Front Door (classic) to Standard or Premium tier",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/frontdoor/migrate-tier",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Migrate Azure Front Door (classic)"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-firewall-draft-deployment",
+   "title": "Azure Firewall Draft + Deployment",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/firewall/draft-deploy",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Azure Firewall Draft + Deployment"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-firewall-premium-features",
+   "title": "Azure Firewall Premium features implementation guide",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/firewall/premium-features",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Azure Firewall Premium features"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "key-vault-private-link",
+   "title": "Integrate Key Vault with Azure Private Link",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/key-vault/general/private-link-service",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Integrate Key Vault with Azure Private Link"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "private-link-dns-at-scale",
+   "title": "Private Link and DNS integration at scale",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Private Link and DNS integration at scale"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "private-endpoint-dns-zone-values",
+   "title": "Azure Private Endpoint private DNS zone values",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/private-link/private-endpoint-dns",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Private Endpoint private DNS zone values"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "secure-azure-key-vault",
+   "title": "Secure your Azure Key Vault",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/key-vault/general/secure-key-vault",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Secure your Azure Key Vault"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "enable-key-vault-logging",
+   "title": "Enable Key Vault logging",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/key-vault/general/howto-logging",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Enable Key Vault logging"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-shield-and-waf",
+   "title": "How AWS Shield and Shield Advanced work",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS Shield and AWS WAF"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-waf-govcloud",
+   "title": "AWS WAF in AWS GovCloud (US)",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-waf.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS WAF in AWS GovCloud (US)"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "google-cloud-armor-overview",
+   "title": "Google Cloud Armor overview",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/armor/docs/cloud-armor-overview",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Google Cloud Armor overview"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "google-private-service-connect",
+   "title": "Private Service Connect",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/vpc/docs/private-service-connect",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Private Service Connect"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "assured-workloads-supported-products",
+   "title": "Assured Workloads: supported products by control package",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/assured-workloads/docs/supported-products",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Assured Workloads supported products"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-web-application-firewall",
+   "title": "Web Application Firewall overview (OCI)",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/Content/WAF/Concepts/overview.htm",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI Web Application Firewall"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-network-firewall",
+   "title": "Network Firewall overview (OCI)",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/Content/network-firewall/overview.htm",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI Network Firewall"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-private-access",
+   "title": "Access to Oracle Services: private access (OCI)",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/privateaccess.htm",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI private access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
   }
  ],
  "phrases": {

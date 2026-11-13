@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:06.777
+Global Secure Access is Microsoft's security
+service edge: Entra Internet Access
+
+3
+00:00:06.777 --> 00:00:11.862
+and Entra Private Access, used as the
+agency's identity-aware network layer.
+
+4
+00:00:11.862 --> 00:00:15.677
+It carries three kinds of traffic,
+each with its own profile:
+
+5
+00:00:15.677 --> 00:00:19.413
+Microsoft traffic, internet
+traffic, and private traffic.
+
+6
+00:00:19.413 --> 00:00:24.488
+Conditional Access decides, the service
+edge enforces, and the logs prove it.
+
+7
+00:00:24.488 --> 00:00:26.738
+Two facts shape everything after.
+
+8
+00:00:26.738 --> 00:00:32.017
+Learn's known limitations page says
+the service is available in G C C,
+
+9
+00:00:32.017 --> 00:00:37.013
+but isn't yet supported in G C C High,
+D O D, or other sovereign clouds.
+
+10
+00:00:37.013 --> 00:00:40.502
+And Microsoft's Graph network
+access A P I's are in beta,
+
+11
+00:00:40.502 --> 00:00:45.102
+which Learn says is subject to change
+and not supported in production,
+
+12
+00:00:45.102 --> 00:00:49.226
+so the guide runs them by hand
+and keeps each result as evidence.
+
+13
+00:00:49.226 --> 00:00:54.436
+The twelve steps run in a set order, so
+the logs exist before anything is enforced,
+
+14
+00:00:54.436 --> 00:00:57.260
+and nothing blocks before its path exists.

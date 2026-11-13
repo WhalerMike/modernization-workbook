@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.762
+Now how, gate by gate.
+
+2
+00:00:01.762 --> 00:00:04.767
+Gate one builds the roles
+in the Defender portal,
+
+3
+00:00:04.767 --> 00:00:09.275
+then activates unified role-based
+access control workload by workload.
+
+4
+00:00:09.275 --> 00:00:12.075
+Create every role and assignment first.
+
+5
+00:00:12.075 --> 00:00:16.250
+Rollback is to deactivate the
+workload, and the earlier roles return.
+
+6
+00:00:16.250 --> 00:00:20.467
+Then connect the S O C's read
+path in the tenant's own cloud:
+
+7
+00:00:20.467 --> 00:00:24.225
+Global for G C C, U S Gov for G C
+C High, U S Gov D O D for D O D.
+
+8
+00:00:24.225 --> 00:00:30.458
+Microsoft Learn names Security Incident
+dot Read dot All as the least-privileged
+
+9
+00:00:30.458 --> 00:00:32.750
+permission to list incidents,
+
+10
+00:00:32.750 --> 00:00:37.150
+and the signed-in user also
+needs a reader or operator role.
+
+11
+00:00:37.150 --> 00:00:40.600
+Threat Hunting dot Read dot
+All runs hunting queries.
+
+12
+00:00:40.600 --> 00:00:43.087
+Validate by listing five incidents.
+
+13
+00:00:43.087 --> 00:00:48.225
+A pass is a list, or an empty one in a
+new tenant, with no permission error.
+
+14
+00:00:48.225 --> 00:00:52.307
+But watch the danger the guide
+names: read a G C C High tenant
+
+15
+00:00:52.307 --> 00:00:56.540
+from the worldwide host, and the
+empty list looks like a pass.

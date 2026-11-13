@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.650
+Here's the path on one page: ten gates,
+each with a done-when and a validate step.
+
+2
+00:00:05.650 --> 00:00:09.818
+Gate one, architecture and
+access: unified roles are active
+
+3
+00:00:09.818 --> 00:00:13.900
+and the S O C reads incidents
+through Graph in its own cloud.
+
+4
+00:00:13.900 --> 00:00:19.400
+Two, onboarding: every in-scope device
+has an active sensor, or an exception.
+
+5
+00:00:19.400 --> 00:00:23.588
+Three, prevention: antivirus,
+firewall, tamper protection,
+
+6
+00:00:23.588 --> 00:00:27.950
+network protection and controlled
+folder access, enforced.
+
+7
+00:00:27.950 --> 00:00:33.088
+Four, Attack Surface Reduction: every
+rule through audit and warn into block.
+
+8
+00:00:33.088 --> 00:00:37.175
+Five, exposure: vulnerabilities
+flow to an owner.
+
+9
+00:00:37.175 --> 00:00:42.563
+Six, incidents: one queue, a severity
+table, everything classified.
+
+10
+00:00:42.563 --> 00:00:45.963
+Seven, hunting: detections
+live in a repository
+
+11
+00:00:45.963 --> 00:00:48.737
+and deploy through Graph after a test.
+
+12
+00:00:48.737 --> 00:00:52.625
+Eight, identity and cloud-app
+signals in the same incidents.
+
+13
+00:00:52.625 --> 00:00:55.700
+Nine, automation set to
+the response ladder.
+
+14
+00:00:55.700 --> 00:00:58.450
+Ten, metrics and evidence every month.
+
+15
+00:00:58.450 --> 00:01:03.820
+Gates one and two come first; gate ten
+runs once the others have evidence.

@@ -1,0 +1,759 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   10.55,
+   "This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Global Secure Access and Zero Trust Network Engineering, an implementation guide."
+  ],
+  [
+   11.312,
+   6.162,
+   "One thing first: the guide is a draft, awaiting the editor's review, so recheck it after the review."
+  ],
+  [
+   17.475,
+   2.15,
+   "Its idea fits in a sentence."
+  ],
+  [
+   19.625,
+   11.2,
+   "A V P N proves that a device reached the network; the work in this guide makes every connection prove who is asking, from which device, for which application, and leaves a record that it did."
+  ],
+  [
+   30.825,
+   6.513,
+   "The guide assumes a civilian agency at fed-ramp Moderate on Microsoft three sixty-five G C C."
+  ],
+  [
+   37.337,
+   9.675,
+   "Its product facts come from Microsoft Learn, its tick three point oh statements from sis-uh's own documents, all read on November eleventh, 2026."
+  ],
+  [
+   47.013,
+   2.138,
+   "Nothing in it was run against a tenant."
+  ],
+  [
+   49.15,
+   3.5,
+   "We'll go in four parts: why, what, who, and how."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   10.662,
+   "Global Secure Access is Microsoft's security service edge: Entra Internet Access and Entra Private Access, used as the agency's identity-aware network layer."
+  ],
+  [
+   11.863,
+   7.55,
+   "It carries three kinds of traffic, each with its own profile: Microsoft traffic, internet traffic, and private traffic."
+  ],
+  [
+   19.413,
+   5.075,
+   "Conditional Access decides, the service edge enforces, and the logs prove it."
+  ],
+  [
+   24.488,
+   2.25,
+   "Two facts shape everything after."
+  ],
+  [
+   26.738,
+   10.275,
+   "Learn's known limitations page says the service is available in G C C, but isn't yet supported in G C C High, D O D, or other sovereign clouds."
+  ],
+  [
+   37.013,
+   12.213,
+   "And Microsoft's Graph network access A P I's are in beta, which Learn says is subject to change and not supported in production, so the guide runs them by hand and keeps each result as evidence."
+  ],
+  [
+   49.225,
+   7.975,
+   "The twelve steps run in a set order, so the logs exist before anything is enforced, and nothing blocks before its path exists."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.1,
+   "Where does this sit in federal terms?"
+  ],
+  [
+   2.15,
+   4.987,
+   "Tick three point oh is technology-neutral: it sets goals, not products."
+  ],
+  [
+   7.138,
+   7.55,
+   "sis-uh's Remote User Use Case has three security patterns, and each has an option that runs through a security-as-a-service provider."
+  ],
+  [
+   14.688,
+   15.062,
+   "In the program's reading, Private Access is that option for the campus, the Microsoft traffic profile with the compliant network check is the option for a sanctioned cloud provider, and Internet Access is the option for the web, which sis-uh calls the riskiest pattern."
+  ],
+  [
+   29.75,
+   9.988,
+   "For branches, remote networks get only the baseline profile and no Conditional Access, so parity between a branch user and a client user is a design question."
+  ],
+  [
+   39.737,
+   3.4,
+   "The part a design most often loses is telemetry."
+  ],
+  [
+   43.138,
+   9.463,
+   "The use case says sis-uh's visibility must be preserved, so agree the path with the agency's tick delegates before the V P N's web path is retired."
+  ],
+  [
+   52.6,
+   5.825,
+   "And none of this makes Global Secure Access a tick product: sis-uh certifies no products."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   9.512,
+   "Most agencies already hold a fed-ramp authorized S S E or V P N, so the question is usually which functions to move, not which vendor to buy."
+  ],
+  [
+   9.562,
+   18.025,
+   "Global Secure Access decides policy in Entra Conditional Access, the same engine as sign-in; a third party uses its own engine, usually fed by Entra I D. Global Secure Access reaches G C C only today; several third-party offerings hold fed-ramp High listings."
+  ],
+  [
+   27.587,
+   8.125,
+   "Three signals only Entra can produce: the compliant network check, universal tenant restrictions, and source I P restoration."
+  ],
+  [
+   35.712,
+   1.613,
+   "Running both is supported."
+  ],
+  [
+   37.325,
+   12.238,
+   "Private apps in A W S, Google Cloud or Oracle Cloud Infrastructure are reached like on-premises ones, through connectors with line of sight to the application, one connector group per cloud network."
+  ],
+  [
+   49.562,
+   3.45,
+   "Learn has no procedure specific to any of those clouds."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.488,
+   "Here are the twelve steps."
+  ],
+  [
+   1.538,
+   6.85,
+   "One: a decision record per function, with licenses, a dated availability quote, and exit criteria."
+  ],
+  [
+   8.387,
+   5.487,
+   "Two: the reference architecture written down for this tenant, with a configuration export."
+  ],
+  [
+   13.875,
+   3.05,
+   "Three: the client on every managed device."
+  ],
+  [
+   16.925,
+   4.75,
+   "Four: the Microsoft traffic profile, with source I P restoration."
+  ],
+  [
+   21.675,
+   3.612,
+   "Five: internet traffic, through security profiles."
+  ],
+  [
+   25.288,
+   5.475,
+   "Six: private applications, each with its own segments, group and policy."
+  ],
+  [
+   30.762,
+   2.413,
+   "Seven: the compliant network check."
+  ],
+  [
+   33.175,
+   1.913,
+   "Eight: tenant restrictions."
+  ],
+  [
+   35.087,
+   2.513,
+   "Nine: T L S inspection."
+  ],
+  [
+   37.6,
+   2.075,
+   "Ten: privileged protocols."
+  ],
+  [
+   39.675,
+   3.938,
+   "Eleven: coexistence and migration, ring by ring."
+  ],
+  [
+   43.612,
+   2.562,
+   "Twelve: telemetry and evidence."
+  ],
+  [
+   46.175,
+   6.4,
+   "They run in a different order: logging first, and internet filtering and T L S inspection last."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.275,
+   "What's available where?"
+  ],
+  [
+   1.325,
+   9.475,
+   "Learn's statement covers the whole product: available in G C C, not yet supported in G C C High, D O D, or other sovereign clouds."
+  ],
+  [
+   10.8,
+   9.475,
+   "No feature page narrows that, so the G C C column rests on that one sentence, and a preview feature's G C C availability is not yet specified."
+  ],
+  [
+   20.275,
+   2.112,
+   "Licensing follows the profiles."
+  ],
+  [
+   22.387,
+   10.812,
+   "The Microsoft traffic profile, and with it source I P restoration, the compliant network check and universal tenant restrictions, comes with Entra I D P one or P two."
+  ],
+  [
+   33.2,
+   5.388,
+   "Internet Access and Private Access are separately licensed, or come with the Entra Suite."
+  ],
+  [
+   38.587,
+   5.175,
+   "Remote networks need at least fifty P one and Internet Access licenses combined."
+  ],
+  [
+   43.763,
+   7.713,
+   "One conflict: Graph's settings pages list U S Government L four and L five, but the product page says not yet supported."
+  ],
+  [
+   51.475,
+   5.5,
+   "The guide follows the product page, and the question goes to the agency's Microsoft account team."
+  ],
+  [
+   56.975,
+   2.862,
+   "Re-read the limitations page before each ring."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.05,
+   "The reference architecture has seven zones and planes."
+  ],
+  [
+   3.1,
+   5.025,
+   "Managed Windows endpoints open a tunnel to the service edge after Entra sign-in."
+  ],
+  [
+   8.125,
+   5.612,
+   "Branches send traffic over an I P sec tunnel, with no user identity on it."
+  ],
+  [
+   13.738,
+   4.787,
+   "The control plane, Conditional Access, decides and never carries traffic."
+  ],
+  [
+   18.525,
+   8.713,
+   "The policy plane holds the traffic forwarding profiles, security profiles, T L S policies and signaling, and configures the data plane."
+  ],
+  [
+   27.238,
+   7.388,
+   "The data plane is Microsoft's service edge in commercial Azure regions, and it holds the agency's traffic in transit."
+  ],
+  [
+   34.625,
+   9.537,
+   "The agency's private network holds connector groups, private D N S, applications and domain controllers with sensors, all outbound-only."
+  ],
+  [
+   44.163,
+   4.1,
+   "And the evidence zone is the Log Analytics workspace and Sentinel."
+  ],
+  [
+   48.263,
+   1.637,
+   "D N S stays split."
+  ],
+  [
+   49.9,
+   8.575,
+   "The client doesn't support D N S over H T T P S, so secure D N S in browsers is turned off on managed devices."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.838,
+   "Now, who."
+  ],
+  [
+   0.887,
+   10.662,
+   "Microsoft's operations guide gives a RACI with a service owner, network security engineer, identity engineer, S O C analyst, help desk and platform operations."
+  ],
+  [
+   11.55,
+   5.5,
+   "The guide maps those to six roles and adds the assessor, who is independent of the work."
+  ],
+  [
+   17.05,
+   14.225,
+   "The policy owner, the service owner with the I S S O consulted, is accountable for the decision record, the architecture, the traffic profiles, the Conditional Access policies and their exclusions, and the T L S inspection scope."
+  ],
+  [
+   31.275,
+   5.513,
+   "The platform owner, the network security and identity engineers, is responsible for building them."
+  ],
+  [
+   36.788,
+   5.188,
+   "Operators run the client rings, the connectors and the domain controller sensors."
+  ],
+  [
+   41.975,
+   4.338,
+   "The security monitor owns alerts, log freshness and the metrics."
+  ],
+  [
+   46.312,
+   2.75,
+   "The help desk takes tier-one user issues."
+  ],
+  [
+   49.062,
+   6.912,
+   "The assessor assesses the evidence and recommends a finding ready for closure, and the authorizing official decides."
+  ],
+  [
+   55.975,
+   3.225,
+   "Learn's advice is at least two people for every role."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.825,
+   "Now how."
+  ],
+  [
+   0.875,
+   14.15,
+   "Step one decides, per function, because the gates differ: Microsoft traffic, internet, private and branch can each be adopted, kept on the current V P N or S S E, run side by side, or deferred."
+  ],
+  [
+   15.025,
+   3.462,
+   "Read the tenant's licenses and onboarding state first."
+  ],
+  [
+   18.488,
+   10.275,
+   "The decision record, the guide's second artifact, holds a dated availability quote, the license count, compensating controls, exit criteria and an approver."
+  ],
+  [
+   28.762,
+   14.675,
+   "In G C C High or D O D, don't build: record defer, and keep a compensating path, such as a fed-ramp authorized S S E, per-application V P N access lists, and named-location Conditional Access."
+  ],
+  [
+   43.438,
+   8.1,
+   "Step two: Learn's operations guidance is to back up the configuration through Graph exports weekly and before every change."
+  ],
+  [
+   51.538,
+   5.55,
+   "The guide hashes that export, and it becomes the configuration evidence for every later step."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.35,
+   "Step three puts the client on every managed device."
+  ],
+  [
+   3.4,
+   12.85,
+   "It runs on Windows ten L T S C 2021 or later and Windows eleven, on devices joined, hybrid joined or registered in the tenant; registered devices carry only Private Access."
+  ],
+  [
+   16.25,
+   7.138,
+   "It can't go on a machine that hosts virtual machines with a Hyper-V external switch, and it tunnels I P version four only."
+  ],
+  [
+   23.387,
+   11.488,
+   "Package Learn's installation script with the client, and create the Win32 app in Intune with Learn's commands, detection rule and return codes, assigned as required to the pilot group."
+  ],
+  [
+   34.875,
+   7.675,
+   "Because the client doesn't support secure D N S, turn off D N S over H T T P S in Edge and Chrome."
+  ],
+  [
+   42.55,
+   10.688,
+   "Learn's advice is to let users run unrestricted first; from ring two, a remediation hides the disable and sign-out buttons and restricts non-privileged users."
+  ],
+  [
+   53.237,
+   8.55,
+   "Then count: the device usage summary's active devices, divided by Intune's in-scope Windows devices, is the client coverage metric."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.487,
+   "Steps four and seven belong together."
+  ],
+  [
+   2.538,
+   7.425,
+   "The Microsoft traffic profile acquires Microsoft three sixty-five and Entra traffic, and only that profile can."
+  ],
+  [
+   9.963,
+   9.2,
+   "Enable it, assign the pilot group in the portal, and turn on signaling, which carries source I P restoration, so Entra sees the user's real address."
+  ],
+  [
+   19.163,
+   5.6,
+   "Learn's test: a SharePoint sign-in shows the same I P with the client on or off."
+  ],
+  [
+   24.762,
+   8.188,
+   "The compliant network check then passes only for users who come through this tenant's Global Secure Access, and denies a replayed token."
+  ],
+  [
+   32.95,
+   10.537,
+   "Learn's example policy goes straight to on; the guide runs it in report-only for ten business days, excluding the Intune enrollment apps and the emergency access group."
+  ],
+  [
+   43.487,
+   1.775,
+   "Know the failure modes first."
+  ],
+  [
+   45.263,
+   2.888,
+   "A disabled client is blocked at the next sign-in."
+  ],
+  [
+   48.15,
+   5.1,
+   "In an outage, Microsoft's break-glass scripts switch the policies to report-only."
+  ],
+  [
+   53.25,
+   3.538,
+   "Turning signaling off while policies are on blocks users."
+  ],
+  [
+   56.788,
+   2.913,
+   "And the check doesn't apply to Private Access apps."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.975,
+   "Step five."
+  ],
+  [
+   1.025,
+   11.85,
+   "Internet Access groups web content filtering, threat intelligence, T L S inspection and file policies into security profiles, and Conditional Access assigns a profile to users."
+  ],
+  [
+   12.875,
+   14.787,
+   "Learn's Graph tutorial is the procedure: a filtering policy that blocks the categories the agency's acceptable-use policy names, a security profile, the link between them, and a Conditional Access policy that assigns it, scoped to the pilot."
+  ],
+  [
+   27.663,
+   5.513,
+   "Enable both profiles, because the internet profile doesn't include Microsoft traffic."
+  ],
+  [
+   33.175,
+   4.25,
+   "Put threat intelligence in the baseline profile so it covers everyone."
+  ],
+  [
+   37.425,
+   16.087,
+   "Learn's limits: H T T P and H T T P S on ports eighty and four forty-three, no I P version six and no U D P. Quick isn't forwarded end to end, so the guide blocks U D P four forty-three with a Windows firewall rule."
+  ],
+  [
+   53.513,
+   3.987,
+   "And every bypass gets an owner, a reason and an expiry."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   6.075,
+   "Steps six and ten replace the V P N's address pool with one path per application."
+  ],
+  [
+   6.125,
+   11.025,
+   "Learn's Graph tutorial creates each application from the custom template, binds it to a connector group, and adds only the segments it uses: one host, its ports, its protocol."
+  ],
+  [
+   17.15,
+   5.925,
+   "Assign a group, not individuals, and put Conditional Access on the app, in report-only first."
+  ],
+  [
+   23.075,
+   8.662,
+   "Quick Access is the bridge: application discovery shows what's used, and each piece moves into its own app until Quick Access is empty."
+  ],
+  [
+   31.738,
+   3.7,
+   "Step ten does the same for the paths an attacker wants most."
+  ],
+  [
+   35.438,
+   8.675,
+   "Administrative hosts get their own apps on R D P, and their policy requires the phishing-resistant authentication strength and a compliant device."
+  ],
+  [
+   44.112,
+   6.7,
+   "Domain controllers, for as long as they remain, get the Private Access sensor, which installs in audit mode."
+  ],
+  [
+   50.812,
+   9.4,
+   "Learn's advice: protect application S P N's first and the domain controller's own later, to avoid locking out administrators, and test with klist."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.538,
+   "Steps eight and nine."
+  ],
+  [
+   1.587,
+   12.5,
+   "Universal tenant restrictions apply the tenant restrictions version two policy to devices with the client, or on a remote network, without a proxy, so users can sign in only to tenants the policy allows."
+  ],
+  [
+   14.088,
+   3.663,
+   "The policy comes first, default block, then tagging."
+  ],
+  [
+   17.75,
+   5.987,
+   "It reaches sign-in and the Microsoft Graph data plane, not the SharePoint or Exchange data plane."
+  ],
+  [
+   23.738,
+   5.763,
+   "Learn's four-case test checks a member, an allowed partner, a blocked tenant, and a guest."
+  ],
+  [
+   29.5,
+   5.5,
+   "T L S inspection is the step most likely to break applications, so it comes last."
+  ],
+  [
+   35.0,
+   10.3,
+   "Learn suggests a dedicated certificate authority, not your production P K I. Deploy trust before activation, because an expired certificate stops all inspection."
+  ],
+  [
+   45.3,
+   7.688,
+   "The privacy officer approves the scope, users are told first, and a failure rate above one percent is a systemic problem."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.688,
+   "Steps eleven and twelve make it a migration."
+  ],
+  [
+   2.737,
+   2.388,
+   "Ring zero is the implementing team."
+  ],
+  [
+   5.125,
+   4.725,
+   "Ring one is a pilot of fewer than twenty users, for ten business days."
+  ],
+  [
+   9.85,
+   4.45,
+   "Ring two is about ten percent, including one branch, for twenty."
+  ],
+  [
+   14.3,
+   7.213,
+   "Ring three is everyone, in waves, and a V P N route is removed only after its wave holds."
+  ],
+  [
+   21.512,
+   5.9,
+   "The emergency access group is excluded from every policy, and tested at the start of each ring."
+  ],
+  [
+   27.413,
+   12.625,
+   "Rolling back runs newest first: policies to report-only, security profile links removed, the wave's group out of the profiles, the V P N route restored, and signaling turned off last."
+  ],
+  [
+   40.038,
+   2.188,
+   "Telemetry comes before any of it."
+  ],
+  [
+   42.225,
+   10.338,
+   "Learn keeps traffic logs in the service for thirty days, so a diagnostic setting exports the four network categories to the workspace, and a freshness query runs daily."
+  ],
+  [
+   52.562,
+   7.612,
+   "A sudden drop in traffic volume is an alert in itself: it covers offboarding, a disabled profile, or an outage."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.863,
+   "To close, the dangers."
+  ],
+  [
+   1.913,
+   5.275,
+   "Building in G C C High or D O D, where the service isn't yet supported."
+  ],
+  [
+   7.188,
+   4.425,
+   "Enforcing the compliant network before the client is everywhere in scope."
+  ],
+  [
+   11.613,
+   3.65,
+   "Catching the emergency access accounts in a block policy."
+  ],
+  [
+   15.262,
+   7.075,
+   "Leaving Quick Access as a V P N-wide range, which is the old lateral movement exposure under a new name."
+  ],
+  [
+   22.337,
+   5.263,
+   "Issuing the T L S inspection certificate from the authentication P K I."
+  ],
+  [
+   27.6,
+   4.775,
+   "And retiring the V P N's web path before sis-uh telemetry is agreed."
+  ],
+  [
+   32.375,
+   1.837,
+   "Each has its guard in the steps."
+  ],
+  [
+   34.212,
+   14.2,
+   "The guide is plain about what it couldn't verify: government-cloud availability feature by feature, assigning users to a traffic profile through Graph, whether report-only policies apply security profiles, and the T L S status values."
+  ],
+  [
+   48.413,
+   1.7,
+   "Nothing was run in a tenant."
+  ],
+  [
+   50.112,
+   10.7,
+   "To go further, read Network and Transport, chapter five; the Conditional Access library in Access and Privilege; and Security Operations and Telemetry, chapter three."
+  ],
+  [
+   60.812,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.888
+Now, who.
+
+2
+00:00:00.888 --> 00:00:04.769
+Every role this work needs is
+eligible through pim, not standing,
+
+3
+00:00:04.769 --> 00:00:07.114
+as the Privileged Access guide sets up:
+
+4
+00:00:07.114 --> 00:00:10.044
+Network Contributor for
+the connectivity work,
+
+5
+00:00:10.044 --> 00:00:14.439
+Resource Policy Contributor for
+Azure Policy, Key Vault Administrator
+
+6
+00:00:14.439 --> 00:00:18.175
+for vault settings, and Security
+Admin for Defender for Cloud.
+
+7
+00:00:18.175 --> 00:00:21.655
+The guide's RACI follows Cloud
+Boundary and Landing Zone's
+
+8
+00:00:21.655 --> 00:00:25.063
+chapter on who owns the boundary,
+and it's design guidance.
+
+9
+00:00:25.063 --> 00:00:28.452
+The policy owner is accountable
+for the decision records,
+
+10
+00:00:28.452 --> 00:00:30.712
+the baseline and the evidence package.
+
+11
+00:00:30.712 --> 00:00:34.716
+The platform owner is accountable
+for the register, the DDoS plan,
+
+12
+00:00:34.716 --> 00:00:37.978
+the web application firewall
+and firewall policies,
+
+13
+00:00:37.978 --> 00:00:41.537
+and the private DNS zones, with
+the operator doing the work.
+
+14
+00:00:41.537 --> 00:00:45.575
+The security monitor owns alert
+response and DDoS incidents.
+
+15
+00:00:45.575 --> 00:00:48.369
+Application owners answer
+for their origins,
+
+16
+00:00:48.369 --> 00:00:52.540
+certificates and vault contents,
+and the assessor decides closure.

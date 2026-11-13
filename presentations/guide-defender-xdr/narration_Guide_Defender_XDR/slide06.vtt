@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.888
+Now, who.
+
+2
+00:00:00.888 --> 00:00:05.583
+The guide builds custom roles in Defender's
+unified role-based access control,
+
+3
+00:00:05.583 --> 00:00:09.556
+assigned to groups that privileged
+identity management governs,
+
+4
+00:00:09.556 --> 00:00:11.362
+so no one holds a standing role.
+
+5
+00:00:11.362 --> 00:00:13.961
+A read role, called Security data basics,
+
+6
+00:00:13.961 --> 00:00:17.188
+for analysts and the
+assessor's read-only account.
+
+7
+00:00:17.188 --> 00:00:21.850
+A responder role that adds alerts,
+response and basic live response.
+
+8
+00:00:21.850 --> 00:00:25.207
+A detection engineer role
+with Detection tuning,
+
+9
+00:00:25.207 --> 00:00:28.400
+manage, which the custom
+detection A P I accepts.
+
+10
+00:00:28.400 --> 00:00:31.925
+Advanced live response only
+for Tier zero analysts.
+
+11
+00:00:31.925 --> 00:00:36.727
+Intune's Endpoint Security Manager
+creates the policies, and Microsoft Learn
+
+12
+00:00:36.727 --> 00:00:41.750
+says activating unified roles needs at
+least Security Administrator in Entra I D.
+
+13
+00:00:41.750 --> 00:00:46.400
+The RACI follows Security Operations
+and Telemetry and the devices book.
+
+14
+00:00:46.400 --> 00:00:49.733
+The policy owner, an I S
+S O or see-so delegate,
+
+15
+00:00:49.733 --> 00:00:54.113
+is accountable for decisions,
+policies and exclusions.
+
+16
+00:00:54.113 --> 00:00:56.821
+The S O C owns incidents and detections,
+
+17
+00:00:56.821 --> 00:01:02.710
+the help desk owns warn-mode unblock requests,
+and the assessor owns the assessment.

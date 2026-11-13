@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.670
+Step four is the web application firewall,
+
+2
+00:00:02.670 --> 00:00:06.337
+on Front Door globally or
+Application Gateway regionally.
+
+3
+00:00:06.337 --> 00:00:11.151
+Learn's Zero Trust recommendations for
+Application Gateway say it plainly:
+
+4
+00:00:11.151 --> 00:00:15.888
+detection mode logs an attack and
+forwards it; only prevention mode blocks.
+
+5
+00:00:15.888 --> 00:00:19.667
+The checks cover prevention
+mode, request body inspection,
+
+6
+00:00:19.667 --> 00:00:24.449
+the default rule set, bot protection,
+rate limiting and diagnostic logging.
+
+7
+00:00:24.449 --> 00:00:27.487
+Learn recommends the
+latest default rule set,
+
+8
+00:00:27.487 --> 00:00:31.562
+two point two when read, validated
+in log mode before blocking.
+
+9
+00:00:31.562 --> 00:00:36.026
+So create the policy in detection
+mode with request body inspection on,
+
+10
+00:00:36.026 --> 00:00:38.674
+naming the rule set version you validated.
+
+11
+00:00:38.674 --> 00:00:41.977
+Add bot protection, which
+is commercial Azure only,
+
+12
+00:00:41.977 --> 00:00:44.100
+and a rate limit on the login path.
+
+13
+00:00:44.100 --> 00:00:48.567
+Attach the policy, send the firewall
+log to the workspace, and tune for at
+
+14
+00:00:48.567 --> 00:00:53.262
+least a full business cycle, scoping
+every exception to the narrowest rule.
+
+15
+00:00:53.262 --> 00:00:54.876
+Then switch to prevention.
+
+16
+00:00:54.876 --> 00:00:57.212
+Front Door's managed rules need Premium.
+
+17
+00:00:57.212 --> 00:01:00.120
+In Azure Government, leave
+out the bot rule set.

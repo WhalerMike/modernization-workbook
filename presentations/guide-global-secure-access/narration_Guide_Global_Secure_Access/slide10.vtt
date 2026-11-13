@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.400
+Step three puts the client
+on every managed device.
+
+2
+00:00:03.400 --> 00:00:09.359
+It runs on Windows ten L T S C 2021 or
+later and Windows eleven, on devices joined,
+
+3
+00:00:09.359 --> 00:00:12.618
+hybrid joined or registered in the tenant;
+
+4
+00:00:12.618 --> 00:00:16.250
+registered devices carry
+only Private Access.
+
+5
+00:00:16.250 --> 00:00:19.745
+It can't go on a machine that
+hosts virtual machines with a
+
+6
+00:00:19.745 --> 00:00:23.388
+Hyper-V external switch, and it
+tunnels I P version four only.
+
+7
+00:00:23.388 --> 00:00:26.757
+Package Learn's installation
+script with the client,
+
+8
+00:00:26.757 --> 00:00:30.280
+and create the Win32 app in
+Intune with Learn's commands,
+
+9
+00:00:30.280 --> 00:00:34.875
+detection rule and return codes,
+assigned as required to the pilot group.
+
+10
+00:00:34.875 --> 00:00:38.926
+Because the client doesn't
+support secure D N S,
+
+11
+00:00:38.926 --> 00:00:42.550
+turn off D N S over H T
+T P S in Edge and Chrome.
+
+12
+00:00:42.550 --> 00:00:48.101
+Learn's advice is to let users run unrestricted
+first; from ring two, a remediation
+
+13
+00:00:48.101 --> 00:00:53.238
+hides the disable and sign-out buttons
+and restricts non-privileged users.
+
+14
+00:00:53.238 --> 00:00:56.786
+Then count: the device usage
+summary's active devices,
+
+15
+00:00:56.786 --> 00:01:01.850
+divided by Intune's in-scope Windows
+devices, is the client coverage metric.
