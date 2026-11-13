@@ -1551,7 +1551,7 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | **Rationale** | A GCC tenant's Entra ID is in the commercial cloud, so its subscriptions are commercial. The Arc guide and the books already said so. |
 | **Basis** | Microsoft Learn |
 | **Sources** | [Microsoft Learn, Cloud feature availability for US Government customers](https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration); [Microsoft Learn, Office 365 GCC service description](https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc) |
-| **Pages affected** | [`docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md), [Chapter 04 — GCC, GCC High and the Commercial Feature Gap](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) |
+| **Pages affected** | [`docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md), [Chapter 04 — GCC and the Commercial Feature Gap](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) |
 | **Date** | 2026-10-30 |
 | **Status** | settled |
 | **Defined in** | [#206](https://github.com/WhalerMike/modernization-workbook/pull/206) |
