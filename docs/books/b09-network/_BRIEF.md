@@ -97,7 +97,7 @@ Who covers what, in brief (so you don't overlap):
   itself attack surface.
 - **Ch03**: TIC 3.0 use cases and the Security Capabilities Catalog stated precisely; policy currency; FedRAMP doesn't
   constrain routing; the encryption requirement that is and isn't there; M-21-31 telemetry; CLAW and Protective DNS
-  replacing MTIPS for telemetry continuity; the DoD contrast.
+  replacing MTIPS for telemetry continuity.
 - **Ch04**: logical centralization vs fragmentation; token-based security as the enabler; consistency classes.
 - **Ch05**: SD-WAN differentiated transport (path classes, FEC, what it can't do below the floor); governed-path / token-
   bound transport; SASE above SD-WAN; securing the controller and edges.

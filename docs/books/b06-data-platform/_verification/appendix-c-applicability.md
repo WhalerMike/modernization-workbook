@@ -11,9 +11,6 @@ Checked October 20, 2026. Source: the existing page ("Applicability — Where th
 | 3 | SQL 2022 uses app registration + Key Vault cert; SQL 2025 managed identity recommended | In scope: Version | verified | Learn, Managed identity (Overview); Learn, Entra auth overview |
 | 4 | MI setup only for Arc-enabled SQL 2025 on Windows Server | In scope: OS | verified | Learn, Managed identity (Limitations) |
 | 5 | Standalone instances and availability groups supported; FCIs not | In scope: Topology; FCI row | verified | Learn, Microsoft Entra authentication for SQL Server |
-| 6 | Azure Government: US Gov Virginia only, Windows only, five listed features, "all other features are not currently available" | GCC High/DoD row | verified | Learn, SQL Server enabled by Azure Arc in US Government |
-| 7 | Cloud PKI available in GCC High, not DoD | GCC High/DoD row | verified | Learn, Intune GCC High and DoD service description; Learn, Cloud PKI overview |
-| 8 | Dynamic groups, PIM, access reviews, entitlement management available in Azure Government | GCC High/DoD row | verified | Learn, Microsoft Entra feature availability |
 | 9 | Entra auth needs outbound reach to Entra ID and Graph, with or without Arc | Air-gapped row | verified | Learn, Enable Entra auth without Arc (Prerequisites) |
 | 10 | Cloud-first guidance: disconnected apps need to stay on premises | Air-gapped row | verified | Learn, Microsoft Entra cloud-first identity guidance (Step 4, "Disconnected apps") |
 | 11 | Arc can still onboard and manage FCIs | FCI row | verified (wording narrowed to "onboard and show in inventory") | Learn, View Always On failover cluster instances in Azure Arc |

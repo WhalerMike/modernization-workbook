@@ -10,7 +10,6 @@ Citations added from the Learn coverage map (covered-uncited pages). No content 
 |---|---|---|---|
 | [Manage cross-tenant access settings for B2B collaboration](https://learn.microsoft.com/entra/external-id/cross-tenant-access-settings-b2b-collaboration) | Tenant relationship and cross-tenant access settings, opening | Nov 9, 2026 | Organizational settings, inbound trust settings for MFA and device claims |
 | [Enable B2B collaboration across Microsoft clouds](https://learn.microsoft.com/entra/external-id/cross-cloud-settings) | Settings table (Microsoft cloud settings row); government-cloud check (B2B row); tenant strategy, Government clouds | Nov 9, 2026 | Enabling a cloud blocks B2B with it until a tenant is added by tenant ID; no B2B direct connect across clouds; invite by UPN |
-| [Microsoft Entra B2B in government and national clouds](https://learn.microsoft.com/entra/external-id/b2b-government-national-clouds) | Government-cloud check (B2B row); tenant strategy, Government clouds | Nov 9, 2026 | Commercial and Azure Government collaboration through Microsoft cloud settings; `tenant_region_scope` `USGOV` check |
 | [Plan a Tenant Restrictions v1 Migration to Tenant Restrictions v2](https://learn.microsoft.com/entra/external-id/tenant-restrictions-migration) | Tenant strategy, Tenant restrictions v2 | Nov 9, 2026 | Migration from v1 to v2 (with the v2 setup page's migration section) |
 
 ## Additions, November 9, 2026 (Learn gaps): tenant strategy
@@ -42,9 +41,9 @@ New section "Tenant strategy: multitenant organizations and Tenant Governance", 
 | T21 | Related tenants GET (beta) is step 1 of investigation | Tenant Governance | verified; not run | how-to-investigate-related-tenants-api |
 | T22 | TRv2 configured in cross-tenant settings but separate from inbound/outbound; v1 proxy header, auth plane only; v2 cloud policy with default and partner policies; universal, proxy, Windows signalling; Windows gives data plane | Tenant restrictions v2 | verified | tenant-restrictions-v2 |
 | T23 | Migration: keep v2 default block, partner policy per v1 allowlist tenant, remove v1 headers | Tenant restrictions v2 | verified | tenant-restrictions-v2 (migration section); tenant-restrictions-migration |
-| T24 | Program TRv2 settings; universal TR waits on Global Secure Access (not yet in GCC High or DoD) | Tenant restrictions v2 | design guidance (labelled); GSA availability restated from Book 04 Ch07 (c07-gsa-limits) | — |
-| T25 | MTO government availability: Learn's limitations page conflicts (unsupported in Microsoft 365 Government and Azure Government, yet "available within GCC, GCC-H, and DOD" same-cloud only); cross-cloud MTO unsupported | Government clouds; government-cloud check | verified (conflict quoted, not resolved) | multi-tenant-organization-known-issues |
-| T26 | MTO template Graph APIs: Global service only, not US Government L4 or L5 | Government clouds | verified | Graph multitenantorganizationpartnerconfigurationtemplate-get |
+| T24 | Program TRv2 settings; universal TR depends on Global Secure Access | Tenant restrictions v2 | design guidance (labelled); GSA availability restated from Book 04 Ch07 (c07-gsa-limits) | — |
+| T25 | MTO GCC availability: Learn's limitations page conflicts (unsupported in Microsoft 365 Government, yet available within GCC same-cloud only) | GCC availability; government-cloud check | verified (conflict quoted, not resolved) | multi-tenant-organization-known-issues |
+| T26 | MTO template Graph APIs: Global service | GCC availability | verified | Graph multitenantorganizationpartnerconfigurationtemplate-get |
 | T27 | Tenant Governance and TRv2 government-cloud availability | Government clouds | not yet specified (no Learn statement found) | feature-availability (no row); tenant-governance faq and licensing (no statement) |
 | T28 | Requirements row: AC-2, AC-6(5), AC-20, CM-8; KSI-IAM-ELP | Requirements, KSIs and evidence | design guidance (control mapping), as the table's note says | — |
 

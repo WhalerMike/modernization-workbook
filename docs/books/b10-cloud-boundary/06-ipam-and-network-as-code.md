@@ -244,7 +244,7 @@ The workbook gives no resource code for this module, because the resource schema
 
 Some of what the network code enforces comes from outside the agency. The clearest example is Microsoft 365's endpoint list, which feeds firewall rules, proxy bypass lists and DNS policy. Three facts about it are often wrong in older designs, including this book's source volume:
 
-- **There's no separate GCC list.** Microsoft's IP Address and URL web service has four instances (Worldwide, China, USGovDoD and USGovGCCHigh), and a GCC tenant uses Worldwide.[^c06-m365ws] A design that blocks "commercial" Microsoft 365 endpoints to keep GCC traffic inside the boundary would block GCC itself; [Book 09, Chapter 12](../b09-network/12-microsoft-365-traffic.md) covers the right scoping.
+- **There's no separate GCC list.** Microsoft's IP Address and URL web service serves GCC tenants from its Worldwide instance.[^c06-m365ws] A design that blocks "commercial" Microsoft 365 endpoints to keep GCC traffic inside the boundary would block GCC itself; [Book 09, Chapter 12](../b09-network/12-microsoft-365-traffic.md) covers the right scoping.
 - **The cadence is monthly, with notice.** Microsoft updates the entries at the beginning of each month, publishes out-of-band changes when needed, and gives 30 days' notice before new endpoints are used.[^c06-m365ws]
 - **Poll the version, not the list.** Microsoft recommends checking the version method no more than once an hour and calling the endpoints method only when the version changes.[^c06-m365ws]
 

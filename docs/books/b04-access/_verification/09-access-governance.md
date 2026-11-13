@@ -15,7 +15,7 @@ Sources: `docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md` (whole p
 | 4 | Feature-by-license table rows (packages, multi-stage approval, expiry, SoD on P2; auto-assignment, custom extensions, on-behalf, PIM for Groups and roles in packages, mark governed, inactive-only reviews, ML recommendations, PIM for Groups reviews, LCW, inactive guest insights on Governance) | Licensing | verified (added) | licensing-fundamentals |
 | 5 | Licenses needn't be assigned; enough to cover in-scope users | Licensing | verified (added) | licensing-fundamentals FAQ |
 | 6 | Guests billed MAU, requires Azure subscription | Licensing | verified (added) | licensing-fundamentals |
-| 7 | Governance for Government SKUs in GCC, GCC High, DoD | Licensing | verified (added) | licensing-fundamentals |
+| 7 | Governance for Government SKUs in GCC | Licensing | verified (added) | licensing-fundamentals |
 | 8 | Group-based assignment mandatory; direct user assignment prohibited | Group substrate | restated-as-design | program design (source policy) |
 | 9 | Group-based app assignment needs P1/P2; nested groups not supported | Group substrate | verified | assign-user-or-group-access-portal |
 | 10 | Group review flattens nested groups; removal only from direct membership | Group substrate | verified (added) | create-access-review |
@@ -253,7 +253,7 @@ Citations added from the Learn coverage map (covered-uncited pages). No content 
 | A19 | Restoring role-assignable groups needs Privileged Role Administrator | Tenant hygiene, restore | verified | [Learn cmdlet](https://learn.microsoft.com/powershell/module/microsoft.entra.directorymanagement/restore-entradeleteddirectoryobject?view=entra-powershell) |
 | A20 | Listing with Group.Read.All | Tenant hygiene, restore | restated: Learn connects with Group.ReadWrite.All for the restore; listing scope narrowed | — |
 | A21 | Restored dynamic group repopulated, up to 24 hours | Tenant hygiene, restore | verified | [Learn](https://learn.microsoft.com/entra/identity/users/groups-lifecycle) |
-| A22 | Advanced group management (dynamic groups, naming policies, expiration) available in Azure Government; GCC pairs with Entra ID in commercial Azure, GCC High and DoD with Azure Government | Tenant hygiene, government cloud | verified | [Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability); [Azure feature availability](https://learn.microsoft.com/azure/security/fundamentals/feature-availability) |
+| A22 | GCC pairs with Entra ID in commercial Azure | Tenant hygiene, GCC | verified | [Azure feature availability](https://learn.microsoft.com/azure/security/fundamentals/feature-availability) |
 | A23 | Government-cloud availability for quarantine levers and M365 group restore | Tenant hygiene | not yet specified | — |
 
 ## Additions, November 11, 2026 (Zero Trust Assessment closure, B04-08)
@@ -279,5 +279,5 @@ New subsection "Turning on auto-apply safely" (`#b04-ar-rollout`) after "From a 
 | P1 | Auto-apply removes denied users; non-response options; warning that remove/take recommendations with auto-apply can revoke all access; denied guests can be re-enabled within 30 days | Rollout table | verified (unchanged since Oct 20) | [Create an access review of groups and applications](https://learn.microsoft.com/entra/id-governance/create-access-review) | Nov 11, 2026 |
 | P2 | Manual Apply when auto-apply is off; results not applied to synced, mail-enabled, dynamic groups or through nested groups | Report-only phase; exclusions | verified | [Complete an access review of groups and applications](https://learn.microsoft.com/entra/id-governance/complete-access-review) | Nov 11, 2026 |
 | P3 | Auto-apply automates removal; audit activity types for access reviews | Authority; telemetry | verified | [Plan a Microsoft Entra access reviews deployment](https://learn.microsoft.com/entra/id-governance/deploy-access-reviews) | Nov 11, 2026 |
-| P4 | Microsoft Entra ID Governance available in GCC, GCC-High and DoD | Applies | verified | [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) | Nov 11, 2026 |
+| P4 | Microsoft Entra ID Governance available in GCC | Applies | verified | [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) | Nov 11, 2026 |
 | P5 | Rings, manual-apply first instance, backout triggers | Rollout | restated-as-design | program position | Nov 11, 2026 |

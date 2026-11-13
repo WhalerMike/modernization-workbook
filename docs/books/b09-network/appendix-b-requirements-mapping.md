@@ -140,15 +140,7 @@ Every URL below was opened on October 21, 2026. Primary sources (federal documen
 
 ### Primary sources: provider documentation
 
-- Microsoft Learn, "Microsoft 365 informed network routing" (supports WW Commercial tenants, "but not the GCC Moderate, GCC High, DoD, Germany, or China clouds"). <https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide>
-
-### Third-party sources
-
-Used only where no primary source could be retrieved. They are labeled "Third-party source" in each footnote.
-
-- DOD News, "New 'Overlays' Provide Guide on Path to Zero Trust," June 4, 2024 (91 of 152 target activities by fiscal year 2027). <https://www.war.gov/News/News-Stories/Article/Article/3795170/new-overlays-provide-guide-on-path-to-zero-trust/>
-- DefenseScoop, "DOD zero trust implementations," April 4, 2024 (DoD Zero Trust Strategy target and advanced activity counts and the FY 2027 target). <https://defensescoop.com/2024/04/04/dod-zero-trust-implementations-phase-2027/>
-- Breaking Defense, "DoD releases zero trust strategy to thwart hackers who often breach perimeter," November 22, 2022. <https://breakingdefense.com/2022/11/dod-releases-zero-trust-strategy-to-thwart-hackers-who-often-breach-perimeter/>
+- Microsoft Learn, "Microsoft 365 informed network routing" (supports WW Commercial tenants, not GCC Moderate). <https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide>
 
 ::: {.callout-tip}
 ## Continue the book

@@ -81,7 +81,7 @@ Deterministic egress
 : A stable, documented source address for each branch's outbound traffic, usually a NAT configuration decision. It keeps address-keyed applications and location-aware policies working.
 
 DIA (direct internet access)
-: Local internet breakout at the branch, instead of backhauling internet-bound traffic to a central access point. Carriers also sell "dedicated internet access" circuits under the same abbreviation; Book 09 uses DIA for the circuit or service that provides local breakout. The sources once expanded DIA as a Defense Information Systems Agency circuit, which is wrong twice: DISA is that agency, its network is DISN, and DIA is the Defense Intelligence Agency ([Chapter 02](02-transport-is-physics-control-is-compliance.md)).
+: Local internet breakout at the branch, instead of backhauling internet-bound traffic to a central access point. Carriers also sell "dedicated internet access" circuits under the same abbreviation; Book 09 uses DIA for the circuit or service that provides local breakout.
 
 DNS over HTTPS (DoH) and DNS over TLS (DoT)
 : Protocols that encrypt DNS queries between a client and a resolver, standardized in RFC 8484 and RFC 7858. M-22-09 calls for encrypted DNS where technically supported; see [Book 08, Chapter 03](../b08-ddi/03-federal-requirements.md).[^aC-rfc8484][^aC-rfc7858]
@@ -148,7 +148,7 @@ Managed interface
 : A boundary point where traffic to an external network is monitored and controlled. SC-7(4) requires one for each external telecommunication service.
 
 Microsoft 365 informed network routing (INR)
-: A Microsoft 365 feature that shares network quality data with SD-WAN devices. It supports Worldwide commercial tenants but not GCC Moderate, GCC High or DoD. The physics series used "INR" for a program concept, identity-aware routing; Book 09 uses INR only for the Microsoft feature.[^aC-inr]
+: A Microsoft 365 feature that shares network quality data with SD-WAN devices. It supports Worldwide commercial tenants but not GCC Moderate. The physics series used "INR" for a program concept, identity-aware routing; Book 09 uses INR only for the Microsoft feature.[^aC-inr]
 
 M-22-09
 : OMB's federal zero trust strategy memorandum of January 26, 2022. It remains operative, though its deadlines have passed; see [Chapter 03](03-what-tic-3-requires.md).
@@ -236,8 +236,8 @@ Significant change
 SSE (security service edge)
 : The security services layer of SASE: the secure web gateway, cloud access security broker, firewall and zero trust network access functions that sit above SD-WAN and inspect and govern traffic. See [Chapter 02](02-transport-is-physics-control-is-compliance.md) and [Chapter 05](05-sd-wan-sase-and-governed-transport.md).
 
-STIG (Security Technical Implementation Guide) (High only)
-: A Defense Information Systems Agency configuration guide for a specific product and version, based on DoD policy and a DoD baseline.[^aC-stig] It's Defense material, not the Moderate civilian baseline; some civilian agencies borrow one as an optional reference where no other product checklist exists. *High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference. See CIS Benchmarks, CM-6 and NCP.
+STIG (Security Technical Implementation Guide)
+: A configuration guide for a specific product and version.[^aC-stig] It isn't part of the Moderate civilian baseline; since CIS stopped listing an IIS benchmark, the program uses the IIS STIGs as its IIS hardening baseline ([Chapter 11](11-field-office-wan-transformation.md)). See CIS Benchmarks, CM-6 and NCP.
 
 ## T–Z
 
@@ -279,7 +279,7 @@ ZTNA (zero trust network access)
 [^aC-cis]: Center for Internet Security, "CIS Benchmarks" (description; benchmark list, including Cisco IOS XE 17.x (2.2.1), Cisco NX-OS (1.2.0), Cisco ASA 9.x Firewall (1.1.0), Juniper OS (2.1.0), Palo Alto Firewall 11 (1.2.0) and F5 Networks (1.0.0); no Cisco Catalyst SD-WAN Manager benchmark listed), <https://www.cisecurity.org/cis-benchmarks> (accessed Oct 29, 2026).
 [^aC-cm6]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, control CM-6 (statement and discussion), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; read from NIST's OSCAL Rev. 5 catalog, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 29, 2026).
 [^aC-ncp]: National Institute of Standards and Technology, SP 800-70 Rev. 5, *National Checklist Program for IT Products: Guidelines for Checklist Users and Developers*, May 2026, <https://csrc.nist.gov/pubs/sp/800/70/r5/final>; and NIST, "National Checklist Program," <https://csrc.nist.gov/projects/national-checklist-program> (repository at <https://ncp.nist.gov/>) (accessed Oct 29, 2026).
-[^aC-stig]: National Institute of Standards and Technology, CSRC Glossary, "Security Technical Implementation Guide (STIG)" ("Based on Department of Defense (DoD) policy and security controls"; "geared to a specific product and version"; source CNSSI 4009-2022), <https://csrc.nist.gov/glossary/term/security_technical_implementation_guide> (accessed Oct 29, 2026).
+[^aC-stig]: National Institute of Standards and Technology, CSRC Glossary, "Security Technical Implementation Guide (STIG)" ("geared to a specific product and version"; source CNSSI 4009-2022), <https://csrc.nist.gov/glossary/term/security_technical_implementation_guide> (accessed Oct 29, 2026).
 [^aC-sp80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf> (accessed Oct 21, 2026). AC-17, SC-7, SC-7(4), SC-8, SC-8(1), SI-4.
 [^aC-sp80053b]: National Institute of Standards and Technology, SP 800-53B, *Control Baselines for Information Systems and Organizations*, <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53B.pdf> (accessed Oct 21, 2026). Baseline tables for CP-8 and SC-8.
 [^aC-m365ws]: Microsoft Learn, "Microsoft 365 IP Address and URL web service" ("Valid values are Optimize, Allow, and Default"), <https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service>; and "Implementing VPN split tunneling for Microsoft 365," <https://learn.microsoft.com/microsoft-365/enterprise/microsoft-365-vpn-split-tunnel> (both accessed Oct 21, 2026).

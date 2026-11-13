@@ -28,7 +28,6 @@ Source: `docs/operational-guides/pki-modernization.md` §6 (6.1–6.5) and §7 (
 | 18 | CRL valid 7 days, republished every 3.5 days, updated on each revocation | Cloud PKI | verified | Cloud PKI overview; matches B03 Ch09 |
 | 19 | Cloud PKI needs a subscription on top of Intune Plan 1/2 | Cloud PKI | verified | Cloud PKI overview, prerequisites |
 | 20 | From July 2026 Microsoft 365 E5/E7 include Cloud PKI (commercial); Government plans planned to align subject to compliance | Cloud PKI | verified (new) | Intune planning guide Step 3; What's new, week of June 29, 2026 |
-| 21 | Cloud PKI in GCC High (week of Sept 28, 2026); not in DoD | Cloud PKI | verified | What's new, week of Sept 28, 2026; Cloud PKI overview |
 | 22 | AD CS SCEP requirements table (enterprise CA, NDES/connector server rules, reverse proxy passthrough, 403 on direct browse, template settings, Issue and Manage Certificates) | SCEP with AD CS | verified | Configure infrastructure to support SCEP |
 | 23 | Guide: NDES "validates and forwards"; connector requirement for strong mapping v6.2406.0.1001+ | SCEP with AD CS | verified (version detail superseded, see 28) | SCEP infrastructure; connector overview |
 | 24 | SCEP template "supply in request" is safe only with Enroll limited to NDES account (ESC1 link) | SCEP with AD CS | restated-as-design | Program hardening position; facts from SCEP infrastructure |

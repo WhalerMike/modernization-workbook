@@ -24,7 +24,7 @@ How to read and fill the templates, a reference for the Graph properties they us
 
 ## How to use the templates
 
-Each template is the request body for `POST /identity/conditionalAccess/policies` on Microsoft Graph v1.0. Creating policies needs the `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess` permissions; policies that reference applications also need `Application.Read.All`.[^aA-create] Microsoft 365 GCC tenants use the worldwide endpoint, `https://graph.microsoft.com`; GCC High uses `https://graph.microsoft.us`.[^aA-clouds]
+Each template is the request body for `POST /identity/conditionalAccess/policies` on Microsoft Graph v1.0. Creating policies needs the `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess` permissions; policies that reference applications also need `Application.Read.All`.[^aA-create] Microsoft 365 GCC tenants use the worldwide endpoint, `https://graph.microsoft.com`.[^aA-clouds]
 
 | Operation | Method and path |
 |---|---|

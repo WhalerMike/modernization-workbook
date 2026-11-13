@@ -87,7 +87,7 @@ These templates express policies from [Chapter 09](09-building-the-entra-target.
 
 ::: {.callout-note}
 ## Placeholders and endpoints
-The templates use placeholders such as `<GUID-BreakGlassExclusionGroup>` for group, named location, and authentication strength IDs. Replace every placeholder with your tenant's values before import. List the built-in authentication strengths and their IDs with `GET /policies/authenticationStrengthPolicies?$filter=policyType eq 'builtIn'` (beta).[^aC-auth-strengths] A GCC tenant uses the worldwide Microsoft Graph endpoint, `https://graph.microsoft.com`; `https://graph.microsoft.us` is for GCC High.[^aC-graph-clouds] Every template is created in report-only state (`enabledForReportingButNotEnforced`).
+The templates use placeholders such as `<GUID-BreakGlassExclusionGroup>` for group, named location, and authentication strength IDs. Replace every placeholder with your tenant's values before import. List the built-in authentication strengths and their IDs with `GET /policies/authenticationStrengthPolicies?$filter=policyType eq 'builtIn'` (beta).[^aC-auth-strengths] A GCC tenant uses the worldwide Microsoft Graph endpoint, `https://graph.microsoft.com`.[^aC-graph-clouds] Every template is created in report-only state (`enabledForReportingButNotEnforced`).
 :::
 
 ### CA001: block legacy authentication

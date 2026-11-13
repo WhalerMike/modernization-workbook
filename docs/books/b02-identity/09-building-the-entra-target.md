@@ -33,7 +33,7 @@ This chapter and the next are the program's technical reference for moving the f
 - Conditional Access, replacing Group Policy logon restrictions with policy-driven cloud controls.
 - Identity governance: access reviews, entitlement management, lifecycle workflows, and compliance attestation.
 
-The environment is the one this workbook assumes throughout: a Microsoft 365 Government Community Cloud (GCC) tenant. GCC uses the worldwide Microsoft Graph and Azure portal endpoints (`https://graph.microsoft.com`), not the separate `graph.microsoft.us` endpoints that GCC High and DoD use.[^c09-graph-clouds] Some features reach GCC later than the commercial service or differ there, so check each feature against the Microsoft 365 Government service descriptions before you plan around it. Azure infrastructure and platform services are out of scope unless the text calls one out and says why.
+The environment is the one this workbook assumes throughout: a Microsoft 365 Government Community Cloud (GCC) tenant. GCC uses the worldwide Microsoft Graph and Azure portal endpoints (`https://graph.microsoft.com`).[^c09-graph-clouds] Some features reach GCC later than the commercial service or differ there, so check each feature against the Microsoft 365 Government service descriptions before you plan around it. Azure infrastructure and platform services are out of scope unless the text calls one out and says why.
 
 The chapters assume:
 
@@ -366,7 +366,7 @@ CISA's Hybrid Identity Solutions Guidance, written under the SCuBA project, comp
 The table above compares the methods; an agency that still federates a domain also has to write down why, what keeps the federation safe while it lasts, and what ends it. Microsoft's Zero Trust guidance for Entra ID lists "Use cloud authentication" as a recommendation, because an on-premises federation server is a central authentication point whose compromise lets an attacker forge tokens that impersonate any user, and it points to the migration to password hash sync as the remediation.[^c09-zt-cloud-authn] The program's position is the same: managed authentication with PHS is the target, and federation is kept only on a dated, signed exception.
 
 **Authority:** Microsoft-recommended (cloud authentication, from "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," read Nov 11, 2026); the program's position (federation only by exception) is risk-based recommended, for the token-forgery risk above.
-**Applies:** all tenants with a federated domain. Environment-dependent: federated authentication, cloud authentication, Microsoft Entra Connect sync and cloud sync, and Connect Health are all listed as available in Azure for US Government, the cloud GCC High and DoD tenants use;[^c09-zt-gov-features] GCC tenants use the commercial service.
+**Applies:** all tenants with a federated domain. Environment-dependent: GCC tenants use the commercial service.
 
 #### The decision tree
 
@@ -1014,7 +1014,7 @@ Current builds handle the ADSync service account's encryption keys themselves wh
 The accounts above are the most privileged non-person identities in a hybrid tenant: whoever holds them can create accounts, change attributes and write passwords on both sides of the sync. Microsoft's Zero Trust guidance for Entra ID carries two checks for them: Entra Connect Sync should authenticate with service principal (certificate) credentials rather than a user account with a password, with the legacy Directory Synchronization Accounts removed; and a directory sync account should be locked down to specific named locations by Conditional Access.[^c09-zt-protect-identities] This section is the procedure for both, plus rotation and alerting, for every sync identity the tenant has.
 
 **Authority:** Microsoft-recommended (application-based authentication, removal of the legacy account, and named-location restriction, from "Configure Microsoft Entra for Zero Trust: Protect identities and secrets" and "Authenticate to Microsoft Entra ID by using application identity," both read Nov 11, 2026). The alerting rules are risk-based recommended, for the risk of a stolen sync credential used from elsewhere.
-**Applies:** every tenant with Connect Sync or Cloud Sync. License-dependent: a location policy on the Connect Sync application needs Workload ID Premium; a policy on the legacy user account needs Entra ID P1. Environment-dependent: Connect Sync, Cloud Sync and Conditional Access are listed as available in Azure for US Government, and Workload ID Premium is available there through the account manager;[^c09-zt-gov-features] application-based authentication isn't distinguished by cloud on its Learn page, so its government-cloud availability is not yet specified.
+**Applies:** every tenant with Connect Sync or Cloud Sync. License-dependent: a location policy on the Connect Sync application needs Workload ID Premium; a policy on the legacy user account needs Entra ID P1. Environment-dependent: GCC tenants use the commercial service; application-based authentication isn't distinguished by cloud on its Learn page, so its GCC availability is not yet specified.
 
 #### The sync identities to inventory
 
@@ -1211,16 +1211,6 @@ Every change made through the wizard is exported automatically to `%ProgramData%
 
 When Connect Sync is retired (Cloud Sync has taken over, or the forest is gone), uninstall it from **Control Panel** > **Uninstall a program** > **Microsoft Entra Connect**, choose **Remove**, and refresh.[^c09-connect-uninstall] Then remove the server, its database and its accounts, so it can't come back as a rogue server.
 
-### Government clouds
-
-Connect Sync supports Azure Government (the cloud that GCC High and DoD tenants use) from build 1.1.180. It detects an Azure Government tenant automatically when `*.windows.net` is reachable; a server without internet access needs the registry value `HKLM\SOFTWARE\Microsoft\Azure AD Connect\AzureInstance` set to `4` before setup continues, and a custom installation.[^c09-connect-instances] The proxy has to allow the Azure Government endpoints (`*.microsoftonline.us`, `*.gov.us.microsoftonline.com`, `*.windows.net`, and the certificate revocation lists); password hash sync through a firewall needs 1.1.644.0 or later and `*.msappproxy.us` on 443.[^c09-connect-instances][^c09-connect-gov] GCC tenants use the commercial cloud and its endpoints. Learn doesn't distinguish GCC High from DoD for Connect Sync; that difference is not yet specified.
-
-```powershell
-# Only on a server that can't reach *.windows.net, before continuing setup (custom install path)
-New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Azure AD Connect' -Force | Out-Null
-Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Azure AD Connect' -Name AzureInstance -Value 4 -Type DWord
-```
-
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Chapter 08 — Assessing the Forest](08-assessing-the-forest.md) · [Book index](index.md) · [Next: Chapter 10 — Migrating and Governing →](10-migrating-and-governing.md)
@@ -1320,10 +1310,7 @@ See the companion guide: [Attribute-Driven Migration from Active Directory to Mi
 [^c09-connect-staging]: Microsoft Learn, "Microsoft Entra Connect: Staging server and disaster recovery," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-staging-server> (accessed Nov 9, 2026).
 [^c09-connect-import-export]: Microsoft Learn, "Import and export Microsoft Entra Connect configuration settings," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-import-export-config> (accessed Nov 9, 2026).
 [^c09-connect-uninstall]: Microsoft Learn, "Uninstall Microsoft Entra Connect," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-uninstall> (accessed Nov 9, 2026).
-[^c09-connect-instances]: Microsoft Learn, "Microsoft Entra Connect: Special considerations for instances," section "Microsoft Azure Government," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-instances> (accessed Nov 9, 2026).
-[^c09-connect-gov]: Microsoft Learn, "Hybrid identity considerations for the Azure Government cloud," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud> (accessed Nov 9, 2026).
 [^c09-zt-cloud-authn]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect identities and secrets," recommendation "Use cloud authentication" (an on-premises federation server is a central authentication point; attackers who compromise it can forge security tokens to impersonate any user; remediation: migrate from federation to cloud authentication such as PHS), <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities> (accessed Nov 11, 2026).
-[^c09-zt-gov-features]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: cloud authentication, federated authentication, certificate-based authentication, Conditional Access, Microsoft Entra Connect sync and cloud sync, and Connect Health reporting available; Workload Identities Premium available in Azure for US Government), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
 [^c09-zt-fed-certs]: Microsoft Learn, "Renew federation certificates for Microsoft 365 and Microsoft Entra ID" (token-signing certificates self-signed and good for one year by default; AutoCertificateRollover; Entra ID polls federation metadata 35 days before expiry and emails if it can't get the new certificate; action table for 35 and 15 days; `Update-MgDomainFederationConfiguration` after manual renewal, for every federated domain), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-fed-o365-certs> (accessed Nov 11, 2026).
 [^c09-zt-health-adfs]: Microsoft Learn, "Microsoft Entra Connect Health agents for AD FS" (agents on every AD FS and Web Application Proxy server; Entra ID P1 or P2; Azure Government endpoints listed), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adfs>, and "Microsoft Entra Connect Health Alert Catalog," section "Alerts for Active Directory Federation Services," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-alert-catalog> (both accessed Nov 11, 2026).
 [^c09-zt-fed-emergency]: Microsoft Learn, "Emergency rotation of the AD FS certificates" (rotation revokes the old certificates immediately and may cause an outage; create two token-signing certificates, `-Urgent` first, so Entra ID releases the old one; `Update-MgDomainFederationConfiguration`; `Remove-ADFSCertificate`; replace TLS certificates after a compromise; update partners that don't read metadata; revoke refresh tokens), <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-emergency-ad-fs-certificate-rotation> (accessed Nov 11, 2026).

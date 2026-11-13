@@ -6,7 +6,7 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (front matt
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | GCC uses worldwide endpoints (`graph.microsoft.com`); GCC High uses `graph.microsoft.us` | Purpose and scope | verified | learn.microsoft.com/graph/deployments |
+| 1 | GCC uses worldwide endpoints (`graph.microsoft.com`) | Purpose and scope | verified | learn.microsoft.com/graph/deployments |
 | 2 | MSOnline and AzureAD modules retired; not used | Purpose and scope | verified (detail in Appendix D) | Entra what's-new archive, Jan 2025 |
 | 3 | Unverified UPN suffix: Entra ID builds `MailNickName@initial domain` UPN | User objects | verified (added) | plan-connect-userprincipalname |
 | 4 | `onPremisesSecurityIdentifier` carries the SID and must be unique | User objects | corrected (source said "preserved for hybrid Kerberos") | how-to-connect-install-existing-tenant |
@@ -282,10 +282,6 @@ New closing section "Operations reference: the Connect Sync servers that stay" (
 | O20 | No active-active; order of the switch; writeback breaks with two active; csexport and CSExportAnalyzer; PHS catch-up, don't restart | §Switching | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-staging-server> |
 | O21 | Configuration export JSON path, on-demand export, import behavior and limitations | §Export and import | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-import-export-config> |
 | O22 | Uninstall from Control Panel | §Uninstalling | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-uninstall> |
-| O23 | Azure Government from 1.1.180; `*.windows.net` auto-detection; AzureInstance = 4 for offline servers with a custom install; endpoints | §Government clouds | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-instances> |
-| O24 | PHS through a firewall needs 1.1.644.0 and `*.msappproxy.us` on 443 | §Government clouds | verified | <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud> |
-| O25 | GCC uses commercial; GCC High vs DoD not distinguished | §Government clouds | verified (absence); shown as not yet specified | reference-connect-instances; reference-connect-government-cloud |
-| O26 | Registry commands (New-Item, Set-ItemProperty DWord) | §Government clouds | restated-as-design (the page gives the value, not a command) | — |
 
 ## Zero Trust Assessment closure additions (Nov 11, 2026)
 
@@ -294,7 +290,6 @@ Added for the Zero Trust Assessment closure update (B02-01, B02-02). Each row us
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
 | Z1 | Microsoft recommends cloud authentication; a federation server compromise lets attackers forge tokens for any user | Managed or federated decision | verified | Learn, Configure Microsoft Entra for Zero Trust: Protect identities and secrets, https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities | Nov 11, 2026 |
-| Z2 | Federated authentication, cloud authentication, CBA, Conditional Access, Connect sync and cloud sync, Connect Health available in Azure for US Government; Workload ID Premium available there | Managed or federated decision; sync hardening | verified | Learn, Microsoft Entra feature availability, https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
 | Z3 | Decision tree questions 1-4 and the federated-domain conditions table | Managed or federated decision | restated-as-design | Program design from the cited Learn pages and Appendix D | Nov 11, 2026 |
 | Z4 | AutoCertificateRollover; Entra ID polls metadata 35 days before expiry; 35-day and 15-day action rows; Update-MgDomainFederationConfiguration after manual renewal | Federated-domain conditions; rollover check | verified | Learn, Renew federation certificates for Microsoft 365 and Microsoft Entra ID, https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-fed-o365-certs | Nov 11, 2026 |
 | Z5 | Connect Health for AD FS agents on every AD FS and proxy server; P1; Azure Government endpoints | Federated-domain conditions | verified | Learn, Microsoft Entra Connect Health agents for AD FS; Connect Health Alert Catalog | Nov 11, 2026 |

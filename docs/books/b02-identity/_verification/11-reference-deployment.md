@@ -20,7 +20,7 @@ Source page: `docs/case-studies/reference-deployment-fedciv-ad-to-entra.md`. All
 | 12 | Cloud Sync is Microsoft's development direction and will replace Connect Sync at parity | Phase 3 | verified (added) | Learn, Connect Sync overview |
 | 13 | Cloud Sync: 150K objects per domain; no cross-forest references | Phase 3 | verified (added) | Learn, Connect→Cloud Sync decision guide |
 | 14 | ADCS auto-enrollment moves to Intune SCEP | Phase 3 | verified/expanded (SCEP with ADCS needs NDES + Certificate Connector) | Learn, Configure infrastructure to support SCEP |
-| 15 | Microsoft Cloud PKI replaces on-prem CA/NDES/connector for Intune devices; availability varies by cloud | Phase 3 | verified (Learn notes GCC High available, DoD not; GCC not stated, so text says confirm) | Learn, Cloud PKI overview |
+| 15 | Microsoft Cloud PKI replaces on-prem CA/NDES/connector for Intune devices; availability varies by cloud | Phase 3 | verified (GCC not stated, so text says confirm) | Learn, Cloud PKI overview |
 | 16 | Entra auth for SQL Server needs SQL Server 2022+ and is configured through Arc | Phase 3 | corrected (Arc is the usual path; a no-Arc configuration also exists for 2022+) | Learn, SQL Server enabled by Azure Arc; Learn, Entra auth without Arc |
 | 17 | Entra auth not supported for failover cluster instances | Phase 3 | verified (added caveat) | Learn, Entra authentication for SQL Server (Remarks) |
 | 18 | Eight adapter interfaces / `migration-adapter-registry.yaml` schema-validated in CI; PR #395/#397 | Phase 3 | restated-as-design (repo internals and PR numbers removed) | n/a |
@@ -32,7 +32,7 @@ Source page: `docs/case-studies/reference-deployment-fedciv-ad-to-entra.md`. All
 | 24 | Purview Data Map registers Arc-enabled SQL Server into collections (SQL 2012+, SHIR) | Azure SSOT bridge | verified | Learn, Connect to and manage Arc-enabled SQL Server in Purview |
 | 25 | Fabric domains; workspaces assigned to domains, items inherit | Azure SSOT bridge | verified | Learn, Fabric domains |
 | 26 | SQL Server mirrored into OneLake | Azure SSOT bridge | verified with conditions (2016–2025; 2025 requires Arc) | Learn, Mirroring SQL Server |
-| 27 | Fabric available for the GCC tenant | Azure SSOT bridge | corrected/qualified (GCC High: only Azure SQL DB mirroring; GCC: F SKUs unsupported; Fabric GCC parity not confirmed on Learn) | Learn, Fabric for GCC High; Learn, Power BI for US government |
+| 27 | Fabric available for the GCC tenant | Azure SSOT bridge | corrected/qualified (GCC: F SKUs unsupported; Fabric GCC parity not confirmed on Learn) | Learn, Power BI for US government |
 | 28 | Purview label telemetry verification gap at the GCC boundary (B.1.1) | Azure SSOT bridge | restated-as-design (internal boundary finding; no external citation; finding ID dropped) | n/a |
 | 29 | The 3PAO consumes the bundle "during the next FedRAMP cycle" | Evidence bundle | corrected (agency systems authorized by agency AO under RMF SP 800-37 Rev. 2 with ongoing authorization; 3PAOs assess CSPs) | csrc.nist.gov SP 800-37 Rev. 2; fedramp.gov/20x |
 | 30 | Cost-shape inversion: re-engagement consumes canon | What survives | restated-as-design (linked to workbook whitepaper) | `docs/whitepapers/federal-ssot-alignment.md` |

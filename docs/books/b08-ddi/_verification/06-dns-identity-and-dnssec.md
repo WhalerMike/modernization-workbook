@@ -16,8 +16,7 @@ Checked 2026-10-20 against Microsoft Learn (Entra national-cloud endpoints, AADS
 | 6 | DoH server certificate needs Server Authentication EKU and SAN matching URI template | DNS identity | verified (added) | ws-doh |
 | 7 | FQDN-based ZTNA policy; tokens after connection; Protective DNS helps | DNS identity | restated-as-design (series text) | — |
 | 8 | Global endpoint login.microsoftonline.com; Azure Government login.microsoftonline.us | Kerberos to tokens | verified | national |
-| 9 | login.microsoftonline.us serves Microsoft 365 GCC High and DoD; public endpoint rejected for Azure Government apps | Kerberos to tokens | verified | aadsts |
-| 10 | Whitepaper §5.2: GCC uses login.microsoftonline.us | Kerberos to tokens | corrected: GCC operates with Azure Public Cloud and uses the global endpoint; .us is GCC High and DoD | gcc; aadsts |
+| 10 | Whitepaper §5.2: GCC uses login.microsoftonline.us | Kerberos to tokens | corrected: GCC operates with Azure Public Cloud and uses the global endpoint | gcc |
 | 11 | Whitepaper §5.2: aud "contains the FQDN" | Kerberos to tokens | corrected: v2.0 aud is always the API client ID; v1.0 may be the resource URI | aud |
 | 12 | Renaming a host doesn't change the audience | Kerberos to tokens | restated-as-design (follows from claim 11) | aud |
 | 13 | SAN mismatch fails the handshake | Kerberos to tokens | restated (TLS behavior, also RFC 9525) | rfc9525 |

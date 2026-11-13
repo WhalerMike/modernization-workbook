@@ -48,7 +48,7 @@ Microsoft's Zero Trust Assessment tool tests a tenant against these checks autom
 |---|---|
 | Protect identities and secrets | Available. Two checks for private applications need Entra Internet Access or Private Access licenses, so they follow the network row. |
 | Protect tenants and isolate production systems | Available. |
-| Protect networks | Mixed. Named locations and Tenant restrictions v2 need only Entra ID P1. Most of the remaining checks need Microsoft Entra Internet Access or Private Access, part of Global Secure Access, which is available in GCC but not yet in GCC High, the Department of Defense cloud, or other sovereign clouds.[^aA-gsa-limits] Treat these as an evaluation, not a quick win. |
+| Protect networks | Mixed. Named locations and Tenant restrictions v2 need only Entra ID P1. Most of the remaining checks need Microsoft Entra Internet Access or Private Access, part of Global Secure Access, which is available in GCC.[^aA-gsa-limits] Treat these as an evaluation, not a quick win. |
 | Protect engineering systems | Available. |
 | Monitor and detect cyberthreats | Available, except the network-access log checks, which follow Global Secure Access availability. |
 | Accelerate response and remediation | Available; needs Entra ID P2 or Microsoft Entra Workload ID, so confirm entitlement.[^aA-configure-security] |
@@ -56,7 +56,7 @@ Microsoft's Zero Trust Assessment tool tests a tenant against these checks autom
 
 : Filter 1 — availability by theme {.striped .hover}
 
-The source material said the network theme was "gated or non-FIPS in government clouds." Microsoft's current limitation is narrower and more useful for planning: Global Secure Access runs in GCC, whose tenants use the commercial Entra ID service, and isn't yet supported in GCC High or DoD.[^aA-gsa-limits][^aA-gcc-entra] The FIPS claim couldn't be verified and is dropped.
+The source material said the network theme was "gated or non-FIPS in government clouds." Microsoft's current limitation is narrower and more useful for planning: Global Secure Access runs in GCC, whose tenants use the commercial Entra ID service.[^aA-gsa-limits][^aA-gcc-entra] The FIPS claim couldn't be verified and is dropped.
 
 ### Filter 2: licensing
 
@@ -253,7 +253,7 @@ The specification supports account management, access enforcement, and continuou
 [^aA-cba]: Microsoft Learn, "What is Microsoft Entra certificate-based authentication?," <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication> (accessed Oct 20, 2026).
 [^aA-configure-security]: Microsoft Learn, "Configure Microsoft Entra for increased security (Preview)," <https://learn.microsoft.com/entra/fundamentals/configure-security> (accessed Oct 20, 2026).
 [^aA-gsa-limits]: Microsoft Learn, "Known limitations for Global Secure Access," section "Global Secure Access In Government Cloud limitations," <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (accessed Oct 20, 2026).
-[^aA-gcc-entra]: Microsoft Learn, "Dynamics 365 US Government," <https://learn.microsoft.com/power-platform/admin/microsoft-dynamics-365-government> (accessed Oct 20, 2026). The page contrasts GCC High and DoD, which use Microsoft Entra Government, with GCC, which uses the public Microsoft Entra ID service.
+[^aA-gcc-entra]: Microsoft Learn, "Dynamics 365 US Government," <https://learn.microsoft.com/power-platform/admin/microsoft-dynamics-365-government> (accessed Oct 20, 2026). The page says GCC uses the public Microsoft Entra ID service.
 [^aA-scuba-32v2]: Cybersecurity and Infrastructure Security Agency, ScubaGear Microsoft Entra ID secure configuration baseline (`aad.md`, released with ScubaGear v2.0.0 on October 22, 2026), policy MS.AAD.3.2v2, last modified February 2026, <https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md> (accessed Oct 25, 2026). The BOD 25-01 Required Configurations page still lists MS.AAD.3.2v1 on that date.
 [^aA-bod-required]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Oct 20, 2026).
 [^aA-phs]: Microsoft Learn, "Implement password hash synchronization with Microsoft Entra Connect Sync," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-password-hash-synchronization> (accessed Oct 20, 2026).

@@ -32,11 +32,11 @@ Checked October 20, 2026. Sources: `docs/whitepapers/fmp-vs-native-tools.md` (ma
 | 22 | Connect Sync must reach 2.6.84.0+ with application-based auth by April 7, 2027 | Tool table | verified | Learn, Connect prerequisites (new; not in source) |
 | 23 | Cloud Sync group provisioning to AD needs P1 | Tool table | verified | Learn, Cloud Sync prerequisites |
 | 24 | ID Governance features; Lifecycle Workflows and member access reviews need ID Governance or Entra Suite | Tool table | verified | Learn, ID Governance licensing fundamentals (corrects identity-modernization.md "access reviews (P2 feature)") |
-| 25 | ID Governance available in GCC, GCC High, DoD | Tool table | verified | Learn, Entra feature availability |
+| 25 | ID Governance available in GCC | Tool table | verified | Learn, Entra feature availability |
 | 26 | ID Protection full capability needs P2 / Entra Suite; some signals need Defender licenses | Tool table | verified | Learn, ID Protection overview |
 | 27 | MDI posture assessments: six categories incl. certificates and Group Policy; CA assessments need AD CS sensor | Tool table; matrix | verified | Learn, MDI security posture assessments |
 | 28 | Source: MDI has "no JSON/CSV structured export for automation" | Tool table | corrected | Learn: data available in advanced hunting, Defender XDR APIs, streaming to Sentinel; 30-day retention |
-| 29 | Source: MDI licensing "E5 Security or standalone (expensive)" | Tool table | corrected | Learn: EMS E5, M365 E5/G5, E5/G5 Security, standalone; GCC: M365 GCC G5, G5 Security GCC, standalone (price wording dropped) |
+| 29 | Source: MDI licensing "E5 Security or standalone (expensive)" | Tool table | corrected | Learn: EMS E5, M365 E5/G5, E5/G5 Security, standalone; GCC: M365 G5, standalone (price wording dropped; rechecked Nov 13, 2026 against the Defender service description) |
 | 30 | MDI certificate assessments cover ESC1–ESC4, ESC15 (templates) and ESC6/7/8/11 (CA) | Matrix | verified | Learn, MDI certificates assessment; what's new archive |
 | 31 | Graph is the single endpoint for Entra users, groups, apps, devices, roles, governance | Tool table | verified | Learn, Microsoft Graph overview |
 | 32 | Source: Group Policy analytics is "portal only, no bulk export"; "no GPO link analysis"; "no cross-GPO conflict detection" | Tool table; matrix | corrected | Learn: Export view to CSV; "Targeted in AD" column; conflicting settings detected at migration; 4 MB limit; English-only caveat |

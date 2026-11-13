@@ -31,7 +31,7 @@ Checked 2026-10-21 against Microsoft Learn (Virtual Network Manager IPAM concept
 | 20 | Source illustrative HCL (`dns_zone`, `dns_resolver`, `dns_rpz_policy`) | Naming module | removed as code: not a real provider schema; carried as a declared-properties table | — |
 | 21 | Control titles SC-7, SC-20, SC-21, SC-22, CM-8, AC-4 | Controls | verified | sp80053 |
 | 22 | Deployment order; RPZ log-only first | Deployment order | restated-as-design | — |
-| 23 | M365 web service instances Worldwide, China, USGovDoD, USGovGCCHigh; GCC uses Worldwide | Inputs | verified; corrected source ("separate GCC endpoint list"; "commercial M365 endpoint is a FedRAMP boundary violation"; RPZ-block commercial M365) | m365ws; Book 09 Ch12 |
+| 23 | M365 web service serves GCC from its Worldwide instance | Inputs | verified; corrected source ("separate GCC endpoint list"; "commercial M365 endpoint is a FedRAMP boundary violation"; RPZ-block commercial M365) | m365ws; Book 09 Ch12 |
 | 24 | Monthly updates, out-of-band changes, 30 days' notice; poll version no more than hourly | Inputs | verified | m365ws |
 | 25 | Source: "Infoblox polls daily…worst case 24 hours vs 7+ days manual" | (not carried) | removed: vendor-specific and the manual-cycle figure unverifiable | — |
 | 26 | CM-2(2) and CM-8(1) statements; both in Moderate baseline | Why reproducible | verified | sp80053; moderate |

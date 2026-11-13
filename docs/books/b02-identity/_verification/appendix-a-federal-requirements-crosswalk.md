@@ -12,9 +12,9 @@ Verified: 2026-10-20
 | 2 | Seven themes: identities and secrets; tenants; networks; engineering systems; monitor and detect; accelerate response; AI | The baseline | verified | same |
 | 3 | Zero Trust Assessment automates testing against the checks | The baseline | verified | same |
 | 4 | Every check name and minimum license in the crosswalk table | Crosswalk | verified (names corrected to Microsoft's current wording) | same |
-| 5 | Source: "Protect networks — gated or non-FIPS in government clouds" | Filter 1 | corrected (Global Secure Access available in GCC, not yet GCC High/DoD/sovereign; FIPS claim removed as unverifiable) | learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations |
+| 5 | Source: "Protect networks — gated or non-FIPS in government clouds" | Filter 1 | corrected (Global Secure Access available in GCC; FIPS claim removed as unverifiable) | learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations |
 | 6 | Named locations and Tenant restrictions v2 need only P1 | Filter 1 | verified | configure-security |
-| 7 | GCC uses public Entra ID; GCC High/DoD use Entra Government | Filter 1 | verified | learn.microsoft.com/power-platform/admin/microsoft-dynamics-365-government |
+| 7 | GCC uses public Entra ID | Filter 1 | verified | learn.microsoft.com/power-platform/admin/microsoft-dynamics-365-government |
 | 8 | Accelerate-response checks need P2 or Workload ID | Filter 1 | verified | configure-security |
 | 9 | Source: "AI — nascent; government availability unconfirmed" | Filter 1 | restated-as-design (confirm before planning; checks are agent-identity checks per Microsoft) | configure-security |
 | 10 | Source: "Federal agencies typically run a suite that includes the identity governance features" | Filter 2 | restated-as-design ("many federal enterprise agreements"; program experience) | — |

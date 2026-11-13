@@ -1,6 +1,6 @@
 ---
 title: "Appendix C — Applicability"
-description: "Where the book applies as written: SQL Server 2022 and 2025 on Windows, standalone or in availability groups, connected to Microsoft's commercial cloud (including GCC-Moderate). It does not apply as written to GCC High or DoD, air-gapped networks, failover cluster instances, SQL Server 2019 and older, or most Linux deployments. Platform facts are stamped as of October 20, 2026."
+description: "Where the book applies as written: SQL Server 2022 and 2025 on Windows, standalone or in availability groups, connected to Microsoft's commercial cloud (including GCC-Moderate). It does not apply as written to air-gapped networks, failover cluster instances, SQL Server 2019 and older, or most Linux deployments. Platform facts are stamped as of October 20, 2026."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b06-data-platform
@@ -42,7 +42,6 @@ The engine-side steps (Chapters 09–12 and 20–21) depend on Microsoft Entra a
 
 | Environment | What Microsoft documents | What still applies |
 |---|---|---|
-| **GCC High and DoD (Azure Government)** | SQL Server enabled by Azure Arc in Azure Government runs only in US Government Virginia, only on Windows, and offers only onboarding, inventory, licensing and billing, failover-cluster-instance management and ESU licenses; "all other features are not currently available." Entra authentication is not among them.[^aC-gov] Microsoft Cloud PKI is available in GCC High but not DoD.[^aC-intune-gov] | Chapters 01–08 (the case, consolidation and the audit), Chapters 14–15 (Kerberos repair and NTLM restriction) and the Entra-side work of Chapters 16–17: dynamic groups, PIM, access reviews and entitlement management are available in Azure Government.[^aC-entra-gov] Chapters 09–12 and 20–21 do not apply until the engine side is available there. |
 | **Air-gapped or disconnected networks** | Entra authentication needs outbound reach to Entra ID and Microsoft Graph, with or without Arc.[^aC-noarc] Microsoft's cloud-first identity guidance says apps that must work without an internet connection need to stay on premises.[^aC-soa] | Consolidation (Chapters 03–06), the audit (Chapters 07–08) and Kerberos hardening (Chapters 14–15). |
 | **Failover cluster instances (FCIs)** | Entra authentication is not supported for SQL Server failover cluster instances.[^aC-overview] Arc can still onboard them and show them in its inventory.[^aC-fci] | Move the databases to an availability group, or keep the FCI on Kerberos with the fallback protections below, tracked as a named exception class. |
 | **SQL Server 2019 and older** | Entra authentication needs SQL Server 2022 or later.[^aC-overview] Arc doesn't onboard SQL Server 2012 or older at all.[^aC-arc-unsupported] | The upgrade is a prerequisite and belongs to the consolidation plan of Chapters 05–06. Until then, Kerberos hardening only. |
@@ -73,9 +72,6 @@ An instance that can't reach Entra authentication still benefits from most of th
 [^aC-relnotes]: Microsoft Learn, "Release notes — SQL Server enabled by Azure Arc," <https://learn.microsoft.com/sql/sql-server/azure-arc/release-notes> (accessed Oct 20, 2026).
 [^aC-mi]: Microsoft Learn, "Managed identity for SQL Server enabled by Azure Arc," section "Limitations," <https://learn.microsoft.com/sql/sql-server/azure-arc/managed-identity> (accessed Oct 20, 2026).
 [^aC-overview]: Microsoft Learn, "Microsoft Entra authentication for SQL Server," <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview> (accessed Oct 20, 2026).
-[^aC-gov]: Microsoft Learn, "SQL Server enabled by Azure Arc in US Government," <https://learn.microsoft.com/sql/sql-server/azure-arc/us-government-region> (accessed Oct 20, 2026).
-[^aC-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," <https://learn.microsoft.com/intune/fundamentals/government-service>; and "Overview of Microsoft Cloud PKI for Microsoft Intune," <https://learn.microsoft.com/intune/cloud-pki/> (both accessed Oct 20, 2026).
-[^aC-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Oct 20, 2026).
 [^aC-noarc]: Microsoft Learn, "Enable Microsoft Entra authentication for SQL Server on Windows without Azure Arc," <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/microsoft-entra-authentication-sql-server-enable-without-arc> (accessed Oct 20, 2026).
 [^aC-soa]: Microsoft Learn, "Microsoft Entra cloud-first identity guidance," section "Step 4. Categorize applications and plan integration approach," <https://learn.microsoft.com/entra/identity/hybrid/guidance-it-architects-source-of-authority> (accessed Oct 20, 2026).
 [^aC-fci]: Microsoft Learn, "View Always On failover cluster instances in Azure Arc," <https://learn.microsoft.com/sql/sql-server/azure-arc/support-for-fci> (accessed Oct 20, 2026).

@@ -30,7 +30,7 @@ That matters to this book's argument. If the boundary were a perimeter, an agenc
 
 ## Certification replaces authorization
 
-The 2026 rules rename the product of the program. A cloud service offering is now *FedRAMP Certified*, and its level of assurance is a *Certification Class*: "increasing from minimal assurance at Class A to significant assurance at Class D."[^c03-defs] FedRAMP announced the classes in February 2026 and mapped them to the old baselines for Rev5: Class B covers the former Li-SaaS and Low baselines, "Class C will include the current Moderate baseline," and "Class D will include the current High baseline." It dropped numbered levels on purpose, "to avoid confusion with the DOD/DOW Impact Level/IL system."[^c03-ntc0004]
+The 2026 rules rename the product of the program. A cloud service offering is now *FedRAMP Certified*, and its level of assurance is a *Certification Class*: "increasing from minimal assurance at Class A to significant assurance at Class D."[^c03-defs] FedRAMP announced the classes in February 2026 and mapped them to the old baselines for Rev5: Class B covers the former Li-SaaS and Low baselines, "Class C will include the current Moderate baseline," and "Class D will include the current High baseline."[^c03-ntc0004]
 
 Two cautions come with the new labels. First, the class describes what FedRAMP assessed, not the agency's use. The same notice says agencies may use a certification package to authorize a cloud service "at any security category they deem appropriate following the Risk Management Framework."[^c03-ntc0004] Second, the Marketplace still shows the old word in parentheses: Microsoft 365 GCC, for example, is listed as FedRAMP Certified, Class C (Moderate).[^c03-mso365] Cite the class; treat the parenthetical as a convenience.
 
@@ -166,7 +166,7 @@ The program draws five working conclusions from the rules. They are the program'
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 02 — The Invisible Boundary](02-the-invisible-boundary.md) · [Book index](index.md) · [Next: Chapter 04 — GCC, GCC High and the Commercial Feature Gap →](04-gcc-and-the-feature-gap.md)
+[← Previous: Chapter 02 — The Invisible Boundary](02-the-invisible-boundary.md) · [Book index](index.md) · [Next: Chapter 04 — GCC and the Commercial Feature Gap →](04-gcc-and-the-feature-gap.md)
 :::
 
 [^c03-defs]: FedRAMP, "FedRAMP Definitions," *FedRAMP Consolidated Rules for 2026* ("Certification Class," "Trust Center"), <https://www.fedramp.gov/2026/definitions/> (accessed Oct 21, 2026).

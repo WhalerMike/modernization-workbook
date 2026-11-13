@@ -47,7 +47,7 @@ Writer: W5. Verified 2026-10-21. Sources: `docs/operational-guides/network-trans
 | 39 | Azure Function CoA engineering realities (mgmt path, dynamic-author trust, accounting becomes enforcement infra) | CoA | restated-as-design | Program engineering analysis |
 | 40 | "Within 20 minutes" timing qualified; 8-h re-auth backstop | CoA; Session timers | restated-as-design | Program design; aligned with #32–34 |
 | 41 | VLAN tier numbers and ACLs | Policy tiers | restated-as-design | Program examples |
-| 42 | Remediation ACL host list (`*.manage.microsoft.com`, `*.update.microsoft.com`, `*.wdcp.microsoft.com`…) | Policy tiers | removed | Endpoints differ by cloud (commercial/GCC/GCC High); replaced with instruction to build from Microsoft's published lists |
+| 42 | Remediation ACL host list (`*.manage.microsoft.com`, `*.update.microsoft.com`, `*.wdcp.microsoft.com`…) | Policy tiers | removed | Replaced with instruction to build from Microsoft's published lists |
 | 43 | MAB is spoofable; classification not authentication | MAB | verified (general) / restated-as-design | Consistent with IA-3 discussion naming MAC as shared known information (c07-sp80053) |
 | 44 | Session-Timeout 28800, Termination-Action RADIUS-Request, Idle-Timeout 1800 | Session timers | restated-as-design | Program values (RADIUS attribute names standard) |
 | 45 | Intune Wi-Fi / wired profiles: EAP-TLS, server names, root cert for server validation, SCEP/PKCS cert | Certificates and supplicant profiles | verified | c07-intune-wifi, c07-intune-wired |

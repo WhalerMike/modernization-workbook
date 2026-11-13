@@ -54,7 +54,7 @@ Cloud PKI requires a subscription in addition to Intune Plan 1 or Plan 2.[^c04-c
 
 ### Cloud availability
 
-Intune doesn't have a separate GCC instance: GCC tenants use the commercial Intune service, while GCC High and DoD share a separate government instance.[^c04-intune-gov] Cloud PKI became available in GCC High in the week of September 28, 2026, and it isn't supported in DoD environments.[^c04-whatsnew][^c04-cpki] For a GCC tenant, availability follows the commercial service; licensing is the question to settle (above).
+Intune doesn't have a separate GCC instance: GCC tenants use the commercial Intune service.[^c04-intune-gov] For a GCC tenant, Cloud PKI availability follows the commercial service; licensing is the question to settle (above).
 
 ## Two deployment models
 
@@ -186,7 +186,7 @@ Two facts from the vendor documentation and the FedRAMP Marketplace shape how th
 [^c04-addons]: Microsoft Learn, "Use Microsoft Intune Suite add-on capabilities" (available add-ons), <https://learn.microsoft.com/intune/fundamentals/add-ons> (accessed Oct 20, 2026).
 [^c04-whatsnew]: Microsoft Learn, "What's new in Microsoft Intune," weeks of June 29, 2026 (service release 2606) and September 28, 2026 (service release 2609), <https://learn.microsoft.com/intune/whats-new/> (accessed Oct 20, 2026).
 [^c04-planning]: Microsoft Learn, "Microsoft Intune planning guide" (Step 3, determine costs and licensing), <https://learn.microsoft.com/intune/fundamentals/planning-guide> (accessed Oct 20, 2026).
-[^c04-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026).
+[^c04-intune-gov]: Microsoft Learn, Intune service description for US Government, <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026).
 [^c04-byoca]: Microsoft Learn, "Configure Microsoft Cloud PKI - Bring your own CA," <https://learn.microsoft.com/intune/cloud-pki/configure-byoca> (accessed Oct 20, 2026).
 [^c04-renew]: Microsoft Learn, "Renew a certificate authority in Cloud PKI," <https://learn.microsoft.com/intune/cloud-pki/renew-ca> (accessed Oct 20, 2026).
 [^c04-cba-crl]: Microsoft Learn, "Microsoft Entra certificate-based authentication Certificate Revocation List (CRL)" ("supports only HTTP or HTTPS. We recommend using HTTP instead of HTTPS for CRL distribution"; the CBA overview still says the CDP "can be only HTTP URLs"; Entra caches the CRL, so a newly revoked certificate isn't detected until the cache refreshes with a newer CRL), <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> (accessed Oct 21, 2026).

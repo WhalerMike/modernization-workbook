@@ -113,8 +113,6 @@ Get-MgIdentityConditionalAccessPolicy -All |
         @{ n = 'CustomControls'; e = { $_.GrantControls.CustomAuthenticationFactors -join ', ' } }
 ```
 
-Government cloud availability: Microsoft's provider guidance says a provider needs a separate application for Azure for US Government, but the Microsoft Entra feature-availability list for US Government doesn't name external MFA, so availability in GCC High and DoD is not yet specified.[^c03-external-mfa-provider][^c03-gov-availability]
-
 ### Authentication strengths
 
 An authentication strength names the method combinations a policy accepts. There are three built-in strengths, which Microsoft updates as methods change and administrators can't edit:[^c03-auth-strengths][^c03-auth-strength-graph][^c03-auth-strength-how]
@@ -323,4 +321,3 @@ Devices carry their own label. The program sets the device object's `extensionAt
 [^c03-external-mfa]: Microsoft Learn, "Manage an external multifactor authentication method in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/authentication/how-to-authentication-external-method-manage> (accessed Nov 9, 2026).
 [^c03-external-mfa-provider]: Microsoft Learn, "Use Microsoft Entra MFA with an external MFA provider" (grant controls based on authentication strengths, including the built-in MFA strength, don't accept external MFA; each cloud environment, including Azure for US Government, needs its own provider application), <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-external-method-provider> (accessed Nov 9, 2026).
 [^c03-custom-migrate]: Microsoft Learn, "Migrate from custom controls to external multifactor authentication" (why migrate; phased rollout; keep the old policy disabled at least two weeks), <https://learn.microsoft.com/entra/identity/conditional-access/how-to-migrate-custom-controls-external-mfa> (accessed Nov 9, 2026).
-[^c03-gov-availability]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
