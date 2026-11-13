@@ -54,7 +54,7 @@ M-25-21 applies to all agencies as defined in 44 U.S.C. 3502(1), with some requi
 | Submit to OMB and publish a compliance plan, or a determination that the agency doesn't use covered AI | 3(b)(ii) | 180 days, then every two years until 2036 | Each agency |
 | Update internal policies on IT infrastructure, data, cybersecurity and privacy | 3(b)(iii) | 270 days | Each agency |
 | Develop a generative AI policy | 3(b)(iv) | 270 days ("should") | Each agency |
-| Inventory AI use cases, submit to OMB and post a public version | 3(b)(v) | At least annually | Each agency except the Department of Defense and the Intelligence Community |
+| Inventory AI use cases, submit to OMB and post a public version | 3(b)(v) | At least annually | Each covered agency; some national security agencies are excepted |
 | Document implementation of the minimum practices for high-impact AI, or safely discontinue the AI | 4(a)(i) | 365 days | Each agency except the Intelligence Community |
 | Track waivers centrally; report each to OMB within 30 days; publish summaries of determinations and waivers | 4(a)(ii)–(iv) | 30 days; 365 days | Each agency except the Intelligence Community |
 
@@ -105,7 +105,7 @@ M-26-04 is a procurement memo about model outputs. It has no identity or access 
 
 ## The 2026 executive orders
 
-**Executive Order 14409** of June 2, 2026 is a security order. It directs the Committee on National Security Systems and the Secretary of War to prioritize cyber defense of their systems, directs CISA to issue binding operational directives and other guidance to expedite cyber defense of civilian federal systems, sets up an AI cybersecurity clearinghouse for vulnerabilities, and asks agencies to design a voluntary framework under which developers may give the government access to "covered frontier models" up to 30 days before release. It states that nothing in it creates "a mandatory governmental licensing, preclearance, or permitting requirement" for AI models.[^c02-eo14409] CISA's Binding Operational Directive 26-04 of June 10, 2026, on prioritizing security updates based on risk, cites the order among the priorities it advances.[^c02-bod2604] The order doesn't change how agencies govern their own AI identities.
+**Executive Order 14409** of June 2, 2026 is a security order. It directs the Committee on National Security Systems to prioritize cyber defense of national security systems, directs CISA to issue binding operational directives and other guidance to expedite cyber defense of civilian federal systems, sets up an AI cybersecurity clearinghouse for vulnerabilities, and asks agencies to design a voluntary framework under which developers may give the government access to "covered frontier models" up to 30 days before release. It states that nothing in it creates "a mandatory governmental licensing, preclearance, or permitting requirement" for AI models.[^c02-eo14409] CISA's Binding Operational Directive 26-04 of June 10, 2026, on prioritizing security updates based on risk, cites the order among the priorities it advances.[^c02-bod2604] The order doesn't change how agencies govern their own AI identities.
 
 **Executive Order 14434** of September 29, 2026 is a terminology order. Agencies are to use "Super Intelligence" and "SI" in place of "Artificial Intelligence" and "AI" in official correspondence, websites, reports, policy documents and other non-statutory documents, "to the maximum extent permitted by law." It doesn't alter previously issued regulations, Presidential actions, contracts or other historical documents, and it defines the new terms as the technologies covered by the existing statutory definition of artificial intelligence.[^c02-eo14434] Agency pages have begun to change: NIST renamed its SP 800-53 overlay project for AI on October 20, 2026, and CISA's AI pages now use the new term.[^c02-cosis][^c02-cisa-ai]
 
@@ -164,7 +164,7 @@ None of the rules says "govern AI identities." Read alongside the controls of th
 
 - **Policy here moves quickly.** Seven federal AI instruments in under two years, one of them changing the vocabulary itself. Treat every date and requirement in this chapter as current on October 22, 2026, and check the OMB memoranda page and the Federal Register before relying on it.
 - **The deadlines were dates, not states.** Every M-25-21 deadline has passed, but the obligations continue: the inventory recurs annually, the compliance plan every two years, and the minimum practices apply to every new high-impact use case.
-- **Several exceptions apply.** The Department of Defense doesn't inventory individual use cases, the Intelligence Community is outside the minimum practices, and national security systems are outside both memos. An agency with those components needs its own reading.
+- **Several exceptions apply.** The Intelligence Community is outside the minimum practices, and national security systems are outside both memos. An agency with those components needs its own reading.
 - **The identity reading is the program's.** The rules require what they say. The obligations in the last table are the program's argument that the rules can't be met well without identity governance, not a statement that the rules require it.
 
 ## What leadership should take from this

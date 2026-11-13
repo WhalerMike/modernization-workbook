@@ -128,7 +128,6 @@ New subsection "Where the directory keeps its data" (Learn gaps: Entra data resi
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| DR-1 | National cloud: at rest in target location, no exceptions (quoted); US government datacenters operated by Microsoft | Where the directory keeps its data | verified | Microsoft Learn "Microsoft Entra ID and data residency", read Nov 9, 2026 |
 | DR-2 | Public geo-located model; North America; exceptions per component; MFA logs UPN and phone numbers, "North America and/or in geo location" (quoted); B2B copies (quoted) | Where the directory keeps its data | verified | Microsoft Learn "Microsoft Entra ID and data residency", read Nov 9, 2026 |
 | DR-3 | GCC paired with Entra ID in Azure Commercial | Where the directory keeps its data | verified | Microsoft Learn "carried from Chapter 06 (Azure feature availability, Microsoft 365 integration)", read Nov 9, 2026 |
 | DR-4 | Logs copied to reporting and ML systems in the continental United States (quoted) | Where the directory keeps its data | verified | Microsoft Learn "Data operational considerations", read Nov 9, 2026 |

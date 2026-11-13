@@ -17,12 +17,10 @@ Writer W4. Source page: `docs/operational-guides/ai-identity-governance/governed
 | 9 | OBO token represents the user and identifies the calling agent | Table | verified | MS Learn, Conditional Access for agents |
 | 10 | Retention 7 days Free / 30 days P1, P2; Graph activity logs not retained unless exported | Audit log | verified | MS Learn, data retention |
 | 11 | Graph request for agent identity sign-ins | Code block | verified (copied from Microsoft's page) | MS Learn, Agent ID logs |
-| 12 | GCC High / DoD Graph hosts graph.microsoft.us / dod-graph.microsoft.us | Code note | verified | MS Learn, Agent 365 CLI for US Government clouds |
 | 13 | Microsoft's alert list for agents | What to alert on | verified | Agent ID best practices |
 | 14 | CloudTrail `userIdentity`, `sessionIssuer`, `sourceIdentity` | What to alert on | verified | AWS CloudTrail User Guide |
 | 15 | Google Agent Identity: audit logs show agent and user; page gives no release stage or government availability | What to alert on | verified | Google Cloud, Agent Identity overview |
 | 16 | ID Protection workload identity detections; offline; scope (managed identities out); Workload ID Premium for full details and risk CA; CA only single-tenant SPs; remediation steps | Workload identities | verified | MS Learn, Securing workload identities |
-| 17 | Workload ID Premium available in Azure Government | Workload identities; table | verified | Entra feature availability (US Gov), updated Feb 13, 2026 |
 | 18 | ID Protection for agents: eight detections, offline, learning mode, OBO attributed to user, report actions, confirm compromise triggers CA | Agents | verified | MS Learn, ID Protection for agents |
 | 19 | ID Protection for agents needs P2 during preview; Agent risk condition preview; Agent 365 license "starting soon" | Agents; table | verified | Manage agent identities; Target agent identities; Secure autonomous agents; ID Protection for agents |
 | 20 | CA agents assignment labeled preview; agent identities only Block | Agents | verified | Target agent identities; CA Grant page |
@@ -34,14 +32,12 @@ Writer W4. Source page: `docs/operational-guides/ai-identity-governance/governed
 | 26 | MDE local AI agent discovery: types, MCP servers, macOS preview, listed only after observed activity, not a complete inventory | Shadow AI; table | verified | MS Learn, local agent discovery |
 | 27 | Defender AI agent inventory covers Copilot Studio, Foundry, M365, supported non-Microsoft, local agents | Shadow AI | verified | MS Learn, AI agent inventory |
 | 28 | GSA AI agent discovery preview; managed vs shadow by Agent ID registration; needs client and TLS inspection | Shadow AI; table | verified | MS Learn, AI agent discovery in GSA |
-| 29 | Defender CSPM AI-SPM discovers Azure OpenAI, Azure ML, Bedrock; GA in Azure and Azure Government; Defender for AI Services not in Azure Gov | Shadow AI; table | verified | Defender for Cloud support matrix (updated Jul 1, 2026); Discover AI apps and data |
+| 29 | Defender CSPM AI-SPM discovers Azure OpenAI, Azure ML, Bedrock: GA in Azure | Shadow AI; table | verified | Defender for Cloud support matrix (updated Jul 1, 2026); Discover AI apps and data |
 | 30 | CA doesn't apply when an agent uses an API key | Shadow AI | verified | MS Learn, CA for agents, boundaries |
-| 31 | MDCA US Gov parity except listed app governance features | Table | verified | MDCA for US Government offerings |
-| 32 | GSA available in GCC, not GCC High, DoD | Table | verified | GSA known limitations |
+| 32 | GSA available in GCC | Table | verified | GSA known limitations |
 | 33 | Agent 365 GCC availability rows (registry, lifecycle, Entra CA/IDP for delegated agents Yes; shadow endpoint agent sync, block unsanctioned local agents No); FedRAMP High controls met, authorization pending (Oct 1, 2026) | Table; FedRAMP note | verified | Agent 365 service description |
-| 34 | Agent ID not listed on the Entra Azure Government availability page | Table | verified (absence) | Entra feature availability (US Gov) |
 | 35 | 2025 inventory fields and Agentic AI definition; `pia_url` optional | Declared side | verified | ombegov 2025 inventory data dictionary |
-| 36 | Inventory at least annually, DoD and IC excepted | Declared side | verified | M-25-21 §3(b)(v) |
+| 36 | Inventory at least annually, covered agencies | Declared side | verified | M-25-21 §3(b)(v) |
 | 37 | 13-month staleness | Declared side | restated-as-design | Source's design; presented as program design |
 | 38 | AI findings mapped to Book 13 classes and pinned severities | Findings table | restated-as-design | Book 13 Ch06 rules; source drift-class table translated |
 | 39 | AI system operated as information system needs ATO prior to deployment | Findings comment | verified | M-25-22 §4(e)(i) |
@@ -87,6 +83,6 @@ Learn coverage pass and a small addition from the Learn gap review. Pages read N
 |---|---|---|---|---|
 | L1 | Entra Health monitoring (preview) has Agent ID autonomous sign-ins (service principal sign-ins) and Agent ID interactive sign-ins (agent's user account subject, non-interactive user sign-ins) scenarios alerting on a large increase in failures; failure volume alone doesn't establish an outage or attack; P1/P2 needed for signals | Where AI sign-ins land; release table | verified | Learn, "How to investigate Agent ID autonomous sign-ins"; "How to investigate Agent ID interactive sign-ins" (search excerpts) |
 | L2 | Generative AI Insights (preview): TLS inspection logs prompt content and MCP operations; protocol-based MCP detection finds private and shadow servers; `NetworkAccessGenerativeAIInsights` diagnostic category; local MCP servers not visible | Finding what nobody declared; release table | verified (search excerpts of the page) | Learn, "Generative AI Insights in Global Secure Access (preview)" |
-| L3 | Generative AI Insights in GCC / GCC High | Release table | inferred from the Global Secure Access government-cloud limitation (row c07-gsa-limits) | Learn, "Known limitations for Global Secure Access" |
+| L3 | Generative AI Insights in GCC | Release table | inferred from the Global Secure Access government-cloud limitation (row c07-gsa-limits) | Learn, "Known limitations for Global Secure Access" |
 
 Left uncited but listed for this chapter in the coverage map: secure-mcp-server-with-entra-id (cited in Chapter 06) and architecture/secure-generative-ai (topic-level match).

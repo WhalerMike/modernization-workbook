@@ -13,15 +13,15 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 3 | From July 1, 2026, hard match blocked for privileged, privileged-eligible or already-mapped targets; soft match unchanged | Why this check | verified | Learn, existing tenant page, "Hard match security protections" |
 | 4 | `GET /directory/onPremisesSynchronization`: least privileged `OnPremDirectorySynchronization.Read.All`, delegated only; application not supported | The catalog entry; Verified facts | verified | Learn, Get onPremisesDirectorySynchronization |
 | 5 | Global Administrator is the only supported role for that read | The catalog entry; Verified facts | verified | Same page, Important note |
-| 6 | Available in global, US Government L4 and L5 | Verified facts | verified | Same page, national cloud table |
+| 6 | Available in the global service, which GCC uses | Verified facts | verified | Same page, national cloud table |
 | 7 | Response shape (`features.blockSoftMatchEnabled`, `blockCloudObjectTakeoverThroughHardMatchEnabled`, `softMatchOnUpnEnabled`) | Fixtures and tests | verified | Same page, example response |
 | 8 | Soft match on UPN can't be disabled once enabled | Rows and outcome | verified | Learn, Set-EntraDirSyncFeature |
 | 9 | Remediation commands (`Update-MgDirectoryOnPremiseSynchronization`, scope `OnPremDirectorySynchronization.ReadWrite.All`) | The safety tests; Verified facts | verified | Learn, existing tenant page (code blocks) |
 | 10 | `Set-EntraDirSyncFeature -Features 'BlockSoftMatch' -Enable $true`; Global Administrator | The safety tests | verified | Learn, Set-EntraDirSyncFeature, Example 2 and description |
-| 11 | evaluateDynamicMembership: beta; delegated only; permissions; L4 and L5 | Verified facts | verified | Learn, group: evaluateDynamicMembership |
+| 11 | evaluateDynamicMembership: beta; delegated only; permissions; global service | Verified facts | verified | Learn, group: evaluateDynamicMembership |
 | 12 | Follow `@odata.nextLink` as an opaque URL until absent | Verified facts | verified | Learn, Graph best practices, Pagination |
 | 13 | `Retry-After` on 429; exponential backoff without it | Verified facts | verified | Learn, throttling guidance |
-| 14 | Graph hosts per cloud | Verified facts | verified | Learn, national cloud deployments |
+| 14 | Graph host for worldwide and GCC | Verified facts | verified | Learn, national cloud deployments |
 | 15 | Export-first for checks whose read needs a privileged role; no standing privileged identity for checks | The catalog entry | restated-as-design (labeled) | — |
 | 16 | Default every control read to the unsafe answer | Rows and outcome | restated-as-design (labeled) | — |
 | 17 | Kit behavior: `Invoke-VkCheckBody` turns exceptions into Error; safety tests; one POST; beta allow-list; nextLink host check | The function; The safety tests | verified against the code | `Private/Core.ps1`, `tests/powershell/Safety.Tests.ps1`, kit README |

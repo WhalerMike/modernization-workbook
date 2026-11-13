@@ -19,10 +19,10 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 9 | Don't retry bucket-full in a loop | Pace, retry and stop | restated-as-design (labeled) | — |
 | 10 | On 429 wait `Retry-After`; back off exponentially without it | Pace, retry and stop | verified | Learn, throttling guidance |
 | 11 | Least privilege: application `SynchronizationData-User.Upload.OwnedBy`; delegated `SynchronizationData-User.Upload` with User Administrator | Lab 2; Verified facts | verified | Learn, Perform bulkUpload, Permissions and note |
-| 12 | API-driven inbound provisioning available for Azure Government tenants | Verified facts | verified | Learn, feature availability, HR provisioning apps table |
-| 13 | Provisioning logs: `AuditLog.Read.All` and `Directory.Read.All`; roles; L4 and L5 | Verified facts | verified | Learn, List provisioningObjectSummary |
+| 12 | API-driven inbound provisioning available in GCC (worldwide service) | Verified facts | verified | Learn, national cloud deployments |
+| 13 | Provisioning logs: `AuditLog.Read.All` and `Directory.Read.All`; roles; available on the worldwide service GCC uses | Verified facts | verified | Learn, List provisioningObjectSummary |
 | 14 | Concepts page names `ProvisioningLog.Read.All` for API clients | Verified facts | verified (conflicts with #13; chapter says to test the narrower one first) | Learn, concepts item 2 |
-| 15 | Graph hosts per cloud; `login.microsoftonline.us`; tokens not interchangeable | Verified facts | verified | Learn, national cloud deployments |
+| 15 | Worldwide and GCC Graph host and token authority | Verified facts | verified | Learn, national cloud deployments |
 | 16 | Feature needs Entra ID P1, P2 or ID Governance | Lab 2 | verified | Learn, concepts, license requirements |
 | 17 | Refuse-by-default for new validation rules | Validate and fail closed | restated-as-design (labeled) | — |
 | 18 | Provenance pattern from Book 13, Chapter 04 | Provenance manifest | workbook cross-reference | Book 13, Chapter 04 |
@@ -56,8 +56,8 @@ Assessment: it can't replace the example for a federal deployment (gaps below), 
 | 29 | Delegated scopes `Application.ReadWrite.All`, `AuditLog.Read.All`, `SynchronizationData-User.Upload` | What it leaves to you | verified | pinned script, sign-in block |
 | 30 | No pacing of its own; relies on SDK retry | What it leaves to you | verified (no sleep or 429 handling in the script); SDK behavior per Learn throttling guidance | pinned script; Learn throttling guidance |
 | 31 | Certificate flow adds `Application.Read.All` and `Synchronization.Read.All` | Lab 2; Verified facts | verified | Learn tutorial, certificate section step 6 |
-| 32 | GCC uses the worldwide Graph endpoint; GCC High and DoD don't | What it leaves to you | verified | Learn, national cloud deployments |
-| 33 | Use the sample for mapping, schema and logs in worldwide or GCC tenants; the hardened client for production and GCC High and DoD | What it leaves to you | restated-as-design (labeled) | — |
+| 32 | GCC uses the worldwide Graph endpoint | What it leaves to you | verified | Learn, national cloud deployments |
+| 33 | Use the sample for mapping, schema and logs in worldwide or GCC tenants; the hardened client for production | What it leaves to you | restated-as-design (labeled) | — |
 | 34 | Pin, hash and watch every sample you run | The pinned copy | restated-as-design (labeled) | — |
 
 Tests after the rework, October 30, 2026: pytest 48 passed; Pester 48 passed (41 plus 7 baseline comparison tests); `scripts/tests` 84 passed.

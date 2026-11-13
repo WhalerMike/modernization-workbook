@@ -2982,12 +2982,11 @@ pages:
   ms_date: '2025-07-07'
   ms_topic: concept-article
   description: Learn what features are available in Microsoft Entra B2B collaboration in US Government and national clouds
-  coverage: cited
+  coverage: unreviewed
   note: 'Partner federation, cross-cloud and government-cloud B2B: Book 04 Appendix C'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
-  cited_by:
-  - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
+  cited_by: []
 - path: docs/external-id/b2b-quickstart-add-guest-users-portal.md
   url: https://learn.microsoft.com/entra/external-id/b2b-quickstart-add-guest-users-portal
   title: 'Quickstart: Add a guest user and send an invitation'
@@ -17600,23 +17599,12 @@ pages:
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
-  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
-  - docs/books/b14-compliance/06-contingency-and-continuity.md
-  - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
-  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
-  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
-  - docs/books/b16-people/07-end-user-training.md
-  - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
-  - docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md
-  - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
-  - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
-  - docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md
   - docs/books/guides/_verification/hr-driven-identity-implementation.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/hcm-entra-implementation.md
@@ -25386,12 +25374,9 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: reference
   description: Special considerations for deploying Microsoft Entra Connect with the Azure Government cloud.
-  coverage: cited
+  coverage: unreviewed
   note: Connect in government clouds and required ports not covered.
-  cited_by:
-  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
-  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
-  - docs/books/b18-application-modernization/03-the-target-reference-architecture.md
+  cited_by: []
 - path: docs/identity/hybrid/connect/reference-connect-health-faq.yml
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-health-faq
   title: Microsoft Entra Connect Health frequently asked questions
@@ -25435,9 +25420,7 @@ pages:
   description: This page documents special considerations for Microsoft Entra instances.
   coverage: out-of-scope
   note: Release history, privacy notice, deprecated-version, DirSync-era or Exchange-migration page; no program procedure.
-  cited_by:
-  - docs/books/b15-day2-operations/12-the-day-two-runbook.md
-  - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
+  cited_by: []
 - path: docs/identity/hybrid/connect/reference-connect-msexchuserholdpolicies.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-msexchuserholdpolicies
   title: 'Microsoft Entra Connect: msExchUserHoldPolicies and cloudMsExchUserHoldPolicies'
@@ -30458,7 +30441,6 @@ pages:
   - data/source-register.json
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
-  - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/06-credentials-and-least-privilege.md
   - docs/books/guides/attribute-driven-migration.md

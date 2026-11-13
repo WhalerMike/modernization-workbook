@@ -67,7 +67,7 @@ Both memos count their deadlines from April 3, 2025. The dates below are counted
 | April 3, 2026 | 365 | M-25-21 §4(a)(i) | Document the minimum practices for each high-impact use case, or stop using it | Each agency except the IC |
 | About September 30, 2027 | Two years after the first plan | M-25-21 §3(b)(ii) | Next compliance plan; then every two years until 2036 | Each agency |
 | April 3, 2030 | Five years | M-25-21 §3(c)(i)(D) | Chief AI Officer Council sunsets unless the OMB Director extends it | OMB |
-| Ongoing | — | M-25-21 §3(b)(v) | Inventory AI use cases at least annually; submit to OMB and post publicly | Each agency except DoD and the IC |
+| Ongoing | — | M-25-21 §3(b)(v) | Inventory AI use cases at least annually; submit to OMB and post publicly | Each covered agency; some national security agencies are excepted |
 | Ongoing | 30 days | M-25-21 §3(a)(i); §4(a)(iii) | Notify OMB when the Chief AI Officer changes or the post is vacant; report each waiver granted or revoked | Each agency |
 
 A compliance plan is also due within 180 days of "any update to this memorandum," so a revision of M-25-21 would reset the cycle.[^omb-m2521] M-25-22's Appendix I, its Consolidated Table of Required Actions, lists "achieve full compliance" at 180 days under §2(c), while §3(b) gives 270 days for updating acquisition procedures.[^omb-m2522] The two fit together: the memo starts governing new contracts at 180 days, and agencies had until 270 days to bring their internal procedures into line.
@@ -99,7 +99,7 @@ CFO Act agencies must convene an AI governance board. Existing bodies can fill t
 
 Each CFO Act agency must publish an AI strategy on OMB's template. It must cover two things:[^omb-m2521]
 
-1. the current and planned use cases most important to the agency's mission, operations or service delivery (this element doesn't apply to the Department of Defense or the Intelligence Community);
+1. the current and planned use cases most important to the agency's mission, operations or service delivery (some national security agencies are excepted from this element);
 2. an assessment of the agency's AI maturity, and a plan to reach its maturity goals that addresses, at a minimum:
    - AI-enabling infrastructure across development, testing, deployment and continuous monitoring;
    - access to quality data, and data traceability;

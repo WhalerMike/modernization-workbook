@@ -31,7 +31,7 @@ Writer W5. Source: `docs/compliance/Vol_IV_Book_05_Cybersecurity_Training_Awaren
 | 23 | Source "72-hour reporting window" for PII breach | AT-2 | corrected (removed) | M-17-12 §VII.D.1: principal SOC reports to US-CERT per its guidelines; one-hour clock per Book 12 Ch10 |
 | 24 | SP 800-50r1 phishing guidance: click/report metrics by role; NIST Phish Scale; legal team; avoid legitimate brands or naming federal organizations; non-punitive; tell employees | AT-2(1) | verified | SP 800-50r1 §2.7.2 |
 | 25 | Source scenarios impersonating `.gov`/`.mil` senders | AT-2(1) | corrected | SP 800-50r1 §2.7.2 |
-| 26 | Attack simulation training available in GCC, GCC High, DoD (some features missing in GCC High/DoD); G5 / Defender for Office 365 Plan 2 for Government | AT-2(1) | verified | Microsoft Learn, Attack simulation training get started; MDO features service description |
+| 26 | Attack simulation training available in GCC; G5 / Defender for Office 365 Plan 2 for Government | AT-2(1) | verified | Microsoft Learn, Attack simulation training get started; MDO features service description |
 | 27 | Determining significant roles is multi-step, led by CIO/CISO/CPO with HR | AT-3 | verified | SP 800-50r1 §2.5.4 |
 | 28 | Six role tiers, examples, frequencies and hours | AT-3 | restated-as-design | Source matrix, product names removed |
 | 29 | Roster derived from identity platform, inventory and privacy records | AT-3 | restated-as-design | — |
@@ -54,8 +54,8 @@ Writer W5. Source: `docs/compliance/Vol_IV_Book_05_Cybersecurity_Training_Awaren
 | 46 | List course activities is per user, delegated only, least privileged LearningAssignedCourse.Read.All | Same | verified | Graph "List learningCourseActivities" |
 | 47 | `/employeeExperience/learningCourseActivities` documented only for get-by-ID | Same | verified | Graph "Get learningCourseActivity" |
 | 48 | `LearningAssignmentReport.Read.All` isn't a Graph permission | Same | corrected | Graph permissions reference (Learning* permissions enumerated) |
-| 49 | APIs available in global service only, not US Gov L4/L5 | Same | verified | Graph list/get pages, national cloud table |
-| 50 | GCC tenants use global Graph; GCC High can't use these APIs | Same | verified | Same (global vs L4 columns) |
+| 49 | APIs available in the global service | Same | verified | Graph list/get pages, national cloud table |
+| 50 | GCC tenants use global Graph | Same | verified | Same |
 | 51 | GRS 2.6 item 010 covers mandatory training tracking files and attendance records, all workers incl. contractors; destroy at 3 years, longer allowed; infosec training as example | Retention | verified | NARA GRS 2.6, Transmittal 35, May 2024 |
 | 52 | Keep derived records as long as the package relies on them | Retention | restated-as-design | — |
 | 53 | KSI-CED-RAT statement and related controls | Cloud providers | verified | FedRAMP KSI page |
@@ -63,7 +63,7 @@ Writer W5. Source: `docs/compliance/Vol_IV_Book_05_Cybersecurity_Training_Awaren
 | 55 | Source's "KSI-022", "29/29 internal rules", "19 of 46 CR26 indicators", "final scaffold KSI" | Cloud providers | removed | Internal program counts (brief) |
 | 56 | AT-1 designated official; CIO ensures significant-responsibility personnel trained; system owner ensures users and support personnel trained; SSO duties may include training | Who owns | verified | OSCAL AT-1; SP 800-37r2 App. D |
 | 57 | Ownership split (CISO, ISSO, SAOP, insider threat program, training office, HR, records officer, supervisors, CORs) | Who owns | restated-as-design | Consistent with Ch05 role matrix and Ch10 |
-| 58 | Source delivery-platform table (DoD Cyber Awareness Challenge/ATCTS, CISA free.cisa.gov, KnowBe4/Proofpoint "FedRAMP Moderate authorized", SANS "FedRAMP-authorized", Viva "Native GCC/GCC High", "M365 E3/E5 included") | — | removed | Not verified; vendor positioning; Viva Learning GCC High claim contradicted by Graph availability |
+| 58 | Source delivery-platform table (CISA free.cisa.gov, KnowBe4/Proofpoint "FedRAMP Moderate authorized", SANS "FedRAMP-authorized", Viva "Native GCC", "M365 E3/E5 included") | — | removed | Not verified; vendor positioning |
 | 59 | Viva Goals retired Dec 2025, Viva Topics Feb 2025 | — | removed | Not needed; principle restated as design ("a vendor roadmap is not a commitment") |
 | 60 | Source "quarterly refreshers are best practice for GCC Moderate" | — | removed | No source; frequency left to agency |
 

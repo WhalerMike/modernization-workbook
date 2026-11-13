@@ -1,6 +1,6 @@
 ---
 title: "Chapter 11 — AI Data Security"
-description: "How the agency monitors and governs sensitive data in approved and unapproved AI workflows: how Microsoft 365 Copilot honors permissions, sensitivity labels and the EXTRACT and VIEW usage rights; Data Security Posture Management for AI and the current Data Security Posture Management, with their prerequisites, one-click policies, activity explorer and data risk assessments for oversharing; DLP for Microsoft 365 Copilot to keep labeled content out of Copilot processing and sensitive prompts out of web grounding; third-party AI sites through endpoint and browser DLP; the government-cloud availability of each feature; and the control states, procedure, evidence and day-two ownership."
+description: "How the agency monitors and governs sensitive data in approved and unapproved AI workflows: how Microsoft 365 Copilot honors permissions, sensitivity labels and the EXTRACT and VIEW usage rights; Data Security Posture Management for AI and the current Data Security Posture Management, with their prerequisites, one-click policies, activity explorer and data risk assessments for oversharing; DLP for Microsoft 365 Copilot to keep labeled content out of Copilot processing and sensitive prompts out of web grounding; third-party AI sites through endpoint and browser DLP; the GCC availability of each feature; and the control states, procedure, evidence and day-two ownership."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b20-information-protection
@@ -20,7 +20,7 @@ lifecycle_review: 2027-05-01
 
 ::: {.callout-note}
 ## In this chapter
-Why generative AI changes the data problem without changing the data controls: Microsoft 365 Copilot works in the user's security context and honors sensitivity labels and the EXTRACT and VIEW usage rights, so the labels, permissions and DLP built in Chapters 02 to 09 are the AI controls. What Microsoft Purview adds for AI: Data Security Posture Management (DSPM) for AI and its successor, the one-click policies, the activity explorer's AI events and the data risk assessments that find oversharing before an assistant surfaces it. DLP for Microsoft 365 Copilot, which keeps labeled items out of Copilot's responses and sensitive prompts out of web grounding. Unapproved AI sites, through endpoint and browser DLP. Then each feature's availability in GCC, GCC High and DoD, the procedure, the evidence and who owns it.
+Why generative AI changes the data problem without changing the data controls: Microsoft 365 Copilot works in the user's security context and honors sensitivity labels and the EXTRACT and VIEW usage rights, so the labels, permissions and DLP built in Chapters 02 to 09 are the AI controls. What Microsoft Purview adds for AI: Data Security Posture Management (DSPM) for AI and its successor, the one-click policies, the activity explorer's AI events and the data risk assessments that find oversharing before an assistant surfaces it. DLP for Microsoft 365 Copilot, which keeps labeled items out of Copilot's responses and sensitive prompts out of web grounding. Unapproved AI sites, through endpoint and browser DLP. Then each feature's availability in GCC, the procedure, the evidence and who owns it.
 :::
 
 Book 20 has built the data controls in order: what the data is ([Chapter 01](01-data-inventory-and-classification.md)), how labels describe it ([Chapter 02](02-sensitivity-label-architecture.md)), where they are published and defaulted ([Chapter 03](03-label-publication-and-defaults.md)), how containers carry them ([Chapter 04](04-teams-groups-and-sharepoint-containers.md)), how encryption enforces them ([Chapter 05](05-rights-management-and-recovery.md)), and how DLP and auto-labeling act on them ([Chapter 08](08-dlp-and-endpoint-controls.md) and [Chapter 09](09-auto-labeling-and-sensitive-information-types.md)). This chapter doesn't add a new layer of protection on top. It shows how each of those controls already decides what an AI assistant can return, adds the few controls that exist only for AI, and gives the program a way to see sensitive data moving into and out of AI tools, approved or not.
@@ -78,7 +78,7 @@ Before any policy, the policy owner records four decisions in the decision recor
 
 ### Data Security Posture Management for AI, and its successor
 
-Microsoft Purview Data Security Posture Management for AI (DSPM for AI) is the Purview solution that shows how sensitive data is used in AI interactions and creates the policies that govern it. Microsoft has since released a new version of Data Security Posture Management that covers AI apps and agents as well as traditional data, and now names the earlier solution "DSPM for AI (classic)"; most new features go only into the new version.[^c11-dspm-new] The government feature tables still list the solution as "Microsoft Purview Data Security Posture Management for AI" (below), so this chapter uses that name for what the tables cover and says "DSPM" for the newer version, whose government availability Learn doesn't yet state separately.
+Microsoft Purview Data Security Posture Management for AI (DSPM for AI) is the Purview solution that shows how sensitive data is used in AI interactions and creates the policies that govern it. Microsoft has since released a new version of Data Security Posture Management that covers AI apps and agents as well as traditional data, and now names the earlier solution "DSPM for AI (classic)"; most new features go only into the new version.[^c11-dspm-new] The GCC feature table still lists the solution as "Microsoft Purview Data Security Posture Management for AI" (below), so this chapter uses that name for what the table covers and says "DSPM" for the newer version, whose GCC availability Learn doesn't yet state separately.
 
 The newer DSPM groups its work into data security objectives, such as preventing data exposure in Microsoft 365 Copilot interactions, preventing oversharing of sensitive data and preventing exfiltration to risky locations, each with one-click policies and recommended actions. It adds an AI observability page that inventories AI apps and agents with activity in the last 30 days, the activity explorer's AI activities tab, data risk assessments and reports.[^c11-dspm-new] Some of its AI-assisted features run on Microsoft Security Copilot agents; those are outside this workbook's scope, and nothing in this chapter depends on them.
 
@@ -152,28 +152,26 @@ The procedure takes Microsoft 365 Copilot first, because it sits inside the boun
 - Roles: Compliance Administrator or the Microsoft Purview Compliance Administrator role group for DSPM; an unrestricted administrator for the one-click policies; Exchange Online Audit Logs role to check auditing.[^c11-dspm-new][^c11-audit-on] Hold them through PIM ([Book 04](../b04-access/index.md)).
 - Licenses: Microsoft 365 Copilot add-on for each Copilot user; Purview licensing for the Purview controls; E5-level Purview for the DLP file and email exclusion; pay-as-you-go billing where the portal asks for it for non-Microsoft AI apps.[^c11-copilot-sd][^c11-purview-sd][^c11-dspm-considerations]
 
-Government-cloud availability, read Nov 11, 2026:
+GCC availability, read Nov 11, 2026:
 
-| Feature | Commercial | GCC | GCC High | DoD | Source |
-|---|---|---|---|---|---|
-| Microsoft 365 Copilot (work data grounding) | Available | Available | Available | Available | [^c11-copilot-sd] |
-| Web grounding for Copilot | Available | Available, off by default | Available, off by default | Available, off by default | [^c11-copilot-sd] |
-| Copilot in Teams (chat, channel, meetings) | Available | Available | Not currently available | Available | [^c11-copilot-sd] |
-| Copilot in SharePoint; SharePoint agents | Available | Available | Not currently available | Available | [^c11-copilot-sd] |
-| Declarative agents | Available | Available | Available (only Agent Builder and admin-published agents) | Not currently available | [^c11-copilot-sd] |
-| Purview controls for Microsoft Copilot and Copilot Chat | Available | Available | Available (the footnote says Insider Risk Management isn't currently available in GCC High) | Available | [^c11-copilot-sd] |
-| DSPM for AI: create policies and view analytics for AI apps | Available | Available; no "browse to URL" policy; only Microsoft Copilot and supported AI sites | Available; no "browse to URL" policy; only supported AI sites | Available; no "browse to URL" policy; only supported AI sites | [^c11-gcc][^c11-gcch][^c11-dod] |
-| Data Security Posture Management (current version), AI observability, data risk assessments | Available | not yet specified | not yet specified | not yet specified | [^c11-dspm-new] |
-| DLP for Microsoft 365 Copilot location (labels, prompts) | Available | not yet specified as its own row; covered by the Purview controls row above | not yet specified as its own row | not yet specified as its own row | [^c11-dlp-copilot][^c11-copilot-sd] |
-| DLP to restrict Copilot from processing external email | Preview | not yet specified | not yet specified | not yet specified | [^c11-dlp-copilot] |
-| Endpoint DLP (needed for third-party AI sites) | Available | Available | Available | Available | [^c11-gcc][^c11-gcch][^c11-dod] |
-| Insider Risk Management (risky AI usage, AI site visits) | Available | Available (core) | Available on the Purview page; not currently available per the Copilot page footnote | Available (core) | [^c11-gcch][^c11-copilot-sd] |
-| Communication Compliance (AI prompts and responses) | Available | Available | Available | Available | [^c11-gcc][^c11-gcch][^c11-dod] |
-| SharePoint Restricted Content Discovery | Available | not yet specified | not yet specified | not yet specified | [^c11-dspm-overshare] |
+| Feature | Commercial | GCC | Source |
+|---|---|---|---|
+| Microsoft 365 Copilot (work data grounding) | Available | Available | [^c11-copilot-sd] |
+| Web grounding for Copilot | Available | Available, off by default | [^c11-copilot-sd] |
+| Copilot in Teams (chat, channel, meetings) | Available | Available | [^c11-copilot-sd] |
+| Copilot in SharePoint; SharePoint agents | Available | Available | [^c11-copilot-sd] |
+| Declarative agents | Available | Available | [^c11-copilot-sd] |
+| Purview controls for Microsoft Copilot and Copilot Chat | Available | Available | [^c11-copilot-sd] |
+| DSPM for AI: create policies and view analytics for AI apps | Available | Available; no "browse to URL" policy; only Microsoft Copilot and supported AI sites | [^c11-gcc] |
+| Data Security Posture Management (current version), AI observability, data risk assessments | Available | not yet specified | [^c11-dspm-new] |
+| DLP for Microsoft 365 Copilot location (labels, prompts) | Available | not yet specified as its own row; covered by the Purview controls row above | [^c11-dlp-copilot][^c11-copilot-sd] |
+| DLP to restrict Copilot from processing external email | Preview | not yet specified | [^c11-dlp-copilot] |
+| Endpoint DLP (needed for third-party AI sites) | Available | Available | [^c11-gcc] |
+| Insider Risk Management (risky AI usage, AI site visits) | Available | Available (core) | [^c11-gcc] |
+| Communication Compliance (AI prompts and responses) | Available | Available | [^c11-gcc] |
+| SharePoint Restricted Content Discovery | Available | not yet specified | [^c11-dspm-overshare] |
 
-Two Learn pages disagree on Insider Risk Management in GCC High: the Purview GCC High planning page lists its core features as Available, while the Microsoft Copilot service description's footnote says it "isn't currently available for GCC-High." Until Microsoft reconciles them, a GCC High tenant treats the Insider Risk policies in this chapter as unavailable and confirms with its Microsoft account team; the decision record carries the conflict.
-
-**Applies:** License-dependent (above). Environment-dependent: in GCC High and DoD only supported AI sites are visible to DSPM for AI, and in GCC only Microsoft Copilot and supported AI sites; no tenant in a government cloud can create the "browse to URL" policy.[^c11-gcc][^c11-gcch][^c11-dod]
+**Applies:** License-dependent (above). Environment-dependent: in GCC only Microsoft Copilot and supported AI sites are visible to DSPM for AI, and a GCC tenant can't create the "browse to URL" policy.[^c11-gcc]
 
 ### Pilot {#b20-11-pilot-ai}
 
@@ -183,7 +181,7 @@ Choose a pilot of 25 to 50 Copilot-licensed users from two or three business uni
 
 Every policy below starts in simulation (`TestWithoutNotifications`) or, for one-click DLP policies, the audit or test mode DSPM creates them in. Run it for at least two weeks across a month-end, when report and budget files move most. Read three things from it: the DLP rule matches in the activity explorer's AI activities tab, the sensitive information types detected in prompts, and the AI website visits by site. A rule that matches content the decision record didn't intend is fixed before enforcement.
 
-The steps, in Security & Compliance PowerShell and Exchange Online PowerShell. Placeholders, used once each: `<admin>@contoso.example` is the operator's account; `<copilot-pilot>@contoso.example` is a mail-enabled group of pilot users; `<label-guid>` is a sensitivity label's GUID from `Get-Label`. Commands were checked against Learn on Nov 11, 2026; run them against a test tenant first. In GCC High add `-ExchangeEnvironmentName O365USGovGCCHigh` to `Connect-ExchangeOnline`, and in DoD `-ExchangeEnvironmentName O365USGovDoD`; for `Connect-IPPSSession` add the parameters in the comment.[^c11-scc-connect][^c11-exo-connect]
+The steps, in Security & Compliance PowerShell and Exchange Online PowerShell. Placeholders, used once each: `<admin>@contoso.example` is the operator's account; `<copilot-pilot>@contoso.example` is a mail-enabled group of pilot users; `<label-guid>` is a sensitivity label's GUID from `Get-Label`. Commands were checked against Learn on Nov 11, 2026; run them against a test tenant first.
 
 **Step 1. Confirm that auditing is on** (Exchange Online PowerShell; the value is always `False` in Security & Compliance PowerShell, so don't read it there).[^c11-audit-on]
 
@@ -207,10 +205,6 @@ Search-UnifiedAuditLog -StartDate (Get-Date).AddDays(-1) -EndDate (Get-Date) `
 **Step 4. Create the DLP for Microsoft 365 Copilot policy in simulation**, keeping the labels the decision record names out of Copilot processing. The location value is Microsoft's fixed identifier for the Copilot location, from Learn's example.[^c11-new-dlp]
 
 ```powershell
-# GCC High: Connect-IPPSSession -UserPrincipalName <admin>@contoso.example `
-#   -ConnectionUri https://ps.compliance.protection.office365.us/powershell-liveid/ `
-#   -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
-# DoD:      -ConnectionUri https://l5.ps.compliance.protection.office365.us/powershell-liveid/ (same endpoint URI)
 Connect-IPPSSession -UserPrincipalName <admin>@contoso.example
 
 # Find the GUID of each label to exclude (for example the CUI Specified sublabels).
@@ -323,7 +317,7 @@ The **policy owner** owns the list of approved AI apps and the labels excluded f
 - Copilot works in the user's security context and honors labels: a user needs both VIEW and EXTRACT on encrypted content for Copilot to summarize it, so the usage rights in each sublabel are an AI decision.
 - Oversharing is the AI risk an agency already has. Run the data risk assessment and fix what it finds before Copilot reaches a population.
 - DLP for Microsoft 365 Copilot keeps chosen labels out of Copilot processing and sensitive prompts out of web grounding; the file and email exclusion is E5-level licensing, and its absence is a licensing decision, not a failed control.
-- Government availability is uneven: DSPM for AI sees only supported AI sites in GCC High and DoD, several Copilot features aren't available in GCC High, and Learn's two pages disagree on Insider Risk Management in GCC High.
+- GCC availability differs from commercial: DSPM for AI sees only Microsoft Copilot and supported AI sites in GCC, and web grounding is off by default.
 - Agent identities are Book 17's; Security Copilot is out of scope.
 
 ::: {.callout-tip}
@@ -334,7 +328,7 @@ The **policy owner** owns the list of approved AI apps and the labels excluded f
 [^c11-copilot-arch]: Microsoft Learn, "Data protection and auditing for Microsoft Copilot," section "How Microsoft Copilot works with sensitivity labels and encryption" (permissions first; EXTRACT and VIEW for encrypted content; VIEW without EXTRACT returns a link; highest-priority label shown and inherited; protection while open outside the tenant; user-defined permissions, Double Key Encryption, Teams meetings and chats), <https://learn.microsoft.com/copilot/plan/architecture-data-protection-auditing> (accessed Nov 11, 2026).
 [^c11-copilot-considerations]: Microsoft Learn, "Considerations to manage Microsoft 365 Copilot and Channel Agent in Teams for security and compliance," section "Information protection considerations for Microsoft 365 Copilot" (EXTRACT is the usage right with the common name Copy that determines whether Copilot or agents display text from encrypted content; the Rights Management owner always has EXTRACT), <https://learn.microsoft.com/purview/ai-m365-copilot-considerations> (accessed Nov 11, 2026).
 [^c11-entra-apps]: Microsoft Learn, "Use Microsoft Purview to manage data security & compliance for Entra-registered AI apps," section "Capabilities supported" (without labels enabled for SharePoint and OneDrive, encrypted files Copilot and agents can access are limited to data in use from Office apps on Windows; S/MIME-protected email isn't returned by Copilot), <https://learn.microsoft.com/purview/ai-entra-registered> (accessed Nov 11, 2026).
-[^c11-copilot-sd]: Microsoft Learn, "Microsoft Copilot" service description, section "Feature availability" (availability by Commercial, GCC, GCCH and DoD; web grounding not enabled by default for government clouds; Purview controls require a Purview license, part of Microsoft 365 G3/G5 or standalone; "Insider Risk Management isn't currently available for GCC-High"), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/microsoft-365-copilot> (accessed Nov 11, 2026).
+[^c11-copilot-sd]: Microsoft Learn, "Microsoft Copilot" service description, section "Feature availability" (availability by Commercial and GCC; web grounding not enabled by default for GCC; Purview controls require a Purview license, part of Microsoft 365 G3/G5 or standalone), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/microsoft-365-copilot> (accessed Nov 11, 2026).
 [^c11-dspm-overshare]: Microsoft Learn, "Prevent oversharing with data risk assessments from Data Security Posture Management" (generative AI amplifies oversharing; weekly default assessment of the top 100 SharePoint sites; custom and item-level assessments; Protect and Monitor actions including Restricted Content Discovery; export formats; limits), <https://learn.microsoft.com/purview/data-security-posture-management-oversharing> (accessed Nov 11, 2026).
 [^c11-dspm-new]: Microsoft Learn, "Learn about Data Security Posture Management" (current version; DSPM for AI renamed classic; data security objectives; AI observability; activity explorer AI activities tab; data risk assessments; Compliance Administrator role; Security Copilot integrations), <https://learn.microsoft.com/purview/data-security-posture-management-learn-about> (accessed Nov 11, 2026).
 [^c11-dspm-considerations]: Microsoft Learn, "Considerations for DSPM for AI to manage data security and compliance protections for AI interactions - (classic)," sections "Prerequisites for Data Security Posture Management for AI," "Prerequisites for Microsoft 365 item-level scanning for data risk assessments," "One-click policies from Data Security Posture Management for AI" and "Activity explorer events," <https://learn.microsoft.com/purview/dspm-for-ai-considerations> (accessed Nov 11, 2026).
@@ -342,9 +336,5 @@ The **policy owner** owns the list of approved AI apps and the labels excluded f
 [^c11-dlp-copilot]: Microsoft Learn, "Learn about using Microsoft Purview Data Loss Prevention to protect interactions with Microsoft 365 Copilot, Copilot Chat, and Cowork" (the four protections; supported conditions and actions; external email in preview; email sent on or after January 1, 2025; calendar invites not supported; Custom template only; simulation; up to four hours to take effect; evaluation at file open), <https://learn.microsoft.com/purview/dlp-microsoft365-copilot-location-learn-about> (accessed Nov 11, 2026).
 [^c11-purview-sd]: Microsoft Learn, "Microsoft Purview service description," section "Microsoft Purview Data Loss Prevention (DLP) for Microsoft Copilot" (DLP to restrict Copilot from processing files and emails included in Microsoft 365 E5/A5, Office 365 E5/A5 and the Purview suites, not in E3; DLP for prompts available to all Copilot users), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description> (accessed Nov 11, 2026).
 [^c11-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4 (DSPM for AI Available, note 2: "Browse to URL policy cannot be created. Only Microsoft Copilot and supported AI sites are currently available in DSPM for AI within GCC"; endpoint DLP, Insider Risk Management and Communication Compliance rows), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c11-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4 (DSPM for AI Available, note 2: only supported AI sites in GCC-H and DoD; Insider Risk Management core features Available), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c11-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4 (DSPM for AI Available, note 2 as for GCC High), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).
 [^c11-audit-on]: Microsoft Learn, "Turn auditing on or off" (verify with `Get-AdminAuditLogConfig` in Exchange Online PowerShell; the value is always False in Security & Compliance PowerShell; turn on with `Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true`; Audit Logs role), <https://learn.microsoft.com/purview/audit-log-enable-disable> (accessed Nov 11, 2026).
 [^c11-new-dlp]: Microsoft Learn, "New-DlpCompliancePolicy," Example 4 (DLP policy for Microsoft 365 Copilot with the Copilot location, `-EnforcementPlanes CopilotExperiences`, an advanced rule matching a label and `-RestrictAccess` `ExcludeContentProcessing`), <https://learn.microsoft.com/powershell/module/exchangepowershell/new-dlpcompliancepolicy> (accessed Nov 11, 2026).
-[^c11-scc-connect]: Microsoft Learn, "Connect to Security & Compliance PowerShell," Step 2 (GCC High and DoD `ConnectionUri` and `AzureADAuthorizationEndpointUri` values), <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (accessed Nov 11, 2026).
-[^c11-exo-connect]: Microsoft Learn, "Connect to Exchange Online PowerShell," Step 2 (`-ExchangeEnvironmentName` values `O365USGovGCCHigh` and `O365USGovDoD`), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> (accessed Nov 11, 2026).

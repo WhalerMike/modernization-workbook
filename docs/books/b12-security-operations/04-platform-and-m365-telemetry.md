@@ -280,10 +280,8 @@ The Management Activity API relies on Entra ID and OAuth2; the collector is an a
 |---|---|---|
 | Enterprise (commercial) | `https://manage.office.com` | `login.microsoftonline.com` |
 | GCC | `https://manage-gcc.office.com` | `login.microsoftonline.com` |
-| GCC High | `https://manage.office365.us` | `login.microsoftonline.us` |
-| DoD | `https://manage.protection.apps.mil` | `login.microsoftonline.us` |
 
-GCC tenants sit in commercial Entra ID and GCC High and DoD tenants in Azure Government's,[^c04-feature-avail] which is where the authority column comes from.[^c04-graph-deployments] The source page listed `login.windows.net` for GCC; the program uses `login.microsoftonline.com`, the commercial authority Microsoft documents.
+GCC tenants sit in commercial Entra ID,[^c04-feature-avail] which is where the authority column comes from.[^c04-graph-deployments] The source page listed `login.windows.net` for GCC; the program uses `login.microsoftonline.com`, the commercial authority Microsoft documents.
 
 ::: {.callout-note}
 ## GCC differs here even though it matches worldwide elsewhere
@@ -368,7 +366,7 @@ Turning on the unified audit log doesn't by itself meet M-26-14's baseline of si
 | Audit (Premium) plus the 10-Year Audit Log Retention add-on | Up to 10 years, per licensed user, under a policy that selects it[^c04-retention-policies][^c04-audit-solutions] |
 | Non-user entities (service principals, system events, application activity) | A fixed one year, not configurable; custom policies don't apply[^c04-audit-solutions] |
 
-Audit (Premium) comes with Microsoft 365 or Office 365 E5 and G5, the Microsoft Purview Suite, and the E5/G5 eDiscovery and Audit add-ons.[^c04-purview-sd] In GCC and GCC High, Microsoft lists Audit (Standard), Audit (Premium), one-year log retention, the 10-year retention option and increased Management Activity API bandwidth as available.[^c04-purview-gcc][^c04-purview-gcch]
+Audit (Premium) comes with Microsoft 365 or Office 365 E5 and G5, the Microsoft Purview Suite, and the E5/G5 eDiscovery and Audit add-ons.[^c04-purview-sd] In GCC, Microsoft lists Audit (Standard), Audit (Premium), one-year log retention, the 10-year retention option and increased Management Activity API bandwidth as available.[^c04-purview-gcc]
 
 ::: {.callout-warning}
 ## Retention follows the user's license, not the tenant's
@@ -381,7 +379,7 @@ The program's position is that the Purview retention tier is not the evidence st
 
 ### Microsoft Sentinel ingestion
 
-For Microsoft Sentinel, the **Microsoft 365** (formerly Office 365) connector ingests Exchange, SharePoint and Teams activity into the `OfficeActivity` table, with no custom client.[^c04-officeactivity] Those three data types are free to ingest.[^c04-sentinel-billing] The connector is generally available for GCC (on commercial Azure) and for GCC High and DoD (on Azure Government).[^c04-feature-avail] It doesn't cover every workload in the unified audit log, so the program runs both: the connector for SOC detections on the three core workloads, and a Management Activity API collector for the full feed, including `Audit.General` and `DLP.All`, with the provenance the evidence contract in [Chapter 02](02-the-evidence-contract.md) requires.
+For Microsoft Sentinel, the **Microsoft 365** (formerly Office 365) connector ingests Exchange, SharePoint and Teams activity into the `OfficeActivity` table, with no custom client.[^c04-officeactivity] Those three data types are free to ingest.[^c04-sentinel-billing] The connector is generally available for GCC (on commercial Azure).[^c04-feature-avail] It doesn't cover every workload in the unified audit log, so the program runs both: the connector for SOC detections on the three core workloads, and a Management Activity API collector for the full feed, including `Audit.General` and `DLP.All`, with the provenance the evidence contract in [Chapter 02](02-the-evidence-contract.md) requires.
 
 ### Verify Microsoft 365 emission
 
@@ -416,7 +414,7 @@ The record types are values of `AuditLogRecordType`.[^c04-mgmt-schema] The sourc
 The chapter has two procedures: Azure emission (Parts 1 to 3) and Microsoft 365 audit collection (Part 4). This section applies [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions to both, reusing what the parts already say.
 
 **Authority:** Mandated for the retention floor (OMB M-26-14, [Retention: the tier that decides the evidence](#retention-the-tier-that-decides-the-evidence)). Microsoft-recommended for verifying that unified auditing is on and for using the Management Activity API rather than `Search-UnifiedAuditLog` for programmatic collection (Learn pages cited above, read Oct 21, 2026), and for staging policy assignments with `DoNotEnforce` before enforcing them.[^c04-sdp] Risk-based recommended for enabling all eight activity log categories, the `allLogs` initiative at the top management group, and running both the Sentinel connector and the API collector, which are the program's design.
-**Applies:** All Azure subscriptions and Microsoft 365 tenants. License-dependent: audit retention beyond 180 days follows each user's license ([the warning above](#retention-the-tier-that-decides-the-evidence)). Environment-dependent: the Management Activity API host by plan ([Step 3](#step-3-register-the-collector)); the Microsoft 365 connector is GA in GCC, GCC High and DoD.
+**Applies:** All Azure subscriptions and Microsoft 365 tenants. License-dependent: audit retention beyond 180 days follows each user's license ([the warning above](#retention-the-tier-that-decides-the-evidence)). Environment-dependent: the Management Activity API host by plan ([Step 3](#step-3-register-the-collector)); the Microsoft 365 connector is GA in GCC.
 
 **Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
 
@@ -510,7 +508,6 @@ All three emission paths now land in one workspace, with one verification loop a
 [^c04-audit-solutions]: Microsoft Learn, "Learn about auditing solutions in Microsoft Purview," sections "Comparison of key capabilities" (note 2) and "Audit (Premium)," <https://learn.microsoft.com/purview/audit-solutions-overview> (accessed Oct 21, 2026).
 [^c04-purview-sd]: Microsoft Learn, "Microsoft Purview service description," section "Microsoft Purview Audit (Premium)," <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description> (accessed Oct 21, 2026).
 [^c04-purview-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," step 4 (Audit (Standard) and Audit (Premium) rows), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Oct 21, 2026).
-[^c04-purview-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," step 4 (Audit (Standard) and Audit (Premium) rows), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Oct 21, 2026).
 [^c04-officeactivity]: Microsoft Learn, Azure Monitor Logs table reference, "OfficeActivity," <https://learn.microsoft.com/azure/azure-monitor/reference/tables/officeactivity> (accessed Oct 21, 2026).
 [^c04-sentinel-billing]: Microsoft Learn, "Plan costs and understand Microsoft Sentinel pricing and billing," section "Free data sources," <https://learn.microsoft.com/azure/sentinel/billing> (accessed Oct 21, 2026).
 [^c04-sdp]: Microsoft Learn, "Safe deployment of Azure Policy assignments," section "Steps for safe deployment of Azure Policy assignments with modify or deployIfNotExists effects" (assign with `enforcementMode` `DoNotEnforce`, validate compliance, then set `Default` tier by tier), <https://learn.microsoft.com/azure/governance/policy/how-to/policy-safe-deployment-practices>, and "Azure Policy assignment structure," section "Enforcement mode," <https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure#enforcement-mode> (both accessed Nov 11, 2026).

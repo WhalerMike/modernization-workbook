@@ -17,7 +17,7 @@ Workbook folder: `docs/books/b19-developer-workbook/`. Files and folders startin
 
 ## Every chapter has
 
-Goal and audience; the code (what it builds on, what the chapter adds, the tests); Lab 1 against fixtures with no tenant; Lab 2 in a test tenant with a back-out step; a verified facts table (endpoint, least-privileged permission, role, US Government cloud availability, release stage); dangers with the guard for each; a checklist. Run every lab command before writing its expected output.
+Goal and audience; the code (what it builds on, what the chapter adds, the tests); Lab 1 against fixtures with no tenant; Lab 2 in a test tenant with a back-out step; a verified facts table (endpoint, least-privileged permission, role, GCC availability, release stage); dangers with the guard for each; a checklist. Run every lab command before writing its expected output.
 
 ## Rules
 

@@ -76,10 +76,10 @@ A lab needs a tenant or subscription the learner can break. There are four commo
 |---|---|---|
 | Microsoft 365 Developer Program sandbox | A Microsoft 365 E5 developer subscription with 25 user licenses, which includes Intune;[^c06-ms-devprog] Microsoft 365 E5 includes Entra ID P2, the license Privileged Identity Management needs[^c06-entra-lic] | Eligible Visual Studio Professional or Enterprise subscribers, ISV Success and eligible partner program members, and Premier or Unified Support customers; lasts up to 90 days and renews with development activity; for development purposes only; not offered in Microsoft's government clouds[^c06-ms-devprog] |
 | Azure free trial | An Azure subscription for 30 days, enough for the Learn exercises and short platform labs[^c06-ms-learn-faq] | Commercial Azure only |
-| Microsoft 365 Government trial | A free one-month trial of Office 365 GCC | GCC only; trials are available only to U.S. government entities; no trials of GCC High or DoD[^c06-ms-gcc-trial][^c06-ms-gcc] |
+| Microsoft 365 Government trial | A free one-month trial of Office 365 GCC | GCC only; trials are available only to U.S. government entities[^c06-ms-gcc-trial][^c06-ms-gcc] |
 | Azure Government trial | An Azure Government subscription | Customers are subject to validation of eligibility before a trial is provisioned[^c06-azgov] |
 
-Two consequences follow. First, many people won't qualify for a developer sandbox on their own; the agency's program office should arrange lab tenants rather than leave each learner to find one. Second, no free sandbox exists in GCC High or DoD, and the developer program doesn't run in any government cloud. Labs that need government-cloud behavior have to run in a non-production tenant or subscription the agency owns.
+Two consequences follow. First, many people won't qualify for a developer sandbox on their own; the agency's program office should arrange lab tenants rather than leave each learner to find one. Second, the developer program doesn't run in GCC or any other government cloud. Labs that need government-cloud behavior have to run in a non-production tenant or subscription the agency owns.
 
 AWS has the same split. AWS GovCloud (US) is a pair of isolated U.S. regions for verified U.S. government agencies and entities, and root account holders are screened to confirm U.S. person status. GovCloud accounts also use their own identity and access management system and credentials.[^c06-govcloud] A lab in a standard AWS account teaches the service, but not the GovCloud account model.
 

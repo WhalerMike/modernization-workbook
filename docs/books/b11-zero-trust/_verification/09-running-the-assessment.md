@@ -19,7 +19,7 @@ Writer W4. Sources: `docs/whitepapers/scubagear-integration-whitepaper.md` (v1.3
 | 11 | v1.8.0 products: aad, defender, exo, powerplatform, sharepoint, teams | Running ScubaGear | verified | v1.8.0 parameters.md |
 | 12 | `Install-Module -Name ScubaGear`; `Initialize-SCuBA` at v1.8.0, renamed `Install-ScubaDependencies` on main with alias; `Invoke-SCuBA -Version` | Code | verified (corrected: README on main shows the new name, not yet released) | v1.8.0 and main dependencies.md; v1.8.0 README |
 | 13 | BOD submissions use config file and `-Organization`; others `-SilenceBODWarnings` | Code | verified | v1.8.0 README |
-| 14 | `-M365Environment` values commercial, gcc, gcchigh, dod; `-ConfigFilePath`, `-OutPath` | Code | verified | v1.8.0 parameters.md |
+| 14 | `-M365Environment` values commercial, gcc; `-ConfigFilePath`, `-OutPath` | Code | verified | v1.8.0 parameters.md |
 | 15 | Config file: annotations, omissions with rationale and optional expiration, exclusions (e.g., emergency access) | Running ScubaGear | verified | v1.8.0 configuration.md |
 | 16 | Output files incl. `ScubaResults_{UUID}.json`, `ScubaResults.csv`, `ActionPlan.csv` (failing SHALL only) | Outputs table | verified (source listed none of these) | v1.8.0 reports.md |
 | 17 | JSON carries ID, requirement, result, criticality, details, original result, comments | Outputs | verified | tooloutputschema.md (main) |
@@ -35,7 +35,7 @@ Writer W4. Sources: `docs/whitepapers/scubagear-integration-whitepaper.md` (v1.3
 | 27 | `Install-PSResource`, `Connect-ZtAssessment -Tenant`, `Invoke-ZtAssessment -Path -DisableTelemetry` | Code | verified | ZTA README and guide; Learn shows `Install-Module` |
 | 28 | Default output `.\ZeroTrustReport\ZeroTrustAssessmentReport.html` | Running ZTA | verified | Learn get-started |
 | 29 | Connects separately to Graph, Azure, Exchange, S&C, SPO, AIP; Graph doesn't grant the others | Running ZTA | verified | ZTA guide |
-| 30 | GCC uses worldwide Graph and Azure portal endpoints; `-Environment` Global/USGov/USGovDoD/China/Germany | Running ZTA | verified | Learn Graph national clouds; `Connect-ZtAssessment.ps1` |
+| 30 | GCC uses worldwide Graph and Azure portal endpoints; `-Environment` default Global | Running ZTA | verified | Learn Graph national clouds; `Connect-ZtAssessment.ps1` |
 | 31 | Telemetry carries tenant ID; `-DisableTelemetry` | Running ZTA | verified (new) | ZTA guide |
 | 32 | May take >24 hours; don't stop it | Running ZTA | verified | Learn get-started |
 | 33 | Outputs: report HTML, classic HTML, `zt-export\ZeroTrustAssessmentReport.json`, `ZeroTrustWorkshop.json`, export folder is assessment data | Outputs table | verified (corrected: source said JSON not needed and implied a single HTML) | ZTA README and guide |
@@ -113,7 +113,7 @@ Follows the source watch above (issue #160). Sources: ScubaGear tag `v2.0.0` (ba
 | 1 | Commands, parameters and outputs checked against v2.0.0 docs | Running ScubaGear | verified | v2.0.0 README, dependencies.md, parameters.md, reports.md |
 | 2 | Products incl. Security Suite; `defender` no longer accepted; default run excludes Power Platform and Power BI | Running ScubaGear | verified | v2.0.0 parameters.md; transition doc |
 | 3 | `Install-ScubaDependencies` (formerly `Initialize-SCuBA`, alias retained) installs OPA; code block updated | Running ScubaGear | verified | v2.0.0 dependencies.md |
-| 4 | `-M365Environment` required for interactive GCC/GCC High/DoD; auto-detected for service principal | Running ScubaGear | verified | v2.0.0 parameters.md; release notes |
+| 4 | `-M365Environment` required for interactive GCC; auto-detected for service principal | Running ScubaGear | verified | v2.0.0 parameters.md; release notes |
 | 5 | BOD 25-01 runs: `-ConfigFilePath` and `-Organization`; `-SilenceBODWarnings` otherwise | Running ScubaGear | verified (unchanged) | v2.0.0 README |
 | 6 | Config migration: `defender`→`securitysuite`, `Defender:`→`SecuritySuite:`, migrated IDs in annotations/omissions/exclusions; split ranges; removed policies dropped | Running ScubaGear | verified (new) | v2.0.0 transition doc |
 | 7 | Migrated config goes back through approval | Running ScubaGear | restated-as-design | Program position (Ch 10 approval rules) |
@@ -123,12 +123,12 @@ Follows the source watch above (issue #160). Sources: ScubaGear tag `v2.0.0` (ba
 
 ## Moderate-civilian sweep, October 29, 2026
 
-The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only or Defense-specific was checked.
+The workbook targets FedRAMP Moderate civilian agencies. Framing that read as High-only was checked.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | CISA's SCuBA mapping is limited to FedRAMP High baseline controls; added: the High baseline contains every Moderate control, so the mapping serves a Moderate system too | Mapping sentence | fact unchanged; added sentence is inference (NIST SP 800-53B baselines are cumulative) | ScubaGear v2.0.0 mappings.md; NIST SP 800-53B |
-| 2 | Adapter taxonomy slot "STIG compliance" | Honest limits | restated 2026-10-29: "host configuration against CIS Benchmarks or the agency's CM-6 settings" (Moderate civilian baseline, not DISA) | Brief; NIST SP 800-53 Rev. 5 CM-6 (agency-chosen common secure configurations) |
+| 2 | Adapter taxonomy slot "STIG compliance" | Honest limits | restated 2026-10-29: "host configuration against CIS Benchmarks or the agency's CM-6 settings" (Moderate civilian baseline) | Brief; NIST SP 800-53 Rev. 5 CM-6 (agency-chosen common secure configurations) |
 
 ## Zero Trust closure, Phase 4, November 11, 2026
 

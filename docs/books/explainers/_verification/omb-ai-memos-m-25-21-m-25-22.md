@@ -34,7 +34,7 @@ Verdicts: **verified** (the source says it); **computed** (arithmetic on a verif
 | 12 | CAIO responsibilities A–J as summarized | CAIO | verified | omb-m2521 §3(a)(i)(A)–(J) |
 | 13 | Waiver authority not delegable; pilots need CAIO certification (delegability not stated) | CAIO | verified | omb-m2521 §4(a)(i)–(ii) |
 | 14 | Board: Deputy Secretary chair, CAIO vice-chair; required and "when relevant" representation; external experts; existing bodies allowed | Board | verified | omb-m2521 §3(a)(ii) |
-| 15 | Strategy contents (i) and (ii)(A)–(G); use-case element excludes DoD and the IC; FOIA-protected information can be left out; the authorization and continuous-monitoring footnote | Strategy | verified | omb-m2521 §2(a), fns 9 and 11 |
+| 15 | Strategy contents (i) and (ii)(A)–(G); use-case element excepts some national security agencies; FOIA-protected information can be left out; the authorization and continuous-monitoring footnote | Strategy | verified | omb-m2521 §2(a), fns 9 and 11 |
 | 16 | That footnote points at existing CA-6 and CA-7 work | Strategy | inference | — |
 | 17 | Compliance plan: plan or "no covered AI" determination, posted publicly; covers updates to internal principles; OMB templates promised | Compliance plan | verified | omb-m2521 §3(b)(ii), fn 23 |
 | 18 | Recheck a 2025 "no covered AI" determination before 2027 | Compliance plan | inference (labelled program reading) | — |

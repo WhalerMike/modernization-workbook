@@ -62,12 +62,10 @@ Three rules are specific to Purview.
 
 The baseline is a dated JSON export of every Purview setting the book's controls depend on, committed to the agency's configuration repository. The first export is the **Configured** evidence for the whole book; every later export is compared with it.
 
-Placeholders: `<admin>@contoso.example` is the operator's account; `<repo>` is the local path of the configuration repository. Commands were checked against Learn on Nov 11, 2026; run them against a test tenant first.[^c12-get-label][^c12-get-autorule][^c12-aip] In GCC High and DoD, use the connection parameters in the comments.[^c12-scc-connect][^c12-exo-connect]
+Placeholders: `<admin>@contoso.example` is the operator's account; `<repo>` is the local path of the configuration repository. Commands were checked against Learn on Nov 11, 2026; run them against a test tenant first.[^c12-get-label][^c12-get-autorule][^c12-aip]
 
 ```powershell
 # Security & Compliance PowerShell. GCC: no extra parameters.
-# GCC High: -ConnectionUri https://ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
-# DoD:      -ConnectionUri https://l5.ps.compliance.protection.office365.us/powershell-liveid/ -AzureADAuthorizationEndpointUri https://login.microsoftonline.us/organizations
 Connect-IPPSSession -UserPrincipalName <admin>@contoso.example
 
 $stamp = Get-Date -Format "yyyy-MM-dd"
@@ -85,7 +83,6 @@ Disconnect-ExchangeOnline -Confirm:$false
 
 ```powershell
 # Exchange Online PowerShell: IRM and audit settings.
-# GCC High: -ExchangeEnvironmentName O365USGovGCCHigh   DoD: -ExchangeEnvironmentName O365USGovDoD
 Connect-ExchangeOnline -UserPrincipalName <admin>@contoso.example
 Get-IRMConfiguration   | ConvertTo-Json -Depth 5 | Out-File "$out\irm-configuration.json" -Encoding utf8
 Get-AdminAuditLogConfig | Select-Object UnifiedAuditLogIngestionEnabled |
@@ -95,7 +92,6 @@ Disconnect-ExchangeOnline -Confirm:$false
 
 ```powershell
 # AIPService module: the Rights Management service configuration (Chapter 05).
-# GCC High and DoD: Connect-AipService -EnvironmentName AzureUSGovernment
 Connect-AipService
 Get-AipServiceConfiguration | ConvertTo-Json -Depth 5 | Out-File "$out\aipservice-configuration.json" -Encoding utf8
 Disconnect-AipService
@@ -229,7 +225,7 @@ Each control's evidence, by the five kinds in [Book 00, Appendix D](../b00-orien
 
 : Book 20 evidence catalog {.striped .hover}
 
-Audit retention sets how far back the operational evidence can reach. Audit (Standard) keeps records 180 days. Audit (Premium) keeps Microsoft Entra ID, Exchange, OneDrive and SharePoint records for one year by default for users with an E5-level license and lets audit log retention policies keep records up to one year, or ten years for users who also hold the 10-year retention add-on; audit records from non-user entities are kept for a fixed year.[^c12-audit-retention] Audit (Premium), its one-year and ten-year retention are listed as available in GCC, GCC High and DoD.[^c12-gcc][^c12-gcch][^c12-dod] Where the federal logging requirement asks for longer, the logs go to the agency's log platform under [Book 12, Chapter 04](../b12-security-operations/04-platform-and-m365-telemetry.md); that is a licensing and architecture decision, recorded as such.
+Audit retention sets how far back the operational evidence can reach. Audit (Standard) keeps records 180 days. Audit (Premium) keeps Microsoft Entra ID, Exchange, OneDrive and SharePoint records for one year by default for users with an E5-level license and lets audit log retention policies keep records up to one year, or ten years for users who also hold the 10-year retention add-on; audit records from non-user entities are kept for a fixed year.[^c12-audit-retention] Audit (Premium), its one-year and ten-year retention are listed as available in GCC.[^c12-gcc] Where the federal logging requirement asks for longer, the logs go to the agency's log platform under [Book 12, Chapter 04](../b12-security-operations/04-platform-and-m365-telemetry.md); that is a licensing and architecture decision, recorded as such.
 
 **Evidence checklist** (for this chapter's own controls)
 
@@ -272,7 +268,7 @@ The platform owner owns the baseline, the drift run, the metrics and the evidenc
 - Data events follow Book 12's response ladder, with privacy rules first, the label as evidence and a label change as a containment option.
 - Six roles separate who decides, who builds, who runs, who watches, who answers users and who assesses; the assessor is accountable for the package, and closure stays with the authorizing official or assessor.
 - Metrics measure protected coverage and effectiveness: labeled share of sensitive content, container coverage, true-positive and override rates, recovery and audit-search test passes.
-- A license or a government-cloud gap is a recorded decision or environment fact, never a failed control.
+- A license or a GCC gap is a recorded decision or environment fact, never a failed control.
 
 ::: {.callout-tip}
 ## Continue the book
@@ -281,12 +277,8 @@ The platform owner owns the baseline, the drift run, the metrics and the evidenc
 
 [^c12-get-label]: Microsoft Learn, "Get-Label" (Security & Compliance PowerShell; view sensitivity labels), <https://learn.microsoft.com/powershell/module/exchangepowershell/get-label> (accessed Nov 11, 2026). The companion cmdlets `Get-LabelPolicy`, `Get-AutoSensitivityLabelPolicy`, `Get-DlpCompliancePolicy` and `Get-DlpComplianceRule` are in the same module reference.
 [^c12-get-autorule]: Microsoft Learn, "Get-AutoSensitivityLabelRule" (available only in Security & Compliance PowerShell; views auto-labeling policy rules), <https://learn.microsoft.com/powershell/module/exchangepowershell/get-autosensitivitylabelrule> (accessed Nov 11, 2026).
-[^c12-aip]: Microsoft Learn, "Get-AipServiceConfiguration" (gets the tenant's protection service configuration; "You must use PowerShell to see a full list of protection configuration values for your tenant"; output includes SuperUsersEnabled and SuperUsers) and "Connect-AipService" (`-EnvironmentName` accepts AzureCloud, AzureChinaCloud, AzureUSGovernment), <https://learn.microsoft.com/powershell/module/aipservice/get-aipserviceconfiguration> and <https://learn.microsoft.com/powershell/module/aipservice/connect-aipservice> (accessed Nov 11, 2026).
-[^c12-scc-connect]: Microsoft Learn, "Connect to Security & Compliance PowerShell," Step 2 (GCC High and DoD connection values), <https://learn.microsoft.com/powershell/exchange/connect-to-scc-powershell> (accessed Nov 11, 2026).
-[^c12-exo-connect]: Microsoft Learn, "Connect to Exchange Online PowerShell," Step 2 (`-ExchangeEnvironmentName` values `O365USGovGCCHigh` and `O365USGovDoD`), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> (accessed Nov 11, 2026).
+[^c12-aip]: Microsoft Learn, "Get-AipServiceConfiguration" (gets the tenant's protection service configuration; "You must use PowerShell to see a full list of protection configuration values for your tenant"; output includes SuperUsersEnabled and SuperUsers) and "Connect-AipService", <https://learn.microsoft.com/powershell/module/aipservice/get-aipserviceconfiguration> and <https://learn.microsoft.com/powershell/module/aipservice/connect-aipservice> (accessed Nov 11, 2026).
 [^c12-app-only]: Microsoft Learn, "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell," section "Connection examples," <https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2> (accessed Nov 11, 2026).
 [^c12-audit-on]: Microsoft Learn, "Turn auditing on or off," section "Audit records when auditing status is changed" (`Search-UnifiedAuditLog -Operations Set-AdminAuditLogConfig`), <https://learn.microsoft.com/purview/audit-log-enable-disable> (accessed Nov 11, 2026).
 [^c12-audit-retention]: Microsoft Learn, "Learn about auditing solutions in Microsoft Purview," sections "Comparison of key capabilities" and "Audit (Premium)" (180-day retention in Audit Standard; one-year default for Entra ID, Exchange, OneDrive and SharePoint records in Audit Premium; up to ten years with the add-on; non-user records retained one year), <https://learn.microsoft.com/purview/audit-solutions-overview>; and "Manage audit log retention policies" (licensing for longer retention), <https://learn.microsoft.com/purview/audit-log-retention-policies> (both accessed Nov 11, 2026).
 [^c12-gcc]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments," Step 4 (Audit Standard and Audit Premium rows, including log retention of one year and ten years), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments> (accessed Nov 11, 2026).
-[^c12-gcch]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments," Step 4 (Audit rows), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments> (accessed Nov 11, 2026).
-[^c12-dod]: Microsoft Learn, "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments," Step 4 (Audit rows), <https://learn.microsoft.com/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments> (accessed Nov 11, 2026).

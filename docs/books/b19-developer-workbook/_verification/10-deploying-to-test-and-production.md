@@ -21,7 +21,7 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 | 3 | `Connect-MgGraph -ClientId -TenantId -CertificateThumbprint`, `-Environment`, `-NoWelcome`, `-LoginHint`; `Get-MgContext` AuthType AppOnly | Sign-in; step 3b | verified | Learn, Connect-MgGraph; app-only page |
 | 4 | `az account get-access-token --resource` | Step 2c | verified | Learn, az account |
 | 5 | Graph hosts per cloud; GCC on worldwide endpoints | Settings; step 2c; Verified facts | verified (reread) | Learn, national cloud deployments |
-| 6 | Storage suffix `core.windows.net` / `core.usgovcloudapi.net` | Settings; `adm_deploy.py` | verified | Learn, independent clouds storage page |
+| 6 | Storage suffix `core.windows.net` | Settings; `adm_deploy.py` | verified | Learn, independent clouds storage page |
 | 7 | `SynchronizationData-User.Upload` / `.OwnedBy` | Identities | carried forward from Chapter 01 and reread | Learn, Perform bulkUpload |
 | 8 | Notification email mandatory, empty quarantines the job; Start provisioning puts the job in listen mode | Step 2b | verified | Learn, Configure API-driven inbound provisioning app |
 | 9 | Accidental deletions: admin center path, Application Administrator, threshold, notification | Step 2b | verified | Learn, accidental deletions page |
@@ -31,7 +31,7 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 | 13 | evaluateDynamicMembership: beta, delegated only, application not supported | Step 3c; roles | verified (reread) | Learn, evaluateDynamicMembership |
 | 14 | Admin center workflow path; a new workflow is disabled by default | Step 4a | verified | Learn, Create a lifecycle workflow (fetched in full) |
 | 15 | Graph `isEnabled` optional, default true | Step 4a | verified | Learn, workflow resource type |
-| 16 | activate: workflow must be enabled; conditions ignored; LifecycleWorkflows-Workflow.Activate; Lifecycle Workflows Administrator; real-time termination on demand only; national clouds | Steps 4c, waves | verified | Learn, workflow: activate; Run a workflow on-demand |
+| 16 | activate: workflow must be enabled; conditions ignored; LifecycleWorkflows-Workflow.Activate; Lifecycle Workflows Administrator; real-time termination on demand only; global service (GCC) | Steps 4c, waves | verified | Learn, workflow: activate; Run a workflow on-demand |
 | 17 | `userProcessingResults` for run results | Step 4c | verified | Learn, LCW API tutorials |
 | 18 | `Update-MgIdentityGovernanceLifecycleWorkflow` with isEnabled and isSchedulingEnabled; engine checks every three hours, 1 to 24 | Steps 4c, waves | verified | Learn, LCW API tutorials (PowerShell snippet; schedule section) |
 | 19 | Workflow create/update permission LifecycleWorkflows-Workflow.ReadWrite.All | Identities | verified | Learn, New-MgIdentityGovernanceLifecycleWorkflow |
