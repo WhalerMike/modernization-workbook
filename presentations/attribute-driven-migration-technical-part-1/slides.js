@@ -960,12 +960,12 @@ The tiers are how the inventory supports NIST SP 800-53 Rev. 5 control CM-8, Sys
   const s = content(SEC, "Non-person track: service accounts, MSAs and gMSAs");
   tag(s, "What");
   const tb = table(s, "SvcAccts", 1.45, [1.95, 2.55, 4.4, 3.25], ["AD account", "Where the workload runs", "Entra ID or AD target", "Credential"], [
-    ["Traditional (svc- user)", "Calls Entra-protected APIs", "App registration and service principal", "Certificate, or a federated credential"],
-    ["Traditional", "An Azure resource", "Managed identity (user-assigned preferred)", "Managed by Azure"],
-    ["Traditional", "On premises, Kerberos only", "gMSA, or a dMSA on a Windows Server 2025 domain", "Managed by AD"],
-    ["MSA", "On premises", "gMSA (upgrade first: an MSA or gMSA can't become a dMSA)", "Managed by AD"],
-    ["gMSA", "Moving to the cloud", "Workload identity federation or managed identity", "No stored secret"],
-    ["gMSA", "Hybrid", "Keep the gMSA, plus an app registration for cloud calls", "Split"],
+    ["Traditional (svc- user)", "Calls Entra-protected APIs", "Entra ID: app registration and service principal", "Certificate, or a federated credential"],
+    ["Traditional", "An Azure resource", "Entra ID: managed identity (user-assigned preferred)", "Managed by Azure"],
+    ["Traditional", "On premises, Kerberos only", "AD: gMSA, or a dMSA on a Windows Server 2025 domain", "Managed by AD"],
+    ["Managed service account (MSA)", "On premises", "AD: gMSA (upgrade first: an MSA or gMSA can't become a dMSA)", "Managed by AD"],
+    ["gMSA", "Moving to the cloud", "Entra ID: workload identity federation or managed identity", "No stored secret"],
+    ["gMSA", "Hybrid", "Both: AD keeps the gMSA; Entra ID adds an app registration for cloud calls", "Split: AD manages the gMSA password; Entra ID holds the app registration's certificate or federated credential"],
   ], { fontSize: 11.5, limit: 4.75 });
   const a = panel(s, "Owner", 0.6, tb + 0.2, 6.0, null, HEX.teal, HEX.tealTint, "OWNER, SPONSOR AND RECORD", null, [
     "The application owner is identified before the account is touched, and decides its conversion",
@@ -1013,6 +1013,34 @@ AI agents, from Book 17. Microsoft Entra Agent ID gives each agent an agent iden
 
 The callout: check the agency's cloud. Agent ID has no entry on Entra's Azure Government feature list; GCC has a documented subset, and GCC High and DoD should treat agent identities as unavailable until Microsoft confirms in writing. Where they aren't available, the same governance applies to the service principals and managed identities the agents run as.`,
   `Book 02, Chapter 09 — "Workload identity federation," "Conditional Access for workload identities," "Governing service principals"; Book 17, Chapter 04 — "Workload identities," "Agent identities," "Release stage, licensing and government clouds"; Chapter 05 — "The program's rule," "The lifecycle, event by event," "Retirement"; Book 04, Chapters 05 and 06.`);
+};
+
+  // Non-person 3 (new): every non-person identity, where it lives, attributes or tags
+  SL.npiMap = () => {
+  const s = content(SEC, "Non-person identities: where they live, attributes or tags");
+  tag(s, "What");
+  table(s, "NpiMap", 1.45, [2.35, 2.45, 3.45, 1.45, 2.45], ["Identity", "Lives in", "Attributes: fields on the directory object", "Azure tags: plain-text labels", "What reads them"], [
+    ["Traditional service account", "AD: a user object (often svc-)", "SPN, description, password never expires, last logon", "No", "The discovery inventory"],
+    ["Managed service account (MSA)", "AD: bound to one server", "AD attributes; AD manages the password", "No", "The discovery inventory"],
+    ["Group managed service account (gMSA)", "AD: shared by several servers", "AD attributes, including the hosts allowed to retrieve its password", "No", "The inventory: that host list is its blast radius"],
+    ["Delegated managed service account (dMSA)", "AD: Windows Server 2025 domains", "AD attributes: the machine identities it's mapped to", "No", "The discovery inventory"],
+    ["App registration and service principal", "Entra ID", "serviceManagementReference; owners; custom security attributes", "No", "CA application filters; Azure ABAC"],
+    ["Managed identity, system-assigned", "Entra ID, tied to one Azure resource", "servicePrincipalType ManagedIdentity; custom security attributes", "No: its resource is tagged", "Azure ABAC; access reviews (CA can't target it)"],
+    ["Managed identity, user-assigned", "Entra ID, plus its own Azure resource", "As system-assigned", "Yes", "Azure Policy; Resource Graph; ABAC"],
+    ["Arc server's managed identity", "Entra ID, plus the Arc resource", "servicePrincipalType ManagedIdentity", "Yes, on the Arc resource", "Azure Policy; Resource Graph; Update Manager"],
+    ["Workload identity federation", "Entra ID: on an app registration or user-assigned identity", "Issuer, subject, audience; up to 20 per object", "No", "Token exchange"],
+    ["AI agent identity (Agent ID)", "Entra ID: a special service principal", "Sponsor and owner; servicePrincipalType ServiceIdentity", "No", "Lifecycle Workflows sponsor tasks"],
+  ], { fontSize: 10.5, limit: 6.5 });
+  sources(s, "Sources: Guide, non-person track; NPI guide, Step 1; Book 02, Ch 09; Book 06, Ch 09; Book 17, Ch 04. Microsoft Learn: az identity create --tags (Nov. 13, 2026).");
+  notes(s,
+`One slide that puts every non-person identity side by side: where it lives, whether it's described by attributes on the object or by Azure tags, and what reads them.
+
+The four AD kinds live only in AD and carry only AD attributes. A traditional service account is a user object; the discovery inventory reads its SPNs, description, password-never-expires flag and last logon. An MSA is bound to one server and AD manages its password. A gMSA is shared by several servers, and the list of hosts allowed to retrieve its password is its real blast radius. A dMSA, on Windows Server 2025 domains only, is mapped to machine identities. None of them carries Azure tags.
+
+Everything else lives in Entra ID. An app registration and its service principal carry serviceManagementReference, which points at the inventory record, their owners, and optionally custom security attributes such as SystemId, Environment and Tier; Conditional Access application filters and Azure ABAC read those. A managed identity is a service principal too. A system-assigned one is tied to its Azure resource, so the resource is what gets tagged, and Conditional Access can't target it; access reviews cover it instead. A user-assigned one is also its own Azure resource, so it can carry tags itself; Microsoft documents az identity create with tags. An Arc server's managed identity sits behind the Arc machine resource, whose tags are set with azcmagent connect and read by Azure Policy, Resource Graph and Update Manager. A federated credential lives on an app registration or user-assigned identity, and its attributes are the issuer, subject and audience, up to 20 per object. An AI agent identity is a special service principal with a sponsor and owner, governed through the sponsor's Lifecycle Workflows tasks.
+
+The rule of thumb: attributes are fields on the directory object; tags are plain-text labels on Azure resources, read by Azure tools, and never a security boundary or a role scope.`,
+  `${G}, "Non-person identity track," "Attributes" (the store table), "Object types, stores, writers and consumers"; Non-Person Identity implementation guide, Step 1 (1a–1e, 1f); Book 02, Chapter 09 — "Service accounts"; Book 06, Chapter 09 — "What the Connected Machine agent establishes"; Book 17, Chapter 04; Microsoft Learn: az identity create (checked November 13, 2026).`);
 };
 
   // 22 Service principals

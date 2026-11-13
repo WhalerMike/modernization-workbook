@@ -331,6 +331,23 @@ website:
             - docs/training/zero-trust-assessment/02-running-the-assessment-safely.md
             - docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md
             - docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md
+        - section: "Defender XDR learning path"
+          href: docs/training/defender-xdr/index.md
+          contents:
+            - docs/training/defender-xdr/01-architecture-access-and-onboarding.md
+            - docs/training/defender-xdr/02-prevention-and-attack-surface-reduction.md
+            - docs/training/defender-xdr/03-exposure-and-incidents.md
+            - docs/training/defender-xdr/04-hunting-detections-and-identity-signals.md
+            - docs/training/defender-xdr/05-automation-operations-and-evidence.md
+        - section: "Global Secure Access learning path"
+          href: docs/training/global-secure-access/index.md
+          contents:
+            - docs/training/global-secure-access/01-decide-design-and-log-first.md
+            - docs/training/global-secure-access/02-the-client-and-microsoft-traffic.md
+            - docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.md
+            - docs/training/global-secure-access/04-private-apps-and-admin-paths.md
+            - docs/training/global-secure-access/05-internet-access-and-tls-inspection.md
+            - docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md

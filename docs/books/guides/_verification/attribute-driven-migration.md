@@ -244,3 +244,16 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Arc coverage: Windows Server 2012 and 2012 R2 "no new agent versions after November 2026" (row 103) | Windows Server 2012's last new agent version was 1.69, October 2026, serviced for 12 months; 2012 R2 still listed for new agent versions | Microsoft Learn, "Connected Machine agent prerequisites," re-read Nov 9, 2026: "Operating systems no longer supported by new agent versions" and "Azure Connected Machine Agent OS support and deprecation"; matches Book 05 Ch09 SW1 |
 | Arc coverage: Linux releases "get no new agent versions after November 2026" (row 103) | RHEL 7 added to the list; all got 1.69 as their last new agent version in October 2026, as did AlmaLinux 8 and Oracle Linux 8 on Arm64; Azure Linux 3.0 none after February 2027 | Same; matches Book 05 Ch09 SW2 |
 | Footnote `adm-arc-prereq` accessed Oct 29, 2026 | Section names added; accessed Nov 9, 2026 | Same |
+
+## Additions, November 13, 2026 (non-person identity map)
+
+A new subsection, "Where each non-person identity lives: attributes or tags," puts every non-person identity on one table, to match the new slide in the Part 2 technical deck. Each row restates facts the page or its linked chapters already carry, except one new external claim. No content removed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | A user-assigned managed identity is created in a subscription and resource group and takes resource tags (`az identity create` / `update --tags`) | Non-person map, user-assigned row | verified (opened Nov 13, 2026; first checked Oct 30, 2026) | `adm-uami-tags` |
+| 2 | AD service account attributes the inventory reads; gMSA retrieval hosts as blast radius; MSA, gMSA and dMSA traits | Non-person map, AD rows | carried | Non-Person Identity guide, Step 1a; Book 02 Ch 09 |
+| 3 | `serviceManagementReference`, owners, custom security attributes on service principals; `servicePrincipalType` values `ManagedIdentity` and `ServiceIdentity` | Non-person map, Entra rows | carried | Non-Person Identity guide, Steps 1b, 1c, 1f; `adm-csa` |
+| 4 | Arc server's system-assigned managed identity behind an Arc resource whose tags `azcmagent connect --tags` sets | Non-person map, Arc row | carried | Book 06 Ch 09; `adm-azcmagent` |
+| 5 | Federated credentials: issuer, subject, audience; at most 20 per object | Non-person map, federation row | carried | Book 02 Ch 09 |
+| 6 | Conditional Access can't target managed identities; access reviews cover them | Non-person map, system-assigned row | carried | `adm-ca-workload`; `adm-wid-faq` |

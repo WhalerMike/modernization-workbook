@@ -141,6 +141,10 @@ Confirm the exact Windows Server feature names with `Get-WindowsFeature -Name RS
 
 The assessment never uses Domain Admins, DnsAdmins, the CA administrator role or `sysadmin`. Tier A is a dedicated standard account with no added rights; Tier B adds only the narrow, read-only, time-bound delegations in [Book 02, Chapter 07](../../docs/books/b02-identity/07-read-only-discovery.md#the-delegation-request) and [Chapter 08](../../docs/books/b02-identity/08-assessing-the-forest.md#rights). Run `Test-FMPReadAccess` (the first step of every run) to see what this forest lets a default account read; it writes the gaps as `Preflight/DelegationRequest.md`.
 
+**The discovery identity.** Run the kit as one dedicated account per forest with no other elevated memberships, so its activity can be told apart from normal use. When the kit runs on a schedule, run it as a group managed service account, so no password is stored. Grant the Tier B additions below for the assessment window only, and record each grant and its removal.
+
+**What the SQL Server pass doesn't read.** The kit reads no host: no WMI, no service control manager, no registry. `SqlServiceAccounts.csv` lists the user and managed service accounts whose name or description contains the name hint, and whether each holds an `MSSQLSvc` SPN. It doesn't say which account each SQL Server service actually runs as. Confirming that needs local administrator on each host, or a narrower delegation, which [Book 06, Runbook R02](../../docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#the-rights-each-depth-of-discovery-needs) describes, and it's the program's audit in [Runbook R03](../../docs/books/b06-data-platform/r03-the-authentication-audit.md) that reads it. Grant the T-SQL pass's login the permissions in the table, or the `##MS_DefinitionReader##` role, not `##MS_SecurityDefinitionReader##`, which also shows SQL login password hashes.
+
 | Part | Tier A (default read) | Tier B (narrow addition) |
 |---|---|---|
 | Topology, OUs, users, groups, computers, trusts, SPNs, schema | Authenticated user | Read permissions on OUs whose ACLs aren't readable by default |

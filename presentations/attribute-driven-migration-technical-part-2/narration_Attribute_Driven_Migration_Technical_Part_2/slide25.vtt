@@ -1,63 +1,48 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.909
-At an agency our size, the
-limits bite in predictable ways,
+00:00:00.050 --> 00:00:05.325
+Lifecycle Workflows carry joiner, mover
+and leaver, so it helps to know the pieces.
 
 2
-00:00:03.909 --> 00:00:07.275
-and this is the program's
-design guidance for each.
+00:00:05.325 --> 00:00:09.287
+A workflow has a trigger, a
+scope rule and a list of tasks.
 
 3
-00:00:07.275 --> 00:00:10.625
-A workflow per organization
-runs out of a hundred fast,
+00:00:09.287 --> 00:00:13.337
+Custom task extensions call a
+Logic App to reach other systems.
 
 4
-00:00:10.625 --> 00:00:13.900
-so build a few general
-workflows that branch on codes.
+00:00:13.337 --> 00:00:18.101
+Scheduled runs happen on one tenant
+interval, every three hours by default.
 
 5
-00:00:13.900 --> 00:00:17.188
-Build one reusable Logic
-App per integration.
+00:00:18.101 --> 00:00:23.337
+The limits are a hundred workflows, twenty-five
+tasks each and a hundred extensions.
 
 6
-00:00:17.188 --> 00:00:20.706
-Treat every on-demand run as
-a change with a second person,
+00:00:23.337 --> 00:00:25.750
+Two behaviors deserve the red box.
 
 7
-00:00:20.706 --> 00:00:23.401
-because it can disable
-the wrong ten people.
+00:00:25.750 --> 00:00:30.593
+Execution limits can quarantine a scheduled
+run that would touch too many people,
 
 8
-00:00:23.401 --> 00:00:26.199
-Size execution limits so a reorganization
+00:00:30.593 --> 00:00:33.014
+but an on-demand run skips that guardrail,
 
 9
-00:00:26.199 --> 00:00:29.075
-gets quarantined until
-someone approves it.
+00:00:33.014 --> 00:00:35.863
+and it ignores the workflow's
+own conditions too.
 
 10
-00:00:29.075 --> 00:00:33.887
-For urgent terminations, don't wait
-for the schedule: disable and revoke.
-
-11
-00:00:33.887 --> 00:00:37.441
-And until PIV revoke and
-device retire are automated,
-
-12
-00:00:37.441 --> 00:00:39.863
-keep a leaver checklist with owners.
-
-13
-00:00:39.863 --> 00:00:41.860
-Next, what still needs AD.
+00:00:35.863 --> 00:00:37.700
+So what could break at our size?
