@@ -52,9 +52,9 @@ Microsoft's network access APIs are on the Graph `/beta` endpoint, which Learn s
 
 ## Unit 2: Where agencies are, and the decision per function (10 minutes) {#gsa-m1-decision}
 
-Read the guide's [Government cloud and licensing, feature by feature](../../books/guides/global-secure-access-implementation.md#availability) and [Step 1](../../books/guides/global-secure-access-implementation.md#step-1-decision-and-licensing). Learn's limitations page says the service is available in GCC and isn't yet supported in GCC High, DoD or other sovereign clouds; no feature page narrows that, so the GCC column rests on the one sentence, and a preview feature's GCC availability is *not yet specified*. The Graph reference pages list US Government L4 and L5; the guide follows the product page, not the API page, and sends the question to the Microsoft account team.
+Read the guide's [Government cloud and licensing, feature by feature](../../books/guides/global-secure-access-implementation.md#availability) and [Step 1](../../books/guides/global-secure-access-implementation.md#step-1-decision-and-licensing). Learn's limitations page says the service is available in GCC; no feature page narrows that, so the GCC column rests on the one sentence, and a preview feature's GCC availability is *not yet specified*. Re-read the limitations page before each ring.
 
-Licensing follows the profiles. The Microsoft traffic profile, and with it source IP restoration, the compliant network check and universal tenant restrictions, comes with Entra ID P1 or P2; Internet Access and Private Access need their own licenses or the Microsoft Entra Suite. So the decision record has one row per function: adopt, retain the current VPN or SSE, coexist, or defer. In GCC High or DoD, record `defer` and keep the guide's compensating path (a FedRAMP-authorized SSE at the right class, per-application VPN access lists, named-location Conditional Access, device-side tenant restrictions v2 by Group Policy). The guide's [TIC 3.0 alignment](../../books/guides/global-secure-access-implementation.md#tic-alignment) and [comparison with other SSE offerings](../../books/guides/global-secure-access-implementation.md#comparison) feed the same record.
+Licensing follows the profiles. The Microsoft traffic profile, and with it source IP restoration, the compliant network check and universal tenant restrictions, comes with Entra ID P1 or P2; Internet Access and Private Access need their own licenses or the Microsoft Entra Suite. So the decision record has one row per function: adopt, retain the current VPN or SSE, coexist, or defer. A `retain-current` or `defer` row names its compensating controls (for example, the current FedRAMP-authorized SSE, per-application VPN access lists, named-location Conditional Access). The guide's [TIC 3.0 alignment](../../books/guides/global-secure-access-implementation.md#tic-alignment) and [comparison with other SSE offerings](../../books/guides/global-secure-access-implementation.md#comparison) feed the same record.
 
 ## Unit 3: The reference architecture (8 minutes) {#gsa-m1-architecture}
 
@@ -231,10 +231,10 @@ You read the tenant's licenses and onboarding state, take the first configuratio
     b. So the logs exist before anything is enforced, and every later Validate step has a record to read.
     c. Because Learn requires steps to run in numeric order.
 
-2. An agency's tenant is in GCC High. What does Step 1 record?
-    a. `adopt`, because the Graph settings pages list US Government L4.
-    b. `defer`, citing Learn's limitations sentence, with a compensating path.
-    c. `coexist`, running Global Secure Access beside the current SSE.
+2. A preview feature, such as the cloud firewall for clients, is in your plan. What is its GCC availability in the guide's table?
+    a. Available, because the product is available in GCC.
+    b. *Not yet specified*: the GCC column rests on Learn's product-wide sentence, and preview features aren't covered by it.
+    c. Not available.
 
 3. Which function comes with Microsoft Entra ID P1 or P2, without a separate Global Secure Access license?
     a. The Microsoft traffic profile, with source IP restoration, the compliant network check and universal tenant restrictions.
@@ -254,7 +254,7 @@ You read the tenant's licenses and onboarding state, take the first configuratio
 ::: {.callout-tip collapse="true"}
 ## Check your answers
 1. **b.** See Unit 1 and the guide's [Where each topic lives](../../books/guides/global-secure-access-implementation.md#topic-map).
-2. **b.** See Unit 2 and the guide's [Step 1](../../books/guides/global-secure-access-implementation.md#step-1-decision-and-licensing), 1.3.
+2. **b.** See Unit 2 and the guide's [availability table](../../books/guides/global-secure-access-implementation.md#availability).
 3. **a.** See Unit 2 and the [availability table](../../books/guides/global-secure-access-implementation.md#availability).
 4. **a.** See Unit 1 and the guide's [How to read this guide](../../books/guides/global-secure-access-implementation.md#how-to-read).
 5. **b.** See Unit 4 and the guide's [Step 12](../../books/guides/global-secure-access-implementation.md#step-12-telemetry-and-evidence).
