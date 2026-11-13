@@ -55,3 +55,14 @@ Script claims were checked line by line against the program's `tools/discovery/S
 | Safety | edited | discovery-only reads AD and host services (no SQL connection); renumbered |
 | Closing italic footer | removed | duplicated the body; canon residue |
 | — | added | "Continue the book" callout (R02 ← → R04) |
+
+## Discovery permissions, November 13, 2026
+
+Checked November 13, 2026 against Microsoft Learn.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| P1 | "Remote CIM (WMI) access" now names the default (local administrator) and the narrower alternative (Remote Enable on root\cimv2, DCOM remote access, or JEA), with a test step | Prerequisites | added (was silent) | windows/win32/wmisdk/securing-a-remote-wmi-connection; windows/win32/services/service-security-and-access-rights |
+| P2 | Whether `Win32_Service` returns service accounts to a non-administrator over WinRM | Prerequisites | not yet specified by Learn; stated as "test it" | — |
+| P3 | "Narrowest server-level read permissions" now named: VIEW ANY DEFINITION (≤2019), VIEW ANY SECURITY DEFINITION and VIEW SERVER SECURITY STATE (2022+); ALTER ANY LOGIN is the write alternative, not to be used | Prerequisites | added (was unnamed) | sys-server-principals-transact-sql; server-level-roles |
+| P4 | Dedicated discovery identity; gMSA for scheduled runs | Prerequisites | restated-as-design | — |

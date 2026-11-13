@@ -161,6 +161,17 @@ az connectedmachine extension show `
 
 These are the parameters and settings Microsoft documents for installing the extension on a server already connected to Arc; the license type is one of `PAYG`, `Paid` or `LicenseOnly`. Once installed, the extension finds every SQL Server instance on the machine and connects it to Arc, and it keeps detecting new instances.[^r04-connect-sql] A manual installation tags the machine `ArcSQLServerExtensionDeployment = Disabled`.[^r04-connect-sql] Use the latest extension version; the managed-identity setup requires it.[^r04-sql-mi]
 
+### The extension's own rights on the instance
+
+The extension holds rights inside every instance it connects, so it's also an inventory instrument that isn't read-only. Record those rights in the instance's access review. In least-privilege mode, the default from extension version 1.1.3518.465, the extension runs as `NT SERVICE\SqlServerExtension`, a local service account and SQL Server login that it creates and manages itself. It grants the login only what the enabled features need, and revokes a grant when its feature is turned off.[^r04-least-priv] Earlier versions run in standard mode, as `NT AUTHORITY\SYSTEM` through the server role `SQLArcExtensionServerRole` and the database role `SQLArcExtensionUserRole`.[^r04-server-roles]
+
+- **Default grants.** `CONNECT SQL`, `CONNECT ANY DATABASE`, `VIEW ANY DATABASE`, `VIEW ANY DEFINITION` and `VIEW SERVER STATE`, plus `VIEW DATABASE STATE` in `master`. In `msdb` it gets reads of the backup and job tables, and also **writes**: `ALTER ANY SCHEMA`, `CREATE TABLE`, `CREATE TYPE`, data writer and `EXECUTE`.[^r04-ext-perms]
+- **Features on by default** add more. Migration assessment adds reads of `sys.sql_expression_dependencies` and of the `msdb` job and Database Mail tables. Availability group management adds `ALTER ANY AVAILABILITY GROUP`.[^r04-ext-perms]
+- **Just-in-time grants.** A Managed Instance link migration elevates the account for the duration of an action, up to the sysadmin role for cutover and cancel. Each elevation and revocation is written to the Application log as events 65400 and 65401 from source `SqlServerExtension`; forward them with the host's other security events.[^r04-ext-perms]
+- **What it depends on.** The SQL Server engine's service account must be in the sysadmin role, which is the default, so the extension's deployer can grant and revoke. You can remove it from sysadmin between extension changes and add it back for each install, upgrade or feature change.[^r04-least-priv] The deployer also connects as `NT AUTHORITY\SYSTEM`, which is why that login has to keep `CONNECT SQL` (Prerequisites, above).
+
+Confirm least-privilege mode after Step 3: the **Microsoft SQL Server Extension Service** runs as `NT SERVICE\SqlServerExtension`, and `fn_my_permissions` run as that login shows the grants above.[^r04-least-priv] To view the inventory the extension sends to Azure, Reader on the SQL Server resources is enough ([Chapter 13](13-who-owns-the-data-platform.md#permissions-for-each-team)). [Runbook R02](r02-estate-discovery-and-consolidation-gate.md#the-rights-each-depth-of-discovery-needs) compares this depth with the read-only ones.
+
 **Program automation.** `Test-FMPArcSqlExtension` confirms that the `WindowsAgent.SqlServer` extension's provisioning state is `Succeeded` and reports any Entra-capability flag it finds, returning a sealed pass or fail record. It is read-only and validates either a captured extension document or a live `az connectedmachine extension show` (with `-Live` and `-ResourceGroup`).
 
 ## Step 4 — Turn on Entra authentication for the instance
@@ -310,3 +321,9 @@ A finding this page addresses is ready for closure when every applicable state h
 [^r04-sql-os]: Microsoft Learn, "Prerequisites - SQL Server enabled by Azure Arc," section "Supported configurations," operating systems ("Windows Server 2016 and later versions"), <https://learn.microsoft.com/sql/sql-server/azure-arc/prerequisites#supported-configurations> (accessed Oct 21, 2026).
 
 [^r04-ws2016]: Microsoft Learn, "Windows Server 2016" (Microsoft Lifecycle; extended end date listed as 1/13/2027 6:59:59 AM Pacific, the end of January 12, 2027), <https://learn.microsoft.com/lifecycle/products/windows-server-2016> (accessed Oct 21, 2026).
+
+[^r04-least-priv]: Microsoft Learn, "Enable least privilege," SQL Server enabled by Azure Arc, least privilege enabled by default, verify the configuration, and manage the database engine service account, <https://learn.microsoft.com/sql/sql-server/azure-arc/configure-least-privilege> (accessed Nov 13, 2026).
+
+[^r04-ext-perms]: Microsoft Learn, "Configure Windows service accounts and permissions for SQL Server enabled by Azure Arc," SQL privileges by feature and just-in-time SQL permissions, <https://learn.microsoft.com/sql/sql-server/azure-arc/configure-windows-accounts-agent> (accessed Nov 13, 2026).
+
+[^r04-server-roles]: Microsoft Learn, "Server-level roles," roles specific to SQL Server enabled by Azure Arc, <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/server-level-roles> (accessed Nov 13, 2026).
