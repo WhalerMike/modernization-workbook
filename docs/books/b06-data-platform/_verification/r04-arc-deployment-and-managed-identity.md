@@ -84,3 +84,16 @@ Phase 4 of the Zero Trust closure update. Added "Control states, change safety a
 | 2 | US Government Virginia region lists onboarding, inventory, licensing, FCIs and ESUs only; Entra authentication not listed | Control states (Applies); Prerequisites | verified, unchanged; GCC High and DoD availability recorded as not yet specified | Learn, "SQL Server enabled by Azure Arc in US Government," https://learn.microsoft.com/sql/sql-server/azure-arc/us-government-region | Nov 11, 2026 |
 | 3 | Arc-enabled servers use a system-assigned managed identity with a local token endpoint | Step 2; Control states | verified, unchanged | Learn, "Access Azure resources by using managed identity on Azure Arc-enabled servers"; "Identity and access management with Azure Arc-enabled servers" | Nov 11, 2026 |
 | 4 | Rings, backout triggers, change window and exit criteria | Change safety | restated-as-design (program) | Book 00, Appendix D, change safety | Nov 11, 2026 |
+
+## Extension rights, November 13, 2026
+
+Checked November 13, 2026 against Microsoft Learn.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| E1 | Least privilege is the default from extension 1.1.3518.465 (and 1.1.3453.436); runs as `NT SERVICE\SqlServerExtension`; grants and revokes per feature | Step 3, extension's own rights | added | sql/sql-server/azure-arc/configure-least-privilege (ms.date Aug 21, 2026) |
+| E2 | Standard mode uses `NT AUTHORITY\SYSTEM` in SQLArcExtensionServerRole and SQLArcExtensionUserRole | Step 3 | added | server-level-roles, roles specific to SQL Server enabled by Azure Arc |
+| E3 | Default grants: CONNECT SQL, CONNECT ANY DATABASE, VIEW ANY DATABASE, VIEW ANY DEFINITION, VIEW SERVER STATE; VIEW DATABASE STATE in master; msdb reads and writes (ALTER ANY SCHEMA, CREATE TABLE, CREATE TYPE, data writer, EXECUTE) | Step 3 | added | sql/sql-server/azure-arc/configure-windows-accounts-agent (ms.date Oct 7, 2026) |
+| E4 | Migration assessment and availability groups on by default, with their grants; just-in-time elevation up to sysadmin for MI link cutover and cancel; events 65400 and 65401 | Step 3 | added | configure-windows-accounts-agent |
+| E5 | Engine service account must be sysadmin (default); can be removed between extension changes | Step 3 | added | configure-least-privilege, manage the database engine service account; prerequisites |
+| E6 | Reader on SQL Server resources to view the inventory | Step 3 | restated from Chapter 13; the SQL-Arc pages read don't name a viewer role | Chapter 13 |

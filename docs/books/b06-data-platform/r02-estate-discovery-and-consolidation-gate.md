@@ -78,6 +78,13 @@ The `setspn` query modifiers are `-F` (query at forest rather than domain level)
 
 Microsoft's migration-assessment tooling is the third instrument. Azure Migrate's discovery and assessment tool and the migration assessment in SQL Server enabled by Azure Arc capture workload, dependency and compatibility data the first two can't, and they're useful here for what they reveal about the estate regardless of any decision to land on Azure.[^r02-azure-migrate][^r02-ads] The Data Migration Assistant that older guidance names was retired on July 16, 2025, so don't plan around it.[^r02-dma]
 
+Azure Migrate's appliance reaches each server with credentials you add to it, and it needs two kinds:
+
+- **A Windows credential for the servers.** Either an account with administrator rights on each server, or a least-privileged account in the Remote Management Users, Performance Monitor Users and Performance Log Users groups. If User Account Control filtering still hides data, the least-privileged account also needs permissions on the CIMV2 namespace. The appliance connects over WinRM on TCP 5986, falling back to 5985 when HTTPS isn't set up on the server. Agentless dependency analysis needs an account with administrator permissions.[^r02-migrate-physical][^r02-migrate-matrix]
+- **A SQL Server credential for each instance.** Either a sysadmin login, which Microsoft offers "for simplicity," or a custom low-privilege login. Microsoft's script for that login grants `VIEW SERVER STATE`, `VIEW ANY DEFINITION` and `VIEW DATABASE STATE`; `EXECUTE` on `sys.xp_instance_regread` and `sys.xp_regenumkeys`; `SELECT` on named `msdb` job, maintenance-plan and Database Mail tables; and a user in every database except `tempdb` and `model`.[^r02-migrate-matrix] Microsoft's provisioning utility creates that login for you, but it needs a sysadmin credential on every instance to do so.[^r02-migrate-least]
+
+Use the low-privilege login, not sysadmin. Prefer a Windows domain account over a SQL Server login, so that no instance has to allow mixed-mode authentication for the assessment. The appliance takes a typed user name and password, so give the account a vaulted, rotated password and a named owner. Remove the login and the group memberships when the assessment ends.
+
 ### 1c — Fuse the sources into one inventory: `New-FMPEstateInventory`
 
 No single instrument finds every instance, and run side by side they double-count the ones they all see. `New-FMPEstateInventory` is the program's Phase 0 instrument that fuses them. It reads the `Spec3-D1.8` discovery output and, optionally, the `Spec1-D1.5` SPN trail and a `Find-DbaInstance` export. It keys every instance on host and instance name, so the same instance seen by several instruments deduplicates, and it records a `discovered_by` set so coverage is auditable. It then applies a first-pass gate (Step 3) to each instance and emits a sealed, reproducible inventory envelope: the **denominator** the rest of the series operates on.
@@ -102,7 +109,13 @@ Import-Module .\powershell\FMPSqlEstate
 Invoke-FMPSqlEstateDiscovery -OutputPath D:\Assessment\sql -ProbeNetwork -ProbeAllServers -QueryInstances
 ```
 
-`-QueryInstances` adds the read-only T-SQL pass: version, edition, authentication mode, logins by type, databases, last use and linked servers, under a login with `VIEW SERVER STATE` (`VIEW SERVER PERFORMANCE STATE` on SQL Server 2022 and later). The output, `SqlEstate.csv` and `SqlEstate.json`, uses the audit's field names and adds counts by version, edition, domain and authentication mode. It's illustrative: unit-tested against fixtures, not proven against a live estate.
+`-QueryInstances` adds the read-only T-SQL pass: version, edition, authentication mode, logins by type, databases, last use and linked servers. It runs under a Windows login on each instance that holds three read permissions:
+
+- `VIEW SERVER STATE` (`VIEW SERVER PERFORMANCE STATE` on SQL Server 2022 and later), for the usage DMVs;[^r02-index-usage]
+- `VIEW ANY DEFINITION` (`VIEW ANY SECURITY DEFINITION` on 2022 and later), to see every login. Without it, `sys.server_principals` shows only the caller's own login, the system logins and the fixed roles, and the login list is silently partial;[^r02-server-principals]
+- `VIEW SERVER SECURITY STATE` on 2022 and later, for `sys.linked_logins`.[^r02-linked-logins]
+
+Grant the permissions themselves, or the `##MS_DefinitionReader##` role, not `##MS_SecurityDefinitionReader##`: that role also carries `VIEW ANY CRYPTOGRAPHICALLY SECURED DEFINITION`, which shows SQL login password hashes.[^r02-server-roles] The kit's [rights table](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit#rights-each-part-needs) lists what every other part needs. The output, `SqlEstate.csv` and `SqlEstate.json`, uses the audit's field names and adds counts by version, edition, domain and authentication mode. It's illustrative: unit-tested against fixtures, not proven against a live estate.
 :::
 
 The program's function is pure derivation over the read-only discovery output: it reads no live host or directory and changes nothing. Its `classification` counts (retain, consolidate, retire, review) and its `denominator` are the gate's headline numbers. Know what the automated pass can and can't see:
@@ -114,6 +127,27 @@ The program's function is pure derivation over the read-only discovery output: i
 ### What the inventory must capture
 
 For every instance: version, edition and build (support and licensing posture), host operating system (Arc and upgrade envelope), domain-join state and owning domain (the forest-entanglement picture), and the service-account identity and its source domain. For every database: size, **last-access timestamp**, recovery model, owning application, whether it holds PII, and its SORN and PIA (the utilization, zombie and privacy picture). Like the audit it precedes, the inventory is **re-run, not snapshotted**: instances appear and disappear across a multi-month assessment.
+
+### The rights each depth of discovery needs
+
+Read access to Active Directory finds candidates; it doesn't complete this inventory. A standard authenticated account can read the `MSSQLSvc` SPNs, computer objects, service-account objects and group memberships the directory signals use ([Book 02, Chapter 07](../b02-identity/07-read-only-discovery.md)). An SPN on an account doesn't prove the instance still exists, nor that the account still runs it. And nothing in the directory holds a version, an authentication mode, a login or a database. The inventory doesn't need any secret or confidential attribute: not a gMSA's `msDS-ManagedPassword`, which returns the account's clear-text password to the principals allowed to retrieve it,[^r02-managed-password] and not LAPS passwords.
+
+| Depth | What it gives | What it needs beyond read access to Active Directory |
+|---|---|---|
+| **A: Directory** | Candidate hosts and instances from SPNs and directory objects; duplicate and orphaned SPNs | Nothing. The SQL Server Browser probe on UDP 1434 needs no account, only a network path; it catches Express and other instances that registered no SPN |
+| **B: Host** | The instances installed, and the account each SQL Server service runs as | Local administrator on each host by default. Only Administrators have the WMI namespace's Remote Enable permission and DCOM remote access by default,[^r02-wmi-remote] and remote users who aren't administrators get no rights on service objects, so a service list read with a lesser account can come back silently empty.[^r02-scm-rights] Least-privilege alternatives: the Azure Migrate groups above, or a Just Enough Administration (JEA) endpoint that exposes only the service and registry reads, run as a virtual account or a group managed service account.[^r02-jea] WinRM (TCP 5985 or 5986) or RPC open from the assessment host |
+| **C: Instance** | Version, edition, authentication mode, every login, databases, last use, linked servers, jobs | A Windows login on each instance with the read permissions in the Start Kit callout above (Azure Migrate's script adds `xp_instance_regread`, the `msdb` reads and a user per database). `CONNECT ANY DATABASE` only if per-database reads are in scope. Never sysadmin and never `ALTER ANY LOGIN`; a sysadmin creates the login once. The instance's TCP port open from the assessment host |
+| **D: Azure Arc** (optional) | A continuous inventory in Azure and Arc's migration assessment | A local administrator to install the agent, the Azure onboarding roles, and the Azure extension for SQL Server's own grants, which include writes in `msdb` ([Runbook R04](r04-arc-deployment-and-managed-identity.md#the-extensions-own-rights-on-the-instance)). Azure Reader to view it ([Chapter 13](13-who-owns-the-data-platform.md#permissions-for-each-team)) |
+
+Run every depth under one dedicated discovery identity per forest, with no other elevated memberships. Use a group managed service account for scheduled runs, such as the Start Kit on a schedule and the [Runbook R09](r09-continuous-monitoring-and-closure.md) audit, so that no password is stored. Use a dedicated domain account with a vaulted, rotated password where a tool needs a typed credential, as Azure Migrate does. Add the Depth B and C rights for the assessment window only, and record each grant and its removal.
+
+| Requirement | What this design does | Evidence the ISSO keeps |
+|---|---|---|
+| NIST SP 800-53 AC-6, Least Privilege | One dedicated identity holding only the rights each depth needs; granular SQL Server read permissions instead of sysadmin; host access through least-privileged groups or JEA, time-bound | The grant and removal records; each instance's `fn_my_permissions` output for the discovery login |
+| NIST SP 800-53 CM-8, System Component Inventory, and CM-8(1) | A fused inventory that counts each instance once and records which sources saw it, re-run after installations and removals | `SqlEstate.json` from each run, with its run record and file hashes |
+| NIST SP 800-53 IA-5, Authenticator Management | A gMSA for scheduled runs; Windows authentication instead of a SQL Server login; a vaulted, rotated password where a typed credential can't be avoided | The gMSA's retriever list; the vault record for the Azure Migrate account |
+
+These rows support the controls named; they don't by themselves satisfy them. The organization still sets the controls' parameters, policy and procedures, and the assessor decides whether each is satisfied.
 
 ## Step 2 — Apply the three rationalization lenses (read-only)
 
@@ -215,3 +249,21 @@ Every script and query in this runbook reads; none changes a security posture. `
 [^r02-sql-mi]: Microsoft Learn, "Managed identity for SQL Server enabled by Azure Arc," <https://learn.microsoft.com/sql/sql-server/azure-arc/managed-identity> (accessed Oct 20, 2026).
 
 [^r02-linked-logins]: Microsoft Learn, "sys.linked_logins (Transact-SQL)," <https://learn.microsoft.com/sql/relational-databases/system-catalog-views/sys-linked-logins-transact-sql> (accessed Oct 20, 2026).
+
+[^r02-server-principals]: Microsoft Learn, "sys.server_principals (Transact-SQL)," permissions, <https://learn.microsoft.com/sql/relational-databases/system-catalog-views/sys-server-principals-transact-sql> (accessed Nov 13, 2026).
+
+[^r02-server-roles]: Microsoft Learn, "Server-level roles," fixed server-level roles introduced in SQL Server 2022, <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/server-level-roles> (accessed Nov 13, 2026).
+
+[^r02-migrate-physical]: Microsoft Learn, "Discover physical servers with Azure Migrate discovery and assessment," prepare Windows server and add server details, <https://learn.microsoft.com/azure/migrate/tutorial-discover-physical> (accessed Nov 13, 2026).
+
+[^r02-migrate-matrix]: Microsoft Learn, "Support for physical discovery and assessment in Azure Migrate and Modernize," port access, SQL Server instance and database discovery requirements, configure the custom login for SQL Server discovery, and dependency analysis requirements, <https://learn.microsoft.com/azure/migrate/migrate-support-matrix-physical> (accessed Nov 13, 2026).
+
+[^r02-migrate-least]: Microsoft Learn, "Create a custom account with minimal metadata for discovery and assessment," prerequisites, <https://learn.microsoft.com/azure/migrate/least-privilege-credentials> (accessed Nov 13, 2026).
+
+[^r02-managed-password]: Microsoft Learn, "ms-DS-ManagedPassword attribute," <https://learn.microsoft.com/windows/win32/adschema/a-msds-managedpassword> (accessed Nov 13, 2026).
+
+[^r02-wmi-remote]: Microsoft Learn, "Securing a remote WMI connection," DCOM security and namespace Remote Enable permission, <https://learn.microsoft.com/windows/win32/wmisdk/securing-a-remote-wmi-connection> (accessed Nov 13, 2026).
+
+[^r02-scm-rights]: Microsoft Learn, "Service security and access rights," default rights for the Service Control Manager and for a service object, <https://learn.microsoft.com/windows/win32/services/service-security-and-access-rights> (accessed Nov 13, 2026).
+
+[^r02-jea]: Microsoft Learn, "Overview of Just Enough Administration (JEA)," <https://learn.microsoft.com/powershell/scripting/security/remoting/jea/overview> (accessed Nov 13, 2026).
