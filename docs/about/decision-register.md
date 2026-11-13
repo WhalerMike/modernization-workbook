@@ -1647,7 +1647,7 @@ There are **154** workbook decisions: 150 settled, 0 challenged and 4 superseded
 | **Rationale** | The target estate is GCC with commercial Azure. |
 | **Basis** | Workbook design |
 | **Sources** | None external: the choice rests on the pages it shaped. |
-| **Pages affected** | [`docs/books/b19-developer-workbook/_verification/research-gaps.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b19-developer-workbook/_verification/research-gaps.md), [Chapter 02 — Graph Clients for the Government Clouds](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) |
+| **Pages affected** | [`docs/books/b19-developer-workbook/_verification/research-gaps.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b19-developer-workbook/_verification/research-gaps.md), [Chapter 02 — Graph Clients for GCC](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md) |
 | **Date** | 2026-10-30 |
 | **Status** | settled |
 | **Defined in** | [#216](https://github.com/WhalerMike/modernization-workbook/pull/216), [#221](https://github.com/WhalerMike/modernization-workbook/pull/221) |

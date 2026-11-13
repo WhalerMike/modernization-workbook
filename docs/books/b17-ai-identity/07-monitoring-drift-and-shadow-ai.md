@@ -102,7 +102,7 @@ Shadow AI is not one problem. It shows up on four surfaces, each seen by a diffe
 
 One gap no tool closes. Conditional Access, and every Entra signal in this chapter, protects only resources secured by Microsoft Entra ID: "if an agent accesses resources using an API key, it bypasses the Microsoft Entra ID authentication and token issuance pipeline entirely."[^c07-ca-agents] An agent that reaches a model provider or a third-party API with a static key is invisible to identity monitoring. That is one reason [Chapter 06](06-credentials-and-least-privilege.md) treats stored secrets as a finding in their own right, and why the endpoint and network surfaces above are not optional.
 
-### Release stage and GCC availability {#release-stage-and-government-cloud-availability}
+### Release stage and GCC availability
 
 Every tool above is in a different place, and several are absent from GCC. The table is as of October 2026; the program's rule is to re-check the vendor's own availability page at procurement and at every annual inventory refresh.
 

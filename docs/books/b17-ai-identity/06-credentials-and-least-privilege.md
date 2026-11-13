@@ -294,7 +294,7 @@ The sponsor is accountable for the agent and holds the right to disable it; the 
 :::
 
 
-## Release stage and GCC availability {#release-stage-and-government-cloud-availability}
+## Release stage and GCC availability
 
 [Chapter 04](04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds) gives the general picture for Agent ID and workload identities, including agents' user accounts (preview, Frontier program only), the partial GCC subset, and Agent 365's pending FedRAMP High authorization. The table below covers only the features this chapter relies on, as published on October 22, 2026. "Not published" means Microsoft's documentation states no availability.
 
