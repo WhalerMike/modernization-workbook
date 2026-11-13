@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Now the code.
+
+2
+00:00:00.988 --> 00:00:03.438
+The collector makes three declared calls.
+
+3
+00:00:03.438 --> 00:00:08.213
+First, describe events, filtered to
+events that are open or upcoming.
+
+4
+00:00:08.213 --> 00:00:12.941
+Then, for those events, the details
+call for each one's latest description,
+
+5
+00:00:12.941 --> 00:00:17.668
+and the affected-entities call for
+the resources it names, each ten event
+
+6
+00:00:17.668 --> 00:00:22.238
+identifiers at a time, because AWS's
+details operation takes one to ten.
+
+7
+00:00:22.238 --> 00:00:24.438
+Then the normalizer builds the record.
+
+8
+00:00:24.438 --> 00:00:28.067
+The title comes from the
+service and the event type code,
+
+9
+00:00:28.067 --> 00:00:30.750
+like E C 2, instance retirement scheduled.
+
+10
+00:00:30.750 --> 00:00:33.038
+A closed status closes the record.
+
+11
+00:00:33.038 --> 00:00:37.820
+And in a live run, the region is the
+partition's own Health endpoint region.

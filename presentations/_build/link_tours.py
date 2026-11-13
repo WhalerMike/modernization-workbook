@@ -26,7 +26,8 @@ WB = {"adm": ("docs/books/b19-developer-workbook", "Building the Attribute-Drive
       "pa": ("docs/project-plans/developer-workbooks/privileged-access", "Building Privileged Access"),
       "npi": ("docs/project-plans/developer-workbooks/non-person-identity", "Building Non-Person Identity"),
       "ttm": ("docs/project-plans/developer-workbooks/ticket-to-machine", "Building Ticket-to-Machine"),
-      "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "Building HR-Driven Identity")}
+      "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "Building HR-Driven Identity"),
+      "pn": ("docs/project-plans/developer-workbooks/provider-notices", "Building Provider Notices")}
 GH = "https://github.com/WhalerMike/modernization-workbook/blob/main"
 TREE = "https://github.com/WhalerMike/modernization-workbook/tree/main"
 REL = "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23"
@@ -57,7 +58,7 @@ def write(p: Path, text: str):
 
 tours = {k: [] for k in WB}
 for folder in sorted((ROOT / "presentations").glob("dw-*")):
-    m = re.match(r"dw-(adm|pa|npi|ttm|hr)-(\d\d)-", folder.name)
+    m = re.match(r"dw-(adm|pa|npi|ttm|hr|pn)-(\d\d)-", folder.name)
     wb, nn = m.group(1), m.group(2)
     src = (folder / "build.js").read_text(encoding="utf-8")
     base = re.search(r'base:\s*"([^"]+)"', src).group(1)
@@ -157,12 +158,12 @@ for wb, rows in tours.items():
     write(idx, md)
     print(f"{wb}: {len(rows)} tours linked")
 
-# The Presentations page: one section with a table per workbook, before the HR-driven identity talk set.
+# The Presentations page: one section with a table per workbook, before the HR-driven identity interview set.
 pi = ROOT / "docs/presentations/index.md"
 md = pi.read_text(encoding="utf-8")
 md = re.sub(r"\n## Developer workbook chapter tours\n.*?(?=\n## )", "", md, flags=re.S)
 out = ["", "## Developer workbook chapter tours", "",
-       "Each code chapter of [Book 19](../books/b19-developer-workbook/index.md) and of four [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: "
+       "Each code chapter of [Book 19](../books/b19-developer-workbook/index.md) and of five [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: "
        "why the chapter's code comes first, what Microsoft's own sample gives and leaves out, the code and its tests, who runs it, the two labs, the dangers and the checklist. "
        "The slides follow the Why, What, Who and How order of the book decks; each slide's notes carry the narration, the chapter's full detail and the footnotes it rests on.", ""]
 for wb, rows in tours.items():
@@ -179,7 +180,7 @@ for wb, rows in tours.items():
             out.append(f"| [{nn} — {title}]({page}) | [Deck]({deck(f'{rel}/{base}.pptx', '../../')}) | Video not uploaded yet | "
                        f"[Script]({GH}/{rel}/{base}_Narration_Script.md) |")
     out += ["", f": {WB[wb][1]}, chapter tours {{.striped .hover}}", ""]
-k = md.index("\n## HR-driven identity talk set")
+k = md.index("\n## HR-driven identity interview set")
 md = md[:k] + "\n".join(out) + md[k:]
 write(pi, md)
 print("presentations index updated")

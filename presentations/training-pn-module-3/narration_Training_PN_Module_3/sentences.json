@@ -1,0 +1,595 @@
+{
+ "1": [
+  [
+   0.05,
+   6.862,
+   "Welcome to Module 3 of the Provider Notices learning path: the Microsoft 365 Message center."
+  ],
+  [
+   6.912,
+   6.438,
+   "This is Gate 2 of the provider notices implementation guide, with the second chapter of the developer workbook."
+  ],
+  [
+   13.35,
+   10.188,
+   "The Message center is where Microsoft announces changes, retirements and actions for a Microsoft 365 tenant, and service health lists incidents and advisories."
+  ],
+  [
+   23.538,
+   5.825,
+   "Microsoft Graph's service communications A P I reads both, with two read permissions."
+  ],
+  [
+   29.363,
+   12.312,
+   "In this module you read the fixture tenant's posts and issues, see which ones Microsoft said need action and which the kit's rule marked, and watch the kit refuse to follow a next link off the tenant's own Graph host."
+  ],
+  [
+   41.675,
+   5.225,
+   "It takes about fifty minutes, with a lab on fixtures and a lab for a test tenant."
+  ],
+  [
+   46.9,
+   5.5,
+   "The code is illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.2,
+   "Why does Microsoft 365 need its own gate?"
+  ],
+  [
+   3.25,
+   4.812,
+   "In the admin center, each administrator's view of the Message center is their own."
+  ],
+  [
+   8.062,
+   9.4,
+   "Archiving a post removes it only from that administrator's view, and the weekly digest goes, by default, to each administrator's own primary email."
+  ],
+  [
+   17.462,
+   10.45,
+   "Microsoft gives at least thirty days' notice of a major update that needs action, and the act-by date is rare enough that Microsoft says to pay extra attention when it appears."
+  ],
+  [
+   27.913,
+   8.262,
+   "So the program reads the posts from Microsoft Graph instead, through the service communications A P I, with two read permissions."
+  ],
+  [
+   36.175,
+   1.012,
+   "There's a trap."
+  ],
+  [
+   37.188,
+   7.588,
+   "A G C C High tenant read on the worldwide Graph host returns nothing, and an empty list looks like a quiet week."
+  ],
+  [
+   44.775,
+   6.35,
+   "So the kit reads only the cloud the settings name, and refuses a session in another environment or tenant."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   5.487,
+   "You'll name the two Graph permissions the reader needs, and the role that data privacy messages need."
+  ],
+  [
+   8.45,
+   6.9,
+   "You'll say which Graph host each Microsoft 365 cloud uses, and why the wrong one fails silently."
+  ],
+  [
+   15.35,
+   4.35,
+   "You'll map Message center posts and service health issues to the record's kinds."
+  ],
+  [
+   19.7,
+   4.737,
+   "You'll tell a date Microsoft set from the kit's rule for a prevent-or-fix-issue post."
+  ],
+  [
+   24.438,
+   3.788,
+   "And you'll show that the kit refuses a next link on another host."
+  ],
+  [
+   28.225,
+   12.438,
+   "You need Module 1, for the record and its action basis, and the intake, triage and routing chapter of Compliance Automation and Day-Two Operations, which explains why nothing is approved on the strength of an email."
+  ],
+  [
+   40.663,
+   4.162,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5."
+  ],
+  [
+   44.825,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.5,
+   "Unit 2 starts with what Microsoft gives you."
+  ],
+  [
+   2.55,
+   14.3,
+   "Learn's service communications overview names three list calls on Graph version one point oh: messages, for Message center posts, which need Service Message dot Read dot All; and issues and health overviews, which need Service Health dot Read dot All."
+  ],
+  [
+   16.85,
+   6.35,
+   "The kit keeps the health overviews in the raw record for the run; the notices come from posts and issues."
+  ],
+  [
+   23.2,
+   6.213,
+   "Both permissions are granted only by an administrator, and a delegated sign-in also needs an admin role."
+  ],
+  [
+   29.413,
+   10.925,
+   "One exception matters: data privacy messages are visible only to Global Administrators and Message Center Privacy Readers, so where they matter, name a privacy reader to read them."
+  ],
+  [
+   40.337,
+   4.862,
+   "And Learn has its own cmdlet for posts, Get M g Service Announcement Message."
+  ],
+  [
+   45.2,
+   4.6,
+   "It's the interim path before the reader exists, and Lab 2's cross-check."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.487,
+   "Each Microsoft 365 cloud has its own Graph host."
+  ],
+  [
+   4.537,
+   7.188,
+   "G C C keeps the worldwide endpoint, graph dot microsoft dot com, and signs in with the Global environment."
+  ],
+  [
+   11.725,
+   1.85,
+   "That's the workbook's baseline."
+  ],
+  [
+   13.575,
+   11.012,
+   "As a side note, G C C High uses graph dot microsoft dot U S, and D O D uses dod dash graph dot microsoft dot U S, each with its own environment name."
+  ],
+  [
+   24.587,
+   8.025,
+   "The A P I is available on the national clouds, and each list method's table shows U S Government L four and L five."
+  ],
+  [
+   32.612,
+   1.575,
+   "The kit has two guards."
+  ],
+  [
+   34.188,
+   6.938,
+   "Before the first call, it compares the Graph session's environment and tenant with the settings, and refuses a mismatch."
+  ],
+  [
+   41.125,
+   6.662,
+   "And a next link is a U R L the response chose, so the kit follows it only if it's on the cloud's own Graph host."
+  ],
+  [
+   47.788,
+   5.425,
+   "Anything else is refused, so the token never goes somewhere the agency didn't choose."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.188,
+   "No post category says retirement, so the kit maps posts and issues to kinds."
+  ],
+  [
+   5.237,
+   2.538,
+   "A post tagged Retirement is a retirement."
+  ],
+  [
+   7.775,
+   3.675,
+   "Plan-for-change and prevent-or-fix-issue posts are changes."
+  ],
+  [
+   11.45,
+   2.375,
+   "Stay-informed posts are advisories."
+  ],
+  [
+   13.825,
+   6.812,
+   "A service health issue is an incident or an advisory, by its classification, and it closes when it's resolved."
+  ],
+  [
+   20.637,
+   9.75,
+   "Action required comes from one field: Microsoft's action-required-by date, the only field that says Microsoft wants action, and the record's basis names it."
+  ],
+  [
+   30.387,
+   7.375,
+   "The one kit rule is for a prevent-or-fix-issue post without a date: it's action required, with no date, labeled rule."
+  ],
+  [
+   37.763,
+   1.812,
+   "No date is ever made up."
+  ],
+  [
+   39.575,
+   11.688,
+   "The kit also matches enum values without regard to case, strips the markup from a post's body, caps the summary at two thousand characters, and closes a post once its end date has passed."
+  ],
+  [
+   51.263,
+   5.438,
+   "One gap remains: Learn doesn't enumerate the tags, so that's not yet specified."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   20.788,
+   "Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against a fictional tenant in G C C. Step one lists what Microsoft 365 needs: three calls, and only two permissions, Service Message dot Read dot All for the posts, and Service Health dot Read dot All for the issues and the health overviews."
+  ],
+  [
+   21.562,
+   3.3,
+   "All three are marked verified, and nothing writes."
+  ],
+  [
+   24.863,
+   21.35,
+   "Step two prints each cloud's Graph host: the worldwide host for G C C with the Global environment, then the U S Government hosts for G C C High and D O D. Step three collects Microsoft 365 from the day-one fixtures, as of November ninth, 2026: six notices, five open, two needing action."
+  ],
+  [
+   46.212,
+   3.913,
+   "Three advisories, a change, an incident and a retirement."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.95,
+   "Step four reads the records."
+  ],
+  [
+   2.0,
+   11.488,
+   "M C nine hundred thousand and one is a retirement, of Basic authentication for S M T P AUTH client submission, due on January thirty-first, 2027."
+  ],
+  [
+   13.488,
+   7.65,
+   "M C nine hundred thousand and three is a change, an update to SharePoint Framework solutions, and it needs action with no date."
+  ],
+  [
+   21.137,
+   4.05,
+   "The incident is open, and the resolved Teams issue is closed."
+  ],
+  [
+   25.188,
+   3.138,
+   "Step five asks who said each one needs action."
+  ],
+  [
+   28.325,
+   5.65,
+   "For the retirement, it was Microsoft: the basis is provider, action-required-by date."
+  ],
+  [
+   33.975,
+   9.312,
+   "For the SharePoint change, it was the kit's rule: a prevent-or-fix-issue post without a date is action required, and the record says rule, with the category."
+  ],
+  [
+   43.288,
+   1.625,
+   "Everything else says none."
+  ],
+  [
+   44.913,
+   6.987,
+   "So when someone asks where a date came from, the record answers, and where Microsoft gave none, the kit makes none up."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.25,
+   "Step six collects the second week, as of November sixteenth: seven notices."
+  ],
+  [
+   5.3,
+   8.4,
+   "A new post, M C nine hundred thousand and five, is a change due February twenty-eighth, 2027, a date Microsoft set."
+  ],
+  [
+   13.7,
+   7.062,
+   "The SharePoint post's title now starts with updated, so its fingerprint changes, and Module 7 will update its task."
+  ],
+  [
+   20.762,
+   1.7,
+   "And the incident is closed."
+  ],
+  [
+   22.462,
+   3.388,
+   "Step seven builds the live request without sending it."
+  ],
+  [
+   25.85,
+   6.963,
+   "The first line prints the messages U R L on the worldwide Graph host, the right one for G C C."
+  ],
+  [
+   32.812,
+   8.562,
+   "Then it tries a next link on another host, graph dot example dot net, and the kit refuses it: it isn't on the G C C Graph host."
+  ],
+  [
+   41.375,
+   3.175,
+   "That's the guard that keeps the token on the tenant's own host."
+  ],
+  [
+   44.55,
+   4.612,
+   "Step eight runs this chapter's tests: fifteen pass, none fail."
+  ],
+  [
+   49.163,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   8.925,
+   "Lab 2 runs the same read in a Microsoft 365 test tenant, in the worldwide or G C C cloud, never production."
+  ],
+  [
+   8.975,
+   3.525,
+   "Sign in as a test administrator who holds an admin role."
+  ],
+  [
+   12.5,
+   7.338,
+   "Learn doesn't name which admin roles Graph accepts for a delegated read, so the Message center reader roles are the narrowest to try."
+  ],
+  [
+   19.837,
+   6.188,
+   "Sign in delegated, with only the two read scopes; an administrator consents to them once."
+  ],
+  [
+   26.025,
+   5.237,
+   "Cross-check Learn's own cmdlet against the kit's collection, and look at the posts that need action."
+  ],
+  [
+   31.262,
+   5.925,
+   "Then record one open item: the tags you see on retirement posts, which Learn doesn't list."
+  ],
+  [
+   37.188,
+   8.262,
+   "To back it out, sign out, delete the run, and remove the consent in the Microsoft Entra admin center if it was granted only for this lab."
+  ],
+  [
+   45.45,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   47.6,
+   3.062,
+   "The workbook's Chapter 2 has the exact commands."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.837,
+   "The workbook chapter lists six dangers, and each has a guard."
+  ],
+  [
+   3.888,
+   13.863,
+   "A G C C High or D O D tenant read on the worldwide host returns nothing, and the gate passes on an empty list; the guard is the cloud named in the settings, the session guard, and every request on the cloud's own host."
+  ],
+  [
+   17.75,
+   7.725,
+   "A next link to another host would send the token somewhere the agency didn't choose; next links are followed only on the cloud's host."
+  ],
+  [
+   25.475,
+   7.162,
+   "A broad Graph scope for convenience would let the reader change the tenant; it holds two read permissions, declared per call."
+  ],
+  [
+   32.638,
+   7.638,
+   "A kit rule mistaken for Microsoft's deadline would give a post with no date an invented one; the action basis names the rule."
+  ],
+  [
+   40.275,
+   5.662,
+   "Data privacy posts go unseen by the reader's role, so name a privacy reader where they matter."
+  ],
+  [
+   45.938,
+   11.575,
+   "And look-alike email gets acted on, so the task links the post the kit read from Graph, as the intake, triage and routing chapter of Compliance Automation and Day-Two Operations requires."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   9.812,
+   "Gate 2 supports nist special publication eight hundred fifty-three S A nine, part c, and S I five, part a, as Gate 1 does."
+  ],
+  [
+   11.25,
+   11.588,
+   "And for posts that announce a change, it supports C M three, part b: reviewing proposed changes with a security and privacy impact analysis, through the tasks Module 7 routes."
+  ],
+  [
+   22.837,
+   17.0,
+   "The evidence is the permission list, two read permissions, and the consent record; the raw Microsoft 365 response, the notices and the manifest, with every request on the tenant's own Graph host; and the change and retirement notices, each with its action basis."
+  ],
+  [
+   39.837,
+   10.338,
+   "The gate's output is evidence for these controls; your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied."
+  ],
+  [
+   50.175,
+   8.0,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers, and which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.237,
+   "First: a G C C tenant is read on which Graph host?"
+  ],
+  [
+   6.263,
+   5.138,
+   "The answer is c: graph dot microsoft dot com, the worldwide endpoint."
+  ],
+  [
+   11.4,
+   6.037,
+   "G C C High and D O D have their own hosts, but G C C keeps the worldwide one."
+  ],
+  [
+   17.438,
+   5.062,
+   "Second: M C nine hundred thousand and three is action required with no date."
+  ],
+  [
+   22.5,
+   0.688,
+   "Why?"
+  ],
+  [
+   23.188,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   24.413,
+   6.588,
+   "The kit's rule marks a prevent-or-fix-issue post without a date as action required, and labels the basis rule."
+  ],
+  [
+   31.0,
+   3.525,
+   "Microsoft didn't set a date, and the kit doesn't make one up."
+  ],
+  [
+   34.525,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   13.863,
+   "You listed the reader's two permissions, saw each cloud's Graph host, collected six posts and issues and then the second week's seven, told Microsoft's dates from the kit's rule, and watched the kit refuse a next link on another host."
+  ],
+  [
+   14.738,
+   15.925,
+   "The evidence an I S S O keeps for Gate 2 is the raw Microsoft 365 response, the notices as jay-son and as a spreadsheet file, and the manifest, all dated; the permission list from step one; and in Lab 2, the consent record."
+  ],
+  [
+   30.663,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   33.737,
+   4.513,
+   "Next is Module 4: Oracle Cloud Infrastructure announcements."
+  ],
+  [
+   38.25,
+   7.55,
+   "That's Gate 3, with the workbook's third chapter: one policy statement, announcement chains, and the realms the kit reads."
+  ],
+  [
+   45.8,
+   5.95,
+   "For an agency whose H R platform runs on Oracle Cloud, that's where its maintenance notices come from."
+  ]
+ ]
+}

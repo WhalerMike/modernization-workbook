@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.950
+Step five collects the second
+week, as of November sixteenth.
+
+2
+00:00:03.950 --> 00:00:05.488
+Still four notices.
+
+3
+00:00:05.488 --> 00:00:10.176
+But chain example one, the maintenance,
+now runs on November twenty-ninth,
+
+4
+00:00:10.176 --> 00:00:12.520
+from four to eight in the morning, U T C.
+
+5
+00:00:12.520 --> 00:00:17.600
+Oracle rescheduled it, and the chain's
+latest announcement replaced the first.
+
+6
+00:00:17.600 --> 00:00:21.580
+It's one notice with the new
+window, so Module 7 updates its task
+
+7
+00:00:21.580 --> 00:00:25.950
+instead of opening a second one, and
+nobody prepares for the old date.
+
+8
+00:00:25.950 --> 00:00:29.562
+Step six builds the live list
+command without running it.
+
+9
+00:00:29.562 --> 00:00:34.308
+It's Oracle's own list command for
+the fictional tenancy, with all pages,
+
+10
+00:00:34.308 --> 00:00:39.300
+only the latest in each chain, the region
+from the settings, and J SON output.
+
+11
+00:00:39.300 --> 00:00:41.787
+A reviewer can see exactly what would run.
+
+12
+00:00:41.787 --> 00:00:46.313
+Step seven runs this chapter's
+tests: nine pass, none fail.
+
+13
+00:00:46.313 --> 00:00:48.220
+Then delete the output folder.

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.313
+Each kind of run covers named steps.
+
+2
+00:00:02.313 --> 00:00:07.525
+A collection covers one collect step for
+each provider it read, plus normalizing.
+
+3
+00:00:07.525 --> 00:00:09.345
+A routing run covers routing,
+
+4
+00:00:09.345 --> 00:00:13.137
+and the contingency step if a
+payload asked for a plan review.
+
+5
+00:00:13.137 --> 00:00:15.537
+A digest covers the digest step.
+
+6
+00:00:15.537 --> 00:00:18.349
+The runbook in Chapter 8 adds pre-flight,
+
+7
+00:00:18.349 --> 00:00:21.587
+the scheduled run, the
+alert plan and rollback.
+
+8
+00:00:21.587 --> 00:00:24.737
+And every record covers
+the evidence step itself.
+
+9
+00:00:24.737 --> 00:00:27.944
+Two things make the folder
+checkable: the sums file,
+
+10
+00:00:27.944 --> 00:00:31.074
+which says every file still
+matches, and the chain,
+
+11
+00:00:31.074 --> 00:00:36.170
+where each record holds the previous record's
+hash, so a removed record breaks it.

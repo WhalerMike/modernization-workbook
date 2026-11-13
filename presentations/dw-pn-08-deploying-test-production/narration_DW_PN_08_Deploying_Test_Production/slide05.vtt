@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.973
+One settings file per stage holds
+every value the commands need,
+
+2
+00:00:03.973 --> 00:00:06.712
+and the kit checks it
+before any command runs.
+
+3
+00:00:06.712 --> 00:00:10.300
+No secrets: a secret-like name
+with a value stops the run,
+
+4
+00:00:10.300 --> 00:00:15.163
+and the ServiceNow token is read at
+run time from an environment variable.
+
+5
+00:00:15.163 --> 00:00:18.175
+No placeholders left in
+an enabled provider.
+
+6
+00:00:18.175 --> 00:00:20.463
+The file must be the stage it says it is.
+
+7
+00:00:20.463 --> 00:00:23.924
+Each enabled provider names
+who receives its notices today.
+
+8
+00:00:23.924 --> 00:00:27.962
+And moving from test to production
+changes the file and nothing else.
+
+9
+00:00:27.962 --> 00:00:32.485
+To start, copy the template, fill it
+in, and check it: you get one line
+
+10
+00:00:32.485 --> 00:00:37.420
+with the stage, the change record,
+the output folder and the file's hash.

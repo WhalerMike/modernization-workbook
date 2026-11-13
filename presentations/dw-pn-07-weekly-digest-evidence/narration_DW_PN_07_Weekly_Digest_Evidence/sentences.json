@@ -1,0 +1,660 @@
+{
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
+  ],
+  [
+   5.688,
+   3.812,
+   "This is Chapter 7: the weekly digest, and evidence."
+  ],
+  [
+   9.5,
+   4.562,
+   "The digest is for the people who act; the evidence is for the people who check."
+  ],
+  [
+   14.062,
+   4.275,
+   "Both come from the same runs, so neither can drift from what was actually read."
+  ],
+  [
+   18.337,
+   13.35,
+   "We'll start from what the implementation guide asks the security officer to keep, then read the digest's five sections, the evidence record, the chain and the stage check, and walk two labs, the evidence and the dangers."
+  ],
+  [
+   31.688,
+   1.575,
+   "Two notes before we begin."
+  ],
+  [
+   33.263,
+   3.362,
+   "This chapter is a draft, awaiting the owner's review."
+  ],
+  [
+   36.625,
+   3.525,
+   "And the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.1,
+   "Why put the digest and the evidence in one chapter?"
+  ],
+  [
+   3.15,
+   3.525,
+   "Because they serve two different audiences from the same runs."
+  ],
+  [
+   6.675,
+   2.938,
+   "The digest is for the people who act on notices."
+  ],
+  [
+   9.613,
+   3.125,
+   "The evidence is for the people who check that the work happened."
+  ],
+  [
+   12.738,
+   5.162,
+   "If both come from the same run folders, neither can drift from what the kit actually read."
+  ],
+  [
+   17.9,
+   12.7,
+   "By the end of this chapter you can write the weekly digest from a collection and the routing state, record every run as evidence the security officer can verify with a hash, and say which of a stage's steps have a passing record."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.862,
+   "Start from what the implementation guide's evidence section asks for, gate by gate."
+  ],
+  [
+   4.912,
+   11.4,
+   "From each provider, Azure, Microsoft 365, Oracle Cloud Infrastructure, AWS and Google Cloud, the raw output, the notices and the manifest."
+  ],
+  [
+   16.312,
+   3.812,
+   "From routing, the payloads, the routing table and the state."
+  ],
+  [
+   20.125,
+   6.375,
+   "And the digests, preflight results and evidence records, with an index and a file of hashes."
+  ],
+  [
+   26.5,
+   12.625,
+   "The guide maps them to nist controls for external services, advisories, change control, contingency planning, risk assessment, monitoring and audit protection, and to the indicators fed-ramp lists for them."
+  ],
+  [
+   39.125,
+   4.112,
+   "The kit's records support those controls; the assessor decides them."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.9,
+   "Naming the evidence isn't the same as having it."
+  ],
+  [
+   2.95,
+   6.95,
+   "Owners read a page, not a jay-son file, so the kit writes the digest as a readable page and a spreadsheet."
+  ],
+  [
+   9.9,
+   8.637,
+   "A folder of files can be changed after the fact, so each run is checked against its manifest, copied, and recorded with every file's hash."
+  ],
+  [
+   18.538,
+   5.175,
+   "Someone has to say which run supports which control, so each record names its steps."
+  ],
+  [
+   23.712,
+   6.225,
+   "A record removed from the middle would go unnoticed, so each record holds the hash of the one before it."
+  ],
+  [
+   29.938,
+   3.938,
+   "And a go/no-go needs to know which steps still lack evidence."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.138,
+   "The digest reads a collection and the routing state, and writes a page, a spreadsheet and a manifest."
+  ],
+  [
+   6.188,
+   1.863,
+   "The page has five sections."
+  ],
+  [
+   8.05,
+   5.088,
+   "Open notices by provider, counted by kind and by whether action is required."
+  ],
+  [
+   13.137,
+   5.562,
+   "Action required, soonest due first, each with the assignment group the routing named."
+  ],
+  [
+   18.7,
+   3.337,
+   "Maintenance and changes starting in the next thirty days."
+  ],
+  [
+   22.038,
+   3.525,
+   "What's new in the last seven days, by when the kit first saw it."
+  ],
+  [
+   25.562,
+   4.013,
+   "And what closed, or stopped being listed, in the last seven days."
+  ],
+  [
+   29.575,
+   4.125,
+   "The two windows are parameters, set in the scheduled run's settings."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.462,
+   "Now the evidence record."
+  ],
+  [
+   1.512,
+   2.575,
+   "Recording a run folder does four things."
+  ],
+  [
+   4.088,
+   4.075,
+   "It re-hashes every file the run's own manifest lists."
+  ],
+  [
+   8.162,
+   2.65,
+   "It copies the folder into the evidence store."
+  ],
+  [
+   10.812,
+   10.45,
+   "It writes a record with the time, the environment, the mode, the change record, the command, and the result, which is a pass only if every file matches its manifest."
+  ],
+  [
+   21.262,
+   8.963,
+   "The record names the steps it covers, with their controls and indicators, the claim language, every file's hash, and the hash of the record before it."
+  ],
+  [
+   30.225,
+   5.3,
+   "Then it appends the index and rewrites a sums file that a standard checksum tool can check."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.263,
+   "Each kind of run covers named steps."
+  ],
+  [
+   2.312,
+   5.213,
+   "A collection covers one collect step for each provider it read, plus normalizing."
+  ],
+  [
+   7.525,
+   5.612,
+   "A routing run covers routing, and the contingency step if a payload asked for a plan review."
+  ],
+  [
+   13.137,
+   2.4,
+   "A digest covers the digest step."
+  ],
+  [
+   15.537,
+   6.05,
+   "The runbook in Chapter 8 adds pre-flight, the scheduled run, the alert plan and rollback."
+  ],
+  [
+   21.587,
+   3.15,
+   "And every record covers the evidence step itself."
+  ],
+  [
+   24.738,
+   11.375,
+   "Two things make the folder checkable: the sums file, which says every file still matches, and the chain, where each record holds the previous record's hash, so a removed record breaks it."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.15,
+   "Then there's the check."
+  ],
+  [
+   1.2,
+   5.213,
+   "On its own, it verifies the sums file against every file and walks the chain."
+  ],
+  [
+   6.412,
+   3.938,
+   "With a stage, it adds a row for each step that stage needs."
+  ],
+  [
+   10.35,
+   7.1,
+   "A test stage needs pre-flight, the scheduled run, routing and the digest; production adds the alert plan."
+  ],
+  [
+   17.45,
+   5.925,
+   "Any failing row exits with an error, which is exactly what the runbook's go or no-go reads."
+  ],
+  [
+   23.375,
+   13.625,
+   "The tests cover the digest's sections and counts, the record's fields and claim language, the chain, a changed file, a removed record, a failed run, a stage's missing steps, and the requirements catalog itself."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   3.825,
+   "The owners read the digest each week and act on their rows."
+  ],
+  [
+   4.925,
+   7.775,
+   "The security officer owns this gate: files each week's digest, keeps the records, and runs the go or no-go check."
+  ],
+  [
+   12.7,
+   3.737,
+   "Developers maintain the digest, the record and the chain."
+  ],
+  [
+   16.438,
+   2.587,
+   "One caution matters here more than anywhere."
+  ],
+  [
+   19.025,
+   3.612,
+   "The evidence chain protects files from undetected change."
+  ],
+  [
+   22.637,
+   1.688,
+   "It doesn't decide a control."
+  ],
+  [
+   24.325,
+   5.612,
+   "Keep the evidence folder on agency storage, with the access the security officer sets."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.112,
+   "Lab 1 needs PowerShell 7 with Pester, in the kit's folder."
+  ],
+  [
+   4.162,
+   6.975,
+   "Step 1 makes a week of runs: Chapter 6's two collections and two routings, in one go."
+  ],
+  [
+   11.137,
+   6.575,
+   "Day one routes twelve creates; the second week makes one create, four updates and one close."
+  ],
+  [
+   17.712,
+   2.888,
+   "Step 2 writes the digest for the second week."
+  ],
+  [
+   20.6,
+   8.662,
+   "Sixteen open notices, eight needing action, five starting in the next thirty days, two new, and four closed or no longer listed."
+  ],
+  [
+   29.262,
+   3.288,
+   "It writes the page, the spreadsheet and a manifest."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.263,
+   "Step 3 reads the digest as the owners will."
+  ],
+  [
+   3.312,
+   12.688,
+   "The first table counts open notices by provider and kind: Azure, Microsoft 365, Oracle Cloud Infrastructure, AWS, and Google Cloud, which has nothing open this week."
+  ],
+  [
+   16.0,
+   5.65,
+   "Then the action-required table, soonest due first, each with the team the routing named."
+  ],
+  [
+   21.65,
+   12.738,
+   "An Oracle Cloud certificate bundle to replace by December 15, a Microsoft 365 retirement of basic authentication for SMTP client submission, the Azure retirement from Chapter 1."
+  ],
+  [
+   34.388,
+   3.95,
+   "And at the bottom, the two with no date, shown as not stated."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.725,
+   "The rest of the digest looks ahead and back."
+  ],
+  [
+   2.775,
+   11.088,
+   "Maintenance and changes starting in the next thirty days: an AWS database window, two Azure maintenance windows, and the rescheduled Oracle Cloud database maintenance in Ashburn."
+  ],
+  [
+   13.863,
+   5.912,
+   "New in the last seven days: an Azure maintenance and a Microsoft 365 change."
+  ],
+  [
+   19.775,
+   10.688,
+   "And closed or no longer listed: the AWS security notification and other notices the providers closed, plus the Azure incident that's simply no longer listed."
+  ],
+  [
+   30.462,
+   6.838,
+   "The last line says the digest is neutral by design: what providers published and the routing the agency set."
+  ],
+  [
+   37.3,
+   1.938,
+   "File it with the run's evidence."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   6.638,
+   "Step 4 records three runs as evidence: the second week's collection, its routing, and the digest."
+  ],
+  [
+   6.688,
+   7.013,
+   "Each prints its record number, a pass, the steps it covers, and the controls and indicators those steps support."
+  ],
+  [
+   13.7,
+   3.825,
+   "The collection covers all five providers and normalizing."
+  ],
+  [
+   17.525,
+   4.075,
+   "The digest covers the digest step, and adds risk assessment."
+  ],
+  [
+   21.6,
+   9.85,
+   "Notice the routing run: it adds the contingency step, and contingency planning among its controls, because one of its payloads asked for a contingency plan review."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.912,
+   "Step 5 checks the chain: twenty-five files match the sums, and three records, chain unbroken."
+  ],
+  [
+   6.963,
+   4.963,
+   "Step 6 checks the test stage's coverage, and here a failure is the right answer."
+  ],
+  [
+   11.925,
+   8.85,
+   "A lab has no pre-flight and no scheduled run, so those two steps fail, routing and the digest pass, and the command exits with an error."
+  ],
+  [
+   20.775,
+   4.438,
+   "That's exactly what a go or no-go would see: the gap, by name."
+  ],
+  [
+   25.212,
+   8.225,
+   "Step 7 reads the records' index: three records, collect, route and digest, each a pass, with the steps it covers."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.237,
+   "Step 8 is the one to remember."
+  ],
+  [
+   2.288,
+   5.425,
+   "Change a recorded file, by appending one line to the recorded digest, and check again."
+  ],
+  [
+   7.713,
+   1.163,
+   "Both checks fail."
+  ],
+  [
+   8.875,
+   5.975,
+   "The sums say the digest changed, and the chain says it no longer matches its record, naming the file."
+  ],
+  [
+   14.85,
+   3.225,
+   "That's what protects the evidence from an edit after the fact."
+  ],
+  [
+   18.075,
+   5.513,
+   "Step 9 runs the kit's whole test suite: a hundred and forty passed, none failed."
+  ],
+  [
+   23.587,
+   5.487,
+   "Before step 8, you had an evidence folder whose sums file you could hand to the security officer."
+  ],
+  [
+   29.075,
+   2.212,
+   "Delete the output folder when you're done."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   10.738,
+   "Lab 2 uses real run folders from any earlier chapter's second lab, in a test tenant, account, tenancy or project, never production, kept on agency storage."
+  ],
+  [
+   10.787,
+   4.838,
+   "Route and digest the test collection with the lab's routing and a new state file."
+  ],
+  [
+   15.625,
+   5.6,
+   "Record all three runs, this time with the test change record's number, and check the chain."
+  ],
+  [
+   21.225,
+   6.8,
+   "Then give the digest to the test environment's owners, and ask whether each action-required row reached the right person."
+  ],
+  [
+   28.025,
+   7.037,
+   "To back it out, keep the stage's evidence with its change record, and delete only the copies outside agency storage."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.812,
+   "Here's what this gate proves, against nist's control catalog."
+  ],
+  [
+   3.862,
+   11.925,
+   "The digest shows the owners got the week's notices, what needs action, by when and who owns it, which supports disseminating advisories, monitoring external services, and responding to risk."
+  ],
+  [
+   15.787,
+   6.475,
+   "Each record, with its hashes and the chain, supports continuous monitoring and protecting audit information."
+  ],
+  [
+   22.262,
+   4.438,
+   "A folder that's unchanged, and a change that's caught, is audit protection."
+  ],
+  [
+   26.7,
+   5.537,
+   "And a stage check that names every gap supports continuous monitoring at the go or no-go."
+  ],
+  [
+   32.237,
+   3.3,
+   "The indicators are fed-ramp's, mapped by the program."
+  ],
+  [
+   35.538,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   6.362,
+   "The quietest failure is the weekly run stopping: no digest, no evidence, no tasks."
+  ],
+  [
+   7.812,
+   5.625,
+   "The chain shows the gap in dates, and the go or no-go fails without a passing scheduled run."
+  ],
+  [
+   13.438,
+   6.175,
+   "A recorded file edited later is caught by the sums and the record's hashes, and the check names the file."
+  ],
+  [
+   19.613,
+   2.775,
+   "A record removed from the middle breaks the chain."
+  ],
+  [
+   22.387,
+   6.825,
+   "A digest sent outside the agency publishes which clouds and services matter, so it stays on agency storage."
+  ],
+  [
+   29.212,
+   4.463,
+   "And a pass is not a control decision: each record's claim says so."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.075,
+   "The digest reaches every owner the routing names, every week."
+  ],
+  [
+   5.475,
+   5.825,
+   "Every collection, routing run and digest is recorded, with the change record where there is one."
+  ],
+  [
+   11.3,
+   2.237,
+   "The check passes on the evidence folder."
+  ],
+  [
+   13.537,
+   5.112,
+   "The stage check lists every step the go or no-go needs, and each one passes."
+  ],
+  [
+   18.65,
+   5.725,
+   "And the evidence folder lives on agency storage, with the access the security officer set."
+  ],
+  [
+   24.375,
+   5.625,
+   "Next, Chapter 8 runs all of it, first in a test environment and then in production."
+  ],
+  [
+   30.0,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.162
+Lab 1 needs PowerShell 7 with
+Pester, in the kit's folder.
+
+2
+00:00:04.162 --> 00:00:08.477
+The lab settings name a fictional
+tenancy in the commercial realm,
+
+3
+00:00:08.477 --> 00:00:10.987
+in the Ashburn region; nothing signs in.
+
+4
+00:00:10.987 --> 00:00:16.176
+Step 1 lists what OCI needs: inspect
+to list, read for the details.
+
+5
+00:00:16.176 --> 00:00:20.302
+Step 2 shows the realms the kit
+knows: the commercial domain,
+
+6
+00:00:20.302 --> 00:00:25.525
+the government domain with its two regions,
+and O C 3 refused with its reason.
+
+7
+00:00:25.525 --> 00:00:31.080
+That refusal is deliberate: an endpoint
+nobody could confirm is never guessed.

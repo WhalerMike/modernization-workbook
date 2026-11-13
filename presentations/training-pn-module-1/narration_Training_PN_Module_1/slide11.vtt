@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.037
+Step four reads the
+Azure retirement in full.
+
+2
+00:00:03.037 --> 00:00:07.275
+Its notice I D is azure,
+R T five J six K L.
+
+3
+00:00:07.275 --> 00:00:10.216
+It's due on September thirtieth, 2027,
+
+4
+00:00:10.216 --> 00:00:13.550
+by the kit's rule, at
+the advisory's end time.
+
+5
+00:00:13.550 --> 00:00:19.500
+It names one public I P address,
+and its fingerprint is a SHA-256.
+
+6
+00:00:19.500 --> 00:00:22.365
+Step five reads the same
+fixtures a day later,
+
+7
+00:00:22.365 --> 00:00:26.625
+as of November tenth, and compares
+the fingerprints of the two runs.
+
+8
+00:00:26.625 --> 00:00:28.762
+The same twenty-two notices come back,
+
+9
+00:00:28.762 --> 00:00:31.588
+and the count of fingerprints
+that differ is zero.
+
+10
+00:00:31.588 --> 00:00:35.637
+A second read changes first seen
+in the run, but no fingerprint,
+
+11
+00:00:35.637 --> 00:00:39.925
+so the router in Module 7 sees
+nothing new and makes no second task.
+
+12
+00:00:39.925 --> 00:00:43.845
+Step six runs the record's
+tests, for the notice record,
+
+13
+00:00:43.845 --> 00:00:48.300
+the fingerprint, and times and
+text: seventeen pass, none fail.
+
+14
+00:00:48.300 --> 00:00:50.210
+Then delete the output folder.

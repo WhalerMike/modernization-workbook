@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.238
+Why do provider notices go unread?
+
+2
+00:00:02.238 --> 00:00:03.725
+Providers don't hide them.
+
+3
+00:00:03.725 --> 00:00:05.881
+Azure shows them in Service Health,
+
+4
+00:00:05.881 --> 00:00:09.897
+but nobody is told unless someone
+created a Service Health alert,
+
+5
+00:00:09.897 --> 00:00:13.094
+and Microsoft's own F A Q
+gives a rule that left out the
+
+6
+00:00:13.094 --> 00:00:16.663
+affected subscription as a
+reason an alert never arrived.
+
+7
+00:00:16.663 --> 00:00:21.992
+Microsoft 365 posts them in the Message
+center, where each administrator's view
+
+8
+00:00:21.992 --> 00:00:27.401
+is their own, and the weekly digest goes
+to each administrator's own primary email.
+
+9
+00:00:27.401 --> 00:00:31.300
+Oracle Cloud Infrastructure
+emails the tenancy administrator.
+
+10
+00:00:31.300 --> 00:00:36.450
+AWS writes to the root user's address
+and up to three alternate contacts.
+
+11
+00:00:36.450 --> 00:00:39.600
+And Google Cloud writes to
+its Essential Contacts.
+
+12
+00:00:39.600 --> 00:00:43.912
+Every one of those channels ends at
+a person or a page, not a queue.
+
+13
+00:00:43.912 --> 00:00:48.626
+The notice carries no owner, no due date
+and no way to show it was dealt with.
+
+14
+00:00:48.626 --> 00:00:51.475
+Attackers imitate provider email, too.
+
+15
+00:00:51.475 --> 00:00:55.392
+And a retirement announced a year
+ahead is easy to agree with,
+
+16
+00:00:55.392 --> 00:00:57.100
+and easy to miss on the day.

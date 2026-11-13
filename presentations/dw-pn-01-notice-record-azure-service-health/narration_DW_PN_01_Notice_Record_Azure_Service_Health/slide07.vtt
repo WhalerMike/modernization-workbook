@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.560
+The fingerprint is the
+reason the router can tell
+
+2
+00:00:02.560 --> 00:00:04.825
+a changed notice from
+one it has already seen.
+
+3
+00:00:04.825 --> 00:00:08.900
+It's a hash of the record without the
+first-seen time and without itself,
+
+4
+00:00:08.900 --> 00:00:12.272
+so when a provider edits a
+notice the fingerprint changes,
+
+5
+00:00:12.272 --> 00:00:16.487
+and when the kit simply reads the same
+notice again a week later, it doesn't.
+
+6
+00:00:16.487 --> 00:00:18.276
+And a record has to be valid.
+
+7
+00:00:18.276 --> 00:00:23.155
+The kit checks the schema's rules in code,
+so the check runs on older PowerShell
+
+8
+00:00:23.155 --> 00:00:27.425
+7 too, and the collector refuses to
+write a run with an invalid record.
+
+9
+00:00:27.425 --> 00:00:29.710
+Every time is stored in UTC.

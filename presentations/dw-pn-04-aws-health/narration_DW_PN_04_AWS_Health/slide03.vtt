@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.625
+Next, which partition.
+
+2
+00:00:01.625 --> 00:00:05.025
+AWS documents two with
+different Health endpoints.
+
+3
+00:00:05.025 --> 00:00:08.900
+For commercial accounts the
+active endpoint is in U S East 1.
+
+4
+00:00:08.900 --> 00:00:13.409
+In AWS GovCloud there's a single
+regional endpoint, in U S Gov West 1,
+
+5
+00:00:13.409 --> 00:00:18.586
+and AWS's GovCloud guide says EventBridge
+there doesn't send public events
+
+6
+00:00:18.586 --> 00:00:23.763
+from the Service Health view, so a
+scheduled read through the API is the path.
+
+7
+00:00:23.763 --> 00:00:25.274
+The kit never guesses.
+
+8
+00:00:25.274 --> 00:00:28.640
+The settings name the partition,
+the region comes from it,
+
+9
+00:00:28.640 --> 00:00:32.792
+and the caller's identity must be in
+that partition, because a GovCloud
+
+10
+00:00:32.792 --> 00:00:37.150
+account read from the commercial
+endpoint fails, or worse, reads nothing.

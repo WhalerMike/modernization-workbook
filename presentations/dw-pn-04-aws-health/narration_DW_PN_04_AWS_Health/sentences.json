@@ -1,0 +1,621 @@
+{
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
+  ],
+  [
+   5.688,
+   2.788,
+   "This is Chapter 4: AWS Health."
+  ],
+  [
+   8.475,
+   4.975,
+   "AWS tells each account which of its instances will be retired, and when."
+  ],
+  [
+   13.45,
+   6.112,
+   "The A P I that says so needs a support plan, a policy you write yourself, and the right partition."
+  ],
+  [
+   19.562,
+   12.762,
+   "We'll start from AWS's own documentation for the Health A P I, see what it leaves to you, then read the kit's collector, its kinds and its partition guard, and walk two labs, the evidence and the dangers."
+  ],
+  [
+   32.325,
+   1.575,
+   "Two notes before we begin."
+  ],
+  [
+   33.9,
+   3.362,
+   "This chapter is a draft, awaiting the owner's review."
+  ],
+  [
+   37.263,
+   3.525,
+   "And the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.113,
+   "Why this chapter?"
+  ],
+  [
+   1.163,
+   6.188,
+   "AWS already tells each account, in writing, which instances will be retired and when."
+  ],
+  [
+   7.35,
+   3.438,
+   "The gap is that nobody reads it unless something collects it."
+  ],
+  [
+   10.787,
+   1.65,
+   "So the goal is concrete."
+  ],
+  [
+   12.438,
+   16.25,
+   "By the end you can read every open and upcoming AWS Health event for an account, with a policy that allows three read actions and nothing else, into records that name the affected resources and say whether AWS or the kit decided the event needs action."
+  ],
+  [
+   28.688,
+   6.938,
+   "It's for developers who maintain the kit, the account owner who owns this gate, and whoever owns the account's support plan."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.575,
+   "Next, which partition."
+  ],
+  [
+   1.625,
+   3.4,
+   "AWS documents two with different Health endpoints."
+  ],
+  [
+   5.025,
+   3.875,
+   "For commercial accounts the active endpoint is in U S East 1."
+  ],
+  [
+   8.9,
+   14.863,
+   "In AWS GovCloud there's a single regional endpoint, in U S Gov West 1, and AWS's GovCloud guide says EventBridge there doesn't send public events from the Service Health view, so a scheduled read through the A P I is the path."
+  ],
+  [
+   23.762,
+   1.512,
+   "The kit never guesses."
+  ],
+  [
+   25.275,
+   11.812,
+   "The settings name the partition, the region comes from it, and the caller's identity must be in that partition, because a GovCloud account read from the commercial endpoint fails, or worse, reads nothing."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.075,
+   "Here's AWS's starting point."
+  ],
+  [
+   2.125,
+   11.963,
+   "The Health A P I reference defines the event: its service, its type code and category, its region, its times, its status, and newer fields such as actionability and personas."
+  ],
+  [
+   14.088,
+   2.612,
+   "The command line's describe events lists them."
+  ],
+  [
+   16.7,
+   8.012,
+   "A second operation returns each event's latest description, one to ten events at a time, and a third names the affected resources."
+  ],
+  [
+   24.712,
+   5.438,
+   "The A P I needs a qualifying support plan, or it answers with a subscription-required error."
+  ],
+  [
+   30.15,
+   11.425,
+   "And AWS's policy examples grant a wildcard over the describe actions; AWS publishes no read-only managed policy for Health, and the full-access one includes writes."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.7,
+   "One point deserves its own slide, because AWS's own pages don't agree."
+  ],
+  [
+   4.75,
+   6.487,
+   "The Health concepts page names the newer Business Support Plus, Enterprise Support or Unified Operations."
+  ],
+  [
+   11.238,
+   6.375,
+   "The A P I reference's welcome page and the GovCloud page name the older Business and Enterprise plans."
+  ],
+  [
+   17.613,
+   6.125,
+   "Without a qualifying plan, the A P I answers with a subscription-required error, and nothing is read."
+  ],
+  [
+   23.738,
+   7.263,
+   "So the chapter's advice is simple: confirm the account's plan with AWS Support rather than reading it off one page."
+  ],
+  [
+   31.0,
+   9.387,
+   "The kit surfaces the error in AWS's own words, the runbook's pre-flight calls the A P I first, and the Health Dashboard is the interim path."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.8,
+   "What does AWS leave to you?"
+  ],
+  [
+   1.85,
+   9.338,
+   "The event list comes without descriptions or resources, and an event without them can't be routed, so the kit fetches both for every event, ten at a time."
+  ],
+  [
+   11.188,
+   2.812,
+   "No category says retirement or security."
+  ],
+  [
+   14.0,
+   8.037,
+   "AWS's actionability flag is AWS's own, so the kit uses it as published, and labels it as AWS's."
+  ],
+  [
+   22.038,
+   3.013,
+   "A retirement without that flag could look optional."
+  ],
+  [
+   25.05,
+   1.55,
+   "Times are epoch seconds."
+  ],
+  [
+   26.6,
+   3.8,
+   "And a wildcard policy grows as AWS adds actions."
+  ],
+  [
+   30.4,
+   2.025,
+   "Each gap is pinned by a test."
+  ],
+  [
+   32.425,
+   9.188,
+   "The verdict: use AWS's three operations as published, with exactly three actions, and build the batching, the kinds and the partition guard."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.938,
+   "Now the code."
+  ],
+  [
+   0.988,
+   2.45,
+   "The collector makes three declared calls."
+  ],
+  [
+   3.438,
+   4.775,
+   "First, describe events, filtered to events that are open or upcoming."
+  ],
+  [
+   8.213,
+   14.025,
+   "Then, for those events, the details call for each one's latest description, and the affected-entities call for the resources it names, each ten event identifiers at a time, because AWS's details operation takes one to ten."
+  ],
+  [
+   22.238,
+   2.2,
+   "Then the normalizer builds the record."
+  ],
+  [
+   24.438,
+   6.312,
+   "The title comes from the service and the event type code, like E C 2, instance retirement scheduled."
+  ],
+  [
+   30.75,
+   2.288,
+   "A closed status closes the record."
+  ],
+  [
+   33.038,
+   4.737,
+   "And in a lyve run, the region is the partition's own Health endpoint region."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.3,
+   "The normalizer maps AWS's categories to the record's kinds."
+  ],
+  [
+   4.35,
+   2.5,
+   "Issues and investigations are incidents."
+  ],
+  [
+   6.85,
+   10.525,
+   "A scheduled change whose event type code names a retirement, a lifecycle event, a deprecation or an end of support is a retirement; any other scheduled change is maintenance."
+  ],
+  [
+   17.375,
+   5.6,
+   "An account notification with the security persona is security; otherwise it's an advisory."
+  ],
+  [
+   22.975,
+   6.338,
+   "For every kind, AWS's actionability flag decides first, and the record says provider."
+  ],
+  [
+   29.312,
+   7.987,
+   "Only a retirement without that flag falls to the kit's own rule: action required, due at its start, and the record says rule."
+  ],
+  [
+   37.3,
+   1.962,
+   "The two sources are never mixed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.275,
+   "Before a lyve run reads anything, the kit checks who it's signed in as."
+  ],
+  [
+   4.325,
+   9.387,
+   "It asks AWS's security token service for the caller's identity, once, and refuses a caller whose identity isn't in the partition the settings name."
+  ],
+  [
+   13.713,
+   2.925,
+   "The region is that partition's Health endpoint region."
+  ],
+  [
+   16.637,
+   7.162,
+   "When the tool fails, for example with the subscription-required error, the error surfaces in AWS's own words."
+  ],
+  [
+   23.8,
+   11.988,
+   "The tests pin all of this: six in the collector's AWS block, plus the lyve tests for the endpoint per partition, the eleven-identifier refusal, the caller guard and the support-plan error."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   1.775,
+   "Developers maintain the kit."
+  ],
+  [
+   2.875,
+   4.775,
+   "The AWS account owner owns this gate, including the reader's policy."
+  ],
+  [
+   7.65,
+   6.75,
+   "And whoever owns the support plan confirms it with AWS Support, or records the gap with the security officer."
+  ],
+  [
+   14.4,
+   8.562,
+   "The policy is the whole permission story: a customer managed policy with exactly the three describe actions the kit calls, and nothing else."
+  ],
+  [
+   22.962,
+   11.175,
+   "Not AWS's wildcard example, because a wildcard grows as AWS adds actions, and never the full-access managed policy attached for convenience, because then the reader can write."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.838,
+   "Lab 1 needs only PowerShell 7 with Pester, working in the kit's folder."
+  ],
+  [
+   4.888,
+   6.737,
+   "The lab settings name AWS's own documentation account, in the commercial partition, and nothing signs in."
+  ],
+  [
+   11.625,
+   8.825,
+   "Step 1 lists what AWS needs: three calls, each with one read action, and each verified against AWS's documentation."
+  ],
+  [
+   20.45,
+   1.387,
+   "That's the whole policy."
+  ],
+  [
+   21.837,
+   10.6,
+   "Step 2 shows each partition's Health endpoint region and the prefix a caller's identity must carry: U S East 1 for commercial, U S Gov West 1 for GovCloud."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.612,
+   "Step 3 collects AWS from the day-one fixtures."
+  ],
+  [
+   3.663,
+   5.662,
+   "Five notices, four open, three needing action, and every one valid against the schema."
+  ],
+  [
+   9.325,
+   2.175,
+   "Step 4 reads them as a table."
+  ],
+  [
+   11.5,
+   7.562,
+   "Two retirements, an instance retirement and a Lambda lifecycle event, each with a due date and the affected resource."
+  ],
+  [
+   19.062,
+   1.812,
+   "Maintenance on a database."
+  ],
+  [
+   20.875,
+   1.788,
+   "A security notification."
+  ],
+  [
+   22.663,
+   1.4,
+   "And a closed incident."
+  ],
+  [
+   24.062,
+   7.825,
+   "Notice that every row but the incident names the resource it affects, because the kit fetched the affected entities for every event."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.125,
+   "Step 5 shows who said each notice needs action."
+  ],
+  [
+   3.175,
+   6.287,
+   "The instance retirement and the security notification carry AWS's own actionability flag."
+  ],
+  [
+   9.463,
+   7.5,
+   "The Lambda lifecycle event carries the kit's rule: a scheduled change whose type code names a retirement, due at its start time."
+  ],
+  [
+   16.962,
+   7.3,
+   "Step 6 switches the partition to GovCloud in memory and builds the command a lyve run would use, without sending it."
+  ],
+  [
+   24.262,
+   2.525,
+   "The region is U S Gov West 1."
+  ],
+  [
+   26.788,
+   4.075,
+   "Step 7 asks for details of eleven events in one call."
+  ],
+  [
+   30.863,
+   5.6,
+   "AWS's operation takes one to ten, and the kit refuses before anything runs."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   7.8,
+   "Step 8 runs this chapter's tests: eleven passed, none failed, and the manifest lists the three calls with their actions."
+  ],
+  [
+   7.85,
+   1.5,
+   "Then delete the output."
+  ],
+  [
+   9.35,
+   5.938,
+   "Lab 2 moves to an AWS test account with a qualifying support plan, never production."
+  ],
+  [
+   15.287,
+   5.062,
+   "Without the plan, the subscription-required error at step 3 is the expected result."
+  ],
+  [
+   20.35,
+   5.138,
+   "Create the policy with exactly the three actions and attach it to the reader's role."
+  ],
+  [
+   25.488,
+   4.588,
+   "Check who you're signed in as: the identity must be in the commercial partition."
+  ],
+  [
+   30.075,
+   4.188,
+   "Cross-check AWS's own event count against the kit's collection."
+  ],
+  [
+   34.263,
+   5.825,
+   "Then detach and delete the policy, and delete the run, because it names the account's resources."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.8,
+   "Each output is evidence for something specific, against nist's control catalog."
+  ],
+  [
+   4.85,
+   8.912,
+   "The three-action policy, and the reads going to the partition's own endpoint as a caller in that partition, support monitoring an external service provider."
+  ],
+  [
+   13.762,
+   9.512,
+   "The run folder shows every open and upcoming event was read with its description and resources, which supports receiving security alerts and advisories."
+  ],
+  [
+   23.275,
+   10.225,
+   "And events AWS marks action required carry AWS's due date, which supports carrying out directives in their time frames, through the task Chapter 6 routes."
+  ],
+  [
+   33.5,
+   3.975,
+   "The indicators are fed-ramp's, and the mapping is the program's."
+  ],
+  [
+   37.475,
+   4.088,
+   "The kit's records support these controls; the assessor decides them."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   2.875,
+   "What breaks in production, and what guards against it?"
+  ],
+  [
+   2.925,
+   10.05,
+   "No support plan, and nothing is read: the error surfaces, the runbook's pre-flight calls the A P I first, and the Health Dashboard is the interim path."
+  ],
+  [
+   12.975,
+   6.125,
+   "The full-access policy attached for convenience lets the reader write, so the kit uses three actions."
+  ],
+  [
+   19.1,
+   6.375,
+   "A GovCloud account read from the commercial endpoint fails, so the partition names the region and the caller is checked."
+  ],
+  [
+   25.475,
+   3.825,
+   "Eleven identifiers in one call are refused before calling."
+  ],
+  [
+   29.3,
+   6.938,
+   "A retirement without AWS's flag could stop an instance on its date, so the kit's rule makes it action required."
+  ],
+  [
+   36.237,
+   5.513,
+   "And in GovCloud, EventBridge won't bring public events, so the kit reads on a schedule."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   5.662,
+   "The account has a qualifying support plan, or the gap is recorded with the security officer."
+  ],
+  [
+   7.062,
+   4.513,
+   "The reader's policy holds exactly the three describe actions the kit calls."
+  ],
+  [
+   11.575,
+   4.013,
+   "The settings name the partition, and the caller's identity is in it."
+  ],
+  [
+   15.588,
+   4.188,
+   "AWS's own count and the kit's collection agree in the test account."
+  ],
+  [
+   19.775,
+   3.225,
+   "Every retirement has a due date and its resource."
+  ],
+  [
+   23.0,
+   2.987,
+   "And the test policy was detached and deleted."
+  ],
+  [
+   25.988,
+   7.275,
+   "Next, Chapter 5: Google Cloud's Personalized Service Health, the smallest collector, with the largest gaps."
+  ],
+  [
+   33.263,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

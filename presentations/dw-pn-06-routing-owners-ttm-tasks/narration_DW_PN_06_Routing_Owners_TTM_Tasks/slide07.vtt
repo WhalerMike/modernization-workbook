@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.600
+Order matters, because rules are tried
+in order and the first match wins.
+
+2
+00:00:04.600 --> 00:00:08.346
+The workbook's design guidance is
+to put security advisories and
+
+3
+00:00:08.346 --> 00:00:12.300
+retirements before the general rule
+for anything that needs action.
+
+4
+00:00:12.300 --> 00:00:17.176
+Here are the lab's six rules: security
+to a security operations team at P2,
+
+5
+00:00:17.176 --> 00:00:21.722
+retirements and maintenance to
+cloud platform engineering at P3,
+
+6
+00:00:21.722 --> 00:00:26.102
+incidents to the service desk at
+P2, changes to cloud operations,
+
+7
+00:00:26.102 --> 00:00:29.325
+and one rule that ignores
+a Microsoft Viva post.
+
+8
+00:00:29.325 --> 00:00:32.189
+Get the order wrong,
+with a broad rule first,
+
+9
+00:00:32.189 --> 00:00:35.690
+and security advisories
+land in the general queue.

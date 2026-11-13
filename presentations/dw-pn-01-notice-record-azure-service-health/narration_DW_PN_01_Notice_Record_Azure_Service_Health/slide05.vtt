@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+What does Learn leave to you?
+
+2
+00:00:01.413 --> 00:00:04.637
+Each sample answers one
+question with its own columns,
+
+3
+00:00:04.637 --> 00:00:07.288
+so there are several
+queries to run and merge.
+
+4
+00:00:07.288 --> 00:00:09.925
+Each event comes back
+once per subscription,
+
+5
+00:00:09.925 --> 00:00:12.349
+so one outage would be counted many times.
+
+6
+00:00:12.349 --> 00:00:16.662
+Event types don't say what to do: a
+health advisory can be a retirement.
+
+7
+00:00:16.662 --> 00:00:18.638
+Nothing says action is required.
+
+8
+00:00:18.638 --> 00:00:20.765
+The alert policy is portal steps,
+
+9
+00:00:20.765 --> 00:00:24.075
+with nothing a reviewer
+can approve before it runs.
+
+10
+00:00:24.075 --> 00:00:26.250
+And nothing covers the other providers.
+
+11
+00:00:26.250 --> 00:00:28.775
+Each of those gaps is pinned by a test.
+
+12
+00:00:28.775 --> 00:00:31.905
+The verdict: keep Learn's
+queries as the model,
+
+13
+00:00:31.905 --> 00:00:36.120
+and build the record, the merge,
+the kinds and the action rule.

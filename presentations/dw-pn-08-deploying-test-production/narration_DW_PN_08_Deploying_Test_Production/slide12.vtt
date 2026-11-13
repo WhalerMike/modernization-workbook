@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.094
+Step 1.4 routes the full collection with
+
+2
+00:00:03.094 --> 00:00:06.138
+the agency's own routing
+file, as a dry run.
+
+3
+00:00:06.138 --> 00:00:09.738
+The service desk reads the
+payloads before anything is sent.
+
+4
+00:00:09.738 --> 00:00:15.126
+Expected: payloads written, nothing sent;
+every security advisory and retirement
+
+5
+00:00:15.126 --> 00:00:19.800
+has one, and each assignment group is
+one the change manager recognizes.
+
+6
+00:00:19.800 --> 00:00:22.524
+Step 1.5 is the smoke test: four checks,
+
+7
+00:00:22.524 --> 00:00:27.063
+each with its expected result
+written down before you run it.
+
+8
+00:00:27.063 --> 00:00:30.848
+Every provider read; a second
+routing writes nothing new;
+
+9
+00:00:30.848 --> 00:00:34.150
+every payload valid; and
+the evidence chain clean.
+
+10
+00:00:34.150 --> 00:00:39.360
+On the fixtures, the first routing created
+eight tasks and the second created none.

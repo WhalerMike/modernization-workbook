@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.112
+Step 6 routes the same collection
+again, on a copy of the state.
+
+2
+00:00:04.112 --> 00:00:07.793
+All twenty-two are unchanged,
+so nothing is written:
+
+3
+00:00:07.793 --> 00:00:11.825
+no payloads, because nothing
+new or changed needs a task.
+
+4
+00:00:11.825 --> 00:00:13.688
+That's what keeps the queue readable.
+
+5
+00:00:13.688 --> 00:00:16.626
+Step 7 collects and
+routes the second week.
+
+6
+00:00:16.626 --> 00:00:22.588
+Two notices are new, six changed, fifteen
+unchanged, and one is no longer listed.
+
+7
+00:00:22.588 --> 00:00:28.412
+The router writes just six payloads:
+one create, four updates and one close.
+
+8
+00:00:28.412 --> 00:00:32.531
+The routing hasn't changed, so the
+same twelve notices route to tasks,
+
+9
+00:00:32.531 --> 00:00:35.980
+but only the six with something
+new to say make a payload.

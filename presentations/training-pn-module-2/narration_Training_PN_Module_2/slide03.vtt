@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.348
+You'll name the least-privileged
+roles that read Service Health,
+
+3
+00:00:06.348 --> 00:00:09.287
+and the one a security advisory's
+sensitive fields need.
+
+4
+00:00:09.287 --> 00:00:12.524
+You'll compare the kit's events
+query with Learn's samples.
+
+5
+00:00:12.524 --> 00:00:17.575
+You'll collect the fixture subscriptions
+and read each event's kind and action date.
+
+6
+00:00:17.575 --> 00:00:21.155
+And you'll plan Service Health
+alerts at scale with Azure Policy,
+
+7
+00:00:21.155 --> 00:00:23.925
+and show that fixture mode
+never applies the plan.
+
+8
+00:00:23.925 --> 00:00:27.600
+You need Module 1, for the
+record and its action basis.
+
+9
+00:00:27.600 --> 00:00:33.024
+If you have time, read the Azure platform
+and Microsoft 365 audit telemetry chapter
+
+10
+00:00:33.024 --> 00:00:35.540
+of Security Operations and Telemetry,
+
+11
+00:00:35.540 --> 00:00:40.650
+which sends the Azure activity log's
+Service Health category to the workspace.
+
+12
+00:00:40.650 --> 00:00:44.812
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+13
+00:00:44.812 --> 00:00:45.790
+No tenant.

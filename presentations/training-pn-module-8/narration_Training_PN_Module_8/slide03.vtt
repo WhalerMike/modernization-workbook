@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:07.412
+You'll write the weekly digest, and read
+its five sections as an owner would.
+
+3
+00:00:07.412 --> 00:00:12.163
+You'll record a collection, a
+routing run and a digest as evidence,
+
+4
+00:00:12.163 --> 00:00:16.287
+and say which steps, controls
+and K S I's each record names.
+
+5
+00:00:16.287 --> 00:00:19.254
+You'll check the evidence
+chain and the checksum file,
+
+6
+00:00:19.254 --> 00:00:21.950
+and show that an edit
+after recording fails both.
+
+7
+00:00:21.950 --> 00:00:23.705
+You'll check a stage's coverage,
+
+8
+00:00:23.705 --> 00:00:27.075
+and name the steps a test stage
+and a production stage need.
+
+9
+00:00:27.075 --> 00:00:30.696
+And you'll read the runbook's
+promotion go/no-go criteria,
+
+10
+00:00:30.696 --> 00:00:33.687
+and say which ones the
+evidence check answers.
+
+11
+00:00:33.687 --> 00:00:39.338
+You need Module 7 first, because this lab
+repeats its two collections and routings.
+
+12
+00:00:39.338 --> 00:00:44.637
+Lab 1 needs PowerShell 7.1 or
+later with Pester 5, and no tenant.
+
+13
+00:00:44.637 --> 00:00:50.350
+Lab 2 uses a run folder from an earlier
+module's Lab 2, kept on agency storage.

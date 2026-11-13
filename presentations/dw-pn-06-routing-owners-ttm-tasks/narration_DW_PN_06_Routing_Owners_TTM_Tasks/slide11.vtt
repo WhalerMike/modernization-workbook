@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.835
+Lab 1 needs PowerShell 7 with
+Pester, in the kit's folder,
+
+2
+00:00:03.835 --> 00:00:07.200
+against fictional notices
+and fictional teams.
+
+3
+00:00:07.200 --> 00:00:08.375
+Nothing is sent.
+
+4
+00:00:08.375 --> 00:00:11.888
+The finding contract the router
+mirrors comes in the same download.
+
+5
+00:00:11.888 --> 00:00:16.493
+Step 1 checks the lab's routing: six
+rules, in the order they're tried,
+
+6
+00:00:16.493 --> 00:00:20.075
+each with its route, severity
+and assignment group.
+
+7
+00:00:20.075 --> 00:00:23.184
+Step 2 tries the template
+exactly as it ships,
+
+8
+00:00:23.184 --> 00:00:26.125
+and it's refused: it
+still has a placeholder.
+
+9
+00:00:26.125 --> 00:00:27.275
+That's deliberate.
+
+10
+00:00:27.275 --> 00:00:31.320
+The template can't run until every
+placeholder is filled in at work.

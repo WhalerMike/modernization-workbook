@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+What does Learn leave to you?
+
+2
+00:00:01.413 --> 00:00:06.981
+No post category says retirement, so the
+kit treats a post tagged Retirement as one;
+
+3
+00:00:06.981 --> 00:00:11.075
+Learn doesn't list the tags, so
+that's marked not yet specified.
+
+4
+00:00:11.075 --> 00:00:14.796
+The action-required date is
+the only field where Microsoft
+
+5
+00:00:14.796 --> 00:00:18.137
+says it wants action, so the
+kit keeps it as Microsoft's.
+
+6
+00:00:18.137 --> 00:00:23.101
+Samples show enum values in a
+different case, post bodies are HTML,
+
+7
+00:00:23.101 --> 00:00:28.524
+a next link is a URL the response chose,
+and a post past its end still lists.
+
+8
+00:00:28.524 --> 00:00:30.550
+Each gap is pinned by a test.
+
+9
+00:00:30.550 --> 00:00:34.037
+The verdict: use Learn's calls
+and permissions as they are,
+
+10
+00:00:34.037 --> 00:00:37.440
+and build the kinds, the action
+basis and the host guard.

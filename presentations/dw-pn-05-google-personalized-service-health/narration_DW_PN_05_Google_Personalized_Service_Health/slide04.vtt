@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.725
+Here's Google's starting point.
+
+2
+00:00:01.725 --> 00:00:05.555
+Google Cloud's REST reference
+documents the project events list,
+
+3
+00:00:05.555 --> 00:00:08.675
+with its permission, and an
+organization equivalent.
+
+4
+00:00:08.675 --> 00:00:13.688
+The event resource has a category whose
+only value is incident, plus a state,
+
+5
+00:00:13.688 --> 00:00:15.790
+a detailed category, relevance,
+
+6
+00:00:15.790 --> 00:00:19.913
+its impacts by product and
+location, and its updates over time.
+
+7
+00:00:19.913 --> 00:00:21.688
+Planned maintenance isn't in it.
+
+8
+00:00:21.688 --> 00:00:24.463
+The API is enabled once per project.
+
+9
+00:00:24.463 --> 00:00:27.449
+The Personalized Service
+Health Viewer role reads it.
+
+10
+00:00:27.449 --> 00:00:31.440
+And the command line lists a project's
+events at the global location.

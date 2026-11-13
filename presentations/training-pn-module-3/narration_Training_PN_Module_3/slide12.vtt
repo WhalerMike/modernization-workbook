@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:08.085
+Gate 2 supports NIST special publication
+eight hundred fifty-three S A nine,
+
+3
+00:00:08.085 --> 00:00:11.250
+part c, and S I five,
+part a, as Gate 1 does.
+
+4
+00:00:11.250 --> 00:00:15.524
+And for posts that announce a change,
+it supports C M three, part b:
+
+5
+00:00:15.524 --> 00:00:20.537
+reviewing proposed changes with a
+security and privacy impact analysis,
+
+6
+00:00:20.537 --> 00:00:22.838
+through the tasks Module 7 routes.
+
+7
+00:00:22.838 --> 00:00:28.235
+The evidence is the permission list, two
+read permissions, and the consent record;
+
+8
+00:00:28.235 --> 00:00:32.264
+the raw Microsoft 365 response,
+the notices and the manifest,
+
+9
+00:00:32.264 --> 00:00:35.486
+with every request on the
+tenant's own Graph host;
+
+10
+00:00:35.486 --> 00:00:39.837
+and the change and retirement
+notices, each with its action basis.
+
+11
+00:00:39.837 --> 00:00:42.749
+The gate's output is
+evidence for these controls;
+
+12
+00:00:42.749 --> 00:00:47.044
+your organization still sets their
+parameters, policy and procedures,
+
+13
+00:00:47.044 --> 00:00:50.175
+and the assessor decides
+whether each is satisfied.
+
+14
+00:00:50.175 --> 00:00:54.212
+K S I's are FedRAMP twenty X indicators
+for cloud service providers,
+
+15
+00:00:54.212 --> 00:00:58.220
+and which file supports which
+indicator is the program's mapping.

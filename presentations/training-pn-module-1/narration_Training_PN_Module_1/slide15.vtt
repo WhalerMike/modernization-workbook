@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.684
+You collected twenty-two fictional
+notices from five providers into one list,
+
+3
+00:00:05.684 --> 00:00:09.975
+counted them by the six kinds, saw
+eight that need action and who said so,
+
+4
+00:00:09.975 --> 00:00:13.600
+and showed that reading them
+again changes no fingerprint.
+
+5
+00:00:13.600 --> 00:00:19.105
+The evidence an ISSO keeps from this module's
+pattern is each run's raw responses,
+
+6
+00:00:19.105 --> 00:00:23.525
+the notices as JSON and as a
+spreadsheet file, and the manifest
+
+7
+00:00:23.525 --> 00:00:28.112
+that lists every call with its role
+and hashes every file, all dated.
+
+8
+00:00:28.112 --> 00:00:32.626
+Modules 2 to 6 produce it for each
+provider, and Module 8 chains it.
+
+9
+00:00:32.626 --> 00:00:36.487
+Next is Module 2: Azure
+Service Health and alerts.
+
+10
+00:00:36.487 --> 00:00:41.177
+That's Gate 1, with the workbook's first
+chapter: the Azure reader, the elevated
+
+11
+00:00:41.177 --> 00:00:43.113
+role security advisories need,
+
+12
+00:00:43.113 --> 00:00:46.680
+and Service Health alerts at
+scale through Azure Policy.

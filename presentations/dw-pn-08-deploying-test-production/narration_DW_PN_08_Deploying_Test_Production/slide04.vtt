@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.750
+The runbook doesn't decide
+what the gates decide.
+
+2
+00:00:02.750 --> 00:00:05.438
+It turns them on in an
+order where each step
+
+3
+00:00:05.438 --> 00:00:08.125
+can be undone before
+the next depends on it.
+
+4
+00:00:08.125 --> 00:00:10.500
+Reads first, one provider at a time.
+
+5
+00:00:10.500 --> 00:00:13.487
+Routing as a dry run
+before anything is sent.
+
+6
+00:00:13.487 --> 00:00:18.525
+The one write to a cloud, the Azure
+alert policy, only after the reads work.
+
+7
+00:00:18.525 --> 00:00:19.963
+And the schedule last.
+
+8
+00:00:19.963 --> 00:00:22.574
+That order is the
+workbook's design guidance.
+
+9
+00:00:22.574 --> 00:00:24.588
+Every collector call is a read.
+
+10
+00:00:24.588 --> 00:00:29.637
+The few writes run only with an approved
+plan hash, or with an explicit send flag.
+
+11
+00:00:29.637 --> 00:00:32.500
+And three things aren't
+in the kit: the schedule,
+
+12
+00:00:32.500 --> 00:00:35.110
+the sign-ins, and the ServiceNow endpoint.

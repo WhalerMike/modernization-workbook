@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:07.581
+Every gate's collection supports NIST
+special publication eight hundred fifty-three
+
+3
+00:00:07.581 --> 00:00:12.785
+S A nine, part c, monitoring external
+service providers on an ongoing basis,
+
+4
+00:00:12.785 --> 00:00:17.051
+and S I five, part a, receiving
+security alerts and advisories.
+
+5
+00:00:17.051 --> 00:00:21.938
+The record supports S I five and
+C A seven, continuous monitoring.
+
+6
+00:00:21.938 --> 00:00:26.325
+The evidence is the raw responses,
+the notices and the manifest,
+
+7
+00:00:26.325 --> 00:00:31.977
+which lists every call with its role; the
+notices as one record each, valid against
+
+8
+00:00:31.977 --> 00:00:37.376
+the schema; and a re-read that changes no
+fingerprint, so a notice is routed once.
+
+9
+00:00:37.376 --> 00:00:39.888
+The record is evidence for these controls.
+
+10
+00:00:39.888 --> 00:00:44.327
+Your organization still sets their
+parameters, policy and procedures,
+
+11
+00:00:44.327 --> 00:00:47.563
+and the assessor decides
+whether each is satisfied.
+
+12
+00:00:47.563 --> 00:00:52.200
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+13
+00:00:52.200 --> 00:00:56.709
+The agency lines this evidence up
+with what its providers report;
+
+14
+00:00:56.709 --> 00:00:58.713
+it doesn't report K S I's itself.
+
+15
+00:00:58.713 --> 00:01:02.020
+Which file supports which
+indicator is the program's mapping.

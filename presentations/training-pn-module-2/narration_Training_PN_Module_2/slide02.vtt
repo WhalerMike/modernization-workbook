@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.000
+Why does Azure need a gate of its own?
+
+2
+00:00:02.000 --> 00:00:05.325
+Service Health shows service
+issues, planned maintenance,
+
+3
+00:00:05.325 --> 00:00:09.125
+health advisories and security
+advisories for each subscription.
+
+4
+00:00:09.125 --> 00:00:13.584
+But the portal tells nobody unless
+someone created a Service Health alert,
+
+5
+00:00:13.584 --> 00:00:18.475
+and an alert fires only for the subscriptions,
+services and regions its rule names.
+
+6
+00:00:18.475 --> 00:00:21.827
+Microsoft's own F A Q gives
+a rule that left out the
+
+7
+00:00:21.827 --> 00:00:25.850
+affected subscription as a
+reason an alert never arrived.
+
+8
+00:00:25.850 --> 00:00:30.967
+Azure Resource Graph answers the same
+questions for every subscription in scope with
+
+9
+00:00:30.967 --> 00:00:34.165
+one query, against its Service
+Health resources table,
+
+10
+00:00:34.165 --> 00:00:37.150
+and Microsoft Learn
+publishes the sample queries.
+
+11
+00:00:37.150 --> 00:00:39.225
+So this module does two things.
+
+12
+00:00:39.225 --> 00:00:42.863
+It collects with the kit's query,
+built from Learn's samples.
+
+13
+00:00:42.863 --> 00:00:46.694
+And it plans Service Health alerts
+at scale with Azure Policy,
+
+14
+00:00:46.694 --> 00:00:49.820
+as a plan that's applied
+only with an approved hash.

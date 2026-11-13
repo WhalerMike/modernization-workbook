@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.912
+Why does Oracle Cloud
+Infrastructure need its own gate?
+
+2
+00:00:02.912 --> 00:00:07.501
+Oracle emails service status announcements
+to the tenancy administrator.
+
+3
+00:00:07.501 --> 00:00:10.217
+Anyone else receives them
+only through managed
+
+4
+00:00:10.217 --> 00:00:13.138
+email preferences or
+announcement subscriptions.
+
+5
+00:00:13.138 --> 00:00:17.316
+So an agency whose HR platform runs
+on Oracle Cloud gets that platform's
+
+6
+00:00:17.316 --> 00:00:22.062
+maintenance and change notices at whatever
+address the tenancy was opened with.
+
+7
+00:00:22.062 --> 00:00:24.750
+That might be the mailbox of
+someone who has moved on.
+
+8
+00:00:24.750 --> 00:00:28.127
+Reading the tenancy's
+announcements here means platform
+
+9
+00:00:28.127 --> 00:00:31.575
+maintenance reaches the HR
+system's owners before it lands.
+
+10
+00:00:31.575 --> 00:00:33.863
+And there's a wrinkle
+the kit has to handle.
+
+11
+00:00:33.863 --> 00:00:36.300
+Updates to one announcement form a chain.
+
+12
+00:00:36.300 --> 00:00:39.030
+When Oracle reschedules
+a maintenance window,
+
+13
+00:00:39.030 --> 00:00:43.161
+the new time arrives as a new announcement
+in the same chain, and a reader
+
+14
+00:00:43.161 --> 00:00:47.420
+that keeps every announcement would
+hold the old date next to the new one.

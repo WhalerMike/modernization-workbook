@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.293
+Step 3 collects OCI from the
+day-one fixtures: four notices,
+
+2
+00:00:04.293 --> 00:00:08.625
+three open, one needing action,
+all valid against the schema.
+
+3
+00:00:08.625 --> 00:00:10.625
+Step 4 reads the records.
+
+4
+00:00:10.625 --> 00:00:14.675
+Look at the resources column: that's why
+the kit makes a get per announcement.
+
+5
+00:00:14.675 --> 00:00:19.775
+The maintenance names a database system,
+with its window starting November 22.
+
+6
+00:00:19.775 --> 00:00:25.003
+The change names a load balancer, and
+it's action required by December 15,
+
+7
+00:00:25.003 --> 00:00:27.750
+by Oracle's own type, not by any kit rule.
+
+8
+00:00:27.750 --> 00:00:31.415
+The advisory is open, and the
+incident is already closed,
+
+9
+00:00:31.415 --> 00:00:33.725
+because Oracle marked it inactive.
+
+10
+00:00:33.725 --> 00:00:36.405
+Because both name the agency's resources,
+
+11
+00:00:36.405 --> 00:00:40.250
+Chapter 6 can route each one to
+the owners of those systems.

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.562
+First, which cloud.
+
+2
+00:00:01.562 --> 00:00:05.466
+A GCC tenant keeps the worldwide
+Microsoft Graph endpoint,
+
+3
+00:00:05.466 --> 00:00:09.529
+so this workbook's baseline reads
+graph dot microsoft dot com.
+
+4
+00:00:09.529 --> 00:00:13.513
+Microsoft Learn's national cloud
+page gives GCC High and the
+
+5
+00:00:13.513 --> 00:00:17.337
+Defense Department their own
+hosts, a short side note here.
+
+6
+00:00:17.337 --> 00:00:18.424
+Why does it matter?
+
+7
+00:00:18.424 --> 00:00:20.737
+Because a wrong cloud fails silently.
+
+8
+00:00:20.737 --> 00:00:25.408
+A GCC High tenant read on the
+worldwide host simply returns nothing,
+
+9
+00:00:25.408 --> 00:00:27.826
+and the gate passes on an empty list.
+
+10
+00:00:27.826 --> 00:00:30.582
+So the kit has one row
+per cloud and no default,
+
+11
+00:00:30.582 --> 00:00:35.710
+and the live run refuses a Graph session
+in another environment or another tenant.

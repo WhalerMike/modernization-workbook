@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.298
+The runbook promotes to production only
+when seven criteria pass, and the ISSO and
+
+2
+00:00:05.298 --> 00:00:10.700
+the change advisory board record the decision
+with the test stage's evidence folder.
+
+3
+00:00:10.700 --> 00:00:15.138
+One: the test stage's evidence
+passes the stage check, every row.
+
+4
+00:00:15.138 --> 00:00:18.456
+Two: every enabled provider's
+collection matched the
+
+5
+00:00:18.456 --> 00:00:21.775
+provider's own command,
+recorded in the change record.
+
+6
+00:00:21.775 --> 00:00:24.012
+Three: the smoke test passed.
+
+7
+00:00:24.012 --> 00:00:26.083
+Four: the routing was reviewed,
+
+8
+00:00:26.083 --> 00:00:30.225
+and every security advisory and
+retirement routed to a task.
+
+9
+00:00:30.225 --> 00:00:34.813
+Five: the alert policy applied,
+and its rollback was rehearsed.
+
+10
+00:00:34.813 --> 00:00:38.187
+Six: each provider's
+notice contacts are named.
+
+11
+00:00:38.187 --> 00:00:42.596
+And seven: the known gaps are recorded
+with the ISSO, such as Google
+
+12
+00:00:42.596 --> 00:00:47.413
+Cloud's planned maintenance and any
+AWS account without a support plan.
+
+13
+00:00:47.413 --> 00:00:50.838
+The evidence check answers
+the first criterion directly.
+
+14
+00:00:50.838 --> 00:00:53.824
+The chapter's dangers explain
+the rest of the design.
+
+15
+00:00:53.824 --> 00:00:59.300
+A weekly run that stops silently shows as
+a gap in dates and a missing run record.
+
+16
+00:00:59.300 --> 00:01:01.662
+A file edited later fails its hash.
+
+17
+00:01:01.662 --> 00:01:03.851
+A removed record breaks the chain.
+
+18
+00:01:03.851 --> 00:01:08.341
+And a pass read as a control decision
+is guarded by each record's claim:
+
+19
+00:01:08.341 --> 00:01:11.710
+it supports the controls,
+and the assessor decides.

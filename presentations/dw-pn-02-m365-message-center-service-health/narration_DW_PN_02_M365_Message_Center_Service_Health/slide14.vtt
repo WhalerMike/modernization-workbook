@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.543
+Lab 2 uses a Microsoft 365 test
+tenant in the worldwide or GCC cloud,
+
+2
+00:00:05.543 --> 00:00:09.837
+never production, signed in
+as a test administrator.
+
+3
+00:00:09.837 --> 00:00:12.986
+Sign in delegated, in
+the Global environment,
+
+4
+00:00:12.986 --> 00:00:17.325
+with only the two read scopes;
+an administrator consents once.
+
+5
+00:00:17.325 --> 00:00:21.812
+Cross-check with Learn's own cmdlet: its
+count of posts and the kit's should agree.
+
+6
+00:00:21.812 --> 00:00:24.203
+Then look at the posts that need action,
+
+7
+00:00:24.203 --> 00:00:27.342
+confirm each has Microsoft's
+basis or the kit's rule,
+
+8
+00:00:27.342 --> 00:00:32.199
+and record the tags you see on retirement
+posts, because Learn doesn't list them.
+
+9
+00:00:32.199 --> 00:00:38.300
+Finally, sign out, delete the run, and remove
+any consent granted only for this lab.

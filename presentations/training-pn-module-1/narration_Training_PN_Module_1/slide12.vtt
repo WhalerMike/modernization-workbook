@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.287
+This module has no Lab 2 of its own,
+
+2
+00:00:02.287 --> 00:00:05.850
+because the record is the
+same in a test environment.
+
+3
+00:00:05.850 --> 00:00:08.807
+Each provider's Lab 2, in Modules 2 to 6,
+
+4
+00:00:08.807 --> 00:00:14.425
+fills it from a test subscription,
+tenant, tenancy, account or project.
+
+5
+00:00:14.425 --> 00:00:17.137
+Never production, and only fictional data.
+
+6
+00:00:17.137 --> 00:00:19.314
+Before you start them, do one thing:
+
+7
+00:00:19.314 --> 00:00:22.424
+list who receives each
+provider's notices today.
+
+8
+00:00:22.424 --> 00:00:26.327
+The guide's prerequisites start with
+that decision, and the deployment
+
+9
+00:00:26.327 --> 00:00:30.825
+runbook's pre-flight checks that each
+enabled provider names its notice contacts.
+
+10
+00:00:30.825 --> 00:00:33.137
+And remember where the real work happens.
+
+11
+00:00:33.137 --> 00:00:35.651
+The labs use the kit's fictional routing.
+
+12
+00:00:35.651 --> 00:00:39.020
+The agency's own routing,
+settings files, notices,
+
+13
+00:00:39.020 --> 00:00:44.074
+digests and evidence are written at
+work, from the kit's templates and its
+
+14
+00:00:44.074 --> 00:00:49.610
+Copilot prompts in Microsoft 365 Copilot
+Chat, and they stay on agency storage.

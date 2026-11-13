@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.150
+The agency's routing is a
+JSON file of ordered rules.
+
+2
+00:00:04.150 --> 00:00:09.925
+Each rule has an I D, a match, and
+a route: task, digest or ignore.
+
+3
+00:00:09.925 --> 00:00:14.901
+A match can name providers, kinds and
+statuses; whether action is required
+
+4
+00:00:14.901 --> 00:00:19.550
+or the notice names resources; and
+patterns for services and regions.
+
+5
+00:00:19.550 --> 00:00:24.061
+A task rule also carries a severity,
+P1 to P4, an assignment group,
+
+6
+00:00:24.061 --> 00:00:28.312
+an approver role, and whether
+it needs a contingency review.
+
+7
+00:00:28.312 --> 00:00:33.259
+The kit's routing check refuses an unknown
+match key, any route other than the
+
+8
+00:00:33.259 --> 00:00:36.793
+three, a task without a severity
+or an assignment group,
+
+9
+00:00:36.793 --> 00:00:38.599
+and any placeholder left in.
+
+10
+00:00:38.599 --> 00:00:39.625
+Then the order.
+
+11
+00:00:39.625 --> 00:00:42.723
+Rules are tried in order,
+and the first match wins,
+
+12
+00:00:42.723 --> 00:00:47.370
+so the specific rules come first:
+security advisories, then retirements,
+
+13
+00:00:47.370 --> 00:00:50.701
+then maintenance that names
+the agency's resources,
+
+14
+00:00:50.701 --> 00:00:55.813
+then open incidents that name them, then
+anything else marked as needing action.
+
+15
+00:00:55.813 --> 00:00:57.062
+The order matters.
+
+16
+00:00:57.062 --> 00:01:01.747
+A retirement is often also marked action
+required, and the retirement rule,
+
+17
+00:01:01.747 --> 00:01:05.520
+which carries the contingency
+review, should take it first.

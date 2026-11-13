@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Then there's the check.
+
+2
+00:00:01.200 --> 00:00:06.413
+On its own, it verifies the sums file
+against every file and walks the chain.
+
+3
+00:00:06.413 --> 00:00:10.350
+With a stage, it adds a row
+for each step that stage needs.
+
+4
+00:00:10.350 --> 00:00:13.646
+A test stage needs
+pre-flight, the scheduled run,
+
+5
+00:00:13.646 --> 00:00:17.450
+routing and the digest;
+production adds the alert plan.
+
+6
+00:00:17.450 --> 00:00:19.870
+Any failing row exits with an error,
+
+7
+00:00:19.870 --> 00:00:23.375
+which is exactly what the
+runbook's go or no-go reads.
+
+8
+00:00:23.375 --> 00:00:26.658
+The tests cover the digest's
+sections and counts,
+
+9
+00:00:26.658 --> 00:00:32.075
+the record's fields and claim language, the
+chain, a changed file, a removed record,
+
+10
+00:00:32.075 --> 00:00:37.060
+a failed run, a stage's missing steps,
+and the requirements catalog itself.

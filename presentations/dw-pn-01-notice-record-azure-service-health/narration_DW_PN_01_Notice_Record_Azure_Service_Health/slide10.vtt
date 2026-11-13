@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.150
+Who is involved?
+
+2
+00:00:01.150 --> 00:00:03.663
+Developers build and maintain the kit.
+
+3
+00:00:03.663 --> 00:00:06.271
+The cloud platform lead owns this gate:
+
+4
+00:00:06.271 --> 00:00:10.101
+the reader's roles, the alert
+policy and its change record.
+
+5
+00:00:10.101 --> 00:00:14.900
+And the security officer keeps the
+evidence and reviews security advisories.
+
+6
+00:00:14.900 --> 00:00:16.787
+What the reader may hold is short.
+
+7
+00:00:16.787 --> 00:00:20.763
+Two calls, each needing Reader
+on each subscription in scope.
+
+8
+00:00:20.763 --> 00:00:25.500
+Service Health Security Reader is named
+as the elevated role, because without
+
+9
+00:00:25.500 --> 00:00:30.237
+it a security advisory is listed but its
+summary and impacted resources aren't.
+
+10
+00:00:30.237 --> 00:00:32.330
+And nothing the reader holds can write.

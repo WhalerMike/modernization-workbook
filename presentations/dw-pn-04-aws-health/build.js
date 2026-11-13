@@ -1,0 +1,298 @@
+// Building Provider Notices, Chapter 04 — AWS Health: the narrated tour.
+// Every fact comes from docs/project-plans/developer-workbooks/provider-notices/04-aws-health.md;
+// cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js. The chapter is a draft, and the tour says so.
+// Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-pn-04-aws-health/build.js
+require("../_build/devwb.js")({
+  workbook: "pn", chapter: 4, dir: __dirname,
+  base: "DW_PN_04_AWS_Health",
+  title: "AWS Health",
+  map: "Why AWS Health · what AWS gives and leaves · the support plan · the collector and its kinds · the partition guard · who · two labs · evidence · dangers",
+  slides: [
+    {
+      say: `Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 4: AWS Health. AWS tells each account which of its instances will be retired, and when. The API that says so needs a support plan, a policy you write yourself, and the right partition. We'll start from AWS's own documentation for the Health API, see what it leaves to you, then read the kit's collector, its kinds and its partition guard, and walk two labs, the evidence and the dangers. Two notes before we begin. This chapter is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures.`,
+      detail: `The chapter is the AWS collector behind the guide's G4 AWS Health. You start with what AWS documents: the Health API's three read operations, the support plans it needs, the read actions for a policy, and the single GovCloud (US) endpoint. Then you read how the kit pages events into details and entities ten at a time, maps categories to kinds, and keeps AWS's actionability apart from its own retirement rule. Lab 1 collects the fixture account and builds the GovCloud request without sending it; Lab 2 reads a test account and removes the policy afterwards. Status: the chapter is a draft (status: draft), awaiting the owner's review.`,
+      cite: ["pn04-events", "pn04-gov"],
+      ref: "Opening; “In this chapter”",
+    },
+    {
+      part: "Why", title: "Why AWS Health, and what done means",
+      body: [
+        { lead: "AWS tells each account which of its instances will be retired and when. Nobody reads it unless something collects it." },
+        { cols: [[{ bullets: [
+          "Read every **open and upcoming** AWS Health event for an account",
+          "With a policy that allows **three read actions** and nothing else",
+          "Into records that name the affected resources",
+          "And say whether **AWS or the kit** decided the event needs action",
+        ], label: "By the end of the chapter you can", color: "navy", pt: 14.5 }], [{ bullets: [
+          "Developers who maintain the kit",
+          "The AWS account owner, who owns G4",
+          "Whoever owns the account's support plan",
+          "You should know Chapter 01's record",
+        ], label: "Who it's for", color: "teal", pt: 14.5 }]] },
+      ],
+      sources: "Sources: Chapter 04, opening, “In this chapter,” “Goal and audience.”",
+      say: `Why this chapter? AWS already tells each account, in writing, which instances will be retired and when. The gap is that nobody reads it unless something collects it. So the goal is concrete. By the end you can read every open and upcoming AWS Health event for an account, with a policy that allows three read actions and nothing else, into records that name the affected resources and say whether AWS or the kit decided the event needs action. It's for developers who maintain the kit, the account owner who owns this gate, and whoever owns the account's support plan.`,
+      detail: `Goal: by the end of this chapter you can read every open and upcoming AWS Health event for an account, with a policy that allows three read actions and nothing else, into records that name the affected resources and say whether AWS or the kit decided the event needs action. Audience: developers who maintain the kit, the AWS account owner who owns G4, and whoever owns the account's support plan. You should know Chapter 01's record.`,
+      cite: [],
+      ref: "Opening; “Goal and audience”",
+    },
+    {
+      part: "Why", title: "Which partition, for this read",
+      body: [
+        { table: { head: ["", "Commercial (partition aws)", "AWS GovCloud (US) (partition aws-us-gov)"], w: [2.6, 4.6, 4.95], rows: [
+          ["Health API endpoint", "The active endpoint is in us-east-1", "A single regional endpoint in us-gov-west-1"],
+          ["Caller ARN prefix", "arn:aws:", "arn:aws-us-gov:"],
+          ["EventBridge push", "source aws.health, detail-type AWS Health Event (the kit doesn't build it)", "Doesn't send public events from the Service Health view"],
+        ] }, pt: 13 },
+        { callout: "the settings name the partition, the region comes from it, and the caller's ARN must be in that partition. A GovCloud account read from us-east-1 fails, or worse, reads nothing.", label: "In the kit: ", icon: "FaCloud", color: "teal" },
+      ],
+      sources: "Sources: AWS, Accessing the AWS Health API; AWS GovCloud (US) User Guide, AWS Health; EventBridge events reference. Chapter 04, “What AWS gives you,” “Verified facts.”",
+      say: `Next, which partition. AWS documents two with different Health endpoints. For commercial accounts the active endpoint is in U S East 1. In AWS GovCloud there's a single regional endpoint, in U S Gov West 1, and AWS's GovCloud guide says EventBridge there doesn't send public events from the Service Health view, so a scheduled read through the API is the path. The kit never guesses. The settings name the partition, the region comes from it, and the caller's identity must be in that partition, because a GovCloud account read from the commercial endpoint fails, or worse, reads nothing.`,
+      detail: `Commercial endpoint: active endpoint in us-east-1 (AWS Health User Guide, Accessing the AWS Health API). AWS GovCloud (US): one regional endpoint in us-gov-west-1; EventBridge doesn't send public Service Health events (AWS GovCloud (US) User Guide, AWS Health). Push alternative: EventBridge source aws.health, detail-type AWS Health Event; the kit doesn't build it, and it's not for public events in GovCloud. What it leaves to you: two partitions with different endpoints; a GovCloud account read from us-east-1 fails, or worse, reads nothing; the kit's settings name the partition, the region comes from it, and the caller's ARN must be in that partition.`,
+      cite: ["pn04-endpoint", "pn04-gov", "pn04-eb"],
+      ref: "“What AWS gives you”; “What it leaves to you”; “Verified facts”",
+    },
+    {
+      part: "What", title: "What AWS's documentation gives you",
+      body: [
+        { table: { head: ["AWS gives", "What it says"], w: [3.2, 8.95], rows: [
+          ["The Event, and describe-events", "arn, service, eventTypeCode, eventTypeCategory, region, startTime, endTime, lastUpdatedTime, statusCode, and newer fields such as actionability and personas"],
+          ["DescribeEventDetails", "Takes one to ten event ARNs and returns each event's latest description"],
+          ["AffectedEntity", "Names the resources"],
+          ["A support plan", "The API needs a qualifying AWS Support plan; without one it answers SubscriptionRequiredException"],
+          ["Policy examples", "Grant health:Describe*; no read-only managed policy for Health (AWSHealthFullAccess includes writes)"],
+        ] }, pt: 12.5 },
+      ],
+      sources: "Sources: AWS, Health API Reference, Event, DescribeEventDetails, AffectedEntity; describe-events; Concepts; Identity-based policy examples; managed policies.",
+      say: `Here's AWS's starting point. The Health API reference defines the event: its service, its type code and category, its region, its times, its status, and newer fields such as actionability and personas. The command line's describe events lists them. A second operation returns each event's latest description, one to ten events at a time, and a third names the affected resources. The API needs a qualifying support plan, or it answers with a subscription-required error. And AWS's policy examples grant a wildcard over the describe actions; AWS publishes no read-only managed policy for Health, and the full-access one includes writes.`,
+      detail: `The AWS Health API reference defines the Event (arn, service, eventTypeCode, eventTypeCategory, region, startTime, endTime, lastUpdatedTime, statusCode, and newer fields such as actionability and personas), and the CLI's describe-events lists them. DescribeEventDetails takes one to ten event ARNs and returns each event's latest description; AffectedEntity names the resources. The API needs a qualifying AWS Support plan, and without one it answers SubscriptionRequiredException. AWS's policy examples grant health:Describe*, and AWS publishes no read-only managed policy for Health (AWSHealthFullAccess includes writes).`,
+      cite: ["pn04-events", "pn04-details", "pn04-plan", "pn04-iam"],
+      ref: "“Start with AWS's documentation” — “What AWS gives you”",
+    },
+    {
+      part: "What", title: "AWS's pages disagree on the support plan",
+      body: [
+        { cols: [[{ bullets: [
+          "**AWS Health concepts page:** Business Support+, Enterprise Support or Unified Operations",
+          "**API reference welcome page:** the older Business, Enterprise On-Ramp or Enterprise Support plans",
+          "**GovCloud (US) page:** Business or Enterprise",
+        ], label: "Which plans qualify, by page", color: "navy", pt: 14.5 }], [{ bullets: [
+          "Without a qualifying plan: SubscriptionRequiredException, and nothing is read",
+          "The kit surfaces the tool's own message",
+          "The runbook's pre-flight calls the API first (PF-04-aws)",
+          "The AWS Health Dashboard is the interim path",
+        ], label: "What happens without one", color: "amber", pt: 14.5 }]] },
+        { callout: "confirm the account's plan with AWS Support rather than reading it off one page.", label: "So: ", icon: "FaTriangleExclamation", color: "red" },
+      ],
+      sources: "Sources: AWS Health User Guide, Concepts; Health API Reference, Welcome; AWS GovCloud (US) User Guide, AWS Health. Chapter 04, “What AWS gives you,” “Dangers.”",
+      say: `One point deserves its own slide, because AWS's own pages don't agree. The Health concepts page names the newer Business Support Plus, Enterprise Support or Unified Operations. The API reference's welcome page and the GovCloud page name the older Business and Enterprise plans. Without a qualifying plan, the API answers with a subscription-required error, and nothing is read. So the chapter's advice is simple: confirm the account's plan with AWS Support rather than reading it off one page. The kit surfaces the error in AWS's own words, the runbook's pre-flight calls the API first, and the Health Dashboard is the interim path.`,
+      detail: `AWS's pages don't agree on which plans qualify: the AWS Health concepts page names Business Support+, Enterprise Support or Unified Operations, and the API reference's welcome page and the GovCloud (US) page name the older Business and Enterprise plans (the welcome page: Business, Enterprise On-Ramp or Enterprise Support; the GovCloud page: Business or Enterprise). Confirm the account's plan with AWS Support rather than reading it off one page. Danger, no support plan: SubscriptionRequiredException; nothing is read. Guard: the error surfaces; the runbook's pre-flight calls the API first (PF-04-aws); the AWS Health Dashboard is the interim path. A tool's failure, such as SubscriptionRequiredException, surfaces with the tool's own message.`,
+      cite: ["pn04-plan", "pn04-gov"],
+      ref: "“What AWS gives you”; “Verified facts”; “Dangers”",
+    },
+    {
+      part: "What", title: "What it leaves to you, and the verdict",
+      body: [
+        { table: { head: ["AWS, as published", "Why it matters", "What the kit adds"], w: [3.3, 3.5, 5.35], rows: [
+          ["Descriptions and entities are separate calls", "An event without them can't be routed", "Details and entities for every event, ten ARNs at most; eleven refused"],
+          ["Categories issue, scheduledChange, accountNotification, investigation", "None says retirement or security", "A retirement rule on the event type code; the SECURITY persona is security"],
+          ["actionability", "AWS's own flag", "ACTION_REQUIRED makes it action required, actionBasis provider:"],
+          ["No flag on a retirement without actionability", "It could look optional", "Action required by the kit's rule, due at its start, labeled rule:"],
+          ["Times as epoch seconds", "Wrong if compared as numbers or local times", "UTC ISO 8601"],
+          ["A policy example with health:Describe*", "A wildcard grows as AWS adds actions", "A customer managed policy with exactly three actions"],
+        ] }, pt: 11.5 },
+        { lead: "Verdict: use the three operations as published, with exactly three actions; build the batching, the kinds and the partition guard." },
+      ],
+      sources: "Sources: AWS, Event; DescribeEventDetails; Identity-based policy examples. Chapter 04, “What it leaves to you,” “The verdict.”",
+      say: `What does AWS leave to you? The event list comes without descriptions or resources, and an event without them can't be routed, so the kit fetches both for every event, ten at a time. No category says retirement or security. AWS's actionability flag is AWS's own, so the kit uses it as published, and labels it as AWS's. A retirement without that flag could look optional. Times are epoch seconds. And a wildcard policy grows as AWS adds actions. Each gap is pinned by a test. The verdict: use AWS's three operations as published, with exactly three actions, and build the batching, the kinds and the partition guard.`,
+      detail: `Each row is pinned by a test in the AWS Health block of tests/Collectors.Tests.ps1, or in tests/Live.Tests.ps1. describe-events returns events; descriptions and entities are separate calls: an event list without its description or resources can't be routed; details and entities for every event, in batches of at most ten ARNs; eleven in one call is refused. eventTypeCategory values issue, scheduledChange, accountNotification, investigation: no category says retirement or security; a scheduledChange whose event type code names a retirement, lifecycle event, deprecation or end of support is a retirement (the kit's rule); an accountNotification with the SECURITY persona is security. actionability: AWS's own flag; ACTION_REQUIRED makes the record action required with actionBasis: provider: ...; a scheduled change's start is its due date. No flag on a retirement without actionability: a retirement could look optional; action required by the kit's rule, due at its start, labeled rule:. Times as epoch seconds: compared as numbers or local times, they are wrong; UTC ISO 8601. A policy example with health:Describe*: a wildcard grows as AWS adds actions; a customer managed policy with exactly the three actions the kit calls. Two partitions with different endpoints: the settings name the partition; the region comes from it; the caller's ARN must be in that partition. The verdict: use AWS's three operations as published, with a policy of exactly the three actions. Build the batching, the kind mapping and the partition guard.`,
+      cite: ["pn04-events", "pn04-details", "pn04-iam"],
+      ref: "“What it leaves to you”; “The verdict”",
+    },
+    {
+      part: "What", title: "The collector: three calls, ten ARNs at a time",
+      body: [
+        { steps: [
+          { title: "aws-describe-events", text: "With the filter {\"eventStatusCodes\":[\"open\",\"upcoming\"]}" },
+          { title: "aws-describe-event-details", text: "Each event's latest description, ten ARNs at a time; eleven refused before anything runs" },
+          { title: "aws-describe-affected-entities", text: "The resources each event names, ten ARNs at a time" },
+          { title: "ConvertTo-PnAwsNotice", text: "Title from the service and the event type code (EC2: Instance retirement scheduled); statusCode closed closes the record; times to UTC ISO 8601" },
+        ], pt: 14 },
+        { callout: "Get-PnProviderNotice -Provider aws. In live mode the region is the partition's Health endpoint region.", label: "Entry point: ", icon: "FaServer", color: "teal" },
+      ],
+      sources: "Sources: examples/provider-notices (Get-PnProviderNotice, ConvertTo-PnAwsNotice); AWS, describe-events; DescribeEventDetails. Chapter 04, “The code.”",
+      say: `Now the code. The collector makes three declared calls. First, describe events, filtered to events that are open or upcoming. Then, for those events, the details call for each one's latest description, and the affected-entities call for the resources it names, each ten event identifiers at a time, because AWS's details operation takes one to ten. Then the normalizer builds the record. The title comes from the service and the event type code, like E C 2, instance retirement scheduled. A closed status closes the record. And in a live run, the region is the partition's own Health endpoint region.`,
+      detail: `Get-PnProviderNotice -Provider aws makes aws-describe-events with the filter {"eventStatusCodes":["open","upcoming"]}, then aws-describe-event-details and aws-describe-affected-entities ten ARNs at a time. ConvertTo-PnAwsNotice maps them into Chapter 01's record. The title is built from the service and the event type code (EC2: Instance retirement scheduled); statusCode closed closes the record. In live mode the region is the partition's Health endpoint region. Times as epoch seconds become UTC ISO 8601.`,
+      cite: ["pn04-events", "pn04-details"],
+      ref: "“The code”",
+    },
+    {
+      part: "What", title: "Category to kind, and who said action is required",
+      body: [
+        { table: { head: ["eventTypeCategory", "Kind", "Action required"], w: [5.0, 1.9, 5.25], rows: [
+          ["issue, investigation", "incident", "If actionability is ACTION_REQUIRED (provider)"],
+          ["scheduledChange, code naming a retirement or lifecycle event", "retirement", "ACTION_REQUIRED (provider), or else the kit's rule; due at its start"],
+          ["scheduledChange, otherwise", "maintenance", "If ACTION_REQUIRED (provider), due at its start"],
+          ["accountNotification with persona SECURITY", "security", "If ACTION_REQUIRED (provider)"],
+          ["accountNotification, otherwise", "advisory", "If ACTION_REQUIRED (provider)"],
+        ] }, pt: 13 },
+        { callout: "AWS's actionability is labeled provider:, and the kit's retirement rule is labeled rule:, so nobody mistakes one for the other.", label: "Two sources, kept apart: ", icon: "FaScaleBalanced", color: "amber" },
+      ],
+      sources: "Sources: examples/provider-notices (ConvertTo-PnAwsNotice); AWS, Event (eventTypeCategory, actionability, personas). Chapter 04, “The code.”",
+      say: `The normalizer maps AWS's categories to the record's kinds. Issues and investigations are incidents. A scheduled change whose event type code names a retirement, a lifecycle event, a deprecation or an end of support is a retirement; any other scheduled change is maintenance. An account notification with the security persona is security; otherwise it's an advisory. For every kind, AWS's actionability flag decides first, and the record says provider. Only a retirement without that flag falls to the kit's own rule: action required, due at its start, and the record says rule. The two sources are never mixed.`,
+      detail: `ConvertTo-PnAwsNotice maps: issue, investigation to incident, action required if actionability is ACTION_REQUIRED (provider). scheduledChange with a code naming a retirement or lifecycle event to retirement: ACTION_REQUIRED (provider), or else the kit's rule; due at its start. scheduledChange otherwise to maintenance: if ACTION_REQUIRED (provider), due at its start. accountNotification with persona SECURITY to security: if ACTION_REQUIRED (provider). accountNotification otherwise to advisory: if ACTION_REQUIRED (provider). The retirement rule: a scheduledChange whose event type code names a retirement, lifecycle event, deprecation or end of support is a retirement (the kit's rule). ACTION_REQUIRED makes the record action required with actionBasis: provider: ...; a retirement without the flag is action required by the kit's rule, due at its start, labeled rule:.`,
+      cite: ["pn04-events"],
+      ref: "“The code” — the category table; “What it leaves to you”",
+    },
+    {
+      part: "What", title: "The partition guard, and the tests",
+      body: [
+        { cols: [[{ bullets: [
+          "Assert-PnLiveContext runs aws sts get-caller-identity **once**",
+          "It refuses a caller whose ARN isn't in the settings' partition",
+          "The region is the partition's Health endpoint region: us-east-1 or us-gov-west-1",
+          "A tool's failure, such as SubscriptionRequiredException, surfaces with the tool's own message",
+        ], label: "Live mode", color: "navy", pt: 14 }], [{ bullets: [
+          "The AWS Health block of tests/Collectors.Tests.ps1: 6 tests",
+          "The AWS rows of tests/Live.Tests.ps1: the endpoint per partition, the refusal of eleven ARNs, the caller guard and the support-plan error",
+          "Tested against stand-in CLI output, not a live account",
+        ], label: "The tests (Pester 5)", color: "teal", pt: 14 }]] },
+      ],
+      sources: "Sources: examples/provider-notices (Assert-PnLiveContext; tests); AWS CLI, sts get-caller-identity. Chapter 04, “The code,” “The tests,” “Illustrative code.”",
+      say: `Before a live run reads anything, the kit checks who it's signed in as. It asks AWS's security token service for the caller's identity, once, and refuses a caller whose identity isn't in the partition the settings name. The region is that partition's Health endpoint region. When the tool fails, for example with the subscription-required error, the error surfaces in AWS's own words. The tests pin all of this: six in the collector's AWS block, plus the live tests for the endpoint per partition, the eleven-identifier refusal, the caller guard and the support-plan error.`,
+      detail: `In live mode the region is the partition's Health endpoint region, and Assert-PnLiveContext runs aws sts get-caller-identity once and refuses a caller whose ARN isn't in the settings' partition. A tool's failure, such as SubscriptionRequiredException, surfaces with the tool's own message. The tests: the AWS Health block of tests/Collectors.Tests.ps1 (6 tests), and the AWS rows of tests/Live.Tests.ps1: the endpoint per partition, the refusal of eleven ARNs, the caller guard and the support-plan error. Illustrative code: Lab 1 reads fictional events for AWS's documentation account, 111122223333; nothing signs in. The live reader has been tested against stand-in CLI output, not a live account. Review it, and run Lab 2 in a test account, before it reads a real one.`,
+      cite: ["pn04-cli"],
+      ref: "“The code”; “The tests”; “Illustrative code”",
+    },
+    {
+      part: "Who", title: "Who owns it, and the policy it may hold",
+      body: [
+        { cards: [
+          { title: "Developers", text: "Maintain the kit; know Chapter 01's record", color: "navy" },
+          { title: "AWS account owner", text: "Owns G4: the reader's policy, and the evidence that it holds three actions", color: "teal" },
+          { title: "Support plan owner", text: "Confirms the plan with AWS Support, or records the gap with the ISSO", color: "amber" },
+        ], pt: 13.5 },
+        { code: [
+          "# ProviderNoticesHealthRead: a customer managed policy, exactly the three actions the kit calls",
+          "{ \"Version\": \"2012-10-17\", \"Statement\": [ { \"Effect\": \"Allow\", \"Action\": [",
+          "    \"health:DescribeEvents\", \"health:DescribeEventDetails\", \"health:DescribeAffectedEntities\" ],",
+          "  \"Resource\": \"*\" } ] }",
+        ], label: "LAB 2, STEP 1: health-read.json", pt: 12 },
+      ],
+      sources: "Sources: AWS, Identity-based policy examples; managed policies for AWS Health. Chapter 04, “Goal and audience,” “Lab 2,” step 1.",
+      say: `Who's involved? Developers maintain the kit. The AWS account owner owns this gate, including the reader's policy. And whoever owns the support plan confirms it with AWS Support, or records the gap with the security officer. The policy is the whole permission story: a customer managed policy with exactly the three describe actions the kit calls, and nothing else. Not AWS's wildcard example, because a wildcard grows as AWS adds actions, and never the full-access managed policy attached for convenience, because then the reader can write.`,
+      detail: `Audience: developers who maintain the kit, the AWS account owner who owns G4, and whoever owns the account's support plan. Evidence: the reader's policy allows three read actions and nothing else; the AWS account owner; the ISSO keeps the policy document. Lab 2, step 1, as an IAM administrator: Set-Content -Path health-read.json with the policy allowing health:DescribeEvents, health:DescribeEventDetails and health:DescribeAffectedEntities on Resource *; aws iam create-policy --policy-name ProviderNoticesHealthRead --policy-document file://health-read.json; aws iam attach-role-policy --role-name <reader-role> --policy-arn arn:aws:iam::<account-id>:policy/ProviderNoticesHealthRead. Danger: AWSHealthFullAccess attached for convenience; the reader can write; guard: a customer managed policy with three actions.`,
+      cite: ["pn04-iam"],
+      ref: "“Goal and audience”; “Lab 2,” step 1; “Dangers”",
+    },
+    {
+      part: "How", title: "Lab 1: what AWS needs, and each partition's region",
+      body: [
+        { terminal: "04-1" },
+        { terminal: "04-2" },
+        { callout: "three read actions, one per call: the whole policy.", label: "Look for: ", icon: "FaListCheck", color: "teal" },
+      ],
+      sources: "Sources: examples/provider-notices (fictional fixtures). Chapter 04, “Lab 1: fixtures, no tenant,” steps 1–2.",
+      say: `Lab 1 needs only PowerShell 7 with Pester, working in the kit's folder. The lab settings name AWS's own documentation account, in the commercial partition, and nothing signs in. Step 1 lists what AWS needs: three calls, each with one read action, and each verified against AWS's documentation. That's the whole policy. Step 2 shows each partition's Health endpoint region and the prefix a caller's identity must carry: U S East 1 for commercial, U S Gov West 1 for GovCloud.`,
+      detail: `You need PowerShell 7.1 or later with Pester 5. Work in examples/provider-notices. The lab settings name the documentation account in partition aws. Step 1: Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1; Get-PnRequiredPermission -Provider aws | Format-Table Call, Permissions, Verified. Three read actions, one per call: the whole policy. Step 2: foreach ($p in 'aws', 'aws-us-gov') { $c = Get-PnCloud -Provider aws -Cloud $p; '{0,-11} {1,-14} {2}' -f $p, $c.Region, $c.ArnPrefix }. Output: aws us-east-1 arn:aws:; aws-us-gov us-gov-west-1 arn:aws-us-gov:.`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no tenant,” steps 1–2",
+    },
+    {
+      part: "How", title: "Lab 1: collect AWS, then read the records",
+      body: [
+        { terminal: "04-3" },
+        { terminal: "04-4" },
+      ],
+      sources: "Sources: examples/provider-notices (fictional fixtures, AWS's documentation account). Chapter 04, “Lab 1: fixtures, no tenant,” steps 3–4.",
+      say: `Step 3 collects AWS from the day-one fixtures. Five notices, four open, three needing action, and every one valid against the schema. Step 4 reads them as a table. Two retirements, an instance retirement and a Lambda lifecycle event, each with a due date and the affected resource. Maintenance on a database. A security notification. And a closed incident. Notice that every row but the incident names the resource it affects, because the kit fetched the affected entities for every event.`,
+      detail: `Step 3: ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider aws -AsOf 2026-11-09T12:00:00Z -OutputPath out/aws. Output: aws aws, 5 notices, 4 open, 3 action; incident 1, maintenance 1, retirement 2, security 1; 5 notices, each valid against schema/notice.schema.json. Written to out/aws: notices.json, notices.csv, raw/, manifest.json. Step 4: Import-Csv out/aws/notices.csv | Format-Table kind, status, actionRequired, actionRequiredBy, title, resources. Two retirements, an instance and a Lambda lifecycle event, each with a due date and the affected resource; maintenance on a database; a security notification; a closed incident.`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no tenant,” steps 3–4",
+    },
+    {
+      part: "How", title: "Lab 1: who said so, and the GovCloud request",
+      body: [
+        { terminal: "04-5" },
+        { terminal: "04-6" },
+        { terminal: "04-7" },
+      ],
+      sources: "Sources: examples/provider-notices (fictional fixtures). Chapter 04, “Lab 1: fixtures, no tenant,” steps 5–7.",
+      say: `Step 5 shows who said each notice needs action. The instance retirement and the security notification carry AWS's own actionability flag. The Lambda lifecycle event carries the kit's rule: a scheduled change whose type code names a retirement, due at its start time. Step 6 switches the partition to GovCloud in memory and builds the command a live run would use, without sending it. The region is U S Gov West 1. Step 7 asks for details of eleven events in one call. AWS's operation takes one to ten, and the kit refuses before anything runs.`,
+      detail: `Step 5: (Read-PnJson -Path out/aws/notices.json).notices | ForEach-Object { [pscustomobject]@{ title = $_.title; actionBasis = $_.actionBasis } } | Format-Table. The instance retirement is AWS's actionability; the Lambda lifecycle event is the kit's rule. Step 6, build the GovCloud request without sending it: $s = Read-PnSettings -Path tests/fixtures/settings.lab.json; $s.providers.aws.partition = 'aws-us-gov'; (Get-PnLiveCommand -CallId aws-describe-events -Settings $s).Arguments -join ' '. The region is us-gov-west-1. Step 7, ask for details of eleven events in one call: Get-PnLiveCommand -CallId aws-describe-event-details -Settings $s -Arguments @{ arns = @(1..11 | ...) }. The API takes one to ten, and the kit refuses before anything runs: aws-describe-event-details takes 1 to 10 event ARNs; got 11.`,
+      cite: ["pn04-details"],
+      ref: "“Lab 1: fixtures, no tenant,” steps 5–7",
+    },
+    {
+      part: "How", title: "Lab 1: the tests, then Lab 2 in a test account",
+      body: [
+        { cols: [[{ terminal: "04-8" }], [{ steps: [
+          { title: "Create the policy", text: "Exactly the three actions; attach it to the reader's role" },
+          { title: "Check who you are", text: "aws sts get-caller-identity: the ARN starts with arn:aws:" },
+          { title: "Cross-check, then collect", text: "AWS's describe-events count and the kit's collection agree" },
+          { title: "Back it out", text: "Detach and delete the policy; delete the run, which names resources" },
+        ], pt: 12.5 }]], split: 0.42 },
+        { callout: "a test account with a qualifying support plan, never production. Without the plan, step 3's SubscriptionRequiredException is the expected result.", label: "Where: ", icon: "FaTriangleExclamation", color: "red" },
+      ],
+      sources: "Sources: AWS CLI, IAM examples; sts get-caller-identity; Health concepts. Chapter 04, Lab 1 step 8 and expected result; “Lab 2: a test account.”",
+      say: `Step 8 runs this chapter's tests: eleven passed, none failed, and the manifest lists the three calls with their actions. Then delete the output. Lab 2 moves to an AWS test account with a qualifying support plan, never production. Without the plan, the subscription-required error at step 3 is the expected result. Create the policy with exactly the three actions and attach it to the reader's role. Check who you're signed in as: the identity must be in the commercial partition. Cross-check AWS's own event count against the kit's collection. Then detach and delete the policy, and delete the run, because it names the account's resources.`,
+      detail: `Step 8: Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'AWS Health*', '*AWS*', '*10 ARNs*' -Output None -PassThru | Select-Object PassedCount, FailedCount. Expected result: PassedCount 11 and FailedCount 0, and out/aws/manifest.json listing the three calls with their actions. Delete out: Remove-Item -Recurse -Force out. Lab 2: use an AWS test account with a qualifying AWS Support plan (AWS's pages name different plans), never production; without the plan, step 3's error is the expected result. Placeholders: <account-id>, <reader-role>, <profile>, <settings-file> (deploy/settings.template.json with environment test, only aws enabled, partition aws, the account ID and the profile). 1 Write the read policy and create it, as an IAM administrator; attach-role-policy. 2 aws sts get-caller-identity --profile <profile> --query Arn --output text: the ARN must start with arn:aws:. 3 aws health describe-events --region us-east-1 --filter '{"eventStatusCodes":["open","upcoming"]}' --profile <profile> --query "length(events)"; ./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider aws -OutputPath out/aws-test; the counts should agree. An error naming SubscriptionRequiredException means the account has no qualifying support plan. 4 Back it out: aws iam detach-role-policy; aws iam delete-policy; Remove-Item -Recurse -Force out/aws-test, health-read.json.`,
+      cite: ["pn04-cli", "pn04-plan", "pn04-endpoint"],
+      ref: "“Lab 1,” step 8 and expected result; “Lab 2: a test account”",
+    },
+    {
+      part: "How", title: "Federal requirements and the evidence",
+      body: [
+        { table: { head: ["What the output proves", "Supports", "KSI", "Who keeps it"], w: [5.3, 2.4, 2.15, 2.3], rows: [
+          ["The reader's policy allows three read actions and nothing else", "SA-9 c", "SCR-MIT, SCR-MON", "Account owner; ISSO keeps the policy"],
+          ["Reads went to the partition's own endpoint, as a caller in that partition", "SA-9 c; SI-5 a", "SCR-MIT, SCR-MON", "The tests; the run's manifest"],
+          ["Every open and upcoming event read with description and resources (raw/aws.json, notices.json, manifest.json)", "SA-9 c; SI-5 a", "SCR-MIT, SCR-MON", "ISSO, with the run folder"],
+          ["ACTION_REQUIRED events carry AWS's due date; the kit's rule is labeled as the kit's", "SI-5 d, through Chapter 06's task", "SCR-MON", "Account owner"],
+        ] }, pt: 12 },
+      ],
+      sources: "Sources: NIST SP 800-53 Rev. 5 OSCAL catalog 5.2.0; FedRAMP, Key Security Indicators; kit config/requirements.json. Chapter 04, “Federal requirements and evidence.”",
+      say: `Each output is evidence for something specific, against NIST's control catalog. The three-action policy, and the reads going to the partition's own endpoint as a caller in that partition, support monitoring an external service provider. The run folder shows every open and upcoming event was read with its description and resources, which supports receiving security alerts and advisories. And events AWS marks action required carry AWS's due date, which supports carrying out directives in their time frames, through the task Chapter 6 routes. The indicators are FedRAMP's, and the mapping is the program's. The kit's records support these controls; the assessor decides them.`,
+      detail: `The collection is what the guide's G4 checks. The mappings are the kit's config/requirements.json. The reader's policy allows three read actions and nothing else (Lab 1 step 1; Lab 2 step 1): SA-9 c; KSI-SCR-MIT, KSI-SCR-MON; the AWS account owner, the ISSO keeps the policy document. The reads went to the partition's own endpoint, as a caller in that partition (Lab 1 steps 2 and 6; Lab 2 step 2): SA-9 c; SI-5 a; KSI-SCR-MIT, KSI-SCR-MON; the repository's tests, the run's manifest. Every open and upcoming event was read with its description and resources (Lab 1 step 3; Lab 2 step 3: raw/aws.json, notices.json, manifest.json): SA-9 c; SI-5 a; KSI-SCR-MIT, KSI-SCR-MON; the ISSO, with the run folder. Events AWS marks ACTION_REQUIRED carry AWS's due date, and the kit's rule is labeled as the kit's (Lab 1 steps 4 and 5): SI-5 d (implement directives in the established time frames), through the task Chapter 06 routes; KSI-SCR-MON; the AWS account owner. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The kit's records support these controls; the agency's assessor decides them. Which output supports which indicator is the program's mapping (design guidance).`,
+      cite: ["pn04-oscal", "pn04-ksi"],
+      ref: "“Federal requirements and evidence”",
+    },
+    {
+      part: "How", title: "Dangers, and the guard for each",
+      body: [
+        { table: { head: ["Danger", "What happens", "The guard"], w: [3.4, 4.0, 4.75], rows: [
+          ["No support plan", "SubscriptionRequiredException; nothing is read", "The error surfaces; pre-flight PF-04-aws calls the API first; the Health Dashboard is the interim path"],
+          ["AWSHealthFullAccess attached for convenience", "The reader can write", "A customer managed policy with three actions"],
+          ["A GovCloud account read from us-east-1", "The call fails or reads the wrong partition", "The partition names the region; the caller's ARN is checked"],
+          ["Eleven ARNs in one details call", "The API refuses it mid-run", "Batches of ten; the kit refuses more before calling"],
+          ["A retirement without AWS's flag treated as optional", "An instance stops on its retirement date", "The kit's rule makes it action required, labeled as the kit's"],
+          ["EventBridge relied on in GovCloud", "Public Service Health events don't arrive there", "The scheduled read through the API"],
+        ] }, pt: 11.5 },
+      ],
+      sources: "Sources: AWS, Health concepts; managed policies; AWS GovCloud (US) User Guide, AWS Health. Chapter 04, “Dangers.”",
+      say: `What breaks in production, and what guards against it? No support plan, and nothing is read: the error surfaces, the runbook's pre-flight calls the API first, and the Health Dashboard is the interim path. The full-access policy attached for convenience lets the reader write, so the kit uses three actions. A GovCloud account read from the commercial endpoint fails, so the partition names the region and the caller is checked. Eleven identifiers in one call are refused before calling. A retirement without AWS's flag could stop an instance on its date, so the kit's rule makes it action required. And in GovCloud, EventBridge won't bring public events, so the kit reads on a schedule.`,
+      detail: `No support plan: SubscriptionRequiredException; nothing is read; guard: the error surfaces; the runbook's pre-flight calls the API first (PF-04-aws); the AWS Health Dashboard is the interim path. AWSHealthFullAccess attached for convenience: the reader can write; guard: a customer managed policy with three actions. A GovCloud account read from us-east-1: the call fails or reads the wrong partition; guard: the partition names the region; the caller's ARN is checked. Eleven ARNs in one details call: the API refuses it mid-run; guard: batches of ten; the kit refuses more before calling. A retirement without AWS's flag treated as optional: an instance stops on its retirement date; guard: the kit's rule makes it action required, labeled as the kit's. EventBridge relied on in GovCloud: public Service Health events don't arrive there; guard: the scheduled read through the API.`,
+      cite: ["pn04-plan", "pn04-iam", "pn04-gov", "pn04-eb"],
+      ref: "“Dangers”",
+    },
+    {
+      part: "How", title: "Done when: the chapter's checklist",
+      body: [
+        { cols: [[{ bullets: [
+          "The account has a qualifying support plan, or the gap is recorded with the ISSO",
+          "The reader's policy holds exactly the three health:Describe* actions the kit calls",
+          "The settings name the partition; the caller's ARN is in it",
+        ], label: "The account and the reader", color: "navy", pt: 14 }], [{ bullets: [
+          "AWS's count and the kit's collection agree in the test account",
+          "Every retirement has a due date and its resource",
+          "The test policy was detached and deleted",
+        ], label: "The records and the back-out", color: "teal", pt: 14 }]] },
+        { callout: "Chapter 05, Google Cloud Personalized Service Health, the smallest collector, with the largest gaps.", label: "Next: ", icon: "FaRoute", color: "amber" },
+      ],
+      sources: "Sources: Chapter 04, “Checklist”; “Continue the book.”",
+      say: `Here's what done looks like. The account has a qualifying support plan, or the gap is recorded with the security officer. The reader's policy holds exactly the three describe actions the kit calls. The settings name the partition, and the caller's identity is in it. AWS's own count and the kit's collection agree in the test account. Every retirement has a due date and its resource. And the test policy was detached and deleted. Next, Chapter 5: Google Cloud's Personalized Service Health, the smallest collector, with the largest gaps. Thanks for watching.`,
+      detail: `Checklist: The account has a qualifying support plan, or the gap is recorded with the ISSO. The reader's policy holds exactly the three health:Describe* actions the kit calls. The settings name the partition; the caller's ARN is in it. AWS's count and the kit's collection agree in the test account. Every retirement has a due date and its resource. The test policy was detached and deleted. Next: Chapter 05 — Google Cloud Personalized Service Health.`,
+      cite: [],
+      ref: "“Checklist”; “Continue the book”",
+    },
+  ],
+});

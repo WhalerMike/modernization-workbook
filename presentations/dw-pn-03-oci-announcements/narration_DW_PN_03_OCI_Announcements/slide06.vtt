@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Now the code.
+
+2
+00:00:00.988 --> 00:00:05.553
+The collector makes the list call, then
+a get for each announcement, because only
+
+3
+00:00:05.553 --> 00:00:10.188
+the details call names the affected
+resources and carries the full description.
+
+4
+00:00:10.188 --> 00:00:15.090
+The normalizer keeps the latest announcement
+in each chain, by its update time,
+
+5
+00:00:15.090 --> 00:00:17.201
+and gives the record the chain's ID,
+
+6
+00:00:17.201 --> 00:00:21.575
+so a rescheduled window updates one
+notice instead of adding a second.
+
+7
+00:00:21.575 --> 00:00:24.128
+The summary is the
+description from the details,
+
+8
+00:00:24.128 --> 00:00:26.490
+an inactive announcement
+closes the notice,
+
+9
+00:00:26.490 --> 00:00:30.620
+and the source link is the announcement
+on the realm's own Announcements host.

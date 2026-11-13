@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.125
+Step three collects Azure from the day-one
+fixtures, as of November ninth, 2026.
+
+2
+00:00:06.125 --> 00:00:10.959
+Five notices, all open, two needing
+action: one each of advisory,
+
+3
+00:00:10.959 --> 00:00:14.750
+incident, maintenance,
+retirement and security.
+
+4
+00:00:14.750 --> 00:00:19.947
+Five notices from six rows, because the
+incident appears in two subscriptions,
+
+5
+00:00:19.947 --> 00:00:22.425
+and the kit merges rows by tracking I D.
+
+6
+00:00:22.425 --> 00:00:26.188
+Without that merge, the same
+outage would become two tasks.
+
+7
+00:00:26.188 --> 00:00:28.188
+Step four reads the records.
+
+8
+00:00:28.188 --> 00:00:32.688
+The incident is a virtual machine
+connectivity issue in East U S.
+
+9
+00:00:32.688 --> 00:00:38.538
+The advisory asks clients of Azure
+Storage to move to T L S 1.2 or later.
+
+10
+00:00:38.538 --> 00:00:42.676
+The maintenance is planned work on
+virtual machines in East U S 2.
+
+11
+00:00:42.676 --> 00:00:46.681
+The retirement, of Basic S
+K U public I P addresses,
+
+12
+00:00:46.681 --> 00:00:51.288
+is due on September thirtieth,
+2027, at the advisory's end.
+
+13
+00:00:51.288 --> 00:00:56.305
+And the security advisory, for
+Azure Kubernetes Service clusters,
+
+14
+00:00:56.305 --> 00:00:59.930
+needs action with no date,
+for the ISSO to review.

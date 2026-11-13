@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Step 7 plans the Service
+Health alert policy.
+
+2
+00:00:03.088 --> 00:00:06.070
+The production fixture
+names a management group,
+
+3
+00:00:06.070 --> 00:00:10.798
+so the plan assigns the built-in definition
+there and remediates the existing
+
+4
+00:00:10.798 --> 00:00:15.599
+subscriptions: two would-apply steps, the
+plan's hash, and dry run, nothing changed.
+
+5
+00:00:15.599 --> 00:00:20.337
+The role ID in the fixture is made
+up; Lab 2 reads the real one.
+
+6
+00:00:20.337 --> 00:00:23.057
+Step 8 tries to apply it in fixture mode,
+
+7
+00:00:23.057 --> 00:00:26.712
+and the script refuses before
+it even reads the hash.
+
+8
+00:00:26.712 --> 00:00:31.512
+Step 9 runs this chapter's tests:
+twenty-six passed, none failed.
+
+9
+00:00:31.512 --> 00:00:33.410
+Then delete the output folder.

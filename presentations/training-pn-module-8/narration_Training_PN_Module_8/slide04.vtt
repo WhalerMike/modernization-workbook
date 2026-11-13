@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.325
+Unit 1 is the digest as code.
+
+2
+00:00:02.325 --> 00:00:05.905
+The digest script reads a
+collection and the routing state,
+
+3
+00:00:05.905 --> 00:00:07.950
+and writes a page in five sections.
+
+4
+00:00:07.950 --> 00:00:13.288
+One: open notices by provider, counted
+by kind and by action required.
+
+5
+00:00:13.288 --> 00:00:17.385
+Two: action required, soonest
+due first, with the assignment
+
+6
+00:00:17.385 --> 00:00:21.650
+group the routing named, or the
+word digest when there's no task.
+
+7
+00:00:21.650 --> 00:00:25.663
+Three: maintenance and changes
+starting in the next thirty days.
+
+8
+00:00:25.663 --> 00:00:28.022
+Four: what's new in the last seven days,
+
+9
+00:00:28.022 --> 00:00:30.775
+by the first-seen time
+in the routing state.
+
+10
+00:00:30.775 --> 00:00:34.698
+And five: what closed or stopped
+being listed in the last seven days,
+
+11
+00:00:34.698 --> 00:00:38.050
+including notices the provider
+simply stopped listing.
+
+12
+00:00:38.050 --> 00:00:40.890
+It writes the page as
+Markdown for the owners,
+
+13
+00:00:40.890 --> 00:00:45.188
+a spreadsheet file with each notice's
+route and owner, and a manifest.
+
+14
+00:00:45.188 --> 00:00:47.120
+The window lengths are parameters,
+
+15
+00:00:47.120 --> 00:00:51.050
+and in the scheduled run they come
+from the settings file's digest block.
+
+16
+00:00:51.050 --> 00:00:54.031
+The guide's validation
+for the digest is simple:
+
+17
+00:00:54.031 --> 00:00:57.770
+every action-required notice
+shows its due date and owner.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.875
+Lab 2 uses an OCI test
+tenancy, never production.
+
+2
+00:00:03.875 --> 00:00:08.994
+As an IAM administrator, add Oracle's one
+policy statement for the reader's group,
+
+3
+00:00:08.994 --> 00:00:12.018
+from a file so the shell
+doesn't touch its quotes,
+
+4
+00:00:12.018 --> 00:00:14.500
+and keep the policy's ID for the back-out.
+
+5
+00:00:14.500 --> 00:00:18.201
+Configure the CLI as the reader
+with Oracle's setup command,
+
+6
+00:00:18.201 --> 00:00:19.862
+which creates the key pair.
+
+7
+00:00:19.862 --> 00:00:23.951
+Then cross-check: Oracle's own list
+command counts the announcements,
+
+8
+00:00:23.951 --> 00:00:26.175
+and the kit's collection should agree.
+
+9
+00:00:26.175 --> 00:00:31.162
+Record the key casing the CLI printed,
+because Oracle's reference doesn't show it.
+
+10
+00:00:31.162 --> 00:00:36.410
+Finally, delete the policy and the run,
+which names the tenancy's resources.

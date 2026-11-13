@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.443
+Step 6 switches the scope
+to organization in memory
+
+2
+00:00:03.443 --> 00:00:06.837
+and asks the live invoker
+for the organization call.
+
+3
+00:00:06.837 --> 00:00:10.016
+It refuses before it starts
+the Google command line,
+
+4
+00:00:10.016 --> 00:00:13.416
+because the call isn't verified,
+and the message says why:
+
+5
+00:00:13.416 --> 00:00:17.038
+the group is on the beta reference,
+and its flags weren't read.
+
+6
+00:00:17.038 --> 00:00:22.444
+Step 7 builds the project command a live
+run would use, without running it: service
+
+7
+00:00:22.444 --> 00:00:27.688
+health events list, for the fictional
+project, at the global location, as JSON.
+
+8
+00:00:27.688 --> 00:00:32.201
+Step 8 runs this chapter's tests:
+eight passed, none failed.
+
+9
+00:00:32.201 --> 00:00:34.100
+Then delete the output folder.

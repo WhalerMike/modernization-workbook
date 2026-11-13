@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.925
+What breaks in production,
+and what guards against it?
+
+2
+00:00:02.925 --> 00:00:07.694
+No support plan, and nothing is read:
+the error surfaces, the runbook's
+
+3
+00:00:07.694 --> 00:00:12.975
+pre-flight calls the API first, and the
+Health Dashboard is the interim path.
+
+4
+00:00:12.975 --> 00:00:17.329
+The full-access policy attached for
+convenience lets the reader write,
+
+5
+00:00:17.329 --> 00:00:19.100
+so the kit uses three actions.
+
+6
+00:00:19.100 --> 00:00:22.320
+A GovCloud account read from
+the commercial endpoint fails,
+
+7
+00:00:22.320 --> 00:00:25.475
+so the partition names the region
+and the caller is checked.
+
+8
+00:00:25.475 --> 00:00:29.300
+Eleven identifiers in one call
+are refused before calling.
+
+9
+00:00:29.300 --> 00:00:33.557
+A retirement without AWS's flag
+could stop an instance on its date,
+
+10
+00:00:33.557 --> 00:00:36.238
+so the kit's rule makes
+it action required.
+
+11
+00:00:36.238 --> 00:00:39.832
+And in GovCloud, EventBridge
+won't bring public events,
+
+12
+00:00:39.832 --> 00:00:41.810
+so the kit reads on a schedule.

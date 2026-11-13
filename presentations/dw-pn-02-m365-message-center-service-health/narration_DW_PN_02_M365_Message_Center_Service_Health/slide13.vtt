@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.642
+Step 8 runs this chapter's tests:
+
+2
+00:00:02.642 --> 00:00:08.625
+the Microsoft 365 collector block and
+every Graph test in the live tests.
+
+3
+00:00:08.625 --> 00:00:10.700
+Fifteen pass, none fail.
+
+4
+00:00:10.700 --> 00:00:13.937
+The manifest lists the three
+calls with their permissions.
+
+5
+00:00:13.937 --> 00:00:18.701
+So, in one short lab, you've seen two
+read permissions and nothing that writes,
+
+6
+00:00:18.701 --> 00:00:23.541
+one Graph host per cloud with no default,
+Microsoft's date kept as Microsoft's
+
+7
+00:00:23.541 --> 00:00:28.151
+and the kit's rule labeled as a rule,
+and a next link on another host refused.
+
+8
+00:00:28.151 --> 00:00:30.759
+Delete the output folder when you're done,
+
+9
+00:00:30.759 --> 00:00:33.740
+so no fixture output is
+mistaken for a real run.

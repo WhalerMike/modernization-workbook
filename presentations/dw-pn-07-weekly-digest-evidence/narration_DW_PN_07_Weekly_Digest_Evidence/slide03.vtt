@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.912
+Start from what the implementation guide's
+evidence section asks for, gate by gate.
+
+2
+00:00:04.912 --> 00:00:10.869
+From each provider, Azure, Microsoft
+365, Oracle Cloud Infrastructure,
+
+3
+00:00:10.869 --> 00:00:16.312
+AWS and Google Cloud, the raw
+output, the notices and the manifest.
+
+4
+00:00:16.312 --> 00:00:20.124
+From routing, the payloads, the
+routing table and the state.
+
+5
+00:00:20.124 --> 00:00:24.174
+And the digests, preflight
+results and evidence records,
+
+6
+00:00:24.174 --> 00:00:26.500
+with an index and a file of hashes.
+
+7
+00:00:26.500 --> 00:00:30.882
+The guide maps them to NIST controls
+for external services, advisories,
+
+8
+00:00:30.882 --> 00:00:34.298
+change control, contingency
+planning, risk assessment,
+
+9
+00:00:34.298 --> 00:00:39.125
+monitoring and audit protection, and to
+the indicators FedRAMP lists for them.
+
+10
+00:00:39.125 --> 00:00:43.300
+The kit's records support those
+controls; the assessor decides them.

@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.488
+Each provider names its
+notices differently.
+
+2
+00:00:02.488 --> 00:00:04.858
+The program sorts them into six kinds,
+
+3
+00:00:04.858 --> 00:00:09.524
+because the kind decides who owns the
+notice and what it asks of the agency.
+
+4
+00:00:09.524 --> 00:00:13.051
+Maintenance: work is scheduled
+that may affect availability,
+
+5
+00:00:13.051 --> 00:00:16.300
+so check the window against
+the systems that depend on it.
+
+6
+00:00:16.300 --> 00:00:21.007
+Retirement: a feature, version or
+resource type is ending, with a date,
+
+7
+00:00:21.007 --> 00:00:24.537
+so plan and approve the
+migration before that date,
+
+8
+00:00:24.537 --> 00:00:28.488
+and review the contingency plan
+if a system depends on it.
+
+9
+00:00:28.488 --> 00:00:33.095
+Advisory: information or a
+recommendation, often with no deadline;
+
+10
+00:00:33.095 --> 00:00:36.613
+decide whether it applies,
+and record the decision.
+
+11
+00:00:36.613 --> 00:00:41.500
+Security: assess the exposure and act
+within the security response window.
+
+12
+00:00:41.500 --> 00:00:44.770
+Change: treat it as a proposed
+change to the system,
+
+13
+00:00:44.770 --> 00:00:48.200
+with an impact analysis and
+then the change process.
+
+14
+00:00:48.200 --> 00:00:50.613
+And incident: something is broken now.
+
+15
+00:00:50.613 --> 00:00:52.937
+Not every provider has every kind.
+
+16
+00:00:52.937 --> 00:00:57.232
+Google Cloud's Personalized Service
+Health reports incidents only:
+
+17
+00:00:57.232 --> 00:01:01.510
+its event category has one value,
+for service outage or degradation.

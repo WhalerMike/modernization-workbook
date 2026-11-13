@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.988
+Here's how the normalizer maps them.
+
+2
+00:00:01.988 --> 00:00:04.526
+A post tagged Retirement is a retirement.
+
+3
+00:00:04.526 --> 00:00:07.813
+Plan-for-change and
+prevent-or-fix posts are changes,
+
+4
+00:00:07.813 --> 00:00:10.337
+and stay-informed posts are advisories.
+
+5
+00:00:10.337 --> 00:00:13.933
+For all of them, if Microsoft
+set an action-required date,
+
+6
+00:00:13.933 --> 00:00:17.138
+the record keeps it, and
+says the provider decided.
+
+7
+00:00:17.138 --> 00:00:22.494
+There's one kit rule: a prevent-or-fix post
+with no date is still action required,
+
+8
+00:00:22.494 --> 00:00:25.674
+labeled as the kit's rule,
+with no date invented.
+
+9
+00:00:25.674 --> 00:00:29.329
+Service health issues become
+incidents or advisories,
+
+10
+00:00:29.329 --> 00:00:32.880
+never action required, and
+a resolved issue is closed.

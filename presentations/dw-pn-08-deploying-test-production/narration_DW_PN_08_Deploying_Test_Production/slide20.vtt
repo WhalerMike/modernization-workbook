@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:06.462
+One settings file per stage, with no
+secrets, filed with the change record.
+
+3
+00:00:06.462 --> 00:00:08.045
+The test pre-flight passed,
+
+4
+00:00:08.045 --> 00:00:11.713
+and every provider was enabled
+and cross-checked one at a time.
+
+5
+00:00:11.713 --> 00:00:13.251
+The smoke test passed.
+
+6
+00:00:13.251 --> 00:00:17.550
+Both plans were approved by hash,
+applied and recorded in test.
+
+7
+00:00:17.550 --> 00:00:19.268
+The test evidence passed,
+
+8
+00:00:19.268 --> 00:00:23.275
+and the security officer and
+the board recorded the go/no-go.
+
+9
+00:00:23.275 --> 00:00:27.783
+Production's pre-flight passed the
+seventh check, production routed as
+
+10
+00:00:27.783 --> 00:00:32.138
+a dry run for a week before sending,
+and its evidence passes every week.
+
+11
+00:00:32.138 --> 00:00:34.763
+That's the end of Building
+Provider Notices.
+
+12
+00:00:34.763 --> 00:00:35.930
+Thanks for watching.

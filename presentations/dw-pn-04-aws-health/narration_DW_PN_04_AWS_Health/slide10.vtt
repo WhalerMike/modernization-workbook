@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:02.875
+Developers maintain the kit.
+
+3
+00:00:02.875 --> 00:00:07.650
+The AWS account owner owns this
+gate, including the reader's policy.
+
+4
+00:00:07.650 --> 00:00:11.594
+And whoever owns the support plan
+confirms it with AWS Support,
+
+5
+00:00:11.594 --> 00:00:14.400
+or records the gap with
+the security officer.
+
+6
+00:00:14.400 --> 00:00:18.569
+The policy is the whole permission
+story: a customer managed policy
+
+7
+00:00:18.569 --> 00:00:22.962
+with exactly the three describe actions
+the kit calls, and nothing else.
+
+8
+00:00:22.962 --> 00:00:27.573
+Not AWS's wildcard example, because
+a wildcard grows as AWS adds actions,
+
+9
+00:00:27.573 --> 00:00:31.949
+and never the full-access managed
+policy attached for convenience,
+
+10
+00:00:31.949 --> 00:00:34.200
+because then the reader can write.

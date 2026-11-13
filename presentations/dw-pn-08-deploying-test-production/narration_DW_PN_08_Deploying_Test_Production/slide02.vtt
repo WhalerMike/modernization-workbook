@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Why a runbook?
+
+2
+00:00:01.100 --> 00:00:04.713
+Because each earlier lab proves
+one provider on its own,
+
+3
+00:00:04.713 --> 00:00:09.112
+and production needs all of them
+together, every week, with a way back.
+
+4
+00:00:09.112 --> 00:00:10.763
+So the goal is concrete.
+
+5
+00:00:10.763 --> 00:00:15.184
+By the end you can deploy the kit to a
+test environment and then to production,
+
+6
+00:00:15.184 --> 00:00:17.851
+with a change record, an
+approval at each write,
+
+7
+00:00:17.851 --> 00:00:22.343
+a smoke test whose expected result is
+written down before you run it, evidence
+
+8
+00:00:22.343 --> 00:00:26.625
+the security officer can check with a
+hash, and a rollback you've rehearsed.
+
+9
+00:00:26.625 --> 00:00:31.150
+And for every step you can say which of
+the guide's seven gates it moves forward.

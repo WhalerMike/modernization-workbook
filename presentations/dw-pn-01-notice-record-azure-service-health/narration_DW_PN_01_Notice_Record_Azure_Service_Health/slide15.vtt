@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.857
+Lab 2 moves to an Azure test
+subscription in a test tenant,
+
+2
+00:00:03.857 --> 00:00:07.988
+never production, and an empty
+list of events is a valid result.
+
+3
+00:00:07.988 --> 00:00:11.421
+Grant the reader its two roles,
+sign in in the right cloud,
+
+4
+00:00:11.421 --> 00:00:15.750
+and cross-check: Learn's own query
+and the kit's collection should agree.
+
+5
+00:00:15.750 --> 00:00:19.023
+Then plan the alert policy
+at the test subscription,
+
+6
+00:00:19.023 --> 00:00:22.525
+have a second person approve
+the hash, apply it, and check.
+
+7
+00:00:22.525 --> 00:00:27.481
+Learn says the remediation creates a
+resource group, an alert rule and an action
+
+8
+00:00:27.481 --> 00:00:29.959
+group that emails subscription owners;
+
+9
+00:00:29.959 --> 00:00:32.888
+Service Health alerts
+are activity log alerts.
+
+10
+00:00:32.888 --> 00:00:34.510
+Finally, back it all out.

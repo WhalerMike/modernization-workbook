@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.512
+Now the evidence record.
+
+2
+00:00:01.512 --> 00:00:04.087
+Recording a run folder does four things.
+
+3
+00:00:04.087 --> 00:00:08.163
+It re-hashes every file the
+run's own manifest lists.
+
+4
+00:00:08.163 --> 00:00:10.812
+It copies the folder
+into the evidence store.
+
+5
+00:00:10.812 --> 00:00:16.078
+It writes a record with the time, the
+environment, the mode, the change record, the
+
+6
+00:00:16.078 --> 00:00:21.262
+command, and the result, which is a pass
+only if every file matches its manifest.
+
+7
+00:00:21.262 --> 00:00:25.781
+The record names the steps it covers,
+with their controls and indicators,
+
+8
+00:00:25.781 --> 00:00:30.225
+the claim language, every file's hash,
+and the hash of the record before it.
+
+9
+00:00:30.225 --> 00:00:32.875
+Then it appends the
+index and rewrites a sums
+
+10
+00:00:32.875 --> 00:00:35.590
+file that a standard
+checksum tool can check.

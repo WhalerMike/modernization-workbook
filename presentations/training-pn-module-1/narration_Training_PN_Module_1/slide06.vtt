@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+Here's the loop the rest
+of the path builds.
+
+2
+00:00:02.475 --> 00:00:05.135
+Collect from the
+provider, not the mailbox:
+
+3
+00:00:05.135 --> 00:00:09.315
+a read-only identity reads each
+provider's notices at least weekly,
+
+4
+00:00:09.315 --> 00:00:13.875
+through the provider's own interface,
+and each notice becomes one record.
+
+5
+00:00:13.875 --> 00:00:18.058
+Route by rules, in order: security
+advisories, then retirements,
+
+6
+00:00:18.058 --> 00:00:21.516
+then maintenance that names
+the agency's resources,
+
+7
+00:00:21.516 --> 00:00:26.825
+then open incidents that name them, then
+anything else marked as needing action.
+
+8
+00:00:26.825 --> 00:00:31.737
+The first match wins, and a notice that
+matches none goes to the weekly digest.
+
+9
+00:00:31.737 --> 00:00:36.509
+A notice that needs action becomes a
+typed task in the I T S M front door,
+
+10
+00:00:36.509 --> 00:00:40.862
+not a second queue, with an owner,
+a severity and response window,
+
+11
+00:00:40.862 --> 00:00:43.875
+and the provider's own
+date kept separately.
+
+12
+00:00:43.875 --> 00:00:46.221
+It's keyed to the provider's notice I D,
+
+13
+00:00:46.221 --> 00:00:49.350
+so an unchanged notice
+never makes a second task.
+
+14
+00:00:49.350 --> 00:00:53.339
+And a task closes only on the
+re-read: when the next collection
+
+15
+00:00:53.339 --> 00:00:57.887
+shows the notice closed, or the
+agency's resources no longer affected.
+
+16
+00:00:57.887 --> 00:01:00.639
+A retirement can close
+on the provider's side
+
+17
+00:01:00.639 --> 00:01:03.670
+while the agency still
+runs the retired version.

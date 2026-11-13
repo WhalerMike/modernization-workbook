@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.384
+Welcome to Module 3 of the
+Provider Notices learning path:
+
+2
+00:00:04.384 --> 00:00:06.912
+the Microsoft 365 Message center.
+
+3
+00:00:06.912 --> 00:00:10.411
+This is Gate 2 of the provider
+notices implementation guide,
+
+4
+00:00:10.411 --> 00:00:13.350
+with the second chapter of
+the developer workbook.
+
+5
+00:00:13.350 --> 00:00:18.596
+The Message center is where Microsoft
+announces changes, retirements and actions
+
+6
+00:00:18.596 --> 00:00:23.538
+for a Microsoft 365 tenant, and service
+health lists incidents and advisories.
+
+7
+00:00:23.538 --> 00:00:27.532
+Microsoft Graph's service
+communications A P I reads both,
+
+8
+00:00:27.532 --> 00:00:29.363
+with two read permissions.
+
+9
+00:00:29.363 --> 00:00:32.942
+In this module you read the
+fixture tenant's posts and issues,
+
+10
+00:00:32.942 --> 00:00:37.237
+see which ones Microsoft said need
+action and which the kit's rule marked,
+
+11
+00:00:37.237 --> 00:00:41.675
+and watch the kit refuse to follow a next
+link off the tenant's own Graph host.
+
+12
+00:00:41.675 --> 00:00:46.900
+It takes about fifty minutes, with a lab
+on fixtures and a lab for a test tenant.
+
+13
+00:00:46.900 --> 00:00:52.460
+The code is illustrative: tested against
+fixtures, not run against a live tenant.

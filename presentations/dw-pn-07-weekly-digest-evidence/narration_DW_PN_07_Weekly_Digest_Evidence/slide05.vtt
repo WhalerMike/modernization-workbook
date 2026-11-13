@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.308
+The digest reads a collection
+and the routing state,
+
+2
+00:00:03.308 --> 00:00:06.188
+and writes a page, a
+spreadsheet and a manifest.
+
+3
+00:00:06.188 --> 00:00:08.051
+The page has five sections.
+
+4
+00:00:08.051 --> 00:00:13.138
+Open notices by provider, counted by
+kind and by whether action is required.
+
+5
+00:00:13.138 --> 00:00:15.441
+Action required, soonest due first,
+
+6
+00:00:15.441 --> 00:00:18.699
+each with the assignment
+group the routing named.
+
+7
+00:00:18.699 --> 00:00:22.037
+Maintenance and changes starting
+in the next thirty days.
+
+8
+00:00:22.037 --> 00:00:25.563
+What's new in the last seven days,
+by when the kit first saw it.
+
+9
+00:00:25.563 --> 00:00:29.575
+And what closed, or stopped being
+listed, in the last seven days.
+
+10
+00:00:29.575 --> 00:00:33.770
+The two windows are parameters, set
+in the scheduled run's settings.

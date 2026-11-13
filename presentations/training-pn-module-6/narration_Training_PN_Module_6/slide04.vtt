@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.275
+Unit 1 is the guide's Step 5.
+
+2
+00:00:02.275 --> 00:00:04.750
+The project owner does two things once.
+
+3
+00:00:04.750 --> 00:00:07.402
+Enable the Service Health
+A P I on the project,
+
+4
+00:00:07.402 --> 00:00:11.775
+and grant the reader's group the
+Personalized Service Health Viewer role.
+
+5
+00:00:11.775 --> 00:00:13.013
+Then two steps.
+
+6
+00:00:13.013 --> 00:00:16.343
+One: cross-check the list
+with Google's own command,
+
+7
+00:00:16.343 --> 00:00:21.299
+G cloud service health events list, for
+the project, in the global location.
+
+8
+00:00:21.299 --> 00:00:24.537
+Two: collect, with the
+provider set to Google.
+
+9
+00:00:24.537 --> 00:00:29.212
+For a whole organization, set the settings
+file's Google scope to organization,
+
+10
+00:00:29.212 --> 00:00:31.513
+and grant the role on the organization.
+
+11
+00:00:31.513 --> 00:00:35.876
+Otherwise, grant it at the project:
+the viewer role on the organization,
+
+12
+00:00:35.876 --> 00:00:39.487
+for a project read, is more read
+scope than the reader needs.
+
+13
+00:00:39.487 --> 00:00:42.711
+The gate validates when products
+and locations come from
+
+14
+00:00:42.711 --> 00:00:45.599
+the event's impacts, and
+closed incidents are closed.
+
+15
+00:00:45.599 --> 00:00:48.600
+The gate owner is the
+Google Cloud project owner.

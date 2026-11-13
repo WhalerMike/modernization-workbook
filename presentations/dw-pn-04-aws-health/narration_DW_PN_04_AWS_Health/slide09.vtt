@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.325
+Before a live run reads anything,
+the kit checks who it's signed in as.
+
+2
+00:00:04.325 --> 00:00:08.700
+It asks AWS's security token service
+for the caller's identity, once,
+
+3
+00:00:08.700 --> 00:00:13.712
+and refuses a caller whose identity
+isn't in the partition the settings name.
+
+4
+00:00:13.712 --> 00:00:16.638
+The region is that partition's
+Health endpoint region.
+
+5
+00:00:16.638 --> 00:00:21.357
+When the tool fails, for example with
+the subscription-required error,
+
+6
+00:00:21.357 --> 00:00:23.799
+the error surfaces in AWS's own words.
+
+7
+00:00:23.799 --> 00:00:27.476
+The tests pin all of this: six
+in the collector's AWS block,
+
+8
+00:00:27.476 --> 00:00:30.833
+plus the live tests for
+the endpoint per partition,
+
+9
+00:00:30.833 --> 00:00:35.860
+the eleven-identifier refusal, the
+caller guard and the support-plan error.

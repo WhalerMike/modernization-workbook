@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.888
+Lab 1 needs only PowerShell 7 with
+Pester, working in the kit's folder.
+
+2
+00:00:04.888 --> 00:00:08.763
+The lab settings name a fictional
+project, and nothing signs in.
+
+3
+00:00:08.763 --> 00:00:11.324
+Step 1 lists what Google Cloud needs.
+
+4
+00:00:11.324 --> 00:00:16.675
+The organization call carries its reason
+for being unverified: verified is false.
+
+5
+00:00:16.675 --> 00:00:21.319
+Step 2 collects the day-one fixtures:
+two notices, both incidents,
+
+6
+00:00:21.319 --> 00:00:25.613
+one open, none needing action,
+both valid against the schema.
+
+7
+00:00:25.613 --> 00:00:31.483
+Step 3 reads them: one open and one
+closed, with products and locations taken
+
+8
+00:00:31.483 --> 00:00:37.220
+from their impacts, Cloud S Q L in U S East
+4, and Cloud Storage in U S Central 1.

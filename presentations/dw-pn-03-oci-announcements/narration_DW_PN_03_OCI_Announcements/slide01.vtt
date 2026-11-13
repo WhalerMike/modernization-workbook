@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:10.000
+This is Chapter 3: Oracle Cloud
+Infrastructure announcements.
+
+4
+00:00:10.000 --> 00:00:13.836
+When a platform the agency doesn't
+run is patched on a Saturday night,
+
+5
+00:00:13.836 --> 00:00:16.849
+the people who own what runs
+on it should hear from the
+
+6
+00:00:16.849 --> 00:00:19.863
+provider's own record, not
+from the help desk on Monday.
+
+7
+00:00:19.863 --> 00:00:24.774
+We'll start from what Oracle's documentation
+gives you, see what it leaves to you,
+
+8
+00:00:24.774 --> 00:00:27.117
+then read how the kit fills the record,
+
+9
+00:00:27.117 --> 00:00:29.988
+and walk two labs, the
+evidence and the dangers.
+
+10
+00:00:29.988 --> 00:00:31.563
+Two notes before we begin.
+
+11
+00:00:31.563 --> 00:00:34.924
+This chapter is a draft,
+awaiting the owner's review.
+
+12
+00:00:34.924 --> 00:00:38.520
+And the code is illustrative,
+tested against fixtures.

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.450
+Welcome to Module 7 of the Provider
+Notices learning path: routing to owners.
+
+2
+00:00:05.450 --> 00:00:08.888
+A notice nobody owns is the
+problem this path started with.
+
+3
+00:00:08.888 --> 00:00:12.562
+This module is where each notice
+that needs action gets an owner.
+
+4
+00:00:12.562 --> 00:00:16.137
+It's Gate 6 of the provider
+notices implementation guide,
+
+5
+00:00:16.137 --> 00:00:18.724
+with Chapter 6 of the developer workbook.
+
+6
+00:00:18.724 --> 00:00:23.897
+Each notice that needs action becomes a
+typed task in the service desk's front door,
+
+7
+00:00:23.897 --> 00:00:28.612
+with a severity, a response window, and
+the provider's own date kept beside it.
+
+8
+00:00:28.612 --> 00:00:30.838
+The rest go in the weekly digest.
+
+9
+00:00:30.838 --> 00:00:33.618
+In this module you'll
+check the lab's routing,
+
+10
+00:00:33.618 --> 00:00:37.558
+route two fictional weeks from
+all five providers as a dry run,
+
+11
+00:00:37.558 --> 00:00:41.112
+read one payload in full, and
+watch a re-run write nothing.
+
+12
+00:00:41.112 --> 00:00:43.343
+It takes about sixty-five minutes,
+
+13
+00:00:43.343 --> 00:00:47.724
+with a lab on fixtures and a lab in
+a ServiceNow developer instance.
+
+14
+00:00:47.724 --> 00:00:53.380
+The code is illustrative: tested against
+fixtures, not run against a live instance.

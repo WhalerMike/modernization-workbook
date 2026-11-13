@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.225
+Runs and state.
+
+2
+00:00:01.225 --> 00:00:05.236
+The router compares each notice with
+its state, which is keyed by the
+
+3
+00:00:05.236 --> 00:00:09.175
+provider and the provider's I D and
+holds each notice's fingerprint.
+
+4
+00:00:09.175 --> 00:00:12.438
+A task-routed notice gets a
+create the first time it's open.
+
+5
+00:00:12.438 --> 00:00:14.310
+It gets an update when it changes,
+
+6
+00:00:14.310 --> 00:00:17.638
+meaning a different fingerprint,
+or when its rule changes.
+
+7
+00:00:17.638 --> 00:00:19.749
+An unchanged notice writes nothing.
+
+8
+00:00:19.749 --> 00:00:24.224
+When the provider closes its notice,
+the task gets a close payload,
+
+9
+00:00:24.224 --> 00:00:28.863
+but that close asks for the re-read,
+clause C4; it doesn't close the task.
+
+10
+00:00:28.863 --> 00:00:31.700
+The task is resolved on
+the agency's own check.
+
+11
+00:00:31.700 --> 00:00:36.168
+And an open notice from a provider read
+in this run that's no longer listed
+
+12
+00:00:36.168 --> 00:00:40.487
+is marked absent, and its task gets an
+update asking for the same re-read.
+
+13
+00:00:40.487 --> 00:00:44.887
+A provider that wasn't read this run
+never has its notices marked absent.
+
+14
+00:00:44.887 --> 00:00:47.678
+Each run writes the payloads, a task list,
+
+15
+00:00:47.678 --> 00:00:51.313
+a routing spreadsheet file,
+the state and a manifest.
+
+16
+00:00:51.313 --> 00:00:55.970
+It's a dry run: nothing is sent unless
+the scheduled run's send switch is given,
+
+17
+00:00:55.970 --> 00:00:58.440
+with sending turned on in the settings.

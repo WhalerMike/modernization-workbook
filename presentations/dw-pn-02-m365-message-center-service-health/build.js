@@ -1,0 +1,300 @@
+// Building Provider Notices, Chapter 02 — Microsoft 365 Message Center and Service Health: the narrated tour.
+// Every fact comes from docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.md;
+// cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js. The chapter is a draft, and the tour says so.
+// Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-pn-02-m365-message-center-service-health/build.js
+require("../_build/devwb.js")({
+  workbook: "pn", chapter: 2, dir: __dirname,
+  base: "DW_PN_02_M365_Message_Center_Service_Health",
+  title: "Microsoft 365 Message Center, Service Health",
+  map: "Why the API · which cloud · what Learn gives and leaves · posts and issues to kinds · who decided · the host guard · who · two labs · evidence · dangers",
+  slides: [
+    {
+      say: `Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 2: Microsoft 365 Message center and service health. Message center already tells a tenant what will change and when. The work is reading it from the API, on the right cloud, and saying who decided a post needs action. We'll start from Microsoft Learn's service communications API, see what it leaves to you, then read how the kit fills the record from Chapter 1, and walk two labs, the evidence and the dangers. Two notes before we begin. This chapter is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures.`,
+      detail: `The chapter is the Microsoft 365 collector behind the guide's G2 Microsoft 365. You start with Learn's service communications API: three list calls, two read permissions, and the national-cloud hosts. Then you read how the kit maps posts and issues into Chapter 01's record, keeps Microsoft's own action-required date apart from the kit's rule, and sends every request only to the tenant's own Graph host. Lab 1 collects both fixture weeks and builds a live request without sending it; Lab 2 reads a test tenant with a delegated sign-in and backs out the consent. Status: the chapter is a draft (status: draft), awaiting the owner's review.`,
+      cite: ["pn02-overview"],
+      ref: "“In this chapter”; “Goal and audience”",
+    },
+    {
+      part: "Why", title: "Why read Message center from the API",
+      body: [
+        { lead: "Message center already says what will change and when. The work is reading it, on the right cloud, and saying who decided." },
+        { cols: [[{ bullets: [
+          "Read a tenant's Message center posts and service health issues",
+          "With only **ServiceMessage.Read.All** and **ServiceHealth.Read.All**",
+          "On the host for the tenant's cloud",
+          "Into records that say which posts need action, and whether Microsoft or the kit said so",
+        ], label: "By the end of the chapter you can", color: "navy", pt: 14 }], [{ bullets: [
+          "Developers who maintain the kit",
+          "The Microsoft 365 service owner who owns G2",
+          "The change manager who receives the change and retirement tasks",
+          "You should know Chapter 01's record",
+        ], label: "Who it's for", color: "teal", pt: 14 }]] },
+      ],
+      sources: "Sources: Chapter 02, opening, “In this chapter,” “Goal and audience.”",
+      say: `Why this chapter? Message center is where Microsoft tells a tenant about retirements and changes, often months ahead. But a post that nobody reads, or that only arrives by email, doesn't become anyone's task. So the goal is precise. By the end you can read a tenant's Message center posts and service health issues with just two read permissions, on the host for the tenant's own cloud, into records that say which posts need action and whether Microsoft or the kit said so. This is for the developers, the Microsoft 365 service owner, and the change manager who receives the tasks.`,
+      detail: `Goal: by the end of this chapter you can read a tenant's Message center posts and service health issues with only ServiceMessage.Read.All and ServiceHealth.Read.All, on the host for the tenant's cloud, into records that say which posts need action and whether Microsoft or the kit said so. Audience: developers who maintain the kit, the Microsoft 365 service owner who owns G2, and the change manager who receives the change and retirement tasks. You should know Chapter 01's record.`,
+      cite: [],
+      ref: "Opening; “Goal and audience”",
+    },
+    {
+      part: "Why", title: "Which cloud: GCC on the worldwide Graph host",
+      body: [
+        { table: { head: ["Cloud", "Graph host", "Graph environment"], w: [3.0, 5.0, 4.15], rows: [
+          ["GCC (this workbook's baseline)", "graph.microsoft.com, the worldwide endpoint", "Global"],
+          ["GCC High (side note)", "graph.microsoft.us", "USGov"],
+          ["DoD (side note)", "dod-graph.microsoft.us", "USGovDoD"],
+        ] }, pt: 13.5 },
+        { callout: "a GCC High tenant read on graph.microsoft.com returns nothing, and the gate passes on an empty list. So the settings name the cloud, and the live invoker refuses a Graph session in another environment or tenant.", label: "Why it matters: ", icon: "FaCloud", color: "teal" },
+      ],
+      sources: "Sources: Learn, National cloud deployments; service communications API overview. Chapter 02, “What Microsoft gives you,” “What it leaves to you,” Lab 1 step 2.",
+      say: `First, which cloud. A GCC tenant keeps the worldwide Microsoft Graph endpoint, so this workbook's baseline reads graph dot microsoft dot com. Microsoft Learn's national cloud page gives GCC High and the Defense Department their own hosts, a short side note here. Why does it matter? Because a wrong cloud fails silently. A GCC High tenant read on the worldwide host simply returns nothing, and the gate passes on an empty list. So the kit has one row per cloud and no default, and the live run refuses a Graph session in another environment or another tenant.`,
+      detail: `GCC keeps the worldwide endpoint, graph.microsoft.com; GCC High uses graph.microsoft.us and DoD dod-graph.microsoft.us. The service communications API is available on the national clouds, with the US Government L4 and L5 URLs. In the kit: Get-PnCloud -Provider m365 -Cloud gcc | gcchigh | dod gives Graph host and Graph environment (Global, USGov, USGovDoD). The kit has one row per cloud and no default; an unknown name throws. National cloud hosts gap: a GCC High tenant read on graph.microsoft.com returns nothing, and the gate passes on an empty list; the settings name the cloud (gcc, gcchigh or dod); the live invoker refuses a Graph session in another environment or tenant.`,
+      cite: ["pn02-deployments", "pn02-overview"],
+      ref: "“What Microsoft gives you”; “What it leaves to you”; Lab 1, step 2",
+    },
+    {
+      part: "What", title: "What Microsoft Learn gives you",
+      body: [
+        { table: { head: ["Learn gives", "What it says"], w: [3.6, 8.55], rows: [
+          ["Service communications API", "Resources and permissions: ServiceMessage.Read.All for Message center posts, ServiceHealth.Read.All for service health"],
+          ["Consent", "Both granted only by an administrator; a delegated sign-in also needs an admin role"],
+          ["Three list methods, v1.0", "GET /admin/serviceAnnouncement/messages, /issues and /healthOverviews, each with its permission and national-cloud availability"],
+          ["National clouds", "Available with the US Government L4 and L5 URLs"],
+          ["Data privacy messages", "Visible only to Global Administrators and Message Center Privacy Readers"],
+          ["Learn's own cmdlet", "Get-MgServiceAnnouncementMessage, in Microsoft.Graph.Devices.ServiceAnnouncement"],
+        ] }, pt: 12.5 },
+      ],
+      sources: "Sources: Learn, service communications API overview; List serviceAnnouncement messages; List issues; List healthOverviews; About admin roles.",
+      say: `Here's Microsoft's starting point. Microsoft Learn's service communications API overview names the resources and the two permissions: one to read Message center posts, one to read service health. Both are granted only by an administrator, and a delegated sign-in also needs an admin role. There are three list methods on version one point oh: messages, issues and health overviews, each with its permission and its national-cloud availability. One caveat from Learn's admin roles page: data privacy messages are visible only to Global Administrators and Message Center Privacy Readers. And Learn's own cmdlet for posts is the one we'll cross-check against in Lab 2.`,
+      detail: `Learn's service communications API overview names the resources and the permissions: ServiceMessage.Read.All for Message center posts and ServiceHealth.Read.All for service health; both are granted only by an administrator, and a delegated sign-in also needs an admin role. The API is available on the national clouds, with the US Government L4 and L5 URLs. The list methods are GET /admin/serviceAnnouncement/messages, /issues and /healthOverviews on v1.0; each lists its permission and its national-cloud availability. Data privacy messages are visible only to Global Administrators and Message Center Privacy Readers. Learn's own cmdlet for posts is Get-MgServiceAnnouncementMessage, in Microsoft.Graph.Devices.ServiceAnnouncement.`,
+      cite: ["pn02-overview", "pn02-messages", "pn02-issues", "pn02-roles"],
+      ref: "“Start with Microsoft's documentation” — “What Microsoft gives you”",
+    },
+    {
+      part: "What", title: "What it leaves to you, and the verdict",
+      body: [
+        { table: { head: ["Learn, as published", "Why it matters", "What the kit adds"], w: [3.3, 3.6, 5.25], rows: [
+          ["Categories and tags", "No category says retirement", "Tagged Retirement is a retirement; planForChange, preventOrFixIssue are changes; stayInformed an advisory"],
+          ["actionRequiredByDateTime", "The only field that says Microsoft wants action", "Kept as provider: actionRequiredByDateTime; a dateless preventOrFixIssue is the kit's rule:"],
+          ["PascalCase enum values in samples", "A case-sensitive match misses them", "Enum values matched without regard to case"],
+          ["HTML in a post's body", "A summary nobody can read", "Markup removed; summary capped at 2,000 characters"],
+          ["@odata.nextLink for paging", "A URL the response chose", "Followed only on the cloud's own Graph host"],
+          ["A post's end date", "A post past its end still lists", "Closed once its end date has passed"],
+        ] }, pt: 11.5 },
+        { lead: "Verdict: use Learn's list calls and permissions as they are; build the kinds, the action basis and the host guard." },
+      ],
+      sources: "Sources: Learn, List serviceAnnouncement messages; service communications API overview. Chapter 02, “What it leaves to you,” “The verdict.”",
+      say: `What does Learn leave to you? No post category says retirement, so the kit treats a post tagged Retirement as one; Learn doesn't list the tags, so that's marked not yet specified. The action-required date is the only field where Microsoft says it wants action, so the kit keeps it as Microsoft's. Samples show enum values in a different case, post bodies are HTML, a next link is a URL the response chose, and a post past its end still lists. Each gap is pinned by a test. The verdict: use Learn's calls and permissions as they are, and build the kinds, the action basis and the host guard.`,
+      detail: `Each row is pinned by a test in the Microsoft 365 service communications block of tests/Collectors.Tests.ps1, or in tests/Live.Tests.ps1. Post categories (preventOrFixIssue, planForChange, stayInformed) and tags: no category says retirement; a post tagged Retirement is a retirement; planForChange and preventOrFixIssue are changes; stayInformed is an advisory. Learn doesn't enumerate the tags (not yet specified). actionRequiredByDateTime on a post: the only field that says Microsoft wants action; the record's action date and actionBasis: provider: actionRequiredByDateTime; a preventOrFixIssue post without a date is action required by the kit's rule, labeled rule:. Samples with PascalCase enum values: a case-sensitive match misses them; enum values matched without regard to case. HTML in a post's body: markup removed; the summary capped at 2,000 characters. @odata.nextLink for paging: a next link is a URL the response chose; followed only if it is on the cloud's own Graph host; anything else is refused. National cloud hosts: the settings name the cloud; the live invoker refuses a Graph session in another environment or tenant. A post's end date: closed once its end date has passed. Verdict: use Learn's list calls and permissions as they are. Build the kind mapping, the action basis and the host guard, because a wrong cloud fails silently.`,
+      cite: ["pn02-messages", "pn02-overview"],
+      ref: "“What it leaves to you”; “The verdict”",
+    },
+    {
+      part: "What", title: "The collector: three declared calls",
+      body: [
+        { lead: "Get-PnProviderNotice -Provider m365: each call a GET through Invoke-MgGraphRequest in live mode, a file in fixture mode." },
+        { table: { head: ["Call", "Graph request", "Permission", "What the kit does with it"], w: [2.9, 4.0, 2.6, 2.65], rows: [
+          ["m365-messages", "GET /admin/serviceAnnouncement/messages", "ServiceMessage.Read.All", "Message center posts become notices"],
+          ["m365-issues", "GET /admin/serviceAnnouncement/issues", "ServiceHealth.Read.All", "Service health issues become notices"],
+          ["m365-health-overviews", "GET /admin/serviceAnnouncement/healthOverviews", "ServiceHealth.Read.All", "Kept in raw/m365.json for the run's record"],
+        ] }, pt: 12.5 },
+        { lead: "The source link of every record is the post or issue on the same host." },
+      ],
+      sources: "Sources: examples/provider-notices (Get-PnProviderNotice); Learn, List messages; List issues; List healthOverviews. Chapter 02, “The code.”",
+      say: `Now the code. The Microsoft 365 collector makes three declared calls: messages, issues and health overviews. In a live run each is a GET through the Graph PowerShell request cmdlet; in fixture mode it's a file. The posts and the issues become notices. The health overviews don't; they're kept in the raw folder, for the run's record. And the source link of every record points to the post or issue on the same host the kit read it from, so a task always links back to what Microsoft actually published.`,
+      detail: `Get-PnProviderNotice -Provider m365 makes three declared calls, m365-messages, m365-issues and m365-health-overviews, each a GET through Invoke-MgGraphRequest in live mode. Health overviews are kept in raw/m365.json for the run's record; the notices come from posts and issues. The source link of every record is the post or issue on the same host. Permissions: ServiceMessage.Read.All for messages; ServiceHealth.Read.All for issues and health overviews.`,
+      cite: ["pn02-messages", "pn02-issues"],
+      ref: "“The code”",
+    },
+    {
+      part: "What", title: "Posts and issues to kinds, and who decided",
+      body: [
+        { table: { head: ["Source", "Kind", "Action required"], w: [4.2, 2.0, 5.95], rows: [
+          ["Post tagged Retirement", "retirement", "If actionRequiredByDateTime is set (provider)"],
+          ["Post, planForChange", "change", "If actionRequiredByDateTime is set (provider)"],
+          ["Post, preventOrFixIssue", "change", "Provider's date if set; otherwise the kit's rule, no date"],
+          ["Post, stayInformed", "advisory", "If actionRequiredByDateTime is set (provider)"],
+          ["Issue, classification incident", "incident", "No; isResolved closes it"],
+          ["Issue, classification advisory", "advisory", "No; isResolved closes it"],
+        ] }, pt: 13 },
+        { callout: "Microsoft's date stays Microsoft's (provider: actionRequiredByDateTime). The kit's rule is labeled rule:, and no date is made up.", label: "Who decided: ", icon: "FaScaleBalanced", color: "teal" },
+      ],
+      sources: "Sources: examples/provider-notices (ConvertTo-PnM365Notice); Learn, List serviceAnnouncement messages. Chapter 02, “The code.”",
+      say: `Here's how the normalizer maps them. A post tagged Retirement is a retirement. Plan-for-change and prevent-or-fix posts are changes, and stay-informed posts are advisories. For all of them, if Microsoft set an action-required date, the record keeps it, and says the provider decided. There's one kit rule: a prevent-or-fix post with no date is still action required, labeled as the kit's rule, with no date invented. Service health issues become incidents or advisories, never action required, and a resolved issue is closed.`,
+      detail: `ConvertTo-PnM365Notice maps: post tagged Retirement to retirement, action required if actionRequiredByDateTime is set (provider); post planForChange to change, if actionRequiredByDateTime is set (provider); post preventOrFixIssue to change, the provider's date if set, otherwise the kit's rule, no date; post stayInformed to advisory, if actionRequiredByDateTime is set (provider); issue, classification incident, to incident, no action, isResolved closes it; issue, classification advisory, to advisory, no action, isResolved closes it. The record's action date and actionBasis: provider: actionRequiredByDateTime; a preventOrFixIssue post without a date is action required by the kit's rule, labeled rule:. Danger: a kit rule mistaken for Microsoft's deadline; a post with no date gets an invented one; guard: actionBasis names the rule; no date is made up.`,
+      cite: ["pn02-messages"],
+      ref: "“The code” — the mapping table",
+    },
+    {
+      part: "What", title: "The host guard: the request, the next link, the session",
+      body: [
+        { steps: [
+          { title: "Build the request without running it", text: "Get-PnLiveCommand builds each request from the settings, so a reviewer can see the exact URL" },
+          { title: "Check the session first", text: "Assert-PnLiveContext compares Get-MgContext's environment and tenant with the settings before the first call" },
+          { title: "Follow a next link only on the cloud's host", text: "Any @odata.nextLink on another host is refused, so the token never goes somewhere the agency didn't choose" },
+        ], pt: 14 },
+        { cols: [[{ bullets: [
+          "Collectors.Tests.ps1: the Microsoft 365 service communications block, 7 tests",
+          "Live.Tests.ps1: the Graph host for each cloud, the refused next link, the Graph session guard",
+        ], label: "The tests", color: "navy", pt: 13.5 }], [{ bullets: [
+          "Lab 1 reads fictional posts and issues; nothing signs in",
+          "The live reader was tested against stand-in Graph responses, not a live tenant",
+        ], label: "Illustrative code", color: "amber", pt: 13.5 }]] },
+      ],
+      sources: "Sources: examples/provider-notices (Get-PnLiveCommand, Assert-PnLiveContext). Chapter 02, “The code,” “The tests,” “Illustrative code.”",
+      say: `Because a wrong cloud fails silently, the kit guards the host three ways. First, it can build each live request from the settings without running it, so a reviewer sees the exact URL. Second, before the first call it compares the Graph session's environment and tenant with the settings, and refuses a mismatch. Third, it follows a next link only if it's on the cloud's own Graph host, so the token never goes anywhere else. Tests cover the collector and each guard. And remember, the live reader was tested against stand-in responses, not a live tenant.`,
+      detail: `Get-PnLiveCommand builds each request from the settings without running it, so a reviewer can see the exact URL; Assert-PnLiveContext compares Get-MgContext's environment and tenant with the settings before the first call. @odata.nextLink: followed only if it is on the cloud's own Graph host; anything else is refused. The tests: the Microsoft 365 service communications block of tests/Collectors.Tests.ps1 (7 tests), and in tests/Live.Tests.ps1 the Graph host for each cloud, the refused next link and the Graph session guard. Illustrative code: Lab 1 reads fictional posts and issues; nothing signs in. The live reader has been tested against stand-in Graph responses, not a live tenant. Review it, and run Lab 2 in a test tenant, before it reads a real one.`,
+      cite: [],
+      ref: "“The code”; “The tests”; the “Illustrative code” callout",
+    },
+    {
+      part: "Who", title: "Who owns it, and what the reader may hold",
+      body: [
+        { cards: [
+          { title: "Developers", text: "Maintain the kit's collector and its guards", color: "navy" },
+          { title: "Microsoft 365 service owner", text: "Owns G2: the reader's consent and the collection", color: "teal" },
+          { title: "Change manager", text: "Receives the change and retirement tasks", color: "amber" },
+          { title: "ISSO", text: "Keeps the consent record and the run folder", color: "red" },
+        ], pt: 13 },
+        { table: { head: ["Call", "Permission", "Granted by"], w: [3.4, 3.8, 4.95], rows: [
+          ["m365-messages", "ServiceMessage.Read.All", "An administrator only; delegated also needs an admin role"],
+          ["m365-issues, m365-health-overviews", "ServiceHealth.Read.All", "An administrator only; delegated also needs an admin role"],
+          ["Data privacy posts", "Global Administrator or Message Center Privacy Reader", "Name a privacy reader where they matter"],
+        ] }, pt: 12 },
+      ],
+      sources: "Sources: Learn, service communications API overview; About admin roles. Chapter 02, “Goal and audience,” “Verified facts,” “Federal requirements,” “Dangers.”",
+      say: `Who's involved? Developers maintain the collector. The Microsoft 365 service owner owns this gate. The change manager receives the change and retirement tasks, and the security officer keeps the consent record and the run folder. What the reader may hold is just two read permissions, and nothing that writes. Learn says both are granted only by an administrator, and a delegated reader also needs an admin role; which roles Graph accepts isn't specified. One gap to plan for: data privacy posts need a Global Administrator or a Message Center Privacy Reader, so name one where they matter.`,
+      detail: `Audience: developers who maintain the kit, the Microsoft 365 service owner who owns G2, and the change manager who receives the change and retirement tasks. Evidence owners: the Microsoft 365 service owner, the ISSO keeps the consent record; the ISSO, with the run folder; the change manager for the action-required posts. Consent and roles: both permissions granted only by an administrator; a delegated user needs an admin role. Not yet specified: which admin roles Graph accepts for a delegated read (the Message center reader roles are the narrowest to try). Data privacy messages: Global Administrator or Message Center Privacy Reader. Danger, data privacy posts unseen: the reader's role can't see them; name a Message Center Privacy Reader to read them where they matter. Danger, a broad Graph scope for convenience: the reader can change the tenant; guard: two read permissions, declared per call.`,
+      cite: ["pn02-overview", "pn02-roles"],
+      ref: "“Goal and audience”; “Verified facts”; “Dangers”",
+    },
+    {
+      part: "How", title: "Lab 1: what Microsoft 365 needs, each cloud's host",
+      body: [
+        { cols: [[{ terminal: "02-1" }], [{ terminal: "02-2" }]], split: 0.5 },
+        { terminal: "02-3" },
+      ],
+      sources: "Sources: examples/provider-notices (fictional fixtures). Chapter 02, “Lab 1: fixtures, no tenant,” steps 1–3.",
+      say: `Lab 1 needs PowerShell 7 with Pester, working in the kit's folder. The lab settings name a fictional tenant in GCC; nothing signs in. Step 1 lists what Microsoft 365 needs: two permissions across three calls, and nothing that writes. Step 2 prints each cloud's Graph host: GCC on the worldwide host with the Global environment, then GCC High and DoD on their own. There's one row per cloud and no default. Step 3 collects Microsoft 365 from the day-one fixtures: six notices, five open, two needing action, all valid against the schema.`,
+      detail: `You need PowerShell 7.1 or later with Pester 5. Work in examples/provider-notices. The lab settings name the fictional tenant in gcc. Step 1: Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1; Get-PnRequiredPermission -Provider m365 | Format-Table Call, Permissions, Verified. Two permissions across three calls, and nothing that writes. Step 2: foreach ($c in 'gcc', 'gcchigh', 'dod') { $x = Get-PnCloud -Provider m365 -Cloud $c; ... }: gcc https://graph.microsoft.com Global; gcchigh https://graph.microsoft.us USGov; dod https://dod-graph.microsoft.us USGovDoD. The kit has one row per cloud and no default; an unknown name throws. Step 3: ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider m365 -AsOf 2026-11-09T12:00:00Z -OutputPath out/m365. Six notices, five open, two needing action: advisory 3, change 1, incident 1, retirement 1.`,
+      cite: ["pn02-deployments"],
+      ref: "“Lab 1: fixtures, no tenant,” steps 1–3",
+    },
+    {
+      part: "How", title: "Lab 1: the records, and who said they need action",
+      body: [
+        { terminal: "02-4" },
+        { terminal: "02-5" },
+      ],
+      sources: "Sources: examples/provider-notices (fictional fixtures). Chapter 02, “Lab 1: fixtures, no tenant,” steps 4–5.",
+      say: `Step 4 reads the records. The post tagged Retirement, about basic authentication for client submission, is a retirement due January 31, 2027. The SharePoint Framework post is a change that needs action with no date. And the resolved Teams issue is closed. Step 5 shows who said each one needs action. The retirement's date is Microsoft's: the basis names the provider's action-required field. The change's basis is the kit's rule for a prevent-or-fix post. Everything else says none. That line is what keeps a kit rule from being mistaken for Microsoft's deadline.`,
+      detail: `Step 4: Import-Csv out/m365/notices.csv | Format-Table noticeId, kind, status, actionRequired, actionRequiredBy, title. MC900001, tagged Retirement, is a retirement due January 31, 2027. MC900003 is a change that needs action with no date. The resolved issue TM900102 is closed. Step 5: (Read-PnJson -Path out/m365/notices.json).notices | ForEach-Object { [pscustomobject]@{ noticeId = $_.noticeId; actionBasis = $_.actionBasis } } | Format-Table. The retirement's date is Microsoft's (provider: actionRequiredByDateTime); the change's is the kit's rule for a preventOrFixIssue post (rule: Message center category preventOrFixIssue). The titles are fictional fixtures.`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no tenant,” steps 4–5",
+    },
+    {
+      part: "How", title: "Lab 1: the second week, and a refused next link",
+      body: [
+        { terminal: "02-6", lines: "1,4-5,8-9,11-17" },
+        { terminal: "02-7", lines: "2-5" },
+      ],
+      sources: "Sources: examples/provider-notices (fictional fixtures). Chapter 02, “Lab 1: fixtures, no tenant,” steps 6–7.",
+      say: `Step 6 collects the second week and reads what changed. Seven notices now. A new post arrives with its own action date from Microsoft, February 28, 2027. The SharePoint post is updated, and its title says so. The email incident from week one is now closed. Step 7 builds the live request without sending it: the first line is the exact URL a live run would call, on the worldwide Graph host. Then it tries a next link on another host, and the kit refuses it, because it isn't on the GCC Graph host.`,
+      detail: `Step 6: ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day2 -Provider m365 -AsOf 2026-11-16T12:00:00Z -OutputPath out/m365-day2; Import-Csv out/m365-day2/notices.csv | Format-Table noticeId, kind, status, actionRequiredBy, title. A new post, MC900005, arrives with its own action date (2027-02-28), and MC900003 is updated. Seven notices, five open, three needing action. (The repeated summary line is left out of the slide.) Step 7 (the settings line is left out of the slide): $s = Read-PnSettings -Path tests/fixtures/settings.lab.json; (Get-PnLiveCommand -CallId m365-messages -Settings $s).Uri gives https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/messages; Get-PnLiveCommand ... -Arguments @{ nextLink = 'https://graph.example.net/...' } is refused: "it isn't on the gcc Graph host https://graph.microsoft.com."`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no tenant,” steps 6–7",
+    },
+    {
+      part: "How", title: "Lab 1: the chapter's tests pass",
+      body: [
+        { terminal: "02-8" },
+        { cols: [[{ bullets: [
+          "PassedCount 15, FailedCount 0",
+          "out/m365/manifest.json lists the three calls with their permissions",
+          "Delete out when you're done: Remove-Item -Recurse -Force out",
+        ], label: "Expected result", color: "navy", pt: 14 }], [{ bullets: [
+          "Two read permissions, nothing that writes",
+          "One Graph host per cloud, no default",
+          "Microsoft's date kept as Microsoft's; the kit's rule labeled",
+          "A next link on another host refused",
+        ], label: "What you have seen", color: "teal", pt: 14 }]] },
+      ],
+      sources: "Sources: examples/provider-notices (tests). Chapter 02, “Lab 1: fixtures, no tenant,” step 8 and the expected result.",
+      say: `Step 8 runs this chapter's tests: the Microsoft 365 collector block and every Graph test in the live tests. Fifteen pass, none fail. The manifest lists the three calls with their permissions. So, in one short lab, you've seen two read permissions and nothing that writes, one Graph host per cloud with no default, Microsoft's date kept as Microsoft's and the kit's rule labeled as a rule, and a next link on another host refused. Delete the output folder when you're done, so no fixture output is mistaken for a real run.`,
+      detail: `Step 8: Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'Microsoft 365 service communications*', '*Graph*' -Output None -PassThru | Select-Object PassedCount, FailedCount. Expected result: PassedCount 15 and FailedCount 0, and out/m365/manifest.json listing the three calls with their permissions. Delete out when you're done: Remove-Item -Recurse -Force out.`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no tenant,” step 8; expected result",
+    },
+    {
+      part: "How", title: "Lab 2: a Microsoft 365 test tenant",
+      body: [
+        { steps: [
+          { title: "Sign in, delegated, with only the two read scopes", text: "Install Microsoft.Graph.Authentication; Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ServiceMessage.Read.All,ServiceHealth.Read.All; an administrator consents once" },
+          { title: "Cross-check with Learn's cmdlet, then collect", text: "(Get-MgServiceAnnouncementMessage -All).Count; Invoke-PnCollect.ps1 with your settings; the counts should agree" },
+          { title: "Look at the posts that need action", text: "Each has the provider basis or the kit's rule; record the tags you see on retirement posts, because Learn doesn't list them" },
+          { title: "Back it out", text: "Disconnect-MgGraph; delete out/m365-test; remove consent granted only for the lab (Entra ID > Enterprise apps > Microsoft Graph Command Line Tools > Permissions)" },
+        ], pt: 13 },
+        { callout: "a worldwide or GCC test tenant, never production, as a test administrator who holds an admin role. The run names the tenant's services, so delete it.", label: "Where: ", icon: "FaTriangleExclamation", color: "red" },
+      ],
+      sources: "Sources: Learn, service communications API overview; List serviceAnnouncement messages. Chapter 02, “Lab 2: a test tenant.”",
+      say: `Lab 2 uses a Microsoft 365 test tenant in the worldwide or GCC cloud, never production, signed in as a test administrator. Sign in delegated, in the Global environment, with only the two read scopes; an administrator consents once. Cross-check with Learn's own cmdlet: its count of posts and the kit's should agree. Then look at the posts that need action, confirm each has Microsoft's basis or the kit's rule, and record the tags you see on retirement posts, because Learn doesn't list them. Finally, sign out, delete the run, and remove any consent granted only for this lab.`,
+      detail: `Use a Microsoft 365 test tenant in the worldwide or GCC cloud, never production, signed in as a test administrator who holds an admin role (Learn doesn't name which ones Graph accepts for a delegated read; the Message center reader roles are the narrowest to try). Placeholders: <tenant-id>, <settings-file> (your copy of deploy/settings.template.json with environment test, only m365 enabled, cloud gcc and tenantId <tenant-id>). 1 Install-Module Microsoft.Graph.Authentication -Scope CurrentUser; Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ServiceMessage.Read.All,ServiceHealth.Read.All. 2 Install-Module Microsoft.Graph.Devices.ServiceAnnouncement -Scope CurrentUser; (Get-MgServiceAnnouncementMessage -All).Count; ./Invoke-PnCollect.ps1 -SettingsPath <settings-file> -Provider m365 -OutputPath out/m365-test; group the records by kind. The counts should agree. 3 List the action-required notices with their date and basis, and confirm each has the provider basis or the kit's rule. Record the tags you see on retirement posts; Learn doesn't list them. 4 Disconnect-MgGraph; Remove-Item -Recurse -Force out/m365-test. If the consent was granted only for this lab, remove it in the Microsoft Entra admin center (Entra ID > Enterprise apps > Microsoft Graph Command Line Tools > Permissions).`,
+      cite: ["pn02-overview", "pn02-messages"],
+      ref: "“Lab 2: a test tenant”",
+    },
+    {
+      part: "How", title: "Federal requirements and the evidence",
+      body: [
+        { table: { head: ["What the output proves", "Supports", "KSI", "Who keeps it"], w: [5.0, 2.5, 2.55, 2.1], rows: [
+          ["The reader holds two read permissions, nothing that writes", "SA-9 c", "SCR-MIT, SCR-MON", "M365 owner; ISSO keeps the consent record"],
+          ["The reads went to the tenant's own Graph host and no other", "SA-9 c; SI-5 a", "SCR-MIT, SCR-MON", "The repository's tests"],
+          ["Every post and issue was read and recorded with its calls (raw/m365.json, notices.json, manifest.json)", "SA-9 c; SI-5 a", "SCR-MIT, SCR-MON", "ISSO, with the run folder"],
+          ["Each change or retirement post is marked, with who said it needs action", "SI-5; CM-3 b, via Chapter 06's tasks", "SCR-MON, CMT-LMC, CMT-RVP", "The change manager"],
+        ] }, pt: 11.5 },
+      ],
+      sources: "Sources: NIST SP 800-53 Rev. 5 OSCAL catalog 5.2.0; FedRAMP, Key Security Indicators; kit config/requirements.json. Chapter 02, “Federal requirements and evidence.”",
+      say: `Each output is evidence for something specific, against NIST's control catalog. Two read permissions and nothing that writes support monitoring an external service provider. Reads that went only to the tenant's own Graph host, and a run folder showing every post and issue was read, support that and receiving security alerts and advisories. And each change or retirement post, marked with who said it needs action, supports configuration change control, through the tasks Chapter 6 routes. The indicators are FedRAMP's key security indicators; the mapping is the program's. The kit's records support these controls; the assessor decides them.`,
+      detail: `The collection is what the guide's G2 checks. The mappings are the kit's config/requirements.json. The reader holds two read permissions and nothing that writes (Lab 1 step 1; Lab 2 step 1): SA-9 c; KSI-SCR-MIT, KSI-SCR-MON; the Microsoft 365 service owner, the ISSO keeps the consent record. The reads went to the tenant's own Graph host and no other (Lab 1 steps 2 and 7): SA-9 c; SI-5 a; KSI-SCR-MIT, KSI-SCR-MON; the repository's tests. Every post and issue was read and recorded with its calls (Lab 1 steps 3 and 6; Lab 2 step 2: raw/m365.json, notices.json, manifest.json): SA-9 c; SI-5 a; KSI-SCR-MIT, KSI-SCR-MON; the ISSO, with the run folder. Each post that announces a change or retirement is marked, with who said it needs action (Lab 1 steps 4 and 5; Lab 2 step 3): SI-5; CM-3 b, through the tasks Chapter 06 routes; KSI-SCR-MON, KSI-CMT-LMC, KSI-CMT-RVP; the change manager. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The kit's records support these controls; the agency's assessor decides them. Which output supports which indicator is the program's mapping (design guidance).`,
+      cite: ["pn02-oscal", "pn02-ksi"],
+      ref: "“Federal requirements and evidence”",
+    },
+    {
+      part: "How", title: "Dangers, and the guard for each",
+      body: [
+        { table: { head: ["Danger", "What happens", "The guard"], w: [3.3, 4.1, 4.75], rows: [
+          ["A GCC High or DoD tenant read on the worldwide host", "Nothing comes back; the gate passes on an empty list", "The cloud named in the settings; the session guard; every request on the cloud's host"],
+          ["A next link to another host", "The token goes somewhere the agency didn't choose", "Next links followed only on the cloud's host"],
+          ["A broad Graph scope for convenience", "The reader can change the tenant", "Two read permissions, declared per call"],
+          ["A kit rule mistaken for Microsoft's deadline", "A post with no date gets an invented one", "actionBasis names the rule; no date is made up"],
+          ["Data privacy posts unseen", "The reader's role can't see them", "Name a Message Center Privacy Reader where they matter"],
+          ["The email trusted over the API", "Look-alike email gets acted on", "The task links the post the kit read from Graph"],
+        ] }, pt: 11.5 },
+      ],
+      sources: "Sources: Learn, National cloud deployments; About admin roles. Chapter 02, “Dangers.”",
+      say: `What breaks in production? Read a GCC High or DoD tenant on the worldwide host and nothing comes back, so the gate passes on an empty list. Follow a next link to another host and the token goes somewhere you didn't choose. Grant a broad Graph scope for convenience and the reader can change the tenant. Mistake the kit's rule for Microsoft's deadline and a post gets an invented date. Data privacy posts go unseen without the right role. And trusting the email over the API means look-alike email gets acted on, so the task always links the post the kit read from Graph.`,
+      detail: `A GCC High or DoD tenant read on the worldwide host: nothing comes back, and the gate passes on an empty list; guard: the cloud named in the settings; the session guard; every request on the cloud's own host. A next link to another host: the token goes somewhere the agency didn't choose; guard: next links followed only on the cloud's host. A broad Graph scope for convenience: the reader can change the tenant; guard: two read permissions, declared per call. A kit rule mistaken for Microsoft's deadline: a post with no date gets an invented one; guard: actionBasis names the rule; no date is made up. Data privacy posts unseen: the reader's role can't see them; guard: name a Message Center Privacy Reader to read them where they matter. The email trusted over the API: look-alike email gets acted on (Book 15, Chapter 03, intake, triage and routing); guard: the task links the post the kit read from Graph. Not yet specified: the Message center tag values (Learn doesn't enumerate them; the kit treats Retirement as a retirement) and which admin roles Graph accepts for a delegated read.`,
+      cite: ["pn02-deployments", "pn02-roles"],
+      ref: "“Dangers”; “Verified facts”",
+    },
+    {
+      part: "How", title: "Done when: the chapter's checklist",
+      body: [
+        { cols: [[{ bullets: [
+          "The settings name the tenant's cloud and tenant ID; the session guard passed",
+          "The reader holds ServiceMessage.Read.All and ServiceHealth.Read.All and nothing else from this kit",
+          "Learn's cmdlet and the kit's collection agree in the test tenant",
+        ], label: "The read", color: "navy", pt: 14 }], [{ bullets: [
+          "Every action-required post says whether Microsoft or the kit's rule decided it",
+          "Retirement tags seen in the test tenant are recorded in the verification log",
+          "Consent granted only for the lab was removed",
+        ], label: "The records and the clean-up", color: "teal", pt: 14 }]] },
+        { callout: "Chapter 03, Oracle Cloud Infrastructure Announcements, fills the same record from an OCI tenancy.", label: "Next: ", icon: "FaRoute", color: "amber" },
+      ],
+      sources: "Sources: Chapter 02, “Checklist”; “Continue the book.”",
+      say: `Here's what done looks like. The settings name the tenant's cloud and tenant ID, and the session guard passed. The reader holds the two read permissions and nothing else from this kit. Learn's cmdlet and the kit's collection agree in the test tenant. Every action-required post says whether Microsoft or the kit's rule decided it. The retirement tags you saw are recorded in the verification log. And consent granted only for the lab has been removed. Next, Chapter 3 fills the same record from Oracle Cloud Infrastructure's announcements. Thanks for watching.`,
+      detail: `Checklist: The settings name the tenant's cloud and tenant ID; the session guard passed. The reader holds ServiceMessage.Read.All and ServiceHealth.Read.All and nothing else from this kit. Learn's cmdlet and the kit's collection agree in the test tenant. Every action-required post says whether Microsoft or the kit's rule decided it. Retirement tags seen in the test tenant are recorded in the verification log. Consent granted only for the lab was removed. Next: Chapter 03 — Oracle Cloud Infrastructure Announcements.`,
+      cite: [],
+      ref: "“Checklist”; “Continue the book”",
+    },
+  ],
+});

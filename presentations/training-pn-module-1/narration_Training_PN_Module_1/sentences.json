@@ -1,0 +1,697 @@
+{
+ "1": [
+  [
+   0.05,
+   5.787,
+   "Welcome to Module 1 of the Provider Notices learning path: why provider notices go unread."
+  ],
+  [
+   5.838,
+   10.787,
+   "Every cloud provider tells the agency, in writing and ahead of time, what it will change, retire or patch in the agency's own tenant, account, tenancy or project."
+  ],
+  [
+   16.625,
+   4.85,
+   "The notices land in a portal or one person's inbox, and nobody owns them."
+  ],
+  [
+   21.475,
+   11.338,
+   "This path teaches you to read each provider's notices from its own record, hold every notice as one record, give the ones that need action an owner and a due date, and keep the evidence."
+  ],
+  [
+   32.812,
+   7.45,
+   "It follows the seven gates of the provider notices implementation guide, with the developer workbook Building Provider Notices."
+  ],
+  [
+   40.263,
+   2.45,
+   "This first module comes before the gates."
+  ],
+  [
+   42.712,
+   3.675,
+   "It takes about forty-five minutes, with a lab on fixtures."
+  ],
+  [
+   46.388,
+   5.5,
+   "The code is illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.188,
+   "Why do provider notices go unread?"
+  ],
+  [
+   2.237,
+   1.488,
+   "Providers don't hide them."
+  ],
+  [
+   3.725,
+   12.938,
+   "Azure shows them in Service Health, but nobody is told unless someone created a Service Health alert, and Microsoft's own F A Q gives a rule that left out the affected subscription as a reason an alert never arrived."
+  ],
+  [
+   16.663,
+   10.738,
+   "Microsoft 365 posts them in the Message center, where each administrator's view is their own, and the weekly digest goes to each administrator's own primary email."
+  ],
+  [
+   27.4,
+   3.9,
+   "Oracle Cloud Infrastructure emails the tenancy administrator."
+  ],
+  [
+   31.3,
+   5.15,
+   "AWS writes to the root user's address and up to three alternate contacts."
+  ],
+  [
+   36.45,
+   3.15,
+   "And Google Cloud writes to its Essential Contacts."
+  ],
+  [
+   39.6,
+   4.312,
+   "Every one of those channels ends at a person or a page, not a queue."
+  ],
+  [
+   43.913,
+   4.713,
+   "The notice carries no owner, no due date and no way to show it was dealt with."
+  ],
+  [
+   48.625,
+   2.85,
+   "Attackers imitate provider email, too."
+  ],
+  [
+   51.475,
+   5.562,
+   "And a retirement announced a year ahead is easy to agree with, and easy to miss on the day."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   8.338,
+   "You'll explain why each provider's notices end at a person or a page, and why email stays an early warning, not the system of record."
+  ],
+  [
+   11.3,
+   3.638,
+   "You'll name the six kinds of notice, and who owns each one."
+  ],
+  [
+   14.938,
+   5.5,
+   "You'll read the record's fields, and tell a provider's own action date from one the kit's rule inferred."
+  ],
+  [
+   20.438,
+   4.275,
+   "And you'll show that a second read of the same notices changes no fingerprint."
+  ],
+  [
+   24.712,
+   3.3,
+   "There's nothing to take first: this is the first module."
+  ],
+  [
+   28.012,
+   11.662,
+   "If you have time, read the intake, triage and routing chapter of Compliance Automation and Day-Two Operations, which routes Microsoft's service health email today and never acts on an email alone."
+  ],
+  [
+   39.675,
+   6.188,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5, and a copy of the repository."
+  ],
+  [
+   45.862,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.438,
+   "Each provider names its notices differently."
+  ],
+  [
+   2.487,
+   7.037,
+   "The program sorts them into six kinds, because the kind decides who owns the notice and what it asks of the agency."
+  ],
+  [
+   9.525,
+   6.775,
+   "Maintenance: work is scheduled that may affect availability, so check the window against the systems that depend on it."
+  ],
+  [
+   16.3,
+   12.188,
+   "Retirement: a feature, version or resource type is ending, with a date, so plan and approve the migration before that date, and review the contingency plan if a system depends on it."
+  ],
+  [
+   28.488,
+   8.125,
+   "Advisory: information or a recommendation, often with no deadline; decide whether it applies, and record the decision."
+  ],
+  [
+   36.612,
+   4.888,
+   "Security: assess the exposure and act within the security response window."
+  ],
+  [
+   41.5,
+   6.7,
+   "Change: treat it as a proposed change to the system, with an impact analysis and then the change process."
+  ],
+  [
+   48.2,
+   2.413,
+   "And incident: something is broken now."
+  ],
+  [
+   50.612,
+   2.325,
+   "Not every provider has every kind."
+  ],
+  [
+   52.938,
+   8.512,
+   "Google Cloud's Personalized Service Health reports incidents only: its event category has one value, for service outage or degradation."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.363,
+   "Who owns each kind?"
+  ],
+  [
+   1.413,
+   6.287,
+   "The Compliance Automation and Day-Two Operations book uses the roles it already has, and adds none."
+  ],
+  [
+   7.7,
+   5.15,
+   "An incident belongs to the service desk supervisor, as service health is routed today."
+  ],
+  [
+   12.85,
+   13.7,
+   "Maintenance belongs to the platform owner of the affected platform: the cloud platform owner for Azure, AWS, Google Cloud and each O C I tenancy, and the collaboration owner for Microsoft 365."
+  ],
+  [
+   26.55,
+   8.988,
+   "A retirement belongs to the system owner of each affected system, who decides the schedule, and the platform owner does the work through a normal change."
+  ],
+  [
+   35.538,
+   8.863,
+   "A change is proposed by the platform owner and authorized by the change advisory board, after the I S S O's security impact analysis."
+  ],
+  [
+   44.4,
+   3.337,
+   "Security notices belong to security operations."
+  ],
+  [
+   47.737,
+   4.412,
+   "And an advisory belongs to the platform owner of the platform it names."
+  ],
+  [
+   52.15,
+   11.662,
+   "Two decisions have no owner yet, and the book doesn't invent one: who receives each provider's notices at the source, and who reviews the contingency plan when a notice names a system's resources."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.425,
+   "Here's the loop the rest of the path builds."
+  ],
+  [
+   2.475,
+   11.4,
+   "Collect from the provider, not the mailbox: a read-only identity reads each provider's notices at least weekly, through the provider's own interface, and each notice becomes one record."
+  ],
+  [
+   13.875,
+   12.95,
+   "Route by rules, in order: security advisories, then retirements, then maintenance that names the agency's resources, then open incidents that name them, then anything else marked as needing action."
+  ],
+  [
+   26.825,
+   4.912,
+   "The first match wins, and a notice that matches none goes to the weekly digest."
+  ],
+  [
+   31.738,
+   12.137,
+   "A notice that needs action becomes a typed task in the I T S M front door, not a second queue, with an owner, a severity and response window, and the provider's own date kept separately."
+  ],
+  [
+   43.875,
+   5.475,
+   "It's keyed to the provider's notice I D, so an unchanged notice never makes a second task."
+  ],
+  [
+   49.35,
+   8.537,
+   "And a task closes only on the re-read: when the next collection shows the notice closed, or the agency's resources no longer affected."
+  ],
+  [
+   57.888,
+   5.725,
+   "A retirement can close on the provider's side while the agency still runs the retired version."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   10.275,
+   "Unit 2 is the answer: one record for every provider's notice, called f m p provider notice, version one, defined by a jay-son schema in the kit."
+  ],
+  [
+   10.325,
+   6.35,
+   "The notice I D is the provider and the provider's own I D, and it's the key the router de-duplicates on."
+  ],
+  [
+   16.675,
+   4.112,
+   "The kind is one of the six, and the status is open or closed."
+  ],
+  [
+   20.788,
+   7.862,
+   "The window is the impact window, always in U T C. Services, regions and resources are what the notice names."
+  ],
+  [
+   28.65,
+   7.888,
+   "Then three fields that matter most: whether action is required, by when, and the action basis, which says who said so."
+  ],
+  [
+   36.538,
+   7.025,
+   "Either the provider said it, in a field the record names, or a rule of the kit's inferred it, and the record states the rule."
+  ],
+  [
+   43.562,
+   3.05,
+   "First seen is when the kit first read the notice."
+  ],
+  [
+   46.612,
+   6.737,
+   "And the fingerprint is a SHA-256 of the record without first seen and the fingerprint itself."
+  ],
+  [
+   53.35,
+   5.438,
+   "So a provider's edit changes the fingerprint, and reading the same notice again a week later doesn't."
+  ],
+  [
+   58.788,
+   3.775,
+   "That's how the router tells a changed notice from one it has already seen."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.025,
+   "The guide compares the five providers, and one row matters most here: who says action is required."
+  ],
+  [
+   6.075,
+   6.112,
+   "Azure's Service Health, read through Azure Resource Graph, has no field the kit reads that says so."
+  ],
+  [
+   12.188,
+   12.713,
+   "So the kit applies a stated rule: a retirement is action required, due at the advisory's end time, and a security advisory is action required with no date, for the I S S O to review."
+  ],
+  [
+   24.9,
+   4.062,
+   "Microsoft 365 has its act-by date field."
+  ],
+  [
+   28.962,
+   5.375,
+   "Oracle Cloud Infrastructure has its action required type and action required by date."
+  ],
+  [
+   34.337,
+   2.85,
+   "AWS has its actionability field."
+  ],
+  [
+   37.188,
+   8.675,
+   "And Google Cloud's Personalized Service Health doesn't say, and has no planned maintenance at all: its event category has one value, incident."
+  ],
+  [
+   45.862,
+   5.938,
+   "Wherever the provider doesn't say, the record's action basis begins with rule, and states the rule."
+  ],
+  [
+   51.8,
+   3.438,
+   "Nobody mistakes the kit's inference for the provider's own word."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   8.925,
+   "Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against two fictional weeks of notices from every provider."
+  ],
+  [
+   9.7,
+   3.013,
+   "Nothing signs in to anything or sends a request."
+  ],
+  [
+   12.713,
+   8.1,
+   "Step one imports the kit's module and collects every provider from the day-one fixtures, as of November ninth, 2026."
+  ],
+  [
+   20.812,
+   10.675,
+   "Five from Azure, six from Microsoft 365 in the G C C cloud, four from Oracle Cloud Infrastructure, five from AWS and two from Google Cloud."
+  ],
+  [
+   31.488,
+   9.463,
+   "Twenty-two notices in all, each valid against the schema, written as jay-son and as a spreadsheet file, with the raw responses and a manifest."
+  ],
+  [
+   40.95,
+   1.425,
+   "Notice the cloud column."
+  ],
+  [
+   42.375,
+   4.362,
+   "Every provider names its own cloud in the settings, and there is no default."
+  ],
+  [
+   46.737,
+   3.138,
+   "Five providers, five shapes, one list."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   11.588,
+   "Step two counts the notices by kind, across providers: five advisories, two changes, six incidents, three maintenance windows, four retirements and two security notices."
+  ],
+  [
+   11.637,
+   8.325,
+   "The kind decides the owner, so the four retirements go to each affected system's owner, and the two security notices to security operations."
+  ],
+  [
+   19.962,
+   3.188,
+   "Step three asks who said each one needs action."
+  ],
+  [
+   23.15,
+   1.3,
+   "Eight notices do."
+  ],
+  [
+   24.45,
+   10.762,
+   "Four times the provider said so: two from AWS's actionability field, one from Microsoft 365's act-by date, and one from Oracle's action required type."
+  ],
+  [
+   35.212,
+   17.438,
+   "And four times a kit rule did: an AWS scheduled change whose code names a retirement, the Azure retirement, due at the advisory's end, the Azure security advisory, which the I S S O reviews, and a Microsoft 365 post in the prevent or fix issues category."
+  ],
+  [
+   52.65,
+   2.288,
+   "The record says which, every time."
+  ],
+  [
+   54.938,
+   4.85,
+   "And where the provider gave no date, the kit makes none up: it says no date."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.987,
+   "Step four reads the Azure retirement in full."
+  ],
+  [
+   3.038,
+   4.237,
+   "Its notice I D is azure, R T five J six K L."
+  ],
+  [
+   7.275,
+   6.275,
+   "It's due on September thirtieth, 2027, by the kit's rule, at the advisory's end time."
+  ],
+  [
+   13.55,
+   5.95,
+   "It names one public I P address, and its fingerprint is a SHA-256."
+  ],
+  [
+   19.5,
+   7.125,
+   "Step five reads the same fixtures a day later, as of November tenth, and compares the fingerprints of the two runs."
+  ],
+  [
+   26.625,
+   4.963,
+   "The same twenty-two notices come back, and the count of fingerprints that differ is zero."
+  ],
+  [
+   31.587,
+   8.338,
+   "A second read changes first seen in the run, but no fingerprint, so the router in Module 7 sees nothing new and makes no second task."
+  ],
+  [
+   39.925,
+   8.375,
+   "Step six runs the record's tests, for the notice record, the fingerprint, and times and text: seventeen pass, none fail."
+  ],
+  [
+   48.3,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.8,
+   "This module has no Lab 2 of its own, because the record is the same in a test environment."
+  ],
+  [
+   5.85,
+   8.575,
+   "Each provider's Lab 2, in Modules 2 to 6, fills it from a test subscription, tenant, tenancy, account or project."
+  ],
+  [
+   14.425,
+   2.712,
+   "Never production, and only fictional data."
+  ],
+  [
+   17.137,
+   5.287,
+   "Before you start them, do one thing: list who receives each provider's notices today."
+  ],
+  [
+   22.425,
+   8.4,
+   "The guide's prerequisites start with that decision, and the deployment runbook's pre-flight checks that each enabled provider names its notice contacts."
+  ],
+  [
+   30.825,
+   2.312,
+   "And remember where the real work happens."
+  ],
+  [
+   33.138,
+   2.513,
+   "The labs use the kit's fictional routing."
+  ],
+  [
+   35.65,
+   13.9,
+   "The agency's own routing, settings files, notices, digests and evidence are written at work, from the kit's templates and its Copilot prompts in Microsoft 365 Copilot Chat, and they stay on agency storage."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   15.613,
+   "Every gate's collection supports nist special publication eight hundred fifty-three S A nine, part c, monitoring external service providers on an ongoing basis, and S I five, part a, receiving security alerts and advisories."
+  ],
+  [
+   17.05,
+   4.888,
+   "The record supports S I five and C A seven, continuous monitoring."
+  ],
+  [
+   21.938,
+   15.438,
+   "The evidence is the raw responses, the notices and the manifest, which lists every call with its role; the notices as one record each, valid against the schema; and a re-read that changes no fingerprint, so a notice is routed once."
+  ],
+  [
+   37.375,
+   2.513,
+   "The record is evidence for these controls."
+  ],
+  [
+   39.888,
+   7.675,
+   "Your organization still sets their parameters, policy and procedures, and the assessor decides whether each is satisfied."
+  ],
+  [
+   47.562,
+   4.638,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   52.2,
+   6.513,
+   "The agency lines this evidence up with what its providers report; it doesn't report K S I's itself."
+  ],
+  [
+   58.712,
+   3.25,
+   "Which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.0,
+   "First: why does the program read each provider's A P I instead of its email?"
+  ],
+  [
+   7.025,
+   7.275,
+   "The answer is b. Email reaches a person who may have left, carries no owner or due date, and can be imitated."
+  ],
+  [
+   14.3,
+   5.013,
+   "The provider's own record is the source of truth, and email stays an early warning."
+  ],
+  [
+   19.312,
+   3.987,
+   "Second: the Azure retirement's action basis starts with rule."
+  ],
+  [
+   23.3,
+   1.1,
+   "What does that mean?"
+  ],
+  [
+   24.4,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   25.625,
+   6.8,
+   "The kit inferred that action is required by a stated rule, because Azure has no field the kit reads that says so."
+  ],
+  [
+   32.425,
+   6.3,
+   "Microsoft didn't set that date; the kit's rule took the advisory's end time, and the record says so."
+  ],
+  [
+   38.725,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   12.725,
+   "You collected twenty-two fictional notices from five providers into one list, counted them by the six kinds, saw eight that need action and who said so, and showed that reading them again changes no fingerprint."
+  ],
+  [
+   13.6,
+   14.512,
+   "The evidence an I S S O keeps from this module's pattern is each run's raw responses, the notices as jay-son and as a spreadsheet file, and the manifest that lists every call with its role and hashes every file, all dated."
+  ],
+  [
+   28.113,
+   4.513,
+   "Modules 2 to 6 produce it for each provider, and Module 8 chains it."
+  ],
+  [
+   32.625,
+   3.862,
+   "Next is Module 2: Azure Service Health and alerts."
+  ],
+  [
+   36.487,
+   10.125,
+   "That's Gate 1, with the workbook's first chapter: the Azure reader, the elevated role security advisories need, and Service Health alerts at scale through Azure Policy."
+  ]
+ ]
+}

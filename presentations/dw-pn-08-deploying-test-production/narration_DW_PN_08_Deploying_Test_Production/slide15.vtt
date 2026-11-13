@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.582
+Step 1.8 checks the stage's evidence:
+every file matches its hash,
+
+2
+00:00:04.582 --> 00:00:09.725
+the chain is unbroken, and each step
+the stage needs has a passing record.
+
+3
+00:00:09.725 --> 00:00:12.700
+Step 1.9 rehearses the rollback.
+
+4
+00:00:12.700 --> 00:00:17.200
+Plan it, have the reviewer approve
+its hash, apply it and record it.
+
+5
+00:00:17.200 --> 00:00:21.482
+Expected: the schedule unregistered,
+the policy assignment deleted,
+
+6
+00:00:21.482 --> 00:00:25.765
+and the third step left manual: a
+list of what the remediation created,
+
+7
+00:00:25.765 --> 00:00:27.868
+for the change record to decide on,
+
+8
+00:00:27.868 --> 00:00:31.925
+because deleting the assignment
+doesn't remove those resources.
+
+9
+00:00:31.925 --> 00:00:36.188
+Nothing else is lost; the state,
+runs and evidence are kept.
+
+10
+00:00:36.188 --> 00:00:39.220
+If test keeps running,
+register the schedule again.

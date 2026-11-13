@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.675
+Here's where notices go today.
+
+2
+00:00:01.675 --> 00:00:06.718
+Compliance Automation and Day-2 Operations
+routes Microsoft's service health email
+
+3
+00:00:06.718 --> 00:00:08.352
+to the help desk supervisor,
+
+4
+00:00:08.352 --> 00:00:12.187
+and it's clear that nothing is
+approved on the strength of an email.
+
+5
+00:00:12.187 --> 00:00:15.438
+There's no owner, no
+due date and no closure.
+
+6
+00:00:15.438 --> 00:00:19.997
+With the router, every provider,
+Azure, Microsoft 365 in GCC,
+
+7
+00:00:19.997 --> 00:00:23.987
+Oracle Cloud Infrastructure,
+AWS and Google Cloud,
+
+8
+00:00:23.987 --> 00:00:29.876
+arrives as the same record, and one
+routing file decides what becomes a task.
+
+9
+00:00:29.876 --> 00:00:32.375
+Notice that routing calls no cloud at all.
+
+10
+00:00:32.375 --> 00:00:34.038
+It adds no provider fact;
+
+11
+00:00:34.038 --> 00:00:38.180
+it writes down the agency's own
+decision about who owns what.

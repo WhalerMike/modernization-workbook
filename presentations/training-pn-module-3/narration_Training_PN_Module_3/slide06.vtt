@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.238
+No post category says retirement, so
+the kit maps posts and issues to kinds.
+
+2
+00:00:05.238 --> 00:00:07.775
+A post tagged Retirement is a retirement.
+
+3
+00:00:07.775 --> 00:00:11.450
+Plan-for-change and
+prevent-or-fix-issue posts are changes.
+
+4
+00:00:11.450 --> 00:00:13.825
+Stay-informed posts are advisories.
+
+5
+00:00:13.825 --> 00:00:17.154
+A service health issue is
+an incident or an advisory,
+
+6
+00:00:17.154 --> 00:00:20.637
+by its classification, and it
+closes when it's resolved.
+
+7
+00:00:20.637 --> 00:00:25.357
+Action required comes from one field:
+Microsoft's action-required-by date,
+
+8
+00:00:25.357 --> 00:00:30.387
+the only field that says Microsoft wants
+action, and the record's basis names it.
+
+9
+00:00:30.387 --> 00:00:34.648
+The one kit rule is for a
+prevent-or-fix-issue post without a date:
+
+10
+00:00:34.648 --> 00:00:37.762
+it's action required, with
+no date, labeled rule.
+
+11
+00:00:37.762 --> 00:00:39.575
+No date is ever made up.
+
+12
+00:00:39.575 --> 00:00:43.183
+The kit also matches enum
+values without regard to case,
+
+13
+00:00:43.183 --> 00:00:48.361
+strips the markup from a post's body, caps
+the summary at two thousand characters,
+
+14
+00:00:48.361 --> 00:00:51.263
+and closes a post once
+its end date has passed.
+
+15
+00:00:51.263 --> 00:00:56.760
+One gap remains: Learn doesn't enumerate
+the tags, so that's not yet specified.

@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:02.875
+Developers maintain the kit.
+
+3
+00:00:02.875 --> 00:00:08.400
+The project owner owns this gate: enabling
+the API and granting the viewer role.
+
+4
+00:00:08.400 --> 00:00:12.875
+And the security officer keeps the
+role binding and records the two gaps.
+
+5
+00:00:12.875 --> 00:00:14.400
+The permissions are short.
+
+6
+00:00:14.400 --> 00:00:17.550
+The project call needs the
+viewer role on the project.
+
+7
+00:00:17.550 --> 00:00:21.538
+The organization call needs the
+same role on the organization,
+
+8
+00:00:21.538 --> 00:00:23.225
+and it's the unverified one.
+
+9
+00:00:23.225 --> 00:00:27.430
+Grant at the project unless the
+settings' scope really is organization,
+
+10
+00:00:27.430 --> 00:00:30.424
+because a viewer role
+granted at the organization
+
+11
+00:00:30.424 --> 00:00:33.275
+for a project read is more
+read scope than needed.
+
+12
+00:00:33.275 --> 00:00:35.180
+Nothing the reader holds can write.

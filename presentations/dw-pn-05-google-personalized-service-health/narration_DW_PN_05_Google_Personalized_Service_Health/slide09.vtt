@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.825
+One call gets special treatment.
+
+2
+00:00:01.825 --> 00:00:06.083
+Google's REST call for organization
+events is verified against Google's
+
+3
+00:00:06.083 --> 00:00:09.489
+documentation, but the command-line
+group for it is listed
+
+4
+00:00:09.489 --> 00:00:12.612
+on the beta reference, and
+its exact flags weren't read.
+
+5
+00:00:12.612 --> 00:00:16.162
+So the kit marks the call
+unverified, and the live invoker
+
+6
+00:00:16.162 --> 00:00:20.013
+refuses to run it unless someone
+passes an explicit override.
+
+7
+00:00:20.013 --> 00:00:23.849
+It stays out of the scheduled run
+until someone reads those flags.
+
+8
+00:00:23.849 --> 00:00:27.000
+A command run on a guess
+is how a read goes wrong.
+
+9
+00:00:27.000 --> 00:00:30.346
+The tests pin it: six in the
+collector's Google block,
+
+10
+00:00:30.346 --> 00:00:34.320
+plus the live tests for the
+project command and the refusal.

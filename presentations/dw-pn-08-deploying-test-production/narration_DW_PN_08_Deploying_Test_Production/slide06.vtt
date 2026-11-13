@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.398
+The runbook's scripts are PowerShell,
+
+2
+00:00:02.398 --> 00:00:05.125
+like the rest of the kit,
+and each has a dry run.
+
+3
+00:00:05.125 --> 00:00:08.100
+The pre-flight checks
+everything and changes nothing.
+
+4
+00:00:08.100 --> 00:00:12.229
+The alert policy script plans an
+assignment and a remediation,
+
+5
+00:00:12.229 --> 00:00:14.850
+and applies only with the approved hash.
+
+6
+00:00:14.850 --> 00:00:20.024
+The scheduled run collects every enabled
+provider, routes, writes the digest,
+
+7
+00:00:20.024 --> 00:00:21.965
+and records each as evidence,
+
+8
+00:00:21.965 --> 00:00:26.088
+and it sends only when both the
+settings and the command say so.
+
+9
+00:00:26.088 --> 00:00:29.854
+The rollback plans in reverse
+order: unregister the schedule,
+
+10
+00:00:29.854 --> 00:00:34.950
+delete the assignment, and list what the
+remediation created, for the change record.
+
+11
+00:00:34.950 --> 00:00:38.420
+Twenty-five tests cover
+them, all in fixture mode.

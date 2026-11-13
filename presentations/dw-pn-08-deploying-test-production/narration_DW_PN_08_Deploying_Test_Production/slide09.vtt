@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:04.183
+The operator runs the
+commands and holds no write
+
+3
+00:00:04.183 --> 00:00:07.000
+role in any cloud except
+where a step says so.
+
+4
+00:00:07.000 --> 00:00:12.559
+Each provider has its own reader with
+the least privilege its chapter's
+
+5
+00:00:12.559 --> 00:00:18.213
+second lab grants: Azure, Microsoft 365,
+Oracle Cloud, AWS and Google Cloud.
+
+6
+00:00:18.213 --> 00:00:21.213
+The one write role in
+Azure belongs to a person,
+
+7
+00:00:21.213 --> 00:00:23.662
+activated only for the change window.
+
+8
+00:00:23.662 --> 00:00:25.336
+Approvals are written down:
+
+9
+00:00:25.336 --> 00:00:29.118
+the change advisory board approves
+each stage's change record,
+
+10
+00:00:29.118 --> 00:00:32.610
+a reviewer who isn't the operator
+approves each plan's hash,
+
+11
+00:00:32.610 --> 00:00:36.101
+and the security officer and
+the board approve promotion.
+
+12
+00:00:36.101 --> 00:00:38.860
+Turning on sending waits
+for the change manager.

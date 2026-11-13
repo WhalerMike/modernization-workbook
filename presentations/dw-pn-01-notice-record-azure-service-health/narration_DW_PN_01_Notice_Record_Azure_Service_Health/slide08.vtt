@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.588
+Now the Azure collector.
+
+2
+00:00:01.588 --> 00:00:06.974
+It makes two declared calls, the events
+query and the impacted-resources query,
+
+3
+00:00:06.974 --> 00:00:11.450
+each a Resource Graph query in a
+live run and a file in fixture mode.
+
+4
+00:00:11.450 --> 00:00:15.037
+Then the normalizer maps
+each event type to a kind.
+
+5
+00:00:15.037 --> 00:00:19.091
+Service issues are incidents,
+planned maintenance is maintenance,
+
+6
+00:00:19.091 --> 00:00:23.725
+and a health advisory is a plain advisory
+unless its subtype says retirement.
+
+7
+00:00:23.725 --> 00:00:29.223
+Two kinds are action required by the kit's
+rule: a retirement, due at the advisory's
+
+8
+00:00:29.223 --> 00:00:34.387
+end, and a security advisory, with no
+date, for the security officer to review.
+
+9
+00:00:34.387 --> 00:00:38.260
+Anything else, like billing,
+is left out and counted.

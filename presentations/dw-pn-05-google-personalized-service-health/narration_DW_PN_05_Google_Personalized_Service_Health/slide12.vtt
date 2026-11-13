@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.175
+Step 4 collects the second week.
+
+2
+00:00:02.175 --> 00:00:05.871
+The open incident has closed:
+both records are closed now,
+
+3
+00:00:05.871 --> 00:00:07.837
+each with the end of its window.
+
+4
+00:00:07.837 --> 00:00:13.538
+Step 5 groups both weeks by kind, and
+there's only one: incident, four times.
+
+5
+00:00:13.538 --> 00:00:15.800
+That's the first gap made visible.
+
+6
+00:00:15.800 --> 00:00:20.278
+However many weeks you collect,
+maintenance never arrives through this API,
+
+7
+00:00:20.278 --> 00:00:24.614
+which is exactly why the chapter writes
+it down with the security officer
+
+8
+00:00:24.614 --> 00:00:29.020
+rather than letting an all-incident
+list suggest that nothing is planned.

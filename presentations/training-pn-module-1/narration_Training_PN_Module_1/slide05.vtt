@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Who owns each kind?
+
+2
+00:00:01.413 --> 00:00:04.673
+The Compliance Automation
+and Day-Two Operations
+
+3
+00:00:04.673 --> 00:00:07.700
+book uses the roles it
+already has, and adds none.
+
+4
+00:00:07.700 --> 00:00:10.819
+An incident belongs to the
+service desk supervisor,
+
+5
+00:00:10.819 --> 00:00:12.850
+as service health is routed today.
+
+6
+00:00:12.850 --> 00:00:17.856
+Maintenance belongs to the platform
+owner of the affected platform:
+
+7
+00:00:17.856 --> 00:00:23.125
+the cloud platform owner for Azure, AWS,
+Google Cloud and each O C I tenancy,
+
+8
+00:00:23.125 --> 00:00:26.550
+and the collaboration
+owner for Microsoft 365.
+
+9
+00:00:26.550 --> 00:00:31.152
+A retirement belongs to the system owner
+of each affected system, who decides
+
+10
+00:00:31.152 --> 00:00:35.538
+the schedule, and the platform owner
+does the work through a normal change.
+
+11
+00:00:35.538 --> 00:00:39.928
+A change is proposed by the platform
+owner and authorized by the
+
+12
+00:00:39.928 --> 00:00:44.401
+change advisory board, after the
+ISSO's security impact analysis.
+
+13
+00:00:44.401 --> 00:00:47.737
+Security notices belong
+to security operations.
+
+14
+00:00:47.737 --> 00:00:52.149
+And an advisory belongs to the platform
+owner of the platform it names.
+
+15
+00:00:52.149 --> 00:00:55.938
+Two decisions have no owner yet,
+and the book doesn't invent one:
+
+16
+00:00:55.938 --> 00:00:59.058
+who receives each provider's
+notices at the source,
+
+17
+00:00:59.058 --> 00:01:03.860
+and who reviews the contingency plan when
+a notice names a system's resources.
