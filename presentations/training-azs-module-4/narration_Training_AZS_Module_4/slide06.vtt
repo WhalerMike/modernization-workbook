@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.275
+Unit 2 is the guide's Step 8.
+
+2
+00:00:02.275 --> 00:00:06.306
+Managed identities themselves are
+covered in the service account guide;
+
+3
+00:00:06.306 --> 00:00:08.288
+this step covers the vault they read.
+
+4
+00:00:08.288 --> 00:00:13.000
+Create vaults on role-based access with
+purge protection, and close the firewall,
+
+5
+00:00:13.000 --> 00:00:16.587
+with the commands from Learn's
+Private Link integration page.
+
+6
+00:00:16.587 --> 00:00:19.562
+Purge protection can't be
+turned off once it's on;
+
+7
+00:00:19.562 --> 00:00:23.300
+that's the point, and the guide
+never excludes a vault from it.
+
+8
+00:00:23.300 --> 00:00:26.896
+Grant the workload's managed
+identity a data-plane role,
+
+9
+00:00:26.896 --> 00:00:31.587
+such as Key Vault Secrets User, at the
+vault's scope, not the subscription's.
+
+10
+00:00:31.587 --> 00:00:36.212
+Administrators get Key Vault Administrator
+as an eligible pim assignment.
+
+11
+00:00:36.212 --> 00:00:41.672
+Rotate keys by policy, with Learn's autorotation
+command; the periods in the guide's
+
+12
+00:00:41.672 --> 00:00:46.650
+policy file are an example, and the
+agency's key management policy sets them.
+
+13
+00:00:46.650 --> 00:00:49.820
+And send the audit event
+log to the workspace,
+
+14
+00:00:49.820 --> 00:00:53.075
+as Learn's page, Enable
+Key Vault logging, shows.
+
+15
+00:00:53.075 --> 00:00:57.740
+Learn also recommends one vault per
+application, region and environment.

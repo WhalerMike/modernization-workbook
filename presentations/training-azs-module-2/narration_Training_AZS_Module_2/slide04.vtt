@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.300
+Unit 1 is the guide's Step 3.
+
+2
+00:00:02.300 --> 00:00:05.300
+Learn's tier comparison is
+the source for this table.
+
+3
+00:00:05.300 --> 00:00:09.850
+Every public I P in Azure gets
+infrastructure protection at no cost.
+
+4
+00:00:09.850 --> 00:00:15.380
+I P Protection, billed per protected I P,
+and Network Protection, billed per plan,
+
+5
+00:00:15.380 --> 00:00:21.250
+both add adaptive tuning, attack analytics,
+metrics, alerts and mitigation reports.
+
+6
+00:00:21.250 --> 00:00:25.054
+Network Protection also adds
+the DDoS Rapid Response team,
+
+7
+00:00:25.054 --> 00:00:28.780
+cost protection and a web
+application firewall discount,
+
+8
+00:00:28.780 --> 00:00:32.662
+and it protects Basic public I
+Ps, which I P Protection doesn't.
+
+9
+00:00:32.662 --> 00:00:37.900
+Learn's cost optimization guidance suggests
+Network Protection when many public I
+
+10
+00:00:37.900 --> 00:00:42.913
+Ps across subscriptions need coverage, and
+I P Protection for a few critical ones.
+
+11
+00:00:42.913 --> 00:00:43.925
+Two limits.
+
+12
+00:00:43.925 --> 00:00:47.608
+Neither covers a public I P
+attached to a NAT gateway;
+
+13
+00:00:47.608 --> 00:00:50.263
+the guide lists those as an exclusion.
+
+14
+00:00:50.263 --> 00:00:53.088
+And both work at layers
+three and four only.
+
+15
+00:00:53.088 --> 00:00:56.380
+Whichever you choose, record
+it in the decision record.

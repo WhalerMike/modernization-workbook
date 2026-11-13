@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:04.496
+A web application firewall
+in prevention mode protects
+
+3
+00:00:04.496 --> 00:00:07.512
+nothing if an attacker can
+call the origin directly.
+
+4
+00:00:07.512 --> 00:00:10.104
+The guide's dangers
+table puts it this way:
+
+5
+00:00:10.104 --> 00:00:14.829
+attackers bypass the firewall and the
+DDoS controls by calling the origin,
+
+6
+00:00:14.829 --> 00:00:19.707
+and the Front Door backend service tag
+alone admits any customer's Front Door,
+
+7
+00:00:19.707 --> 00:00:23.975
+as Learn's page, Secure traffic to
+Azure Front Door origins, explains.
+
+8
+00:00:23.975 --> 00:00:26.488
+The other direction matters just as much.
+
+9
+00:00:26.488 --> 00:00:30.316
+A workload whose traffic leaves
+Azure without inspection can
+
+10
+00:00:30.316 --> 00:00:33.850
+reach a command-and-control
+server, or send data out, unseen.
+
+11
+00:00:33.850 --> 00:00:37.683
+So this module covers both:
+origins only the edge can reach,
+
+12
+00:00:37.683 --> 00:00:41.037
+with TLS one point two or
+later and tested failover,
+
+13
+00:00:41.037 --> 00:00:45.429
+and every workload subnet's default
+route through Azure Firewall,
+
+14
+00:00:45.429 --> 00:00:49.730
+with threat intelligence and
+intrusion detection in deny mode.

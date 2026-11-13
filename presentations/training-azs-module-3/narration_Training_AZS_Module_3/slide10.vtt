@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.419
+The lab runs the guide's Step 5 and
+Step 6 checks in a test subscription
+
+2
+00:00:04.419 --> 00:00:09.325
+where someone has applied those steps to
+a test application and a pilot spoke.
+
+3
+00:00:09.325 --> 00:00:10.887
+The authors haven't run it.
+
+4
+00:00:10.887 --> 00:00:13.075
+One part writes, and it's labeled.
+
+5
+00:00:13.075 --> 00:00:16.205
+Step one calls the origin's
+own host name directly,
+
+6
+00:00:16.205 --> 00:00:18.800
+then the same request through Front Door.
+
+7
+00:00:18.800 --> 00:00:22.814
+The guide's Validate step says
+the direct request is refused,
+
+8
+00:00:22.814 --> 00:00:27.150
+a four oh three or no route, and
+the one through Front Door succeeds.
+
+9
+00:00:27.150 --> 00:00:30.314
+Step two exports the
+origin's access restriction:
+
+10
+00:00:30.314 --> 00:00:33.400
+look for the service tag
+and the header together.
+
+11
+00:00:33.400 --> 00:00:37.262
+Step three checks the
+application gateway's TLS policy,
+
+12
+00:00:37.262 --> 00:00:39.613
+the predefined one the guide sets.
+
+13
+00:00:39.613 --> 00:00:44.620
+Step four is the failover test, and it
+writes, so use only the test application:
+
+14
+00:00:44.620 --> 00:00:47.800
+stop the second origin
+and call Front Door again.
+
+15
+00:00:47.800 --> 00:00:51.125
+The application should stay
+available through the other origin.
+
+16
+00:00:51.125 --> 00:00:53.760
+Step five starts the stopped origin again.

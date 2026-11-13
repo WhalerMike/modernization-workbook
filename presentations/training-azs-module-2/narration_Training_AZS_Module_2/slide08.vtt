@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.443
+Here are the guide's
+Application Gateway commands,
+
+2
+00:00:03.443 --> 00:00:05.625
+from Learn's Azure C L I reference.
+
+3
+00:00:05.625 --> 00:00:10.100
+Create the policy in detection mode,
+with request body inspection on.
+
+4
+00:00:10.100 --> 00:00:14.080
+The C L I's default rule set is
+version two point one; Learn's page,
+
+5
+00:00:14.080 --> 00:00:18.139
+Secure your Azure Application
+Gateway, recommends the latest,
+
+6
+00:00:18.139 --> 00:00:22.900
+two point two at the guide's reading,
+validated in log mode before blocking.
+
+7
+00:00:22.900 --> 00:00:24.950
+So name the version you've validated.
+
+8
+00:00:24.950 --> 00:00:29.097
+Add the bot protection rule set, in
+commercial Azure, and a rate limit
+
+9
+00:00:29.097 --> 00:00:33.762
+grouped by client address on the login
+path, from Learn's rate limit examples.
+
+10
+00:00:33.762 --> 00:00:37.285
+Then tune: detection for at
+least one full business cycle,
+
+11
+00:00:37.285 --> 00:00:41.705
+two weeks by the program's default,
+reading the firewall log for matches
+
+12
+00:00:41.705 --> 00:00:46.201
+on legitimate traffic, and scoping
+each exception to the narrowest rule.
+
+13
+00:00:46.201 --> 00:00:49.475
+Then switch to prevention,
+one application at a time.
+
+14
+00:00:49.475 --> 00:00:52.905
+Rollback is the same command
+with the mode back to detection,
+
+15
+00:00:52.905 --> 00:00:55.375
+which Learn documents for false positives.
+
+16
+00:00:55.375 --> 00:01:00.170
+The guide also gives the policy as
+Bicep, from Azure Verified Modules.

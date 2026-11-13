@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+At scale, let policy do it.
+
+2
+00:00:02.112 --> 00:00:04.816
+The Cloud Adoption Framework's pattern,
+
+3
+00:00:04.816 --> 00:00:08.750
+Private Link and D N S integration
+at scale, has three parts.
+
+4
+00:00:08.750 --> 00:00:12.087
+Deny private link zones in
+workload subscriptions.
+
+5
+00:00:12.087 --> 00:00:14.276
+Deny pass with public endpoints.
+
+6
+00:00:14.276 --> 00:00:18.825
+And a deploy-if-not-exists policy that
+adds the zone group in the central zone.
+
+7
+00:00:18.825 --> 00:00:21.156
+The Azure landing zones initiative,
+
+8
+00:00:21.156 --> 00:00:24.730
+Configure Azure pass services
+to use private D N S zones,
+
+9
+00:00:24.730 --> 00:00:28.459
+carries the built-in definitions,
+and the policy's managed
+
+10
+00:00:28.459 --> 00:00:32.188
+identity needs Private D N S
+Zone Contributor on the zones.
+
+11
+00:00:32.188 --> 00:00:36.876
+This prevents a danger the guide
+lists: zones in workload subscriptions
+
+12
+00:00:36.876 --> 00:00:41.563
+split records across zones, and
+resolution fails or quietly goes public.
+
+13
+00:00:41.563 --> 00:00:46.231
+The rollout follows the usual pattern:
+the deny policies in audit first,
+
+14
+00:00:46.231 --> 00:00:48.922
+with Module 1's public pass list reviewed,
+
+15
+00:00:48.922 --> 00:00:52.850
+then public access off per
+resource, then the deny policies.

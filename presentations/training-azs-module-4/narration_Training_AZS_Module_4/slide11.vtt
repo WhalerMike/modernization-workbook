@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:04.246
+First: a private endpoint exists,
+
+3
+00:00:04.246 --> 00:00:07.700
+but clients still reach
+the vault's public address.
+
+4
+00:00:07.700 --> 00:00:09.063
+Where do you look first?
+
+5
+00:00:09.063 --> 00:00:11.927
+The answer is b, name
+resolution: the zone,
+
+6
+00:00:11.927 --> 00:00:16.962
+its link to the virtual network, the
+record, and on-premises forwarding.
+
+7
+00:00:16.962 --> 00:00:20.012
+Second: a key is suspected compromised.
+
+8
+00:00:20.012 --> 00:00:21.312
+What comes first?
+
+9
+00:00:21.312 --> 00:00:25.972
+The answer is b: rotate and migrate
+dependents, then disable the old key,
+
+10
+00:00:25.972 --> 00:00:30.150
+because disabling it first takes
+dependent services offline.
+
+11
+00:00:30.150 --> 00:00:35.110
+The module page has three more questions,
+each linked to the unit that answers it.

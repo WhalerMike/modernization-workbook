@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.163
+You chose a DDoS tier and
+named what it doesn't cover.
+
+3
+00:00:04.163 --> 00:00:08.724
+You checked that every public I P
+is protected, logged and alerting.
+
+4
+00:00:08.724 --> 00:00:13.537
+You took the web application firewall from
+detection to prevention, tuned first.
+
+5
+00:00:13.537 --> 00:00:17.849
+And you proved it blocks a test request,
+with the matching row in its log.
+
+6
+00:00:17.849 --> 00:00:23.186
+The evidence an I S S O keeps from this
+module: the plan and its linked networks,
+
+7
+00:00:23.186 --> 00:00:27.252
+the per-I P mode export, DDoS
+metrics, logs and alert history,
+
+8
+00:00:27.252 --> 00:00:33.096
+the simulation report when the exercise
+runs, the firewall policy exports and logs,
+
+9
+00:00:33.096 --> 00:00:37.162
+the blocked test request, and
+the rule-exception register.
+
+10
+00:00:37.162 --> 00:00:39.922
+Next is Module 3, the edge and the egress:
+
+11
+00:00:39.922 --> 00:00:45.770
+an origin nothing can reach around Front
+Door, and egress through Azure Firewall.

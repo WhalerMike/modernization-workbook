@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Where are agencies?
+
+2
+00:00:01.362 --> 00:00:04.491
+Learn's comparison page
+lists no variation in Azure
+
+3
+00:00:04.491 --> 00:00:07.838
+Policy between commercial
+Azure and Azure Government.
+
+4
+00:00:07.838 --> 00:00:12.205
+But the fed-ramp initiatives exist
+in separate versions for each cloud,
+
+5
+00:00:12.205 --> 00:00:17.238
+as Cloud Boundary and Landing Zone notes,
+and built-in definitions differ by cloud.
+
+6
+00:00:17.238 --> 00:00:19.997
+That's why the guide lists
+them by display name,
+
+7
+00:00:19.997 --> 00:00:23.701
+and has you look each one up in the
+cloud you're in, as the lab does.
+
+8
+00:00:23.701 --> 00:00:26.062
+In G C C, the workbook's baseline,
+
+9
+00:00:26.062 --> 00:00:30.125
+the commercial subscriptions
+run Step 9 as written.
+
+10
+00:00:30.125 --> 00:00:35.138
+In Azure Government, use its own
+initiative versions and definition names.
+
+11
+00:00:35.138 --> 00:00:40.238
+And the guide lists assuming commercial
+features in Azure Government as a danger of
+
+12
+00:00:40.238 --> 00:00:42.861
+its own: a test the cloud
+can't run is recorded
+
+13
+00:00:42.861 --> 00:00:45.840
+as an environment decision,
+not a failed control.

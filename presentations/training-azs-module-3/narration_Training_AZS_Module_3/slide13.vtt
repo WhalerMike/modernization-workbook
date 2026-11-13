@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:04.799
+First: an App Service
+origin allows traffic
+
+3
+00:00:04.799 --> 00:00:07.650
+only from the Front Door
+backend service tag.
+
+4
+00:00:07.650 --> 00:00:09.287
+Is it locked to your Front Door?
+
+5
+00:00:09.287 --> 00:00:10.825
+The answer is b, no.
+
+6
+00:00:10.825 --> 00:00:15.034
+The tag's addresses are shared
+by every Front Door customer,
+
+7
+00:00:15.034 --> 00:00:18.900
+so check the X Azure F D I D
+header too, or use Private Link.
+
+8
+00:00:18.900 --> 00:00:23.700
+Second: someone changed the live firewall
+policy after a draft was created.
+
+9
+00:00:23.700 --> 00:00:25.875
+What happens when the draft is deployed?
+
+10
+00:00:25.875 --> 00:00:29.728
+The answer is b: the draft
+replaces the whole applied policy,
+
+11
+00:00:29.728 --> 00:00:33.187
+and the live change is lost
+unless it's in the draft too.
+
+12
+00:00:33.187 --> 00:00:38.160
+The module page has three more questions,
+each linked to the unit that answers it.

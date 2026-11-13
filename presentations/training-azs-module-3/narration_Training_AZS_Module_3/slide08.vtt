@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.340
+Here are the guide's Step 6 commands.
+
+2
+00:00:02.340 --> 00:00:08.035
+Create the firewall policy in alert mode,
+on Premium, from Learn's C L I reference.
+
+3
+00:00:08.035 --> 00:00:13.095
+Route each workload subnet's default
+route, zero dot zero dot zero dot zero
+
+4
+00:00:13.095 --> 00:00:18.072
+slash zero, to the firewall's private
+I P, with Learn's route table commands.
+
+5
+00:00:18.072 --> 00:00:20.047
+Send the logs to the workspace.
+
+6
+00:00:20.047 --> 00:00:24.502
+Leave threat intelligence and intrusion
+detection in alert for two weeks,
+
+7
+00:00:24.502 --> 00:00:27.524
+reading their logs for hits
+on legitimate traffic.
+
+8
+00:00:27.524 --> 00:00:29.774
+Then move to deny through a draft,
+
+9
+00:00:29.774 --> 00:00:34.273
+so every change lands at once and
+can be reviewed: create the draft,
+
+10
+00:00:34.273 --> 00:00:38.683
+update both modes to Deny, show it,
+and deploy it in a change window.
+
+11
+00:00:38.683 --> 00:00:41.805
+Learn's page, Azure Firewall
+Draft plus Deployment,
+
+12
+00:00:41.805 --> 00:00:44.482
+carries one warning
+that the guide repeats:
+
+13
+00:00:44.482 --> 00:00:48.868
+deploying replaces the whole applied
+policy, so changes made to the live
+
+14
+00:00:48.868 --> 00:00:53.403
+policy after the draft was created are
+lost unless they're in the draft too.
+
+15
+00:00:53.403 --> 00:00:55.978
+Keep one change path, drafts only.
+
+16
+00:00:55.978 --> 00:00:58.387
+And east-west, as design guidance:
+
+17
+00:00:58.387 --> 00:01:03.530
+spoke to spoke through the hub firewall,
+with N S Gs denying by default.

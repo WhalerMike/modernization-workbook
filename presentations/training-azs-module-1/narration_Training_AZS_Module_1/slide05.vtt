@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.988
+Two more things from the guide's opening.
+
+2
+00:00:01.988 --> 00:00:03.300
+First, labels.
+
+3
+00:00:03.300 --> 00:00:05.437
+Each step carries an authority label:
+
+4
+00:00:05.437 --> 00:00:10.331
+Mandated only where a federal source requires
+it, Microsoft-recommended where Learn
+
+5
+00:00:10.331 --> 00:00:14.812
+recommends it, and Risk-based recommended
+where it's the program's own position.
+
+6
+00:00:14.812 --> 00:00:18.124
+Design guidance marks the
+program's choices in prose.
+
+7
+00:00:18.124 --> 00:00:23.017
+And a control the tenant isn't licensed
+for, or a feature a cloud doesn't offer,
+
+8
+00:00:23.017 --> 00:00:26.963
+is a licensing or environment
+decision, not a failed control.
+
+9
+00:00:26.963 --> 00:00:30.432
+An assessment test that can't
+run against it is Skipped,
+
+10
+00:00:30.432 --> 00:00:33.362
+not Fail, as Zero Trust
+and Assessment sets out.
+
+11
+00:00:33.362 --> 00:00:34.787
+Second, order.
+
+12
+00:00:34.787 --> 00:00:37.051
+Steps 1 and 2 come first.
+
+13
+00:00:37.051 --> 00:00:42.325
+Steps 3 to 8 can run in parallel by
+workload once the inventory exists.
+
+14
+00:00:42.325 --> 00:00:47.200
+Step 9 turns each of them into policy,
+and Step 10 runs from the start.
+
+15
+00:00:47.200 --> 00:00:51.732
+This path follows that order:
+this module is Steps 1 and 2,
+
+16
+00:00:51.732 --> 00:00:57.220
+the next three modules pair Steps 3
+to 8, and Module 5 is Steps 9 and 10.

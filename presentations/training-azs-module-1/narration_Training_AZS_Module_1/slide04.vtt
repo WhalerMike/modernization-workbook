@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.075
+Unit 1 is how the guide is built.
+
+2
+00:00:02.075 --> 00:00:04.312
+The books already design most of this.
+
+3
+00:00:04.312 --> 00:00:08.415
+Cloud Boundary and Landing Zone builds
+the management group hierarchy,
+
+4
+00:00:08.415 --> 00:00:12.449
+the boundary policies, the provisioning
+loop, and who owns the boundary.
+
+5
+00:00:12.449 --> 00:00:17.612
+Security Operations and Telemetry
+chooses the posture tool on each cloud.
+
+6
+00:00:17.612 --> 00:00:22.238
+Network and Transport owns the
+agency's network edge and TIC.
+
+7
+00:00:22.238 --> 00:00:27.176
+DNS, DHCP and IPAM owns DNS authority.
+
+8
+00:00:27.176 --> 00:00:31.525
+Governance, Drift and Evidence
+explains why drift is the threat.
+
+9
+00:00:31.525 --> 00:00:36.951
+What none of them gives is the service-by-service
+engineering of the Azure controls
+
+10
+00:00:36.951 --> 00:00:41.197
+a Zero Trust assessment tests: DDoS
+protection on every public I P,
+
+11
+00:00:41.197 --> 00:00:46.309
+a web application firewall in prevention
+mode, origins only the edge can reach,
+
+12
+00:00:46.309 --> 00:00:48.904
+egress through an inspecting firewall,
+
+13
+00:00:48.904 --> 00:00:53.150
+pass reachable only privately,
+and keys behind role-based access.
+
+14
+00:00:53.150 --> 00:00:58.320
+The guide does that, in ten steps, and links
+to the books instead of restating them.

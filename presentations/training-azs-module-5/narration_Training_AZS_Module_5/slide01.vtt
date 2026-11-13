@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.195
+Welcome to Module 5, the last
+module of the Azure Security
+
+2
+00:00:04.195 --> 00:00:08.163
+Engineering learning path:
+policy, drift and evidence.
+
+3
+00:00:08.163 --> 00:00:11.737
+Everything you engineered in
+Modules 1 to 4 can drift.
+
+4
+00:00:11.737 --> 00:00:14.876
+Policy holds it in place
+and reports what drifted;
+
+5
+00:00:14.876 --> 00:00:19.162
+the operating model gives each control
+an owner, a cadence and a test;
+
+6
+00:00:19.162 --> 00:00:23.601
+and the evidence catalog turns both
+into what an assessor can inspect.
+
+7
+00:00:23.601 --> 00:00:28.850
+This module covers Steps 9 and 10 of the
+Azure Security Engineering implementation
+
+8
+00:00:28.850 --> 00:00:33.860
+guide, and takes about fifty minutes, plus
+a lab in your own test management group.
