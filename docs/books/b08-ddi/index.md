@@ -58,7 +58,7 @@ DNS was designed to answer one question: what is the address for this name? In a
 
 Appendices: [A — DNS record types and ecosystem integrations](appendix-a-dns-record-types.md) · [B — Requirements mapping and sources](appendix-b-requirements-mapping.md) · [C — Applicability](appendix-c-applicability.md)
 
-Start with [Appendix C](appendix-c-applicability.md) if you work in GCC High, DoD or an air-gapped environment. It sets out which statements in the chapters change at higher impact levels.
+Start with [Appendix C](appendix-c-applicability.md) if you work in a FedRAMP High or air-gapped environment. It sets out which statements in the chapters change at higher impact levels.
 
 ## The canonical sequence
 
@@ -83,7 +83,7 @@ Five configuration decisions carry most of the risk along the way. Each is settl
 - **Identity architects:** Chapters 04 and 06, then 10.
 - **Network and security engineers:** Chapters 05, 06, 07 and 10, with Appendix A at hand.
 - **Program managers:** Chapters 01, 09, 10 and 12.
-- **GCC High, DoD or air-gapped readers:** Appendix C, then Chapters 03, 05, 07 and 11.
+- **FedRAMP High or air-gapped readers:** Appendix C, then Chapters 03, 05, 07 and 11.
 
 ## Where this book sits in the workbook
 

@@ -85,7 +85,7 @@ The authorization package says what's in the boundary. The landing zone has to s
 
 Azure (the public cloud) and Azure Government both hold FedRAMP High authorizations, and Microsoft says the High authorization covers all Azure public regions in the United States.[^c05-scope] On the FedRAMP Marketplace both are listed as FedRAMP Certified at Class D (High): Azure Commercial Cloud (F1209051525) and Azure Government (F1603087869).[^c05-fr] Azure Government adds contractual commitments on US data storage and screened US personnel; Microsoft frames the public cloud's High authorization as meeting "the needs of many US government customers."[^c05-fedramp-offering]
 
-The choice isn't free-standing. Microsoft 365 GCC pairs with Microsoft Entra ID in the public Azure cloud, while GCC High and DoD pair with Azure Government ([Chapter 04](04-gcc-and-the-feature-gap.md); [Book 02, Chapter 11](../b02-identity/11-reference-deployment.md)). The workbook's reference environment is a GCC tenant with commercial Azure subscriptions in the same directory. An agency that picks Azure Government for workloads gets a separate cloud with its own endpoints (for example, Azure Resource Manager at `management.usgovcloudapi.net` rather than `management.azure.com`) and its own feature availability.[^c05-compare]
+The choice isn't free-standing. Microsoft 365 GCC pairs with Microsoft Entra ID in the public Azure cloud ([Chapter 04](04-gcc-and-the-feature-gap.md); [Book 02, Chapter 11](../b02-identity/11-reference-deployment.md)). The workbook's reference environment is a GCC tenant with commercial Azure subscriptions in the same directory. An agency that picks Azure Government for workloads gets a separate cloud with its own endpoints (for example, Azure Resource Manager at `management.usgovcloudapi.net` rather than `management.azure.com`) and its own feature availability.[^c05-compare]
 
 ### Which regions
 
@@ -292,7 +292,7 @@ A landing zone enforces structure. It doesn't authorize anything. NIST defines t
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 04 — GCC, GCC High and the Commercial Feature Gap](04-gcc-and-the-feature-gap.md) · [Book index](index.md) · [Next: Chapter 06 — IPAM and Network as Code →](06-ipam-and-network-as-code.md)
+[← Previous: Chapter 04 — GCC and the Commercial Feature Gap](04-gcc-and-the-feature-gap.md) · [Book index](index.md) · [Next: Chapter 06 — IPAM and Network as Code →](06-ipam-and-network-as-code.md)
 :::
 
 [^c05-alz]: Microsoft Learn, "What is an Azure landing zone?," Cloud Adoption Framework, <https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/> (accessed Oct 21, 2026).

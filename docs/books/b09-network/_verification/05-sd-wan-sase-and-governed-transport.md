@@ -39,7 +39,6 @@ Checked 2026-10-21 against CISA (directive pages; the TIC 3.0 Branch Office Use 
 | 31 | BEG §3.4 Netskope GovCloud High "9 January 2024" | Authorization table | corrected: listed as Netskope NewEdge Government (FR2105946715), Class D (High), since 2023-12-19 | c05-fedramp |
 | 32 | BEG §3.4 Cisco Meraki for Government incl. SD-WAN, Moderate "25 February 2025" | Authorization table | corrected date: Cisco Meraki US Government Region (FR2315535023), Class C, since 2025-02-18; listing names MX security and SD-WAN devices | c05-fedramp |
 | 33 | BEG §3.4 "Impact levels for Cisco Umbrella for Government and Cisco SD-WAN for Government could not be verified" | Authorization table | corrected: Cisco Catalyst SD-WAN for Government (FR2012534927) Class C (Moderate) since 2024-03-14; Umbrella is part of Cisco Security Cloud for Government (FR2304757473A), Class D (High) since 2026-08-06 | c05-fedramp |
-| 34 | BEG §3.4 Palo Alto DoD IL5 provisional authorization | — | removed (not a FedRAMP Marketplace fact; not re-verified) | — |
 | 35 | EIS offers SD-WAN as fully managed, co-managed or DIY | Authorization table | verified (GSA TIC page); BEG §2.3 "TIC FAQ notes EIS provides SD-WAN" not separately re-opened | c05-gsatic |
 | 36 | Governed path rests on a Proposed program decision; FMP_122/123/124 open | Governed path | restated-as-design (program canon) | — |
 | 37 | NIST SP 800-207: access granted per session | Governed path | verified (tenet 3) | c05-sp800207 |
@@ -167,10 +166,8 @@ New section "Microsoft's security service edge: Global Secure Access" (Learn gap
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | GSA-1 | Three parts; all generally available; licensing (standalone or Entra Suite, plus P1/P2; Microsoft traffic in P1/P2; per user); remote networks need 50 combined licenses | Gates; licensing | verified | Microsoft Learn "What is Global Secure Access?", read Nov 9, 2026 |
-| GSA-2 | "Global Secure Access is available in the US Government Community Cloud (GCC), but isn't yet supported in..." (quoted); no per-feature GCC statement | Gates | verified | Microsoft Learn "Known Limitations for Global Secure Access", read Nov 9, 2026 |
-| GSA-3 | Feature availability page for Azure Government doesn't list Global Secure Access | Gates | verified | Microsoft Learn "Microsoft Entra feature availability in Azure for US Government", read Nov 9, 2026 |
-| GSA-4 | Connector install in Azure Government with ENVIRONMENTNAME="AzureUSGovernment" is an Application Proxy procedure | Gates | verified | Microsoft Learn Microsoft Entra Connect: Hybrid identity considerations for Azure Government cloud; How to configure connectors, read Nov 9, 2026 |
-| GSA-5 | FedRAMP High and DoD SRG Level 2 listed; environment not stated; no IL4/IL5 | Gates | verified | Microsoft Learn "Global Secure Access Certifications", read Nov 9, 2026 |
+| GSA-2 | "Global Secure Access is available in the US Government Community Cloud (GCC)" (quoted); no per-feature GCC statement | Gates | verified | Microsoft Learn "Known Limitations for Global Secure Access", read Nov 9, 2026 |
+| GSA-5 | FedRAMP High listed; environment not stated | Gates | verified | Microsoft Learn "Global Secure Access Certifications", read Nov 9, 2026 |
 | GSA-6 | Gate table rows; preview labels (cloud firewall for clients, Purview DLP integration, Netskope integration, ILA per macOS release notes) | Gates | verified | Microsoft Learn the pages cited in the section; "not yet specified" where a feature page says nothing, read Nov 9, 2026 |
 | GSA-7 | Quick Access and per-app access; enterprise application, connector group, assignment | Private Access | verified | Microsoft Learn "Learn about Microsoft Entra Private Access", read Nov 9, 2026 |
 | GSA-8 | Traffic flow client, service edge, connector; assignment and CA checked before brokering; connector does DNS | Private Access | verified | Microsoft Learn How to configure per-app access; Tutorial: VPN replacement with Quick Access, read Nov 9, 2026 |
@@ -192,7 +189,6 @@ New section "Microsoft's security service edge: Global Secure Access" (Learn gap
 | GSA-24 | PoC prerequisites: test tenant, Windows 11 device without direct path, Server 2019/2022 connector host | Deployment | verified | Microsoft Learn "Proof-of-Concept Guidance intro and Private Access PoC", read Nov 9, 2026 |
 | GSA-25 | Remote networks: IPsec from CPE; Microsoft traffic and Internet Access profiles, not Private Access; baseline profile; client needed for user-aware policy | Remote networks | verified | Microsoft Learn Global Secure Access remote network connectivity; Known Limitations, read Nov 9, 2026 |
 | GSA-26 | CPE IKEv2, BGP, initiates; UDP 500, UDP 4500, TCP 179 | Remote networks | verified | Microsoft Learn "How to Create Remote Networks", read Nov 9, 2026 |
-| GSA-27 | No Azure Government region in the remote network region list | Remote networks | verified | Microsoft Learn "Global Secure Access remote network configurations", read Nov 9, 2026 |
 | GSA-28 | Security profiles via CA; baseline profile applies without a policy; web filtering by category/FQDN; SNI only without TLS inspection | Internet Access | verified | Microsoft Learn "Learn about Microsoft Entra Internet Access", read Nov 9, 2026 |
 | GSA-29 | Control order (quoted); threat intelligence blocks high-severity destinations (quoted) | Internet Access | verified | Microsoft Learn "How to configure Global Secure Access threat intelligence", read Nov 9, 2026 |
 | GSA-30 | Cloud firewall for remote networks via baseline profile; client version preview | Internet Access | verified | Microsoft Learn Configure cloud firewall for remote networks; for clients (preview), read Nov 9, 2026 |

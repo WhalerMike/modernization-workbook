@@ -77,8 +77,6 @@ their text extracted to check section numbers and wording.
 
 - **SP 800-157 Rev. 1 and SP 800-217 finals.** Both are final public drafts from November 14, 2024. If NIST publishes either,
   the derived PIV and federation sections need a recheck; the crosswalk's status column already marks Rev. 1 as a draft.
-- **Intune derived credential issuers in GCC High.** Learn's derived credentials page wasn't checked for a
-  government-cloud availability row; the chapter makes no cloud-availability claim for it.
 - **FedRAMP's own KSI page lists more pairings** than the repository's verified mappings: IA-8 under KSI-IAM-APM, IA-12
   under KSI-IAM-AAM, and PS-4 under KSI-IAM-ELP, KSI-IAM-JIT and KSI-IAM-SUS; it lists no indicator for IA-2(12) or
   IA-8(1). The chapter follows the instruction to use only the repository mappings and writes "no indicator pairing in

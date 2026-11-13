@@ -1,6 +1,6 @@
 # Verification — Chapter 11, Field Office WAN Transformation
 
-Source: `docs/whitepapers/field-office-wan-transformation-dp-consolidation.md` (v1.1), all sections except §4.5, §4.8, §4.9 and Appendix A.2, which Chapter 03 owns (summarized and linked here). External claims checked Oct 21, 2026 on Microsoft Learn, Cisco, CISA, DISA, Microsoft pricing and the FedRAMP Marketplace dataset (`products.json`, last_change 2026-10-21). Diagrams: `ch11-hub-content-tier.flow.yaml`, `ch11-retirement-gates.flow.yaml` (new; no staged `src-` source fit this chapter, so none was consumed).
+Source: `docs/whitepapers/field-office-wan-transformation-dp-consolidation.md` (v1.1), all sections except §4.5, §4.8, §4.9 and Appendix A.2, which Chapter 03 owns (summarized and linked here). External claims checked Oct 21, 2026 on Microsoft Learn, Cisco, CISA, Microsoft pricing and the FedRAMP Marketplace dataset (`products.json`, last_change 2026-10-21). Diagrams: `ch11-hub-content-tier.flow.yaml`, `ch11-retirement-gates.flow.yaml` (new; no staged `src-` source fit this chapter, so none was consumed).
 
 ## Claims log
 
@@ -16,7 +16,7 @@ Source: `docs/whitepapers/field-office-wan-transformation-dp-consolidation.md` (
 | 8 | ConfigMgr not end-of-life; DP role not deprecated | Timing problem | verified (2609 is current and supported; no deprecation listed) | Updates and servicing |
 | 9 | "Intune-First Asset Onboarding doctrine (the program decision)" | Timing problem | restated-as-design; linked Book 05 Ch04 (no greenfield ConfigMgr, no co-management for new assets) | Book 05 Ch04 |
 | 10 | M365 GCC aligned to FedRAMP Moderate | Scope | verified and made precise (MSO365MT FedRAMP Certified, Class C; MSO365MTA In Process, High) | FedRAMP Marketplace dataset |
-| 11 | Intune gaps concentrate in GCC High/DoD; GCC tracks commercial | Scope | verified (Intune has no separate GCC instance; GCC uses commercial) | Intune government service description |
+| 11 | GCC tracks commercial Intune | Scope | verified (Intune has no separate GCC instance; GCC uses commercial) | Intune government service description |
 | 12 | Unit-cost table \$3,500 / \$12,000 / \$16,000 | Proposal | restated-as-design (program planning prices, labeled assumption) | — |
 | 13 | Depreciation FY26–FY31; co-management 3–4 years | Timing problem | restated-as-design | — |
 | 14 | 1.5–3 PB duplicated storage | Distributed-model costs | restated as worked arithmetic (1,500 × 1–2 TB) | — |
@@ -26,7 +26,7 @@ Source: `docs/whitepapers/field-office-wan-transformation-dp-consolidation.md` (
 | 18 | Peer Cache depends on workstation-to-workstation **SMB** | Risks; Assumption 9 | corrected: peer cache uses HTTP/HTTPS TCP 8003 and UDP 8004; DO peering uses TCP 7680; the question is client-to-client traffic on those ports | Client settings; Configure DO |
 | 19 | DO LAN mode groups by shared public IP; in hub-and-spoke use Group mode and/or subnet restriction; Group mode recommended for most orgs | Keeping content local | verified (added; consequence for hub-egress phase) | Configure DO; DO reference |
 | 20 | DP vs Intune compliance table: Intune "covered by the Microsoft 365 GCC Moderate FedRAMP ATO" | DP vs Intune | corrected: Intune serves GCC from its commercial instance, in scope for the Azure commercial FedRAMP High P-ATO | Intune government service; Microsoft FedRAMP offering; Azure services in FedRAMP audit scope |
-| 21 | DISA Windows Server and IIS STIGs apply per server | DP vs Intune | verified for IIS 10.0 Server and Site STIGs; phrased as the agency's baselines "for example"; reframed October 29, 2026 as an optional (High only) reference (see below) | DISA July 2025 maintenance release |
+| 21 | Windows Server and IIS STIGs apply per server | DP vs Intune | verified for IIS 10.0 Server and Site STIGs; phrased as the agency's baselines "for example" (see below) | IIS STIG release notes |
 | 22 | Intune compliance feeds Conditional Access; TLS by default | DP vs Intune | restated (link Book 04); general service behavior, not footnoted | — |
 | 23 | Consolidating to 24 DPs shrinks compliance sustainment "to roughly a twelfth" | DP vs Intune | corrected: 24 of 1,500 is under 2 percent of the component count (1/62.5), labor not strictly proportional | arithmetic |
 | 24 | 12 hubs, 24 DPs, 73% utilization, 96,000 capacity, 37% headroom, sizing trigger (8,000 / 3,200 / 90,000 → 28) | Content tier | verified arithmetic; inputs labeled assumptions | arithmetic |
@@ -37,7 +37,7 @@ Source: `docs/whitepapers/field-office-wan-transformation-dp-consolidation.md` (
 | 29 | 5G fixed wireless subject to deprioritization | Branch network | verified as an example of published carrier terms | T-Mobile network management practices (search result) |
 | 30 | 300 Mbps DIA outperforms 1 Gbps cable for voice/VDI/Teams; shared conduit common | Branch network | restated-as-design | — |
 | 31 | Cisco cloud SD-WAN controller FedRAMP status | Branch network | verified (added): SDWAN-G FedRAMP Certified, Class C | FedRAMP Marketplace dataset |
-| 32 | INR: Cisco only listed solution; WW Commercial only, not GCC Moderate/High/DoD | M365 path optimization | verified (quote matches; min version 20.4/17.4) | Microsoft 365 INR |
+| 32 | INR: Cisco only listed solution; WW Commercial only, not GCC Moderate | M365 path optimization | verified (quote matches; min version 20.4/17.4) | Microsoft 365 INR |
 | 33 | DSCP / app-aware routing / direct breakout available in GCC | M365 path optimization | restated-as-design; Ch12 linked for M365 traffic | — |
 | 34 | TIC 3.0 Branch Office use case exists | Security and TIC 3.0 | verified (existence only; requirements left to Ch03) | CISA TIC 3.0 Branch Office Use Case |
 | 35 | CISA SASE guidance, June 2026 | Security and TIC 3.0 | verified title and date (June 24, 2026); detailed CLAW/Protective DNS claims left to Ch03 | CISA resource page |
@@ -49,7 +49,7 @@ Source: `docs/whitepapers/field-office-wan-transformation-dp-consolidation.md` (
 | 41 | Gate 3: OSD isn't a co-management workload | Retirement gates | verified (not among the seven workloads) | Co-management workloads |
 | 42 | Gate 4: MCC can run on a DP and serve Intune Win32 apps to co-managed clients | Retirement gates | verified; added: DP must have no other roles, Intune-shifted content only, same boundary group | MCC with Configuration Manager |
 | 43 | Design principle 4: hubs become MCC footprint "without re-siting or re-accrediting" | Connected Cache at the hubs | corrected in detail: stand-alone MCC host can't share port 80 with a DP, needs Azure subscription; footprint = separate host or re-purposed DP inside the same boundary | MCC Ent requirements; MCC Ent overview |
-| 44 | Risk "Connected Cache unavailable for GCC — confirm with account team" | Connected Cache; risks | corrected/narrowed: stand-alone MCC listed n/a only in GCC High/DoD; residual question is the Azure management resource's boundary/authorization — unverifiable here, left as a Phase 0 decision | Intune government service |
+| 44 | Risk "Connected Cache unavailable for GCC — confirm with account team" | Connected Cache; risks | corrected/narrowed: stand-alone MCC not listed as unavailable for GCC; residual question is the Azure management resource's boundary/authorization — unverifiable here, left as a Phase 0 decision | Intune government service |
 | 45 | MCC licensing (Windows E3/E5, A3/A5, VDA) | Connected Cache | verified (added) | MCC with ConfigMgr; MCC Ent requirements |
 | 46 | Windows Server 2025 Standard 16-core \$1,036 | Bill of materials | corrected to \$1,176 suggested MSRP; hub subtotal \$1,048,224; Year 1 \$9,983,224 (still ~\$10.0M) | Microsoft Windows Server pricing |
 | 47 | Cisco list prices, 40% discount, ZTP/field install/services, DIA/5G/subscription/SSE/transit unit costs, MPLS \$1,200 | Bill of materials; cost model | restated-as-design (labeled planning assumptions; no public list prices to verify) | — |
@@ -59,7 +59,7 @@ Source: `docs/whitepapers/field-office-wan-transformation-dp-consolidation.md` (
 | 51 | "Validate the nine assumptions" (table has ten) | Assumptions; recommendation | corrected to ten | source table |
 | 52 | Phase 0 \$1.8M; relation to Year 1 capital | Roadmap | restated-as-design (funded first out of the Year 1 total; source didn't say) | — |
 | 53 | Terrestrial unavailability 5–15% "historic rates" | Risks | restated-as-design (program planning range) | — |
-| 54 | Windows Autopilot available to GCC | Retirement gates | verified implicitly (GCC uses commercial Intune; Autopilot n/a list is GCC High/DoD) | Intune government service |
+| 54 | Windows Autopilot available to GCC | Retirement gates | verified implicitly (GCC uses commercial Intune) | Intune government service |
 
 ## Carry-forward ledger
 
@@ -136,13 +136,13 @@ Applied from the two research briefs behind the workbook's SD-WAN platform deep 
 
 ## Moderate-civilian reframe, October 29, 2026
 
-The workbook targets FedRAMP Moderate civilian agencies, so DISA STIGs are no longer presented as the agency's baseline. Each claim was checked against the primary source on October 29, 2026.
+The workbook targets FedRAMP Moderate civilian agencies, so STIGs are no longer presented as the agency's baseline. Each claim was checked against the primary source on October 29, 2026.
 
 | # | Claim | Where | Verdict | Source note |
 |---|---|---|---|---|
 | 1 | The DP hardening baseline is the agency's CM-6 settings; CM-6 lets the organization choose its common secure configurations, which vendors, federal agencies, consortia and others develop | DP vs Intune, "Hardening baseline" row | verified (NIST OSCAL Rev. 5 catalog, CM-6 statement and discussion) | `[^c11-cm6]` |
 | 2 | CIS publishes Microsoft Windows Server 2022 (5.1.0), Windows Server 2025 (2.1.0) and Microsoft IIS 10 (1.2.1) Benchmarks | Same row | verified (CIS Benchmarks list) | `[^c11-cis]` |
-| 3 | DISA IIS 10.0 Server and Site STIGs kept as an optional reference, labelled (High only), with the one-line *High only* explanation after the table | Same row; note after the table | restated (STIG facts unchanged) | `[^c11-stig]` |
+| 3 | IIS 10.0 Server and Site STIGs kept as a reference | Same row | restated (STIG facts unchanged) | `[^c11-stig]` |
 
 ## Source watch, November 9, 2026
 
@@ -150,16 +150,16 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 
 | Finding | Change |
 |---|---|
-| CIS Benchmarks list no longer shows any Microsoft IIS benchmark (row 2 recorded IIS 10 (1.2.1) on October 29, 2026), and cisecurity.org/benchmark/microsoft_iis returns 404; Windows Server 2025 is now 2.1.1, Windows Server 2022 still 5.1.0. No CIS announcement of the removal was found | Hardening-baseline row says CIS no longer lists the IIS benchmark and to confirm its status; `[^c11-cis]` keeps the IIS citation as retrieved before removal. The DISA IIS 10.0 STIG reference is unchanged |
+| CIS Benchmarks list no longer shows any Microsoft IIS benchmark (row 2 recorded IIS 10 (1.2.1) on October 29, 2026), and cisecurity.org/benchmark/microsoft_iis returns 404; Windows Server 2025 is now 2.1.1, Windows Server 2022 still 5.1.0. No CIS announcement of the removal was found | Hardening-baseline row says CIS no longer lists the IIS benchmark and to confirm its status; `[^c11-cis]` keeps the IIS citation as retrieved before removal. The IIS 10.0 STIG reference is unchanged |
 
 ## IIS baseline decision, November 9, 2026
 
-The program's editor decided on November 9, 2026 that the DISA IIS 10.0 STIGs are the IIS hardening baseline, because CIS no longer lists an IIS benchmark.
+The program's editor decided on November 9, 2026 that the IIS 10.0 STIGs are the IIS hardening baseline, because CIS no longer lists an IIS benchmark.
 
 | # | Claim | Where | Status | Source |
 |---|---|---|---|---|
-| 1 | The DISA Microsoft IIS 10.0 Server and Site STIGs, at their current release, are the program's IIS baseline; the *High only* note names them as the exception | DP vs Intune, "Hardening baseline" row; note after the table | program decision (Nov 9, 2026) | `[^c11-stig]` |
-| 2 | The IIS 10.0 Server STIG has reached Version 3 Release 7 (Tenable audit library, updated July 28, 2026); DISA's own STIG library could not be reached from here, so the reader takes the current Server and Site releases from it | `[^c11-stig]` | verified (secondary source); DISA primary not reached | Tenable audit page |
+| 1 | The Microsoft IIS 10.0 Server and Site STIGs, at their current release, are the program's IIS baseline | DP vs Intune, "Hardening baseline" row; note after the table | program decision (Nov 9, 2026) | `[^c11-stig]` |
+| 2 | The IIS 10.0 Server STIG has reached Version 3 Release 7 (Tenable audit library, updated July 28, 2026); the official STIG library could not be reached from here, so the reader takes the current Server and Site releases from it | `[^c11-stig]` | verified (secondary source); primary not reached | Tenable audit page |
 | 3 | Microsoft's IIS security guidance is the fallback where neither the STIG nor CIS settles a setting | Same row | program decision | none (direction, not a fact) |
 
 ## Learn gaps, November 9, 2026
@@ -168,7 +168,7 @@ New subsection "Remote networks to a security service edge". Microsoft Learn pag
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| GSA-1 | GCC available, GCC High and DoD not yet supported; 200 remote networks, 25 device links | Remote networks | verified | Microsoft Learn "Known Limitations for Global Secure Access", read Nov 9, 2026 |
+| GSA-1 | GCC available; 200 remote networks, 25 device links | Remote networks | verified | Microsoft Learn "Known Limitations for Global Secure Access", read Nov 9, 2026 |
 | GSA-2 | 50 combined P1 and Internet Access licenses | Remote networks | verified | Microsoft Learn "What is Global Secure Access?", read Nov 9, 2026 |
 | GSA-3 | Bandwidth pool by licenses; 1,000-1,499 licenses give 3,500 Mbps; tunnel sizes; two tunnels per location; profiles; baseline only; client for user-aware | Remote networks | verified | Microsoft Learn "Global Secure Access remote network connectivity", read Nov 9, 2026 |
 | GSA-4 | Cloud firewall linked to baseline profile | Remote networks | verified | Microsoft Learn "Configure cloud firewall for remote networks", read Nov 9, 2026 |

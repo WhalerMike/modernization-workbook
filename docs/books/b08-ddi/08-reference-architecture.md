@@ -104,9 +104,9 @@ Agencies that already copy DNS records into each cloud provider should change th
 
 The architecture is the same in every environment; authorization and a few integrations change. A Moderate system can run in commercial regions or in a government region such as AWS GovCloud (US); AWS publishes FedRAMP scope per service and per Region,[^c08-aws-fedramp] so the government regions appear here as a Moderate location, not only a High one. The [Applicability](appendix-c-applicability.md) page explains each environment, and the table summarizes what changes for this chapter's components.
 
-*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
+*High only* marks material that applies to FedRAMP High environments, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
-| Component | Moderate: commercial regions (including Microsoft 365 GCC Moderate) | Moderate: AWS GovCloud (US), Azure Government | GCC High, FedRAMP High and DoD (High only) |
+| Component | Moderate: commercial regions (including Microsoft 365 GCC Moderate) | Moderate: AWS GovCloud (US), Azure Government | FedRAMP High (High only) |
 |---|---|---|---|
 | Cloud-delivered DDI management plane | Must hold a FedRAMP certification at Moderate or higher; the agency authorizes its own DDI system that uses it; Infoblox Government Cloud is listed at Moderate[^c08-fedramp] | Same as commercial; Infoblox Government Cloud is itself hosted in AWS GovCloud (US)[^c08-fedramp] | A Moderate certification does not cover High; use a service certified at the required level or keep the policy plane inside the agency's boundary |
 | On-premises and in-tenant resolvers and grid | Inside the agency boundary | Inside the agency boundary | Inside the agency boundary |
@@ -127,7 +127,7 @@ Some behaviors that the five decisions depend on are not documented by any vendo
 2. **Cloud DNS synchronization and private endpoints.** Do the vendor's documented Azure DNS synchronization limits affect private endpoint zones or conditional forwarding for Azure-managed namespaces? The limits are published; their effect on private endpoints is not (Chapter 07).
 3. **Namespace tracking.** Does the vendor's IPAM track wildcard records and subdomain occupancy, or only host-level A and AAAA records?
 4. **Source address under redirect-dns.** When the SD-WAN edge redirects a query, does the resolver see the client's address or the edge router's? The answer decides whether per-client policy and logging work at the branch.
-5. **Telemetry in government clouds.** Is there a roadmap for informed network routing, or an equivalent telemetry mechanism, in GCC Moderate or GCC High?
+5. **Telemetry in government clouds.** Is there a roadmap for informed network routing, or an equivalent telemetry mechanism, in GCC Moderate?
 6. **Migration guidance.** Is there a published path from AD DNS to the vendor's grid and management plane for agencies part-way through AD retirement?
 
 ::: {.callout-note}

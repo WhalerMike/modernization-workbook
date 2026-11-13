@@ -155,7 +155,7 @@ Book 00, Appendix D conventions (G-01, G-02, G-05, G-06, G-07, G-08) applied to 
 
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
-| P4-1 | GCC is the commercial Intune instance; GCC High and DoD support standard MDM features | Runbook control states, Applies | verified (new footnote c05-p4-intune-gov) | Learn, "Microsoft Intune for US Government GCC High and DoD service description," https://learn.microsoft.com/intune/fundamentals/government-service | Nov 11, 2026 |
+| P4-1 | GCC is the commercial Intune instance | Runbook control states, Applies | verified (new footnote c05-p4-intune-gov) | Learn, Intune service description for US Government, https://learn.microsoft.com/intune/fundamentals/government-service | Nov 11, 2026 |
 | P4-2 | NTLM end state follows Microsoft's deprecation, not a federal mandate | Runbook control states, Authority | verified (existing c05-ntlm-deprecated, Oct 20, 2026) | Learn, "Deprecated features for Windows client" | Nov 11, 2026 |
 | P4-3 | NTLM rings, exit criteria, recovery path, backout triggers, owners | Runbook control states | restated-as-design | program design | Nov 11, 2026 |
 | P4-4 | Adapter never inline; attributes before actuation; 14 to 30 day audit window | One end state; governed path; Phase 3 | restated-as-design (authority label added: risk-based recommended; two were unlabeled "must") | program design | Nov 11, 2026 |

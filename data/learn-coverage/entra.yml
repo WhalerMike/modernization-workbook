@@ -2982,13 +2982,11 @@ pages:
   ms_date: '2025-07-07'
   ms_topic: concept-article
   description: Learn what features are available in Microsoft Entra B2B collaboration in US Government and national clouds
-  coverage: cited
+  coverage: unreviewed
   note: 'Partner federation, cross-cloud and government-cloud B2B: Book 04 Appendix C'
   workbook:
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
-  cited_by:
-  - docs/books/b04-access/_verification/appendix-c-partner-access-profile-entra.md
-  - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
+  cited_by: []
 - path: docs/external-id/b2b-quickstart-add-guest-users-portal.md
   url: https://learn.microsoft.com/entra/external-id/b2b-quickstart-add-guest-users-portal
   title: 'Quickstart: Add a guest user and send an invitation'
@@ -6960,7 +6958,6 @@ pages:
   coverage: cited
   note: Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters
   cited_by:
-  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/11-field-office-wan-transformation.md
   - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/reference-role-based-permissions.md
@@ -17587,42 +17584,20 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
-  - docs/books/b01-transformation-arc/appendix-b-applicability.md
   - docs/books/b02-identity/06-who-owns-the-migration.md
-  - docs/books/b02-identity/09-building-the-entra-target.md
-  - docs/books/b02-identity/10-migrating-and-governing.md
-  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
-  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
-  - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
-  - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
-  - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b03-hr-identity/12-execution-plan.md
   - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
   - docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.md
-  - docs/books/b04-access/03-the-conditional-access-model.md
-  - docs/books/b04-access/04-privileged-roles-and-tiers.md
-  - docs/books/b04-access/05-applications-and-workload-identities.md
-  - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/10-access-as-code-and-evidence.md
-  - docs/books/b04-access/_verification/03-the-conditional-access-model.md
-  - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
-  - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
-  - docs/books/b04-access/_verification/08-pim-self-request-with-approval.md
   - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b04-access/_verification/10-access-as-code-and-evidence.md
-  - docs/books/b04-access/_verification/appendix-d-phishing-resistant-authentication-runbooks.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
-  - docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md
-  - docs/books/b06-data-platform/_verification/r07-groups-aus-and-the-conditional-access-perimeter.md
-  - docs/books/b06-data-platform/appendix-c-applicability.md
-  - docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/b07-pki/06-device-and-user-certificates.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
-  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
@@ -24342,7 +24317,6 @@ pages:
   note: AD FS Connect Health; AD FS is retired.
   cited_by:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  - docs/books/b02-identity/_verification/appendix-d-migrating-ad-fs-applications.md
   - docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md
 - path: docs/identity/hybrid/connect/how-to-connect-health-agent-install.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-agent-install
@@ -25398,12 +25372,9 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: reference
   description: Special considerations for deploying Microsoft Entra Connect with the Azure Government cloud.
-  coverage: cited
+  coverage: unreviewed
   note: Connect in government clouds and required ports not covered.
-  cited_by:
-  - docs/books/b02-identity/09-building-the-entra-target.md
-  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
-  - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+  cited_by: []
 - path: docs/identity/hybrid/connect/reference-connect-health-faq.yml
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-health-faq
   title: Microsoft Entra Connect Health frequently asked questions
@@ -25447,9 +25418,7 @@ pages:
   description: This page documents special considerations for Microsoft Entra instances.
   coverage: out-of-scope
   note: Release history, privacy notice, deprecated-version, DirSync-era or Exchange-migration page; no program procedure.
-  cited_by:
-  - docs/books/b02-identity/09-building-the-entra-target.md
-  - docs/books/b02-identity/_verification/09-building-the-entra-target.md
+  cited_by: []
 - path: docs/identity/hybrid/connect/reference-connect-msexchuserholdpolicies.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-msexchuserholdpolicies
   title: 'Microsoft Entra Connect: msExchUserHoldPolicies and cloudMsExchUserHoldPolicies'

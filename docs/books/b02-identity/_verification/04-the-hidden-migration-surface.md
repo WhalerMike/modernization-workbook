@@ -130,7 +130,7 @@ New subsections "Dynamic Access Control on file servers: inventory it" (ws gap 5
 | G3 | Inventory cmdlets exist (Get-ADCentralAccessPolicy, Get-ADCentralAccessRule, Get-ADClaimType, Get-ADResourceProperty, Get-ADClaimTransformPolicy) | §DAC | verified (ActiveDirectory module reference) | Learn PowerShell reference |
 | G4 | GPO search by report text | §DAC | restated-as-design (illustrative heuristic) | — |
 | G5 | No Entra ID equivalent of a central access policy on a file server; Learn names no replacement | §DAC | verified (absence: no Learn page states a replacement or Azure Files DAC support) | dynamic-access-control-overview; storage-files-active-directory-overview |
-| G6 | Purview scanner discovers and labels SMB shares on a schedule; available in GCC, GCC High and DoD | §DAC | verified | <https://learn.microsoft.com/purview/deploy-scanner>; Purview GCC, GCC High and DoD planning pages |
+| G6 | Purview scanner discovers and labels SMB shares on a schedule; available in GCC | §DAC | verified | <https://learn.microsoft.com/purview/deploy-scanner>; Purview GCC planning page |
 | G7 | Azure Files: share-level RBAC, file-level Windows ACLs, Entra Kerberos as an identity source; hybrid identities in Azure US Gov, cloud-only preview not supported there | §DAC | verified | <https://learn.microsoft.com/azure/storage/files/storage-files-active-directory-overview>; storage-files-identity-auth-hybrid-identities-enable |
 | G8 | Redesign owned with the data owner; Book 12 Chapter 09 owns data protection | §DAC | restated-as-design | — |
 | G9 | Transfer roles before demotion; seize with -Force | §Removing DCs | verified | <https://learn.microsoft.com/powershell/module/activedirectory/move-addirectoryserveroperationmasterrole> |

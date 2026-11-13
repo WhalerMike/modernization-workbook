@@ -174,7 +174,7 @@ NTLM elimination is sequenced, not a single cutover. Two different policy famili
 This section applies the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) to Phase 2 and adds only what was missing. Phase 1 changes nothing and needs no rollout of its own.
 
 **Authority:** Microsoft-recommended for registering SPNs with `setspn -S` and for constrained rather than unconstrained delegation (the Learn pages cited in Phase 2); risk-based recommended for the phased Group Policy restriction and the 2027-04-01 Phase C date, which are the program's plan, not a Microsoft or federal deadline ([Chapter 15](15-the-three-phases-of-ntlm-elimination.md)).
-**Applies:** domain-joined SQL Server hosts, their clients and the domain controllers that serve them. Not applicable for cloud availability: SPNs, delegation and the *Restrict NTLM* policies are on-premises Windows and Active Directory settings and don't depend on GCC, GCC High or DoD.
+**Applies:** domain-joined SQL Server hosts, their clients and the domain controllers that serve them. Not applicable for cloud availability: SPNs, delegation and the *Restrict NTLM* policies are on-premises Windows and Active Directory settings and don't depend on GCC.
 
 | How-section subsection | In this runbook |
 |---|---|

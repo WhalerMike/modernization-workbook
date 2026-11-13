@@ -32,7 +32,7 @@ Verified: 2026-10-20. Every kept footnote was re-opened; all URLs resolved and s
 | 22 | No CRL configured → no revocation checking | Revocation | verified | how-to-certificate-based-authentication (Prerequisites) |
 | 23 | Require CRL validation; exempt a CA while fixing | Revocation | verified | CRL page |
 | 24 | CRL caching; delta CRLs; no OCSP; revoke tokens manually when immediate revocation is critical | Revocation | verified | CRL page |
-| 25 | CRL limits 20 MB interactive / 65 MB service in Azure Global incl. GCC | Revocation | verified; added 45 MB / 150 MB for Azure Government (GCC High, DoD) | CRL page FAQ |
+| 25 | CRL limits 20 MB interactive / 65 MB service in Azure Global incl. GCC | Revocation | verified | CRL page FAQ |
 | 26 | Unreachable CRL endpoint → CBA fails | Revocation | verified | CRL page |
 | 27 | FIPS 201-3: termination invalidates all derived PIV credentials | Derived PIV | verified | FIPS 201-3 §2.9.4, §2.10.2 |
 | 28 | Derived PIV auth certificate revoked if key can't be zeroized | Derived PIV | verified (added) | FIPS 201-3 §2.10.2 |
@@ -42,7 +42,7 @@ Verified: 2026-10-20. Every kept footnote was re-opened; all URLs resolved and s
 | 32 | Reissue on name or attribute change | Mover | verified (added FIPS cite) | FIPS 201-3 §2.9.1 |
 | 33 | Card terminated when a contractor changes positions and no longer needs access | Mover | verified | FIPS 201-3 §2.9.4 |
 | 34 | Cloud PKI can be the SCEP issuing CA | Devices | verified | learn.microsoft.com/intune/cloud-pki/ |
-| 35 | Cloud PKI licensing (subscription beyond Intune P1/P2); GCC High yes, DoD no; CRL 7-day validity, 3.5-day publish, updated on every revocation | Devices | verified (added) | cloud-pki overview |
+| 35 | Cloud PKI licensing (subscription beyond Intune P1/P2); CRL 7-day validity, 3.5-day publish, updated on every revocation | Devices | verified (added) | cloud-pki overview |
 | 36 | Windows SCEP revoke/remove table (7 rows) | Devices | verified | .../device-configuration/certificates/remove-profiles |
 | 37 | Third-party CA SCEP removed not revoked; PKCS revoked+removed on unenroll/wipe/retire | Devices | verified (macOS wipe caveat added) | remove-profiles |
 | 38 | Retire or wipe before deleting the user | Devices | verified: Microsoft states this order explicitly (added) | remove-profiles (note) |

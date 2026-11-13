@@ -8,9 +8,6 @@ Editor: W5. Source: the series page in place (old 00a, "Applicability and Scope"
 |---|---|---|---|---|
 | 1 | "Commercial cloud / GCC-Moderate (FedRAMP Moderate system boundary; underlying Azure commercial services carry FedRAMP High)" | Environment table | verified and made specific: M365 GCC is paired with Entra ID in commercial Azure; its Marketplace listing (MSO365MT) is FedRAMP Certified, Class C (Moderate); Azure holds a FedRAMP High P-ATO in the public cloud | Microsoft Learn, Cloud feature availability for US Government; FedRAMP Marketplace MSO365MT; Microsoft Learn, Configure Entra ID for FedRAMP High |
 | 2 | M365 INR not available to GCC Moderate | Environment table | verified via settled book fact (Book 09 Ch 12), linked | Book 09 |
-| 3 | GCC High and DoD are Azure Government; feature availability differs | Environment table | verified (pairing with Entra ID in Azure Government) | Microsoft Learn, Cloud feature availability |
-| 4 | Confirm CBA, Lifecycle Workflows, Cloud PKI, Global Secure Access and Arc services per cloud | Environment table | updated: Entra's US Government table lists CBA, PIM, access reviews and Lifecycle Workflows as available; threat-intelligence detection and My Staff aren't. Global Secure Access and Arc not checked here, so not named | Microsoft Learn, Entra feature availability in Azure for US Government |
-| 5 | Cloud PKI in GCC High, not DoD | Environment table | verified | Microsoft Learn, Intune GCC High and DoD service description |
 | 6 | Air-gapped: Entra, Intune, Arc unavailable; discipline still applies | Environment table | restated-as-design | — |
 | 7 | 802.1X/NPS successor "not designed in the series" | Environment table | updated: Book 09 Ch 07 now covers it | Book 09 |
 | 8 | Windows Server 2025 for the platform host; earlier versions for assessment | Platform | kept; added WS2012 ESU end and WS2016 end-of-support dates | Microsoft Learn, Arc licensing page |

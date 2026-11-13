@@ -11,9 +11,8 @@ New page, Nov 11, 2026 (Zero Trust Assessment closure, B04-05 and the Book 04 pa
 | 5 | Orphaned passkey removed with the key's management tool, then re-register | Forgotten PIN | verified | https://learn.microsoft.com/entra/identity/authentication/how-to-security-key-sign-in | Nov 11, 2026 |
 | 6 | userRegistrationDetails properties IsAdmin, IsMfaCapable, IsPasswordlessCapable, MethodsRegistered | Metrics | verified | https://learn.microsoft.com/powershell/module/microsoft.graph.reports/new-mgreportauthenticationmethoduserregistrationdetail?view=graph-powershell-1.0 | Nov 11, 2026 |
 | 7 | methodsRegistered value names used for phishing-resistant coverage | Metrics | unverifiable | page tells the reader to confirm against tenant output | Nov 11, 2026 |
-| 8 | Passwordless (WHfB, Authenticator, FIDO2) and CBA available in Azure for US Government | Government-cloud availability | verified | https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
-| 9 | TAP, passkey profiles, synced passkeys, PIN reset service in government clouds | Government-cloud availability | not yet specified | not listed in Learn's government table | Nov 11, 2026 |
-| 10 | GCC pairs with Entra in commercial Azure; GCC High and DoD with Azure Government | Government-cloud availability | verified | https://learn.microsoft.com/azure/security/fundamentals/feature-availability | Nov 11, 2026 |
+| 9 | Passkey profiles, synced passkeys, PIN reset service in GCC | GCC availability | not yet specified | not stated on Learn | Nov 11, 2026 |
+| 10 | GCC pairs with Entra in commercial Azure | GCC availability | verified | https://learn.microsoft.com/azure/security/fundamentals/feature-availability | Nov 11, 2026 |
 | 11 | Account recovery with Verified ID: GCC only; held | Government-cloud availability | verified (carried) | Book 15 Chapter 03 and its verification log; decision to hold Verified ID until available in GCC | Nov 11, 2026 |
 | 12 | Authentication Administrator creates TAP for members only; Privileged Authentication Administrator for admins too | Prerequisites | verified (carried) | Book 15 Chapter 03 (c03-tap) | Nov 11, 2026 |
 | 13 | M-22-09 and MS.AAD.3.1 mandate phishing-resistant MFA | Authority | verified (carried) | Book 02 Chapter 10; Chapter 07 | Nov 11, 2026 |

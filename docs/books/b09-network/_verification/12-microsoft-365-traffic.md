@@ -10,9 +10,9 @@ Checked 2026-10-21 against Microsoft Learn (network connectivity principles; Man
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Web service `category` is Optimize, Allow or Default; follow highest-priority category when an endpoint is in several | Endpoint categories | verified | websvc |
-| 2 | Web service instances are Worldwide, China, USGovDoD, USGovGCCHigh; no GCC instance | Endpoint categories | verified | websvc |
+| 2 | No GCC web service instance | Endpoint categories | verified | websvc |
 | 3 | Worldwide list covers plans "including Government Community Cloud (GCC)" | Endpoint categories | verified | ww |
-| 4 | Source: feed must be "Worldwide (+GCC)", not DoD or GCC High | Endpoint categories | verified (label matches page title) | ww |
+| 4 | Source: feed must be "Worldwide (+GCC)" | Endpoint categories | verified (label matches page title) | ww |
 | 5 | Optimize sets: 1 Exchange (outlook.cloud.microsoft, outlook.office.com, outlook.office365.com; TCP 443/80, UDP 443), 31 SharePoint (*.sharepoint.com; TCP 443/80, UDP 443), 11 Teams media (IPs only, UDP 3478–3481) | Table | verified (added; source didn't enumerate) | ww |
 | 6 | Allow includes Entra sign-in and Graph (56), Teams signaling (12), EOP (9, 10); Default often names-only | Endpoint categories | verified | ww; managing (FAQ) |
 | 7 | Blocking QUIC and forcing UDP→TCP fallback "known to cause connectivity issues" | Endpoint categories | verified | principles |
@@ -38,7 +38,7 @@ Checked 2026-10-21 against Microsoft Learn (network connectivity principles; Man
 | 27 | Source: bypassing the proxy removes the header-injection path | Tenant restrictions | corrected: sign-in endpoints are Allow (set 56) and still cross the campus proxy in an Optimize-only design; what's exposed is the data plane, which proxy signaling never covered | ww; trv2 |
 | 28 | Source: Windows Group Policy path "is the only one reaching the data plane" | Tenant restrictions | corrected/refined: Windows device signaling (GPO or Entra-managed) is the only documented path to the SharePoint/Exchange data plane; Global Secure Access reaches the Graph data plane | trv2 |
 | 29 | Source: Global Secure Access is non-FIPS in GCC Moderate | Tenant restrictions | unverifiable on current Microsoft Learn (not on the known-limitations page as of 2026-10-21; a third-party diff mirror suggests the wording existed earlier); reported as unconfirmed; design conclusion re-based on the verified Graph-only data-plane limit | gsa; trv2 |
-| 30 | Global Secure Access available in GCC; not GCC High, DoD | Tenant restrictions | verified | gsa |
+| 30 | Global Secure Access available in GCC | Tenant restrictions | verified | gsa |
 | 31 | Device TRv2 covers Office apps, UWP .NET apps, Edge; not .NET stack, Chrome, Firefox; App Control for Business for unenlightened apps; Windows 10/11 | Tenant restrictions | verified | trv2 |
 | 32 | Data-plane support for Teams, SharePoint, Exchange, Office.com, and Forms/Teams anonymous blocking, labeled preview | Tenant restrictions | verified (added) | trv2 |
 | 33 | Device-side TRv2 verified from the endpoint is a cutover precondition; enumerate uncovered population | Tenant restrictions | restated-as-design | — |
@@ -49,7 +49,7 @@ Checked 2026-10-21 against Microsoft Learn (network connectivity principles; Man
 | 38 | Source header "SCC v3.3 (July 2025)" | The three instruments | refined: v3.3 revision dated July 2025; current publication September 2026 | scc |
 | 39 | CLMAN, AACCO, PEPAR identifiers | The three instruments | verified | scc Table 3 |
 | 40 | Source: telemetry reported under "NCPS Cloud Interface RA pattern" | The three instruments | corrected: Branch Office Use Case v3.0 (July 2025) replaced NCPS references with CISA services; telemetry via TIC delegates and CISA services (CLAW, CDM, Protective DNS); quote "must preserve CISA visibility" | branch §8, revision history |
-| 41 | INR WW Commercial only, not GCC Moderate, GCC High, DoD, Germany, China | GCC-Moderate | verified (consistent with Book 08 App C) | inr |
+| 41 | INR WW Commercial only, not GCC Moderate | GCC-Moderate | verified (consistent with Book 08 App C) | inr |
 | 42 | Source (Attachment A derived-from): egress ranges per office location follow INR configuration guidance | GCC-Moderate | corrected: network connectivity in the admin center (where locations and egress ranges are entered) is also not available to GCC Moderate; ranges serve agency steering, probes and scope | netconn |
 | 43 | ThousandEyes for Government FedRAMP Certified, Class C (Moderate) | GCC-Moderate | verified (FR2523656707) | fr |
 | 44 | DNS resolution close to the egress | GCC-Moderate | verified | principles |

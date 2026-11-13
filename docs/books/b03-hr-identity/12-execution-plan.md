@@ -155,7 +155,7 @@ Phases 1 and 2 produce no visible change for end users, which is exactly why est
 | Extension-attribute carriers free and mappable | Phase 1 gate | Check per tenant |
 | Carriers for the personnel office input, the supervisor group and the location code (the region code is carried in `extensionAttribute4`) | Not yet carried, so an access decision that needs one has no attribute to read (Chapter 06) | Open; after the baseline |
 | PIV issuing CA CRL sizes and delta CRLs | Revocation latency and CBA availability (Chapter 09) | Check per issuing CA |
-| ~~GCC availability of API-driven provisioning and Lifecycle Workflows~~ | Licensing and the Phase 2 gate | **Closed.** Microsoft Entra ID Governance for Government is available in GCC, GCC High and DoD;[^c12-lf] Microsoft lists API-driven inbound provisioning as available to US Government tenants;[^c12-feature-avail] GCC tenants run in Azure Global, the worldwide Entra service.[^c12-crl-gcc] Confirm licenses in-tenant as usual |
+| ~~GCC availability of API-driven provisioning and Lifecycle Workflows~~ | Licensing and the Phase 2 gate | **Closed.** Microsoft Entra ID Governance for Government is available in GCC;[^c12-lf] Microsoft lists API-driven inbound provisioning as available to US Government tenants;[^c12-feature-avail] GCC tenants run in Azure Global, the worldwide Entra service.[^c12-crl-gcc] Confirm licenses in-tenant as usual |
 
 : Open verification register {.striped .hover}
 

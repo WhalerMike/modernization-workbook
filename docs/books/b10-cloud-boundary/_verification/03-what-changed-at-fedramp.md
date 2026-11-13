@@ -9,7 +9,7 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md` (*What 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | "FedRAMP Certified"; Certification Class A–D definition | Certification replaces authorization | verified | FedRAMP Definitions page; ruleset FRD |
-| 2 | Class B = Li-SaaS/Low, C = Moderate, D = High; no "levels" to avoid DoD IL confusion | Certification replaces authorization | verified | NTC-0004 (Feb 25, 2026) |
+| 2 | Class B = Li-SaaS/Low, C = Moderate, D = High | Certification replaces authorization | verified | NTC-0004 (Feb 25, 2026) |
 | 3 | Agencies may use a package "at any security category they deem appropriate" | Certification replaces authorization | verified | NTC-0004 |
 | 4 | MSO365MT listed FedRAMP Certified, Class C (Moderate) | Certification replaces authorization | verified | products.json |
 | 5 | "Each agency still authorizes its own federal information systems"; no standalone ATO for a CSO; AO accepts risk of data, settings, integrations, agency controls | Certification replaces authorization | verified | fedramp.gov/2026/agencies/use/ |

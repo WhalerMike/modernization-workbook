@@ -31,7 +31,7 @@ Verified: 2026-10-20
 | 21 | SCIM `active` sets account status by default; `/bulkUpload` doesn't delete users; use LCW Delete user | Who does what | verified (added) | .../app-provisioning/inbound-provisioning-api-faqs |
 | 22 | Workflow = tasks + execution conditions (scope + trigger) | Who does what | verified | .../id-governance/what-are-lifecycle-workflows |
 | 23 | Licensing: API-driven provisioning from Entra ID P1; LCW needs Entra ID Governance or Entra Suite | Who does what | verified (added) | .../id-governance/licensing-fundamentals; what-are-lifecycle-workflows |
-| 24 | Entra ID Governance available in GCC, GCC High, DoD | Who does what | verified (added) | licensing-fundamentals |
+| 24 | Entra ID Governance available in GCC | Who does what | verified (added) | licensing-fundamentals |
 | 25 | Four scheduled trigger types plus on-demand only | Triggers | verified | .../id-governance/lifecycle-workflow-execution-conditions |
 | 26 | Time-based offset "up to 365 days" | Triggers | corrected: standard trigger 0–180 days; 0–365 only in the relative time-based trigger (preview) | execution-conditions |
 | 27 | Time-based attributes employeeHireDate, employeeLeaveDateTime, createdDateTime | Triggers | verified | execution-conditions |
@@ -177,6 +177,6 @@ Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-
 | P4-3 | Cancel in-progress or queued runs; completed changes aren't reversed; one run at a time | Rolling out the workflows | verified | Learn, "Cancel workflow runs using Lifecycle Workflows" | Nov 11, 2026 |
 | P4-4 | `isSchedulingEnabled` updated with Update-MgIdentityGovernanceLifecycleWorkflow (LifecycleWorkflows.ReadWrite.All) | Rolling out the workflows | verified | Learn, cmdlet reference | Nov 11, 2026 |
 | P4-5 | Lifecycle Workflows licensing now also lists Microsoft 365 E7, beside ID Governance and Entra Suite (added to the new section; the chapter's earlier sentence stays true) | Rolling out the workflows | corrected (addition) | Learn, "Microsoft Entra ID Governance licensing fundamentals" | Nov 11, 2026 |
-| P4-6 | ID Governance available in GCC, GCC High and DoD; Lifecycle workflows listed for Azure Government | Rolling out the workflows | verified | Learn, licensing fundamentals; "Microsoft Entra feature availability" | Nov 11, 2026 |
+| P4-6 | ID Governance available in GCC | Rolling out the workflows | verified | Learn, licensing fundamentals | Nov 11, 2026 |
 | P4-7 | Learn's pages disagree on whether a new workflow starts enabled ("Create a lifecycle workflow" says disabled, "Understanding lifecycle workflows" says enabled); the section relies only on scheduling, which both say starts off | Rolling out the workflows | unverifiable (conflict noted; not relied on) | Learn, both pages | Nov 11, 2026 |
 | P4-8 | Rings, triggers, exclusions by coded scope, day-two cadence | Rolling out the workflows | restated-as-design | — | Nov 11, 2026 |

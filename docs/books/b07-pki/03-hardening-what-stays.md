@@ -40,7 +40,7 @@ The ESC1–ESC8 names come from SpecterOps's 2021 research on AD CS, which group
 
 Defender for Identity reports its AD CS assessments in Microsoft Secure Score. Certificate *template* assessments are available to every customer with AD CS in the environment; certificate *authority* assessments need a Defender for Identity sensor installed on the AD CS server.[^c03-mdi-overview] Install the sensor on every enterprise CA that remains in service, and configure the auditing it depends on (see [Turn on CA auditing](#turn-on-ca-auditing)).[^c03-mdi-events]
 
-In GCC, Defender for Identity uses the `security.microsoft.com` portal and a GCC sensor endpoint. Microsoft says new features reach GCC, GCC High and DoD within 90 days of commercial release, but preview features may not be supported there.[^c03-mdi-gov] Two of the assessments below (ESC1 and ESC6) are still labeled preview,[^c03-mdi-certs] so confirm they appear in your tenant before relying on them, and run the manual checks in the meantime.
+In GCC, Defender for Identity uses the `security.microsoft.com` portal and a GCC sensor endpoint. Microsoft says new features reach GCC within 90 days of commercial release, but preview features may not be supported there.[^c03-mdi-gov] Two of the assessments below (ESC1 and ESC6) are still labeled preview,[^c03-mdi-certs] so confirm they appear in your tenant before relying on them, and run the manual checks in the meantime.
 
 ::: {.callout-warning}
 The commands in this chapter are illustrative and haven't been tested against a production CA. Run read-only checks first, make changes only under a change record with a tested CA backup, and schedule service restarts: restarting Certificate Services interrupts issuance.[^c03-ca-audit]

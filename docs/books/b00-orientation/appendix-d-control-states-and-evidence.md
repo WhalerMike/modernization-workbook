@@ -121,7 +121,7 @@ The workbook's verification method already requires a primary source for every e
 
 - **Primary sources by kind.** Microsoft Learn for how a Microsoft product behaves and is licensed; NIST, CISA, OMB and FedRAMP for what a federal agency is required to do and prove; the IETF for protocol behavior; a tool's own repository and release for a tool's behavior. Secondary reporting is used to find a source, never cited for the claim.
 - **A last-verified date on product behavior and licensing.** Product behavior, licensing and government-cloud availability change without notice, so each such claim carries the date it was checked in its note ("accessed Nov 11, 2026"), and the page's verification file records it.
-- **Government-cloud availability.** For each feature a procedure relies on, the prerequisites say whether it is available in GCC, GCC High and DoD, from the Learn page that says so and the date it was read. Where Learn doesn't say, the page says "not yet specified", not "available".
+- **Government-cloud availability.** For each feature a procedure relies on, the prerequisites say whether it is available in GCC, from the Learn page that says so and the date it was read. Where Learn doesn't say, the page says "not yet specified", not "available".
 
 The verification file beside each chapter (`_verification/<page>.md`) records, for each claim, the source URL, the date checked, the claim and its disposition (verified, corrected, removed, restated as design, or unverifiable).
 
@@ -159,7 +159,7 @@ A recommendation states its authority and where it applies. "Must" is kept for w
 | **Risk-based recommended** | Authority | The workbook recommends it as the program's position, for a stated risk | The risk, and that it is the program's position |
 | **Optional** | Authority | It adds value but nothing depends on it | What it adds |
 | **License-dependent** | Applicability | It needs a license or add-on the agency may not hold | The license, from Learn |
-| **Environment-dependent** | Applicability | It depends on the cloud (commercial, GCC, GCC High, DoD), the platform or the estate | Where it applies, and what to do where it doesn't |
+| **Environment-dependent** | Applicability | It depends on the cloud (commercial or GCC), the platform or the estate | Where it applies, and what to do where it doesn't |
 
 A Microsoft recommendation is never presented as a federal mandate, and a mandated baseline is never softened to a recommendation. A license-dependent control that a tenant isn't licensed for is a licensing decision, not a failed control; an assessment tool that skips it hasn't found a gap ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy)).
 
@@ -167,7 +167,7 @@ A Microsoft recommendation is never presented as a federal mandate, and a mandat
 
 ```markdown
 **Authority:** <Mandated | Microsoft-recommended | Risk-based recommended | Optional> (<source and passage, Learn page, or the program's stated risk>).
-**Applies:** <all tenants | License-dependent: <license> | Environment-dependent: <cloud, platform or estate; GCC, GCC High, DoD availability or "not yet specified">>.
+**Applies:** <all tenants | License-dependent: <license> | Environment-dependent: <cloud, platform or estate; GCC availability or "not yet specified">>.
 ```
 
 ## The evidence pattern {#evidence-pattern}

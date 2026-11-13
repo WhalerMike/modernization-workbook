@@ -11,7 +11,7 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md`, §7 (f
 | 1 | ExpressRoute for Microsoft 365 authorized only where a regulatory requirement mandates direct connectivity; Microsoft asks for the text excerpt and web link | How to make the ask; A2 | verified | Learn, "Assessing Enterprise network last mile" note |
 | 2 | FedRAMP certification and FISMA don't by themselves supply the ExpressRoute hook | A2 | restated-as-design | Program reading of Microsoft's criterion; the playbook detail is in Ch09 |
 | 3 | CDS-CSO-SVC and CDS-CSO-PUB requirements | A1 | verified | CDS page and ruleset |
-| 4 | Network connectivity not in GCC Moderate, GCC High, DoD | A3 | verified | Learn network connectivity overview |
+| 4 | Network connectivity not in GCC Moderate | A3 | verified | Learn network connectivity overview |
 | 5 | Provider types ISP, Overlay, Corporate; Overlay = VPN, Cloud Proxy, SD-WAN, SASE | A3 | verified | Learn network provider details page |
 | 6 | MSO365MT Class C Certified; MSO365MTA Class D In Process; same name | A4 | verified | products.json |
 | 7 | A class change requires a new assessment | A4 | verified | SCN-CSO-EVA |

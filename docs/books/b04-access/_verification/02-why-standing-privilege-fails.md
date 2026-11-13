@@ -20,7 +20,6 @@ All sources opened on October 20, 2026. SP 800-53 control text and the moderate 
 | 10 | AC-6(1), (2), (5), (7), (9), (10) statements | §AC-6 table | verified | SP 800-53 Rev. 5 (OSCAL catalog) |
 | 11 | AC-6(1),(2),(5),(7),(9),(10), AC-5, AC-2(2) in the moderate baseline | §AC-6 | verified | NIST SP 800-53B moderate baseline profile (OSCAL) |
 | 12 | AC-5 statement; AC-2(2) auto-remove/disable temporary and emergency accounts | §AC-6, §Break-glass | verified | SP 800-53 Rev. 5 (OSCAL catalog) |
-| 13 | Source (Vol III): "CMMC 2.0 Level 2 and FedRAMP Moderate both require AC-6 and AC-6(5)" | Not used | removed | CMMC is out of scope for this book; the FedRAMP baseline file couldn't be retrieved, so the chapter cites the NIST moderate baseline it was checked against |
 | 14 | JIT is the practical way to limit time for cloud admin roles | §AC-6 | restated-as-design | Program position, labeled as such |
 | 15 | Source (Vol III): "M-22-09 requires least-privilege access controls and time-bound privilege" | §Federal policy | corrected | M-22-09 doesn't mandate time-bound privilege; it requires evaluating every request and asks for granular, dynamic permissions beyond static RBAC |
 | 16 | M-22-09: PAM tools issuing ephemeral single-factor credentials not a substitute for MFA; still important for hard-to-modernize high-privilege systems | §Federal policy | verified | M-22-09 §A.2 |
@@ -69,7 +68,7 @@ All sources opened on October 20, 2026. SP 800-53 control text and the moderate 
 | Vol III — The Standing Privilege Problem: what standing means; attack bullets | Ch02 §Root of the root | Threat-intel citations corrected (claims #4) |
 | Vol III — Why standing privilege survives after Entra token adoption | Ch02 §Strong authentication | — |
 | Vol III — Before and after comparison | Ch02 §JIT and diagram ch02-standing-vs-eligible | — |
-| Vol III — Compliance Dependency warning (M-22-09, SP 800-207, CMMC, FedRAMP) | Ch02 §AC-6, §Federal policy | Corrected (#13, #15, #17) |
+| Vol III — Compliance Dependency warning (M-22-09, SP 800-207, FedRAMP) | Ch02 §AC-6, §Federal policy | Corrected (#15, #17) |
 | Vol III — Eligible vs active; activation flow; roles to protect | Ch02 §JIT (summary, corrected #24, #26, #27) | Detail stays in Vol III and goes to Chapters 04 and 08; linked |
 | Vol III — Emergency access accounts: why break-glass must exist | Ch02 §Break-glass | — |
 | Vol III — Break-glass design, alert, quarterly testing | Ch02 §Break-glass (summary, corrected) | Procedure stays in Vol III; linked |

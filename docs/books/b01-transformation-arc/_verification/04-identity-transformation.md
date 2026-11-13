@@ -27,7 +27,7 @@ Sources: the series chapter itself (`04-identity-transformation.md`, upgraded in
 | 19 | Unit-scopable roles include User/Groups/Helpdesk/Password/Authentication Admin; Global Reader, Security Reader are not | Administrative units; three-tier table | verified | manage-roles-portal (AU scope list) |
 | 20 | Series: Tier 1 AU-ORG-Enterprise assigned Global Reader, Security Reader | Three-tier table | corrected | Reader roles can't be AU-scoped; assigned at tenant scope (matches Book 02 Ch 05) |
 | 21 | Dynamic AUs: one object type; P1 per unique member; global Azure cloud only | Three-tier model | verified | admin-units-members-dynamic, Prerequisites |
-| 22 | GCC pairs with Entra ID in global Azure; GCC High/DoD with Azure Government | Three-tier model | verified (added) | Cloud feature availability for US Government customers |
+| 22 | GCC pairs with Entra ID in global Azure | Three-tier model | verified (added) | Cloud feature availability for US Government customers |
 | 23 | RMAU: only AU-scoped admins can modify members' Entra properties | Restricted management | verified | admin-units-restricted-management |
 | 24 | GA/PRA can still manage RMAU membership and self-assign scoped roles; audited | Restricted management | verified (added) | admin-units-restricted-management |
 | 25 | RMAU members can't be managed by PIM, entitlement mgmt, lifecycle workflows, access reviews; setting fixed at creation; max 100 | Restricted management | verified (added) | admin-units-restricted-management, Limitations |
