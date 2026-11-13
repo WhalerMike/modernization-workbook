@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.588
+Lab 1 runs in the provider
+notices folder of the examples,
+
+3
+00:00:04.588 --> 00:00:09.700
+in PowerShell 7, against two fictional
+weeks of notices from every provider.
+
+4
+00:00:09.700 --> 00:00:12.713
+Nothing signs in to anything
+or sends a request.
+
+5
+00:00:12.713 --> 00:00:17.155
+Step one imports the kit's module
+and collects every provider
+
+6
+00:00:17.155 --> 00:00:20.813
+from the day-one fixtures,
+as of November ninth, 2026.
+
+7
+00:00:20.813 --> 00:00:25.179
+Five from Azure, six from
+Microsoft 365 in the G C C cloud,
+
+8
+00:00:25.179 --> 00:00:31.487
+four from Oracle Cloud Infrastructure,
+five from AWS and two from Google Cloud.
+
+9
+00:00:31.487 --> 00:00:35.340
+Twenty-two notices in all,
+each valid against the schema,
+
+10
+00:00:35.340 --> 00:00:40.951
+written as JSON and as a spreadsheet file,
+with the raw responses and a manifest.
+
+11
+00:00:40.951 --> 00:00:42.375
+Notice the cloud column.
+
+12
+00:00:42.375 --> 00:00:46.737
+Every provider names its own cloud in
+the settings, and there is no default.
+
+13
+00:00:46.737 --> 00:00:49.940
+Five providers, five shapes, one list.

@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+Stage 1, the test stage, has nine steps.
+
+2
+00:00:03.362 --> 00:00:06.424
+Sign in each reader,
+then run the pre-flight.
+
+3
+00:00:06.424 --> 00:00:10.253
+Then the staged enable: read each
+enabled provider on its own,
+
+4
+00:00:10.253 --> 00:00:14.234
+cross-check it against the provider's
+own command, and record it,
+
+5
+00:00:14.234 --> 00:00:19.363
+before the providers run together, because
+a failure in one would hide the others.
+
+6
+00:00:19.363 --> 00:00:24.180
+Route the full collection as a dry run, and
+have the service desk read the payloads:
+
+7
+00:00:24.180 --> 00:00:27.559
+every security advisory and
+retirement should have one,
+
+8
+00:00:27.559 --> 00:00:30.938
+with an assignment group the
+change manager recognizes.
+
+9
+00:00:30.938 --> 00:00:35.526
+Run the smoke test, four checks with
+their expected results written down first.
+
+10
+00:00:35.526 --> 00:00:37.176
+Then the one write to a cloud:
+
+11
+00:00:37.176 --> 00:00:42.272
+the Service Health alert policy from
+Microsoft Learn's guidance on deploying alerts
+
+12
+00:00:42.272 --> 00:00:45.359
+at scale with Azure Policy,
+at the test subscription,
+
+13
+00:00:45.359 --> 00:00:49.450
+applied only with the hash a reviewer
+who isn't the operator approved.
+
+14
+00:00:49.450 --> 00:00:53.609
+Schedule the weekly run with Windows
+Task Scheduler's own cmdlets,
+
+15
+00:00:53.609 --> 00:00:55.500
+and check the stage's evidence.
+
+16
+00:00:55.500 --> 00:00:57.675
+Finally, rehearse the rollback.
+
+17
+00:00:57.675 --> 00:01:01.431
+Deleting the policy assignment
+doesn't remove the resources
+
+18
+00:01:01.431 --> 00:01:05.180
+the remediation created; the
+change record decides on those.

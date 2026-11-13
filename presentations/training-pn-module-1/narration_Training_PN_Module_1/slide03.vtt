@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:07.291
+You'll explain why each provider's
+notices end at a person or a page,
+
+3
+00:00:07.291 --> 00:00:11.300
+and why email stays an early
+warning, not the system of record.
+
+4
+00:00:11.300 --> 00:00:14.938
+You'll name the six kinds of
+notice, and who owns each one.
+
+5
+00:00:14.938 --> 00:00:16.636
+You'll read the record's fields,
+
+6
+00:00:16.636 --> 00:00:20.438
+and tell a provider's own action date
+from one the kit's rule inferred.
+
+7
+00:00:20.438 --> 00:00:24.713
+And you'll show that a second read of
+the same notices changes no fingerprint.
+
+8
+00:00:24.713 --> 00:00:28.012
+There's nothing to take first:
+this is the first module.
+
+9
+00:00:28.012 --> 00:00:29.907
+If you have time, read the intake,
+
+10
+00:00:29.907 --> 00:00:34.936
+triage and routing chapter of Compliance
+Automation and Day-Two Operations, which
+
+11
+00:00:34.936 --> 00:00:39.674
+routes Microsoft's service health email
+today and never acts on an email alone.
+
+12
+00:00:39.674 --> 00:00:45.863
+Lab 1 needs PowerShell 7.1 or later with
+Pester 5, and a copy of the repository.
+
+13
+00:00:45.863 --> 00:00:46.850
+No tenant.

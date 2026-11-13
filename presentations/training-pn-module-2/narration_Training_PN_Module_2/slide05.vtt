@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.012
+Unit 2 reads the workbook chapter,
+
+2
+00:00:02.012 --> 00:00:05.725
+starting with what Microsoft gives
+you and what it leaves to you.
+
+3
+00:00:05.725 --> 00:00:10.937
+Learn publishes one sample query per question:
+all active events, health advisories,
+
+4
+00:00:10.937 --> 00:00:16.075
+upcoming retirements and planned maintenance,
+each returning different columns.
+
+5
+00:00:16.075 --> 00:00:20.044
+The kit builds one events query from
+the all-active sample, adding the
+
+6
+00:00:20.044 --> 00:00:24.500
+retirement sample's event subtype and
+the advisory sample's time conversion.
+
+7
+00:00:24.500 --> 00:00:27.725
+Learn's samples return one row
+per event per subscription,
+
+8
+00:00:27.725 --> 00:00:30.950
+so the same outage would be
+counted once per subscription.
+
+9
+00:00:30.950 --> 00:00:34.800
+The kit merges rows by
+tracking I D into one notice.
+
+10
+00:00:34.800 --> 00:00:37.916
+Learn gives event types,
+not what to do about them,
+
+11
+00:00:37.916 --> 00:00:40.175
+so the kit maps them to the six kinds.
+
+12
+00:00:40.175 --> 00:00:45.150
+Nothing says action is required, so the
+kit states a rule, and the record names it.
+
+13
+00:00:45.150 --> 00:00:48.387
+And for the alert policy,
+Learn gives portal steps.
+
+14
+00:00:48.387 --> 00:00:52.270
+The kit writes a plan file a
+reviewer can approve before it runs.

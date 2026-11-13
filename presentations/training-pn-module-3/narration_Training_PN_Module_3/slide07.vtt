@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.652
+Lab 1 runs in the provider
+notices folder of the examples,
+
+3
+00:00:04.652 --> 00:00:08.034
+in PowerShell 7, against a
+fictional tenant in G C C.
+
+4
+00:00:08.034 --> 00:00:13.314
+Step one lists what Microsoft 365 needs:
+three calls, and only two permissions,
+
+5
+00:00:13.314 --> 00:00:16.448
+Service Message dot Read
+dot All for the posts,
+
+6
+00:00:16.448 --> 00:00:21.563
+and Service Health dot Read dot All for
+the issues and the health overviews.
+
+7
+00:00:21.563 --> 00:00:24.862
+All three are marked
+verified, and nothing writes.
+
+8
+00:00:24.862 --> 00:00:30.416
+Step two prints each cloud's Graph
+host: the worldwide host for G C C with
+
+9
+00:00:30.416 --> 00:00:36.160
+the Global environment, then the U S
+Government hosts for GCC High and DoD.
+
+10
+00:00:36.160 --> 00:00:40.947
+Step three collects Microsoft
+365 from the day-one fixtures,
+
+11
+00:00:40.947 --> 00:00:46.213
+as of November ninth, 2026: six
+notices, five open, two needing action.
+
+12
+00:00:46.213 --> 00:00:50.180
+Three advisories, a change,
+an incident and a retirement.

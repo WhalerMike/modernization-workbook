@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.491
+The guide compares the five providers,
+
+2
+00:00:02.491 --> 00:00:06.075
+and one row matters most here:
+who says action is required.
+
+3
+00:00:06.075 --> 00:00:09.789
+Azure's Service Health, read
+through Azure Resource Graph,
+
+4
+00:00:09.789 --> 00:00:12.187
+has no field the kit reads that says so.
+
+5
+00:00:12.187 --> 00:00:16.967
+So the kit applies a stated rule:
+a retirement is action required,
+
+6
+00:00:16.967 --> 00:00:20.934
+due at the advisory's end
+time, and a security advisory
+
+7
+00:00:20.934 --> 00:00:24.901
+is action required with no
+date, for the ISSO to review.
+
+8
+00:00:24.901 --> 00:00:28.962
+Microsoft 365 has its act-by date field.
+
+9
+00:00:28.962 --> 00:00:31.724
+Oracle Cloud Infrastructure has its action
+
+10
+00:00:31.724 --> 00:00:34.337
+required type and action required by date.
+
+11
+00:00:34.337 --> 00:00:37.187
+AWS has its actionability field.
+
+12
+00:00:37.187 --> 00:00:40.884
+And Google Cloud's Personalized
+Service Health doesn't say,
+
+13
+00:00:40.884 --> 00:00:45.863
+and has no planned maintenance at all: its
+event category has one value, incident.
+
+14
+00:00:45.863 --> 00:00:47.967
+Wherever the provider doesn't say,
+
+15
+00:00:47.967 --> 00:00:51.800
+the record's action basis begins
+with rule, and states the rule.
+
+16
+00:00:51.800 --> 00:00:55.300
+Nobody mistakes the kit's inference
+for the provider's own word.

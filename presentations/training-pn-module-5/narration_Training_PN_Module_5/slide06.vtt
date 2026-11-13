@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Two more things the reader handles.
+
+2
+00:00:02.025 --> 00:00:03.362
+First, batching.
+
+3
+00:00:03.362 --> 00:00:07.375
+An event list without its description
+or resources can't be routed,
+
+4
+00:00:07.375 --> 00:00:11.024
+and descriptions and affected
+entities are separate calls.
+
+5
+00:00:11.024 --> 00:00:15.137
+Describe event details takes
+one to ten event A R Ns.
+
+6
+00:00:15.137 --> 00:00:20.045
+So the kit asks ten at a time, and
+refuses eleven before it calls anything,
+
+7
+00:00:20.045 --> 00:00:22.874
+rather than have the A
+P I refuse it mid-run.
+
+8
+00:00:22.874 --> 00:00:24.550
+Second, partitions.
+
+9
+00:00:24.550 --> 00:00:29.774
+The settings name the partition, and the
+region comes from it: u s east one for
+
+10
+00:00:29.774 --> 00:00:32.554
+commercial accounts, and u s gov west one,
+
+11
+00:00:32.554 --> 00:00:35.587
+a single regional
+endpoint, in AWS GovCloud.
+
+12
+00:00:35.587 --> 00:00:40.188
+A GovCloud account read from u s east
+one fails, or worse, reads nothing,
+
+13
+00:00:40.188 --> 00:00:44.950
+so the kit checks once that the caller's
+A R N is in the settings' partition.
+
+14
+00:00:44.950 --> 00:00:47.965
+In GovCloud there's one more
+reason to use the A P I:
+
+15
+00:00:47.965 --> 00:00:52.638
+EventBridge there doesn't send public
+events from the Service Health view.
+
+16
+00:00:52.638 --> 00:00:56.177
+Elsewhere, the interim path
+is an EventBridge rule
+
+17
+00:00:56.177 --> 00:00:59.463
+on AWS Health events, which
+the kit doesn't build.
+
+18
+00:00:59.463 --> 00:01:03.220
+And with no support plan, it's
+the dashboard and its email.

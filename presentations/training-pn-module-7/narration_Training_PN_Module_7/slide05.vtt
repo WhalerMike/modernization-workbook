@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+Each task is a ServiceNow-shaped payload.
+
+2
+00:00:02.850 --> 00:00:05.453
+Its action is create, update or close,
+
+3
+00:00:05.453 --> 00:00:10.225
+and its de-duplication key is the
+provider and the provider's own I D.
+
+4
+00:00:10.225 --> 00:00:16.388
+Its severity, priority and response window
+come from the Ticket-to-Machine finding
+
+5
+00:00:16.388 --> 00:00:21.925
+contract: P1 immediate, P2 one hour, P3
+twenty-four hours, P4 seventy-two hours.
+
+6
+00:00:21.925 --> 00:00:25.742
+Those windows are program design,
+not a federal requirement,
+
+7
+00:00:25.742 --> 00:00:29.025
+and a test reads the contract
+and fails if they drift.
+
+8
+00:00:29.025 --> 00:00:32.650
+Then the provider's own action
+date, kept in a separate field.
+
+9
+00:00:32.650 --> 00:00:35.000
+The two dates answer different questions.
+
+10
+00:00:35.000 --> 00:00:39.112
+The response window says how fast
+the owner must pick the task up.
+
+11
+00:00:39.112 --> 00:00:42.023
+The provider's date says
+when the work must be done,
+
+12
+00:00:42.023 --> 00:00:44.437
+and for a retirement
+it may be months away.
+
+13
+00:00:44.437 --> 00:00:50.013
+Confusing them makes a P3 task look due
+in a year, or a retirement due tomorrow.
+
+14
+00:00:50.013 --> 00:00:54.699
+The payload also carries the contingency
+review flag, and the Ticket-to-Machine
+
+15
+00:00:54.699 --> 00:00:58.888
+block: the Human decision lane, and
+the five clauses of the request chain.
+
+16
+00:00:58.888 --> 00:01:01.882
+Where it came from, who
+approves, what to do,
+
+17
+00:01:01.882 --> 00:01:04.750
+the re-read check, and the evidence kept.

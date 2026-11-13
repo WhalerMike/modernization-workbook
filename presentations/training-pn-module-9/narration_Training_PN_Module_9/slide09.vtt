@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.762
+Step five checks the
+test stage's evidence.
+
+2
+00:00:02.762 --> 00:00:08.138
+Thirty-one files match the checksum file,
+and five records form an unbroken chain.
+
+3
+00:00:08.138 --> 00:00:13.975
+And every step the test stage needs
+passes: pre-flight, run, route and digest.
+
+4
+00:00:13.975 --> 00:00:16.697
+The two rows Module 8's
+lab failed now pass,
+
+5
+00:00:16.697 --> 00:00:20.300
+because the pre-flight and
+the weekly run are recorded.
+
+6
+00:00:20.300 --> 00:00:26.090
+Step six reads the records' index: the
+pre-flight, then the weekly run's collection,
+
+7
+00:00:26.090 --> 00:00:30.388
+routing and digest, then the
+scheduled run itself, each pass.
+
+8
+00:00:30.388 --> 00:00:33.088
+Step seven plans the
+test stage's rollback,
+
+9
+00:00:33.088 --> 00:00:37.874
+one step that unregisters the weekly
+task if it exists, and changes nothing.
+
+10
+00:00:37.874 --> 00:00:42.763
+Step eight runs production's pre-flight,
+and hands it the test stage's evidence.
+
+11
+00:00:42.763 --> 00:00:47.638
+Production enables all five providers,
+so there are twenty-three checks,
+
+12
+00:00:47.638 --> 00:00:51.376
+ending with P F oh seven: the
+test stage's evidence passes.
+
+13
+00:00:51.376 --> 00:00:53.650
+Twenty-three checks, none failed.
+
+14
+00:00:53.650 --> 00:00:55.769
+If the test stage hadn't passed,
+
+15
+00:00:55.769 --> 00:00:59.470
+P F oh seven would fail, and
+production couldn't start.

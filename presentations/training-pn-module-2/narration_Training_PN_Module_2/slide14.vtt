@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.300
+First: a security advisory's
+summary is empty in the record.
+
+3
+00:00:06.300 --> 00:00:07.850
+What's the likely cause?
+
+4
+00:00:07.850 --> 00:00:09.075
+The answer is b.
+
+5
+00:00:09.075 --> 00:00:12.652
+The reader holds Reader but not
+Service Health Security Reader,
+
+6
+00:00:12.652 --> 00:00:14.475
+which the sensitive fields need.
+
+7
+00:00:14.475 --> 00:00:17.785
+Reader and Monitoring Reader
+can list the advisory,
+
+8
+00:00:17.785 --> 00:00:20.787
+but can't see its summary
+or impacted resources.
+
+9
+00:00:20.787 --> 00:00:24.488
+Second: the same incident
+appears in two subscriptions.
+
+10
+00:00:24.488 --> 00:00:26.588
+How many notices does the kit write?
+
+11
+00:00:26.588 --> 00:00:28.424
+The answer is b, one.
+
+12
+00:00:28.424 --> 00:00:32.415
+Rows are merged by tracking I
+D, so one event is one notice,
+
+13
+00:00:32.415 --> 00:00:35.537
+and later one task, not
+one per subscription.
+
+14
+00:00:35.537 --> 00:00:37.965
+The module page has three more questions,
+
+15
+00:00:37.965 --> 00:00:40.510
+each linked to the
+section that answers it.

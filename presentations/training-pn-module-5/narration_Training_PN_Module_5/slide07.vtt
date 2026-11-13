@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.025
+Lab 1 runs in the provider notices
+folder of the examples, in PowerShell 7.
+
+3
+00:00:06.025 --> 00:00:10.702
+The account is AWS's documentation
+account, one one one one two
+
+4
+00:00:10.702 --> 00:00:15.562
+two two two three three three
+three, in the commercial partition.
+
+5
+00:00:15.562 --> 00:00:17.950
+Nothing signs in or sends a request.
+
+6
+00:00:17.950 --> 00:00:20.525
+Step one lists what AWS needs.
+
+7
+00:00:20.525 --> 00:00:26.287
+Three calls: describe events, describe event
+details and describe affected entities,
+
+8
+00:00:26.287 --> 00:00:31.400
+each with its one read action, and each
+verified against AWS's documentation.
+
+9
+00:00:31.400 --> 00:00:33.712
+Three read actions, one per call.
+
+10
+00:00:33.712 --> 00:00:35.975
+That's the whole policy,
+and it's what you'd
+
+11
+00:00:35.975 --> 00:00:38.650
+show an assessor who asks
+what the reader may do.
+
+12
+00:00:38.650 --> 00:00:42.100
+Step two shows each partition's
+Health endpoint region.
+
+13
+00:00:42.100 --> 00:00:46.446
+The commercial partition
+reads from u s east one,
+
+14
+00:00:46.446 --> 00:00:49.488
+with A R Ns that start A R N colon A W S.
+
+15
+00:00:49.488 --> 00:00:53.993
+The GovCloud partition
+reads from u s gov west one,
+
+16
+00:00:53.993 --> 00:00:58.560
+with A R Ns that start A R N
+colon A W S dash U S dash gov.

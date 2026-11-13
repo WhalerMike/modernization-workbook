@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.543
+Promotion to production happens only
+when all seven go/no-go criteria pass,
+
+2
+00:00:05.543 --> 00:00:10.150
+and the ISSO and the change
+advisory board record the decision.
+
+3
+00:00:10.150 --> 00:00:12.275
+The test stage's evidence passes.
+
+4
+00:00:12.275 --> 00:00:15.938
+Every provider's collection
+matched the provider's own command.
+
+5
+00:00:15.938 --> 00:00:17.476
+The smoke test passed.
+
+6
+00:00:17.476 --> 00:00:18.975
+The routing was reviewed.
+
+7
+00:00:18.975 --> 00:00:22.763
+The alert policy applied, and
+its rollback was rehearsed.
+
+8
+00:00:22.763 --> 00:00:25.099
+Each provider's notice contacts are named.
+
+9
+00:00:25.099 --> 00:00:28.033
+And the known gaps are
+recorded with the ISSO.
+
+10
+00:00:28.033 --> 00:00:32.313
+Stage 2 runs the same commands
+with the production settings file.
+
+11
+00:00:32.313 --> 00:00:35.575
+The pre-flight now includes P F oh seven.
+
+12
+00:00:35.575 --> 00:00:38.019
+Providers are enabled one at a time again,
+
+13
+00:00:38.019 --> 00:00:41.325
+and the alert policy is applied
+at the management group.
+
+14
+00:00:41.325 --> 00:00:45.667
+For the first week, routing stays a
+dry run: the service desk works from
+
+15
+00:00:45.667 --> 00:00:50.313
+the payloads by hand, so duplicate or
+misrouted tasks don't reach the queue.
+
+16
+00:00:50.313 --> 00:00:53.924
+Sending is turned on only after
+the change manager approves.
+
+17
+00:00:53.924 --> 00:00:57.775
+From then on, check the production
+stage's evidence every week.
+
+18
+00:00:57.775 --> 00:01:01.223
+It needs pre-flight, alerts,
+run, route and digest,
+
+19
+00:01:01.223 --> 00:01:05.180
+and a week with no new run
+record means the run stopped.

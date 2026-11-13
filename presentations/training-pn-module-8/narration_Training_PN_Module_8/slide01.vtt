@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.664
+Welcome to Module 8 of the
+Provider Notices learning path:
+
+2
+00:00:04.664 --> 00:00:06.875
+digest, evidence and go/no-go.
+
+3
+00:00:06.875 --> 00:00:09.075
+Most notices shouldn't be tasks.
+
+4
+00:00:09.075 --> 00:00:12.109
+The weekly digest is how
+the owners see the rest,
+
+5
+00:00:12.109 --> 00:00:14.987
+and how they see what
+needs action and by when.
+
+6
+00:00:14.987 --> 00:00:17.582
+The evidence is what the ISSO keeps:
+
+7
+00:00:17.582 --> 00:00:23.129
+every run recorded with the controls and
+K S I's it supports, every file's hash,
+
+8
+00:00:23.129 --> 00:00:28.676
+and the hash of the record before it, so
+a changed file or a removed week shows.
+
+9
+00:00:28.676 --> 00:00:33.508
+This module is Gate 7 of the provider
+notices implementation guide, with Chapter
+
+10
+00:00:33.508 --> 00:00:38.125
+7 of the developer workbook, and the
+deployment runbook's promotion criteria.
+
+11
+00:00:38.125 --> 00:00:39.913
+It takes about sixty minutes.
+
+12
+00:00:39.913 --> 00:00:44.070
+You'll write a week's digest,
+record three runs, check the chain,
+
+13
+00:00:44.070 --> 00:00:49.225
+see a lab stage fail the go/no-go, and
+catch a file edited after it was recorded.
+
+14
+00:00:49.225 --> 00:00:54.790
+The code is illustrative: tested against
+fixtures, not run against a live tenant.

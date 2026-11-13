@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.537
+Unit 2 is the stages, and every
+stage starts with the pre-flight.
+
+2
+00:00:04.537 --> 00:00:08.237
+It reads only, and it runs
+after the readers sign in.
+
+3
+00:00:08.237 --> 00:00:12.808
+P F oh one reads the settings and routing
+files, and fails on the wrong stage,
+
+4
+00:00:12.808 --> 00:00:15.955
+no provider enabled, routing
+that doesn't validate,
+
+5
+00:00:15.955 --> 00:00:19.701
+or sending turned on without an
+endpoint and token variable.
+
+6
+00:00:19.701 --> 00:00:22.125
+Then four checks per enabled provider.
+
+7
+00:00:22.125 --> 00:00:25.125
+Oh two: the provider's tool is installed.
+
+8
+00:00:25.125 --> 00:00:28.963
+Oh three: the signed-in cloud
+is the one the settings name,
+
+9
+00:00:28.963 --> 00:00:32.050
+not another cloud, tenant,
+partition or realm.
+
+10
+00:00:32.050 --> 00:00:36.937
+Oh four: the reader's first call works,
+and for AWS that includes the support plan;
+
+11
+00:00:36.937 --> 00:00:42.050
+without a qualifying plan the call fails
+with a subscription required exception.
+
+12
+00:00:42.050 --> 00:00:46.012
+Oh five: somebody is named to
+receive the provider's notices.
+
+13
+00:00:46.012 --> 00:00:48.701
+That's the pre-flight's link to S R eight.
+
+14
+00:00:48.701 --> 00:00:52.100
+P F oh six checks that the
+output root can be written.
+
+15
+00:00:52.100 --> 00:00:54.718
+And P F oh seven runs in production only:
+
+16
+00:00:54.718 --> 00:00:59.137
+it fails if the test stage's evidence
+wouldn't pass its stage check.
+
+17
+00:00:59.137 --> 00:01:01.900
+Production can't start
+until test has passed.

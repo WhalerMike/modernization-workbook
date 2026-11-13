@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.717
+Step nine plans the Service Health alerts
+at the production management group:
+
+2
+00:00:05.717 --> 00:00:10.425
+two steps, assign and remediate, each
+would apply, and a plan SHA-256.
+
+3
+00:00:10.425 --> 00:00:13.000
+It's the same plan as Module 2's.
+
+4
+00:00:13.000 --> 00:00:17.737
+Step ten plans production's rollback,
+in reverse order of the deployment.
+
+5
+00:00:17.737 --> 00:00:21.013
+First, unregister the
+weekly scheduled task.
+
+6
+00:00:21.013 --> 00:00:23.537
+Second, delete the policy assignment.
+
+7
+00:00:23.537 --> 00:00:28.012
+Third, a manual step: list the resource
+group the remediation created,
+
+8
+00:00:28.012 --> 00:00:33.350
+because the change record decides on what
+the remediation created, not the script.
+
+9
+00:00:33.350 --> 00:00:35.437
+Dry run: nothing changed.
+
+10
+00:00:35.437 --> 00:00:38.303
+Then the second command
+tries to apply that
+
+11
+00:00:38.303 --> 00:00:41.088
+plan with a hash nobody
+approved, all zeros.
+
+12
+00:00:41.088 --> 00:00:44.427
+It's refused: the approved hash must match
+
+13
+00:00:44.427 --> 00:00:48.062
+the plan's SHA-256 before
+apply runs anything.
+
+14
+00:00:48.062 --> 00:00:51.100
+That's the guard against a
+plan changed after approval.
+
+15
+00:00:51.100 --> 00:00:55.148
+Step eleven runs the deploy
+scripts' tests: twenty-five pass,
+
+16
+00:00:55.148 --> 00:01:00.188
+none fail and none are skipped, on Windows,
+where one of them runs only there.
+
+17
+00:01:00.188 --> 00:01:02.470
+Then delete the dry run's folders.

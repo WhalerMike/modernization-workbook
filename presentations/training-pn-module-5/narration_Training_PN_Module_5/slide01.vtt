@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.072
+Welcome to Module 5 of the
+Provider Notices learning path:
+
+2
+00:00:04.072 --> 00:00:06.250
+AWS Health and the support plan.
+
+3
+00:00:06.250 --> 00:00:10.104
+This is Gate 4 of the provider
+notices implementation guide,
+
+4
+00:00:10.104 --> 00:00:12.725
+with Chapter 4 of the developer workbook.
+
+5
+00:00:12.725 --> 00:00:16.378
+AWS Health publishes issues,
+scheduled changes and account
+
+6
+00:00:16.378 --> 00:00:20.250
+notifications for each account,
+with the resources they affect.
+
+7
+00:00:20.250 --> 00:00:24.459
+The A P I is the scheduled, recorded
+read of them, but it comes with a
+
+8
+00:00:24.459 --> 00:00:29.700
+condition the other providers don't have:
+it needs a qualifying AWS Support plan.
+
+9
+00:00:29.700 --> 00:00:33.116
+In this module you'll read a
+fictional account's events,
+
+10
+00:00:33.116 --> 00:00:37.671
+see which ones AWS marked action required
+and which the kit's rule marked,
+
+11
+00:00:37.671 --> 00:00:40.631
+build the GovCloud request
+without sending it,
+
+12
+00:00:40.631 --> 00:00:44.275
+and watch the kit refuse eleven
+events in one details call.
+
+13
+00:00:44.275 --> 00:00:49.525
+It takes about fifty minutes, with a lab
+on fixtures and a lab in a test account.
+
+14
+00:00:49.525 --> 00:00:55.060
+The code is illustrative: tested against
+fixtures, not run against a live account.

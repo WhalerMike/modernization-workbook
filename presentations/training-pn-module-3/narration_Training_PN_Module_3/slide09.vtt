@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.300
+Step six collects the second week, as
+of November sixteenth: seven notices.
+
+2
+00:00:05.300 --> 00:00:08.698
+A new post, M C nine
+hundred thousand and five,
+
+3
+00:00:08.698 --> 00:00:13.700
+is a change due February twenty-eighth,
+2027, a date Microsoft set.
+
+4
+00:00:13.700 --> 00:00:16.965
+The SharePoint post's title
+now starts with updated,
+
+5
+00:00:16.965 --> 00:00:20.762
+so its fingerprint changes, and
+Module 7 will update its task.
+
+6
+00:00:20.762 --> 00:00:22.462
+And the incident is closed.
+
+7
+00:00:22.462 --> 00:00:25.850
+Step seven builds the live
+request without sending it.
+
+8
+00:00:25.850 --> 00:00:29.428
+The first line prints
+the messages U R L on the
+
+9
+00:00:29.428 --> 00:00:32.813
+worldwide Graph host,
+the right one for G C C.
+
+10
+00:00:32.813 --> 00:00:37.679
+Then it tries a next link on another
+host, graph dot example dot net,
+
+11
+00:00:37.679 --> 00:00:41.374
+and the kit refuses it: it
+isn't on the G C C Graph host.
+
+12
+00:00:41.374 --> 00:00:44.550
+That's the guard that keeps the
+token on the tenant's own host.
+
+13
+00:00:44.550 --> 00:00:49.162
+Step eight runs this chapter's
+tests: fifteen pass, none fail.
+
+14
+00:00:49.162 --> 00:00:51.050
+Then delete the output folder.

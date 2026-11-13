@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.819
+Lab 1 runs in the provider
+notices folder of the examples,
+
+3
+00:00:04.819 --> 00:00:08.175
+in PowerShell 7, on the
+kit's fictional fixtures.
+
+4
+00:00:08.175 --> 00:00:12.560
+Step one repeats Module 7's two
+collections and routings in one go:
+
+5
+00:00:12.560 --> 00:00:16.296
+twenty-two notices and twelve
+creates in the first week,
+
+6
+00:00:16.296 --> 00:00:21.737
+then twenty-three notices and one create,
+four updates and one close in the second.
+
+7
+00:00:21.737 --> 00:00:27.355
+Step two writes the digest for the second
+week, as of November sixteenth, 2026:
+
+8
+00:00:27.355 --> 00:00:32.793
+sixteen open, eight that need action,
+five starting in the next thirty days,
+
+9
+00:00:32.793 --> 00:00:35.913
+two new, and four closed
+or no longer listed.
+
+10
+00:00:35.913 --> 00:00:38.576
+Step three reads it as the owners will.
+
+11
+00:00:38.576 --> 00:00:43.774
+In action required, soonest first, the
+EC2 instance retirement on December first,
+
+12
+00:00:43.774 --> 00:00:49.205
+the Oracle Cloud Infrastructure certificate
+bundle change on December fifteenth,
+
+13
+00:00:49.205 --> 00:00:52.852
+and so on to the Azure retirement
+on September thirtieth,
+
+14
+00:00:52.852 --> 00:00:55.412
+2027, each with the
+group it was routed to.
+
+15
+00:00:55.412 --> 00:00:58.663
+The two with no date sit at
+the bottom as not stated.
+
+16
+00:00:58.663 --> 00:01:02.213
+And the Google Cloud row of
+the first table is all zeros,
+
+17
+00:01:02.213 --> 00:01:04.560
+because both its incidents closed.

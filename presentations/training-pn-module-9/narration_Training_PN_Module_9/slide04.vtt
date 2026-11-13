@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.238
+Unit 1 is what the runbook adds.
+
+2
+00:00:02.238 --> 00:00:06.097
+One settings file per stage holds
+every value the commands need,
+
+3
+00:00:06.097 --> 00:00:10.175
+and the settings reader enforces
+its rules before any command runs.
+
+4
+00:00:10.175 --> 00:00:14.993
+No secrets: a secret-like name, such
+as password, client secret or token,
+
+5
+00:00:14.993 --> 00:00:18.544
+with a value, stops the run,
+and the ServiceNow token
+
+6
+00:00:18.544 --> 00:00:21.925
+is read at run time from
+an environment variable.
+
+7
+00:00:21.925 --> 00:00:24.563
+No placeholders in an enabled provider.
+
+8
+00:00:24.563 --> 00:00:27.624
+The stage it says it is,
+checked by the pre-flight.
+
+9
+00:00:27.624 --> 00:00:30.962
+And named notice contacts
+for each enabled provider.
+
+10
+00:00:30.962 --> 00:00:32.975
+Every collector call is a read.
+
+11
+00:00:32.975 --> 00:00:35.941
+The kit's writes are
+few, and each is gated:
+
+12
+00:00:35.941 --> 00:00:40.885
+the Azure Policy assignment and
+its remediation, and the rollback,
+
+13
+00:00:40.885 --> 00:00:44.570
+run only with apply and the
+plan's approved SHA-256;
+
+14
+00:00:44.570 --> 00:00:49.963
+payloads go to the agency's endpoint
+only with send and the settings flag.
+
+15
+00:00:49.963 --> 00:00:53.299
+The settings file also
+names each provider's cloud.
+
+16
+00:00:53.299 --> 00:00:58.953
+The estate the runbook writes for is
+Microsoft 365 G C C with commercial Azure,
+
+17
+00:00:58.953 --> 00:01:02.663
+on the worldwide Graph and
+Resource Manager hosts.
+
+18
+00:01:02.663 --> 00:01:06.713
+GCC High and DoD are other
+names in the same file.
+
+19
+00:01:06.713 --> 00:01:10.900
+The kit doesn't build the ServiceNow
+endpoint; that's the agency's.

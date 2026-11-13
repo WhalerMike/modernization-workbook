@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.912
+Step four collects the second
+week, as of November sixteenth.
+
+2
+00:00:03.912 --> 00:00:06.951
+The same two incidents,
+and now both are closed.
+
+3
+00:00:06.951 --> 00:00:10.264
+The Cloud SQL incident
+ended on November ninth,
+
+4
+00:00:10.264 --> 00:00:14.762
+at thirteen hundred U T C, an hour
+after the first week's read saw it open.
+
+5
+00:00:14.762 --> 00:00:19.674
+That's the honest limit of a weekly
+read: it sees an incident after the fact.
+
+6
+00:00:19.674 --> 00:00:24.693
+The weekly read is for owning and closing
+notices, not for detecting incidents,
+
+7
+00:00:24.693 --> 00:00:28.013
+which still reach the desk
+as calls and alerts first.
+
+8
+00:00:28.013 --> 00:00:30.624
+Step five groups both weeks by kind.
+
+9
+00:00:30.624 --> 00:00:33.100
+Four records, and every one an incident.
+
+10
+00:00:33.100 --> 00:00:35.150
+That's not the fixtures being thin.
+
+11
+00:00:35.150 --> 00:00:38.663
+It's the A P I: its
+category has one value.
+
+12
+00:00:38.663 --> 00:00:43.298
+Maintenance, retirements and security
+notices never come through this A P I,
+
+13
+00:00:43.298 --> 00:00:47.780
+whatever the project's estate looks
+like, and that's the gap you write down.

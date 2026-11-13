@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.313
+Why a digest, and why evidence?
+
+2
+00:00:02.313 --> 00:00:05.624
+Not every notice is a task,
+and most shouldn't be.
+
+3
+00:00:05.624 --> 00:00:08.275
+The digest is how the owners see the rest.
+
+4
+00:00:08.275 --> 00:00:11.710
+Once a week it lists, for each
+provider, the open notices;
+
+5
+00:00:11.710 --> 00:00:15.374
+every notice that needs action,
+with its due date and owner;
+
+6
+00:00:15.374 --> 00:00:19.266
+the maintenance and changes
+starting in the next thirty days;
+
+7
+00:00:19.266 --> 00:00:23.388
+what's new in the last week; and
+what closed or stopped being listed.
+
+8
+00:00:23.388 --> 00:00:26.599
+It goes to the owners,
+not to a shared mailbox.
+
+9
+00:00:26.599 --> 00:00:31.393
+The Compliance Automation and Day-Two
+Operations book gives it a natural home in
+
+10
+00:00:31.393 --> 00:00:33.038
+reviews that already exist:
+
+11
+00:00:33.038 --> 00:00:37.831
+the service desk supervisor's weekly review
+of the queue, and the change advisory
+
+12
+00:00:37.831 --> 00:00:42.338
+board's agenda, where the next thirty
+days of maintenance and changes belong.
+
+13
+00:00:42.338 --> 00:00:44.992
+Two numbers from it are
+worth watching over time:
+
+14
+00:00:44.992 --> 00:00:49.307
+notices that needed action and reached
+their due date with the task still open,
+
+15
+00:00:49.307 --> 00:00:52.825
+and notices that were never routed
+because no rule matched them.
+
+16
+00:00:52.825 --> 00:00:54.363
+That's design guidance.
+
+17
+00:00:54.363 --> 00:00:58.291
+The evidence is the other
+half: what the ISSO keeps,
+
+18
+00:00:58.291 --> 00:01:01.030
+recorded so a change or a gap shows.

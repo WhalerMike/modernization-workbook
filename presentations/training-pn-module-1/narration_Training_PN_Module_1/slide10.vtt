@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.719
+Step two counts the notices by kind, across
+providers: five advisories, two changes,
+
+2
+00:00:05.719 --> 00:00:11.638
+six incidents, three maintenance windows,
+four retirements and two security notices.
+
+3
+00:00:11.638 --> 00:00:15.873
+The kind decides the owner, so the
+four retirements go to each affected
+
+4
+00:00:15.873 --> 00:00:19.962
+system's owner, and the two security
+notices to security operations.
+
+5
+00:00:19.962 --> 00:00:23.150
+Step three asks who said
+each one needs action.
+
+6
+00:00:23.150 --> 00:00:24.450
+Eight notices do.
+
+7
+00:00:24.450 --> 00:00:29.424
+Four times the provider said so:
+two from AWS's actionability field,
+
+8
+00:00:29.424 --> 00:00:35.212
+one from Microsoft 365's act-by date, and
+one from Oracle's action required type.
+
+9
+00:00:35.212 --> 00:00:37.217
+And four times a kit rule did:
+
+10
+00:00:37.217 --> 00:00:42.710
+an AWS scheduled change whose code names
+a retirement, the Azure retirement,
+
+11
+00:00:42.710 --> 00:00:48.203
+due at the advisory's end, the Azure
+security advisory, which the ISSO reviews,
+
+12
+00:00:48.203 --> 00:00:52.650
+and a Microsoft 365 post in the
+prevent or fix issues category.
+
+13
+00:00:52.650 --> 00:00:54.938
+The record says which, every time.
+
+14
+00:00:54.938 --> 00:00:59.860
+And where the provider gave no date,
+the kit makes none up: it says no date.

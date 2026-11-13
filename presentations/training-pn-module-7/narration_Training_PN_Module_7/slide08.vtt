@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.238
+Step five reads one payload in full:
+the Azure retirement from Module 1.
+
+2
+00:00:05.238 --> 00:00:09.199
+It's a create, keyed on Azure
+and the notice's tracking I D.
+
+3
+00:00:09.199 --> 00:00:15.100
+Its severity is P3, with a response window
+of eighty-six thousand four hundred
+
+4
+00:00:15.100 --> 00:00:17.128
+seconds, twenty-four hours,
+
+5
+00:00:17.128 --> 00:00:21.737
+so the response is due November
+tenth, 2026, a day after the run.
+
+6
+00:00:21.737 --> 00:00:24.406
+The retirement date is kept apart,
+
+7
+00:00:24.406 --> 00:00:28.313
+in the action due field:
+September thirtieth, 2027.
+
+8
+00:00:28.313 --> 00:00:29.262
+Both are right.
+
+9
+00:00:29.262 --> 00:00:31.672
+The owner picks the task up within a day,
+
+10
+00:00:31.672 --> 00:00:35.287
+and the work is due by the
+retirement date, ten months later.
+
+11
+00:00:35.287 --> 00:00:41.359
+It goes to cloud platform engineering,
+with the contingency review flag set,
+
+12
+00:00:41.359 --> 00:00:45.213
+and it supports C M three, C
+M four, C P two and S I five.
+
+13
+00:00:45.213 --> 00:00:49.153
+And the Ticket-to-Machine block
+puts it in the Human decision lane,
+
+14
+00:00:49.153 --> 00:00:53.896
+with the system owner as approver, and a
+re-read check: the next collection shows
+
+15
+00:00:53.896 --> 00:00:58.780
+the notice closed or no longer listed, or
+the named resources no longer affected.

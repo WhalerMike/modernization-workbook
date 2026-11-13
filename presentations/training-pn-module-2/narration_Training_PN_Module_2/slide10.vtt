@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.347
+Step five plans the Service Health alert
+
+2
+00:00:02.347 --> 00:00:05.050
+policy for a fictional
+production environment.
+
+3
+00:00:05.050 --> 00:00:07.000
+Two steps, both would apply.
+
+4
+00:00:07.000 --> 00:00:11.345
+A L oh one creates the policy assignment
+for the built-in definition at the
+
+5
+00:00:11.345 --> 00:00:16.188
+management group, with a system-assigned
+identity, its role and its identity scope.
+
+6
+00:00:16.188 --> 00:00:18.713
+A L oh two creates the remediation.
+
+7
+00:00:18.713 --> 00:00:25.237
+Then the plan's SHA-256, and the line
+that matters: dry run, nothing changed.
+
+8
+00:00:25.237 --> 00:00:30.201
+To apply, add apply and the approved
+hash, after the change record approves it.
+
+9
+00:00:30.201 --> 00:00:34.937
+The role I D in the fixture is
+made up; Lab 2 reads the real one.
+
+10
+00:00:34.937 --> 00:00:39.421
+Step six tries to apply the plan in
+fixture mode, with a hash of zeros,
+
+11
+00:00:39.421 --> 00:00:44.801
+and the script refuses before it even
+reads the hash: fixture mode never applies.
+
+12
+00:00:44.801 --> 00:00:49.587
+Step seven runs this chapter's
+tests: twenty-six pass, none fail.
+
+13
+00:00:49.587 --> 00:00:51.480
+Then delete the output folder.

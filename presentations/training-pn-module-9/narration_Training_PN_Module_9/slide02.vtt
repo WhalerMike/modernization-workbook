@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Why a runbook?
+
+2
+00:00:01.100 --> 00:00:05.013
+Each provider's Lab 2 proves
+one provider in isolation.
+
+3
+00:00:05.013 --> 00:00:07.958
+A deployment proves them
+together, on a schedule,
+
+4
+00:00:07.958 --> 00:00:10.388
+with a rollback someone has already run.
+
+5
+00:00:10.388 --> 00:00:15.381
+The runbook is one set of commands,
+run twice: once against test tenants,
+
+6
+00:00:15.381 --> 00:00:20.375
+accounts, tenancies and projects,
+then unchanged against production.
+
+7
+00:00:20.375 --> 00:00:22.325
+Only the settings file changes.
+
+8
+00:00:22.325 --> 00:00:26.875
+The order puts each step where it can be
+undone before the next depends on it.
+
+9
+00:00:26.875 --> 00:00:29.550
+Reads come first, one provider at a time.
+
+10
+00:00:29.550 --> 00:00:32.900
+Routing runs as a dry run
+before anything is sent.
+
+11
+00:00:32.900 --> 00:00:36.438
+The one write to a cloud, the
+Service Health alert policy,
+
+12
+00:00:36.438 --> 00:00:38.437
+comes only after the reads work.
+
+13
+00:00:38.437 --> 00:00:40.238
+And the schedule comes last.
+
+14
+00:00:40.238 --> 00:00:42.935
+In production, routing stays a dry run for
+
+15
+00:00:42.935 --> 00:00:45.712
+the first week before
+sending is turned on.
+
+16
+00:00:45.712 --> 00:00:47.524
+The order is design guidance.
+
+17
+00:00:47.524 --> 00:00:51.191
+And remember the status: the
+scripts ran only in fixture mode,
+
+18
+00:00:51.191 --> 00:00:54.564
+and every live result is what
+the code and the providers'
+
+19
+00:00:54.564 --> 00:00:57.910
+pages say should happen, not
+something anyone has seen.

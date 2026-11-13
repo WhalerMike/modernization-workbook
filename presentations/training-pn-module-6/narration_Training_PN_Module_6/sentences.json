@@ -1,0 +1,658 @@
+{
+ "1": [
+  [
+   0.05,
+   6.2,
+   "Welcome to Module 6 of the Provider Notices learning path: Google incidents and the maintenance gap."
+  ],
+  [
+   6.25,
+   6.275,
+   "This is Gate 5 of the provider notices implementation guide, with Chapter 5 of the developer workbook."
+  ],
+  [
+   12.525,
+   6.162,
+   "Google Cloud's Personalized Service Health lists the incidents relevant to a project or an organization."
+  ],
+  [
+   18.688,
+   1.238,
+   "That's all it lists."
+  ],
+  [
+   19.925,
+   2.987,
+   "So this gate is half collection and half honesty."
+  ],
+  [
+   22.913,
+   10.85,
+   "In this module you'll read a fictional project's incidents, show that only one kind can ever arrive, and watch the kit refuse an organization-level call that nobody has verified."
+  ],
+  [
+   33.763,
+   4.438,
+   "The gaps get written down with the I S S O, not papered over."
+  ],
+  [
+   38.2,
+   5.588,
+   "It takes about forty-five minutes, with a lab on fixtures and a lab in a test project."
+  ],
+  [
+   43.788,
+   5.537,
+   "The code is illustrative: tested against fixtures, not run against a live project."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.625,
+   "Why does Google Cloud need a module about a gap?"
+  ],
+  [
+   2.675,
+   1.6,
+   "Because of two facts."
+  ],
+  [
+   4.275,
+   7.775,
+   "First, Personalized Service Health's event category has one value, incident, meaning a service outage or degradation."
+  ],
+  [
+   12.05,
+   3.925,
+   "Planned maintenance isn't in it, and neither are security notices."
+  ],
+  [
+   15.975,
+   6.1,
+   "Those reach a Google Cloud project by other channels, such as the contacts set in Essential Contacts."
+  ],
+  [
+   22.075,
+   18.025,
+   "Second, Assured Workloads' supported-products page lists Personalized Service Health under twenty-five regional packages, including U S Data Boundary, but not under fed-ramp Moderate, fed-ramp High, I L 2, I L 4, I L 5, C J I S or I T A R."
+  ],
+  [
+   40.1,
+   5.013,
+   "A workload in one of those packages has no Personalized Service Health to read at all."
+  ],
+  [
+   45.112,
+   4.1,
+   "Both gaps share a danger: an empty list looks like good news."
+  ],
+  [
+   49.212,
+   6.425,
+   "So this gate collects what Google publishes, and writes down, with the I S S O, what can't arrive."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   4.8,
+   "You'll name the role and the one-time A P I enablement the reader needs."
+  ],
+  [
+   7.763,
+   4.138,
+   "You'll collect a project's incidents and read their products and locations."
+  ],
+  [
+   11.9,
+   6.275,
+   "You'll explain why Google Cloud's planned maintenance isn't in this gate, and where it reaches the project instead."
+  ],
+  [
+   18.175,
+   5.612,
+   "You'll say which Assured Workloads packages don't include Personalized Service Health, and what to record."
+  ],
+  [
+   23.788,
+   5.425,
+   "And you'll show that the kit refuses an unverified call unless you pass allow unverified."
+  ],
+  [
+   29.212,
+   10.975,
+   "Before you start, finish Module 1, on the record and the six kinds, and read the honest limits section of the provider notices chapter in Compliance Automation and Day-Two Operations."
+  ],
+  [
+   40.188,
+   4.162,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5."
+  ],
+  [
+   44.35,
+   1.113,
+   "No project."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.225,
+   "Unit 1 is the guide's Step 5."
+  ],
+  [
+   2.275,
+   2.475,
+   "The project owner does two things once."
+  ],
+  [
+   4.75,
+   7.025,
+   "Enable the Service Health A P I on the project, and grant the reader's group the Personalized Service Health Viewer role."
+  ],
+  [
+   11.775,
+   1.238,
+   "Then two steps."
+  ],
+  [
+   13.012,
+   8.287,
+   "One: cross-check the list with Google's own command, G cloud service health events list, for the project, in the global location."
+  ],
+  [
+   21.3,
+   3.237,
+   "Two: collect, with the provider set to Google."
+  ],
+  [
+   24.538,
+   6.975,
+   "For a whole organization, set the settings file's Google scope to organization, and grant the role on the organization."
+  ],
+  [
+   31.512,
+   7.975,
+   "Otherwise, grant it at the project: the viewer role on the organization, for a project read, is more read scope than the reader needs."
+  ],
+  [
+   39.487,
+   6.112,
+   "The gate validates when products and locations come from the event's impacts, and closed incidents are closed."
+  ],
+  [
+   45.6,
+   2.95,
+   "The gate owner is the Google Cloud project owner."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.75,
+   "Unit 2 is the reader."
+  ],
+  [
+   1.8,
+   7.388,
+   "Google's Event resource has the one category, a state, a detailed category, relevance, impacts and updates."
+  ],
+  [
+   9.188,
+   3.038,
+   "Here's what Google leaves to you, and what the kit adds."
+  ],
+  [
+   12.225,
+   8.975,
+   "With one category, every Google notice is an incident, and the gap is written down in the guide, the chapter and the I S S O's record."
+  ],
+  [
+   21.2,
+   6.213,
+   "Impacts come as product and location objects; they become the record's services and regions."
+  ],
+  [
+   27.413,
+   5.312,
+   "An event's description is sometimes empty, so the kit takes the latest update's description."
+  ],
+  [
+   32.725,
+   10.925,
+   "There's no field that says action is required, and the kit adds no action rule for Google: an open incident that names resources routes by the agency's own routing, in Module 7."
+  ],
+  [
+   43.65,
+   6.013,
+   "Google's A P I returns a response object and G cloud a bare list, and the kit accepts both."
+  ],
+  [
+   49.663,
+   6.787,
+   "A closed state closes the record, and the detailed category and relevance are kept as the provider's severity."
+  ],
+  [
+   56.45,
+   5.562,
+   "The kit has no separate government endpoint for Personalized Service Health; the cloud is global."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.863,
+   "Two guards make this gate honest."
+  ],
+  [
+   1.913,
+   2.175,
+   "First, the organization call."
+  ],
+  [
+   4.088,
+   4.8,
+   "Google's REST reference documents it, but the G cloud flags for it weren't read."
+  ],
+  [
+   8.887,
+   7.2,
+   "So the kit's call list marks it unverified, and the live invoker refuses to run it unless you pass allow unverified."
+  ],
+  [
+   16.087,
+   2.438,
+   "The kit doesn't run a command on a guess."
+  ],
+  [
+   18.525,
+   3.175,
+   "That's the guide's interim path for an organization."
+  ],
+  [
+   21.7,
+   1.587,
+   "Second, the gaps."
+  ],
+  [
+   23.288,
+   5.237,
+   "Every project records that Google's planned maintenance doesn't come through this A P I."
+  ],
+  [
+   28.525,
+   10.988,
+   "And any workload in an Assured Workloads fed-ramp or I L package records that it has no Personalized Service Health to read; the I S S O decides the compensating channel."
+  ],
+  [
+   39.513,
+   6.888,
+   "The guide lists the danger plainly: Google maintenance assumed covered, and a maintenance window lands with nobody told."
+  ],
+  [
+   46.4,
+   6.675,
+   "The guard is the gap itself, in the record, in the digest's provider table and in the I S S O's file."
+  ],
+  [
+   53.075,
+   5.412,
+   "Until the A P I carries maintenance, it reaches the agency by the contacts it sets."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   8.438,
+   "Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, for a fictional project, contoso example prod."
+  ],
+  [
+   9.213,
+   2.388,
+   "Nothing signs in or sends a request."
+  ],
+  [
+   11.6,
+   2.562,
+   "Step one lists what Google Cloud needs."
+  ],
+  [
+   14.162,
+   0.988,
+   "Two calls."
+  ],
+  [
+   15.15,
+   7.237,
+   "The project call needs the Personalized Service Health Viewer role on the project, for the events list permission, and it's verified."
+  ],
+  [
+   22.387,
+   4.987,
+   "The organization call needs the same role on the organization, and it isn't verified."
+  ],
+  [
+   27.375,
+   8.0,
+   "Step two collects Google Cloud from the day-one fixtures: two notices, one open, none needing action, both incidents."
+  ],
+  [
+   35.375,
+   2.15,
+   "Step three reads the records."
+  ],
+  [
+   37.525,
+   6.025,
+   "Cloud sequel connection errors in u s east four is open, with its product and its location."
+  ],
+  [
+   43.55,
+   3.75,
+   "Cloud Storage latency in u s central one is closed."
+  ],
+  [
+   47.3,
+   9.875,
+   "None needs action by Google's word, because Google has no field that says so; an open incident that names resources is routed by the agency's own rules."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.862,
+   "Step four collects the second week, as of November sixteenth."
+  ],
+  [
+   3.913,
+   3.038,
+   "The same two incidents, and now both are closed."
+  ],
+  [
+   6.95,
+   7.812,
+   "The Cloud sequel incident ended on November ninth, at thirteen hundred U T C, an hour after the first week's read saw it open."
+  ],
+  [
+   14.762,
+   4.912,
+   "That's the honest limit of a weekly read: it sees an incident after the fact."
+  ],
+  [
+   19.675,
+   8.338,
+   "The weekly read is for owning and closing notices, not for detecting incidents, which still reach the desk as calls and alerts first."
+  ],
+  [
+   28.012,
+   2.612,
+   "Step five groups both weeks by kind."
+  ],
+  [
+   30.625,
+   2.475,
+   "Four records, and every one an incident."
+  ],
+  [
+   33.1,
+   2.05,
+   "That's not the fixtures being thin."
+  ],
+  [
+   35.15,
+   3.513,
+   "It's the A P I: its category has one value."
+  ],
+  [
+   38.663,
+   9.05,
+   "Maintenance, retirements and security notices never come through this A P I, whatever the project's estate looks like, and that's the gap you write down."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.737,
+   "Step six asks the live invoker for the organization call."
+  ],
+  [
+   3.788,
+   9.175,
+   "You set the Google scope to organization, give a fictional organization number, and build a live invoker, skipping the sign-in check because nothing will run."
+  ],
+  [
+   12.963,
+   2.888,
+   "The kit refuses before G cloud starts."
+  ],
+  [
+   15.85,
+   12.238,
+   "The call isn't verified against its provider's documentation: the G cloud group for organization events is listed on the beta reference, and its exact flags weren't read; the REST call is verified."
+  ],
+  [
+   28.087,
+   2.263,
+   "Pass allow unverified to run it."
+  ],
+  [
+   30.35,
+   4.638,
+   "That's a decision someone makes on purpose, in a test project, not a default."
+  ],
+  [
+   34.987,
+   8.762,
+   "Step seven builds the project command without running it: service health events list, for the project, in the global location, as jay-son."
+  ],
+  [
+   43.75,
+   1.525,
+   "That's the verified call."
+  ],
+  [
+   45.275,
+   4.475,
+   "Step eight runs this chapter's tests: eight pass, none fail."
+  ],
+  [
+   49.75,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.35,
+   "Lab 2 reads a real test project."
+  ],
+  [
+   2.4,
+   6.325,
+   "You need a Google Cloud test project, never production, its project owner, and a Google group for the reader."
+  ],
+  [
+   8.725,
+   5.138,
+   "Enable the A P I, grant the viewer role, and sign in as the reader."
+  ],
+  [
+   13.863,
+   3.263,
+   "Then cross-check Google's own command against the collection."
+  ],
+  [
+   17.125,
+   3.962,
+   "The project may have no incidents at all, and that's a valid result."
+  ],
+  [
+   21.087,
+   4.875,
+   "Then the part that makes this gate different: record the gaps with the I S S O."
+  ],
+  [
+   25.962,
+   9.65,
+   "Whether the project is in an Assured Workloads fed-ramp or I L package, and in every case, that Google's planned maintenance doesn't come through this A P I."
+  ],
+  [
+   35.612,
+   4.537,
+   "To back it out, step four removes the role binding and deletes the run."
+  ],
+  [
+   40.15,
+   4.888,
+   "It leaves the A P I enabled, unless the project owner decides otherwise."
+  ],
+  [
+   45.038,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   47.188,
+   3.188,
+   "The workbook's Chapter 5 has the exact commands."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   14.963,
+   "Gate 5 supports nist special publication eight hundred fifty-three S A nine, part c, monitoring external service providers on an ongoing basis, and S I five, part a, receiving security alerts and advisories."
+  ],
+  [
+   16.4,
+   9.0,
+   "And recording the gaps supports R A three, part f: updating the risk assessment when there are significant changes to the environment of operation."
+  ],
+  [
+   25.4,
+   18.9,
+   "The evidence is the permission list and the role binding; the raw Google response, the notices and the manifest; the refusal of a call nobody verified; and the gaps, no maintenance through the A P I and no Personalized Service Health in the fed-ramp or I L packages, written down with the I S S O."
+  ],
+  [
+   44.3,
+   2.962,
+   "The gate's output is evidence for these controls."
+  ],
+  [
+   47.263,
+   6.062,
+   "Your organization still sets their parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   53.325,
+   9.188,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers; the agency lines its evidence up with them, and doesn't report them itself."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.087,
+   "First: why does Gate 5 cover incidents only?"
+  ],
+  [
+   5.112,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   6.338,
+   5.95,
+   "The A P I's event category has one value, incident, and planned maintenance isn't in it."
+  ],
+  [
+   12.287,
+   3.475,
+   "It isn't the kit filtering anything, and it isn't the role."
+  ],
+  [
+   15.762,
+   5.075,
+   "Second: a workload is in an Assured Workloads fed-ramp Moderate package."
+  ],
+  [
+   20.837,
+   1.475,
+   "What does the agency do?"
+  ],
+  [
+   22.312,
+   12.5,
+   "The answer is b. Record the gap with the I S S O. Personalized Service Health isn't among that package's supported products, so the project has nothing to read, and relies on the provider's other channels."
+  ],
+  [
+   34.812,
+   5.562,
+   "Answer c is the trap this module is about: an empty list doesn't mean no incidents."
+  ],
+  [
+   40.375,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   10.2,
+   "You read the reader's role, collected two incidents and then saw both close, showed that only one kind ever arrives, and watched the kit refuse a call nobody verified."
+  ],
+  [
+   11.075,
+   19.062,
+   "The evidence an I S S O keeps for Gate 5 is the raw Google response, the notices as jay-son and as a spreadsheet file, and the manifest, all dated; the role binding; and the written gaps: no planned maintenance through the A P I, and any workload in a package that doesn't include Personalized Service Health."
+  ],
+  [
+   30.137,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   33.212,
+   2.188,
+   "That finishes the five providers."
+  ],
+  [
+   35.4,
+   3.125,
+   "Next is Module 7: routing to owners."
+  ],
+  [
+   38.525,
+   10.162,
+   "It takes the notices every provider produced, and gives the ones that need action an owner, a severity and a due date, as typed tasks in the service desk's front door."
+  ]
+ ]
+}

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.675
+Why does Google Cloud need
+a module about a gap?
+
+2
+00:00:02.675 --> 00:00:04.275
+Because of two facts.
+
+3
+00:00:04.275 --> 00:00:08.684
+First, Personalized Service Health's
+event category has one value,
+
+4
+00:00:08.684 --> 00:00:12.050
+incident, meaning a service
+outage or degradation.
+
+5
+00:00:12.050 --> 00:00:15.975
+Planned maintenance isn't in it,
+and neither are security notices.
+
+6
+00:00:15.975 --> 00:00:19.209
+Those reach a Google Cloud
+project by other channels,
+
+7
+00:00:19.209 --> 00:00:22.075
+such as the contacts set
+in Essential Contacts.
+
+8
+00:00:22.075 --> 00:00:29.265
+Second, Assured Workloads' supported-products
+page lists Personalized Service Health
+
+9
+00:00:29.265 --> 00:00:35.175
+under twenty-five regional packages,
+including US Data Boundary, but not
+
+10
+00:00:35.175 --> 00:00:40.100
+under FedRAMP Moderate, FedRAMP High, I
+L 2, I L 4, I L 5, C J I S or I T A R.
+
+11
+00:00:40.100 --> 00:00:42.535
+A workload in one of those packages has no
+
+12
+00:00:42.535 --> 00:00:45.113
+Personalized Service
+Health to read at all.
+
+13
+00:00:45.113 --> 00:00:49.212
+Both gaps share a danger: an
+empty list looks like good news.
+
+14
+00:00:49.212 --> 00:00:52.382
+So this gate collects
+what Google publishes,
+
+15
+00:00:52.382 --> 00:00:55.700
+and writes down, with the
+ISSO, what can't arrive.

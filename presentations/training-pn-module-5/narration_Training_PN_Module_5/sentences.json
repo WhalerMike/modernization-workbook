@@ -1,0 +1,663 @@
+{
+ "1": [
+  [
+   0.05,
+   6.2,
+   "Welcome to Module 5 of the Provider Notices learning path: AWS Health and the support plan."
+  ],
+  [
+   6.25,
+   6.475,
+   "This is Gate 4 of the provider notices implementation guide, with Chapter 4 of the developer workbook."
+  ],
+  [
+   12.725,
+   7.525,
+   "AWS Health publishes issues, scheduled changes and account notifications for each account, with the resources they affect."
+  ],
+  [
+   20.25,
+   9.45,
+   "The A P I is the scheduled, recorded read of them, but it comes with a condition the other providers don't have: it needs a qualifying AWS Support plan."
+  ],
+  [
+   29.7,
+   14.575,
+   "In this module you'll read a fictional account's events, see which ones AWS marked action required and which the kit's rule marked, build the GovCloud request without sending it, and watch the kit refuse eleven events in one details call."
+  ],
+  [
+   44.275,
+   5.25,
+   "It takes about fifty minutes, with a lab on fixtures and a lab in a test account."
+  ],
+  [
+   49.525,
+   5.463,
+   "The code is illustrative: tested against fixtures, not run against a lyve account."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.2,
+   "Why does AWS need its own module?"
+  ],
+  [
+   2.25,
+   9.963,
+   "Today, AWS sends account email to the root user's address, plus up to three alternate contacts, one each for billing, operations and security."
+  ],
+  [
+   12.213,
+   4.338,
+   "The AWS Health dashboard keeps events for up to ninety days."
+  ],
+  [
+   16.55,
+   5.263,
+   "So the notices reach whoever opened the account, or a page nobody opens on a schedule."
+  ],
+  [
+   21.812,
+   2.987,
+   "The A P I fixes that, with a condition."
+  ],
+  [
+   24.8,
+   7.987,
+   "It needs a qualifying AWS Support plan, and without one it answers with a subscription required exception, and nothing is read."
+  ],
+  [
+   32.788,
+   3.087,
+   "Then the dashboard and its email are the only path."
+  ],
+  [
+   35.875,
+   3.987,
+   "And AWS's own pages don't agree on which plans qualify."
+  ],
+  [
+   39.862,
+   12.2,
+   "The AWS Health concepts page names Business Support plus, Enterprise Support or Unified Operations; the A P I reference and the GovCloud page name the older Business and Enterprise plans."
+  ],
+  [
+   52.062,
+   7.763,
+   "So the guide cites all three, and tells you to check the account's plan against the current pages, and to confirm it with AWS Support."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   8.363,
+   "You'll write the reader's policy with exactly three read actions, and say why not the AWS Health full access policy, or a wildcard."
+  ],
+  [
+   11.325,
+   7.438,
+   "You'll explain the support-plan requirement, the error you get without one, and why to check the plan against AWS's current pages."
+  ],
+  [
+   18.762,
+   8.375,
+   "You'll map AWS Health event categories to the record's kinds, keeping AWS's own actionability field apart from the kit's rule."
+  ],
+  [
+   27.137,
+   7.287,
+   "And you'll name each partition's Health endpoint region, and say why GovCloud relies on the A P I rather than EventBridge."
+  ],
+  [
+   34.425,
+   8.45,
+   "Before you start, finish Module 1, on the record and its action basis, and read the AWS column of the guide's five providers compared."
+  ],
+  [
+   42.875,
+   4.162,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5."
+  ],
+  [
+   47.038,
+   0.975,
+   "No account."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.225,
+   "Unit 1 is the guide's Step 4."
+  ],
+  [
+   2.275,
+   2.325,
+   "The prerequisite is the support plan."
+  ],
+  [
+   4.6,
+   1.413,
+   "Then three steps."
+  ],
+  [
+   6.013,
+   2.25,
+   "One: create the read policy."
+  ],
+  [
+   8.262,
+   8.35,
+   "It's a customer managed policy with exactly three actions: describe events, describe event details and describe affected entities."
+  ],
+  [
+   16.613,
+   9.55,
+   "AWS publishes no read-only managed policy for Health, and the AWS Health full access policy includes writes, so the reader never holds it."
+  ],
+  [
+   26.163,
+   9.125,
+   "AWS's own examples grant describe with a wildcard, but a wildcard grows as AWS adds actions, so the kit names the three it calls."
+  ],
+  [
+   35.288,
+   2.5,
+   "Two: cross-check from the Health endpoint."
+  ],
+  [
+   37.788,
+   5.3,
+   "Commercial accounts use u s east one; GovCloud, u s gov west one."
+  ],
+  [
+   43.087,
+   1.5,
+   "Three: collect."
+  ],
+  [
+   44.587,
+   6.55,
+   "The kit reads open and upcoming events, then their details and affected entities, ten events at a time."
+  ],
+  [
+   51.138,
+   7.425,
+   "The gate validates when the instance retirement comes out as a retirement, due at its start, with the instance as its resource."
+  ],
+  [
+   58.562,
+   2.712,
+   "The gate owner is the AWS account owner."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.013,
+   "Unit 2 is the event reader."
+  ],
+  [
+   2.062,
+   6.987,
+   "AWS Health's event type categories are issue, scheduled change, account notification and investigation."
+  ],
+  [
+   9.05,
+   3.75,
+   "None of them says retirement or security, so the kit maps them."
+  ],
+  [
+   12.8,
+   2.987,
+   "An issue or an investigation is an incident."
+  ],
+  [
+   15.787,
+   8.338,
+   "A scheduled change whose event type code names a retirement, a lifecycle event, a deprecation or an end of support is a retirement."
+  ],
+  [
+   24.125,
+   1.238,
+   "That's the kit's rule."
+  ],
+  [
+   25.363,
+   2.6,
+   "Any other scheduled change is maintenance."
+  ],
+  [
+   27.962,
+   7.037,
+   "An account notification with the security persona is security, and any other account notification is an advisory."
+  ],
+  [
+   35.0,
+   0.925,
+   "Then action."
+  ],
+  [
+   35.925,
+   11.938,
+   "AWS's own actionability field, when it says action required, makes the record action required, with an action basis that starts with provider, and a scheduled change's start time is its due date."
+  ],
+  [
+   47.862,
+   7.225,
+   "A retirement without AWS's flag is still action required, by the kit's rule, due at its start, and labeled rule."
+  ],
+  [
+   55.087,
+   8.3,
+   "And AWS gives times as epoch seconds; the record holds them in U T C, I S O 8601."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.975,
+   "Two more things the reader handles."
+  ],
+  [
+   2.025,
+   1.337,
+   "First, batching."
+  ],
+  [
+   3.362,
+   7.662,
+   "An event list without its description or resources can't be routed, and descriptions and affected entities are separate calls."
+  ],
+  [
+   11.025,
+   4.112,
+   "Describe event details takes one to ten event A R Ns."
+  ],
+  [
+   15.137,
+   7.737,
+   "So the kit asks ten at a time, and refuses eleven before it calls anything, rather than have the A P I refuse it mid-run."
+  ],
+  [
+   22.875,
+   1.675,
+   "Second, partitions."
+  ],
+  [
+   24.55,
+   11.037,
+   "The settings name the partition, and the region comes from it: u s east one for commercial accounts, and u s gov west one, a single regional endpoint, in AWS GovCloud."
+  ],
+  [
+   35.587,
+   9.363,
+   "A GovCloud account read from u s east one fails, or worse, reads nothing, so the kit checks once that the caller's A R N is in the settings' partition."
+  ],
+  [
+   44.95,
+   7.688,
+   "In GovCloud there's one more reason to use the A P I: EventBridge there doesn't send public events from the Service Health view."
+  ],
+  [
+   52.638,
+   6.825,
+   "Elsewhere, the interim path is an EventBridge rule on AWS Health events, which the kit doesn't build."
+  ],
+  [
+   59.462,
+   3.688,
+   "And with no support plan, it's the dashboard and its email."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.25,
+   "Lab 1 runs in the provider notices folder of the examples, in PowerShell 7."
+  ],
+  [
+   6.025,
+   9.537,
+   "The account is AWS's documentation account, one one one one two two two two three three three three, in the commercial partition."
+  ],
+  [
+   15.562,
+   2.388,
+   "Nothing signs in or sends a request."
+  ],
+  [
+   17.95,
+   2.575,
+   "Step one lists what AWS needs."
+  ],
+  [
+   20.525,
+   10.875,
+   "Three calls: describe events, describe event details and describe affected entities, each with its one read action, and each verified against AWS's documentation."
+  ],
+  [
+   31.4,
+   2.312,
+   "Three read actions, one per call."
+  ],
+  [
+   33.712,
+   4.938,
+   "That's the whole policy, and it's what you'd show an assessor who asks what the reader may do."
+  ],
+  [
+   38.65,
+   3.45,
+   "Step two shows each partition's Health endpoint region."
+  ],
+  [
+   42.1,
+   7.388,
+   "The commercial partition reads from u s east one, with A R Ns that start A R N colon A W S."
+  ],
+  [
+   49.487,
+   9.012,
+   "The GovCloud partition reads from u s gov west one, with A R Ns that start A R N colon A W S dash U S dash gov."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.838,
+   "Step three collects AWS from the day-one fixtures: five events, four open, three needing action."
+  ],
+  [
+   6.888,
+   5.287,
+   "One incident, one maintenance window, two retirements and one security notice."
+  ],
+  [
+   12.175,
+   2.0,
+   "Step four reads the records."
+  ],
+  [
+   14.175,
+   11.213,
+   "The E C 2 instance retirement is due December first, 2026, and the Lambda planned lifecycle event January fifteenth, 2027, each with its resource."
+  ],
+  [
+   25.387,
+   3.275,
+   "The R D S maintenance is scheduled on a database."
+  ],
+  [
+   28.663,
+   3.987,
+   "The I A M security notification needs action, with no date."
+  ],
+  [
+   32.65,
+   2.925,
+   "And the S 3 operational issue is closed."
+  ],
+  [
+   35.575,
+   3.138,
+   "Step five asks who said each one needs action."
+  ],
+  [
+   38.712,
+   7.85,
+   "AWS did, twice, through its actionability field: the E C 2 retirement and the I A M notification."
+  ],
+  [
+   46.562,
+   3.85,
+   "The R D S maintenance and the S 3 issue need none."
+  ],
+  [
+   50.413,
+   8.088,
+   "And the Lambda event is action required by the kit's rule: a scheduled change whose event type code names a retirement, due at its start time."
+  ],
+  [
+   58.5,
+   4.55,
+   "The record says rule, so nobody mistakes it for AWS's own flag."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.525,
+   "Step six builds the GovCloud request without sending it."
+  ],
+  [
+   3.575,
+   6.825,
+   "You read the lab settings, change the partition to A W S U S gov, and ask the kit for the live command."
+  ],
+  [
+   10.4,
+   6.438,
+   "It's describe events in u s gov west one, filtered to open and upcoming events, as jay-son."
+  ],
+  [
+   16.837,
+   2.925,
+   "The region came from the partition; you never typed it."
+  ],
+  [
+   19.762,
+   4.2,
+   "Step seven asks for the details of eleven events in one call."
+  ],
+  [
+   23.962,
+   7.675,
+   "The kit refuses before anything runs: describe event details takes one to ten event A R Ns, and it got eleven."
+  ],
+  [
+   31.637,
+   7.938,
+   "In a lyve run the kit never asks for more than ten, so this is the guard that keeps a coding mistake from reaching AWS mid-run."
+  ],
+  [
+   39.575,
+   8.925,
+   "Step eight runs this chapter's tests, for the AWS Health block and the AWS rows of the lyve tests: eleven pass, none fail."
+  ],
+  [
+   48.5,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.2,
+   "Lab 2 reads a real test account."
+  ],
+  [
+   2.25,
+   11.5,
+   "You need an AWS test account, never production, with a qualifying AWS Support plan, an I A M administrator, and an I A M role and C L I profile for the reader."
+  ],
+  [
+   13.75,
+   7.2,
+   "Step one writes the read policy with exactly the three actions, creates it, and attaches it to the reader's role."
+  ],
+  [
+   20.95,
+   8.0,
+   "Step two checks who you're signed in as: the A R N must start with A R N colon A W S, the partition the settings name."
+  ],
+  [
+   28.95,
+   1.725,
+   "Step three cross-checks."
+  ],
+  [
+   30.675,
+   7.138,
+   "Count AWS's own open and upcoming events from u s east one, then collect, and the counts should agree."
+  ],
+  [
+   37.812,
+   16.613,
+   "If the account has no qualifying support plan, the subscription required exception is the expected result, and that's a gap to record with the I S S O. Step four backs it out: detach and delete the policy, and delete the run, which names the account's resources."
+  ],
+  [
+   54.425,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   56.575,
+   3.175,
+   "The workbook's Chapter 4 has the exact commands."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   14.838,
+   "Gate 4 supports nist special publication eight hundred fifty-three S A nine, part c, monitoring external service providers on an ongoing basis, and S I five, part a, receiving security alerts and advisories."
+  ],
+  [
+   16.275,
+   11.825,
+   "For events AWS marks action required, it also supports S I five, part d: implementing directives in the established time frames, through the task Module 7 routes."
+  ],
+  [
+   28.1,
+   18.15,
+   "The evidence is the permission list and the policy document with its three read actions; the raw AWS response, the notices and the manifest, read on the partition's own endpoint; and the events AWS marked action required, with AWS's due date, and the kit's rule labeled as the kit's."
+  ],
+  [
+   46.25,
+   2.962,
+   "The gate's output is evidence for these controls."
+  ],
+  [
+   49.212,
+   6.062,
+   "Your organization still sets their parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   55.275,
+   9.188,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers; the agency lines its evidence up with them, and doesn't report them itself."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   6.737,
+   "First: what does the AWS Health A P I answer for an account without a qualifying AWS Support plan?"
+  ],
+  [
+   8.762,
+   3.413,
+   "The answer is b, a subscription required exception."
+  ],
+  [
+   12.175,
+   4.225,
+   "Not an empty list: nothing is read at all, and the error says why."
+  ],
+  [
+   16.4,
+   5.6,
+   "Check the account's plan against AWS's current pages, because they name the plans differently."
+  ],
+  [
+   22.0,
+   3.837,
+   "Second: the Lambda lifecycle event is action required."
+  ],
+  [
+   25.837,
+   0.912,
+   "Who said so?"
+  ],
+  [
+   26.75,
+   2.263,
+   "The answer is b, the kit's rule."
+  ],
+  [
+   29.012,
+   5.562,
+   "A scheduled change whose event type code names a retirement is a retirement, due at its start."
+  ],
+  [
+   34.575,
+   7.487,
+   "AWS didn't set the actionability field on that event, so the record's action basis begins with rule, and states it."
+  ],
+  [
+   42.062,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   14.175,
+   "You read the reader's three actions, saw each partition's endpoint, collected five events, told AWS's actionability from the kit's rule, built the GovCloud request, and watched the kit refuse eleven A R Ns in one call."
+  ],
+  [
+   15.05,
+   16.625,
+   "The evidence an I S S O keeps for Gate 4 is the raw AWS response, the notices as jay-son and as a spreadsheet file, and the manifest, all dated; the policy document; and a record of the account's support plan, checked against AWS's current pages."
+  ],
+  [
+   31.675,
+   4.088,
+   "An account without one is a gap to record with the I S S O."
+  ],
+  [
+   35.763,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   38.837,
+   4.3,
+   "Next is Module 6: Google incidents and the maintenance gap."
+  ],
+  [
+   43.138,
+   7.4,
+   "Google Cloud's notices come in only one kind, and that module is about writing down honestly what doesn't arrive."
+  ]
+ ]
+}

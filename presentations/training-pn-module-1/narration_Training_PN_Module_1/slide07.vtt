@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.493
+Unit 2 is the answer: one record
+for every provider's notice,
+
+2
+00:00:04.493 --> 00:00:10.325
+called f m p provider notice, version
+one, defined by a JSON schema in the kit.
+
+3
+00:00:10.325 --> 00:00:13.862
+The notice I D is the provider
+and the provider's own I D,
+
+4
+00:00:13.862 --> 00:00:16.675
+and it's the key the
+router de-duplicates on.
+
+5
+00:00:16.675 --> 00:00:20.787
+The kind is one of the six, and
+the status is open or closed.
+
+6
+00:00:20.787 --> 00:00:24.210
+The window is the impact
+window, always in U T C.
+
+7
+00:00:24.210 --> 00:00:28.650
+Services, regions and resources
+are what the notice names.
+
+8
+00:00:28.650 --> 00:00:33.060
+Then three fields that matter
+most: whether action is required,
+
+9
+00:00:33.060 --> 00:00:36.538
+by when, and the action basis,
+which says who said so.
+
+10
+00:00:36.538 --> 00:00:39.831
+Either the provider said it,
+in a field the record names,
+
+11
+00:00:39.831 --> 00:00:43.563
+or a rule of the kit's inferred
+it, and the record states the rule.
+
+12
+00:00:43.563 --> 00:00:46.612
+First seen is when the
+kit first read the notice.
+
+13
+00:00:46.612 --> 00:00:49.892
+And the fingerprint is
+a SHA-256 of the record
+
+14
+00:00:49.892 --> 00:00:53.349
+without first seen and
+the fingerprint itself.
+
+15
+00:00:53.349 --> 00:00:55.834
+So a provider's edit
+changes the fingerprint,
+
+16
+00:00:55.834 --> 00:00:58.788
+and reading the same notice
+again a week later doesn't.
+
+17
+00:00:58.788 --> 00:01:02.620
+That's how the router tells a changed
+notice from one it has already seen.
