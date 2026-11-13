@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.661
+The federal requirement, from NIST special
+
+2
+00:00:02.661 --> 00:00:05.925
+publication eight hundred
+fifty-three, revision five.
+
+3
+00:00:05.925 --> 00:00:11.841
+Internet Access supports S C seven, its
+enhancement five, S I three and S I four:
+
+4
+00:00:11.841 --> 00:00:17.288
+web access filtered by identity-aware
+policy, with bypasses governed.
+
+5
+00:00:17.288 --> 00:00:22.269
+The evidence is the filtering policy,
+profile and Conditional Access exports,
+
+6
+00:00:22.269 --> 00:00:25.488
+the blocked-category test,
+and the bypass register.
+
+7
+00:00:25.488 --> 00:00:31.154
+T L S inspection supports S C eight, S
+C twelve, S C seventeen and S I four:
+
+8
+00:00:31.154 --> 00:00:34.797
+encrypted web traffic inspected within an
+
+9
+00:00:34.797 --> 00:00:38.338
+approved privacy scope,
+with a governed C A.
+
+10
+00:00:38.338 --> 00:00:43.630
+The evidence is the certificate and chain,
+the trust profile's deployment status,
+
+11
+00:00:43.630 --> 00:00:47.026
+the policy export, the issuer
+check, the failure rate,
+
+12
+00:00:47.026 --> 00:00:49.712
+the privacy approval and the user notice.
+
+13
+00:00:49.712 --> 00:00:54.834
+The program's mapping lines Step 5 up with
+tick three point oh's Remote User Pattern
+
+14
+00:00:54.834 --> 00:00:57.169
+three, which CISA calls the riskiest,
+
+15
+00:00:57.169 --> 00:01:01.237
+and Step 9 with tick's web policy
+enforcement point capabilities.
+
+16
+00:01:01.237 --> 00:01:05.090
+The evidence supports the
+controls; the assessor decides.

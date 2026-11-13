@@ -1534,7 +1534,9 @@ pages:
   coverage: cited
   note: Global Secure Access and Entra Suite deployment guidance; new content if the agency licenses it
   cited_by:
+  - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/architecture/gsa-deployment-guide-private-access.md
   url: https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-private-access
   title: Microsoft Global Secure Access Deployment Guide for Microsoft Entra Private Access
@@ -5565,8 +5567,10 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/concept-universal-conditional-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-universal-conditional-access
   title: Learn about Universal Conditional Access Through Global Secure Access
@@ -5627,8 +5631,10 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-access-audit-logs.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-access-audit-logs
   title: How to access Global Secure Access audit logs (preview)
@@ -5906,8 +5912,10 @@ pages:
   coverage: cited
   note: Private Access per-app segmentation; workbook names Private Access only as the Kerberos bridge
   cited_by:
+  - data/source-register.json
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-configure-quick-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-quick-access
   title: How to configure Quick Access for Global Secure Access
@@ -6289,7 +6297,9 @@ pages:
   coverage: cited
   note: Global Secure Access operations (runbooks, health checks, roles, break-glass, backup and recovery scripts); fits Book 15
   cited_by:
+  - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-operate-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access
   title: Operate Microsoft Entra Private Access
@@ -6456,10 +6466,12 @@ pages:
   coverage: cited
   note: Private Access features (DNS, local access, sign-in frequency, PIM, Conditional Access, SSH)
   cited_by:
+  - data/source-register.json
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-transport-layer-security-settings-managed-certificate.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security-settings-managed-certificate
   title: Configure TLS inspection with a Microsoft-managed certificate
@@ -7362,8 +7374,10 @@ pages:
   workbook:
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   cited_by:
+  - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/tutorial-internet-access-url-filtering.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-url-filtering
   title: 'Tutorial: Configure URL Filtering and Custom Block Pages'
@@ -7409,7 +7423,9 @@ pages:
   coverage: cited
   note: Traffic forwarding profile configuration
   cited_by:
+  - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/reference/source-register.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-introduction.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-introduction
   title: 'Tutorial: Get started with Microsoft traffic labs'

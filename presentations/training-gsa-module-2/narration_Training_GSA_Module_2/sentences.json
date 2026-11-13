@@ -1,0 +1,503 @@
+{
+ "1": [
+  [
+   0.05,
+   7.425,
+   "Welcome to Module 2 of Global Secure Access as the Identity-Aware Network: the client and Microsoft traffic."
+  ],
+  [
+   7.475,
+   12.988,
+   "Everything after this module depends on two things: a client on every managed Windows device, and the Microsoft traffic profile carrying that device's Microsoft three sixty-five and Entra I D traffic."
+  ],
+  [
+   20.462,
+   5.862,
+   "This module covers Steps 3 and 4 of the Global Secure Access implementation guide."
+  ],
+  [
+   26.325,
+   4.237,
+   "It takes about forty-five minutes, plus a lab in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   8.662,
+   "The client goes on every managed Windows device, deployed by Intune, and opens a tunnel to the service edge after the user signs in to Entra."
+  ],
+  [
+   9.863,
+   5.1,
+   "How many devices actually carry it is the first metric every later step leans on."
+  ],
+  [
+   14.963,
+   12.213,
+   "The Microsoft traffic profile is what makes the real source address visible to Entra I D, and it is the prerequisite for the compliant network check and universal tenant restrictions, which come in Module 3."
+  ],
+  [
+   27.175,
+   11.662,
+   "So in this module you package the client the way Learn does, scope the profile to a pilot group, turn on source I P restoration, and measure how much of the pilot's traffic the service actually carries."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   5.287,
+   "You'll name the client's platforms and prerequisites, and the configurations it doesn't support."
+  ],
+  [
+   8.25,
+   5.9,
+   "You'll package it as a Win32 app with Learn's install command, return codes and detection rule."
+  ],
+  [
+   14.15,
+   8.35,
+   "You'll explain why D N S over H T T P S is turned off in browsers, and why the hardening remediation waits for ring two."
+  ],
+  [
+   22.5,
+   5.662,
+   "You'll enable the Microsoft traffic profile for a pilot group, with source I P restoration."
+  ],
+  [
+   28.163,
+   4.375,
+   "And you'll compute client coverage, and the share of sign-ins the service carries."
+  ],
+  [
+   32.538,
+   8.075,
+   "You need Module 1, with the telemetry on, and a skim of Devices and Endpoints, chapter four, for the Win32 app model."
+  ],
+  [
+   40.612,
+   3.163,
+   "The lab runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.212,
+   "Unit 1 is where the client runs."
+  ],
+  [
+   2.263,
+   16.3,
+   "Learn's client page: Windows ten L T S C 2021 or later, Windows eleven, and Windows eleven on Arm, which has a separate installer; Azure Virtual Desktop single-session and Windows three sixty-five, but not A V D multi-session."
+  ],
+  [
+   18.562,
+   5.513,
+   "It can't be installed on a machine that hosts virtual machines with a Hyper-V external switch."
+  ],
+  [
+   24.075,
+   7.85,
+   "The device must be joined, hybrid joined or registered in the tenant, and registered devices carry only Private Access."
+  ],
+  [
+   31.925,
+   12.412,
+   "The client tunnels I P version four only, and it doesn't support secure D N S, D N S over T C P from browsers' built-in resolvers, or Group Policy N R P T rules."
+  ],
+  [
+   44.337,
+   9.3,
+   "Like the rest of the service, it's available in G C C. Hosts it can't run on go on the exception list, each with an owner and a review date."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.025,
+   "Unit 2 packages the client."
+  ],
+  [
+   2.075,
+   9.113,
+   "Download it from the Global Secure Access admin center, put it beside Learn's installation script, and wrap both with the Win32 Content Prep Tool."
+  ],
+  [
+   11.188,
+   8.05,
+   "Learn's script sets I P version four preferred, runs the installer quietly, and returns thirty ten when a restart is needed."
+  ],
+  [
+   19.238,
+   4.4,
+   "Then create the Win32 app in Intune with Learn's values."
+  ],
+  [
+   23.637,
+   3.1,
+   "The install command runs the script through PowerShell."
+  ],
+  [
+   26.738,
+   5.575,
+   "The uninstall command runs the client with uninstall, quiet and no-restart switches."
+  ],
+  [
+   32.312,
+   1.837,
+   "Install behavior is System."
+  ],
+  [
+   34.15,
+   6.675,
+   "The return codes are zero for success, thirty ten for a soft reboot, and sixteen eighteen for retry."
+  ],
+  [
+   40.825,
+   4.925,
+   "The detection rule is the client's file, by version, at least the packaged version."
+  ],
+  [
+   45.75,
+   5.55,
+   "And the assignment is Required, to the pilot group, with the restart grace period enabled."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.738,
+   "Three more client decisions."
+  ],
+  [
+   1.788,
+   3.962,
+   "First, D N S over H T T P S."
+  ],
+  [
+   5.75,
+   13.287,
+   "The client doesn't support secure D N S, so an Intune settings catalog profile sets Control the mode of D N S over H T T P S to Disabled, in Edge and Chrome, assigned to the same group."
+  ],
+  [
+   19.038,
+   1.575,
+   "Second, hardening."
+  ],
+  [
+   20.613,
+   6.338,
+   "Learn's remediation scripts can hide the disable and sign-out buttons and restrict non-privileged users."
+  ],
+  [
+   26.95,
+   10.262,
+   "Learn's advice is to let users run unrestricted first and confirm nobody needs to disable the client, for a website or a parallel V P N, before restricting."
+  ],
+  [
+   37.212,
+   4.25,
+   "So the guide deploys the remediation from ring two, not in the pilot."
+  ],
+  [
+   41.462,
+   9.25,
+   "Third, upgrades, in rings: a new app for each new version, assigned to a small group, widened, and the old app deleted last."
+  ],
+  [
+   50.712,
+   2.475,
+   "Rolling back re-assigns the previous app."
+  ],
+  [
+   53.188,
+   6.362,
+   "And don't disable QUIC in browsers for this; Step 5 handles QUIC, in Module 5."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.013,
+   "Unit 3 is the Microsoft traffic profile."
+  ],
+  [
+   3.062,
+   9.125,
+   "It acquires Microsoft three sixty-five and Entra I D traffic, and only this profile can; the Internet Access profile never does."
+  ],
+  [
+   12.188,
+   5.812,
+   "Enable it with Learn's Graph request, filtered on the m three sixty-five traffic type."
+  ],
+  [
+   18.0,
+   9.512,
+   "Then assign the pilot group in the admin center, under traffic forwarding; the pages the guide read give no Graph request for the assignment, so it's a portal step."
+  ],
+  [
+   27.512,
+   1.387,
+   "Then set signaling."
+  ],
+  [
+   28.9,
+   5.625,
+   "Signaling carries source I P restoration, so Entra sees the user's real address."
+  ],
+  [
+   34.525,
+   7.775,
+   "It's on by default only for tenants that onboarded after June 2025, so the guide sets it explicitly and records the state."
+  ],
+  [
+   42.3,
+   3.062,
+   "It's also the setting the compliant network check needs."
+  ],
+  [
+   45.362,
+   11.688,
+   "And Learn's caution: once Conditional Access policies depend on I P locations or the compliant network, turning signaling off can block users, so those policies come out of enforcement first."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.3,
+   "How do you know it works?"
+  ],
+  [
+   1.35,
+   9.162,
+   "The Microsoft traffic profile has no report-only mode, so the pilot group is the audit phase, read through the sign-in query for five business days."
+  ],
+  [
+   10.512,
+   1.1,
+   "Three measures."
+  ],
+  [
+   11.613,
+   11.475,
+   "Client coverage: the device usage summary's active device count, divided by Intune's count of in-scope Windows devices; the guide's starting target is ninety-eight percent after ring three."
+  ],
+  [
+   23.087,
+   9.575,
+   "Sign-ins through the service: the share of sign-ins marked as through Global Secure Access, for in-scope users; the starting target is ninety-five percent."
+  ],
+  [
+   32.663,
+   9.45,
+   "And source I P restoration, by Learn's deployment guide test: a SharePoint sign-in shows the same I P address with the client running and with it disabled."
+  ],
+  [
+   42.112,
+   4.537,
+   "The rollback is simple: remove the ring's group from the profile's assignment."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.825,
+   "The lab runs in a test tenant, never production, and the authors haven't run it."
+  ],
+  [
+   4.875,
+   12.3,
+   "You need Module 1's lab done, one Windows eleven test device joined to Entra I D, enrolled in Intune and in the pilot group, the client and Learn's script, and the Win32 Content Prep Tool."
+  ],
+  [
+   17.175,
+   3.138,
+   "Step one packages the client in Command Prompt."
+  ],
+  [
+   20.312,
+   9.95,
+   "Steps two and three are in Intune: the Win32 app with Learn's values, and the D N S over H T T P S profile; no hardening yet."
+  ],
+  [
+   30.262,
+   12.338,
+   "Step four checks the pilot device: the file version should be the packaged version or later, Disabled Components should read hex twenty, I P version four preferred, and the four hardening values aren't set yet."
+  ],
+  [
+   42.6,
+   4.688,
+   "Open the client's health check, keep the export, and the tray must read Connected."
+  ],
+  [
+   47.288,
+   5.638,
+   "Step five asks Graph for the device usage summary, which is the numerator of client coverage."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.812,
+   "Step six finds the Microsoft traffic profile with Learn's filtered request and enables it."
+  ],
+  [
+   5.862,
+   3.862,
+   "This writes to the test tenant, and Module 6 rolls it back."
+  ],
+  [
+   9.725,
+   5.513,
+   "Step seven assigns the pilot group in the admin center, as an Application Administrator."
+  ],
+  [
+   15.238,
+   6.388,
+   "Step eight turns on signaling and records the setting to a file; signaling status should read enabled."
+  ],
+  [
+   21.625,
+   2.025,
+   "Step nine is the validation."
+  ],
+  [
+   23.65,
+   8.45,
+   "On the pilot device, sign in to SharePoint with the client running, then disable the client from the tray and sign in again in a new browser session."
+  ],
+  [
+   32.1,
+   5.013,
+   "With source I P restoration, the two sign-ins show the same I P address."
+  ],
+  [
+   37.112,
+   1.425,
+   "Re-enable the client."
+  ],
+  [
+   38.538,
+   8.1,
+   "Then, in the workspace, run the guide's sign-in query: P C T through G S A is the share of sign-ins the service carried."
+  ],
+  [
+   46.638,
+   2.775,
+   "Run Module 1's freshness query again too."
+  ],
+  [
+   49.413,
+   3.987,
+   "Keep the profile and signaling on; Module 3 needs them."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.875,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   5.925,
+   8.925,
+   "The client supports C M six, C M seven and S I four: managed devices carry the client and can't silently turn it off."
+  ],
+  [
+   14.85,
+   7.138,
+   "The evidence is the Intune app's assignment and detection rule, the remediation results, and the device usage summary."
+  ],
+  [
+   21.988,
+   12.688,
+   "The Microsoft traffic profile supports A C seventeen, A U three and S I four: Microsoft three sixty-five and Entra traffic acquired, and sign-ins carrying the real source I P."
+  ],
+  [
+   34.675,
+   6.537,
+   "The evidence is the profile export and its assignments, the signaling GET, and the sign-in query result."
+  ],
+  [
+   41.212,
+   9.0,
+   "Each row lines up with fed-ramp twenty X indicators, and the program's mapping lines Step 4 up with tick three point oh's Remote User Pattern two."
+  ],
+  [
+   50.212,
+   3.8,
+   "The evidence supports the controls; the assessor decides."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   7.025,
+   "First: when does the guide deploy the remediation that hides the disable button and restricts non-privileged users?"
+  ],
+  [
+   9.05,
+   7.65,
+   "The answer is b: from ring two, after confirming nobody in the pilot needs to disable the client, as Learn advises."
+  ],
+  [
+   16.7,
+   6.075,
+   "Second: which profile can acquire Microsoft three sixty-five and Entra I D traffic?"
+  ],
+  [
+   22.775,
+   3.45,
+   "The answer is a: only the Microsoft traffic profile."
+  ],
+  [
+   26.225,
+   2.812,
+   "The Internet Access profile never acquires it."
+  ],
+  [
+   29.038,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   12.85,
+   "You packaged the client with Learn's values, checked it on a pilot device, counted the devices the service sees, enabled the Microsoft traffic profile for the pilot, turned on signaling, and proved source I P restoration."
+  ],
+  [
+   13.725,
+   18.062,
+   "The evidence an I S S O keeps from this module: the Intune app's assignment export and detection rule, the client health check export, the device usage summary with the coverage ratio, the profile export and its assignments, the signaling GET, the source I P comparison, and the sign-in share."
+  ],
+  [
+   31.788,
+   11.575,
+   "Next is Module 3, the compliant network and tenant restrictions, the two signals only Entra can produce from the network, run in report-only or a pilot before they block anyone."
+  ]
+ ]
+}

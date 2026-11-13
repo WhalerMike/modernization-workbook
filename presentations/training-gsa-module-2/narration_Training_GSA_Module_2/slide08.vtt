@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.350
+How do you know it works?
+
+2
+00:00:01.350 --> 00:00:05.969
+The Microsoft traffic profile has no
+report-only mode, so the pilot group
+
+3
+00:00:05.969 --> 00:00:10.512
+is the audit phase, read through the
+sign-in query for five business days.
+
+4
+00:00:10.512 --> 00:00:11.612
+Three measures.
+
+5
+00:00:11.612 --> 00:00:15.562
+Client coverage: the device usage
+summary's active device count,
+
+6
+00:00:15.562 --> 00:00:18.841
+divided by Intune's count of
+in-scope Windows devices;
+
+7
+00:00:18.841 --> 00:00:23.088
+the guide's starting target is
+ninety-eight percent after ring three.
+
+8
+00:00:23.088 --> 00:00:27.836
+Sign-ins through the service: the share
+of sign-ins marked as through Global
+
+9
+00:00:27.836 --> 00:00:32.662
+Secure Access, for in-scope users; the
+starting target is ninety-five percent.
+
+10
+00:00:32.662 --> 00:00:37.236
+And source I P restoration, by Learn's
+deployment guide test: a SharePoint
+
+11
+00:00:37.236 --> 00:00:42.113
+sign-in shows the same I P address with
+the client running and with it disabled.
+
+12
+00:00:42.113 --> 00:00:46.700
+The rollback is simple: remove the ring's
+group from the profile's assignment.

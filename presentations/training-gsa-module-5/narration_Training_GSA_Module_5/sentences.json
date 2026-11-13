@@ -1,0 +1,466 @@
+{
+ "1": [
+  [
+   0.05,
+   7.862,
+   "Welcome to Module 5 of Global Secure Access as the Identity-Aware Network: Internet Access and T L S inspection."
+  ],
+  [
+   7.912,
+   4.675,
+   "Internet Access is the identity-aware web gateway for remote users."
+  ],
+  [
+   12.588,
+   8.262,
+   "T L S inspection comes last of all, because it's the step most likely to break applications and to read content the agency shouldn't."
+  ],
+  [
+   20.85,
+   9.8,
+   "This module covers Steps 5 and 9 of the Global Secure Access implementation guide, and takes about fifty minutes, plus a lab in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   8.062,
+   "With Internet Access, Conditional Access decides which security profile a user gets, and the profile decides what the user can reach."
+  ],
+  [
+   9.262,
+   8.637,
+   "It comes late in the run order because it's separately licensed, and because an agency may keep its current gateway; that's a decision from Module 1."
+  ],
+  [
+   17.9,
+   2.538,
+   "T L S inspection comes last of all."
+  ],
+  [
+   20.438,
+   9.912,
+   "It's the step most likely to break applications, and the step most likely to read content the agency shouldn't, so it starts only after filtering works on server names alone."
+  ],
+  [
+   30.35,
+   10.838,
+   "In this module you build a pilot security profile, govern every bypass, and then add inspection from a dedicated certificate authority, within a scope the privacy officer approved."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   7.463,
+   "You'll build a filtering policy, a security profile, the link between them, and the Conditional Access policy that assigns it."
+  ],
+  [
+   10.425,
+   6.213,
+   "You'll explain why both the Microsoft and internet profiles are enabled, and what Learn's limits leave out."
+  ],
+  [
+   16.637,
+   5.763,
+   "You'll govern every bypass and allow-list entry with an owner, a reason and an expiry."
+  ],
+  [
+   22.4,
+   5.975,
+   "You'll choose the certificate authority for T L S inspection, and deploy trust before activation."
+  ],
+  [
+   28.375,
+   7.013,
+   "And you'll set the privacy boundary, handle pinned applications, and read the T L S outcomes against the one percent line."
+  ],
+  [
+   35.388,
+   11.762,
+   "You need Module 2, Network and Transport, chapter five, on Internet Access policy, and a skim of P K I and Certificates, chapter four, for the dedicated issuing C A."
+  ],
+  [
+   47.15,
+   3.163,
+   "The lab runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.213,
+   "Unit 1 is security profiles, built with Learn's Graph tutorial."
+  ],
+  [
+   4.263,
+   10.975,
+   "A filtering policy blocks the categories the agency's acceptable-use policy names; artificial intelligence is Learn's example, and the category list is the agency's."
+  ],
+  [
+   15.238,
+   7.037,
+   "A security profile groups web content filtering, threat intelligence, T L S inspection and file policies."
+  ],
+  [
+   22.275,
+   4.8,
+   "A policy link puts the filtering policy into the profile, with logging on."
+  ],
+  [
+   27.075,
+   13.225,
+   "A Conditional Access policy assigns the profile: it targets All internet resources with Global Secure Access, with the filtering profile session control, scoped to the pilot, and with emergency access excluded."
+  ],
+  [
+   40.3,
+   9.275,
+   "The baseline profile applies to all traffic, last; the guide puts threat intelligence filtering there, so it covers everyone in the internet profile."
+  ],
+  [
+   49.575,
+   8.912,
+   "And enable both profiles: the internet profile doesn't include the Microsoft traffic profile's destinations, so full coverage needs both."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   0.838,
+   "Unit 2."
+  ],
+  [
+   0.887,
+   17.887,
+   "First, Learn's limits: two hundred fifty-six security profiles, a thousand policies, a thousand rules and eight thousand destinations per tenant; H T T P and H T T P S on ports eighty and four forty-three only; no I P version six, and no U D P."
+  ],
+  [
+   18.775,
+   1.663,
+   "Second, QUIC."
+  ],
+  [
+   20.438,
+   3.775,
+   "Internet Access doesn't forward QUIC end to end."
+  ],
+  [
+   24.212,
+   10.175,
+   "Learn's newer guidance blocks it with the cloud firewall, which is preview; its T L S inspection page blocks outbound U D P four forty-three with Windows Firewall."
+  ],
+  [
+   34.388,
+   10.15,
+   "Until the cloud firewall for clients is generally available, the guide uses the generally available path: a firewall rule delivered by Intune, piloted first."
+  ],
+  [
+   44.538,
+   10.363,
+   "Third, every custom bypass and allow-list entry gets an owner's approval, a reason, and an expiry, in the exception register, as Learn's change guidance asks."
+  ],
+  [
+   54.9,
+   5.213,
+   "Custom bypass doesn't work on remote networks; those are made on the branch equipment."
+  ],
+  [
+   60.112,
+   6.25,
+   "And one gap: the pages read don't say whether a report-only policy applies a security profile."
+  ],
+  [
+   66.362,
+   7.85,
+   "So the pilot is a policy set to on for the pilot group only, with an allow policy, with logging, for categories under review."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.712,
+   "Unit 3 is T L S inspection."
+  ],
+  [
+   2.763,
+   14.575,
+   "It decrypts H T T P S at the service edge, so full U R L's, files and content can be filtered, then re-encrypts; it's the prerequisite for U R L rules, file and content policies, and A I prompt inspection."
+  ],
+  [
+   17.337,
+   4.1,
+   "Learn offers a Microsoft-managed certificate, or the agency's own."
+  ],
+  [
+   21.438,
+   7.875,
+   "With the agency's own, the agency signs an intermediate C A, and the service issues short-lived leaf certificates from it."
+  ],
+  [
+   29.312,
+   8.713,
+   "Learn's limits: valid at least six months, only one active at a time, with server authentication and the C A extensions Learn lists."
+  ],
+  [
+   38.025,
+   0.988,
+   "Which C A?"
+  ],
+  [
+   39.013,
+   4.95,
+   "Learn's tutorial suggests a dedicated C A, not your production P K I."
+  ],
+  [
+   43.962,
+   14.325,
+   "The program issues it from a dedicated issuing C A under the agency's root, never from the C A that issues authentication certificates, because a compromised inspection C A can impersonate any site to every managed device."
+  ],
+  [
+   58.288,
+   12.012,
+   "Deploy trust before activation: the root and intermediate go to clients by Intune first, because an expired inspection certificate disables all T L S inspection across the tenant."
+  ],
+  [
+   70.3,
+   2.175,
+   "Renew at least ninety days ahead."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.025,
+   "Three more things before you inspect."
+  ],
+  [
+   2.075,
+   12.838,
+   "The privacy scope: Learn auto-creates a system bypass rule for incompatible destinations, and an editable recommended bypass for the Education, Finance, Government, and Health and Medicine categories."
+  ],
+  [
+   14.912,
+   7.875,
+   "The guide keeps them, adds the categories the privacy officer names, and records the scope in the system's privacy documentation."
+  ],
+  [
+   22.788,
+   6.312,
+   "Learn says to establish and communicate a T L S policy to users before inspection starts."
+  ],
+  [
+   29.1,
+   11.9,
+   "Pinned applications fail under inspection; Learn's answer is a custom bypass for their destinations, without duplicating the system list, and developer tools with their own certificate stores need the root added."
+  ],
+  [
+   41.0,
+   6.862,
+   "And the failure line: Microsoft's recommendation treats a failure rate above one percent as a systemic problem."
+  ],
+  [
+   47.862,
+   8.0,
+   "Inspection doesn't negotiate H T T P two, and doesn't follow A I A or O C S P links."
+  ],
+  [
+   55.862,
+   8.838,
+   "Learn's pages give the T L S status values differently in two places, so group by what your workspace actually holds before writing an alert."
+  ],
+  [
+   64.7,
+   1.363,
+   "Where are agencies?"
+  ],
+  [
+   66.062,
+   9.562,
+   "Internet Access and T L S inspection need an Internet Access or Suite license, and are available in G C C by Learn's product-wide statement."
+  ],
+  [
+   75.625,
+   8.225,
+   "The cloud firewall for clients and the Explicit Forward Proxy are preview, and their G C C availability isn't yet specified."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.825,
+   "The lab runs in a test tenant, never production, and the authors haven't run it."
+  ],
+  [
+   4.875,
+   4.25,
+   "You need Module 2's lab done and an Internet Access test license."
+  ],
+  [
+   9.125,
+   7.7,
+   "Step one finds the internet profile with Learn's filtered request, enables it, and assigns the pilot group in the admin center."
+  ],
+  [
+   16.825,
+   6.362,
+   "Step two creates the filtering policy, blocking Learn's example category, artificial intelligence."
+  ],
+  [
+   23.188,
+   5.75,
+   "Step three creates the pilot security profile and links the policy to it, with logging on."
+  ],
+  [
+   28.938,
+   6.963,
+   "Step four assigns the profile with Conditional Access, scoped to the pilot, with emergency access excluded."
+  ],
+  [
+   35.9,
+   8.037,
+   "Step five tests it: on the pilot device, as a pilot user, browse to a site in that category and expect the block page."
+  ],
+  [
+   43.938,
+   5.537,
+   "Then the guide's traffic query in the workspace should show a denied count on the pilot user's row."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   10.088,
+   "Step six adds the QUIC rule on the pilot device, Learn's Windows Firewall command; in production the same rule goes out through Intune, piloted first."
+  ],
+  [
+   10.137,
+   17.6,
+   "Steps seven and eight need a T L S inspection certificate created, enabled and trusted on the test device, and a pilot T L S policy linked to the pilot security profile, never the baseline, as the guide's Step 9 describes, with the privacy officer's approval of the test scope."
+  ],
+  [
+   27.738,
+   9.525,
+   "Step seven checks the issuer of an inspected site in the browser's certificate viewer: Microsoft Global Secure Access Intermediate, or your test chain."
+  ],
+  [
+   37.263,
+   9.412,
+   "Step eight reads the T L S outcomes: T L S action reads bypassed or intercepted, and the failure share should stay under one percent."
+  ],
+  [
+   46.675,
+   3.112,
+   "Step nine exports the profiles and policies."
+  ],
+  [
+   49.788,
+   1.35,
+   "Keep it all in place."
+  ],
+  [
+   51.138,
+   8.637,
+   "Module 6 removes it, and the T L S policy in Learn's order: the link from the profile, then the policy, then the certificate."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.875,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   5.925,
+   11.363,
+   "Internet Access supports S C seven, its enhancement five, S I three and S I four: web access filtered by identity-aware policy, with bypasses governed."
+  ],
+  [
+   17.288,
+   8.2,
+   "The evidence is the filtering policy, profile and Conditional Access exports, the blocked-category test, and the bypass register."
+  ],
+  [
+   25.488,
+   12.85,
+   "T L S inspection supports S C eight, S C twelve, S C seventeen and S I four: encrypted web traffic inspected within an approved privacy scope, with a governed C A."
+  ],
+  [
+   38.337,
+   11.375,
+   "The evidence is the certificate and chain, the trust profile's deployment status, the policy export, the issuer check, the failure rate, the privacy approval and the user notice."
+  ],
+  [
+   49.712,
+   11.525,
+   "The program's mapping lines Step 5 up with tick three point oh's Remote User Pattern three, which sis-uh calls the riskiest, and Step 9 with tick's web policy enforcement point capabilities."
+  ],
+  [
+   61.237,
+   3.8,
+   "The evidence supports the controls; the assessor decides."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   6.612,
+   "First: which certificate authority issues the T L S inspection intermediate, in the program's position?"
+  ],
+  [
+   8.637,
+   8.688,
+   "The answer is b: a dedicated issuing C A under the agency's root, never the C A that issues authentication certificates."
+  ],
+  [
+   17.325,
+   3.862,
+   "Second: what happens when the inspection certificate expires?"
+  ],
+  [
+   21.188,
+   9.85,
+   "The answer is b: all T L S inspection across the tenant stops, so the guide renews at least ninety days ahead and deploys trust before activation."
+  ],
+  [
+   31.038,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   14.438,
+   "You enabled the internet profile for the pilot, built a security profile with one blocked category and assigned it with Conditional Access, proved the block, added the QUIC rule, checked the inspection issuer, and read the T L S outcomes."
+  ],
+  [
+   15.312,
+   21.538,
+   "The evidence an I S S O keeps from this module: the filtering profile, policy and Conditional Access exports; the blocked-category test and the traffic query; the bypass register; the certificate and chain, the trust profile's deployment status, the issuer check and the failure share; and the privacy approval and the user notice."
+  ],
+  [
+   36.85,
+   10.188,
+   "Next is Module 6, rings, rollback and the evidence package, where the pilot becomes a migration, and where you roll the whole test tenant back in the guide's order."
+  ]
+ ]
+}

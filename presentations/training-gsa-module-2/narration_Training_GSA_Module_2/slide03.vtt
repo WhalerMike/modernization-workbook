@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:05.907
+You'll name the client's
+platforms and prerequisites,
+
+3
+00:00:05.907 --> 00:00:08.249
+and the configurations it doesn't support.
+
+4
+00:00:08.249 --> 00:00:12.054
+You'll package it as a Win32 app
+with Learn's install command,
+
+5
+00:00:12.054 --> 00:00:14.150
+return codes and detection rule.
+
+6
+00:00:14.150 --> 00:00:18.507
+You'll explain why D N S over H T
+T P S is turned off in browsers,
+
+7
+00:00:18.507 --> 00:00:22.500
+and why the hardening
+remediation waits for ring two.
+
+8
+00:00:22.500 --> 00:00:26.402
+You'll enable the Microsoft
+traffic profile for a pilot group,
+
+9
+00:00:26.402 --> 00:00:28.162
+with source I P restoration.
+
+10
+00:00:28.162 --> 00:00:32.538
+And you'll compute client coverage, and
+the share of sign-ins the service carries.
+
+11
+00:00:32.538 --> 00:00:35.378
+You need Module 1, with the telemetry on,
+
+12
+00:00:35.378 --> 00:00:40.613
+and a skim of Devices and Endpoints,
+chapter four, for the Win32 app model.
+
+13
+00:00:40.613 --> 00:00:43.820
+The lab runs in a test
+tenant, never production.

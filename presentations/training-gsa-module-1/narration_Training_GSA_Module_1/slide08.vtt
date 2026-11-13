@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.775
+Unit 4 is the logs, before the pilot.
+
+2
+00:00:02.775 --> 00:00:07.946
+Learn says the service keeps traffic and
+remote network health logs for thirty days;
+
+3
+00:00:07.946 --> 00:00:11.713
+longer retention needs export
+through diagnostic settings.
+
+4
+00:00:11.713 --> 00:00:16.909
+So a dedicated Entra diagnostic setting
+sends four categories to the workspace:
+
+5
+00:00:16.909 --> 00:00:20.010
+network access traffic
+logs, connection events,
+
+6
+00:00:20.010 --> 00:00:23.500
+remote network health logs,
+and network access alerts.
+
+7
+00:00:23.500 --> 00:00:26.575
+Sign-in and audit logs
+stay on the core setting.
+
+8
+00:00:26.575 --> 00:00:31.733
+A freshness query runs daily, and a
+sudden drop in traffic volume is an alert
+
+9
+00:00:31.733 --> 00:00:36.725
+in itself, because it covers offboarding,
+a disabled profile, or an outage.
+
+10
+00:00:36.725 --> 00:00:38.213
+And there's a federal reason.
+
+11
+00:00:38.213 --> 00:00:42.717
+CISA's Remote User Use Case says that
+as users connect more directly to
+
+12
+00:00:42.717 --> 00:00:48.062
+external services, CISA's visibility must
+be preserved through telemetry sharing.
+
+13
+00:00:48.062 --> 00:00:52.963
+Moving users off a full-tunnel V P N
+moves their telemetry to Microsoft,
+
+14
+00:00:52.963 --> 00:00:56.513
+so agree how it reaches
+CISA with the agency's tick
+
+15
+00:00:56.513 --> 00:00:59.780
+delegates before the V P
+N's web path is retired.

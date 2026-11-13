@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.859
+Welcome to Module 3 of Global Secure
+Access as the Identity-Aware Network:
+
+2
+00:00:04.859 --> 00:00:08.013
+the compliant network
+and tenant restrictions.
+
+3
+00:00:08.013 --> 00:00:12.442
+These are the two signals only Microsoft
+Entra can produce from the network,
+
+4
+00:00:12.442 --> 00:00:16.662
+and both come with the Microsoft
+traffic profile you enabled in Module 2.
+
+5
+00:00:16.662 --> 00:00:21.204
+Both can lock people out, so this module
+teaches their failure modes first,
+
+6
+00:00:21.204 --> 00:00:25.075
+and runs them in report-only or
+a pilot before they block anyone.
+
+7
+00:00:25.075 --> 00:00:30.028
+It covers Steps 7 and 8 of the Global
+Secure Access implementation guide,
+
+8
+00:00:30.028 --> 00:00:34.700
+and takes about forty-five minutes,
+plus a lab in your own test tenant.
