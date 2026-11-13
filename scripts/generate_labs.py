@@ -79,6 +79,13 @@ ZTA = ["docs/training/zero-trust-assessment/01-evidence-not-a-verdict.md",
        "docs/training/zero-trust-assessment/02-running-the-assessment-safely.md",
        "docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md",
        "docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md"]
+# The Defender XDR learning path: no kit and no developer workbook yet, so each module's only lab is a Lab 2
+# that runs the guide's Validate commands in a test tenant.
+XDR = ["docs/training/defender-xdr/01-architecture-access-and-onboarding.md",
+       "docs/training/defender-xdr/02-prevention-and-attack-surface-reduction.md",
+       "docs/training/defender-xdr/03-exposure-and-incidents.md",
+       "docs/training/defender-xdr/04-hunting-detections-and-identity-signals.md",
+       "docs/training/defender-xdr/05-automation-operations-and-evidence.md"]
 # The Global Secure Access learning path: no kit and no developer workbook yet, so each module's only lab is a
 # Lab 2, the guide's own commands and Validate steps in a test tenant.
 GSA = ["docs/training/global-secure-access/01-decide-design-and-log-first.md",
@@ -264,17 +271,25 @@ def page_text() -> str:
         out.append(f"| [{name}]({rel(src, path)}) | " + " | ".join(
             f"[{k.replace('lab', 'Lab ')}]({rel(src, path)}#{ex[k]})" if k in ex else "—" for k in ("lab1", "lab2")) + " |")
     out += ["", ": The Zero Trust Assessment: labs by module {.striped .hover}", "",
+            "## The Defender XDR learning path {#xdr}", "",
+            "[The learning path](defender-xdr/index.md) · [its implementation guide](../books/guides/defender-xdr-implementation.md)", "",
+            "The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixtures: each module's lab runs the guide's own Validate commands in a test tenant.", "",
+            "| Module | Lab 2, a test tenant |", "|---|---|"]
+    for path in XDR:
+        md = (ROOT / path).read_text(encoding="utf-8")
+        ex = {h for t, h, _ in headings(md) if "Lab 2" in t}
+        name = front(md, "title")
+        out.append(f"| [{name}]({rel(src, path)}) | " + (f"[Lab 2]({rel(src, path)}#{next(iter(ex))})" if ex else "—") + " |")
+    out += ["", ": Defender XDR: labs by module {.striped .hover}", "",
             "## The Global Secure Access learning path {#gsa}", "",
-            "[The learning path](global-secure-access/index.md) · [its implementation guide](../books/guides/global-secure-access-implementation.md)."
-            " The guide has no kit and no developer workbook yet, so there is no Lab 1: each module's lab is a Lab 2,"
-            " the guide's own commands and Validate steps in a test tenant.", "",
-            "| Module | Lab 1, no tenant | Lab 2 |", "|---|---|---|"]
+            "[The learning path](global-secure-access/index.md) · [its implementation guide](../books/guides/global-secure-access-implementation.md)", "",
+            "The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixtures: each module's lab runs the guide's own commands and Validate steps in a test tenant.", "",
+            "| Module | Lab 2, a test tenant |", "|---|---|"]
     for path in GSA:
         md = (ROOT / path).read_text(encoding="utf-8")
-        ex = {("lab1" if "Lab 1" in t else "lab2"): h for t, h, _ in headings(md) if "Lab 1" in t or "Lab 2" in t}
+        ex = {h for t, h, _ in headings(md) if "Lab 2" in t}
         name = front(md, "title")
-        out.append(f"| [{name}]({rel(src, path)}) | " + " | ".join(
-            f"[{k.replace('lab', 'Lab ')}]({rel(src, path)}#{ex[k]})" if k in ex else "—" for k in ("lab1", "lab2")) + " |")
+        out.append(f"| [{name}]({rel(src, path)}) | " + (f"[Lab 2]({rel(src, path)}#{next(iter(ex))})" if ex else "—") + " |")
     out += ["", ": Global Secure Access: labs by module {.striped .hover}", "",
             "## What Lab 2 needs {#lab-2-environments}", "",
             "Each Lab 2 names its environment and its prerequisites in its first paragraph. Use synthetic data like the kit's fixtures, and never production:", "",
@@ -423,7 +438,7 @@ def lab_pages() -> list[Path]:
         pages += sorted((ROOT / wb.docs).glob("[0-9][0-9]-*.md"))
         if wb.training:
             pages += sorted((ROOT / wb.training).glob("[0-9][0-9]-*.md"))
-    return pages + [ROOT / p for p in MS_AUTOMATION + ZTA + GSA]
+    return pages + [ROOT / p for p in MS_AUTOMATION + ZTA + XDR + GSA]
 
 
 def main() -> int:
