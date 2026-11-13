@@ -99,11 +99,11 @@ Describe 'The client and the token exchange harness' {
         { Test-NpiWifTokenExchange -Client $c -ClientId 'x' -Presented $p -CredentialName 'n' -AsOf $script:AsOf } | Should -Throw '*only against the fake*'
     }
     It 'builds Learn''s client credentials request with a federated credential, on the cloud''s sign-in host' {
-        $ep = New-NpiWifFakeTokenEndpoint -Cloud gcchigh -TenantId $script:TenantId -AsOf $script:AsOf -Credentials @([pscustomobject]@{ ClientId = 'c1'; Name = 'n'; Id = 'i'; Issuer = 'https://contoso.example'; Subject = 's'; Audiences = @('api://AzureADTokenExchange') })
-        $c = New-NpiWifClient -Cloud gcchigh -Task federation -TenantId $script:TenantId -TokenEndpoint $ep
+        $ep = New-NpiWifFakeTokenEndpoint -Cloud gcc -TenantId $script:TenantId -AsOf $script:AsOf -Credentials @([pscustomobject]@{ ClientId = 'c1'; Name = 'n'; Id = 'i'; Issuer = 'https://contoso.example'; Subject = 's'; Audiences = @('api://AzureADTokenExchange') })
+        $c = New-NpiWifClient -Cloud gcc -Task federation -TenantId $script:TenantId -TokenEndpoint $ep
         $p = [pscustomobject]@{ Issuer = 'https://contoso.example'; Subject = 's'; Audience = 'api://AzureADTokenExchange'; Note = $null }
         (Test-NpiWifTokenExchange -Client $c -ClientId 'c1' -Presented $p -CredentialName 'n' -AsOf $script:AsOf).Passed | Should -BeTrue
-        $ep.Calls[0].Uri | Should -Be "https://login.microsoftonline.us/$($script:TenantId)/oauth2/v2.0/token"
+        $ep.Calls[0].Uri | Should -Be "https://login.microsoftonline.com/$($script:TenantId)/oauth2/v2.0/token"
         @($ep.Calls[0].Keys) | Should -Be @('client_assertion', 'client_assertion_type', 'client_id', 'grant_type', 'scope')
         $c.Evidence[0].Target | Should -Not -Match 'eyJ'
     }
@@ -271,7 +271,7 @@ Describe 'The separate write path' {
         { Invoke-NpiWifPlan -PlanPath $script:Saved.Path -ApprovedSha256 ('0' * 64) -Client $w.Client -AsOf $script:AsOf } | Should -Throw '*nobody reviewed*'
         $other = New-NpiWifClient -Cloud gcc -Task federation-apply -TenantId 'c0ffee00-0000-4000-8000-000000000999' -Invoke $w.Fake.Invoke
         { Invoke-NpiWifPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Client $other -AsOf $script:AsOf } | Should -Throw '*is for tenant*'
-        $high = New-NpiWifClient -Cloud gcchigh -Task federation-apply -TenantId $script:TenantId -Invoke $w.Fake.Invoke
+        $high = New-NpiWifClient -Cloud global -Task federation-apply -TenantId $script:TenantId -Invoke $w.Fake.Invoke
         { Invoke-NpiWifPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Client $high -AsOf $script:AsOf } | Should -Throw '*is for cloud*'
         { Invoke-NpiWifPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Client $w.Client -AsOf $script:AsOf.AddDays(8) } | Should -Throw '*days old*'
         $r = New-ReadClient

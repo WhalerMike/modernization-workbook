@@ -243,7 +243,7 @@ def test_microsoft_role_gets_the_cmdb_values_and_the_programs_choices():
     assert "arc_tags" in tags and "ArcSQLServerExtensionDeployment" in tags and "selectattr('value')" in tags
 
 
-def test_microsoft_role_playbook_refuses_azure_government():
+def test_microsoft_role_playbook_refuses_other_clouds():
     play = next(p for p in load(PLAYBOOKS / "06_arc_onboarding_role.yml") if not is_control_node_play(p))
     clouds = [t for t in play_tasks(play) if "arc_cloud == 'AzureCloud'" in str(t.get("ansible.builtin.assert", {}))]
     assert clouds, "06 must refuse a cloud other than AzureCloud"

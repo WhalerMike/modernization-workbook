@@ -15,7 +15,7 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud = 'gcc',
+    [ValidateSet('global', 'gcc')][string]$Cloud = 'gcc',
     [Parameter(Mandatory)][string]$OutputPath,
     [string]$FixturePath,
     [string[]]$AzureScope = @(),

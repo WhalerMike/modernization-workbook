@@ -38,8 +38,9 @@ def test_cloud_has_no_default_and_maps_hosts():
     with pytest.raises(core.HrlcError):
         core.cloud("public")
     assert core.cloud("gcc")["graph"] == "graph.microsoft.com"
-    assert core.cloud("GCCHigh")["graph"] == "graph.microsoft.us"
-    assert core.cloud("dod")["graph"] == "dod-graph.microsoft.us"
+    assert core.cloud("GCC")["login"] == "login.microsoftonline.com"
+    with pytest.raises(core.HrlcError):
+        core.cloud("usgov")
 
 
 def test_output_is_written_once_with_a_hash_per_file(tmp_path):
@@ -81,11 +82,11 @@ def _opener(pages):
 
 
 def test_export_reads_every_page_with_get_on_the_clouds_host(tmp_path):
-    pages = [{"value": [{"id": 1}], "@odata.nextLink": "https://graph.microsoft.us/v1.0/x?$skiptoken=2"}, {"value": [{"id": 2}]}]
+    pages = [{"value": [{"id": 1}], "@odata.nextLink": "https://graph.microsoft.com/v1.0/x?$skiptoken=2"}, {"value": [{"id": 2}]}]
     opener, seen = _opener(pages + [{"value": []}] * 10)
-    written = graph_export.export("cba-read", "gcchigh", {"pkiId": "p1"}, tmp_path, "t0ken", opener)
+    written = graph_export.export("cba-read", "gcc", {"pkiId": "p1"}, tmp_path, "t0ken", opener)
     assert all(m == "GET" for m, _, _ in seen)
-    assert all(u.startswith("https://graph.microsoft.us/v1.0/") for _, u, _ in seen)
+    assert all(u.startswith("https://graph.microsoft.com/v1.0/") for _, u, _ in seen)
     assert written[0]["count"] == 2
     assert json.loads((tmp_path / "pki-containers.json").read_text())["value"] == [{"id": 1}, {"id": 2}]
 

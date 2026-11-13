@@ -233,7 +233,7 @@ Describe 'The client' {
     It 'refuses a call the task doesn''t declare, and an unknown cloud' {
         $c = New-PaPimClient -Cloud gcc -Task pim-convert -Invoke (New-Fake).Invoke -AllowWrite
         { Invoke-PaPimRequest -Client $c -CallId pim-policy-rule-update -Bind @{ policyId = 'x'; ruleId = 'y' } -Body @{} } | Should -Throw '*Undeclared call*'
-        { New-PaPimClient -Cloud GCCHigh -Task pim-plan -Invoke {} } | Should -Throw '*Unknown cloud*'
+        { New-PaPimClient -Cloud GCC -Task pim-plan -Invoke {} } | Should -Throw '*Unknown cloud*'
     }
     It 'follows every page, and refuses a next link on another host' {
         $fake = New-Fake
@@ -244,11 +244,11 @@ Describe 'The client' {
         $c2 = New-PaPimClient -Cloud gcc -Task pim-plan -Invoke $evil
         { Invoke-PaPimRequest -Client $c2 -CallId pim-active-instances } | Should -Throw '*Refusing to send the token*'
     }
-    It 'uses the cloud''s own Graph host: graph.microsoft.us for GCC High' {
+    It 'uses the cloud''s own Graph host: graph.microsoft.com for GCC' {
         $seen = [Collections.Generic.List[string]]::new()
-        $c = New-PaPimClient -Cloud gcchigh -Task pim-plan -Invoke { param($m, $u, $b) $seen.Add($u); @{ value = @() } }.GetNewClosure()
+        $c = New-PaPimClient -Cloud gcc -Task pim-plan -Invoke { param($m, $u, $b) $seen.Add($u); @{ value = @() } }.GetNewClosure()
         $null = Invoke-PaPimRequest -Client $c -CallId pim-eligibility-schedules
-        $seen[0] | Should -BeLike 'https://graph.microsoft.us/v1.0/*'
+        $seen[0] | Should -BeLike 'https://graph.microsoft.com/v1.0/*'
     }
 }
 

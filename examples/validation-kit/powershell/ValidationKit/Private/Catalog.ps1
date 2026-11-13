@@ -145,7 +145,7 @@ $script:VkCatalog = @(
         Source = 'Graph'; GraphPermissions = @('AgentIdentity.Read.All'); DelegatedRole = 'Agent ID Administrator or Global Reader'; AzureRole = ''; Stage = 'v1.0 (Agent ID platform generally available April 2026)'; Learn = @($VkLearn.Agents, $VkLearn.AgentSponsr) }
     @{ Id = 'VK-NPI-09'; Track = 'NPI'; Title = 'Optional, preview: service principals with no sign-in activity in N days (service principal sign-in activity report, beta)'
         Source = 'Graph (beta)'; GraphPermissions = @('AuditLog.Read.All', 'Application.Read.All'); DelegatedRole = 'Reports Reader'; AzureRole = ''
-        Stage = 'beta; documented for the global service (which GCC uses), not for US Government L4 or L5'; Optional = $true; Preview = $true; Learn = @($VkLearn.SpSignIn) }
+        Stage = 'beta; documented for the global service (which GCC uses)'; Optional = $true; Preview = $true; Learn = @($VkLearn.SpSignIn) }
 
     # ---- Cross-track foundation (Attribute-Driven Migration implementation guide, Gates 3, 5 and 6) ----
     @{ Id = 'VK-SYNC-01'; Track = 'SYNC'; Title = 'Coded slot values in an AD export compared with Entra ID for a sample, joined on employeeId'

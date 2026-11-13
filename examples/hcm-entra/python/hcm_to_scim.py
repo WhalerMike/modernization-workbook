@@ -43,10 +43,10 @@ CORE_SCHEMA = "urn:ietf:params:scim:schemas:core:2.0:User"
 ENTERPRISE_SCHEMA = "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
 BULK_SCHEMA = "urn:ietf:params:scim:api:messages:2.0:BulkRequest"
 
-# The provisioning API endpoint: worldwide Graph (also used by Microsoft 365 GCC),
-# GCC High, or DoD. Anything else is refused.
+# The provisioning API endpoint: worldwide Graph (also used by Microsoft 365 GCC).
+# Anything else is refused.
 ENDPOINT_PATTERN = re.compile(
-    r"^https://(graph\.microsoft\.com|graph\.microsoft\.us|dod-graph\.microsoft\.us)"
+    r"^https://graph\.microsoft\.com"
     r"/(v1\.0|beta)/servicePrincipals/[0-9a-fA-F-]{36}"
     r"/synchronization/jobs/[A-Za-z0-9._-]+/bulkUpload$"
 )
@@ -109,7 +109,7 @@ def validate_endpoint(endpoint: str) -> str:
     if not ENDPOINT_PATTERN.match(endpoint or ""):
         raise ConfigError(
             "endpoint must be an https Microsoft Graph /bulkUpload URL for one provisioning job "
-            "(graph.microsoft.com, graph.microsoft.us or dod-graph.microsoft.us)"
+            "on graph.microsoft.com"
         )
     return endpoint
 

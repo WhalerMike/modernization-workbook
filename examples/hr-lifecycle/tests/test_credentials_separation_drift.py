@@ -46,11 +46,10 @@ def test_cba_fixture_raises_each_rule():
     assert ids(cba()) == ["CB-01", "CB-01", "CB-02", "CB-04", "CB-05", "CB-08", "CB-08", "CB-09", "CB-10", "CB-11", "CB-12", "CB-13"]
 
 
-def test_the_crl_limit_follows_the_cloud():
+def test_the_crl_limit_is_the_clouds_limit():
     big = [{"url": "http://pki.contoso.example/crl/piv-ca1.crl", "bytes": "30000000", "seconds": "2", "error": ""},
            {"url": "https://pki.contoso.example/crl/piv-ca2.crl", "bytes": "1000", "seconds": "1", "error": ""}]
     assert "CB-03" in ids(cba("gcc", crl=big))
-    assert "CB-03" not in ids(cba("gcchigh", crl=big)) and "CB-05" not in ids(cba("gcchigh", crl=big))
 
 
 def test_an_unreachable_or_unmeasured_crl_is_a_finding():

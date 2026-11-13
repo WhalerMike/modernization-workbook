@@ -17,8 +17,8 @@
 #   6. on the first day of a month, assembles the previous month's packages for the ISSO (A4.3).
 #
 # GCC uses the worldwide endpoints (login.microsoftonline.com, graph.microsoft.com,
-# management.azure.com). GCC High and DoD use separate hosts; `python
-# examples/drift-pipeline/python/drift_pipeline.py cloud --name <cloud>` prints them.
+# management.azure.com); `python
+# examples/drift-pipeline/python/drift_pipeline.py cloud --name gcc` prints them.
 #
 # Repository settings it expects (identifiers, not credentials):
 #   secrets AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID

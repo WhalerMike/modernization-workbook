@@ -180,9 +180,10 @@ Describe 'Guards (Book 03, Appendix B)' {
         { Test-HcmSettings -Settings @{ min_seconds_between_calls = 0.05 } } | Should -Throw '*0.125*'
     }
     It 'allows only Graph bulkUpload endpoints' -ForEach @(
-        @{ Url = 'https://graph.microsoft.us/beta/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/API2AD.abc/bulkUpload'; Ok = $true }
+        @{ Url = 'https://graph.microsoft.com/beta/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/API2AD.abc/bulkUpload'; Ok = $true }
         @{ Url = 'http://graph.microsoft.com/v1.0/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/x/bulkUpload'; Ok = $false }
         @{ Url = 'https://example.com/v1.0/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/x/bulkUpload'; Ok = $false }
+        @{ Url = 'https://graph.example.invalid/beta/servicePrincipals/00000000-0000-0000-0000-000000000000/synchronization/jobs/API2AD.abc/bulkUpload'; Ok = $false }
         @{ Url = 'https://graph.microsoft.com/v1.0/users'; Ok = $false }
     ) {
         if ($Ok) { Test-HcmEndpoint -Endpoint $Url | Should -Be $Url } else { { Test-HcmEndpoint -Endpoint $Url } | Should -Throw }

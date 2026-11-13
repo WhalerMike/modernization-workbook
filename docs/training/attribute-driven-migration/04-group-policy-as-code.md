@@ -215,7 +215,7 @@ You run the gate, run Microsoft's sample twice, build the plan, lint the library
    pwsh ./powershell/Invoke-GpcSync.ps1 -FixturePath ./tests/fixtures/tenant.json -WithPlan -Cloud usgov
    ```
 
-   Expected: `Scopes : {DeviceManagementConfiguration.ReadWrite.All}` and `Created : {00000000-0000-4000-9000-000000000001}`; then exit 1, because `usgov` isn't one of `gcc,global,gcchigh,dod`.
+   Expected: `Scopes : {DeviceManagementConfiguration.ReadWrite.All}` and `Created : {00000000-0000-4000-9000-000000000001}`; then exit 1, because `usgov` isn't one of `gcc,global`.
 
 6. **Break something on purpose.** The first two commands change the hibernate value in one library file; then run the dry run:
 

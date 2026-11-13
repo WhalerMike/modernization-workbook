@@ -37,8 +37,7 @@ SUMS = "SHA256SUMS"
 COUNTED = ("Finding", "Warn")          # the kit's Count: Info rows give context and don't count
 UNREAD = ("Error", "NotApplicable")    # a check that didn't read the tenant proves nothing
 
-# Sign-in and Graph hosts per cloud. GCC uses the worldwide endpoints; GCC High and DoD share
-# the US Government authority and Azure environment but have different Graph hosts.
+# Sign-in and Graph hosts per cloud. GCC uses the worldwide endpoints.
 # Sources: Learn "Microsoft Graph national cloud deployments"; "Use the Azure Login action with
 # OpenID Connect"; "Configure an application to trust a managed identity" (audiences);
 # Connect-MgGraph (environment names).
@@ -49,20 +48,6 @@ CLOUDS: dict[str, dict[str, str]] = {
         "azure_environment": "AzureCloud",
         "audience": "api://AzureADTokenExchange",
         "mg_environment": "Global",
-    },
-    "gcchigh": {
-        "authority": "https://login.microsoftonline.us",
-        "graph": "https://graph.microsoft.us",
-        "azure_environment": "AzureUSGovernment",
-        "audience": "api://AzureADTokenExchangeUSGov",
-        "mg_environment": "USGov",
-    },
-    "dod": {
-        "authority": "https://login.microsoftonline.us",
-        "graph": "https://dod-graph.microsoft.us",
-        "azure_environment": "AzureUSGovernment",
-        "audience": "api://AzureADTokenExchangeUSGov",
-        "mg_environment": "USGovDoD",
     },
 }
 

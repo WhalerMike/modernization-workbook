@@ -24,10 +24,9 @@ BeforeAll {
 }
 
 Describe 'Clouds' {
-    It 'maps GCC to the worldwide service and GCC High and DoD to their environments' {
+    It 'maps GCC to the worldwide service' {
         (Get-FmwCloud gcc).Environment | Should -Be 'Global'
-        (Get-FmwCloud gcchigh).Graph | Should -Be 'https://graph.microsoft.us'
-        (Get-FmwCloud dod).Environment | Should -Be 'USGovDoD'
+        (Get-FmwCloud gcc).Graph | Should -Be 'https://graph.microsoft.com'
     }
 }
 

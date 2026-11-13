@@ -92,28 +92,25 @@ Every command in this lab, in order, from `examples/lifecycle-extensions`. Each 
 python tools/lcwext.py learn-sample
 python tools/lcwext.py lint out/learn-sample.workflow.json --timeout PT1H
 
-# Step 2: Run Learn's definition for a GCC High tenant
-python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh
-
-# Step 2: Run Learn's definition for a GCC High tenant
-python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud Global
+# Step 2: Run Learn's definition for a GCC tenant
+python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC
 
 # Step 3: Lint the program's definition
 python tools/lcwext.py lint logicapp/integration.workflow.json --timeout PT1H
 python tools/lcwext.py lint logicapp/integration.workflow.json --timeout PT15M
 
-# Step 4: Run it for GCC High through two transient failures
-python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --fail 503,503
-python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --fail 503,503,503,503,503
-python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --deliveries 2
+# Step 4: Run it for GCC through two transient failures
+python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC --fail 503,503
+python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC --fail 503,503,503,503,503
+python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC --deliveries 2
 
 # Step 5: Build the deployment pieces
 python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id 6e3a1f2b-8c4d-4e5f-9a0b-1c2d3e4f5a6b
 
 # Step 5: Build the deployment pieces
-sed -i 's/"azureCloud": "AzureCloud"/"azureCloud": "AzureUSGovernment"/' config/integrations.json
+sed -i 's/"azureCloud": "AzureCloud"/"azureCloud": "AzureOther"/' config/integrations.json
 python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id 6e3a1f2b-8c4d-4e5f-9a0b-1c2d3e4f5a6b
-sed -i 's/"azureCloud": "AzureUSGovernment"/"azureCloud": "AzureCloud"/' config/integrations.json
+sed -i 's/"azureCloud": "AzureOther"/"azureCloud": "AzureCloud"/' config/integrations.json
 
 # Step 6: Check the read-backs
 python tools/lcwext.py check-extension config/integrations.json --name cms-revocation tests/fixtures/extension-get.json
@@ -145,19 +142,13 @@ You lint and run Learn's definition and the program's, build the deployment piec
 
    Expected: eight results and exit 2. Five are findings: `LX-03` (hard-codes `graph.microsoft.com`), `LX-04` (calls back on `/beta`), `LX-06` (path not checked), `LX-07` (no callback when the work fails) and `LX-08` (always reports `Completed`). Two `LX-10` warnings are for run history, and one `LX-11` warning for the implicit retry policy.
 
-2. **Run Learn's definition for a GCC High tenant.**
+2. **Run Learn's definition for a GCC tenant.**
 
    ```bash
-   python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh
+   python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC
    ```
 
-   Expected: the one `POST` goes to `https://graph.microsoft.com/beta/...`, and the last line is `Lifecycle Workflows task: failed (no callback within PT1H)`. Run it again for a worldwide tenant:
-
-   ```bash
-   python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud Global
-   ```
-
-   Expected: `Lifecycle Workflows task: completed`.
+   Expected: the one `POST` goes to `https://graph.microsoft.com/beta/...`, and the last line is `Lifecycle Workflows task: completed`.
 
 3. **Lint the program's definition**, then with a 15-minute timeout:
 
@@ -168,12 +159,12 @@ You lint and run Learn's definition and the program's, build the deployment piec
 
    Expected: `0 result(s); no findings`, then `LX-11 Finding retryPolicy worst-case retry waits (960s) reach the callback timeout PT15M`, exit 2.
 
-4. **Run it for GCC High through two transient failures**, then five, then with two deliveries:
+4. **Run it for GCC through two transient failures**, then five, then with two deliveries:
 
    ```bash
-   python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --fail 503,503
-   python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --fail 503,503,503,503,503
-   python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --deliveries 2
+   python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC --fail 503,503
+   python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC --fail 503,503,503,503,503
+   python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC --deliveries 2
    ```
 
    Expected, the last two lines of each run:
@@ -193,7 +184,7 @@ You lint and run Learn's definition and the program's, build the deployment piec
    Lifecycle Workflows task: completed
    ```
 
-   The callbacks go to `https://graph.microsoft.us/v1.0/...`. With five failures the task fails at once, not at the end of the wait. With two deliveries the work is done once.
+   The callbacks go to `https://graph.microsoft.com/v1.0/...`. With five failures the task fails at once, not at the end of the wait. With two deliveries the work is done once.
 
 5. **Build the deployment pieces.**
 
@@ -201,15 +192,15 @@ You lint and run Learn's definition and the program's, build the deployment piec
    python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id 6e3a1f2b-8c4d-4e5f-9a0b-1c2d3e4f5a6b
    ```
 
-   Expected: `wrote out/arm-cms-revocation.json` and `wrote out/extension-cms-revocation.json`. Set the Logic App's cloud to Azure Government, build again, and put it back:
+   Expected: `wrote out/arm-cms-revocation.json` and `wrote out/extension-cms-revocation.json`. Set the Logic App's cloud to one Learn gives no policy values for, build again, and put it back:
 
    ```bash
-   sed -i 's/"azureCloud": "AzureCloud"/"azureCloud": "AzureUSGovernment"/' config/integrations.json
+   sed -i 's/"azureCloud": "AzureCloud"/"azureCloud": "AzureOther"/' config/integrations.json
    python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id 6e3a1f2b-8c4d-4e5f-9a0b-1c2d3e4f5a6b
-   sed -i 's/"azureCloud": "AzureUSGovernment"/"azureCloud": "AzureCloud"/' config/integrations.json
+   sed -i 's/"azureCloud": "AzureOther"/"azureCloud": "AzureCloud"/' config/integrations.json
    ```
 
-   Expected: the second build exits 1 with `error: cms-revocation: Learn documents the PoP policy only for Azure commercial; no values for AzureUSGovernment (research gap), so nothing is built`.
+   Expected: the second build exits 1 with `error: cms-revocation: Learn documents the PoP policy only for Azure commercial; no values for AzureOther (research gap), so nothing is built`.
 
 6. **Check the read-backs.**
 
@@ -239,7 +230,7 @@ You lint and run Learn's definition and the program's, build the deployment piec
    python -m unittest discover -s tests -v
    ```
 
-   Expected: `Ran 55 tests`, `OK`.
+   Expected: `Ran 54 tests`, `OK`.
 
 8. **Clean up.**
 

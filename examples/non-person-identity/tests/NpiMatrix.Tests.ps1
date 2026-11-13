@@ -333,6 +333,6 @@ Describe 'Gate 2 and the run' {
         foreach ($f in 'decisions.json', 'waves.json', 'findings.json') { Get-NpiFileHash -Path (Join-Path $out2 $f) | Should -Be $m.files[$f] }
     }
     It 'refuses a register read in another cloud' {
-        { & (Join-Path $script:Root 'Invoke-NpiMatrix.ps1') -Cloud gcchigh -RegisterRun $script:InvRun -OwnershipRun $script:OwnRun -InputPath $script:In -FixturePath $script:Fixture -SkuFixturePath $script:Skus -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw "*not 'gcchigh'*"
+        { & (Join-Path $script:Root 'Invoke-NpiMatrix.ps1') -Cloud global -RegisterRun $script:InvRun -OwnershipRun $script:OwnRun -InputPath $script:In -FixturePath $script:Fixture -SkuFixturePath $script:Skus -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw "*not 'global'*"
     }
 }

@@ -24,16 +24,13 @@ BeforeAll {
 }
 
 Describe 'Clouds and permissions' {
-    It 'uses the worldwide Graph for GCC and the separate hosts for GCC High and DoD' {
+    It 'uses the worldwide Graph for GCC' {
         (Get-GpcCloud gcc).GraphHost | Should -Be 'https://graph.microsoft.com'
+        (Get-GpcCloud gcc).Environment | Should -Be 'Global'
         (Get-GpcCloud global).Environment | Should -Be 'Global'
-        (Get-GpcCloud gcchigh).GraphHost | Should -Be 'https://graph.microsoft.us'
-        (Get-GpcCloud gcchigh).Environment | Should -Be 'USGov'
-        (Get-GpcCloud dod).GraphHost | Should -Be 'https://dod-graph.microsoft.us'
-        (Get-GpcCloud dod).Environment | Should -Be 'USGovDoD'
     }
     It 'refuses a cloud name it does not know instead of falling back to worldwide' {
-        { Get-GpcCloud 'usgovhigh' } | Should -Throw '*Unknown cloud*'
+        { Get-GpcCloud 'moon' } | Should -Throw '*Unknown cloud*'
     }
     It 'asks for Read.All for the plan and the dry run, and ReadWrite.All only to apply' {
         Get-GpcRequiredScope Plan | Should -Be 'DeviceManagementConfiguration.Read.All'
@@ -73,8 +70,8 @@ Describe 'Move plan from Group Policy analytics' {
     }
     It 'reads from the cloud it is given' {
         $g2 = New-Graph
-        Get-GpcMovePlan -Invoke $g2.Invoke -Cloud gcchigh | Out-Null
-        @($g2.Calls | Where-Object { $_.Uri -notlike 'https://graph.microsoft.us/*' }).Count | Should -Be 0
+        Get-GpcMovePlan -Invoke $g2.Invoke -Cloud global | Out-Null
+        @($g2.Calls | Where-Object { $_.Uri -notlike 'https://graph.microsoft.com/*' }).Count | Should -Be 0
     }
 }
 
@@ -226,10 +223,10 @@ Describe 'Sync: dry run, apply and its guards' {
     }
     It 'creates in the cloud it is given' {
         $g = New-Graph
-        $r = Invoke-GpcSync -Library (Get-Library) -Invoke $g.Invoke -Cloud dod -Apply
-        ($g.Calls | Where-Object Method -EQ 'POST').Uri | Should -Be 'https://dod-graph.microsoft.us/beta/deviceManagement/configurationPolicies'
-        @($g.Calls | Where-Object { $_.Uri -notlike 'https://dod-graph.microsoft.us/*' }).Count | Should -Be 0
-        $r.GraphHost | Should -Be 'https://dod-graph.microsoft.us'
+        $r = Invoke-GpcSync -Library (Get-Library) -Invoke $g.Invoke -Cloud global -Apply
+        ($g.Calls | Where-Object Method -EQ 'POST').Uri | Should -Be 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies'
+        @($g.Calls | Where-Object { $_.Uri -notlike 'https://graph.microsoft.com/*' }).Count | Should -Be 0
+        $r.GraphHost | Should -Be 'https://graph.microsoft.com'
     }
     It 'flags a created policy that reads back different from the file' {
         $g = New-Graph

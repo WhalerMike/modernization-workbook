@@ -126,12 +126,12 @@ Describe 'MS.AAD.7.7v1 and MS.AAD.7.8v1: PIM alerts (PA-PIM-10, PA-PIM-11)' {
         { Get-PaPimRolePolicy -Client $client -RoleTemplateId $ids } | Should -Throw '*Forbidden (403)*'
     }
     It 'sends one GET per role, one each for the eligible and active assignments, and one per group, on the cloud''s own Graph host' {
-        $r = Get-AlertFinding (Join-Path $script:Fixtures 'pim-alerts-groups-set.json') 'gcchigh'
+        $r = Get-AlertFinding (Join-Path $script:Fixtures 'pim-alerts-groups-set.json') 'gcc'
         @($r.Fake.Calls).Count | Should -Be 12
         @($r.Fake.Calls | Where-Object { [Uri]::UnescapeDataString($_.Uri) -match "scopeType eq 'Group' and roleDefinitionId eq 'member'" }).Count | Should -Be 2
         foreach ($c in $r.Fake.Calls) {
             $c.Method | Should -Be 'GET'
-            $c.Uri | Should -BeLike 'https://graph.microsoft.us/v1.0/*'
+            $c.Uri | Should -BeLike 'https://graph.microsoft.com/v1.0/*'
         }
     }
     It 'the entry script writes findings.json and a manifest that records only GETs' {

@@ -1,4 +1,7 @@
-$ python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints, scope_for; print(endpoints('gcc')); print(scope_for('gcc', 'arm')); print(scope_for('dod'))"
-{'login': 'https://login.microsoftonline.com', 'graph': 'https://graph.microsoft.com', 'arm': 'https://management.azure.com', 'ps_env': 'Global', 'azure_env': 'AzureCloud'}
-https://management.azure.com/.default
-https://dod-graph.microsoft.us/.default
+$ python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints; print(endpoints('usgov'))"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "python/graphkit.py", line 68, in endpoints
+    raise ValueError(f"unknown cloud {cloud!r}; one of {sorted(CLOUDS)}")
+ValueError: unknown cloud 'usgov'; one of ['gcc', 'global']
+(exit code 1)

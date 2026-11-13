@@ -213,7 +213,7 @@ You read the CMDB, run Microsoft's role in check mode, plan wave 0, dry-run it, 
    bash tests/run_all.sh
    ```
 
-   Expected: yamllint and ansible-lint pass (`Profile 'production' was required, and it passed`), six playbooks pass the syntax check, and 90 tests pass as root. On Windows with Python and PyYAML, `python -m pytest examples/ansible/tests` from the repository root gives 74 passed and 16 skipped.
+   Expected: yamllint and ansible-lint pass (`Profile 'production' was required, and it passed`), six playbooks pass the syntax check, and 88 tests pass as root. On Windows with Python and PyYAML, `python -m pytest examples/ansible/tests` from the repository root gives 74 passed and 14 skipped.
 
 **Check your work:** for any server in the CMDB, you can say whether it's a candidate, which wave it's in, which tags it would get, and what would stop or block it.
 

@@ -51,7 +51,7 @@ Describe 'Microsoft Graph reads' {
     }
     It 'maps GCC to the worldwide Graph endpoint' {
         $Live.GraphHost | Should -Be 'https://graph.microsoft.com'
-        (Get-VkRunContext -Cloud gcchigh).GraphHost | Should -Be 'https://graph.microsoft.us'
+        { Get-VkRunContext -Cloud moon } | Should -Throw
     }
 }
 

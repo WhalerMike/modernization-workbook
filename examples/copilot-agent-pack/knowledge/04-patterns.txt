@@ -27,7 +27,7 @@ HR extract columns used by the example: employeeId (the join key), status (Activ
 PATTERN 5: READ-ONLY MICROSOFT GRAPH CHECKS
 Example checks: enabled members with no sign-in in N days; Conditional Access policy export for diffing; privileged-role assignment report; application secrets and certificates nearing expiry; MFA registration gaps.
 Practices: least-privileged application permissions (for example User.Read.All, AuditLog.Read.All, Policy.Read.All), stated per check; select only the needed properties; follow @odata.nextLink paging; retry 429, 503 and 504 after Retry-After; never send the token to a host other than the expected Graph endpoint; prefer certificate authentication to client secrets; take secrets from a vault or environment, never from a file in the repository.
-Graph endpoints by cloud: worldwide and GCC use graph.microsoft.com; GCC High uses graph.microsoft.us; DoD uses dod-graph.microsoft.us.
+Graph endpoint: worldwide and GCC use graph.microsoft.com.
 
 PATTERN 6: LEAST PRIVILEGE FOR EVERY CONNECTOR IDENTITY
 Each integration has its own identity with only the roles or permissions it needs, listed in the design note. Read and record; no write access to the directory or the identity product unless a design review approved it.

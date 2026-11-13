@@ -410,7 +410,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-**Expected result:** 513 tests passing across the example, `out/federation/manifest.json` listing 20 reads (5 application reads, 4 credential lists, 1 service principal, 4 sign-in pages, 2 identities, 2 role assignment reads, 2 AD reads) and 6 token exchange tests sent to the fake, and `out/federation-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done:
+**Expected result:** 511 tests passing across the example, `out/federation/manifest.json` listing 20 reads (5 application reads, 4 credential lists, 1 service principal, 4 sign-in pages, 2 identities, 2 role assignment reads, 2 AD reads) and 6 token exchange tests sent to the fake, and `out/federation-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -603,7 +603,7 @@ The conversion is what the guide's [G5 Conversion](../../../books/guides/non-per
 | The write path stops after its prechecks without `-Apply`, and refuses a plan whose hash nobody approved (Lab 1, steps 7 and 8: `results.json` in the dry-run folder; the refusal text) | CM-3; CM-5 | KSI-CMT-RVP; KSI-IAM-JIT | The reviewer; the ISSO |
 | The approved identity, credentials and disable were sent one at a time, after fresh prechecks, and recorded (Lab 1, step 8, and Lab 2, step 4: `results.json` and `manifest.json` in the apply folder) | AC-2(3) Disable Accounts; CM-3 | KSI-IAM-AAM; KSI-CMT-LMC | The ISSO, with the run's folder |
 | Every run records the tenant, the cloud, every request and exchange test, and a SHA-256 per file (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
-| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 511 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 | The subject and issuer in the reviewed file were captured from a real token, never derived (Lab 2, step 2: `capturedSubject` and `capturedIssuer` in `conversions.json`) | IA-5 | KSI-IAM-SNU | Identity engineering |
 | The workload signed in with the federated credential and no secret (Lab 2, step 5: the beta sign-in log entry with `clientCredentialType` `federatedIdentityCredential` and the credential's ID) | IA-9; AU-2 Event Logging; AU-12 Audit Record Generation | KSI-MLA-LET (AU-2, AU-12) | Security operations |
 | The legacy account was disabled only after a clean 30 days and the owner's approval (Lab 2, step 6: `ParallelRunning`, then `DisableLegacy` in `plan.json`; `DisableApprovedBy` and `DisabledOn` in `cutover-log.csv`) | AC-2(3) | KSI-IAM-AAM | Application owners |

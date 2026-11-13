@@ -215,9 +215,8 @@ Describe 'The Chapter 04 call list' {
             if ($c.method -ne 'GET') { $c.ContainsKey('allowedBody') | Should -BeTrue }
         }
     }
-    It 'Key Vault uses the commercial host for GCC and the Azure Government host for GCC High; no default cloud' {
+    It 'Key Vault uses the commercial host for GCC; no default cloud' {
         Get-NpiVaultHost -Cloud gcc -Vault 'kv-npi-contoso' | Should -Be 'https://kv-npi-contoso.vault.azure.net'
-        Get-NpiVaultHost -Cloud gcchigh -Vault 'kv-npi-contoso' | Should -Be 'https://kv-npi-contoso.vault.usgovcloudapi.net'
         { Get-NpiVaultHost -Cloud 'GCC' -Vault 'kv-npi-contoso' } | Should -Throw '*Unknown cloud*'
         { Get-NpiVaultHost -Cloud gcc -Vault 'evil.example/x' } | Should -Throw "*isn't a key vault name*"
     }

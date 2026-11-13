@@ -355,8 +355,8 @@ Describe 'The live invoker' {
         { New-NpiDeployLiveInvoker -Cloud gcc -TenantId 'c0ffee00-0000-4000-8000-0000000000e1' -Task deploy-preflight } | Should -Not -Throw
     }
     It 'refuses a session in another tenant or cloud' {
-        Mock -ModuleName NpiDeploy Get-MgContext { [pscustomobject]@{ Environment = 'USGov'; TenantId = 'c0ffee00-0000-4000-8000-0000000000e1'; AuthType = 'Delegated' } }
-        { New-NpiDeployLiveInvoker -Cloud gcc -TenantId 'c0ffee00-0000-4000-8000-0000000000e1' -Task deploy-preflight } | Should -Throw "*'USGov'*"
+        Mock -ModuleName NpiDeploy Get-MgContext { [pscustomobject]@{ Environment = 'China'; TenantId = 'c0ffee00-0000-4000-8000-0000000000e1'; AuthType = 'Delegated' } }
+        { New-NpiDeployLiveInvoker -Cloud gcc -TenantId 'c0ffee00-0000-4000-8000-0000000000e1' -Task deploy-preflight } | Should -Throw "*'China'*"
         Mock -ModuleName NpiDeploy Get-MgContext { [pscustomobject]@{ Environment = 'Global'; TenantId = 'c0ffee00-0000-4000-8000-0000000000f1'; AuthType = 'Delegated' } }
         { New-NpiDeployLiveInvoker -Cloud gcc -TenantId 'c0ffee00-0000-4000-8000-0000000000e1' -Task deploy-preflight } | Should -Throw '*not ''c0ffee00-0000-4000-8000-0000000000e1''*'
     }

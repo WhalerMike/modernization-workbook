@@ -76,7 +76,7 @@ function Test-NpiDeploySettings {
     if ($p.Count -and @($p | Where-Object { $_ -match ': missing$' }).Count) { return $p.ToArray() }
     if ($Stage -and $Settings.environment -ne $Stage) { $p.Add("environment: the file is for '$($Settings.environment)', not '$Stage'") }
     if ($Settings.environment -notin 'test', 'production' -and -not ($AllowPlaceholders -and "$($Settings.environment)" -match '^<')) { $p.Add("environment: '$($Settings.environment)' isn't test or production") }
-    if ($Settings.cloud -cnotin 'global', 'gcc', 'gcchigh', 'dod') { $p.Add("cloud: '$($Settings.cloud)' isn't global, gcc, gcchigh or dod") }
+    if ($Settings.cloud -cnotin 'global', 'gcc') { $p.Add("cloud: '$($Settings.cloud)' isn't global or gcc") }
     $ids = @(
         @('tenantId', $Settings.tenantId), @('deployIdentity.clientId', $Settings.deployIdentity.clientId), @('readerIdentity.clientId', $Settings.readerIdentity.clientId),
         @('pilot.appObjectId', $Settings.pilot.appObjectId)

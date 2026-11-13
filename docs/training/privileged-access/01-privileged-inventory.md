@@ -96,7 +96,7 @@ Get-Content out/inventory/findings.json -Raw | ConvertFrom-Json | Where-Object S
 # Step 5: See the reader refuse
 $r = New-PaReader -Cloud gcc -Task inventory -Invoke (New-PaFixtureInvoker -Path tests/fixtures/tenant.json).Invoke
 Invoke-PaList -Reader $r -CallId ca-policies
-Get-PaCloud GCCHigh
+Get-PaCloud usgov
 
 # Step 6: Run the tests, then delete out
 Invoke-Pester -Path tests
@@ -177,12 +177,12 @@ Remove-Item -Recurse -Force out
     ```powershell
     $r = New-PaReader -Cloud gcc -Task inventory -Invoke (New-PaFixtureInvoker -Path tests/fixtures/tenant.json).Invoke
     Invoke-PaList -Reader $r -CallId ca-policies
-    Get-PaCloud GCCHigh
+    Get-PaCloud usgov
     ```
 
     ```text
     Exception: Undeclared call 'ca-policies' for task 'inventory'; add it to config/calls.json with its permission.
-    Exception: Unknown cloud 'GCCHigh'. Use global, gcc, gcchigh or dod.
+    Exception: Unknown cloud 'usgov'. Use global or gcc.
     ```
 
 6. **Run the tests, then delete `out`:**

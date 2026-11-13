@@ -120,7 +120,7 @@ Describe 'Chapter 10: the call list (config/calls-ch10.json)' {
     It 'marks the sign-in activity report beta and global only' {
         $c = @((Get-NpiDriftCallList).calls | Where-Object id -EQ 'sp-signin-activities')[0]
         $c.stage | Should -Be 'beta'; $c.version | Should -Be 'beta'
-        $c.clouds | Should -Not -Contain 'gcchigh'; $c.clouds | Should -Not -Contain 'dod'
+        $c.clouds | Should -Be @('global', 'gcc')
     }
     It 'the drift run needs four Graph permissions, none a write, and Reader' {
         $p = Get-NpiDriftPermission -Task drift-run
@@ -162,14 +162,11 @@ Describe 'Chapter 10: the audit and sign-in reads' {
         { Get-NpiAuditEvent -Reader $script:Reader -Since ([datetime]'2026-09-01T00:00:00Z') -Until ([datetime]'2026-10-30T06:00:00Z') } | Should -Throw '*keeps 30 days*'
         { Get-NpiAuditEvent -Reader $script:Reader -Since ([datetime]'2026-10-30T06:00:00Z') -Until ([datetime]'2026-10-29T06:00:00Z') } | Should -Throw '*before it starts*'
     }
-    It 'reads the sign-in activity report on beta in GCC, and doesn''t send it in GCC High' {
+    It 'reads the sign-in activity report on beta in GCC' {
         $s = Get-NpiSignInActivity -Reader $script:Reader
         $s.Status | Should -Be 'Read'
         $s.ByAppId['1a000000-0000-4000-8000-000000000003'] | Should -Be '2026-05-01T08:00:00Z'
         @($script:Fake.Calls | Where-Object { $_.Uri -like 'https://graph.microsoft.com/beta/reports/servicePrincipalSignInActivities*' }).Count | Should -BeGreaterThan 0
-        $hi = New-NpiDriftFixtureInvoker -AuditPath $script:Audit -SignInPath $script:SignIn -Cloud gcchigh
-        (Get-NpiSignInActivity -Reader (New-NpiDriftReader -Cloud gcchigh -Invoke $hi.Invoke)).Status | Should -Be 'NotAvailable'
-        $hi.Calls.Count | Should -Be 0
     }
 }
 
@@ -179,7 +176,7 @@ Describe 'Chapter 10: the approved baseline' {
     }
     It 'is refused for another tenant or another cloud' {
         { Import-NpiDriftBaseline -Path $script:BasePath -ApprovedSha256 $script:BaseSha -TenantId '11111111-1111-4111-8111-111111111111' -Cloud gcc } | Should -Throw '*not 11111111*'
-        { Import-NpiDriftBaseline -Path $script:BasePath -ApprovedSha256 $script:BaseSha -TenantId $script:Tenant -Cloud gcchigh } | Should -Throw '*not ''gcchigh''*'
+        { Import-NpiDriftBaseline -Path $script:BasePath -ApprovedSha256 $script:BaseSha -TenantId $script:Tenant -Cloud global } | Should -Throw '*not ''global''*'
     }
     It 'a run with no baseline compares with nothing and writes a candidate' {
         @(Get-F 'NPI-DRF-01' $script:F1).Count + @(Get-F 'NPI-DRF-02' $script:F1).Count | Should -Be 0
@@ -244,10 +241,10 @@ Describe 'Chapter 10: the register drift findings' {
         (Get-F 'NPI-DRF-09' | Where-Object Severity -EQ 'Warn').ObjectKey | Should -Be 'contract:ch05-findings.json'
         @(Get-F 'NPI-DRF-09' | Where-Object Severity -EQ 'Info' | ForEach-Object ObjectKey) | Should -Be @('contract:chapter-03', 'contract:chapter-04', 'contract:chapter-05', 'contract:chapter-06', 'contract:chapter-08')
     }
-    It 'NPI-DRF-09: GCC High records the unused check as not read' {
-        $f = @(Test-NpiRegisterDrift -Rows $script:Rows2 -AsOf ([datetime]'2026-10-30T06:00:00Z') -SignIn ([pscustomobject]@{ Status = 'NotAvailable'; ByAppId = @{} }) -Cloud gcchigh)
+    It 'NPI-DRF-09: a sign-in report that wasn''t read is recorded as not read' {
+        $f = @(Test-NpiRegisterDrift -Rows $script:Rows2 -AsOf ([datetime]'2026-10-30T06:00:00Z') -SignIn ([pscustomobject]@{ Status = 'NotAvailable'; ByAppId = @{} }) -Cloud global)
         @($f | Where-Object Rule -EQ 'NPI-DRF-04').Count | Should -Be 0
-        ($f | Where-Object Rule -EQ 'NPI-DRF-09').ObjectKey | Should -Be 'signin-activity:gcchigh'
+        ($f | Where-Object Rule -EQ 'NPI-DRF-09').ObjectKey | Should -Be 'signin-activity:global'
     }
     It 'a finding keeps its fingerprint from run to run, and the fingerprint is SHA-256(rule|key|) cut to 16' {
         $a = Get-F 'NPI-DRF-06' $script:F1 | Where-Object ObjectKey -EQ 'ad:ad000000-0000-4000-8000-000000000001'

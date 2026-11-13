@@ -19,7 +19,7 @@
 #>
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+    [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
     [Parameter(Mandatory)][string]$DesiredPath,
     [Parameter(Mandatory)][string]$CallerPrincipalId,
     [Parameter(Mandatory)][string]$OutputPath,

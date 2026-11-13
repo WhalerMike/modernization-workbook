@@ -55,10 +55,10 @@ ROLE_TEMPLATES = {
     "User Administrator": "fe930be7-5e62-47db-91af-98c3a49a38b1",  # the test stage's rollback removes smoke accounts
 }
 # Graph PowerShell -Environment name per cloud (Learn, "Authentication module cmdlets").
-MG_ENVIRONMENT = {"gcc": "Global", "gcchigh": "USGov", "dod": "USGovDoD"}
-# Azure CLI cloud per tenant cloud (Learn, "Connect to Azure Government with Azure CLI"). A GCC tenant is a
-# commercial Entra tenant, so its key vault sits in a commercial subscription (the guide's inference).
-AZURE_CLOUD = {"gcc": "AzureCloud", "gcchigh": "AzureUSGovernment", "dod": "AzureUSGovernment"}
+MG_ENVIRONMENT = {"gcc": "Global"}
+# Azure CLI cloud per tenant cloud. A GCC tenant is a commercial Entra tenant, so its key vault sits in a
+# commercial subscription (the guide's inference).
+AZURE_CLOUD = {"gcc": "AzureCloud"}
 
 
 def load(path: Path) -> dict[str, Any]:

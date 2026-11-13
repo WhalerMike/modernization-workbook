@@ -476,7 +476,7 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
 
    <!-- capture:end -->
 
-**Expected result:** 513 tests passing across the example, this chapter's 51 among them; `out/policy/manifest.json` listing the reads with `Application.Read.All` and `Policy.Read.All` and the SHA-256 of the register, the reviewed file and the default policy as read; `out/rotation-apply/manifest.json` listing the prechecks, the two PATCHes, the Key Vault create and its poll. Delete `out` when you're done:
+**Expected result:** 511 tests passing across the example, this chapter's 51 among them; `out/policy/manifest.json` listing the reads with `Application.Read.All` and `Policy.Read.All` and the SHA-256 of the register, the reviewed file and the default policy as read; `out/rotation-apply/manifest.json` listing the prechecks, the two PATCHes, the Key Vault create and its poll. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -789,7 +789,7 @@ The policy and the rotation are what the guide's [G3 Credential rules](../../../
 | The approved renewal, attach and removal were sent after fresh prechecks, and recorded (Lab 1, step 8, and Lab 2, steps 6 and 7: `results.json` and `manifest.json` in each apply folder) | IA-5(2); SC-12; CM-3 | KSI-SVC-ASM; KSI-CMT-LMC | The ISSO, with the run's folder |
 | The workload signs in with the new certificate before the old one is removed, and the app ends with one certificate (Lab 2, step 7: `Connect-MgGraph -CertificateThumbprint`; `rotation-verifications.csv`; the `keyCredentials` listing) | IA-5(2) | KSI-IAM-SNU, KSI-SVC-ASM | Application owners |
 | Every run records the tenant, the cloud, every request, and the SHA-256 of the register, the reviewed files and each file written (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
-| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 511 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 | The lab's policy change is reversed from the saved copy (Lab 2, step 8: the PATCH back to `default-policy-before.json`) | CM-3 | KSI-CMT-LMC | Identity engineering |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which output supports which indicator is the program's mapping (design guidance), and the SCuBA rows are mapped through CM-6.[^np04-ksi] The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Lab steps that only prepare test objects, run Chapter 01 or delete `out` have no row. The track-wide mapping is the guide's [Evidence](../../../books/guides/non-person-identity-implementation.md#evidence) table.

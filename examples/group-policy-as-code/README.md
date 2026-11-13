@@ -64,7 +64,7 @@ pwsh ./powershell/Invoke-GpcSync.ps1 -Cloud gcc -TenantId <test-tenant-id> -With
 pwsh ./powershell/Invoke-GpcSync.ps1 -Cloud gcc -TenantId <test-tenant-id> -Apply      # DeviceManagementConfiguration.ReadWrite.All
 ```
 
-`-Cloud gcc` and `global` use `https://graph.microsoft.com`, as GCC does; `gcchigh` uses `https://graph.microsoft.us` and `dod` uses `https://dod-graph.microsoft.us`. Exit codes: 0 clean, 2 something needs a person (a finding, `Drift`, `Duplicate`, or a created policy that reads back different), 1 error. The sync sends GET and, with `-Apply`, POST to `configurationPolicies`. It never sends PATCH or DELETE: a policy that differs from Git is reported, not overwritten.
+`-Cloud gcc` and `global` use `https://graph.microsoft.com`, as GCC does. Exit codes: 0 clean, 2 something needs a person (a finding, `Drift`, `Duplicate`, or a created policy that reads back different), 1 error. The sync sends GET and, with `-Apply`, POST to `configurationPolicies`. It never sends PATCH or DELETE: a policy that differs from Git is reported, not overwritten.
 
 ## Linter rules
 

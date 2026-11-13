@@ -81,7 +81,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--task", required=True, help="a task in config/calls.json")
     ap.add_argument("--list", action="store_true", help="print the task's calls and permissions, and stop")
-    ap.add_argument("--cloud", help="gcc, gcchigh or dod (no default)")
+    ap.add_argument("--cloud", help="gcc (no default)")
     ap.add_argument("--param", action="append", default=[], help="name=value for a {name} in a call's path or query")
     ap.add_argument("--out", type=Path, help="folder for the exported JSON")
     args = ap.parse_args(argv)

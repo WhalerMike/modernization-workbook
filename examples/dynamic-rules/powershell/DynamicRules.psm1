@@ -18,11 +18,9 @@ $script:DrMaxRuleLength = 3072
 $script:DrCompare = [StringComparison]::OrdinalIgnoreCase
 $script:DrComparisonOps = @('eq', 'ne', 'startswith', 'notstartswith', 'endswith', 'notendswith', 'contains', 'notcontains',
     'match', 'notmatch', 'in', 'notin', 'le', 'ge')
-# Learn's national cloud Graph hosts. An unknown name is an error, never a default.
+# Learn's Graph host for the worldwide service, which GCC uses. An unknown name is an error, never a default.
 $script:DrGraphHosts = [ordered]@{
     Global   = 'https://graph.microsoft.com'
-    USGov    = 'https://graph.microsoft.us'
-    USGovDoD = 'https://dod-graph.microsoft.us'
 }
 
 function New-DrFinding {
@@ -495,10 +493,10 @@ function Compare-DrRule {
 function Get-DrGraphEndpoint {
     <#
     .SYNOPSIS
-        Returns the Microsoft Graph host for a cloud: Global, USGov or USGovDoD. An unknown name
-        throws; there is no default.
+        Returns the Microsoft Graph host for a cloud: Global (the worldwide service, which GCC uses).
+        An unknown name throws; there is no default.
     .EXAMPLE
-        Get-DrGraphEndpoint -Cloud USGov   # https://graph.microsoft.us
+        Get-DrGraphEndpoint -Cloud Global   # https://graph.microsoft.com
     #>
 
     <# Learn's Graph host for a cloud. An unknown name throws; there is no silent default. #>
@@ -515,7 +513,7 @@ function Get-DrDynamicCollections {
         the Graph script block in -Invoke, following @odata.nextLink.
     .EXAMPLE
         $invoke = { param($Method, $Uri, $Body, $Headers) Invoke-MgGraphRequest -Method $Method -Uri $Uri -Body $Body -Headers $Headers }
-        Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud USGov)
+        Get-DrDynamicCollections -Invoke $invoke -Endpoint (Get-DrGraphEndpoint -Cloud Global)
     #>
 
     <# Every dynamic group and dynamic administrative unit, with its processing state, through $Invoke. #>
@@ -543,7 +541,7 @@ function New-DrPauseManifest {
         is paused, so a later resume touches only what the incident paused.
     .EXAMPLE
         $invoke = { param($Method, $Uri, $Body, $Headers) Invoke-MgGraphRequest -Method $Method -Uri $Uri -Body $Body -Headers $Headers }
-        $m = New-DrPauseManifest -Invoke $invoke -Cloud USGov -Reason 'Drill'
+        $m = New-DrPauseManifest -Invoke $invoke -Cloud Global -Reason 'Drill'
     #>
 
     <#

@@ -93,7 +93,7 @@ python python/workflow_lint.py --learn-samples
 python python/workflow_lint.py workflow/drift-pipeline.yml
 
 # Step 3: Print a cloud's hosts
-python python/drift_pipeline.py cloud --name dod
+python python/drift_pipeline.py cloud --name gcc
 python python/drift_pipeline.py cloud --name usgov
 
 # Step 4: Record a baseline and package it
@@ -158,11 +158,11 @@ You lint the workflows, print a cloud's hosts, record a baseline, compare the ne
 3. **Print a cloud's hosts**, then ask for a name the pipeline doesn't know:
 
    ```bash
-   python python/drift_pipeline.py cloud --name dod
+   python python/drift_pipeline.py cloud --name gcc
    python python/drift_pipeline.py cloud --name usgov
    ```
 
-   Expected: for `dod`, the authority `https://login.microsoftonline.us`, the Graph host `https://dod-graph.microsoft.us` and the Azure environment `AzureUSGovernment`. Then exit 1: `error: unknown cloud 'usgov'; expected one of gcc, gcchigh, dod`.
+   Expected: for `gcc`, the authority `https://login.microsoftonline.com`, the Graph host `https://graph.microsoft.com` and the Azure environment `AzureCloud`. Then exit 1: `error: unknown cloud 'usgov'; expected one of gcc`.
 
 4. **Record a baseline and package it.**
 
@@ -243,7 +243,7 @@ You lint the workflows, print a cloud's hosts, record a baseline, compare the ne
    python -m pytest tests -q
    ```
 
-   Expected: `142 passed`. It takes about two minutes.
+   Expected: `141 passed`. It takes about two minutes.
 
 10. **Clean up.**
 

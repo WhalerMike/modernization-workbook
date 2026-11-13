@@ -114,13 +114,13 @@ class Runs(unittest.TestCase):
         self.assertNotIn("After", stopped.actions)
 
     def test_parameters_are_bound_like_a_deployment(self):
-        d = _definition({}, {"host": {"type": "String", "allowedValues": ["https://graph.microsoft.us"]}})
+        d = _definition({}, {"host": {"type": "String", "allowedValues": ["https://graph.example.test"]}})
         send, _ = _send([])
         with self.assertRaises(wdl.WdlError):
             wdl.run(d, {}, send)
         with self.assertRaises(wdl.WdlError):
             wdl.run(d, {}, send, {"host": "https://graph.microsoft.com"})
-        self.assertEqual(wdl.run(d, {}, send, {"host": "https://graph.microsoft.us"}).status, "Succeeded")
+        self.assertEqual(wdl.run(d, {}, send, {"host": "https://graph.example.test"}).status, "Succeeded")
 
     def test_unsupported_action_types_are_refused(self):
         d = _definition({"A": {"type": "Foreach", "runAfter": {}}})

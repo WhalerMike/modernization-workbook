@@ -121,7 +121,7 @@ tests/fixtures/                         a fictional estate (contoso.example, cor
 
 ## Clouds
 
-`-Cloud` is required: `gcc` (and `global`) use the worldwide endpoints, `graph.microsoft.com`, `login.microsoftonline.com` and commercial `management.azure.com`, as Microsoft 365 GCC with commercial Azure does. `gcchigh` and `dod` use `graph.microsoft.us` and `dod-graph.microsoft.us` with Azure Government's `management.usgovcloudapi.net`. Any other name throws. The live invoker refuses to run if the Graph or Azure session is in another cloud or another tenant.
+`-Cloud` is required: `gcc` (and `global`) use the worldwide endpoints, `graph.microsoft.com`, `login.microsoftonline.com` and commercial `management.azure.com`, as Microsoft 365 GCC with commercial Azure does. Any other name throws. The live invoker refuses to run if the Graph or Azure session is in another cloud or another tenant.
 
 ## Run the tests
 

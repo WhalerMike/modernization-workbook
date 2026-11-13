@@ -2,4 +2,4 @@ PS> $r = New-NpiReader -Cloud gcc -Task inventory -Invoke (New-NpiFixtureInvoker
 PS> Invoke-NpiList -Reader $r -CallId graph-user -Bind @{ id = 'x' }
 Exception: Undeclared call 'graph-user' for task 'inventory'; add it to config/calls.json with its permission.
 PS> Get-NpiCloud GCC
-Exception: Unknown cloud 'GCC'. Use global, gcc, gcchigh or dod.
+Exception: Unknown cloud 'GCC'. Use global or gcc.

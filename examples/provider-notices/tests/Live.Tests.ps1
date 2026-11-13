@@ -7,7 +7,7 @@ BeforeAll {
     $script:S = Read-PnSettings -Path (Join-Path $Kit 'tests/fixtures/settings.lab.json')
     function script:Gov {
         $g = Read-PnSettings -Path (Join-Path $Kit 'tests/fixtures/settings.lab.json')
-        $g.providers.azure.cloud = 'AzureUSGovernment'; $g.providers.m365.cloud = 'gcchigh'
+        $g.providers.azure.cloud = 'AzureUSGovernment'; $g.providers.m365.cloud = 'gcc'
         $g.providers.oci.realm = 'oc2'; $g.providers.oci.region = 'us-langley-1'; $g.providers.aws.partition = 'aws-us-gov'
         $g
     }
@@ -40,8 +40,7 @@ Describe 'The live commands' {
     }
     It 'sends Graph calls to the cloud''s own host: <Cloud>' -ForEach @(
         @{ Cloud = 'gcc'; Uri = 'https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/messages' }
-        @{ Cloud = 'gcchigh'; Uri = 'https://graph.microsoft.us/v1.0/admin/serviceAnnouncement/messages' }
-        @{ Cloud = 'dod'; Uri = 'https://dod-graph.microsoft.us/v1.0/admin/serviceAnnouncement/messages' }
+        @{ Cloud = 'global'; Uri = 'https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/messages' }
     ) {
         $x = Read-PnSettings -Path (Join-Path $Kit 'tests/fixtures/settings.lab.json'); $x.providers.m365.cloud = $Cloud
         (Get-PnLiveCommand -CallId m365-messages -Settings $x).Uri | Should -Be $Uri
@@ -78,8 +77,9 @@ Describe 'The cloud guard' {
         { Assert-PnLiveContext -Provider azure -Settings $S } | Should -Not -Throw
     }
     It 'refuses a Graph session in another environment, or none' {
+        $null = Set-PnRunner -GraphContext { @{ Environment = 'Other'; TenantId = '00000000-0000-0000-0000-0000000000c0' } }
+        { Assert-PnLiveContext -Provider m365 -Settings $S } | Should -Throw "*not 'Global'*"
         $null = Set-PnRunner -GraphContext { @{ Environment = 'Global'; TenantId = '00000000-0000-0000-0000-0000000000c0' } }
-        { Assert-PnLiveContext -Provider m365 -Settings (Gov) } | Should -Throw "*not 'USGov'*"
         { Assert-PnLiveContext -Provider m365 -Settings $S } | Should -Not -Throw
         $null = Set-PnRunner -GraphContext { $null }
         { Assert-PnLiveContext -Provider m365 -Settings $S } | Should -Throw '*Connect-MgGraph -Environment Global*'

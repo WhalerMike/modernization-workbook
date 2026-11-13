@@ -163,7 +163,7 @@ Remove-Item -Recurse -Force out
     Get-NpiCloud GCC
     ```
 
-    Expect two errors: `Undeclared call 'graph-user' for task 'inventory'; add it to config/calls.json with its permission.` and `Unknown cloud 'GCC'. Use global, gcc, gcchigh or dod.`
+    Expect two errors: `Undeclared call 'graph-user' for task 'inventory'; add it to config/calls.json with its permission.` and `Unknown cloud 'GCC'. Use global or gcc.`
 
 6. **Read the hand-off to the Data Platform plan:**
 
@@ -179,7 +179,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests
     ```
 
-    Expect 513 tests passed, 0 failed.
+    Expect 511 tests passed, 0 failed.
 
 Delete `out` when you're done:
 

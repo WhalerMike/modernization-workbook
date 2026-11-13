@@ -274,7 +274,7 @@ def evaluate(task: str, data: dict, as_of: dt.datetime, window_days: int = 180) 
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="Read-only Azure Arc and Azure Policy checks through Azure Resource Graph.")
-    p.add_argument("--cloud", choices=sorted(CLOUDS), default="gcc", help="gcc and global use commercial Azure; gcchigh and dod use Azure Government")
+    p.add_argument("--cloud", choices=sorted(CLOUDS), default="gcc", help="gcc and global use commercial Azure")
     p.add_argument("--tenant", help="tenant ID")
     p.add_argument("--client", help="app (client) ID; with no --cert, a user-assigned managed identity's client ID")
     p.add_argument("--cert", help="PEM file with the app's certificate and private key")

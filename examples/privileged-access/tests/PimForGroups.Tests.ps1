@@ -67,9 +67,8 @@ Describe 'Chapter 05: Learn''s PIM for Groups request samples, as published' {
     It 'reads nothing before it writes: neither request page holds a GET' {
         @($script:Elig + $script:Asg | Where-Object Method -EQ 'GET').Count | Should -Be 0
     }
-    It 'hard-codes graph.microsoft.com, which the GCC High fake refuses' {
+    It 'hard-codes graph.microsoft.com' {
         foreach ($r in $script:Elig + $script:Asg + $script:Rules) { $r.Uri | Should -BeLike 'https://graph.microsoft.com/v1.0/*' }
-        (Invoke-PgLearnRequest -Request $script:Elig[0] -Fixture $script:Fixture -Cloud gcchigh).Status | Should -Match 'refuses host'
     }
     It 'includes a selfActivate request, which the plan''s guard refuses' {
         $script:Asg[1].Body.action | Should -Be 'selfActivate'
@@ -115,7 +114,7 @@ Describe 'Chapter 05: PimGroups' {
         It 'refuses an undeclared call, an unknown cloud and a path value that isn''t an ID' {
             $c = New-PaPgClient -Cloud gcc -Task 'pim-groups-read' -Invoke { }
             { Invoke-PaPgList -Client $c -CallId 'group-members' } | Should -Throw '*Undeclared*'
-            { New-PaPgClient -Cloud GCCHigh -Task 'pim-groups-read' -Invoke { } } | Should -Throw '*Unknown cloud*'
+            { New-PaPgClient -Cloud GCC -Task 'pim-groups-read' -Invoke { } } | Should -Throw '*Unknown cloud*'
             $w = New-PaPgClient -Cloud gcc -Task 'pim-groups-apply' -Invoke { }
             { New-PaPimGroupPlan -State ([pscustomobject]@{ Groups = @{ x = [pscustomobject]@{ Group = @{ id = 'a/b' }; Eligibility = @(); Assignment = @(); Policies = @(@{ roleDefinitionId = 'member'; policyId = '../x'; policy = @{ rules = @() } }) } } }) -Config @{ approverGroups = @{ T0 = '5a000000-0000-4000-8000-0000000000a0' }; groups = @(@{ displayName = 'x'; id = 'a'; tier = 'T0'; holds = 'other'; member = @{ active = @(); eligible = @() }; owner = @{ active = @(); eligible = @() } }) } -PolicySetting $script:Policy -Cloud gcc } | Should -Throw '*only IDs*'
         }
@@ -271,7 +270,7 @@ Describe 'Chapter 05: PimGroups' {
         It 'refuses -Apply with a read client, a plan for another cloud, or a plan that selects c1 without -ActivationGateChecked' {
             $r = Get-Run
             { Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client $r.Client -Apply } | Should -Throw '*pim-groups-apply*'
-            { Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client (New-Writer gcchigh).Client -Apply } | Should -Throw "*for 'gcc'*"
+            { Invoke-PaPgPlan -Plan $r.Plan -Config $r.Config -Client (New-Writer global).Client -Apply } | Should -Throw "*for 'gcc'*"
             foreach ($a in 'member', 'owner') { foreach ($tier in 'T0', 'T1', 'T2', 'RO') {
                     $rule = New-PaPgRuleSet -Setting $script:Policy[$a][$tier] -ApproverGroupId '5a000000-0000-4000-8000-0000000000a0' | Where-Object id -EQ 'AuthenticationContext_EndUser_Assignment'
                     $rule.isEnabled | Should -BeTrue; $rule.claimValue | Should -Be 'c1'

@@ -6,12 +6,10 @@
       "graphHost": {
         "type": "String",
         "allowedValues": [
-          "https://graph.microsoft.com",
-          "https://graph.microsoft.us",
-          "https://dod-graph.microsoft.us"
+          "https://graph.microsoft.com"
         ],
         "metadata": {
-          "description": "Microsoft Graph root for the tenant's cloud: graph.microsoft.com for worldwide and GCC, graph.microsoft.us for GCC High, dod-graph.microsoft.us for DoD."
+          "description": "Microsoft Graph root for the tenant's cloud: graph.microsoft.com for worldwide and GCC."
         }
       },
       "integrationUri": {

@@ -63,13 +63,11 @@ REQUIRED = (
 GUID_KEYS = ("tenant_id", "subscription_id", "identities.deploy.client_id", "identities.reader.client_id",
              "identities.provisioning.client_id", "hcm_entra.provisioning_app_object_id",
              "lifecycle.extension_id", "lifecycle.test_user_id", "group_policy.intune_group_id")
-# Microsoft's azure_arc role requests its token for commercial Azure only (Chapter 08), so a GCC High or
-# DoD estate onboards with the azcmagent playbook, which reads a service principal secret from Ansible Vault.
-ARC_PLAYBOOK = {"AzureCloud": "playbooks/06_arc_onboarding_role.yml",
-                "AzureUSGovernment": "playbooks/02_arc_onboarding.yml"}
-VK_CLOUD = {"gcc": "gcc", "gcchigh": "gcchigh", "dod": "dod"}
+# Microsoft's azure_arc role requests its token for commercial Azure (Chapter 08), which GCC uses.
+ARC_PLAYBOOK = {"AzureCloud": "playbooks/06_arc_onboarding_role.yml"}
+VK_CLOUD = {"gcc": "gcc"}
 # Learn, "Managing Storage in the Azure independent clouds using PowerShell": StorageEndpointSuffix per environment.
-STORAGE_SUFFIX = {"AzureCloud": "core.windows.net", "AzureUSGovernment": "core.usgovcloudapi.net"}
+STORAGE_SUFFIX = {"AzureCloud": "core.windows.net"}
 
 
 class SettingsError(Exception):

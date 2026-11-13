@@ -102,8 +102,8 @@ def test_push_is_dry_run_unless_apply():
 
 def test_fetchers_call_documented_endpoints():
     session = FakeSession()
-    session.add("GET", "graph.microsoft.us/v1.0/users", FakeResponse(200, {"value": [{"id": "u"}]}))
-    users = d.fetch_graph_users({"GRAPH_CLOUD": "USGov"}, kc.Http(session), {})
+    session.add("GET", "graph.microsoft.com/v1.0/users", FakeResponse(200, {"value": [{"id": "u"}]}))
+    users = d.fetch_graph_users({"GRAPH_CLOUD": "Global"}, kc.Http(session), {})
     assert users == [{"id": "u"}]
     assert "$expand=manager($select=id,employeeId)" in session.calls[0]["url"]
 

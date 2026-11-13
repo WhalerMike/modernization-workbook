@@ -25,14 +25,20 @@ BeforeAll {
     }
     function Get-TestInputs { Import-NpiAgentInputs -InputPath $script:Inputs }
     function Invoke-TestCheck {
-        param([string]$Cloud = 'gcc', $Inputs = (Get-TestInputs), [scriptblock]$Mutate)
+        param([string]$Cloud = 'gcc', $Inputs = (Get-TestInputs), [scriptblock]$Mutate, $Capability)
         $fake = New-NpiAgentFixtureInvoker -Path $script:Fixture -Cloud $Cloud
         if ($Mutate) { & $Mutate $fake.Estate }
         $reader = New-NpiAgentReader -Cloud $Cloud -Invoke $fake.Invoke
-        $cap = Get-NpiAgentCapability -Cloud $Cloud
+        $cap = if ($Capability) { $Capability } else { Get-NpiAgentCapability -Cloud $Cloud }
         $estate = Read-NpiAgentEstate -Reader $reader -Capability $cap -AsOf $script:AsOf -Inventory $Inputs.Inventory
         $r = Test-NpiAgentId -Reader $reader -Estate $estate -Inputs $Inputs -Runs (New-Runs $Cloud) -Capability $cap -AsOf $script:AsOf
         [pscustomobject]@{ Result = $r; Fake = $fake; Estate = $estate; Reader = $reader }
+    }
+    # D-NP6's fallback, for a cloud where agent identities aren't available.
+    $script:FallbackCap = [pscustomobject]@{
+        Cloud = 'global'; Decision = 'D-NP6'; Status = 'Proposed'; Mode = 'Fallback'
+        AgentIdentities = @{ available = $false; stage = 'Not published' }; AgentConditionalAccess = @{ available = $false; stage = 'Not published'; watch = $true }
+        AgentRisk = @{ available = $false; stage = 'Not published'; watch = $true }; SponsorWorkflows = @{ available = $false; stage = 'Not published' }
     }
     New-Item -ItemType Directory -Force $script:Tmp | Out-Null
     $script:Run = Invoke-TestCheck
@@ -55,10 +61,6 @@ Describe 'Chapter 09: Learn''s Agent ID samples, run as published' {
         $r = (Send-AgentIdLearnRequest -Request (Get-AgentIdLearnRequest 'agentidentity-list.md')[0] -Fake $fake).Response
         @($r.value).Count | Should -BeLessThan @($fake.Estate.agentIdentities).Count
         (Get-AgentIdPageText 'agentidentity-list.md') | Should -Match 'default and maximum page size is 100'
-    }
-    It 'hard-code graph.microsoft.com, which a GCC High or DoD tenant doesn''t answer' {
-        $fake = New-NpiAgentFixtureInvoker -Path $script:Fixture -Cloud gcchigh
-        (Send-AgentIdLearnRequest -Request (Get-AgentIdLearnRequest 'agentidentity-list.md')[0] -Fake $fake).Status | Should -Match 'refuses host graph\.microsoft\.com'
     }
     It 'List agentIdentity sponsors returns directory objects with an id only, and names a write permission for the read' {
         $fake = New-NpiAgentFixtureInvoker -Path $script:Fixture
@@ -181,26 +183,26 @@ Describe 'The Chapter 09 call list' {
 }
 
 Describe 'Decision D-NP6 as data' {
-    It 'gcc builds on agent identities; GCC High and DoD fall back to service principals and managed identities' {
+    It 'gcc and global build on agent identities' {
         (Get-NpiAgentCapability -Cloud gcc).Mode | Should -Be 'AgentId'
-        (Get-NpiAgentCapability -Cloud gcchigh).Mode | Should -Be 'Fallback'
-        (Get-NpiAgentCapability -Cloud dod).Mode | Should -Be 'Fallback'
+        (Get-NpiAgentCapability -Cloud global).Mode | Should -Be 'AgentId'
         (Get-NpiAgentCapability -Cloud gcc).Status | Should -Be 'Proposed'
         { Get-NpiAgentCapability -Cloud GCC } | Should -Throw '*Unknown cloud*'
     }
     It 'preview capabilities are watch items in every cloud' {
-        foreach ($c in 'global', 'gcc', 'gcchigh', 'dod') { (Get-NpiAgentCapability -Cloud $c).AgentRisk.watch | Should -BeTrue }
+        foreach ($c in 'global', 'gcc') { (Get-NpiAgentCapability -Cloud $c).AgentRisk.watch | Should -BeTrue }
     }
     It 'in the fallback no agent identity read is sent, and the same rules run on the service principal' {
-        $r = Invoke-TestCheck -Cloud gcchigh
+        $r = Invoke-TestCheck -Cloud global -Capability $script:FallbackCap
         @($r.Reader.Evidence.Call | Where-Object { $_ -match '^agid-(blueprint|identit)' }).Count | Should -Be 0
         (@($r.Result.Findings | Where-Object { $_.Rule -eq 'NPI-AI-03' -and $_.Object -like 'Correspondence*' })[0]).Severity | Should -Be 'Info'
         @($r.Result.Findings | Where-Object { $_.Object -like 'Correspondence*' } | ForEach-Object Rule | Sort-Object -Unique) | Should -Be @('NPI-AI-03', 'NPI-AI-10', 'NPI-AI-15')
         @($r.Result.Findings | Where-Object { $_.Rule -eq 'NPI-AI-03' -and $_.Severity -eq 'Finding' }).Count | Should -Be 3
     }
     It 'in the fallback the agent policies are not offered: the plan has no write' {
-        $r = Invoke-TestCheck -Cloud gcchigh
-        $plan = New-NpiAgentCaPlan -Estate $r.Estate -Cloud gcchigh -TenantId $script:Tenant -AsOf $script:AsOf
+        Mock -ModuleName NpiAgentId Get-NpiAgentCapability { $script:FallbackCap }
+        $r = Invoke-TestCheck -Cloud global -Capability $script:FallbackCap
+        $plan = New-NpiAgentCaPlan -Estate $r.Estate -Cloud global -TenantId $script:Tenant -AsOf $script:AsOf
         @($plan.actions | Where-Object Write).Count | Should -Be 0
         @($plan.actions.Action | Sort-Object -Unique) | Should -Be @('NotAvailable')
     }

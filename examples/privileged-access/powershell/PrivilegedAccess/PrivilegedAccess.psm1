@@ -19,14 +19,12 @@ $script:GlobalAdminTemplateId = '62e90394-69f5-4237-9190-012177145e10'
 
 # ----------------------------------------------------------------------------- clouds and calls
 
-# Case-sensitive on purpose: 'GCCHigh' isn't a name this module knows, so it throws.
+# Case-sensitive on purpose: 'GCC' isn't a name this module knows, so it throws.
 $script:Clouds = [hashtable]::new([StringComparer]::Ordinal)
 $script:CloudRows = @{
     # GCC (Moderate) uses the worldwide endpoints and, in this program's estate, commercial Azure.
     global  = @{ Name = 'global'; Graph = 'https://graph.microsoft.com'; Arm = 'https://management.azure.com'; GraphEnvironment = 'Global'; AzureEnvironment = 'AzureCloud' }
     gcc     = @{ Name = 'gcc'; Graph = 'https://graph.microsoft.com'; Arm = 'https://management.azure.com'; GraphEnvironment = 'Global'; AzureEnvironment = 'AzureCloud' }
-    gcchigh = @{ Name = 'gcchigh'; Graph = 'https://graph.microsoft.us'; Arm = 'https://management.usgovcloudapi.net'; GraphEnvironment = 'USGov'; AzureEnvironment = 'AzureUSGovernment' }
-    dod     = @{ Name = 'dod'; Graph = 'https://dod-graph.microsoft.us'; Arm = 'https://management.usgovcloudapi.net'; GraphEnvironment = 'USGovDoD'; AzureEnvironment = 'AzureUSGovernment' }
 }
 foreach ($k in $script:CloudRows.Keys) { $script:Clouds[$k] = $script:CloudRows[$k] }
 
@@ -34,17 +32,17 @@ function Get-PaCloud {
     <#
     .SYNOPSIS
         Returns the Graph and Resource Manager hosts and the sign-in environment names for one
-        cloud: global, gcc, gcchigh or dod. Any other name throws; there is no default cloud.
+        cloud: global or gcc. Any other name throws; there is no default cloud.
     .EXAMPLE
-        # The Graph host for GCC High: https://graph.microsoft.us
-        (Get-PaCloud -Cloud gcchigh).Graph
+        # The Graph host for GCC: https://graph.microsoft.com
+        (Get-PaCloud -Cloud gcc).Graph
     #>
 
-    <# Endpoints for global, gcc, gcchigh or dod. Any other name throws: there is no default. #>
+    <# Endpoints for global or gcc. Any other name throws: there is no default. #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud)
     if (-not $script:Clouds.ContainsKey($Cloud)) {
-        throw "Unknown cloud '$Cloud'. Use global, gcc, gcchigh or dod."
+        throw "Unknown cloud '$Cloud'. Use global or gcc."
     }
     [pscustomobject]$script:Clouds[$Cloud]
 }

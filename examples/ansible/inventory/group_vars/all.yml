@@ -10,10 +10,9 @@ report_dir: "{{ playbook_dir }}/../reports"
 # arc_location, arc_wave).
 arc_tenant_id: "00000000-0000-0000-0000-000000000000"
 arc_subscription_id: "00000000-0000-0000-0000-000000000000"
-# AzureCloud for commercial Azure, AzureUSGovernment for Azure Government. A Microsoft 365 GCC
+# AzureCloud: commercial Azure. A Microsoft 365 GCC
 # tenant uses commercial Microsoft Entra ID, and an Azure Government subscription can't be
 # associated with it, so a GCC estate onboards to a commercial subscription: AzureCloud.
-# GCC High and DoD tenants use Azure Government: AzureUSGovernment, and US Gov regions.
 arc_cloud: AzureCloud
 # The onboarding service principal's application (client) ID, for 02_arc_onboarding.yml. Its
 # secret is read from Ansible Vault (arc_sp_secret) or the ARC_SP_SECRET environment variable.

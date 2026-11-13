@@ -41,7 +41,7 @@ Python 3.10 or later; no packages, tenant or network:
 python tools/lcwext.py learn-sample
 python tools/lcwext.py lint out/learn-sample.workflow.json --timeout PT1H
 python tools/lcwext.py lint logicapp/integration.workflow.json --timeout PT1H
-python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh --fail 503,503
+python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC --fail 503,503
 python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id <tenant-guid>
 python -m unittest discover -s tests -v
 ```

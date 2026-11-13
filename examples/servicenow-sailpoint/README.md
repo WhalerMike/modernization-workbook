@@ -154,7 +154,7 @@ Environment variables (or a JSON file passed with `--config` / `-ConfigPath` for
 | `GRAPH_CERT_PATH` (PEM with key) or `GRAPH_CERT_THUMBPRINT` (PowerShell, `Cert:\CurrentUser\My`) | same | **preferred**: certificate client assertion |
 | `GRAPH_CLIENT_SECRET` | same | fallback only |
 | `GRAPH_ACCESS_TOKEN` | same | a token from your vault |
-| `GRAPH_CLOUD` | same | `Global` (worldwide **and GCC**), `USGov` (GCC High: `graph.microsoft.us`), `USGovDoD` (`dod-graph.microsoft.us`) |
+| `GRAPH_CLOUD` | same | `Global` (worldwide **and GCC**) |
 | `ISC_EMPLOYEE_ID_ATTRIBUTE` | drift | the identity attribute holding the HR key; default `employeeNumber` |
 | `ISC_AUTHORITATIVE_SOURCES` | drift | comma-separated source names to ignore for stale access (the HR source) |
 | `ALLOWED_WRITER_APP_IDS` | drift | appIds allowed to write HR-mastered attributes (your provisioning service) |

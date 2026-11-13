@@ -77,10 +77,6 @@ Describe 'Microsoft 365 service communications' {
     }
     It 'builds source URLs on the cloud''s Graph host' {
         (ById $r 'm365:MC900001').sourceUrl | Should -Be 'https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/messages/MC900001'
-        $high = ConvertTo-PnM365Notice -Messages (Read-PnJson "$Day1/m365/messages.json") -Issues @{ value = @() } -Cloud gcchigh -AsOf $AsOf
-        $high.Notices[0].sourceUrl | Should -BeLike 'https://graph.microsoft.us/v1.0/*'
-        $dod = ConvertTo-PnM365Notice -Messages (Read-PnJson "$Day1/m365/messages.json") -Issues @{ value = @() } -Cloud dod -AsOf $AsOf
-        $dod.Notices[0].sourceUrl | Should -BeLike 'https://dod-graph.microsoft.us/v1.0/*'
     }
     It 'closes a post whose end date has passed' {
         $m = @{ value = @(@{ id = 'MC1'; title = 'Old'; category = 'stayInformed'; endDateTime = '2026-01-01T00:00:00Z'; lastModifiedDateTime = '2025-12-01T00:00:00Z' }) }
@@ -126,10 +122,10 @@ Describe 'Oracle Cloud Infrastructure announcements' {
         $n.windowStart | Should -Be '2026-12-01T00:00:00Z'
         $n.regions | Should -Be @('us-ashburn-1')
     }
-    It 'uses the realm''s domain, and refuses OC3, whose endpoint is not yet specified' {
+    It 'uses the realm''s domain, and refuses a realm it doesn''t know' {
         $l = Read-PnJson "$Day1/oci/announcements.json"
         (ConvertTo-PnOciNotice -List $l -Realm oc2 -Region us-langley-1 -AsOf $AsOf).Notices[0].sourceUrl | Should -BeLike 'https://announcements.us-langley-1.oraclegovcloud.com/20180904/announcements/*'
-        { ConvertTo-PnOciNotice -List $l -Realm oc3 -Region x -AsOf $AsOf } | Should -Throw '*not yet specified*'
+        { ConvertTo-PnOciNotice -List $l -Realm oc9 -Region x -AsOf $AsOf } | Should -Throw '*Unknown oci cloud*'
     }
 }
 

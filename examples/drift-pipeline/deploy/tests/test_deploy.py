@@ -131,16 +131,6 @@ def test_env_wave_overrides_ou_group_and_arc_wave():
         ad.derived(s, PROD, "9")
 
 
-def test_gcchigh_derives_government_values(tmp_path):
-    data = settings()
-    data["cloud"] = "gcchigh"
-    vals = ad.derived(ad.load_settings(write_settings(tmp_path, data)), tmp_path / "s.json")
-    assert vals["ADM_GRAPH"] == "https://graph.microsoft.us"
-    assert vals["ADM_AZ_CLOUD"] == "AzureUSGovernment" and vals["ADM_MG_ENV"] == "USGov"
-    assert vals["ADM_ARC_PLAYBOOK"] == "playbooks/02_arc_onboarding.yml"
-    assert vals["ADM_MC_CONTENT_URI"] == "https://stadmmctest.blob.core.usgovcloudapi.net/machine-configuration"
-
-
 def test_env_cli_refuses_template(capsys):
     assert ad.main(["env", "--settings", str(TEMPLATE), "--shell", "bash"]) == 1
     assert "placeholder" in capsys.readouterr().err
@@ -176,13 +166,6 @@ def test_preflight_shared_tenant_fails(tmp_path):
     data["tenant_id"] = settings()["tenant_id"]
     report, _ = pf.preflight(TEST, other=write_settings(tmp_path, data))
     assert results(report)["PF-09"] == {"FAIL"}
-
-
-def test_preflight_gcchigh_warns(tmp_path):
-    data = settings()
-    data["cloud"] = "gcchigh"
-    report, _ = pf.preflight(write_settings(tmp_path, data))
-    assert "WARN" in results(report)["PF-04"] and not report.failed
 
 
 def test_preflight_live_compares_probe_output(tmp_path):
@@ -264,7 +247,7 @@ def test_smoke_passes_a_live_run_with_required_checks(tmp_path):
 
 def test_smoke_refuses_wrong_tenant_cloud_or_fixture_mode(tmp_path):
     run = make_run(tmp_path, {"VK-HR-01": "Pass", "VK-DG-01": "Pass", "VK-CA-01": "Pass"},
-                   "77777777-7777-4777-8777-777777777701", mode="Fixture", cloud="gcchigh")
+                   "77777777-7777-4777-8777-777777777701", mode="Fixture", cloud="global")
     rep = sm.smoke(TEST, kit_run=run)
     failed = {r["check"] for r in rep["rows"] if r["result"] == "FAIL"}
     assert {"SM-02", "SM-03", "SM-04"} <= failed

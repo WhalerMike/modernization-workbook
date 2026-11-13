@@ -1,4 +1,4 @@
 PS> Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'Microsoft 365 service communications*', '*Graph*' -Output None -PassThru | Select-Object PassedCount, FailedCount
 PassedCount FailedCount
 ----------- -----------
-         15           0
+         14           0

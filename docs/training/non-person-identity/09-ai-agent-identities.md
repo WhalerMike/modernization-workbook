@@ -92,7 +92,7 @@ Import-Module ./powershell/NpiAgentId/NpiAgentId.psm1
 foreach ($t in 'agent-id', 'agent-ca-apply') { $p = Get-NpiAgentRequiredPermission -Task $t; "$t : " + ($p.GraphPermissions -join ', ') }
 
 # Step 4: Read D-NP6 for each cloud
-'global','gcc','gcchigh','dod' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
+'global','gcc' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
     [pscustomobject]@{ Cloud = $_; Mode = $c.Mode; AgentIdentities = $c.AgentIdentities.stage; AgentCA = $c.AgentConditionalAccess.stage; SponsorWorkflows = $c.SponsorWorkflows.stage } } | Format-Table
 
 # Step 5: Check the AI identities and build the plan
@@ -104,20 +104,15 @@ Get-Content out/agent-id/findings.json -Raw | ConvertFrom-Json | Where-Object Se
 # Step 7: Read the sponsor fields Chapter 02 recorded, filled
 Get-Content out/agent-id/ai-identities.json -Raw | ConvertFrom-Json | Format-Table Name, FederalSponsor, TechnicalOwner, InventoryRecord, Handshake, SponsorState
 
-# Step 8: Run the D-NP6 fallback in GCC High
-./Invoke-NpiInventory.ps1 -Cloud gcchigh -FixturePath tests/fixtures/estate.json -OutputPath out/inventory-gcchigh
-./Invoke-NpiOwnership.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership-gcchigh
-./Invoke-NpiAgentId.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -OwnershipRun out/ownership-gcchigh -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id-gcchigh
-
-# Step 9: Dry-run the agent Conditional Access plan with its approved hash
+# Step 8: Dry-run the agent Conditional Access plan with its approved hash
 $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.ToLower()
 ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-dryrun
 
-# Step 10: Apply it to the fake, then try a hash nobody approved
+# Step 9: Apply it to the fake, then try a hash nobody approved
 ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-apply -Apply
 ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-x
 
-# Step 11: Run the tests
+# Step 10: Run the tests
 Invoke-Pester -Path tests
 
 # After the steps
@@ -144,7 +139,7 @@ Remove-Item -Recurse -Force out
         Select-Object PassedCount, FailedCount, NotRunCount
     ```
 
-    Expect `PassedCount 13`, `FailedCount 0`, `NotRunCount 49`.
+    Expect `PassedCount 12`, `FailedCount 0`, `NotRunCount 49`.
 
 3. **List what each task needs:**
 
@@ -158,17 +153,15 @@ Remove-Item -Recurse -Force out
 4. **Read D-NP6 for each cloud:**
 
     ```powershell
-    'global','gcc','gcchigh','dod' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
+    'global','gcc' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
         [pscustomobject]@{ Cloud = $_; Mode = $c.Mode; AgentIdentities = $c.AgentIdentities.stage; AgentCA = $c.AgentConditionalAccess.stage; SponsorWorkflows = $c.SponsorWorkflows.stage } } | Format-Table
     ```
 
     ```text
-    Cloud   Mode     AgentIdentities AgentCA                        SponsorWorkflows
-    -----   ----     --------------- -------                        ----------------
-    global  AgentId  GA (April 2026) Preview (policy builder label) GA (May 2026)
-    gcc     AgentId  GA (April 2026) Preview (policy builder label) GA (May 2026)
-    gcchigh Fallback Not published   Not published                  Not published
-    dod     Fallback Not published   Not published                  Not published
+    Cloud  Mode    AgentIdentities AgentCA                        SponsorWorkflows
+    -----  ----    --------------- -------                        ----------------
+    global AgentId GA (April 2026) Preview (policy builder label) GA (May 2026)
+    gcc    AgentId GA (April 2026) Preview (policy builder label) GA (May 2026)
     ```
 
 5. **Check the AI identities and build the plan:**
@@ -201,17 +194,7 @@ Remove-Item -Recurse -Force out
 
     Expect eight rows. Case Triage Agent has `carol@contoso.example` as both sponsor and technical owner. Records Search Agent is `Orphaned`. Sandbox Helper has no sponsor, record or handshake.
 
-8. **Run the D-NP6 fallback in GCC High** (Chapters 01 and 02 again, in that cloud):
-
-    ```powershell
-    ./Invoke-NpiInventory.ps1 -Cloud gcchigh -FixturePath tests/fixtures/estate.json -OutputPath out/inventory-gcchigh
-    ./Invoke-NpiOwnership.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership-gcchigh
-    ./Invoke-NpiAgentId.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -OwnershipRun out/ownership-gcchigh -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id-gcchigh
-    ```
-
-    The last command prints `D-NP6 (Proposed): Fallback mode in cloud 'gcchigh'` and `AI identities: 1 checked (1 ServicePrincipal)`. No agent identity read is sent.
-
-9. **Dry-run the agent Conditional Access plan with its approved hash:**
+8. **Dry-run the agent Conditional Access plan with its approved hash:**
 
     ```powershell
     $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.ToLower()
@@ -223,7 +206,7 @@ Remove-Item -Recurse -Force out
       WouldSend HighRisk POST https://graph.microsoft.com/beta/identity/conditionalAccess/policies
     ```
 
-10. **Apply it to the fake, then try a hash nobody approved:**
+9. **Apply it to the fake, then try a hash nobody approved:**
 
     ```powershell
     ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-apply -Apply
@@ -232,13 +215,13 @@ Remove-Item -Recurse -Force out
 
     Expect `Apply: 1 Sent`, with `Created ca000000-0000-4000-8000-000000000103 report-only`. Then the refusal: `The plan's SHA-256 is 5a800246…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
-11. **Run the tests:**
+10. **Run the tests:**
 
     ```powershell
     Invoke-Pester -Path tests
     ```
 
-    Expect 513 tests passed, 0 failed.
+    Expect 511 tests passed, 0 failed.
 
 Delete `out` when you're done:
 

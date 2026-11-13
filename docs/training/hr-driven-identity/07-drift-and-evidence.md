@@ -215,7 +215,7 @@ cd ../hr-lifecycle && rm -rf out
     cd ../drift-pipeline && python -m pytest tests -q
     ```
 
-    Expect `57 passed`, then `142 passed`. Delete `out` when you're done; it holds fictional names. The tests left you in `examples/drift-pipeline`:
+    Expect `57 passed`, then `141 passed`. Delete `out` when you're done; it holds fictional names. The tests left you in `examples/drift-pipeline`:
 
     ```bash
     cd ../hr-lifecycle && rm -rf out

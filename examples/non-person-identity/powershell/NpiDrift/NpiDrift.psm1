@@ -360,8 +360,8 @@ function Get-NpiAuditEvent {
 function Get-NpiSignInActivity {
     <#
     .SYNOPSIS
-        The service principal sign-in activity report (beta): the last sign-in per app ID. Learn lists
-        it in the global service only, so in gcchigh or dod it isn't sent and Status is NotAvailable.
+        The service principal sign-in activity report (beta): the last sign-in per app ID. In a cloud the
+        call list doesn't name for it, it isn't sent and Status is NotAvailable.
     .EXAMPLE
         $fake = New-NpiDriftFixtureInvoker -AuditPath tests/fixtures/ch10/audit.json -SignInPath tests/fixtures/ch10/signin-activity.json
         $reader = New-NpiDriftReader -Cloud gcc -Invoke $fake.Invoke

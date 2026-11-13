@@ -1,4 +1,4 @@
-"""Developer workbook Chapter 02: the client pattern for worldwide, GCC, GCC High and DoD.
+"""Developer workbook Chapter 02: the client pattern for worldwide and GCC.
 
 Each test pins one behavior the chapter's gap table says the client adds to Microsoft's
 sample: the cloud's endpoints (Graph and Resource Manager), least privilege per call,
@@ -79,7 +79,7 @@ def test_gcc_is_the_worldwide_service_with_commercial_resource_manager():
 
 
 def test_unknown_cloud_names_are_refused_not_defaulted():
-    for name in ("GCCHigh", "gcc-moderate", "usgov", "", "Global"):
+    for name in ("moon", "gcc-moderate", "", "Global"):
         with pytest.raises(ValueError):
             endpoints(name)
         with pytest.raises(ValueError):
@@ -94,11 +94,11 @@ def test_endpoints_returns_a_copy():
     assert CLOUDS["gcc"]["graph"] == "https://graph.microsoft.com"
 
 
-def test_dod_token_never_goes_to_the_gcchigh_host():
-    g, _, _ = graph(cloud="dod")
+def test_token_never_goes_to_another_graph_host():
+    g, _, _ = graph(cloud="gcc")
     with pytest.raises(ValueError, match="refusing"):
-        g.url("https://graph.microsoft.us/v1.0/users")
-    assert g.url("/users") == "https://dod-graph.microsoft.us/v1.0/users"
+        g.url("https://graph.example.invalid/v1.0/users")
+    assert g.url("/users") == "https://graph.microsoft.com/v1.0/users"
 
 
 # ------------------------------------------------------------ least privilege per call
@@ -176,8 +176,8 @@ def test_preflight_stops_on_missing_and_warns_on_extra():
 
 def test_the_token_is_asked_for_the_clouds_graph_scope():
     asked = []
-    GraphClient("dod", lambda s: asked.append(s) or jwt({"roles": []})).audit_token([])
-    assert asked == ["https://dod-graph.microsoft.us/.default"]
+    GraphClient("gcc", lambda s: asked.append(s) or jwt({"roles": []})).audit_token([])
+    assert asked == ["https://graph.microsoft.com/.default"]
 
 
 # ------------------------------------------------------------ paging

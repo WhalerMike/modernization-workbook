@@ -472,7 +472,7 @@ Remove-Item -Recurse -Force out
 
     <!-- capture:end -->
 
-**Expected result:** 513 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done:
+**Expected result:** 511 tests passing, and each row of the gap table seen with your own eyes. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -747,7 +747,7 @@ The workload identity policies are the Conditional Access part of the guide's [G
 | Block events alert security operations within minutes (Lab 1, step 9: `alert-rule.json`; `workload-ca/alerts/NPI-WCA-BlockAlert.json`) | SI-4 System Monitoring; AU-6 | KSI-IAM-SUS, KSI-MLA-RVL, KSI-SVC-EIS | Security operations |
 | A token from outside the egress ranges is blocked once the ring is enforced (Lab 2, step 6: the sign-in log entry with result `53003`) | AC-3; IA-9 | KSI-IAM-ELP; none cites IA-9 | Security operations |
 | Every run records the tenant, the cloud, every request and the scope's SHA-256 (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
-| The code passes its tests (Lab 1, step 10: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 10: `Invoke-Pester -Path tests`, 511 passed) | CM-3(2) | KSI-CMT-VTD | The repository; the pull request's checks |
 | The scope file names each in-scope principal by object ID, its tier, ring and record, and the egress ranges (Lab 2, step 1: the copied scope) | AC-3; CM-8 System Component Inventory | KSI-IAM-ELP; KSI-PIY-GIV | The identity governance officer |
 | Rolling back returns both policies to report-only through the same path; turning them off or deleting them is a person's step (Lab 2, step 7) | CM-3 | KSI-CMT-LMC | Identity engineering |
 

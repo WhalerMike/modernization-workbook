@@ -202,7 +202,7 @@ You dry-run the five deploy scripts against the kits' fixtures. Work in `example
    python -m pytest deploy/tests -q
    ```
 
-   Expected: `46 passed`.
+   Expected: `44 passed`.
 
 8. **Clean up.**
 

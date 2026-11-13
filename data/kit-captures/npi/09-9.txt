@@ -1,4 +1,5 @@
-PS> $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.ToLower()
-PS> ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-dryrun
-DryRun: 1 WouldSend
-  WouldSend HighRisk POST https://graph.microsoft.com/beta/identity/conditionalAccess/policies
+PS> ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-apply -Apply
+Apply: 1 Sent
+  Sent HighRisk Created ca000000-0000-4000-8000-000000000103 report-only; review its report-only results before any change of state
+PS> ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-x
+Exception: The plan's SHA-256 is 5a8002467655390a12ee9f8967a82d52e40234adf3a9a74ea37952b34b14073b, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

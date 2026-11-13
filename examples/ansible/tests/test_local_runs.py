@@ -132,14 +132,6 @@ def test_wave_plan_stops_a_production_server_in_the_pilot(tmp_path):
     assert server["state"] == "stopped" and "production server in non-production wave 0" in server["reasons"]
 
 
-def test_wave_plan_stops_a_region_from_the_other_cloud(tmp_path):
-    inventory = candidate_inventory(tmp_path, arc_location="usgovvirginia")
-    result = play("05_arc_wave_plan.yml", inventory, "-e", "onboarding_wave=0", "-e", f"report_dir={tmp_path}")
-    assert result.returncode != 0
-    [server] = json.loads(only(tmp_path, "arc-wave-0-plan-*.json").read_text())["servers"]
-    assert server["reasons"] == "region usgovvirginia is not in AzureCloud"
-
-
 def test_wave_plan_stops_a_server_without_a_patch_owner(tmp_path):
     inventory = candidate_inventory(tmp_path, patch_owner="")
     result = play("05_arc_wave_plan.yml", inventory, "-e", "onboarding_wave=0", "-e", f"report_dir={tmp_path}")
@@ -188,10 +180,3 @@ def test_role_playbook_dry_run_calls_nothing(tmp_path):
     assert "azure.azcollection.azure_arc :" not in result.stdout
     assert not list(tmp_path.glob("arc-wave-0-result-*.json"))
     assert leftovers() == already
-
-
-def test_role_playbook_refuses_azure_government(tmp_path):
-    result = play("06_arc_onboarding_role.yml", ARC_CANDIDATE, "-e", "onboarding_wave=0", "-e", f"report_dir={tmp_path}",
-                  "-e", "arc_cloud=AzureUSGovernment", "-e", "arc_location=usgovvirginia")
-    assert result.returncode != 0
-    assert "management.azure.com" in result.stdout

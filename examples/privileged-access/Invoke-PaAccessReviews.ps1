@@ -11,7 +11,7 @@
     -Mode Evidence reads every configured series, its instances and decisions (GET only) and writes
                    decisions.csv, instances.json, findings.json and a manifest for the ISSO.
 
-    -Cloud has no default: name global, gcc, gcchigh or dod.
+    -Cloud has no default: name global or gcc.
 .EXAMPLE
     # Lab 1: the fictional tenant, no sign-in.
     ./Invoke-PaAccessReviews.ps1 -Cloud gcc -Mode Plan -ConfigPath tests/fixtures/ch07/access-reviews.json `
@@ -19,7 +19,7 @@
 #>
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+    [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
     [Parameter(Mandatory)][ValidateSet('Plan', 'Evidence')][string]$Mode,
     [Parameter(Mandatory)][string]$ConfigPath,
     [Parameter(Mandatory)][string]$OutputPath,

@@ -37,11 +37,6 @@ class LearnSample(unittest.TestCase):
         self.assertEqual(call.authentication, {"audience": "https://graph.microsoft.com", "type": "ManagedServiceIdentity"})
         self.assertTrue(call.uri.startswith("https://graph.microsoft.com/beta/identityGovernance/"))
 
-    def test_gap_hard_coded_worldwide_graph_misses_a_gcc_high_tenant(self):
-        o = lcwext.simulate(learn(), PAYLOAD, "GCCHigh")
-        self.assertTrue(o.task_status.startswith("failed (no callback"))
-        self.assertTrue(o.elsewhere[0].uri.startswith("https://graph.microsoft.com/"))
-
     def test_gap_it_reports_completed_without_checking_anything(self):
         o = lcwext.simulate(learn(), PAYLOAD, "Global")
         self.assertEqual(o.graph.calls[0].body["data"]["operationStatus"], "Completed")

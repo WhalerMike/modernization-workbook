@@ -228,7 +228,7 @@ def test_runs_of_two_tenants_are_refused_unless_overridden(runs):
     assert "allow-tenant-mismatch" in pa.compare_pa(runs[0], b, allow_tenant_mismatch=True)["notes"][0]
 
 
-@pytest.mark.parametrize("key,value,message", [("mode", "Live", "mode differs"), ("cloud", "gcchigh", "cloud differs"),
+@pytest.mark.parametrize("key,value,message", [("mode", "Live", "mode differs"), ("cloud", "global", "cloud differs"),
                                                 ("as_of", "2026-10-28T06:00:00Z", "isn't later")])
 def test_runs_that_cant_be_compared_are_refused(runs, key, value, message):
     b = copy.deepcopy(runs[1])

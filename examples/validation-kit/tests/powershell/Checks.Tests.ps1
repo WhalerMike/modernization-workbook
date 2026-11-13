@@ -250,10 +250,6 @@ Describe 'Optional preview check VK-NPI-09' {
     It 'is NotApplicable without -IncludePreview' {
         (Invoke-VkCheck -CheckId 'VK-NPI-09' -Context (Get-TestContext 'fail')).Status | Should -Be 'NotApplicable'
     }
-    It 'is NotApplicable in the US Government clouds, where the report is not documented' {
-        $ctx = Get-VkRunContext -FixturePath (Join-Path $global:VkTestFixtureRoot 'fail') -AsOf '2026-10-29T00:00:00Z' -Cloud gcchigh -IncludePreview
-        (Invoke-VkCheck -CheckId 'VK-NPI-09' -Context $ctx).Message | Should -Match 'L4 or L5'
-    }
 }
 
 Describe 'Optional check VK-SYNC-02 (developer workbook Building the Attribute-Driven Migration, Chapter 03)' {

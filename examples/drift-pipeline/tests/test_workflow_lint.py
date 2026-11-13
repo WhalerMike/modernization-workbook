@@ -124,8 +124,8 @@ def test_wrong_audience_for_the_environment_is_a_finding():
     assert "WF-07" in rules(lint_workflow(text))
 
 
-def test_dod_graph_host_under_gcc_is_a_finding():
-    text = WORKFLOW.read_text(encoding="utf-8").replace("GRAPH_HOST: https://graph.microsoft.com", "GRAPH_HOST: https://dod-graph.microsoft.us")
+def test_other_graph_host_under_gcc_is_a_finding():
+    text = WORKFLOW.read_text(encoding="utf-8").replace("GRAPH_HOST: https://graph.microsoft.com", "GRAPH_HOST: https://graph.example.invalid")
     assert rules(lint_workflow(text)) == ["WF-12"]
 
 

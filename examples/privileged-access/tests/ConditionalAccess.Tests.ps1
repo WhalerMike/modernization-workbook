@@ -77,8 +77,7 @@ Describe 'Calls and permissions' {
         }
     }
     It 'has no default cloud and uses the cloud''s own Graph host' {
-        { New-PaCaClient -Cloud GCCHigh -Invoke {} } | Should -Throw '*Unknown cloud*'
-        (New-PaCaClient -Cloud gcchigh -Invoke {}).Cloud.Graph | Should -Be 'https://graph.microsoft.us'
+        { New-PaCaClient -Cloud GCC -Invoke {} } | Should -Throw '*Unknown cloud*'
         (New-PaCaClient -Cloud gcc -Invoke {}).Cloud.Graph | Should -Be 'https://graph.microsoft.com'
     }
     It 'refuses a write on a client made without -Apply' {

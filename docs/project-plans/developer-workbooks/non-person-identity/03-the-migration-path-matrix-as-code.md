@@ -358,7 +358,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-**Expected result:** 513 tests passing, and `out/matrix/manifest.json` listing three requests, all GET: two user reads (the SPN owner and the rollback owner) and one read of the subscriptions. Delete `out` when you're done: it names accounts and owners:
+**Expected result:** 511 tests passing, and `out/matrix/manifest.json` listing three requests, all GET: two user reads (the SPN owner and the rollback owner) and one read of the subscriptions. Delete `out` when you're done: it names accounts and owners:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -493,7 +493,7 @@ The matrix, the owners' dispositions and the waves are what the guide's [G2 Deci
 | Which identities Conditional Access for workload identities can cover now and after conversion, against the CISO's D-NP4 decision and the tenant's licenses (Lab 1, step 7, and Lab 2, step 4: `workload-id-premium.json`) | AC-3 Access Enforcement | KSI-IAM-ELP, KSI-IAM-JIT | The CISO (D-NP4) |
 | Gate 2's five criteria, each with its open findings, and met only with no open Finding (`gate2.json`) | CA-7 Continuous Monitoring (status reporting) | KSI-MLA-EVC | The ISSO; the gate owner |
 | The run records the tenant, the cloud, every request, and the SHA-256 of the register, of Chapter 02's files, of the matrix, of each input and of each file written (`manifest.json`) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO, with the run's folder |
-| The code passes its tests (Lab 1, step 8: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 8: `Invoke-Pester -Path tests`, 511 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 | The owners' inputs for the test accounts are the run's inputs, hashed into its manifest (Lab 2, steps 2 and 3: `workloads.csv`, `dispositions.csv`, `waves.csv`, `program-dates.json`, `workload-id-premium.json`; `out/matrix-test/manifest.json`) | AC-2; CM-3 | KSI-IAM-SNU; KSI-CMT-LMC | Application owners; identity engineering |
 | The admin center agrees with the code on which principals Conditional Access can target (Lab 2, step 5: the **Workload identities** picker, recorded against `workload-id-premium.json`) | AC-3 | KSI-IAM-ELP | Identity engineering |
 | The lab's read permissions are removed when the lab ends (Lab 2, step 6: the app's **API permissions** page) | AC-6 | KSI-IAM-JIT | Identity engineering |

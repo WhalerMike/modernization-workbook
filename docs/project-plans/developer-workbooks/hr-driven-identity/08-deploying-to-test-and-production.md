@@ -188,7 +188,7 @@ Every value that differs between environments lives in the settings file, and th
    ```text
    $ python deploy/deploy_settings.py check --settings deploy/settings.example.json
    ...
-   DS-03 Finding cloud: unknown cloud '<cloud>'; expected gcc, gcchigh or dod
+   DS-03 Finding cloud: unknown cloud '<cloud>'; expected gcc
    DS-03 Finding environment: environment must be test or production, not '<test-or-production>'
    Settings settings.example.json (<test-or-production>, <cloud>): 32 Finding, 0 Warn, 0 Info
    $ python deploy/deploy_settings.py check --settings deploy/tests/fixtures/settings.test.json
@@ -227,11 +227,11 @@ Every value that differs between environments lives in the settings file, and th
    ```powershell
    $SETTINGS = 'deploy/settings.test.json'
    $S = Get-Content $SETTINGS -Raw | ConvertFrom-Json
-   $MgEnv = @{ gcc = 'Global'; gcchigh = 'USGov'; dod = 'USGovDoD' }[$S.cloud]
+   $MgEnv = @{ gcc = 'Global' }[$S.cloud]
    $EVIDENCE = "evidence/$($S.environment)"
    ```
 
-   `Global`, `USGov` and `USGovDoD` are Graph PowerShell's names for the three clouds.[^hw08-mgenv]
+   `Global` is Graph PowerShell's name for the worldwide cloud, which GCC uses.[^hw08-mgenv]
 
 **Requirements and evidence for this step.**
 

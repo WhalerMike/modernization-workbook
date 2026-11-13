@@ -166,7 +166,7 @@ def test_fixture_and_live_runs_are_not_compared(tmp_path):
 
 def test_runs_from_different_clouds_are_not_compared(tmp_path):
     run = copy_run(CURR, tmp_path)
-    rewrite_manifest(run, Cloud="gcchigh")
+    rewrite_manifest(run, Cloud="global")
     with pytest.raises(d.DriftError, match="cloud differs"):
         d.compare(d.load_run(PREV), d.load_run(run))
 
@@ -215,7 +215,7 @@ def test_the_override_compares_and_says_so(tmp_path):
 
 def test_the_override_does_not_bypass_mode_or_cloud(tmp_path):
     run = copy_run(CURR, tmp_path)
-    rewrite_manifest(run, TenantId=OTHER_TENANT, Cloud="gcchigh")
+    rewrite_manifest(run, TenantId=OTHER_TENANT, Cloud="global")
     with pytest.raises(d.DriftError, match="cloud differs"):
         d.compare(d.load_run(PREV), d.load_run(run), allow_tenant_mismatch=True)
 
@@ -400,14 +400,6 @@ def test_gcc_uses_the_worldwide_endpoints():
     p = d.cloud_profile("GCC")
     assert (p["authority"], p["graph"], p["azure_environment"], p["audience"]) == (
         "https://login.microsoftonline.com", "https://graph.microsoft.com", "AzureCloud", "api://AzureADTokenExchange")
-
-
-def test_gcc_high_and_dod_share_sign_in_but_not_graph():
-    h, o = d.cloud_profile("gcchigh"), d.cloud_profile("dod")
-    assert h["authority"] == o["authority"] == "https://login.microsoftonline.us"
-    assert h["audience"] == o["audience"] == "api://AzureADTokenExchangeUSGov"
-    assert (h["graph"], o["graph"]) == ("https://graph.microsoft.us", "https://dod-graph.microsoft.us")
-    assert (h["mg_environment"], o["mg_environment"]) == ("USGov", "USGovDoD")
 
 
 def test_unknown_cloud_is_refused():

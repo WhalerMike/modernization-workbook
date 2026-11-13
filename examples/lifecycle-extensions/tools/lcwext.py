@@ -7,7 +7,7 @@ Nothing here signs in or sends a request off the machine. Usage:
 
     python tools/lcwext.py learn-sample                    # extract Learn's definition from the pinned page
     python tools/lcwext.py lint <workflow.json> [--timeout PT1H]
-    python tools/lcwext.py run <workflow.json> <payload.json> --cloud GCCHigh [--fail 503,503] [--deliveries 2]
+    python tools/lcwext.py run <workflow.json> <payload.json> --cloud GCC [--fail 503,503] [--deliveries 2]
     python tools/lcwext.py build <integrations.json> --name cms-revocation --tenant-id <guid>
     python tools/lcwext.py check-extension <integrations.json> --name cms-revocation <extension-get.json>
     python tools/lcwext.py check-workflow <integrations.json> --name cms-revocation <workflow-get.json>
@@ -30,18 +30,15 @@ HERE = Path(__file__).resolve().parent.parent
 LEARN_PAGE = HERE.parent / "third_party" / "lifecycle-workflows-logic-app" / "configure-logic-app-lifecycle-workflows.md"
 
 # Graph root per tenant cloud (Learn, "Microsoft Graph national cloud deployments": GCC keeps
-# the worldwide endpoints; GCC High and DoD have their own).
+# the worldwide endpoints).
 GRAPH_HOSTS = {
     "Global": "https://graph.microsoft.com",
     "GCC": "https://graph.microsoft.com",
-    "GCCHigh": "https://graph.microsoft.us",
-    "DoD": "https://dod-graph.microsoft.us",
 }
-ALL_GRAPH_HOSTS = ("graph.microsoft.com", "graph.microsoft.us", "dod-graph.microsoft.us")
+ALL_GRAPH_HOSTS = ("graph.microsoft.com",)
 
-# Learn's PoP authorization policy is documented for Azure commercial only (management.azure.com,
-# sts.windows.net). For a Logic App in Azure Government, Learn gives no values, so the builder
-# refuses rather than guess (research-gaps.md).
+# Learn's PoP authorization policy is documented for Azure commercial (management.azure.com,
+# sts.windows.net), which GCC uses. For any other Azure cloud the builder refuses rather than guess.
 ARM_POP = {
     "AzureCloud": {"aud": "https://management.azure.com", "u": "management.azure.com", "iss": "https://sts.windows.net/{tenant}/"},
 }

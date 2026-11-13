@@ -42,7 +42,7 @@ Grant only what the task you run needs; `Get-PaRequiredPermission -Task inventor
 
 ## Clouds
 
-`-Cloud gcc` (the default) uses the worldwide endpoints, `graph.microsoft.com` and commercial `management.azure.com`, as Microsoft 365 GCC with commercial Azure does. `gcchigh` and `dod` use `graph.microsoft.us` and `dod-graph.microsoft.us` with Azure Government's `management.usgovcloudapi.net`. Any other name throws; there is no default. The live invoker refuses to run if the Graph or Azure session is signed in to another cloud.
+`-Cloud gcc` (the default) uses the worldwide endpoints, `graph.microsoft.com` and commercial `management.azure.com`, as Microsoft 365 GCC with commercial Azure does. `global` uses the same endpoints. Any other name throws; there is no default. The live invoker refuses to run if the Graph or Azure session is signed in to another cloud.
 
 ## Deploy
 
@@ -77,7 +77,7 @@ baseline/tests/fixtures/                    pim-alerts-set.json and pim-alerts-g
                                             pim-alerts-groups-partial.json (fail), two small inventory tenants
 ```
 
-The calls are declared in Chapter 04's `config/calls-ch04.json` and sent to the cloud's own Graph host: the roles' policies (`RoleManagementPolicy.Read.Directory`), the eligibility schedules and active assignment instances that show which groups hold the roles (`RoleEligibilitySchedule.Read.Directory`, `RoleAssignmentSchedule.Read.Directory`), and each group's member policy (`RoleManagementPolicy.Read.AzureADGroup`, Learn's least privileged for PIM for Groups). Signed in as a user, the group read needs Privileged Role Administrator, or ownership or membership of the group, not Global Reader (Learn, Configure PIM for Groups settings); an app with the four application permissions avoids the role. The Learn page for the policy call lists US Government L4 and L5 as available, but the check hasn't been run in GCC High or DoD: the group filter there, and how PIM's alert mail behaves, aren't confirmed (Chapter 04's research gaps, row 113).
+The calls are declared in Chapter 04's `config/calls-ch04.json` and sent to the cloud's own Graph host: the roles' policies (`RoleManagementPolicy.Read.Directory`), the eligibility schedules and active assignment instances that show which groups hold the roles (`RoleEligibilitySchedule.Read.Directory`, `RoleAssignmentSchedule.Read.Directory`), and each group's member policy (`RoleManagementPolicy.Read.AzureADGroup`, Learn's least privileged for PIM for Groups). Signed in as a user, the group read needs Privileged Role Administrator, or ownership or membership of the group, not Global Reader (Learn, Configure PIM for Groups settings); an app with the four application permissions avoids the role.
 
 ## Run the tests
 

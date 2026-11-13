@@ -70,7 +70,7 @@ Python 3.10 or later, standard library only. Work in this folder. Every tool tak
 | `python deploy/rollback.py plan` / `verify --mode fixture` or `--mode tenant` | RB-01, RB-02 | 0, 2, 1 |
 | `python deploy/evidence.py check --stage test` or `production` / `show --step <step>` | EV-01 to EV-04 | 0, 2, 1 |
 
-Clouds: `gcc` (`graph.microsoft.com`), `gcchigh` (`graph.microsoft.us`), `dod` (`dod-graph.microsoft.us`). There is no default.
+Cloud: `gcc` (`graph.microsoft.com`). There is no default.
 
 ## Deploy: from Lab 2 to a test tenant, then production
 

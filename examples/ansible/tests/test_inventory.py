@@ -123,11 +123,9 @@ def test_waves_come_from_the_cmdb(inventory):
 
 def test_the_sample_estate_is_commercial_azure(inventory):
     # A GCC tenant uses commercial Microsoft Entra ID, so its Arc servers go to a commercial
-    # subscription: AzureCloud and commercial regions, never a US Gov region.
+    # subscription: AzureCloud.
     group_vars = (KIT / "inventory" / "group_vars" / "all.yml").read_text(encoding="utf-8")
     assert "\narc_cloud: AzureCloud\n" in group_vars
-    for host, hv in inventory["_meta"]["hostvars"].items():
-        assert not hv["arc_location"].startswith(("usgov", "usdod")), host
 
 
 def test_unix_and_appliances_are_ansible_owned_tier_2(inventory):

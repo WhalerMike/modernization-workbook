@@ -44,8 +44,6 @@ $script:Clouds = @{
         # Learn (Microsoft Graph national cloud deployments): GCC keeps the worldwide endpoint.
         global  = @{ Graph = 'https://graph.microsoft.com'; GraphEnvironment = 'Global' }
         gcc     = @{ Graph = 'https://graph.microsoft.com'; GraphEnvironment = 'Global' }
-        gcchigh = @{ Graph = 'https://graph.microsoft.us'; GraphEnvironment = 'USGov' }
-        dod     = @{ Graph = 'https://dod-graph.microsoft.us'; GraphEnvironment = 'USGovDoD' }
     }
     oci    = @{
         # Oracle: announcements.<region>.<second-level domain>; the US Government Cloud page lists
@@ -66,18 +64,16 @@ $script:Clouds = @{
 function Get-PnCloud {
     <#
     .SYNOPSIS
-        Returns one provider's cloud: azure (AzureCloud, AzureUSGovernment), m365 (global, gcc, gcchigh,
-        dod), oci (oc1, oc2), aws (aws, aws-us-gov) or google (global). Any other name throws.
+        Returns one provider's cloud: azure (AzureCloud, AzureUSGovernment), m365 (global, gcc), oci (oc1, oc2), aws (aws, aws-us-gov) or google (global). Any other name throws.
     .EXAMPLE
-        # The Graph host for GCC High: https://graph.microsoft.us
-        (Get-PnCloud -Provider m365 -Cloud gcchigh).Graph
+        # The Graph host for GCC: https://graph.microsoft.com
+        (Get-PnCloud -Provider m365 -Cloud gcc).Graph
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][ValidateSet('azure', 'm365', 'oci', 'aws', 'google')][string]$Provider,
         [Parameter(Mandatory)][string]$Cloud)
     $rows = $script:Clouds[$Provider]
     if (-not ($rows.Keys -ccontains $Cloud)) {
-        if ($Provider -eq 'oci' -and $Cloud -eq 'oc3') { throw "OCI realm oc3: the Announcements endpoint there is not yet specified (Oracle's page wasn't readable on November 9, 2026)." }
         throw "Unknown $Provider cloud '$Cloud'. Use $(($rows.Keys | Sort-Object) -join ', ')."
     }
     [pscustomobject]$rows[$Cloud]

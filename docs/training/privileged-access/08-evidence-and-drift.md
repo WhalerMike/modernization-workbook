@@ -375,7 +375,7 @@ rm -rf out
     rm -rf out
     ```
 
-    `142 passed`. The `out` folders hold the fixture's privileged holders.
+    `141 passed`. The `out` folders hold the fixture's privileged holders.
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)
 

@@ -22,7 +22,7 @@ Lab 1 was run with `python scripts/kit_captures.py pn` on Windows 11, PowerShell
 
 ## Not yet specified (carried from the guide)
 
-N8 the CLI's output key casing; N9 the OC3 endpoint.
+N8 the CLI's output key casing.
 
 ## Federal requirements and evidence
 

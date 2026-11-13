@@ -426,6 +426,6 @@ Describe 'The entry scripts' {
         (Get-Content (Join-Path $script:Tmp 'apply/manifest.json') -Raw | ConvertFrom-Json).planSha256 | Should -Be $sha
     }
     It 'refuses a register read in another cloud' {
-        { & (Join-Path $script:Root 'Invoke-NpiKerberosIsland.ps1') -Cloud gcchigh -RegisterRun $script:InvRun -MatrixRun $script:MatRun -ProgramDatesPath $script:Dates -FixturePath $script:Estate -KerberosFixturePath $script:Krb -InputPath $script:Inputs -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw '*not ''gcchigh''*'
+        { & (Join-Path $script:Root 'Invoke-NpiKerberosIsland.ps1') -Cloud global -RegisterRun $script:InvRun -MatrixRun $script:MatRun -ProgramDatesPath $script:Dates -FixturePath $script:Estate -KerberosFixturePath $script:Krb -InputPath $script:Inputs -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw '*not ''global''*'
     }
 }

@@ -156,11 +156,14 @@ def test_fetch_autopilot_uses_beta_on_the_clouds_host():
     assert fake.urls[0].startswith("https://graph.microsoft.com/beta/deviceManagement/windowsAutopilotDeviceIdentities")
 
 
-def test_fetch_autopilot_not_offered_in_gcchigh_makes_no_call():
-    # Intune's government service description lists Windows Autopilot as not available in GCC High and DoD.
-    g, fake = client({}, cloud="gcchigh")
+def test_fetch_autopilot_not_offered_in_a_cloud_makes_no_call(monkeypatch):
+    import dataclasses
+    import graphkit
+    calls = [dataclasses.replace(c, not_in_clouds=("global",)) for c in graphkit.load_calls()]
+    monkeypatch.setattr(graphkit, "load_calls", lambda task=None, path=None: calls)
+    g, fake = client({}, cloud="global")
     r = it.fetch_autopilot(g)
-    assert r["available"] is False and "isn't offered in gcchigh" in r["reason"] and fake.urls == []
+    assert r["available"] is False and "isn't offered in global" in r["reason"] and fake.urls == []
 
 
 def test_fetch_autopilot_beta_gone_is_not_evaluated_not_a_crash():

@@ -198,7 +198,7 @@ You run the hardened client on the fictional HR extract, check its record, break
    python -m pytest -q -p no:cacheprovider tests/python
    ```
 
-   Expected: `70 passed`.
+   Expected: `71 passed`.
 
 8. **Clean up.**
 

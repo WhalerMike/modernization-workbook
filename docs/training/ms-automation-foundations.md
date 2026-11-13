@@ -196,17 +196,17 @@ In a POSIX shell (Git Bash on Windows):
 
 ```bash
 # Step 1
-python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints, scope_for; print(endpoints('gcc')); print(endpoints('gcchigh')); print(scope_for('gcc', 'arm')); print(scope_for('gcchigh'))"
+python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints, scope_for; print(endpoints('gcc')); print(scope_for('gcc', 'arm')); print(scope_for('gcc'))"
 
 # Step 2
-python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints; endpoints('GCCHigh')"
+python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints; endpoints('usgov')"
 
 # Step 3
 python -c "import sys; sys.path.insert(0, 'python'); from graphkit import load_calls, permissions_for; print(permissions_for(load_calls('stale-users')))"
 
 # Step 4
 python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, load_calls; GraphClient('gcc', lambda s: 't', calls=load_calls('ca-export')).request('GET', '/users')"
-python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient; GraphClient('gcchigh', lambda s: 't').request('GET', 'https://graph.microsoft.com/v1.0/users')"
+python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient; GraphClient('gcc', lambda s: 't').request('GET', 'https://graph.example.invalid/v1.0/users')"
 
 # Step 5
 python -m pytest -q -p no:cacheprovider tests/python/test_graphkit_and_tasks.py -k "paging or next_link or 429 or retries or retry_after or batch or delta or advanced"
@@ -220,14 +220,14 @@ In PowerShell 7:
 ```powershell
 # Step 6
 Import-Module ./powershell/FmwGraph.psm1
-(Get-FmwCloud gcchigh).Login
-(Get-FmwCloud gcchigh).Graph
+(Get-FmwCloud gcc).Login
+(Get-FmwCloud gcc).Graph
 (Get-FmwCloud gcc).Arm
 Get-FmwCallPermission -Task stale-users
-Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -Cloud gcchigh
+Assert-FmwGraphCall -Method GET -Uri 'https://graph.example.invalid/v1.0/users' -Cloud gcc
 
 # Step 6
-(Get-FmwCloud GCCHigh).Graph
+(Get-FmwCloud GCC).Graph
 Get-FmwCloud usgov
 ```
 
@@ -245,30 +245,29 @@ pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
 
 You prove, on a laptop, that the example client picks the right cloud, refuses the wrong one, asks only for what a task needs, and pages, retries, batches and tracks deltas the way Microsoft documents. Work in `examples/ms-automation`. The developer workbook's [Chapter 02, Lab 1](../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md#lab-1-fixtures-no-tenant) runs the same client against Microsoft's own SDK snippets; do it after this lab if you build Graph clients.
 
-1. Print the endpoints for GCC and GCC High, and the scopes for Resource Manager and Graph.
+1. Print the endpoints for GCC, and the scopes for Resource Manager and Graph.
 
    ```bash
-   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints, scope_for; print(endpoints('gcc')); print(endpoints('gcchigh')); print(scope_for('gcc', 'arm')); print(scope_for('gcchigh'))"
+   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints, scope_for; print(endpoints('gcc')); print(scope_for('gcc', 'arm')); print(scope_for('gcc'))"
    ```
 
    Expected output:
 
    ```text
    {'login': 'https://login.microsoftonline.com', 'graph': 'https://graph.microsoft.com', 'arm': 'https://management.azure.com', 'ps_env': 'Global', 'azure_env': 'AzureCloud'}
-   {'login': 'https://login.microsoftonline.us', 'graph': 'https://graph.microsoft.us', 'arm': 'https://management.usgovcloudapi.net', 'ps_env': 'USGov', 'azure_env': 'AzureUSGovernment'}
    https://management.azure.com/.default
-   https://graph.microsoft.us/.default
+   https://graph.microsoft.com/.default
    ```
 
-   GCC has no `.us` host. Compare each value with the table in [Unit 2](#clouds-and-endpoints).
+   Compare each value with the table in [Unit 2](#clouds-and-endpoints).
 
 2. Ask for a cloud name the client doesn't know.
 
    ```bash
-   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints; endpoints('GCCHigh')"
+   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints; endpoints('usgov')"
    ```
 
-   The last line is `ValueError: unknown cloud 'GCCHigh'; one of ['dod', 'gcc', 'gcchigh', 'global']`. An unknown name is an error, never a default.
+   The last line is `ValueError: unknown cloud 'usgov'; one of ['gcc', 'global']`. An unknown name is an error, never a default.
 
 3. List the permissions a task needs, from the calls it declares.
 
@@ -278,14 +277,14 @@ You prove, on a laptop, that the example client picks the right cloud, refuses t
 
    Expected: `['AuditLog.Read.All', 'User.Read.All']`.
 
-4. Make a call the task doesn't declare, then send a GCC High token to the worldwide host.
+4. Make a call the task doesn't declare, then send the token to a host that isn't Graph.
 
    ```bash
    python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, load_calls; GraphClient('gcc', lambda s: 't', calls=load_calls('ca-export')).request('GET', '/users')"
-   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient; GraphClient('gcchigh', lambda s: 't').request('GET', 'https://graph.microsoft.com/v1.0/users')"
+   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient; GraphClient('gcc', lambda s: 't').request('GET', 'https://graph.example.invalid/v1.0/users')"
    ```
 
-   The first ends `PermissionError: undeclared call: GET /v1.0/users; add it to graph-calls.json with its permission`. The second ends `ValueError: refusing to send the token to https://graph.microsoft.com/v1.0/users: not https://graph.microsoft.us`. Nothing was sent in either case: the token here is the fake string `t`.
+   The first ends `PermissionError: undeclared call: GET /v1.0/users; add it to graph-calls.json with its permission`. The second ends `ValueError: refusing to send the token to https://graph.example.invalid/v1.0/users: not https://graph.microsoft.com`. Nothing was sent in either case: the token here is the fake string `t`.
 
 5. Run the tests for the four request patterns and the advanced-query header.
 
@@ -293,7 +292,7 @@ You prove, on a laptop, that the example client picks the right cloud, refuses t
    python -m pytest -q -p no:cacheprovider tests/python/test_graphkit_and_tasks.py -k "paging or next_link or 429 or retries or retry_after or batch or delta or advanced"
    ```
 
-   Expected: `9 passed, 11 deselected`. Now print two of those tests, `test_batch_chunks_of_20_and_retries_throttled_items` and `test_delta_returns_items_and_new_link`:
+   Expected: `9 passed, 10 deselected`. Now print two of those tests, `test_batch_chunks_of_20_and_retries_throttled_items` and `test_delta_returns_items_and_new_link`:
 
    ```bash
    awk '/^def /{p = /test_batch_chunks_of_20_and_retries_throttled_items|test_delta_returns_items_and_new_link/} p' tests/python/test_graphkit_and_tasks.py
@@ -305,17 +304,17 @@ You prove, on a laptop, that the example client picks the right cloud, refuses t
 
    ```powershell
    Import-Module ./powershell/FmwGraph.psm1
-   (Get-FmwCloud gcchigh).Login
-   (Get-FmwCloud gcchigh).Graph
+   (Get-FmwCloud gcc).Login
+   (Get-FmwCloud gcc).Graph
    (Get-FmwCloud gcc).Arm
    Get-FmwCallPermission -Task stale-users
-   Assert-FmwGraphCall -Method GET -Uri 'https://graph.microsoft.com/v1.0/users' -Cloud gcchigh
+   Assert-FmwGraphCall -Method GET -Uri 'https://graph.example.invalid/v1.0/users' -Cloud gcc
    ```
 
-   Expected output: `https://login.microsoftonline.us`, `https://graph.microsoft.us`, `https://management.azure.com`, then `AuditLog.Read.All` and `User.Read.All` on two lines, then an error: `Refusing to send the token to https://graph.microsoft.com/v1.0/users: not https://graph.microsoft.us`. In PowerShell the cloud name is checked by `ValidateSet`, which ignores case, so the first of these works there and the second fails:
+   Expected output: `https://login.microsoftonline.com`, `https://graph.microsoft.com`, `https://management.azure.com`, then `AuditLog.Read.All` and `User.Read.All` on two lines, then an error: `Refusing to send the token to https://graph.example.invalid/v1.0/users: not https://graph.microsoft.com`. In PowerShell the cloud name is checked by `ValidateSet`, which ignores case, so the first of these works there and the second fails:
 
    ```powershell
-   (Get-FmwCloud GCCHigh).Graph
+   (Get-FmwCloud GCC).Graph
    Get-FmwCloud usgov
    ```
 
@@ -326,7 +325,7 @@ You prove, on a laptop, that the example client picks the right cloud, refuses t
    pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
    ```
 
-   Expected: `94 passed`, then `Tests Passed: 56, Failed: 0, Skipped: 0`. The counts include Module 4's Arc tests (24 in Python, 12 in Pester).
+   Expected: `86 passed`, then `Tests Passed: 52, Failed: 0, Skipped: 0`. The counts include Module 4's Arc tests (23 in Python, 12 in Pester).
 
 **Check your work:** for any tenant, you can name the hosts, the scope and the PowerShell environment, and show that the client refuses the wrong one.
 

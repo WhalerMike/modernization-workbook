@@ -79,8 +79,6 @@ DEFAULTS = {
 # GCC (Microsoft 365 Moderate) uses the worldwide endpoints.
 GRAPH_CLOUDS = {
     "Global": ("https://login.microsoftonline.com", "https://graph.microsoft.com"),
-    "USGov": ("https://login.microsoftonline.us", "https://graph.microsoft.us"),
-    "USGovDoD": ("https://login.microsoftonline.us", "https://dod-graph.microsoft.us"),
 }
 
 

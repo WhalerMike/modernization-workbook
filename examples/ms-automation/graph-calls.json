@@ -120,8 +120,7 @@
       "permissions": ["DeviceManagementServiceConfig.Read.All"],
       "stage": "beta",
       "tasks": ["autopilot-profiles"],
-      "not_in_clouds": ["gcchigh", "dod"],
-      "note": "deploymentProfileAssignmentStatus is beta only. The API page's national cloud table lists L4 and L5, but Intune's government service description lists Windows Autopilot as not available in GCC High and DoD; the stricter statement wins"
+      "note": "deploymentProfileAssignmentStatus is beta only"
     }
   ]
 }

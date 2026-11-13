@@ -26,7 +26,7 @@ The deployment runbook for everything Chapters 01 to 09 build. Each chapter ends
 
 ::: {.callout-important}
 ## Status: approved, not run against a live tenant
-The owner approved this page on November 3, 2026. **Nobody has run this runbook against a live tenant, subscription or forest.** The five deploy scripts are tested against fixtures and a fake command runner (46 tests), and their dry-run output below is real, from November 2, 2026. Every other command comes from the kits' own chapters, the kits' code or Microsoft Learn, and the results given after each step are **expectations**, not observations. Run the test stage in full, and keep its evidence, before any step touches production.
+The owner approved this page on November 3, 2026. **Nobody has run this runbook against a live tenant, subscription or forest.** The five deploy scripts are tested against fixtures and a fake command runner (44 tests), and their dry-run output below is real, from November 2, 2026. Every other command comes from the kits' own chapters, the kits' code or Microsoft Learn, and the results given after each step are **expectations**, not observations. Run the test stage in full, and keep its evidence, before any step touches production.
 :::
 
 ## Goal and audience
@@ -185,7 +185,7 @@ export ADM_MC_VERSION=1.1.0     # test stage; production: the version in the Sta
 A settings file that still holds placeholders is refused. This is the template, on November 2, 2026:
 
 ```text
-refused: environment.example.json: 41 problem(s): environment is '<test-or-production>'; expected test or production; unknown cloud '<cloud>'; expected one of gcc, gcchigh, dod; 'environment' still holds the placeholder <test-or-production>; 'cloud' still holds the placeholder <cloud>; and 37 more
+refused: environment.example.json: 41 problem(s): environment is '<test-or-production>'; expected test or production; unknown cloud '<cloud>'; expected one of gcc; 'environment' still holds the placeholder <test-or-production>; 'cloud' still holds the placeholder <cloud>; and 37 more
 ```
 
 ### Sign in
@@ -400,7 +400,7 @@ A fixture report, or a stage with requirement rows unevidenced, can never promot
 python -m pytest deploy/tests -q
 ```
 
-`46 passed` on November 2, 2026 (Windows 11, Python 3.14.3). The deploy scripts keep their own suite, apart from the 142 tests Chapter 09 runs.
+`44 passed` on November 13, 2026 (Windows 11, Python 3.14.3). The deploy scripts keep their own suite, apart from the 141 tests Chapter 09 runs.
 
 ## Pre-flight checks {#pre-flight-checks}
 

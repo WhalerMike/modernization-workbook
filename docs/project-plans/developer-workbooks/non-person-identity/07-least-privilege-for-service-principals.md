@@ -424,7 +424,7 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
 
    <!-- capture:end -->
 
-**Expected result:** 513 tests passing across the example, `out/least-privilege/manifest.json` listing 45 reads (12 app role assignment pages, 11 grant lists, 11 directory role lists, 2 resource service principals, 4 role assignment lists and 5 role definitions), and `out/lp-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done: the review names owners:
+**Expected result:** 511 tests passing across the example, `out/least-privilege/manifest.json` listing 45 reads (12 app role assignment pages, 11 grant lists, 11 directory role lists, 2 resource service principals, 4 role assignment lists and 5 role definitions), and `out/lp-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done: the review names owners:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -644,7 +644,7 @@ The sweep, the owner review and the plan are what the guide's [G4 Least privileg
 | The approved removals and narrowings were sent after fresh re-reads, and recorded (Lab 1, step 8, and Lab 2, step 4: `results.json` and `manifest.json` in the apply folder) | AC-6; CM-3 | KSI-IAM-ELP; KSI-CMT-LMC | The ISSO, with the run's folder |
 | The removed grant is gone on the next sweep, and the audit log shows the removal (Lab 2, step 5: the next `sweep.json`; the Entra audit entry) | AC-6; AU-2 Event Logging | KSI-IAM-ELP; KSI-MLA-LET, KSI-CMT-LMC | Identity engineering; security operations |
 | Every run records the tenant, the cloud, every request, and the SHA-256 of the register, of each input and of each file (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
-| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 511 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 | The lab's removal is reversed by a person with Learn's grant request (Lab 2, step 6) | CM-3 | KSI-CMT-LMC | Identity engineering |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which output supports which indicator is the program's mapping (design guidance).[^np07-ksi] The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Lab steps that only make test grants, run Chapter 01 or delete `out` have no row. The track-wide mapping is the guide's [Evidence](../../../books/guides/non-person-identity-implementation.md#evidence) table.

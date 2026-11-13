@@ -212,7 +212,7 @@ You run the check on its fail fixture, inside and after a matching window, and o
    pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
    ```
 
-   Expected: `Tests Passed: 297, Failed: 0`.
+   Expected: `Tests Passed: 296, Failed: 0`.
 
 7. **Make it fail for the right reason.** The first two commands change your copy of the check to read `blockSoftMatch`, a property that doesn't exist; the next three reload the module and run the fail and pass fixtures.
 

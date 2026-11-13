@@ -167,10 +167,10 @@ An account whose SPN starts with `MSSQLSvc/`, or whose name matches the program'
 
 ### The tests
 
-Pester 5 under PowerShell 7, 513 tests across the kit (Lab 1 runs them all), none needing a module, a tenant, a domain or a network. This chapter's are:
+Pester 5 under PowerShell 7, 511 tests across the kit (Lab 1 runs them all), none needing a module, a tenant, a domain or a network. This chapter's are:
 
 - `tests/MicrosoftSamples.Tests.ps1`, 20 tests in the Chapter 01 blocks: Learn's commands and script, run as published.
-- `tests/NpiInventory.Tests.ps1`, 37 tests: clouds, the call list (each task's declaration equals the union of its calls), refused calls, cmdlets, hosts and writes, paging with page sizes of 1, 3 and 50, the one LDAP query, every type in the register, credentials, permissions, risk, targets, the hand-off, stale leads, each finding, the manifest's hashes and the console output.
+- `tests/NpiInventory.Tests.ps1`, 36 tests: clouds, the call list (each task's declaration equals the union of its calls), refused calls, cmdlets, hosts and writes, paging with page sizes of 1, 3 and 50, the one LDAP query, every type in the register, credentials, permissions, risk, targets, the hand-off, stale leads, each finding, the manifest's hashes and the console output.
 
 The other 10 sample tests and the 31 in `tests/NpiOwnership.Tests.ps1` are Chapter 02's.
 
@@ -306,7 +306,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-   Two errors: `Undeclared call 'graph-user' for task 'inventory'; add it to config/calls.json with its permission.` and `Unknown cloud 'GCC'. Use global, gcc, gcchigh or dod.`
+   Two errors: `Undeclared call 'graph-user' for task 'inventory'; add it to config/calls.json with its permission.` and `Unknown cloud 'GCC'. Use global or gcc.`
 
 6. **Read the hand-off to the Data Platform plan:**
 
@@ -334,7 +334,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-**Expected result:** 513 tests passing, every row of the gap table seen with your own eyes, and `out/inventory/manifest.json` listing 36 requests: 34 GETs and 2 AD reads. The later labs make their own copy of `out/inventory`. Delete `out` when you're done:
+**Expected result:** 511 tests passing, every row of the gap table seen with your own eyes, and `out/inventory/manifest.json` listing 36 requests: 34 GETs and 2 AD reads. The later labs make their own copy of `out/inventory`. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -474,7 +474,7 @@ The register is the record the guide's [G1 Inventory](../../../books/guides/non-
 | The reader refuses a call the task doesn't declare, and a cloud name it doesn't know (Lab 1, step 5: the two error texts) | AC-6 Least Privilege | KSI-IAM-ELP | The repository's tests |
 | SQL Server and LDAP-bind accounts go to the Data Platform plan (Lab 1, step 6: `data-platform-handoff.csv`; NPI-INV-07) | CM-8 (accountability information for each component) | KSI-PIY-GIV | The Data Platform plan |
 | The run records the tenant, the cloud, every request and AD read, the SHA-256 of `config/register.json` and a SHA-256 per file, and Chapter 02 refuses a register that doesn't match (`manifest.json`) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO, with the run's folder |
-| The code passes its tests (Lab 1, step 7: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 7: `Invoke-Pester -Path tests`, 511 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 | The reading app signs in with a certificate and holds only the two read permissions and Reader (Lab 2, steps 1 to 3: the app's **Certificates & secrets** and **API permissions** pages; the Reader role assignment) | AC-6; IA-5(2) | KSI-IAM-ELP, KSI-IAM-SNU | Identity engineering |
 | Federated credentials are read from Graph and from Resource Manager, and every Resource Manager request stays on the cloud's host (Lab 2, step 5: `register.csv` columns `FederatedCredentials` and `FederatedSubjects`; the `requests` list in `manifest.json`) | IA-5 Authenticator Management | KSI-IAM-SNU | Identity engineering |
 | A dMSA is classified as one, and an ordinary domain user's read returns password age, last logon and groups (Lab 2, step 6: the AD rows of `register.csv`) | CM-8 | KSI-PIY-GIV | AD engineering |

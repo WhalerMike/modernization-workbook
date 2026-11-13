@@ -23,13 +23,10 @@ $script:VkQueryLog = [System.Collections.Generic.List[object]]::new()
 $script:VkKitRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
 
 # Microsoft Learn, "Microsoft Graph national cloud deployments" and "Use Microsoft Graph PowerShell
-# authentication commands" (Get-MgEnvironment). GCC (Moderate) uses the worldwide service. GCC High
-# and DoD are listed only so a High-only run can reach its own endpoint.
+# authentication commands" (Get-MgEnvironment). GCC (Moderate) uses the worldwide service.
 $script:VkClouds = @{
     global  = @{ GraphEnvironment = 'Global'; AzureEnvironment = 'AzureCloud'; GraphHost = 'https://graph.microsoft.com' }
     gcc     = @{ GraphEnvironment = 'Global'; AzureEnvironment = 'AzureCloud'; GraphHost = 'https://graph.microsoft.com' }
-    gcchigh = @{ GraphEnvironment = 'USGov'; AzureEnvironment = 'AzureUSGovernment'; GraphHost = 'https://graph.microsoft.us' }
-    dod     = @{ GraphEnvironment = 'USGovDoD'; AzureEnvironment = 'AzureUSGovernment'; GraphHost = 'https://dod-graph.microsoft.us' }
 }
 
 $script:VkDefaultOptions = [ordered]@{
@@ -239,7 +236,7 @@ function Get-VkRunContext {
         [string]$FixturePath,
         [string]$InputPath,
         $AsOf,
-        [ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud = 'gcc',
+        [ValidateSet('global', 'gcc')][string]$Cloud = 'gcc',
         [hashtable]$Option = @{},
         [switch]$SkipAD,
         [switch]$IncludeBeta,
@@ -462,7 +459,7 @@ function Connect-VkGraph {
     #>
     [CmdletBinding(DefaultParameterSetName = 'Delegated')]
     param(
-        [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+        [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
         [Parameter(ParameterSetName = 'Delegated')][string[]]$Scopes,
         [string]$TenantId,
         [Parameter(Mandatory, ParameterSetName = 'Certificate')][string]$ClientId,
@@ -492,7 +489,7 @@ function Connect-VkAzure {
     <# Signs in to Azure for Resource Graph reads; Reader at the scope is enough. #>
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory)][ValidateSet('global', 'gcc', 'gcchigh', 'dod')][string]$Cloud,
+        [Parameter(Mandatory)][ValidateSet('global', 'gcc')][string]$Cloud,
         [string]$TenantId,
         [switch]$Identity
     )
