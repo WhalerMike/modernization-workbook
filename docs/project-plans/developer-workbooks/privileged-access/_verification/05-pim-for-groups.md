@@ -20,7 +20,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 4 | Last active owner can't be removed; deactivation retried up to 30 days | PA-PG-07; guard G4 | verified | same |
 | 5 | Onboarding automatic; policy IDs change; no offboarding; eligible membership not in `members`; activation max 8 hours | What the PRV groups hold; Lab 2 | verified | Learn, Govern membership and ownership of groups by using PIM for Groups |
 | 6 | Admins and owners can override PIM through the groups API | What the PRV groups hold | verified | Learn, Create eligibilityScheduleRequest (important note); Bring groups into PIM |
-| 7 | Request properties, actions and permissions for eligibility and assignment requests; national cloud tables list L4 and L5 | Code; Verified facts | verified | Learn, Create eligibilityScheduleRequest; Create assignmentScheduleRequest |
+| 7 | Request properties, actions and permissions for eligibility and assignment requests; national cloud tables list the global service | Code; Verified facts | verified | Learn, Create eligibilityScheduleRequest; Create assignmentScheduleRequest |
 | 8 | List schedules need `$filter` on groupId or principalId; read permissions | Code; Verified facts | verified | Learn, List eligibilitySchedules; List assignmentSchedules |
 | 9 | Policy assignments for groups: scopeId group, scopeType Group, roleDefinitionId member/owner, `RoleManagementPolicy.Read.AzureADGroup`; `Group_` policy IDs | Code; Verified facts | verified (full page, Example 4 response) | Learn, List roleManagementPolicyAssignments |
 | 10 | Rule update for groups: `RoleManagementPolicy.ReadWrite.AzureADGroup`; `@odata.type` required; 204; 17 rules per policy | Code; Verified facts | verified | Learn, Update unifiedRoleManagementPolicyRule; Update rules in PIM; Rules mapping guide |
@@ -35,7 +35,7 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 19 | Rule cmdlet lists Directory permissions and no application support | Differences | verified | Learn, Update-MgPolicyRoleManagementPolicyRule |
 | 20 | Learn has no end-to-end PIM for Groups Graph tutorial; the roles tutorial points to the APIs | Start with Microsoft's sample | verified by search on October 30, 2026 | Learn, Assign privileged roles using PIM for Microsoft Entra roles APIs |
 | 21 | Sample behavior: Example 1 title says ownership, body says member; "two hours" vs about 24.5 hours; 2023 dates; `AdminAssign`; no ticketInfo; no GET; hard-coded host; `selfActivate`; DirectoryRole policies only; single-user approver | Gap table | verified by running the pinned requests against the fake; pinned in `PimForGroups.Tests.ps1` | local run |
-| 22 | Entra ID Governance available in GCC, GCC High and DoD | Which cloud | verified | Learn, Microsoft Entra feature availability |
+| 22 | Entra ID Governance available in GCC | Which cloud | verified | Learn, Microsoft Entra feature availability |
 | 23 | Graph hosts per cloud | Which cloud | carried forward from Chapter 01 | Learn, national cloud deployments |
 | 24 | Tier settings (4 or 8 hours; 90, 180, 180, 365 days; approval T0 and T1); T0 no owners; no groups; 450 warning; 5 removals; approver groups; c1 deferred to Chapter 03 | Desired state; rules; guards | restated-as-design (labeled) | Book 04, Appendix B; — |
 | 25 | The fake refuses a schedule that has already ended | Pinned copy; gap table | the fake's own rule, labeled; research gaps row 57 | — |

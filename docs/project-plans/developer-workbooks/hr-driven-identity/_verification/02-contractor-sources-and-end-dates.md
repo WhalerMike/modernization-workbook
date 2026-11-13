@@ -15,10 +15,9 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | 3 | Application least privilege `SynchronizationData-User.Upload.OwnedBy`; higher `SynchronizationData-User.Upload`; delegated `SynchronizationData-User.Upload` for a User Administrator | Sample section; Lab 2 | verified | same |
 | 4 | Matching attributes from the job's mapping; `active` false disables; `manager.value` is the manager's `externalId` | Sample section | verified (examples 1 and 3) | same |
 | 5 | `202 Accepted` with a `Location` header to the provisioning logs | Sample section; Lab 2 | verified | same |
-| 6 | The bulkUpload page has no national cloud table; API-driven inbound provisioning listed available in Azure Government | Which cloud; differences | verified that the table is absent; availability **carried** from the feature availability page; that the API itself is available there is an inference | Learn, Perform bulkUpload; guide's log |
 | 7 | reviewSettings properties and `expirationBehavior` values | Sample section; Verified facts | verified | Learn, accessPackageAssignmentReviewSettings |
 | 8 | Review frequencies; Manager as reviewer with fallback; no-response choices | Sample section | carried forward | Guide's log (Create an access review of an access package) |
-| 9 | Access reviews available in Azure Government; GCC commercial | Which cloud | carried forward | Guide's log (feature availability) |
+| 9 | Access reviews available; GCC commercial | Which cloud | carried forward | Guide's log (feature availability) |
 | 10 | `requestorManager` documented for approval stages, `managerLevel` 1 to 2; not shown in `reviewSettings` | The sponsor review; differences | verified for approvals; **not verified** as a reviewer, confirmed in Lab 2 | Learn, requestorManager |
 | 11 | Updating a policy: `Set-MgEntitlementManagementAssignmentPolicy`, `EntitlementManagement.ReadWrite.All` | The sponsor review; Lab 2 | verified; the code's `_target` note first named `Update-MgEntitlementManagementAssignmentPolicy`, which Learn doesn't show for v1.0; corrected to `Set-` on November 1, 2026 | Learn, Set-MgEntitlementManagementAssignmentPolicy |
 | 12 | User list with `employeeLeaveDateTime`: `User.Read.All` and `User-LifeCycleInfo.Read.All` | Permissions table | carried forward | Validation kit README (VK-HR-05) |

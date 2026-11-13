@@ -111,7 +111,7 @@ Everything that differs between the test tenant and production is in one JSON fi
 
 | Section | What you fill in |
 |---|---|
-| `environment`, `changeRecord`, `cloud`, `tenantId`, `outputRoot` | `test` or `production`; the stage's change record; `gcc`, `gcchigh` or `dod` (there is no default); the tenant ID; where the runs are written |
+| `environment`, `changeRecord`, `cloud`, `tenantId`, `outputRoot` | `test` or `production`; the stage's change record; `global` or `gcc` (there is no default); the tenant ID; where the runs are written |
 | `identity` | `certificate` or `federated`, the thumbprint, the six apps' client IDs, and the `azure` app's service principal object ID |
 | `emergencyAccess` | The accounts and their exclusion group by object ID, their owner, and each account's last validation drill |
 | `monitoring` | The workspace, action group, region and resource group for the emergency access alert |
@@ -1078,28 +1078,28 @@ The `deploy` scripts were run against fixtures and a fake Graph, never against a
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| PIM licenses | Microsoft Entra ID P2 or Microsoft Entra ID Governance, for users who are eligible, approve, or are assigned to or perform access reviews | Microsoft Entra ID Governance for Government is a product | GA | [^pa09-license] |
-| Service plans | `AAD_PREMIUM_P2` `eec0eb4f-6444-4f95-aba0-50c24d67f998`; `Entra_Identity_Governance` `e866a266-3cff-43a3-acca-0c90a7e00c8b` | — | — | [^pa09-service-plans] |
-| List subscribedSkus | `GET /subscribedSkus`; `LicenseAssignment.Read.All` least privileged; `capabilityStatus` `Enabled`, `Warning`, `Suspended`, `Deleted`, `LockedOut` | L4 and L5 | v1.0 | [^pa09-sku] [^pa09-sku-resource] |
-| Emergency access standard | Two or more cloud-only accounts; phishing-resistant methods; permanent active Global Administrator; excluded from policies that block or restrict, report-only needing no exclusion; monitored; validated every 90 days | — | GA | [^pa09-emergency] |
-| The lockout | All Privileged Role and Global Administrators eligible, approval required, no approvers | — | GA | [^pa09-settings] |
-| Report-only | Evaluated at sign-in, not enforced; results on the sign-in log's Report-only tab; at least a week before enforcement | — | GA | [^pa09-report-only] [^pa09-ca-plan] |
-| PIM deployment plan | Pilot with test users; expected against actual; production after testing; rollback by making assignments active again; zero permanent active except emergency accounts; read audit events weekly | — | — | [^pa09-pim-plan] |
-| Activation in the portal | **ID Governance** > **Privileged Identity Management** > **My roles** > **Microsoft Entra roles**, **Activate** | — | GA | [^pa09-activate] |
-| Approval | **ID Governance** > **Privileged Identity Management** > **Approve requests**; 24 hours; no self-approval; no service principal approves | — | GA | [^pa09-approve] |
-| Request status | `Canceled`, `Denied`, `Failed`, `Granted`, `PendingAdminDecision`, `PendingApproval`, `PendingProvisioning`, `PendingScheduleCreation`, `Provisioned`, `Revoked`, `ScheduleCreated` | — | v1.0 | [^pa09-request] |
-| List roleAssignmentScheduleRequests | `RoleAssignmentSchedule.ReadWrite.Directory` is the least-privileged permission, for reads too | L4 and L5 | v1.0 | [^pa09-ras-list] |
-| Activate and remove with Graph PowerShell | `New-MgRoleManagementDirectoryRoleAssignmentScheduleRequest` with `SelfActivate`, `AdminAssign`; eligible instances by `principalId` | — | v1.0 | [^pa09-ps-assign] |
-| Azure active assignment request | `roleAssignmentScheduleRequests` `2020-10-01`: `requestType` `AdminAssign`, `AdminRemove`; expiration `AfterDateTime`, `AfterDuration`, `NoExpiration` | — | — | [^pa09-arm-ras] |
-| Five-minute rule | A PIM for Groups assignment can't be removed within five minutes of being assigned; eligible members need P2 or ID Governance | — | GA | [^pa09-groups-assign] |
-| Review in PIM | **ID Governance** > **Privileged Identity Management** > **Review access**, **Approve** or **Deny**, a reason | — | GA | [^pa09-review] |
-| App-only sign-in | `Connect-MgGraph -ClientId -TenantId -CertificateThumbprint` | — | — | [^pa09-connect] |
-| Federated credentials | A workload exchanges a trusted external token for an access token, with no secret to manage | — | GA | [^pa09-wif] |
-| Directory audits, active instances, review decisions | `AuditLog.Read.All`; `RoleAssignmentSchedule.Read.Directory`; `AccessReview.Read.All` | L4 and L5 | v1.0 | [^pa09-audits] [^pa09-rasi] [^pa09-ar-list] |
-| Graph hosts | GCC `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^pa09-deployments] |
-| FedRAMP 20x Key Security Indicators | KSI-IAM-JIT, KSI-IAM-ELP, KSI-IAM-APM, KSI-IAM-SNU, KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-MLA-EVC, KSI-MLA-OSM, KSI-MLA-LET, KSI-INR-RIR, each on FedRAMP's 2026 reference; indicators for cloud service providers | — | — | [^pa09-ksi] [^pa09-ksi-providers] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| PIM licenses | Microsoft Entra ID P2 or Microsoft Entra ID Governance, for users who are eligible, approve, or are assigned to or perform access reviews | GA | [^pa09-license] |
+| Service plans | `AAD_PREMIUM_P2` `eec0eb4f-6444-4f95-aba0-50c24d67f998`; `Entra_Identity_Governance` `e866a266-3cff-43a3-acca-0c90a7e00c8b` | — | [^pa09-service-plans] |
+| List subscribedSkus | `GET /subscribedSkus`; `LicenseAssignment.Read.All` least privileged; `capabilityStatus` `Enabled`, `Warning`, `Suspended`, `Deleted`, `LockedOut` | v1.0 | [^pa09-sku] [^pa09-sku-resource] |
+| Emergency access standard | Two or more cloud-only accounts; phishing-resistant methods; permanent active Global Administrator; excluded from policies that block or restrict, report-only needing no exclusion; monitored; validated every 90 days | GA | [^pa09-emergency] |
+| The lockout | All Privileged Role and Global Administrators eligible, approval required, no approvers | GA | [^pa09-settings] |
+| Report-only | Evaluated at sign-in, not enforced; results on the sign-in log's Report-only tab; at least a week before enforcement | GA | [^pa09-report-only] [^pa09-ca-plan] |
+| PIM deployment plan | Pilot with test users; expected against actual; production after testing; rollback by making assignments active again; zero permanent active except emergency accounts; read audit events weekly | — | [^pa09-pim-plan] |
+| Activation in the portal | **ID Governance** > **Privileged Identity Management** > **My roles** > **Microsoft Entra roles**, **Activate** | GA | [^pa09-activate] |
+| Approval | **ID Governance** > **Privileged Identity Management** > **Approve requests**; 24 hours; no self-approval; no service principal approves | GA | [^pa09-approve] |
+| Request status | `Canceled`, `Denied`, `Failed`, `Granted`, `PendingAdminDecision`, `PendingApproval`, `PendingProvisioning`, `PendingScheduleCreation`, `Provisioned`, `Revoked`, `ScheduleCreated` | v1.0 | [^pa09-request] |
+| List roleAssignmentScheduleRequests | `RoleAssignmentSchedule.ReadWrite.Directory` is the least-privileged permission, for reads too | v1.0 | [^pa09-ras-list] |
+| Activate and remove with Graph PowerShell | `New-MgRoleManagementDirectoryRoleAssignmentScheduleRequest` with `SelfActivate`, `AdminAssign`; eligible instances by `principalId` | v1.0 | [^pa09-ps-assign] |
+| Azure active assignment request | `roleAssignmentScheduleRequests` `2020-10-01`: `requestType` `AdminAssign`, `AdminRemove`; expiration `AfterDateTime`, `AfterDuration`, `NoExpiration` | — | [^pa09-arm-ras] |
+| Five-minute rule | A PIM for Groups assignment can't be removed within five minutes of being assigned; eligible members need P2 or ID Governance | GA | [^pa09-groups-assign] |
+| Review in PIM | **ID Governance** > **Privileged Identity Management** > **Review access**, **Approve** or **Deny**, a reason | GA | [^pa09-review] |
+| App-only sign-in | `Connect-MgGraph -ClientId -TenantId -CertificateThumbprint` | — | [^pa09-connect] |
+| Federated credentials | A workload exchanges a trusted external token for an access token, with no secret to manage | GA | [^pa09-wif] |
+| Directory audits, active instances, review decisions | `AuditLog.Read.All`; `RoleAssignmentSchedule.Read.Directory`; `AccessReview.Read.All` | v1.0 | [^pa09-audits] [^pa09-rasi] [^pa09-ar-list] |
+| Graph hosts | GCC `graph.microsoft.com` | — | [^pa09-deployments] |
+| FedRAMP 20x Key Security Indicators | KSI-IAM-JIT, KSI-IAM-ELP, KSI-IAM-APM, KSI-IAM-SNU, KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-MLA-EVC, KSI-MLA-OSM, KSI-MLA-LET, KSI-INR-RIR, each on FedRAMP's 2026 reference; indicators for cloud service providers | — | [^pa09-ksi] [^pa09-ksi-providers] |
 
 Where the sources differ, recorded so a later edit doesn't loosen the code:
 
@@ -1109,7 +1109,7 @@ Where the sources differ, recorded so a later edit doesn't loosen the code:
 
 ## Open questions {#open-questions}
 
-The questions only a live tenant can answer are rows 101 to 106, 113 and 114 of the workbook's research gaps log, `_verification/research-gaps.md` in the repository. Row 113 is the group alert check's delegated role, group list, reads and sovereign-cloud calls, and row 114 is the Microsoft.Graph and Az module versions the first live run records. The rest: the principal on an activation through an eligible group (101), how soon the audit log shows a PIM event (102), the write permission Learn lists for reading requests (103), the stricter report-only rule (104), the time-bound restore (105), and an app-only restore under a rule that wants MFA on active assignment (106).
+The questions only a live tenant can answer are rows 101 to 106, 113 and 114 of the workbook's research gaps log, `_verification/research-gaps.md` in the repository. Row 113 is the group alert check's delegated role, group list and reads, and row 114 is the Microsoft.Graph and Az module versions the first live run records. The rest: the principal on an activation through an eligible group (101), how soon the audit log shows a PIM event (102), the write permission Learn lists for reading requests (103), the stricter report-only rule (104), the time-bound restore (105), and an app-only restore under a rule that wants MFA on active assignment (106).
 
 ## Dangers
 

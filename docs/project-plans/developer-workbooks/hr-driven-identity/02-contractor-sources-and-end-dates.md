@@ -46,7 +46,7 @@ Contractors aren't in Federal HR 2.0's scope, so they come from an agency-owned 
 
 ### Which cloud, for these reads and writes
 
-The records reach Entra ID through the contractor source's own API-driven provisioning app, through the same middleware as employees. Learn's feature availability page lists API-driven inbound provisioning, and provisioning agent registration for a US Government tenant, as available in Azure Government, and access reviews as available; GCC uses the commercial service.[^hw02-feat] The *Perform bulkUpload* page itself carries no national cloud table (verification log, row 6). The middleware's endpoint check accepts only `graph.microsoft.com`, `graph.microsoft.us` and `dod-graph.microsoft.us` ([Book 19, Chapter 01](../../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md)). The reconciliation reads `GET /users` from the cloud you name; `graph_export.py` has no default.
+The records reach Entra ID through the contractor source's own API-driven provisioning app, through the same middleware as employees. API-driven inbound provisioning and access reviews are part of the commercial Entra ID service, which GCC uses.[^hw02-feat] The middleware's endpoint check accepts only the Graph host, `graph.microsoft.com` ([Book 19, Chapter 01](../../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md)). The reconciliation reads `GET /users` from the cloud you name; `graph_export.py` has no default.
 
 ## Start with Microsoft's procedure
 
@@ -430,21 +430,20 @@ rm -rf exports/ch02 out/ch02-test out/ch02-test-extract out/ch02-test-scim out/c
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Perform bulkUpload | `POST /servicePrincipals/{id}/synchronization/jobs/{jobId}/bulkUpload`; `application/scim+json`; 50 operations per request; 40 requests per second; `202 Accepted` with a `Location` header to the provisioning logs | No national cloud table on the page; API-driven inbound provisioning listed as available in Azure Government | v1.0 | [^hw02-bulk] [^hw02-feat] |
-| bulkUpload permissions | Application: `SynchronizationData-User.Upload.OwnedBy` (least), `SynchronizationData-User.Upload`; delegated: `SynchronizationData-User.Upload`, for a User Administrator | — | v1.0 | [^hw02-bulk] |
-| Matching and state | Matching attributes per the job's mapping; `active` false disables; `manager.value` is the manager's `externalId` | — | v1.0 | [^hw02-bulk] |
-| Review settings | `isEnabled`, `primaryReviewers`, `fallbackReviewers`, `schedule`, `expirationBehavior` (`keepAccess`, `removeAccess`, `acceptAccessRecommendation`) | Access reviews available in Azure Government | v1.0 | [^hw02-review] [^hw02-feat] |
-| Access review of a package (procedure) | Monthly, quarterly, bi-annual or annual; Manager as reviewer with a fallback; no response: no change, remove access or take recommendations | — | GA | [^hw02-ar] |
-| requestorManager | A subject set for a requestor's manager, `managerLevel` 1 or 2, documented for approval stages | — | v1.0 | [^hw02-mgr] |
-| Update an assignment policy | `Set-MgEntitlementManagementAssignmentPolicy`, `EntitlementManagement.ReadWrite.All` | — | v1.0 | [^hw02-set] |
-| List users with leave date | `User.Read.All` with `User-LifeCycleInfo.Read.All` | — | v1.0 | Carried from the validation kit's VK-HR-05 |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Perform bulkUpload | `POST /servicePrincipals/{id}/synchronization/jobs/{jobId}/bulkUpload`; `application/scim+json`; 50 operations per request; 40 requests per second; `202 Accepted` with a `Location` header to the provisioning logs | v1.0 | [^hw02-bulk] [^hw02-feat] |
+| bulkUpload permissions | Application: `SynchronizationData-User.Upload.OwnedBy` (least), `SynchronizationData-User.Upload`; delegated: `SynchronizationData-User.Upload`, for a User Administrator | v1.0 | [^hw02-bulk] |
+| Matching and state | Matching attributes per the job's mapping; `active` false disables; `manager.value` is the manager's `externalId` | v1.0 | [^hw02-bulk] |
+| Review settings | `isEnabled`, `primaryReviewers`, `fallbackReviewers`, `schedule`, `expirationBehavior` (`keepAccess`, `removeAccess`, `acceptAccessRecommendation`) | v1.0 | [^hw02-review] [^hw02-feat] |
+| Access review of a package (procedure) | Monthly, quarterly, bi-annual or annual; Manager as reviewer with a fallback; no response: no change, remove access or take recommendations | GA | [^hw02-ar] |
+| requestorManager | A subject set for a requestor's manager, `managerLevel` 1 or 2, documented for approval stages | v1.0 | [^hw02-mgr] |
+| Update an assignment policy | `Set-MgEntitlementManagementAssignmentPolicy`, `EntitlementManagement.ReadWrite.All` | v1.0 | [^hw02-set] |
+| List users with leave date | `User.Read.All` with `User-LifeCycleInfo.Read.All` | v1.0 | Carried from the validation kit's VK-HR-05 |
 
 Places Learn's pages differ or say nothing:
 
 - **`requestorManager` as a reviewer.** Learn documents it for approvals, and the portal offers Manager as a reviewer, but no v1.0 page shows the subject set in `reviewSettings`. Lab 2 confirms it.
-- **bulkUpload in the national clouds.** The API page has no table; the feature availability page lists API-driven inbound provisioning in Azure Government. The program reads that as the API being available there.
 
 ## Federal requirements and evidence
 

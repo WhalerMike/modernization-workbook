@@ -50,7 +50,7 @@ So this chapter builds the gate and leaves it unselected. Chapter 04 selects `c1
 
 ### Which cloud, for these calls
 
-Every call in this chapter is Microsoft Graph v1.0, apart from the protected actions API, which is beta. For Microsoft 365 GCC the host is the worldwide `graph.microsoft.com`; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^pa03-deployments] The methods for policies, contexts, strengths and templates list the global service, US Government L4 and US Government L5 in their national cloud tables.[^pa03-ca-list] [^pa03-ca-create] [^pa03-ca-update] [^pa03-ctx-list] [^pa03-ctx-upsert] [^pa03-strength-list] [^pa03-template-get] Conditional Access and PIM are available in Azure for US Government.[^pa03-availability] The code takes `gcc` as an explicit cloud name and has no default. In Azure Government, a policy that targets Azure management names a different application than the Windows Azure Service Management API that CA025 and CA027 use ([Book 04, Chapter 07](../../../books/b04-access/07-the-conditional-access-policy-library.md#government-cloud-notes)); a GCC High program changes those two files.
+Every call in this chapter is Microsoft Graph v1.0, apart from the protected actions API, which is beta. For Microsoft 365 GCC the host is the worldwide `graph.microsoft.com`.[^pa03-deployments] The methods for policies, contexts, strengths and templates list the global service, which GCC uses, in their national cloud tables.[^pa03-ca-list] [^pa03-ca-create] [^pa03-ca-update] [^pa03-ctx-list] [^pa03-ctx-upsert] [^pa03-strength-list] [^pa03-template-get] The code takes `gcc` as an explicit cloud name and has no default.
 
 ## Start with Microsoft's sample
 
@@ -473,25 +473,25 @@ Remove-Item -Recurse -Force out/ca-test*
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Conditional Access templates | In the admin center by scenario; "Protect administrator" includes phishing-resistant MFA for administrators | — | GA | [^pa03-templates] |
-| Get a template | `GET /identity/conditionalAccess/templates/{id}`; `Policy.Read.All` | L4 and L5 | v1.0 | [^pa03-template-get] |
-| Phishing-resistant MFA for administrators | At least 14 roles; exclude emergency accounts; built-in phishing-resistant strength; report-only first; built-in roles only | — | GA | [^pa03-admin-phish] |
-| List policies | `Policy.Read.All` | L4 and L5 | v1.0 | [^pa03-ca-list] |
-| Create a policy | `POST /identity/conditionalAccess/policies`; `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; known consent issue | L4 and L5 | v1.0 | [^pa03-ca-create] |
-| Update a policy | `PATCH .../policies/{id}`; same permissions; send only changed values | L4 and L5 | v1.0 | [^pa03-ca-update] |
-| List authentication contexts | `AuthenticationContext.Read.All` | L4 and L5 | v1.0 | [^pa03-ctx-list] |
-| Create or update an authentication context | `PATCH .../authenticationContextClassReferences/{id}` creates when missing; `AuthenticationContext.ReadWrite.All`; known consent issue, as for policies | L4 and L5 | v1.0 | [^pa03-ctx-upsert] |
-| Authentication context IDs | `c1` to `c25` (Graph create, beta); up to 99, `c1` to `c99` (admin center) | L4 and L5 | — | [^pa03-ctx-create-beta] [^pa03-ctx-concept] |
-| List authentication strengths | `Policy.Read.AuthenticationMethod`; built-in and custom | L4 and L5 | v1.0 | [^pa03-strength-list] |
-| Create an authentication strength | `Policy.ReadWrite.ConditionalAccess` | L4 and L5 | v1.0 | [^pa03-strength-create] |
-| Built-in phishing-resistant strength | Windows Hello for Business or platform credential, FIDO2 security key, multifactor CBA; can't combine with "Require MFA" | — | GA | [^pa03-strengths] |
-| PIM and authentication context | Policy enabled before selection; fallback MFA not triggered by off, report-only or excluded; don't scope to roles; every-time sign-in frequency; 10-minute window | Conditional Access and PIM available | GA | [^pa03-pim-settings] [^pa03-availability] |
-| Sign-in frequency `everyTime` | Graph: for risky users, risky sign-ins and Intune enrollment; Learn's PIM page: on the authentication context policy | — | v1.0 | [^pa03-sif] [^pa03-pim-settings] [^pa03-session] |
-| Report-only | Evaluated, not enforced; not for user actions; compliant-device checks can prompt Mac, iOS and Android users; policy impact view is preview | — | GA; impact view preview | [^pa03-report-only] |
-| Emergency exclusion | Exclude from policies that block or restrict; report-only doesn't need it | — | GA | [^pa03-emergency] |
-| Protected actions | Conditional Access on permissions such as policy create, update and delete; exclude an emergency account; P1; a policy that is off or report-only is never satisfied; assigning through Graph is beta | Not stated | GA (no preview label on the page); Graph API beta | [^pa03-protected] [^pa03-protected-add] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Conditional Access templates | In the admin center by scenario; "Protect administrator" includes phishing-resistant MFA for administrators | GA | [^pa03-templates] |
+| Get a template | `GET /identity/conditionalAccess/templates/{id}`; `Policy.Read.All` | v1.0 | [^pa03-template-get] |
+| Phishing-resistant MFA for administrators | At least 14 roles; exclude emergency accounts; built-in phishing-resistant strength; report-only first; built-in roles only | GA | [^pa03-admin-phish] |
+| List policies | `Policy.Read.All` | v1.0 | [^pa03-ca-list] |
+| Create a policy | `POST /identity/conditionalAccess/policies`; `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; known consent issue | v1.0 | [^pa03-ca-create] |
+| Update a policy | `PATCH .../policies/{id}`; same permissions; send only changed values | v1.0 | [^pa03-ca-update] |
+| List authentication contexts | `AuthenticationContext.Read.All` | v1.0 | [^pa03-ctx-list] |
+| Create or update an authentication context | `PATCH .../authenticationContextClassReferences/{id}` creates when missing; `AuthenticationContext.ReadWrite.All`; known consent issue, as for policies | v1.0 | [^pa03-ctx-upsert] |
+| Authentication context IDs | `c1` to `c25` (Graph create, beta); up to 99, `c1` to `c99` (admin center) | — | [^pa03-ctx-create-beta] [^pa03-ctx-concept] |
+| List authentication strengths | `Policy.Read.AuthenticationMethod`; built-in and custom | v1.0 | [^pa03-strength-list] |
+| Create an authentication strength | `Policy.ReadWrite.ConditionalAccess` | v1.0 | [^pa03-strength-create] |
+| Built-in phishing-resistant strength | Windows Hello for Business or platform credential, FIDO2 security key, multifactor CBA; can't combine with "Require MFA" | GA | [^pa03-strengths] |
+| PIM and authentication context | Policy enabled before selection; fallback MFA not triggered by off, report-only or excluded; don't scope to roles; every-time sign-in frequency; 10-minute window | GA | [^pa03-pim-settings] [^pa03-availability] |
+| Sign-in frequency `everyTime` | Graph: for risky users, risky sign-ins and Intune enrollment; Learn's PIM page: on the authentication context policy | v1.0 | [^pa03-sif] [^pa03-pim-settings] [^pa03-session] |
+| Report-only | Evaluated, not enforced; not for user actions; compliant-device checks can prompt Mac, iOS and Android users; policy impact view is preview | GA; impact view preview | [^pa03-report-only] |
+| Emergency exclusion | Exclude from policies that block or restrict; report-only doesn't need it | GA | [^pa03-emergency] |
+| Protected actions | Conditional Access on permissions such as policy create, update and delete; exclude an emergency account; P1; a policy that is off or report-only is never satisfied; assigning through Graph is beta | GA (no preview label on the page); Graph API beta | [^pa03-protected] [^pa03-protected-add] |
 
 Where the sources differ, recorded so a later edit doesn't loosen the code:
 

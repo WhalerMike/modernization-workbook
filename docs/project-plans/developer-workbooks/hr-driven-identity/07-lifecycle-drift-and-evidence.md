@@ -50,7 +50,7 @@ The evidence also has to survive. Entra's own retention is short: 30 days for au
 
 ### Which cloud, for this read
 
-The run's only new Graph read is the workforce user list (`graph_export.py --task drift-read`): `graph.microsoft.com` for GCC, `graph.microsoft.us` for GCC High and `dod-graph.microsoft.us` for DoD.[^hw07-deployments] The other inputs are the outputs of Chapters 01, 02, 03, 04 and 06, the HR export and the card system's status export, which carry no host. Learn's feature availability page lists basic and advanced security and usage reports and SIEM connectivity as available in Azure Government; in GCC they are the commercial service.[^hw07-feat] The pipeline that schedules the run signs in as Book 19, Chapter 09 describes, per cloud.
+The run's only new Graph read is the workforce user list (`graph_export.py --task drift-read`): `graph.microsoft.com` for GCC.[^hw07-deployments] The other inputs are the outputs of Chapters 01, 02, 03, 04 and 06, the HR export and the card system's status export, which carry no host. Basic and advanced security and usage reports and SIEM connectivity are part of the commercial Entra ID service GCC uses.[^hw07-feat] The pipeline that schedules the run signs in as Book 19, Chapter 09 describes, per cloud.
 
 ## Start with Book 19, Chapter 09's pipeline
 
@@ -421,15 +421,15 @@ rm -rf exports out
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| List users with `employeeLeaveDateTime` | `GET /users`; `User.Read.All` with `User-LifeCycleInfo.Read.All` | Available (user list) | v1.0 | Carried from the validation kit's README, VK-HR-05[^hw07-users] |
-| Graph hosts | `graph.microsoft.com` (GCC), `graph.microsoft.us` (GCC High), `dod-graph.microsoft.us` (DoD) | — | — | [^hw07-deployments] |
-| Audit log retention | 30 days with P1 or P2, 7 with Free; not retroactive | — | — | Carried from Book 03, Chapter 11[^hw07-retention] |
-| Provisioning log retention | 30 days with a premium edition, 7 with Free | — | — | Carried from Book 03, Chapter 11[^hw07-retention] |
-| Lifecycle Workflows history | Viewable up to 30 days; download it to keep it longer | — | — | Carried from Book 03, Chapter 11[^hw07-retention] |
-| Reports and SIEM connectivity | Basic and advanced reports and SIEM connectivity listed as available in Azure Government | Available | GA | Carried from the guide[^hw07-feat] |
-| Lifecycle metrics, drift classes and severities | Book 03's design; no Microsoft source sets them | — | — | Book 03, Chapter 11 |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| List users with `employeeLeaveDateTime` | `GET /users`; `User.Read.All` with `User-LifeCycleInfo.Read.All` | v1.0 | Carried from the validation kit's README, VK-HR-05[^hw07-users] |
+| Graph host | `graph.microsoft.com` (GCC) | — | [^hw07-deployments] |
+| Audit log retention | 30 days with P1 or P2, 7 with Free; not retroactive | — | Carried from Book 03, Chapter 11[^hw07-retention] |
+| Provisioning log retention | 30 days with a premium edition, 7 with Free | — | Carried from Book 03, Chapter 11[^hw07-retention] |
+| Lifecycle Workflows history | Viewable up to 30 days; download it to keep it longer | — | Carried from Book 03, Chapter 11[^hw07-retention] |
+| Reports and SIEM connectivity | Basic and advanced reports and SIEM connectivity; GCC uses the commercial service | GA | Carried from the guide[^hw07-feat] |
+| Lifecycle metrics, drift classes and severities | Book 03's design; no Microsoft source sets them | — | Book 03, Chapter 11 |
 
 One place where the sources leave a choice, recorded so a later edit doesn't loosen the code: the guide's Step 7 lists credential drift from the card system *and* Intune reports joined on the person. This run reads the card system only, and says so; the Intune join is open until the agency's Intune report is in the evidence store.
 
@@ -494,7 +494,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers: the agency authoriz
 :::
 
 [^hw07-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 1, 2026; carried from Book 19, Chapter 02).
-[^hw07-feat]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: basic and advanced reports and SIEM connectivity available), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
+[^hw07-feat]: Microsoft Learn, "Microsoft Entra feature availability," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026; carried from the HR-driven identity implementation guide's verification log).
 [^hw07-retention]: Microsoft Learn, "Microsoft Entra data retention," <https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention>, with the provisioning and Lifecycle Workflows history pages cited in Book 03, Chapter 11 (read November 1, 2026; carried from Book 03, Chapter 11).
 [^hw07-users]: Microsoft Learn, "List users," <https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0>, and the user resource (`employeeLeaveDateTime` needs `User-LifeCycleInfo.Read.All`), as read for the validation kit's VK-HR-05 (read November 1, 2026; carried from `examples/validation-kit/README.md`).
 [^hw07-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator titles and "Related SP 800-53 Controls," including the mapping updates of October 13, 2026, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026; the indicator IDs are carried from Book 13, Appendix A and Book 14, Chapter 03).

@@ -147,7 +147,7 @@ On acquisition, GSA lists "Software-Defined Wide Area Network Service" under EIS
 
 ### Microsoft Entra Global Secure Access
 
-- **Availability.** Microsoft says Global Secure Access "is available in the US Government Community Cloud (GCC)" but isn't yet supported in GCC High or DoD.[^ms-limits] It appears among the services in the Azure Commercial Cloud FedRAMP listing (Class D).[^fr]
+- **Availability.** Microsoft says Global Secure Access "is available in the US Government Community Cloud (GCC)."[^ms-limits] It appears among the services in the Azure Commercial Cloud FedRAMP listing (Class D).[^fr]
 - **Limits for branches.**
   - Branch tunnels carry Microsoft and internet traffic only.
   - Access to private applications needs the client on the device.

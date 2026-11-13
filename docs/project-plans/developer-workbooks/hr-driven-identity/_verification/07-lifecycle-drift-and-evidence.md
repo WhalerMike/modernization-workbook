@@ -17,8 +17,8 @@ Pages relied on: Book 03, Chapter 11 (drift classes, the measured lifecycle, the
 | 1 | Drift classes, detection signals and default severities; severities are the program's | What the evidence has to show; drift classes | carried | Book 03, Chapter 11 |
 | 2 | The six metrics and their definitions; choosing metrics and thresholds is the agency's CA-7 decision | Metrics | carried | Book 03, Chapter 11 |
 | 3 | Audit logs 30 days with P1 or P2, 7 with Free, not retroactive; provisioning 30 days premium, 7 Free; LCW history viewable up to 30 days | What the evidence has to show; verified facts | carried | Book 03, Chapter 11 (Learn, Microsoft Entra data retention and related pages) |
-| 4 | Reports and SIEM connectivity available in Azure Government | Which cloud; verified facts | carried | HR-driven identity guide log (Learn, feature availability, read November 1, 2026) |
-| 5 | Graph hosts per cloud | Which cloud | carried | Book 19, Chapter 02 (Learn, national cloud deployments) |
+| 4 | Reports and SIEM connectivity available; GCC commercial | Which cloud; verified facts | carried | HR-driven identity guide log (Learn, feature availability, read November 1, 2026) |
+| 5 | Graph host for GCC | Which cloud | carried | Book 19, Chapter 02 (Learn, national cloud deployments) |
 | 6 | Users with `employeeLeaveDateTime`: `User.Read.All` and `User-LifeCycleInfo.Read.All` | Verified facts; `config/calls.json` drift-read | carried | Validation kit README, VK-HR-05 |
 | 7 | Learn has no sample for lifecycle metrics or drift classes | Start with | searched-not-found (no Learn page found that computes them); restated as the reason for the start | — |
 | 8 | Attribute drift is ADM Gate 9; schema drift is the middleware's output | What the evidence has to show | carried | ADM implementation guide; Book 19, Chapter 01; Book 03, Chapter 11 |

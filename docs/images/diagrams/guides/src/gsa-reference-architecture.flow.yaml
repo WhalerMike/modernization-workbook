@@ -1,7 +1,7 @@
 # Global Secure Access implementation guide — the reference architecture:
 # trust zones (endpoint, branch, Microsoft service edge, agency private
 # network), the identity control plane that decides, and the telemetry that
-# leaves. GCC only; GCC High and DoD aren't supported (Learn, Nov 11, 2026).
+# leaves. Available in GCC (Learn, Nov 11, 2026).
 rankdir: TB
 graph: {nodesep: 0.2, ranksep: 0.45}
 clusters:

@@ -52,7 +52,7 @@ The policies that can block a sign-in come last, and only in report-only mode in
 
 ### Which cloud, for these steps
 
-The target estate is Microsoft 365 GCC (Moderate) with commercial Azure: `graph.microsoft.com`, `management.azure.com` and `login.microsoftonline.com` ([Chapter 01](01-non-person-identity-inventory-as-code.md#which-cloud-and-which-directory-for-this-read)). The settings file names the cloud, and every command takes the Graph and Azure environment names from the kit's cloud table, so the same command would point at GCC High or DoD hosts for those clouds. This runbook covers `gcc` only. Learn gives a different token-exchange audience for Entra ID for US Government (`api://AzureADTokenExchangeUSGov`),[^np11-mi-trust-app] and Chapter 05's checks accept only `api://AzureADTokenExchange`, so a GCC High or DoD deployment needs that change first (research gaps, row 106).
+The target estate is Microsoft 365 GCC (Moderate) with commercial Azure: `graph.microsoft.com`, `management.azure.com` and `login.microsoftonline.com` ([Chapter 01](01-non-person-identity-inventory-as-code.md#which-cloud-and-which-directory-for-this-read)). The settings file names the cloud, and every command takes the Graph and Azure environment names from the kit's cloud table. This runbook covers `gcc`, whose token-exchange audience is `api://AzureADTokenExchange`, the audience Chapter 05's checks accept.[^np11-mi-trust-app]
 
 ## Requirements, KSIs and evidence
 
@@ -1111,30 +1111,30 @@ AU-6, AU-9, CA-7, CM-3 and CP-10 are the program's reading for the smoke test, t
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| Workload ID Premium for workload Conditional Access | Required to create or modify policies scoped to service principals; without it, existing policies keep working but can't be modified | — | GA | [^np11-wid] |
-| Workload Conditional Access scope | Single-tenant service principals registered in the tenant; not Microsoft or third-party SaaS, multitenant apps or managed identities; assigned directly, not through a group; Block only; report-only or On; roll back by deleting or disabling | — | GA | [^np11-wid] |
-| Update a Conditional Access policy | `PATCH /identity/conditionalAccess/policies/{id}`; `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; Security Administrator or Conditional Access Administrator | L4 and L5 | v1.0 | [^np11-ca-update] |
-| Report-only results in sign-ins | `reportOnlySuccess`, `reportOnlyFailure`, `reportOnlyNotApplied`, `reportOnlyInterrupted`, returned with `Prefer: include-unknown-enum-members` | — | Beta | [^np11-applied] |
-| App management policy roles | Security Administrator and Cloud Application Administrator or Application Administrator (or Global Administrator) | — | GA | [^np11-amp-configure] |
-| A restriction on specific applications | A custom policy assigned through `appManagementPolicies/$ref`; admin center: **Application policies** > **Select applications**; no report-only mode documented | — | GA | [^np11-amp-configure] |
-| What a policy blocks | Only the create or update that violates it; no token issuance for existing apps; one custom policy per app; a custom policy's restriction overrides the tenant default's | — | v1.0 | [^np11-amp-overview] |
-| Update a custom app management policy | `PATCH /policies/appManagementPolicies/{id}`; `Policy.ReadWrite.ApplicationConfiguration`; Cloud Application Administrator or Application Administrator | L4 and L5 | v1.0 | [^np11-amp-update] |
-| Add and remove a password | `POST /applications/{id}/addPassword` and `/removePassword`; delegated `Application.ReadWrite.All`; the response's `secretText` can't be retrieved later | L4 and L5 | v1.0 | [^np11-addpassword] [^np11-removepassword] |
-| PIM-eligible roles | `GET /roleManagement/directory/roleEligibilityScheduleInstances` with `$filter`; `RoleEligibilitySchedule.Read.Directory` | L4 and L5 | v1.0 | [^np11-eligibility] |
-| Built-in role template IDs | Cloud Application Administrator `158c047a-…`, Application Administrator `9b895d92-…`, Conditional Access Administrator `b1be1c3e-…`, Security Administrator `194ae4cb-…` | — | — | [^np11-roles] |
-| Service plans | Entra ID P1 `AAD_PREMIUM` `41781fb2-…`, P2 `AAD_PREMIUM_P2` `eec0eb4f-…`; Workload ID `AAD_WRKLDID_P1` and `P2` (Chapter 03) | — | — | [^np11-licensing] |
-| KDS root key | Domain controllers wait up to 10 hours; `-EffectiveImmediately` adds a key used at once on the target DC only; a backdated key is for a test environment with one DC; restart the KDC on all DCs if the key is re-created | — | — | [^np11-kds] |
-| gMSA | `New-ADServiceAccount`, `Install-ADServiceAccount`, `Test-ADServiceAccount`, `Uninstall-ADServiceAccount`; name unique in the forest; interval set only at creation; Domain Admins or a delegated create right | — | — | [^np11-gmsa] |
-| PIM activation path | **ID Governance** > **Privileged Identity Management** > **My roles** > **Microsoft Entra roles** > **Activate** | — | GA | [^np11-pim] |
-| App-only Graph sign-in | `Connect-MgGraph -ClientId -TenantId -CertificateThumbprint`; `-Environment` names the cloud | — | GA | [^np11-connect] |
-| Azure CLI service principal sign-in | `az login --service-principal --username --certificate <pem> --tenant`; the certificate appended to the private key in the PEM | — | GA | [^np11-az-login] |
-| User-assigned identity with the CLI | `az identity create`; `az identity federated-credential create --identity-name --name --resource-group --issuer --subject --audiences` (default `api://AzureADTokenExchange`) | — | GA | [^np11-uami-cli] |
-| Token-exchange audience by cloud | `api://AzureADTokenExchange` for the global service, `api://AzureADTokenExchangeUSGov` for Entra ID for US Government | Different | GA | [^np11-mi-trust-app] |
-| Azure Login action | `audience` defaults to `api://AzureADTokenExchange` in public clouds; `environment` for Azure Government | `AzureUSGovernment` | GA | [^np11-oidc] |
-| Create a user | `New-ADUser -AccountPassword -Enabled -PasswordNeverExpires`; not on a read-only DC | — | — | [^np11-new-aduser] |
-| FedRAMP 20x KSIs | 46 indicators in ten themes; the twelve above exist with the names given; related controls include AC-2, AC-6(5) and IA-5(2) for KSI-IAM-SNU, CM-3 and CM-4(2) for KSI-CMT-VTD, CA-7 for KSI-MLA-EVC, AU-9 for KSI-MLA-OSM and CP-10 for KSI-RPL-ABO; changelog last dated October 13, 2026 | — | — | [^np11-ksi] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| Workload ID Premium for workload Conditional Access | Required to create or modify policies scoped to service principals; without it, existing policies keep working but can't be modified | GA | [^np11-wid] |
+| Workload Conditional Access scope | Single-tenant service principals registered in the tenant; not Microsoft or third-party SaaS, multitenant apps or managed identities; assigned directly, not through a group; Block only; report-only or On; roll back by deleting or disabling | GA | [^np11-wid] |
+| Update a Conditional Access policy | `PATCH /identity/conditionalAccess/policies/{id}`; `Policy.Read.All` and `Policy.ReadWrite.ConditionalAccess`; Security Administrator or Conditional Access Administrator | v1.0 | [^np11-ca-update] |
+| Report-only results in sign-ins | `reportOnlySuccess`, `reportOnlyFailure`, `reportOnlyNotApplied`, `reportOnlyInterrupted`, returned with `Prefer: include-unknown-enum-members` | Beta | [^np11-applied] |
+| App management policy roles | Security Administrator and Cloud Application Administrator or Application Administrator (or Global Administrator) | GA | [^np11-amp-configure] |
+| A restriction on specific applications | A custom policy assigned through `appManagementPolicies/$ref`; admin center: **Application policies** > **Select applications**; no report-only mode documented | GA | [^np11-amp-configure] |
+| What a policy blocks | Only the create or update that violates it; no token issuance for existing apps; one custom policy per app; a custom policy's restriction overrides the tenant default's | v1.0 | [^np11-amp-overview] |
+| Update a custom app management policy | `PATCH /policies/appManagementPolicies/{id}`; `Policy.ReadWrite.ApplicationConfiguration`; Cloud Application Administrator or Application Administrator | v1.0 | [^np11-amp-update] |
+| Add and remove a password | `POST /applications/{id}/addPassword` and `/removePassword`; delegated `Application.ReadWrite.All`; the response's `secretText` can't be retrieved later | v1.0 | [^np11-addpassword] [^np11-removepassword] |
+| PIM-eligible roles | `GET /roleManagement/directory/roleEligibilityScheduleInstances` with `$filter`; `RoleEligibilitySchedule.Read.Directory` | v1.0 | [^np11-eligibility] |
+| Built-in role template IDs | Cloud Application Administrator `158c047a-…`, Application Administrator `9b895d92-…`, Conditional Access Administrator `b1be1c3e-…`, Security Administrator `194ae4cb-…` | — | [^np11-roles] |
+| Service plans | Entra ID P1 `AAD_PREMIUM` `41781fb2-…`, P2 `AAD_PREMIUM_P2` `eec0eb4f-…`; Workload ID `AAD_WRKLDID_P1` and `P2` (Chapter 03) | — | [^np11-licensing] |
+| KDS root key | Domain controllers wait up to 10 hours; `-EffectiveImmediately` adds a key used at once on the target DC only; a backdated key is for a test environment with one DC; restart the KDC on all DCs if the key is re-created | — | [^np11-kds] |
+| gMSA | `New-ADServiceAccount`, `Install-ADServiceAccount`, `Test-ADServiceAccount`, `Uninstall-ADServiceAccount`; name unique in the forest; interval set only at creation; Domain Admins or a delegated create right | — | [^np11-gmsa] |
+| PIM activation path | **ID Governance** > **Privileged Identity Management** > **My roles** > **Microsoft Entra roles** > **Activate** | GA | [^np11-pim] |
+| App-only Graph sign-in | `Connect-MgGraph -ClientId -TenantId -CertificateThumbprint`; `-Environment` names the cloud | GA | [^np11-connect] |
+| Azure CLI service principal sign-in | `az login --service-principal --username --certificate <pem> --tenant`; the certificate appended to the private key in the PEM | GA | [^np11-az-login] |
+| User-assigned identity with the CLI | `az identity create`; `az identity federated-credential create --identity-name --name --resource-group --issuer --subject --audiences` (default `api://AzureADTokenExchange`) | GA | [^np11-uami-cli] |
+| Token-exchange audience by cloud | `api://AzureADTokenExchange` for the global service, which GCC uses | GA | [^np11-mi-trust-app] |
+| Azure Login action | `audience` defaults to `api://AzureADTokenExchange` in public clouds | GA | [^np11-oidc] |
+| Create a user | `New-ADUser -AccountPassword -Enabled -PasswordNeverExpires`; not on a read-only DC | — | [^np11-new-aduser] |
+| FedRAMP 20x KSIs | 46 indicators in ten themes; the twelve above exist with the names given; related controls include AC-2, AC-6(5) and IA-5(2) for KSI-IAM-SNU, CM-3 and CM-4(2) for KSI-CMT-VTD, CA-7 for KSI-MLA-EVC, AU-9 for KSI-MLA-OSM and CP-10 for KSI-RPL-ABO; changelog last dated October 13, 2026 | — | [^np11-ksi] |
 
 Facts carried from earlier chapters, not re-read: the federated credential rules and the `AADSTS70021` propagation delay ([Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts)), the sign-in log's P1 or P2 license ([Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts)), the app management policy create and assign requests ([Chapter 04](04-app-management-policies-and-certificate-rotation.md#verified-facts)), the Workload ID service plan IDs ([Chapter 03](03-the-migration-path-matrix-as-code.md#verified-facts)), and the guide's rollback, evidence and deactivation facts.
 
@@ -1154,7 +1154,6 @@ Facts carried from earlier chapters, not re-read: the federated credential rules
 | A delete in a rollback | The rollback of the rollback is gone | No DELETE is declared; disable, report-only and restore only |
 | Disabled isn't revoked | Tokens already issued keep working | Plan for the token lifetime; for an incident, also remove credentials (the guide's dangers) |
 | A beta read relied on for the gate | It changes under you | ST-06 reads beta sign-ins and is labeled so; no gate rests on it alone |
-| A GCC High or DoD run with the commercial audience | Every token exchange fails | This runbook covers `gcc` only (research gaps, row 106) |
 
 ## Checklist
 
