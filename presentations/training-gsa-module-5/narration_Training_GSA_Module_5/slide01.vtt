@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.320
+Welcome to Module 5 of Global Secure
+Access as the Identity-Aware Network:
+
+2
+00:00:05.320 --> 00:00:07.912
+Internet Access and T L S inspection.
+
+3
+00:00:07.912 --> 00:00:12.587
+Internet Access is the identity-aware
+web gateway for remote users.
+
+4
+00:00:12.587 --> 00:00:16.329
+T L S inspection comes last of
+all, because it's the step most
+
+5
+00:00:16.329 --> 00:00:20.850
+likely to break applications and to
+read content the agency shouldn't.
+
+6
+00:00:20.850 --> 00:00:26.403
+This module covers Steps 5 and 9 of the
+Global Secure Access implementation guide,
+
+7
+00:00:26.403 --> 00:00:30.720
+and takes about fifty minutes, plus
+a lab in your own test tenant.

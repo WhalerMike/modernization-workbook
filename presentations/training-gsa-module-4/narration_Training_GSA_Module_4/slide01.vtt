@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.962
+Welcome to Module 4 of Global Secure
+Access as the Identity-Aware Network:
+
+2
+00:00:04.962 --> 00:00:08.263
+private applications and
+administrative paths.
+
+3
+00:00:08.263 --> 00:00:13.612
+A V P N gives a user an address on the
+network and lets the network decide the rest.
+
+4
+00:00:13.612 --> 00:00:16.983
+Private Access gives each
+application its own path:
+
+5
+00:00:16.983 --> 00:00:21.763
+its own hosts and ports, its own assigned
+group, its own Conditional Access.
+
+6
+00:00:21.763 --> 00:00:27.464
+This module covers Steps 6 and 10 of the
+Global Secure Access implementation guide,
+
+7
+00:00:27.464 --> 00:00:31.820
+and takes about fifty minutes, plus
+a lab in your own test tenant.

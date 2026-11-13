@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.563
+Unit 1 is the compliant network check.
+
+2
+00:00:02.563 --> 00:00:07.333
+It passes only for users connected through
+this tenant's Global Secure Access,
+
+3
+00:00:07.333 --> 00:00:09.462
+from the client or a remote network.
+
+4
+00:00:09.462 --> 00:00:13.226
+At authentication, it denies
+a replayed refresh token.
+
+5
+00:00:13.226 --> 00:00:17.328
+And with services that support
+Continuous Access Evaluation,
+
+6
+00:00:17.328 --> 00:00:22.300
+such as Microsoft Graph, it rejects a
+replayed access token in near real time.
+
+7
+00:00:22.300 --> 00:00:27.763
+Turning signaling on creates a named
+location, All Compliant Network locations.
+
+8
+00:00:27.763 --> 00:00:30.470
+The pilot policy blocks all resources,
+
+9
+00:00:30.470 --> 00:00:34.362
+for the pilot group, from
+every location except that one.
+
+10
+00:00:34.362 --> 00:00:39.486
+It excludes the emergency access group,
+and, following Learn, Microsoft Intune
+
+11
+00:00:39.486 --> 00:00:41.693
+Enrollment and Microsoft Intune,
+
+12
+00:00:41.693 --> 00:00:45.162
+to avoid a circular dependency
+where devices enroll.
+
+13
+00:00:45.162 --> 00:00:48.088
+Learn's example sets the
+policy straight to on.
+
+14
+00:00:48.088 --> 00:00:53.950
+The guide, like every library policy, starts
+in report-only, for ten business days.

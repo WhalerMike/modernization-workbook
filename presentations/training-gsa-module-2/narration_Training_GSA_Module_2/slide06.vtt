@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.788
+Three more client decisions.
+
+2
+00:00:01.788 --> 00:00:05.750
+First, D N S over H T T P S.
+
+3
+00:00:05.750 --> 00:00:08.651
+The client doesn't support secure D N S,
+
+4
+00:00:08.651 --> 00:00:14.171
+so an Intune settings catalog profile
+sets Control the mode of D N S over
+
+5
+00:00:14.171 --> 00:00:19.037
+H T T P S to Disabled, in Edge and
+Chrome, assigned to the same group.
+
+6
+00:00:19.037 --> 00:00:20.613
+Second, hardening.
+
+7
+00:00:20.613 --> 00:00:23.818
+Learn's remediation scripts
+can hide the disable and
+
+8
+00:00:23.818 --> 00:00:26.951
+sign-out buttons and restrict
+non-privileged users.
+
+9
+00:00:26.951 --> 00:00:32.286
+Learn's advice is to let users run
+unrestricted first and confirm nobody needs
+
+10
+00:00:32.286 --> 00:00:37.212
+to disable the client, for a website or
+a parallel V P N, before restricting.
+
+11
+00:00:37.212 --> 00:00:41.462
+So the guide deploys the remediation
+from ring two, not in the pilot.
+
+12
+00:00:41.462 --> 00:00:45.746
+Third, upgrades, in rings: a
+new app for each new version,
+
+13
+00:00:45.746 --> 00:00:50.712
+assigned to a small group, widened,
+and the old app deleted last.
+
+14
+00:00:50.712 --> 00:00:53.187
+Rolling back re-assigns the previous app.
+
+15
+00:00:53.187 --> 00:00:59.620
+And don't disable QUIC in browsers for
+this; Step 5 handles QUIC, in Module 5.

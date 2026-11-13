@@ -12,13 +12,14 @@ google   global             2      0        0  incident 2
 PS> ./Invoke-PnRoute.ps1 -NoticesPath out/day2/notices.json -RoutingPath config/routing.json -StatePath out/state.json -OutputPath out/day2-route -AsOf 2026-11-16T12:00:00Z
 Notices: 2 new, 6 changed, 15 unchanged, 1 no longer listed
 Routes:  12 task, 10 digest only, 1 ignored
-Payloads: 1 create, 4 update, 1 close
+Payloads: 1 create, 4 update, 2 close
 
 close  P2 Security Operations (example)        aws:.../AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04
 update P2 Service Desk (example)               azure:AB1C-2DE
 update P3 Cloud Platform Engineering (example) azure:PM3F-4GH
+close  P2 Service Desk (example)               m365:EX900101
 update P3 Cloud Operations (example)           m365:MC900003
 create P3 Cloud Operations (example)           m365:MC900005
 update P3 Cloud Platform Engineering (example) oci:chain-example-01
 
-Dry run: 6 payloads written to out/day2-route/tasks, nothing sent. State: out/state.json
+Dry run: 7 payloads written to out/day2-route/tasks, nothing sent. State: out/state.json

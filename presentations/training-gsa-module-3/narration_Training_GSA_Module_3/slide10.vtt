@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.258
+Step six reads back the tenant
+restrictions version two policy,
+
+2
+00:00:04.258 --> 00:00:07.275
+default and partners,
+and writes both to files.
+
+3
+00:00:07.275 --> 00:00:09.188
+Step seven turns on tagging.
+
+4
+00:00:09.188 --> 00:00:13.006
+Remember it's tenant-wide: it
+acts on everyone the Microsoft
+
+5
+00:00:13.006 --> 00:00:16.901
+traffic profile carries, which
+in this lab is the pilot group.
+
+6
+00:00:16.901 --> 00:00:20.850
+The GET should show network
+packet tagging status enabled.
+
+7
+00:00:20.850 --> 00:00:25.982
+Step eight runs Learn's four-case test
+from the pilot device with the client on:
+
+8
+00:00:25.982 --> 00:00:30.313
+a member, an allowed partner, a tenant
+that isn't allowed, and a guest.
+
+9
+00:00:30.313 --> 00:00:31.887
+Record each outcome.
+
+10
+00:00:31.887 --> 00:00:36.506
+Step nine reads the blocks in the
+workspace, with Learn's query on error
+
+11
+00:00:36.506 --> 00:00:40.887
+five million two hundred eleven;
+case three's sign-in appears there.
+
+12
+00:00:40.887 --> 00:00:45.138
+Keep the compliant network policy
+in report-only and tagging on.
+
+13
+00:00:45.138 --> 00:00:48.480
+Module 6 rolls them back,
+in the guide's order.

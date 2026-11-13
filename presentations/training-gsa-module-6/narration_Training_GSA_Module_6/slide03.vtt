@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:04.548
+You'll run the four rings,
+
+3
+00:00:04.548 --> 00:00:08.987
+with exit criteria and backout
+triggers set before each one starts.
+
+4
+00:00:08.987 --> 00:00:13.090
+You'll keep the V P N, DirectAccess
+and another security service edge
+
+5
+00:00:13.090 --> 00:00:17.338
+working beside the service during
+the move, and explain branch parity.
+
+6
+00:00:17.338 --> 00:00:21.176
+You'll say who is responsible and
+accountable for each activity,
+
+7
+00:00:21.176 --> 00:00:22.624
+and who decides closure.
+
+8
+00:00:22.624 --> 00:00:26.400
+You'll assemble the five kinds of
+evidence for each network finding.
+
+9
+00:00:26.400 --> 00:00:30.762
+And you'll compute the guide's coverage
+metrics, and roll back in the guide's order.
+
+10
+00:00:30.762 --> 00:00:33.279
+You need Modules 1 to 5 and their labs,
+
+11
+00:00:33.279 --> 00:00:37.725
+and Zero Trust and Assessment,
+chapter ten, for the closure chain.
+
+12
+00:00:37.725 --> 00:00:40.940
+The lab runs in a test
+tenant, never production.

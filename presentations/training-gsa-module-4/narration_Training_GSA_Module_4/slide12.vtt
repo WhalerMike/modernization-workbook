@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.950
+First: an application runs in
+Oracle Cloud Infrastructure.
+
+3
+00:00:05.950 --> 00:00:07.400
+How does the guide reach it?
+
+4
+00:00:07.400 --> 00:00:11.350
+The answer is a: through a connector
+group in that cloud's network,
+
+5
+00:00:11.350 --> 00:00:15.150
+with line of sight to the application,
+as for an on-premises one.
+
+6
+00:00:15.150 --> 00:00:18.126
+Second: in what order does
+Learn protect service
+
+7
+00:00:18.126 --> 00:00:21.325
+principal names with the
+domain controller sensor?
+
+8
+00:00:21.325 --> 00:00:24.966
+The answer is b:
+application S P N's first,
+
+9
+00:00:24.966 --> 00:00:29.062
+the D C's own S P N later,
+to avoid admin lockout.
+
+10
+00:00:29.062 --> 00:00:34.030
+The module page has three more questions,
+each linked to the unit that answers it.
