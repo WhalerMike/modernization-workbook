@@ -1,4 +1,4 @@
 PS> Invoke-Pester -Path tests/Router.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
 PassedCount FailedCount
 ----------- -----------
-         31           0
+         33           0

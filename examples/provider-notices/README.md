@@ -60,7 +60,7 @@ From `examples/provider-notices`, in PowerShell 7:
 ./Invoke-PnEvidence.ps1 -EvidencePath out/evidence -Check
 ```
 
-Day 1 finds 22 notices and writes 12 task payloads. Day 2, a week later, finds 2 new and 6 changed notices, and one the provider no longer lists; it writes 1 create, 4 updates and 1 close, and nothing for the 15 unchanged.
+Day 1 finds 22 notices and writes 13 task payloads. Day 2, a week later, finds 2 new and 6 changed notices, and one the provider no longer lists; it writes 1 create, 4 updates and 2 closes, and nothing for the 15 unchanged.
 
 ## Lab 2: a test tenant
 
