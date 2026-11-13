@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:02.869
+You wrote a detection as a file,
+
+3
+00:00:02.869 --> 00:00:06.300
+in Microsoft Learn's shape,
+with its status disabled.
+
+4
+00:00:06.300 --> 00:00:10.103
+You tested its query against a
+thirty-day validation window,
+
+5
+00:00:10.103 --> 00:00:12.537
+and saved the result as its test record.
+
+6
+00:00:12.537 --> 00:00:14.887
+You deployed it through
+Graph, read it back,
+
+7
+00:00:14.887 --> 00:00:17.975
+and compared everything
+deployed with the repository.
+
+8
+00:00:17.975 --> 00:00:20.484
+And you ran the cross-source
+query that finds
+
+9
+00:00:20.484 --> 00:00:22.925
+a user with alerts from
+more than one source.
+
+10
+00:00:22.925 --> 00:00:25.834
+The evidence an I S S O
+keeps from this module:
+
+11
+00:00:25.834 --> 00:00:30.601
+the detection repository at a tagged
+commit, each rule's test output, the
+
+12
+00:00:30.601 --> 00:00:34.156
+deployed-rules export, the
+correlation query output,
+
+13
+00:00:34.156 --> 00:00:36.337
+and the identity sensors' health.
+
+14
+00:00:36.337 --> 00:00:40.682
+Next is Module 5, the last:
+automation with approval boundaries,
+
+15
+00:00:40.682 --> 00:00:44.330
+the operating cadence, and
+the monthly evidence run.

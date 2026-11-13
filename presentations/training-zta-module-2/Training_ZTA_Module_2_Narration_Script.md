@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 2: Running the assessment safely
 
-Welcome to Module 2 of The Zero Trust Assessment as Evidence: running the assessment safely. This module is a draft, awaiting the editor's review, so recheck it after the review. The assessment is read-only, but running it takes more privilege than that suggests, and its output is a map of where the tenant is weak. In this module you prepare a host, consent once, run as a reader, connect in the tenant's own cloud, and hash the output before anyone opens it. It covers Steps 2 to 5 of the Zero Trust Assessment implementation guide, and takes about thirty-five minutes, plus Lab 2 in your own test tenant.
+Welcome to Module 2 of The Zero Trust Assessment as Evidence: running the assessment safely. The assessment is read-only, but running it takes more privilege than that suggests, and its output is a map of where the tenant is weak. In this module you prepare a host, consent once, run as a reader, connect in the tenant's own cloud, and hash the output before anyone opens it. It covers Steps 2 to 5 of the Zero Trust Assessment implementation guide, and takes about thirty-five minutes, plus Lab 2 in your own test tenant.
 
 ## Slide 2 — Why: read-only, but privileged, and its output is a map
 

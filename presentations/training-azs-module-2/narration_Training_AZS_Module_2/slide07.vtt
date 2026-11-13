@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.112
+Unit 2 is the guide's Step 4,
+the web application firewall.
+
+2
+00:00:04.112 --> 00:00:08.668
+Azure W A F runs in two places:
+on Front Door, which is global,
+
+3
+00:00:08.668 --> 00:00:13.612
+and on Application Gateway W A F
+version two, which is regional.
+
+4
+00:00:13.612 --> 00:00:17.763
+Either way it's a policy of managed
+rules, custom rules and settings.
+
+5
+00:00:17.763 --> 00:00:20.550
+Front Door's managed rules
+need the Premium tier.
+
+6
+00:00:20.550 --> 00:00:25.937
+Microsoft's Azure network security Zero
+Trust recommendations check the same things
+
+7
+00:00:25.937 --> 00:00:30.725
+on both: prevention mode, request body
+inspection, the default rule set, the bot
+
+8
+00:00:30.725 --> 00:00:35.888
+protection rule set, rate limiting, a
+JavaScript challenge, and diagnostic logging.
+
+9
+00:00:35.888 --> 00:00:39.595
+Application Gateway adds
+the H T T P DDoS rule set;
+
+10
+00:00:39.595 --> 00:00:42.375
+Front Door adds a CAPTCHA challenge.
+
+11
+00:00:42.375 --> 00:00:45.584
+The Zero Trust Assessment
+automates these checks,
+
+12
+00:00:45.584 --> 00:00:48.620
+so a policy that misses
+one shows up as a finding.

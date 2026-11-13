@@ -1,0 +1,112 @@
+[
+ {
+  "slide": 2,
+  "title": "One set of commands, run twice; only the settings change",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The settings file, and the kit's only writes",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Graph national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The pre-flight: seven checks, reads only",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Stage 1: test, in nine steps",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Service Health alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The go/no-go, and production's dry-run week",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: the stage check passes, then PF-07",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: the test stage, then production",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for deploying",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Summary: you've finished the Provider Notices path",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

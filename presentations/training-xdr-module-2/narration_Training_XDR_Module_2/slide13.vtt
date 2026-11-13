@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.313
+You checked every prevention setting
+and every rule on a test device.
+
+3
+00:00:05.313 --> 00:00:08.624
+You triggered Microsoft Learn's
+network protection test.
+
+4
+00:00:08.624 --> 00:00:11.236
+You filed the fleet's
+audit and block events,
+
+5
+00:00:11.236 --> 00:00:14.138
+and its Attack Surface
+Reduction events by rule.
+
+6
+00:00:14.138 --> 00:00:18.825
+And you stepped one rule back on one
+device, the way the guide's rollback does.
+
+7
+00:00:18.825 --> 00:00:22.722
+The evidence an I S S O keeps
+from this module: the antivirus,
+
+8
+00:00:22.722 --> 00:00:27.349
+firewall and Attack Surface Reduction
+policy exports for each ring;
+
+9
+00:00:27.349 --> 00:00:30.110
+the weekly audit and block query results;
+
+10
+00:00:30.110 --> 00:00:34.737
+the network protection test and the
+tamper status; the per-rule tests;
+
+11
+00:00:34.737 --> 00:00:38.796
+the rule-by-ring matrix, with
+the date each rule entered block;
+
+12
+00:00:38.796 --> 00:00:42.125
+and every exclusion, with
+its approver and expiry.
+
+13
+00:00:42.125 --> 00:00:45.033
+Next is Module 3, exposure and incidents,
+
+14
+00:00:45.033 --> 00:00:51.170
+where every vulnerability gets an owner
+and every incident gets triaged to a table.

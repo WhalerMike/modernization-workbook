@@ -1,0 +1,1206 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:05.894
+This is the narrated briefing for a
+companion guide in the Federal Modernization
+
+3
+00:00:05.894 --> 00:00:10.725
+Workbook: Defender X D R Engineering
+and Operations, an implementation guide.
+
+4
+00:00:10.725 --> 00:00:13.016
+One thing first: the guide is a draft,
+
+5
+00:00:13.016 --> 00:00:16.887
+awaiting the editor's review,
+so recheck it after the review.
+
+6
+00:00:16.887 --> 00:00:19.037
+Its idea fits in a sentence.
+
+7
+00:00:19.037 --> 00:00:21.801
+A Defender license is
+not a defended endpoint:
+
+8
+00:00:21.801 --> 00:00:24.637
+the sensor has to be on
+every device and healthy,
+
+9
+00:00:24.637 --> 00:00:28.781
+the prevention settings have to be
+enforced and not just configured,
+
+10
+00:00:28.781 --> 00:00:32.126
+and every alert has to end in
+a decision someone can show.
+
+11
+00:00:32.126 --> 00:00:36.211
+The guide covers Windows
+clients and Windows Server only,
+
+12
+00:00:36.211 --> 00:00:41.575
+for a civilian agency at fed-ramp Moderate
+in Microsoft three sixty-five G C C.
+
+13
+00:00:41.575 --> 00:00:45.859
+Its facts were read on Microsoft
+Learn on November eleventh,
+
+14
+00:00:45.859 --> 00:00:48.687
+2026, and nothing in it
+was run in a tenant.
+
+15
+00:00:48.687 --> 00:00:52.550
+We'll go in four parts:
+why, what, who, and how.
+
+16
+00:00:56.300 --> 00:01:00.800
+Here's the goal the guide sets, as
+the program's own risk-based position.
+
+17
+00:01:00.800 --> 00:01:05.025
+Every Windows device the agency
+owns is onboarded and reporting.
+
+18
+00:01:05.025 --> 00:01:08.963
+Its prevention settings are enforced
+at the strength the design chose.
+
+19
+00:01:08.963 --> 00:01:13.875
+Every Attack Surface Reduction rule is
+in block, or in a recorded exception.
+
+20
+00:01:13.875 --> 00:01:17.375
+Every alert lands in one
+incident queue with an owner.
+
+21
+00:01:17.375 --> 00:01:20.638
+And the evidence for all of it
+can be produced on request.
+
+22
+00:01:20.638 --> 00:01:24.137
+The guide walks each feature
+through five control states.
+
+23
+00:01:24.137 --> 00:01:26.175
+Designed is the decision record.
+
+24
+00:01:26.175 --> 00:01:30.763
+Configured is the audit and pilot
+phase, shown by policy exports.
+
+25
+00:01:30.763 --> 00:01:34.838
+Enforced is block mode on the
+rings, with the exclusion register.
+
+26
+00:01:34.838 --> 00:01:38.087
+Evidenced is a test record
+and the event it produced.
+
+27
+00:01:38.087 --> 00:01:41.725
+Operated is an owner, a
+cadence and drift alerts.
+
+28
+00:01:41.725 --> 00:01:46.093
+A finding is ready for closure when
+every applicable state has evidence;
+
+29
+00:01:46.093 --> 00:01:49.520
+the authorizing official
+or the assessor decides.
+
+30
+00:01:53.270 --> 00:01:55.808
+The architecture has two trust boundaries.
+
+31
+00:01:55.808 --> 00:02:00.142
+The agency's holds the devices,
+the S O C's Sentinel workspace,
+
+32
+00:02:00.142 --> 00:02:02.707
+automation and the evidence store.
+
+33
+00:02:02.707 --> 00:02:06.770
+Microsoft's holds Defender X
+D R and its control planes.
+
+34
+00:02:06.770 --> 00:02:12.624
+Microsoft Learn says that for a U S
+Government tenant it's built in the Azure U S
+
+35
+00:02:12.624 --> 00:02:18.295
+Government environment, and G C C, G C C
+High and D O D each have their own portal.
+
+36
+00:02:18.295 --> 00:02:21.295
+Intune is the recommended
+tool for Defender settings,
+
+37
+00:02:21.295 --> 00:02:25.762
+through endpoint security policies, and
+they're assigned to Entra device groups,
+
+38
+00:02:25.762 --> 00:02:29.095
+because Defender management
+supports device objects only.
+
+39
+00:02:29.095 --> 00:02:34.370
+Automation levels, device groups and custom
+detections live in the Defender portal.
+
+40
+00:02:34.370 --> 00:02:36.954
+Telemetry flows to the tenant's instance,
+
+41
+00:02:36.954 --> 00:02:41.058
+alerts become incidents, and
+advanced hunting keeps thirty days.
+
+42
+00:02:41.058 --> 00:02:44.152
+Servers in A W S, Google
+Cloud or Oracle Cloud
+
+43
+00:02:44.152 --> 00:02:48.020
+Infrastructure arrive the
+way Azure Arc reaches them.
+
+44
+00:02:48.020 --> 00:02:53.640
+And use one control plane per setting:
+Group Policy wins over Intune by default.
+
+45
+00:02:57.390 --> 00:02:59.240
+What does the government cloud give you?
+
+46
+00:02:59.240 --> 00:03:05.010
+Microsoft Learn says Defender for
+Endpoint, prevention through remediation,
+
+47
+00:03:05.010 --> 00:03:07.585
+is available in G C C,
+G C C High and D O D,
+
+48
+00:03:07.585 --> 00:03:11.402
+and so is security settings
+management for servers.
+
+49
+00:03:11.402 --> 00:03:13.140
+Each cloud has its own portal.
+
+50
+00:03:13.140 --> 00:03:18.290
+G C C reads incidents and runs hunting
+through the worldwide Graph host.
+
+51
+00:03:18.290 --> 00:03:21.965
+Vulnerability Management is
+there, minus two features.
+
+52
+00:03:21.965 --> 00:03:26.078
+Defender for Identity and Defender
+for Cloud Apps are available,
+
+53
+00:03:26.078 --> 00:03:29.353
+with App Governance alerts
+listed as roadmap items.
+
+54
+00:03:29.353 --> 00:03:30.466
+Then the gaps.
+
+55
+00:03:30.466 --> 00:03:33.085
+Microsoft Security Exposure Management,
+
+56
+00:03:33.085 --> 00:03:37.353
+which holds attack paths and the
+exposure graph, is Public Cloud only.
+
+57
+00:03:37.353 --> 00:03:40.734
+Learn doesn't say whether
+Graph custom detection rules,
+
+58
+00:03:40.734 --> 00:03:45.953
+automatic attack disruption, or web content
+filtering on Windows reach these clouds.
+
+59
+00:03:45.953 --> 00:03:49.664
+The guide's rule: not yet
+specified means Learn doesn't say,
+
+60
+00:03:49.664 --> 00:03:51.165
+not that it's available.
+
+61
+00:03:51.165 --> 00:03:56.080
+And an unlicensed feature is a licensing
+decision, not a failed control.
+
+62
+00:03:59.830 --> 00:04:05.430
+Here's the path on one page: ten gates,
+each with a done-when and a validate step.
+
+63
+00:04:05.430 --> 00:04:09.598
+Gate one, architecture and
+access: unified roles are active
+
+64
+00:04:09.598 --> 00:04:13.680
+and the S O C reads incidents
+through Graph in its own cloud.
+
+65
+00:04:13.680 --> 00:04:19.180
+Two, onboarding: every in-scope device
+has an active sensor, or an exception.
+
+66
+00:04:19.180 --> 00:04:23.368
+Three, prevention: antivirus,
+firewall, tamper protection,
+
+67
+00:04:23.368 --> 00:04:27.730
+network protection and controlled
+folder access, enforced.
+
+68
+00:04:27.730 --> 00:04:32.868
+Four, Attack Surface Reduction: every
+rule through audit and warn into block.
+
+69
+00:04:32.868 --> 00:04:36.955
+Five, exposure: vulnerabilities
+flow to an owner.
+
+70
+00:04:36.955 --> 00:04:42.343
+Six, incidents: one queue, a severity
+table, everything classified.
+
+71
+00:04:42.343 --> 00:04:45.743
+Seven, hunting: detections
+live in a repository
+
+72
+00:04:45.743 --> 00:04:48.517
+and deploy through Graph after a test.
+
+73
+00:04:48.517 --> 00:04:52.405
+Eight, identity and cloud-app
+signals in the same incidents.
+
+74
+00:04:52.405 --> 00:04:55.480
+Nine, automation set to
+the response ladder.
+
+75
+00:04:55.480 --> 00:04:58.230
+Ten, metrics and evidence every month.
+
+76
+00:04:58.230 --> 00:05:03.900
+Gates one and two come first; gate ten
+runs once the others have evidence.
+
+77
+00:05:07.650 --> 00:05:08.488
+Now, who.
+
+78
+00:05:08.488 --> 00:05:13.183
+The guide builds custom roles in Defender's
+unified role-based access control,
+
+79
+00:05:13.183 --> 00:05:17.156
+assigned to groups that privileged
+identity management governs,
+
+80
+00:05:17.156 --> 00:05:18.962
+so no one holds a standing role.
+
+81
+00:05:18.962 --> 00:05:21.561
+A read role, called Security data basics,
+
+82
+00:05:21.561 --> 00:05:24.788
+for analysts and the
+assessor's read-only account.
+
+83
+00:05:24.788 --> 00:05:29.450
+A responder role that adds alerts,
+response and basic live response.
+
+84
+00:05:29.450 --> 00:05:32.807
+A detection engineer role
+with Detection tuning,
+
+85
+00:05:32.807 --> 00:05:36.000
+manage, which the custom
+detection A P I accepts.
+
+86
+00:05:36.000 --> 00:05:39.525
+Advanced live response only
+for Tier zero analysts.
+
+87
+00:05:39.525 --> 00:05:44.327
+Intune's Endpoint Security Manager
+creates the policies, and Microsoft Learn
+
+88
+00:05:44.327 --> 00:05:49.350
+says activating unified roles needs at
+least Security Administrator in Entra I D.
+
+89
+00:05:49.350 --> 00:05:54.000
+The RACI follows Security Operations
+and Telemetry and the devices book.
+
+90
+00:05:54.000 --> 00:05:57.333
+The policy owner, an I S
+S O or see-so delegate,
+
+91
+00:05:57.333 --> 00:06:01.713
+is accountable for decisions,
+policies and exclusions.
+
+92
+00:06:01.713 --> 00:06:04.421
+The S O C owns incidents and detections,
+
+93
+00:06:04.421 --> 00:06:10.610
+the help desk owns warn-mode unblock requests,
+and the assessor owns the assessment.
+
+94
+00:06:14.360 --> 00:06:16.072
+Now how, gate by gate.
+
+95
+00:06:16.072 --> 00:06:19.077
+Gate one builds the roles
+in the Defender portal,
+
+96
+00:06:19.077 --> 00:06:23.585
+then activates unified role-based
+access control workload by workload.
+
+97
+00:06:23.585 --> 00:06:26.385
+Create every role and assignment first.
+
+98
+00:06:26.385 --> 00:06:30.560
+Rollback is to deactivate the
+workload, and the earlier roles return.
+
+99
+00:06:30.560 --> 00:06:34.777
+Then connect the S O C's read
+path in the tenant's own cloud:
+
+100
+00:06:34.777 --> 00:06:38.535
+Global for G C C, U S Gov for G C
+C High, U S Gov D O D for D O D.
+
+101
+00:06:38.535 --> 00:06:44.768
+Microsoft Learn names Security Incident
+dot Read dot All as the least-privileged
+
+102
+00:06:44.768 --> 00:06:47.060
+permission to list incidents,
+
+103
+00:06:47.060 --> 00:06:51.460
+and the signed-in user also
+needs a reader or operator role.
+
+104
+00:06:51.460 --> 00:06:54.910
+Threat Hunting dot Read dot
+All runs hunting queries.
+
+105
+00:06:54.910 --> 00:06:57.397
+Validate by listing five incidents.
+
+106
+00:06:57.397 --> 00:07:02.535
+A pass is a list, or an empty one in a
+new tenant, with no permission error.
+
+107
+00:07:02.535 --> 00:07:06.617
+But watch the danger the guide
+names: read a G C C High tenant
+
+108
+00:07:06.617 --> 00:07:11.150
+from the worldwide host, and the
+empty list looks like a pass.
+
+109
+00:07:14.900 --> 00:07:17.012
+Gate two proves the sensor is on.
+
+110
+00:07:17.012 --> 00:07:21.125
+Clients onboard through Intune's
+E D R policy, ring zero, then one,
+
+111
+00:07:21.125 --> 00:07:25.633
+then two and three; servers through
+Defender for Servers on Azure Arc.
+
+112
+00:07:25.633 --> 00:07:30.298
+Microsoft Learn says Windows Server
+twenty nineteen needs a specific
+
+113
+00:07:30.298 --> 00:07:35.201
+update before onboarding, so it reaches
+the right government environment.
+
+114
+00:07:35.201 --> 00:07:37.963
+On a pilot device, query
+the sense service and
+
+115
+00:07:37.963 --> 00:07:40.800
+read the onboarding state,
+which should be one.
+
+116
+00:07:40.800 --> 00:07:45.475
+Across the fleet, run the coverage
+query through Graph and file the result.
+
+117
+00:07:45.475 --> 00:07:50.918
+Learn lists five sensor health values:
+active; inactive, typically after seven
+
+118
+00:07:50.918 --> 00:07:56.612
+days without contact; no sensor data;
+impaired communications; and misconfigured.
+
+119
+00:07:56.612 --> 00:07:59.988
+A device that isn't active for
+seven days becomes a ticket.
+
+120
+00:07:59.988 --> 00:08:02.487
+A device the sensor
+can't reach goes in the
+
+121
+00:08:02.487 --> 00:08:05.501
+exception register with
+a compensating control.
+
+122
+00:08:05.501 --> 00:08:09.445
+And rollback is an offboarding
+package, which expires seven days
+
+123
+00:08:09.445 --> 00:08:13.900
+after download and must never go to
+a device with the onboarding one.
+
+124
+00:08:17.650 --> 00:08:19.550
+Gate three is prevention.
+
+125
+00:08:19.550 --> 00:08:24.647
+Antivirus, firewall and tamper protection
+carry the values from the devices book's
+
+126
+00:08:24.647 --> 00:08:27.749
+policy library; the guide
+adds network protection,
+
+127
+00:08:27.749 --> 00:08:31.738
+web protection and controlled
+folder access, and proves each one.
+
+128
+00:08:31.738 --> 00:08:36.384
+Network protection and controlled
+folder access both have an audit mode,
+
+129
+00:08:36.384 --> 00:08:38.974
+value two, that logs
+what they would block.
+
+130
+00:08:38.974 --> 00:08:42.688
+Run them in audit on rings zero
+and one for at least two weeks,
+
+131
+00:08:42.688 --> 00:08:47.537
+read the audit events weekly, and add
+allowed applications before enforcing.
+
+132
+00:08:47.537 --> 00:08:51.343
+Antivirus, firewall and tamper
+protection have no audit mode,
+
+133
+00:08:51.343 --> 00:08:54.626
+so they go straight to ring
+one with backout triggers.
+
+134
+00:08:54.626 --> 00:08:58.563
+Then enforce ring by ring,
+with exit criteria for each.
+
+135
+00:08:58.563 --> 00:09:03.593
+On a device, Microsoft Learn's commands
+show tamper and real-time protection,
+
+136
+00:09:03.593 --> 00:09:06.787
+the modes, and the firewall
+profiles as enforced.
+
+137
+00:09:06.787 --> 00:09:09.051
+Rollback sets the mode back to audit.
+
+138
+00:09:09.051 --> 00:09:13.960
+Learn says tamper protection is turned
+off only from the console that set it.
+
+139
+00:09:17.710 --> 00:09:20.110
+Gate four is Attack Surface Reduction.
+
+140
+00:09:20.110 --> 00:09:25.285
+The devices book's policy names the
+rules; this guide carries each stage.
+
+141
+00:09:25.285 --> 00:09:29.975
+Microsoft Learn recommends putting all
+rules in audit at once on ring one,
+
+142
+00:09:29.975 --> 00:09:32.897
+to see which ones everyday
+business triggers.
+
+143
+00:09:32.897 --> 00:09:37.773
+Audit for thirty days, and decide an
+exclusion or a fix for every hit.
+
+144
+00:09:37.773 --> 00:09:42.723
+Then warn for fourteen days, which shows
+users the block with a way to proceed.
+
+145
+00:09:42.723 --> 00:09:44.589
+Warn is friction, not a bypass:
+
+146
+00:09:44.589 --> 00:09:49.490
+since platform four point eighteen point
+two six oh six oh, unblocking needs
+
+147
+00:09:49.490 --> 00:09:54.547
+administrator approval, and a persistent
+need belongs in a per-rule exclusion.
+
+148
+00:09:54.547 --> 00:09:59.029
+Two rules don't support warn, the
+credential-stealing rule for the local security
+
+149
+00:09:59.029 --> 00:10:01.570
+authority and the Office
+code-injection rule,
+
+150
+00:10:01.570 --> 00:10:03.710
+so they go from audit straight to block.
+
+151
+00:10:03.710 --> 00:10:08.985
+Rollback moves a rule one stage back, but
+Microsoft says an exclusion is better.
+
+152
+00:10:08.985 --> 00:10:12.413
+On servers, Learn lists a
+known issue where a rule shows
+
+153
+00:10:12.413 --> 00:10:16.660
+compliant without being enforced,
+so check the device itself.
+
+154
+00:10:20.410 --> 00:10:25.069
+Gate five covers what Defender adds to
+the vulnerability program that Security
+
+155
+00:10:25.069 --> 00:10:29.172
+Operations and Telemetry runs, and what
+it can't do in a government cloud.
+
+156
+00:10:29.172 --> 00:10:34.160
+Microsoft Learn says Security Exposure
+Management, which holds attack paths,
+
+157
+00:10:34.160 --> 00:10:37.383
+the exposure graph and
+critical asset management,
+
+158
+00:10:37.383 --> 00:10:41.297
+is available in Public Cloud only,
+not in U S Government clouds.
+
+159
+00:10:41.297 --> 00:10:44.285
+So a Zero Trust Assessment
+test that needs it is
+
+160
+00:10:44.285 --> 00:10:47.348
+recorded as not applicable
+in the tenant's cloud.
+
+161
+00:10:47.348 --> 00:10:49.761
+That's a disposition, not a failure.
+
+162
+00:10:49.761 --> 00:10:54.285
+What the government clouds do have is
+Vulnerability Management, core and premium,
+
+163
+00:10:54.285 --> 00:10:58.410
+without two features, and Secure Score
+with some recommendations missing.
+
+164
+00:10:58.410 --> 00:11:00.520
+The interim path for attack paths:
+
+165
+00:11:00.520 --> 00:11:05.872
+prioritize by exposure level and internet-facing
+devices from the device info table,
+
+166
+00:11:05.872 --> 00:11:08.585
+and use the Tier zero
+inventory from Access
+
+167
+00:11:08.585 --> 00:11:11.148
+and Privilege as the critical-asset list.
+
+168
+00:11:11.148 --> 00:11:14.018
+A vulnerability without
+an owner is a finding
+
+169
+00:11:14.018 --> 00:11:16.510
+against the inventory control, C M eight.
+
+170
+00:11:16.510 --> 00:11:20.010
+And Sentinel can't query
+the vulnerability tables.
+
+171
+00:11:23.760 --> 00:11:25.385
+Gate six is incidents.
+
+172
+00:11:25.385 --> 00:11:29.161
+Microsoft Learn says Defender
+X D R correlates alerts that
+
+173
+00:11:29.161 --> 00:11:32.860
+share attack techniques or an
+attacker into one incident.
+
+174
+00:11:32.860 --> 00:11:38.140
+The response ladder and device
+isolation belong to Security Operations
+
+175
+00:11:38.140 --> 00:11:43.073
+and Telemetry; this gate fixes
+severity, triage, evidence and hand-off.
+
+176
+00:11:43.073 --> 00:11:45.723
+The severity table is
+the program's design.
+
+177
+00:11:45.723 --> 00:11:50.201
+A high incident is triaged within an
+hour and contained on a gated rung,
+
+178
+00:11:50.201 --> 00:11:53.984
+where the playbook prepares
+and a named approver releases,
+
+179
+00:11:53.984 --> 00:11:58.772
+with the incident response lead and the
+I S S O deciding on U S cert reporting.
+
+180
+00:11:58.772 --> 00:12:02.772
+A medium one within twenty-four
+hours, enriched and ticketed.
+
+181
+00:12:02.772 --> 00:12:08.397
+A low one within seventy-two hours,
+observed, with a tuning review if it recurs.
+
+182
+00:12:08.397 --> 00:12:11.620
+Servers and privileged or
+emergency accounts are
+
+183
+00:12:11.620 --> 00:12:14.536
+never contained by a
+playbook; a human decides.
+
+184
+00:12:14.536 --> 00:12:19.272
+To validate, export the open incidents
+and one incident with its alerts.
+
+185
+00:12:19.272 --> 00:12:21.297
+Every open incident has an owner,
+
+186
+00:12:21.297 --> 00:12:25.790
+and every closed one carries a
+classification and determination.
+
+187
+00:12:29.540 --> 00:12:34.749
+Gate seven puts detections in a repository
+and deploys them through the Graph A P I,
+
+188
+00:12:34.749 --> 00:12:39.115
+following the rule lifecycle in
+Security Operations and Telemetry.
+
+189
+00:12:39.115 --> 00:12:42.942
+Each rule file starts disabled,
+and leaves out automated actions,
+
+190
+00:12:42.942 --> 00:12:45.352
+because containment stays on the ladder.
+
+191
+00:12:45.352 --> 00:12:49.800
+Every rule has a validation dataset:
+a known-bad event it must find,
+
+192
+00:12:49.800 --> 00:12:52.765
+and a known-good window
+it must stay quiet in.
+
+193
+00:12:52.765 --> 00:12:55.615
+A rule that can't be shown
+to fire isn't finished.
+
+194
+00:12:55.615 --> 00:13:00.397
+Test the query against the last thirty
+days, which is all advanced hunting keeps,
+
+195
+00:13:00.397 --> 00:13:03.440
+then post the file to the
+detection rules endpoint.
+
+196
+00:13:03.440 --> 00:13:08.515
+Enabling is a change to the status in
+the repository, reviewed and redeployed.
+
+197
+00:13:08.515 --> 00:13:14.280
+Microsoft Learn's hunting A P I is available
+in U S Government L four and L five,
+
+198
+00:13:14.280 --> 00:13:18.490
+but the detection rules A P I
+has no national cloud table,
+
+199
+00:13:18.490 --> 00:13:23.615
+so in G C C High and D O D, create the
+rule in the portal from the same file.
+
+200
+00:13:23.615 --> 00:13:28.090
+Pass: the deployed rules
+match the repository, exactly.
+
+201
+00:13:31.840 --> 00:13:33.152
+Gates eight and nine.
+
+202
+00:13:33.152 --> 00:13:36.382
+Gate eight puts identity
+and S A A S behavior
+
+203
+00:13:36.382 --> 00:13:39.341
+into the same incidents as the endpoint.
+
+204
+00:13:39.341 --> 00:13:43.830
+Defender for Identity's sensors go
+on domain controllers, A D F S,
+
+205
+00:13:43.830 --> 00:13:49.528
+A D C S and Entra Connect servers, starting
+with one domain controller per domain.
+
+206
+00:13:49.528 --> 00:13:53.240
+Microsoft Learn gives each
+cloud its own sensor endpoint.
+
+207
+00:13:53.240 --> 00:13:56.704
+Two gaps: App Governance
+alerts are roadmap items,
+
+208
+00:13:56.704 --> 00:13:59.323
+and Cloud Apps behaviors aren't in G C C.
+
+209
+00:13:59.323 --> 00:14:04.815
+Validate with a correlation query: users
+with alerts from more than one source.
+
+210
+00:14:04.815 --> 00:14:08.765
+Gate nine sets Defender's automation
+to match the response ladder.
+
+211
+00:14:08.765 --> 00:14:12.445
+Pilot ring one's device group
+at the semi level that requires
+
+212
+00:14:12.445 --> 00:14:16.052
+approval for all folders, and
+review two weeks of approvals.
+
+213
+00:14:16.052 --> 00:14:20.567
+Then workstations go to full, which
+Learn recommends, and servers stay
+
+214
+00:14:20.567 --> 00:14:25.315
+at a semi level, because the program
+never isolates a server autonomously.
+
+215
+00:14:25.315 --> 00:14:28.395
+Exclude the emergency
+access accounts and the S
+
+216
+00:14:28.395 --> 00:14:31.552
+O C's own service accounts
+from attack disruption.
+
+217
+00:14:31.552 --> 00:14:34.440
+Every disruption action can be undone.
+
+218
+00:14:38.190 --> 00:14:39.865
+Gate ten makes it operate.
+
+219
+00:14:39.865 --> 00:14:43.698
+The guide's metrics measure
+protected coverage and effectiveness,
+
+220
+00:14:43.698 --> 00:14:45.340
+not whether a setting exists.
+
+221
+00:14:45.340 --> 00:14:50.134
+Protected coverage is devices with an
+active sensor over the in-scope devices in
+
+222
+00:14:50.134 --> 00:14:54.928
+the inventory, because a policy says
+nothing about devices that never checked in.
+
+223
+00:14:54.928 --> 00:14:58.478
+Enforcement depth counts devices
+with every Attack Surface
+
+224
+00:14:58.478 --> 00:15:02.028
+Reduction rule in block, because
+audit mode protects nothing.
+
+225
+00:15:02.028 --> 00:15:07.865
+Mean time to triage and contain, by severity:
+detection that waits is a warehouse.
+
+226
+00:15:07.865 --> 00:15:12.328
+Detection validity: a rule that can't
+be shown to fire isn't a control.
+
+227
+00:15:12.328 --> 00:15:17.932
+And synthetic-event success: the detection
+test, the network protection test site,
+
+228
+00:15:17.932 --> 00:15:23.453
+and each rule's demonstration, run on ring
+zero, each producing its expected event.
+
+229
+00:15:23.453 --> 00:15:28.175
+The cadence is weekly for sensor health
+and drift, quarterly for tuning,
+
+230
+00:15:28.175 --> 00:15:33.139
+exceptions and an exercise, and monthly
+for the evidence run, which runs the
+
+231
+00:15:33.139 --> 00:15:38.460
+read-only queries, exports the incidents
+and hashes every file for the I S S O.
+
+232
+00:15:42.210 --> 00:15:44.073
+To close, the dangers.
+
+233
+00:15:44.073 --> 00:15:46.646
+A rule assigned to user
+groups never applies,
+
+234
+00:15:46.646 --> 00:15:50.123
+because Defender management
+supports device objects only.
+
+235
+00:15:50.123 --> 00:15:55.685
+Intune and Group Policy both setting a
+rule means Group Policy silently wins.
+
+236
+00:15:55.685 --> 00:15:58.392
+A server's compliance
+report can show a rule
+
+237
+00:15:58.392 --> 00:16:00.948
+enforced when it isn't,
+so check the server.
+
+238
+00:16:00.948 --> 00:16:04.917
+Exposure Management assumed in a
+government cloud stalls the work,
+
+239
+00:16:04.917 --> 00:16:07.398
+or makes an assessment
+test read as failed.
+
+240
+00:16:07.398 --> 00:16:10.069
+Attack disruption
+containing a server or an
+
+241
+00:16:10.069 --> 00:16:12.885
+emergency account means
+an outage or a lockout.
+
+242
+00:16:12.885 --> 00:16:16.217
+And hunting evidence older
+than thirty days isn't there,
+
+243
+00:16:16.217 --> 00:16:17.810
+so the monthly run files it.
+
+244
+00:16:17.810 --> 00:16:22.194
+The guide is plain about what it couldn't
+verify: the detection rules A P I,
+
+245
+00:16:22.194 --> 00:16:26.355
+attack disruption and web content
+filtering in government clouds,
+
+246
+00:16:26.355 --> 00:16:31.185
+and the detection test on Windows ten and
+eleven, which Learn's page doesn't list.
+
+247
+00:16:31.185 --> 00:16:32.885
+Nothing was run in a tenant.
+
+248
+00:16:32.885 --> 00:16:35.893
+Next, read Security
+Operations and Telemetry
+
+249
+00:16:35.893 --> 00:16:38.585
+and the devices book,
+which own the design.
+
+250
+00:16:38.585 --> 00:16:39.400
+Thank you.

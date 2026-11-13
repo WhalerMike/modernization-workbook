@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.368
+Step four checks the policy, with
+the guide's own Validate query:
+
+2
+00:00:04.368 --> 00:00:08.187
+mode, request body inspection
+and the managed rule sets.
+
+3
+00:00:08.187 --> 00:00:11.525
+Expect Prevention,
+true, and the rule sets.
+
+4
+00:00:11.525 --> 00:00:15.158
+Step five sends a test
+request carrying a benign SQL
+
+5
+00:00:15.158 --> 00:00:18.475
+injection string to a path
+on the test application.
+
+6
+00:00:18.475 --> 00:00:23.575
+That request is the path's; the guide says
+to send one and expect a four oh three.
+
+7
+00:00:23.575 --> 00:00:27.162
+Step six finds the matching
+row in the firewall log.
+
+8
+00:00:27.162 --> 00:00:32.466
+The guide's Step 4 sends the log to
+resource-specific tables, and Learn's page,
+
+9
+00:00:32.466 --> 00:00:35.459
+Diagnostic logs for Application Gateway,
+
+10
+00:00:35.459 --> 00:00:38.538
+names the firewall table
+A G W Firewall Logs.
+
+11
+00:00:38.538 --> 00:00:43.466
+The query command comes from the
+Azure C L I's log analytics extension,
+
+12
+00:00:43.466 --> 00:00:47.269
+and takes the workspace's I D,
+a GUID, not its resource I D.
+
+13
+00:00:47.269 --> 00:00:49.863
+Logs can take a few minutes to arrive.
+
+14
+00:00:49.863 --> 00:00:53.762
+Step seven: nothing changed,
+so there's nothing to undo.
+
+15
+00:00:53.762 --> 00:00:58.615
+If step five returned anything but four
+oh three, the firewall isn't blocking:
+
+16
+00:00:58.615 --> 00:01:02.450
+report it to the application owner,
+and don't fix it in the lab.

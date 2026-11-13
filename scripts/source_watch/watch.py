@@ -24,9 +24,10 @@ PDFs and other files by sha256 and size.
 
 Then it polls the feeds in data/source-watch/feeds.json and keeps the new
 items whose title or summary matches a topic keyword (see feeds.py), and
-lists the Microsoft Learn identity pages added to or removed from the
-Windows Server identity and Microsoft Entra folders since the previous run
-(see learn_pages.py; skipped by --no-learn-pages and on a filtered run).
+lists the Microsoft Learn pages added to or removed from the folders the
+Learn coverage map tracks (Windows Server identity, releases, security and
+file server; Microsoft Entra) since the previous run (see learn_pages.py;
+skipped by --no-learn-pages and on a filtered run).
 
 The first run (no state) is a baseline: it records everything and reports
 only "baseline established". A URL first cited since the last run, or a feed
@@ -628,7 +629,7 @@ def main() -> int:
     parser.add_argument("--no-feeds", action="store_true", help="skip the feeds (sources only)")
     parser.add_argument("--only-feed", action="append", default=[], help="poll only this feed id; repeatable")
     parser.add_argument("--no-learn-pages", action="store_true",
-                        help="skip the list of new and retired Learn identity pages (learn_pages.py)")
+                        help="skip the list of new and retired Learn pages (learn_pages.py)")
     parser.add_argument(
         "--since-days",
         type=int,
@@ -666,7 +667,7 @@ def main() -> int:
         feed_items, feed_errors, feed_counts = feedlib.poll_all(
             feeds_cfg, state.setdefault("feeds", {}), now, args.only_feed, args.since_days, log
         )
-    # New and retired Learn identity pages: skipped on a test run filtered to some sources,
+    # New and retired Learn pages: skipped on a test run filtered to some sources,
     # so a partial run never moves the saved page list.
     learn = {"added": [], "removed": [], "errors": []}
     if not (args.no_learn_pages or args.limit or args.only_domain or args.url):

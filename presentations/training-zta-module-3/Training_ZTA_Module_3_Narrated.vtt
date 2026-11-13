@@ -1,0 +1,882 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.449
+Welcome to Module 3 of The Zero
+Trust Assessment as Evidence:
+
+2
+00:00:04.449 --> 00:00:07.000
+from results to a closure register.
+
+3
+00:00:07.000 --> 00:00:10.525
+In this module the guide's results
+kit does the mechanical part.
+
+4
+00:00:10.525 --> 00:00:14.845
+It normalizes every result, lists what
+didn't run with what to do about it,
+
+5
+00:00:14.845 --> 00:00:19.238
+and writes a closure-register entry
+for each finding, routed and weighed.
+
+6
+00:00:19.238 --> 00:00:22.075
+People do the rest, and
+the register shows where.
+
+7
+00:00:22.075 --> 00:00:27.090
+It covers Steps 7 and 8 of the Zero
+Trust Assessment implementation guide,
+
+8
+00:00:27.090 --> 00:00:31.000
+and takes about fifty-five
+minutes, most of it in Lab 1.
+
+9
+00:00:34.750 --> 00:00:35.900
+Why does this matter?
+
+10
+00:00:35.900 --> 00:00:39.338
+A report that says seventeen
+failed can't be acted on.
+
+11
+00:00:39.338 --> 00:00:43.873
+Someone has to decide which of those
+are real findings, who owns each one,
+
+12
+00:00:43.873 --> 00:00:47.563
+which page in the workbook
+remediates it, what comes first,
+
+13
+00:00:47.563 --> 00:00:50.176
+and which are accepted
+for now, and by whom.
+
+14
+00:00:50.176 --> 00:00:52.588
+The results kit does the mechanical part.
+
+15
+00:00:52.588 --> 00:00:54.750
+It normalizes every result.
+
+16
+00:00:54.750 --> 00:00:57.612
+It lists what didn't run,
+with what to do about it.
+
+17
+00:00:57.612 --> 00:01:01.281
+And it writes one closure-register
+entry for each finding,
+
+18
+00:01:01.281 --> 00:01:03.038
+routed to a page and weighed.
+
+19
+00:01:03.038 --> 00:01:07.256
+People do the rest: the owner fills
+their entries, writes why a finding
+
+20
+00:01:07.256 --> 00:01:11.400
+is weighted as it is, and someone
+with the authority decides closure.
+
+21
+00:01:11.400 --> 00:01:15.010
+The register shows exactly
+where each of those lands.
+
+22
+00:01:18.760 --> 00:01:21.673
+Here's what you'll be able to
+do by the end of this module.
+
+23
+00:01:21.673 --> 00:01:24.699
+You'll normalize a Zero
+Trust Assessment export
+
+24
+00:01:24.699 --> 00:01:27.347
+and read its counts by
+result and by pillar.
+
+25
+00:01:27.347 --> 00:01:31.884
+You'll work the dispositions for results
+that are neither a pass nor a finding.
+
+26
+00:01:31.884 --> 00:01:34.847
+You'll record the review
+of an investigate result.
+
+27
+00:01:34.847 --> 00:01:38.252
+You'll read a closure-register
+entry and say what's filled,
+
+28
+00:01:38.252 --> 00:01:40.860
+what a person fills,
+and who decides closure.
+
+29
+00:01:40.860 --> 00:01:44.057
+And you'll route a finding to
+its family's remediation page,
+
+30
+00:01:44.057 --> 00:01:45.922
+and check an exception's approver.
+
+31
+00:01:45.922 --> 00:01:50.672
+You need Module 1, and Module 2's
+Lab 2 for this module's Lab 2.
+
+32
+00:01:50.672 --> 00:01:56.039
+In Unit 2 you'll read two chapters of Zero
+Trust and Assessment: Close Before You
+
+33
+00:01:56.039 --> 00:02:01.920
+Assess, for the finding families, and
+Evidence, Not Verdicts, for the closure chain.
+
+34
+00:02:05.670 --> 00:02:08.232
+Unit 1 normalizes and disposes.
+
+35
+00:02:08.232 --> 00:02:13.157
+The kit writes each result twice: the
+tool's status and the normalized one.
+
+36
+00:02:13.157 --> 00:02:18.207
+It never copies the tool's result text,
+because that text can name tenant objects.
+
+37
+00:02:18.207 --> 00:02:21.508
+Everything that is neither
+a pass nor a finding lands
+
+38
+00:02:21.508 --> 00:02:24.358
+in a dispositions file,
+with what to do about it.
+
+39
+00:02:24.358 --> 00:02:27.483
+A skip for licensing needs
+a licensing decision.
+
+40
+00:02:27.483 --> 00:02:32.065
+A skip because a service was
+disconnected, or a result the kit is
+
+41
+00:02:32.065 --> 00:02:36.295
+unable to evaluate, needs a fix
+and a re-run, or a check by hand.
+
+42
+00:02:36.295 --> 00:02:39.252
+A skip as not applicable
+needs a recorded reason,
+
+43
+00:02:39.252 --> 00:02:42.357
+and not supported is flagged
+as a boundary finding.
+
+44
+00:02:42.357 --> 00:02:43.395
+One more guard.
+
+45
+00:02:43.395 --> 00:02:48.213
+If the export comes from a version the
+kit's taxonomy wasn't reviewed for,
+
+46
+00:02:48.213 --> 00:02:52.133
+or carries a status or reason it
+doesn't know, the kit says so.
+
+47
+00:02:52.133 --> 00:02:56.850
+It counts that result as unable to
+evaluate, rather than guessing.
+
+48
+00:03:00.600 --> 00:03:02.988
+Unit 2 opens the closure register.
+
+49
+00:03:02.988 --> 00:03:08.324
+Every finding gets one entry, with the
+fields of the closure chain from Evidence,
+
+50
+00:03:08.324 --> 00:03:13.095
+Not Verdicts: the finding and the tool
+version, the attack path, the owner,
+
+51
+00:03:13.095 --> 00:03:18.269
+the dependencies, the change, the pilot,
+the enforcement, the test, the evidence,
+
+52
+00:03:18.269 --> 00:03:23.363
+the residual risk, the reassessment,
+the weighting, and the closure decision.
+
+53
+00:03:23.363 --> 00:03:26.691
+The kit fills what it knows from
+the tool and the family table,
+
+54
+00:03:26.691 --> 00:03:29.487
+and leaves placeholders
+for what a person decides.
+
+55
+00:03:29.487 --> 00:03:32.126
+And it never marks a
+finding ready for closure.
+
+56
+00:03:32.126 --> 00:03:36.565
+The authorizing official decides that
+for a plan of action and milestones item,
+
+57
+00:03:36.565 --> 00:03:38.987
+and the assessor for
+an assessment finding.
+
+58
+00:03:38.987 --> 00:03:41.410
+The register records who decided.
+
+59
+00:03:45.160 --> 00:03:47.709
+Each test I D routes to a finding family,
+
+60
+00:03:47.709 --> 00:03:51.772
+and each family to the page in
+the workbook that remediates it.
+
+61
+00:03:51.772 --> 00:03:54.249
+The table is from Close Before You Assess,
+
+62
+00:03:54.249 --> 00:03:58.547
+with the evidence the guide adds for
+when a finding is ready for closure.
+
+63
+00:03:58.547 --> 00:04:01.760
+Emergency access goes to
+Access and Privilege,
+
+64
+00:04:01.760 --> 00:04:05.548
+and is ready when the sign-in
+alert fired on a test sign-in.
+
+65
+00:04:05.548 --> 00:04:09.352
+Standing privilege goes to its
+PIM chapter, and is ready when no
+
+66
+00:04:09.352 --> 00:04:13.448
+permanent active assignment sits
+outside the exception register.
+
+67
+00:04:13.448 --> 00:04:16.766
+Device compliance goes to
+Devices and Endpoints,
+
+68
+00:04:16.766 --> 00:04:20.085
+ready when a noncompliant
+test device is refused.
+
+69
+00:04:20.085 --> 00:04:24.023
+Application secrets go to
+Governance, Drift and Evidence.
+
+70
+00:04:24.023 --> 00:04:26.798
+DDoS and web application firewall findings
+
+71
+00:04:26.798 --> 00:04:29.498
+go to the Azure Security
+Engineering guide.
+
+72
+00:04:29.498 --> 00:04:34.523
+A finding no family covers is unrouted,
+and goes to the Zero Trust program lead.
+
+73
+00:04:34.523 --> 00:04:38.668
+In release three point one point
+oh, the email and collaboration
+
+74
+00:04:38.668 --> 00:04:44.040
+threat-protection tests have no family
+yet, so they stay unrouted and visible.
+
+75
+00:04:47.790 --> 00:04:51.465
+Two more parts of Unit 2:
+weighing and exceptions.
+
+76
+00:04:51.465 --> 00:04:53.947
+The kit sets a default priority:
+
+77
+00:04:53.947 --> 00:04:58.053
+severity divided by effort,
+in buckets P one to P four.
+
+78
+00:04:58.053 --> 00:05:01.364
+That's design guidance, in
+the kit's taxonomy file.
+
+79
+00:05:01.364 --> 00:05:06.732
+Then the owner weighs each finding on
+six factors from Evidence, Not Verdicts:
+
+80
+00:05:06.732 --> 00:05:09.500
+exploitability, blast radius, exposure,
+
+81
+00:05:09.500 --> 00:05:13.190
+compensating controls,
+effort and dependency order.
+
+82
+00:05:13.190 --> 00:05:15.978
+The owner writes the
+rationale into the entry.
+
+83
+00:05:15.978 --> 00:05:19.166
+The register also lists
+each family's dependencies,
+
+84
+00:05:19.166 --> 00:05:23.540
+so a Conditional Access finding waits
+for emergency access to be right.
+
+85
+00:05:23.540 --> 00:05:27.078
+Exceptions follow the same
+rule as ScubaGear's omissions.
+
+86
+00:05:27.078 --> 00:05:30.552
+An exception with an expiry
+is the see-so's decision.
+
+87
+00:05:30.552 --> 00:05:33.739
+One without an expiry is a
+standing risk acceptance,
+
+88
+00:05:33.739 --> 00:05:36.777
+and only the authorizing
+official can approve it.
+
+89
+00:05:36.777 --> 00:05:40.633
+The kit checks each one, and
+marks it a governed exception,
+
+90
+00:05:40.633 --> 00:05:43.700
+a lapsed acceptance, or a wrong approver.
+
+91
+00:05:47.450 --> 00:05:48.175
+Try it.
+
+92
+00:05:48.175 --> 00:05:51.513
+Lab 1 normalizes and
+registers two fictional
+
+93
+00:05:51.513 --> 00:05:54.412
+runs of a Contoso tenant, two weeks apart.
+
+94
+00:05:54.412 --> 00:05:56.888
+Step one normalizes the first run.
+
+95
+00:05:56.888 --> 00:06:02.281
+Thirty-three tests: eight pass, seventeen
+fail, one planned, two skipped for
+
+96
+00:06:02.281 --> 00:06:07.763
+licensing, one disconnected, two not
+applicable, and two unable to evaluate.
+
+97
+00:06:07.763 --> 00:06:10.588
+Seventeen findings, one
+of them investigate.
+
+98
+00:06:10.588 --> 00:06:15.513
+The tool marked sixteen failed; the
+investigate result makes seventeen.
+
+99
+00:06:15.513 --> 00:06:19.513
+The eight that are neither pass nor
+finding are in their own columns.
+
+100
+00:06:19.513 --> 00:06:21.862
+Step two reads the dispositions.
+
+101
+00:06:21.862 --> 00:06:26.962
+Two skips for licensing, two not
+applicable, one disconnected, one planned.
+
+102
+00:06:26.962 --> 00:06:32.166
+And two unable to evaluate: test two
+four five four eight ended in error,
+
+103
+00:06:32.166 --> 00:06:34.499
+and four one oh five oh timed out.
+
+104
+00:06:34.499 --> 00:06:38.062
+Both of those are a run to
+fix, not a control to fail.
+
+105
+00:06:38.062 --> 00:06:40.622
+The slide leaves out
+the written-to line and
+
+106
+00:06:40.622 --> 00:06:43.400
+the table's underline;
+the page shows them.
+
+107
+00:06:47.150 --> 00:06:50.734
+Step three writes the
+register for the first run:
+
+108
+00:06:50.734 --> 00:06:55.125
+seventeen findings, three in P one,
+ten in P two, four in P three.
+
+109
+00:06:55.125 --> 00:06:59.075
+And a warning: test four one
+oh three two is unrouted.
+
+110
+00:06:59.075 --> 00:07:02.456
+That's the Safe Links test,
+which has no finding family,
+
+111
+00:07:02.456 --> 00:07:04.300
+so the program lead routes it.
+
+112
+00:07:04.300 --> 00:07:06.850
+Step four reads the top five rows.
+
+113
+00:07:06.850 --> 00:07:10.600
+Two device compliance findings,
+owned by endpoint engineering.
+
+114
+00:07:10.600 --> 00:07:15.288
+A DDoS and web application firewall
+finding, owned by the platform team.
+
+115
+00:07:15.288 --> 00:07:17.403
+The unrouted Safe Links finding,
+
+116
+00:07:17.403 --> 00:07:20.850
+owned by the Zero Trust
+program lead until it's routed.
+
+117
+00:07:20.850 --> 00:07:22.912
+And an application secrets finding.
+
+118
+00:07:22.912 --> 00:07:25.350
+Look at two one eight three seven.
+
+119
+00:07:25.350 --> 00:07:29.844
+It's the investigate result, and its
+severity is weighted down, so it ranks
+
+120
+00:07:29.844 --> 00:07:34.563
+below other high-risk findings of the
+same effort until a person confirms it.
+
+121
+00:07:34.563 --> 00:07:38.900
+Every finding has an owner, even
+the one nobody has claimed yet.
+
+122
+00:07:42.650 --> 00:07:46.200
+Steps five and six take the
+second run, two weeks later.
+
+123
+00:07:46.200 --> 00:07:51.557
+The reviews file holds one row: endpoint
+engineering confirmed the investigate
+
+124
+00:07:51.557 --> 00:07:56.275
+result, two one eight three seven, on
+November eleventh, with a note on why.
+
+125
+00:07:56.275 --> 00:07:59.585
+The kit normalizes the
+second run with that review:
+
+126
+00:07:59.585 --> 00:08:01.950
+thirty-four tests, fifteen findings.
+
+127
+00:08:01.950 --> 00:08:04.400
+The exceptions file holds two rows.
+
+128
+00:08:04.400 --> 00:08:09.322
+The first, on two five five three
+three, was approved by the see-so,
+
+129
+00:08:09.322 --> 00:08:14.150
+with an expiry at the end of
+January, 2027: a governed exception.
+
+130
+00:08:14.150 --> 00:08:17.305
+The second, on two one eight eight five,
+
+131
+00:08:17.305 --> 00:08:20.663
+was approved by the I S
+S O, with no end date.
+
+132
+00:08:20.663 --> 00:08:22.675
+The kit marks it a wrong approver.
+
+133
+00:08:22.675 --> 00:08:26.289
+An exception with no end date
+is a standing risk acceptance,
+
+134
+00:08:26.289 --> 00:08:29.313
+and only the authorizing
+official can approve it.
+
+135
+00:08:29.313 --> 00:08:33.590
+So the register warns, and that
+exception goes back to be fixed.
+
+136
+00:08:37.340 --> 00:08:41.569
+Lab 2 runs the same steps on the
+export from Module 2's Lab 2,
+
+137
+00:08:41.569 --> 00:08:43.278
+on the assessment host.
+
+138
+00:08:43.278 --> 00:08:44.839
+The authors haven't run it.
+
+139
+00:08:44.839 --> 00:08:49.321
+You replace the report folder with Module
+2's, and the reviews and exceptions
+
+140
+00:08:49.321 --> 00:08:54.015
+files with your own copies of the kit's
+two templates, filled for your test tenant.
+
+141
+00:08:54.015 --> 00:08:58.190
+Step one normalizes the export
+and lists the dispositions.
+
+142
+00:08:58.190 --> 00:09:01.465
+Step two writes the register,
+with your exceptions.
+
+143
+00:09:01.465 --> 00:09:05.865
+Step three is a comparison by eye:
+open the report's pillar tabs.
+
+144
+00:09:05.865 --> 00:09:09.601
+Every failed and investigate test
+should have a register entry,
+
+145
+00:09:09.601 --> 00:09:11.152
+and no skipped test should.
+
+146
+00:09:11.152 --> 00:09:14.102
+Note any unrouted test
+for your program lead.
+
+147
+00:09:14.102 --> 00:09:15.602
+Step four backs it out.
+
+148
+00:09:15.602 --> 00:09:18.322
+The outputs hold your
+test tenant's results,
+
+149
+00:09:18.322 --> 00:09:21.100
+so delete them when you finish Module 4.
+
+150
+00:09:24.850 --> 00:09:27.373
+The federal requirement, in NIST special
+
+151
+00:09:27.373 --> 00:09:30.712
+publication eight hundred
+fifty-three, revision five.
+
+152
+00:09:30.712 --> 00:09:36.712
+C A two, C A seven and C M six: results
+normalized and counted honestly.
+
+153
+00:09:36.712 --> 00:09:39.391
+The evidence is the normalized results,
+
+154
+00:09:39.391 --> 00:09:42.800
+the summary, the dispositions,
+and the reviews file.
+
+155
+00:09:42.800 --> 00:09:48.928
+C A five, the plan of action and milestones:
+each finding's planned remediation,
+
+156
+00:09:48.928 --> 00:09:52.375
+evidenced by the register,
+in jay-son and C S V.
+
+157
+00:09:52.375 --> 00:09:56.739
+And R A seven, risk response: findings
+weighed against risk tolerance,
+
+158
+00:09:56.739 --> 00:09:59.725
+and exceptions approved
+by the right official.
+
+159
+00:09:59.725 --> 00:10:03.450
+The evidence is the weighting
+rationale and the exceptions file.
+
+160
+00:10:03.450 --> 00:10:07.584
+For C A five and R A seven, no
+key security indicator is listed:
+
+161
+00:10:07.584 --> 00:10:12.225
+the mapping in Governance, Drift
+and Evidence pairs none with them.
+
+162
+00:10:12.225 --> 00:10:16.390
+The evidence supports the
+controls; the assessor decides.
+
+163
+00:10:20.140 --> 00:10:22.115
+Check yourself with two questions.
+
+164
+00:10:22.115 --> 00:10:25.628
+First: who marks a register
+entry ready for closure?
+
+165
+00:10:25.628 --> 00:10:31.054
+The answer is c: the authorizing official,
+for a plan of action and milestones item,
+
+166
+00:10:31.054 --> 00:10:33.889
+or the assessor, for
+an assessment finding.
+
+167
+00:10:33.889 --> 00:10:37.290
+The kit never does, and the
+register records who decided.
+
+168
+00:10:37.290 --> 00:10:41.915
+Second: an exception has no expiry,
+and was approved by the see-so.
+
+169
+00:10:41.915 --> 00:10:43.302
+What does the kit report?
+
+170
+00:10:43.302 --> 00:10:45.927
+The answer is b, a wrong approver.
+
+171
+00:10:45.927 --> 00:10:48.758
+With no expiry it's a
+standing risk acceptance,
+
+172
+00:10:48.758 --> 00:10:51.664
+and that's the authorizing
+official's decision.
+
+173
+00:10:51.664 --> 00:10:54.283
+The module page has three more questions,
+
+174
+00:10:54.283 --> 00:10:57.810
+each linked to the unit or
+lab step that answers it.
+
+175
+00:11:01.560 --> 00:11:02.385
+To sum up.
+
+176
+00:11:02.385 --> 00:11:05.847
+You normalized two runs and
+worked their dispositions.
+
+177
+00:11:05.847 --> 00:11:08.823
+You recorded the review
+of an investigate result.
+
+178
+00:11:08.823 --> 00:11:13.846
+You opened a closure register, routed to
+the pages that remediate each family,
+
+179
+00:11:13.846 --> 00:11:16.672
+with a default weighting
+the owner refines.
+
+180
+00:11:16.672 --> 00:11:19.259
+And you checked exceptions
+against their approvers.
+
+181
+00:11:19.259 --> 00:11:24.840
+The evidence an I S S O keeps from this
+module: the normalized results and summary,
+
+182
+00:11:24.840 --> 00:11:29.660
+the dispositions, the reviews and
+exceptions files, and the register.
+
+183
+00:11:29.660 --> 00:11:31.585
+Keep the out folder from Lab 1.
+
+184
+00:11:31.585 --> 00:11:35.313
+Module 4, reconcile, re-run
+and keep the evidence,
+
+185
+00:11:35.313 --> 00:11:38.420
+compares these two runs, and seals them.

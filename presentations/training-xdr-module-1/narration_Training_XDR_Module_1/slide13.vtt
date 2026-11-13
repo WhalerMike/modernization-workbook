@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.493
+You placed each setting in its control
+plane: Intune for endpoint policy,
+
+3
+00:00:05.493 --> 00:00:10.187
+the Defender portal for what Intune
+doesn't hold, and one plane per setting.
+
+4
+00:00:10.187 --> 00:00:14.201
+You checked what your government cloud
+offers, and how to record what it doesn't.
+
+5
+00:00:14.201 --> 00:00:18.338
+You read incidents through Microsoft
+Graph, in the tenant's own cloud.
+
+6
+00:00:18.338 --> 00:00:21.949
+And you proved the sensor, on
+one device and across the fleet.
+
+7
+00:00:21.949 --> 00:00:24.759
+The evidence an I S S O
+keeps from this module:
+
+8
+00:00:24.759 --> 00:00:27.724
+the role export and the
+pim assignment report,
+
+9
+00:00:27.724 --> 00:00:32.093
+the E D R policy export and its
+assignments, the weekly coverage file,
+
+10
+00:00:32.093 --> 00:00:34.902
+the detection test with
+the alert it raised,
+
+11
+00:00:34.902 --> 00:00:38.725
+and the exception register for
+every device not onboarded.
+
+12
+00:00:38.725 --> 00:00:42.807
+Next is Module 2, prevention
+and Attack Surface Reduction,
+
+13
+00:00:42.807 --> 00:00:47.450
+where the settings move through
+audit, warn and block, ring by ring.

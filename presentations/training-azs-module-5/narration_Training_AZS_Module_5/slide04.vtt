@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.262
+Unit 1 is the guide's Step 9.
+
+2
+00:00:02.262 --> 00:00:06.790
+Gather the security definitions from
+Steps 3 to 8 into one initiative,
+
+3
+00:00:06.790 --> 00:00:12.253
+assigned at the intermediate root: DDoS
+protection on virtual networks and its logs,
+
+4
+00:00:12.253 --> 00:00:16.546
+the firewall-enabled and firewall-mode
+policies that Learn's page,
+
+5
+00:00:16.546 --> 00:00:20.448
+Azure Web Application Firewall
+and Azure Policy, describes,
+
+6
+00:00:20.448 --> 00:00:24.975
+the private D N S and public-access
+policies, and the Key Vault policies.
+
+7
+00:00:24.975 --> 00:00:27.320
+Built-in definitions differ by cloud,
+
+8
+00:00:27.320 --> 00:00:30.725
+so look each one up by display
+name in the cloud you're in.
+
+9
+00:00:30.725 --> 00:00:33.962
+Assign the initiative in
+do-not-enforce mode first.
+
+10
+00:00:33.962 --> 00:00:39.151
+Policies with deploy-if-not-exists or modify
+effects need a managed identity and a
+
+11
+00:00:39.151 --> 00:00:42.509
+role; grant the narrowest
+role each definition names,
+
+12
+00:00:42.509 --> 00:00:45.562
+not Contributor, where
+the initiative allows it.
+
+13
+00:00:45.562 --> 00:00:48.822
+After at least one evaluation
+cycle and a review of
+
+14
+00:00:48.822 --> 00:00:52.237
+the non-compliant list with
+owners, switch to Default.
+
+15
+00:00:52.237 --> 00:00:56.236
+Then run a remediation task
+for each deploy-if-not-exists
+
+16
+00:00:56.236 --> 00:00:59.350
+or modify policy, to
+fix what already exists.

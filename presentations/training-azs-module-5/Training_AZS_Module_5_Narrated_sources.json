@@ -1,0 +1,118 @@
+[
+ {
+  "slide": 4,
+  "title": "Unit 1: one initiative, audit first, then enforce",
+  "links": [
+   {
+    "text": "Azure Policy assignment structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-assignment-structure"
+   },
+   {
+    "text": "Azure Web Application Firewall and Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#waf-azure-policy"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Exemptions expire, and compliance is filed monthly",
+  "links": [
+   {
+    "text": "Azure Policy exemption structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-exemption-structure"
+   },
+   {
+    "text": "Azure Policy assignment structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-assignment-structure"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 2: the DDoS runbook and the review calendar",
+  "links": [
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   },
+   {
+    "text": "Layer 7 DDoS protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#waf-application-ddos-protection"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Where agencies are: look built-ins up in your cloud",
+  "links": [
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Module 5",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Sources: Module 5 deck",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Azure Policy assignment structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-assignment-structure"
+   },
+   {
+    "text": "Azure Policy exemption structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-exemption-structure"
+   },
+   {
+    "text": "Azure Web Application Firewall and Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#waf-azure-policy"
+   },
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   },
+   {
+    "text": "DDoS fundamental best practices",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ddos-fundamental-best-practices"
+   },
+   {
+    "text": "Layer 7 DDoS protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#waf-application-ddos-protection"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.450
+Here are the guide's Step 3 commands,
+from Learn's DDoS quickstarts.
+
+2
+00:00:04.450 --> 00:00:08.817
+Create one Network Protection plan
+in the connectivity subscription,
+
+3
+00:00:08.817 --> 00:00:12.000
+and link each virtual network
+that holds public I Ps.
+
+4
+00:00:12.000 --> 00:00:16.324
+Or, for I P Protection, enable
+it on one Standard public I P.
+
+5
+00:00:16.324 --> 00:00:21.775
+Turn on diagnostic logs for each
+protected public I P, to the workspace.
+
+6
+00:00:21.775 --> 00:00:23.213
+Then alert on attack.
+
+7
+00:00:23.213 --> 00:00:27.837
+The metric called Under DDoS attack
+or not reads one during mitigation,
+
+8
+00:00:27.837 --> 00:00:31.287
+and Learn's tutorial alerts
+at a maximum of one or more.
+
+9
+00:00:31.287 --> 00:00:33.451
+One caution from Learn's quickstart:
+
+10
+00:00:33.451 --> 00:00:38.282
+a virtual network with DDoS protection
+can't be moved between resource groups or
+
+11
+00:00:38.282 --> 00:00:43.113
+subscriptions, and disabling protection
+to move it resets the tuned thresholds.
+
+12
+00:00:43.113 --> 00:00:46.087
+Then hold it with policy
+in Step 9: Learn's page,
+
+13
+00:00:46.087 --> 00:00:51.071
+Secure your Azure DDoS Protection
+deployment, names the built-in policies,
+
+14
+00:00:51.071 --> 00:00:55.412
+one that protects virtual networks
+with a Modify or Audit effect,
+
+15
+00:00:55.412 --> 00:00:58.440
+and one that requires
+the DDoS resource logs.

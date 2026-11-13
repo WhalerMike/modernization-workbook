@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.598
+Steps seven and eight read
+the same secret twice,
+
+2
+00:00:03.598 --> 00:00:06.525
+on the test V M, so the
+network allows both.
+
+3
+00:00:06.525 --> 00:00:10.421
+First as the V M's managed
+identity, which has the Key Vault
+
+4
+00:00:10.421 --> 00:00:14.400
+Secrets User role on the vault:
+the secret's name comes back.
+
+5
+00:00:14.400 --> 00:00:17.898
+Then as yourself, with no
+data-plane role on the vault:
+
+6
+00:00:17.898 --> 00:00:20.338
+the request is refused as forbidden.
+
+7
+00:00:20.338 --> 00:00:23.424
+The network allowed it;
+role-based access didn't.
+
+8
+00:00:23.424 --> 00:00:26.450
+That's the pair the guide's
+Validate step asks for.
+
+9
+00:00:26.450 --> 00:00:31.025
+Step nine, back on your machine,
+finds both reads in the audit log.
+
+10
+00:00:31.025 --> 00:00:36.165
+The guide's diagnostic setting writes to
+the workspace's Azure Diagnostics table,
+
+11
+00:00:36.165 --> 00:00:40.700
+and Learn's page, Monitor Azure Key
+Vault, filters it by resource provider.
+
+12
+00:00:40.700 --> 00:00:46.713
+Its result signature column holds the H
+T T P status, such as O K or Forbidden.
+
+13
+00:00:46.713 --> 00:00:48.737
+Expect a row for each read.
+
+14
+00:00:48.737 --> 00:00:52.809
+Step ten: both az logout commands
+signed you out of the test V M,
+
+15
+00:00:52.809 --> 00:00:56.540
+and nothing in Azure changed,
+so there's nothing to undo.

@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.850
+Lab 2 runs the guide's validate steps
+in a test tenant, never production.
+
+2
+00:00:04.850 --> 00:00:07.850
+The authors haven't run
+them, as the page says.
+
+3
+00:00:07.850 --> 00:00:12.175
+Every step reads, apart from the evidence
+files it writes in your own folder.
+
+4
+00:00:12.175 --> 00:00:15.770
+You need Module 1's test tenant,
+reader account and test device,
+
+5
+00:00:15.770 --> 00:00:19.858
+an account that can view the Defender
+portal's settings, and the ladder
+
+6
+00:00:19.858 --> 00:00:24.087
+decision record for the test tenant, or
+the guide's Step 9 as the reference.
+
+7
+00:00:24.087 --> 00:00:26.437
+Step one runs on the test device.
+
+8
+00:00:26.437 --> 00:00:31.063
+It's Microsoft Learn's command that reads
+the sensor version from the registry.
+
+9
+00:00:31.063 --> 00:00:35.024
+Contain user needs ten point
+eight four seven zero or later.
+
+10
+00:00:35.024 --> 00:00:38.762
+Step two is a click path in the
+Defender portal for your cloud.
+
+11
+00:00:38.762 --> 00:00:44.026
+Open the devices page under automated
+responses and note each device group's level.
+
+12
+00:00:44.026 --> 00:00:47.825
+Then open the identities page
+and note the excluded users.
+
+13
+00:00:47.825 --> 00:00:50.263
+Compare both with the
+ladder decision record.
+
+14
+00:00:50.263 --> 00:00:53.466
+The guide's pass: every
+server group at a semi level,
+
+15
+00:00:53.466 --> 00:00:57.138
+every workstation group at
+full or a recorded exception,
+
+16
+00:00:57.138 --> 00:01:01.250
+and the emergency access accounts
+in the identity exclusions.

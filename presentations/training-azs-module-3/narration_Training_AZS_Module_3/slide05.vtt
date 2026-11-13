@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.137
+Now the origin.
+
+2
+00:00:01.137 --> 00:00:04.175
+Use Private Link where the
+origin type supports it.
+
+3
+00:00:04.175 --> 00:00:09.696
+Learn's page on Private Link in Front Door
+Premium lists App Service, Blob Storage,
+
+4
+00:00:09.696 --> 00:00:15.300
+internal load balancers, API Management,
+Application Gateway and Container Apps.
+
+5
+00:00:15.300 --> 00:00:18.949
+Approve the private endpoint
+connection Front Door requests,
+
+6
+00:00:18.949 --> 00:00:22.388
+and don't mix public and private
+origins in one origin group.
+
+7
+00:00:22.388 --> 00:00:24.457
+Where Private Link doesn't apply,
+
+8
+00:00:24.457 --> 00:00:29.516
+Learn's page on securing traffic to Front
+Door origins says to use the Front Door
+
+9
+00:00:29.516 --> 00:00:33.119
+backend service tag and the X
+Azure F D I D header together,
+
+10
+00:00:33.119 --> 00:00:37.412
+because the tag's addresses are
+shared by every Front Door customer.
+
+11
+00:00:37.412 --> 00:00:40.488
+The header carries your own
+profile's Front Door I D.
+
+12
+00:00:40.488 --> 00:00:44.449
+For an App Service origin, one
+access restriction does both,
+
+13
+00:00:44.449 --> 00:00:47.037
+as Learn's multi-region tutorial shows.
+
+14
+00:00:47.037 --> 00:00:50.144
+For an application
+gateway behind Front Door,
+
+15
+00:00:50.144 --> 00:00:55.270
+an N S G rule allows only the tag, and a
+firewall custom rule checks the header.

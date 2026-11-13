@@ -1,0 +1,528 @@
+{
+ "1": [
+  [
+   0.05,
+   8.113,
+   "Welcome to Module 5, the last module of the Azure Security Engineering learning path: policy, drift and evidence."
+  ],
+  [
+   8.162,
+   3.575,
+   "Everything you engineered in Modules 1 to 4 can drift."
+  ],
+  [
+   11.738,
+   11.863,
+   "Policy holds it in place and reports what drifted; the operating model gives each control an owner, a cadence and a test; and the evidence catalog turns both into what an assessor can inspect."
+  ],
+  [
+   23.6,
+   10.2,
+   "This module covers Steps 9 and 10 of the Azure Security Engineering implementation guide, and takes about fifty minutes, plus a lab in your own test management group."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   7.825,
+   "Governance, Drift and Evidence makes the case that drift is the primary threat, and the guide's dangers table shows what it looks like here."
+  ],
+  [
+   9.025,
+   7.088,
+   "A new public I P appears in a workload subscription, outside DDoS protection and the web application firewall."
+  ],
+  [
+   16.113,
+   3.062,
+   "A firewall policy gets switched back to detection."
+  ],
+  [
+   19.175,
+   2.65,
+   "A vault is created with public access on."
+  ],
+  [
+   21.825,
+   4.075,
+   "Nothing you engineered in Modules 1 to 4 stays put on its own."
+  ],
+  [
+   25.9,
+   1.188,
+   "Three things hold it."
+  ],
+  [
+   27.087,
+   5.075,
+   "Policy: one security initiative, enforced, with exemptions that expire."
+  ],
+  [
+   32.163,
+   4.725,
+   "Operations: an owner, a cadence and a test for every control."
+  ],
+  [
+   36.888,
+   2.325,
+   "And evidence an assessor can inspect."
+  ],
+  [
+   39.212,
+   9.725,
+   "This module turns Steps 3 to 8 into policy, runs them, measures coverage rather than settings, and gets each finding ready for the assessor's decision."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   7.325,
+   "You'll gather the security definitions into one initiative, and move it from do-not-enforce to default after a compliance review."
+  ],
+  [
+   10.287,
+   4.688,
+   "You'll explain what a remediation task does, and what stays after a rollback."
+  ],
+  [
+   14.975,
+   4.975,
+   "You'll create an exemption with a category and an expiry, and find the ones past it."
+  ],
+  [
+   19.95,
+   4.987,
+   "You'll run the DDoS incident runbook and the recurring reviews, and read the RACI."
+  ],
+  [
+   24.938,
+   6.862,
+   "And you'll compute the guide's metrics as protected coverage, not settings, and say what makes a finding ready for closure."
+  ],
+  [
+   31.8,
+   12.875,
+   "You need Modules 1 to 4, and a skim of two chapters: Chapter 05 of Cloud Boundary and Landing Zone, on enforcing without breaking things, and Chapter 02 of Governance, Drift and Evidence."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.212,
+   "Unit 1 is the guide's Step 9."
+  ],
+  [
+   2.263,
+   22.712,
+   "Gather the security definitions from Steps 3 to 8 into one initiative, assigned at the intermediate root: DDoS protection on virtual networks and its logs, the firewall-enabled and firewall-mode policies that Learn's page, Azure Web Application Firewall and Azure Policy, describes, the private D N S and public-access policies, and the Key Vault policies."
+  ],
+  [
+   24.975,
+   5.75,
+   "Built-in definitions differ by cloud, so look each one up by display name in the cloud you're in."
+  ],
+  [
+   30.725,
+   3.237,
+   "Assign the initiative in do-not-enforce mode first."
+  ],
+  [
+   33.962,
+   11.6,
+   "Policies with deploy-if-not-exists or modify effects need a managed identity and a role; grant the narrowest role each definition names, not Contributor, where the initiative allows it."
+  ],
+  [
+   45.562,
+   6.675,
+   "After at least one evaluation cycle and a review of the non-compliant list with owners, switch to Default."
+  ],
+  [
+   52.237,
+   7.062,
+   "Then run a remediation task for each deploy-if-not-exists or modify policy, to fix what already exists."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.462,
+   "Exemptions expire."
+  ],
+  [
+   1.512,
+   11.25,
+   "Learn's page on the Azure Policy exemption structure gives two categories: Mitigated, when the policy's intent is met another way, and Waiver, when non-compliance is accepted for a time."
+  ],
+  [
+   12.762,
+   4.362,
+   "Every exemption gets an expiry and a reference to its decision record."
+  ],
+  [
+   17.125,
+   7.537,
+   "And once it expires, Learn says it's kept for the record but no longer honored, so the resource shows as non-compliant again."
+  ],
+  [
+   24.663,
+   5.112,
+   "The guide adds a rule: exemptions only, never not-scopes for convenience."
+  ],
+  [
+   29.775,
+   7.162,
+   "Each month, export compliance: the summary, and the list of non-compliant resources, filed as evidence."
+  ],
+  [
+   36.938,
+   6.062,
+   "Rollback, if enforcement breaks something, is the assignment back to do-not-enforce, in minutes."
+  ],
+  [
+   43.0,
+   5.388,
+   "One caution: resources a remediation task created stay until someone removes them."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.612,
+   "Unit 2 is the guide's Step 10, the operating model."
+  ],
+  [
+   3.663,
+   4.662,
+   "Its DDoS runbook is design guidance, built on Learn's response strategy."
+  ],
+  [
+   8.325,
+   6.2,
+   "The under-attack alert pages the security monitor, and Defender for Cloud raises the mitigation alert."
+  ],
+  [
+   14.525,
+   14.175,
+   "The monitor checks application health, and the firewall logs for a layer seven component, with the top-talker queries from Learn's page on application layer DDoS protection; the platform owner lowers the rate limits through an emergency change if needed."
+  ],
+  [
+   28.7,
+   6.675,
+   "If mitigation isn't enough, open a severity A request for Rapid Response, under Network Protection."
+  ],
+  [
+   35.375,
+   6.725,
+   "Afterwards: the mitigation logs, the timeline, any cost-protection claim, and an after-action report."
+  ],
+  [
+   42.1,
+   19.038,
+   "The review calendar is design guidance too: the exposure register weekly; compliance, exemptions and firewall false positives monthly; coverage, cost, firewall rules, vault access and the rule set quarterly; failover and a vault restore twice a year; and a DDoS simulation every year."
+  ],
+  [
+   61.138,
+   2.375,
+   "The guide's RACI names who does each."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.388,
+   "Measure protected coverage and effectiveness, not that a setting exists."
+  ],
+  [
+   4.438,
+   5.775,
+   "The guide's metrics are design guidance, and each divides what's protected and tested by what exists."
+  ],
+  [
+   10.213,
+   6.225,
+   "Exposure ownership: register rows with an owner, over all rows, target a hundred percent."
+  ],
+  [
+   16.438,
+   22.387,
+   "DDoS coverage: public I Ps with Network or I P Protection, over public I Ps, excluding NAT gateway I Ps. Web application firewall prevention coverage, origin lock-down, egress inspection, private pass, vault posture, policy compliance, and exemption hygiene, where the target is zero exemptions past their expiry."
+  ],
+  [
+   38.825,
+   1.087,
+   "Then closure."
+  ],
+  [
+   39.913,
+   13.188,
+   "A finding the guide addresses is ready for closure when every applicable control state, Designed, Configured, Enforced, Evidenced and Operated, has evidence; the authorizing official or assessor decides."
+  ],
+  [
+   53.1,
+   9.6,
+   "Findings from a Zero Trust assessment enter the closure chain that Zero Trust and Assessment sets out, weighted by exposure and blast radius, not pass rate."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   6.475,
+   "Learn's comparison page lists no variation in Azure Policy between commercial Azure and Azure Government."
+  ],
+  [
+   7.838,
+   9.4,
+   "But the fed-ramp initiatives exist in separate versions for each cloud, as Cloud Boundary and Landing Zone notes, and built-in definitions differ by cloud."
+  ],
+  [
+   17.238,
+   6.463,
+   "That's why the guide lists them by display name, and has you look each one up in the cloud you're in, as the lab does."
+  ],
+  [
+   23.7,
+   6.425,
+   "In G C C, the workbook's baseline, the commercial subscriptions run Step 9 as written."
+  ],
+  [
+   30.125,
+   5.013,
+   "In Azure Government, use its own initiative versions and definition names."
+  ],
+  [
+   35.138,
+   10.637,
+   "And the guide lists assuming commercial features in Azure Government as a danger of its own: a test the cloud can't run is recorded as an environment decision, not a failed control."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   8.325,
+   "The lab exports the evidence Step 9 files each month, from a test management group where someone has assigned the guide's security initiative."
+  ],
+  [
+   8.375,
+   5.987,
+   "Every command reads, the only thing written is a folder on your machine, and the authors haven't run it."
+  ],
+  [
+   14.363,
+   8.188,
+   "Step one shows the initiative's enforcement mode: do-not-enforce during the audit phase, Default once the compliance review has passed."
+  ],
+  [
+   22.55,
+   3.888,
+   "Step two looks up one built-in definition in the cloud you're in."
+  ],
+  [
+   26.438,
+   5.35,
+   "Step three exports this month's compliance: the summary and the non-compliant list."
+  ],
+  [
+   31.788,
+   4.575,
+   "The guide's Validate step says the summary shows the initiative's compliance."
+  ],
+  [
+   36.362,
+   8.475,
+   "Step four lists the exemptions with their category and expiry, using the management-group example from Learn's reference for the exemption list command."
+  ],
+  [
+   44.837,
+   6.112,
+   "Expect no exemption past its expiry without a renewal decision, and none without an expiry."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.338,
+   "Step five computes two of the guide's metrics from the exposure register."
+  ],
+  [
+   4.388,
+   3.925,
+   "It reruns Module 1's public I P query, then counts."
+  ],
+  [
+   8.312,
+   4.0,
+   "Exposure ownership is the rows with an owner over all rows."
+  ],
+  [
+   12.312,
+   6.825,
+   "DDoS coverage is the rows whose DDoS mode is Enabled or Virtual Network Inherited, over all rows."
+  ],
+  [
+   19.137,
+   4.9,
+   "The arithmetic is the path's own; the definitions are the guide's metrics table."
+  ],
+  [
+   24.038,
+   8.55,
+   "Exclude public I Ps on NAT gateways by hand, as the DDoS coverage metric says, because DDoS protection doesn't cover them."
+  ],
+  [
+   32.587,
+   2.837,
+   "The guide's target for both is a hundred percent."
+  ],
+  [
+   35.425,
+   1.538,
+   "Step six backs it out."
+  ],
+  [
+   36.962,
+   2.163,
+   "The lab created nothing in Azure."
+  ],
+  [
+   39.125,
+   8.287,
+   "If this is a real review, file the exports with their date, the cloud and subscription, and the tester, as the guide's evidence pattern asks."
+  ],
+  [
+   47.413,
+   2.025,
+   "Otherwise, delete the folder."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   8.425,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five, as the guide's requirements table maps it."
+  ],
+  [
+   8.475,
+   13.95,
+   "Step 9 supports C M two, baseline configuration, C M six, configuration settings, and C A seven, continuous monitoring; its evidence is the monthly compliance export and the exemption register."
+  ],
+  [
+   22.425,
+   14.512,
+   "Step 10 supports I R four, incident handling, C P four, contingency plan testing, and A U six, audit record review; its evidence is the review records, the exercises, and the after-action reports."
+  ],
+  [
+   36.938,
+   9.838,
+   "The guide notes that those controls ask for incident handling, contingency plan testing and continuous monitoring at Moderate, and that the cadence is the program's own."
+  ],
+  [
+   46.775,
+   5.55,
+   "Each row lines up with the fed-ramp twenty X key security indicators the guide names."
+  ],
+  [
+   52.325,
+   5.175,
+   "The steps support these controls; the assessor decides whether each is satisfied."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.312,
+   "First: an exemption's expiry date has passed."
+  ],
+  [
+   5.338,
+   1.012,
+   "What happens?"
+  ],
+  [
+   6.35,
+   7.425,
+   "The answer is b: it's kept for the record but no longer honored, and the guide reports expired exemptions every month."
+  ],
+  [
+   13.775,
+   3.975,
+   "Second: when is a finding this guide addresses ready for closure?"
+  ],
+  [
+   17.75,
+   4.375,
+   "The answer is b: when every applicable control state has evidence."
+  ],
+  [
+   22.125,
+   5.95,
+   "The authorizing official or assessor decides; a pass in an assessment isn't the decision."
+  ],
+  [
+   28.075,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   5.075,
+   "You checked the security initiative's enforcement mode and exported the month's compliance."
+  ],
+  [
+   5.95,
+   3.325,
+   "You listed the exemptions with their category and expiry."
+  ],
+  [
+   9.275,
+   3.087,
+   "You walked the DDoS runbook and the review calendar."
+  ],
+  [
+   12.363,
+   7.175,
+   "And you computed two of the guide's metrics as coverage, the kind of evidence that gets a finding ready for the assessor's decision."
+  ],
+  [
+   19.538,
+   19.3,
+   "The evidence an I S S O keeps from this module: the initiative and assignment exports, the monthly compliance exports, deny events, the exemption register with its decision records, the RACI and review calendar, review and exercise records, and accepted risks with the authorizing official's signature."
+  ],
+  [
+   38.837,
+   1.5,
+   "That completes the path."
+  ],
+  [
+   40.337,
+   8.387,
+   "The guide's implementation checklist puts all ten steps on one page, and a developer workbook, with labs on fixtures, is planned."
+  ]
+ ]
+}

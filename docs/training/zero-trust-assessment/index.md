@@ -23,7 +23,7 @@ last-reviewed: 2026-11-11
 
 Microsoft's Zero Trust Assessment tests hundreds of configuration items in a tenant and writes a report. The report is accurate on the day it runs; what it doesn't do is tell you what a skipped test means, what to fix first, or when a finding is closed. This learning path teaches you to run the assessment safely, to read its results as evidence rather than a score, and to turn them into a closure register an assessor can check. You work through the ten steps of [Zero Trust Assessment: An Implementation Guide](../../books/guides/zero-trust-assessment-implementation.md) in four modules, with the [results kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results) on your laptop.
 
-**Watch first.** The guide's narrated deck, about 15 minutes with captions, covers the ten steps in one sitting: [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Zero_Trust_Assessment_Narrated), or find it on the [Presentations](../../presentations/index.md#guide-zero-trust-assessment) page.
+**Watch first.** The guide's narrated deck, about 15 minutes with captions, covers the ten steps in one sitting: [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Zero_Trust_Assessment_Narrated), or find it on the [Presentations](../../presentations/index.md#guide-zero-trust-assessment) page. Each module also has its own narrated deck, linked from the module's page.
 
 Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), it is a short series of modules, each built on the one before. The modules don't repeat the guide or [Book 11](../../books/b11-zero-trust/index.md). They tell you what to read, in what order, what to run, and what to check you understood.
 

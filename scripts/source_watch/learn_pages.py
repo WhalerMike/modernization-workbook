@@ -1,18 +1,26 @@
 #!/usr/bin/env python3
-"""The Microsoft Learn identity pages the Learn coverage map tracks, and which came and went.
+"""The Microsoft Learn pages the Learn coverage map tracks, and which came and went.
 
-Two Learn folders are tracked, each built from a public GitHub repository:
+Five Learn folders are tracked, each built from a public GitHub repository:
 
 | Site key | Repository folder | Published at |
 |---|---|---|
 | windows-server-identity | MicrosoftDocs/windowsserverdocs `WindowsServerDocs/identity/` | learn.microsoft.com/windows-server/identity/... |
 | entra | MicrosoftDocs/entra-docs `docs/` | learn.microsoft.com/entra/... |
+| windows-server-get-started | MicrosoftDocs/windowsserverdocs `WindowsServerDocs/get-started/` | learn.microsoft.com/windows-server/get-started/... |
+| windows-server-security | MicrosoftDocs/windowsserverdocs `WindowsServerDocs/security/` | learn.microsoft.com/windows-server/security/... |
+| windows-server-file-server | MicrosoftDocs/windowsserverdocs `WindowsServerDocs/storage/file-server/` | learn.microsoft.com/windows-server/storage/file-server/... |
+
+The last three hold Windows Server's release notes (what's new, features
+removed or no longer developed) and the security and SMB pages those changes
+lean on: Kerberos, NTLM, TLS, Credential Guard, SMB signing and hardening.
 
 A file is a page when docfx would publish it: a `.md` or `.yml` file under the
 folder, not in an `includes/` or `media/` folder, not a table of contents
 (`toc.yml`), a breadcrumb, a context file (`context/*.yml`) or the zone pivot
-list. The Entra side also leaves out `docs/identity/saas-apps/` (one tutorial per
-SaaS application). A page's URL is the repository's docfx mapping: the path
+list. The Entra side leaves out `docs/identity/saas-apps/` (one tutorial per
+SaaS application); the security side leaves out `guarded-fabric-shielded-vm/`
+(Hyper-V shielded virtual machines) and `gdpr/` (one page on GDPR requests). A page's URL is the repository's docfx mapping: the path
 under the docset's build folder (`build_source_folder` in
 `.openpublishing.publish.config.json`), without its extension, under the
 docset's `dest` in `docfx.json` (`windows-server`, `entra`); an `index` file is
@@ -22,8 +30,8 @@ anchor or trailing slash (`norm`).
 This module is shared. `scripts/learn_coverage.py` uses the rules above to build
 the coverage data in `data/learn-coverage/`, and the weekly source watch
 (`watch.py`) calls `check` to list the pages added to or removed from the two
-folders since its previous run, from one GitHub API call per repository (the
-repository tree), keeping the previous list in its state file.
+folders since its previous run, from one GitHub API call per folder (the
+folder's tree), keeping the previous list in its state file.
 
     python scripts/source_watch/learn_pages.py      # count the pages on Learn now (network)
 
@@ -57,13 +65,13 @@ class Site:
     area_depth: dict = None  # top folder -> how many folder levels name the area (default 1)
 
     def area(self, path: str) -> str:
-        """The page's area: its first folder under the tracked folder (two for Entra's identity/)."""
+        """The page's area, lower-cased: its first folder under the tracked folder (two for Entra's identity/)."""
         rel = path[len(self.folder) + 1:] if path.startswith(self.folder + "/") else path
         parts = rel.split("/")[:-1]
         if not parts:
             return "general"
-        depth = (self.area_depth or {}).get(parts[0], 1)
-        return parts[depth - 1] if len(parts) >= depth else parts[0]
+        depth = (self.area_depth or {}).get(parts[0].lower(), 1)
+        return (parts[depth - 1] if len(parts) >= depth else parts[0]).lower()
 
 
 SITES = (
@@ -86,6 +94,34 @@ SITES = (
         folder="docs",
         exclude=("docs/identity/saas-apps",),
         area_depth={"identity": 2},
+    ),
+    Site(
+        key="windows-server-get-started",
+        name="Windows Server releases",
+        repo="MicrosoftDocs/windowsserverdocs",
+        branch="main",
+        build_folder="WindowsServerDocs",
+        dest="windows-server",
+        folder="WindowsServerDocs/get-started",
+    ),
+    Site(
+        key="windows-server-security",
+        name="Windows Server security",
+        repo="MicrosoftDocs/windowsserverdocs",
+        branch="main",
+        build_folder="WindowsServerDocs",
+        dest="windows-server",
+        folder="WindowsServerDocs/security",
+        exclude=("WindowsServerDocs/security/guarded-fabric-shielded-vm", "WindowsServerDocs/security/gdpr"),
+    ),
+    Site(
+        key="windows-server-file-server",
+        name="Windows Server file server and SMB",
+        repo="MicrosoftDocs/windowsserverdocs",
+        branch="main",
+        build_folder="WindowsServerDocs",
+        dest="windows-server",
+        folder="WindowsServerDocs/storage/file-server",
     ),
 )
 SITE = {s.key: s for s in SITES}

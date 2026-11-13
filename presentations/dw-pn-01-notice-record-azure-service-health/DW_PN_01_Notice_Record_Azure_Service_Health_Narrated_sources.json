@@ -1,0 +1,272 @@
+[
+ {
+  "slide": 2,
+  "title": "Why one record comes first",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud, for this read",
+  "links": [
+   {
+    "text": "Connect to Azure Government with Azure CLI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-government-connect-cli"
+   },
+   {
+    "text": "Azure CLI endpoints",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-azure-cli-endpoints"
+   },
+   {
+    "text": "Resource Graph samples for Service Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "Resource Graph samples for Service Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   },
+   {
+    "text": "impacted resources",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-service-health-impacted-resources-samples"
+   },
+   {
+    "text": "Subscription vs tenant events",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-subscription-vs-tenant"
+   },
+   {
+    "text": "security advisories",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-service-health-security-advisories-access"
+   },
+   {
+    "text": "alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What it leaves to you, and the verdict",
+  "links": [
+   {
+    "text": "Resource Graph samples for Service Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   },
+   {
+    "text": "alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The record: one shape for every provider",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The fingerprint, and a record that must be valid",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The Azure collector: event type to kind",
+  "links": [
+   {
+    "text": "Resource Graph samples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The alert policy: a plan, a hash, then -Apply",
+  "links": [
+   {
+    "text": "Deploy Service Health alerts at scale using Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   },
+   {
+    "text": "Remediate non-compliant resources",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#remediate-non-compliant-resources-with-azure"
+   },
+   {
+    "text": "az policy assignment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cli-az-policy-assignment"
+   },
+   {
+    "text": "remediation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cli-az-policy-remediation"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Who builds it, who runs it, what it may read",
+  "links": [
+   {
+    "text": "Subscription vs tenant events",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-subscription-vs-tenant"
+   },
+   {
+    "text": "security advisories",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-service-health-security-advisories-access"
+   },
+   {
+    "text": "elevated access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-security-advisories-elevated"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 1: what Azure needs, and the kit's query",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 1: collect Azure, then read the records",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: the retirement in full, and a second read",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: plan the alert policy; fixture mode refuses",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 2: an Azure test subscription",
+  "links": [
+   {
+    "text": "alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   },
+   {
+    "text": "Monitor App Service",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-monitor-app-service-alerts"
+   },
+   {
+    "text": "az monitor activity-log alert",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cli-az-monitor-activity-log-alert"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OSCAL catalog 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "security advisories access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-service-health-security-advisories-access"
+   },
+   {
+    "text": "alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ }
+]

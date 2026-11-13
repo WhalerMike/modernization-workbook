@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.996
+Welcome to Module 5, the last
+module of Defender X D R
+
+2
+00:00:03.996 --> 00:00:09.163
+Engineering and Operations:
+automation, operations and evidence.
+
+3
+00:00:09.163 --> 00:00:12.100
+Automation is where speed and outage meet.
+
+4
+00:00:12.100 --> 00:00:15.754
+The same setting that contains a
+compromised laptop in minutes can
+
+5
+00:00:15.754 --> 00:00:19.538
+lock out the account the security
+operations center needs to respond.
+
+6
+00:00:19.538 --> 00:00:24.071
+In this module you set Defender's automation
+to the program's response ladder,
+
+7
+00:00:24.071 --> 00:00:27.400
+and exclude what must never
+be contained automatically.
+
+8
+00:00:27.400 --> 00:00:31.486
+Then you run the platform: the
+cadence, the monthly evidence run,
+
+9
+00:00:31.486 --> 00:00:35.100
+the synthetic events, and the
+metrics an assessor reads.
+
+10
+00:00:35.100 --> 00:00:40.337
+The module covers Steps 9 and 10 of the
+Defender X D R implementation guide.
+
+11
+00:00:40.337 --> 00:00:44.540
+It takes about forty minutes, plus
+Lab 2 in your own test tenant.

@@ -23,6 +23,12 @@ last-reviewed: 2026-11-11
 How an agency on Microsoft 365 GCC deploys Microsoft's security service edge, Global Secure Access, as the identity-aware network layer of its Zero Trust program, and proves each piece works. First, how to read the guide, where each of the twelve topics lives, government-cloud availability and licensing feature by feature, how the design lines up with CISA's TIC 3.0 Remote User and Branch Office use cases, and the reference architecture. Then twelve steps: the decision and licensing, the architecture, the Windows client, Microsoft traffic, internet traffic, private applications, the compliant network check, universal tenant restrictions, TLS inspection, privileged protocols, coexistence and migration, and telemetry and evidence. Each step has Microsoft Learn's commands, a **Validate** step, the How-section order of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template) (prerequisites, pilot, report-only, enforcement, rollback, exclusions, telemetry, evidence, day-two ownership) and the requirements it supports. Then the RACI, the evidence catalog, the metrics, the requirements and KSIs by step, the dangers, rollback, the implementation checklist and what couldn't be verified.
 :::
 
+::: {.callout-tip}
+## Watch, present or train
+**Narrated deck (about 16 minutes, captions)**: why a VPN proves only that a device arrived, TIC 3.0's remote-user options, the twelve steps and their run order, government cloud and licensing by feature, the reference architecture and the RACI, then each step from the client and Microsoft traffic to private apps, tenant restrictions, TLS inspection, rings and rollback, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-global-secure-access) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Global_Secure_Access_Narrated). The deck says this guide is a draft awaiting the editor's review.
+**Training:** the learning path [*Global Secure Access as the Identity-Aware Network*](../../training/global-secure-access/index.md) teaches this guide in six modules, in its run order, with a lab in a test tenant and a knowledge check in each.
+:::
+
 ## How to read this guide {#how-to-read}
 
 **Where this guide sits.** The books own the argument; this guide does the work. [Book 09, Chapter 05](../b09-network/05-sd-wan-sase-and-governed-transport.md#microsofts-security-service-edge-global-secure-access) explains what Global Secure Access is, its government-cloud and licensing gates, Private Access as the VPN and DirectAccess replacement, connectors, private DNS, remote networks, Internet Access policy and coexistence with other security service edge vendors. [Book 09, Chapter 03](../b09-network/03-what-tic-3-requires.md) reads TIC 3.0 from CISA's documents, [Chapter 12](../b09-network/12-microsoft-365-traffic.md#tenant-restrictions-the-case-an-assessor-will-build) the tenant restrictions case, and [Chapter 11](../b09-network/11-field-office-wan-transformation.md) the branches. [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#optional-family-conditional-access-on-network-traffic) holds the Conditional Access family for network traffic, [Book 04, Appendix C](../b04-access/appendix-c-partner-access-profile-entra.md) the tenant restrictions v2 policy, [Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md#a-worked-case-global-secure-accesss-network-and-privacy-facts) the boundary facts, and [Book 12, Chapter 03](../b12-security-operations/03-identity-telemetry.md#global-secure-access-logs-and-alerts) the log categories. Where one of those already says it, this guide links to it and adds only the step-by-step work, the commands and the evidence. It replaces the separate network engineering book the Zero Trust closure update proposed, by the program owner's decision of November 11, 2026.
@@ -64,6 +70,17 @@ Connect-MgGraph -Environment Global -Scopes "NetworkAccess.ReadWrite.All","Polic
 ```
 
 `NetworkAccess.ReadWrite.All` is the delegated permission Learn lists for the settings calls, and the signed-in administrator also needs **Global Secure Access Administrator** or **Security Administrator**; Conditional Access calls need `Policy.ReadWrite.ConditionalAccess` and **Conditional Access Administrator**.[^gsai-ca-settings][^gsai-graph-ia] Activate those roles through PIM for the change window only ([Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md)).
+
+**The pieces.** An implementation guide is finished when it has its deck series, developer workbook and training path ([CONTRIBUTING](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces)):
+
+| Piece | State |
+|---|---|
+| This guide | Draft, November 11, 2026 |
+| Narrated deck | Built, November 13, 2026: 16 narrated slides, about 16 minutes, in [`presentations/guide-global-secure-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/guide-global-secure-access); the video joins the Presentations page when it is exported |
+| Developer workbook with Lab 1 on fixtures and Lab 2 in a test tenant | Planned; there is no kit in `examples/` yet |
+| Training path | Draft, November 13, 2026: [Global Secure Access as the Identity-Aware Network](../../training/global-secure-access/index.md), six modules, each with a lab in a test tenant (the guide's own commands and Validate steps, not run by the authors) and a knowledge check |
+
+: The guide's pieces {.striped .hover}
 
 ## Where each topic lives {#topic-map}
 

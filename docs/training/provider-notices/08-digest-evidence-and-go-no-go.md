@@ -14,7 +14,9 @@ last-reviewed: 2026-11-09
 
 *Part of the [Provider Notices learning path](index.md). Gate G7 Digest and evidence. Workbook [Chapter 07](../../project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.md). About 60 minutes.*
 
-The narrated deck for this module, and the chapter's narrated tour, come later.
+**Watch:** the narrated deck for this module (about 14 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_PN_Module_8_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PN_Module_8_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pn-module-8) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-8/Training_PN_Module_8_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-8/Training_PN_Module_8_Narrated.vtt). The deck files join the next edition.
+
+**Also:** the chapter's narrated tour, about 12 minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_07_Weekly_Digest_Evidence_Narrated).
 
 ## Introduction (3 minutes)
 

@@ -1,0 +1,546 @@
+{
+ "1": [
+  [
+   0.05,
+   6.725,
+   "Welcome to Module 3 of Defender X D R Engineering and Operations: exposure and incidents."
+  ],
+  [
+   6.775,
+   7.975,
+   "Two queues decide whether the platform you built is used: the vulnerabilities waiting for an owner, and the incidents waiting for an analyst."
+  ],
+  [
+   14.75,
+   6.588,
+   "In this module you learn what Defender adds to the vulnerability program in a government cloud, and what it can't do there."
+  ],
+  [
+   21.337,
+   8.5,
+   "Then you learn how the security operations center triages, contains, hands off and closes every incident, to a table it can show."
+  ],
+  [
+   29.837,
+   5.275,
+   "The module covers Steps 5 and 6 of the Defender X D R implementation guide."
+  ],
+  [
+   35.112,
+   4.475,
+   "It takes about thirty-five minutes, plus Lab 2 in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.337,
+   "Why these two together?"
+  ],
+  [
+   1.387,
+   4.525,
+   "Because both are queues, and a queue without an owner is where risk waits."
+  ],
+  [
+   5.912,
+   10.162,
+   "The vulnerability queue: the remediation program, its clock and the Known Exploited Vulnerabilities catalog belong to the Security Operations and Telemetry book."
+  ],
+  [
+   16.075,
+   11.9,
+   "The guide adds what Defender contributes, and its rule that a vulnerability without an owner is a finding against C M eight, the inventory control, not just R A five, vulnerability monitoring."
+  ],
+  [
+   27.975,
+   2.825,
+   "That's the program's risk-based recommendation."
+  ],
+  [
+   30.8,
+   4.037,
+   "And in a U S Government cloud, the attack-path features aren't there."
+  ],
+  [
+   34.837,
+   13.688,
+   "The incident queue: one queue, with Sentinel onboarded to the Defender portal if the agency uses it, a triage window and a containment rung for each severity, and every incident closed with a classification and a determination."
+  ],
+  [
+   48.525,
+   10.088,
+   "The response ladder and device isolation stay in Security Operations and Telemetry; this module fixes severity, triage, evidence and hand-off."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   9.125,
+   "Say which exposure features are available in G C C, G C C High and D O D, and record the one that isn't as not applicable."
+  ],
+  [
+   12.088,
+   6.6,
+   "Prioritize vulnerabilities with the guide's interim path, and give every device group a remediation owner."
+  ],
+  [
+   18.688,
+   5.287,
+   "Triage an incident to the severity table, pick its containment rung, and hand it off."
+  ],
+  [
+   23.975,
+   4.963,
+   "And export the open incidents, and one incident with its alerts, as evidence."
+  ],
+  [
+   28.938,
+   2.325,
+   "You need Module 1's Graph read path."
+  ],
+  [
+   31.262,
+   9.537,
+   "Skim the Security Operations and Telemetry book's Chapter 06, for the remediation program and its clock, and Chapter 11, for the response ladder."
+  ],
+  [
+   40.8,
+   3.362,
+   "Lab 2 runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.737,
+   "Unit 1 is the government-cloud fact that shapes this gate."
+  ],
+  [
+   3.788,
+   8.012,
+   "Microsoft Learn's page on Security Exposure Management says it's available in Public Cloud only, not in U S Government clouds."
+  ],
+  [
+   11.8,
+   5.638,
+   "That's the product that holds attack paths, the exposure graph and critical asset management."
+  ],
+  [
+   17.438,
+   14.912,
+   "Learn doesn't name G C C explicitly, but Defender for U S Government customers, G C C included, is built in Azure U S Government, so the guide treats G C C as not available too, and lists that as something it couldn't verify."
+  ],
+  [
+   32.35,
+   15.963,
+   "What the government clouds do have, from Learn's Defender for Endpoint government page: Defender Vulnerability Management, core and premium, without two features, report inaccuracy and request C V E support; and Secure Score, with some recommendations missing."
+  ],
+  [
+   48.312,
+   7.312,
+   "So a Zero Trust Assessment test that needs Exposure Management is recorded as not applicable in the tenant's cloud."
+  ],
+  [
+   55.625,
+   4.362,
+   "It goes in the closure register as a disposition, not a failed control."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.65,
+   "The guide's interim path for attack paths uses what is there."
+  ],
+  [
+   3.7,
+   8.025,
+   "From the device info table: exposure level and whether the device is internet-facing, with its asset value and machine group."
+  ],
+  [
+   11.725,
+   7.9,
+   "From Defender Vulnerability Management: its recommendations, and the high and critical vulnerabilities by software and recommended update."
+  ],
+  [
+   19.625,
+   8.287,
+   "And as the critical-asset list, the Tier zero inventory from the Access and Privilege book, standing in for critical asset management."
+  ],
+  [
+   27.913,
+   1.15,
+   "Then ownership."
+  ],
+  [
+   29.062,
+   10.662,
+   "Each device group or device tag maps to a remediation owner in the decision record, and the vulnerability manager works Security Operations and Telemetry's queue every week."
+  ],
+  [
+   39.725,
+   6.112,
+   "One trap from Microsoft Learn's table reference: the device T V M tables stay in Defender."
+  ],
+  [
+   45.837,
+   8.037,
+   "They aren't ingested into Sentinel, so a Sentinel query that names them returns nothing, and a silent rule there is not a clean bill of health."
+  ],
+  [
+   53.875,
+   4.375,
+   "Run these queries in Defender, or through Graph, as the lab does."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.125,
+   "Unit 2 is the incident queue."
+  ],
+  [
+   2.175,
+   8.787,
+   "Microsoft Learn's page on listing incidents says Defender X D R correlates alerts that share attack techniques or an attacker into one incident."
+  ],
+  [
+   10.963,
+   3.7,
+   "With Sentinel onboarded to the Defender portal, there's one queue."
+  ],
+  [
+   14.662,
+   4.575,
+   "The severity table is the program's design, a risk-based recommendation."
+  ],
+  [
+   19.238,
+   2.775,
+   "A high incident is triaged within one hour."
+  ],
+  [
+   22.012,
+   7.275,
+   "Its containment rung is L three, gated: the playbook prepares the action, and a named approver releases it."
+  ],
+  [
+   29.288,
+   8.787,
+   "It's handed off to the incident response lead and the I S S O, with the U S cert reporting decision made under the incident response plan."
+  ],
+  [
+   38.075,
+   9.162,
+   "A medium incident is triaged within twenty-four hours, at L two, advise: enrich it and open a ticket, and the analyst decides."
+  ],
+  [
+   47.237,
+   8.113,
+   "A low or informational incident within seventy-two hours, at L one, observe, with a tuning review if it keeps coming back."
+  ],
+  [
+   55.35,
+   5.65,
+   "The rungs come from the response ladder in Security Operations and Telemetry's Chapter 11."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.712,
+   "Three rules complete the gate."
+  ],
+  [
+   1.762,
+   6.713,
+   "First, what's never contained by a playbook: servers, privileged accounts and emergency access accounts."
+  ],
+  [
+   8.475,
+   2.188,
+   "For those, a human decides."
+  ],
+  [
+   10.662,
+   2.413,
+   "Second, how an incident closes."
+  ],
+  [
+   13.075,
+   10.55,
+   "Every incident closes with a classification and a determination, and Microsoft Learn says the Graph incident record carries both, along with who it's assigned to and the comments."
+  ],
+  [
+   23.625,
+   1.663,
+   "Third, the way back."
+  ],
+  [
+   25.288,
+   10.512,
+   "Containment actions are reversible from the Action center, such as releasing a device from isolation or re-enabling a user, as Security Operations and Telemetry describes."
+  ],
+  [
+   35.8,
+   3.562,
+   "An incident closed by mistake is reopened with a comment."
+  ],
+  [
+   39.362,
+   6.425,
+   "The pilot is two weeks of the day shift triaging every incident to the table and recording time to triage."
+  ],
+  [
+   45.788,
+   2.9,
+   "The S O C lead reviews the queue daily."
+  ],
+  [
+   48.688,
+   14.838,
+   "And the evidence: the severity table and the incident response plan's version, the monthly incident export with alerts, classification and timestamps, the quarterly exercise incident, and every incident closed outside its window, with the reason."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.975,
+   "Lab 2 runs the guide's validate queries in a test tenant, never production."
+  ],
+  [
+   5.025,
+   3.0,
+   "The authors haven't run them, as the page says."
+  ],
+  [
+   8.025,
+   3.125,
+   "Every step reads; nothing in the tenant changes."
+  ],
+  [
+   11.15,
+   8.575,
+   "You need Module 1's test tenant and reader account, with vulnerability data from at least one onboarded device, and at least one incident in the queue."
+  ],
+  [
+   19.725,
+   2.712,
+   "Module 1's detection test raises one."
+  ],
+  [
+   22.438,
+   2.425,
+   "Step one connects in the tenant's cloud."
+  ],
+  [
+   24.863,
+   6.475,
+   "Step two files the high and critical vulnerabilities, by vendor, software and recommended update."
+  ],
+  [
+   31.337,
+   8.812,
+   "One caution the guide records: Learn's table reference doesn't list the severity strings, so the guide uses critical and high as the portal shows them."
+  ],
+  [
+   40.15,
+   4.412,
+   "If the file comes back empty, check the values in your tenant before you trust it."
+  ],
+  [
+   44.562,
+   7.075,
+   "Step three files the exposed and internet-facing Windows devices, with their asset value and machine group."
+  ],
+  [
+   51.638,
+   6.138,
+   "The guide's pass: every row has an owner in the decision record and a ticket in the remediation queue."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.562,
+   "Step four exports the open incidents."
+  ],
+  [
+   2.612,
+   9.588,
+   "The filter asks for incidents whose status is active, and the export keeps the I D, the name, the severity, who it's assigned to, and when it was created."
+  ],
+  [
+   12.2,
+   4.162,
+   "The second command reads the file back, so you can see the owner column."
+  ],
+  [
+   16.363,
+   3.375,
+   "The guide's pass: every open incident has an owner."
+  ],
+  [
+   19.738,
+   3.138,
+   "Step five exports one incident with its alerts."
+  ],
+  [
+   22.875,
+   2.7,
+   "Use an incident number from step four's output."
+  ],
+  [
+   25.575,
+   12.387,
+   "Microsoft Learn's page shows the expand property for alerts, so the file carries every alert in the incident and its evidence, and, once the incident is resolved, its classification and determination."
+  ],
+  [
+   37.962,
+   3.663,
+   "That file is what an assessor traces from alert to closure."
+  ],
+  [
+   41.625,
+   1.538,
+   "Step six backs it out."
+  ],
+  [
+   43.163,
+   3.188,
+   "Nothing changed in the tenant, so you only disconnect."
+  ],
+  [
+   46.35,
+   3.212,
+   "Keep the evidence folder with the rest of the path's files."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.312,
+   "The federal requirement, from the guide's requirements table."
+  ],
+  [
+   3.362,
+   15.262,
+   "Gate five supports R A five, vulnerability monitoring and scanning, S I two, flaw remediation, and C M eight, the system component inventory, all from nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   18.625,
+   4.45,
+   "The evidence is the vulnerability query output and the remediation queue."
+  ],
+  [
+   23.075,
+   13.925,
+   "Gate six supports the incident response family: I R four, incident handling; I R five, incident monitoring; and I R six, incident reporting; with A U six, audit record review, analysis and reporting."
+  ],
+  [
+   37.0,
+   3.987,
+   "The evidence is the incident exports, with their classification."
+  ],
+  [
+   40.987,
+   9.375,
+   "Each row lines up with fed-ramp twenty X key security indicators, which bind cloud service providers; the agency lines its own evidence up with them."
+  ],
+  [
+   50.362,
+   5.3,
+   "The gates support these controls, and the assessor decides whether each is satisfied."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.112,
+   "First: a G C C agency wants attack paths for its domain controllers."
+  ],
+  [
+   7.138,
+   1.425,
+   "What does the program do?"
+  ],
+  [
+   8.562,
+   18.025,
+   "The answer is b. Microsoft Learn says Exposure Management is Public Cloud only, so record it as not applicable, and use the interim path: exposure level, internet-facing devices, Vulnerability Management's recommendations, and the Tier zero inventory as the critical-asset list."
+  ],
+  [
+   26.587,
+   5.713,
+   "Second: during a high incident, a playbook proposes isolating a domain controller."
+  ],
+  [
+   32.3,
+   1.012,
+   "What happens?"
+  ],
+  [
+   33.312,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   34.538,
+   1.375,
+   "A human decides."
+  ],
+  [
+   35.913,
+   6.725,
+   "Servers, and privileged or emergency accounts, are never contained by a playbook, whatever the severity."
+  ],
+  [
+   42.638,
+   4.8,
+   "The module page has two more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   6.65,
+   "You recorded Exposure Management as not applicable in a government cloud, and used the interim path instead."
+  ],
+  [
+   7.525,
+   6.662,
+   "You filed the vulnerability and exposure queries, and checked that each exposed device has an owner and a ticket."
+  ],
+  [
+   14.188,
+   5.075,
+   "And you exported the open incidents, and one incident with its alerts, for the record."
+  ],
+  [
+   19.262,
+   19.225,
+   "The evidence an I S S O keeps from this module: the vulnerability query output and the remediation queue; the severity table and the incident response plan's version; the monthly incident export, with alerts, classification and timestamps; and every incident closed outside its window, with the reason."
+  ],
+  [
+   38.487,
+   6.463,
+   "Next is Module 4: hunting, detections as code, and identity and cloud-app signals."
+  ]
+ ]
+}

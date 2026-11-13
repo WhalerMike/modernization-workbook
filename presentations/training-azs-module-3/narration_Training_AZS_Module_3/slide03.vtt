@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.633
+You'll choose Front Door
+Premium, Application Gateway,
+
+3
+00:00:06.633 --> 00:00:09.162
+or both, for an application, and say why.
+
+4
+00:00:09.162 --> 00:00:11.100
+You'll lock an origin to the edge,
+
+5
+00:00:11.100 --> 00:00:15.350
+and explain why the Front Door backend
+service tag alone isn't enough.
+
+6
+00:00:15.350 --> 00:00:18.700
+You'll check TLS, health
+probes and failover.
+
+7
+00:00:18.700 --> 00:00:22.403
+You'll route a workload subnet's
+default route to Azure Firewall,
+
+8
+00:00:22.403 --> 00:00:24.638
+and check it with the effective routes.
+
+9
+00:00:24.638 --> 00:00:28.394
+And you'll move threat intelligence
+and intrusion detection from
+
+10
+00:00:28.394 --> 00:00:32.287
+alert to deny through a draft, and
+say what deploying a draft replaces.
+
+11
+00:00:32.287 --> 00:00:37.014
+You need Module 2, and a skim of Network
+and Transport, which owns the agency's
+
+12
+00:00:37.014 --> 00:00:41.710
+own edge and the trusted internet
+connection; the guide leaves those to it.

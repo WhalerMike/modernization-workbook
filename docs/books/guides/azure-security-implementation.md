@@ -18,9 +18,16 @@ last-reviewed: 2026-11-11
 
 *A landing zone decides what can be deployed; it doesn't decide what the internet can reach, what leaves, or who can read a key. Those are engineered one service at a time, and each one has to be proved.*
 
+**Training:** the [Azure Security Engineering learning path](../../training/azure-security/index.md) teaches this guide in five modules, each with a lab of its checks in a test subscription.
+
 ::: {.callout-note}
 ## In this guide
 How an agency engineers the security of its Azure estate on top of the landing zone [Book 10](../b10-cloud-boundary/index.md) designs, as gated steps an operator can run. First, how to read the guide, where each topic is covered, the placeholders, prerequisites and government-cloud availability, a comparison with AWS, Google Cloud and Oracle Cloud Infrastructure, the reference architecture and the decision record. Then ten steps: the landing-zone security baseline, the public exposure inventory, DDoS protection, the web application firewall, Front Door and Application Gateway, Azure Firewall and segmentation, Private Link and DNS, managed identities and Key Vault, Azure Policy and drift, and operations and evidence. Each step carries its authority label, copy-paste commands from Microsoft Learn, the How template of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template), a **Validate** step and an evidence checklist. Then the RACI, the evidence catalog, the metrics, the requirements and KSIs, the dangers, rollback, the implementation checklist and what couldn't be verified.
+:::
+
+::: {.callout-tip}
+## Watch, present or train
+**Narrated deck (about 17 minutes, captions)**: why a landing zone isn't a defense, what the books design and what this guide engineers, the ten steps on one page, commercial Azure for a GCC tenant and what differs in Azure Government, the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure, the eligible roles and the RACI, then each step from the baseline and the exposure inventory to Key Vault, policy and operations, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-azure-security) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Azure_Security_Narrated). The deck says this guide is a draft awaiting the editor's review.
 :::
 
 ## How to read this guide
@@ -59,9 +66,10 @@ The guide replaces the separate Azure security book the Zero Trust Assessment cl
 | Piece | State |
 |---|---|
 | This guide | Draft, November 11, 2026 |
+| Narrated guide deck and video | Built: 17 narrated slides, about 17 minutes, with captions; see *Watch, present or train* at the top |
 | Narrated deck series, one per step | Planned |
 | Developer workbook with Lab 1 on fixtures and Lab 2 in a test subscription | Planned |
-| Training path | Planned |
+| Training path | Draft, November 13, 2026: [Azure Security Engineering](../../training/azure-security/index.md), five modules, each with a lab of this guide's checks in a test subscription |
 
 : The guide's pieces {.striped .hover}
 

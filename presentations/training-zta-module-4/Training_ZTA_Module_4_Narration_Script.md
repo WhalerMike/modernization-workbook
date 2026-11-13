@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 4: Reconcile, re-run and keep the evidence
 
-Welcome to Module 4 of The Zero Trust Assessment as Evidence: reconcile, re-run and keep the evidence. This module is a draft, awaiting the editor's review, so recheck it after the review. A single run is a reading. A program needs the readings over time, lined up with the other tools, and sealed so an assessor can check them months later. This module does all three. It covers Steps 9 and 10 of the Zero Trust Assessment implementation guide, takes about fifty minutes, and finishes the path.
+Welcome to Module 4 of The Zero Trust Assessment as Evidence: reconcile, re-run and keep the evidence. A single run is a reading. A program needs the readings over time, lined up with the other tools, and sealed so an assessor can check them months later. This module does all three. It covers Steps 9 and 10 of the Zero Trust Assessment implementation guide, takes about fifty minutes, and finishes the path.
 
 ## Slide 2 — Why: one run is a reading; a program needs three things
 

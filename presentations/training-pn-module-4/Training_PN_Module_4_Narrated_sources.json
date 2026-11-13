@@ -1,0 +1,158 @@
+[
+ {
+  "slide": 2,
+  "title": "OCI emails the address the tenancy was opened with",
+  "links": [
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "Why provider notices go unread",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#why-provider-notices-go-unread"
+   },
+   {
+    "text": "OCI Console Announcements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-console-announcements"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "One policy statement; list, then get for the details",
+  "links": [
+   {
+    "text": "OCI Announcements policy reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-announcements-policy-reference"
+   },
+   {
+    "text": "OCI CLI announcements list",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-announcements-list"
+   },
+   {
+    "text": "get",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-announcements-get"
+   },
+   {
+    "text": "Installing the OCI CLI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-install"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Announcement types become kinds; Oracle says act",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.html"
+   },
+   {
+    "text": "OCI CLI announcements list",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-announcements-list"
+   },
+   {
+    "text": "Announcement model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-announcement-model"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The latest in each chain, in the tenancy's realm",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.html"
+   },
+   {
+    "text": "Oracle US Government Cloud",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oracle-us-government-cloud"
+   },
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "Government clouds",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#government-clouds"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: four announcements, Oracle's own date",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: a rescheduled window stays one notice",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test tenancy, one policy, then delete it",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.html"
+   },
+   {
+    "text": "OCI CLI iam policy create",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-iam-policy-create"
+   },
+   {
+    "text": "delete",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-iam-policy-delete"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Dangers: inspect, chains, realms and the HR platform",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Gate G3",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Summary, and next: Module 5, AWS Health",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.html"
+   }
+  ]
+ }
+]

@@ -1,7 +1,7 @@
 ---
 title: "Learn Coverage Map"
-subtitle: "Every Microsoft Learn page on Windows Server identity and Microsoft Entra, and where the workbook covers it"
-description: "The Federal Modernization Workbook's map of every Microsoft Learn identity page, on the Windows Server side and the Microsoft Entra side, to the workbook pages that cite or cover it, with counts by area and the list of gaps."
+subtitle: "Every Microsoft Learn page on Windows Server identity, Microsoft Entra and the Windows Server release, security and SMB changes, and where the workbook covers it"
+description: "The Federal Modernization Workbook's map of every Microsoft Learn page on Windows Server identity, Microsoft Entra, and Windows Server releases, security and SMB, to the workbook pages that cite or cover it, with counts by area and the list of gaps."
 doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-09
@@ -11,16 +11,21 @@ last-reviewed: 2026-11-09
 ---
 # Learn Coverage Map {.unnumbered}
 
-The workbook leans on Microsoft Learn: an identity migration runs from Active Directory on Windows Server to Microsoft Entra, and Microsoft documents both sides. This page lists every Learn page in the two identity folders and says, for each one, where the workbook covers it. It makes two kinds of gap visible: a Learn topic the workbook should cover and doesn't, and a workbook page that covers a topic without linking Microsoft's own page for it.
+The workbook leans on Microsoft Learn: an identity migration runs from Active Directory on Windows Server to Microsoft Entra, and Microsoft documents both sides. This page lists every Learn page in the two identity folders, and in the three Windows Server folders that publish the release changes those identity systems run into (features removed, Kerberos, NTLM, TLS and SMB), and says, for each one, where the workbook covers it. It makes two kinds of gap visible: a Learn topic the workbook should cover and doesn't, and a workbook page that covers a topic without linking Microsoft's own page for it.
 
-The two sides are the Learn folders built from Microsoft's public documentation repositories:
+Each side is a Learn folder built from Microsoft's public documentation repositories:
 
 - **Windows Server identity**: [learn.microsoft.com/windows-server/identity](https://learn.microsoft.com/windows-server/identity/identity-and-access), built from `WindowsServerDocs/identity/` in [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowsserverdocs). Active Directory Domain Services, Federation Services, Certificate Services, Rights Management, Windows LAPS and the solution guides.
 - **Microsoft Entra**: [learn.microsoft.com/entra](https://learn.microsoft.com/entra/), built from `docs/` in [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs). The per-application SaaS tutorials (`docs/identity/saas-apps/`, one page per third-party application) are left out: each covers one vendor's single sign-on setup, not a practice the workbook teaches.
+- **Windows Server releases**: [learn.microsoft.com/windows-server/get-started](https://learn.microsoft.com/windows-server/get-started/), built from `WindowsServerDocs/get-started/` in [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowsserverdocs). What's new in each release, features removed or no longer developed, upgrades, activation and servicing.
+- **Windows Server security**: [learn.microsoft.com/windows-server/security](https://learn.microsoft.com/windows-server/security/security-and-assurance), built from `WindowsServerDocs/security/` in the same repository. Kerberos (including RC4 removal), NTLM, Windows authentication, TLS, credential protection and OSConfig. The guarded fabric and shielded virtual machine pages (`guarded-fabric-shielded-vm/`, a Hyper-V hosting design) and the GDPR page (`gdpr/`) are left out: the workbook doesn't build virtualization fabric, and GDPR isn't a federal requirement.
+- **Windows Server file server and SMB**: [learn.microsoft.com/windows-server/storage/file-server](https://learn.microsoft.com/windows-server/storage/file-server/file-server-smb-overview), built from `WindowsServerDocs/storage/file-server/` in the same repository. SMB signing, encryption, NTLM blocking, SMB1 and guest logons.
+
+Two kinds of Microsoft page aren't in the map. Windows client pages on learn.microsoft.com/windows (deprecated and removed features, Credential Guard) are built from a repository Microsoft doesn't publish, so the map can't list them; the workbook still cites them where it needs them. Microsoft Support articles (support.microsoft.com, the KB articles) aren't Learn pages, so they aren't in the map either; one cited in a footnote is checked each week by the [source watch](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/source_watch/README.md), like every other cited source.
 
 ## How to read it
 
-Each side has a table of counts by area, then one table per area. An area is the page's top folder on Learn (`ad-ds`, `ad-fs`, `laps`), or, under Entra's `identity/` folder, the folder below it (`hybrid`, `conditional-access`, `authentication`). Each row is one Learn page:
+Each side has a table of counts by area, then one table per area. An area is the page's top folder on Learn (`ad-ds`, `ad-fs`, `laps`, `kerberos`, `tls`; `general` for a page at the top of its folder), or, under Entra's `identity/` folder, the folder below it (`hybrid`, `conditional-access`, `authentication`). Each row is one Learn page:
 
 - **Learn page** links the page on Learn.
 - **Workbook home** links the workbook pages that cover it: first any a reviewer named, then the pages that cite it, published pages first. A file that isn't a published page (a kit script, a data file, a deck's narration) links to GitHub.
@@ -38,11 +43,11 @@ A citation counts wherever the workbook makes it: a book chapter, a guide, a tra
 
 ## How it's kept current
 
-The data lives in two files, one per side: [`data/learn-coverage/windows-server-identity.yml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/learn-coverage/windows-server-identity.yml) and [`data/learn-coverage/entra.yml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/learn-coverage/entra.yml). `scripts/learn_coverage.py` writes them and the tables on this page:
+The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/modernization-workbook/tree/main/data/learn-coverage), one file per side: `windows-server-identity.yml`, `entra.yml`, `windows-server-get-started.yml`, `windows-server-security.yml` and `windows-server-file-server.yml`. `scripts/learn_coverage.py` writes them and the tables on this page:
 
-- **Citations are automatic.** The pull request checks run `python scripts/learn_coverage.py --check` whenever a workbook file changes. A pull request that adds or removes a link to a Learn identity page fails the check until it carries the regenerated data and page (`python scripts/learn_coverage.py --offline`, which needs no network).
+- **Citations are automatic.** The pull request checks run `python scripts/learn_coverage.py --check` whenever a workbook file changes. A pull request that adds or removes a link to a page in one of these folders fails the check until it carries the regenerated data and page (`python scripts/learn_coverage.py --offline`, which needs no network).
 - **Coverage is reviewed by hand.** A reviewer sets `coverage`, `note` and, for a page covered without a citation, `workbook` (the workbook files that cover it) in the data file, then regenerates the page with the same command. The script keeps those fields on every run. A page that gains a citation becomes Cited; a Cited page that loses its last citation goes back to Not reviewed yet.
-- **New and retired Learn pages come from the weekly source watch.** Each Monday's [source watch](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/source_watch/README.md) compares the two folders with the previous week's and lists the pages Microsoft added or removed, under "New and retired Learn identity pages" in its issue. Running `python scripts/learn_coverage.py` (with network) then adds the new pages as Not reviewed yet and marks the removed ones gone, keeping them listed until someone moves their citations and deletes the entry.
+- **New and retired Learn pages come from the weekly source watch.** Each Monday's [source watch](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/source_watch/README.md) compares the folders with the previous week's and lists the pages Microsoft added or removed, under "New and retired Learn pages" in its issue. Running `python scripts/learn_coverage.py` (with network) then adds the new pages as Not reviewed yet and marks the removed ones gone, keeping them listed until someone moves their citations and deletes the entry.
 
 <!-- learn-coverage:begin (generated by scripts/learn_coverage.py from data/learn-coverage/; don't edit by hand) -->
 
@@ -52,7 +57,10 @@ The data lives in two files, one per side: [`data/learn-coverage/windows-server-
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
 | Microsoft Entra | 2,518 | 1,031 | 444 | 372 | 671 | 0 |
-| **Both sides** | 3,079 | 1,198 | 466 | 384 | 1,031 | 0 |
+| Windows Server releases | 44 | 4 | 4 | 7 | 29 | 0 |
+| Windows Server security | 47 | 7 | 16 | 10 | 14 | 0 |
+| Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
+| **All sides** | 3,196 | 1,212 | 487 | 412 | 1,085 | 0 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -3369,6 +3377,228 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Federate a SPIFFE/SPIRE workload identity](https://learn.microsoft.com/entra/workload-id/workload-identity-federation-spiffe-spire) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#managed-identities-and-workload-identity-federation); [Module 7: Convert to managed identities and federation](../training/non-person-identity/07-federation-and-managed-identities.md); and 1 more | Covered, not cited |
 | [Workload Identity Federation](https://learn.microsoft.com/entra/workload-id/workload-identity-federation) | [Book 01, Chapter 08 — The Access Plane](../books/b01-transformation-arc/08-access-plane.md); [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); and 8 more | Cited |
 
+## Windows Server releases {#windows-server-get-started}
+
+From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowsserverdocs), folder `WindowsServerDocs/get-started/`, at commit `cceb56b` (2026-11-13).
+
+| Area | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
+|---|---:|---:|---:|---:|---:|---:|
+| [general](#windows-server-get-started-general) | 44 | 4 | 4 | 7 | 29 | 0 |
+
+### general {#windows-server-get-started-general}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Rebuild the Tokens.dat file](https://learn.microsoft.com/windows-server/get-started/activation-rebuild-tokens-dat-file) | — | Out of scope |
+| [Slmgr.vbs Options for Obtaining Volume Activation Information](https://learn.microsoft.com/windows-server/get-started/activation-slmgr-vbs-options) | — | Out of scope |
+| [Guidelines for troubleshooting KMS](https://learn.microsoft.com/windows-server/get-started/activation-troubleshoot-kms-general) | — | Out of scope |
+| [KMS activation known issues](https://learn.microsoft.com/windows-server/get-started/activation-troubleshoot-kms-issues) | — | Out of scope |
+| [MAK activation known issues](https://learn.microsoft.com/windows-server/get-started/activation-troubleshoot-mak-issues) | — | Out of scope |
+| [Troubleshooting Windows volume activation](https://learn.microsoft.com/windows-server/get-started/activation-troubleshooting-guide) | — | Out of scope |
+| [What is Windows Server Annual Channel for Containers?](https://learn.microsoft.com/windows-server/get-started/annual-channel-for-containers) | — | Out of scope |
+| [Microsoft server applications compatibility for Windows Server](https://learn.microsoft.com/windows-server/get-started/application-compatibility) | — | Not covered |
+| [Automatic Virtual Machine Activation in Windows Server](https://learn.microsoft.com/windows-server/get-started/automatic-vm-activation) | — | Out of scope |
+| [What is Azure Edition for Windows Server?](https://learn.microsoft.com/windows-server/get-started/azure-edition) | — | Out of scope |
+| [Azure Hybrid Benefit for Windows Server](https://learn.microsoft.com/windows-server/get-started/azure-hybrid-benefit) | — | Out of scope |
+| [Guidelines for troubleshooting DNS-related activation issues](https://learn.microsoft.com/windows-server/get-started/common-troubleshooting-procedures-kms-dns) | — | Out of scope |
+| [Comparison of Windows Server editions](https://learn.microsoft.com/windows-server/get-started/editions-comparison) | — | Out of scope |
+| [Enable Hotpatch for Azure Arc-enabled servers](https://learn.microsoft.com/windows-server/get-started/enable-hotpatch-azure-arc-enabled-servers) | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md) | Cited |
+| [Enable Hotpatch for Azure Edition virtual machines](https://learn.microsoft.com/windows-server/get-started/enable-hotpatch-azure-edition) | — | Out of scope |
+| [Express updates for Windows Server 2016 re-enabled for November 2018 update](https://learn.microsoft.com/windows-server/get-started/express-updates) | — | Out of scope |
+| [How to get Extended Security Updates (ESU) for Windows Server 2012, and 2012 R2](https://learn.microsoft.com/windows-server/get-started/extended-security-updates-deploy) | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md); [Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph](../training/ms-automation-arc.md) | Covered, not cited |
+| [Overview of Extended Security Updates for Windows Server 2012, and 2012 R2](https://learn.microsoft.com/windows-server/get-started/extended-security-updates-overview) | [Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph](../training/ms-automation-arc.md); [`examples/ms-automation/arc-lifecycle.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/ms-automation/arc-lifecycle.json) | Cited |
+| [Get started with Windows Server Insiders Preview](https://learn.microsoft.com/windows-server/get-started/get-started-with-windows-server-insiders-preview) | — | Out of scope |
+| [Hardware Requirements for Windows Server](https://learn.microsoft.com/windows-server/get-started/hardware-requirements) | — | Not covered |
+| [Hotpatch for Windows Server](https://learn.microsoft.com/windows-server/get-started/hotpatch) | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md); [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md) | Covered, not cited |
+| [Windows Server get started documentation](https://learn.microsoft.com/windows-server/get-started) | — | Out of scope |
+| [Server Core vs Server with Desktop Experience install options](https://learn.microsoft.com/windows-server/get-started/install-options-server-core-desktop-experience) | — | Out of scope |
+| [Plan Your Windows Server Upgrade Path](https://learn.microsoft.com/windows-server/get-started/install-upgrade-migrate) | — | Not covered |
+| [Install Windows Server from installation media](https://learn.microsoft.com/windows-server/get-started/install-windows-server) | — | Out of scope |
+| [Key Management Services (KMS) activation planning for Windows Server](https://learn.microsoft.com/windows-server/get-started/kms-activation-planning) | — | Out of scope |
+| [Key Management Services (KMS) client activation and product keys](https://learn.microsoft.com/windows-server/get-started/kms-client-activation-keys) | — | Out of scope |
+| [Create a Key Management Services (KMS) Activation Host in Windows Server](https://learn.microsoft.com/windows-server/get-started/kms-create-host) | — | Out of scope |
+| [KMS Hardware-Secured Activation in Windows Server](https://learn.microsoft.com/windows-server/get-started/kms-hardware-secured) | — | Out of scope |
+| [Replace a KMS host in Windows Server](https://learn.microsoft.com/windows-server/get-started/kms-replace-host) | — | Out of scope |
+| [Locks and limits in Windows Server](https://learn.microsoft.com/windows-server/get-started/locks-limits) | — | Out of scope |
+| [What is Windows Server?](https://learn.microsoft.com/windows-server/get-started/overview) | — | Out of scope |
+| [Features Removed or No Longer Developed in Windows Server](https://learn.microsoft.com/windows-server/get-started/removed-deprecated-features-windows-server) | [Book 00, Chapter 06 — The Complementary Projects](../books/b00-orientation/06-the-project-portfolio.md); [Book 01, Chapter 04 — Identity Transformation](../books/b01-transformation-arc/04-identity-transformation.md); and 9 more | Cited |
+| [Release Notes - Important Issues in Windows Server, version 1803](https://learn.microsoft.com/windows-server/get-started/server-1803-release-notes) | — | Out of scope |
+| [Install Server Core Application Compatibility Feature on Demand](https://learn.microsoft.com/windows-server/get-started/server-core-app-compatibility-feature-on-demand) | — | Out of scope |
+| [Windows Server Servicing Channels](https://learn.microsoft.com/windows-server/get-started/servicing-channels-comparison) | [Book 01, Chapter 03 — The Platform Foundation](../books/b01-transformation-arc/03-platform-foundation.md) | Covered, not cited |
+| [Convert Windows Server editions and license types](https://learn.microsoft.com/windows-server/get-started/upgrade-conversion-options) | — | Out of scope |
+| [Upgrade Windows Server in Place](https://learn.microsoft.com/windows-server/get-started/upgrade-in-place) | — | Not covered |
+| [Upgrade and migrate roles and features in Windows Server](https://learn.microsoft.com/windows-server/get-started/upgrade-migrate-roles-features) | — | Not covered |
+| [What's new in Windows Server 2016](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2016) | — | Out of scope |
+| [What's new in Windows Server 2019](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2019) | — | Not covered |
+| [What's New in Windows Server 2022](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2022) | — | Not covered |
+| [What's new in Windows Server 2025](https://learn.microsoft.com/windows-server/get-started/whats-new-windows-server-2025) | [Book 01, Chapter 01 — Why Modernization Is Hard](../books/b01-transformation-arc/01-why-modernization-is-hard.md); [Book 01, Chapter 02 — The Problem: Governance Hidden in the Directory](../books/b01-transformation-arc/02-the-problem.md); and 10 more | Cited |
+| [Configure Windows Server Pay-as-you-go with Azure Arc](https://learn.microsoft.com/windows-server/get-started/windows-server-pay-as-you-go) | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md) | Covered, not cited |
+
+## Windows Server security {#windows-server-security}
+
+From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowsserverdocs), folder `WindowsServerDocs/security/`, without `WindowsServerDocs/security/guarded-fabric-shielded-vm/`, `WindowsServerDocs/security/gdpr/`, at commit `cceb56b` (2026-11-13).
+
+| Area | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
+|---|---:|---:|---:|---:|---:|---:|
+| [credentials-protection-and-management](#windows-server-security-credentials-protection-and-management) | 4 | 1 | 0 | 2 | 1 | 0 |
+| [general](#windows-server-security-general) | 7 | 0 | 1 | 1 | 5 | 0 |
+| [kerberos](#windows-server-security-kerberos) | 10 | 5 | 1 | 3 | 1 | 0 |
+| [osconfig](#windows-server-security-osconfig) | 3 | 0 | 0 | 3 | 0 | 0 |
+| [tls](#windows-server-security-tls) | 8 | 0 | 5 | 0 | 3 | 0 |
+| [token-binding](#windows-server-security-token-binding) | 1 | 0 | 0 | 0 | 1 | 0 |
+| [user-account-control](#windows-server-security-user-account-control) | 2 | 0 | 0 | 0 | 2 | 0 |
+| [windows-authentication](#windows-server-security-windows-authentication) | 10 | 1 | 8 | 0 | 1 | 0 |
+| [windows-defender](#windows-server-security-windows-defender) | 1 | 0 | 1 | 0 | 0 | 0 |
+| [windows-services](#windows-server-security-windows-services) | 1 | 0 | 0 | 1 | 0 | 0 |
+
+### credentials-protection-and-management {#windows-server-security-credentials-protection-and-management}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Authentication Policies and Authentication Policy Silos](https://learn.microsoft.com/windows-server/security/credentials-protection-and-management/authentication-policies-and-authentication-policy-silos) | — | Not covered |
+| [Configure added LSA protection](https://learn.microsoft.com/windows-server/security/credentials-protection-and-management/configuring-additional-lsa-protection) | — | Not covered |
+| [Credentials Protection and Management](https://learn.microsoft.com/windows-server/security/credentials-protection-and-management/credentials-protection-and-management) | — | Out of scope |
+| [Protected Users Security Group in Windows Server](https://learn.microsoft.com/windows-server/security/credentials-protection-and-management/protected-users-security-group) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 04, Chapter 04 — Privileged Roles and Tiers](../books/b04-access/04-privileged-roles-and-tiers.md) | Cited |
+
+### general {#windows-server-security-general}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Authority Information Access in Windows](https://learn.microsoft.com/windows-server/security/authority-information-access-retrieval) | [Book 07, Chapter 04 — The Target PKI: Cloud PKI, AD CS and Federal PKI](../books/b07-pki/04-the-target-pki.md); [Book 07, Chapter 02 — What AD CS Holds Up](../books/b07-pki/02-what-ad-cs-holds-up.md) | Covered, not cited |
+| [Configure Secured-core server for Windows Server](https://learn.microsoft.com/windows-server/security/configure-secured-core-server) | — | Out of scope |
+| [Device Health Attestation](https://learn.microsoft.com/windows-server/security/device-health-attestation) | — | Out of scope |
+| [Kernel Mode Hardware-enforced Stack Protection](https://learn.microsoft.com/windows-server/security/kernel-mode-hardware-stack-protection) | — | Out of scope |
+| [RPC Interface Restriction for Windows Server](https://learn.microsoft.com/windows-server/security/rpc-interface-restrict) | — | Not covered |
+| [What is Secured-core server for Windows Server](https://learn.microsoft.com/windows-server/security/secured-core-server) | — | Out of scope |
+| [Windows Server Security documentation](https://learn.microsoft.com/windows-server/security/security-and-assurance) | — | Out of scope |
+
+### kerberos {#windows-server-security-kerberos}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Configuring Kerberos for IP Address](https://learn.microsoft.com/windows-server/security/kerberos/configuring-kerberos-over-ip) | — | Not covered |
+| [Detect and Remediate RC4 Usage in Kerberos](https://learn.microsoft.com/windows-server/security/kerberos/detect-remediate-rc4-kerberos) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md); [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md) | Cited |
+| [Domain-joined Device Public Key Authentication](https://learn.microsoft.com/windows-server/security/kerberos/domain-joined-device-public-key-authentication) | — | Not covered |
+| [Kerberos authentication overview in Windows Server](https://learn.microsoft.com/windows-server/security/kerberos/kerberos-authentication-overview) | [Book 01, Chapter 04 — Identity Transformation](../books/b01-transformation-arc/04-identity-transformation.md); [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md); and 1 more | Cited |
+| [Kerberos Constrained Delegation Overview in Windows Server](https://learn.microsoft.com/windows-server/security/kerberos/kerberos-constrained-delegation-overview) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 02, Appendix B — Forest Assessment Module](../books/b02-identity/appendix-b-forest-assessment-module.md); and 1 more | Cited |
+| [NTLM overview in Windows Server](https://learn.microsoft.com/windows-server/security/kerberos/ntlm-overview) | [Book 00, Chapter 04 — The Modernization Principles](../books/b00-orientation/04-the-principles.md); [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md); and 3 more | Cited |
+| [Passwords Overview](https://learn.microsoft.com/windows-server/security/kerberos/passwords-overview) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Covered, not cited |
+| [Passwords technical overview](https://learn.microsoft.com/windows-server/security/kerberos/passwords-technical-overview) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Cited |
+| [Preventing Kerberos change password that use RC4 secret keys](https://learn.microsoft.com/windows-server/security/kerberos/preventing-kerberos-change-password-that-uses-rc4-secret-keys) | — | Not covered |
+| [System key utility technical overview](https://learn.microsoft.com/windows-server/security/kerberos/system-key-utility-technical-overview) | — | Out of scope |
+
+### osconfig {#windows-server-security-osconfig}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Configure App Control policies in Windows Server](https://learn.microsoft.com/windows-server/security/osconfig/osconfig-how-to-configure-app-control-for-business) | — | Not covered |
+| [Configure Security Baselines for Windows Server 2025](https://learn.microsoft.com/windows-server/security/osconfig/osconfig-how-to-configure-security-baselines) | — | Not covered |
+| [OSConfig Overview for Windows Server](https://learn.microsoft.com/windows-server/security/osconfig/osconfig-overview) | — | Not covered |
+
+### tls {#windows-server-security-tls}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Datagram Transport Layer Security protocol](https://learn.microsoft.com/windows-server/security/tls/datagram-transport-layer-security-protocol) | — | Out of scope |
+| [Manage Transport Layer Security (TLS) in Windows Server](https://learn.microsoft.com/windows-server/security/tls/manage-tls) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
+| [Schannel Security Support Provider Technical Reference](https://learn.microsoft.com/windows-server/security/tls/schannel-security-support-provider-technical-reference) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
+| [Transport Layer Security (TLS) registry settings](https://learn.microsoft.com/windows-server/security/tls/tls-registry-settings) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
+| [TLS (Schannel SSP)](https://learn.microsoft.com/windows-server/security/tls/tls-schannel-ssp-changes-in-windows-10-and-windows-server) | — | Out of scope |
+| [TLS/SSL overview (Schannel SSP)](https://learn.microsoft.com/windows-server/security/tls/tls-ssl-schannel-ssp-overview) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
+| [Transport Layer Security protocol](https://learn.microsoft.com/windows-server/security/tls/transport-layer-security-protocol) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
+| [TLS - SSL (Schannel SSP) Overview](https://learn.microsoft.com/windows-server/security/tls/what-s-new-in-tls-ssl-schannel-ssp-overview) | — | Out of scope |
+
+### token-binding {#windows-server-security-token-binding}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Introducing Token Binding](https://learn.microsoft.com/windows-server/security/token-binding/introducing-token-binding) | — | Out of scope |
+
+### user-account-control {#windows-server-security-user-account-control}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [How User Account Control Works](https://learn.microsoft.com/windows-server/security/user-account-control/how-user-account-control-works) | — | Out of scope |
+| [User Account Control Overview](https://learn.microsoft.com/windows-server/security/user-account-control/user-account-control-overview) | — | Out of scope |
+
+### windows-authentication {#windows-server-security-windows-authentication}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Credentials Processes in Windows Authentication](https://learn.microsoft.com/windows-server/security/windows-authentication/credentials-processes-in-windows-authentication) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Covered, not cited |
+| [Group Policy Settings Used in Windows Authentication](https://learn.microsoft.com/windows-server/security/windows-authentication/group-policy-settings-used-in-windows-authentication) | [Book 06, Runbook R06 — NTLM Detection & Remediation](../books/b06-data-platform/r06-ntlm-detection-and-remediation.md) | Covered, not cited |
+| [How to Configure Protected Accounts](https://learn.microsoft.com/windows-server/security/windows-authentication/how-to-configure-protected-accounts) | [Book 04, Chapter 04 — Privileged Roles and Tiers](../books/b04-access/04-privileged-roles-and-tiers.md) | Covered, not cited |
+| [Security Support Provider Interface Architecture](https://learn.microsoft.com/windows-server/security/windows-authentication/security-support-provider-interface-architecture) | [Book 01, Chapter 02 — The Problem: Governance Hidden in the Directory](../books/b01-transformation-arc/02-the-problem.md); [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Cited |
+| [Windows Authentication Architecture](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-authentication-architecture) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Covered, not cited |
+| [Windows Authentication Concepts](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-authentication-concepts) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Covered, not cited |
+| [Windows Authentication Overview](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-authentication-overview) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Covered, not cited |
+| [Windows Authentication Technical Overview](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-authentication-technical-overview) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Covered, not cited |
+| [Windows Logon Scenarios](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-logon-scenarios) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Covered, not cited |
+| [Winlogon Automatic Restart Sign-On (ARSO)](https://learn.microsoft.com/windows-server/security/windows-authentication/winlogon-automatic-restart-sign-on-arso) | — | Out of scope |
+
+### windows-defender {#windows-server-security-windows-defender}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Windows Defender Overview for Windows Server](https://learn.microsoft.com/windows-server/security/windows-defender/windows-defender-overview-windows-server) | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md); [Defender XDR Engineering & Operations: An Implementation Guide](../books/guides/defender-xdr-implementation.md) | Covered, not cited |
+
+### windows-services {#windows-server-security-windows-services}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Security guidelines for system services in Windows Server 2016](https://learn.microsoft.com/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server) | — | Not covered |
+
+## Windows Server file server and SMB {#windows-server-file-server}
+
+From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowsserverdocs), folder `WindowsServerDocs/storage/file-server/`, at commit `cceb56b` (2026-11-13).
+
+| Area | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
+|---|---:|---:|---:|---:|---:|---:|
+| [best-practices-analyzer](#windows-server-file-server-best-practices-analyzer) | 1 | 0 | 0 | 0 | 1 | 0 |
+| [general](#windows-server-file-server-general) | 21 | 2 | 0 | 10 | 9 | 0 |
+| [troubleshoot](#windows-server-file-server-troubleshoot) | 4 | 1 | 1 | 1 | 1 | 0 |
+
+### best-practices-analyzer {#windows-server-file-server-best-practices-analyzer}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [SMB - File and printer sharing ports should be open](https://learn.microsoft.com/windows-server/storage/file-server/best-practices-analyzer/smb-open-file-sharing-ports) | — | Out of scope |
+
+### general {#windows-server-file-server-general}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Configure SMB authentication rate limiter for Windows](https://learn.microsoft.com/windows-server/storage/file-server/configure-smb-authentication-rate-limiter) | — | Not covered |
+| [Configure the SMB client to require encryption in Windows](https://learn.microsoft.com/windows-server/storage/file-server/configure-smb-client-require-encryption) | — | Not covered |
+| [Configure SMB over QUIC client access control in Windows Server](https://learn.microsoft.com/windows-server/storage/file-server/configure-smb-over-quic-client-access-control) | — | Out of scope |
+| [Using Disk Cleanup on Windows Server](https://learn.microsoft.com/windows-server/storage/file-server/disk-cleanup) | — | Out of scope |
+| [Enable insecure guest logons in SMB2 and SMB3 for Windows client and Windows Server](https://learn.microsoft.com/windows-server/storage/file-server/enable-insecure-guest-logons-smb2-and-smb3) | — | Not covered |
+| [What is SMB File Sharing for Windows and Windows Server?](https://learn.microsoft.com/windows-server/storage/file-server/file-server-smb-overview) | — | Not covered |
+| [Manage SMB dialects in Windows and Windows Server 2025](https://learn.microsoft.com/windows-server/storage/file-server/manage-smb-dialects) | — | Not covered |
+| [NTFS overview](https://learn.microsoft.com/windows-server/storage/file-server/ntfs-overview) | — | Out of scope |
+| [SMB Compression](https://learn.microsoft.com/windows-server/storage/file-server/smb-compression) | — | Out of scope |
+| [Improve performance of a file server with SMB Direct](https://learn.microsoft.com/windows-server/storage/file-server/smb-direct) | — | Out of scope |
+| [SMB features in Windows and Windows Server](https://learn.microsoft.com/windows-server/storage/file-server/smb-feature-descriptions) | — | Out of scope |
+| [Protect SMB traffic from interception](https://learn.microsoft.com/windows-server/storage/file-server/smb-interception-defense) | — | Not covered |
+| [Block NTLM connections on SMB in Windows Server 2025](https://learn.microsoft.com/windows-server/storage/file-server/smb-ntlm-blocking) | — | Not covered |
+| [SMB over QUIC](https://learn.microsoft.com/windows-server/storage/file-server/smb-over-quic) | — | Out of scope |
+| [Configure alternative SMB ports for Windows Server 2025](https://learn.microsoft.com/windows-server/storage/file-server/smb-ports) | — | Out of scope |
+| [Secure SMB Traffic in Windows Server](https://learn.microsoft.com/windows-server/storage/file-server/smb-secure-traffic) | — | Not covered |
+| [SMB security hardening in Windows Server and Windows Client](https://learn.microsoft.com/windows-server/storage/file-server/smb-security-hardening) | — | Not covered |
+| [SMB Security Enhancements](https://learn.microsoft.com/windows-server/storage/file-server/smb-security) | — | Not covered |
+| [Overview of Server Message Block signing in Windows](https://learn.microsoft.com/windows-server/storage/file-server/smb-signing-overview) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md) | Cited |
+| [Control SMB signing behavior](https://learn.microsoft.com/windows-server/storage/file-server/smb-signing) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md) | Cited |
+| [Volume Shadow Copy Service (VSS)](https://learn.microsoft.com/windows-server/storage/file-server/volume-shadow-copy-service) | — | Out of scope |
+
+### troubleshoot {#windows-server-file-server-troubleshoot}
+
+| Learn page | Workbook home | Coverage |
+|---|---|---|
+| [Detect, enable, and disable SMBv1, SMBv2, and SMBv3 in Windows](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3) | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md) | Covered, not cited |
+| [SMB known issues](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/smb-known-issues) | — | Not covered |
+| [SMBv1 Not Installed by Default in Windows Server and Windows](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/smbv1-not-installed-by-default-in-windows) | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md); [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md) | Cited |
+| [Advanced Troubleshooting Server Message Block (SMB)](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/troubleshooting-smb) | — | Out of scope |
+
 ## Gaps {#gaps}
 
 Pages a reviewer marked **not covered** (the workbook should cover the topic and doesn't) or **covered, not cited** (a workbook page covers the topic but doesn't link the Learn page).
@@ -3761,6 +3991,34 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Tutorial - Configure Microsoft Entra Verified ID verifier](https://learn.microsoft.com/entra/verified-id/verifiable-credentials-configure-verifier) | Microsoft Entra, verified-id | — | Verified ID tenant setup and credential operations; only needed if the program adopts Verified ID |
 | [Frequently asked questions - Microsoft Entra Verified ID](https://learn.microsoft.com/entra/verified-id/verifiable-credentials-faq) | Microsoft Entra, verified-id | — | Verified ID for identity proofing and remote onboarding; workbook cites only the verified help desk pattern (Book 15 Ch03); check government-cloud availability |
 | [Microsoft Entra Verified ID-supported standards](https://learn.microsoft.com/entra/verified-id/verifiable-credentials-standards) | Microsoft Entra, verified-id | — | Verified ID for identity proofing and remote onboarding; workbook cites only the verified help desk pattern (Book 15 Ch03); check government-cloud availability |
+| [Microsoft server applications compatibility for Windows Server](https://learn.microsoft.com/windows-server/get-started/application-compatibility) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
+| [Hardware Requirements for Windows Server](https://learn.microsoft.com/windows-server/get-started/hardware-requirements) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
+| [Plan Your Windows Server Upgrade Path](https://learn.microsoft.com/windows-server/get-started/install-upgrade-migrate) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
+| [Upgrade Windows Server in Place](https://learn.microsoft.com/windows-server/get-started/upgrade-in-place) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
+| [Upgrade and migrate roles and features in Windows Server](https://learn.microsoft.com/windows-server/get-started/upgrade-migrate-roles-features) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
+| [What's new in Windows Server 2019](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2019) | Windows Server releases, general | — | Low priority: cite when a page relies on a 2019 feature (2019 is the program minimum) |
+| [What's New in Windows Server 2022](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2022) | Windows Server releases, general | — | Low priority: cite when a page relies on a 2022 feature |
+| [Authentication Policies and Authentication Policy Silos](https://learn.microsoft.com/windows-server/security/credentials-protection-and-management/authentication-policies-and-authentication-policy-silos) | Windows Server security, credentials-protection-and-management | — | Restricting Tier 0 accounts to Tier 0 hosts; would fit Book 04 Chapter 04 beside Protected Users |
+| [Configure added LSA protection](https://learn.microsoft.com/windows-server/security/credentials-protection-and-management/configuring-additional-lsa-protection) | Windows Server security, credentials-protection-and-management | — | LSA protection is only mentioned in passing; would fit the endpoint security settings in Book 05 Chapter 08 beside Credential Guard |
+| [Configuring Kerberos for IP Address](https://learn.microsoft.com/windows-server/security/kerberos/configuring-kerberos-over-ip) | Windows Server security, kerberos | — | Book 06 Chapter 01 names IP-address access as an NTLM fallback; the Kerberos-for-IP fix isn't given |
+| [Domain-joined Device Public Key Authentication](https://learn.microsoft.com/windows-server/security/kerberos/domain-joined-device-public-key-authentication) | Windows Server security, kerberos | — | Device certificate (PKINIT) sign-in to domain controllers; not covered |
+| [Preventing Kerberos change password that use RC4 secret keys](https://learn.microsoft.com/windows-server/security/kerberos/preventing-kerberos-change-password-that-uses-rc4-secret-keys) | Windows Server security, kerberos | — | Part of the RC4 gap: no RC4 remediation procedure yet |
+| [Configure App Control policies in Windows Server](https://learn.microsoft.com/windows-server/security/osconfig/osconfig-how-to-configure-app-control-for-business) | Windows Server security, osconfig | — | App Control on Windows Server 2025 through OSConfig; not covered |
+| [Configure Security Baselines for Windows Server 2025](https://learn.microsoft.com/windows-server/security/osconfig/osconfig-how-to-configure-security-baselines) | Windows Server security, osconfig | — | Windows Server 2025 security baseline through OSConfig; would fit Book 12 Chapter 07 |
+| [OSConfig Overview for Windows Server](https://learn.microsoft.com/windows-server/security/osconfig/osconfig-overview) | Windows Server security, osconfig | — | OSConfig sets the Windows Server 2025 security baseline; the server baseline (Book 12 Chapter 07) doesn't use it yet |
+| [RPC Interface Restriction for Windows Server](https://learn.microsoft.com/windows-server/security/rpc-interface-restrict) | Windows Server security, general | — | Windows Server 2025 RPC hardening; would fit beside the server baseline in Book 12 Chapter 07 |
+| [Security guidelines for system services in Windows Server 2016](https://learn.microsoft.com/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server) | Windows Server security, windows-services | — | Service-disable guidance (Print Spooler on domain controllers) would fit the Tier 0 hardening in Book 04 Chapter 04; written for 2016 |
+| [Configure SMB authentication rate limiter for Windows](https://learn.microsoft.com/windows-server/storage/file-server/configure-smb-authentication-rate-limiter) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
+| [Configure the SMB client to require encryption in Windows](https://learn.microsoft.com/windows-server/storage/file-server/configure-smb-client-require-encryption) | Windows Server file server and SMB, general | — | Book 09 Chapter 03 lists unencrypted SMB as an SC-8 exposure; requiring SMB encryption isn't shown |
+| [Enable insecure guest logons in SMB2 and SMB3 for Windows client and Windows Server](https://learn.microsoft.com/windows-server/storage/file-server/enable-insecure-guest-logons-smb2-and-smb3) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
+| [What is SMB File Sharing for Windows and Windows Server?](https://learn.microsoft.com/windows-server/storage/file-server/file-server-smb-overview) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
+| [Manage SMB dialects in Windows and Windows Server 2025](https://learn.microsoft.com/windows-server/storage/file-server/manage-smb-dialects) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
+| [Protect SMB traffic from interception](https://learn.microsoft.com/windows-server/storage/file-server/smb-interception-defense) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
+| [Block NTLM connections on SMB in Windows Server 2025](https://learn.microsoft.com/windows-server/storage/file-server/smb-ntlm-blocking) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
+| [Secure SMB Traffic in Windows Server](https://learn.microsoft.com/windows-server/storage/file-server/smb-secure-traffic) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
+| [SMB security hardening in Windows Server and Windows Client](https://learn.microsoft.com/windows-server/storage/file-server/smb-security-hardening) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
+| [SMB Security Enhancements](https://learn.microsoft.com/windows-server/storage/file-server/smb-security) | Windows Server file server and SMB, general | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
+| [SMB known issues](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/smb-known-issues) | Windows Server file server and SMB, troubleshoot | — | SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07 |
 
 ### Covered, not cited {#gaps-covered-uncited}
 
@@ -4232,5 +4490,26 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Migrate GitHub Actions federated credentials to immutable subjects](https://learn.microsoft.com/entra/workload-id/workload-identities-github-immutable-subjects) | Microsoft Entra, workload-id | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#managed-identities-and-workload-identity-federation); [Module 7: Convert to managed identities and federation](../training/non-person-identity/07-federation-and-managed-identities.md); and 1 more | Workload identity federation and credential hygiene: Book 04 Ch05, Non-Person Identity Ch07 |
 | [Block workload identity federation using Azure Policy](https://learn.microsoft.com/entra/workload-id/workload-identity-federation-block-using-azure-policy) | Microsoft Entra, workload-id | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#managed-identities-and-workload-identity-federation); [Module 7: Convert to managed identities and federation](../training/non-person-identity/07-federation-and-managed-identities.md); and 1 more | Workload identity federation and credential hygiene: Book 04 Ch05, Non-Person Identity Ch07 |
 | [Federate a SPIFFE/SPIRE workload identity](https://learn.microsoft.com/entra/workload-id/workload-identity-federation-spiffe-spire) | Microsoft Entra, workload-id | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#managed-identities-and-workload-identity-federation); [Module 7: Convert to managed identities and federation](../training/non-person-identity/07-federation-and-managed-identities.md); and 1 more | Workload identity federation and credential hygiene: Book 04 Ch05, Non-Person Identity Ch07 |
+| [How to get Extended Security Updates (ESU) for Windows Server 2012, and 2012 R2](https://learn.microsoft.com/windows-server/get-started/extended-security-updates-deploy) | Windows Server releases, general | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md); [Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph](../training/ms-automation-arc.md) | ESU enrollment through Azure Arc |
+| [Hotpatch for Windows Server](https://learn.microsoft.com/windows-server/get-started/hotpatch) | Windows Server releases, general | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md); [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md) | Hotpatch on Arc-enabled servers |
+| [Windows Server Servicing Channels](https://learn.microsoft.com/windows-server/get-started/servicing-channels-comparison) | Windows Server releases, general | [Book 01, Chapter 03 — The Platform Foundation](../books/b01-transformation-arc/03-platform-foundation.md) | The platform host runs the LTSC release |
+| [Configure Windows Server Pay-as-you-go with Azure Arc](https://learn.microsoft.com/windows-server/get-started/windows-server-pay-as-you-go) | Windows Server releases, general | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md) | Pay-as-you-go licensing for Arc servers is named as one way to attest licensing |
+| [Authority Information Access in Windows](https://learn.microsoft.com/windows-server/security/authority-information-access-retrieval) | Windows Server security, general | [Book 07, Chapter 04 — The Target PKI: Cloud PKI, AD CS and Federal PKI](../books/b07-pki/04-the-target-pki.md); [Book 07, Chapter 02 — What AD CS Holds Up](../books/b07-pki/02-what-ad-cs-holds-up.md) | AIA publication and retrieval for the CA hierarchy |
+| [Passwords Overview](https://learn.microsoft.com/windows-server/security/kerberos/passwords-overview) | Windows Server security, kerberos | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows password storage and use, as background for the NTLM work (the technical overview is cited) |
+| [Manage Transport Layer Security (TLS) in Windows Server](https://learn.microsoft.com/windows-server/security/tls/manage-tls) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
+| [Schannel Security Support Provider Technical Reference](https://learn.microsoft.com/windows-server/security/tls/schannel-security-support-provider-technical-reference) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
+| [Transport Layer Security (TLS) registry settings](https://learn.microsoft.com/windows-server/security/tls/tls-registry-settings) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
+| [TLS/SSL overview (Schannel SSP)](https://learn.microsoft.com/windows-server/security/tls/tls-ssl-schannel-ssp-overview) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
+| [Transport Layer Security protocol](https://learn.microsoft.com/windows-server/security/tls/transport-layer-security-protocol) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
+| [Credentials Processes in Windows Authentication](https://learn.microsoft.com/windows-server/security/windows-authentication/credentials-processes-in-windows-authentication) | Windows Server security, windows-authentication | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows authentication: SSPI, Kerberos, NTLM and logon processes, as background for the NTLM work |
+| [Group Policy Settings Used in Windows Authentication](https://learn.microsoft.com/windows-server/security/windows-authentication/group-policy-settings-used-in-windows-authentication) | Windows Server security, windows-authentication | [Book 06, Runbook R06 — NTLM Detection & Remediation](../books/b06-data-platform/r06-ntlm-detection-and-remediation.md) | The NTLM restriction policies are set step by step in the NTLM remediation runbook |
+| [How to Configure Protected Accounts](https://learn.microsoft.com/windows-server/security/windows-authentication/how-to-configure-protected-accounts) | Windows Server security, windows-authentication | [Book 04, Chapter 04 — Privileged Roles and Tiers](../books/b04-access/04-privileged-roles-and-tiers.md) | Protected Users is covered; authentication policy silos aren't (see that page) |
+| [Windows Authentication Architecture](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-authentication-architecture) | Windows Server security, windows-authentication | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows authentication: SSPI, Kerberos, NTLM and logon processes, as background for the NTLM work |
+| [Windows Authentication Concepts](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-authentication-concepts) | Windows Server security, windows-authentication | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows authentication: SSPI, Kerberos, NTLM and logon processes, as background for the NTLM work |
+| [Windows Authentication Overview](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-authentication-overview) | Windows Server security, windows-authentication | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows authentication: SSPI, Kerberos, NTLM and logon processes, as background for the NTLM work |
+| [Windows Authentication Technical Overview](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-authentication-technical-overview) | Windows Server security, windows-authentication | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows authentication: SSPI, Kerberos, NTLM and logon processes, as background for the NTLM work |
+| [Windows Logon Scenarios](https://learn.microsoft.com/windows-server/security/windows-authentication/windows-logon-scenarios) | Windows Server security, windows-authentication | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows authentication: SSPI, Kerberos, NTLM and logon processes, as background for the NTLM work |
+| [Windows Defender Overview for Windows Server](https://learn.microsoft.com/windows-server/security/windows-defender/windows-defender-overview-windows-server) | Windows Server security, windows-defender | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md); [Defender XDR Engineering & Operations: An Implementation Guide](../books/guides/defender-xdr-implementation.md) | Defender on servers through Defender for Servers and the Defender XDR guide |
+| [Detect, enable, and disable SMBv1, SMBv2, and SMBv3 in Windows](https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3) | Windows Server file server and SMB, troubleshoot | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md) | The server baseline sets the SMB v1 client driver off |
 
 <!-- learn-coverage:end -->

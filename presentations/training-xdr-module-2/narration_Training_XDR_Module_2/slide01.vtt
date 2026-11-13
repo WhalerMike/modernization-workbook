@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.559
+Welcome to Module 2 of Defender
+X D R Engineering and Operations:
+
+2
+00:00:04.559 --> 00:00:07.537
+prevention and Attack Surface Reduction.
+
+3
+00:00:07.537 --> 00:00:11.610
+A setting in a policy protects nothing
+until it's enforced on the device,
+
+4
+00:00:11.610 --> 00:00:15.475
+and enforcing it all at once breaks
+the applications nobody listed.
+
+5
+00:00:15.475 --> 00:00:19.021
+In this module you learn the
+order of the prevention settings,
+
+6
+00:00:19.021 --> 00:00:23.749
+which of them have an audit mode, how Attack
+Surface Reduction moves through audit,
+
+7
+00:00:23.749 --> 00:00:26.460
+warn and block, ring by
+ring, and how to prove each
+
+8
+00:00:26.460 --> 00:00:29.450
+setting on the device rather
+than trusting a report.
+
+9
+00:00:29.450 --> 00:00:34.700
+The module covers Steps 3 and 4 of the
+Defender X D R implementation guide.
+
+10
+00:00:34.700 --> 00:00:38.930
+It takes about fifty minutes, plus
+Lab 2 in your own test tenant.

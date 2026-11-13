@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.025
+Lab 2 runs the guide's validate queries
+in a test tenant, never production.
+
+2
+00:00:05.025 --> 00:00:08.025
+The authors haven't run
+them, as the page says.
+
+3
+00:00:08.025 --> 00:00:11.150
+Every step reads; nothing
+in the tenant changes.
+
+4
+00:00:11.150 --> 00:00:15.508
+You need Module 1's test tenant and
+reader account, with vulnerability data
+
+5
+00:00:15.508 --> 00:00:19.725
+from at least one onboarded device,
+and at least one incident in the queue.
+
+6
+00:00:19.725 --> 00:00:22.437
+Module 1's detection test raises one.
+
+7
+00:00:22.437 --> 00:00:24.863
+Step one connects in the tenant's cloud.
+
+8
+00:00:24.863 --> 00:00:28.460
+Step two files the high and
+critical vulnerabilities,
+
+9
+00:00:28.460 --> 00:00:31.338
+by vendor, software
+and recommended update.
+
+10
+00:00:31.338 --> 00:00:35.526
+One caution the guide records: Learn's
+table reference doesn't list the
+
+11
+00:00:35.526 --> 00:00:40.149
+severity strings, so the guide uses
+critical and high as the portal shows them.
+
+12
+00:00:40.149 --> 00:00:44.562
+If the file comes back empty, check the
+values in your tenant before you trust it.
+
+13
+00:00:44.562 --> 00:00:48.934
+Step three files the exposed and
+internet-facing Windows devices,
+
+14
+00:00:48.934 --> 00:00:51.637
+with their asset value and machine group.
+
+15
+00:00:51.637 --> 00:00:54.366
+The guide's pass: every
+row has an owner in the
+
+16
+00:00:54.366 --> 00:00:57.840
+decision record and a ticket
+in the remediation queue.

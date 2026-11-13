@@ -1,0 +1,154 @@
+[
+ {
+  "slide": 3,
+  "title": "Scene 1: Azure says retirement; the kit makes a record",
+  "links": [
+   {
+    "text": "Resource Graph samples for Service Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   },
+   {
+    "text": "Subscription vs tenant events",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-subscription-vs-tenant"
+   },
+   {
+    "text": "security advisories",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-service-health-security-advisories-access"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Scene 2: Microsoft 365 says it in its own field",
+  "links": [
+   {
+    "text": "service communications API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-service-communications-api"
+   },
+   {
+    "text": "List messages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-serviceannouncement-list-messages"
+   },
+   {
+    "text": "issues",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-serviceannouncement-list-issues"
+   },
+   {
+    "text": "National cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Scene 3: Oracle Cloud says it in the announcement type",
+  "links": [
+   {
+    "text": "OCI CLI announce list",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-announcements-list"
+   },
+   {
+    "text": "get",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-announcements-get"
+   },
+   {
+    "text": "Details for Announcements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-announcements-policy-reference"
+   },
+   {
+    "text": "Oracle US Government Cloud",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oracle-us-government-cloud"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Scene 4: AWS flags some retirements, the kit the rest",
+  "links": [
+   {
+    "text": "AWS Health API Reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-reference"
+   },
+   {
+    "text": "Event",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-event"
+   },
+   {
+    "text": "DescribeEventDetails",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-describe-event-details"
+   },
+   {
+    "text": "Concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-concepts"
+   },
+   {
+    "text": "GovCloud (US) User Guide, AWS Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-govcloud"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Scene 5: Google Cloud can't say retirement at all",
+  "links": [
+   {
+    "text": "events.list",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gcp-service-health-events-list"
+   },
+   {
+    "text": "Event resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-event"
+   },
+   {
+    "text": "PSH roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-iam-roles"
+   },
+   {
+    "text": "Assured Workloads supported products",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assured-workloads-supported-products"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Scene 6: RT5J-6KL gets an owner and a typed task",
+  "links": [
+   {
+    "text": "NIST OSCAL 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "FedRAMP KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Scene 7: the digest for owners, the chain for the ISSO",
+  "links": [
+   {
+    "text": "NIST OSCAL 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "FedRAMP KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Scene 8: the loop goes live, test first",
+  "links": [
+   {
+    "text": "Service Health alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   },
+   {
+    "text": "app-only Graph",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-graph-powershell-app-only"
+   }
+  ]
+ }
+]

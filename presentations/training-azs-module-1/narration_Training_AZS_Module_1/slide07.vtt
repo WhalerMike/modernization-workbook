@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.938
+Unit 3 is Step 2, the
+public exposure inventory.
+
+2
+00:00:03.938 --> 00:00:07.696
+Learn's page, Secure your Azure
+DDoS Protection deployment,
+
+3
+00:00:07.696 --> 00:00:12.145
+recommends an inventory of every
+public I P and its protection status,
+
+4
+00:00:12.145 --> 00:00:15.213
+kept with Resource Graph,
+and a quarterly review.
+
+5
+00:00:15.213 --> 00:00:18.977
+The guide's four queries list
+public I Ps with their DDoS state,
+
+6
+00:00:18.977 --> 00:00:23.921
+Front Door profiles, application gateways
+with their web application firewall
+
+7
+00:00:23.921 --> 00:00:28.201
+policy, and pass resources whose
+public network access isn't disabled.
+
+8
+00:00:28.201 --> 00:00:31.875
+The first is built from Learn's
+starter Resource Graph query.
+
+9
+00:00:31.875 --> 00:00:35.308
+The register then adds what
+the queries can't: the owner,
+
+10
+00:00:35.308 --> 00:00:39.047
+the D N S names and certificates
+that point at each exposure,
+
+11
+00:00:39.047 --> 00:00:42.175
+and whether a web application
+firewall covers it.
+
+12
+00:00:42.175 --> 00:00:43.338
+Two cautions.
+
+13
+00:00:43.338 --> 00:00:47.598
+The public network access query is
+a starting list, not a complete one,
+
+14
+00:00:47.598 --> 00:00:50.962
+because the property's name
+and values vary by service.
+
+15
+00:00:50.962 --> 00:00:54.039
+And the register is a map
+of the attack surface:
+
+16
+00:00:54.039 --> 00:00:57.980
+it stays inside the boundary,
+never in a public repository.

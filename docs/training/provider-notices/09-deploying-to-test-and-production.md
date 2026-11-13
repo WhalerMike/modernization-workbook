@@ -14,7 +14,9 @@ last-reviewed: 2026-11-09
 
 *Part of the [Provider Notices learning path](index.md). Every gate: each step of the runbook names its own. Workbook [Chapter 08](../../project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md). About 55 minutes. Optional: for whoever deploys the kit.*
 
-The narrated deck for this module comes later; the chapter has no narrated tour yet.
+**Watch:** the narrated deck for this module (about 15 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_PN_Module_9_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PN_Module_9_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pn-module-9) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-9/Training_PN_Module_9_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-9/Training_PN_Module_9_Narrated.vtt). The deck files join the next edition.
+
+**Also:** the chapter's narrated tour, about 14 minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_08_Deploying_Test_Production_Narrated).
 
 ::: {.callout-important}
 ## Chapter 08 is a runbook nobody has run against a live tenant

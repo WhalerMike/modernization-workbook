@@ -5,7 +5,7 @@
 // 2026 in a scratch copy of examples/zta-results after Module 3's Lab 1, the same output the page shows), Lab 2, the
 // federal requirement and evidence, a two-question check, and the summary. Every fact comes from the module page, the
 // Zero Trust Assessment implementation guide it sends the learner to (Steps 9 and 10, and their footnotes), Book 11,
-// Chapter 10, or the kit; the deck adds none. The module page is a draft awaiting review, and the title slide says so.
+// Chapter 10, or the kit; the deck adds none. The module page is a draft awaiting review; the title slide carries no draft notice.
 // Helpers: ../training-zta-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-zta-module-4/build.js \
 //                      presentations/training-zta-module-4/Training_ZTA_Module_4.pptx
@@ -28,7 +28,7 @@ const W2 = 5.95, G2 = 0.25;
   const s = title(SI, "Module 4: Reconcile, re-run and keep the evidence", "The Zero Trust Assessment as Evidence · Compare runs, reconcile across tools, seal the evidence",
     ["Comparing runs  ·  Reconciling through the control  ·  ScubaGear, Security Hub CSPM, other clouds", "Cadence and the evidence package  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
   notes(s,
-`Welcome to Module 4 of The Zero Trust Assessment as Evidence: reconcile, re-run and keep the evidence. This module is a draft, awaiting the editor's review, so recheck it after the review. A single run is a reading. A program needs the readings over time, lined up with the other tools, and sealed so an assessor can check them months later. This module does all three. It covers Steps 9 and 10 of the Zero Trust Assessment implementation guide, takes about fifty minutes, and finishes the path.`,
+`Welcome to Module 4 of The Zero Trust Assessment as Evidence: reconcile, re-run and keep the evidence. A single run is a reading. A program needs the readings over time, lined up with the other tools, and sealed so an assessor can check them months later. This module does all three. It covers Steps 9 and 10 of the Zero Trust Assessment implementation guide, takes about fifty minutes, and finishes the path.`,
   `${M} — "Introduction"; learning path index.`);
 }
 

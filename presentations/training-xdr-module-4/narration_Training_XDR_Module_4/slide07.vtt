@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.137
+Unit 2 is identity and cloud-app signals.
+
+2
+00:00:03.137 --> 00:00:07.424
+Defender for Identity's sensors go
+on domain controllers, A D F S,
+
+3
+00:00:07.424 --> 00:00:12.865
+A D C S and Entra Connect servers, and
+Defender for Cloud Apps' connectors bring in
+
+4
+00:00:12.865 --> 00:00:18.388
+software-as-a-service behavior, so both
+land in the same incidents as the endpoint.
+
+5
+00:00:18.388 --> 00:00:22.156
+Pilot the sensors on one domain
+controller per domain first;
+
+6
+00:00:22.156 --> 00:00:25.850
+domain controllers remain Tier
+zero until they're retired.
+
+7
+00:00:25.850 --> 00:00:32.035
+Microsoft Learn's government page for
+Defender for Identity gives each cloud its
+
+8
+00:00:32.035 --> 00:00:34.854
+sensor endpoint: a G
+C C address for G C C,
+
+9
+00:00:34.854 --> 00:00:39.675
+and an azure dot U S address for G C
+C High and D O D, or the service tag.
+
+10
+00:00:39.675 --> 00:00:43.748
+Learn also says new features reach
+the government clouds within ninety
+
+11
+00:00:43.748 --> 00:00:47.550
+days of commercial release, and
+previews may not be supported there.
+
+12
+00:00:47.550 --> 00:00:48.663
+Then the gaps.
+
+13
+00:00:48.663 --> 00:00:53.754
+Learn's Cloud Apps government page
+lists App Governance's predefined policy
+
+14
+00:00:53.754 --> 00:00:58.526
+alerts and threat-detection alerts as
+roadmap items in all three clouds.
+
+15
+00:00:58.526 --> 00:01:01.721
+And Learn's advanced
+hunting schema says Cloud
+
+16
+00:01:01.721 --> 00:01:04.425
+Apps behaviors aren't available for G C C.
+
+17
+00:01:04.425 --> 00:01:09.760
+The interim path for O auth app abuse is
+the application detections in Sentinel,
+
+18
+00:01:09.760 --> 00:01:12.980
+in the Security Operations
+and Telemetry book.

@@ -1,0 +1,142 @@
+[
+ {
+  "slide": 2,
+  "title": "The portal tells nobody unless someone made an alert",
+  "links": [
+   {
+    "text": "Resource Graph samples for Service Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   },
+   {
+    "text": "Azure Service Health FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-service-health-faq"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Gate G1 asks for: two roles, the right cloud",
+  "links": [
+   {
+    "text": "Subscription versus tenant level events",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-subscription-vs-tenant"
+   },
+   {
+    "text": "Security advisories elevated access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-security-advisories-elevated"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Learn gives you, and what the kit adds",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   },
+   {
+    "text": "Resource Graph samples for Service Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The Azure collector: each event type becomes a kind",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   },
+   {
+    "text": "Resource Graph samples for Service Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Alerts at scale: the built-in policy, as a plan",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   },
+   {
+    "text": "Service Health alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   },
+   {
+    "text": "Azure Policy remediation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#remediate-non-compliant-resources-with-azure"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: five notices from six rows",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: a test subscription, with a second approver",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   },
+   {
+    "text": "Service Health alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "GCC is commercial Azure; Azure Government differs",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   },
+   {
+    "text": "Connect to Azure Government with Azure CLI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-government-connect-cli"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and evidence for Gate G1",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Summary, and next: Module 3, the Message center",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ }
+]

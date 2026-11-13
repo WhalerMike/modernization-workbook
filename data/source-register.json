@@ -12792,6 +12792,550 @@
      "change": "Added: cited on the narrated deck slides"
     }
    ]
+  },
+  {
+   "id": "ddos-protection-overview",
+   "title": "What is Azure DDoS Protection?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "What is Azure DDoS Protection?"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "ddos-cost-optimization",
+   "title": "DDoS Protection cost optimization principles",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/ddos-protection/ddos-optimization-guide",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "DDoS Protection cost optimization principles"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "ddos-network-protection-cli",
+   "title": "QuickStart: Create and configure Azure DDoS Network Protection using Azure CLI",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/ddos-protection/manage-ddos-protection-cli",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "DDoS Network Protection CLI quickstart"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "public-ip-supported-metrics",
+   "title": "Supported metrics for Microsoft.Network/publicIPAddresses",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/azure-monitor/reference/supported-metrics/microsoft-network-publicipaddresses-metrics",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Supported metrics for public IPs"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "ddos-fundamental-best-practices",
+   "title": "Azure DDoS Protection fundamental best practices",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/ddos-protection/fundamental-best-practices",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "DDoS fundamental best practices"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "waf-application-ddos-protection",
+   "title": "Application (layer 7) DDoS protection",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/web-application-firewall/application-ddos-protection",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Layer 7 DDoS protection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "cli-application-gateway-waf-policy",
+   "title": "Azure CLI reference: az network application-gateway waf-policy",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/cli/azure/network/application-gateway/waf-policy",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "az network application-gateway waf-policy"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "waf-rate-limit-application-gateway",
+   "title": "Configure rate limit custom rules for Application Gateway WAF",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/web-application-firewall/ag/rate-limiting-configure",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "rate limit custom rules"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "troubleshoot-waf-blocking-legitimate",
+   "title": "Troubleshoot Application Gateway WAF blocking legitimate requests",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/troubleshoot/azure/application-gateway/troubleshoot-waf-blocking-legitimate-requests-403",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "WAF troubleshooting"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "waf-azure-policy",
+   "title": "Azure Web Application Firewall and Azure Policy",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/web-application-firewall/shared/waf-azure-policy",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Azure Web Application Firewall and Azure Policy"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "application-gateway-diagnostics",
+   "title": "Diagnostic logs for Application Gateway",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/application-gateway/application-gateway-diagnostics",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Diagnostic logs for Application Gateway"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "front-door-overview",
+   "title": "What is Azure Front Door?",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/frontdoor/front-door-overview",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "What is Azure Front Door?"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "front-door-cli-quickstart",
+   "title": "Quickstart: Create an Azure Front Door using Azure CLI",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/frontdoor/create-front-door-cli",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Front Door CLI quickstart"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "app-service-multi-region-tutorial",
+   "title": "Tutorial: Create a highly available multi-region app in Azure App Service",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/app-service/tutorial-multi-region-app",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "multi-region App Service tutorial"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "application-gateway-tls-policy-powershell",
+   "title": "Configure TLS policy versions and cipher suites on Application Gateway using PowerShell",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/application-gateway/application-gateway-configure-ssl-policy-powershell",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "TLS policy on Application Gateway"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-firewall-traffic-inspection",
+   "title": "Azure Firewall and traffic inspection",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/networking/design-guide/azure-firewall",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Azure Firewall and traffic inspection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "cli-network-firewall-policy",
+   "title": "Azure CLI reference: az network firewall policy",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/cli/azure/network/firewall/policy",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "az network firewall policy"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-firewall-nat-gateway",
+   "title": "Integrate NAT gateway with Azure Firewall",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/firewall/integrate-with-nat-gateway-v2",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Integrate NAT gateway with Azure Firewall"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "private-endpoint-dns-integration",
+   "title": "Azure Private Endpoint DNS integration scenarios",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/private-link/private-endpoint-dns-integration",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Private Endpoint DNS integration"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "troubleshoot-private-endpoint-connectivity",
+   "title": "Troubleshoot private endpoint connectivity failure",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/troubleshoot/azure/private-link/troubleshoot-private-endpoint-connectivity-failure",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "private endpoint troubleshooting"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "key-vault-key-autorotation",
+   "title": "Configure cryptographic key autorotation in Azure Key Vault",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/key-vault/keys/how-to-configure-key-rotation",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "key autorotation"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "avm-waf-policy-module",
+   "title": "Azure Verified Modules: Application Gateway Web Application Firewall (WAF) Policies Bicep module",
+   "publisher": "Microsoft",
+   "url": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/application-gateway-web-application-firewall-policy",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Azure Verified Modules"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-evaluate-network-protection",
+   "title": "Evaluate network protection",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/evaluate-network-protection",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Evaluate network protection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-network-protection",
+   "title": "Use network protection to help prevent connections to malicious or suspicious sites",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/network-protection",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Use network protection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-monitor-controlled-folder-access",
+   "title": "Monitor controlled folder access (CFA) activity",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/controlled-folder-access-monitor",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Monitor controlled folder access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-tamper-protection-overview",
+   "title": "Tamper protection overview",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/tamper-protection-overview",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Tamper protection overview"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "asr-rules-reference",
+   "title": "Attack surface reduction (ASR) rules reference",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "ASR rules reference"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-schema-changes",
+   "title": "Advanced hunting schema - Naming changes",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-schema-changes",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Advanced hunting schema naming changes"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-schema-tables",
+   "title": "Understand the advanced hunting schema",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-schema-tables",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Understand the advanced hunting schema"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-migrate-from-mde",
+   "title": "Migrate advanced hunting queries from Microsoft Defender for Endpoint",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-migrate-from-mde",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Migrate advanced hunting queries"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-alertevidence-table",
+   "title": "AlertEvidence",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-alertevidence-table",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "AlertEvidence"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "advanced-hunting-alertinfo-table",
+   "title": "AlertInfo",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/advanced-hunting-alertinfo-table",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "AlertInfo"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
   }
  ],
  "phrases": {

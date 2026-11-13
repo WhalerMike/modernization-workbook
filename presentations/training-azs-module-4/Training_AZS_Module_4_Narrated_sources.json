@@ -1,0 +1,152 @@
+[
+ {
+  "slide": 2,
+  "title": "Why: a private endpoint nobody resolves isn't private",
+  "links": [
+   {
+    "text": "Integrate Key Vault with Azure Private Link",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#key-vault-private-link"
+   },
+   {
+    "text": "Secure your Azure Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-azure-key-vault"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Unit 1: zones once, centrally, and a zone group",
+  "links": [
+   {
+    "text": "Integrate Key Vault with Azure Private Link",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#key-vault-private-link"
+   },
+   {
+    "text": "Private Endpoint DNS integration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-endpoint-dns-integration"
+   },
+   {
+    "text": "private endpoint troubleshooting",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#troubleshoot-private-endpoint-connectivity"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "At scale, let policy place the records",
+  "links": [
+   {
+    "text": "Private Link and DNS integration at scale",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-link-dns-at-scale"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 2: vaults on RBAC, with purge protection",
+  "links": [
+   {
+    "text": "Secure your Azure Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-azure-key-vault"
+   },
+   {
+    "text": "Integrate Key Vault with Azure Private Link",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#key-vault-private-link"
+   },
+   {
+    "text": "key autorotation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#key-vault-key-autorotation"
+   },
+   {
+    "text": "Enable Key Vault logging",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enable-key-vault-logging"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "A compromised key, recovery, and the other clouds",
+  "links": [
+   {
+    "text": "Secure your Azure Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-azure-key-vault"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The federal requirement and evidence for Module 4",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Sources: Module 4 deck",
+  "links": [
+   {
+    "text": "Integrate Key Vault with Azure Private Link",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#key-vault-private-link"
+   },
+   {
+    "text": "Private Endpoint DNS integration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-endpoint-dns-integration"
+   },
+   {
+    "text": "Private Endpoint private DNS zone values",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-endpoint-dns-zone-values"
+   },
+   {
+    "text": "private endpoint troubleshooting",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#troubleshoot-private-endpoint-connectivity"
+   },
+   {
+    "text": "Private Link and DNS integration at scale",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-link-dns-at-scale"
+   },
+   {
+    "text": "Secure your Azure Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-azure-key-vault"
+   },
+   {
+    "text": "key autorotation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#key-vault-key-autorotation"
+   },
+   {
+    "text": "Enable Key Vault logging",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enable-key-vault-logging"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "Private Service Connect",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#google-private-service-connect"
+   },
+   {
+    "text": "OCI private access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-private-access"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

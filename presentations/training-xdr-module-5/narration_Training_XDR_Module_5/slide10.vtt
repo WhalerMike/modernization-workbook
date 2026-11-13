@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+The federal requirement, from
+the guide's requirements table.
+
+2
+00:00:03.362 --> 00:00:09.123
+Gate nine supports I R four, enhancement
+one, automated incident handling processes,
+
+3
+00:00:09.123 --> 00:00:14.061
+and S I four, enhancement seven,
+automated response to suspicious events,
+
+4
+00:00:14.061 --> 00:00:18.999
+from NIST special publication eight
+hundred fifty-three, revision five.
+
+5
+00:00:18.999 --> 00:00:21.599
+The evidence is the device group levels,
+
+6
+00:00:21.599 --> 00:00:24.513
+the exclusions, and the
+Action center export.
+
+7
+00:00:24.513 --> 00:00:28.996
+Gate ten supports C A seven,
+continuous monitoring; A U eleven,
+
+8
+00:00:28.996 --> 00:00:33.750
+audit record retention; and I R
+three, incident response testing.
+
+9
+00:00:33.750 --> 00:00:37.525
+The evidence is the monthly
+package and the exercise record.
+
+10
+00:00:37.525 --> 00:00:41.631
+Each row lines up with fed-ramp
+twenty X key security indicators,
+
+11
+00:00:41.631 --> 00:00:46.900
+which bind cloud service providers; the
+agency lines its own evidence up with them.
+
+12
+00:00:46.900 --> 00:00:51.525
+The guide counts Gates two, seven
+and ten, with the synthetic events,
+
+13
+00:00:51.525 --> 00:00:54.637
+as the closure map's
+audit and visibility row.
+
+14
+00:00:54.637 --> 00:00:56.728
+The gates support these controls,
+
+15
+00:00:56.728 --> 00:01:00.000
+and the assessor decides
+whether each is satisfied.

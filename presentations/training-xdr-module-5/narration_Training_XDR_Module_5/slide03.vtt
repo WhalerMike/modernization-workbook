@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:04.932
+Name the five automation levels,
+
+3
+00:00:04.932 --> 00:00:08.287
+and set each device group's
+level to the response ladder.
+
+4
+00:00:08.287 --> 00:00:13.147
+Record attack disruption exclusions for
+emergency access and service accounts,
+
+5
+00:00:13.147 --> 00:00:15.649
+with the authorizing official's approval.
+
+6
+00:00:15.649 --> 00:00:19.538
+Run the monthly evidence run, and
+check its hashes a month later.
+
+7
+00:00:19.538 --> 00:00:23.264
+And use the synthetic events,
+the metrics and the evidence
+
+8
+00:00:23.264 --> 00:00:27.301
+catalog to show that the controls
+work, not just that they exist.
+
+9
+00:00:27.301 --> 00:00:29.062
+You need Modules 1 to 4.
+
+10
+00:00:29.062 --> 00:00:33.160
+Skim the Security Operations
+and Telemetry book's Chapter 11,
+
+11
+00:00:33.160 --> 00:00:36.937
+for the response ladder, and
+Chapter 12, for the metric set.
+
+12
+00:00:36.937 --> 00:00:40.370
+Lab 2 runs in a test
+tenant, never production.

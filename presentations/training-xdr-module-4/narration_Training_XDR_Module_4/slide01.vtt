@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.934
+Welcome to Module 4 of Defender
+X D R Engineering and Operations:
+
+2
+00:00:04.934 --> 00:00:08.712
+hunting, detections as
+code, and identity signals.
+
+3
+00:00:08.712 --> 00:00:12.327
+A detection that lives only in
+a portal can't be reviewed,
+
+4
+00:00:12.327 --> 00:00:16.963
+compared or rolled back, and one that
+can't be shown to fire isn't a control.
+
+5
+00:00:16.963 --> 00:00:20.816
+In this module you learn to keep
+custom detections as files,
+
+6
+00:00:20.816 --> 00:00:25.220
+test each one against data it must
+find and data it must stay quiet in,
+
+7
+00:00:25.220 --> 00:00:27.737
+and deploy it through Microsoft Graph.
+
+8
+00:00:27.737 --> 00:00:30.289
+Then you join the identity and cloud-app
+
+9
+00:00:30.289 --> 00:00:33.150
+sensors to the endpoint's
+alerts, in one query.
+
+10
+00:00:33.150 --> 00:00:38.562
+The module covers Steps 7 and 8 of the
+Defender X D R implementation guide.
+
+11
+00:00:38.562 --> 00:00:43.010
+It takes about forty-five minutes,
+plus Lab 2 in your own test tenant.

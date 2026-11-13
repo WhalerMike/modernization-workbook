@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.050
+Why does automation need a boundary?
+
+2
+00:00:02.050 --> 00:00:03.713
+Because it cuts both ways.
+
+3
+00:00:03.713 --> 00:00:08.679
+On the speed side: Microsoft Learn recommends
+the full remediation level for device
+
+4
+00:00:08.679 --> 00:00:13.433
+groups, so threats on workstations are
+remediated automatically, and Learn says
+
+5
+00:00:13.433 --> 00:00:17.974
+every automatic attack disruption action
+can be undone by the security team.
+
+6
+00:00:17.974 --> 00:00:22.050
+On the outage side: a contained
+server is an outage, and a contained
+
+7
+00:00:22.050 --> 00:00:26.275
+emergency access account is a lockout,
+in the middle of the incident.
+
+8
+00:00:26.275 --> 00:00:28.350
+The guide names both as dangers.
+
+9
+00:00:28.350 --> 00:00:31.940
+And Learn itself cautions that
+exclusions reduce protection,
+
+10
+00:00:31.940 --> 00:00:34.150
+so you can't exclude your way out either.
+
+11
+00:00:34.150 --> 00:00:36.748
+The Security Operations
+and Telemetry book's
+
+12
+00:00:36.748 --> 00:00:39.825
+response ladder decides what
+may act without a person.
+
+13
+00:00:39.825 --> 00:00:44.731
+This module sets Defender's own automation
+to match it, with two settings: each
+
+14
+00:00:44.731 --> 00:00:46.877
+device group's remediation level,
+
+15
+00:00:46.877 --> 00:00:50.300
+and the exclusions for
+automatic attack disruption.

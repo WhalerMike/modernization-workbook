@@ -1,0 +1,188 @@
+[
+ {
+  "slide": 2,
+  "title": "Every channel ends at a person or a page, not a queue",
+  "links": [
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "Why provider notices go unread",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#why-provider-notices-go-unread"
+   },
+   {
+    "text": "Azure Service Health portal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-service-health-portal"
+   },
+   {
+    "text": "FAQ",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-service-health-faq"
+   },
+   {
+    "text": "Message center",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m365-message-center"
+   },
+   {
+    "text": "OCI Console Announcements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-console-announcements"
+   },
+   {
+    "text": "AWS contacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-alternate-contacts"
+   },
+   {
+    "text": "Google Cloud contacts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#google-cloud-notification-contacts"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Six kinds of notice, and what each asks of you",
+  "links": [
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "The six kinds of notice",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#the-six-kinds-of-notice"
+   },
+   {
+    "text": "Azure Service Health portal",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-service-health-portal"
+   },
+   {
+    "text": "Message center",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m365-message-center"
+   },
+   {
+    "text": "OCI Announcement model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-announcement-model"
+   },
+   {
+    "text": "AWS Health concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-concepts"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Who owns each kind: the roles the program already has",
+  "links": [
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "Who owns each kind",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#who-owns-each-kind"
+   },
+   {
+    "text": "Book 15, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "From notice to task to closure on the re-read",
+  "links": [
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "From notice to task to closure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#from-notice-to-task-to-closure"
+   },
+   {
+    "text": "Book 13, App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html"
+   },
+   {
+    "text": "severity and tempo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#severity-and-tempo"
+   },
+   {
+    "text": "the five-clause request chain",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html#the-five-clause-request-chain"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "One record for five providers: fmp-provider-notice/1",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Five providers compared: who says action is required",
+  "links": [
+   {
+    "text": "Resource Graph samples for Service Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   },
+   {
+    "text": "Graph service communications API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-service-communications-api"
+   },
+   {
+    "text": "AWS Health concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-concepts"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: count the kinds, and see who said act",
+  "links": [
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "Who owns each kind",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#who-owns-each-kind"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: a second read changes no fingerprint",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and evidence for the record",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "Evidence and the federal requirements it supports",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#evidence-and-the-federal-requirements-it-supports"
+   }
+  ]
+ }
+]

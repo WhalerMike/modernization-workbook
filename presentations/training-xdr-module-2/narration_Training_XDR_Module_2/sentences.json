@@ -1,0 +1,603 @@
+{
+ "1": [
+  [
+   0.05,
+   7.487,
+   "Welcome to Module 2 of Defender X D R Engineering and Operations: prevention and Attack Surface Reduction."
+  ],
+  [
+   7.537,
+   7.938,
+   "A setting in a policy protects nothing until it's enforced on the device, and enforcing it all at once breaks the applications nobody listed."
+  ],
+  [
+   15.475,
+   13.975,
+   "In this module you learn the order of the prevention settings, which of them have an audit mode, how Attack Surface Reduction moves through audit, warn and block, ring by ring, and how to prove each setting on the device rather than trusting a report."
+  ],
+  [
+   29.45,
+   5.25,
+   "The module covers Steps 3 and 4 of the Defender X D R implementation guide."
+  ],
+  [
+   34.7,
+   4.175,
+   "It takes about fifty minutes, plus Lab 2 in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.55,
+   "Why does this module matter?"
+  ],
+  [
+   1.6,
+   2.675,
+   "The guide separates configured from enforced."
+  ],
+  [
+   4.275,
+   2.987,
+   "Configured is a setting in an Intune policy."
+  ],
+  [
+   7.263,
+   4.013,
+   "Audit mode is configured, and it logs, but it protects nothing."
+  ],
+  [
+   11.275,
+   7.625,
+   "And on Windows Server, Microsoft lists a known issue where an Attack Surface Reduction rule reports compliant without being enforced."
+  ],
+  [
+   18.9,
+   10.838,
+   "Enforced is block mode on the ring, after the ring's exit criteria are met, proved on the device and in the events, with every exclusion recorded with an owner and an expiry."
+  ],
+  [
+   29.738,
+   6.925,
+   "Getting there safely is the work of this module: audit first, then enforce ring by ring, with a way back."
+  ],
+  [
+   36.663,
+   12.062,
+   "The guide counts Gates 3 and 4 as the closure map's endpoint hardening row: prevention baselines and Attack Surface Reduction by staged rings, evidenced by policy and endpoint telemetry."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   4.125,
+   "Name the prevention settings that have an audit mode, and the ones that don't."
+  ],
+  [
+   7.088,
+   8.338,
+   "Move network protection and controlled folder access from audit to block, ring by ring, with exit criteria and backout triggers."
+  ],
+  [
+   15.425,
+   6.65,
+   "Run every Attack Surface Reduction rule through audit and warn into block, and name the two rules that skip warn."
+  ],
+  [
+   22.075,
+   4.65,
+   "Record per-rule exclusions, and prefer an exclusion to a step back."
+  ],
+  [
+   26.725,
+   4.812,
+   "And verify each setting on the device, and read the fleet's audit and block events."
+  ],
+  [
+   31.538,
+   3.462,
+   "You need Module 1, so the ring's devices are onboarded."
+  ],
+  [
+   35.0,
+   12.925,
+   "Skim the Devices and Endpoints book's policies E S oh-oh-one for antivirus, E S oh-oh-three for the firewall, and E S oh-oh-five for Attack Surface Reduction: the setting values liv there, not in the guide."
+  ],
+  [
+   47.925,
+   3.362,
+   "Lab 2 runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.337,
+   "Unit 1 is prevention through audit."
+  ],
+  [
+   2.388,
+   8.75,
+   "Antivirus, firewall and tamper protection carry the values from the Devices and Endpoints book's policy library, and they have no audit mode."
+  ],
+  [
+   11.137,
+   4.325,
+   "They go straight to ring one, with backout triggers set before the change."
+  ],
+  [
+   15.463,
+   2.938,
+   "Two settings do have an audit mode, value two."
+  ],
+  [
+   18.4,
+   11.475,
+   "Microsoft Learn says network protection in audit logs the connections it would block, as event eleven twenty-five, and in block mode, value one, the block is event eleven twenty-six."
+  ],
+  [
+   29.875,
+   10.137,
+   "Controlled folder access in audit logs untrusted writes to protected folders, event eleven twenty-four, and blocks them in block mode as event eleven twenty-three."
+  ],
+  [
+   40.013,
+   8.887,
+   "Network protection has prerequisites: Defender Antivirus in active mode, behavior monitoring, and cloud protection with working connectivity."
+  ],
+  [
+   48.9,
+   7.05,
+   "On Windows Server twenty nineteen and later, it also needs the setting that allows network protection on Windows Server."
+  ],
+  [
+   55.95,
+   10.35,
+   "And on servers with heavy U D P traffic, such as domain controllers, D N S, file and sequel servers, Learn says to set datagram processing to false."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.163,
+   "Then enforcement."
+  ],
+  [
+   1.212,
+   10.875,
+   "The pilot runs on rings zero and one for at least two weeks, with network protection and controlled folder access in audit; that length is the program's risk-based recommendation."
+  ],
+  [
+   12.088,
+   6.575,
+   "Read the audit events every week and add allowed applications for controlled folder access before you enforce."
+  ],
+  [
+   18.663,
+   4.4,
+   "Then turn each setting to block in the Intune policy, ring by ring."
+  ],
+  [
+   23.062,
+   8.238,
+   "Ring zero, the implementing team, exits when the audit events are reviewed, the test site is blocked and no one has called the help desk."
+  ],
+  [
+   31.3,
+   7.787,
+   "Ring one, the pilot group, after two weeks, when every audited line-of-business block has an allow entry or a decision."
+  ],
+  [
+   39.087,
+   8.025,
+   "Ring two, early adopters, after one week, with help-desk calls tagged Defender block under the threshold set before the change."
+  ],
+  [
+   47.112,
+   5.938,
+   "Ring three, everyone in scope, when post-change validation passes on a sample at each site."
+  ],
+  [
+   53.05,
+   7.112,
+   "The backout triggers are a blocked critical application with no allow path, or help-desk volume over the threshold."
+  ],
+  [
+   60.163,
+   3.337,
+   "Rollback sets the mode back to audit in the same policy."
+  ],
+  [
+   63.5,
+   5.263,
+   "Microsoft Learn says tamper protection is turned off only from the console that set it."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.525,
+   "Unit 2 is Attack Surface Reduction."
+  ],
+  [
+   2.575,
+   8.075,
+   "Microsoft Learn's rule modes are zero for off, one for block, two for audit, five for not configured, and six for warn."
+  ],
+  [
+   10.65,
+   5.737,
+   "Before you audit, Learn says to turn off any related rule that's already in block or warn."
+  ],
+  [
+   16.387,
+   7.537,
+   "Then put every rule in audit at once on ring one, which Learn recommends, to see which rules everyday business triggers."
+  ],
+  [
+   23.925,
+   3.25,
+   "The program's stages are risk-based recommendations."
+  ],
+  [
+   27.175,
+   7.237,
+   "Audit on ring one for thirty days, until every audited rule hit has an exclusion, a fix or a decision."
+  ],
+  [
+   34.413,
+   11.562,
+   "Then warn, first on ring one and then on ring two, for fourteen days, counting unblock requests, until no business-critical application is left without a per-rule exclusion."
+  ],
+  [
+   45.975,
+   7.275,
+   "Then block, ring by ring, until blocks per rule per week are stable and help-desk volume is under the threshold."
+  ],
+  [
+   53.25,
+   10.225,
+   "Microsoft's own position, from its rules overview, is that the standard protection rules can go to block without extensive testing, and other rules are tested in audit first."
+  ],
+  [
+   63.475,
+   4.025,
+   "The program runs all three stages anyway, and says so."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.263,
+   "Warn shows the user the block, with a way to proceed."
+  ],
+  [
+   3.312,
+   9.688,
+   "Microsoft Learn's rules overview says warn needs Windows ten, version eighteen oh nine or later, and a recent Defender Antivirus platform and engine."
+  ],
+  [
+   13.0,
+   6.188,
+   "It isn't available in Configuration Manager, and on older Windows a rule set to warn acts as block."
+  ],
+  [
+   19.188,
+   1.887,
+   "Warn isn't a safety valve, though."
+  ],
+  [
+   21.075,
+   13.325,
+   "Since platform four point eighteen point two six oh six oh, using Unblock on a warn rule needs administrator approval, and Microsoft says a persistent need belongs in a per-rule exclusion, not repeated unblocks."
+  ],
+  [
+   34.4,
+   10.75,
+   "So brief the help desk before the warn ring; the guide's RACI makes the help desk responsible for unblock requests and user impact, and the policy owner accountable for the rings."
+  ],
+  [
+   45.15,
+   4.275,
+   "Two rules don't support warn at all, and go from audit straight to block."
+  ],
+  [
+   49.425,
+   4.963,
+   "One blocks credential stealing from the Windows local security authority subsystem."
+  ],
+  [
+   54.388,
+   4.75,
+   "The other blocks Office applications from injecting code into other processes."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.975,
+   "Unit 3 is exclusions, and the traps."
+  ],
+  [
+   3.025,
+   8.637,
+   "When a rule in block breaks an application, Microsoft's advice in Learn is that an exclusion is better than turning the rule off or back to audit."
+  ],
+  [
+   11.662,
+   12.363,
+   "Per-rule exclusions go in the same policy, under A S R only per rule exclusions, as a file path rather than a folder wherever you can, and each one goes in the register with an owner and an expiry."
+  ],
+  [
+   24.025,
+   5.562,
+   "Learn adds that if Disable Local Admin Merge is true, local per-rule exclusions don't apply."
+  ],
+  [
+   29.587,
+   6.4,
+   "Rollback, when you need it, moves a rule one stage back: block to warn, or warn to audit."
+  ],
+  [
+   35.987,
+   1.238,
+   "Then the dangers."
+  ],
+  [
+   37.225,
+   9.438,
+   "Configure a rule in Intune or in Group Policy, never both: Learn says Group Policy wins by default, so the Intune value silently loses."
+  ],
+  [
+   46.663,
+   7.6,
+   "And on Windows Server, Learn lists a known issue, with no fix date, where a rule shows compliant without being enforced."
+  ],
+  [
+   54.263,
+   5.537,
+   "So on servers, trust the device-side check and the events, not the compliance report."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.888,
+   "Lab 2 runs the guide's validate commands on a ring zero test device, in a test tenant, never production."
+  ],
+  [
+   6.938,
+   3.0,
+   "The authors haven't run them, as the page says."
+  ],
+  [
+   9.938,
+   9.287,
+   "You need Module 1's test tenant and test device, with the antivirus, firewall and Attack Surface Reduction policies assigned to its ring zero group."
+  ],
+  [
+   19.225,
+   3.95,
+   "Steps one to five run on the device, in an elevated session."
+  ],
+  [
+   23.175,
+   5.713,
+   "Step one shows tamper and real-time protection; both should be true, which means enabled."
+  ],
+  [
+   28.887,
+   9.088,
+   "Step two shows the network protection and controlled folder access modes: zero off, one block, two audit, matching the ring's stage."
+  ],
+  [
+   37.975,
+   6.112,
+   "Step three shows the firewall profiles as enforced, with the values the firewall policy sets."
+  ],
+  [
+   44.087,
+   7.5,
+   "Step four is Microsoft Learn's network protection test: in a browser other than Edge, open the test site on the slide."
+  ],
+  [
+   51.587,
+   8.775,
+   "In block mode the connection is blocked with a notification, event eleven twenty-six; in audit it isn't blocked, and the event is eleven twenty-five."
+  ],
+  [
+   60.362,
+   7.425,
+   "Step five is Learn's command that lists each rule and its mode: two for audit, six for warn, one for block."
+  ],
+  [
+   67.787,
+   2.675,
+   "On a server, this is the check to trust."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.5,
+   "Steps six to eight run on your workstation, through Graph, so each result is a file."
+  ],
+  [
+   5.55,
+   4.338,
+   "The slide shortens them to fit; the page has every command in full."
+  ],
+  [
+   9.887,
+   11.488,
+   "Step six connects and counts the fleet's prevention events over seven days: network protection audited and blocked, controlled folder access audited and blocked, and tampering attempts."
+  ],
+  [
+   21.375,
+   2.425,
+   "Step four's test should appear among them."
+  ],
+  [
+   23.8,
+   6.475,
+   "Step seven is Microsoft Learn's query for Attack Surface Reduction events by rule over thirty days."
+  ],
+  [
+   30.275,
+   7.775,
+   "Each rule has its own audited and blocked action types, and Learn says the events are throttled to unique processes each hour."
+  ],
+  [
+   38.05,
+   11.825,
+   "Step eight is Learn's pattern for one rule's detail, here the Office child-process rule: the devices, files and command lines it audited or blocked, which is what an exclusion decision reads."
+  ],
+  [
+   49.875,
+   2.212,
+   "Step nine is the only write."
+  ],
+  [
+   52.087,
+   6.963,
+   "It's the guide's rollback for a single device under investigation: Learn's local command sets one rule back to audit."
+  ],
+  [
+   59.05,
+   3.05,
+   "Step five's command now shows the rule at two."
+  ],
+  [
+   62.1,
+   6.85,
+   "Intune overwrites the local value at the next policy refresh, and that's the back-out; nothing else is needed."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.312,
+   "The federal requirement, from the guide's requirements table."
+  ],
+  [
+   3.362,
+   19.95,
+   "Gate three supports four controls from nist special publication eight hundred fifty-three, revision five: S I three, malicious code protection; S C seven, boundary protection, here the host firewall; C M six, configuration settings; and S I seven, integrity, here tamper protection."
+  ],
+  [
+   23.312,
+   5.088,
+   "The evidence is the policy exports, the device checks and the audit results."
+  ],
+  [
+   28.4,
+   6.575,
+   "Gate four supports C M seven, least functionality, with C M six and S I three."
+  ],
+  [
+   34.975,
+   6.562,
+   "The evidence is the rule-by-ring matrix, with the date each rule entered block, and the per-rule tests."
+  ],
+  [
+   41.538,
+   9.375,
+   "Each row lines up with fed-ramp twenty X key security indicators, which bind cloud service providers; the agency lines its own evidence up with them."
+  ],
+  [
+   50.913,
+   5.3,
+   "The gates support these controls, and the assessor decides whether each is satisfied."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.088,
+   "First: which two Attack Surface Reduction rules go from audit straight to block?"
+  ],
+  [
+   7.112,
+   11.8,
+   "The answer is a: the rule that blocks credential stealing from the local security authority, and the rule that blocks Office applications from injecting code into other processes, because neither supports warn."
+  ],
+  [
+   18.913,
+   4.3,
+   "Second: a Windows Server shows a rule as compliant in Intune."
+  ],
+  [
+   23.212,
+   1.4,
+   "Is that enough evidence?"
+  ],
+  [
+   24.613,
+   1.538,
+   "The answer is b, no."
+  ],
+  [
+   26.15,
+   9.637,
+   "Microsoft lists a known issue where the server shows compliant without the rule being enforced, so check on the server itself, with Get M P Preference and the events."
+  ],
+  [
+   35.788,
+   4.15,
+   "Setting the rule in Group Policy too would only add the other danger."
+  ],
+  [
+   39.938,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   4.438,
+   "You checked every prevention setting and every rule on a test device."
+  ],
+  [
+   5.312,
+   3.312,
+   "You triggered Microsoft Learn's network protection test."
+  ],
+  [
+   8.625,
+   5.513,
+   "You filed the fleet's audit and block events, and its Attack Surface Reduction events by rule."
+  ],
+  [
+   14.137,
+   4.688,
+   "And you stepped one rule back on one device, the way the guide's rollback does."
+  ],
+  [
+   18.825,
+   23.3,
+   "The evidence an I S S O keeps from this module: the antivirus, firewall and Attack Surface Reduction policy exports for each ring; the weekly audit and block query results; the network protection test and the tamper status; the per-rule tests; the rule-by-ring matrix, with the date each rule entered block; and every exclusion, with its approver and expiry."
+  ],
+  [
+   42.125,
+   8.988,
+   "Next is Module 3, exposure and incidents, where every vulnerability gets an owner and every incident gets triaged to a table."
+  ]
+ ]
+}

@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+The federal requirement, from
+the guide's requirements table.
+
+2
+00:00:03.362 --> 00:00:07.153
+Gate seven supports S I four,
+system monitoring; A U six,
+
+3
+00:00:07.153 --> 00:00:13.097
+enhancements one and three, automated
+process integration and correlating audit
+
+4
+00:00:13.097 --> 00:00:15.509
+record repositories; and C M three,
+
+5
+00:00:15.509 --> 00:00:19.300
+configuration change control,
+here for rule changes.
+
+6
+00:00:19.300 --> 00:00:24.587
+The evidence is the rule repository, the
+test outputs and the deployed-rules export.
+
+7
+00:00:24.587 --> 00:00:30.764
+Gate eight supports S I four; A U six,
+enhancement three, correlating repositories;
+
+8
+00:00:30.764 --> 00:00:36.112
+and A C two, enhancement twelve,
+account monitoring for atypical usage.
+
+9
+00:00:36.112 --> 00:00:40.212
+The evidence is the correlation
+query output and the sensors' health.
+
+10
+00:00:40.212 --> 00:00:44.925
+All from NIST special publication eight
+hundred fifty-three, revision five.
+
+11
+00:00:44.925 --> 00:00:49.031
+Each row lines up with fed-ramp
+twenty X key security indicators,
+
+12
+00:00:49.031 --> 00:00:54.300
+which bind cloud service providers; the
+agency lines its own evidence up with them.
+
+13
+00:00:54.300 --> 00:00:56.390
+The gates support these controls,
+
+14
+00:00:56.390 --> 00:00:59.660
+and the assessor decides
+whether each is satisfied.
