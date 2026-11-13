@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.587
+You'll explain why the guide runs
+its steps out of numeric order.
+
+3
+00:00:06.587 --> 00:00:09.308
+You'll decide each
+function on its own gate,
+
+4
+00:00:09.308 --> 00:00:14.125
+and record the decision with a dated
+availability quote and exit criteria.
+
+5
+00:00:14.125 --> 00:00:18.888
+You'll name the reference architecture's
+seven zones and planes, and who owns each.
+
+6
+00:00:18.888 --> 00:00:22.369
+You'll export the configuration
+as hashed evidence,
+
+7
+00:00:22.369 --> 00:00:25.850
+and say why the beta network
+access A P I is run by hand.
+
+8
+00:00:25.850 --> 00:00:30.337
+And you'll turn on the four network log
+categories and check that each is fresh.
+
+9
+00:00:30.337 --> 00:00:34.954
+Before you start, read Network and
+Transport, chapter five, for the gates,
+
+10
+00:00:34.954 --> 00:00:40.275
+and skim Security Operations and Telemetry,
+chapter three, for the log categories.
+
+11
+00:00:40.275 --> 00:00:43.490
+The lab runs in a test
+tenant, never production.

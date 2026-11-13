@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.229
+The lab runs in a test
+tenant, never production,
+
+2
+00:00:03.229 --> 00:00:06.325
+and the authors haven't
+run it, as the page says.
+
+3
+00:00:06.325 --> 00:00:10.362
+There's no fixture lab in this path,
+because the guide has no kit yet.
+
+4
+00:00:10.362 --> 00:00:13.988
+You need a test tenant with
+Global Secure Access onboarded,
+
+5
+00:00:13.988 --> 00:00:18.650
+an administrator with the Global Secure
+Access Administrator or Security
+
+6
+00:00:18.650 --> 00:00:23.237
+Administrator role activated through
+pim, Graph PowerShell, and Azure C L I.
+
+7
+00:00:23.237 --> 00:00:26.863
+Steps one and two make a lab
+folder, connect with read scopes,
+
+8
+00:00:26.863 --> 00:00:30.488
+and export the licenses and
+the tenant's onboarding status.
+
+9
+00:00:30.488 --> 00:00:34.550
+Compare the licenses by product name
+with Learn's licensing section.
+
+10
+00:00:34.550 --> 00:00:39.424
+Step three takes the baseline
+export: nine Graph requests,
+
+11
+00:00:39.424 --> 00:00:44.400
+each written to a file, then a S
+H A two fifty-six hash manifest.
+
+12
+00:00:44.400 --> 00:00:48.750
+The slide abbreviates; the module
+page has every command in full.
+
+13
+00:00:48.750 --> 00:00:53.401
+The guide's Validate: the tenant shows
+onboarded, the license count covers
+
+14
+00:00:53.401 --> 00:00:58.030
+the pilot and the first ring, and the
+export folder and its manifest exist.

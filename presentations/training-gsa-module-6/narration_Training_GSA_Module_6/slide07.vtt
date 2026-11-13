@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+What goes in the package?
+
+2
+00:00:01.437 --> 00:00:04.300
+The guide's evidence
+catalog has five kinds.
+
+3
+00:00:04.300 --> 00:00:08.576
+Configuration: the hashed Graph
+export, rerun before every change,
+
+4
+00:00:08.576 --> 00:00:13.475
+plus the decision and architecture
+records and the diagnostic setting GET.
+
+5
+00:00:13.475 --> 00:00:16.865
+Test: each Validate record,
+expected and observed,
+
+6
+00:00:16.865 --> 00:00:21.164
+from the client health check
+through the source I P comparison,
+
+7
+00:00:21.164 --> 00:00:25.464
+the blocked category, the port
+tests, the disable-and-retry test,
+
+8
+00:00:25.464 --> 00:00:28.688
+the four cases, the T L S
+issuer, and the klist test.
+
+9
+00:00:28.688 --> 00:00:32.376
+Operational: the queries,
+run on the day-two cadence.
+
+10
+00:00:32.376 --> 00:00:36.647
+Exception: the register, with
+every exclusion and bypass,
+
+11
+00:00:36.647 --> 00:00:38.737
+its approver and its expiry.
+
+12
+00:00:38.737 --> 00:00:42.943
+And reassessment: the Zero Trust
+Assessment rerun after each ring,
+
+13
+00:00:42.943 --> 00:00:46.537
+with each network finding's
+closure chain entry updated.
+
+14
+00:00:46.537 --> 00:00:51.110
+A finding is ready for closure when
+every applicable control state,
+
+15
+00:00:51.110 --> 00:00:55.763
+designed, configured, enforced,
+evidenced and operated, has evidence.
+
+16
+00:00:55.763 --> 00:01:00.456
+And a Zero Trust Assessment test skipped
+because the tenant has no Internet
+
+17
+00:01:00.456 --> 00:01:05.210
+Access or Private Access license is a
+licensing result, not a failed control.

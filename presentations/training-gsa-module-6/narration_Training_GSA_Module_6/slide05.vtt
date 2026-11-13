@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.075
+During the move, everything
+runs side by side.
+
+2
+00:00:03.075 --> 00:00:06.507
+The V P N stays for
+applications not yet published,
+
+3
+00:00:06.507 --> 00:00:09.436
+in split-include mode
+where it supports it,
+
+4
+00:00:09.436 --> 00:00:13.705
+so Private Access and the V P N
+don't contend for the same routes;
+
+5
+00:00:13.705 --> 00:00:17.137
+a V P N route is removed only
+after the V P N's own logs
+
+6
+00:00:17.137 --> 00:00:21.238
+show no traffic for that
+application for ten business days.
+
+7
+00:00:21.238 --> 00:00:25.738
+DirectAccess can't coexist with
+Private Access on the same device.
+
+8
+00:00:25.738 --> 00:00:30.176
+Where a proxy is set at the
+operating system or browser level,
+
+9
+00:00:30.176 --> 00:00:35.413
+Learn's P A C file guidance excludes
+every F Q D N and I P the client tunnels.
+
+10
+00:00:35.413 --> 00:00:39.812
+A third-party security service edge
+kept for internet traffic follows
+
+11
+00:00:39.812 --> 00:00:43.913
+its coexistence page on Learn, for
+the bypasses in both directions.
+
+12
+00:00:43.913 --> 00:00:49.214
+And branches: a remote network carries
+the Microsoft and internet profiles, not
+
+13
+00:00:49.214 --> 00:00:54.675
+Private Access, and applies only the baseline
+profile, with no Conditional Access.
+
+14
+00:00:54.675 --> 00:00:57.915
+That's a parity gap under
+tick's Branch Office use case,
+
+15
+00:00:57.915 --> 00:01:01.597
+so the guide keeps the client
+on managed devices at branches,
+
+16
+00:01:01.597 --> 00:01:04.820
+and uses the remote network
+for devices without one.

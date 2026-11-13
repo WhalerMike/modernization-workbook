@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.263
+Unit 1 is security profiles,
+built with Learn's Graph tutorial.
+
+2
+00:00:04.263 --> 00:00:09.831
+A filtering policy blocks the categories
+the agency's acceptable-use policy names;
+
+3
+00:00:09.831 --> 00:00:15.238
+artificial intelligence is Learn's example,
+and the category list is the agency's.
+
+4
+00:00:15.238 --> 00:00:18.554
+A security profile groups
+web content filtering,
+
+5
+00:00:18.554 --> 00:00:22.275
+threat intelligence, T L S
+inspection and file policies.
+
+6
+00:00:22.275 --> 00:00:27.075
+A policy link puts the filtering policy
+into the profile, with logging on.
+
+7
+00:00:27.075 --> 00:00:30.173
+A Conditional Access policy
+assigns the profile:
+
+8
+00:00:30.173 --> 00:00:35.237
+it targets All internet resources with
+Global Secure Access, with the filtering
+
+9
+00:00:35.237 --> 00:00:40.300
+profile session control, scoped to the
+pilot, and with emergency access excluded.
+
+10
+00:00:40.300 --> 00:00:44.749
+The baseline profile applies to all
+traffic, last; the guide puts threat
+
+11
+00:00:44.749 --> 00:00:49.575
+intelligence filtering there, so it
+covers everyone in the internet profile.
+
+12
+00:00:49.575 --> 00:00:53.875
+And enable both profiles: the
+internet profile doesn't include the
+
+13
+00:00:53.875 --> 00:00:58.540
+Microsoft traffic profile's destinations,
+so full coverage needs both.

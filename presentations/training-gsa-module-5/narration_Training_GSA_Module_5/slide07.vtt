@@ -1,0 +1,107 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.075
+Three more things before you inspect.
+
+2
+00:00:02.075 --> 00:00:06.918
+The privacy scope: Learn auto-creates
+a system bypass rule for incompatible
+
+3
+00:00:06.918 --> 00:00:11.300
+destinations, and an editable
+recommended bypass for the Education,
+
+4
+00:00:11.300 --> 00:00:14.913
+Finance, Government, and Health
+and Medicine categories.
+
+5
+00:00:14.913 --> 00:00:19.072
+The guide keeps them, adds the
+categories the privacy officer names,
+
+6
+00:00:19.072 --> 00:00:22.787
+and records the scope in the
+system's privacy documentation.
+
+7
+00:00:22.787 --> 00:00:25.901
+Learn says to establish
+and communicate a T
+
+8
+00:00:25.901 --> 00:00:29.100
+L S policy to users
+before inspection starts.
+
+9
+00:00:29.100 --> 00:00:31.588
+Pinned applications fail under inspection;
+
+10
+00:00:31.588 --> 00:00:34.747
+Learn's answer is a custom
+bypass for their destinations,
+
+11
+00:00:34.747 --> 00:00:36.832
+without duplicating the system list,
+
+12
+00:00:36.832 --> 00:00:41.000
+and developer tools with their own
+certificate stores need the root added.
+
+13
+00:00:41.000 --> 00:00:44.506
+And the failure line:
+Microsoft's recommendation treats
+
+14
+00:00:44.506 --> 00:00:47.862
+a failure rate above one
+percent as a systemic problem.
+
+15
+00:00:47.862 --> 00:00:55.862
+Inspection doesn't negotiate H T T P two,
+and doesn't follow A I A or O C S P links.
+
+16
+00:00:55.862 --> 00:01:00.126
+Learn's pages give the T L S status
+values differently in two places,
+
+17
+00:01:00.126 --> 00:01:04.700
+so group by what your workspace
+actually holds before writing an alert.
+
+18
+00:01:04.700 --> 00:01:06.063
+Where are agencies?
+
+19
+00:01:06.063 --> 00:01:11.526
+Internet Access and T L S inspection need
+an Internet Access or Suite license,
+
+20
+00:01:11.526 --> 00:01:15.624
+and are available in G C C by
+Learn's product-wide statement.
+
+21
+00:01:15.624 --> 00:01:20.674
+The cloud firewall for clients and the
+Explicit Forward Proxy are preview,
+
+22
+00:01:20.674 --> 00:01:23.900
+and their G C C availability
+isn't yet specified.

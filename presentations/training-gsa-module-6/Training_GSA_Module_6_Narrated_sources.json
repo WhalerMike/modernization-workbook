@@ -1,0 +1,100 @@
+[
+ {
+  "slide": 4,
+  "title": "Unit 1: four rings, each with exit criteria",
+  "links": [
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Coexistence during the move, and branch parity",
+  "links": [
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 2: who does what, and who decides closure",
+  "links": [
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   },
+   {
+    "text": "Global Secure Access operations guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-operations-guide"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Module 6",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Sources: Module 6 deck",
+  "links": [
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   },
+   {
+    "text": "Global Secure Access operations guide",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-operations-guide"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "deployment guide for Microsoft Traffic",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-deployment-guide-microsoft-traffic"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "OMB M-26-14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
+   },
+   {
+    "text": "TIC 3.0 Remote User Use Case v2.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
+   },
+   {
+    "text": "TIC 3.0 Branch Office Use Case v3.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-branch-office"
+   }
+  ]
+ }
+]

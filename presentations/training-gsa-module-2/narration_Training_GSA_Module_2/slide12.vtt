@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.318
+First: when does the guide
+deploy the remediation that
+
+3
+00:00:05.318 --> 00:00:09.050
+hides the disable button and
+restricts non-privileged users?
+
+4
+00:00:09.050 --> 00:00:12.749
+The answer is b: from ring
+two, after confirming nobody
+
+5
+00:00:12.749 --> 00:00:16.700
+in the pilot needs to disable
+the client, as Learn advises.
+
+6
+00:00:16.700 --> 00:00:22.775
+Second: which profile can acquire Microsoft
+three sixty-five and Entra I D traffic?
+
+7
+00:00:22.775 --> 00:00:26.225
+The answer is a: only the
+Microsoft traffic profile.
+
+8
+00:00:26.225 --> 00:00:29.037
+The Internet Access
+profile never acquires it.
+
+9
+00:00:29.037 --> 00:00:34.010
+The module page has three more questions,
+each linked to the unit that answers it.

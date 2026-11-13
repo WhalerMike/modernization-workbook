@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.438
+Unit 3 is domain controllers.
+
+2
+00:00:02.438 --> 00:00:07.550
+The program retires its domain controllers;
+until then, they're Tier zero.
+
+3
+00:00:07.550 --> 00:00:11.236
+Learn's procedure: publish the
+D C's on T C P eighty-eight,
+
+4
+00:00:11.236 --> 00:00:16.263
+in Quick Access or an app, and name
+the service principal names to protect.
+
+5
+00:00:16.263 --> 00:00:20.612
+Open inbound T C P thirteen
+thirty-seven on the D C's.
+
+6
+00:00:20.612 --> 00:00:25.463
+Install one sensor per D C, silently,
+and register it with a token.
+
+7
+00:00:25.463 --> 00:00:27.771
+The sensor installs in Audit mode,
+
+8
+00:00:27.771 --> 00:00:31.400
+so you read its event log
+before anything is enforced.
+
+9
+00:00:31.400 --> 00:00:35.746
+Learn's advice is to test with
+application S P N's first,
+
+10
+00:00:35.746 --> 00:00:40.684
+and protect the D C's own S P N
+only later, to avoid admin lockout,
+
+11
+00:00:40.684 --> 00:00:44.338
+and to assess N T L M use
+before restricting it.
+
+12
+00:00:44.338 --> 00:00:48.723
+The rollback is the sensor's
+break-glass mode, from the admin center,
+
+13
+00:00:48.723 --> 00:00:52.312
+or a registry value set to
+one and the sensor restarted.
+
+14
+00:00:52.312 --> 00:00:55.078
+And the registration
+token is a credential:
+
+15
+00:00:55.078 --> 00:01:00.220
+acquire it on a privileged access workstation,
+use it once, and clear the session.

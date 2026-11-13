@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.888
+Unit 2.
+
+2
+00:00:00.888 --> 00:00:07.391
+First, Learn's limits: two hundred fifty-six
+security profiles, a thousand policies,
+
+3
+00:00:07.391 --> 00:00:13.226
+a thousand rules and eight thousand
+destinations per tenant; H T T P and H T T
+
+4
+00:00:13.226 --> 00:00:18.774
+P S on ports eighty and four forty-three
+only; no I P version six, and no U D P.
+
+5
+00:00:18.774 --> 00:00:20.438
+Second, QUIC.
+
+6
+00:00:20.438 --> 00:00:24.213
+Internet Access doesn't
+forward QUIC end to end.
+
+7
+00:00:24.213 --> 00:00:29.261
+Learn's newer guidance blocks it with the
+cloud firewall, which is preview; its T
+
+8
+00:00:29.261 --> 00:00:34.387
+L S inspection page blocks outbound U D
+P four forty-three with Windows Firewall.
+
+9
+00:00:34.387 --> 00:00:39.541
+Until the cloud firewall for clients is
+generally available, the guide uses the
+
+10
+00:00:39.541 --> 00:00:44.538
+generally available path: a firewall
+rule delivered by Intune, piloted first.
+
+11
+00:00:44.538 --> 00:00:49.429
+Third, every custom bypass and allow-list
+entry gets an owner's approval,
+
+12
+00:00:49.429 --> 00:00:54.901
+a reason, and an expiry, in the exception
+register, as Learn's change guidance asks.
+
+13
+00:00:54.901 --> 00:00:57.730
+Custom bypass doesn't
+work on remote networks;
+
+14
+00:00:57.730 --> 00:01:00.113
+those are made on the branch equipment.
+
+15
+00:01:00.113 --> 00:01:03.029
+And one gap: the pages
+read don't say whether
+
+16
+00:01:03.029 --> 00:01:06.362
+a report-only policy
+applies a security profile.
+
+17
+00:01:06.362 --> 00:01:10.047
+So the pilot is a policy set to
+on for the pilot group only,
+
+18
+00:01:10.047 --> 00:01:14.280
+with an allow policy, with logging,
+for categories under review.
