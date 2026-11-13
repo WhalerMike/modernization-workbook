@@ -206,9 +206,10 @@ pages:
   ms_date: '2024-10-25'
   ms_topic: overview
   description: Learn how to configure SMB signing, how to determine whether SMB signing is enabled, and how to disable SMB signing.
-  coverage: not-covered
-  note: SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07
-  cited_by: []
+  coverage: cited
+  note: SMB signing default and audit events in the Book 02 Chapter 03 status table; NTLM blocking and guest logons not yet covered
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/storage/file-server/smb-signing.md
   url: https://learn.microsoft.com/windows-server/storage/file-server/smb-signing
   title: Control SMB signing behavior
@@ -216,9 +217,10 @@ pages:
   ms_date: '2025-08-13'
   ms_topic: how-to
   description: How to disable SMB signing on third-party servers in Windows 11 and Windows Server.
-  coverage: not-covered
-  note: SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07
-  cited_by: []
+  coverage: cited
+  note: SMB signing default and audit events in the Book 02 Chapter 03 status table; NTLM blocking and guest logons not yet covered
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/storage/file-server/Troubleshoot/detect-enable-and-disable-smbv1-v2-v3.md
   url: https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3
   title: Detect, enable, and disable SMBv1, SMBv2, and SMBv3 in Windows
@@ -248,11 +250,12 @@ pages:
   ms_date: '2025-06-18'
   ms_topic: troubleshooting
   description: Discover SMBv1 protocol changes in Windows Server and Windows, explore alternatives for legacy compatibility, and learn best practices.
-  coverage: covered-uncited
+  coverage: cited
   note: The server baseline sets the SMB v1 client driver off
   workbook:
   - docs/books/b12-security-operations/07-patch-configuration-and-baselines.md
-  cited_by: []
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/storage/file-server/Troubleshoot/troubleshooting-smb.md
   url: https://learn.microsoft.com/windows-server/storage/file-server/troubleshoot/troubleshooting-smb
   title: Advanced Troubleshooting Server Message Block (SMB)
