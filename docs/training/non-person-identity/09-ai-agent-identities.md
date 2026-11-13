@@ -1,6 +1,6 @@
 ---
 title: "Module 9: Govern AI agent identities"
-description: "The guide's AI agents section and workbook Chapter 09: read agent identities and blueprints with their sponsors, owners and credentials, check them against the program's rules (creation closed, a reviewed handshake, no secret on a production blueprint, no allAllowed inheritance, the ten-business-day sponsor rule, no shadow AI identity), run the same rules in a cloud without Agent ID, and plan report-only agent Conditional Access by its approved hash. About 65 minutes, with a lab on fixtures and a test tenant lab."
+description: "The guide's AI agents section and workbook Chapter 09: read agent identities and blueprints with their sponsors, owners and credentials, check them against the program's rules (creation closed, a reviewed handshake, no secret on a production blueprint, no allAllowed inheritance, the ten-business-day sponsor rule, no shadow AI identity), and plan report-only agent Conditional Access by its approved hash. About 65 minutes, with a lab on fixtures and a test tenant lab."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -22,7 +22,7 @@ last-reviewed: 2026-11-09
 
 AI agents are non-person identities, and they follow every gate before this module. They add three things. An agent can act, so a sponsor who hasn't confirmed within ten business days of a handover makes it an orphan, an extra trigger on top of the program's disable-first orphan rule. A blueprint holds the credentials for every agent made from it, so one secret on it is every agent's secret. And by default the person who creates an agent becomes its sponsor and owner, so creation has to be gated.
 
-In this module you check a fictional tenant's agents against the program's rules, see the same rules run where the cloud has no agent identities, and plan two report-only agent Conditional Access policies.
+In this module you check a fictional tenant's agents against the program's rules, and plan two report-only agent Conditional Access policies.
 
 **The federal requirement.** The guide's [AI agents](../../books/guides/non-person-identity-implementation.md#ai-agents) section adds to the gates, and its [Evidence](../../books/guides/non-person-identity-implementation.md#evidence) table carries SCuBA MS.AAD.9.1v1 for risky agents. The workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#federal-requirements-and-evidence) table has a row for every lab step.
 
@@ -42,7 +42,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines th
 After this module, you'll be able to:
 
 - describe a blueprint, an agent identity and a sponsor, and why the blueprint is the credential boundary;
-- explain decision D-NP6 as data, and what the code does in a cloud without Agent ID;
+- explain decision D-NP6 as data;
 - run the AI identity check and read its findings, including the P1 drift;
 - explain the ten-business-day sponsor rule and what happens to an orphaned agent;
 - show that the agent Conditional Access plan is report-only and runs only by its approved hash.
@@ -261,22 +261,17 @@ Remove-Item -Recurse -Force out
     b. The blueprint holds the credentials for every agent made from it, so one leaked secret is every agent's
     c. Blueprints can't hold certificates
     d. A secret makes the agent multitenant
-2. What does the code do in GCC High, where Microsoft has published no Agent ID availability?
-    a. It fails
-    b. It reads agent identities anyway
-    c. It runs in Fallback mode: no agent identity read, and the same rules on the service principals the agents run as
-    d. It skips every AI rule
-3. A sponsor leaves. When does the agent become orphaned?
+2. A sponsor leaves. When does the agent become orphaned?
     a. At once
     b. After 30 days
     c. When the new sponsor hasn't confirmed within ten business days
     d. When its credential expires
-4. Why is inheritance set to `allAllowed` for application roles a Finding?
+3. Why is inheritance set to `allAllowed` for application roles a Finding?
     a. Any future grant to the blueprint becomes a grant to every agent
     b. It blocks token issuance
     c. It's a preview feature
     d. It turns off Conditional Access
-5. What state does the agent Conditional Access write path create policies in?
+4. What state does the agent Conditional Access write path create policies in?
     a. On
     b. Off
     c. Report-only, with Block as the only grant; it never turns a policy on
@@ -285,15 +280,14 @@ Remove-Item -Recurse -Force out
 ::: {.callout-tip collapse="true"}
 ## Check your answers
 1. **b.** Taught in the guide's [AI agents](../../books/guides/non-person-identity-implementation.md#ai-agents) section and the chapter's [Dangers](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#dangers).
-2. **c.** Taught in [Decision D-NP6 as data](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#decision-d-np6-as-data).
-3. **c.** Taught in [The program's rules the code holds](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-programs-rules-the-code-holds) and [The checks](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-checks).
-4. **a.** Taught in [The program's rules the code holds](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-programs-rules-the-code-holds).
-5. **c.** Taught in [The agent Conditional Access plan and the separate write path](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-agent-conditional-access-plan-and-the-separate-write-path).
+2. **c.** Taught in [The program's rules the code holds](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-programs-rules-the-code-holds) and [The checks](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-checks).
+3. **a.** Taught in [The program's rules the code holds](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-programs-rules-the-code-holds).
+4. **c.** Taught in [The agent Conditional Access plan and the separate write path](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#the-agent-conditional-access-plan-and-the-separate-write-path).
 :::
 
 ## Summary (2 minutes)
 
-You checked eight fictional AI identities, filled the sponsor fields Chapter 02 recorded, found an orphaned agent and four P1 drift findings, ran the same rules in GCC High's Fallback mode, and applied a report-only agent policy to a fake by its approved hash.
+You checked eight fictional AI identities, filled the sponsor fields Chapter 02 recorded, found an orphaned agent and four P1 drift findings, and applied a report-only agent policy to a fake by its approved hash.
 
 **The evidence an ISSO keeps** from this module: `ai-identities.json`, `findings.json`, `orphan-candidates.json`, `agent-ca-plan.json` with its approved SHA-256, and the dry-run and apply folders' `results.json` and `manifest.json`, dated; the capability table for D-NP6; and the test result. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md#checklist).
 

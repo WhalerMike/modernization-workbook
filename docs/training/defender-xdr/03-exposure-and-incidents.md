@@ -1,6 +1,6 @@
 ---
 title: "Module 3: Exposure and incidents"
-description: "Guide Steps 5 and 6: what Defender Vulnerability Management adds in GCC, GCC High and DoD, why Security Exposure Management's attack paths aren't available there, and the interim path that prioritizes by exposure level, internet-facing devices and the Tier 0 inventory; one incident queue, a severity table with triage windows and a containment rung, the hand-off, and every incident closed with a classification. Lab 2 files the vulnerability and exposure queries and exports open incidents through Microsoft Graph. About 35 minutes, plus Lab 2, with a knowledge check."
+description: "Guide Steps 5 and 6: what Defender Vulnerability Management adds in GCC, why Security Exposure Management's attack paths aren't available there, and the interim path that prioritizes by exposure level, internet-facing devices and the Tier 0 inventory; one incident queue, a severity table with triage windows and a containment rung, the hand-off, and every incident closed with a classification. Lab 2 files the vulnerability and exposure queries and exports open incidents through Microsoft Graph. About 35 minutes, plus Lab 2, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -15,7 +15,7 @@ last-reviewed: 2026-11-13
 
 ## Introduction (3 minutes) {#xdr-m3-introduction}
 
-Two queues decide whether the platform you built is used: the vulnerabilities waiting for an owner, and the incidents waiting for an analyst. In this module you learn what Defender adds to the vulnerability program in a government cloud and what it can't do there, and how the SOC triages, contains, hands off and closes every incident to a table it can show.
+Two queues decide whether the platform you built is used: the vulnerabilities waiting for an owner, and the incidents waiting for an analyst. In this module you learn what Defender adds to the vulnerability program in GCC and what it can't do there, and how the SOC triages, contains, hands off and closes every incident to a table it can show.
 
 **The federal requirement.** The full table is the guide's [Requirements and KSIs](../../books/guides/defender-xdr-implementation.md#requirements-and-ksis).
 
@@ -28,7 +28,7 @@ Two queues decide whether the platform you built is used: the vulnerabilities wa
 
 After this module, you'll be able to:
 
-- say which exposure features are available in GCC, GCC High and DoD, and record the missing one as not applicable;
+- say which exposure features are available in GCC, and record the missing one as not applicable;
 - prioritize vulnerabilities with the interim path, and give every device group a remediation owner;
 - triage an incident to the severity table, pick its containment rung and hand it off;
 - export open incidents and one incident with its alerts as evidence.
@@ -40,7 +40,7 @@ After this module, you'll be able to:
 
 ## Unit 1: Exposure without Exposure Management (8 minutes) {#xdr-m3-unit-1}
 
-Read the guide's [Step 5](../../books/guides/defender-xdr-implementation.md#step-5-exposure-management). Microsoft Security Exposure Management, which holds attack paths, the exposure graph and critical asset management, is available in Public Cloud only, not in US Government clouds. Defender Vulnerability Management's core and premium capabilities are available in GCC, GCC High and DoD, without *report inaccuracy* and *request CVE support*; Secure Score is available with some recommendations missing. A Zero Trust Assessment test that needs Exposure Management is recorded as not applicable, not as a failure.
+Read the guide's [Step 5](../../books/guides/defender-xdr-implementation.md#step-5-exposure-management). Microsoft Security Exposure Management, which holds attack paths, the exposure graph and critical asset management, is available in Public Cloud only, not in GCC. Defender Vulnerability Management's core and premium capabilities are available in GCC, without *report inaccuracy* and *request CVE support*; Secure Score is available with some recommendations missing. A Zero Trust Assessment test that needs Exposure Management is recorded as not applicable, not as a failure.
 
 The interim path prioritizes by `ExposureLevel` and `IsInternetFacing` from `DeviceInfo`, by Defender Vulnerability Management's recommendations, and by the Tier 0 inventory from [Access and Privilege](../../books/b04-access/index.md) as the critical-asset list. Every device group or tag maps to a remediation owner; a vulnerability without an owner is a finding against CM-8, not just RA-5 *(risk-based recommended)*. The `DeviceTvm*` tables stay in Defender: they aren't ingested into Sentinel, so a Sentinel query that names them returns nothing.
 
@@ -155,7 +155,7 @@ You file the vulnerability and exposure queries and export the open incidents, w
 2. A Sentinel analytics rule queries `DeviceTvmSoftwareVulnerabilities` and never fires. Why?
     a. The `DeviceTvm*` tables stay in Defender; they aren't ingested into Sentinel.
     b. The rule runs too often.
-    c. Vulnerability data is available only in GCC High.
+    c. Vulnerability data is available only in commercial tenants.
 
 3. A High incident arrives. What does the severity table set?
     a. Triage within 24 hours, L2 advise.

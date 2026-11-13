@@ -160,14 +160,14 @@ The standard, in five rules:
 
 The [project plan](../../project-plans/content-delivery.md) schedules this as its own phase, with a gate before the client apps workload moves.
 
-## Government cloud availability and the interim path {#gcc-availability}
+## GCC availability and the interim path {#gcc-availability}
 
-| Capability | GCC (Moderate) | GCC High and DoD | Interim path |
-|---|---|---|---|
-| Intune, including Win32 apps and co-management | GCC tenants use the commercial Intune service[^dpc-intune-gov] | Separate government service; check its feature gaps[^dpc-intune-gov] | Keep the hub tier until each workload is available and moved |
-| Delivery Optimization peering | A Windows component, configured by policy[^dpc-win32] | Same | Peer cache and BranchCache through Configuration Manager |
-| Connected Cache for Enterprise and Education | Not listed as unavailable; only GCC High and DoD are[^dpc-intune-gov] | Listed as not available[^dpc-intune-gov] | The Configuration Manager–integrated cache on a hub distribution point (then gate 4 binds it), or no cache where circuits carry the load |
-| PSAppDeployToolkit | Runs on the endpoint; no cloud dependency | Same | Intune's PowerShell script installer, or vendor installers |
+| Capability | GCC (Moderate) | Interim path |
+|---|---|---|
+| Intune, including Win32 apps and co-management | GCC tenants use the commercial Intune service[^dpc-intune-gov] | Keep the hub tier until each workload is available and moved |
+| Delivery Optimization peering | A Windows component, configured by policy[^dpc-win32] | Peer cache and BranchCache through Configuration Manager |
+| Connected Cache for Enterprise and Education | Not listed as unavailable; GCC uses the commercial Intune service[^dpc-intune-gov] | The Configuration Manager–integrated cache on a hub distribution point (then gate 4 binds it), or no cache where circuits carry the load |
+| PSAppDeployToolkit | Runs on the endpoint; no cloud dependency | Intune's PowerShell script installer, or vendor installers |
 
 : Availability read November 8, 2026, from the pages cited; GCC availability carried from [Book 09, Chapter 11](../b09-network/11-field-office-wan-transformation.md#connected-cache-at-the-hubs) {.striped .hover}
 
@@ -273,7 +273,7 @@ Before the agency funds a refresh of a distribution point in every office, it sh
 [^dpc-mcc-ent]: Microsoft Learn, "Microsoft Connected Cache for Enterprise and Education overview," <https://learn.microsoft.com/windows/deployment/do/mcc-ent-edu-overview> (accessed Oct 21, 2026; carried from Book 09, Chapter 11).
 [^dpc-mcc-prereq]: Microsoft Learn, "Microsoft Connected Cache for Enterprise and Education requirements" (Azure subscription; no other service on port 80; host operating systems; licensing), <https://learn.microsoft.com/windows/deployment/do/mcc-ent-prerequisites> (accessed Oct 21, 2026; carried from Book 09, Chapter 11).
 [^dpc-mcc-cm]: Microsoft Learn, "Microsoft Connected Cache with Configuration Manager" (a distribution point with no other roles; content for workloads moved to Intune only; Win32 apps), <https://learn.microsoft.com/intune/configmgr/core/plan-design/hierarchy/microsoft-connected-cache> (accessed Oct 21, 2026; carried from Book 09, Chapter 11).
-[^dpc-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description" (GCC uses the commercial Intune instance; Connected Cache for Enterprise and Education not available in GCC High and DoD), <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 21, 2026; carried from Book 09, Chapter 11).
+[^dpc-intune-gov]: Microsoft Learn, "Microsoft Intune Government Service overview" (GCC is the same instance as the commercial Intune service; Intune has no separate GCC instance), <https://learn.microsoft.com/intune/fundamentals/government-service> (read Nov 13, 2026; first carried from Book 09, Chapter 11 on Oct 21, 2026).
 [^dpc-comanage]: Microsoft Learn, "Co-management workloads," Client apps (apps deployed from Configuration Manager stay available in Software Center; Connected Cache serves Win32 apps to co-managed clients), <https://learn.microsoft.com/intune/configmgr/comanage/workloads> (read November 8, 2026).
 [^dpc-comanage-faq]: Microsoft Learn, "Frequently asked questions about co-management," Workloads (after switching an app workload you can still deploy applications from Configuration Manager), <https://learn.microsoft.com/intune/configmgr/comanage/faq> (read November 8, 2026).
 [^dpc-psadt]: PSAppDeployToolkit project, home page ("A PowerShell-based framework to simplify and standardize deploying software to Windows, at scale"; support for Intune and ConfigMgr), <https://psappdeploytoolkit.com/> (read November 8, 2026). Not a Microsoft Learn source.
@@ -281,5 +281,5 @@ Before the agency funds a refresh of a distribution point in every office, it sh
 [^dpc-53]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, controls CM-2, CM-3, CM-6, CM-7, CM-8, CP-10, MP-6, RA-5, SA-22, SC-8, SI-2 and CA-7, <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; control statements read from NIST's OSCAL Rev. 5 catalog, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 21, 2026; carried from Book 00, Appendix A, and Book 13, Appendix A).
 [^dpc-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator statements and "Related SP 800-53 Controls" (SA-22 cited by KSI-SCR-MIT; MP-6 cited by none), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 8, 2026).
 [^dpc-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, devices goal, <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Oct 20, 2026; carried from Book 01).
-[^dpc-copilot-gov]: Microsoft Learn, "Understand Microsoft U.S. government cloud environments for Microsoft 365 and Microsoft Copilot" (available in GCC, GCC High and DoD; prompts, responses and generated content remain in the government cloud), <https://learn.microsoft.com/microsoft-365/copilot/gov-overview> (read November 2, 2026; carried from the Ticket-to-Machine task catalog guide).
+[^dpc-copilot-gov]: Microsoft Learn, "Understand Microsoft U.S. government cloud environments for Microsoft 365 and Microsoft Copilot" (available in GCC; prompts, responses and generated content remain in the government cloud), <https://learn.microsoft.com/microsoft-365/copilot/gov-overview> (read November 2, 2026; carried from the Ticket-to-Machine task catalog guide).
 [^dpc-copilot-edp]: Microsoft Learn, "Enterprise data protection in Microsoft Copilot and Microsoft Copilot Chat," <https://learn.microsoft.com/microsoft-365/copilot/enterprise-data-protection> (read November 2, 2026; carried from the Ticket-to-Machine task catalog guide).

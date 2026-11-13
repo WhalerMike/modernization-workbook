@@ -1,7 +1,7 @@
 ---
 title: "Learning path: Defender XDR Engineering and Operations"
 subtitle: "Five modules: architecture, access and onboarding; prevention and Attack Surface Reduction; exposure and incidents; hunting, detections as code and identity signals; and automation, operations and evidence, each with a lab in your own test tenant"
-description: "A learning path in five modules for endpoint engineers, Intune and Defender operators, SOC analysts and detection engineers, the policy owner and ISSO reviewers, built from the Defender XDR implementation guide: unified RBAC roles through PIM, the Graph read path in the tenant's own cloud and proof that the sensor is on and healthy; antivirus, firewall, tamper protection, network protection and controlled folder access through audit, and Attack Surface Reduction through audit, warn and block; vulnerability work without Security Exposure Management, which isn't available in US Government clouds, and incidents triaged to a severity table; custom detections kept in a repository and deployed through the Microsoft Graph API, and identity and cloud-app signals in one query; automation levels matched to the response ladder, and the monthly evidence run. Each module has a knowledge check and a lab that runs the guide's own Validate commands in a test tenant. There is no kit and no fixture lab yet."
+description: "A learning path in five modules for endpoint engineers, Intune and Defender operators, SOC analysts and detection engineers, the policy owner and ISSO reviewers, built from the Defender XDR implementation guide: unified RBAC roles through PIM, the Graph read path in the tenant's own cloud and proof that the sensor is on and healthy; antivirus, firewall, tamper protection, network protection and controlled folder access through audit, and Attack Surface Reduction through audit, warn and block; vulnerability work without Security Exposure Management, which isn't available in GCC, and incidents triaged to a severity table; custom detections kept in a repository and deployed through the Microsoft Graph API, and identity and cloud-app signals in one query; automation levels matched to the response ladder, and the monthly evidence run. Each module has a knowledge check and a lab that runs the guide's own Validate commands in a test tenant. There is no kit and no fixture lab yet."
 doc-type: training-path
 research-status: draft
 research-type: training module
@@ -36,7 +36,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 | Security monitor (SOC) and detection engineer | The incident queue and severity table, advanced hunting, custom detections as code, and the cross-source query |
 | Policy owner and ISSO reviewer | The decision record, the federal requirements each gate supports, the evidence catalog and what couldn't be verified |
 
-**Level:** intermediate. **Products:** Microsoft Defender for Endpoint, Defender XDR, Defender for Identity and Defender for Cloud Apps; Microsoft Intune; Microsoft Graph PowerShell (`Microsoft.Graph.Authentication`, `Microsoft.Graph.Security`); the Windows `Defender` and `NetSecurity` modules. **Scope:** a civilian agency at FedRAMP Moderate in Microsoft 365 GCC, with side notes for GCC High and DoD. Windows clients and Windows Server only; macOS and Linux are out of scope.
+**Level:** intermediate. **Products:** Microsoft Defender for Endpoint, Defender XDR, Defender for Identity and Defender for Cloud Apps; Microsoft Intune; Microsoft Graph PowerShell (`Microsoft.Graph.Authentication`, `Microsoft.Graph.Security`); the Windows `Defender` and `NetSecurity` modules. **Scope:** a civilian agency at FedRAMP Moderate in Microsoft 365 GCC. Windows clients and Windows Server only; macOS and Linux are out of scope.
 
 ## Prerequisites {#xdr-prerequisites}
 
@@ -48,7 +48,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 When you finish the path, you'll be able to:
 
-- describe Defender XDR's components, its two trust boundaries and its control planes, and check each feature's availability in GCC, GCC High and DoD;
+- describe Defender XDR's components, its two trust boundaries and its control planes, and check each feature's availability in GCC;
 - set up unified RBAC roles through PIM, read incidents through Microsoft Graph in the tenant's own cloud, and prove that the sensor is on and healthy across the fleet;
 - move network protection and controlled folder access through audit to block, and every Attack Surface Reduction rule through audit and warn to block, with exclusions in a register;
 - prioritize vulnerabilities without Security Exposure Management, and triage, contain and classify incidents to a severity table;

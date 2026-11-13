@@ -259,7 +259,7 @@ You run the gate, run Microsoft's sample twice, build the plan, lint the library
 
 Import a test GPO into Group Policy analytics, run VK-INT-07 live as a read-only operator, build the move plan live, dry-run and apply as a Policy and Profile Manager, compare the result with what Group Policy analytics' Migrate builds, and drill drift by changing a value in the admin center. Follow [Chapter 06, Lab 2](../../books/b19-developer-workbook/06-group-policy-as-code.md#lab-2-test-tenant).
 
-- **You need:** a test tenant with Intune licenses and a test GPO export, never production. In GCC High and DoD, use `-Cloud gcchigh` or `-Cloud dod`.
+- **You need:** a test tenant with Intune licenses and a test GPO export, never production.
 - **Back it out:** step 8 deletes the created policies by the IDs in `out/apply/sync-record.json`, and the Migrate comparison policy; then delete the imported GPO, as the chapter's clean-up does.
 
 ## Unit 6: Knowledge check

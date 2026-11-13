@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph"
 subtitle: "Learn the Graph APIs, least-privileged permissions and data shapes behind users, groups, Conditional Access, PIM, applications, logs and authentication methods, then run five read-only checks mapped to ScubaGear on fixtures and in your test tenant"
-description: "Research draft: Module 2 of the Microsoft Automation learning path, for Books 02 and 04. You learn users and sign-in activity, groups and membership, Conditional Access policies and named locations, PIM eligibility and assignment schedules, applications and their credentials, consent grants, audit and sign-in logs and their retention, authentication-method registration, risky users and what differs in US Government clouds. Lab 1 runs five read-only checks in Python and PowerShell against fixtures; Lab 2 runs them read-only against your test tenant."
+description: "Research draft: Module 2 of the Microsoft Automation learning path, for Books 02 and 04. You learn users and sign-in activity, groups and membership, Conditional Access policies and named locations, PIM eligibility and assignment schedules, applications and their credentials, consent grants, audit and sign-in logs and their retention, authentication-method registration and risky users. Lab 1 runs five read-only checks in Python and PowerShell against fixtures; Lab 2 runs them read-only against your test tenant."
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04"
@@ -36,7 +36,6 @@ In this module, you'll:
 - Name the Graph API and least-privileged application permission for each of Book 02's and Book 04's evidence questions.
 - Read sign-in activity, group membership, Conditional Access state, PIM schedules, application credentials and registration details, and the traps in each.
 - Explain why Entra ID's own log retention means a script checks logs but doesn't keep them.
-- Say which Entra ID features differ in GCC High and DoD, and why the table doesn't apply to GCC.
 - Run the five checks on fixtures in Python and PowerShell, and read each finding against its ScubaGear policy.
 
 ### Prerequisites
@@ -48,7 +47,7 @@ In this module, you'll:
 
 *8 minutes*
 
-Every API below is generally available in Graph v1.0. Each one's reference page lists it as available in the global service (which GCC uses), US Government L4 (GCC High) and L5 (DoD).[^m2-cloudtables] The permission is the least-privileged *application* permission the page lists. The Book column is where the workbook uses it.
+Every API below is generally available in Graph v1.0. Each one's reference page lists it as available in the global service, which GCC uses.[^m2-cloudtables] The permission is the least-privileged *application* permission the page lists. The Book column is where the workbook uses it.
 
 | Question | Graph API (v1.0) | Least-privileged application permission | Book |
 |---|---|---|---|
@@ -146,31 +145,13 @@ Entra ID keeps **audit logs and sign-ins for seven days on the Free tier and 30 
 
 One caution. Microsoft documents `methodsRegistered` only by example: "mobilePhone, email, passKeyDeviceBound".[^m2-regres] A check that counts phishing-resistant users has to choose which method names to count, and should be confirmed against a real report *(inference)*. The example code keeps that list in one place for that reason.
 
-Reading one user's registered methods needs `UserAuthenticationMethod.Read.All`. That API isn't available in the China cloud, though it is in GCC High and DoD.[^m2-authmethods] The tenant's allowed methods come from the authentication methods policy, which needs `Policy.Read.AuthenticationMethod`.[^m2-ampolicy]
+Reading one user's registered methods needs `UserAuthenticationMethod.Read.All`. That API is available in the global service, which GCC uses.[^m2-authmethods] The tenant's allowed methods come from the authentication methods policy, which needs `Policy.Read.AuthenticationMethod`.[^m2-ampolicy]
 
 ## Unit 6: Where agencies are
 
 *6 minutes*
 
-**The starting state.** Most agencies on this path run a Microsoft 365 GCC tenant, synchronized from Active Directory, with Conditional Access in place and some policies still report-only, permanent role assignments left from before PIM, and applications that still hold client secrets. Some run GCC High. [Book 02, Appendix A](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md#filter-1-government-cloud-availability) filters every identity control by government-cloud availability, licensing and Active Directory friction.
-
-**What differs in US Government clouds.** The APIs in [Unit 2](#unit-2-the-apis-at-a-glance) are the same in GCC High and DoD. The endpoints differ ([Module 1](ms-automation-foundations.md#clouds-and-endpoints)), and so do some features. Microsoft's US Government feature table for Entra ID, as of January 2026, lists:[^m2-govfeatures]
-
-- **Available:**
-  - Conditional Access;
-  - PIM;
-  - access reviews;
-  - entitlement management;
-  - Lifecycle Workflows;
-  - ID Protection's risky-account reports.
-- **Partial:** HR-driven provisioning, which depends on the HR app.
-- **Not available:**
-  - the My Staff delegated user management portal;[^m2-mystaff]
-  - the *Microsoft Entra threat intelligence* risk detection.
-
-A GCC tenant uses the commercial Entra ID service, so this table doesn't apply to it.
-
-One Conditional Access difference matters for the export. Multifactor authentication's Trusted IPs feature isn't supported in Azure Government; Microsoft's guidance is to use Conditional Access policies with named locations instead.[^m2-trustedips] In a GCC High or DoD tenant, then, the named locations that `ca-export` writes are where network-based MFA exceptions live.
+**The starting state.** Most agencies on this path run a Microsoft 365 GCC tenant, synchronized from Active Directory, with Conditional Access in place and some policies still report-only, permanent role assignments left from before PIM, and applications that still hold client secrets. [Book 02, Appendix A](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md#filter-1-government-cloud-availability) filters every identity control by GCC availability, licensing and Active Directory friction.
 
 **Interim paths** *(design guidance)*:
 
@@ -514,25 +495,19 @@ You run the same checks read-only against a test tenant and compare them with th
    b. `Directory.Read.All`
    c. `Policy.Read.All`
 
-5. Your tenant is GCC High. Where should network-based MFA exceptions live?
-   a. In MFA's Trusted IPs setting.
-   b. In Conditional Access named locations, because Trusted IPs isn't supported in Azure Government.
-   c. Nowhere: GCC High doesn't support Conditional Access.
-
 ::: {.callout-tip collapse="true"}
 ## Check your answers
 1. **b.** Microsoft notes that some users reach resources only through clients, so the check uses both dates. See [Users and sign-in activity](#users-and-sign-in-activity), and `ben` in Lab 1, step 1.
 2. **b.** An `Assigned` schedule with no expiration is permanent active. See [Privileged Identity Management](#privileged-identity-management).
 3. **a.** Seven days on Free and 30 with P1 or P2; that's why MS.AAD.4.1v1 sends logs to the SOC. See [Logs and retention](#logs-and-retention).
 4. **c.** Reading needs only `Policy.Read.All`; writing belongs in a pipeline. See [Conditional Access](#conditional-access).
-5. **b.** Microsoft's guidance for Azure Government is named locations in Conditional Access, which is available there. See [Unit 6: Where agencies are](#unit-6-where-agencies-are).
 :::
 
 ## Unit 11: Summary
 
 *3 minutes*
 
-You mapped Book 02's and Book 04's evidence questions to Graph APIs and their least-privileged permissions, learned the traps in sign-in activity, group membership, PIM schedules, credentials and registration details, and saw what differs in GCC High and DoD. In Lab 1 you ran the five checks on fixtures in Python and PowerShell and read each finding against its ScubaGear policy.
+You mapped Book 02's and Book 04's evidence questions to Graph APIs and their least-privileged permissions, learned the traps in sign-in activity, group membership, PIM schedules, credentials and registration details. In Lab 1 you ran the five checks on fixtures in Python and PowerShell and read each finding against its ScubaGear policy.
 
 **Evidence an ISSO keeps from this module:** each check's dated output, with the app's permissions and consent record; the `ca-export` folder in Git, so every policy change is a diff; the PIM and application-credential findings with the change records that closed them; and the ScubaGear results beside them for the policies BOD 25-01 makes mandatory, as [Book 02, Appendix A](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md#cisa-bod-25-01-and-the-scuba-baselines) lists them. [Book 04, Chapter 10](../books/b04-access/10-access-as-code-and-evidence.md#the-evidence-package-for-a-period) assembles the package for a period.
 
@@ -543,7 +518,7 @@ You mapped Book 02's and Book 04's evidence questions to Graph APIs and their le
 
 ## Status and review
 
-**Draft.** Every API, permission, property and limit was checked against Microsoft Learn and the ScubaGear baseline on October 25, 2026. The Trusted IPs difference in Azure Government was added on November 1, 2026 with its own source. Inferences and design guidance are labeled. The checks are tested against fixtures only, and the Lab 1 commands were run on November 1, 2026; the output shown is what they printed. The [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/training/_verification/ms-automation-entra.md) lists the November 1 additions.
+**Draft.** Every API, permission, property and limit was checked against Microsoft Learn and the ScubaGear baseline on October 25, 2026. Inferences and design guidance are labeled. The checks are tested against fixtures only, and the Lab 1 commands were run on November 1, 2026; the output shown is what they printed. The [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/training/_verification/ms-automation-entra.md) lists the November 1 additions.
 
 To move this page to **In review**:
 - a reviewer confirms the permissions table;
@@ -585,6 +560,3 @@ Related: [Module 1: Foundations](ms-automation-foundations.md), the [Microsoft p
 [^m2-authmethods]: Microsoft Learn, "List methods" (updated September 13, 2024), <https://learn.microsoft.com/en-us/graph/api/authentication-list-methods>, accessed October 25, 2026.
 [^m2-ampolicy]: Microsoft Learn, "Get authenticationMethodsPolicy" (updated May 1, 2024), <https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-get>, accessed October 25, 2026.
 [^m2-risky]: Microsoft Learn, "List riskyUsers" (updated October 17, 2024), <https://learn.microsoft.com/en-us/graph/api/riskyuser-list>, accessed October 25, 2026.
-[^m2-govfeatures]: Microsoft Learn, "Microsoft Entra feature availability" in Azure for US Government (updated January 15, 2026), <https://learn.microsoft.com/en-us/entra/identity/authentication/feature-availability>, accessed October 25, 2026.
-[^m2-trustedips]: Microsoft Learn, "Compare Azure Government and global Azure," section "Identity" (limitations with multifactor authentication: Trusted IPs isn't supported; use Conditional Access policies with named locations), <https://learn.microsoft.com/en-us/azure/azure-government/compare-azure-government-global-azure#identity>, read November 1, 2026.
-[^m2-mystaff]: Microsoft Learn, "Use My Staff to delegate user management," how My Staff delegates common user tasks to managers through administrative units, <https://learn.microsoft.com/entra/identity/role-based-access-control/my-staff-configure>, accessed November 9, 2026. The availability itself is from the feature table cited above.

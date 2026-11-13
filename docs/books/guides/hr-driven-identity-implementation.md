@@ -1,6 +1,6 @@
 ---
 title: "HR-Driven Identity: An Implementation Guide"
-description: "A gated guide for running the HR-driven identity lifecycle in Microsoft Entra ID once the HR pipeline exists: who writes each account state and attribute, employee and contractor sources, joiner workflows and day-one access, access packages assigned from HR attributes with reviews of what remains after a move, PIV and CAC certificate binding tied to HR events, separation timing and deprovisioning, and drift, reconciliation and evidence. Each gate states the federal requirement it supports, the evidence an ISSO keeps, each feature's availability in GCC and GCC High, an interim path, and the validation kit check that proves it. It links Book 03 for the design and hands the pipeline build to the Oracle HCM guide."
+description: "A gated guide for running the HR-driven identity lifecycle in Microsoft Entra ID once the HR pipeline exists: who writes each account state and attribute, employee and contractor sources, joiner workflows and day-one access, access packages assigned from HR attributes with reviews of what remains after a move, PIV and CAC certificate binding tied to HR events, separation timing and deprovisioning, and drift, reconciliation and evidence. Each gate states the federal requirement it supports, the evidence an ISSO keeps, each feature's availability in GCC, an interim path, and the validation kit check that proves it. It links Book 03 for the design and hands the pipeline build to the Oracle HCM guide."
 doc-type: workbook-guide
 audience: [Technical, Customer]
 family: guides
@@ -21,7 +21,7 @@ last-reviewed: 2026-11-07
 
 ::: {.callout-note}
 ## In this guide
-How an agency makes its HR system of record decide who exists in Microsoft Entra ID and what they can reach, as gated steps an operator can run. First, how to read the guide and what it hands to other pages, where agencies start, the track at a glance, prerequisites and the path on one page. Then seven gates: fix who writes each account state and attribute; bring employees and contractors in from their sources; make joiners ready on day one; assign access from attributes and review what a move leaves behind; bind PIV and CAC credentials to HR events; time separations and deprovisioning; and keep the record true with drift checks and evidence. Each gate carries its federal requirements and the evidence an ISSO keeps, each feature's availability in GCC and GCC High, an interim path, a **Validate** step and rollback. Then the dangers, the evidence, rollback, a checklist and what couldn't be verified.
+How an agency makes its HR system of record decide who exists in Microsoft Entra ID and what they can reach, as gated steps an operator can run. First, how to read the guide and what it hands to other pages, where agencies start, the track at a glance, prerequisites and the path on one page. Then seven gates: fix who writes each account state and attribute; bring employees and contractors in from their sources; make joiners ready on day one; assign access from attributes and review what a move leaves behind; bind PIV and CAC credentials to HR events; time separations and deprovisioning; and keep the record true with drift checks and evidence. Each gate carries its federal requirements and the evidence an ISSO keeps, each feature's availability in GCC, an interim path, a **Validate** step and rollback. Then the dangers, the evidence, rollback, a checklist and what couldn't be verified.
 :::
 
 ## Watch or download
@@ -78,12 +78,12 @@ This guide assumes the starting state below *(design guidance: the common case, 
 | HR system | A legacy HR system now, moving to Federal HR 2.0's Oracle Fusion Cloud HCM in the agency's wave ([Book 03, Chapter 03](../b03-hr-identity/03-federal-hr-2-0.md)) | Runs the lifecycle against whichever source the pipeline reads; the source swap changes the feed, not these gates |
 | Contractors | Outside HR, on COR spreadsheets, a suitability register or the PIV sponsorship records ([Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#contractors-and-vendors-the-population-hrit-doesnt-cover)) | Gives them a source and an enforced end date in Gate 2 |
 | Credentials | PIV or CAC cards from the card management system, bound in AD through `altSecurityIdentities` and synced | Ties issuance and revocation to HR events in Gate 5 |
-| Tenant | Microsoft 365 GCC, where Entra ID runs in Microsoft's commercial cloud; some agencies in GCC High, on Azure Government[^hri-gov-identity] ([Book 14, Chapter 03](../b14-compliance/03-the-baseline-and-the-crosswalk.md#two-facts-not-one)) | Checks each feature in both, per gate |
+| Tenant | Microsoft 365 GCC, where Entra ID runs in Microsoft's commercial cloud[^hri-gov-identity] ([Book 14, Chapter 03](../b14-compliance/03-the-baseline-and-the-crosswalk.md#two-facts-not-one)) | Checks each feature in GCC, per gate |
 | Licensing | Entra ID P1 everywhere; Entra ID Governance not yet bought, or bought for a pilot | Names the gates that need Governance; gives an interim path for each |
 
 : The starting state this guide assumes {.striped .hover}
 
-**How government-cloud availability is checked.** Learn's feature availability page lists what Entra ID offers in Azure for US Government, which GCC High uses; it marks certificate-based authentication, Conditional Access, dynamic groups, access reviews, entitlement management, Privileged Identity Management, Lifecycle Workflows and API-driven inbound provisioning as available, and says Entra ID Governance is available in GCC, GCC High and DoD.[^hri-feat] Learn publishes no separate Entra table for GCC, because GCC tenants use the commercial Entra service.[^hri-gov-identity] So, in each gate, a GCC row reads "commercial service" unless Learn says otherwise *(inference)*, and a GCC High row cites the Azure Government table. Each gate's table lists only the features that gate uses. All were read on November 1, 2026.
+**How GCC availability is checked.** Learn publishes no separate Entra table for GCC, because GCC tenants use the commercial Entra service;[^hri-gov-identity] Learn's feature availability page names Entra ID Governance as available in GCC.[^hri-feat] So, in each gate, GCC availability reads "commercial service" unless Learn says otherwise *(inference)*. Each gate's paragraph lists only the features that gate uses. All were read on November 1, 2026.
 
 **Where the parts run.** The HR platform is Oracle Fusion Cloud HCM, which OPM runs; the FedRAMP package and impact level that cover OPM's instance are still to confirm with OPM ([HR 2.0 governance explainer](../explainers/hr2-shared-governance-fedramp-boundary.md#oracles-hr-platform-today)). The lifecycle's own automation runs in Azure: a Lifecycle Workflows custom task extension calls an Azure Logic App on the consumption plan, and Learn names no other target.[^hri-lcw-ext] Applications an agency hosts on AWS or Oracle Cloud get lifecycle changes only through the access Entra ID grants them, by provisioning or federation, which this guide doesn't build; what the pipeline must resolve across Oracle, Azure, AWS and on-premises is in [DNS for HR-Driven Identity Across Clouds](../explainers/hr-identity-dns.md).
 
@@ -162,7 +162,7 @@ A rule that reads an attribute hands the access decision to whoever can write it
 
 The KSI column in each gate's table names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^hri-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its evidence up with what its providers report against them, and it doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). Which record supports which indicator is the program's mapping *(design guidance)*.
 
-**Government-cloud availability.** User and group management, dynamic groups and directory synchronization (Connect Sync and cloud sync): commercial service in GCC; available in Azure Government for GCC High.[^hri-feat]
+**GCC availability.** User and group management, dynamic groups and directory synchronization (Connect Sync and cloud sync): commercial service in GCC.[^hri-gov-identity]
 
 **Interim path.** Until AD retires, sync is a writer too: for synced users the extension slots are AD-mastered and read-only in Entra ID ([Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#design-rules)). Record the provisioning agent's gMSA as the AD-side writer and review the OU ACLs every quarter until the population is cloud-mastered *(design guidance)*.
 
@@ -215,7 +215,7 @@ Employees come from HR through the pipeline. Contractors aren't in Federal HR 2.
 
 : Gate 2 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** API-driven inbound provisioning, and provisioning-agent registration for a US Government tenant, are listed as available in Azure Government. HR-driven provisioning as a row is marked "Partial," with a pointer to the HR provisioning apps table, where the API-driven app is listed as available.[^hri-feat] In GCC, the commercial service. Access reviews: available in Azure Government; commercial service in GCC.[^hri-feat]
+**GCC availability.** API-driven inbound provisioning, the provisioning agent and access reviews: commercial service in GCC.[^hri-gov-identity]
 
 **Interim path.** Until the contractor source can feed the middleware, keep contractors on the governed exception path: each account carries the contract end date as `employeeLeaveDateTime`, so the leaver workflow still fires, and the sponsor review in step 6 runs on it *(design guidance)*. Retire the COR spreadsheets as a source of truth even before the replacement is automated ([Book 03, Chapter 12](../b03-hr-identity/12-execution-plan.md#phase-1-attribute-authority-and-schema)).
 
@@ -264,7 +264,7 @@ The account exists, disabled, before day one, because the pipeline sent it early
 
 : Gate 3 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Lifecycle Workflows and entitlement management: available in Azure Government; commercial service in GCC.[^hri-feat] Learn's Azure Government table has no row for Temporary Access Pass; its availability in GCC High wasn't confirmed (see [What couldn't be verified](#what-couldnt-be-verified)).
+**GCC availability.** Lifecycle Workflows, entitlement management and Temporary Access Pass: commercial service in GCC.[^hri-gov-identity]
 
 **Interim path.** Before Governance is licensed, the pipeline creates the account disabled and enables it on the hire date as the single writer; the help desk issues the pass under a written procedure, and the onboarding access comes from dynamic groups ([ADM Gate 4](attribute-driven-migration-implementation.md#gate-4-the-dynamic-group-library-and-administrative-units)) *(design guidance)*.
 
@@ -316,9 +316,9 @@ Dynamic groups carry rule-decided access ([ADM Gate 4](attribute-driven-migratio
 
 : Gate 4 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Entitlement management, access reviews, PIM and dynamic groups: available in Azure Government; commercial service in GCC.[^hri-feat] **Not available in GCC High:** administrative units with dynamic membership rules exist only in the global Azure cloud, not in specialized clouds such as Azure Government.[^hri-au-dyn] GCC tenants, on the commercial service, have them.
+**GCC availability.** Entitlement management, access reviews, PIM and dynamic groups: commercial service in GCC.[^hri-gov-identity] Administrative units with dynamic membership rules exist only in the global Azure cloud;[^hri-au-dyn] GCC tenants, on the commercial service, have them.
 
-**Interim path.** In GCC High, use assigned administrative units whose membership a scheduled job sets from the same rule the dynamic group uses, and compare the two in Gate 7 *(design guidance)*. Before Governance is licensed, department access stays on dynamic groups; packages and automatic assignment wait.
+**Interim path.** Before Governance is licensed, department access stays on dynamic groups; packages and automatic assignment wait.
 
 ::: {.callout-important}
 ## Validate (G4 Access and movers)
@@ -348,7 +348,7 @@ A PIV card without the binding to the account is a badge. The binding identifies
 
 **Steps.**
 
-1. **Trust the issuing CAs, each with a CRL.** Without a configured CRL, Entra doesn't check revocation. A CRL must download within 10 seconds and stay under 20 MB for interactive sign-in in the commercial service (GCC) or 45 MB in Azure Government (GCC High); the service-side limits are 65 MB and 150 MB. If Entra can't download a configured CRL, CBA fails for that CA's certificates, so host CRLs on highly available endpoints; Learn recommends HTTP.[^hri-crl]
+1. **Trust the issuing CAs, each with a CRL.** Without a configured CRL, Entra doesn't check revocation. A CRL must download within 10 seconds and stay under 20 MB for interactive sign-in in the commercial service, which GCC uses; the service-side limit is 65 MB. If Entra can't download a configured CRL, CBA fails for that CA's certificates, so host CRLs on highly available endpoints; Learn recommends HTTP.[^hri-crl]
 2. **Require phishing-resistant strength.** Raise PIV certificates to multifactor by issuer or policy OID and require the phishing-resistant authentication strength ([Book 04, Chapter 03](../b04-access/03-the-conditional-access-model.md#authentication-strengths)).
 3. **Make issuance an HR or contractor event's output.** No card request without a joiner record and a sponsor; the card system writes the binding at issuance and removes it at revocation ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#the-contractor-piv-path)).
 4. **End the bridge.** When the binding lands, the Temporary Access Pass from Gate 3 is no longer needed; record the proofing level as data ([Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md#assurance-as-data)).
@@ -366,7 +366,7 @@ A PIV card without the binding to the account is a badge. The binding identifies
 
 : Gate 5 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Certificate-based authentication and Conditional Access: available in Azure Government; commercial service in GCC. The CRL size limits differ by cloud (step 1).[^hri-feat][^hri-crl]
+**GCC availability.** Certificate-based authentication and Conditional Access: commercial service in GCC, with the commercial CRL limits (step 1).[^hri-gov-identity][^hri-crl]
 
 **Interim path.** After AD retires, who writes `certificateUserIds` for cloud-mastered users is an open pilot: Microsoft documents neither the permission a workload needs nor the write's behavior ([ADM Gate 6](attribute-driven-migration-implementation.md#gate-6-piv-and-cac-binding)). Until it closes, keep the binding in `altSecurityIdentities`, synced by Entra Connect, for every population still synced.
 
@@ -419,7 +419,7 @@ The leaver blocks first, then revokes credentials, devices and access in paralle
 
 : Gate 6 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Lifecycle Workflows and PIM: available in Azure Government; commercial service in GCC.[^hri-feat] Custom task extensions have no row of their own. A GCC tenant is a commercial Entra tenant, and an Azure Government subscription trusts only an Azure Government directory,[^hri-gov-identity] so the Logic App for a GCC tenant's extension most likely sits in a commercial Azure subscription linked to that tenant *(inference; see [What couldn't be verified](#what-couldnt-be-verified))*.
+**GCC availability.** Lifecycle Workflows and PIM: commercial service in GCC. Custom task extensions have no row of their own. A GCC tenant is a commercial Entra tenant, and an Azure Government subscription trusts only an Azure Government directory,[^hri-gov-identity] so the Logic App for a GCC tenant's extension most likely sits in a commercial Azure subscription linked to that tenant *(inference; see [What couldn't be verified](#what-couldnt-be-verified))*.
 
 **Interim path.** Until the custom task extensions exist, the leaver runs its built-in tasks and a leaver checklist with a named owner per row covers the card, the devices and the other tracks; the separation-to-revocation interval measures how long it takes ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md#one-leaver-reaches-four-tracks)).
 
@@ -467,7 +467,7 @@ Attribute drift is ADM Gate 9's. This gate adds the lifecycle classes, the metri
 
 : Gate 7 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Basic and advanced security and usage reports, and SIEM connectivity: available in Azure Government; commercial service in GCC.[^hri-feat]
+**GCC availability.** Basic and advanced security and usage reports, and SIEM connectivity: commercial service in GCC.[^hri-gov-identity]
 
 **Interim path.** Before the SIEM takes identity logs, route them to a storage account from day one; logs that expired before export can't be recovered ([Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves)).
 
@@ -610,10 +610,9 @@ Book 03's [control support table](../b03-hr-identity/11-drift-metrics-and-eviden
 
 ## What couldn't be verified {#what-couldnt-be-verified}
 
-- **Temporary Access Pass in GCC High.** Learn's Azure Government availability table has no row for it, or for the Lifecycle Workflows task that issues it.
 - **The workflow ceiling.** Learn's licensing page says 50 workflows; its service limits page says 100. The validation kit's own ceiling is 100; the guide budgets to 50 until Microsoft reconciles the two pages.
 - **Where a GCC tenant's custom task extension can run.** No Learn page says whether the Logic App may sit in an Azure Government subscription. The guide's reading, a commercial subscription linked to the tenant, is an inference from the identity planning page.
-- **A separate GCC table.** Learn lists Azure Government availability only; GCC availability here follows from GCC using the commercial Entra service, except Entra ID Governance, which Learn names for GCC directly.
+- **A separate GCC table.** Learn publishes none; GCC availability here follows from GCC using the commercial Entra service, except Entra ID Governance, which Learn names for GCC directly.
 - **The writer of `certificateUserIds` after AD**, for cloud-mastered users ([ADM Gate 6](attribute-driven-migration-implementation.md#gate-6-piv-and-cac-binding)).
 - **The card system's event interface and the contractor PIV path**, pending proof ([Book 03, Chapter 12](../b03-hr-identity/12-execution-plan.md#open-verification-register)).
 - **NIST control text.** Today's check confirmed that each control cited is in the Moderate baseline; the control text relies on Book 03's log.
@@ -642,7 +641,7 @@ Book 03's [control support table](../b03-hr-identity/11-drift-metrics-and-eviden
 
 <!-- revisions:end -->
 
-[^hri-feat]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: certificate-based authentication, Conditional Access, dynamic groups, directory synchronization, access reviews, entitlement management, PIM, Lifecycle Workflows, basic and advanced reports and SIEM connectivity available; HR-driven provisioning partial; API-driven inbound provisioning and provisioning agent registration for a US Government tenant available; Entra ID Governance available in GCC, GCC High and DoD), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026).
+[^hri-feat]: Microsoft Learn, "Microsoft Entra feature availability" (Entra ID Governance available in GCC), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026).
 [^hri-gov-identity]: Microsoft Learn, "Planning identity for Azure Government applications," Frequently asked questions ("Why does Office 365 GCC use Microsoft Entra Public?"; an Azure Government subscription can't be associated with a directory in Microsoft Entra Public), <https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity> (read November 1, 2026).
 [^hri-lic]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals" (API-driven provisioning from P1; entitlement management, access reviews and Lifecycle Workflows need ID Governance for member users, some capabilities under P2; Lifecycle Workflows up to 50 workflows and 100 custom task extensions), <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> (read November 1, 2026).
 [^hri-limits]: Microsoft Learn, "Microsoft Entra ID Governance service limits," Lifecycle Workflows (100 workflows, 25 tasks per workflow, 100 custom task extensions, schedule 1 to 24 hours, 10 users per on-demand selection, custom task extension timeout 30 minutes to 3 hours, 5 administrative scopes per workflow) and Entitlement Management (15,000 assignments per automatic assignment policy), <https://learn.microsoft.com/entra/id-governance/governance-service-limits> (read November 1, 2026).
@@ -653,7 +652,7 @@ Book 03's [control support table](../b03-hr-identity/11-drift-metrics-and-eviden
 [^hri-lcw-time]: Microsoft Learn, "How to synchronize attributes for Lifecycle workflows," "Importance of time" (hire time early in the day, leave time late; the tenant schedule, default 3 hours, can delay a run; 24-hour maximum TAP lifetime for new hires), <https://learn.microsoft.com/entra/id-governance/how-to-lifecycle-workflow-sync-attributes> (read November 1, 2026).
 [^hri-lcw-api]: Microsoft Learn, "Overview of Lifecycle Workflows APIs" (workflow versions instead of in-place updates; one tenant-wide schedule, default every three hours, settable from 1 to 24 hours), <https://learn.microsoft.com/graph/api/resources/identitygovernance-lifecycleworkflows-overview?view=graph-rest-1.0> (read November 1, 2026).
 [^hri-lcw-ext]: Microsoft Learn, "Lifecycle Workflows custom task extension" (custom task extensions call Azure Logic Apps; a consumption Logic App; Logic App Contributor, Contributor or Owner, not Logic App Operator; launch and wait fails when no response arrives in the configured time; response authorized by the system-assigned managed identity by default), <https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-extensibility> (read November 1, 2026).
-[^hri-crl]: Microsoft Learn, "Microsoft Entra certificate-based authentication Certificate Revocation List (CRL)" (no CRL configured, no revocation check; one CRL endpoint, HTTP recommended; interactive limit 20 MB public and 45 MB Azure US Government, 10-second download; service limits 65 MB and 150 MB; CBA fails if a configured CRL can't be downloaded; Authentication Policy Administrator configures CRLs), <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> (read November 1, 2026).
+[^hri-crl]: Microsoft Learn, "Microsoft Entra certificate-based authentication Certificate Revocation List (CRL)" (no CRL configured, no revocation check; one CRL endpoint, HTTP recommended; interactive limit 20 MB public, 10-second download; service limit 65 MB public; CBA fails if a configured CRL can't be downloaded; Authentication Policy Administrator configures CRLs), <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> (read November 1, 2026).
 [^hri-au-dyn]: Microsoft Learn, "Manage users or devices for an administrative unit with rules for dynamic membership groups," Prerequisites ("Global Azure cloud (not available in specialized clouds, such as Azure Government...)"), <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-dynamic> (read November 1, 2026).
 [^hri-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, section A, Identity (actions: centralized identity management; phishing-resistant MFA for agency staff, contractors and partners; enterprise identity systems draw on human resources, contract management and personnel security systems), pages 5 and 6, <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (read November 1, 2026).
 [^hri-bod]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," Microsoft Entra ID policies MS.AAD.3.1v1, MS.AAD.3.6v1 and MS.AAD.7.5v1, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (read November 1, 2026).

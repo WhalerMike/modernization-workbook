@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph"
 subtitle: "Learn how Azure Resource Manager differs from Graph, how to page Resource Graph without losing rows, and what the Arc machine, extension, SQL Server and policy records hold, then run five Reader-only checks mapped to NIST SP 800-53 Moderate on fixtures and in your test subscription"
-description: "Research draft: Module 4 of the Microsoft Automation learning path, for Books 05 and 06. You learn the Resource Manager host and token per cloud, why Azure RBAC replaces Graph's permission list, api-versions, Resource Graph's tables, paging with $skipToken and the truncated-result trap, throttling, the empty result that means no access, and the Arc machine, extension, SQL Server, policy assignment and policy state records. You check Windows Server and SQL Server support dates, including the Windows Server 2012 ESU end and the workbook's Windows Server 2019 minimum, and what differs in Azure Government. Lab 1 runs five read-only checks, which complement the validation kit's VK-ARC checks, in Python and PowerShell against fixtures; Lab 2 runs them with the Reader role against your test subscription."
+description: "Research draft: Module 4 of the Microsoft Automation learning path, for Books 05 and 06. You learn the Resource Manager host and token, why Azure RBAC replaces Graph's permission list, api-versions, Resource Graph's tables, paging with $skipToken and the truncated-result trap, throttling, the empty result that means no access, and the Arc machine, extension, SQL Server, policy assignment and policy state records. You check Windows Server and SQL Server support dates, including the Windows Server 2012 ESU end and the workbook's Windows Server 2019 minimum. Lab 1 runs five read-only checks, which complement the validation kit's VK-ARC checks, in Python and PowerShell against fixtures; Lab 2 runs them with the Reader role against your test subscription."
 status: draft
 research-status: draft
 research-type: training module
@@ -71,7 +71,7 @@ In this module, you'll:
 
 A script that already calls Graph correctly has four things to change for Resource Manager.
 
-**1. Another host, and another token.** Resource Manager is `https://management.azure.com` in commercial Azure and `https://management.usgovcloudapi.net` in Azure Government.[^m4-govcompare] A Microsoft 365 GCC tenant's Azure subscriptions are commercial Azure, so a GCC script calls `management.azure.com`; GCC High and DoD use Azure Government ([Module 1](ms-automation-foundations.md)). A token is issued for one resource: ask for `https://management.azure.com/.default`, not the Graph scope. A Graph token can't call Resource Manager *(design guidance, following Module 1's one-token-per-resource rule)*.
+**1. Another host, and another token.** Resource Manager is `https://management.azure.com` in commercial Azure.[^m4-govcompare] A Microsoft 365 GCC tenant's Azure subscriptions are commercial Azure, so a GCC script calls `management.azure.com` ([Module 1](ms-automation-foundations.md)). A token is issued for one resource: ask for `https://management.azure.com/.default`, not the Graph scope. A Graph token can't call Resource Manager *(design guidance, following Module 1's one-token-per-resource rule)*.
 
 **2. Azure RBAC, not a permission list on the token.** A Graph app-only token carries its application permissions in its `roles` claim, and Module 2's client checks them before a run. A Resource Manager token carries no such list: Azure role-based access control (Azure RBAC) decides at each call, from the roles assigned to the identity at the subscription, resource group or management group. Every call in this module needs only the built-in **Reader** role, whose only action is `*/read`.[^m4-reader] That's why the client can't check permissions before a run. Lab 2 has you assign Reader and nothing else.
 
@@ -223,25 +223,6 @@ A product that isn't in the table, such as a Linux distribution or an instance w
 **The starting state.** Book 05's agency is onboarding Windows and Linux servers to Arc in waves ([Arc track guide, Step 3](../books/guides/arc-track-implementation.md#step-3-onboarding-at-scale)). During the move, some servers are onboarded but missing an agent, some connect over the public endpoints before the private link scope is ready, and Arc makes end-of-support Windows Server and SQL Server versions visible. The workbook's planning assumption is that Windows Server 2016 is gone from production by January 12, 2027, with Windows Server 2019 the minimum, so any 2016 server Arc still shows after that date is an exception to handle, not the normal state ([Book 00, Chapter 01](../books/b00-orientation/01-why-modernize-now.md#the-workbooks-server-standard)).
 
 **GCC.** A GCC-Moderate estate's subscriptions are in commercial Azure ([guide, 1.1](../books/guides/arc-track-implementation.md#choose-the-azure-cloud)), so its scripts call `management.azure.com` and the commercial sign-in endpoint. Use `--cloud gcc`, as in every module.
-
-**GCC High and DoD.** These estates use Azure Government: `management.usgovcloudapi.net`,[^m4-govcompare] the US Government sign-in authority, and `Connect-AzAccount -Environment AzureUSGovernment` ([Module 1](ms-automation-foundations.md)). The Arc track guide's [availability table](../books/guides/arc-track-implementation.md#azure-government-versus-commercial) lists what differs there, with its sources. Microsoft's Azure Government general availability roadmap, read on November 11, 2026, gives the authorization status of what these checks call:[^m4-govroadmap]
-
-| Service | FedRAMP High | DoD IL4 | DoD IL5 |
-|---|---|---|---|
-| Azure Resource Manager | GA | GA | GA |
-| Azure Resource Graph | GA | GA | GA |
-| Azure Arc-enabled servers | GA | GA | GA |
-| Azure Arc-enabled SQL Server | GA | Awaiting review | Awaiting review |
-| Azure Policy | GA | GA | GA |
-| Azure Private Link | GA | GA | GA |
-
-: Azure Government availability of the services behind the five checks (Microsoft's roadmap; "GA" is the roadmap's "currently GA and authorized"). {.striped .hover}
-
-Learn doesn't say whether Resource Graph's quota, paging or table coverage differ in Azure Government: not yet specified. Three differences affect these checks:
-
-- **SQL Server enabled by Arc** is a subset in Azure Government: US Gov Virginia only, on Windows only, with onboarding, inventory, licensing, failover cluster instances and ESU licenses, but no Entra authentication.[^m4-sqlgov] So `sql-inventory` and the SQL rows of `lifecycle` see only instances in that region; a Linux SQL Server host in Azure Government has no instance resource to read *(inference)*.
-- **The private link scope** is available, with its own endpoints.
-- **ESU-only Arc servers** need a smaller set of endpoints in Azure Government, among them `management.usgovcloudapi.net` only when a server connects or disconnects.[^m4-arcesu]
 
 **Interim paths** *(design guidance)*:
 
@@ -659,7 +640,7 @@ You run the checks read-only against a test subscription and compare them with t
    c. `endingSoon`.
 
 4. Why doesn't the PowerShell module use `Invoke-AzRestMethod`?
-   a. It isn't available in Azure Government.
+   a. It isn't available in PowerShell 7.
    b. It can't page.
    c. It sends any method, including writes, and the module is read-only; a test fails if the module calls an Az cmdlet that writes.
 
@@ -700,7 +681,7 @@ The [Arc track guide's Step 8](../books/guides/arc-track-implementation.md#step-
 
 ## Status and review
 
-**Draft.** Every API, property, role, limit, date and cloud difference was checked against Microsoft Learn on November 3, 2026, and the NIST SP 800-53 Moderate baseline the same day. The lifecycle and ESU dates, Resource Graph paging and throttling, Resource Manager throttling, the Arc machine API version, policy enforcement modes, the Azure Government availability and the Lab 2 commands were rechecked on November 11, 2026; that pass added the unique-sort rule, the `Enroll` note, the Azure Government roadmap table and the earlier SQL Server 2014 ESU end date. Inferences, design guidance and unverified points are labeled, and the [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/training/_verification/ms-automation-arc.md) lists each claim with its source. The checks are tested against fixtures only. The Lab 1 commands were run on November 3, 2026, and again on November 11, 2026, and the output shown is what they printed.
+**Draft.** Every API, property, role, limit and date was checked against Microsoft Learn on November 3, 2026, and the NIST SP 800-53 Moderate baseline the same day. The lifecycle and ESU dates, Resource Graph paging and throttling, Resource Manager throttling, the Arc machine API version, policy enforcement modes and the Lab 2 commands were rechecked on November 11, 2026; that pass added the unique-sort rule, the `Enroll` note and the earlier SQL Server 2014 ESU end date. Inferences, design guidance and unverified points are labeled, and the [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/training/_verification/ms-automation-arc.md) lists each claim with its source. The checks are tested against fixtures only. The Lab 1 commands were run on November 3, 2026, and again on November 11, 2026, and the output shown is what they printed.
 
 To move this page to **In review**:
 - a reviewer confirms the queries, the lifecycle dates and the control mapping;
@@ -741,8 +722,6 @@ Related: [Module 1: Foundations](ms-automation-foundations.md), [Module 3: Intun
 [^m4-arcpl]: Microsoft Learn, "Use Azure Private Link to connect servers to Azure Arc by using a private endpoint" (updated May 4, 2026), <https://learn.microsoft.com/en-us/azure/azure-arc/servers/private-link-security>, accessed November 3, 2026.
 [^m4-argpagelimits]: Microsoft Learn, "Guidance for pagination" (Azure Resource Graph: pagination limitations, sorting by a unique column, dynamic environments, hash-based partitioning and batching by resource ID), <https://learn.microsoft.com/en-us/azure/governance/resource-graph/concepts/paging-results>, accessed November 11, 2026.
 [^m4-sqlesufaq]: Microsoft Learn, "Extended Security Updates: Frequently asked questions" (SQL Server 2014 ESUs "available until July 8, 2027"; SQL Server 2016 ESUs until July 17, 2029), <https://learn.microsoft.com/en-us/sql/sql-server/end-of-support/extended-security-updates-frequently-asked-questions>, and the SQL Server 2014 lifecycle page (Extended Security Updates Year 3 ending 7/13/2027 6:59:59 AM PT), <https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2014>, accessed November 11, 2026.
-[^m4-govroadmap]: Microsoft Learn, "Microsoft Azure Government Product General Availability (GA) Roadmap" (Azure Resource Manager, Azure Resource Graph, Azure Arc Enabled Servers, Azure Arc-Enabled SQL Server, Azure Policy and Azure Private Link rows), <https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-product-roadmap>, accessed November 11, 2026.
-[^m4-sqlgov]: Microsoft Learn, "SQL Server enabled by Azure Arc in US Government" (US Government Virginia region only, Windows only, and the available features), <https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/us-government-region>, accessed November 11, 2026.
 [^m4-clisp]: Microsoft Learn, "Use an Azure service principal with certificate-based authentication" (`az ad sp create-for-rbac --create-cert` and the `fileWithCertAndPrivateKey` output), <https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-3>, and "Troubleshooting Azure CLI" (`create-for-rbac` matches an existing app by display name), <https://learn.microsoft.com/en-us/cli/azure/use-azure-cli-successfully-troubleshooting>, accessed November 11, 2026.
 [^m4-azpsauth]: Microsoft Learn, "Sign in to Azure PowerShell non-interactively for automation scenarios" (certificate sign-in by thumbprint from the local certificate store), <https://learn.microsoft.com/en-us/powershell/azure/authenticate-noninteractive>, accessed November 11, 2026.
 [^m4-clilogin]: Microsoft Learn, "Sign into Azure with a service principal using the Azure CLI" (`az login --service-principal --certificate` with a PEM file holding the private key and certificate), <https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli-service-principal>, accessed November 11, 2026.

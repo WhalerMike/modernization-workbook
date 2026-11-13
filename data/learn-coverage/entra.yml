@@ -17605,7 +17605,6 @@ pages:
   - docs/books/b15-day2-operations/_verification/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/_verification/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
-  - docs/books/guides/_verification/hr-driven-identity-implementation.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/hcm-entra-implementation.md
   - docs/books/guides/hr-driven-identity-implementation.md
@@ -17629,7 +17628,6 @@ pages:
   - docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md
   - docs/project-plans/developer-workbooks/privileged-access/index.md
   - docs/reference/source-register.md
-  - docs/training/ms-automation-entra.md
   - examples/non-person-identity/config/agent-id-capabilities-ch09.json
 - path: docs/identity/authentication/how-to-account-recovery-cost-savings-estimator.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-account-recovery-cost-savings-estimator
@@ -28290,13 +28288,11 @@ pages:
   ms_date: '2026-09-04'
   ms_topic: how-to
   description: Delegate user management using My Staff and administrative units
-  coverage: cited
+  coverage: unreviewed
   note: 'My Staff is named in the Entra automation path; setup not walked through. Learn pass Nov 9, 2026: Book 15 Ch04 doesn''t use My Staff.'
   workbook:
   - docs/training/ms-automation-entra.md
-  cited_by:
-  - docs/training/_verification/ms-automation-entra.md
-  - docs/training/ms-automation-entra.md
+  cited_by: []
 - path: docs/identity/role-based-access-control/permissions-reference.md
   url: https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference
   title: Microsoft Entra Built-in Roles

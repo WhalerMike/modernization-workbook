@@ -881,7 +881,7 @@ The guide carries no assessment-mapping block: it addresses no Zero Trust Assess
 
 ## Government cloud availability {#gcc}
 
-Configuration Manager, its PowerShell module and the kit run on premises; nothing here depends on the cloud until Steps 5.3, 7.5, 8 and 9. For those, the [decision guide's availability table](dp-consolidation.md#gcc-availability) applies: GCC tenants use the commercial Intune service, and Connected Cache for Enterprise and Education is listed as unavailable only in GCC High and DoD. In GCC High and DoD, the interim path for Step 9 is the Configuration Manager–integrated cache on a hub DP with no other roles, which keeps retirement gate 4 open until it goes.
+Configuration Manager, its PowerShell module and the kit run on premises; nothing here depends on the cloud until Steps 5.3, 7.5, 8 and 9. For those, the [decision guide's availability table](dp-consolidation.md#gcc-availability) applies: GCC tenants use the commercial Intune service, and Connected Cache for Enterprise and Education isn't listed as unavailable for them.
 
 ## What couldn't be verified {#not-verified}
 

@@ -2,7 +2,7 @@
 
 New guide, first pass of 2026-10-29. The guide is an implementation view over Book 05 Ch 01, 03, 04 and 09, Book 08 Ch 11 and Appendix A, Book 12 Ch 07, Book 15 Ch 09, Book 02 Ch 09, Book 04 Ch 05 and the research page `docs/books/guides/infoblox-nios-implementation.md`. Facts carried from those pages are cited by link to the section that states them and rely on those chapters' own verification logs. Every external source footnoted in the guide was opened on 2026-10-29. No personal name or email address was sent in any request.
 
-**Access limits on 2026-10-29.** docs.ansible.com returned HTTP 429 to scripted requests and a Cloudflare bot check in the browser, which was not bypassed. Ansible facts were therefore verified against the source files the site is built from (`ansible/ansible-documentation` `docs/docsite/rst/…` on `devel`; module and plugin `DOCUMENTATION` blocks in `ansible/ansible` `stable-2.21`; each collection's repository; `ansible/ansible-lint` `docs/`). The footnotes give the docs.ansible.com address each source renders to. **Re-open those addresses once before the guide leaves draft.** DISA's DoD Cyber Exchange (public.cyber.mil) did not resolve from the editing environment.
+**Access limits on 2026-10-29.** docs.ansible.com returned HTTP 429 to scripted requests and a Cloudflare bot check in the browser, which was not bypassed. Ansible facts were therefore verified against the source files the site is built from (`ansible/ansible-documentation` `docs/docsite/rst/…` on `devel`; module and plugin `DOCUMENTATION` blocks in `ansible/ansible` `stable-2.21`; each collection's repository; `ansible/ansible-lint` `docs/`). The footnotes give the docs.ansible.com address each source renders to. **Re-open those addresses once before the guide leaves draft.**
 
 ## Claims log: Microsoft Learn (footnoted)
 
@@ -69,9 +69,6 @@ Not carried: the Onboarding role's action list includes `machines/addExtensions/
 | 61 | FIPS page lists RHEL module certificates; generally applicable to other products running unmodified; AAP not named | FIPS | verified | `ans-rh-fips` |
 | 62 | AAP 2.6/2.7 FIPS-mode support statement | FIPS | **couldn't verify** (none found in 2.6/2.7 system requirements, installation, hardening or compliance pages); the guide says so | — |
 | 63 | 2.5 known issue AAP-39146 (gateway on FIPS RHEL 9) fixed April 9, 2025; AAP-16456, AAP-50443 | FIPS | verified | `ans-aap-25-notes` |
-| 64 | Red Hat lists an Ansible Automation Controller STIG | Baseline content (controller, *High only*) | verified. **Changed 2026-10-29 (Moderate civilian sweep):** the FIPS paragraph no longer justifies FIPS through the RHEL STIG profile's FIPS requirement, and the RHEL STIG baselines-by-release claim was dropped; FIPS now stands on its own as design guidance. The footnote's description was trimmed to match | `ans-rh-stig` |
-| 65 | First controller STIG released April 2023 | Baseline content (controller, *High only*) | verified (Red Hat blog, Apr 11, 2023) | `ans-rh-stig-blog` |
-| 66 | Current controller STIG release and covered platform version | Baseline content (controller, *High only*) | **couldn't verify** (public.cyber.mil unreachable); the guide tells readers to check DoD Cyber Exchange | — |
 | 67 | 2.7 caveats for CIS/PCI DSS/STIG-hardened hosts: fapolicyd, noexec on /tmp and /var, umask | Baseline content (controller) | verified. **Reframed 2026-10-29:** the controller host is hardened to the CIS RHEL 9 or 10 Benchmark and agency CM-6 settings (design guidance); STIG kept only as a *High only* reference | `ans-aap-hardened` |
 | 68 | RHEL 9 §7.5 and RHEL 10 §5.3.2: remediate with an SSG Ansible playbook | Baseline content (hosts) | verified | `ans-rhel-hardening` |
 | 69 | Gateway authentication methods; per-resource roles | Sign-in | verified | `ans-aap-auth` |
@@ -131,14 +128,13 @@ The onboarding playbook passes the secret through an `azcmagent connect --config
 | Item | Status |
 |---|---|
 | docs.ansible.com rendered pages | 429 / bot check on 2026-10-29; verified from source; re-open before leaving draft |
-| Current DISA Ansible Automation Controller STIG release (*High only*) | public.cyber.mil unreachable; guide directs readers there |
 | AAP 2.6/2.7 support on FIPS-mode RHEL | No statement found; guide says ask Red Hat and test |
 | Self-managed AAP's FedRAMP treatment | Not published by Red Hat or FedRAMP; guide gives design guidance |
 | AAP managed offerings in Azure Government or AWS GovCloud | Not published |
 
 ## Moderate civilian sweep (2026-10-29)
 
-The guide was reframed for FedRAMP Moderate civilian agencies. "STIG content" became "Baseline content" (`#baseline-content`): the agency's CM-6 settings drawn from CIS Benchmarks, Red Hat's SCAP Security Guide CIS profiles, the vendor's hardening guide and reviewed, pinned Ansible Lockdown CIS roles. The controller host is hardened to CIS RHEL 9 or 10 plus agency CM-6 settings. The DISA controller STIG and Broadcom's VCF STIG readiness content are kept as optional *High only* references, with the page's one explaining line under "How to read this guide". The FIPS paragraph no longer leans on the STIG profile. The phase-2 decision, the decisions in the checklist and the description frontmatter no longer offer STIG as a baseline option. The hosting table no longer implies a commercial Region is out of bounds; the managed offerings are excluded because they aren't FedRAMP-listed. New claims are rows 82 to 89 and 104. No personal name or email address was sent in any request.
+The guide was reframed for FedRAMP Moderate civilian agencies. "STIG content" became "Baseline content" (`#baseline-content`): the agency's CM-6 settings drawn from CIS Benchmarks, Red Hat's SCAP Security Guide CIS profiles, the vendor's hardening guide and reviewed, pinned Ansible Lockdown CIS roles. The controller host is hardened to CIS RHEL 9 or 10 plus agency CM-6 settings. Broadcom's VCF STIG readiness content is kept as an optional *High only* reference, with the page's one explaining line under "How to read this guide". The FIPS paragraph no longer leans on the STIG profile. The phase-2 decision, the decisions in the checklist and the description frontmatter no longer offer STIG as a baseline option. The hosting table no longer implies a commercial Region is out of bounds; the managed offerings are excluded because they aren't FedRAMP-listed. New claims are rows 82 to 89 and 104. No personal name or email address was sent in any request.
 
 ## Addition, October 30, 2026
 

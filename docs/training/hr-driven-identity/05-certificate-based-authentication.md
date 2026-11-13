@@ -1,6 +1,6 @@
 ---
 title: "Module 5: Check certificate-based authentication"
-description: "Gate G5 and workbook Chapter 05: measure every CRL, and check the certificate-based authentication trust store, each CRL against the cloud's limit, the multifactor mapping, CRL validation and the phishing-resistant strength, for GCC and GCC High. About 50 minutes, with a lab on fixtures and a test tenant lab."
+description: "Gate G5 and workbook Chapter 05: measure every CRL, and check the certificate-based authentication trust store, each CRL against the cloud's limit, the multifactor mapping, CRL validation and the phishing-resistant strength, for GCC. About 50 minutes, with a lab on fixtures and a test tenant lab."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -37,7 +37,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers: the agency authoriz
 
 After this module, you'll be able to:
 
-- state the interactive CRL limits for GCC and GCC High, and the download time limit;
+- state the interactive CRL limit for GCC, and the download time limit;
 - measure a set of CRLs and record failures as findings;
 - run the certificate-based authentication check for a named cloud and explain its findings;
 - explain why the same CRL can be a warning in one cloud and not in another.
@@ -171,31 +171,31 @@ rm -rf out
     d. Entra uses the root CA's CRL instead
 2. What's the interactive sign-in CRL size limit in GCC?
     a. 20 MB, the commercial service limit
-    b. 45 MB, the Azure Government limit
+    b. 45 MB
     c. 65 MB
     d. 150 MB
-3. An 18,500,000-byte CRL raises CB-05 for GCC but not for GCC High. Why?
-    a. GCC High doesn't check CRL size
-    b. CB-05 warns at 80 percent of the cloud's interactive limit, and GCC High's limit is 45 MB
-    c. GCC High caches CRLs
+3. An 18,500,000-byte CRL raises CB-05 in GCC. Why?
+    a. The CRL is over the GCC limit
+    b. CB-05 warns at 80 percent of the interactive limit, and GCC's limit is 20 MB
+    c. The CRL took too long to download
     d. The check skips CB-05 for root CAs
 4. A configured CRL takes 11.4 seconds to download. What does the check report?
-    a. A Warn in GCC and nothing in GCC High
-    b. A CB-04 Finding in every cloud, because the limit is 10 seconds
+    a. A Warn, because the size is small
+    b. A CB-04 Finding, because the limit is 10 seconds
     c. Nothing, because the size is under the limit
     d. A CB-02 Warn, because it should be HTTP
 
 ::: {.callout-tip collapse="true"}
 ## Check your answers
 1. **b.** Without a configured CRL, Entra doesn't check revocation (CB-01). Taught in the guide's [Step 5](../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events) and [The check](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-check).
-2. **a.** 20 MB in the commercial service, which GCC uses; 45 MB in Azure Government. Taught in the guide's [Step 5](../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events).
-3. **b.** The same size is under 80 percent of 45 MB. Taught in [The check](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-check) and the chapter's [Lab 1](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#lab-1-fixtures-no-tenant).
-4. **b.** A CRL must download within 10 seconds in every cloud. Taught in [The check](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-check).
+2. **a.** 20 MB in the commercial service, which GCC uses. Taught in the guide's [Step 5](../../books/guides/hr-driven-identity-implementation.md#step-5-bind-credentials-to-hr-events).
+3. **b.** 18,500,000 bytes is over 80 percent of 20 MB. Taught in [The check](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-check) and the chapter's [Lab 1](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#lab-1-fixtures-no-tenant).
+4. **b.** A CRL must download within 10 seconds. Taught in [The check](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#the-check).
 :::
 
 ## Summary (2 minutes)
 
-You measured three CRLs, checked a fictional tenant's certificate-based authentication for GCC and for GCC High, and saw how the cloud's limit changes the findings.
+You measured three CRLs, checked a fictional tenant's certificate-based authentication for GCC, and saw how the GCC limit sets the CB-05 warning.
 
 **The evidence an ISSO keeps** for Gate 5: the `cba-read` export and the check's findings and manifest, dated; each CRL measurement; the CB-09 and CB-10 rows beside the ScubaGear report; Lab 2's refused sign-in with the revocation record and the CRL that published it; and the mode rules in the export. The full list is in the workbook's [Federal requirements and evidence](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#federal-requirements-and-evidence).
 

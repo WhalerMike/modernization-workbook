@@ -12074,15 +12074,17 @@
    "title": "reports: getDeviceUsageSummary (Microsoft Graph beta)",
    "publisher": "Microsoft Learn",
    "url": "https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta",
-   "status": "active",
+   "status": "retired",
    "added": "2026-11-12",
-   "labels": [
-    "reports: getDeviceUsageSummary"
-   ],
+   "labels": [],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-13",
+     "change": "Retired: the workbook covers GCC Moderate only (Nov 13, 2026)"
     }
    ]
   },
@@ -13528,6 +13530,74 @@
     {
      "date": "2026-11-13",
      "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-firewall-monitoring-data-reference",
+   "title": "Monitoring data reference for Azure Firewall",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/firewall/monitor-firewall-reference",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Monitoring data reference for Azure Firewall"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited in the Azure Security guide and training labs"
+    }
+   ]
+  },
+  {
+   "id": "monitor-azure-key-vault",
+   "title": "Monitor Azure Key Vault",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/key-vault/general/monitor-key-vault",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "Monitor Azure Key Vault"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited in the Azure Security guide and training labs"
+    }
+   ]
+  },
+  {
+   "id": "az-monitor-log-analytics",
+   "title": "az monitor log-analytics",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/cli/azure/monitor/log-analytics",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "az monitor log-analytics"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited in the Azure Security guide and training labs"
+    }
+   ]
+  },
+  {
+   "id": "az-policy-exemption",
+   "title": "az policy exemption",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/cli/azure/policy/exemption",
+   "status": "active",
+   "added": "2026-11-13",
+   "labels": [
+    "az policy exemption"
+   ],
+   "history": [
+    {
+     "date": "2026-11-13",
+     "change": "Added: cited in the Azure Security guide and training labs"
     }
    ]
   }

@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide"
 subtitle: "Book 13's loop built on two named products, in seven gates: confirm the boundary, decide the writers and approvers, connect the sources, open the front door, actuate on the native surface, close only on a re-read, and operate the tempo"
-description: "Research draft: a gated implementation guide that builds Book 13's Ticket-to-Machine loop on ServiceNow (the front door and the record) and SailPoint Identity Security Cloud (identity governance), as an example rather than a recommendation. Seven gates, each with its steps, the federal requirement it supports and the evidence an ISSO keeps, the FedRAMP status of each product used and the Microsoft Entra features in GCC and GCC High, an interim path, a Validate step that names the integration kit's tests or says there is no automated check yet, and rollback."
+description: "Research draft: a gated implementation guide that builds Book 13's Ticket-to-Machine loop on ServiceNow (the front door and the record) and SailPoint Identity Security Cloud (identity governance), as an example rather than a recommendation. Seven gates, each with its steps, the federal requirement it supports and the evidence an ISSO keeps, the FedRAMP status of each product used and the Microsoft Entra features in GCC, an interim path, a Validate step that names the integration kit's tests or says there is no automated check yet, and rollback."
 research-status: draft
 research-type: implementation guide
 research-book: "Books 13, 15"
@@ -91,7 +91,7 @@ The guide assumes the starting state most agencies report, and gives an interim 
 | Identity governance | SailPoint ISC, SailPoint IdentityIQ, another product, or none | ISC is this guide's example; with none, Book 15's in-house path applies |
 | Directories | Active Directory synchronized to Entra ID; AD groups granted by hand from tickets; some cloud-only groups | Gate 5 moves the grants to connectors |
 | HR feed | Either Book 03's pipeline (Entra inbound provisioning from HR) is live, or accounts are still created from tickets | Gate 2 decides who writes each attribute |
-| Microsoft tenant | Microsoft 365 GCC; a minority in GCC High | Availability notes cover both |
+| Microsoft tenant | Microsoft 365 GCC | Availability notes cover GCC |
 | Disconnected applications | Applications with only an administrative console and no connector | Gate 5's declared-exception lane |
 | Evidence | Ticket history and console screenshots; no re-read | Gates 6 and 7 |
 
@@ -135,7 +135,7 @@ The guide assumes the starting state most agencies report, and gives an interim 
 
 **Integration identities.** Nine non-person identities carry the integration, two for the connections and the seven the kit runs, one per task, each with two named owners and a federal sponsor in the system inventory, and each governed on the [non-person identity track](non-person-identity-implementation.md#step-1-inventory-every-non-person-identity) *(design guidance)*:
 
-1. SailPoint's Entra connector app registration in the agency's tenant (the GCC High endpoints are a source setting, Gate 1);[^ttm-gov]
+1. SailPoint's Entra connector app registration in the agency's tenant;
 2. the ServiceNow Entra spoke's app registration, a custom app that obtains OAuth 2.0 tokens, delegated or application;[^ttm-spoke]
 3. the ServiceNow integration user the SailPoint workflow posts as (`finding_writer`; [kit permissions](snow-sailpoint-integration-kit.md#permissions));
 4. the verifier account the re-read client closes records as (`verifier`), and the evidence reader the export and the pre-flight checks read as (`evidence_reader`);
@@ -293,7 +293,7 @@ Loop steps 1 and 2 for identity: SailPoint reads the sources, and the kit measur
 ### Steps
 
 1. **Aggregate HR into SailPoint** as the authoritative source, read-only under the first pattern of Gate 2.
-2. **Connect Entra ID and Active Directory** as SailPoint sources: the Entra SaaS connector (accounts, groups, licenses, roles, administrative units, access packages, PIM)[^ttm-entra] and the AD connector through the virtual appliance.[^ttm-ad] In GCC High, set the Entra source's Graph and token endpoints to `graph.microsoft.us` and `login.microsoftonline.us`.[^ttm-gov]
+2. **Connect Entra ID and Active Directory** as SailPoint sources: the Entra SaaS connector (accounts, groups, licenses, roles, administrative units, access packages, PIM)[^ttm-entra] and the AD connector through the virtual appliance.[^ttm-ad]
 3. **Correlate on `employeeId`**, the key Book 03 joins on. Treat uncorrelated accounts as orphan candidates, not errors to suppress.
 4. **Turn on Native Change Detection** on the Entra and AD sources, for the attributes and entitlements the record governs. It compares stored and newly read data on aggregation and fires one event per changed account; it isn't available on Non-Employee Lifecycle Management sources.[^ttm-ncd-help]
 5. **Run the kit's drift reconciliation read-only**: it joins the HR extract, Microsoft Graph and ISC on `employeeId` and reports Book 03's drift classes as JSON and CSV ([Build 3](snow-sailpoint-integration-kit.md#build-3-drift-reconciliation)). Expect a burst of High findings in the first month; Book 03 calls that the measurement working.
@@ -309,7 +309,7 @@ Loop steps 1 and 2 for identity: SailPoint reads the sources, and the kit measur
 
 : Gate 3 requirements and evidence {.striped .hover}
 
-**Availability.** The SailPoint Entra connector documents Azure Government endpoint overrides;[^ttm-gov] GCC tenants use the worldwide endpoints.[^ttm-graph] Native Change Detection's presence in the ISC FedRAMP environment wasn't confirmed (Gate 1, step 2).
+**Availability.** GCC tenants use the worldwide endpoints.[^ttm-graph] Native Change Detection's presence in the ISC FedRAMP environment wasn't confirmed (Gate 1, step 2).
 
 **Interim path.** Without SailPoint, or before it's connected, run the kit's reconciliation against the HR extract and Graph alone; the ISC inputs are optional files ([kit README](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint)). AD-only groups wait for the appliance.
 
@@ -417,7 +417,7 @@ Loop step 4: the ticket authorizes a machine. The fix runs through a connector u
 
 : Gate 5 requirements and evidence {.striped .hover}
 
-**Availability.** PIM is available in Azure for US Government (read November 1, 2026).[^ttm-entra-gov] The Entra spoke's connection points at `https://graph.microsoft.com` by default and its page doesn't mention the US Government clouds:[^ttm-spoke] it fits GCC; for GCC High, confirm with ServiceNow before use. SailPoint's connector endpoints for GCC High are documented.[^ttm-gov]
+**Availability.** PIM is available in Azure for US Government (read November 1, 2026).[^ttm-entra-gov] The Entra spoke's connection points at `https://graph.microsoft.com` by default and its page doesn't mention the US Government clouds:[^ttm-spoke] it fits GCC.
 
 **Interim path.** Until the change-record flow exists, the approver raises the change record by hand and links it to the request; the closure still waits for Gate 6. Where the spoke isn't licensed, A0 and A1 tasks stay help desk tasks against an approved ticket, with the PIM activation recorded.
 
@@ -464,7 +464,7 @@ Loop step 5, and gap 1. A finding, or a ticket SailPoint's Service Desk integrat
 
 : Gate 6 requirements and evidence {.striped .hover}
 
-**Availability.** The re-read uses ISC's Accounts and Search APIs and Graph's users endpoint; GCC uses the worldwide Graph endpoint and GCC High `graph.microsoft.us`.[^ttm-graph] The ISC API domain for a FedRAMP tenant wasn't confirmed (Gate 1).
+**Availability.** The re-read uses ISC's Accounts and Search APIs and Graph's users endpoint; GCC uses the worldwide Graph endpoint.[^ttm-graph] The ISC API domain for a FedRAMP tenant wasn't confirmed (Gate 1).
 
 **Interim path.** Before the client runs on a schedule, the verifier runs it by hand once a day (dry run first, then apply); the business rule still blocks a person's close.
 
@@ -677,7 +677,6 @@ From public documentation read on November 1, 2026, unless noted:
 - **The ISC API domain for a FedRAMP tenant**, and the Native Change Account Updated trigger ID ([kit verify list](snow-sailpoint-integration-kit.md#what-couldnt-be-verified)).
 - **SailPoint's ServiceNow apps and the Entra spoke in ServiceNow's government Store.** The Store pages render by script.[^ttm-store]
 - **The Service Catalog app's approval and status write-back.** SailPoint's apps overview states them;[^ttm-apps] its integration page, revised October 30, 2026, now describes a "ServiceNow Portal Integration" and doesn't state where approval is defined.[^ttm-catalog]
-- **The Entra spoke in GCC High.** Its page documents only the worldwide Graph endpoint.[^ttm-spoke]
 - **How often the Service Desk integration checks ticket status**, SailPoint event retention, and end-dated access requests (from the October 24 review; not re-checked).
 - **Whether SailPoint's current documentation still treats IdentityIQ's change-request ticket type as supported** on every release: the IdentityIQ page lists `changeRequest` without a release or revision date.[^ttm-iiq-itsm]
 
@@ -723,9 +722,8 @@ From public documentation read on November 1, 2026, unless noted:
 [^ttm-iiq-itsm]: SailPoint, "Configuring IdentityIQ to Integrate with ServiceNow" (ticket types `serviceRequest`, `incident` and `changeRequest`), <https://documentation.sailpoint.com/connectors/identityiq/servicenow/sdim/help/integrating_servicenow_sdim/configuring__to_integrat.html> (read November 1, 2026; the address cited on October 24 now returns not found).
 [^ttm-spoke]: ServiceNow, "Microsoft Entra ID spoke" (Zurich: ten action categories; requires an Integration Hub subscription; a custom app in Microsoft Entra issues OAuth 2.0 tokens, delegated with the authorization code grant or application with client credentials; the connection alias points at `https://graph.microsoft.com`), <https://www.servicenow.com/docs/bundle/zurich-integrate-applications/page/administer/integrationhub/concept/microsoft-azure-ad-spoke.html> (read November 1, 2026).
 [^ttm-store]: ServiceNow, "Environments with federal or regional ServiceNow Store instances" (Yokohama: regulated environments, including the government cloud, have an isolated Store instance), <https://www.servicenow.com/docs/r/VbEA8DxUy61CFZ25mbYrcQ/VHU4zAdCjZkmR77lHBQOVw> (read November 1, 2026).
-[^ttm-gov]: SailPoint, "Azure Government Endpoint Configuration" (Microsoft Entra connector: `msGraphResourceBase` `https://graph.microsoft.us`, `msGraphTokenBase` `https://login.microsoftonline.us`, set through the source-update API), <https://documentation.sailpoint.com/connectors/saas/msentraid/help/saas_connectivity/microsoft_entra_id/endpoint_configuration.html> (read November 1, 2026).
-[^ttm-graph]: Microsoft Learn, "Microsoft Graph national cloud deployments" (Microsoft 365 GCC continues to use the worldwide endpoints; GCC High uses `https://graph.microsoft.us`; Azure US Government sign-in at `https://login.microsoftonline.us`), <https://learn.microsoft.com/graph/deployments> (read November 1, 2026).
-[^ttm-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: Privileged Identity Management, access reviews, entitlement management and Lifecycle Workflows available; API-driven inbound provisioning available; Microsoft Entra ID Governance available in GCC, GCC High and DoD), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026).
+[^ttm-graph]: Microsoft Learn, "Microsoft Graph national cloud deployments" (Microsoft 365 GCC continues to use the worldwide endpoints), <https://learn.microsoft.com/graph/deployments> (read November 1, 2026).
+[^ttm-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: Privileged Identity Management, access reviews, entitlement management and Lifecycle Workflows available; API-driven inbound provisioning available; Microsoft Entra ID Governance available in GCC), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026).
 [^ttm-ncd-help]: SailPoint, "Managing Native Change Detection" (detects accounts created, updated or deleted out of band, on aggregation, one event per changed account; not available for Non-Employee Lifecycle Management sources; the page now names the product SailPoint Human Fabric), <https://documentation.sailpoint.com/saas/help/sources/native_change_detection.html> (read November 1, 2026).
 [^ttm-ncd]: SailPoint Developer, "Native Change Account Updated" event trigger, <https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/native-change-account-updated> (read October 24, 2026).
 [^ttm-trig]: SailPoint Developer, "Identity Attributes Changed" event trigger, <https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/identity-attribute-changed> (read October 24, 2026).

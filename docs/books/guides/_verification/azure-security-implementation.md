@@ -8,7 +8,7 @@ Facts carried from the books (Book 10 Chapters 04, 05, 07, 08; Book 12 Chapter 0
 
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
-| 1 | Azure Government endpoints (Resource Manager, Key Vault, Managed HSM); a listed service has all features unless a variation is listed; Secret and Top Secret not covered | Prerequisites, availability table | verified | Compare Azure Government and global Azure, <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> | Nov 11, 2026 |
+| 1 | Azure Government endpoints (Resource Manager, Key Vault, Managed HSM); a listed service has all features unless a variation is listed | Prerequisites, availability table | verified | Compare Azure Government and global Azure, <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> | Nov 11, 2026 |
 | 2 | Front Door Standard and Premium generally available in Azure Government regions US Gov Arizona and US Gov Texas | Availability table, Step 5 | verified (quoted in substance) | Same page, section Networking | Nov 11, 2026 |
 | 3 | Front Door Standard, Premium and classic available in Azure Government (US); built-in L3/L4 DDoS | Availability table, Step 5 | verified; no regions named, recorded as a gap | What is Azure Front Door?, <https://learn.microsoft.com/azure/frontdoor/front-door-overview> | Nov 11, 2026 |
 | 4 | Front Door classic retires March 31, 2027; no new profiles, domains or managed certificates; HTTPS required on custom domains in Standard and Premium | Availability table, Step 5, Dangers | verified | Migrate Azure Front Door (classic), <https://learn.microsoft.com/azure/frontdoor/migrate-tier> | Nov 11, 2026 |
@@ -79,6 +79,10 @@ Facts carried from the books (Book 10 Chapters 04, 05, 07, 08; Book 12 Chapter 0
 | 64 | KSI statements and related controls: CNA-MAT (SC-8, SI-10), CNA-RNT (SC-7(5)), CNA-RVP (SC-5), CNA-ULN (SC-7, AC-4(21)), CNA-EIS, SVC-ACM, SVC-ASM (SC-12, IA-5(2)), SVC-SIN (SC-8), IAM-SNU, MLA-EVC, MLA-LET, MLA-OSM, INR-RIR, INR-AAR, RPL-TRC (CP-4) | Requirements | verified | fedramp.gov 2026 KSI theme pages | Nov 11, 2026 |
 | 65 | Moderate-baseline membership of the controls named | Requirements | carried from the workbook's reading of SP 800-53B (Book 12 App A, Book 13 App A) | SP 800-53B | Nov 11, 2026 |
 | 66 | FIPS 200: minimum requirements met by selecting the SP 800-53 baseline | Steps 2, 3 | verified (standard's purpose statement) | FIPS 200 | Nov 11, 2026 |
+| 67 | Firewall logs exported to resource-specific tables; `AZFWThreatIntel` holds the threat intelligence events | Step 6, Validate | verified | Monitoring data reference for Azure Firewall, <https://learn.microsoft.com/azure/firewall/monitor-firewall-reference> | Nov 13, 2026 |
+| 68 | Key Vault logs land in `AzureDiagnostics`, filtered by `ResourceProvider == "MICROSOFT.KEYVAULT"`; `ResultSignature` holds the HTTP status, such as `OK` or `Forbidden` | Step 8, Validate | verified | Monitor Azure Key Vault, <https://learn.microsoft.com/azure/key-vault/general/monitor-key-vault> | Nov 13, 2026 |
+| 69 | `az policy exemption list --management-group <name> --filter atScopeAndBelow()` lists the exemptions that apply to a management group; `create` takes `--exemption-category` (Mitigated, Waiver) and `--expires-on` | Step 9, evidence checklist | verified | Azure CLI reference, az policy exemption, <https://learn.microsoft.com/cli/azure/policy/exemption> | Nov 13, 2026 |
+| 70 | `az monitor log-analytics query` is an extension command; `--workspace` takes the workspace's GUID | Step 10, evidence catalog | verified | Azure CLI reference, az monitor log-analytics, <https://learn.microsoft.com/cli/azure/monitor/log-analytics> | Nov 13, 2026 |
 
 ## Restated as design
 
@@ -94,7 +98,7 @@ Facts carried from the books (Book 10 Chapters 04, 05, 07, 08; Book 12 Chapter 0
 
 | # | Item | Why |
 |---|---|---|
-| N1 | Front Door in US Gov Virginia and DoD regions | Learn names only Arizona and Texas |
+| N1 | Front Door in US Gov Virginia | Learn names only Arizona and Texas |
 | N2 | Front Door Private Link in US Gov Arizona and Texas | Learn's region list conflicts with its availability-zone note and the Azure Government zones list |
 | N3 | Front Door WAF limits in sovereign clouds | Only the Application Gateway FAQ states them |
 | N4 | DDoS IP Protection and simulation partners (other than Red Button) in Azure Government | Not stated |
@@ -104,4 +108,4 @@ Facts carried from the books (Book 10 Chapters 04, 05, 07, 08; Book 12 Chapter 0
 
 ## Learn pages read
 
-43 Microsoft Learn pages (including CLI and PowerShell reference pages), listed in the claims log above.
+47 Microsoft Learn pages (including CLI and PowerShell reference pages), listed in the claims log above; rows 67 to 70 were added on Nov 13, 2026, for the sources the Azure Security training labs use.

@@ -19,7 +19,6 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 4 | Cisco IOS XE Software Hardening Guide, revision 3.2, December 8, 2025 | Same row | verified | cs-iosxe-harden |
 | 5 | Edges: draw settings from CIS IOS XE 17.x and Cisco's IOS XE guide, checked against SD-WAN mode | Same row | design (labelled) | — |
 | 6 | CIS lists no Catalyst SD-WAN Manager benchmark | Same row | verified (absence on the CIS list) | cs-cis |
-| 7 | IOS XE NDM and RTR STIGs: optional cross-check, labelled (High only); not the civilian baseline or what a Moderate assessor expects | "DISA STIGs (High only)" row; *High only* note after the table | restated; the assessor sentence stays *(inference)* | cs-stig |
 | 8 | AWS GovCloud (US) is Class D (formerly High); US East/West Class C (formerly Moderate); scope per service and region | Hosted control plane, Cisco government guide bullets | verified | cs-aws-fr |
 | 9 | Baselines are cumulative, so GovCloud isn't reserved for High systems; SDWAN-G is a Moderate service in GovCloud | Same bullet | inference (labelled) | cs-aws-fr, cs-fr, cs-gov |
 | 10 | "Harden" row and section heading say "configuration baseline" rather than "STIG status" | Guide map; section heading | editorial | — |

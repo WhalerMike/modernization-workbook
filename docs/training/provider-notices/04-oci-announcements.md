@@ -1,6 +1,6 @@
 ---
 title: "Module 4: Oracle Cloud Infrastructure announcements"
-description: "Gate G3 and workbook Chapter 03: read every Oracle Cloud Infrastructure announcement for a tenancy, the latest in each chain, with its affected resources, using one policy statement (read announcements in tenancy); keep Oracle's own ACTION_REQUIRED date; see a rescheduled maintenance window replace the original; and know which realms the kit reads (OC1, OC2) and refuses (OC3). An agency whose HR platform runs on OCI reads that tenancy here. About 45 minutes, with a lab on fixtures and a test tenancy lab."
+description: "Gate G3 and workbook Chapter 03: read every Oracle Cloud Infrastructure announcement for a tenancy, the latest in each chain, with its affected resources, using one policy statement (read announcements in tenancy); keep Oracle's own ACTION_REQUIRED date; see a rescheduled maintenance window replace the original; and know which realms the kit reads (OC1, OC2). An agency whose HR platform runs on OCI reads that tenancy here. About 45 minutes, with a lab on fixtures and a test tenancy lab."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -42,7 +42,7 @@ After this module, you'll be able to:
 - write the one policy statement the reader needs, and say what `inspect` instead of `read` loses;
 - map Oracle's announcement types to the record's kinds, with Oracle's `ACTION_REQUIRED` date;
 - explain why the kit keeps only the latest announcement in each chain;
-- name the realms the kit reads and the one it refuses, and why.
+- name the realms the kit reads.
 
 ## Prerequisites (1 minute)
 
@@ -51,7 +51,7 @@ After this module, you'll be able to:
 
 ## Unit 1: What the gate asks for (6 minutes)
 
-Read the guide's [Step 3](../../books/guides/provider-notices-implementation.md#step-3-oracle-cloud-infrastructure-announcements): the policy statement, configuring the OCI CLI, cross-checking Oracle's own `list` command, and collecting. Then read its Government-cloud availability paragraph (OC2 endpoints in `us-langley-1` and `us-luke-1`; OC3 not yet specified), its Interim path (the announcement email, filed with the change record, and the named `noticeContacts`), and the Validate (G3) callout.
+Read the guide's [Step 3](../../books/guides/provider-notices-implementation.md#step-3-oracle-cloud-infrastructure-announcements): the policy statement, configuring the OCI CLI, cross-checking Oracle's own `list` command, and collecting. Then read its availability paragraph (OC2 endpoints in `us-langley-1` and `us-luke-1`), its Interim path (the announcement email, filed with the change record, and the named `noticeContacts`), and the Validate (G3) callout.
 
 ## Unit 2: The announcement reader (10 minutes)
 
@@ -77,7 +77,7 @@ Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
 Get-PnRequiredPermission -Provider oci | Format-Table Call, Permissions, Verified
 
 # Step 2: See the realms the kit knows
-foreach ($r in 'oc1', 'oc2', 'oc3') { try { $c = Get-PnCloud -Provider oci -Cloud $r; "$r : $($c.Domain) $($c.Regions -join ', ')" } catch { "$r : $($_.Exception.Message)" } }
+foreach ($r in 'oc1', 'oc2') { try { $c = Get-PnCloud -Provider oci -Cloud $r; "$r : $($c.Domain) $($c.Regions -join ', ')" } catch { "$r : $($_.Exception.Message)" } }
 
 # Step 3: Collect OCI from the day-one fixtures
 ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider oci -AsOf 2026-11-09T12:00:00Z -OutputPath out/oci-day1
@@ -123,13 +123,12 @@ Remove-Item -Recurse -Force out
 2. **See the realms the kit knows:**
 
     ```powershell
-    foreach ($r in 'oc1', 'oc2', 'oc3') { try { $c = Get-PnCloud -Provider oci -Cloud $r; "$r : $($c.Domain) $($c.Regions -join ', ')" } catch { "$r : $($_.Exception.Message)" } }
+    foreach ($r in 'oc1', 'oc2') { try { $c = Get-PnCloud -Provider oci -Cloud $r; "$r : $($c.Domain) $($c.Regions -join ', ')" } catch { "$r : $($_.Exception.Message)" } }
     ```
 
     ```text
     oc1 : oraclecloud.com
     oc2 : oraclegovcloud.com us-langley-1, us-luke-1
-    oc3 : OCI realm oc3: the Announcements endpoint there is not yet specified (Oracle's page wasn't readable on November 9, 2026).
     ```
 
 3. **Collect OCI from the day-one fixtures:**
@@ -212,11 +211,6 @@ Remove-Item -Recurse -Force out
     b. The provider's own flag, with Oracle's `ACTION_REQUIRED_BY` date where one is given
     c. `none`
     d. The ISSO's decision
-5. What does the kit do with realm `oc3`?
-    a. Reads it on the OC2 endpoints
-    b. Reads it on the commercial endpoint
-    c. Refuses it, because its Announcements endpoint is not yet specified
-    d. Treats it as `oc1`
 
 ::: {.callout-tip collapse="true"}
 ## Check your answers
@@ -224,12 +218,11 @@ Remove-Item -Recurse -Force out
 2. **b.** Taught in [What it leaves to you](../../project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.md#what-it-leaves-to-you) and the chapter's [Dangers](../../project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.md#dangers).
 3. **b.** Taught in [What it leaves to you](../../project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.md#what-it-leaves-to-you).
 4. **b.** Taught in [The code](../../project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.md#the-code).
-5. **c.** Taught in the guide's [Step 3](../../books/guides/provider-notices-implementation.md#step-3-oracle-cloud-infrastructure-announcements) and its [What couldn't be verified](../../books/guides/provider-notices-implementation.md#what-couldnt-be-verified).
 :::
 
 ## Summary (2 minutes)
 
-You read the reader's one policy statement, saw the realms the kit reads and refuses, collected four announcements with Oracle's own action date, and watched a rescheduled maintenance window stay one notice.
+You read the reader's one policy statement, saw the realms the kit reads, collected four announcements with Oracle's own action date, and watched a rescheduled maintenance window stay one notice.
 
 **The evidence an ISSO keeps** for G3 from this module: `raw/oci.json` (the list and each announcement's details), `notices.json`, `notices.csv` and `manifest.json`, dated; and in Lab 2 the policy. For a system that runs on OCI, such as an HR platform, route maintenance that names its resources to its owners (Module 7). Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.md#checklist).
 
