@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Why does routing matter?
+
+2
+00:00:01.362 --> 00:00:02.500
+Three reasons.
+
+3
+00:00:02.500 --> 00:00:06.000
+First, a notice carries
+no owner and no due date.
+
+4
+00:00:06.000 --> 00:00:09.817
+Routing is where each notice
+that needs action gets both:
+
+5
+00:00:09.817 --> 00:00:13.877
+a typed task in the front door,
+not a second queue, with an owner,
+
+6
+00:00:13.877 --> 00:00:17.613
+a severity, a response window,
+and the provider's own date.
+
+7
+00:00:17.613 --> 00:00:20.276
+Second, providers repeat themselves.
+
+8
+00:00:20.276 --> 00:00:23.450
+The same notice comes back
+in every weekly read.
+
+9
+00:00:23.450 --> 00:00:26.475
+A router that ticketed it every
+week would fill the queue,
+
+10
+00:00:26.475 --> 00:00:28.213
+and people would stop reading it.
+
+11
+00:00:28.213 --> 00:00:30.479
+So the router remembers
+what it has routed,
+
+12
+00:00:30.479 --> 00:00:33.199
+and writes nothing for a
+notice that hasn't changed.
+
+13
+00:00:33.199 --> 00:00:37.862
+Third, a provider closing its notice
+isn't the agency's work being done.
+
+14
+00:00:37.862 --> 00:00:40.613
+A retirement can close
+on the provider's side
+
+15
+00:00:40.613 --> 00:00:43.587
+while the agency still
+runs the retired version.
+
+16
+00:00:43.587 --> 00:00:49.076
+So a task closes only when the agency's own
+next collection shows the notice closed,
+
+17
+00:00:49.076 --> 00:00:52.062
+or the agency's resources
+no longer affected.
+
+18
+00:00:52.062 --> 00:00:53.300
+That's the re-read.

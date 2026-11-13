@@ -10308,6 +10308,705 @@
      "change": "Added: cited on the narrated deck slides"
     }
    ]
+  },
+  {
+   "id": "azure-service-health-portal",
+   "title": "Azure Service Health portal",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/azure/service-health/service-health-portal-update",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Azure Service Health portal"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-service-health-faq",
+   "title": "Azure Service Health FAQ",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/azure/service-health/service-health-faq",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Azure Service Health FAQ"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "m365-message-center",
+   "title": "Track new and changed features in the Microsoft 365 Message center",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/microsoft-365/admin/manage/message-center",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Message center"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-console-announcements",
+   "title": "Console Announcements (Oracle Cloud Infrastructure)",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/announcements.htm",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI Console Announcements"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-alternate-contacts",
+   "title": "Update the alternate contacts for your AWS account",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact-alternate.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS contacts"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "google-cloud-notification-contacts",
+   "title": "Managing contacts for notifications (Google Cloud)",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Google Cloud contacts"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-announcement-model",
+   "title": "OCI Python SDK: the Announcement model",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/tools/python/latest/api/announcements_service/models/oci.announcements_service.models.Announcement.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI Announcement model",
+    "Announcement model"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-health-concepts",
+   "title": "Concepts for AWS Health",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/health/latest/ug/aws-health-concepts-and-terms.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS Health concepts"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "service-health-resource-graph-samples",
+   "title": "Resource Graph sample queries for Azure Service Health",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/azure/service-health/resource-graph-samples",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Resource Graph samples for Service Health"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-service-communications-api",
+   "title": "Working with service communications API in Microsoft Graph",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/graph/api/resources/service-communications-api-overview",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Graph service communications API"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "service-health-subscription-vs-tenant",
+   "title": "Subscription versus tenant level events (Azure Service Health)",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/azure/service-health/subscription-vs-tenant",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Subscription versus tenant level events"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "service-health-security-advisories-elevated",
+   "title": "Elevated access to security advisories (Azure Service Health)",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/azure/service-health/security-advisories-elevated-access",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Security advisories elevated access"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "service-health-alerts-azure-policy",
+   "title": "Deploy Service Health alerts at scale using Azure Policy",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Service Health alerts with Azure Policy"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "azure-government-connect-cli",
+   "title": "Connect to Azure Government with Azure CLI",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-cli",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Connect to Azure Government with Azure CLI"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-serviceannouncement-list-messages",
+   "title": "List serviceAnnouncement messages (Microsoft Graph)",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "List serviceAnnouncement messages"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-serviceannouncement-list-issues",
+   "title": "List serviceAnnouncement issues (Microsoft Graph)",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "List serviceAnnouncement issues"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "m365-admin-roles",
+   "title": "About admin roles in the Microsoft 365 admin center",
+   "publisher": "Microsoft",
+   "url": "https://learn.microsoft.com/microsoft-365/admin/add-users/about-admin-roles",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Microsoft 365 admin roles"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-announcements-policy-reference",
+   "title": "Details for the Announcements service (OCI policy reference)",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/announcementspolicyreference.htm",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI Announcements policy reference"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-cli-announcements-list",
+   "title": "OCI CLI command reference: announce announcements list",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/announce/announcements/list.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI CLI announcements list"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-cli-announcements-get",
+   "title": "OCI CLI command reference: announce announcements get",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/announce/announcements/get.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI CLI announcements get"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-cli-install",
+   "title": "Installing the OCI CLI",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Installing the OCI CLI"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oracle-us-government-cloud",
+   "title": "Oracle US Government Cloud",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govfedramp.htm",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Oracle US Government Cloud"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-cli-iam-policy-create",
+   "title": "OCI CLI command reference: iam policy create",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/create.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI CLI iam policy create"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "oci-cli-iam-policy-delete",
+   "title": "OCI CLI command reference: iam policy delete",
+   "publisher": "Oracle",
+   "url": "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/delete.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "OCI CLI iam policy delete"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-health-api-reference",
+   "title": "AWS Health API Reference",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/health/latest/APIReference/Welcome.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS Health API Reference"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-health-api-event",
+   "title": "AWS Health API Reference: Event",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS Health API Reference, Event"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-health-describe-event-details",
+   "title": "AWS Health API Reference: DescribeEventDetails",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetails.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "DescribeEventDetails"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-health-identity-policy-examples",
+   "title": "AWS Health identity-based policy examples",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS Health identity-based policy examples"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-health-managed-policies",
+   "title": "AWS managed policies for AWS Health",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/health/latest/ug/security-iam-awsmanpol.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS managed policies for AWS Health"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-health-api-access",
+   "title": "Accessing the AWS Health API",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/health/latest/ug/health-api.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Accessing the AWS Health API"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-health-govcloud",
+   "title": "AWS Health in AWS GovCloud (US)",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-health.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS Health in GovCloud (US)"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "eventbridge-aws-health-events",
+   "title": "AWS Health events in Amazon EventBridge",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/eventbridge/latest/ref/events-ref-health.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "EventBridge events for AWS Health"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-cli-iam-examples",
+   "title": "IAM examples using the AWS CLI",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/cli/latest/userguide/cli_iam_code_examples.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "AWS CLI IAM examples"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-cli-sts-get-caller-identity",
+   "title": "AWS CLI command reference: sts get-caller-identity",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "sts get-caller-identity"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "personalized-service-health-event",
+   "title": "Personalized Service Health REST reference: the Event resource",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/service-health/docs/reference/rest/v1/projects.locations.events",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Personalized Service Health Event resource",
+    "Personalized Service Health REST reference, Event resource"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "assured-workloads-supported-products",
+   "title": "Assured Workloads supported products",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/assured-workloads/docs/supported-products",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Assured Workloads supported products"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "personalized-service-health-list-events",
+   "title": "List events (Personalized Service Health)",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/service-health/docs/list-events",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Google Cloud, List events"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "service-health-iam-roles",
+   "title": "Service Health roles and permissions (Google Cloud IAM)",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/iam/docs/roles-permissions/servicehealth",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "Service Health roles and permissions"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gcloud-service-health-events-list",
+   "title": "gcloud service-health events list",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/sdk/gcloud/reference/service-health/events/list",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "gcloud service-health events list"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gcloud-auth-login",
+   "title": "gcloud auth login",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/sdk/gcloud/reference/auth/login",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "gcloud auth login"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "gcloud-projects-remove-iam-policy-binding",
+   "title": "gcloud projects remove-iam-policy-binding",
+   "publisher": "Google Cloud",
+   "url": "https://docs.cloud.google.com/sdk/gcloud/reference/projects/remove-iam-policy-binding",
+   "status": "active",
+   "added": "2026-11-12",
+   "labels": [
+    "gcloud projects remove-iam-policy-binding"
+   ],
+   "history": [
+    {
+     "date": "2026-11-12",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
   }
  ],
  "phrases": {
@@ -10379,6 +11078,22 @@
    "Plan for Microsoft Purview: GCC": "learn-purview-gcc-plan",
    "GCC High": "learn-purview-gcc-high-plan",
    "DoD deployments": "learn-purview-dod-plan"
+  },
+  "List serviceAnnouncement messages, issues": {
+   "List serviceAnnouncement messages": "graph-serviceannouncement-list-messages",
+   "issues": "graph-serviceannouncement-list-issues"
+  },
+  "OCI CLI announcements list and get": {
+   "OCI CLI announcements list": "oci-cli-announcements-list",
+   "get": "oci-cli-announcements-get"
+  },
+  "OCI CLI iam policy create and delete": {
+   "OCI CLI iam policy create": "oci-cli-iam-policy-create",
+   "delete": "oci-cli-iam-policy-delete"
+  },
+  "Azure Service Health portal, FAQ": {
+   "Azure Service Health portal": "azure-service-health-portal",
+   "FAQ": "azure-service-health-faq"
   }
  },
  "site": {

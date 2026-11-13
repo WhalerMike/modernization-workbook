@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.345
+Lab 1 is the runbook's dry
+run on the kit's fixtures,
+
+3
+00:00:04.345 --> 00:00:07.825
+in the provider notices
+folder, in PowerShell 7.
+
+4
+00:00:07.825 --> 00:00:11.170
+The test and production
+environments are fictional:
+
+5
+00:00:11.170 --> 00:00:13.450
+nothing signs in, and nothing is sent.
+
+6
+00:00:13.450 --> 00:00:17.400
+Step one loads the deploy module
+and checks the settings template.
+
+7
+00:00:17.400 --> 00:00:21.525
+It's refused, because it still has
+a placeholder in the Azure provider.
+
+8
+00:00:21.525 --> 00:00:24.125
+A filled-in file prints its stage instead.
+
+9
+00:00:24.125 --> 00:00:27.000
+Step two runs the test stage's pre-flight.
+
+10
+00:00:27.000 --> 00:00:32.786
+The test fixture enables Azure, Microsoft
+365 and Oracle Cloud Infrastructure,
+
+11
+00:00:32.786 --> 00:00:35.504
+so there are fourteen checks: P F oh one,
+
+12
+00:00:35.504 --> 00:00:39.975
+the four per-provider checks for
+each of the three, and P F oh six.
+
+13
+00:00:39.975 --> 00:00:41.400
+All fourteen pass.
+
+14
+00:00:41.400 --> 00:00:46.475
+Step three records the pre-flight as
+evidence, with the example change record.
+
+15
+00:00:46.475 --> 00:00:50.400
+Its controls include S R
+eight, for the named contacts.
+
+16
+00:00:50.400 --> 00:00:53.834
+Step four runs the weekly
+run on the day-one fixtures:
+
+17
+00:00:53.834 --> 00:00:58.546
+fifteen notices from three providers,
+eight creates routed as a dry run,
+
+18
+00:00:58.546 --> 00:01:02.350
+and a digest with thirteen open
+and five that need action.

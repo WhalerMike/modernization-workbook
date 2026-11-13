@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.375
+You saw the settings template refused,
+passed the test stage's pre-flight,
+
+3
+00:00:05.375 --> 00:00:09.875
+recorded it, ran the weekly run, and
+passed the test stage's evidence check.
+
+4
+00:00:09.875 --> 00:00:14.409
+You passed production's pre-flight with
+P F oh seven, planned the alerts at the
+
+5
+00:00:14.409 --> 00:00:16.927
+management group, planned both rollbacks,
+
+6
+00:00:16.927 --> 00:00:19.662
+and watched an unapproved
+hash apply nothing.
+
+7
+00:00:19.662 --> 00:00:25.254
+The evidence an ISSO keeps for the
+deployment is each stage's evidence folder,
+
+8
+00:00:25.254 --> 00:00:29.273
+with the change record, the
+settings file and its SHA-256,
+
+9
+00:00:29.273 --> 00:00:35.213
+the approved plan hashes and the weekly
+digests filed beside it, on agency storage.
+
+10
+00:00:35.213 --> 00:00:38.287
+Before shipping, work through
+the chapter's checklist.
+
+11
+00:00:38.287 --> 00:00:42.608
+And remember that this runbook hasn't
+been run against a live tenant yet:
+
+12
+00:00:42.608 --> 00:00:45.976
+run Stage 1 in test before
+anything touches production.
+
+13
+00:00:45.976 --> 00:00:51.288
+That finishes the Provider Notices learning
+path: nine modules, from why notices
+
+14
+00:00:51.288 --> 00:00:56.125
+go unread, through five providers,
+routing and evidence, to the deployment.
+
+15
+00:00:56.125 --> 00:00:58.680
+Go back to the learning
+path for the whole map.

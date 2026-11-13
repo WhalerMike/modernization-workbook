@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:03.442
+You listed the two roles
+Azure's reader needs,
+
+3
+00:00:03.442 --> 00:00:05.940
+read the kit's query
+against Learn's samples,
+
+4
+00:00:05.940 --> 00:00:10.798
+collected five notices from the fixture
+subscriptions, and planned Service Health
+
+5
+00:00:10.798 --> 00:00:15.100
+alerts at the management group, as a
+plan that fixture mode refuses to apply.
+
+6
+00:00:15.100 --> 00:00:19.493
+The evidence an ISSO keeps for
+Gate 1 is the raw Azure response,
+
+7
+00:00:19.493 --> 00:00:24.747
+the notices as JSON and as a spreadsheet
+file, and the manifest, all dated;
+
+8
+00:00:24.747 --> 00:00:29.571
+the permission list from step one;
+and the alert plan with its SHA-256,
+
+9
+00:00:29.571 --> 00:00:34.825
+and in Lab 2, the change record that
+approved it and the results of the apply.
+
+10
+00:00:34.825 --> 00:00:37.900
+Before you ship, work through
+the chapter's checklist.
+
+11
+00:00:37.900 --> 00:00:42.975
+Next is Module 3: the
+Microsoft 365 Message center.
+
+12
+00:00:42.975 --> 00:00:47.754
+That's Gate 2, with the workbook's
+second chapter: two Graph permissions,
+
+13
+00:00:47.754 --> 00:00:51.120
+and why a tenant must be
+read on its own Graph host.

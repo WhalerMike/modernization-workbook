@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.950
+Which cloud?
+
+2
+00:00:00.950 --> 00:00:05.775
+A GCC Moderate estate's subscriptions
+are commercial Azure, so the settings
+
+3
+00:00:05.775 --> 00:00:10.600
+name the Azure Cloud, and the source
+links are on management dot azure dot com.
+
+4
+00:00:10.600 --> 00:00:13.587
+There's no default: an
+unknown cloud name throws.
+
+5
+00:00:13.587 --> 00:00:19.328
+As a side note for GCC High and DoD estates,
+Azure Government uses its own cloud
+
+6
+00:00:19.328 --> 00:00:25.338
+setting and its own Resource Manager host,
+management dot us gov cloud api dot net.
+
+7
+00:00:25.338 --> 00:00:30.153
+Every Service Health sample on Learn links
+the Azure Government portal as well as
+
+8
+00:00:30.153 --> 00:00:33.412
+the global one, but an explicit
+availability statement
+
+9
+00:00:33.412 --> 00:00:36.599
+for the table in Azure
+Government is not yet specified.
+
+10
+00:00:36.599 --> 00:00:39.138
+The danger is a reader in the wrong cloud.
+
+11
+00:00:39.138 --> 00:00:43.639
+Azure Government subscriptions read from
+the commercial cloud return nothing,
+
+12
+00:00:43.639 --> 00:00:45.788
+and the gate would pass on an empty list.
+
+13
+00:00:45.788 --> 00:00:50.450
+So the live invoker refuses an Azure
+command line set to another cloud.

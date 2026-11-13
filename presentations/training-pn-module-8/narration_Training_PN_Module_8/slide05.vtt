@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.675
+Unit 2 starts with what
+the guide leaves to you.
+
+2
+00:00:02.675 --> 00:00:07.155
+The guide says the digest goes to
+the owners, but owners read a page,
+
+3
+00:00:07.155 --> 00:00:11.138
+not a JSON file, so the kit
+writes a page and a spreadsheet.
+
+4
+00:00:11.138 --> 00:00:13.687
+It says every run is in the evidence,
+
+5
+00:00:13.687 --> 00:00:18.874
+but a folder of files can be changed
+after the fact, so the kit checks each
+
+6
+00:00:18.874 --> 00:00:24.237
+run folder against its manifest, copies
+it, and records every file's SHA-256.
+
+7
+00:00:24.237 --> 00:00:26.644
+It lists controls and K S I's per gate,
+
+8
+00:00:26.644 --> 00:00:31.539
+but someone has to say which run
+supports which, so each record names its
+
+9
+00:00:31.539 --> 00:00:36.351
+steps and their controls and K S I's,
+from the kit's requirements catalog.
+
+10
+00:00:36.351 --> 00:00:41.202
+Records are kept over time, but a record
+removed from the middle goes unnoticed,
+
+11
+00:00:41.202 --> 00:00:44.412
+so each record holds the hash
+of the record before it.
+
+12
+00:00:44.412 --> 00:00:46.432
+And the guide asks for a go/no-go,
+
+13
+00:00:46.432 --> 00:00:50.551
+which raises the question of
+which steps still lack evidence.
+
+14
+00:00:50.551 --> 00:00:53.275
+The stage check answers it, step by step.
+
+15
+00:00:53.275 --> 00:00:58.300
+The workbook's verdict: a list of files
+isn't evidence until someone can check it.

@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.275
+Unit 1 is the guide's Step 4.
+
+2
+00:00:02.275 --> 00:00:04.600
+The prerequisite is the support plan.
+
+3
+00:00:04.600 --> 00:00:06.013
+Then three steps.
+
+4
+00:00:06.013 --> 00:00:08.263
+One: create the read policy.
+
+5
+00:00:08.263 --> 00:00:11.939
+It's a customer managed policy
+with exactly three actions:
+
+6
+00:00:11.939 --> 00:00:16.612
+describe events, describe event
+details and describe affected entities.
+
+7
+00:00:16.612 --> 00:00:20.365
+AWS publishes no read-only
+managed policy for Health,
+
+8
+00:00:20.365 --> 00:00:26.163
+and the AWS Health full access policy includes
+writes, so the reader never holds it.
+
+9
+00:00:26.163 --> 00:00:29.831
+AWS's own examples grant
+describe with a wildcard,
+
+10
+00:00:29.831 --> 00:00:35.288
+but a wildcard grows as AWS adds actions,
+so the kit names the three it calls.
+
+11
+00:00:35.288 --> 00:00:37.788
+Two: cross-check from the Health endpoint.
+
+12
+00:00:37.788 --> 00:00:43.088
+Commercial accounts use u s east
+one; GovCloud, u s gov west one.
+
+13
+00:00:43.088 --> 00:00:44.587
+Three: collect.
+
+14
+00:00:44.587 --> 00:00:47.112
+The kit reads open and upcoming events,
+
+15
+00:00:47.112 --> 00:00:51.137
+then their details and affected
+entities, ten events at a time.
+
+16
+00:00:51.137 --> 00:00:55.607
+The gate validates when the instance
+retirement comes out as a retirement,
+
+17
+00:00:55.607 --> 00:00:58.563
+due at its start, with the
+instance as its resource.
+
+18
+00:00:58.563 --> 00:01:01.340
+The gate owner is the AWS account owner.

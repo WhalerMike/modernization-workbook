@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.262
+Unit 1 is the guide's
+Step 1, in four parts.
+
+2
+00:00:03.262 --> 00:00:07.163
+First, grant the reader its roles:
+Reader on each subscription
+
+3
+00:00:07.163 --> 00:00:10.375
+in scope is enough to see
+its Service Health events.
+
+4
+00:00:10.375 --> 00:00:13.110
+But a security advisory's
+sensitive fields,
+
+5
+00:00:13.110 --> 00:00:17.213
+and its impacted resources, need
+Service Health Security Reader.
+
+6
+00:00:17.213 --> 00:00:19.650
+Reader and Monitoring
+Reader can't see them.
+
+7
+00:00:19.650 --> 00:00:24.212
+Second, sign in in the right cloud,
+with the Resource Graph extension.
+
+8
+00:00:24.212 --> 00:00:27.598
+A GCC agency's subscriptions
+are commercial Azure,
+
+9
+00:00:27.598 --> 00:00:31.225
+the Azure Cloud setting;
+Azure Government uses its own.
+
+10
+00:00:31.225 --> 00:00:36.637
+Third, collect, with the kit's events
+query and Learn's impacted-resources query.
+
+11
+00:00:36.637 --> 00:00:39.928
+And fourth, alert at scale:
+plan the built-in policy
+
+12
+00:00:39.928 --> 00:00:43.138
+at the management group,
+with a remediation task.
+
+13
+00:00:43.138 --> 00:00:46.464
+The gate passes when every
+subscription's events are
+
+14
+00:00:46.464 --> 00:00:49.638
+listed and each security
+advisory has its summary.
+
+15
+00:00:49.638 --> 00:00:53.710
+An empty summary is the sign that
+the reader lacks the elevated role.

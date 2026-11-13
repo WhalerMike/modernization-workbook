@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.094
+You'll write the one policy
+statement the reader needs,
+
+3
+00:00:06.094 --> 00:00:09.087
+and say what granting inspect
+instead of read loses.
+
+4
+00:00:09.087 --> 00:00:12.785
+You'll map Oracle's announcement
+types to the record's kinds,
+
+5
+00:00:12.785 --> 00:00:15.200
+with Oracle's own action-required date.
+
+6
+00:00:15.200 --> 00:00:19.463
+You'll explain why the kit keeps only
+the latest announcement in each chain.
+
+7
+00:00:19.463 --> 00:00:23.675
+And you'll name the realms the kit
+reads, and the one it refuses, and why.
+
+8
+00:00:23.675 --> 00:00:26.795
+You need Module 1, for the
+record and its action basis,
+
+9
+00:00:26.795 --> 00:00:31.438
+and the Oracle Cloud column of the guide's
+table comparing the five providers.
+
+10
+00:00:31.438 --> 00:00:35.600
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+11
+00:00:35.600 --> 00:00:36.720
+No tenancy.

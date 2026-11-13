@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:07.224
+You'll write the reader's policy
+with exactly three read actions,
+
+3
+00:00:07.224 --> 00:00:11.325
+and say why not the AWS Health
+full access policy, or a wildcard.
+
+4
+00:00:11.325 --> 00:00:15.688
+You'll explain the support-plan
+requirement, the error you get without one,
+
+5
+00:00:15.688 --> 00:00:18.763
+and why to check the plan
+against AWS's current pages.
+
+6
+00:00:18.763 --> 00:00:22.825
+You'll map AWS Health event
+categories to the record's kinds,
+
+7
+00:00:22.825 --> 00:00:27.137
+keeping AWS's own actionability
+field apart from the kit's rule.
+
+8
+00:00:27.137 --> 00:00:30.557
+And you'll name each partition's
+Health endpoint region,
+
+9
+00:00:30.557 --> 00:00:34.424
+and say why GovCloud relies on
+the A P I rather than EventBridge.
+
+10
+00:00:34.424 --> 00:00:38.809
+Before you start, finish Module 1,
+on the record and its action basis,
+
+11
+00:00:38.809 --> 00:00:42.875
+and read the AWS column of the
+guide's five providers compared.
+
+12
+00:00:42.875 --> 00:00:47.037
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+13
+00:00:47.037 --> 00:00:48.070
+No account.

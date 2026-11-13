@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.025
+Lab 1 runs in the provider notices
+folder of the examples, in PowerShell 7.
+
+3
+00:00:06.025 --> 00:00:08.800
+The teams in the lab's
+routing are fictional.
+
+4
+00:00:08.800 --> 00:00:13.725
+Step one checks the lab's routing:
+six rules, in the order they're tried.
+
+5
+00:00:13.725 --> 00:00:18.457
+Five route to a task: security
+operations at P2, cloud platform
+
+6
+00:00:18.457 --> 00:00:24.025
+engineering at P3 twice, the service
+desk at P2, and cloud operations at P3.
+
+7
+00:00:24.025 --> 00:00:25.487
+The sixth ignores.
+
+8
+00:00:25.487 --> 00:00:27.873
+Step two tries the template as it ships,
+
+9
+00:00:27.873 --> 00:00:31.376
+and the kit refuses it, because
+it still has a placeholder.
+
+10
+00:00:31.376 --> 00:00:35.313
+It runs only once every
+value is filled in, at work.
+
+11
+00:00:35.313 --> 00:00:39.553
+Step three collects every provider
+from the day-one fixtures:
+
+12
+00:00:39.553 --> 00:00:41.799
+twenty-two notices, as in Module 1.
+
+13
+00:00:41.799 --> 00:00:44.262
+Step four routes them as a dry run.
+
+14
+00:00:44.262 --> 00:00:46.001
+Twenty-two new notices.
+
+15
+00:00:46.001 --> 00:00:50.258
+Twelve route to a task,
+nine go to the digest only,
+
+16
+00:00:50.258 --> 00:00:55.062
+and one is ignored: the
+Microsoft Viva post, by rule R06.
+
+17
+00:00:55.062 --> 00:00:59.450
+That's twelve create payloads,
+written to a folder, and nothing sent.

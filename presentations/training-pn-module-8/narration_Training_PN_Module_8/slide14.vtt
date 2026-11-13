@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.063
+You wrote a week's digest, recorded
+three runs as chained evidence,
+
+3
+00:00:05.063 --> 00:00:10.028
+checked the chain, saw a lab stage fail the
+go/no-go for the two steps it never ran,
+
+4
+00:00:10.028 --> 00:00:12.975
+and caught a file edited
+after it was recorded.
+
+5
+00:00:12.975 --> 00:00:17.262
+The evidence an ISSO keeps for
+Gate 7 is each week's digest,
+
+6
+00:00:17.262 --> 00:00:23.009
+as a page and a spreadsheet file; the
+evidence folder's records, runs, index and
+
+7
+00:00:23.009 --> 00:00:28.938
+checksum file; and, at promotion, the stage
+check's output with the go/no-go record.
+
+8
+00:00:28.938 --> 00:00:32.013
+Before shipping, work through
+the chapter's checklist.
+
+9
+00:00:32.013 --> 00:00:37.151
+Next, and optional, is Module 9:
+deploying to test and production.
+
+10
+00:00:37.151 --> 00:00:39.100
+It's for whoever deploys the kit.
+
+11
+00:00:39.100 --> 00:00:42.733
+It records a pre-flight and a
+weekly run, so the stage check that
+
+12
+00:00:42.733 --> 00:00:46.650
+failed here passes, and then takes
+the same commands to production.
+
+13
+00:00:46.650 --> 00:00:48.500
+Or go back to the learning path.

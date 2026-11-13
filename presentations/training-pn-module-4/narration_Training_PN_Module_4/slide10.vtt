@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.709
+Lab 2 runs the same
+read in an Oracle Cloud
+
+2
+00:00:02.709 --> 00:00:05.837
+Infrastructure test
+tenancy, never production.
+
+3
+00:00:05.837 --> 00:00:10.538
+You need an I A M administrator, and
+a test I A M group for the reader.
+
+4
+00:00:10.538 --> 00:00:13.530
+The administrator adds
+the read announcements in
+
+5
+00:00:13.530 --> 00:00:16.737
+tenancy statement to a policy
+in the root compartment.
+
+6
+00:00:16.737 --> 00:00:19.316
+Then configure the command
+line as the reader,
+
+7
+00:00:19.316 --> 00:00:23.251
+and cross-check Oracle's own list
+command against the kit's collection.
+
+8
+00:00:23.251 --> 00:00:25.571
+Record one open item while you're there:
+
+9
+00:00:25.571 --> 00:00:30.213
+the key casing the command line printed,
+which Oracle's reference doesn't show.
+
+10
+00:00:30.213 --> 00:00:34.762
+The kit accepts both, but the verification
+log should say which one is real.
+
+11
+00:00:34.762 --> 00:00:38.442
+To back it out, the I A M
+administrator deletes the policy,
+
+12
+00:00:38.442 --> 00:00:42.601
+and you delete the run, because
+it names the tenancy's resources.
+
+13
+00:00:42.601 --> 00:00:44.750
+The authors haven't run Lab 2.
+
+14
+00:00:44.750 --> 00:00:47.950
+The workbook's Chapter 3
+has the exact commands.

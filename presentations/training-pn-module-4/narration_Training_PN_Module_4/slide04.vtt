@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.300
+Unit 1 is the guide's Step 3.
+
+2
+00:00:02.300 --> 00:00:04.686
+The reader needs one policy statement,
+
+3
+00:00:04.686 --> 00:00:09.309
+added by an I A M administrator to a
+policy in the tenancy's root compartment:
+
+4
+00:00:09.309 --> 00:00:12.888
+allow the reader's group to
+read announcements in tenancy.
+
+5
+00:00:12.888 --> 00:00:16.579
+Oracle's policy reference makes
+announcements a resource type,
+
+6
+00:00:16.579 --> 00:00:19.087
+and its own common policy
+reads the same way.
+
+7
+00:00:19.087 --> 00:00:20.299
+The verb matters.
+
+8
+00:00:20.299 --> 00:00:22.256
+Inspect lists summaries only,
+
+9
+00:00:22.256 --> 00:00:26.325
+without the affected resources
+that the details call returns.
+
+10
+00:00:26.325 --> 00:00:30.763
+With inspect, nothing can be routed
+as naming the agency's resources.
+
+11
+00:00:30.763 --> 00:00:35.218
+The kit's calls are Oracle's own: the
+list command, for the whole tenancy,
+
+12
+00:00:35.218 --> 00:00:39.909
+showing only the latest announcement
+in each chain; then the get command,
+
+13
+00:00:39.909 --> 00:00:43.975
+once per announcement, for its
+details and affected resources.
+
+14
+00:00:43.975 --> 00:00:48.358
+The command line is configured for
+the reader with O C I setup config,
+
+15
+00:00:48.358 --> 00:00:53.040
+in the tenancy's home region, and
+Oracle's list command is the cross-check.

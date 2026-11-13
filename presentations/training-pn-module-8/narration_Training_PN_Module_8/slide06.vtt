@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.125
+The evidence script records
+one run folder at a time.
+
+2
+00:00:03.125 --> 00:00:08.363
+It re-hashes every file the run's manifest
+lists, copies the folder under runs,
+
+3
+00:00:08.363 --> 00:00:13.601
+and writes a record with the time, the
+environment, the mode, the change record,
+
+4
+00:00:13.601 --> 00:00:19.088
+the command, and the result, which is pass
+only if every file matches its manifest.
+
+5
+00:00:19.088 --> 00:00:25.184
+The record names the steps the run
+covers, with their controls and K S I's,
+
+6
+00:00:25.184 --> 00:00:31.387
+the claim language, every file's SHA-256,
+and the previous record's SHA-256.
+
+7
+00:00:31.387 --> 00:00:34.743
+It appends an index file
+and rewrites a checksum
+
+8
+00:00:34.743 --> 00:00:38.100
+file that the standard
+sha256sum tool can check.
+
+9
+00:00:38.100 --> 00:00:42.550
+A collection covers one collection step
+per provider and the normalize step.
+
+10
+00:00:42.550 --> 00:00:47.712
+A routing run covers route, and contingency
+if a payload asks for a plan review.
+
+11
+00:00:47.712 --> 00:00:49.674
+A digest covers digest.
+
+12
+00:00:49.674 --> 00:00:52.136
+The runbook's pre-flight, scheduled run,
+
+13
+00:00:52.136 --> 00:00:55.212
+alert plan and rollback
+each have their own step.
+
+14
+00:00:55.212 --> 00:00:58.424
+The check verifies the
+checksums and walks the chain.
+
+15
+00:00:58.424 --> 00:01:02.346
+With a stage, it adds a row
+for each step that stage needs:
+
+16
+00:01:02.346 --> 00:01:07.460
+test needs pre-flight, run, route and
+digest, and production adds alerts.

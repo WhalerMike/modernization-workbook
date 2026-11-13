@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.656
+Lab 1 runs in the provider
+notices folder of the examples,
+
+3
+00:00:04.656 --> 00:00:08.125
+in PowerShell 7, against
+fictional subscriptions.
+
+4
+00:00:08.125 --> 00:00:09.913
+Nothing signs in to anything.
+
+5
+00:00:09.913 --> 00:00:12.075
+Step one lists what Azure needs.
+
+6
+00:00:12.075 --> 00:00:16.130
+Two calls, the Service Health
+events and the impacted resources,
+
+7
+00:00:16.130 --> 00:00:19.725
+and each needs only Reader on
+each subscription in scope.
+
+8
+00:00:19.725 --> 00:00:23.966
+The elevated role is Service Health
+Security Reader, to see the sensitive
+
+9
+00:00:23.966 --> 00:00:28.137
+fields of security advisories, which
+Reader and Monitoring Reader can't.
+
+10
+00:00:28.137 --> 00:00:29.724
+Both are marked verified.
+
+11
+00:00:29.724 --> 00:00:31.612
+Notice that nothing here writes.
+
+12
+00:00:31.612 --> 00:00:34.126
+Step two prints the kit's events query.
+
+13
+00:00:34.126 --> 00:00:36.955
+It starts the way Learn's
+all-active sample does,
+
+14
+00:00:36.955 --> 00:00:41.600
+from the Service Health resources table,
+filtered to Resource Health events.
+
+15
+00:00:41.600 --> 00:00:44.566
+It adds the retirement
+sample's event subtype,
+
+16
+00:00:44.566 --> 00:00:48.625
+converts the impact times the
+way Learn's advisory sample does,
+
+17
+00:00:48.625 --> 00:00:52.820
+and ends ordered by tracking I D,
+so the rows page in a stable order.

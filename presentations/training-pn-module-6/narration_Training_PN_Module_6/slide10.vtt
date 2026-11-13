@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+Lab 2 reads a real test project.
+
+2
+00:00:02.400 --> 00:00:05.672
+You need a Google Cloud test
+project, never production,
+
+3
+00:00:05.672 --> 00:00:08.725
+its project owner, and a
+Google group for the reader.
+
+4
+00:00:08.725 --> 00:00:13.863
+Enable the A P I, grant the viewer
+role, and sign in as the reader.
+
+5
+00:00:13.863 --> 00:00:17.126
+Then cross-check Google's own
+command against the collection.
+
+6
+00:00:17.126 --> 00:00:21.087
+The project may have no incidents
+at all, and that's a valid result.
+
+7
+00:00:21.087 --> 00:00:25.962
+Then the part that makes this gate
+different: record the gaps with the ISSO.
+
+8
+00:00:25.962 --> 00:00:30.787
+Whether the project is in an Assured
+Workloads FedRAMP or I L package, and in
+
+9
+00:00:30.787 --> 00:00:35.612
+every case, that Google's planned
+maintenance doesn't come through this A P I.
+
+10
+00:00:35.612 --> 00:00:40.149
+To back it out, step four removes
+the role binding and deletes the run.
+
+11
+00:00:40.149 --> 00:00:45.038
+It leaves the A P I enabled, unless
+the project owner decides otherwise.
+
+12
+00:00:45.038 --> 00:00:47.188
+The authors haven't run Lab 2.
+
+13
+00:00:47.188 --> 00:00:50.420
+The workbook's Chapter 5
+has the exact commands.

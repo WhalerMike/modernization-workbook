@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.822
+Lab 1 runs in the provider
+notices folder of the examples,
+
+3
+00:00:04.822 --> 00:00:09.213
+in PowerShell 7, for a fictional
+project, contoso example prod.
+
+4
+00:00:09.213 --> 00:00:11.601
+Nothing signs in or sends a request.
+
+5
+00:00:11.601 --> 00:00:14.162
+Step one lists what Google Cloud needs.
+
+6
+00:00:14.162 --> 00:00:15.150
+Two calls.
+
+7
+00:00:15.150 --> 00:00:19.731
+The project call needs the Personalized
+Service Health Viewer role on the project,
+
+8
+00:00:19.731 --> 00:00:22.387
+for the events list
+permission, and it's verified.
+
+9
+00:00:22.387 --> 00:00:26.145
+The organization call needs the
+same role on the organization,
+
+10
+00:00:26.145 --> 00:00:27.374
+and it isn't verified.
+
+11
+00:00:27.374 --> 00:00:31.375
+Step two collects Google Cloud
+from the day-one fixtures:
+
+12
+00:00:31.375 --> 00:00:35.375
+two notices, one open, none
+needing action, both incidents.
+
+13
+00:00:35.375 --> 00:00:37.525
+Step three reads the records.
+
+14
+00:00:37.525 --> 00:00:41.239
+Cloud SQL connection errors
+in u s east four is open,
+
+15
+00:00:41.239 --> 00:00:43.550
+with its product and its location.
+
+16
+00:00:43.550 --> 00:00:47.300
+Cloud Storage latency in
+u s central one is closed.
+
+17
+00:00:47.300 --> 00:00:52.278
+None needs action by Google's word,
+because Google has no field that says so;
+
+18
+00:00:52.278 --> 00:00:57.240
+an open incident that names resources
+is routed by the agency's own rules.

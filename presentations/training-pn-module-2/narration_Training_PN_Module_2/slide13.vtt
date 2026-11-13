@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:07.701
+Gate 1 supports NIST special publication
+eight hundred fifty-three S A nine, part c,
+
+3
+00:00:07.701 --> 00:00:12.121
+monitoring the provider on an
+ongoing basis; S I five, part a,
+
+4
+00:00:12.121 --> 00:00:18.200
+receiving security alerts and advisories;
+and C A seven, continuous monitoring.
+
+5
+00:00:18.200 --> 00:00:21.117
+The evidence starts with
+the permission list: Reader,
+
+6
+00:00:21.117 --> 00:00:25.825
+and Service Health Security Reader for
+security advisories, and nothing that writes.
+
+7
+00:00:25.825 --> 00:00:27.780
+Then the raw Azure response,
+
+8
+00:00:27.780 --> 00:00:31.775
+the notices and the manifest,
+with every call and its role.
+
+9
+00:00:31.775 --> 00:00:35.569
+For the alert path that runs
+between collections, the alert plan,
+
+10
+00:00:35.569 --> 00:00:39.650
+the results of the apply, and the
+change record that approved the hash.
+
+11
+00:00:39.650 --> 00:00:43.076
+And in Lab 2, the change
+record for the rollback,
+
+12
+00:00:43.076 --> 00:00:45.600
+which supports C M three and C P two.
+
+13
+00:00:45.600 --> 00:00:48.412
+The gate's output is
+evidence for these controls;
+
+14
+00:00:48.412 --> 00:00:52.700
+your organization still sets their
+parameters, and the assessor decides.
+
+15
+00:00:52.700 --> 00:00:56.737
+K S I's are FedRAMP twenty X indicators
+for cloud service providers,
+
+16
+00:00:56.737 --> 00:01:00.770
+and which file supports which
+indicator is the program's mapping.

@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:07.200
+First: a lab's evidence passes the check,
+but fails the check for the test stage.
+
+3
+00:00:07.200 --> 00:00:07.888
+Why?
+
+4
+00:00:07.888 --> 00:00:09.113
+The answer is b.
+
+5
+00:00:09.113 --> 00:00:12.535
+The test stage needs passing
+pre-flight and run records,
+
+6
+00:00:12.535 --> 00:00:16.626
+from the pre-flight and the scheduled
+run, and a lab doesn't make them.
+
+7
+00:00:16.626 --> 00:00:17.975
+Module 9 does.
+
+8
+00:00:17.975 --> 00:00:21.562
+Second: every row of the
+production stage check passes.
+
+9
+00:00:21.562 --> 00:00:23.137
+What does that tell the agency?
+
+10
+00:00:23.137 --> 00:00:24.362
+The answer is b.
+
+11
+00:00:24.362 --> 00:00:28.010
+Every step the production stage
+needs has a passing record,
+
+12
+00:00:28.010 --> 00:00:30.838
+in an unbroken chain,
+with matching checksums.
+
+13
+00:00:30.838 --> 00:00:34.525
+The records support the controls,
+and the assessor decides them.
+
+14
+00:00:34.525 --> 00:00:37.856
+A pass isn't a control
+decision, and it doesn't mean
+
+15
+00:00:37.856 --> 00:00:41.937
+FedRAMP approved anything or
+that the agency reports K S I's.
+
+16
+00:00:41.937 --> 00:00:44.365
+The module page has three more questions,
+
+17
+00:00:44.365 --> 00:00:46.920
+each linked to the
+section that answers it.

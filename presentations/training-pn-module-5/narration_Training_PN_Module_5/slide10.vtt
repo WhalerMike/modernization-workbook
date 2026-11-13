@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.250
+Lab 2 reads a real test account.
+
+2
+00:00:02.250 --> 00:00:08.566
+You need an AWS test account, never
+production, with a qualifying AWS Support plan,
+
+3
+00:00:08.566 --> 00:00:13.750
+an I A M administrator, and an I A M
+role and C L I profile for the reader.
+
+4
+00:00:13.750 --> 00:00:17.910
+Step one writes the read policy
+with exactly the three actions,
+
+5
+00:00:17.910 --> 00:00:20.950
+creates it, and attaches
+it to the reader's role.
+
+6
+00:00:20.950 --> 00:00:23.768
+Step two checks who you're signed in as:
+
+7
+00:00:23.768 --> 00:00:28.950
+the A R N must start with A R N colon
+A W S, the partition the settings name.
+
+8
+00:00:28.950 --> 00:00:30.675
+Step three cross-checks.
+
+9
+00:00:30.675 --> 00:00:34.779
+Count AWS's own open and upcoming
+events from u s east one,
+
+10
+00:00:34.779 --> 00:00:37.813
+then collect, and the counts should agree.
+
+11
+00:00:37.813 --> 00:00:42.708
+If the account has no qualifying
+support plan, the subscription required
+
+12
+00:00:42.708 --> 00:00:47.443
+exception is the expected result, and
+that's a gap to record with the ISSO.
+
+13
+00:00:47.443 --> 00:00:50.813
+Step four backs it out:
+detach and delete the policy,
+
+14
+00:00:50.813 --> 00:00:54.425
+and delete the run, which
+names the account's resources.
+
+15
+00:00:54.425 --> 00:00:56.575
+The authors haven't run Lab 2.
+
+16
+00:00:56.575 --> 00:00:59.810
+The workbook's Chapter 4
+has the exact commands.

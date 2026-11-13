@@ -1,0 +1,630 @@
+{
+ "1": [
+  [
+   0.05,
+   6.525,
+   "Welcome to Module 4 of the Provider Notices learning path: Oracle Cloud Infrastructure announcements."
+  ],
+  [
+   6.575,
+   6.55,
+   "This is Gate 3 of the provider notices implementation guide, with the third chapter of the developer workbook."
+  ],
+  [
+   13.125,
+   8.675,
+   "Oracle Cloud Infrastructure publishes maintenance, changes, action-required notices and production events for a tenancy as announcements."
+  ],
+  [
+   21.8,
+   6.9,
+   "Updates to one announcement form a chain, and a rescheduled window arrives as a new announcement in the same chain."
+  ],
+  [
+   28.7,
+   12.838,
+   "In this module you read the fixture tenancy's announcements, see Oracle's own action-required date, and watch the second week's rescheduled maintenance replace the first in its chain, so it stays one notice with the new window."
+  ],
+  [
+   41.538,
+   5.638,
+   "It takes about forty-five minutes, with a lab on fixtures and a lab for a test tenancy."
+  ],
+  [
+   47.175,
+   5.638,
+   "The code is illustrative: tested against fixtures, not run against a live tenancy."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.862,
+   "Why does Oracle Cloud Infrastructure need its own gate?"
+  ],
+  [
+   2.913,
+   4.588,
+   "Oracle emails service status announcements to the tenancy administrator."
+  ],
+  [
+   7.5,
+   5.638,
+   "Anyone else receives them only through managed email preferences or announcement subscriptions."
+  ],
+  [
+   13.137,
+   8.925,
+   "So an agency whose H R platform runs on Oracle Cloud gets that platform's maintenance and change notices at whatever address the tenancy was opened with."
+  ],
+  [
+   22.062,
+   2.688,
+   "That might be the mailbox of someone who has moved on."
+  ],
+  [
+   24.75,
+   6.825,
+   "Reading the tenancy's announcements here means platform maintenance reaches the H R system's owners before it lands."
+  ],
+  [
+   31.575,
+   2.288,
+   "And there's a wrinkle the kit has to handle."
+  ],
+  [
+   33.862,
+   2.438,
+   "Updates to one announcement form a chain."
+  ],
+  [
+   36.3,
+   11.062,
+   "When Oracle reschedules a maintenance window, the new time arrives as a new announcement in the same chain, and a reader that keeps every announcement would hold the old date next to the new one."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.125,
+   "You'll write the one policy statement the reader needs, and say what granting inspect instead of read loses."
+  ],
+  [
+   9.088,
+   6.112,
+   "You'll map Oracle's announcement types to the record's kinds, with Oracle's own action-required date."
+  ],
+  [
+   15.2,
+   4.263,
+   "You'll explain why the kit keeps only the latest announcement in each chain."
+  ],
+  [
+   19.462,
+   4.213,
+   "And you'll name the realms the kit reads, and the one it refuses, and why."
+  ],
+  [
+   23.675,
+   7.763,
+   "You need Module 1, for the record and its action basis, and the Oracle Cloud column of the guide's table comparing the five providers."
+  ],
+  [
+   31.438,
+   4.162,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5."
+  ],
+  [
+   35.6,
+   1.062,
+   "No tenancy."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.25,
+   "Unit 1 is the guide's Step 3."
+  ],
+  [
+   2.3,
+   10.588,
+   "The reader needs one policy statement, added by an I A M administrator to a policy in the tenancy's root compartment: allow the reader's group to read announcements in tenancy."
+  ],
+  [
+   12.887,
+   6.2,
+   "Oracle's policy reference makes announcements a resource type, and its own common policy reads the same way."
+  ],
+  [
+   19.087,
+   1.212,
+   "The verb matters."
+  ],
+  [
+   20.3,
+   6.025,
+   "Inspect lists summaries only, without the affected resources that the details call returns."
+  ],
+  [
+   26.325,
+   4.438,
+   "With inspect, nothing can be routed as naming the agency's resources."
+  ],
+  [
+   30.762,
+   13.213,
+   "The kit's calls are Oracle's own: the list command, for the whole tenancy, showing only the latest announcement in each chain; then the get command, once per announcement, for its details and affected resources."
+  ],
+  [
+   43.975,
+   9.0,
+   "The command line is configured for the reader with O C I setup config, in the tenancy's home region, and Oracle's list command is the cross-check."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.175,
+   "Unit 2 reads the workbook chapter."
+  ],
+  [
+   2.225,
+   5.1,
+   "Oracle has several announcement types that mean the same kind of news, so the kit maps them."
+  ],
+  [
+   7.325,
+   2.9,
+   "A type that contains maintenance is maintenance."
+  ],
+  [
+   10.225,
+   7.787,
+   "A type that contains change, or action required itself, is a change, and action required is always Oracle's own flag."
+  ],
+  [
+   18.012,
+   2.962,
+   "A production event notification is an incident."
+  ],
+  [
+   20.975,
+   3.375,
+   "Action recommended and information are advisories."
+  ],
+  [
+   24.35,
+   6.625,
+   "Oracle puts the window and the deadline in two generic time fields, each with a type that says what it means."
+  ],
+  [
+   30.975,
+   8.512,
+   "A start time, or a new start time, starts the window; the end-time types end it; and action required by is Oracle's own action date."
+  ],
+  [
+   39.487,
+   7.987,
+   "So for Oracle Cloud, no kit rule is needed: the provider says when action is required, and the record's basis says provider."
+  ],
+  [
+   47.475,
+   7.362,
+   "An inactive lifecycle state closes the notice, and the source link is the announcement on Oracle's own regional host."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.688,
+   "Two more things the kit adds."
+  ],
+  [
+   1.738,
+   1.475,
+   "First, chains."
+  ],
+  [
+   3.212,
+   8.812,
+   "The list call asks for only the latest announcement in each chain, and the kit keeps only the latest by its update time in each chain I D as well."
+  ],
+  [
+   12.025,
+   10.75,
+   "The record's I D is the chain's, so when Oracle reschedules a window, the notice keeps its I D and gets the new window, and the router updates its task instead of opening a second one."
+  ],
+  [
+   22.775,
+   9.338,
+   "The command line's output key casing isn't shown in Oracle's reference, so the kit accepts both styles; which one the C L I prints is not yet specified."
+  ],
+  [
+   32.112,
+   1.55,
+   "Second, realms."
+  ],
+  [
+   33.663,
+   3.95,
+   "A government tenancy read in the commercial realm returns nothing."
+  ],
+  [
+   37.612,
+   8.6,
+   "The kit knows the commercial realm and Oracle's U S Government Cloud, whose Announcements endpoints are in U S Langley and U S Luke."
+  ],
+  [
+   46.212,
+   6.475,
+   "As a side note, Oracle lists that cloud with fed-ramp High and DISA Impact Level 4 authorizations."
+  ],
+  [
+   52.688,
+   8.037,
+   "The third realm is refused, because its Announcements endpoint is not yet specified, and a region outside the realm is refused too."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   10.45,
+   "Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against a fictional tenancy in the commercial realm, in the U S Ashburn region."
+  ],
+  [
+   11.225,
+   1.788,
+   "Nothing signs in to anything."
+  ],
+  [
+   13.012,
+   2.65,
+   "Step one lists what Oracle Cloud needs."
+  ],
+  [
+   15.662,
+   0.988,
+   "Two calls."
+  ],
+  [
+   16.65,
+   2.95,
+   "The list call needs only inspect announcements."
+  ],
+  [
+   19.6,
+   4.812,
+   "The get call, the details with their affected resources, needs read announcements."
+  ],
+  [
+   24.413,
+   5.438,
+   "So the policy grants read, because inspect alone would give summaries without the resources."
+  ],
+  [
+   29.85,
+   1.587,
+   "Both are marked verified."
+  ],
+  [
+   31.438,
+   3.013,
+   "Step two asks for each realm the kit knows."
+  ],
+  [
+   34.45,
+   8.062,
+   "The commercial realm, on oracle cloud dot com. The government realm, on oracle gov cloud dot com, in its two regions."
+  ],
+  [
+   42.513,
+   10.787,
+   "And the third realm is refused, with the reason: its Announcements endpoint is not yet specified, because Oracle's page wasn't readable on November ninth, 2026."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   9.65,
+   "Step three collects Oracle Cloud from the day-one fixtures, as of November ninth, 2026: four notices, three open, one needing action."
+  ],
+  [
+   9.7,
+   4.037,
+   "One each of advisory, change, incident and maintenance."
+  ],
+  [
+   13.738,
+   2.0,
+   "Step four reads the records."
+  ],
+  [
+   15.738,
+   7.338,
+   "Chain example one is maintenance, starting November twenty-second at four in the morning, U T C, on a database system."
+  ],
+  [
+   23.075,
+   8.188,
+   "Because the details call named that resource, Module 7's routing can ask for a contingency plan review for the system that depends on it."
+  ],
+  [
+   31.262,
+   9.787,
+   "Chain example two is a change, action required by December fifteenth, 2026, by Oracle's own action required type, on a load balancer."
+  ],
+  [
+   41.05,
+   2.487,
+   "That date is Oracle's, not the kit's."
+  ],
+  [
+   43.538,
+   5.737,
+   "Chain example three is an advisory, and the incident, chain example four, is closed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.9,
+   "Step five collects the second week, as of November sixteenth."
+  ],
+  [
+   3.95,
+   1.538,
+   "Still four notices."
+  ],
+  [
+   5.487,
+   12.113,
+   "But chain example one, the maintenance, now runs on November twenty-ninth, from four to eight in the morning, U T C. Oracle rescheduled it, and the chain's latest announcement replaced the first."
+  ],
+  [
+   17.6,
+   8.35,
+   "It's one notice with the new window, so Module 7 updates its task instead of opening a second one, and nobody prepares for the old date."
+  ],
+  [
+   25.95,
+   3.612,
+   "Step six builds the live list command without running it."
+  ],
+  [
+   29.562,
+   9.738,
+   "It's Oracle's own list command for the fictional tenancy, with all pages, only the latest in each chain, the region from the settings, and J SON output."
+  ],
+  [
+   39.3,
+   2.487,
+   "A reviewer can see exactly what would run."
+  ],
+  [
+   41.788,
+   4.525,
+   "Step seven runs this chapter's tests: nine pass, none fail."
+  ],
+  [
+   46.312,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.787,
+   "Lab 2 runs the same read in an Oracle Cloud Infrastructure test tenancy, never production."
+  ],
+  [
+   5.838,
+   4.7,
+   "You need an I A M administrator, and a test I A M group for the reader."
+  ],
+  [
+   10.537,
+   6.2,
+   "The administrator adds the read announcements in tenancy statement to a policy in the root compartment."
+  ],
+  [
+   16.738,
+   6.513,
+   "Then configure the command line as the reader, and cross-check Oracle's own list command against the kit's collection."
+  ],
+  [
+   23.25,
+   6.963,
+   "Record one open item while you're there: the key casing the command line printed, which Oracle's reference doesn't show."
+  ],
+  [
+   30.212,
+   4.55,
+   "The kit accepts both, but the verification log should say which one is real."
+  ],
+  [
+   34.763,
+   7.838,
+   "To back it out, the I A M administrator deletes the policy, and you delete the run, because it names the tenancy's resources."
+  ],
+  [
+   42.6,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   44.75,
+   3.138,
+   "The workbook's Chapter 3 has the exact commands."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.612,
+   "The workbook chapter lists five dangers."
+  ],
+  [
+   2.663,
+   13.1,
+   "If inspect is granted instead of read, the reader gets summaries without affected resources, and nothing routes as naming the agency's resources; an empty resources field on every maintenance notice is the sign."
+  ],
+  [
+   15.762,
+   9.363,
+   "If every announcement in a chain is read as its own notice, the old window lingers next to the new one; the kit keeps the latest in each chain."
+  ],
+  [
+   25.125,
+   8.088,
+   "A government tenancy read in the commercial realm returns nothing; the settings name the realm, and a region outside it is refused."
+  ],
+  [
+   33.212,
+   13.262,
+   "If the H R platform's maintenance is seen only by the help desk, the H R system's owners learn of it after it lands; the design guidance is to route Oracle maintenance that names the H R system's resources to its owners."
+  ],
+  [
+   46.475,
+   3.987,
+   "And the announcement email can be spoofed and isn't in the evidence."
+  ],
+  [
+   50.462,
+   6.875,
+   "It's the interim path only, filed with the change record, with the recipients named in the settings' notice contacts."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.512,
+   "Gate 3 supports nist special publication eight hundred fifty-three S A nine, part c, and S I five, part a."
+  ],
+  [
+   9.95,
+   11.025,
+   "And when maintenance names the agency's resources, it supports C P two, part e: updating the contingency plan for changes to the system or its environment of operation."
+  ],
+  [
+   20.975,
+   24.663,
+   "The evidence is the permission list and the policy statement; the raw Oracle response, with the list and each announcement's details, the notices and the manifest, every chain's latest announcement read in the tenancy's realm; maintenance that names the agency's resources, so Module 7's routing asks for a contingency plan review; and a rescheduled window that replaces the original and stays one notice."
+  ],
+  [
+   45.638,
+   7.1,
+   "The gate's output is evidence for these controls; your organization still sets their parameters, and the assessor decides."
+  ],
+  [
+   52.737,
+   8.0,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers, and which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   3.562,
+   "First: what does granting inspect instead of read lose?"
+  ],
+  [
+   5.588,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   6.812,
+   2.45,
+   "The details call's affected resources."
+  ],
+  [
+   9.262,
+   8.912,
+   "Inspect lists summaries only, so no notice can be routed as naming the agency's resources, and no contingency review is asked for."
+  ],
+  [
+   18.175,
+   3.288,
+   "Second: Oracle reschedules a maintenance window."
+  ],
+  [
+   21.462,
+   2.4,
+   "How many notices does the kit hold for it?"
+  ],
+  [
+   23.863,
+   5.438,
+   "The answer is b, one: the latest announcement in the chain, with the new window."
+  ],
+  [
+   29.3,
+   4.812,
+   "The record's I D is the chain's, so the task is updated, not doubled."
+  ],
+  [
+   34.112,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   12.425,
+   "You read the reader's one policy statement, saw the realms the kit reads and the one it refuses, collected four announcements with Oracle's own action date, and watched a rescheduled maintenance window stay one notice."
+  ],
+  [
+   13.3,
+   15.075,
+   "The evidence an I S S O keeps for Gate 3 is the raw Oracle response, with the list and each announcement's details, the notices as jay-son and as a spreadsheet file, and the manifest, all dated; and in Lab 2, the policy."
+  ],
+  [
+   28.375,
+   9.238,
+   "For a system that runs on Oracle Cloud, such as an H R platform, route maintenance that names its resources to its owners, which Module 7 builds."
+  ],
+  [
+   37.612,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   40.688,
+   4.3,
+   "Next is Module 5: AWS Health and the support plan."
+  ],
+  [
+   44.987,
+   6.95,
+   "That's Gate 4, with the workbook's fourth chapter: three read actions, and a support plan the A P I needs."
+  ]
+ ]
+}

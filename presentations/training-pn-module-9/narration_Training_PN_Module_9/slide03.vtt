@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:07.602
+You'll describe the settings file's
+rules: no secrets, no placeholder in
+
+3
+00:00:07.602 --> 00:00:12.162
+an enabled provider, the stage it says
+it is, and named notice contacts.
+
+4
+00:00:12.162 --> 00:00:16.737
+You'll run the pre-flight and the weekly
+run on fixtures, and read their checks.
+
+5
+00:00:16.737 --> 00:00:21.696
+You'll show that the test stage's evidence
+passes once a pre-flight and a weekly run
+
+6
+00:00:21.696 --> 00:00:25.101
+are recorded, and that
+production's pre-flight checks it,
+
+7
+00:00:25.101 --> 00:00:26.951
+in the check called P F oh seven.
+
+8
+00:00:26.951 --> 00:00:29.596
+You'll read the rollback
+plan in reverse order,
+
+9
+00:00:29.596 --> 00:00:32.450
+and show that an unapproved
+hash applies nothing.
+
+10
+00:00:32.450 --> 00:00:35.082
+And you'll explain the promotion go/no-go,
+
+11
+00:00:35.082 --> 00:00:38.750
+and why production routes as
+a dry run for its first week.
+
+12
+00:00:38.750 --> 00:00:41.862
+You need Modules 1 to 8,
+or at least their Lab 1s,
+
+13
+00:00:41.862 --> 00:00:45.900
+because this module doesn't
+teach the kit's chapters again.
+
+14
+00:00:45.900 --> 00:00:47.377
+Module 8 matters most,
+
+15
+00:00:47.377 --> 00:00:51.620
+for the evidence chain and the
+stage check this module passes.

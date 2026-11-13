@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.692
+Welcome to Module 4 of the
+Provider Notices learning path:
+
+2
+00:00:03.692 --> 00:00:06.575
+Oracle Cloud Infrastructure announcements.
+
+3
+00:00:06.575 --> 00:00:10.174
+This is Gate 3 of the provider
+notices implementation guide,
+
+4
+00:00:10.174 --> 00:00:13.125
+with the third chapter of
+the developer workbook.
+
+5
+00:00:13.125 --> 00:00:16.948
+Oracle Cloud Infrastructure
+publishes maintenance, changes,
+
+6
+00:00:16.948 --> 00:00:21.800
+action-required notices and production
+events for a tenancy as announcements.
+
+7
+00:00:21.800 --> 00:00:24.296
+Updates to one announcement form a chain,
+
+8
+00:00:24.296 --> 00:00:28.700
+and a rescheduled window arrives as
+a new announcement in the same chain.
+
+9
+00:00:28.700 --> 00:00:32.189
+In this module you read the
+fixture tenancy's announcements,
+
+10
+00:00:32.189 --> 00:00:36.654
+see Oracle's own action-required date,
+and watch the second week's rescheduled
+
+11
+00:00:36.654 --> 00:00:39.166
+maintenance replace
+the first in its chain,
+
+12
+00:00:39.166 --> 00:00:41.538
+so it stays one notice
+with the new window.
+
+13
+00:00:41.538 --> 00:00:43.860
+It takes about forty-five minutes,
+
+14
+00:00:43.860 --> 00:00:47.176
+with a lab on fixtures and
+a lab for a test tenancy.
+
+15
+00:00:47.176 --> 00:00:52.870
+The code is illustrative: tested against
+fixtures, not run against a live tenancy.

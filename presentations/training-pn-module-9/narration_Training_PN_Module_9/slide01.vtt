@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.918
+Welcome to Module 9 of the
+Provider Notices learning path:
+
+2
+00:00:03.918 --> 00:00:06.175
+deploying to test and production.
+
+3
+00:00:06.175 --> 00:00:08.038
+This module is optional.
+
+4
+00:00:08.038 --> 00:00:11.782
+It's for whoever deploys the
+kit, and it follows Chapter 8 of
+
+5
+00:00:11.782 --> 00:00:16.074
+the developer workbook, the deployment
+runbook, across every gate.
+
+6
+00:00:16.074 --> 00:00:18.287
+One thing first, and it matters.
+
+7
+00:00:18.287 --> 00:00:23.713
+Nobody has run this runbook against a
+live tenant, account, tenancy or project.
+
+8
+00:00:23.713 --> 00:00:27.635
+Its deploy scripts have been run
+only in fixture mode, against a
+
+9
+00:00:27.635 --> 00:00:32.312
+fictional test and production environment,
+and that dry-run output is real.
+
+10
+00:00:32.312 --> 00:00:35.624
+Every live result in the
+chapter is labeled expected.
+
+11
+00:00:35.624 --> 00:00:38.925
+This module's Lab 1 runs only the dry run.
+
+12
+00:00:38.925 --> 00:00:41.075
+It takes about fifty-five minutes.
+
+13
+00:00:41.075 --> 00:00:43.876
+You'll dry-run the
+pre-flight, the weekly run,
+
+14
+00:00:43.876 --> 00:00:47.300
+the stage check and the
+rollback plans on fixtures.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.511
+Step three collects Oracle
+Cloud from the day-one fixtures,
+
+2
+00:00:04.511 --> 00:00:09.700
+as of November ninth, 2026: four
+notices, three open, one needing action.
+
+3
+00:00:09.700 --> 00:00:13.737
+One each of advisory, change,
+incident and maintenance.
+
+4
+00:00:13.737 --> 00:00:15.738
+Step four reads the records.
+
+5
+00:00:15.738 --> 00:00:19.173
+Chain example one is
+maintenance, starting November
+
+6
+00:00:19.173 --> 00:00:23.076
+twenty-second at four in the morning,
+U T C, on a database system.
+
+7
+00:00:23.076 --> 00:00:27.206
+Because the details call named that
+resource, Module 7's routing can
+
+8
+00:00:27.206 --> 00:00:31.263
+ask for a contingency plan review
+for the system that depends on it.
+
+9
+00:00:31.263 --> 00:00:36.525
+Chain example two is a change, action
+required by December fifteenth,
+
+10
+00:00:36.525 --> 00:00:41.049
+2026, by Oracle's own action
+required type, on a load balancer.
+
+11
+00:00:41.049 --> 00:00:43.537
+That date is Oracle's, not the kit's.
+
+12
+00:00:43.537 --> 00:00:49.340
+Chain example three is an advisory, and the
+incident, chain example four, is closed.

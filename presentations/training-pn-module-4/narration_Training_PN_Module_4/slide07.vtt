@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.831
+Lab 1 runs in the provider notices
+folder of the examples, in PowerShell 7,
+
+3
+00:00:05.831 --> 00:00:11.225
+against a fictional tenancy in the
+commercial realm, in the U S Ashburn region.
+
+4
+00:00:11.225 --> 00:00:13.013
+Nothing signs in to anything.
+
+5
+00:00:13.013 --> 00:00:15.662
+Step one lists what Oracle Cloud needs.
+
+6
+00:00:15.662 --> 00:00:16.650
+Two calls.
+
+7
+00:00:16.650 --> 00:00:19.600
+The list call needs only
+inspect announcements.
+
+8
+00:00:19.600 --> 00:00:24.412
+The get call, the details with their affected
+resources, needs read announcements.
+
+9
+00:00:24.412 --> 00:00:25.896
+So the policy grants read,
+
+10
+00:00:25.896 --> 00:00:29.851
+because inspect alone would give
+summaries without the resources.
+
+11
+00:00:29.851 --> 00:00:31.437
+Both are marked verified.
+
+12
+00:00:31.437 --> 00:00:34.451
+Step two asks for each
+realm the kit knows.
+
+13
+00:00:34.451 --> 00:00:37.692
+The commercial realm, on
+oracle cloud dot com.
+
+14
+00:00:37.692 --> 00:00:42.512
+The government realm, on oracle gov
+cloud dot com, in its two regions.
+
+15
+00:00:42.512 --> 00:00:47.865
+And the third realm is refused, with the
+reason: its Announcements endpoint is
+
+16
+00:00:47.865 --> 00:00:53.350
+not yet specified, because Oracle's page
+wasn't readable on November ninth, 2026.

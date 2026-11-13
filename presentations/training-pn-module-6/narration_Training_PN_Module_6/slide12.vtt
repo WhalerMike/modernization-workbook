@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.112
+First: why does Gate 5
+cover incidents only?
+
+3
+00:00:05.112 --> 00:00:06.337
+The answer is b.
+
+4
+00:00:06.337 --> 00:00:09.050
+The A P I's event category has one value,
+
+5
+00:00:09.050 --> 00:00:12.288
+incident, and planned
+maintenance isn't in it.
+
+6
+00:00:12.288 --> 00:00:15.762
+It isn't the kit filtering
+anything, and it isn't the role.
+
+7
+00:00:15.762 --> 00:00:20.837
+Second: a workload is in an Assured
+Workloads FedRAMP Moderate package.
+
+8
+00:00:20.837 --> 00:00:22.312
+What does the agency do?
+
+9
+00:00:22.312 --> 00:00:23.238
+The answer is b.
+
+10
+00:00:23.238 --> 00:00:25.013
+Record the gap with the ISSO.
+
+11
+00:00:25.013 --> 00:00:29.874
+Personalized Service Health isn't among
+that package's supported products,
+
+12
+00:00:29.874 --> 00:00:34.812
+so the project has nothing to read, and
+relies on the provider's other channels.
+
+13
+00:00:34.812 --> 00:00:40.374
+Answer c is the trap this module is about:
+an empty list doesn't mean no incidents.
+
+14
+00:00:40.374 --> 00:00:42.802
+The module page has three more questions,
+
+15
+00:00:42.802 --> 00:00:45.360
+each linked to the
+section that answers it.

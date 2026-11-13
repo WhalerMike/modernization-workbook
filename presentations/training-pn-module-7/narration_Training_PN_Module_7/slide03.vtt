@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.587
+You'll write routing rules in the
+right order, and say why security
+
+3
+00:00:06.587 --> 00:00:10.749
+advisories and retirements come before
+the general action-required rule.
+
+4
+00:00:10.749 --> 00:00:13.499
+You'll route a collection as a dry run,
+
+5
+00:00:13.499 --> 00:00:17.713
+and read what each payload is
+for: create, update or close.
+
+6
+00:00:17.713 --> 00:00:22.529
+You'll read a task payload: its
+severity, priority and response window,
+
+7
+00:00:22.529 --> 00:00:27.599
+the provider's own date, the contingency
+review flag and the five clauses.
+
+8
+00:00:27.599 --> 00:00:30.128
+You'll explain why a
+re-run writes nothing,
+
+9
+00:00:30.128 --> 00:00:34.738
+and why a provider's closure asks for
+the re-read instead of closing the task.
+
+10
+00:00:34.738 --> 00:00:38.362
+And you'll say where the agency's
+routing is written and kept.
+
+11
+00:00:38.362 --> 00:00:41.669
+Before you start, finish at
+least one of Modules 2 to 6,
+
+12
+00:00:41.669 --> 00:00:45.822
+and read the Ticket-to-Machine
+reference appendix in Governance,
+
+13
+00:00:45.822 --> 00:00:50.975
+Drift and Evidence, for the typed task, its
+lanes and the five-clause request chain.
+
+14
+00:00:50.975 --> 00:00:55.137
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+15
+00:00:55.137 --> 00:00:56.110
+No tenant.

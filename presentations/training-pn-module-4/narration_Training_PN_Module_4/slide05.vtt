@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.225
+Unit 2 reads the workbook chapter.
+
+2
+00:00:02.225 --> 00:00:05.051
+Oracle has several
+announcement types that mean
+
+3
+00:00:05.051 --> 00:00:07.325
+the same kind of news,
+so the kit maps them.
+
+4
+00:00:07.325 --> 00:00:10.225
+A type that contains
+maintenance is maintenance.
+
+5
+00:00:10.225 --> 00:00:13.993
+A type that contains change,
+or action required itself,
+
+6
+00:00:13.993 --> 00:00:18.012
+is a change, and action required
+is always Oracle's own flag.
+
+7
+00:00:18.012 --> 00:00:20.974
+A production event
+notification is an incident.
+
+8
+00:00:20.974 --> 00:00:24.350
+Action recommended and
+information are advisories.
+
+9
+00:00:24.350 --> 00:00:28.538
+Oracle puts the window and the
+deadline in two generic time fields,
+
+10
+00:00:28.538 --> 00:00:30.975
+each with a type that says what it means.
+
+11
+00:00:30.975 --> 00:00:34.346
+A start time, or a new start
+time, starts the window;
+
+12
+00:00:34.346 --> 00:00:39.487
+the end-time types end it; and action
+required by is Oracle's own action date.
+
+13
+00:00:39.487 --> 00:00:42.177
+So for Oracle Cloud,
+no kit rule is needed:
+
+14
+00:00:42.177 --> 00:00:47.474
+the provider says when action is required,
+and the record's basis says provider.
+
+15
+00:00:47.474 --> 00:00:50.466
+An inactive lifecycle
+state closes the notice,
+
+16
+00:00:50.466 --> 00:00:54.890
+and the source link is the announcement
+on Oracle's own regional host.

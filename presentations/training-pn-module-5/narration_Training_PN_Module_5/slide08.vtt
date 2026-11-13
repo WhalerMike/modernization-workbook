@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.691
+Step three collects AWS
+from the day-one fixtures:
+
+2
+00:00:03.691 --> 00:00:06.888
+five events, four open,
+three needing action.
+
+3
+00:00:06.888 --> 00:00:12.175
+One incident, one maintenance window,
+two retirements and one security notice.
+
+4
+00:00:12.175 --> 00:00:14.175
+Step four reads the records.
+
+5
+00:00:14.175 --> 00:00:19.686
+The E C 2 instance retirement is due
+December first, 2026, and the Lambda
+
+6
+00:00:19.686 --> 00:00:25.388
+planned lifecycle event January
+fifteenth, 2027, each with its resource.
+
+7
+00:00:25.388 --> 00:00:28.662
+The R D S maintenance is
+scheduled on a database.
+
+8
+00:00:28.662 --> 00:00:32.650
+The I A M security notification
+needs action, with no date.
+
+9
+00:00:32.650 --> 00:00:35.575
+And the S 3 operational issue is closed.
+
+10
+00:00:35.575 --> 00:00:38.713
+Step five asks who said
+each one needs action.
+
+11
+00:00:38.713 --> 00:00:42.740
+AWS did, twice, through
+its actionability field:
+
+12
+00:00:42.740 --> 00:00:46.562
+the E C 2 retirement and
+the I A M notification.
+
+13
+00:00:46.562 --> 00:00:50.412
+The R D S maintenance and
+the S 3 issue need none.
+
+14
+00:00:50.412 --> 00:00:53.705
+And the Lambda event is action
+required by the kit's rule:
+
+15
+00:00:53.705 --> 00:00:58.501
+a scheduled change whose event type code
+names a retirement, due at its start time.
+
+16
+00:00:58.501 --> 00:01:03.120
+The record says rule, so nobody
+mistakes it for AWS's own flag.

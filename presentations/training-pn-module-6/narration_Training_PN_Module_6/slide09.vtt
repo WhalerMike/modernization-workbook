@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.787
+Step six asks the live invoker
+for the organization call.
+
+2
+00:00:03.787 --> 00:00:08.482
+You set the Google scope to organization,
+give a fictional organization number,
+
+3
+00:00:08.482 --> 00:00:12.963
+and build a live invoker, skipping the
+sign-in check because nothing will run.
+
+4
+00:00:12.963 --> 00:00:15.851
+The kit refuses before G cloud starts.
+
+5
+00:00:15.851 --> 00:00:19.775
+The call isn't verified against
+its provider's documentation:
+
+6
+00:00:19.775 --> 00:00:24.470
+the G cloud group for organization
+events is listed on the beta reference,
+
+7
+00:00:24.470 --> 00:00:28.088
+and its exact flags weren't
+read; the REST call is verified.
+
+8
+00:00:28.088 --> 00:00:30.350
+Pass allow unverified to run it.
+
+9
+00:00:30.350 --> 00:00:34.988
+That's a decision someone makes on
+purpose, in a test project, not a default.
+
+10
+00:00:34.988 --> 00:00:38.776
+Step seven builds the project
+command without running it:
+
+11
+00:00:38.776 --> 00:00:43.749
+service health events list, for the
+project, in the global location, as JSON.
+
+12
+00:00:43.749 --> 00:00:45.275
+That's the verified call.
+
+13
+00:00:45.275 --> 00:00:49.750
+Step eight runs this chapter's
+tests: eight pass, none fail.
+
+14
+00:00:49.750 --> 00:00:51.650
+Then delete the output folder.
