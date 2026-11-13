@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from urllib.parse import quote
 
 SCRIPTS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SCRIPTS / "source_watch"))
@@ -20,6 +21,7 @@ import learn_pages as lp  # noqa: E402
 import report  # noqa: E402
 
 WS, ENTRA = lp.SITE["windows-server-identity"], lp.SITE["entra"]
+START, SEC, SMB = lp.SITE["windows-server-get-started"], lp.SITE["windows-server-security"], lp.SITE["windows-server-file-server"]
 L = "https://learn.microsoft.com/"
 
 
@@ -35,6 +37,28 @@ class Pages(unittest.TestCase):
         self.assertFalse(lp.is_page(ENTRA, "docs/identity/users/context/ugr-context.yml"))
         self.assertFalse(lp.is_page(ENTRA, "docs/zone-pivot-groups.yml"))
         self.assertTrue(lp.is_page(ENTRA, "docs/identity/hybrid/connect/how-to-connect-install-roadmap.md"))
+
+    def test_the_windows_server_release_security_and_smb_folders(self):
+        self.assertTrue(lp.is_page(START, "WindowsServerDocs/get-started/removed-deprecated-features-windows-server.md"))
+        self.assertFalse(lp.is_page(START, "WindowsServerDocs/identity/laps/laps-overview.md"))
+        self.assertFalse(lp.is_page(WS, "WindowsServerDocs/get-started/whats-new-windows-server-2025.md"))
+        self.assertTrue(lp.is_page(SEC, "WindowsServerDocs/security/kerberos/kerberos-authentication-overview.md"))
+        self.assertFalse(lp.is_page(SEC, "WindowsServerDocs/security/guarded-fabric-shielded-vm/guarded-fabric-and-shielded-vms.md"))
+        self.assertFalse(lp.is_page(SEC, "WindowsServerDocs/security/gdpr/gdpr-winserver-dsr.md"))
+        self.assertTrue(lp.is_page(SMB, "WindowsServerDocs/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3.md"))
+        self.assertFalse(lp.is_page(SMB, "WindowsServerDocs/storage/storage-spaces/overview.md"))
+        self.assertEqual(lp.page_url(START, "WindowsServerDocs/get-started/whats-new-windows-server-2025.md"),
+                         L + "windows-server/get-started/whats-new-windows-server-2025")
+        self.assertEqual(lp.page_url(SMB, "WindowsServerDocs/storage/file-server/smb-signing.md"),
+                         L + "windows-server/storage/file-server/smb-signing")
+        self.assertEqual(SMB.area("WindowsServerDocs/storage/file-server/Troubleshoot/x.md"), "troubleshoot")
+        self.assertEqual(SEC.area("WindowsServerDocs/security/kerberos/x.md"), "kerberos")
+        self.assertEqual(START.area("WindowsServerDocs/get-started/hotpatch.md"), "general")
+        # Every folder has its own data file and its own place on the page.
+        self.assertEqual(len({s.key for s in lp.SITES}), len(lp.SITES))
+        self.assertEqual(len({s.folder for s in lp.SITES}), len(lp.SITES))
+        self.assertEqual(lc.sparse_patterns(SEC)[-2:], ["!/WindowsServerDocs/security/guarded-fabric-shielded-vm/",
+                                                         "!/WindowsServerDocs/security/gdpr/"])
 
     def test_url_from_the_docfx_mapping(self):
         self.assertEqual(lp.page_url(WS, "WindowsServerDocs/identity/Identity-and-Access.yml"),
@@ -199,15 +223,17 @@ class WorkbookSide(unittest.TestCase):
 
 
 class SourceWatch(unittest.TestCase):
-    TREES = {
-        "windowsserverdocs": ["laps/a.md", "laps/b.md", "TOC.yml"],
-        "entra-docs": ["identity/hybrid/x.md", "identity/saas-apps/box-tutorial.md", "media/p.png"],
+    TREES = {  # tracked folder -> its files; a folder not named here is empty
+        "WindowsServerDocs/identity": ["laps/a.md", "laps/b.md", "TOC.yml"],
+        "docs": ["identity/hybrid/x.md", "identity/saas-apps/box-tutorial.md", "media/p.png"],
+        "WindowsServerDocs/security": ["kerberos/k.md", "guarded-fabric-shielded-vm/g.md", "gdpr/gdpr.md"],
     }
 
     def getter(self, trees):
         def get(url):
-            for repo, paths in trees.items():
-                if f"/{repo}/" in url:
+            for site in lp.SITES:
+                if f"/{site.repo}/" in url and quote(":" + site.folder, safe="") + "?" in url:
+                    paths = trees.get(site.folder, [])
                     if paths is None:
                         return 500, None
                     return 200, {"truncated": False, "tree": [{"type": "blob", "path": p} for p in paths]}
@@ -218,20 +244,26 @@ class SourceWatch(unittest.TestCase):
         state: dict = {}
         first = lp.check(state, self.getter(self.TREES))
         self.assertEqual((first["added"], first["removed"], first["errors"]), ([], [], []))
+        self.assertEqual(sorted(state["learn_pages"]), sorted(s.key for s in lp.SITES))
         self.assertEqual(sorted(state["learn_pages"]["entra"]), [L + "entra/identity/hybrid/x"])
-        trees = {"windowsserverdocs": ["laps/a.md", "laps/c.md"],
-                 "entra-docs": ["identity/hybrid/x.md", "identity/saas-apps/new-app-tutorial.md"]}
+        self.assertEqual(sorted(state["learn_pages"]["windows-server-security"]),
+                         [L + "windows-server/security/kerberos/k"])   # shielded VMs and GDPR left out
+        trees = {**self.TREES, "WindowsServerDocs/identity": ["laps/a.md", "laps/c.md"],
+                 "docs": ["identity/hybrid/x.md", "identity/saas-apps/new-app-tutorial.md"],
+                 "WindowsServerDocs/storage/file-server": ["smb-signing.md"]}
         second = lp.check(state, self.getter(trees))
-        self.assertEqual([r["url"] for r in second["added"]], [L + "windows-server/identity/laps/c"])
+        self.assertEqual([r["url"] for r in second["added"]], [L + "windows-server/identity/laps/c",
+                                                                L + "windows-server/storage/file-server/smb-signing"])
         self.assertEqual([r["url"] for r in second["removed"]], [L + "windows-server/identity/laps/b"])
         self.assertEqual(second["added"][0]["path"], "WindowsServerDocs/identity/laps/c.md")
+        self.assertEqual(second["added"][1]["name"], "Windows Server file server and SMB")
 
     def test_a_failed_listing_keeps_the_previous_list(self):
         state: dict = {}
         lp.check(state, self.getter(self.TREES))
         before = dict(state["learn_pages"]["windows-server-identity"])
-        out = lp.check(state, self.getter({**self.TREES, "windowsserverdocs": None}))
-        self.assertEqual(len(out["errors"]), 1)
+        out = lp.check(state, self.getter({**self.TREES, "WindowsServerDocs/identity": None}))
+        self.assertEqual([e["site"] for e in out["errors"]], ["windows-server-identity"])
         self.assertEqual(state["learn_pages"]["windows-server-identity"], before)
 
     def test_report_section(self):
@@ -240,9 +272,9 @@ class SourceWatch(unittest.TestCase):
                                    "removed": [], "errors": []}}
         self.assertTrue(report.has_findings(results))
         text = report.render(results)
-        self.assertIn("## New and retired Learn identity pages", text)
+        self.assertIn("## New and retired Learn pages", text)
         self.assertIn(f"| <{L}entra/new> | Microsoft Entra | New |", text)
-        self.assertIn("**1 new or retired Learn identity pages**", text)
+        self.assertIn("**1 new or retired Learn pages**", text)
         self.assertFalse(report.has_findings({"learn_pages": {"added": [], "removed": [], "errors": []}}))
 
 
