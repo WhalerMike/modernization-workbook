@@ -207,7 +207,7 @@ pages:
   ms_topic: overview
   description: Learn how to configure SMB signing, how to determine whether SMB signing is enabled, and how to disable SMB signing.
   coverage: cited
-  note: SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07
+  note: SMB signing default and audit events in the Book 02 Chapter 03 status table; NTLM blocking and guest logons not yet covered
   cited_by:
   - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/storage/file-server/smb-signing.md
@@ -218,7 +218,7 @@ pages:
   ms_topic: how-to
   description: How to disable SMB signing on third-party servers in Windows 11 and Windows Server.
   coverage: cited
-  note: SMB hardening in Windows Server 2025 and Windows 11 24H2 (signing required, NTLM blocking, guest logons off) isn't covered; would fit beside the server baseline in Book 12 Chapter 07
+  note: SMB signing default and audit events in the Book 02 Chapter 03 status table; NTLM blocking and guest logons not yet covered
   cited_by:
   - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/storage/file-server/Troubleshoot/detect-enable-and-disable-smbv1-v2-v3.md
