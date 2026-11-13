@@ -1,0 +1,268 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a runbook, run twice",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Which cloud, for these steps",
+  "links": [
+   {
+    "text": "National cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The order, and the only writes",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "One settings file per stage, and its rules",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The deploy scripts, each with a dry run",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The dry run on the kit's fixtures",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The pre-flight: seven read-only checks",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Who holds what, and who approves",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.html"
+   },
+   {
+    "text": "05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Steps 1.1 and 1.2: sign in, then the pre-flight",
+  "links": [
+   {
+    "text": "app-only authentication with the Graph PowerShell SDK",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-graph-powershell-app-only"
+   },
+   {
+    "text": "Connect-MgGraph",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-connect-mggraph"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Step 1.3: staged enable, one provider at a time",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Steps 1.4 and 1.5: route as a dry run, smoke test",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Step 1.6: the alert policy at the test subscription",
+  "links": [
+   {
+    "text": "Deploy Service Health alerts at scale using Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   },
+   {
+    "text": "Remediate non-compliant resources",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#remediate-non-compliant-resources-with-azure"
+   },
+   {
+    "text": "az policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cli-az-policy-assignment"
+   },
+   {
+    "text": "az monitor",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cli-az-monitor-activity-log-alert"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Step 1.7: the weekly run, on a schedule",
+  "links": [
+   {
+    "text": "New-ScheduledTaskTrigger",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-new-scheduledtasktrigger"
+   },
+   {
+    "text": "New-ScheduledTaskAction",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-new-scheduledtaskaction"
+   },
+   {
+    "text": "Register-ScheduledTask",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-register-scheduledtask"
+   },
+   {
+    "text": "Unregister-ScheduledTask",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-unregister-scheduledtask"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Steps 1.8 and 1.9: the evidence, then the rollback",
+  "links": [
+   {
+    "text": "Unregister-ScheduledTask",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-unregister-scheduledtask"
+   },
+   {
+    "text": "az policy assignment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-cli-az-policy-assignment"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Go/no-go: promote only when every row passes",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Stage 2: production, the same commands",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Requirements, KSIs and the evidence kept",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OSCAL catalog 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 20,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

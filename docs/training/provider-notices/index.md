@@ -58,6 +58,11 @@ When you finish the path, you'll be able to:
 - write the weekly digest, record every run as hashed and chained evidence, and say whether a stage passes the go/no-go;
 - optionally, dry-run the deployment to a test environment and production, with a pre-flight, a weekly run, a stage check and a rollback plan.
 
+## Watch first (optional)
+
+- The workbook's story deck, *One Retirement Notice, End to End*: one fictional Azure retirement notice, `azure:RT5J-6KL`, followed through every gate with the kit's own fixtures, about 16 minutes with captions: [▶ Watch](../../presentations/watch.html?v=PN_Story_One_Retirement_Notice_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/PN_Story_One_Retirement_Notice_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/pn-story-one-retirement-notice) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/pn-story-one-retirement-notice/PN_Story_One_Retirement_Notice_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/pn-story-one-retirement-notice/PN_Story_One_Retirement_Notice_Narrated.vtt). The deck files join the next edition.
+- The guide's two-part narrated deck series (Part 1, Gates G1 to G4; Part 2, Gates G5 to G7), listed in the [implementation guide](../../books/guides/provider-notices-implementation.md#watch-or-download).
+
 ## Modules
 
 Work through them in order. Module 1 is the why and the record; Modules 2 to 6 are the five providers, one gate each, and are independent: an agency that doesn't use AWS or Google Cloud can skip Module 5 or 6. Modules 7 and 8 need at least one provider. Module 9, the deployment runbook, is optional: it is for whoever deploys the kit, and it runs every gate's code in one safe order.
@@ -99,7 +104,7 @@ Run every command from `examples/provider-notices`, in PowerShell 7. Each lab wr
 
 ## How this path fits with the other pieces
 
-The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. The narrated decks for these modules, and the workbook chapters' narrated tours, come later; each module will link its own.
+The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. Each module links its own narrated deck and its workbook chapter's narrated tour.
 
 | Piece | Where |
 |---|---|

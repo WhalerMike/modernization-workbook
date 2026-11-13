@@ -1,0 +1,122 @@
+[
+ {
+  "slide": 3,
+  "title": "G5: Google Cloud Personalized Service Health",
+  "links": [
+   {
+    "text": "events list",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gcp-service-health-events-list"
+   },
+   {
+    "text": "Event",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-event"
+   },
+   {
+    "text": "List events",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-list-events"
+   },
+   {
+    "text": "gcloud service-health events list",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gcloud-service-health-events-list"
+   },
+   {
+    "text": "roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-iam-roles"
+   },
+   {
+    "text": "Assured Workloads products",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#assured-workloads-supported-products"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "G5 in code: two incidents, one unverified call",
+  "links": [
+   {
+    "text": "Personalized Service Health roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-iam-roles"
+   },
+   {
+    "text": "Event resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-event"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "G6: requirement, evidence, interim path, rollback",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OSCAL catalog 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "G7: what the ISSO keeps, and an edited file",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OSCAL catalog 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Dangers, and how to avoid them",
+  "links": [
+   {
+    "text": "security advisories access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-service-health-security-advisories-access"
+   },
+   {
+    "text": "Service Health alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   },
+   {
+    "text": "AWS CLI health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-cli-health"
+   },
+   {
+    "text": "Event resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-event"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Evidence by gate: one file for the assessor",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OSCAL catalog 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

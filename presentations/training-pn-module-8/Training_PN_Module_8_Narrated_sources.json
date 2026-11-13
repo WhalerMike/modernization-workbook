@@ -1,0 +1,102 @@
+[
+ {
+  "slide": 2,
+  "title": "Most notices aren't tasks; the owners still need them",
+  "links": [
+   {
+    "text": "Book 15, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html"
+   },
+   {
+    "text": "The weekly digest",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/14-provider-notices.html#the-weekly-digest"
+   },
+   {
+    "text": "Book 15, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b15-day2-operations/10-who-runs-day-two.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The digest: five sections and their windows",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What the guide names, and what the kit adds",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The evidence record, and what a stage needs",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The promotion go/no-go, and the dangers it guards",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: edit a recorded file, and the check names it",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: a test environment's runs, recorded",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Gate G7",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.html"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

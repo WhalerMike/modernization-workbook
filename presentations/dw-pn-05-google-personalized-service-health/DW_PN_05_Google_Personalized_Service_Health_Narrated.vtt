@@ -1,0 +1,849 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:09.800
+This is Chapter 5: Google Cloud's
+Personalized Service Health.
+
+4
+00:00:09.800 --> 00:00:12.783
+It's the smallest collector,
+with the largest gaps,
+
+5
+00:00:12.783 --> 00:00:15.912
+and saying plainly what it
+can't see is part of the job.
+
+6
+00:00:15.912 --> 00:00:21.081
+We'll start from Google Cloud's own
+documentation for the events API and the viewer
+
+7
+00:00:21.081 --> 00:00:25.263
+role, see what it leaves to you, then
+read how the kit fills the record,
+
+8
+00:00:25.263 --> 00:00:29.900
+which two gaps it writes down instead
+of hiding, and why one call is refused.
+
+9
+00:00:29.900 --> 00:00:33.250
+Then two labs, the
+evidence and the dangers.
+
+10
+00:00:33.250 --> 00:00:34.825
+Two notes before we begin.
+
+11
+00:00:34.825 --> 00:00:38.187
+This chapter is a draft,
+awaiting the owner's review.
+
+12
+00:00:38.187 --> 00:00:42.080
+And the code is illustrative,
+tested against fixtures.
+
+13
+00:00:45.830 --> 00:00:46.943
+Why this chapter?
+
+14
+00:00:46.943 --> 00:00:50.878
+Because Google's notices are the
+narrowest of the five providers,
+
+15
+00:00:50.878 --> 00:00:54.230
+and the danger is an empty list
+that looks like good news.
+
+16
+00:00:54.230 --> 00:00:56.005
+So the goal has two halves.
+
+17
+00:00:56.005 --> 00:01:00.789
+By the end you can read a project's or an
+organization's Personalized Service Health
+
+18
+00:01:00.789 --> 00:01:03.979
+incidents, with the viewer
+role, into records the router
+
+19
+00:01:03.979 --> 00:01:07.030
+and the weekly digest treat
+like any other provider's.
+
+20
+00:01:07.030 --> 00:01:11.368
+And you can tell the security officer
+exactly what Google's notices don't cover.
+
+21
+00:01:11.368 --> 00:01:16.037
+It's for developers who maintain the kit,
+the project owner who owns this gate,
+
+22
+00:01:16.037 --> 00:01:19.220
+and the security officer,
+who records the gaps.
+
+23
+00:01:22.970 --> 00:01:25.233
+Next, which cloud and which scope.
+
+24
+00:01:25.233 --> 00:01:30.764
+Unlike Azure or AWS, Personalized Service
+Health has no separate government endpoint
+
+25
+00:01:30.764 --> 00:01:33.683
+in the kit's table, so the
+cloud is simply global,
+
+26
+00:01:33.683 --> 00:01:37.832
+and each record links to the event
+on Google's Service Health host.
+
+27
+00:01:37.832 --> 00:01:42.029
+The scope comes from the settings: a
+project, which is the call Google's
+
+28
+00:01:42.029 --> 00:01:46.520
+command line was verified for, or an
+organization when the settings say so.
+
+29
+00:01:46.520 --> 00:01:49.295
+The API is enabled once per project.
+
+30
+00:01:49.295 --> 00:01:54.407
+And for government workloads, the question
+isn't an endpoint at all, but a package:
+
+31
+00:01:54.407 --> 00:01:57.505
+as we'll see, Personalized
+Service Health isn't in
+
+32
+00:01:57.505 --> 00:02:01.500
+the Assured Workloads FedRAMP
+or impact-level packages.
+
+33
+00:02:05.250 --> 00:02:06.925
+Here's Google's starting point.
+
+34
+00:02:06.925 --> 00:02:10.755
+Google Cloud's REST reference
+documents the project events list,
+
+35
+00:02:10.755 --> 00:02:13.875
+with its permission, and an
+organization equivalent.
+
+36
+00:02:13.875 --> 00:02:18.888
+The event resource has a category whose
+only value is incident, plus a state,
+
+37
+00:02:18.888 --> 00:02:20.990
+a detailed category, relevance,
+
+38
+00:02:20.990 --> 00:02:25.113
+its impacts by product and
+location, and its updates over time.
+
+39
+00:02:25.113 --> 00:02:26.888
+Planned maintenance isn't in it.
+
+40
+00:02:26.888 --> 00:02:29.663
+The API is enabled once per project.
+
+41
+00:02:29.663 --> 00:02:32.649
+The Personalized Service
+Health Viewer role reads it.
+
+42
+00:02:32.649 --> 00:02:36.940
+And the command line lists a project's
+events at the global location.
+
+43
+00:02:40.690 --> 00:02:44.502
+Here's the first gap, and
+it's built into Google's API.
+
+44
+00:02:44.502 --> 00:02:47.665
+The event's category
+has one value, incident.
+
+45
+00:02:47.665 --> 00:02:50.402
+Planned maintenance isn't
+in the resource at all.
+
+46
+00:02:50.402 --> 00:02:54.554
+So maintenance and retirements
+never arrive through this API,
+
+47
+00:02:54.554 --> 00:02:56.790
+and no amount of code changes that.
+
+48
+00:02:56.790 --> 00:02:59.140
+What the kit does is refuse to hide it.
+
+49
+00:02:59.140 --> 00:03:04.137
+Every Google notice is recorded as an
+incident, and the gap is written in the guide,
+
+50
+00:03:04.137 --> 00:03:07.344
+in this chapter and in the
+security officer's record,
+
+51
+00:03:07.344 --> 00:03:10.402
+and it shows in the weekly
+digest's provider table.
+
+52
+00:03:10.402 --> 00:03:13.727
+Google's maintenance reaches
+the project by other channels.
+
+53
+00:03:13.727 --> 00:03:15.708
+The danger is assuming it's covered,
+
+54
+00:03:15.708 --> 00:03:18.930
+and a maintenance window
+landing with nobody told.
+
+55
+00:03:22.680 --> 00:03:25.330
+The second gap is about
+government packages.
+
+56
+00:03:25.330 --> 00:03:32.288
+Google Cloud's Assured Workloads
+supported-products page lists Personalized Service
+
+57
+00:03:32.288 --> 00:03:38.578
+Health under twenty-five regional packages,
+including the U S Data Boundary, but
+
+58
+00:03:38.578 --> 00:03:43.630
+not under FedRAMP Moderate, FedRAMP High,
+I L 2, I L 4, I L 5, C J I S or I T A R.
+
+59
+00:03:43.630 --> 00:03:47.048
+So a workload in one of those
+packages has nothing to read,
+
+60
+00:03:47.048 --> 00:03:50.393
+and an empty list there looks
+like good news when it isn't.
+
+61
+00:03:50.393 --> 00:03:54.562
+The kit's answer, which is the program's
+design guidance, is to record the
+
+62
+00:03:54.562 --> 00:03:59.750
+package as a gap with the security officer,
+who decides the compensating channel.
+
+63
+00:04:03.500 --> 00:04:05.225
+What else does Google leave to you?
+
+64
+00:04:05.225 --> 00:04:08.556
+Impacts are nested product
+and location objects,
+
+65
+00:04:08.556 --> 00:04:12.537
+so the kit turns them into the
+record's services and regions.
+
+66
+00:04:12.537 --> 00:04:15.195
+An event's description is sometimes empty,
+
+67
+00:04:15.195 --> 00:04:17.700
+so the kit takes the latest update's text.
+
+68
+00:04:17.700 --> 00:04:22.525
+Nothing says action is required, and
+the kit adds no rule of its own here:
+
+69
+00:04:22.525 --> 00:04:27.850
+an open incident that names resources
+routes by the agency's rule, in Chapter 6.
+
+70
+00:04:27.850 --> 00:04:31.059
+The organization call is
+verified in REST but its
+
+71
+00:04:31.059 --> 00:04:34.738
+command-line flags weren't
+read, so it's marked unverified.
+
+72
+00:04:34.738 --> 00:04:37.251
+And two response shapes are both accepted.
+
+73
+00:04:37.251 --> 00:04:41.460
+The verdict: use Google's project
+call and viewer role as published,
+
+74
+00:04:41.460 --> 00:04:44.430
+build the mapping, and
+write the gaps down.
+
+75
+00:04:48.180 --> 00:04:49.118
+Now the code.
+
+76
+00:04:49.118 --> 00:04:52.656
+The collector makes one declared
+call: the project's events,
+
+77
+00:04:52.656 --> 00:04:56.556
+or the organization's when the
+settings' scope says organization.
+
+78
+00:04:56.556 --> 00:04:59.286
+The normalizer keeps only incident events;
+
+79
+00:04:59.286 --> 00:05:02.018
+anything else would be
+left out and counted.
+
+80
+00:05:02.018 --> 00:05:04.955
+An event whose state is
+closed closes the record.
+
+81
+00:05:04.955 --> 00:05:07.921
+Products and locations
+from the event's impacts
+
+82
+00:05:07.921 --> 00:05:10.442
+become the record's services and regions.
+
+83
+00:05:10.442 --> 00:05:14.867
+The detailed category and relevance
+are kept as the provider's severity.
+
+84
+00:05:14.867 --> 00:05:18.556
+And the source link is the event
+on Google's Service Health host.
+
+85
+00:05:18.556 --> 00:05:22.005
+Personalized Service Health
+has no separate government
+
+86
+00:05:22.005 --> 00:05:25.250
+endpoint in the kit's table,
+so the cloud is global.
+
+87
+00:05:29.000 --> 00:05:30.775
+One call gets special treatment.
+
+88
+00:05:30.775 --> 00:05:35.033
+Google's REST call for organization
+events is verified against Google's
+
+89
+00:05:35.033 --> 00:05:38.439
+documentation, but the command-line
+group for it is listed
+
+90
+00:05:38.439 --> 00:05:41.562
+on the beta reference, and
+its exact flags weren't read.
+
+91
+00:05:41.562 --> 00:05:45.112
+So the kit marks the call
+unverified, and the live invoker
+
+92
+00:05:45.112 --> 00:05:48.963
+refuses to run it unless someone
+passes an explicit override.
+
+93
+00:05:48.963 --> 00:05:52.799
+It stays out of the scheduled run
+until someone reads those flags.
+
+94
+00:05:52.799 --> 00:05:55.950
+A command run on a guess
+is how a read goes wrong.
+
+95
+00:05:55.950 --> 00:05:59.296
+The tests pin it: six in the
+collector's Google block,
+
+96
+00:05:59.296 --> 00:06:03.570
+plus the live tests for the
+project command and the refusal.
+
+97
+00:06:07.320 --> 00:06:08.370
+Who's involved?
+
+98
+00:06:08.370 --> 00:06:10.145
+Developers maintain the kit.
+
+99
+00:06:10.145 --> 00:06:15.670
+The project owner owns this gate: enabling
+the API and granting the viewer role.
+
+100
+00:06:15.670 --> 00:06:20.145
+And the security officer keeps the
+role binding and records the two gaps.
+
+101
+00:06:20.145 --> 00:06:21.670
+The permissions are short.
+
+102
+00:06:21.670 --> 00:06:24.820
+The project call needs the
+viewer role on the project.
+
+103
+00:06:24.820 --> 00:06:28.808
+The organization call needs the
+same role on the organization,
+
+104
+00:06:28.808 --> 00:06:30.495
+and it's the unverified one.
+
+105
+00:06:30.495 --> 00:06:34.700
+Grant at the project unless the
+settings' scope really is organization,
+
+106
+00:06:34.700 --> 00:06:37.694
+because a viewer role
+granted at the organization
+
+107
+00:06:37.694 --> 00:06:40.545
+for a project read is more
+read scope than needed.
+
+108
+00:06:40.545 --> 00:06:42.750
+Nothing the reader holds can write.
+
+109
+00:06:46.500 --> 00:06:51.338
+Lab 1 needs only PowerShell 7 with
+Pester, working in the kit's folder.
+
+110
+00:06:51.338 --> 00:06:55.213
+The lab settings name a fictional
+project, and nothing signs in.
+
+111
+00:06:55.213 --> 00:06:57.774
+Step 1 lists what Google Cloud needs.
+
+112
+00:06:57.774 --> 00:07:03.125
+The organization call carries its reason
+for being unverified: verified is false.
+
+113
+00:07:03.125 --> 00:07:07.769
+Step 2 collects the day-one fixtures:
+two notices, both incidents,
+
+114
+00:07:07.769 --> 00:07:12.063
+one open, none needing action,
+both valid against the schema.
+
+115
+00:07:12.063 --> 00:07:17.933
+Step 3 reads them: one open and one
+closed, with products and locations taken
+
+116
+00:07:17.933 --> 00:07:23.970
+from their impacts, Cloud S Q L in U S East
+4, and Cloud Storage in U S Central 1.
+
+117
+00:07:27.720 --> 00:07:29.845
+Step 4 collects the second week.
+
+118
+00:07:29.845 --> 00:07:33.541
+The open incident has closed:
+both records are closed now,
+
+119
+00:07:33.541 --> 00:07:35.507
+each with the end of its window.
+
+120
+00:07:35.507 --> 00:07:41.208
+Step 5 groups both weeks by kind, and
+there's only one: incident, four times.
+
+121
+00:07:41.208 --> 00:07:43.470
+That's the first gap made visible.
+
+122
+00:07:43.470 --> 00:07:47.948
+However many weeks you collect,
+maintenance never arrives through this API,
+
+123
+00:07:47.948 --> 00:07:52.284
+which is exactly why the chapter writes
+it down with the security officer
+
+124
+00:07:52.284 --> 00:07:56.990
+rather than letting an all-incident
+list suggest that nothing is planned.
+
+125
+00:08:00.740 --> 00:08:04.133
+Step 6 switches the scope
+to organization in memory
+
+126
+00:08:04.133 --> 00:08:07.527
+and asks the live invoker
+for the organization call.
+
+127
+00:08:07.527 --> 00:08:10.706
+It refuses before it starts
+the Google command line,
+
+128
+00:08:10.706 --> 00:08:14.106
+because the call isn't verified,
+and the message says why:
+
+129
+00:08:14.106 --> 00:08:17.728
+the group is on the beta reference,
+and its flags weren't read.
+
+130
+00:08:17.728 --> 00:08:23.134
+Step 7 builds the project command a live
+run would use, without running it: service
+
+131
+00:08:23.134 --> 00:08:28.378
+health events list, for the fictional
+project, at the global location, as JSON.
+
+132
+00:08:28.378 --> 00:08:32.891
+Step 8 runs this chapter's tests:
+eight passed, none failed.
+
+133
+00:08:32.891 --> 00:08:35.090
+Then delete the output folder.
+
+134
+00:08:38.840 --> 00:08:41.683
+Lab 2 moves to a Google
+Cloud test project,
+
+135
+00:08:41.683 --> 00:08:45.278
+never production, and no
+incidents is a valid result.
+
+136
+00:08:45.278 --> 00:08:46.647
+As the project owner,
+
+137
+00:08:46.647 --> 00:08:50.677
+enable the API and grant the
+viewer role to the reader's group.
+
+138
+00:08:50.677 --> 00:08:52.377
+Sign in as the reader.
+
+139
+00:08:52.377 --> 00:08:54.465
+Cross-check with Google's own command:
+
+140
+00:08:54.465 --> 00:08:57.091
+its count and the kit's
+collection should agree.
+
+141
+00:08:57.091 --> 00:08:59.850
+Then the step that matters
+most in this chapter:
+
+142
+00:08:59.850 --> 00:09:02.327
+record the gaps with the security officer.
+
+143
+00:09:02.327 --> 00:09:07.027
+Planned maintenance doesn't come through
+this API, and a project in an Assured
+
+144
+00:09:07.027 --> 00:09:12.166
+Workloads FedRAMP or impact-level folder
+has no Personalized Service Health at all.
+
+145
+00:09:12.166 --> 00:09:16.030
+Finally, remove the role
+binding and delete the run.
+
+146
+00:09:19.780 --> 00:09:24.580
+Each output is evidence for something
+specific, against NIST's control catalog.
+
+147
+00:09:24.580 --> 00:09:26.898
+The viewer role, and nothing that writes,
+
+148
+00:09:26.898 --> 00:09:29.918
+supports monitoring an
+external service provider.
+
+149
+00:09:29.918 --> 00:09:32.760
+The run folder shows
+every incident was read,
+
+150
+00:09:32.760 --> 00:09:36.830
+which also supports receiving
+security alerts and advisories.
+
+151
+00:09:36.830 --> 00:09:39.105
+A call nobody verified isn't run.
+
+152
+00:09:39.105 --> 00:09:42.666
+And the gaps written down support
+updating the risk assessment,
+
+153
+00:09:42.666 --> 00:09:46.967
+which is the evidence this chapter adds
+that no other provider chapter needs.
+
+154
+00:09:46.967 --> 00:09:48.671
+The indicators are FedRAMP's,
+
+155
+00:09:48.671 --> 00:09:52.643
+and which output supports which
+indicator is the program's mapping.
+
+156
+00:09:52.643 --> 00:09:57.690
+The kit's records support these controls;
+the agency's assessor decides them.
+
+157
+00:10:01.440 --> 00:10:04.315
+What breaks in production,
+and what guards against it?
+
+158
+00:10:04.315 --> 00:10:06.732
+Assume Google's maintenance is covered,
+
+159
+00:10:06.732 --> 00:10:10.614
+and a maintenance window lands
+with nobody told; the guard is the
+
+160
+00:10:10.614 --> 00:10:14.715
+gap written in the record, the digest
+and the security officer's file.
+
+161
+00:10:14.715 --> 00:10:19.120
+Expect Personalized Service Health in
+a FedRAMP or impact-level workload,
+
+162
+00:10:19.120 --> 00:10:23.383
+and an empty list looks like good news;
+the guard is recording the package,
+
+163
+00:10:23.383 --> 00:10:26.865
+so the security officer can
+choose a compensating channel.
+
+164
+00:10:26.865 --> 00:10:28.600
+Run the unverified call,
+
+165
+00:10:28.600 --> 00:10:32.852
+and you've run a command whose
+flags nobody read; it's refused.
+
+166
+00:10:32.852 --> 00:10:36.342
+And grant the viewer role at the
+organization for a project read,
+
+167
+00:10:36.342 --> 00:10:38.600
+and you've granted more than needed.
+
+168
+00:10:42.350 --> 00:10:43.700
+Here's what done looks like.
+
+169
+00:10:43.700 --> 00:10:45.941
+The API is enabled on the project,
+
+170
+00:10:45.941 --> 00:10:49.262
+and the reader's group
+holds only the viewer role.
+
+171
+00:10:49.262 --> 00:10:53.026
+Google's list and the kit's
+collection agree in the test project.
+
+172
+00:10:53.026 --> 00:10:55.694
+The organization call stays unverified,
+
+173
+00:10:55.694 --> 00:10:59.463
+and out of the scheduled run,
+until someone reads its flags.
+
+174
+00:10:59.463 --> 00:11:01.401
+The test binding was removed.
+
+175
+00:11:01.401 --> 00:11:04.849
+And the two gaps are written
+down: planned maintenance,
+
+176
+00:11:04.849 --> 00:11:09.525
+and any workload in an Assured Workloads
+FedRAMP or impact-level package.
+
+177
+00:11:09.525 --> 00:11:13.959
+Next, Chapter 6 routes what all
+five collectors gather to owners,
+
+178
+00:11:13.959 --> 00:11:15.800
+as Ticket-to-Machine tasks.
+
+179
+00:11:15.800 --> 00:11:16.960
+Thanks for watching.

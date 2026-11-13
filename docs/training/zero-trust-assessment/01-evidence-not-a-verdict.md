@@ -13,6 +13,8 @@ last-reviewed: 2026-11-11
 
 *Part of the [Zero Trust Assessment learning path](index.md). Guide [Step 1](../../books/guides/zero-trust-assessment-implementation.md#zta-step-1) and [Step 6](../../books/guides/zero-trust-assessment-implementation.md#zta-step-6). About 40 minutes.*
 
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_ZTA_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ZTA_Module_1_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-zta-module-1) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-zta-module-1/Training_ZTA_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-zta-module-1/Training_ZTA_Module_1_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes)
 
 The Zero Trust Assessment is a PowerShell module that tests a tenant against hundreds of configuration items drawn from Microsoft's configuration guidance for Entra, Intune, Azure networking and Purview. Release 3.1.0, the current release, holds 364 tests in seven pillars. It is read-only, it is free, and it is the assessment component of Microsoft's Zero Trust Workshop.

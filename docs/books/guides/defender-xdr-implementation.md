@@ -23,7 +23,11 @@ last-reviewed: 2026-11-11
 How an agency turns Microsoft Defender XDR from a license into hardened Windows endpoints, tuned detections and repeatable response, as gated steps an operator can run. First, how to read the guide, what the books already cover, the reference architecture with its trust boundaries and control planes, government-cloud availability feature by feature, a decision record, the RACI and the path on one page. Then ten gates, one for each topic: service architecture and access, endpoint onboarding, endpoint prevention, Attack Surface Reduction, exposure management, XDR incidents, advanced hunting, identity and cloud-app signals, automation, and operations and evidence. Each gate carries its prerequisites, pilot, audit phase, enforcement, rollback, exclusions, telemetry, evidence and day-two owner, with copy-paste commands and a **Validate** step. Then the metrics, the evidence catalog, the requirements and KSIs, the dangers, rollback, the implementation checklist and what couldn't be verified. Windows clients and Windows Server only; macOS and Linux are out of scope.
 :::
 
+::: {.callout-tip}
+## Watch, present or train
+**Narrated deck (about 17 minutes, captions)**: why a license is not a defended endpoint, the two boundaries and one control plane per setting, government-cloud availability by feature, the ten gates on one page, Unified RBAC roles through PIM and the RACI, then each gate from roles and onboarding to detections as code, automation and the metrics, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-defender-xdr) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Defender_XDR_Narrated). The deck says this guide is a draft awaiting the editor's review.
 **Training:** the learning path [*Defender XDR Engineering and Operations*](../../training/defender-xdr/index.md) teaches this guide in five modules, each with a lab in a test tenant and a knowledge check.
+:::
 
 ## How to read this guide
 

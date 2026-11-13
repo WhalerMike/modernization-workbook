@@ -23,7 +23,11 @@ last-reviewed: 2026-11-11
 How an agency on Microsoft 365 GCC deploys Microsoft's security service edge, Global Secure Access, as the identity-aware network layer of its Zero Trust program, and proves each piece works. First, how to read the guide, where each of the twelve topics lives, government-cloud availability and licensing feature by feature, how the design lines up with CISA's TIC 3.0 Remote User and Branch Office use cases, and the reference architecture. Then twelve steps: the decision and licensing, the architecture, the Windows client, Microsoft traffic, internet traffic, private applications, the compliant network check, universal tenant restrictions, TLS inspection, privileged protocols, coexistence and migration, and telemetry and evidence. Each step has Microsoft Learn's commands, a **Validate** step, the How-section order of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template) (prerequisites, pilot, report-only, enforcement, rollback, exclusions, telemetry, evidence, day-two ownership) and the requirements it supports. Then the RACI, the evidence catalog, the metrics, the requirements and KSIs by step, the dangers, rollback, the implementation checklist and what couldn't be verified.
 :::
 
+::: {.callout-tip}
+## Watch, present or train
+**Narrated deck (about 16 minutes, captions)**: why a VPN proves only that a device arrived, TIC 3.0's remote-user options, the twelve steps and their run order, government cloud and licensing by feature, the reference architecture and the RACI, then each step from the client and Microsoft traffic to private apps, tenant restrictions, TLS inspection, rings and rollback, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-global-secure-access) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Global_Secure_Access_Narrated). The deck says this guide is a draft awaiting the editor's review.
 **Training:** the learning path [*Global Secure Access as the Identity-Aware Network*](../../training/global-secure-access/index.md) teaches this guide in six modules, in its run order, with a lab in a test tenant and a knowledge check in each.
+:::
 
 ## How to read this guide {#how-to-read}
 

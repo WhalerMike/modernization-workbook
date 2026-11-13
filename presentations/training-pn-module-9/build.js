@@ -20,8 +20,13 @@ const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 9: Deploying to test and production", "Provider Notices learning path · Optional, for whoever deploys the kit · Every gate, with workbook Chapter 08",
-    ["The order  ·  The settings file  ·  The pre-flight  ·  Stage 1: test  ·  The go/no-go", "Stage 2: production  ·  Try it: the dry run  ·  Lab 2  ·  Evidence"]);
+  // The subtitle runs to three lines here, so the units sit lower than the shared title() puts them.
+  const s = P.titleSlide(SI, "Module 9: Deploying to test and production", "Provider Notices learning path · Optional, for whoever deploys the kit · Every gate, with workbook Chapter 08");
+  const units = ["The order  ·  The settings file  ·  The pre-flight  ·  Stage 1: test  ·  The go/no-go", "Stage 2: production  ·  Try it: the dry run  ·  Lab 2  ·  Evidence"];
+  P.txt(s, "Units", [
+    { text: "PROVIDER NOTICES LEARNING PATH", options: { bold: true, color: P.HEX.slate, fontSize: 12, breakLine: true } },
+    ...units.map((u, k) => ({ text: u, options: { color: k % 2 ? P.HEX.teal : P.HEX.navy, bold: true, fontSize: 14, breakLine: k < units.length - 1 } })),
+  ], { x: 0.8, y: 5.05, w: 11.0, h: 1.2, paraSpaceAfter: 2 });
   notes(s,
 `Welcome to Module 9 of the Provider Notices learning path: deploying to test and production. This module is optional. It's for whoever deploys the kit, and it follows Chapter 8 of the developer workbook, the deployment runbook, across every gate. One thing first, and it matters. Nobody has run this runbook against a live tenant, account, tenancy or project. Its deploy scripts have been run only in fixture mode, against a fictional test and production environment, and that dry-run output is real. Every live result in the chapter is labeled expected. This module's Lab 1 runs only the dry run. It takes about fifty-five minutes. You'll dry-run the pre-flight, the weekly run, the stage check and the rollback plans on fixtures.`,
   `${M} — Unit "Introduction"; the callout "Chapter 08 is a runbook nobody has run against a live tenant."`);

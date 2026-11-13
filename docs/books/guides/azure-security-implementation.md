@@ -25,6 +25,11 @@ last-reviewed: 2026-11-11
 How an agency engineers the security of its Azure estate on top of the landing zone [Book 10](../b10-cloud-boundary/index.md) designs, as gated steps an operator can run. First, how to read the guide, where each topic is covered, the placeholders, prerequisites and government-cloud availability, a comparison with AWS, Google Cloud and Oracle Cloud Infrastructure, the reference architecture and the decision record. Then ten steps: the landing-zone security baseline, the public exposure inventory, DDoS protection, the web application firewall, Front Door and Application Gateway, Azure Firewall and segmentation, Private Link and DNS, managed identities and Key Vault, Azure Policy and drift, and operations and evidence. Each step carries its authority label, copy-paste commands from Microsoft Learn, the How template of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template), a **Validate** step and an evidence checklist. Then the RACI, the evidence catalog, the metrics, the requirements and KSIs, the dangers, rollback, the implementation checklist and what couldn't be verified.
 :::
 
+::: {.callout-tip}
+## Watch, present or train
+**Narrated deck (about 17 minutes, captions)**: why a landing zone isn't a defense, what the books design and what this guide engineers, the ten steps on one page, commercial Azure for a GCC tenant and what differs in Azure Government, the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure, the eligible roles and the RACI, then each step from the baseline and the exposure inventory to Key Vault, policy and operations, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-azure-security) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Azure_Security_Narrated). The deck says this guide is a draft awaiting the editor's review.
+:::
+
 ## How to read this guide
 
 The books already design most of this. [Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md) builds the management group hierarchy, the boundary policies and the exemption rule; [Chapter 07](../b10-cloud-boundary/07-the-front-door.md) puts every change through a provisioning loop; [Chapter 08](../b10-cloud-boundary/08-who-owns-the-boundary.md) names who owns the boundary. [Book 12, Chapter 08](../b12-security-operations/08-cloud-native-posture.md) chooses the posture tool on each cloud and feeds its findings into the evidence contract. [Book 09](../b09-network/index.md) owns the agency network edge. What none of them gives is the service-by-service engineering of the Azure controls a Zero Trust assessment tests: DDoS protection on every public IP, a web application firewall in prevention mode, origins that only the edge can reach, egress through an inspecting firewall, PaaS reachable only through private endpoints, keys behind RBAC with purge protection, and the evidence that each one is in place and working. This guide does that, and links to the books instead of restating them.
@@ -61,6 +66,7 @@ The guide replaces the separate Azure security book the Zero Trust Assessment cl
 | Piece | State |
 |---|---|
 | This guide | Draft, November 11, 2026 |
+| Narrated guide deck and video | Built: 17 narrated slides, about 17 minutes, with captions; see *Watch, present or train* at the top |
 | Narrated deck series, one per step | Planned |
 | Developer workbook with Lab 1 on fixtures and Lab 2 in a test subscription | Planned |
 | Training path | Draft, November 13, 2026: [Azure Security Engineering](../../training/azure-security/index.md), five modules, each with a lab of this guide's checks in a test subscription |

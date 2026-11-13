@@ -10,40 +10,31 @@ Trust Assessment as Evidence:
 running the assessment safely.
 
 3
-00:00:06.200 --> 00:00:09.522
-This module is a draft,
-awaiting the editor's review,
-
-4
-00:00:09.522 --> 00:00:11.500
-so recheck it after the review.
-
-5
-00:00:11.500 --> 00:00:16.517
+00:00:06.200 --> 00:00:11.217
 The assessment is read-only, but running it
 takes more privilege than that suggests,
 
-6
-00:00:16.517 --> 00:00:19.425
+4
+00:00:11.217 --> 00:00:14.125
 and its output is a map of
 where the tenant is weak.
 
-7
-00:00:19.425 --> 00:00:23.493
+5
+00:00:14.125 --> 00:00:18.193
 In this module you prepare a host,
 consent once, run as a reader,
 
-8
-00:00:23.493 --> 00:00:28.538
+6
+00:00:18.193 --> 00:00:23.238
 connect in the tenant's own cloud, and
 hash the output before anyone opens it.
 
-9
-00:00:28.538 --> 00:00:33.365
+7
+00:00:23.238 --> 00:00:28.065
 It covers Steps 2 to 5 of the Zero
 Trust Assessment implementation guide,
 
-10
-00:00:33.365 --> 00:00:38.020
+8
+00:00:28.065 --> 00:00:32.710
 and takes about thirty-five minutes,
 plus Lab 2 in your own test tenant.

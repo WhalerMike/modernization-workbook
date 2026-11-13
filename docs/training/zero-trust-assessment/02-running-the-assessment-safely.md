@@ -13,6 +13,8 @@ last-reviewed: 2026-11-11
 
 *Part of the [Zero Trust Assessment learning path](index.md). Guide [Steps 2 to 5](../../books/guides/zero-trust-assessment-implementation.md#zta-step-2). About 35 minutes, plus Lab 2.*
 
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_ZTA_Module_2_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ZTA_Module_2_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-zta-module-2) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-zta-module-2/Training_ZTA_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-zta-module-2/Training_ZTA_Module_2_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes)
 
 The assessment is read-only, but running it takes more privilege than that suggests, and its output is a map of where the tenant is weak. Microsoft says to share the report and export folder only with authorized personnel, store the report securely and delete the local folder once the assessment is complete. In this module you prepare a host, consent once, run as a reader, connect in the tenant's own cloud, and hash the output before anyone opens it.

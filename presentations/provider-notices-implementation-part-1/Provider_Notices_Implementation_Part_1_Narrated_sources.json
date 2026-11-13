@@ -1,0 +1,240 @@
+[
+ {
+  "slide": 3,
+  "title": "Six kinds of notice, from five providers' types",
+  "links": [
+   {
+    "text": "Resource Graph samples for Service Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   },
+   {
+    "text": "Announcement model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-announcement-model"
+   },
+   {
+    "text": "AWS Health API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-reference"
+   },
+   {
+    "text": "Event",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-event"
+   },
+   {
+    "text": "Event resource",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#personalized-service-health-event"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The five providers compared",
+  "links": [
+   {
+    "text": "service communications API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-service-communications-api"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Before G1: decisions, a change process, a reader each",
+  "links": [
+   {
+    "text": "Graph service communications",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-service-communications-api"
+   },
+   {
+    "text": "admin roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m365-admin-roles"
+   },
+   {
+    "text": "Announcements policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-announcements-policy-reference"
+   },
+   {
+    "text": "AWS Health IAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-identity-policy-examples"
+   },
+   {
+    "text": "Google Cloud IAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-iam-roles"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "G1: Azure Service Health, the steps",
+  "links": [
+   {
+    "text": "Resource Graph samples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-resource-graph-samples"
+   },
+   {
+    "text": "security advisories access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-service-health-security-advisories-access"
+   },
+   {
+    "text": "Service Health alerts with Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#service-health-alerts-azure-policy"
+   },
+   {
+    "text": "Remediate non-compliant resources",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#remediate-non-compliant-resources-with-azure"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "G1: requirement, evidence, availability, rollback",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OSCAL catalog 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Connect to Azure Government with Azure CLI",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-government-connect-cli"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "G2: Microsoft 365 message center and service health",
+  "links": [
+   {
+    "text": "service communications API overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-service-communications-api"
+   },
+   {
+    "text": "National cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "List serviceAnnouncement messages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-serviceannouncement-list-messages"
+   },
+   {
+    "text": "issues",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-serviceannouncement-list-issues"
+   },
+   {
+    "text": "admin roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m365-admin-roles"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "G2 in code: a provider's date, and a kit rule",
+  "links": [
+   {
+    "text": "List serviceAnnouncement messages",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-serviceannouncement-list-messages"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "G3: Oracle Cloud Infrastructure announcements",
+  "links": [
+   {
+    "text": "OCI CLI announcements list",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-announcements-list"
+   },
+   {
+    "text": "get",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-cli-announcements-get"
+   },
+   {
+    "text": "Details for Announcements",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-announcements-policy-reference"
+   },
+   {
+    "text": "Common Policies",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-common-policies"
+   },
+   {
+    "text": "Oracle US Government Cloud",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oracle-us-government-cloud"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "G3 in code: chains, resources, a new window",
+  "links": [
+   {
+    "text": "Announcement model",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#oci-announcement-model"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "G4: AWS Health and the support plan",
+  "links": [
+   {
+    "text": "CLI reference health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-cli-health"
+   },
+   {
+    "text": "concepts",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-concepts"
+   },
+   {
+    "text": "IAM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-identity-policy-examples"
+   },
+   {
+    "text": "API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-access"
+   },
+   {
+    "text": "GovCloud (US) User Guide, AWS Health",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-govcloud"
+   },
+   {
+    "text": "EventBridge, AWS Health events",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#eventbridge-aws-health-events"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "G4 in code: who said action is required",
+  "links": [
+   {
+    "text": "AWS Health API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-reference"
+   },
+   {
+    "text": "Event",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-api-event"
+   },
+   {
+    "text": "DescribeEventDetails",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-health-describe-event-details"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   }
+  ]
+ }
+]
