@@ -24,7 +24,7 @@ Editor pass, 2026-10-20. All Microsoft Learn pages re-opened on this date; every
 | 16 | AUs can't be nested | Administrative units | added for consistency with Book 02 Ch 05 | c10-au-overview |
 | 17 | Dynamic AU holds users or devices, not both, and not groups | Administrative units | verified | c10-au-dynamic |
 | 18 | "Each AU administrator and member needs P1" | Administrative units | corrected — true for dynamic AUs; assigned AUs need P1 for administrators only (members Free) | c10-au-overview, c10-au-dynamic |
-| 19 | Dynamic AUs available in global Azure cloud "which is where GCC tenants run" | Administrative units | verified; corrected framing — dynamic AUs aren't available in specialized clouds such as Azure Government; GCC uses Entra ID in the global cloud, GCC High/DoD use Azure Government; replaced the indirect CBA-CRL footnote with the Azure Government identity-planning FAQ | c10-au-dynamic, c10-gov-identity |
+| 19 | Dynamic AUs available in global Azure cloud "which is where GCC tenants run" | Administrative units | verified; corrected framing — dynamic AUs aren't available in specialized clouds such as Azure Government; GCC uses Entra ID in the global cloud; replaced the indirect CBA-CRL footnote with the Azure Government identity-planning FAQ | c10-au-dynamic, c10-gov-identity |
 | 20 | Restricted management set at creation, can't be changed | Administrative units | verified | c10-au-restricted |
 | 21 | Restricted AU users/groups can't be managed by PIM, entitlement management, Lifecycle Workflows, access reviews | Administrative units | added (material omission; consistent with Book 02 Ch 05) | c10-au-restricted |
 | 22 | Manager as approver for users in the directory; resolves to `manager` attribute | Access packages | verified; added fallback-approver behavior | c10-ap-approval |
@@ -32,7 +32,7 @@ Editor pass, 2026-10-20. All Microsoft Learn pages re-opened on this date; every
 | 24 | Built-in separation-of-duties capability in entitlement management | Separation of duties | added (verified); person-level and reporting-chain checks restated as program design | c10-gov-licensing |
 | 25 | Entitlement management and access reviews require ID Governance for member users; P2-era capabilities (incl. manager approvers) still run on P2; no new IGA features in P2 | Licensing (new subsection) | added (verified) | c10-gov-licensing |
 | 26 | Lifecycle Workflows, auto-assignment policies, manager request-on-behalf, PIM for Groups eligibility in access packages require ID Governance or Entra Suite | Licensing | added (verified) | c10-gov-licensing |
-| 27 | ID Governance needs a P1/P2-plan prerequisite; ID Governance for Government offered in GCC, GCC High, DoD | Licensing | added (verified) | c10-gov-licensing |
+| 27 | ID Governance needs a P1/P2-plan prerequisite; ID Governance for Government offered in GCC | Licensing | added (verified) | c10-gov-licensing |
 | 28 | Role-assignable groups require assigned membership (removes attribute-write risk) | Where dynamic membership stops | verified | c10-dyn-rules |
 | 29 | ≤ 500 role-assignable groups per tenant | Where dynamic membership stops | added (verified; consistent with Book 02 Ch 05) | c10-pim-groups |
 | 30 | PIM for Groups: any security/M365 group except dynamic and on-prem-synced | Where dynamic membership stops | verified | c10-pim-groups |

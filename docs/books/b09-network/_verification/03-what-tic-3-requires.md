@@ -87,11 +87,8 @@ Writer W2. All sources opened October 21, 2026. PDFs were downloaded and read as
 | 79 | Networx expired May 31, 2026; WITS 3 Feb 28, 2026 | Currency | verified | GSA Legacy IT contracts |
 | 80 | 214 agencies transitioned as of July 31, 2026 | Currency | corrected | GSA EIS Transition: 219 agencies as of Aug 31, 2026 |
 | 81 | EIS first option period runs to July 31, 2027 | Currency | verified | GSA EIS page (OP1 8/01/22–7/31/27; OP2 to 7/30/32) |
-| 82 | DoD ZT Strategy: 91 target-level activities, 61 advanced, by end of FY 2027 | DoD contrast | verified (third-party) | DefenseScoop; strategy PDF returned HTTP 403 |
-| 83 | DoD strategy doesn't mandate specific technologies (quoted in source) | DoD contrast | corrected | Exact quote unverifiable; restated with Breaking Defense paraphrase (third-party) |
-| 84 | Thunderdome includes SD-WAN, SASE; DISA procurement not a mandate | DoD contrast | removed | Only vendor press releases found |
 | 85 | No federal instrument names SASE or SD-WAN as required (M-22-09, M-26-14, M-26-15, ZTMM checked) | Throughout | verified | Text search of each PDF: zero hits for SD-WAN/SASE |
-| 86 | M-25-04, M-26-05, DoD strategy also don't name SASE/SD-WAN | Throughout | removed | Not individually re-checked |
+| 86 | M-25-04, M-26-05 also don't name SASE/SD-WAN | Throughout | removed | Not individually re-checked |
 | 87 | 2.3: TIC FAQ says EIS provides SD-WAN options | — | removed | Not needed; procurement detail goes to Ch09 |
 
 ## Carry-forward ledger
@@ -108,7 +105,7 @@ Writer W2. All sources opened October 21, 2026. PDFs were downloaded and read as
 | Long Interim §3.1 TIC 3.0 is technology-neutral | Ch03 "From consolidation…", "The document set…" | — |
 | Long Interim §3.2 Nothing else names SASE or SD-WAN | Ch03 intro and "Technology-neutral…"; App B "cited but don't exist"; M-22-09 network actions in "Encryption" | Unchecked instruments dropped (#86) |
 | Long Interim §3.3 Technology-neutral is not requirement-free | Ch03 "Technology-neutral is not requirement-free" (all four obligations) | — |
-| Long Interim §3.4 The DoD contrast | Ch03 "The DoD contrast, correctly drawn" | Thunderdome removed (#84) |
+| Long Interim §3.4 | Not carried | Outside the workbook's scope |
 | Long Interim §3.5 FedRAMP does not constrain routing | Ch03 "FedRAMP does not constrain routing" | Duplicate of BEG §2.6; merged |
 | Long Interim §3.6 Your own control assertions | Ch03 "The control assertions…" table | — |
 | Long Interim §4.1 What is required | Ch03 "What is required" | — |
@@ -128,18 +125,6 @@ Writer W2. All sources opened October 21, 2026. PDFs were downloaded and read as
 - **M-21-31 is rescinded.** Book 08 Chapter 03, Book 08 Appendix B and Book 02 Chapter 11 still present M-21-31 (EL1 passive DNS, EL0–EL3 tiers) as current. This chapter states the rescission once and notes that earlier books describe logging under M-21-31. Those books need an update.
 - Book 08 Chapter 03 calls TIC SCC v3.3 "published September 2026"; that is the republication date. The v3.3 content is dated July 2025 in its revision table. Not contradictory, just imprecise.
 - Diagram sources: `docs/images/diagrams/b09-network/src/ch03-obligation-layers.flow.yaml`, `ch03-telemetry-continuity.flow.yaml`. Neither reused a `src-*` file, so no `src-` copy was deleted.
-
-## Review fixes, 2026-10-21
-
-Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
-
-| # | Change | Where | Verdict | Source |
-|---|---|---|---|---|
-| RF-1 | DoD Zero Trust Strategy citation (line 223, footnote `[^c03-dod-ds]`) left on DefenseScoop | The DoD contrast | unchanged | WebFetch of <https://dodcio.defense.gov/Portals/0/Documents/Library/DoD-ZTStrategy.pdf> returned HTTP 403 on 2026-10-21 |
-
-**Manual check needed:** the editor should open the DoD Zero Trust Strategy PDF on dodcio.defense.gov in a browser, confirm the 91 target-level and 61 advanced-level activities and the FY 2027 target, then add it as the primary citation and keep DefenseScoop as corroboration. No unopened URL was cited.
-
-| R-DoD | DoD Zero Trust Strategy: 91 target / 152 total activities, FY 2027 | §DoD counterexample | verified (official source added) | DOD News, June 4, 2024, https://www.war.gov/News/News-Stories/Article/Article/3795170/new-overlays-provide-guide-on-path-to-zero-trust/ (opened in browser Oct 21, 2026); 61 advanced = 152 − 91; strategy PDF downloads only. DefenseScoop kept as secondary. |
 
 ## Revision 2026-10-21 — TIC 3.0 Program Guidebook (v1.2, September 2026), read in full
 

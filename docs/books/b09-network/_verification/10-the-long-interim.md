@@ -28,8 +28,8 @@ Checked October 21, 2026 against primary sources: cisa.gov (BOD 23-02, BOD 26-02
 | 20 | Office client downloads, CDNs, telemetry, Outlook mobile in ER=No sets | ExpressRoute | removed (not individually checked; replaced with the verified examples) | — |
 | 21 | Pre-August 1, 2017 circuits advertise all Office prefixes without route filters | ExpressRoute | verified (wording from the route-filter page) | routefilter |
 | 22 | Unauthorized subscription gets an explicit error creating Office 365 route filters | ExpressRoute | removed (not verified) | — |
-| 23 | GCC pairs with Entra ID in commercial Azure; GCC High/DoD with Azure Government | ExpressRoute | verified | feature |
-| 24 | Web service instances: Worldwide, China, USGovDoD, USGovGCCHigh; GCC uses Worldwide | ExpressRoute | verified (live service also returns France and Germany, not in docs; not mentioned) | endpoints |
+| 23 | GCC pairs with Entra ID in commercial Azure | ExpressRoute | verified | feature |
+| 24 | No GCC web service instance; GCC uses Worldwide | ExpressRoute | verified | endpoints |
 | 25 | FAQ: GCC endpoints reachable through Azure US Government ExpressRoute after a support ticket | ExpressRoute | verified | erfaq |
 | 26 | Azure Government peering limited to Azure Government public IPs | ExpressRoute | verified; placement corrected (it sits under the next FAQ question) and stated as "nearby on the same page" | erfaq |
 | 27 | Hairpin "should be remediated before continuing…" | ExpressRoute | verified | implementing |
@@ -76,7 +76,7 @@ Checked October 21, 2026 against primary sources: cisa.gov (BOD 23-02, BOD 26-02
 | §3.1 TIC 3.0 technology-neutral; five volumes; four use cases; SASE guidance | Ch03; Ch10 cites the SASE guidance | Owned by Ch03 |
 | §3.2 Nothing else names SASE/SD-WAN; M-22-09 network pillar; ZTMM | Ch03 | Owned by Ch03 |
 | §3.3 Four binding obligations | Ch03 (owner); Ch10 BOD 26-02 section and plan list | — |
-| §3.4 DoD contrast | Ch03 | Owned by Ch03 |
+| §3.4 | Not carried | Outside the workbook's scope |
 | §3.5 FedRAMP doesn't constrain routing; Notice 0013; Consolidated Rules | Ch03; App C glossary | — |
 | §3.6 Own control assertions; M-26-14 network address quote | Ch03; Ch13 evidence section | — |
 | §4.1–4.3 Encryption required / not required / in practice | Ch03 | Owned by Ch03 |

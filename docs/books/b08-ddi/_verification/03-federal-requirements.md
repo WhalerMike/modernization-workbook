@@ -29,7 +29,7 @@ Checked October 20, 2026. Sources: the existing series page (Next Generation DDI
 | 21 | Infoblox Government Cloud FedRAMP Moderate authorized since December 2022 (FR2017257053) | FedRAMP | verified / terminology updated | FedRAMP Marketplace page and products.json: FedRAMP Certified, Class C (Moderate), Rev5, agency path, certified 2022-12-15, AWS GovCloud (US) |
 | 22 | July 2026: Universal DDI Management, NIOS-X Servers and Universal Asset Insights added | FedRAMP | verified as the vendor's statement | Infoblox press release, July 22, 2026. Note: the Marketplace description lists Universal DDI, Universal Asset Insights, TIDE and Dossier, and does not name NIOS-X Servers; the chapter attributes the NIOS-X claim to the vendor |
 | 23 | On-premises NIOS is not the FedRAMP-listed offering | FedRAMP | verified (new; brief item 4) | Marketplace data: the only Infoblox entry is Infoblox Government Cloud |
-| 24 | Moderate doesn't cover High or DoD | FedRAMP | verified | Marketplace class definitions (Class C = Moderate; Class D = High) |
+| 24 | Moderate doesn't cover High | FedRAMP | verified | Marketplace class definitions (Class C = Moderate; Class D = High) |
 | 25 | Zero Trust mandate references services by FQDN; "ZTNA uses DNS as the service registry" (whitepaper §7.8) | Why the timing matters | restated-as-design | Program argument; "service registry" claim not carried |
 | 26 | Microsoft recommends cloud-first; phased path to AD-minimized | Why the timing matters | verified | Learn, Microsoft Entra cloud-first identity guidance for IT architects |
 | 27 | Agencies expanding across multiple CSPs; split-brain grows combinatorially | Why the timing matters | restated-as-design | Program argument |
@@ -70,7 +70,7 @@ Checked October 20, 2026. Sources: the existing series page (Next Generation DDI
 
 ## Moderate-civilian sweep (October 29, 2026)
 
-The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; DISA STIGs and DoD Impact Levels survive only as optional references labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
@@ -78,7 +78,6 @@ The workbook targets FedRAMP Moderate civilian agencies. Configuration authority
 | MS-2 | NCP: SP 800-70 Rev. 5 (May 2026); checklists typically created by IT vendors for their own products | Configuration baselines | verified 2026-10-29 (fact pack) | c03-ncp: SP 800-70 Rev. 5; NIST NCP page |
 | MS-3 | CIS lists Windows Server 2022 (5.1.0) and 2025 (2.1.0); no Infoblox NIOS benchmark (only a CIS-formatted Infoblox 8.x DNS STIG) | Configuration baselines | verified 2026-10-29 (fact pack) | c03-cisbench: CIS Benchmarks list |
 | MS-4 | Agency writes NIOS settings from SP 800-81r3 and vendor documentation where no civilian benchmark exists | Configuration baselines | design (labelled) | — |
-| MS-5 | DISA DDI STIGs (e.g., Infoblox NIOS 9.x) are optional cross-checks, not requirements (High only) | Configuration baselines; High only line added | framing per brief; STIG existence carried from the Research guide's Oct 22-23 check | Research: Implementing Book 08 on Infoblox NIOS |
 | MS-6 | Control mapping: hardening of DDI servers and appliances → CM-2, CM-6, CM-7 | Control mapping table | mapping (illustrative, as the table states) | c03-cm6 |
 | MS-7 | EO 14144 section 4(c) (Jan 16, 2025): encrypt DNS in transit; CISA template contract language for DNS resolvers to the FAR Council; FCEB agencies enable encrypted DNS wherever existing clients and servers support it within 180 days. EO 14306 (Jun 6, 2025) amends EO 14144 sections 2, 3, 4(b), 4(b)(iv), 4(d)(ii)-(iii), 4(f), 5, 7 and 8 and does not touch 4(c), so 4(c) is current | What the mandates say (bullet added) | verified Nov 8, 2026 (item 1388) | EO 14144 text, Federal Register public inspection copy of document 2025-01470; EO 14306 amendment instructions, whitehouse.gov |
 

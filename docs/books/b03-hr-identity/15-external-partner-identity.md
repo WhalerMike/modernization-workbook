@@ -239,7 +239,6 @@ Key Security Indicators describe what cloud service providers report for their o
 - **FedRAMP boundary rules.** Whether each feature used for partners sits inside a given certified offering, and how the Consolidated Rules for 2026 boundary rulesets and significant-change tiers treat a partner configuration, were not checked against the primary rulesets. Confirm both with the ISSO.
 - **Retention for agreements and reviews.** GRS 3.2 covers system access records; the schedules for partner agreements, memoranda, interconnection agreements and access-review records were not verified.
 - **The SP 800-63C-4 planning note** dated October 6, 2026 was not read in full.
-- **Cross-cloud synchronization support level.** Microsoft's Entra pages list cross-tenant synchronization between commercial and Government clouds without a preview label, while one Microsoft 365 page described it as public preview from August 2025. Confirm the current support level before relying on it ([Book 04, Appendix C](../b04-access/appendix-c-partner-access-profile-entra.md)).
 - **The agency business owner's title** is provisional. The record names the person; the title may change.
 - **Privacy Act coverage for a given partner population**, and which redress procedures reach which partner persons, are the privacy office's determinations, not this chapter's.
 

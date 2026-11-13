@@ -65,7 +65,7 @@ For a partner on SAML/WS-Fed federation, such as `tailspin.example`, Conditional
 A Zero Trust assessment reads the tenant-wide defaults, not the partner entries: inbound B2B collaboration open to every tenant, outbound open to every tenant, or no tenant restrictions policy. The partner entries above only mean something when the defaults behind them are closed. This subsection sets the defaults, states when a tenant goes on the allowlist or the blocklist, names the partner register, and adds the validation test for tenant restrictions. The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s.
 
 **Authority:** risk-based recommended (the program's default-deny position, carried from [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#cross-tenant-access-settings)); Microsoft documents the settings and their defaults.[^aC4-xtap][^aC4-xtap-b2b]
-**Applies:** all tenants; organization-specific settings for selected users and groups need Entra ID P1 or P2.[^aC4-xtap-b2b] Environment-dependent: tenant restrictions v2 and Tenant Governance government-cloud availability is not yet specified ([Government clouds](#government-clouds)); universal tenant restrictions depends on Global Secure Access, not supported in GCC High or DoD ([Chapter 07](07-the-conditional-access-policy-library.md#optional-family-conditional-access-on-network-traffic)).
+**Applies:** all tenants; organization-specific settings for selected users and groups need Entra ID P1 or P2.[^aC4-xtap-b2b] Environment-dependent: tenant restrictions v2 and Tenant Governance availability in GCC is not yet specified ([GCC availability](#government-clouds)); universal tenant restrictions depends on Global Secure Access ([Chapter 07](07-the-conditional-access-policy-library.md#optional-family-conditional-access-on-network-traffic)).
 
 | Default setting | Microsoft's default | Program value |
 |---|---|---|
@@ -478,19 +478,19 @@ The request is Learn's first step for investigating related tenants.[^aC4-tg-api
 
 The partner route controls who comes in. Tenant restrictions control which external tenants agency users can sign in to from agency devices and networks; they're configured in cross-tenant access settings but operate separately from inbound and outbound settings.[^aC4-trv2] Version 1 was a proxy header allowlist (`Restrict-Access-To-Tenants`) that protected only the authentication plane. Version 2 is a cloud policy: a default policy, plus a partner policy per allowed tenant. It's signalled by universal tenant restrictions through Global Secure Access, by a proxy header, or by Windows device management, which also gives data-plane protection on managed Windows devices.[^aC4-trv2] Migrating means keeping the v2 default that blocks external tenants, creating a partner policy for each tenant on the v1 allowlist, and removing the v1 headers from the proxy.[^aC4-trv2-migration]
 
-The program sets tenant restrictions v2 as the outbound counterpart of the partner list *(design guidance)*: default block; a partner policy for each agency-owned tenant and each partner tenant whose access package lists outbound use; and the Microsoft account tenant blocked. Signalling uses Windows device management on managed devices. Universal tenant restrictions waits on Global Secure Access, which Learn doesn't yet support in GCC High or DoD ([Chapter 07](07-the-conditional-access-policy-library.md)).
+The program sets tenant restrictions v2 as the outbound counterpart of the partner list *(design guidance)*: default block; a partner policy for each agency-owned tenant and each partner tenant whose access package lists outbound use; and the Microsoft account tenant blocked. Signalling uses Windows device management on managed devices. Universal tenant restrictions depends on Global Secure Access ([Chapter 07](07-the-conditional-access-policy-library.md)).
 
-### Government clouds
+### GCC availability {#government-clouds}
 
-| Feature | Agency tenant in GCC (Entra in Azure commercial) | Tenants in GCC High or DoD (Azure Government) |
-|---|---|---|
-| Multitenant organization | Learn conflicts: its limitations page lists "multitenant organizations in Microsoft 365 Government" and "in Azure Government" as unsupported, and in the same list says multitenant organizations are available in GCC, GCC High and DoD with same-cloud tenants only[^aC4-mto-limits] | Same conflict; cross-cloud multitenant organizations aren't supported[^aC4-mto-limits] |
-| Multitenant organization templates (Graph) | Global service[^aC4-mto-template-graph] | Not available in US Government L4 or L5[^aC4-mto-template-graph] |
-| B2B collaboration across clouds | Commercial and Azure Government can collaborate once both enable each other in Microsoft cloud settings; B2B direct connect isn't supported across clouds[^aC4-cross-cloud][^aC4-b2b-gov] | Within Azure Government, B2B works only between tenants that both support it (`tenant_region_scope` `USGOV`)[^aC4-b2b-gov] |
-| Tenant Governance | Not yet specified | Not yet specified |
-| Tenant restrictions v2 | Not yet specified | Not yet specified |
+| Feature | Agency tenant in GCC (Entra in Azure commercial) |
+|---|---|
+| Multitenant organization | Learn conflicts: its limitations page lists "multitenant organizations in Microsoft 365 Government" as unsupported, and in the same list says multitenant organizations are available in GCC with same-cloud tenants only[^aC4-mto-limits] |
+| Multitenant organization templates (Graph) | Global service[^aC4-mto-template-graph] |
+| B2B collaboration across clouds | Both tenants enable each other's cloud in Microsoft cloud settings; B2B direct connect isn't supported across clouds[^aC4-cross-cloud] |
+| Tenant Governance | Not yet specified |
+| Tenant restrictions v2 | Not yet specified |
 
-Until Microsoft resolves the multitenant organization conflict in writing, the program doesn't plan Teams collaboration on a multitenant organization in a government cloud. It uses the cross-tenant settings and synchronization above, and confirms the support level with Microsoft before any tenant joins.
+Until Microsoft resolves the multitenant organization conflict in writing, the program doesn't plan Teams collaboration on a multitenant organization in GCC. It uses the cross-tenant settings and synchronization above, and confirms the support level with Microsoft before any tenant joins.
 
 ## Requirements, KSIs and evidence
 
@@ -514,14 +514,14 @@ Privacy and records obligations follow [Book 03, Chapter 15](../b03-hr-identity/
 
 Read on Nov 6, 2026. Recheck before each new partner.
 
-| Feature | Agency tenant (GCC, Entra in Azure commercial) | Partner in GCC High or DoD (Azure Government) |
-|---|---|---|
-| Entitlement management, connected organizations | Available; Entra ID Governance is offered in GCC, GCC High and DoD[^aC4-gov-features] | Connected organization of type "Entra ID, in another cloud"[^aC4-connected-org] |
-| B2B collaboration | Available | Both tenants enable each other's cloud in Microsoft cloud settings; B2B direct connect isn't supported across clouds; the partner is added by tenant ID, not domain, and invited by UPN[^aC4-xtap][^aC4-cross-cloud][^aC4-b2b-gov] |
-| Cross-tenant sync, same cloud | Users and groups (commercial to commercial)[^aC4-cts-overview] | Not applicable: the pair is cross-cloud |
-| Cross-tenant sync, cross-cloud | Users only; Governance or Suite license in the source; no `manager`[^aC4-cts-overview] | Same; preview status **not verified** |
-| Multitenant organization | See [the tenant strategy](#tenant-strategy-multitenant-organizations-and-tenant-governance): same-cloud only; Learn's statements conflict[^aC4-mto-limits] | Cross-cloud multitenant organization not supported[^aC4-mto-limits] |
-| Tenant Governance (preview) | Not yet specified | Not yet specified |
+| Feature | Agency tenant (GCC, Entra in Azure commercial) |
+|---|---|
+| Entitlement management, connected organizations | Available; Entra ID Governance is offered in GCC[^aC4-gov-features] |
+| B2B collaboration | Available |
+| Cross-tenant sync, same cloud | Users and groups (commercial to commercial)[^aC4-cts-overview] |
+| Cross-tenant sync, cross-cloud | Users only; Governance or Suite license in the source; no `manager`[^aC4-cts-overview] |
+| Multitenant organization | See [the tenant strategy](#tenant-strategy-multitenant-organizations-and-tenant-governance): same-cloud only; Learn's statements conflict[^aC4-mto-limits] |
+| Tenant Governance (preview) | Not yet specified |
 
 Workload support differs from directory support. Microsoft notes that Teams doesn't support external members across clouds.[^aC4-m365-crosscloud] Check each application's government service description before promising a partner access to it.
 
@@ -548,7 +548,6 @@ Workload support differs from directory support. Microsoft notes that Teams does
 [^aC4-ksi-mla]: FedRAMP, *FedRAMP Consolidated Rules for 2026*, Key Security Indicators, "Monitoring, Logging, and Auditing" (KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-RVL), <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/monitoring-logging-and-auditing/> (accessed Nov 6, 2026).
 [^aC4-xtap-b2b]: Microsoft Learn, "Manage cross-tenant access settings for B2B collaboration," <https://learn.microsoft.com/entra/external-id/cross-tenant-access-settings-b2b-collaboration> (accessed Nov 9, 2026).
 [^aC4-cross-cloud]: Microsoft Learn, "Enable B2B collaboration across Microsoft clouds" (Microsoft cloud settings), <https://learn.microsoft.com/entra/external-id/cross-cloud-settings> (accessed Nov 9, 2026).
-[^aC4-b2b-gov]: Microsoft Learn, "Microsoft Entra B2B in government and national clouds," <https://learn.microsoft.com/entra/external-id/b2b-government-national-clouds> (accessed Nov 9, 2026).
 [^aC4-trv2]: Microsoft Learn, "Set up tenant restrictions v2," sections Tenant restrictions v2 overview, Compare tenant restrictions v1 and v2, and Tenant restrictions vs. inbound and outbound settings; and, read Nov 11, 2026, "Configure tenant restrictions v2 on the client side" (View tenant restrictions v2 events in Event Viewer), "Tenant restrictions v2 and service principals" (error `AADSTS5000211`) and "Sign-in logs," <https://learn.microsoft.com/entra/external-id/tenant-restrictions-v2> (accessed Nov 9, 2026; re-read Nov 11, 2026).
 [^aC4-trv2-migration]: Microsoft Learn, "Set up tenant restrictions v2," section Migrate tenant restrictions v1 policies to v2 on the proxy, <https://learn.microsoft.com/entra/external-id/tenant-restrictions-v2>; "Plan a Tenant Restrictions v1 Migration to Tenant Restrictions v2," <https://learn.microsoft.com/entra/external-id/tenant-restrictions-migration> (accessed Nov 9, 2026).
 [^aC4-estate]: Microsoft Learn, "Microsoft Entra tenant estate guidance introduction," sections Tenant architecture patterns, When to integrate an app or workload with an existing tenant, Tenant lifecycle governance and Multitenant administration patterns, <https://learn.microsoft.com/entra/architecture/tenant-estate-guide>; "Microsoft Entra tenant estate guidance for business partner access," <https://learn.microsoft.com/entra/architecture/tenant-estate-business-partner> (accessed Nov 9, 2026).

@@ -22,7 +22,7 @@ Editor W4. Verified October 21, 2026. Sources: the series chapter as copied in (
 | 14 | CISA SASE definition and components (SD-WAN, routing; SWG, CASB, ZTNA, NGFW) | SASE | verified (new; replaces whitepaper's unsourced SASE description) | CISA SASE/TIC 3.0 guide v1.0, §4 (PDF read) |
 | 15 | SD-WAN alone doesn't decide access by identity or posture | SASE | restated-as-design | — |
 | 16 | Global Secure Access = Entra Internet Access + Private Access, Microsoft's SSE; Private Access per-app without VPN | SASE | verified | Learn, "What is Global Secure Access?" |
-| 17 | GSA available in GCC, not GCC High / DoD | SASE | verified (new) | Learn, GSA known limitations |
+| 17 | GSA available in GCC | SASE | verified (new) | Learn, GSA known limitations |
 | 18 | TIC 3.0 adopters must work with CISA on telemetry sharing | SASE contract | verified (new) | CISA SASE guide §3 |
 | 19 | Whitepaper TIC 3.0 use-case version list; ZTMM Networks-pillar "Advanced = FedRAMP ConMon standard posture" mapping | (not carried) | removed: version details owned by Book 09; the ConMon mapping is not in ZTMM | CISA ZTMM v2.0 Table 4 (checked) |
 | 20 | Phishing-resistant methods table (FIDO2, WHfB, Platform SSO/credential, CBA, Authenticator passkey) | MFA | verified | Learn WHfB; phishing-resistant deployment plan |

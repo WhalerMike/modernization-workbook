@@ -165,7 +165,7 @@ Every change to DNS records, DHCP scopes, IPAM allocations and policy objects sh
 - **Protective DNS:** DNS-layer filtering that blocks known-malicious domains and produces logs for threat detection. CISA operates a Protective DNS resolver service for federal civilian agencies ([Chapter 03](03-federal-requirements.md)).
 - **RPZ:** Response policy zone, a DNS mechanism for policy-based answers such as block or redirect.
 - **redirect-dns:** A Cisco Catalyst SD-WAN data-policy action that intercepts DNS queries and redirects them to a specified resolver ([Chapter 05](05-edge-interception-and-bypass.md)).
-- **INR:** Microsoft 365 informed network routing, telemetry-based path optimization shared with an SD-WAN; supported only in the Worldwide commercial cloud, not GCC Moderate, GCC High or DoD ([Appendix C](appendix-c-applicability.md)).
+- **INR:** Microsoft 365 informed network routing, telemetry-based path optimization shared with an SD-WAN; supported only in the Worldwide commercial cloud, not GCC Moderate ([Appendix C](appendix-c-applicability.md)).
 - **DNS-01:** The ACME challenge type that proves control of a domain by publishing a TXT record ([Chapter 11](11-operating-the-control-plane.md)).
 - **ECH:** Encrypted Client Hello, the TLS extension that encrypts the ClientHello, including the server name; its DNS configuration travels in SVCB and HTTPS records.
 - **DDI policy plane:** The single authoritative plane for DNS, DHCP and IPAM state and policy that this book argues for. Infoblox Universal DDI is one commercial example.

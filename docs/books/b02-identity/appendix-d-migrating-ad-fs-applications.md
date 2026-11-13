@@ -30,17 +30,15 @@ Microsoft treats the two as separate work. Its AD FS application migration tool 
 
 ## Availability in government clouds
 
-GCC tenants use the commercial Microsoft Entra ID; GCC High and DoD tenants use Microsoft Entra ID in Azure Government.[^aD-gov-pairing] Microsoft's feature-availability page for Azure Government lists the capabilities this appendix relies on, with one exception: the migration tool itself.
+GCC tenants use the commercial Microsoft Entra ID,[^aD-gov-pairing] so each capability this appendix relies on is a commercial Entra ID feature in GCC.
 
-| Capability | GCC | GCC High | DoD |
-|---|---|---|---|
-| SAML, WS-Federation and OpenID Connect single sign-on for enterprise applications | Commercial Entra ID feature | Available (Azure Government)[^aD-feature-avail] | Available (Azure Government)[^aD-feature-avail] |
-| Conditional Access | Commercial Entra ID feature | Available[^aD-feature-avail] | Available[^aD-feature-avail] |
-| Application Proxy for header-based and Integrated Windows Authentication applications | Commercial Entra ID feature | Available[^aD-feature-avail] | Available[^aD-feature-avail] |
-| Microsoft Entra Connect Health for AD FS (the data behind the tool) | Commercial Entra ID feature | Reporting available; Learn lists the agent's Azure Government endpoints[^aD-feature-avail][^aD-health] | Same as GCC High |
-| AD FS application migration tool and activity report | Commercial Entra ID feature; Learn states no exclusion | Not yet specified | Not yet specified |
-
-Learn's feature-availability page doesn't name the AD FS application migration tool, the activity report or the "Usage & insights" blade, and the tool's own pages say nothing about government clouds. Treat the tool as unconfirmed in GCC High and DoD until Microsoft states it, and use the read-only inventory below, which needs nothing from the cloud.
+| Capability | GCC |
+|---|---|
+| SAML, WS-Federation and OpenID Connect single sign-on for enterprise applications | Commercial Entra ID feature |
+| Conditional Access | Commercial Entra ID feature |
+| Application Proxy for header-based and Integrated Windows Authentication applications | Commercial Entra ID feature |
+| Microsoft Entra Connect Health for AD FS (the data behind the tool) | Commercial Entra ID feature |
+| AD FS application migration tool and activity report | Commercial Entra ID feature; Learn states no exclusion |
 
 ## Step 1: Inventory the relying parties and their claim rules
 
@@ -156,7 +154,7 @@ Microsoft's migration stages have every group the rules name synced to Entra ID,
 
 The application on the far end has to accept tokens from a new issuer, signed with a new certificate, carrying claims that may be shaped differently. Settle these before cutover.
 
-**Endpoints and metadata.** Entra ID's SAML issuer is `https://sts.windows.net/{tenant-id}/`; the SAML sign-in and sign-out endpoint is `https://login.microsoftonline.com/{tenant-id}/saml2`, and the WS-Federation endpoint is `https://login.microsoftonline.com/{tenant-id}/wsfed`. Entra ID doesn't consume an application's federation metadata directly, so the application's settings are entered by hand; the application can read Entra ID's per-application metadata from `https://login.windows.net/{tenant-id}/federationmetadata/2007-06/federationmetadata.xml?appid={application-id}`.[^aD-saml-sso][^aD-fed-metadata] In GCC High and DoD the sign-in host is the Azure Government one, so take the URLs from the application's single sign-on page in the tenant, not from these commercial forms.
+**Endpoints and metadata.** Entra ID's SAML issuer is `https://sts.windows.net/{tenant-id}/`; the SAML sign-in and sign-out endpoint is `https://login.microsoftonline.com/{tenant-id}/saml2`, and the WS-Federation endpoint is `https://login.microsoftonline.com/{tenant-id}/wsfed`. Entra ID doesn't consume an application's federation metadata directly, so the application's settings are entered by hand; the application can read Entra ID's per-application metadata from `https://login.windows.net/{tenant-id}/federationmetadata/2007-06/federationmetadata.xml?appid={application-id}`.[^aD-saml-sso][^aD-fed-metadata]
 
 **Claims.** NameID defaults to the user principal name; the source can instead be mail, the mail prefix, `employeeid`, `onpremisessamaccountname`, a directory extension or extension attributes 1 to 15.[^aD-saml-claims][^aD-saml-sso] A claim takes at most two transformations, from a fixed set of functions (extract, join, case, contains, starts with, regex replace and others); conditional claims can name up to 50 unique groups across all of an application's claims.[^aD-saml-claims] A SAML token carries at most 150 groups; above that, it carries a link to Microsoft Graph instead, so an application that read a long group list from AD FS should get only the groups assigned to it.[^aD-saml-tokens] Attributes AD FS read from AD that Entra ID doesn't hold, such as `samAccountName`, have to be synced first.[^aD-saml-sso]
 
@@ -270,7 +268,7 @@ Keep the farm restorable for 90 days after decommission, as Phase 9 does, becaus
 Steps 1 to 7 are the procedure; this section adds what the workbook's How template asks of every procedure that enforces something ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template)). The control here is that an application's sign-in, and the access rules that guard it, move from the farm to Entra ID, where Conditional Access and the program's authentication strengths apply.
 
 **Authority:** Microsoft-recommended: the four migration stages, testing before cutover, keeping the relying party trust to roll back, and disabling it before removing it (Learn pages cited in Steps 4 to 6). The 30-day measurement window and the retirement criteria are risk-based recommended, the program's position for the risk of retiring a farm that still issues tokens.
-**Applies:** every tenant with an AD FS farm. Environment-dependent: the migration tool is not yet specified for GCC High and DoD ([Availability in government clouds](#availability-in-government-clouds)); the read-only inventory works in every cloud.
+**Applies:** every tenant with an AD FS farm. Environment-dependent: GCC tenants use the commercial Entra ID ([Availability in government clouds](#availability-in-government-clouds)); the read-only inventory works in every cloud.
 
 | Subsection | Where it is |
 |---|---|
@@ -344,9 +342,8 @@ The mapping is the program's. The controls are NIST SP 800-53 Rev. 5; the indica
 
 [^aD-overview]: Microsoft Learn, "Overview of AD FS application migration," sections "Migration status" and "Validation tests," <https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-ad-fs-application-overview> (accessed Nov 9, 2026).
 [^aD-howto]: Microsoft Learn, "AD FS application migration to move AD FS apps to Microsoft Entra ID," sections "Prerequisites," "Claim rule tests," "Supported configurations," "Unsupported configurations" and "Rollback," <https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-ad-fs-application-howto> (accessed Nov 9, 2026).
-[^aD-gov-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers" ("Office 365 GCC is paired with Microsoft Entra ID in Azure"; GCC High and DoD pair with Microsoft Entra ID in Azure Government), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Nov 9, 2026).
-[^aD-feature-avail]: Microsoft Learn, "Microsoft Entra feature availability" (Azure Government: federated authentication, SaaS apps with SAML and OAuth 2.0, Application Proxy, secure hybrid access, Conditional Access, Microsoft Entra Connect Health reporting), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 9, 2026).
-[^aD-health]: Microsoft Learn, "Microsoft Entra Connect Health agents for AD FS," sections "Outbound connectivity" (Azure Government endpoints) and "Enable auditing for AD FS," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adfs> (accessed Nov 9, 2026).
+[^aD-gov-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers" ("Office 365 GCC is paired with Microsoft Entra ID in Azure"), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Nov 9, 2026).
+[^aD-health]: Microsoft Learn, "Microsoft Entra Connect Health agents for AD FS," section "Enable auditing for AD FS," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adfs> (accessed Nov 9, 2026).
 [^aD-get-rpt]: Microsoft Learn, "Set-AdfsRelyingPartyTrust" (relying party trust properties), <https://learn.microsoft.com/powershell/module/adfs/set-adfsrelyingpartytrust>, and "Get-AdfsRelyingPartyTrust," <https://learn.microsoft.com/powershell/module/adfs/get-adfsrelyingpartytrust> (accessed Nov 9, 2026).
 [^aD-discover]: Microsoft Learn, "Phase 1: Discover and scope apps," <https://learn.microsoft.com/entra/identity/enterprise-apps/migrate-adfs-discover-scope-apps> (accessed Nov 9, 2026).
 [^aD-rule-language]: Microsoft Learn, "The Role of the Claim Rule Language," <https://learn.microsoft.com/windows-server/identity/ad-fs/technical-reference/the-role-of-the-claim-rule-language> (accessed Nov 9, 2026).

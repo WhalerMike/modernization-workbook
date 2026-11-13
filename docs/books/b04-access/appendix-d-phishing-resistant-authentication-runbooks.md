@@ -26,7 +26,7 @@ Runbooks for passkeys (FIDO2), Windows Hello for Business and certificate-based 
 [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#the-phishing-resistant-authentication-roadmap) owns the roadmap (which population gets which method, in which order) and the [authentication methods policy](../b02-identity/10-migrating-and-governing.md#authentication-methods-policy). [Chapter 07](07-the-conditional-access-policy-library.md#wave-5-segments-and-the-end-state) enforces the result through CA003 and CA022. This appendix adds what a Zero Trust assessment finds missing once the methods are switched on: the operational runbooks that put a credential in a person's hands and get it back to them safely. Where another book owns a piece, the runbook links to it: [Book 07, Chapter 09](../b07-pki/09-federal-workforce-credentials.md) for the PIV card and certificate-based authentication settings, [Book 05](../b05-devices/index.md) for the Windows Hello for Business policy on managed devices, and [Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#verify-the-person-before-a-sensitive-action) for the support desk's verification ladder. The conventions are [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s.
 
 **Authority:** Mandated: OMB M-22-09 requires phishing-resistant MFA for agency staff, contractors and partners, and CISA's BOD 25-01 lists MS.AAD.3.1, phishing-resistant MFA for all users, as a required configuration ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#the-phishing-resistant-authentication-roadmap); [Chapter 07](07-the-conditional-access-policy-library.md#cisa-bod-25-01)). Microsoft-recommended: the methods, the Temporary Access Pass as the bootstrap, and at least two credentials per person (Learn, read Nov 11, 2026).[^aD4-personas][^aD4-tap] Risk-based recommended: the runbook values, which are the program's.
-**Applies:** all tenants with Microsoft Entra ID P1 for the Conditional Access enforcement. Environment-dependent: see [Government-cloud availability](#b04-appd-government-cloud-availability).
+**Applies:** all tenants with Microsoft Entra ID P1 for the Conditional Access enforcement. Environment-dependent: see [GCC availability](#b04-appd-government-cloud-availability).
 
 ## The runbooks on one page {#b04-appd-runbooks-on-one-page}
 
@@ -47,7 +47,7 @@ Microsoft's persona guidance runs the same phases: onboarding with a Temporary A
 - The authentication methods policy configured as [Book 02](../b02-identity/10-migrating-and-governing.md#authentication-methods-policy) sets it: passkeys with profiles, certificate-based authentication as multifactor for PIV and CAC holders, Windows Hello for Business on managed devices, and the Temporary Access Pass enabled with one-time use and a one-hour lifetime for passes the help desk issues.
 - Roles: an Authentication Administrator can create a pass for members only; a Privileged Authentication Administrator can create one for administrators too ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#verify-the-person-before-a-sensitive-action)). Both are held eligible in PIM ([Chapter 08](08-pim-self-request-with-approval.md)).
 - The Microsoft Graph PowerShell SDK on the support workstation; every command below is copy-paste with the placeholders `<user-upn>` (the person's user principal name) and `<method-id>` (from the list command) filled in.
-- Government-cloud availability confirmed for the agency's cloud ([below](#b04-appd-government-cloud-availability)).
+- GCC availability confirmed ([below](#b04-appd-government-cloud-availability)).
 
 Read the policy before running anything else. Read-only:
 
@@ -157,18 +157,18 @@ The targets below are the program's settled position ([WD-147](../../about/decis
 
 **The recovery drill.** Each quarter, and before each population leaves the not-ready group, the help desk recovers a test account through steps 1 to 6 for each method in use, with security operations told first. The record holds the expected and observed result of each step, the time taken, and the audit events produced (method deleted, sessions revoked, pass created, method registered).
 
-## Government-cloud availability {#b04-appd-government-cloud-availability}
+## GCC availability {#b04-appd-government-cloud-availability}
 
-Read on Nov 11, 2026. GCC tenants use Microsoft Entra ID in commercial Azure; GCC High and DoD tenants use Microsoft Entra ID in Azure Government.[^aD4-gov-pairing]
+Read on Nov 11, 2026. GCC tenants use Microsoft Entra ID in commercial Azure.[^aD4-gov-pairing]
 
-| Feature | GCC (Entra in commercial Azure) | GCC High and DoD (Azure Government) |
-|---|---|---|
-| Passkeys (FIDO2) security keys, Windows Hello for Business, Microsoft Authenticator | Available | Available ("Passwordless" in Learn's table)[^aD4-gov-features] |
-| Certificate-based authentication | Available | Available[^aD4-gov-features] |
-| Temporary Access Pass | Available | Not yet specified: Learn's government table doesn't list it |
-| Passkey profiles and synced passkeys | Not yet specified | Not yet specified |
-| Windows Hello PIN reset service | Not yet specified | Not yet specified |
-| Entra ID account recovery with Verified ID | Supported in GCC, not GCC High ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#verify-the-person-before-a-sensitive-action)); the program holds it until it is available in the agency's cloud | Not supported |
+| Feature | GCC (Entra in commercial Azure) |
+|---|---|
+| Passkeys (FIDO2) security keys, Windows Hello for Business, Microsoft Authenticator | Available |
+| Certificate-based authentication | Available |
+| Temporary Access Pass | Available |
+| Passkey profiles and synced passkeys | Not yet specified |
+| Windows Hello PIN reset service | Not yet specified |
+| Entra ID account recovery with Verified ID | Supported in GCC ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#verify-the-person-before-a-sensitive-action)) |
 
 ## Evidence {#b04-appd-evidence}
 
@@ -214,6 +214,5 @@ A finding this page addresses is ready for closure when every applicable state h
 [^aD4-intune-pwdless]: Microsoft Learn, "Passwordless authentication with Microsoft Intune," section "How Microsoft Intune drives passwordless adoption" (the Temporary Access Pass isn't a permanent passwordless method and isn't phishing-resistant; day-zero onboarding flow), <https://learn.microsoft.com/intune/solutions/passwordless> (accessed Nov 11, 2026).
 [^aD4-pin-reset]: Microsoft Learn, "Passwordless sign-in" (Windows security book), section "PIN reset" (the Microsoft PIN Reset Service; registered in the tenant and enabled on devices; reset requires MFA), <https://learn.microsoft.com/windows/security/book/identity-protection-passwordless-sign-in> (accessed Nov 11, 2026).
 [^aD4-registration]: Microsoft Learn, "New-MgReportAuthenticationMethodUserRegistrationDetail" (Microsoft Graph PowerShell, `Microsoft.Graph.Reports`), complex parameter notes for userRegistrationDetails (`IsAdmin`, `IsMfaCapable`, `IsPasswordlessCapable`, `MethodsRegistered`), <https://learn.microsoft.com/powershell/module/microsoft.graph.reports/new-mgreportauthenticationmethoduserregistrationdetail?view=graph-powershell-1.0> (accessed Nov 11, 2026).
-[^aD4-gov-features]: Microsoft Learn, "Microsoft Entra feature availability," section "Microsoft Entra ID," rows "Passwordless (Windows Hello for Business, Microsoft Authenticator, FIDO2 security key integrations)" and "Certificate-based authentication," <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).
 [^aD4-gov-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers," section "Microsoft 365 integration," <https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration> (accessed Nov 11, 2026).
 [^aD4-orphaned]: Microsoft Learn, "Sign in with a FIDO2 security key," section "Known issues," "Orphaned passkey" (remove the orphaned passkey from the security key with its management tool, then register again), <https://learn.microsoft.com/entra/identity/authentication/how-to-security-key-sign-in> (accessed Nov 11, 2026).

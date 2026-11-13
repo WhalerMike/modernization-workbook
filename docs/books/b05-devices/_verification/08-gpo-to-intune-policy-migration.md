@@ -58,7 +58,7 @@ Checked October 20, 2026. Source: `docs/operational-guides/target-surface/intune
 | 50 | Credential Guard needs Enterprise/Education; default-on from 22H2 without UEFI lock | ES-006 | verified (added) | windows-licensing; credential-guard overview |
 | 51 | Windows MAM: Edge only, unmanaged devices only | AP-001/002 | corrected (source applied AP-001 "with enrollment" to Windows Office apps) | app protection ref-settings-windows |
 | 52 | AP settings values | AP-001/002 | restated-as-design | program design |
-| 53 | GCC uses graph.microsoft.com; GCC High graph.microsoft.us; DoD dod-graph.microsoft.us | Templates | verified | graph deployments |
+| 53 | GCC uses graph.microsoft.com | Templates | verified | graph deployments |
 | 54 | Intune GCC = commercial instance | Templates | verified | intune government-service |
 | 55 | v1.0 windows10CompliancePolicy lacks tpmRequired, firewall, Defender properties; beta has them | Graph | corrected (source posted beta-only properties to v1.0) | Graph v1.0 and beta resource pages |
 | 56 | scheduledActionsForRule required; actionType values | Graph | verified; corrected (source PowerShell omitted it) | Graph resource; deviceComplianceActionItem |
@@ -211,7 +211,7 @@ Pages read on 2026-11-09 through the Microsoft Learn documentation service, for 
 | L8 | Enterprise State Roaming roams supported Windows settings, stores them in the Microsoft cloud; UE-V is the on-premises option and can complement it | SC-004, Windows settings roaming | verified (added) | `c08-esr-faq` (read 2026-11-09) |
 | L9 | Since July 2026 ESR is managed through Windows settings backup and restore (Intune, MDM or Group Policy), not the Entra admin center; one-year grace; Entra joined and hybrid joined; Edge separate; use GP or CSP, not both | SC-004, Windows settings roaming | verified (added) | `c08-esr` (read 2026-11-09) |
 | L10 | Settings catalog Sync your settings > Enable Windows Backup; CSP `./Device/Vendor/MSFT/Policy/Config/SettingsSync/EnableWindowsBackup`, string `<enabled/>` | SC-004, Windows settings roaming | verified (added) | `c08-win-backup` (read 2026-11-09) |
-| L11 | Windows Backup for Organizations isn't available in GCC High or DoD (no plan); GCC not stated | SC-004, Windows settings roaming | verified (added); GCC written as not yet specified | `c08-gov-backup`, Learn, "Microsoft Intune for US Government GCC High and DoD service description" (read 2026-11-09) |
+| L11 | Windows Backup for Organizations: GCC availability not stated | SC-004, Windows settings roaming | GCC written as not yet specified | Learn, Intune service description for US Government (read 2026-11-09) |
 | L12 | Whether the program enables ESR is not yet specified; privacy review in Book 14 | SC-004, Windows settings roaming | restated-as-design | Program decision open |
 
 ## Zero Trust closure update, November 11, 2026 (B05-02, CM-09, CM-03)
@@ -224,7 +224,7 @@ Instruction B05-02 (Windows hardening) and the Book 05 parts of closure-map rows
 | 2 | Microsoft recommends automatic mode with a custom account and the built-in Administrator disabled; 24H2 only | LAPS decision | verified | same | Nov 11, 2026 |
 | 3 | Disabled managed account removes spray risk but adds friction; name randomization | LAPS decision | verified | same | Nov 11, 2026 |
 | 4 | Intune supports automatic account management on 24H2; one LAPS policy per device, device groups | LAPS decision; Rollback | verified | Learn, "Microsoft Intune support for Windows LAPS"; "Deploy Windows LAPS policy with Microsoft Intune" | Nov 11, 2026 |
-| 5 | Windows LAPS with Entra ID available in Azure Global and Azure Government; Entra ID Free | Prerequisites | verified | Learn, "Windows Local Administrator Password Solution in Microsoft Entra ID" | Nov 11, 2026 |
+| 5 | Windows LAPS with Entra ID available in Azure Global; Entra ID Free | Prerequisites | verified | Learn, "Windows Local Administrator Password Solution in Microsoft Entra ID" | Nov 11, 2026 |
 | 6 | LAPS option chosen: not decided | LAPS decision | restated-as-design (open decision for the owner) | - | Nov 11, 2026 |
 | 7 | Tamper protection needs onboarding; Intune policy takes precedence over the portal; PowerShell status check | Hardening table; Evidence | verified | Learn, "Configure tamper protection for Microsoft Defender Antivirus on Windows"; "Antivirus policy for endpoint security" | Nov 11, 2026 |
 | 8 | Tamper protection requirements: no co-managed devices, DisableLocalAdminMerge; rename to controlled configuration | Hardening table | verified | Learn, "Tamper protection overview" | Nov 11, 2026 |
@@ -236,8 +236,8 @@ Instruction B05-02 (Windows hardening) and the Book 05 parts of closure-map rows
 | 14 | WHfB tenant-wide policy applies only at enrollment; managed afterward by account protection, settings catalog or baselines | Hardening table | verified | Learn, "Configure Windows Hello for Business"; "Configure Windows Hello for Business on devices when they enroll" | Nov 11, 2026 |
 | 15 | Require Security Device optional but recommended; Group Policy wins over Intune when both configure WHfB | Hardening table | verified | Learn, WHfB cloud-only and cloud Kerberos trust deployment guides | Nov 11, 2026 |
 | 16 | dsregcmd /status NgcSet; must run in user context | Evidence | verified | Learn, "Troubleshoot devices by using the dsregcmd command" | Nov 11, 2026 |
-| 17 | STIG audit baseline: audit-only, Advanced Analytics license, commercial and GCC High; DoD not listed | Hardening table; Prerequisites | verified; DoD not yet specified | Learn, "Use STIG audit baselines" | Nov 11, 2026 |
-| 18 | Update, expedite and Autopatch policies planned for GCC High and DoD; standard MDM features available | Prerequisites | verified | Learn, Intune government service description | Nov 11, 2026 |
+| 17 | STIG audit baseline: audit-only, Advanced Analytics license, commercial (includes GCC) | Hardening table; Prerequisites | verified | Learn, "Use STIG audit baselines" | Nov 11, 2026 |
+| 18 | Endpoint security policies, baselines, update rings and update policies available in GCC (commercial instance) | Prerequisites | verified | Learn, Intune government service description | Nov 11, 2026 |
 | 19 | Phishing-resistant sign-in mandated by M-22-09 and SP 800-63B-4 | Authority paragraph | verified (carried from Book 16 Ch07's verified claims 3 and 4) | Book 16 Chapter 07 verification log | Nov 11, 2026 |
 | 20 | Rings, exit criteria, backout triggers, rollback table, owners, Tier 0 in ring 1 | Hardening rollout | restated-as-design | program design | Nov 11, 2026 |
 
@@ -252,7 +252,5 @@ Phase 4 follow-ups 1 and 2 and the conventions for the seven phases. ES-005 move
 | P4-3 | Since platform 4.18.26060, Unblock on a warn rule needs administrator approval; Unblock is temporary; persistent need is a per-rule exclusion | ES-005; hardening audit phase | verified | same | Nov 11, 2026 |
 | P4-4 | Microsoft recommends Block for standard protection rules without extensive testing, Audit first for others | ES-005 | verified | same | Nov 11, 2026 |
 | P4-5 | Audit 30 days, warn 14 days, block for every rule; help-desk staffing for warn; rollback one stage | ES-005; hardening rollout | restated-as-design (matches the Defender XDR guide's Gate 4 ring table) | program design; docs/books/guides/defender-xdr-implementation.md#step-4-attack-surface-reduction | Nov 11, 2026 |
-| P4-6 | Remediations not available and not planned in GCC High and DoD; Windows Device Health Attestation planned; GCC is the commercial instance; standard MDM features supported | Migration control states, Applies | verified (new footnote c08-p4-gov) | Learn, "Microsoft Intune for US Government GCC High and DoD service description," https://learn.microsoft.com/intune/fundamentals/government-service | Nov 11, 2026 |
-| P4-7 | DHA gap affects CP-001's boot-measured rules (BitLocker, Secure Boot, code integrity) | Migration control states, Applies | restated-as-design (inference from claim 20 and P4-6; not stated on one Learn page) | claims 20 and P4-6 | Nov 11, 2026 |
-| P4-8 | Group Policy analytics not mentioned in the government service description | Migration control states, Applies | unverifiable for GCC High and DoD: written as "not yet specified" | same page as P4-6 | Nov 11, 2026 |
+| P4-6 | GCC is the commercial instance | Migration control states, Applies | verified (new footnote c08-p4-gov) | Learn, Intune service description for US Government, https://learn.microsoft.com/intune/fundamentals/government-service | Nov 11, 2026 |
 | P4-9 | Migration rings, exit criteria, backout triggers, owners, evidence | Migration control states | restated-as-design | program design | Nov 11, 2026 |

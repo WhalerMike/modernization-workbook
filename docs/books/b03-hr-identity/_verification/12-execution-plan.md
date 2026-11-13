@@ -15,7 +15,7 @@ Editor pass 2026-10-20. Edited in place; structure, gates, thresholds and roles 
 | 7 | Access package approvals can route to the supervisor of record | Phase 4 | verified; added that "Manager as approver" reads the `manager` attribute and needs a fallback approver | MS Learn, access package approval settings (`[^c12-ap-approval]`) |
 | 8 | eOPF/EHRI decommission: memo says "eventually" | Register | verified (memo §I: Core HCM will "eventually" make them redundant) | Memo §I |
 | 9 | Nature-of-action codes checked against GPPA, October 2026 edition | Register | verified (PDF cover "October 2026") | OPM GPPA (`[^c12-gppa]`) |
-| 10 | Entra ID Governance for Government available in GCC, GCC High, DoD | Register (closed item) | verified; footnote key renamed `c10-lf` → `c12-lf` | MS Learn, ID Governance licensing fundamentals |
+| 10 | Entra ID Governance for Government available in GCC | Register (closed item) | verified; footnote key renamed `c10-lf` → `c12-lf` | MS Learn, ID Governance licensing fundamentals |
 | 11 | GCC tenants run in Azure Global | Register | verified; key renamed `c10-crl-gcc` → `c12-crl-gcc`, title updated to current page title | MS Learn, CBA CRL FAQ |
 | 12 | API-driven inbound provisioning available to US Government tenants | Register | verified (added) | MS Learn, Microsoft Entra feature availability |
 | 13 | Thresholds (99% correlation, zero missed leavers, etc.) are proposed criteria, not federal requirements | Sequencing | restated-as-design (already framed so) | — |

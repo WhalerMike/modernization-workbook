@@ -27,8 +27,7 @@ Source: `docs/operational-guides/pki-modernization.md` §5 (5.1–5.3 and the re
 | 17 | "Advanced capabilities (formerly Intune Suite)" | Licensing | verified | Learn, What's new in Intune (2609) |
 | 18 | July 2026: M365 E5/E7 include Cloud PKI (commercial); gov plans planned to align subject to compliance | Licensing | verified | Learn, What's new (2606); planning guide |
 | 19 | Guide: "Intune Suite add-on or standalone Cloud PKI license" | Licensing | corrected | Updated for 2026 packaging |
-| 20 | Intune has no separate GCC instance; GCC = commercial | Availability | verified | Learn, Intune GCC High and DoD service description |
-| 21 | GCC High since week of Sept 28, 2026; not DoD | Availability | verified | Learn, What's new (2609); Cloud PKI overview |
+| 20 | Intune has no separate GCC instance; GCC = commercial | Availability | verified | Learn, Intune service description for US Government |
 | 22 | Both models coexist in one tenant | Models | verified | Learn, deployment models |
 | 23 | Cloud root two-tier; root 5–25 y; issuing 2–10 y ≤ root; Graph custom | Models | verified | Learn, configure-ca |
 | 24 | Cloud root: deploy new root to all relying parties | Models | verified | Learn, deployment models |

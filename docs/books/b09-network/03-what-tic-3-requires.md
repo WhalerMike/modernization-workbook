@@ -1,6 +1,6 @@
 ---
 title: "Chapter 03 — What TIC 3.0 and Federal Policy Actually Require"
-description: "What TIC 3.0 and the surrounding federal instruments require of a branch network as of October 2026, read from the documents themselves: the TIC 3.0 document set and use cases, the binding obligations that land on branch equipment, the control assertions an agency makes about its own boundary, the encryption requirement that is and isn't there, logging and CISA telemetry after MTIPS, FedRAMP's limits, and the DoD contrast."
+description: "What TIC 3.0 and the surrounding federal instruments require of a branch network as of October 2026, read from the documents themselves: the TIC 3.0 document set and use cases, the binding obligations that land on branch equipment, the control assertions an agency makes about its own boundary, the encryption requirement that is and isn't there, logging and CISA telemetry after MTIPS, and FedRAMP's limits."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b09-network
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What TIC 3.0 asks for, read from the current documents rather than from what is said about them, and the binding obligations around it that land directly on branch equipment: Protective DNS, BOD 23-02, BOD 26-02 and M-26-15. The control assertions an agency makes about its own boundary, the encryption requirement that is narrower than usually claimed, logging under M-26-14 and CISA telemetry once MTIPS goes away, why FedRAMP doesn't constrain routing, and how the DoD comparison should be drawn. [Appendix B](appendix-b-requirements-mapping.md) maps every requirement to the chapters and evidence.
+What TIC 3.0 asks for, read from the current documents rather than from what is said about them, and the binding obligations around it that land directly on branch equipment: Protective DNS, BOD 23-02, BOD 26-02 and M-26-15. The control assertions an agency makes about its own boundary, the encryption requirement that is narrower than usually claimed, logging under M-26-14 and CISA telemetry once MTIPS goes away, and why FedRAMP doesn't constrain routing. [Appendix B](appendix-b-requirements-mapping.md) maps every requirement to the chapters and evidence.
 :::
 
 Most branch-network decisions in federal agencies are argued in policy terms. A proposal to break out locally is refused "for TIC reasons." An SD-WAN is bought because "TIC 3.0 requires it." A refresh is deferred because "FedRAMP won't allow that path." Each of those statements is checkable, and most of them fail the check. TIC 3.0 mandates no technology, FedRAMP says nothing about the path an agency uses to reach a service, and no federal instrument names SD-WAN or SASE as required.
@@ -240,12 +240,6 @@ Two corrections to the sources here. EO 14306 doesn't amend EO 14028; its title 
 
 With Networx and WITS 3 gone, a recommendation to "exit MTIPS" is no longer a contract-vehicle question. The vehicle question has resolved itself; the remaining question is which EIS services the agency has ordered, which [Chapter 09](09-who-owns-the-network.md) assigns to the telecom acquisition owner.
 
-## The DoD contrast, correctly drawn
-
-The Department of Defense is often cited as the prescriptive counterexample to civilian TIC policy. It is, but not in the way usually claimed. The DoD Zero Trust Strategy (November 2022) set a dated capability target: a minimum set of 91 target-level activities that components must reach by the end of FY 2027 (September 30, 2027), with 61 further activities for the advanced level.[^c03-dod-news][^c03-dod-ds] That is a harder, more binding deadline than anything civilian agencies face.
-
-But the strategy doesn't point to specific technologies or solutions; it sets the capabilities DoD must implement and leaves components to decide how.[^c03-dod-bd] The civilian and defense difference is about bindingness and deadlines, not technology prescription. An agency drawing the contrast the other way will be corrected.
-
 ::: {.callout-note}
 ## What this chapter establishes
 1. TIC 3.0 is descriptive: four use cases and a catalog of goals, with policy enforcement parity on every path and preserved CISA visibility. There is no SASE use case, and no federal instrument requires SD-WAN or SASE.
@@ -294,7 +288,4 @@ But the strategy doesn't point to specific technologies or solutions; it sets th
 [^c03-gsa-legacy]: General Services Administration, "Legacy IT contracts" (Networx contracts ended May 31, 2026; WITS 3 contracts ended February 28, 2026), <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/legacy-it-contracts> (accessed Oct 21, 2026).
 [^c03-gsa-eis]: General Services Administration, "Enterprise Infrastructure Solutions" (contract periods and ceiling; last updated October 15, 2026), <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/telecommunications-and-network-services/enterprise-infrastructure-solutions> (accessed Oct 21, 2026).
 [^c03-gsa-transition]: General Services Administration, "Enterprise Infrastructure Solutions Transition" (219 agencies completed as of August 31, 2026; last updated September 29, 2026), <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/telecommunications-and-network-services/enterprise-infrastructure-solutions/eis-transition> (accessed Oct 21, 2026).
-[^c03-dod-news]: **Third-party source (news report).** C. Todd Lopez, "New 'Overlays' Provide Guide on Path to Zero Trust," DOD News, June 4, 2024: by fiscal year 2027 the department expects "target level" implementation, "91 out of the 152 target activities identified in DOD's Zero Trust Strategy and Roadmap, which was released in November 2022," <https://www.war.gov/News/News-Stories/Article/Article/3795170/new-overlays-provide-guide-on-path-to-zero-trust/> (accessed Oct 21, 2026). The strategy PDF on dodcio.defense.gov serves only as a file download.
 
-[^c03-dod-ds]: **Third-party source (trade press).** DefenseScoop, "DOD zero trust implementations" (April 4, 2024), reporting the DoD Zero Trust Strategy's 91 target-level and 61 advanced-level activities and the September 30, 2027 target, <https://defensescoop.com/2024/04/04/dod-zero-trust-implementations-phase-2027/> (accessed Oct 21, 2026). The strategy PDF on dodcio.defense.gov refused automated retrieval.
-[^c03-dod-bd]: **Third-party source (trade press).** Breaking Defense, "DoD releases zero trust strategy to thwart hackers who often breach perimeter," November 22, 2022, <https://breakingdefense.com/2022/11/dod-releases-zero-trust-strategy-to-thwart-hackers-who-often-breach-perimeter/> (accessed Oct 21, 2026).

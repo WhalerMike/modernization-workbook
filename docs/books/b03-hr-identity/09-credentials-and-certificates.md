@@ -85,7 +85,7 @@ Entra ID checks the CRL of the issuing CA, and of the other CAs in the chain up 
 
 - **No CRL, no revocation.** If a trusted CA has no CRL configured, Entra doesn't check revocation and revoked certificates still authenticate.[^c09-cba-how] Turn on **Require CRL validation**, which makes CBA fail for certificates from a CA without a CRL; exempt a CA only while its CRL is being fixed.[^c09-crl]
 - **Caching.** Entra caches the CRL. A newly revoked certificate isn't detected until the cache refreshes with a newer CRL; delta CRLs carry those updates, and without them revocation waits on the base CRL's validity period. Entra doesn't support OCSP.[^c09-crl] Microsoft advises revoking tokens manually when immediate revocation is critical.[^c09-crl]
-- **Size limits.** In Azure Global, which includes GCC, the CRL download limits are 20 MB for interactive sign-in and 65 MB for the service; in Azure Government (GCC High and DoD) they are 45 MB and 150 MB.[^c09-crl] Check the issuing CAs' CRL sizes against those limits during Phase 1. If Entra can't reach a configured CRL endpoint, CBA fails.[^c09-crl]
+- **Size limits.** In Azure Global, which includes GCC, the CRL download limits are 20 MB for interactive sign-in and 65 MB for the service.[^c09-crl] Check the issuing CAs' CRL sizes against those limits during Phase 1. If Entra can't reach a configured CRL endpoint, CBA fails.[^c09-crl]
 
 So the PIV revocation in the leaver sequence closes CBA *eventually*, on the CA's CRL schedule. The account disable and token revocation steps close Entra *now*. Both are needed: the first protects every other relying party, the second protects the tenant.
 
@@ -106,7 +106,7 @@ Most moves don't touch credentials: the person, the identifier and the PIV ident
 
 ## Device certificates: Intune and Microsoft Cloud PKI
 
-Devices get their own certificates, for Wi-Fi, VPN and other authentication, through Intune SCEP or PKCS certificate profiles; Microsoft Cloud PKI can be the issuing CA for SCEP. Cloud PKI is licensed as a subscription on top of Intune Plan 1 or Plan 2; it is available in GCC High but not in DoD environments. Intune hosts each Cloud PKI CA's CRL, which is valid for seven days, republished every 3.5 days, and updated with every revocation.[^c09-cpki] [Book 07, Chapters 06 and 07](../b07-pki/06-device-and-user-certificates.md) cover the move from AD CS to Cloud PKI; this section covers only what the leaver sequence needs.
+Devices get their own certificates, for Wi-Fi, VPN and other authentication, through Intune SCEP or PKCS certificate profiles; Microsoft Cloud PKI can be the issuing CA for SCEP. Cloud PKI is licensed as a subscription on top of Intune Plan 1 or Plan 2. Intune hosts each Cloud PKI CA's CRL, which is valid for seven days, republished every 3.5 days, and updated with every revocation.[^c09-cpki] [Book 07, Chapters 06 and 07](../b07-pki/06-device-and-user-certificates.md) cover the move from AD CS to Cloud PKI; this section covers only what the leaver sequence needs.
 
 For Windows devices, Intune documents when a SCEP certificate is revoked and removed:[^c09-intune-remove]
 

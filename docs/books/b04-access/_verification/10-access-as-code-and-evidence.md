@@ -135,7 +135,7 @@ Not cited: [Configure configuration management service permissions](https://lear
 | A6 | ADX custom reports: Graph PowerShell export of review and package data; example KQL questions; AccessReview.Read.All and EntitlementManagement.Read.All | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/custom-entitlement-report-with-adx-and-entra-id) |
 | A7 | Azure Automation: certificate and application permissions; EntitlementManagement.Read.All or catalog reader; webhook not authenticated; certificate renewal | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/identity-governance-automation) |
 | A8 | Export runbook read-only, scheduled, reviewed as Tier 0 | Governance operations evidence | design position | — |
-| A9 | ID Governance for Government available in GCC, GCC High, DoD | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/licensing-fundamentals) |
+| A9 | ID Governance for Government available in GCC | Governance operations evidence | verified | [Learn](https://learn.microsoft.com/entra/id-governance/licensing-fundamentals) |
 | A10 | Government-cloud availability of dashboard, custom alerts, ADX reports and Automation scenarios | Governance operations evidence | not yet specified | — |
 
 ## Zero Trust closure, Phase 4, November 11, 2026

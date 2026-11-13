@@ -101,7 +101,7 @@ Shared and kiosk mobile devices follow the corporate rows with no user affinity;
 | System security | Maximum minutes of inactivity until screen locks | 5 | Microsoft level 2 |
 | Actions for noncompliance | Mark device noncompliant | 1 day | Program choice, matching CP-001; Microsoft's example marks it immediately |
 
-CP-007 applies the same table to personally owned devices enrolled with account-driven User Enrollment. User Enrollment gives the organization a limited, separate managed volume and a subset of management options, and supervision isn't available,[^c10-z-user-enrollment] so check each setting against Microsoft's list of what User Enrollment supports before relying on it, and keep app protection (AP-001, AP-002) as the data control for personal devices. User Enrollment needs a Managed Apple Account per user; Apple Managed account federation with Microsoft Entra ID isn't available in GCC High or DoD, so there the accounts are created in Apple Business Manager instead.[^c10-z-user-enrollment][^c10-intune-gov]
+CP-007 applies the same table to personally owned devices enrolled with account-driven User Enrollment. User Enrollment gives the organization a limited, separate managed volume and a subset of management options, and supervision isn't available,[^c10-z-user-enrollment] so check each setting against Microsoft's list of what User Enrollment supports before relying on it, and keep app protection (AP-001, AP-002) as the data control for personal devices. User Enrollment needs a Managed Apple Account per user.[^c10-z-user-enrollment]
 
 #### CP-008 and CP-009: Android Enterprise
 
@@ -131,7 +131,7 @@ Microsoft's fully managed level 2 example sets a 365-day passcode expiry and a f
 - **Roles:** Intune Administrator, or a custom role with compliance policy permissions, scoped by scope tag.
 - **Platform connections:** the Apple MDM push certificate for iOS and iPadOS enrollment;[^c10-z-apple-guide] Apple Business Manager for Automated Device Enrollment and Managed Apple Accounts; managed Google Play bound to the tenant for Android Enterprise.
 - **In place first:** the tenant settings above (**Mark devices with no compliance policy assigned as** *Not compliant*), the enrollment controls in [Chapter 04](04-intune-first-onboarding.md#enrollment-controls), and Book 04's emergency access accounts excluded from every policy that requires a compliant device.
-- **Government cloud availability** (Intune government service description, read Nov 11, 2026):[^c10-intune-gov] compliance policies and the platforms in this section are standard MDM features in GCC (the commercial Intune instance), GCC High and DoD; mobile threat defense connectors in GCC High are limited to vendors that also support it; Apple Managed account federation isn't available in GCC High or DoD. Windows Device Health Attestation, which CP-001's BitLocker, Secure Boot and code integrity rules depend on, is listed as planned, not available, for GCC High and DoD; [Chapter 08](08-gpo-to-intune-policy-migration.md#compliance-policies) gives the alternatives the program uses there ([WD-145](../../about/decision-register.md#wd-145)).
+- **GCC availability** (Intune service description for US Government, read Nov 11, 2026):[^c10-intune-gov] compliance policies and the platforms in this section are available in GCC, which uses the commercial Intune instance.
 
 ### Pilot
 
@@ -187,7 +187,7 @@ The acceptance test is a **coverage report by platform and ownership**: how many
 
 ::: {.callout-warning}
 ## Illustrative, not tested against a production tenant
-Read-only and illustrative; run it first against a test tenant. In GCC High, connect with `-Environment USGov` and use `graph.microsoft.us`.
+Read-only and illustrative; run it first against a test tenant.
 :::
 
 ```powershell
@@ -289,7 +289,7 @@ Update rings allow a quality deferral of 0 to 30 days, deadlines of 2 to 30 days
 
 ### Windows Autopatch
 
-Windows Autopatch automates update ring management, sequencing and reporting for Windows, Microsoft 365 Apps, Edge and Teams. It is available with Windows Enterprise E3 or E5 (including through Microsoft 365 F3, E3 or E5), Education A3 or A5, Enterprise VDA, and Microsoft 365 Business Premium.[^c10-autopatch-prereq] For government tenants, it is included for GCC customers with Microsoft 365 G3 GCC or G5 GCC, and isn't supported in GCC High or DoD.[^c10-autopatch-faq] Devices must be Entra joined or hybrid joined, and co-managed devices need the Windows Update policies and device configuration workloads set to Intune or Pilot Intune.[^c10-autopatch-prereq] When Autopatch manages a device, it creates and maintains the update rings; administrators shouldn't assign their own rings to those devices.[^c10-update-rings]
+Windows Autopatch automates update ring management, sequencing and reporting for Windows, Microsoft 365 Apps, Edge and Teams. It is available with Windows Enterprise E3 or E5 (including through Microsoft 365 F3, E3 or E5), Education A3 or A5, Enterprise VDA, and Microsoft 365 Business Premium.[^c10-autopatch-prereq] For GCC, it is included for customers with Microsoft 365 G3 GCC or G5 GCC.[^c10-autopatch-faq] Devices must be Entra joined or hybrid joined, and co-managed devices need the Windows Update policies and device configuration workloads set to Intune or Pilot Intune.[^c10-autopatch-prereq] When Autopatch manages a device, it creates and maintains the update rings; administrators shouldn't assign their own rings to those devices.[^c10-update-rings]
 
 The program's position: use Autopatch where the license allows, and keep the ring table above as the specification Autopatch's groups are configured to. Either way, the ring values are what the assessor reads for SI-2.
 
@@ -297,7 +297,7 @@ The program's position: use Autopatch where the license allows, and keep the rin
 
 The rings are for the monthly cadence. When a security update has to reach the fleet faster than the rings' deferrals allow, for example to address a vulnerability being exploited, the program uses an Intune **expedite policy**. An expedited update installs as soon as possible and bypasses the deferral settings, without pausing or editing the rings; it covers one update, is meant for targeted, time-bound use, and doesn't change how later quality updates are deployed. Only supported Windows security updates, and on Windows 11 the latest non-security update, can be expedited.[^c10-z-expedite]
 
-**Authority:** risk-based recommended, as the program's emergency path for a critical vulnerability; any federal remediation deadline that applies to the vulnerability is the requirement, and the expedite policy is one way to act on it. **Applies:** **environment-dependent**: GCC uses the commercial Intune instance, where expedite policies are available; expedite policies, like quality and feature update policies and Windows Autopatch, are on the planned list for GCC High and DoD, not available yet.[^c10-intune-gov]
+**Authority:** risk-based recommended, as the program's emergency path for a critical vulnerability; any federal remediation deadline that applies to the vulnerability is the requirement, and the expedite policy is one way to act on it. **Applies:** all tenants. GCC uses the commercial Intune instance, where expedite policies are available.[^c10-intune-gov]
 
 **Prerequisites.** The devices meet the Windows quality update prerequisites. The update rings follow Microsoft's recommended values so they don't block the expedited scan: **Enable pre-release builds** not configured, **Automatic update behavior** reset to default, and any **Change notification update level** other than turning off all notifications; and the Group Policy settings that point devices at WSUS or disable dual scan are back to Not configured on any device still receiving GPOs. On Windows versions earlier than 24H2 the Update Health Tools must be present; on 24H2 and later they shouldn't be.[^c10-z-expedite] The ring values in [The program's rings](#the-programs-rings) are compatible with these.
 
@@ -334,7 +334,7 @@ Version 26H1 (build 28000) ships only on new devices that came to market in 2026
 The monthly ring cycle is an enforcement procedure: deadlines install updates and restart devices without the user's choice. It follows the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md); the emergency path has its own blocks in [Expedited quality updates](#expedited-quality-updates).
 
 **Authority:** risk-based recommended for the ring values and the feature update target, which are the program's; SI-2 asks the organization to install security updates within a period it defines, and the ring deadlines are how the program defines it ([the evidence table](#reporting-and-the-evidence-an-assessor-reads)).
-**Applies:** Environment-dependent. Update rings are standard MDM features in GCC, GCC High and DoD; feature and quality update policies and Windows Autopatch are available in GCC and planned, not yet available, in GCC High and DoD, where the rings carry the whole cadence ([GCC boundary facts](#gcc-moderate-boundary-facts)).[^c10-intune-gov]
+**Applies:** all tenants. Update rings, feature and quality update policies and Windows Autopatch are available in GCC ([GCC boundary facts](#gcc-moderate-boundary-facts)).[^c10-intune-gov]
 
 | Template part | Where this section carries it |
 |---|---|
@@ -492,7 +492,7 @@ The Entra device object is deleted last, after a disable period, and only after 
 Stale-record cleanup and retirement are the fleet's destructive operations: a wipe can't be undone, and an Entra device delete takes the recovery keys with it. They follow [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md); the enrollment controls they close out, with their assessment mapping, are in [Chapter 04](04-intune-first-onboarding.md#enrollment-controls).
 
 **Authority:** Microsoft-recommended for disabling a stale device before deleting it, backing up recovery keys and local administrator credentials first, and deleting hybrid-joined devices in Active Directory;[^c10-stale][^c10-retire] risk-based recommended for the 90-day cleanup rule and the order above, which are the program's.
-**Applies:** all tenants. Environment-dependent: GCC uses the commercial Intune instance; GCC High and DoD support Intune's standard MDM features, and Windows Autopilot, which the sequence deregisters, isn't available there.[^c10-intune-gov]
+**Applies:** all tenants. Environment-dependent: GCC uses the commercial Intune instance.[^c10-intune-gov]
 
 - **Report-only phase:** the read-only reconciliation script above is the observation; nothing is disabled, retired or deleted that it hasn't listed as a finding with an owner.
 - **Pilot:** the first cleanup run disables, and doesn't delete, a small batch of the oldest stale objects, and waits a full disable period for anyone who reports a device that stopped working.
@@ -602,7 +602,7 @@ Endpoint analytics doesn't replace the update reports: patch latency is still me
 - **Attack chain interrupted:** exploitation of known vulnerabilities on devices that silently stopped updating (Initial Access and Execution through public exploits); management drift that leaves devices outside policy (Defense Evasion)
 :::
 
-**Authority:** Microsoft-recommended as a monitoring capability; the program uses it as risk-based recommended evidence of drift and delayed patching. **Applies:** Intune-managed, co-managed and Configuration Manager tenant-attached Windows devices on Pro, Pro Education, Enterprise or Education, Entra joined or hybrid joined, each with a valid Intune license.[^c10-z-ea-overview] **Environment-dependent:** endpoint analytics is available in all Intune locations in global Azure,[^c10-z-ea-data] which includes GCC (the commercial instance). Microsoft's endpoint analytics pages don't state availability in GCC High or DoD; the Intune Advanced Analytics add-on that builds on it lists GCC High and DoD (in DoD without device query or the resource performance report),[^c10-z-aa] so for base endpoint analytics in those clouds the program records **not yet specified** and confirms with Microsoft before relying on it. The Advanced Analytics add-on (anomaly detection, battery health, resource performance, device query, device timeline and the read-only STIG audit baseline) is **license-dependent**: it needs a subscription beyond Intune Plan 1 or Plan 2.[^c10-z-aa]
+**Authority:** Microsoft-recommended as a monitoring capability; the program uses it as risk-based recommended evidence of drift and delayed patching. **Applies:** Intune-managed, co-managed and Configuration Manager tenant-attached Windows devices on Pro, Pro Education, Enterprise or Education, Entra joined or hybrid joined, each with a valid Intune license.[^c10-z-ea-overview] **Environment-dependent:** endpoint analytics is available in all Intune locations in global Azure,[^c10-z-ea-data] which includes GCC (the commercial instance). The Advanced Analytics add-on (anomaly detection, battery health, resource performance, device query, device timeline and the read-only STIG audit baseline) is **license-dependent**: it needs a subscription beyond Intune Plan 1 or Plan 2.[^c10-z-aa]
 
 ### Prerequisites
 
@@ -740,14 +740,14 @@ Intune and Entra ID in a GCC (Moderate) tenant are often described as a separate
 
 | Topic | Fact for a GCC (Moderate) tenant | Program implementation |
 |---|---|---|
-| Intune service instance | GCC uses the same Intune instance as commercial; only GCC High and DoD use the separate government instance[^c10-intune-gov] | Admin center `intune.microsoft.com` |
-| Microsoft Graph | GCC uses the worldwide endpoints, `graph.microsoft.com` and `portal.azure.com`; GCC High uses `graph.microsoft.us`[^c10-graph-deploy] | All Graph calls in Chapters 08 and 10 use `graph.microsoft.com` |
+| Intune service instance | GCC uses the same Intune instance as commercial[^c10-intune-gov] | Admin center `intune.microsoft.com` |
+| Microsoft Graph | GCC uses the worldwide endpoints, `graph.microsoft.com` and `portal.azure.com`[^c10-graph-deploy] | All Graph calls in Chapters 08 and 10 use `graph.microsoft.com` |
 | Defender for Endpoint | Offered to GCC as Defender for Endpoint for US Government, built in Azure US Government; GCC portal `security.microsoft.com`[^c10-mde-gov] | ES-004 onboards to the tenant's GCC instance |
 | Conditional Access | The compliance result feeds Entra ID Conditional Access in the same tenant | Book 04 |
 | BitLocker keys and LAPS passwords | Stored on the device object in the tenant's Entra ID | Exported before any device delete |
 | Update reporting | Windows Update for Business reports doesn't meet GCC compliance requirements[^c10-wufb-reports] | Intune and Autopatch update reports |
-| Windows Autopatch | Included for GCC with Microsoft 365 G3 or G5 GCC; not supported in GCC High or DoD[^c10-autopatch-faq] | Used where licensed |
-| Feature availability | Intune documents feature differences for GCC High and DoD; GCC follows commercial | Re-check the service description before relying on a new feature |
+| Windows Autopatch | Included for GCC with Microsoft 365 G3 or G5 GCC[^c10-autopatch-faq] | Used where licensed |
+| Feature availability | GCC follows commercial | Re-check the service description before relying on a new feature |
 
 ## Where to go next
 
@@ -778,7 +778,7 @@ Intune and Entra ID in a GCC (Moderate) tenant are often described as a separate
 [^c10-mde-gov]: Microsoft Learn, "Microsoft Defender for Endpoint for US Government customers," sections "Licensing requirements" and "Portal URLs," <https://learn.microsoft.com/defender-endpoint/gov> (accessed Oct 20, 2026).
 [^c10-p4-asr-warn]: Microsoft Learn, "Attack surface reduction (ASR) rules overview," section "Modes for ASR rules" (administrator approval required for **Unblock** on a rule in warn mode from platform version 4.18.26060; Unblock is temporary suppression, a persistent need is a per-rule exclusion; the two rules without warn), <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-overview> (accessed Nov 11, 2026).
 [^c10-p4-update-rings]: Microsoft Learn, "Manage Windows Update ring policies," section "Manage update rings" (**Pause** stops feature or quality updates for up to 35 days and takes effect at the device's next check-in; **Uninstall** rolls back the latest feature or quality update, starts at once and restarts without a delay option, and pauses the ring; feature updates can be uninstalled only within the configured 2 to 60 day period; deleting a ring leaves devices on their current settings), <https://learn.microsoft.com/intune/device-updates/windows/manage-update-rings> (accessed Nov 11, 2026).
-[^c10-intune-gov]: Microsoft Learn, "Microsoft Intune for US Government GCC High and DoD service description," sections "Intune commercial and government instances" and "Feature differences in Intune GCC High and DoD," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026; rechecked Nov 11, 2026, including "Intune features planned for GCC High and DoD" and "Intune features not available in GCC High and DoD").
+[^c10-intune-gov]: Microsoft Learn, Intune service description for US Government, section "Intune commercial and government instances" (GCC is the commercial instance), <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Oct 20, 2026; rechecked Nov 11, 2026).
 [^c10-tamper]: Microsoft Learn, "Antivirus policy for endpoint security in Microsoft Intune," section "Prerequisites for antivirus policy," <https://learn.microsoft.com/intune/device-configuration/endpoint-security/antivirus> (accessed Oct 20, 2026).
 [^c10-cleanup]: Microsoft Learn, "Device cleanup rules," <https://learn.microsoft.com/intune/governance/configure-cleanup-rules> (accessed Oct 20, 2026).
 [^c10-stale]: Microsoft Learn, "How To: Manage stale devices in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/devices/manage-stale-devices> (accessed Oct 20, 2026).
@@ -818,5 +818,5 @@ Intune and Entra ID in a GCC (Moderate) tenant are often described as a separate
 [^c10-z-ea-config]: Microsoft Learn, "Configure endpoint analytics," sections "Enable endpoint analytics," "Change the assignment of the Intune data collection policy," "Consent to share data," "Configure baselines" and "Review collected data," <https://learn.microsoft.com/intune/endpoint-analytics/configure> (accessed Nov 11, 2026).
 [^c10-z-ea-data]: Microsoft Learn, "Endpoint analytics data collection," sections "Data flow" (available in all Intune locations in global Azure; processed every 24 hours; maximum latency 96 hours), "Data collection" (optional data category) and "Stop gathering data," <https://learn.microsoft.com/intune/endpoint-analytics/ref-data-collection> (accessed Nov 11, 2026).
 [^c10-z-ea-wfa]: Microsoft Learn, "Work from anywhere report," sections "Work from anywhere score" (Windows, cloud management, cloud identity and cloud provisioning; active devices in the past 29 days) and "Windows 11 hardware readiness," <https://learn.microsoft.com/intune/endpoint-analytics/work-from-anywhere> (accessed Nov 11, 2026).
-[^c10-z-aa]: Microsoft Learn, "Advanced Analytics overview," sections "Prerequisites" (cloud requirements: public cloud, GCC High and DoD, with DoD excluding device query and resource performance; licensing) and "Advanced Analytics in the Intune admin center"; and "Use STIG audit baselines to assess Windows device compliance in Microsoft Intune," section "Prerequisites," <https://learn.microsoft.com/intune/advanced-analytics/>, <https://learn.microsoft.com/intune/device-security/security-baselines/stig-audit-baseline> (both accessed Nov 11, 2026).
+[^c10-z-aa]: Microsoft Learn, "Advanced Analytics overview," sections "Prerequisites" (cloud requirements: public cloud; licensing) and "Advanced Analytics in the Intune admin center"; and "Use STIG audit baselines to assess Windows device compliance in Microsoft Intune," section "Prerequisites," <https://learn.microsoft.com/intune/advanced-analytics/>, <https://learn.microsoft.com/intune/device-security/security-baselines/stig-audit-baseline> (both accessed Nov 11, 2026).
 [^c10-z-graph-wfa]: Microsoft Graph v1.0 reference, "List userExperienceAnalyticsWorkFromAnywhereMetrics" and "List userExperienceAnalyticsWorkFromAnywhereDevices," <https://learn.microsoft.com/graph/api/intune-devices-userexperienceanalyticsworkfromanywheremetric-list?view=graph-rest-1.0>, <https://learn.microsoft.com/graph/api/intune-devices-userexperienceanalyticsworkfromanywheredevice-list?view=graph-rest-1.0> (both accessed Nov 11, 2026).

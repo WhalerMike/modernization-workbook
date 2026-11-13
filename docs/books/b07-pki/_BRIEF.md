@@ -27,8 +27,8 @@ drawing on the Federal Compliance book on certificates and tokens
   of the book vendor-neutral and Microsoft-native where Microsoft covers the need.
 - **Stay consistent with facts already verified in other books** (read the passages, link them):
   - Book 03 Chapter 09 `../b03-hr-identity/09-credentials-and-certificates.md` — PIV issuance and termination
-    (18-hour rule), derived PIV, certificate binding, Entra CBA, Cloud PKI facts (licensed separately; available in GCC
-    High, not DoD; CRL validity seven days).
+    (18-hour rule), derived PIV, certificate binding, Entra CBA, Cloud PKI facts (licensed separately;
+    CRL validity seven days).
   - Book 05 Chapters 04, 08 and 09 — Intune certificate profiles (SCEP/PKCS), BitLocker etc.; **Intune doesn't manage
     Windows Server** and **Cloud PKI issues only to Intune-managed devices**, so server certificates need another issuer.
   - Book 06 Chapter 22 `../b06-data-platform/22-where-sql-server-touches-adcs.md` — SQL Server's AD CS dependencies;

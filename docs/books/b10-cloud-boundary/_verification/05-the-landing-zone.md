@@ -25,7 +25,7 @@ Checked 2026-10-21 against Microsoft Learn (CAF landing zone overview, design ar
 | 14 | Azure and Azure Government both FedRAMP High; High covers all US public Azure regions | Which cloud | verified | scope; fedramp-offering |
 | 15 | Marketplace: Azure Commercial Cloud F1209051525 and Azure Government F1603087869, Certified, Class D | Which cloud | verified | fr |
 | 16 | Azure Government adds US data-storage and screened-personnel commitments; public High "meets the needs of many" | Which cloud | verified | fedramp-offering |
-| 17 | GCC pairs with Entra ID in public Azure; GCC High/DoD with Azure Government | Which cloud | verified via settled books (Book 02 Ch11, Book 01 App B) | linked |
+| 17 | GCC pairs with Entra ID in public Azure | Which cloud | verified via settled books (Book 02 Ch11, Book 01 App B) | linked |
 | 18 | ARM endpoint management.azure.com vs management.usgovcloudapi.net | Which cloud | verified | compare |
 | 19 | Allowed locations (Audit/Deny/Disabled) excludes resource groups and "global" resources; RG variant exists | Which regions | verified | builtins |
 | 20 | Audit-scope tables for Azure and Azure Government last updated February 2026 | Which services | verified | scope |

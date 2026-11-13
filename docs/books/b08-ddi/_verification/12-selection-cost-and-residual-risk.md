@@ -23,7 +23,7 @@ vendor-question sections, and the DNS Modernization Guide cost guidance (§6.3, 
 | 10 | Azure DNS security policy blocks known malicious domains (Microsoft threat intelligence) | Cost; comparison | verified | Learn, DNS security and private name resolution (cross-cloud) |
 | 11 | Infoblox Government Cloud FR2017257053: FedRAMP Certified, Moderate, since 2022-12-15; SaaS in AWS GovCloud (US); description lists Universal DDI, Universal Asset Insights, TIDE, Dossier | Authorization table | verified | FedRAMP Marketplace products.json (data last changed 2026-10-20) |
 | 12 | Whitepaper §7.8: "On 2026-07-22, Infoblox Government Cloud achieved FedRAMP Moderate certification" | Authorization table | corrected | Marketplace: certified since 2022-12-15. The July 22, 2026 vendor press release announced Universal DDI Management, NIOS-X servers and Universal Asset Insights through the authorized service (consistent with Ch 01/03 and Book 02 Ch 04) |
-| 13 | Whitepaper §10.3: Universal DDI "Full" in GCC Moderate / GCC High / DoD | Authorization cautions | corrected | Moderate authorization only; does not cover High or DoD (Appendix C). Feature-parity table not carried |
+| 13 | Whitepaper §10.3: Universal DDI "Full" in GCC Moderate and High clouds | Authorization cautions | corrected | Moderate authorization only; does not cover High (Appendix C). Feature-parity table not carried |
 | 14 | No Marketplace listing for BlueCat or EfficientIP | Authorization table | verified | products.json searched by provider and offering name |
 | 15 | BlueCat Address Manager and DNS/DHCP Server appliances for Azure and Azure Government | Authorization table | verified | BlueCat docs, Azure Virtual Appliances 26.1.0 |
 | 16 | Azure commercial FedRAMP High; Azure DNS in FedRAMP High audit scope (public regions) | Authorization table | verified | products.json F1209051525; Learn compliance scope page (updated 2026-10-12) |
@@ -41,7 +41,7 @@ vendor-question sections, and the DNS Modernization Guide cost guidance (§6.3, 
 | 28 | Whitepaper §7.8 PKI timeline (RSA-2048→ECDSA, SHA-1→SHA-256, CRL→OCSP) | — | removed | Unsourced and partly stale; PKI is Book 07's subject |
 | 29 | Whitepaper §7.8 option-6 attack "observed in federal network incidents" | — | removed | Unverifiable; the option-6 risk itself is kept via Ch 05 |
 | 30 | Infoblox Endpoint listens on 127.0.0.1:53 (127.0.0.2 macOS) and forwards via DoT on TCP 443 | Vendor question 1 | verified | Infoblox docs, Managing Endpoint |
-| 31 | INR: WW Commercial only, not GCC Moderate/High/DoD; only listed solution Cisco IOS XE SD-WAN 20.4/17.4 | Vendor Q5; residual risk | verified | Learn, Microsoft 365 informed network routing (footnote URL normalized, locale and view parameters removed) |
+| 31 | INR: WW Commercial only, not GCC Moderate; only listed solution Cisco IOS XE SD-WAN 20.4/17.4 | Vendor Q5; residual risk | verified | Learn, Microsoft 365 informed network routing (footnote URL normalized, locale and view parameters removed) |
 | 32 | Series residual-risk list (sync, concentration, authorization scope, loopback agents, bypass, open questions) | Residual risk | verified / restated-as-design | Design argument; factual parts verified above |
 | 33 | Series conclusion | Conclusion | restated-as-design | Kept; one sentence added pointing to Ch 09 |
 | 34 | Existing footnote c11-fedramp (FR2017257053, Moderate since Dec 15, 2022) | Authorization | verified | Replaced by c12-marketplace (products.json) |
@@ -99,10 +99,10 @@ Placed after the paragraph that follows the platform-model table (former line 10
 
 ## Moderate-civilian sweep (October 29, 2026)
 
-The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; DISA STIGs and DoD Impact Levels survive only as optional references labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | MS-1 | AWS scope listed per service and per Region (Class C East/West; Class D GovCloud columns); either Region can host a Moderate system because the High baseline contains the Moderate controls | Authorization status table, AWS row; c12-aws-scope | verified 2026-10-29 (fact pack) + inference (labelled) | c12-aws-scope (access note added) |
-| MS-2 | Selection framework: new Hardening baseline row (CIS Benchmark, vendor hardening guide or NCP checklist for CM-6 settings; DISA STIG optional, High only) | Decision framework table | framing per brief; facts cross-referenced to Chapter 03 | Chapter 03 (c03-cm6, c03-ncp, c03-cisbench) |
-| MS-3 | "A Moderate authorization doesn't cover High or DoD" kept | Cautions; residual risks | kept: legitimate tier comparison | — |
+| MS-2 | Selection framework: new Hardening baseline row (CIS Benchmark, vendor hardening guide or NCP checklist for CM-6 settings) | Decision framework table | framing per brief; facts cross-referenced to Chapter 03 | Chapter 03 (c03-cm6, c03-ncp, c03-cisbench) |
+| MS-3 | "A Moderate authorization doesn't cover High" kept | Cautions; residual risks | kept: legitimate tier comparison | — |

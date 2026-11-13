@@ -24,7 +24,7 @@ Checked 2026-10-20 against Cisco documentation (redirect-dns configuration guide
 | 14 | SC-21 "request and perform" verification | DNSSEC and forwarder position | verified (detail in Ch06) | Ch06 c06-sp80053 |
 | 15 | INR shares per-location experience data for Exchange, SharePoint/OneDrive, Teams; SD-WAN may reroute | INR | verified (re-opened) | inr |
 | 16 | Cisco IOS XE SD-WAN 20.4/17.4 only enabled solution | INR | verified | inr |
-| 17 | WW commercial only; not GCC Moderate, GCC High, DoD, Germany, China | INR | verified | inr |
+| 17 | WW commercial only; not GCC Moderate, Germany, China | INR | verified | inr |
 | 18 | Breakout and application-aware routing as alternatives | INR | restated-as-design (whitepaper §9.2) | — |
 | 19 | Whitepaper §8.4: INR telemetry would reflect the Umbrella-selected endpoint (ECS) | INR | restated (follows from design; undocumented by either vendor; kept only as a reason for one path) | — |
 | 20 | Whitepaper §9.2: "DSCP marking" breakout pattern "recommended in Microsoft's network connectivity principles" | INR | not carried as stated (DSCP claim not verified); breakout kept generically | — |

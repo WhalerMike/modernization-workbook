@@ -62,7 +62,7 @@ copy and adapt them into this book's `src/` as `ch02-…` (fix facts).
 | `01-why-the-boundary-decides.md` | Why | Chapter 01 — Why the Boundary Decides What You Can Use | W1 |
 | `02-the-invisible-boundary.md` | Why | Chapter 02 — The Invisible Boundary | W1 |
 | `03-what-changed-at-fedramp.md` | What | Chapter 03 — What Changed at FedRAMP | W2 |
-| `04-gcc-and-the-feature-gap.md` | What | Chapter 04 — GCC, GCC High and the Commercial Feature Gap | W2 |
+| `04-gcc-and-the-feature-gap.md` | What | Chapter 04 — GCC and the Commercial Feature Gap | W2 |
 | `05-the-landing-zone.md` | What | Chapter 05 — The Landing Zone | W3 |
 | `06-ipam-and-network-as-code.md` | What | Chapter 06 — IPAM and Network as Code | W3 |
 | `07-the-front-door.md` | What | Chapter 07 — The Landing Zone Front Door | W3 |

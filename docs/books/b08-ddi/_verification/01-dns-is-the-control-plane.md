@@ -13,10 +13,10 @@ Checked October 20, 2026. Sources: the existing series page (Next Generation DDI
 | 5 | Cisco Catalyst SD-WAN redirect-dns sends matching DNS to a specified server via centralized data policy | Case paragraph | verified (new footnote) | Cisco, Redirect DNS in Catalyst SD-WAN Service-Side VPNs |
 | 6 | Infoblox Government Cloud FedRAMP Moderate, Universal DDI added July 2026 (old Solution paragraph) | Case paragraph | moved | Detail moved to Chapter 03 (FedRAMP section) to avoid duplication; Chapter 01 keeps a one-line pointer stated precisely ("listed on the FedRAMP Marketplace at the Moderate level") |
 | 7 | 90-day ask to settle the five decisions | Case paragraph | restated-as-design | Program position (unchanged) |
-| 8 | INR is WW Commercial only; not GCC Moderate, GCC High, DoD | Decision makers | verified (new footnote) | Learn, Microsoft 365 informed network routing (note text; Cisco IOS XE SD-WAN 20.4/17.4 only listed solution) |
+| 8 | INR is WW Commercial only; not GCC Moderate | Decision makers | verified (new footnote) | Learn, Microsoft 365 informed network routing (note text; Cisco IOS XE SD-WAN 20.4/17.4 only listed solution) |
 | 9 | RFC 882/883 Nov 1983; RFC 1034/1035 Nov 1987 obsolete 882, 883, 973 | What DNS was designed to do | verified | RFC Editor, RFC 1034 header |
 | 10 | Azure Storage private endpoint: private IP inside the hosting VNet, public endpoint outside | What DNS has become | verified (new) | Learn, Use private endpoints for Azure Storage |
-| 11 | "A GCC Moderate tenant must resolve outlook.office365.com to GCC endpoints" (whitepaper §1.2) | What DNS has become | corrected | Learn, Microsoft 365 endpoints: Worldwide list includes GCC; GCC High and DoD have own lists/namespaces (`*.office365.us`) |
+| 11 | "A GCC Moderate tenant must resolve outlook.office365.com to GCC endpoints" (whitepaper §1.2) | What DNS has become | corrected | Learn, Microsoft 365 endpoints: Worldwide list includes GCC |
 | 12 | DNS service is both a policy information source and a policy enforcement point | What DNS has become | verified (new) | NIST SP 800-81r3, Sec. 1.2 |
 | 13 | OCSP/CRL, FQDN as service identity, wildcard as application surface | What DNS has become | restated-as-design | Program argument (whitepaper §1.2); PKI detail is Chapter 06's |
 | 14 | Route 53 Resolver: inbound/outbound endpoints, rules, DNS Firewall | Landscape table | corrected | AWS renamed the service Route 53 VPC Resolver when Route 53 Global Resolver was introduced (AWS Developer Guide note); mechanics verified |
