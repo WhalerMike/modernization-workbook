@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.387
+Unit 2 is the guide's Step 6.
+
+2
+00:00:02.387 --> 00:00:06.661
+Network and Transport owns the
+agency's own edge; inside Azure,
+
+3
+00:00:06.661 --> 00:00:11.688
+Azure Firewall is the inspection point
+for egress and east-west traffic.
+
+4
+00:00:11.688 --> 00:00:16.671
+Learn's Zero Trust recommendations for
+Azure Firewall check that outbound traffic
+
+5
+00:00:16.671 --> 00:00:19.305
+from workloads routes
+through the firewall,
+
+6
+00:00:19.305 --> 00:00:23.861
+that threat intelligence and intrusion
+detection are in alert-and-deny mode,
+
+7
+00:00:23.861 --> 00:00:27.563
+that outbound TLS is inspected,
+and that diagnostic logs are on.
+
+8
+00:00:27.563 --> 00:00:28.850
+The SKU matters.
+
+9
+00:00:28.850 --> 00:00:32.075
+Threat intelligence deny
+needs Standard or Premium.
+
+10
+00:00:32.075 --> 00:00:37.030
+Intrusion detection and prevention,
+TLS inspection and full URL filtering
+
+11
+00:00:37.030 --> 00:00:42.300
+need Premium, and Learn says Standard
+upgrades to Premium without redeployment.
+
+12
+00:00:42.300 --> 00:00:47.363
+For high-volume egress, Learn suggests
+a NAT gateway on the firewall subnet,
+
+13
+00:00:47.363 --> 00:00:49.813
+to avoid running out of source ports.
+
+14
+00:00:49.813 --> 00:00:55.472
+And TLS inspection needs an intermediate
+C A certificate in Key Vault that clients
+
+15
+00:00:55.472 --> 00:01:01.100
+trust; it doesn't decrypt the Education,
+Finance, Government and Health categories.

@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.318
+Welcome to Module 2 of the Azure
+Security Engineering learning path:
+
+2
+00:00:04.318 --> 00:00:07.462
+DDoS protection and the
+web application firewall.
+
+3
+00:00:07.462 --> 00:00:10.313
+In Module 1 you built
+the exposure register.
+
+4
+00:00:10.313 --> 00:00:14.433
+In this module you take every public
+I P in it to DDoS protection,
+
+5
+00:00:14.433 --> 00:00:17.841
+with logs and an alert, and
+every internet-facing web
+
+6
+00:00:17.841 --> 00:00:21.724
+endpoint to a web application
+firewall in prevention mode.
+
+7
+00:00:21.724 --> 00:00:26.854
+It covers Steps 3 and 4 of the Azure
+Security Engineering implementation guide,
+
+8
+00:00:26.854 --> 00:00:31.420
+and takes about fifty minutes, plus
+a lab in your own test subscription.

@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.588
+Step six reads the test
+V M's effective routes.
+
+2
+00:00:03.588 --> 00:00:06.592
+The guide's Validate step
+says the default route,
+
+3
+00:00:06.592 --> 00:00:11.174
+zero dot zero dot zero dot zero slash
+zero, goes to the firewall's private I P.
+
+4
+00:00:11.174 --> 00:00:15.155
+Step seven checks the firewall
+policy, with the guide's own query:
+
+5
+00:00:15.155 --> 00:00:19.437
+threat intelligence and intrusion
+detection should both read Deny.
+
+6
+00:00:19.437 --> 00:00:22.982
+Step eight runs on the test V
+M: request a test domain your
+
+7
+00:00:22.982 --> 00:00:26.988
+security monitor confirms is on
+the threat intelligence feed.
+
+8
+00:00:26.988 --> 00:00:28.848
+The request should be denied;
+
+9
+00:00:28.848 --> 00:00:32.413
+curl prints three zeros when
+the connection is refused.
+
+10
+00:00:32.413 --> 00:00:37.075
+Step nine, back on your machine,
+finds the denied request in the log.
+
+11
+00:00:37.075 --> 00:00:41.131
+The guide sends the firewall's
+logs to resource-specific tables,
+
+12
+00:00:41.131 --> 00:00:44.651
+and Learn's Azure Firewall
+monitoring reference names
+
+13
+00:00:44.651 --> 00:00:47.788
+the threat intelligence
+table A Z F W Threat Intel.
+
+14
+00:00:47.788 --> 00:00:51.412
+Step ten backs it out: step five
+already started the origin,
+
+15
+00:00:51.412 --> 00:00:55.488
+so confirm it reads Running and
+answers through Front Door again.
+
+16
+00:00:55.488 --> 00:00:56.900
+Nothing else changed.

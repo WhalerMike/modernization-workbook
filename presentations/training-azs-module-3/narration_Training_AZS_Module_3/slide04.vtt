@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.275
+Unit 1 is the guide's Step 5.
+
+2
+00:00:02.275 --> 00:00:04.931
+Learn's overview, What
+is Azure Front Door,
+
+3
+00:00:04.931 --> 00:00:10.166
+says Front Door is global and sits at the
+Microsoft edge with built-in layer three
+
+4
+00:00:10.166 --> 00:00:14.384
+and four DDoS protection, while
+Application Gateway is regional,
+
+5
+00:00:14.384 --> 00:00:16.650
+in the agency's own virtual network.
+
+6
+00:00:16.650 --> 00:00:20.288
+Either carries the web application
+firewall from Module 2.
+
+7
+00:00:20.288 --> 00:00:22.813
+The guide's selection is design guidance.
+
+8
+00:00:22.813 --> 00:00:27.535
+Front Door Premium for internet-facing
+applications that need global reach,
+
+9
+00:00:27.535 --> 00:00:30.487
+Private Link origins or
+managed firewall rules.
+
+10
+00:00:30.487 --> 00:00:34.914
+Application Gateway for regional
+applications, for traffic that must enter
+
+11
+00:00:34.914 --> 00:00:38.926
+through the agency's own network, or
+where Front Door isn't in the region.
+
+12
+00:00:38.926 --> 00:00:43.284
+And both, with Front Door reaching
+Application Gateway over Private Link,
+
+13
+00:00:43.284 --> 00:00:46.500
+where the application needs
+regional inspection too.
+
+14
+00:00:46.500 --> 00:00:51.874
+One date to plan around: Learn's migration
+page says classic Front Door retires on
+
+15
+00:00:51.874 --> 00:00:54.522
+March thirty-first, twenty twenty-seven,
+
+16
+00:00:54.522 --> 00:00:57.720
+and already accepts no
+new profiles or domains.

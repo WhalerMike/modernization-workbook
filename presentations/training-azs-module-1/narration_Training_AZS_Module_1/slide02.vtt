@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:04.638
+A landing zone, as Cloud Boundary
+and Landing Zone designs it,
+
+3
+00:00:04.638 --> 00:00:08.144
+decides what can be deployed:
+the management group hierarchy,
+
+4
+00:00:08.144 --> 00:00:12.475
+the boundary policies, and the provisioning
+loop every change goes through.
+
+5
+00:00:12.475 --> 00:00:15.521
+What it doesn't decide is
+what the internet can reach,
+
+6
+00:00:15.521 --> 00:00:18.000
+what leaves the estate,
+or who can read a key.
+
+7
+00:00:18.000 --> 00:00:22.513
+Those are engineered one service at a
+time, and each one has to be proved.
+
+8
+00:00:22.513 --> 00:00:24.312
+The proving starts with a list.
+
+9
+00:00:24.312 --> 00:00:28.487
+You can't show that every public
+endpoint sits behind DDoS protection
+
+10
+00:00:28.487 --> 00:00:32.662
+and a web application firewall if
+you don't know every public endpoint.
+
+11
+00:00:32.662 --> 00:00:36.668
+So this module adds the security
+settings the baseline needs,
+
+12
+00:00:36.668 --> 00:00:41.040
+and builds the exposure register
+that Modules 2 to 5 check against.

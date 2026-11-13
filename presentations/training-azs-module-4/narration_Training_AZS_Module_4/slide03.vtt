@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.850
+You'll name the three things
+private-endpoint name resolution needs,
+
+3
+00:00:06.850 --> 00:00:08.350
+and say where the zones live.
+
+4
+00:00:08.350 --> 00:00:11.481
+You'll explain what a private
+D N S zone group does,
+
+5
+00:00:11.481 --> 00:00:13.438
+and how policy does it at scale.
+
+6
+00:00:13.438 --> 00:00:16.370
+You'll prove a vault resolves
+to a private address
+
+7
+00:00:16.370 --> 00:00:19.588
+inside the network and
+refuses requests from outside.
+
+8
+00:00:19.588 --> 00:00:22.124
+You'll check a vault's role-based access,
+
+9
+00:00:22.124 --> 00:00:26.087
+purge protection, firewall and
+public access in one command.
+
+10
+00:00:26.087 --> 00:00:30.241
+And you'll read the audit log for an
+allowed and a denied secret read,
+
+11
+00:00:30.241 --> 00:00:33.262
+and say why disabling a
+suspected key comes last.
+
+12
+00:00:33.262 --> 00:00:39.503
+You need Module 3; Migration C of the
+service account guide, Service Accounts,
+
+13
+00:00:39.503 --> 00:00:45.150
+from User Accounts to gMSAs to
+Microsoft Entra Workload Identities,
+
+14
+00:00:45.150 --> 00:00:48.716
+for the managed identities;
+and a skim of D N S,
+
+15
+00:00:48.716 --> 00:00:52.940
+D H C P and I P A M, which owns
+the agency's D N S authority.

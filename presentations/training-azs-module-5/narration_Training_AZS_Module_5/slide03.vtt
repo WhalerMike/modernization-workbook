@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:06.417
+You'll gather the security
+definitions into one initiative,
+
+3
+00:00:06.417 --> 00:00:10.287
+and move it from do-not-enforce to
+default after a compliance review.
+
+4
+00:00:10.287 --> 00:00:14.975
+You'll explain what a remediation task
+does, and what stays after a rollback.
+
+5
+00:00:14.975 --> 00:00:19.950
+You'll create an exemption with a category
+and an expiry, and find the ones past it.
+
+6
+00:00:19.950 --> 00:00:24.937
+You'll run the DDoS incident runbook and
+the recurring reviews, and read the RACI.
+
+7
+00:00:24.937 --> 00:00:28.404
+And you'll compute the guide's
+metrics as protected coverage,
+
+8
+00:00:28.404 --> 00:00:31.800
+not settings, and say what makes
+a finding ready for closure.
+
+9
+00:00:31.800 --> 00:00:35.170
+You need Modules 1 to 4,
+and a skim of two chapters:
+
+10
+00:00:35.170 --> 00:00:41.219
+Chapter 05 of Cloud Boundary and Landing
+Zone, on enforcing without breaking things,
+
+11
+00:00:41.219 --> 00:00:44.740
+and Chapter 02 of Governance,
+Drift and Evidence.

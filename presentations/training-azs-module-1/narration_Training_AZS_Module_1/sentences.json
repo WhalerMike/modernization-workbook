@@ -1,0 +1,580 @@
+{
+ "1": [
+  [
+   0.05,
+   6.575,
+   "Welcome to Module 1 of the Azure Security Engineering learning path: the baseline and the exposure register."
+  ],
+  [
+   6.625,
+   2.513,
+   "A landing zone decides what can be deployed."
+  ],
+  [
+   9.137,
+   7.287,
+   "It doesn't decide what the internet can reach, and nothing later in this path can be proved complete without a list of what's exposed."
+  ],
+  [
+   16.425,
+   13.512,
+   "In this module you learn how the Azure Security Engineering implementation guide is put together, add the security settings the baseline needs on top of the landing zone, and build the exposure register that every later module checks against."
+  ],
+  [
+   29.938,
+   6.987,
+   "It covers Steps 1 and 2 of the guide, and takes about fifty minutes, plus a lab in your own test subscription."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   11.275,
+   "A landing zone, as Cloud Boundary and Landing Zone designs it, decides what can be deployed: the management group hierarchy, the boundary policies, and the provisioning loop every change goes through."
+  ],
+  [
+   12.475,
+   5.525,
+   "What it doesn't decide is what the internet can reach, what leaves the estate, or who can read a key."
+  ],
+  [
+   18.0,
+   4.513,
+   "Those are engineered one service at a time, and each one has to be proved."
+  ],
+  [
+   22.512,
+   1.8,
+   "The proving starts with a list."
+  ],
+  [
+   24.312,
+   8.35,
+   "You can't show that every public endpoint sits behind DDoS protection and a web application firewall if you don't know every public endpoint."
+  ],
+  [
+   32.663,
+   8.325,
+   "So this module adds the security settings the baseline needs, and builds the exposure register that Modules 2 to 5 check against."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.938,
+   "You'll say which parts of Azure security the books design and which the guide engineers, and read the guide's authority labels."
+  ],
+  [
+   9.9,
+   7.463,
+   "You'll protect the management group hierarchy and assign the security initiatives in do-not-enforce mode at the intermediate root."
+  ],
+  [
+   17.363,
+   4.237,
+   "You'll find platform resources that don't send their logs to the workspace."
+  ],
+  [
+   21.6,
+   5.013,
+   "You'll build the exposure register from Resource Graph and find the rows with no owner."
+  ],
+  [
+   26.613,
+   8.125,
+   "And you'll name what differs in Azure Government, and the equivalent controls on AWS, Google Cloud and Oracle Cloud Infrastructure."
+  ],
+  [
+   34.737,
+   8.575,
+   "Before you start, skim Chapter 05 of Cloud Boundary and Landing Zone, and the guide's prerequisites: the roles, eligible through pim."
+  ],
+  [
+   43.312,
+   3.388,
+   "The lab runs in a test subscription, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.025,
+   "Unit 1 is how the guide is built."
+  ],
+  [
+   2.075,
+   2.237,
+   "The books already design most of this."
+  ],
+  [
+   4.312,
+   8.137,
+   "Cloud Boundary and Landing Zone builds the management group hierarchy, the boundary policies, the provisioning loop, and who owns the boundary."
+  ],
+  [
+   12.45,
+   5.162,
+   "Security Operations and Telemetry chooses the posture tool on each cloud."
+  ],
+  [
+   17.613,
+   4.625,
+   "Network and Transport owns the agency's network edge and TIC."
+  ],
+  [
+   22.238,
+   4.938,
+   "D N S, DHCP and eye-pam owns D N S authority."
+  ],
+  [
+   27.175,
+   4.35,
+   "Governance, Drift and Evidence explains why drift is the threat."
+  ],
+  [
+   31.525,
+   21.625,
+   "What none of them gives is the service-by-service engineering of the Azure controls a Zero Trust assessment tests: DDoS protection on every public I P, a web application firewall in prevention mode, origins only the edge can reach, egress through an inspecting firewall, pass reachable only privately, and keys behind role-based access."
+  ],
+  [
+   53.15,
+   5.112,
+   "The guide does that, in ten steps, and links to the books instead of restating them."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.938,
+   "Two more things from the guide's opening."
+  ],
+  [
+   1.988,
+   1.312,
+   "First, labels."
+  ],
+  [
+   3.3,
+   11.512,
+   "Each step carries an authority label: Mandated only where a federal source requires it, Microsoft-recommended where Learn recommends it, and Risk-based recommended where it's the program's own position."
+  ],
+  [
+   14.812,
+   3.312,
+   "Design guidance marks the program's choices in prose."
+  ],
+  [
+   18.125,
+   8.838,
+   "And a control the tenant isn't licensed for, or a feature a cloud doesn't offer, is a licensing or environment decision, not a failed control."
+  ],
+  [
+   26.962,
+   6.4,
+   "An assessment test that can't run against it is Skipped, not Fail, as Zero Trust and Assessment sets out."
+  ],
+  [
+   33.362,
+   1.425,
+   "Second, order."
+  ],
+  [
+   34.788,
+   2.263,
+   "Steps 1 and 2 come first."
+  ],
+  [
+   37.05,
+   5.275,
+   "Steps 3 to 8 can run in parallel by workload once the inventory exists."
+  ],
+  [
+   42.325,
+   4.875,
+   "Step 9 turns each of them into policy, and Step 10 runs from the start."
+  ],
+  [
+   47.2,
+   9.95,
+   "This path follows that order: this module is Steps 1 and 2, the next three modules pair Steps 3 to 8, and Module 5 is Steps 9 and 10."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.362,
+   "Unit 2 is the guide's Step 1, the landing-zone security baseline."
+  ],
+  [
+   4.412,
+   2.5,
+   "It adds four things on top of the landing zone."
+  ],
+  [
+   6.912,
+   11.675,
+   "First, protect the hierarchy, with the command from Learn's page, Protect your resource hierarchy: creating management groups needs authorization, and new subscriptions land in a default group."
+  ],
+  [
+   18.587,
+   7.638,
+   "Second, assign the Microsoft cloud security benchmark and the fed-ramp initiative at the intermediate root, in do-not-enforce mode."
+  ],
+  [
+   26.225,
+   6.65,
+   "Learn's Azure Policy assignment structure page says that mode evaluates compliance without enforcing the effect."
+  ],
+  [
+   32.875,
+   8.475,
+   "Keep it there for at least one twenty-four-hour evaluation cycle and one compliance review with the I S S O; Step 9 enforces."
+  ],
+  [
+   41.35,
+   4.25,
+   "Third, every hub resource sends its logs to the workspace."
+  ],
+  [
+   45.6,
+   5.05,
+   "Fourth, Defender for Cloud on every subscription, with continuous export."
+  ],
+  [
+   50.65,
+   4.325,
+   "Rollback is one command, deleting the assignment, in minutes."
+  ],
+  [
+   54.975,
+   5.75,
+   "Nothing at the root is excluded; exemptions come only through Step 9, with an expiry."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.888,
+   "Unit 3 is Step 2, the public exposure inventory."
+  ],
+  [
+   3.938,
+   11.275,
+   "Learn's page, Secure your Azure DDoS Protection deployment, recommends an inventory of every public I P and its protection status, kept with Resource Graph, and a quarterly review."
+  ],
+  [
+   15.213,
+   12.988,
+   "The guide's four queries list public I Ps with their DDoS state, Front Door profiles, application gateways with their web application firewall policy, and pass resources whose public network access isn't disabled."
+  ],
+  [
+   28.2,
+   3.675,
+   "The first is built from Learn's starter Resource Graph query."
+  ],
+  [
+   31.875,
+   10.3,
+   "The register then adds what the queries can't: the owner, the D N S names and certificates that point at each exposure, and whether a web application firewall covers it."
+  ],
+  [
+   42.175,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   43.337,
+   7.625,
+   "The public network access query is a starting list, not a complete one, because the property's name and values vary by service."
+  ],
+  [
+   50.962,
+   6.963,
+   "And the register is a map of the attack surface: it stays inside the boundary, never in a public repository."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   3.25,
+   "The workbook's baseline is G C C Moderate."
+  ],
+  [
+   4.612,
+   12.312,
+   "Microsoft 365 G C C pairs with commercial Azure, so a G C C agency's subscriptions are usually commercial, and the guide's commands run as written, with the cloud set to Azure Cloud."
+  ],
+  [
+   16.925,
+   13.738,
+   "Azure Government is a side note: it pairs with G C C High and D O D. Learn's page, Compare Azure Government and global Azure, says a service available there has all its features unless the page lists a variation."
+  ],
+  [
+   30.663,
+   18.675,
+   "The differences that matter for this module: the endpoints differ, with Resource Manager at management dot U S gov cloud A P I dot net; the landing zone accelerators aren't supported unmodified, so the code has to be adapted; and Azure Lighthouse has no pim for delegated access and no delegation across clouds."
+  ],
+  [
+   49.337,
+   2.925,
+   "Later modules name the gaps for their own steps."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   9.9,
+   "The guide also compares the same controls on other clouds, because an agency's estate spans them, and its H R platform may run on Oracle Cloud Infrastructure."
+  ],
+  [
+   9.95,
+   10.525,
+   "For layer three and four DDoS: Azure's infrastructure, Network or I P Protection; AWS Shield Standard and Advanced; and Google Cloud Armor."
+  ],
+  [
+   20.475,
+   1.712,
+   "Oracle's isn't compared."
+  ],
+  [
+   22.188,
+   17.125,
+   "For a web application firewall: Azure W A F on Front Door and Application Gateway; AWS W A F; Cloud Armor security policies with the OWASP core rule set; and O C I W A F, as a regional policy on a load balancer or at the edge."
+  ],
+  [
+   39.312,
+   12.775,
+   "For an inspecting firewall: Azure Firewall Premium, and O C I Network Firewall, built on Palo Alto Networks, with intrusion detection and prevention, TLS inspection and URL filtering."
+  ],
+  [
+   52.087,
+   6.6,
+   "For private access to pass: Private Link, Private Service Connect, and O C I private endpoints."
+  ],
+  [
+   58.688,
+   3.175,
+   "Each provider's own documentation carries the build."
+  ],
+  [
+   61.862,
+   6.425,
+   "O C I Government Cloud availability of its W A F and Network Firewall isn't yet specified."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.525,
+   "The lab runs the guide's own checks in a test subscription, never production."
+  ],
+  [
+   4.575,
+   7.638,
+   "The guide has no kit or developer workbook yet, so there's no fixture lab; this is Lab 2, and the authors haven't run it."
+  ],
+  [
+   12.213,
+   6.287,
+   "You need a test subscription where someone has applied Step 1 to a pilot management group, and Reader on that group."
+  ],
+  [
+   18.5,
+   2.712,
+   "Values you supply are in angle brackets."
+  ],
+  [
+   21.212,
+   7.375,
+   "Step one signs in to the cloud the subscription lives in and adds the two Azure C L I extensions the guide needs."
+  ],
+  [
+   28.587,
+   3.35,
+   "Step two lists the policy assignments at the pilot group."
+  ],
+  [
+   31.938,
+   4.875,
+   "The guide's Validate step says you should see the initiatives in do-not-enforce mode."
+  ],
+  [
+   36.812,
+   13.8,
+   "Step three lists the platform resources that need a diagnostic setting: firewalls, application gateways, Front Door profiles, key vaults and public I Ps. Step four takes one of them and lists its diagnostic settings."
+  ],
+  [
+   50.612,
+   6.188,
+   "Each should send its logs to the platform team's workspace; one with none is a gap for the platform owner."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   14.2,
+   "Step five makes a folder for the inventory and runs the guide's four Step 2 queries, writing each to a J SON file: public I Ps, Front Door profiles, application gateways, and pass with public access on."
+  ],
+  [
+   14.25,
+   2.462,
+   "The full commands are on the module page."
+  ],
+  [
+   16.712,
+   3.175,
+   "Step six finds the public I Ps with no owner."
+  ],
+  [
+   19.887,
+   9.525,
+   "That filter is the path's own, not the guide's: it reads the data array that the Resource Graph extension writes, and keeps the rows whose owner tag is empty."
+  ],
+  [
+   29.413,
+   6.138,
+   "The guide's Validate step says every row should have an owner, or each ownerless row should have a ticket."
+  ],
+  [
+   35.55,
+   4.062,
+   "Module 5 counts these rows again, to compute the metrics."
+  ],
+  [
+   39.612,
+   1.625,
+   "Step seven backs it out."
+  ],
+  [
+   41.237,
+   7.062,
+   "The lab created nothing in Azure, but the out folder is a map of the test subscription's attack surface, so delete it."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.425,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five, as the guide's requirements table maps it."
+  ],
+  [
+   8.475,
+   14.15,
+   "Step 1 supports C M two, baseline configuration, C M six, configuration settings, and C A seven, continuous monitoring, aligned with the fed-ramp twenty X key security indicators the guide names."
+  ],
+  [
+   22.625,
+   4.225,
+   "The evidence is the initiative assignments and the compliance export."
+  ],
+  [
+   26.85,
+   11.812,
+   "Step 2 supports C M eight, system component inventory, and S C seven, boundary protection; its evidence is the dated register, reconciled with Defender for Cloud."
+  ],
+  [
+   38.663,
+   2.075,
+   "The steps support these controls."
+  ],
+  [
+   40.737,
+   5.938,
+   "The organization still sets their parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   46.675,
+   6.875,
+   "The key security indicators are written for cloud service providers; the agency lines its own evidence up with them."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.825,
+   "First: why does Step 1 assign the security initiatives in do-not-enforce mode?"
+  ],
+  [
+   6.85,
+   11.588,
+   "The answer is b: to evaluate compliance without enforcing the effect, until at least one evaluation cycle and a compliance review with the I S S O. Step 9 enforces."
+  ],
+  [
+   18.438,
+   2.8,
+   "Second: where does the exposure register liv?"
+  ],
+  [
+   21.238,
+   5.162,
+   "The answer is b, inside the boundary, because it's a map of the attack surface."
+  ],
+  [
+   26.4,
+   2.413,
+   "It never goes in a public repository."
+  ],
+  [
+   28.812,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   4.112,
+   "You saw how the guide divides the work with the books, and how its labels work."
+  ],
+  [
+   4.987,
+   5.05,
+   "You checked the baseline's initiatives in audit at the pilot group, and the platform logs."
+  ],
+  [
+   10.037,
+   3.788,
+   "You built the exposure register, with an owner on every row."
+  ],
+  [
+   13.825,
+   7.612,
+   "And you saw what differs in Azure Government, and the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure."
+  ],
+  [
+   21.438,
+   14.637,
+   "The evidence an I S S O keeps from this module: the hierarchy settings and initiative assignment exports, policy compliance in the workspace, the query text and the dated register, and its reconciliation with Defender for Cloud."
+  ],
+  [
+   36.075,
+   9.3,
+   "Next is Module 2: DDoS protection on every public I P in that register, and the web application firewall, from detection to prevention."
+  ]
+ ]
+}

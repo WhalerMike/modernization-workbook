@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.214
+Welcome to Module 1 of the Azure
+Security Engineering learning path:
+
+2
+00:00:04.214 --> 00:00:06.625
+the baseline and the exposure register.
+
+3
+00:00:06.625 --> 00:00:09.138
+A landing zone decides
+what can be deployed.
+
+4
+00:00:09.138 --> 00:00:12.815
+It doesn't decide what the internet
+can reach, and nothing later in
+
+5
+00:00:12.815 --> 00:00:16.424
+this path can be proved complete
+without a list of what's exposed.
+
+6
+00:00:16.424 --> 00:00:21.198
+In this module you learn how the Azure
+Security Engineering implementation guide is
+
+7
+00:00:21.198 --> 00:00:25.635
+put together, add the security settings
+the baseline needs on top of the landing
+
+8
+00:00:25.635 --> 00:00:29.937
+zone, and build the exposure register
+that every later module checks against.
+
+9
+00:00:29.937 --> 00:00:34.244
+It covers Steps 1 and 2 of the guide,
+and takes about fifty minutes,
+
+10
+00:00:34.244 --> 00:00:36.980
+plus a lab in your own test subscription.
