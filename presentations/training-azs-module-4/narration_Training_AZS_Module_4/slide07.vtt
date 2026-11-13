@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.163
+Two more things.
+
+2
+00:00:01.163 --> 00:00:03.475
+First, a suspected compromise.
+
+3
+00:00:03.475 --> 00:00:05.917
+Learn's page, Secure your Azure Key Vault,
+
+4
+00:00:05.917 --> 00:00:10.062
+says to rotate and migrate dependents
+before disabling the old key,
+
+5
+00:00:10.062 --> 00:00:14.725
+because disabling it first takes
+dependent databases and storage offline.
+
+6
+00:00:14.725 --> 00:00:16.687
+The guide lists that as a danger.
+
+7
+00:00:16.687 --> 00:00:20.376
+Back up the keys that can't be
+recreated, and test a restore.
+
+8
+00:00:20.376 --> 00:00:22.425
+Second, where agencies are.
+
+9
+00:00:22.425 --> 00:00:26.789
+In commercial Azure, which a G C C
+tenant uses, the zone names are the
+
+10
+00:00:26.789 --> 00:00:31.638
+ones in the commands, such as private
+link dot vault core dot azure dot net.
+
+11
+00:00:31.638 --> 00:00:33.824
+As a side note for Azure Government,
+
+12
+00:00:33.824 --> 00:00:37.669
+Learn's private endpoint D N S
+page gives different zone names,
+
+13
+00:00:37.669 --> 00:00:41.515
+such as private link dot vault core
+dot U S gov cloud A P I dot net,
+
+14
+00:00:41.515 --> 00:00:45.587
+so any policy that registers
+records needs the government names,
+
+15
+00:00:45.587 --> 00:00:48.075
+and Key Vault's own endpoint differs too.
+
+16
+00:00:48.075 --> 00:00:53.323
+On other clouds, the guide names Google
+Cloud's Private Service Connect,
+
+17
+00:00:53.323 --> 00:00:58.900
+and O C I private endpoints, a private I
+P in a V C N subnet for an Oracle service.

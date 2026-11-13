@@ -1,0 +1,92 @@
+[
+ {
+  "slide": 6,
+  "title": "Unit 2: the landing-zone security baseline, in audit",
+  "links": [
+   {
+    "text": "Protect your resource hierarchy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#protect-resource-hierarchy"
+   },
+   {
+    "text": "Azure Policy assignment structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-assignment-structure"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Unit 3: the exposure register, from Resource Graph",
+  "links": [
+   {
+    "text": "Starter Resource Graph query samples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#resource-graph-starter-queries"
+   },
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Where agencies are: GCC uses commercial Azure",
+  "links": [
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The federal requirement and evidence for Module 1",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Sources: Module 1 deck",
+  "links": [
+   {
+    "text": "Protect your resource hierarchy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#protect-resource-hierarchy"
+   },
+   {
+    "text": "Azure Policy assignment structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-assignment-structure"
+   },
+   {
+    "text": "Starter Resource Graph query samples",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#resource-graph-starter-queries"
+   },
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   },
+   {
+    "text": "Compare Azure Government and global Azure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

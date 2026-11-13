@@ -164,6 +164,37 @@ The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixt
 
 : Defender XDR: labs by module {.striped .hover}
 
+## The Global Secure Access learning path {#gsa}
+
+[The learning path](global-secure-access/index.md) · [its implementation guide](../books/guides/global-secure-access-implementation.md)
+
+The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixtures: each module's lab runs the guide's own commands and Validate steps in a test tenant.
+
+| Module | Lab 2, a test tenant |
+|---|---|
+| [Module 1: Decide, design and log first](global-secure-access/01-decide-design-and-log-first.md) | [Lab 2](global-secure-access/01-decide-design-and-log-first.md#gsa-m1-lab-2) |
+| [Module 2: The client and Microsoft traffic](global-secure-access/02-the-client-and-microsoft-traffic.md) | [Lab 2](global-secure-access/02-the-client-and-microsoft-traffic.md#gsa-m2-lab-2) |
+| [Module 3: The compliant network and tenant restrictions](global-secure-access/03-compliant-network-and-tenant-restrictions.md) | [Lab 2](global-secure-access/03-compliant-network-and-tenant-restrictions.md#gsa-m3-lab-2) |
+| [Module 4: Private applications and administrative paths](global-secure-access/04-private-apps-and-admin-paths.md) | [Lab 2](global-secure-access/04-private-apps-and-admin-paths.md#gsa-m4-lab-2) |
+| [Module 5: Internet Access and TLS inspection](global-secure-access/05-internet-access-and-tls-inspection.md) | [Lab 2](global-secure-access/05-internet-access-and-tls-inspection.md#gsa-m5-lab-2) |
+| [Module 6: Rings, rollback and the evidence package](global-secure-access/06-rings-rollback-and-the-evidence-package.md) | [Lab 2](global-secure-access/06-rings-rollback-and-the-evidence-package.md#gsa-m6-lab-2) |
+
+: Global Secure Access: labs by module {.striped .hover}
+
+## The Azure Security Engineering learning path {#azs}
+
+[The learning path](azure-security/index.md) · [its implementation guide](../books/guides/azure-security-implementation.md). The guide has no kit or developer workbook yet, so there is no Lab 1: each module's Lab 2 runs the guide's own checks in a test subscription.
+
+| Module | Lab 1, no tenant | Lab 2 |
+|---|---|---|
+| [Module 1: The baseline and the exposure register](azure-security/01-the-baseline-and-the-exposure-register.md) | — | [Lab 2](azure-security/01-the-baseline-and-the-exposure-register.md#azs-m1-lab-2) |
+| [Module 2: DDoS protection and the web application firewall](azure-security/02-ddos-protection-and-the-waf.md) | — | [Lab 2](azure-security/02-ddos-protection-and-the-waf.md#azs-m2-lab-2) |
+| [Module 3: The edge and the egress](azure-security/03-the-edge-and-the-egress.md) | — | [Lab 2](azure-security/03-the-edge-and-the-egress.md#azs-m3-lab-2) |
+| [Module 4: Private Link, DNS and Key Vault](azure-security/04-private-link-dns-and-key-vault.md) | — | [Lab 2](azure-security/04-private-link-dns-and-key-vault.md#azs-m4-lab-2) |
+| [Module 5: Policy, drift and evidence](azure-security/05-policy-drift-and-evidence.md) | — | [Lab 2](azure-security/05-policy-drift-and-evidence.md#azs-m5-lab-2) |
+
+: Azure Security Engineering: labs by module {.striped .hover}
+
 ## What Lab 2 needs {#lab-2-environments}
 
 Each Lab 2 names its environment and its prerequisites in its first paragraph. Use synthetic data like the kit's fixtures, and never production:

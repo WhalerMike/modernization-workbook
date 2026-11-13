@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:04.995
+Learn's page, Integrate Key
+Vault with Azure Private Link,
+
+3
+00:00:04.995 --> 00:00:09.112
+is blunt about where private
+endpoints fail: name resolution.
+
+4
+00:00:09.112 --> 00:00:13.916
+The private D N S zone has to exist
+and be linked to the virtual network,
+
+5
+00:00:13.916 --> 00:00:18.551
+it has to hold the record, and
+on-premises D N S has to forward to Azure.
+
+6
+00:00:18.551 --> 00:00:23.188
+Miss any of the three and clients
+quietly keep using the public address.
+
+7
+00:00:23.188 --> 00:00:26.908
+And the vault: Learn's page,
+Secure your Azure Key Vault,
+
+8
+00:00:26.908 --> 00:00:32.658
+recommends role-based access, not legacy
+access policies; pim for administrators;
+
+9
+00:00:32.658 --> 00:00:35.364
+purge protection; rotation; audit logs;
+
+10
+00:00:35.364 --> 00:00:39.000
+and private endpoints with
+public access disabled.
+
+11
+00:00:39.000 --> 00:00:43.686
+So this module builds central private
+D N S, turns public access off,
+
+12
+00:00:43.686 --> 00:00:46.839
+and puts each vault
+behind role-based access,
+
+13
+00:00:46.839 --> 00:00:51.580
+with purge protection, a closed
+firewall, rotation and an audit log.

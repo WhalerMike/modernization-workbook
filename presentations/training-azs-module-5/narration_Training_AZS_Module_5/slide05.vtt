@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.512
+Exemptions expire.
+
+2
+00:00:01.512 --> 00:00:06.162
+Learn's page on the Azure Policy
+exemption structure gives two categories:
+
+3
+00:00:06.162 --> 00:00:09.462
+Mitigated, when the policy's
+intent is met another way,
+
+4
+00:00:09.462 --> 00:00:12.762
+and Waiver, when non-compliance
+is accepted for a time.
+
+5
+00:00:12.762 --> 00:00:17.124
+Every exemption gets an expiry and
+a reference to its decision record.
+
+6
+00:00:17.124 --> 00:00:21.845
+And once it expires, Learn says it's kept
+for the record but no longer honored,
+
+7
+00:00:21.845 --> 00:00:24.662
+so the resource shows
+as non-compliant again.
+
+8
+00:00:24.662 --> 00:00:29.775
+The guide adds a rule: exemptions
+only, never not-scopes for convenience.
+
+9
+00:00:29.775 --> 00:00:32.795
+Each month, export
+compliance: the summary,
+
+10
+00:00:32.795 --> 00:00:36.937
+and the list of non-compliant
+resources, filed as evidence.
+
+11
+00:00:36.937 --> 00:00:39.736
+Rollback, if enforcement breaks something,
+
+12
+00:00:39.736 --> 00:00:43.000
+is the assignment back to
+do-not-enforce, in minutes.
+
+13
+00:00:43.000 --> 00:00:48.460
+One caution: resources a remediation task
+created stay until someone removes them.

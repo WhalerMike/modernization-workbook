@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.105
+The federal requirement, from NIST special
+publication eight hundred fifty-three,
+
+2
+00:00:05.105 --> 00:00:08.475
+revision five, as the guide's
+requirements table maps it.
+
+3
+00:00:08.475 --> 00:00:12.756
+Step 7 supports S C seven,
+boundary protection, and A C four,
+
+4
+00:00:12.756 --> 00:00:17.037
+information flow enforcement;
+its evidence is the zones,
+
+5
+00:00:17.037 --> 00:00:21.500
+the endpoints, and the public-access
+state of each resource.
+
+6
+00:00:21.500 --> 00:00:26.547
+Step 8 supports S C twelve, cryptographic
+key establishment and management,
+
+7
+00:00:26.547 --> 00:00:30.632
+S C twenty-eight, protection of
+information at rest, and I A five,
+
+8
+00:00:30.632 --> 00:00:34.718
+authenticator management; its
+evidence is the vault posture,
+
+9
+00:00:34.718 --> 00:00:37.762
+the rotation policies,
+and the audit event log.
+
+10
+00:00:37.762 --> 00:00:40.498
+Each row lines up with the fed-ramp twenty
+
+11
+00:00:40.498 --> 00:00:43.313
+X key security indicators the guide names.
+
+12
+00:00:43.313 --> 00:00:48.254
+The steps support these controls; the
+organization still sets their parameters,
+
+13
+00:00:48.254 --> 00:00:51.480
+and the assessor decides
+whether each is satisfied.

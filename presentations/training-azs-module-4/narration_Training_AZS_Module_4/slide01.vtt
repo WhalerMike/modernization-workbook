@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.055
+Welcome to Module 4 of the Azure
+Security Engineering learning path:
+
+2
+00:00:05.055 --> 00:00:07.250
+Private Link, D N S and Key Vault.
+
+3
+00:00:07.250 --> 00:00:12.688
+A private endpoint gives a pass resource
+an address inside the agency's network,
+
+4
+00:00:12.688 --> 00:00:15.325
+and D N S decides whether anyone uses it.
+
+5
+00:00:15.325 --> 00:00:19.000
+The secrets and keys a workload
+needs belong in a vault that
+
+6
+00:00:19.000 --> 00:00:22.975
+only its managed identity and
+eligible administrators can use.
+
+7
+00:00:22.975 --> 00:00:27.554
+This module takes pass off the internet,
+starting with Key Vault, and puts
+
+8
+00:00:27.554 --> 00:00:32.362
+the vault itself behind role-based
+access, purge protection and an audit log.
+
+9
+00:00:32.362 --> 00:00:37.591
+It covers Steps 7 and 8 of the Azure
+Security Engineering implementation guide,
+
+10
+00:00:37.591 --> 00:00:42.240
+and takes about fifty minutes, plus
+a lab in your own test subscription.

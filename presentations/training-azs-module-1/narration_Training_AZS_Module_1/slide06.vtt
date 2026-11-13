@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.412
+Unit 2 is the guide's Step 1, the
+landing-zone security baseline.
+
+2
+00:00:04.412 --> 00:00:06.912
+It adds four things on
+top of the landing zone.
+
+3
+00:00:06.912 --> 00:00:10.706
+First, protect the hierarchy, with
+the command from Learn's page,
+
+4
+00:00:10.706 --> 00:00:15.814
+Protect your resource hierarchy: creating
+management groups needs authorization,
+
+5
+00:00:15.814 --> 00:00:18.587
+and new subscriptions
+land in a default group.
+
+6
+00:00:18.587 --> 00:00:22.265
+Second, assign the Microsoft
+cloud security benchmark and the
+
+7
+00:00:22.265 --> 00:00:26.225
+fed-ramp initiative at the intermediate
+root, in do-not-enforce mode.
+
+8
+00:00:26.225 --> 00:00:29.550
+Learn's Azure Policy assignment
+structure page says that
+
+9
+00:00:29.550 --> 00:00:32.875
+mode evaluates compliance
+without enforcing the effect.
+
+10
+00:00:32.875 --> 00:00:37.412
+Keep it there for at least one
+twenty-four-hour evaluation cycle
+
+11
+00:00:37.412 --> 00:00:41.350
+and one compliance review with
+the I S S O; Step 9 enforces.
+
+12
+00:00:41.350 --> 00:00:45.600
+Third, every hub resource sends
+its logs to the workspace.
+
+13
+00:00:45.600 --> 00:00:50.650
+Fourth, Defender for Cloud on every
+subscription, with continuous export.
+
+14
+00:00:50.650 --> 00:00:54.975
+Rollback is one command, deleting
+the assignment, in minutes.
+
+15
+00:00:54.975 --> 00:00:57.174
+Nothing at the root is excluded;
+
+16
+00:00:57.174 --> 00:01:00.790
+exemptions come only through
+Step 9, with an expiry.

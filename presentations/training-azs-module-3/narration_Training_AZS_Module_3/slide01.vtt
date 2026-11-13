@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.801
+Welcome to Module 3 of the Azure Security
+
+2
+00:00:02.801 --> 00:00:06.200
+Engineering learning path:
+the edge and the egress.
+
+3
+00:00:06.200 --> 00:00:10.812
+Module 2 put a web application firewall
+in front of each web workload.
+
+4
+00:00:10.812 --> 00:00:13.614
+This module makes sure
+nothing can go around it,
+
+5
+00:00:13.614 --> 00:00:17.207
+and then turns to the other
+direction: traffic leaving Azure,
+
+6
+00:00:17.207 --> 00:00:22.237
+through Azure Firewall, with threat
+intelligence and intrusion detection denying.
+
+7
+00:00:22.237 --> 00:00:27.317
+It covers Steps 5 and 6 of the Azure
+Security Engineering implementation guide,
+
+8
+00:00:27.317 --> 00:00:32.140
+and takes about fifty-five minutes, plus
+a lab in your own test subscription.

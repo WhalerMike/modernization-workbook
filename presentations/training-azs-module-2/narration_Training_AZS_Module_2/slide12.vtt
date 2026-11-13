@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.105
+The federal requirement, from NIST special
+publication eight hundred fifty-three,
+
+2
+00:00:05.105 --> 00:00:08.475
+revision five, as the guide's
+requirements table maps it.
+
+3
+00:00:08.475 --> 00:00:12.952
+Step 3 supports S C five,
+denial-of-service protection, and S I four,
+
+4
+00:00:12.952 --> 00:00:18.696
+system monitoring, aligned with the fed-ramp
+twenty X key security indicators the
+
+5
+00:00:18.696 --> 00:00:21.568
+guide names; the evidence is the coverage,
+
+6
+00:00:21.568 --> 00:00:24.862
+the metrics and logs, and
+the simulation report.
+
+7
+00:00:24.862 --> 00:00:27.934
+The guide labels the
+control itself Mandated,
+
+8
+00:00:27.934 --> 00:00:33.429
+because S C five is in the Moderate baseline
+that FIPS two hundred requires, and the
+
+9
+00:00:33.429 --> 00:00:38.763
+way to meet it, DDoS Protection on every
+public I P, as Microsoft's recommendation.
+
+10
+00:00:38.763 --> 00:00:44.529
+Step 4 supports S C seven, boundary
+protection, and S I ten, information input
+
+11
+00:00:44.529 --> 00:00:48.155
+validation; its evidence
+is the policy exports,
+
+12
+00:00:48.155 --> 00:00:51.038
+the logs and the blocked test request.
+
+13
+00:00:51.038 --> 00:00:53.114
+The steps support these controls,
+
+14
+00:00:53.114 --> 00:00:56.350
+and the assessor decides
+whether each is satisfied.

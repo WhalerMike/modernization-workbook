@@ -65,3 +65,20 @@ Checked October 27, 2026; no personal data sent to any site.
 | S2 | "The function is pure derivation" → "The program's function", so it can't be read as the kit's | 1c | clarified | — |
 | S3 | `VIEW SERVER STATE`, and `VIEW SERVER PERFORMANCE STATE` on SQL Server 2022 and later, for the usage DMVs | Callout | verified | learn.microsoft.com/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-index-usage-stats-transact-sql; .../system-dynamic-management-objects (permissions table), fetched Oct 27, 2026 |
 | S4 | The kit's network signal sends [MC-SQLR] CLNT_UCAST_EX and parses SVR_RESP (0x05, two-byte length, `ServerName;…;InstanceName;…;IsClustered;…;Version;…;tcp;<port>;;`) | Kit only | verified | learn.microsoft.com/openspecs/windows_protocols/mc-sqlr/2e1560c9-5097-4023-9f5e-72b9ff1ec3b1, fetched Oct 27, 2026 |
+
+## Discovery permissions, November 13, 2026
+
+Checked November 13, 2026 against Microsoft Learn; no personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| P1 | Start Kit callout listed one permission; now lists all three the kit needs (usage DMVs; every login; linked logins), matching the Start Kit README | Start Kit callout | corrected (incomplete) | sys-dm-db-index-usage-stats-transact-sql (2022+: VIEW SERVER PERFORMANCE STATE); sys-server-principals-transact-sql ("Viewing other logins requires ALTER ANY LOGIN, or a permission on the login"); sys-linked-logins-transact-sql |
+| P2 | Grant the permissions or `##MS_DefinitionReader##`, not `##MS_SecurityDefinitionReader##`, which carries VIEW ANY CRYPTOGRAPHICALLY SECURED DEFINITION (password hashes) | Start Kit callout | added; matches Chapter 13 | sql/relational-databases/security/authentication-access/server-level-roles |
+| P3 | Azure Migrate Windows credential: administrator, or Remote Management Users + Performance Monitor Users + Performance Log Users, CIMV2 permissions if UAC filters; WinRM 5986, fallback 5985; agentless dependency analysis needs administrator | 1b | added | azure/migrate/tutorial-discover-physical; azure/migrate/migrate-support-matrix-physical |
+| P4 | Azure Migrate SQL credential: sysadmin "for simplicity" or the custom login script (VIEW SERVER STATE, VIEW ANY DEFINITION, VIEW DATABASE STATE, xp_instance_regread, xp_regenumkeys, msdb SELECTs, user per database except tempdb and model); provisioning utility needs sysadmin | 1b | added | azure/migrate/migrate-support-matrix-physical (configure the custom login); azure/migrate/least-privilege-credentials |
+| P5 | Prefer a Windows account to a SQL login; vaulted, rotated password; remove after the assessment | 1b | restated-as-design (least-privilege and IA-5 practice) | — |
+| P6 | Read access to AD finds candidates only; the inventory needs no secret or confidential attribute (`msDS-ManagedPassword` returns clear-text passwords) | Rights each depth needs | added | windows/win32/adschema/a-msds-managedpassword; Book 02 Ch07 (confidential attributes) |
+| P7 | Host depth: only Administrators have WMI Remote Enable and DCOM remote access by default; remote non-admin users get no rights on service objects, and EnumServicesStatusEx silently omits services the caller can't query | Rights each depth needs | added | windows/win32/wmisdk/securing-a-remote-wmi-connection; windows/win32/services/service-security-and-access-rights |
+| P8 | JEA endpoint as the least-privilege host alternative, run as a virtual account or gMSA | Rights each depth needs | added | powershell/scripting/security/remoting/jea/overview |
+| P9 | Arc depth: local administrator to install, onboarding roles, extension grants incl. msdb writes; Reader to view | Rights each depth needs | added; details in R04 | sql/sql-server/azure-arc/prerequisites; configure-windows-accounts-agent; Chapter 13 |
+| P10 | AC-6, CM-8 and CM-8(1), IA-5 mapping with "supports" wording | Rights each depth needs | restated-as-design | NIST SP 800-53 Rev 5 control titles |

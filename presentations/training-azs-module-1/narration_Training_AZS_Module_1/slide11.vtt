@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.034
+Step five makes a folder for the inventory
+and runs the guide's four Step 2 queries,
+
+2
+00:00:06.034 --> 00:00:10.320
+writing each to a J SON file:
+public I Ps, Front Door profiles,
+
+3
+00:00:10.320 --> 00:00:14.250
+application gateways, and
+pass with public access on.
+
+4
+00:00:14.250 --> 00:00:16.712
+The full commands are on the module page.
+
+5
+00:00:16.712 --> 00:00:19.887
+Step six finds the public
+I Ps with no owner.
+
+6
+00:00:19.887 --> 00:00:24.342
+That filter is the path's own, not the
+guide's: it reads the data array that
+
+7
+00:00:24.342 --> 00:00:29.412
+the Resource Graph extension writes, and
+keeps the rows whose owner tag is empty.
+
+8
+00:00:29.412 --> 00:00:33.024
+The guide's Validate step says
+every row should have an owner,
+
+9
+00:00:33.024 --> 00:00:35.551
+or each ownerless row
+should have a ticket.
+
+10
+00:00:35.551 --> 00:00:39.612
+Module 5 counts these rows
+again, to compute the metrics.
+
+11
+00:00:39.612 --> 00:00:41.237
+Step seven backs it out.
+
+12
+00:00:41.237 --> 00:00:44.654
+The lab created nothing in
+Azure, but the out folder is a
+
+13
+00:00:44.654 --> 00:00:48.360
+map of the test subscription's
+attack surface, so delete it.

@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.663
+Next, TLS.
+
+2
+00:00:01.663 --> 00:00:06.160
+Learn's internet ingress design
+guide says TLS one point two or one
+
+3
+00:00:06.160 --> 00:00:10.575
+point three only, and on Application
+Gateway, a predefined policy.
+
+4
+00:00:10.575 --> 00:00:14.125
+The guide's command, from
+Learn's Az PowerShell page,
+
+5
+00:00:14.125 --> 00:00:18.267
+sets the predefined policy twenty
+twenty-two oh one oh one S.
+
+6
+00:00:18.267 --> 00:00:23.169
+Front Door Standard and Premium require
+H T T P S on every custom domain,
+
+7
+00:00:23.169 --> 00:00:26.212
+with custom certificates
+kept in Key Vault.
+
+8
+00:00:26.212 --> 00:00:28.400
+Then health probes and failover.
+
+9
+00:00:28.400 --> 00:00:33.223
+Learn's Front Door quickstart builds an
+origin group with probes and two origins in
+
+10
+00:00:33.223 --> 00:00:36.019
+different regions, then
+stops one origin to show
+
+11
+00:00:36.019 --> 00:00:39.025
+the application stays
+available through the other.
+
+12
+00:00:39.025 --> 00:00:41.475
+The program exercises that twice a year.
+
+13
+00:00:41.475 --> 00:00:43.202
+Cutting over is gentle too:
+
+14
+00:00:43.202 --> 00:00:47.992
+run Front Door beside the old public
+endpoint and compare logs before you
+
+15
+00:00:47.992 --> 00:00:52.625
+change D N S, then close the origin's
+public path one application at a time.
+
+16
+00:00:52.625 --> 00:00:57.260
+Rollback removes the access
+restriction and restores D N S.

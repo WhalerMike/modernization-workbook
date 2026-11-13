@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.463
+You built central private D N S,
+with zone groups placed by policy.
+
+3
+00:00:05.463 --> 00:00:08.541
+You proved the vault resolves
+to a private address
+
+4
+00:00:08.541 --> 00:00:11.838
+inside the network and
+refuses requests from outside.
+
+5
+00:00:11.838 --> 00:00:17.313
+You checked its role-based access, purge
+protection, firewall and rotation policy.
+
+6
+00:00:17.313 --> 00:00:20.912
+And you found an allowed and a
+denied read in its audit log.
+
+7
+00:00:20.912 --> 00:00:24.959
+The evidence an I S S O keeps from
+this module: the zones, links,
+
+8
+00:00:24.959 --> 00:00:30.657
+endpoints and zone groups; policy compliance
+for the private D N S and public-access
+
+9
+00:00:30.657 --> 00:00:35.033
+policies; the two lookup results
+and the refused public request;
+
+10
+00:00:35.033 --> 00:00:40.318
+the vault properties, role assignments
+at vault scope and rotation policies;
+
+11
+00:00:40.318 --> 00:00:43.951
+the audit event rows; and the
+restore test when it runs.
+
+12
+00:00:43.951 --> 00:00:46.963
+Next is Module 5: policy,
+drift and evidence,
+
+13
+00:00:46.963 --> 00:00:51.670
+holding all of it in place and
+handing the assessor what they need.

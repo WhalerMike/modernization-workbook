@@ -339,6 +339,23 @@ website:
             - docs/training/defender-xdr/03-exposure-and-incidents.md
             - docs/training/defender-xdr/04-hunting-detections-and-identity-signals.md
             - docs/training/defender-xdr/05-automation-operations-and-evidence.md
+        - section: "Global Secure Access learning path"
+          href: docs/training/global-secure-access/index.md
+          contents:
+            - docs/training/global-secure-access/01-decide-design-and-log-first.md
+            - docs/training/global-secure-access/02-the-client-and-microsoft-traffic.md
+            - docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.md
+            - docs/training/global-secure-access/04-private-apps-and-admin-paths.md
+            - docs/training/global-secure-access/05-internet-access-and-tls-inspection.md
+            - docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.md
+        - section: "Azure Security Engineering learning path"
+          href: docs/training/azure-security/index.md
+          contents:
+            - docs/training/azure-security/01-the-baseline-and-the-exposure-register.md
+            - docs/training/azure-security/02-ddos-protection-and-the-waf.md
+            - docs/training/azure-security/03-the-edge-and-the-egress.md
+            - docs/training/azure-security/04-private-link-dns-and-key-vault.md
+            - docs/training/azure-security/05-policy-drift-and-evidence.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md

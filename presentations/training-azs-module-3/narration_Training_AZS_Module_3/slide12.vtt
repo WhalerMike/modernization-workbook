@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.105
+The federal requirement, from NIST special
+publication eight hundred fifty-three,
+
+2
+00:00:05.105 --> 00:00:08.475
+revision five, as the guide's
+requirements table maps it.
+
+3
+00:00:08.475 --> 00:00:12.684
+Step 5 supports S C seven,
+boundary protection, S C eight,
+
+4
+00:00:12.684 --> 00:00:17.079
+transmission confidentiality
+and integrity, and C P two,
+
+5
+00:00:17.079 --> 00:00:21.475
+the contingency plan, which
+the failover test exercises.
+
+6
+00:00:21.475 --> 00:00:27.175
+Its evidence is the origin lock-down test,
+the TLS policy and the failover test.
+
+7
+00:00:27.175 --> 00:00:32.805
+Step 6 supports S C seven and its enhancement
+five, deny by default, and S I four,
+
+8
+00:00:32.805 --> 00:00:36.915
+system monitoring; its evidence
+is the firewall policy,
+
+9
+00:00:36.915 --> 00:00:39.775
+the routes and the denied test request.
+
+10
+00:00:39.775 --> 00:00:42.510
+Each row lines up with the fed-ramp twenty
+
+11
+00:00:42.510 --> 00:00:45.325
+X key security indicators the guide names.
+
+12
+00:00:45.325 --> 00:00:50.267
+The steps support these controls; the
+organization still sets their parameters,
+
+13
+00:00:50.267 --> 00:00:53.500
+and the assessor decides
+whether each is satisfied.

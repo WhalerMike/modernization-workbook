@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.438
+Measure protected coverage and
+effectiveness, not that a setting exists.
+
+2
+00:00:04.438 --> 00:00:06.762
+The guide's metrics are design guidance,
+
+3
+00:00:06.762 --> 00:00:10.213
+and each divides what's protected
+and tested by what exists.
+
+4
+00:00:10.213 --> 00:00:13.671
+Exposure ownership: register
+rows with an owner,
+
+5
+00:00:13.671 --> 00:00:16.438
+over all rows, target a hundred percent.
+
+6
+00:00:16.438 --> 00:00:20.492
+DDoS coverage: public I Ps with
+Network or I P Protection,
+
+7
+00:00:20.492 --> 00:00:23.577
+over public I Ps,
+excluding NAT gateway I Ps.
+
+8
+00:00:23.577 --> 00:00:29.747
+Web application firewall prevention coverage,
+origin lock-down, egress inspection,
+
+9
+00:00:29.747 --> 00:00:34.859
+private pass, vault posture, policy
+compliance, and exemption hygiene,
+
+10
+00:00:34.859 --> 00:00:38.825
+where the target is zero
+exemptions past their expiry.
+
+11
+00:00:38.825 --> 00:00:39.912
+Then closure.
+
+12
+00:00:39.912 --> 00:00:45.219
+A finding the guide addresses is ready
+for closure when every applicable control
+
+13
+00:00:45.219 --> 00:00:49.199
+state, Designed, Configured,
+Enforced, Evidenced and Operated,
+
+14
+00:00:49.199 --> 00:00:53.101
+has evidence; the authorizing
+official or assessor decides.
+
+15
+00:00:53.101 --> 00:00:57.975
+Findings from a Zero Trust assessment
+enter the closure chain that Zero Trust
+
+16
+00:00:57.975 --> 00:01:02.760
+and Assessment sets out, weighted by
+exposure and blast radius, not pass rate.

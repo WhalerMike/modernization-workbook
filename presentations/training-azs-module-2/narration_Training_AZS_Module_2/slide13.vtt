@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.975
+First: a public I P is
+attached to a NAT gateway.
+
+3
+00:00:05.975 --> 00:00:08.462
+What does DDoS Network
+Protection do for it?
+
+4
+00:00:08.462 --> 00:00:10.350
+The answer is b, nothing.
+
+5
+00:00:10.350 --> 00:00:14.590
+Learn's tier comparison says NAT
+gateway I Ps aren't supported,
+
+6
+00:00:14.590 --> 00:00:17.250
+so the guide lists them as an exclusion.
+
+7
+00:00:17.250 --> 00:00:21.225
+Second: a web application
+firewall policy shows Detection.
+
+8
+00:00:21.225 --> 00:00:23.275
+What happens to an attack request?
+
+9
+00:00:23.275 --> 00:00:26.900
+The answer is b: it's logged
+and forwarded to the backend.
+
+10
+00:00:26.900 --> 00:00:28.787
+Only prevention mode blocks.
+
+11
+00:00:28.787 --> 00:00:33.770
+The module page has three more questions,
+each linked to the unit that answers it.
