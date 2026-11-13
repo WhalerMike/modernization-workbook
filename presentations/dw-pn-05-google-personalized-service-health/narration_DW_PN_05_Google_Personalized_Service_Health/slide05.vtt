@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.862
+Here's the first gap, and
+it's built into Google's API.
+
+2
+00:00:03.862 --> 00:00:07.025
+The event's category
+has one value, incident.
+
+3
+00:00:07.025 --> 00:00:09.762
+Planned maintenance isn't
+in the resource at all.
+
+4
+00:00:09.762 --> 00:00:13.914
+So maintenance and retirements
+never arrive through this API,
+
+5
+00:00:13.914 --> 00:00:16.150
+and no amount of code changes that.
+
+6
+00:00:16.150 --> 00:00:18.500
+What the kit does is refuse to hide it.
+
+7
+00:00:18.500 --> 00:00:23.497
+Every Google notice is recorded as an
+incident, and the gap is written in the guide,
+
+8
+00:00:23.497 --> 00:00:26.704
+in this chapter and in the
+security officer's record,
+
+9
+00:00:26.704 --> 00:00:29.762
+and it shows in the weekly
+digest's provider table.
+
+10
+00:00:29.762 --> 00:00:33.087
+Google's maintenance reaches
+the project by other channels.
+
+11
+00:00:33.087 --> 00:00:35.068
+The danger is assuming it's covered,
+
+12
+00:00:35.068 --> 00:00:37.990
+and a maintenance window
+landing with nobody told.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.338
+The router implements a pattern
+the workbook already has.
+
+2
+00:00:03.338 --> 00:00:07.029
+Ticket-to-Machine, from
+Governance, Drift and Evidence,
+
+3
+00:00:07.029 --> 00:00:10.558
+turns a finding into a typed
+task with an owner, a lane,
+
+4
+00:00:10.558 --> 00:00:15.071
+and a request chain of five clauses:
+where it came from, who approves,
+
+5
+00:00:15.071 --> 00:00:19.912
+what to do, the re-read check that proves
+it was done, and the evidence kept.
+
+6
+00:00:19.912 --> 00:00:24.673
+Its finding contract sets four
+severities and their response windows:
+
+7
+00:00:24.673 --> 00:00:28.626
+immediate, one hour, twenty-four
+hours and seventy-two hours.
+
+8
+00:00:28.626 --> 00:00:30.675
+Be clear about what those windows are.
+
+9
+00:00:30.675 --> 00:00:33.910
+They're the program's design,
+not a federal requirement.

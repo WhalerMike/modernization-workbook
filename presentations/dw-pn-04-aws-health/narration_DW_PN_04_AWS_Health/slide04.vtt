@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.125
+Here's AWS's starting point.
+
+2
+00:00:02.125 --> 00:00:08.020
+The Health API reference defines the event:
+its service, its type code and category,
+
+3
+00:00:08.020 --> 00:00:10.274
+its region, its times, its status,
+
+4
+00:00:10.274 --> 00:00:14.088
+and newer fields such as
+actionability and personas.
+
+5
+00:00:14.088 --> 00:00:16.700
+The command line's describe
+events lists them.
+
+6
+00:00:16.700 --> 00:00:20.515
+A second operation returns each
+event's latest description,
+
+7
+00:00:20.515 --> 00:00:24.712
+one to ten events at a time, and a
+third names the affected resources.
+
+8
+00:00:24.712 --> 00:00:27.137
+The API needs a qualifying support plan,
+
+9
+00:00:27.137 --> 00:00:30.150
+or it answers with a
+subscription-required error.
+
+10
+00:00:30.150 --> 00:00:36.033
+And AWS's policy examples grant a wildcard
+over the describe actions; AWS publishes
+
+11
+00:00:36.033 --> 00:00:41.640
+no read-only managed policy for Health,
+and the full-access one includes writes.

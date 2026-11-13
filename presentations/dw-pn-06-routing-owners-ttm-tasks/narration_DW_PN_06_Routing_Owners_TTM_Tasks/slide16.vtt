@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.503
+Lab 2 sends one payload to a ServiceNow
+personal developer instance or a
+
+2
+00:00:04.503 --> 00:00:09.550
+sub-production instance, never production,
+with an endpoint you build to accept it.
+
+3
+00:00:09.550 --> 00:00:13.150
+Its shape is the agency's,
+and not yet specified here.
+
+4
+00:00:13.150 --> 00:00:16.049
+Put a token for a test
+integration user in the
+
+5
+00:00:16.049 --> 00:00:19.262
+environment for this session
+only, never in a file.
+
+6
+00:00:19.262 --> 00:00:23.143
+Then send the Azure retirement
+payload through the kit's sender,
+
+7
+00:00:23.143 --> 00:00:26.512
+which posts it as JSON with
+the token as a bearer token.
+
+8
+00:00:26.512 --> 00:00:29.310
+Open the record and check
+the assignment group,
+
+9
+00:00:29.310 --> 00:00:32.324
+the priority, the description
+and the five clauses.
+
+10
+00:00:32.324 --> 00:00:36.120
+Then delete the record, clear
+the token and delete the output.

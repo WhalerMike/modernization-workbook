@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.662
+Step 3 collects AWS from
+the day-one fixtures.
+
+2
+00:00:03.662 --> 00:00:06.699
+Five notices, four open,
+three needing action,
+
+3
+00:00:06.699 --> 00:00:09.325
+and every one valid against the schema.
+
+4
+00:00:09.325 --> 00:00:11.500
+Step 4 reads them as a table.
+
+5
+00:00:11.500 --> 00:00:16.069
+Two retirements, an instance retirement
+and a Lambda lifecycle event,
+
+6
+00:00:16.069 --> 00:00:19.062
+each with a due date and
+the affected resource.
+
+7
+00:00:19.062 --> 00:00:20.874
+Maintenance on a database.
+
+8
+00:00:20.874 --> 00:00:22.663
+A security notification.
+
+9
+00:00:22.663 --> 00:00:24.063
+And a closed incident.
+
+10
+00:00:24.063 --> 00:00:28.154
+Notice that every row but the incident
+names the resource it affects,
+
+11
+00:00:28.154 --> 00:00:31.940
+because the kit fetched the
+affected entities for every event.

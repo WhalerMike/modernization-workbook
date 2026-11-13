@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:09.500
+This is Chapter 7: the
+weekly digest, and evidence.
+
+4
+00:00:09.500 --> 00:00:14.062
+The digest is for the people who act;
+the evidence is for the people who check.
+
+5
+00:00:14.062 --> 00:00:18.337
+Both come from the same runs, so neither
+can drift from what was actually read.
+
+6
+00:00:18.337 --> 00:00:23.419
+We'll start from what the implementation
+guide asks the security officer to keep,
+
+7
+00:00:23.419 --> 00:00:26.984
+then read the digest's five
+sections, the evidence record,
+
+8
+00:00:26.984 --> 00:00:31.687
+the chain and the stage check, and walk
+two labs, the evidence and the dangers.
+
+9
+00:00:31.687 --> 00:00:33.263
+Two notes before we begin.
+
+10
+00:00:33.263 --> 00:00:36.625
+This chapter is a draft,
+awaiting the owner's review.
+
+11
+00:00:36.625 --> 00:00:40.200
+And the code is illustrative,
+tested against fixtures.

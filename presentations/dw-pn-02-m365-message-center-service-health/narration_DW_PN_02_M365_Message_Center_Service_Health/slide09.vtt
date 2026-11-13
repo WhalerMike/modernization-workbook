@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:03.200
+Developers maintain the collector.
+
+3
+00:00:03.200 --> 00:00:07.288
+The Microsoft 365 service
+owner owns this gate.
+
+4
+00:00:07.288 --> 00:00:10.876
+The change manager receives the
+change and retirement tasks,
+
+5
+00:00:10.876 --> 00:00:14.887
+and the security officer keeps the
+consent record and the run folder.
+
+6
+00:00:14.887 --> 00:00:19.162
+What the reader may hold is just two read
+permissions, and nothing that writes.
+
+7
+00:00:19.162 --> 00:00:23.486
+Learn says both are granted only by
+an administrator, and a delegated
+
+8
+00:00:23.486 --> 00:00:28.113
+reader also needs an admin role; which
+roles Graph accepts isn't specified.
+
+9
+00:00:28.113 --> 00:00:32.225
+One gap to plan for: data privacy
+posts need a Global Administrator
+
+10
+00:00:32.225 --> 00:00:36.240
+or a Message Center Privacy Reader,
+so name one where they matter.

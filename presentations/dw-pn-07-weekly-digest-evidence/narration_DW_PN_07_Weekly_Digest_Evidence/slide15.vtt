@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.287
+Step 8 is the one to remember.
+
+2
+00:00:02.287 --> 00:00:03.782
+Change a recorded file,
+
+3
+00:00:03.782 --> 00:00:07.713
+by appending one line to the
+recorded digest, and check again.
+
+4
+00:00:07.713 --> 00:00:08.876
+Both checks fail.
+
+5
+00:00:08.876 --> 00:00:10.817
+The sums say the digest changed,
+
+6
+00:00:10.817 --> 00:00:14.850
+and the chain says it no longer
+matches its record, naming the file.
+
+7
+00:00:14.850 --> 00:00:18.075
+That's what protects the evidence
+from an edit after the fact.
+
+8
+00:00:18.075 --> 00:00:23.588
+Step 9 runs the kit's whole test suite:
+a hundred and forty passed, none failed.
+
+9
+00:00:23.588 --> 00:00:26.260
+Before step 8, you had
+an evidence folder whose
+
+10
+00:00:26.260 --> 00:00:29.074
+sums file you could hand
+to the security officer.
+
+11
+00:00:29.074 --> 00:00:31.340
+Delete the output folder when you're done.

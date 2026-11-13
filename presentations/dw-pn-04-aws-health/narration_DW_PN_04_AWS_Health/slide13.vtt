@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.175
+Step 5 shows who said
+each notice needs action.
+
+2
+00:00:03.175 --> 00:00:06.070
+The instance retirement and the security
+
+3
+00:00:06.070 --> 00:00:09.462
+notification carry AWS's
+own actionability flag.
+
+4
+00:00:09.462 --> 00:00:12.448
+The Lambda lifecycle event
+carries the kit's rule:
+
+5
+00:00:12.448 --> 00:00:16.963
+a scheduled change whose type code names
+a retirement, due at its start time.
+
+6
+00:00:16.963 --> 00:00:20.534
+Step 6 switches the partition
+to GovCloud in memory and
+
+7
+00:00:20.534 --> 00:00:24.262
+builds the command a live run
+would use, without sending it.
+
+8
+00:00:24.262 --> 00:00:26.787
+The region is U S Gov West 1.
+
+9
+00:00:26.787 --> 00:00:30.863
+Step 7 asks for details of
+eleven events in one call.
+
+10
+00:00:30.863 --> 00:00:36.530
+AWS's operation takes one to ten, and
+the kit refuses before anything runs.

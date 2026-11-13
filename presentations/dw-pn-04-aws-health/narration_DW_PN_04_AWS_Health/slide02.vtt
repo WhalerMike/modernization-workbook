@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.163
+Why this chapter?
+
+2
+00:00:01.163 --> 00:00:04.302
+AWS already tells each
+account, in writing,
+
+3
+00:00:04.302 --> 00:00:07.351
+which instances will be retired and when.
+
+4
+00:00:07.351 --> 00:00:10.788
+The gap is that nobody reads it
+unless something collects it.
+
+5
+00:00:10.788 --> 00:00:12.437
+So the goal is concrete.
+
+6
+00:00:12.437 --> 00:00:17.536
+By the end you can read every open and
+upcoming AWS Health event for an account,
+
+7
+00:00:17.536 --> 00:00:21.599
+with a policy that allows three
+read actions and nothing else,
+
+8
+00:00:21.599 --> 00:00:25.183
+into records that name the
+affected resources and say
+
+9
+00:00:25.183 --> 00:00:28.688
+whether AWS or the kit decided
+the event needs action.
+
+10
+00:00:28.688 --> 00:00:33.103
+It's for developers who maintain the kit,
+the account owner who owns this gate,
+
+11
+00:00:33.103 --> 00:00:35.690
+and whoever owns the
+account's support plan.

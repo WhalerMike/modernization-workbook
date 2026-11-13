@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.537
+Step 5 reads the retirement in full.
+
+2
+00:00:02.537 --> 00:00:07.303
+Look at the action basis: it names the
+kit's rule, an Azure retirement due at
+
+3
+00:00:07.303 --> 00:00:12.226
+the advisory's end time, not Microsoft,
+as the reason the notice needs action.
+
+4
+00:00:12.226 --> 00:00:16.387
+So nobody argues with Microsoft
+about a date Microsoft never set.
+
+5
+00:00:16.387 --> 00:00:20.449
+The source link is the event on the
+commercial Resource Manager host.
+
+6
+00:00:20.449 --> 00:00:25.237
+Step 6 reads the same fixtures a day
+later and compares the fingerprints.
+
+7
+00:00:25.237 --> 00:00:29.075
+The first-seen time changes in
+the run, but no fingerprint does.
+
+8
+00:00:29.075 --> 00:00:33.120
+The last line says zero differ, so
+the router will see nothing new.

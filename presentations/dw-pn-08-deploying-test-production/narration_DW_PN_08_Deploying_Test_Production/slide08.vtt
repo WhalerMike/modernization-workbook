@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.779
+The pre-flight reads only,
+
+2
+00:00:01.779 --> 00:00:05.650
+and you run it before each stage,
+after the readers sign in.
+
+3
+00:00:05.650 --> 00:00:10.750
+It checks the settings and routing files,
+that each provider's tool is installed,
+
+4
+00:00:10.750 --> 00:00:14.304
+that each session is signed in
+to the right cloud, tenant,
+
+5
+00:00:14.304 --> 00:00:18.013
+partition or realm, and that
+each reader's first call works.
+
+6
+00:00:18.013 --> 00:00:22.237
+For AWS that includes the support
+plan the health service needs.
+
+7
+00:00:22.237 --> 00:00:25.969
+It checks that someone is named to
+receive each provider's notices,
+
+8
+00:00:25.969 --> 00:00:28.275
+and that the output folder can be written.
+
+9
+00:00:28.275 --> 00:00:31.510
+And in production only,
+the seventh check refuses
+
+10
+00:00:31.510 --> 00:00:34.660
+to go on unless the test
+stage's evidence passes.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.800
+Here's Oracle's starting point.
+
+2
+00:00:01.800 --> 00:00:06.086
+Oracle's CLI reference documents
+the announcements list command,
+
+3
+00:00:06.086 --> 00:00:09.670
+with a required compartment,
+an option to read all pages,
+
+4
+00:00:09.670 --> 00:00:13.800
+and an option to show only the
+latest announcement in each chain.
+
+5
+00:00:13.800 --> 00:00:17.986
+Oracle's Announcement model gives
+the fields: the type, two generic
+
+6
+00:00:17.986 --> 00:00:22.400
+time fields each with its own type,
+the lifecycle state and the chain ID.
+
+7
+00:00:22.400 --> 00:00:26.028
+A separate get command returns
+one announcement's details,
+
+8
+00:00:26.028 --> 00:00:28.175
+including its affected resources.
+
+9
+00:00:28.175 --> 00:00:32.280
+Oracle's policy reference makes
+announcements a resource type:
+
+10
+00:00:32.280 --> 00:00:35.300
+inspect lists summaries,
+read adds the details.
+
+11
+00:00:35.300 --> 00:00:38.192
+And Oracle's common policy
+is a single statement
+
+12
+00:00:38.192 --> 00:00:41.350
+that lets a group read
+announcements in the tenancy.

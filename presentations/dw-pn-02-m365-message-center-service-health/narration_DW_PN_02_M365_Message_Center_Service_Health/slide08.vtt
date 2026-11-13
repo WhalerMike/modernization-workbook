@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.638
+Because a wrong cloud fails silently,
+the kit guards the host three ways.
+
+2
+00:00:04.638 --> 00:00:09.520
+First, it can build each live request
+from the settings without running it,
+
+3
+00:00:09.520 --> 00:00:11.601
+so a reviewer sees the exact URL.
+
+4
+00:00:11.601 --> 00:00:15.163
+Second, before the first call
+it compares the Graph session's
+
+5
+00:00:15.163 --> 00:00:19.012
+environment and tenant with the
+settings, and refuses a mismatch.
+
+6
+00:00:19.012 --> 00:00:23.473
+Third, it follows a next link only if
+it's on the cloud's own Graph host,
+
+7
+00:00:23.473 --> 00:00:25.987
+so the token never goes anywhere else.
+
+8
+00:00:25.987 --> 00:00:28.638
+Tests cover the collector and each guard.
+
+9
+00:00:28.638 --> 00:00:31.201
+And remember, the live reader was tested
+
+10
+00:00:31.201 --> 00:00:34.130
+against stand-in responses,
+not a live tenant.

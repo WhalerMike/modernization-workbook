@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Now the code.
+
+2
+00:00:00.988 --> 00:00:05.197
+The Microsoft 365 collector
+makes three declared calls:
+
+3
+00:00:05.197 --> 00:00:08.063
+messages, issues and health overviews.
+
+4
+00:00:08.063 --> 00:00:10.720
+In a live run each is
+a GET through the Graph
+
+5
+00:00:10.720 --> 00:00:14.062
+PowerShell request cmdlet;
+in fixture mode it's a file.
+
+6
+00:00:14.062 --> 00:00:16.887
+The posts and the issues become notices.
+
+7
+00:00:16.887 --> 00:00:21.462
+The health overviews don't; they're kept
+in the raw folder, for the run's record.
+
+8
+00:00:21.462 --> 00:00:26.405
+And the source link of every record points
+to the post or issue on the same host the
+
+9
+00:00:26.405 --> 00:00:31.420
+kit read it from, so a task always links
+back to what Microsoft actually published.

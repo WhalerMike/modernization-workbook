@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.444
+Step 3 collects every provider
+from the day-one fixtures:
+
+2
+00:00:04.444 --> 00:00:09.586
+twenty-two notices from five providers,
+Azure, Microsoft 365 in GCC,
+
+3
+00:00:09.586 --> 00:00:15.850
+Oracle Cloud Infrastructure, AWS and Google
+Cloud, each valid against the schema.
+
+4
+00:00:15.850 --> 00:00:18.312
+Step 4 routes them as a dry run.
+
+5
+00:00:18.312 --> 00:00:19.737
+All twenty-two are new.
+
+6
+00:00:19.737 --> 00:00:23.427
+Twelve route to a task,
+nine go to the digest only,
+
+7
+00:00:23.427 --> 00:00:26.738
+and one is ignored, the
+Microsoft Viva post.
+
+8
+00:00:26.738 --> 00:00:30.871
+So the run writes twelve create
+payloads, each with its severity
+
+9
+00:00:30.871 --> 00:00:34.990
+and assignment group, and the last
+line says it: nothing was sent.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.162
+Lab 1 needs PowerShell 7 with
+Pester, in the kit's folder.
+
+2
+00:00:04.162 --> 00:00:06.415
+Step 1 makes a week of runs:
+
+3
+00:00:06.415 --> 00:00:11.137
+Chapter 6's two collections
+and two routings, in one go.
+
+4
+00:00:11.137 --> 00:00:13.358
+Day one routes twelve creates;
+
+5
+00:00:13.358 --> 00:00:17.712
+the second week makes one create,
+four updates and one close.
+
+6
+00:00:17.712 --> 00:00:20.600
+Step 2 writes the digest
+for the second week.
+
+7
+00:00:20.600 --> 00:00:26.290
+Sixteen open notices, eight needing action,
+five starting in the next thirty days,
+
+8
+00:00:26.290 --> 00:00:29.262
+two new, and four closed
+or no longer listed.
+
+9
+00:00:29.262 --> 00:00:32.620
+It writes the page, the
+spreadsheet and a manifest.

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.494
+Lab 1 needs only PowerShell 7 with
+Pester, working in the kit's folder,
+
+2
+00:00:04.494 --> 00:00:08.462
+against two weeks of fictional
+notices from every provider.
+
+3
+00:00:08.462 --> 00:00:09.388
+No tenant.
+
+4
+00:00:09.388 --> 00:00:11.247
+Step 1 lists what Azure needs:
+
+5
+00:00:11.247 --> 00:00:14.812
+this is what a reviewer reads
+before granting anything.
+
+6
+00:00:14.812 --> 00:00:18.800
+Two calls, each needing Reader
+on each subscription in scope,
+
+7
+00:00:18.800 --> 00:00:21.512
+each linked to the
+Learn page that says so.
+
+8
+00:00:21.512 --> 00:00:24.025
+Step 2 prints the kit's events query.
+
+9
+00:00:24.025 --> 00:00:28.682
+Compare it with Learn's all-active sample:
+the same filter, with the retirement
+
+10
+00:00:28.682 --> 00:00:31.301
+sample's subtype added,
+the times converted,
+
+11
+00:00:31.301 --> 00:00:33.840
+and named columns projected and ordered.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.965
+Stage 1 starts by signing in
+each enabled provider's reader,
+
+2
+00:00:03.965 --> 00:00:06.362
+in the cloud the settings file names.
+
+3
+00:00:06.362 --> 00:00:12.224
+For a G C C tenant that's the commercial
+Azure cloud and Graph's global environment.
+
+4
+00:00:12.224 --> 00:00:14.621
+Connecting to Graph with a client ID,
+
+5
+00:00:14.621 --> 00:00:18.535
+a tenant ID and a certificate
+thumbprint is app-only access,
+
+6
+00:00:18.535 --> 00:00:23.487
+as Microsoft Learn describes it, the
+same sign-in the scheduled run will use.
+
+7
+00:00:23.487 --> 00:00:27.863
+The AWS caller's identity should
+start with the partition's prefix.
+
+8
+00:00:27.863 --> 00:00:30.925
+Then run the pre-flight
+and record it as evidence.
+
+9
+00:00:30.925 --> 00:00:35.700
+Expected: every check passes, and
+the first evidence record passes.
+
+10
+00:00:35.700 --> 00:00:39.890
+Fix any failure before going on:
+the detail names what's missing.

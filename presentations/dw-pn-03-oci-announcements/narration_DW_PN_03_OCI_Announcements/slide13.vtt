@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.612
+Step 6 builds the live list
+command without running it.
+
+2
+00:00:03.612 --> 00:00:08.029
+These are the exact arguments a live
+run would pass to Oracle's CLI:
+
+3
+00:00:08.029 --> 00:00:12.772
+the tenancy as the compartment, all
+pages, only the latest in each chain,
+
+4
+00:00:12.772 --> 00:00:15.962
+the region from the
+settings, and JSON output.
+
+5
+00:00:15.962 --> 00:00:20.363
+Compare them with Oracle's command
+reference: they're Oracle's own options.
+
+6
+00:00:20.363 --> 00:00:24.888
+Step 7 runs this chapter's
+tests: nine pass, none fail.
+
+7
+00:00:24.888 --> 00:00:28.509
+The raw folder holds the list
+and each announcement's details,
+
+8
+00:00:28.509 --> 00:00:30.924
+which is what the security officer keeps.
+
+9
+00:00:30.924 --> 00:00:33.190
+Delete the output folder when you're done.

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.750
+One point deserves its own slide,
+because AWS's own pages don't agree.
+
+2
+00:00:04.750 --> 00:00:08.613
+The Health concepts page names
+the newer Business Support Plus,
+
+3
+00:00:08.613 --> 00:00:11.237
+Enterprise Support or Unified Operations.
+
+4
+00:00:11.237 --> 00:00:14.387
+The API reference's welcome
+page and the GovCloud
+
+5
+00:00:14.387 --> 00:00:17.613
+page name the older Business
+and Enterprise plans.
+
+6
+00:00:17.613 --> 00:00:20.638
+Without a qualifying plan,
+the API answers with a
+
+7
+00:00:20.638 --> 00:00:23.738
+subscription-required
+error, and nothing is read.
+
+8
+00:00:23.738 --> 00:00:27.291
+So the chapter's advice is
+simple: confirm the account's
+
+9
+00:00:27.291 --> 00:00:31.001
+plan with AWS Support rather
+than reading it off one page.
+
+10
+00:00:31.001 --> 00:00:35.823
+The kit surfaces the error in AWS's
+own words, the runbook's pre-flight
+
+11
+00:00:35.823 --> 00:00:40.440
+calls the API first, and the Health
+Dashboard is the interim path.

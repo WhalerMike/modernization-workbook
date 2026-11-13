@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.238
+The routing is a JSON file
+the agency writes at work,
+
+2
+00:00:03.238 --> 00:00:07.586
+from the kit's template or from a
+worksheet with the kit's Copilot prompts,
+
+3
+00:00:07.586 --> 00:00:10.050
+and it stays inside the agency's boundary.
+
+4
+00:00:10.050 --> 00:00:12.650
+The lab's copy uses fictional teams.
+
+5
+00:00:12.650 --> 00:00:18.425
+Each rule has an ID, a match, and
+a route: task, digest or ignore.
+
+6
+00:00:18.425 --> 00:00:21.509
+A task rule adds a severity,
+an assignment group,
+
+7
+00:00:21.509 --> 00:00:25.462
+an approver role and whether a
+contingency review is needed.
+
+8
+00:00:25.462 --> 00:00:29.553
+Matches can be on provider, kind
+and status, on whether action is
+
+9
+00:00:29.553 --> 00:00:34.037
+required or resources are named, or
+a pattern on services and regions.
+
+10
+00:00:34.037 --> 00:00:36.820
+And the file is checked
+before anything runs.

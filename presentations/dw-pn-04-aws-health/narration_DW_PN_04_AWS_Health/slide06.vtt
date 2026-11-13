@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.850
+What does AWS leave to you?
+
+2
+00:00:01.850 --> 00:00:06.749
+The event list comes without descriptions
+or resources, and an event without
+
+3
+00:00:06.749 --> 00:00:11.188
+them can't be routed, so the kit fetches
+both for every event, ten at a time.
+
+4
+00:00:11.188 --> 00:00:14.000
+No category says retirement or security.
+
+5
+00:00:14.000 --> 00:00:17.349
+AWS's actionability flag is AWS's own,
+
+6
+00:00:17.349 --> 00:00:22.037
+so the kit uses it as published,
+and labels it as AWS's.
+
+7
+00:00:22.037 --> 00:00:25.051
+A retirement without that
+flag could look optional.
+
+8
+00:00:25.051 --> 00:00:26.600
+Times are epoch seconds.
+
+9
+00:00:26.600 --> 00:00:30.400
+And a wildcard policy
+grows as AWS adds actions.
+
+10
+00:00:30.400 --> 00:00:32.425
+Each gap is pinned by a test.
+
+11
+00:00:32.425 --> 00:00:37.791
+The verdict: use AWS's three operations
+as published, with exactly three actions,
+
+12
+00:00:37.791 --> 00:00:41.660
+and build the batching, the
+kinds and the partition guard.

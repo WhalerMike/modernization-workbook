@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.006
+For each notice that needs
+a task, the kit writes one
+
+2
+00:00:03.006 --> 00:00:06.525
+ServiceNow-shaped payload, and
+checks it before it's written.
+
+3
+00:00:06.525 --> 00:00:09.960
+It says whether this is a
+create, an update or a close,
+
+4
+00:00:09.960 --> 00:00:14.213
+and carries a de-duplication key
+made of the provider and its ID.
+
+5
+00:00:14.213 --> 00:00:18.315
+It has the severity, priority,
+response window and assignment group,
+
+6
+00:00:18.315 --> 00:00:21.172
+a description with
+everything the owner needs,
+
+7
+00:00:21.172 --> 00:00:25.713
+and the Ticket-to-Machine part: the
+human decision lane and the five clauses.
+
+8
+00:00:25.713 --> 00:00:27.575
+Look closely at the two dates.
+
+9
+00:00:27.575 --> 00:00:31.137
+The response due date is the
+agency's, from the severity.
+
+10
+00:00:31.137 --> 00:00:33.599
+The action due date is the provider's.
+
+11
+00:00:33.599 --> 00:00:36.940
+Mix them up, and a routine
+task looks due in a year.

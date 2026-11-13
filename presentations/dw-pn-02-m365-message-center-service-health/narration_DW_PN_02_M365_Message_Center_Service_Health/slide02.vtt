@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.163
+Why this chapter?
+
+2
+00:00:01.163 --> 00:00:04.059
+Message center is where
+Microsoft tells a tenant
+
+3
+00:00:04.059 --> 00:00:07.025
+about retirements and
+changes, often months ahead.
+
+4
+00:00:07.025 --> 00:00:08.939
+But a post that nobody reads,
+
+5
+00:00:08.939 --> 00:00:12.850
+or that only arrives by email,
+doesn't become anyone's task.
+
+6
+00:00:12.850 --> 00:00:14.600
+So the goal is precise.
+
+7
+00:00:14.600 --> 00:00:19.199
+By the end you can read a tenant's Message
+center posts and service health issues
+
+8
+00:00:19.199 --> 00:00:23.381
+with just two read permissions, on the
+host for the tenant's own cloud, into
+
+9
+00:00:23.381 --> 00:00:28.050
+records that say which posts need action
+and whether Microsoft or the kit said so.
+
+10
+00:00:28.050 --> 00:00:32.098
+This is for the developers, the
+Microsoft 365 service owner,
+
+11
+00:00:32.098 --> 00:00:35.300
+and the change manager
+who receives the tasks.

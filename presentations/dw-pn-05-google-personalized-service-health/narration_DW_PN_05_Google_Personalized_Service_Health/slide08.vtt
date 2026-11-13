@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Now the code.
+
+2
+00:00:00.988 --> 00:00:04.526
+The collector makes one declared
+call: the project's events,
+
+3
+00:00:04.526 --> 00:00:08.426
+or the organization's when the
+settings' scope says organization.
+
+4
+00:00:08.426 --> 00:00:11.157
+The normalizer keeps only incident events;
+
+5
+00:00:11.157 --> 00:00:13.888
+anything else would be
+left out and counted.
+
+6
+00:00:13.888 --> 00:00:16.825
+An event whose state is
+closed closes the record.
+
+7
+00:00:16.825 --> 00:00:19.791
+Products and locations
+from the event's impacts
+
+8
+00:00:19.791 --> 00:00:22.312
+become the record's services and regions.
+
+9
+00:00:22.312 --> 00:00:26.737
+The detailed category and relevance
+are kept as the provider's severity.
+
+10
+00:00:26.737 --> 00:00:30.426
+And the source link is the event
+on Google's Service Health host.
+
+11
+00:00:30.426 --> 00:00:33.875
+Personalized Service Health
+has no separate government
+
+12
+00:00:33.875 --> 00:00:36.820
+endpoint in the kit's table,
+so the cloud is global.

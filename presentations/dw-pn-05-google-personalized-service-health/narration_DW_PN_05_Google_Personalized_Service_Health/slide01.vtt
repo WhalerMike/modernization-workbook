@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.087 --> 00:00:05.688
+Building Provider Notices.
+
+3
+00:00:05.688 --> 00:00:09.800
+This is Chapter 5: Google Cloud's
+Personalized Service Health.
+
+4
+00:00:09.800 --> 00:00:12.783
+It's the smallest collector,
+with the largest gaps,
+
+5
+00:00:12.783 --> 00:00:15.912
+and saying plainly what it
+can't see is part of the job.
+
+6
+00:00:15.912 --> 00:00:21.081
+We'll start from Google Cloud's own
+documentation for the events API and the viewer
+
+7
+00:00:21.081 --> 00:00:25.263
+role, see what it leaves to you, then
+read how the kit fills the record,
+
+8
+00:00:25.263 --> 00:00:29.900
+which two gaps it writes down instead
+of hiding, and why one call is refused.
+
+9
+00:00:29.900 --> 00:00:33.250
+Then two labs, the
+evidence and the dangers.
+
+10
+00:00:33.250 --> 00:00:34.825
+Two notes before we begin.
+
+11
+00:00:34.825 --> 00:00:38.187
+This chapter is a draft,
+awaiting the owner's review.
+
+12
+00:00:38.187 --> 00:00:41.780
+And the code is illustrative,
+tested against fixtures.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.888
+Lab 1 needs only PowerShell 7 with
+Pester, working in the kit's folder.
+
+2
+00:00:04.888 --> 00:00:08.413
+The lab settings name AWS's
+own documentation account,
+
+3
+00:00:08.413 --> 00:00:11.625
+in the commercial partition,
+and nothing signs in.
+
+4
+00:00:11.625 --> 00:00:16.709
+Step 1 lists what AWS needs: three
+calls, each with one read action,
+
+5
+00:00:16.709 --> 00:00:20.450
+and each verified against
+AWS's documentation.
+
+6
+00:00:20.450 --> 00:00:21.837
+That's the whole policy.
+
+7
+00:00:21.837 --> 00:00:27.398
+Step 2 shows each partition's Health
+endpoint region and the prefix a caller's
+
+8
+00:00:27.398 --> 00:00:32.500
+identity must carry: U S East 1 for
+commercial, U S Gov West 1 for GovCloud.

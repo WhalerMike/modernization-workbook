@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.550
+Lab 1 needs PowerShell 7 with
+Pester, working in the kit's folder.
+
+2
+00:00:04.550 --> 00:00:09.638
+The lab settings name a fictional
+tenant in GCC; nothing signs in.
+
+3
+00:00:09.638 --> 00:00:12.474
+Step 1 lists what Microsoft 365 needs:
+
+4
+00:00:12.474 --> 00:00:17.049
+two permissions across three
+calls, and nothing that writes.
+
+5
+00:00:17.049 --> 00:00:22.094
+Step 2 prints each cloud's Graph
+host: GCC on the worldwide host
+
+6
+00:00:22.094 --> 00:00:27.138
+with the Global environment, then
+GCC High and DoD on their own.
+
+7
+00:00:27.138 --> 00:00:29.775
+There's one row per cloud and no default.
+
+8
+00:00:29.775 --> 00:00:35.153
+Step 3 collects Microsoft 365 from
+the day-one fixtures: six notices,
+
+9
+00:00:35.153 --> 00:00:39.820
+five open, two needing action,
+all valid against the schema.

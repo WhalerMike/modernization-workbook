@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.893
+Lab 2 moves to a Google
+Cloud test project,
+
+2
+00:00:02.893 --> 00:00:06.488
+never production, and no
+incidents is a valid result.
+
+3
+00:00:06.488 --> 00:00:07.857
+As the project owner,
+
+4
+00:00:07.857 --> 00:00:11.887
+enable the API and grant the
+viewer role to the reader's group.
+
+5
+00:00:11.887 --> 00:00:13.587
+Sign in as the reader.
+
+6
+00:00:13.587 --> 00:00:15.675
+Cross-check with Google's own command:
+
+7
+00:00:15.675 --> 00:00:18.301
+its count and the kit's
+collection should agree.
+
+8
+00:00:18.301 --> 00:00:21.060
+Then the step that matters
+most in this chapter:
+
+9
+00:00:21.060 --> 00:00:23.537
+record the gaps with the security officer.
+
+10
+00:00:23.537 --> 00:00:28.237
+Planned maintenance doesn't come through
+this API, and a project in an Assured
+
+11
+00:00:28.237 --> 00:00:33.376
+Workloads FedRAMP or impact-level folder
+has no Personalized Service Health at all.
+
+12
+00:00:33.376 --> 00:00:36.940
+Finally, remove the role
+binding and delete the run.

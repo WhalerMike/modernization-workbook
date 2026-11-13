@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.313
+Next, which cloud and which scope.
+
+2
+00:00:02.313 --> 00:00:07.844
+Unlike Azure or AWS, Personalized Service
+Health has no separate government endpoint
+
+3
+00:00:07.844 --> 00:00:10.763
+in the kit's table, so the
+cloud is simply global,
+
+4
+00:00:10.763 --> 00:00:14.912
+and each record links to the event
+on Google's Service Health host.
+
+5
+00:00:14.912 --> 00:00:19.109
+The scope comes from the settings: a
+project, which is the call Google's
+
+6
+00:00:19.109 --> 00:00:23.600
+command line was verified for, or an
+organization when the settings say so.
+
+7
+00:00:23.600 --> 00:00:26.375
+The API is enabled once per project.
+
+8
+00:00:26.375 --> 00:00:31.487
+And for government workloads, the question
+isn't an endpoint at all, but a package:
+
+9
+00:00:31.487 --> 00:00:34.585
+as we'll see, Personalized
+Service Health isn't in
+
+10
+00:00:34.585 --> 00:00:38.280
+the Assured Workloads FedRAMP
+or impact-level packages.

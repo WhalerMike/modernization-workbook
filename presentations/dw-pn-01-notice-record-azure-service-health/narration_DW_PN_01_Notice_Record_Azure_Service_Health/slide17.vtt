@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.925
+What breaks in production,
+and what guards against it?
+
+2
+00:00:02.925 --> 00:00:06.342
+Read security advisories
+with Reader alone and you
+
+3
+00:00:06.342 --> 00:00:09.600
+see the advisory but not
+its summary or resources.
+
+4
+00:00:09.600 --> 00:00:14.425
+Read from the wrong cloud and you get nothing,
+and the gate passes on an empty list.
+
+5
+00:00:14.425 --> 00:00:18.513
+Count an event per subscription
+and one outage becomes five tasks.
+
+6
+00:00:18.513 --> 00:00:22.950
+Read a retirement as an advisory
+and the deadline passes unnoticed.
+
+7
+00:00:22.950 --> 00:00:28.038
+Mistake a kit rule for Microsoft's and you
+argue about a date Microsoft never set.
+
+8
+00:00:28.038 --> 00:00:32.075
+Apply the policy unreviewed and
+resources appear everywhere.
+
+9
+00:00:32.075 --> 00:00:37.150
+And per Learn, remediation may
+overwrite hand edits to the alert rules.

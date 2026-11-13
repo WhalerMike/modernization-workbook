@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+Why start with a record?
+
+2
+00:00:01.387 --> 00:00:05.959
+Because a reader should be able to
+ask, once, what needs action, by when,
+
+3
+00:00:05.959 --> 00:00:10.449
+and who owns it, and five providers
+answer in five different shapes.
+
+4
+00:00:10.449 --> 00:00:12.850
+So the goal of this chapter is concrete.
+
+5
+00:00:12.850 --> 00:00:17.776
+By the end you can read every Service Health
+event for the subscriptions in scope,
+
+6
+00:00:17.776 --> 00:00:22.629
+with the least-privileged role, into records
+that say what kind of notice each is,
+
+7
+00:00:22.629 --> 00:00:27.188
+whether it needs action and by when, who
+said so, and which resources it names.
+
+8
+00:00:27.188 --> 00:00:30.277
+And you can plan Service Health
+alerts at scale as a file
+
+9
+00:00:30.277 --> 00:00:33.770
+that a reviewer approves by its
+hash before anything changes.

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.838
+Step 1.7 puts the weekly
+run on a schedule.
+
+2
+00:00:03.838 --> 00:00:06.440
+The kit doesn't register
+a schedule itself,
+
+3
+00:00:06.440 --> 00:00:09.490
+so this uses Windows Task
+Scheduler's own cmdlets,
+
+4
+00:00:09.490 --> 00:00:14.474
+as Microsoft Learn documents them, with
+the task name the rollback later removes.
+
+5
+00:00:14.474 --> 00:00:18.628
+The scheduled run needs every
+reader's sign-in in its own session,
+
+6
+00:00:18.628 --> 00:00:22.233
+so you write a small sign-in
+script for the run-as account,
+
+7
+00:00:22.233 --> 00:00:25.838
+run it once by hand, then register
+it weekly, Monday at six.
+
+8
+00:00:25.838 --> 00:00:29.925
+Expected: collect, route
+and digest each pass.
+
+9
+00:00:29.925 --> 00:00:33.427
+One gap is stated plainly:
+how each other provider's
+
+10
+00:00:33.427 --> 00:00:37.263
+tool signs in unattended is
+not yet specified in the kit.
+
+11
+00:00:37.263 --> 00:00:39.600
+Then send the digest to the owners.

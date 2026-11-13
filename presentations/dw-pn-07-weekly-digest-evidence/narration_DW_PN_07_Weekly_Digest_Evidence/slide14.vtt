@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.347
+Step 5 checks the chain:
+twenty-five files match the sums,
+
+2
+00:00:04.347 --> 00:00:06.962
+and three records, chain unbroken.
+
+3
+00:00:06.962 --> 00:00:11.926
+Step 6 checks the test stage's coverage,
+and here a failure is the right answer.
+
+4
+00:00:11.926 --> 00:00:16.433
+A lab has no pre-flight and no
+scheduled run, so those two steps fail,
+
+5
+00:00:16.433 --> 00:00:20.775
+routing and the digest pass, and
+the command exits with an error.
+
+6
+00:00:20.775 --> 00:00:25.213
+That's exactly what a go or no-go
+would see: the gap, by name.
+
+7
+00:00:25.213 --> 00:00:29.372
+Step 7 reads the records'
+index: three records, collect,
+
+8
+00:00:29.372 --> 00:00:33.500
+route and digest, each a pass,
+with the steps it covers.

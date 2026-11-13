@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Next, which cloud.
+
+2
+00:00:01.413 --> 00:00:05.725
+Every command reads the cloud from the
+settings file, one name per provider.
+
+3
+00:00:05.725 --> 00:00:11.089
+The estate this runbook writes for is
+Microsoft 365 G C C with commercial Azure,
+
+4
+00:00:11.089 --> 00:00:14.802
+so Graph and Resource Manager
+are the worldwide hosts,
+
+5
+00:00:14.802 --> 00:00:18.350
+as Microsoft Learn's national
+cloud page lists them.
+
+6
+00:00:18.350 --> 00:00:21.960
+Oracle Cloud takes its
+commercial or government realm,
+
+7
+00:00:21.960 --> 00:00:26.825
+AWS its commercial or GovCloud partition,
+and Google Cloud its global name.
+
+8
+00:00:26.825 --> 00:00:30.041
+As a side note, G C C High
+and the Defense Department
+
+9
+00:00:30.041 --> 00:00:33.650
+cloud sign in to Graph with
+their own environment names.
+
+10
+00:00:33.650 --> 00:00:37.940
+Any other name throws, and a session
+signed in elsewhere is refused.

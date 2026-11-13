@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:06.842
+Microsoft Learn publishes Resource
+Graph sample queries for Service Health:
+
+3
+00:00:06.842 --> 00:00:12.212
+all active events, health advisories,
+upcoming retirements and planned maintenance.
+
+4
+00:00:12.212 --> 00:00:15.438
+A second page gives the
+impacted-resources query.
+
+5
+00:00:15.438 --> 00:00:18.475
+Reader on a subscription is
+enough to see its events,
+
+6
+00:00:18.475 --> 00:00:22.926
+but a security advisory's sensitive
+fields and its impacted resources need
+
+7
+00:00:22.926 --> 00:00:27.376
+Service Health Security Reader; Reader
+and Monitoring Reader can't see them.
+
+8
+00:00:27.376 --> 00:00:29.635
+And for alerting between collections,
+
+9
+00:00:29.635 --> 00:00:34.014
+Learn names a built-in policy that
+creates the Service Health alert rule in
+
+10
+00:00:34.014 --> 00:00:38.520
+every subscription, with a remediation
+task for the ones that already exist.

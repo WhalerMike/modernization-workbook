@@ -54,7 +54,7 @@ BOOK = re.compile(r"\bBooks? (\d\d)\b")
 CHAPTERS = re.compile(r"\b(?:Chapters?|Ch\.?) ?(\d\d(?:(?:, and |, | and |–)\d\d)*)")
 APPENDIX = re.compile(r"\b(?:Appendix|App\.) ([A-C])\b")
 # The developer workbooks under Projects, which a deck's chapter numbers can mean. Book 19 is a book.
-WORKBOOKS = {"hr": "hr-driven-identity", "npi": "non-person-identity", "pa": "privileged-access", "ttm": "ticket-to-machine"}
+WORKBOOKS = {"hr": "hr-driven-identity", "npi": "non-person-identity", "pa": "privileged-access", "pn": "provider-notices", "ttm": "ticket-to-machine"}
 TABLE_CELL = re.compile(r"\bBook \d\d\b|\bCh\.? ?\d\d|\bChapters? \d\d|\bApp\. [A-C]\b")
 
 
@@ -193,7 +193,7 @@ def deck_book(deck: Path) -> str | None:
     m = re.match(r"b(\d\d)-", deck.parent.name)
     if m:
         return m.group(1)
-    m = re.match(r"(?:dw|training)-(adm|hr|npi|pa|ttm)-", deck.parent.name)
+    m = re.match(r"(?:dw|training)-(adm|hr|npi|pa|pn|ttm)-", deck.parent.name)
     if m:
         return "19" if m.group(1) == "adm" else m.group(1)
     return "ttm" if deck.parent.name.startswith("ttm-story") else None
