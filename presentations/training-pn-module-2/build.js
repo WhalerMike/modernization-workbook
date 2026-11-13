@@ -1,0 +1,326 @@
+// Provider Notices learning path, Module 2: Azure Service Health and alerts — the module's narrated deck.
+// Teaches docs/training/provider-notices/02-azure-service-health-and-alerts.md, Learn-style: objectives, the concepts the
+// page sends the learner to (the guide's Step 1; workbook Chapter 01, "What Microsoft gives you," "What it leaves to you,"
+// "The Azure collector," "The alert policy," "Dangers"), three "Try it" slides with the real Lab 1 commands and output
+// (run November 12, 2026 in a scratch copy of examples/provider-notices, the same output the page shows), Lab 2, the
+// federal requirement and evidence, a two-question check, and the summary. Every fact comes from those pages, their
+// footnotes or the kit; the deck adds none. Helpers: ../training-pn-module-1/pn.js.
+// Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-pn-module-2/build.js \
+//                      presentations/training-pn-module-2/Training_PN_Module_2.pptx
+const P = require("../training-pn-module-1/pn.js")("Module 2: Azure Service Health and alerts");
+const { HEX, tag, content, notes, endModule, table, panel, callout, sources, sourceSlide, backup, finish, code, line, title, objectives, check } = P;
+const OUT = process.argv[2] || "Training_PN_Module_2.pptx";
+const M = "Training, Provider Notices, Module 2";
+
+const SI = "Introduction";
+const SC = "Concepts";
+const SL = "Lab";
+const SS = "Check and summary";
+
+// ================================================================== 1 Title
+{
+  const s = title(SI, "Module 2: Azure Service Health and alerts", "Provider Notices learning path · Gate G1 Azure Service Health, with workbook Chapter 01",
+    ["The reader's two roles  ·  Learn's queries, one collection  ·  Kinds and the action rule", "Alerts at scale with Azure Policy  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence  ·  Check"]);
+  notes(s,
+`Welcome to Module 2 of the Provider Notices learning path: Azure Service Health and alerts. This is Gate 1 of the provider notices implementation guide, with the first chapter of the developer workbook. Service Health is where Azure publishes service issues, planned maintenance, health advisories, retirements among them, and security advisories for a subscription. In this module you read the fixture subscriptions with the kit's query, built from Microsoft Learn's own samples. Then you plan the built-in Azure Policy that creates Service Health alerts in every subscription, as a plan that changes nothing until someone approves its hash. It takes about fifty-five minutes, with a lab on fixtures and a lab for a test subscription. The code is illustrative: tested against fixtures, not run against a live tenant.`,
+  `${M} — Unit "Introduction"; learning path index.`);
+}
+
+// ================================================================== 2 Why
+{
+  const s = content(SI, "The portal tells nobody unless someone made an alert");
+  tag(s, "Why");
+  const l = panel(s, "Portal", 0.6, 1.45, 6.0, null, HEX.red, HEX.redTint, "SERVICE HEALTH IN THE PORTAL", "Published, but not delivered", [
+    "Service issues, planned maintenance, health advisories and security advisories, per subscription",
+    "Nobody is told unless someone created a Service Health alert",
+    "An alert fires only for the subscriptions, services and regions its rule names",
+  ], 13);
+  const r = panel(s, "Graph", 6.85, 1.45, 5.9, null, HEX.navy, HEX.navyTint, "AZURE RESOURCE GRAPH", "One query, every subscription", [
+    "The ServiceHealthResources table answers the same questions for every subscription in scope",
+    "Microsoft Learn publishes the queries",
+  ], 13);
+  callout(s, "Gate", Math.max(l, r) + 0.3, 0.95, "FaServer", HEX.teal, "This module: ",
+    "collect with the kit's query, built from Learn's samples, then plan Service Health alerts at scale with Azure Policy, applied only with an approved hash.");
+  sources(s, "Sources: Module 2, \"Introduction\"; the guide, Step 1; Resource Graph samples for Service Health; Azure Service Health FAQ.");
+  notes(s,
+`Why does Azure need a gate of its own? Service Health shows service issues, planned maintenance, health advisories and security advisories for each subscription. But the portal tells nobody unless someone created a Service Health alert, and an alert fires only for the subscriptions, services and regions its rule names. Microsoft's own F A Q gives a rule that left out the affected subscription as a reason an alert never arrived. Azure Resource Graph answers the same questions for every subscription in scope with one query, against its Service Health resources table, and Microsoft Learn publishes the sample queries. So this module does two things. It collects with the kit's query, built from Learn's samples. And it plans Service Health alerts at scale with Azure Policy, as a plan that's applied only with an approved hash.`,
+  `${M} — Unit "Introduction"; Unit 1: the guide — Step 1.`);
+}
+
+// ================================================================== 3 Objectives
+{
+  const s = objectives(SI, "What you'll be able to do in Module 2", [
+    "Name the least-privileged roles that read Service Health, and the one security advisories need",
+    "Compare the kit's events query with Learn's samples",
+    "Collect the fixture subscriptions and read each event's kind and action date",
+    "Plan Service Health alerts at scale with Azure Policy, and show fixture mode never applies",
+  ], [
+    "Module 1: the record and its action basis",
+    "Optional: Book 12, Chapter 04, which sends the activity log's ServiceHealth category to the workspace",
+    "Lab 1: PowerShell 7.1+ with Pester 5; no tenant",
+  ], 55);
+  sources(s, "Sources: Module 2, \"Learning objectives,\" \"Prerequisites\"; learning path index, \"What you need for the labs.\"");
+  notes(s,
+`Here's what you'll be able to do by the end of this module. You'll name the least-privileged roles that read Service Health, and the one a security advisory's sensitive fields need. You'll compare the kit's events query with Learn's samples. You'll collect the fixture subscriptions and read each event's kind and action date. And you'll plan Service Health alerts at scale with Azure Policy, and show that fixture mode never applies the plan. You need Module 1, for the record and its action basis. If you have time, read the Azure platform and Microsoft 365 audit telemetry chapter of Security Operations and Telemetry, which sends the Azure activity log's Service Health category to the workspace. Lab 1 needs PowerShell 7.1 or later with Pester 5. No tenant.`,
+  `${M} — Unit "Learning objectives," "Prerequisites."`);
+}
+endModule(SI);
+
+// ================================================================== 4 Gate asks
+{
+  const s = content(SC, "What Gate G1 asks for: two roles, the right cloud");
+  tag(s, "What");
+  const b = table(s, "Steps", 1.45, [2.4, 9.75], ["Step", "What the guide asks"], [
+    ["Grant the roles", "Reader on each subscription in scope; Service Health Security Reader for security advisories' sensitive fields"],
+    ["Sign in", "In the right cloud: az cloud set --name AzureCloud (AzureUSGovernment for Azure Government), with the resource-graph extension"],
+    ["Collect", "Invoke-PnCollect.ps1 -Provider azure: the kit's events query and Learn's impacted-resources query"],
+    ["Alert at scale", "Plan the built-in policy at the management group, with a remediation task for existing subscriptions"],
+  ], { fontSize: 12.5, limit: 4.4 });
+  callout(s, "Pass", b + 0.25, 1.0, "FaClipboardCheck", HEX.teal, "Validate (G1): ",
+    "every subscription's events are listed, and each security advisory has its summary. An empty summary means the reader lacks Service Health Security Reader.");
+  sources(s, "Sources: Module 2, Unit 1; the guide, Step 1 and Validate (G1); Subscription versus tenant level events; Security advisories elevated access.");
+  notes(s,
+`Unit 1 is the guide's Step 1, in four parts. First, grant the reader its roles: Reader on each subscription in scope is enough to see its Service Health events. But a security advisory's sensitive fields, and its impacted resources, need Service Health Security Reader. Reader and Monitoring Reader can't see them. Second, sign in in the right cloud, with the Resource Graph extension. A GCC agency's subscriptions are commercial Azure, the Azure Cloud setting; Azure Government uses its own. Third, collect, with the kit's events query and Learn's impacted-resources query. And fourth, alert at scale: plan the built-in policy at the management group, with a remediation task. The gate passes when every subscription's events are listed and each security advisory has its summary. An empty summary is the sign that the reader lacks the elevated role.`,
+  `${M} — Unit 1: the guide — Step 1, "Validate (G1 Azure Service Health)."`);
+}
+
+// ================================================================== 5 Learn gives / leaves
+{
+  const s = content(SC, "What Learn gives you, and what the kit adds");
+  tag(s, "What");
+  const b = table(s, "Adds", 1.45, [4.6, 7.55], ["Learn's material, as published", "What the kit adds"], [
+    ["One sample per question, each with different columns", "One events query from the all-active sample, with the retirement sample's EventSubType and its time conversion"],
+    ["One row per event per subscription", "Rows merged by tracking ID into one notice"],
+    ["Event types, not what to do about them", "Six kinds: a HealthAdvisory with EventSubType Retirement is a retirement"],
+    ["No field that says action is required", "A stated kit rule, which the record names, so nobody mistakes it for Microsoft's"],
+    ["Portal steps for the alert policy", "A plan file with two Azure CLI commands and its SHA-256, applied only with -Apply and that hash"],
+  ], { fontSize: 12, limit: 5.1 });
+  line(s, "Verdict", "Keep Learn's queries as the model and the policy as Learn describes it; build what Learn leaves to you.", b + 0.2, 0.45, 13.5);
+  sources(s, "Sources: Module 2, Unit 2; workbook Chapter 01 (What Microsoft gives you; What it leaves to you); Resource Graph samples for Service Health.");
+  notes(s,
+`Unit 2 reads the workbook chapter, starting with what Microsoft gives you and what it leaves to you. Learn publishes one sample query per question: all active events, health advisories, upcoming retirements and planned maintenance, each returning different columns. The kit builds one events query from the all-active sample, adding the retirement sample's event subtype and the advisory sample's time conversion. Learn's samples return one row per event per subscription, so the same outage would be counted once per subscription. The kit merges rows by tracking I D into one notice. Learn gives event types, not what to do about them, so the kit maps them to the six kinds. Nothing says action is required, so the kit states a rule, and the record names it. And for the alert policy, Learn gives portal steps. The kit writes a plan file a reviewer can approve before it runs.`,
+  `${M} — Unit 2: workbook Chapter 01 — "What Microsoft gives you," "What it leaves to you."`);
+}
+
+// ================================================================== 6 Collector
+{
+  const s = content(SC, "The Azure collector: each event type becomes a kind");
+  tag(s, "What");
+  const b = table(s, "Map", 1.45, [4.4, 2.3, 5.45], ["EventType", "Kind", "Action required"], [
+    ["ServiceIssue, RCA", "incident", "No"],
+    ["PlannedMaintenance", "maintenance", "No"],
+    ["HealthAdvisory with EventSubType Retirement", "retirement", "Yes, by the kit's rule, due at the advisory's end time"],
+    ["HealthAdvisory", "advisory", "No"],
+    ["SecurityAdvisory", "security", "Yes, by the kit's rule, no date: for the ISSO to review"],
+    ["Anything else (Billing)", "left out", "Counted"],
+  ], { fontSize: 12.5, limit: 4.9 });
+  callout(s, "Host", b + 0.25, 1.0, "FaCloud", HEX.navy, "Its own host: ",
+    "the source link is the event on the cloud's Resource Manager host, management.azure.com, or management.usgovcloudapi.net for Azure Government. An unknown cloud throws.");
+  sources(s, "Sources: Module 2, Unit 2; workbook Chapter 01 (The Azure collector); Resource Graph samples for Service Health.");
+  notes(s,
+`The Azure collector makes two declared calls: the events query and the impacted-resources query. Each is an Azure Resource Graph query in live mode, and a file in fixture mode. Then it maps each event type to a kind. Service issues are incidents. Planned maintenance is maintenance. A health advisory whose event subtype is Retirement is a retirement, and it's action required by the kit's rule, due at the advisory's end time, which Learn says is its mitigation time. Any other health advisory is an advisory. A security advisory is action required by the kit's rule, with no date, for the ISSO to review. And anything else, such as billing, is left out and counted. Resources come from the impacted-resources rows with the same tracking I D. The source link is the event on the cloud's own Resource Manager host. An unknown cloud name throws; there is no default.`,
+  `${M} — Unit 2: workbook Chapter 01 — "The Azure collector."`);
+}
+
+// ================================================================== 7 Alert policy
+{
+  const s = content(SC, "Alerts at scale: the built-in policy, as a plan");
+  tag(s, "How");
+  const l = panel(s, "Policy", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "LEARN'S BUILT-IN DEFINITION", "Service Health Monitoring Alert Rules", [
+    "Assigned at a management group or subscription; not a resource group",
+    "A remediation task, so existing subscriptions get the rule too",
+    "Creates rg-serviceHealthAlert, the alert rule and an action group that emails subscription owners",
+  ], 12.5);
+  const r = panel(s, "Plan", 6.85, 1.45, 5.9, null, HEX.amber, HEX.amberTint, "NEW-PNALERTPOLICY.PS1", "A plan before a change", [
+    "Checks the definition's display name, then writes plan.json with two steps",
+    "The CLI path grants the identity its role (--role, --identity-scope)",
+    "Prints the SHA-256; changes nothing without -Apply and that hash",
+  ], 12.5);
+  callout(s, "Edit", Math.max(l, r) + 0.3, 0.95, "FaTriangleExclamation", HEX.red, "Don't edit the alert rules by hand: ",
+    "change the assignment's parameters and remediate again, or remediation may overwrite the edit.");
+  sources(s, "Sources: Module 2, Unit 2; workbook Chapter 01 (The alert policy; Dangers); Service Health alerts with Azure Policy; Azure Policy remediation.");
+  notes(s,
+`Between collections, alerts carry the news. Learn's page on deploying Service Health alerts at scale names a built-in definition: configure subscriptions to enable Service Health monitoring alert rules. It's assigned at a management group or subscription, never a resource group, with a remediation task so existing subscriptions get the alert rule too, not only new ones. With no parameters, the remediation creates a resource group, the alert rule and an action group in each subscription, and emails the subscription owners for every event type. The kit's alert policy script reads the definition, checks its display name, and writes a plan with two steps: the assignment, with a system-assigned managed identity granted the definition's role, because only the portal grants it automatically, and the remediation. It prints the plan's SHA-256 and changes nothing unless it's run again with apply and that hash. And never edit the alert rules by hand: change the assignment's parameters and remediate again, or the policy may overwrite the edit.`,
+  `${M} — Unit 2: workbook Chapter 01 — "The alert policy," "Dangers"; the guide — Step 1, step 4.`);
+}
+endModule(SC);
+
+// ================================================================== 8 Try it: roles and query
+{
+  const s = content(SL, "Try it: the reader's roles, and the kit's query");
+  tag(s, "How");
+  const c = code(s, "Lab", 0.6, 1.45, 12.15, [
+    "# Lab 1, steps 1 and 2, in examples/provider-notices (PowerShell 7)",
+    "$ Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1",
+    "$ Get-PnRequiredPermission -Provider azure | Format-List",
+    "Call        : azure-service-health-events",
+    "Permissions : Reader on each subscription in scope",
+    "Elevated    : Service Health Security Reader (or a role with ...) to see the sensitive fields of",
+    "              security advisories; Reader and Monitoring Reader can't",
+    "Verified    : True",
+    "Call        : azure-impacted-resources   (Reader; the elevated role for a security advisory's resources)",
+    "$ Get-PnAzureQuery -Name events",
+    "ServiceHealthResources | where type =~ 'Microsoft.ResourceHealth/events' | extend eventType = ...,",
+    "  eventSubType = tostring(properties.EventSubType), ...,",
+    "  impactStartTime = todatetime(tolong(properties.ImpactStartTime)), ... | order by trackingId asc, ...",
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 12, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
+  line(s, "Read", "Two calls, both Reader, nothing that writes. One query: Learn's all-active filter with the retirement subtype.", c + 0.2, 0.45, 13.5);
+  sources(s, "Sources: Module 2, \"Exercise: Lab 1,\" steps 1 and 2; examples/provider-notices: config/calls.json, ProviderNotices module.");
+  notes(s,
+`Try it. Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against fictional subscriptions. Nothing signs in to anything. Step one lists what Azure needs. Two calls, the Service Health events and the impacted resources, and each needs only Reader on each subscription in scope. The elevated role is Service Health Security Reader, to see the sensitive fields of security advisories, which Reader and Monitoring Reader can't. Both are marked verified. Notice that nothing here writes. Step two prints the kit's events query. It starts the way Learn's all-active sample does, from the Service Health resources table, filtered to Resource Health events. It adds the retirement sample's event subtype, converts the impact times the way Learn's advisory sample does, and ends ordered by tracking I D, so the rows page in a stable order.`,
+  `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 1 and 2.`);
+}
+
+// ================================================================== 9 Try it: collect and read
+{
+  const s = content(SL, "Try it: five notices from six rows");
+  tag(s, "How");
+  const c = code(s, "Run", 0.6, 1.45, 12.15, [
+    "# Step 3: collect Azure from the day-one fixtures",
+    "$ ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 \\",
+    "    -Provider azure -AsOf 2026-11-09T12:00:00Z -OutputPath out/azure",
+    "Provider Cloud        Notices   Open   Action  By kind",
+    "azure    AzureCloud         5      5        2  advisory 1, incident 1, maintenance 1, retirement 1, security 1",
+    "# Step 4: read the records",
+    "$ Import-Csv out/azure/notices.csv | Format-Table kind, status, actionRequired, actionRequiredBy, title",
+    "kind        status actionRequired actionRequiredBy     title",
+    "incident    open   false                               Virtual Machines - East US - Connectivity issues",
+    "advisory    open   false                               Update clients to TLS 1.2 or later for Azure Storage",
+    "maintenance open   false                               Planned maintenance: Virtual Machines in East US 2",
+    "retirement  open   true           2027-09-30T00:00:00Z Retirement: Basic SKU public IP addresses",
+    "security    open   true                                Security advisory: action recommended for Azure Kub...",
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 12, 2026 (WRAPPED AND TRIMMED)", pt: 10.5 });
+  line(s, "Merge", "The incident's rows from two subscriptions are one notice. The security advisory needs action with no date.", c + 0.2, 0.45, 13.5);
+  sources(s, "Sources: Module 2, \"Exercise: Lab 1,\" steps 3 and 4; workbook Chapter 01, Lab 1; examples/provider-notices/tests/fixtures/day1 (fictional).");
+  notes(s,
+`Step three collects Azure from the day-one fixtures, as of November ninth, 2026. Five notices, all open, two needing action: one each of advisory, incident, maintenance, retirement and security. Five notices from six rows, because the incident appears in two subscriptions, and the kit merges rows by tracking I D. Without that merge, the same outage would become two tasks. Step four reads the records. The incident is a virtual machine connectivity issue in East U S. The advisory asks clients of Azure Storage to move to T L S 1.2 or later. The maintenance is planned work on virtual machines in East U S 2. The retirement, of Basic S K U public I P addresses, is due on September thirtieth, 2027, at the advisory's end. And the security advisory, for Azure Kubernetes Service clusters, needs action with no date, for the ISSO to review.`,
+  `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 3 and 4.`);
+}
+
+// ================================================================== 10 Try it: plan and refuse
+{
+  const s = content(SL, "Try it: plan the alert policy; fixture mode refuses");
+  tag(s, "How");
+  const c = code(s, "Plan", 0.6, 1.45, 12.15, [
+    "# Step 5: plan the Service Health alert policy (-SettingsPath, -FixturePath ... -OutputPath out/alerts)",
+    "$ ./deploy/New-PnAlertPolicy.ps1 ... -AsOf 2026-11-16T12:00:00Z",
+    "AL-01  WouldApply  az policy assignment create --name pn-service-health-alerts ...",
+    "         --policy 98903777-a9f6-47f5-90a9-acaf62ab01a8 --scope .../managementGroups/mg-contoso-example",
+    "         --mi-system-assigned --location eastus --role ... --identity-scope ...",
+    "AL-02  WouldApply  az policy remediation create --name pn-service-health-alerts-remediation ...",
+    "Plan SHA-256: 6a1ec6adbd50bc2cec2bcc803ee45629bc0a0d7de416fcafd3216db443a4a3b7",
+    "Dry run: nothing changed. To apply, add -Apply -ApprovedSha256 <the hash above> ...",
+    "# Step 6: try to apply it in fixture mode (-Apply -ApprovedSha256 ('0' * 64))",
+    "Exception: Fixture mode never applies.",
+    "# Step 7: run this chapter's tests",
+    "PassedCount 26   FailedCount 0",
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 12, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
+  line(s, "Role", "The role ID in the fixture is made up; Lab 2 reads the real one from the definition.", c + 0.2, 0.45, 13.5);
+  sources(s, "Sources: Module 2, \"Exercise: Lab 1,\" steps 5 to 7; examples/provider-notices: deploy/New-PnAlertPolicy.ps1, deploy/tests/fixtures (fictional).");
+  notes(s,
+`Step five plans the Service Health alert policy for a fictional production environment. Two steps, both would apply. A L oh one creates the policy assignment for the built-in definition at the management group, with a system-assigned identity, its role and its identity scope. A L oh two creates the remediation. Then the plan's SHA-256, and the line that matters: dry run, nothing changed. To apply, add apply and the approved hash, after the change record approves it. The role I D in the fixture is made up; Lab 2 reads the real one. Step six tries to apply the plan in fixture mode, with a hash of zeros, and the script refuses before it even reads the hash: fixture mode never applies. Step seven runs this chapter's tests: twenty-six pass, none fail. Then delete the output folder.`,
+  `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 5 to 7.`);
+}
+
+// ================================================================== 11 Lab 2
+{
+  const s = content(SL, "Lab 2: a test subscription, with a second approver");
+  tag(s, "How");
+  const b = table(s, "Lab2", 1.45, [2.3, 9.85], ["Step", "What you do"], [
+    ["You need", "An Azure test subscription in a test tenant, never production; a reader identity; a person who can create policy and role assignments; a second person to approve the hash"],
+    ["Read", "Grant Reader and Service Health Security Reader; sign in; cross-check Learn's own query against the collection"],
+    ["Alert", "Plan the policy at the subscription, apply it with the approved hash, and check the remediation and the alert rule"],
+    ["Back it out", "Plan and apply the rollback with its approved hash; delete what the remediation created; remove the reader's roles"],
+  ], { fontSize: 12.5, limit: 4.9 });
+  callout(s, "NotRun", b + 0.25, 0.95, "FaTriangleExclamation", HEX.amber, "Not run by the authors: ",
+    "follow the workbook's Chapter 01, Lab 2, which has the exact commands. No Service Health events is a valid result.");
+  sources(s, "Sources: Module 2, \"Exercise: Lab 2\"; workbook Chapter 01, Lab 2; Service Health alerts with Azure Policy.");
+  notes(s,
+`Lab 2 runs the same gate in an Azure test subscription, in a test tenant, never production. You need a reader identity, a person who can create policy and role assignments there, and a second person to approve the plan's hash. The subscription may have no Service Health events at all, and that's a valid result. Grant the reader Reader and Service Health Security Reader, sign in, and cross-check Learn's own query against the kit's collection; the counts should agree, once the merge of one event across subscriptions is taken into account. Then plan the alert policy at the test subscription, apply it with the approved hash, and check the remediation and the alert rule. To back it out, plan the rollback, have it approved, apply it, delete what the remediation created, and remove the reader's roles. Deleting the assignment doesn't delete what its remediation made. The authors haven't run Lab 2; the workbook's Chapter 1 has the exact commands.`,
+  `${M} — Unit "Exercise: Lab 2, a test subscription"; workbook Chapter 01 — "Lab 2: a test subscription."`);
+}
+endModule(SL);
+
+// ================================================================== 12 GCC and Azure Government
+{
+  const s = content(SS, "GCC is commercial Azure; Azure Government differs");
+  tag(s, "Who");
+  const l = panel(s, "Gcc", 0.6, 1.45, 6.0, null, HEX.teal, HEX.tealTint, "GCC (MODERATE)", "The workbook's baseline", [
+    "The settings name the cloud: AzureCloud",
+    "Resource Manager management.azure.com",
+    "No default: an unknown cloud name throws",
+  ], 13);
+  const r = panel(s, "Gov", 6.85, 1.45, 5.9, null, HEX.navy, HEX.navyTint, "AZURE GOVERNMENT (SIDE NOTE)", "GCC High and DoD", [
+    "az cloud set --name AzureUSGovernment; management.usgovcloudapi.net",
+    "Learn's samples link the Azure Government portal; the table's availability there is not yet specified",
+  ], 13);
+  callout(s, "Wrong", Math.max(l, r) + 0.3, 1.0, "FaTriangleExclamation", HEX.red, "The wrong cloud looks like a quiet week: ",
+    "Azure Government subscriptions read from the commercial cloud return nothing. The live invoker refuses an Azure CLI set to another cloud.");
+  sources(s, "Sources: Module 2, Unit 1; the guide, Step 1 (Government-cloud availability); workbook Chapter 01 (Dangers); Connect to Azure Government with Azure CLI.");
+  notes(s,
+`Which cloud? A GCC Moderate estate's subscriptions are commercial Azure, so the settings name the Azure Cloud, and the source links are on management dot azure dot com. There's no default: an unknown cloud name throws. As a side note for GCC High and DoD estates, Azure Government uses its own cloud setting and its own Resource Manager host, management dot us gov cloud api dot net. Every Service Health sample on Learn links the Azure Government portal as well as the global one, but an explicit availability statement for the table in Azure Government is not yet specified. The danger is a reader in the wrong cloud. Azure Government subscriptions read from the commercial cloud return nothing, and the gate would pass on an empty list. So the live invoker refuses an Azure command line set to another cloud.`,
+  `${M} — Unit 1: the guide — Step 1, "Government-cloud availability"; workbook Chapter 01 — "Dangers."`);
+}
+
+// ================================================================== 13 Federal requirement
+{
+  const s = content(SS, "The federal requirement and evidence for Gate G1");
+  tag(s, "Who");
+  const b = table(s, "Req", 1.45, [3.4, 3.2, 5.55], ["NIST SP 800-53", "KSI", "Evidence"], [
+    ["SA-9 c: monitor the provider", "KSI-SCR-MIT, KSI-SCR-MON", "Get-PnRequiredPermission -Provider azure: Reader, and Service Health Security Reader; nothing that writes"],
+    ["SA-9 c; SI-5 a: receive advisories", "KSI-SCR-MIT, KSI-SCR-MON", "raw/azure.json, notices.json, manifest.json with every call and its role"],
+    ["SI-5; CA-7: the alert path", "KSI-SCR-MON, KSI-MLA-EVC", "The alert plan, results.json, and the change record that approved the hash"],
+    ["CM-3; CP-2: the rollback", "KSI-CMT-LMC, KSI-RPL-ARP", "The change record (Lab 2)"],
+  ], { fontSize: 12, limit: 5.0 });
+  line(s, "KSI", "KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them. The mapping is design guidance.", b + 0.25, 0.7, 13.5);
+  sources(s, "Sources: Module 2, \"Introduction\"; workbook Chapter 01 (Federal requirements and evidence); NIST SP 800-53 Rev. 5; FedRAMP 20x KSIs.");
+  notes(s,
+`The federal requirement. Gate 1 supports NIST special publication eight hundred fifty-three S A nine, part c, monitoring the provider on an ongoing basis; S I five, part a, receiving security alerts and advisories; and C A seven, continuous monitoring. The evidence starts with the permission list: Reader, and Service Health Security Reader for security advisories, and nothing that writes. Then the raw Azure response, the notices and the manifest, with every call and its role. For the alert path that runs between collections, the alert plan, the results of the apply, and the change record that approved the hash. And in Lab 2, the change record for the rollback, which supports C M three and C P two. The gate's output is evidence for these controls; your organization still sets their parameters, and the assessor decides. K S I's are FedRAMP twenty X indicators for cloud service providers, and which file supports which indicator is the program's mapping.`,
+  `${M} — Unit "Introduction" (the federal requirement); workbook Chapter 01 — "Federal requirements and evidence."`);
+}
+
+// ================================================================== 14 Check
+{
+  const s = check(SS, "Check yourself: two questions on Azure", [
+    { q: "A security advisory's summary is empty in the record. What is the likely cause?", options: ["a. Microsoft hasn't written it yet", "b. The reader holds Reader but not Service Health Security Reader", "c. The query filtered it out"] },
+    { q: "The same incident appears in two subscriptions. How many notices does the kit write?", options: ["a. Two, one per subscription", "b. One: rows are merged by tracking ID", "c. One per region"] },
+  ], "1 b: the sensitive fields need the elevated role. 2 b: one event, one notice, so one task.");
+  sources(s, "Sources: Module 2, \"Knowledge check,\" questions 1 and 2, and \"Check your answers.\"");
+  notes(s,
+`Check yourself with two questions. First: a security advisory's summary is empty in the record. What's the likely cause? The answer is b. The reader holds Reader but not Service Health Security Reader, which the sensitive fields need. Reader and Monitoring Reader can list the advisory, but can't see its summary or impacted resources. Second: the same incident appears in two subscriptions. How many notices does the kit write? The answer is b, one. Rows are merged by tracking I D, so one event is one notice, and later one task, not one per subscription. The module page has three more questions, each linked to the section that answers it.`,
+  `${M} — Unit "Knowledge check," questions 1 and 2; "Check your answers."`);
+}
+
+// ================================================================== 15 Summary
+{
+  const s = content(SS, "Summary, and next: Module 3, the Message center");
+  tag(s, "How");
+  const l = panel(s, "Did", 0.6, 1.45, 7.0, null, HEX.navy, HEX.navyTint, "IN THIS MODULE YOU", null, [
+    "Listed the two roles Azure's reader needs",
+    "Read the kit's query against Learn's samples",
+    "Collected five notices from the fixture subscriptions",
+    "Planned alerts at the management group, which fixture mode refuses to apply",
+  ], 13.5);
+  const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "NEXT", "Module 3: Microsoft 365 Message center", [
+    "Gate G2, with workbook Chapter 02",
+    "Two Graph permissions, and the tenant's own host",
+  ], 13.5);
+  callout(s, "Keep", Math.max(l, r) + 0.3, 0.95, "FaFileShield", HEX.teal, "The evidence an ISSO keeps: ",
+    "raw/azure.json, notices.json, notices.csv and manifest.json, dated; the permission list; the alert plan with its SHA-256, and in Lab 2 its approval and results.");
+  sources(s, "Sources: Module 2, \"Summary\"; Module 3; workbook Chapter 01 (Checklist).");
+  notes(s,
+`To sum up. You listed the two roles Azure's reader needs, read the kit's query against Learn's samples, collected five notices from the fixture subscriptions, and planned Service Health alerts at the management group, as a plan that fixture mode refuses to apply. The evidence an ISSO keeps for Gate 1 is the raw Azure response, the notices as JSON and as a spreadsheet file, and the manifest, all dated; the permission list from step one; and the alert plan with its SHA-256, and in Lab 2, the change record that approved it and the results of the apply. Before you ship, work through the chapter's checklist. Next is Module 3: the Microsoft 365 Message center. That's Gate 2, with the workbook's second chapter: two Graph permissions, and why a tenant must be read on its own Graph host.`,
+  `${M} — Unit "Summary"; Module 3.`);
+}
+endModule(SS);
+
+// ================================================================== Backup
+backup();
+sourceSlide("Sources: Module 2 deck", [
+  "Module page: docs/training/provider-notices/02-azure-service-health-and-alerts.md (Provider Notices learning path, Module 2): Introduction and its requirement table, objectives, prerequisites, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary.",
+  "What the module sends the learner to: Provider Notices: An Implementation Guide, Step 1 (with Government-cloud availability, Interim path and Validate (G1)); workbook Chapter 01, \"What Microsoft gives you,\" \"What it leaves to you,\" \"The Azure collector,\" \"The alert policy,\" \"Dangers,\" \"Federal requirements and evidence,\" Lab 2.",
+  "Microsoft Learn pages they cite: Azure Resource Graph sample queries for Azure Service Health; impacted-resources samples; Subscription versus tenant level events; access to sensitive information in security advisories and elevated access; Deploy Service Health alerts at scale using Azure Policy; Remediate non-compliant resources; Connect to Azure Government with Azure CLI; Azure Service Health FAQ. NIST SP 800-53 Rev. 5 (OSCAL 5.2.0); FedRAMP KSIs.",
+  "Kit: examples/provider-notices (Invoke-PnCollect.ps1; powershell/ProviderNotices; deploy/New-PnAlertPolicy.ps1; tests/fixtures; deploy/tests/fixtures). Lab output: run November 12, 2026 with PowerShell 7.6 and Pester 5.9 in a scratch copy, the same output the page shows; wrapped and trimmed where the slides say so. Lab 2 not run by the authors. Illustrative: tested against fixtures, not run against a live tenant.",
+]);
+
+finish(OUT);

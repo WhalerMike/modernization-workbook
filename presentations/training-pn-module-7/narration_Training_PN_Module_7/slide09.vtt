@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.112
+Step six routes the same collection
+again, on a copy of the state.
+
+2
+00:00:04.112 --> 00:00:08.607
+All twenty-two notices are unchanged,
+and the router writes nothing:
+
+3
+00:00:08.607 --> 00:00:12.300
+no payloads, because nothing
+new or changed needs a task.
+
+4
+00:00:12.300 --> 00:00:16.025
+That's the guard against the same
+notice being ticketed every week.
+
+5
+00:00:16.025 --> 00:00:18.963
+Step seven collects and
+routes the second week.
+
+6
+00:00:18.963 --> 00:00:22.705
+Two new notices, six
+changed, fifteen unchanged,
+
+7
+00:00:22.705 --> 00:00:27.599
+and one no longer listed: one
+create, four updates and one close.
+
+8
+00:00:27.599 --> 00:00:30.250
+Step eight reads what each payload is for.
+
+9
+00:00:30.250 --> 00:00:34.237
+The Azure and Oracle
+rescheduled maintenance windows,
+
+10
+00:00:34.237 --> 00:00:38.225
+and the updated Microsoft 365
+post, are changed updates.
+
+11
+00:00:38.225 --> 00:00:41.273
+The Azure incident the
+provider no longer lists
+
+12
+00:00:41.273 --> 00:00:43.863
+is an absent update,
+asking for the re-read.
+
+13
+00:00:43.863 --> 00:00:47.737
+The new Microsoft 365 post is a create.
+
+14
+00:00:47.737 --> 00:00:52.182
+And the AWS security notification
+that AWS closed is a close,
+
+15
+00:00:52.182 --> 00:00:56.450
+which also asks for the re-read,
+not for the task to be closed.
+
+16
+00:00:56.450 --> 00:00:58.708
+Step nine runs the router's tests,
+
+17
+00:00:58.708 --> 00:01:03.975
+including the one that reads the finding
+contract: thirty-one pass, none fail.
+
+18
+00:01:03.975 --> 00:01:05.880
+Then delete the output folder.

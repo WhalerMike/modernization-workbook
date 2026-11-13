@@ -1,0 +1,697 @@
+{
+ "1": [
+  [
+   0.05,
+   5.888,
+   "Welcome to Module 2 of the Provider Notices learning path: Azure Service Health and alerts."
+  ],
+  [
+   5.938,
+   6.225,
+   "This is Gate 1 of the provider notices implementation guide, with the first chapter of the developer workbook."
+  ],
+  [
+   12.162,
+   9.613,
+   "Service Health is where Azure publishes service issues, planned maintenance, health advisories, retirements among them, and security advisories for a subscription."
+  ],
+  [
+   21.775,
+   6.562,
+   "In this module you read the fixture subscriptions with the kit's query, built from Microsoft Learn's own samples."
+  ],
+  [
+   28.337,
+   9.363,
+   "Then you plan the built-in Azure Policy that creates Service Health alerts in every subscription, as a plan that changes nothing until someone approves its hash."
+  ],
+  [
+   37.7,
+   5.9,
+   "It takes about fifty-five minutes, with a lab on fixtures and a lab for a test subscription."
+  ],
+  [
+   43.6,
+   5.5,
+   "The code is illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.95,
+   "Why does Azure need a gate of its own?"
+  ],
+  [
+   2.0,
+   7.125,
+   "Service Health shows service issues, planned maintenance, health advisories and security advisories for each subscription."
+  ],
+  [
+   9.125,
+   9.35,
+   "But the portal tells nobody unless someone created a Service Health alert, and an alert fires only for the subscriptions, services and regions its rule names."
+  ],
+  [
+   18.475,
+   7.375,
+   "Microsoft's own F A Q gives a rule that left out the affected subscription as a reason an alert never arrived."
+  ],
+  [
+   25.85,
+   11.3,
+   "Azure Resource Graph answers the same questions for every subscription in scope with one query, against its Service Health resources table, and Microsoft Learn publishes the sample queries."
+  ],
+  [
+   37.15,
+   2.075,
+   "So this module does two things."
+  ],
+  [
+   39.225,
+   3.638,
+   "It collects with the kit's query, built from Learn's samples."
+  ],
+  [
+   42.862,
+   6.912,
+   "And it plans Service Health alerts at scale with Azure Policy, as a plan that's applied only with an approved hash."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.325,
+   "You'll name the least-privileged roles that read Service Health, and the one a security advisory's sensitive fields need."
+  ],
+  [
+   9.287,
+   3.237,
+   "You'll compare the kit's events query with Learn's samples."
+  ],
+  [
+   12.525,
+   5.05,
+   "You'll collect the fixture subscriptions and read each event's kind and action date."
+  ],
+  [
+   17.575,
+   6.35,
+   "And you'll plan Service Health alerts at scale with Azure Policy, and show that fixture mode never applies the plan."
+  ],
+  [
+   23.925,
+   3.675,
+   "You need Module 1, for the record and its action basis."
+  ],
+  [
+   27.6,
+   13.05,
+   "If you have time, read the Azure platform and Microsoft 365 audit telemetry chapter of Security Operations and Telemetry, which sends the Azure activity log's Service Health category to the workspace."
+  ],
+  [
+   40.65,
+   4.162,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5."
+  ],
+  [
+   44.812,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.212,
+   "Unit 1 is the guide's Step 1, in four parts."
+  ],
+  [
+   3.263,
+   7.112,
+   "First, grant the reader its roles: Reader on each subscription in scope is enough to see its Service Health events."
+  ],
+  [
+   10.375,
+   6.838,
+   "But a security advisory's sensitive fields, and its impacted resources, need Service Health Security Reader."
+  ],
+  [
+   17.212,
+   2.438,
+   "Reader and Monitoring Reader can't see them."
+  ],
+  [
+   19.65,
+   4.562,
+   "Second, sign in in the right cloud, with the Resource Graph extension."
+  ],
+  [
+   24.212,
+   7.013,
+   "A G C C agency's subscriptions are commercial Azure, the Azure Cloud setting; Azure Government uses its own."
+  ],
+  [
+   31.225,
+   5.412,
+   "Third, collect, with the kit's events query and Learn's impacted-resources query."
+  ],
+  [
+   36.638,
+   6.5,
+   "And fourth, alert at scale: plan the built-in policy at the management group, with a remediation task."
+  ],
+  [
+   43.138,
+   6.5,
+   "The gate passes when every subscription's events are listed and each security advisory has its summary."
+  ],
+  [
+   49.638,
+   4.025,
+   "An empty summary is the sign that the reader lacks the elevated role."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.675,
+   "Unit 2 reads the workbook chapter, starting with what Microsoft gives you and what it leaves to you."
+  ],
+  [
+   5.725,
+   10.35,
+   "Learn publishes one sample query per question: all active events, health advisories, upcoming retirements and planned maintenance, each returning different columns."
+  ],
+  [
+   16.075,
+   8.425,
+   "The kit builds one events query from the all-active sample, adding the retirement sample's event subtype and the advisory sample's time conversion."
+  ],
+  [
+   24.5,
+   6.45,
+   "Learn's samples return one row per event per subscription, so the same outage would be counted once per subscription."
+  ],
+  [
+   30.95,
+   3.85,
+   "The kit merges rows by tracking I D into one notice."
+  ],
+  [
+   34.8,
+   5.375,
+   "Learn gives event types, not what to do about them, so the kit maps them to the six kinds."
+  ],
+  [
+   40.175,
+   4.975,
+   "Nothing says action is required, so the kit states a rule, and the record names it."
+  ],
+  [
+   45.15,
+   3.237,
+   "And for the alert policy, Learn gives portal steps."
+  ],
+  [
+   48.388,
+   3.825,
+   "The kit writes a plan file a reviewer can approve before it runs."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.062,
+   "The Azure collector makes two declared calls: the events query and the impacted-resources query."
+  ],
+  [
+   6.112,
+   5.05,
+   "Each is an Azure Resource Graph query in live mode, and a file in fixture mode."
+  ],
+  [
+   11.162,
+   2.8,
+   "Then it maps each event type to a kind."
+  ],
+  [
+   13.963,
+   1.863,
+   "Service issues are incidents."
+  ],
+  [
+   15.825,
+   2.15,
+   "Planned maintenance is maintenance."
+  ],
+  [
+   17.975,
+   11.312,
+   "A health advisory whose event subtype is Retirement is a retirement, and it's action required by the kit's rule, due at the advisory's end time, which Learn says is its mitigation time."
+  ],
+  [
+   29.288,
+   2.7,
+   "Any other health advisory is an advisory."
+  ],
+  [
+   31.988,
+   6.963,
+   "A security advisory is action required by the kit's rule, with no date, for the I S S O to review."
+  ],
+  [
+   38.95,
+   3.987,
+   "And anything else, such as billing, is left out and counted."
+  ],
+  [
+   42.938,
+   4.85,
+   "Resources come from the impacted-resources rows with the same tracking I D."
+  ],
+  [
+   47.788,
+   4.463,
+   "The source link is the event on the cloud's own Resource Manager host."
+  ],
+  [
+   52.25,
+   3.438,
+   "An unknown cloud name throws; there is no default."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.9,
+   "Between collections, alerts carry the news."
+  ],
+  [
+   2.95,
+   9.3,
+   "Learn's page on deploying Service Health alerts at scale names a built-in definition: configure subscriptions to enable Service Health monitoring alert rules."
+  ],
+  [
+   12.25,
+   10.375,
+   "It's assigned at a management group or subscription, never a resource group, with a remediation task so existing subscriptions get the alert rule too, not only new ones."
+  ],
+  [
+   22.625,
+   10.975,
+   "With no parameters, the remediation creates a resource group, the alert rule and an action group in each subscription, and emails the subscription owners for every event type."
+  ],
+  [
+   33.6,
+   15.838,
+   "The kit's alert policy script reads the definition, checks its display name, and writes a plan with two steps: the assignment, with a system-assigned managed identity granted the definition's role, because only the portal grants it automatically, and the remediation."
+  ],
+  [
+   49.438,
+   7.213,
+   "It prints the plan's SHA-256 and changes nothing unless it's run again with apply and that hash."
+  ],
+  [
+   56.65,
+   8.512,
+   "And never edit the alert rules by hand: change the assignment's parameters and remediate again, or the policy may overwrite the edit."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   7.35,
+   "Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against fictional subscriptions."
+  ],
+  [
+   8.125,
+   1.788,
+   "Nothing signs in to anything."
+  ],
+  [
+   9.912,
+   2.163,
+   "Step one lists what Azure needs."
+  ],
+  [
+   12.075,
+   7.65,
+   "Two calls, the Service Health events and the impacted resources, and each needs only Reader on each subscription in scope."
+  ],
+  [
+   19.725,
+   8.412,
+   "The elevated role is Service Health Security Reader, to see the sensitive fields of security advisories, which Reader and Monitoring Reader can't."
+  ],
+  [
+   28.137,
+   1.587,
+   "Both are marked verified."
+  ],
+  [
+   29.725,
+   1.887,
+   "Notice that nothing here writes."
+  ],
+  [
+   31.613,
+   2.513,
+   "Step two prints the kit's events query."
+  ],
+  [
+   34.125,
+   7.475,
+   "It starts the way Learn's all-active sample does, from the Service Health resources table, filtered to Resource Health events."
+  ],
+  [
+   41.6,
+   11.162,
+   "It adds the retirement sample's event subtype, converts the impact times the way Learn's advisory sample does, and ends ordered by tracking I D, so the rows page in a stable order."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.075,
+   "Step three collects Azure from the day-one fixtures, as of November ninth, 2026."
+  ],
+  [
+   6.125,
+   8.625,
+   "Five notices, all open, two needing action: one each of advisory, incident, maintenance, retirement and security."
+  ],
+  [
+   14.75,
+   7.675,
+   "Five notices from six rows, because the incident appears in two subscriptions, and the kit merges rows by tracking I D."
+  ],
+  [
+   22.425,
+   3.763,
+   "Without that merge, the same outage would become two tasks."
+  ],
+  [
+   26.188,
+   2.0,
+   "Step four reads the records."
+  ],
+  [
+   28.188,
+   4.5,
+   "The incident is a virtual machine connectivity issue in East U S."
+  ],
+  [
+   32.688,
+   5.85,
+   "The advisory asks clients of Azure Storage to move to T L S 1.2 or later."
+  ],
+  [
+   38.538,
+   4.138,
+   "The maintenance is planned work on virtual machines in East U S 2."
+  ],
+  [
+   42.675,
+   8.613,
+   "The retirement, of Basic S K U public I P addresses, is due on September thirtieth, 2027, at the advisory's end."
+  ],
+  [
+   51.288,
+   8.575,
+   "And the security advisory, for Azure Kubernetes Service clusters, needs action with no date, for the I S S O to review."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.0,
+   "Step five plans the Service Health alert policy for a fictional production environment."
+  ],
+  [
+   5.05,
+   1.95,
+   "Two steps, both would apply."
+  ],
+  [
+   7.0,
+   9.188,
+   "A L oh one creates the policy assignment for the built-in definition at the management group, with a system-assigned identity, its role and its identity scope."
+  ],
+  [
+   16.188,
+   2.525,
+   "A L oh two creates the remediation."
+  ],
+  [
+   18.712,
+   6.525,
+   "Then the plan's SHA-256, and the line that matters: dry run, nothing changed."
+  ],
+  [
+   25.238,
+   4.963,
+   "To apply, add apply and the approved hash, after the change record approves it."
+  ],
+  [
+   30.2,
+   4.737,
+   "The role I D in the fixture is made up; Lab 2 reads the real one."
+  ],
+  [
+   34.938,
+   9.863,
+   "Step six tries to apply the plan in fixture mode, with a hash of zeros, and the script refuses before it even reads the hash: fixture mode never applies."
+  ],
+  [
+   44.8,
+   4.787,
+   "Step seven runs this chapter's tests: twenty-six pass, none fail."
+  ],
+  [
+   49.587,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.987,
+   "Lab 2 runs the same gate in an Azure test subscription, in a test tenant, never production."
+  ],
+  [
+   6.037,
+   7.725,
+   "You need a reader identity, a person who can create policy and role assignments there, and a second person to approve the plan's hash."
+  ],
+  [
+   13.762,
+   4.812,
+   "The subscription may have no Service Health events at all, and that's a valid result."
+  ],
+  [
+   18.575,
+   13.025,
+   "Grant the reader Reader and Service Health Security Reader, sign in, and cross-check Learn's own query against the kit's collection; the counts should agree, once the merge of one event across subscriptions is taken into account."
+  ],
+  [
+   31.6,
+   7.412,
+   "Then plan the alert policy at the test subscription, apply it with the approved hash, and check the remediation and the alert rule."
+  ],
+  [
+   39.013,
+   8.0,
+   "To back it out, plan the rollback, have it approved, apply it, delete what the remediation created, and remove the reader's roles."
+  ],
+  [
+   47.013,
+   3.888,
+   "Deleting the assignment doesn't delete what its remediation made."
+  ],
+  [
+   50.9,
+   5.188,
+   "The authors haven't run Lab 2; the workbook's Chapter 1 has the exact commands."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.9,
+   "Which cloud?"
+  ],
+  [
+   0.95,
+   12.637,
+   "A G C C Moderate estate's subscriptions are commercial Azure, so the settings name the Azure Cloud, and the source links are on management dot azure dot com. There's no default: an unknown cloud name throws."
+  ],
+  [
+   13.588,
+   11.75,
+   "As a side note for G C C High and D O D estates, Azure Government uses its own cloud setting and its own Resource Manager host, management dot us gov cloud api dot net."
+  ],
+  [
+   25.337,
+   11.262,
+   "Every Service Health sample on Learn links the Azure Government portal as well as the global one, but an explicit availability statement for the table in Azure Government is not yet specified."
+  ],
+  [
+   36.6,
+   2.538,
+   "The danger is a reader in the wrong cloud."
+  ],
+  [
+   39.138,
+   6.65,
+   "Azure Government subscriptions read from the commercial cloud return nothing, and the gate would pass on an empty list."
+  ],
+  [
+   45.788,
+   4.612,
+   "So the live invoker refuses an Azure command line set to another cloud."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   16.762,
+   "Gate 1 supports nist special publication eight hundred fifty-three S A nine, part c, monitoring the provider on an ongoing basis; S I five, part a, receiving security alerts and advisories; and C A seven, continuous monitoring."
+  ],
+  [
+   18.2,
+   7.625,
+   "The evidence starts with the permission list: Reader, and Service Health Security Reader for security advisories, and nothing that writes."
+  ],
+  [
+   25.825,
+   5.95,
+   "Then the raw Azure response, the notices and the manifest, with every call and its role."
+  ],
+  [
+   31.775,
+   7.875,
+   "For the alert path that runs between collections, the alert plan, the results of the apply, and the change record that approved the hash."
+  ],
+  [
+   39.65,
+   5.95,
+   "And in Lab 2, the change record for the rollback, which supports C M three and C P two."
+  ],
+  [
+   45.6,
+   7.1,
+   "The gate's output is evidence for these controls; your organization still sets their parameters, and the assessor decides."
+  ],
+  [
+   52.7,
+   8.0,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers, and which file supports which indicator is the program's mapping."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.275,
+   "First: a security advisory's summary is empty in the record."
+  ],
+  [
+   6.3,
+   1.55,
+   "What's the likely cause?"
+  ],
+  [
+   7.85,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   9.075,
+   5.4,
+   "The reader holds Reader but not Service Health Security Reader, which the sensitive fields need."
+  ],
+  [
+   14.475,
+   6.312,
+   "Reader and Monitoring Reader can list the advisory, but can't see its summary or impacted resources."
+  ],
+  [
+   20.788,
+   3.7,
+   "Second: the same incident appears in two subscriptions."
+  ],
+  [
+   24.488,
+   2.1,
+   "How many notices does the kit write?"
+  ],
+  [
+   26.587,
+   1.837,
+   "The answer is b, one."
+  ],
+  [
+   28.425,
+   7.112,
+   "Rows are merged by tracking I D, so one event is one notice, and later one task, not one per subscription."
+  ],
+  [
+   35.538,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   14.225,
+   "You listed the two roles Azure's reader needs, read the kit's query against Learn's samples, collected five notices from the fixture subscriptions, and planned Service Health alerts at the management group, as a plan that fixture mode refuses to apply."
+  ],
+  [
+   15.1,
+   19.725,
+   "The evidence an I S S O keeps for Gate 1 is the raw Azure response, the notices as jay-son and as a spreadsheet file, and the manifest, all dated; the permission list from step one; and the alert plan with its SHA-256, and in Lab 2, the change record that approved it and the results of the apply."
+  ],
+  [
+   34.825,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   37.9,
+   5.075,
+   "Next is Module 3: the Microsoft 365 Message center."
+  ],
+  [
+   42.975,
+   8.075,
+   "That's Gate 2, with the workbook's second chapter: two Graph permissions, and why a tenant must be read on its own Graph host."
+  ]
+ ]
+}

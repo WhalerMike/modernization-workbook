@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.700
+Lab 2 does the same with a
+real test environment's runs.
+
+2
+00:00:03.700 --> 00:00:08.452
+You need the run folder from an earlier
+module's Lab 2, in a test tenant,
+
+3
+00:00:08.452 --> 00:00:13.288
+account, tenancy or project, never
+production, kept on agency storage.
+
+4
+00:00:13.288 --> 00:00:15.466
+You also need a new evidence folder,
+
+5
+00:00:15.466 --> 00:00:19.149
+a new routing state file, and
+the test change record's number.
+
+6
+00:00:19.149 --> 00:00:22.637
+Route and digest the test
+collection with the lab's routing.
+
+7
+00:00:22.637 --> 00:00:26.587
+Record all three runs with the
+change record, and check the chain.
+
+8
+00:00:26.587 --> 00:00:31.374
+Then do the step no script can: give the
+digest to the test environment's owners,
+
+9
+00:00:31.374 --> 00:00:35.487
+and ask whether each action-required
+row reached the right person.
+
+10
+00:00:35.487 --> 00:00:39.854
+To back it out, keep the evidence of
+the test stage with its change record,
+
+11
+00:00:39.854 --> 00:00:42.962
+and delete only the copies
+outside agency storage.
+
+12
+00:00:42.962 --> 00:00:45.112
+The authors haven't run Lab 2.
+
+13
+00:00:45.112 --> 00:00:48.380
+The workbook's Chapter 7
+has the exact commands.

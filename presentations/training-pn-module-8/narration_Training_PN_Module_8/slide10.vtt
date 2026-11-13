@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.875
+Step eight is the one an
+assessor cares about.
+
+2
+00:00:02.875 --> 00:00:05.078
+You add a line to the recorded digest,
+
+3
+00:00:05.078 --> 00:00:08.750
+as if someone edited it after it
+was recorded, and check again.
+
+4
+00:00:08.750 --> 00:00:11.362
+Both checks fail, and both name the file.
+
+5
+00:00:11.362 --> 00:00:14.051
+The checksum row says the digest changed.
+
+6
+00:00:14.051 --> 00:00:18.075
+The chain row says the digest no
+longer matches the third record.
+
+7
+00:00:18.075 --> 00:00:19.712
+And the command exits one.
+
+8
+00:00:19.712 --> 00:00:24.352
+That's the guard against the workbook's
+danger of a recorded file edited later:
+
+9
+00:00:24.352 --> 00:00:28.412
+the evidence would no longer show
+what was read, and the check says so.
+
+10
+00:00:28.412 --> 00:00:31.785
+The same design catches a
+record removed from the middle,
+
+11
+00:00:31.785 --> 00:00:35.013
+because each record holds the
+hash of the one before it.
+
+12
+00:00:35.013 --> 00:00:40.563
+Step nine runs the kit's whole test
+suite: one hundred forty pass, none fail.
+
+13
+00:00:40.563 --> 00:00:43.921
+The tests cover the digest's
+sections and counts,
+
+14
+00:00:43.921 --> 00:00:48.287
+the record's fields and claim
+language, the chain, a changed file,
+
+15
+00:00:48.287 --> 00:00:52.150
+a removed record, a failed run,
+and a stage's missing steps.
+
+16
+00:00:52.150 --> 00:00:54.050
+Then delete the output folder.

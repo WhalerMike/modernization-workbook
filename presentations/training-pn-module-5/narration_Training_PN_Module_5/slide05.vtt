@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.063
+Unit 2 is the event reader.
+
+2
+00:00:02.063 --> 00:00:05.033
+AWS Health's event type
+categories are issue,
+
+3
+00:00:05.033 --> 00:00:09.049
+scheduled change, account
+notification and investigation.
+
+4
+00:00:09.049 --> 00:00:12.800
+None of them says retirement or
+security, so the kit maps them.
+
+5
+00:00:12.800 --> 00:00:15.787
+An issue or an investigation
+is an incident.
+
+6
+00:00:15.787 --> 00:00:19.720
+A scheduled change whose event
+type code names a retirement,
+
+7
+00:00:19.720 --> 00:00:24.125
+a lifecycle event, a deprecation or
+an end of support is a retirement.
+
+8
+00:00:24.125 --> 00:00:25.363
+That's the kit's rule.
+
+9
+00:00:25.363 --> 00:00:27.963
+Any other scheduled change is maintenance.
+
+10
+00:00:27.963 --> 00:00:31.888
+An account notification with the
+security persona is security,
+
+11
+00:00:31.888 --> 00:00:34.999
+and any other account
+notification is an advisory.
+
+12
+00:00:34.999 --> 00:00:35.925
+Then action.
+
+13
+00:00:35.925 --> 00:00:39.651
+AWS's own actionability field,
+when it says action required,
+
+14
+00:00:39.651 --> 00:00:44.745
+makes the record action required, with an
+action basis that starts with provider,
+
+15
+00:00:44.745 --> 00:00:47.863
+and a scheduled change's
+start time is its due date.
+
+16
+00:00:47.863 --> 00:00:51.765
+A retirement without AWS's
+flag is still action required,
+
+17
+00:00:51.765 --> 00:00:55.087
+by the kit's rule, due at
+its start, and labeled rule.
+
+18
+00:00:55.087 --> 00:01:03.460
+And AWS gives times as epoch seconds; the
+record holds them in U T C, I S O 8601.

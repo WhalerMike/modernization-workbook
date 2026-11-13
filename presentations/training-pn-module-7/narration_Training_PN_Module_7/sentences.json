@@ -1,0 +1,678 @@
+{
+ "1": [
+  [
+   0.05,
+   5.4,
+   "Welcome to Module 7 of the Provider Notices learning path: routing to owners."
+  ],
+  [
+   5.45,
+   3.438,
+   "A notice nobody owns is the problem this path started with."
+  ],
+  [
+   8.887,
+   3.675,
+   "This module is where each notice that needs action gets an owner."
+  ],
+  [
+   12.562,
+   6.162,
+   "It's Gate 6 of the provider notices implementation guide, with Chapter 6 of the developer workbook."
+  ],
+  [
+   18.725,
+   9.887,
+   "Each notice that needs action becomes a typed task in the service desk's front door, with a severity, a response window, and the provider's own date kept beside it."
+  ],
+  [
+   28.613,
+   2.225,
+   "The rest go in the weekly digest."
+  ],
+  [
+   30.837,
+   10.275,
+   "In this module you'll check the lab's routing, route two fictional weeks from all five providers as a dry run, read one payload in full, and watch a re-run write nothing."
+  ],
+  [
+   41.112,
+   6.612,
+   "It takes about sixty-five minutes, with a lab on fixtures and a lab in a ServiceNow developer instance."
+  ],
+  [
+   47.725,
+   5.6,
+   "The code is illustrative: tested against fixtures, not run against a live instance."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.312,
+   "Why does routing matter?"
+  ],
+  [
+   1.363,
+   1.137,
+   "Three reasons."
+  ],
+  [
+   2.5,
+   3.5,
+   "First, a notice carries no owner and no due date."
+  ],
+  [
+   6.0,
+   11.613,
+   "Routing is where each notice that needs action gets both: a typed task in the front door, not a second queue, with an owner, a severity, a response window, and the provider's own date."
+  ],
+  [
+   17.613,
+   2.663,
+   "Second, providers repeat themselves."
+  ],
+  [
+   20.275,
+   3.175,
+   "The same notice comes back in every weekly read."
+  ],
+  [
+   23.45,
+   4.763,
+   "A router that ticketed it every week would fill the queue, and people would stop reading it."
+  ],
+  [
+   28.212,
+   4.987,
+   "So the router remembers what it has routed, and writes nothing for a notice that hasn't changed."
+  ],
+  [
+   33.2,
+   4.662,
+   "Third, a provider closing its notice isn't the agency's work being done."
+  ],
+  [
+   37.862,
+   5.725,
+   "A retirement can close on the provider's side while the agency still runs the retired version."
+  ],
+  [
+   43.587,
+   8.475,
+   "So a task closes only when the agency's own next collection shows the notice closed, or the agency's resources no longer affected."
+  ],
+  [
+   52.062,
+   1.188,
+   "That's the re-read."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   7.787,
+   "You'll write routing rules in the right order, and say why security advisories and retirements come before the general action-required rule."
+  ],
+  [
+   10.75,
+   6.963,
+   "You'll route a collection as a dry run, and read what each payload is for: create, update or close."
+  ],
+  [
+   17.712,
+   9.887,
+   "You'll read a task payload: its severity, priority and response window, the provider's own date, the contingency review flag and the five clauses."
+  ],
+  [
+   27.6,
+   7.138,
+   "You'll explain why a re-run writes nothing, and why a provider's closure asks for the re-read instead of closing the task."
+  ],
+  [
+   34.737,
+   3.625,
+   "And you'll say where the agency's routing is written and kept."
+  ],
+  [
+   38.362,
+   12.613,
+   "Before you start, finish at least one of Modules 2 to 6, and read the Ticket-to-Machine reference appendix in Governance, Drift and Evidence, for the typed task, its lanes and the five-clause request chain."
+  ],
+  [
+   50.975,
+   4.162,
+   "Lab 1 needs PowerShell 7.1 or later with Pester 5."
+  ],
+  [
+   55.138,
+   0.925,
+   "No tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.1,
+   "The agency's routing is a jay-son file of ordered rules."
+  ],
+  [
+   4.15,
+   5.775,
+   "Each rule has an I D, a match, and a route: task, digest or ignore."
+  ],
+  [
+   9.925,
+   9.625,
+   "A match can name providers, kinds and statuses; whether action is required or the notice names resources; and patterns for services and regions."
+  ],
+  [
+   19.55,
+   8.762,
+   "A task rule also carries a severity, P1 to P4, an assignment group, an approver role, and whether it needs a contingency review."
+  ],
+  [
+   28.312,
+   10.287,
+   "The kit's routing check refuses an unknown match key, any route other than the three, a task without a severity or an assignment group, and any placeholder left in."
+  ],
+  [
+   38.6,
+   1.025,
+   "Then the order."
+  ],
+  [
+   39.625,
+   16.188,
+   "Rules are tried in order, and the first match wins, so the specific rules come first: security advisories, then retirements, then maintenance that names the agency's resources, then open incidents that name them, then anything else marked as needing action."
+  ],
+  [
+   55.812,
+   1.25,
+   "The order matters."
+  ],
+  [
+   57.062,
+   8.387,
+   "A retirement is often also marked action required, and the retirement rule, which carries the contingency review, should take it first."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.8,
+   "Each task is a ServiceNow-shaped payload."
+  ],
+  [
+   2.85,
+   7.375,
+   "Its action is create, update or close, and its de-duplication key is the provider and the provider's own I D."
+  ],
+  [
+   10.225,
+   11.7,
+   "Its severity, priority and response window come from the Ticket-to-Machine finding contract: P1 immediate, P2 one hour, P3 twenty-four hours, P4 seventy-two hours."
+  ],
+  [
+   21.925,
+   7.1,
+   "Those windows are program design, not a federal requirement, and a test reads the contract and fails if they drift."
+  ],
+  [
+   29.025,
+   3.625,
+   "Then the provider's own action date, kept in a separate field."
+  ],
+  [
+   32.65,
+   2.35,
+   "The two dates answer different questions."
+  ],
+  [
+   35.0,
+   4.112,
+   "The response window says how fast the owner must pick the task up."
+  ],
+  [
+   39.112,
+   5.325,
+   "The provider's date says when the work must be done, and for a retirement it may be months away."
+  ],
+  [
+   44.438,
+   5.575,
+   "Confusing them makes a P3 task look due in a year, or a retirement due tomorrow."
+  ],
+  [
+   50.013,
+   8.875,
+   "The payload also carries the contingency review flag, and the Ticket-to-Machine block: the Human decision lane, and the five clauses of the request chain."
+  ],
+  [
+   58.888,
+   5.812,
+   "Where it came from, who approves, what to do, the re-read check, and the evidence kept."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.175,
+   "Runs and state."
+  ],
+  [
+   1.225,
+   7.95,
+   "The router compares each notice with its state, which is keyed by the provider and the provider's I D and holds each notice's fingerprint."
+  ],
+  [
+   9.175,
+   3.263,
+   "A task-routed notice gets a create the first time it's open."
+  ],
+  [
+   12.438,
+   5.2,
+   "It gets an update when it changes, meaning a different fingerprint, or when its rule changes."
+  ],
+  [
+   17.637,
+   2.112,
+   "An unchanged notice writes nothing."
+  ],
+  [
+   19.75,
+   9.113,
+   "When the provider closes its notice, the task gets a close payload, but that close asks for the re-read, clause C4; it doesn't close the task."
+  ],
+  [
+   28.863,
+   2.837,
+   "The task is resolved on the agency's own check."
+  ],
+  [
+   31.7,
+   8.787,
+   "And an open notice from a provider read in this run that's no longer listed is marked absent, and its task gets an update asking for the same re-read."
+  ],
+  [
+   40.487,
+   4.4,
+   "A provider that wasn't read this run never has its notices marked absent."
+  ],
+  [
+   44.888,
+   6.425,
+   "Each run writes the payloads, a task list, a routing spreadsheet file, the state and a manifest."
+  ],
+  [
+   51.312,
+   7.062,
+   "It's a dry run: nothing is sent unless the scheduled run's send switch is given, with sending turned on in the settings."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.25,
+   "Lab 1 runs in the provider notices folder of the examples, in PowerShell 7."
+  ],
+  [
+   6.025,
+   2.775,
+   "The teams in the lab's routing are fictional."
+  ],
+  [
+   8.8,
+   4.925,
+   "Step one checks the lab's routing: six rules, in the order they're tried."
+  ],
+  [
+   13.725,
+   10.3,
+   "Five route to a task: security operations at P2, cloud platform engineering at P3 twice, the service desk at P2, and cloud operations at P3."
+  ],
+  [
+   24.025,
+   1.462,
+   "The sixth ignores."
+  ],
+  [
+   25.488,
+   5.888,
+   "Step two tries the template as it ships, and the kit refuses it, because it still has a placeholder."
+  ],
+  [
+   31.375,
+   3.938,
+   "It runs only once every value is filled in, at work."
+  ],
+  [
+   35.312,
+   6.487,
+   "Step three collects every provider from the day-one fixtures: twenty-two notices, as in Module 1."
+  ],
+  [
+   41.8,
+   2.462,
+   "Step four routes them as a dry run."
+  ],
+  [
+   44.263,
+   1.738,
+   "Twenty-two new notices."
+  ],
+  [
+   46.0,
+   9.062,
+   "Twelve route to a task, nine go to the digest only, and one is ignored: the Microsoft Viva post, by rule R06."
+  ],
+  [
+   55.062,
+   4.338,
+   "That's twelve create payloads, written to a folder, and nothing sent."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.188,
+   "Step five reads one payload in full: the Azure retirement from Module 1."
+  ],
+  [
+   5.237,
+   3.962,
+   "It's a create, keyed on Azure and the notice's tracking I D."
+  ],
+  [
+   9.2,
+   12.537,
+   "Its severity is P3, with a response window of eighty-six thousand four hundred seconds, twenty-four hours, so the response is due November tenth, 2026, a day after the run."
+  ],
+  [
+   21.738,
+   6.575,
+   "The retirement date is kept apart, in the action due field: September thirtieth, 2027."
+  ],
+  [
+   28.312,
+   0.95,
+   "Both are right."
+  ],
+  [
+   29.262,
+   6.025,
+   "The owner picks the task up within a day, and the work is due by the retirement date, ten months later."
+  ],
+  [
+   35.288,
+   9.925,
+   "It goes to cloud platform engineering, with the contingency review flag set, and it supports C M three, C M four, C P two and S I five."
+  ],
+  [
+   45.212,
+   13.5,
+   "And the Ticket-to-Machine block puts it in the Human decision lane, with the system owner as approver, and a re-read check: the next collection shows the notice closed or no longer listed, or the named resources no longer affected."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.062,
+   "Step six routes the same collection again, on a copy of the state."
+  ],
+  [
+   4.112,
+   8.188,
+   "All twenty-two notices are unchanged, and the router writes nothing: no payloads, because nothing new or changed needs a task."
+  ],
+  [
+   12.3,
+   3.725,
+   "That's the guard against the same notice being ticketed every week."
+  ],
+  [
+   16.025,
+   2.938,
+   "Step seven collects and routes the second week."
+  ],
+  [
+   18.962,
+   8.637,
+   "Two new notices, six changed, fifteen unchanged, and one no longer listed: one create, four updates and one close."
+  ],
+  [
+   27.6,
+   2.65,
+   "Step eight reads what each payload is for."
+  ],
+  [
+   30.25,
+   7.975,
+   "The Azure and Oracle rescheduled maintenance windows, and the updated Microsoft 365 post, are changed updates."
+  ],
+  [
+   38.225,
+   5.638,
+   "The Azure incident the provider no longer lists is an absent update, asking for the re-read."
+  ],
+  [
+   43.862,
+   3.875,
+   "The new Microsoft 365 post is a create."
+  ],
+  [
+   47.737,
+   8.713,
+   "And the AWS security notification that AWS closed is a close, which also asks for the re-read, not for the task to be closed."
+  ],
+  [
+   56.45,
+   7.525,
+   "Step nine runs the router's tests, including the one that reads the finding contract: thirty-one pass, none fail."
+  ],
+  [
+   63.975,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.95,
+   "Lab 2 sends one payload to a ServiceNow developer instance."
+  ],
+  [
+   4.0,
+   7.75,
+   "You need a Personal Developer Instance or a sub-production instance, never production, with an endpoint you build to accept the payload."
+  ],
+  [
+   11.75,
+   3.4,
+   "Its shape is the agency's, and not yet specified."
+  ],
+  [
+   15.15,
+   5.862,
+   "You also need a token for a test integration user, and Lab 1's steps three and four run first."
+  ],
+  [
+   21.012,
+   7.925,
+   "Put the token in the environment for this session only, never in a file: the kit refuses secret-like values in a settings file."
+  ],
+  [
+   28.938,
+   8.05,
+   "Send one payload through the kit's sender, and check the record's assignment group, priority, description and five clauses in the instance."
+  ],
+  [
+   36.987,
+   5.05,
+   "Then back it out: delete the test record, clear the token, and delete the output."
+  ],
+  [
+   42.038,
+   6.125,
+   "Until the endpoint exists, the service desk works from the dry run's task folder and routing file."
+  ],
+  [
+   48.163,
+   11.825,
+   "And the agency's own routing is written at work, from the kit's template, with its Copilot prompts in Microsoft 365 Copilot Chat if that helps, and kept inside the agency's boundary."
+  ],
+  [
+   59.987,
+   2.15,
+   "The authors haven't run Lab 2."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   13.325,
+   "Gate 6 supports nist special publication eight hundred fifty-three S I five, parts c and d: disseminating advisories to the people who act, and implementing directives in the established time frames."
+  ],
+  [
+   14.762,
+   10.275,
+   "It supports C M three, parts b and f, and C M four: a change a provider announces is reviewed, and its impact analyzed, before it lands."
+  ],
+  [
+   25.038,
+   8.525,
+   "And it supports C P two, part e: retirements and maintenance that name the agency's resources prompt a contingency plan review."
+  ],
+  [
+   33.562,
+   17.913,
+   "The evidence is the routing check on the agency's file; the task payloads, the task list and the routing file; the payloads for changes, retirements and maintenance, and the change records they open; the payloads with the contingency review flag; and the state, which shows each notice routed once."
+  ],
+  [
+   51.475,
+   5.062,
+   "No K S I cites base C M four; two cite its second enhancement."
+  ],
+  [
+   56.538,
+   8.0,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers, and which file supports which indicator is the program's mapping."
+  ],
+  [
+   64.537,
+   3.4,
+   "The assessor decides whether each control is satisfied."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   6.175,
+   "First: a task's response due date is tomorrow, and its action due date is in ten months."
+  ],
+  [
+   8.2,
+   0.925,
+   "Which is right?"
+  ],
+  [
+   9.125,
+   1.675,
+   "The answer is b, both."
+  ],
+  [
+   10.8,
+   6.85,
+   "The response window says how fast the owner must pick the task up; the provider's date says when the work must be done."
+  ],
+  [
+   17.65,
+   3.987,
+   "They answer different questions, so the kit keeps them in separate fields."
+  ],
+  [
+   21.637,
+   3.95,
+   "Second: AWS closes its security notification."
+  ],
+  [
+   25.587,
+   1.288,
+   "What does the router do?"
+  ],
+  [
+   26.875,
+   1.212,
+   "The answer is c."
+  ],
+  [
+   28.087,
+   7.388,
+   "It writes a close payload that asks for the re-read, clause C4, and the task is resolved on the agency's own check."
+  ],
+  [
+   35.475,
+   3.95,
+   "The provider closing its notice isn't the agency's work being done."
+  ],
+  [
+   39.425,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   15.213,
+   "You checked six routing rules and saw the template refused, routed twenty-two notices into twelve task payloads, read one with both its dates and its five clauses, watched a re-run write nothing, and read the second week's create, updates and close."
+  ],
+  [
+   16.087,
+   15.988,
+   "The evidence an I S S O keeps for Gate 6 is each routing run's task payloads, task list, routing file, state and manifest, all dated; the reviewed routing file's SHA-256; and the change records the payloads open."
+  ],
+  [
+   32.075,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   35.15,
+   4.725,
+   "Next is Module 8: digest, evidence and go/no-go."
+  ],
+  [
+   39.875,
+   8.613,
+   "That's Gate 7: the weekly digest the owners read for everything that isn't a task, and the hashed evidence chain that records every run."
+  ]
+ ]
+}

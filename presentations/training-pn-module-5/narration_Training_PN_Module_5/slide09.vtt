@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.575
+Step six builds the GovCloud
+request without sending it.
+
+2
+00:00:03.575 --> 00:00:07.862
+You read the lab settings, change
+the partition to A W S U S gov,
+
+3
+00:00:07.862 --> 00:00:10.400
+and ask the kit for the live command.
+
+4
+00:00:10.400 --> 00:00:13.251
+It's describe events in u s gov west one,
+
+5
+00:00:13.251 --> 00:00:16.838
+filtered to open and
+upcoming events, as JSON.
+
+6
+00:00:16.838 --> 00:00:19.762
+The region came from the
+partition; you never typed it.
+
+7
+00:00:19.762 --> 00:00:23.962
+Step seven asks for the details
+of eleven events in one call.
+
+8
+00:00:23.962 --> 00:00:26.697
+The kit refuses before anything runs:
+
+9
+00:00:26.697 --> 00:00:31.637
+describe event details takes one to
+ten event A R Ns, and it got eleven.
+
+10
+00:00:31.637 --> 00:00:34.764
+In a live run the kit never
+asks for more than ten,
+
+11
+00:00:34.764 --> 00:00:39.575
+so this is the guard that keeps a coding
+mistake from reaching AWS mid-run.
+
+12
+00:00:39.575 --> 00:00:44.272
+Step eight runs this chapter's
+tests, for the AWS Health block
+
+13
+00:00:44.272 --> 00:00:48.500
+and the AWS rows of the live
+tests: eleven pass, none fail.
+
+14
+00:00:48.500 --> 00:00:50.400
+Then delete the output folder.

@@ -14,7 +14,7 @@ last-reviewed: 2026-11-09
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 589 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 630 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -28,16 +28,28 @@ This register lists 589 sources. A slide or a video description links to a sourc
 
 | Source | Status | In the register since | Last scan |
 |---|---|---|---|
+| [Accessing the AWS Health API](https://docs.aws.amazon.com/health/latest/ug/health-api.html){#aws-health-api-access} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-api-access"} |
 | [Amazon RDS User Guide: IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html){#aws-rds-iam-auth} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-rds-iam-auth"} |
 | [Amazon Route 53 Developer Guide: DNSSEC](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec.html){#aws-route-53-dnssec} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-route-53-dnssec"} |
 | [Amazon Route 53 Developer Guide: Resolving DNS queries between VPCs and your network](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html){#aws-route-53-resolver} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-route-53-resolver"} |
 | [Amazon VPC IPAM automates IP from Infoblox](https://aws.amazon.com/about-aws/whats-new/2025/11/amazon-vpc-ipam-automates-ip-from-infoblox/){#aws-vpc-ipam-infoblox} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-vpc-ipam-infoblox"} |
+| [AWS CLI command reference: sts get-caller-identity](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html){#aws-cli-sts-get-caller-identity} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-cli-sts-get-caller-identity"} |
+| [AWS Health API Reference](https://docs.aws.amazon.com/health/latest/APIReference/Welcome.html){#aws-health-api-reference} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-api-reference"} |
+| [AWS Health API Reference: DescribeEventDetails](https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetails.html){#aws-health-describe-event-details} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-describe-event-details"} |
+| [AWS Health API Reference: Event](https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html){#aws-health-api-event} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-api-event"} |
+| [AWS Health events in Amazon EventBridge](https://docs.aws.amazon.com/eventbridge/latest/ref/events-ref-health.html){#eventbridge-aws-health-events} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="eventbridge-aws-health-events"} |
+| [AWS Health identity-based policy examples](https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html){#aws-health-identity-policy-examples} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-identity-policy-examples"} |
+| [AWS Health in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-health.html){#aws-health-govcloud} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-govcloud"} |
+| [AWS managed policies for AWS Health](https://docs.aws.amazon.com/health/latest/ug/security-iam-awsmanpol.html){#aws-health-managed-policies} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-managed-policies"} |
 | [AWS Prescriptive Guidance: migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html){#aws-migration-strategies} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-migration-strategies"} |
 | [AWS Security Hub CSPM in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html){#security-hub-cspm-in-govcloud} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-in-govcloud"} |
 | [AWS Security Hub CSPM User Guide](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html){#aws-security-hub} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-security-hub"} |
 | [AWS Service Management Connector end of support](https://docs.aws.amazon.com/smc/latest/ag/smc-end-of-support.html){#aws-smc-end-of-support} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-smc-end-of-support"} |
+| [Concepts for AWS Health](https://docs.aws.amazon.com/health/latest/ug/aws-health-concepts-and-terms.html){#aws-health-concepts} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-concepts"} |
 | [Evaluating compliance status and control status (Security Hub CSPM)](https://docs.aws.amazon.com/securityhub/latest/userguide/controls-overall-status.html){#security-hub-cspm-compliance-status} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-compliance-status"} |
+| [IAM examples using the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli_iam_code_examples.html){#aws-cli-iam-examples} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-cli-iam-examples"} |
 | [NIST SP 800-53 Revision 5 in Security Hub CSPM](https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html){#security-hub-cspm-nist-800-53-r5} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-nist-800-53-r5"} |
+| [Update the alternate contacts for your AWS account](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact-alternate.html){#aws-alternate-contacts} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-alternate-contacts"} |
 
 ## CISA
 
@@ -117,11 +129,36 @@ This register lists 589 sources. A slide or a video description links to a sourc
 | [GSA Enterprise Infrastructure Solutions Transition](https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/telecommunications-and-network-services/enterprise-infrastructure-solutions/eis-transition){#gsa-eis-transition} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="gsa-eis-transition"} |
 | [Technology Modernization Fund: Agency and project fit](https://tmf.cio.gov/fit/){#tmf-fit} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="tmf-fit"} |
 
+## Google Cloud
+
+| Source | Status | In the register since | Last scan |
+|---|---|---|---|
+| [Assured Workloads supported products](https://docs.cloud.google.com/assured-workloads/docs/supported-products){#assured-workloads-supported-products} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="assured-workloads-supported-products"} |
+| [gcloud auth login](https://docs.cloud.google.com/sdk/gcloud/reference/auth/login){#gcloud-auth-login} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gcloud-auth-login"} |
+| [gcloud projects remove-iam-policy-binding](https://docs.cloud.google.com/sdk/gcloud/reference/projects/remove-iam-policy-binding){#gcloud-projects-remove-iam-policy-binding} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gcloud-projects-remove-iam-policy-binding"} |
+| [gcloud service-health events list](https://docs.cloud.google.com/sdk/gcloud/reference/service-health/events/list){#gcloud-service-health-events-list} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gcloud-service-health-events-list"} |
+| [List events (Personalized Service Health)](https://docs.cloud.google.com/service-health/docs/list-events){#personalized-service-health-list-events} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="personalized-service-health-list-events"} |
+| [Managing contacts for notifications (Google Cloud)](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts){#google-cloud-notification-contacts} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="google-cloud-notification-contacts"} |
+| [Personalized Service Health REST reference: the Event resource](https://docs.cloud.google.com/service-health/docs/reference/rest/v1/projects.locations.events){#personalized-service-health-event} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="personalized-service-health-event"} |
+| [Service Health roles and permissions (Google Cloud IAM)](https://docs.cloud.google.com/iam/docs/roles-permissions/servicehealth){#service-health-iam-roles} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="service-health-iam-roles"} |
+
 ## Microsoft
 
 | Source | Status | In the register since | Last scan |
 |---|---|---|---|
+| [About admin roles in the Microsoft 365 admin center](https://learn.microsoft.com/microsoft-365/admin/add-users/about-admin-roles){#m365-admin-roles} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="m365-admin-roles"} |
+| [Azure Service Health FAQ](https://learn.microsoft.com/azure/service-health/service-health-faq){#azure-service-health-faq} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-service-health-faq"} |
+| [Azure Service Health portal](https://learn.microsoft.com/azure/service-health/service-health-portal-update){#azure-service-health-portal} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-service-health-portal"} |
+| [Connect to Azure Government with Azure CLI](https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-cli){#azure-government-connect-cli} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-government-connect-cli"} |
+| [Deploy Service Health alerts at scale using Azure Policy](https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy){#service-health-alerts-azure-policy} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="service-health-alerts-azure-policy"} |
+| [Elevated access to security advisories (Azure Service Health)](https://learn.microsoft.com/azure/service-health/security-advisories-elevated-access){#service-health-security-advisories-elevated} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="service-health-security-advisories-elevated"} |
+| [List serviceAnnouncement issues (Microsoft Graph)](https://learn.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0){#graph-serviceannouncement-list-issues} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="graph-serviceannouncement-list-issues"} |
+| [List serviceAnnouncement messages (Microsoft Graph)](https://learn.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0){#graph-serviceannouncement-list-messages} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="graph-serviceannouncement-list-messages"} |
+| [Resource Graph sample queries for Azure Service Health](https://learn.microsoft.com/azure/service-health/resource-graph-samples){#service-health-resource-graph-samples} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="service-health-resource-graph-samples"} |
 | [Run the Zero Trust Assessment (the tool's guide, 3.1.0)](https://github.com/microsoft/zerotrustassessment/blob/3.1.0/src/powershell/doc/readme.md){#run-the-zero-trust-assessment-3-1-0} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="run-the-zero-trust-assessment-3-1-0"} |
+| [Subscription versus tenant level events (Azure Service Health)](https://learn.microsoft.com/azure/service-health/subscription-vs-tenant){#service-health-subscription-vs-tenant} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="service-health-subscription-vs-tenant"} |
+| [Track new and changed features in the Microsoft 365 Message center](https://learn.microsoft.com/microsoft-365/admin/manage/message-center){#m365-message-center} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="m365-message-center"} |
+| [Working with service communications API in Microsoft Graph](https://learn.microsoft.com/graph/api/resources/service-communications-api-overview){#graph-service-communications-api} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="graph-service-communications-api"} |
 | [Zero Trust Assessment release 3.1.0](https://github.com/microsoft/zerotrustassessment/releases/tag/3.1.0){#zero-trust-assessment-release-3-1-0} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="zero-trust-assessment-release-3-1-0"} |
 | [Zero Trust Assessment repository README (3.1.0)](https://github.com/microsoft/zerotrustassessment/blob/3.1.0/README.md){#zero-trust-assessment-readme-3-1-0} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="zero-trust-assessment-readme-3-1-0"} |
 
@@ -606,6 +643,15 @@ This register lists 589 sources. A slide or a video description links to a sourc
 
 | Source | Status | In the register since | Last scan |
 |---|---|---|---|
+| [Console Announcements (Oracle Cloud Infrastructure)](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/announcements.htm){#oci-console-announcements} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="oci-console-announcements"} |
+| [Details for the Announcements service (OCI policy reference)](https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/announcementspolicyreference.htm){#oci-announcements-policy-reference} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="oci-announcements-policy-reference"} |
+| [Installing the OCI CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm){#oci-cli-install} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="oci-cli-install"} |
+| [OCI CLI command reference: announce announcements get](https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/announce/announcements/get.html){#oci-cli-announcements-get} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="oci-cli-announcements-get"} |
+| [OCI CLI command reference: announce announcements list](https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/announce/announcements/list.html){#oci-cli-announcements-list} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="oci-cli-announcements-list"} |
+| [OCI CLI command reference: iam policy create](https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/create.html){#oci-cli-iam-policy-create} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="oci-cli-iam-policy-create"} |
+| [OCI CLI command reference: iam policy delete](https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/delete.html){#oci-cli-iam-policy-delete} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="oci-cli-iam-policy-delete"} |
+| [OCI Python SDK: the Announcement model](https://docs.oracle.com/en-us/iaas/tools/python/latest/api/announcements_service/models/oci.announcements_service.models.Announcement.html){#oci-announcement-model} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="oci-announcement-model"} |
+| [Oracle US Government Cloud](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govfedramp.htm){#oracle-us-government-cloud} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="oracle-us-government-cloud"} |
 | [REST API for Oracle Fusion Cloud HCM: Employee ATOM feeds](https://docs.oracle.com/en/cloud/saas/human-resources/farws/Employee_Atom_Feeds.html){#oracle-hcm-employee-atom-feeds} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="oracle-hcm-employee-atom-feeds"} |
 | [US Office of Personnel Management Selects Oracle to Power Federal Workforce Modernization](https://www.oracle.com/news/announcement/us-office-of-personnel-management-selects-oracle-to-power-federal-workforce-modernization-2026-06-11/){#us-office-of-personnel-management-selects} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="us-office-of-personnel-management-selects"} |
 
@@ -728,7 +774,7 @@ This register lists 589 sources. A slide or a video description links to a sourc
 | Date | Source | Change |
 |---|---|---|
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
-| November 12, 2026 | 34 sources | Added: cited on the narrated deck slides |
+| November 12, 2026 | 75 sources | Added: cited on the narrated deck slides |
 | November 11, 2026 | 15 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:05.973
+You'll name the two Graph
+permissions the reader needs,
+
+3
+00:00:05.973 --> 00:00:08.449
+and the role that data
+privacy messages need.
+
+4
+00:00:08.449 --> 00:00:12.662
+You'll say which Graph host
+each Microsoft 365 cloud uses,
+
+5
+00:00:12.662 --> 00:00:15.350
+and why the wrong one fails silently.
+
+6
+00:00:15.350 --> 00:00:19.700
+You'll map Message center posts and service
+health issues to the record's kinds.
+
+7
+00:00:19.700 --> 00:00:22.069
+You'll tell a date Microsoft set from the
+
+8
+00:00:22.069 --> 00:00:24.437
+kit's rule for a
+prevent-or-fix-issue post.
+
+9
+00:00:24.437 --> 00:00:28.226
+And you'll show that the kit
+refuses a next link on another host.
+
+10
+00:00:28.226 --> 00:00:32.157
+You need Module 1, for the record
+and its action basis, and the intake,
+
+11
+00:00:32.157 --> 00:00:36.731
+triage and routing chapter of Compliance
+Automation and Day-Two Operations,
+
+12
+00:00:36.731 --> 00:00:40.663
+which explains why nothing is
+approved on the strength of an email.
+
+13
+00:00:40.663 --> 00:00:44.825
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+14
+00:00:44.825 --> 00:00:45.820
+No tenant.

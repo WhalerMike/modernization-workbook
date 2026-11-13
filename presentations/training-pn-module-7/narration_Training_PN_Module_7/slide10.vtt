@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.000
+Lab 2 sends one payload to a
+ServiceNow developer instance.
+
+2
+00:00:04.000 --> 00:00:07.944
+You need a Personal Developer Instance
+or a sub-production instance,
+
+3
+00:00:07.944 --> 00:00:11.750
+never production, with an endpoint
+you build to accept the payload.
+
+4
+00:00:11.750 --> 00:00:15.150
+Its shape is the agency's,
+and not yet specified.
+
+5
+00:00:15.150 --> 00:00:18.362
+You also need a token for
+a test integration user,
+
+6
+00:00:18.362 --> 00:00:21.012
+and Lab 1's steps three
+and four run first.
+
+7
+00:00:21.012 --> 00:00:24.543
+Put the token in the environment
+for this session only,
+
+8
+00:00:24.543 --> 00:00:28.937
+never in a file: the kit refuses
+secret-like values in a settings file.
+
+9
+00:00:28.937 --> 00:00:33.711
+Send one payload through the kit's sender,
+and check the record's assignment group,
+
+10
+00:00:33.711 --> 00:00:36.988
+priority, description and
+five clauses in the instance.
+
+11
+00:00:36.988 --> 00:00:42.037
+Then back it out: delete the test record,
+clear the token, and delete the output.
+
+12
+00:00:42.037 --> 00:00:45.217
+Until the endpoint exists,
+the service desk works
+
+13
+00:00:45.217 --> 00:00:48.163
+from the dry run's task
+folder and routing file.
+
+14
+00:00:48.163 --> 00:00:52.811
+And the agency's own routing is written
+at work, from the kit's template,
+
+15
+00:00:52.811 --> 00:00:57.460
+with its Copilot prompts in Microsoft
+365 Copilot Chat if that helps,
+
+16
+00:00:57.460 --> 00:00:59.988
+and kept inside the agency's boundary.
+
+17
+00:00:59.988 --> 00:01:02.210
+The authors haven't run Lab 2.

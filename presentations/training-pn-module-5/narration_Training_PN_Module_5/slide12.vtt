@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:05.221
+First: what does the AWS
+Health A P I answer for
+
+3
+00:00:05.221 --> 00:00:08.762
+an account without a
+qualifying AWS Support plan?
+
+4
+00:00:08.762 --> 00:00:12.175
+The answer is b, a subscription
+required exception.
+
+5
+00:00:12.175 --> 00:00:16.400
+Not an empty list: nothing is read
+at all, and the error says why.
+
+6
+00:00:16.400 --> 00:00:19.527
+Check the account's plan
+against AWS's current pages,
+
+7
+00:00:19.527 --> 00:00:22.000
+because they name the plans differently.
+
+8
+00:00:22.000 --> 00:00:25.837
+Second: the Lambda lifecycle
+event is action required.
+
+9
+00:00:25.837 --> 00:00:26.749
+Who said so?
+
+10
+00:00:26.749 --> 00:00:29.013
+The answer is b, the kit's rule.
+
+11
+00:00:29.013 --> 00:00:31.866
+A scheduled change whose
+event type code names
+
+12
+00:00:31.866 --> 00:00:34.574
+a retirement is a
+retirement, due at its start.
+
+13
+00:00:34.574 --> 00:00:38.113
+AWS didn't set the actionability
+field on that event,
+
+14
+00:00:38.113 --> 00:00:42.062
+so the record's action basis
+begins with rule, and states it.
+
+15
+00:00:42.062 --> 00:00:44.489
+The module page has three more questions,
+
+16
+00:00:44.489 --> 00:00:47.040
+each linked to the
+section that answers it.

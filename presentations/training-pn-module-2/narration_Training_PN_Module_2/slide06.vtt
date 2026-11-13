@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.929
+The Azure collector
+makes two declared calls:
+
+2
+00:00:02.929 --> 00:00:06.112
+the events query and the
+impacted-resources query.
+
+3
+00:00:06.112 --> 00:00:11.162
+Each is an Azure Resource Graph query in
+live mode, and a file in fixture mode.
+
+4
+00:00:11.162 --> 00:00:13.962
+Then it maps each event type to a kind.
+
+5
+00:00:13.962 --> 00:00:15.826
+Service issues are incidents.
+
+6
+00:00:15.826 --> 00:00:17.975
+Planned maintenance is maintenance.
+
+7
+00:00:17.975 --> 00:00:22.361
+A health advisory whose event subtype
+is Retirement is a retirement,
+
+8
+00:00:22.361 --> 00:00:24.901
+and it's action required
+by the kit's rule,
+
+9
+00:00:24.901 --> 00:00:29.287
+due at the advisory's end time, which
+Learn says is its mitigation time.
+
+10
+00:00:29.287 --> 00:00:31.988
+Any other health advisory is an advisory.
+
+11
+00:00:31.988 --> 00:00:36.316
+A security advisory is action
+required by the kit's rule,
+
+12
+00:00:36.316 --> 00:00:38.951
+with no date, for the ISSO to review.
+
+13
+00:00:38.951 --> 00:00:42.937
+And anything else, such as
+billing, is left out and counted.
+
+14
+00:00:42.937 --> 00:00:47.788
+Resources come from the impacted-resources
+rows with the same tracking I D.
+
+15
+00:00:47.788 --> 00:00:52.251
+The source link is the event on the
+cloud's own Resource Manager host.
+
+16
+00:00:52.251 --> 00:00:55.750
+An unknown cloud name
+throws; there is no default.

@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.363
+First: production's pre-flight
+fails P F oh seven.
+
+3
+00:00:06.363 --> 00:00:07.462
+What does that mean?
+
+4
+00:00:07.462 --> 00:00:08.688
+The answer is b.
+
+5
+00:00:08.688 --> 00:00:13.638
+The test stage's evidence doesn't pass its
+stage check, so production can't start.
+
+6
+00:00:13.638 --> 00:00:15.848
+P F oh seven runs in production only,
+
+7
+00:00:15.848 --> 00:00:20.499
+and it's the guard against deploying
+to production before test has passed.
+
+8
+00:00:20.499 --> 00:00:24.625
+Second: why does production route
+as a dry run for its first week?
+
+9
+00:00:24.625 --> 00:00:25.850
+The answer is b.
+
+10
+00:00:25.850 --> 00:00:29.337
+So duplicate or misrouted
+tasks don't reach the queue.
+
+11
+00:00:29.337 --> 00:00:33.906
+The service desk works from the payloads
+by hand, and sending is turned on only
+
+12
+00:00:33.906 --> 00:00:38.474
+after the change manager approves, with
+the settings flag and the send switch.
+
+13
+00:00:38.474 --> 00:00:40.902
+The module page has three more questions,
+
+14
+00:00:40.902 --> 00:00:43.460
+each linked to the
+section that answers it.

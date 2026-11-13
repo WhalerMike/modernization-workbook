@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.250
+Why does Microsoft 365 need its own gate?
+
+2
+00:00:03.250 --> 00:00:08.062
+In the admin center, each administrator's
+view of the Message center is their own.
+
+3
+00:00:08.062 --> 00:00:12.249
+Archiving a post removes it only
+from that administrator's view,
+
+4
+00:00:12.249 --> 00:00:17.462
+and the weekly digest goes, by default, to
+each administrator's own primary email.
+
+5
+00:00:17.462 --> 00:00:22.319
+Microsoft gives at least thirty days'
+notice of a major update that needs action,
+
+6
+00:00:22.319 --> 00:00:25.263
+and the act-by date is
+rare enough that Microsoft
+
+7
+00:00:25.263 --> 00:00:27.912
+says to pay extra
+attention when it appears.
+
+8
+00:00:27.912 --> 00:00:31.810
+So the program reads the posts
+from Microsoft Graph instead,
+
+9
+00:00:31.810 --> 00:00:36.175
+through the service communications
+A P I, with two read permissions.
+
+10
+00:00:36.175 --> 00:00:37.187
+There's a trap.
+
+11
+00:00:37.187 --> 00:00:41.931
+A GCC High tenant read on the
+worldwide Graph host returns nothing,
+
+12
+00:00:41.931 --> 00:00:44.776
+and an empty list looks like a quiet week.
+
+13
+00:00:44.776 --> 00:00:47.728
+So the kit reads only the
+cloud the settings name,
+
+14
+00:00:47.728 --> 00:00:51.190
+and refuses a session in
+another environment or tenant.

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.709
+Lab 2 runs the same gate in
+an Azure test subscription,
+
+2
+00:00:03.709 --> 00:00:06.037
+in a test tenant, never production.
+
+3
+00:00:06.037 --> 00:00:09.936
+You need a reader identity, a person
+who can create policy and role
+
+4
+00:00:09.936 --> 00:00:13.762
+assignments there, and a second
+person to approve the plan's hash.
+
+5
+00:00:13.762 --> 00:00:17.159
+The subscription may have no
+Service Health events at all,
+
+6
+00:00:17.159 --> 00:00:18.574
+and that's a valid result.
+
+7
+00:00:18.574 --> 00:00:22.497
+Grant the reader Reader and Service
+Health Security Reader, sign in,
+
+8
+00:00:22.497 --> 00:00:27.118
+and cross-check Learn's own query against
+the kit's collection; the counts should
+
+9
+00:00:27.118 --> 00:00:31.600
+agree, once the merge of one event across
+subscriptions is taken into account.
+
+10
+00:00:31.600 --> 00:00:34.607
+Then plan the alert policy
+at the test subscription,
+
+11
+00:00:34.607 --> 00:00:39.012
+apply it with the approved hash, and
+check the remediation and the alert rule.
+
+12
+00:00:39.012 --> 00:00:42.699
+To back it out, plan the rollback,
+have it approved, apply it,
+
+13
+00:00:42.699 --> 00:00:47.013
+delete what the remediation created,
+and remove the reader's roles.
+
+14
+00:00:47.013 --> 00:00:50.901
+Deleting the assignment doesn't
+delete what its remediation made.
+
+15
+00:00:50.901 --> 00:00:56.140
+The authors haven't run Lab 2; the
+workbook's Chapter 1 has the exact commands.

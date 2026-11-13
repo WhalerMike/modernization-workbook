@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.887
+Lab 2 is the runbook itself,
+and nobody has run it yet.
+
+2
+00:00:03.887 --> 00:00:08.932
+You need a test environment for each provider
+the agency enables, never production,
+
+3
+00:00:08.932 --> 00:00:12.148
+with each reader already
+granted in its module's Lab 2,
+
+4
+00:00:12.148 --> 00:00:13.976
+and an approved change record.
+
+5
+00:00:13.976 --> 00:00:18.640
+You also need people: someone who can
+create policy and role assignments for the
+
+6
+00:00:18.640 --> 00:00:22.881
+alert policy, a reviewer who isn't the
+operator to approve each plan's hash,
+
+7
+00:00:22.881 --> 00:00:25.425
+and a Windows account
+for the scheduled run.
+
+8
+00:00:25.425 --> 00:00:30.131
+Then follow Stage 1: fill and check
+the settings file, sign in each reader,
+
+9
+00:00:30.131 --> 00:00:35.076
+run the pre-flight, enable the providers
+one at a time with a cross-check each,
+
+10
+00:00:35.076 --> 00:00:40.101
+route as a dry run, run the smoke test,
+apply the alert policy with its approved
+
+11
+00:00:40.101 --> 00:00:45.525
+hash, schedule the weekly run, check the
+stage's evidence and rehearse the rollback.
+
+12
+00:00:45.525 --> 00:00:51.363
+Stage 2, production, comes only when
+every go/no-go criterion passes.
+
+13
+00:00:51.363 --> 00:00:55.550
+To back it out, Step 1.9
+applies the approved rollback.
+
+14
+00:00:55.550 --> 00:00:58.250
+The state, runs and evidence are kept.

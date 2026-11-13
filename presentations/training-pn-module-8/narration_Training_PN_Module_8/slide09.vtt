@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.872
+Step four records three runs as evidence:
+
+2
+00:00:02.872 --> 00:00:06.938
+the second week's collection,
+its routing run, and the digest.
+
+3
+00:00:06.938 --> 00:00:08.088
+Each passes.
+
+4
+00:00:08.088 --> 00:00:12.200
+The collection covers all five
+providers and the normalize step.
+
+5
+00:00:12.200 --> 00:00:16.978
+The routing run covers route and
+contingency, and so it adds C P two and the
+
+6
+00:00:16.978 --> 00:00:22.075
+recovery planning K S I, because a payload
+asked for a contingency plan review.
+
+7
+00:00:22.075 --> 00:00:24.100
+The digest covers digest.
+
+8
+00:00:24.100 --> 00:00:27.912
+Each record also names
+its controls and K S I's.
+
+9
+00:00:27.912 --> 00:00:32.607
+Step five checks the chain: twenty-five
+files match the checksum file,
+
+10
+00:00:32.607 --> 00:00:35.325
+and the three records' chain is unbroken.
+
+11
+00:00:35.325 --> 00:00:38.137
+Step six checks the test stage's coverage.
+
+12
+00:00:38.137 --> 00:00:41.806
+The checksums and chain
+pass, route and digest pass,
+
+13
+00:00:41.806 --> 00:00:45.038
+but pre-flight and run
+fail: no passing record.
+
+14
+00:00:45.038 --> 00:00:46.538
+The command exits one.
+
+15
+00:00:46.538 --> 00:00:47.376
+That's right.
+
+16
+00:00:47.376 --> 00:00:53.362
+A lab has no pre-flight or scheduled run,
+so the go/no-go's first criterion fails.
+
+17
+00:00:53.362 --> 00:00:55.199
+Module 9 runs both.
+
+18
+00:00:55.199 --> 00:00:58.208
+Step seven reads the records' index:
+
+19
+00:00:58.208 --> 00:01:02.210
+three rows, collect, route
+and digest, each pass.

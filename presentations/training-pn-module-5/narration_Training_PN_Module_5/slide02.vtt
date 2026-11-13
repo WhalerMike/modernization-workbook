@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.250
+Why does AWS need its own module?
+
+2
+00:00:02.250 --> 00:00:06.270
+Today, AWS sends account email
+to the root user's address,
+
+3
+00:00:06.270 --> 00:00:12.213
+plus up to three alternate contacts, one
+each for billing, operations and security.
+
+4
+00:00:12.213 --> 00:00:16.551
+The AWS Health dashboard keeps
+events for up to ninety days.
+
+5
+00:00:16.551 --> 00:00:19.601
+So the notices reach
+whoever opened the account,
+
+6
+00:00:19.601 --> 00:00:21.813
+or a page nobody opens on a schedule.
+
+7
+00:00:21.813 --> 00:00:24.799
+The A P I fixes that, with a condition.
+
+8
+00:00:24.799 --> 00:00:28.947
+It needs a qualifying AWS Support
+plan, and without one it answers
+
+9
+00:00:28.947 --> 00:00:32.787
+with a subscription required
+exception, and nothing is read.
+
+10
+00:00:32.787 --> 00:00:35.875
+Then the dashboard and its
+email are the only path.
+
+11
+00:00:35.875 --> 00:00:39.862
+And AWS's own pages don't
+agree on which plans qualify.
+
+12
+00:00:39.862 --> 00:00:43.640
+The AWS Health concepts page
+names Business Support plus,
+
+13
+00:00:43.640 --> 00:00:47.890
+Enterprise Support or Unified
+Operations; the A P I reference and
+
+14
+00:00:47.890 --> 00:00:52.062
+the GovCloud page name the older
+Business and Enterprise plans.
+
+15
+00:00:52.062 --> 00:00:55.870
+So the guide cites all three, and
+tells you to check the account's
+
+16
+00:00:55.870 --> 00:00:59.880
+plan against the current pages,
+and to confirm it with AWS Support.

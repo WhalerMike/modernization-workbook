@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.738
+Two more things the kit adds.
+
+2
+00:00:01.738 --> 00:00:03.213
+First, chains.
+
+3
+00:00:03.213 --> 00:00:07.350
+The list call asks for only the
+latest announcement in each chain,
+
+4
+00:00:07.350 --> 00:00:12.024
+and the kit keeps only the latest by its
+update time in each chain I D as well.
+
+5
+00:00:12.024 --> 00:00:16.009
+The record's I D is the chain's, so
+when Oracle reschedules a window,
+
+6
+00:00:16.009 --> 00:00:18.866
+the notice keeps its I D
+and gets the new window,
+
+7
+00:00:18.866 --> 00:00:22.775
+and the router updates its task
+instead of opening a second one.
+
+8
+00:00:22.775 --> 00:00:27.248
+The command line's output key casing
+isn't shown in Oracle's reference,
+
+9
+00:00:27.248 --> 00:00:32.113
+so the kit accepts both styles; which one
+the C L I prints is not yet specified.
+
+10
+00:00:32.113 --> 00:00:33.662
+Second, realms.
+
+11
+00:00:33.662 --> 00:00:37.613
+A government tenancy read in the
+commercial realm returns nothing.
+
+12
+00:00:37.613 --> 00:00:42.155
+The kit knows the commercial realm
+and Oracle's U S Government Cloud,
+
+13
+00:00:42.155 --> 00:00:46.212
+whose Announcements endpoints
+are in U S Langley and U S Luke.
+
+14
+00:00:46.212 --> 00:00:49.081
+As a side note, Oracle
+lists that cloud with
+
+15
+00:00:49.081 --> 00:00:52.687
+FedRAMP High and DISA Impact
+Level 4 authorizations.
+
+16
+00:00:52.687 --> 00:00:57.946
+The third realm is refused, because its
+Announcements endpoint is not yet specified,
+
+17
+00:00:57.946 --> 00:01:00.790
+and a region outside the
+realm is refused too.

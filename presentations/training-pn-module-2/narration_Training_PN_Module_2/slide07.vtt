@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Between collections,
+alerts carry the news.
+
+2
+00:00:02.950 --> 00:00:07.145
+Learn's page on deploying Service
+Health alerts at scale names a built-in
+
+3
+00:00:07.145 --> 00:00:12.250
+definition: configure subscriptions to enable
+Service Health monitoring alert rules.
+
+4
+00:00:12.250 --> 00:00:16.945
+It's assigned at a management group or
+subscription, never a resource group,
+
+5
+00:00:16.945 --> 00:00:20.202
+with a remediation task
+so existing subscriptions
+
+6
+00:00:20.202 --> 00:00:22.625
+get the alert rule too, not only new ones.
+
+7
+00:00:22.625 --> 00:00:26.512
+With no parameters, the remediation
+creates a resource group,
+
+8
+00:00:26.512 --> 00:00:30.018
+the alert rule and an action
+group in each subscription,
+
+9
+00:00:30.018 --> 00:00:33.600
+and emails the subscription
+owners for every event type.
+
+10
+00:00:33.600 --> 00:00:38.104
+The kit's alert policy script reads the
+definition, checks its display name,
+
+11
+00:00:38.104 --> 00:00:40.938
+and writes a plan with
+two steps: the assignment,
+
+12
+00:00:40.938 --> 00:00:45.224
+with a system-assigned managed identity
+granted the definition's role,
+
+13
+00:00:45.224 --> 00:00:49.438
+because only the portal grants it
+automatically, and the remediation.
+
+14
+00:00:49.438 --> 00:00:53.139
+It prints the plan's
+SHA-256 and changes nothing
+
+15
+00:00:53.139 --> 00:00:56.651
+unless it's run again
+with apply and that hash.
+
+16
+00:00:56.651 --> 00:01:00.670
+And never edit the alert rules
+by hand: change the assignment's
+
+17
+00:01:00.670 --> 00:01:05.230
+parameters and remediate again, or
+the policy may overwrite the edit.

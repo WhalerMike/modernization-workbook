@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.800
+Unit 2 is the reader.
+
+2
+00:00:01.800 --> 00:00:05.494
+Google's Event resource has
+the one category, a state,
+
+3
+00:00:05.494 --> 00:00:09.188
+a detailed category, relevance,
+impacts and updates.
+
+4
+00:00:09.188 --> 00:00:12.226
+Here's what Google leaves to
+you, and what the kit adds.
+
+5
+00:00:12.226 --> 00:00:16.059
+With one category, every
+Google notice is an incident,
+
+6
+00:00:16.059 --> 00:00:21.200
+and the gap is written down in the guide,
+the chapter and the ISSO's record.
+
+7
+00:00:21.200 --> 00:00:24.306
+Impacts come as product
+and location objects;
+
+8
+00:00:24.306 --> 00:00:27.413
+they become the record's
+services and regions.
+
+9
+00:00:27.413 --> 00:00:29.892
+An event's description is sometimes empty,
+
+10
+00:00:29.892 --> 00:00:32.725
+so the kit takes the latest
+update's description.
+
+11
+00:00:32.725 --> 00:00:35.612
+There's no field that
+says action is required,
+
+12
+00:00:35.612 --> 00:00:39.670
+and the kit adds no action rule
+for Google: an open incident that
+
+13
+00:00:39.670 --> 00:00:43.650
+names resources routes by the
+agency's own routing, in Module 7.
+
+14
+00:00:43.650 --> 00:00:47.945
+Google's A P I returns a response
+object and G cloud a bare list,
+
+15
+00:00:47.945 --> 00:00:49.663
+and the kit accepts both.
+
+16
+00:00:49.663 --> 00:00:51.699
+A closed state closes the record,
+
+17
+00:00:51.699 --> 00:00:56.450
+and the detailed category and relevance
+are kept as the provider's severity.
+
+18
+00:00:56.450 --> 00:00:59.197
+The kit has no separate
+government endpoint for
+
+19
+00:00:59.197 --> 00:01:02.060
+Personalized Service
+Health; the cloud is global.

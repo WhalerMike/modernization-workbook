@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.636
+Welcome to Module 6 of the
+Provider Notices learning path:
+
+2
+00:00:03.636 --> 00:00:06.250
+Google incidents and the maintenance gap.
+
+3
+00:00:06.250 --> 00:00:09.985
+This is Gate 5 of the provider
+notices implementation guide,
+
+4
+00:00:09.985 --> 00:00:12.525
+with Chapter 5 of the developer workbook.
+
+5
+00:00:12.525 --> 00:00:15.676
+Google Cloud's Personalized
+Service Health lists the
+
+6
+00:00:15.676 --> 00:00:18.687
+incidents relevant to a
+project or an organization.
+
+7
+00:00:18.687 --> 00:00:19.926
+That's all it lists.
+
+8
+00:00:19.926 --> 00:00:22.912
+So this gate is half
+collection and half honesty.
+
+9
+00:00:22.912 --> 00:00:26.530
+In this module you'll read a
+fictional project's incidents,
+
+10
+00:00:26.530 --> 00:00:28.941
+show that only one kind can ever arrive,
+
+11
+00:00:28.941 --> 00:00:33.763
+and watch the kit refuse an organization-level
+call that nobody has verified.
+
+12
+00:00:33.763 --> 00:00:38.201
+The gaps get written down with
+the ISSO, not papered over.
+
+13
+00:00:38.201 --> 00:00:40.535
+It takes about forty-five minutes,
+
+14
+00:00:40.535 --> 00:00:43.788
+with a lab on fixtures and
+a lab in a test project.
+
+15
+00:00:43.788 --> 00:00:49.390
+The code is illustrative: tested against
+fixtures, not run against a live project.

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:07.762
+You'll name the role and the one-time
+A P I enablement the reader needs.
+
+3
+00:00:07.762 --> 00:00:11.901
+You'll collect a project's incidents
+and read their products and locations.
+
+4
+00:00:11.901 --> 00:00:15.881
+You'll explain why Google Cloud's
+planned maintenance isn't in this gate,
+
+5
+00:00:15.881 --> 00:00:18.175
+and where it reaches the project instead.
+
+6
+00:00:18.175 --> 00:00:20.790
+You'll say which Assured
+Workloads packages don't
+
+7
+00:00:20.790 --> 00:00:23.787
+include Personalized Service
+Health, and what to record.
+
+8
+00:00:23.787 --> 00:00:26.092
+And you'll show that the kit refuses an
+
+9
+00:00:26.092 --> 00:00:29.213
+unverified call unless
+you pass allow unverified.
+
+10
+00:00:29.213 --> 00:00:33.042
+Before you start, finish Module 1,
+on the record and the six kinds,
+
+11
+00:00:33.042 --> 00:00:36.651
+and read the honest limits
+section of the provider notices
+
+12
+00:00:36.651 --> 00:00:40.187
+chapter in Compliance Automation
+and Day-Two Operations.
+
+13
+00:00:40.187 --> 00:00:44.350
+Lab 1 needs PowerShell 7.1
+or later with Pester 5.
+
+14
+00:00:44.350 --> 00:00:45.530
+No project.

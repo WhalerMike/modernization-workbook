@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.781
+Lab 2 runs the same read in
+a Microsoft 365 test tenant,
+
+2
+00:00:04.781 --> 00:00:08.975
+in the worldwide or G C C
+cloud, never production.
+
+3
+00:00:08.975 --> 00:00:12.500
+Sign in as a test administrator
+who holds an admin role.
+
+4
+00:00:12.500 --> 00:00:16.509
+Learn doesn't name which admin roles
+Graph accepts for a delegated read,
+
+5
+00:00:16.509 --> 00:00:19.838
+so the Message center reader
+roles are the narrowest to try.
+
+6
+00:00:19.838 --> 00:00:23.189
+Sign in delegated, with
+only the two read scopes;
+
+7
+00:00:23.189 --> 00:00:26.025
+an administrator consents to them once.
+
+8
+00:00:26.025 --> 00:00:29.233
+Cross-check Learn's own cmdlet
+against the kit's collection,
+
+9
+00:00:29.233 --> 00:00:31.262
+and look at the posts that need action.
+
+10
+00:00:31.262 --> 00:00:33.014
+Then record one open item:
+
+11
+00:00:33.014 --> 00:00:37.187
+the tags you see on retirement
+posts, which Learn doesn't list.
+
+12
+00:00:37.187 --> 00:00:41.126
+To back it out, sign out, delete
+the run, and remove the consent in
+
+13
+00:00:41.126 --> 00:00:45.450
+the Microsoft Entra admin center if
+it was granted only for this lab.
+
+14
+00:00:45.450 --> 00:00:47.600
+The authors haven't run Lab 2.
+
+15
+00:00:47.600 --> 00:00:50.710
+The workbook's Chapter 2
+has the exact commands.

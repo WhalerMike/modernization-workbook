@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.804
+Welcome to Module 1 of the
+Provider Notices learning path:
+
+2
+00:00:03.804 --> 00:00:05.837
+why provider notices go unread.
+
+3
+00:00:05.837 --> 00:00:11.316
+Every cloud provider tells the agency, in
+writing and ahead of time, what it will
+
+4
+00:00:11.316 --> 00:00:16.625
+change, retire or patch in the agency's
+own tenant, account, tenancy or project.
+
+5
+00:00:16.625 --> 00:00:21.475
+The notices land in a portal or one
+person's inbox, and nobody owns them.
+
+6
+00:00:21.475 --> 00:00:26.103
+This path teaches you to read each
+provider's notices from its own record,
+
+7
+00:00:26.103 --> 00:00:29.574
+hold every notice as one
+record, give the ones that need
+
+8
+00:00:29.574 --> 00:00:32.813
+action an owner and a due
+date, and keep the evidence.
+
+9
+00:00:32.813 --> 00:00:37.020
+It follows the seven gates of the
+provider notices implementation guide,
+
+10
+00:00:37.020 --> 00:00:40.262
+with the developer workbook
+Building Provider Notices.
+
+11
+00:00:40.262 --> 00:00:42.713
+This first module comes before the gates.
+
+12
+00:00:42.713 --> 00:00:46.387
+It takes about forty-five
+minutes, with a lab on fixtures.
+
+13
+00:00:46.387 --> 00:00:51.940
+The code is illustrative: tested against
+fixtures, not run against a live tenant.
