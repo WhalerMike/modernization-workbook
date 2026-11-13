@@ -1031,7 +1031,7 @@ The callout: check the agency's cloud. Agent ID has no entry on Entra's Azure Go
     ["Workload identity federation", "Entra ID: on an app registration or user-assigned identity", "Issuer, subject, audience; up to 20 per object", "No", "Token exchange"],
     ["AI agent identity (Agent ID)", "Entra ID: a special service principal", "Sponsor and owner; servicePrincipalType ServiceIdentity", "No", "Lifecycle Workflows sponsor tasks"],
   ], { fontSize: 10.5, limit: 6.5 });
-  sources(s, "Sources: Guide, non-person track; NPI guide, Step 1; Book 02, Ch 09; Book 06, Ch 09; Book 17, Ch 04. Microsoft Learn: az identity create --tags (Nov. 13, 2026).");
+  sources(s, "Sources: Service Account Migration guide; Guide, Attributes; Book 02, Ch 09; Book 06, Ch 09; Book 17, Ch 04. Microsoft Learn: az identity create --tags (Nov. 13, 2026).");
   notes(s,
 `One slide that puts every non-person identity side by side: where it lives, whether it's described by attributes on the object or by Azure tags, and what reads them.
 
@@ -1040,7 +1040,7 @@ The four AD kinds live only in AD and carry only AD attributes. A traditional se
 Everything else lives in Entra ID. An app registration and its service principal carry serviceManagementReference, which points at the inventory record, their owners, and optionally custom security attributes such as SystemId, Environment and Tier; Conditional Access application filters and Azure ABAC read those. A managed identity is a service principal too. A system-assigned one is tied to its Azure resource, so the resource is what gets tagged, and Conditional Access can't target it; access reviews cover it instead. A user-assigned one is also its own Azure resource, so it can carry tags itself; Microsoft documents az identity create with tags. An Arc server's managed identity sits behind the Arc machine resource, whose tags are set with azcmagent connect and read by Azure Policy, Resource Graph and Update Manager. A federated credential lives on an app registration or user-assigned identity, and its attributes are the issuer, subject and audience, up to 20 per object. An AI agent identity is a special service principal with a sponsor and owner, governed through the sponsor's Lifecycle Workflows tasks.
 
 The rule of thumb: attributes are fields on the directory object; tags are plain-text labels on Azure resources, read by Azure tools, and never a security boundary or a role scope.`,
-  `${G}, "Non-person identity track," "Attributes" (the store table), "Object types, stores, writers and consumers"; Non-Person Identity implementation guide, Step 1 (1a–1e, 1f); Book 02, Chapter 09 — "Service accounts"; Book 06, Chapter 09 — "What the Connected Machine agent establishes"; Book 17, Chapter 04; Microsoft Learn: az identity create (checked November 13, 2026).`);
+  `Service Account Migration guide — "The kinds of service identity compared"; ${G}, "Non-person identity track" ("Where each non-person identity lives"), "Attributes" (the store table), "Object types, stores, writers and consumers"; Non-Person Identity implementation guide, Step 1 (1a–1e, 1f); Book 02, Chapter 09 — "Service accounts"; Book 06, Chapter 09 — "What the Connected Machine agent establishes"; Book 17, Chapter 04; Microsoft Learn: az identity create (checked November 13, 2026).`);
 };
 
   // 22 Service principals

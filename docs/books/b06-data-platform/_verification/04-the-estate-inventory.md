@@ -47,3 +47,13 @@ A short "Privacy in the inventory" section was added (additive; no existing text
 | 3 | M-03-22 PIA update triggers: significant merging; significant system management changes | verified | M-03-22 §II.B.2 |
 | 4 | A-108 significant changes: combining systems; access-control changes that substantially increase access | verified | A-108 §6.b(3), (7) |
 | 5 | Three inventory fields; metadata-only discovery; shared instance as a possible significant change | restated-as-design | - |
+
+## MAP Toolkit status and dbatools rights, November 13, 2026
+
+Checked November 13, 2026; no personal data sent to any site.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| M1 | MAP Toolkit: Learn's pre-migration page (ms.date Feb 19, 2026) still lists it for discovery, but its download page (v9.9.13, Jul 15, 2024) says no support is available and recommends Azure Migrate. Chapter now says so and doesn't plan around MAP. Resolves the conflict with Runbook R02, whose claims log (row 8) records MAP as removed | Discovery instruments | corrected (row 11 qualified) | learn.microsoft.com/data-migration/sql-server/pre-migration; microsoft.com/download/details.aspx?id=7826 |
+| M2 | `Find-DbaInstance` scan rights: Browser, SPN, TCP port, DNS and ping need no host rights; the default scan includes SQLService (CIM/WMI, `-Credential`); SqlConnect uses Windows credentials or `-SqlCredential` and isn't in the default; dbatools warns that some scan types need elevated privileges for WMI access or SQL connections | Discovery instruments | added | dbatools.io/Find-DbaInstance (community tool) |
+| M3 | Remote WMI defaults to Administrators; remote non-admin users get no rights on service objects, so the service scan finds nothing without local administrator | Discovery instruments | added | learn.microsoft.com/windows/win32/wmisdk/securing-a-remote-wmi-connection; learn.microsoft.com/windows/win32/services/service-security-and-access-rights |

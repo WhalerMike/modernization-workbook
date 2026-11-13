@@ -82,3 +82,9 @@ Checked November 13, 2026 against Microsoft Learn; no personal data sent to any 
 | P8 | JEA endpoint as the least-privilege host alternative, run as a virtual account or gMSA | Rights each depth needs | added | powershell/scripting/security/remoting/jea/overview |
 | P9 | Arc depth: local administrator to install, onboarding roles, extension grants incl. msdb writes; Reader to view | Rights each depth needs | added; details in R04 | sql/sql-server/azure-arc/prerequisites; configure-windows-accounts-agent; Chapter 13 |
 | P10 | AC-6, CM-8 and CM-8(1), IA-5 mapping with "supports" wording | Rights each depth needs | restated-as-design | NIST SP 800-53 Rev 5 control titles |
+
+## MAP Toolkit status, November 13, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| M1 | Row 8 said no current Microsoft status page for MAP was found. MAP's download page (v9.9.13, Jul 15, 2024) now states that no support is available and recommends Azure Migrate. This runbook's text is unchanged (it already names no MAP step); Chapter 04 now carries the same status | 1b | confirmed | microsoft.com/download/details.aspx?id=7826 |
