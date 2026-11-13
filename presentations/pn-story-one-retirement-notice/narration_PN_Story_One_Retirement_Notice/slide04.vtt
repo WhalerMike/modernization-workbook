@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.387
+From the kit's folder, collect
+Azure from the day-one fixtures.
+
+3
+00:00:04.387 --> 00:00:08.851
+Five notices, all valid against
+the schema, two needing action.
+
+4
+00:00:08.851 --> 00:00:11.540
+Five from six rows, because one incident's
+
+5
+00:00:11.540 --> 00:00:14.625
+rows from two subscriptions
+became one notice.
+
+6
+00:00:14.625 --> 00:00:18.319
+Read the records, and
+there's our retirement:
+
+7
+00:00:18.319 --> 00:00:22.013
+open, action required,
+due September 30, 2027.
+
+8
+00:00:22.013 --> 00:00:23.324
+Then read it in full.
+
+9
+00:00:23.324 --> 00:00:26.915
+The window runs a year, the
+due date is the window's end,
+
+10
+00:00:26.915 --> 00:00:32.175
+and the action basis says rule, Azure
+retirement, due at the advisory end time.
+
+11
+00:00:32.175 --> 00:00:36.228
+The source link is the event on the
+commercial Resource Manager host,
+
+12
+00:00:36.228 --> 00:00:38.640
+and the fingerprint is the record's hash.

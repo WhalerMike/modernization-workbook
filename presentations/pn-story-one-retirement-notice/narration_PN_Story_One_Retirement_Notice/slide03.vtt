@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+Scene one.
+
+2
+00:00:00.875 --> 00:00:04.717
+Microsoft Learn's Resource Graph
+samples for Service Health show
+
+3
+00:00:04.717 --> 00:00:08.350
+a retirement as a health advisory
+with the subtype retirement.
+
+4
+00:00:08.350 --> 00:00:10.088
+That's all Microsoft says.
+
+5
+00:00:10.088 --> 00:00:12.663
+Nothing in the event
+says action is required.
+
+6
+00:00:12.663 --> 00:00:14.549
+So the kit does three things.
+
+7
+00:00:14.549 --> 00:00:19.000
+It merges the event's rows from
+every subscription into one notice.
+
+8
+00:00:19.000 --> 00:00:20.731
+It applies a stated rule:
+
+9
+00:00:20.731 --> 00:00:24.800
+a retirement is action required,
+due at the advisory's end.
+
+10
+00:00:24.800 --> 00:00:28.688
+And it writes who said so,
+the kit's rule, not Microsoft.
+
+11
+00:00:28.688 --> 00:00:33.225
+Then it fingerprints the record, so
+reading it again next week changes nothing.
+
+12
+00:00:33.225 --> 00:00:37.606
+Why it matters: monitoring the
+provider, and receiving its advisories,
+
+13
+00:00:37.606 --> 00:00:40.460
+with evidence the security
+officer can keep.

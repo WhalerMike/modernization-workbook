@@ -1,0 +1,20 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.775
+Check eight, the last one.
+
+2
+00:00:01.775 --> 00:00:06.663
+An operator runs the production pre-flight
+before the test stage's evidence passes.
+
+3
+00:00:06.663 --> 00:00:10.833
+Does it pass anyway, fail on the
+check that reads the test evidence,
+
+4
+00:00:10.833 --> 00:00:15.380
+warn and let the operator decide, or
+apply the alert policy regardless?

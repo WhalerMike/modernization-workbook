@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.474
+The kit turns every provider's notice
+into one record with one of six kinds:
+
+2
+00:00:05.474 --> 00:00:10.275
+maintenance, retirement, advisory,
+security, change and incident.
+
+3
+00:00:10.275 --> 00:00:13.400
+The table maps each provider's
+own types onto them.
+
+4
+00:00:13.400 --> 00:00:15.313
+Two rows are worth a closer look.
+
+5
+00:00:15.313 --> 00:00:20.081
+A retirement in Azure is a health advisory
+with the subtype retirement, and in
+
+6
+00:00:20.081 --> 00:00:25.074
+AWS the kit infers it from a scheduled
+change whose event code names a retirement.
+
+7
+00:00:25.074 --> 00:00:28.412
+That second one is the
+kit's rule, not AWS's.
+
+8
+00:00:28.412 --> 00:00:31.313
+And Google Cloud's column is almost empty:
+
+9
+00:00:31.313 --> 00:00:36.176
+its Personalized Service Health API
+has a single category, incident.
+
+10
+00:00:36.176 --> 00:00:41.162
+Each record also says whether action
+is required, by when, and who said so.
+
+11
+00:00:41.162 --> 00:00:46.588
+Microsoft 365, Oracle and AWS
+each have a field for that.
+
+12
+00:00:46.588 --> 00:00:51.218
+Azure doesn't, so the kit applies
+its own stated rule: a retirement is
+
+13
+00:00:51.218 --> 00:00:55.920
+due at the advisory's end, which
+Microsoft Learn says is its end time.

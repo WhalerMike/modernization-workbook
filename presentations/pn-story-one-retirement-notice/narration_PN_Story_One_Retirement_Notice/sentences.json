@@ -1,0 +1,911 @@
+{
+ "1": [
+  [
+   0.05,
+   6.713,
+   "Welcome to the story deck for Building Provider Notices, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   6.763,
+   12.85,
+   "Instead of eight chapters one at a time, we'll follow one notice all the way through: an Azure Service Health retirement of basic public IP addresses, action required by September 30, 2027."
+  ],
+  [
+   19.613,
+   7.775,
+   "It's fictional: every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed."
+  ],
+  [
+   27.387,
+   1.575,
+   "Two notes before we begin."
+  ],
+  [
+   28.962,
+   3.35,
+   "The workbook is a draft, awaiting the owner's review."
+  ],
+  [
+   32.312,
+   5.3,
+   "And the code is illustrative, tested against fixtures, not against a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.988,
+   "Here's the route."
+  ],
+  [
+   1.038,
+   5.362,
+   "Scene one: Azure Service Health reports the retirement, and the kit makes it one record."
+  ],
+  [
+   6.4,
+   12.912,
+   "Scenes two to five ask the same question of Microsoft 365 in G C C, Oracle Cloud, AWS and Google Cloud: how does each provider say something needs action, and by when?"
+  ],
+  [
+   19.312,
+   5.588,
+   "Those scenes use each provider's own fixture notices, because our retirement is Azure's."
+  ],
+  [
+   24.9,
+   3.938,
+   "Scene six gives the notice an owner, as a Ticket-to-Machine task."
+  ],
+  [
+   28.837,
+   4.275,
+   "Scene seven carries it into the weekly digest and the evidence chain."
+  ],
+  [
+   33.112,
+   4.35,
+   "And scene eight deploys the whole loop, test first, then production."
+  ],
+  [
+   37.462,
+   5.475,
+   "Each scene has a story slide, a try-it slide with real output, and a one-question check."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.825,
+   "Scene one."
+  ],
+  [
+   0.875,
+   7.475,
+   "Microsoft Learn's Resource Graph samples for Service Health show a retirement as a health advisory with the subtype retirement."
+  ],
+  [
+   8.35,
+   1.738,
+   "That's all Microsoft says."
+  ],
+  [
+   10.088,
+   2.575,
+   "Nothing in the event says action is required."
+  ],
+  [
+   12.662,
+   1.887,
+   "So the kit does three things."
+  ],
+  [
+   14.55,
+   4.45,
+   "It merges the event's rows from every subscription into one notice."
+  ],
+  [
+   19.0,
+   5.8,
+   "It applies a stated rule: a retirement is action required, due at the advisory's end."
+  ],
+  [
+   24.8,
+   3.888,
+   "And it writes who said so, the kit's rule, not Microsoft."
+  ],
+  [
+   28.688,
+   4.537,
+   "Then it fingerprints the record, so reading it again next week changes nothing."
+  ],
+  [
+   33.225,
+   7.175,
+   "Why it matters: monitoring the provider, and receiving its advisories, with evidence the security officer can keep."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   3.612,
+   "From the kit's folder, collect Azure from the day-one fixtures."
+  ],
+  [
+   4.388,
+   4.463,
+   "Five notices, all valid against the schema, two needing action."
+  ],
+  [
+   8.85,
+   5.775,
+   "Five from six rows, because one incident's rows from two subscriptions became one notice."
+  ],
+  [
+   14.625,
+   7.388,
+   "Read the records, and there's our retirement: open, action required, due September 30, 2027."
+  ],
+  [
+   22.012,
+   1.312,
+   "Then read it in full."
+  ],
+  [
+   23.325,
+   8.85,
+   "The window runs a year, the due date is the window's end, and the action basis says rule, Azure retirement, due at the advisory end time."
+  ],
+  [
+   32.175,
+   6.4,
+   "The source link is the event on the commercial Resource Manager host, and the fingerprint is the record's hash."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   0.812,
+   "Check one."
+  ],
+  [
+   0.863,
+   5.625,
+   "The record says our retirement is action required by September 30, 2027."
+  ],
+  [
+   6.487,
+   1.188,
+   "Who decided that?"
+  ],
+  [
+   7.675,
+   2.375,
+   "Microsoft, in a field on the event?"
+  ],
+  [
+   10.05,
+   1.375,
+   "The kit's stated rule?"
+  ],
+  [
+   11.425,
+   2.462,
+   "The security officer, reviewing the run?"
+  ],
+  [
+   13.887,
+   2.688,
+   "Or ServiceNow, when the task was created?"
+  ],
+  [
+   16.575,
+   2.05,
+   "The answer opens the next scene."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.688,
+   "The answer to check one: the kit's stated rule."
+  ],
+  [
+   2.737,
+   3.288,
+   "Microsoft's Service Health event has no field for it."
+  ],
+  [
+   6.025,
+   4.15,
+   "Scene two asks the same question of Microsoft 365."
+  ],
+  [
+   10.175,
+   1.788,
+   "Here Microsoft does say it."
+  ],
+  [
+   11.963,
+   7.575,
+   "Microsoft Learn's service communications A P I gives a Message center post an action-required-by date, Microsoft's own."
+  ],
+  [
+   19.538,
+   8.525,
+   "The fixtures hold a Microsoft 365 retirement too: Basic authentication for SMTP AUTH client submission."
+  ],
+  [
+   28.062,
+   4.125,
+   "It has that date, so its action basis says provider, not rule."
+  ],
+  [
+   32.188,
+   5.287,
+   "The workbook's tenant is G C C, which reads the worldwide Graph host."
+  ],
+  [
+   37.475,
+   6.125,
+   "G C C High and D O D have their own hosts, and the kit refuses a session in the wrong one."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   8.525,
+   "First, the hosts the kit knows: G C C on the worldwide Graph endpoint, G C C High and D O D on their own."
+  ],
+  [
+   9.3,
+   5.088,
+   "Then collect Microsoft 365 from the fixtures and read the records."
+  ],
+  [
+   14.387,
+   6.688,
+   "The SMTP AUTH retirement is action required by January 31, 2027."
+  ],
+  [
+   21.075,
+   2.65,
+   "Then read each notice's action basis."
+  ],
+  [
+   23.725,
+   5.513,
+   "The retirement's says provider, action required by date time: Microsoft's own field."
+  ],
+  [
+   29.238,
+   6.987,
+   "The SharePoint Framework post says rule: a prevent-or-fix post with no date is action required by the kit's rule."
+  ],
+  [
+   36.225,
+   5.338,
+   "Same record shape as our Azure retirement, with the source of each decision written down."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.825,
+   "Check two."
+  ],
+  [
+   0.875,
+   4.275,
+   "A G C C High tenant's settings say G C C by mistake."
+  ],
+  [
+   5.15,
+   2.763,
+   "Without the kit's guard, what would the collection do?"
+  ],
+  [
+   7.912,
+   7.237,
+   "Fail loudly, read the posts anyway, return nothing and pass on an empty list, or read someone else's posts?"
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.138,
+   "The answer to check two: it would return nothing, and the gate would pass on an empty list."
+  ],
+  [
+   5.188,
+   2.325,
+   "That's why the cloud is always named."
+  ],
+  [
+   7.513,
+   6.25,
+   "Scene three, Oracle Cloud Infrastructure, where an agency's H R platform may well run."
+  ],
+  [
+   13.762,
+   5.838,
+   "Oracle's documentation gives the announcement a type, and that type can itself be action required."
+  ],
+  [
+   19.6,
+   3.337,
+   "That's Oracle's own flag, so no kit rule is needed."
+  ],
+  [
+   22.938,
+   8.175,
+   "The fixtures' example is a change: replace the certificate bundle on load balancers, due December 15, 2026."
+  ],
+  [
+   31.113,
+   6.05,
+   "The kit reads the latest announcement in each chain, so a rescheduled window replaces the first."
+  ],
+  [
+   37.163,
+   5.737,
+   "And it knows Oracle's realms: commercial, and the U S Government realm with its own regions."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   2.325,
+   "First, the realms the kit knows."
+  ],
+  [
+   3.1,
+   4.35,
+   "The commercial realm, and the U S Government realm with its two regions."
+  ],
+  [
+   7.45,
+   8.575,
+   "The third realm is refused, with the reason: Oracle's page for its endpoint wasn't readable when the chapter was written, so the kit won't guess."
+  ],
+  [
+   16.025,
+   2.825,
+   "Then read the day-one OCI records."
+  ],
+  [
+   18.85,
+   9.925,
+   "A database maintenance window that names a database system, the certificate bundle change that's action required by December 15, an advisory and a closed incident."
+  ],
+  [
+   28.775,
+   3.975,
+   "Same record, same fields, from a fourth provider's shape."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.912,
+   "Check three."
+  ],
+  [
+   0.963,
+   5.6,
+   "Oracle reschedules that database maintenance, and publishes a new announcement in the same chain."
+  ],
+  [
+   6.562,
+   7.95,
+   "What does the kit hold afterwards: two notices, one with the latest window, one with the original window, or nothing until it's over?"
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.925,
+   "The answer to check three: one notice, with the latest window."
+  ],
+  [
+   3.975,
+   2.125,
+   "Scene four, AWS."
+  ],
+  [
+   6.1,
+   7.062,
+   "AWS's documentation says AWS Health tells each account which of its instances will be retired, and when."
+  ],
+  [
+   13.162,
+   6.625,
+   "AWS has its own actionability field, and when it says action required, that's the provider's word."
+  ],
+  [
+   19.788,
+   9.963,
+   "But a scheduled change that names a retirement or lifecycle event without that flag could look optional, so the kit makes it action required by its own rule, due at its start."
+  ],
+  [
+   29.75,
+   7.312,
+   "Two things to know: the Health A P I needs a qualifying support plan, and the GovCloud partition has a single endpoint."
+  ],
+  [
+   37.062,
+   3.3,
+   "The kit names the partition, and checks the caller is in it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   9.075,
+   "First, the partitions: commercial AWS in its Health region, and GovCloud in its single West region, each with its own ARN prefix."
+  ],
+  [
+   9.85,
+   4.85,
+   "Then, after collecting the fixtures, read each notice's action basis."
+  ],
+  [
+   14.7,
+   8.463,
+   "The EC2 instance retirement and the security notification say provider, actionability action required: AWS said so."
+  ],
+  [
+   23.163,
+   7.088,
+   "The Lambda planned lifecycle event says rule: a scheduled change whose event type names a retirement, due at its start."
+  ],
+  [
+   30.25,
+   3.125,
+   "Maintenance and the closed incident need no action."
+  ],
+  [
+   33.375,
+   4.787,
+   "It's the same split our Azure retirement showed: who said it is always written down."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.912,
+   "Check four."
+  ],
+  [
+   0.963,
+   3.425,
+   "An AWS account has no qualifying support plan."
+  ],
+  [
+   4.388,
+   3.525,
+   "What does the Health A P I answer, and what should the agency do?"
+  ],
+  [
+   7.912,
+   6.8,
+   "An empty list, the support plan error and a recorded gap, a public status feed, or another account's events?"
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   8.325,
+   "The answer to check four: AWS answers with a subscription required error, and the agency records the gap with the security officer."
+  ],
+  [
+   8.375,
+   1.962,
+   "Scene five, Google Cloud."
+  ],
+  [
+   10.338,
+   6.275,
+   "Google's documentation for Personalized Service Health says its event has one category: incident."
+  ],
+  [
+   16.613,
+   1.775,
+   "Planned maintenance isn't in it."
+  ],
+  [
+   18.387,
+   4.725,
+   "So a notice like our retirement can never arrive from Google through this interface."
+  ],
+  [
+   23.113,
+   2.138,
+   "The kit doesn't pretend otherwise."
+  ],
+  [
+   25.25,
+   7.45,
+   "Every Google notice is an incident, and the gap is written into the guide, the chapter and the security officer's record."
+  ],
+  [
+   32.7,
+   7.425,
+   "One more gap: Google lists no Personalized Service Health in its Assured Workloads fed-ramp and impact-level packages."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   7.075,
+   "Collect Google from the day-one fixtures: two notices, one open, none needing action, both incidents."
+  ],
+  [
+   7.85,
+   7.025,
+   "Read them: a Cloud sequel connection problem and a Cloud Storage latency problem, each with its product and region."
+  ],
+  [
+   14.875,
+   2.2,
+   "Then group both weeks by kind."
+  ],
+  [
+   17.075,
+   2.875,
+   "Four records, and every one is an incident."
+  ],
+  [
+   19.95,
+   3.5,
+   "That's not a fault in the kit; it's what the interface carries."
+  ],
+  [
+   23.45,
+   7.475,
+   "So when the digest shows Google with no retirements, that's a gap the security officer has already recorded, not good news."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   0.938,
+   "Check five."
+  ],
+  [
+   0.988,
+   4.975,
+   "The weekly digest shows Google Cloud with no retirements and no maintenance."
+  ],
+  [
+   5.963,
+   10.175,
+   "What does that tell the security officer: Google has nothing planned, the reader lacks a role, nothing at all because the interface carries only incidents, or the collection failed?"
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   2.25,
+   "The answer to check five: nothing."
+  ],
+  [
+   2.3,
+   5.188,
+   "Google's interface carries only incidents, and that gap is already on record."
+  ],
+  [
+   7.487,
+   2.6,
+   "Scene six brings us back to our retirement."
+  ],
+  [
+   10.088,
+   5.888,
+   "The router matches it against the agency's routing file, rules in order, first match wins."
+  ],
+  [
+   15.975,
+   12.275,
+   "It becomes a typed task: priority three, assigned to the cloud platform engineering group, with a contingency review, because a retirement that names the agency's resources is a plan change."
+  ],
+  [
+   28.25,
+   7.1,
+   "Two dates stay apart: the agency's response window, a day, and Microsoft's action date, next September."
+  ],
+  [
+   35.35,
+   10.312,
+   "The task follows the Ticket-to-Machine pattern from the book Governance, Drift and Evidence: a human-decision lane and five clauses, from origin to the evidence kept."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   4.0,
+   "After routing the day-one collection, read our retirement's payload."
+  ],
+  [
+   4.775,
+   11.475,
+   "Create, de-duplication key azure and the tracking I D, P3 with a twenty-four-hour window, response due the next day, action due September 30, 2027."
+  ],
+  [
+   16.25,
+   6.6,
+   "Cloud Platform Engineering, contingency review true, and the controls and indicators the step supports."
+  ],
+  [
+   22.85,
+   11.012,
+   "Then the five clauses: the human decision lane, the notice as origin, the system owner as approver, plan the change under change control, a re-read check, and the evidence kept."
+  ],
+  [
+   33.862,
+   3.925,
+   "Finally, route the same collection again on a copy of the state."
+  ],
+  [
+   37.788,
+   2.975,
+   "Twenty-two unchanged, zero payloads."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   1.025,
+   "Check six."
+  ],
+  [
+   1.075,
+   3.775,
+   "Next spring, Microsoft stops listing our retirement notice."
+  ],
+  [
+   4.85,
+   7.9,
+   "What does the router do with its task: resolve it, delete it, send an update asking for the re-read, or wait for the action date?"
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   3.587,
+   "The answer to check six: an update asking for the re-read."
+  ],
+  [
+   3.638,
+   3.95,
+   "A provider closing its notice isn't the agency's work being done."
+  ],
+  [
+   7.588,
+   1.05,
+   "Scene seven."
+  ],
+  [
+   8.637,
+   4.612,
+   "The digest is for the people who act, and the evidence is for the people who check."
+  ],
+  [
+   13.25,
+   4.275,
+   "Both come from the same runs, so neither can drift from what was actually read."
+  ],
+  [
+   17.525,
+   8.125,
+   "Every week, our retirement sits in the digest's action-required section, soonest due first, with the group it was routed to."
+  ],
+  [
+   25.65,
+   9.838,
+   "And every run is recorded as evidence: its steps, the controls and indicators they support, every file's hash, and the hash of the record before it."
+  ],
+  [
+   35.487,
+   2.837,
+   "Change a recorded file, and the check fails."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   4.2,
+   "After a week of runs, write the digest for the second week and read it."
+  ],
+  [
+   4.975,
+   10.387,
+   "Under action required, our row: due 2027-09-30, Azure, retirement, routed to Cloud Platform Engineering, with its notice I D."
+  ],
+  [
+   15.363,
+   10.05,
+   "Then, with the collection, the routing and the digest each recorded, check the evidence: twenty-five files match their sums, three records, chain unbroken."
+  ],
+  [
+   25.413,
+   3.75,
+   "Now append one line to the recorded digest and check again."
+  ],
+  [
+   29.163,
+   5.438,
+   "The sums fail on that file, the chain fails on its record, and the check exits with a failure."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   0.938,
+   "Check seven."
+  ],
+  [
+   0.988,
+   6.213,
+   "In the lab, the stage check for test passes the sums, the chain, routing and the digest."
+  ],
+  [
+   7.2,
+   1.35,
+   "Why does it still fail?"
+  ],
+  [
+   8.55,
+   7.188,
+   "An edited file, no pre-flight or scheduled-run record yet, mismatched indicators, or an old digest?"
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   6.188,
+   "The answer to check seven: there's no pre-flight or scheduled-run record yet, and only the runbook makes them."
+  ],
+  [
+   6.237,
+   1.775,
+   "Scene eight, the runbook."
+  ],
+  [
+   8.012,
+   7.138,
+   "It's one ordered set of commands run twice, against test and then production, and only the settings file changes."
+  ],
+  [
+   15.15,
+   5.95,
+   "Reads come first, one provider at a time, each cross-checked against the provider's own command."
+  ],
+  [
+   21.1,
+   10.925,
+   "Routing runs as a dry run, then a smoke test, then the one write to a cloud, the Service Health alert policy Microsoft Learn describes, applied only with its approved hash."
+  ],
+  [
+   32.025,
+   4.875,
+   "Then the weekly schedule, the stage's evidence, and a rollback someone has already run."
+  ],
+  [
+   36.9,
+   4.737,
+   "One honest label: nobody has run this runbook against a lyve tenant yet."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   13.45,
+   "The runbook's own dry run on the fixtures: the test pre-flight passes fourteen checks and is recorded, then the scheduled run collects three providers, routes eight creates as a dry run, and writes the digest."
+  ],
+  [
+   14.225,
+   6.763,
+   "Now the stage check that failed in the last scene passes on every row, because the pre-flight and the run are recorded."
+  ],
+  [
+   20.988,
+   4.075,
+   "The Azure step on the test fixture shows one retirement, ours."
+  ],
+  [
+   25.062,
+   7.412,
+   "And the production alert plan prints the same hash as the chapter one lab, which a reviewer approves before anything is applied."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   1.725,
+   "Check eight, the last one."
+  ],
+  [
+   1.775,
+   4.888,
+   "An operator runs the production pre-flight before the test stage's evidence passes."
+  ],
+  [
+   6.662,
+   8.65,
+   "Does it pass anyway, fail on the check that reads the test evidence, warn and let the operator decide, or apply the alert policy regardless?"
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   7.487,
+   "The answer to check eight: the pre-flight's last check fails, because production needs the test stage's evidence to pass first."
+  ],
+  [
+   7.537,
+   16.675,
+   "That's our retirement, end to end: read with the least privilege, made one record that says who decided it needs action, routed to an owner with two dates kept apart, carried in the weekly digest, recorded as evidence the security officer can check, and deployed test first."
+  ],
+  [
+   24.212,
+   1.137,
+   "Now it's your turn."
+  ],
+  [
+   25.35,
+   11.062,
+   "Each provider chapter has a second lab in your own test subscription, tenant, tenancy, account or project, and routing has one in a ServiceNow developer instance, never production."
+  ],
+  [
+   36.413,
+   7.175,
+   "Then go deeper: the workbook's chapters and their narrated tours, the learning path, and the implementation guide."
+  ],
+  [
+   43.587,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

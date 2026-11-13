@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.004
+First, the partitions: commercial
+AWS in its Health region,
+
+3
+00:00:05.004 --> 00:00:09.850
+and GovCloud in its single West
+region, each with its own ARN prefix.
+
+4
+00:00:09.850 --> 00:00:14.700
+Then, after collecting the fixtures,
+read each notice's action basis.
+
+5
+00:00:14.700 --> 00:00:20.022
+The EC2 instance retirement and the
+security notification say provider,
+
+6
+00:00:20.022 --> 00:00:23.163
+actionability action
+required: AWS said so.
+
+7
+00:00:23.163 --> 00:00:25.940
+The Lambda planned
+lifecycle event says rule:
+
+8
+00:00:25.940 --> 00:00:30.251
+a scheduled change whose event type
+names a retirement, due at its start.
+
+9
+00:00:30.251 --> 00:00:33.375
+Maintenance and the closed
+incident need no action.
+
+10
+00:00:33.375 --> 00:00:38.230
+It's the same split our Azure retirement
+showed: who said it is always written down.

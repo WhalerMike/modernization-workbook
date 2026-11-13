@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.716
+Before the dangers, how
+the guide states itself
+
+2
+00:00:02.716 --> 00:00:05.587
+against the workbook's
+control-state conventions.
+
+3
+00:00:05.587 --> 00:00:08.751
+Provider notices are a
+detective, operating loop.
+
+4
+00:00:08.751 --> 00:00:12.413
+They inform owners and open
+tasks, and they block nothing.
+
+5
+00:00:12.413 --> 00:00:16.524
+So the design is the owners, the
+routing and the notice contacts.
+
+6
+00:00:16.524 --> 00:00:20.775
+The configuration is a reader per
+provider holding only its read role.
+
+7
+00:00:20.775 --> 00:00:25.213
+Enforcement doesn't apply, except
+G1's alert policy at scope.
+
+8
+00:00:25.213 --> 00:00:29.024
+The evidence is each gate's
+validate step and the stage check.
+
+9
+00:00:29.024 --> 00:00:33.913
+And operation is the weekly run, with
+tasks closed only on the re-read.
+
+10
+00:00:33.913 --> 00:00:38.200
+Change safety, which is design
+guidance, runs in three rings.
+
+11
+00:00:38.200 --> 00:00:43.100
+Ring zero is the test stage, which
+exits when its evidence check passes.
+
+12
+00:00:43.100 --> 00:00:47.158
+Ring one is production with
+collection and dry-run routing only,
+
+13
+00:00:47.158 --> 00:00:49.762
+until the owners have
+read a week's digest.
+
+14
+00:00:49.762 --> 00:00:53.330
+Ring two applies the alert
+policy and turns on sending.

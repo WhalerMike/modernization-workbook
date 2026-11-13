@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.963
+Rollback is short, because
+almost everything only reads.
+
+2
+00:00:03.963 --> 00:00:07.832
+For Azure, plan and apply the
+deletion of the policy assignment,
+
+3
+00:00:07.832 --> 00:00:11.850
+and let the change record decide
+on what its remediation created.
+
+4
+00:00:11.850 --> 00:00:14.659
+Gates two to five have
+nothing to roll back;
+
+5
+00:00:14.659 --> 00:00:18.350
+when the kit is retired, remove
+each reader's permission.
+
+6
+00:00:18.350 --> 00:00:22.200
+Routing reverts to the last
+reviewed file and keeps its state.
+
+7
+00:00:22.200 --> 00:00:27.538
+And the digest gate unregisters the schedule
+and keeps every run and its evidence.
+
+8
+00:00:27.538 --> 00:00:30.663
+The guide is also candid
+about what it couldn't verify.
+
+9
+00:00:30.663 --> 00:00:34.770
+Several Azure details aren't stated
+on Learn, including Resource
+
+10
+00:00:34.770 --> 00:00:38.876
+Graph's full column schema and the
+alert policy's parameter names.
+
+11
+00:00:38.876 --> 00:00:41.850
+Learn doesn't enumerate
+the message center tags.
+
+12
+00:00:41.850 --> 00:00:44.768
+Oracle's CLI output keys
+and its third realm,
+
+13
+00:00:44.768 --> 00:00:49.063
+and the gcloud flags for organization
+events, weren't confirmed.
+
+14
+00:00:49.063 --> 00:00:52.924
+The ServiceNow side and the
+scheduler are the agency's to build.
+
+15
+00:00:52.924 --> 00:00:55.440
+And nothing in the guide
+was run in a tenant.

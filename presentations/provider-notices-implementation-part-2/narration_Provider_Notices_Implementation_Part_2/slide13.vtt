@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+Nine dangers, each with its guard.
+
+2
+00:00:02.475 --> 00:00:07.563
+Never act on a notice from email alone:
+attackers send look-alike provider mail,
+
+3
+00:00:07.563 --> 00:00:11.634
+so act only on the notice the kit
+read from the provider's own API.
+
+4
+00:00:11.634 --> 00:00:16.800
+Read security advisories without the
+elevated role and you miss their details.
+
+5
+00:00:16.800 --> 00:00:21.894
+Read from the wrong cloud and you get nothing,
+and the gate passes on an empty list,
+
+6
+00:00:21.894 --> 00:00:25.212
+so every cloud is named and
+the kit refuses any other.
+
+7
+00:00:25.212 --> 00:00:29.885
+Don't close a task because the provider
+closed the notice: a retirement can close
+
+8
+00:00:29.885 --> 00:00:32.859
+while the resource still
+runs the retired product,
+
+9
+00:00:32.859 --> 00:00:34.700
+so the close asks for the re-read.
+
+10
+00:00:34.700 --> 00:00:37.762
+Don't assume Google maintenance
+is covered; it isn't.
+
+11
+00:00:37.762 --> 00:00:42.413
+AWS without a support plan reads
+nothing, and the preflight catches it.
+
+12
+00:00:42.413 --> 00:00:44.988
+Hand-edited alert rules
+can be overwritten.
+
+13
+00:00:44.988 --> 00:00:48.612
+The agency's routing never
+goes in a public repository.
+
+14
+00:00:48.612 --> 00:00:53.020
+And if the weekly run stops silently,
+the evidence chain shows the gap.

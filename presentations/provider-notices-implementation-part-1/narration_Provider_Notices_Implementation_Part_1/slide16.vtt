@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.612
+To close Part 1, here's what the four
+collection gates leave in the evidence file.
+
+2
+00:00:04.612 --> 00:00:07.219
+Each one keeps the
+provider's raw response,
+
+3
+00:00:07.219 --> 00:00:11.762
+the normalized notices and a manifest
+with every call and its permission.
+
+4
+00:00:11.762 --> 00:00:14.574
+Azure adds the alert plan and its results.
+
+5
+00:00:14.574 --> 00:00:19.257
+Together they support monitoring external
+providers, receiving their advisories,
+
+6
+00:00:19.257 --> 00:00:23.605
+continuous monitoring, configuration
+change control for announced changes,
+
+7
+00:00:23.605 --> 00:00:26.013
+and contingency planning for maintenance.
+
+8
+00:00:26.013 --> 00:00:30.497
+Part 2 picks up from there: Google
+Cloud's incidents and its maintenance gap,
+
+9
+00:00:30.497 --> 00:00:34.982
+then routing every notice that needs
+action to an owner as a task, the weekly
+
+10
+00:00:34.982 --> 00:00:38.454
+digest, and the evidence chain
+the security officer keeps,
+
+11
+00:00:38.454 --> 00:00:40.262
+with the dangers and rollback.
+
+12
+00:00:40.262 --> 00:00:43.581
+To build Part 1's code,
+use the developer workbook,
+
+13
+00:00:43.581 --> 00:00:48.476
+Building Provider Notices, chapters
+one to four, each with a fixture lab.
+
+14
+00:00:48.476 --> 00:00:53.000
+And a last reminder: this guide is a
+draft, awaiting the owner's review.
+
+15
+00:00:53.000 --> 00:00:53.830
+Thank you.

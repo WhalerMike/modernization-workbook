@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.304
+Gate four is AWS Health, which
+publishes issues, scheduled changes
+
+2
+00:00:04.304 --> 00:00:08.712
+and account notifications per
+account, with the affected resources.
+
+3
+00:00:08.712 --> 00:00:10.775
+It's the one provider with a cost.
+
+4
+00:00:10.775 --> 00:00:15.169
+AWS's documentation says the account
+needs a qualifying support plan,
+
+5
+00:00:15.169 --> 00:00:19.412
+and without one the API answers
+with a subscription-required error.
+
+6
+00:00:19.412 --> 00:00:22.801
+AWS's own pages name the
+qualifying plans differently,
+
+7
+00:00:22.801 --> 00:00:25.738
+so check the account
+against the current pages.
+
+8
+00:00:25.738 --> 00:00:30.305
+The reader holds a customer managed
+policy with three describe actions,
+
+9
+00:00:30.305 --> 00:00:34.186
+because AWS publishes no read-only
+managed policy for Health,
+
+10
+00:00:34.186 --> 00:00:36.926
+and its full-access
+policy includes writes.
+
+11
+00:00:36.926 --> 00:00:39.285
+Then cross-check from the Health endpoint,
+
+12
+00:00:39.285 --> 00:00:43.938
+which is US East for commercial accounts
+and the GovCloud West region for GovCloud.
+
+13
+00:00:43.938 --> 00:00:44.913
+And collect.
+
+14
+00:00:44.913 --> 00:00:46.538
+Until the reader exists,
+
+15
+00:00:46.538 --> 00:00:51.088
+an EventBridge rule on AWS Health
+events pushes scheduled changes.
+
+16
+00:00:51.088 --> 00:00:56.620
+Without a support plan, the AWS Health
+Dashboard and its email are the only path.

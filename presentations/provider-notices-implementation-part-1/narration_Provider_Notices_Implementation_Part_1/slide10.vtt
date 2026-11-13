@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.012
+Gate two is Microsoft 365.
+
+2
+00:00:03.012 --> 00:00:07.200
+The message center is where Microsoft
+announces changes, retirements and
+
+3
+00:00:07.200 --> 00:00:11.251
+actions for a tenant, and service
+health lists incidents and advisories.
+
+4
+00:00:11.251 --> 00:00:15.400
+Microsoft Graph's service
+communications API reads both.
+
+5
+00:00:15.400 --> 00:00:19.900
+Two steps: sign in to the tenant's
+own cloud with two read permissions,
+
+6
+00:00:19.900 --> 00:00:23.275
+and collect three lists,
+following every next link.
+
+7
+00:00:23.275 --> 00:00:27.982
+Microsoft Learn says both permissions
+are granted only by an administrator,
+
+8
+00:00:27.982 --> 00:00:30.850
+and a delegated sign-in
+also needs an admin role.
+
+9
+00:00:30.850 --> 00:00:34.015
+Data privacy messages are
+visible only to Global
+
+10
+00:00:34.015 --> 00:00:37.412
+Administrators and Message
+Center Privacy Readers.
+
+11
+00:00:37.412 --> 00:00:38.475
+Now the cloud.
+
+12
+00:00:38.475 --> 00:00:41.843
+A GCC tenant keeps the
+worldwide Graph endpoint,
+
+13
+00:00:41.843 --> 00:00:44.875
+which Learn's national
+cloud page confirms.
+
+14
+00:00:44.875 --> 00:00:48.513
+GCC High and the Defense
+Department have their own hosts,
+
+15
+00:00:48.513 --> 00:00:52.150
+and the workbook's capture shows
+the kit's map of all three.
+
+16
+00:00:52.150 --> 00:00:55.366
+The kit sends each call only
+to the cloud's own host,
+
+17
+00:00:55.366 --> 00:00:59.040
+and refuses a session in
+another environment or tenant.

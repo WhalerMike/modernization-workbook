@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.650
+What does gate seven support?
+
+2
+00:00:01.650 --> 00:00:05.340
+Each week's digest supports getting
+advisories to the people who act,
+
+3
+00:00:05.340 --> 00:00:07.930
+monitoring the providers,
+and updating the risk
+
+4
+00:00:07.930 --> 00:00:11.037
+assessment when the environment
+changes significantly.
+
+5
+00:00:11.037 --> 00:00:16.227
+The evidence chain supports continuous
+monitoring and the protection of audit
+
+6
+00:00:16.227 --> 00:00:21.262
+information: each record holds the time,
+the environment, the change record, the
+
+7
+00:00:21.262 --> 00:00:23.354
+command, the result, the controls,
+
+8
+00:00:23.354 --> 00:00:26.375
+every file's hash, and the
+previous record's hash.
+
+9
+00:00:26.375 --> 00:00:29.956
+And the preflight's check that each
+provider's notice contacts are
+
+10
+00:00:29.956 --> 00:00:33.862
+named and current supports NIST's
+control for notification agreements.
+
+11
+00:00:33.862 --> 00:00:35.475
+Here's why the chain matters.
+
+12
+00:00:35.475 --> 00:00:40.212
+In the workbook's lab, someone appends a
+line to the digest after it was recorded.
+
+13
+00:00:40.212 --> 00:00:44.328
+The next check fails twice: the file
+no longer matches the hash list,
+
+14
+00:00:44.328 --> 00:00:46.499
+and it no longer matches its record.
+
+15
+00:00:46.499 --> 00:00:50.230
+Nobody can quietly edit the
+evidence an assessor will read.

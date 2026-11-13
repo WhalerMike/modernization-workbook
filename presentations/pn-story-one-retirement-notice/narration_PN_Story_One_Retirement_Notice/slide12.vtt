@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.975
+The answer to check three: one
+notice, with the latest window.
+
+2
+00:00:03.975 --> 00:00:06.100
+Scene four, AWS.
+
+3
+00:00:06.100 --> 00:00:09.922
+AWS's documentation says AWS
+Health tells each account
+
+4
+00:00:09.922 --> 00:00:13.162
+which of its instances
+will be retired, and when.
+
+5
+00:00:13.162 --> 00:00:15.710
+AWS has its own actionability field,
+
+6
+00:00:15.710 --> 00:00:19.787
+and when it says action required,
+that's the provider's word.
+
+7
+00:00:19.787 --> 00:00:24.734
+But a scheduled change that names a retirement
+or lifecycle event without that flag
+
+8
+00:00:24.734 --> 00:00:27.419
+could look optional, so
+the kit makes it action
+
+9
+00:00:27.419 --> 00:00:29.751
+required by its own
+rule, due at its start.
+
+10
+00:00:29.751 --> 00:00:33.906
+Two things to know: the Health API
+needs a qualifying support plan,
+
+11
+00:00:33.906 --> 00:00:37.062
+and the GovCloud partition
+has a single endpoint.
+
+12
+00:00:37.062 --> 00:00:40.420
+The kit names the partition,
+and checks the caller is in it.

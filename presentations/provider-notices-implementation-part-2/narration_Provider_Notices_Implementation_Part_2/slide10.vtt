@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.775
+Here's gate seven on the
+fixtures, after routing both days.
+
+2
+00:00:03.775 --> 00:00:07.956
+The digest shows sixteen open
+notices, eight needing action,
+
+3
+00:00:07.956 --> 00:00:13.475
+five starting in the next thirty days, two
+new, and four closed or no longer listed.
+
+4
+00:00:13.475 --> 00:00:16.740
+Every action-required notice
+shows its due date and the
+
+5
+00:00:16.740 --> 00:00:20.075
+group it was routed to, which
+is the guide's pass condition.
+
+6
+00:00:20.075 --> 00:00:21.313
+Then the evidence.
+
+7
+00:00:21.313 --> 00:00:24.110
+Each run folder becomes a numbered record:
+
+8
+00:00:24.110 --> 00:00:27.787
+the collection, the routing
+and the digest, each passing.
+
+9
+00:00:27.787 --> 00:00:31.019
+The check confirms that
+every file matches the hash
+
+10
+00:00:31.019 --> 00:00:34.100
+list and the three records
+form an unbroken chain.
+
+11
+00:00:34.100 --> 00:00:37.312
+And watch what happens when you
+check them as the test stage.
+
+12
+00:00:37.312 --> 00:00:40.871
+The chain still passes, but
+the preflight and the scheduled
+
+13
+00:00:40.871 --> 00:00:44.575
+run have no passing record, because
+on a laptop nobody ran them.
+
+14
+00:00:44.575 --> 00:00:48.412
+So the go or no-go fails, and
+the script exits with an error.
+
+15
+00:00:48.412 --> 00:00:51.790
+That's the point: the stage
+can't pass on a partial run.

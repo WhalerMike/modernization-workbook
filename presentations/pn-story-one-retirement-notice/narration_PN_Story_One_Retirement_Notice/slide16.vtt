@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.618
+Collect Google from the
+day-one fixtures: two notices,
+
+3
+00:00:04.618 --> 00:00:07.850
+one open, none needing
+action, both incidents.
+
+4
+00:00:07.850 --> 00:00:11.288
+Read them: a Cloud SQL
+connection problem and a Cloud
+
+5
+00:00:11.288 --> 00:00:14.875
+Storage latency problem, each
+with its product and region.
+
+6
+00:00:14.875 --> 00:00:17.075
+Then group both weeks by kind.
+
+7
+00:00:17.075 --> 00:00:19.950
+Four records, and every
+one is an incident.
+
+8
+00:00:19.950 --> 00:00:23.450
+That's not a fault in the kit;
+it's what the interface carries.
+
+9
+00:00:23.450 --> 00:00:26.697
+So when the digest shows
+Google with no retirements,
+
+10
+00:00:26.697 --> 00:00:30.980
+that's a gap the security officer
+has already recorded, not good news.

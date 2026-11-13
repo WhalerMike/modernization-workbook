@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.287
+Here are all seven gates on one page.
+
+2
+00:00:02.287 --> 00:00:07.421
+The first five are collection, one
+per provider: Azure Service Health,
+
+3
+00:00:07.421 --> 00:00:12.825
+Microsoft 365, Oracle Cloud Infrastructure,
+AWS Health and Google Cloud.
+
+4
+00:00:12.825 --> 00:00:17.038
+They're independent, so enable only
+the providers the agency uses.
+
+5
+00:00:17.038 --> 00:00:21.812
+Gate six routes what they collect: every
+notice that needs action gets a task,
+
+6
+00:00:21.812 --> 00:00:24.388
+and a second run doesn't
+make a second task.
+
+7
+00:00:24.388 --> 00:00:26.762
+Gate seven schedules the weekly run,
+
+8
+00:00:26.762 --> 00:00:31.275
+sends the digest to the owners and
+checks the evidence for each stage.
+
+9
+00:00:31.275 --> 00:00:34.825
+Each gate is validated with
+one of the kit's entry scripts.
+
+10
+00:00:34.825 --> 00:00:37.162
+Every one of those checks only reads.
+
+11
+00:00:37.162 --> 00:00:39.862
+The only writes are in
+the kit's deploy folder,
+
+12
+00:00:39.862 --> 00:00:43.801
+and they run only with an apply
+switch and the plan's approved hash.
+
+13
+00:00:43.801 --> 00:00:48.380
+And the checks are tested against
+fixtures, not proven against a live tenant.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.325
+Before the first gate, three things.
+
+2
+00:00:02.325 --> 00:00:07.325
+Decisions first: who owns each provider's
+notices, which notices become tasks,
+
+3
+00:00:07.325 --> 00:00:12.637
+for which group and at which severity, and
+who receives each provider's email today.
+
+4
+00:00:12.637 --> 00:00:14.900
+That routing belongs to the agency.
+
+5
+00:00:14.900 --> 00:00:18.969
+It's written at work from the
+kit's template, with its prompts in
+
+6
+00:00:18.969 --> 00:00:23.437
+Microsoft 365 Copilot Chat, and it
+never goes in a public repository.
+
+7
+00:00:23.437 --> 00:00:26.588
+Second, a change process
+that takes the tasks.
+
+8
+00:00:26.588 --> 00:00:30.646
+The router writes ServiceNow-shaped
+payloads, and until the agency
+
+9
+00:00:30.646 --> 00:00:34.487
+builds an endpoint for them, they're
+files the service desk reads.
+
+10
+00:00:34.487 --> 00:00:38.700
+Third, a reader per provider,
+holding only its read role.
+
+11
+00:00:38.700 --> 00:00:42.812
+The roles come from each provider's
+own documentation, and they're short.
+
+12
+00:00:42.812 --> 00:00:46.872
+The writes, meaning the Azure
+Policy assignment and rollback,
+
+13
+00:00:46.872 --> 00:00:51.310
+run as a different identity, and
+only with an explicit apply switch.

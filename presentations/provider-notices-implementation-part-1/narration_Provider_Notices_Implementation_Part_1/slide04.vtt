@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.767
+Here are the five providers side by side,
+
+2
+00:00:02.767 --> 00:00:06.225
+including Oracle Cloud,
+where the HR platform runs.
+
+3
+00:00:06.225 --> 00:00:08.801
+Each keeps its notices in its own place:
+
+4
+00:00:08.801 --> 00:00:11.940
+Azure's Service Health
+through Resource Graph,
+
+5
+00:00:11.940 --> 00:00:17.011
+Microsoft 365's message center and
+service health through Microsoft Graph,
+
+6
+00:00:17.011 --> 00:00:20.392
+Oracle's Announcements
+service, the AWS Health API,
+
+7
+00:00:20.392 --> 00:00:23.612
+and Google Cloud's
+Personalized Service Health.
+
+8
+00:00:23.612 --> 00:00:28.034
+The least-privileged reader is
+small everywhere: Reader in Azure,
+
+9
+00:00:28.034 --> 00:00:31.881
+two read permissions in Graph,
+a read statement in Oracle,
+
+10
+00:00:31.881 --> 00:00:36.138
+three describe actions in AWS,
+and a viewer role in Google Cloud.
+
+11
+00:00:36.138 --> 00:00:40.163
+Only AWS has a cost: a
+qualifying support plan.
+
+12
+00:00:40.163 --> 00:00:46.107
+On government clouds, Microsoft 365 GCC
+stays on the worldwide Graph endpoint,
+
+13
+00:00:46.107 --> 00:00:50.863
+while GCC High and the Defense
+Department have their own hosts.
+
+14
+00:00:50.863 --> 00:00:54.437
+Oracle's US Government
+Cloud has its own endpoints.
+
+15
+00:00:54.437 --> 00:00:56.576
+AWS GovCloud has one.
+
+16
+00:00:56.576 --> 00:00:59.730
+And Google's documentation
+doesn't list Personalized
+
+17
+00:00:59.730 --> 00:01:03.100
+Service Health in its FedRAMP
+Moderate or High packages.

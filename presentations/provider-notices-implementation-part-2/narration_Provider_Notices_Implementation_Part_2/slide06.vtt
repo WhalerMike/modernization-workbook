@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.825
+Here's routing on the fixtures.
+
+2
+00:00:01.825 --> 00:00:04.400
+Day one's twenty-two notices are all new.
+
+3
+00:00:04.400 --> 00:00:08.701
+Twelve route to a task, nine are
+digest only and one is ignored,
+
+4
+00:00:08.701 --> 00:00:13.175
+so the dry run writes twelve
+create payloads and sends nothing.
+
+5
+00:00:13.175 --> 00:00:15.108
+You can see the routing working:
+
+6
+00:00:15.108 --> 00:00:18.824
+the security notifications go
+to security operations at P2,
+
+7
+00:00:18.824 --> 00:00:23.135
+the retirements and maintenance to
+cloud platform engineering at P3,
+
+8
+00:00:23.135 --> 00:00:25.737
+and the Azure incident
+to the service desk.
+
+9
+00:00:25.737 --> 00:00:27.263
+Then the important test.
+
+10
+00:00:27.263 --> 00:00:31.191
+Route the same collection again,
+against a copy of the state,
+
+11
+00:00:31.191 --> 00:00:35.200
+and every notice is unchanged,
+so no payload is written at all.
+
+12
+00:00:35.200 --> 00:00:39.627
+That's what the guide's validate step
+asks for: every security advisory and
+
+13
+00:00:39.627 --> 00:00:44.563
+retirement routes to a task, and a second
+run on the same collection writes nothing.
+
+14
+00:00:44.563 --> 00:00:48.620
+The provider hasn't changed the
+notice, so nobody gets a second task.

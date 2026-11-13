@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.988
+On the fixtures, Microsoft 365 gives six
+notices: a retirement with a provider date,
+
+2
+00:00:05.988 --> 00:00:09.568
+a change the kit marks
+action required by its rule,
+
+3
+00:00:09.568 --> 00:00:12.013
+three advisories and an incident.
+
+4
+00:00:12.013 --> 00:00:14.762
+The next capture shows the
+difference that matters.
+
+5
+00:00:14.762 --> 00:00:19.806
+The retirement of basic authentication
+for SMTP client submission is action
+
+6
+00:00:19.806 --> 00:00:24.462
+required because Microsoft said so,
+in its action-required-by date field.
+
+7
+00:00:24.462 --> 00:00:27.826
+The SharePoint Framework change
+is action required because
+
+8
+00:00:27.826 --> 00:00:30.662
+of a stated kit rule about
+a message center category.
+
+9
+00:00:30.662 --> 00:00:32.063
+The record says which,
+
+10
+00:00:32.063 --> 00:00:36.263
+so nobody argues with Microsoft
+about a date Microsoft never set.
+
+11
+00:00:36.263 --> 00:00:39.652
+This gate supports the same
+two controls as gate one,
+
+12
+00:00:39.652 --> 00:00:44.775
+plus configuration change control: a
+change Microsoft announces is reviewed,
+
+13
+00:00:44.775 --> 00:00:47.376
+with an impact analysis, before it lands.
+
+14
+00:00:47.376 --> 00:00:51.700
+Until the reader exists, Learn's
+own cmdlet lists the same posts.
+
+15
+00:00:51.700 --> 00:00:55.490
+And there's nothing to roll
+back: the collection only reads.

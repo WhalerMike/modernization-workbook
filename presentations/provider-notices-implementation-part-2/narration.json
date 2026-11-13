@@ -1,0 +1,82 @@
+[
+  {
+    "slide": 1,
+    "title": "Part 2: Routing, the digest, evidence and rollback",
+    "say": "Welcome to Part 2 of the implementation series for provider notices. As in Part 1, one thing first: Provider Notices, An Implementation Guide, is a draft, awaiting the owner's review, so check it again after that review. Part 1 collected four providers into one record: Azure Service Health, Microsoft 365, Oracle Cloud Infrastructure and AWS Health. Part 2 finishes the loop. Gate five adds Google Cloud's incidents, and records the gap for planned maintenance. Gate six routes every notice that needs action to an owner, as a task, without duplicates. Gate seven writes the weekly digest the owners read, and the evidence chain the security officer keeps. Then how to run it safely: control states and change rings, the dangers, the evidence file, rollback, and what couldn't be verified. The kit's code is illustrative, tested against fixtures, not against a live tenant."
+  },
+  {
+    "slide": 2,
+    "title": "Where Part 1 left off: one record, five providers",
+    "say": "Here's where Part 1 left off, on the kit's fixtures with every provider enabled. One collection gives twenty-two notices: five from Azure, six from Microsoft 365, four from Oracle Cloud, five from AWS and two from Google Cloud, and every one is valid against the same schema. Each record says what kind of notice it is, its window, the resources it names, and whether action is required, by when, and on whose word. What the collection doesn't give you yet is the part that closes the gap. Nobody owns these notices until each one that needs action has an owner and a due date, and a second run mustn't make a second task. The owners need something to read every week. And the security officer needs evidence that can't be quietly edited. That's gates six and seven. First, Google Cloud."
+  },
+  {
+    "slide": 3,
+    "title": "G5: Google Cloud Personalized Service Health",
+    "say": "Gate five is Google Cloud's Personalized Service Health, which lists the incidents relevant to a project or organization. Google's documentation sets one hard limit: the API has a single event category, incident. Planned maintenance isn't in it, so this gate covers incidents only, and the gap is recorded with the security officer. The project owner enables the API once and grants the reader's group the viewer role. Then cross-check with Google's own list command, and collect. For an organization, the settings say so and the role is granted on the organization. But the gcloud flags for organization events weren't read, so the kit marks that call unverified and runs it only when told to. And for government workloads: Google's Assured Workloads page lists this product under regional packages, but not under FedRAMP Moderate or High. A workload in those packages has nothing to read here."
+  },
+  {
+    "slide": 4,
+    "title": "G5 in code: two incidents, one unverified call",
+    "say": "On the fixtures, Google Cloud looks like this. The kit declares two calls with the viewer role. The project call is verified against Google's documentation. The organization call says verified, false, which is why it runs only when you allow it. The collection gives two incidents, one open and one closed, and none needs action: Google's API has no field that says action is required. The records show where the products and locations come from, the event's impacts, which is what the guide's validate step checks. Cloud SQL in one region is open; Cloud Storage in another is closed. And that's the whole gate. It supports the same two controls as gate one, monitoring the provider and receiving its advisories. Rollback is simply removing the role binding when the kit is retired."
+  },
+  {
+    "slide": 5,
+    "title": "G6: route every notice that needs action to an owner",
+    "say": "Gate six turns notices into work. A notice that needs action becomes a task with an owner; the rest go in the digest. First, the routing is written at work, inside the agency's boundary, from the kit's template, with its prompts in Copilot Chat. Rules are tried in order and the first match wins, so security advisories and retirements come before the general action-required rule. Second, check it: the kit refuses an unknown match key, a task rule with no severity or group, and a placeholder left in. Third, route as a dry run. Each task is shaped for ServiceNow, with a severity and a response window from the program's finding contract, the provider's own date kept separate, and the five clauses of the Ticket-to-Machine request chain. Fourth, send once the agency's endpoint exists. And a task closes only on the re-read, never because the provider closed the notice."
+  },
+  {
+    "slide": 6,
+    "title": "G6 in code: day one makes twelve tasks, once",
+    "say": "Here's routing on the fixtures. Day one's twenty-two notices are all new. Twelve route to a task, nine are digest only and one is ignored, so the dry run writes twelve create payloads and sends nothing. You can see the routing working: the security notifications go to security operations at P2, the retirements and maintenance to cloud platform engineering at P3, and the Azure incident to the service desk. Then the important test. Route the same collection again, against a copy of the state, and every notice is unchanged, so no payload is written at all. That's what the guide's validate step asks for: every security advisory and retirement routes to a task, and a second run on the same collection writes nothing. The provider hasn't changed the notice, so nobody gets a second task."
+  },
+  {
+    "slide": 7,
+    "title": "G6 in code: a week later, and the five clauses",
+    "say": "A week later, the providers have moved. Day two's routing finds two new notices, six changed, fifteen unchanged and one no longer listed. So it writes one create, four updates and one close, and nothing for the fifteen unchanged. The updates are two rescheduled maintenance windows, an updated Microsoft 365 post, and an incident the provider no longer lists. The close is the AWS security notification the provider closed, and that close payload asks for the re-read rather than closing the task. Below it is the request chain on the Azure retirement's task, in the Human decision lane. Clause one says where it came from. Two names the approver role, the system owner. Three is the action, under change control. Four is the re-read check that closes it. And five says what evidence is kept."
+  },
+  {
+    "slide": 8,
+    "title": "G6: requirement, evidence, interim path, rollback",
+    "say": "What does routing support? Three things in NIST's catalog. Getting advisories to the people who act on them, and acting within set time frames or reporting the gap. Configuration change control and impact analysis, so a change a provider announces is reviewed before it lands. And contingency planning, because retirements and maintenance that name the agency's resources prompt a review of the plan. The security officer keeps the task payloads, the routing file's output and the state. One honest note from FedRAMP's pages: no key security indicator cites the base impact-analysis control, only its enhancement. Routing calls no cloud at all, so there's no government-cloud question here; the ServiceNow endpoint is the agency's own. Until it exists, the service desk works from the dry run's files. And rollback is reverting the routing file, while keeping the state."
+  },
+  {
+    "slide": 9,
+    "title": "G7: preflight, the weekly run, and the go/no-go",
+    "say": "Gate seven makes it a weekly habit and proves it ran. The digest is what the owners read every week; the evidence is what the security officer keeps. The deployment runbook takes both to a test environment and then production, with the same commands and one settings file per environment. Three steps. First, a preflight that only reads: the settings and routing files, each provider's tool and signed-in cloud, the reader's first call, and for AWS the support plan, the named notice contacts, and in production the test stage's evidence. Second, the weekly run: collection, routing and the digest, each step recorded as evidence. Third, the go or no-go. It needs a passing record for every step the stage lists, with production adding the alert policy, an unbroken chain, and matching hashes. The scheduler is the agency's; the kit doesn't register one."
+  },
+  {
+    "slide": 10,
+    "title": "G7 in code: the digest and the evidence chain",
+    "say": "Here's gate seven on the fixtures, after routing both days. The digest shows sixteen open notices, eight needing action, five starting in the next thirty days, two new, and four closed or no longer listed. Every action-required notice shows its due date and the group it was routed to, which is the guide's pass condition. Then the evidence. Each run folder becomes a numbered record: the collection, the routing and the digest, each passing. The check confirms that every file matches the hash list and the three records form an unbroken chain. And watch what happens when you check them as the test stage. The chain still passes, but the preflight and the scheduled run have no passing record, because on a laptop nobody ran them. So the go or no-go fails, and the script exits with an error. That's the point: the stage can't pass on a partial run."
+  },
+  {
+    "slide": 11,
+    "title": "G7: what the ISSO keeps, and an edited file",
+    "say": "What does gate seven support? Each week's digest supports getting advisories to the people who act, monitoring the providers, and updating the risk assessment when the environment changes significantly. The evidence chain supports continuous monitoring and the protection of audit information: each record holds the time, the environment, the change record, the command, the result, the controls, every file's hash, and the previous record's hash. And the preflight's check that each provider's notice contacts are named and current supports NIST's control for notification agreements. Here's why the chain matters. In the workbook's lab, someone appends a line to the digest after it was recorded. The next check fails twice: the file no longer matches the hash list, and it no longer matches its record. Nobody can quietly edit the evidence an assessor will read."
+  },
+  {
+    "slide": 12,
+    "title": "Control states and change safety",
+    "say": "Before the dangers, how the guide states itself against the workbook's control-state conventions. Provider notices are a detective, operating loop. They inform owners and open tasks, and they block nothing. So the design is the owners, the routing and the notice contacts. The configuration is a reader per provider holding only its read role. Enforcement doesn't apply, except G1's alert policy at scope. The evidence is each gate's validate step and the stage check. And operation is the weekly run, with tasks closed only on the re-read. Change safety, which is design guidance, runs in three rings. Ring zero is the test stage, which exits when its evidence check passes. Ring one is production with collection and dry-run routing only, until the owners have read a week's digest. Ring two applies the alert policy and turns on sending."
+  },
+  {
+    "slide": 13,
+    "title": "Dangers, and how to avoid them",
+    "say": "Nine dangers, each with its guard. Never act on a notice from email alone: attackers send look-alike provider mail, so act only on the notice the kit read from the provider's own API. Read security advisories without the elevated role and you miss their details. Read from the wrong cloud and you get nothing, and the gate passes on an empty list, so every cloud is named and the kit refuses any other. Don't close a task because the provider closed the notice: a retirement can close while the resource still runs the retired product, so the close asks for the re-read. Don't assume Google maintenance is covered; it isn't. AWS without a support plan reads nothing, and the preflight catches it. Hand-edited alert rules can be overwritten. The agency's routing never goes in a public repository. And if the weekly run stops silently, the evidence chain shows the gap."
+  },
+  {
+    "slide": 14,
+    "title": "Evidence by gate: one file for the assessor",
+    "say": "Each gate's table names what the security officer keeps, and together they make one file. The collection gates keep each provider's raw response, the notices and a manifest, with Azure's alert plan. Routing keeps the task payloads, the routing output and the state. And the digest gate keeps the weekly digests, the preflight results and the evidence chain with its hash list. The controls run from monitoring external providers and receiving their advisories, through change control, impact analysis and contingency planning, to risk assessment, continuous monitoring, protection of audit information and notification agreements. The kit's records support those controls; the agency's assessor decides them. The guide's evidence checklist has five parts: the configuration, the weekly operational files, each test result, the exceptions, including providers not enabled and Google's maintenance gap, and the evidence chain for the period."
+  },
+  {
+    "slide": 15,
+    "title": "Rollback by gate, and what couldn't be verified",
+    "say": "Rollback is short, because almost everything only reads. For Azure, plan and apply the deletion of the policy assignment, and let the change record decide on what its remediation created. Gates two to five have nothing to roll back; when the kit is retired, remove each reader's permission. Routing reverts to the last reviewed file and keeps its state. And the digest gate unregisters the schedule and keeps every run and its evidence. The guide is also candid about what it couldn't verify. Several Azure details aren't stated on Learn, including Resource Graph's full column schema and the alert policy's parameter names. Learn doesn't enumerate the message center tags. Oracle's CLI output keys and its third realm, and the gcloud flags for organization events, weren't confirmed. The ServiceNow side and the scheduler are the agency's to build. And nothing in the guide was run in a tenant."
+  },
+  {
+    "slide": 16,
+    "title": "Done when: the guide's checklist",
+    "say": "Here's what done looks like, gate by gate. Every Azure subscription read by a Reader, security advisories by the elevated role, and the alert policy assigned and remediated. Microsoft 365 read on the tenant's own Graph host. Every Oracle tenancy read, latest in each chain, with affected resources. Every AWS account with a qualifying support plan, read from its partition's endpoint. Google's incidents read, and the maintenance gap recorded. The routing reviewed, every notice that needs action with a task, no duplicates on a re-run, and tasks closed only on the re-read. And the weekly run scheduled, the digest reaching the owners, and each stage's evidence passing the go or no-go. To build it, use the developer workbook, Building Provider Notices, and its training path. And one last time: this guide is a draft, awaiting the owner's review, so check it again after that review. Thank you."
+  }
+]

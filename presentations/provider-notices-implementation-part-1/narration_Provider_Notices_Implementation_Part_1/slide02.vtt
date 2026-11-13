@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Why does this need a guide?
+
+2
+00:00:01.400 --> 00:00:05.237
+Because the workbook mentions provider
+notices but doesn't run them.
+
+3
+00:00:05.237 --> 00:00:10.000
+The day-two operations book routes Microsoft's
+service health email to the help desk
+
+4
+00:00:10.000 --> 00:00:12.653
+supervisor, and warns
+that nothing is approved
+
+5
+00:00:12.653 --> 00:00:14.762
+or changed on the strength of an email.
+
+6
+00:00:14.762 --> 00:00:17.431
+The security operations book sends Azure's
+
+7
+00:00:17.431 --> 00:00:20.249
+service health log
+category to the workspace.
+
+8
+00:00:20.249 --> 00:00:25.138
+Neither collects the notices, assigns
+an owner, or tracks one to closure.
+
+9
+00:00:25.138 --> 00:00:28.400
+So the goal, which is
+design guidance, is a loop.
+
+10
+00:00:28.400 --> 00:00:32.437
+Every notice is collected on a
+schedule and held as one record.
+
+11
+00:00:32.437 --> 00:00:37.451
+It either goes to an owner as a task with
+a due date, or into a weekly digest.
+
+12
+00:00:37.451 --> 00:00:40.675
+And a task closes only when
+the next collection shows
+
+13
+00:00:40.675 --> 00:00:43.900
+the notice closed or the
+resource no longer affected.
+
+14
+00:00:43.900 --> 00:00:47.180
+That's the re-read, never
+someone's word that it's done.

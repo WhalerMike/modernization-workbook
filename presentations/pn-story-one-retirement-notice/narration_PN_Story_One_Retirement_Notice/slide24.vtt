@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.895
+The answer to check seven:
+there's no pre-flight or
+
+2
+00:00:02.895 --> 00:00:06.238
+scheduled-run record yet, and
+only the runbook makes them.
+
+3
+00:00:06.238 --> 00:00:08.012
+Scene eight, the runbook.
+
+4
+00:00:08.012 --> 00:00:10.679
+It's one ordered set
+of commands run twice,
+
+5
+00:00:10.679 --> 00:00:15.150
+against test and then production,
+and only the settings file changes.
+
+6
+00:00:15.150 --> 00:00:17.623
+Reads come first, one provider at a time,
+
+7
+00:00:17.623 --> 00:00:21.100
+each cross-checked against
+the provider's own command.
+
+8
+00:00:21.100 --> 00:00:25.645
+Routing runs as a dry run, then a smoke
+test, then the one write to a cloud,
+
+9
+00:00:25.645 --> 00:00:29.633
+the Service Health alert policy
+Microsoft Learn describes,
+
+10
+00:00:29.633 --> 00:00:32.025
+applied only with its approved hash.
+
+11
+00:00:32.025 --> 00:00:34.671
+Then the weekly schedule,
+the stage's evidence,
+
+12
+00:00:34.671 --> 00:00:36.900
+and a rollback someone has already run.
+
+13
+00:00:36.900 --> 00:00:41.690
+One honest label: nobody has run this
+runbook against a live tenant yet.

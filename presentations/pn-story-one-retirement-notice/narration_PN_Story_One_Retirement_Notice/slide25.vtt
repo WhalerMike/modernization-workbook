@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.417
+The runbook's own dry run on the fixtures:
+
+3
+00:00:03.417 --> 00:00:08.861
+the test pre-flight passes fourteen checks
+and is recorded, then the scheduled run
+
+4
+00:00:08.861 --> 00:00:14.225
+collects three providers, routes eight
+creates as a dry run, and writes the digest.
+
+5
+00:00:14.225 --> 00:00:18.212
+Now the stage check that failed in
+the last scene passes on every row,
+
+6
+00:00:18.212 --> 00:00:20.988
+because the pre-flight
+and the run are recorded.
+
+7
+00:00:20.988 --> 00:00:25.063
+The Azure step on the test fixture
+shows one retirement, ours.
+
+8
+00:00:25.063 --> 00:00:29.297
+And the production alert plan prints
+the same hash as the chapter one lab,
+
+9
+00:00:29.297 --> 00:00:32.540
+which a reviewer approves
+before anything is applied.

@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.463
+What does gate one support?
+
+2
+00:00:01.463 --> 00:00:03.387
+Three things in NIST's catalog.
+
+3
+00:00:03.387 --> 00:00:08.013
+Monitoring an external provider's
+control compliance on an ongoing basis.
+
+4
+00:00:08.013 --> 00:00:12.437
+Receiving security alerts and
+advisories from outside organizations.
+
+5
+00:00:12.437 --> 00:00:17.088
+And continuous monitoring, through the
+alert path that runs between collections.
+
+6
+00:00:17.088 --> 00:00:19.515
+The key security indicators are FedRAMP's,
+
+7
+00:00:19.515 --> 00:00:23.399
+and which record supports which
+indicator is the program's mapping.
+
+8
+00:00:23.399 --> 00:00:26.896
+The security officer keeps the
+raw Azure file, the notices,
+
+9
+00:00:26.896 --> 00:00:30.028
+and the manifest with every
+call and its permission,
+
+10
+00:00:30.028 --> 00:00:33.888
+plus the alert plan and the change
+record that approved its hash.
+
+11
+00:00:33.888 --> 00:00:38.941
+As a side note, Azure Government has its
+own CLI cloud and Resource Manager host,
+
+12
+00:00:38.941 --> 00:00:43.450
+and Learn hasn't stated the table's
+availability there in so many words.
+
+13
+00:00:43.450 --> 00:00:45.594
+Until the reader identity exists,
+
+14
+00:00:45.594 --> 00:00:49.575
+a person with Reader runs Learn's
+own query and keeps the output.
+
+15
+00:00:49.575 --> 00:00:52.295
+And rollback: the collection only reads,
+
+16
+00:00:52.295 --> 00:00:55.320
+and the alert policy
+has a planned rollback.
