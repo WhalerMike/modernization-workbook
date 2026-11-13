@@ -8945,7 +8945,6 @@ pages:
   - docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
   - docs/reference/source-register.md
-  - examples/non-person-identity/config/agent-id-capabilities-ch09.json
 - path: docs/id-governance/lifecycle-workflow-audits.md
   url: https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-audits
   title: Auditing Lifecycle Workflows
@@ -17655,7 +17654,6 @@ pages:
   - docs/project-plans/developer-workbooks/privileged-access/index.md
   - docs/reference/source-register.md
   - docs/training/ms-automation-entra.md
-  - examples/non-person-identity/config/agent-id-capabilities-ch09.json
 - path: docs/identity/authentication/how-to-account-recovery-cost-savings-estimator.md
   url: https://learn.microsoft.com/entra/identity/authentication/how-to-account-recovery-cost-savings-estimator
   title: Estimate Cost Savings for Account Recovery in Microsoft Entra ID
