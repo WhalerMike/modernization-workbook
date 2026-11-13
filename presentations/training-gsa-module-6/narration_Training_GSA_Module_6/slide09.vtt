@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.875
+The lab runs in a test tenant, never
+production, and the authors haven't run it.
+
+2
+00:00:04.875 --> 00:00:07.550
+It removes what Modules 1 to 5 built.
+
+3
+00:00:07.550 --> 00:00:11.862
+Step one measures ring one's
+exit criteria: in the workspace,
+
+4
+00:00:11.862 --> 00:00:17.231
+run Step 4's sign-in share, Step 9's T L
+S outcomes and Step 12's freshness query,
+
+5
+00:00:17.231 --> 00:00:22.335
+and write the ring exit record, each
+criterion with its measured value,
+
+6
+00:00:22.335 --> 00:00:26.032
+from these queries, Module
+2's device usage summary,
+
+7
+00:00:26.032 --> 00:00:29.288
+and the report-only
+results of Modules 3 and 4.
+
+8
+00:00:29.288 --> 00:00:33.563
+A table with no rows in twenty-four
+hours fails the freshness metric.
+
+9
+00:00:33.563 --> 00:00:37.809
+Step two takes the evidence
+export, the guide's Step 2.1,
+
+10
+00:00:37.809 --> 00:00:41.862
+into a dated ring-one folder
+with its hash manifest.
+
+11
+00:00:41.862 --> 00:00:44.803
+Step three lists the I
+D's the rollback needs:
+
+12
+00:00:44.803 --> 00:00:48.724
+the four test policies and
+the three forwarding profiles.
+
+13
+00:00:48.724 --> 00:00:53.012
+And step four starts the
+rollback in the guide's order:
+
+14
+00:00:53.012 --> 00:00:58.220
+each Conditional Access policy to
+report-only, Steps 10, 7, 6, then 5.

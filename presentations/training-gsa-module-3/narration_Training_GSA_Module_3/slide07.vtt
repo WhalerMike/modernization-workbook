@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.137
+How do you know tenant restrictions work?
+
+2
+00:00:02.137 --> 00:00:06.425
+Learn's four-case test, run from
+a pilot device with the client on.
+
+3
+00:00:06.425 --> 00:00:09.875
+A member of the agency's own
+tenant signs in normally.
+
+4
+00:00:09.875 --> 00:00:12.775
+An account from an allowed
+partner tenant signs in.
+
+5
+00:00:12.775 --> 00:00:15.911
+An account from a tenant that
+isn't allowed is blocked,
+
+6
+00:00:15.911 --> 00:00:20.187
+and Learn's block query finds it by
+error five million two hundred eleven.
+
+7
+00:00:20.187 --> 00:00:23.563
+And a guest in the agency's
+tenant isn't evaluated.
+
+8
+00:00:23.563 --> 00:00:25.137
+Record each outcome.
+
+9
+00:00:25.137 --> 00:00:26.737
+Now, where are agencies?
+
+10
+00:00:26.737 --> 00:00:32.238
+Both features come with Entra I D P one or
+P two and the Microsoft traffic profile,
+
+11
+00:00:32.238 --> 00:00:33.988
+are generally available,
+
+12
+00:00:33.988 --> 00:00:37.988
+and are available in G C C by
+Learn's product-wide statement.
+
+13
+00:00:37.988 --> 00:00:41.277
+Where the Microsoft traffic
+profile isn't adopted yet,
+
+14
+00:00:41.277 --> 00:00:44.859
+the interim path is named-location
+Conditional Access and
+
+15
+00:00:44.859 --> 00:00:48.650
+device-side tenant restrictions
+version two by Group Policy.

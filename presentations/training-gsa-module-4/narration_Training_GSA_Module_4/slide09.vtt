@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.875
+The lab runs in a test tenant, never
+production, and the authors haven't run it.
+
+2
+00:00:04.875 --> 00:00:08.251
+You need Module 2's lab done,
+a Private Access test license,
+
+3
+00:00:08.251 --> 00:00:12.704
+a test connector group with two connectors
+on Windows Server 2019 or later,
+
+4
+00:00:12.704 --> 00:00:17.301
+a test application server and a test
+administrative host reachable from the
+
+5
+00:00:17.301 --> 00:00:20.030
+connectors, and a
+privileged test group whose
+
+6
+00:00:20.030 --> 00:00:23.262
+members have phishing-resistant
+methods registered.
+
+7
+00:00:23.262 --> 00:00:26.285
+Step one lists the connector
+groups and connectors;
+
+8
+00:00:26.285 --> 00:00:30.924
+the guide's resilience metric wants at
+least two active connectors in the group.
+
+9
+00:00:30.924 --> 00:00:33.811
+Step two creates the
+application from the custom
+
+10
+00:00:33.811 --> 00:00:36.275
+template and marks it
+a Private Access app.
+
+11
+00:00:36.275 --> 00:00:40.529
+Step three binds it to the connector
+group and adds one segment:
+
+12
+00:00:40.529 --> 00:00:43.555
+the application's host
+name, its ports, and T C P.
+
+13
+00:00:43.555 --> 00:00:47.400
+Step four assigns the pilot
+group with the app's User role.
+
+14
+00:00:47.400 --> 00:00:52.490
+And step five puts the device and
+M F A policy on it, in report-only.

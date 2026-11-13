@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.063
+Unit 3 is the Microsoft traffic profile.
+
+2
+00:00:03.063 --> 00:00:07.449
+It acquires Microsoft three
+sixty-five and Entra I D traffic,
+
+3
+00:00:07.449 --> 00:00:12.187
+and only this profile can; the
+Internet Access profile never does.
+
+4
+00:00:12.187 --> 00:00:14.715
+Enable it with Learn's Graph request,
+
+5
+00:00:14.715 --> 00:00:18.000
+filtered on the m three
+sixty-five traffic type.
+
+6
+00:00:18.000 --> 00:00:23.010
+Then assign the pilot group in the admin
+center, under traffic forwarding; the pages
+
+7
+00:00:23.010 --> 00:00:27.512
+the guide read give no Graph request for
+the assignment, so it's a portal step.
+
+8
+00:00:27.512 --> 00:00:28.899
+Then set signaling.
+
+9
+00:00:28.899 --> 00:00:34.525
+Signaling carries source I P restoration,
+so Entra sees the user's real address.
+
+10
+00:00:34.525 --> 00:00:38.809
+It's on by default only for tenants
+that onboarded after June 2025,
+
+11
+00:00:38.809 --> 00:00:42.300
+so the guide sets it explicitly
+and records the state.
+
+12
+00:00:42.300 --> 00:00:45.362
+It's also the setting the
+compliant network check needs.
+
+13
+00:00:45.362 --> 00:00:50.499
+And Learn's caution: once Conditional Access
+policies depend on I P locations or the
+
+14
+00:00:50.499 --> 00:00:54.072
+compliant network, turning
+signaling off can block users,
+
+15
+00:00:54.072 --> 00:00:57.120
+so those policies come
+out of enforcement first.

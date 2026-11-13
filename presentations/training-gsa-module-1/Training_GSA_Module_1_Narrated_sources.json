@@ -1,0 +1,124 @@
+[
+ {
+  "slide": 2,
+  "title": "Why: three functions, three gates, and logs first",
+  "links": [
+   {
+    "text": "What is Global Secure Access?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-global-secure-access"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Unit 1: the run order, and a beta API run by hand",
+  "links": [
+   {
+    "text": "Microsoft Graph network access APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-graph-network-access-apis"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Unit 2: one decision per function",
+  "links": [
+   {
+    "text": "What is Global Secure Access?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-global-secure-access"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Where agencies are: available in GCC, feature by feature",
+  "links": [
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Unit 4: logs before the pilot, and CISA's visibility",
+  "links": [
+   {
+    "text": "Global Secure Access logs and monitoring",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-logs-and-monitoring"
+   },
+   {
+    "text": "TIC 3.0 Remote User Use Case v2.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Module 1",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Sources: Module 1 deck",
+  "links": [
+   {
+    "text": "What is Global Secure Access?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-global-secure-access"
+   },
+   {
+    "text": "Known limitations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "Microsoft Graph network access APIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-graph-network-access-apis"
+   },
+   {
+    "text": "Update conditionalAccessSettings",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-update-conditional-access-settings"
+   },
+   {
+    "text": "Common operations for Global Secure Access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-common-operations"
+   },
+   {
+    "text": "Global Secure Access logs and monitoring",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-logs-and-monitoring"
+   },
+   {
+    "text": "Security operations for network access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-security-operations"
+   },
+   {
+    "text": "TIC 3.0 Remote User Use Case v2.2",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

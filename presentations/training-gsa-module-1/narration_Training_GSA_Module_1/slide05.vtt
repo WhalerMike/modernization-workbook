@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.900
+Unit 2 is the decision, one row per
+function, because the gates differ.
+
+2
+00:00:04.900 --> 00:00:10.119
+The Microsoft traffic profile is included
+in P one or P two, and with it come source
+
+3
+00:00:10.119 --> 00:00:15.338
+I P restoration, the compliant network
+check, and universal tenant restrictions.
+
+4
+00:00:15.338 --> 00:00:19.679
+Internet Access needs its own
+license or the Microsoft Entra Suite,
+
+5
+00:00:19.679 --> 00:00:24.563
+and carries web content filtering, threat
+intelligence, and T L S inspection.
+
+6
+00:00:24.563 --> 00:00:29.966
+Private Access is the same: its own
+license or the Suite, for Quick Access,
+
+7
+00:00:29.966 --> 00:00:34.637
+per-app access, private D N S,
+and the domain controller sensors.
+
+8
+00:00:34.637 --> 00:00:38.869
+Branches use remote networks,
+which need at least fifty P one and
+
+9
+00:00:38.869 --> 00:00:43.101
+Internet Access licenses combined,
+and carry no Private Access.
+
+10
+00:00:43.101 --> 00:00:47.150
+For each row, the decision
+record says adopt,
+
+11
+00:00:47.150 --> 00:00:51.425
+retain the current V P N or
+S S E, coexist, or defer.
+
+12
+00:00:51.425 --> 00:00:55.348
+And it carries a dated availability
+quote, the license held,
+
+13
+00:00:55.348 --> 00:00:59.020
+compensating controls, exit
+criteria, and an approver.

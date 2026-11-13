@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.925
+Unit 3.
+
+2
+00:00:00.925 --> 00:00:05.087
+The metrics measure protected
+coverage, not whether a setting exists.
+
+3
+00:00:05.087 --> 00:00:08.563
+Client coverage, ninety-eight
+percent after ring three.
+
+4
+00:00:08.563 --> 00:00:11.612
+Sign-ins through the service,
+ninety-five percent.
+
+5
+00:00:11.612 --> 00:00:15.475
+Compliant network enforcement, a
+hundred percent after ring three.
+
+6
+00:00:15.475 --> 00:00:20.950
+The Quick Access residual, and apps
+without an assignment or policy, both zero.
+
+7
+00:00:20.950 --> 00:00:23.540
+The T L S failure share under one percent,
+
+8
+00:00:23.540 --> 00:00:26.600
+with more than ninety
+days of certificate life.
+
+9
+00:00:26.600 --> 00:00:29.312
+And no table silent for twenty-four hours.
+
+10
+00:00:29.312 --> 00:00:30.537
+Then the rollback.
+
+11
+00:00:30.537 --> 00:00:34.978
+In an incident that touches several
+steps, reverse newest first:
+
+12
+00:00:34.978 --> 00:00:39.501
+Conditional Access policies from
+Steps 10, 7, 6 and 5 to report-only;
+
+13
+00:00:39.501 --> 00:00:42.014
+the security profile links removed;
+
+14
+00:00:42.014 --> 00:00:45.616
+universal tenant restrictions
+tagging turned off;
+
+15
+00:00:45.616 --> 00:00:51.060
+the affected groups removed from the
+traffic profiles; the V P N route restored;
+
+16
+00:00:51.060 --> 00:00:55.500
+and signaling turned off last, only
+after no policy depends on it.
+
+17
+00:00:55.500 --> 00:00:58.242
+Every rollback is a change with a record,
+
+18
+00:00:58.242 --> 00:01:03.120
+followed by the Step 2.1 export, so
+the evidence shows the state after it.

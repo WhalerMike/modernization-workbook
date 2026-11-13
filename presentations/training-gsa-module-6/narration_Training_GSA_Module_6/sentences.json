@@ -1,0 +1,513 @@
+{
+ "1": [
+  [
+   0.05,
+   8.025,
+   "Welcome to Module 6 of Global Secure Access as the Identity-Aware Network: rings, rollback and the evidence package."
+  ],
+  [
+   8.075,
+   3.375,
+   "Modules 1 to 5 built every piece for a pilot."
+  ],
+  [
+   11.45,
+   4.237,
+   "This module makes it a migration, and then hands an assessor the evidence."
+  ],
+  [
+   15.688,
+   14.2,
+   "It covers Steps 11 and 12 of the Global Secure Access implementation guide, with its RACI, evidence catalog, metrics, dangers and rollback, and takes about forty minutes, plus a lab that rolls your whole test tenant back."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   1.863,
+   "A pilot isn't a deployment."
+  ],
+  [
+   3.062,
+   14.525,
+   "In this module the pilot becomes a migration: users move ring by ring, each ring exits on criteria you measure, the V P N route for an application goes only after its wave holds, and anything can be rolled back in a known order."
+  ],
+  [
+   17.587,
+   9.387,
+   "Then each network finding gets an evidence package an assessor can check: configuration, test, operational, exception, and reassessment evidence."
+  ],
+  [
+   26.975,
+   5.25,
+   "The assessor recommends a finding ready for closure, and the authorizing official decides."
+  ],
+  [
+   32.225,
+   6.713,
+   "In the lab, you rehearse the rollback on your test tenant, and keep the exports that show the state before and after it."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.025,
+   "You'll run the four rings, with exit criteria and backout triggers set before each one starts."
+  ],
+  [
+   8.988,
+   8.35,
+   "You'll keep the V P N, DirectAccess and another security service edge working beside the service during the move, and explain branch parity."
+  ],
+  [
+   17.337,
+   5.287,
+   "You'll say who is responsible and accountable for each activity, and who decides closure."
+  ],
+  [
+   22.625,
+   3.775,
+   "You'll assemble the five kinds of evidence for each network finding."
+  ],
+  [
+   26.4,
+   4.362,
+   "And you'll compute the guide's coverage metrics, and roll back in the guide's order."
+  ],
+  [
+   30.762,
+   6.963,
+   "You need Modules 1 to 5 and their labs, and Zero Trust and Assessment, chapter ten, for the closure chain."
+  ],
+  [
+   37.725,
+   3.163,
+   "The lab runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.562,
+   "Unit 1 is the rings."
+  ],
+  [
+   1.613,
+   7.625,
+   "Ring zero is the implementing team; it exits when every step's Validate has passed and break-glass has been rehearsed."
+  ],
+  [
+   9.238,
+   13.363,
+   "Ring one is the pilot, fewer than twenty users across roles and sites, for ten business days, with no unresolved severity-two ticket, the client active on every pilot device, and clean report-only results."
+  ],
+  [
+   22.6,
+   11.725,
+   "Ring two is about ten percent of users, including one branch, for twenty business days, with help desk volume within the agreed threshold and a T L S failure rate under one percent."
+  ],
+  [
+   34.325,
+   11.762,
+   "Ring three is everyone in scope, in waves by organization, each wave meeting ring two's criteria, and each application's V P N route removed only after its wave holds."
+  ],
+  [
+   46.087,
+   20.7,
+   "Around every ring: the emergency access group is excluded from every policy in Steps 5 to 10 and tested the day each ring starts; backout triggers are set in advance; and, as Learn categorizes changes, enabling a new traffic profile or restructuring connector groups is a major change for the change advisory board."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.025,
+   "During the move, everything runs side by side."
+  ],
+  [
+   3.075,
+   18.163,
+   "The V P N stays for applications not yet published, in split-include mode where it supports it, so Private Access and the V P N don't contend for the same routes; a V P N route is removed only after the V P N's own logs show no traffic for that application for ten business days."
+  ],
+  [
+   21.238,
+   4.5,
+   "DirectAccess can't coexist with Private Access on the same device."
+  ],
+  [
+   25.738,
+   9.675,
+   "Where a proxy is set at the operating system or browser level, Learn's P A C file guidance excludes every F Q D N and I P the client tunnels."
+  ],
+  [
+   35.413,
+   8.5,
+   "A third-party security service edge kept for internet traffic follows its coexistence page on Learn, for the bypasses in both directions."
+  ],
+  [
+   43.913,
+   10.762,
+   "And branches: a remote network carries the Microsoft and internet profiles, not Private Access, and applies only the baseline profile, with no Conditional Access."
+  ],
+  [
+   54.675,
+   10.088,
+   "That's a parity gap under tick's Branch Office use case, so the guide keeps the client on managed devices at branches, and uses the remote network for devices without one."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.863,
+   "Unit 2 is who does what."
+  ],
+  [
+   1.913,
+   10.662,
+   "Microsoft's operations guide gives a RACI with a service owner, network security engineer, identity engineer, S O C analyst, help desk and platform operations."
+  ],
+  [
+   12.575,
+   5.5,
+   "The guide maps those to six roles and adds the assessor, who is independent of the work."
+  ],
+  [
+   18.075,
+   15.762,
+   "The policy owner, the service owner with the I S S O consulted, is accountable for the decision record, the architecture, the traffic profiles, the Conditional Access policies and their exclusions, the T L S inspection scope, and the exception register."
+  ],
+  [
+   33.837,
+   5.513,
+   "The platform owner, the network security and identity engineers, is responsible for building them."
+  ],
+  [
+   39.35,
+   5.188,
+   "Operators run the client rings, the connectors and the domain controller sensors."
+  ],
+  [
+   44.538,
+   4.338,
+   "The security monitor owns alerts, log freshness and the metrics."
+  ],
+  [
+   48.875,
+   2.75,
+   "The help desk takes tier-one user issues."
+  ],
+  [
+   51.625,
+   9.325,
+   "The assessor assesses the evidence and recommends a finding ready for closure, and the authorizing official decides, or the assessor for an assessment finding."
+  ],
+  [
+   60.95,
+   3.225,
+   "Learn's advice is at least two people for every role."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.387,
+   "What goes in the package?"
+  ],
+  [
+   1.438,
+   2.862,
+   "The guide's evidence catalog has five kinds."
+  ],
+  [
+   4.3,
+   9.175,
+   "Configuration: the hashed Graph export, rerun before every change, plus the decision and architecture records and the diagnostic setting GET."
+  ],
+  [
+   13.475,
+   15.213,
+   "Test: each Validate record, expected and observed, from the client health check through the source I P comparison, the blocked category, the port tests, the disable-and-retry test, the four cases, the T L S issuer, and the klist test."
+  ],
+  [
+   28.688,
+   3.688,
+   "Operational: the queries, run on the day-two cadence."
+  ],
+  [
+   32.375,
+   6.362,
+   "Exception: the register, with every exclusion and bypass, its approver and its expiry."
+  ],
+  [
+   38.737,
+   7.8,
+   "And reassessment: the Zero Trust Assessment rerun after each ring, with each network finding's closure chain entry updated."
+  ],
+  [
+   46.538,
+   9.225,
+   "A finding is ready for closure when every applicable control state, designed, configured, enforced, evidenced and operated, has evidence."
+  ],
+  [
+   55.763,
+   9.387,
+   "And a Zero Trust Assessment test skipped because the tenant has no Internet Access or Private Access license is a licensing result, not a failed control."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.875,
+   "Unit 3."
+  ],
+  [
+   0.925,
+   4.162,
+   "The metrics measure protected coverage, not whether a setting exists."
+  ],
+  [
+   5.088,
+   3.475,
+   "Client coverage, ninety-eight percent after ring three."
+  ],
+  [
+   8.562,
+   3.05,
+   "Sign-ins through the service, ninety-five percent."
+  ],
+  [
+   11.613,
+   3.862,
+   "Compliant network enforcement, a hundred percent after ring three."
+  ],
+  [
+   15.475,
+   5.475,
+   "The Quick Access residual, and apps without an assignment or policy, both zero."
+  ],
+  [
+   20.95,
+   5.65,
+   "The T L S failure share under one percent, with more than ninety days of certificate life."
+  ],
+  [
+   26.6,
+   2.712,
+   "And no table silent for twenty-four hours."
+  ],
+  [
+   29.312,
+   1.225,
+   "Then the rollback."
+  ],
+  [
+   30.538,
+   24.962,
+   "In an incident that touches several steps, reverse newest first: Conditional Access policies from Steps 10, 7, 6 and 5 to report-only; the security profile links removed; universal tenant restrictions tagging turned off; the affected groups removed from the traffic profiles; the V P N route restored; and signaling turned off last, only after no policy depends on it."
+  ],
+  [
+   55.5,
+   7.562,
+   "Every rollback is a change with a record, followed by the Step 2.1 export, so the evidence shows the state after it."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.825,
+   "The lab runs in a test tenant, never production, and the authors haven't run it."
+  ],
+  [
+   4.875,
+   2.675,
+   "It removes what Modules 1 to 5 built."
+  ],
+  [
+   7.55,
+   21.738,
+   "Step one measures ring one's exit criteria: in the workspace, run Step 4's sign-in share, Step 9's T L S outcomes and Step 12's freshness query, and write the ring exit record, each criterion with its measured value, from these queries, Module 2's device usage summary, and the report-only results of Modules 3 and 4."
+  ],
+  [
+   29.288,
+   4.275,
+   "A table with no rows in twenty-four hours fails the freshness metric."
+  ],
+  [
+   33.562,
+   8.3,
+   "Step two takes the evidence export, the guide's Step 2.1, into a dated ring-one folder with its hash manifest."
+  ],
+  [
+   41.862,
+   6.862,
+   "Step three lists the I D's the rollback needs: the four test policies and the three forwarding profiles."
+  ],
+  [
+   48.725,
+   9.45,
+   "And step four starts the rollback in the guide's order: each Conditional Access policy to report-only, Steps 10, 7, 6, then 5."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.188,
+   "Step five removes the security profile's links."
+  ],
+  [
+   3.237,
+   8.875,
+   "The T L S inspection policy comes out in Learn's order: unlink it from the pilot profile, delete the policy, then remove the certificate."
+  ],
+  [
+   12.113,
+   5.75,
+   "The filtering policy's Conditional Access policy goes to disabled, the Step 5 rollback."
+  ],
+  [
+   17.863,
+   6.2,
+   "Step six turns off tenant restrictions tagging; the tenant restrictions policy itself stays."
+  ],
+  [
+   24.062,
+   7.15,
+   "Step seven takes the groups out of each profile's assignments in the admin center, then disables the three profiles."
+  ],
+  [
+   31.212,
+   4.65,
+   "In production, the next line of the rollback is restoring the V P N route."
+  ],
+  [
+   35.862,
+   5.312,
+   "Step eight turns off signaling, last, now that no policy enforces on it."
+  ],
+  [
+   41.175,
+   11.05,
+   "Step nine takes the export again, so the evidence shows the state after the rollback: three profiles disabled, signaling and tagging disabled, and no test policy enabled."
+  ],
+  [
+   52.225,
+   10.15,
+   "Steps ten to twelve clean up: delete the test policies, apps, profile and filtering policy; remove the QUIC rule; and delete the telemetry setting."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.875,
+   "The federal requirement, from nist special publication eight hundred fifty-three, revision five."
+  ],
+  [
+   5.925,
+   8.7,
+   "The rings support C M three, C M four and C P two: each wave moved with exit criteria, rollback and validation."
+  ],
+  [
+   14.625,
+   5.125,
+   "The evidence is the ring exit records, with the criteria and their measured values."
+  ],
+  [
+   19.75,
+   10.2,
+   "The telemetry supports A U two, A U six, A U twelve and S I four: network logs exported, fresh, reviewed, and shared as agreed."
+  ],
+  [
+   29.95,
+   6.1,
+   "The evidence is the diagnostic setting GET, the freshness result, and the sis-uh telemetry agreement."
+  ],
+  [
+   36.05,
+   10.9,
+   "Step 12's logging is mandated in part, by O M B memo M twenty-six fourteen and tick three point oh's telemetry requirement; the specific measures are the program's."
+  ],
+  [
+   46.95,
+   3.25,
+   "Each row lines up with fed-ramp twenty X indicators."
+  ],
+  [
+   50.2,
+   3.8,
+   "The evidence supports the controls; the assessor decides."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.763,
+   "First: when is the V P N route for a migrated application removed?"
+  ],
+  [
+   6.787,
+   8.6,
+   "The answer is b: only after the wave holds, with the V P N's own logs showing no traffic for that application for ten business days."
+  ],
+  [
+   15.387,
+   3.362,
+   "Second: in the guide's rollback, what comes last?"
+  ],
+  [
+   18.75,
+   7.713,
+   "The answer is c: disabling signaling, only after no policy depends on it; turning it off earlier can block users."
+  ],
+  [
+   26.462,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   13.312,
+   "You measured a ring's exit criteria, took the evidence export before the change, rolled the test tenant back in the guide's order, took the export again to show the state after the rollback, and removed the lab's test objects."
+  ],
+  [
+   14.188,
+   13.65,
+   "The evidence an I S S O keeps from this module: the ring exit record with each criterion's measured value, the ring one and rolled-back exports with their manifests, the rollback change record, and the exception register."
+  ],
+  [
+   27.837,
+   9.787,
+   "In production, add the sis-uh telemetry agreement and the Zero Trust Assessment rerun after each ring, with each network finding's closure chain entry updated."
+  ],
+  [
+   37.625,
+   1.5,
+   "That completes the path."
+  ],
+  [
+   39.125,
+   4.862,
+   "From here, work through the guide's implementation checklist, one ring at a time."
+  ]
+ ]
+}

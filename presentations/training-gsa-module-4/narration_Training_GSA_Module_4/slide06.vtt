@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+How do you know it's least privilege?
+
+2
+00:00:01.812 --> 00:00:06.504
+The guide's Validate for Step 6: from a
+pilot device off the corporate network,
+
+3
+00:00:06.504 --> 00:00:11.270
+reach the application on its port, and
+confirm that a port outside the segment
+
+4
+00:00:11.270 --> 00:00:15.887
+fails; the client's Policy tester shows
+which rule handles the destination.
+
+5
+00:00:15.887 --> 00:00:19.852
+The app's policy runs in
+report-only for five business days,
+
+6
+00:00:19.852 --> 00:00:22.825
+read in the sign-in log's
+report-only results.
+
+7
+00:00:22.825 --> 00:00:26.217
+Enforcement sets the policy
+on, adds ring groups,
+
+8
+00:00:26.217 --> 00:00:31.475
+and then turns off the V P N route for
+that application, which Module 6 covers.
+
+9
+00:00:31.475 --> 00:00:36.745
+Rollback removes the group's assignment,
+or puts the policy back in report-only,
+
+10
+00:00:36.745 --> 00:00:39.663
+and the V P N route stays
+until the wave holds.
+
+11
+00:00:39.663 --> 00:00:43.987
+On day two, the application owner
+reviews the assignment each quarter,
+
+12
+00:00:43.987 --> 00:00:48.237
+as an access review, and the platform
+owner keeps at least two healthy,
+
+13
+00:00:48.237 --> 00:00:50.101
+current connectors per group.
+
+14
+00:00:50.101 --> 00:00:54.754
+The metric is the Quick Access
+residual: segments left in Quick Access,
+
+15
+00:00:54.754 --> 00:00:57.563
+and apps without an
+assignment or a policy.
+
+16
+00:00:57.563 --> 00:01:00.120
+The starting target for both is zero.

@@ -1,0 +1,94 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+Here are the two
+How-sections side by side.
+
+2
+00:00:02.588 --> 00:00:07.791
+The audit phase: the compliant network
+policy runs in report-only for ten business
+
+3
+00:00:07.791 --> 00:00:12.765
+days, reading the would-be blocks; tenant
+restrictions have no report-only mode,
+
+4
+00:00:12.765 --> 00:00:17.050
+so the pilot group is the audit phase,
+with the block query read daily.
+
+5
+00:00:17.050 --> 00:00:22.029
+Enforcement: the compliant network policy's
+state goes to enabled for the pilot,
+
+6
+00:00:22.029 --> 00:00:23.689
+then ring groups are added;
+
+7
+00:00:23.689 --> 00:00:27.612
+tenant restrictions widen with
+the Microsoft profile's rings.
+
+8
+00:00:27.612 --> 00:00:32.659
+Rollback: the policy goes back to
+report-only, and in an outage the break-glass
+
+9
+00:00:32.659 --> 00:00:38.025
+script does it; for tenant restrictions,
+tagging is disabled and the policy stays.
+
+10
+00:00:38.025 --> 00:00:42.986
+Exclusions: the emergency access group,
+tested each quarter, and the Intune apps,
+
+11
+00:00:42.986 --> 00:00:47.421
+with service accounts handled by
+workload identity policies instead;
+
+12
+00:00:47.421 --> 00:00:50.653
+tenant restrictions have
+none at the tagging layer,
+
+13
+00:00:50.653 --> 00:00:54.862
+and partner allowances are policies
+with an owner and a review date.
+
+14
+00:00:54.862 --> 00:00:59.859
+Telemetry: the sign-in query and the token
+or device inconsistency alert, and for
+
+15
+00:00:59.859 --> 00:01:02.661
+tenant restrictions
+the block query and the
+
+16
+00:01:02.661 --> 00:01:05.387
+increased external tenant activity alert.
+
+17
+00:01:05.387 --> 00:01:10.024
+On day two, the security monitor watches
+compliant network blocks that didn't come
+
+18
+00:01:10.024 --> 00:01:13.706
+through the service, which are
+either an attack or a broken client,
+
+19
+00:01:13.706 --> 00:01:17.450
+and the identity engineer reviews
+the partner list each quarter.
