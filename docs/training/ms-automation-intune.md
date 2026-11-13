@@ -284,15 +284,12 @@ python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 202
 
 # Step 5
 python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z autopilot-profiles
-
-# Step 6
-python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, try_beta; print(try_beta(GraphClient('gcchigh', lambda s: 't'), '/deviceManagement/windowsAutopilotDeviceIdentities'))"
 ```
 
 In PowerShell 7:
 
 ```powershell
-# Step 7
+# Step 6
 Import-Module ./powershell/FmwGraph.psm1
 $intune = Get-Content -Raw tests/fixtures/intune.json | ConvertFrom-Json -AsHashtable -DateKind String
 Test-FmwIntuneStaleCheckin -Devices $intune.managedDevices -AsOf '2026-10-30T00:00:00Z' | ConvertTo-Json
@@ -302,7 +299,7 @@ Test-FmwIntuneStaleCheckin -Devices $intune.managedDevices -AsOf '2026-10-30T00:
 In a POSIX shell (Git Bash on Windows):
 
 ```bash
-# Step 8
+# Step 7
 python -m pytest -q -p no:cacheprovider tests/python/test_intune_tasks.py
 ```
 
@@ -400,21 +397,7 @@ You run each check against the kit's fictional fleet of nine devices and six Aut
 
    Expected: `"stage": "beta"`, `"evaluated": true`, `"total": 6`, with two `assignedInSync` and four in `notInSync`: `SN-1004` (`assignedOutOfSync`), `SN-1003` (`failed`, `hardwareRequirementsNotMet`), `SN-1002` (`notAssigned`) and `SN-1005` (`pending`, with no group tag).
 
-6. See why the Autopilot check is for GCC and commercial tenants. Ask the client to read the beta collection as a GCC High run would:
-
-   ```bash
-   python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, try_beta; print(try_beta(GraphClient('gcchigh', lambda s: 't'), '/deviceManagement/windowsAutopilotDeviceIdentities'))"
-   ```
-
-   Expected output:
-
-   ```text
-   {'stage': 'beta', 'available': False, 'items': [], 'reason': "autopilot-device-identities isn't offered in gcchigh (graph-calls.json not_in_clouds)"}
-   ```
-
-   No request was made: `graph-calls.json` follows the service description, not the API page.
-
-7. Run two of the same checks in PowerShell. Start `pwsh` in `examples/ms-automation`, then:
+6. Run two of the same checks in PowerShell. Start `pwsh` in `examples/ms-automation`, then:
 
    ```powershell
    Import-Module ./powershell/FmwGraph.psm1
@@ -425,7 +408,7 @@ You run each check against the kit's fictional fleet of nine devices and six Aut
 
    Expected: the same three stale devices as step 3, then `KSK-0001`, `MAC-0001` and `WS-0002` on three lines.
 
-8. Run the Intune tests.
+7. Run the Intune tests.
 
    ```bash
    python -m pytest -q -p no:cacheprovider tests/python/test_intune_tasks.py

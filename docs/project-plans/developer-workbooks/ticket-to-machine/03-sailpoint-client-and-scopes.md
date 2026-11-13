@@ -125,7 +125,7 @@ python clients/python/kit_calls.py --task drift --system graph --required-only -
 
    <!-- capture:end -->
 
-   `4 passed, 15 deselected`.
+   `4 passed, 13 deselected`.
 
 2. **List what the drift client needs from ISC:**
 

@@ -434,7 +434,7 @@ It prints nothing. The three folders hold the register, the owners and the owner
 
    <!-- capture:end -->
 
-**Expected result:** 513 tests passing across the example, `out/kerberos/manifest.json` listing seven AD reads and the SHA-256 of the register, of Chapter 03's decisions and of each input, and `out/kerberos-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done:
+**Expected result:** 511 tests passing across the example, `out/kerberos/manifest.json` listing seven AD reads and the SHA-256 of the register, of Chapter 03's decisions and of each input, and `out/kerberos-apply/manifest.json` listing the prechecks and the four writes. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -693,7 +693,7 @@ The Kerberos accounts are the on-premises part of the guide's [G5 Conversion](..
 | The write path stops after its prechecks without `-Apply`, and refuses a plan whose hash nobody approved (Lab 1, steps 7 and 8: `results.json` in the dry-run folder; the refusal text) | CM-3; CM-5 | KSI-CMT-RVP; KSI-IAM-JIT | The reviewer; the ISSO |
 | The approved creations, migrations and disables were run after fresh prechecks, and recorded; no cmdlet that removes or undoes was run (Lab 1, step 8, and Lab 2, steps 4 and 5: `results.json` and `manifest.json` in the apply folder) | CM-3; AC-2(3) Disable Accounts | KSI-CMT-LMC; KSI-IAM-AAM | The ISSO, with the run's folder |
 | Every run records the tenant, the domain, every AD read, and the SHA-256 of the register, of each input and of each file (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
-| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 511 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 | The migration started on the recorded date, and after 30 days completed: the old account disabled, its SPNs on the dMSA (Lab 2, steps 5 and 6: `MigrationStartedOn` in `kerberos-replatform.csv`; `CompleteDmsaMigration` in the plan; `Get-ADUser` and `Get-ADServiceAccount` after the apply) | AC-2(3); IA-5 | KSI-IAM-AAM; KSI-IAM-SNU | Server owners; AD engineering |
 | A back-out is a person's step, outside this code (Lab 2, step 6: Learn's `Undo-ADServiceAccountMigration`, run by hand) | CM-3 | KSI-CMT-LMC | AD engineering |
 

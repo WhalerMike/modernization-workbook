@@ -41,7 +41,7 @@ Every fact was checked against primary sources on October 30, 2026, and is footn
   - information-exchange agreements;[^hb-sp80047]
   - the program's API gateway requirement.[^hb-pws-gw]
 - **Validated cryptography at Moderate is a SHOULD in FedRAMP and a must for the agency.** Under the 2026 rules, Class C (Moderate) providers "SHOULD use" modules with active validations; only Class D must.[^hb-cmu] NIST's validation program says "if cryptography is required, then it must be validated," for all federal agencies.[^hb-cmvp] FIPS 140-2 validations move to the historical list after September 21, 2026.[^hb-cmvp-transition]
-- **Oracle's government cloud is `.com`, not `.us`.** Oracle's US Government and US Defense cloud regions sign in at hosts such as `console.us-langley-1.oraclegovcloud.com`.[^hb-oci-gov][^hb-oci-dod] Oracle doesn't publish the Fusion Applications hostname pattern for its restricted regions.[^hb-ora-url] Microsoft's GCC High uses `.us` endpoints, and GCC uses the worldwide `.com` ones.[^hb-ms-deploy]
+- **Oracle's government cloud is `.com`, not `.us`.** Oracle's US Government cloud regions sign in at hosts such as `console.us-langley-1.oraclegovcloud.com`.[^hb-oci-gov] Oracle doesn't publish the Fusion Applications hostname pattern for its restricted regions.[^hb-ora-url] Microsoft's GCC High uses `.us` endpoints, and GCC uses the worldwide `.com` ones.[^hb-ms-deploy]
 
 ## Part 1: Where agencies can share HR 2.0 work
 
@@ -174,14 +174,13 @@ M-24-15 asks agencies to "presume the security assessment documented in the auth
 | Cloud | Hostnames Oracle or Microsoft documents |
 |---|---|
 | Oracle US Government Cloud | `console.us-langley-1.oraclegovcloud.com`, `identity.us-langley-1.oraclegovcloud.com`[^hb-oci-gov] |
-| Oracle US Defense Cloud | `console.us-gov-ashburn-1.oraclegovcloud.com`[^hb-oci-dod] |
 | Oracle commercial | `oraclecloud.com`; Fusion Applications `systemName.fa.<dc>.oraclecloud.com`, "for commercial regions only. In restricted regions … the patterns are different"[^hb-ora-url] |
 | Microsoft 365 GCC | The worldwide `.com` endpoints[^hb-ms-deploy] |
 | Microsoft GCC High and DoD | `graph.microsoft.us`, `login.microsoftonline.us`; `dod-graph.microsoft.us`[^hb-ms-deploy] |
 
 : Government cloud domains {.striped .hover}
 
-Oracle's two government infrastructure pages show no `.us` or `.mil` hostname.[^hb-oci-gov][^hb-oci-dod] Oracle requires government customers to "bring your own identity provider that meets your agency's compliance requirements and supports common access card/personal identity verification card (CAC/PIV)."[^hb-oci-info]
+Oracle's US Government Cloud page shows no `.us` hostname.[^hb-oci-gov] Oracle requires government customers to "bring your own identity provider that meets your agency's compliance requirements and supports common access card/personal identity verification card (CAC/PIV)."[^hb-oci-info]
 
 *(Inference.)* The domain matters at the boundary in three places:
 - **Egress allow-lists.** The agency's middleware calls the platform, so its outbound proxy and network policy name the hosts it may reach.
@@ -279,7 +278,6 @@ Related:
 [^hb-cmvp]: National Institute of Standards and Technology, "Cryptographic Module Validation Program" ("In essence, if cryptography is required, then it must be validated"; "FIPS 140-2 and FIPS 140-3 requirements are applicable to all U.S. Federal agencies"), <https://csrc.nist.gov/projects/cryptographic-module-validation-program>, accessed October 30, 2026.
 [^hb-cmvp-transition]: National Institute of Standards and Technology, "FIPS 140-3 Transition Effort" (FIPS 140-2 validations moved to the historical list after September 21, 2026; usable for existing systems only; the schedule table gives September 22), <https://csrc.nist.gov/projects/fips-140-3-transition-effort>, accessed October 30, 2026.
 [^hb-oci-gov]: Oracle, *Oracle Cloud Infrastructure Documentation*, "FedRAMP Authorized Services" for US Government Cloud (regions us-langley-1 and us-luke-1; console and API endpoints on oraclegovcloud.com), <https://docs.oracle.com/en-us/iaas/Content/gov-cloud/govfedramp.htm>, accessed October 30, 2026.
-[^hb-oci-dod]: Oracle, *Oracle Cloud Infrastructure Documentation*, US Defense Cloud (regions us-gov-ashburn-1, us-gov-chicago-1, us-gov-phoenix-1; console on oraclegovcloud.com), <https://docs.oracle.com/en-us/iaas/Content/gov-cloud/govfeddod.htm>, accessed October 30, 2026.
 [^hb-oci-info]: Oracle, *Oracle Cloud Infrastructure Documentation*, "Information for US Government Cloud Customers" (bring your own CAC/PIV-capable identity provider; customers enable FIPS mode), <https://docs.oracle.com/en-us/iaas/Content/gov-cloud/govinfo.htm>, accessed October 30, 2026.
 [^hb-ora-url]: Oracle, *Enterprise Performance Management Cloud*, "Sample URLs" ("This pattern is for commercial regions only. In restricted regions (for example OC2 and OC4), the patterns are different"), <https://docs.oracle.com/en/cloud/saas/enterprise-performance-management-common/cgsad/1_epm_cloud_accessing_sample_urls.html>; and *Oracle Integration*, "Obtain the Event Catalog URL" (Fusion Applications `systemName.fa.<dc>.oraclecloud.com`), <https://docs.oracle.com/en/cloud/paas/application-integration/erp-adapter/obtaining-event-catalog-url.html>, accessed October 30, 2026.
 [^hb-ms-deploy]: Microsoft Learn, "Microsoft Graph national cloud deployments" (GCC uses the worldwide endpoints; GCC High `graph.microsoft.us` and `login.microsoftonline.us`; DoD `dod-graph.microsoft.us`), <https://learn.microsoft.com/en-us/graph/deployments>, accessed October 30, 2026.

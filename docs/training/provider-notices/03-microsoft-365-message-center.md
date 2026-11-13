@@ -77,7 +77,7 @@ Import-Module ./powershell/ProviderNotices/ProviderNotices.psm1
 Get-PnRequiredPermission -Provider m365 | Format-Table Call, Permissions, Verified
 
 # Step 2: See each cloud's Graph host
-foreach ($c in 'gcc', 'gcchigh', 'dod') { $x = Get-PnCloud -Provider m365 -Cloud $c; '{0,-8} {1,-32} {2}' -f $c, $x.Graph, $x.GraphEnvironment }
+foreach ($c in 'global', 'gcc') { $x = Get-PnCloud -Provider m365 -Cloud $c; '{0,-8} {1,-32} {2}' -f $c, $x.Graph, $x.GraphEnvironment }
 
 # Step 3: Collect Microsoft 365 from the day-one fixtures
 ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day1 -Provider m365 -AsOf 2026-11-09T12:00:00Z -OutputPath out/m365
@@ -126,13 +126,12 @@ Remove-Item -Recurse -Force out
 2. **See each cloud's Graph host:**
 
     ```powershell
-    foreach ($c in 'gcc', 'gcchigh', 'dod') { $x = Get-PnCloud -Provider m365 -Cloud $c; '{0,-8} {1,-32} {2}' -f $c, $x.Graph, $x.GraphEnvironment }
+    foreach ($c in 'global', 'gcc') { $x = Get-PnCloud -Provider m365 -Cloud $c; '{0,-8} {1,-32} {2}' -f $c, $x.Graph, $x.GraphEnvironment }
     ```
 
     ```text
+    global   https://graph.microsoft.com      Global
     gcc      https://graph.microsoft.com      Global
-    gcchigh  https://graph.microsoft.us       USGov
-    dod      https://dod-graph.microsoft.us   USGovDoD
     ```
 
 3. **Collect Microsoft 365 from the day-one fixtures:**
@@ -193,7 +192,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'Microsoft 365 service communications*', '*Graph*' -Output None -PassThru | Select-Object PassedCount, FailedCount
     ```
 
-    Expect `PassedCount 15`, `FailedCount 0`.
+    Expect `PassedCount 14`, `FailedCount 0`.
 
 Delete `out` when you're done:
 

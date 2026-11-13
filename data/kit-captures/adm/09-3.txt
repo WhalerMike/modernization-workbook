@@ -1,12 +1,12 @@
-$ python python/drift_pipeline.py cloud --name dod
+$ python python/drift_pipeline.py cloud --name gcc
 {
-  "audience": "api://AzureADTokenExchangeUSGov",
-  "authority": "https://login.microsoftonline.us",
-  "azure_environment": "AzureUSGovernment",
-  "graph": "https://dod-graph.microsoft.us",
-  "mg_environment": "USGovDoD",
-  "name": "dod"
+  "audience": "api://AzureADTokenExchange",
+  "authority": "https://login.microsoftonline.com",
+  "azure_environment": "AzureCloud",
+  "graph": "https://graph.microsoft.com",
+  "mg_environment": "Global",
+  "name": "gcc"
 }
 $ python python/drift_pipeline.py cloud --name usgov
-error: unknown cloud 'usgov'; expected one of gcc, gcchigh, dod
+error: unknown cloud 'usgov'; expected one of gcc
 (exit code 1)

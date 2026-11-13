@@ -64,7 +64,7 @@ Verified: 2026-10-30
 | 47 | CMVP: "if cryptography is required, then it must be validated"; applies to all federal agencies | Findings, Part 3 | verified | hb-cmvp |
 | 48 | FIPS 140-2 validations move to historical after September 21, 2026 (the table says September 22) | Findings, Part 3 | verified; the inconsistency is reported | hb-cmvp-transition |
 | 49 | Legacy Rev5 Moderate SC-13 parameter; DoD requirements | Part 3, What couldn't be verified | not verified | — |
-| 50 | OCI US Government and US Defense hostnames are on oraclegovcloud.com; no .us or .mil on those pages | Findings, Part 4 | verified (regex scan of the two pages) | hb-oci-gov, hb-oci-dod |
+| 50 | OCI US Government hostnames are on oraclegovcloud.com; no .us on that page | Findings, Part 4 | verified (regex scan of the page) | hb-oci-gov |
 | 51 | Bring your own CAC/PIV identity provider | Part 4 | verified | hb-oci-info |
 | 52 | Fusion commercial hostname pattern; in restricted regions "the patterns are different" | Part 4 | verified; the government hostname wasn't found | hb-ora-url |
 | 53 | Microsoft GCC uses worldwide endpoints; GCC High and DoD use .us | Findings, Part 4 | verified | hb-ms-deploy |

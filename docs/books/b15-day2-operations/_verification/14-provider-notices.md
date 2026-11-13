@@ -17,7 +17,6 @@ Primary sources opened on 2026-11-09: Microsoft Learn through the Microsoft Lear
 | 7 | OCI contacts the tenancy administrator by email; other delivery through email preferences or announcement subscriptions | Why unread | verified | `c14-oci-console` |
 | 8 | OCI `announcement_type` values (ACTION_RECOMMENDED, ACTION_REQUIRED, INFORMATION, PLANNED_CHANGE*, SCHEDULED_MAINTENANCE, EMERGENCY_*, PRODUCTION_EVENT_NOTIFICATION); "An announcement's type signals its severity" | Six kinds | verified | `c14-oci-model` |
 | 9 | Oracle US Government Cloud: FedRAMP High and DISA IL4; Announcements endpoints us-langley-1, us-luke-1 | Government clouds | verified | `c14-oci-gov` |
-| 10 | OCI DoD realm endpoint not yet specified | Government clouds | carried from the guide (N9) | Guide |
 | 11 | AWS: root email plus up to three alternate contacts (billing, operations, security) | Why unread | verified | `c14-aws-contacts` |
 | 12 | AWS Health categories (account notification, issue, scheduled change incl. planned lifecycle and end of support); 90 days; actionability values; personas; API needs a support plan, else `SubscriptionRequiredException` | Why unread; six kinds; limits | verified | `c14-aws-concepts` |
 | 13 | GovCloud: single endpoint us-gov-west-1; EventBridge doesn't send public Service Health view events | Government clouds | verified | `c14-aws-gov` |

@@ -213,7 +213,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests -Output None -PassThru | Select-Object PassedCount, FailedCount
     ```
 
-    Expect `PassedCount 140`, `FailedCount 0`.
+    Expect `PassedCount 139`, `FailedCount 0`.
 
 Delete `out` when you're done:
 

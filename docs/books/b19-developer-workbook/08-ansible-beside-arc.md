@@ -305,7 +305,7 @@ bash tests/run_all.sh
    bash tests/run_all.sh
    ```
 
-**Expected result:** yamllint and ansible-lint pass (`Profile 'production' was required, and it passed`), six playbooks pass the syntax check, and 90 tests pass as root. On Windows with Python and PyYAML, `python -m pytest examples/ansible/tests` gives 74 passed and 16 skipped.
+**Expected result:** yamllint and ansible-lint pass (`Profile 'production' was required, and it passed`), six playbooks pass the syntax check, and 88 tests pass as root. On Windows with Python and PyYAML, `python -m pytest examples/ansible/tests` gives 74 passed and 14 skipped.
 
 ## Lab 2: test subscription and a disposable server
 

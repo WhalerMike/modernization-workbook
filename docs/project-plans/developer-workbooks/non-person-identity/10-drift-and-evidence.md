@@ -521,7 +521,7 @@ rm -rf out
 
     <!-- capture:end -->
 
-**Expected result:** the Pester run passes 513 tests, and the pytest run passes 142. Delete `out` in both folders when you're done. In `examples/non-person-identity`:
+**Expected result:** the Pester run passes 511 tests, and the pytest run passes 142. Delete `out` in both folders when you're done. In `examples/non-person-identity`:
 
 ```powershell
 Remove-Item -Recurse -Force out

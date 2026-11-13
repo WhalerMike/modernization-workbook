@@ -1,2 +1,13 @@
-$ python -c "import sys; sys.path.insert(0, 'python'); from graphkit import GraphClient, try_beta; print(try_beta(GraphClient('gcchigh', lambda s: 't'), '/deviceManagement/windowsAutopilotDeviceIdentities'))"
-{'stage': 'beta', 'available': False, 'items': [], 'reason': "autopilot-device-identities isn't offered in gcchigh (graph-calls.json not_in_clouds)"}
+$ python -m pytest -q -p no:cacheprovider tests/python
+........................................................................ [ 83%]
+..............                                                           [100%]
+86 passed
+$ pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
+Starting discovery in 3 files.
+Discovery found 52 tests.
+Running tests.
+[+] tests/powershell/FmwArm.Tests.ps1
+[+] tests/powershell/FmwGraph.Tests.ps1
+[+] tests/powershell/GraphClients.Tests.ps1
+Tests completed
+Tests Passed: 52, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0

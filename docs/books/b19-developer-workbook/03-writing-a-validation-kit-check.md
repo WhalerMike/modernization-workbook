@@ -367,7 +367,7 @@ Every command in this lab, in order, from `examples/validation-kit`. Each step b
 
 ```powershell
 # Step 1: Export
-Connect-MgGraph -Scopes 'OnPremDirectorySynchronization.Read.All' -Environment Global   # USGov for GCC High
+Connect-MgGraph -Scopes 'OnPremDirectorySynchronization.Read.All' -Environment Global
 Invoke-MgGraphRequest -Method GET -Uri '/v1.0/directory/onPremisesSynchronization' |
     ConvertTo-Json -Depth 10 | Set-Content -Path ./inputs/onprem-sync-export.json
 Disconnect-MgGraph
@@ -389,7 +389,7 @@ Remove-Item ./inputs/onprem-sync-export.json
 1. **Export.** A Global Administrator of the test tenant signs in and saves the response:
 
    ```powershell
-   Connect-MgGraph -Scopes 'OnPremDirectorySynchronization.Read.All' -Environment Global   # USGov for GCC High
+   Connect-MgGraph -Scopes 'OnPremDirectorySynchronization.Read.All' -Environment Global
    Invoke-MgGraphRequest -Method GET -Uri '/v1.0/directory/onPremisesSynchronization' |
        ConvertTo-Json -Depth 10 | Set-Content -Path ./inputs/onprem-sync-export.json
    Disconnect-MgGraph

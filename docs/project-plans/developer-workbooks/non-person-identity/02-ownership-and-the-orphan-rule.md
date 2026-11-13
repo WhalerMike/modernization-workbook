@@ -377,7 +377,7 @@ It prints the three lines of Chapter 01's step 3, ending `Written to out/invento
 
    <!-- capture:end -->
 
-**Expected result:** 513 tests passing, `out/ownership/manifest.json` listing 14 user reads and the SHA-256 of the register and of each input, and `out/orphan-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done:
+**Expected result:** 511 tests passing, `out/ownership/manifest.json` listing 14 user reads and the SHA-256 of the register and of each input, and `out/orphan-apply/manifest.json` listing the prechecks and the three writes. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -543,7 +543,7 @@ The ownership check and the orphan rule are what the guide's [G1 Inventory](../.
 | The write path stops after its prechecks without `-Apply`, and refuses a plan whose hash nobody approved (Lab 1, steps 6 and 7: `out/orphan-dryrun/results.json`; the refusal text) | CM-3; CM-5 Access Restrictions for Change | KSI-CMT-RVP, KSI-IAM-JIT | The repository's tests; the ISSO |
 | The approved disables and owner additions were sent, each after a fresh re-read, and recorded (Lab 1, step 7, and Lab 2, step 4: `results.json` and `manifest.json` in the apply folder) | AC-2(3); CM-3 | KSI-IAM-AAM; KSI-CMT-LMC | The ISSO, with the run's folder |
 | Every run records the tenant, the cloud, every user read, and the SHA-256 of the register, of each input and of each file (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
-| The code passes its tests (Lab 1, step 8: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 8: `Invoke-Pester -Path tests`, 511 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 | The identity governance officer confirms each orphan, and a second person approves the plan's SHA-256 (Lab 2, steps 1 and 3: `igo-confirmations.csv`; the hash from `Get-FileHash`) | AC-5 Separation of Duties; AC-2(3) | KSI-IAM-JIT (AC-5); KSI-IAM-AAM (AC-2(3)) | The identity governance officer; the reviewer |
 | The disable took effect and has a start date for the claim window (Lab 2, step 5: `Get-ADUser … Enabled`; the enterprise application's **Activation status**; `DisabledOn` in `igo-confirmations.csv`) | AC-2(3) | KSI-IAM-AAM | The identity governance officer |
 | The lab's changes were reversed by a person, and the directory logged it (Lab 2, step 6: the `accountEnabled` PATCH and `Enable-ADAccount`; the audit entries they leave) | CM-3; AU-2 Event Logging | KSI-CMT-LMC | Identity engineering |

@@ -27,7 +27,7 @@ Method:
 | 7 | Module 1's requirement table (SA-9 c, SI-5 a; SI-5, CA-7; CA-7) | Module 1 | carried | Chapter 01, Federal requirements and evidence, rows 2 to 4 |
 | 8 | AWS Health needs a qualifying AWS Support plan, and AWS's pages name the plans differently | Module 5; path | carried | The guide's Step 4 prerequisites (three AWS pages, updated in #532); Chapter 04, What AWS gives you |
 | 9 | Personalized Service Health has one category, `INCIDENT`, and isn't in Assured Workloads' FedRAMP Moderate, FedRAMP High, IL2, IL4, IL5, CJIS or ITAR packages | Module 6 | carried | The guide's Step 5; Chapter 05, What Google gives you |
-| 10 | OC2 endpoints in us-langley-1 and us-luke-1; OC3 not yet specified and refused | Module 4 | carried | The guide's Step 3; Chapter 03 |
+| 10 | OC2 endpoints in us-langley-1 and us-luke-1 | Module 4 | carried | The guide's Step 3; Chapter 03 |
 | 11 | Graph hosts: GCC worldwide, GCC High `graph.microsoft.us`, DoD `dod-graph.microsoft.us` | Module 3 | carried | The guide's Step 2; Chapter 02 |
 | 12 | Finding contract windows P1 immediate, P2 one hour, P3 24 hours, P4 72 hours (program design) | Module 7 | carried | Chapter 06, What the program gives you; Book 13, Appendix B |
 | 13 | The digest's home: the supervisor's weekly queue review and the change advisory board's agenda (design guidance) | Module 8 | carried | Book 15, Chapter 14, The weekly digest |

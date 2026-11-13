@@ -156,7 +156,7 @@ Each `batch_sha256` is the hash `apply-results.json` records when that batch is 
 
 ### The tests
 
-The Python suite has 70 tests and the PowerShell suite 62, all passing. They cover every rule above; that the two clients produce the same payloads, hashes and provenance (shared fixture hashes); and, in `Csv2ScimBaseline.Tests.ps1`, seven tests that run the pinned CSV2SCIM offline on the same fixture and pin the differences it can observe there. If a future CSV2SCIM version adds validation or ordering, those tests fail on the snapshot update, which is the prompt to shrink our client.
+The Python suite has 71 tests and the PowerShell suite 63, all passing. They cover every rule above; that the two clients produce the same payloads, hashes and provenance (shared fixture hashes); and, in `Csv2ScimBaseline.Tests.ps1`, seven tests that run the pinned CSV2SCIM offline on the same fixture and pin the differences it can observe there. If a future CSV2SCIM version adds validation or ordering, those tests fail on the snapshot update, which is the prompt to shrink our client.
 
 ::: {.callout-warning}
 ## Illustrative code
@@ -352,7 +352,7 @@ pwsh -NoProfile -Command "Invoke-Pester -Path tests/powershell"
 
    <!-- capture:end -->
 
-**Expected result:** 70 Python and 62 Pester tests passing, and the differences in the table above, seen with your own eyes.
+**Expected result:** 71 Python and 63 Pester tests passing, and the differences in the table above, seen with your own eyes.
 
 ## Lab 2: test tenant
 
@@ -478,7 +478,7 @@ The middleware is where an HR record becomes an account, so its outputs are acco
 | Every batch is tied by hash to the extract and mapping that produced it, and a rerun gives identical bytes (step 4: `provenance.json`, `cmp ... && echo identical`) | CM-3 (Configuration Change Control): a record of each change; AU-3 (Content of Audit Records) | KSI-CMT-LMC, Logging Changes | The evidence store |
 | A bad code is refused at the source, where the sample sends it (step 5: `out-broken/quarantine.json`) | SI-10 | KSI-CMT-VTD | The test run's log |
 | A mass disable holds the run until someone confirms it (step 6: exit `3`; `--confirm-large-delta`) | AC-2: account changes follow defined conditions and approvals; CM-3 | KSI-IAM-AAM | The change record that carries the confirmation |
-| Both clients pass every rule, and the pinned sample still matches its hashes (step 7: 70 pytest and 62 Pester tests; `snapshot.json`) | SA-11; SR-3 (Supply Chain Controls and Processes): the sample is pinned and watched | KSI-CMT-VTD; KSI-SCR-MIT, Mitigating Supply Chain Risk | The repository's test results |
+| Both clients pass every rule, and the pinned sample still matches its hashes (step 7: 71 pytest and 63 Pester tests; `snapshot.json`) | SA-11; SR-3 (Supply Chain Controls and Processes): the sample is pinned and watched | KSI-CMT-VTD; KSI-SCR-MIT, Mitigating Supply Chain Risk | The repository's test results |
 | The provisioning app's schema change is made by a named run (Lab 2, step 2: `-UpdateSchema`) | CM-3 | KSI-CMT-LMC | The change record; the Entra audit log, exported to the log store |
 | The sender holds one permission, with a certificate or managed identity and no secret (Lab 2, step 3: `SynchronizationData-User.Upload.OwnedBy`) | AC-6 (Least Privilege); IA-5 (Authenticator Management) | KSI-IAM-ELP, Ensuring Least Privilege; KSI-IAM-SNU, Securing Non-User Authentication | The app registration and its consent record in the Entra audit log |
 | Each sent batch has its status, attempts and `Location` (Lab 2, step 5: `out-apply/apply-results.json`) | AC-2; AU-3 | KSI-IAM-AAM; KSI-CMT-LMC | The evidence store |

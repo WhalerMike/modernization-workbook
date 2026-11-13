@@ -395,7 +395,7 @@ You run each check against the kit's fictional tenant and read each finding agai
    rm -rf out
    ```
 
-   Expected: `20 passed`.
+   Expected: `19 passed`.
 
 **Check your work:** for each finding, you can name the ScubaGear policy it evidences and the Graph property it came from.
 

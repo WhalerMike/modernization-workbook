@@ -191,7 +191,7 @@ python -m pytest tests/python/test_kit_common.py -q -k "sn_ or retry or paging o
 
    <!-- capture:end -->
 
-   `7 passed, 12 deselected`: the base URLs, the OAuth-then-basic order, Retry-After as seconds and as a date, a 429 retried after its Retry-After, and every paging style.
+   `7 passed, 10 deselected`: the base URLs, the OAuth-then-basic order, Retry-After as seconds and as a date, a 429 retried after its Retry-After, and every paging style.
 
 ## Lab 2: a ServiceNow developer instance
 

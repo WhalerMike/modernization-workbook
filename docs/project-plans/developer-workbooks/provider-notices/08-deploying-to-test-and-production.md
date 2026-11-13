@@ -242,7 +242,7 @@ The pre-flight reads only. Run it before each stage, after the readers sign in (
 
 ### Step 1.1: Sign in each reader (G1 to G5)
 
-Sign in each enabled provider's reader in the cloud the settings file names. For a government cloud, use `AzureUSGovernment`, `-Environment USGov` (GCC High) or `USGovDoD` (DoD), and the OC2 region or `aws-us-gov` profile:
+Sign in each enabled provider's reader in the cloud the settings file names. For a government cloud, use `AzureUSGovernment` for Azure Government, and the OC2 region or `aws-us-gov` profile:
 
 ```powershell
 az cloud set --name AzureCloud

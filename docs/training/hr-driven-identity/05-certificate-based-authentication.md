@@ -85,12 +85,9 @@ python python/cba_check.py measure --urls tests/fixtures/ch05/crl-urls.txt --out
 python python/cba_check.py check --cloud gcc --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out out/ch05/check
 
 # Step 4
-python python/cba_check.py check --cloud gcchigh --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out out/ch05/check-gcchigh
-
-# Step 5
 python -m pytest tests -q
 
-# Step 5
+# Step 4
 rm -rf out
 ```
 
@@ -129,20 +126,7 @@ rm -rf out
 
     Expect `Cloud gcc: interactive CRL limit 20,000,000 bytes, download within 10 s`, then `CBA: 5 Finding, 7 Warn, 0 Info` and exit code 2. Find CB-04 (a CRL that took 11.4 seconds), CB-05 (a CRL of 18,500,000 bytes, over 80 percent of the GCC limit), CB-09 (a PIV policy OID not mapped to multifactor) and CB-10 (no enabled policy requires a phishing-resistant strength).
 
-4. Check the same tenant for GCC High:
-
-    ```bash
-    python python/cba_check.py check --cloud gcchigh --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out out/ch05/check-gcchigh
-    ```
-
-    ```text
-    Cloud gcchigh: interactive CRL limit 45,000,000 bytes, download within 10 s
-    CBA: 5 Finding, 6 Warn, 0 Info
-    ```
-
-    CB-05 drops away; the 11.4-second download is still a Finding.
-
-5. Run the tests:
+4. Run the tests:
 
     ```bash
     python -m pytest tests -q

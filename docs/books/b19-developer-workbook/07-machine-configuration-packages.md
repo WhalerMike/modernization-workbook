@@ -386,10 +386,6 @@ Get-GuestConfigurationPackageComplianceStatus -Path ./TlsServerProtocols_1.0.0.z
 # Step 2: Sign in to the right cloud
 Connect-AzAccount -Environment AzureCloud
 
-# Step 2: Sign in to the right cloud
-# Only for a test subscription in Azure Government
-Connect-AzAccount -Environment AzureUSGovernment
-
 # Step 3: Publish the exact bytes
 $ctx = New-AzStorageContext -StorageAccountName <storage-account> -UseConnectedAccount
 Set-AzStorageBlobContent -Container <container> -File ./out/TlsServerProtocols_1.0.0/TlsServerProtocols_1.0.0.zip -Blob TlsServerProtocols_1.0.0.zip -Context $ctx
@@ -427,15 +423,6 @@ New-AzPolicyDefinition -Name ca593085-dfcb-425d-ac9c-12870a55bbaa -Policy ./out/
    ```
 
    Check the server can reach the cloud's machine configuration endpoints. For commercial Azure, Learn lists `*.guestconfiguration.azure.com` for Arc-enabled servers,[^c07-arcnet] [^c07-network] and for each region `agentserviceapi.guestconfiguration.azure.com` and a regional endpoint, such as `eastus-gas.guestconfiguration.azure.com` and `eus-gas.guestconfiguration.azure.com` for East US, with package storage in that region's `oaasguestconfig*.blob.core.windows.net` accounts.[^c07-network]
-
-   If the test subscription is in Azure Government instead, the alternative for a GCC High or DoD estate, sign in to that cloud:
-
-   ```powershell
-   # Only for a test subscription in Azure Government
-   Connect-AzAccount -Environment AzureUSGovernment
-   ```
-
-   For Azure Government, Learn lists `*.guestconfiguration.azure.us` for Arc-enabled servers[^c07-arcnet] and regional endpoints for US Gov Arizona, Texas and Virginia.[^c07-network]
 3. **Publish the exact bytes.** Create a storage account and container in the test subscription with anonymous blob access disabled, and upload the package Lab 1 built with Learn's `Set-AzStorageBlobContent` step.[^c07-publish] Don't rebuild it. Download it back and compare its SHA-256 with `package.sha256` in `provenance.json`. From `examples/machine-configuration`:
 
    ```powershell

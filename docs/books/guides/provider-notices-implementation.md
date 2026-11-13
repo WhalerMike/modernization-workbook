@@ -349,7 +349,7 @@ Allow group <group> to read announcements in tenancy
 
 : Gate 3 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Oracle's US Government Cloud page lists the Announcements API at `announcements.us-langley-1.oraclegovcloud.com` and `announcements.us-luke-1.oraclegovcloud.com`, in realm OC2.[^pn-oci-gov] OC3's endpoint is not yet specified; the kit refuses that realm.
+**Government-cloud availability.** Oracle's US Government Cloud page lists the Announcements API at `announcements.us-langley-1.oraclegovcloud.com` and `announcements.us-luke-1.oraclegovcloud.com`, in realm OC2.[^pn-oci-gov]
 
 **Interim path.** The announcement email Oracle sends to the tenancy's notification recipients, filed with the change record until the reader exists. Name who receives it in the settings file's `noticeContacts`; the preflight checks it.
 
@@ -806,7 +806,7 @@ The kit's records support these controls; they don't by themselves decide them, 
 - **The alert resource type the Service Health policy creates,** and its parameter names for a parameters file. Learn names the alert rule and action group, not the resource type or the parameter names; read them with `az policy definition show` before writing a parameters file.
 - **Microsoft 365 Message center tags.** Learn doesn't enumerate them; the kit treats a post tagged `Retirement` as a retirement.
 - **Which admin roles Graph accepts for a delegated read.** Learn says the signed-in user needs an admin role and doesn't name them.
-- **OCI CLI output keys** (camelCase or kebab-case): not shown in Oracle's CLI reference. The kit accepts both. **OCI realm OC3**: Oracle's page wasn't readable; the kit refuses the realm.
+- **OCI CLI output keys** (camelCase or kebab-case): not shown in Oracle's CLI reference. The kit accepts both.
 - **The gcloud flags for organization events.** The REST call is verified; the kit marks the gcloud call unverified and runs it only with `-AllowUnverified`.
 - **The ServiceNow side.** The router's payload is the kit's; the endpoint that takes it is the agency's to build.
 - **The scheduler.** The kit doesn't register a schedule; rollback's step to unregister a Windows scheduled task assumes the agency used one.

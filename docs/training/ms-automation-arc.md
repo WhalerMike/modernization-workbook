@@ -438,7 +438,7 @@ Work in `examples/ms-automation`. `--from-json` evaluates saved Resource Graph r
    python -m pytest -q -p no:cacheprovider tests/python/test_arc_tasks.py
    ```
 
-   Expected: `24 passed`. Three of them prove the read-only and paging claims:
+   Expected: `23 passed`. Three of them prove the read-only and paging claims:
    - `test_calls_need_only_reader`: every declared call is a read;
    - `test_queries_page_safely_and_read_no_settings`: every query projects a string `id`, uses no `take` or `limit`, ends sorted by a unique column, and reads no settings;
    - `test_truncated_result_without_token_raises`: a truncated result stops the run.

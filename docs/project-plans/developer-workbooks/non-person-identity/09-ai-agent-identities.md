@@ -175,7 +175,7 @@ Chapter 02 recorded four empty fields for every AI identity it found. This chapt
 
 ### The tests
 
-Pester 5 under PowerShell 7. This chapter's are in `tests/NpiAgentId.Tests.ps1`, 62 tests: 13 send Learn's pinned samples to the fake as published; 49 cover the call list and its least-privilege test (each task's declaration equal to the union of its calls, the read task GET only and holding nothing that ends in `ReadWrite`), D-NP6 in each cloud, the inputs and their manifests, every rule, the business-day count, stable IDs, the plan and its deterministic hash, the writer's refusals, dry run, `-Apply`, the precheck, and the entry scripts.
+Pester 5 under PowerShell 7. This chapter's are in `tests/NpiAgentId.Tests.ps1`, 61 tests: 12 send Learn's pinned samples to the fake as published; 49 cover the call list and its least-privilege test (each task's declaration equal to the union of its calls, the read task GET only and holding nothing that ends in `ReadWrite`), D-NP6 in each cloud, the inputs and their manifests, every rule, the business-day count, stable IDs, the plan and its deterministic hash, the writer's refusals, dry run, `-Apply`, the precheck, and the entry scripts.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -204,7 +204,7 @@ Import-Module ./powershell/NpiAgentId/NpiAgentId.psm1
 foreach ($t in 'agent-id', 'agent-ca-apply') { $p = Get-NpiAgentRequiredPermission -Task $t; "$t : " + ($p.GraphPermissions -join ', ') }
 
 # Step 3: Read D-NP6 for each cloud
-'global','gcc','gcchigh','dod' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
+'global','gcc' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
     [pscustomobject]@{ Cloud = $_; Mode = $c.Mode; AgentIdentities = $c.AgentIdentities.stage; AgentCA = $c.AgentConditionalAccess.stage; SponsorWorkflows = $c.SponsorWorkflows.stage } } | Format-Table
 
 # Step 4: Check the AI identities and build the plan
@@ -216,20 +216,15 @@ Get-Content out/agent-id/findings.json -Raw | ConvertFrom-Json | Where-Object Se
 # Step 6: Read the sponsor fields Chapter 02 recorded, filled
 Get-Content out/agent-id/ai-identities.json -Raw | ConvertFrom-Json | Format-Table Name, FederalSponsor, TechnicalOwner, InventoryRecord, Handshake, SponsorState
 
-# Step 7: Run the D-NP6 fallback in GCC High
-./Invoke-NpiInventory.ps1 -Cloud gcchigh -FixturePath tests/fixtures/estate.json -OutputPath out/inventory-gcchigh
-./Invoke-NpiOwnership.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership-gcchigh
-./Invoke-NpiAgentId.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -OwnershipRun out/ownership-gcchigh -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id-gcchigh
-
-# Step 8: Dry-run the agent Conditional Access plan with its approved hash
+# Step 7: Dry-run the agent Conditional Access plan with its approved hash
 $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.ToLower()
 ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-dryrun
 
-# Step 9: Apply it to the fake, then try a hash nobody approved
+# Step 8: Apply it to the fake, then try a hash nobody approved
 ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-apply -Apply
 ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-x
 
-# Step 10: Run the tests
+# Step 9: Run the tests
 Invoke-Pester -Path tests
 
 # After the steps
@@ -266,7 +261,7 @@ They print the lines of Chapter 01's step 3 and Chapter 02's step 3, ending `Pla
 
    <!-- capture:end -->
 
-   `PassedCount 13`, `FailedCount 0`, `NotRunCount 49`. Read the test for *Block agent identity authentication*: the shape check finds one problem in Learn's body, "no exclusion for approved agents".
+   `PassedCount 12`, `FailedCount 0`, `NotRunCount 49`. Read the test for *Block agent identity authentication*: the shape check finds one problem in Learn's body, "no exclusion for approved agents".
 
 2. **List what each task needs:**
 
@@ -289,22 +284,20 @@ They print the lines of Chapter 01's step 3 and Chapter 02's step 3, ending `Pla
 3. **Read D-NP6 for each cloud:**
 
    ```powershell
-   'global','gcc','gcchigh','dod' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
+   'global','gcc' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_
        [pscustomobject]@{ Cloud = $_; Mode = $c.Mode; AgentIdentities = $c.AgentIdentities.stage; AgentCA = $c.AgentConditionalAccess.stage; SponsorWorkflows = $c.SponsorWorkflows.stage } } | Format-Table
    ```
 
    ```text
-   Cloud   Mode     AgentIdentities AgentCA                        SponsorWorkflows
-   -----   ----     --------------- -------                        ----------------
-   global  AgentId  GA (April 2026) Preview (policy builder label) GA (May 2026)
-   gcc     AgentId  GA (April 2026) Preview (policy builder label) GA (May 2026)
-   gcchigh Fallback Not published   Not published                  Not published
-   dod     Fallback Not published   Not published                  Not published
+   Cloud  Mode    AgentIdentities AgentCA                        SponsorWorkflows
+   -----  ----    --------------- -------                        ----------------
+   global AgentId GA (April 2026) Preview (policy builder label) GA (May 2026)
+   gcc    AgentId GA (April 2026) Preview (policy builder label) GA (May 2026)
    ```
 
    <!-- capture:begin 09-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-4.txt))](captures/09-4.png){.lightbox fig-alt="Terminal window showing 'global','gcc','gcchigh','dod' | ForEach-Object { $c = Get-NpiAgentCapability… and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-4.txt))](captures/09-4.png){.lightbox fig-alt="Terminal window showing 'global','gcc' | ForEach-Object { $c = Get-NpiAgentCapability -Cloud $_ and what it printed"}
 
    <!-- capture:end -->
 
@@ -369,33 +362,7 @@ They print the lines of Chapter 01's step 3 and Chapter 02's step 3, ending `Pla
 
    <!-- capture:end -->
 
-7. **Run the D-NP6 fallback in GCC High** (Chapters 01 and 02 again, in that cloud):
-
-   ```powershell
-   ./Invoke-NpiInventory.ps1 -Cloud gcchigh -FixturePath tests/fixtures/estate.json -OutputPath out/inventory-gcchigh
-   ./Invoke-NpiOwnership.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -FixturePath tests/fixtures/estate.json -InputPath tests/fixtures/inputs -OutputPath out/ownership-gcchigh
-   ./Invoke-NpiAgentId.ps1 -Cloud gcchigh -RegisterRun out/inventory-gcchigh -OwnershipRun out/ownership-gcchigh -FixturePath tests/fixtures/ch09/agent-estate.json -InputPath tests/fixtures/ch09/inputs -OutputPath out/agent-id-gcchigh
-   ```
-
-   <!-- capture:begin 09-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
-
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-8.txt))](captures/09-8.png){.lightbox fig-alt="Terminal window showing ./Invoke-NpiInventory.ps1 -Cloud gcchigh -FixturePath tests/fixtures/estate.j… and what it printed"}
-
-   <!-- capture:end -->
-
-   The last command prints:
-
-   ```text
-   D-NP6 (Proposed): Fallback mode in cloud 'gcchigh'; agent Conditional Access Not published; agent risk Not published
-   AI identities: 1 checked (1 ServicePrincipal); Chapter 02 sponsor fields filled: 0 of 2
-   Findings: 7 Finding (2 P1, 0 P2), 1 Warn, 2 Info. Orphan candidates for Chapter 02: 0
-   Agent CA plan: Unapproved NotAvailable, HighRisk NotAvailable; nothing sent
-   Plan SHA-256: 11f0e34d16a6bba70be08161df5c42a70f1a6899b28b30a50e2c8d5fff3d7cfe
-   ```
-
-   No agent identity read is sent (`out/agent-id-gcchigh/manifest.json` lists none). Correspondence Drafting gets the same credential and permission findings as in GCC; three records that name agent identities become NPI-AI-03 findings, because the cloud has none.
-
-8. **Dry-run the agent Conditional Access plan with its approved hash:**
+7. **Dry-run the agent Conditional Access plan with its approved hash:**
 
    ```powershell
    $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.ToLower()
@@ -407,48 +374,48 @@ They print the lines of Chapter 01's step 3 and Chapter 02's step 3, ending `Pla
      WouldSend HighRisk POST https://graph.microsoft.com/beta/identity/conditionalAccess/policies
    ```
 
-   <!-- capture:begin 09-9 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+   <!-- capture:begin 09-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-9.txt))](captures/09-9.png){.lightbox fig-alt="Terminal window showing $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.… and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-8.txt))](captures/09-8.png){.lightbox fig-alt="Terminal window showing $sha = (Get-FileHash out/agent-id/agent-ca-plan.json -Algorithm SHA256).Hash.… and what it printed"}
 
    <!-- capture:end -->
 
-9. **Apply it to the fake, then try a hash nobody approved:**
+8. **Apply it to the fake, then try a hash nobody approved:**
 
    ```powershell
    ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-apply -Apply
    ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/ch09/agent-estate.json -OutputPath out/agent-ca-x
    ```
 
-   <!-- capture:begin 09-10 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+   <!-- capture:begin 09-9 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-10.txt))](captures/09-10.png){.lightbox fig-alt="Terminal window showing ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan… and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-9.txt))](captures/09-9.png){.lightbox fig-alt="Terminal window showing ./Invoke-NpiAgentCaAction.ps1 -Cloud gcc -PlanPath out/agent-id/agent-ca-plan… and what it printed"}
 
    <!-- capture:end -->
 
    `Apply: 1 Sent`, with `Created ca000000-0000-4000-8000-000000000103 report-only; review its report-only results before any change of state`; then the refusal, `The plan's SHA-256 is 5a800246…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
-10. **Run the tests:**
+9. **Run the tests:**
 
-    ```powershell
-    Invoke-Pester -Path tests
-    ```
+   ```powershell
+   Invoke-Pester -Path tests
+   ```
 
-    <!-- capture:begin 09-11 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+   <!-- capture:begin 09-10 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-    ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-11.txt))](captures/09-11.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-10.txt))](captures/09-10.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests and what it printed"}
 
-    <!-- capture:end -->
+   <!-- capture:end -->
 
-**Expected result:** 513 tests passing, and `out/agent-id/manifest.json` listing 45 requests, the D-NP6 mode, the SHA-256 of the register, of Chapter 02's sponsor fields and of each input. Delete `out` when you're done:
+**Expected result:** 511 tests passing, and `out/agent-id/manifest.json` listing 45 requests, the D-NP6 mode, the SHA-256 of the register, of Chapter 02's sponsor fields and of each input. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
 ```
 
-<!-- capture:begin 09-12 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+<!-- capture:begin 09-11 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-12.txt))](captures/09-12.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/09-11.txt))](captures/09-11.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
 
 <!-- capture:end -->
 
@@ -611,12 +578,11 @@ The AI identity checks are the guide's [AI agents](../../../books/guides/non-per
 | Agents whose sponsor left unconfirmed are listed in `orphan-candidates.json` for the identity governance officer to take to Chapter 02's orphan rule by hand; this code disables nothing | AC-2(3) Disable Accounts | KSI-IAM-AAM | The identity governance officer |
 | The block-unapproved and high-risk policies are present and unchanged, and the approval attribute matches a complete handshake (`findings.json`, NPI-AI-18 to -20) | AC-3 Access Enforcement; SCuBA MS.AAD.9.1v1 (risky agents blocked; marked a BOD 25-01 requirement in ScubaGear, not on CISA's page) | KSI-IAM-ELP, KSI-IAM-JIT | Identity engineering |
 | No agentic system without a governed identity, no shadow agent identity, and no credential added without a change record (`findings.json`, NPI-AI-21 to -23) | CM-8 System Component Inventory; AC-2(4) Automated Audit Actions; OMB M-25-21, section 3(b)(v) | KSI-PIY-GIV (CM-8); KSI-MLA-LET, KSI-MLA-RVL (AC-2(4)) | The Chief AI Officer's staff; the identity governance officer |
-| Where the cloud has no agent identities, the run reads none and holds the agents on ordinary service principals to the same rules (Lab 1, step 7: no agent identity read in `out/agent-id-gcchigh/manifest.json`; NPI-AI-03) | SA-9; AC-2 | KSI-SCR-MIT, KSI-SCR-MON; KSI-IAM-SNU | Identity engineering (D-NP6) |
-| The agent Conditional Access plan creates only report-only Block policies; the write path stops after its prechecks without `-Apply` and refuses a hash nobody approved (Lab 1, steps 8 and 9, and Lab 2, step 5: `agent-ca-plan.json`; `results.json` and `manifest.json` in `out/agent-ca-dryrun` and `out/agent-ca-apply`; the refusal text) | AC-3; CM-3 Configuration Change Control; CM-5 | KSI-IAM-ELP; KSI-CMT-LMC, KSI-CMT-RVP | The reviewer; the ISSO |
+| The agent Conditional Access plan creates only report-only Block policies; the write path stops after its prechecks without `-Apply` and refuses a hash nobody approved (Lab 1, steps 7 and 8, and Lab 2, step 5: `agent-ca-plan.json`; `results.json` and `manifest.json` in `out/agent-ca-dryrun` and `out/agent-ca-apply`; the refusal text) | AC-3; CM-3 Configuration Change Control; CM-5 | KSI-IAM-ELP; KSI-CMT-LMC, KSI-CMT-RVP | The reviewer; the ISSO |
 | The reviewed policy JSON matches what the admin center makes (Lab 2, step 4: the beta read-back compared with the reviewed file) | CM-6 Configuration Settings | KSI-SVC-ACM, KSI-MLA-EVC | Identity engineering |
 | One governed agent exists with a sponsor who isn't its owner and a managed identity as its credential (Lab 2, step 2: the blueprint, its principal and the agent identity, read back by the step 3 run) | AC-2; AC-5; IA-5(2) | KSI-IAM-SNU; KSI-IAM-JIT; KSI-SVC-ASM | The sponsor; identity engineering |
 | Every run records the tenant, the cloud, the D-NP6 mode, every request, and the SHA-256 of the register, of Chapter 02's sponsor fields and of each input (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
-| The code passes its tests (Lab 1, step 10: `Invoke-Pester -Path tests`, 513 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 511 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which output supports which indicator is the program's mapping (design guidance), and the SCuBA and M-25-21 rows are mapped through their controls.[^np09-ksi] The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Lab steps that only run Chapters 01 and 02, back out test objects by hand or delete `out` have no row. The track-wide mapping is the guide's [Evidence](../../../books/guides/non-person-identity-implementation.md#evidence) table.
 

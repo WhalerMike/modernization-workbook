@@ -93,7 +93,7 @@ $pages = '../third_party/dynamic-membership-samples/scripts'
 $t = New-FakeTenant -Collections @(
     @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' },
     @{ id = '22222222-2222-2222-2222-222222222222'; displayName = 'Held for review'; kind = 'group'; state = 'Paused' })
-$answers = 'yes', 'USGov', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
+$answers = 'yes', 'Global', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
 Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
 $t.Connected = $null
 Invoke-LearnSample -Page "$pages/powershell-resume-noncritical-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
@@ -102,7 +102,7 @@ $t.Collections.Values | Select-Object displayName, state
 # Step 1: Run Learn's samples against the fake tenant
 $t = New-FakeTenant -Collections @(
     @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' })
-Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers 'yes', 'GCCHigh', 'yes', 'yes', 'yes' | Out-Null
+Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers 'yes', 'Globl', 'yes', 'yes', 'yes' | Out-Null
 $t.Calls[0].Uri
 
 # Step 2: Lint Book 03's rule table
@@ -146,7 +146,7 @@ You run Learn's samples against a fake tenant, lint Book 03's rule table, evalua
    $t = New-FakeTenant -Collections @(
        @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' },
        @{ id = '22222222-2222-2222-2222-222222222222'; displayName = 'Held for review'; kind = 'group'; state = 'Paused' })
-   $answers = 'yes', 'USGov', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
+   $answers = 'yes', 'Global', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
    Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
    $t.Connected = $null
    Invoke-LearnSample -Page "$pages/powershell-resume-noncritical-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
@@ -162,12 +162,12 @@ You run Learn's samples against a fake tenant, lint Book 03's rule table, evalua
    Held for review     On
    ```
 
-   "Held for review" was paused on purpose, and the resume turned it on. Now run the pause with `GCCHigh` as the cloud answer, and read the first call's address:
+   "Held for review" was paused on purpose, and the resume turned it on. Now run the pause with a typo, `Globl`, as the cloud answer, and read the first call's address:
 
    ```powershell
    $t = New-FakeTenant -Collections @(
        @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' })
-   Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers 'yes', 'GCCHigh', 'yes', 'yes', 'yes' | Out-Null
+   Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers 'yes', 'Globl', 'yes', 'yes', 'yes' | Out-Null
    $t.Calls[0].Uri
    ```
 

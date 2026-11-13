@@ -74,7 +74,6 @@ Facts carried from the books are cited by link and rely on those pages' own veri
 | N6 | Message center tag values | Not enumerated on Learn | `Retirement` tag means retirement |
 | N7 | Admin roles accepted for delegated Graph reads | Not named | Guide says "an admin role" |
 | N8 | OCI CLI output key casing | Not shown | Accepts camelCase and kebab-case |
-| N9 | OCI OC3 Announcements endpoint | Oracle's DoD page returned 404 | Refuses realm oc3 |
 | N10 | gcloud `organization-events` flags | Not read | Call marked unverified; runs only with `-AllowUnverified` |
 | N11 | The ServiceNow endpoint's shape | The agency's own resource | Posts the payload JSON with a bearer token from an environment variable |
 | N12 | The scheduler | Agency choice | Not registered; rollback assumes a Windows scheduled task name |
