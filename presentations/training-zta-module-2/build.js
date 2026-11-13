@@ -4,7 +4,7 @@
 // exact commands in a test tenant (not run by the authors, as the page says; the module has no Lab 1), the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page, the Zero Trust
 // Assessment implementation guide it sends the learner to (Steps 2 to 5, "Government-cloud availability", and their
-// footnotes); the deck adds none. The module page is a draft awaiting review, and the title slide says so.
+// footnotes); the deck adds none. The module page is a draft awaiting review; the title slide carries no draft notice.
 // Helpers: ../training-zta-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-zta-module-2/build.js \
 //                      presentations/training-zta-module-2/Training_ZTA_Module_2.pptx
@@ -28,7 +28,7 @@ const W3 = 3.9, G3 = 0.225;
   const s = title(SI, "Module 2: Running the assessment safely", "The Zero Trust Assessment as Evidence · The host, consent, each cloud, the run and its hashes",
     ["The host and the output  ·  Consent and roles  ·  What consent leaves behind", "Connecting in each cloud  ·  The run  ·  Lab 2 in a test tenant  ·  Evidence"]);
   notes(s,
-`Welcome to Module 2 of The Zero Trust Assessment as Evidence: running the assessment safely. This module is a draft, awaiting the editor's review, so recheck it after the review. The assessment is read-only, but running it takes more privilege than that suggests, and its output is a map of where the tenant is weak. In this module you prepare a host, consent once, run as a reader, connect in the tenant's own cloud, and hash the output before anyone opens it. It covers Steps 2 to 5 of the Zero Trust Assessment implementation guide, and takes about thirty-five minutes, plus Lab 2 in your own test tenant.`,
+`Welcome to Module 2 of The Zero Trust Assessment as Evidence: running the assessment safely. The assessment is read-only, but running it takes more privilege than that suggests, and its output is a map of where the tenant is weak. In this module you prepare a host, consent once, run as a reader, connect in the tenant's own cloud, and hash the output before anyone opens it. It covers Steps 2 to 5 of the Zero Trust Assessment implementation guide, and takes about thirty-five minutes, plus Lab 2 in your own test tenant.`,
   `${M} — "Introduction"; learning path index.`);
 }
 

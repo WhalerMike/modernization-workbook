@@ -4,8 +4,8 @@
 // "Try it" slides with the real Lab 1 commands and output (run November 12, 2026 in a scratch copy of
 // examples/zta-results, the same output the page shows), Lab 2, the federal requirement and evidence, a two-question
 // check, and the summary. Every fact comes from the module page, the Zero Trust Assessment implementation guide it sends
-// the learner to (Steps 7 and 8), Book 11, Chapters 08 and 10, or the kit; the deck adds none. The module page is a draft
-// awaiting review, and the title slide says so. Helpers: ../training-zta-module-1/shared.js.
+// the learner to (Steps 7 and 8), Book 11, Chapters 08 and 10, or the kit; the deck adds none. The module page is a draft awaiting review;
+// the title slide carries no draft notice. Helpers: ../training-zta-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-zta-module-3/build.js \
 //                      presentations/training-zta-module-3/Training_ZTA_Module_3.pptx
 const P = require("../training-zta-module-1/shared.js")({
@@ -27,7 +27,7 @@ const W2 = 5.95, G2 = 0.25;
   const s = title(SI, "Module 3: From results to a closure register", "The Zero Trust Assessment as Evidence · Normalize, dispose, register, route and weigh",
     ["Normalize and dispose  ·  The register entry  ·  Finding families and routing", "Weighing and exceptions  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
   notes(s,
-`Welcome to Module 3 of The Zero Trust Assessment as Evidence: from results to a closure register. This module is a draft, awaiting the editor's review, so recheck it after the review. In this module the guide's results kit does the mechanical part. It normalizes every result, lists what didn't run with what to do about it, and writes a closure-register entry for each finding, routed and weighed. People do the rest, and the register shows where. It covers Steps 7 and 8 of the Zero Trust Assessment implementation guide, and takes about fifty-five minutes, most of it in Lab 1.`,
+`Welcome to Module 3 of The Zero Trust Assessment as Evidence: from results to a closure register. In this module the guide's results kit does the mechanical part. It normalizes every result, lists what didn't run with what to do about it, and writes a closure-register entry for each finding, routed and weighed. People do the rest, and the register shows where. It covers Steps 7 and 8 of the Zero Trust Assessment implementation guide, and takes about fifty-five minutes, most of it in Lab 1.`,
   `${M} — "Introduction"; learning path index.`);
 }
 

@@ -13,6 +13,8 @@ last-reviewed: 2026-11-11
 
 *Part of the [Zero Trust Assessment learning path](index.md). Guide [Step 7](../../books/guides/zero-trust-assessment-implementation.md#zta-step-7) and [Step 8](../../books/guides/zero-trust-assessment-implementation.md#zta-step-8). About 55 minutes.*
 
+**Watch:** the narrated deck for this module (about @@Training_ZTA_Module_3@@ minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_ZTA_Module_3_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ZTA_Module_3_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-zta-module-3) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-zta-module-3/Training_ZTA_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-zta-module-3/Training_ZTA_Module_3_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes)
 
 A report that says "17 failed" can't be acted on. Someone has to decide which of those are real findings, who owns each, which page in the workbook remediates it, what comes first, and which are accepted for now and by whom. In this module the results kit does the mechanical part: it normalizes every result, lists what didn't run with what to do about it, and writes a closure-register entry per finding, routed and weighed. People do the rest, and the register shows where.

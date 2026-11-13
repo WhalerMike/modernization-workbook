@@ -14,7 +14,9 @@ last-reviewed: 2026-11-09
 
 *Part of the [Provider Notices learning path](index.md). Gate G3 Oracle Cloud Infrastructure. Workbook [Chapter 03](../../project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.md). About 45 minutes.*
 
-The narrated deck for this module, and the chapter's narrated tour, come later.
+**Watch:** the narrated deck for this module (about @@Training_PN_Module_4@@ minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_PN_Module_4_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_PN_Module_4_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-pn-module-4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-4/Training_PN_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-pn-module-4/Training_PN_Module_4_Narrated.vtt). The deck files join the next edition.
+
+**Also:** the chapter's narrated tour, about @@DW_PN_03_OCI_Announcements@@ minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_03_OCI_Announcements_Narrated).
 
 ## Introduction (3 minutes)
 
