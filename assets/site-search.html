@@ -7,11 +7,10 @@
   In a local render that skipped Pagefind, the button doesn't appear.
 -->
 <style>
-  .fmw-search { display: flex; align-items: center; margin-left: .75rem; order: 3; }
-  @media (max-width: 991.98px) {
-    .fmw-search { order: 1; margin-left: auto; margin-right: .5rem; }
-    .navbar-toggler { order: 2; }
-  }
+  /* Quarto orders the navbar: toggler 1, title 2, menus 20, tools 900. The menus are
+     wider than many screens, so the search box goes right after the title (3),
+     where it stays visible, rather than at the far right. */
+  .fmw-search { display: flex; align-items: center; margin: 0 .75rem; order: 3; white-space: nowrap; flex-shrink: 0; }
 </style>
 <script>
   (function () {
@@ -33,7 +32,7 @@
       var wrap = document.createElement("div");
       wrap.className = "fmw-search";
       var trigger = document.createElement("pagefind-modal-trigger");
-      trigger.setAttribute("placeholder", "Search the workbook");
+      trigger.setAttribute("placeholder", "Search");
       wrap.appendChild(trigger);
       document.body.appendChild(config);
       document.body.appendChild(document.createElement("pagefind-modal"));
