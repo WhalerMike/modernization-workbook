@@ -108,7 +108,6 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 89 | `version none`; `allow-query` default all hosts; `allow-recursion`; `allow-transfer`; TSIG; chroot/setuid | Part 3 | verified (ARM) | cdns-bind-ref, cdns-bind-sec |
 | 90 | NIST §3.1: TSIG; TLS for transfer confidentiality | Part 3 | verified (PDF) | cdns-nist81-xfr |
 | 91 | CIS lists ISC BIND DNS Server 9.11 v1.0.0 and 9.9 v3.0.1; none for 9.18 or 9.20 | Part 3 | verified (cisecurity.org); NCP dates not loaded, not relied on | cdns-cis |
-| 92 | DISA BIND 9.x STIG exists (High only); current release not read | Part 3 | partially verified (listed on cisecurity.org's STIG list and NCP search results; cyber.mil unreachable); no version stated on page | — |
 | 93 | Ansible tier-2, CM-2/CM-3 evidence, one owning tool | Part 3 | carried from the Ansible guide | ansible-configuration-automation.md |
 | 94 | Part 4 checklist and reading | Part 4 | design (built from the parent session's analysis, facts checked above) | — |
 | 95 | SP 800-53 control titles CM-2 … AU-12 | Part 5 | carried from Book 08 Ch03/Ch06 and the Ansible guide logs (release 5.2.0) | cdns-sp80053 |
@@ -124,7 +123,7 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 - Azure DNS Private Resolver and DNS resolver policy availability by Azure Government region: the region table omits Azure Government; only price meters are evidence.
 - Whether the Azure DNS Private Resolver validates DNSSEC.
 - Whether CISA Protective DNS returns DNSSEC data to agency forwarders.
-- The current DISA BIND 9.x STIG release (cyber.mil unreachable), and the NCP dates of the CIS BIND benchmarks.
+- The NCP dates of the CIS BIND benchmarks.
 - A current (non-historical) AWS page on when to run DNS servers on EC2; only the 2022 whitepaper, cited as historical.
 
 ## Corrections to other sources noted on the page
@@ -148,7 +147,7 @@ Oracle Cloud Infrastructure was added in Part 1 (a new subsection), in the meeti
 | 106 | No native DNS-layer policy for private DNS; Traffic Management public only | Answer in brief, Part 1, Part 2 | verified (Oracle states public only; absence of a DNS firewall carried from Book 08 PD-5) | cdns-oci-tm, cdns-oci-pdns |
 | 107 | OCI's catch-all rule is the only way agency policy reaches a VCN | Meeting points | inference (labelled) | — |
 | 108 | Private resolver logs documented for commercial realms only; government realm **confirm** | Part 1 OCI, status | verified (carried from Book 08 PD-16) | cdns-oci-log |
-| 109 | US Government Cloud: FedRAMP High, DISA IL4; us-langley-1 and us-luke-1, realm OC2; can't subscribe to commercial regions; DNS API private only | Part 1 OCI | verified (page text) | cdns-oci-gov |
+| 109 | US Government Cloud: FedRAMP High; us-langley-1 and us-luke-1, realm OC2; can't subscribe to commercial regions; DNS API private only | Part 1 OCI | verified (page text) | cdns-oci-gov |
 | 110 | Marketplace: OCI-Government Cloud FR1900048743 Class D High, JAB, 2020-10-01; Fusion Cloud F1603257882 Class C Moderate; no commercial OCI infrastructure entry | Part 1 OCI | verified (JSON parsed; all seven Oracle entries listed) | cdns-oci-mkt |
 | 111 | Moderate systems on OCI infrastructure inherit from the Government Cloud's High authorization; commercial OCI needs its own authorization basis | Part 1 OCI | inference (labelled) | — |
 | 112 | No Oracle page describes signing private zones; whether the VCN resolver passes DNSSEC data downstream **confirm** | Part 3 | verified as absence (no such text on the Private DNS page) | cdns-oci-pdns |
@@ -160,7 +159,7 @@ Re-checked after the weekly source watch (issue #499) reported a gone source and
 
 | Finding | Change |
 |---|---|
-| CIS "CIS Benchmarks: BIND" page, <https://www.cisecurity.org/benchmark/bind>: HTTP 404. CIS's benchmark list no longer shows the ISC BIND DNS Server 9.11 or 9.9 benchmarks; its only BIND entry is "BIND 9.x STIG (1.0.0)" under DISA STIG, and it says unsupported benchmarks aren't listed (CIS WorkBench). No replacement CIS benchmark exists | Row 91 restated: CIS listed the two benchmarks on October 29 and no longer lists a BIND benchmark of its own. Footnote `cdns-cis` keeps the old address, marked retrieved before removal. The 9.11 benchmark's intent stays in the agency profile, labelled as retired |
+| CIS "CIS Benchmarks: BIND" page, <https://www.cisecurity.org/benchmark/bind>: HTTP 404. CIS's benchmark list no longer shows the ISC BIND DNS Server 9.11 or 9.9 benchmarks; its only BIND entry is "BIND 9.x STIG (1.0.0)", and it says unsupported benchmarks aren't listed (CIS WorkBench). No replacement CIS benchmark exists | Row 91 restated: CIS listed the two benchmarks on October 29 and no longer lists a BIND benchmark of its own. Footnote `cdns-cis` keeps the old address, marked retrieved before removal. The 9.11 benchmark's intent stays in the agency profile, labelled as retired |
 | AWS whitepaper *Hybrid Cloud DNS Options for Amazon VPC*: the HTML address now redirects (302) to the Route 53 Developer Guide, "What is Route 53 VPC Resolver?". The PDF of the whitepaper is still published and still carries the "historical reference only" notice, the December 2, 2022 publication date, "Each EC2 instance is limited to 1024 packets per second for DNS queries" and "it is critical to specify the forward only option" | Moved: footnote `cdns-aws-whitepaper` now points to the PDF (row 49 unchanged) |
 | Azure DNS monitoring data reference (queries-per-second wording); Azure Retail Prices API (first page, 68 bytes smaller) | No effect: resolver and ruleset metrics and resolver-policy-only resource logs unchanged; the US Gov meters were not re-read |
 | FedRAMP Marketplace data: AWS US East/West (Class C), AWS GovCloud and Oracle Cloud Infrastructure-Government Cloud (Class D), Fusion Cloud (Class C) unchanged; the data no longer gives an impact level for any listing | No effect (dated footnotes) |

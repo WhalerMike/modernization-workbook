@@ -122,7 +122,7 @@ bundles:
     root: docs/reference
     pages: [m-19-17-ficam-crosswalk.md]
   - output: reference-graph-practice-crosswalk.docx
-    title: "Microsoft Practice Crosswalk: Entra, Intune, National Clouds, Arc and SQL"
+    title: "Microsoft Practice Crosswalk: Entra, Intune, GCC Endpoints, Arc and SQL"
     subtitle: "Reference — Federal Modernization Workbook"
     root: docs/reference
     pages: [graph-practice-crosswalk.md]

@@ -14,7 +14,7 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | Get synchronizationJob endpoint; application least privileged `Application.ReadWrite.OwnedBy`, higher `Synchronization.Read.All`; US Government L4 and L5 | Pre-flight; verified facts; `config/calls.json` | verified; the kit takes `Synchronization.Read.All` because the "least privileged" one can write (restated, labeled) | Learn, Get synchronizationJob |
+| 1 | Get synchronizationJob endpoint; application least privileged `Application.ReadWrite.OwnedBy`, higher `Synchronization.Read.All` | Pre-flight; verified facts; `config/calls.json` | verified; the kit takes `Synchronization.Read.All` because the "least privileged" one can write (restated, labeled) | Learn, Get synchronizationJob |
 | 2 | Status codes `NotConfigured`, `NotRun`, `Active`, `Paused`, `Quarantine`; paused keeps state | Pre-flight; PF-04; RB-01 | verified | Learn, synchronizationStatus |
 | 3 | `QuarantineTooManyDeletesThreshold` in `synchronizationJobSettings` | PF-04 Warn | shown in Learn's example response only; **meaning not documented**; treated as a Warn, the admin center step is the control | Learn, Get synchronizationJob |
 | 4 | Pause endpoint, state persisted, `Synchronization.ReadWrite.All` delegated, `Suspend-MgServicePrincipalSynchronizationJob` | Rollback | verified | Learn, synchronizationJob: pause |
@@ -35,11 +35,9 @@ Microsoft Learn pages opened on November 2, 2026 through the Microsoft Learn MCP
 | 19 | `employeeId` filterable with `eq` | Smoke check (`smoke-user`) | verified (user resource excerpt and the Az model's property description: eq, ne, not, ge, le, in, startsWith) | Learn |
 | 20 | `sourceIdentity.id` of a provisioning log entry carries the `externalId` for an API-driven app | SM-06, SM-07 | **not verified**: inference; confirmed on the first live run | — |
 | 21 | Delete a user: `User.ReadWrite.All`; User Administrator; restorable 30 days; `Remove-MgUser` | Test rollback | verified | Learn, Delete a user |
-| 22 | Graph PowerShell environments `Global`, `USGov`, `USGovDoD` | Session block; `rollback.ps1` | verified | Learn, Authentication module cmdlets |
+| 22 | Graph PowerShell environment `Global` | Session block; `rollback.ps1` | verified | Learn, Authentication module cmdlets |
 | 23 | Key Vault certificate to PEM (`az keyvault secret download --encoding base64`, `openssl pkcs12 -nodes`); `az login --service-principal --certificate`; `--allow-no-subscriptions`; token valid at most 60 minutes; `--resource` | Session block | verified | Learn, Azure CLI pages |
-| 24 | `az cloud set --name AzureUSGovernment` | Session block (`azureCloud`) | verified | Learn, Connect to Azure Government with Azure CLI |
 | 25 | A GCC tenant's key vault sits in a commercial subscription | `AZURE_CLOUD` in `deploy_settings.py` | restated from the guide's inference (labeled in the code comment) | Guide, What couldn't be verified |
-| 26 | `az account get-access-token --resource https://graph.microsoft.us` returns a GCC High Graph token | Session block | **not verified** in a GCC High tenant; follows from the national cloud host table | Book 19, Chapter 02 (Learn, national cloud deployments) |
 | 27 | Application permissions portal path and Grant admin consent | Pre-flight | verified | Learn, Configure app permissions for a web API |
 | 28 | Diagnostic settings path | Pre-flight | verified | Learn, archive activity logs |
 | 29 | `az storage blob upload-batch` and `download-batch` flags (`--destination-path`, `--pattern`, `--auth-mode login`) | Capture the evidence; production pre-flight | verified for upload-batch's flags; download-batch's `--pattern` and `--destination` **not opened** on Learn (same reference page, same flag family) | Learn, az storage blob |

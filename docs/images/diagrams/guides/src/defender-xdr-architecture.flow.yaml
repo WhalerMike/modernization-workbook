@@ -20,7 +20,7 @@ clusters:
     nodes: [clients, servers, soc]
     order: [clients, servers, soc]
   - id: svc
-    label: "Microsoft service boundary: the tenant's GCC, GCC High or DoD instance"
+    label: "Microsoft service boundary: the tenant's GCC instance"
     tone: green
     filled: false
     nodes: [xdr]

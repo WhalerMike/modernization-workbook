@@ -11,8 +11,8 @@ google   global             2      1        0  incident 2
 22 notices, each valid against schema/notice.schema.json. Written to out/day1: notices.json, notices.csv, raw/, manifest.json
 PS> ./Invoke-PnRoute.ps1 -NoticesPath out/day1/notices.json -RoutingPath config/routing.json -StatePath out/state.json -OutputPath out/day1-route -AsOf 2026-11-09T12:00:00Z
 Notices: 22 new, 0 changed, 0 unchanged, 0 no longer listed
-Routes:  12 task, 9 digest only, 1 ignored
-Payloads: 12 create, 0 update, 0 close
+Routes:  13 task, 8 digest only, 1 ignored
+Payloads: 13 create, 0 update, 0 close
 
 create P3 Cloud Platform Engineering (example) aws:..._INSTANCE_RETIREMENT_SCHEDULED_EXAMPLE01
 create P2 Security Operations (example)        aws:.../AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04
@@ -22,12 +22,13 @@ create P2 Service Desk (example)               azure:AB1C-2DE
 create P3 Cloud Platform Engineering (example) azure:PM3F-4GH
 create P3 Cloud Platform Engineering (example) azure:RT5J-6KL
 create P2 Security Operations (example)        azure:SA7M-8NP
+create P2 Service Desk (example)               m365:EX900101
 create P3 Cloud Platform Engineering (example) m365:MC900001
 create P3 Cloud Operations (example)           m365:MC900003
 create P3 Cloud Platform Engineering (example) oci:chain-example-01
 create P3 Cloud Operations (example)           oci:chain-example-02
 
-Dry run: 12 payloads written to out/day1-route/tasks, nothing sent. State: out/state.json
+Dry run: 13 payloads written to out/day1-route/tasks, nothing sent. State: out/state.json
 PS> ./Invoke-PnCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/day2 -AsOf 2026-11-16T12:00:00Z -OutputPath out/day2
 Collected as of 2026-11-16T12:00:00Z (Fixture mode, environment lab)
 
@@ -42,13 +43,14 @@ google   global             2      0        0  incident 2
 PS> ./Invoke-PnRoute.ps1 -NoticesPath out/day2/notices.json -RoutingPath config/routing.json -StatePath out/state.json -OutputPath out/day2-route -AsOf 2026-11-16T12:00:00Z
 Notices: 2 new, 6 changed, 15 unchanged, 1 no longer listed
 Routes:  12 task, 10 digest only, 1 ignored
-Payloads: 1 create, 4 update, 1 close
+Payloads: 1 create, 4 update, 2 close
 
 close  P2 Security Operations (example)        aws:.../AWS_IAM_SECURITY_NOTIFICATION_EXAMPLE04
 update P2 Service Desk (example)               azure:AB1C-2DE
 update P3 Cloud Platform Engineering (example) azure:PM3F-4GH
+close  P2 Service Desk (example)               m365:EX900101
 update P3 Cloud Operations (example)           m365:MC900003
 create P3 Cloud Operations (example)           m365:MC900005
 update P3 Cloud Platform Engineering (example) oci:chain-example-01
 
-Dry run: 6 payloads written to out/day2-route/tasks, nothing sent. State: out/state.json
+Dry run: 7 payloads written to out/day2-route/tasks, nothing sent. State: out/state.json

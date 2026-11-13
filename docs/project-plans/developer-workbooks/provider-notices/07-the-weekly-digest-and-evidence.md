@@ -215,7 +215,7 @@ Remove-Item -Recurse -Force out
    ```
 
    ```text
-   SUMS           Pass  25 files match SHA256SUMS
+   SUMS           Pass  26 files match SHA256SUMS
    CHAIN          Pass  3 records, chain unbroken
    ```
 
@@ -274,7 +274,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-**Expected result:** `PassedCount` 140 and `FailedCount` 0, and an evidence folder whose `SHA256SUMS` you could hand to the ISSO, before step 8 changed it. Delete `out` when you're done:
+**Expected result:** `PassedCount` 142 and `FailedCount` 0, and an evidence folder whose `SHA256SUMS` you could hand to the ISSO, before step 8 changed it. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out

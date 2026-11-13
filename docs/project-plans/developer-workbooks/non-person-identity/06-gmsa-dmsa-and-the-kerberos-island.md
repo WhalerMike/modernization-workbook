@@ -56,7 +56,7 @@ The program's rules for this chapter *(Design guidance)*:
 
 ### Which domain, and which cloud
 
-Every call in this chapter is an Active Directory cmdlet against the program's domain (`corp.contoso.example` in the fixtures), sent to the domain controller named with `-Server`. The writes don't work against a read-only domain controller.[^np06-new-adsa] [^np06-start-mig] No Graph or Resource Manager endpoint is called, so the US Government clouds don't change anything here; the run still takes `-Cloud` and refuses a register read in another cloud, so the evidence matches Chapter 01's. The moves to a workload identity happen in Chapter 05, against the cloud's own endpoints.
+Every call in this chapter is an Active Directory cmdlet against the program's domain (`corp.contoso.example` in the fixtures), sent to the domain controller named with `-Server`. The writes don't work against a read-only domain controller.[^np06-new-adsa] [^np06-start-mig] No Graph or Resource Manager endpoint is called, so the cloud doesn't change anything here; the run still takes `-Cloud` and refuses a register read in another cloud, so the evidence matches Chapter 01's. The moves to a workload identity happen in Chapter 05, against the cloud's own endpoints.
 
 ## Start with Microsoft's sample
 
@@ -653,26 +653,26 @@ Remove-Item -Recurse -Force out/kerberos-test*
 
 ## Verified facts
 
-Every item is Active Directory on-premises: no US Government cloud endpoint applies, and none is marked preview on Learn.
+Every item is Active Directory on-premises: no cloud endpoint applies, and none is marked preview on Learn.
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| gMSA prerequisites | Domain Admins or Enterprise Admins; domain and forest functional level Windows Server 2012 or later; a KDS root key | n/a (AD) | GA | [^np06-gmsa-manage] |
-| gMSA create | `New-ADServiceAccount -Name -DNSHostName -PrincipalsAllowedToRetrieveManagedPassword`; a gMSA by default; services, IIS application pools and Task Scheduler tasks can run as one; failover clusters can't | n/a (AD) | GA | [^np06-gmsa-manage] [^np06-new-adsa] |
-| gMSA password | Changed by Windows every 30 days; review privileged group membership | n/a (AD) | GA | [^np06-entra-gmsa] |
-| gMSA name and interval | Names unique in the forest, not just the domain; the password interval is set only at creation (`-ManagedPasswordIntervalInDays`, default 30); `-RestrictToOutboundAuthenticationOnly` for outbound-only use; Domain Admins or a delegated right to create `msDS-GroupManagedServiceAccount` objects; Account Operators can't by default | n/a (AD) | GA | [^np06-gmsa-manage] |
-| gMSA on a host | `Install-ADServiceAccount` on each host, then `Test-ADServiceAccount` returns `True`; a host gets new group membership after a restart | n/a (AD) | GA | [^np06-gmsa-manage] [^np06-containers] |
-| Delegation on a gMSA | No Delegation tab; set with `Set-ADAccountControl` and `msDS-AllowedToDelegateTo`, never both delegation flags | n/a (AD) | GA | [^np06-kcd] |
-| Encryption types | Always configure AES for MSAs | n/a (AD) | GA | [^np06-gmsa-overview] |
-| KDS root key | Domain controllers wait up to 10 hours from the time it's created; Domain Admins or Enterprise Admins create it; stored under `CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,CN=Configuration`; a deleted and re-created key can stay cached until the KDC restarts on every domain controller; one key per forest, since more than one makes gMSAs fail after a rotation; creation confirmed by Event ID 4004 | n/a (AD) | GA | [^np06-kds] [^np06-containers] [^np06-gmsa-manage] |
-| `msKds-ProvRootKey` | Default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM; `msKds-UseStartTime` is when the key may be used | n/a (AD) | GA | [^np06-kds-class] [^np06-kds-usestart] |
-| `Get-KdsRootKey` | Returns each root key's identifier and value | n/a (AD) | GA | [^np06-get-kdsrootkey] |
-| `Set-ADServiceAccount` | `-PrincipalsAllowedToRetrieveManagedPassword` sets `msDS-GroupMSAMembership`; no `-Properties` parameter; not against a read-only domain controller | n/a (AD) | GA | [^np06-set-adsa] |
-| dMSA prerequisites | Windows Server 2025; at least one Windows Server 2025 domain controller; Domain Admins or Enterprise Admins, or equivalent; a KDS root key | n/a (AD) | GA (Windows Server 2025) | [^np06-dmsa-setup] [^np06-dmsa-faq] |
-| dMSA migration limits | No MSA or gMSA to dMSA; wait two ticket lifetimes (14 days), four (28) recommended; a read-write domain controller; unconstrained delegation stops; every machine must support dMSA; one dMSA per service account | n/a (AD) | GA (Windows Server 2025) | [^np06-dmsa-overview] [^np06-dmsa-faq] |
-| `Start-` / `Complete-ADServiceAccountMigration` | `-Identity` the dMSA, `-SupersededAccount` a distinguished name; complete copies the SPNs, delegation and authentication policy, disables the account and removes its SPNs | n/a (AD) | GA (Windows Server 2025) | [^np06-start-mig] [^np06-complete-mig] [^np06-dmsa-overview] |
-| Never delete | Never delete the original account after a dMSA migration; keep it intact | n/a (AD) | — | [^np06-dmsa-setup] [^np06-dmsa-faq] |
-| `Disable-ADAccount` | Disables a user, computer or service account | n/a (AD) | GA | [^np06-disable] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| gMSA prerequisites | Domain Admins or Enterprise Admins; domain and forest functional level Windows Server 2012 or later; a KDS root key | GA | [^np06-gmsa-manage] |
+| gMSA create | `New-ADServiceAccount -Name -DNSHostName -PrincipalsAllowedToRetrieveManagedPassword`; a gMSA by default; services, IIS application pools and Task Scheduler tasks can run as one; failover clusters can't | GA | [^np06-gmsa-manage] [^np06-new-adsa] |
+| gMSA password | Changed by Windows every 30 days; review privileged group membership | GA | [^np06-entra-gmsa] |
+| gMSA name and interval | Names unique in the forest, not just the domain; the password interval is set only at creation (`-ManagedPasswordIntervalInDays`, default 30); `-RestrictToOutboundAuthenticationOnly` for outbound-only use; Domain Admins or a delegated right to create `msDS-GroupManagedServiceAccount` objects; Account Operators can't by default | GA | [^np06-gmsa-manage] |
+| gMSA on a host | `Install-ADServiceAccount` on each host, then `Test-ADServiceAccount` returns `True`; a host gets new group membership after a restart | GA | [^np06-gmsa-manage] [^np06-containers] |
+| Delegation on a gMSA | No Delegation tab; set with `Set-ADAccountControl` and `msDS-AllowedToDelegateTo`, never both delegation flags | GA | [^np06-kcd] |
+| Encryption types | Always configure AES for MSAs | GA | [^np06-gmsa-overview] |
+| KDS root key | Domain controllers wait up to 10 hours from the time it's created; Domain Admins or Enterprise Admins create it; stored under `CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,CN=Configuration`; a deleted and re-created key can stay cached until the KDC restarts on every domain controller; one key per forest, since more than one makes gMSAs fail after a rotation; creation confirmed by Event ID 4004 | GA | [^np06-kds] [^np06-containers] [^np06-gmsa-manage] |
+| `msKds-ProvRootKey` | Default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM; `msKds-UseStartTime` is when the key may be used | GA | [^np06-kds-class] [^np06-kds-usestart] |
+| `Get-KdsRootKey` | Returns each root key's identifier and value | GA | [^np06-get-kdsrootkey] |
+| `Set-ADServiceAccount` | `-PrincipalsAllowedToRetrieveManagedPassword` sets `msDS-GroupMSAMembership`; no `-Properties` parameter; not against a read-only domain controller | GA | [^np06-set-adsa] |
+| dMSA prerequisites | Windows Server 2025; at least one Windows Server 2025 domain controller; Domain Admins or Enterprise Admins, or equivalent; a KDS root key | GA (Windows Server 2025) | [^np06-dmsa-setup] [^np06-dmsa-faq] |
+| dMSA migration limits | No MSA or gMSA to dMSA; wait two ticket lifetimes (14 days), four (28) recommended; a read-write domain controller; unconstrained delegation stops; every machine must support dMSA; one dMSA per service account | GA (Windows Server 2025) | [^np06-dmsa-overview] [^np06-dmsa-faq] |
+| `Start-` / `Complete-ADServiceAccountMigration` | `-Identity` the dMSA, `-SupersededAccount` a distinguished name; complete copies the SPNs, delegation and authentication policy, disables the account and removes its SPNs | GA (Windows Server 2025) | [^np06-start-mig] [^np06-complete-mig] [^np06-dmsa-overview] |
+| Never delete | Never delete the original account after a dMSA migration; keep it intact | — | [^np06-dmsa-setup] [^np06-dmsa-faq] |
+| `Disable-ADAccount` | Disables a user, computer or service account | GA | [^np06-disable] |
 
 Where Learn's pages differ: the dMSA set-up page sets `msDS-DelegatedMSAState` with a parameter `Set-ADServiceAccount` doesn't have (research gaps, row 51); the set-up page completes with no wait while the overview asks for two to four ticket lifetimes (row 54); the Entra gMSA page deletes the old account while the dMSA pages say never to (row 55); and the dMSA page checks the root key with a cmdlet that returns the key, where the code reads only its start time (row 52). The KDS page reserves the root key backdated 10 hours for a test environment with one domain controller, and the containers page says not to use it in production, while the dMSA set-up prerequisites and AD FS's *Configure a federation server* offer it without that caveat;[^np06-kds] [^np06-containers] [^np06-dmsa-setup] [^np06-adfs] the code never creates a key. The code follows the stricter reading in each case.
 

@@ -133,9 +133,9 @@ Each gap was closed in the books with endnoted text, checked against the primary
 
 ## Additions made, October 29, 2026
 
-- **Configuration baselines for a Moderate civilian agency.** The workbook targets FedRAMP Moderate civilian agencies, so its configuration authority is CISA and NIST, not DISA. Books 11, 12 and 15 now say what a civilian agency uses. CISA's SCuBA baselines cover Microsoft 365 and Google Workspace,[^scuba] and BOD 25-01 makes their "shall" policies mandatory for in-scope tenants of Federal Civilian Executive Branch agencies.[^bod2501] For servers, network devices, hypervisors and cloud accounts, the agency sets its own CM-6 settings from common secure configurations it chooses,[^cm6] drawing on CIS Benchmarks,[^cis] the NIST National Checklist Program[^ncp] and the vendor's own hardening guide. DISA STIGs stay only as an optional reference (High only), for a product with no other published checklist.
+- **Configuration baselines for a Moderate civilian agency.** The workbook targets FedRAMP Moderate civilian agencies, so its configuration authority is CISA and NIST. Books 11, 12 and 15 now say what a civilian agency uses. CISA's SCuBA baselines cover Microsoft 365 and Google Workspace,[^scuba] and BOD 25-01 makes their "shall" policies mandatory for in-scope tenants of Federal Civilian Executive Branch agencies.[^bod2501] For servers, network devices, hypervisors and cloud accounts, the agency sets its own CM-6 settings from common secure configurations it chooses,[^cm6] drawing on CIS Benchmarks,[^cis] the NIST National Checklist Program[^ncp] and the vendor's own hardening guide. STIGs stay only as an optional reference (High only), for a product with no other published checklist.
 
-*High only* marks material that applies to FedRAMP High or Defense environments, such as DISA STIGs and DoD Impact Levels, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
+*High only* marks material that applies to FedRAMP High environments, such as STIGs, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
 ## Additions made, October 30, 2026
 
@@ -452,17 +452,12 @@ The sweep also found and corrected five inconsistencies on October 23, 2026: Boo
 :::
 
 ::: {.callout-note collapse="true"}
-## Other federal sources (25)
+## Other federal sources (20)
 
 | Instrument | What it is | Books citing it | Status, as the books state it |
 |---|---|---|---|
-| CMMC | Cybersecurity Maturity Model Certification | Book 02 (Identity & Directory); Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
 | [CUI program (generic)](source-register.md#controlled-unclassified-information-cui){#controlled-unclassified-information-cui} | Controlled Unclassified Information | Book 00 (Orientation & Program); Book 12 (Security Operations & Telemetry) | Cited as current |
-| DISA STIGs | Defense security technical implementation guides | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 15 (Compliance Automation & Day-2 Operations) | High only: an optional reference since October 29, 2026, not the civilian baseline |
-| DoD 8140 / DoDM 8140.03 | DoD cyber workforce qualification | Book 16 (People: Training & Education) | In force; it replaced DoD 8570.01-M |
-| DoD 8570.01-M | DoD IA workforce (legacy) | Book 16 (People: Training & Education) | Replaced by DoD 8140 |
-| DoD Cloud Computing SRG (IL4/IL5) | DoD cloud security requirements guide | Book 08 (DNS, DHCP & IPAM) | High only: a tier comparison, not the Moderate civilian target |
-| DoD Zero Trust Strategy (2022) | DoD ZT capability target | Book 04 (Access & Privilege); Book 09 (Network & Transport) | Cited as current |
+| STIGs | Security technical implementation guides | Book 09 (Network & Transport); Book 12 (Security Operations & Telemetry); Book 15 (Compliance Automation & Day-2 Operations) | High only: an optional reference since October 29, 2026, not the civilian baseline |
 | FBI CJIS Security Policy | Criminal Justice Information Services | Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
 | FCC 19-76 | Report and Order implementing Kari's Law and RAY BAUM'S Act | Book 15 (Compliance Automation & Day-2 Operations) | Cited as current |
 | Federal Enterprise Architecture Framework | FEAF | Book 00 (Orientation & Program); Book 18 (Application Modernization) | Historical: survives on an archived 2013 page; A-130 §5.a(2) is the live requirement |

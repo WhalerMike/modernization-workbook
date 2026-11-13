@@ -104,7 +104,7 @@ accreditation, not the provider's.
 A cloud service passes one gate: FedRAMP. Network and endpoint *gear* passes a
 composed gate of three mechanisms, each establishing a different property. This
 series targets FedRAMP Moderate civilian agencies, so the configuration leg is
-the agency's own CM-6 baseline, not a Defense checklist.
+the agency's own CM-6 baseline.
 
 | Mechanism | Registry / authority | What it certifies |
 |---|---|---|
@@ -113,17 +113,6 @@ the agency's own CM-6 baseline, not a Defense checklist.
 | **FIPS 140-3** | NIST Cryptographic Module Validation Program (CMVP) | The cryptographic module performing SC-8/SC-13 encryption is validated — not merely "AES-capable" |
 
 : The Three-Part Accreditation Gate for Network Gear {.striped .hover}
-
-Two Defense mechanisms sit outside this gate. They are **High only**: material
-that applies to FedRAMP High or Defense environments, not to the Moderate
-civilian baseline this series targets, kept as an optional reference.
-
-| Mechanism | Registry / authority | How a Moderate civilian agency uses it |
-|---|---|---|
-| **DISA STIG** (High only) | DoD Cyber Exchange | A DoD configuration guide for a product and version. Optional cross-check when writing the CM-6 baseline, or a starting point where no CIS Benchmark or vendor guide exists. Not a civilian requirement and not what a Moderate assessor expects |
-| **DoDIN APL** (High only) | DISA Approved Products List | Approval to connect to DoD networks. A Defense fielding gate; a civilian agency may note a listing as one assurance signal, but it isn't part of the civilian gate |
-
-: Defense References Outside the Civilian Gate (High only) {.striped .hover}
 
 These compose: an appliance may be **NIAP-evaluated** (its design was assessed),
 running the agency's **CM-6 baseline** drawn from a CIS Benchmark and the
@@ -305,8 +294,7 @@ the same mechanism classes. Final selection requires validation against the
 current NIAP Product Compliant List and the NIST CMVP validated-modules list, an
 agency CM-6 baseline for the product (from its CIS Benchmark where one exists and
 the vendor's hardening guide), plus agency-specific environment testing and
-procurement authority. The DISA STIG and DoDIN APL are optional references (High
-only).
+procurement authority.
 :::
 
 # References
@@ -322,8 +310,6 @@ only).
 | CIS Benchmarks | Consensus configuration guides, including Cisco IOS XE 17.x (2.2.1), Cisco NX-OS (1.2.0), Cisco ASA 9.x Firewall (1.1.0), Juniper OS (2.1.0), Palo Alto Firewall 11 (1.2.0), F5 Networks (1.0.0) — <https://www.cisecurity.org/cis-benchmarks> (accessed 2026-10-29) |
 | Cisco IOS XE Software Hardening Guide | Vendor hardening guide, revision 3.2, December 8, 2025 — <https://sec.cloudapps.cisco.com/security/center/resources/IOS_XE_hardening> |
 | NIST National Checklist Program | SP 800-70 Rev. 5 (May 2026) and the checklist repository — <https://csrc.nist.gov/pubs/sp/800/70/r5/final>; <https://ncp.nist.gov/> |
-| DISA STIGs (High only) | Security Technical Implementation Guides; optional Defense reference — <https://public.cyber.mil/stigs/> |
-| DoDIN APL (High only) | DoD Information Network Approved Products List; Defense fielding gate — <https://aplits.disa.mil/> |
 | FedRAMP Marketplace | Cloud service authorization verification — <https://marketplace.fedramp.gov/> |
 | Cisco Identity Services Engine (ISE) | 802.1X / NAC / TrustSec — <https://www.cisco.com/site/us/en/products/security/identity-services-engine/index.html> |
 | Cisco Secure Firewall | NGFW boundary protection — <https://www.cisco.com/site/us/en/products/security/firewalls/index.html> |

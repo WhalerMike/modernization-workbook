@@ -21,19 +21,17 @@ Microsoft Learn pages opened on October 30, 2026 through the Microsoft Learn MCP
 | 7 | `AuditLogs` `InitiatedBy` and `TargetResources` are dynamic | Gap table; the alert | verified | Learn, AuditLogs table reference |
 | 8 | Diagnostic setting needs Security Administrator and a workspace | The alert; Lab 2 | verified | Learn, Integrate Entra logs with Azure Monitor logs |
 | 9 | Log Analytics analysis of activity logs needs Entra ID P1 or P2 | The alert | verified | Learn, Analyze activity logs with Log Analytics |
-| 10 | `scheduledQueryRules` 2023-12-01 criteria properties | The alert; Verified facts | verified (template reference); not confirmed for Azure Government (research gaps, row 7) | Learn, ARM template reference |
+| 10 | `scheduledQueryRules` 2023-12-01 criteria properties | The alert; Verified facts | verified (template reference) | Learn, ARM template reference |
 | 11 | Get a user: `User.Read.All` application; basic profile list | Permissions table | verified | Learn, Get a user; Working with users |
 | 12 | List methods: `UserAuthenticationMethod.Read.All`; roles | Permissions table | verified | Learn, List methods |
-| 13 | Passkey methods list L4 and L5 | Verified facts | verified | Learn, List fido2AuthenticationMethod |
 | 14 | roleAssignmentScheduleInstances filter on `principalId` | Permissions table | verified | Learn, List roleAssignmentScheduleInstances |
 | 15 | List Conditional Access policies: `Policy.Read.All`; Global Reader, Security Reader | Permissions table | carried forward from the validation kit's README (VK-CA-01, Learn read October 30, 2026) | Learn, List policies |
-| 16 | Passkeys and CBA available in Azure for US Government | Which cloud | verified | Learn, Microsoft Entra feature availability |
 | 17 | Graph hosts per cloud | Which cloud | carried forward from the first workbook's Chapter 02 | Learn, national cloud deployments |
 | 18 | Sample behavior: all on `SigninLogs`; placeholders; catches interactive by ID; misses non-interactive and audit; UPN query misses a rename; only `kusto` code blocks | Gap table | verified by evaluating the pinned queries over the export; pinned in `MicrosoftSamples.Tests.ps1` | local run |
 | 19 | Book 04, Chapter 10's pre-merge check fails report-only policies; Book 04, Chapter 04 says report-only needs no exclusion | The check; differences | verified by reading both chapters on October 30, 2026; open for the owner (research gaps, row 5) | Book 04 |
 | 20 | Every enforced policy must exclude; disabled accounts, extra group members are Findings; 5-minute evaluation; no `isfuzzy` | Rules; the alert | restated-as-design (labeled) | — |
 | 21 | Lab 1 outputs (7 passed; permission list; 9/0/1; findings; five matched rows; error text; template type, version, severity; 78 tests) | Lab 1 | verified by running the commands as written | local run, October 30, 2026 |
-| 22 | Lab 2 behavior (query runs in a workspace; alert fires in two evaluation periods) | Lab 2 | not run against a tenant; research gaps, rows 7 and 8 | — |
+| 22 | Lab 2 behavior (query runs in a workspace; alert fires in two evaluation periods) | Lab 2 | not run against a tenant; research gaps, row 8 | — |
 | 23 | Since April 11, 2025, new sign-ins that obtain a refresh token with FIDO2 keys are logged in the non-interactive sign-in logs | Gap table | updated October 31, 2026: new claim from the special considerations on the page; strengthens the non-interactive leg, because passkey is the method Learn recommends for these accounts | Learn, What are non-interactive user sign-ins in Microsoft Entra?, October 31, 2026 |
 | 24 | Learn's report-only page doesn't mention emergency accounts; report-only policies requiring a compliant device can prompt macOS, iOS and Android users for a device certificate, and Learn says to exclude those platforms | Verified facts, differences | updated October 31, 2026: new claim, recorded for research gaps row 5 without deciding it; the emergency access page still says report-only policies need no exclusion | Learn, Analyze Conditional Access policy impact (report-only); Manage emergency access accounts, October 31, 2026 |
 

@@ -16,13 +16,13 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | 4 | At most 15,000 identities per policy | AA-03 | verified | same |
 | 5 | Identity Governance Administrator; catalog owners and access package managers can't create automatic policies | Start with Microsoft | verified | same |
 | 6 | `memberOf` policies quarantined from November 3, 2026; read-only script | AA-01; memberof-scan | verified | same |
-| 7 | Create assignmentPolicies: POST path, `EntitlementManagement.ReadWrite.All`, L4 and L5, example 3 body | Start with Microsoft; verified facts | verified | Learn, Create assignmentPolicies |
+| 7 | Create assignmentPolicies: POST path, `EntitlementManagement.ReadWrite.All`, example 3 body | Start with Microsoft; verified facts | verified | Learn, Create assignmentPolicies |
 | 8 | accessPackageAutomaticRequestSettings's three properties | AA-05, AA-06 | verified | Learn, resource type |
 | 9 | `requestorManager` for approvals, managerLevel 1 or 2, include another approver | AA-07; differences | verified | Learn, requestorManager |
 | 10 | Assignments and policies readable with `EntitlementManagement.Read.All` | Permissions | verified | Learn, assignments page; request settings page |
 | 11 | transitiveMemberOf for another user: application `User.Read.All`; direct memberOf: application `Directory.Read.All` | Permissions | verified | Learn, both membership pages |
 | 12 | Dynamic administrative units only in global Azure | Which cloud | carried forward | the guide's verification log |
-| 13 | Entitlement management, access reviews, PIM, dynamic groups available in Azure Government | Which cloud | carried forward | the guide's verification log (feature availability) |
+| 13 | Entitlement management, access reviews, PIM, dynamic groups available; GCC commercial | Which cloud | carried forward | the guide's verification log (feature availability) |
 | 14 | SCuBA MS.AAD.7.5v1 under BOD 25-01 | AA-09; federal requirements | carried forward | the guide's verification log |
 | 15 | Cmdlets New- and Remove-MgEntitlementManagementAssignmentPolicy | Lab 2 | verified | Learn, cmdlet pages |
 | 16 | Coded-slot rules, 14-day grace ceiling, privileged out of rules, residual classes, 10-day review target | Rules; residual | restated-as-design (labeled) | Book 03, Ch08 and Ch10; Book 04, Ch09; the guide, Step 4 |

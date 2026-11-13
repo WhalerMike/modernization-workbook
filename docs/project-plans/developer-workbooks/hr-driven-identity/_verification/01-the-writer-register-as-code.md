@@ -13,15 +13,15 @@ Microsoft Learn pages opened on November 1, 2026 through the Microsoft Learn MCP
 | 1 | `GET /auditLogs/directoryAudits`; `AuditLog.Read.All` least privileged, delegated and application; Directory.Read.All higher | Sample section; permissions table; Verified facts | verified | Learn, List directoryAudits |
 | 2 | Delegated roles: Reports Reader, Security Administrator, Security Reader | Permissions table | verified | same |
 | 3 | `$filter` supports `eq`, `ge`, `le`, `startswith` | Sample section; saved queries | verified | same |
-| 4 | directoryAudits available in global, US Government L4 and L5 | Which cloud | verified | same |
+| 4 | directoryAudits available in the global service | Which cloud | verified | same |
 | 5 | Record shape: `activityDisplayName`, `activityDateTime`, `result`, `initiatedBy.app`/`user`, `targetResources[].modifiedProperties` | Sample section; Verified facts | verified (examples on the page) | same |
 | 6 | Activities `Add user`, `Update user`, `Enable account`, `Disable account`, `Delete user`, `Set user manager` (Core Directory, UserManagement) | Sample section; register | verified | Learn, audit log categories and activities |
-| 7 | `GET /auditLogs/provisioning`; `AuditLog.Read.All` and `Directory.Read.All`; L4 and L5 | Permissions table; Which cloud | verified | Learn, List provisioningObjectSummary |
+| 7 | `GET /auditLogs/provisioning`; `AuditLog.Read.All` and `Directory.Read.All` | Permissions table; Which cloud | verified | Learn, List provisioningObjectSummary |
 | 8 | Graph hosts per cloud | Which cloud | carried forward | Book 19, Chapter 02 |
 | 9 | The `modifiedProperties` display names for hire date, leave date, extension attributes 10 and 11 and `certificateUserIds` | The register; Lab 2 step 4 | **not verified**: Learn's examples don't list per-property display names; the register's values are the program's reading, confirmed in Lab 2 | — |
 | 10 | The service principal each service (provisioning, Lifecycle Workflows) writes as | Places Learn says nothing | **not verified**: no Learn list; taken from the tenant's own records in Lab 2 | — |
 | 11 | Audit retention 30 days with P1 or P2, not retroactive | Which cloud; dangers | carried forward | Book 03, Chapter 11 |
-| 12 | Directory synchronization available in Azure Government; GCC commercial | Verified facts | carried forward | Guide's log (feature availability) |
+| 12 | Directory synchronization available; GCC commercial | Verified facts | carried forward | Guide's log (feature availability) |
 | 13 | AC-2, IA-4, AU-6 in the Moderate baseline; ISSO evidence | Federal requirements | carried forward | Guide, Gate 1 table; guide's log (SP 800-53B OSCAL profile) |
 | 14 | Rules WR-01 to WR-09, WS-01, WS-02, WS-04 and their severities | The checks | restated-as-design (labeled); implemented in `writer_register.py` | — |
 | 15 | Lab 1 outputs (permission list; 0/0/0 register; 11 writes, 5 Finding, 1 Warn; six findings; saved query; 57 passed) | Lab 1 | verified by running the commands as written | local run, November 1, 2026 |

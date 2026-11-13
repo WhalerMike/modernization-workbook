@@ -46,7 +46,7 @@ The guide's [Step 1](../../../books/guides/hr-driven-identity-implementation.md#
 
 ### Which cloud, for this read
 
-The scan reads two Graph collections: `GET /auditLogs/directoryAudits` and `GET /auditLogs/provisioning`. Both are listed for the global service, US Government L4 (GCC High) and US Government L5 (DoD).[^hw01-audits][^hw01-prov] GCC uses `graph.microsoft.com`; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^hw01-deployments] `graph_export.py` takes the cloud as an argument and has no default. Entra keeps audit records for 30 days with P1 or P2, so the export has to run on a schedule well inside that window, and the logs should already be leaving Entra for the agency's store, as the guide's prerequisites require ([Book 03, Chapter 11](../../../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves)).
+The scan reads two Graph collections: `GET /auditLogs/directoryAudits` and `GET /auditLogs/provisioning`. Both are listed for the global service.[^hw01-audits][^hw01-prov] GCC uses the global service's host, `graph.microsoft.com`.[^hw01-deployments] `graph_export.py` takes the cloud as an argument and has no default. Entra keeps audit records for 30 days with P1 or P2, so the export has to run on a schedule well inside that window, and the logs should already be leaving Entra for the agency's store, as the guide's prerequisites require ([Book 03, Chapter 11](../../../books/b03-hr-identity/11-drift-metrics-and-evidence.md#the-evidence-each-event-leaves)).
 
 ## Start with Microsoft's procedure
 
@@ -354,15 +354,15 @@ rm -rf exports/ch01 out/ch01-test
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| List directoryAudits | `GET /auditLogs/directoryAudits`; `AuditLog.Read.All` (delegated and application); `$filter` with `eq`, `ge`, `le`, `startswith` | L4 and L5 | v1.0 | [^hw01-audits] |
-| Record shape | `activityDisplayName`, `activityDateTime`, `result`, `initiatedBy.app.servicePrincipalId` or `initiatedBy.user.id`, `targetResources[].modifiedProperties` | — | v1.0 | [^hw01-audits] |
-| User activities | `Add user`, `Update user`, `Enable account`, `Disable account`, `Delete user`, `Set user manager` (Core Directory, UserManagement) | — | — | [^hw01-activities] |
-| List provisioningObjectSummary | `GET /auditLogs/provisioning`; `AuditLog.Read.All` and `Directory.Read.All` | L4 and L5 | v1.0 | [^hw01-prov] |
-| Graph hosts | GCC `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^hw01-deployments] |
-| Audit retention | 30 days with P1 or P2; not retroactive | — | — | Book 03, Chapter 11 |
-| Directory synchronization | Available in Azure Government; commercial service in GCC | Available | GA | [^hw01-feat] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| List directoryAudits | `GET /auditLogs/directoryAudits`; `AuditLog.Read.All` (delegated and application); `$filter` with `eq`, `ge`, `le`, `startswith` | v1.0 | [^hw01-audits] |
+| Record shape | `activityDisplayName`, `activityDateTime`, `result`, `initiatedBy.app.servicePrincipalId` or `initiatedBy.user.id`, `targetResources[].modifiedProperties` | v1.0 | [^hw01-audits] |
+| User activities | `Add user`, `Update user`, `Enable account`, `Disable account`, `Delete user`, `Set user manager` (Core Directory, UserManagement) | — | [^hw01-activities] |
+| List provisioningObjectSummary | `GET /auditLogs/provisioning`; `AuditLog.Read.All` and `Directory.Read.All` | v1.0 | [^hw01-prov] |
+| Graph host | GCC `graph.microsoft.com` | — | [^hw01-deployments] |
+| Audit retention | 30 days with P1 or P2; not retroactive | — | Book 03, Chapter 11 |
+| Directory synchronization | Available; GCC uses the commercial service | GA | [^hw01-feat] |
 
 Places Learn's pages say nothing, recorded so a later edit doesn't loosen the code:
 

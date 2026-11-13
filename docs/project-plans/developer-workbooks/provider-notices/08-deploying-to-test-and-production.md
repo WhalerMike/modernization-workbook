@@ -55,7 +55,7 @@ Nobody has run this runbook against a live tenant, account, tenancy or project. 
 
 ### Which cloud, for these steps
 
-Every command reads the cloud from the settings file: `AzureCloud` or `AzureUSGovernment`; `gcc`, `gcchigh` or `dod`; `oc1` or `oc2`; `aws` or `aws-us-gov`; Google's `global`. Any other name throws, and the live invoker refuses a session signed in to another cloud, tenant, partition or realm. The estate this runbook writes for is Microsoft 365 GCC with commercial Azure: `graph.microsoft.com` and `management.azure.com`.[^pn08-deployments]
+Every command reads the cloud from the settings file: `AzureCloud` or `AzureUSGovernment`; `gcc`; `oc1` or `oc2`; `aws` or `aws-us-gov`; Google's `global`. Any other name throws, and the live invoker refuses a session signed in to another cloud, tenant, partition or realm. The estate this runbook writes for is Microsoft 365 GCC with commercial Azure: `graph.microsoft.com` and `management.azure.com`.[^pn08-deployments]
 
 ## Requirements, KSIs and evidence
 
@@ -242,7 +242,7 @@ The pre-flight reads only. Run it before each stage, after the readers sign in (
 
 ### Step 1.1: Sign in each reader (G1 to G5)
 
-Sign in each enabled provider's reader in the cloud the settings file names. For a government cloud, use `AzureUSGovernment`, `-Environment USGov` (GCC High) or `USGovDoD` (DoD), and the OC2 region or `aws-us-gov` profile:
+Sign in each enabled provider's reader in the cloud the settings file names. For a government cloud, use `AzureUSGovernment`, the OC2 region or the `aws-us-gov` profile:
 
 ```powershell
 az cloud set --name AzureCloud

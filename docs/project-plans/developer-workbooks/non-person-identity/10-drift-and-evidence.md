@@ -57,7 +57,7 @@ Chapters 03 to 09 are written, and their outputs are fixed in each chapter. This
 
 ### Which cloud, for this read
 
-The audit and sign-in reads call Microsoft Graph: `graph.microsoft.com` for GCC, which uses the worldwide endpoints; GCC High uses `graph.microsoft.us` and DoD `dod-graph.microsoft.us`.[^np10-deployments] List directoryAudits is available in the global service, US Government L4 and US Government L5.[^np10-audit-list] The service principal sign-in activity report is beta and is listed for the global service only, not L4 or L5,[^np10-signin] so a GCC tenant can read it on the worldwide endpoint, and a GCC High or DoD run doesn't send the call and records the unused check as not read (research gaps, row 93). The run takes the cloud as a required parameter with no default and uses Chapter 01's reader, which sends the token only to that cloud's host.
+The audit and sign-in reads call Microsoft Graph: `graph.microsoft.com` for GCC, which uses the worldwide endpoints.[^np10-deployments] List directoryAudits is available in the global service, which GCC uses.[^np10-audit-list] The service principal sign-in activity report is beta and is listed for the global service,[^np10-signin] so a GCC tenant can read it on the worldwide endpoint (research gaps, row 93). The run takes the cloud as a required parameter with no default and uses Chapter 01's reader, which sends the token only to that cloud's host.
 
 ## Start with Microsoft's sample
 
@@ -680,20 +680,20 @@ In production, lock the evidence container's retention policy once Lab 2 passes;
 
 ## Verified facts
 
-| Item | Value | US Government clouds | Stage | Source |
-|---|---|---|---|---|
-| List directoryAudits | `GET /auditLogs/directoryAudits`; `AuditLog.Read.All` (higher: `Directory.Read.All`); delegated roles Reports Reader, Security Administrator, Security Reader; `$filter` (`eq`, `ge`, `le`, `startswith`), `$top`, `$orderby`, `skiptoken` | L4 and L5 | v1.0 | [^np10-audit-list] |
-| directoryAudit filters | `activityDateTime` `eq`, `ge`, `le`; `activityDisplayName` `eq`, `startswith`; `result` `success`, `failure`, `timeout` | — | v1.0 | [^np10-audit-resource] |
-| Activity names | `Update application - Certificates and secrets management`, `Add service principal credentials`, `Remove service principal credentials`, `Consent to application`, `Add delegated permission grant`, `Add app role assignment to service principal`; Core Directory, ApplicationManagement | — | — | [^np10-activities] |
-| Monitoring application credentials and consent | Credentials added to existing applications, high; application and service principal updates logged as two entries; alert outside normal workflows; grants of highly privileged permissions, high; end-user consent, low | — | — | [^np10-secops] |
-| List servicePrincipalSignInActivities | `GET /reports/servicePrincipalSignInActivities`; `AuditLog.Read.All` (higher: `Directory.Read.All`); Reports Reader, Security Reader, Security Administrator | Global service only; L4 and L5 not available | Beta | [^np10-signin] |
-| Expiring application credentials | On an app registration and expiring within the next 30 days | — | Preview | [^np10-expiring] |
-| Unused applications | Not used for over 90 days; managed identities and apps created within 90 days exempt; Learn's action plan soft-deletes, then permanently deletes after 15 days | — | Preview | [^np10-unused] |
-| Audit log retention | Free seven days; P1 and P2 30 days | — | — | [^np10-retention] |
-| Agent sponsors | Attest every six to twelve months that each agent is still needed; quarterly review for missing sponsors, outdated metadata or no recent activity | — | Agent ID: see below | [^np10-agent-bp] [^np10-agent-stage] |
-| Graph hosts | GCC `graph.microsoft.com`; GCC High `graph.microsoft.us`; DoD `dod-graph.microsoft.us` | — | — | [^np10-deployments] |
-| Sign-in from GitHub Actions | Azure Login with a federated credential; the job needs `id-token: write`; US Government audience `api://AzureADTokenExchangeUSGov` | Azure Government environment | Learn's samples use `azure/login@v2`; the sample workflow pins v3.1.0 (*Design guidance*) | [^np10-oidc] |
-| Immutable evidence | Time-based retention; a locked policy can't be deleted or shortened; unlocked is for testing | — | GA | [^np10-immutable] |
+| Item | Value | Stage | Source |
+|---|---|---|---|
+| List directoryAudits | `GET /auditLogs/directoryAudits`; `AuditLog.Read.All` (higher: `Directory.Read.All`); delegated roles Reports Reader, Security Administrator, Security Reader; `$filter` (`eq`, `ge`, `le`, `startswith`), `$top`, `$orderby`, `skiptoken` | v1.0 | [^np10-audit-list] |
+| directoryAudit filters | `activityDateTime` `eq`, `ge`, `le`; `activityDisplayName` `eq`, `startswith`; `result` `success`, `failure`, `timeout` | v1.0 | [^np10-audit-resource] |
+| Activity names | `Update application - Certificates and secrets management`, `Add service principal credentials`, `Remove service principal credentials`, `Consent to application`, `Add delegated permission grant`, `Add app role assignment to service principal`; Core Directory, ApplicationManagement | — | [^np10-activities] |
+| Monitoring application credentials and consent | Credentials added to existing applications, high; application and service principal updates logged as two entries; alert outside normal workflows; grants of highly privileged permissions, high; end-user consent, low | — | [^np10-secops] |
+| List servicePrincipalSignInActivities | `GET /reports/servicePrincipalSignInActivities`; `AuditLog.Read.All` (higher: `Directory.Read.All`); Reports Reader, Security Reader, Security Administrator; listed for the global service, which GCC uses | Beta | [^np10-signin] |
+| Expiring application credentials | On an app registration and expiring within the next 30 days | Preview | [^np10-expiring] |
+| Unused applications | Not used for over 90 days; managed identities and apps created within 90 days exempt; Learn's action plan soft-deletes, then permanently deletes after 15 days | Preview | [^np10-unused] |
+| Audit log retention | Free seven days; P1 and P2 30 days | — | [^np10-retention] |
+| Agent sponsors | Attest every six to twelve months that each agent is still needed; quarterly review for missing sponsors, outdated metadata or no recent activity | Agent ID: see below | [^np10-agent-bp] [^np10-agent-stage] |
+| Graph hosts | GCC uses the worldwide host, `graph.microsoft.com` | — | [^np10-deployments] |
+| Sign-in from GitHub Actions | Azure Login with a federated credential; the job needs `id-token: write` | Learn's samples use `azure/login@v2`; the sample workflow pins v3.1.0 (*Design guidance*) | [^np10-oidc] |
+| Immutable evidence | Time-based retention; a locked policy can't be deleted or shortened; unlocked is for testing | GA | [^np10-immutable] |
 
 Where Learn's pages differ, recorded so a later edit doesn't loosen the code:
 
@@ -749,7 +749,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 | A run edited, or swapped with another tenant's | The evidence describes a run that never happened | Every file checked against its manifest, each manifest against `run.json`; tenant, cloud and mode must match through the chain |
 | A replaced package | A bad day is quietly rewritten | The hash chain; `period` reports the break; a locked retention policy |
 | Unused treated as delete | A seasonal app is removed | NPI-DRF-04 is a Warn; nothing here writes; retirement is the decommission process |
-| The wrong cloud | A GCC High run reads `graph.microsoft.com`, or sends a beta call the cloud lacks | Required cloud, no default; the sign-in report isn't sent where Learn doesn't list it |
+| The wrong cloud | A run reads a host other than its cloud's, or sends a beta call the cloud lacks | Required cloud, no default; the sign-in report isn't sent where Learn doesn't list it |
 
 ## Checklist
 
