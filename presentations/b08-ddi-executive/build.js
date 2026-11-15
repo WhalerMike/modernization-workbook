@@ -380,7 +380,7 @@ The matrix splits deciding from doing on purpose. The DNS/DDI team decides what 
   narrate(s,
 `A certificate can be valid, unrevoked and issued for the right name, and still fail, because every check that makes it trustworthy starts with a DNS lookup. The figure is the chain: the name resolves to the authentic endpoint, the certificate validates, name-based policy applies, and the token reaches the right audience.
 
-The failures come in disguise. If the revocation names exist only in AD DNS, a cloud workload can't resolve them, and the incident ticket is opened as a certificate problem. Token-based sign-in changes the DNS surface rather than shrinking it: a resolver that sends a GCC High tenant's sign-ins toward the commercial endpoint breaks authentication. And a wildcard name that's right on premises but missing in one cloud breaks every API behind it, for every caller there at once.
+The failures come in disguise. If the revocation names exist only in AD DNS, a cloud workload can't resolve them, and the incident ticket is opened as a certificate problem. Token-based sign-in changes the DNS surface rather than shrinking it: clients must reach the Entra ID token endpoint GCC uses, login dot microsoftonline dot com, through every resolver, or sign-in breaks. And a wildcard name that's right on premises but missing in one cloud breaks every API behind it, for every caller there at once.
 
 DNSSEC protects the integrity of the answers. M-08-23 required it on applicable federal systems, and SP 800-53 carries signing and validation into every baseline. NIST's 2026 guide is cautious about internal zones, calling signing them likely to be of limited value for most organizations unless it's required. So the program's position: sign external zones and the dot-gov delegations always, validate on resolvers the agency controls, and sign internal zones only where the authorization requires it. Azure and Route 53 sign public zones only.
 
@@ -396,7 +396,7 @@ The CISO sets the signing and validation requirements. Moving an internal zone t
   sideBox(s, "Authority", "FaSitemap", HEX.navy, HEX.navyTint, "One authority for address blocks", [
     "Enterprise IPAM is the authority; clouds allocate from it",
     "Native integration: AWS commercial Regions and VMware VCF 9.1",
-    "Azure, Google Cloud and GovCloud: reserve first, mirror, reconcile",
+    "Azure and Google Cloud: reserve first, mirror, reconcile",
     "Federation finds overlaps before networks are joined",
     "The address layer of the asset inventory Zero Trust needs",
   ], { x: 5.1, w: 7.65 });
@@ -406,7 +406,7 @@ The CISO sets the signing and validation requirements. Moving an internal zone t
   narrate(s,
 `Names and addresses are the same problem. Every cloud, and VMware, ships its own address manager. Left alone, each allocates address space independently, and that recreates for addresses the divergence split-brain creates for names: overlaps that surface only when two networks are joined, and address space an audit finds undocumented.
 
-The book's answer is that the enterprise IPAM is the authority for address blocks. The figure shows that integration depth differs. AWS VPC IPAM can allocate from an external IPAM, but in commercial Regions only, not GovCloud. VMware Cloud Foundation 9.1 allocates from it natively. Azure Virtual Network Manager and Google Cloud mirror reservations and rely on discovery and reconciliation. Where there's no native integration, the rule is to reserve first, then mirror, then reconcile continuously.
+The book's answer is that the enterprise IPAM is the authority for address blocks. The figure shows that integration depth differs. AWS VPC IPAM can allocate from an external IPAM, in the commercial Regions where the agency's AWS workloads run. VMware Cloud Foundation 9.1 allocates from it natively. Azure Virtual Network Manager and Google Cloud mirror reservations and rely on discovery and reconciliation. Where there's no native integration, the rule is to reserve first, then mirror, then reconcile continuously.
 
 Federation is what turns separate address managers into one inventory, which makes overlap detection, collision-free planning and reporting possible. It's also the address layer of the asset inventory: M-22-09 expects a complete inventory of every device the agency operates, and CISA's maturity model counts cloud network resources, DNS services included. And DDI is where dual-stack and IPv6-only address management happens, against M-21-07 milestones that have now passed.
 
@@ -457,7 +457,7 @@ Chapter 01's ask is specific: charge the DNS/DDI team, which holds the decision 
   sideBox(s, "Auth", "FaFileShield", HEX.teal, HEX.tealTint, "Authorization is per offering", [
     "FedRAMP certifies the service; the agency authorizes its system",
     "One DDI management plane listed at Moderate since 2022",
-    "Moderate doesn't cover High or DoD",
+    "Moderate doesn't cover High",
     "On-premises resolvers sit in the agency's boundary",
   ], { x: 7.75, w: 5.0 });
   decision(s, "Choose the platform model on evidence from the agency's own estate; authorize any cloud-delivered management plane at the right level",
@@ -468,7 +468,7 @@ Chapter 01's ask is specific: charge the DNS/DDI team, which holds the decision 
 
 The book compares three models. A SaaS policy plane, with Infoblox Universal DDI as the example, writes records into each cloud, within published integration limits. Agency-operated DDI, such as BlueCat or EfficientIP, runs inside the agency's boundary; some products import cloud zones but can't write back, so decide how changes reach each cloud. And cloud-native resolvers managed as code reduce independent authoring but give no single multi-cloud IPAM or delegation model by themselves. For a smaller, single-cloud agency, the program's judgment is that the cloud-native path can be enough; the federal requirements don't shrink with it.
 
-Authorization belongs to a specific offering. FedRAMP certifies the cloud service; the agency still authorizes its own DDI system. As of October 20, 2026, the Marketplace lists Infoblox Government Cloud at Moderate, certified since December 15, 2022; the vendor's July 2026 release describes what it includes. Moderate doesn't cover High or DoD, and on-premises appliances sit inside the agency's own boundary.
+Authorization belongs to a specific offering. FedRAMP certifies the cloud service; the agency still authorizes its own DDI system. As of October 20, 2026, the Marketplace lists Infoblox Government Cloud at Moderate, certified since December 15, 2022; the vendor's July 2026 release describes what it includes. Moderate doesn't cover High, and on-premises appliances sit inside the agency's own boundary.
 
 In the matrix, the sponsor and CIO choose the model, scoring each candidate on evidence it can produce; the authorizing official authorizes any cloud-delivered management plane.`,
   "Book 08, Chapter 08 (What a DDI policy plane is made of; Commercial and federal clouds compared); Chapter 03 (FedRAMP and agency authorization); Chapter 12 — Platform Selection, Cost and Residual Risk (Selection criteria; Authorization status; Comparing the platform models); Chapter 09 (responsibility matrix: platform selection; authorization).");
@@ -671,7 +671,7 @@ The book doesn't name who reports, so this is the program's model: the DNS/DDI t
     "Sync lag becomes the new divergence",
     "In an outage, changes stop; resolution continues",
     "Encrypted DNS bypass where controls are incomplete",
-    "Moderate doesn't cover High or DoD",
+    "Moderate doesn't cover High",
   ], { x: 6.8, y: 3.27, w: 5.95 });
   decision(s, "Get quotes on identical assumptions from every candidate, re-estimate any budget built on the earlier resolver pricing, and record residual risk",
     "Sponsor and CIO", "Before selection");
@@ -681,7 +681,7 @@ The book doesn't name who reports, so this is the program's model: the DNS/DDI t
 
 The cloud-native components have public meters, and they appear in every model, because even a commercial policy plane forwards into cloud resolvers. At Azure list prices retrieved on October 20, 2026, the private resolver is billed per endpoint per month, 180 dollars each, so a hub with one inbound endpoint, one outbound endpoint and one ruleset costs about 362 dollars a month per region before zones and queries, and a second region for resilience doubles it. AWS bills IPAM per active address it monitors, so cost grows with the estate. The book corrects earlier program guidance that priced the resolver by the hour with cheap endpoints: the endpoints carry the cost, so re-estimate any budget built on it.
 
-The figure shows the risks that remain. Sync lag between the plane and each cloud becomes the new source of divergence. If the management plane is down, changes stop but resolution continues from local state, so decide in advance who may invoke local overrides. Encrypted DNS bypass remains where endpoint controls are incomplete. And a Moderate authorization doesn't cover High or DoD.
+The figure shows the risks that remain. Sync lag between the plane and each cloud becomes the new source of divergence. If the management plane is down, changes stop but resolution continues from local state, so decide in advance who may invoke local overrides. Encrypted DNS bypass remains where endpoint controls are incomplete. And a Moderate authorization doesn't cover High.
 
 None of these negates the architecture; they're the operating controls still required. The sponsor and CIO, who own selection, act before choosing.`,
   "Book 08, Chapter 12 — Platform Selection, Cost and Residual Risk (Cost, staffing and success measures; What the cloud-native path meters; Correction to earlier program guidance; Residual risk and limitations).");

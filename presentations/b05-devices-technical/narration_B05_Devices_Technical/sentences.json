@@ -273,48 +273,6 @@
    "Next, Windows in a G C C tenant."
   ]
  ],
- "8": [
-  [
-   0.05,
-   3.45,
-   "Microsoft now ships two ways to provision Windows."
-  ],
-  [
-   3.5,
-   5.675,
-   "Autopilot device preparation is the newer, simpler one, with near real-time reporting."
-  ],
-  [
-   9.175,
-   2.612,
-   "Classic Autopilot is more feature-rich."
-  ],
-  [
-   11.787,
-   6.562,
-   "The difference that matters most here is registration: device preparation has none, so it has no group tag."
-  ],
-  [
-   18.35,
-   6.225,
-   "In a G C C tenant both are available, because G C C uses the commercial Intune service."
-  ],
-  [
-   24.575,
-   13.863,
-   "The program's default for standard hardware is classic Autopilot, user-driven, with Entra join, because its registration carries the procurement attribute and the purchase order from the vendor to the device before it's ever powered on."
-  ],
-  [
-   38.438,
-   8.075,
-   "Use device preparation where its advantages matter, such as faster provisioning or a tenant that might later move to G C C High."
-  ],
-  [
-   46.513,
-   3.263,
-   "And never use either with hybrid join for new devices."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -1070,43 +1028,6 @@
    "And on Tier 0, a Defender detection becomes a compliance failure, and so a loss of access."
   ]
  ],
- "29": [
-  [
-   0.05,
-   6.662,
-   "Intune manages Windows updates through four policy types, and the rings stage each month's quality update."
-  ],
-  [
-   6.713,
-   8.0,
-   "The ring names follow Windows Autopatch, Test, First, Fast and Broad, from the engineering lab out to everyone else."
-  ],
-  [
-   14.713,
-   2.062,
-   "The values are the program's design."
-  ],
-  [
-   16.775,
-   9.863,
-   "With them, a quality update reaches every online device within about sixteen days of release, and an update that breaks an early ring can be paused before Broad."
-  ],
-  [
-   26.637,
-   9.613,
-   "Autopatch automates all of this, and it's included for G C C customers with G3 or G5, though not in G C C High or DoD."
-  ],
-  [
-   36.25,
-   4.025,
-   "It maintains its own rings, so don't assign yours to its devices."
-  ],
-  [
-   40.275,
-   10.225,
-   "And version currency: 23H2 Enterprise stops receiving updates on November tenth, 2026, so feature updates target 25H2 now."
-  ]
- ],
  "30": [
   [
    0.05,
@@ -1226,6 +1147,85 @@
    55.875,
    0.762,
    "Thank you."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.45,
+   "Microsoft now ships two ways to provision Windows."
+  ],
+  [
+   3.5,
+   5.675,
+   "Autopilot device preparation is the newer, simpler one, with near real-time reporting."
+  ],
+  [
+   9.175,
+   2.612,
+   "Classic Autopilot is more feature-rich."
+  ],
+  [
+   11.787,
+   6.562,
+   "The difference that matters most here is registration: device preparation has none, so it has no group tag."
+  ],
+  [
+   18.35,
+   6.225,
+   "In a G C C tenant both are available, because G C C uses the commercial Intune service."
+  ],
+  [
+   24.575,
+   13.863,
+   "The program's default for standard hardware is classic Autopilot, user-driven, with Entra join, because its registration carries the procurement attribute and the purchase order from the vendor to the device before it's ever powered on."
+  ],
+  [
+   38.438,
+   10.0,
+   "Use device preparation where its advantages matter, such as a simpler policy, faster provisioning, or mixing Win32 and line-of-business apps in one deployment."
+  ],
+  [
+   48.438,
+   3.263,
+   "And never use either with hybrid join for new devices."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   6.662,
+   "Intune manages Windows updates through four policy types, and the rings stage each month's quality update."
+  ],
+  [
+   6.713,
+   8.0,
+   "The ring names follow Windows Autopatch, Test, First, Fast and Broad, from the engineering lab out to everyone else."
+  ],
+  [
+   14.713,
+   2.062,
+   "The values are the program's design."
+  ],
+  [
+   16.775,
+   9.863,
+   "With them, a quality update reaches every online device within about sixteen days of release, and an update that breaks an early ring can be paused before Broad."
+  ],
+  [
+   26.637,
+   6.862,
+   "Autopatch automates all of this, and it's included for G C C customers with G3 or G5."
+  ],
+  [
+   33.5,
+   4.025,
+   "It maintains its own rings, so don't assign yours to its devices."
+  ],
+  [
+   37.525,
+   10.225,
+   "And version currency: 23H2 Enterprise stops receiving updates on November tenth, 2026, so feature updates target 25H2 now."
   ]
  ]
 }

@@ -44,34 +44,25 @@ and authentication contexts on labeled
 sites are on the engineering backlog.
 
 10
-00:00:38.625 --> 00:00:41.913
-GCC High and DoD are side notes.
+00:00:38.625 --> 00:00:43.119
+And where a feature is in development
+or not yet specified for GCC,
 
 11
-00:00:41.913 --> 00:00:47.395
-Their clients need DNS records to reach
-the government Rights Management service,
+00:00:43.119 --> 00:00:47.363
+the tenant treats it as unavailable
+until Microsoft lists it.
 
 12
-00:00:47.395 --> 00:00:50.652
-DoD doesn't list Advanced
-Message Encryption yet,
-
-13
-00:00:50.652 --> 00:00:55.101
-and two Learn pages disagree on
-Insider Risk Management in GCC High.
-
-14
-00:00:55.101 --> 00:00:58.330
+00:00:47.363 --> 00:00:50.592
 The rule for all of it: a
 license or cloud gap goes
 
-15
-00:00:58.330 --> 00:01:01.725
+13
+00:00:50.592 --> 00:00:53.987
 in a decision record, with
 a compensating control.
 
-16
-00:01:01.725 --> 00:01:04.420
+14
+00:00:53.987 --> 00:00:56.690
 It's a dependency, never a failed control.

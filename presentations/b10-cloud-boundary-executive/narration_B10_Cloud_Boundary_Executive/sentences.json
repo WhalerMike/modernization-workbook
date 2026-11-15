@@ -471,155 +471,6 @@
    "Next, the feature gap itself."
   ]
  ],
- "7": [
-  [
-   0.05,
-   6.112,
-   "Microsoft's own documents don't describe G C C as a dimmed version of the commercial service."
-  ],
-  [
-   6.162,
-   5.1,
-   "G C C is the worldwide service, minus a published list of exclusions."
-  ],
-  [
-   11.262,
-   4.737,
-   "The restricted, separately networked environment begins at G C C High."
-  ],
-  [
-   16.0,
-   1.8,
-   "And that list isn't a ladder."
-  ],
-  [
-   17.8,
-   7.938,
-   "Several features are missing in G C C, G C C High and D O D alike, so moving up doesn't restore everything."
-  ],
-  [
-   25.738,
-   4.0,
-   "The largest documented loss is the network connectivity layer."
-  ],
-  [
-   29.738,
-   14.575,
-   "A commercial tenant gets, at no extra license cost, a daily network score for each location, a view of its egress and front doors, insights such as detecting TLS interception, and performance attributed to named network providers."
-  ],
-  [
-   44.312,
-   8.775,
-   "An agency choosing between sassy or transport providers in a commercial tenant gets that comparative evidence from Microsoft, in its own admin center."
-  ],
-  [
-   53.087,
-   3.275,
-   "The same agency in G C C gets none of it."
-  ],
-  [
-   56.362,
-   7.4,
-   "Microsoft's connectivity test tool does run in G C C, and it closes part of the gap, but not the provider comparison."
-  ],
-  [
-   63.763,
-   2.25,
-   "So this decision is a budget line."
-  ],
-  [
-   66.013,
-   6.037,
-   "Fund the independent measurement that replaces that layer, before you pick a transport or sassy provider."
-  ],
-  [
-   72.05,
-   4.013,
-   "That's the sponsor and C I O's call, because they fund the platform."
-  ],
-  [
-   76.062,
-   2.975,
-   "Next, why a higher certification won't fix it."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   8.625,
-   "Much federal reasoning runs like this: G C C is Moderate, Moderate is why the feature is missing, so a High certification would bring it back."
-  ],
-  [
-   8.675,
-   2.5,
-   "The Marketplace doesn't support that chain."
-  ],
-  [
-   11.175,
-   7.312,
-   "Read on October 21, 2026, it lists three Microsoft 365 government packages."
-  ],
-  [
-   18.488,
-   6.675,
-   "The G C C package agencies run is certified at Class C, Moderate, with 100 authorizations."
-  ],
-  [
-   25.163,
-   5.45,
-   "A second package with the identical name is In Process at Class D, High, with none."
-  ],
-  [
-   30.613,
-   4.8,
-   "And G C C High is a separate package, already certified at Class D."
-  ],
-  [
-   35.413,
-   6.8,
-   "The Marketplace doesn't say how those first two relate, so treat it as a question for the provider, not a roadmap."
-  ],
-  [
-   42.212,
-   1.3,
-   "Here's the key point."
-  ],
-  [
-   43.513,
-   6.725,
-   "Network connectivity is missing in G C C High too, and G C C High is already Class D."
-  ],
-  [
-   50.237,
-   3.212,
-   "A higher class changes what data you may put in the service."
-  ],
-  [
-   53.45,
-   4.112,
-   "It doesn't, by itself, restore a feature the provider excluded."
-  ],
-  [
-   57.562,
-   7.125,
-   "An agency that defers an equivalent because High is coming may wait for something the certification was never going to deliver."
-  ],
-  [
-   64.688,
-   8.35,
-   "So plan against the class of the package you actually use, and don't hard-code Moderate into a multi-year architecture either, because that may move."
-  ],
-  [
-   73.037,
-   5.65,
-   "The sponsor and C I O own that plan, in the current architecture and acquisition cycle."
-  ],
-  [
-   78.688,
-   2.038,
-   "Next, who owns the boundary."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -700,98 +551,6 @@
    75.463,
    2.675,
    "Next, decisions that hide as tickets."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   4.438,
-   "The most consequential boundary decisions don't look like boundary decisions."
-  ],
-  [
-   4.487,
-   4.625,
-   "They look like engineering tickets, and that's how they slip past the people who should make them."
-  ],
-  [
-   9.113,
-   1.062,
-   "Take placement."
-  ],
-  [
-   10.175,
-   7.95,
-   "Vending a new subscription is a platform task, but whether a workload is inside the authorized system is the system owner's call."
-  ],
-  [
-   18.125,
-   6.65,
-   "The cheapest way to turn an authorized system into an unauthorized one is a subscription no one recorded."
-  ],
-  [
-   24.775,
-   4.612,
-   "So a workload whose subscription isn't in the boundary record doesn't go lyve."
-  ],
-  [
-   29.387,
-   1.25,
-   "Then the contract."
-  ],
-  [
-   30.637,
-   5.55,
-   "In October, the G C C listing said coverage requires a G C C SKU."
-  ],
-  [
-   36.188,
-   7.037,
-   "That message is gone from the listing now, so the contracting officer confirms the condition with the provider and in the package."
-  ],
-  [
-   43.225,
-   5.088,
-   "A licensing choice is a boundary choice, and it belongs to the contracting officer."
-  ],
-  [
-   48.312,
-   7.475,
-   "Provider changes that might affect the agency's risk go to the authorizing official, not whoever is on the distribution list."
-  ],
-  [
-   55.788,
-   5.213,
-   "And agencies can't demand more than fed-ramp requires without a formal finding of need."
-  ],
-  [
-   61.0,
-   4.075,
-   "The landing zone makes these decisions checkable, but it doesn't make them."
-  ],
-  [
-   65.075,
-   1.925,
-   "Two planning facts for leaders."
-  ],
-  [
-   67.0,
-   7.9,
-   "Microsoft's landing-zone accelerators are supported only in public Azure, so an Azure Government build needs the code adapted by hand."
-  ],
-  [
-   74.9,
-   5.85,
-   "And the pipeline that builds it is part of the boundary question too, because its state data is sensitive."
-  ],
-  [
-   80.75,
-   2.163,
-   "Plan both; don't discover them."
-  ],
-  [
-   82.912,
-   3.138,
-   "Next, what to do when a capability is outside."
   ]
  ],
  "11": [
@@ -951,73 +710,6 @@
    78.2,
    2.087,
    "Next, the alternative path."
-  ]
- ],
- "13": [
-  [
-   0.05,
-   3.612,
-   "The third response is a different certified service for the workload."
-  ],
-  [
-   3.663,
-   6.45,
-   "The book works through collaboration, and its first rule is to read the certification, not the announcement."
-  ],
-  [
-   10.113,
-   13.088,
-   "On the Marketplace, Google Workspace is certified at Class D, while Gemini for Government is a separate listing at Class B, Low, even though Google says Gemini in Workspace apps is fed-ramp High authorized."
-  ],
-  [
-   23.2,
-   6.912,
-   "Which features sit inside which certification is a question for the package, and details like that decide what you can turn on."
-  ],
-  [
-   30.113,
-   2.35,
-   "The public record shows both outcomes."
-  ],
-  [
-   32.462,
-   14.037,
-   "In September 2025 a cabinet-level department signed a five-year agreement worth up to 89 million dollars to move more than 50,000 employees to Google Workspace, with a temporary 71 percent price reduction."
-  ],
-  [
-   46.5,
-   3.138,
-   "So a five-year model has to price the renewal years."
-  ],
-  [
-   49.638,
-   9.088,
-   "A military department went the other way, ending about 150,000 Google email licenses after an audit found about 16 percent in use."
-  ],
-  [
-   58.725,
-   2.95,
-   "Measure adoption in the pilot; don't assume it."
-  ],
-  [
-   61.675,
-   3.8,
-   "The choice is only safe if the identity plane stays put."
-  ],
-  [
-   65.475,
-   6.938,
-   "Entra ID remains the source, and the suite consumes identity, with Conditional Access applied at sign-in."
-  ],
-  [
-   72.412,
-   9.4,
-   "The sponsor and C I O make the suite decision as its own approval, separate from identity modernization, and read the listing again on the day they decide."
-  ],
-  [
-   81.812,
-   2.15,
-   "Next, what to ask your provider."
   ]
  ],
  "14": [
@@ -1249,6 +941,299 @@
    88.05,
    0.762,
    "Thank you."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.112,
+   "Microsoft's own documents don't describe G C C as a dimmed version of the commercial service."
+  ],
+  [
+   6.162,
+   5.1,
+   "G C C is the worldwide service, minus a published list of exclusions."
+  ],
+  [
+   11.262,
+   4.7,
+   "G C C users reach the same network endpoints as commercial users."
+  ],
+  [
+   15.963,
+   6.713,
+   "And each exclusion is published in its own note, so each one can be read, argued and asked about."
+  ],
+  [
+   22.675,
+   4.0,
+   "The largest documented loss is the network connectivity layer."
+  ],
+  [
+   26.675,
+   14.575,
+   "A commercial tenant gets, at no extra license cost, a daily network score for each location, a view of its egress and front doors, insights such as detecting TLS interception, and performance attributed to named network providers."
+  ],
+  [
+   41.25,
+   8.775,
+   "An agency choosing between sassy or transport providers in a commercial tenant gets that comparative evidence from Microsoft, in its own admin center."
+  ],
+  [
+   50.025,
+   3.275,
+   "The same agency in G C C gets none of it."
+  ],
+  [
+   53.3,
+   7.4,
+   "Microsoft's connectivity test tool does run in G C C, and it closes part of the gap, but not the provider comparison."
+  ],
+  [
+   60.7,
+   2.25,
+   "So this decision is a budget line."
+  ],
+  [
+   62.95,
+   6.037,
+   "Fund the independent measurement that replaces that layer, before you pick a transport or sassy provider."
+  ],
+  [
+   68.987,
+   4.013,
+   "That's the sponsor and C I O's call, because they fund the platform."
+  ],
+  [
+   73.0,
+   2.975,
+   "Next, why a higher certification won't fix it."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   8.625,
+   "Much federal reasoning runs like this: G C C is Moderate, Moderate is why the feature is missing, so a High certification would bring it back."
+  ],
+  [
+   8.675,
+   2.5,
+   "The Marketplace doesn't support that chain."
+  ],
+  [
+   11.175,
+   7.612,
+   "Read on October 21, 2026, it lists two Microsoft 365 G C C packages."
+  ],
+  [
+   18.788,
+   6.675,
+   "The G C C package agencies run is certified at Class C, Moderate, with 100 authorizations."
+  ],
+  [
+   25.462,
+   5.45,
+   "A second package with the identical name is In Process at Class D, High, with none."
+  ],
+  [
+   30.913,
+   6.213,
+   "The Marketplace doesn't say how the two relate, so treat it as a question for the provider, not a roadmap."
+  ],
+  [
+   37.125,
+   1.3,
+   "Here's the key point."
+  ],
+  [
+   38.425,
+   5.938,
+   "The exclusions are product decisions, published per feature, not consequences of an impact level."
+  ],
+  [
+   44.362,
+   3.212,
+   "A higher class changes what data you may put in the service."
+  ],
+  [
+   47.575,
+   4.112,
+   "It doesn't, by itself, restore a feature the provider excluded."
+  ],
+  [
+   51.688,
+   7.125,
+   "An agency that defers an equivalent because High is coming may wait for something the certification was never going to deliver."
+  ],
+  [
+   58.812,
+   8.35,
+   "So plan against the class of the package you actually use, and don't hard-code Moderate into a multi-year architecture either, because that may move."
+  ],
+  [
+   67.162,
+   5.65,
+   "The sponsor and C I O own that plan, in the current architecture and acquisition cycle."
+  ],
+  [
+   72.812,
+   2.038,
+   "Next, who owns the boundary."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.438,
+   "The most consequential boundary decisions don't look like boundary decisions."
+  ],
+  [
+   4.487,
+   4.625,
+   "They look like engineering tickets, and that's how they slip past the people who should make them."
+  ],
+  [
+   9.113,
+   1.062,
+   "Take placement."
+  ],
+  [
+   10.175,
+   7.95,
+   "Vending a new subscription is a platform task, but whether a workload is inside the authorized system is the system owner's call."
+  ],
+  [
+   18.125,
+   6.65,
+   "The cheapest way to turn an authorized system into an unauthorized one is a subscription no one recorded."
+  ],
+  [
+   24.775,
+   4.612,
+   "So a workload whose subscription isn't in the boundary record doesn't go lyve."
+  ],
+  [
+   29.387,
+   1.25,
+   "Then the contract."
+  ],
+  [
+   30.637,
+   5.55,
+   "In October, the G C C listing said coverage requires a G C C SKU."
+  ],
+  [
+   36.188,
+   7.037,
+   "That message is gone from the listing now, so the contracting officer confirms the condition with the provider and in the package."
+  ],
+  [
+   43.225,
+   5.088,
+   "A licensing choice is a boundary choice, and it belongs to the contracting officer."
+  ],
+  [
+   48.312,
+   7.475,
+   "Provider changes that might affect the agency's risk go to the authorizing official, not whoever is on the distribution list."
+  ],
+  [
+   55.788,
+   5.213,
+   "And agencies can't demand more than fed-ramp requires without a formal finding of need."
+  ],
+  [
+   61.0,
+   4.075,
+   "The landing zone makes these decisions checkable, but it doesn't make them."
+  ],
+  [
+   65.075,
+   1.925,
+   "Two planning facts for leaders."
+  ],
+  [
+   67.0,
+   8.0,
+   "Microsoft's landing-zone accelerators deploy it from code, and they're supported for public Azure, where the workbook's landing zone runs."
+  ],
+  [
+   75.0,
+   5.85,
+   "And the pipeline that builds it is part of the boundary question too, because its state data is sensitive."
+  ],
+  [
+   80.85,
+   2.163,
+   "Plan both; don't discover them."
+  ],
+  [
+   83.013,
+   3.138,
+   "Next, what to do when a capability is outside."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.612,
+   "The third response is a different certified service for the workload."
+  ],
+  [
+   3.663,
+   6.45,
+   "The book works through collaboration, and its first rule is to read the certification, not the announcement."
+  ],
+  [
+   10.113,
+   13.088,
+   "On the Marketplace, Google Workspace is certified at Class D, while Gemini for Government is a separate listing at Class B, Low, even though Google says Gemini in Workspace apps is fed-ramp High authorized."
+  ],
+  [
+   23.2,
+   6.912,
+   "Which features sit inside which certification is a question for the package, and details like that decide what you can turn on."
+  ],
+  [
+   30.113,
+   2.413,
+   "The public record shows one such move."
+  ],
+  [
+   32.525,
+   14.037,
+   "In September 2025 a cabinet-level department signed a five-year agreement worth up to 89 million dollars to move more than 50,000 employees to Google Workspace, with a temporary 71 percent price reduction."
+  ],
+  [
+   46.562,
+   3.138,
+   "So a five-year model has to price the renewal years."
+  ],
+  [
+   49.7,
+   3.775,
+   "And coexistence costs run until the last component moves."
+  ],
+  [
+   53.475,
+   3.8,
+   "The choice is only safe if the identity plane stays put."
+  ],
+  [
+   57.275,
+   7.175,
+   "Entra I D remains the source, and the suite consumes identity, with Conditional Access applied at sign-in."
+  ],
+  [
+   64.45,
+   9.4,
+   "The sponsor and C I O make the suite decision as its own approval, separate from identity modernization, and read the listing again on the day they decide."
+  ],
+  [
+   73.85,
+   2.15,
+   "Next, what to ask your provider."
   ]
  ]
 }

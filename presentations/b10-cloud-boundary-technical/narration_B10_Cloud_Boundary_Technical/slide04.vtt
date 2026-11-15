@@ -52,15 +52,15 @@ are outside FedRAMP entirely,
 so they're yours to assess.
 
 12
-00:00:27.463 --> 00:00:30.996
-And impact level and
-features are different axes:
+00:00:27.463 --> 00:00:32.256
+And impact level and features are
+different axes: Microsoft documents each
 
 13
-00:00:30.996 --> 00:00:34.874
-the features missing in GCC
-are missing in GCC High too.
+00:00:32.256 --> 00:00:36.974
+missing feature on its own page, with
+no reference to a certification class.
 
 14
-00:00:34.874 --> 00:00:36.960
+00:00:36.974 --> 00:00:39.050
 Next, why nobody notices.

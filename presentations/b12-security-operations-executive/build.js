@@ -368,7 +368,7 @@ The decision follows the matrix: platform owners keep emission on through every 
 
 The program's version of the decision is a division of labor, which is design. Defender XDR detects what its own sensors see: endpoints, on-premises identity attacks, email and cloud apps; the SIEM doesn't re-implement those. SIEM rules cover what Defender can't see: DNS and DDI, SASE, SQL audit, non-Microsoft clouds and appliances, and correlations across them. Detection logic for Defender data is written once. And streaming every raw table is a cost decision, not a default: stream the ones the SIEM's rules join, and leave the rest in Defender.
 
-Two platform facts shape it. Once Sentinel is in the Defender portal, Defender creates incidents from both, so there's one queue in one portal. And availability differs by cloud: some features this book relies on aren't available in Azure Government, and Microsoft's own pages differ on one connector for DoD, so each capability is confirmed against the agency's own cloud before it goes into a design.
+Two platform facts shape it. Once Sentinel is in the Defender portal, Defender creates incidents from both, so there's one queue in one portal. And availability differs by cloud: a GCC tenant's workspace reads the commercial Azure column of Microsoft's availability page, where some features this book relies on are still in preview, so each capability is confirmed against GCC availability before it goes into a design.
 
 In the matrix, where telemetry lands and how it's parsed and joined is security engineering's decision, with the CISO consulted. Set the division before new detection work starts.`,
   "Book 12, Chapter 05 — From Log Warehouse to Detection: SIEM and XDR (Warehouse versus detection engine; Where Sentinel runs, and which cloud's table to read; What Defender XDR contributes); Chapter 10 (responsibility matrix: where telemetry lands).");
@@ -576,7 +576,7 @@ The time split matches the other books: a bounded exception with an end date is 
   narrate(s,
 `Now the how. A rule that fires without a response shortens the time to know, not the time to contain. And a rule nobody owns rots.
 
-The program keeps its rules as a library in version control, in the same shape Microsoft's own templates use, so the two can be compared. The library is the source of truth, not the portal: nobody edits a production rule by hand; a change is a commit, reviewed and deployed. Where Sentinel's repository feature isn't available, as in Azure Government, the program deploys the same content through its own pipeline.
+The program keeps its rules as a library in version control, in the same shape Microsoft's own templates use, so the two can be compared. The library is the source of truth, not the portal: nobody edits a production rule by hand; a change is a commit, reviewed and deployed. Where Sentinel's repository feature is unavailable or not authorized (it's in public preview), the program deploys the same content through its own pipeline.
 
 Every rule follows the lifecycle in the figure: authored with its thresholds marked for tuning, tested against history, deployed alert-only while every false positive is logged, promoted to open incidents once its false-positive rate is measured and its response is wired, and then reviewed on a schedule: does it still fire, and does its source still emit?
 

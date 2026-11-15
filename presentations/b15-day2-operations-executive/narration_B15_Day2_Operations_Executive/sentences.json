@@ -449,38 +449,6 @@
    "Next, control automation."
   ]
  ],
- "11": [
-  [
-   0.05,
-   12.113,
-   "Control automation runs one loop everywhere: test the setting, spot the drift, raise a task against the asset, fix it on the native platform, and close it only when a re-test confirms the fix."
-  ],
-  [
-   12.162,
-   8.225,
-   "The cloud tools already test most settings; your job is to own the result, and the coordination platform reads but never writes."
-  ],
-  [
-   20.387,
-   2.462,
-   "The platforms differ in ways that matter."
-  ],
-  [
-   22.85,
-   10.787,
-   "Some integrations aren't available in Azure Government, one AWS compliance service is in maintenance mode, and on your own VMware estate the evidence is entirely yours to build."
-  ],
-  [
-   33.638,
-   6.5,
-   "The decision for the see-so: keep the platform's identity read-only, with every automated fix approved."
-  ],
-  [
-   40.138,
-   1.5,
-   "Next, who runs it."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -783,6 +751,38 @@
    45.587,
    0.762,
    "Thank you."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   12.113,
+   "Control automation runs one loop everywhere: test the setting, spot the drift, raise a task against the asset, fix it on the native platform, and close it only when a re-test confirms the fix."
+  ],
+  [
+   12.162,
+   8.225,
+   "The cloud tools already test most settings; your job is to own the result, and the coordination platform reads but never writes."
+  ],
+  [
+   20.387,
+   2.462,
+   "The platforms differ in ways that matter."
+  ],
+  [
+   22.85,
+   12.387,
+   "Some integrations need extra plans or reach only part of the estate, one AWS compliance service is in maintenance mode, and on your own VMware estate the evidence is entirely yours to build."
+  ],
+  [
+   35.237,
+   6.5,
+   "The decision for the see-so: keep the platform's identity read-only, with every automated fix approved."
+  ],
+  [
+   41.737,
+   1.5,
+   "Next, who runs it."
   ]
  ]
 }

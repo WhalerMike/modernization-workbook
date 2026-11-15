@@ -171,18 +171,18 @@ Federal rules already put training before the change. OPM's rule requires awaren
     "No industry certification for civilian staff",
     "No annual number beyond awareness",
     "NICE is guidance; coding positions is mandatory",
-    "DoD 8140 binds DoD and its contractors, not civilian agencies",
+
   ], 3.62);
   callout(s, "Codes", 5.3, 1.2, "FaHashtag", HEX.red, "The codes are a roster input, not settled fact: ",
     "in 2019 GAO found 22 of 24 agencies had given a non-IT code to 15,779 IT management positions, about 19 percent. A code that disagrees with a role assignment is a finding for HR and the CIO's office.");
-  sources(s, "Sources: 44 U.S.C. § 3554; 5 CFR 930.301; OMB A-130 §5.c; Pub. L. 114-113, Div. N, Title III; OPM coding memos (2017, 2022); NIST SP 800-181 Rev. 1 and NICE Components v2.2.0; GAO-19-144; DoDM 8140.03. Book 16, Chapter 02.");
+  sources(s, "Sources: 44 U.S.C. § 3554; 5 CFR 930.301; OMB A-130 §5.c; Pub. L. 114-113, Div. N, Title III; OPM coding memos (2017, 2022); NIST SP 800-181 Rev. 1 and NICE Components v2.2.0; GAO-19-144. Book 16, Chapter 02.");
   narrate(s,
 `FISMA is a staffing requirement as much as a course requirement: the agency head must have trained personnel sufficient to comply, and the C I O trains and oversees people with significant security duties. OPM's rule names five audiences, from every user to I T operations staff. Circular A-130 has the chief human capital officer and the C I O set competency requirements together. And the Federal Cybersecurity Workforce Assessment Act requires every agency to identify its cyber positions and code each one to the NICE Framework, NIST's vocabulary of forty-two work roles.
 
 The codes haven't been reliable. In 2019, GAO found that 22 of 24 agencies had given a non-I T code to about nineteen percent of their I T management positions. So the program treats codes as one roster input, not settled fact.
 
-Just as important is what the rules don't require: no civilian certification mandate, and the Defense Department's eighty-one forty program doesn't apply to civilian agencies.`,
-  "Book 16, Chapter 02 — What Federal Workforce Rules Require (The sources at a glance; FISMA; OPM's rule; OMB Circular A-130; The NICE Framework; Coding the positions; How well it has worked; What the rules don't require; DoD 8140, as a contrast).");
+Just as important is what the rules don't require: no civilian certification mandate, and no annual training number beyond the awareness floor.`,
+  "Book 16, Chapter 02 — What Federal Workforce Rules Require (The sources at a glance; FISMA; OPM's rule; OMB Circular A-130; The NICE Framework; Coding the positions; How well it has worked; What the rules don't require).");
 }
 
 // ------------------------------------------------------------------ What 1
@@ -304,7 +304,7 @@ Two credentials follow: practitioner for builders, assessor for compliance staff
     ["FaLaptop", "WHERE LABS RUN", HEX.teal, HEX.tealTint, "Arranged by the program office", [
       "Microsoft Learn's free sandboxes are gone",
       "Developer sandbox: eligibility limits; no government cloud",
-      "No free sandbox in GCC High or DoD",
+      "No developer sandbox in GCC or any government cloud",
       "Rehearse once in a non-production government tenant",
     ]],
   ], 14);
@@ -491,7 +491,7 @@ People, not tools, close the gap. Book 16 has the detail, every claim footnoted.
     "Law and regulation: FISMA, 44 U.S.C. § 3554; Federal Cybersecurity Workforce Assessment Act of 2015 (Pub. L. 114-113, Div. N, Title III) and 5 U.S.C. 301 note; 5 U.S.C. §§ 1401–1402; 15 U.S.C. § 7443; 29 U.S.C. § 794d; 5 CFR 410.201, 410.202, 410.601 and 930.301.",
     "OMB: Circular A-130 (July 2016), §5.c, §6.g and Appendix I §4.h; M-22-09 (January 26, 2022); M-24-08 (December 21, 2023).  ·  OPM: cybersecurity coding memoranda (January 4, 2017; April 11, 2022); Interpretive Guidance for Cybersecurity Positions (October 2018).  ·  GAO-19-144 (March 12, 2019).",
     "NIST: SP 800-50 Rev. 1 (September 2024); SP 800-181 Rev. 1 and NICE Framework Components v2.0.0, v2.1.0 and v2.2.0 (April 28, 2026); SP 800-53 Rev. 5 (release 5.2.0) and SP 800-53B; SP 800-53A Rev. 5; SP 800-37 Rev. 2; SP 800-63B-4 (July 2025); SP 800-128; SP 800-137; OSCAL.",
-    "FedRAMP Consolidated Rules for 2026 (Agency Use; Key Security Indicators; Collaborative Continuous Monitoring); Notices NTC-0004 and NTC-0014.  ·  CISA: Advisory AA23-320A, Scattered Spider (revised July 29, 2025); BOD 26-04; CISA Learning.  ·  U.S. Access Board, Revised 508 Standards.  ·  DoD Directive 8140.01 and Manual 8140.03 (contrast only).",
+    "FedRAMP Consolidated Rules for 2026 (Agency Use; Key Security Indicators; Collaborative Continuous Monitoring); Notices NTC-0004 and NTC-0014.  ·  CISA: Advisory AA23-320A, Scattered Spider (revised July 29, 2025); BOD 26-04; CISA Learning.  ·  U.S. Access Board, Revised 508 Standards.",
     "Microsoft Learn: Conditional Access planning and report-only; emergency access; phishing-resistant passwordless deployment; certificate-based authentication; Windows Hello for Business; passkeys; SSPR; smart lockout; Intune compliance and data visibility; Outlook reporting; authentication methods activity; developer program; government trials; certifications, exam retirement and renewal.",
     "Vendor and certification-body sites, as examples only: Infoblox, BlueCat, Cisco, Fortinet, Palo Alto Networks, Zscaler, SailPoint, AWS, Broadcom, ServiceNow; CompTIA, ISC2, ISACA.",
     "Full footnotes with links and access dates (October 21–22, 2026): Book 16, every chapter and Appendix A (whalermike.github.io/modernization-workbook/docs/books/b16-people/).",

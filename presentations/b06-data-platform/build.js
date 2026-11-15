@@ -128,7 +128,7 @@ Workbook: Book 06, Chapters 03 to 06; Runbook R02.`);
   tag(s, "What");
   const cols = [
     ["FaServer", "The bridge", HEX.navy, HEX.navyTint, ["SQL Server 2025: the Arc managed identity", "SQL Server 2022: an app registration and certificate", "The Azure extension for SQL Server installs when the host connects", "Entra connections are always encrypted"]],
-    ["FaTriangleExclamation", "The limits", HEX.red, HEX.redTint, ["Failover cluster instances can't use Entra authentication", "Not available through Arc in US Gov Virginia — use a commercial subscription in the GCC tenant", "FIDO2 isn't supported for SQL Server on Arc", "Granting the identity's Graph permissions needs a Privileged Role Administrator"]],
+    ["FaTriangleExclamation", "The limits", HEX.red, HEX.redTint, ["Failover cluster instances can't use Entra authentication", "Needs the Azure public cloud — use a commercial subscription in the GCC tenant", "FIDO2 isn't supported for SQL Server on Arc", "Granting the identity's Graph permissions needs a Privileged Role Administrator"]],
   ];
   cols.forEach((c, i) => {
     const x = 0.6 + i * 6.12;
@@ -139,13 +139,13 @@ Workbook: Book 06, Chapters 03 to 06; Runbook R02.`);
   });
   callout(s, "Choice", 5.4, 1.1, "FaRoute", HEX.slate, "Arc is the program's chosen path, not the only one: ",
     "Microsoft documents a manual setup for SQL Server 2022+ on Windows; Arc wins because it also carries inventory, policy, updates and Defender for the host (Book 05).");
-  sources(s, "Sources: Microsoft Learn — Microsoft Entra authentication for SQL Server, SQL Server enabled by Azure Arc, Arc in Azure Government. Book 06, Chapters 09–10 and Runbook R04.");
+  sources(s, "Sources: Microsoft Learn — Microsoft Entra authentication for SQL Server, SQL Server enabled by Azure Arc. Book 06, Chapters 09–10 and Runbook R04.");
   s.addNotes(
 `[4:02–5:14]  What replaces the domain join? Azure Arc gives each instance an Entra identity.
 
 On SQL Server 2025, that's the Arc managed identity. On SQL Server 2022, it's an app registration with a certificate. The Azure extension for SQL Server installs automatically when the host connects to Arc, and Entra connections are always encrypted.
 
-The limits matter, and the old documents missed several. Failover cluster instances can't use Entra authentication on any version. Entra authentication through Arc isn't available in the US Government Virginia region, so a GCC tenant uses a commercial subscription in the same tenant; the old runbook's Azure Government setup would never have produced Entra logins. FIDO2 isn't supported for SQL Server on Arc. And granting the instance identity its Graph permissions needs a Privileged Role Administrator, so that step can't sit with the DBAs.
+The limits matter, and the old documents missed several. Failover cluster instances can't use Entra authentication on any version. SQL Server needs access to the Azure public cloud to use Entra authentication, so a GCC tenant uses a commercial subscription in the same tenant. FIDO2 isn't supported for SQL Server on Arc. And granting the instance identity its Graph permissions needs a Privileged Role Administrator, so that step can't sit with the DBAs.
 
 Arc is the program's chosen path, not the only one: Microsoft documents a manual setup for SQL Server 2022 and later on Windows. Arc wins because it also carries inventory, policy, updates and Defender for the host, which is Book 05.
 
@@ -357,7 +357,7 @@ Workbook: Book 06, index.`);
     "Microsoft Learn: SQL Server authentication modes; register an SPN for Kerberos connections; sys.dm_exec_connections; sys.server_principals.",
     "Microsoft Learn: deprecated Windows features (NTLM); Restrict NTLM policies and auditing; LAN Manager authentication level; KB5066470.",
     "Microsoft Learn: SQL Server and Windows Server lifecycle and Extended Security Updates; SQL Server migration tooling; Data Migration Assistant retirement.",
-    "Microsoft Learn: Microsoft Entra authentication for SQL Server; SQL Server enabled by Azure Arc; Arc in Azure Government; Entra logins and users.",
+    "Microsoft Learn: Microsoft Entra authentication for SQL Server; SQL Server enabled by Azure Arc; Entra logins and users.",
     "Microsoft Learn: Microsoft.Data.SqlClient, ODBC, OLE DB and JDBC authentication modes; SQL Server Audit; Cloud PKI; Intune supported platforms.",
     "OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles, January 26, 2022.  ·  NIST SP 800-37 Rev. 2.",
     "Full footnotes with links and access dates: Book 06, every chapter and runbook (whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/).",

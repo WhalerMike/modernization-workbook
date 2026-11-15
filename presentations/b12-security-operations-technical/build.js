@@ -341,8 +341,6 @@ All four sign-in streams are core, because the three non-interactive ones are wh
   ], { x: 6.8, fontSize: 12, limit: 3.48 });
   table(s, "Clouds", 3.5, [1.2, 2.65, 2.1], ["Cloud", "Resource Manager", "Microsoft Graph"], [
     ["GCC", "management.azure.com", "graph.microsoft.com"],
-    ["GCC High", "management.usgovcloudapi.net", "graph.microsoft.us"],
-    ["DoD", "management.usgovcloudapi.net", "dod-graph.microsoft.us"],
   ], { x: 6.8, fontSize: 11.5, limit: 4.95 });
   callout(s, "Retain", 5.15, 1.3, "FaTriangleExclamation", HEX.red, "The retention block does nothing: ",
     "diagnostic-settings storage retention was disabled on September 30, 2025. Set retention per table; a cut to total retention waits 30 days.");
@@ -354,8 +352,8 @@ Entra diagnostic settings are the Resource Manager type microsoft.aadiam/diagnos
 
 The schema still has a retentionPolicy block. Leave it out: Microsoft disabled all diagnostic-settings storage retention on September 30, 2025, so any value there has no effect. Storage retention is a lifecycle policy now, and Log Analytics retention is set per table.
 
-M-26-14's floor is six months searchable, usable immediately, and a year retrievable, usable after a step such as a search job. A workspace maps onto that: analytics retention up to two years, total retention up to twelve, a default of thirty days. The program sets at least 180 and 365 days on every identity table. Shortening total retention takes effect only after 30 days; lengthening applies to existing data. Endpoints follow the Microsoft 365 environment: GCC keeps worldwide endpoints, while GCC High and DoD use Azure Government's.`,
-  "Book 12, Chapter 03 — Identity Telemetry, \"Path B,\" \"Path C,\" \"Retention: what the logging baseline asks for,\" \"Sovereign clouds.\"");
+M-26-14's floor is six months searchable, usable immediately, and a year retrievable, usable after a step such as a search job. A workspace maps onto that: analytics retention up to two years, total retention up to twelve, a default of thirty days. The program sets at least 180 and 365 days on every identity table. Shortening total retention takes effect only after 30 days; lengthening applies to existing data. Endpoints follow the Microsoft 365 environment: GCC keeps the worldwide endpoints.`,
+  "Book 12, Chapter 03 — Identity Telemetry, \"Path B,\" \"Path C,\" \"Retention: what the logging baseline asks for,\" \"GCC endpoints.\"");
 }
 
 // ================================================================== 9 Verify and Graph
@@ -486,7 +484,7 @@ The program's sequence: assign, wait for evaluation, run a task per policy, then
   notes(s,
 `The unified audit log covers Exchange, SharePoint, OneDrive, Entra ID, Teams, Power BI and more, and it's the plane most often assumed rather than checked. Microsoft says auditing is on by default but tells administrators to verify it; it's off by default for Business Basic, Standard and Premium. Check with Get-AdminAuditLogConfig in Exchange Online PowerShell; in Security and Compliance PowerShell the property is always False, even when auditing is on. With auditing off, neither the API nor Sentinel can reach audit data, so the program treats Set-AdminAuditLogConfig as a high-severity detection.
 
-The collector is an Entra app with permission to read activity data. GCC differs here even though it matches worldwide elsewhere: Graph uses worldwide endpoints, but this API has its own manage-gcc host, and GCC High and DoD have their own too. You subscribe per tenant to five content types: Entra ID, Exchange, SharePoint, General, which includes Teams, and DLP. PublisherIdentifier is the collector author's tenant GUID; without it, calls share one global throttling quota.
+The collector is an Entra app with permission to read activity data. GCC differs here even though it matches worldwide elsewhere: Graph uses worldwide endpoints, but this API has its own manage-gcc host. You subscribe per tenant to five content types: Entra ID, Exchange, SharePoint, General, which includes Teams, and DLP. PublisherIdentifier is the collector author's tenant GUID; without it, calls share one global throttling quota.
 
 The rules that break first-time collectors: wait fifteen minutes between start requests, and allow twelve hours for first content. List content in windows of 24 hours or less, no more than seven days back, selected by when content became available, not when events happened. Follow NextPageUri to the end. Content is fetchable for seven days, so a longer outage is a permanent gap. Events arrive out of order and duplicates are by design, so track each contentId, deduplicate on the record Id, and re-list a trailing window every run.`,
   "Book 12, Chapter 04 — Platform Telemetry, \"Part 4: the Microsoft 365 unified audit log,\" Steps 1–5.");
@@ -570,12 +568,12 @@ MTTD is measurable once incidents exist: take the latest SecurityIncident row pe
     ["Threat intel", "TAXII 2.0 and 2.1 connector", "ThreatIntelIndicators, ThreatIntelObjects", "Legacy table unwritten since July 31, 2025"],
   ], { fontSize: 11.5, limit: 5.3 });
   callout(s, "Portal", 5.45, 1.0, "FaCloud", HEX.navy, "Plan in the Defender portal: ",
-    "after March 31, 2027 Sentinel is supported only there. The Defender XDR connector isn't listed for DoD: confirm before designing on it.");
+    "after March 31, 2027 Sentinel is supported only there. Check each capability against GCC availability before designing on it.");
   sources(s, "Sources: Microsoft Learn — Sentinel in the Defender portal; feature availability; Entra ID, XDR, Syslog and CEF via AMA connectors; ASIM DNS; SQL audit; threat intel. Book 12, Ch 05.");
   notes(s,
-`Two platform facts shape every connector decision. After March 31, 2027 Sentinel will be supported only in the Defender portal, where Microsoft says all generally available Sentinel features are in commercial, GCC, GCC High and DoD, with previews in commercial only. And the workspace's cloud decides which availability column applies: Repositories and the peer and blast-radius UEBA enrichments aren't in Azure Government. Microsoft's government page lists the Defender XDR connector as unavailable for DoD, which conflicts with the portal statement; until that's reconciled, a DoD tenant confirms it in its own portal.
+`Two platform facts shape every connector decision. After March 31, 2027 Sentinel will be supported only in the Defender portal, where Microsoft says all generally available Sentinel features are in the commercial and GCC clouds, with previews in commercial only. And the workspace's cloud decides which availability column applies: a GCC tenant's workspace reads the commercial Azure column, where the Repositories feature and the peer and blast-radius UEBA enrichments are available, and Microsoft's government page lists the Defender XDR connector as generally available for GCC.
 
-Entra ID lands sign-ins, audit, the non-human streams, provisioning, Graph activity and risk tables; sign-ins need P1 or P2. In SigninLogs, ResultType is a string with zero for success, and MfaDetail is deprecated in favor of AuthenticationDetails. Defender XDR brings incidents and alerts and can stream hunting tables, all generally available in the government clouds; no vulnerability table streams, so exploitation surfaces as a Defender alert. Stream only what your rules join.
+Entra ID lands sign-ins, audit, the non-human streams, provisioning, Graph activity and risk tables; sign-ins need P1 or P2. In SigninLogs, ResultType is a string with zero for success, and MfaDetail is deprecated in favor of AuthenticationDetails. Defender XDR brings incidents and alerts and can stream hunting tables; no vulnerability table streams, so exploitation surfaces as a Defender alert. Stream only what your rules join.
 
 Appliances use a Linux forwarder running the Azure Monitor Agent: syslog into Syslog, CEF into CommonSecurityLog. TimeGenerated reflects the forwarder, and EventTime uses the forwarder's time zone, which matters to the join on time. Write DNS rules against the ASIM parser, not a vendor table, so they survive a platform change. SQL audit differs by location: Azure SQL writes to AzureDiagnostics; SQL Server can target the Windows Security log, which Microsoft calls appropriate for high-security environments, as event 33205, to be confirmed on a test instance. Threat intelligence now lands in ThreatIntelIndicators; the legacy table stopped receiving data after July 31, 2025.`,
   "Book 12, Chapter 05 — From Log Warehouse to Detection, \"Microsoft Sentinel connector architecture.\"");
@@ -780,15 +778,15 @@ The drift export reads guestconfigurationresources, one row per noncompliant set
   const s = content(P2, "Cloud posture: owned tool first, then one queue");
   tag(s, "What");
   table(s, "Posture", 1.5, [1.6, 3.6, 3.1, 3.85], ["Platform", "Posture mechanism", "FedRAMP listing (Oct. 21, 2026)", "Treatment (design guidance)"], [
-    ["Azure", "Defender for Cloud: Foundational and Defender CSPM", "Azure, Azure Government: Class D", "Primary; coordinates where it reaches"],
-    ["AWS", "Config conformance packs; Security Hub CSPM, incl. CIS AWS", "US East/West Class C; GovCloud Class D", "Primary for AWS; both locations valid"],
-    ["Google Cloud", "Security Command Center; Assured Workloads", "Google Services, Class D", "Adoption default"],
+    ["Azure", "Defender for Cloud: Foundational and Defender CSPM", "Azure (commercial): Class D", "Primary; coordinates where it reaches"],
+    ["AWS", "Config conformance packs; Security Hub CSPM, incl. CIS AWS", "US East/West: Class C", "Primary for AWS where owned"],
+    ["Google Cloud", "Security Command Center", "Google Services, Class D", "Adoption default"],
     ["Oracle Cloud", "Cloud Guard", "OCI Government Cloud, Class D", "Only mechanism: no Defender for Cloud"],
     ["VMware", "Broadcom hardening guide; CIS ESXi benchmarks", "Customer-operated: none", "The agency's own evidence"],
   ], { fontSize: 11.5, limit: 4.5 });
   panel(s, "Stops", 0.6, 4.6, 5.95, 1.85, HEX.amber, HEX.amberTint, "WHERE DEFENDER FOR CLOUD STOPS", null, [
-    "AWS connector unavailable in national government clouds",
-    "No CIEM or DevOps security in Azure Government; attack path unconfirmed",
+    "Multicloud plans cover Azure, AWS and Google Cloud only",
+    "No Oracle Cloud: OCI posture comes from Cloud Guard or a third-party CNAPP",
   ], 12);
   panel(s, "Admit", 6.8, 4.6, 5.95, 1.85, HEX.navy, HEX.navyTint, "KUBERNETES ADMISSION (DESIGN GUIDANCE, CM-7)", null, [
     "No privileged pods, no images from unapproved registries",
@@ -798,9 +796,9 @@ The drift export reads guestconfigurationresources, one row per noncompliant set
   notes(s,
 `A host scanner can't tell you whether a bucket is public, a workload is internet-reachable, a role is over-permissioned or an image was scanned. Cloud security posture management reads those settings through each provider's API: CM-6 for cloud resources, a separate contribution from the operating-system baseline. An assessor who sees only one hasn't seen CM-6 closed.
 
-The selection rule is design guidance. A Microsoft product is the default only where it actually coordinates other platforms. An owned native mechanism is primary for its own platform. Where nothing is owned, a named adoption default is recorded as a plan, not a capability. And every mechanism is checked on the Marketplace at procurement, because the agency still authorizes its own systems. The listings shown are from the Marketplace dataset of October 21, 2026: AWS Config and Security Hub CSPM appear in both the Moderate commercial and High GovCloud offerings, and either location is valid for a Moderate system, since the High offering includes the Moderate controls. Security Hub CSPM also runs the CIS AWS Foundations Benchmark, a civilian hardening benchmark for the account layer. On VMware the baseline is Broadcom's own hardening guide, measured by Security Posture Management, with CIS ESXi as a cross-check; it's customer-operated, with no certification of its own. Prisma Cloud is listed at Moderate and High, and Wiz at High with a Moderate package in process; either is a legitimate whole-estate choice for the authorizing official.
+The selection rule is design guidance. A Microsoft product is the default only where it actually coordinates other platforms. An owned native mechanism is primary for its own platform. Where nothing is owned, a named adoption default is recorded as a plan, not a capability. And every mechanism is checked on the Marketplace at procurement, because the agency still authorizes its own systems. The listings shown are from the Marketplace dataset of October 21, 2026: AWS Config and Security Hub CSPM appear in the Moderate commercial-Region offering, where the program's AWS workloads run, so the posture mechanism is certified at the system's own level. Security Hub CSPM also runs the CIS AWS Foundations Benchmark, a civilian hardening benchmark for the account layer. On VMware the baseline is Broadcom's own hardening guide, measured by Security Posture Management, with CIS ESXi as a cross-check; it's customer-operated, with no certification of its own. Prisma Cloud is listed at Moderate and High, and Wiz at High with a Moderate package in process; either is a legitimate whole-estate choice for the authorizing official.
 
-Defender for Cloud's multicloud plans cover Azure, AWS and Google Cloud, not Oracle. Microsoft says its AWS connector isn't available on the national government clouds, and CIEM and DevOps security aren't in Azure Government; attack path is listed both ways, so test it.
+Defender for Cloud's multicloud plans cover Azure, AWS and Google Cloud, not Oracle, so OCI posture comes from Cloud Guard or a third-party CNAPP. Plan that gap before an assessor finds it.
 
 Containers add three mechanisms: registry image scanning, where the fix is rebuild and redeploy; admission control for CM-7, where Pod Security Admission rejects privileged pods in enforce mode and policy engines add registry and tag rules; and runtime detection for SI-3. Every finding is an exported record in the same queue, and a suppression or exemption isn't a closure.`,
   "Book 12, Chapter 08 — Cloud-Native Posture, \"The owned-tool-first decision,\" \"CNAPP,\" \"Kubernetes and container security,\" \"Feeding the evidence contract.\"");
@@ -864,11 +862,11 @@ The taxonomy is design guidance: a CUI parent whose sublabels carry marking and 
   ], { fontSize: 11.5, limit: 4.95 });
   callout(s, "Simulate", 5.1, 1.35, "FaFilter", HEX.amber, "Simulate, enforce, then watch overrides: ",
     "every policy starts in a test mode and is measured against real content. Repeated overrides and mass label removal are detections, not report lines.");
-  sources(s, "Sources: Microsoft Learn — New-DlpComplianceRule, New-DlpCompliancePolicy; auto-labeling cmdlets; endpoint DLP; device onboarding; Purview GCC and GCC High plans. Book 12, Ch 09.");
+  sources(s, "Sources: Microsoft Learn — New-DlpComplianceRule, New-DlpCompliancePolicy; auto-labeling cmdlets; endpoint DLP; device onboarding; Purview GCC deployments. Book 12, Ch 09.");
   notes(s,
 `Manual labeling catches the obviously sensitive document and misses the routine one, so automatic labeling classifies on content. Built-in sensitive information types cover U.S. Social Security, taxpayer ID, bank account, driver's license and passport numbers; there's no built-in employer identification number type, so EINs and agency case numbers need custom types, defined as XML rule packages.
 
-DLP acts at three points, all available in GCC and GCC High. Service DLP runs server-side in Exchange, SharePoint, OneDrive and Teams, independent of the device. Endpoint DLP covers onboarded Windows 10 and 11, macOS, and Windows Server 2019 and later, where it's off until turned on; onboarding is shared with Defender for Endpoint, and an excluded device gets no policy. The CASB acts at the session, for apps routed through Conditional Access app control.
+DLP acts at three points, all available in GCC. Service DLP runs server-side in Exchange, SharePoint, OneDrive and Teams, independent of the device. Endpoint DLP covers onboarded Windows 10 and 11, macOS, and Windows Server 2019 and later, where it's off until turned on; onboarding is shared with Defender for Endpoint, and an excluded device gets no policy. The CASB acts at the session, for apps routed through Conditional Access app control.
 
 The minimum baseline on the slide is design guidance for a Moderate system. The cmdlet details matter: labels are matched inside ContentContainsSensitiveInformation, with label entries of type Sensitivity; severity is ReportSeverityLevel; GenerateAlert takes an email address; endpoint restrictions are settings like Print, RemovableMedia and NetworkShare, and Block or Warn also needs NotifyUser; and BlockAccessScope PerUser blocks external users while keeping the owner's access.
 
@@ -1061,14 +1059,14 @@ sourceSlide("Sources behind the orientation and Module 1", [
   "Microsoft Learn: Defender for Cloud continuous export; Investigate DLP alerts with Defender XDR (alert tuning rule, early October 2026).  ·  NIST OSCAL layers and models.",
   "Microsoft Learn: Entra data retention; configure Entra diagnostic settings; identity logs you can stream; stream logs to an event hub; Graph activity logs; ID Protection risk export.",
   "Microsoft Learn: Sentinel Entra ID connector; ARM reference microsoft.aadiam diagnosticSettings 2017-04-01; migrate diagnostic-settings storage retention; Log Analytics data retention.",
-  "Microsoft Learn: Graph national cloud deployments; Compare Azure Government; List signIns; List directoryAudits; analyze activity logs with Graph; Graph SDK national clouds; KQL union.",
+  "Microsoft Learn: Graph national cloud deployments; Cloud feature availability for US Government customers; List signIns; List directoryAudits; analyze activity logs with Graph; Graph SDK national clouds; KQL union.",
   "Full footnotes with links and access dates: Book 12, Chapters 01–03.",
 ]);
 sourceSlide("Sources behind Module 2 — Platform telemetry to detection", [
   "Microsoft Learn: Activity log in Azure Monitor; activity log event schema; diagnostic settings in Azure Monitor; resource logs; AzureDiagnostics and AzureActivity table references; az monitor diagnostic-settings subscription.",
   "Microsoft Learn: Azure Policy built-ins for Azure Monitor; built-in initiatives (Monitoring); deployIfNotExists effect; remediate non-compliant resources.  ·  FedRAMP KSI-MLA-EVC and KSI-MLA-LET.",
   "Microsoft Learn: Turn auditing on or off; Search-UnifiedAuditLog; Office 365 Management Activity API reference, FAQ and schema; Sentinel and Microsoft Teams.",
-  "Microsoft Learn: Manage audit log retention policies; auditing solutions in Purview; Purview service description; Purview GCC and GCC High plans; OfficeActivity; Sentinel billing (free sources).",
+  "Microsoft Learn: Manage audit log retention policies; auditing solutions in Purview; Purview service description; Purview GCC deployments; OfficeActivity; Sentinel billing (free sources).",
   "CISA and FBI, AA23-193A, Enhanced Monitoring to Detect APT Activity Targeting Outlook Online (July 2023).  ·  NIST SP 800-53 Rev. 5: AU-6 and enhancements, SI-4 and enhancements.",
   "Microsoft Learn: scheduled and NRT analytics rules; SecurityIncident; Sentinel in the Defender portal; Sentinel feature availability; Cloud feature availability for US Government.",
   "Microsoft Learn: Entra ID and Defender XDR connectors; XDR streaming event types; Syslog and CEF via AMA; Infoblox NIOS; Zscaler CEF; tables and connectors reference; ASIM DNS schema and parsers.",
@@ -1083,7 +1081,7 @@ sourceSlide("Sources behind Module 3 — Vulnerability, patch and posture", [
   "Microsoft Learn: runHuntingQuery; Graph security API; software vulnerability export; Logs Ingestion API and Data Collector migration; Lifecycle (2026–2030); SQL Server servicing models; SQL Arc automatic updates.",
   "Microsoft Learn: Update Manager; Arc hotpatch; Intune update rings and expedite; Resource Graph tables; machine configuration assignments, remediation options and compliance; guest configuration samples.",
   "AWS: Systems Manager Patch Manager, State Manager, EventBridge events; Amazon Inspector; AWS Config NIST 800-53 pack; Security Hub CSPM.  ·  Oracle: OS Management Hub; Ksplice; Cloud Guard.",
-  "Broadcom: vSphere Lifecycle Manager firmware; VCF 9.1 Security Posture Management.  ·  CIS Benchmarks; CIS AWS Foundations in Security Hub CSPM.  ·  Red Hat Satellite 6.19.  ·  Google Cloud: Security Command Center; Assured Workloads.  ·  FedRAMP Marketplace data (Oct. 21, 2026).",
+  "Broadcom: vSphere Lifecycle Manager firmware; VCF 9.1 Security Posture Management.  ·  CIS Benchmarks; CIS AWS Foundations in Security Hub CSPM.  ·  Red Hat Satellite 6.19.  ·  Google Cloud: Security Command Center.  ·  FedRAMP Marketplace data (Oct. 21, 2026).",
   "Microsoft Learn: Defender for Cloud support matrices, AWS quickstart, attack paths, Defender for Containers; Azure Policy for Kubernetes.  ·  Kubernetes Pod Security Admission and Standards.  ·  NIST SP 800-190, SP 800-218.",
   "Full footnotes with links and access dates: Book 12, Chapters 06–08.",
 ]);

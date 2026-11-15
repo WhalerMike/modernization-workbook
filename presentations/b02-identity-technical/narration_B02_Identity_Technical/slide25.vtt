@@ -29,35 +29,31 @@ so these are requirements now, not goals.
 That reorders the roadmap.
 
 7
-00:00:21.250 --> 00:00:23.413
-Older plans put smart cards last,
+00:00:21.250 --> 00:00:26.605
+Older plans put smart cards last, but a
+federal workforce already carries PIV cards,
 
 8
-00:00:23.413 --> 00:00:27.179
-but a federal workforce already
-carries PIV or CAC cards,
-
-9
-00:00:27.179 --> 00:00:32.787
+00:00:26.605 --> 00:00:32.037
 so certificate-based authentication straight
 against Entra ID is the fastest path.
 
-10
-00:00:32.787 --> 00:00:38.233
+9
+00:00:32.037 --> 00:00:37.483
 The program goes in four phases: privileged
 accounts first, then every card holder,
 
-11
-00:00:38.233 --> 00:00:43.438
+10
+00:00:37.483 --> 00:00:42.688
 then managed Windows devices on Windows
 Hello, then everyone else on passkeys.
 
-12
-00:00:43.438 --> 00:00:47.265
+11
+00:00:42.688 --> 00:00:46.515
 Then the legacy cutoff: find
 the remaining legacy sign-ins,
 
-13
-00:00:47.265 --> 00:00:51.720
+12
+00:00:46.515 --> 00:00:50.950
 move them, block them, and watch for
 thirty days until there are none.

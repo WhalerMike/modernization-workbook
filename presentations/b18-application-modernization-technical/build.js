@@ -531,7 +531,7 @@ PL/SQL and Db2 SQL PL convert with varying success, and packages are the hardest
   tag(s, "What");
   const tb = table(s, "Tools", 1.5, [2.55, 3.45, 2.75, 3.4], ["Tool", "Sources", "Targets", "Notes as of October 2026"], [
     ["AWS Schema Conversion Tool (desktop)", "Oracle 10.1+; Db2 LUW 9.1 to 11.5; Db2 for z/OS 12; SQL Server; others", "PostgreSQL and Aurora PostgreSQL, MySQL and others", "AWS states it is FedRAMP compliant; no end-of-support notice"],
-    ["AWS DMS Schema Conversion (managed)", "Oracle; Db2 LUW; Db2 for z/OS (API and CLI only); SQL Server; SAP ASE", "Aurora or RDS for PostgreSQL (some MySQL, Redshift)", "Generative AI conversion on PostgreSQL paths; no GovCloud (US) Region listed"],
+    ["AWS DMS Schema Conversion (managed)", "Oracle; Db2 LUW; Db2 for z/OS (API and CLI only); SQL Server; SAP ASE", "Aurora or RDS for PostgreSQL (some MySQL, Redshift)", "Built on the SCT engine; generative AI conversion on PostgreSQL paths, using cross-Region inference"],
     ["SSMA for Db2", "Db2 z/OS 9.0+, Db2 LUW 9.8+, Db2 for i 7.1+", "SQL Server 2019 to 2025; Azure SQL Database and Managed Instance", "Current release v10.6"],
     ["SSMA for Oracle", "Oracle", "Same targets", "v10.6; Copilot GA since v10.4; generated code must be reviewed"],
     ["Ora2Pg (open source, GPL v3)", "Oracle; MySQL and MariaDB; SQL Server", "PostgreSQL", "25.0 (Apr. 20, 2025); cost assessment; no Db2 source"],
@@ -542,7 +542,7 @@ PL/SQL and Db2 SQL PL convert with varying success, and packages are the hardest
   notes(s,
 `The tools as they stood in October 2026, named as examples of each category, not endorsements.
 
-AWS's desktop Schema Conversion Tool covers Oracle, both Db2 platforms and SQL Server, among others. AWS states it's FedRAMP compliant. AWS DMS Schema Conversion is the managed version, with Db2 for z/OS through the API and command line only. It offers generative AI conversion on the PostgreSQL paths from Oracle and both Db2 platforms, and its published Region table lists no AWS GovCloud Region.
+AWS's desktop Schema Conversion Tool covers Oracle, both Db2 platforms and SQL Server, among others. AWS states it's FedRAMP compliant. AWS DMS Schema Conversion is the managed version, with Db2 for z/OS through the API and command line only. It offers generative AI conversion on the PostgreSQL paths from Oracle and both Db2 platforms, using cross-Region inference.
 
 Microsoft's SQL Server Migration Assistant comes in Db2 and Oracle editions, both at version 10.6. The Oracle edition's AI-assisted conversion, Copilot, has been generally available since 10.4, using the agency's own Azure OpenAI resource or a Microsoft-managed endpoint with Entra ID sign-in, and Microsoft says generated code must be reviewed, validated and tested. Ora2Pg, open source under GPL version 3, is at 25.0 from April 2025 and has no Db2 source.
 

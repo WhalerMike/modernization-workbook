@@ -16,57 +16,62 @@ Telemetry: which signals
 actually arrive on your side.
 
 4
-00:00:11.149 --> 00:00:16.345
+00:00:11.149 --> 00:00:16.041
 Identity: who a claim's issuer resolves
-to, and GCC pairs with Entra ID
+to, and GCC pairs with Entra ID in
 
 5
-00:00:16.345 --> 00:00:21.725
-in commercial Azure, while GCC High
-and DoD pair with Azure Government.
+00:00:16.041 --> 00:00:19.161
+commercial Azure, so a
+trust into a different
 
 6
-00:00:21.725 --> 00:00:24.807
-Enforcement: who has to enforce a control,
+00:00:19.161 --> 00:00:22.450
+Microsoft cloud crosses
+an identity boundary.
 
 7
-00:00:24.807 --> 00:00:28.887
+00:00:22.450 --> 00:00:25.532
+Enforcement: who has to enforce a control,
+
+8
+00:00:25.532 --> 00:00:29.612
 which in GCC often means the
 agency's own measurements.
 
-8
-00:00:28.887 --> 00:00:33.424
+9
+00:00:29.612 --> 00:00:34.150
 And provenance: whether a claim is
 still authoritative, or only derived.
 
-9
-00:00:33.424 --> 00:00:35.992
+10
+00:00:34.150 --> 00:00:36.717
 Each of these raises
 its own kind of drift,
 
-10
-00:00:35.992 --> 00:00:40.975
+11
+00:00:36.717 --> 00:00:41.700
 and detection for them is at different
 stages; the slide shows where each stands.
 
-11
-00:00:40.975 --> 00:00:42.925
+12
+00:00:41.700 --> 00:00:43.650
 One more point worth holding onto.
 
-12
-00:00:42.925 --> 00:00:45.717
+13
+00:00:43.650 --> 00:00:46.442
 FedRAMP's definition of
 federal customer data
 
-13
-00:00:45.717 --> 00:00:48.438
+14
+00:00:46.442 --> 00:00:49.163
 excludes the telemetry
 a provider generates.
 
-14
-00:00:48.438 --> 00:00:50.951
+15
+00:00:49.163 --> 00:00:51.676
 No certification promises you a signal.
 
-15
-00:00:50.951 --> 00:00:53.180
+16
+00:00:51.676 --> 00:00:53.900
 Next, what changed at FedRAMP.

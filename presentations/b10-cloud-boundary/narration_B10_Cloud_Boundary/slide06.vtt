@@ -6,63 +6,59 @@ Chapter 04 reads GCC from
 Microsoft's own documents.
 
 2
-00:00:04.450 --> 00:00:09.550
-GCC is the worldwide service, minus
-a published list of exclusions.
+00:00:04.450 --> 00:00:06.668
+GCC is the worldwide service,
 
 3
-00:00:09.550 --> 00:00:11.350
-And that list isn't a ladder.
+00:00:06.668 --> 00:00:11.288
+minus a published list of
+exclusions, each one in its own note.
 
 4
-00:00:11.350 --> 00:00:17.589
-Some features, like network connectivity
-in the admin center and Adoption Score,
+00:00:11.288 --> 00:00:16.393
+Network connectivity in the admin
+center, Adoption Score, the Office 365
 
 5
-00:00:17.589 --> 00:00:20.662
-are missing in GCC,
-GCC High and DoD alike.
+00:00:16.393 --> 00:00:21.924
+content delivery network and informed
+network routing are all missing in GCC.
 
 6
-00:00:20.662 --> 00:00:23.313
-Others reach GCC and stop there.
-
-7
-00:00:23.313 --> 00:00:28.055
+00:00:21.924 --> 00:00:26.668
 The biggest documented loss is the
 network connectivity layer: a daily score
 
-8
-00:00:28.055 --> 00:00:32.724
+7
+00:00:26.668 --> 00:00:31.337
 for each location, with performance
 attributed to named network providers.
 
-9
-00:00:32.724 --> 00:00:36.562
+8
+00:00:31.337 --> 00:00:35.174
 A GCC agency has to fund
 its own measurement instead.
 
-10
-00:00:36.562 --> 00:00:41.201
+9
+00:00:35.174 --> 00:00:39.814
 On the Marketplace, the GCC package
 is certified at Class C, Moderate,
 
-11
-00:00:41.201 --> 00:00:45.425
+10
+00:00:39.814 --> 00:00:44.038
 and a second package with the same
 name is in process at Class D.
 
+11
+00:00:44.038 --> 00:00:47.497
+But a higher class doesn't
+bring back an excluded feature,
+
 12
-00:00:45.425 --> 00:00:50.675
-But GCC High is already Class D, and
-it still lacks network connectivity.
+00:00:47.497 --> 00:00:52.575
+because the exclusions are product decisions,
+not consequences of an impact level.
 
 13
-00:00:50.675 --> 00:00:53.963
-A higher class doesn't bring
-back an excluded feature.
-
-14
-00:00:53.963 --> 00:00:55.800
+00:00:52.575 --> 00:00:54.410
 Next, the landing zone.

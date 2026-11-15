@@ -14,7 +14,7 @@ Many programs train at the end: build, migrate, then train. The program's point 
 
 ## Slide 4 — What federal workforce rules require
 
-FISMA is a staffing requirement as much as a course requirement. The agency head must have enough trained people to comply, and the CIO trains and oversees those with significant security duties. OPM's rule names five audiences, from every user to IT operations staff, and agencies must code their cyber positions to the NICE Framework, NIST's vocabulary of work roles. But those codes haven't been reliable. GAO found most agencies had miscoded a share of their IT management positions, so the program treats codes as one roster input, not settled fact. Just as important is what the rules don't require. There's no civilian certification mandate, and the Defense Department's certification program doesn't apply to civilian agencies. Now, what the program actually teaches.
+FISMA is a staffing requirement as much as a course requirement. The agency head must have enough trained people to comply, and the CIO trains and oversees those with significant security duties. OPM's rule names five audiences, from every user to IT operations staff, and agencies must code their cyber positions to the NICE Framework, NIST's vocabulary of work roles. But those codes haven't been reliable. GAO found most agencies had miscoded a share of their IT management positions, so the program treats codes as one roster input, not settled fact. Just as important is what the rules don't require. There's no civilian certification mandate, and no annual training number beyond the awareness floor. Now, what the program actually teaches.
 
 ## Slide 5 — Education first, then training by role
 

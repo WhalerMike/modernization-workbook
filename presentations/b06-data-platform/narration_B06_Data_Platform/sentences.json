@@ -202,58 +202,6 @@
    "Once we know what stays, each instance needs a cloud identity."
   ]
  ],
- "5": [
-  [
-   0.05,
-   5.85,
-   "What replaces the domain join is Azure Arc, which gives each instance an Entra identity."
-  ],
-  [
-   5.9,
-   8.062,
-   "On sequel Server 2025, that's a managed identity; on 2022, it's an app registration with a certificate."
-  ],
-  [
-   13.963,
-   3.3,
-   "The limits matter, and the old documents missed several."
-  ],
-  [
-   17.262,
-   4.3,
-   "Failover cluster instances can't use Entra authentication at all."
-  ],
-  [
-   21.562,
-   9.912,
-   "Entra authentication through Arc isn't available in the U S Government Virginia region, so a G C C tenant uses a commercial subscription in the same tenant."
-  ],
-  [
-   31.475,
-   4.662,
-   "The old runbook's government-cloud setup would never have produced Entra logins."
-  ],
-  [
-   36.138,
-   2.062,
-   "fido two isn't supported here."
-  ],
-  [
-   38.2,
-   7.125,
-   "And granting the instance its Graph permissions takes a privileged role administrator, so that step can't sit with the DBAs."
-  ],
-  [
-   45.325,
-   9.812,
-   "Arc isn't the only path, but it wins because it also brings inventory, policy, updates and Defender for the host, which Devices and Endpoints covers."
-  ],
-  [
-   55.138,
-   2.237,
-   "Next, the logins themselves."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -574,6 +522,53 @@
    64.112,
    0.762,
    "Thank you."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.85,
+   "What replaces the domain join is Azure Arc, which gives each instance an Entra identity."
+  ],
+  [
+   5.9,
+   8.062,
+   "On sequel Server 2025, that's a managed identity; on 2022, it's an app registration with a certificate."
+  ],
+  [
+   13.963,
+   3.3,
+   "The limits matter, and the old documents missed several."
+  ],
+  [
+   17.262,
+   4.3,
+   "Failover cluster instances can't use Entra authentication at all."
+  ],
+  [
+   21.562,
+   9.338,
+   "sequel Server needs the Azure public cloud to use Entra authentication, so a G C C tenant uses a commercial subscription in the same tenant."
+  ],
+  [
+   30.9,
+   2.062,
+   "fido two isn't supported here."
+  ],
+  [
+   32.962,
+   7.125,
+   "And granting the instance its Graph permissions takes a privileged role administrator, so that step can't sit with the DBAs."
+  ],
+  [
+   40.087,
+   9.812,
+   "Arc isn't the only path, but it wins because it also brings inventory, policy, updates and Defender for the host, which Devices and Endpoints covers."
+  ],
+  [
+   49.9,
+   2.237,
+   "Next, the logins themselves."
   ]
  ]
 }

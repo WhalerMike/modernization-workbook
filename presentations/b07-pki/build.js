@@ -192,7 +192,7 @@ Workbook: Book 07, Chapter 03 — Hardening What Stays.`);
     "for an established AD CS hierarchy, BYOCA — a Cloud PKI issuing CA signed by the offline root at a key ceremony. It keeps the chain every relying party already trusts, and makes the root's CRL a production dependency.");
   txt(s, "Licensing", [
     { text: "Entitlement: ", options: { bold: true, color: HEX.amber } },
-    { text: "Cloud PKI needs a subscription on top of Intune Plan 1 or 2. From July 2026, E5 and E7 include it for commercial customers; government plans are to follow, so confirm it. GCC High since the week of September 28, 2026; not DoD." },
+    { text: "Cloud PKI needs a subscription on top of Intune Plan 1 or 2. From July 2026, E5 and E7 include it for commercial customers; government plans are to follow, so confirm it. GCC uses the commercial Intune service." },
   ], { x: 0.6, y: 5.8, w: 12.15, h: 0.75, fontSize: 13.5 });
   sources(s, "Sources: Microsoft Learn — Cloud PKI overview, fundamentals, deployment models and BYOCA; GSA Federal PKI 101; FIPS 201-3. Book 07, Chapter 04.");
   s.addNotes(
