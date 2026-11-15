@@ -2037,6 +2037,6 @@
   - {title: 'Oracle, Oracle US Government Cloud', url: 'https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govfedramp.htm'}
   - {title: 'FedRAMP, Marketplace product data', url: 'https://www.fedramp.gov/marketplace/products.json'}
   pages: [CONTRIBUTING.md, docs/books/b10-cloud-boundary/05-the-landing-zone.md, docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.md, docs/evaluations/cloud-dns-resolvers-infoblox-bind.md]
-  prs: []
+  prs: [627]
   status: settled
   note: "Basis: workbook owner decision, November 15, 2026. Extends WD-155 and supersedes nothing. The provider-notices kit keeps its AWS GovCloud (US) partition and Oracle OC2 realm support as a cross-provider collector."

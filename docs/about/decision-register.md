@@ -2719,7 +2719,7 @@ There are **156** workbook decisions: 147 settled, 0 challenged and 9 superseded
 | **Pages affected** | [`CONTRIBUTING.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md), [Chapter 05 — The Landing Zone](../books/b10-cloud-boundary/05-the-landing-zone.md), [Chapter 09 — Control Compliance Automation: AWS and VMware](../books/b15-day2-operations/09-control-automation-aws-and-vmware.md), [Cloud DNS on AWS, Azure and Oracle Cloud: Native Resolvers, Infoblox and BIND](../evaluations/cloud-dns-resolvers-infoblox-bind.md) |
 | **Date** | 2026-11-15 |
 | **Status** | settled |
-| **Defined in** | — |
+| **Defined in** | [#627](https://github.com/WhalerMike/modernization-workbook/pull/627) |
 | **Note** | Basis: workbook owner decision, November 15, 2026. Extends [WD-155](#wd-155) and supersedes nothing. The provider-notices kit keeps its AWS GovCloud (US) partition and Oracle OC2 realm support as a cross-provider collector. |
 
 [Agree, disagree or send evidence on WD-156](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-156%3A+)
