@@ -14,29 +14,21 @@ Internal vocabulary translated: "Closure Necessity" callouts, "Authorities Close
 | 2 | Customer-operated software has no FedRAMP certification; posture evidence is the agency's | Opening | verified via published Book 12 Ch08 (linked) | Book 12 Ch08 |
 | 3 | Conformance pack definition (quoted); YAML template | Config | verified | AWS Config DG, Conformance Packs |
 | 4 | Sample templates include FedRAMP Low/Moderate/High (2 parts) and NIST 800-53 rev 5 | Config | verified | AWS Config DG, sample templates |
-| 5 | Conformance packs and organization deployment supported in both GovCloud Regions | Config | verified | AWS Config DG, Region support tables |
 | 6 | Templates not designed to ensure compliance; check rule availability by Region (quoted) | Config | verified | AWS Config DG, sample templates |
 | 7 | FedRAMP (Moderate) pack aligns to "a subset of the FedRAMP controls"; page doesn't state revision | Config | verified (intro and disclaimer read; full control table not read) | AWS Config DG, FedRAMP(Moderate) |
 | 8 | Use the NIST 800-53 rev 5 pack as primary for a Rev. 5 system | Config | restated-as-design | — |
 | 9 | Advanced queries export CI as CSV/JSON; `get-resource-config-history` for history | Config | verified | AWS Audit Manager availability change page (export section) |
 | 10 | `get-conformance-pack-compliance-details`: filters, rule/resource fields under EvaluationResultQualifier, ConfigRuleInvokedTime, ResultRecordedTime | Config, code | verified | AWS CLI reference |
-| 11 | Remediation via SSM Automation documents, manual or auto; Region list includes both GovCloud Regions | Config | verified | AWS Config DG, Remediation |
-| 12 | GovCloud user guide: "SSM documents for AWS Config remediation actions are not available" | Config | verified; flagged as a conflict with #11 (source said remediation is available in GovCloud without caveat) | AWS GovCloud UG, AWS Config |
+| 11 | Remediation via SSM Automation documents, manual or auto, in the Regions the Config developer guide lists | Config | verified; GovCloud Region detail dropped November 15, 2026 | AWS Config DG, Remediation |
 | 13 | Security Hub renamed Security Hub CSPM; FSBP and NIST standards; GuardDuty, Inspector, Macie findings; ASFF | Security Hub | verified | Security Hub UG, Introduction to Security Hub CSPM |
 | 14 | NIST 800-53 Rev. 5 standard supports a subset; no manual checks; Config resource recording required | Security Hub | verified | Security Hub UG, NIST SP 800-53 Rev 5 |
-| 15 | Security Hub CSPM endpoints in both GovCloud Regions | Security Hub | verified | AWS General Reference, sechub |
 | 16 | Standards available in all Regions where CSPM is (except Control Tower and Tagging standards) | Security Hub | verified | Security Hub UG, Regional limits |
 | 17 | No backfill; Region-scoped (source caution) | Security Hub | verified (quote) | Security Hub UG, Introduction |
 | 18 | Finding retention 90 days after last update or creation | Security Hub | verified (new; not in source) | AWS General Reference, sechub quotas |
 | 19 | Passed control findings auto-set to RESOLVED; reset to NEW on failure | Security Hub | verified (new) | Security Hub API Reference, AwsSecurityFindingFilters (WorkflowStatus) |
-| 20 | GovCloud: cross-Region aggregation only between GovCloud Regions; integration lists (AWS services; ServiceNow ITSM among third-party) | Security Hub | verified | Security Hub UG, Regional limits; GovCloud UG, Security Hub CSPM |
-| 21 | Source: "Patch Manager can also forward compliance data to Security Hub CSPM" | Security Hub | corrected for GovCloud: Patch Manager not in the GovCloud AWS-service integration list | Security Hub UG, Regional limits |
-| 22 | New AWS Security Hub available in both GovCloud Regions, March 30, 2026 | Security Hub | verified | AWS What's New |
-| 23 | New Security Hub GovCloud differences: no third-party integrations, no automation rules for integrations, no cost estimator, usage page, Extended plan, network scanning | Security Hub | verified | GovCloud UG, AWS Security Hub |
 | 24 | New Security Hub ServiceNow ITSM integration creates incidents/problems | Routes | verified | Security Hub UG, Integrations for ServiceNow |
 | 25 | Patch Manager point-in-time snapshot; baseline compliance ≠ secure | Patch Manager | verified via published Book 12 Ch07 (linked) | Book 12 Ch07 |
 | 26 | Audit Manager maintenance mode from April 30, 2026; no new accounts/Regions/orgs; no new frameworks or versions | Audit Manager | verified — correction to brief and earlier program drafts | Audit Manager UG, availability change |
-| 27 | Audit Manager endpoints: commercial Regions only, no GovCloud | Audit Manager | verified — correction | AWS General Reference, audit-manager |
 | 28 | Audit Manager FedRAMP framework is r4; Moderate 36 automated / 289 manual / 17 control sets; not intended to verify compliance | Audit Manager | verified | Audit Manager UG, FedRAMP Security Baseline Controls r4 |
 | 29 | AWS recommends conformance packs and partner solutions; evidence retained two years; enable evidence finder before disabling | Audit Manager | verified | Audit Manager UG, availability change |
 | 30 | AWS Service Management Connector: no new customers from March 31, 2026; end of support March 31, 2027; migration options | Routes | verified — new, not in source | SMC AG, end of support; Security Hub CSPM in ServiceNow page banner |
@@ -64,10 +56,10 @@ Internal vocabulary translated: "Closure Necessity" callouts, "Authorities Close
 | 52 | Hybrid-activated nodes governed at guest OS only (like Arc) | Honest limits | restated-as-design (source bound); consistent with Book 12 Ch07 matrix | Book 12 Ch07 |
 | 53 | Source: Security Hub CSPM cross-account/Region aggregation and third-party integrations "a later follow-up" | — | not carried (internal roadmap) | — |
 | 54 | Source: OCI reconciling into the same queue later | — | not carried (internal roadmap); OCI covered in Book 12 Ch07/Ch08 | — |
-| 55 | AWS US East/West FedRAMP Certified Class C (formerly Moderate); GovCloud (US) Class D (formerly High); services-in-scope is per service, per Region; Amazon Connect Customer in both columns | AWS locations paragraph | verified 2026-10-29 (Moderate-civilian sweep; coordinator fact pack) | AWS FedRAMP page; FedRAMP Services in Scope |
-| 56 | A Moderate system can run in GovCloud (US) because SP 800-53B baselines are cumulative; most workloads in GovCloud with a contact center in commercial Regions | AWS locations paragraph | inference / design guidance 2026-10-29 | Grounded in #55 |
+| 55 | AWS US East/West FedRAMP Certified Class C (formerly Moderate); services-in-scope is per service, per Region; Amazon Connect Customer listed | AWS locations paragraph | verified 2026-10-29 (Moderate-civilian sweep; coordinator fact pack) | AWS FedRAMP page; FedRAMP Services in Scope |
+| 56 | The program's AWS workloads run in the commercial Regions; the loop is checked against them | AWS locations paragraph | design guidance, restated November 15, 2026 (WD-156) | Grounded in #55 |
 | 57 | Security Hub CSPM supports CIS AWS Foundations Benchmark v5.0.0, v3.0.0, v1.4.0, v1.2.0; recommends v5.0.0 | Security Hub CSPM | verified 2026-10-29 | Security Hub UG, CIS AWS Foundations Benchmark |
-| 58 | Standards other than Control Tower and Resource Tagging available in every Region where Security Hub CSPM is (GovCloud included) | Security Hub CSPM | verified 2026-10-29 | Security Hub UG, Regional limits |
+| 58 | Standards other than Control Tower and Resource Tagging available in every Region where Security Hub CSPM is | Security Hub CSPM | verified 2026-10-29 | Security Hub UG, Regional limits |
 | 59 | CIS lists AWS Foundations 7.1.0, VMware ESXi 8.0 1.4.0 and 9.0 1.0.0 | Security Hub CSPM; VMware hardening content | verified 2026-10-29 | CIS Benchmarks list |
 | 60 | CM-6: organization-defined common secure configurations; may come from product developers, vendors, federal agencies, consortia and others; doesn't require a STIG | VMware hardening content | verified 2026-10-29 | SP 800-53 Rev. 5 OSCAL catalog |
 | 61 | VCF Security Configuration and Hardening Guide is the vendor guide and the first SPM benchmark in 9.1 | VMware hardening content | verified (c09-vcfops-91-spm, the 9.1 SPM page) | Broadcom TechDocs, SPM |
@@ -122,3 +114,7 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 |---|---|
 | AWS Security Hub in AWS GovCloud (US) page adds "Security Hub does not support integrations with Azure in the AWS GovCloud (US) Region"; network scanning is no longer listed among the differences; the other listed gaps are unchanged | Gap list updated (Azure integration added, network scanning removed); footnote [^c09-sh-govcloud] updated |
 | AWS Config in AWS GovCloud (US): still "SSM documents for AWS Config remediation actions are not available"; both Regions listed | No change |
+
+## Government-cloud rule (November 15, 2026)
+
+Under WD-156 the program's AWS workloads run in the commercial Regions, so the chapter no longer checks or designs for AWS GovCloud (US). Removed: conformance packs and Security Hub CSPM in the GovCloud Regions (claims 5, 15), the GovCloud remediation conflict (12; footnote `c09-govcloud-config`), GovCloud aggregation and integration lists and the Patch Manager correction that depended on them (20, 21), the new Security Hub's GovCloud launch and gaps (22, 23; footnotes `c09-sh-govcloud-news`, `c09-sh-govcloud`), Audit Manager's missing GovCloud endpoint (27; footnote `c09-am-endpoints`), the "GovCloud is a different feature set" honest limit, and the GovCloud default Region in the illustrative script (now `us-east-1`). Remediation now carries a design-guidance step: test each action in a test account before automating it. The ch09-two-estates figure was re-rendered without "no GovCloud endpoint". The November 9 source-watch rows above record what was read then and stay as written.

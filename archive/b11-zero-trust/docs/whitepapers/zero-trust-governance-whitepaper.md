@@ -235,7 +235,7 @@ fixes:
 
 Per the program decision, the substrate also recognizes named Commercial
 exceptions (Amazon Connect Contact Center, SailPoint Non-Employee Risk
-Management) that operate FedRAMP Moderate on AWS GovCloud — each encoded
+Management) that operate FedRAMP Moderate on AWS — each encoded
 as a discrete enum value in the `gcc-boundary` schema and added in
 lockstep with its authorizing ADR. The substrate's posture is that
 boundary exceptions are governed, not glossed over. The compliance

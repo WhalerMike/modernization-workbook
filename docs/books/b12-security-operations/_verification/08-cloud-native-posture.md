@@ -14,7 +14,7 @@ Checked October 21, 2026 by writer W5. Source: `docs/compliance/Vol_III_Book_04_
 | 6 | Source: AWS Config + Security Hub "FedRAMP-authorized, above Moderate (AWS GovCloud Class D)" | Table; corrections | corrected | products.json: AWS Config and AWS Security Hub CSPM in `certified_services` of both AWS US East/West (Class C, Moderate) and AWS GovCloud (Class D) |
 | 7 | Security Hub is now named "AWS Security Hub CSPM" | Table | corrected (naming) | AWS Security Hub User Guide intro page; products.json service name |
 | 8 | AWS Config NIST 800-53 Rev 5 conformance pack exists; packs "are not designed to fully ensure compliance" | Table; footnote | verified | AWS Config Developer Guide page |
-| 9 | Google: Security Command Center posture; Assured Workloads has Data Boundary for FedRAMP Moderate and FedRAMP High packages; both inside Google Services offering, Class D | Table | verified / corrected | Google SCC overview; Assured Workloads control packages page; products.json FR1805751477 (SCC and Assured Workloads named in service description). Source said Assured Workloads "is the Moderate control package"; it offers Moderate and High packages within a Class D offering |
+| 9 | Google: Security Command Center posture, inside the Google Services offering, Class D | Table | verified / corrected | Google SCC overview; products.json FR1805751477. Assured Workloads dropped from the row on November 15, 2026 (WD-156) |
 | 10 | OCI Cloud Guard; in OCI-Government Cloud offering, Class D | Table | verified | Oracle Cloud Guard docs; products.json FR1900048743 description names Cloud Guard |
 | 12 | Defender for Cloud doesn't cover OCI | Table; reach | verified | Learn multicloud support matrix, plan availability lists Azure, AWS, GCP only |
 | 13 | Source: "VMware Aria Operations for Compliance" | Table | corrected / restated | Product name not confirmable (Broadcom techdocs page JS-rendered; docs.vmware.com redirects). Replaced with VMware's documented VCF 9.1 STIG workflow: InSpec audit, Ansible and PowerCLI remediation, SAF CLI checklists (Broadcom VCF blog, July 14, 2026) |
@@ -43,7 +43,7 @@ Checked October 21, 2026 by writer W5. Source: `docs/compliance/Vol_III_Book_04_
 | 38 | Source: Defender for Cloud does "multi-cloud CSPM/CWPP ingestion across Azure, AWS, and GCP" | Owned-tool-first | verified | Learn multicloud support matrix |
 | 39 | VMware row: Broadcom VCF Security Configuration and Hardening Guide (an SPM benchmark in VCF 9.1) as the vendor baseline; CIS VMware ESXi 8.0 1.4.0 and 9.0 1.0.0 as cross-check; STIG readiness content kept as optional High-only reference (claim 13 superseded in part) | Table; figure ch08-owned-tool-first | verified 2026-10-29 (Moderate-civilian sweep) | Broadcom TechDocs, VCF 9.1 Security Posture Management; CIS Benchmarks list |
 | 40 | Security Hub CSPM CIS AWS Foundations Benchmark standard (v5.0.0, v3.0.0, v1.4.0, v1.2.0; v5.0.0 recommended), available in every Security Hub CSPM Region | Table, AWS row | verified 2026-10-29 | Security Hub UG, CIS AWS Foundations Benchmark; Regional limits |
-| 41 | AWS US East/West Class C (formerly Moderate), GovCloud (US) Class D (formerly High); scope per service, per Region; a Moderate system can run in GovCloud (High includes the Moderate controls) | AWS corrections bullet | verified 2026-10-29; "can run there" is inference | AWS FedRAMP page; Services in Scope |
+| 41 | AWS US East/West Class C (formerly Moderate); scope per service, per Region; the program's AWS workloads run in the commercial Regions | AWS corrections bullet | verified 2026-10-29; design guidance restated November 15, 2026 | AWS FedRAMP page; Services in Scope |
 
 ## Carry-forward ledger
 
@@ -92,3 +92,7 @@ The description still said posture management and admission control "close" CM-6
 ## Zero Trust closure, Phase 4, November 11, 2026
 
 Added a paragraph linking the Azure Security Engineering implementation guide (Steps 1, 2, 9, 10 and its AWS, Google Cloud and Oracle Cloud comparison) where it carries the depth. No new claim.
+
+## Government-cloud rule (November 15, 2026)
+
+Under WD-156 the program's AWS workloads run in the commercial Regions and Assured Workloads isn't the program's Google Cloud environment. The AWS row and the AWS corrections bullet no longer present GovCloud (US) as a Moderate location (claim 41); the Google row and the figure name Security Command Center only (claim 9), and footnote `c08-gcp-aw` was removed. Claim 6 records the source's original wording and stays as written. Figure `ch08-owned-tool-first` re-rendered; its header comment no longer mentions Azure Government.

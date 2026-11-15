@@ -2024,3 +2024,19 @@
   prs: [613, 615, 616, 617]
   status: settled
   note: "Basis: workbook owner decision, November 13, 2026. Supersedes WD-004, WD-076, WD-085, WD-091 and WD-145. The kits sweep PR applies it to the example code. On November 13, 2026 the owner also had the superseded entries' recorded wording rewritten to remove GCC High and DoD."
+
+- id: WD-156
+  date: 2026-11-15
+  question: Where may a cloud provider's separate government cloud appear in the workbook?
+  options: ["Wherever a provider offers one, as an alternative location", "Only where a workload runs there or the provider's commercial side lacks the same authorization"]
+  choice: "A provider's separate government cloud stays only where a workload actually runs there or where the provider's commercial side lacks the same authorization. Oracle US Government Cloud (realm OC2, regions us-langley-1 and us-luke-1, hosts on oraclegovcloud.com) stays wherever HR or Oracle pages need it, because the HR platform may be built there; which realm the Oracle HCM application runs in is unconfirmed and isn't stated as fact. Oracle US Defense Cloud and Oracle's impact-level wording stay out. AWS GovCloud (US) and Google Assured Workloads appear only in cross-provider comparisons, named as the provider names them; the program's AWS and Google Cloud workloads run on the commercial offerings, and a vendor service that is itself hosted in AWS GovCloud (US) is still described as hosted there. Microsoft 365 GCC Moderate with commercial Azure stays the baseline (WD-155)."
+  rationale: "AWS's commercial US East/West Regions are FedRAMP Certified at Moderate and commercial Azure at High, so the program's Moderate systems don't need either provider's government cloud. The FedRAMP Marketplace lists no commercial OCI infrastructure offering, and the HR platform may be built in Oracle's government realm."
+  basis: workbook-design
+  sources:
+  - {title: 'AWS, FedRAMP', url: 'https://aws.amazon.com/compliance/fedramp/'}
+  - {title: 'Oracle, Oracle US Government Cloud', url: 'https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govfedramp.htm'}
+  - {title: 'FedRAMP, Marketplace product data', url: 'https://www.fedramp.gov/marketplace/products.json'}
+  pages: [CONTRIBUTING.md, docs/books/b10-cloud-boundary/05-the-landing-zone.md, docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.md, docs/evaluations/cloud-dns-resolvers-infoblox-bind.md]
+  prs: [627]
+  status: settled
+  note: "Basis: workbook owner decision, November 15, 2026. Extends WD-155 and supersedes nothing. The provider-notices kit keeps its AWS GovCloud (US) partition and Oracle OC2 realm support as a cross-provider collector."

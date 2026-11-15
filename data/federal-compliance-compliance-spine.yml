@@ -175,7 +175,7 @@ tables:
       attestable: 'No'
     - control: CM-6
       title: Configuration Settings
-      mechanism: Cloud resource misconfiguration detection across CSPs (CSPM) — Defender for Cloud (Azure/AWS/GCP, Moderate default); AWS Config + Security Hub CSPM (AWS, owned, primary for AWS — Moderate in the commercial Regions, High-covers-Moderate in AWS GovCloud (US); both valid); Google Assured Workloads + Security Command Center (GCP, adoption default if procured — Assured Workloads native Moderate, SCC High-covers-Moderate); VCF Operations Security Posture Management with Broadcom's hardening guide and CIS ESXi (VMware, owned, boundary-inherited — not independently FedRAMP-authorized); OCI Cloud Guard (OCI, adoption default if procured, residual gap closer, High-covers-Moderate); Prisma Cloud (Moderate and High) / Wiz (High), alternatives
+      mechanism: Cloud resource misconfiguration detection across CSPs (CSPM) — Defender for Cloud (Azure/AWS/GCP, Moderate default); AWS Config + Security Hub CSPM (AWS, owned, primary for AWS — Moderate in the commercial Regions); Google Security Command Center (GCP, adoption default if procured, High-covers-Moderate); VCF Operations Security Posture Management with Broadcom's hardening guide and CIS ESXi (VMware, owned, boundary-inherited — not independently FedRAMP-authorized); OCI Cloud Guard (OCI, adoption default if procured, residual gap closer, High-covers-Moderate); Prisma Cloud (Moderate and High) / Wiz (High), alternatives
       gate: FedRAMP Moderate
       drivers: NIST SP 800-53 Rev 5; CISA SCuBA
       slot: Security / supply chain

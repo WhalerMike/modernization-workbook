@@ -64,7 +64,7 @@ Not carried: the Onboarding role's action list includes `machines/addExtensions/
 | 56 | ROSA FR2102031769 FedRAMP Certified, High, Lightspeed bundled | Authorization status | verified | `ans-fedramp-rosa` |
 | 57 | Self-managed AAP's FedRAMP treatment | Authorization status | **not published**; the guide says so and gives the program's default as design guidance | — |
 | 58 | Azure managed application in the customer's tenant; Red Hat reaches only the managed resource group; regions commercial only | Authorization status; Hosting | verified | `ans-aap-azure` |
-| 59 | AWS service: Red Hat-run control plane; customer execution nodes; job logs erased every 30 days; regions commercial only | Hosting | verified; GovCloud availability **not published** | `ans-aap-aws` |
+| 59 | AWS service: Red Hat-run control plane; customer execution nodes; job logs erased every 30 days; regions commercial only | Hosting | verified | `ans-aap-aws` |
 | 60 | Self-managed offers on AWS, Google Cloud and Oracle marketplaces | Hosting | verified | `ans-aap-options` |
 | 61 | FIPS page lists RHEL module certificates; generally applicable to other products running unmodified; AAP not named | FIPS | verified | `ans-rh-fips` |
 | 62 | AAP 2.6/2.7 FIPS-mode support statement | FIPS | **couldn't verify** (none found in 2.6/2.7 system requirements, installation, hardening or compliance pages); the guide says so | — |
@@ -91,7 +91,7 @@ Not carried: the Onboarding role's action list includes `machines/addExtensions/
 | 86 | RHEL 9 SCAP Security Guide ships CIS Level 1 and Level 2 Server and Workstation profiles | Baseline content | verified 2026-10-29 (coordinator fact pack) | `ans-rh-ssg` |
 | 87 | Ansible Lockdown, sponsored by MindPoint Group, publishes CIS roles (RHEL9-CIS, RHEL10-CIS, Windows-2022-CIS) with -Audit counterparts; community, not Red Hat-supported | Baseline content | verified 2026-10-29 (coordinator fact pack); "review and pin" is design guidance | `ans-lockdown` |
 | 88 | RHEL9-CIS warns it "will make changes to the system", developed against a clean install, targets CIS RHEL 9 v2.0.0; RHEL9-CIS-Audit audits with goss, CIS 2.0.0 | Baseline content | verified 2026-10-29 (both GitHub READMEs opened) | `ans-lockdown-rhel9` |
-| 89 | AWS US East/West FedRAMP Certified Class C (formerly Moderate); GovCloud (US) Class D (formerly High); services in scope per service, per Region | Hosting | verified 2026-10-29 (coordinator fact pack); "a Moderate system can run in either" labeled inference | `ans-aws-fedramp` |
+| 89 | AWS US East/West FedRAMP Certified Class C (formerly Moderate); services in scope per service, per Region | Hosting | verified 2026-10-29 (coordinator fact pack); GovCloud class and the "either" inference dropped November 15, 2026 | `ans-aws-fedramp` |
 | 104 | Broadcom's VCF Security Configuration and Hardening Guide as the VMware vendor hardening guide; STIG readiness content *High only* | VMware | carried from B15 Ch09 (`#vmware-hardening-content`, section being renamed in the same sweep) and the coordinator fact pack | B15 Ch09 |
 
 ## Claims log: carried from the chapters (linked, not footnoted)
@@ -130,7 +130,6 @@ The onboarding playbook passes the secret through an `azcmagent connect --config
 | docs.ansible.com rendered pages | 429 / bot check on 2026-10-29; verified from source; re-open before leaving draft |
 | AAP 2.6/2.7 support on FIPS-mode RHEL | No statement found; guide says ask Red Hat and test |
 | Self-managed AAP's FedRAMP treatment | Not published by Red Hat or FedRAMP; guide gives design guidance |
-| AAP managed offerings in AWS GovCloud | Not published |
 
 ## Moderate civilian sweep (2026-10-29)
 
@@ -168,3 +167,7 @@ No "must", "shall" or "required" was relabeled: each one states a product constr
 | P4-2 | Rings, backout triggers (`any_errors_fatal`, `max_fail_percentage`) | Change safety | carried from the guide's Dangers table and its footnotes `ans-strategies`, `ans-errors` (checked Oct 29, 2026) | Ansible documentation, as footnoted | Nov 11, 2026 |
 
 No new product, licensing or government-cloud claim was added; macOS and Linux content was not added (the guide's existing Linux and Unix text is unchanged).
+
+## Government-cloud rule (November 15, 2026)
+
+Under WD-156 the program's AWS workloads run in the commercial Regions. The hosting table's self-managed example no longer names AWS GovCloud (US), the paragraph after it no longer notes the missing GovCloud availability of the managed offerings or infers that a Moderate system can run in GovCloud (claims 59, 89), and the open item on managed offerings in GovCloud was removed. Kept: Red Hat's own statement that its FedRAMP products are available through AWS GovCloud (claim 55), a fact about where the vendor's service runs.

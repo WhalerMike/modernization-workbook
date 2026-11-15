@@ -102,6 +102,10 @@ The workbook targets FedRAMP Moderate civilian agencies. Configuration authority
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| MS-1 | AWS scope listed per service and per Region (Class C East/West; Class D GovCloud columns); either Region can host a Moderate system because the High baseline contains the Moderate controls | Authorization status table, AWS row; c12-aws-scope | verified 2026-10-29 (fact pack) + inference (labelled) | c12-aws-scope (access note added) |
+| MS-1 | AWS scope listed per service and per Region (Class C East/West; Class D GovCloud columns); the program's AWS workloads use the US East/West offering | Authorization status table, AWS row; c12-aws-scope | verified 2026-10-29 (fact pack); design guidance restated November 15, 2026 (WD-156) | c12-aws-scope |
 | MS-2 | Selection framework: new Hardening baseline row (CIS Benchmark, vendor hardening guide or NCP checklist for CM-6 settings) | Decision framework table | framing per brief; facts cross-referenced to Chapter 03 | Chapter 03 (c03-cm6, c03-ncp, c03-cisbench) |
 | MS-3 | "A Moderate authorization doesn't cover High" kept | Cautions; residual risks | kept: legitimate tier comparison | — |
+
+## Government-cloud rule (November 15, 2026)
+
+Under WD-156 the AWS row of the authorization table, a cross-offering comparison, keeps both AWS listings (claim 17); its last sentence now says the program uses the US East/West offering instead of that either Region can host a Moderate system (MS-1).

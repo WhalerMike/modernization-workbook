@@ -31,7 +31,7 @@ So this gate is half collection and half honesty. In this module you read the fi
 | SA-9 c | KSI-SCR-MIT, KSI-SCR-MON | `Get-PnRequiredPermission -Provider google`; the role binding |
 | SA-9 c; SI-5 a | KSI-SCR-MIT, KSI-SCR-MON | `raw/google.json`, `notices.json`, `manifest.json` |
 | SA-9 c | KSI-SCR-MON | A call nobody verified isn't run |
-| SA-9 c; RA-3 (risk assessment), part f | KSI-SCR-MON, KSI-SCR-MIT | The gaps (no maintenance; not in the FedRAMP or IL packages), written down with the ISSO |
+| SA-9 c; RA-3 (risk assessment), part f | KSI-SCR-MON, KSI-SCR-MIT | The gaps (no maintenance; not in the FedRAMP packages), written down with the ISSO |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines this evidence up with what its providers report against them; it doesn't report KSIs itself. Which file supports which indicator is the program's mapping *(design guidance)*. The guide's [Evidence](../../books/guides/provider-notices-implementation.md#evidence) section explains both.
 
@@ -200,7 +200,7 @@ Remove-Item -Recurse -Force out
 *Not run by the authors.* Follow the workbook's [Chapter 05, Lab 2](../../project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.md#lab-2-a-test-project). It has the exact commands.
 
 - **You need:** a Google Cloud test project, never production, its project owner, and a Google group for the reader. The project may have no incidents, which is a valid result.
-- **What you do:** enable the API, grant the viewer role, sign in as the reader, cross-check Google's command against the collection, then record the gaps with the ISSO: whether the project is in an Assured Workloads FedRAMP or IL package, and in every case that Google's planned maintenance doesn't come through this API.
+- **What you do:** enable the API, grant the viewer role, sign in as the reader, cross-check Google's command against the collection, then record the gaps with the ISSO: whether the project is in an Assured Workloads FedRAMP package, and in every case that Google's planned maintenance doesn't come through this API.
 - **Back-out:** step 4 removes the role binding and deletes the run, and leaves the API enabled unless the project owner decides otherwise.
 
 ## Knowledge check (5 minutes)

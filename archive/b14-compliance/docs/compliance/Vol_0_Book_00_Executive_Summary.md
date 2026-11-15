@@ -180,7 +180,7 @@ This series comprises twenty-three companion implementation guides for the Feder
 
 ---
 
-**Together, the twenty-three implementation books constitute the complete evidence-generation and authorization-package layer for the agency's RMF authorization, with continuous-monitoring evidence structured in the FedRAMP 20x KSI idiom.** Each book maps its implementations directly to the NIST SP 800-53 Rev 5 controls it closes, and Vol IV Book 06 assembles those mappings into a machine-readable OSCAL authorization package ready for independent SCA. The FedRAMP cloud services {{< meta agency.short >}} consumes (M365 GCC, AWS GovCloud, DDI SaaS) are inherited as leveraged authorizations; {{< meta agency.short >}} itself does not submit to the FedRAMP PMO.
+**Together, the twenty-three implementation books constitute the complete evidence-generation and authorization-package layer for the agency's RMF authorization, with continuous-monitoring evidence structured in the FedRAMP 20x KSI idiom.** Each book maps its implementations directly to the NIST SP 800-53 Rev 5 controls it closes, and Vol IV Book 06 assembles those mappings into a machine-readable OSCAL authorization package ready for independent SCA. The FedRAMP cloud services {{< meta agency.short >}} consumes (M365 GCC, AWS, DDI SaaS) are inherited as leveraged authorizations; {{< meta agency.short >}} itself does not submit to the FedRAMP PMO.
 
 **Beyond the architecture corpus, five further volumes make it buildable and operable** (the eleven-volume series, 0–X): **Volume VI** deploys the architecture as code (IaC, detection and SOAR libraries, baselines, the evidence pipeline); **Volume VII** coordinates M365/Azure control state into tracked ServiceNow tasks and KSI evidence; **Volume VIII** realizes the DDI naming plane across every cloud (Azure, AWS, GCP, OCI, VMware — the one deliberate multi-CSP exception); and **Volume IX** governs routine day-2 operations (helpdesk, landing-zone front door, app-registration, Teams telephony) through the same ServiceNow discipline; **Volume X** documents where the series’ evidence lands on the governance substrate — an **optional, separable binding** the series never depends on. These volumes deploy, coordinate, and operate the controls the architecture closes rather than closing new ones — see *Series Extension II* above and the Series Control Crosswalk appendix for the full per-control view.
 
@@ -611,7 +611,7 @@ The series' Microsoft-shaped reference stack — InfoBlox DDI, Entra ID, Intune,
 Azure Arc, Sentinel — is a faithful *example* of each mechanism, but it answers
 only half the question a multi-cloud federal agency actually faces:
 
-> **When compute lives on Azure, AWS GovCloud, Oracle OCI, VMware, and Red Hat
+> **When compute lives on Azure, AWS, Oracle OCI, VMware, and Red Hat
 > at the same time — is everything governed under one Microsoft plane (Intune /
 > Azure Arc), or does each platform run its own management stack? And if the
 > latter, how do they coordinate into one compliance picture?**
@@ -926,7 +926,7 @@ This is not a complete audit finding list. It presents the findings most directl
 
 ## What This Document Addresses
 
-Every federal cloud landing zone — whether on AWS GovCloud, commercial Azure, Oracle OCI, or on-premises VMware — requires DNS, DHCP, and IP Address Management (DDI) to function. {{< meta agency.short >}} operates four such environments simultaneously. Without a unified DDI control plane, each environment generates its own IP inventory, its own DNS logs, and its own certificate records. FedRAMP compliance evidence must be assembled separately from each.
+Every federal cloud landing zone — whether on AWS, commercial Azure, Oracle OCI, or on-premises VMware — requires DNS, DHCP, and IP Address Management (DDI) to function. {{< meta agency.short >}} operates four such environments simultaneously. Without a unified DDI control plane, each environment generates its own IP inventory, its own DNS logs, and its own certificate records. FedRAMP compliance evidence must be assembled separately from each.
 
 **InfoBlox DDI** is one of a small number of FedRAMP Moderate-authorized DDI platforms — but that DDI-specific authorization is six days old as of this writing, not the December 2022 vintage most of this series cites. CSO FR2017257053 was originally agency-authorized December 15, 2022 via the U.S. Census Bureau / Dept. of Commerce for **BloxOne Threat Defense Federal Cloud** — a DNS-security/threat-intelligence service, not DDI/IPAM. On **July 22, 2026**, the same CSO — rebranded **Infoblox Government Cloud**, hosted on AWS GovCloud — was recertified FedRAMP Moderate with an expanded boundary adding **Universal DDI Management, NIOS-X Servers, and Universal Asset Insights**. Verify current authorization scope, sponsor, and package status on the FedRAMP Marketplace at time of procurement — this is a newly expanded boundary. A single InfoBlox deployment spanning all four {{< meta agency.short >}} environments closes **18 NIST SP 800-53 Rev 5 controls** that would otherwise require manual evidence assembly from four separate sources.
 
