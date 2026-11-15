@@ -14,7 +14,7 @@ Editor pass 2026-10-20. The appendix had no footnotes. The privacy-basis section
 | 6 | Interconnection terms cover the feed | Privacy basis | verified; tied to SP 800-53 CA-3 and SP 800-47 Rev. 1 | NIST SP 800-53; SP 800-47 Rev. 1 |
 | 7 | Send only attributes a decision reads | Minimization | verified as federal principle (A-130 FIPP Minimization; SI-12(1)) | A-130 App. II §3; SP 800-53 |
 | 8 | SSN never moves | Minimization | verified as consistent with A-130 §5.f.1(f) (eliminate unnecessary SSN use) | A-130 |
-| 9 | TLS to Graph | Legs table | verified/specified: TLS 1.2 or later; Entra deprecated TLS 1.0/1.1 (US Gov instances Mar 31, 2021; public Jan 31, 2022) | MS Learn, Enable TLS 1.2 support for Microsoft Entra |
+| 9 | TLS to Graph | Legs table | verified/specified: TLS 1.2 or later; Entra deprecated TLS 1.0/1.1 (public Jan 31, 2022) | MS Learn, Enable TLS 1.2 support for Microsoft Entra |
 | 10 | Provisioning agent is outbound-only | Legs table | verified | MS Learn, on-premises application provisioning architecture (firewall requirements) |
 | 11 | Logs hold person key and payload hash only | Legs table | restated-as-design; linked to AU-3(3) | SP 800-53 |
 | 12 | Managed identity or certificate, no secrets | Service identity | verified; clarified that managed identity applies to workloads on Azure resources and that Microsoft's setup uses a secret but recommends certificate or managed identity for production | MS Learn, Grant access to the inbound provisioning API |

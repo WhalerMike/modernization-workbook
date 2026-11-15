@@ -9,7 +9,7 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch). Only th
 | 1 | Settings catalog built from Windows CSPs incl. ADMX | Mechanisms | verified | aA-settings-catalog |
 | 2 | Compliance evaluates; configuration sets | Password row; rows 1–2 | verified | aA-es |
 | 3 | `AccountLockoutPolicy` CSP; Windows 11 22H2 + KB5053657, 24H2+ | Lockout row; row 3–4; CSP table | verified; source CSP `MaxDevicePasswordFailedAttempts` corrected | aA-devicelock |
-| 4 | Smart lockout defaults 10 (Azure Public) / 3 (US Gov); P1 to customize | Lockout row | verified (added) | aA-smart-lockout |
+| 4 | Smart lockout default 10 (Azure Public, which GCC uses); P1 to customize | Lockout row | verified (added) | aA-smart-lockout |
 | 5 | Audit CSP names (`AccountLogonLogoff_AuditLogon`, `ObjectAccess_AuditFileSystem`, `PolicyChange_AuditPolicyChange`, `PrivilegeUse_AuditSensitivePrivilegeUse`) | Audit row; CSP table | verified; source path `Audit/AccountLogon_AuditLogon` corrected | aA-audit |
 | 6 | UserRights `DenyLocalLogOn`, `DenyRemoteDesktopServicesLogOn` | User rights row; CSP table | verified | aA-userrights |
 | 7 | Logon message title/text breaks Autopilot pre-provisioning | Security options row; row 28 | verified (added) | aA-secopts |

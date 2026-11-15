@@ -17,7 +17,6 @@ vendor-question sections, and the DNS Modernization Guide cost guidance (§6.3, 
 | 4 | Private Resolver billed per inbound/outbound endpoint per month and per ruleset per month; no instance or query meter | Cost | verified | Azure Retail Prices API (Azure DNS meters); Azure DNS pricing page (units) |
 | 5 | Zone 1 list prices: endpoints $180/mo each (eff. 2022-09-01), ruleset $2.50/mo, private zone $0.50/mo first 25 (2019-12-01), private queries $0.40/M, DNS security policy $0.60/M (2025-06-01) | Cost table | verified | Azure Retail Prices API, retrieved Oct 20, 2026 (dated, list price) |
 | 6 | Worked example ≈ $362.50/month per region | Cost | verified | Arithmetic on #5 |
-| 7 | Same endpoint price in US Gov zone | Cost | verified | Retail Prices API, US Gov Zone 1, $180 (eff. 2024-10-01) |
 | 8 | Guide: resolver ~$0.18/hour (~$131/mo), endpoints ~$0.009/hour (~$6.50/mo), queries included, VNet links $0.50 after 2; example totals $144/$159/$327 | Cost callout | corrected | Retail Prices API and pricing page show endpoint-based pricing; no resolver-instance or VNet-link meter listed. Guide figures not carried |
 | 9 | AWS VPC IPAM charges per active IP monitored in member accounts | Cost | verified | AWS, Integrate IPAM with accounts in an AWS Organization |
 | 10 | Azure DNS security policy blocks known malicious domains (Microsoft threat intelligence) | Cost; comparison | verified | Learn, DNS security and private name resolution (cross-cloud) |

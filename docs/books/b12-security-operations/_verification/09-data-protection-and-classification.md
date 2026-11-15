@@ -106,7 +106,7 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | Core DLP Policies table + script | Minimum baseline table and DLP script | Carried; script rewritten (claims 41–45) |
 | Endpoint DLP Configuration + script + warning | Endpoint part of DLP script; onboarding paragraph | Carried and corrected (claims 38, 43) |
 | Azure Key Vault — Federal Key Management Hierarchy (root CA, issuing CA, CMK, DEK) | Keys section; Book 07 | CMK/DEK carried; root and issuing CA content belongs to Book 07 (PKI) |
-| Creating and Configuring Azure Key Vault with HSM + script | Key Vault script | Rewritten (claims 58–59); USGov region comment generalized; agency-meta placeholders removed |
+| Creating and Configuring Azure Key Vault with HSM + script | Key Vault script | Rewritten (claims 58–59); region comment generalized; agency-meta placeholders removed |
 | Assigning Managed Identity Access + script | Key Vault script (role assignment) | Corrected role (claim 61); break-glass Key Vault Administrator and diagnostic-setting parts not carried (break-glass is Book 04; resource-log emission is Ch04) |
 | Configuring SQL Server TDE with CMK + script | Key Vault script | Carried and verified (claim 62); Arc SQL → Book 06 |
 | Key Rotation Policy + script | Rotation JSON and text | Corrected (claims 60, 64); Customer Key no-expiry warning added |

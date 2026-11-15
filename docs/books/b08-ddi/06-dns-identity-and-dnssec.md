@@ -117,7 +117,7 @@ The check reads and reports; it changes nothing. Run it weekly for a month befor
 Connect-MgGraph -Scopes 'Application.Read.All' -NoWelcome
 $owned    = Import-Csv '.\domain-inventory.csv'          # columns: domain, owner, authoritative
 $cloudSfx = @('azurewebsites.net','cloudapp.azure.com','cloudapp.net','azurefd.net','azureedge.net','blob.core.windows.net',
-              'trafficmanager.net','azurecontainer.io','azure-api.net','usgovcloudapp.net')   # extend for other providers
+              'trafficmanager.net','azurecontainer.io','azure-api.net')   # extend for other providers
 $rows = foreach ($app in Get-MgApplication -All -Property 'id,appId,displayName,web,spa,publicClient,signInAudience') {
     $uris = @($app.Web.RedirectUris) + @($app.Spa.RedirectUris) + @($app.PublicClient.RedirectUris) | Where-Object { $_ }
     foreach ($u in $uris) {

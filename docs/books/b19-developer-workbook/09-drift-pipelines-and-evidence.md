@@ -513,7 +513,7 @@ In production, lock the retention policy once Lab 2 passes. Learn recommends loc
 |---|---|---|
 | Sign-in from GitHub Actions | `azure/login` with `client-id`, `tenant-id`, `subscription-id` from secrets; the job needs `id-token: write` | [^c09-oidc] |
 | Azure Login audience | Default `api://AzureADTokenExchange` for public clouds, which a GCC estate uses; set it for others | [^c09-oidc] [^c09-login-action] |
-| Audiences per cloud | Global `api://AzureADTokenExchange`; US Government `api://AzureADTokenExchangeUSGov`; China `api://AzureADTokenExchangeChina` | [^c09-mi-trust] |
+| Audiences per cloud | Global `api://AzureADTokenExchange`, which GCC uses; other clouds have their own | [^c09-mi-trust] |
 | Federated credential for GitHub | Issuer `https://token.actions.githubusercontent.com`; subject `repo:<org>/<repo>:environment:<name>` for a job with an environment; one audience; no wildcards | [^c09-fic] [^c09-gh-oidc] |
 | Who can add one | The app's owner, Application Administrator, Cloud Application Administrator, Global Administrator or Hybrid Identity Administrator | [^c09-fic] |
 | Limits | 20 federated credentials per app or user-assigned managed identity; issuer and subject unique per app; propagation can take minutes (`AADSTS70021`) | [^c09-fic-limits] |

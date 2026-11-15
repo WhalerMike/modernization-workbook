@@ -56,7 +56,7 @@ Sources: `docs/operational-guides/intune-arc-modernization/index.md`; the server
 | 48 | Source implied Server 2025 Arc servers get Conditional Access via Entra join | Entra ID sign-in | corrected (CA not supported with the extension on Arc) | howto-arc-sign-in-windows |
 | 49 | `az connectedmachine extension create` with publisher/type | Entra ID sign-in (code) | verified for the Linux form; Windows settings JSON follows the documented ARM template (`settings.mdmId`) | ssh-arc-overview; howto-arc-sign-in-windows |
 | 50 | Linux: SSH via Arc, AADSSHLoginForLinux, role scope recommendation, PIM | Linux | verified | ssh-arc-overview |
-| 51 | Linux distributions supported for Entra SSH login; Azure Gov | Linux | verified | howto-vm-sign-in-azure-ad-linux |
+| 51 | Linux distributions supported for Entra SSH login | Linux | verified | howto-vm-sign-in-azure-ad-linux |
 | 52 | Rollback: remove extensions first; disconnect deletes resource; force-local-only; artifacts remain | Rollback | verified (source said "disconnect then uninstall"; extension-removal step and permission note added) | uninstall-agent; azcmagent disconnect; agent overview |
 | 53 | L0–L4 ladder, L3 ceiling, approval references, kit script names and behavior | Manual and governed paths | restated-as-design | program design (governed-path §3, §6) |
 | 54 | Agent versions supported within last year; auto-upgrade preview; Resource Health alerts | Monitoring | verified | Connected Machine agent overview |

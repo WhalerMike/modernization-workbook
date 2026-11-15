@@ -23,7 +23,7 @@ Checked October 20, 2026. Sources: `docs/operational-guides/target-surface/intun
 | 15 | Autopatch-managed devices shouldn't get custom rings | Autopatch | verified | manage-update-rings |
 | 16 | Windows 11 version builds and end dates; 26H1 new devices only | Version currency | verified | windows11-release-information (last updated 2026-09-29/10-13) |
 | 17 | EDR onboarding status report | Defender | verified | deploy-edr |
-| 18 | MDE for US Government in Azure US Gov; GCC portal; GCC licensing offers | Defender | verified | defender-endpoint/gov |
+| 18 | MDE for US Government; GCC portal; GCC licensing offers | Defender | verified | defender-endpoint/gov |
 | 19 | Security settings management supported in GCC | Defender | verified | intune government-service |
 | 20 | AIR, live response, web content filtering configured in Defender portal | Defender | restated-as-design (portal locations not individually footnoted) | — |
 | 21 | Tamper protection needs onboarding | Defender | verified | antivirus prerequisites |

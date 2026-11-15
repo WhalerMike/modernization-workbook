@@ -43,7 +43,7 @@ The cloud-native components, by contrast, have public meters, and they appear in
 | Private DNS queries | Per million queries | 0.40 | Dec 1, 2019 |
 | DNS resolver policy queries (meter "DNS Security Policy") | Per million queries | 0.60 | Jun 1, 2025 |
 
-These are Azure Retail Prices API list prices retrieved on October 20, 2026, before any agreement discounts, and they change. Use the Azure pricing calculator for a current estimate.[^c12-azure-prices] As a worked example at those prices, a hub with one inbound endpoint, one outbound endpoint and one ruleset costs about $362.50 a month per region before zones and queries, and a second region for resilience doubles that. The same endpoint price appears in the US Gov zone of the price list. On AWS, VPC IPAM charges for each active IP address it monitors in an organization's member accounts,[^c12-aws-ipam] so IPAM cost grows with the address estate, not with the number of administrators.
+These are Azure Retail Prices API list prices retrieved on October 20, 2026, before any agreement discounts, and they change. Use the Azure pricing calculator for a current estimate.[^c12-azure-prices] As a worked example at those prices, a hub with one inbound endpoint, one outbound endpoint and one ruleset costs about $362.50 a month per region before zones and queries, and a second region for resilience doubles that. On AWS, VPC IPAM charges for each active IP address it monitors in an organization's member accounts,[^c12-aws-ipam] so IPAM cost grows with the address estate, not with the number of administrators.
 
 ::: {.callout-warning}
 ## Correction to earlier program guidance

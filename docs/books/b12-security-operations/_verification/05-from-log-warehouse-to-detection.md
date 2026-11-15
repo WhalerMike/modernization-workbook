@@ -24,7 +24,7 @@ Writer W3. Source: `docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md` (the 
 | 16 | Sentinel supported only in Defender portal after March 31, 2027; GA in Defender portal with or without XDR | Where Sentinel runs | verified (source predates; date extended from July 2026) | Learn: Sentinel in the Defender portal |
 | 17 | Defender portal: GA features in commercial, GCC; preview only commercial | Where Sentinel runs | verified | Learn: Sentinel feature availability |
 | 18 | GCC pairs with Entra ID in commercial Azure | Where Sentinel runs | verified | Learn: Cloud feature availability for US Government |
-| 19 | Azure Gov availability: ASIM preview both; Repositories not in Gov; peer/blast-radius not in Gov; Entra ID, ID Protection, XDR, CEF/Syslog via AMA, Windows Security Events via AMA, TAXII, automation rules, NRT, UEBA anomalies GA both; MDTI matching analytics not in Gov | Several | verified | Learn: Sentinel feature availability |
+| 19 | Azure commercial availability: ASIM preview; Entra ID, ID Protection, XDR, CEF/Syslog via AMA, Windows Security Events via AMA, TAXII, automation rules, NRT, UEBA anomalies GA; MDTI matching analytics preview | Several | verified | Learn: Sentinel feature availability |
 | 20 | Defender XDR connector: GCC GA (Azure) | Where Sentinel runs | verified | Learn: Cloud feature availability for US Government, Sentinel table |
 | 21 | Entra ID connector log types and tables (incl. AADProvisioningLogs, MicrosoftGraphActivityLogs, NetworkAccessTraffic); P1/P2 for sign-in logs; Workload ID Premium for risky SP tables | Entra ID | verified | Learn: Entra ID data connector |
 | 22 | Source: "Azure Active Directory connector" | Entra ID | corrected (Microsoft Entra ID connector) | Same |

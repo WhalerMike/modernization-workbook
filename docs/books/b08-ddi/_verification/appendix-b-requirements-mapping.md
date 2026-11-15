@@ -32,7 +32,7 @@ Checked October 20, 2026. Source: the existing series page (Next Generation DDI,
 | 24 | RFC 9276, 9824, 7208, 6376, 8461, 9460, 9848, 9849, CA/B Ballot 187 | Sources | added (cited by Appendix A) | rfc-editor.org; cabforum.org |
 | 25 | Azure DNSSEC "public zones only; Private DNS not supported; automatic ZSK rollover" | Sources | verified: signing prerequisite "must be hosted by Azure Public DNS"; ZSK rolled automatically; how-to page added | Learn, DNSSEC overview; How to sign |
 | 27 | INR "WW Commercial only; Cisco IOS XE SD-WAN 20.4/17.4" | Sources | verified; "not GCC Moderate" made explicit | Learn, INR |
-| 28 | Microsoft Learn titles (Private Endpoint DNS, Private Resolver, Private DNS, resolver policy, AVNM IPAM, Azure Gov compare, M365 endpoints, GCC, DNS and AD DS, SRV verify, DoH client) | Sources | verified (titles match) | Learn |
+| 28 | Microsoft Learn titles (Private Endpoint DNS, Private Resolver, Private DNS, resolver policy, AVNM IPAM, M365 endpoints, GCC, DNS and AD DS, SRV verify, DoH client) | Sources | verified (titles match) | Learn |
 | 29 | AWS Route 53 DNSSEC signing/validation, DNS Firewall | Sources | verified (titles match); alias-records page added | AWS docs |
 | 30 | AWS VPC IPAM–Infoblox (Nov 17, 2025; private scopes; not China/GovCloud) | Sources | verified; region restriction is in the announcement, private-scope and Advanced Tier in the user guide | AWS What's New; VPC IPAM User Guide |
 | 31 | Google Cloud response policies; internal ranges | Sources | verified (titles match) | Google Cloud docs |
@@ -57,7 +57,7 @@ Checked October 20, 2026. Source: the existing series page (Next Generation DDI,
 | Sources (intro) | "Sources" intro | date updated |
 | Primary sources: federal requirements and guidance | Same section | TIC, FedRAMP rules and GCC listing added |
 | Primary sources: IETF and IANA standards | "IETF, IANA and CA/Browser Forum standards" | record-type RFCs from Appendix A added |
-| Primary sources: cloud and platform provider documentation | Same section | Azure Gov roadmap, DNSSEC how-to, DC locator, Route 53 alias added |
+| Primary sources: cloud and platform provider documentation | Same section | DNSSEC how-to, DC locator, Route 53 alias added |
 | Third-party sources | Same section | integration-documentation pointer added |
 | Previous/Next links | "Continue the book" callout | Next now Appendix C |
 
