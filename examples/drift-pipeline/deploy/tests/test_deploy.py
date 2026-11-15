@@ -94,7 +94,7 @@ def test_secret_values_refused(tmp_path, value):
 
 def test_unknown_cloud_and_bad_guid_refused(tmp_path):
     data = settings()
-    data["cloud"] = "usgov"
+    data["cloud"] = "other"
     data["tenant_id"] = "not-a-guid"
     with pytest.raises(ad.SettingsError) as exc:
         ad.load_settings(write_settings(tmp_path, data))

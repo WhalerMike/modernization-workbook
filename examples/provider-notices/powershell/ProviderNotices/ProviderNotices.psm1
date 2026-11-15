@@ -36,9 +36,7 @@ $script:WindowSeconds = [ordered]@{ P1 = 0; P2 = 3600; P3 = 86400; P4 = 259200 }
 # name throws, and there is no default cloud.
 $script:Clouds = @{
     azure  = @{
-        # Learn: az cloud set --name AzureUSGovernment; resource manager https://management.usgovcloudapi.net/
-        AzureCloud        = @{ Arm = 'https://management.azure.com'; Portal = 'https://portal.azure.com' }
-        AzureUSGovernment = @{ Arm = 'https://management.usgovcloudapi.net'; Portal = 'https://portal.azure.us' }
+        AzureCloud = @{ Arm = 'https://management.azure.com'; Portal = 'https://portal.azure.com' }
     }
     m365   = @{
         # Learn (Microsoft Graph national cloud deployments): GCC keeps the worldwide endpoint.
@@ -64,7 +62,7 @@ $script:Clouds = @{
 function Get-PnCloud {
     <#
     .SYNOPSIS
-        Returns one provider's cloud: azure (AzureCloud, AzureUSGovernment), m365 (global, gcc), oci (oc1, oc2), aws (aws, aws-us-gov) or google (global). Any other name throws.
+        Returns one provider's cloud: azure (AzureCloud), m365 (global, gcc), oci (oc1, oc2), aws (aws, aws-us-gov) or google (global). Any other name throws.
     .EXAMPLE
         # The Graph host for GCC: https://graph.microsoft.com
         (Get-PnCloud -Provider m365 -Cloud gcc).Graph

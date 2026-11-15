@@ -49,21 +49,6 @@ def test_learn_samples_ask_for_id_token_write_and_nothing_more():
         assert yaml.safe_load(text)["jobs"]["test"]["permissions"] == {"id-token": "write"}
 
 
-def test_learn_government_sample_does_not_parse():
-    res = w.lint_text(w.learn_samples()[2])
-    assert [r["rule"] for r in res] == ["WF-01"]
-
-
-def test_learn_government_sample_pairs_the_right_audience_once_indented():
-    # The only defect is the indentation of `with:`. Fixed in memory (the pinned copy is never
-    # edited), the environment and audience are the US Government pair.
-    text = w.learn_samples()[2].replace("        with:\n          ", "      with:\n        ").replace("\n          ", "\n        ")
-    step = yaml.safe_load(text)["jobs"]["test"]["steps"][0]
-    assert step["with"]["environment"] == "AzureUSGovernment"
-    assert step["with"]["audience"] == "api://AzureADTokenExchangeUSGov"
-    assert "WF-07" not in rules(w.lint_text(text))
-
-
 def test_learn_samples_use_inputs_the_action_declares():
     for text in w.learn_samples()[:2]:
         assert "WF-06" not in rules(w.lint_text(text))
@@ -120,7 +105,7 @@ def test_unpinned_action_is_a_finding():
 
 
 def test_wrong_audience_for_the_environment_is_a_finding():
-    text = WORKFLOW.read_text(encoding="utf-8").replace("audience: api://AzureADTokenExchange", "audience: api://AzureADTokenExchangeUSGov")
+    text = WORKFLOW.read_text(encoding="utf-8").replace("audience: api://AzureADTokenExchange", "audience: api://AzureADTokenExchangeChina")
     assert "WF-07" in rules(lint_workflow(text))
 
 
@@ -129,9 +114,9 @@ def test_other_graph_host_under_gcc_is_a_finding():
     assert rules(lint_workflow(text)) == ["WF-12"]
 
 
-def test_government_environment_under_gcc_is_a_finding():
-    text = (WORKFLOW.read_text(encoding="utf-8").replace("environment: AzureCloud", "environment: AzureUSGovernment")
-            .replace("audience: api://AzureADTokenExchange", "audience: api://AzureADTokenExchangeUSGov"))
+def test_other_environment_under_gcc_is_a_finding():
+    text = (WORKFLOW.read_text(encoding="utf-8").replace("environment: AzureCloud", "environment: AzureChinaCloud")
+            .replace("audience: api://AzureADTokenExchange", "audience: api://AzureADTokenExchangeChina"))
     assert rules(lint_workflow(text)) == ["WF-12"]
 
 

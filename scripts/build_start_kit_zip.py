@@ -52,7 +52,7 @@ BUNDLES = {
         "hcm-entra", "ms-automation", "validation-kit", "dynamic-rules", "lifecycle-extensions",
         "group-policy-as-code", "machine-configuration", "ansible", "drift-pipeline",
         "third_party/csv2scim", "third_party/msgraph-snippets-python",
-        "third_party/dynamic-membership-samples", "third_party/lifecycle-workflows-logic-app",
+        "third_party/lifecycle-workflows-logic-app",
         "third_party/mggraph-intune-samples", "third_party/guest-configuration-samples",
         "third_party/azure-arc-role", "third_party/azure-login-action",
         "third_party/azure-login-oidc-sample",
@@ -63,7 +63,7 @@ BUNDLES = {
     "ticket-to-machine-code": ("servicenow-sailpoint",),
     "hr-driven-identity-code": (
         "hr-lifecycle", "hcm-entra", "lifecycle-extensions", "dynamic-rules", "drift-pipeline",
-        "validation-kit", "third_party/csv2scim", "third_party/dynamic-membership-samples",
+        "validation-kit", "third_party/csv2scim",
         "third_party/lifecycle-workflows-logic-app", "third_party/azure-login-action",
         "third_party/azure-login-oidc-sample",
     ),

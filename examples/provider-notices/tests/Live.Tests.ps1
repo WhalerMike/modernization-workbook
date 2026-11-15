@@ -7,7 +7,7 @@ BeforeAll {
     $script:S = Read-PnSettings -Path (Join-Path $Kit 'tests/fixtures/settings.lab.json')
     function script:Gov {
         $g = Read-PnSettings -Path (Join-Path $Kit 'tests/fixtures/settings.lab.json')
-        $g.providers.azure.cloud = 'AzureUSGovernment'; $g.providers.m365.cloud = 'gcc'
+        $g.providers.m365.cloud = 'gcc'
         $g.providers.oci.realm = 'oc2'; $g.providers.oci.region = 'us-langley-1'; $g.providers.aws.partition = 'aws-us-gov'
         $g
     }
@@ -72,8 +72,9 @@ Describe 'The live commands' {
 
 Describe 'The cloud guard' {
     It 'refuses Azure CLI signed in to another cloud' {
+        $null = Set-PnRunner -Native { param($Tool, $Arguments) @{ ExitCode = 0; Output = 'AzureChinaCloud' } }
+        { Assert-PnLiveContext -Provider azure -Settings $S } | Should -Throw "*not 'AzureCloud'*"
         $null = Set-PnRunner -Native { param($Tool, $Arguments) @{ ExitCode = 0; Output = 'AzureCloud' } }
-        { Assert-PnLiveContext -Provider azure -Settings (Gov) } | Should -Throw "*not 'AzureUSGovernment'*"
         { Assert-PnLiveContext -Provider azure -Settings $S } | Should -Not -Throw
     }
     It 'refuses a Graph session in another environment, or none' {

@@ -6,7 +6,7 @@ Illustrative: tested against fixtures and a fake tenant, not proven against a pr
 
 ## Start with Learn's samples
 
-Learn publishes five PowerShell samples for pausing and resuming dynamic membership processing during an incident ([PowerShell samples for dynamic membership processing](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership-powershell-samples)). A pinned, unmodified copy of their Learn source pages is in [`../third_party/dynamic-membership-samples`](../third_party/dynamic-membership-samples/SNAPSHOT.md). `tests/LearnSamples.Tests.ps1` runs each script, unmodified, against a fake tenant and pins what it does:
+Learn publishes five PowerShell samples for pausing and resuming dynamic membership processing during an incident ([PowerShell samples for dynamic membership processing](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership-powershell-samples)). Read as published on October 30, 2026, they leave these to you:
 
 | Learn's samples, on their own | What this example adds |
 |---|---|
@@ -26,8 +26,6 @@ rules/*.json                       the library: one file per group (kind, owner,
 powershell/DynamicRules.psm1       parser, evaluator, linter, shadow diff, pause manifest and resume
 powershell/Invoke-DrLibraryCheck.ps1  the pull request check: lint, test, shadow diff against a base branch
 tests/DynamicRules.Tests.ps1       Pester 5: the module against fixtures
-tests/LearnSamples.Tests.ps1       Pester 5: Learn's five samples against a fake tenant
-tests/LearnSampleHarness.ps1       extracts a sample from its pinned page and runs it with fakes
 tests/fixtures/population.json     fictional users and devices
 tests/fixtures/book03-patterns.json  Book 03, Chapter 10's rule pattern table, as published
 ```

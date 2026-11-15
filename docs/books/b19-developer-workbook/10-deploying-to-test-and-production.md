@@ -400,7 +400,7 @@ A fixture report, or a stage with requirement rows unevidenced, can never promot
 python -m pytest deploy/tests -q
 ```
 
-`44 passed` on November 13, 2026 (Windows 11, Python 3.14.3). The deploy scripts keep their own suite, apart from the 141 tests Chapter 09 runs.
+`44 passed` on November 13, 2026 (Windows 11, Python 3.14.3). The deploy scripts keep their own suite, apart from the 139 tests Chapter 09 runs.
 
 ## Pre-flight checks {#pre-flight-checks}
 
