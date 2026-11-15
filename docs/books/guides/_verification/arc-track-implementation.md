@@ -6,25 +6,22 @@ New guide, first pass of 2026-10-29. The guide is an implementation view over Bo
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | Azure and Azure Government both assessed and authorized at FedRAMP High; Government adds US data-storage and screened-personnel commitments; no sensitive or restricted information in resource names | 1.1; 2.3 | verified | `arc-gov-compare` |
 | 2 | Arc servers organized by management group, subscription and resource group; policies, RBAC and tags apply as for Azure VMs | 1.2 | verified (same page as companion `adm-arc-cloud-native`) | `arc-cloud-native` |
 | 3 | Periodic assessment on Arc servers needs the subscription registered to `Microsoft.Compute` | 1.2 | verified | `arc-aum-assess` |
-| 4 | Endpoint lists for Azure cloud and Azure Government (Entra, ARM, `*.his.arc.azure.*`, `*.guestconfiguration.azure.*`); private-link column; public endpoints still needed with private link | 1.3; 1.5 | verified (read both tabs) | `arc-network` |
-| 5 | Government and 21Vianet: add public-cloud `AzureArcInfrastructure` ranges; required after October 28, 2025; Government tags no longer supported for this | 1.3 | verified (wording of the Important note) | `arc-network` |
+| 4 | Endpoint lists for Azure cloud (Entra, ARM, `*.his.arc.azure.*`, `*.guestconfiguration.azure.*`); private-link column; public endpoints still needed with private link | 1.3; 1.5 | verified | `arc-network` |
 | 6 | Allow the full `AzureArcInfrastructure` tag (regional ranges lack global components); allow regional Entra endpoints despite fallback | 1.3 | verified | `arc-network` |
-| 7 | Arc gateway tip scoped to "the Azure public cloud platform" | 1.3; 1.5 | verified; the guide says "not documented" for Government rather than "not available" | `arc-network` |
-| 8 | ESU-only endpoint subset exists for Azure Government | 1.5 | verified | `arc-network` |
+| 7 | Arc gateway tip scoped to "the Azure public cloud platform" | 1.3; 1.5 | verified | `arc-network` |
+| 8 | ESU-only endpoint subset exists | 1.5 | verified | `arc-network` |
 | 9 | Private Link Scope: 800-instance per resource group limit | 1.3 | verified | `arc-overview` |
 | 10 | Automatic agent upgrade: public cloud only; agent 1.67+; RemoteSigned; cron; `--enable-automatic-upgrade`; built-in policy; `automaticupgrade.blocklocally` | 1.5; 3.2; 4.1; 8.2 | verified | `arc-autoupgrade` |
 | 11 | Agent overview links "enable automatic agent upgrades (preview)" while the feature page has no preview notice | 8.2 | verified as an inconsistency between Microsoft's pages; the guide treats the feature as preview | `arc-agent-overview`; `arc-autoupgrade` |
-| 12 | Machine configuration regional endpoints for USGovArizona, USGovTexas, USGovVirginia | 1.5 | verified (used as evidence of availability; the page is a network table, not an availability statement) | `arc-mc-network` |
-| 13 | Customizable security baselines: audit baselines, CIS Linux and Azure compute baselines, JSON export, all public regions, Government not supported during public preview; CIS Linux policy name carries [Preview] | 1.5; 4.2 | verified | `arc-baselines` |
+| 12 | Machine configuration regional service endpoints | 1.5 | verified (used as evidence of availability; the page is a network table, not an availability statement) | `arc-mc-network` |
+| 13 | Customizable security baselines: audit baselines, CIS Linux and Azure compute baselines, JSON export, all public regions; CIS Linux policy name carries [Preview] | 1.5; 4.2 | verified | `arc-baselines` |
 | 14 | CIS for Windows Server preview: Windows Server 2025 only, benchmark 1.0.0, L1 member server and DC, audit only, 2022/2019 coming soon | 4.2 | verified | `arc-cis-win` |
-| 15 | Update Manager Government regions: Virginia and Arizona for Arc; Texas Azure VMs only | 1.5; Step 5 | verified | `arc-aum-regions` |
-| 16 | Windows Server Management activation unavailable in US Gov Virginia and US Gov Arizona | 1.5 | verified | `arc-wsm` |
-| 17 | Defender for servers GA in Azure and Azure Government | 1.5; 4.4 | verified | `arc-dfc-gov` |
-| 18 | Arc-enabled VMware vSphere regions: page defers to products-by-region; resource bridge lists US Gov Virginia, needs the private cloud supported in-region, no private link | 1.5 | verified; Government availability of Arc-enabled VMware itself **not confirmed** (products-by-region page not opened) | `arc-vmware-regions`; `arc-bridge` |
-| 19 | Multicloud connector not available in national clouds, including Azure Government | 1.4; 1.5 | verified | `arc-mcc` |
+| 15 | Update Manager supported regions for Arc-enabled servers | 1.5; Step 5 | verified | `arc-aum-regions` |
+| 16 | Windows Server Management activation in regions with Arc-enabled servers | 1.5 | verified | `arc-wsm` |
+| 18 | Arc-enabled VMware vSphere regions: page defers to products-by-region | 1.5 | verified | `arc-vmware-regions` |
+| 19 | Multicloud connector supported regions | 1.4; 1.5 | verified | `arc-mcc` |
 | 20 | Tag policies: *Inherit a tag from the resource group if missing* (modify; leaves different existing value); *Require a tag on resources* and *Require a tag and its value on resources* (deny); remediation for existing resources; definition ID `871b6d14-10aa-478d-b590-94f262ecfa99` | 2.2; 2.4 | verified (ID read from the page's portal link) | `arc-tag-policies` |
 | 21 | Tag Contributor can tag without resource access; Contributor can tag; resources don't inherit tags | 2.3 | verified | `arc-tags` |
 | 22 | `enforcementMode` `DoNotEnforce`: evaluates without enforcing or Activity log entries; recommended for testing; remediation tasks still start for deployIfNotExists | 2.4; 4.3 | verified | `arc-enforcement` |
@@ -37,14 +34,14 @@ New guide, first pass of 2026-10-29. The guide is an implementation view over Bo
 | 29 | Resource Health alert settings for disconnected Arc servers | 8.1 | verified | `arc-connectivity` |
 | 30 | Advisor recommendation at 30–44 days disconnected; credential may expire; `azcmagent show/check/logs --full` | 8.1 | verified | `arc-advisor` |
 | 31 | Only agent versions released within the last year supported; 1.69 is October 2026 | 8.2 | verified | `arc-release-notes` |
-| 32 | Resource Graph sample queries on `microsoft.hybridcompute/machines`; outdated-agent query filters `properties.status` != Expired; Government portal links | 8.3 | verified | `arc-arg-samples` |
+| 32 | Resource Graph sample queries on `microsoft.hybridcompute/machines`; outdated-agent query filters `properties.status` != Expired | 8.3 | verified | `arc-arg-samples` |
 | 33 | Activity log: control-plane operations, 90-day retention, only record of a resource's creator, export via diagnostic settings | 8.4 | verified | `arc-activity-log` |
 
 ## Claims log: carried from the books and guides (linked, not footnoted)
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 40 | GCC-Moderate tenant → commercial Azure subscription, `--cloud AzureCloud`; Azure Government SQL Server limits; resource providers; proxy and engine path; rollback re-grants after reconnect; token test | 1.1, 1.2, 1.3, 3.3, Gate 3 | carried | B06 R04 |
+| 40 | GCC-Moderate tenant → commercial Azure subscription, `--cloud AzureCloud`; resource providers; proxy and engine path; rollback re-grants after reconnect; token test | 1.1, 1.2, 1.3, 3.3, Gate 3 | carried | B06 R04 |
 | 41 | Service tags incl. `AzureFrontDoor.Frontend`; `azcmagent check`; proxy adds no security; roles and indirect-administrator warning; onboarding SP command, certificate, scope; credential protection and GPO method; connect, naming, images; lockdown; day-one baseline; 14-day guest assignment retention; ESU dates; Entra sign-in requirements and no Conditional Access; rollback order; heartbeat/Disconnected/Expired | Throughout | carried | B05 Ch09 (each linked section) |
 | 42 | Coverage matrix and tiers 1–4; CM-8 tie | 1.4 | carried | Companion guide Arc coverage and tiers; B05 Ch03 |
 | 43 | CMDB as source of business facts, importing technical states; record correlation | 2.2; 8.3 | carried | B05 Ch03 |
@@ -71,7 +68,6 @@ Management group, subscription and resource-group layout (1.2); the `CmdbId` and
 
 | Item | Status |
 |---|---|
-| Arc-enabled VMware vSphere and Arc-enabled SCVMM in Azure Government | Not stated on the Learn pages opened; Azure Products by Region not opened. Labelled "not stated" in 1.5 |
 | Whether a deny-effect required-tag policy blocks Arc agent metadata updates on existing servers that lack the tag | Not documented on the pages opened; the guide stages deny behind `DoNotEnforce` and a pilot |
 | `az policy assignment create` parameter quoting in PowerShell | Illustrative; not run |
 

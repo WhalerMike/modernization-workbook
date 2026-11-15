@@ -468,7 +468,7 @@ It doesn't build `sdwan_decision` records; those need the policy and statistics 
 - Syslog reaches the `Syslog` table through the Azure Monitor Agent on an Arc-enabled Linux forwarder.
 - NetFlow and IPFIX go through Filebeat and Logstash, with the workspace key, into `CiscoSDWANNetflow_CL`, a table with no data collection rule support.
 
-Microsoft ended support for the HTTP Data Collector API on September 14, 2026; ingestion continues for TLS 1.2 clients.[^cs-dcapi] Syslog through the Azure Monitor Agent is listed as generally available in Azure Government.[^cs-sentinel-avail] Whether the Cisco solution is in the Azure Government content hub couldn't be confirmed. Treat the NetFlow path as legacy and ask for a data-collection-rule-based one (vendor ask 10).
+Microsoft ended support for the HTTP Data Collector API on September 14, 2026; ingestion continues for TLS 1.2 clients.[^cs-dcapi] Syslog through the Azure Monitor Agent is listed as generally available in Azure commercial.[^cs-sentinel-avail] Treat the NetFlow path as legacy and ask for a data-collection-rule-based one (vendor ask 10).
 
 [**Evidence checklist**]{#sdw-evidence-checklist}
 
@@ -556,7 +556,7 @@ A finding this page addresses is ready for closure when every applicable state h
 7. What is the Enterprise Certificate procedure for overlay edges on 20.18/17.18, and is there an API that a CLM platform can call to renew?
 8. Does Secure Access for Government's automatic tunnel need TAC enablement? Is a second US region planned?
 9. Does Cloud OnRamp for SaaS category steering work against GCC endpoints?
-10. Cisco and Microsoft: is there a Logs ingestion API (data collection rule) path for SD-WAN NetFlow, and is the solution published in Azure Government?
+10. Cisco and Microsoft: is there a Logs ingestion API (data collection rule) path for SD-WAN NetFlow?
 11. Carriers: can the 5G secondary path carry a static public address at every office?
 12. CISA: must a Catalyst SD-WAN fabric deployed after March 2026 report under ED 26-03, and is the directive still open?
 
@@ -572,7 +572,7 @@ A finding this page addresses is ready for closure when every applicable state h
 - **The release-20.18 disaster-recovery procedure for Manager.** The design guide found is from 2021.
 - **SD-WAN mode in edge FIPS validation and in NIAP's evaluated configurations.**
 - **Product-wide versus GCC-specific availability.** Whether Global Secure Access remote networks, specifically, are generally available in GCC; Microsoft's statement is product-wide.
-- **Cisco SD-WAN's Sentinel solution in Azure Government,** and whether Umbrella for Government still automates Catalyst SD-WAN tunnels.
+- **Umbrella for Government:** whether it still automates Catalyst SD-WAN tunnels.
 - **The audit-log query.** `last_n_hours` was tested only against mocked responses.
 
 ## Status and review
@@ -666,5 +666,5 @@ Related: [Book 09 â€” Network & Transport](../b09-network/index.md), [Book 07 â€
 [^cs-cor]: Cisco, *Cisco Catalyst SD-WAN Cloud OnRamp Configuration Guide, IOS XE 17.x*, "Cloud OnRamp for SaaS" (Microsoft 365 traffic categories; Microsoft telemetry from 17.4.1a/20.4.1; telemetry not supported on sites using SIG tunnels), updated December 19, 2025, <https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/cloudonramp/ios-xe-17/cloud-onramp-book-xe/cor-saas.html>, accessed October 24, 2026.
 [^cs-umbrella-dns]: Cisco, *Security Configuration Guide, IOS XE 17.x*, "Cisco Umbrella Integration" (DNS security policy; Umbrella default or custom DNS server per VRF; local domain bypass, 64 domains, UDP only, A/AAAA/TXT), updated January 12, 2026, <https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/security/ios-xe-17/security-book-xe/umbrella-integration.html>, accessed October 24, 2026.
 [^cs-sentinel]: Microsoft Learn, "Find your Microsoft Sentinel data connector," "Cisco Software Defined WAN" (supported by Cisco Systems; Syslog through the Azure Monitor Agent on an Azure Arc server; NetFlow through Filebeat and Logstash into `CiscoSDWANNetflow_CL`, no DCR support), <https://learn.microsoft.com/en-us/azure/sentinel/data-connectors-reference#cisco-software-defined-wan>, accessed October 24, 2026.
-[^cs-sentinel-avail]: Microsoft Learn, "Microsoft Sentinel feature support for Azure commercial/other clouds" (Syslog via AMA and content hub available in Azure Government), <https://learn.microsoft.com/en-us/azure/sentinel/feature-availability>, accessed October 24, 2026.
+[^cs-sentinel-avail]: Microsoft Learn, "Microsoft Sentinel feature support for Azure commercial/other clouds" (Syslog via AMA and content hub available in Azure commercial), <https://learn.microsoft.com/en-us/azure/sentinel/feature-availability>, accessed October 24, 2026.
 [^cs-dcapi]: Microsoft Learn, "Migrate from the HTTP Data Collector API to the Logs ingestion API" (support ended September 14, 2026; ingestion continues for TLS 1.2 or later clients), <https://learn.microsoft.com/azure/azure-monitor/logs/custom-logs-migrate>, accessed October 24, 2026.

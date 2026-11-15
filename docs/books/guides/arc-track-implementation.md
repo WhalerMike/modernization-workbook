@@ -1,6 +1,6 @@
 ---
 title: "Azure Arc Track: Implementation Guide"
-description: "The step-by-step implementation of the companion guide's Azure Arc track: bringing servers on premises and in other clouds under Azure Resource Manager with attribute- and tag-driven governance. Prerequisites (the Azure cloud, management group and subscription layout, the Connected Machine agent's network, the coverage matrix and what Microsoft states for Azure Government versus commercial Azure), the tag taxonomy with the CMDB as its source and one writer, onboarding at scale with a resource-group-scoped onboarding identity and waves, Azure Policy and machine configuration baselines, Update Manager and SI-2 evidence, access through Azure RBAC and Entra sign-in, the dangers and their mitigations, and operating the estate, with a Validate step at every gate that names the validation kit check that proves it."
+description: "The step-by-step implementation of the companion guide's Azure Arc track: bringing servers on premises and in other clouds under Azure Resource Manager with attribute- and tag-driven governance. Prerequisites (the Azure cloud, management group and subscription layout, the Connected Machine agent's network, the coverage matrix and what Microsoft states for commercial Azure), the tag taxonomy with the CMDB as its source and one writer, onboarding at scale with a resource-group-scoped onboarding identity and waves, Azure Policy and machine configuration baselines, Update Manager and SI-2 evidence, access through Azure RBAC and Entra sign-in, the dangers and their mitigations, and operating the estate, with a Validate step at every gate that names the validation kit check that proves it."
 doc-type: workbook-guide
 audience: [Executive, Technical, Customer]
 family: guides
@@ -18,7 +18,7 @@ last-reviewed: 2026-11-09
 
 ::: {.callout-note}
 ## In this guide
-The [Azure Arc track](attribute-driven-migration.md#arc-track) of the Attribute-Driven Migration guide, done step by step. Eight steps, each ending in a gate: the prerequisites (the Azure cloud, the management group and subscription layout, the agent's network, the coverage matrix, and Azure Government versus commercial availability as Microsoft states it), the tag taxonomy and resource groups, onboarding at scale in waves, Azure Policy and machine configuration, Update Manager and patch evidence, access, the dangers and how to avoid them, and operating the estate with its evidence for CM-2, CM-6, CM-8, SI-2 and AU. Every gate has a **Validate** step that names the read-only validation kit check (`VK-ARC-*`) that proves it. The depth is in [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) and [Book 06, Runbook R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md); this guide links to them rather than repeating them.
+The [Azure Arc track](attribute-driven-migration.md#arc-track) of the Attribute-Driven Migration guide, done step by step. Eight steps, each ending in a gate: the prerequisites (the Azure cloud, the management group and subscription layout, the agent's network, the coverage matrix, and commercial Azure availability as Microsoft states it), the tag taxonomy and resource groups, onboarding at scale in waves, Azure Policy and machine configuration, Update Manager and patch evidence, access, the dangers and how to avoid them, and operating the estate with its evidence for CM-2, CM-6, CM-8, SI-2 and AU. Every gate has a **Validate** step that names the read-only validation kit check (`VK-ARC-*`) that proves it. The depth is in [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) and [Book 06, Runbook R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md); this guide links to them rather than repeating them.
 :::
 
 ## How to use this guide
@@ -55,9 +55,8 @@ The audience is a civilian agency at FedRAMP Moderate. Baselines come from CIS B
 
 Decide this first, because every endpoint, region and feature below depends on it.
 
-- **A GCC-Moderate tenant uses a commercial Azure subscription.** Microsoft 365 GCC uses Entra ID in the commercial cloud, and an Azure Government subscription can't be associated with a directory there, so the Arc resources live in a commercial subscription in the same tenant and the agent connects with `--cloud AzureCloud` ([Book 06, R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md#the-right-azure-cloud)). Book 05 makes the same assumption ([Chapter 09](../b05-devices/09-servers-under-azure-arc.md#network)).
-- **Both are authorized at FedRAMP High.** Microsoft states that Azure and Azure Government are both assessed and authorized at the FedRAMP High impact level; Azure Government adds contractual commitments on US data storage and screened US persons.[^arc-gov-compare] A Moderate system can sit in either. The choice is made by the tenant's cloud and the features the estate needs ([availability table](#azure-government-versus-commercial)), and it's recorded in the authorization package ([Book 14, Chapter 03](../b14-compliance/03-the-baseline-and-the-crosswalk.md#two-facts-not-one)).
-- **An estate already onboarded to Azure Government** keeps its servers there only if every capability it needs is listed below; SQL Server hosts that need Entra authentication need a commercial registration plan ([Book 06, R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md#the-right-azure-cloud)).
+- **A GCC-Moderate tenant uses a commercial Azure subscription.** Microsoft 365 GCC uses Entra ID in the commercial cloud, so the Arc resources live in a commercial subscription in the same tenant and the agent connects with `--cloud AzureCloud` ([Book 06, R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md#the-right-azure-cloud)). Book 05 makes the same assumption ([Chapter 09](../b05-devices/09-servers-under-azure-arc.md#network)).
+- **Record it.** The cloud, and the features the estate needs from it ([availability table](#commercial-availability)), are recorded in the authorization package ([Book 14, Chapter 03](../b14-compliance/03-the-baseline-and-the-crosswalk.md#two-facts-not-one)).
 
 ### 1.2 Lay out management groups, subscriptions and resource groups
 
@@ -77,16 +76,16 @@ Register the resource providers in each subscription before the first wave: `Mic
 
 The Connected Machine agent talks outbound over TCP 443 and needs no inbound rule. Book 05 lists the service tags, including `AzureFrontDoor.Frontend` from April 2026, and the `azcmagent check` pre-flight ([Chapter 09](../b05-devices/09-servers-under-azure-arc.md#network)). What this step adds:
 
-| Item | Commercial Azure | Azure Government |
-|---|---|---|
-| Entra ID | `login.microsoftonline.com`, regional `*.login.microsoft.com`, `pas.windows.net` | `login.microsoftonline.us`, `pasff.usgovcloudapi.net` |
-| Resource Manager (connect and disconnect only) | `management.azure.com` | `management.usgovcloudapi.net` |
-| Metadata and hybrid identity (private-link capable) | `*.his.arc.azure.com` | `*.his.arc.azure.us` |
-| Extensions and machine configuration (private-link capable) | `*.guestconfiguration.azure.com` | `*.guestconfiguration.azure.us` |
-| Service tags | The list in Book 05 | Add the **public-cloud** `AzureArcInfrastructure` ranges as well; Microsoft says the public tag is required after October 28, 2025 and the Government tags are no longer supported for this |
-| Arc gateway (fewer endpoints) | Documented for the public cloud | Not documented |
+| Item | Commercial Azure |
+|---|---|
+| Entra ID | `login.microsoftonline.com`, regional `*.login.microsoft.com`, `pas.windows.net` |
+| Resource Manager (connect and disconnect only) | `management.azure.com` |
+| Metadata and hybrid identity (private-link capable) | `*.his.arc.azure.com` |
+| Extensions and machine configuration (private-link capable) | `*.guestconfiguration.azure.com` |
+| Service tags | The list in Book 05 |
+| Arc gateway (fewer endpoints) | Documented for the public cloud |
 
-: Connected Machine agent endpoints that differ by cloud[^arc-network] {.striped .hover}
+: Connected Machine agent endpoints in commercial Azure[^arc-network] {.striped .hover}
 
 From the same page: allow the whole `AzureArcInfrastructure` tag, not one region's ranges, which lack the global components; allow the regional Entra endpoints even though the agent can fall back to the global one; and with a private link scope, the endpoints marked public must still be reachable.[^arc-network] The private link scope is what keeps the agent's own traffic off public networks; a proxy adds no security because the traffic is already encrypted ([Book 05](../b05-devices/09-servers-under-azure-arc.md#network)). Set a proxy with `azcmagent config set proxy.url`, because `azcmagent connect` has no proxy flag, and on SQL Server hosts mind the engine's separate path to Entra ID ([Book 06, R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md#network)). A private link scope is limited to 800 instances per resource group.[^arc-overview]
 
@@ -101,7 +100,7 @@ The full matrix, with what Microsoft documents and what is the program's reading
 | Linux: RHEL 7–10, Rocky and AlmaLinux 8–9, Oracle Linux 7–10, SLES 12 SP5 and 15, Ubuntu 18.04–26.04, Debian 11–13, Amazon Linux 2 and 2023, Azure Linux 3.0 | Supported. Several releases got their last new agent version, 1.69, in October 2026 (RHEL 7, Oracle Linux 7, Amazon Linux 2, Debian 11 and 12, SLES 12 SP5 and 15 SP3–SP6, Ubuntu 18.04 and 20.04); Azure Linux 3.0 gets none after February 2027; not tested on CIS-hardened systems | Tier 1, with a pilot on hardened builds. Releases past their agent end date go on a retirement date or to tier 2 under [Ansible](ansible-configuration-automation.md#linux-and-unix) |
 | VMware vSphere VMs | Arc-enabled VMware vSphere through the resource bridge, then guest management (the agent) | Tier 1 for the guests; ESXi hosts are tier 2 under vCenter ([Ansible guide](ansible-configuration-automation.md#vmware)) |
 | SCVMM-managed VMs | Retiring: no new onboardings from October 2026, service ends September 2029 | Onboard as Arc-enabled servers with the agent, not through SCVMM |
-| AWS EC2 and Google Cloud VMs | Agent per VM, or the multicloud connector (AWS; Google Cloud in preview); the connector isn't in Azure Government | Connector in commercial Azure; the agent per VM otherwise. Instances also stay governed in their own cloud ([Ansible guide](ansible-configuration-automation.md#cloud-vms)) |
+| AWS EC2 and Google Cloud VMs | Agent per VM, or the multicloud connector (AWS; Google Cloud in preview) | Connector in commercial Azure; the agent per VM otherwise. Instances also stay governed in their own cloud ([Ansible guide](ansible-configuration-automation.md#cloud-vms)) |
 | Azure VMs | Not Arc; native resources | Same policies and tags, assigned at the same management group |
 | AIX, Solaris, HP-UX, mainframe, network devices, sealed appliances | Not supported | Tiers 2–4 |
 
@@ -109,31 +108,29 @@ The full matrix, with what Microsoft documents and what is the program's reading
 
 The four tiers are the companion guide's ([What neither tool reaches](attribute-driven-migration.md#what-neither-tool-reaches)): 1, managed by Arc; 2, managed by the platform's own tool with an evidence feed to the CMDB; 3, discovered and monitored only; 4, segmented and isolated, or retired. Every server the CMDB lists gets a tier before onboarding starts, because a server in no tier is a CM-8 finding ([Book 05, Chapter 03](../b05-devices/03-where-device-and-server-data-lives.md#what-intune-and-arc-dont-reach-design-guidance)).
 
-### 1.5 Azure Government versus commercial availability {#azure-government-versus-commercial}
+### 1.5 Commercial availability {#commercial-availability}
 
-What Microsoft Learn states for each capability this track uses, as of October 29, 2026. "Not stated" means the pages opened didn't say, and the product-by-region page should be checked before relying on it.
+What Microsoft Learn states for each capability this track uses in commercial Azure, as of October 29, 2026. Check the product-by-region page for a region before relying on it.
 
-| Capability | Commercial Azure | Azure Government | Source |
-|---|---|---|---|
-| Arc-enabled servers (the agent, `--cloud AzureUSGovernment`) | Available | Available, with its own endpoints | [^arc-network] |
-| Private link scope | Available | Available (the Government endpoint table carries a private-link column) | [^arc-network] |
-| Arc gateway | Documented for the public cloud | Not stated | [^arc-network] |
-| Automatic agent upgrade | Available on agent 1.67 and later | "Currently available only on Azure public cloud" | [^arc-autoupgrade] |
-| Machine configuration | Available | Available: regional service endpoints for US Gov Arizona, Texas and Virginia | [^arc-mc-network] |
-| Customizable security baselines and the built-in CIS baselines | Public preview, all public regions | Not supported during the public preview | [^arc-baselines] |
-| Update Manager for Arc servers | The listed commercial regions | US Gov Virginia and US Gov Arizona; US Gov Texas for Azure VMs only | [^arc-aum-regions] |
-| Windows Server Management enabled by Azure Arc (the Software Assurance benefit) | Activation available | Not in US Gov Virginia or US Gov Arizona | [^arc-wsm] |
-| Defender for Servers | GA | GA | [^arc-dfc-gov] |
-| Entra ID sign-in (Windows Server 2025; Linux SSH) | Available | Available | [Book 05](../b05-devices/09-servers-under-azure-arc.md#microsoft-entra-id-sign-in) |
-| Extended Security Updates through Arc | Available | Available, with an ESU-only endpoint subset | [^arc-network] |
-| Arc-enabled VMware vSphere | Available | Not stated on the VMware page, which defers to the product-by-region page. The Arc resource bridge it needs lists US Gov Virginia among its regions | [^arc-vmware-regions][^arc-bridge] |
-| Arc-enabled SCVMM | Retiring | Not stated | [Book 05](../b05-devices/09-servers-under-azure-arc.md#which-servers-arc-reaches) |
-| Multicloud connector (AWS, Google Cloud) | Listed regions | Not available in national clouds, including Azure Government | [^arc-mcc] |
-| SQL Server enabled by Azure Arc | Full feature set | US Gov Virginia only, a subset: onboarding, inventory, licensing, FCIs and ESUs; no Entra authentication | [Book 06, R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md#the-right-azure-cloud) |
+| Capability | Commercial Azure | Source |
+|---|---|---|
+| Arc-enabled servers (the agent, `--cloud AzureCloud`) | Available | [^arc-network] |
+| Private link scope | Available | [^arc-network] |
+| Arc gateway | Documented for the public cloud | [^arc-network] |
+| Automatic agent upgrade | Available on agent 1.67 and later | [^arc-autoupgrade] |
+| Machine configuration | Available, with regional service endpoints | [^arc-mc-network] |
+| Customizable security baselines and the built-in CIS baselines | Public preview, all public regions | [^arc-baselines] |
+| Update Manager for Arc servers | The listed regions | [^arc-aum-regions] |
+| Windows Server Management enabled by Azure Arc (the Software Assurance benefit) | Activation available | [^arc-wsm] |
+| Defender for Servers | Supported on Arc-enabled servers | [^arc-dfs-support] |
+| Entra ID sign-in (Windows Server 2025; Linux SSH) | Available | [Book 05](../b05-devices/09-servers-under-azure-arc.md#microsoft-entra-id-sign-in) |
+| Extended Security Updates through Arc | Available, with an ESU-only endpoint subset | [^arc-network] |
+| Arc-enabled VMware vSphere | Available; the VMware page defers to the product-by-region page for regions | [^arc-vmware-regions] |
+| Arc-enabled SCVMM | Retiring | [Book 05](../b05-devices/09-servers-under-azure-arc.md#which-servers-arc-reaches) |
+| Multicloud connector (AWS, Google Cloud) | Listed regions | [^arc-mcc] |
+| SQL Server enabled by Azure Arc | Full feature set | [Book 06, R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md#the-right-azure-cloud) |
 
-: Azure Government versus commercial availability for this track (Microsoft Learn, October 29, 2026) {.striped .hover}
-
-A GCC-Moderate estate is in commercial Azure already ([1.1](#choose-the-azure-cloud)). An Azure Government estate plans without the multicloud connector, automatic agent upgrade, the customizable baselines and the Windows Server Management benefit in its two main regions, and confirms Arc-enabled VMware vSphere on the product-by-region page before designing around it.
+: Commercial Azure availability for this track (Microsoft Learn, October 29, 2026) {.striped .hover}
 
 ### 1.6 Assign the setup roles
 
@@ -141,7 +138,7 @@ Book 05 names the roles: Azure Connected Machine Onboarding for the onboarding i
 
 ::: {.callout-tip}
 ## Validate: Gate 1
-- **Network.** `azcmagent check --location <region>` (add `--cloud AzureUSGovernment` where it applies, and `--extensions sql` on SQL Server hosts) passes from a representative server at every site ([Book 05](../b05-devices/09-servers-under-azure-arc.md#network)). File the output with the change.
+- **Network.** `azcmagent check --location <region>` (add `--extensions sql` on SQL Server hosts) passes from a representative server at every site ([Book 05](../b05-devices/09-servers-under-azure-arc.md#network)). File the output with the change.
 - **Coverage.** **VK-ARC-04** runs against the CMDB export fixture before any server is connected. Every in-scope server is either planned for an Arc wave or assigned a tier 2–4 with its owner. The count it reports is the denominator every later gate closes against.
 :::
 
@@ -184,7 +181,7 @@ Values are coded, from controlled lists the CMDB owns, as on the HR track ([comp
 Treat every tag as descriptive, never as an access control:
 
 - **Anyone with write access can change them.** Tag Contributor can tag a resource without any access to the resource itself, and Contributor on the resource can too.[^arc-tags] That's the population Book 05 already treats as indirect administrators.
-- **They're plain text.** Don't put sensitive information in them ([Book 05](../b05-devices/09-servers-under-azure-arc.md#resource-groups-and-tags)). Microsoft also warns against putting restricted information in Azure resource names in Azure Government.[^arc-gov-compare]
+- **They're plain text.** Don't put sensitive information in them ([Book 05](../b05-devices/09-servers-under-azure-arc.md#resource-groups-and-tags)).
 - **They aren't a role-assignment scope.** Azure RBAC scopes are management groups, subscriptions, resource groups and resources, and lower levels inherit from higher ones;[^arc-rbac-scope] access follows the resource group, not the tag ([Step 6](#step-6-access)).
 - **They aren't inherited.** Resources don't inherit tags from their resource group or subscription; only a tag policy copies them.[^arc-tags]
 
@@ -236,7 +233,7 @@ Microsoft's methods, and which tool fits which part of the estate, are tabled in
 | Linux, and Windows where Ansible is the automation | Microsoft's `azure.azcollection.azure_arc` role, inventory generated from the CMDB | The [Ansible guide's Arc section](ansible-configuration-automation.md#arc-onboarding-at-scale) and its gated example `02_arc_onboarding.yml` |
 | Any OS, scripted batches | `azcmagent connect --config`, keeping the credential off the command line | [Ansible guide](ansible-configuration-automation.md#arc-onboarding-at-scale) |
 | VMware vSphere VMs | Arc-enabled VMware vSphere guest management at scale | Needs VMware Tools; the resource bridge comes first |
-| AWS (and Google Cloud, in preview) | The multicloud connector, commercial Azure only | Or the agent per VM in Azure Government |
+| AWS (and Google Cloud, in preview) | The multicloud connector | Or the agent per VM |
 | SQL Server hosts | As above, then [Book 06, R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md#step-1-enroll-the-host) | Decide `ArcSQLServerExtensionDeployment` before the connect |
 
 : Onboarding method by population {.striped .hover}
@@ -295,7 +292,7 @@ A connected server is addressable, not governed, until its baseline is attached 
 ### 4.2 The baselines {#the-baselines}
 
 - **Microsoft's built-in Azure compute security baselines** for Windows and Linux are the starting point on Azure and Arc ([Book 05](../b05-devices/09-servers-under-azure-arc.md#azure-policy-and-machine-configuration); [Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#the-baseline-lifecycle)).
-- **CIS-aligned content is in preview.** The customizable security baselines, which let you enable, exclude or adjust rules and download the result as a JSON file for policy-as-code, are a public preview; they cover the official CIS Benchmarks for Linux and the Azure compute baselines for Windows and Linux, and they support all public regions but not Azure Government during the preview.[^arc-baselines] CIS Benchmarks for Windows Server are a separate preview: Windows Server 2025 only, Level 1 member server and domain controller profiles, audit only, with 2022 and 2019 "coming soon."[^arc-cis-win] Microsoft also states the agent isn't tested on CIS-hardened systems ([companion guide](attribute-driven-migration.md#arc-coverage)), which is why the pilot includes a hardened build.
+- **CIS-aligned content is in preview.** The customizable security baselines, which let you enable, exclude or adjust rules and download the result as a JSON file for policy-as-code, are a public preview; they cover the official CIS Benchmarks for Linux and the Azure compute baselines for Windows and Linux, and they support all public regions.[^arc-baselines] CIS Benchmarks for Windows Server are a separate preview: Windows Server 2025 only, Level 1 member server and domain controller profiles, audit only, with 2022 and 2019 "coming soon."[^arc-cis-win] Microsoft also states the agent isn't tested on CIS-hardened systems ([companion guide](attribute-driven-migration.md#arc-coverage)), which is why the pilot includes a hardened build.
 - **Agency CM-6 settings** are what the agency's configuration management plan requires beyond those, built as custom machine configuration packages and versioned in the governance repository, with their source (CIS Benchmark, the National Checklist Program or a vendor guide) recorded per setting ([Book 12, Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md#the-baseline-lifecycle)).
 - **STIGs are *(High only)*.** Where a High system shares the estate, its STIG content is a separate baseline for that system; the [Ansible guide's baseline content section](ansible-configuration-automation.md#baseline-content) covers the CIS and agency CM-6 sources; Broadcom's STIG content is in the [Ansible guide's VMware section](ansible-configuration-automation.md#vmware).
 
@@ -309,7 +306,7 @@ A server disconnected for more than 14 days loses its guest assignments locally 
 
 ### 4.4 Defender for Servers
 
-Book 05 sets Plan 2 for the program's Moderate scope, explains why servers onboard through Arc rather than a direct Defender for Endpoint install, and records the security-settings-management limits ([Chapter 09](../b05-devices/09-servers-under-azure-arc.md#defender-for-servers)). On Arc-enabled servers, Defender's security misconfigurations assessment, endpoint protection assessment and missing OS patches assessment require Defender for Servers, and system updates and patches require Plan 2.[^arc-dfs-support] Defender for Servers is generally available in Azure Government as well as commercial Azure.[^arc-dfc-gov]
+Book 05 sets Plan 2 for the program's Moderate scope, explains why servers onboard through Arc rather than a direct Defender for Endpoint install, and records the security-settings-management limits ([Chapter 09](../b05-devices/09-servers-under-azure-arc.md#defender-for-servers)). On Arc-enabled servers, Defender's security misconfigurations assessment, endpoint protection assessment and missing OS patches assessment require Defender for Servers, and system updates and patches require Plan 2.[^arc-dfs-support]
 
 ::: {.callout-tip}
 ## Validate: Gate 4
@@ -324,7 +321,7 @@ Update Manager assesses and deploys OS updates for Arc servers, supports mainten
 
 1. **Turn on periodic assessment everywhere.** Assign *Configure periodic checking for missing system updates on azure Arc-enabled servers*, a modify policy that sets assessment every 24 hours and can be scoped by subscription, resource group, location or tag.[^arc-aum-policy] Run a remediation task for servers connected before the assignment.
 2. **Schedule by `PatchGroup`.** One maintenance configuration per patch group, attached by a dynamic scope or the *Schedule recurring updates using Azure Update Manager* policy filtered on the tag.[^arc-aum-scheduled] The ring logic (test first, then broad, with deferrals) follows the agency's SI-2 parameter, as the workstation rings do ([Book 05, Chapter 10](../b05-devices/10-operating-and-evidencing-the-fleet.md#reporting-and-the-evidence-an-assessor-reads)).
-3. **Check the region.** In Azure Government, Arc servers can use Update Manager in US Gov Virginia and US Gov Arizona only ([availability](#azure-government-versus-commercial)).[^arc-aum-regions]
+3. **Check the region.** Update Manager supports Arc servers in the listed commercial regions ([availability](#commercial-availability)).[^arc-aum-regions]
 4. **Export the results.** Update Manager stores pending updates in Resource Graph's `patchassessmentresources` table for 7 days and installation results in `patchinstallationresources` for 30 days.[^arc-aum-workflow] That's shorter than any assessment cycle, so a scheduled job exports both tables to the evidence store *(design guidance)*.
 5. **Know what it sees.** Update Manager finds only what the machine's own update source offers: a Windows server pointed at WSUS reports WSUS's view, and a Linux server reports its configured repository.[^arc-aum-workflow] Record each server's update source with its patch group.
 
@@ -375,7 +372,7 @@ Granting access by tag ("operators of `Workload=FileServices`") isn't supported 
 | **Tag drift** | Someone edits a tag in the portal; a server leaves its patch group or gets the wrong environment, and nothing in Azure flags it because the new value is valid | One writer, the CMDB reconciliation ([2.2](#one-writer-per-tag)); deny policies for required tags; Contributor and Tag Contributor kept off Arc scopes; the Activity log's tag writes reviewed ([Step 8](#step-8-operating-it)) | **VK-ARC-01**, which reports values the taxonomy doesn't allow as well as values missing (it doesn't compare with the CMDB, so the reconciliation report carries that check) |
 | **Two tools on one setting** | Ansible, Configuration Manager or a leftover GPO sets a value that machine configuration also sets; under auto-correct the two flip it back and forth while both report success | One owning tool per setting as the CMDB's `config_owner` ([Ansible guide](ansible-configuration-automation.md#one-owning-tool-per-setting)), mirrored in the `ConfigOwner` tag; `ApplyAnd*` assignments only on resource groups whose servers machine configuration owns; computer-side GPO links disabled as servers move ([companion guide](attribute-driven-migration.md#arc-track)) | **VK-ARC-07**: servers whose `ConfigOwner` isn't machine configuration but that carry an `ApplyAndMonitor` or `ApplyAndAutoCorrect` assignment |
 | **Silent baseline loss** | A server stays disconnected past 14 days and loses its guest assignments; compliance reports stop including it rather than reporting it noncompliant | Disconnection alerts and the Advisor 30-day recommendation ([Step 8](#step-8-operating-it)) | **VK-ARC-02** |
-| **Wrong cloud** | Servers onboarded to Azure Government when the tenant is GCC-Moderate, or the reverse, and a needed feature isn't there | The cloud decision recorded before Gate 1 ([1.1](#choose-the-azure-cloud)) | Gate 1 record |
+| **Wrong cloud** | Servers registered to a subscription outside the GCC-Moderate tenant's commercial Azure, so a needed feature or sign-in isn't there | The cloud decision recorded before Gate 1 ([1.1](#choose-the-azure-cloud)) | Gate 1 record |
 
 : Dangers on the Arc track and their mitigations {.striped .hover}
 
@@ -391,7 +388,7 @@ The agent heartbeats every five minutes; a server shows **Disconnected** within 
 
 ### 8.2 Agent upgrades
 
-Microsoft supports only Connected Machine agent versions released within the last year; version 1.69 is the October 2026 release.[^arc-release-notes] In commercial Azure, automatic agent upgrade (agent 1.67 or later, PowerShell execution policy RemoteSigned on Windows, cron on Linux) can be enabled at connect, per server or by policy, and blocked locally on a server with `azcmagent config set automaticupgrade.blocklocally true`.[^arc-autoupgrade] Microsoft's agent overview still labels automatic upgrade a preview, while its own page carries no preview notice; treat it as preview until the two agree.[^arc-agent-overview] In Azure Government it isn't available, so agent upgrades go through the deployment tool on the same rings as patches *(design guidance)*.
+Microsoft supports only Connected Machine agent versions released within the last year; version 1.69 is the October 2026 release.[^arc-release-notes] In commercial Azure, automatic agent upgrade (agent 1.67 or later, PowerShell execution policy RemoteSigned on Windows, cron on Linux) can be enabled at connect, per server or by policy, and blocked locally on a server with `azcmagent config set automaticupgrade.blocklocally true`.[^arc-autoupgrade] Microsoft's agent overview still labels automatic upgrade a preview, while its own page carries no preview notice; treat it as preview until the two agree.[^arc-agent-overview] Where the program doesn't choose it, agent upgrades go through the deployment tool on the same rings as patches *(design guidance)*.
 
 ### 8.3 Resource Graph inventory
 
@@ -463,7 +460,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 | Subsection | Where |
 |---|---|
-| Prerequisites | [Step 1](#step-1-prerequisites), with [Azure Government availability](#azure-government-versus-commercial) |
+| Prerequisites | [Step 1](#step-1-prerequisites), with [commercial availability](#commercial-availability) |
 | Pilot | Wave 0 in [3.3](#run-it-in-waves) |
 | Report-only or audit phase | Tag policies in `DoNotEnforce` ([2.4](#assign-the-tag-policies-in-evaluation-mode-first)); baselines in `Audit` ([4.1](#the-assignments)); preview baselines kept as an assessment aid ([4.2](#the-baselines)) |
 | Enforcement | Waves 1 to 4 in [3.3](#run-it-in-waves); the switch to `Default` after the pilot wave |
@@ -521,21 +518,18 @@ A finding this page addresses is ready for closure when every applicable state h
 
 <!-- revisions:end -->
 
-[^arc-gov-compare]: Microsoft Learn, "Compare Azure Government and global Azure" (both clouds assessed and authorized at the FedRAMP High impact level; Azure Government's data-storage and screened-personnel commitments; don't put sensitive or restricted information in Azure resource names), <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 29, 2026).
 [^arc-cloud-native]: Microsoft Learn, "Cloud-native server management with Azure Arc-enabled servers" (connected machines are organized by management group, subscription and resource group and governed like Azure VMs), <https://learn.microsoft.com/azure/azure-arc/servers/cloud-native/overview> (accessed Oct 29, 2026).
 [^arc-aum-assess]: Microsoft Learn, "Assessment options in Update Manager," Periodic assessment (the Arc server's subscription must be registered to `Microsoft.Compute`), <https://learn.microsoft.com/azure/update-manager/assessment-options> (accessed Oct 29, 2026).
-[^arc-network]: Microsoft Learn, "Connected Machine agent network requirements," Service tags (the Azure Government and 21Vianet note on the public `AzureArcInfrastructure` ranges after October 28, 2025), URLs (Azure cloud and Azure Government tabs, private-link column), the Arc gateway tip for the Azure public cloud, and "Subset of endpoints for ESU only," <https://learn.microsoft.com/azure/azure-arc/servers/network-requirements> (accessed Oct 29, 2026).
+[^arc-network]: Microsoft Learn, "Connected Machine agent network requirements," Service tags, URLs (Azure cloud tab, private-link column), the Arc gateway tip for the Azure public cloud, and "Subset of endpoints for ESU only," <https://learn.microsoft.com/azure/azure-arc/servers/network-requirements> (accessed Oct 29, 2026).
 [^arc-overview]: Microsoft Learn, "What is Azure Arc-enabled servers?," Service limits (the 800-instance per resource group limit applies to the Azure Arc Private Link Scope resource type), <https://learn.microsoft.com/azure/azure-arc/servers/overview> (accessed Oct 29, 2026).
-[^arc-autoupgrade]: Microsoft Learn, "Automatically upgrade the Azure Connected Machine agent" (available only on Azure public cloud; agent 1.67 or later; RemoteSigned execution policy on Windows; cron on Linux; `--enable-automatic-upgrade`; the *Configure Azure Arc-enabled Servers to enable automatic upgrades* policy; `automaticupgrade.blocklocally`), <https://learn.microsoft.com/azure/azure-arc/servers/automatic-agent-upgrade> (accessed Oct 29, 2026).
-[^arc-mc-network]: Microsoft Learn, "Azure Machine Configuration network requirements" (regional endpoints for USGovArizona, USGovTexas and USGovVirginia), <https://learn.microsoft.com/azure/governance/machine-configuration/overview/03-network-requirements> (accessed Oct 29, 2026).
-[^arc-baselines]: Microsoft Learn, "Security Baselines Overview" (customizable audit baselines; CIS Linux Benchmarks and the Azure compute security baselines; JSON export; all public Azure regions; "Support for Azure Government and Sovereign Clouds is not supported for Public Preview"), <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/assign-security-baselines/overview-page>; and "Deploy a Security Baseline Policy Assignment" (*[Preview] Official CIS Security Benchmarks for Linux Workloads*), <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/assign-security-baselines/deploy-a-baseline-policy-assignment> (both accessed Oct 29, 2026).
+[^arc-autoupgrade]: Microsoft Learn, "Automatically upgrade the Azure Connected Machine agent" (available on Azure public cloud; agent 1.67 or later; RemoteSigned execution policy on Windows; cron on Linux; `--enable-automatic-upgrade`; the *Configure Azure Arc-enabled Servers to enable automatic upgrades* policy; `automaticupgrade.blocklocally`), <https://learn.microsoft.com/azure/azure-arc/servers/automatic-agent-upgrade> (accessed Oct 29, 2026).
+[^arc-mc-network]: Microsoft Learn, "Azure Machine Configuration network requirements" (regional service endpoints), <https://learn.microsoft.com/azure/governance/machine-configuration/overview/03-network-requirements> (accessed Oct 29, 2026).
+[^arc-baselines]: Microsoft Learn, "Security Baselines Overview" (customizable audit baselines; CIS Linux Benchmarks and the Azure compute security baselines; JSON export; all public Azure regions), <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/assign-security-baselines/overview-page>; and "Deploy a Security Baseline Policy Assignment" (*[Preview] Official CIS Security Benchmarks for Linux Workloads*), <https://learn.microsoft.com/azure/governance/machine-configuration/how-to/assign-security-baselines/deploy-a-baseline-policy-assignment> (both accessed Oct 29, 2026).
 [^arc-cis-win]: Microsoft Learn, "CIS Security Benchmarks for Windows Server (Preview)," Supported benchmarks and versions (Windows Server 2025, benchmark 1.0.0, L1 Member Server and L1 Domain Controller, audit only; 2022 and 2019 coming soon), <https://learn.microsoft.com/azure/osconfig/overview-cis-benchmarks-windows-server> (accessed Oct 29, 2026).
-[^arc-aum-regions]: Microsoft Learn, "Supported regions for Azure Update Manager" (Azure for US Government: USGovVirginia and USGovArizona for Azure VMs and Arc-enabled servers; USGovTexas for Azure VMs only), <https://learn.microsoft.com/azure/update-manager/supported-regions> (accessed Oct 29, 2026).
-[^arc-wsm]: Microsoft Learn, "Windows Server Management enabled by Azure Arc," Requirements (activation in all regions with Arc-enabled servers availability except US Gov Virginia, US Gov Arizona and three China regions), <https://learn.microsoft.com/azure/azure-arc/servers/windows-server-management-overview> (accessed Oct 29, 2026).
-[^arc-dfc-gov]: Microsoft Learn, "Cloud feature availability for US Government customers," Microsoft Defender for Cloud (Microsoft Defender for servers: GA in Azure and Azure Government), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Oct 29, 2026).
+[^arc-aum-regions]: Microsoft Learn, "Supported regions for Azure Update Manager" (Azure public cloud regions for Azure VMs and Arc-enabled servers), <https://learn.microsoft.com/azure/update-manager/supported-regions> (accessed Oct 29, 2026).
+[^arc-wsm]: Microsoft Learn, "Windows Server Management enabled by Azure Arc," Requirements (activation in the public regions with Arc-enabled servers availability), <https://learn.microsoft.com/azure/azure-arc/servers/windows-server-management-overview> (accessed Oct 29, 2026).
 [^arc-vmware-regions]: Microsoft Learn, "What is Azure Arc-enabled VMware vSphere?," Supported regions (refers to Azure Products by Region), <https://learn.microsoft.com/azure/azure-arc/vmware-vsphere/overview> (accessed Oct 29, 2026).
-[^arc-bridge]: Microsoft Learn, "What is Azure Arc resource bridge?," Supported regions (includes US Gov Virginia; the private cloud must also be supported in the region) and Private link support (not supported), <https://learn.microsoft.com/azure/azure-arc/resource-bridge/overview> (accessed Oct 29, 2026).
-[^arc-mcc]: Microsoft Learn, "What is Multicloud connector enabled by Azure Arc?," Supported regions ("isn't available in national clouds (Azure Government, Microsoft Azure operated by 21Vianet)"), <https://learn.microsoft.com/azure/azure-arc/multicloud-connector/overview> (accessed Oct 29, 2026).
+[^arc-mcc]: Microsoft Learn, "What is Multicloud connector enabled by Azure Arc?," Supported regions (the listed public Azure regions), <https://learn.microsoft.com/azure/azure-arc/multicloud-connector/overview> (accessed Oct 29, 2026).
 [^arc-tag-policies]: Microsoft Learn, "Assign policy definitions for tag compliance" (*Inherit a tag from the resource group if missing*, modify, leaves a different existing value unchanged; *Require a tag on resources* and *Require a tag and its value on resources*, deny; remediation tasks for existing resources), <https://learn.microsoft.com/azure/azure-resource-manager/management/tag-policies> (accessed Oct 29, 2026).
 [^arc-tags]: Microsoft Learn, "Use tags to organize your Azure resources and management hierarchy," Required access (Tag Contributor can tag any resource without access to the resource; Contributor can tag) and Inherit tags (resources don't inherit tags from resource groups or subscriptions), <https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources> (accessed Oct 29, 2026).
 [^arc-enforcement]: Microsoft Learn, "Azure Policy assignment structure," Enforcement mode (`DoNotEnforce` evaluates without enforcing the effect or writing Activity log entries; recommended for testing a new assignment; remediation tasks can start for deployIfNotExists policies in `DoNotEnforce`), <https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure> (accessed Oct 29, 2026).
@@ -549,5 +543,5 @@ A finding this page addresses is ready for closure when every applicable state h
 [^arc-advisor]: Microsoft Learn, "Resolve Azure Advisor recommendations for Azure Arc-enabled servers," Restore connectivity for 30+ day disconnected Arc-enabled server (30 through 44 days; managed identity credential may expire; `azcmagent show`, `azcmagent check`, `azcmagent logs --full`), <https://learn.microsoft.com/azure/azure-arc/servers/resolve-azure-advisor-recommendations> (accessed Oct 29, 2026).
 [^arc-release-notes]: Microsoft Learn, "What's new with Azure Connected Machine agent" (only versions released within the last year are officially supported; version 1.69, October 2026), <https://learn.microsoft.com/azure/azure-arc/servers/agent-release-notes> (accessed Oct 29, 2026).
 [^arc-agent-overview]: Microsoft Learn, "Overview of Azure Connected Machine agent" (the one-year support warning links "enable automatic agent upgrades (preview)"), <https://learn.microsoft.com/azure/azure-arc/servers/agent-overview> (accessed Oct 29, 2026).
-[^arc-arg-samples]: Microsoft Learn, "Azure Resource Graph sample queries for Azure Arc-enabled servers" (queries on `microsoft.hybridcompute/machines`; the outdated-agent query excludes `properties.status` Expired; Azure and Azure Government portal links), <https://learn.microsoft.com/azure/azure-arc/servers/resource-graph-samples> (accessed Oct 29, 2026).
+[^arc-arg-samples]: Microsoft Learn, "Azure Resource Graph sample queries for Azure Arc-enabled servers" (queries on `microsoft.hybridcompute/machines`; the outdated-agent query excludes `properties.status` Expired; Azure portal links), <https://learn.microsoft.com/azure/azure-arc/servers/resource-graph-samples> (accessed Oct 29, 2026).
 [^arc-activity-log]: Microsoft Learn, "Activity log in Azure Monitor" (control-plane operations; 90-day retention; the only place that stores a resource's creator; export through a diagnostic setting to a Log Analytics workspace, storage or Event Hubs), <https://learn.microsoft.com/azure/azure-monitor/fundamentals/activity-log> (accessed Oct 29, 2026).

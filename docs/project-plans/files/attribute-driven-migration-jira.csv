@@ -200,12 +200,12 @@ Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/n
 Duration 0 working days · end of wk 4 · total float 53 d · predecessors: D-AT5, AT5.2, AT5.3, AT5.4
 Criteria: Personas from authoritative codes, grant and block in pairs, empty slots reported; device and server conventions published and handed to the Endpoint plan; non-person owners and sponsors keyed to the person key
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#attribute-to-mechanism-crosswalk",fmw,fmw-attribute-driven-migration,fmw-id-atg5,gate,owner-ciso,,2027-01-29,2027-01-28,64,,,,,
-54,Epic,,Attribute-Driven Migration: Phase 6 — PIV and CAC binding,"Phase 6 — PIV and CAC binding of the sample plan Attribute-Driven Migration: The Cross-Track Attribute Foundation.
+54,Epic,,Attribute-Driven Migration: Phase 6 — PIV binding,"Phase 6 — PIV binding of the sample plan Attribute-Driven Migration: The Cross-Track Attribute Foundation.
 https://whalermike.github.io/modernization-workbook/docs/project-plans/attribute-driven-migration.html",fmw,fmw-attribute-driven-migration,phase,,,,2027-03-01,2027-09-10,,,,,,
 55,Task,54,AT6.1 Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer,"AT6.1 · Task · owner or approver: Identity engineering, with the PIV program office
 Duration 5 working days · wk 9 · total float 8 d · predecessors: ATG3
 Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/attribute-driven-migration.html#pki-binding",fmw,fmw-attribute-driven-migration,fmw-id-at6.1,task,owner-identity-engineering-with-the-piv-program-office,,2027-03-01,2027-03-05,56,,,,,
-56,Task,54,D-AT6 Required affinity binding for PIV and CAC,"D-AT6 · Decision · owner or approver: CISO
+56,Task,54,D-AT6 Required affinity binding for PIV,"D-AT6 · Decision · owner or approver: CISO
 Duration 0 working days · end of wk 9 · total float 8 d · predecessors: AT6.1
 Options: High affinity in production (the program's position), with a custom rule per issuer during the pilot; low affinity until coverage is complete, with a dated end; mixed by issuer
 If decided late: PIV sign-in goes to the pilot at the tenant default, which is low affinity
@@ -213,7 +213,7 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/0
 57,Task,54,AT6.2 High affinity piloted on the pilot cohort before the tenant setting changes; multifactor binding rule by issuer or policy OID,"AT6.2 · Task · owner or approver: Identity engineering
 Duration 5 working days · wk 10 · total float 8 d · predecessors: D-AT6
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b03-hr-identity/09-credentials-and-certificates.html#binding-the-piv-certificate-to-the-entra-user",fmw,fmw-attribute-driven-migration,fmw-id-at6.2,task,owner-identity-engineering,,2027-03-08,2027-03-12,58,59,61,,,
-58,Task,54,X-P28 Certificate-based authentication for PIV and CAC holders (program P2.8),"X-P28 · External · owner or approver: Platform teams (program)
+58,Task,54,X-P28 Certificate-based authentication for PIV holders (program P2.8),"X-P28 · External · owner or approver: Platform teams (program)
 Duration 0 working days · end of wk 12 · total float fixed date · predecessors: AT6.2
 If decided late: PIV sign-in reaches the pilot with bindings nobody has measured
 Comes from program-master-schedule:P2.8 in another plan; its date is set there.

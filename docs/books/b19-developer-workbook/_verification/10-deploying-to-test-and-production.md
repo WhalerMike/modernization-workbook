@@ -72,7 +72,7 @@ These appear in the runbook's commands. Each is a standard parameter or cmdlet, 
 
 | Source | Went to | Or why not carried |
 |---|---|---|
-| Implementation guide: prerequisites, deciders, gates 2 to 9, rollback at a glance | Before you start; every step's gate line; promotion criteria; production rollback table; step-to-gate map | Gates 0, 1 and 6 have no deployment step: reading the tree and signing the schema come before any kit runs, and PIV binding belongs to the card management system ([guide, Gate 6](../../guides/attribute-driven-migration-implementation.md#gate-6-piv-and-cac-binding)) |
+| Implementation guide: prerequisites, deciders, gates 2 to 9, rollback at a glance | Before you start; every step's gate line; promotion criteria; production rollback table; step-to-gate map | Gates 0, 1 and 6 have no deployment step: reading the tree and signing the schema come before any kit runs, and PIV binding belongs to the card management system ([guide, Gate 6](../../guides/attribute-driven-migration-implementation.md#gate-6-piv-binding)) |
 | Chapter 01, test-tenant steps | Step 2 | CSV2SCIM's schema step stays a prerequisite (worldwide or GCC only) |
 | Chapter 02 | Sign-in; the Conditional Access export in step 1 | — |
 | Chapter 03 | The reader identity's scopes; the smoke test reads the kit's manifest | — |

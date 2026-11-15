@@ -1,6 +1,6 @@
 ---
 title: "Azure Security Engineering"
-description: "An implementation guide for the security of an agency's Azure estate: the landing-zone security baseline, a continuous inventory of public exposure, Azure DDoS Protection, Azure Web Application Firewall, Azure Front Door and Application Gateway, Azure Firewall and segmentation, Private Link and private DNS, managed identities and Key Vault, Azure Policy and drift, and operations and evidence. Ten gated steps with Azure CLI, Az PowerShell and Bicep from Microsoft Learn, Azure Government availability for each service, the AWS, Google Cloud and Oracle Cloud equivalents, the federal requirements and KSIs each step supports, the evidence an ISSO keeps, and a reference architecture, decision record, RACI, evidence catalog and metrics."
+description: "An implementation guide for the security of an agency's Azure estate: the landing-zone security baseline, a continuous inventory of public exposure, Azure DDoS Protection, Azure Web Application Firewall, Azure Front Door and Application Gateway, Azure Firewall and segmentation, Private Link and private DNS, managed identities and Key Vault, Azure Policy and drift, and operations and evidence. Ten gated steps with Azure CLI, Az PowerShell and Bicep from Microsoft Learn, commercial Azure availability for each service, the AWS, Google Cloud and Oracle Cloud equivalents, the federal requirements and KSIs each step supports, the evidence an ISSO keeps, and a reference architecture, decision record, RACI, evidence catalog and metrics."
 doc-type: workbook-guide
 audience: [Technical, Customer]
 family: guides
@@ -22,12 +22,12 @@ last-reviewed: 2026-11-11
 
 ::: {.callout-note}
 ## In this guide
-How an agency engineers the security of its Azure estate on top of the landing zone [Book 10](../b10-cloud-boundary/index.md) designs, as gated steps an operator can run. First, how to read the guide, where each topic is covered, the placeholders, prerequisites and government-cloud availability, a comparison with AWS, Google Cloud and Oracle Cloud Infrastructure, the reference architecture and the decision record. Then ten steps: the landing-zone security baseline, the public exposure inventory, DDoS protection, the web application firewall, Front Door and Application Gateway, Azure Firewall and segmentation, Private Link and DNS, managed identities and Key Vault, Azure Policy and drift, and operations and evidence. Each step carries its authority label, copy-paste commands from Microsoft Learn, the How template of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template), a **Validate** step and an evidence checklist. Then the RACI, the evidence catalog, the metrics, the requirements and KSIs, the dangers, rollback, the implementation checklist and what couldn't be verified.
+How an agency engineers the security of its Azure estate on top of the landing zone [Book 10](../b10-cloud-boundary/index.md) designs, as gated steps an operator can run. First, how to read the guide, where each topic is covered, the placeholders, prerequisites and commercial Azure availability, a comparison with AWS, Google Cloud and Oracle Cloud Infrastructure, the reference architecture and the decision record. Then ten steps: the landing-zone security baseline, the public exposure inventory, DDoS protection, the web application firewall, Front Door and Application Gateway, Azure Firewall and segmentation, Private Link and DNS, managed identities and Key Vault, Azure Policy and drift, and operations and evidence. Each step carries its authority label, copy-paste commands from Microsoft Learn, the How template of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#how-section-template), a **Validate** step and an evidence checklist. Then the RACI, the evidence catalog, the metrics, the requirements and KSIs, the dangers, rollback, the implementation checklist and what couldn't be verified.
 :::
 
 ::: {.callout-tip}
 ## Watch, present or train
-**Narrated deck (about 17 minutes, captions)**: why a landing zone isn't a defense, what the books design and what this guide engineers, the ten steps on one page, commercial Azure for a GCC tenant and what differs in Azure Government, the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure, the eligible roles and the RACI, then each step from the baseline and the exposure inventory to Key Vault, policy and operations, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-azure-security) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Azure_Security_Narrated). The deck says this guide is a draft awaiting the editor's review.
+**Narrated deck (about 17 minutes, captions)**: why a landing zone isn't a defense, what the books design and what this guide engineers, the ten steps on one page, commercial Azure for a GCC tenant, the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure, the eligible roles and the RACI, then each step from the baseline and the exposure inventory to Key Vault, policy and operations, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-azure-security) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Azure_Security_Narrated). The deck says this guide is a draft awaiting the editor's review.
 :::
 
 ## How to read this guide
@@ -40,13 +40,12 @@ The guide replaces the separate Azure security book the Zero Trust Assessment cl
 
 **Labels.** Each step carries the authority label of [Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#authority-labels): *Mandated* only where a federal source requires it, *Microsoft-recommended* where Learn recommends it, *Risk-based recommended* where it is this program's position. *(Design guidance)* marks the program's own choices in prose. A control a tenant isn't licensed for, or a feature a cloud doesn't offer, is a licensing or environment decision, not a failed control: an assessment test that can't run against it is *Skipped*, not *Fail* ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy)).
 
-**The audience.** A civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure, and agencies that run workloads in Azure Government. [Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md) explains the pairing. The examples use the fictional Contoso and `contoso.example`.
+**The audience.** A civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure. [Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md) explains the pairing. The examples use the fictional Contoso and `contoso.example`.
 
 **The placeholders.** Replace these once, everywhere:
 
 | Placeholder | What it is |
 |---|---|
-| `<cloud>` | `AzureCloud` (commercial Azure, which a GCC tenant uses) or `AzureUSGovernment` |
 | `<subscription-id>`, `<rg>`, `<location>` | A subscription, resource group and region in scope |
 | `<mg-id>` | The intermediate root management group of [Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md#the-management-group-hierarchy) |
 | `<workspace-id>` | The resource ID of the Log Analytics workspace the platform team runs |
@@ -109,10 +108,10 @@ The guide replaces the separate Azure security book the Zero Trust Assessment cl
 - **The landing zone exists.** The management group hierarchy, the boundary policies and the provisioning loop of [Book 10, Chapters 05 and 07](../b10-cloud-boundary/05-the-landing-zone.md) are in place, and the platform team owns a connectivity hub subscription and a management subscription with a Log Analytics workspace.
 - **Roles, eligible through PIM.** Network Contributor for the connectivity work, Resource Policy Contributor for Azure Policy, Key Vault Administrator for vault settings, and Security Admin for Defender for Cloud, each eligible rather than standing, as the [privileged access guide](privileged-access-implementation.md) sets up. Emergency access accounts aren't used for this work and aren't excluded from anything here, because nothing here governs sign-in.
 - **Tools.** Azure CLI with the `resource-graph` and `azure-firewall` extensions (the firewall policy draft needs `azure-firewall` 1.2.3 or later),[^azs-fw-draft] and the Az PowerShell module.
-- **The right cloud.** Sign in to the cloud the subscription lives in. Azure Government endpoints differ (Resource Manager at `management.usgovcloudapi.net`, Key Vault at `vault.usgovcloudapi.net`):[^azs-gov-compare]
+- **The right cloud.** Sign in to commercial Azure, where the subscriptions live (Resource Manager at `management.azure.com`):
 
     ```powershell
-    az cloud set --name <cloud>
+    az cloud set --name AzureCloud
     az login
     az account set --subscription <subscription-id>
     az extension add --name resource-graph
@@ -121,26 +120,25 @@ The guide replaces the separate Azure security book the Zero Trust Assessment cl
 
 - **Licenses and costs.** DDoS Network Protection is billed per plan and DDoS IP Protection per protected IP;[^azs-ddos-tiers] Front Door managed WAF rules need the Premium tier;[^azs-afd-cli] IDPS and TLS inspection need Azure Firewall Premium.[^azs-fw-zt] These are budget decisions recorded in the [decision record](#decision-record), not findings.
 
-### Government-cloud availability {#gov-availability}
+### Availability in commercial Azure {#gov-availability}
 
-Microsoft 365 GCC pairs with commercial Azure, so a GCC agency's subscriptions are usually commercial and the left column applies ([Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md)). Learn's comparison page says a service available in Azure Government has all its features unless the page lists a variation.[^azs-gov-compare]
+Microsoft 365 GCC pairs with commercial Azure, so a GCC agency's subscriptions are commercial ([Book 10, Chapter 04](../b10-cloud-boundary/04-gcc-and-the-feature-gap.md)). What to plan for, service by service:
 
-| Service | Commercial Azure | Azure Government | Difference to plan for |
-|---|---|---|---|
-| Azure Front Door Standard and Premium | Available | Generally available in US Gov Arizona and US Gov Texas[^azs-gov-compare] | Learn's Front Door overview says Standard, Premium and classic are available in Azure Government;[^azs-afd-overview] the comparison page names the two regions. Classic retires March 31, 2027 and accepts no new profiles or domains.[^azs-afd-classic] Premium is needed for managed WAF rules and Private Link origins |
-| Front Door Private Link to origin | The listed regions | US Gov Arizona, US Gov Texas and US Gov Virginia are in Learn's region list[^azs-afd-pl] | The same page says the feature is only in regions with availability zones, and Learn's Azure Government region list shows zones only in US Gov Virginia:[^azs-gov-regions] treat Arizona and Texas as unconfirmed until a test profile shows them |
-| Azure WAF (Application Gateway) | Available | Supported in sovereign clouds, but geo-filtering custom rules and bot protection rule sets aren't[^azs-waf-faq] | The Zero Trust test for a bot protection rule set can't pass in Azure Government: record it as *Skipped-Not-Applicable* (environment), not *Fail* |
-| Azure WAF (Front Door) | Available | Not yet specified separately on Learn | Assume the Application Gateway FAQ's sovereign-cloud limits until a test policy shows otherwise |
-| Azure DDoS Protection | Available | No variation listed on the comparison page[^azs-gov-compare] | Simulation partner Red Button is public cloud only;[^azs-ddos-sim] which partners serve Azure Government is not yet specified. IP Protection versus Network Protection by cloud: not yet specified |
-| Azure Firewall (Standard, Premium) | Available | No variation listed on the comparison page[^azs-gov-compare] | Premium's region list is on the products-by-region page, not Learn:[^azs-fw-premium] not yet specified on Learn |
-| Private Link and private DNS | Available | Per-service availability page; different zone names, for example `privatelink.vaultcore.usgovcloudapi.net` and `privatelink.blob.core.usgovcloudapi.net`[^azs-pe-dns] | Policy that registers DNS records needs the Azure Government zone names |
-| Key Vault and Managed HSM | Available | `vault.usgovcloudapi.net`, `managedhsm.usgovcloudapi.net`[^azs-gov-compare] | Endpoints only |
-| Azure Policy | Available | No variation listed[^azs-gov-compare] | FedRAMP initiatives exist in separate versions for each cloud ([Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md#which-settings)) |
-| Microsoft Defender for Cloud | Available | Feature differences | [Book 12, Chapter 08](../b12-security-operations/08-cloud-native-posture.md#where-defender-for-cloud-does-and-doesnt-reach): internet exposure analysis and regulatory compliance are generally available in Azure Government; the AWS connector isn't |
-| Azure landing zone accelerators | Supported | Not supported unmodified; adapt the code ([Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md#what-a-landing-zone-is)) | Remove policies and resources that don't exist in Azure Government |
-| Azure Lighthouse | Available | No PIM (just-in-time) for delegated access, and no delegation across clouds[^azs-gov-compare] | A partner managing an Azure Government estate needs standing roles or a different model; record it |
+| Service | Commercial Azure | What to plan for |
+|---|---|---|
+| Azure Front Door Standard and Premium | Available[^azs-afd-overview] | Classic retires March 31, 2027 and accepts no new profiles or domains.[^azs-afd-classic] Premium is needed for managed WAF rules and Private Link origins |
+| Front Door Private Link to origin | The listed regions[^azs-afd-pl] | Learn limits the feature to regions with availability zones: check the origin's region on the list |
+| Azure WAF (Application Gateway) | Available | Detection mode doesn't block;[^azs-waf-faq] Step 4 runs prevention mode |
+| Azure WAF (Front Door) | Available | Managed rule sets need Front Door Premium[^azs-afd-cli] |
+| Azure DDoS Protection | Available | Network Protection is billed per plan, IP Protection per protected IP;[^azs-ddos-tiers] simulations only through Learn's approved partners[^azs-ddos-sim] |
+| Azure Firewall (Standard, Premium) | Available | Premium's region list is on the products-by-region page, not Learn[^azs-fw-premium] |
+| Private Link and private DNS | Available | One central zone per service, for example `privatelink.vaultcore.azure.net` and `privatelink.blob.core.windows.net`[^azs-pe-dns] |
+| Key Vault and Managed HSM | Available | Vaults at `<vault>.vault.azure.net` |
+| Azure Policy | Available | FedRAMP initiatives are built in ([Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md#which-settings)) |
+| Microsoft Defender for Cloud | Available | [Book 12, Chapter 08](../b12-security-operations/08-cloud-native-posture.md#where-defender-for-cloud-does-and-doesnt-reach) sets what it reaches |
+| Azure landing zone accelerators | Supported | [Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md#what-a-landing-zone-is) |
 
-: Azure security services in commercial Azure and Azure Government, read November 11, 2026 {.striped .hover}
+: Azure security services in commercial Azure, read November 11, 2026 {.striped .hover}
 
 ## The same controls on AWS, Google Cloud and Oracle Cloud {#other-clouds}
 
@@ -152,7 +150,7 @@ The workbook's estate spans clouds ([Book 12, Chapter 08](../b12-security-operat
 | Web application firewall | Azure WAF on Front Door and Application Gateway | AWS WAF on CloudFront, Application Load Balancer, API Gateway and AppSync[^azs-aws-shield] | Cloud Armor security policies with preconfigured OWASP CRS rules; Adaptive Protection on Enterprise[^azs-gcp-armor] | OCI WAF, as a regional policy on a load balancer or at the edge, with protection rules and rate limiting[^azs-oci-waf] |
 | Inspecting firewall | Azure Firewall Premium (IDPS, TLS inspection) | AWS Network Firewall; not compared here | Cloud NGFW; not compared here | OCI Network Firewall, built on Palo Alto Networks, with IDPS, TLS inspection and URL filtering, reached through VCN route tables[^azs-oci-nfw] |
 | Private access to PaaS | Private Link private endpoints | AWS PrivateLink interface endpoints; not compared here | Private Service Connect: consumers reach Google APIs and published services on internal IPs in their own VPC[^azs-gcp-psc] | Private endpoints: a private IP in a VCN subnet for an Oracle service[^azs-oci-pe] |
-| Government-cloud note | Azure Government differences above | AWS WAF in GovCloud (US) offers only AWS managed rule groups, no Marketplace rule groups;[^azs-aws-govwaf] Shield Advanced in GovCloud: not yet specified | Assured Workloads' FedRAMP High package lists Cloud Armor and VPC, not Private Service Connect;[^azs-gcp-aw] Moderate: not yet specified | OCI Government Cloud availability of WAF and Network Firewall: not yet specified |
+| Government-cloud note | Commercial Azure, as in the [availability table](#gov-availability) | AWS WAF in GovCloud (US) offers only AWS managed rule groups, no Marketplace rule groups;[^azs-aws-govwaf] Shield Advanced in GovCloud: not yet specified | Assured Workloads' FedRAMP High package lists Cloud Armor and VPC, not Private Service Connect;[^azs-gcp-aw] Moderate: not yet specified | OCI Government Cloud availability of WAF and Network Firewall: not yet specified |
 
 : The controls in this guide across four clouds {.striped .hover}
 
@@ -172,7 +170,7 @@ One record per service decision (a DDoS tier, a Front Door tier, a firewall SKU,
 **Scope:** <management group, subscriptions, resources>
 **Options considered:** <e.g. DDoS Network Protection | DDoS IP Protection | infrastructure protection only>
 **License or cost:** <SKU, tier, plan; who pays>
-**Cloud availability:** <commercial Azure / Azure Government; region; Learn page and date read, or "not yet specified">
+**Cloud availability:** <commercial Azure region; Learn page and date read, or "not yet specified">
 **Prerequisites:** <what must exist first: hub, workspace, roles, Premium tier>
 **Compensating control, if the preferred option is unavailable:** <what covers the risk instead, and its evidence>
 **Authority:** <Mandated | Microsoft-recommended | Risk-based recommended | Optional> (<source>)
@@ -205,7 +203,7 @@ Steps 1 and 2 come first; Steps 3 to 8 can run in parallel by workload once the 
 [Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md) designs the hierarchy, the boundary policies (allowed locations, allowed resource types, the FedRAMP initiative in audit mode) and the exemption rule; this step adds what the security baseline needs on top, and doesn't repeat it.
 
 **Authority:** Microsoft-recommended (protecting the hierarchy, the default management group, diagnostic logs on platform resources, Learn as cited) and Risk-based recommended (the gate, for the risk that security services get deployed into a landing zone nobody logs).
-**Applies:** all subscriptions; Environment-dependent: the landing zone accelerators need adapting in Azure Government.
+**Applies:** all subscriptions.
 
 **Steps.**
 
@@ -402,7 +400,7 @@ Every public IP in Azure gets DDoS infrastructure protection at no cost. DDoS Ne
 
 Azure WAF runs on Front Door (global) and Application Gateway WAF_v2 (regional) as a WAF policy of managed rules, custom rules and settings. In detection mode it only logs; only prevention mode blocks.[^azs-zt-agw-waf] Microsoft's Zero Trust recommendations for both check prevention mode, request body inspection, the default rule set, the bot protection rule set, rate limiting, a JavaScript challenge and diagnostic logging, and for Application Gateway the HTTP DDoS rule set; Front Door adds a CAPTCHA challenge.[^azs-zt-netsec] Learn recommends the latest Default Rule Set, 2.2 at the time of reading, validated in log mode before blocking.[^azs-agw-secure]
 
-**Authority:** Microsoft-recommended (Learn as cited); supports SP 800-53 SC-7 and SI-10. **Applies:** License-dependent (Front Door managed rules need Premium); Environment-dependent (no bot protection or geo-filtering custom rules in sovereign clouds).[^azs-waf-faq]
+**Authority:** Microsoft-recommended (Learn as cited); supports SP 800-53 SC-7 and SI-10. **Applies:** License-dependent (Front Door managed rules need Premium).[^azs-afd-cli]
 
 **Steps (Application Gateway).** Learn's CLI; the defaults are `Microsoft_DefaultRuleSet` version 2.1, so name the version you've validated:[^azs-waf-cli]
 
@@ -465,8 +463,6 @@ module wafPolicy 'br/public:avm/res/network/application-gateway-web-application-
 }
 ```
 
-In Azure Government, leave out the bot manager rule set.[^azs-waf-faq]
-
 | How template | This step |
 |---|---|
 | Prerequisites | Application Gateway WAF_v2 or Front Door Premium; the workspace; the inventory's list of HTTP endpoints |
@@ -493,16 +489,16 @@ In Azure Government, leave out the bot manager rule set.[^azs-waf-faq]
 - [ ] **Configuration:** WAF policy exports (JSON or the Bicep file and its commit)
 - [ ] **Operational:** WAF logs and block counts, retained per the logging plan
 - [ ] **Test:** the blocked test request and its log row (date, tester)
-- [ ] **Exception:** the rule-exception register; bot-protection skip in Azure Government with its environment reason
+- [ ] **Exception:** the rule-exception register
 - [ ] **Assessor-ready artifact:** per-application WAF state from the register, with the test
 
 ## Step 5: Front Door and Application Gateway {#step-5-front-door-and-application-gateway}
 
 Front Door is global and sits at the Microsoft edge with built-in L3/L4 DDoS protection; Application Gateway is regional, in the agency's virtual network.[^azs-afd-overview] Either works with the WAF of Step 4. What this step adds is the rest of the ingress engineering: an origin nothing can reach around the edge, TLS, health probes, logs and failover.
 
-**Selection** *(design guidance)*: Front Door Premium for internet-facing applications that need global reach, Private Link origins or managed WAF rules; Application Gateway WAF_v2 for regional applications, for traffic that must enter through the agency's own virtual network, or where Front Door isn't available in the region; both (Front Door in front of Application Gateway, reached over Private Link) where the application needs regional inspection too.[^azs-afd-pl] In Azure Government, check the region first ([availability](#gov-availability)). Migrate any classic Front Door before March 31, 2027.[^azs-afd-classic]
+**Selection** *(design guidance)*: Front Door Premium for internet-facing applications that need global reach, Private Link origins or managed WAF rules; Application Gateway WAF_v2 for regional applications, for traffic that must enter through the agency's own virtual network, or where Front Door isn't available in the region; both (Front Door in front of Application Gateway, reached over Private Link) where the application needs regional inspection too.[^azs-afd-pl] Migrate any classic Front Door before March 31, 2027.[^azs-afd-classic]
 
-**Authority:** Microsoft-recommended (origin lock-down, Private Link origins, TLS 1.2 minimum, migration from classic).[^azs-afd-secure][^azs-ingress] **Applies:** License-dependent (Private Link origins need Premium); Environment-dependent (Azure Government regions).
+**Authority:** Microsoft-recommended (origin lock-down, Private Link origins, TLS 1.2 minimum, migration from classic).[^azs-afd-secure][^azs-ingress] **Applies:** License-dependent (Private Link origins need Premium).
 
 **Steps.**
 
@@ -636,11 +632,11 @@ Front Door is global and sits at the Microsoft edge with built-in L3/L4 DDoS pro
 
 A private endpoint gives a PaaS resource an address in the agency's virtual network; DNS decides whether clients use it. Name resolution is where private endpoints fail: the zone must exist, be linked to the virtual network and hold the record, and on-premises DNS must forward to Azure.[^azs-kv-pl] [Book 08](../b08-ddi/index.md) owns the agency's DNS authority; this step adds the Azure side.
 
-**Authority:** Microsoft-recommended (public access disabled with private endpoints; central zones registered by policy).[^azs-kv-secure][^azs-pl-scale] **Applies:** Environment-dependent (zone names differ in Azure Government).[^azs-pe-dns]
+**Authority:** Microsoft-recommended (public access disabled with private endpoints; central zones registered by policy).[^azs-kv-secure][^azs-pl-scale] **Applies:** all subscriptions; the zone names are on Learn's list.[^azs-pe-dns]
 
 **Steps.**
 
-1. **Create each `privatelink` zone once, centrally,** in the connectivity subscription, and link it to the hub (Key Vault shown; use the [Azure Government name](#gov-availability) there):[^azs-kv-pl]
+1. **Create each `privatelink` zone once, centrally,** in the connectivity subscription, and link it to the hub (Key Vault shown):[^azs-kv-pl]
 
     ```powershell
     az network private-dns zone create --resource-group <rg> --name privatelink.vaultcore.azure.net
@@ -887,7 +883,7 @@ R responsible, A accountable, C consulted, I informed. Roles follow [Book 10, Ch
 | 1 Baseline | Hierarchy settings; initiative assignments | Default-group test | Compliance in the workspace | Exemption register | Monthly compliance export |
 | 2 Exposure | Query text; dated register | New-IP detection test | Weekly runs; new-IP alert | Accepted exposures | Weekly rerun; quarterly review |
 | 3 DDoS | Plan and links; per-IP mode | Simulation report and fired alert | DDoS metrics and logs | Unprotected IPs | Yearly simulation; quarterly coverage |
-| 4 WAF | WAF policy exports or Bicep | Blocked test request | WAF logs and block counts | Rule exceptions; Azure Government bot skip | Quarterly rule-set review |
+| 4 WAF | WAF policy exports or Bicep | Blocked test request | WAF logs and block counts | Rule exceptions | Quarterly rule-set review |
 | 5 Front Door and Application Gateway | Profile, routes, access restrictions | Refused direct request; failover | Access and probe logs | Unlocked origins | Twice-yearly failover |
 | 6 Firewall | Policy export; route tables | Denied threat-intel request | Firewall logs | Bypass and allow lists | Quarterly rule review |
 | 7 Private Link and DNS | Zones, endpoints, policies | `nslookup` private and public | Policy compliance | Public services | Monthly with Step 9 |
@@ -995,7 +991,6 @@ SC-5, SC-7, CM-2, CM-6, CM-8, CA-7, IA-5, AU-6, IR-4 and CP-4 are in the Moderat
 | **Moving a DDoS-protected virtual network** | The move fails; disabling protection to move resets tuning[^azs-ddos-cli] | Plan moves; re-baseline after |
 | **A firewall draft deployed over newer changes** | Live edits made after the draft are lost[^azs-fw-draft] | One change path: drafts only, through the change record |
 | **Private DNS zones in workload subscriptions** | Records split across zones; resolution fails or goes public | Deny `privatelink` zones outside the hub; zone groups by policy[^azs-pl-scale] |
-| **Assuming commercial features in Azure Government** | Bot rule sets, geo-filtering, some Front Door regions, a simulation partner aren't there[^azs-waf-faq][^azs-ddos-sim] | The [availability table](#gov-availability); skipped tests recorded as environment, not failures |
 | **Disabling a key to contain a compromise** | Dependent databases and storage go offline[^azs-kv-secure] | Rotate and migrate first, then disable |
 | **Classic Front Door past March 31, 2027** | Service disruption[^azs-afd-classic] | Migrate in Step 5 |
 | **The register in a public repository** | A map of the attack surface published | Keep it inside the boundary |
@@ -1038,13 +1033,9 @@ Each line has its pilot, enforcement, rollback, exception and validation step in
 
 ## What couldn't be verified {#what-couldnt-be-verified}
 
-- **Front Door in Azure Government, region by region.** Learn's comparison page says Standard and Premium are generally available in US Gov Arizona and US Gov Texas; the Front Door overview says Standard, Premium and classic are available in Azure Government without naming regions. Whether US Gov Virginia hosts Front Door profiles is not yet specified.
-- **Front Door Private Link in US Gov Arizona and Texas.** Learn lists them, but the same page limits the feature to regions with availability zones, and Learn's Azure Government region list shows zones only in US Gov Virginia. Unresolved; test before relying on it.
-- **Front Door WAF in sovereign clouds.** Learn's sovereign-cloud limits (no bot protection, no geo-filtering custom rules) are on the Application Gateway WAF FAQ; Front Door's are not yet specified.
-- **DDoS Protection tiers and simulation partners in Azure Government.** Whether IP Protection is available there, and which partners other than Red Button (public cloud only) test Azure Government, are not yet specified.
-- **Azure Firewall Premium regions in Azure Government.** Learn points to the products-by-region page, not a Learn statement.
+- **Azure Firewall Premium regions.** Learn points to the products-by-region page, not a Learn statement.
 - **AWS Shield Advanced in GovCloud (US); OCI WAF and Network Firewall in OCI Government Cloud; Google Cloud's FedRAMP Moderate package.** Not read or not stated.
-- **Built-in policy names and effects in Azure Government.** The guide lists the definitions by display name and has the reader look them up, because built-ins differ by cloud.
+- **Built-in policy names and effects.** The guide lists the definitions by display name and has the reader look them up, because built-in definitions change version.
 - **The Step 2 `publicNetworkAccess` query.** The property's presence and values vary by resource type; the query is a starting list.
 - **Tenant behavior.** Nothing in this guide was run in a subscription. Every command is Learn's, unrun by the authors.
 
@@ -1060,11 +1051,9 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 
 <!-- revisions:end -->
 
-[^azs-gov-compare]: Microsoft Learn, "Compare Azure Government and global Azure" (endpoints; a listed service has all features unless a variation is listed; Front Door Standard and Premium generally available in US Gov Arizona and US Gov Texas; Private Link DNS zone names; Lighthouse without PIM or cross-cloud delegation), <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Nov 11, 2026).
-[^azs-gov-regions]: Microsoft Learn, "What is Azure Government?," section "List of regions" (availability zone support shown for US Gov Virginia only), <https://learn.microsoft.com/azure/azure-government/documentation-government-welcome> (accessed Nov 11, 2026).
-[^azs-afd-overview]: Microsoft Learn, "What is Azure Front Door?" (built-in layer 3-4 DDoS protection; Standard, Premium and classic available in Azure (Commercial) and Azure Government (US)), <https://learn.microsoft.com/azure/frontdoor/front-door-overview> (accessed Nov 11, 2026).
+[^azs-afd-overview]: Microsoft Learn, "What is Azure Front Door?" (built-in layer 3-4 DDoS protection; Standard, Premium and classic available in Azure (Commercial)), <https://learn.microsoft.com/azure/frontdoor/front-door-overview> (accessed Nov 11, 2026).
 [^azs-afd-classic]: Microsoft Learn, "Migrate Azure Front Door (classic) to Standard or Premium tier" (classic retires March 31, 2027; no new profiles, domains or managed certificates; Standard and Premium require HTTPS on custom domains), <https://learn.microsoft.com/azure/frontdoor/migrate-tier> (accessed Nov 11, 2026).
-[^azs-afd-pl]: Microsoft Learn, "Secure your origin with Private Link in Azure Front Door Premium" (supported origin types; approval; region list including US Gov Arizona, Texas and Virginia; availability-zone note; no mixed origin groups; health probes on the private path; regional redundancy), <https://learn.microsoft.com/azure/frontdoor/private-link> (accessed Nov 11, 2026).
+[^azs-afd-pl]: Microsoft Learn, "Secure your origin with Private Link in Azure Front Door Premium" (supported origin types; approval; region list; availability-zone note; no mixed origin groups; health probes on the private path; regional redundancy), <https://learn.microsoft.com/azure/frontdoor/private-link> (accessed Nov 11, 2026).
 [^azs-afd-cli]: Microsoft Learn, "Quickstart: Create an Azure Front Door using Azure CLI" (profile, origin group and probes, WAF policy with `--sku Premium_AzureFrontDoor`, managed rules DRS 2.1 and bot manager 1.0, security policy; managed rules need Premium; failover test), <https://learn.microsoft.com/azure/frontdoor/create-front-door-cli> (accessed Nov 11, 2026).
 [^azs-afd-origin]: Microsoft Learn, "Secure traffic to Azure Front Door origins" (`AzureFrontDoor.Backend` service tag and `X-Azure-FDID` together; the tag's addresses are shared; Application Gateway NSG and WAF custom rule), <https://learn.microsoft.com/azure/frontdoor/origin-security> (accessed Nov 11, 2026).
 [^azs-afd-secure]: Microsoft Learn, "Secure your Azure Front Door deployment," section "Network security" (migrate from classic; Private Link origins; restrict direct origin access; current DRS), <https://learn.microsoft.com/azure/frontdoor/secure-front-door> (accessed Nov 11, 2026).
@@ -1077,7 +1066,7 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^azs-waf-cli]: Microsoft Learn, Azure CLI reference, "az network application-gateway waf-policy" (`create` with `--type` default `Microsoft_DefaultRuleSet` and `--version` default 2.1; `managed-rule rule-set add`; accepted rule set types), <https://learn.microsoft.com/cli/azure/network/application-gateway/waf-policy> (accessed Nov 11, 2026).
 [^azs-waf-403]: Microsoft Learn, "Troubleshoot Application Gateway WAF blocking legitimate requests" (switching `policy-setting update --mode` between Prevention and Detection with `--request-body-check`), <https://learn.microsoft.com/troubleshoot/azure/application-gateway/troubleshoot-waf-blocking-legitimate-requests-403> (accessed Nov 11, 2026).
 [^azs-waf-ratelimit]: Microsoft Learn, "Configure rate limit custom rules" for Application Gateway WAF, and "Configure a WAF rate limit rule" for Front Door (the custom-rule and match-condition commands), <https://learn.microsoft.com/azure/web-application-firewall/ag/rate-limiting-configure> and <https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-rate-limit-configure> (accessed Nov 11, 2026).
-[^azs-waf-faq]: Microsoft Learn, "Frequently asked questions for Azure Web Application Firewall on Application Gateway" (sovereign clouds supported, but geo-filtering custom rules and bot protection rule sets aren't; detection mode doesn't block), <https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-faq> (accessed Nov 11, 2026).
+[^azs-waf-faq]: Microsoft Learn, "Frequently asked questions for Azure Web Application Firewall on Application Gateway" (detection mode doesn't block), <https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-faq> (accessed Nov 11, 2026).
 [^azs-waf-policy]: Microsoft Learn, "Azure Web Application Firewall and Azure Policy" (built-in definitions to require a WAF on Front Door and Application Gateway and to require a mode, with Audit, Deny and Disabled), <https://learn.microsoft.com/azure/web-application-firewall/shared/waf-azure-policy> (accessed Nov 11, 2026).
 [^azs-waf-l7]: Microsoft Learn, "Application (layer 7) DDoS protection," section "Analyze WAF and access logs" (WAF log categories and top-talker queries), <https://learn.microsoft.com/azure/web-application-firewall/application-ddos-protection> (accessed Nov 11, 2026).
 [^azs-avm-waf]: Microsoft, Azure Verified Modules, "Application Gateway Web Application Firewall (WAF) Policies" Bicep module `br/public:avm/res/network/application-gateway-web-application-firewall-policy` (managed rule sets and policy settings), <https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/application-gateway-web-application-firewall-policy> (accessed Nov 11, 2026).
@@ -1099,7 +1088,7 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^azs-fw-cli]: Microsoft Learn, Azure CLI reference, "az network firewall policy create" (`--sku`, `--threat-intel-mode` and `--idps-mode` with Alert, Deny, Off), <https://learn.microsoft.com/cli/azure/network/firewall/policy> (accessed Nov 11, 2026).
 [^azs-fw-route]: Microsoft Learn, "Integrate NAT gateway with Azure Firewall," section "Create a route table" (route table, default route to the firewall's private IP, subnet association), <https://learn.microsoft.com/azure/firewall/integrate-with-nat-gateway-v2> (accessed Nov 11, 2026).
 [^azs-fw-draft]: Microsoft Learn, "Azure Firewall Draft + Deployment" (draft create, update threat intelligence and IDPS modes, show, deploy, delete; CLI extension 1.2.3 or later; deploying replaces the applied policy), <https://learn.microsoft.com/azure/firewall/draft-deploy> (accessed Nov 11, 2026).
-[^azs-pe-dns]: Microsoft Learn, "Azure Private Endpoint private DNS zone values," section "Government" (for example `privatelink.vaultcore.usgovcloudapi.net`, `privatelink.blob.core.usgovcloudapi.net`), <https://learn.microsoft.com/azure/private-link/private-endpoint-dns> (accessed Nov 11, 2026).
+[^azs-pe-dns]: Microsoft Learn, "Azure Private Endpoint private DNS zone values," section "Commercial" (for example `privatelink.vaultcore.azure.net`, `privatelink.blob.core.windows.net`), <https://learn.microsoft.com/azure/private-link/private-endpoint-dns> (accessed Nov 11, 2026).
 [^azs-pe-zonegroup]: Microsoft Learn, "Azure Private Endpoint DNS integration scenarios," section "Private DNS zone group" (records managed with the endpoint and deleted with it), <https://learn.microsoft.com/azure/private-link/private-endpoint-dns-integration> (accessed Nov 11, 2026).
 [^azs-pe-udr]: Microsoft Learn, "Troubleshoot private endpoint connectivity failure" (a /32 route for the private endpoint's address through the firewall), <https://learn.microsoft.com/troubleshoot/azure/private-link/troubleshoot-private-endpoint-connectivity-failure> (accessed Nov 11, 2026).
 [^azs-pl-scale]: Microsoft Learn, Cloud Adoption Framework, "Private Link and DNS integration at scale" (deny public endpoints and `privatelink` zones in workload subscriptions; `deployIfNotExists` zone groups; Private DNS Zone Contributor for the policy identity; the landing zone initiative), <https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale> (accessed Nov 11, 2026).

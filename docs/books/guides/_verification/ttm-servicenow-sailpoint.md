@@ -21,7 +21,7 @@ Method. Every vendor page footnoted "read November 1, 2026" was opened on that d
 | 11 | Entra ID spoke: ten action categories; Integration Hub subscription; custom Entra app, delegated (auth code) or application (client credentials); connection alias `https://graph.microsoft.com`; no US Government cloud mentioned | Prerequisites; G5 step 2 and availability; What couldn't be verified | verified | `ttm-spoke` |
 | 12 | ServiceNow government cloud has an isolated Store instance | G1 step 5 | verified (the page names the environment "Government Security Cloud (GCC)"; the guide says "government cloud") | `ttm-store` |
 | 14 | GCC uses worldwide Graph endpoints | How to read; G2, G3, G6 availability | verified | `ttm-graph` |
-| 15 | Azure for US Government: PIM, access reviews, entitlement management, Lifecycle Workflows, API-driven inbound provisioning available; ID Governance in GCC | G2 and G5 availability | verified | `ttm-entra-gov` |
+| 15 | Microsoft Entra ID Governance available in GCC | G2 and G5 availability | verified | `ttm-entra-gov` |
 | 16 | Native Change Detection: out-of-band create, update, delete detected on aggregation; one event per changed account; not for NELM sources; page now says "SailPoint Human Fabric" | G1 step 3; G3 step 4 | verified | `ttm-ncd-help` |
 | 17 | Entra SaaS connector features, including MFA attribute management and session sign-out on disable | G3 step 2; G5 steps 1, 6; G7 fixes; dangers | verified | `ttm-entra` |
 | 18 | ServiceNow change types: standard pre-authorized (no group, peer or CAB step); normal two levels of approval; emergency straight to CAB authorization; unauthorized change request on unplanned CI change | G2 lane table | verified | `ttm-chg` |

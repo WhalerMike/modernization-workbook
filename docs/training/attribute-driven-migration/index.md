@@ -90,7 +90,7 @@ Each module's *Guide gates* column comes from that map, or from the gate's own V
 ### Gates with no module
 
 - **Gate 1, schema and slots,** is a signed register, not code. Its Validate step runs the Start Kit's attribute survey and VK-HR-01, VK-HR-04 and VK-HR-07, checks the kit already has. Module 2 teaches how such a check is built and how to read its result.
-- **Gate 6, PIV and CAC binding,** runs VK-PIV-01. No Book 19 chapter builds code for it.
+- **Gate 6, PIV binding,** runs VK-PIV-01. No Book 19 chapter builds code for it.
 
 ### Chapter 02 is taught elsewhere {#chapter-02-is-taught-elsewhere}
 

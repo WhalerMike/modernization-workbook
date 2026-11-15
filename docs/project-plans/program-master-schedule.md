@@ -167,7 +167,7 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | start of P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26S) | Must finish N1.1 by it | 2 d margin |
 | P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26) | Waits for it | 49 d |
 | P2.5  PIM for every pilot administrator (M-026) | wk 11 | [Privileged Access & Administrative Identity](privileged-access.md) (X-P25) | Reference only | — |
-| P2.8  Certificate-based authentication for PIV and CAC holders (M-029) | wk 11–12 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P28) | Must finish AT6.2 by it | 8 d margin |
+| P2.8  Certificate-based authentication for PIV holders (M-029) | wk 11–12 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P28) | Must finish AT6.2 by it | 8 d margin |
 | P2.3  Pilot devices moved by pattern (M-023) | wk 12–13 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P23) | Waits for it | 4 d |
 | P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | wk 13–14 | [Network & Access Modernization](network-access.md) (X-P27) | Waits for it | 47 d |
 | G2 — Pilot Clean | end of wk 16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-G2) | Must finish ATG7 by it | 15 d margin |
@@ -255,7 +255,7 @@ Every row, by phase. *Float* is total float in working days; **bold** rows are o
 | P2.5 | [PIM for every pilot administrator (M-026)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones) | Task | Platform teams | 5 | P2.1 | wk 11 | 15 d |
 | P2.6 | [Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027)](../books/b08-ddi/10-migration-sequence.md) | Task | Platform teams | 15 | G1 | wk 9–11 | 15 d |
 | P2.7 | **[Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones)** | Task | Platform teams | 7 | P2.3 | wk 13–14 | 0 |
-| P2.8 | [Certificate-based authentication for PIV and CAC holders (M-029)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones) | Task | Platform teams | 8 | P2.1 | wk 11–12 | 12 d |
+| P2.8 | [Certificate-based authentication for PIV holders (M-029)](../books/b00-orientation/09-design-pilot-and-rollout.md#milestones) | Task | Platform teams | 8 | P2.1 | wk 11–12 | 12 d |
 | P2.10 | [Rollback rehearsed surface by surface](../books/b00-orientation/09-design-pilot-and-rollout.md#rollback-surface-by-surface) | Task | Platform teams | 3 | P2.3 | wk 13–14 | 4 d |
 | P2.11 | **[Drift-clean hold (14 days, illustrative); success criteria met (M-031)](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean)** | Task | Program office | 10 | P2.5, P2.6, P2.7, P2.8, P2.10 | wk 15–16 | 0 |
 | P2.12 | **[Retrospective and runbook updates committed](../books/b00-orientation/09-design-pilot-and-rollout.md#gate-g2-pilot-clean)** | Task | Program office | 5 | P2.11 (SS) +5 d | wk 16 | 0 |

@@ -248,7 +248,7 @@ There are **155** workbook decisions: 146 settled, 0 challenged and 9 superseded
 |---|---|
 | **Options considered** | Claim general coverage; State scope up front and list what is out of scope with fallbacks |
 | **Choice** | Each series gets an Applicability page stamped with a date. Commercial cloud including GCC-Moderate is in scope. Air-gapped networks and some platform configurations are out of scope as written, each with what still applies. |
-| **Rationale** | Several features differ by cloud, for example GCC-Moderate uses the worldwide Graph endpoint and Arc SQL in Azure Government lacks Entra authentication. |
+| **Rationale** | Several features differ by cloud, for example GCC-Moderate uses the worldwide Graph endpoint. |
 | **Basis** | Workbook design |
 | **Sources** | [Microsoft Learn, Microsoft Graph national cloud deployments](https://learn.microsoft.com/graph/deployments); [Microsoft Learn, SQL Server enabled by Azure Arc overview](https://learn.microsoft.com/sql/sql-server/azure-arc/overview) |
 | **Pages affected** | [Appendix B — Applicability](../books/b01-transformation-arc/appendix-b-applicability.md), [Data Platform: SQL Server Identity](../books/b06-data-platform/index.md), [DNS, DHCP and IPAM](../books/b08-ddi/index.md) |
@@ -632,9 +632,9 @@ There are **155** workbook decisions: 146 settled, 0 challenged and 9 superseded
 
 | | |
 |---|---|
-| **Options considered** | Azure Government subscription; Commercial subscription in the GCC tenant |
+| **Options considered** | A subscription outside the GCC tenant; Commercial subscription in the GCC tenant |
 | **Choice** | The runbook uses a commercial subscription in the GCC tenant. |
-| **Rationale** | Entra authentication through Arc is not offered in US Gov Virginia, and an Azure Government subscription cannot attach to a GCC tenant. |
+| **Rationale** | A GCC tenant's Entra ID is in the commercial cloud, and Entra authentication through Arc needs the subscription in that tenant. |
 | **Basis** | Microsoft Learn |
 | **Sources** | [Microsoft Learn, SQL Server enabled by Azure Arc overview](https://learn.microsoft.com/sql/sql-server/azure-arc/overview) |
 | **Pages affected** | [Data Platform: SQL Server Identity](../books/b06-data-platform/index.md) |
@@ -1549,7 +1549,7 @@ There are **155** workbook decisions: 146 settled, 0 challenged and 9 superseded
 
 | | |
 |---|---|
-| **Options considered** | Azure Government; Commercial Azure |
+| **Options considered** | A separate Azure cloud; Commercial Azure |
 | **Choice** | The compliance volumes place the agency's Azure in commercial Azure, paired with the GCC tenant. |
 | **Rationale** | A GCC tenant's Entra ID is in the commercial cloud, so its subscriptions are commercial. The Arc guide and the books already said so. |
 | **Basis** | Microsoft Learn |
@@ -1647,7 +1647,7 @@ There are **155** workbook decisions: 146 settled, 0 challenged and 9 superseded
 | | |
 |---|---|
 | **Options considered** | Resolve every research gap for every government cloud; Close gaps that matter for a GCC (Moderate) estate with commercial Azure and record the rest |
-| **Choice** | Gaps that affect a GCC estate are closed. Gaps that apply only outside a GCC estate, such as Azure Government, stay open, each with a note on what would reopen it. |
+| **Choice** | Gaps that affect a GCC estate are closed. Gaps that apply only outside a GCC estate stay open, each with a note on what would reopen it. |
 | **Rationale** | The target estate is GCC with commercial Azure. |
 | **Basis** | Workbook design |
 | **Sources** | None external: the choice rests on the pages it shaped. |
@@ -2721,7 +2721,7 @@ Defined in [the plan's decision points](../project-plans/attribute-driven-migrat
 | D-AT3 | Correlation threshold before any rule grants access | Authorizing official, through the agency's risk governance | 99% of the pilot cohort correlated (a proposed starting point); a risk-tiered threshold, stricter for privileged and leaver-sensitive populations; 100% with a dated exception list | [Source chapter](../books/b03-hr-identity/12-execution-plan.md#sequencing-principle) | Left to the agency |
 | D-AT4 | Restricted management, unit by unit, before each unit exists | Identity engineering | No (the default): the unit scopes writes and stays in governance automation; yes, for a small set of sensitive accounts, accepting that they leave PIM, entitlement management, Lifecycle Workflows and access reviews | [Source chapter](../books/b02-identity/05-delegation-without-ous.md#restricted-management-a-per-au-decision) | Left to the agency |
 | D-AT5 | The persona set the Conditional Access library targets | CISO | The program's personas, built from the worker type and account type codes; personas plus division-specific overlays; fewer personas with more exclusions (not recommended) | [Source chapter](../books/b04-access/03-the-conditional-access-model.md#naming-and-the-persona-model) | Left to the agency |
-| D-AT6 | Required affinity binding for PIV and CAC | CISO | High affinity in production (the program's position), with a custom rule per issuer during the pilot; low affinity until coverage is complete, with a dated end; mixed by issuer | [Source chapter](../books/b07-pki/06-device-and-user-certificates.md#username-bindings-and-affinity) | Left to the agency |
+| D-AT6 | Required affinity binding for PIV | CISO | High affinity in production (the program's position), with a custom rule per issuer during the pilot; low affinity until coverage is complete, with a dated end; mixed by issuer | [Source chapter](../books/b07-pki/06-device-and-user-certificates.md#username-bindings-and-affinity) | Left to the agency |
 | D-AT7 | Who writes the binding after AD | ICAM governance body | The card management system writes certificateUserIds through Microsoft Graph at issuance (design guidance, an open pilot); Entra Connect keeps syncing from altSecurityIdentities while any AD remains; manual entry by a Privileged Authentication Administrator (not at scale) | [Source chapter](../books/guides/attribute-driven-migration.md#pki-binding) | Left to the agency |
 | D-AT8 | Drift severity and response times | CISO | *HR-Driven Identity*'s classes (missing identity, stale access, orphan account, attribute drift, unauthorized write, credential drift, contractor credential drift, schema drift), which the program's own drift model, *Governance, Drift and Evidence*'s five classes, groups (the mapping is not yet specified here), with high severity closed in days and the rest on a dated plan; a stricter clock for unauthorized writes to the access slots | [Source chapter](../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory) | Left to the agency |
 

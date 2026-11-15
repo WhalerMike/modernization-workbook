@@ -1,6 +1,6 @@
 ---
 title: "Module 3: The edge and the egress"
-description: "Guide Steps 5 and 6: choosing Front Door Premium, Application Gateway WAF_v2 or both; locking the origin so nothing reaches it around the edge, with Private Link or the service tag and the X-Azure-FDID header together; TLS 1.2 or later, health probes and failover; then Azure Firewall as the inspection point for egress and east-west traffic, with workload default routes to it, threat intelligence and IDPS moved from alert to deny through a reviewed draft, logs, TLS inspection and segmentation. Where agencies are: Front Door regions and Private Link in Azure Government, Firewall Premium regions. The lab runs the guide's Validate checks in a test subscription, with a failover test that stops and restarts one test origin. About 55 minutes, plus the lab, with a knowledge check."
+description: "Guide Steps 5 and 6: choosing Front Door Premium, Application Gateway WAF_v2 or both; locking the origin so nothing reaches it around the edge, with Private Link or the service tag and the X-Azure-FDID header together; TLS 1.2 or later, health probes and failover; then Azure Firewall as the inspection point for egress and east-west traffic, with workload default routes to it, threat intelligence and IDPS moved from alert to deny through a reviewed draft, logs, TLS inspection and segmentation. Where agencies are: Front Door Private Link regions and Firewall Premium regions. The lab runs the guide's Validate checks in a test subscription, with a failover test that stops and restarts one test origin. About 55 minutes, plus the lab, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -62,7 +62,7 @@ Read the guide's [Step 6](../../books/guides/azure-security-implementation.md#st
 
 ## Unit 3: Where agencies are (5 minutes) {#azs-m3-unit-3}
 
-Read the Front Door, Private Link and Azure Firewall rows of the guide's [availability table](../../books/guides/azure-security-implementation.md#gov-availability), and [what couldn't be verified](../../books/guides/azure-security-implementation.md#what-couldnt-be-verified). In commercial Azure, which a GCC tenant uses, both steps run as written. As side notes for Azure Government: Front Door Standard and Premium are generally available in US Gov Arizona and US Gov Texas; Front Door Private Link lists three government regions but needs availability zones, which Learn shows only in US Gov Virginia, so test before relying on it; Azure Firewall Premium's government regions are on the products-by-region page, not Learn.
+Read the Front Door, Private Link and Azure Firewall rows of the guide's [availability table](../../books/guides/azure-security-implementation.md#gov-availability), and [what couldn't be verified](../../books/guides/azure-security-implementation.md#what-couldnt-be-verified). In commercial Azure, which a GCC tenant uses, both steps run as written.
 
 On other clouds, the guide's [comparison](../../books/guides/azure-security-implementation.md#other-clouds) names OCI Network Firewall, built on Palo Alto Networks, with IDPS, TLS inspection and URL filtering, reached through VCN route tables; AWS Network Firewall and Google Cloud NGFW aren't compared there.
 
@@ -85,7 +85,7 @@ curl.exe -s -o NUL -w "%{http_code}`n" "https://<afd-endpoint-host>/"
 az webapp config access-restriction show --resource-group <rg> --name <app-name>
 
 # Step 3: Check the application gateway's TLS policy
-Connect-AzAccount -Environment <cloud-environment>
+Connect-AzAccount -Environment AzureCloud
 Get-AzApplicationGatewaySslPolicy -ApplicationGateway (Get-AzApplicationGateway -Name <appgw> -ResourceGroupName <rg>)
 
 # Step 4: Test failover: stop the second origin, and call Front Door
@@ -119,7 +119,7 @@ az webapp show --name <app-name-2> --resource-group <rg> --query state
 You run the guide's Step 5 and Step 6 checks in a test subscription where someone has applied those steps to a test application and a pilot spoke. One step writes: the failover test stops one test origin, and the next step starts it again.
 
 - **You need:** a test subscription, never production, with a Front Door Premium profile in front of two App Service origins in different regions, each locked to Front Door with the access restriction of the guide's Step 5; an application gateway with a TLS policy; Azure Firewall Premium with its policy in `Deny`, and a pilot spoke subnet routed to it, holding a Windows test VM; Reader on the subscription, Website Contributor on the second test origin for the failover test, and Log Analytics Reader on the workspace; Azure CLI and the Az PowerShell module on a Windows machine with PowerShell 7, signed in as Module 1's step 1 shows.
-- **You'll replace:** `<rg>`, `<app-name>` and `<app-name-2>` (the two test origins), `<origin-host>` (the first origin's own host name), `<afd-endpoint-host>` (the Front Door endpoint's host name), `<appgw>`, `<nic>` (the test VM's network interface), `<fw-policy>`, `<ti-test-fqdn>` (a test domain your security monitor confirms is on the threat intelligence feed), `<cloud-environment>` (`AzureCloud` or `AzureUSGovernment`) and `<workspace-guid>` (the workspace's *Workspace ID*).
+- **You'll replace:** `<rg>`, `<app-name>` and `<app-name-2>` (the two test origins), `<origin-host>` (the first origin's own host name), `<afd-endpoint-host>` (the Front Door endpoint's host name), `<appgw>`, `<nic>` (the test VM's network interface), `<fw-policy>`, `<ti-test-fqdn>` (a test domain your security monitor confirms is on the threat intelligence feed) and `<workspace-guid>` (the workspace's *Workspace ID*).
 - **Not run by the authors.** The expected results are the ones the guide's **Validate** steps state.
 
 1. **Call the origin directly, then through Front Door.** The requests are the path's.
@@ -142,7 +142,7 @@ You run the guide's Step 5 and Step 6 checks in a test subscription where someon
 3. **Check the application gateway's TLS policy.**
 
     ```powershell
-    Connect-AzAccount -Environment <cloud-environment>
+    Connect-AzAccount -Environment AzureCloud
     Get-AzApplicationGatewaySslPolicy -ApplicationGateway (Get-AzApplicationGateway -Name <appgw> -ResourceGroupName <rg>)
     ```
 

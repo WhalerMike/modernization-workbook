@@ -119,7 +119,7 @@ The roles that change configuration come in later steps and are activated throug
 
 : What each step needs, by license {.striped .hover}
 
-Workload ID Premium is available in Azure Government clouds through the account manager, and its free trial isn't.[^npi-wid-faq] The program licenses it for Tier 1 single-tenant service principals ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
+The program licenses Workload ID Premium[^npi-wid-faq] for Tier 1 single-tenant service principals ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
 
 ## The path on one page
 
@@ -505,7 +505,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 | Subsection | Where this guide covers it |
 |---|---|
-| Prerequisites | [Prerequisites](#prerequisites): record, roles, licenses; Workload ID Premium in Azure Government through the account manager |
+| Prerequisites | [Prerequisites](#prerequisites): record, roles, licenses; Workload ID Premium |
 | Pilot | G4's workload identity policies start with Tier 1 single-tenant service principals; G5 converts high-risk accounts in the first wave |
 | Report-only or audit phase | G4's workload identity policies report-only first, results read in the service principal sign-in logs; G1 and G2 change nothing |
 | Enforcement | G3's policy effective date; G4's switch to On; G5's disable after 30 days |

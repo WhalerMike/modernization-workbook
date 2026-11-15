@@ -50,7 +50,7 @@ Eight findings change how the build is planned:
 - **The vendor's keytab example uses RC4.** Since the April 14, 2026 updates, domain controllers assume AES only for an account with no encryption types set, and the July 2026 updates removed the rollback ([Book 02, Chapter 03](../b02-identity/03-ad-and-entra-side-by-side.md#where-the-old-protocols-stand-in-2026)), so generate keytabs for Kerberos-signed updates with AES256-SHA1.
 - **vNIOS can't manage Microsoft servers.** The coexistence phase needs physical managing members near the domain controllers.
 - **Removing a managed Microsoft DHCP server deletes its synced ranges, leases and fixed addresses.** Take the scopes over by changing server assignments first, and remove the server from management last.
-- **Cloud HA documentation omits the government regions.** The AWS and Azure HA prerequisites list only commercial endpoints, so confirm vNIOS failover in AWS GovCloud and Azure Government with Infoblox before relying on it.
+- **Cloud HA documentation omits the government regions.** The AWS and Azure HA prerequisites list only commercial endpoints, so confirm vNIOS failover in AWS GovCloud with Infoblox before relying on it.
 - **NIOS 9.1.0 is WAPI v2.14**, which settles an open question from the earlier research. It's stated in the Terraform NIOS provider's compatibility matrix.
 
 The guide keeps Book 08's default that the Active Directory locator zones stay on AD DNS, reached by forwarding, until the last domain controller goes; NIOS hosting the AD zone is shown as the alternative, pending confirmation of support for Windows Server 2025 domain controllers.

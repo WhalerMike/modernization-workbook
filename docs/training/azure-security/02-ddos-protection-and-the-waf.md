@@ -1,6 +1,6 @@
 ---
 title: "Module 2: DDoS protection and the web application firewall"
-description: "Guide Steps 3 and 4: what DDoS infrastructure protection gives every public IP and what Network Protection and IP Protection add, choosing the tier, linking networks, logs, the under-attack alert and the exercise through an approved partner; then Azure WAF on Application Gateway and Front Door, from detection mode with request body inspection to prevention, with the default and bot rule sets, a rate limit, logs and narrowly scoped exceptions. Where agencies are: no bot protection or geo-filtering custom rules in sovereign clouds. The lab runs the guide's Validate checks in a test subscription, including a test request the WAF should block. About 50 minutes, plus the lab, with a knowledge check."
+description: "Guide Steps 3 and 4: what DDoS infrastructure protection gives every public IP and what Network Protection and IP Protection add, choosing the tier, linking networks, logs, the under-attack alert and the exercise through an approved partner; then Azure WAF on Application Gateway and Front Door, from detection mode with request body inspection to prevention, with the default and bot rule sets, a rate limit, logs and narrowly scoped exceptions. The lab runs the guide's Validate checks in a test subscription, including a test request the WAF should block. About 50 minutes, plus the lab, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -63,7 +63,7 @@ Read the guide's [Step 4](../../books/guides/azure-security-implementation.md#st
 
 ## Unit 3: Where agencies are (4 minutes) {#azs-m2-unit-3}
 
-Read the DDoS and WAF rows of the guide's [availability table](../../books/guides/azure-security-implementation.md#gov-availability). In commercial Azure, which a GCC tenant uses, everything in this module is available. As a side note for Azure Government: WAF on Application Gateway is supported, but geo-filtering custom rules and bot protection rule sets aren't, so leave the bot manager rule set out and record the Zero Trust test as *Skipped-Not-Applicable* (environment); Front Door WAF's sovereign-cloud limits are not yet specified; and the simulation partner Red Button is public cloud only.
+Read the DDoS and WAF rows of the guide's [availability table](../../books/guides/azure-security-implementation.md#gov-availability). In commercial Azure, which a GCC tenant uses, everything in this module is available.
 
 On other clouds, the guide's [comparison](../../books/guides/azure-security-implementation.md#other-clouds) names AWS Shield and AWS WAF, Google Cloud Armor, and OCI WAF as a regional policy on a load balancer or at the edge; DDoS protection on Oracle Cloud Infrastructure isn't compared there.
 
@@ -181,9 +181,9 @@ You run the guide's Step 3 and Step 4 checks in a test subscription where someon
     b. It is logged and forwarded to the backend.
     c. It is dropped silently.
 
-5. In Azure Government, the Zero Trust test for a bot protection rule set can't pass. How is it recorded?
+5. The tenant isn't licensed for a feature a Zero Trust test checks. How is the test recorded?
     a. *Fail*, with a remediation date.
-    b. *Skipped-Not-Applicable* (environment), because sovereign clouds don't support bot protection rule sets.
+    b. *Skipped*, because it is a licensing decision, not a failed control.
     c. *Pass*, because the default rule set covers bots.
 
 ::: {.callout-tip collapse="true"}
@@ -192,7 +192,7 @@ You run the guide's Step 3 and Step 4 checks in a test subscription where someon
 2. **b.** See Unit 1.
 3. **b.** See Unit 1.
 4. **b.** See Unit 2 and the guide's [Step 4](../../books/guides/azure-security-implementation.md#step-4-web-application-firewall).
-5. **b.** See Unit 3 and the [availability table](../../books/guides/azure-security-implementation.md#gov-availability).
+5. **b.** See the guide's [How to read this guide](../../books/guides/azure-security-implementation.md#how-to-read-this-guide).
 :::
 
 ## Summary (2 minutes) {#azs-m2-summary}

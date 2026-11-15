@@ -1,6 +1,6 @@
 ---
 title: "Module 1: The baseline and the exposure register"
-description: "Guide Steps 1 and 2, with how the guide is organized: what the landing-zone books already design and what the guide engineers on top; protecting the management group hierarchy, assigning the security benchmark and the FedRAMP initiative in audit at the intermediate root, and sending platform logs to the workspace; then the Resource Graph inventory of every public IP, Front Door profile, application gateway and public PaaS endpoint, with an owner on every row. Where agencies are: GCC pairs with commercial Azure, Azure Government differs, and the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure. The lab runs the guide's read-only checks in a test subscription. About 50 minutes, plus the lab, with a knowledge check."
+description: "Guide Steps 1 and 2, with how the guide is organized: what the landing-zone books already design and what the guide engineers on top; protecting the management group hierarchy, assigning the security benchmark and the FedRAMP initiative in audit at the intermediate root, and sending platform logs to the workspace; then the Resource Graph inventory of every public IP, Front Door profile, application gateway and public PaaS endpoint, with an owner on every row. Where agencies are: GCC pairs with commercial Azure, and the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure. The lab runs the guide's read-only checks in a test subscription. About 50 minutes, plus the lab, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -34,7 +34,7 @@ After this module, you'll be able to:
 - protect the management group hierarchy, and assign the security initiatives in `DoNotEnforce` at the intermediate root;
 - find platform resources that don't send logs to the workspace;
 - build the exposure register from Resource Graph, and find the rows with no owner;
-- name what differs in Azure Government, and the equivalent controls on AWS, Google Cloud and Oracle Cloud Infrastructure.
+- name what a GCC tenant's commercial Azure offers, and the equivalent controls on AWS, Google Cloud and Oracle Cloud Infrastructure.
 
 ## Prerequisites (1 minute) {#azs-m1-prerequisites}
 
@@ -68,10 +68,9 @@ Two cautions from the guide. The `publicNetworkAccess` query is a starting list,
 
 ## Unit 4: Where agencies are (8 minutes) {#azs-m1-unit-4}
 
-Read the guide's [government-cloud availability](../../books/guides/azure-security-implementation.md#gov-availability) table and [the same controls on AWS, Google Cloud and Oracle Cloud](../../books/guides/azure-security-implementation.md#other-clouds).
+Read the guide's [commercial Azure availability](../../books/guides/azure-security-implementation.md#gov-availability) table and [the same controls on AWS, Google Cloud and Oracle Cloud](../../books/guides/azure-security-implementation.md#other-clouds).
 
-- **GCC Moderate first.** Microsoft 365 GCC pairs with commercial Azure, so a GCC agency's subscriptions are usually commercial, and the guide's commands run as written with `<cloud>` set to `AzureCloud`.
-- **Azure Government, as a side note.** Its endpoints differ; the landing zone accelerators need adapting; Lighthouse has no PIM for delegated access. Later modules name the gaps that matter to their steps.
+- **GCC Moderate first.** Microsoft 365 GCC pairs with commercial Azure, so a GCC agency's subscriptions are commercial, and the guide's commands run as written with `az cloud set --name AzureCloud`.
 - **Other clouds.** The table compares DDoS protection, the web application firewall, the inspecting firewall and private access to PaaS across Azure, AWS, Google Cloud and Oracle Cloud Infrastructure. An agency whose HR platform runs on Oracle Cloud Infrastructure has OCI WAF, OCI Network Firewall and OCI private endpoints to engineer the same way; their availability in OCI Government Cloud is not yet specified.
 
 **Watch.** The guide's narrated deck covers this module in its first eight slides, from *Azure security, engineered one service at a time* to *Steps 1 and 2: baseline in audit, then inventory*. Its video is being exported; until it is on the [Presentations](../../presentations/index.md) page, read the slides' narration in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
@@ -86,7 +85,7 @@ Every command in this lab, in order. Each step below says what it does and what 
 
 ```powershell
 # Step 1: Sign in to the cloud the subscription lives in, and add the extensions
-az cloud set --name <cloud>
+az cloud set --name AzureCloud
 az login
 az account set --subscription <subscription-id>
 az extension add --name resource-graph
@@ -122,13 +121,13 @@ Remove-Item -Recurse -Force out
 You run the guide's Step 1 and Step 2 checks in a test subscription. Every command reads; the only thing written is the `out` folder on your own machine.
 
 - **You need:** a test tenant and test subscription, never production, where someone has applied the guide's Step 1 to a pilot management group; Reader on that management group and its subscriptions; Azure CLI on a Windows machine with PowerShell 7.
-- **You'll replace:** `<cloud>` (`AzureCloud` for a GCC tenant's commercial subscriptions, `AzureUSGovernment` for Azure Government), `<subscription-id>`, `<mg-id>` (the pilot management group) and `<resource-id>` (one resource ID from step 3's output).
+- **You'll replace:** `<subscription-id>`, `<mg-id>` (the pilot management group) and `<resource-id>` (one resource ID from step 3's output).
 - **Not run by the authors.** The expected results are the ones the guide's **Validate** steps state; nothing here shows output the authors captured.
 
 1. **Sign in to the cloud the subscription lives in, and add the extensions.**
 
     ```powershell
-    az cloud set --name <cloud>
+    az cloud set --name AzureCloud
     az login
     az account set --subscription <subscription-id>
     az extension add --name resource-graph
@@ -204,7 +203,7 @@ You run the guide's Step 1 and Step 2 checks in a test subscription. Every comma
     c. It only reads Front Door.
 
 5. A GCC agency's subscriptions are usually in which cloud?
-    a. Azure Government, because GCC is a government cloud.
+    a. None: GCC agencies can't use Azure.
     b. Commercial Azure, which Microsoft 365 GCC pairs with.
     c. Either, chosen per subscription by the tenant.
 
