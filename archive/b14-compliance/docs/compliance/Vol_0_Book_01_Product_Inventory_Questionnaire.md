@@ -78,7 +78,7 @@ Every product the {{< meta agency.short >}} edition documents as an in-boundary 
 |---|---|
 | Product has a **Class C (Moderate)** authorization | ✅ In scope — record the CSO / Marketplace ID |
 | Product is authorized **Class D (High) only**, no Moderate offering | ⚠️ **Flag** — High exceeds Moderate technically, but the {{< meta agency.short >}} target is Moderate; confirm boundary treatment or seek a Moderate-authorized alternative |
-| Product is **on-premises gear** (appliance/firmware), not a CSP service | ↪️ Not a FedRAMP item — accredit via **NIAP CC + DISA STIG + FIPS 140-3 + DoDIN APL** (see the Network Enforcement Substrate book, Theme F) |
+| Product is **on-premises gear** (appliance/firmware), not a CSP service | ↪️ Not a FedRAMP item — accredit via **NIAP CC + FIPS 140-3** (see the Network Enforcement Substrate book, Theme F) |
 | Product is **not FedRAMP authorized** (commercial SaaS) | ❌ **Flag** — not eligible as an in-boundary {{< meta agency.short >}} dependency; find a Government/GovCloud edition or replace |
 
 ::: {.aan-note}

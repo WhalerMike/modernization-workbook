@@ -23,9 +23,8 @@ way: every mandate below is covered in far more depth by a companion
 whitepaper in this section, and this page's job is to route you to the
 right one, not to re-derive what they already establish. **Scope:**
 federal civilian agencies operating at the FedRAMP Moderate baseline
-(GCC-Moderate for Microsoft 365 tenants specifically). DoD/IL4-IL5,
-state and local, and commercial-non-federal compliance regimes are out
-of scope --- see [Honest limits](#honest-limits-and-scope).
+(GCC-Moderate for Microsoft 365 tenants specifically). State and
+local, and commercial-non-federal compliance regimes are out of scope --- see [Honest limits](#honest-limits-and-scope).
 
 ## Executive summary
 
@@ -462,11 +461,9 @@ Guide](reading-guide.md).
  they don't matter. See the the compliance series series' Executive
  Summary
  for the fuller clock.
-- **Scope is federal civilian, Moderate baseline.** DoD environments
- (IL4/IL5), state and local government compliance regimes, and
- non-federal commercial regulatory frameworks are out of scope.
- Several mandates above (FedRAMP in particular) have GCC-High and
- DoD-specific variants this paper does not address.
+- **Scope is federal civilian, Moderate baseline.** State and local
+ government compliance regimes and non-federal commercial regulatory
+ frameworks are out of scope.
 - **Dates are a snapshot.** The FedRAMP 20x timeline in §1 reflects
  the Consolidated Rules as published June 25, 2026; OMB and CISA
  guidance in this space has moved on shorter cycles than typical

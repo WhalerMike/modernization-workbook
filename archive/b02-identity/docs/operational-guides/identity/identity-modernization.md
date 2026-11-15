@@ -1261,7 +1261,7 @@ Deploy the following Entra ID workbooks (available as built-in templates in the 
 
 12.5 Compliance Manager Integration
 
-For GCC-Moderate environments, Compliance Manager provides pre-built assessment templates for NIST 800-53, FedRAMP Moderate, and CMMC Level 2. Identity-related controls that map to this guide include:
+For GCC-Moderate environments, Compliance Manager provides pre-built assessment templates for NIST 800-53 and FedRAMP Moderate. Identity-related controls that map to this guide include:
 
 - **AC-2 (Account Management):** Lifecycle workflows (Section 9.3), access reviews (Section 9.1)
 
@@ -1671,7 +1671,7 @@ The following JSON templates represent the Conditional Access policies defined i
 | **NOTE**                                                                                                                                                                                                                                                                           |
 |                                                                                                                                                                                                                                                                                    |
 | These templates use placeholder GUIDs for group IDs, Named Location IDs, and Terms of Use IDs. Replace all placeholders (marked with \<GUID\>) with actual tenant-specific values before import. GCC-Moderate tenants use the worldwide Graph endpoint,                            |
-| https://graph.microsoft.com; https://graph.microsoft.us is for GCC High.                                                                                                                                                                                                           |
+| https://graph.microsoft.com.                                                                                                                                                                                                                                                       |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 CA001 --- Block Legacy Authentication
@@ -1752,12 +1752,12 @@ This document is authoritative within the Federal Modernization Program operatio
 
 ## Compliance Amendment — Phishing-Resistant Authenticators and Privileged Access Workstations (`IA-2(6)`, `AC-6(7)`)
 
-### FIDO2 / PIV / CAC mapping (`IA-2(6)`)
+### FIDO2 / PIV mapping (`IA-2(6)`)
 
 Privileged and high-assurance access requires phishing-resistant, hardware-bound authenticators. Authenticator types map to Entra ID methods as follows:
 
 - **FIDO2 security keys** — the primary phishing-resistant method for cloud-native administrators; registered as a FIDO2 method and required by Conditional Access for privileged roles.
-- **PIV / CAC smart cards** — federal-issued credentials map via certificate-based authentication (CBA) to Entra ID, satisfying `IA-2(6)` (access to privileged accounts using a hardware-based authenticator).
+- **PIV smart cards** — federal-issued credentials map via certificate-based authentication (CBA) to Entra ID, satisfying `IA-2(6)` (access to privileged accounts using a hardware-based authenticator).
 - Password and SMS/voice methods are disallowed for privileged roles.
 
 ### Privileged Access Workstation (PAW) guidance (`AC-6(7)`)

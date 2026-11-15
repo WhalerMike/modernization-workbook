@@ -43,7 +43,7 @@ This book is the implementation that closes them. It is not an argument that a g
 ::: {.aan-note}
 ## Why the gate has to be ours — the motivating measurement, briefly
 
-FedRAMP Moderate for M365 means **GCC Moderate**, which is paired with **Commercial Entra ID on Azure Commercial infrastructure** (only GCC High and DoD sit on Azure Government). So the **full commercial gallery is available**: thousands of apps, full SSO, full provisioning connectors, nothing blocked and nothing marked.
+FedRAMP Moderate for M365 means **GCC Moderate**, which is paired with **Commercial Entra ID on Azure Commercial infrastructure**. So the **full commercial gallery is available**: thousands of apps, full SSO, full provisioning connectors, nothing blocked and nothing marked.
 
 The complete vendor tutorial corpus — **12,940 pages, 1,295 tutorials** — was analyzed term-by-term. It carries **50,172** mentions of single sign-on and **zero** of FedRAMP, authorization boundary, interconnection, ISA, NIST 800-53, CUI, or impact level. The only federal-adjacent sentence, in 18 tutorials (1.4%), is availability boilerplate saying the app is *more* obtainable. Gallery risk scores name SOC 2, ISO 27001, HIPAA and PCI — not FedRAMP — and sit behind additional licensing.
 
@@ -378,6 +378,6 @@ Generated from the compliance spine (`federal-compliance-compliance-spine.yml`);
 
 - **Lane F control map:** `servicenow-day2/saas-control-map.json` — 24 catalog items, 24 distinct controls, validated by `validate_day2_control_maps.py` against the spine's slots and the in-repo FedRAMP CR26 catalog's KSI themes.
 - **Spine closures:** derived from the control map (control, KSI, slot copied; mechanism authored), so the two cannot disagree.
-- **Boundary pairing** (GCC Moderate → Commercial Entra ID on Azure Commercial; GCC High/DoD → Azure Government) verified against Microsoft Learn, not assumed.
+- **Boundary pairing** (GCC Moderate → Commercial Entra ID on Azure Commercial) verified against Microsoft Learn, not assumed.
 - **Gallery detection constant** (`applicationTemplateId` ≠ `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`) verified verbatim against the Graph `applicationTemplate` reference.
 - **Vendor corpus:** 12,940 pages / 1,295 tutorials, term frequencies via PyMuPDF, page count independently confirmed with pypdf. The `scuba` hits were manually inspected and confirmed to be the SaaS application *Scuba Analytics*, not CISA SCuBA.

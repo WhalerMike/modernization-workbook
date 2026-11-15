@@ -80,7 +80,7 @@ Someone still has to manage the assigned groups and the dynamic groups' owners a
 - Restricted management AUs accept only plain security groups.
 - The setting can't be changed after the AU is created.
 
-Use regular AUs for groups that need governance tooling; reserve restricted management for cases where tamper-resistance outweighs reviewability. Dynamic AU membership is generally available in the commercial cloud (not Azure Government), but its rules select users or devices, not groups, so access groups are added to an AU explicitly or by automation.
+Use regular AUs for groups that need governance tooling; reserve restricted management for cases where tamper-resistance outweighs reviewability. Dynamic AU membership is generally available in the commercial cloud, but its rules select users or devices, not groups, so access groups are added to an AU explicitly or by automation.
 
 ## Privileged Access Belongs in PIM, Not in a Rule
 

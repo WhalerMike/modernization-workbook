@@ -105,8 +105,8 @@ Adapters that read from Microsoft Graph resolve their endpoint via
 `fmp.adapters._graph_clouds.resolve_graph_base` rather than
 hardcoding hostnames. Accepted config keys:
 
-- `cloud`: `commercial` / `gcc-high` / `dod` (default `commercial`,
-  also serving GCC-Moderate per the program decision).
+- `cloud`: `commercial` (the default, also serving GCC-Moderate per the
+  program decision).
 - `graph_api_version`: per-adapter default (`beta` for IntuneAdapter;
   `v1.0` for EntraAdapter, M365Adapter, EntraDynamicGroupsAdapter,
   EntraAdminUnitsAdapter, InBoundaryTelemetry).

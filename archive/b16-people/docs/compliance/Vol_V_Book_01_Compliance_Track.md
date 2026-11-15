@@ -201,7 +201,7 @@ control claimed near it — SC-7, SC-8, AC-4, SI-4, CA-7 — is closed by the
 SD-WAN/SASE/TIC 3.0 stack that governs the pipe, never by the pipe. Vol I
 Book 07 is the customer-owned half of SC-7/SC-8 that no CSP's FedRAMP
 authorization covers — the branch firewall and WAN edge the agency accredits
-through NIAP / DISA STIG / FIPS 140-3 / DoDIN APL (Theme F). Teach slot 3 as the
+through NIAP / FIPS 140-3 (Theme F). Teach slot 3 as the
 proof that transport policy is a control surface and the pipe is not.
 
 # Module A4 — Telemetry Control Plane (Slot 4)

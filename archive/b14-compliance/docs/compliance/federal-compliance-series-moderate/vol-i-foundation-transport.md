@@ -27,7 +27,7 @@ The volume’s governing claim is the series’ Closure Necessity doctrine at it
 | Book 04 | HRIT Identity & Org SSOT | The human/organizational source of truth every account and access decision asserts |
 | Book 05 | Network Modernization | Cloud identity, zero-trust network access, and drift reconciliation — session-to-token identity modernization |
 | Book 06 | Federal Telecommunications Modernization | SD-WAN + Secure Access Service Edge under TIC 3.0 — encrypted, application-aware transport |
-| Book 07 | Network Enforcement Substrate | Customer-edge enforcement accredited via NIAP / DISA STIG / FIPS 140-3 / DoDIN APL |
+| Book 07 | Network Enforcement Substrate | Customer-edge enforcement accredited via NIAP / FIPS 140-3 |
 
 ## How this volume fits the program
 
