@@ -404,7 +404,7 @@ def test_gcc_uses_the_worldwide_endpoints():
 
 def test_unknown_cloud_is_refused():
     with pytest.raises(d.DriftError):
-        d.cloud_profile("usgov")
+        d.cloud_profile("other")
 
 
 # ---------------------------------------------------------------- command line

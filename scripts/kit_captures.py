@@ -53,7 +53,7 @@ WORKBOOKS = {
 CHAPTERS: dict[str, dict] = {
     "adm-03": {"cwd": "."},
     # Invoke-DrLibraryCheck diffs against git HEAD (the scratch copy isn't a repository); a test reads Book 03.
-    "adm-04": {"skip": [5, 7], "copy": ["docs/books/b03-hr-identity"]},
+    "adm-04": {"skip": [3, 5], "copy": ["docs/books/b03-hr-identity"]},
     "adm-07": {"off": "needs Windows and three modules saved from the PowerShell Gallery"},
     "adm-08": {"off": "needs a Linux control node with ansible-core and collections from Ansible Galaxy"},
     # Labs whose bash steps work in the drift pipeline.

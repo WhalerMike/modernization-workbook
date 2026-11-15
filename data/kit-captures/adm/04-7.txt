@@ -1,11 +1,10 @@
 PS> Invoke-Pester ./tests
-Starting discovery in 2 files.
-Discovery found 70 tests.
+Starting discovery in 1 files.
+Discovery found 57 tests.
 Running tests.
 [+] tests/DynamicRules.Tests.ps1
-[+] tests/LearnSamples.Tests.ps1
 Tests completed
-Tests Passed: 70,
+Tests Passed: 57,
 Failed: 0,
 Skipped: 0,
 Inconclusive: 0,

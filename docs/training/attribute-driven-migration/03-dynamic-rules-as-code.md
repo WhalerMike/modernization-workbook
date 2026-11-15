@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 3: Keep Dynamic Rules as Code"
 subtitle: "Write each dynamic group as a reviewed file with tests, lint it for the guards every user rule needs, show whom a change adds and removes, and pause and resume safely in an incident"
-description: "Research draft: Module 3 of the Attribute-Driven Migration learning path. You learn what Learn's dynamic membership samples leave to you, the rule library's one file per group, the offline evaluator, the linter's guards, the shadow diff and the pause manifest, then run Learn's samples against a fake tenant, lint Book 03's rule table, evaluate a rule, and break a rule on purpose. Guide Gate 4; Book 19, Chapter 04."
+description: "Research draft: Module 3 of the Attribute-Driven Migration learning path. You learn what Learn's dynamic membership samples leave to you, the rule library's one file per group, the offline evaluator, the linter's guards, the shadow diff and the pause manifest, then lint Book 03's rule table, evaluate a rule, and break a rule on purpose. Guide Gate 4; Book 19, Chapter 04."
 research-status: draft
 research-type: training module
 research-book: "Book 19"
@@ -32,7 +32,6 @@ Gate 4 replaces "who sits under the Finance branch" with "who carries the Financ
 | AC-2; AC-3: the guards keep disabled accounts and guests out | KSI-IAM-ELP | The rule library and its fixture, in the repository |
 | CM-3; CM-4 Impact Analyses: every rule passes its tests, and each change's adds and removes are listed | KSI-CMT-VTD; KSI-CMT-LMC | The pull request, with `out/check-results.json` |
 | CM-3(2) Testing, Validation, and Documentation of Changes: a broken rule fails the check | KSI-CMT-VTD | The pull request's check run |
-| SA-11; SR-3: Learn's samples run unchanged and are pinned | KSI-SCR-MIT; KSI-CMT-VTD | `snapshot.json` and `LearnSamples.Tests.ps1` |
 | CM-3: the incident pause records each state first, and the resume touches only what it paused (Lab 2) | KSI-CMT-LMC | `drill-manifest.json`, with the incident or drill record |
 | AC-6: the session asks only for what creating groups and evaluating rules need (Lab 2) | KSI-IAM-ELP | The Entra sign-in and audit logs |
 
@@ -54,7 +53,7 @@ In this module, you'll:
 
 - [Module 2](02-a-validation-kit-check.md), for how the VK-DG checks Gate 4 names are built.
 - Optional: [Microsoft Automation, Module 2](../ms-automation-entra.md), for groups and membership through Graph.
-- PowerShell 7.1 or later and Pester 5, and a Git clone of the repository: step 4 compares the library with `HEAD`.
+- PowerShell 7.1 or later and Pester 5, and a Git clone of the repository: step 3 compares the library with `HEAD`.
 
 ## Unit 2: The gate and what Learn's samples leave to you
 
@@ -87,42 +86,30 @@ Each group is a JSON file with an owner, a `critical` flag and tests that name m
 Every command in this lab, in order, from `examples/dynamic-rules`. Each step below says what it does and what to look for.
 
 ```powershell
-# Step 1: Run Learn's samples against the fake tenant
-. ./tests/LearnSampleHarness.ps1
-$pages = '../third_party/dynamic-membership-samples/scripts'
-$t = New-FakeTenant -Collections @(
-    @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' },
-    @{ id = '22222222-2222-2222-2222-222222222222'; displayName = 'Held for review'; kind = 'group'; state = 'Paused' })
-$answers = 'yes', 'Global', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
-Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
-$t.Connected = $null
-Invoke-LearnSample -Page "$pages/powershell-resume-noncritical-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
-$t.Collections.Values | Select-Object displayName, state
-
-# Step 2: Lint Book 03's rule table
+# Step 1: Lint Book 03's rule table
 Import-Module ./powershell/DynamicRules.psm1
 Get-Content ./tests/fixtures/book03-patterns.json -Raw | ConvertFrom-Json |
     ForEach-Object { Test-DrRule -Rule $_.membershipRule -Kind $_.kind -Group $_.pattern } |
     Format-Table Severity, Rule, Group, Issue
 
-# Step 3: Evaluate a rule against the population
+# Step 2: Evaluate a rule against the population
 $pop = Get-Content ./tests/fixtures/population.json -Raw | ConvertFrom-Json
 Get-DrMembers -Population $pop -Rule '(user.accountEnabled -eq true) -and (user.userType -eq "Member") -and (user.extensionAttribute10 -eq "FIN-LED")'
 
-# Step 4: Run the pull request check
+# Step 3: Run the pull request check
 pwsh ./powershell/Invoke-DrLibraryCheck.ps1 -BaseRef HEAD
 
-# Step 5: Break a rule on purpose
+# Step 4: Break a rule on purpose
 $f = './rules/fin-led-not-contractors.json'
 (Get-Content -Raw $f).Replace(' -and (user.extensionAttribute11 -ne null)', '') | Set-Content -NoNewline $f
 
-# Step 5: Break a rule on purpose
+# Step 4: Break a rule on purpose
 pwsh ./powershell/Invoke-DrLibraryCheck.ps1 -BaseRef HEAD
 
-# Step 5: Break a rule on purpose
+# Step 4: Break a rule on purpose
 (Get-Content -Raw $f).Replace('-ne \"CTR\")"', '-ne \"CTR\") -and (user.extensionAttribute11 -ne null)"') | Set-Content -NoNewline $f
 
-# Step 6: Run the tests
+# Step 5: Run the tests
 Invoke-Pester ./tests
 ```
 
@@ -130,35 +117,9 @@ Invoke-Pester ./tests
 
 <!-- labs:end -->
 
-You run Learn's samples against a fake tenant, lint Book 03's rule table, evaluate a rule, run the pull request check and break a rule on purpose. Work in `examples/dynamic-rules`, in PowerShell 7. These are the steps of [Chapter 04, Lab 1](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#lab-1-fixtures-no-tenant), which explains each result.
+You lint Book 03's rule table, evaluate a rule, run the pull request check and break a rule on purpose. Work in `examples/dynamic-rules`, in PowerShell 7. These are the steps of [Chapter 04, Lab 1](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#lab-1-fixtures-no-tenant), which explains each result.
 
-1. **Run Learn's samples against the fake tenant.** One group is on, and one was paused before the incident.
-
-   ```powershell
-   . ./tests/LearnSampleHarness.ps1
-   $pages = '../third_party/dynamic-membership-samples/scripts'
-   $t = New-FakeTenant -Collections @(
-       @{ id = '11111111-1111-1111-1111-111111111111'; displayName = 'FIN-LED all members'; kind = 'group'; state = 'On' },
-       @{ id = '22222222-2222-2222-2222-222222222222'; displayName = 'Held for review'; kind = 'group'; state = 'Paused' })
-   $answers = 'yes', 'Global', 'yes', 'yes', 'yes'   # run, cloud, groups phase, AU phase, confirm account
-   Invoke-LearnSample -Page "$pages/powershell-pause-all-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
-   $t.Connected = $null
-   Invoke-LearnSample -Page "$pages/powershell-resume-noncritical-dynamic-membership.md" -Tenant $t -Answers $answers | Out-Null
-   $t.Collections.Values | Select-Object displayName, state
-   ```
-
-   Expected output:
-
-   ```text
-   displayName         state
-   -----------         -----
-   FIN-LED all members On
-   Held for review     On
-   ```
-
-   "Held for review" was paused on purpose, and the resume turned it on.
-
-2. **Lint Book 03's rule table.**
+1. **Lint Book 03's rule table.**
 
    ```powershell
    Import-Module ./powershell/DynamicRules.psm1
@@ -169,7 +130,7 @@ You run Learn's samples against a fake tenant, lint Book 03's rule table, evalua
 
    Expected: two rows, `Finding DR-05 Legal employer` (a display-name attribute instead of a coded slot) and `Info DR-03 Direct reports`.
 
-3. **Evaluate a rule against the population.**
+2. **Evaluate a rule against the population.**
 
    ```powershell
    $pop = Get-Content ./tests/fixtures/population.json -Raw | ConvertFrom-Json
@@ -178,7 +139,7 @@ You run Learn's samples against a fake tenant, lint Book 03's rule table, evalua
 
    Expected: `u01`, `u02`, `u06`, `u08`, `u09`. The guards keep out `u04` (disabled) and `u05` (a guest).
 
-4. **Run the pull request check.**
+3. **Run the pull request check.**
 
    ```powershell
    pwsh ./powershell/Invoke-DrLibraryCheck.ps1 -BaseRef HEAD
@@ -186,7 +147,7 @@ You run Learn's samples against a fake tenant, lint Book 03's rule table, evalua
 
    Expected: `6 rule(s); 0 finding(s), 0 warning(s); 0 changed file(s)`, exit 0.
 
-5. **Break a rule on purpose.** This deletes the empty-slot clause from one rule:
+4. **Break a rule on purpose.** This deletes the empty-slot clause from one rule:
 
    ```powershell
    $f = './rules/fin-led-not-contractors.json'
@@ -205,13 +166,13 @@ You run Learn's samples against a fake tenant, lint Book 03's rule table, evalua
    (Get-Content -Raw $f).Replace('-ne \"CTR\")"', '-ne \"CTR\") -and (user.extensionAttribute11 -ne null)"') | Set-Content -NoNewline $f
    ```
 
-6. **Run the tests.**
+5. **Run the tests.**
 
    ```powershell
    Invoke-Pester ./tests
    ```
 
-   Expected: `Tests Passed: 70`.
+   Expected: `Tests Passed: 57`.
 
 **Check your work:** for any rule change, you can say which guard it needs, whom it adds and removes, and what an incident pause would do to it.
 
@@ -250,9 +211,9 @@ Sign in to the right cloud with the least you need, create the library's groups 
 
 ::: {.callout-tip collapse="true"}
 ## Check your answers
-1. **b.** See [what Learn's samples leave to you](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#what-they-leave-to-you) and step 1 of the lab.
+1. **b.** See [what Learn's samples leave to you](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#what-they-leave-to-you).
 2. **b.** See [Lint](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#lint).
-3. **b.** See [the shadow diff](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#the-shadow-diff) and step 5 of the lab.
+3. **b.** See [the shadow diff](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#the-shadow-diff) and step 4 of the lab.
 4. **b.** Critical collections can be resumed at once by ID; the rest wait. See [the pause manifest](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#the-pause-manifest).
 :::
 

@@ -50,7 +50,7 @@ pwsh ./powershell/Invoke-McBuild.ps1 -Name TlsServerProtocols -Version 1.0.0 `
     -ModulePath ./mcmods -OutputPath ./out
 ```
 
-Exit codes: 0 passed (warnings and information allowed), 2 findings, 1 error. Output in `out/TlsServerProtocols_1.0.0/`: the cleaned MOF, the package, the definition, `findings.json` and `provenance.json`. Nothing signs in to Azure or uploads anything; publishing uses Learn's own commands, on output that passed. The chapter's Lab 2 walks through it, including the Azure Government sign-in.
+Exit codes: 0 passed (warnings and information allowed), 2 findings, 1 error. Output in `out/TlsServerProtocols_1.0.0/`: the cleaned MOF, the package, the definition, `findings.json` and `provenance.json`. Nothing signs in to Azure or uploads anything; publishing uses Learn's own commands, on output that passed. The chapter's Lab 2 walks through it.
 
 ## Test
 
