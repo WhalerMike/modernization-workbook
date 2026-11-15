@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    PIV and CAC binding: VK-PIV-01. Read-only.
+    PIV binding: VK-PIV-01. Read-only.
     Sources: Attribute-Driven Migration implementation guide, Gate 6; Book 03, Chapter 09
     (binding the PIV certificate); Book 07, Chapter 06 (username bindings and affinity).
 #>

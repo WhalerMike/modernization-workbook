@@ -28684,8 +28684,6 @@ pages:
   - docs/books/b19-developer-workbook/04-dynamic-rules-as-code.md
   - docs/reference/source-register.md
   - examples/dynamic-rules/README.md
-  - examples/third_party/dynamic-membership-samples/SNAPSHOT.md
-  - examples/third_party/dynamic-membership-samples/snapshot.json
 - path: docs/identity/users/groups-dynamic-membership.md
   url: https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership
   title: Manage rules for dynamic membership groups in Microsoft Entra ID

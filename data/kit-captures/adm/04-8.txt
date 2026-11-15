@@ -1,1 +1,0 @@
-PS> (Get-Content -Raw $f).Replace('-ne \"CTR\")"', '-ne \"CTR\") -and (user.extensionAttribute11 -ne null)"') | Set-Content -NoNewline $f

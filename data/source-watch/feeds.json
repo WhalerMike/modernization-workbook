@@ -408,7 +408,7 @@
       "books": [
         "B19"
       ],
-      "source": "Commits to the Learn source pages that hold the five pause and resume samples, which examples/third_party/dynamic-membership-samples pins at one commit (Book 19, Building the Attribute-Driven Migration, Chapter 04). A new commit means: review it, rerun examples/dynamic-rules/tests/LearnSamples.Tests.ps1 on the new pages, and update the snapshot only in a reviewed pull request."
+      "source": "Commits to the Learn source pages that hold the five pause and resume samples, which Book 19, Building the Attribute-Driven Migration, Chapter 04 compares examples/dynamic-rules with (as published October 30, 2026). A new commit means: review it and update the chapter's table of what the samples leave to you in a reviewed pull request."
     },
     {
       "id": "lifecycle-workflows-logic-app-commits",

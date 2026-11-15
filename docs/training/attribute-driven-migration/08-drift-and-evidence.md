@@ -243,7 +243,7 @@ You lint the workflows, print a cloud's hosts, record a baseline, compare the ne
    python -m pytest tests -q
    ```
 
-   Expected: `141 passed`. It takes about two minutes.
+   Expected: `139 passed`. It takes about two minutes.
 
 10. **Clean up.**
 

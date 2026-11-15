@@ -427,7 +427,7 @@ python -m pytest oscal/tests -q
 
    The export prints `{"actionable_drift": 10, "governed_exception": 1, "lapsed_acceptance": 1, "resolved": 1}` as POA&M items, and `validate` prints `valid` twice. The governed exception has risk status `deviation-approved`; the lapsed acceptance is back to `open`.
 
-**Expected result:** 141 tests passing, and each row of the gap table seen with your own eyes.
+**Expected result:** 139 tests passing, and each row of the gap table seen with your own eyes.
 
 ## Lab 2: test tenant and test subscription
 
@@ -546,7 +546,7 @@ This chapter turns the other chapters' outputs into continuous monitoring: a run
 | Each finding is opened or closed by fingerprint, with object IDs and no names (step 6: `out/day2/issues.json`) | CA-7: response actions; AU-6: reporting to the people who act | KSI-MLA-RVL | The issue tracker |
 | The package hashes every file, carries the other kits' provenance, and chains to the day before (step 7: `EVIDENCE-MANIFEST.json`, `SHA256SUMS`, `provenance/`; `verify`, `sha256sum -c`) | AU-9 (Protection of Audit Information); SI-7; CM-3 for the provenance of Chapters 01, 04 and 07 | KSI-SVC-VRI; KSI-CMT-LMC | The immutable evidence container |
 | An edit after packaging and runs out of order are refused (step 8: exit `1` twice) | SI-7; AU-9 | KSI-SVC-VRI | The test results |
-| The comparator, packager and linter pass (step 9: 141 tests) | SA-11 | KSI-CMT-VTD | The repository's test results |
+| The comparator, packager and linter pass (step 9: 139 tests) | SA-11 | KSI-CMT-VTD | The repository's test results |
 | The package becomes OSCAL 1.2.3 Assessment Results and a POA&M, with dispositions and risk status, valid against NIST's schema (step 10: `out/oscal/assessment-results.json`, `poam.json`). RMF tasks A-4, A-6 and M-4 | CA-2; CA-5; CA-7 | KSI-MLA-EVC; KSI-MLA-RVL | The evidence container |
 | The pipeline signs in with a federated credential; no secret is stored (Lab 2, step 1: `credential.json`, `az ad app federated-credential create`) | IA-5 | KSI-IAM-SNU | The app registration; the Entra audit log |
 | The pipeline identity reads the tenant and writes only to the evidence container (Lab 2, steps 2 and 3: Graph read permissions, Reader, and Storage Blob Data Contributor on the container) | AC-6 | KSI-IAM-ELP | The app registration and role assignments |

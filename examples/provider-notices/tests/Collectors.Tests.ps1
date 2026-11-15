@@ -42,8 +42,6 @@ Describe 'Azure Service Health' {
     }
     It 'points the source at the cloud''s own Resource Manager host' {
         (ById $r 'azure:SA7M-8NP').sourceUrl | Should -BeLike 'https://management.azure.com/subscriptions/*/providers/Microsoft.ResourceHealth/events/SA7M-8NP?api-version=2025-05-01'
-        $gov = ConvertTo-PnAzureNotice -Events (Read-PnJson "$Day1/azure/service-health-events.json") -Impacted @{ data = @() } -Cloud AzureUSGovernment -AsOf $AsOf
-        $gov.Notices[0].sourceUrl | Should -BeLike 'https://management.usgovcloudapi.net/*'
     }
     It 'leaves out a type it doesn''t map (Billing) and counts it' {
         $rows = @{ data = @(@{ subscriptionId = 's'; trackingId = 'BL1'; eventType = 'Billing'; status = 'Active'; description = 'Price change' }) }

@@ -71,7 +71,7 @@ Learn gives you two ways in. The Microsoft Entra admin center can create the cus
 
 ### The pinned copy
 
-The definition lives only inside the Learn page, so the repository pins the page: "Configure a Logic App for Lifecycle Workflow use" and "Lifecycle Workflows custom task extension", from MicrosoftDocs/entra-docs at commit `07cb73d` (October 30, 2026), unmodified, with the repository's MIT code license.[^c05-sample-code] Each file's git blob hash was checked against the upstream tree before `snapshot.json` recorded its SHA-256, and a unit test checks the hashes. The weekly source watch reports new commits to the configure page. Updating the copy is a reviewed pull request, as in [Chapter 04](04-dynamic-rules-as-code.md#the-pinned-copy).
+The definition lives only inside the Learn page, so the repository pins the page: "Configure a Logic App for Lifecycle Workflow use" and "Lifecycle Workflows custom task extension", from MicrosoftDocs/entra-docs at commit `07cb73d` (October 30, 2026), unmodified, with the repository's MIT code license.[^c05-sample-code] Each file's git blob hash was checked against the upstream tree before `snapshot.json` recorded its SHA-256, and a unit test checks the hashes. The weekly source watch reports new commits to the configure page. Updating the copy is a reviewed pull request, as in [Chapter 01](01-the-hr-to-entra-middleware.md#the-pinned-copy).
 
 `tools/lcwext.py learn-sample` extracts the definition from the pinned page at test time. `tools/wdl.py` is a small interpreter for the part of the Workflow Definition Language these definitions use, so the tests can run Learn's definition, unchanged, against a fake Lifecycle Workflows service, a fake Graph per cloud and a fake downstream system.
 

@@ -34,7 +34,6 @@ SHA = re.compile(r"^[0-9a-f]{40}$")
 WRITE_SCOPES_OK_WITH_OIDC = {"id-token"}
 AUDIENCE_BY_ENVIRONMENT = {   # Learn: "Configure an application to trust a managed identity" (audiences)
     "azurecloud": "api://AzureADTokenExchange",
-    "azureusgovernment": "api://AzureADTokenExchangeUSGov",
     "azurechinacloud": "api://AzureADTokenExchangeChina",
 }
 

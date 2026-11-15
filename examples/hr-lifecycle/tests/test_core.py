@@ -40,7 +40,7 @@ def test_cloud_has_no_default_and_maps_hosts():
     assert core.cloud("gcc")["graph"] == "graph.microsoft.com"
     assert core.cloud("GCC")["login"] == "login.microsoftonline.com"
     with pytest.raises(core.HrlcError):
-        core.cloud("usgov")
+        core.cloud("other")
 
 
 def test_output_is_written_once_with_a_hash_per_file(tmp_path):
