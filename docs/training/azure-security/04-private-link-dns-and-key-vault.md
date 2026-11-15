@@ -1,6 +1,6 @@
 ---
 title: "Module 4: Private Link, DNS and Key Vault"
-description: "Guide Steps 7 and 8: why private endpoints fail at name resolution, central privatelink zones linked to the hub, endpoints whose zone group registers the record, the at-scale pattern that lets policy do it, public access turned off, on-premises forwarders and the exfiltration path; then the vaults that managed identities read, on RBAC with purge protection, a closed firewall, data-plane roles at vault scope, key rotation by policy, AuditEvent logs and tested recovery. Where agencies are: different zone names and endpoints in Azure Government. The lab runs the guide's Validate checks in a test subscription: private and public name resolution, the vault's posture, and an allowed and a denied secret read in the audit log. About 50 minutes, plus the lab, with a knowledge check."
+description: "Guide Steps 7 and 8: why private endpoints fail at name resolution, central privatelink zones linked to the hub, endpoints whose zone group registers the record, the at-scale pattern that lets policy do it, public access turned off, on-premises forwarders and the exfiltration path; then the vaults that managed identities read, on RBAC with purge protection, a closed firewall, data-plane roles at vault scope, key rotation by policy, AuditEvent logs and tested recovery. Where agencies are: the zone names and endpoints of commercial Azure. The lab runs the guide's Validate checks in a test subscription: private and public name resolution, the vault's posture, and an allowed and a denied secret read in the audit log. About 50 minutes, plus the lab, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -63,7 +63,7 @@ Read the guide's [Step 8](../../books/guides/azure-security-implementation.md#st
 
 ## Unit 3: Where agencies are (4 minutes) {#azs-m4-unit-3}
 
-Read the Private Link and Key Vault rows of the guide's [availability table](../../books/guides/azure-security-implementation.md#gov-availability). In commercial Azure, which a GCC tenant uses, the zone names are the ones the guide's commands use, such as `privatelink.vaultcore.azure.net`. As a side note for Azure Government: the zone names differ, for example `privatelink.vaultcore.usgovcloudapi.net`, so any policy that registers records needs the government names; Key Vault's endpoint is `vault.usgovcloudapi.net`.
+Read the Private Link and Key Vault rows of the guide's [availability table](../../books/guides/azure-security-implementation.md#gov-availability). In commercial Azure, which a GCC tenant uses, the zone names are the ones the guide's commands use, such as `privatelink.vaultcore.azure.net`.
 
 On other clouds, the guide's [comparison](../../books/guides/azure-security-implementation.md#other-clouds) names Google Cloud's Private Service Connect and OCI private endpoints, a private IP in a VCN subnet for an Oracle service; AWS PrivateLink isn't compared there.
 
@@ -119,7 +119,7 @@ az monitor log-analytics query --workspace <workspace-guid> --analytics-query "A
 You run the guide's Step 7 and Step 8 checks in a test subscription where someone has applied those steps to a test vault. You read a secret twice: once as the test VM's managed identity, which has a role on the vault, and once as yourself, without one. Nothing in Azure changes.
 
 - **You need:** a test subscription, never production, with a key vault on RBAC with purge protection, a private endpoint, public access disabled and its AuditEvent diagnostic setting, holding a test secret and a key with a rotation policy; a Windows test VM in a virtual network linked to `privatelink.vaultcore.azure.net`, with Azure CLI and a managed identity that has Key Vault Secrets User on the vault; your own account with Reader on the subscription, Log Analytics Reader on the workspace, and no data-plane role on the vault; Azure CLI on your Windows machine with PowerShell 7, signed in as Module 1's step 1 shows.
-- **You'll replace:** `<vault>`, `<rg>`, `<pe-name>`, `<secret-name>` (the test secret), `<key>` and `<workspace-guid>` (the workspace's *Workspace ID*). In Azure Government, the vault's name ends in `vault.usgovcloudapi.net` instead.
+- **You'll replace:** `<vault>`, `<rg>`, `<pe-name>`, `<secret-name>` (the test secret), `<key>` and `<workspace-guid>` (the workspace's *Workspace ID*).
 - **Not run by the authors.** The expected results are the ones the guide's **Validate** steps state.
 
 1. **Resolve the vault from the test VM.** Sign in to the test VM and run this in its PowerShell.

@@ -20,7 +20,7 @@ slug: attribute-driven-migration
 title: "Attribute-Driven Migration: The Cross-Track Attribute Foundation"
 short_title: "Attribute-Driven Migration"
 subtitle: "A sample project plan for the attribute foundation the HR, Intune, Arc and non-person identity tracks share: one schema, one writer per attribute, attributes proven before anything reads them, and the OU tree retired once nothing depends on it"
-description: "A sample PMP-style project plan for the cross-track foundation of the Attribute-Driven Migration companion guide and its two technical deep-dive decks: reading the OU tree, the attribute schema and AD-to-Entra mapping, the coded extension-attribute slots, proving the attributes, sync, the dynamic group library with its guards, administrative units, Conditional Access personas, device and server targeting conventions, PIV and CAC binding, the mover proof, cut-over and the OU tree's retirement, and drift. Handoffs to the track plans and the program's gates are linked milestones with computed margins; every decision has an owner and a decide-by week."
+description: "A sample PMP-style project plan for the cross-track foundation of the Attribute-Driven Migration companion guide and its two technical deep-dive decks: reading the OU tree, the attribute schema and AD-to-Entra mapping, the coded extension-attribute slots, proving the attributes, sync, the dynamic group library with its guards, administrative units, Conditional Access personas, device and server targeting conventions, PIV binding, the mover proof, cut-over and the OU tree's retirement, and drift. Handoffs to the track plans and the program's gates are linked milestones with computed margins; every decision has an owner and a decide-by week."
 plan_type: "Project"
 covers: "The nine stages of the companion guide, PIV binding and the mover proof: the parts the four tracks share, with the tracks themselves handed to their own plans"
 books: "Books 01, 02, 03, 04, 05 and 07; the companion guide"
@@ -202,13 +202,13 @@ tasks:
   # ------------------------------------------------- Phase 6 — PIV binding
   - {id: AT6.1, phase: 6, name: "Binding coverage measured: certificateUserIds or altSecurityIdentities present and correct for every pilot card holder; the card management system named as the binding writer", dur: 5, after: [ATG3], owner: "Identity engineering, with the PIV program office",
      source: "../books/guides/attribute-driven-migration.md#pki-binding"}
-  - {id: D-AT6, kind: decision, phase: 6, name: "Required affinity binding for PIV and CAC", after: [AT6.1], owner: "CISO",
+  - {id: D-AT6, kind: decision, phase: 6, name: "Required affinity binding for PIV", after: [AT6.1], owner: "CISO",
      options: "High affinity in production (the program's position), with a custom rule per issuer during the pilot; low affinity until coverage is complete, with a dated end; mixed by issuer",
      late: "PIV sign-in goes to the pilot at the tenant default, which is low affinity",
      source: "../books/b07-pki/06-device-and-user-certificates.md#username-bindings-and-affinity"}
   - {id: AT6.2, phase: 6, name: "High affinity piloted on the pilot cohort before the tenant setting changes; multifactor binding rule by issuer or policy OID", dur: 5, after: [D-AT6], owner: "Identity engineering",
      source: "../books/b03-hr-identity/09-credentials-and-certificates.md#binding-the-piv-certificate-to-the-entra-user"}
-  - {id: X-P28, kind: external, phase: 6, name: "Certificate-based authentication for PIV and CAC holders (program P2.8)", ref: "program-master-schedule:P2.8", after: [AT6.2],
+  - {id: X-P28, kind: external, phase: 6, name: "Certificate-based authentication for PIV holders (program P2.8)", ref: "program-master-schedule:P2.8", after: [AT6.2],
      late: "PIV sign-in reaches the pilot with bindings nobody has measured",
      source: "program-master-schedule.md"}
   - {id: D-AT7, kind: decision, phase: 6, name: "Who writes the binding after AD", after: [AT6.2], owner: "ICAM governance body",
@@ -291,7 +291,7 @@ phases:
   3: "Phase 3 — Sync"
   4: "Phase 4 — Groups and administrative units"
   5: "Phase 5 — Personas and targeting conventions"
-  6: "Phase 6 — PIV and CAC binding"
+  6: "Phase 6 — PIV binding"
   7: "Phase 7 — The mover proof"
   8: "Phase 8 — Cut-over and the OU tree"
   9: "Phase 9 — Drift, limits and steady state"

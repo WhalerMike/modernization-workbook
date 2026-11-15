@@ -56,11 +56,11 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
-| Microsoft Entra | 2,513 | 1,028 | 444 | 367 | 671 | 3 |
+| Microsoft Entra | 2,511 | 1,028 | 444 | 366 | 671 | 2 |
 | Windows Server releases | 44 | 4 | 4 | 7 | 29 | 0 |
 | Windows Server security | 47 | 7 | 16 | 10 | 14 | 0 |
 | Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
-| **All sides** | 3,191 | 1,209 | 487 | 407 | 1,085 | 3 |
+| **All sides** | 3,189 | 1,209 | 487 | 406 | 1,085 | 2 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -698,13 +698,13 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [backup](#entra-backup) | 13 | 5 | 0 | 7 | 1 | 0 |
 | [conditional-access](#entra-conditional-access) | 74 | 59 | 5 | 8 | 2 | 0 |
 | [devices](#entra-devices) | 58 | 25 | 9 | 23 | 1 | 0 |
-| [domain-services](#entra-domain-services) | 67 | 12 | 0 | 27 | 28 | 0 |
+| [domain-services](#entra-domain-services) | 66 | 12 | 0 | 26 | 28 | 0 |
 | [enterprise-apps](#entra-enterprise-apps) | 137 | 72 | 32 | 9 | 24 | 0 |
 | [external-id](#entra-external-id) | 148 | 28 | 23 | 0 | 96 | 1 |
 | [fundamentals](#entra-fundamentals) | 62 | 29 | 5 | 6 | 22 | 0 |
 | [general](#entra-general) | 1 | 0 | 0 | 0 | 1 | 0 |
 | [global-secure-access](#entra-global-secure-access) | 199 | 81 | 3 | 108 | 7 | 0 |
-| [hybrid](#entra-hybrid) | 243 | 109 | 80 | 18 | 35 | 1 |
+| [hybrid](#entra-hybrid) | 242 | 109 | 80 | 18 | 35 | 0 |
 | [id-governance](#entra-id-governance) | 236 | 165 | 38 | 25 | 8 | 0 |
 | [id-protection](#entra-id-protection) | 28 | 8 | 16 | 0 | 4 | 0 |
 | [identity](#entra-identity) | 1 | 0 | 0 | 0 | 1 | 0 |
@@ -1453,7 +1453,6 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Kerberos constrained delegation for Microsoft Entra Domain Services \| Microsoft Docs](https://learn.microsoft.com/entra/identity/domain-services/deploy-kcd) | [Book 02, Chapter 04 — The Hidden Migration Surface](../books/b02-identity/04-the-hidden-migration-surface.md); [`docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md) | Cited |
 | [Enable SharePoint User Profile service with Domain Services \| Microsoft Docs](https://learn.microsoft.com/entra/identity/domain-services/deploy-sp-profile-sync) | — | Out of scope |
 | [Frequently asked questions (FAQs) about Microsoft Entra Domain Services](https://learn.microsoft.com/entra/identity/domain-services/faqs) | [Book 02, Chapter 04 — The Hidden Migration Surface](../books/b02-identity/04-the-hidden-migration-surface.md); [`docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md) | Cited |
-| [Microsoft Entra Domain Services feature availability in Azure Government](https://learn.microsoft.com/entra/identity/domain-services/feature-availability) | — | Not covered |
 | [Check fleet metrics of Microsoft Entra Domain Services \| Microsoft Docs](https://learn.microsoft.com/entra/identity/domain-services/fleet-metrics) | — | Out of scope |
 | [Restore group policy objects from backups in Microsoft Entra Domain Services \| Microsoft Docs](https://learn.microsoft.com/entra/identity/domain-services/group-policy) | — | Not covered |
 | [Instructions for data retrieval from Microsoft Entra Domain Services \| Microsoft Docs](https://learn.microsoft.com/entra/identity/domain-services/how-to-data-retrieval) | — | Not covered |
@@ -2258,7 +2257,6 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Microsoft Entra Connect: ADSyncConfig PowerShell Reference](https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adsyncconfig) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md); [`docs/books/b02-identity/_verification/09-building-the-entra-target.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b02-identity/_verification/09-building-the-entra-target.md) | Cited |
 | [Microsoft Entra Connect: ADSyncTools PowerShell Reference](https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adsynctools) | — | Not covered |
 | [Microsoft Entra Connect FAQ](https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-faq) | — | Out of scope |
-| [Microsoft Entra Connect: Hybrid identity considerations for Azure Government cloud](https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud) | — | Not reviewed yet |
 | [Microsoft Entra Connect Health frequently asked questions](https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-health-faq) | [Book 02, Chapter 06 — Who Owns the Migration](../books/b02-identity/06-who-owns-the-migration.md) | Cited |
 | [Microsoft Entra Connect Health and user privacy](https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-health-user-privacy) | — | Out of scope |
 | [Microsoft Entra Connect Health Version History](https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-health-version-history) | [Book 15, Chapter 12 — The Day-Two Operator Runbook and Validation](../books/b15-day2-operations/12-the-day-two-runbook.md); [Book 02, Chapter 06 — Who Owns the Migration](../books/b02-identity/06-who-owns-the-migration.md) | Covered, not cited |
@@ -3881,7 +3879,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Replica sets concepts for Microsoft Entra Domain Services \| Microsoft Docs](https://learn.microsoft.com/entra/identity/domain-services/concepts-replica-sets) | Microsoft Entra, domain-services | — | Domain Services replica sets; Book 02 Ch04 treats Domain Services only as an LDAP/Kerberos bridge |
 | [Create a Microsoft Entra Domain Services forest trust using Azure PowerShell \| Microsoft Learn](https://learn.microsoft.com/entra/identity/domain-services/create-forest-trust-powershell) | Microsoft Entra, domain-services | — | Entra Domain Services build and operation steps: the books treat it as a bridge and do not give deployment steps. |
 | [Create an organizational unit (OU) in Microsoft Entra Domain Services \| Microsoft Docs'](https://learn.microsoft.com/entra/identity/domain-services/create-ou) | Microsoft Entra, domain-services | — | Entra Domain Services build and operation steps: the books treat it as a bridge and do not give deployment steps. |
-| [Microsoft Entra Domain Services feature availability in Azure Government](https://learn.microsoft.com/entra/identity/domain-services/feature-availability) | Microsoft Entra, domain-services | — | Domain Services availability in Azure Government; no workbook page states it (candidate for Book 02 Ch04 if the bridge is planned) |
 | [Restore group policy objects from backups in Microsoft Entra Domain Services \| Microsoft Docs](https://learn.microsoft.com/entra/identity/domain-services/group-policy) | Microsoft Entra, domain-services | — | Entra Domain Services build and operation steps: the books treat it as a bridge and do not give deployment steps. |
 | [Instructions for data retrieval from Microsoft Entra Domain Services \| Microsoft Docs](https://learn.microsoft.com/entra/identity/domain-services/how-to-data-retrieval) | Microsoft Entra, domain-services | — | Domain Services data retrieval; Book 02 Ch04 treats Domain Services only as an LDAP/Kerberos bridge |
 | [Administer Group Policy in a Microsoft Entra Domain Services managed domain](https://learn.microsoft.com/entra/identity/domain-services/manage-group-policy) | Microsoft Entra, domain-services | — | Entra Domain Services build and operation steps: the books treat it as a bridge and do not give deployment steps. |
@@ -4246,8 +4243,8 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [PowerShell sample - Microsoft Entra application proxy apps using custom domains](https://learn.microsoft.com/entra/identity/app-proxy/scripts/powershell-get-all-custom-domains-and-certs) | Microsoft Entra, app-proxy | [Book 18, Chapter 03 — The Target Reference Architecture](../books/b18-application-modernization/03-the-target-reference-architecture.md) | Covered by the Nov 9, 2026 addition (application proxy and secure hybrid access sections); the section cites the more specific pages. |
 | [PowerShell sample - Microsoft Entra application proxy apps using default domain](https://learn.microsoft.com/entra/identity/app-proxy/scripts/powershell-get-all-default-domain-apps) | Microsoft Entra, app-proxy | [Book 18, Chapter 03 — The Target Reference Architecture](../books/b18-application-modernization/03-the-target-reference-architecture.md) | Covered by the Nov 9, 2026 addition (application proxy and secure hybrid access sections); the section cites the more specific pages. |
 | [PowerShell sample - List Microsoft Entra application proxy apps using wildcards](https://learn.microsoft.com/entra/identity/app-proxy/scripts/powershell-get-all-wildcard-apps) | Microsoft Entra, app-proxy | [Book 18, Chapter 03 — The Target Reference Architecture](../books/b18-application-modernization/03-the-target-reference-architecture.md) | Covered by the Nov 9, 2026 addition (application proxy and secure hybrid access sections); the section cites the more specific pages. |
-| [Android certificate-based authentication with federation](https://learn.microsoft.com/entra/identity/authentication/certificate-based-authentication-federation-android) | Microsoft Entra, authentication | [Book 07, Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](../books/b07-pki/09-federal-workforce-credentials.md) | Certificate-based authentication with PIV/CAC. |
-| [Certificate-based authentication with federation on iOS](https://learn.microsoft.com/entra/identity/authentication/certificate-based-authentication-federation-ios) | Microsoft Entra, authentication | [Book 07, Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](../books/b07-pki/09-federal-workforce-credentials.md) | Certificate-based authentication with PIV/CAC. |
+| [Android certificate-based authentication with federation](https://learn.microsoft.com/entra/identity/authentication/certificate-based-authentication-federation-android) | Microsoft Entra, authentication | [Book 07, Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](../books/b07-pki/09-federal-workforce-credentials.md) | Certificate-based authentication with PIV. |
+| [Certificate-based authentication with federation on iOS](https://learn.microsoft.com/entra/identity/authentication/certificate-based-authentication-federation-ios) | Microsoft Entra, authentication | [Book 07, Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](../books/b07-pki/09-federal-workforce-credentials.md) | Certificate-based authentication with PIV. |
 | [Protecting authentication methods in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/authentication/concept-authentication-default-enablement) | Microsoft Entra, authentication | [Book 02, Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md); [Book 16, Chapter 07 — End-User Training for the Modernized Estate](../books/b16-people/07-end-user-training.md) | Entra MFA, Authenticator and authentication-methods policy. |
 | [OATH tokens authentication method](https://learn.microsoft.com/entra/identity/authentication/concept-authentication-oath-tokens) | Microsoft Entra, authentication | [Book 02, Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md); [Book 16, Chapter 07 — End-User Training for the Modernized Estate](../books/b16-people/07-end-user-training.md) | Entra MFA, Authenticator and authentication-methods policy. |
 | [Passkey (FIDO2) authentication matrix with Microsoft Entra ID](https://learn.microsoft.com/entra/identity/authentication/concept-fido2-compatibility) | Microsoft Entra, authentication | [Book 02, Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md); [Book 07, Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](../books/b07-pki/09-federal-workforce-credentials.md) | FIDO2 and passkeys as phishing-resistant methods. |

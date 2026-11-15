@@ -32,7 +32,7 @@ How an agency runs Microsoft's Zero Trust Assessment and turns its report into e
 
 [Book 11](../b11-zero-trust/index.md) already argues the case. [Chapter 05](../b11-zero-trust/05-two-assessment-tools.md) explains what the Zero Trust Assessment and CISA's ScubaGear each check and why an agency runs both; [Chapter 08](../b11-zero-trust/08-close-before-you-assess.md) puts the assessment after the architecture it confirms and maps each [finding family](../b11-zero-trust/08-close-before-you-assess.md#finding-families) to the page that closes it; [Chapter 09](../b11-zero-trust/09-running-the-assessment.md) covers the run and the evidence chain; [Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md) sets the [normalized result taxonomy](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy), the [closure chain](../b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain) and the [weighting](../b11-zero-trust/10-evidence-not-verdicts.md#weigh-the-finding-not-the-pass-rate). What none of them gives is the run as a procedure, from the first consent to a re-run whose evidence an assessor can check. This guide does that, with the code in the Zero Trust Assessment results kit, [`examples/zta-results`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results), and links to the books instead of restating them.
 
-**Where the facts come from.** The tool's behavior was read on Microsoft Learn's three Zero Trust Assessment pages (the overview, *Get started* and the terminology glossary) and in the tool's own source and guide at release 3.1.0 on GitHub, the current release on November 11, 2026.[^zta-overview][^zta-start][^zta-glossary][^zta-release] Where Learn and the tool's guide differ, the guide says so and gives both. The connection commands for each cloud come from Learn's pages for Microsoft Graph, Exchange Online, Security & Compliance and Azure Government. AWS facts come from AWS's documentation, control statements from NIST SP 800-53 Rev. 5, and the KSIs from [Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md)'s mappings. Everything was read on November 11, 2026; the [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/guides/_verification/zero-trust-assessment-implementation.md) lists every claim. Where a fact couldn't be verified, the guide says *not yet specified* and [lists it](#zta-what-couldnt-be-verified). Nothing here was run against a live tenant: the kit is tested against fictional fixtures, and every tenant command is unrun by the authors.
+**Where the facts come from.** The tool's behavior was read on Microsoft Learn's three Zero Trust Assessment pages (the overview, *Get started* and the terminology glossary) and in the tool's own source and guide at release 3.1.0 on GitHub, the current release on November 11, 2026.[^zta-overview][^zta-start][^zta-glossary][^zta-release] Where Learn and the tool's guide differ, the guide says so and gives both. The connection commands for each cloud come from Learn's pages for Microsoft Graph, Exchange Online, Security & Compliance and Az PowerShell. AWS facts come from AWS's documentation, control statements from NIST SP 800-53 Rev. 5, and the KSIs from [Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md)'s mappings. Everything was read on November 11, 2026; the [verification log](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/guides/_verification/zero-trust-assessment-implementation.md) lists every claim. Where a fact couldn't be verified, the guide says *not yet specified* and [lists it](#zta-what-couldnt-be-verified). Nothing here was run against a live tenant: the kit is tested against fictional fixtures, and every tenant command is unrun by the authors.
 
 **Labels.** Each step carries an authority label from [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md#authority-labels). The Zero Trust Assessment itself is **Optional** in federal terms: no directive requires it, and it isn't a substitute for the SCuBA tools BOD 25-01 names ([Chapter 05](../b11-zero-trust/05-two-assessment-tools.md#where-they-overlap-and-where-they-dont)). The program runs it as **Risk-based recommended**, for breadth across devices, network, data and security operations that ScubaGear doesn't cover. *(Design guidance)* marks the program's own choices.
 
@@ -143,14 +143,12 @@ The Zero Trust Assessment tests a tenant's configuration against hundreds of ite
 **Steps.**
 
 1. **Write the decision record** from the [template](#zta-decision-record): scope (the tenant, the pillars, the Azure subscriptions for the Infrastructure pillar), the run account, the cadence (Step 10), the pinned tool version, telemetry, and where the output goes. The CISO approves the tool, its version and the accounts ([Book 11, Chapter 07](../b11-zero-trust/07-who-owns-zero-trust.md)).
-2. **Tag the subscriptions in the Infrastructure scope.** The Infrastructure pillar reads Microsoft Defender for Cloud recommendations only for accessible subscriptions tagged `ZeroTrustAssessment` with the value `Infrastructure`; with none tagged, its test is skipped as not applicable, which is not a clean result.[^zta-guide][^zta-infra-test] Tagging is a write to Azure: a subscription Owner or Tag Contributor runs it under change control.
+2. **Tag the subscriptions in the Infrastructure scope.** The Infrastructure pillar reads Microsoft Defender for Cloud recommendations only for accessible subscriptions tagged `ZeroTrustAssessment` with the value `Infrastructure`; with none tagged, its test is skipped as not applicable, which is not a clean result.[^zta-guide][^zta-infra-test] Tagging is a write to Azure: a subscription Owner or Tag Contributor runs it under change control.[^zta-tags]
 
     ```powershell
     Connect-AzAccount -Environment AzureCloud
     Update-AzTag -ResourceId "/subscriptions/<subscription-id>" -Tag @{ ZeroTrustAssessment = 'Infrastructure' } -Operation Merge
     ```
-
-    For Azure Government use `-Environment AzureUSGovernment`.[^zta-azgov][^zta-tags]
 
 3. **Put the run on the calendar** (Step 10), with the pillar owners who read their tabs (Step 6).
 
@@ -163,7 +161,7 @@ The Zero Trust Assessment tests a tenant's configuration against hundreds of ite
 
 : Step 1 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** As in [the availability table](#zta-gov-availability). Tagging uses the same command in Azure Government with its environment.
+**Government-cloud availability.** As in [the availability table](#zta-gov-availability).
 
 ::: {.callout-important}
 ## Validate (G1 Decide and scope)
@@ -709,7 +707,7 @@ Learn's operations guidance for Microsoft Entra Private Access and Internet Acce
 
 : Step 10 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** The kit runs anywhere. Learn's playbook relies on Azure Automation, Logic Apps and Blob Storage; their availability in Azure Government for this use is not yet specified here.
+**Government-cloud availability.** The kit runs anywhere. Learn's playbook relies on Azure Automation, Logic Apps and Blob Storage in the agency's commercial Azure subscriptions.
 
 ::: {.callout-important}
 ## Validate (G10 Re-run and keep evidence)
@@ -959,7 +957,6 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^zta-mg-revoke]: Microsoft Learn, "Grant and revoke API permissions in Microsoft Entra ID" (`Get-MgOauth2PermissionGrant`, `Remove-MgOauth2PermissionGrant`; existing tokens stay valid for their lifetime), <https://learn.microsoft.com/powershell/microsoftgraph/how-to-grant-revoke-api-permissions>, and "Review permissions granted to enterprise applications" (Cloud Application Administrator), <https://learn.microsoft.com/entra/identity/enterprise-apps/manage-application-permissions> (both accessed Nov 11, 2026).
 [^zta-exo]: Microsoft Learn, "Connect to Exchange Online PowerShell," step 2 (`-ExchangeEnvironmentName`: none needed in Microsoft 365 or GCC), <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> (accessed Nov 11, 2026).
 [^zta-ipps]: Microsoft Learn, "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell," connection examples (the default Security & Compliance connection), <https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2> (accessed Nov 11, 2026).
-[^zta-azgov]: Microsoft Learn, "Quickstart: Connect to Azure Government with PowerShell" (`Connect-AzAccount -Environment AzureUSGovernment`), <https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-ps> (accessed Nov 11, 2026).
 [^zta-tags]: Microsoft Learn, "Use tags to organize your Azure resources and management hierarchy," Azure PowerShell (`Update-AzTag` with `-Operation Merge` and `Delete` on a subscription resource ID), <https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources-powershell> (accessed Nov 11, 2026).
 [^zta-gsa-ops]: Microsoft Learn, "Operate Microsoft Entra Private Access," sections "Automated posture assessment" (a configuration-posture check, not a real-time detector) and "Playbook 7: Scheduled Zero Trust Assessment digest," <https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access>, and "Operate Microsoft Entra Internet Access," the same playbook, <https://learn.microsoft.com/entra/global-secure-access/how-to-operate-internet-access> (both accessed Nov 11, 2026).
 [^zta-sh-nist]: AWS, AWS Security Hub CSPM User Guide, "NIST SP 800-53 Revision 5 in Security Hub CSPM," <https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html> (accessed Nov 11, 2026).

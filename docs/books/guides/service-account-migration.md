@@ -463,7 +463,7 @@ Choose by where the mail server is:
 | RBAC for Applications in Exchange Online[^sam-app-rbac] | Yes | Not yet specified |
 | SMTP relay support in Exchange Online[^sam-exo-gov] | Yes | Yes |
 | High Volume Email[^sam-hve] | Yes (Microsoft 365 Worldwide) | Not listed: Learn names Worldwide only; other clouds "under evaluation" |
-| Azure Communication Services Email[^sam-acs-gov] | Yes, SDK and SMTP (commercial Azure) | Yes, in commercial Azure |
+| Azure Communication Services Email | Yes, SDK and SMTP (commercial Azure) | Yes, in commercial Azure |
 
 : Mail options by cloud {.striped .hover}
 
@@ -562,7 +562,7 @@ On an Arc-enabled host, the workload gets its Graph token from the Arc agent's l
 ### M4. Learn's other options {#sam-m4}
 
 - **High Volume Email** sends from dedicated HVE accounts to internal recipients only, at most 50 recipients a message, with OAuth recommended; Learn lists it for Microsoft 365 Worldwide only.[^sam-hve] It doesn't serve a GCC tenant today.
-- **Azure Communication Services Email** sends to internal and external recipients from a verified domain.[^sam-mfd] In Azure Government it is generally available through the SDK, and its SMTP endpoint isn't supported.[^sam-acs-gov] It brings its own resource, connection and identity to govern, and it sends from outside Exchange Online, so its mail isn't in the tenant's message trace.
+- **Azure Communication Services Email** sends to internal and external recipients from a verified domain.[^sam-mfd] It brings its own resource, connection and identity to govern, and it sends from outside Exchange Online, so its mail isn't in the tenant's message trace.
 - **Hybrid relay.** A workload that keeps sending to the on-premises servers (M1 or M2) reaches Exchange Online mailboxes through the hybrid mail flow while the on-premises servers remain; when they retire, the workload moves to M3.
 
 ## Special cases Learn documents {#special-cases}
@@ -712,7 +712,7 @@ A finding this page addresses is ready for closure when every applicable state h
 - **A gMSA on an Integrated Windows authentication receive connector (M1).** Learn documents the connector's Kerberos mechanism and the Send As permission, but no page shows a gMSA submitting SMTP end to end, and whether a given application's mail library authenticates with its process's credentials is the application's. Test M1 in the test domain before the switch.
 - **Graph tokens on an Arc-enabled host (M3).** The Arc page documents the local token endpoint; no page read shows `Connect-MgGraph -Identity` against an Arc agent, so the step calls the endpoint as C2 describes rather than giving a PowerShell connection.
 - **RBAC for Applications and High Volume Email in GCC.** The RBAC for Applications page names no cloud; High Volume Email lists Microsoft 365 Worldwide only (read November 11, 2026). The [availability table](#mail-from-gmsa) says "not yet specified" or "not listed" where Learn does.
-- **Government-cloud availability of managed identities** isn't stated on the managed identity pages read, and Workload ID Premium is available in Azure Government through the account manager ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
+- **Government-cloud availability of managed identities** isn't stated on the managed identity pages read; Workload ID Premium licensing is in [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds).
 
 ## Questions for the program owner {#questions}
 
@@ -783,7 +783,6 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^sam-app-rbac]: Microsoft Learn, "Role Based Access Control for Applications in Exchange Online" (replaces Application Access Policies; Organization Management and Exchange Administrator; `New-ServicePrincipal`, `New-ManagementScope`, `New-ManagementRoleAssignment -App -Role "Application Mail.Send" -CustomResourceScope`, `Test-ServicePrincipalAuthorization`; Entra and Exchange grants are a union; `MemberOfGroup` scopes, nested members out of scope; cache of 30 minutes to 2 hours; no cloud availability stated), <https://learn.microsoft.com/exchange/permissions-exo/application-rbac> (accessed Nov 11, 2026).
 [^sam-exo-gov]: Microsoft Learn, "Exchange Online for US government environments," Exchange Online features (SMTP relay support: GCC), <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments> (accessed Nov 11, 2026).
 [^sam-hve]: Microsoft Learn, "Manage High Volume Email for Microsoft 365" (internal recipients only; 50 recipients per message; OAuth recommended; supported in Microsoft 365 Worldwide, other cloud environments under evaluation), <https://learn.microsoft.com/exchange/mail-flow-best-practices/high-volume-mails-m365> (accessed Nov 11, 2026).
-[^sam-acs-gov]: Microsoft Learn, "Azure Communication Services for US Government" (Email generally available in Azure Government through SDK-based integration; SMTP endpoint not supported in Azure US Government cloud), <https://learn.microsoft.com/azure/communication-services/concepts/government> (accessed Nov 11, 2026).
 [^sam-rc]: Microsoft Learn, "Receive connectors in Exchange Server," usage types (Client includes `Integrated`), authentication mechanisms (`Integrated`: NTLM and Kerberos), permission groups (`ExchangeUsers`: authenticated users, with submit and relay), <https://learn.microsoft.com/exchange/mail-flow/connectors/receive-connectors> (accessed Nov 11, 2026).
 [^sam-rc-custom]: Microsoft Learn, "Scenarios for custom Receive connectors in Exchange Server," scenario 3 (`New-ReceiveConnector -Custom -Bindings -RemoteIPRanges -AuthMechanism -PermissionGroups`), <https://learn.microsoft.com/exchange/mail-flow/connectors/custom-receive-connectors> (accessed Nov 11, 2026).
 [^sam-sendas-ts]: Microsoft Learn, "Can't send an email message when Full Access permission is granted to a shared mailbox in Exchange Server" (Exchange requires Send As to send from a shared mailbox), <https://learn.microsoft.com/troubleshoot/exchange/mailflow/cannot-send-email-with-full-access> (accessed Nov 11, 2026).

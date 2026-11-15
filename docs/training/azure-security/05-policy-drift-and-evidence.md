@@ -62,7 +62,7 @@ Read the guide's [Step 10](../../books/guides/azure-security-implementation.md#s
 
 ## Unit 3: Where agencies are (3 minutes) {#azs-m5-unit-3}
 
-Azure Policy has no variation listed between commercial Azure and Azure Government, but the FedRAMP initiatives exist in separate versions for each cloud, and built-in definitions differ by cloud: look them up where you are, as the lab does. A test that can't run because the cloud doesn't offer the feature is recorded as an environment decision, and the guide's [dangers table](../../books/guides/azure-security-implementation.md#dangers) lists assuming commercial features in Azure Government as a danger of its own.
+Built-in definitions and the FedRAMP initiatives change version: look them up where you are, as the lab does. A test that can't run because the cloud doesn't offer the feature is recorded as an environment decision.
 
 **Watch.** The guide's narrated deck covers this module in its last three slides, *policy holds it; exemptions expire*, *owners, cadence, metrics and requirements* and *dangers, open questions and what comes next*. Its video is being exported; until then, read the narration in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 

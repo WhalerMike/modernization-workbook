@@ -63,7 +63,7 @@
   question: Which cloud environments and platforms does each guidance set claim to cover?
   options: [Claim general coverage, State scope up front and list what is out of scope with fallbacks]
   choice: Each series gets an Applicability page stamped with a date. Commercial cloud including GCC-Moderate is in scope. Air-gapped networks and some platform configurations are out of scope as written, each with what still applies.
-  rationale: Several features differ by cloud, for example GCC-Moderate uses the worldwide Graph endpoint and Arc SQL in Azure Government lacks Entra authentication.
+  rationale: Several features differ by cloud, for example GCC-Moderate uses the worldwide Graph endpoint.
   basis: workbook-design
   sources:
   - {title: 'Microsoft Learn, Microsoft Graph national cloud deployments', url: 'https://learn.microsoft.com/graph/deployments'}
@@ -366,9 +366,9 @@
 - id: WD-028
   date: 2026-10-20
   question: Which cloud subscription hosts Arc for SQL Server in a GCC tenant?
-  options: [Azure Government subscription, Commercial subscription in the GCC tenant]
+  options: [A subscription outside the GCC tenant, Commercial subscription in the GCC tenant]
   choice: The runbook uses a commercial subscription in the GCC tenant.
-  rationale: Entra authentication through Arc is not offered in US Gov Virginia, and an Azure Government subscription cannot attach to a GCC tenant.
+  rationale: A GCC tenant's Entra ID is in the commercial cloud, and Entra authentication through Arc needs the subscription in that tenant.
   basis: microsoft-learn
   sources:
   - {title: 'Microsoft Learn, SQL Server enabled by Azure Arc overview', url: 'https://learn.microsoft.com/sql/sql-server/azure-arc/overview'}
@@ -1092,7 +1092,7 @@
 - id: WD-085
   date: 2026-10-30
   question: Which Azure cloud does an agency with a Microsoft 365 GCC (Moderate) tenant use?
-  options: [Azure Government, Commercial Azure]
+  options: [A separate Azure cloud, Commercial Azure]
   choice: The compliance volumes place the agency's Azure in commercial Azure, paired with the GCC tenant.
   rationale: A GCC tenant's Entra ID is in the commercial cloud, so its subscriptions are commercial. The Arc guide and the books already said so.
   basis: microsoft-learn
@@ -1173,7 +1173,7 @@
   date: 2026-10-30
   question: Which government clouds must the developer workbooks fully resolve?
   options: [Resolve every research gap for every government cloud, Close gaps that matter for a GCC (Moderate) estate with commercial Azure and record the rest]
-  choice: Gaps that affect a GCC estate are closed. Gaps that apply only outside a GCC estate, such as Azure Government, stay open, each with a note on what would reopen it.
+  choice: Gaps that affect a GCC estate are closed. Gaps that apply only outside a GCC estate stay open, each with a note on what would reopen it.
   rationale: The target estate is GCC with commercial Azure.
   basis: workbook-design
   sources: []

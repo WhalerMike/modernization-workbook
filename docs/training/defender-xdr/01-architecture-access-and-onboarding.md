@@ -43,7 +43,7 @@ After this module, you'll be able to:
 
 ## Unit 1: Components, boundaries and control planes (8 minutes) {#xdr-m1-unit-1}
 
-Read the guide's [reference architecture](../../books/guides/defender-xdr-implementation.md#reference-architecture). Defender XDR joins Defender for Endpoint, Defender for Identity, Defender for Office 365 and Defender for Cloud Apps in one portal and one incident queue. Two boundaries matter: the agency's, which holds the devices, the SOC's tools and the evidence store, and Microsoft's, which holds the service; for a GCC tenant Microsoft's side is built in Azure US Government.
+Read the guide's [reference architecture](../../books/guides/defender-xdr-implementation.md#reference-architecture). Defender XDR joins Defender for Endpoint, Defender for Identity, Defender for Office 365 and Defender for Cloud Apps in one portal and one incident queue. Two boundaries matter: the agency's, which holds the devices, the SOC's tools and the evidence store, and Microsoft's, which holds the service.
 
 Intune is Microsoft's recommended tool for distributing Defender for Endpoint settings, and it assigns them to Entra **device** groups, never user groups. Settings Intune doesn't hold (automation levels, device groups, attack disruption exclusions, custom detections) live in the Defender portal. Servers in Azure, AWS, Google Cloud or Oracle Cloud Infrastructure reach Defender through Defender for Servers and Azure Arc, as [Devices, Chapter 09](../../books/b05-devices/09-servers-under-azure-arc.md) describes. The rule to remember: one control plane per setting.
 

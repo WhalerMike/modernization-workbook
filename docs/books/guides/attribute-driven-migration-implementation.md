@@ -1,6 +1,6 @@
 ---
 title: "Attribute-Driven Migration: An Implementation Guide"
-description: "A step-by-step guide to the cross-track foundation of the attribute-driven migration from Active Directory to Microsoft Entra ID, in the order the two technical deep-dive decks present it: read the OU tree, fix the attribute schema and the AD-to-Entra mapping, publish the coded slot register with one writer per slot, prove the attributes, map them through sync, build the dynamic group library and administrative units, set the Conditional Access personas and the device, server and non-person targeting conventions, bind PIV and CAC certificates, prove a mover across the tracks, cut over by attribute query and retire the OU tree, then keep the attributes true. Each gate has prerequisites, steps, a Validate step naming the validation kit check that proves it, rollback and evidence, and hands each track's own work to its implementation guide. One worked identifier, an enterprise person key such as a Mainframe PIN, runs through every gate."
+description: "A step-by-step guide to the cross-track foundation of the attribute-driven migration from Active Directory to Microsoft Entra ID, in the order the two technical deep-dive decks present it: read the OU tree, fix the attribute schema and the AD-to-Entra mapping, publish the coded slot register with one writer per slot, prove the attributes, map them through sync, build the dynamic group library and administrative units, set the Conditional Access personas and the device, server and non-person targeting conventions, bind PIV certificates, prove a mover across the tracks, cut over by attribute query and retire the OU tree, then keep the attributes true. Each gate has prerequisites, steps, a Validate step naming the validation kit check that proves it, rollback and evidence, and hands each track's own work to its implementation guide. One worked identifier, an enterprise person key such as a Mainframe PIN, runs through every gate."
 doc-type: workbook-guide
 audience: [Technical, Customer]
 family: guides
@@ -20,7 +20,7 @@ last-reviewed: 2026-11-09
 
 ::: {.callout-note}
 ## In this guide
-The shared foundation of the [Attribute-Driven Migration guide](attribute-driven-migration.md), as gated steps you can run, in the order the two technical deep-dive decks present them. First, how to use the guide, a worked identifier that runs through every gate, the path on one page and the prerequisites. Then ten gates. Gate 0 reads the OU tree. Gate 1 fixes the schema and the coded slots. Gate 2 proves the attributes, and Gate 3 maps them through sync. Gate 4 builds the dynamic group library and administrative units. Gate 5 sets the Conditional Access personas and the conventions the device, server and non-person tracks build on. Gate 6 binds PIV and CAC certificates. Gate 7 proves a mover across the tracks. Gate 8 cuts over by attribute query and retires the OU tree, and Gate 9 keeps the attributes true. Each gate has prerequisites, steps, a **Validate** step, rollback and evidence. Where a track has its own implementation guide, this guide hands off to it rather than repeating it. Then where the kits stop, rollback, and a checklist.
+The shared foundation of the [Attribute-Driven Migration guide](attribute-driven-migration.md), as gated steps you can run, in the order the two technical deep-dive decks present them. First, how to use the guide, a worked identifier that runs through every gate, the path on one page and the prerequisites. Then ten gates. Gate 0 reads the OU tree. Gate 1 fixes the schema and the coded slots. Gate 2 proves the attributes, and Gate 3 maps them through sync. Gate 4 builds the dynamic group library and administrative units. Gate 5 sets the Conditional Access personas and the conventions the device, server and non-person tracks build on. Gate 6 binds PIV certificates. Gate 7 proves a mover across the tracks. Gate 8 cuts over by attribute query and retires the OU tree, and Gate 9 keeps the attributes true. Each gate has prerequisites, steps, a **Validate** step, rollback and evidence. Where a track has its own implementation guide, this guide hands off to it rather than repeating it. Then where the kits stop, rollback, and a checklist.
 :::
 
 ::: {.callout-tip}
@@ -123,7 +123,7 @@ Where the key is already issued to contractors with their PIV credential, contra
 | [3 Attributes flowing](#gate-3-map-the-attributes-through-sync) | 3 | Every slot arrives in Entra ID as HR sent it; shadow differences explained | VK-SYNC-01, VK-SYNC-03, with the sync reconciliation report | AT3.1, ATG3 |
 | [4 Group library and units](#gate-4-the-dynamic-group-library-and-administrative-units) | 4, 5 | Every rule on codes with guards, tested and shadowed; every unit mirrors its group | VK-DG-01 to 07 | AT4.1–AT4.4, D-AT4, ATG4 |
 | [5 Targeting conventions](#gate-5-personas-and-targeting-conventions) | 6 | Personas from codes, grants paired with blocks; device, server and non-person conventions handed off | VK-CA-01 for personas; VK-INT-01, VK-ARC-01, VK-NPI-01 in the track guides | AT5.1–AT5.4, D-AT5, ATG5 |
-| [6 PIV binding](#gate-6-piv-and-cac-binding) | PIV | Every pilot card holder bound; high affinity piloted | VK-PIV-01 | AT6.1, AT6.2, D-AT6, D-AT7, ATG6 |
+| [6 PIV binding](#gate-6-piv-binding) | PIV | Every pilot card holder bound; high affinity piloted | VK-PIV-01 | AT6.1, AT6.2, D-AT6, D-AT7, ATG6 |
 | [7 Mover proven](#gate-7-prove-a-mover-across-the-tracks) | Worked example | One personnel action changes access only through the attributes | VK-DG-05, VK-HR-03; the workflow's run history | AT7.1, ATG7 |
 | [8 OU tree retired](#gate-8-cut-over-and-retire-the-ou-tree) | 7 | Every population cut over by query; nothing reads OU placement | Start Kit wave lists; VK-HR-01 to 04 and VK-HR-07 per wave; VK-HR-05, 06, VK-DG-04, VK-DG-05 | AT8.1–AT8.4, ATG8 |
 | [9 Attributes kept true](#gate-9-keep-the-attributes-true) | 8 | Drift scans running, findings closed at the source, zero-action plan | VK-HR-01, VK-HR-03, VK-HR-04, VK-SYNC-03, the HCM correlation report, VK-DG-05, VK-DG-06, VK-DG-07, and each track's standing checks | AT9.1–AT9.3, D-AT8, ATG9 |
@@ -436,9 +436,9 @@ Group Policy inheritance retires here. The risk is policies that look strict but
 
 **Evidence.** The persona definitions, the policy export, VK-CA-01's result, the report-only review, the enforcement waves, and the published device, server and non-person conventions with the track guides' check results.
 
-## Gate 6: PIV and CAC binding {#gate-6-piv-and-cac-binding}
+## Gate 6: PIV binding {#gate-6-piv-binding}
 
-*Plan tasks AT6.1 and AT6.2, decisions D-AT6 and D-AT7, gate ATG6. Companion guide [PIV and CAC certificates as attributes](attribute-driven-migration.md#pki-binding); deck Part 2, slides 16 and 17.*
+*Plan tasks AT6.1 and AT6.2, decisions D-AT6 and D-AT7, gate ATG6. Companion guide [PIV certificates as attributes](attribute-driven-migration.md#pki-binding); deck Part 2, slides 16 and 17.*
 
 PIV sign-in is attribute-driven too. Entra ID finds the user by matching a field of the certificate to a field of the account, so who writes that field matters as much as any HR field.
 
@@ -649,7 +649,7 @@ The blocks below follow [Book 00, Appendix D](../b00-orientation/appendix-d-cont
 | State | This page | Evidence |
 |---|---|---|
 | Designed | [Gate 0](#gate-0-read-the-ou-tree) and [Gate 1](#gate-1-schema-and-slots); the persona set (D-AT5) and affinity (D-AT6) | The per-group decision record in Git; the signed schema and slot register; the decision records |
-| Configured | [Gate 3](#gate-3-map-the-attributes-through-sync) sync mapping; [Gate 4](#gate-4-the-dynamic-group-library-and-administrative-units) rules, shadowed; [Gate 5](#gate-5-personas-and-targeting-conventions) personas in report-only; [Gate 6](#gate-6-piv-and-cac-binding) high affinity piloted | The sync configuration export; the rule library in Git; the `ca-export` policy export; the pilot's affinity rule |
+| Configured | [Gate 3](#gate-3-map-the-attributes-through-sync) sync mapping; [Gate 4](#gate-4-the-dynamic-group-library-and-administrative-units) rules, shadowed; [Gate 5](#gate-5-personas-and-targeting-conventions) personas in report-only; [Gate 6](#gate-6-piv-binding) high affinity piloted | The sync configuration export; the rule library in Git; the `ca-export` policy export; the pilot's affinity rule |
 | Enforced | Gate 2's other writers removed; Gate 5's personas enforced in waves; [Gate 8](#gate-8-cut-over-and-retire-the-ou-tree) waves cut over and the OU tree frozen | The delegation export; the enforcing state in the policy export with the emergency-access exclusion; the per-wave signed report and the final OU export |
 | Evidenced | Each gate's **Validate**; [Gate 7](#gate-7-prove-a-mover-across-the-tracks)'s mover proof | Kit runs (VK-HR, VK-SYNC, VK-DG, VK-CA-01, VK-PIV-01) with date and tenant; the workflow's run history; the seven-day sole-source report |
 | Operated | [Gate 9](#gate-9-keep-the-attributes-true) | The scan schedule, run folders, findings queue closed at the source, limits register, metrics |

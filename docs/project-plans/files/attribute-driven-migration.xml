@@ -1244,7 +1244,7 @@ Source: ../books/guides/attribute-driven-migration.md#attribute-to-mechanism-cro
     <Task>
       <UID>54</UID>
       <ID>54</ID>
-      <Name>Phase 6 — PIV and CAC binding</Name>
+      <Name>Phase 6 — PIV binding</Name>
       <OutlineNumber>7</OutlineNumber>
       <OutlineLevel>1</OutlineLevel>
       <Summary>1</Summary>
@@ -1275,7 +1275,7 @@ Source: ../books/guides/attribute-driven-migration.md#pki-binding</Notes>
     <Task>
       <UID>56</UID>
       <ID>56</ID>
-      <Name>D-AT6 Required affinity binding for PIV and CAC</Name>
+      <Name>D-AT6 Required affinity binding for PIV</Name>
       <OutlineNumber>7.2</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-05T17:00:00</Start>
@@ -1319,7 +1319,7 @@ Source: ../books/b03-hr-identity/09-credentials-and-certificates.md#binding-the-
     <Task>
       <UID>58</UID>
       <ID>58</ID>
-      <Name>X-P28 Certificate-based authentication for PIV and CAC holders (program P2.8)</Name>
+      <Name>X-P28 Certificate-based authentication for PIV holders (program P2.8)</Name>
       <OutlineNumber>7.4</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-24T17:00:00</Start>

@@ -12,6 +12,9 @@ original moves: only the row changes. The rules, which --check enforces:
     footnote can't change without the row changing with it.
   - Every link in a linked deck resolves: to a register row, a book page and heading, or a site page.
 
+A retired row that no page, deck or data file cites any more stays in data/source-register.json but
+isn't listed on the page.
+
 The Monday scan never edits the register. --digest writes each row's latest result to
 data/source-watch/register-scan.json on the source-watch-state branch, and the page reads that
 file in the browser, so a scan neither redeploys the site nor reopens a review. A moved or gone
@@ -96,8 +99,43 @@ def long_date(iso: str) -> str:
     return f"{d.strftime('%B')} {d.day}, {d.year}"
 
 
-def render(register: dict) -> str:
-    sources = register["sources"]
+REFERENCE = re.compile(r"source-register\.html#([a-z][a-z0-9-]*)")
+REFERENCE_SUFFIXES = (".md", ".qmd", ".json", ".yml", ".yaml", ".js", ".txt", ".html")
+
+
+def referencing_files() -> list[Path]:
+    """The tracked text files that can link a register row: pages, decks, data and kits."""
+    run = subprocess.run(["git", "ls-files", "docs", "data", "presentations", "examples"], cwd=ROOT,
+                         capture_output=True, text=True)
+    names = run.stdout.splitlines() if run.returncode == 0 else []
+    skip = {PAGE.relative_to(ROOT).as_posix(), REGISTER.relative_to(ROOT).as_posix()}
+    return [ROOT / n for n in names if n.endswith(REFERENCE_SUFFIXES) and n not in skip]
+
+
+def cited_ids(register: dict, cited: dict, files: list[Path] | None = None) -> set[str]:
+    """The rows something still uses: a footnote cites the row's URL, or a page, deck or data file
+    links its register address."""
+    ids = {s["id"] for s in register["sources"]}
+    found = {s["id"] for s in register["sources"] if s["url"] in cited}
+    for path in referencing_files() if files is None else files:
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+        found |= set(REFERENCE.findall(text)) & ids
+    return found
+
+
+def shown(register: dict, keep: set[str]) -> list[dict]:
+    """The rows the page lists: every active row, and a retired row only while something cites it.
+    A hidden row stays in data/source-register.json, because the register is permanent."""
+    return [s for s in register["sources"] if s["status"] == "active" or s["id"] in keep]
+
+
+def render(register: dict, keep: set[str] | None = None) -> str:
+    if keep is None:
+        keep = cited_ids(register, citations.collect())
+    sources = shown(register, keep)
     active = [s for s in sources if s["status"] == "active"]
     latest = max(h["date"] for s in sources for h in s["history"])
     lines = [
@@ -272,8 +310,9 @@ def check_deck_links(register: dict) -> list[str]:
 
 def check() -> list[str]:
     register = load()
-    problems = check_rows(register, citations.collect())
-    if not PAGE.exists() or PAGE.read_bytes().decode("utf-8") != render(register):
+    cited = citations.collect()
+    problems = check_rows(register, cited)
+    if not PAGE.exists() or PAGE.read_bytes().decode("utf-8") != render(register, cited_ids(register, cited)):
         problems.append("docs/reference/source-register.md is stale: run register.py --write")
     old = base_register()
     if old:
