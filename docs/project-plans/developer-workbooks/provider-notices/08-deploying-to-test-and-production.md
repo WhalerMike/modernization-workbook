@@ -422,7 +422,7 @@ Promote to production only when every row passes. The ISSO and the change adviso
 | 4 | The routing was reviewed, and every security advisory and retirement routed to a task | Step 1.4, read by the change manager and the ISSO |
 | 5 | The alert policy applied, and its rollback was rehearsed | Steps 1.6 and 1.9: `Applied` in both `results.json` |
 | 6 | Each provider's notice contacts are named | PF-05 in Step 1.2 |
-| 7 | The known gaps are recorded with the ISSO | Google's planned maintenance; any AWS account without a support plan; any workload in an Assured Workloads FedRAMP or IL package; the items the guide lists as not yet specified |
+| 7 | The known gaps are recorded with the ISSO | Google's planned maintenance; any AWS account without a support plan; any workload in an Assured Workloads FedRAMP package; the items the guide lists as not yet specified |
 
 : Promotion go/no-go criteria {.striped .hover}
 

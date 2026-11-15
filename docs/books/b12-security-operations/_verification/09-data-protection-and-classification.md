@@ -70,7 +70,7 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | 62 | Add-AzSqlServerKeyVaultKey and Set-AzSqlServerTransparentDataEncryptionProtector -AutoRotationEnabled; rotation within 24 hours | Keys code | verified | Az.Sql help; Learn, rotate the TDE protector |
 | 63 | Connect-AzAccount (commercial Azure) | Keys code | verified | Learn, Connect-AzAccount |
 | 64 | Source: "12-month cryptoperiod … within the recommended cryptoperiods of NIST SP 800-57 Part 1" | Keys | restated-as-design | SP 800-57 not opened; 12 months stated as program choice |
-| 65 | AWS KMS and CloudHSM in both AWS FedRAMP offerings | Other clouds | verified (new) | products.json certified_services |
+| 65 | AWS KMS and CloudHSM in the AWS US East/West offering's certified services | Other clouds | verified (new); narrowed to the offering the program uses on November 15, 2026 (WD-156) | products.json certified_services |
 | 66 | Source: "the Purview Data Map reaches multi-cloud sources" | Other clouds | corrected / restated | Labeling in Data Map is preview (Learn); program doesn't rely on it for evidence |
 | 67 | Source: OCI Vault / Dedicated KMS; External Key Store / HYOK pattern | Other clouds | removed | Not verified this pass; chapter keeps the per-platform custody principle generically |
 | 68 | Source: Audit (Premium) provides immutable storage and cryptographic signatures bound to a trusted timestamp, satisfying AU-10 | Non-repudiation | removed / corrected | Learn audit solutions overview lists retention policies, longer retention, intelligent insights, API bandwidth; no signing or immutability feature |
@@ -152,3 +152,7 @@ Left listed but uncited in the coverage map: groups-sensitivity-labels (sensitiv
 ## Zero Trust closure, Phase 4, November 11, 2026
 
 Added `#b12-09-control-states` after the deployment sequence: links to Book 20's How sections, authority labels, control states, change safety, evidence checklist and assessment mapping (G-01, G-02, G-05, G-06, G-07, G-08). Product facts reuse the dated rows above and Book 20's verification files.
+
+## Government-cloud rule (November 15, 2026)
+
+Under WD-156 the key-custody paragraph and its footnote name only the AWS US East/West offering (claim 65); the GovCloud listing was dropped because the program's AWS workloads don't run there.

@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **155** workbook decisions: 146 settled, 0 challenged and 9 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
+There are **156** workbook decisions: 147 settled, 0 challenged and 9 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -189,6 +189,7 @@ There are **155** workbook decisions: 146 settled, 0 challenged and 9 superseded
 | [WD-153](#wd-153) | 2026-11-11 | Does the Windows LAPS policy move to automatic account management? | Microsoft Learn | settled |
 | [WD-154](#wd-154) | 2026-11-11 | How are group managed service accounts created and restricted? | Workbook design | settled |
 | [WD-155](#wd-155) | 2026-11-13 | Which Microsoft 365 cloud and which federal sources does the workbook cover? | Workbook design | settled |
+| [WD-156](#wd-156) | 2026-11-15 | Where may a cloud provider's separate government cloud appear in the workbook? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2705,6 +2706,23 @@ There are **155** workbook decisions: 146 settled, 0 challenged and 9 superseded
 | **Note** | Basis: workbook owner decision, November 13, 2026. Supersedes [WD-004](#wd-004), [WD-076](#wd-076), [WD-085](#wd-085), [WD-091](#wd-091) and [WD-145](#wd-145). The kits sweep PR applies it to the example code. On November 13, 2026 the owner also had the superseded entries' recorded wording rewritten to remove GCC High and DoD. |
 
 [Agree, disagree or send evidence on WD-155](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-155%3A+)
+
+### WD-156: Where may a cloud provider's separate government cloud appear in the workbook? {#wd-156}
+
+| | |
+|---|---|
+| **Options considered** | Wherever a provider offers one, as an alternative location; Only where a workload runs there or the provider's commercial side lacks the same authorization |
+| **Choice** | A provider's separate government cloud stays only where a workload actually runs there or where the provider's commercial side lacks the same authorization. Oracle US Government Cloud (realm OC2, regions us-langley-1 and us-luke-1, hosts on oraclegovcloud.com) stays wherever HR or Oracle pages need it, because the HR platform may be built there; which realm the Oracle HCM application runs in is unconfirmed and isn't stated as fact. Oracle US Defense Cloud and Oracle's impact-level wording stay out. AWS GovCloud (US) and Google Assured Workloads appear only in cross-provider comparisons, named as the provider names them; the program's AWS and Google Cloud workloads run on the commercial offerings, and a vendor service that is itself hosted in AWS GovCloud (US) is still described as hosted there. Microsoft 365 GCC Moderate with commercial Azure stays the baseline (WD-155). |
+| **Rationale** | AWS's commercial US East/West Regions are FedRAMP Certified at Moderate and commercial Azure at High, so the program's Moderate systems don't need either provider's government cloud. The FedRAMP Marketplace lists no commercial OCI infrastructure offering, and the HR platform may be built in Oracle's government realm. |
+| **Basis** | Workbook design |
+| **Sources** | [AWS, FedRAMP](https://aws.amazon.com/compliance/fedramp/); [Oracle, Oracle US Government Cloud](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govfedramp.htm); [FedRAMP, Marketplace product data](https://www.fedramp.gov/marketplace/products.json) |
+| **Pages affected** | [`CONTRIBUTING.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md), [Chapter 05 — The Landing Zone](../books/b10-cloud-boundary/05-the-landing-zone.md), [Chapter 09 — Control Compliance Automation: AWS and VMware](../books/b15-day2-operations/09-control-automation-aws-and-vmware.md), [Cloud DNS on AWS, Azure and Oracle Cloud: Native Resolvers, Infoblox and BIND](../evaluations/cloud-dns-resolvers-infoblox-bind.md) |
+| **Date** | 2026-11-15 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 15, 2026. Extends [WD-155](#wd-155) and supersedes nothing. The provider-notices kit keeps its AWS GovCloud (US) partition and Oracle OC2 realm support as a cross-provider collector. |
+
+[Agree, disagree or send evidence on WD-156](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-156%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 

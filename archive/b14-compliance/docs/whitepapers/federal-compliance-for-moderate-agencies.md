@@ -120,7 +120,7 @@ that reliance in its own SSP --- depend on tracking these dates:
  (Class B/C Ready-conversion and lost-sponsor paths).
 - **August 31, 2026** --- Class B and C pipelines open --- Class C
  (Moderate) is the class the CSOs a Moderate-baseline agency actually
- relies on (M365 GCC, GovCloud, DDI providers) will enter. This is
+ relies on (M365 GCC, AWS, DDI providers) will enter. This is
  the pipeline your vendors submit into; it is not an agency
  submission window.
 - **December 7, 2026** --- FedRAMP's Vulnerability Detection &
@@ -476,7 +476,7 @@ Guide](reading-guide.md).
  review of its specific posture against any mandate named here.
 - **The three-actor model is a simplification.** Some real
  arrangements don't fit neatly --- an agency operating its own
- GovCloud tenant is simultaneously acting in something closer to the
+ cloud tenant is simultaneously acting in something closer to the
  CSP role for the systems it hosts there, and a systems integrator
  building on top of an authorized CSO for an agency client sits in a
  fourth position this paper doesn't model separately. Treat the

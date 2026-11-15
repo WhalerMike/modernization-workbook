@@ -55,3 +55,7 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 | Finding | Change |
 |---|---|
 | FedRAMP Marketplace `products.json` re-read Nov 9, 2026 (`last_change` 2026-11-09T05:06Z, 791 listings): `impact_level` reads "Unknown" and `impact_level_number` 0 on every listing; `cert_date` and `fedramp_msg` are empty on every listing; statuses and classes of the listings cited here are unchanged | Recording FedRAMP status notes the "Unknown" impact level and what to record instead; footnote [^aB-products] updated |
+
+## Government-cloud rule (November 15, 2026)
+
+Under WD-156 the Cloud platforms example row names AWS (commercial Regions) instead of AWS GovCloud; no claim row changes.

@@ -13,7 +13,7 @@ Checked October 20, 2026. Source: the existing series page "Applicability" (the 
 | 5 | AWS VPC IPAM external-IPAM integration in commercial Regions | Primary scope | verified; private scopes and Advanced Tier prerequisite added | AWS VPC IPAM User Guide |
 | 6 | M365 GCC-Moderate uses the Worldwide endpoint list → path consistency risk | Primary scope | verified (endpoint list); risk framing kept as program analysis | Learn, M365 URLs |
 | 7 | Moderate-only policy plane doesn't cover High systems | FedRAMP High | kept (follows from impact levels); "authorized" → "certified" | FedRAMP rules |
-| 9 | AWS VPC IPAM–Infoblox not in GovCloud | Government regions, table | verified; China Regions also excluded; source is the AWS announcement | AWS What's New, Nov 17, 2025 |
+| 9 | AWS VPC IPAM–Infoblox not in the AWS Regions authorized at High (GovCloud (US)) | Quick reference, High column | verified; China Regions also excluded; source is the AWS announcement | AWS What's New, Nov 17, 2025 |
 | 13 | Air-gapped: no SaaS plane; no Protective DNS forwarding; local trust anchors; provider integrations only where an isolated region exists | Air-gapped | kept (program design position) | — |
 | 14 | Quick reference: SaaS at Moderate "sufficient with agency ATO" | Table | corrected wording: sufficient for Moderate systems; agency authorizes its own system | FedRAMP rules |
 | 15 | Quick reference: Protective DNS required for FCEB egress | Table | verified (M-22-09 "already required"); footnoted under the table | M-22-09 |
@@ -49,10 +49,10 @@ The workbook targets FedRAMP Moderate civilian agencies. Configuration authority
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| MS-1 | Primary scope widened from "commercial cloud" to FedRAMP Moderate in commercial regions or in AWS GovCloud (US); GovCloud moved out of the higher-impact section into a new Moderate subsection | Description, In this appendix, Primary scope | reframed per brief | — |
-| MS-2 | AWS US East/West Class C (formerly Moderate); GovCloud (US) Class D (formerly High); per-service, per-Region scope | Moderate workloads in AWS GovCloud (US) | verified 2026-10-29 (fact pack) | aC-aws-fedramp |
-| MS-3 | High-authorized region can host a Moderate system (High baseline contains the Moderate controls) | Same subsection | inference (labelled) | fact pack fact 12 |
-| MS-4 | Example pattern: most AWS workloads in GovCloud (US) at Moderate and a contact center in commercial Regions | Same subsection | design (labelled); agency-neutral | — |
-| MS-5 | Infoblox Government Cloud certified at Moderate, hosted in AWS GovCloud (US) | Same subsection | verified (Marketplace data, Oct 20, 2026; same fact as c03-fedramp) | aC-fr-ibx |
+| MS-1 | Primary scope: FedRAMP Moderate in commercial regions. The October 29 Moderate GovCloud subsection was removed on November 15, 2026 (WD-156) | Description, In this appendix, Primary scope | reframed per WD-156 | — |
 | MS-6 | FedRAMP High section labelled High only | Section headings | kept as tier comparison, labelled | — |
-| MS-7 | Quick-reference table: added a Moderate GovCloud column; High column labelled High only | Quick reference | reframed; cell facts carried from aC-awsipam-news | existing footnotes |
+| MS-7 | Quick-reference table: Moderate commercial, High only and air-gapped columns; the Moderate GovCloud column added on October 29 was removed on November 15, 2026 | Quick reference | reframed; cell facts carried from aC-awsipam-news | existing footnotes |
+
+## Government-cloud rule (November 15, 2026)
+
+Under WD-156 this appendix covers Moderate in the commercial regions only. Removed: the "Moderate workloads in AWS GovCloud (US)" subsection (MS-2 to MS-5) with footnotes `aC-aws-fedramp` and `aC-fr-ibx` (Book 08 Chapter 03 still carries the Infoblox Government Cloud fact), the GovCloud quick-reference column, and the October 29 region-authorization date in the description and callout.

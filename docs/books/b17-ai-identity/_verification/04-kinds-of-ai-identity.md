@@ -46,7 +46,6 @@ Checked October 21, 2026 by writer W2. This chapter is new research; the brief a
 | 40 | Build on GA in agency's cloud; preview as watch items | Government clouds | restated-as-design | Consistent with Book 04 Ch03 |
 | 41 | Book 04 Ch03 statement still accurate; additions (Agent 365 license; agent-user compliant-device grant, preview) | Note for readers of Book 04 | verified | Learn, Target agent identities; CA Grant |
 | 42 | AgentCore Identity: agent identities as workload identities with specialized attributes; inbound JWT authorizer; outbound credential providers; on behalf of users | AWS | verified | AWS AgentCore developer guide |
-| 43 | AgentCore in GovCloud (US-West); several CloudFormation resources incl. OAuth2 and API key credential providers unavailable | AWS | verified | AWS GovCloud (US) User Guide |
 | 44 | Google agent identity: SPIFFE, X.509, not shared by default, can't be impersonated, no long-lived keys | Google | verified | Google Cloud IAM agent identity overview |
 | 45 | Google release stage and government availability | Google | unverifiable | Page has no launch-stage label or government statement; stated as such in the chapter |
 | 46 | Classification table of AI identity kinds | Classifying the estate | restated-as-design | Program design; product behavior per rows above |
@@ -80,3 +79,7 @@ Microsoft Learn pages the Learn coverage map marked as covered but uncited, read
 | 51 | Products and channels that create agent identities (Copilot Studio, Foundry, consent to non-Microsoft agents) | Which products create agent identities | verified | Learn, How are agent identities created?, <https://learn.microsoft.com/entra/agent-id/agent-id-creation-channels> (`c04-creation-channels`) |
 | 52 | Non-Microsoft agents (Bedrock, n8n) given agent identities through the sidecar or workload identity federation | Which products create agent identities | verified | Learn, What is the Microsoft agent identity platform; Secure an Amazon Bedrock agent, <https://learn.microsoft.com/entra/agent-id/what-is-agent-id-platform>, <https://learn.microsoft.com/entra/agent-id/integrate-aws-bedrock-agent> (`c04-platform`, `c04-bedrock`) |
 | 53 | Agent 365 becomes the unified registry; Entra continues to provide agent identities | Which products create agent identities | verified | Learn, Agent Registry convergence with Microsoft Agent 365, <https://learn.microsoft.com/entra/agent-id/agent-registry-convergence> (`c04-registry-convergence`) |
+
+## Government-cloud rule (November 15, 2026)
+
+Under WD-156 the program's AWS workloads run in the commercial Regions, so the AgentCore availability in AWS GovCloud (US) (claim 43, footnote `c04-aws-gov`) was removed from the AWS paragraph. The November 9 source-watch row records what was read then and stays as written.

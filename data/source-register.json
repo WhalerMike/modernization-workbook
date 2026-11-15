@@ -10311,7 +10311,7 @@
    "title": "AWS Security Hub CSPM in AWS GovCloud (US)",
    "publisher": "Amazon Web Services",
    "url": "https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html",
-   "status": "active",
+   "status": "retired",
    "added": "2026-11-11",
    "labels": [
     "AWS Security Hub CSPM in AWS GovCloud (US)"
@@ -10320,6 +10320,10 @@
     {
      "date": "2026-11-11",
      "change": "Added: cited on the Zero Trust Assessment guide's narrated deck slides"
+    },
+    {
+     "date": "2026-11-15",
+     "change": "Retired: the Zero Trust Assessment guide no longer cites it; the program's AWS workloads run in the commercial Regions (WD-156)"
     }
    ]
   },

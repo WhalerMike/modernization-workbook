@@ -452,7 +452,7 @@ is maintained by the CISO and reviewed quarterly.
 |-------------|-------------|---------------------|----------------|
 | CISA (US-CERT) | Incident reporting | All incidents meeting FISMA thresholds | ir@cisa.dhs.gov |
 | CISA KEV team | Vulnerability intel | KEV additions affecting {{< meta agency.short >}} SBOM components | kev@cisa.dhs.gov |
-| FedRAMP PMO | Inherited CSO authorizations (M365 GCC, GovCloud, DDI SaaS) | Change in an inherited authorization's status or 20x transition timeline | info@fedramp.gov |
+| FedRAMP PMO | Inherited CSO authorizations (M365 GCC, AWS, DDI SaaS) | Change in an inherited authorization's status or 20x transition timeline | info@fedramp.gov |
 | OMB Cyber | Policy guidance | Major policy changes | [OMB POC] |
 | {{< meta agency.short >}} IG | Audit coordination | Audit notification, investigation referral | [IG POC] |
 

@@ -123,7 +123,7 @@ The workbook targets FedRAMP Moderate civilian agencies. Configuration authority
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| MS-1 | GovCloud (US) is a valid Moderate location, so the missing VPC IPAM–Infoblox integration there is a Moderate concern; mixed GovCloud/commercial estates automate only the commercial side | Amazon VPC IPAM paragraph | design (labelled); GovCloud-at-Moderate per fact pack fact 12 | c07-awsipam (existing); AWS FedRAMP pages (fact pack) |
+| MS-1 | Amazon VPC IPAM–Infoblox integration available in the commercial Regions where the agency's AWS workloads run | Amazon VPC IPAM paragraph | design (labelled); restated November 15, 2026 under WD-156 | c07-awsipam |
 
 ## Addition, October 30, 2026: IPAM feeds the Teams emergency location map
 
@@ -160,12 +160,14 @@ One bullet added to "Operational implications." Microsoft Learn page opened on O
 | PD-17 | OCI: unreachable forward target ends rule processing; stale cache answers with 30 s TTL | Limits table | verified | c07-ocitrouble |
 | PD-18 | NSX: no per-query log; service log level; Edge CLI statistics; 1,024 KB default cache (~8k answers) | Limits table, checks | verified; API schema's "Max of 5 DNS servers" conflicts with the guide's 3 and is not used | c07-nsxapi, c07-nsxcli |
 | PD-19 | NSX forwarder failover follows the gateway's active-standby Edge nodes | Limits table | inference (labelled); forwarder docs silent | c07-nsxt1 |
-| PD-20 | AWS partitions are a hard boundary; RAM-shared Resolver rules and PHZ associations stay within a partition | Estate | partition boundary verified; Resolver/PHZ consequence is inference (labelled), no AWS page states it | c07-awspartition |
-| PD-21 | Resolver endpoints (2019), query logging (2020), DNS Firewall (2021) available in GovCloud (US) | Estate | verified | c07-r53gov |
-| PD-22 | GovCloud user guide says Resolver delegation unavailable; April 8, 2026 What's New says available | Estate | conflict recorded; reader told to check | c07-r53gov |
+| PD-20 | Resolver endpoints, rules and query logging set up per Region in the commercial partition, shared through RAM | Estate | design guidance (labelled); restated November 15, 2026 under WD-156 | — |
 | PD-23 | Route 53 Global Resolver: internet-reachable anycast resolver; commercial Regions only | Estate | verified | c07-r53gr |
 | PD-24 | Fusion Applications private access needs a VCN in the customer's OCI tenancy plus VPN or FastConnect; Oracle's page has no DNS guidance | Estate | verified | c07-ocifusion |
 | PD-25 | Autonomous Database private endpoint name form `<prefix>.adb.<region>.oraclecloud.com`; conditional forwarding to the VCN resolver | Estate, checks | verified | c07-ociadb |
 | PD-26 | OCI US Government Cloud: private DNS zones supported, public DNS not available | Estate | verified | c07-ocigov |
-| PD-27 | Estate profile (M365 GCC, commercial Azure, GovCloud plus commercial contact center, on-premises VMware with DDI grid and AD DNS, HR platform on Oracle Cloud) and the per-row guidance | Estate | design guidance (labelled); agency-neutral | — |
+| PD-27 | Estate profile (M365 GCC, commercial Azure, AWS commercial Regions, on-premises VMware with DDI grid and AD DNS, HR platform on Oracle Cloud) and the per-row guidance | Estate | design guidance (labelled); agency-neutral | — |
 | PD-28 | CLI syntax: `list-resolver-rule-associations --filters Name=VPCId,...`; `oci network vcn-dns-resolver-association get --vcn-id`; NSX `get dns-forwarder <uuid> stats` on an Edge node | Checks | verified against command references; `Get-AzDnsForwardingRulesetVirtualNetworkLink -DnsForwardingRulesetName -ResourceGroupName` verified against the Az.DnsResolver reference on Microsoft Learn; `gcloud dns policies list` and `managed-zones list` are standard gcloud list commands; illustrative callout added | c07-awscli, c07-ocicli, c07-nsxcli |
+
+## Government-cloud rule (November 15, 2026)
+
+Under WD-156 the estate's AWS workloads are in the commercial Regions. The estate bullet no longer designs for two partitions: claims PD-21 and PD-22 (GovCloud Resolver availability and the delegation conflict) and footnotes `c07-r53gov` and `c07-awspartition` were removed, PD-20 and PD-27 restated, and the VPC IPAM paragraph no longer describes a GovCloud estate (MS-1). Kept: AWS GovCloud in the cross-platform figure and the IPAM footnote (claim 42), and Oracle US Government Cloud (PD-26).

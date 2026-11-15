@@ -79,7 +79,7 @@ Every product the {{< meta agency.short >}} edition documents as an in-boundary 
 | Product has a **Class C (Moderate)** authorization | ✅ In scope — record the CSO / Marketplace ID |
 | Product is authorized **Class D (High) only**, no Moderate offering | ⚠️ **Flag** — High exceeds Moderate technically, but the {{< meta agency.short >}} target is Moderate; confirm boundary treatment or seek a Moderate-authorized alternative |
 | Product is **on-premises gear** (appliance/firmware), not a CSP service | ↪️ Not a FedRAMP item — accredit via **NIAP CC + FIPS 140-3** (see the Network Enforcement Substrate book, Theme F) |
-| Product is **not FedRAMP authorized** (commercial SaaS) | ❌ **Flag** — not eligible as an in-boundary {{< meta agency.short >}} dependency; find a Government/GovCloud edition or replace |
+| Product is **not FedRAMP authorized** (commercial SaaS) | ❌ **Flag** — not eligible as an in-boundary {{< meta agency.short >}} dependency; find a FedRAMP-authorized edition or replace |
 
 ::: {.aan-note}
 **FedRAMP nomenclature (current).** The **"FedRAMP Certified"** nomenclature —
@@ -126,7 +126,7 @@ For each category: mark *In use?*, name the *Product & offering*, record
 
 | Category | Example products | In use? | Product & offering | FedRAMP status | Surface | Maps to |
 |---|---|---|---|---|---|---|
-| Cloud platforms (CSP) | Azure/M365 GCC, AWS GovCloud, OCI, GCP, VMware Cloud | | | | | Landing Zone · all planes |
+| Cloud platforms (CSP) | Azure/M365 GCC, AWS, OCI, GCP, VMware Cloud | | | | | Landing Zone · all planes |
 | Naming & addressing (DDI/IPAM) | InfoBlox, BlueCat, NetBox | | | | | Landing Zone · plane 2 |
 | Certificates / PKI | ADCS, Entrust, DigiCert, Venafi | | | | | Certs & Tokens · plane 2 |
 | HR system of record | Oracle HCM, Workday, SAP SuccessFactors | | | | | HRIT · plane 3 |

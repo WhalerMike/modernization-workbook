@@ -52,7 +52,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 <div class="exec-summary">
 ```
 
-The {{< meta agency.full >}} operates four distinct cloud environments — on-premises VMware Cloud Foundation, Microsoft Azure (alongside the agency's Microsoft 365 GCC tenant), AWS GovCloud, and Oracle Cloud Infrastructure (OCI) for OPM HRIT integration. Each environment uses a different Software Defined Networking fabric that replaces traditional broadcast DHCP with fabric-native IP assignment. Without a unified control layer, {{< meta agency.short >}} has no cross-environment IP visibility, no unified DNS security policy, no automated certificate lifecycle, and must collect FedRAMP compliance evidence from four separate sources.
+The {{< meta agency.full >}} operates four distinct cloud environments — on-premises VMware Cloud Foundation, Microsoft Azure (alongside the agency's Microsoft 365 GCC tenant), AWS (commercial Regions), and Oracle Cloud Infrastructure (OCI) for OPM HRIT integration. Each environment uses a different Software Defined Networking fabric that replaces traditional broadcast DHCP with fabric-native IP assignment. Without a unified control layer, {{< meta agency.short >}} has no cross-environment IP visibility, no unified DNS security policy, no automated certificate lifecycle, and must collect FedRAMP compliance evidence from four separate sources.
 
 **Unified DDI** — an authoritative DNS/DHCP/IPAM plane with DNSSEC and RPZ — solves all four problems from a single control plane. **InfoBlox DDI** is the deployed example this document evaluates for {{< meta agency.short >}}'s estate. Under Path A (cloud-managed, below) the control plane is InfoBlox's FedRAMP-authorized offering, listed on the Marketplace as **Infoblox Government Cloud** (CSO FR2017257053, hosted on AWS GovCloud — verify current scope and authorization date on the FedRAMP Marketplace); under Path B (agency-operated, the better fit for {{< meta agency.short >}}'s topology) the agency carries the component in its own boundary and no inheritance applies.
 
@@ -78,9 +78,9 @@ InfoBlox operates the management control plane on AWS GovCloud (Infoblox Governm
 
 **Path B — NIOS Grid (Agency-Operated, On-Premises Hub)**
 
-The agency deploys an InfoBlox NIOS virtual appliance as the Grid Master on-premises (VMware ESXi or physical InfoBlox appliance). Grid Members are deployed in each environment (AWS GovCloud, Azure, Oracle OCI, additional on-premises sites) as spokes. The on-premises Grid Master is the authoritative hub; all Grid Members replicate configuration from it and handle local DNS/DHCP/IPAM for their environment. The agency documents NIOS within its own FedRAMP boundary — no ATO inheritance from InfoBlox's CSO. Procurement via GSA Schedule (GS-35F) or agency IDIQ contract vehicle.
+The agency deploys an InfoBlox NIOS virtual appliance as the Grid Master on-premises (VMware ESXi or physical InfoBlox appliance). Grid Members are deployed in each environment (AWS, Azure, Oracle OCI, additional on-premises sites) as spokes. The on-premises Grid Master is the authoritative hub; all Grid Members replicate configuration from it and handle local DNS/DHCP/IPAM for their environment. The agency documents NIOS within its own FedRAMP boundary — no ATO inheritance from InfoBlox's CSO. Procurement via GSA Schedule (GS-35F) or agency IDIQ contract vehicle.
 
-> **{{< meta agency.short >}} topology note:** For {{< meta agency.short >}}'s multi-cloud architecture spanning AWS GovCloud, Azure (commercial, paired with the agency's Microsoft 365 GCC tenant), Oracle OCI, and on-premises VMware, Path B — NIOS Grid with an on-premises Grid Master — more closely matches {{< meta agency.short >}}'s topology. No single cloud provider is the hub; all four environments are equal spokes of the on-premises control plane. The decision between Path A and Path B should involve OIS and the CIO Office, as it determines whether InfoBlox is a shared-responsibility SaaS or an agency-operated infrastructure component. Agency selection pending.
+> **{{< meta agency.short >}} topology note:** For {{< meta agency.short >}}'s multi-cloud architecture spanning AWS (commercial Regions), Azure (commercial, paired with the agency's Microsoft 365 GCC tenant), Oracle OCI, and on-premises VMware, Path B — NIOS Grid with an on-premises Grid Master — more closely matches {{< meta agency.short >}}'s topology. No single cloud provider is the hub; all four environments are equal spokes of the on-premises control plane. The decision between Path A and Path B should involve OIS and the CIO Office, as it determines whether InfoBlox is a shared-responsibility SaaS or an agency-operated infrastructure component. Agency selection pending.
 
 *Figure description (image not included; the opening of the description was not preserved):* … governed hub; Grid Members in AWS, Azure Gov, OCI, and on-prem sites as equal spokes; documented inside {{< meta agency.short >}}'s own FedRAMP Moderate boundary with agency-owned evidence; procured via GSA Schedule GS-35F or agency IDIQ; best fit when no single cloud is the hub and the trust plane stays in-house. Amber note: Path B more closely matches {{< meta agency.short >}} topology; the A/B decision belongs to OIS and the CIO Office; agency selection pending. White background. Source: Book 01 InfoBlox DDI Briefing deck, Date Code 2026-07-07 09:11 ET.
 
@@ -117,10 +117,10 @@ For {{< meta agency.short >}} operating under FedRAMP Moderate, the landing zone
 |---|---|---|---|---|
 | On-Premises DC | VMware VCF / ESXi | NSX-T overlay (VXLAN/Geneve) | NSX-T DHCP Server Profiles on T1/T0 Gateways | Agency ATO |
 | Azure (commercial) | Microsoft Azure | Azure VNet (SDN fabric, no broadcast) | Azure fabric assigns IPs; DHCP is abstracted away | Azure commercial regions (FedRAMP High, hosting the agency's Moderate workloads; a Microsoft 365 GCC tenant pairs with commercial Azure) |
-| AWS GovCloud | Amazon AWS | VPC with ENI/Nitro hypervisor | VPC DHCP Options Sets; EC2 metadata service | AWS GovCloud (a FedRAMP High region, hosting the agency's Moderate workloads) |
+| AWS (commercial Regions) | Amazon AWS | VPC with ENI/Nitro hypervisor | VPC DHCP Options Sets; EC2 metadata service | AWS US East/West (FedRAMP Moderate, hosting the agency's Moderate workloads) |
 | Oracle Cloud OCI (OPM HRIT) | Oracle OCI | VCN with VNIC overlay | OCI DHCP options; instance metadata at 169.254.169.254 | OPM ATO (external) |
 
-The government regions here are Moderate locations, not a High target. A region authorized at High can host a Moderate system because the NIST SP 800-53B High baseline contains the Moderate controls (inference). Commercial AWS Regions are equally valid for Moderate workloads: AWS lists US East/West as FedRAMP Certified Class C (formerly Moderate) and GovCloud (US) as Class D (formerly High), and publishes scope per service and per Region, so an agency may run most AWS workloads in GovCloud (US) and a contact center in commercial Regions, checking each service's scope in each Region (AWS, "FedRAMP" and "FedRAMP — Services in Scope," <https://aws.amazon.com/compliance/fedramp/>, <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>, accessed Oct 29, 2026).
+Every environment here hosts Moderate workloads. AWS lists its US East/West Regions as FedRAMP Certified Class C (formerly Moderate) and publishes scope per service and per Region, so the agency checks each service's scope in each Region it uses (AWS, "FedRAMP" and "FedRAMP — Services in Scope," <https://aws.amazon.com/compliance/fedramp/>, <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>, accessed Oct 29, 2026).
 
 : {{< meta agency.short >}} Multi-Cloud Environments {.striped .hover}
 
@@ -157,11 +157,11 @@ Azure reserves five IP addresses in every subnet that cannot be assigned (x.x.x.
 
 InfoBlox's **Azure connector** continuously pulls VNet subnet configurations and VM NIC IP assignments via the Azure Resource Manager API, writing every Azure IP into the Azure-GCC Network View in the InfoBlox IPAM database.
 
-### AWS GovCloud: VPC DHCP Options and the Nitro Hypervisor {#sec-aws-dhcp}
+### AWS: VPC DHCP Options and the Nitro Hypervisor {#sec-aws-dhcp}
 
 AWS VPCs use **DHCP Options Sets** to specify DNS servers and domain names, but the actual IP assignment is managed by the AWS Nitro hypervisor — not a traditional DHCP server. EC2 instances receive IPs via a synthetic DHCP interaction at the VPC CIDR +2 address.
 
-Replacing the default AmazonProvidedDNS with the InfoBlox Grid Member IP in the VPC DHCP Options Set directs all EC2 DNS queries through the enterprise RPZ and DNSSEC validation layer. InfoBlox's **AWS connector** syncs EC2 instance IP assignments, subnet CIDRs, and VPC IPAM pool allocations into the AWS-GovCloud Network View.
+Replacing the default AmazonProvidedDNS with the InfoBlox Grid Member IP in the VPC DHCP Options Set directs all EC2 DNS queries through the enterprise RPZ and DNSSEC validation layer. InfoBlox's **AWS connector** syncs EC2 instance IP assignments, subnet CIDRs, and VPC IPAM pool allocations into the AWS Network View.
 
 ### Oracle OCI: VCN DHCP Options and the VNIC Overlay {#sec-oci-dhcp}
 
@@ -195,7 +195,7 @@ For {{< meta agency.short >}}, the InfoBlox NIOS Grid Master should be deployed 
 
 - **Hypervisor-layer control** — the Grid Master VM runs under {{< meta agency.short >}} infrastructure team governance, not a cloud provider's control plane
 - **Physical network isolation** — the master is reachable from all four environments via dedicated management interfaces, not via public internet or cloud-provider backbone
-- **No single-cloud dependency** — if any one cloud environment (AWS GovCloud, Azure, OCI) experiences an outage or a control-plane incident, the Grid Master continues to function from on-premises
+- **No single-cloud dependency** — if any one cloud environment (AWS, Azure, OCI) experiences an outage or a control-plane incident, the Grid Master continues to function from on-premises
 - **Boundary clarity** — the NIOS Grid falls within {{< meta agency.short >}}'s own FedRAMP authorization boundary; the agency controls the ATO evidence rather than inheriting it from a vendor CSO
 
 ::: {.aan-important}
@@ -213,7 +213,7 @@ The Grid Master holds total administrative authority over DNS, DHCP, and IPAM. T
 | **DNS zone management** | Network / DNS Team | Read/write on assigned DNS zones; DNSSEC key custody shared with OIS | Other CIO Component zones; DHCP config; SCEP triggers |
 | **DHCP scope management** | Network Infrastructure Team | Read/write on assigned IP subnets and DHCP scopes | DNS zone records; other teams' subnets; SCEP policy |
 | **SCEP / cert binding** | OIS / PKI Team | Trigger SCEP enrollment at A-record creation; bind cert CN to DNS FQDN | Zone configuration; DHCP scopes; other teams' cert policies |
-| **Cloud Grid Member management** | Per-environment Cloud Infra Teams (AWS GovCloud, Azure, OCI) | Configure local Grid Member for assigned cloud environment | Grid Master policy; other environments' Grid Members |
+| **Cloud Grid Member management** | Per-environment Cloud Infra Teams (AWS, Azure, OCI) | Configure local Grid Member for assigned cloud environment | Grid Master policy; other environments' Grid Members |
 | **Grid Admin (full authority)** | CIO/OIS-designated Grid Administrator | Full DDI policy control | — (must be protected with MFA + privileged access workstation) |
 
 : InfoBlox Least-Privilege Role Delegation {.striped .hover}
@@ -253,7 +253,7 @@ InfoBlox provides the automated enforcement pipeline:
 2. **RPZ passthrough allow-list** — GCC FQDNs explicitly allowed through threat blocking
 3. **RPZ block list** — FQDNs of the other Microsoft 365 clouds blocked at DNS layer
 4. **Azure NSG IP Group** update — GCC Optimize IP ranges pushed to Azure
-5. **AWS GovCloud Security Group** update — GCC IP ranges for outbound rules
+5. **AWS Security Group** update — GCC IP ranges for outbound rules
 6. **VPN split-tunnel DNS** — M365 Optimize FQDNs route via local interface, not VPN tunnel
 7. **Sentinel alert** — any DNS query from an in-boundary workload to an endpoint of another Microsoft 365 cloud triggers an IR ticket
 
@@ -276,8 +276,8 @@ AWS-specific InfoBlox capabilities:
 - **AWS Landing Zone Accelerator (LZA) Integration:** LZA is the AWS-published IaC package for FedRAMP-compliant landing zones. InfoBlox integrates as the DNS customization layer, replacing the default Route 53 Resolver-only DNS with Grid Member + RPZ + DNSSEC. FedRAMP 20x KSIs are enforced via SCP + InfoBlox RPZ policy.
 - **AWS Security Hub:** InfoBlox RPZ block events flow natively to Security Hub findings and correlate with GuardDuty detections.
 - **ACM Private CA Integration:** InfoBlox auto-creates DNS validation CNAME records for ACM certificate issuance; ACM PCA certificate expiry is tracked in InfoBlox Certificate Tracker.
-- **AWS IPAM Sync:** AWS IPAM pool allocations are imported into InfoBlox's AWS-GovCloud Network View — cross-cloud CIDR conflict detection includes native AWS IPAM-managed ranges.
-- **AWS GovCloud Marketplace Procurement (Path A):** the cloud-managed offering is procurable via the GovCloud Marketplace against existing EA agreements — no separate IDIQ or procurement action required.
+- **AWS IPAM Sync:** AWS IPAM pool allocations are imported into InfoBlox's AWS Network View — cross-cloud CIDR conflict detection includes native AWS IPAM-managed ranges.
+- **AWS Marketplace Procurement (Path A):** confirm with Infoblox and the contracting office which marketplace listing or contract vehicle offers the cloud-managed Government Cloud offering.
 
 ::: {.aan-note}
 **Route 53 Private Zone DNSSEC Gap:** AWS Route 53 private hosted zones *cannot* be DNSSEC-signed — this is a documented AWS platform limitation as of 2026. InfoBlox Grid Members sign all internal zones including private SDN segments, closing this gap. This is a key differentiator for FedRAMP SC-20/SC-21 evidence.
@@ -382,7 +382,7 @@ The following hierarchy applies five patterns — functional, geographic, enviro
 ├── internal.{{< meta agency.domain >}}              (split-view — private resolution only, never public)
 │   ├── vmw.internal.{{< meta agency.domain >}}     (VMware VCF on-premises workloads)
 │   ├── azure.internal.{{< meta agency.domain >}}   (Azure private endpoints, Arc-enrolled servers)
-│   ├── aws.internal.{{< meta agency.domain >}}     (AWS GovCloud VPC workloads)
+│   ├── aws.internal.{{< meta agency.domain >}}     (AWS VPC workloads)
 │   └── oci.internal.{{< meta agency.domain >}}     (Oracle OCI / OPM HRIT resources)
 ├── api.{{< meta agency.domain >}}                   (backend services — split-view or public)
 │   ├── prod.api.{{< meta agency.domain >}}
@@ -428,7 +428,7 @@ InfoBlox DNS views for {{< meta agency.short >}}'s four-environment topology:
 
 The `internal.{{< meta agency.domain >}}` zone exists **only** in the `internal-view`. A request from an internet source hits the `external-view`, which has no `internal.{{< meta agency.domain >}}` zone — the response is NXDOMAIN. Private IP space never appears in the external view.
 
-**Integration with cloud-native DNS:** Azure Private DNS Zones (e.g., `privatelink.database.windows.net` for SQL managed instances) are reachable from on-premises via conditional forwarders in InfoBlox — queries for `*.privatelink.database.windows.net` are forwarded to the Azure Private DNS Resolver inbound endpoint in {{< meta agency.short >}}'s Azure VNet. AWS Route 53 Resolver inbound endpoints serve the same function for GovCloud VPC private zones. Legacy Active Directory DNS servers forward queries for modern subdomains (`api.{{< meta agency.domain >}}`, `vc.{{< meta agency.domain >}}`) to InfoBlox via stub zones — AD DNS remains authoritative only for Kerberos and LDAP SRV records.
+**Integration with cloud-native DNS:** Azure Private DNS Zones (e.g., `privatelink.database.windows.net` for SQL managed instances) are reachable from on-premises via conditional forwarders in InfoBlox — queries for `*.privatelink.database.windows.net` are forwarded to the Azure Private DNS Resolver inbound endpoint in {{< meta agency.short >}}'s Azure VNet. AWS Route 53 Resolver inbound endpoints serve the same function for AWS VPC private zones. Legacy Active Directory DNS servers forward queries for modern subdomains (`api.{{< meta agency.domain >}}`, `vc.{{< meta agency.domain >}}`) to InfoBlox via stub zones — AD DNS remains authoritative only for Kerberos and LDAP SRV records.
 
 **M365 GCC boundary enforcement via split-horizon:** The `external-view` resolves M365 endpoints to public Microsoft IPs. The `internal-view` enforces the M365 GCC allow-list via RPZ — clients inside {{< meta agency.short >}}'s network that resolve a Microsoft endpoint not on the current GCC allow-list receive an RPZ block response before any TCP connection is attempted. The split-horizon view is the enforcement boundary; the allow-list is the policy.
 
@@ -459,7 +459,7 @@ resource "infoblox_cname_record" "teamsconn_active" {
 |---|---|---|
 | VMware vSphere | `{vm_name}.vmw.internal.{{< meta agency.domain >}}` | `vmw.internal.{{< meta agency.domain >}}` |
 | Azure | `{resource_name}.azure.internal.{{< meta agency.domain >}}` | `azure.internal.{{< meta agency.domain >}}` |
-| AWS GovCloud | `{instance_name}.aws.internal.{{< meta agency.domain >}}` | `aws.internal.{{< meta agency.domain >}}` |
+| AWS | `{instance_name}.aws.internal.{{< meta agency.domain >}}` | `aws.internal.{{< meta agency.domain >}}` |
 | Oracle OCI | `{instance_name}.oci.internal.{{< meta agency.domain >}}` | `oci.internal.{{< meta agency.domain >}}` |
 
 : vDiscovery naming templates by cloud platform {.striped .hover}
@@ -501,7 +501,7 @@ The subdomain strategy adds one new control — AC-4 — to the NIST mapping in 
 
 Global server load balancing has always been a DNS function wearing an appliance badge. When a hardware GSLB appliance decides which data center or cloud region answers a user's request, the mechanism it uses is a DNS response: the appliance acts as an authoritative name server that answers the same query differently depending on endpoint health, requestor topology, and policy weight. Strip away the chassis, and what remains is health-checked, policy-driven authoritative DNS — a control-plane function of the naming and addressing layer, not a data-plane function of any appliance tier.
 
-*Figure description (image not included; the opening of the description was not preserved):* … InfoBlox DTC at center checking ICMP/TCP/HTTPS health monitors against three endpoint pools on the right: On-Premises (healthy, priority 1), AWS GovCloud (healthy, priority 2), and Azure (unhealthy, excluded from answer set). The DNS response returns the IP of the highest-priority healthy pool member.
+*Figure description (image not included; the opening of the description was not preserved):* … InfoBlox DTC at center checking ICMP/TCP/HTTPS health monitors against three endpoint pools on the right: On-Premises (healthy, priority 1), AWS (healthy, priority 2), and Azure (unhealthy, excluded from answer set). The DNS response returns the IP of the highest-priority healthy pool member.
 
 Modern DDI platforms implement this function natively. InfoBlox DNS Traffic Control (DTC) attaches health monitors (ICMP, TCP, HTTP/S) to pools of service endpoints and computes each A/AAAA response at query time from pool member health, topology rules, and weighted ratios — a degraded endpoint simply stops appearing in answers, within one TTL, with no traffic ever passing through the Grid Member. The cloud providers expose the same function as DNS routing policy: Route 53 weighted, latency-based, geolocation, and failover routing policies; Azure Traffic Manager profiles; OCI Traffic Management steering policies. In every case the steering decision executes in the resolution path, and the "load balancer" is the answer itself.
 
@@ -718,7 +718,7 @@ The following requirements must be satisfied by whichever platform {{< meta agen
 | **R-01** | **Cross-platform automated discovery** — must ingest asset records from Intune, Azure Arc, AWS Systems Manager, OCI Management Agent, VMware vCenter, InfoBlox IPAM, and network device management platforms without manual data entry | CM-8 | Must |
 | **R-02** | **IP/IPAM correlation** — every asset record must link to an InfoBlox IPAM record; the IP address, DNS FQDN, and DHCP lease state from InfoBlox are the authoritative network-layer identity for each asset | CM-8, SC-22 | Must |
 | **R-03** | **Machine certificate binding** — asset records must carry the machine certificate thumbprint and expiry for managed devices, populated from Intune SCEP enrollment (endpoint devices) and from InfoBlox Certificate Tracker (workloads) | IA-5, SC-12, SC-17 | Must |
-| **R-04** | **FedRAMP boundary classification** — each asset record must carry environment tag (AWS GovCloud, Azure, OCI, on-prem VMware) and FedRAMP system boundary membership; assets in-boundary vs. out-of-boundary must be queryable | CM-8, CA-3 | Must |
+| **R-04** | **FedRAMP boundary classification** — each asset record must carry environment tag (AWS, Azure, OCI, on-prem VMware) and FedRAMP system boundary membership; assets in-boundary vs. out-of-boundary must be queryable | CM-8, CA-3 | Must |
 | **R-05** | **Component owner assignment** — each asset must be assignable to a CIO Component owner; Component owners have read/write access scoped to their own assets and read-only access to nothing beyond their scope | CM-8, AC-3, AC-6 | Must |
 | **R-06** | **Audit trail for asset record changes** — every discovery-driven or manual change to an asset record must produce a log entry with timestamp, change source, before/after state, and actor identity; logs must feed the SIEM | AU-3, AU-12, CM-8(1) | Must |
 | **R-07** | **Network device coverage** — must discover and maintain records for switches, routers, firewalls, load balancers, and wireless access points via SNMP, NetFlow, REST, or CDP/LLDP | CM-8 | Must |
@@ -746,7 +746,7 @@ The following platforms have federal government deployments and FedRAMP authoriz
 | **Qualys Global Asset Inventory (GAI) / VMDR** | FedRAMP Moderate (JAB P-ATO) | Strong cloud connector coverage (AWS, Azure, GCP); vulnerability context tied to asset record; agentless cloud scanning | Weaker normalization across MDM (Intune) and IPAM sources; primarily vulnerability-centric rather than CMDB-centric; limited certificate tracking | R-01 (partial), R-04, R-06, R-08, R-09, R-11 |
 | **Tenable.sc (Security Center)** | FedRAMP Moderate (JAB P-ATO) | Deep vulnerability and asset discovery; strong network device and IoT/OT coverage via passive network analysis (Nessus Network Monitor); widely deployed in federal agencies | Not a CMDB — does not support organizational ownership hierarchy, lifecycle tracking, or ITSM-style asset management; certificate tracking limited | R-01 (partial), R-06, R-07, R-08, R-09 |
 | **Microsoft Defender for Cloud** (commercial Azure) | FedRAMP High in commercial Azure, which covers the Moderate baseline; verify the service's audit scope at procurement | Native integration with Azure Arc, Intune, Defender for Endpoint; cloud security posture management for Azure, AWS, GCP; no additional procurement for Microsoft-licensed agencies | Limited coverage of OCI, VMware non-Arc, network devices; not a general-purpose CMDB; strong for Microsoft estate, weak outside it | R-01 (partial — Microsoft scope), R-04, R-06, R-11 |
-| **AWS Config + Systems Manager Inventory** | FedRAMP High in AWS GovCloud, which covers the Moderate baseline; check the AWS services-in-scope list per service and per Region | Native AWS asset inventory; configuration history; Config Rules for compliance; no additional cost beyond AWS usage | AWS-only — no coverage for Azure, OCI, on-prem, or endpoint devices; cannot serve as the unified cross-environment coordinator | R-01 (AWS scope only), R-04, R-06, R-14 |
+| **AWS Config + Systems Manager Inventory** | FedRAMP Moderate in the AWS US East/West Regions; check the AWS services-in-scope list per service and per Region | Native AWS asset inventory; configuration history; Config Rules for compliance; no additional cost beyond AWS usage | AWS-only — no coverage for Azure, OCI, on-prem, or endpoint devices; cannot serve as the unified cross-environment coordinator | R-01 (AWS scope only), R-04, R-06, R-14 |
 | **Ivanti Neurons for ITSM + Asset Management** | FedRAMP Moderate (verify current status on FedRAMP Marketplace) | Comprehensive ITSM + CMDB + discovery; strong on endpoint asset management and patch management; federal deployments | Less cloud-native than ServiceNow for multi-cloud asset correlation; verify current FedRAMP scope and boundary | R-01 (partial), R-05, R-06, R-09, R-10, R-15 |
 
 : FedRAMP-Authorized Asset Manager Candidates *(verify FedRAMP Marketplace at time of procurement — status changes)* {.striped .hover}
@@ -767,13 +767,13 @@ Until a platform is selected and deployed, InfoBlox IPAM serves as the **best-av
 
 ## Architecture Summary {#sec-summary}
 
-| Layer | On-Premises VMware | Azure (commercial) | AWS GovCloud | Oracle OCI (OPM) | InfoBlox Role |
+| Layer | On-Premises VMware | Azure (commercial) | AWS (commercial Regions) | Oracle OCI (OPM) | InfoBlox Role |
 |---|---|---|---|---|---|
 | **IP Assignment** | NSX-T DHCP Profiles (VCF 9.1) | Azure fabric / ARM API | VPC DHCP Options / Nitro | OCI VNIC / 169.254.169.254 | IPAM SSOT via connectors |
 | **DNS Resolver** | Grid Member (replaces AD DNS) | Azure DNS Private Resolver → Grid | VPC DHCP Options → Grid | OCI resolver → Grid forwarder | Unified recursive + DNSSEC |
 | **DNS Authority** | Grid Master ({{< meta agency.domain >}}) | Grid Member + Azure Private DNS | Grid Member + Route 53 private | Grid forwarder + OCI DNS | Grid Master as SSOT |
 | **DHCP** | InfoBlox Grid DHCP (HA pair) | Azure fabric (no Grid DHCP) | AWS VPC DHCP | OCI DHCP | On-prem native; cloud via API |
-| **IPAM** | On-Premises Network View | Azure-GCC Network View | AWS-GovCloud Network View | OCI-OPM Network View (RO) | Single DB, 4 Network Views |
+| **IPAM** | On-Premises Network View | Azure-GCC Network View | AWS Network View | OCI-OPM Network View (RO) | Single DB, 4 Network Views |
 | **Certificates** | ADCS via SCEP/EST | Azure Key Vault; ARM API polling | ACM Private CA; validation CNAMEs | OCI Certs (OPM); cert polling | Certificate Tracker |
 | **Threat / RPZ** | RPZ on Grid Members; TIDE + CISA | RPZ on Azure Grid Member | RPZ on AWS Grid Member | Grid forwarder RPZ | Single policy, all environments |
 | **Audit / SIEM** | Syslog from Grid Members | Syslog from Azure Grid Member | Syslog from AWS Grid Member | Syslog from Grid forwarder | One syslog stream |
@@ -789,7 +789,7 @@ Each phase produces immediately usable compliance evidence and security value �
 
 ### Phase 0 — Procurement and Architecture (Month 1) {.unnumbered}
 
-- Path A: procure the InfoBlox cloud-managed offering (Infoblox Government Cloud) via **AWS GovCloud Marketplace** against existing EA (no new IDIQ); Path B: procure NIOS via GSA Schedule GS-35F or agency IDIQ
+- Path A: procure the InfoBlox cloud-managed offering (Infoblox Government Cloud) through the listing or contract vehicle the contracting office confirms; Path B: procure NIOS via GSA Schedule GS-35F or agency IDIQ
 - Reference FedRAMP Marketplace CSO **FR2017257053** in procurement documentation
 - Design Network View CIDR allocation plan: audit all existing IP ranges across on-prem, Azure VNet, AWS VPC, OCI VCN for overlaps
 - Engage InfoBlox Professional Services for VCF 9.1 DDI integration workshop
@@ -816,11 +816,11 @@ Each phase produces immediately usable compliance evidence and security value �
 - Configure Azure Key Vault Certificate Manager polling in InfoBlox Certificate Tracker
 - Configure M365 GCC endpoint API polling; test RPZ passthrough and the RPZ block for other Microsoft 365 clouds
 
-### Phase 4 — AWS GovCloud Integration (Months 5–7) {.unnumbered}
+### Phase 4 — AWS Integration (Months 5–7) {.unnumbered}
 
 - Deploy InfoBlox Grid Member as EC2 instance in Transit VPC
 - Update VPC DHCP Options Sets to use Grid Member IP as domain-name-server
-- Enable InfoBlox AWS connector; register all VPC CIDR allocations in AWS-GovCloud Network View
+- Enable InfoBlox AWS connector; register all VPC CIDR allocations in AWS Network View
 - Configure ACM DNS validation CNAME automation; test certificate issuance for an internal ALB
 - Integrate InfoBlox RPZ events with AWS Security Hub findings
 

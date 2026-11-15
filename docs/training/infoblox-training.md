@@ -62,7 +62,7 @@ Book 16's lab rules apply: labs never touch production, use synthetic data, and 
 | Topic | Link | Federal note |
 |---|---|---|
 | vNIOS from the Azure Marketplace | [Deploying vNIOS for Azure](https://docs.infoblox.com/space/vniosazure/37486729/Deploying+vNIOS+for+Azure+from+the+Marketplace) | Commercial Azure Marketplace |
-| AWS VPC IPAM with Universal DDI | [Amazon VPC IPAM and Universal DDI Integration](https://docs.infoblox.com/space/BloxOneDDI/1803780139/Amazon+VPC+IPAM+and+Universal+DDI+Integration) | Not available in AWS GovCloud (US); private scopes only; needs the VPC IPAM Advanced Tier |
+| AWS VPC IPAM with Universal DDI | [Amazon VPC IPAM and Universal DDI Integration](https://docs.infoblox.com/space/BloxOneDDI/1803780139/Amazon+VPC+IPAM+and+Universal+DDI+Integration) | Commercial Regions; private scopes only; needs the VPC IPAM Advanced Tier |
 | NIOS-X servers on Azure | [Deploying NIOS-X Servers from the Azure Marketplace](https://docs.infoblox.com/space/BloxOneInfrastructure/204800816) | For Universal DDI sites |
 
 The explainer [Trinzic Alone, or Trinzic Plus Cloud DDI?](../evaluations/trinzic-multicloud-ddi.md) explains when each of these patterns fits.
