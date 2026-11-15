@@ -8,12 +8,9 @@ Facts carried from the books (Book 10 Chapters 04, 05, 07, 08; Book 12 Chapter 0
 
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
-| 1 | Azure Government endpoints (Resource Manager, Key Vault, Managed HSM); a listed service has all features unless a variation is listed | Prerequisites, availability table | verified | Compare Azure Government and global Azure, <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> | Nov 11, 2026 |
-| 2 | Front Door Standard and Premium generally available in Azure Government regions US Gov Arizona and US Gov Texas | Availability table, Step 5 | verified (quoted in substance) | Same page, section Networking | Nov 11, 2026 |
-| 3 | Front Door Standard, Premium and classic available in Azure Government (US); built-in L3/L4 DDoS | Availability table, Step 5 | verified; no regions named, recorded as a gap | What is Azure Front Door?, <https://learn.microsoft.com/azure/frontdoor/front-door-overview> | Nov 11, 2026 |
+| 3 | Front Door Standard, Premium and classic available in commercial Azure; built-in L3/L4 DDoS | Availability table, Step 5 | verified | What is Azure Front Door?, <https://learn.microsoft.com/azure/frontdoor/front-door-overview> | Nov 11, 2026 |
 | 4 | Front Door classic retires March 31, 2027; no new profiles, domains or managed certificates; HTTPS required on custom domains in Standard and Premium | Availability table, Step 5, Dangers | verified | Migrate Azure Front Door (classic), <https://learn.microsoft.com/azure/frontdoor/migrate-tier> | Nov 11, 2026 |
-| 5 | Front Door Private Link: Premium only; supported origin types; approval; region list includes US Gov Arizona, Texas and Virginia; "only available in regions with Availability Zone support"; no mixed origin groups; probes on the private path | Availability table, Step 5 | verified; conflict with #6 recorded | Secure your origin with Private Link in Azure Front Door Premium, <https://learn.microsoft.com/azure/frontdoor/private-link> | Nov 11, 2026 |
-| 6 | Azure Government regions: availability zones shown only for US Gov Virginia | Availability table | verified | What is Azure Government?, <https://learn.microsoft.com/azure/azure-government/documentation-government-welcome> | Nov 11, 2026 |
+| 5 | Front Door Private Link: Premium only; supported origin types; approval; region list; "only available in regions with Availability Zone support"; no mixed origin groups; probes on the private path | Availability table, Step 5 | verified | Secure your origin with Private Link in Azure Front Door Premium, <https://learn.microsoft.com/azure/frontdoor/private-link> | Nov 11, 2026 |
 | 7 | Front Door CLI: profile, origin group with probes, WAF policy `--sku Premium_AzureFrontDoor --mode`, managed rules DRS 2.1 and bot manager 1.0, `az afd security-policy create`; managed rules need Premium | Step 4, Step 5 | verified; guide starts in Detection instead of Learn's Prevention | Quickstart: Create an Azure Front Door using Azure CLI, <https://learn.microsoft.com/azure/frontdoor/create-front-door-cli> | Nov 11, 2026 |
 | 8 | Origin lock-down: `AzureFrontDoor.Backend` service tag and `X-Azure-FDID` together; tag addresses shared across customers; Application Gateway NSG and custom rule | Step 5, Dangers | verified | Secure traffic to Azure Front Door origins, <https://learn.microsoft.com/azure/frontdoor/origin-security> | Nov 11, 2026 |
 | 9 | `az webapp config access-restriction add --service-tag AzureFrontDoor.Backend --http-header x-azure-fdid=` | Step 5 | verified (parameter table) | Tutorial: highly available multi-region app in App Service, <https://learn.microsoft.com/azure/app-service/tutorial-multi-region-app> | Nov 11, 2026 |
@@ -26,7 +23,7 @@ Facts carried from the books (Book 10 Chapters 04, 05, 07, 08; Book 12 Chapter 0
 | 16 | `az network application-gateway waf-policy create` defaults `Microsoft_DefaultRuleSet` 2.1; accepted types; bot manager versions 0.1, 1.0, 1.1 | Step 4 | verified | CLI reference az network application-gateway waf-policy | Nov 11, 2026 |
 | 17 | `policy-setting update --mode Detection|Prevention --state Enabled --request-body-check true` | Step 4, Rollback | verified | Troubleshoot WAF blocking legitimate requests | Nov 11, 2026 |
 | 18 | Rate-limit custom rule commands (Application Gateway and Front Door) | Step 4 | verified; Application Gateway example adapted (grouping by ClientAddr with the /login match, combining two Learn examples) | Configure rate limit custom rules (AG); WAF rate limit (Front Door) | Nov 11, 2026 |
-| 19 | WAF in sovereign clouds: supported, but geo-filtering custom rules and bot protection rule sets not supported; detection mode doesn't block | Availability table, Step 4, Dangers | verified (Application Gateway FAQ); Front Door's sovereign limits not stated, recorded as a gap | FAQ for WAF on Application Gateway, <https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-faq> | Nov 11, 2026 |
+| 19 | WAF detection mode doesn't block | Availability table, Step 4 | verified (Application Gateway FAQ) | FAQ for WAF on Application Gateway, <https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-faq> | Nov 11, 2026 |
 | 20 | Built-in WAF policies (WAF enabled; specified mode) for Front Door and Application Gateway, Audit/Deny/Disabled | Step 4, Step 9 | verified | Azure WAF and Azure Policy | Nov 11, 2026 |
 | 21 | WAF log queries for layer-7 analysis | Step 10 | verified | Application (layer 7) DDoS protection | Nov 11, 2026 |
 | 22 | Zero Trust network security recommendations (DDoS, Firewall, AG WAF, AFD WAF checks and risk levels; automated by the Zero Trust Assessment) | How to read, Steps 3, 4, 6 | verified | Azure network security Zero Trust recommendations, <https://learn.microsoft.com/azure/networking/security/zero-trust-network-security> | Nov 11, 2026 |
@@ -48,7 +45,6 @@ Facts carried from the books (Book 10 Chapters 04, 05, 07, 08; Book 12 Chapter 0
 | 38 | `az network firewall policy create --sku --threat-intel-mode --idps-mode` | Step 6 | verified | CLI reference az network firewall policy | Nov 11, 2026 |
 | 39 | Route table, default route, subnet association | Step 6 | verified | Integrate NAT gateway with Azure Firewall | Nov 11, 2026 |
 | 40 | Draft + Deployment commands; extension 1.2.3 or later; deploy replaces applied policy | Prerequisites, Step 6, Dangers | verified | Azure Firewall Draft + Deployment, <https://learn.microsoft.com/azure/firewall/draft-deploy> | Nov 11, 2026 |
-| 41 | Azure Government private DNS zone names | Availability table, Step 7 | verified | Azure Private Endpoint private DNS zone values, section Government | Nov 11, 2026 |
 | 42 | DNS zone group manages records with the endpoint | Step 7 | verified | Private Endpoint DNS integration scenarios | Nov 11, 2026 |
 | 43 | /32 route for a private endpoint through the firewall | Step 7 | verified (Learn's troubleshooting resolution) | Troubleshoot private endpoint connectivity failure | Nov 11, 2026 |
 | 44 | CAF pattern: deny public endpoints and `privatelink` zones; DINE zone groups; Private DNS Zone Contributor; ALZ initiative name | Step 7, Dangers | verified | Private Link and DNS integration at scale | Nov 11, 2026 |
@@ -98,13 +94,9 @@ Facts carried from the books (Book 10 Chapters 04, 05, 07, 08; Book 12 Chapter 0
 
 | # | Item | Why |
 |---|---|---|
-| N1 | Front Door in US Gov Virginia | Learn names only Arizona and Texas |
-| N2 | Front Door Private Link in US Gov Arizona and Texas | Learn's region list conflicts with its availability-zone note and the Azure Government zones list |
-| N3 | Front Door WAF limits in sovereign clouds | Only the Application Gateway FAQ states them |
-| N4 | DDoS IP Protection and simulation partners (other than Red Button) in Azure Government | Not stated |
-| N5 | Azure Firewall Premium regions in Azure Government | Learn defers to the products-by-region page |
+| N5 | Azure Firewall Premium regions | Learn defers to the products-by-region page |
 | N6 | AWS Shield Advanced in GovCloud; OCI Government Cloud WAF and Network Firewall; Google Cloud FedRAMP Moderate package | Not read or not stated |
-| N7 | Built-in policy display names and effects in Azure Government | Built-ins differ by cloud; guide has the reader look them up |
+| N7 | Built-in policy display names and effects | Built-in definitions change version; guide has the reader look them up |
 
 ## Learn pages read
 

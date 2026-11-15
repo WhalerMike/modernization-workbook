@@ -8,7 +8,7 @@ Facts carried from the books (the ES-001 to ES-005 values, the response ladder, 
 
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
-| 1 | Defender for US Government built in Azure US Government; GCC; portal `security.microsoft.com` | Architecture, availability | verified | Microsoft Defender for US Government, <https://learn.microsoft.com/defender-xdr/usgov> | Nov 11, 2026 |
+| 1 | Defender for US Government offerings; GCC; portal `security.microsoft.com` | Architecture, availability | verified | Microsoft Defender for US Government, <https://learn.microsoft.com/defender-xdr/usgov> | Nov 11, 2026 |
 | 2 | Defender XDR API host `api-gcc.security.microsoft.us`; login hosts | Availability | verified | same | Nov 11, 2026 |
 | 3 | Threat Experts and Defender for IoT enterprise IoT security not available in GCC | Availability | verified | same | Nov 11, 2026 |
 | 4 | GCC customers transition Endpoint, Cloud Apps, Identity to GCC versions | Availability | verified | same | Nov 11, 2026 |
@@ -46,7 +46,7 @@ Facts carried from the books (the ES-001 to ES-005 values, the response ladder, 
 | 36 | CFA modes 0–4; Intune ASR policy holds CFA settings | Gate 3 | verified | Configure controlled folder access | Nov 11, 2026 |
 | 37 | CFA events 1123/1124; action types `ControlledFolderAccessViolationAudited`/`Blocked` | Gate 3 | verified | Monitor controlled folder access | Nov 11, 2026 |
 | 38 | `Get-NetFirewallProfile -PolicyStore ActiveStore` | Gate 3 | verified (code sample from the NetSecurity reference) | NetSecurity module reference | Nov 11, 2026 |
-| 39 | Security Exposure Management: Public Cloud only; not in national or sovereign clouds (US Gov) | Gate 5, availability, Dangers | verified | What is Microsoft Security Exposure Management? | Nov 11, 2026 |
+| 39 | Security Exposure Management: Public Cloud only | Gate 5, availability, Dangers | verified | What is Microsoft Security Exposure Management? | Nov 11, 2026 |
 | 40 | `DeviceTvmSoftwareVulnerabilities` columns; not ingested into Sentinel | Gate 5 | verified | DeviceTvmSoftwareVulnerabilities | Nov 11, 2026 |
 | 41 | List incidents: v1.0, Global; `SecurityIncident.Read.All`; four Entra roles; filterable properties; `Get-MgSecurityIncident`, `-ExpandProperty alerts`; correlation | Gates 1, 6, 10 | verified | List incidents, <https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0> | Nov 11, 2026 |
 | 42 | `Get-MgSecurityIncident -IncidentId` | Gate 6 | partly verified: `-IncidentId` is in Learn's Update-MgSecurityIncident sample; for Get it is inferred from the same SDK key | Microsoft.Graph.Security reference | Nov 11, 2026 |
@@ -54,7 +54,7 @@ Facts carried from the books (the ES-001 to ES-005 values, the response ladder, 
 | 44 | Create detectionRule: `POST /security/rules/detectionRules`; `CustomDetection.ReadWrite.All`; Detection tuning (Manage), Security Administrator, Security Operator conditions; example body; status values; no national-cloud table | Gate 7, availability | verified; guide's example is Learn's, trimmed, status set to disabled, automated actions removed | Create detectionRule | Nov 11, 2026 |
 | 45 | Custom detection quotas (create 10 per minute per application) | Gate 7 | verified | Graph security API overview, Custom detections | Nov 11, 2026 |
 | 46 | Unified RBAC: permission groups; create role; activation needs Security Administrator; default for new MDE/MDI tenants since 2025; permission names (Security data basics, Alerts, Response, live response) | Gate 1 | verified | Create custom roles; Permissions; Activate unified RBAC | Nov 11, 2026 |
-| 47 | Defender for Identity government: Azure Government; sensor endpoints; service tag; no data migrated; 90-day feature lag; previews may not be supported | Gate 8, availability | verified | Defender for Identity for US Government offerings | Nov 11, 2026 |
+| 47 | Defender for Identity government: sensor endpoints; service tag; no data migrated; 90-day feature lag; previews may not be supported | Gate 8, availability | verified | Defender for Identity for US Government offerings | Nov 11, 2026 |
 | 48 | Defender for Cloud Apps government: parity except App Governance alerts (roadmap for GCC) | Gate 8, availability | verified | Defender for Cloud Apps for US Government offerings | Nov 11, 2026 |
 | 49 | BehaviorInfo/BehaviorEntities: Cloud Apps behaviors not available for GCC | Gate 8, availability | verified | Advanced hunting schema | Nov 11, 2026 |
 | 50 | Identity tables available only in Microsoft Defender; AlertInfo–AlertEvidence join | Gate 8 | verified | Migrate advanced hunting queries | Nov 11, 2026 |

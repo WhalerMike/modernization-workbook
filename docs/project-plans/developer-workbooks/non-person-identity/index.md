@@ -153,4 +153,4 @@ To learn the guide's gates in order from these chapters' labs, with a knowledge 
 <!-- revisions:end -->
 
 [^npi-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
-[^npi-compare]: Microsoft Learn, "Compare Azure Government and global Azure," guidance for developers (Azure Resource Manager endpoints), <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 31, 2026).
+[^npi-compare]: Microsoft Learn, "Endpoints used when installing the Azure CLI," Public Cloud tab (resource manager `https://management.azure.com/`), <https://learn.microsoft.com/cli/azure/azure-cli-endpoints> (accessed Nov 15, 2026).

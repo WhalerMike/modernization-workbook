@@ -135,7 +135,7 @@ Each record says whether action is required and by when, and whether the provide
 | Least-privileged reader | Reader | `ServiceMessage.Read.All`, `ServiceHealth.Read.All` | `read announcements` | Three `health:Describe*` actions | `roles/servicehealth.viewer` |
 | Cost or plan | None stated for Resource Graph | None stated | None stated | A qualifying AWS Support plan | None stated |
 | Push alternative | Service Health alerts, at scale through Azure Policy[^pn-policy] | Message center email | Announcement subscriptions (not used by the kit) | EventBridge `aws.health` events[^pn-aws-eb] | Not used by the kit |
-| Government cloud | Azure Government (`management.usgovcloudapi.net`); Learn's samples link the Azure Government portal[^pn-arg-samples] | GCC on the global endpoint[^pn-graph-overview][^pn-graph-deployments] | US Government Cloud (OC2) endpoints in us-langley-1 and us-luke-1[^pn-oci-gov] | GovCloud (US): one endpoint in us-gov-west-1[^pn-aws-gov] | Not in Assured Workloads' FedRAMP Moderate or High packages[^pn-gcp-aw] |
+| Government cloud | Commercial Azure, which a GCC tenant uses (`management.azure.com`)[^pn-gov-cli] | GCC on the global endpoint[^pn-graph-overview][^pn-graph-deployments] | US Government Cloud (OC2) endpoints in us-langley-1 and us-luke-1[^pn-oci-gov] | GovCloud (US): one endpoint in us-gov-west-1[^pn-aws-gov] | Not in Assured Workloads' FedRAMP Moderate or High packages[^pn-gcp-aw] |
 
 : Provider notices across Azure, Microsoft 365, OCI, AWS and Google Cloud {.striped .hover}
 
@@ -170,7 +170,7 @@ Service Health is where Azure publishes service issues, planned maintenance, hea
     az role assignment create --assignee <reader-object-id> --role "Service Health Security Reader" --scope /subscriptions/<subscription-id>
     ```
 
-2. **Sign in, in the right cloud, with the Resource Graph extension.** For Azure Government use `AzureUSGovernment`.
+2. **Sign in to commercial Azure, with the Resource Graph extension.**
 
     ```powershell
     az cloud set --name AzureCloud
@@ -205,7 +205,7 @@ Service Health is where Azure publishes service issues, planned maintenance, hea
 
 The KSI column names the FedRAMP 20x Key Security Indicators whose related SP 800-53 controls include the row's control.[^pn-ksi] KSIs are indicators for cloud service providers: the agency authorizes its own system and lines its evidence up with what its providers report against them; it doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). Which record supports which indicator is the program's mapping *(design guidance)*; SA-9 to KSI-SCR-MIT and KSI-SCR-MON is also [Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md)'s row.
 
-**Government-cloud availability.** Azure Government uses `az cloud set --name AzureUSGovernment` and Resource Manager `management.usgovcloudapi.net`.[^pn-gov-cli] Every `ServiceHealthResources` sample on Learn links the Azure Government portal as well as the global one; an explicit availability statement for the table in Azure Government is not yet specified.[^pn-arg-samples]
+**Government-cloud availability.** A GCC tenant's subscriptions are in commercial Azure: `az cloud set --name AzureCloud` and Resource Manager `management.azure.com`.[^pn-gov-cli] Learn's `ServiceHealthResources` samples run there.[^pn-arg-samples]
 
 **Interim path.** Before the reader identity exists, a person with Reader runs Learn's query directly and keeps the output with the run:
 
@@ -801,7 +801,6 @@ The kit's records support these controls; they don't by themselves decide them, 
 
 - **Azure Resource Graph's column schema and time format.** Learn gives no full `ServiceHealthResources` column list or sample row. The kit projects the columns Learn's samples use and converts the impact times as Learn's health advisory sample does; `LastUpdateTime`'s raw format is not yet specified, and the kit accepts an ISO time, epoch seconds or milliseconds, or ticks.
 - **Whether Resource Graph redacts security advisories' sensitive fields** for a Reader, as the REST list does. Not stated on Learn.
-- **Resource Graph's Service Health table in Azure Government.** Learn's samples link the Azure Government portal; an explicit availability statement is not yet specified.
 - **The `az graph query` output keys.** The kit reads `data` and `skip_token`, as Azure CLI prints them; Learn documents the REST response's `$skipToken`, not the CLI's keys.
 - **The alert resource type the Service Health policy creates,** and its parameter names for a parameters file. Learn names the alert rule and action group, not the resource type or the parameter names; read them with `az policy definition show` before writing a parameters file.
 - **Microsoft 365 Message center tags.** Learn doesn't enumerate them; the kit treats a post tagged `Retirement` as a retirement.
@@ -824,13 +823,13 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 
 <!-- revisions:end -->
 
-[^pn-arg-samples]: Microsoft Learn, "Azure Resource Graph sample queries for Azure Service Health" (all active events; health advisories, whose mitigation time is the advisory's end; upcoming retirements as health advisories with EventSubType Retirement; planned maintenance; Azure Government portal links; emerging issues not queryable), <https://learn.microsoft.com/azure/service-health/resource-graph-samples> (accessed Nov 9, 2026).
+[^pn-arg-samples]: Microsoft Learn, "Azure Resource Graph sample queries for Azure Service Health" (all active events; health advisories, whose mitigation time is the advisory's end; upcoming retirements as health advisories with EventSubType Retirement; planned maintenance; emerging issues not queryable), <https://learn.microsoft.com/azure/service-health/resource-graph-samples> (accessed Nov 9, 2026).
 [^pn-arg-impacted]: Microsoft Learn, "Resource Graph sample queries for impacted resources" (impacted resources by tracking ID; planned maintenance joined with `maintenanceresources`), <https://learn.microsoft.com/azure/service-health/resource-graph-impacted-samples> (accessed Nov 9, 2026).
 [^pn-sub-tenant]: Microsoft Learn, "Subscription versus tenant level events" (Reader on a subscription to view Service Health events), <https://learn.microsoft.com/azure/service-health/subscription-vs-tenant> (accessed Nov 9, 2026).
 [^pn-sec-elevated]: Microsoft Learn, "Access to sensitive information in security advisories" and "Elevated access for viewing security advisories" (Service Health Security Reader, or a role with the fetchEventDetails and listSecurityAdvisoryImpactedResources actions; Reader and Monitoring Reader can't view sensitive fields), <https://learn.microsoft.com/azure/service-health/impacted-resources-security> and <https://learn.microsoft.com/azure/service-health/security-advisories-elevated-access> (accessed Nov 9, 2026).
 [^pn-policy]: Microsoft Learn, "Deploy Service Health alerts at scale using Azure Policy" (the built-in definition, management group or subscription scope, remediation for existing subscriptions, default resources, manual edits overwritten), <https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy> (accessed Nov 9, 2026).
 [^pn-remediate]: Microsoft Learn, "Remediate non-compliant resources with Azure Policy" (`az policy assignment create` with `--location` and `--mi-system-assigned`; roles granted automatically only through the portal), <https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources>, and Azure CLI reference for `az policy assignment create` (`--role`, `--identity-scope`) and `az policy remediation create`, <https://learn.microsoft.com/cli/azure/policy/assignment> and <https://learn.microsoft.com/cli/azure/policy/remediation> (accessed Nov 9, 2026).
-[^pn-gov-cli]: Microsoft Learn, "Connect to Azure Government with Azure CLI," <https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-cli>, and "Azure CLI endpoints" (resource manager `https://management.usgovcloudapi.net/`), <https://learn.microsoft.com/cli/azure/azure-cli-endpoints> (accessed Nov 9, 2026).
+[^pn-gov-cli]: Microsoft Learn, "Azure CLI endpoints" (resource manager `https://management.azure.com/`), <https://learn.microsoft.com/cli/azure/azure-cli-endpoints> (accessed Nov 9, 2026).
 [^pn-graph-overview]: Microsoft Learn, "Use the Microsoft Graph API to access service communications" (permissions, granted only by an administrator; a delegated user needs an admin role; available on national clouds), <https://learn.microsoft.com/graph/api/resources/service-communications-api-overview> (accessed Nov 9, 2026).
 [^pn-graph-deployments]: Microsoft Learn, "National cloud deployments" (GCC continues using the worldwide endpoints), <https://learn.microsoft.com/graph/deployments> (accessed Nov 9, 2026).
 [^pn-graph-messages]: Microsoft Learn, "List serviceAnnouncement messages" (`ServiceMessage.Read.All`; national cloud availability; the PowerShell module and cmdlet), <https://learn.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0> (accessed Nov 9, 2026).

@@ -8,14 +8,14 @@ Lab 1 was run with `python scripts/kit_captures.py pn` on Windows 11, PowerShell
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | Learn's Resource Graph samples: all active events, health advisories, retirements (`EventSubType` `Retirement`), planned maintenance; Azure Government portal links | Start with; Verified facts | carried (guide row 1–3) | `pn01-arg-samples` |
+| 1 | Learn's Resource Graph samples: all active events, health advisories, retirements (`EventSubType` `Retirement`), planned maintenance | Start with; Verified facts | carried (guide row 1–3) | `pn01-arg-samples` |
 | 2 | Impacted-resources query | Start with; Verified facts | carried (guide row 5) | `pn01-arg-impacted` |
 | 3 | Reader on a subscription views its Service Health events | Start with; Verified facts | carried (guide row 6) | `pn01-sub-tenant` |
 | 4 | Security advisories' sensitive fields need Service Health Security Reader; Reader and Monitoring Reader can't | Start with; Dangers | carried (guide row 7) | `pn01-sec-elevated` |
 | 5 | Built-in policy `98903777-…`; MG or subscription scope; remediation; default resources; hand edits overwritten | Start with; The alert policy; Lab 2 step 5 | carried (guide row 8) | `pn01-policy` |
 | 6 | `--mi-system-assigned`, `--location`, `--role`, `--identity-scope`; roles granted automatically only through the portal; `az policy remediation create`/`show` | The alert policy; Lab 2 | carried (guide row 9); `show` read Nov 9 | `pn01-remediate` |
 | 7 | Service Health alerts are activity log alerts; `az monitor activity-log alert list --resource-group` | Lab 2 step 5; Verified facts | verified Nov 9 (Learn: "Resource Health alerts and Service Health alerts are activity log alerts", repeated on several "Monitor <service>" pages; CLI reference) | `pn01-alert-types` |
-| 8 | `az cloud set --name AzureUSGovernment`; `management.usgovcloudapi.net` | Verified facts | carried (guide row 10) | `pn01-gov-cli` |
+| 8 | `az cloud set --name AzureCloud`; `management.azure.com` | Verified facts | carried (guide row 10) | `pn01-gov-cli` |
 | 9 | The record's fields, fingerprint and validation | The code | read in the kit's source and tests | kit |
 | 10 | Kind mapping and the action rule for Azure | The code | read in `ConvertTo-PnAzureNotice` | kit |
 | 11 | Lab 1 outputs (permissions, query, 5 notices from 6 rows, the table, the retirement record, 0 changed fingerprints, the plan and its SHA-256, the fixture-mode refusal, 26 tests passed) | Lab 1 | verified by running the commands as written | `data/kit-captures/pn/01-*.txt` |
@@ -23,7 +23,7 @@ Lab 1 was run with `python scripts/kit_captures.py pn` on Windows 11, PowerShell
 
 ## Not yet specified (carried from the guide)
 
-N1 column schema and `LastUpdateTime` format; N2 redaction in Resource Graph; N3 explicit Azure Government statement; N4 `az graph query` output keys; N5 the policy's parameter names (the alert resource type is now partly answered: Learn says Service Health alerts are activity log alerts; the policy page still doesn't name the type it creates).
+N1 column schema and `LastUpdateTime` format; N2 redaction in Resource Graph; N4 `az graph query` output keys; N5 the policy's parameter names (the alert resource type is now partly answered: Learn says Service Health alerts are activity log alerts; the policy page still doesn't name the type it creates).
 
 ## Federal requirements and evidence
 

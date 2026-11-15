@@ -1,6 +1,6 @@
 ---
 title: "Chapter 05 — Certificate-Based Authentication Checks"
-description: "Check the certificate-based authentication configuration behind PIV and CAC sign-in as code, starting from Learn's CRL page and the PKI trust store and X.509 method APIs, and adding what they leave to you: a measurement of every CRL against the cloud's own size and download limits, a check of the trusted issuing CAs, the multifactor mapping of the PIV policy OIDs, CRL validation and its exemptions, low-affinity bindings and a Conditional Access policy that requires a phishing-resistant authentication strength, with labs against fixtures and a test tenant."
+description: "Check the certificate-based authentication configuration behind PIV sign-in as code, starting from Learn's CRL page and the PKI trust store and X.509 method APIs, and adding what they leave to you: a measurement of every CRL against the cloud's own size and download limits, a check of the trusted issuing CAs, the multifactor mapping of the PIV policy OIDs, CRL validation and its exemptions, low-affinity bindings and a Conditional Access policy that requires a phishing-resistant authentication strength, with labs against fixtures and a test tenant."
 doc-type: workbook-chapter
 audience: [Technical]
 family: dw-hr-driven-identity

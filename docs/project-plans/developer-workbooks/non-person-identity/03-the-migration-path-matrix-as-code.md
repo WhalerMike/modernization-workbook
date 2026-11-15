@@ -54,7 +54,7 @@ Learn's own guidance agrees on the order of preference. On premises, use a gMSA 
 
 ### Which cloud, for these reads
 
-The matrix is offline logic over Chapters 01 and 02's files. Its two reads go to Graph at `graph.microsoft.com` for the target estate, Microsoft 365 GCC, which uses the worldwide endpoints.[^np03-deployments] List subscribedSkus lists the global service, which GCC uses.[^np03-skus] Workload ID Premium is available to Azure Government customers through their account manager, and its free trial isn't available in the Azure Government clouds.[^np03-wid-faq] A GCC tenant signs in to the worldwide cloud, so the trial question for it is a Lab 2 check (research gaps, row 28).
+The matrix is offline logic over Chapters 01 and 02's files. Its two reads go to Graph at `graph.microsoft.com` for the target estate, Microsoft 365 GCC, which uses the worldwide endpoints.[^np03-deployments] List subscribedSkus lists the global service, which GCC uses.[^np03-skus] A GCC tenant signs in to the worldwide cloud; whether the Workload ID Premium trial is offered to it is a Lab 2 check (research gaps, row 28).[^np03-wid-faq]
 
 ## Start with Microsoft's sample
 

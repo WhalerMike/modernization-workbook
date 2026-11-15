@@ -24,7 +24,7 @@ New guide, first pass of 2026-10-29. The guide is a map over Book 01 Ch 04, Book
 | 16 | User SOA transfer prerequisites: HR integrated so changes go directly to Entra ID; no on-premises Exchange; not supported with AD FS federation; no password-based apps (LDAP bind, Kerberos with password) | Limits, what still needs AD | verified | `adm-soa` |
 | 17 | SOA guidance: after the sync cycle completes, remove users from HR-to-AD scope and add them to HR-to-Entra configuration | Stage 7 | verified | `adm-soa-guidance` ("Transition user management") |
 
-## Claims log: beyond users, and PIV/CAC binding (footnoted; all opened 2026-10-29)
+## Claims log: beyond users, and PIV binding (footnoted; all opened 2026-10-29)
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
@@ -50,7 +50,7 @@ New guide, first pass of 2026-10-29. The guide is a map over Book 01 Ch 04, Book
 | 70 | `certificateUserIds`: 10 values, 1,024 chars, unique, case-sensitive prefixes; cloud-only: Privileged Authentication Administrator, admin center (4 × 120) or Graph `authorizationInfo`; synced: Hybrid Identity Administrator, only Entra Connect; AD admins can change synced values; hygiene | PIV section | verified (consistent with Book 03 Ch09); the page doesn't mention Cloud Sync, and the guide says so | `adm-cuid` |
 | 71 | Built-in Phishing-resistant MFA strength = WHfB/platform credential, FIDO2, CBA (multifactor); single-factor CBA in no built-in strength | PIV section | verified | `adm-auth-strengths` |
 | 72 | CBA authentication binding default single-factor; issuer/OID rules raise to multifactor | PIV section | verified | `adm-cba-howto` |
-| 73 | Microsoft's M-22-09 guidance lists Entra CBA including CAC, PIV and derived PIV among phishing-resistant options | PIV section | verified | `adm-m2209` |
+| 73 | Microsoft's M-22-09 guidance lists Entra CBA including PIV and derived PIV among phishing-resistant options | PIV section | verified | `adm-m2209` |
 | 74 | CMS writes `certificateUserIds` through Graph after AD retires | PIV section | **unverified; design guidance**; open pilot, workbook issue #130 (read 2026-10-29, state OPEN) | — |
 
 ## Claims log: carried from the chapters (linked, not footnoted)
@@ -134,7 +134,7 @@ The Limits section's Lifecycle Workflows sentence (100 workflows) and Stage 5's 
 ## Additions, October 29, 2026
 
 - **Stage 1:** a one-line link to the contractor-source research page. No new claims.
-- **PIV and CAC certificates as attributes:** a new paragraph, "Contractors", added at the author's request. The three links (sponsorship from the contractor joiner, card-system events back to the pipeline, the end date as the notification) are design guidance, restated from Book 03 Ch09 and linked. The 18-hour clock is verified against FIPS 201-3 §2.9.4, and footnote adm-fips201 was added. The Temporary Access Pass to FIDO2 bridge is restated from Book 04 Ch03 and linked.
+- **PIV certificates as attributes:** a new paragraph, "Contractors", added at the author's request. The three links (sponsorship from the contractor joiner, card-system events back to the pipeline, the end date as the notification) are design guidance, restated from Book 03 Ch09 and linked. The 18-hour clock is verified against FIPS 201-3 §2.9.4, and footnote adm-fips201 was added. The Temporary Access Pass to FIDO2 bridge is restated from Book 04 Ch03 and linked.
 - Research page: `docs/evaluations/oracle-contingent-worker-contractor-source.md` (its log: `docs/evaluations/_verification/oracle-contingent-worker-contractor-source.md`).
 
 ## Revision 2026-10-29 — four tracks, end state, attributes, dynamic group dangers, coverage, limits and federal requirements
@@ -174,7 +174,7 @@ Same day, second pass. The guide gained: "What this migration accomplishes" (goa
 | 101 | Intune platform matrix: Windows editions, Windows 10 allowed, UWF excluded, macOS 15+ (13+ without user affinity), iOS 18+ (16+), Android Enterprise modes and versions, device administrator end, Linux Ubuntu 24.04/26.04 and RHEL 9/10, Windows Server not supported | Intune coverage | verified (Book 05 Ch03 revision, same day) | `adm-intune-platforms` |
 | 102 | Windows enrollment methods; Windows 365; AVD multi-session limits and GCC support; Apple and Android enrollment; AOSP device list; Linux capabilities; ChromeOS connector scope; specialty-device licensing; frontline shared device mode; Defender device discovery | Intune coverage | verified (same) | `adm-intune-enroll`, `adm-w365`, `adm-intune-avd`, `adm-intune-apple`, `adm-intune-android`, `adm-aosp`, `adm-linux-guide`, `adm-intune-chromeos`, `adm-intune-specialty`, `adm-intune-flw`, `adm-mde-discovery` |
 | 103 | Arc OS matrix: Windows Server 2016–2025; 2012 and 2012 R2 get no new agents after November 2026, ESUs ended October 13, 2026 and Arc doesn't extend them; unlisted OS unsupported; no 32-bit; machine configuration not on Arm64; Linux distributions and end dates; not tested on CIS-hardened systems; clients only in server-like roles; don't install on Azure VMs | Arc coverage | verified (this pass re-read the OS table and the ESU note; the rest in the Book 05 Ch09 revision) | `adm-arc-prereq` |
-| 104 | Arc-enabled VMware vSphere (vCenter 8, 9,500 VMs per bridge, lifecycle operations, ESXi inventory); SCVMM retirement (no new onboardings by October 2026, service ends September 2029); multicloud connector (AWS, GCP preview, not in Azure Government); Azure Local; Arc-enabled Kubernetes | Arc coverage | verified (Book 05 Ch09 revision) | `adm-arc-vmware`, `adm-arc-scvmm`, `adm-mcc`, `adm-arc-choose`, `adm-arc-k8s` |
+| 104 | Arc-enabled VMware vSphere (vCenter 8, 9,500 VMs per bridge, lifecycle operations, ESXi inventory); SCVMM retirement (no new onboardings by October 2026, service ends September 2029); multicloud connector (AWS, GCP preview); Azure Local; Arc-enabled Kubernetes | Arc coverage | verified (Book 05 Ch09 revision) | `adm-arc-vmware`, `adm-arc-scvmm`, `adm-mcc`, `adm-arc-choose`, `adm-arc-k8s` |
 
 ### Claims log: carried, restated as design, or federal (linked or footnoted)
 
@@ -208,7 +208,6 @@ Same day, second pass. The guide gained: "What this migration accomplishes" (goa
 | Item | Status |
 |---|---|
 | Exchange Online Delicensing Resiliency in GCC | Not checked; the guide says to confirm before relying on it |
-| Arc-enabled VMware vSphere and SCVMM in Azure Government | Not stated on the pages opened; not claimed |
 | ESXi hosts taking no agent; vendor appliances not covered | The program's reading, labeled in the Arc coverage table |
 | Thin clients and printers in Intune | Placed by absence from Microsoft's supported list |
 | User source-of-authority transfer in GCC | Still open (Book 03 Ch12 register); the guide asks for an owner and a decide-by date |

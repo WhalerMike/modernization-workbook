@@ -56,7 +56,7 @@ Then read why revocation matters:
 - [Book 03, Chapter 09, Revocation checking](../../books/b03-hr-identity/09-credentials-and-certificates.md#revocation-checking).
 - [Book 03, Chapter 09, Binding the PIV certificate to the Entra user](../../books/b03-hr-identity/09-credentials-and-certificates.md#binding-the-piv-certificate-to-the-entra-user): a reissue changes the binding.
 
-Per-user binding coverage and affinity aren't this module's: they belong to the validation kit's VK-PIV-01 and the [ADM implementation guide's Gate 6](../../books/guides/attribute-driven-migration-implementation.md#gate-6-piv-and-cac-binding).
+Per-user binding coverage and affinity aren't this module's: they belong to the validation kit's VK-PIV-01 and the [ADM implementation guide's Gate 6](../../books/guides/attribute-driven-migration-implementation.md#gate-6-piv-binding).
 
 ## Unit 2: The measurement and the check (6 minutes)
 

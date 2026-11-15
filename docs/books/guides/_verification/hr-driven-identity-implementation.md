@@ -7,7 +7,7 @@ New guide, first pass of 2026-11-01. The guide is a gated operator layer over Bo
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Entra ID Governance available in GCC | Where agencies start | verified | `hri-feat` |
-| 2 | GCC uses Microsoft Entra Public (commercial); an Azure Government subscription can't be associated with a directory in Entra Public | Where agencies start; every gate's availability paragraph; Step 6 | verified (FAQ). Use for custom task extensions is an inference, labeled in the guide | `hri-gov-identity`, <https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity> |
+| 2 | Office 365 GCC operates in conjunction with the Azure public cloud (commercial Entra) | Where agencies start; every gate's availability paragraph; Step 6 | verified (Nov 15, 2026). Use for custom task extensions is an inference, labeled in the guide | `hri-gov-identity`, <https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc> |
 | 3 | API-driven provisioning from P1; entitlement management, access reviews and Lifecycle Workflows need ID Governance for member users (some capabilities under P2) | Prerequisites | verified | `hri-lic`, <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> |
 | 4 | Licensing page: Lifecycle Workflows up to 50 workflows and 100 custom task extensions | Step 3; dangers | verified. **Discrepancy D1**: service limits page says 100 workflows (row 5) | `hri-lic` |
 | 5 | Service limits: 100 workflows, 25 tasks, 100 custom task extensions, schedule 1–24 h, 10 users on demand, extension timeout 30 min–3 h, 5 administrative scopes; 15,000 assignments per automatic policy | Step 3; Step 6 | verified | `hri-limits`, <https://learn.microsoft.com/entra/id-governance/governance-service-limits> |
@@ -71,7 +71,7 @@ FedRAMP's Key Security Indicators page (<https://www.fedramp.gov/2026/reference/
 
 ## Not verified
 
-- Whether a GCC tenant's custom task extension can call a Logic App in an Azure Government subscription.
+- Which subscription a GCC tenant's custom task extension's Logic App must sit in.
 - Tenant behavior of any step; the kit checks are fixture-tested.
 
 ## Zero Trust closure, Phase 4 (November 11, 2026)

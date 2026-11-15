@@ -935,7 +935,7 @@ Source: ../books/b00-orientation/09-design-pilot-and-rollout.md#milestones</Note
     <Task>
       <UID>39</UID>
       <ID>39</ID>
-      <Name>P2.8 Certificate-based authentication for PIV and CAC holders (M-029)</Name>
+      <Name>P2.8 Certificate-based authentication for PIV holders (M-029)</Name>
       <OutlineNumber>3.9</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-03-15T08:00:00</Start>

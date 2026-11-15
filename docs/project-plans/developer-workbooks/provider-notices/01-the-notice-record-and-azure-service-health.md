@@ -44,7 +44,7 @@ The record every notice becomes, and the Azure collector that fills it, behind t
 
 ### What Microsoft gives you
 
-Learn publishes Resource Graph sample queries for Service Health: all active events, health advisories (whose mitigation time is the advisory's end), upcoming retirements (health advisories with `EventSubType` `Retirement`) and planned maintenance, each with links to the Azure portal and the Azure Government portal.[^pn01-arg-samples] A second page gives the impacted-resources query, which splits the tracking ID out of each impacted resource's ID.[^pn01-arg-impacted] Reader on a subscription is enough to see its Service Health events.[^pn01-sub-tenant] The sensitive fields of a security advisory, and its impacted resources, need Service Health Security Reader (or a role with the three actions it holds); Reader and Monitoring Reader can't see them.[^pn01-sec-elevated] For alerting between collections, Learn's *Deploy Service Health alerts at scale using Azure Policy* names a built-in definition, *Configure subscriptions to enable Service Health Monitoring Alert Rules*, assigned at a management group or subscription, with a remediation task so existing subscriptions get the alert rule too.[^pn01-policy]
+Learn publishes Resource Graph sample queries for Service Health: all active events, health advisories (whose mitigation time is the advisory's end), upcoming retirements (health advisories with `EventSubType` `Retirement`) and planned maintenance, each with a link to the Azure portal.[^pn01-arg-samples] A second page gives the impacted-resources query, which splits the tracking ID out of each impacted resource's ID.[^pn01-arg-impacted] Reader on a subscription is enough to see its Service Health events.[^pn01-sub-tenant] The sensitive fields of a security advisory, and its impacted resources, need Service Health Security Reader (or a role with the three actions it holds); Reader and Monitoring Reader can't see them.[^pn01-sec-elevated] For alerting between collections, Learn's *Deploy Service Health alerts at scale using Azure Policy* names a built-in definition, *Configure subscriptions to enable Service Health Monitoring Alert Rules*, assigned at a management group or subscription, with a remediation task so existing subscriptions get the alert rule too.[^pn01-policy]
 
 ### What it leaves to you
 
@@ -97,7 +97,7 @@ The fingerprint is the reason the router can tell a changed notice from one it h
 | `SecurityAdvisory` | security | Yes, by the kit's rule, no date |
 | Anything else (`Billing`) | left out and counted | — |
 
-Services and regions come from the `Impact` column; resources from the impacted-resources rows with the same tracking ID; the source link is the event on the cloud's own Resource Manager host (`management.azure.com`, or `management.usgovcloudapi.net` for `AzureUSGovernment`). An unknown cloud name throws; there is no default.
+Services and regions come from the `Impact` column; resources from the impacted-resources rows with the same tracking ID; the source link is the event on the Resource Manager host `management.azure.com`. An unknown cloud name throws; there is no default.
 
 ### The alert policy
 
@@ -405,16 +405,16 @@ Remove-Item -Recurse -Force out/azure-test, out/alerts-test, out/rollback-test
 
 | Item | Value | US Government | Source |
 |---|---|---|---|
-| Service Health in Resource Graph | `ServiceHealthResources`, type `microsoft.resourcehealth/events`; impacted resources `.../events/impactedresources` | Learn's samples link the Azure Government portal; an explicit availability statement is not yet specified | [^pn01-arg-samples] [^pn01-arg-impacted] |
+| Service Health in Resource Graph | `ServiceHealthResources`, type `microsoft.resourcehealth/events`; impacted resources `.../events/impactedresources` | — | [^pn01-arg-samples] [^pn01-arg-impacted] |
 | Retirements | Health advisories with `EventSubType` `Retirement`; an advisory's mitigation time is its end | — | [^pn01-arg-samples] |
 | Reader | Reader on a subscription to view its Service Health events | — | [^pn01-sub-tenant] |
 | Security advisories | Sensitive fields and impacted resources need Service Health Security Reader; Reader and Monitoring Reader can't see them | — | [^pn01-sec-elevated] |
 | Alert policy | Built-in definition `98903777-a9f6-47f5-90a9-acaf62ab01a8`; management group or subscription, not a resource group; remediation for existing subscriptions; default resources; hand edits may be overwritten | — | [^pn01-policy] |
 | Assignment from the CLI | `--mi-system-assigned`, `--location`, `--role`, `--identity-scope`; roles granted automatically only through the portal | — | [^pn01-remediate] |
 | Service Health alerts | Activity log alerts | — | [^pn01-alert-types] |
-| Azure Government | `az cloud set --name AzureUSGovernment`; Resource Manager `management.usgovcloudapi.net` | Yes | [^pn01-gov-cli] |
+| Commercial Azure | `az cloud set --name AzureCloud`; Resource Manager `management.azure.com` | Yes | [^pn01-gov-cli] |
 
-Not yet specified, as the guide's list has it: the full `ServiceHealthResources` column schema and `LastUpdateTime`'s format; whether Resource Graph redacts security advisories' sensitive fields for a Reader as the REST list does; the table's availability in Azure Government in so many words; the `az graph query` output keys (`data`, `skip_token`); and the policy's parameter names for a parameters file. Lab 2 step 4 reads the definition before any parameters file is written.
+Not yet specified, as the guide's list has it: the full `ServiceHealthResources` column schema and `LastUpdateTime`'s format; whether Resource Graph redacts security advisories' sensitive fields for a Reader as the REST list does; the `az graph query` output keys (`data`, `skip_token`); and the policy's parameter names for a parameters file. Lab 2 step 4 reads the definition before any parameters file is written.
 
 ## Federal requirements and evidence
 
@@ -436,7 +436,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 | Danger | What happens | The guard |
 |---|---|---|
 | Security advisories read with Reader alone | The advisory is listed, but its summary and impacted resources aren't | Service Health Security Reader named in `config/calls.json`; an empty summary on a security notice is the sign |
-| A reader in the wrong cloud | Azure Government subscriptions read from the commercial cloud return nothing, and the gate passes on an empty list | The settings name the cloud; the live invoker refuses an Azure CLI set to another cloud |
+| A reader in the wrong cloud | Subscriptions read from another cloud return nothing, and the gate passes on an empty list | The settings name the cloud; the live invoker refuses an Azure CLI set to another cloud |
 | One event counted per subscription | The same outage becomes five tasks | Rows merged by tracking ID |
 | A retirement read as an advisory | The deadline passes unnoticed | `EventSubType` `Retirement` makes it a retirement, action required by the kit's rule, due at the advisory's end |
 | A kit rule mistaken for Microsoft's | Someone argues with Microsoft about a date Microsoft never set | `actionBasis` says `rule:` or `provider:` |
@@ -465,6 +465,6 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 [^pn01-policy]: Microsoft Learn, "Deploy Service Health alerts at scale using Azure Policy," <https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy> (read November 9, 2026).
 [^pn01-remediate]: Microsoft Learn, "Remediate non-compliant resources with Azure Policy," <https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources>, and the Azure CLI references for `az policy assignment` and `az policy remediation` (`create`, `show`), <https://learn.microsoft.com/cli/azure/policy/assignment> and <https://learn.microsoft.com/cli/azure/policy/remediation> (read November 9, 2026).
 [^pn01-alert-types]: Microsoft Learn, "Monitor Azure App Service," types of alerts ("Resource Health alerts and Service Health alerts are activity log alerts"), <https://learn.microsoft.com/azure/app-service/monitor-app-service#alerts>, and the Azure CLI reference for `az monitor activity-log alert list`, <https://learn.microsoft.com/cli/azure/monitor/activity-log/alert> (read November 9, 2026).
-[^pn01-gov-cli]: Microsoft Learn, "Connect to Azure Government with Azure CLI," <https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-cli>, and "Azure CLI endpoints," <https://learn.microsoft.com/cli/azure/azure-cli-endpoints> (read November 9, 2026).
+[^pn01-gov-cli]: Microsoft Learn, "Azure CLI endpoints," <https://learn.microsoft.com/cli/azure/azure-cli-endpoints> (read November 9, 2026).
 [^pn01-oscal]: National Institute of Standards and Technology, SP 800-53 Rev. 5 OSCAL catalog, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (read November 9, 2026).
 [^pn01-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/> (read November 9, 2026).

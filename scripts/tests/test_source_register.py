@@ -2,6 +2,7 @@
 
 import copy
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -78,6 +79,39 @@ class Scan(unittest.TestCase):
         self.assertIn("docs/reference/source-register.md", review_gate.GATED)
         self.assertNotIn("Not read yet\n", R.SCRIPT)
         self.assertIn(R.SCAN_URL, R.render(R.load()))
+
+
+
+class Hidden(unittest.TestCase):
+    """A retired row that nothing cites leaves the public page but stays in the data file."""
+
+    def retired(self):
+        return row(id="old-source", url="https://example.gov/old.pdf", status="retired", labels=[],
+                   history=row()["history"] + [{"date": "2026-11-15", "change": "Retired"}])
+
+    def test_a_retired_row_nothing_cites_is_not_on_the_page(self):
+        page = R.render(reg(row(), self.retired()), keep=set())
+        self.assertIn("{#m-22-09}", page)
+        self.assertNotIn("old-source", page)
+
+    def test_a_retired_row_a_deck_links_stays_on_the_page(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            deck = Path(tmp) / "Deck_Narrated_sources.json"
+            deck.write_text('[{"links": [{"url": "' + R.PAGE_URL + '#old-source"}]}]', encoding="utf-8")
+            keep = R.cited_ids(reg(row(), self.retired()), {}, files=[deck])
+        self.assertIn("{#old-source}", R.render(reg(row(), self.retired()), keep=keep))
+
+    def test_a_retired_row_a_footnote_cites_stays_on_the_page(self):
+        keep = R.cited_ids(reg(row(), self.retired()), {"https://example.gov/old.pdf": []}, files=[])
+        self.assertEqual(keep, {"old-source"})
+
+    def test_an_active_row_is_always_on_the_page(self):
+        self.assertIn("{#m-22-09}", R.render(reg(row(), self.retired()), keep=set()))
+
+    def test_hiding_keeps_the_row_in_the_data(self):
+        r = reg(row(), self.retired())
+        R.render(r, keep=set())
+        self.assertEqual([s["id"] for s in r["sources"]], ["m-22-09", "old-source"])
 
 
 if __name__ == "__main__":
