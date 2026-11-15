@@ -52,7 +52,7 @@ The source had no flattened code to restore; it described configuration in table
 | 42 | Backup to Blob with Arc managed identity, 30-day retention, SQLite VSS path, RPO 24 h / RTO 4 h, hot standby | C.4 | restated-as-design | Program design |
 | 43 | Arc, Monitor/Log Analytics, Policy guest configuration, Blob in Azure public FedRAMP High audit scope | Family C intro | verified (new) | Learn, Azure services compliance scope (Feb 2026) |
 | 44 | Azure Commercial Cloud Class D (High); M365 GCC Class C | Family C intro | verified | products.json (F1209051525, MSO365MT) |
-| 45 | GCC tenant uses Entra ID in Azure public | Boundary table | verified (new) | Learn, Planning identity for Azure Government applications (FAQ) |
+| 45 | GCC tenant uses Entra ID in Azure public | Boundary table | verified (new) | Learn, Cloud feature availability for US Government customers (Microsoft 365 integration) |
 | 46 | Boundary table: on-prem planes, Entra and Intune "GCC-Moderate" | Boundary table | corrected | On-prem = agency's own boundary; Entra = Azure public; Intune row removed |
 | 47 | Pre-receive / update / post-receive invoked by git-receive-pack on push | D.1, F.1 | verified (new) | git-scm githooks |
 | 48 | Hook rules table | D.1 | restated-as-design | Program rules; `classification`/`boundary` front-matter fields dropped (the program removed classification and boundary stamps) |

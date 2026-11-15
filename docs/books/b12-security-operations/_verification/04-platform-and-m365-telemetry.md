@@ -15,7 +15,7 @@ Checked October 21, 2026 by writer W2. Sources: `docs/operational-guides/siem-te
 | 7 | Export begins within about 30 minutes (troubleshoot article) | Portal | removed | Portal steps dropped; Azure Monitor gives 90 minutes for diagnostic settings generally (not used) |
 | 8 | Use `az monitor diagnostic-settings subscription create`; plain command is resource-scoped | CLI | verified | Learn, Diagnostic settings (CLI tab) |
 | 9 | CLI parameters `--name --location --workspace --logs` | CLI | verified | Learn, az monitor diagnostic-settings subscription |
-| 10 | `--location usgovvirginia` | CLI | corrected | Replaced with `<region>`; the region depends on whether the subscription is in commercial Azure or Azure Government |
+| 10 | Source's fixed `--location` region | CLI | corrected | Replaced with `<region>`, a commercial Azure region |
 | 11 | "You can't use this method for an activity log" (New-AzDiagnosticSetting) | CLI warning | verified | Learn, Diagnostic settings (PowerShell tab) |
 | 12 | "see it fail or silently no-op" | CLI warning | restated | Kept only "failed call"; silent no-op not verified |
 | 13 | Bicep `Microsoft.Insights/diagnosticSettings@2021-05-01-preview` | Bicep | verified | Learn, Diagnostic settings (Bicep tab uses this API version) |

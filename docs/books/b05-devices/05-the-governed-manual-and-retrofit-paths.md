@@ -228,14 +228,14 @@ Define rollback criteria before you begin. Each domain has a back-out:
 
 ### What you must configure
 
-Every deployment has local values to set before anything runs: tenant ID, subscription ID, resource group, region and cloud environment (Azure commercial or Azure Government), the workstation OU distinguished name, the emergency access group ID and the SQL Server instance list. Run each step as a dry run before you remove the guards.
+Every deployment has local values to set before anything runs: tenant ID, subscription ID, resource group, commercial Azure region, the workstation OU distinguished name, the emergency access group ID and the SQL Server instance list. Run each step as a dry run before you remove the guards.
 
 ### Control states, change safety and evidence for the runbook {#b05-05-runbook-control-states}
 
 The shared runbook is an implementation procedure, so it follows the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md). Its four phases already run observe before change, and each domain's deeper procedure is in a later chapter or another book, which carries its own blocks: Intune policy in [Chapter 08](08-gpo-to-intune-policy-migration.md#b05-08-migration-control-states), servers in [Chapter 09](09-servers-under-azure-arc.md#b05-09-server-control-states), and Conditional Access in [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#policy-design-matrix). This subsection covers what the runbook itself adds: the NTLM and SPN steps, and the order of the four phases.
 
 **Authority:** risk-based recommended for the phase order, the audit window and the staging, which are the program's; Microsoft-recommended for report-only Conditional Access and the emergency access exclusion, as cited above. The NTLM end state follows Microsoft's deprecation of NTLM, not a federal mandate.[^c05-ntlm-deprecated]
-**Applies:** all estates. Environment-dependent: GCC uses the commercial Intune instance;[^c05-p4-intune-gov] Conditional Access in GCC is in [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#government-cloud-notes); Arc in Azure Government is in [Chapter 09](09-servers-under-azure-arc.md#b05-09-server-control-states). The NTLM and SPN steps run in Active Directory and don't depend on the cloud.
+**Applies:** all estates. Environment-dependent: GCC uses the commercial Intune instance;[^c05-p4-intune-gov] Conditional Access in GCC is in [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md#government-cloud-notes); Arc's environment notes are in [Chapter 09](09-servers-under-azure-arc.md#b05-09-server-control-states). The NTLM and SPN steps run in Active Directory and don't depend on the cloud.
 
 | Template part | Where the runbook carries it |
 |---|---|

@@ -124,7 +124,7 @@ Azure publishes the following platform metrics.[^c11-monitor-ref] The thresholds
 | Azure Private DNS zone | Record Set Count; Virtual Network Link Count and capacity utilization | Unexpected change; 80% of the link limit |
 | Azure DNS Private Resolver | Queries Per Second, per endpoint | Inbound endpoint at zero during business hours (resolver or path failure); a spike of more than 200% (a possible forwarding loop) |
 
-Two limits apply. Microsoft notes that the public-zone metrics and alerting are supported only in the Azure public cloud, with sovereign-cloud support to follow, so agencies in Azure Government need another source for the same signal.[^c11-monitor-ref] And the Private Resolver exposes no forwarding-failure metric: detect failed forwarding from the query logs (failed responses for forwarded namespaces) and from synthetic tests, not from a metric.
+Two limits apply. Microsoft notes that the public-zone metrics and alerting are supported in the Azure public cloud.[^c11-monitor-ref] And the Private Resolver exposes no forwarding-failure metric: detect failed forwarding from the query logs (failed responses for forwarded namespaces) and from synthetic tests, not from a metric.
 
 ### SRV record monitoring
 

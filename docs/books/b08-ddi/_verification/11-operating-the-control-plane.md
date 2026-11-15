@@ -40,7 +40,7 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch: Azure DN
 | 32 | Azure activity log records control-plane changes | Log sources | verified | monitor-ref |
 | 33 | Lease history enables host attribution | Log sources | restated-as-design (whitepaper §7.3, §7.6 SOC correlation) | — |
 | 34 | Guide §12.1 metrics Query Volume, Record Set Count, Record Set Capacity Utilization | Metrics table | verified | monitor-ref |
-| 35 | Public-zone metrics and alerting supported only in Azure public cloud; sovereign later | Metrics text | verified (added; relevant to Azure Government) | monitor-ref |
+| 35 | Public-zone metrics and alerting supported in Azure public cloud | Metrics text | verified (added) | monitor-ref |
 | 36 | Private DNS zone metrics include record set count, VNet link count and capacity | Metrics table | verified (added) | monitor-ref |
 | 37 | Guide §12.2 Private Resolver metrics "Inbound Queries Processed", "Outbound Queries Forwarded", "Forwarding Failures" | Metrics table | corrected: Private Resolver exposes Queries Per Second per endpoint and endpoint counts; no forwarding-failure metric; failures detected from query logs and synthetic tests | monitor-ref |
 | 38 | Alert thresholds (>50% drop, 80% capacity, zero inbound, >200% spike) | Metrics table | restated-as-design (guide §12 thresholds, re-attached to real metrics) | — |

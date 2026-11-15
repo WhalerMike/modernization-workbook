@@ -30,9 +30,9 @@ Runbooks for passkeys (FIDO2), Windows Hello for Business and certificate-based 
 
 ## The runbooks on one page {#b04-appd-runbooks-on-one-page}
 
-| | Passkey (FIDO2) | Windows Hello for Business | Certificate-based authentication (PIV, CAC, derived PIV) |
+| | Passkey (FIDO2) | Windows Hello for Business | Certificate-based authentication (PIV, derived PIV) |
 |---|---|---|---|
-| **Who gets it** (Book 02's roadmap) | Privileged accounts first (device-bound, attestation enforced), then everyone else | Users of managed Windows devices | PIV and CAC holders |
+| **Who gets it** (Book 02's roadmap) | Privileged accounts first (device-bound, attestation enforced), then everyone else | Users of managed Windows devices | PIV holders |
 | **Bootstrap** | A one-time Temporary Access Pass, then registration at Security info | A Temporary Access Pass during Microsoft Entra join, or on an already-joined device after another method | The card itself; no pass needed once the certificate authorities and username bindings are configured |
 | **Second credential** | A second key, or Windows Hello for Business on a managed device | A passkey (FIDO2) key, so a lost device doesn't strand the person | A passkey (FIDO2) key; Learn recommends deploying passkeys or Windows Hello for Business alongside smart cards[^aD4-personas] |
 | **Forgotten PIN** | Handled as a lost key: delete the method, clear the key with its manufacturer's management tool, register again[^aD4-orphaned] | Windows Hello PIN reset, which needs MFA[^aD4-pin-reset] | The card issuer's PIN reset process ([Book 07, Chapter 09](../b07-pki/09-federal-workforce-credentials.md#the-cards-lifecycle)) |
@@ -44,7 +44,7 @@ Microsoft's persona guidance runs the same phases: onboarding with a Temporary A
 
 ## Prerequisites {#b04-appd-prerequisites}
 
-- The authentication methods policy configured as [Book 02](../b02-identity/10-migrating-and-governing.md#authentication-methods-policy) sets it: passkeys with profiles, certificate-based authentication as multifactor for PIV and CAC holders, Windows Hello for Business on managed devices, and the Temporary Access Pass enabled with one-time use and a one-hour lifetime for passes the help desk issues.
+- The authentication methods policy configured as [Book 02](../b02-identity/10-migrating-and-governing.md#authentication-methods-policy) sets it: passkeys with profiles, certificate-based authentication as multifactor for PIV holders, Windows Hello for Business on managed devices, and the Temporary Access Pass enabled with one-time use and a one-hour lifetime for passes the help desk issues.
 - Roles: an Authentication Administrator can create a pass for members only; a Privileged Authentication Administrator can create one for administrators too ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#verify-the-person-before-a-sensitive-action)). Both are held eligible in PIM ([Chapter 08](08-pim-self-request-with-approval.md)).
 - The Microsoft Graph PowerShell SDK on the support workstation; every command below is copy-paste with the placeholders `<user-upn>` (the person's user principal name) and `<method-id>` (from the list command) filled in.
 - GCC availability confirmed ([below](#b04-appd-government-cloud-availability)).
@@ -104,7 +104,7 @@ Remove-MgUserAuthenticationFido2Method -UserId '<user-upn>' -Fido2Authentication
 Remove-MgUserAuthenticationWindowsHelloForBusinessMethod -UserId '<user-upn>' -WindowsHelloForBusinessAuthenticationMethodId '<method-id>'
 ```
 
-   For a lost device, also disable the device object ([Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md) has the device step) and start Intune's retire or wipe through [Book 05](../b05-devices/index.md)'s process. For a lost PIV or CAC card, the card issuer revokes the certificate under [Book 07's lifecycle](../b07-pki/09-federal-workforce-credentials.md#the-cards-lifecycle); there is no Entra method to delete.
+   For a lost device, also disable the device object ([Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md) has the device step) and start Intune's retire or wipe through [Book 05](../b05-devices/index.md)'s process. For a lost PIV card, the card issuer revokes the certificate under [Book 07's lifecycle](../b07-pki/09-federal-workforce-credentials.md#the-cards-lifecycle); there is no Entra method to delete.
 
 4. Revoke the person's sessions, so tokens the lost authenticator obtained stop working:
 
@@ -141,7 +141,7 @@ $Covered = $Details | Where-Object { @($_.MethodsRegistered | Where-Object { $_ 
 '{0:P1} of {1} users hold a passkey or Windows Hello for Business' -f ($Covered.Count / $Details.Count), $Details.Count
 ```
 
-The report's `isAdmin` property lets the privileged population be counted on its own.[^aD4-registration] The `methodsRegistered` values in `$PhishResistant` are those the program expects; confirm them against the tenant's own output before reporting a number. Certificate-based authentication doesn't show as a registered method because the credential is the card, so PIV and CAC coverage is counted from successful certificate sign-ins over the period instead.
+The report's `isAdmin` property lets the privileged population be counted on its own.[^aD4-registration] The `methodsRegistered` values in `$PhishResistant` are those the program expects; confirm them against the tenant's own output before reporting a number. Certificate-based authentication doesn't show as a registered method because the credential is the card, so PIV coverage is counted from successful certificate sign-ins over the period instead.
 
 The targets below are the program's settled position ([WD-147](../../about/decision-register.md#wd-147), risk-based recommended); the recovery-time target is still the CISO's to set from the drills.
 

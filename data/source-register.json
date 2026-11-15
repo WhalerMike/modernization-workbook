@@ -4362,15 +4362,17 @@
    "title": "Microsoft Azure Government Product General Availability (GA) Roadmap",
    "publisher": "Microsoft Learn",
    "url": "https://learn.microsoft.com/azure/azure-government/documentation-government-product-roadmap",
-   "status": "active",
+   "status": "retired",
    "added": "2026-11-05",
-   "labels": [
-    "Azure Government GA roadmap"
-   ],
+   "labels": [],
    "history": [
     {
      "date": "2026-11-05",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-15",
+     "change": "Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026)"
     }
    ]
   },
@@ -5779,15 +5781,17 @@
    "title": "SQL Server enabled by Azure Arc in US Government",
    "publisher": "Microsoft Learn",
    "url": "https://learn.microsoft.com/sql/sql-server/azure-arc/us-government-region",
-   "status": "active",
+   "status": "retired",
    "added": "2026-11-05",
-   "labels": [
-    "Arc in US Government"
-   ],
+   "labels": [],
    "history": [
     {
      "date": "2026-11-05",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-15",
+     "change": "Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026)"
     }
    ]
   },

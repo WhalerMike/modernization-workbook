@@ -95,7 +95,7 @@ Most coexistence outages are revocation outages. The relying parties now sit in 
 |---|---|---|---|
 | Cloud PKI root and issuing CAs | Hosted by Intune; valid seven days, republished every 3.5 days and on each revocation[^c07-cpki] | Every relying party that validates Cloud PKI certificates, including on-premises RADIUS and VPN | Outbound HTTP from RADIUS and VPN servers to the Intune-hosted CDP and AIA |
 | BYOCA issuing CA | Hosted by Intune, like other Cloud PKI CAs[^c07-cpki] | As above | The *parent* CRLs and AIA come from the private CA; AD CS defaults to an LDAP AIA location[^c07-byoca] |
-| AD CS root and issuing CAs (user certificates for Entra CBA) | Wherever the CA publishes: often LDAP plus an internal HTTP URL | Entra ID, over the internet; one HTTP or HTTPS URL per CA, HTTP recommended; no OCSP, no LDAP[^c07-crl] | Internal-only URLs; CRLs over 20 MB (commercial and GCC) or 45 MB (Azure Government) for interactive sign-in[^c07-crl] |
+| AD CS root and issuing CAs (user certificates for Entra CBA) | Wherever the CA publishes: often LDAP plus an internal HTTP URL | Entra ID, over the internet; one HTTP or HTTPS URL per CA, HTTP recommended; no OCSP, no LDAP[^c07-crl] | Internal-only URLs; CRLs over 20 MB (commercial and GCC) for interactive sign-in[^c07-crl] |
 | AD CS CAs behind domain controller certificates | As above | Entra-joined devices signing in on-premises, without authentication | LDAP-only CDPs; publish an HTTP CDP first[^c07-aadj-sso] |
 
 : Where each CRL must be reachable during coexistence {.striped .hover}

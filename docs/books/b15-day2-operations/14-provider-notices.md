@@ -127,7 +127,7 @@ The process works the same way in a government cloud, but each provider's notice
 
 | Provider | In a government cloud |
 |---|---|
-| Azure | Azure Government is supported by the kit. Microsoft Learn doesn't state Resource Graph's Service Health table availability in Azure Government explicitly; the guide records it as not yet specified |
+| Azure | The kit reads commercial Azure, which a GCC tenant pairs with |
 | Microsoft 365 | GCC uses the service communications API at the worldwide Microsoft Graph endpoint[^c14-graph-sc] |
 | Oracle Cloud Infrastructure | Oracle US Government Cloud, which Oracle lists with a FedRAMP High authorization, has Announcements endpoints in us-langley-1 and us-luke-1[^c14-oci-gov] |
 | AWS | In AWS GovCloud (US), the Health API has a single regional endpoint in us-gov-west-1, and EventBridge doesn't send the Service Health view's public events.[^c14-aws-gov] The API needs a qualifying AWS Support plan[^c14-aws-concepts] |

@@ -4,7 +4,7 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-13
+date-modified: 2026-11-15
 review-status: approved
 reviewed-sha256: 73f432c010f5e81749e4e78478fca9c7204d5443df8995fa45878636e38cd99c
 last-reviewed: 2026-11-09
@@ -14,7 +14,7 @@ last-reviewed: 2026-11-09
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 772 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 770 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -440,7 +440,7 @@ This register lists 772 sources. A slide or a video description links to a sourc
 | [Microsoft 365 Network Provider Program](https://learn.microsoft.com/microsoft-365/enterprise/microsoft-365-networking-partner-program?view=o365-worldwide){#microsoft-365-network-provider-program} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-365-network-provider-program"} |
 | [Microsoft Adoption Score](https://learn.microsoft.com/microsoft-365/admin/adoption/adoption-score?view=o365-worldwide){#microsoft-adoption-score} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-adoption-score"} |
 | [Microsoft Agent 365](https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365){#microsoft-agent-365} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-agent-365"} |
-| [Microsoft Azure Government Product General Availability (GA) Roadmap](https://learn.microsoft.com/azure/azure-government/documentation-government-product-roadmap){#microsoft-azure-government-product-general} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-azure-government-product-general"} |
+| [Microsoft Azure Government Product General Availability (GA) Roadmap](https://learn.microsoft.com/azure/azure-government/documentation-government-product-roadmap){#microsoft-azure-government-product-general} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-azure-government-product-general"} |
 | [Microsoft Cloud PKI deployment for Microsoft Intune](https://learn.microsoft.com/intune/cloud-pki/deployment-models){#microsoft-cloud-pki-deployment-for-microsoft} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-cloud-pki-deployment-for-microsoft"} |
 | [Microsoft Defender for Cloud Apps for US Government offerings](https://learn.microsoft.com/defender-cloud-apps/editions-cloud-app-security-gcc){#defender-for-cloud-apps-us-government} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="defender-for-cloud-apps-us-government"} |
 | [Microsoft Defender for Endpoint for US Government customers](https://learn.microsoft.com/defender-endpoint/gov){#defender-for-endpoint-us-government} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="defender-for-endpoint-us-government"} |
@@ -605,7 +605,7 @@ This register lists 772 sources. A slide or a video description links to a sourc
 | [Shared responsibility in the cloud](https://learn.microsoft.com/azure/security/fundamentals/shared-responsibility){#shared-responsibility-in-the-cloud} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="shared-responsibility-in-the-cloud"} |
 | [Source IP restoration](https://learn.microsoft.com/entra/global-secure-access/how-to-source-ip-restoration){#gsa-source-ip-restoration} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gsa-source-ip-restoration"} |
 | [SQL Server enabled by Azure Arc](https://learn.microsoft.com/sql/sql-server/azure-arc/overview){#sql-server-enabled-by-azure-arc} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sql-server-enabled-by-azure-arc"} |
-| [SQL Server enabled by Azure Arc in US Government](https://learn.microsoft.com/sql/sql-server/azure-arc/us-government-region){#sql-server-enabled-by-azure-arc-in-us} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sql-server-enabled-by-azure-arc-in-us"} |
+| [SQL Server enabled by Azure Arc in US Government](https://learn.microsoft.com/sql/sql-server/azure-arc/us-government-region){#sql-server-enabled-by-azure-arc-in-us} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sql-server-enabled-by-azure-arc-in-us"} |
 | [SQL Server enabled by Azure Arc: Rotate certificates](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/rotate-certificates){#arc-sql-rotate-certificates} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="arc-sql-rotate-certificates"} |
 | [Start-ADServiceAccountMigration](https://learn.microsoft.com/powershell/module/activedirectory/start-adserviceaccountmigration){#start-adserviceaccountmigration} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="start-adserviceaccountmigration"} |
 | [Starter Resource Graph query samples](https://learn.microsoft.com/azure/governance/resource-graph/samples/starter){#resource-graph-starter-queries} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="resource-graph-starter-queries"} |
@@ -929,6 +929,7 @@ This register lists 772 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
+| November 15, 2026 | 2 sources | Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026) |
 | November 13, 2026 | 4 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |

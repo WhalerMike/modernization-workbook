@@ -234,7 +234,6 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          # environment: AzureUSGovernment   # set for Azure Government
 
       - name: Copy SBOM and report to immutable evidence storage
         run: |

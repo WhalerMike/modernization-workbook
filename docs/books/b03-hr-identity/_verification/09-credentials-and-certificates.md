@@ -73,7 +73,7 @@ Verified: 2026-10-20. Every kept footnote was re-opened; all URLs resolved and s
 | Figure ch09-credential-assurance | kept | source comment header renumbered Chapter 07 → 09 |
 | Proofing and issuance | kept | footnote keys renamed |
 | Binding the PIV certificate to the Entra user | edited | tenant defaults added; reissue/renewal wording corrected; FIPS reissue and Microsoft hygiene added; attribute limits added; PowerShell module corrected |
-| Revocation checking | edited | chain checking and Azure Government limits added |
+| Revocation checking | edited | chain checking added |
 | Derived PIV credentials | edited | §2.10.2 revocation added; Rev 1 draft status reconfirmed |
 | Assurance as data | edited | M-22-09 scope corrected |
 | Mover | edited | FIPS reissue citation added |

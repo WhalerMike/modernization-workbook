@@ -29,7 +29,7 @@ First pass: 12 claims checked, 5 confirmed, 3 changed, 0 overturned, 4 not verif
 
 1. **WD-134 (Guest by default)** is right for the workbook's CA library, but it is not the product default. Cross-tenant sync creates **external members** unless the `userType` mapping is set to Guest. The Entra profile (Book 04 Appendix C) must state the mapping as a required setting, with an exception record for Member.
 2. **Across organizations, prefer entitlement management.** Microsoft's own page says sync is intended within an organization. Whether the chapter keeps sync as an option for partners (WD-135 treats it as one Entra option) or makes entitlement management plus B2B the default and sync the exception is a content decision for Mike.
-3. (Settled by Mike; see the second pass for the cloud pair.) **Cloud pair.** The workbook's tenant runs in the commercial cloud (Book 03 ch01). The Learn tables cover Azure commercial, Azure Government and 21Vianet; which pair applies to a partner in a Government cloud tenant is to be confirmed before the profile promises it.
+3. (Settled by Mike; see the second pass for the cloud pair.) **Cloud pair.** The workbook's tenant runs in the commercial cloud (Book 03 ch01), and the profile covers the commercial pair.
 4. **Four sources still need their primary text** (FIPS 201-3, FedRAMP, EO 14028, GRS 3.2 retention) before the chapter cites them.
 
 ## Source Register candidates (not added)

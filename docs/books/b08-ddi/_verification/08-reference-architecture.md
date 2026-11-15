@@ -30,7 +30,6 @@ Checked 2026-10-20 against CISA, Microsoft Learn (Learn MCP), AWS documentation,
 | 22 | On-premises NIOS is not a FedRAMP cloud service; sits inside agency boundary | Policy-plane components | restated-as-design (consistent with Ch03, Book 02 Ch04) | Ch03 |
 | 23 | Target operating model; expected improvements | Unified control plane | restated-as-design (series text kept) | — |
 | 24 | WP 10.3 "Infoblox Universal DDI: Full" in the High column | Comparison table | corrected: Moderate authorization does not cover High; use a High-authorized service or keep the plane in the agency boundary | c08-fedramp, Appendix C |
-| 25 | Azure Government private endpoint zone names differ (`usgovcloudapi.net`, `azure.us`) | Comparison table | verified (added) | c08-azpezones |
 | 26 | AWS VPC IPAM external IPAM not in GovCloud | Comparison table | verified (added) | c08-awsipam |
 | 27 | INR Worldwide commercial only; not GCC-Moderate | Comparison table | verified (WP 10.3 column header grouped GCC-Moderate with the federal clouds correctly for INR; table re-cut by authorization level) | c08-inr |
 | 28 | WP 9.2 M365 optimization via direct breakout and application-aware routing | Comparison table | cross-referenced to Ch05, not re-stated | Ch05 |
@@ -72,11 +71,11 @@ Checked 2026-10-20 against CISA, Microsoft Learn (Learn MCP), AWS documentation,
 
 ## Moderate-civilian sweep (October 29, 2026)
 
-The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) is treated as a valid Moderate location. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | MS-1 | AWS US East/West FedRAMP Certified Class C (formerly Moderate); GovCloud (US) Class D (formerly High); scope per service and per Region | Commercial and federal clouds compared, intro | verified 2026-10-29 (fact pack) | c08-aws-fedramp: AWS FedRAMP; Services in Scope |
-| MS-2 | Table restructured: Moderate commercial; Moderate GovCloud/Azure Government; FedRAMP High (High only). Previously GovCloud and Azure Government sat in the High column | Comparison table | reframed; every cell's fact unchanged and carried from existing footnotes | c08-fedramp, c08-azpezones, c08-awsipam, c08-inr |
+| MS-2 | Table restructured: Moderate commercial; Moderate GovCloud; FedRAMP High (High only). Previously GovCloud sat in the High column | Comparison table | reframed; every cell's fact unchanged and carried from existing footnotes | c08-fedramp, c08-azpezones, c08-awsipam, c08-inr |
 | MS-3 | Infoblox Government Cloud is hosted in AWS GovCloud (US) at Moderate | Comparison table | verified (existing footnote, Oct 20, 2026) | c08-fedramp |
 | MS-4 | High only explanation line added | Before the table | label per brief | — |

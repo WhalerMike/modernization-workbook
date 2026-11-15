@@ -44,7 +44,7 @@ Microsoft lists this as the first constraint on administrative units.[^c02-au] A
 
 - A user, group or device can be a member of no more than 30 administrative units.[^c02-limits]
 - An administrative unit with dynamic membership rules can contain users or devices, but not both, and dynamic rules for groups aren't supported. Adding a group to an administrative unit brings the group into scope, not its members.[^c02-au-dynamic][^c02-au]
-- Dynamic membership requires a Microsoft Entra ID P1 license for each unique member, and Microsoft documents dynamic administrative units for the global Azure cloud, not for specialized clouds such as Azure Government.[^c02-au-dynamic]
+- Dynamic membership requires a Microsoft Entra ID P1 license for each unique member, and Microsoft documents dynamic administrative units for the global Azure cloud.[^c02-au-dynamic]
 
 ### The attributes that drive membership are mastered in Active Directory
 

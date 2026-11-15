@@ -44,7 +44,6 @@ Primary sources opened on Nov 11, 2026: Microsoft Learn through the Microsoft Le
 
 ## What Learn didn't specify (government clouds)
 
-- Key Vault built-in secret policies in Azure Government.
 - GitHub Advanced Security for Azure DevOps (Azure DevOps Services) in any government environment.
 - Application management policy availability for GCC on the tutorial page.
 - National-cloud tables for the Conditional Access, PIM and authentication-methods read APIs were not opened for this pass.

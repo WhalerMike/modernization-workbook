@@ -9,7 +9,6 @@ Checked October 21, 2026 by writer W4. Source: `docs/compliance/Vol_IX_Book_05_S
 | 1 | Gallery integration creates a synced copy of directory attributes in the vendor cloud | Opening | restated-as-design | Source opening; mechanism verified in #20 |
 | 2 | Onboarding closes or skips AC-2, IA-5, CM-8, AC-3 at once | Opening | restated-as-design | Source argument |
 | 3 | GCC paired with Entra ID in Azure | Why the gate | verified | Learn, Cloud feature availability for US Government customers |
-| 4 | GCC uses public Entra ID for historical reasons | Why the gate | verified (new) | Learn, Planning identity for Azure Government applications, FAQ |
 | 5 | GCC uses worldwide Graph endpoints | Why the gate; actuation | verified (new) | Learn, Microsoft Graph national cloud deployments |
 | 6 | Source: tutorial corpus 12,940 pages / 1,295 tutorials / 50,172 SSO mentions / zero FedRAMP | Why the gate | removed | Internal point-in-time measurement, not independently reproducible here; replaced by the general observation (restated-as-design) and #7–8 |
 | 7 | Gallery risk scores by Defender for Cloud Apps; general/security/compliance/legal; SOC 2, ISO 27001, HIPAA, PCI as examples; need Entra Suite or Internet Access license | Why the gate | verified, corrected | Learn, Overview of the Entra application gallery. Source said scores "name … not FedRAMP"; the page lists examples only, so the chapter doesn't claim FedRAMP is absent |

@@ -68,7 +68,7 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | 60 | Set-AzKeyVaultKeyRotationPolicy -PolicyPath with JSON (lifetimeActions, attributes.expiryTime) | Keys code | verified / corrected | Set-AzKeyVaultKeyRotationPolicy help example 1. Source passed hashtables to -KeyRotationLifetimeAction |
 | 61 | TDE server identity role "Key Vault Crypto Service Encryption User" (RBAC) or get/wrapKey/unwrapKey | Keys code | corrected | Learn, Azure SQL TDE with CMK, permissions. Source used "Key Vault Crypto User" |
 | 62 | Add-AzSqlServerKeyVaultKey and Set-AzSqlServerTransparentDataEncryptionProtector -AutoRotationEnabled; rotation within 24 hours | Keys code | verified | Az.Sql help; Learn, rotate the TDE protector |
-| 63 | Connect-AzAccount -Environment AzureUSGovernment | Keys code | verified | Learn, Connect to Azure Government with PowerShell |
+| 63 | Connect-AzAccount (commercial Azure) | Keys code | verified | Learn, Connect-AzAccount |
 | 64 | Source: "12-month cryptoperiod … within the recommended cryptoperiods of NIST SP 800-57 Part 1" | Keys | restated-as-design | SP 800-57 not opened; 12 months stated as program choice |
 | 65 | AWS KMS and CloudHSM in both AWS FedRAMP offerings | Other clouds | verified (new) | products.json certified_services |
 | 66 | Source: "the Purview Data Map reaches multi-cloud sources" | Other clouds | corrected / restated | Labeling in Data Map is preview (Learn); program doesn't rely on it for evidence |

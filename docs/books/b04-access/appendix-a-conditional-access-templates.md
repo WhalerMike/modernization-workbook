@@ -158,7 +158,7 @@ Both are created with `New-MgIdentityConditionalAccessNamedLocation -BodyParamet
 ```json
 {
   "displayName": "FMP-Privileged-SeparateDevice",
-  "description": "Approved FIDO2 security keys or multifactor certificate-based authentication (PIV/CAC). For privileged roles.",
+  "description": "Approved FIDO2 security keys or multifactor certificate-based authentication (PIV). For privileged roles.",
   "requirementsSatisfied": "mfa",
   "allowedCombinations": ["fido2", "x509CertificateMultiFactor"],
   "combinationConfigurations": [

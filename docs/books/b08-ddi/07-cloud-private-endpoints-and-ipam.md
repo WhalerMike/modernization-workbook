@@ -57,7 +57,7 @@ Two points follow for the policy plane. Every platform logs in its own format, t
 Consider an estate of the kind this book is written for: Microsoft 365 GCC Moderate with workloads in commercial Azure, most AWS workloads in AWS GovCloud (US) with a contact center in AWS commercial Regions, VMware on premises beside a DDI grid and AD DNS, and an HR platform hosted on Oracle Cloud ([Appendix C](appendix-c-applicability.md) explains why GovCloud (US) is a valid Moderate location). Read against the two tables, that estate meets the rows this way *(design guidance throughout, except where cited)*:
 
 - **AWS is two partitions, so two sets of resolver configuration.** Partitions are a hard boundary: IAM credentials from one can't act on resources in the other, and cross-Region features work only within a partition.[^c07-awspartition] AWS doesn't say so for Resolver rules or private hosted zones in particular, but it follows that rules shared through AWS RAM and zone associations stay inside GovCloud (US) or inside the commercial partition *(inference)*. Each side needs its own endpoints, rules and query-logging configuration, written from the same policy plane. Resolver endpoints, query logging and DNS Firewall are all available in GovCloud (US);[^c07-r53gov] Route 53 Global Resolver is not, since it runs only in commercial Regions.[^c07-r53gr] The GovCloud (US) User Guide still says Resolver delegation isn't available, while an April 2026 announcement says it is; check the current state before designing around it.[^c07-r53gov]
-- **Azure is the commercial cloud, so the commercial zone names apply.** Forward the public service zones in the commercial column of the table below; the Azure Government names matter only if a workload moves there.
+- **Azure is the commercial cloud, so the commercial zone names apply.** Forward the public service zones in the commercial column of the table below.
 - **Oracle Cloud depends on what the agency holds there.** A Fusion Applications (SaaS) environment doesn't give the agency a VCN; private access to it requires a VCN in the agency's own Oracle tenancy, reached over VPN or FastConnect, and Oracle's setup page says nothing about DNS.[^c07-ocifusion] If the agency has only the SaaS service, the HR platform is a public name and the work is keeping agency resolvers' path to it consistent. If it has a tenancy, the VCN resolver is one more private resolver: forward Oracle's private names, such as `<prefix>.adb.<region>.oraclecloud.com` for an Autonomous Database private endpoint, from agency resolvers to a listening endpoint, and add a forwarding endpoint with rules for agency namespaces.[^c07-ociadb] Oracle's US Government Cloud supports private DNS zones but not public DNS.[^c07-ocigov]
 - **On-premises NSX workloads should use the DDI grid.** The NSX forwarder logs no queries and applies no policy, so segments should hand out the grid's resolvers through DHCP, or, where the forwarder is kept, forward its default zone to the grid so that queries are logged and filtered there.
 - **Google Cloud is in the tables for agencies that use it.** An estate without it has one row less to govern.
@@ -96,23 +96,23 @@ Three behaviors catch teams out:
 
 ### Zones to plan for
 
-Use Microsoft's recommended zone names: records are generated automatically only for those names.[^c07-azpezones] Conditional forwarders on non-Azure resolvers must point at the **public DNS zone forwarder** for each service, for example `database.windows.net`, not `privatelink.database.windows.net`.[^c07-azpe] Azure Government uses different names, so a design that spans both clouds needs both sets. Every zone in the table holds A records.
+Use Microsoft's recommended zone names: records are generated automatically only for those names.[^c07-azpezones] Conditional forwarders on non-Azure resolvers must point at the **public DNS zone forwarder** for each service, for example `database.windows.net`, not `privatelink.database.windows.net`.[^c07-azpe] Every zone in the table holds A records.
 
-| Service | Private DNS zone (Azure commercial) | Forward from other resolvers | Azure Government private DNS zone |
-|---|---|---|---|
-| Storage (blob, file, table, queue) | `privatelink.blob.core.windows.net` and the matching `file`, `table`, `queue` zones | `blob.core.windows.net`, `file.core.windows.net`, `table.core.windows.net`, `queue.core.windows.net` | `privatelink.blob.core.usgovcloudapi.net` and matching zones |
-| Azure SQL Database | `privatelink.database.windows.net` | `database.windows.net` | `privatelink.database.usgovcloudapi.net` |
-| Azure Cosmos DB (NoSQL) | `privatelink.documents.azure.com` | `documents.azure.com` | `privatelink.documents.azure.us` |
-| Azure Key Vault | `privatelink.vaultcore.azure.net` | `vault.azure.net`, `vaultcore.azure.net` | `privatelink.vaultcore.usgovcloudapi.net` |
-| Azure Container Registry | `privatelink.azurecr.io` | `azurecr.io` | `privatelink.azurecr.us` |
-| Event Hubs, Service Bus, Relay | `privatelink.servicebus.windows.net` (shared) | `servicebus.windows.net` | `privatelink.servicebus.usgovcloudapi.net` |
-| App Service and Functions | `privatelink.azurewebsites.net` | `azurewebsites.net`, `scm.azurewebsites.net` | `privatelink.azurewebsites.us` |
-| Azure Monitor (Private Link Scope) | `privatelink.monitor.azure.com`, `privatelink.oms.opinsights.azure.com`, `privatelink.ods.opinsights.azure.com`, `privatelink.agentsvc.azure-automation.net`, `privatelink.blob.core.windows.net` | `monitor.azure.com`, `oms.opinsights.azure.com`, `ods.opinsights.azure.com`, `agentsvc.azure-automation.net`, `blob.core.windows.net` and others | `privatelink.monitor.azure.us` and matching zones |
-| Azure Automation | `privatelink.azure-automation.net` | `{regionCode}.azure-automation.net` | `privatelink.azure-automation.us` |
-| Foundry Tools (formerly Cognitive Services) | `privatelink.cognitiveservices.azure.com`, `privatelink.openai.azure.com`, `privatelink.services.ai.azure.com` | `cognitiveservices.azure.com`, `openai.azure.com`, `services.ai.azure.com` | `privatelink.cognitiveservices.azure.us` |
-| Azure Data Factory | `privatelink.datafactory.azure.net` | `datafactory.azure.net` | `privatelink.datafactory.azure.us` |
-| Azure SignalR | `privatelink.service.signalr.net` | `service.signalr.net` | Not listed |
-| Azure Machine Learning workspace | `privatelink.api.azureml.ms`, `privatelink.notebooks.azure.net` | `api.azureml.ms`, `notebooks.azure.net` and others | `privatelink.api.ml.azure.us`, `privatelink.notebooks.usgovcloudapi.net` |
+| Service | Private DNS zone (Azure commercial) | Forward from other resolvers |
+|---|---|---|
+| Storage (blob, file, table, queue) | `privatelink.blob.core.windows.net` and the matching `file`, `table`, `queue` zones | `blob.core.windows.net`, `file.core.windows.net`, `table.core.windows.net`, `queue.core.windows.net` |
+| Azure SQL Database | `privatelink.database.windows.net` | `database.windows.net` |
+| Azure Cosmos DB (NoSQL) | `privatelink.documents.azure.com` | `documents.azure.com` |
+| Azure Key Vault | `privatelink.vaultcore.azure.net` | `vault.azure.net`, `vaultcore.azure.net` |
+| Azure Container Registry | `privatelink.azurecr.io` | `azurecr.io` |
+| Event Hubs, Service Bus, Relay | `privatelink.servicebus.windows.net` (shared) | `servicebus.windows.net` |
+| App Service and Functions | `privatelink.azurewebsites.net` | `azurewebsites.net`, `scm.azurewebsites.net` |
+| Azure Monitor (Private Link Scope) | `privatelink.monitor.azure.com`, `privatelink.oms.opinsights.azure.com`, `privatelink.ods.opinsights.azure.com`, `privatelink.agentsvc.azure-automation.net`, `privatelink.blob.core.windows.net` | `monitor.azure.com`, `oms.opinsights.azure.com`, `ods.opinsights.azure.com`, `agentsvc.azure-automation.net`, `blob.core.windows.net` and others |
+| Azure Automation | `privatelink.azure-automation.net` | `{regionCode}.azure-automation.net` |
+| Foundry Tools (formerly Cognitive Services) | `privatelink.cognitiveservices.azure.com`, `privatelink.openai.azure.com`, `privatelink.services.ai.azure.com` | `cognitiveservices.azure.com`, `openai.azure.com`, `services.ai.azure.com` |
+| Azure Data Factory | `privatelink.datafactory.azure.net` | `datafactory.azure.net` |
+| Azure SignalR | `privatelink.service.signalr.net` | `service.signalr.net` |
+| Azure Machine Learning workspace | `privatelink.api.azureml.ms`, `privatelink.notebooks.azure.net` | `api.azureml.ms`, `notebooks.azure.net` and others |
 
 Microsoft's full list is long and changes; treat this table as the common set and check the source before adding a service.[^c07-azpezones]
 

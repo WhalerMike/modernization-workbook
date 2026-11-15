@@ -32,7 +32,7 @@ The Connected Machine agent communicates outbound to Azure over TCP 443; no inbo
 
 | Purpose | Destinations |
 |---|---|
-| Azure Arc data processing service (inventory and usage upload) | `*.<region>.arcdataservices.com`, or `*.<region>.arcdataservices.azure.us` in US Government Virginia |
+| Azure Arc data processing service (inventory and usage upload) | `*.<region>.arcdataservices.com` |
 | Extension installation | `aka.ms` and `*.web.core.windows.net` |
 | Microsoft Entra authentication, if a firewall filters URLs | `login.microsoftonline.com`, `login.microsoft.com`, `enterpriseregistration.windows.net`, `graph.microsoft.com`, and the Key Vault (`<name>.vault.azure.net`) when certificates are used |
 | Resource providers registered in the subscription | `Microsoft.HybridCompute`, `Microsoft.GuestConfiguration`, `Microsoft.HybridConnectivity` and, for SQL Server, `Microsoft.AzureArcData` |

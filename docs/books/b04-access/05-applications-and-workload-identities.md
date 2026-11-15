@@ -428,7 +428,7 @@ Workload ID Premium is a standalone product, not part of other premium plans. On
 | Conditional Access for workload identities | | Yes |
 | ID Protection for workload identities | | Yes |
 
-Source: Microsoft's Workload ID FAQ.[^c05-wid-faq] Access reviews of service principals in privileged roles also need Entra ID P2 for the reviewers.[^c05-wid-faq] Microsoft says Workload ID Premium is available in Azure Government clouds through the account manager, and that the free trial isn't.[^c05-wid-faq]
+Source: Microsoft's Workload ID FAQ.[^c05-wid-faq] Access reviews of service principals in privileged roles also need Entra ID P2 for the reviewers.[^c05-wid-faq]
 
 The program licenses Workload ID Premium for the single-tenant service principals classified R1 (highest application risk tier) in [Chapter 06](06-who-decides-access.md#risk-tiers-set-the-approval-chain), because those are where a location-restricted block policy and risk detection earn their cost.
 
@@ -529,10 +529,10 @@ Rows flagged `NeedsAttention` have fewer than two owners, hold a client secret, 
 | Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
 |---|---|---|---|---|
 | Certificate credentials on app registrations and service principals | Not a Book 07 class | A trusted CA, kept in a key vault | The app's owner, or Key Vault's renewal where the service rotates it; Entra ID itself renews nothing | Can place the certificate in Azure Key Vault; documents no driver that uploads it to the app registration |
-| PIV and CAC in authentication strengths and break-glass | PIV | Federal PKI | PIV card system | Nothing |
+| PIV in authentication strengths and break-glass | PIV | Federal PKI | PIV card system | Nothing |
 | Device certificates behind compliance checks | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
 
-![This book's certificates and the engine that renews each.](../../images/diagrams/b04-access/svg/certs-clm.svg){fig-alt="Certificate credentials on app registrations and service principals go to the app's owner or Key Vault (outside book 07's classes); PIV and CAC in authentication strengths and break-glass go to PIV card system (renews piv credentials); Device certificates behind compliance checks go to Intune (renews device certificates)."}
+![This book's certificates and the engine that renews each.](../../images/diagrams/b04-access/svg/certs-clm.svg){fig-alt="Certificate credentials on app registrations and service principals go to the app's owner or Key Vault (outside book 07's classes); PIV in authentication strengths and break-glass go to PIV card system (renews piv credentials); Device certificates behind compliance checks go to Intune (renews device certificates)."}
 
 None of this book's certificates is renewed by the CLM platform. App-registration certificates are not one of Book 07's certificate classes; their lifetime is this book's 180-day policy, and their rotation belongs to the app's owner. Where they come from a CA, the one authority for which CA is the target PKI in [Book 07, Chapter 04](../b07-pki/04-the-target-pki.md) (the cryptographic architecture in [Vol I Book 03](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md) is a secondary reference), as the credentials section above says; Book 07's chapters don't address app-registration certificates. The platform can at most provision them into Key Vault (inference).[^clm-drivers]
 

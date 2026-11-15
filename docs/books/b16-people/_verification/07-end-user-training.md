@@ -31,8 +31,8 @@ Writer W4. Source: `docs/operational-guides/end-user-training.md` (6,109 words b
 | 23 | Combined registration at Security info | Module 2 | verified | Microsoft Learn, combined registration overview |
 | 24 | aka.ms/sspr; Windows sign-in Reset password link on Entra-joined/hybrid-joined Windows 10 1803+ | Module 2 | verified | Microsoft Learn, SSPR on Windows sign-in screen |
 | 25 | Writeback needed for on-premises-managed passwords | Module 2 | verified | Microsoft Learn, How SSPR works |
-| 26 | Smart lockout: 10 attempts commercial, 3 Azure US Government; 1 minute then longer; customizable with P1 | Module 2 | verified | Microsoft Learn, smart lockout |
-| 27 | Source: lockout "starts at about one minute and increases" | Module 2 | verified (kept, with cloud-specific thresholds added) | Same |
+| 26 | Smart lockout: 10 attempts commercial (GCC); 1 minute then longer; customizable with P1 | Module 2 | verified | Microsoft Learn, smart lockout |
+| 27 | Source: lockout "starts at about one minute and increases" | Module 2 | verified (kept, with the commercial threshold added) | Same |
 | 28 | "I forgot my password" in SSPR resets lockout to 0; "I know my password" doesn't | Module 2 | verified | Same |
 | 29 | Source: password "14+ characters" with upper/lower/number/special | Module 2 | corrected | SP 800-63B-4 §3.1.1.2 items 1, 5, 6, 8; M-22-09 ("must not require use of special characters or regular rotation") |
 | 30 | Source: security questions and personal email as recovery | Module 2 | corrected / restated-as-design | SP 800-63B-4 §3.1.1.2 item 8; personal email left to privacy office and CISO |
@@ -89,7 +89,7 @@ Writer W4. Source: `docs/operational-guides/end-user-training.md` (6,109 words b
 | §3.2 What you might experience (scenario table) | Module 3, "When access is blocked" | Condensed; "connect to VPN first" advice dropped (zero trust target doesn't rely on VPN; Books 09, 11) |
 | §3.3 What to do if blocked (steps, correlation ID, screenshot tip) | Module 3, "When access is blocked" | Kept; correlation ID sourced |
 | §3 figure 04 (block-page mockup) | — | Not reproduced |
-| §4 Certificate-Based Authentication (what it is, what you'll notice, picking the right certificate) | Module 1, "Sign in with a PIV card" | Re-centered on PIV/CAC; Intune auto-renewal claim corrected for PIV |
+| §4 Certificate-Based Authentication (what it is, what you'll notice, picking the right certificate) | Module 1, "Sign in with a PIV card" | Re-centered on PIV; Intune auto-renewal claim corrected for PIV |
 | §5.1–5.3 OneDrive Known Folder Move, what you'll see, status icons, useful actions | Module 4, "Files in OneDrive, SharePoint and Teams" | Step list condensed; icons kept as a lesson (and as a 508 note: name, don't only show color) |
 | §5 figure 05 (OneDrive status card) | — | Not reproduced |
 | §5.4 Mapped drives (H:, S:) and Important box | Module 4 | Kept; records-officer consultation added |

@@ -15,8 +15,8 @@ Checked 2026-10-20 against Microsoft Learn (Entra national-cloud endpoints, AADS
 | 5 | DNSSEC makes DANE TLSA usable | DNS identity | verified (re-opened) | rfc6698 |
 | 6 | DoH server certificate needs Server Authentication EKU and SAN matching URI template | DNS identity | verified (added) | ws-doh |
 | 7 | FQDN-based ZTNA policy; tokens after connection; Protective DNS helps | DNS identity | restated-as-design (series text) | — |
-| 8 | Global endpoint login.microsoftonline.com; Azure Government login.microsoftonline.us | Kerberos to tokens | verified | national |
-| 10 | Whitepaper §5.2: GCC uses login.microsoftonline.us | Kerberos to tokens | corrected: GCC operates with Azure Public Cloud and uses the global endpoint | gcc |
+| 8 | Global endpoint login.microsoftonline.com | Kerberos to tokens | verified | national |
+| 10 | Whitepaper §5.2: GCC uses a non-global sign-in endpoint | Kerberos to tokens | corrected: GCC operates with Azure Public Cloud and uses the global endpoint | gcc |
 | 11 | Whitepaper §5.2: aud "contains the FQDN" | Kerberos to tokens | corrected: v2.0 aud is always the API client ID; v1.0 may be the resource URI | aud |
 | 12 | Renaming a host doesn't change the audience | Kerberos to tokens | restated-as-design (follows from claim 11) | aud |
 | 13 | SAN mismatch fails the handshake | Kerberos to tokens | restated (TLS behavior, also RFC 9525) | rfc9525 |
@@ -66,7 +66,7 @@ Checked 2026-10-20 against Microsoft Learn (Entra national-cloud endpoints, AADS
 | 57 | Remove DS at parent and wait for TTL before unsigning | Moving signed zones | verified (added) | az-unsign |
 | 58 | Guide §8.2: Azure manages key generation and signing; DS registration with registrar | Moving signed zones; Platforms | verified (DS managed in parent; KSK replacement via support) | azdnssec |
 | 59 | Guide §8.2/8.3: Private Zones DNSSEC "not applicable within trusted networks" | Moving signed zones | restated: a documented risk decision; NIST §3.8.6 is the stronger basis | nist81 |
-| 60 | Guide §8.3: "VNet encryption — VNet traffic is encrypted at the infrastructure layer" | Moving signed zones | corrected: opt-in; VM-to-VM on supported sizes with Accelerated Networking; AllowUnencrypted only; public preview in Azure Government | vnetenc |
+| 60 | Guide §8.3: "VNet encryption — VNet traffic is encrypted at the infrastructure layer" | Moving signed zones | corrected: opt-in; VM-to-VM on supported sizes with Accelerated Networking; AllowUnencrypted only | vnetenc |
 | 61 | Guide §8.3: Private Link eliminates DNS spoofing vectors | Moving signed zones | corrected: removes the public endpoint, doesn't make in-network DNS tamper-proof | — (reasoning; Private Link behavior in Ch07) |
 | 62 | Guide §8.4 step 5: remove trust anchors after 90-day validation | Moving signed zones | restated-as-design (program period) | — |
 | 63 | Whitepaper §7.8: federal PKI migrating "from legacy CRL distribution to OCSP" | — | not carried: contradicts Book 07 (Entra CBA uses CRLs, Cloud PKI has no OCSP responder) | Book 07 Ch02/Ch04 |
@@ -157,7 +157,7 @@ Added for the Zero Trust Assessment closure update (B08-01, and the Book 08 part
 | Z4 | Dangling CNAMEs; OAuth credentials sent to dangling subdomains may be exposed; Get-DanglingDnsRecords; Defender for App Service alerts; remove DNS entry at decommission; remediation steps | Redirect URIs; telemetry; day-two | verified | Learn, Prevent dangling DNS entries and avoid subdomain takeover | Nov 11, 2026 |
 | Z5 | asuid verification records; secure unique default hostnames | Pattern table | verified | Learn, Prevent subdomain takeovers in Azure App Service | Nov 11, 2026 |
 | Z6 | RDAP bootstrap (RFC 9224) and expiration events (RFC 9083) | Prerequisites; report-only | verified | IETF RFC 9224; RFC 9083 | Nov 11, 2026 |
-| Z7 | Graph service principal update available in US Gov L4 and L5 | Applies | verified | Learn, Graph Update servicePrincipal | Nov 11, 2026 |
+| Z7 | Graph service principal update available in the global service | Applies | verified | Learn, Graph Update servicePrincipal | Nov 11, 2026 |
 | Z8 | Owner and DNS proof rule, 90-day registration threshold, rings, post-change test, vendor-domain exception | Pattern; Enforcement; Exclusions | restated-as-design | Program design | Nov 11, 2026 |
 
 ## Zero Trust closure, Phase 4 (November 11, 2026)

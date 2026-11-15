@@ -62,7 +62,7 @@ This chapter is the [Azure Arc track](../guides/attribute-driven-migration.md#ar
 | Physical servers, and VMs on any other hypervisor | Supported[^c09-arc-choose] | Connected Machine agent |
 | VMware vSphere VMs | Supported. Arc-enabled VMware vSphere works with vCenter Server 8 and up to 9,500 VMs, and adds VM lifecycle operations. ESXi hosts, clusters and datastores are discovered as inventory, but the agent runs only in the guest VMs[^c09-arc-vmware] | Arc resource bridge to vCenter, then guest management (the agent) |
 | VMs managed by System Center Virtual Machine Manager | Retiring. New onboardings stop by October 2026 and the service ends in September 2029. Microsoft points to Arc-enabled servers instead[^c09-arc-scvmm] | Connected Machine agent |
-| AWS EC2 instances and GCP VMs | Supported, either with the agent on each VM or through the multicloud connector, which discovers instances and installs the agent. The connector covers AWS, with GCP in preview, and it isn't available in Azure Government[^c09-mcc] | Agent, or multicloud connector |
+| AWS EC2 instances and GCP VMs | Supported, either with the agent on each VM or through the multicloud connector, which discovers instances and installs the agent. The connector covers AWS, with GCP in preview[^c09-mcc] | Agent, or multicloud connector |
 | Azure Local | Supported, through Azure Local's own Arc control plane[^c09-arc-choose] | Built in |
 | Azure VMs | Not Arc. Microsoft says not to install Arc on Azure VMs because they already have the same capabilities.[^c09-arc-prereq] Policy, RBAC and tags apply to them natively | Native Azure resource |
 | Kubernetes clusters; SQL Server | Arc-enabled Kubernetes attaches any CNCF-certified cluster as an Azure resource.[^c09-arc-k8s] SQL Server enabled by Azure Arc is [Book 06, Chapter 09](../b06-data-platform/09-what-arc-provides-to-sql-server.md) | Cluster agents; SQL extension |
@@ -102,14 +102,14 @@ The commands in this chapter are examples. They haven't been run against a produ
 :::
 
 ```powershell
-# Network readiness for the target region (add --cloud AzureUSGovernment for Azure Government)
+# Network readiness for the target commercial Azure region
 azcmagent check --location "eastus"
 
 # Include SQL Server enabled by Azure Arc endpoints if the server hosts SQL Server
 azcmagent check --location "eastus" --extensions sql
 ```
 
-The `--cloud` values are `AzureCloud`, `AzureUSGovernment` and `AzureChinaCloud`.[^c09-azcm-check] This workbook assumes a commercial Azure subscription in the same directory as the GCC tenant; if your servers are onboarded to Azure Government, use the US Government endpoints and service tags throughout.
+The `--cloud` value for commercial Azure is `AzureCloud`.[^c09-azcm-check] This workbook assumes a commercial Azure subscription in the same directory as the GCC tenant.
 
 ### Resource groups and tags
 
@@ -269,7 +269,7 @@ ESUs through Arc are billed monthly through Azure, need no product keys on the s
 Arc-enabled Windows servers can use Microsoft Entra ID as their sign-in authority for Remote Desktop, with Azure RBAC deciding who may sign in. The requirements, all from Microsoft's documentation:[^c09-arc-login]
 
 - Windows Server 2025 or later **with Desktop Experience**, or Windows 11 24H2 or later. Server 2019 and 2022 aren't supported, which is exception C in [Chapter 04](04-intune-first-onboarding.md).
-- Available in Azure Global and Azure Government.
+- Available in Azure Global.
 - A system-assigned managed identity on the Arc server, then the `AADLoginForWindows` extension (publisher `Microsoft.Azure.ActiveDirectory`). The extension's `settings` must include an `mdmId` property, which can be an empty string.
 - Installing the extension **Microsoft Entra joins the server**. The scenario is for servers that won't be joined to Active Directory or Entra Domain Services; if a server must stay domain-joined, uninstall the extension and use hybrid join instead.
 - Users need the Virtual Machine Administrator Login or Virtual Machine User Login role. Making a user a local administrator directly isn't supported. Only member users of the same tenant can sign in, not guests.
@@ -299,7 +299,7 @@ The `az connectedmachine extension create` form with these publisher and type na
 
 ### Linux
 
-For Linux, SSH through Arc lets you connect without a public IP address or open inbound ports. Install the `AADSSHLoginForLinux` extension (which installs the `aadsshlogin` packages) and assign the same two Virtual Machine login roles; Owner or Contributor alone doesn't grant Entra ID sign-in. Microsoft recommends assigning the login roles at management group, subscription or resource group scope rather than per machine, to stay under role-assignment limits, and holding them through Privileged Identity Management.[^c09-ssh] Supported distributions include recent releases of Red Hat Enterprise Linux, Ubuntu, Debian, SUSE Linux Enterprise Server, Oracle Linux, Rocky and AlmaLinux, in Azure Global and Azure Government.[^c09-linux-login]
+For Linux, SSH through Arc lets you connect without a public IP address or open inbound ports. Install the `AADSSHLoginForLinux` extension (which installs the `aadsshlogin` packages) and assign the same two Virtual Machine login roles; Owner or Contributor alone doesn't grant Entra ID sign-in. Microsoft recommends assigning the login roles at management group, subscription or resource group scope rather than per machine, to stay under role-assignment limits, and holding them through Privileged Identity Management.[^c09-ssh] Supported distributions include recent releases of Red Hat Enterprise Linux, Ubuntu, Debian, SUSE Linux Enterprise Server, Oracle Linux, Rocky and AlmaLinux, in Azure Global.[^c09-linux-login]
 
 ## Rollback
 
@@ -340,7 +340,7 @@ On the governed path, the same scripts run with `-ApprovalRef` on every state-ch
 Onboarding and the day-one baseline are an implementation procedure, so they follow the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md). Most of the How-section template is in the sections above; this section points to each part and adds the staged path for the one step that changes a server's configuration, moving machine configuration from audit to apply.
 
 **Authority:** Microsoft-recommended for the least-privileged onboarding role, certificate credentials, auditing beside Group Policy before moving enforcement, and Defender for Servers Plan 2, as cited above; risk-based recommended for the waves, tags and exit criteria, which are the program's.
-**Applies:** Environment-dependent. The workbook assumes a commercial Azure subscription beside the GCC tenant, where every feature here is available. For servers onboarded to Azure Government instead: the agent connects with `--cloud AzureUSGovernment`;[^c09-azcm-check] Azure Update Manager supports Arc-enabled servers in US Gov Virginia and US Gov Arizona;[^c09-p4-aum-regions] Defender for Servers is generally available in Azure Government, and in GCC Moderate on the commercial cloud the Defender for Endpoint integration doesn't support direct onboarding, vulnerability assessment recommendations or file integrity monitoring;[^c09-p4-dfs-clouds] Entra ID sign-in is available in Azure Government;[^c09-arc-login] machine configuration's availability in Azure Government is not yet specified on the Learn pages read.
+**Applies:** Environment-dependent. The workbook assumes a commercial Azure subscription beside the GCC tenant, and the agent connects with `--cloud AzureCloud`.[^c09-azcm-check] In GCC Moderate on the commercial cloud, the Defender for Servers integration with Defender for Endpoint doesn't support direct onboarding, vulnerability assessment recommendations or file integrity monitoring.[^c09-p4-dfs-clouds]
 
 | Template part | Where this chapter carries it |
 |---|---|
@@ -469,8 +469,7 @@ Servers aren't Intune-managed, so they can't get certificates from Cloud PKI. Af
 [^c09-linux-login]: Microsoft Learn, "Sign in to a Linux virtual machine in Azure by using Microsoft Entra ID and OpenSSH," supported distributions, <https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux#supported-linux-distributions-and-azure-regions> (accessed Oct 20, 2026).
 [^c09-uninstall]: Microsoft Learn, "Uninstall the Azure Connected Machine agent from Arc-enabled servers," <https://learn.microsoft.com/azure/azure-arc/servers/uninstall-agent> (accessed Oct 20, 2026).
 [^c09-azcm-disconnect]: Microsoft Learn, "`azcmagent disconnect`," <https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-disconnect> (accessed Oct 20, 2026).
-[^c09-p4-aum-regions]: Microsoft Learn, "Supported regions for Azure Update Manager," section "Azure for US Government" (USGovVirginia and USGovArizona for Azure VMs and Arc-enabled servers; USGovTexas for Azure VMs only), <https://learn.microsoft.com/azure/update-manager/supported-regions> (accessed Nov 11, 2026).
-[^c09-p4-dfs-clouds]: Microsoft Learn, "Defender for Servers support," section "Azure cloud support" (features GA in Azure Government; in GCC-M on Azure public cloud, direct onboarding, vulnerability assessment recommendations and file integrity monitoring aren't supported for the Defender for Endpoint integration), <https://learn.microsoft.com/azure/defender-for-cloud/support-matrix-defender-for-servers> (accessed Nov 11, 2026).
+[^c09-p4-dfs-clouds]: Microsoft Learn, "Defender for Servers support," section "Azure cloud support" (in GCC-M on Azure public cloud, direct onboarding, vulnerability assessment recommendations and file integrity monitoring aren't supported for the Defender for Endpoint integration), <https://learn.microsoft.com/azure/defender-for-cloud/support-matrix-defender-for-servers> (accessed Nov 11, 2026).
 [^c09-p4-mc-remediation]: Microsoft Learn, "Remediation options for machine configuration," sections "Machine configuration assignment types" (`Audit`, `ApplyAndMonitor`, `ApplyAndAutoCorrect`; a new assignment on an existing machine audits first) and "Disable remediation of custom content" (tag `CustomGuestConfigurationSetPolicy` = `disable`, custom packages only), <https://learn.microsoft.com/azure/governance/machine-configuration/concepts/remediation-options> (accessed Nov 11, 2026).
 [^clm-capi]: CyberArk, Certificate Manager, Self-Hosted 26.1, "CAPI" application driver (installs certificates and keys into the Windows CAPI store over WinRM, optionally binds IIS, and can grant a named Windows identity read access to the private key), <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/cco-CAPI-AppDriverConfig-tpp.php> and <https://docs.venafi.com/Docs/current/TopNav/Content/Drivers/r-CAPI-AppObjSettings-tpp.php> (accessed Oct 23, 2026).
 [^clm-drivers]: CyberArk, 26.1, "System requirements," supported applications (F5 BIG-IP LTM Advanced, NetScaler, Palo Alto NGFW, Apache/PEM, Java keystores, PKCS#12, Azure Key Vault, AWS and others) and the Server Agent, <https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-SysReq-ALLVenProducts.php> (accessed Oct 23, 2026).

@@ -7,12 +7,12 @@ Writer W3. Sources: `docs/compliance/Vol_VI_Book_03_Detection_Engineering.md`, `
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | ID Protection draws on trillions of anonymized signals daily | In-boundary principle | verified | Learn: risk-based SSPR/MFA tutorial |
-| 2 | Not in Azure Government: peer/blast-radius UEBA, MDTI matching analytics, SOC optimization, Repositories | In-boundary; rule library | verified | Learn: Sentinel feature availability |
+| 2 | Defender portal: preview Sentinel features in the commercial cloud only, not GCC | In-boundary; rule library | verified | Learn: Sentinel feature availability |
 | 3 | Source: commercial ML "frequently out of scope" inside a federal boundary | In-boundary principle | restated-as-design (two cases: unavailable in the cloud, or excluded by the authorization decision; Book 10 linked) | — |
 | 4 | In-boundary principle (destination, not data) | In-boundary principle | restated-as-design | — |
 | 5 | Microsoft rule YAML fields (id, name, severity, requiredDataConnectors, queryFrequency, queryPeriod, triggerOperator, triggerThreshold, tactics, relevantTechniques, query, entityMappings, version) | Rule library as code | verified | Azure-Sentinel GitHub, PIMElevationRequestRejected.yaml |
 | 6 | Repositories: GitHub/Azure DevOps; content types incl. custom detections (preview); overwrites portal edits; ARM export format | Rule library as code | verified | Learn: Manage content as code; Deploy content as code |
-| 7 | Source: library deploys "through the SIEM's repository connection" | Rule library as code | corrected (Repositories is preview and not in Azure Government; own pipeline with ARM templates as fallback) | Learn: feature availability; repositories |
+| 7 | Source: library deploys "through the SIEM's repository connection" | Rule library as code | corrected (Repositories is preview; own pipeline with ARM templates as fallback) | Learn: feature availability; repositories |
 | 8 | Seven-rule in-boundary set and priority set | Library table | restated-as-design | Source volumes |
 | 9 | Microsoft ships templates: MFA spamming, privileged role outside PIM, CA changes, new SP credential | Library; examples | verified | Azure-Sentinel GitHub, Entra ID solution rules list |
 | 10 | Source KEV rule on `DeviceVulnerabilityAssessmentEvent` with `EventType == "Exploit"` | Library | corrected (table not streamed; exploitation handled as Defender alert) | Learn: streaming event types (Ch05 claim 26) |

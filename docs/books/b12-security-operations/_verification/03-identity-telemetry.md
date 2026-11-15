@@ -72,7 +72,7 @@ Checked October 21, 2026 by writer W2. Source: `docs/operational-guides/siem-tel
 | Note: portal fine for first tenant, wrong for fleet (KSI-MLA-EVC) | Note callout | Carried, KSI wording corrected, KSI-MLA-LET added |
 | Path B — Tenant-scope ARM/Bicep | Path B | Carried; retentionPolicy removed |
 | Important: retentionPolicy does nothing for Log Analytics | Important callout | Carried and corrected (feature disabled Sept 30, 2025) |
-| Path C — az rest (PUT and GET) | Path C | Carried; ARM endpoint variable added for Azure Government |
+| Path C — az rest (PUT and GET) | Path C | Carried; ARM endpoint variable added |
 | Note: Sovereign clouds | GCC endpoints | GCC endpoint table |
 | Microsoft Graph — targeted evidence, not the feed | Microsoft Graph section | Carried |
 | Endpoints table | Endpoints table | Carried; v1.0 signIns scope corrected; beta sign-ups removed |

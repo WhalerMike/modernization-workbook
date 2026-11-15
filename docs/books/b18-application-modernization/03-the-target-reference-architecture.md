@@ -220,7 +220,7 @@ A row with `PreAuthentication` set to `passthrough`, or `AssignmentRequired` set
 Moving an application from the old proxy to application proxy puts its remote users behind Entra ID preauthentication and Conditional Access, which is an enforcement change for every user who reached it before without either. The retirement steps above already carry the inventory, the pilot and the incremental order; this subsection adds what the workbook's implementation conventions ask for and the steps leave implicit ([Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)).
 
 **Authority:** Microsoft-recommended for application proxy as the replacement for WAP-published applications, for the incremental publishing order and for a verified custom domain (the Learn pages cited above, read Nov 9, 2026). Risk-based recommended, the program's position: passthrough only on a pilot application, **Assignment required** left on, and CAE left on.
-**Applies:** web applications reached by remote users. Environment-dependent: application proxy is listed as available in Azure for US Government, and CAE for application proxy is not yet specified in any government cloud ([Availability in the government clouds](#availability-in-the-government-clouds)).
+**Applies:** web applications reached by remote users. Environment-dependent: application proxy is available with the commercial service GCC uses, and CAE for application proxy is not yet specified for GCC ([Availability in GCC](#availability-in-the-government-clouds)).
 
 | How-template step | Where this chapter covers it, or what it adds |
 |---|---|

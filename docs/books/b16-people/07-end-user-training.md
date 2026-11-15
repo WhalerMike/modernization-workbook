@@ -59,7 +59,7 @@ Microsoft lists the phishing-resistant methods Entra ID supports as Windows Hell
 
 | Method | What the user does | Where it fits |
 |---|---|---|
-| PIV or CAC card, through Entra certificate-based authentication | Inserts the card, chooses the smart card or certificate option, enters the card's PIN | The primary federal credential; Entra ID validates the certificate directly, without a federation server ([Book 07](../b07-pki/index.md)) |
+| PIV card, through Entra certificate-based authentication | Inserts the card, chooses the smart card or certificate option, enters the card's PIN | The primary federal credential; Entra ID validates the certificate directly, without a federation server ([Book 07](../b07-pki/index.md)) |
 | Windows Hello for Business | Unlocks the PC with a PIN, face or fingerprint after a one-time setup | Each user's own Windows PC; not for kiosks or shared accounts |
 | Passkey in Microsoft Authenticator, or a FIDO2 security key | Approves the sign-in with the phone's or key's own unlock gesture or PIN | A portable credential for a second device, for users without a PIV reader, and for shared workstations |
 
@@ -95,7 +95,7 @@ A user resets at `https://aka.ms/sspr`[^c07-sspr-tutorial] or, where the agency 
 
 ### Lockout
 
-The guide's lockout advice was close. Entra smart lockout locks an account after 10 failed attempts in the commercial cloud and three in Azure US Government tenants, for one minute at first and longer after repeated failures, and the agency can change both values with Entra ID P1.[^c07-lockout] The training should teach the faster exit: choosing **I forgot my password** in SSPR resets the lockout immediately, while **I know my password** doesn't.[^c07-lockout] The guide's note that frequent lockouts the user didn't cause may mean someone is trying their password is good advice and stays.
+The guide's lockout advice was close. Entra smart lockout locks an account after 10 failed attempts in the commercial cloud, which GCC uses, for one minute at first and longer after repeated failures, and the agency can change both values with Entra ID P1.[^c07-lockout] The training should teach the faster exit: choosing **I forgot my password** in SSPR resets the lockout immediately, while **I know my password** doesn't.[^c07-lockout] The guide's note that frequent lockouts the user didn't cause may mean someone is trying their password is good advice and stays.
 
 ### Corrections to the source password rules
 

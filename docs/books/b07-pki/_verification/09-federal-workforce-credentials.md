@@ -42,13 +42,13 @@ their text extracted to check section numbers and wording.
 | 29 | Give the derived credential its own rule; multifactor only if AAL3; CA scoping | same | restated-as-design | Program position |
 | 30 | IA-2(12) text: "Accept and electronically verify Personal Identity Verification-compliant credentials" | Acceptance, not replacement | verified | SP 800-53 Rev. 5 release 5.2.0 OSCAL catalog |
 | 31 | Non-PIV phishing-resistant authenticators permitted where PIV impractical, centrally managed | same | verified | M-22-09 §A |
-| 32 | One CRL endpoint per CA, HTTP(S), HTTP recommended; 10 CAs; 10 seconds; 20 MB / 45 MB; Require CRL validation | Four settings | verified | Learn, Entra CBA CRL |
+| 32 | One CRL endpoint per CA, HTTP(S), HTTP recommended; 10 CAs; 10 seconds; 20 MB; Require CRL validation | Four settings | verified | Learn, Entra CBA CRL |
 | 33 | IDManagement.gov CBA guide v2.0 (reviewed March 17, 2026) points to the Federal PKI list of PIV issuing CAs; recommends keeping default single-factor; low-affinity PrincipalName binding | Four settings; playbooks | verified | IDManagement.gov CBA on Entra guide |
 | 34 | Binding affinity classes | Four settings | verified | Learn, CBA technical concepts |
 | 35 | Built-in Phishing-resistant MFA strength = WHfB or platform credential, FIDO2, multifactor CBA; single-factor CBA in no built-in strength | Four settings | verified | Learn, Conditional Access authentication strengths |
 | 36 | Custom strength advanced options: issuer and policy OID for CBA | Four settings | verified | Learn, custom authentication strengths |
 | 37 | M-22-09: phishing-resistant MFA for staff, contractors, partners; app layer; discontinue SMS, voice, OTP, push for routine self-service | M-22-09 | verified | M-22-09 §A, Actions 2 |
-| 38 | Learn's M-22-09 page lists Entra CBA incl. PIV, CAC, derived PIV | M-22-09 | verified | Learn, Meet MFA requirements of M-22-09 |
+| 38 | Learn's M-22-09 page lists Entra CBA incl. PIV, derived PIV | M-22-09 | verified | Learn, Meet MFA requirements of M-22-09 |
 | 39 | FCPCAG2 root/trust anchor; Federal Bridge CA G4; cross-certified CAs audited annually; NFIs and PIV-I; FPKIMA operates both; not in Microsoft, Mozilla, Apple stores by default | Federal PKI trust | verified | IDManagement.gov FPKI 101 |
 | 40 | Agencies cross-certified with Bridge or Common Policy may assert mapped policies | Federal PKI trust | verified | FIPS 201-3 §5.2.1 |
 | 41 | M-19-17: accept and electronically verify other agencies' PIV rather than issue new; cross-government federation and agreements | Another agency's PIV | verified | M-19-17 §III item 3 |
@@ -56,7 +56,7 @@ their text extracted to check section numbers and wording.
 | 43 | FIPS 201-3: direct acceptance possible; federation "the recommended interoperability mechanism for most agencies"; RP never sees the credential; stable identifier; IAL, AAL, FAL known to RP; derived credentials often verifiable only by issuer | same | verified | FIPS 201-3 §3.3, §7.1–7.3 |
 | 44 | SP 800-217 final public draft November 14, 2024; no final | same | verified | CSRC SP 800-217 FPD page; /final URL returned 404 |
 | 45 | Program federates rather than trusting other agencies' issuing CAs | same | restated-as-design | Program position |
-| 46 | Cross-tenant inbound trust settings; MFA/device claims not trusted by default; organizational settings override defaults; P1 needed in the configuring tenant; audit category `CrossTenantAccessSettings`; Microsoft cloud settings for commercial–Azure Government; no cross-cloud B2B direct connect | Federation | verified | Learn, Cross-tenant access overview |
+| 46 | Cross-tenant inbound trust settings; MFA/device claims not trusted by default; organizational settings override defaults; P1 needed in the configuring tenant; audit category `CrossTenantAccessSettings`; no cross-cloud B2B direct connect | Federation | verified | Learn, Cross-tenant access overview |
 | 47 | CBA counts toward external users' strength only when done in the home tenant; trust off means MFA in resource tenant | Federation | verified | Learn, Authentication and Conditional Access for External ID, Table 1 |
 | 48 | Authentication strengths apply only to external users who authenticate with Entra ID; SAML/WS-Fed users get the MFA grant control | Federation | verified | same |
 | 49 | SAML/WS-Fed IdP federation is for partners with their own IdP and no Entra presence; guest account still created | Federation | verified | Learn, SAML/WS-Fed IdP federation |
@@ -116,6 +116,5 @@ Added for the Zero Trust Assessment closure update (the Book 07 part of CM-03). 
 |---|---|---|---|---|---|
 | Z1 | Zero Trust checks: privileged accounts have phishing-resistant methods registered; privileged roles targeted with phishing-resistant Conditional Access | Administrators: the PIV certificate | verified | Learn, Configure Microsoft Entra for Zero Trust: Protect identities and secrets | Nov 11, 2026 |
 | Z2 | Emergency access accounts: passkey (FIDO2) recommended, CBA if the organization has a PKI; excluded from blocking policies | Administrators table | verified | Learn, Manage emergency access accounts in Microsoft Entra ID | Nov 11, 2026 |
-| Z3 | CBA and Conditional Access available in Azure for US Government | Applies | verified | Learn, Microsoft Entra feature availability | Nov 11, 2026 |
 | Z4 | Admin binding on the cloud-only admin account; strength restricted to PIV issuer and OID; emergency accounts on a different method | Administrators table | restated-as-design | Program design on Book 04 Chapters 04 and 07 | Nov 11, 2026 |
 | Z5 | authenticationMethod reads X.509 Certificate for CBA sign-ins; KQL and Graph checks | Evidence queries | restated-as-design (query shape is the program's) | Program design | Nov 11, 2026 |

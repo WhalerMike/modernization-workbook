@@ -1,6 +1,6 @@
 # Verification — Chapter 08, Control Compliance Automation: Microsoft 365 and Azure
 
-Writer W6. Sources: `docs/compliance/Vol_VII_Book_02_M365_Control_Compliance_Automation.md` and `docs/compliance/Vol_VII_Book_03_Azure_Control_Compliance_Automation.md` (whole pages). Kept consistent with Book 11 Ch04/Ch05 (ScubaGear, BOD 25-01), Book 12 Ch02 (evidence contract fields and `disposition` rule), Ch06 (BOD 26-04 clock), Ch07 (Update Manager, patch record), Ch08 (Defender for Cloud in Azure Government, owned-tool-first), Book 13 Ch10 (native tools vs. evidence record; ticket to machine), Book 14 Ch11 (vendor scores are not assessment evidence), Book 10 Ch05/Ch09 (landing-zone initiative; feature register).
+Writer W6. Sources: `docs/compliance/Vol_VII_Book_02_M365_Control_Compliance_Automation.md` and `docs/compliance/Vol_VII_Book_03_Azure_Control_Compliance_Automation.md` (whole pages). Kept consistent with Book 11 Ch04/Ch05 (ScubaGear, BOD 25-01), Book 12 Ch02 (evidence contract fields and `disposition` rule), Ch06 (BOD 26-04 clock), Ch07 (Update Manager, patch record), Ch08 (Defender for Cloud, owned-tool-first), Book 13 Ch10 (native tools vs. evidence record; ticket to machine), Book 14 Ch11 (vendor scores are not assessment evidence), Book 10 Ch05/Ch09 (landing-zone initiative; feature register).
 
 All sources opened October 21, 2026: Microsoft pages through the Microsoft Learn MCP search/fetch tools; CISA, NIST, FedRAMP, ScubaGear (GitHub) and ServiceNow pages through WebFetch. No personal data sent to any site.
 
@@ -35,7 +35,7 @@ Internal vocabulary translated: "coordination layer" kept in lower case as Book 
 | 23 | GCC: Compliance Manager available; continuous compliance assessments rolling out; alerts in development | Compliance Manager | verified | Microsoft Learn GCC Purview planning page |
 | 24 | High compliance score isn't absolute measure of compliance | Compliance Manager | verified via published Book 14 Ch11 (linked) | Book 14 Ch11 (Compliance Manager FAQ) |
 | 25 | "No documented feed into another system" for Compliance Manager | Compliance Manager | restated: writer found only Excel exports in Microsoft Learn; stated as what the documentation shows | Microsoft Learn pages above |
-| 26 | Azure Policy FedRAMP Moderate built-in initiative for Azure and a separate Azure Government initiative | Azure Policy | verified | Microsoft Learn samples fedramp-moderate, gov-fedramp-moderate |
+| 26 | Azure Policy FedRAMP Moderate built-in initiative for Azure | Azure Policy | verified | Microsoft Learn samples fedramp-moderate |
 | 27 | "Compliant ... refers only to the policy definitions themselves..." caveat; manual policies | Azure Policy | verified (quote) | Microsoft Learn fedramp-moderate sample |
 | 28 | Standard evaluation every 24 hours; ~15 minutes after resource change; on-demand scan | Azure Policy | verified | Microsoft Learn "Get compliance data" evaluation triggers |
 | 29 | Exemption categories Waiver/Mitigated; `expiresOn`; not deleted at expiry, no longer honored; compliance substate queryable | Azure Policy | verified | Microsoft Learn exemption structure |
@@ -44,14 +44,13 @@ Internal vocabulary translated: "coordination layer" kept in lower case as Book 
 | 32 | Assigning a standard requires any plan except Servers P1 / APIs P1 | Defender | verified | Microsoft Learn assign standards |
 | 33 | Available standards: FedRAMP 'H' & 'M' (Azure); NIST SP 800-53 R5.1.1 (Azure, AWS, GCP) | Defender | verified | Microsoft Learn regulatory compliance standards |
 | 34 | Continuous export of regulatory compliance (stream or weekly snapshot) to Log Analytics/Event Hubs; workflow automation on assessment change | Defender | verified | Microsoft Learn "Improve regulatory compliance" |
-| 35 | Regulatory compliance, continuous export, workflow automation GA in Azure and Azure Government | Defender | verified | Microsoft Learn support matrix |
+| 35 | Regulatory compliance, continuous export, workflow automation GA in Azure | Defender | verified | Microsoft Learn support matrix |
 | 36 | Continuous export sends only on state change | Defender | verified via published Book 12 Ch02 (linked) | Book 12 Ch02 |
-| 37 | Source: Defender "within the GCC Moderate boundary" | Defender | corrected: Defender for Cloud is an Azure service (commercial or Azure Government), as Book 12 Ch08 established; GCC tenants pair with commercial Entra ID | Book 12 Ch08; Microsoft Learn, Cloud feature availability for US Government customers |
+| 37 | Source: Defender "within the GCC Moderate boundary" | Defender | corrected: Defender for Cloud is an Azure service, as Book 12 Ch08 established; GCC tenants pair with commercial Entra ID | Book 12 Ch08; Microsoft Learn, Cloud feature availability for US Government customers |
 | 38 | ARG: PolicyResources policystates; SecurityResources regulatorycompliancestandards with passed/failed/skipped/unsupported counts | Resource Graph | verified | Microsoft Learn ARG sample queries (Policy, Defender) |
-| 39 | Azure Resource Graph GA in Azure Government | Resource Graph | verified | Microsoft Learn Azure Government GA roadmap |
 | 40 | ARG max 1,000 records per request; page with skip token | Resource Graph | verified | Microsoft Learn paging guidance; Search-AzGraph |
 | 41 | Defender ServiceNow integration: incidents/changes/problems; governance rules with owner and timeframe; sync every 24 hrs; requires Defender CSPM | Routes | verified | Microsoft Learn ServiceNow integration overview; connect; governance rule |
-| 42 | ServiceNow integration GA in Azure, NA in Azure Government | Routes | verified | Microsoft Learn support matrix |
+| 42 | ServiceNow integration GA in Azure | Routes | verified | Microsoft Learn support matrix |
 | 43 | Defender's ServiceNow integration also targets the Configuration Compliance module | Routes/overlap | verified | Microsoft Learn ServiceNow integration overview |
 | 44 | ServiceNow Configuration Compliance imports Defender test results, "does not calculate the test results, but imports them"; CI lookup rules; remediation tasks (Yokohama) | Routes/overlap | verified | ServiceNow docs, Configuration Compliance imported data for Defender for Cloud |
 | 45 | GCC tenants pair with Entra ID in commercial | Routes | verified | Microsoft Learn, Cloud feature availability for US Government customers, Microsoft 365 integration (re-sourced Nov 13, 2026) |

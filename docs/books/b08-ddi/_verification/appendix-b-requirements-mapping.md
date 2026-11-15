@@ -31,7 +31,6 @@ Checked October 20, 2026. Source: the existing series page (Next Generation DDI,
 | 23 | Other IETF entries (882, 1034, 1035, 6891, 7344, 7858, 8484, 9250, 8106, 8555, 6698, 8659) | Sources | verified reachable; titles unchanged | rfc-editor.org |
 | 24 | RFC 9276, 9824, 7208, 6376, 8461, 9460, 9848, 9849, CA/B Ballot 187 | Sources | added (cited by Appendix A) | rfc-editor.org; cabforum.org |
 | 25 | Azure DNSSEC "public zones only; Private DNS not supported; automatic ZSK rollover" | Sources | verified: signing prerequisite "must be hosted by Azure Public DNS"; ZSK rolled automatically; how-to page added | Learn, DNSSEC overview; How to sign |
-| 26 | Azure Government roadmap | Sources | added (supports Appendix C) | Learn, Azure Government GA roadmap |
 | 27 | INR "WW Commercial only; Cisco IOS XE SD-WAN 20.4/17.4" | Sources | verified; "not GCC Moderate" made explicit | Learn, INR |
 | 28 | Microsoft Learn titles (Private Endpoint DNS, Private Resolver, Private DNS, resolver policy, AVNM IPAM, Azure Gov compare, M365 endpoints, GCC, DNS and AD DS, SRV verify, DoH client) | Sources | verified (titles match) | Learn |
 | 29 | AWS Route 53 DNSSEC signing/validation, DNS Firewall | Sources | verified (titles match); alias-records page added | AWS docs |
@@ -70,7 +69,7 @@ Checked October 20, 2026. Source: the existing series page (Next Generation DDI,
 
 ## Moderate-civilian sweep (October 29, 2026)
 
-The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) is treated as a valid Moderate location. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|

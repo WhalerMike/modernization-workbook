@@ -245,8 +245,7 @@ foreach ($Item in $Policies) {
 }
 
 # Upload to a storage account in the alternate region, authorized with the
-# signed-in account (Connect-AzAccount first; -Environment AzureUSGovernment
-# for Azure Government).
+# signed-in account (Connect-AzAccount first).
 $Context = New-AzStorageContext -StorageAccountName "<alternate-region-account>" -UseConnectedAccount
 
 Get-ChildItem -Path $ExportPath -Filter "*-$Timestamp.json" | ForEach-Object {
@@ -264,7 +263,7 @@ Two limits are worth stating. These two cmdlets don't cover every Intune policy 
 
 ### Audit logs
 
-The earlier material listed "a geo-redundant Log Analytics workspace" as the logging tier's CP-9 evidence. Microsoft's workspace replication is real but narrower than that suggests. It is "a paid, configurable feature" in which switching to the secondary workspace "is an action you trigger manually," and it is supported only for workspaces in listed region groups, which name commercial Azure regions and no Azure Government region.[^c06-la-repl] Microsoft's Sentinel continuity guidance tells customers in US government clouds to "create two workspaces, one in each of their relevant regions."[^c06-sentinel-bcdr] The plan states which arrangement the agency uses, and [Book 12, Chapter 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) covers retention and tamper-protected copies of logs.
+The earlier material listed "a geo-redundant Log Analytics workspace" as the logging tier's CP-9 evidence. Microsoft's workspace replication is real but narrower than that suggests. It is "a paid, configurable feature" in which switching to the secondary workspace "is an action you trigger manually," and it is supported only for workspaces in listed region groups, which name commercial Azure regions.[^c06-la-repl] The plan states which arrangement the agency uses, and [Book 12, Chapter 12](../b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md) covers retention and tamper-protected copies of logs.
 
 ### Testing the storage site
 
@@ -283,7 +282,7 @@ That record is the CP-9(1) evidence and part of the CP-4 test.
 The backup and export steps above, and the yearly restore test, are this chapter's configuration procedure. [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md)'s conventions apply as below.
 
 **Authority:** Mandated: CP-6, CP-9 and CP-9(1) where the system's baseline selects them, with the frequencies the agency sets. Microsoft-recommended for immutable vaults, soft delete and multi-user authorization on Azure Backup (Learn, as cited above). Risk-based recommended for the quarterly Intune policy export and the yearly restore of every data category, which are the program's design.
-**Applies:** All systems in the plan. Environment-dependent: Log Analytics workspace replication names no Azure Government region ([Audit logs](#audit-logs)); the export script's Azure environment parameter differs for Azure Government.
+**Applies:** All systems in the plan. Environment-dependent: Log Analytics workspace replication supports the listed commercial region groups only ([Audit logs](#audit-logs)).
 
 **Control states.** <!-- Book 00, Appendix D: Designed, Configured, Enforced, Evidenced, Operated -->
 
@@ -534,7 +533,6 @@ FedRAMP's 2026 rules include four Recovery Planning indicators: KSI-RPL-ABO (bac
 [^c06-graph-clouds]: Microsoft Learn, "Microsoft Graph national cloud deployments," service root endpoints, and "Connect-MgGraph" (environments), <https://learn.microsoft.com/graph/deployments> and <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph> (accessed Oct 21, 2026).
 [^c06-azstorage]: Microsoft Learn, Az.Storage reference, "New-AzStorageContext" and "Set-AzStorageBlobContent," <https://learn.microsoft.com/powershell/module/az.storage/new-azstoragecontext> and <https://learn.microsoft.com/powershell/module/az.storage/set-azstorageblobcontent> (accessed Oct 21, 2026).
 [^c06-la-repl]: Microsoft Learn, "Enhance resilience by replicating your Log Analytics workspace across regions" (switchover is manual; supported region groups), and "Reliability in Azure Monitor Logs," <https://learn.microsoft.com/azure/azure-monitor/logs/workspace-replication> and <https://learn.microsoft.com/azure/reliability/reliability-monitor-logs> (accessed Oct 21, 2026).
-[^c06-sentinel-bcdr]: Microsoft Learn, "Business continuity and disaster recovery for Microsoft Sentinel," regional and cloud support, <https://learn.microsoft.com/azure/sentinel/business-continuity-disaster-recovery> (accessed Oct 21, 2026).
 [^c06-regions]: Microsoft Learn, "Azure region pairs and nonpaired regions," <https://learn.microsoft.com/azure/reliability/regions-paired> (accessed Oct 21, 2026).
 [^c06-asr]: Microsoft Learn, "About Site Recovery," and "Run a test failover (disaster recovery drill) to Azure," <https://learn.microsoft.com/azure/site-recovery/site-recovery-overview> and <https://learn.microsoft.com/azure/site-recovery/site-recovery-test-failover-to-azure> (accessed Oct 21, 2026).
 [^c06-connect-gr]: Amazon Web Services, *Amazon Connect Administrator Guide*, "Get started with Connect Customer Global Resiliency," <https://docs.aws.amazon.com/connect/latest/adminguide/get-started-connect-global-resiliency.html> (accessed Oct 21, 2026).

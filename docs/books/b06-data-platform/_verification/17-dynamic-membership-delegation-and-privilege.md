@@ -25,7 +25,7 @@ Checked October 20, 2026. Source: the existing page (former Book 07, Chapter 2) 
 | 17 | Restricted AU blocks PIM, access reviews, entitlement management, lifecycle workflows | AUs | verified | Same |
 | 18 | Source: "Restricted management AUs accept only plain security groups" | AUs | corrected | Same: users and devices allowed; among groups only security groups |
 | 19 | Setting can't change after creation | AUs | verified; 100-unit limit added | Same |
-| 20 | Dynamic AU membership in commercial cloud, not Azure Government; users/devices not groups | AUs | verified; "specialized clouds" wording and P1-per-member added | Learn, Manage users or devices for an AU with dynamic rules |
+| 20 | Dynamic AU membership in commercial cloud; users/devices not groups | AUs | verified; "specialized clouds" wording and P1-per-member added | Learn, Manage users or devices for an AU with dynamic rules |
 | 21 | Role-assignable groups require assigned membership | PIM | verified | Learn, Manage rules (note); Use Entra groups to manage role assignments |
 | 22 | PIM for Groups: eligible, time-bound, MFA/approval/justification | PIM | verified | Learn, PIM for Groups |
 | 23 | PIM for Groups can't manage dynamic or on-prem-synced groups | PIM | verified | Same |

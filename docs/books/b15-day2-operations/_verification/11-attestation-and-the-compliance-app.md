@@ -27,7 +27,7 @@ Writer W7. Sources: `docs/compliance/Vol_VII_Book_04_Control_Attestation_Evidenc
 | 19 | CAM: standardized authorization package, seven RMF stages; POA&M single pane; POA&Ms include all package issues | What ServiceNow provides | verified | CAM release notes (Xanadu) |
 | 20 | CAM OSCAL: SSP export (Xanadu); SSP and POA&M generation from package, POA&M import (Zurich); AP and AR import/export (Australia) | What ServiceNow provides | verified | Combined CAM release notes Xanadu→Australia |
 | 21 | Defender for Cloud → ServiceNow Configuration Compliance and ITSM integration | What ServiceNow provides | verified | MS Learn integration-servicenow |
-| 22 | ServiceNow integration GA in Azure, NA in Azure Government | What ServiceNow provides | verified | MS Learn support matrix |
+| 22 | ServiceNow integration GA in Azure | What ServiceNow provides | verified | MS Learn support matrix |
 | 23 | Partner app (announced July 2026) mirrors 46 KSIs in CAM; planned for the Store | What ServiceNow provides | verified as an announcement only (press release; capability not verified) | CIO Influence reprint |
 | 24 | ServiceNow GCC: FedRAMP Certified, Class D, High, 2019-08-12, 101 authorizations | What ServiceNow provides | verified; corrects the source's "never cite High" | FedRAMP products.json F1305072116 |
 | 25 | Recommendation: buy native first, build only reconciliation, closure gate, map check | Build, buy or both | restated-as-design | Program recommendation |

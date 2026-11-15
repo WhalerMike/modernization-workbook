@@ -49,7 +49,7 @@ Checked October 21, 2026 by writer W4. Sources: `docs/compliance/Vol_IV_Book_02_
 | 41 | scan-action@v7; inputs sbom, output-format (cyclonedx-json valid), output-file, fail-build default true, severity-cutoff default medium | Code | verified; source @v3 corrected | anchore/scan-action README |
 | 42 | actions/attest@v4, subject-path, sbom-path; permissions id-token, contents, attestations; gh attestation verify | Code | verified (new) | GitHub Docs how-to |
 | 43 | actions/checkout@v6 current | Code | verified | scan-action README examples |
-| 44 | azure/login@v3 with OIDC, client-id/tenant-id/subscription-id, id-token: write; environment AzureUSGovernment | Code | verified (new); replaces SAS token | Azure/login README; Microsoft Learn OIDC page |
+| 44 | azure/login@v3 with OIDC, client-id/tenant-id/subscription-id, id-token: write | Code | verified (new); replaces SAS token | Azure/login README; Microsoft Learn OIDC page |
 | 45 | az storage blob upload supports --auth-mode login and --tier | Code | verified | Azure CLI reference |
 | 46 | Immutability is a policy (time-based retention, legal hold); all access tiers support it; source's "Azure Blob immutable tier" + Archive | Code note | corrected | Microsoft Learn immutable storage overview |
 | 47 | Source "7 years (NARA standard)" retention | Code note | removed | Retention per the records schedule (program design) |

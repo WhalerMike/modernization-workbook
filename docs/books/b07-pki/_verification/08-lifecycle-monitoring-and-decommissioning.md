@@ -28,7 +28,7 @@ the NIST control-closure table (stay in place; linked).
 | 17 | PKIView early warning; doesn't replace relying-party validation | CRLs that stay | verified | Learn, Monitor AD CS publication health with Enterprise PKI |
 | 18 | Entra CBA: one CDP, HTTP(S) only, no OCSP or LDAP | Entra CBA | verified | Learn, What is Entra CBA (Unsupported scenarios) |
 | 19 | Prefer HTTP over HTTPS for CRL | Entra CBA | verified | Learn, Entra CBA CRL |
-| 20 | 20 MB public / 45 MB US Gov; 10 seconds; CBA fails if CRL can't download | Entra CBA | verified (consistent with Book 03 Ch09) | same |
+| 20 | 20 MB public; 10 seconds; CBA fails if CRL can't download | Entra CBA | verified (consistent with Book 03 Ch09) | same |
 | 21 | No CRL URL: revoked certs don't fail | Entra CBA | verified | Learn, How to configure CAs for CBA |
 | 22 | Cloud PKI CRL valid 7 days, 3.5-day republish, updated per revocation | Entra CBA | verified (consistent with Book 03 Ch09) | Learn, Overview of Cloud PKI |
 | 23 | Manual revoke with active SCEP assignment reissues | Entra CBA; troubleshooting | verified | Learn, Monitoring for Cloud PKI |
@@ -158,7 +158,7 @@ Added for the Zero Trust Assessment closure update (B07-01, and the Book 07 part
 | Z8 | Recommendations for expiring application and service principal credentials, preview, 30 days; validate key ID in sign-in logs before removing the old credential; prefer the application object | Design table; telemetry; report-only | verified | Learn, Renew expiring application credentials; Renew expiring service principal credentials | Nov 11, 2026 |
 | Z9 | Graph keyCredential key value returned only on single-object $select | Rollover | verified | Learn, Graph keyCredential resource type | Nov 11, 2026 |
 | Z10 | addKey needs proof of possession signed with an existing key | Rollover | verified | Learn, Graph application: addKey | Nov 11, 2026 |
-| Z11 | Graph service principal update available in US Gov L4 and L5 | Applies | verified | Learn, Graph Update servicePrincipal | Nov 11, 2026 |
+| Z11 | Graph service principal update available in the global service | Applies | verified | Learn, Graph Update servicePrincipal | Nov 11, 2026 |
 | Z12 | Approved issuers, HSM criteria, 36-day overlap, rings, 45-day flag, inventory script | Design; Enforcement | restated-as-design | Program design | Nov 11, 2026 |
 
 ## Zero Trust closure, Phase 4 (November 11, 2026)

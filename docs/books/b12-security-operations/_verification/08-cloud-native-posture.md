@@ -7,10 +7,10 @@ Checked October 21, 2026 by writer W5. Source: `docs/compliance/Vol_III_Book_04_
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | CM-6 statement: most restrictive mode, implement, approve deviations, monitor and control changes | CSPM | verified | SP 800-53 Rev. 5.2.0 OSCAL, CM-6 |
-| 2 | Source: "Microsoft Defender for Cloud … available within GCC at FedRAMP Moderate" | Owned-tool-first; per-platform table | corrected | Defender for Cloud is an Azure service in the FedRAMP High scope of Azure and Azure Government (Microsoft Learn compliance scope page); Marketplace lists Azure Commercial and Azure Government at Class D. GCC is Microsoft 365; GCC tenants pair with Entra ID in commercial Azure (Azure feature availability page, AIP note 1) |
+| 2 | Source: "Microsoft Defender for Cloud … available within GCC at FedRAMP Moderate" | Owned-tool-first; per-platform table | corrected | Defender for Cloud is an Azure service in the FedRAMP High scope of Azure (Microsoft Learn compliance scope page); Marketplace lists Azure Commercial at Class D. GCC is Microsoft 365; GCC tenants pair with Entra ID in commercial Azure (Azure feature availability page, AIP note 1) |
 | 3 | FedRAMP: each agency "still authorizes its own federal information systems"; AO accepts risk for "the configuration selected, the integrations enabled" | Owned-tool-first rule 4 | verified | fedramp.gov/2026/agencies/use/ |
 | 4 | Source's "Moderate-exclusive rule" / "High-covers-Moderate boundary treatment" | Owned-tool-first rule 4 | restated-as-design | Stated as the program's rule, anchored to the FedRAMP use page and Book 10 Ch03 |
-| 5 | Defender for Cloud: Foundational CSPM free; Defender CSPM plan GA in Azure and Azure Government | Table | verified | Learn, Defender for Cloud support matrices (cloud support) |
+| 5 | Defender for Cloud: Foundational CSPM free; Defender CSPM plan GA in Azure | Table | verified | Learn, Defender for Cloud support matrices (cloud support) |
 | 6 | Source: AWS Config + Security Hub "FedRAMP-authorized, above Moderate (AWS GovCloud Class D)" | Table; corrections | corrected | products.json: AWS Config and AWS Security Hub CSPM in `certified_services` of both AWS US East/West (Class C, Moderate) and AWS GovCloud (Class D) |
 | 7 | Security Hub is now named "AWS Security Hub CSPM" | Table | corrected (naming) | AWS Security Hub User Guide intro page; products.json service name |
 | 8 | AWS Config NIST 800-53 Rev 5 conformance pack exists; packs "are not designed to fully ensure compliance" | Table; footnote | verified | AWS Config Developer Guide page |
@@ -22,8 +22,6 @@ Checked October 21, 2026 by writer W5. Source: `docs/compliance/Vol_III_Book_04_
 | 15 | Source: Prisma Cloud "FedRAMP High-only" | Corrections | corrected | products.json: Palo Alto Networks Government Cloud Services (FR1913470600, Class C) and GCS-HIGH (FR2317253567, Class D) both describe Prisma Cloud and Cortex Cloud |
 | 16 | Source: Wiz for Government "FedRAMP High-only" | Corrections | corrected (partial) | products.json: Wiz for U.S. Government FR2308034636A Certified Class D; Wiz Moderate for U.S. Government FR2308034636 In Process, Class C |
 | 17 | Defender CSPM, Defender for Servers, Defender for Containers GA on Azure, AWS, GCP | Reach | verified | Learn multicloud support matrix |
-| 18 | AWS connector "isn't available on the national government clouds" incl. Azure Government | Reach | verified (new) | Learn, Connect AWS accounts, prerequisites note |
-| 19 | Azure Government: CIEM, DevOps security, code-to-runtime mapping, data and AI dashboard NA; agentless VM scanning, internet exposure analysis, regulatory compliance, Defender for Containers GA; attack path listed both NA and GA | Reach | verified (new); inconsistency flagged | Learn cloud support matrix (two rows: "Attack path" NA, "Attack path analysis" GA) |
 | 20 | CNAPP view-to-control table (CM-6, RA-5, SC-7, AC-6, SA-11) | CNAPP | restated-as-design | Source's mapping; program's control map |
 | 21 | SSDF SP 800-218 v1.1 Feb 2022; Rev. 1 (v1.2) IPD Dec 17, 2025 | CNAPP footnote | verified (new) | CSRC pages |
 | 22 | Attack path: cloud security graph; starts at external entry point; follows lateral movement to critical target | CNAPP | verified | Learn, "Security explorer and attack paths" |
@@ -34,7 +32,7 @@ Checked October 21, 2026 by writer W5. Source: `docs/compliance/Vol_III_Book_04_
 | 27 | Azure Policy for Kubernetes extends Gatekeeper, "an admission controller webhook for Open Policy Agent"; AKS and Arc; EKS/GKE supported without conformance validation | Kubernetes | verified (new) | Learn, Azure Policy for Kubernetes; Arc extensions release page |
 | 28 | Program admission baseline (no privileged, approved registries, no unscanned, no mutable tags) | Kubernetes | restated-as-design | Source's list, labeled as program design |
 | 29 | SI-3 statement | Kubernetes | verified | SP 800-53 OSCAL SI-3 |
-| 30 | Continuous export GA in Azure and Azure Government | Evidence | verified | Learn cloud support matrix |
+| 30 | Continuous export GA in Azure | Evidence | verified | Learn cloud support matrix |
 | 31 | Source: posture "rolls up to CISA CDM and the FedRAMP 20x KSI pipeline" | Evidence | restated | Chapter keeps the evidence-contract routing and links Ch02/Ch12; no CDM claim made |
 | 32 | Consolidated Rules for 2026 launched June 24, 2026; KSI control mappings updated Oct 13, 2026; themes and named indicators | KSI | verified (new) | fedramp.gov KSI page changelogs |
 | 33 | Source's KSI mapping (KSI-CMT = configuration baseline, KSI-SVC = hardening/admission/IaC, KSI-MLA = vulnerability + runtime) | KSI | corrected | Remapped to current named indicators: KSI-SVC-ACM, KSI-CNA-EIS, KSI-MLA-EVC, KSI-CNA-MAT, KSI-CNA-RNT, KSI-CMT-RMV, KSI-IAM-ELP, KSI-MLA-OSM, each with FedRAMP's text and related controls quoted from the page |

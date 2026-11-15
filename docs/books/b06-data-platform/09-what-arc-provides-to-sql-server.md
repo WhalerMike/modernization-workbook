@@ -75,7 +75,7 @@ The Arc managed identity is the only option that is both cloud-native and creden
 
 Using Arc for this purpose doesn't depend on the SQL Server license type. Microsoft lists connecting to Arc, inventory, Microsoft Entra authentication and Defender for Cloud as available to license-only customers as well as those with Software Assurance, a SQL Server subscription or pay-as-you-go; features such as best practices assessment, automatic updates and monitoring need Software Assurance, a subscription or pay-as-you-go.[^c09-arc-sql] Availability isn't the same as price: Defender for Cloud plans are paid services in their own right. [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) covers the server-side costs, Extended Security Updates and the Windows Server Management benefit.
 
-Two placement constraints matter for a federal boundary. First, SQL Server enabled by Azure Arc in the US Government Virginia region currently supports only onboarding, inventory, licensing and billing, failover cluster instance management and ESU licenses; Microsoft Entra authentication isn't in that list.[^c09-usgov] The program therefore assumes, as Book 05 does, a commercial Azure subscription in the same directory as the GCC tenant. Second, SQL Server needs access to the Azure public cloud to use Microsoft Entra authentication.[^c09-mi-2025]
+One placement constraint matters for a federal boundary: SQL Server needs access to the Azure public cloud to use Microsoft Entra authentication.[^c09-mi-2025] The program therefore assumes, as Book 05 does, a commercial Azure subscription in the same directory as the GCC tenant.
 
 ## What Arc doesn't do
 
@@ -84,7 +84,7 @@ Arc's effect is often overstated in both directions. A domain-joined client usin
 ::: {.callout-note title="What this chapter establishes"}
 1. Arc gives the server an ARM identity and a system-assigned managed identity whose tokens come from the local endpoint (`localhost:40342`); the instance's Entra identity is an app registration and Key Vault certificate on SQL Server 2022 and the managed identity on SQL Server 2025.
 2. Layer 1 (SQL-engine Entra authentication) is independent of Layer 2 (OS-level Entra sign-in) and must never be blocked on it.
-3. Arc provides the capability but doesn't activate it, and it doesn't replace the Windows account the service runs as; of the alternatives, it's the only one both credential-free and independent of AD. Entra authentication through Arc is available under every SQL Server license type, but not yet in the US Government Virginia region.
+3. Arc provides the capability but doesn't activate it, and it doesn't replace the Windows account the service runs as; of the alternatives, it's the only one both credential-free and independent of AD. Entra authentication through Arc is available under every SQL Server license type.
 :::
 
 ::: {.callout-tip}
@@ -105,5 +105,4 @@ Arc's effect is often overstated in both directions. A domain-joined client usin
 [^c09-gmsa]: Microsoft Learn, "Group Managed Service Accounts overview," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview> (accessed Oct 20, 2026).
 [^c09-noarc]: Microsoft Learn, "Tutorial: Enable Microsoft Entra authentication for SQL Server on Windows without Azure Arc," <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/microsoft-entra-authentication-sql-server-enable-without-arc> (accessed Oct 20, 2026).
 [^c09-cloudpki]: Microsoft Learn, "Overview of Microsoft Cloud PKI for Microsoft Intune," <https://learn.microsoft.com/intune/cloud-pki/> (accessed Oct 20, 2026).
-[^c09-usgov]: Microsoft Learn, "SQL Server enabled by Azure Arc in US Government," available features, <https://learn.microsoft.com/sql/sql-server/azure-arc/us-government-region> (accessed Oct 20, 2026).
 [^c09-auth-mode]: Microsoft Learn, "Change server authentication mode," <https://learn.microsoft.com/sql/database-engine/configure-windows/change-server-authentication-mode> (accessed Oct 20, 2026).

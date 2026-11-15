@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The five-step loop the program runs on every control surface, and why the coordination platform reads control state but holds no standing write to it. What produces control evidence in Microsoft 365 (ScubaGear, Microsoft Graph, Purview audit, Purview Compliance Manager) and in Azure (Azure Policy regulatory compliance initiatives, Defender for Cloud regulatory compliance, Azure Resource Graph), each checked for availability in GCC and Azure Government. Three ways results reach the IT service management (ITSM) platform, where ServiceNow's own compliance applications overlap the design, and a read-only collector to start from.
+The five-step loop the program runs on every control surface, and why the coordination platform reads control state but holds no standing write to it. What produces control evidence in Microsoft 365 (ScubaGear, Microsoft Graph, Purview audit, Purview Compliance Manager) and in Azure (Azure Policy regulatory compliance initiatives, Defender for Cloud regulatory compliance, Azure Resource Graph), each checked for availability in GCC and commercial Azure. Three ways results reach the IT service management (ITSM) platform, where ServiceNow's own compliance applications overlap the design, and a read-only collector to start from.
 :::
 
 [Chapter 07](07-the-cmdb-and-asset-identity.md) gave every asset one identity in the configuration management database (CMDB). This chapter and [Chapter 09](09-control-automation-aws-and-vmware.md) put control results against those identities. Microsoft 365 and Azure come first because most agencies run both, and because the two surfaces show the two shapes the problem takes. Microsoft 365 is software as a service: the agency configures it but doesn't host it, so its control obligations are mostly about identity, configuration baselines and data protection. Azure is infrastructure the agency fills with its own workloads, so it adds resource configuration, vulnerabilities and patching.
@@ -80,7 +80,7 @@ The program uses Compliance Manager as a readiness signal, not as the evidence o
 
 ### Azure Policy and the FedRAMP regulatory compliance initiatives
 
-Azure Policy evaluates resources against assigned definitions. Microsoft publishes regulatory compliance built-in initiatives that group those definitions by control, including a FedRAMP Moderate initiative for Azure and a separate FedRAMP Moderate (Azure Government) initiative with its own definitions.[^c08-policy-fedramp][^c08-policy-fedramp-gov] [Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md) assigns the initiative at the top of the landing zone in audit mode; day two is about what happens to its results.
+Azure Policy evaluates resources against assigned definitions. Microsoft publishes regulatory compliance built-in initiatives that group those definitions by control, including a FedRAMP Moderate initiative for Azure.[^c08-policy-fedramp] [Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md) assigns the initiative at the top of the landing zone in audit mode; day two is about what happens to its results.
 
 Microsoft's own caveat on every one of these initiatives is the most important sentence to carry into an assessment: "Compliant" in Azure Policy "refers only to the policy definitions themselves; this doesn't ensure you're fully compliant with all requirements of a control," and "compliance in Azure Policy is only a partial view of your overall compliance status."[^c08-policy-fedramp] Many FedRAMP controls in the initiative map only to manual policies, which Azure can't test. The initiative is a source of findings for the technical settings it covers, not a verdict on a control.
 
@@ -92,29 +92,29 @@ Exceptions have a native form. A policy exemption has a category, **Waiver** (th
 
 Defender for Cloud presents regulatory standards in its regulatory compliance dashboard; the standards are Azure Policy initiatives underneath. It assesses the controls that can be checked automatically and greys out those that can't, and a standard assigned to a scope with no relevant resources doesn't appear at all.[^c08-mdc-standards] Assigning a standard needs any Defender for Cloud plan except Defender for Servers Plan 1 or Defender for APIs Plan 1.[^c08-mdc-assign] Microsoft's list of available standards shows FedRAMP High and Moderate for Azure and NIST SP 800-53 R5.1.1 across Azure, AWS and Google Cloud.[^c08-mdc-standards]
 
-For day two the useful features are continuous export, which streams regulatory compliance data (or weekly snapshots of it) to a Log Analytics workspace or an event hub, and workflow automation, which can start a Logic App when a regulatory compliance assessment changes state.[^c08-mdc-dashboard] Microsoft's support matrix lists regulatory compliance, continuous export and workflow automation as generally available in both Azure and Azure Government.[^c08-mdc-matrix] Continuous export's limit from [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md#one-queue-for-every-finding) applies here too: it sends a record when state changes, so silence isn't proof that nothing is open.
+For day two the useful features are continuous export, which streams regulatory compliance data (or weekly snapshots of it) to a Log Analytics workspace or an event hub, and workflow automation, which can start a Logic App when a regulatory compliance assessment changes state.[^c08-mdc-dashboard] Microsoft's support matrix lists regulatory compliance, continuous export and workflow automation as generally available in Azure.[^c08-mdc-matrix] Continuous export's limit from [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md#one-queue-for-every-finding) applies here too: it sends a record when state changes, so silence isn't proof that nothing is open.
 
 Vulnerability findings and patch results from Defender for Cloud, Defender Vulnerability Management and Azure Update Manager feed the same loop for RA-5 and SI-2. [Book 12, Chapter 06](../b12-security-operations/06-vulnerability-management.md) and [Chapter 07](../b12-security-operations/07-patch-configuration-and-baselines.md) build those queues; this chapter doesn't repeat them.
 
 ### Azure Resource Graph as the read path
 
-Azure Resource Graph is the simplest read-only way to pull both kinds of result at scale. Policy compliance states are in the `PolicyResources` table (`microsoft.policyinsights/policystates`), and Defender for Cloud's per-standard regulatory compliance state, with passed, failed, skipped and unsupported control counts, is in the `SecurityResources` table (`microsoft.security/regulatorycompliancestandards`).[^c08-arg-policy][^c08-arg-mdc] Exempt resources and the compliance state they would have without the exemption can be queried the same way.[^c08-exemption] Resource Graph is generally available in Azure Government.[^c08-azgov-roadmap] It returns at most 1,000 records per request, so a collector has to page with a skip token.[^c08-arg-paging]
+Azure Resource Graph is the simplest read-only way to pull both kinds of result at scale. Policy compliance states are in the `PolicyResources` table (`microsoft.policyinsights/policystates`), and Defender for Cloud's per-standard regulatory compliance state, with passed, failed, skipped and unsupported control counts, is in the `SecurityResources` table (`microsoft.security/regulatorycompliancestandards`).[^c08-arg-policy][^c08-arg-mdc] Exempt resources and the compliance state they would have without the exemption can be queried the same way.[^c08-exemption] It returns at most 1,000 records per request, so a collector has to page with a skip token.[^c08-arg-paging]
 
 ## Getting results into the ITSM platform
 
 There are three ways a result reaches the ITSM platform. The program's design uses whichever one the agency can run in its own cloud, but always lands the same evidence record.
 
-![Three routes from a native result to an owned task: the vendor's connector, the ITSM platform's own import, or the program's read-only collector. Whichever route is used, the evidence record follows the same contract.](../../images/diagrams/b15-day2-operations/svg/ch08-three-routes.svg){#fig-ch08-three-routes fig-alt="On the left, a blue card for native results: ScubaGear JSON, Graph reads, Azure Policy states and Defender for Cloud assessments. Three arrows lead to three cards stacked in the middle. An amber card, vendor connector: Defender for Cloud's ServiceNow integration opens incidents, changes or problems from recommendations; generally available in Azure, not available in Azure Government; synchronizes every 24 hours. A slate card, platform import: ServiceNow Configuration Compliance imports Defender for Cloud test results and matches them to CMDB records; it imports results, it doesn't calculate them. A green card, program collector: a read-only service identity reads Resource Graph, Graph and ScubaGear output and writes evidence-contract records. All three lead to a violet card on the right: one typed task per finding against the CMDB configuration item, with control, owner, due date and exception link, closing on a re-test."}
+![Three routes from a native result to an owned task: the vendor's connector, the ITSM platform's own import, or the program's read-only collector. Whichever route is used, the evidence record follows the same contract.](../../images/diagrams/b15-day2-operations/svg/ch08-three-routes.svg){#fig-ch08-three-routes fig-alt="On the left, a blue card for native results: ScubaGear JSON, Graph reads, Azure Policy states and Defender for Cloud assessments. Three arrows lead to three cards stacked in the middle. An amber card, vendor connector: Defender for Cloud's ServiceNow integration opens incidents, changes or problems from recommendations; generally available in Azure; synchronizes every 24 hours. A slate card, platform import: ServiceNow Configuration Compliance imports Defender for Cloud test results and matches them to CMDB records; it imports results, it doesn't calculate them. A green card, program collector: a read-only service identity reads Resource Graph, Graph and ScubaGear output and writes evidence-contract records. All three lead to a violet card on the right: one typed task per finding against the CMDB configuration item, with control, owner, due date and exception link, closing on a re-test."}
 
 | Route | What it does | Government-cloud note | Program treatment |
 |---|---|---|---|
-| Vendor connector | Defender for Cloud's ServiceNow integration creates and links ServiceNow incidents, changes or problems from recommendations, manually or through governance rules that set an owner and a remediation timeframe; synchronization runs every 24 hours[^c08-mdc-snow] | Requires the Defender CSPM plan; listed as generally available in Azure and not available in Azure Government[^c08-mdc-snow][^c08-mdc-matrix] | Usable for Azure commercial subscriptions; a convenience for routing, not the evidence record |
+| Vendor connector | Defender for Cloud's ServiceNow integration creates and links ServiceNow incidents, changes or problems from recommendations, manually or through governance rules that set an owner and a remediation timeframe; synchronization runs every 24 hours[^c08-mdc-snow] | Requires the Defender CSPM plan; listed as generally available in Azure[^c08-mdc-snow][^c08-mdc-matrix] | Usable for Azure commercial subscriptions; a convenience for routing, not the evidence record |
 | Platform import | ServiceNow Configuration Compliance imports Defender for Cloud test results on scheduled jobs and matches them to CMDB records through CI lookup rules; it "does not calculate the test results, but imports them"[^c08-snow-cc] | Depends on what the agency's Azure scope and ServiceNow instance can reach | A strong option where licensed; remediation tasks live in ServiceNow |
 | Program collector | A read-only service identity reads Resource Graph, Graph and ScubaGear output and writes evidence-contract records that open or update tasks | Works in every cloud, with the endpoints set per cloud | The default where neither of the others is available, and the only route that also covers ScubaGear |
 
 : Three routes to the ITSM platform {.striped .hover}
 
-The routes can be combined, but each source should feed through exactly one of them. Two routes for the same finding produce two tasks with two clocks, and the record of which one closed it becomes ambiguous. The GCC case is common and easy to get wrong: Microsoft 365 GCC tenants pair with Entra ID in commercial Azure, so a GCC agency's Defender for Cloud subscriptions are usually in commercial Azure, where the vendor connector works; an agency on Azure Government can't use it.[^c08-m365-pairing][^c08-mdc-matrix]
+The routes can be combined, but each source should feed through exactly one of them. Two routes for the same finding produce two tasks with two clocks, and the record of which one closed it becomes ambiguous. The GCC case is common and easy to get wrong: Microsoft 365 GCC tenants pair with Entra ID in commercial Azure, so a GCC agency's Defender for Cloud subscriptions are usually in commercial Azure, where the vendor connector works.[^c08-m365-pairing][^c08-mdc-matrix]
 
 ### The clock on each task
 
@@ -133,7 +133,7 @@ An agency that licenses CAM can land the roll-up of this chapter's results there
 
 ::: {.callout-warning}
 ## Illustrative, not tested against a production tenant or subscription
-This script is an example of the collector route. It hasn't been run against a production tenant or subscription. It reads data only and changes nothing, but read it, run it against a test scope first and review its output before relying on it. Connect with the environment that matches your cloud (`AzureUSGovernment` for Azure Government; the defaults for commercial Azure and GCC).
+This script is an example of the collector route. It hasn't been run against a production tenant or subscription. It reads data only and changes nothing, but read it, run it against a test scope first and review its output before relying on it. Connect with the defaults, which serve commercial Azure and GCC.
 :::
 
 ```powershell
@@ -145,7 +145,7 @@ This script is an example of the collector route. It hasn't been run against a p
 # carries the platform's own identifiers in source_ref.
 
 param(
-    [string] $AzEnvironment    = 'AzureCloud',   # or 'AzureUSGovernment'
+    [string] $AzEnvironment    = 'AzureCloud',
     [string] $GraphEnvironment = 'Global',       # GCC uses Global
     [string] $OutFile          = '.\fmp-evidence-m365-azure.json'
 )
@@ -157,7 +157,7 @@ $observedAt = (Get-Date).ToUniversalTime().ToString('o')
 $records    = [System.Collections.Generic.List[object]]::new()
 
 # 1. Non-compliant and exempt Azure Policy states. Add a filter on setName for the
-#    FedRAMP initiative assigned in your cloud (its ID differs in Azure Government).
+#    FedRAMP initiative assigned in your subscription.
 $query = @"
 PolicyResources
 | where type == 'microsoft.policyinsights/policystates'
@@ -207,13 +207,13 @@ $records | ConvertTo-Json -Depth 4 | Set-Content -Path $OutFile -Encoding utf8
 "Wrote $($records.Count) records to $OutFile"
 ```
 
-The script uses the contract's values: `verdict` is `pass`, `warn` or `fail`, and `disposition` is `applied`, `accepted risk` or `open`. An exempt resource is a `warn` and a non-exempt one a `fail`; both start `open`. The script deliberately stops at the record. Matching `source_ref` to the CMDB identity, comparing exclusions with the approved exception register, and opening or updating tasks belong to the platform side of the loop, under the identity and permissions [Chapter 07](07-the-cmdb-and-asset-identity.md) and [Chapter 11](11-attestation-and-the-compliance-app.md) describe. The filter to the FedRAMP initiative is left to the reader because the built-in initiative's definition differs between Azure and Azure Government.
+The script uses the contract's values: `verdict` is `pass`, `warn` or `fail`, and `disposition` is `applied`, `accepted risk` or `open`. An exempt resource is a `warn` and a non-exempt one a `fail`; both start `open`. The script deliberately stops at the record. Matching `source_ref` to the CMDB identity, comparing exclusions with the approved exception register, and opening or updating tasks belong to the platform side of the loop, under the identity and permissions [Chapter 07](07-the-cmdb-and-asset-identity.md) and [Chapter 11](11-attestation-and-the-compliance-app.md) describe. The filter to the FedRAMP initiative is left to the reader, who knows which initiative the landing zone assigned.
 
 ## Honest limits
 
 - **The loop is only as good as the test.** A setting no native test covers is invisible to the loop. ScubaGear covers what the baselines cover; the FedRAMP initiative covers the technical settings it maps and leaves manual controls to people.
 - **"Closed" lags the fix.** Azure Policy's daily cycle and Compliance Manager's 24-hour refresh mean a record closes up to a day after the change. Evidence timestamps record the evaluation, not the instant of the fix.
-- **Government clouds differ.** Defender for Cloud's ServiceNow integration isn't available in Azure Government; Compliance Manager's continuous assessments are still rolling out in GCC; universal templates aren't available in GCC. Check each feature against Microsoft's current matrix before building on it, and record the result in the feature register [Book 10, Chapter 09](../b10-cloud-boundary/09-equivalents-and-exceptions.md) describes.
+- **GCC differs.** Compliance Manager's continuous assessments are still rolling out in GCC; universal templates aren't available in GCC. Check each feature against Microsoft's current matrix before building on it, and record the result in the feature register [Book 10, Chapter 09](../b10-cloud-boundary/09-equivalents-and-exceptions.md) describes.
 - **Automated remediation still needs a change record.** An Azure Policy `deployIfNotExists` or `modify` remediation changes state; in the program's design it still carries a change record, with the policy engine as the actuator instead of a person.
 
 ## The control map for this chapter
@@ -236,7 +236,7 @@ The mapping is the program's, not a published crosswalk.
 - Run one loop everywhere: test, detect, raise against the configuration item, actuate natively, close on a re-test.
 - Give the ITSM platform no standing write on the estate it governs; writes run only as scoped, approved, logged actions.
 - Use Compliance Manager and Defender for Cloud scores as signals, not as the evidence of record.
-- Check every feature in your own cloud: GCC and Azure Government don't have every commercial feature.
+- Check every feature in your own cloud: GCC doesn't have every commercial feature.
 - Choose one route per source into the ITSM platform, and make every exception a request with an expiry.
 
 ::: {.callout-tip}
@@ -259,16 +259,14 @@ The mapping is the program's, not a published crosswalk.
 [^c08-cm-actions]: Microsoft Learn, "Working with improvement actions in Compliance Manager," automated testing and monitoring, implementation and testing, exporting testing history, <https://learn.microsoft.com/purview/compliance-manager-improvement-actions> (accessed Oct 21, 2026).
 [^c08-cm-assess]: Microsoft Learn, "Build and manage assessments in Compliance Manager," export an assessment report, <https://learn.microsoft.com/purview/compliance-manager-assessments> (accessed Oct 21, 2026).
 [^c08-policy-fedramp]: Microsoft Learn, "Details of the FedRAMP Moderate Regulatory Compliance built-in initiative," Azure Policy samples, <https://learn.microsoft.com/azure/governance/policy/samples/fedramp-moderate> (accessed Oct 21, 2026).
-[^c08-policy-fedramp-gov]: Microsoft Learn, "Details of the FedRAMP Moderate (Azure Government) Regulatory Compliance built-in initiative," <https://learn.microsoft.com/azure/governance/policy/samples/gov-fedramp-moderate> (accessed Oct 21, 2026).
 [^c08-policy-eval]: Microsoft Learn, "Get compliance data of Azure resources," evaluation triggers and on-demand evaluation scan, <https://learn.microsoft.com/azure/governance/policy/how-to/get-compliance-data> (accessed Oct 21, 2026).
 [^c08-exemption]: Microsoft Learn, "Azure Policy exemption structure," exemption category, expiration and compliance substate, <https://learn.microsoft.com/azure/governance/policy/concepts/exemption-structure> (accessed Oct 21, 2026).
 [^c08-mdc-standards]: Microsoft Learn, "Regulatory compliance standards in Microsoft Defender for Cloud," compliance controls and available compliance standards, <https://learn.microsoft.com/azure/defender-for-cloud/concept-regulatory-compliance-standards> (accessed Oct 21, 2026).
 [^c08-mdc-assign]: Microsoft Learn, "Assign regulatory compliance standards in Microsoft Defender for Cloud," prerequisites, <https://learn.microsoft.com/azure/defender-for-cloud/assign-regulatory-compliance-standards> (accessed Oct 21, 2026).
 [^c08-mdc-dashboard]: Microsoft Learn, "Improve regulatory compliance," continuously export compliance status and trigger a workflow when assessments change, <https://learn.microsoft.com/azure/defender-for-cloud/regulatory-compliance-dashboard> (accessed Oct 21, 2026).
-[^c08-mdc-matrix]: Microsoft Learn, "Support matrices for Defender for Cloud," cloud support (Azure and Azure Government columns), <https://learn.microsoft.com/azure/defender-for-cloud/support-matrix-defender-for-cloud> (accessed Oct 21, 2026).
+[^c08-mdc-matrix]: Microsoft Learn, "Support matrices for Defender for Cloud," cloud support (Azure column), <https://learn.microsoft.com/azure/defender-for-cloud/support-matrix-defender-for-cloud> (accessed Oct 21, 2026).
 [^c08-arg-policy]: Microsoft Learn, "Azure Resource Graph sample queries for Azure Policy," <https://learn.microsoft.com/azure/governance/policy/samples/resource-graph-samples> (accessed Oct 21, 2026).
 [^c08-arg-mdc]: Microsoft Learn, "Azure Resource Graph sample queries for Microsoft Defender for Cloud," regulatory compliance state per compliance standard, <https://learn.microsoft.com/azure/defender-for-cloud/resource-graph-samples> (accessed Oct 21, 2026).
-[^c08-azgov-roadmap]: Microsoft Learn, "Microsoft Azure Government Product General Availability (GA) Roadmap," Azure Policy and Azure Resource Graph rows, <https://learn.microsoft.com/azure/azure-government/documentation-government-product-roadmap> (accessed Oct 21, 2026).
 [^c08-arg-paging]: Microsoft Learn, "Guidance for pagination," Azure Resource Graph, and "Search-AzGraph" (Az.ResourceGraph), <https://learn.microsoft.com/azure/governance/resource-graph/concepts/paging-results>, <https://learn.microsoft.com/powershell/module/az.resourcegraph/search-azgraph> (accessed Oct 21, 2026).
 [^c08-mdc-snow]: Microsoft Learn, "Overview of the ServiceNow integration," "Connect ServiceNow ITSM to Defender for Cloud" and "Create automatic tickets with governance rules," <https://learn.microsoft.com/azure/defender-for-cloud/integration-servicenow>, <https://learn.microsoft.com/azure/defender-for-cloud/connect-servicenow>, <https://learn.microsoft.com/azure/defender-for-cloud/create-governance-rule-servicenow> (accessed Oct 21, 2026).
 [^c08-snow-cc]: ServiceNow, "Configuration Compliance imported data for Microsoft Defender for Cloud Integration," Yokohama release documentation, <https://www.servicenow.com/docs/r/9rlb2awQeTeY3Z9jGMo5DQ/kPebuoD7tqLFhVVXwqBhbA> (accessed Oct 21, 2026).
