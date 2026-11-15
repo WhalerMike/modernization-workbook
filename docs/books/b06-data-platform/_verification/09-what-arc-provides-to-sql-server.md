@@ -26,7 +26,6 @@ Checked October 20, 2026. Sources: the existing page (former Book 04, Chapter 1)
 | 18 | Certificate-based authentication = interim posture; AD CS→Cloud PKI "Not Yet Defined" | Alternatives | restated-as-design | Program position; "2027-04-01 block" → "program's 2027-04-01 backstop" |
 | 19 | Cloud PKI issues to Intune-managed devices | Alternatives | verified (new) | Learn, Overview of Microsoft Cloud PKI for Microsoft Intune (URL corrected: old `intune-service/protect/microsoft-cloud-pki-overview` → `intune/cloud-pki/`); Intune not supporting Windows Server per Book 05 Ch 09 |
 | 20 | Entra authentication available under every license type; BPA etc. need SA/subscription/PAYG | What it costs | verified (new) | Learn, SQL Server enabled by Azure Arc overview, feature availability by license type |
-| 21 | US Gov Virginia supports only onboarding, inventory, licensing, FCI, ESU — not Entra authentication | What it costs | verified (new) | Learn, SQL Server enabled by Azure Arc in US Government |
 | 22 | SQL Server needs access to the Azure public cloud for Entra authentication | What it costs | verified | Learn, Managed identity for SQL Server enabled by Azure Arc, limitations |
 | 23 | Commercial Azure subscription in the GCC tenant's directory | What it costs | restated-as-design | Same assumption as Book 05 Ch 09 |
 | 24 | Arc doesn't change Windows-integrated auth, logins, modes, SPNs | What Arc doesn't do | verified / restated | Learn, Change server authentication mode; author's argument |

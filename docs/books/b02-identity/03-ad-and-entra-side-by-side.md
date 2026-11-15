@@ -38,7 +38,7 @@ The figure carries the chapter's main point. A Kerberos ticket or an NTLM exchan
 | Primary authentication protocol | Kerberos v5, with NTLM as fallback through Negotiate | OpenID Connect sign-in; OAuth 2.0 for authorization |
 | Directory wire protocol | LDAP and LDAPS; Active Directory Web Services for the PowerShell module | Microsoft Graph REST API over HTTPS |
 | Federation | SAML and WS-Federation through Active Directory Federation Services (AD FS) | SAML 2.0 and OpenID Connect directly to the tenant |
-| Strong authentication | Smart card logon with certificates from an enterprise CA | Certificate-based authentication with PIV/CAC, FIDO2 passkeys, Windows Hello for Business, Microsoft Authenticator |
+| Strong authentication | Smart card logon with certificates from an enterprise CA | Certificate-based authentication with PIV, FIDO2 passkeys, Windows Hello for Business, Microsoft Authenticator |
 | Stored password form | NT hash (MD4) | For synced users, a PBKDF2-HMAC-SHA256 hash of the NT hash |
 | Session unit | Kerberos ticket-granting ticket and service tickets | JWT access tokens, ID tokens, and refresh tokens |
 | Policy plane | Group Policy Objects linked to sites, domains, and OUs | Conditional Access, the Authentication methods policy, and device-management policy |
@@ -83,7 +83,7 @@ Three facts follow for the migration. First, an object's SID changes when it mov
 - **SAML 2.0** remains supported for applications that need it, now federated directly to the tenant.
 - **SCIM 2.0** (RFC 7643 for the schema, RFC 7644 for the protocol) is how the Entra provisioning service creates, updates, and removes accounts in applications.[^c03-rfc7643][^c03-rfc7644] Entra ID acts as a SCIM client for outbound app provisioning and can also expose a SCIM service endpoint for inbound provisioning.[^c03-entra-scim]
 - **Proof-of-possession tokens** bind a token to a key the client holds. Microsoft's authentication libraries describe two target variants, mutual-TLS certificate-bound tokens (RFC 8705) for service-to-service calls and DPoP (RFC 9449) for public clients, with the older signed-HTTP-request form being phased out.[^c03-pop][^c03-rfc8705][^c03-rfc9449] Separately, Conditional Access Token Protection accepts only device-bound sign-in session tokens such as the Primary Refresh Token.[^c03-token-protection]
-- **FIDO2/WebAuthn passkeys and certificate-based authentication** are the phishing-resistant user credentials. Entra certificate-based authentication validates X.509 certificates, including PIV and CAC smart cards and derived PIV credentials, directly against the tenant, without a federation server.[^c03-ms-m2209][^c03-cba]
+- **FIDO2/WebAuthn passkeys and certificate-based authentication** are the phishing-resistant user credentials. Entra certificate-based authentication validates X.509 certificates, including PIV smart cards and derived PIV credentials, directly against the tenant, without a federation server.[^c03-ms-m2209][^c03-cba]
 
 ### The protocol mapping
 
@@ -148,7 +148,7 @@ The source material for this chapter called NTLM simply "legacy." That understat
 | Stored password | NT hash, an MD4 hash of the password[^c03-phs] | For synced users, a salted PBKDF2-HMAC-SHA256 hash of the NT hash; the original MD4 hash isn't sent to the cloud and can't be replayed on-premises[^c03-phs] |
 | Ticket or token protection | Kerberos encryption types; RC4 deprecated, AES preferred[^c03-ws-deprecated] | JWT signatures from asymmetric keys such as RS256, published through the tenant's OpenID Connect metadata and rotated on a schedule[^c03-tokens] |
 | Transport | LDAP signing and sealing, LDAPS, SMB signing | TLS on every endpoint; the provisioning service connects to applications over TLS 1.2[^c03-provisioning] |
-| User credential | Password; smart card logon | Passkeys (FIDO2), certificate-based authentication with PIV/CAC, Windows Hello for Business[^c03-ms-m2209] |
+| User credential | Password; smart card logon | Passkeys (FIDO2), certificate-based authentication with PIV, Windows Hello for Business[^c03-ms-m2209] |
 
 : Cryptography in the two worlds {.striped .hover}
 

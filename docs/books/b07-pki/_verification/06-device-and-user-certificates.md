@@ -73,7 +73,7 @@ Source: `docs/operational-guides/pki-modernization.md` §6 (6.1–6.5) and §7 (
 | 64 | No CRL URL → revoked certificate still authenticates; Require CRL validation; exemptions | Trust store | verified | How-to Step 1; CRL concept page |
 | 65 | Guide: "OCSP is supported if configured" | Trust store | corrected: Entra ID doesn't support OCSP | CRL concept page (item 6); matches B03 Ch09, B02 Ch04 |
 | 66 | HTTP/HTTPS only, HTTP recommended, one CRL endpoint, 10-second download | Trust store | verified | CRL concept page |
-| 67 | CRL size limits 20/45 MB interactive, 65/150 MB service | Trust store | verified | CRL concept page FAQ; matches B03 Ch09 |
+| 67 | CRL size limits 20 MB interactive, 65 MB service | Trust store | verified | CRL concept page FAQ; matches B03 Ch09 |
 | 68 | CRL caching; revoke sessions for immediacy | Trust store | verified | CRL concept page |
 | 69 | Chain built on SKI/AKI; up to 10 CAs for CRL validation | Trust store | verified | CRL concept page |
 | 70 | Adding a CA lets it authenticate any bindable user incl. synced; secure PKI; high affinity | Trust store | verified | Set up Entra CBA, Considerations |
@@ -201,6 +201,5 @@ Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 0
 |---|---|---|---|---|---|
 | P4-1 | Full Enforcement is the only supported KDC mode; rollback per profile type | Strong certificate mapping (control states) | verified (carried; c06-kb5014754, c06-pkcs) | KB5014754; Configure and use PKCS certificates with Intune | Nov 11, 2026 |
 | P4-2 | Staged rollout: synced users only, 10 groups per feature, no nested or dynamic groups, 200 users when a group is first added, up to 24 hours for changes; separate groups for staged rollout and the CBA method policy | Staged rollout (How template, change safety) | verified (re-read; unchanged) | [Migrate to cloud authentication using Staged Rollout](https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-staged-rollout); [Migrate from federation to Entra CBA](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-migration) | Nov 11, 2026 |
-| P4-3 | Entra CBA available in Azure for US Government | Staged rollout (Applies) | verified (added; footnote c06-entra-govavail) | [Microsoft Entra feature availability](https://learn.microsoft.com/entra/identity/authentication/feature-availability) | Nov 11, 2026 |
 | P4-4 | Learn's CBA migration page names User Administrator as the minimum role for enabling staged rollout; the staged rollout page names Hybrid Identity Administrator | Staged rollout | unverifiable (two Learn pages differ); the chapter keeps Hybrid Identity Administrator, the stricter | Both pages above | Nov 11, 2026 |
 | P4-5 | Rings, emergency access exclusion, backout triggers, control states, evidence, assessment mapping | Staged rollout | restated-as-design | Program design | Nov 11, 2026 |

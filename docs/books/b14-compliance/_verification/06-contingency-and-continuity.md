@@ -61,12 +61,12 @@ Writer W3. Source: `docs/compliance/Vol_IV_Book_01_Business_Continuity.md` (arch
 | 53 | `New-AzStorageContext -UseConnectedAccount`, `Set-AzStorageBlobContent -File -Container -Blob -Context -Force` | Config baselines code | verified | Microsoft Learn Az.Storage references |
 | 54 | The two cmdlets don't cover every Intune policy type (settings catalog via another resource) | Config baselines | restated (stated as a check for the reader; settings catalog resource not separately verified) | — |
 | 55 | Arc extension packages and baselines in a secondary-region storage account; application catalog available from secondary region | Config baselines | not carried (unverified product claims; Book 05 linked) | — |
-| 56 | "Geo-redundant Log Analytics workspace" as CP-9 evidence | Audit logs | corrected (workspace replication is paid, manual switchover, listed commercial region groups only; Sentinel guidance for US government clouds: two workspaces) | Microsoft Learn workspace replication; Sentinel BCDR |
+| 56 | "Geo-redundant Log Analytics workspace" as CP-9 evidence | Audit logs | corrected (workspace replication is paid, manual switchover, listed commercial region groups only) | Microsoft Learn workspace replication |
 | 57 | Annual CP-6 restore test procedure | Testing the storage site | restated-as-design; tied to CP-9(1) | OSCAL CP-9(1) |
 | 58 | CP-7 text and enhancements; FedRAMP CP-7(1) guidance | CP-7 | verified | OSCAL; FedRAMP CP page |
 | 59 | "The CSP's FedRAMP ATO covers both regions, satisfying the requirement for a formally authorized alternate processing environment" | CP-7 | corrected (to be verified per service and per agency authorization, not assumed) | — |
 | 60 | Region pair doesn't by itself provide DR; Microsoft-managed GRS failover only in catastrophic situations | CP-7 | verified | Microsoft Learn region pairs |
-| 61 | "Region pair selected per CSP disaster recovery guidance"; Azure Government region pairs | CP-7 | not carried as specific pairs (Azure regions list covers public cloud only; reader pointed to Book 10) | Microsoft Learn regions list |
+| 61 | "Region pair selected per CSP disaster recovery guidance" | CP-7 | not carried as specific pairs (Azure regions list covers public cloud only; reader pointed to Book 10) | Microsoft Learn regions list |
 | 62 | Documented RTO from the last DR test, not design estimates | CP-7 | restated-as-design | — |
 | 63 | ASR replication, recovery plans, non-disruptive test failover | CP-7 | verified | Microsoft Learn ASR overview; test failover |
 | 64 | CP-7(3) priority of service "typically addressed through the FedRAMP authorization" | CP-7 | removed (unsupported) | — |

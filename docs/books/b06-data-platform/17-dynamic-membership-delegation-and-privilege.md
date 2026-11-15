@@ -86,7 +86,7 @@ Someone still has to manage the assigned groups and the dynamic groups' owners a
 - Among groups, restricted management units accept only security groups; Microsoft 365, mail-enabled security and distribution groups can't be members.[^c17-rmau]
 - The setting must be chosen when the unit is created and can't be changed afterward, and a tenant can have at most 100 such units.[^c17-rmau]
 
-Use regular administrative units for groups that need governance tooling; reserve restricted management for cases where tamper-resistance outweighs reviewability. Dynamic membership for administrative units is available in the global Azure cloud but not in specialized clouds such as Azure Government, needs P1 for each dynamic member, and selects users or devices, not groups. Access groups are therefore added to an administrative unit explicitly or by automation.[^c17-au-dyn]
+Use regular administrative units for groups that need governance tooling; reserve restricted management for cases where tamper-resistance outweighs reviewability. Dynamic membership for administrative units is available in the global Azure cloud, needs P1 for each dynamic member, and selects users or devices, not groups. Access groups are therefore added to an administrative unit explicitly or by automation.[^c17-au-dyn]
 
 ## Privileged access belongs in PIM, not in a rule
 

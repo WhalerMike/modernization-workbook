@@ -25,7 +25,7 @@ Verified: 2026-10-20
 | 15 | PHS: synced users' cloud password set to never expire by default; on-prem policy governs | Crosswalk notes | verified | learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-password-hash-synchronization |
 | 16 | Microsoft rationale and remediation for "Use cloud authentication" | Crosswalk notes | verified | learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities |
 | 17 | M-22-09 requires phishing-resistant MFA for agency staff and enterprise-managed identities | Crosswalk notes; OMB section | verified (via Microsoft's M-22-09 page; OMB PDF opened, text not machine-readable) | bidenwhitehouse.archives.gov M-22-09 PDF; learn.microsoft.com/entra/standards/memo-22-09-multi-factor-authentication |
-| 18 | Qualifying methods (CBA/PIV/CAC, FIDO2, WHfB); Authenticator alone isn't phishing-resistant | Crosswalk notes | verified | learn.microsoft.com/entra/standards/memo-22-09-multi-factor-authentication |
+| 18 | Qualifying methods (CBA/PIV, FIDO2, WHfB); Authenticator alone isn't phishing-resistant | Crosswalk notes | verified | learn.microsoft.com/entra/standards/memo-22-09-multi-factor-authentication |
 | 19 | BOD 25-01 title, Dec 17, 2024, FCEB scope, tenants with final SCuBA baselines | BOD section | verified | cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services |
 | 20 | Deadlines Feb 21, Apr 25, Jun 20, 2025; future updates per CISA; new tenants before ATO | BOD table | verified | same |
 | 21 | "shall" mandatory vs "should" recommended; CISA notifies agencies of changes | BOD section | verified | same |
@@ -35,7 +35,7 @@ Verified: 2026-10-20
 | 25 | Every control ID and title in the mapping table (AC-2, AC-2(1), AC-2(3), AC-2(7), AC-3, AC-3(13), AC-6, AC-6(5), AC-6(7), AU-2, AU-6, AU-12, CA-7, CM-6, CM-7, IA-2, IA-2(1), IA-2(2), IA-2(8), IA-2(12), IA-3, IA-5, IA-5(1), IA-8, SC-23, SI-4) | Control mapping; crosswalk | verified (parsed from NIST OSCAL catalog, Release 5.2.0) | raw.githubusercontent.com/usnistgov/oscal-content/.../NIST_SP-800-53_rev5_catalog.json |
 | 26 | Which control each item "supports" | Control mapping; crosswalk | restated-as-design (program mapping; assessors decide satisfaction) | — |
 | 27 | Source: "the identity domain closes controls related to account management, access enforcement, and continuous monitoring" | Control mapping | corrected (restated as "supports"; mapped to AC-2, AC-3, CA-7 and related) | — |
-| 28 | CBA turns PIV/CAC into a phishing-resistant credential without a federation server | Opening paragraph | verified | learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication |
+| 28 | CBA turns PIV into a phishing-resistant credential without a federation server | Opening paragraph | verified | learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication |
 | 29 | MS.AAD.3.2: the BOD 25-01 list still says 3.2v1 (alternative MFA until phishing-resistant MFA is enforced); ScubaGear 2.0.0's baseline renumbered it 3.2v2, "MFA SHALL be enforced for all users" (Feb 2026) | BOD section table | verified Oct 25, 2026; ID kept as the directive lists it, ScubaGear's ID added | cisa.gov BOD 25-01 required configurations; github.com/cisagov/ScubaGear baselines/aad.md |
 
 ## Carry-forward ledger

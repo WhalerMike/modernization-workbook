@@ -44,7 +44,7 @@ Checked 2026-10-21 against Microsoft Learn (Virtual Network Manager IPAM concept
 |---|---|---|
 | Vol I Book 01 — SDN and the End of Traditional DHCP (intro) | Ch06 "Addresses without broadcast" | — |
 | Vol I Book 01 — VMware NSX-T / VCF 9.1 | Ch06 (one line) | Detail already in Book 08 Ch07 (linked) |
-| Vol I Book 01 — Azure Government: fabric replaces DHCP | Ch06; Ch05 scope table | "Synthetic DHCP injected by host agent" wording not carried (unverified) |
+| Vol I Book 01 — Azure fabric replaces DHCP | Ch06; Ch05 scope table | "Synthetic DHCP injected by host agent" wording not carried (unverified) |
 | Vol I Book 01 — AWS GovCloud: VPC DHCP options | Ch06 (corrected +2) | Replacing AmazonProvidedDNS with a DDI resolver: Book 08 Ch07 |
 | Vol I Book 01 — Oracle OCI / partner tenancy | Ch05 multi-environment table (fourth row) | Named agency/vendor specifics generalized |
 | Vol I Book 01 — InfoBlox as the SDN-Aware IPAM Control Plane; value table | Ch06 join-key framing | Vendor value table is positioning; Book 08 Ch12 covers selection |

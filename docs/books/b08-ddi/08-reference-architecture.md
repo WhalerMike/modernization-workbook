@@ -106,7 +106,7 @@ The architecture is the same in every environment; authorization and a few integ
 
 *High only* marks material that applies to FedRAMP High environments, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
-| Component | Moderate: commercial regions (including Microsoft 365 GCC Moderate) | Moderate: AWS GovCloud (US), Azure Government | FedRAMP High (High only) |
+| Component | Moderate: commercial regions (including Microsoft 365 GCC Moderate) | Moderate: AWS GovCloud (US) | FedRAMP High (High only) |
 |---|---|---|---|
 | Cloud-delivered DDI management plane | Must hold a FedRAMP certification at Moderate or higher; the agency authorizes its own DDI system that uses it; Infoblox Government Cloud is listed at Moderate[^c08-fedramp] | Same as commercial; Infoblox Government Cloud is itself hosted in AWS GovCloud (US)[^c08-fedramp] | A Moderate certification does not cover High; use a service certified at the required level or keep the policy plane inside the agency's boundary |
 | On-premises and in-tenant resolvers and grid | Inside the agency boundary | Inside the agency boundary | Inside the agency boundary |
@@ -114,7 +114,7 @@ The architecture is the same in every environment; authorization and a few integ
 | Response policy zones, DNSSEC, Protective DNS forwarding | Applies | Applies | Applies (air-gapped enclaves differ; see Applicability) |
 | AD DNS inventory before retirement (Decision 4) | Required | Required | Required |
 | OCSP and CRL reachability (Decision 5) | Required | Required | Required |
-| Azure private endpoint zones | Commercial zone names (`privatelink.*.windows.net` and similar) | Azure Government zone names (`*.usgovcloudapi.net`, `*.azure.us` and similar); Chapter 07[^c08-azpezones] | Azure Government zone names, as in the previous column |
+| Azure private endpoint zones | Commercial zone names (`privatelink.*.windows.net` and similar); Chapter 07[^c08-azpezones] | Commercial zone names; Azure workloads run in commercial Azure | Commercial zone names, as in the commercial column |
 | AWS VPC IPAM allocation from an external IPAM | Available in commercial Regions | Not available in AWS GovCloud (US); use reservation and reconciliation[^c08-awsipam] | Not available in AWS GovCloud (US) |
 | Microsoft 365 informed network routing | Worldwide commercial tenants only; not GCC Moderate[^c08-inr] | Not in GCC Moderate; the cloud region doesn't change the Microsoft 365 tenant | Not available[^c08-inr] |
 | Microsoft 365 optimization | Local breakout and application-aware routing (Chapter 05) | Same | Same |

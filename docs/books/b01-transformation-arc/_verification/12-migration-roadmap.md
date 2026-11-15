@@ -14,7 +14,7 @@ Editor: W5. Sources: the series chapter in place (old Chapter 09, "Migration Roa
 | 6 | G1 "no MFA-exempt users" | Phase 1 | corrected: no user outside the MFA requirement other than the documented emergency access accounts (which are excluded from blocking CA but use phishing-resistant methods) | Microsoft Learn, emergency access |
 | 7 | FIDO2 for Tier 0 | Phase 1 | restated-as-design | — |
 | 8 | Hybrid join is a waypoint with a cut date; Intune doesn't manage Windows Server; servers under Arc | Phase 2 | verified via settled book facts (Book 05 Ch 02, Ch 09), linked | Book 05 |
-| 9 | Entra CBA supports PIV/CAC without a federated IdP | Phase 2 | verified | Microsoft Learn, Meet MFA requirements of M-22-09 |
+| 9 | Entra CBA supports PIV without a federated IdP | Phase 2 | verified | Microsoft Learn, Meet MFA requirements of M-22-09 |
 | 10 | G4 "Zero AD-integrated DNS zones" | Phase 4 | corrected: the AD domain's zones, including `_msdcs`, stay on a DNS service accepting secure dynamic registration while any DC runs; they move last | Book 08 Ch 10 (settled) |
 | 11 | G4 certificate issuance moved to a non-AD CA | Phase 4 | corrected/clarified: user and device issuance moves; DC and LDAPS certificates stay on AD CS until AD retires | Book 07 Ch 07 (settled) |
 | 12 | Demoting the last DC needs Enterprise Admins and removes the domain (and forest if last domain) | Phase 5 | verified (added) | Microsoft Learn, Demote domain controllers and domains |

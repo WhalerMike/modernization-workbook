@@ -51,7 +51,7 @@ Arc doesn't change who owns what. It makes the server an Azure resource, and the
 
 So the tags are written once, at the connect, from the CMDB. That makes the onboarding run the place where owners are read, checked and carried. A server connected without them is open to whichever tool reaches it first.
 
-**Which Azure.** The program's estate is a Microsoft 365 GCC tenant. Learn says Office 365 GCC uses Microsoft Entra Public, and an Azure Government subscription can't be associated with a directory there.[^c08-govident] So a GCC estate's Arc servers go to a commercial subscription, and the agent connects with `--cloud AzureCloud`, the default.[^c08-connect] The agent then needs the commercial endpoints: `login.microsoftonline.com`, `*.login.microsoft.com`, `pas.windows.net`, `management.azure.com` (only to connect or disconnect), `*.his.arc.azure.com` and `*.guestconfiguration.azure.com`, among others.[^c08-network]
+**Which Azure.** The program's estate is a Microsoft 365 GCC tenant. Learn says Office 365 GCC is paired with Microsoft Entra ID in Azure.[^c08-govident] So a GCC estate's Arc servers go to a commercial subscription, and the agent connects with `--cloud AzureCloud`, the default.[^c08-connect] The agent then needs the commercial endpoints: `login.microsoftonline.com`, `*.login.microsoft.com`, `pas.windows.net`, `management.azure.com` (only to connect or disconnect), `*.his.arc.azure.com` and `*.guestconfiguration.azure.com`, among others.[^c08-network]
 
 ## Start with Microsoft's sample
 
@@ -88,9 +88,9 @@ Running the role offline against a control node with no agent, and reading the p
 | Can't run in check mode on a server without the agent: the install check is skipped, so it decides the agent is installed, then its status read fails | No dry run of what a wave would send | `06_arc_onboarding_role.yml` doesn't call the role without `confirm_change=true`, and prints what each server would get; the wave plan is written first | `test_microsoft_role.py`, `test_local_runs.py` |
 | Passing your own tags replaces its default `ArcSQLServerExtensionDeployment: Disabled` | A SQL Server host is auto-onboarded to Arc-enabled SQL Server, which the Arc track says to decide before the connect | The playbook adds the tag back from `arc_sql_extension_deployment` | `test_read_only.py`, `test_local_runs.py` |
 | Sends a signal with the subscription, resource group, tenant and region by default; Learn's page doesn't mention it | What leaves the estate should be a decision on record | `arc_role_log_enabled: false` (*design guidance*: on only for a support case) | `test_read_only.py`, `test_microsoft_role.py` |
-| Requests its token for `https://management.azure.com/.default` | Right for a GCC estate on commercial Azure; not the Azure Government Resource Manager | `06` refuses any cloud but `AzureCloud`; `02_arc_onboarding.yml` handles Azure Government | `test_microsoft_role.py`, `test_local_runs.py` |
+| Requests its token for `https://management.azure.com/.default` | Right for a GCC estate on commercial Azure | `06` refuses any cloud but `AzureCloud` | `test_microsoft_role.py`, `test_local_runs.py` |
 | Passes the access token on the `azcmagent connect` command line, hidden from Ansible's output by `no_log` | The token is visible to other processes on the server while the connect runs; Learn says access tokens are short-lived[^c08-connect] | Accepted for the role; `02` keeps a service principal secret in a root-only `--config` file, as Learn recommends[^c08-connect] | `test_microsoft_role.py` |
-| Takes the region and cloud it's given | A US Gov region with `AzureCloud` fails halfway through a wave | The wave plan stops a region from the other cloud | `test_local_runs.py` |
+| Takes the region and cloud it's given | A region outside commercial Azure fails halfway through a wave | The wave plan stops any region outside commercial Azure | `test_local_runs.py` |
 | Leaves no record of what was planned or connected | Gate 3 of the Arc track asks for each wave's evidence | A plan (JSON and CSV) before the run; a result with each server's Arc resource ID after it | `test_local_runs.py` |
 | Learn's `requirements.yml` installs the latest collection from Galaxy[^c08-ansible] | A rerun a month later runs a different role | `requirements.yml` pins 4.2.0; the installed role must match the pinned copy | `test_microsoft_role.py` |
 
@@ -134,7 +134,7 @@ Three rules fail closed. An owner value the script doesn't know stops it: `updat
 `playbooks/05_arc_wave_plan.yml` runs only on the control node. It takes `-e onboarding_wave=N`, lists the wave's ready servers and the ones the CMDB blocked, and writes `arc-wave-N-plan-<time>.json` and `.csv` under `reports/`: host, configuration item, environment, resource group, region, cloud, both owners, the exact tag string, and a state. It stops when:
 
 - no wave is given, or the wave has no ready server;
-- `arc_cloud` isn't `AzureCloud` or `AzureUSGovernment`, or a server's region belongs to the other cloud (a US Government region needs `AzureUSGovernment`, and no other region does);
+- `arc_cloud` isn't `AzureCloud`, or a server's region isn't a commercial Azure region;
 - a production server is planned in wave 0 or 1, which the Arc track keeps for non-production (*design guidance*).
 
 A server with no `config_owner` or `patch_owner` doesn't stop the plan: the inventory blocks that server before the plan sees it, and the plan lists it as blocked.
@@ -150,7 +150,7 @@ Both onboarding playbooks import it as their first play. If the plan stops, no s
 
 ### What changed in the `azcmagent` playbook
 
-`02_arc_onboarding.yml` stays the version that spells the steps out, and the one to use for Azure Government. It now imports the wave plan, targets one wave, and checks both owners on each server. Its dry run also makes no network request any more: `get_url` requested the installer URL even in check mode, which the test found by sending every request to a dead local proxy.
+`02_arc_onboarding.yml` stays the version that spells the steps out. It now imports the wave plan, targets one wave, and checks both owners on each server. Its dry run also makes no network request any more: `get_url` requested the installer URL even in check mode, which the test found by sending every request to a dead local proxy.
 
 ### The tests
 
@@ -158,7 +158,7 @@ Both onboarding playbooks import it as their first play. If the plan stops, no s
 |---|---|---|
 | `test_inventory.py` | 29 | The new column: owner groups and tags, waves, blocked candidates and their reasons, unknown owners and waves fail, the sample is commercial Azure |
 | `test_read_only.py` | 39 | Both onboarding playbooks start with the plan, target one wave, check both owners, run in batches and are gated; Microsoft's role only with `confirm_change`, with the CMDB's values |
-| `test_local_runs.py` | 14 | The plan is written, and stops on an empty wave, a production server in the pilot, a region from the other cloud, and lists a server with a missing patch owner as blocked; both dry runs leave nothing behind and make no network request; 06 refuses Azure Government |
+| `test_local_runs.py` | 14 | The plan is written, and stops on an empty wave, a production server in the pilot, a region from another cloud, and lists a server with a missing patch owner as blocked; both dry runs leave nothing behind and make no network request; 06 refuses any cloud but `AzureCloud` |
 | `test_microsoft_role.py` | 8 | What the pinned role does (token scope, default tag, signal, token on the command line, no owners or waves); the installed role is the pinned copy; the role can't dry-run |
 
 `run_all.sh` runs `yamllint --strict`, `ansible-lint --strict` with the production profile, a syntax check of all six playbooks, and the tests.
@@ -438,7 +438,7 @@ az group delete --name rg-arc-test-dev
 | To disconnect | An identity with permission to delete the resource, such as Azure Connected Machine Resource Administrator | [^c08-security] [^c08-uninstall] |
 | Resource providers | `Microsoft.HybridCompute`, `Microsoft.GuestConfiguration` | [^c08-ansible] |
 | Authentication | `msi` recommended for production; `cli` for development; service principal through Automation Platform | [^c08-ansible] |
-| Cloud for a GCC tenant | Commercial: Office 365 GCC uses Microsoft Entra Public, and an Azure Government subscription can't be associated with it; `--cloud` defaults to `AzureCloud` | [^c08-govident] [^c08-connect] |
+| Cloud for a GCC tenant | Commercial: Office 365 GCC is paired with Microsoft Entra ID in Azure; `--cloud` defaults to `AzureCloud` | [^c08-govident] [^c08-connect] |
 | Commercial endpoints | `login.microsoftonline.com`, `*.login.microsoft.com`, `pas.windows.net`, `management.azure.com` (connect and disconnect only), `*.his.arc.azure.com`, `*.guestconfiguration.azure.com`, notification service endpoints | [^c08-network] |
 | Tags at connect | `--tags`, comma-delimited `Name=Value` pairs; at most 50 tags per resource, values up to 256 characters | [^c08-connect] [^c08-tags] |
 | Secrets at connect | Microsoft recommends a configuration file (`--config`) for a service principal secret; access tokens are short-lived | [^c08-connect] |
@@ -480,7 +480,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 | The whole estate in one run | A wrong tag, rule or network setting reaches every server | CMDB waves; the plan first; one canary, then 5, then 25 percent; stop at the first failure |
 | Production in the pilot | The wave meant to find problems finds them in production | Waves 0 and 1 refuse production servers |
 | A dry run that isn't one | The role fails in check mode, so people skip the dry run, or a dry run reaches the network | 06 doesn't call the role without `confirm_change`; 02's download is skipped in a dry run; both tested behind a dead proxy |
-| The wrong cloud | A GCC estate's servers in Azure Government, or the role's commercial token used for Azure Government | `arc_cloud: AzureCloud` in the sample; the plan stops a region from the other cloud; 06 refuses `AzureUSGovernment` |
+| The wrong cloud | A GCC estate's servers sent to a cloud other than commercial Azure | `arc_cloud: AzureCloud` in the sample; the plan stops any other cloud or region; 06 refuses any cloud but `AzureCloud` |
 | SQL Server auto-onboarded by accident | Passing the CMDB tags drops the role's `ArcSQLServerExtensionDeployment` default | The playbook adds it back from `arc_sql_extension_deployment` |
 | Data sent without a decision | The role's signal carries subscription, resource group, tenant and region | Off by default (*design guidance*) |
 | A stored onboarding secret | A stolen credential connects outside servers into the subscription | Managed identity (`msi`), as Learn recommends; the onboarding role only, on the wave's resource group, removed when the wave closes |
@@ -508,7 +508,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c08-ansible]: Microsoft Learn, "Connect machines to Azure Arc at scale with Ansible," <https://learn.microsoft.com/azure/azure-arc/servers/onboard-ansible-playbooks> (accessed Oct 30, 2026).
 [^c08-connect]: Microsoft Learn, "azcmagent connect," <https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-connect> (accessed Oct 30, 2026).
 [^c08-network]: Microsoft Learn, "Connected Machine agent network requirements," <https://learn.microsoft.com/azure/azure-arc/servers/network-requirements> (accessed Oct 30, 2026).
-[^c08-govident]: Microsoft Learn, "Planning identity for Azure Government applications," <https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity> (accessed Oct 30, 2026).
+[^c08-govident]: Microsoft Learn, "Cloud feature availability for US Government customers," section "Microsoft 365 integration" ("Office 365 and Office 365 GCC are paired with Microsoft Entra ID in Azure"), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration> (accessed Nov 15, 2026).
 [^c08-security]: Microsoft Learn, "Identity and authorization" (Azure Arc-enabled servers security), <https://learn.microsoft.com/azure/azure-arc/servers/security-identity-authorization> (accessed Oct 30, 2026); Microsoft Learn, "Azure built-in roles for Management and governance," <https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/management-and-governance> (accessed Oct 30, 2026).
 [^c08-plan]: Microsoft Learn, "Plan and deploy Azure Arc-enabled servers," <https://learn.microsoft.com/azure/azure-arc/servers/plan-at-scale-deployment> (accessed Oct 30, 2026).
 [^c08-tags]: Microsoft Learn, "Use tags to organize your Azure resources and management hierarchy," <https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources> (accessed Oct 30, 2026).
@@ -521,5 +521,5 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c08-ans-strategy]: Ansible documentation, "Controlling playbook execution: strategies and more," <https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_strategies.html> (accessed Oct 30, 2026, at its former address; new address checked Nov 9, 2026). Not a Learn page: Learn has no page on Ansible's batch keywords.
 [^c08-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-6, CA-7, CM-3, CM-3(2), CM-4, CM-8, CM-8(1), IA-5, SA-9, SA-10, SA-11 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
 [^c08-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-LMC, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-PIY-GIV and KSI-SCR-MIT; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
-[^c08-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.
+[^c08-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High.
 [^c08-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, §II, the Devices pillar of the vision (a complete inventory of every device the government operates and authorizes for use), <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Nov 2, 2026).

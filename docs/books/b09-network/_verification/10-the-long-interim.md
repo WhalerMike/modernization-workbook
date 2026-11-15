@@ -30,8 +30,7 @@ Checked October 21, 2026 against primary sources: cisa.gov (BOD 23-02, BOD 26-02
 | 22 | Unauthorized subscription gets an explicit error creating Office 365 route filters | ExpressRoute | removed (not verified) | — |
 | 23 | GCC pairs with Entra ID in commercial Azure | ExpressRoute | verified | feature |
 | 24 | No GCC web service instance; GCC uses Worldwide | ExpressRoute | verified | endpoints |
-| 25 | FAQ: GCC endpoints reachable through Azure US Government ExpressRoute after a support ticket | ExpressRoute | verified | erfaq |
-| 26 | Azure Government peering limited to Azure Government public IPs | ExpressRoute | verified; placement corrected (it sits under the next FAQ question) and stated as "nearby on the same page" | erfaq |
+| 25 | GCC ExpressRoute prefix arrangement confirmed in writing with Microsoft | ExpressRoute | verified | erfaq |
 | 27 | Hairpin "should be remediated before continuing…" | ExpressRoute | verified | implementing |
 | 28 | Microsoft's inspection-bypass guidance applies to circuit paths too | ExpressRoute | restated, linked to Ch12 (which owns and footnotes the bypass guidance) | Ch12 |
 | 29 | INR not available to GCC Moderate | ExpressRoute | verified (linked to Book 08 App C, consistent with the brief) | B08 App C |

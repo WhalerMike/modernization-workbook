@@ -394,7 +394,7 @@ A finding this section addresses is ready for closure when every applicable stat
 
 Devices onboard to Defender for Endpoint through the EDR policy (ES-004 in Chapter 08), which uses the onboarding package Intune receives over the Intune–Defender connection. Intune's **EDR Onboarding Status** report shows which devices are onboarded and the health of their sensors; the Defender portal's device inventory confirms it.[^c10-edr]
 
-In a GCC tenant, Defender for Endpoint for US Government customers runs in the Azure US Government environment with some feature differences from commercial; the GCC portal is `security.microsoft.com`, and desktop licensing comes from offers such as Microsoft 365 GCC G5, Microsoft 365 G5 Security GCC, or standalone Defender for Endpoint GCC.[^c10-mde-gov] Defender for Endpoint security settings management, which is how Intune endpoint security policy reaches servers, is supported in GCC.[^c10-intune-gov]
+In a GCC tenant, Defender for Endpoint for US Government customers runs with some feature differences from commercial; the GCC portal is `security.microsoft.com`, and desktop licensing comes from offers such as Microsoft 365 GCC G5, Microsoft 365 G5 Security GCC, or standalone Defender for Endpoint GCC.[^c10-mde-gov] Defender for Endpoint security settings management, which is how Intune endpoint security policy reaches servers, is supported in GCC.[^c10-intune-gov]
 
 The settings that live in the Defender portal rather than the EDR policy are part of the program's Defender configuration:
 
@@ -662,7 +662,7 @@ foreach ($m in $metrics) {
 }
 ```
 
-The work from anywhere metrics and their device lists are in Microsoft Graph v1.0, available in the global service and both US Government clouds, with `DeviceManagementManagedDevices.Read.All`.[^c10-z-graph-wfa] Compare the Windows metric's device list with the `IntuneDevices` OS-floor query in [What Log Analytics receives, and when](#what-log-analytics-receives-and-when): a device in one and not the other is a reporting gap to explain.
+The work from anywhere metrics and their device lists are in Microsoft Graph v1.0, available in the global service, which GCC uses, with `DeviceManagementManagedDevices.Read.All`.[^c10-z-graph-wfa] Compare the Windows metric's device list with the `IntuneDevices` OS-floor query in [What Log Analytics receives, and when](#what-log-analytics-receives-and-when): a device in one and not the other is a reporting gap to explain.
 
 **Evidence checklist**
 
@@ -742,7 +742,7 @@ Intune and Entra ID in a GCC (Moderate) tenant are often described as a separate
 |---|---|---|
 | Intune service instance | GCC uses the same Intune instance as commercial[^c10-intune-gov] | Admin center `intune.microsoft.com` |
 | Microsoft Graph | GCC uses the worldwide endpoints, `graph.microsoft.com` and `portal.azure.com`[^c10-graph-deploy] | All Graph calls in Chapters 08 and 10 use `graph.microsoft.com` |
-| Defender for Endpoint | Offered to GCC as Defender for Endpoint for US Government, built in Azure US Government; GCC portal `security.microsoft.com`[^c10-mde-gov] | ES-004 onboards to the tenant's GCC instance |
+| Defender for Endpoint | Offered to GCC as Defender for Endpoint for US Government; GCC portal `security.microsoft.com`[^c10-mde-gov] | ES-004 onboards to the tenant's GCC instance |
 | Conditional Access | The compliance result feeds Entra ID Conditional Access in the same tenant | Book 04 |
 | BitLocker keys and LAPS passwords | Stored on the device object in the tenant's Entra ID | Exported before any device delete |
 | Update reporting | Windows Update for Business reports doesn't meet GCC compliance requirements[^c10-wufb-reports] | Intune and Autopatch update reports |

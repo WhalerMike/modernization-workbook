@@ -46,7 +46,6 @@ Primary sources opened on 2026-11-09: Microsoft Learn through the Microsoft Lear
 | 27 | P1 to P4 windows (program design) | Book 13, Appendix B, "Severity and tempo" |
 | 28 | Routing order (security, retirement, maintenance naming resources, open incidents, action required), de-duplication by provider and provider ID, close payload asks for re-read, digest sections (open by provider, action required, next 30 days, new and closed in the last 7 days) | The kit: `config/routing.json`, `ProviderNotices.psm1` `New-PnDigest`; guide G6 and G7 |
 | 29 | Kit refuses a session in another cloud, partition or realm; preflight checks named contacts (PF-05) | Guide, Dangers and G7 |
-| 30 | Azure Resource Graph's Service Health in Azure Government not explicitly stated | Guide, "What couldn't be verified" (N3) |
 | 31 | Contingency plan and its roles | Book 14, Chapter 06 |
 
 ## Discrepancy found (reported, not fixed here)

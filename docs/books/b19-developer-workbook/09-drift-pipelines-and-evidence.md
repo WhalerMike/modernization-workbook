@@ -59,7 +59,7 @@ The comparison also enforces Book 12's closing rule in code. A finding is resolv
 
 Learn documents two ways to run a scheduled job that signs in to Azure without a secret: GitHub Actions with the Azure Login action, and Azure Pipelines with a workload identity federation service connection. This chapter uses GitHub Actions, for two reasons.
 
-- Learn publishes complete sample workflows for it, including the Azure US Government sign-in, on one page.[^c09-oidc] That is the sample this chapter starts from.
+- Learn publishes complete sample workflows for it on one page.[^c09-oidc] That is the sample this chapter starts from.
 - The Azure Login action is Microsoft's own, published with its source and its declared inputs.[^c09-login-action]
 
 *Design guidance:* an agency standardized on Azure Pipelines can use the same comparator, packager and tests. Only the workflow file changes.
@@ -70,13 +70,12 @@ GitHub Actions details that Learn doesn't cover (the schedule, the token's claim
 
 ### What Learn gives you
 
-Learn's page "Use the Azure Login action with OpenID Connect" has three workflows.[^c09-oidc]
+Learn's page "Use the Azure Login action with OpenID Connect" has three workflows; the two for commercial Azure are the ones a GCC estate uses.[^c09-oidc]
 
 | Sample | What it does |
 |---|---|
 | Azure CLI only | Signs in with `azure/login@v2` and runs `az account show` with `azure/cli@v2` |
 | Azure CLI and Azure PowerShell | The same, with `enable-AzPSSession: true` and `azure/powershell@v2` running `Get-AzContext` |
-| Azure US Government | One step: `azure/login@v2` with `environment: 'AzureUSGovernment'` and `audience: api://AzureADTokenExchangeUSGov` |
 
 Each job asks for `id-token: write` and nothing else. The client ID, tenant ID and subscription ID come from GitHub secrets, which Learn recommends "for security reasons". The `audience` input defaults to `api://AzureADTokenExchange` for public clouds and must be changed for the others.[^c09-oidc] Before the workflow runs, the app registration (or a user-assigned managed identity) needs a federated credential that trusts the repository.[^c09-fic]
 
@@ -513,8 +512,8 @@ In production, lock the retention policy once Lab 2 passes. Learn recommends loc
 | Item | Value | Source |
 |---|---|---|
 | Sign-in from GitHub Actions | `azure/login` with `client-id`, `tenant-id`, `subscription-id` from secrets; the job needs `id-token: write` | [^c09-oidc] |
-| Azure Login audience | Default `api://AzureADTokenExchange` for public clouds; set it for others; US Government sample uses `api://AzureADTokenExchangeUSGov` with `environment: AzureUSGovernment` | [^c09-oidc] [^c09-login-action] |
-| Audiences per cloud | Global `api://AzureADTokenExchange`; US Government `api://AzureADTokenExchangeUSGov`; China `api://AzureADTokenExchangeChina` | [^c09-mi-trust] |
+| Azure Login audience | Default `api://AzureADTokenExchange` for public clouds, which a GCC estate uses; set it for others | [^c09-oidc] [^c09-login-action] |
+| Audiences per cloud | Global `api://AzureADTokenExchange`, which GCC uses; other clouds have their own | [^c09-mi-trust] |
 | Federated credential for GitHub | Issuer `https://token.actions.githubusercontent.com`; subject `repo:<org>/<repo>:environment:<name>` for a job with an environment; one audience; no wildcards | [^c09-fic] [^c09-gh-oidc] |
 | Who can add one | The app's owner, Application Administrator, Cloud Application Administrator, Global Administrator or Hybrid Identity Administrator | [^c09-fic] |
 | Limits | 20 federated credentials per app or user-assigned managed identity; issuer and subject unique per app; propagation can take minutes (`AADSTS70021`) | [^c09-fic-limits] |
@@ -625,4 +624,4 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c09-gh-artifacts]: GitHub Docs, "Store and share data with workflow artifacts," <https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-what-your-workflow-does/storing-and-sharing-data-from-a-workflow> (accessed Oct 30, 2026).
 [^c09-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-2, AC-6, AU-6, AU-9, AU-11, CA-7, CM-2, CM-3, CM-3(2), CM-6, IA-5, SA-9, SA-10, SA-11, SI-4, SI-7 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
 [^c09-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-LMC, KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-RVL, KSI-SCR-MIT and KSI-SVC-VRI; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
-[^c09-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): FR1812058188, GitHub Enterprise Cloud, FedRAMP Certified, Class B, LI-SaaS; MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; FR1824057433, Microsoft 365 Government Community Cloud-High, FedRAMP Certified, Class D, High; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.
+[^c09-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): FR1812058188, GitHub Enterprise Cloud, FedRAMP Certified, Class B, LI-SaaS; MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High.

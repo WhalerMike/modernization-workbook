@@ -47,23 +47,22 @@ The client pattern every Graph caller in this workbook should follow, for the wo
 
 Get this right first, because every other rule depends on it.
 
-**A GCC (Moderate) tenant uses the worldwide endpoints: `login.microsoftonline.com` for tokens and `graph.microsoft.com` for Graph.** Learn says so plainly: in a Microsoft 365 GCC environment, keep using the worldwide endpoints.[^c02-deployments] Office 365 GCC is paired with Microsoft Entra ID in Azure, the commercial cloud.[^c02-pairing] GCC was built when Microsoft had one cloud directory, and it still uses that directory.[^c02-identity-plan] [^c02-msal-cloud]
+**A GCC (Moderate) tenant uses the worldwide endpoints: `login.microsoftonline.com` for tokens and `graph.microsoft.com` for Graph.** Learn says so plainly: in a Microsoft 365 GCC environment, keep using the worldwide endpoints.[^c02-deployments] Office 365 GCC is paired with Microsoft Entra ID in Azure, the commercial cloud.[^c02-pairing] [^c02-msal-cloud]
 
 | Program name | Microsoft 365 | Token authority | Graph host | Graph PowerShell `-Environment` | Azure Resource Manager | Azure PowerShell environment |
 |---|---|---|---|---|---|---|
 | `global` | Worldwide | `login.microsoftonline.com` | `graph.microsoft.com` | `Global` | `management.azure.com` | `AzureCloud` |
 | `gcc` | GCC (Moderate) | `login.microsoftonline.com` | `graph.microsoft.com` | `Global` | `management.azure.com` | `AzureCloud` |
 
-Sources: Graph and token hosts,[^c02-deployments] Graph PowerShell environments,[^c02-mgenv] Resource Manager hosts,[^c02-compare] [^c02-controlplane] Azure PowerShell environments.[^c02-azps]
+Sources: Graph and token hosts,[^c02-deployments] Graph PowerShell environments,[^c02-mgenv] Resource Manager hosts,[^c02-controlplane] Azure PowerShell environments.[^c02-azps]
 
 ### What GCC with commercial Azure means for the code
 
 The target estate for this migration is Microsoft 365 GCC with commercial Azure. For the code, that means:
 
-- **Nothing is a `.us` host.** Tokens come from `login.microsoftonline.com`, Graph is `graph.microsoft.com`, and Azure Resource Manager is the commercial `management.azure.com`.[^c02-compare] [^c02-controlplane] Azure PowerShell connects with its default environment, `AzureCloud`.[^c02-azps]
+- **Nothing is a `.us` host.** Tokens come from `login.microsoftonline.com`, Graph is `graph.microsoft.com`, and Azure Resource Manager is the commercial `management.azure.com`.[^c02-controlplane] Azure PowerShell connects with its default environment, `AzureCloud`.[^c02-azps]
 - **One token per resource.** A client-credentials token request names one resource's `.default` scope; Learn says scopes for several resources in one request give an error.[^c02-clientcreds] A run that reads Graph and Resource Manager gets two tokens, `https://graph.microsoft.com/.default` and `https://management.azure.com/.default`, from the same tenant.
 - **The cloud name is still explicit.** GCC and worldwide resolve to the same endpoints today, but the code takes `gcc` as its own name. The run's evidence then says which cloud it was meant for. *Design guidance.*
-- **Beware a second tenant.** Learn notes that many GCC customers also hold an Azure Government subscription, with its own Microsoft Entra tenant and identities.[^c02-identity-plan] If a workload ever lands there, its Resource Manager host is `management.usgovcloudapi.net` and its tokens come from `login.microsoftonline.us`, even though Microsoft 365 stays in GCC. The cloud table can't guess that; the run has to be told. *Design guidance:* give each tenant its own configuration entry, never a fallback.
 
 ### The clients this chapter is the reference for
 
@@ -422,8 +421,8 @@ rm -rf ca ca-ps
 |---|---|---|---|---|
 | Token authority | `login.microsoftonline.com` (worldwide and GCC) | Same as worldwide | — | [^c02-deployments] |
 | Graph host | `graph.microsoft.com` (worldwide and Microsoft 365 GCC) | Same as worldwide; tokens aren't interchangeable between clouds | — | [^c02-deployments] |
-| GCC's directory | Office 365 GCC is paired with Microsoft Entra ID in Azure | — | — | [^c02-pairing] [^c02-identity-plan] |
-| Azure Resource Manager | `management.azure.com` (Azure public) | Commercial Azure host for GCC with commercial Azure | — | [^c02-compare] [^c02-controlplane] |
+| GCC's directory | Office 365 GCC is paired with Microsoft Entra ID in Azure | — | — | [^c02-pairing] |
+| Azure Resource Manager | `management.azure.com` (Azure public) | Commercial Azure host for GCC with commercial Azure | — | [^c02-controlplane] |
 | Graph PowerShell environments | `Global`; `Connect-MgGraph` defaults to the worldwide cloud | — | — | [^c02-mgenv] |
 | Azure PowerShell environments | `AzureCloud` (default) | — | — | [^c02-azps] |
 | Scope in a national cloud | A scope naming the Graph host uses the cloud's host; app-only uses the cloud's `.default`, `https://graph.microsoft.com/.default` for GCC | — | — | [^c02-sdk-clouds] |
@@ -497,11 +496,9 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 
 [^c02-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
 [^c02-pairing]: Microsoft Learn, "Cloud feature availability for US Government customers," Microsoft 365 integration, <https://learn.microsoft.com/azure/security/fundamentals/feature-availability> (accessed Oct 30, 2026).
-[^c02-identity-plan]: Microsoft Learn, "Planning identity for Azure Government applications," frequently asked questions, <https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity> (accessed Oct 30, 2026).
-[^c02-compare]: Microsoft Learn, "Compare Azure Government and global Azure," guidance for developers, <https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure> (accessed Oct 30, 2026).
 [^c02-controlplane]: Microsoft Learn, "Azure control plane and data plane," <https://learn.microsoft.com/azure/azure-resource-manager/management/control-plane-and-data-plane> (accessed Oct 30, 2026).
 [^c02-mgenv]: Microsoft Learn, "Get-MgEnvironment," <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/get-mgenvironment?view=graph-powershell-1.0>, and "Authentication module cmdlets in Microsoft Graph PowerShell," <https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0> (accessed Oct 30, 2026).
-[^c02-azps]: Microsoft Learn, "Quickstart: Connect to Azure Government with PowerShell," <https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-ps>, and "Manage Azure Redis with Azure PowerShell," how to connect to other clouds (`AzureCloud` is the default), <https://learn.microsoft.com/azure/azure-cache-for-redis/how-to-manage-redis-cache-powershell> (accessed Oct 30, 2026).
+[^c02-azps]: Microsoft Learn, "Manage Azure Redis with Azure PowerShell," how to connect to other clouds (`AzureCloud` is the default), <https://learn.microsoft.com/azure/azure-cache-for-redis/how-to-manage-redis-cache-powershell> (accessed Oct 30, 2026).
 [^c02-clientcreds]: Microsoft Learn, "Microsoft identity platform and the OAuth 2.0 client credentials flow," get a token, <https://learn.microsoft.com/entra/identity-platform/v2-oauth2-client-creds-grant-flow> (accessed Oct 30, 2026).
 [^c02-sdk-clouds]: Microsoft Learn, "Access national cloud deployments with the Microsoft Graph SDKs," <https://learn.microsoft.com/graph/sdks/national-clouds> (accessed Oct 30, 2026).
 [^c02-snippets-code]: Microsoft, microsoftgraph/msgraph-snippets-python, `src/snippets/national_clouds.py` and `src/snippets/create_clients.py` at commit `3ef43818c946ef595e8d90fa6ec63edec1fb3628` (October 20, 2026), MIT License, <https://github.com/microsoftgraph/msgraph-snippets-python/tree/3ef43818c946ef595e8d90fa6ec63edec1fb3628/src/snippets> (accessed Oct 30, 2026); rendered on Learn's national cloud page and on "Choose a Microsoft Graph authentication provider," <https://learn.microsoft.com/graph/sdks/choose-authentication-providers>; pinned copy in `examples/third_party/msgraph-snippets-python`.
@@ -521,5 +518,5 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c02-versioning]: Microsoft Learn, "Versioning, support, and breaking change policies for Microsoft Graph," <https://learn.microsoft.com/graph/versioning-and-support> (accessed Oct 30, 2026).
 [^c02-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-2, AC-3, AC-6, CA-7, CM-2, CM-6, IA-5, SA-9, SA-11 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
 [^c02-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-SCR-MIT and KSI-SVC-ACM; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
-[^c02-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High; F1603087869, Azure Government (includes Dynamics 365), FedRAMP Certified, Class D, High.
+[^c02-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High.
 [^c02-bod2501]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Oct 21 and Oct 26, 2026).

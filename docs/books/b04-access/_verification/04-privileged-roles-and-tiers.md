@@ -154,7 +154,7 @@ Also cited for the first time in this chapter, through the additions below: Best
 | S2 | VM Administrator Login allows sudo; VM User Login doesn't | Same | verified (new) | c04-linux-ssh |
 | S3 | Conditional Access through the Azure Linux VM Sign-In app; device checks only with the Azure CLI on Windows and macOS | Same | verified (new) | c04-linux-ssh |
 | S4 | Azure Policy flags VMs without Entra sign-in and unapproved local accounts | Same | verified (new) | c04-linux-ssh |
-| S5 | Supported clouds: Azure Global and Azure Government | Same | verified (new) | c04-linux-ssh |
+| S5 | Supported clouds | Same | removed (Nov 15, 2026): the workbook covers commercial Azure | c04-linux-ssh |
 | S6 | SSH admin is server-tier (T1) as eligible VM Administrator Login on the resource group; identity-infrastructure servers are T0; local accounts and long-lived keys are findings | Same, second paragraph | restated-as-design | program position (consistent with the Azure RBAC placements table) |
 | S7 | Read-only Azure CLI checks for role assignments and the extension | Same, code block | command (read-only) | c04-linux-ssh |
 

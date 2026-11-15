@@ -242,7 +242,7 @@ These windows are the program's choice. SP 800-53 IA-5 leaves the time period fo
 ### Prerequisites {#sec-prerequisites}
 
 - The application management policy from the [Non-Person Identity guide, Step 3](../guides/non-person-identity-implementation.md#step-3-set-the-credential-rules); application management policies are a free capability of Workload ID ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#enforcing-the-order-with-app-management-policies)).
-- Azure Key Vault in the agency's subscription. The Key Vault built-in Azure Policy definitions used below have Audit as their default effect and support Deny.[^c14g-kv-policy] Whether each built-in is present in Azure Government isn't stated on the Learn page; the lookup in Step 3 returns nothing if a definition isn't there, which is the check (government availability *not yet specified* on Learn, Nov 11, 2026).
+- Azure Key Vault in the agency's subscription. The Key Vault built-in Azure Policy definitions used below have Audit as their default effect and support Deny.[^c14g-kv-policy]
 - Secret scanning: for GitHub repositories, GitHub's secret scanning with push protection, enabled per repository by an admin or an organization owner or security manager;[^c14g-gh-api] for Azure Repos, GitHub Advanced Security for Azure DevOps (or GitHub Secret Protection for Azure DevOps), which Microsoft makes available only for Azure DevOps Services and Git repositories.[^c14g-ghazdo] Both are **license-dependent**. Azure DevOps Services government-cloud availability isn't stated on the Learn page (*not yet specified*, Nov 11, 2026); an agency on Azure DevOps Server uses a pipeline secret scanner instead.
 
 ### Pilot {#sec-pilot}
@@ -287,7 +287,7 @@ $plan | Sort-Object DaysToExpiry | Export-Csv "<out-dir>\secret-inventory-$(Get-
 
 The file is the *secret inventory and dated replacement plan*: every secret, its expiry, its exception and the date it is to be replaced. It holds no secret values; `Hint` is the first characters Entra ID shows, enough to match a secret in a vault.
 
-**Step 3. Audit the vaults.** Assign the Key Vault built-ins in Audit mode at the management group the vaults sit under. `<mg>` is the management group name; in Azure Government run `az cloud set --name AzureUSGovernment` first.
+**Step 3. Audit the vaults.** Assign the Key Vault built-ins in Audit mode at the management group the vaults sit under. `<mg>` is the management group name.
 
 ```bash
 assign() {   # $1 = the built-in's display name, $2 = its parameters

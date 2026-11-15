@@ -91,7 +91,7 @@ Sources: `docs/operational-guides/access-plane/conditional-access-library.md` §
 | 66 | Source D.2: KSI-IAM-SNU ← CA-005 + App C; KSI-IAM-JIT ← CA-010 + "PIM (Section 11)" | FedRAMP 20x | corrected (SNU is non-user authentication → CA015/CA037; JIT is PIM's) | fedramp.gov KSI IAM |
 | 67 | Source D.2: KSI-MLA-RVL, KSI-CMT-LMC | FedRAMP 20x | removed (not verified in this pass; evidence mapping deferred to Ch10) | — |
 | 68 | GCC uses graph.microsoft.com / portal.azure.com | Government cloud notes | verified | graph/deployments |
-| 70 | Source D.3: named locations must reflect Azure Government IP ranges | Not carried | removed (GCC runs on the commercial service) | graph/deployments |
+| 70 | Source D.3: named locations must reflect another cloud's IP ranges | Not carried | removed (GCC runs on the commercial service) | graph/deployments |
 | 71 | Source D.3: FIDO2 keys must be FIPS 140-2 Level 2 in GCC-Moderate | Government cloud notes | restated-as-design (program procurement standard; not a stated Microsoft or FedRAMP rule) | — |
 | 72 | Source D.2a "GCC-Moderate tenant enforces US data residency; CA-030 blocks…" | Not carried | removed (residency is a service property, location blocking a program choice; covered by Book 02 Ch09) | — |
 | 73 | Source §8 intro: "Microsoft Entra ID Protection P2 license" | Wave 4 | corrected (Entra ID P2) | overview |
@@ -260,6 +260,6 @@ New subsections "Privileged sessions" (after Wave 2) and "The policy design matr
 | Z6 | MFA detail values include completed in the cloud, satisfied by claim in the token, satisfied by strong authentication, successfully completed; the claim value can show wrongly at first | Same, Telemetry | verified | https://learn.microsoft.com/entra/identity/authentication/howto-mfa-reporting | Nov 11, 2026 |
 | Z7 | Token protection: GA native apps on Windows, iOS/iPadOS, macOS; browser preview for ARM web apps; Exchange, SharePoint, Teams; AVD and Windows 365 on Windows; pilot, report-only, both logs | Design matrix | verified | https://learn.microsoft.com/entra/identity/conditional-access/concept-token-protection | Nov 11, 2026 |
 | Z8 | Token protection government-cloud availability and licensing | Same | not yet specified | not stated on the page read | Nov 11, 2026 |
-| Z9 | Conditional Access and session lifetime management available in Azure for US Government | Applies | verified | https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
+| Z9 | Conditional Access and session lifetime management on Learn's Entra feature-availability page | Applies | verified | https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
 | Z10 | Matrix values (durations, rings, exclusions) carried from the waves and rollout cycle | Design matrix | restated-as-design | this chapter | Nov 11, 2026 |
 | Z11 | Reauthentication KQL | Privileged sessions, Telemetry | unverifiable (illustrative, not run) | labelled illustrative | Nov 11, 2026 |

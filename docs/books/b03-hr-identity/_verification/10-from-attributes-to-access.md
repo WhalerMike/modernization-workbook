@@ -24,7 +24,7 @@ Editor pass, 2026-10-20. All Microsoft Learn pages re-opened on this date; every
 | 16 | AUs can't be nested | Administrative units | added for consistency with Book 02 Ch 05 | c10-au-overview |
 | 17 | Dynamic AU holds users or devices, not both, and not groups | Administrative units | verified | c10-au-dynamic |
 | 18 | "Each AU administrator and member needs P1" | Administrative units | corrected — true for dynamic AUs; assigned AUs need P1 for administrators only (members Free) | c10-au-overview, c10-au-dynamic |
-| 19 | Dynamic AUs available in global Azure cloud "which is where GCC tenants run" | Administrative units | verified; corrected framing — dynamic AUs aren't available in specialized clouds such as Azure Government; GCC uses Entra ID in the global cloud; replaced the indirect CBA-CRL footnote with the Azure Government identity-planning FAQ | c10-au-dynamic, c10-gov-identity |
+| 19 | Dynamic AUs available in global Azure cloud "which is where GCC tenants run" | Administrative units | verified; corrected framing: GCC uses Entra ID in the global cloud; replaced the indirect CBA-CRL footnote with the Microsoft 365 integration section of Learn's cloud feature availability page | c10-au-dynamic, c10-gov-identity |
 | 20 | Restricted management set at creation, can't be changed | Administrative units | verified | c10-au-restricted |
 | 21 | Restricted AU users/groups can't be managed by PIM, entitlement management, Lifecycle Workflows, access reviews | Administrative units | added (material omission; consistent with Book 02 Ch 05) | c10-au-restricted |
 | 22 | Manager as approver for users in the directory; resolves to `manager` attribute | Access packages | verified; added fallback-approver behavior | c10-ap-approval |

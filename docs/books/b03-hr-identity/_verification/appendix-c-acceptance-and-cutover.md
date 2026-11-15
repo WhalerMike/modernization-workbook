@@ -35,6 +35,6 @@ Conventions from [Book 00, Appendix D](../../b00-orientation/appendix-d-control-
 
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
-| P4-1 | API-driven inbound provisioning and provisioning agent registration with an Azure Government tenant are available in Azure Government | Rollout safety and evidence | verified | Learn, "Microsoft Entra feature availability" | Nov 11, 2026 |
+| P4-1 | No environment limit: a GCC tenant uses Entra ID in the commercial cloud | Rollout safety and evidence | restated (Book 03 ch01 cloud pairing) | Book 03, Chapter 01 | Nov 15, 2026 |
 | P4-2 | "must trace" relabeled as the program's acceptance criterion (risk-based recommended) | Proving HR is the sole source | restated-as-design (authority label) | — | Nov 11, 2026 |
 | P4-3 | How-template mapping, rings, backout triggers, control states, evidence checklist, assessment mapping | Rollout safety and evidence | restated-as-design | — | Nov 11, 2026 |

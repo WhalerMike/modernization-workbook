@@ -14,8 +14,6 @@ Checked October 20, 2026. Source: the existing series page "Applicability" (the 
 | 6 | M365 GCC-Moderate uses the Worldwide endpoint list → path consistency risk | Primary scope | verified (endpoint list); risk framing kept as program analysis | Learn, M365 URLs |
 | 7 | Moderate-only policy plane doesn't cover High systems | FedRAMP High | kept (follows from impact levels); "authorized" → "certified" | FedRAMP rules |
 | 9 | AWS VPC IPAM–Infoblox not in GovCloud | Government regions, table | verified; China Regions also excluded; source is the AWS announcement | AWS What's New, Nov 17, 2025 |
-| 10 | Azure Government feature availability differs; confirm Private Resolver, DNS security policy, DNSSEC | Government regions | verified and made specific: roadmap shows DNS private and public zones GA at FedRAMP High; Private Resolver GA at FedRAMP High; DNS security policy and DNSSEC not on the roadmap, so "confirm" kept for those | Learn, Compare Azure Gov; Learn, Azure Gov GA roadmap (Oct 4, 2026) |
-| 11 | Private endpoint zone names differ in Azure Government | Government regions | added | Learn, Private Endpoint private DNS zone values, Government |
 | 13 | Air-gapped: no SaaS plane; no Protective DNS forwarding; local trust anchors; provider integrations only where an isolated region exists | Air-gapped | kept (program design position) | — |
 | 14 | Quick reference: SaaS at Moderate "sufficient with agency ATO" | Table | corrected wording: sufficient for Moderate systems; agency authorizes its own system | FedRAMP rules |
 | 15 | Quick reference: Protective DNS required for FCEB egress | Table | verified (M-22-09 "already required"); footnoted under the table | M-22-09 |
@@ -35,7 +33,7 @@ Checked October 20, 2026. Source: the existing series page "Applicability" (the 
 | Opening paragraph (architecture applies everywhere) | Opening prose | — |
 | GCC-Moderate definition paragraph | Opening prose | Marketplace listing added |
 | Primary Scope: Commercial Cloud at FedRAMP Moderate | "Primary scope: commercial cloud at FedRAMP Moderate" | — |
-| Azure Government and AWS GovCloud (High) | "Azure Government and AWS GovCloud (US)" | roadmap facts and Private Endpoint zone names added |
+| AWS GovCloud (High) | "AWS GovCloud (US)" | carried |
 | Air-Gapped and Classified Networks | "Air-gapped and classified networks" | — |
 | Quick Reference table | "Quick reference" table | Private Resolver row added |
 | Previous/Next links | "Continue the book" callout | per brief |
@@ -44,18 +42,17 @@ Checked October 20, 2026. Source: the existing series page "Applicability" (the 
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| CP-1 | Confirm DNS resolver policy (formerly DNS security policy) availability in Azure Government | Azure Government bullet | name updated | Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy> (opened Oct 21, 2026): page title and every heading use "DNS resolver policy"; portal resource "DNS Resolver Policies"; URL keeps `dns-security-policy`; networking design guide <https://learn.microsoft.com/azure/networking/design-guide/dns-security> still says "DNS security policy" |
 
 ## Moderate-civilian sweep (October 29, 2026)
 
-The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) is treated as a valid Moderate location. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| MS-1 | Primary scope widened from "commercial cloud" to FedRAMP Moderate in commercial regions or in AWS GovCloud (US) and Azure Government; GovCloud/Azure Government moved out of the higher-impact section into a new Moderate subsection | Description, In this appendix, Primary scope | reframed per brief | — |
-| MS-2 | AWS US East/West Class C (formerly Moderate); GovCloud (US) Class D (formerly High); per-service, per-Region scope | Moderate workloads in AWS GovCloud (US) and Azure Government | verified 2026-10-29 (fact pack) | aC-aws-fedramp |
+| MS-1 | Primary scope widened from "commercial cloud" to FedRAMP Moderate in commercial regions or in AWS GovCloud (US); GovCloud moved out of the higher-impact section into a new Moderate subsection | Description, In this appendix, Primary scope | reframed per brief | — |
+| MS-2 | AWS US East/West Class C (formerly Moderate); GovCloud (US) Class D (formerly High); per-service, per-Region scope | Moderate workloads in AWS GovCloud (US) | verified 2026-10-29 (fact pack) | aC-aws-fedramp |
 | MS-3 | High-authorized region can host a Moderate system (High baseline contains the Moderate controls) | Same subsection | inference (labelled) | fact pack fact 12 |
 | MS-4 | Example pattern: most AWS workloads in GovCloud (US) at Moderate and a contact center in commercial Regions | Same subsection | design (labelled); agency-neutral | — |
 | MS-5 | Infoblox Government Cloud certified at Moderate, hosted in AWS GovCloud (US) | Same subsection | verified (Marketplace data, Oct 20, 2026; same fact as c03-fedramp) | aC-fr-ibx |
 | MS-6 | FedRAMP High section labelled High only | Section headings | kept as tier comparison, labelled | — |
-| MS-7 | Quick-reference table: added a Moderate GovCloud/Azure Government column; High column labelled High only; Azure DNS Private Resolver in Azure Government shown as GA (authorized at FedRAMP High) | Quick reference | reframed; cell facts carried from aC-azgov-roadmap and aC-awsipam-news | existing footnotes |
+| MS-7 | Quick-reference table: added a Moderate GovCloud column; High column labelled High only | Quick reference | reframed; cell facts carried from aC-awsipam-news | existing footnotes |

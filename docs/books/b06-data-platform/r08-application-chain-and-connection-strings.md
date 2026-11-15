@@ -163,7 +163,7 @@ conn.AccessToken = token.Token;
 conn.Open();
 ```
 
-The **data-plane audience** matters, and the source had it wrong. It used `https://database.usgovcloudapi.net/` and labeled it the GCC audience. Microsoft documents the audience for a token presented to SQL Server's Entra authentication as `https://database.windows.net/`,[^r08-entra-sql] and a Microsoft 365 GCC tenant's Entra ID runs in the worldwide cloud, so GCC uses the worldwide endpoints.[^r08-graph-clouds] As [Runbook R04](r04-arc-deployment-and-managed-identity.md) notes for managed identity tokens, a token for the management plane is refused by the SQL data plane. One more caution from Microsoft: a token supplied through `AccessToken` can't be renewed by the driver and becomes part of the connection-pool key, so pooled applications should use `AccessTokenCallback` (SqlClient 5.2 and later) instead.[^r08-sqlclient]
+The **data-plane audience** matters, and the source had it wrong. It used another cloud's SQL audience and labeled it the GCC audience. Microsoft documents the audience for a token presented to SQL Server's Entra authentication as `https://database.windows.net/`,[^r08-entra-sql] and a Microsoft 365 GCC tenant's Entra ID runs in the worldwide cloud, so GCC uses the worldwide endpoints.[^r08-graph-clouds] As [Runbook R04](r04-arc-deployment-and-managed-identity.md) notes for managed identity tokens, a token for the management plane is refused by the SQL data plane. One more caution from Microsoft: a token supplied through `AccessToken` can't be renewed by the driver and becomes part of the connection-pool key, so pooled applications should use `AccessTokenCallback` (SqlClient 5.2 and later) instead.[^r08-sqlclient]
 
 ## Verification and rollback
 

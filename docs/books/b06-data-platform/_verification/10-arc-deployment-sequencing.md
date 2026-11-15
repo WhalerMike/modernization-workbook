@@ -8,7 +8,7 @@ Checked October 20, 2026. Source: the existing page (former Book 04, Chapter 2),
 |---|---|---|---|---|
 | 1 | Order: connectivity → agent → extension → Entra → verify | Opening | restated-as-design | Program sequence; Learn, Arc-enabled servers overview |
 | 2 | Agent needs outbound HTTPS to `management.azure.com`, `login.microsoftonline.com`, regional Arc endpoints | Prerequisites | edited / verified | Learn, SQL Server enabled by Azure Arc overview (outbound TCP 443 only); agent endpoints and service tags deferred to Book 05 Ch 09 |
-| 3 | SQL-specific destinations: `*.<region>.arcdataservices.com` (`.azure.us` in US Gov Virginia), `aka.ms`, `*.web.core.windows.net`, Entra URLs, Key Vault; resource providers | Prerequisites | verified (new) | Learn, Prerequisites — SQL Server enabled by Azure Arc |
+| 3 | SQL-specific destinations: `*.<region>.arcdataservices.com`, `aka.ms`, `*.web.core.windows.net`, Entra URLs, Key Vault; resource providers | Prerequisites | verified (new) | Learn, Prerequisites — SQL Server enabled by Azure Arc |
 | 4 | No direct internet egress from production SQL hosts | Prerequisites | restated-as-design | Boundary network posture |
 | 5 | Agent supports proxy, set at installation | Prerequisites | edited / verified | Learn, Tutorial (Arc SQL 2022): `azcmagent config set proxy.url` |
 | 6 | Entra authentication doesn't use the agent proxy; needs WinHTTP proxy | Prerequisites | verified | Learn, Tutorial: Set up Entra authentication for SQL Server enabled by Azure Arc |

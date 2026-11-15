@@ -96,7 +96,7 @@ Sources: `docs/libraries/conditional-access-principles.md` (all sections); `docs
 | main §1.3 Relationship to modules | Ch07 Monitoring (drift) and Prerequisites | Module names generalized |
 | main §1.4 Extension attribute schema + Important note | Ch03 Personas (device labels), Exclusions (bypass note) | Schema corrected (claim 64) |
 | main §2.1 Evaluation order and conflict resolution + Design Principle box | Ch03 How policies combine; Naming (numbers are labels) | — |
-| main §2.2 Named locations strategy | Ch03 Network; Ch07 Prerequisites | "Compliance Boundaries … Azure Government endpoints" not carried: GCC uses the commercial service |
+| main §2.2 Named locations strategy | Ch03 Network; Ch07 Prerequisites | Source's compliance-boundary endpoints not carried: GCC uses the commercial service |
 | main §2.3 Authentication strength definitions | Ch03 Authentication strengths; Ch07 Prerequisites | Corrected (claim 35); custom FIDO2-only strength widened to include CBA (Appendix A) |
 | main §2.4 Grant vs. session controls | Ch03 Grant controls, Session controls | Updated names and retired grant |
 | main §2.5 Report-only methodology | Ch03 Report-only mode; Ch07 Rollout | — |
@@ -192,6 +192,6 @@ Note for the reviewer: the All resources bullet says the baseline-scope change i
 | G2 | External MFA (formerly external authentication methods): provider registered in the authentication methods policy through OIDC; users choose it at MFA prompts; Entra ID still makes the access decision | Same | verified (new) | c03-external-mfa <https://learn.microsoft.com/entra/identity/authentication/how-to-authentication-external-method-manage> |
 | G3 | External MFA satisfies the require-MFA grant, shows as MFA in sign-in logs, works with PIM and risk-based Conditional Access; custom controls don't | Same | verified (new) | c03-custom-migrate <https://learn.microsoft.com/entra/identity/conditional-access/how-to-migrate-custom-controls-external-mfa> |
 | G4 | External MFA doesn't satisfy any authentication strength, including the built-in MFA strength; use require MFA | Same | verified (new) | c03-external-mfa-provider <https://learn.microsoft.com/entra/identity/authentication/concept-authentication-external-method-provider> |
-| G5 | A third-party PIV/CAC or MFA route can't reach the Phishing-resistant MFA strength, so it's transitional; PIV reaches it through Entra CBA | Same, second paragraph | restated-as-design (from G4 and the strengths table) | c03-external-mfa-provider; c03-auth-strengths |
+| G5 | A third-party PIV or MFA route can't reach the Phishing-resistant MFA strength, so it's transitional; PIV reaches it through Entra CBA | Same, second paragraph | restated-as-design (from G4 and the strengths table) | c03-external-mfa-provider; c03-auth-strengths |
 | G6 | Migration steps: register provider for a test group, report-only require-MFA policy, exclude test group from the custom-control policy, check logs, phase out, keep old policy Off at least two weeks | Same | verified (new) | c03-custom-migrate |
 | G7 | Read-only Graph PowerShell to list policies that use custom controls (`grantControls.customAuthenticationFactors`) | Same, code block | command (read-only) | conditionalAccessGrantControls resource type, c03-graph-grant |

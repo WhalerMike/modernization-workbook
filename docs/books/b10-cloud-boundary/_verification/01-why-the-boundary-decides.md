@@ -18,7 +18,7 @@ Checked October 21, 2026 by writer W1. Sources: `docs/case-studies/cloud-boundar
 | 10 | Minimum Assessment Scope: identify resources; categories "MAY vary by security category"; metadata included; agents/app clients not operated in shared responsibility excluded | Decision makers; agency authorization; 2026 section | verified | FedRAMP 20x MAS rules page |
 | 11 | 20x rules page doesn't use "authorization boundary" | 2026 section | verified (narrowed) | MAS rules page fetch. Source said the phrase occurs zero times in the whole Consolidated Rules with an 8-occurrence breakdown; that full-corpus count wasn't re-run here and is left to Ch03 |
 | 12 | Definitions: CSO "a specific, packaged cloud computing product or service"; Certification Class "increasing from minimal assurance at Class A to significant assurance at Class D" | Certification | verified (new) | FedRAMP Definitions |
-| 13 | Azure publishes per-service FedRAMP High scope for Azure public and Azure Government | Certification | verified | MS Learn, services compliance scope |
+| 13 | Azure publishes per-service FedRAMP High scope for Azure public | Certification | verified | MS Learn, services compliance scope |
 | 14 | GCC customer support "is not included in the service accreditation boundary"; Viva Engage "does not support FedRAMP accreditation" | Certification | verified (new) | MS Learn, Office 365 GCC service description |
 | 15 | GCC paired with Entra ID in Azure | Environment | verified | MS Learn, Cloud feature availability for US Government customers |
 | 16 | "GCC is the same instance as Microsoft Intune in the commercial space" | Environment | verified (new) | MS Learn, Intune US Government service description |

@@ -36,10 +36,8 @@ Writer W3. Source: `docs/compliance/Vol_V_Book_04_Vendor_Training_Lab_Environmen
 | 28 | Source: "M365 E5 developer/trial tenants cover Entra ID P2, Purview, Defender" freely available | Lab sources; What changed | corrected | Eligibility limited (claim 27); P2 inclusion in E5 verified separately |
 | 29 | Microsoft 365 E5 includes Entra ID P2; PIM needs P2 or ID Governance | Lab sources | verified | Microsoft Entra licensing; PIM getting started |
 | 30 | GCC: free one-month trial for GCC only; trials only for U.S. government entities | Lab sources | verified | Microsoft 365 Government how to buy; Office 365 GCC service description |
-| 31 | Azure Government customers subject to eligibility validation; trial by request | Lab sources | verified | "What is Azure Government?" |
 | 32 | AWS GovCloud (US): isolated U.S. regions for verified government agencies and entities; root account U.S. person screening; separate IAM and credentials | Lab sources | verified | aws.amazon.com/govcloud-us |
 | 33 | Government feature gap | Government clouds | verified (by link) | Book 10 Ch04 (published) |
-| 34 | Azure Government portal portal.azure.us; `Connect-AzAccount -Environment AzureUSGovernment` | Government clouds | verified | Microsoft Learn Azure Government quickstarts (portal, PowerShell) |
 | 35 | Two-step lab path (commercial sandbox, then agency non-production government tenant before gate) | Government clouds | restated-as-design | — |
 | 36 | Lab tiers (fixture, sandbox, product evaluation) | Lab tiers | restated-as-design | Source tier names F/T/P translated |
 | 37 | CA report-only evaluates at sign-in without enforcing; results in sign-in logs | Rules | verified | Microsoft Learn "Analyze Conditional Access Policy Impact" |

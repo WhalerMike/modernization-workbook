@@ -141,7 +141,7 @@ Required capabilities:
 - Certificate-to-identity binding: who owns each certificate.
 - Expiry timeline export in 90-, 180-, and 365-day windows.
 - CA hierarchy mapping: root, issuing, and subordinate chains.
-- Smart card, PIV, and CAC certificate inventory.
+- Smart card and PIV certificate inventory.
 - Migration of auto-enrollment from Group Policy to Intune certificate profiles.
 
 Migration sequence:
@@ -317,7 +317,7 @@ Get-GPO -All | ForEach-Object {
 
 For each central access policy, record the file servers and shares it's published to, the claims and resource properties its rules read, and the data owner. A share that DAC protects is a data-protection decision, not a file move.
 
-**Where the replacement lives.** Learn doesn't describe a direct successor to DAC, so the program treats it as a redesign, owned with the data owner: the classification moves to Microsoft Purview sensitivity labels, which the Purview information protection scanner can discover and apply on SMB file shares on a schedule, and which Microsoft lists as available in GCC;[^c04-purview-scanner][^c04-purview-gov] the access decision moves to the target's own model, which for Azure Files is Azure RBAC at the share and Windows ACLs on directories and files, with Entra Kerberos as one of the identity sources;[^c04-azfiles-overview] and attribute-driven access to the content moves to Entra ID groups built from the same attributes ([Chapter 09](09-building-the-entra-target.md#converting-static-groups-to-dynamic-groups)). Azure Files' Entra Kerberos support for hybrid identities is available in Azure US Government; for cloud-only identities it's in preview and not supported there.[^c04-azfiles-kerb] [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md) owns the data-protection side of that redesign.
+**Where the replacement lives.** Learn doesn't describe a direct successor to DAC, so the program treats it as a redesign, owned with the data owner: the classification moves to Microsoft Purview sensitivity labels, which the Purview information protection scanner can discover and apply on SMB file shares on a schedule, and which Microsoft lists as available in GCC;[^c04-purview-scanner][^c04-purview-gov] the access decision moves to the target's own model, which for Azure Files is Azure RBAC at the share and Windows ACLs on directories and files, with Entra Kerberos as one of the identity sources;[^c04-azfiles-overview] and attribute-driven access to the content moves to Entra ID groups built from the same attributes ([Chapter 09](09-building-the-entra-target.md#converting-static-groups-to-dynamic-groups)). [Book 12, Chapter 09](../b12-security-operations/09-data-protection-and-classification.md) owns the data-protection side of that redesign.
 
 ### Kerberos for whatever remains
 

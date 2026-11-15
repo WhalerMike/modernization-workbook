@@ -47,9 +47,9 @@ Microsoft's setup guides: [SQL Server 2025 (managed identity)](https://learn.mic
 
 ### The right Azure cloud
 
-A GCC-Moderate Microsoft 365 tenant uses Microsoft Entra ID in the public (commercial) cloud, and an Azure Government subscription can't be associated with a directory there.[^r04-gov-identity] The Arc resources for a GCC-Moderate estate therefore live in a **commercial Azure subscription associated with the same tenant**, and the agent connects with `--cloud AzureCloud`. That is also the assumption [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) makes.
+A GCC-Moderate Microsoft 365 tenant uses Microsoft Entra ID in the public (commercial) cloud.[^r04-gov-identity] The Arc resources for a GCC-Moderate estate therefore live in a **commercial Azure subscription associated with the same tenant**, and the agent connects with `--cloud AzureCloud`. That is also the assumption [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) makes.
 
-It is the only arrangement that works for this runbook in any case. SQL Server enabled by Azure Arc in the US Government Virginia region supports onboarding, inventory, licensing, failover cluster instances and Extended Security Updates; Microsoft Entra authentication isn't among the available features there,[^r04-sql-usgov] and the managed-identity setup states that SQL Server needs access to the Azure public cloud for Entra authentication.[^r04-sql-mi] An estate whose servers are already onboarded to Azure Government for other reasons needs a second Arc registration plan for its SQL Server hosts, decided by the program before this runbook starts.
+The managed-identity setup states that SQL Server needs access to the Azure public cloud for Entra authentication.[^r04-sql-mi]
 
 ### The host and the instance
 
@@ -102,7 +102,7 @@ azcmagent show          # expect Agent Status: Connected
 netsh winhttp set proxy proxy-server="http://proxy.example.internal:8080"
 ```
 
-`--cloud` accepts `AzureCloud`, `AzureUSGovernment` and `AzureChinaCloud` and must be used with `--location`; the certificate can be a PFX or PEM file holding both keys (not password-protected), or on Windows a certificate in the machine store by `--service-principal-cert-thumbprint`.[^r04-azcm-connect] Microsoft recommends a certificate over a secret for the onboarding service principal; if a secret is unavoidable, pass it in a configuration file (`--config`) rather than on the command line.[^r04-azcm-connect]
+`--cloud` takes `AzureCloud` for commercial Azure and must be used with `--location`; the certificate can be a PFX or PEM file holding both keys (not password-protected), or on Windows a certificate in the machine store by `--service-principal-cert-thumbprint`.[^r04-azcm-connect] Microsoft recommends a certificate over a secret for the onboarding service principal; if a secret is unavoidable, pass it in a configuration file (`--config`) rather than on the command line.[^r04-azcm-connect]
 
 When a server with SQL Server installed connects to Arc, Azure installs the Azure extension for SQL Server automatically and creates the SQL Server resources, unless the machine, resource group or subscription carries the tag `ArcSQLServerExtensionDeployment` with the value `Disabled`.[^r04-autodeploy] Decide before the wave whether you want automatic installation (Step 3).
 
@@ -112,7 +112,7 @@ When a server with SQL Server installed connects to Arc, Azure installs the Azur
 
 The Arc agent runs a local identity endpoint, published to processes on the host in the `IDENTITY_ENDPOINT` environment variable as `http://localhost:40342/metadata/identity/oauth2/token`.[^r04-arc-mi-auth] It isn't the Azure VM endpoint at `169.254.169.254`. Getting a token is a two-call challenge: the first request returns `401` with the path of a one-time challenge-token file under `C:\ProgramData\AzureConnectedMachineAgent\Tokens\`, and the caller proves it can read that folder by sending the file's contents in an `Authorization: Basic` header on the second request. Only local Administrators and members of the **Hybrid agent extension applications** group can read the folder.[^r04-arc-identity]
 
-Confirm that the host can mint a token and that its audience is correct. For SQL Server on premises the data-plane audience is `https://database.windows.net/`, the same as in commercial Azure; `https://database.usgovcloudapi.net/` is the audience for Azure SQL in Azure Government, not for an on-premises instance.[^r04-entra-sql]
+Confirm that the host can mint a token and that its audience is correct. For SQL Server on premises the data-plane audience is `https://database.windows.net/`, the same as in commercial Azure.[^r04-entra-sql]
 
 ```powershell
 # PowerShell 7, run elevated (local Administrators or Hybrid agent extension applications).
@@ -225,7 +225,7 @@ Before Step 4, nothing in SQL Server depends on the machine identity, so rolling
 This section applies the conventions of [Book 00, Appendix D](../b00-orientation/appendix-d-control-states-and-evidence.md) to the steps above. It points to what the runbook already says and adds only what was missing.
 
 **Authority:** Microsoft-recommended for the certificate-based onboarding service principal and for the managed-identity setup of Entra authentication on SQL Server 2025 (Learn, "`azcmagent connect`" and "Managed identity for SQL Server enabled by Azure Arc," read again Nov 11, 2026);[^r04-azcm-connect][^r04-sql-mi] risk-based recommended for making Arc the only path to Entra authentication for the estate, which is the program's position because it is the managed, repeatable configuration ([Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md#bind-the-group-to-a-sql-server-group-login)).
-**Applies:** SQL Server 2022 and later on Windows Server 2019 or later, except failover cluster instances. Environment-dependent: Entra authentication for SQL Server needs the Azure public cloud, and Microsoft's list of features for SQL Server enabled by Azure Arc in the US Government Virginia region still doesn't include it (read Nov 11, 2026),[^r04-sql-mi][^r04-sql-usgov] so a GCC tenant uses a commercial subscription, as [Prerequisites](#the-right-azure-cloud) explains.
+**Applies:** SQL Server 2022 and later on Windows Server 2019 or later, except failover cluster instances. Environment-dependent: Entra authentication for SQL Server needs the Azure public cloud,[^r04-sql-mi] so a GCC tenant uses a commercial subscription, as [Prerequisites](#the-right-azure-cloud) explains.
 
 | How-section subsection | In this runbook |
 |---|---|
@@ -234,7 +234,7 @@ This section applies the conventions of [Book 00, Appendix D](../b00-orientation
 | Report-only or audit phase | Not applicable as a product mode: Arc enrollment has no audit mode. The read-only stand-ins come first: `azcmagent check`, the `Invoke-FMPArcOnboarding` plan record, and the token and extension checks of Steps 2 and 3, all before Step 4 changes the instance. Turning on Entra authentication refuses nothing; Windows and SQL logins keep working until [Runbook R05](r05-login-migration-and-parallel-run.md) |
 | Enforcement | Step 4, ring by ring as below |
 | Rollback | The rollback order above; on SQL Server 2025, Step 4 is treated as one-way |
-| Exclusions | Failover cluster instances (unsupported), instances below SQL Server 2022 (upgrade or except, [Chapter 12](12-the-engine-authentication-decision.md)), and hosts already registered in Azure Government (a second registration plan); each recorded in the exception registry with an owner and a sunset date |
+| Exclusions | Failover cluster instances (unsupported) and instances below SQL Server 2022 (upgrade or except, [Chapter 12](12-the-engine-authentication-decision.md)); each recorded in the exception registry with an owner and a sunset date |
 | Telemetry | `azcmagent show` status, the extension's provisioning state, the Azure activity log for the machine and extension resources, and the `arc_agent_offline` drift event of [Runbook R09](r09-continuous-monitoring-and-closure.md) |
 | Evidence | The checklist below |
 | Day-two ownership | Server infrastructure owns the agent, the extension and egress; the identity team owns the Graph permissions; the data platform team owns the Entra admin and drops a replaced admin login ([Chapter 13](13-who-owns-the-data-platform.md#the-responsibility-matrix)). Drift is the agent going offline, the extension failing, or the machine identity changing after a reconnect |
@@ -292,9 +292,8 @@ A finding this page addresses is ready for closure when every applicable state h
 
 [^r04-sql-2022]: Microsoft Learn, "Tutorial: Set up Microsoft Entra authentication for SQL Server enabled by Azure Arc," <https://learn.microsoft.com/sql/sql-server/azure-arc/entra-authentication-setup-tutorial> (accessed Oct 20, 2026).
 
-[^r04-gov-identity]: Microsoft Learn, "Planning identity for Azure Government applications," frequently asked questions, <https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity#frequently-asked-questions> (accessed Oct 20, 2026).
+[^r04-gov-identity]: Microsoft Learn, "Cloud feature availability for US Government customers," section "Microsoft 365 integration" ("Office 365 and Office 365 GCC are paired with Microsoft Entra ID in Azure"), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration> (accessed Nov 15, 2026).
 
-[^r04-sql-usgov]: Microsoft Learn, "SQL Server enabled by Azure Arc in US Government," available features, <https://learn.microsoft.com/sql/sql-server/azure-arc/us-government-region> (accessed Oct 20, 2026).
 
 [^r04-entra-sql]: Microsoft Learn, "Microsoft Entra authentication for SQL Server," access token and remarks, <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview> (accessed Oct 20, 2026).
 

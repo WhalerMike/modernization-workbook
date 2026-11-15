@@ -562,7 +562,6 @@ This register lists 765 sources. A slide or a video description links to a sourc
 | [Privileged Identity Management APIs](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-apis){#privileged-identity-management-apis} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="privileged-identity-management-apis"} |
 | [Privileged roles and permissions in Microsoft Entra ID (preview)](https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions){#privileged-roles-and-permissions-in} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="privileged-roles-and-permissions-in"} |
 | [Protect your resource hierarchy](https://learn.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy){#protect-resource-hierarchy} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="protect-resource-hierarchy"} |
-| [Quickstart: Connect to Azure Government with PowerShell](https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-ps){#connect-to-azure-government-with-powershell} | Retired | November 11, 2026 | [Not read yet]{.fmw-scan data-source="connect-to-azure-government-with-powershell"} |
 | [Quickstart: Create an Azure Front Door using Azure CLI](https://learn.microsoft.com/azure/frontdoor/create-front-door-cli){#front-door-cli-quickstart} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="front-door-cli-quickstart"} |
 | [QuickStart: Create and configure Azure DDoS Network Protection using Azure CLI](https://learn.microsoft.com/azure/ddos-protection/manage-ddos-protection-cli){#ddos-network-protection-cli} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="ddos-network-protection-cli"} |
 | [RADIUS authentication with Microsoft Entra ID](https://learn.microsoft.com/entra/architecture/auth-radius){#radius-authentication-with-microsoft-entra} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="radius-authentication-with-microsoft-entra"} |
@@ -930,7 +929,7 @@ This register lists 765 sources. A slide or a video description links to a sourc
 | Date | Source | Change |
 |---|---|---|
 | November 15, 2026 | [Azure Retail Prices API](#azure-retail-prices-api) | Retired: no workbook page cites it (Nov 15, 2026) |
-| November 15, 2026 | 6 sources | Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026) |
+| November 15, 2026 | 5 sources | Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026) |
 | November 13, 2026 | 4 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |
@@ -938,7 +937,7 @@ This register lists 765 sources. A slide or a video description links to a sourc
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
 | November 12, 2026 | 22 sources | More slide wording links here |
 | November 12, 2026 | 174 sources | Added: cited on the narrated deck slides |
-| November 11, 2026 | 15 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
+| November 11, 2026 | 14 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft |

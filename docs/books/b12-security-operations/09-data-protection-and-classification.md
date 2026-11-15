@@ -321,7 +321,7 @@ An agency that still runs Active Directory Rights Management Services has encryp
 For Azure workloads, the customer-managed key sits in Key Vault Premium or Managed HSM. Microsoft states that Premium HSM-protected keys are "generated and protected by FIPS 140-3 Level 3 validated Marvell LiquidSecurity HSMs," and Managed HSM is a single-tenant FIPS 140-3 Level 3 service whose security domain the customer holds.[^c09-akv][^c09-mhsm] SC-13 is a property of the validated module, so check the CMVP certificate for each one. FIPS 140-2 certificates moved to the CMVP Historical List in September 2026; NIST says the CMVP "supports the purchase and use of these modules for existing systems," so a 140-2 module in an existing system isn't automatically noncompliant, but new procurements should rely on 140-3 modules.[^c09-fips]
 
 ```powershell
-# Azure PowerShell. Azure Government: Connect-AzAccount -Environment AzureUSGovernment
+# Azure PowerShell (commercial Azure)
 Connect-AzAccount
 Set-AzContext -Subscription '<key-management-subscription-id>'
 

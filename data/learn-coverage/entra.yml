@@ -6959,7 +6959,6 @@ pages:
   note: Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters
   cited_by:
   - docs/books/b09-network/11-field-office-wan-transformation.md
-  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/reference-role-based-permissions.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-role-based-permissions
   title: Microsoft Global Secure Access built-in roles
@@ -17587,7 +17586,6 @@ pages:
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b03-hr-identity/12-execution-plan.md
   - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
-  - docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/10-access-as-code-and-evidence.md
@@ -17595,9 +17593,6 @@ pages:
   - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b04-access/_verification/10-access-as-code-and-evidence.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
-  - docs/books/b07-pki/06-device-and-user-certificates.md
-  - docs/books/b07-pki/09-federal-workforce-credentials.md
-  - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md

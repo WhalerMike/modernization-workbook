@@ -45,8 +45,8 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (§9–§15
 | 38 | PHS "automatic fallback" | PHS foundation | corrected (manual switch) | choose-ad-authn |
 | 39 | Smart lockout benefit | PHS foundation | unverifiable (carried as general statement; not separately cited) | — |
 | 40 | M-22-09: phishing-resistant MFA for staff/contractors/partners; option for public; discontinue SMS/voice/OTP/push for routine self-service; PIV simplest; FIDO2/WebAuthn allowed; M-19-17 PIV primary; end of FY2024 | Roadmap | verified (primary source) | OMB M-22-09 PDF |
-| 41 | CBA supports PIV/CAC/derived PIV without federation | Roadmap | verified | memo-22-09-multi-factor-authentication |
-| 42 | Roadmap ordering (CBA last, "high-security users") | Roadmap | corrected (CBA moved to phase 2 for PIV/CAC holders) | M-22-09 |
+| 41 | CBA supports PIV/derived PIV without federation | Roadmap | verified | memo-22-09-multi-factor-authentication |
+| 42 | Roadmap ordering (CBA last, "high-security users") | Roadmap | corrected (CBA moved to phase 2 for PIV holders) | M-22-09 |
 | 43 | Authenticator passkeys need Android 14 / iOS 17 | Roadmap | verified (added) | how-to-enable-authenticator-passkey |
 | 44 | All four methods meet phishing-resistant strength | Roadmap | verified | concept-authentication-strengths |
 | 45 | Passkey profiles; device-bound vs synced; attestation | Methods policy | verified (added) | how-to-authentication-passkeys-fido2 |
@@ -128,7 +128,7 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (§9–§15
 | 14.3 Gitea API integration (New-FMPGiteaDriftIssue) | Ch10 "Raising drift issues…" (description); code in Appendix D module | Code consolidated into the module |
 | 15 Troubleshooting reference | Ch10 "Troubleshooting reference" | |
 | Closing document footer (version, classification, Gitea commit rule) | — | Not carried: governance boilerplate |
-| Compliance Amendment: FIDO2 / PIV / CAC mapping (IA-2(6)) | Ch10 "Multifactor authentication and separate devices (IA-2)" | Control text corrected |
+| Compliance Amendment: FIDO2 / PIV mapping (IA-2(6)) | Ch10 "Multifactor authentication and separate devices (IA-2)" | Control text corrected |
 | Compliance Amendment: PAW guidance (AC-6(7)) | Ch10 "Reviewing privileged access (AC-6(7))" and "Privileged access workstations" | Control mapping corrected |
 
 ## Change log
@@ -242,7 +242,7 @@ Learn pages the coverage map listed as covered but uncited were read on Nov 9, 2
 | L12 | Cross-tenant synchronization creates and maintains B2B users across an organization's own tenants | §Cross-tenant access settings | verified (Learn read Nov 9, 2026) | c10-cts-topology <https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-topology> |
 | L13 | Microsoft accounts are a built-in identity provider for guests | §External identity providers | verified (Learn read Nov 9, 2026) | c10-msa <https://learn.microsoft.com/entra/external-id/microsoft-account> |
 | L14 | PHS stays on whatever the sign-in method | §Password hash sync as the foundation | verified (Learn read Nov 9, 2026; Microsoft strongly recommends PHS) | c10-road-establish <https://learn.microsoft.com/entra/architecture/road-to-the-cloud-establish> |
-| L15 | Privileged accounts: FIDO2 security keys and smart cards (PIV/CAC through CBA) | Roadmap table, phase 1 | verified (Learn read Nov 9, 2026) | c10-admin-personas <https://learn.microsoft.com/entra/identity/authentication/how-to-plan-persona-phishing-resistant-passwordless-authentication> |
+| L15 | Privileged accounts: FIDO2 security keys and smart cards (PIV through CBA) | Roadmap table, phase 1 | verified (Learn read Nov 9, 2026) | c10-admin-personas <https://learn.microsoft.com/entra/identity/authentication/how-to-plan-persona-phishing-resistant-passwordless-authentication> |
 | L16 | Passkey profile with attestation enforced (keys must meet attestation requirements) | Roadmap table, phase 1 | verified (Learn read Nov 9, 2026) | c10-fido2-attestation <https://learn.microsoft.com/entra/identity/authentication/concept-fido2-hardware-vendor> |
 | L17 | Passkeys in Authenticator need Android 14 or iOS 17 or later | Roadmap table, phase 4 | verified (Learn read Nov 9, 2026) | c10-authenticator-passkey-register <https://learn.microsoft.com/entra/identity/authentication/how-to-register-passkey-authenticator> |
 | L18 | Synced passkeys can be allowed for some populations through a passkey profile | §Phishing-resistant roadmap | verified (Learn read Nov 9, 2026) | c10-synced-passkeys <https://learn.microsoft.com/entra/identity/authentication/how-to-synced-passkeys> |

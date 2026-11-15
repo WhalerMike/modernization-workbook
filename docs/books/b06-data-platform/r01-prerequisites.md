@@ -92,7 +92,7 @@ The runbooks draw one bright line, and the code enforces it:
 
 - **Read-only and derivation functions run directly**: discovery, audits, classifications, plans, closure records, comparisons. They read captured or live-read inputs and change nothing.
 - **State-changing functions are gated.** They either declare `SupportsShouldProcess` and default to planning only (`Invoke-FMPArcOnboarding` plans the `azcmagent connect` command unless you pass `-Execute` and confirm), or they generate a reviewable script or plan and execute nothing (`New-FMPEntraLoginScript`, `New-FMPGroupLoginScript`). The login and group script generators have no `-Server` or `-Execute` parameter at all; they never open a SQL connection.
-- **No secrets are embedded.** Tenant, subscription, cloud, endpoints and credentials are all parameters. The cloud-aware functions accept the two Azure cloud names the Arc agent uses for US workloads, `AzureCloud` and `AzureUSGovernment`,[^r01-azcm-connect] resolve the matching audience, and fail closed on an unknown cloud. A GCC-Moderate tenant is a Microsoft Entra tenant in the public (commercial) cloud, and an Azure Government subscription can't be associated with a directory there,[^r01-gcc-identity] so the Arc resources that serve a GCC-Moderate tenant use `AzureCloud`; [Runbook R04](r04-arc-deployment-and-managed-identity.md) explains why that matters for SQL Server.
+- **No secrets are embedded.** Tenant, subscription, cloud, endpoints and credentials are all parameters. The cloud-aware functions accept `AzureCloud`, the Azure cloud name the Arc agent uses for commercial Azure,[^r01-azcm-connect] resolve the matching audience, and fail closed on any other cloud. A GCC-Moderate tenant is a Microsoft Entra tenant in the public (commercial) cloud,[^r01-gcc-identity] so the Arc resources that serve a GCC-Moderate tenant use `AzureCloud`; [Runbook R04](r04-arc-deployment-and-managed-identity.md) explains why that matters for SQL Server.
 
 ::: {.callout-warning}
 ## Production safety
@@ -131,6 +131,6 @@ This runbook installs and orients; it runs nothing against a live estate. The fi
 
 [^r01-azcm-connect]: Microsoft Learn, "`azcmagent connect`," `--cloud` flag, <https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-connect> (accessed Oct 20, 2026).
 
-[^r01-gcc-identity]: Microsoft Learn, "Planning identity for Azure Government applications," frequently asked questions, <https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity#frequently-asked-questions> (accessed Oct 20, 2026).
+[^r01-gcc-identity]: Microsoft Learn, "Cloud feature availability for US Government customers," section "Microsoft 365 integration" ("Office 365 and Office 365 GCC are paired with Microsoft Entra ID in Azure"), <https://learn.microsoft.com/azure/security/fundamentals/feature-availability#microsoft-365-integration> (accessed Nov 15, 2026).
 
 [^r01-azcm-show]: Microsoft Learn, "`azcmagent show`," <https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-show> (accessed Oct 20, 2026).

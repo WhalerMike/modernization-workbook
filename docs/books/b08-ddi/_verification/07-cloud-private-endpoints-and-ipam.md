@@ -25,7 +25,7 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch), AWS doc
 | 17 | NXDOMAIN for public resources with their own private endpoints; "fallback to internet" link setting | Core behavior, deployment | verified (added) | c07-azpezones |
 | 18 | Records auto-generate only with recommended zone names | Zones | verified | c07-azpezones |
 | 19 | Conditional forwarding must target the public DNS zone forwarder (`database.windows.net`), not the privatelink zone | Zones, pattern, code, diagram | corrected: series, guide 6.1 step 8 and 10.5 forwarded `privatelink.*` zones | c07-azpe |
-| 20 | Guide 10.2 zone table (17 services) | Zones table | corrected and extended: added forwarder column and Azure Government names; Key Vault forwarders are `vault.azure.net` + `vaultcore.azure.net`; Azure Monitor needs five zones; Automation forwarder is regional; Cognitive Services now Foundry Tools with three zones; Azure ML needs a notebooks zone; Cosmos DB entry is the NoSQL API | c07-azpezones |
+| 20 | Guide 10.2 zone table (17 services) | Zones table | corrected and extended: added forwarder column; Key Vault forwarders are `vault.azure.net` + `vaultcore.azure.net`; Azure Monitor needs five zones; Automation forwarder is regional; Cognitive Services now Foundry Tools with three zones; Azure ML needs a notebooks zone; Cosmos DB entry is the NoSQL API | c07-azpezones |
 | 21 | Guide 10.3 "Auto-Registration: when a Private Endpoint is created with DNS integration Azure creates A records" | Zones | corrected: that is the private DNS zone group; autoregistration is a VM feature | c07-azpe, c07-azautoreg |
 | 22 | Autoregistration: VMs only, primary NIC only, removed on stop/delete, no PTR, one zone per VNet | Zones | verified | c07-azautoreg |
 | 23 | Guide 10.4 code `-EnableRegistration $false` | Code | corrected: `EnableRegistration` is a switch; omitted | c07-azpsquick (module usage), c07-azautoreg |
@@ -119,7 +119,7 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch), AWS doc
 
 ## Moderate-civilian sweep (October 29, 2026)
 
-The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) is treated as a valid Moderate location. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|

@@ -17,7 +17,6 @@ vendor-question sections, and the DNS Modernization Guide cost guidance (§6.3, 
 | 4 | Private Resolver billed per inbound/outbound endpoint per month and per ruleset per month; no instance or query meter | Cost | verified | Azure Retail Prices API (Azure DNS meters); Azure DNS pricing page (units) |
 | 5 | Zone 1 list prices: endpoints $180/mo each (eff. 2022-09-01), ruleset $2.50/mo, private zone $0.50/mo first 25 (2019-12-01), private queries $0.40/M, DNS security policy $0.60/M (2025-06-01) | Cost table | verified | Azure Retail Prices API, retrieved Oct 20, 2026 (dated, list price) |
 | 6 | Worked example ≈ $362.50/month per region | Cost | verified | Arithmetic on #5 |
-| 7 | Same endpoint price in US Gov zone | Cost | verified | Retail Prices API, US Gov Zone 1, $180 (eff. 2024-10-01) |
 | 8 | Guide: resolver ~$0.18/hour (~$131/mo), endpoints ~$0.009/hour (~$6.50/mo), queries included, VNet links $0.50 after 2; example totals $144/$159/$327 | Cost callout | corrected | Retail Prices API and pricing page show endpoint-based pricing; no resolver-instance or VNet-link meter listed. Guide figures not carried |
 | 9 | AWS VPC IPAM charges per active IP monitored in member accounts | Cost | verified | AWS, Integrate IPAM with accounts in an AWS Organization |
 | 10 | Azure DNS security policy blocks known malicious domains (Microsoft threat intelligence) | Cost; comparison | verified | Learn, DNS security and private name resolution (cross-cloud) |
@@ -25,7 +24,7 @@ vendor-question sections, and the DNS Modernization Guide cost guidance (§6.3, 
 | 12 | Whitepaper §7.8: "On 2026-07-22, Infoblox Government Cloud achieved FedRAMP Moderate certification" | Authorization table | corrected | Marketplace: certified since 2022-12-15. The July 22, 2026 vendor press release announced Universal DDI Management, NIOS-X servers and Universal Asset Insights through the authorized service (consistent with Ch 01/03 and Book 02 Ch 04) |
 | 13 | Whitepaper §10.3: Universal DDI "Full" in GCC Moderate and High clouds | Authorization cautions | corrected | Moderate authorization only; does not cover High (Appendix C). Feature-parity table not carried |
 | 14 | No Marketplace listing for BlueCat or EfficientIP | Authorization table | verified | products.json searched by provider and offering name |
-| 15 | BlueCat Address Manager and DNS/DHCP Server appliances for Azure and Azure Government | Authorization table | verified | BlueCat docs, Azure Virtual Appliances 26.1.0 |
+| 15 | BlueCat Address Manager and DNS/DHCP Server appliances for Azure | Authorization table | verified | BlueCat docs, Azure Virtual Appliances 26.1.0 |
 | 16 | Azure commercial FedRAMP High; Azure DNS in FedRAMP High audit scope (public regions) | Authorization table | verified | products.json F1209051525; Learn compliance scope page (updated 2026-10-12) |
 | 17 | AWS US East/West Moderate, GovCloud High; Route 53 in scope in both | Authorization table | verified | products.json; AWS Services in Scope: FedRAMP |
 | 18 | Cisco Catalyst SD-WAN for Government FR2012534927, Moderate, since 2024-03-14 | Authorization table | verified | products.json |
@@ -99,7 +98,7 @@ Placed after the paragraph that follows the platform-model table (former line 10
 
 ## Moderate-civilian sweep (October 29, 2026)
 
-The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) is treated as a valid Moderate location. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|

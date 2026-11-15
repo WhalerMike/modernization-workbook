@@ -71,7 +71,7 @@ Enterprise PKI (PKIView) gives an early-warning view of CA certificate and CRL h
 Entra CBA has its own revocation rules, and they shape the CRL design for any CA it trusts. [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md) covers caching and the **Require CRL validation** setting.
 
 - Each trusted CA supports one CRL distribution point, which must be an HTTP or HTTPS URL. Entra CBA doesn't support OCSP or LDAP URLs.[^c08-cba-overview] Microsoft recommends HTTP rather than HTTPS for the CRL, to minimize latency and avoid a circular dependency on certificate validation.[^c08-cba-crl]
-- The largest CRL Entra ID downloads during an interactive sign-in is 20 MB in public Microsoft Entra ID and 45 MB in the Azure US Government clouds, and the download must finish within 10 seconds. If Entra can't download the CRL, CBA fails for every certificate that CA issued.[^c08-cba-crl] Keep lifetimes reasonable and clean up expired certificates so that CRLs stay inside those limits.[^c08-cba-crl]
+- The largest CRL Entra ID downloads during an interactive sign-in is 20 MB in public Microsoft Entra ID, which GCC uses, and the download must finish within 10 seconds. If Entra can't download the CRL, CBA fails for every certificate that CA issued.[^c08-cba-crl] Keep lifetimes reasonable and clean up expired certificates so that CRLs stay inside those limits.[^c08-cba-crl]
 - If a CA is uploaded without a CRL URL, authentication with that CA's revoked certificates doesn't fail.[^c08-cba-ca]
 
 Cloud PKI hosts its own CRLs. Each CRL is valid for seven days, republished every 3.5 days, and updated with every revocation.[^c08-cpki] One Cloud PKI trap belongs in every runbook. If you revoke a certificate by hand while the user or device still has an active SCEP profile assignment, the device requests and gets a new certificate at its next check-in. Remove the SCEP assignments first.[^c08-cpki-monitor]
@@ -200,7 +200,7 @@ The rollover, for a certificate held in Key Vault (the commands run as the appli
 ```powershell
 #Requires -Modules Az.KeyVault, Microsoft.Graph.Applications
 # 1. Create the next version in Key Vault (a self-signed or integrated-CA policy renews in place; for an internal CA, merge the signed CSR first)
-Connect-AzAccount -Environment '<AzureCloud or AzureUSGovernment>'
+Connect-AzAccount -Environment 'AzureCloud'
 $cert = Get-AzKeyVaultCertificate -VaultName '<vault>' -Name '<certificate name>'
 $cert.Certificate.NotAfter
 

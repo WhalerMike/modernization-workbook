@@ -262,7 +262,7 @@ A finding this page addresses is ready for closure when every applicable state h
 The flow, as Microsoft documents it:[^c06-cba-deep]
 
 1. The user enters a username; Entra ID performs home realm discovery and finds the user. If CBA is enabled, the sign-in page offers **Use a certificate or smart card**.
-2. The client is redirected to the certificate authentication endpoint (`certauth.login.microsoftonline.com` in the commercial cloud, which includes GCC; `certauth.login.microsoftonline.us` in Azure Government), which requests the client certificate as part of a mutual-TLS handshake.
+2. The client is redirected to the certificate authentication endpoint (`certauth.login.microsoftonline.com` in the commercial cloud, which includes GCC), which requests the client certificate as part of a mutual-TLS handshake.
 3. The user picks a certificate. Entra ID checks the CRL to confirm it isn't revoked and is valid, and finds the user through the tenant's username bindings.
 4. If Conditional Access requires MFA and the authentication binding rule makes the certificate multifactor, Entra ID signs the user in. If the certificate is only single-factor, Entra ID offers a registered second factor.
 5. Entra ID returns a primary refresh token, and the application gets its token.
@@ -277,7 +277,7 @@ For each CA, set the base CRL URL and, if the CA publishes them, the delta CRL U
 
 - CRLs must be reachable over HTTP or HTTPS from the internet; Microsoft recommends HTTP. Entra ID supports one CRL endpoint per CA and downloads it within 10 seconds or fails.
 - Entra ID **doesn't support OCSP**. The PKI guide said OCSP was supported if configured; that was wrong.[^c06-ocsp]
-- Interactive sign-in can download a CRL of up to 20 MB in the commercial cloud (including GCC) and 45 MB in Azure Government; the service limits are 65 MB and 150 MB.
+- Interactive sign-in can download a CRL of up to 20 MB in the commercial cloud (including GCC); the service limit is 65 MB.
 - Entra ID caches the CRL until its next update. A newly revoked certificate is caught only when a newer base or delta CRL loads, so revoke the user's sessions when revocation must be immediate.
 - Chains are built on Subject Key Identifier and Authority Key Identifier, and CRL validation covers up to 10 CAs from the leaf.
 
@@ -337,7 +337,7 @@ The sequence the program uses:
 
 One trap at the end: when you remove a user from a CBA staged-rollout group after the user has signed in to Windows with a certificate, keep the user enabled for the CBA method long enough to sign in to Windows and refresh the primary refresh token through the federation server.[^c06-sro]
 
-**Authority:** Microsoft-recommended (staged rollout as a temporary test before conversion; separate groups for the staged-rollout feature and the method policy; high-affinity bindings[^c06-sro][^c06-cba-migrate][^c06-cba-howto]); the federal requirement it supports is M-22-09's phishing-resistant authentication ([Chapter 09](09-federal-workforce-credentials.md)). **Applies:** Microsoft Entra CBA is listed as available in Azure for US Government on Microsoft's Entra feature-availability page, and the commercial service that GCC uses has it;[^c06-entra-govavail] Conditional Access and bulk trust-store upload are License-dependent (Entra ID P1).[^c06-entra-licensing]
+**Authority:** Microsoft-recommended (staged rollout as a temporary test before conversion; separate groups for the staged-rollout feature and the method policy; high-affinity bindings[^c06-sro][^c06-cba-migrate][^c06-cba-howto]); the federal requirement it supports is M-22-09's phishing-resistant authentication ([Chapter 09](09-federal-workforce-credentials.md)). **Applies:** the commercial Microsoft Entra service that GCC uses has CBA; Conditional Access and bulk trust-store upload are License-dependent (Entra ID P1).[^c06-entra-licensing]
 
 | How template | CBA staged rollout |
 |---|---|
@@ -449,4 +449,3 @@ The device side leaves a list of certificates Intune can't deliver: domain contr
 [^c06-adfs-rrt]: Microsoft Learn, "Active Directory Federation Services Rapid Restore tool" (`Backup-ADFS` backs up the configuration database, configuration file, DKM keys and certificates; a restore needs the same AD FS version and service account), <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/ad-fs-rapid-restore-tool>; listed among the AD FS downloadable tools in "Active Directory Federation Services: Offline tools," <https://learn.microsoft.com/windows-server/identity/ad-fs/operations/offline-tools> (both accessed Nov 9, 2026).
 [^c06-scep-ksp]: Microsoft Learn, "Create and assign SCEP certificate profiles in Intune," section "Create a SCEP certificate profile," Key storage provider (KSP) (Windows only), <https://learn.microsoft.com/intune/device-configuration/certificates/scep-profiles#create-a-scep-certificate-profile> (accessed Nov 9, 2026).
 [^c06-tpm-attest]: Microsoft Learn, "TPM Key Attestation," sections "Overview," "Deployment overview," "Deployment details" (certificate template, CA configuration, issuance policy OIDs) and "Troubleshooting" (`Confirm-CAEndorsementKeyInfo`), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/component-updates/tpm-key-attestation> (accessed Nov 9, 2026).
-[^c06-entra-govavail]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: certificate-based authentication available), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (accessed Nov 11, 2026).

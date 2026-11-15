@@ -22,7 +22,7 @@ Verified: 2026-10-20
 | 12 | Entra is a SCIM client for app provisioning and can be a SCIM service provider | Protocol stack | verified | learn.microsoft.com/entra/identity/app-provisioning/scim-support-in-entra-id |
 | 13 | Source: "DPoP, mTLS-bound tokens" are part of the Entra stack | Protocol stack; diagram 2 | corrected (Microsoft says Entra "aims to support" mTLS PoP and DPoP; SHR being phased out; Token Protection binds sign-in session tokens) | learn.microsoft.com/entra/msal/dotnet/advanced/proof-of-possession-tokens; .../conditional-access/concept-token-protection |
 | 14 | RFC 8705 mTLS certificate-bound tokens; RFC 9449 DPoP | Protocol stack | verified | rfc-editor.org/rfc/rfc8705, rfc9449 |
-| 15 | Entra CBA validates X.509 incl. PIV/CAC/derived PIV directly, no AD FS | Protocol stack; at a glance | verified | learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication; .../standards/memo-22-09-multi-factor-authentication |
+| 15 | Entra CBA validates X.509 incl. PIV/derived PIV directly, no AD FS | Protocol stack; at a glance | verified | learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication; .../standards/memo-22-09-multi-factor-authentication |
 | 16 | Kerberos-dependent apps can be bridged with application proxy + KCD | Mapping | verified | learn.microsoft.com/entra/architecture/auth-kcd |
 | 17 | Legacy-auth clients don't support MFA or pass device state; blocked by MFA/compliance grant controls | CA section | verified | learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-conditions |
 | 18 | NTLM (all versions) deprecated June 2024 | 2026 status table | verified | learn.microsoft.com/windows/whats-new/deprecated-features |

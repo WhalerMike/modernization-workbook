@@ -233,12 +233,12 @@ Whatever the sign-in method, password hash sync (PHS) stays on.[^c10-road-establ
 
 OMB M-22-09 requires phishing-resistant MFA for agency staff, contractors, and partners, and requires that it be an option for public users. For routine self-service access, agencies must stop supporting methods that fail to resist phishing, including SMS or voice codes, one-time codes, and push notifications. It names PIV (including derived PIV) as the simplest route and allows FIDO2 and WebAuthn authenticators where PIV isn't practical, and it notes that OMB M-19-17 makes PIV the primary means of authentication to federal systems.[^c10-m2209] The memo set its targets for the end of fiscal year 2024, so as of October 2026 these are requirements to meet, not goals to plan toward.[^c10-m2209]
 
-That changes the order of the program's roadmap. The earlier version treated certificate-based authentication for smart cards as the last phase, for "high-security users." For a federal workforce that already carries PIV or CAC cards, Microsoft Entra certificate-based authentication (CBA) is the fastest path to phishing-resistant MFA, because the credential is already issued. CBA supports PIV, CAC, and derived PIV credentials directly against Entra ID, without a federation server.[^c10-memo-2209-ms]
+That changes the order of the program's roadmap. The earlier version treated certificate-based authentication for smart cards as the last phase, for "high-security users." For a federal workforce that already carries PIV cards, Microsoft Entra certificate-based authentication (CBA) is the fastest path to phishing-resistant MFA, because the credential is already issued. CBA supports PIV and derived PIV credentials directly against Entra ID, without a federation server.[^c10-memo-2209-ms]
 
 | Phase | Population | Method | Prerequisites | Duration (program estimate) |
 |---|---|---|---|---|
-| 1 | Privileged accounts (PIM-eligible users) | FIDO2 security keys (passkeys), plus PIV/CAC through CBA where the admin holds a card[^c10-admin-personas] | Keys procured; passkey profile with attestation enforced[^c10-fido2-attestation]; CBA trusted certificate authorities configured | 4–6 weeks |
-| 2 | PIV and CAC holders | Microsoft Entra certificate-based authentication | Certificate authorities and revocation checking configured; username bindings validated; workbook PKI material | 8–12 weeks |
+| 1 | Privileged accounts (PIM-eligible users) | FIDO2 security keys (passkeys), plus PIV through CBA where the admin holds a card[^c10-admin-personas] | Keys procured; passkey profile with attestation enforced[^c10-fido2-attestation]; CBA trusted certificate authorities configured | 4–6 weeks |
+| 2 | PIV holders | Microsoft Entra certificate-based authentication | Certificate authorities and revocation checking configured; username bindings validated; workbook PKI material | 8–12 weeks |
 | 3 | Managed Windows devices | Windows Hello for Business | Intune enrollment; Windows Hello for Business policy; TPM 2.0 | 8–12 weeks |
 | 4 | Remaining users, including mobile | Passkeys in Microsoft Authenticator | Android 14 or iOS 17 or later; a passkey profile targeting the Authenticator AAGUIDs; registration campaign[^c10-authenticator-passkey][^c10-authenticator-passkey-register] | 8–12 weeks |
 
@@ -258,7 +258,7 @@ That split follows CISA's Hybrid Identity Solutions Guidance. CISA recommends th
 The Authentication methods policy decides which methods are available to which users.[^c10-auth-methods-manage] The program's configuration:
 
 - **Passkeys (FIDO2).** Enabled for the Admins group in phase 1, then all users. Use passkey profiles: device-bound with attestation enforced for privileged users. Users must have completed MFA within the past five minutes before they can register a passkey.[^c10-passkeys]
-- **Certificate-based authentication.** Enabled for PIV and CAC holders in phase 2, configured as multifactor so that it meets the phishing-resistant strength.
+- **Certificate-based authentication.** Enabled for PIV holders in phase 2, configured as multifactor so that it meets the phishing-resistant strength.
 - **Microsoft Authenticator.** Enabled for all users during the transition. Number matching is always on for Authenticator push notifications and users can't opt out.[^c10-number-match] Turn on the additional context (application name and sign-in location).[^c10-additional-context] Authenticator push doesn't satisfy M-22-09 for staff on its own; Microsoft's guidance pairs it with managed-device Conditional Access during the transition.[^c10-memo-2209-ms]
 - **Windows Hello for Business.** Enabled for all users on managed devices.
 - **Temporary Access Pass (TAP).** Enabled for onboarding and credential replacement, issued by the help desk and by the pre-hire workflow. Microsoft's defaults are a 1-hour default lifetime (configurable from 10 minutes to 30 days) and multi-use allowed; the program sets one-time use and a 1-hour lifetime for passes the help desk issues, and a lifetime of up to 24 hours from the hire date for the new-hire pass the pre-hire workflow generates, which Learn recommends as the maximum for new hires ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md#built-in-tasks-by-stage)). With a one-time TAP, the user has 10 minutes after sign-in to finish registering the new credential.[^c10-tap]
@@ -344,7 +344,7 @@ On a Server Core proxy, add `-AuthenticateUsingDeviceCode` to both `Register-` c
 #### Rolling out Password Protection safely {#b02-10-password-protection-rollout}
 
 **Authority:** Microsoft-recommended: deploying on-premises Password Protection, starting in audit mode, and testing a domain controller promotion and demotion during the audit period ("Plan and deploy on-premises Microsoft Entra Password Protection," read Nov 11, 2026). The custom list's contents and the length of the audit period are risk-based recommended, for the risk of password spray against AD passwords that password hash sync also makes the cloud password.
-**Applies:** every forest whose users sync to Entra ID. License-dependent: Entra ID P1 or P2 for synced users (above). Environment-dependent: supported in Azure Government; the proxy's Azure Government endpoints are not yet specified (above).
+**Applies:** every forest whose users sync to Entra ID. License-dependent: Entra ID P1 or P2 for synced users (above). Environment-dependent: GCC tenants use the commercial service and its endpoints (above).
 
 The table fills in what the steps above leave open, against the workbook's How template.
 
@@ -531,7 +531,7 @@ This section maps the authenticators and privileged-access controls above to the
 
 The earlier version of this section described IA-2(6) as "access to privileged accounts using a hardware-based authenticator." That isn't the control's wording; the requirement is a *separate device* meeting a stated strength of mechanism. The program maps authenticators as follows: <!-- claims-ok: the control's own text -->
 
-- **PIV and CAC smart cards** through Entra certificate-based authentication are separate devices and the federal standard credential. They're the program's primary answer to IA-2(6) for staff who hold them.
+- **PIV smart cards** through Entra certificate-based authentication are separate devices and the federal standard credential. They're the program's primary answer to IA-2(6) for staff who hold them.
 - **FIDO2 security keys** are roaming authenticators separate from the computer gaining access. They're the primary method for cloud administrators and for staff without a card. Microsoft notes that hardware security keys carrying certificates also meet the requirement for MFA on a separate device.[^c10-cba-ios] <!-- claims-ok: the vendor's statement, attributed -->
 - **Windows Hello for Business and platform passkeys** are phishing-resistant, but the key lives in the device that's gaining access.[^c10-whfb][^c10-entra-passkey-windows] The program doesn't count them toward IA-2(6) for privileged accounts; it uses them for non-privileged access, where the organization's assessor accepts that.
 - **Passwords, SMS, and voice** aren't allowed for privileged roles.
@@ -733,8 +733,8 @@ Phase 4 is the **non-person identity track**: its inventory, owners and targets 
 
 | Element | Detail |
 |---|---|
-| Prerequisites | Phase 6 complete; privileged accounts on FIDO2 or CBA (roadmap phase 1, done in Phase 5); CBA configured for PIV and CAC holders; Windows Hello for Business policy in Intune; Authenticator deployed |
-| Steps | 1. CBA for PIV and CAC holders (roadmap phase 2). 2. Windows Hello for Business on managed Windows devices (phase 3). 3. Authenticator passkey registration campaign (phase 4). 4. Track registration in the authentication methods reports. 5. Raise Conditional Access authentication strengths to phishing-resistant as each population crosses its threshold. |
+| Prerequisites | Phase 6 complete; privileged accounts on FIDO2 or CBA (roadmap phase 1, done in Phase 5); CBA configured for PIV holders; Windows Hello for Business policy in Intune; Authenticator deployed |
+| Steps | 1. CBA for PIV holders (roadmap phase 2). 2. Windows Hello for Business on managed Windows devices (phase 3). 3. Authenticator passkey registration campaign (phase 4). 4. Track registration in the authentication methods reports. 5. Raise Conditional Access authentication strengths to phishing-resistant as each population crosses its threshold. |
 | Validation | Privileged accounts still 100% on FIDO2 or CBA; more than 80% of managed-device users on Windows Hello for Business; more than 70% of all users on a phishing-resistant method; the remainder on a dated plan |
 | Rollback | Lower the authentication strength to MFA for the affected population; keep the existing methods |
 | Duration | 8–12 weeks (roadmap phases 2–4 in parallel) |

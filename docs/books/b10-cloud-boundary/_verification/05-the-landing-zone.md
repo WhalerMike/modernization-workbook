@@ -3,7 +3,7 @@
 File: `docs/books/b10-cloud-boundary/05-the-landing-zone.md`
 Diagram sources (new): `docs/images/diagrams/b10-cloud-boundary/src/ch05-management-groups.flow.yaml`, `ch05-boundary-to-policy.flow.yaml`.
 Sources read: `docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md` (landing-zone definition, scope table, SDN sections, boundary-enforcement section), `docs/compliance/Vol_I_Book_00_Foundation_Transport_Overview.md`, `docs/modernization-specs/cloud.md`. The compliance volumes stay in place and are linked by GitHub URL.
-Checked 2026-10-21 against Microsoft Learn (CAF landing zone overview, design areas, management groups, subscription vending, implementation options, Deploy Azure landing zones, ALZ FAQ; Azure Policy overview, effect basics, deny effect, built-in definitions, disallowed-resources tutorial, exemption structure, compliance data; FedRAMP Moderate built-in initiative; FedRAMP compliance offering; Azure services in FedRAMP audit scope; Compare Azure Government and global Azure; Virtual Network FAQ), AWS documentation (Organizations SCPs; Control Tower in GovCloud; Landing Zone Accelerator; VPC subnet sizing), NIST SP 800-37 Rev. 2, FedRAMP *Consolidated Rules for 2026* ("Using a FedRAMP Certified Cloud Service"), and FedRAMP Marketplace `products.json` (meta last_change 2026-10-21). Footnote keys below drop the `c05-` prefix.
+Checked 2026-10-21 against Microsoft Learn (CAF landing zone overview, design areas, management groups, subscription vending, implementation options, Deploy Azure landing zones, ALZ FAQ; Azure Policy overview, effect basics, deny effect, built-in definitions, disallowed-resources tutorial, exemption structure, compliance data; FedRAMP Moderate built-in initiative; FedRAMP compliance offering; Azure services in FedRAMP audit scope; Virtual Network FAQ), AWS documentation (Organizations SCPs; Control Tower in GovCloud; Landing Zone Accelerator; VPC subnet sizing), NIST SP 800-37 Rev. 2, FedRAMP *Consolidated Rules for 2026* ("Using a FedRAMP Certified Cloud Service"), and FedRAMP Marketplace `products.json` (meta last_change 2026-10-21). Footnote keys below drop the `c05-` prefix.
 
 ## 1. Claims log
 
@@ -22,16 +22,15 @@ Checked 2026-10-21 against Microsoft Learn (CAF landing zone overview, design ar
 | 11 | Any principal can create MGs by default; new subscriptions go under tenant root; set RBAC authorization and a default MG | Management group hierarchy | verified | mg |
 | 12 | Subscription democratization: subscriptions are the primary unit of management and scale | Management group hierarchy | verified | vending |
 | 13 | Moving a subscription is a boundary change | Management group hierarchy | restated-as-design | — |
-| 14 | Azure and Azure Government both FedRAMP High; High covers all US public Azure regions | Which cloud | verified | scope; fedramp-offering |
-| 15 | Marketplace: Azure Commercial Cloud F1209051525 and Azure Government F1603087869, Certified, Class D | Which cloud | verified | fr |
-| 16 | Azure Government adds US data-storage and screened-personnel commitments; public High "meets the needs of many" | Which cloud | verified | fedramp-offering |
+| 14 | Azure FedRAMP High; High covers all US public Azure regions | Which cloud | verified | scope; fedramp-offering |
+| 15 | Marketplace: Azure Commercial Cloud F1209051525, Certified, Class D | Which cloud | verified | fr |
+| 16 | Public High "meets the needs of many" | Which cloud | verified | fedramp-offering |
 | 17 | GCC pairs with Entra ID in public Azure | Which cloud | verified via settled books (Book 02 Ch11, Book 01 App B) | linked |
-| 18 | ARM endpoint management.azure.com vs management.usgovcloudapi.net | Which cloud | verified | compare |
 | 19 | Allowed locations (Audit/Deny/Disabled) excludes resource groups and "global" resources; RG variant exists | Which regions | verified | builtins |
-| 20 | Audit-scope tables for Azure and Azure Government last updated February 2026 | Which services | verified | scope |
+| 20 | Audit-scope table for Azure last updated February 2026 | Which services | verified | scope |
 | 21 | Allowed resource types only affects types supporting tags and location; duplicate with mode All | Which services | verified | builtins; disallowed |
 | 22 | Azure Virtual Network Manager not named in either audit-scope table | Which services | verified (absence checked in full page text) | scope |
-| 23 | FedRAMP Moderate/High regulatory compliance initiatives for Azure and Azure Government | Which settings | verified | fedramp-offering |
+| 23 | FedRAMP Moderate/High regulatory compliance initiatives | Which settings | verified | fedramp-offering |
 | 24 | "Compliant" refers only to policy definitions; partial view | Which settings | verified | init |
 | 25 | Exemption categories Mitigated and Waiver; expiresOn; expired object kept | Which exceptions | verified | exempt |
 | 26 | Every exemption carries expiry and decision reference | Which exceptions | restated-as-design | — |
@@ -45,7 +44,7 @@ Checked 2026-10-21 against Microsoft Learn (CAF landing zone overview, design ar
 | 34 | Account Factory Create account removed; new customers can't deploy AFT in GovCloud; some controls ineffective; some Security Hub CSPM controls unavailable; metadata must not contain export-controlled data | AWS | verified | ct |
 | 35 | LZA recommended atop Control Tower; supports GovCloud; "will not, by itself, make you compliant" | AWS | verified | lza |
 | 36 | Marketplace: AWS GovCloud F1603047866 Class D; AWS US East/West Class C | AWS | verified | fr |
-| 37 | Source scope table: Azure Government "GCC Moderate"; AWS GovCloud/Azure Government "FedRAMP High" as the boundary | Multi-environment | corrected: Azure Government is a separate cloud from M365 GCC; the agency's own authorization covers its use, the provider's certification covers the service; table generalized and agency-specific estate removed | fedramp-use; Ch04 |
+| 37 | Source scope table: a separate Azure cloud labeled "GCC Moderate"; AWS GovCloud "FedRAMP High" as the boundary | Multi-environment | corrected: M365 GCC pairs with commercial Azure; the agency's own authorization covers its use, the provider's certification covers the service; table generalized and agency-specific estate removed | fedramp-use; Ch04 |
 | 38 | Azure VNets are Layer 3 overlays with no Layer 2 semantics; five reserved addresses | Multi-environment | verified (source's "synthetic DHCP injected by host agent" not carried; couldn't confirm wording) | vnetfaq |
 | 39 | AWS reserves five per subnet; DNS server at VPC base +2 | Multi-environment | corrected: source said EC2 gets IPs via "synthetic DHCP at CIDR +2"; +2 is the Amazon DNS server | aws-subnet |
 | 40 | Cloud adapter boundary contract (declared boundary or named exception; no hardcoded hostnames; fail closed; endpoint class) | Every automation declares | restated-as-design (from cloud.md) | — |
@@ -78,7 +77,7 @@ New section "Internet-facing workloads: ingress and resilience": selection and c
 | # | Claim (short) | Where | Verdict | Source | Checked |
 |---|---|---|---|---|---|
 | IN-1 | Microsoft highly recommends DDoS Protection and a WAF for web workloads; managed rules need Front Door Premium, Standard has custom rules only | Authority; selection | verified | [WAF on Azure Front Door](https://learn.microsoft.com/azure/web-application-firewall/afds/afds-overview) | Nov 11, 2026 |
-| IN-2 | Front Door Standard and Premium GA in US Gov Arizona and US Gov Texas; no other listed networking variation; products-by-region list for availability | Applies | verified | [Compare Azure Government and global Azure](https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure) | Nov 11, 2026 |
+| IN-2 | Commercial Azure; products-by-region list for availability | Applies | restated (Nov 15, 2026) | Microsoft products-by-region list | Nov 15, 2026 |
 | IN-3 | Front Door: L3/4/7 DDoS protection, HTTP and HTTPS only, Private Link to origins | Selection | verified | [DDoS protection on Azure Front Door](https://learn.microsoft.com/azure/frontdoor/front-door-ddos) | Nov 11, 2026 |
 | IN-4 | Application Gateway public IP needs DDoS Network Protection; HTTP DDoS ruleset in preview; catch-all rate-limit rule | Selection | verified | [Application (layer 7) DDoS protection](https://learn.microsoft.com/azure/web-application-firewall/application-ddos-protection) | Nov 11, 2026 |
 | IN-5 | Front Door, Application Gateway or both; Detection vs Prevention; one to two weeks of clean logs | Selection; exercise | verified | [WAF for Azure networks](https://learn.microsoft.com/azure/networking/design-guide/web-application-firewall) | Nov 11, 2026 |

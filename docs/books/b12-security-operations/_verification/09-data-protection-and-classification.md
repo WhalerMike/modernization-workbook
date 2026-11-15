@@ -68,7 +68,7 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | 60 | Set-AzKeyVaultKeyRotationPolicy -PolicyPath with JSON (lifetimeActions, attributes.expiryTime) | Keys code | verified / corrected | Set-AzKeyVaultKeyRotationPolicy help example 1. Source passed hashtables to -KeyRotationLifetimeAction |
 | 61 | TDE server identity role "Key Vault Crypto Service Encryption User" (RBAC) or get/wrapKey/unwrapKey | Keys code | corrected | Learn, Azure SQL TDE with CMK, permissions. Source used "Key Vault Crypto User" |
 | 62 | Add-AzSqlServerKeyVaultKey and Set-AzSqlServerTransparentDataEncryptionProtector -AutoRotationEnabled; rotation within 24 hours | Keys code | verified | Az.Sql help; Learn, rotate the TDE protector |
-| 63 | Connect-AzAccount -Environment AzureUSGovernment | Keys code | verified | Learn, Connect to Azure Government with PowerShell |
+| 63 | Connect-AzAccount (commercial Azure) | Keys code | verified | Learn, Connect-AzAccount |
 | 64 | Source: "12-month cryptoperiod … within the recommended cryptoperiods of NIST SP 800-57 Part 1" | Keys | restated-as-design | SP 800-57 not opened; 12 months stated as program choice |
 | 65 | AWS KMS and CloudHSM in both AWS FedRAMP offerings | Other clouds | verified (new) | products.json certified_services |
 | 66 | Source: "the Purview Data Map reaches multi-cloud sources" | Other clouds | corrected / restated | Labeling in Data Map is preview (Learn); program doesn't rely on it for evidence |
@@ -106,7 +106,7 @@ Checked October 21, 2026 by writer W5. Sources: `docs/compliance/Vol_III_Book_05
 | Core DLP Policies table + script | Minimum baseline table and DLP script | Carried; script rewritten (claims 41–45) |
 | Endpoint DLP Configuration + script + warning | Endpoint part of DLP script; onboarding paragraph | Carried and corrected (claims 38, 43) |
 | Azure Key Vault — Federal Key Management Hierarchy (root CA, issuing CA, CMK, DEK) | Keys section; Book 07 | CMK/DEK carried; root and issuing CA content belongs to Book 07 (PKI) |
-| Creating and Configuring Azure Key Vault with HSM + script | Key Vault script | Rewritten (claims 58–59); USGov region comment generalized; agency-meta placeholders removed |
+| Creating and Configuring Azure Key Vault with HSM + script | Key Vault script | Rewritten (claims 58–59); region comment generalized; agency-meta placeholders removed |
 | Assigning Managed Identity Access + script | Key Vault script (role assignment) | Corrected role (claim 61); break-glass Key Vault Administrator and diagnostic-setting parts not carried (break-glass is Book 04; resource-log emission is Ch04) |
 | Configuring SQL Server TDE with CMK + script | Key Vault script | Carried and verified (claim 62); Arc SQL → Book 06 |
 | Key Rotation Policy + script | Rotation JSON and text | Corrected (claims 60, 64); Customer Key no-expiry warning added |

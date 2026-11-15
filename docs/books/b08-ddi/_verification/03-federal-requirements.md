@@ -70,7 +70,7 @@ Checked October 20, 2026. Sources: the existing series page (Next Generation DDI
 
 ## Moderate-civilian sweep (October 29, 2026)
 
-The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) and Azure Government are treated as valid Moderate locations. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
+The workbook targets FedRAMP Moderate civilian agencies. Configuration authority is the agency's CM-6 settings drawn from civilian sources; FedRAMP High material survives only as an optional reference labelled *High only*; AWS GovCloud (US) is treated as a valid Moderate location. Facts from the coordinator's verified fact pack (read 2026-10-29) or re-read by this writer on 2026-10-29 as noted.
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|

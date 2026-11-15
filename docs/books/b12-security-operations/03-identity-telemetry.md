@@ -166,7 +166,7 @@ Diagnostic-settings storage retention is deprecated, and Microsoft disabled all 
 # Requires: Security Administrator on the tenant.
 set -euo pipefail
 
-ARM="https://management.azure.com"   # Azure Government: https://management.usgovcloudapi.net
+ARM="https://management.azure.com"
 SETTING_NAME="fmp-siem-emission-core"
 WORKSPACE_ID="/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RG}/providers/Microsoft.OperationalInsights/workspaces/${WORKSPACE}"
 
