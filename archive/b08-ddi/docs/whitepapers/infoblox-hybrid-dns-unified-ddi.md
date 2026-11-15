@@ -54,7 +54,7 @@ configuration decisions.
 **Ask.** Before the next SD-WAN or DDI change: audit every branch's
 `redirect-dns` target, verify the forwarding-chain order in the running
 configuration, inventory AD DNS records before decommissioning any domain
-controller, confirm the sovereign-cloud (GCC/DoD) INR gap with the program
+controller, confirm the GCC Moderate INR gap with the program
 office, and take Appendix B's open questions to Infoblox and Cisco directly.
 The five steps are in the Call to Action.
 :::
@@ -120,8 +120,8 @@ in the federal enterprise:
  policy plane if not correctly configured. This interaction is undocumented
  by either vendor.
 
-9. Federal agencies operating in GCC Moderate, GCC High, or DoD sovereign
- cloud environments cannot use Microsoft INR. The Infoblox DDI architecture
+9. Federal agencies operating in GCC Moderate
+ cannot use Microsoft INR. The Infoblox DDI architecture
  is unchanged; only the SD-WAN telemetry loop is absent.
 
  For the per-CSP implementation of the architecture this paper argues for —
@@ -174,7 +174,7 @@ control plane instead of by manual audit.
  whether Universal DDI's RPZ, DNSSEC, and IPAM policy apply at all —
  misconfigure it and every branch query becomes invisible to the
  governance layer (Part 8).
-4. **Federal sovereign cloud tenants — GCC Moderate, GCC High, DoD — cannot
+4. **Federal GCC Moderate tenants cannot
  use Microsoft's INR telemetry loop at all.** The Infoblox DDI
  architecture is unaffected, but any plan that treats INR as a fallback
  is planning around a gap that does not close (Part 9).
@@ -410,7 +410,7 @@ traffic flow analysis.
 
 Microsoft 365 presents a different form of split-brain that is particularly
 consequential for federal agencies. M365 uses DNS to route clients to the
-correct service endpoint — commercial, GCC Moderate, GCC High, or DoD. The
+correct service endpoint. The
 FQDNs are identical across environments (e.g., `outlook.office365.com`);
 the DNS answers that clients receive determine which infrastructure they
 connect to.
@@ -664,8 +664,8 @@ key infrastructure — not against a KDC.
 This sounds like DNS is no longer involved. It is not. The OAuth flow
 introduces a different DNS surface:
 
-**Authorization endpoints.** The client must reach `login.microsoftonline.com`
-(commercial) or `login.microsoftonline.us` (GCC/DoD). These FQDNs must resolve
+**Authorization endpoints.** The client must reach `login.microsoftonline.com`,
+which commercial and GCC Moderate tenants share. This FQDN must resolve
 correctly and consistently. If split-brain DNS routes a GCC tenant's
 authentication traffic to the commercial login endpoint, authentication fails.
 
@@ -1255,7 +1255,7 @@ policy objects and pushed to NIOS Grid members. This means that threat
 feeds from the SaaS-delivered BloxOne Threat Defense reach on-premises
 resolvers that may be in air-gapped or limited-internet environments,
 as long as TIDE can push RPZ updates to a Grid member that is reachable.
-Federal agencies with GCC Moderate or GCC High restrictions should verify
+Federal agencies with GCC Moderate restrictions should verify
 the network path from Infoblox's TIDE delivery endpoints to on-premises
 NIOS Grid members as part of their architecture assessment.
 
@@ -1431,10 +1431,8 @@ through Infoblox.
 ### 9.1 INR is WW Commercial only
 
 Microsoft 365 Informed Network Routing (INR) is restricted to WW Commercial
-cloud tenants. Microsoft Learn (updated 2026-03-10) states verbatim:
-
-> *"Microsoft 365 informed network routing supports tenants in WW Commercial
-> cloud but not the GCC Moderate, GCC High, DoD, Germany, or China clouds."*
+cloud tenants. Microsoft Learn (updated 2026-03-10) states that INR supports
+tenants in WW Commercial cloud but not the GCC Moderate cloud.
 
 Cisco Catalyst SD-WAN (IOS XE SD-WAN ≥ 20.4/17.4) is the only SD-WAN vendor
 in Microsoft's INR "Currently enabled solutions" table. The INR integration
@@ -1514,7 +1512,7 @@ from cloud-originating queries.
 
 ### 10.3 Deployment comparison: Commercial versus federal
 
-| Component | WW Commercial | GCC Moderate / GCC High / DoD |
+| Component | WW Commercial | GCC Moderate |
 |---|:--:|:--:|
 | Infoblox Universal DDI | ✅ Full | ✅ Full |
 | BloxOne Endpoint at SD-WAN branch | ✅ | ✅ |
@@ -1540,7 +1538,7 @@ from cloud-originating queries.
 | [Infoblox Security Blog — Unified Interception Point](https://www.infoblox.com/blog/security/unified-security-interception-point-for-hybrid-cloud-environments/) | Vendor blog | Single management plane |
 | [Network World — Infoblox Universal DDI Nov 2025](https://www.networkworld.com/article/4083475/infoblox-bolsters-universal-ddi-platform-with-multi-cloud-integrations.html) | Trade press | Independent confirmation of edge integrations |
 | [Infoblox Government Cloud Achieves FedRAMP Moderate Certification (2026-07-22)](https://www.infoblox.com/blog/company/infoblox-universal-ddi-comes-to-infoblox-government-cloud/) | Primary vendor | Universal DDI Management + NIOS-X + Universal Asset Insights authorized in AWS GovCloud (US) |
-| [Microsoft Learn — INR CPE Documentation](https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide) | Primary (Microsoft) | Cisco-only INR table; GCC/DoD exclusion (2026-03-10) |
+| [Microsoft Learn — INR CPE Documentation](https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide) | Primary (Microsoft) | Cisco-only INR table; GCC Moderate exclusion (2026-03-10) |
 | [Cisco Blog — INR First Vendor](https://blogs.cisco.com/networking/cisco-is-the-first-sd-wan-vendor-with-informed-network-routing-for-microsoft-365) | Vendor blog | INR integration context |
 | [Cisco Blog — INR Teams/SharePoint](https://blogs.cisco.com/networking/cisco-sd-wan-expands-microsoft-365-integration-with-informed-network-routing-for-microsoft-teams-and-sharepoint) | Vendor blog | 20.4.x starting version |
 | RFC 1034 / RFC 1035 | IETF | DNS specification and wildcard behavior |
@@ -1578,8 +1576,8 @@ from cloud-originating queries.
  does the source IP presented to BloxOne Endpoint reflect the originating
  workstation (for ECS subnet selection) or the SD-WAN edge router?
 
-5. **Microsoft:** Is there a roadmap for INR in GCC Moderate or GCC High?
- Is there an alternative telemetry mechanism for sovereign cloud customers?
+5. **Microsoft:** Is there a roadmap for INR in GCC Moderate?
+ Is there an alternative telemetry mechanism for GCC Moderate customers?
 
 6. **Microsoft:** What is the recommended DNS governance approach for agencies
  mid-way through AD retirement with an Infoblox DDI deployment? Is there
@@ -1645,8 +1643,8 @@ doesn't matter.
  conditional-forwarding rules cannot be recovered from a
  decommissioned DC. This inventory has to happen *before*
  decommissioning, not during.
-4. **Check the sovereign-cloud boundary before promising INR
- telemetry.** If any part of the estate is GCC/DoD, Cisco's INR loop
+4. **Check the GCC Moderate boundary before promising INR
+ telemetry.** If any part of the estate is GCC Moderate, Cisco's INR loop
  (Part 9) is unavailable regardless of SD-WAN version — confirm this
  with the program office before it's designed into a briefing.
 5. **Take Appendix B's open questions to the vendors, not around

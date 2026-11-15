@@ -18,7 +18,7 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-important}
 ## Supports an authorization decision; doesn't make one
-The authorization boundary, interconnection and leveraged-authorization language, and the risk decision belong to the agency's authorizing official. This kit collects the facts an assessor will ask for. Platform facts were checked on 19 October 2026 and apply to Microsoft's commercial cloud, including GCC-Moderate; see [Applicability](Applicability.md) for GCC High and DoD.
+The authorization boundary, interconnection and leveraged-authorization language, and the risk decision belong to the agency's authorizing official. This kit collects the facts an assessor will ask for. Platform facts were checked on 19 October 2026 and apply to Microsoft's commercial cloud, including GCC-Moderate; see [Applicability](Applicability.md).
 :::
 
 ::: {.callout-tip}

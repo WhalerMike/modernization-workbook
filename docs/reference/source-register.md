@@ -14,7 +14,7 @@ last-reviewed: 2026-11-09
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 770 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 765 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -164,7 +164,7 @@ This register lists 770 sources. A slide or a video description links to a sourc
 | [Azure Service Health FAQ](https://learn.microsoft.com/azure/service-health/service-health-faq){#azure-service-health-faq} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-service-health-faq"} |
 | [Azure Service Health portal](https://learn.microsoft.com/azure/service-health/service-health-portal-update){#azure-service-health-portal} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-service-health-portal"} |
 | [Azure Verified Modules: Application Gateway Web Application Firewall (WAF) Policies Bicep module](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/application-gateway-web-application-firewall-policy){#avm-waf-policy-module} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="avm-waf-policy-module"} |
-| [Connect to Azure Government with Azure CLI](https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-cli){#azure-government-connect-cli} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-government-connect-cli"} |
+| [Connect to Azure Government with Azure CLI](https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-cli){#azure-government-connect-cli} | Retired | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-government-connect-cli"} |
 | [Deploy Service Health alerts at scale using Azure Policy](https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy){#service-health-alerts-azure-policy} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="service-health-alerts-azure-policy"} |
 | [Elevated access to security advisories (Azure Service Health)](https://learn.microsoft.com/azure/service-health/security-advisories-elevated-access){#service-health-security-advisories-elevated} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="service-health-security-advisories-elevated"} |
 | [List serviceAnnouncement issues (Microsoft Graph)](https://learn.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0){#graph-serviceannouncement-list-issues} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="graph-serviceannouncement-list-issues"} |
@@ -241,7 +241,7 @@ This register lists 770 sources. A slide or a video description links to a sourc
 | [Azure Private DNS FAQ](https://learn.microsoft.com/azure/dns/dns-faq-private){#azure-private-dns-faq} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azure-private-dns-faq"} |
 | [Azure Private Endpoint DNS integration scenarios](https://learn.microsoft.com/azure/private-link/private-endpoint-dns-integration){#private-endpoint-dns-integration} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="private-endpoint-dns-integration"} |
 | [Azure Private Endpoint private DNS zone values](https://learn.microsoft.com/azure/private-link/private-endpoint-dns){#private-endpoint-dns-zone-values} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="private-endpoint-dns-zone-values"} |
-| [Azure Retail Prices API](https://prices.azure.com/api/retail/prices){#azure-retail-prices-api} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azure-retail-prices-api"} |
+| [Azure Retail Prices API](https://prices.azure.com/api/retail/prices){#azure-retail-prices-api} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azure-retail-prices-api"} |
 | [Azure Web Application Firewall and Azure Policy](https://learn.microsoft.com/azure/web-application-firewall/shared/waf-azure-policy){#waf-azure-policy} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="waf-azure-policy"} |
 | [Azure, Dynamics 365, Microsoft 365, and Power Platform services compliance scope](https://learn.microsoft.com/azure/azure-government/compliance/azure-services-in-fedramp-auditscope){#azure-dynamics-365-microsoft-365-and-power} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azure-dynamics-365-microsoft-365-and-power"} |
 | [Best practices for Azure RBAC](https://learn.microsoft.com/azure/role-based-access-control/best-practices){#best-practices-for-azure-rbac} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="best-practices-for-azure-rbac"} |
@@ -258,7 +258,7 @@ This register lists 770 sources. A slide or a video description links to a sourc
 | [Combine multiple HTTP requests using JSON batching](https://learn.microsoft.com/graph/json-batching){#combine-multiple-http-requests-using-json} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="combine-multiple-http-requests-using-json"} |
 | [Common operations for Microsoft Entra Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common){#gsa-common-operations} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gsa-common-operations"} |
 | [Common questions, answers, and scenarios with policies and profiles in Microsoft Intune](https://learn.microsoft.com/intune/device-configuration/troubleshoot-device-profiles#conflicts){#common-questions-answers-and-scenarios-with} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="common-questions-answers-and-scenarios-with"} |
-| [Compare Azure Government and global Azure](https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure){#compare-azure-government-and-global-azure} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="compare-azure-government-and-global-azure"} |
+| [Compare Azure Government and global Azure](https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure){#compare-azure-government-and-global-azure} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="compare-azure-government-and-global-azure"} |
 | [Conditional Access authentication strengths](https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strengths){#conditional-access-authentication-strengths} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="conditional-access-authentication-strengths"} |
 | [Conditional Access for agents](https://learn.microsoft.com/entra/identity/conditional-access/agent-id){#conditional-access-for-agents} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="conditional-access-for-agents"} |
 | [Conditional Access for Azure SQL Database](https://learn.microsoft.com/azure/azure-sql/database/conditional-access-configure){#conditional-access-for-azure-sql} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="conditional-access-for-azure-sql"} |
@@ -551,7 +551,7 @@ This register lists 770 sources. A slide or a video description links to a sourc
 | [Plan and deploy Azure Arc-enabled servers](https://learn.microsoft.com/azure/azure-arc/servers/plan-at-scale-deployment){#plan-and-deploy-azure-arc-enabled-servers} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plan-and-deploy-azure-arc-enabled-servers"} |
 | [Plan your Microsoft Entra hybrid join implementation](https://learn.microsoft.com/entra/identity/devices/hybrid-join-plan){#plan-your-microsoft-entra-hybrid-join} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plan-your-microsoft-entra-hybrid-join"} |
 | [Plan your Microsoft Entra join deployment](https://learn.microsoft.com/en-us/entra/identity/devices/device-join-plan){#plan-your-microsoft-entra-join-deployment} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plan-your-microsoft-entra-join-deployment"} |
-| [Planning identity for Azure Government applications](https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity){#planning-identity-for-azure-government} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="planning-identity-for-azure-government"} |
+| [Planning identity for Azure Government applications](https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity){#planning-identity-for-azure-government} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="planning-identity-for-azure-government"} |
 | [Policy CSP - ControlPolicyConflict](https://learn.microsoft.com/windows/client-management/mdm/policy-csp-controlpolicyconflict){#policy-csp-controlpolicyconflict} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="policy-csp-controlpolicyconflict"} |
 | [PowerShell sample: Export secrets and certificates for app registrations](https://learn.microsoft.com/entra/identity/enterprise-apps/scripts/powershell-export-all-app-registrations-secrets-and-certs){#powershell-sample-export-secrets-and} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="powershell-sample-export-secrets-and"} |
 | [PowerShell samples for dynamic membership processing](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership-powershell-samples){#powershell-samples-for-dynamic-membership} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="powershell-samples-for-dynamic-membership"} |
@@ -562,7 +562,6 @@ This register lists 770 sources. A slide or a video description links to a sourc
 | [Privileged Identity Management APIs](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-apis){#privileged-identity-management-apis} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="privileged-identity-management-apis"} |
 | [Privileged roles and permissions in Microsoft Entra ID (preview)](https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions){#privileged-roles-and-permissions-in} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="privileged-roles-and-permissions-in"} |
 | [Protect your resource hierarchy](https://learn.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy){#protect-resource-hierarchy} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="protect-resource-hierarchy"} |
-| [Quickstart: Connect to Azure Government with PowerShell](https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-ps){#connect-to-azure-government-with-powershell} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="connect-to-azure-government-with-powershell"} |
 | [Quickstart: Create an Azure Front Door using Azure CLI](https://learn.microsoft.com/azure/frontdoor/create-front-door-cli){#front-door-cli-quickstart} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="front-door-cli-quickstart"} |
 | [QuickStart: Create and configure Azure DDoS Network Protection using Azure CLI](https://learn.microsoft.com/azure/ddos-protection/manage-ddos-protection-cli){#ddos-network-protection-cli} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="ddos-network-protection-cli"} |
 | [RADIUS authentication with Microsoft Entra ID](https://learn.microsoft.com/entra/architecture/auth-radius){#radius-authentication-with-microsoft-entra} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="radius-authentication-with-microsoft-entra"} |
@@ -929,7 +928,8 @@ This register lists 770 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
-| November 15, 2026 | 2 sources | Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026) |
+| November 15, 2026 | [Azure Retail Prices API](#azure-retail-prices-api) | Retired: no workbook page cites it (Nov 15, 2026) |
+| November 15, 2026 | 5 sources | Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026) |
 | November 13, 2026 | 4 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |
@@ -937,7 +937,7 @@ This register lists 770 sources. A slide or a video description links to a sourc
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
 | November 12, 2026 | 22 sources | More slide wording links here |
 | November 12, 2026 | 174 sources | Added: cited on the narrated deck slides |
-| November 11, 2026 | 15 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
+| November 11, 2026 | 14 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft |

@@ -35,7 +35,7 @@ DNS fragmentation across independent platforms produces split-brain DNS: the sam
 - **Split-brain DNS is structural, not a bug to patch.** Independent per-cloud DNS systems diverge because they share no state (Chapter 02).
 - **DNS is now a security and PKI dependency.** Certificate validation, OCSP and CRL lookups, token audiences and FQDN-based policy all fail quietly under split-brain (Chapter 06).
 - **Edge interception can silently bypass the policy plane.** The SD-WAN redirect-dns destination determines whether response policy zones (RPZ), DNSSEC validation and logging apply at all (Chapter 05).
-- **Some cloud optimizations stop at the commercial boundary.** Microsoft 365 informed network routing (INR) is not available in GCC-Moderate, GCC High or DoD. The DDI architecture is unaffected; that one optimization is simply unavailable (Chapter 05 and the [Applicability](00-applicability.md) page).
+- **Some cloud optimizations stop at the commercial boundary.** Microsoft 365 informed network routing (INR) is not available in GCC-Moderate. The DDI architecture is unaffected; that one optimization is simply unavailable (Chapter 05 and the [Applicability](00-applicability.md) page).
 - **Five configuration decisions carry the operational risk:** the redirect-dns target, forwarding chain order, per-cloud conditional forwarding, Active Directory DNS inventory before decommissioning, and OCSP/CRL reachability (Chapter 08).
 
 ## DNS in the Modern Hybrid Multi-Cloud Enterprise

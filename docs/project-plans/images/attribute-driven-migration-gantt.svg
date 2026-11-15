@@ -150,16 +150,16 @@
 <text x="14" y="930" font-size="10.5" fill="#64748b">ATG5  Gate 5 — Targeting conventions set</text>
 <path d="M417.0 921.0 L422.5 926.5 L417.0 932.0 L411.5 926.5 Z" fill="#7C3AED"/>
 <rect x="0" y="935" width="980" height="17" fill="#f8fafc"/>
-<text x="6" y="947.5" font-size="11" font-weight="600" fill="#1e293b">Phase 6 — PIV and CAC binding</text>
+<text x="6" y="947.5" font-size="11" font-weight="600" fill="#1e293b">Phase 6 — PIV binding</text>
 <text x="14" y="964" font-size="10.5" fill="#64748b">AT6.1  Binding coverage measured: certificateUserIds or…</text>
 <line x1="495.0" y1="960.5" x2="519.0" y2="960.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="480.0" y="956" width="15.0" height="9" rx="2" fill="#2563EB"/>
-<text x="14" y="981" font-size="10.5" fill="#64748b">D-AT6  Required affinity binding for PIV and CAC</text>
+<text x="14" y="981" font-size="10.5" fill="#64748b">D-AT6  Required affinity binding for PIV</text>
 <path d="M495.0 972.0 L500.5 977.5 L495.0 983.0 L489.5 977.5 Z" fill="#D97706"/>
 <text x="14" y="998" font-size="10.5" fill="#64748b">AT6.2  High affinity piloted on the pilot cohort before…</text>
 <line x1="510.0" y1="994.5" x2="534.0" y2="994.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="495.0" y="990" width="15.0" height="9" rx="2" fill="#2563EB"/>
-<text x="14" y="1015" font-size="10.5" fill="#64748b">X-P28  Certificate-based authentication for PIV and CAC…</text>
+<text x="14" y="1015" font-size="10.5" fill="#64748b">X-P28  Certificate-based authentication for PIV holders…</text>
 <path d="M534.0 1006.0 L539.5 1011.5 L534.0 1017.0 L528.5 1011.5 Z" fill="#059669"/>
 <text x="14" y="1032" font-size="10.5" fill="#64748b">D-AT7  Who writes the binding after AD</text>
 <path d="M510.0 1023.0 L515.5 1028.5 L510.0 1034.0 L504.5 1028.5 Z" fill="#D97706"/>

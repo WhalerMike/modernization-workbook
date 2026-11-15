@@ -115,7 +115,7 @@
 <rect x="460.0" y="650" width="37.5" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="675" font-size="10.5" fill="#1e293b">P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verif…</text>
 <rect x="517.5" y="667" width="17.5" height="9" rx="2" fill="#DC2626"/>
-<text x="14" y="692" font-size="10.5" fill="#64748b">P2.8  Certificate-based authentication for PIV and CAC h…</text>
+<text x="14" y="692" font-size="10.5" fill="#64748b">P2.8  Certificate-based authentication for PIV holders (…</text>
 <line x1="505.0" y1="688.5" x2="535.0" y2="688.5" stroke="#cbd5e1" stroke-width="2"/>
 <rect x="485.0" y="684" width="20.0" height="9" rx="2" fill="#2563EB"/>
 <text x="14" y="709" font-size="10.5" fill="#64748b">P2.10  Rollback rehearsed surface by surface</text>

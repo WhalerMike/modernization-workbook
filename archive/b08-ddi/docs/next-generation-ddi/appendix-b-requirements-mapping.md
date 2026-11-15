@@ -79,10 +79,8 @@ Every URL below was checked as reachable on October 19, 2026. Primary sources (f
 - Microsoft Learn, "Overview of DNS resolver policy" (Azure DNS security policy). <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy>
 - Microsoft Learn, "Overview of DNSSEC - Azure Public DNS" (Azure DNS: public zones only; Private DNS not supported; automatic ZSK rollover). <https://learn.microsoft.com/en-us/azure/dns/dnssec>
 - Microsoft Learn, "What is IP address management (IPAM) in Azure Virtual Network Manager?" <https://learn.microsoft.com/en-us/azure/virtual-network-manager/concept-ip-address-management>
-- Microsoft Learn, "Compare Azure Government and global Azure." <https://learn.microsoft.com/en-us/azure/azure-government/compare-azure-government-global-azure>
 - Microsoft Learn, "Microsoft 365 informed network routing" (WW Commercial only; Cisco IOS XE SD-WAN 20.4/17.4 or later). <https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide>
 - Microsoft Learn, "Microsoft 365 URLs and IP address ranges" (the Worldwide list, which includes GCC). <https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges?view=o365-worldwide>
-- Microsoft Learn, "Microsoft 365 U.S. Government GCC High endpoints." <https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-u-s-government-gcc-high-endpoints?view=o365-worldwide>
 - Microsoft Learn, "Office 365 GCC," Office 365 US Government service description. <https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc>
 - Microsoft Learn, "DNS and AD DS" and "Verify that SRV Domain Name System (DNS) records have been created." <https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/dns-and-ad-ds>; <https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/verify-srv-dns-records-have-been-created>
 - Microsoft Learn, "Secure DNS Client over HTTPS (DoH) on Windows Server 2022." <https://learn.microsoft.com/en-us/windows-server/networking/dns/doh-client-support>
@@ -92,7 +90,6 @@ Every URL below was checked as reachable on October 19, 2026. Primary sources (f
 - Google Cloud, "Manage response policies and rules" (Cloud DNS). <https://cloud.google.com/dns/docs/zones/manage-response-policies>
 - Google Cloud, "Internal ranges overview" (VPC). <https://cloud.google.com/vpc/docs/internal-ranges>
 - Cisco, *Cisco Catalyst SD-WAN Policies Configuration Guide, Cisco IOS XE Catalyst SD-WAN Release 17.x*, "Redirect DNS in Cisco Catalyst SD-WAN Service-Side VPNs" (restrictions: IPv4 only; UDP only, not TCP; no DNS from the overlay tunnel; service-side VPN support from 17.8.1a / 20.8.1). <https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/policies/ios-xe-17/policies-book-xe/redirect-dns.html>
-- Microsoft Learn, "Azure Government DoD Overview." <https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-overview-dod>
 
 ### Third-party sources
 

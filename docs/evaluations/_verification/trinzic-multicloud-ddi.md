@@ -13,7 +13,7 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | Design guidance reframed: multi-cloud at Moderate may add Universal DDI whether workloads are in commercial regions or in AWS GovCloud (US) and Azure Government (confirm government-edition feature support there); High or IL4–5 systems in any region: A + C only | The answer in brief | design (labelled) | — |
+| 1 | Design guidance reframed: multi-cloud at Moderate may add Universal DDI whether workloads are in commercial regions or in AWS GovCloud (US) (confirm government-edition feature support there); High systems in any region: A + C only | The answer in brief | design (labelled) | — |
 | 2 | Infoblox Government Cloud certified at Moderate and hosted in AWS GovCloud (US) | The answer in brief | verified (Marketplace data, Oct 22, 2026) | tz-fedramp |
 | 3 | AWS publishes FedRAMP scope per service and per Region (Class C East/West; Class D GovCloud) | Footnote | verified 2026-10-29 (fact pack) | tz-fedramp |
-| 4 | Deck slide 9 decision table: GovCloud/Azure Government moved from the High row into the Moderate multi-cloud row | Deck | reframed | — |
+| 4 | Deck slide 9 decision table: GovCloud moved from the High row into the Moderate multi-cloud row | Deck | reframed | — |

@@ -6959,7 +6959,6 @@ pages:
   note: Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters
   cited_by:
   - docs/books/b09-network/11-field-office-wan-transformation.md
-  - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
 - path: docs/global-secure-access/reference-role-based-permissions.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-role-based-permissions
   title: Microsoft Global Secure Access built-in roles
@@ -16770,7 +16769,7 @@ pages:
   ms_topic: faq
   description: Frequently asked questions and answers for Microsoft Entra certificate-based authentication (CBA).
   coverage: cited
-  note: Certificate-based authentication with PIV/CAC.
+  note: Certificate-based authentication with PIV.
   workbook:
   - docs/training/hr-driven-identity/05-certificate-based-authentication.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
@@ -16784,7 +16783,7 @@ pages:
   ms_topic: how-to
   description: Learn about the supported scenarios and the requirements for configuring certificate-based authentication in solutions with Android devices
   coverage: covered-uncited
-  note: Certificate-based authentication with PIV/CAC.
+  note: Certificate-based authentication with PIV.
   workbook:
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   cited_by: []
@@ -16807,7 +16806,7 @@ pages:
   ms_topic: how-to
   description: Learn about the supported scenarios and the requirements for configuring certificate-based authentication for Microsoft Entra ID in solutions with iOS devices
   coverage: covered-uncited
-  note: Certificate-based authentication with PIV/CAC.
+  note: Certificate-based authentication with PIV.
   workbook:
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   cited_by: []
@@ -17177,7 +17176,7 @@ pages:
   ms_topic: how-to
   description: Learn about Microsoft Entra certificate-based authentication on Android devices
   coverage: cited
-  note: Certificate-based authentication with PIV/CAC.
+  note: Certificate-based authentication with PIV.
   workbook:
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   cited_by:
@@ -17587,7 +17586,6 @@ pages:
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b03-hr-identity/12-execution-plan.md
   - docs/books/b03-hr-identity/_verification/05-the-provisioning-pipeline.md
-  - docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/b04-access/09-access-governance.md
   - docs/books/b04-access/10-access-as-code-and-evidence.md
@@ -17595,9 +17593,6 @@ pages:
   - docs/books/b04-access/_verification/09-access-governance.md
   - docs/books/b04-access/_verification/10-access-as-code-and-evidence.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
-  - docs/books/b07-pki/06-device-and-user-certificates.md
-  - docs/books/b07-pki/09-federal-workforce-credentials.md
-  - docs/books/b07-pki/_verification/06-device-and-user-certificates.md
   - docs/books/b13-governance/10-ticket-to-machine.md
   - docs/books/b13-governance/_verification/10-ticket-to-machine.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
@@ -20905,16 +20900,6 @@ pages:
   cited_by:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
   - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
-- path: docs/identity/domain-services/feature-availability.md
-  url: https://learn.microsoft.com/entra/identity/domain-services/feature-availability
-  title: Microsoft Entra Domain Services feature availability in Azure Government
-  area: domain-services
-  ms_date: '2025-01-21'
-  ms_topic: concept-article
-  description: Learn which Domain Services features are available in Azure Government.
-  coverage: not-covered
-  note: Domain Services availability in Azure Government; no workbook page states it (candidate for Book 02 Ch04 if the bridge is planned)
-  cited_by: []
 - path: docs/identity/domain-services/fleet-metrics.md
   url: https://learn.microsoft.com/entra/identity/domain-services/fleet-metrics
   title: Check fleet metrics of Microsoft Entra Domain Services | Microsoft Docs
@@ -25362,16 +25347,6 @@ pages:
   description: This article answers frequently asked questions about Microsoft Entra Connect.
   coverage: out-of-scope
   note: Release history, privacy notice, deprecated-version, DirSync-era or Exchange-migration page; no program procedure.
-  cited_by: []
-- path: docs/identity/hybrid/connect/reference-connect-government-cloud.md
-  url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-government-cloud
-  title: 'Microsoft Entra Connect: Hybrid identity considerations for Azure Government cloud'
-  area: hybrid
-  ms_date: '2025-04-09'
-  ms_topic: reference
-  description: Special considerations for deploying Microsoft Entra Connect with the Azure Government cloud.
-  coverage: unreviewed
-  note: Connect in government clouds and required ports not covered.
   cited_by: []
 - path: docs/identity/hybrid/connect/reference-connect-health-faq.yml
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-health-faq

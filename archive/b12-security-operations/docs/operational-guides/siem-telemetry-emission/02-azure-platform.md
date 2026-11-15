@@ -95,7 +95,7 @@ The activity log needs the **subscription** subcommand — the plain
 ```bash
 az monitor diagnostic-settings subscription create \
   --name "fmp-activity-log-export" \
-  --location "usgovvirginia" \
+  --location "eastus" \
   --workspace "/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RG}/providers/Microsoft.OperationalInsights/workspaces/${WORKSPACE}" \
   --logs '[
     {"category": "Administrative",  "enabled": true},

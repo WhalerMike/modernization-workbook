@@ -128,7 +128,7 @@ Source: https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/1
 38,Task,30,P2.7 Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028),"P2.7 · Task · owner or approver: Platform teams
 Duration 7 working days · wk 13–14 · total float 0 · predecessors: P2.3
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.7,task,owner-platform-teams,critical-path,2027-04-01,2027-04-09,41,,,,,,,,
-39,Task,30,P2.8 Certificate-based authentication for PIV and CAC holders (M-029),"P2.8 · Task · owner or approver: Platform teams
+39,Task,30,P2.8 Certificate-based authentication for PIV holders (M-029),"P2.8 · Task · owner or approver: Platform teams
 Duration 8 working days · wk 11–12 · total float 12 d · predecessors: P2.1
 Source: https://whalermike.github.io/modernization-workbook/docs/books/b00-orientation/09-design-pilot-and-rollout.html#milestones",fmw,fmw-program-master-schedule,fmw-id-p2.8,task,owner-platform-teams,,2027-03-15,2027-03-24,41,,,,,,,,
 40,Task,30,P2.10 Rollback rehearsed surface by surface,"P2.10 · Task · owner or approver: Platform teams

@@ -103,10 +103,10 @@ The Management Activity API is app-only. Register an application in Entra ID
 in the **same national cloud as the tenant**, grant it Office 365 Management
 APIs permissions, and admin-consent them.
 
-| Setting | GCC (current boundary) | GCC High | DoD |
-|---|---|---|---|
-| API audience / resource | `https://manage-gcc.office.com` | `https://manage.office365.us` | `https://manage.protection.apps.mil` |
-| Authority | `https://login.windows.net` | `https://login.microsoftonline.us` | `https://login.microsoftonline.us` |
+| Setting | GCC (current boundary) |
+|---|---|
+| API audience / resource | `https://manage-gcc.office.com` |
+| Authority | `https://login.windows.net` |
 
 Endpoint and authority values from the
 [Management Activity API troubleshooting guide](https://learn.microsoft.com/office/office-365-management-api/troubleshooting-the-office-365-management-activity-api#troubleshooting-the-office-365-management-activity-api)

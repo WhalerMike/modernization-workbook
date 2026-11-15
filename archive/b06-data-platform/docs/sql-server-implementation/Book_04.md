@@ -43,26 +43,26 @@ The engine uses the Arc managed identity for Microsoft Entra authentication only
 ## Prerequisites (GCC-Moderate)
 
 - A supported Windows Server host running the SQL Server instance(s) from the Book 03 audit (`MigrationTarget` = SQL 2022+; older versions upgrade first).
-- Outbound egress to the **Azure Government** Arc service endpoints, via the environment's proxy. In GCC-Moderate this is brokered through the program's egress proxy rather than open internet.
-- Onboarding rights in the target Azure Government subscription/resource group (a service principal or onboarding token).
-- Resolver and clock: working DNS to the government cloud endpoints and tight time sync (token validation is time-sensitive).
+- Outbound egress to the **commercial Azure** Arc service endpoints, via the environment's proxy. In GCC-Moderate this is brokered through the program's egress proxy rather than open internet.
+- Onboarding rights in the target commercial Azure subscription/resource group (a service principal or onboarding token).
+- Resolver and clock: working DNS to the Azure Arc endpoints and tight time sync (token validation is time-sensitive).
 
 ## Step 1 — Enroll the host
 
 ```powershell
-# Connect the host to Azure Arc in the Government cloud, through the egress proxy.
+# Connect the host to Azure Arc in commercial Azure, through the egress proxy.
 azcmagent connect `
     --resource-group "rg-sql-arc" `
     --tenant-id "<tenant-guid>" `
-    --location "usgovvirginia" `
+    --location "eastus" `
     --subscription-id "<subscription-guid>" `
-    --cloud "AzureUSGovernment" `
+    --cloud "AzureCloud" `
     --proxy-url $env:HTTPS_PROXY   # the program's configured egress proxy
 
 azcmagent show   # expect: Agent Status = Connected
 ```
 
-**Available** — `Invoke-FMPArcOnboarding` (`tools/powershell/FMPSqlServerMigration/`) wraps this idempotently: it skips when the agent already reports `Connected`, composes the exact `azcmagent connect` command from its parameters (no embedded secrets), and emits a sealed onboarding-plan evidence record. It defaults to planning only; mutating action requires `-Execute` plus the `SupportsShouldProcess` confirmation, so `-WhatIf` produces the reviewable command without touching the host. The idempotency check is `Test-FMPArcAgentStatus`, which validates `azcmagent show` against the expected Government-cloud and returns a sealed pass/fail record. (Canon: the directory modernization program Transformation #7; the program decision, the program decision.)
+**Available** — `Invoke-FMPArcOnboarding` (`tools/powershell/FMPSqlServerMigration/`) wraps this idempotently: it skips when the agent already reports `Connected`, composes the exact `azcmagent connect` command from its parameters (no embedded secrets), and emits a sealed onboarding-plan evidence record. It defaults to planning only; mutating action requires `-Execute` plus the `SupportsShouldProcess` confirmation, so `-WhatIf` produces the reviewable command without touching the host. The idempotency check is `Test-FMPArcAgentStatus`, which validates `azcmagent show` against the expected cloud (AzureCloud) and returns a sealed pass/fail record. (Canon: the directory modernization program Transformation #7; the program decision, the program decision.)
 
 ## Step 2 — Validate the managed-identity token (IMDS)
 
@@ -71,7 +71,7 @@ The agent exposes a local Instance Metadata Service. Confirm the host can mint a
 ```powershell
 $imds = "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2020-06-01"
 # Request a token for the resource you will authenticate to (the SQL/Graph audience), not a generic one.
-$resp = Invoke-RestMethod -Uri "$imds&resource=https://database.usgovcloudapi.net/" `
+$resp = Invoke-RestMethod -Uri "$imds&resource=https://database.windows.net/" `
     -Headers @{ Metadata = "true" }
 # Decode the JWT payload and check 'aud' matches the intended resource.
 $payload = $resp.access_token.Split('.')[1]
@@ -89,7 +89,7 @@ A token minted for the wrong audience is rejected at use time — the management
 The Azure extension for SQL Server on the Arc-enabled host is what surfaces the instance to the identity plane and enables Entra ID authentication on SQL 2022+.
 
 ```powershell
-# Install the SQL Server extension onto the Arc-enabled machine (Government cloud).
+# Install the SQL Server extension onto the Arc-enabled machine (commercial Azure).
 az connectedmachine extension create `
     --machine-name $env:COMPUTERNAME `
     --resource-group "rg-sql-arc" `
@@ -102,14 +102,14 @@ az connectedmachine extension create `
 
 ## Verification checklist
 
-- `azcmagent show` → **Connected**, with a resource ID in the expected Government-cloud subscription.
+- `azcmagent show` → **Connected**, with a resource ID in the expected commercial Azure subscription.
 - IMDS returns a token whose `aud` equals the intended data-plane resource and whose `exp` is in the future.
 - The SQL Server extension shows **Succeeded** provisioning state.
 - A test Entra principal can authenticate to the instance (the smoke test for Book 05).
 
 ## Failure modes
 
-- **Egress blocked** → `azcmagent connect` hangs or fails at the registration endpoint; confirm the proxy allows the Government-cloud Arc endpoints.
+- **Egress blocked** → `azcmagent connect` hangs or fails at the registration endpoint; confirm the proxy allows the Azure Arc endpoints.
 - **Audience mismatch** → token mints fine but SQL refuses it; re-request with the correct data-plane `resource`.
 - **Clock skew** → token `exp`/`nbf` validation fails; fix time sync first.
 - **Extension stuck provisioning** → check the agent log; a half-installed extension should be removed and reinstalled, not edited in place.

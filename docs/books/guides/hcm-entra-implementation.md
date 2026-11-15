@@ -281,7 +281,7 @@ The slot assignments are Book 03's program attribute map ([Chapter 06](../b03-hr
 |---|---|
 | Uploader | `.OwnedBy` upload permission; owner of its app; nothing else[^he-ms-bulk] |
 | Log reader | A separate identity with the provisioning-log permission (finding 7) |
-| Entra credential | Managed identity or certificate, as Microsoft recommends for production.[^he-ms-grant] A Microsoft 365 GCC tenant uses the worldwide Entra service;[^he-ms-deploy] a managed identity in an Azure Government subscription belongs to a different tenant, so middleware hosted there needs a certificate credential *(inference)* |
+| Entra credential | Managed identity or certificate, as Microsoft recommends for production.[^he-ms-grant] A Microsoft 365 GCC tenant uses the worldwide Entra service[^he-ms-deploy] |
 | Oracle credential | JWT user assertion signed by a vault-held key for a dedicated integration user; no client secret[^he-ora-oauth] |
 | Operational logs | Person key and payload hash only (Appendix B). In Logic Apps, *Secure Inputs* and *Secure Outputs* hide run-history data, but several built-in actions, including Parse JSON, Compose and For each, don't support Secure Outputs.[^he-ms-la-sec] Prefer Azure Functions for record handling, or restrict run-history access *(design guidance)* |
 | Sensitive values | Custom security attributes for values no rule reads; redacted in provisioning logs[^he-ms-csa] |

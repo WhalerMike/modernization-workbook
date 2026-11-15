@@ -5,7 +5,7 @@ Verified: 2026-10-29; Oracle Cloud added 2026-10-31
 
 Method:
 - AWS Developer Guide, VPC User Guide, GovCloud User Guide, General Reference, What's New and the FedRAMP services-in-scope page were fetched on 2026-10-29. The load-bearing AWS quotes were re-checked against the raw HTML with curl: the DNSSEC validation note (DO and CD bits ignored), the 1,024 PPS link-local quota, the GovCloud Route 53 page ("Route 53 Resolver delegation is not available"; "answered from within FedRAMP boundary"), and the FedRAMP page's Class C and Class D columns, the Amazon Route 53 row and the "generally available features" sentence.
-- Microsoft Learn pages were read through the Microsoft Learn documentation tools and fetched. Azure Government availability was checked three ways: the products-by-region table in a browser (no Azure Government columns are shown), the Learn comparison page (no DNS differences listed), and the Azure Retail Prices API filtered to US Gov locations (meters present).
+- Microsoft Learn pages were read through the Microsoft Learn documentation tools and fetched.
 - The BIND 9.20 ARM was read from its reStructuredText source and the rendered reference page; `validate-except` and `forwarders` (TLS transport) were re-checked in the source with curl. ISC KB and download pages were fetched.
 - NIST SP 800-81r3 and CISA's Encrypted DNS Implementation Guidance were downloaded as PDFs and searched in extracted text; section numbers come from the PDF.
 - The illustrative `named.conf` was extracted from the page and checked with `named-checkconf` from BIND 9.18.39 (Ubuntu 24.04 package) in WSL: passed.
@@ -56,9 +56,7 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 37 | Resource logs listed only for resolver policies; resolver has metrics only | Part 1 Azure | verified (complete list); "only" is inference (labelled) | cdns-az-monitor |
 | 38 | Azure-provided resolver doesn't validate DNSSEC; Public DNS signing only; Private Resolver validation not documented | Part 1 Azure, Part 3 | verified; Private Resolver validation **confirm** | cdns-az-dnssec |
 | 39 | Azure DNS doesn't support AXFR/IXFR | Part 1 Azure | verified | cdns-az-faq |
-| 40 | Audit scope (Feb 2026): one DNS row; FedRAMP High in Azure and Azure Government; no separate resolver rows | Part 1 Azure | verified | cdns-az-fedramp |
-| 41 | Products-by-region table shows no Azure Government columns; comparison page lists no DNS differences | Part 1 Azure | verified (browser check) | cdns-az-regions |
-| 42 | US Gov price meters: Private Resolver endpoints and ruleset since 2024-10-01; DNS Security Policy since 2026-06-01 | Part 1 Azure | verified (API query) | cdns-az-prices |
+| 40 | Audit scope (Feb 2026): one DNS row; FedRAMP High in Azure; no separate resolver rows | Part 1 Azure | verified | cdns-az-fedramp |
 | 43 | A meter is a signal, not an availability statement | Part 1 Azure | inference (labelled); availability **confirm** | — |
 | 44 | Neither inbound endpoint takes an ordinary NS delegation of a private zone; AWS delegation inbound endpoint is the exception | Part 1 meeting | verified | cdns-r53-hybrid, cdns-az-arch |
 | 45 | CISA: Protective DNS for all egress; cloud deployments upstream to Protective DNS "either directly or via a SASE/SSE solution," or agency internal DNS | Part 1, Part 3, Part 5 | verified (PDF text) | cdns-cisa-edns |
@@ -120,7 +118,6 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 - VPC Resolver DNSSEC validation in GovCloud: no AWS page states it. (Resolver query logging in GovCloud was confirmed on 2026-10-31; see claim 98.)
 - Oracle: private resolver logging in the government realm; whether the VCN resolver passes DNSSEC data to a resolver behind it.
 - DNS Firewall Advanced protections other than dictionary DGA in GovCloud.
-- Azure DNS Private Resolver and DNS resolver policy availability by Azure Government region: the region table omits Azure Government; only price meters are evidence.
 - Whether the Azure DNS Private Resolver validates DNSSEC.
 - Whether CISA Protective DNS returns DNSSEC data to agency forwarders.
 - The NCP dates of the CIS BIND benchmarks.
@@ -161,5 +158,5 @@ Re-checked after the weekly source watch (issue #499) reported a gone source and
 |---|---|
 | CIS "CIS Benchmarks: BIND" page, <https://www.cisecurity.org/benchmark/bind>: HTTP 404. CIS's benchmark list no longer shows the ISC BIND DNS Server 9.11 or 9.9 benchmarks; its only BIND entry is "BIND 9.x STIG (1.0.0)", and it says unsupported benchmarks aren't listed (CIS WorkBench). No replacement CIS benchmark exists | Row 91 restated: CIS listed the two benchmarks on October 29 and no longer lists a BIND benchmark of its own. Footnote `cdns-cis` keeps the old address, marked retrieved before removal. The 9.11 benchmark's intent stays in the agency profile, labelled as retired |
 | AWS whitepaper *Hybrid Cloud DNS Options for Amazon VPC*: the HTML address now redirects (302) to the Route 53 Developer Guide, "What is Route 53 VPC Resolver?". The PDF of the whitepaper is still published and still carries the "historical reference only" notice, the December 2, 2022 publication date, "Each EC2 instance is limited to 1024 packets per second for DNS queries" and "it is critical to specify the forward only option" | Moved: footnote `cdns-aws-whitepaper` now points to the PDF (row 49 unchanged) |
-| Azure DNS monitoring data reference (queries-per-second wording); Azure Retail Prices API (first page, 68 bytes smaller) | No effect: resolver and ruleset metrics and resolver-policy-only resource logs unchanged; the US Gov meters were not re-read |
+| Azure DNS monitoring data reference (queries-per-second wording) | No effect: resolver and ruleset metrics and resolver-policy-only resource logs unchanged |
 | FedRAMP Marketplace data: AWS US East/West (Class C), AWS GovCloud and Oracle Cloud Infrastructure-Government Cloud (Class D), Fusion Cloud (Class C) unchanged; the data no longer gives an impact level for any listing | No effect (dated footnotes) |

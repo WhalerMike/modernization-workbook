@@ -11,7 +11,7 @@ graph: {nodesep: 0.3, ranksep: 0.4}
 nodes:
   perim: {tone: red, width: 190, tag: "Retiring", title: "AD-era perimeter", body: ["Inside the network means trusted", "VPN tunnels to the whole network", "Domain-controller Kerberos tickets", "Standing Domain Admins"], size: 12}
   zt: {tone: violet, width: 190, tag: "Model", title: "Zero Trust", body: ["Verify explicitly, least privilege, assume breach", "No trust from network location"], size: 12}
-  proof: {tone: blue, width: 190, tag: "Proof", title: "Phishing-resistant MFA", body: ["FIDO2, passkeys, Windows Hello for Business", "PIV/CAC through Entra CBA"], size: 12}
+  proof: {tone: blue, width: 190, tag: "Proof", title: "Phishing-resistant MFA", body: ["FIDO2, passkeys, Windows Hello for Business", "PIV through Entra CBA"], size: 12}
   edge: {tone: blue, width: 190, tag: "Edge", title: "SASE", body: ["ZTNA instead of VPN", "Secure web gateway, CASB, firewall", "Federated to Entra ID"], size: 12}
   ca: {tone: blue, width: 210, tag: "Decision", title: "Conditional Access, per request", body: ["Identity and attributes", "Device compliance from Intune", "Risk and authentication strength", "=Continuous access evaluation can revoke a live session"], size: 12}
   ev: {tone: green, width: 210, tag: "Evidence", title: "Logged and drift-checked", body: ["=Sign-in, SASE and PIM logs to the SIEM; divergence from the repository is a tracked item"], size: 12}

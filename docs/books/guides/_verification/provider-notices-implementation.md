@@ -17,7 +17,7 @@ Facts carried from the books are cited by link and rely on those pages' own veri
 | 7 | Sensitive security-advisory fields need Service Health Security Reader (or the three actions); Reader and Monitoring Reader can't view them; impacted resources always sensitive | Prerequisites, G1, Dangers | verified | `pn-sec-elevated` |
 | 8 | Built-in definition 98903777-a9f6-47f5-90a9-acaf62ab01a8 "Configure subscriptions to enable Service Health Monitoring Alert Rules"; MG or subscription scope, not resource group; remediation needed for existing subscriptions; default resources; manual edits may be overwritten; effects Disabled, AuditIfNotExists, DeployIfNotExists | G1 step 4, Dangers | verified (the ID from the page's portal link) | `pn-policy` |
 | 9 | `az policy assignment create` `--mi-system-assigned`, `--location`, `--role`, `--identity-scope`, `--params`; roles granted automatically only through the portal; `az policy remediation create --name --policy-assignment --management-group` | G1 step 4; kit plan | verified | `pn-remediate` |
-| 10 | `az cloud set --name AzureUSGovernment`; resource manager `management.usgovcloudapi.net` | G1 | verified | `pn-gov-cli` |
+| 10 | `az cloud set --name AzureCloud`; resource manager `management.azure.com` | G1 | verified | `pn-gov-cli` |
 | 11 | `az extension add --name resource-graph`; `--first` 1 to 1,000; `--skip-token`; `--subscriptions`, `--management-groups` | G1 step 2; kit | verified (Resource Graph CLI quickstart; `az graph` reference; paging guidance) | Learn, linked in `config/calls.json` |
 | 12 | Graph service communications: `ServiceMessage.Read.All` (messages), `ServiceHealth.Read.All` (issues, health overviews); no higher-privileged permission; granted only by an administrator; delegated user needs an admin role; available on national clouds | Prerequisites, G2 | verified | `pn-graph-overview`, `pn-graph-messages`, `pn-graph-issues` |
 | 13 | GCC uses the worldwide endpoint `graph.microsoft.com` | G2, comparison | verified | `pn-graph-deployments` |
@@ -68,7 +68,6 @@ Facts carried from the books are cited by link and rely on those pages' own veri
 |---|---|---|---|
 | N1 | Resource Graph `ServiceHealthResources` column schema and `LastUpdateTime` format | Learn gives no column list or sample row | Projects Learn's columns; accepts ISO, epoch seconds or milliseconds, or ticks |
 | N2 | Whether Resource Graph redacts sensitive security-advisory fields | Not stated | Recommends Service Health Security Reader |
-| N3 | Resource Graph Service Health in Azure Government (explicit statement) | Only the samples' portal links | Supports `AzureUSGovernment`; guide says so |
 | N4 | `az graph query` JSON keys (`data`, `skip_token`) | Learn documents the REST response | Reads `skip_token`, `skipToken` or `$skipToken` |
 | N5 | The alert resource type and the parameter names of the Service Health policy | Not on the page | Plan has no parameters file by default; read the definition first |
 | N6 | Message center tag values | Not enumerated on Learn | `Retirement` tag means retirement |

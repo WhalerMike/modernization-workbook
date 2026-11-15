@@ -132,7 +132,7 @@ tasks:
      source: "../books/b08-ddi/10-migration-sequence.md"}
   - {id: P2.7, phase: 2, name: "Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028)", dur: 7, after: [P2.3], owner: "Platform teams",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
-  - {id: P2.8, phase: 2, name: "Certificate-based authentication for PIV and CAC holders (M-029)", dur: 8, after: [P2.1], owner: "Platform teams",
+  - {id: P2.8, phase: 2, name: "Certificate-based authentication for PIV holders (M-029)", dur: 8, after: [P2.1], owner: "Platform teams",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#milestones"}
   - {id: P2.10, phase: 2, name: "Rollback rehearsed surface by surface", dur: 3, after: [P2.3], owner: "Platform teams",
      source: "../books/b00-orientation/09-design-pilot-and-rollout.md#rollback-surface-by-surface"}

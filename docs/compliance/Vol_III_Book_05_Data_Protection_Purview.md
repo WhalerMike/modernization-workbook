@@ -483,7 +483,7 @@ Set-AzContext -SubscriptionId "your-subscription-id"
 # Create a resource group for key management (separate from workload RGs)
 New-AzResourceGroup `
   -Name "rg-keyvault-prod" `
-  -Location "East US 2"  # {{< meta agency.short >}} Azure is commercial Azure, paired with its M365 GCC tenant (Vol I Book 01); an Azure Government tenant would use Connect-AzAccount -Environment AzureUSGovernment and a US Gov region
+  -Location "East US 2"  # {{< meta agency.short >}} Azure is commercial Azure, paired with its M365 GCC tenant (Vol I Book 01)
 
 # Create Key Vault with HSM-protected keys (Premium SKU)
 $kv = New-AzKeyVault `

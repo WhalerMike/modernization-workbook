@@ -24,7 +24,6 @@ Facts carried from the books (Book 11 Chapters 05, 07, 08, 09, 10; Book 13 Appen
 | 14 | `Get-MgOauth2PermissionGrant`; `Remove-MgOauth2PermissionGrant`; existing tokens valid for their lifetime; Cloud Application Administrator to review and revoke | Step 3 | verified | Grant and revoke API permissions, <https://learn.microsoft.com/powershell/microsoftgraph/how-to-grant-revoke-api-permissions>; Review permissions granted to enterprise applications, <https://learn.microsoft.com/entra/identity/enterprise-apps/manage-application-permissions> | Nov 11, 2026 |
 | 15 | `-ExchangeEnvironmentName`: none needed for Microsoft 365 or GCC | Availability table, Step 4 | verified | Connect to Exchange Online PowerShell, <https://learn.microsoft.com/powershell/exchange/connect-to-exchange-online-powershell> | Nov 11, 2026 |
 | 16 | Security & Compliance: the default connection | Availability table | verified | App-only authentication for unattended scripts, <https://learn.microsoft.com/powershell/exchange/app-only-auth-powershell-v2> | Nov 11, 2026 |
-| 17 | `Connect-AzAccount -Environment AzureUSGovernment` | Step 1 | verified | Quickstart: Connect to Azure Government with PowerShell, <https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-ps> | Nov 11, 2026 |
 | 18 | `Update-AzTag` on a subscription resource ID with `-Operation Merge` and `Delete` | Step 1, Rollback | verified | Apply tags with Azure PowerShell, <https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources-powershell>; Update-AzTag reference | Nov 11, 2026 |
 
 ## Claims log: the tool's repository, tag 3.1.0
@@ -59,4 +58,4 @@ The taxonomy's application to the Security Hub statuses; the cadence; the dedica
 
 ## Not yet specified (listed on the page)
 
-GCC on Learn's Zero Trust Assessment pages; AIP's environment on Learn; Learn's run roles (two statements); Learn's scheduled digest playbook against 3.1.0; the export's schema (no published schema); Azure Automation, Logic Apps and Blob Storage availability for the playbook in Azure Government.
+GCC on Learn's Zero Trust Assessment pages; AIP's environment on Learn; Learn's run roles (two statements); Learn's scheduled digest playbook against 3.1.0; the export's schema (no published schema).

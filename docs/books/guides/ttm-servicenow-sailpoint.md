@@ -262,7 +262,7 @@ This gate closes gaps 2 and 4 on paper before anything is connected. Every later
 
 : Gate 2 requirements and evidence {.striped .hover}
 
-**Availability.** Nothing new is used. Book 03's API-driven inbound provisioning, if it's the writer, is available in Azure for US Government, as are PIM, entitlement management, access reviews and Lifecycle Workflows (read November 1, 2026).[^ttm-entra-gov] In GCC, Entra ID is the commercial service.[^ttm-graph]
+**Availability.** Nothing new is used. In GCC, Entra ID is the commercial service,[^ttm-graph] so Book 03's API-driven inbound provisioning, if it's the writer, is available, as are PIM, entitlement management, access reviews and Lifecycle Workflows; Learn lists Microsoft Entra ID Governance as available in GCC (read November 1, 2026).[^ttm-entra-gov]
 
 **Interim path.** Where the HR pipeline isn't live yet, SailPoint can't be measured against a source of authority; decide the writers now, and run Gates 3 to 6 against the HR extract the kit reads, until Book 03's pipeline lands.
 
@@ -417,7 +417,7 @@ Loop step 4: the ticket authorizes a machine. The fix runs through a connector u
 
 : Gate 5 requirements and evidence {.striped .hover}
 
-**Availability.** PIM is available in Azure for US Government (read November 1, 2026).[^ttm-entra-gov] The Entra spoke's connection points at `https://graph.microsoft.com` by default and its page doesn't mention the US Government clouds:[^ttm-spoke] it fits GCC.
+**Availability.** PIM is part of the commercial Entra service GCC uses.[^ttm-graph] The Entra spoke's connection points at `https://graph.microsoft.com` by default and its page doesn't mention the US Government clouds:[^ttm-spoke] it fits GCC.
 
 **Interim path.** Until the change-record flow exists, the approver raises the change record by hand and links it to the request; the closure still waits for Gate 6. Where the spoke isn't licensed, A0 and A1 tasks stay help desk tasks against an approved ticket, with the PIM activation recorded.
 
@@ -723,7 +723,7 @@ From public documentation read on November 1, 2026, unless noted:
 [^ttm-spoke]: ServiceNow, "Microsoft Entra ID spoke" (Zurich: ten action categories; requires an Integration Hub subscription; a custom app in Microsoft Entra issues OAuth 2.0 tokens, delegated with the authorization code grant or application with client credentials; the connection alias points at `https://graph.microsoft.com`), <https://www.servicenow.com/docs/bundle/zurich-integrate-applications/page/administer/integrationhub/concept/microsoft-azure-ad-spoke.html> (read November 1, 2026).
 [^ttm-store]: ServiceNow, "Environments with federal or regional ServiceNow Store instances" (Yokohama: regulated environments, including the government cloud, have an isolated Store instance), <https://www.servicenow.com/docs/r/VbEA8DxUy61CFZ25mbYrcQ/VHU4zAdCjZkmR77lHBQOVw> (read November 1, 2026).
 [^ttm-graph]: Microsoft Learn, "Microsoft Graph national cloud deployments" (Microsoft 365 GCC continues to use the worldwide endpoints), <https://learn.microsoft.com/graph/deployments> (read November 1, 2026).
-[^ttm-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Azure for US Government: Privileged Identity Management, access reviews, entitlement management and Lifecycle Workflows available; API-driven inbound provisioning available; Microsoft Entra ID Governance available in GCC), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026).
+[^ttm-entra-gov]: Microsoft Learn, "Microsoft Entra feature availability" (Microsoft Entra ID Governance available in GCC), <https://learn.microsoft.com/entra/identity/authentication/feature-availability> (read November 1, 2026).
 [^ttm-ncd-help]: SailPoint, "Managing Native Change Detection" (detects accounts created, updated or deleted out of band, on aggregation, one event per changed account; not available for Non-Employee Lifecycle Management sources; the page now names the product SailPoint Human Fabric), <https://documentation.sailpoint.com/saas/help/sources/native_change_detection.html> (read November 1, 2026).
 [^ttm-ncd]: SailPoint Developer, "Native Change Account Updated" event trigger, <https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/native-change-account-updated> (read October 24, 2026).
 [^ttm-trig]: SailPoint Developer, "Identity Attributes Changed" event trigger, <https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/identity-attribute-changed> (read October 24, 2026).

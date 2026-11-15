@@ -154,8 +154,7 @@ change.
   **R1–R5**.
 - ☐ Table A1 complete for this site: a **site-specific mission need**, a start
   date, and an **expiry or ending condition** that is not blank.
-- ☐ Endpoint feed confirmed as **Worldwide (+GCC)** — not the DoD or GCC High
-  instance.
+- ☐ Endpoint feed confirmed as **Worldwide (+GCC)**.
 - ☐ Probe endpoint resolves and responds **from this branch**, not only from
   the datacenter.
 - ☐ Name resolution for Microsoft 365 occurs **local to this branch's egress** —

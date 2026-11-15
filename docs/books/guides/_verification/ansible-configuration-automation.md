@@ -18,7 +18,7 @@ New guide, first pass of 2026-10-29. The guide is an implementation view over Bo
 | 8 | Sign-in options: managed identity recommended for production (control node must be an Azure VM or Arc server; no RBAC by default); AAP service principal credential (`auth_source: env`); Azure CLI for development, not applicable in AAP | Arc onboarding | verified | `ans-arc-ansible` |
 | 9 | Identity needs Azure Connected Machine Onboarding role | Arc onboarding | verified | `ans-arc-ansible`; `ans-arc-roles` |
 | 10 | Microsoft recommends assigning the onboarding role only to the onboarding service principal | Arc onboarding | verified | `ans-arc-roles` |
-| 11 | `azcmagent connect`: secret in a configuration file to keep it out of console logs; `--tags` comma-delimited `Name=Value`; `--cloud` with `--location`; `AzureUSGovernment` | Arc onboarding | verified | `ans-azcmagent-connect` |
+| 11 | `azcmagent connect`: secret in a configuration file to keep it out of console logs; `--tags` comma-delimited `Name=Value`; `--cloud` with `--location` | Arc onboarding | verified | `ans-azcmagent-connect` |
 | 12 | `--config` common flag takes JSON or YAML; command line wins | Arc onboarding; examples | verified | `ans-azcmagent-cli` |
 
 Not carried: the Onboarding role's action list includes `machines/addExtensions/action` while the security page says the role "disallows extension management." The guide doesn't characterize the role's extension rights.
@@ -63,7 +63,7 @@ Not carried: the Onboarding role's action list includes `machines/addExtensions/
 | 55 | Red Hat: "FedRAMP is only applicable to the products listed below" — ROSA (two architectures) and Lightspeed, via AWS GovCloud | Authorization status | verified | `ans-rh-fedramp` |
 | 56 | ROSA FR2102031769 FedRAMP Certified, High, Lightspeed bundled | Authorization status | verified | `ans-fedramp-rosa` |
 | 57 | Self-managed AAP's FedRAMP treatment | Authorization status | **not published**; the guide says so and gives the program's default as design guidance | — |
-| 58 | Azure managed application in the customer's tenant; Red Hat reaches only the managed resource group; regions commercial only | Authorization status; Hosting | verified; Azure Government availability **not published** | `ans-aap-azure` |
+| 58 | Azure managed application in the customer's tenant; Red Hat reaches only the managed resource group; regions commercial only | Authorization status; Hosting | verified | `ans-aap-azure` |
 | 59 | AWS service: Red Hat-run control plane; customer execution nodes; job logs erased every 30 days; regions commercial only | Hosting | verified; GovCloud availability **not published** | `ans-aap-aws` |
 | 60 | Self-managed offers on AWS, Google Cloud and Oracle marketplaces | Hosting | verified | `ans-aap-options` |
 | 61 | FIPS page lists RHEL module certificates; generally applicable to other products running unmodified; AAP not named | FIPS | verified | `ans-rh-fips` |
@@ -130,7 +130,7 @@ The onboarding playbook passes the secret through an `azcmagent connect --config
 | docs.ansible.com rendered pages | 429 / bot check on 2026-10-29; verified from source; re-open before leaving draft |
 | AAP 2.6/2.7 support on FIPS-mode RHEL | No statement found; guide says ask Red Hat and test |
 | Self-managed AAP's FedRAMP treatment | Not published by Red Hat or FedRAMP; guide gives design guidance |
-| AAP managed offerings in Azure Government or AWS GovCloud | Not published |
+| AAP managed offerings in AWS GovCloud | Not published |
 
 ## Moderate civilian sweep (2026-10-29)
 

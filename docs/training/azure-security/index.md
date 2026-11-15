@@ -1,7 +1,7 @@
 ---
 title: "Learning path: Azure Security Engineering"
 subtitle: "Five modules: the baseline and the exposure register, DDoS protection and the WAF, the edge and the egress, Private Link, DNS and Key Vault, and policy, drift and evidence, each with a lab of the guide's checks in your own test subscription"
-description: "A learning path in five modules for platform owners, operators, security monitors, policy owners and ISSO reviewers, built from the Azure Security Engineering implementation guide: how the guide divides the work with the landing-zone books, the security baseline in audit at the intermediate root and the Resource Graph inventory of every public exposure; DDoS protection on every public IP and the web application firewall from detection to prevention; an origin nothing can reach around Front Door or Application Gateway, and egress through Azure Firewall with threat intelligence and IDPS denying; private endpoints that resolve through central DNS zones, and vaults behind RBAC with purge protection and an audit log; and the security initiative, exemptions that expire, the operating model, the metrics and the evidence. GCC Moderate with commercial Azure first, Azure Government as side notes, and the AWS, Google Cloud and Oracle Cloud Infrastructure equivalents. Each module's lab runs the guide's Validate checks in a test subscription; each ends with a knowledge check."
+description: "A learning path in five modules for platform owners, operators, security monitors, policy owners and ISSO reviewers, built from the Azure Security Engineering implementation guide: how the guide divides the work with the landing-zone books, the security baseline in audit at the intermediate root and the Resource Graph inventory of every public exposure; DDoS protection on every public IP and the web application firewall from detection to prevention; an origin nothing can reach around Front Door or Application Gateway, and egress through Azure Firewall with threat intelligence and IDPS denying; private endpoints that resolve through central DNS zones, and vaults behind RBAC with purge protection and an audit log; and the security initiative, exemptions that expire, the operating model, the metrics and the evidence. GCC Moderate with commercial Azure, and the AWS, Google Cloud and Oracle Cloud Infrastructure equivalents. Each module's lab runs the guide's Validate checks in a test subscription; each ends with a knowledge check."
 doc-type: training-path
 research-status: draft
 research-type: training module
@@ -37,7 +37,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 | Security monitor | The DDoS alert and runbook, the WAF and firewall logs, and the audit log's allowed and denied reads |
 | Policy owner and ISSO reviewer | The initiative, exemptions that expire, the monthly export, the metrics, the requirements and KSIs each step supports, and the evidence you keep |
 
-**Level:** intermediate. **Products:** Azure Resource Graph, Azure Policy, Azure DDoS Protection, Azure Web Application Firewall, Azure Front Door, Azure Application Gateway, Azure Firewall, Azure Private Link and private DNS, Azure Key Vault, Microsoft Defender for Cloud and Azure Monitor, through Azure CLI and Az PowerShell. **Scope:** a civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure; Azure Government appears as side notes. Each module that compares clouds names the AWS, Google Cloud and Oracle Cloud Infrastructure equivalents from the guide.
+**Level:** intermediate. **Products:** Azure Resource Graph, Azure Policy, Azure DDoS Protection, Azure Web Application Firewall, Azure Front Door, Azure Application Gateway, Azure Firewall, Azure Private Link and private DNS, Azure Key Vault, Microsoft Defender for Cloud and Azure Monitor, through Azure CLI and Az PowerShell. **Scope:** a civilian agency at FedRAMP Moderate whose Microsoft 365 GCC tenant pairs with commercial Azure. Each module that compares clouds names the AWS, Google Cloud and Oracle Cloud Infrastructure equivalents from the guide.
 
 ## Prerequisites
 
@@ -49,7 +49,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 When you finish the path, you'll be able to:
 
-- say which parts of Azure security the books design and which the guide engineers, and what differs in Azure Government and on other clouds;
+- say which parts of Azure security the books design and which the guide engineers, and what differs on other clouds;
 - assign the security baseline in audit and build the exposure register with an owner on every row;
 - prove every public IP is under DDoS protection with logs and an alert, and every HTTP endpoint behind a WAF in prevention mode;
 - prove an origin refuses requests that go around the edge, and that workload egress goes through a firewall that denies;

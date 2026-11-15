@@ -251,12 +251,11 @@ az rest --method GET \
 ```
 
 ::: {.callout-note}
-## Sovereign clouds
+## GCC endpoints
 
-Replace `management.azure.com` with `management.usgovcloudapi.net` for Azure
-Government. Entra portal and Graph endpoints shift too — see the
-endpoint table. GCC (the current the Federal Modernization Program
-boundary) stays on the worldwide ARM and Graph endpoints.
+GCC (the current the Federal Modernization Program boundary) stays on the
+worldwide ARM and Graph endpoints: `management.azure.com` and
+`graph.microsoft.com`.
 :::
 
 ## Microsoft Graph — targeted evidence, not the feed
@@ -322,10 +321,6 @@ Get-MgAuditLogDirectoryAudit -Filter @"
 category eq 'RoleManagement' and activityDateTime gt 2026-08-01T00:00:00Z
 "@ -All
 ```
-
-For Azure Government, connect with `-Environment USGov` and request the
-`https://graph.microsoft.us/.default` scope
-([national clouds with the Graph SDKs](https://learn.microsoft.com/graph/sdks/national-clouds#examples)).
 
 ## Verify emission {#verify-emission}
 

@@ -36,7 +36,7 @@ When an Azure Storage account uses a private endpoint, Azure publishes a record 
 
 DNS security policy (response policy zones, DNS firewall rules, Protective DNS block lists) is enforced only at the resolver that answers the query. A domain blocked at the agency resolver may still be answered by Route 53 Resolver, Azure DNS or Google Cloud DNS if the equivalent rule there (Route 53 Resolver DNS Firewall, Azure DNS security policy, Cloud DNS response policies) was never created or has drifted.[^c02-r53fw][^c02-azsecpol][^c02-gcprp] The effective posture is that of the weakest resolver a client can reach. The same gap appears in the federal requirements: OMB M-22-09 expects agency DNS traffic to use encrypted DNS and to pass through CISA-operated Protective DNS infrastructure, so branches or cloud workloads that bypass the authorized resolver path also bypass those controls without anyone noticing.[^c02-m2209][^c02-cisaedns]
 
-Public SaaS endpoint split-brain follows the same pattern. Microsoft 365 GCC High and DoD use their own endpoint lists and namespaces, which must resolve correctly from every resolver.[^c02-m365gcch] GCC-Moderate uses the Worldwide endpoint list,[^c02-m365ww] so the risk there is not a "wrong cloud" answer but resolution-path consistency and front-door selection. A client using DNS over HTTPS to a public resolver can change the answer again.
+Public SaaS endpoint split-brain follows the same pattern. GCC-Moderate uses the Worldwide endpoint list,[^c02-m365ww] so the risk there is not a "wrong cloud" answer but resolution-path consistency and front-door selection. A client using DNS over HTTPS to a public resolver can change the answer again.
 
 ## Problems of Not Using Modern Enterprise-Grade DDI
 
@@ -62,6 +62,5 @@ Without a unified DDI plane, agencies struggle to show the consistent policy, au
 [^c02-gcprp]: Google Cloud, "Manage response policies and rules" (Cloud DNS). <https://cloud.google.com/dns/docs/zones/manage-response-policies>
 [^c02-m2209]: OMB M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, section on encrypted DNS. <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf>
 [^c02-cisaedns]: CISA, *Encrypted DNS Implementation Guidance*, May 2024. <https://www.cisa.gov/resources-tools/resources/encrypted-dns-implementation-guidance>
-[^c02-m365gcch]: Microsoft Learn, "Microsoft 365 U.S. Government GCC High endpoints." <https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-u-s-government-gcc-high-endpoints?view=o365-worldwide>
 [^c02-m365ww]: Microsoft Learn, "Microsoft 365 URLs and IP address ranges" (the Worldwide list, which includes GCC). <https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges?view=o365-worldwide>
 [^c02-esg]: **Third-party source (vendor-commissioned survey).** Enterprise Strategy Group, commissioned by Infoblox, *9 Pitfalls of Not Using Enterprise-Grade DDI*, February 2025. No public URL was verified for this book; figures are reported by the sponsor and were not independently verified.

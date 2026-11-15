@@ -197,11 +197,8 @@ alternative architecture. It addresses three questions:
 
 All cloud-dependent elements are scoped exclusively to Microsoft 365
 Government Community Cloud (GCC), aligned to FedRAMP Moderate. No
-element of this design depends on GCC High, Department of Defense, or
-commercial cloud tenancy. This constraint is favorable for most Intune
-capability: documented Microsoft Intune feature gaps concentrate in GCC
-High and DoD environments, while GCC feature availability tracks
-substantially closer to commercial.
+element of this design depends on commercial cloud tenancy. GCC Intune
+feature availability tracks substantially closer to commercial.
 
 One named exception applies, and it is addressed directly rather than
 left open: Microsoft 365 Informed Network Routing does not extend to
@@ -527,10 +524,9 @@ table for INR.
 ## INR is not available to this program's cloud environment — closed, not open
 
 Section 1.3 scopes this program to Microsoft 365 GCC, aligned to FedRAMP
-Moderate. Microsoft Learn (updated 2026-03-10) states verbatim that
-*"Microsoft 365 informed network routing supports tenants in WW
-Commercial cloud but not the GCC Moderate, GCC High, DoD, Germany, or
-China clouds."* This is not an item pending confirmation — it is a
+Moderate. Microsoft Learn (updated 2026-03-10) states that Microsoft
+365 informed network routing supports tenants in WW Commercial cloud
+but not the GCC Moderate cloud. This is not an item pending confirmation — it is a
 documented exclusion that applies directly to this program's scope, and
 is analyzed in full, with a machine-enforced contract fixture encoding
 the exclusion, in
@@ -955,7 +951,7 @@ different maturity levels of the same one:
 | Dimension | Configuration Manager distribution point | Intune |
 |---|---|---|
 | **Compliance boundary** | On-premises Windows Server + IIS site system role; the agency owns the entire customer-side stack | SaaS; the underlying service is covered by the Microsoft 365 GCC Moderate FedRAMP ATO, inherited by the agency through the standard FedRAMP customer responsibility matrix |
-| **Hardening baseline** | DISA Windows Server STIG and IIS STIG apply and must be scanned independently, per server | Agency responsibility is limited to configuration (compliance policies, configuration profiles); the underlying service's own hardening is Microsoft's inherited CSP responsibility |
+| **Hardening baseline** | The agency's Windows Server and IIS hardening baselines apply and must be scanned independently, per server | Agency responsibility is limited to configuration (compliance policies, configuration profiles); the underlying service's own hardening is Microsoft's inherited CSP responsibility |
 | **Vulnerability management (RA-5, SI-2)** | The agency runs vulnerability scanning and patch management against every distribution point's OS and IIS stack, indefinitely, for as many distribution points as exist | RA-5/SI-2 for the service backend is Microsoft's responsibility under the FedRAMP ATO; the agency's remaining SI-2 exposure is the endpoint OS layer, which is scanned regardless of whether a distribution point exists |
 | **Continuous compliance evidence (CA-7)** | A distribution point has no compliance state of its own — successful content delivery is not a compliance claim, and a stalled or compromised distribution point is invisible to continuous monitoring unless separately instrumented | Native, continuous per-device compliance evaluation feeding Conditional Access in real time — the machine-verified evidence stream this corpus documents in [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) |
 | **Transmission confidentiality (SC-8)** | Configurable — an HTTPS distribution point with a FIPS-validated certificate closes it — but this is a per-server configuration choice that must be verified, not a default | TLS to Microsoft's FedRAMP-authorized endpoints is standard by default |

@@ -61,7 +61,7 @@ The research behind this guide corrected three points in Book 07, now updated:
 
 ## Status and review
 
-**In review.** Every claim was checked against CyberArk's 26.1 documentation, Microsoft Learn, AWS documentation, the ServiceNow Store, the NIST CMVP list and FedRAMP Marketplace data on October 22, 2026. Open items, including Windows Server 2025 CA support in the vendor's integrations table, Azure Government support for the Key Vault driver, which cryptographic module the product uses, and console sign-in with PIV, are listed as vendor asks in the deck. To move this guide to **Proved**, build it in a lab or pilot boundary and record the evidence on this page. Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
+**In review.** Every claim was checked against CyberArk's 26.1 documentation, Microsoft Learn, AWS documentation, the ServiceNow Store, the NIST CMVP list and FedRAMP Marketplace data on October 22, 2026. Open items, including Windows Server 2025 CA support in the vendor's integrations table, which cryptographic module the product uses, and console sign-in with PIV, are listed as vendor asks in the deck. To move this guide to **Proved**, build it in a lab or pilot boundary and record the evidence on this page. Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
 
 Related: [Book 07 — PKI & Certificates](../b07-pki/index.md), the [Book 07 technical deep dive](../../presentations/index.md#technical-b07), and the research explainer [Who Names the Device After AD?](../explainers/device-naming-after-ad.md), which covers the DNS names certificates carry.
 

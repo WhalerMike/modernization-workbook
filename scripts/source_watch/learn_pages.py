@@ -95,7 +95,9 @@ SITES = (
         dest="entra",
         folder="docs",
         exclude=("docs/identity/saas-apps",),
-        skip=("docs/standards/configure-cmmc-*", "docs/standards/configure-for-cmmc-*"),
+        skip=("docs/standards/configure-cmmc-*", "docs/standards/configure-for-cmmc-*",
+              "docs/identity/domain-services/feature-availability.md",
+              "docs/identity/hybrid/connect/reference-connect-government-cloud.md"),
         area_depth={"identity": 2},
     ),
     Site(
