@@ -160,7 +160,7 @@ or regulated enterprises.
   weekly/monthly migration work rather than big-bang cutovers — often
   with GPO rationalization and cleanup happening *before* migration.
 - **Federal / regulated environments.** Slower still — compliance
-  validation, GCC/GCC-High considerations, and the need for auditable
+  validation, GCC considerations, and the need for auditable
   governance throughout the transition. Many are deliberately building a
   governance layer *on top of* the Microsoft surfaces because the native
   capabilities feel insufficient for their risk posture.

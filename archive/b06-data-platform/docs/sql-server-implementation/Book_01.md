@@ -75,7 +75,7 @@ The companion draws one bright line, enforced in code:
 
 - **Read-only / derivation functions run directly** — discovery, audits, classifications, plans, closure records, diffs. They read captured or live-read inputs and change nothing.
 - **State-changing functions are gated.** They either declare `SupportsShouldProcess` and default to a `-WhatIf`-style preview (e.g. `Invoke-FMPArcOnboarding`), or they generate a reviewable script/plan and execute nothing (e.g. `New-FMPEntraLoginScript`, `New-FMPGroupLoginScript`). The login/group emitters have **no `-Server` or `-Execute` surface at all** — they never open a SQL connection.
-- **No secrets are embedded.** Tenant, subscription, cloud, endpoints, and credentials are all parameters; sovereign clouds (GCC-Moderate / Azure Government) resolve the cloud-correct audience and fail closed on an unknown cloud.
+- **No secrets are embedded.** Tenant, subscription, cloud, endpoints, and credentials are all parameters; the GCC-Moderate cloud resolves the cloud-correct audience and fail closed on an unknown cloud.
 
 ::: {.callout-warning}
 ## Production safety (GCC-Moderate / FedRAMP)

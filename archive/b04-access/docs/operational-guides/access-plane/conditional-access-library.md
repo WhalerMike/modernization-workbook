@@ -191,7 +191,7 @@ Named locations define trusted and untrusted network boundaries that CA policies
 
   **Allowed Countries**       Country-based   Countries where the organization operates or allows access            CA-030
 
-  **Compliance Boundaries**   IP-based        GCC-Moderate compliant network segments, Azure Government endpoints   CA-020, CA-043
+  **Compliance Boundaries**   IP-based        GCC-Moderate compliant network segments                               CA-020, CA-043
   --------------------------------------------------------------------------------------------------------------------------------------------
 
 2.3 Authentication Strength Definitions
@@ -1866,11 +1866,11 @@ D.3 GCC-Moderate Boundary Considerations
 |                                                                                                                                                                                                                                                              |
 | > • All Conditional Access policies must be configured in the GCC-Moderate tenant (GCC runs on the commercial Entra ID service)                                                                                                                              |
 | >                                                                                                                                                                                                                                                            |
-| > • GCC-Moderate uses the worldwide Graph endpoint, **graph.microsoft.com**; **graph.microsoft.us** is for GCC High                                                                                                                                          |
+| > • GCC-Moderate uses the worldwide Graph endpoint, **graph.microsoft.com**                                                                                                                                                                                  |
 | >                                                                                                                                                                                                                                                            |
 | > • Some features may have delayed availability in GCC; verify feature availability in the Microsoft 365 Government service description before deploying policies that reference advanced features (e.g., Adaptive Protection, Continuous Access Evaluation) |
 | >                                                                                                                                                                                                                                                            |
-| > • Named locations must reflect GCC-Moderate Azure Government region IP ranges for compliance boundary enforcement                                                                                                                                          |
+| > • Named locations must reflect the GCC-Moderate boundary's IP ranges for compliance boundary enforcement                                                                                                                                                   |
 | >                                                                                                                                                                                                                                                            |
 | > • Third-party FIDO2 security keys must be FIPS 140-2 Level 2 validated or higher for use within the GCC-Moderate boundary                                                                                                                                  |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

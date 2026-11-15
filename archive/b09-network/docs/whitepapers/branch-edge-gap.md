@@ -11,8 +11,7 @@ not be confirmed and are marked as such.
 contained factual errors serious enough to invalidate three of its five
 findings. This version corrects them. Appendix A lists every change and
 why it was made. The three most consequential: v1.0 defined "DIA" as a
-Defense Information Systems Agency circuit (it is Direct Internet
-Access; DISA is the agency, DIA is the Defense Intelligence Agency);
+government-contracted circuit (it is Direct Internet Access);
 v1.0 asserted that CISA mandates SD-WAN as a component of SASE, citing a
 CISA document that does not exist; and v1.0's Kerberos failure mechanism
 does not occur under Microsoft's default configuration. The paper's
@@ -414,8 +413,8 @@ If an agency does acquire a branch-edge layer as part of a SASE
 procurement, the FedRAMP status of the candidates is not uniform, and it
 is worth knowing before a requirement is written. As of this revision:
 Palo Alto Networks' Network Security Platform (including Prisma Access,
-Prisma SASE and Prisma SD-WAN) holds FedRAMP High (19 December 2024) and
-a DoD IL5 provisional authorization; Zscaler ZIA and ZPA hold FedRAMP
+Prisma SASE and Prisma SD-WAN) holds FedRAMP High (19 December 2024);
+Zscaler ZIA and ZPA hold FedRAMP
 High (1 August 2022); Netskope GovCloud holds FedRAMP High (9 January
 2024); **Cisco Meraki for Government, including its SD-WAN capability,
 holds FedRAMP Moderate (25 February 2025)** --- not High. Impact levels
@@ -899,10 +898,8 @@ Architecture before citation.*
 
 **DIA (Direct Internet Access).** Local internet breakout at a branch
 office, rather than backhauling internet-bound traffic to a central
-access point. *Version 1.0 defined DIA as a "Defense Information Systems
-Agency circuit." That is wrong twice: DISA is the Defense Information
-Systems Agency, and DIA is the Defense Intelligence Agency. DISA's
-transport network is DISN.*
+access point. *Version 1.0 defined DIA as a government-contracted circuit. That
+was wrong: DIA here means Direct Internet Access.*
 
 **FedRAMP.** The federal authorization programme for cloud service
 offerings, assessed against NIST SP 800-53 Rev 5. It governs the
@@ -1082,13 +1079,10 @@ and judge the revision.
  byline and an explicit status
  note.
 
- Throughout, "DIA circuit (Defense DIA is Direct Internet Access.
- §3, Glossary Information Systems DISA is the Defense Information
- Agency circuit)... Systems Agency; DIA is the
- government-contracted Defense Intelligence Agency;
- MPLS or dedicated DISA's network is DISN. §3 was
- fiber" rewritten around local internet
- breakout.
+ Throughout, "DIA circuit" read as DIA is Direct Internet Access.
+ §3, Glossary a government-contracted §3 was rewritten around local
+ MPLS or dedicated internet breakout.
+ fiber circuit
 
  Exec summary, "CISA's SASE Roadmap is The cited document does not
  §2.3, §3.3, explicit: SD-WAN is a exist. Two of five findings, one

@@ -129,12 +129,12 @@ For .NET applications, the `Azure.Identity` SDK's `DefaultAzureCredential` imple
 // Equivalent explicit form when the keyword cannot be used
 var cred = new DefaultAzureCredential;
 var token = cred.GetToken(new TokenRequestContext(
-    new[] { "https://database.usgovcloudapi.net/.default" }));   // GCC data-plane audience
+    new[] { "https://database.windows.net/.default" }));   // GCC data-plane audience
 using var conn = new SqlConnection("Data Source=sqlhost;Initial Catalog=AppDb");
 conn.AccessToken = token.Token;
 ```
 
-Note the **data-plane audience** (`https://database.usgovcloudapi.net/` in Azure Government) — the same audience-correctness point Book 04 makes about IMDS tokens; a management-plane token is refused by the SQL data plane.
+Note the **data-plane audience** (`https://database.windows.net/`) — the same audience-correctness point Book 04 makes about IMDS tokens; a management-plane token is refused by the SQL data plane.
 
 ## Verification & rollback
 

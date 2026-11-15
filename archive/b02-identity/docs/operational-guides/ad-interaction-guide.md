@@ -143,7 +143,7 @@ The following topics are explicitly out of scope for this document and are addre
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **❗ Important --- Environment Boundary**                                                                                                                                                                                                              |
 |                                                                                                                                                                                                                                                        |
-| GCC-Moderate applies to Microsoft 365 SaaS services only. This document does not reference or require Azure services. No references to FedRAMP High, GCC High, or DoD environments apply. All data handling follows the **Controlled** classification. |
+| GCC-Moderate applies to Microsoft 365 SaaS services only. This document does not reference or require Azure services. No references to FedRAMP High environments apply. All data handling follows the **Controlled** classification. |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 2\. Prerequisites and Module Installation

@@ -150,7 +150,7 @@ Phases 1 and 2 produce no visible change for end users, which is exactly why est
 | User source-of-authority transfer and Entra-to-AD provisioning in the tenant | The target landing pattern (Chapter 04) | Confirm availability and prerequisites in GCC |
 | Extension-attribute carriers free and mappable | Phase 1 gate | Check per tenant |
 | PIV issuing CA CRL sizes and delta CRLs | Revocation latency and CBA availability (Chapter 07) | Check per issuing CA |
-| ~~GCC availability of API-driven provisioning and Lifecycle Workflows~~ | Licensing and the Phase 2 gate | **Closed.** Microsoft Entra ID Governance for Government is available in GCC, GCC High and DoD;[^c10-lf] GCC tenants run in Azure Global, the worldwide Entra service.[^c10-crl-gcc] Confirm licenses in-tenant as usual |
+| ~~GCC availability of API-driven provisioning and Lifecycle Workflows~~ | Licensing and the Phase 2 gate | **Closed.** Microsoft Entra ID Governance for Government is available in GCC;[^c10-lf] GCC tenants run in Azure Global, the worldwide Entra service.[^c10-crl-gcc] Confirm licenses in-tenant as usual |
 
 : Open verification register {.striped .hover}
 

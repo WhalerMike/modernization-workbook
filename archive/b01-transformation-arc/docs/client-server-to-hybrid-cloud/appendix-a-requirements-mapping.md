@@ -8,7 +8,7 @@ This appendix is **compliance-enabling, not compliance-certifying**. It shows wh
 
 | M-22-09 area | Requirement (summarized) | Where the series contributes |
 |---|---|---|
-| Identity | Agency-managed identity systems; phishing-resistant MFA for staff, contractors, and partners; no password rotation or special-character rules | Ch 04 (Entra ID as the authoritative directory), Ch 08 (phishing-resistant methods, CBA with PIV/CAC) |
+| Identity | Agency-managed identity systems; phishing-resistant MFA for staff, contractors, and partners; no password rotation or special-character rules | Ch 04 (Entra ID as the authoritative directory), Ch 08 (phishing-resistant methods, CBA with PIV) |
 | Devices | A complete inventory of every device the agency operates; device-level signals in access decisions | Ch 02 (computer inventory), Ch 05 (compliance policies feeding Conditional Access), Ch 07 (Entra join, Arc) |
 | Networks | Encrypt DNS and HTTP traffic where possible; stop relying on network location for trust | Ch 06 (DNS governance; encrypted DNS is not designed here, so treat it as a gap), Ch 08 (ZTNA in place of VPN) |
 | Applications and workloads | Treat applications as internet-connected; enterprise identity in front of every application | Ch 07 (Kerberos/SPN retirement, modern authentication), Ch 08 (SASE/ZTNA) |

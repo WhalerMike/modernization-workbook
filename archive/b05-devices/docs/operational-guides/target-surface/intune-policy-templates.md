@@ -1187,8 +1187,7 @@ Tier 2 Standard Workstations
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **GCC-Moderate Note**                                                                                                                                                                                               |
 |                                                                                                                                                                                                                     |
-| GCC-Moderate runs on the commercial Microsoft Graph, Entra, and Intune services: use **graph.microsoft.com**, **entra.microsoft.com**, and **intune.microsoft.com**. The **.us** endpoints are for GCC High and     |
-| DoD.                                                                                                                                                                                                                |
+| GCC-Moderate runs on the commercial Microsoft Graph, Entra, and Intune services: use **graph.microsoft.com**, **entra.microsoft.com**, and **intune.microsoft.com**.                                                |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 9\. Deployment Methodology
@@ -1519,7 +1518,7 @@ For settings not available in the Settings Catalog, deploy via custom OMA-URI pr
 
 Appendix B: JSON Export Templates
 
-The following JSON payloads can be used with the Microsoft Graph API to programmatically create Intune policies. GCC-Moderate uses the worldwide endpoint: **https://graph.microsoft.com** (**graph.microsoft.us** is for GCC High).
+The following JSON payloads can be used with the Microsoft Graph API to programmatically create Intune policies. GCC-Moderate uses the worldwide endpoint: **https://graph.microsoft.com**.
 
 B.1 Compliance Policy --- CP-001 (Graph API JSON)
 
@@ -1694,7 +1693,7 @@ D.3 GCC-Moderate Boundary Considerations
   ------------------------- ----------------------------------------------------------------- --------------------------------------------------------------------------------------------
   Intune Service Endpoint   GCC-Moderate uses the commercial Intune service                   All policies deployed to the GCC-Moderate tenant
 
-  Graph API Endpoint        Use graph.microsoft.com (.us is GCC High/DoD only)                All Graph API calls in Appendix B use the worldwide endpoint
+  Graph API Endpoint        Use graph.microsoft.com                                           All Graph API calls in Appendix B use the worldwide endpoint
 
   Data Residency            Intune data must reside in US sovereign cloud                     GCC-Moderate tenant ensures US data residency
 

@@ -75,7 +75,7 @@ domain controller locations through SRV records (`_kerberos._tcp`, `_ldap._tcp`,
 **Document:** DM_020 | **Priority:** CRITICAL | **Risk:** Silent auth failure weeks post-migration
 
 Active Directory Certificate Services (ADCS) is deeply embedded in federal environments.
-Smart card / PIV / CAC authentication depends on it. Auto-enrollment policies flow through
+Smart card / PIV authentication depends on it. Auto-enrollment policies flow through
 Group Policy. The entire certificate chain is anchored in AD.
 
 The failure mode is insidious: certificates work fine until they expire. If the replacement
@@ -88,7 +88,7 @@ the organization — weeks or months after the migration was declared "complete.
 - Certificate-to-identity binding (who owns each cert)
 - Expiry timeline export (90/180/365-day windows)
 - CA hierarchy mapping (root, issuing, subordinate chains)
-- Smart card / PIV / CAC certificate inventory (federal critical)
+- Smart card / PIV certificate inventory (federal critical)
 - Auto-enrollment migration from GPO to Intune/SCEP/EST
 
 **Migration sequence:**

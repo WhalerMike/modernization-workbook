@@ -252,7 +252,7 @@ Define rollback criteria before you begin. Each domain has a defined back-out:
 ## 10. What you must configure
 
 Search the scripts for `# CONFIGURE:` — tenant id, subscription id, resource
-group, location/cloud (`AzureCloud` vs `AzureUSGovernment`), workstation OU DN,
+group, location/cloud (`AzureCloud`), workstation OU DN,
 break-glass group id, SQL instance list. The scripts are correct against current
 Microsoft Graph / Az PowerShell but are **not** validated against a live tenant.
 Dry-run with `-WhatIf` before removing the guards.

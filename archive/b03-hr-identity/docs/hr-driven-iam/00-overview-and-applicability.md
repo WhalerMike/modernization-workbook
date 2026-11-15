@@ -104,7 +104,7 @@ No system becomes authoritative because it receives a copy. No source field shou
 
 ## Where it doesn't apply as written
 
-- GCC High, DoD, national security, military personnel, and Intelligence Community environments, which need separate validation of scope, endpoints, services, and governing requirements. The Federal HR 2.0 memo initially excludes military personnel and the Intelligence Community.
+- National security, military personnel, and Intelligence Community environments, which need separate validation of scope, endpoints, services, and governing requirements. The Federal HR 2.0 memo initially excludes military personnel and the Intelligence Community.
 - Non-person identities — service accounts, managed identities, application identities, shared accounts, robotic automation. They need a companion authority and lifecycle model and shouldn't be forced into the human-worker pattern because the same directory stores them.
 - The directory migration itself (moving objects and applications from AD to Entra ID), which is the companion [AD → Entra ID Identity Modernization Guide](../books/b02-identity/09-building-the-entra-target.md). This series covers where that migration's users come from.
 - Application modernization. Legacy applications with local accounts, proprietary roles, RACF profiles, shared credentials, or nonstandard deprovisioning paths need an application-specific integration and revocation plan.
