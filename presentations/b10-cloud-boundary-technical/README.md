@@ -9,7 +9,7 @@ The deck runs about 50 minutes live, in two parts of about 25 minutes each. Each
 | Orientation | Title; why the license is not the boundary | 01 (recap) |
 | 1 — The boundary and what it removes | 1. Why the boundary decides: three checks, the invisible boundary, FedRAMP 2026 | 01, 02, 03 |
 | | 2. GCC, the gap and three responses: exclusions, equivalents, exceptions, the alternative path | 04, 09, 10 |
-| 2 — Building it and owning it | 3. Landing zone and front door: policy, AWS and GovCloud, IPAM, network as code | 05, 06, 07 |
+| 2 — Building it and owning it | 3. Landing zone and front door: policy, AWS, IPAM, network as code | 05, 06, 07 |
 | | 4. Who owns it, and the package: owners, the boundary record, narratives, provider asks; decisions | 08, 11, Appendix A |
 
 | File | Use |

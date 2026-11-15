@@ -258,7 +258,7 @@ The decision: the sponsor and CIO fund the learning program as part of the moder
     "No civilian rule requires a certification",
     "The only “annual” is the awareness floor",
     "NICE is guidance; coding positions is the mandate",
-    "DoD 8140 doesn't apply to civilian agencies",
+
   ], 13.5, 7.75, 5.0);
   decision(s, "Set competency requirements jointly, and feed the program's new roles into the workforce plan",
     "CHCO with the CIO", "As roles change (design)");
@@ -268,10 +268,10 @@ The decision: the sponsor and CIO fund the learning program as part of the moder
 
 FISMA is a staffing requirement more than a course requirement: the agency head must ensure the agency has trained personnel sufficient to help it comply, and awareness training covers personnel, including contractors. The Federal Cybersecurity Workforce Assessment Act of December 18, 2015 requires every agency to identify the positions that do cyber work and code each one. Circular A-130 has the CHCO, the CIO and others develop competency requirements for information resources staff, and keep a current workforce planning process. OPM's rule at 5 CFR 930.301, from June 14, 2004, requires awareness before access and at least annually, role-specific training by audience, and training on significant change. OPM's coding guidance of 2017 and 2022 puts three-digit codes on position descriptions. And NIST's NICE Framework, SP 800-181 Rev. 1, with components version 2.2.0 of April 28, 2026, supplies the vocabulary: 42 work roles in five categories.
 
-What the rules don't require matters as much. No civilian source requires a particular industry certification; the Act asked agencies to measure certification. The only annual number is the awareness floor. NICE is guidance; coding positions under its structure is the mandate. And the Defense Department's 8140 qualification program doesn't apply to civilian agencies.
+What the rules don't require matters as much. No civilian source requires a particular industry certification; the Act asked agencies to measure certification. The only annual number is the awareness floor. NICE is guidance; coding positions under its structure is the mandate.
 
 The decision follows A-130: the CHCO and the CIO set competency requirements together, and the program feeds its new roles into the workforce plan. Doing it as roles change is the program's design guidance.`,
-  "Book 16, Chapter 02 — What Federal Workforce Rules Require (The sources at a glance; FISMA; OPM's rule; OMB Circular A-130; The NICE Framework; What the rules don't require; DoD 8140, as a contrast; Who owns which part).");
+  "Book 16, Chapter 02 — What Federal Workforce Rules Require (The sources at a glance; FISMA; OPM's rule; OMB Circular A-130; The NICE Framework; What the rules don't require; Who owns which part).");
 }
 
 // ------------------------------------------------------------------ Why 5
@@ -386,7 +386,7 @@ The decision is the agency's. The book offers a design: make a current credentia
   img(s, "ch06-where-labs-run", 0.6, 1.5, 5.6, 3.6);
   sideBox(s, "Labs", "FaShieldHalved", HEX.teal, HEX.tealTint, "Labs need a plan, not a learner's luck", [
     "Developer sandboxes: limited eligibility; none in the government clouds",
-    "No free sandbox in GCC High or DoD",
+    "No developer sandbox in GCC or any government cloud",
     "Rehearse once in the agency's own government tenant before each gate (design)",
     "Never production, never real data; tear it down",
   ], 13.5, 6.45, 6.3);
@@ -398,7 +398,7 @@ The decision is the agency's. The book offers a design: make a current credentia
 
 Certifications move fast. As Microsoft Learn showed on October 22, 2026, AZ-500 retired on August 31 with SC-500 as the path, AZ-800 and AZ-801 retired on September 30, and MS-102 retires on November 30. The program re-checks them at each gate, the same way it re-checks federal dates.
 
-Lab tenants are harder to get than most programs expect. The Microsoft 365 developer sandbox is limited to eligible subscribers and partners, and isn't offered in the government clouds. There is no free sandbox in GCC High or DoD. So labs that need government-cloud behavior run in a non-production tenant or subscription the agency owns. The program's design is a two-step path: practice in a commercial sandbox, then rehearse the procedure once in the agency's own non-production government tenant before the gate, recording any step that behaved differently.
+Lab tenants are harder to get than most programs expect. The Microsoft 365 developer sandbox is limited to eligible subscribers and partners, and doesn't run in GCC or any other government cloud. So labs that need government-cloud behavior run in a non-production tenant or subscription the agency owns. The program's design is a two-step path: practice in a commercial sandbox, then rehearse the procedure once in the agency's own non-production government tenant before the gate, recording any step that behaved differently.
 
 The rules for every lab: never a production tenant, never production data, and teardown as part of the lab.
 
@@ -708,7 +708,7 @@ The next step needs no procurement: draft the roster of everyone whose work chan
     "OMB Circular A-130 (July 2016), § 5.c, § 6.g and Appendix I § 4.h.  ·  OMB M-22-09 (January 26, 2022).  ·  OMB M-24-08 (December 21, 2023).",
     "OPM: 5 CFR 930.301; 5 CFR 410.201, 410.202 and 410.601; cybersecurity coding memoranda of January 4, 2017 and April 11, 2022; Interpretive Guidance for Cybersecurity Positions (October 2018).  ·  GAO-19-144 (March 12, 2019).",
     "NIST: SP 800-50 Rev. 1 (September 2024); SP 800-53 Rev. 5, release 5.2.0, and SP 800-53B; SP 800-37 Rev. 2; SP 800-181 Rev. 1 and NICE Framework Components v2.0.0, v2.1.0 and v2.2.0 (April 28, 2026); SP 800-63B-4 (July 2025); SP 800-128.",
-    "Contrast only: DoD Directive 8140.01 and DoD Manual 8140.03, which don't apply to civilian agencies.",
+
   ];
   fit("Source list 1", need(src, 12.1 - 0.3, 13, 8), 5.0);
   txt(s, "Source list 1", bullets(src, 13), { x: 0.6, y: 1.5, w: 12.1, h: 5.0, paraSpaceAfter: 8 });

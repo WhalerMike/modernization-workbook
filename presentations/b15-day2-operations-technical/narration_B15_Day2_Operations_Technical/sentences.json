@@ -822,80 +822,6 @@
    "So how do results reach the ticket queue?"
   ]
  ],
- "25": [
-  [
-   0.05,
-   9.1,
-   "There are three routes from a native result into the ticketing platform: the vendor's own connector, the platform's import, or the program's read-only collector."
-  ],
-  [
-   9.15,
-   6.625,
-   "Which one you can use depends on your cloud; the Defender connector, for instance, isn't available in Azure Government."
-  ],
-  [
-   15.775,
-   6.8,
-   "The important rule is one route per source, because two routes give you two tasks and two clocks for the same finding."
-  ],
-  [
-   22.575,
-   1.775,
-   "And the clock itself matters."
-  ],
-  [
-   24.35,
-   12.012,
-   "For vulnerabilities it's sis-uh's new directive on prioritizing security updates, set by exposure and known exploitation, not fed-ramp's timeframes, which bind cloud providers, not agencies."
-  ],
-  [
-   36.362,
-   3.775,
-   "Next, AWS, where the ground shifted this year."
-  ]
- ],
- "26": [
-  [
-   0.05,
-   4.2,
-   "On AWS, the evidence path has changed under people's feet."
-  ],
-  [
-   4.25,
-   4.725,
-   "Config conformance packs and Security Hub's posture checks are the foundation."
-  ],
-  [
-   8.975,
-   8.475,
-   "Both run in GovCloud and in the commercial Regions, and either is a valid home for a Moderate system, but GovCloud has differences you need to test."
-  ],
-  [
-   17.45,
-   4.925,
-   "Security Hub keeps findings for only ninety days, so copy them out first."
-  ],
-  [
-   22.375,
-   10.613,
-   "The big correction is Audit Manager: it closed to new customers in April 2026, has no GovCloud endpoint, and its fed-ramp framework is still on the old revision."
-  ],
-  [
-   32.987,
-   2.925,
-   "Nobody should start a federal evidence program on it."
-  ],
-  [
-   35.913,
-   6.95,
-   "And the ServiceNow connector most agencies used loses support in March 2027, so plan that move now."
-  ],
-  [
-   42.862,
-   1.837,
-   "VMware is harder still."
-  ]
- ],
  "27": [
   [
    0.05,
@@ -1010,6 +936,80 @@
    38.525,
    0.762,
    "Thank you."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   9.1,
+   "There are three routes from a native result into the ticketing platform: the vendor's own connector, the platform's import, or the program's read-only collector."
+  ],
+  [
+   9.15,
+   7.3,
+   "Which one you can use depends on what the agency runs; the Defender connector, for instance, needs the Defender CSPM plan."
+  ],
+  [
+   16.45,
+   6.8,
+   "The important rule is one route per source, because two routes give you two tasks and two clocks for the same finding."
+  ],
+  [
+   23.25,
+   1.775,
+   "And the clock itself matters."
+  ],
+  [
+   25.025,
+   12.012,
+   "For vulnerabilities it's sis-uh's new directive on prioritizing security updates, set by exposure and known exploitation, not fed-ramp's timeframes, which bind cloud providers, not agencies."
+  ],
+  [
+   37.038,
+   3.775,
+   "Next, AWS, where the ground shifted this year."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   4.2,
+   "On AWS, the evidence path has changed under people's feet."
+  ],
+  [
+   4.25,
+   4.725,
+   "Config conformance packs and Security Hub's posture checks are the foundation."
+  ],
+  [
+   8.975,
+   9.325,
+   "They run in the commercial Regions where the program's AWS workloads are, and you test each remediation action before turning on automatic remediation."
+  ],
+  [
+   18.3,
+   4.925,
+   "Security Hub keeps findings for only ninety days, so copy them out first."
+  ],
+  [
+   23.225,
+   8.912,
+   "The big correction is Audit Manager: it closed to new customers in April 2026, and its fed-ramp framework is still on the old revision."
+  ],
+  [
+   32.138,
+   2.925,
+   "Nobody should start a federal evidence program on it."
+  ],
+  [
+   35.062,
+   6.95,
+   "And the ServiceNow connector most agencies used loses support in March 2027, so plan that move now."
+  ],
+  [
+   42.013,
+   1.837,
+   "VMware is harder still."
   ]
  ]
 }

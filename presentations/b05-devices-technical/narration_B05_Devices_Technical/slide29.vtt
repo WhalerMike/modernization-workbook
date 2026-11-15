@@ -35,25 +35,20 @@ of release, and an update that breaks an
 early ring can be paused before Broad.
 
 8
-00:00:26.638 --> 00:00:31.389
-Autopatch automates all of
-this, and it's included for
+00:00:26.638 --> 00:00:33.499
+Autopatch automates all of this, and it's
+included for GCC customers with G3 or G5.
 
 9
-00:00:31.389 --> 00:00:36.250
-GCC customers with G3 or G5,
-though not in GCC High or DoD.
-
-10
-00:00:36.250 --> 00:00:40.275
+00:00:33.499 --> 00:00:37.525
 It maintains its own rings, so
 don't assign yours to its devices.
 
-11
-00:00:40.275 --> 00:00:47.159
+10
+00:00:37.525 --> 00:00:44.409
 And version currency: 23H2 Enterprise
 stops receiving updates on November tenth,
 
-12
-00:00:47.159 --> 00:00:50.570
+11
+00:00:44.409 --> 00:00:47.810
 2026, so feature updates target 25H2 now.

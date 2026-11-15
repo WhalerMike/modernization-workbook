@@ -262,7 +262,7 @@ The quiet risk is paying for a cloud identity platform and running it as a copy 
   sideBox(s, "Limits", "FaFilter", HEX.navy, HEX.navyTint, "Two limits decide whether the mapping works", [
     "Administrative units (AUs) can't nest: the OU tree becomes a flat set",
     "An object can belong to no more than 30 AUs",
-    "Dynamic AUs: documented for global Azure, not Azure Government",
+    "Dynamic AUs: documented for the global Azure cloud, which GCC uses",
     "Synced users' attributes are mastered in AD; changes wait on sync",
     "Converting authority to the cloud moves the attribute decision earlier",
   ], { x: 4.85, w: 7.9 });
@@ -274,7 +274,7 @@ The quiet risk is paying for a cloud identity platform and running it as a copy 
 
 Entra ID has no tree. A tenant governs objects by what they carry: attributes, memberships, roles and policy conditions. So the gap isn't a missing feature a later release will fill; it's a different idea of where governance lives. Containment becomes predicate, and every piece of governance that relied on containment has to be found and rewritten.
 
-Two limits decide how far administrative units, the usual answer, get you. They can't nest, so the OU tree becomes a flat set, each unit with its own rule, and an object can belong to no more than thirty. Dynamic units are documented for the global Azure cloud, not Azure Government. And for synchronized users the attributes those rules match on are written in Active Directory: the cloud can't stamp them, and every change waits on a sync cycle. Converting a user's source of authority to the cloud changes that one object at a time, but it moves the attribute decision earlier rather than removing it.
+Two limits decide how far administrative units, the usual answer, get you. They can't nest, so the OU tree becomes a flat set, each unit with its own rule, and an object can belong to no more than thirty. Dynamic units are documented for the global Azure cloud, which GCC uses. And for synchronized users the attributes those rules match on are written in Active Directory: the cloud can't stamp them, and every change waits on a sync cycle. Converting a user's source of authority to the cloud changes that one object at a time, but it moves the attribute decision earlier rather than removing it.
 
 The book's matrix gives HR the decision on what worker attributes mean, and identity engineering how they flow. Settle it before anything is mapped.`,
   "Book 02, Chapter 02 — The Structural Problem (Hierarchy is the governance model; Two limits decide whether the mapping works); Chapter 05 (Dynamic administrative units); Chapter 06 (The roles: HR; responsibility matrix).");
@@ -545,7 +545,7 @@ Third, privileged access, which is the CISO's. No standing access to privileged 
   tag(s, "How");
   const plan = [
     ["1", "Privileged accounts", "FIDO2 keys; PIV through CBA", "4–6"],
-    ["2", "PIV and CAC holders", "Certificate-based auth", "8–12"],
+    ["2", "PIV holders", "Certificate-based auth", "8–12"],
     ["3", "Managed Windows devices", "Windows Hello for Business", "8–12"],
     ["4", "Everyone else, incl. mobile", "Passkeys in Authenticator", "8–12"],
   ];
@@ -565,7 +565,7 @@ Third, privileged access, which is the CISO's. No standing access to privileged 
   narrate(s,
 `Sign-in is where users feel the migration. M-22-09 requires phishing-resistant MFA for staff, contractors and partners, and says agencies must stop supporting methods that fail to resist phishing, such as SMS, voice, one-time codes and push notifications, for routine access. It names PIV as the simplest route, allows FIDO2 where PIV isn't practical, and its targets fell due at the end of fiscal 2024. So these are requirements to meet now, not goals to plan toward.
 
-That changes the order. The earlier roadmap saved smart cards for last. For a workforce that already carries PIV or CAC cards, Entra certificate-based authentication is the fastest path, because the credential is already issued, and it works without a federation server.
+That changes the order. The earlier roadmap saved smart cards for last. For a workforce that already carries PIV cards, Entra certificate-based authentication is the fastest path, because the credential is already issued, and it works without a federation server.
 
 The roadmap has four phases. Privileged accounts first, on FIDO2 keys and PIV, so administrators are protected before anyone else. Then card holders through certificate-based authentication, Windows Hello for Business on managed devices, and passkeys in Authenticator for everyone else. Phases two to four reach different populations and run in parallel, so the program estimates twelve to eighteen weeks end to end.
 

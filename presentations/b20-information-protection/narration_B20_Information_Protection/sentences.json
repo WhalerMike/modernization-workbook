@@ -487,53 +487,6 @@
    "In G C C, Microsoft 365 Copilot and Purview's controls for it are listed as available."
   ]
  ],
- "10": [
-  [
-   0.05,
-   10.988,
-   "Purview differs a great deal between clouds, and changes often, so the book states availability feature by feature, as Microsoft Learn listed it on November 11, 2026."
-  ],
-  [
-   11.037,
-   2.6,
-   "The baseline here is G C C."
-  ],
-  [
-   13.637,
-   15.3,
-   "There, the core is listed as available: manual, mandatory and container labels, Rights Management and message encryption, D L P on every surface including Windows endpoints, auto-labeling, exact data match, and both audit tiers."
-  ],
-  [
-   28.938,
-   1.325,
-   "A few gaps matter."
-  ],
-  [
-   30.262,
-   8.363,
-   "The default label for a SharePoint library is still in development, and authentication contexts on labeled sites are on the engineering backlog."
-  ],
-  [
-   38.625,
-   3.288,
-   "G C C High and D O D are side notes."
-  ],
-  [
-   41.913,
-   13.188,
-   "Their clients need D N S records to reach the government Rights Management service, D O D doesn't list Advanced Message Encryption yet, and two Learn pages disagree on Insider Risk Management in G C C High."
-  ],
-  [
-   55.1,
-   6.625,
-   "The rule for all of it: a license or cloud gap goes in a decision record, with a compensating control."
-  ],
-  [
-   61.725,
-   2.638,
-   "It's a dependency, never a failed control."
-  ]
- ],
  "11": [
   [
    0.05,
@@ -765,6 +718,48 @@
    60.663,
    0.762,
    "Thank you."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   10.988,
+   "Purview differs a great deal between clouds, and changes often, so the book states availability feature by feature, as Microsoft Learn listed it on November 11, 2026."
+  ],
+  [
+   11.037,
+   2.6,
+   "The baseline here is G C C."
+  ],
+  [
+   13.637,
+   15.3,
+   "There, the core is listed as available: manual, mandatory and container labels, Rights Management and message encryption, D L P on every surface including Windows endpoints, auto-labeling, exact data match, and both audit tiers."
+  ],
+  [
+   28.938,
+   1.325,
+   "A few gaps matter."
+  ],
+  [
+   30.262,
+   8.363,
+   "The default label for a SharePoint library is still in development, and authentication contexts on labeled sites are on the engineering backlog."
+  ],
+  [
+   38.625,
+   8.738,
+   "And where a feature is in development or not yet specified for G C C, the tenant treats it as unavailable until Microsoft lists it."
+  ],
+  [
+   47.362,
+   6.625,
+   "The rule for all of it: a license or cloud gap goes in a decision record, with a compensating control."
+  ],
+  [
+   53.987,
+   2.638,
+   "It's a dependency, never a failed control."
   ]
  ]
 }

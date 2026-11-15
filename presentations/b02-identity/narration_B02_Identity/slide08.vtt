@@ -20,50 +20,49 @@ Older plans saved smart-card
 sign-in for last.
 
 5
-00:00:16.174 --> 00:00:19.378
-But federal staff already
-carry PIV or CAC cards,
+00:00:16.174 --> 00:00:18.915
+But federal staff already carry PIV cards,
 
 6
-00:00:19.378 --> 00:00:23.941
+00:00:18.915 --> 00:00:23.378
 so certificate-based authentication
 in Entra ID is the fastest path:
 
 7
-00:00:23.941 --> 00:00:28.425
+00:00:23.378 --> 00:00:27.763
 the credential's already issued,
 and no federation server is needed.
 
 8
-00:00:28.425 --> 00:00:33.232
+00:00:27.763 --> 00:00:32.569
 The book runs four waves: privileged
 accounts first, then card holders, then
 
 9
-00:00:33.232 --> 00:00:38.737
+00:00:32.569 --> 00:00:38.074
 managed Windows devices with Windows Hello,
 and finally everyone else with passkeys.
 
 10
-00:00:38.737 --> 00:00:41.809
+00:00:38.074 --> 00:00:41.147
 Along the way, SMS and
 voice codes go for staff,
 
 11
-00:00:41.809 --> 00:00:46.375
+00:00:41.147 --> 00:00:45.713
 and so do legacy protocols that
 send a password with every request.
 
 12
-00:00:46.375 --> 00:00:51.575
+00:00:45.713 --> 00:00:50.912
 Those are found in the sign-in logs, fixed,
 blocked, and watched for thirty days.
 
 13
-00:00:51.575 --> 00:00:54.080
+00:00:50.912 --> 00:00:53.418
 One thing stays on: password hash sync,
 
 14
-00:00:54.080 --> 00:00:57.530
+00:00:53.418 --> 00:00:56.880
 for leaked-credential
 detection and as a fallback.

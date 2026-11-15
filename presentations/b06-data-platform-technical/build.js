@@ -687,7 +687,7 @@ runbook(MODS[3], {
     Object.assign({ head: "GATE", items: ["Nothing touches production until R02 defines the retain and target set; the first changes are R04 and R05"] }, GATE),
     Object.assign({ head: "EVIDENCE", items: ["One sealed envelope per step, in a dated folder under version control"] }, EVID),
   ],
-  src: "Sources: Microsoft Learn — azcmagent connect and show; Planning identity for Azure Government. Book 06, Runbook R01.",
+  src: "Sources: Microsoft Learn — azcmagent connect and show; Cloud feature availability for US Government customers. Book 06, Runbook R01.",
   body:
 `Runbook R01 provisions nothing and changes no production state. It sets up what the other nine assume.
 
@@ -771,7 +771,7 @@ runbook(MODS[3], {
   badgeText: "Review-required", badgeColor: RR,
   lead: "No Arc, no machine identity; no machine identity, no Entra login.",
   steps: [
-    ["Prerequisites", "A commercial subscription in the same tenant, --cloud AzureCloud: Entra authentication isn't offered in US Gov Virginia. Not an FCI; NT AUTHORITY\\SYSTEM can connect; a trusted TLS certificate. Outbound 443 for agent and extension; the engine reaches Entra ID directly (WinHTTP proxy)."],
+    ["Prerequisites", "A commercial subscription in the same tenant, --cloud AzureCloud: SQL Server needs the Azure public cloud for Entra authentication. Not an FCI; NT AUTHORITY\\SYSTEM can connect; a trusted TLS certificate. Outbound 443 for agent and extension; the engine reaches Entra ID directly (WinHTTP proxy)."],
     ["Enroll the host", "A certificate-based onboarding service principal with the Connected Machine Onboarding role. The SQL extension installs automatically unless tagged ArcSQLServerExtensionDeployment = Disabled."],
     ["Validate the token", "Local endpoint localhost:40342, a two-call challenge. aud = https://database.windows.net/, exp in the future, oid = the machine's principalId. Never log the token."],
     ["Extension, then Entra", "WindowsAgent.SqlServer shows Succeeded. 2025: primary managed identity, three Graph permissions on the identity. 2022: app registration, Key Vault certificate, Set Admin. Pilot first."],
@@ -785,7 +785,7 @@ runbook(MODS[3], {
   body:
 `Runbook R04 gives the host its cloud identity. Connecting a server to Arc creates a system-assigned managed identity with no secret anyone manages, and without it there's no Entra login. SQL Server 2025 uses that identity directly as its primary managed identity. SQL Server 2022 authenticates with an app registration and a certificate in Key Vault, and the machine identity is what downloads the certificate.
 
-The prerequisites carry the traps. A GCC-Moderate tenant's Entra ID is in the commercial cloud, so the Arc resources live in a commercial subscription in the same tenant, and Entra authentication isn't available for SQL Server on Arc in US Government Virginia. The instance can't be a failover cluster instance, NT AUTHORITY SYSTEM must be able to connect or the extension can't provision, and clients must trust the TLS certificate. The agent and extension need outbound 443, and the engine contacts Entra ID directly, without the agent's proxy. That's the one to miss: the agent shows Connected while Entra logins fail.
+The prerequisites carry the traps. A GCC-Moderate tenant's Entra ID is in the commercial cloud, so the Arc resources live in a commercial subscription in the same tenant, connected with the AzureCloud cloud name; SQL Server needs the Azure public cloud for Entra authentication. The instance can't be a failover cluster instance, NT AUTHORITY SYSTEM must be able to connect or the extension can't provision, and clients must trust the TLS certificate. The agent and extension need outbound 443, and the engine contacts Entra ID directly, without the agent's proxy. That's the one to miss: the agent shows Connected while Entra logins fail.
 
 Then four steps. Enroll with a certificate-based onboarding service principal; the SQL extension installs automatically unless a tag disables it. Validate the token from the local identity endpoint, a two-call challenge: the audience must be database.windows.net, the expiry in the future, and the object ID the machine's principal ID. Never log the token. Confirm the extension shows Succeeded. Then turn on Entra authentication, on a pilot first; a Privileged Role Administrator grants the Graph permissions, and setting the Entra admin creates the first sysadmin login.
 
@@ -916,7 +916,7 @@ runbook(MODS[4], {
     ["Correlate and classify", "New-FMPAppConnectionPlan joins D1.9 to the D1.8 audit and assigns OIDC, SAML, App Proxy or Domain Services from a capability map; no signal → review."],
     ["Change the connection string", "In configuration, never by script. Production: Authentication=Active Directory Managed Identity, or Service Principal with the secret in Key Vault. Default only for developer parity. Encryption turns on."],
     ["Arc host specifics", "The token comes from HIMDS at localhost:40342; the process must be in Hybrid agent extension applications. One identity per host: separate service principals where grants differ."],
-    ["Audience and pooling", "Audience https://database.windows.net/, not the Azure Government one; pooled apps use AccessTokenCallback (SqlClient 5.2+)."],
+    ["Audience and pooling", "Audience https://database.windows.net/; pooled apps use AccessTokenCallback (SqlClient 5.2+)."],
   ],
   boxes: [
     Object.assign({ head: "GATE: THREE CONDITIONS", items: ["The Entra login exists (R05 or R07)", "The identity holds the database role", "Tested on a production-equivalent Arc stack with a trusted certificate"] }, GATE),
@@ -931,7 +931,7 @@ Phase 1 inventories the LDAP-bind dependency with the read-only D1.9 script. It 
 
 Phase 2 is the simplest change and the most gated, and it's made in application configuration, never by a script. In production, name a specific mode, such as Active Directory Managed Identity. The Default mode tries credential providers in sequence, which slows the first connection and can switch identity when the host changes. Service principal mode takes its secret from protected configuration, never from source. Setting the mode turns on encryption, so the server certificate must be trusted. On an Arc host the driver gets the machine's token from the local metadata service, and the process must be in the hybrid agent extension applications group. Every application on that host is then the same principal, so give each its own service principal where grants differ.
 
-Three gates before cutover: the Entra login exists, the identity holds the right database role, and the change was tested on a production-equivalent Arc stack. The audience is database.windows.net, not the Azure Government one, and pooled applications use the access-token callback. Rollback is the prior connection string, with the legacy login disabled, not dropped.
+Three gates before cutover: the Entra login exists, the identity holds the right database role, and the change was tested on a production-equivalent Arc stack. The audience is database.windows.net, and pooled applications use the access-token callback. Rollback is the prior connection string, with the legacy login disabled, not dropped.
 
 Workbook: Book 06, Runbook R08 — The Application Chain and Connection-String Migration.`,
 });
@@ -1060,7 +1060,7 @@ Workbook: Book 06, Chapters 06, 11, 14, 18 and 20; Runbooks R05, R09 and R10.`);
 {
   const s = D.content("Backup", "Sources behind Part 2 — The runbooks");
   T(s, "Source list 2", B([
-    "R01: Microsoft Learn, azcmagent connect and azcmagent show; Planning identity for Azure Government applications.",
+    "R01: Microsoft Learn, azcmagent connect and azcmagent show; Cloud feature availability for US Government customers (Microsoft 365 integration).",
     "R02–R03: setspn; Azure Migrate; What's happening with Azure Data Studio; Data Migration Assistant; sys.dm_db_index_usage_stats; sys.linked_logins; Entra authentication for SQL Server; KDC errors. dbatools.",
     "R04: Arc managed identity and Entra authentication setup for SQL Server 2022 and 2025; Arc in US Government; Arc SQL prerequisites; Connect hybrid machines at scale; automatic connection; azcmagent connect and disconnect; uninstall the agent.",
     "R05: Entra authentication setup (logins and users); ALTER USER; sys.dm_exec_connections; determine the authentication type; SQL Server Audit action groups; CREATE SERVER AUDIT; ALTER LOGIN; Arc release notes.",

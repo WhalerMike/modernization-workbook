@@ -30,7 +30,7 @@ It starts with the use-case inventory, the one AI list every agency keeps. Read 
 
 ## Slide 8 — Kinds of AI identity, and what your cloud has today
 
-An AI system's identity isn't the model. It's the software around it, sorted by whose token it presents. A signed-in user's, so it can do everything that user can. Its own, as a workload or agent identity, where today the only policy control is to block it. Or no token at all, just a key. Microsoft's agent identity platform became generally available in April 2026, but the agent policies are still preview, G C C has a partial subset, and GCC High and DoD have no published availability. And licensing governance for people doesn't license it for agents. So the CIO budgets the licenses, and every capability is confirmed in your own cloud before anyone plans on it.
+An AI system's identity isn't the model. It's the software around it, sorted by whose token it presents. A signed-in user's, so it can do everything that user can. Its own, as a workload or agent identity, where today the only policy control is to block it. Or no token at all, just a key. Microsoft's agent identity platform became generally available in April 2026, but the agent policies are still preview, and G C C has a partial subset. And licensing governance for people doesn't license it for agents. So the CIO budgets the licenses, and every capability is confirmed in your own cloud before anyone plans on it.
 
 ## Slide 9 — A named human, and a lifecycle that ends
 

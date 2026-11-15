@@ -49,26 +49,26 @@ the Locations view of network
 connectivity in the admin center.
 
 11
-00:00:35.637 --> 00:00:39.258
-The others turn out to be
-GCC High and DoD gaps,
+00:00:35.637 --> 00:00:39.352
+Three of the others aren't
+documented GCC gaps at all,
 
 12
-00:00:39.258 --> 00:00:43.563
-not documented gaps at all,
-or inside Azure's own scope.
+00:00:39.352 --> 00:00:42.288
+and the last sits inside
+Azure's own scope.
 
 13
-00:00:43.563 --> 00:00:46.912
+00:00:42.288 --> 00:00:45.638
 The lesson: an unverified
 boundary story sends an
 
 14
-00:00:46.912 --> 00:00:50.262
+00:00:45.638 --> 00:00:48.988
 agency off to build
 compensations it doesn't need.
 
 15
-00:00:50.262 --> 00:00:53.180
+00:00:48.988 --> 00:00:51.910
 Now, what actually
 changes across a boundary.

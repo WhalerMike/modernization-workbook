@@ -49,29 +49,24 @@ but not Microsoft's audit, data loss
 prevention or network controls.
 
 11
-00:00:36.313 --> 00:00:39.570
-GCC High and DOD have no
-published availability,
+00:00:36.313 --> 00:00:41.251
+Treat any agent capability that isn't
+listed for GCC as unavailable until
 
 12
-00:00:39.570 --> 00:00:43.969
-so treat agent identities as
-unavailable there until Microsoft
+00:00:41.251 --> 00:00:47.000
+Microsoft confirms otherwise in writing,
+and govern AI as workload identities there.
 
 13
-00:00:43.969 --> 00:00:48.612
-confirms otherwise in writing, and
-govern AI as workload identities.
-
-14
-00:00:48.612 --> 00:00:52.903
+00:00:47.000 --> 00:00:51.291
 The rule is simple: build on what's
 generally available in your own cloud,
 
-15
-00:00:52.903 --> 00:00:55.375
+14
+00:00:51.291 --> 00:00:53.763
 and keep preview features as watch items.
 
-16
-00:00:55.375 --> 00:00:57.940
+15
+00:00:53.763 --> 00:00:56.330
 Next, the person behind each agent.

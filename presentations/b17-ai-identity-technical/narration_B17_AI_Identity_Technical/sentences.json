@@ -475,43 +475,6 @@
    "Now, which clouds actually have this?"
   ]
  ],
- "14": [
-  [
-   0.05,
-   3.875,
-   "Your cloud decides what you can use, and this picture changes monthly."
-  ],
-  [
-   3.925,
-   2.25,
-   "The platform is generally available."
-  ],
-  [
-   6.175,
-   9.588,
-   "G C C has a documented subset: you can govern agent identity and access, but not yet get Microsoft's audit and data protection for agent activity."
-  ],
-  [
-   15.762,
-   8.312,
-   "G C C High and DoD have nothing published, so treat agent identities as unavailable there until Microsoft confirms it in writing."
-  ],
-  [
-   24.075,
-   4.938,
-   "Licensing is its own trap, and the fed-ramp High authorization is still pending."
-  ],
-  [
-   29.012,
-   7.0,
-   "The program's rule is to build on what's generally available in your own cloud, and to treat preview as something you watch."
-  ],
-  [
-   36.013,
-   1.962,
-   "So how do we classify all this?"
-  ]
- ],
  "15": [
   [
    0.05,
@@ -1156,6 +1119,43 @@
    40.763,
    0.762,
    "Thank you."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.875,
+   "Your cloud decides what you can use, and this picture changes monthly."
+  ],
+  [
+   3.925,
+   2.25,
+   "The platform is generally available."
+  ],
+  [
+   6.175,
+   9.588,
+   "G C C has a documented subset: you can govern agent identity and access, but not yet get Microsoft's audit and data protection for agent activity."
+  ],
+  [
+   15.762,
+   6.225,
+   "Anything not listed for G C C, treat as unavailable until Microsoft confirms it in writing."
+  ],
+  [
+   21.988,
+   4.938,
+   "Licensing is its own trap, and the fed-ramp High authorization is still pending."
+  ],
+  [
+   26.925,
+   7.0,
+   "The program's rule is to build on what's generally available in your own cloud, and to treat preview as something you watch."
+  ],
+  [
+   33.925,
+   1.962,
+   "So how do we classify all this?"
   ]
  ]
 }

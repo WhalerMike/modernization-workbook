@@ -30,29 +30,29 @@ reads but never writes.
 The platforms differ in ways that matter.
 
 7
-00:00:22.849 --> 00:00:26.323
-Some integrations aren't
-available in Azure Government,
+00:00:22.849 --> 00:00:27.325
+Some integrations need extra plans
+or reach only part of the estate,
 
 8
-00:00:26.323 --> 00:00:29.426
+00:00:27.325 --> 00:00:30.682
 one AWS compliance service
 is in maintenance mode,
 
 9
-00:00:29.426 --> 00:00:33.637
+00:00:30.682 --> 00:00:35.237
 and on your own VMware estate the
 evidence is entirely yours to build.
 
 10
-00:00:33.637 --> 00:00:37.867
+00:00:35.237 --> 00:00:39.466
 The decision for the CISO: keep
 the platform's identity read-only,
 
 11
-00:00:37.867 --> 00:00:40.138
+00:00:39.466 --> 00:00:41.737
 with every automated fix approved.
 
 12
-00:00:40.138 --> 00:00:41.690
+00:00:41.737 --> 00:00:43.300
 Next, who runs it.

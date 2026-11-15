@@ -25,38 +25,38 @@ to the Private Resolver's inbound
 endpoint or an agency resolver that does.
 
 6
-00:00:19.962 --> 00:00:22.403
-Azure Government uses different names,
+00:00:19.962 --> 00:00:22.329
+Use Microsoft's recommended zone names,
 
 7
-00:00:22.403 --> 00:00:25.362
-so a design spanning both
-clouds needs both sets.
+00:00:22.329 --> 00:00:25.987
+because records are generated
+automatically only for those.
 
 8
-00:00:25.362 --> 00:00:30.668
+00:00:25.987 --> 00:00:31.293
 Second, build the resolver in the hub as
 a forwarding bridge, not an authority,
 
 9
-00:00:30.668 --> 00:00:35.888
+00:00:31.293 --> 00:00:36.513
 so on-premises DNS reaches it by
 conditional forwarding, never delegation.
 
 10
-00:00:35.888 --> 00:00:38.276
+00:00:36.513 --> 00:00:38.901
 The slide carries the sizing limits.
 
 11
-00:00:38.276 --> 00:00:43.225
+00:00:38.901 --> 00:00:43.850
 The traps are worth remembering: don't
 link a ruleset to the network its own rule
 
 12
-00:00:43.225 --> 00:00:44.520
+00:00:43.850 --> 00:00:45.145
 points at, or it loops,
 
 13
-00:00:44.520 --> 00:00:48.240
+00:00:45.145 --> 00:00:48.860
 and don't list a custom resolver
 beside Azure's built-in one.

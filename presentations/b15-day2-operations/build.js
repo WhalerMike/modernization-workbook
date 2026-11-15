@@ -294,8 +294,8 @@ Duplicates are resolved by binding, not deleting, so no open finding loses its a
   tag(s, "What");
   const clouds = [
     ["Microsoft 365", "ScubaGear, Graph, Purview", "Compliance Manager continuous assessments still rolling out in GCC"],
-    ["Azure", "Azure Policy, Defender for Cloud", "Defender's ServiceNow integration not in Azure Government"],
-    ["AWS", "Config packs, Security Hub CSPM", "Audit Manager closed to new accounts; no GovCloud endpoint"],
+    ["Azure", "Azure Policy, Defender for Cloud", "Defender's ServiceNow integration GA in Azure; needs Defender CSPM"],
+    ["AWS", "Config packs, Security Hub CSPM", "Audit Manager closed to new accounts"],
     ["VMware VCF", "Config Profiles, posture scans", "9.1 lists no NIST benchmark; map the vendor hardening guide to CM-6"],
   ];
   s.addTable([head(["Platform", "Native tests", "Government-cloud or on-premises gap"]), ...clouds.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2], options: { color: HEX.red } }])],
@@ -313,7 +313,7 @@ Duplicates are resolved by binding, not deleting, so no open finding loses its a
   narrate(s,
 `Microsoft, AWS and VMware already ship tools that test most of the settings an assessor asks about. The gap is turning each failed test into owned work with a clock, and each closed task into a record. The program runs one loop everywhere: the native tool tests, drift is detected, a typed task is raised against the configuration item, the owning team fixes it natively, and the task closes on a re-test, not a click. The service management platform reads control state; it never writes it.
 
-The government clouds differ. Defender for Cloud's ServiceNow integration isn't available in Azure Government. Compliance Manager's continuous assessments are still rolling out in GCC. AWS Audit Manager closed to new customers on April 30, 2026, and has no GovCloud endpoint. AWS's ServiceNow connector loses support on March 31, 2027, and Security Hub keeps findings only ninety days. In VMware Cloud Foundation 9.1, the compliance benchmarks were replaced by a posture tool built on Broadcom's own hardening guide, with no NIST 800-53 benchmark, so the agency maps that guide, and CIS ESXi where it uses it, to its own CM-6 settings. On premises, the agency produces every piece of evidence itself.`,
+The platforms differ. Defender for Cloud's ServiceNow integration is generally available in Azure and needs the Defender CSPM plan. Compliance Manager's continuous assessments are still rolling out in GCC. AWS Audit Manager closed to new customers on April 30, 2026. AWS's ServiceNow connector loses support on March 31, 2027, and Security Hub keeps findings only ninety days. In VMware Cloud Foundation 9.1, the compliance benchmarks were replaced by a posture tool built on Broadcom's own hardening guide, with no NIST 800-53 benchmark, so the agency maps that guide, and CIS ESXi where it uses it, to its own CM-6 settings. On premises, the agency produces every piece of evidence itself.`,
   "Book 15, Chapter 08 — Control Compliance Automation: Microsoft 365 and Azure (One loop on every surface; Purview Compliance Manager; Three routes to the ITSM platform); Chapter 09 — Control Compliance Automation: AWS and VMware (AWS Audit Manager; Getting AWS results into the ITSM platform; VMware: the on-premises evidence gap).");
 }
 
@@ -324,7 +324,7 @@ The government clouds differ. Defender for Cloud's ServiceNow integration isn't 
   const native = [
     ["Control tests and issues", "Policy and Compliance Management", "Load controls from the control map"],
     ["RMF workflow, POA&M view, OSCAL", "Continuous Authorization and Monitoring", "Link each POA&M item to its fix"],
-    ["Posture findings to work", "Configuration Compliance", "A path for Azure Government, AWS, VMware"],
+    ["Posture findings to work", "Configuration Compliance", "An equivalent path for AWS and VMware"],
     ["CI identity and health", "IRE, CMDB Health, Data Manager", "Reconcile to the asset identity"],
     ["Close only with proof", "Workflow configuration", "The closure gate; flag human-only"],
   ];

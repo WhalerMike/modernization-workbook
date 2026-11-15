@@ -270,10 +270,9 @@ Microsoft Entra Agent ID adds identity types built for agents: a blueprint that 
   ];
   s.addTable([head(["Capability", "Release stage", "Government cloud"]), ...rel.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1] }, { text: r[2] }])],
     tableOpts([2.6, 2.1, 2.2], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.53, 0.53, 0.53, 0.53, 0.53, 0.53] }));
-  tableBox(s, "High", "FaCloud", HEX.red, HEX.redTint, "GCC High and DoD", [
-    "No published availability for agent identities",
-    "No Agent ID entries on Entra's Azure Government list",
-    "Treat them as unavailable until Microsoft confirms in writing",
+  tableBox(s, "High", "FaCloud", HEX.red, HEX.redTint, "Where GCC has a gap", [
+    "Commercial features may not yet be in GCC",
+    "Not listed for GCC: treat as unavailable until Microsoft confirms in writing",
     "Meanwhile, govern AI as workload identities",
   ], 3.56, 13);
   callout(s, "Pend", 5.3, 1.2, "FaLandmark", HEX.amber, "Authorization is pending: ",
@@ -282,7 +281,7 @@ Microsoft Entra Agent ID adds identity types built for agents: a blueprint that 
   narrate(s,
 `The agency's cloud decides what it can use, so the book dates every product statement to October 2026. Microsoft announced the Agent ID platform, with blueprints, agent identities and sponsors, as generally available in April 2026, and sponsor lifecycle workflows in May. Several controls are still preview. The policy builder labels agent targeting in Conditional Access as preview, agent identities support only Block, the agent risk condition is preview, and agents' user accounts are limited to Frontier program tenants.
 
-GCC has a partial, documented subset: identity and access governance for agents, but not Microsoft's audit, data loss prevention or network controls. GCC High and D O D have no published availability, so treat agent identities as unavailable there until Microsoft confirms otherwise in writing, and govern AI as workload identities. And Agent 365's FedRAMP High authorization is still pending. The program builds on what is generally available in the agency's own cloud, and keeps preview features as watch items.`,
+GCC has a partial, documented subset: identity and access governance for agents, but not Microsoft's audit, data loss prevention or network controls. Treat any agent capability that isn't listed for GCC as unavailable until Microsoft confirms otherwise in writing, and govern AI as workload identities there. And Agent 365's FedRAMP High authorization is still pending. The program builds on what is generally available in the agency's own cloud, and keeps preview features as watch items.`,
   "Book 17, Chapter 04 (Release stage, licensing and government clouds; Note for readers of Book 04); Chapter 05 (Release stage and government-cloud availability); Chapter 06 (Status note: Book 04's preview statement still holds; Release stage and government-cloud availability).");
 }
 
@@ -508,7 +507,7 @@ Every AI system needs an identity and an owner. Book 17 has the detail, every cl
     "NIST: AI 100-1, AI RMF 1.0 (January 2023); AI 600-1, Generative AI Profile (July 26, 2024); SP 800-53 Rev. 5 (release 5.2.0) and SP 800-53B; SP 800-37 Rev. 2; SP 800-53 control overlays project (COSAiS, renamed COSIS on October 20, 2026); OSCAL v1.2.3 (August 7, 2026).",
     "CISA: Careful Adoption of Agentic AI Services (May 1, 2026); Deploying AI Systems Securely (April 15, 2024); BOD 23-01; BOD 25-01 required configurations; SCuBA Entra ID baseline and ScubaGear v1.8.0; CDM program and dashboards.  ·  FedRAMP: AI Prioritization Initiative; 2026 Rev5 control reference.",
     "Microsoft Learn: Entra Agent ID (overview, agent identities, blueprints, owners, sponsors and managers, agent users, authorization, best practices, deletion, logs, FAQ); Conditional Access and ID Protection for agents and workload identities; Lifecycle Workflows sponsor tasks; access packages for agents; Entra releases and announcements; Entra feature availability for US Government; Agent 365 service description, identity and US Government CLI; Defender for Cloud Apps, Defender for Endpoint, Global Secure Access, Defender for Cloud.",
-    "Other vendors and specifications, as examples only: Amazon Bedrock AgentCore Identity and AWS GovCloud (US); Google Cloud agent identity; Model Context Protocol authorization specification (2026-07-28).",
+    "Other vendors and specifications, as examples only: Amazon Bedrock AgentCore Identity; Google Cloud agent identity; Model Context Protocol authorization specification (2026-07-28).",
     "Full footnotes with links and access dates (October 21–22, 2026): Book 17, every chapter and Appendix A (whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/).",
   ];
   txt(s, "Source list", bullets(src, 12), { x: 0.6, y: 1.5, w: 12.1, h: 5.05, paraSpaceAfter: 6 });

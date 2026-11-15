@@ -38,7 +38,7 @@ The engine-authentication decision, still formally proposed, settles five positi
 
 ## Slide 10 — Where it runs, and what it costs
 
-Two facts shape where this runs. Entra authentication for Arc-connected SQL Server isn't offered in the US Government Virginia region today, so the design uses a commercial Azure subscription in the same directory as the government tenant, and the hosts need a path to the public cloud. The services it leans on are each listed in scope for FedRAMP High, but a listing isn't an authorization. On cost, Entra authentication itself works under a plain SQL Server license; the extras are Conditional Access, privileged access management and Defender plans. So the authorizing official decides: accept these leveraged services, after reviewing each package, before production onboarding. Now, who decides what.
+Two facts shape where this runs. SQL Server needs the Azure public cloud to use Entra authentication, so the design uses a commercial Azure subscription in the same directory as the government tenant, and the hosts need a path to the public cloud. The services it leans on are each listed in scope for FedRAMP High, but a listing isn't an authorization. On cost, Entra authentication itself works under a plain SQL Server license; the extras are Conditional Access, privileged access management and Defender plans. So the authorizing official decides: accept these leveraged services, after reviewing each package, before production onboarding. Now, who decides what.
 
 ## Slide 11 — Access is now decided in five places
 

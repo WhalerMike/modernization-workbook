@@ -84,7 +84,7 @@ NIST's 2026 deployment guide says DNS has become more than a service; it's a sec
     ["FaCloud", "Private-IP split-brain", HEX.navy, HEX.navyTint,
       "An EC2 instance gets an Azure private endpoint's private address only through a forwarding rule. Without it, the name resolves to the public address. Microsoft puts roughly 70% of private-endpoint 403 errors down to that."],
     ["FaGlobe", "SaaS split-brain", HEX.teal, HEX.tealTint,
-      "GCC uses the Worldwide endpoint list, so the risk is path consistency: a stale forwarder, or a browser sending DoH to a public resolver. GCC High and DoD have their own .us namespaces."],
+      "GCC uses the Worldwide endpoint list, so the risk is path consistency: a stale forwarder, or a browser sending DoH to a public resolver."],
     ["FaShieldHalved", "Policy split-brain", HEX.red, HEX.redTint,
       "A block applies only on the resolver that answers. If the cloud resolvers' rules were never created or have drifted, the posture is the weakest resolver a client can reach."],
   ];
@@ -257,10 +257,10 @@ DNSSEC adds origin authentication and integrity, not encryption. The program's p
     ["Azure SQL Database", "database.windows.net", "privatelink.database.windows.net"],
     ["Key Vault", "vault.azure.net, vaultcore.azure.net", "privatelink.vaultcore.azure.net"],
     ["App Service", "azurewebsites.net", "privatelink.azurewebsites.net"],
-    ["Azure Government", "Its own names, such as", "privatelink.database.usgovcloudapi.net"],
+    ["Service Bus, Event Hubs", "servicebus.windows.net", "privatelink.servicebus.windows.net"],
   ];
   s.addTable([head(["Service", "Forward from every origin", "Private zone Azure answers from"]),
-    ...rows.map((r, i) => [{ text: r[0], options: { bold: true, color: i === 4 ? HEX.red : HEX.navy } }, { text: r[1], options: { bold: i < 4, color: i < 4 ? HEX.teal : HEX.ink } }, { text: r[2], options: { fontSize: i === 4 ? 11.5 : 12.5 } }])],
+    ...rows.map((r) => [{ text: r[0], options: { bold: true, color: HEX.navy } }, { text: r[1], options: { bold: true, color: HEX.teal } }, { text: r[2], options: { fontSize: 12.5 } }])],
     tableOpts([1.95, 2.65, 3.45], { y: 1.5, fontSize: 12.5, rowH: [0.42, 0.55, 0.55, 0.6, 0.55, 0.55] }));
   box(s, "Resolver box", 8.85, 1.5, 3.9, 3.55, HEX.navyTint);
   icon(s, "FaServer", 9.1, 1.68, 0.6, HEX.navy);
@@ -272,16 +272,16 @@ DNSSEC adds origin authentication and integrity, not encryption. The program's p
     "A resolver per region, both in every forwarder",
   ], 13), { x: 9.1, y: 2.42, w: 3.5, h: 2.55, paraSpaceAfter: 6 });
   callout(s, "IPAM", 5.25, 1.25, "FaAddressBook", HEX.teal, "IPAM is the authority for address blocks: ",
-    "AWS VPC IPAM can allocate from an external IPAM in commercial Regions, not GovCloud; on Azure and Google Cloud, mirror the reservations and reconcile. Names and addresses need the same plane.");
+    "AWS VPC IPAM can allocate from an external IPAM in the commercial Regions; on Azure and Google Cloud, mirror the reservations and reconcile. Names and addresses need the same plane.");
   sources(s, "Sources: Microsoft Learn — Private Endpoint DNS integration and zone values, DNS Private Resolver, endpoints and rulesets; AWS VPC IPAM. Book 08, Chapter 07.");
   narrate(s,
 `Azure private endpoints are the commonest source of private-IP split-brain.
 
-When a private endpoint is created, Azure writes its A record into a privatelink zone, and public DNS carries a CNAME into that name. The private answer comes back only when the query reaches a resolver linked to the zone. So every origin, on-premises, the other clouds and the branch path, forwards the service's public zone, such as database.windows.net, to the DNS Private Resolver's inbound endpoint. Not the privatelink zone. Azure Government uses different zone names, so commercial rules don't carry over.
+When a private endpoint is created, Azure writes its A record into a privatelink zone, and public DNS carries a CNAME into that name. The private answer comes back only when the query reaches a resolver linked to the zone. So every origin, on-premises, the other clouds and the branch path, forwards the service's public zone, such as database.windows.net, to the DNS Private Resolver's inbound endpoint. Not the privatelink zone. Use Microsoft's recommended zone names, because records are generated automatically only for those.
 
 The Private Resolver is a recursive bridge, not an authority: reach it by forwarding, never by delegation. Give each endpoint a dedicated subnet and a static address, avoid ruleset loops, and deploy one per region.
 
-Addresses need the same discipline, with the enterprise IPAM as the authority for address blocks. AWS VPC IPAM can allocate from an external IPAM in commercial Regions, but not in GovCloud; on Azure and Google Cloud, mirror the reservations and reconcile.`,
+Addresses need the same discipline, with the enterprise IPAM as the authority for address blocks. AWS VPC IPAM can allocate from an external IPAM in the commercial Regions where the agency's AWS workloads run; on Azure and Google Cloud, mirror the reservations and reconcile.`,
   "Book 08, Chapter 07 — Cloud Private Endpoints, SDN and IPAM Consistency.");
 }
 
@@ -455,7 +455,7 @@ The evidence floor is M-26-14. It doesn't name DNS, but it requires logs that sh
   txt(s, "Auth list", bullets([
     "Example: Infoblox Government Cloud, FedRAMP Certified at Moderate since December 15, 2022",
     "BlueCat, EfficientIP: no listing; run inside the agency boundary",
-    "A Moderate authorization doesn't cover GCC High or DoD",
+    "A Moderate authorization doesn't cover High systems",
     "Confirm status on the Marketplace at decision time",
   ], 13.5), { x: 7.25, y: 2.45, w: 5.35, h: 2.55, paraSpaceAfter: 6 });
   callout(s, "Residual", 5.25, 1.25, "FaScaleBalanced", HEX.red, "Residual risk stays on the record: ",
@@ -466,7 +466,7 @@ The evidence floor is M-26-14. It doesn't name DNS, but it requires logs that sh
 
 Commercial DDI licensing is quoted per agency, so get every quote on the same assumptions. The cloud-native pieces have public meters, and appear in every model. Azure DNS Private Resolver charges per endpoint: 180 dollars a month for each inbound endpoint and each outbound endpoint, plus 2 dollars 50 per ruleset. A hub with one of each is about 362 dollars 50 a month per region, and a second region doubles it.
 
-Authorization belongs to an offering, not a vendor. As one example, Infoblox Government Cloud has been FedRAMP Certified at Moderate since December 15, 2022. BlueCat and EfficientIP have no Marketplace listing, so they run inside the agency's boundary. And a Moderate authorization doesn't cover GCC High or DoD.
+Authorization belongs to an offering, not a vendor. As one example, Infoblox Government Cloud has been FedRAMP Certified at Moderate since December 15, 2022. BlueCat and EfficientIP have no Marketplace listing, so they run inside the agency's boundary. And a Moderate authorization doesn't cover High systems.
 
 Some risk remains. Sync lag becomes the new source of divergence. A management-plane outage blocks changes, though resolution continues from local state. And encrypted DNS bypass stays possible wherever endpoint controls are incomplete.`,
   "Book 08, Chapter 12 — Platform Selection, Cost and Residual Risk; Chapters 03 and 08.");
