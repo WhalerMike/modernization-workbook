@@ -104,7 +104,7 @@ AWS structures its federal cloud offerings differently from Microsoft and Oracle
 |----------|------------------------|----------------------|
 | AWS | US East/West commercial regions (FedRAMP Certified Class C, formerly Moderate) | GovCloud us-gov-east-1 / us-gov-west-1 (FedRAMP Certified Class D, formerly High; ITAR; US-persons operations; physically separate) |
 | Microsoft | Partitioned .com (GCC Moderate on Azure Commercial) | — |
-| Oracle | Partitioned .com (OCI Moderate) | OCI Government Cloud (separate) |
+| Oracle | No commercial OCI infrastructure listing; Oracle SaaS such as Fusion Cloud is listed at Class C (formerly Moderate)[^v1b06-oci-mkt] | Oracle US Government Cloud (OC2), listed as Oracle Cloud Infrastructure-Government Cloud (FedRAMP Certified Class D, formerly High; separate realm)[^v1b06-oci-mkt] |
 
 AWS certifies its US East/West regions at Class C (formerly Moderate), and its services-in-scope list is checked per service and per region (AWS, "FedRAMP" and "FedRAMP — Services in Scope," <https://aws.amazon.com/compliance/fedramp/>, <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>, accessed 2026-10-29). Amazon Connect is in scope in the commercial regions, so the N8NN contact center runs there. The region decision is recorded in the ATO and owned by the AO.
 
@@ -412,3 +412,4 @@ The shared network requirement row is the most operationally significant in this
 | Continuous call quality monitoring | FedRAMP ConMon; OMB A-130 | NIST SP 800-53 Rev 5 CA-7; NIST SP 800-37 Rev 2 (Monitor step) |
 
 [^v1b06-cfr93]: Electronic Code of Federal Regulations, 47 CFR § 9.3, definition of "Dispatchable location," <https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-9/subpart-A/section-9.3> (accessed Oct 30, 2026).
+[^v1b06-oci-mkt]: FedRAMP Marketplace, product search for "Oracle" (marketplace data last updated November 13, 2026): FR1900048743, Oracle Cloud Infrastructure-Government Cloud, FedRAMP Certified, Class D (High); F1603257882, Fusion Cloud, FedRAMP Certified, Class C (Moderate); no commercial Oracle Cloud Infrastructure offering is listed, <https://www.fedramp.gov/marketplace/products/?q=Oracle> (accessed Nov 15, 2026).
