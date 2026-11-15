@@ -78,7 +78,7 @@ The phrase covers two distinct things, and an agency can run either or both:
    **PIM**, and it is what this guide builds. It answers *may this person use
    this role right now?*
 
-Microsoft's guidance for the DoD Zero Trust user pillar treats these as
+These layers are
 composable: you can require approval when users request eligibility in
 entitlement management, require approval upon activation in PIM, **or both**.
 
@@ -105,7 +105,7 @@ can lock an agency out of its own tenant.
 | **Graph permissions (delegated)** | `RoleManagementPolicy.ReadWrite.Directory` to manage rules; `RoleManagement.ReadWrite.Directory` to create eligible assignments. |
 | **MFA** | Microsoft Entra multifactor authentication enabled for all users — MFA is a per-role activation requirement here, not a substitute for tenant-wide MFA. |
 | **Log destination** | An Azure Monitor / Log Analytics workspace (and, where required, an Azure storage account) inside the authorization boundary, for audit retention beyond 30 days. See [Step 8](#step-8-export-audit-records-for-retention). |
-| **Government cloud** | Microsoft Entra ID Governance — which carries PIM — is available in the US Government community cloud (**GCC**), **GCC High**, and **Department of Defense** cloud environments. Feature parity with commercial is a moving target, so confirm any specific capability against the [Microsoft Entra feature availability](https://learn.microsoft.com/en-us/entra/identity/authentication/feature-availability) page for the agency's cloud before designing against it. |
+| **Government cloud** | Microsoft Entra ID Governance — which carries PIM — is available in the US Government community cloud (**GCC**). Feature parity with commercial is a moving target, so confirm any specific capability against the [Microsoft Entra feature availability](https://learn.microsoft.com/en-us/entra/identity/authentication/feature-availability) page for the agency's cloud before designing against it. |
 
 ::: {.callout-important title="Licence dependency is a control dependency"}
 Because PIM configuration settings are *removed* when the licence lapses, the
@@ -1088,7 +1088,7 @@ the NIST OSCAL publication of SP 800-53 Rev 5.
 - [Manage emergency access accounts in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access)
 - [What are protected actions in Microsoft Entra ID?](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/protected-actions-overview)
 - [Add protected actions in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/protected-actions-add)
-- [Microsoft Entra feature availability](https://learn.microsoft.com/en-us/entra/identity/authentication/feature-availability) — GCC / GCC High / DoD
+- [Microsoft Entra feature availability](https://learn.microsoft.com/en-us/entra/identity/authentication/feature-availability) — GCC
 - [Securing privileged access for hybrid and cloud deployments in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-planning)
 - [Conditional Access: Cloud apps, actions, and authentication context](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-cloud-apps)
 - [Microsoft Entra data retention](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-reports-data-retention)
@@ -1096,7 +1096,6 @@ the NIST OSCAL publication of SP 800-53 Rev 5.
 
 **Federal guidance**
 
-- [DoD Zero Trust Strategy for the user pillar](https://learn.microsoft.com/en-us/security/zero-trust/dod-zero-trust-strategy-user) — §1.4 Privileged access management maps PIM approval configuration to DoD ZT activities 1.4.2 and 1.4.3
 - [Microsoft Entra ID Governance deployment guide to govern privileged identities](https://learn.microsoft.com/en-us/entra/architecture/governance-deployment-privileged-identities)
 - [Microsoft Entra ID Governance operations reference guide](https://learn.microsoft.com/en-us/entra/architecture/ops-guide-govern)
 

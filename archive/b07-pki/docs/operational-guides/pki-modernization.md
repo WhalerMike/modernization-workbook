@@ -226,7 +226,7 @@ ADCS templates are organized by use case. The following categories are commonly 
 
   EFS                       Basic EFS, EFS Recovery Agent                Encrypting File System (1.3.6.1.4.1.311.10.3.4)      Domain users
 
-  Smart Card Logon          Smartcard Logon                              Smart Card Logon (1.3.6.1.4.1.311.20.2.2)            PIV/CAC holders
+  Smart Card Logon          Smartcard Logon                              Smart Card Logon (1.3.6.1.4.1.311.20.2.2)            PIV holders
 
   DC Authentication         Domain Controller, Kerberos Authentication   KDC Authentication (1.3.6.1.5.2.3.5)                 Domain controllers
 
@@ -1279,7 +1279,7 @@ Appendix B --- Certificate Template Migration Matrix
 
   Smartcard User            Smart card logon                        MIGRATE              Entra CBA (certificate remains on physical smart card)     N/A (physical card)       High           Entra CBA binding; CA cert upload         ☐ Not Started
 
-  Smartcard Logon           PIV/CAC logon                           MIGRATE              Entra CBA                                                  N/A (physical card)       High           Entra CBA binding; CA cert upload         ☐ Not Started
+  Smartcard Logon           PIV logon                               MIGRATE              Entra CBA                                                  N/A (physical card)       High           Entra CBA binding; CA cert upload         ☐ Not Started
 
   Domain Controller         DC Kerberos authentication              BRIDGE               N/A --- must remain ADCS                                   N/A                       N/A            AD operational                            ⬛ Retain
 

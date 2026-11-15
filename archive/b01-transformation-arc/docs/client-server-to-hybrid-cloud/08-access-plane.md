@@ -53,7 +53,7 @@ Phishing-resistant methods are required for every privileged user and for all us
 |--------|--------------------|-------------|
 | **FIDO2 security keys** | Yes | Tier-0 administrators, high-privilege users |
 | **Windows Hello for Business** (and Platform SSO on macOS)[^cs08-psso][^cs08-whfb] | Yes | Default daily sign-in on user PCs |
-| **Certificate-based authentication** (PIV/CAC) | Yes | Smart-card holders |
+| **Certificate-based authentication** (PIV) | Yes | Smart-card holders |
 | **Passkey in Authenticator** (device-bound)[^cs08-passkey] | Yes | Mobile and cross-device sign-in |
 | **Authenticator push** (number matching always on)[^cs08-numm] | No; resists push fatigue, not phishing | Transition and secondary method |
 | **SMS / voice** | No | Not permitted |
@@ -75,7 +75,7 @@ The retirement sequence:
 5. Validate smart-card sign-ins in the sign-in logs.
 6. Retire the AD smart-card logon GPO (Chapter 05).
 
-Issuance is a separate decision. An AD CS *enterprise* CA depends on AD DS,[^cs08-entca] so issuance must move before AD retires: to a standalone CA, a managed cloud PKI service,[^cs08-cpki] or a third-party or federal shared-service CA. For PIV/CAC, the agency's PIV issuer usually already fills this role. The framework keeps issuance and the Entra trust store pointed at the same CAs.
+Issuance is a separate decision. An AD CS *enterprise* CA depends on AD DS,[^cs08-entca] so issuance must move before AD retires: to a standalone CA, a managed cloud PKI service,[^cs08-cpki] or a third-party or federal shared-service CA. For PIV, the agency's PIV issuer usually already fills this role. The framework keeps issuance and the Entra trust store pointed at the same CAs.
 
 ## Privileged access management
 
@@ -126,7 +126,7 @@ Access-plane migration passes when:
 ## Key takeaways
 
 1. Access decisions move from network location to identity, device, and risk, enforced by Conditional Access.
-2. Phishing-resistant MFA (FIDO2, Windows Hello, passkeys, PIV/CAC via CBA) is the target for all users.
+2. Phishing-resistant MFA (FIDO2, Windows Hello, passkeys, PIV via CBA) is the target for all users.
 3. Certificate issuance needs a successor before AD retires, because an enterprise CA depends on AD DS.
 
 ## Authoritative references

@@ -57,10 +57,9 @@ targets, so the platform's inheritable controls meet or exceed the Moderate bar
 rather than falling short of it.
 Because that is a High-on-Moderate treatment (not a Moderate authorization), it is
 documented explicitly in the *Authorization Boundary Treatment* subsection below rather
-than left as a footnote. **Oracle/OCI and higher boundaries (GCC High, DoD) are
-explicit follow-ups, out of scope here** — the coordination loop is designed so those
-surfaces reconcile into the same ServiceNow queues later without reworking this
-volume's core.
+than left as a footnote. **Oracle/OCI is an explicit follow-up, out of scope
+here** — the coordination loop is designed so that surface reconciles into the same
+ServiceNow queues later without reworking this volume's core.
 :::
 
 # What This Volume Addresses

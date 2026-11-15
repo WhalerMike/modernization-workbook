@@ -58,14 +58,14 @@ Options to evaluate against this framework include:
 
 ## Residual Risk and Limitations
 
-![Residual risks of a unified policy plane.](../images/diagrams/next-generation-ddi/svg/ch11-residual-risks.svg){fig-alt="Four risks around a single authoritative DDI policy plane: sync lag or failure, the new source of divergence; control-plane outage, where changes are blocked but resolution continues from local state; encrypted DNS bypass if endpoint controls are incomplete; and authorization scope, since a Moderate authorization does not cover High or DoD."}
+![Residual risks of a unified policy plane.](../images/diagrams/next-generation-ddi/svg/ch11-residual-risks.svg){fig-alt="Four risks around a single authoritative DDI policy plane: sync lag or failure, the new source of divergence; control-plane outage, where changes are blocked but resolution continues from local state; encrypted DNS bypass if endpoint controls are incomplete; and authorization scope, since a Moderate authorization does not cover High."}
 
 The residual risks are real:
 
 - **Sync lag and sync failure** between the policy plane and per-cloud DNS or IPAM services become the new source of divergence. Monitor synchronization health.
 - **Control-plane concentration.** If the management plane is unavailable, changes cannot be made, but existing resolution should continue from local resolver state. Define the operational response and any local override procedures.
-- **Authorization scope.** A Moderate authorization does not cover High or DoD environments ([Applicability](00-applicability.md)).
-- **Commercial-only optimizations.** Microsoft 365 INR is unavailable in GCC-Moderate, GCC High and DoD;[^c11-inr] Microsoft 365 optimization there relies on local breakout and application-aware routing.
+- **Authorization scope.** A Moderate authorization does not cover High environments ([Applicability](00-applicability.md)).
+- **Commercial-only optimizations.** Microsoft 365 INR is unavailable in GCC-Moderate;[^c11-inr] Microsoft 365 optimization there relies on local breakout and application-aware routing.
 - **Loopback endpoint agents.** A client-side DNS agent listening on loopback cannot be a redirect-dns target; a network-addressable resolver is required.
 - **Encrypted DNS bypass** remains possible where endpoint and network controls are incomplete.
 - **Open engineering questions** for very large branch estates, such as resolver and forwarding-proxy sizing and source-address behavior under redirect-dns, need vendor engagement and testing.
