@@ -14,7 +14,7 @@ Here's who reads those tags once a server is connected. Machine configuration, f
 
 ## Slide 4 — Which Azure: a GCC estate goes to commercial
 
-Which Azure? This is easy to get wrong. The estate is a Microsoft 365 GCC tenant, and Learn says GCC uses the public directory, which can't be associated with an Azure Government subscription. So the estate's Arc servers go to a commercial subscription, using the agent's default cloud and the commercial endpoints on the slide. GCC High and Defense tenants are different: they use the government directory, Azure Government, and the dot U S endpoints. The code guards both directions, as we'll see.
+Which Azure? This is easy to get wrong. The estate is a Microsoft 365 GCC tenant, and Learn says Office 365 GCC is paired with Microsoft Entra ID in Azure, the commercial cloud. So the estate's Arc servers go to a commercial subscription, using the agent's default cloud and the commercial endpoints on the slide. The code keeps them there: the sample uses commercial regions, and the wave plan stops any other cloud or region, as we'll see.
 
 ## Slide 5 — What Learn gives you: the azure_arc role
 
@@ -30,7 +30,7 @@ Running the role offline, and reading it, shows what it leaves to you, starting 
 
 ## Slide 8 — What the role leaves to you: cloud and record
 
-The rest of the gaps are about the cloud and the record. The role's token is for commercial Resource Manager, which is right for this estate, so the role-based playbook refuses any other cloud, and a separate playbook handles Azure Government. The token is briefly visible on the server's command line; the chapter accepts that, since tokens are short-lived. Nothing checks the region against the cloud, nothing is written down, and Learn's setup installs whatever's newest. The verdict: use Microsoft's role, unchanged, and put the checks around it.
+The rest of the gaps are about the cloud and the record. The role's token is for commercial Resource Manager, which is right for this estate, so the role-based playbook refuses any other cloud. The token is briefly visible on the server's command line; the chapter accepts that, since tokens are short-lived. Nothing checks the region against the cloud, nothing is written down, and Learn's setup installs whatever's newest. The verdict: use Microsoft's role, unchanged, and put the checks around it.
 
 ## Slide 9 — First, the patch_owner column
 
@@ -42,11 +42,11 @@ The inventory script turns each owner into an Ansible group and an Azure tag, us
 
 ## Slide 11 — The wave plan, written before anything runs
 
-Before anything touches a server, the wave plan runs on the control node alone. You give it a wave number, and it writes down exactly what it intends: every ready server, every blocked one, the resource group, region, cloud, both owners and the exact tag string. It refuses to go on if there's no wave, if a region belongs to the other cloud, if a production server has slipped into a pilot wave, or if an owner is missing. Both onboarding playbooks start with this plan, so if the plan stops, no server is contacted at all.
+Before anything touches a server, the wave plan runs on the control node alone. You give it a wave number, and it writes down exactly what it intends: every ready server, every blocked one, the resource group, region, cloud, both owners and the exact tag string. It refuses to go on if there's no wave, if a region isn't a commercial Azure region, if a production server has slipped into a pilot wave, or if an owner is missing. Both onboarding playbooks start with this plan, so if the plan stops, no server is contacted at all.
 
 ## Slide 12 — Onboarding with Microsoft's role, gated
 
-Now the onboarding itself. The role-based playbook works one wave at a time: a single canary server, then five percent, then a quarter, and it stops at the first failure. Each server is checked again before anything happens. Without an explicit confirmation flag, it never calls the role; it just prints what each server would get, which is the dry run the role can't do. With confirmation, it calls Microsoft's role unchanged, with the database's values and no stored secret, and writes a result file. The older step-by-step playbook stays for Azure Government.
+Now the onboarding itself. The role-based playbook works one wave at a time: a single canary server, then five percent, then a quarter, and it stops at the first failure. Each server is checked again before anything happens. Without an explicit confirmation flag, it never calls the role; it just prints what each server would get, which is the dry run the role can't do. With confirmation, it calls Microsoft's role unchanged, with the database's values and no stored secret, and writes a result file. The older step-by-step playbook stays, and now starts with the same plan.
 
 ## Slide 13 — Who runs it, and the least role that onboards
 

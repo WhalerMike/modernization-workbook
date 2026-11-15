@@ -14,7 +14,7 @@ Here's Learn's model, in three parts. A package says what the machine should loo
 
 ## Slide 4 — Which cloud: endpoints, package access and cost
 
-Which cloud matters here in three ways. The endpoints differ: servers in Azure Government reach a government machine configuration host, with regional endpoints in the US Gov regions. The way machines read the package matters: the build uses each machine's own system identity, because Learn says a user-assigned identity doesn't work for Arc-enabled servers. And cost: for Arc-enabled Windows servers with the right licensing, it's included, but that activation isn't offered in two of the US Gov regions, so plan to buy it there. This estate's servers report to commercial Azure.
+Which cloud matters here in three ways. The endpoints: this estate's GCC tenant uses commercial Azure, so its servers reach the commercial machine configuration hosts, with a regional endpoint in each region. The way machines read the package matters: the build uses each machine's own system identity, because Learn says a user-assigned identity doesn't work for Arc-enabled servers. And cost: for Arc-enabled Windows servers with the right licensing, it's included, though Learn lists a few regions outside commercial US Azure where that activation isn't offered.
 
 ## Slide 5 — What Learn gives you: the procedure, step by step
 

@@ -30,7 +30,7 @@ S T 6 warns when a privileged role holder leaves, because Learn says the disable
 
 ## Slide 8 — The read: two permissions, which cloud
 
-The read needs two permissions, each the least privileged for its call: audit log read for the directory audits, and the Lifecycle Workflows reports read permission for a workflow's processing results. Both come from Microsoft Graph, on the endpoint for your cloud, and both APIs are listed for the US Government L4 and L5 clouds. Lifecycle Workflows is available in Azure for US Government. The card system's and Intune's records arrive as exports; the code reads neither service.
+The read needs two permissions, each the least privileged for its call: audit log read for the directory audits, and the Lifecycle Workflows reports read permission for a workflow's processing results. Both come from Microsoft Graph, on the worldwide endpoint GCC uses, and both APIs are listed for the global service. Lifecycle Workflows is part of Microsoft Entra ID Governance, available in GCC. The card system's and Intune's records arrive as exports; the code reads neither service.
 
 ## Slide 9 — The tests: four for this chapter
 
@@ -38,7 +38,7 @@ Four tests cover this chapter: the intervals and the summary, every rule on the 
 
 ## Slide 10 — The verified facts
 
-These are the facts behind the code, each read on Learn on November first. The four audit activities are generally available. The directory audits list needs audit log read and filters on equals, greater or equal, less or equal, and starts with. The processing results list needs the reports read permission, and both are in the L4 and L5 clouds. The schedule runs every three hours by default with a three-day catch-up. The disable task excludes role holders. And Lifecycle Workflows is available for US Government.
+These are the facts behind the code, each read on Learn on November first. The four audit activities are generally available. The directory audits list needs audit log read and filters on equals, greater or equal, less or equal, and starts with. The processing results list needs the reports read permission, and both are listed for the global service. The schedule runs every three hours by default with a three-day catch-up. The disable task excludes role holders. And Lifecycle Workflows is available in G C C.
 
 ## Slide 11 — Where Learn says nothing or differs
 

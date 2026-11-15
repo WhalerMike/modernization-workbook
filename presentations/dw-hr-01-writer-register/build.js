@@ -39,9 +39,7 @@ require("../_build/devwb.js")({
       part: "Why", title: "Which cloud, for this read",
       body: [
         { table: { head: ["Cloud", "Graph host", "Both audit collections listed?"], w: [3.6, 4.4, 4.15], rows: [
-          ["Global service and GCC", "graph.microsoft.com", "Yes"],
-          ["US Government L4 (GCC High)", "graph.microsoft.us", "Yes"],
-          ["US Government L5", "dod-graph.microsoft.us", "Yes"],
+          ["Global service and GCC", "graph.microsoft.com", "Yes: GCC uses the global service's host"],
         ] }, pt: 14 },
         { bullets: [
           "The scan reads GET /auditLogs/directoryAudits and GET /auditLogs/provisioning",
@@ -51,8 +49,8 @@ require("../_build/devwb.js")({
         ], pt: 14.5 },
       ],
       sources: "Sources: Microsoft Learn, List directoryAudits; List provisioningObjectSummary; Graph national cloud deployments. Chapter 01, “Which cloud, for this read.”",
-      say: `Which cloud matters for this read. The scan reads two Graph collections, the directory audits and the provisioning log, and both are listed for the global service and for both US Government levels. G C C uses the global Graph host; G C C High and level 5 have their own. The export script takes the cloud as an argument and has no default. And Entra keeps audit records for only thirty days with P1 or P2, so the export has to run on a schedule well inside that window, with the logs already flowing to the agency's own store.`,
-      detail: `The scan reads two Graph collections: GET /auditLogs/directoryAudits and GET /auditLogs/provisioning. Both are listed for the global service, US Government L4 (GCC High) and US Government L5. GCC uses graph.microsoft.com; GCC High uses graph.microsoft.us and L5 dod-graph.microsoft.us. graph_export.py takes the cloud as an argument and has no default. Entra keeps audit records for 30 days with P1 or P2, so the export has to run on a schedule well inside that window, and the logs should already be leaving Entra for the agency's store, as the guide's prerequisites require (Book 03, Chapter 11).`,
+      say: `Which cloud matters for this read. The scan reads two Graph collections, the directory audits and the provisioning log, and both are listed for the global service. G C C uses the global service's Graph host. The export script takes the cloud as an argument and has no default. And Entra keeps audit records for only thirty days with P1 or P2, so the export has to run on a schedule well inside that window, with the logs already flowing to the agency's own store.`,
+      detail: `The scan reads two Graph collections: GET /auditLogs/directoryAudits and GET /auditLogs/provisioning. Both are listed for the global service. GCC uses the global service's host, graph.microsoft.com. graph_export.py takes the cloud as an argument and has no default. Entra keeps audit records for 30 days with P1 or P2, so the export has to run on a schedule well inside that window, and the logs should already be leaving Entra for the agency's store, as the guide's prerequisites require (Book 03, Chapter 11).`,
       cite: ["hw01-audits", "hw01-prov", "hw01-deployments"],
       ref: "“Which cloud, for this read”",
     },
@@ -195,11 +193,12 @@ require("../_build/devwb.js")({
       part: "What", title: "The verified facts, and where Learn is silent",
       body: [
         { table: { head: ["Item", "Value"], w: [3.0, 9.15], rows: [
-          ["List directoryAudits", "GET /auditLogs/directoryAudits; AuditLog.Read.All; $filter with eq, ge, le, startswith; L4 and L5; v1.0"],
+          ["List directoryAudits", "GET /auditLogs/directoryAudits; AuditLog.Read.All; $filter with eq, ge, le, startswith; v1.0"],
           ["User activities", "Add user, Update user, Enable account, Disable account, Delete user, Set user manager (Core Directory)"],
-          ["List provisioningObjectSummary", "GET /auditLogs/provisioning; AuditLog.Read.All and Directory.Read.All; L4 and L5; v1.0"],
+          ["List provisioningObjectSummary", "GET /auditLogs/provisioning; AuditLog.Read.All and Directory.Read.All; v1.0"],
+          ["Graph host", "GCC graph.microsoft.com"],
           ["Audit retention", "30 days with P1 or P2; not retroactive (Book 03, Chapter 11)"],
-          ["Directory synchronization", "Available in Azure Government; commercial service in GCC; GA"],
+          ["Directory synchronization", "Available; GCC uses the commercial service; GA"],
         ] }, pt: 12.5 },
         { bullets: [
           "**Property names in modifiedProperties:** Learn shows the shape, not each property's display name; confirmed in Lab 2",
@@ -207,8 +206,8 @@ require("../_build/devwb.js")({
         ], label: "Learn says nothing", color: "red", pt: 13.5 },
       ],
       sources: "Sources: Microsoft Learn, List directoryAudits; audit activities; List provisioningObjectSummary; feature availability. Chapter 01, “Verified facts.”",
-      say: `The verified facts, each read on November first. The directory audits list is version 1.0 and listed for both government levels, with the filter operators the saved queries use. The six user activities come from the Core Directory reference. Retention is thirty days, and it isn't retroactive. And two places Learn says nothing are recorded, so a later edit doesn't loosen the code: the display name each property gets in the modified properties, and the service principal each service writes as.`,
-      detail: `List directoryAudits: GET /auditLogs/directoryAudits; AuditLog.Read.All (delegated and application); $filter with eq, ge, le, startswith; L4 and L5; v1.0. Record shape: activityDisplayName, activityDateTime, result, initiatedBy.app.servicePrincipalId or initiatedBy.user.id, targetResources[].modifiedProperties; v1.0. User activities: Add user, Update user, Enable account, Disable account, Delete user, Set user manager (Core Directory, UserManagement). List provisioningObjectSummary: GET /auditLogs/provisioning; AuditLog.Read.All and Directory.Read.All; L4 and L5; v1.0. Graph hosts: GCC graph.microsoft.com; GCC High graph.microsoft.us; L5 dod-graph.microsoft.us. Audit retention: 30 days with P1 or P2; not retroactive (Book 03, Chapter 11). Directory synchronization: available in Azure Government; commercial service in GCC; GA. Places Learn's pages say nothing: property names in modifiedProperties (Learn's example shows the shape but doesn't list the display name each user property gets; the register's names are confirmed in Lab 2). The initiator for Lifecycle Workflows and provisioning (Learn doesn't document the service principal each service writes as; the register takes them from the tenant's own records, never from a published list).`,
+      say: `The verified facts, each read on November first. The directory audits list is version 1.0, on the Graph host GCC uses, with the filter operators the saved queries use. The six user activities come from the Core Directory reference. Retention is thirty days, and it isn't retroactive. And two places Learn says nothing are recorded, so a later edit doesn't loosen the code: the display name each property gets in the modified properties, and the service principal each service writes as.`,
+      detail: `List directoryAudits: GET /auditLogs/directoryAudits; AuditLog.Read.All (delegated and application); $filter with eq, ge, le, startswith; v1.0. Record shape: activityDisplayName, activityDateTime, result, initiatedBy.app.servicePrincipalId or initiatedBy.user.id, targetResources[].modifiedProperties; v1.0. User activities: Add user, Update user, Enable account, Disable account, Delete user, Set user manager (Core Directory, UserManagement). List provisioningObjectSummary: GET /auditLogs/provisioning; AuditLog.Read.All and Directory.Read.All; v1.0. Graph host: GCC graph.microsoft.com. Audit retention: 30 days with P1 or P2; not retroactive (Book 03, Chapter 11). Directory synchronization: available; GCC uses the commercial service; GA. Places Learn's pages say nothing: property names in modifiedProperties (Learn's example shows the shape but doesn't list the display name each user property gets; the register's names are confirmed in Lab 2). The initiator for Lifecycle Workflows and provisioning (Learn doesn't document the service principal each service writes as; the register takes them from the tenant's own records, never from a published list).`,
       cite: ["hw01-audits", "hw01-activities", "hw01-prov", "hw01-deployments", "hw01-feat"],
       ref: "“Verified facts”",
     },

@@ -95,33 +95,6 @@
    "Next, which cloud."
   ]
  ],
- "4": [
-  [
-   0.05,
-   5.938,
-   "Which cloud matters, because Microsoft's import sample always calls the worldwide Graph host."
-  ],
-  [
-   5.987,
-   9.825,
-   "For a G C C tenant like this estate's, that's correct: G C C uses the worldwide Graph and the same Intune instance as commercial customers."
-  ],
-  [
-   15.812,
-   10.525,
-   "G C C High and the Defense cloud have their own Graph hosts, a shared government Intune instance and their own admin center, and a token from one cloud won't work in another."
-  ],
-  [
-   26.337,
-   6.225,
-   "So the example maps each cloud name to its host and refuses any name it doesn't recognize."
-  ],
-  [
-   32.562,
-   1.75,
-   "Now, Microsoft's samples."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -147,48 +120,6 @@
    30.762,
    4.112,
    "Notice what's absent: no sample reads the analytics through Graph."
-  ]
- ],
- "6": [
-  [
-   0.05,
-   11.463,
-   "Running the samples against the fake Graph shows what they do well, and the example keeps that: the same create call, the same filter, the same paging, and policies created with no assignments."
-  ],
-  [
-   11.512,
-   1.613,
-   "The gaps are about safety."
-  ],
-  [
-   13.125,
-   2.837,
-   "The import always calls the worldwide host."
-  ],
-  [
-   15.963,
-   2.825,
-   "It writes with whatever session you happen to have open."
-  ],
-  [
-   18.788,
-   1.375,
-   "There's no dry run."
-  ],
-  [
-   20.163,
-   6.138,
-   "And if you run it twice, you get two policies with the same name, because it never looks at the tenant first."
-  ],
-  [
-   26.3,
-   2.525,
-   "Each of those gaps is pinned by a test."
-  ],
-  [
-   28.825,
-   2.125,
-   "There are more, on the record side."
   ]
  ],
  "7": [
@@ -359,38 +290,6 @@
    30.038,
    5.15,
    "A policy that differs from Git is a question for a person, not something to overwrite."
-  ]
- ],
- "12": [
-  [
-   0.05,
-   3.475,
-   "Here are the facts the code depends on, as Learn states them."
-  ],
-  [
-   3.525,
-   7.525,
-   "Every call is beta, every read needs only the device configuration read permission, and only the create needs write."
-  ],
-  [
-   11.05,
-   4.438,
-   "Learn lists all of them for the worldwide and both U S Government levels."
-  ],
-  [
-   15.488,
-   3.25,
-   "The chapter is just as careful about what Learn doesn't say."
-  ],
-  [
-   18.738,
-   5.45,
-   "There's no Graph equivalent of the Migrate button, so the second lab compares the two by hand."
-  ],
-  [
-   24.188,
-   9.012,
-   "And no Learn page confirms the analytics import itself works in G C C High or the Defense cloud, so that gets confirmed in a test tenant first."
   ]
  ],
  "13": [
@@ -603,6 +502,107 @@
    33.212,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.938,
+   "Which cloud matters, because Microsoft's import sample always calls the worldwide Graph host."
+  ],
+  [
+   5.987,
+   10.825,
+   "For a G C C tenant like this estate's, that's correct: Learn says G C C uses the worldwide Graph, and every call the code makes is listed for the global service."
+  ],
+  [
+   16.812,
+   5.65,
+   "But the host isn't taken from the session's cloud, and a token from one cloud won't work in another."
+  ],
+  [
+   22.462,
+   6.763,
+   "So the example takes the cloud by name, maps it to its host, and refuses any name it doesn't recognize."
+  ],
+  [
+   29.225,
+   1.75,
+   "Now, Microsoft's samples."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   11.463,
+   "Running the samples against the fake Graph shows what they do well, and the example keeps that: the same create call, the same filter, the same paging, and policies created with no assignments."
+  ],
+  [
+   11.512,
+   1.613,
+   "The gaps are about safety."
+  ],
+  [
+   13.125,
+   5.075,
+   "The import always calls the worldwide host, whatever cloud the session signed in to."
+  ],
+  [
+   18.2,
+   2.825,
+   "It writes with whatever session you happen to have open."
+  ],
+  [
+   21.025,
+   1.375,
+   "There's no dry run."
+  ],
+  [
+   22.4,
+   6.138,
+   "And if you run it twice, you get two policies with the same name, because it never looks at the tenant first."
+  ],
+  [
+   28.538,
+   2.525,
+   "Each of those gaps is pinned by a test."
+  ],
+  [
+   31.062,
+   2.125,
+   "There are more, on the record side."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.475,
+   "Here are the facts the code depends on, as Learn states them."
+  ],
+  [
+   3.525,
+   7.525,
+   "Every call is beta, every read needs only the device configuration read permission, and only the create needs write."
+  ],
+  [
+   11.05,
+   4.475,
+   "Learn lists all of them for the global service, which G C C uses."
+  ],
+  [
+   15.525,
+   3.25,
+   "The chapter is just as careful about what Learn doesn't say."
+  ],
+  [
+   18.775,
+   5.45,
+   "There's no Graph equivalent of the Migrate button, so the second lab compares the two by hand."
+  ],
+  [
+   24.225,
+   6.725,
+   "And although one setting can now be changed through its own call, the code still never updates a policy, by design."
   ]
  ]
 }

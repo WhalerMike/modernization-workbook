@@ -1,40 +1,46 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.412
-Now the part that makes
-the case for all this.
+00:00:00.050 --> 00:00:03.035
+Lab 2 moves to a test
+tenant, never production,
 
 2
-00:00:02.412 --> 00:00:07.638
-Run the pull request check and it
-passes cleanly: six rules, no findings.
+00:00:03.035 --> 00:00:06.263
+with fictional users that
+match the population.
 
 3
-00:00:07.638 --> 00:00:10.554
-Then break a rule on purpose
-by deleting the clause
+00:00:06.263 --> 00:00:11.300
+You create the groups from the library,
+paused, so they can't move anyone yet.
 
 4
-00:00:10.554 --> 00:00:13.401
-that keeps out empty worker
-types, and run it again.
+00:00:11.300 --> 00:00:15.283
+Then the key step: ask Graph's own
+evaluator about every test user,
 
 5
-00:00:13.401 --> 00:00:15.100
-Three things fire at once.
+00:00:15.283 --> 00:00:17.988
+and compare its answer
+with the offline one.
 
 6
-00:00:15.100 --> 00:00:19.634
-The linter flags the empty-slot risk,
-the membership test for the worker with
+00:00:17.988 --> 00:00:21.888
+Any disagreement is a finding
+against the offline evaluator.
 
 7
-00:00:19.634 --> 00:00:24.025
-no type fails, and the shadow diff shows
-exactly who the change would let in.
+00:00:21.888 --> 00:00:25.212
+Next you turn processing on
+and diff two rules live.
 
 8
-00:00:24.025 --> 00:00:28.370
-Put the clause back, run the whole
-suite, and seventy tests pass.
+00:00:25.212 --> 00:00:28.865
+Finally you drill an incident:
+take the record, pause,
+
+9
+00:00:28.865 --> 00:00:33.170
+resume the critical groups by
+name, then back everything out.

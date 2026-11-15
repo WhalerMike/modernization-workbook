@@ -10,7 +10,7 @@ Why does this chapter matter so much? Because the provisioning service is obedie
 
 ## Slide 3 — Which cloud: the Graph host and the token authority
 
-Which cloud you're in decides which Graph host you call and where your token comes from, and a token from one cloud simply doesn't work in another. A G C C tenant like this estate's uses the worldwide endpoint, so Microsoft's sample works here as written. The higher government clouds have their own hosts, and the sample's address is hard-coded, so it can't reach them. The hardened client takes its endpoint from settings and only accepts one of the three Graph hosts. Now let's see what Microsoft actually gives you.
+Which cloud you're in decides which Graph host you call and where your token comes from. A G C C tenant like this estate's uses the worldwide endpoints, so Microsoft's sample works here as written, even though its address is hard-coded. Sending a batch and reading the results are both available, because GCC uses the worldwide service. The hardened client takes its endpoint from settings and only accepts a host on its Graph allow-list. Now let's see what Microsoft actually gives you.
 
 ## Slide 4 — Where the middleware sits, and what it writes
 
@@ -70,4 +70,4 @@ Each of these dangers is ordinary, and each has a guard. The most tempting is se
 
 ## Slide 18 — Done when: the chapter's checklist
 
-Here's what done looks like. On the code side: the sample's mapping validates, the pinned copy is unchanged and reviewed, production goes through the hardened client, both clients pass, and new rules refuse by default. On the run side: the hold and the budget are set from your own numbers and license, the sender has one permission and no secret, the quarantine file stays in the audit store, every missing person key becomes a finding, and the endpoint matches the cloud. Chapter 2 builds Graph clients for the government clouds. Thanks for watching.
+Here's what done looks like. On the code side: the sample's mapping validates, the pinned copy is unchanged and reviewed, production goes through the hardened client, both clients pass, and new rules refuse by default. On the run side: the hold and the budget are set from your own numbers and license, the sender has one permission and no secret, the quarantine file stays in the audit store, every missing person key becomes a finding, and the endpoint matches the cloud. Chapter 2 builds Graph clients for GCC. Thanks for watching.

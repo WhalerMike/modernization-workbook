@@ -30,7 +30,7 @@ The packager has three commands. Package checks the run, every file and nothing 
 
 ## Slide 8 — The verified facts
 
-The facts behind the code, each read on November first. The run's only new Graph read lists users with their leave date, which needs User Read All with the lifecycle info read permission. The Graph host depends on the cloud: graph dot microsoft dot com for G C C, graph dot microsoft dot U S for G C C High, and its D o D variant. Audit and provisioning logs keep thirty days with a premium edition, seven with Free, and Lifecycle Workflows history up to thirty. Reporting and SIEM connectivity are available in Azure Government. The metrics and classes themselves are the workbook's design.
+The facts behind the code, each read on November first. The run's only new Graph read lists users with their leave date, which needs User Read All with the lifecycle info read permission. The Graph host for G C C is graph dot microsoft dot com. Audit and provisioning logs keep thirty days with a premium edition, seven with Free, and Lifecycle Workflows history up to thirty. Reporting and SIEM connectivity come with the commercial service G C C uses. The metrics and classes themselves are the workbook's design.
 
 ## Slide 9 — What stays open, and what's design guidance
 
@@ -58,7 +58,7 @@ Step four writes the next day's run with the same inputs and a one-day window; i
 
 ## Slide 15 — Lab 1: the period, and the tests
 
-Step six assembles the period. Two packages, no chain breaks, no coverage gaps, but it isn't complete: drift is open, five metrics are out of bounds, and transfer-to-review isn't measured. So it exits with code two. The summary lists the controls with their open findings, and scores Gate 7: drift classes and metrics not met, evidence unbroken met, sole source not decided by this code. Step seven runs the tests, including the chapter's four drift tests and six package tests: fifty-seven pass, then a hundred and forty-two, with no tenant and no network. Delete the output folder afterwards; it holds fictional names.
+Step six assembles the period. Two packages, no chain breaks, no coverage gaps, but it isn't complete: drift is open, five metrics are out of bounds, and transfer-to-review isn't measured. So it exits with code two. The summary lists the controls with their open findings, and scores Gate 7: drift classes and metrics not met, evidence unbroken met, sole source not decided by this code. Step seven runs the tests, including the chapter's four drift tests and six package tests: fifty-seven pass, then a hundred and thirty-nine, with no tenant and no network. Delete the output folder afterwards; it holds fictional names.
 
 ## Slide 16 — Lab 2: a run against a test tenant
 

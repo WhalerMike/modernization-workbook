@@ -21,21 +21,21 @@ region, cloud, both owners
 and the exact tag string.
 
 5
-00:00:16.600 --> 00:00:21.252
-It refuses to go on if there's no wave,
-if a region belongs to the other cloud,
+00:00:16.600 --> 00:00:21.639
+It refuses to go on if there's no wave, if
+a region isn't a commercial Azure region,
 
 6
-00:00:21.252 --> 00:00:26.137
+00:00:21.639 --> 00:00:26.600
 if a production server has slipped into
 a pilot wave, or if an owner is missing.
 
 7
-00:00:26.137 --> 00:00:29.200
+00:00:26.600 --> 00:00:29.663
 Both onboarding playbooks
 start with this plan,
 
 8
-00:00:29.200 --> 00:00:32.330
+00:00:29.663 --> 00:00:32.780
 so if the plan stops, no
 server is contacted at all.

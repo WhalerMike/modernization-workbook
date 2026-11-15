@@ -15,34 +15,29 @@ and each has its own Graph client
 that follows part of the pattern.
 
 4
-00:00:10.524 --> 00:00:12.889
-They name the clouds two different ways:
+00:00:10.524 --> 00:00:14.749
+They name the clouds three different
+ways: the program's short names,
 
 5
-00:00:12.889 --> 00:00:16.900
-the program's short names, and
-Learn's PowerShell environment names.
+00:00:14.749 --> 00:00:19.275
+Learn's PowerShell environment name,
+and the names Chapter 5's tool takes.
 
 6
-00:00:16.900 --> 00:00:20.150
-That's fine, because the
-table maps one to the other.
+00:00:19.275 --> 00:00:21.337
+Each is fine within its own tool.
 
 7
-00:00:20.150 --> 00:00:21.912
+00:00:21.337 --> 00:00:23.099
 What isn't fine is a default.
 
 8
-00:00:21.912 --> 00:00:25.333
-A cloud name a client doesn't
-recognize has to stop the run,
+00:00:23.099 --> 00:00:27.669
+A cloud name a client doesn't recognize
+has to stop the run, because quietly
 
 9
-00:00:25.333 --> 00:00:28.825
-because quietly falling back
-to worldwide is exactly how
-
-10
-00:00:28.825 --> 00:00:32.090
-a government run ends up
-talking to the wrong service.
+00:00:27.669 --> 00:00:32.380
+falling back to a default is how a run
+ends up talking to a cloud nobody chose.

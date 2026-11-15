@@ -25,23 +25,24 @@ Deliver the same task twice,
 and the work still happens once.
 
 6
-00:00:18.087 --> 00:00:19.845
+00:00:18.087 --> 00:00:21.772
 Then build the deployment files,
+and watch the builder refuse
 
 7
-00:00:19.845 --> 00:00:23.425
-and watch the builder refuse when
-you point it at Azure Government.
+00:00:21.772 --> 00:00:25.312
+when you point it at a cloud
+Learn gives no policy values for.
 
 8
-00:00:23.425 --> 00:00:27.525
+00:00:25.312 --> 00:00:29.412
 Break the leaver order in a fixture
 and the workflow check catches it.
 
 9
-00:00:27.525 --> 00:00:30.025
-Finally, fifty-five tests pass.
+00:00:29.412 --> 00:00:31.613
+Finally, the whole suite passes.
 
 10
-00:00:30.025 --> 00:00:32.860
+00:00:31.613 --> 00:00:34.440
 Remember, though: fakes aren't a tenant.

@@ -7,21 +7,21 @@
   ],
   [
    6.287,
-   3.875,
-   "This is Chapter 2: Graph clients for the government clouds."
+   3.663,
+   "This is Chapter 2: Graph clients for G C C."
   ],
   [
-   10.162,
+   9.95,
    15.713,
    "Every piece of code in this workbook that calls Microsoft Graph should follow one pattern: know which cloud it's in, send its token nowhere else, ask for no more than each call needs, and keep working when Graph says slow down or a beta A P I changes."
   ],
   [
-   25.875,
+   25.663,
    9.1,
    "We'll sort out which cloud is which, run Microsoft's own snippets to see what they leave out, walk the client's rules, then two labs and the dangers."
   ],
   [
-   34.975,
+   34.763,
    5.15,
    "One note before we begin: the code is illustrative, tested against fixtures."
   ]
@@ -66,23 +66,18 @@
   ],
   [
    11.525,
-   6.412,
-   "G C C was built when Microsoft had one cloud directory, and it still uses that commercial directory."
+   13.325,
+   "Office 365 G C C is paired with Microsoft Entra I D in Azure, the commercial cloud, so tokens come from the worldwide sign-in host, and Graph and Resource Manager are the worldwide hosts too."
   ],
   [
-   17.938,
-   7.95,
-   "It's G C C High and the Department of Defense cloud that have their own hosts, for tokens, for Graph and for Resource Manager."
+   24.85,
+   7.987,
+   "The slide maps the two names the code knows, worldwide and G C C, including the PowerShell environment names you'll pass."
   ],
   [
-   25.887,
-   3.312,
-   "And a token from one cloud simply doesn't work in another."
-  ],
-  [
-   29.2,
-   5.513,
-   "The slide maps all four clouds, including the PowerShell environment names you'll pass."
+   32.837,
+   3.7,
+   "They resolve to the same values, but each is its own name."
   ]
  ],
  "4": [
@@ -103,13 +98,8 @@
   ],
   [
    18.938,
-   8.55,
-   "The code still calls the cloud \"gcc\" by name, even though it resolves to the worldwide endpoints, so the evidence says what was intended."
-  ],
-  [
-   27.488,
-   9.525,
-   "And watch for a second tenant: if a workload ever lands in an Azure Government subscription, it has its own hosts, and the run has to be told, never guess."
+   9.4,
+   "And the code still calls the cloud \"gcc\" by name, even though it resolves to the worldwide endpoints, so the run's evidence says which cloud it was meant for."
   ]
  ],
  "5": [
@@ -125,23 +115,23 @@
   ],
   [
    10.525,
-   6.375,
-   "They name the clouds two different ways: the program's short names, and Learn's PowerShell environment names."
+   8.75,
+   "They name the clouds three different ways: the program's short names, Learn's PowerShell environment name, and the names Chapter 5's tool takes."
   ],
   [
-   16.9,
-   3.25,
-   "That's fine, because the table maps one to the other."
+   19.275,
+   2.062,
+   "Each is fine within its own tool."
   ],
   [
-   20.15,
+   21.337,
    1.762,
    "What isn't fine is a default."
   ],
   [
-   21.913,
-   10.113,
-   "A cloud name a client doesn't recognize has to stop the run, because quietly falling back to worldwide is exactly how a government run ends up talking to the wrong service."
+   23.1,
+   9.213,
+   "A cloud name a client doesn't recognize has to stop the run, because quietly falling back to a default is how a run ends up talking to a cloud nobody chose."
   ]
  ],
  "6": [
@@ -157,21 +147,21 @@
   ],
   [
    13.062,
-   2.8,
-   "Its example connects to G C C High."
+   9.287,
+   "Its example connects to a national cloud, not the worldwide service G C C uses; for G C C, all three are the worldwide values."
   ],
   [
-   15.863,
+   22.35,
    3.013,
    "Other Learn pages cover paging and throttling."
   ],
   [
-   18.875,
+   25.363,
    9.588,
    "The Python examples liv in Microsoft's snippets repository, so the workbook pins an unmodified copy of the two files it uses, with a hash a test checks."
   ],
   [
-   28.462,
+   34.95,
    6.725,
    "A test then runs them against stand-ins that record exactly what they'd sign in to, without signing in to anything."
   ]
@@ -184,18 +174,18 @@
   ],
   [
    6.588,
-   11.562,
-   "The surprise is the Python credential: on the same page where the other languages set the government authority, the Python example doesn't, and Python's identity library defaults to the public cloud."
+   11.375,
+   "The surprise is the Python credential: on the same page where the other languages set the authority, the Python example doesn't, and Python's identity library falls back to the public cloud."
   ],
   [
-   18.15,
-   4.225,
-   "Copy it for G C C High and the app signs in to the wrong cloud."
+   17.962,
+   4.513,
+   "That happens to be right for G C C, but it's a default nobody chose."
   ],
   [
-   22.375,
-   9.775,
-   "There's also nothing for the Department of Defense cloud, a certificate snippet that hard-codes the worldwide scope, and a client secret, which is just a password in a file."
+   22.475,
+   10.95,
+   "There's also a cloud written into the code instead of recorded for the run, a certificate snippet that hard-codes the worldwide scope, and a client secret, which is just a password in a file."
   ]
  ],
  "8": [
@@ -221,8 +211,8 @@
   ],
   [
    19.913,
-   13.512,
-   "So the verdict: use Learn's page as the model for the three things that change per cloud, add the authority, and for background jobs use the hardened client, because a reviewer will ask which calls, with which permissions, in which cloud."
+   15.375,
+   "So the verdict: use Learn's page as the model for the three things a client sets, which for G C C are all the worldwide values, and for background jobs use the hardened client, because a reviewer will ask which calls, with which permissions, in which cloud."
   ]
  ],
  "9": [
@@ -334,18 +324,8 @@
   ],
   [
    11.8,
-   10.113,
-   "So beta calls must be declared, they're read through a wrapper that turns a missing shape into \"not evaluated\" rather than a failed run, and the stage is always in the output."
-  ],
-  [
-   21.913,
-   5.35,
-   "The Autopilot case also shows two Learn pages disagreeing about the government clouds."
-  ],
-  [
-   27.262,
-   5.787,
-   "The code follows the stricter one, because an A P I that answers isn't a feature you can use."
+   13.775,
+   "So beta calls must be declared, they're read through a wrapper that turns a missing shape into \"not evaluated\" rather than a failed run, and the stage is always in the output, so a reader of the evidence knows which results rest on beta."
   ]
  ],
  "13": [
@@ -388,21 +368,21 @@
   ],
   [
    4.775,
-   7.638,
-   "First you run Microsoft's own snippets against the stand-ins, and read the test that proves the Python credential gets no authority."
+   3.8,
+   "First you run Microsoft's own snippets against the stand-ins."
   ],
   [
-   12.412,
-   9.475,
-   "Then you print the endpoints for this estate, and see that nothing for G C C is a dot-u-s host, and that a misspelled cloud name is an error, not a default."
+   8.575,
+   9.925,
+   "Then you print the endpoints for this estate, and see that nothing for G C C is a dot-u-s host, and that a cloud name the kit doesn't know is an error, not a default."
   ],
   [
-   21.887,
+   18.5,
    5.025,
    "Then you list a task's permissions from its calls, and try a call the task never declared."
   ],
   [
-   26.913,
+   23.525,
    2.388,
    "It's refused before anything is sent."
   ]
@@ -410,23 +390,18 @@
  "15": [
   [
    0.05,
-   3.038,
-   "The rest of the lab covers beta and PowerShell."
+   3.112,
+   "The rest of the lab runs the same rules in PowerShell."
   ],
   [
-   3.087,
-   8.188,
-   "Ask for Autopilot in G C C High and the client makes no call at all: it reports not available, with the reason and the stage."
+   3.163,
+   7.65,
+   "An undeclared beta call is refused, and so is an address on any host but the cloud's Graph host, which won't get the token."
   ],
   [
-   11.275,
-   10.162,
-   "Then you run the same rules in PowerShell: an undeclared beta call is refused, and so is a worldwide address from a G C C High session, which won't get the token."
-  ],
-  [
-   21.438,
-   11.012,
-   "Finally you run both suites, seventy Python tests and forty-four in Pester, and you've seen every row of the gap table for yourself, with no module, tenant or network."
+   10.812,
+   11.0,
+   "Finally you run both suites, eighty-six Python tests and fifty-two in Pester, and you've seen every row of the gap table for yourself, with no module, tenant or network."
   ]
  ],
  "16": [
@@ -447,18 +422,18 @@
   ],
   [
    15.7,
-   8.238,
-   "Then you watch the token check do its job: grant an extra permission and you get a warning, leave one out and the run stops before any call."
+   8.262,
+   "Then you watch the token check do its job: leave a permission out and the run stops before any call, grant an extra one and you get a warning."
   ],
   [
-   23.938,
-   3.075,
-   "Finally, point it at the wrong cloud on purpose."
+   23.962,
+   4.6,
+   "Optionally, run the same export from PowerShell and compare the two folders."
   ],
   [
-   27.012,
-   6.388,
-   "Sign-in goes to the government authority, which doesn't hold a G C C tenant, so it fails closed."
+   28.562,
+   4.088,
+   "Then back it all out, because the output holds the tenant's policies."
   ]
  ],
  "17": [
@@ -469,23 +444,18 @@
   ],
   [
    2.525,
-   9.062,
-   "The two that bite this estate first are treating G C C as a government dot-u-s cloud, and a cloud name that silently defaults to worldwide."
+   8.613,
+   "The two that bite this estate first are treating G C C as a dot-u-s cloud, and a cloud name that silently falls back to a default."
   ],
   [
-   11.588,
+   11.137,
    6.725,
    "The most dangerous is a token sent to the wrong host, so every address, on every page, is checked."
   ],
   [
-   18.312,
-   8.662,
-   "Others creep in slowly: permissions the job doesn't need, a call added without its permission, or a beta property renamed overnight."
-  ],
-  [
-   26.975,
-   7.75,
-   "And the subtlest is an A P I that answers where the feature isn't offered, handing you a clean, empty, and wrong result."
+   17.863,
+   12.363,
+   "Others creep in slowly: permissions the job doesn't need, a call added without its permission, headers dropped after page one, retries that never stop, or a beta property renamed overnight."
   ]
  ],
  "18": [
@@ -496,21 +466,21 @@
   ],
   [
    1.4,
-   16.1,
-   "On the cloud side: an explicit cloud name that fails on anything unknown, no government hosts in the G C C configuration, the right authority and scope for every credential, one token per resource, and the token never leaving the cloud's Graph host."
+   16.262,
+   "On the cloud side: an explicit cloud name that fails on anything unknown, no dot-u-s hosts in the G C C configuration, the right authority and scope for every credential, one token per resource, and the token never leaving the cloud's Graph host."
   ],
   [
-   17.5,
+   17.663,
    11.488,
    "On the run side: every call declared with its least privileged permission, an app that holds exactly those, paging and retries done Microsoft's way, and beta declared and labeled."
   ],
   [
-   28.988,
+   29.15,
    4.537,
    "Next, Chapter 3 uses these rules to write a validation kit check."
   ],
   [
-   33.525,
+   33.688,
    1.1,
    "Thanks for watching."
   ]

@@ -21,24 +21,25 @@ greater or equal, less or
 equal, and starts with.
 
 5
-00:00:16.075 --> 00:00:20.631
+00:00:16.075 --> 00:00:19.742
 The processing results list needs
 the reports read permission,
 
 6
-00:00:20.631 --> 00:00:23.038
-and both are in the L4 and L5 clouds.
+00:00:19.742 --> 00:00:22.163
+and both are listed
+for the global service.
 
 7
-00:00:23.038 --> 00:00:27.113
+00:00:22.163 --> 00:00:26.238
 The schedule runs every three hours
 by default with a three-day catch-up.
 
 8
-00:00:27.113 --> 00:00:29.863
+00:00:26.238 --> 00:00:28.988
 The disable task excludes role holders.
 
 9
-00:00:29.863 --> 00:00:33.600
-And Lifecycle Workflows is
-available for US Government.
+00:00:28.988 --> 00:00:32.810
+And Lifecycle Workflows
+is available in G C C.

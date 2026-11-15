@@ -5,44 +5,40 @@ WEBVTT
 Which cloud matters here in three ways.
 
 2
-00:00:02.375 --> 00:00:06.755
-The endpoints differ: servers in
-Azure Government reach a government
+00:00:02.375 --> 00:00:07.805
+The endpoints: this estate's GCC tenant
+uses commercial Azure, so its servers reach
 
 3
-00:00:06.755 --> 00:00:11.437
-machine configuration host, with regional
-endpoints in the US Gov regions.
+00:00:07.805 --> 00:00:13.475
+the commercial machine configuration hosts,
+with a regional endpoint in each region.
 
 4
-00:00:11.437 --> 00:00:14.032
+00:00:13.475 --> 00:00:16.069
 The way machines read the package matters:
 
 5
-00:00:14.032 --> 00:00:17.072
+00:00:16.069 --> 00:00:19.109
 the build uses each machine's
 own system identity,
 
 6
-00:00:17.072 --> 00:00:22.038
+00:00:19.109 --> 00:00:24.075
 because Learn says a user-assigned identity
 doesn't work for Arc-enabled servers.
 
 7
-00:00:22.038 --> 00:00:27.185
+00:00:24.075 --> 00:00:28.974
 And cost: for Arc-enabled Windows servers
 with the right licensing, it's included,
 
 8
-00:00:27.185 --> 00:00:31.084
-but that activation isn't offered
-in two of the US Gov regions,
+00:00:28.974 --> 00:00:32.240
+though Learn lists a few
+regions outside commercial
 
 9
-00:00:31.084 --> 00:00:32.488
-so plan to buy it there.
-
-10
-00:00:32.488 --> 00:00:35.540
-This estate's servers
-report to commercial Azure.
+00:00:32.240 --> 00:00:35.040
+US Azure where that
+activation isn't offered.

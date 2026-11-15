@@ -14,30 +14,25 @@ contractor source's own provisioning app,
 through the same middleware employees use.
 
 4
-00:00:08.288 --> 00:00:14.077
-Learn's feature availability page lists
-API-driven inbound provisioning as available
+00:00:08.288 --> 00:00:12.419
+API-driven inbound provisioning
+and access reviews are
 
 5
-00:00:14.077 --> 00:00:19.074
-in Azure Government, and access reviews
-too; GCC uses the commercial service.
+00:00:12.419 --> 00:00:16.375
+part of the commercial Entra
+ID service, which GCC uses.
 
 6
-00:00:19.074 --> 00:00:22.863
-The bulk upload page itself
-has no national cloud table.
+00:00:16.375 --> 00:00:18.932
+The middleware accepts
+only the Graph host,
 
 7
-00:00:22.863 --> 00:00:26.053
-The middleware accepts only
-the three Graph endpoints,
-
-8
-00:00:26.053 --> 00:00:29.451
+00:00:18.932 --> 00:00:22.412
 and the reconciliation reads
 users from the cloud you name.
 
-9
-00:00:29.451 --> 00:00:30.700
+8
+00:00:22.412 --> 00:00:23.640
 There's no default.

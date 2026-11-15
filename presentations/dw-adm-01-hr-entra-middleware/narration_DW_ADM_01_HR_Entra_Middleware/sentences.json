@@ -66,26 +66,26 @@
  "3": [
   [
    0.05,
-   7.662,
-   "Which cloud you're in decides which Graph host you call and where your token comes from, and a token from one cloud simply doesn't work in another."
+   4.475,
+   "Which cloud you're in decides which Graph host you call and where your token comes from."
   ],
   [
-   7.713,
-   6.8,
-   "A G C C tenant like this estate's uses the worldwide endpoint, so Microsoft's sample works here as written."
+   4.525,
+   9.387,
+   "A G C C tenant like this estate's uses the worldwide endpoints, so Microsoft's sample works here as written, even though its address is hard-coded."
   ],
   [
-   14.512,
-   6.075,
-   "The higher government clouds have their own hosts, and the sample's address is hard-coded, so it can't reach them."
+   13.912,
+   6.638,
+   "Sending a batch and reading the results are both available, because G C C uses the worldwide service."
   ],
   [
-   20.587,
-   5.812,
-   "The hardened client takes its endpoint from settings and only accepts one of the three Graph hosts."
+   20.55,
+   5.9,
+   "The hardened client takes its endpoint from settings and only accepts a host on its Graph allow-list."
   ],
   [
-   26.4,
+   26.45,
    2.587,
    "Now let's see what Microsoft actually gives you."
   ]
@@ -551,11 +551,11 @@
   ],
   [
    28.087,
-   3.462,
-   "Chapter 2 builds Graph clients for the government clouds."
+   3.425,
+   "Chapter 2 builds Graph clients for G C C."
   ],
   [
-   31.55,
+   31.512,
    1.1,
    "Thanks for watching."
   ]
