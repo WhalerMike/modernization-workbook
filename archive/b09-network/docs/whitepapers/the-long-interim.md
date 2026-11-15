@@ -18,10 +18,8 @@ months.
 This paper is about that interval.
 
 **Finding 1 --- SD-WAN with a TIC 3.0 use case is the residual
-architecture, not the mandated one.** No federal instrument, civilian or
-defense, names SASE or SD-WAN as required. DoD's own Zero Trust Strategy
-states that it "does not mandate or prescribe specific technologies or
-potential solutions." What has happened instead is that the alternatives
+architecture, not the mandated one.** No federal instrument names SASE
+or SD-WAN as required. What has happened instead is that the alternatives
 closed one at a time: the legacy transport vehicles expired in early
 2026, the hairpin model is what policy moved away from, agency-operated
 access points carry costs few agencies will take on, and cloud-provider
@@ -231,29 +229,14 @@ circuit may still be advertising Office 365 prefixes today with no route
 filter and no current authorization on file. That is worth checking as a
 discrete action rather than assuming.
 
-**Fifth, for GCC the routing arrangement is documented as working but is
-not documented as to how.** Microsoft states that Office 365 GCC pairs
-with Entra ID in Azure Commercial, while GCC High and DoD pair with
-Azure Government. GCC has no separate endpoint list at all --- it is
-served by the Worldwide list, and the endpoint web service publishes
-instances only for Worldwide, China, USGovDoD and USGovGCCHigh. There is
-no GCC instance. Microsoft's ExpressRoute FAQ nonetheless answers the
-obvious question affirmatively: *"Can I access Office 365 US Government
-Community (GCC) services over an Azure US Government ExpressRoute
-circuit? Yes. Office 365 GCC service endpoints are reachable through the
-Azure US Government ExpressRoute. However, you first need to open a
-support ticket on the Azure portal to provide the prefixes you intend to
-advertise to Microsoft."*
-
-That answer sits in tension with a statement two questions later on the
-same page, that Azure Government Microsoft peering is *"limited to only
-public IPs within Azure Government regions and doesn't extend to the
-broader ranges of commercial public IPs"* --- and GCC endpoints are in
-commercial IP space. Microsoft nowhere reconciles the two, and nowhere
-states which BGP communities or prefixes the GCC arrangement uses. **The
-practical conclusion for an agency: do not assume an existing Azure
-Government circuit carries your GCC traffic. Confirm the specific prefix
-arrangement with Microsoft in writing.** The ambiguity is itself worth
+**Fifth, for GCC the routing arrangement is not documented as to how.**
+Microsoft states that Office 365 GCC pairs with Entra ID in Azure
+Commercial. GCC has no separate endpoint list at all --- it is served by
+the Worldwide list, and the endpoint web service publishes no GCC
+instance. Microsoft nowhere states which BGP communities or prefixes a
+GCC ExpressRoute arrangement uses. **The practical conclusion for an
+agency: confirm the specific prefix arrangement with Microsoft in
+writing.** The ambiguity is itself worth
 recording in the architecture documentation.
 
 **Finally, Microsoft treats hairpinning branch traffic to a circuit as a
@@ -496,8 +479,7 @@ it directly.
 ## 3.2 Nothing else names SASE or SD-WAN either
 
 Checked and confirmed absent: OMB M-22-09, M-25-04, M-26-14, M-26-15,
-M-26-05; CISA Zero Trust Maturity Model v2.0; the DoD Zero Trust
-Strategy; EO 14306. **No federal instrument names SASE or SD-WAN as
+M-26-05; CISA Zero Trust Maturity Model v2.0; EO 14306. **No federal instrument names SASE or SD-WAN as
 required.**
 
 M-22-09's network pillar requires encrypted DNS "wherever it is
@@ -584,27 +566,7 @@ refresh decision.
 The right formulation for a programme document is therefore: *federal
 policy is technology-neutral, and it is not requirement-free.*
 
-## 3.4 The DoD contrast, correctly drawn
-
-DoD is frequently cited as the prescriptive counterexample. It is ---
-but not in the way usually claimed. The DoD Zero Trust Strategy sets a
-binding, dated capability deadline: *"Components must achieve the
-intended Target level outcomes of each DoD Zero Trust Capability and
-execution enabler no later than the end of FY2027"* --- 91 Target Level
-activities out of 152 total. That is far harder than anything civilian
-agencies face.
-
-But the same strategy states: *"This ZT strategy does not mandate or
-prescribe specific technologies or potential solutions."* SD-WAN and
-SASE do not appear in it. Where they do appear is DISA's **Thunderdome**
-programme, whose elements include customer security stacks, SD-WAN, SASE
-and application security stacks --- and Thunderdome is DISA procuring
-these technologies for its own network, not a mandate on anyone. **The
-civilian-defense contrast is about bindingness and deadline, not about
-technology prescription.** An agency drawing the contrast the other way
-will be corrected.
-
-## 3.5 FedRAMP does not constrain routing
+## 3.4 FedRAMP does not constrain routing
 
 FedRAMP authorizes cloud service offerings against NIST SP 800-53 Rev 5.
 It governs the security posture of the service, not the topology used to
@@ -623,7 +585,7 @@ with optional early adoption from 4 July 2026 and **mandatory adoption 1
 January 2027**; existing Rev 5 authorizations remain valid to at least
 31 December 2028.
 
-## 3.6 Your own control assertions
+## 3.5 Your own control assertions
 
 The obligations that bite hardest at the branch are the ones the agency
 wrote into its own packages. Where a branch performs local internet
@@ -1308,7 +1270,7 @@ Section 3(d), as amended by EO 14306 (6 June 2025) · EO 14412 (22 June
 2026) · CISA BOD 18-01, BOD 23-01, BOD 23-02, BOD 26-02 (5 February
 2026), BOD 26-04 (10 June 2026) · CISA *Encrypted DNS Implementation
 Guidance* (May 2024) · 6 U.S.C. § 663 note · CISA Zero Trust Maturity
-Model v2.0 (April 2023) · DoD Zero Trust Strategy (November 2022).
+Model v2.0 (April 2023).
 
 **TIC 3.0.** Program Guidebook (the passage quoted in Section 2.2
 appears in both the December 2019 and July 2025 versions), Reference
@@ -1333,7 +1295,7 @@ assessment objective · SP 800-52 Rev 2 (August 2019) · SP 800-207
 ExpressRoute for routing Microsoft 365 traffic*; *Implementing
 ExpressRoute for Microsoft 365*; *Microsoft 365 network connectivity
 principles* (August 2026); *Microsoft 365 URLs and IP address ranges*;
-*Microsoft 365 endpoints*; GCC High and DoD endpoint articles;
+*Microsoft 365 endpoints*;
 *Microsoft 365 IP Address and URL web service*; *Managing Microsoft 365
 endpoints*; ExpressRoute FAQ, prerequisites, routing requirements and
 route-filter configuration; *Cloud feature availability for US

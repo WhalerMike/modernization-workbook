@@ -69,8 +69,7 @@ is out of FedRAMP's scope entirely.
 describe Government Community Cloud as a compliance perimeter that attenuates
 features. It describes GCC as riding the worldwide service footprint on Azure
 Commercial, with specific features excluded and **each exclusion published
-individually** — running in both directions, since some features are available
-in GCC and withheld from GCC High and DoD.
+individually**.
 
 Those two facts change the shape of the problem. A boundary cannot be negotiated.
 A published list of per-feature exclusions can be inventoried, prioritised, and
@@ -184,13 +183,12 @@ What Microsoft documents is narrower and more useful:
 | Fact | Consequence |
 |---|---|
 | GCC has **no separate endpoint list** — it is served by the Worldwide list, same FQDNs and IP ranges as commercial | GCC is not a separate network regime |
-| **GCC pairs with Azure Commercial**; GCC High and DoD pair with Azure Government | The enclave is downstream of GCC, not at it |
-| The **"secure enclave"** framing is applied to GCC High and DoD explicitly, not to GCC | GCC is the worldwide service with exclusions |
-| Feature gaps are **published per feature**, and run **both directions** — Windows release health is available in GCC but *not* in GCC High or DoD | There is no monotonic ladder of restriction |
+| **GCC pairs with Azure Commercial** | The enclave is downstream of GCC, not at it |
+| The **"secure enclave"** framing is not applied to GCC | GCC is the worldwide service with exclusions |
+| Feature gaps are **published per feature** — Windows release health, for example, is available in GCC | There is no monotonic ladder of restriction |
 
 This matters because the two diagnoses have different remedies. If GCC is a
-boundary, the only move is to accept it or leave for GCC High — and GCC High is
-*more* restricted on several axes, not fewer. If GCC is the worldwide footprint
+boundary, the only move is to accept it. If GCC is the worldwide footprint
 with an enumerated exclusion list, then each exclusion is a separate question
 with a separate answer, and some of those answers are obtainable.
 
@@ -202,8 +200,7 @@ from a boundary model.
 
 The most consequential single exclusion is not a telemetry nuance. It is the
 entire per-location network observability layer of the Microsoft 365 admin
-centre, which Microsoft states is unavailable to **GCC, GCC High and DoD**
-tenants alike.
+centre, which Microsoft states is unavailable to **GCC** tenants.
 
 Commercial tenants receive, at no additional cost:
 
@@ -243,11 +240,11 @@ inferred rows will not survive a reviewer holding the Microsoft documentation.
 
 ### 4.1 Inventory the exclusions feature by feature
 
-Because exclusions are published individually and run in both directions, the
+Because exclusions are published individually, the
 first move is a per-feature register with a citation per row, not a boundary
 model. This is the difference between "GCC withholds telemetry" — which a
 Microsoft reader will reject — and "the admin-centre Network connectivity layer
-is documented as unavailable in GCC, GCC High and DoD," which they cannot.
+is documented as unavailable in GCC," which they cannot.
 
 ### 4.2 Use the documented exception process where one exists
 
@@ -295,7 +292,7 @@ all, as evidence rather than as a gate.
 
 ## 5. Microsoft is pursuing High for GCC — and what that does not change
 
-The FedRAMP Marketplace carries **three** relevant Microsoft packages, and they
+The FedRAMP Marketplace carries **two** relevant Microsoft packages, and they
 are routinely conflated. Read from the Marketplace product dataset on
 9 September 2026:
 
@@ -303,12 +300,10 @@ are routinely conflated. Read from the Marketplace product dataset on
 |---|---|---|---|
 | **`MSO365MT`** | M365 Government Community Cloud & Supporting Services | **FedRAMP Certified** since 2014-11-20, **99 authorizations** | **C (Moderate)** |
 | **`MSO365MTA`** | M365 Government Community Cloud & Supporting Services — *the identical name* | FedRAMP **In Process**, Initial Implementation, **0 authorizations** | **D (High)** |
-| **`FR1824057433`** | M365 Government Community Cloud-**High** | FedRAMP Certified since 2024-12-26, 5 authorizations | D (High) |
 
 `MSO365MT` is the offering roughly ninety agencies actually run — IRS, DOJ,
 State, DHS, NASA, CDC, EPA among them — and it is certified at **Moderate**.
-`FR1824057433` is GCC High, a **different product** with a different namespace
-and network regime. Neither is new.
+It is not new.
 
 **`MSO365MTA` is.** A second package under the *same name* as the certified GCC
 offering, at Class D, in Initial Implementation, with status changes on
@@ -336,7 +331,7 @@ acquisition assumption — is building on a moving foundation.
 level does **not** restore excluded features. The exclusions catalogued in §3
 are product decisions published per feature, not consequences of an impact
 level: the admin-centre network observability layer is documented as unavailable
-in **GCC, GCC High and DoD alike**, and GCC High sits at Class D already. A
+in **GCC**. A
 GCC-at-High certification would change what data an agency may place in the
 service. It would not, on its own, return the per-location network scores, the
 egress-distance insight, or the comparative provider ranking.
@@ -364,7 +359,7 @@ Microsoft *offering* name**: the offering is Government Community Cloud, and
 the Marketplace listing is `MSO365MT`. It is, however, a phrase Microsoft
 itself uses for the *cloud environment*. The informed network routing page
 says the feature "supports tenants in WW Commercial cloud but not the **GCC
-Moderate**, GCC High, DoD, Germany, or China clouds"
+Moderate**" cloud
 ([Microsoft Learn](https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide),
 read 11 September 2026), and
 Book 05's M365 appendix

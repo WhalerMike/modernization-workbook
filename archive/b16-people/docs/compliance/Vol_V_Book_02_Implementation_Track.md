@@ -122,8 +122,8 @@ bound and the slot-03 verdict reads it.
   (Network Enforcement Substrate — the customer-owned edge).
 - **Build:** application-aware transport — SD-WAN path policy keyed to
   application identity, SASE enforcement under TIC 3.0, and the customer-owned
-  edge gear (Cisco / Palo Alto / Juniper) accredited through NIAP / DISA STIG /
-  FIPS 140-3 / DoDIN APL. This is where the customer-owned half of SC-7/SC-8 —
+  edge gear (Cisco / Palo Alto / Juniper) accredited through NIAP /
+  FIPS 140-3. This is where the customer-owned half of SC-7/SC-8 —
   the half no CSP's FedRAMP authorization covers — is actually built.
 - **Lab:** author one application-aware path policy and one ZTNA access policy;
   export the policy state and bind it as **slot-03 network** evidence.

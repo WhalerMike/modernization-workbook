@@ -75,7 +75,7 @@ omb_inventory.csv --output findings/` or `Invoke-AIInventoryScan.ps1
 
 **Output per run:**
 - `findings_summary.json` — aggregate counts across all agencies
-- `findings_by_agency/DOD.json`, `findings_by_agency/HHS.json`, … — one
+- `findings_by_agency/DOT.json`, `findings_by_agency/HHS.json`, … — one
   structured file per agency, scoped to that agency's inventory subset
 - `p1_gate_halt.json` — all Priority 1 findings (agentic AI without ATO),
   flagged for immediate action
@@ -223,13 +223,13 @@ findings/
   summary.json              # aggregate counts
   gate_halt_p1.json         # all P1 findings — immediate action
   by_agency/
-    DOD.json
+    DOT.json
     HHS.json
     DOJ.json
     …                       # one file per agency with live systems
   report/
     index.html              # full findings report
-    DOD.html
+    DOT.html
     HHS.html
     …
 ```

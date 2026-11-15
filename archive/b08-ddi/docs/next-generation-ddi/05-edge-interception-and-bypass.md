@@ -33,7 +33,7 @@ DNSSEC validation must happen on a resolver the agency controls. A forwarding re
 
 ### Microsoft 365 informed network routing
 
-Microsoft 365 informed network routing (INR) lets a supported SD-WAN share network-quality data with Microsoft so that Microsoft 365 traffic takes the best path; the Cisco integration requires Cisco IOS XE SD-WAN 20.4 / 17.4 or later.[^c05-inr] Microsoft documents INR as available only for the Worldwide commercial cloud; it is not supported in the GCC-Moderate, GCC High, DoD, Germany or China clouds. For agencies in those clouds, local internet breakout and application-aware routing remain the main Microsoft 365 optimizations. None of this changes the DDI design: INR is a routing optimization, not a DNS dependency.
+Microsoft 365 informed network routing (INR) lets a supported SD-WAN share network-quality data with Microsoft so that Microsoft 365 traffic takes the best path; the Cisco integration requires Cisco IOS XE SD-WAN 20.4 / 17.4 or later.[^c05-inr] Microsoft documents INR as available only for the Worldwide commercial cloud; it is not supported in the GCC-Moderate, Germany or China clouds. For agencies in those clouds, local internet breakout and application-aware routing remain the main Microsoft 365 optimizations. None of this changes the DDI design: INR is a routing optimization, not a DNS dependency.
 
 ## Encrypted DNS and Bypass Controls
 

@@ -210,8 +210,7 @@ options for general awareness training:
 
 | Platform | GCC Availability | Cost | Evidence Format |
 |----------|-----------------|------|-----------------|
-| **Microsoft Viva Learning** | Native GCC / GCC High | M365 E3/E5 included | JSON via Graph API; exports to governance substrate directly |
-| **DoD Cyber Awareness Challenge** | Free; DoD-approved; GCC accessible | Free | ATCTS completion certificate (PDF/CSV export) |
+| **Microsoft Viva Learning** | Native GCC | M365 E3/E5 included | JSON via Graph API; exports to governance substrate directly |
 | **CISA Cybersecurity Training** | free.cisa.gov; public access | Free | Manual transcript; requires AT-4 manual entry |
 | **KnowBe4 / Proofpoint** | Commercial; GCC-compatible deployments | Licensed | API or CSV export; FedRAMP Moderate authorized |
 | **SANS Security Awareness** | Commercial; FedRAMP-authorized | Licensed | API export; direct governance substrate integration possible |
@@ -246,7 +245,7 @@ standard federal mechanism. The simulation program must:
 3. Export results in a structured format tied to user identity (not just
    aggregate statistics) for AT-4 purposes
 4. Scenarios must include GCC-tenant spoof patterns — attackers impersonating
-   `.mil` or `.gov` domains, or spoofing legitimate Microsoft 365 service
+   `.gov` domains, or spoofing legitimate Microsoft 365 service
    notifications
 
 **GCC Moderate options:** Microsoft Attack Simulator (Defender for Office
@@ -670,7 +669,7 @@ independent SCA.
 - [ ] Select LMS platform (Viva Learning recommended for M365 GCC E3/E5)
 - [ ] Define role tier assignments — map all users to Tier 1–6
 - [ ] Configure Graph API export with `LearningAssignmentReport.Read.All`
-- [ ] Create course library in Viva Learning (or import CISA/DoD content)
+- [ ] Create course library in Viva Learning (or import CISA content)
 - [ ] Enroll all employees in AT-2 general awareness track
 
 ## Phase 2 — Content and Delivery (Weeks 5–12)
@@ -724,6 +723,5 @@ independent SCA.
 | NIST SP 800-16 | Information Technology Security Training Requirements |
 | FedRAMP 20x Consolidated Rules (June 25, 2026) | KSI-CED-RAT — Reviewing All Training |
 | CISA Cybersecurity Training | free.cisa.gov — federal workforce awareness resources |
-| DoD Cyber Awareness Challenge | Annual awareness training; ATCTS completion records |
 | Microsoft Graph API — Viva Learning | LearningCourseActivities endpoint for AT-4 evidence export |
 | EO 14028 | Improving the Nation's Cybersecurity — training requirements for federal workforce |

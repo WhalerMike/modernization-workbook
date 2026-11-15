@@ -44,7 +44,7 @@ SP 800-81r3 is guidance, not a mandate in its own right. It is the practical com
 
 FedRAMP authorizes cloud services, not architectures. If the policy plane is delivered as a cloud service, that service needs an authorization at the impact level of the systems it supports, and the agency still issues its own ATO for its use of it. The resolvers, appliances and agents running in agency data centers, branches and cloud tenants remain inside the agency's own authorization boundary.
 
-As one example, Infoblox Government Cloud, which runs in AWS GovCloud (US), has been FedRAMP Moderate authorized since December 2022 (package FR2017257053).[^c03-fedramp] In July 2026 the company announced that Universal DDI management, NIOS-X servers and Universal Asset Insights had been added to that authorized offering.[^c03-ibxpr] A Moderate authorization does not cover High or DoD impact levels; agencies operating there must confirm whether a separate authorization or an agency-specific ATO is required. The [Applicability](00-applicability.md) page sets out these boundaries for each Microsoft and federal cloud environment.
+As one example, Infoblox Government Cloud, which runs in AWS GovCloud (US), has been FedRAMP Moderate authorized since December 2022 (package FR2017257053).[^c03-fedramp] In July 2026 the company announced that Universal DDI management, NIOS-X servers and Universal Asset Insights had been added to that authorized offering.[^c03-ibxpr] A Moderate authorization does not cover the High impact level; agencies operating there must confirm whether a separate authorization or an agency-specific ATO is required. The [Applicability](00-applicability.md) page sets out these boundaries for each Microsoft and federal cloud environment.
 
 ## Control Mapping for NIST SP 800-53, FedRAMP and CISA Zero Trust
 
@@ -63,7 +63,7 @@ The following table maps the core capabilities of a unified DDI plane to represe
 ## What this chapter establishes
 1. M-22-09, M-21-31, M-08-23, M-21-07 and CISA guidance together require agency-controlled, logging, encrypting, validating resolvers that forward egress through Protective DNS.
 2. SP 800-81r3 is the practical guide to meeting them; it is guidance, not a mandate.
-3. FedRAMP authorizes the cloud service, not the architecture, and a Moderate authorization does not cover High or DoD.
+3. FedRAMP authorizes the cloud service, not the architecture, and a Moderate authorization does not cover High.
 :::
 
 ---

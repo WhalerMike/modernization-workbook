@@ -99,7 +99,7 @@ The governance implication is that record types which appear unrelated (for exam
 
 - **redirect-dns:** Cisco Catalyst SD-WAN data policy that intercepts and redirects DNS queries.
 
-- **INR:** Microsoft 365 informed network routing, telemetry-based path optimization for SD-WAN (Worldwide commercial cloud only; not GCC-Moderate, GCC High or DoD).
+- **INR:** Microsoft 365 informed network routing, telemetry-based path optimization for SD-WAN (Worldwide commercial cloud only; not GCC-Moderate).
 
 - **DNS-01:** ACME challenge type that proves domain control via DNS TXT records.
 
