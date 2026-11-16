@@ -59,1032 +59,1032 @@ Let's start with what a
 dashboard can't show you.
 
 13
-00:00:45.710 --> 00:00:49.422
+00:00:45.400 --> 00:00:49.112
 Most agencies can show a dashboard
 with millions of events a day.
 
 14
-00:00:49.422 --> 00:00:51.448
+00:00:49.112 --> 00:00:51.138
 But that only measures what arrived.
 
 15
-00:00:51.448 --> 00:00:52.847
+00:00:51.138 --> 00:00:52.537
 It can't show what didn't.
 
 16
-00:00:52.847 --> 00:00:56.752
+00:00:52.537 --> 00:00:56.442
 Gaps stay silent in four ways: a
 source that was never connected,
 
 17
-00:00:56.752 --> 00:01:01.182
+00:00:56.442 --> 00:01:00.872
 a connector that looks healthy but
 delivers nothing, data stored where
 
 18
-00:01:01.182 --> 00:01:05.536
+00:01:00.872 --> 00:01:05.226
 no rule ever reads it, and logging
 that someone switched off on purpose.
 
 19
-00:01:05.536 --> 00:01:09.258
+00:01:05.226 --> 00:01:08.948
 The 2023 intrusion into
 government mailboxes was caught
 
 20
-00:01:09.258 --> 00:01:12.360
+00:01:08.948 --> 00:01:12.050
 by an agency that happened
 to have the right logs.
 
 21
-00:01:12.360 --> 00:01:15.610
+00:01:12.050 --> 00:01:15.300
 Others had nothing to look
 at, and nothing told them so.
 
 22
-00:01:15.610 --> 00:01:19.285
+00:01:15.300 --> 00:01:18.975
 So the takeaway: measure coverage
 against your asset inventory,
 
 23
-00:01:19.285 --> 00:01:20.810
+00:01:18.975 --> 00:01:20.500
 not against what showed up.
 
 24
-00:01:20.810 --> 00:01:24.600
+00:01:20.500 --> 00:01:24.290
 Next, the difference between
 storing and detecting.
 
 25
-00:01:28.350 --> 00:01:31.294
+00:01:28.040 --> 00:01:30.984
 There's a difference that's
 easy to buy as one thing:
 
 26
-00:01:31.294 --> 00:01:35.387
+00:01:30.984 --> 00:01:35.077
 a place where logs are kept, and a
 capability that actually reads them.
 
 27
-00:01:35.387 --> 00:01:37.200
+00:01:35.077 --> 00:01:36.890
 The controls keep them apart.
 
 28
-00:01:37.200 --> 00:01:42.638
+00:01:36.890 --> 00:01:42.328
 Generating records is one requirement;
 reviewing and analyzing them is another.
 
 29
-00:01:42.638 --> 00:01:46.599
+00:01:42.328 --> 00:01:46.289
 And the new federal logging memo
 scores maturity by how much of the
 
 30
-00:01:46.599 --> 00:01:50.488
+00:01:46.289 --> 00:01:50.178
 required activity produces real
 alerts, not by how much you store.
 
 31
-00:01:50.488 --> 00:01:54.926
+00:01:50.178 --> 00:01:54.616
 Data kept only in a cheap storage
 tier raises no alerts at all.
 
 32
-00:01:54.926 --> 00:01:59.561
+00:01:54.616 --> 00:01:59.251
 So the decision for the CISO is a simple
 rule: a source counts as monitored
 
 33
-00:01:59.561 --> 00:02:04.425
+00:01:59.251 --> 00:02:04.115
 only when an enabled rule reads it, and
 its output reaches a queue someone owns.
 
 34
-00:02:04.425 --> 00:02:07.380
+00:02:04.115 --> 00:02:07.070
 Next, the federal requirement itself.
 
 35
-00:02:11.130 --> 00:02:20.730
+00:02:10.820 --> 00:02:20.420
 In May 2026, OMB memo M-26-14 rescinded
 M-21-31, effective immediately.
 
 36
-00:02:20.730 --> 00:02:25.405
+00:02:20.420 --> 00:02:25.095
 So the retention numbers many teams
 still quote belong to a memo that's gone.
 
 37
-00:02:25.405 --> 00:02:29.222
+00:02:25.095 --> 00:02:28.912
 The new floor is simpler: logs
 searchable for six months,
 
 38
-00:02:29.222 --> 00:02:33.205
+00:02:28.912 --> 00:02:32.895
 retrievable for a year, and
 available to your top-level SOC.
 
 39
-00:02:33.205 --> 00:02:37.143
+00:02:32.895 --> 00:02:36.833
 The clock runs from CISA's
 architecture, published in August.
 
 40
-00:02:37.143 --> 00:02:40.815
+00:02:36.833 --> 00:02:40.505
 By our count, your logging
 plan is due November 18,
 
 41
-00:02:40.815 --> 00:02:44.580
+00:02:40.505 --> 00:02:44.270
 and the maturity levels
 follow through July 2027.
 
 42
-00:02:44.580 --> 00:02:48.030
+00:02:44.270 --> 00:02:47.720
 Those dates are our arithmetic, not OMB's.
 
 43
-00:02:48.030 --> 00:02:51.287
+00:02:47.720 --> 00:02:50.977
 The decision: the CISO
 owns that logging plan,
 
 44
-00:02:51.287 --> 00:02:55.743
+00:02:50.977 --> 00:02:55.433
 and the CIO funds it as a visibility
 plan, not a storage purchase.
 
 45
-00:02:55.743 --> 00:02:58.680
+00:02:55.433 --> 00:02:58.370
 Next, how the evidence fits together.
 
 46
-00:03:02.430 --> 00:03:06.992
+00:03:02.120 --> 00:03:06.682
 Every management tool reports in its
 own format against its own inventory.
 
 47
-00:03:06.992 --> 00:03:10.563
+00:03:06.682 --> 00:03:10.253
 Five tools, five inventories,
 and when an assessor asks
 
 48
-00:03:10.563 --> 00:03:13.817
+00:03:10.253 --> 00:03:13.507
 you to prove a fix across
 the whole estate, you can't.
 
 49
-00:03:13.817 --> 00:03:18.436
+00:03:13.507 --> 00:03:18.126
 The answer is an evidence contract:
 every source emits the same record,
 
 50
-00:03:18.436 --> 00:03:23.531
+00:03:18.126 --> 00:03:23.221
 joined on one authoritative identity
 for each asset, plus synchronized time.
 
 51
-00:03:23.531 --> 00:03:26.151
+00:03:23.221 --> 00:03:25.841
 That identity has to come from one place,
 
 52
-00:03:26.151 --> 00:03:28.930
+00:03:25.841 --> 00:03:28.620
 the naming plane, not
 from each tool's own ID.
 
 53
-00:03:28.930 --> 00:03:33.561
+00:03:28.620 --> 00:03:33.251
 So the decision: stand up the naming plane
 before you build the evidence pipeline,
 
 54
-00:03:33.561 --> 00:03:36.118
+00:03:33.251 --> 00:03:35.808
 and write the contract
 into the logging plan.
 
 55
-00:03:36.118 --> 00:03:41.604
+00:03:35.808 --> 00:03:41.294
 The CISO owns the plan; the DNS and
 identity teams own the naming plane.
 
 56
-00:03:41.604 --> 00:03:44.270
+00:03:41.294 --> 00:03:43.960
 Next, where telemetry comes from.
 
 57
-00:03:48.020 --> 00:03:53.095
+00:03:47.710 --> 00:03:52.785
 Telemetry isn't collected; it's emitted,
 and the switch lives in each platform.
 
 58
-00:03:53.095 --> 00:03:57.644
+00:03:52.785 --> 00:03:57.334
 So the estate is six planes:
 identity, cloud platform,
 
 59
-00:03:57.644 --> 00:04:02.933
+00:03:57.334 --> 00:04:02.623
 Microsoft 365, endpoints, network
 and data, each with an owner.
 
 60
-00:04:02.933 --> 00:04:07.470
+00:04:02.623 --> 00:04:07.160
 No single plane tells the whole story,
 and contractor-run systems count too.
 
 61
-00:04:07.470 --> 00:04:08.807
+00:04:07.160 --> 00:04:08.497
 Watch the defaults.
 
 62
-00:04:08.807 --> 00:04:14.360
+00:04:08.497 --> 00:04:14.050
 Several native logs quietly expire after
 a month or three unless you export them,
 
 63
-00:04:14.360 --> 00:04:18.670
+00:04:14.050 --> 00:04:18.360
 and Microsoft 365 audit history
 depends on each user's license.
 
 64
-00:04:18.670 --> 00:04:20.808
+00:04:18.360 --> 00:04:20.498
 So the decision splits on purpose.
 
 65
-00:04:20.808 --> 00:04:25.107
+00:04:20.498 --> 00:04:24.797
 The CISO decides what each plane
 must emit, in the logging plan.
 
 66
-00:04:25.107 --> 00:04:28.783
+00:04:24.797 --> 00:04:28.473
 Each platform owner decides
 how, and keeps it switched on.
 
 67
-00:04:28.783 --> 00:04:32.070
+00:04:28.473 --> 00:04:31.760
 Next, keeping it on
 while everything changes.
 
 68
-00:04:35.820 --> 00:04:38.570
+00:04:35.510 --> 00:04:38.260
 Modernization is a long run of changes,
 
 69
-00:04:38.570 --> 00:04:42.008
+00:04:38.260 --> 00:04:41.698
 and change is exactly when
 telemetry goes quiet.
 
 70
-00:04:42.008 --> 00:04:46.645
+00:04:41.698 --> 00:04:46.335
 New resources can be born silent
 unless policy forces them to emit.
 
 71
-00:04:46.645 --> 00:04:49.770
+00:04:46.335 --> 00:04:49.460
 Older ones only get fixed when
 someone runs the cleanup.
 
 72
-00:04:49.770 --> 00:04:53.183
+00:04:49.460 --> 00:04:52.873
 Retired resources leave
 stale settings behind.
 
 73
-00:04:53.183 --> 00:04:58.295
+00:04:52.873 --> 00:04:57.985
 And the security console itself is
 moving to a new portal by March 2027.
 
 74
-00:04:58.295 --> 00:05:01.032
+00:04:57.985 --> 00:05:00.722
 The lesson is to check flow, not settings.
 
 75
-00:05:01.032 --> 00:05:04.795
+00:05:00.722 --> 00:05:04.485
 A setting that saved without error
 doesn't prove anything arrived.
 
 76
-00:05:04.795 --> 00:05:09.767
+00:05:04.485 --> 00:05:09.457
 So the decision: platform owners keep
 every plane emitting through each change,
 
 77
-00:05:09.767 --> 00:05:12.705
+00:05:09.457 --> 00:05:12.395
 security engineering
 checks freshness daily,
 
 78
-00:05:12.705 --> 00:05:16.245
+00:05:12.395 --> 00:05:15.935
 and an unexplained loss of logs
 is treated as an incident.
 
 79
-00:05:16.245 --> 00:05:18.410
+00:05:15.935 --> 00:05:18.100
 Next, the SIEM decision.
 
 80
-00:05:22.160 --> 00:05:26.610
+00:05:21.850 --> 00:05:26.300
 The SIEM decision is less about which
 product and more about how it behaves.
 
 81
-00:05:26.610 --> 00:05:29.964
+00:05:26.300 --> 00:05:29.654
 A log store on its own is a
 warehouse; scheduled rules,
 
 82
-00:05:29.964 --> 00:05:33.397
+00:05:29.654 --> 00:05:33.087
 incidents and automation
 make it a detection engine.
 
 83
-00:05:33.397 --> 00:05:35.347
+00:05:33.087 --> 00:05:35.037
 The program's split is design.
 
 84
-00:05:35.347 --> 00:05:39.811
+00:05:35.037 --> 00:05:39.501
 Your endpoint and identity protection
 tools detect what their own sensors see.
 
 85
-00:05:39.811 --> 00:05:43.214
+00:05:39.501 --> 00:05:42.904
 The SIEM covers everything
 they can't, like DNS,
 
 86
-00:05:43.214 --> 00:05:46.710
+00:05:42.904 --> 00:05:46.400
 network services,
 databases and other clouds.
 
 87
-00:05:46.710 --> 00:05:50.213
+00:05:46.400 --> 00:05:49.903
 And you only stream raw data
 where a rule actually needs it,
 
 88
-00:05:50.213 --> 00:05:52.110
+00:05:49.903 --> 00:05:51.800
 because streaming costs money.
 
 89
-00:05:52.110 --> 00:05:56.097
+00:05:51.800 --> 00:05:55.787
 Check each feature in your own government
 cloud before you design on it.
 
 90
-00:05:56.097 --> 00:06:00.110
+00:05:55.787 --> 00:05:59.800
 Security engineering sets that
 division, with one incident queue.
 
 91
-00:06:00.110 --> 00:06:02.420
+00:05:59.800 --> 00:06:02.110
 Next, how long to keep it all.
 
 92
-00:06:06.170 --> 00:06:08.763
+00:06:05.860 --> 00:06:08.453
 Retention is really two decisions.
 
 93
-00:06:08.763 --> 00:06:10.752
+00:06:08.453 --> 00:06:10.442
 First, the security floor.
 
 94
-00:06:10.752 --> 00:06:15.387
+00:06:10.442 --> 00:06:15.077
 Data your rules depend on stays in the
 alerting tier for at least six months,
 
 95
-00:06:15.387 --> 00:06:17.703
+00:06:15.077 --> 00:06:17.393
 because only that tier raises alerts.
 
 96
-00:06:17.703 --> 00:06:22.046
+00:06:17.393 --> 00:06:21.736
 Older or high-volume data can live in
 cheaper tiers you can still search,
 
 97
-00:06:22.046 --> 00:06:24.667
+00:06:21.736 --> 00:06:24.357
 and a tamper-proof copy
 serves as evidence.
 
 98
-00:06:24.667 --> 00:06:29.984
+00:06:24.357 --> 00:06:29.674
 Second, disposition: how long beyond the
 floor, and when data can be destroyed.
 
 99
-00:06:29.984 --> 00:06:34.197
+00:06:29.674 --> 00:06:33.887
 That belongs to the records officer,
 not to whoever holds the console.
 
 100
-00:06:34.197 --> 00:06:35.824
+00:06:33.887 --> 00:06:35.514
 So the CISO sets the floor,
 
 101
-00:06:35.824 --> 00:06:40.111
+00:06:35.514 --> 00:06:39.801
 and nobody shortens retention
 without the records officer agreeing,
 
 102
-00:06:40.111 --> 00:06:44.843
+00:06:39.801 --> 00:06:44.533
 because once logs are gone, an investigation
 or a legal hold can't get them back.
 
 103
-00:06:44.843 --> 00:06:46.810
+00:06:44.533 --> 00:06:46.500
 Next, the cost side.
 
 104
-00:06:50.560 --> 00:06:55.410
+00:06:50.250 --> 00:06:55.100
 Here's the uncomfortable truth: most
 visibility gaps are decided in the budget.
 
 105
-00:06:55.410 --> 00:06:59.660
+00:06:55.100 --> 00:06:59.350
 Cheap storage tiers are a sound
 choice for noisy, low-value data.
 
 106
-00:06:59.660 --> 00:07:03.778
+00:06:59.350 --> 00:07:03.468
 The problem comes when a source that
 matters is moved there to save money,
 
 107
-00:07:03.778 --> 00:07:06.660
+00:07:03.468 --> 00:07:06.350
 and nobody records that it
 no longer raises alerts.
 
 108
-00:07:06.660 --> 00:07:09.764
+00:07:06.350 --> 00:07:09.454
 Streaming every raw data
 feed costs money too,
 
 109
-00:07:09.764 --> 00:07:12.460
+00:07:09.454 --> 00:07:12.150
 and audit history depends on licensing.
 
 110
-00:07:12.460 --> 00:07:14.385
+00:07:12.150 --> 00:07:14.075
 So the decision has two halves.
 
 111
-00:07:14.385 --> 00:07:20.285
+00:07:14.075 --> 00:07:19.975
 The CIO funds ingestion and retention as
 a visibility decision, not a storage line.
 
 112
-00:07:20.285 --> 00:07:23.756
+00:07:19.975 --> 00:07:23.446
 And when a detection source
 does leave the alerting tier,
 
 113
-00:07:23.756 --> 00:07:28.335
+00:07:23.446 --> 00:07:28.025
 that's recorded as a gap, which the
 authorizing official accepts or rejects.
 
 114
-00:07:28.335 --> 00:07:30.910
+00:07:28.025 --> 00:07:30.600
 Next, what happens to findings.
 
 115
-00:07:34.660 --> 00:07:37.285
+00:07:34.350 --> 00:07:36.975
 Detection is only one kind of finding.
 
 116
-00:07:37.285 --> 00:07:41.144
+00:07:36.975 --> 00:07:40.834
 A missing patch, a known
 exploited flaw, a drifted setting,
 
 117
-00:07:41.144 --> 00:07:45.085
+00:07:40.834 --> 00:07:44.775
 an exposed storage account: they
 all go into the same queue.
 
 118
-00:07:45.085 --> 00:07:46.710
+00:07:44.775 --> 00:07:46.400
 And the clock changed this year.
 
 119
-00:07:46.710 --> 00:07:49.337
+00:07:46.400 --> 00:07:49.027
 CISA's directive BOD 26-04, from June,
 
 120
-00:07:49.337 --> 00:07:54.592
+00:07:49.027 --> 00:07:54.282
 replaced the old rules with four
 questions about each vulnerable asset:
 
 121
-00:07:54.592 --> 00:07:57.919
+00:07:54.282 --> 00:07:57.609
 is it exposed, is the flaw
 known to be exploited,
 
 122
-00:07:57.919 --> 00:08:02.298
+00:07:57.609 --> 00:08:01.988
 can the attack be automated, and
 how much control does it give.
 
 123
-00:08:02.298 --> 00:08:06.198
+00:08:01.988 --> 00:08:05.888
 The answers set deadlines from
 three days up to the next upgrade.
 
 124
-00:08:06.198 --> 00:08:09.434
+00:08:05.888 --> 00:08:09.124
 Remember, a scanner
 measures; it never fixes.
 
 125
-00:08:09.434 --> 00:08:11.904
+00:08:09.124 --> 00:08:11.594
 The system owner remediates on that clock,
 
 126
-00:08:11.904 --> 00:08:15.148
+00:08:11.594 --> 00:08:14.838
 and a missed deadline goes
 to the authorizing official.
 
 127
-00:08:15.148 --> 00:08:17.150
+00:08:14.838 --> 00:08:16.840
 Now, who runs all this.
 
 128
-00:08:20.900 --> 00:08:22.987
+00:08:20.590 --> 00:08:22.677
 Most agencies can name their SOC.
 
 129
-00:08:22.987 --> 00:08:27.008
+00:08:22.677 --> 00:08:26.698
 Fewer can say who decided what gets
 collected, how long it's kept,
 
 130
-00:08:27.008 --> 00:08:30.100
+00:08:26.698 --> 00:08:29.790
 or who accepted the risk
 when a source went quiet.
 
 131
-00:08:30.100 --> 00:08:32.300
+00:08:29.790 --> 00:08:31.990
 Usually it's whoever held the console.
 
 132
-00:08:32.300 --> 00:08:34.813
+00:08:31.990 --> 00:08:34.503
 The book's model
 separates those decisions.
 
 133
-00:08:34.813 --> 00:08:36.663
+00:08:34.503 --> 00:08:36.353
 The SOC runs the queue.
 
 134
-00:08:36.663 --> 00:08:39.661
+00:08:36.353 --> 00:08:39.351
 The CIO funds it, the
 CISO sets requirements,
 
 135
-00:08:39.661 --> 00:08:45.174
+00:08:39.351 --> 00:08:44.864
 platform owners keep logs flowing, and
 the authorizing official accepts the risk.
 
 136
-00:08:45.174 --> 00:08:49.250
+00:08:44.864 --> 00:08:48.940
 And because every system inherits
 monitoring from the SOC,
 
 137
-00:08:49.250 --> 00:08:53.325
+00:08:48.940 --> 00:08:53.015
 the SOC's own controls need to
 be assessed like anyone else's.
 
 138
-00:08:53.325 --> 00:08:56.250
+00:08:53.015 --> 00:08:55.940
 The first decision belongs to the CIO:
 
 139
-00:08:56.250 --> 00:09:01.062
+00:08:55.940 --> 00:09:00.752
 designate one top-level SOC, decide
 how it's staffed, and fund it.
 
 140
-00:09:01.062 --> 00:09:03.320
+00:09:00.752 --> 00:09:03.010
 Next, the full matrix.
 
 141
-00:09:07.070 --> 00:09:09.008
+00:09:06.760 --> 00:09:08.698
 Here's the matrix in one view.
 
 142
-00:09:09.008 --> 00:09:11.546
+00:09:08.698 --> 00:09:11.236
 The CIO decides scope and funding.
 
 143
-00:09:11.546 --> 00:09:15.312
+00:09:11.236 --> 00:09:15.002
 The CISO decides the logging
 plan, what each plane emits,
 
 144
-00:09:15.312 --> 00:09:19.320
+00:09:15.002 --> 00:09:19.010
 the retention floor, and any
 automated action on production.
 
 145
-00:09:19.320 --> 00:09:22.208
+00:09:19.010 --> 00:09:21.898
 The SOC decides triage and closure.
 
 146
-00:09:22.208 --> 00:09:25.794
+00:09:21.898 --> 00:09:25.484
 Security engineering owns
 each detection rule,
 
 147
-00:09:25.794 --> 00:09:30.008
+00:09:25.484 --> 00:09:29.698
 and every rule has one named
 owner, a test and a review date.
 
 148
-00:09:30.008 --> 00:09:32.583
+00:09:29.698 --> 00:09:32.273
 The records officer decides disposition.
 
 149
-00:09:32.583 --> 00:09:35.444
+00:09:32.273 --> 00:09:35.134
 And the authorizing
 official decides the risks.
 
 150
-00:09:35.444 --> 00:09:37.335
+00:09:35.134 --> 00:09:37.025
 One row has a federal clock:
 
 151
-00:09:37.335 --> 00:09:42.232
+00:09:37.025 --> 00:09:41.922
 the SOC must notify CISA within one
 hour of identifying an incident.
 
 152
-00:09:42.232 --> 00:09:45.285
+00:09:41.922 --> 00:09:44.975
 There's no time to send
 that decision up and back,
 
 153
-00:09:45.285 --> 00:09:49.120
+00:09:44.975 --> 00:09:48.810
 so the SOC owns it, while the
 CISO decides whether it's major.
 
 154
-00:09:49.120 --> 00:09:52.200
+00:09:48.810 --> 00:09:51.890
 Next, the risks nobody signs for.
 
 155
-00:09:55.950 --> 00:09:58.638
+00:09:55.640 --> 00:09:58.328
 Only the authorizing
 official can accept risk,
 
 156
-00:09:58.638 --> 00:10:00.913
+00:09:58.328 --> 00:10:00.603
 and that includes the risk of not seeing.
 
 157
-00:10:00.913 --> 00:10:04.901
+00:10:00.603 --> 00:10:04.591
 Four risks tend to get accepted
 silently by whoever is closest:
 
 158
-00:10:04.901 --> 00:10:09.350
+00:10:04.591 --> 00:10:09.040
 a source that isn't collected, a noisy
 rule switched off with no end date,
 
 159
-00:10:09.350 --> 00:10:13.338
+00:10:09.040 --> 00:10:13.028
 retention that's too short, and a
 fix that will miss its deadline.
 
 160
-00:10:13.338 --> 00:10:15.125
+00:10:13.028 --> 00:10:14.815
 Each one should be written up,
 
 161
-00:10:15.125 --> 00:10:18.400
+00:10:14.815 --> 00:10:18.090
 recommended by the CISO, and
 decided with an end date.
 
 162
-00:10:18.400 --> 00:10:21.462
+00:10:18.090 --> 00:10:21.152
 And security operations
 keeps its own roles apart.
 
 163
-00:10:21.462 --> 00:10:24.156
+00:10:21.152 --> 00:10:23.846
 A contractor can prepare
 a risk acceptance,
 
 164
-00:10:24.156 --> 00:10:26.850
+00:10:23.846 --> 00:10:26.540
 but only the authorizing
 official signs it.
 
 165
-00:10:26.850 --> 00:10:30.348
+00:10:26.540 --> 00:10:30.038
 The rule: an exception with
 an end date is the CISO's;
 
 166
-00:10:30.348 --> 00:10:33.512
+00:10:30.038 --> 00:10:33.202
 one without goes to the
 authorizing official.
 
 167
-00:10:33.512 --> 00:10:35.300
+00:10:33.202 --> 00:10:34.990
 Now, how to respond.
 
 168
-00:10:39.050 --> 00:10:41.425
+00:10:38.740 --> 00:10:41.115
 A rule nobody owns slowly rots.
 
 169
-00:10:41.425 --> 00:10:44.493
+00:10:41.115 --> 00:10:44.183
 So the program keeps its
 detection rules as code,
 
 170
-00:10:44.493 --> 00:10:48.175
+00:10:44.183 --> 00:10:47.865
 under version control, and nobody
 edits a live rule by hand.
 
 171
-00:10:48.175 --> 00:10:51.877
+00:10:47.865 --> 00:10:51.567
 Every rule follows the same
 path: tested against history,
 
 172
-00:10:51.877 --> 00:10:55.895
+00:10:51.567 --> 00:10:55.585
 run quietly in alert-only mode
 while false alarms are counted,
 
 173
-00:10:55.895 --> 00:10:58.258
+00:10:55.585 --> 00:10:57.948
 promoted once its response is wired,
 
 174
-00:10:58.258 --> 00:11:03.300
+00:10:57.948 --> 00:11:02.990
 then reviewed on a schedule to check it
 still fires and its data still arrives.
 
 175
-00:11:03.300 --> 00:11:04.950
+00:11:02.990 --> 00:11:04.640
 Be honest about the limits.
 
 176
-00:11:04.950 --> 00:11:08.068
+00:11:04.640 --> 00:11:07.758
 Detection takes minutes
 to hours, not seconds,
 
 177
-00:11:08.068 --> 00:11:11.187
+00:11:07.758 --> 00:11:10.877
 and without steady upkeep
 the library decays.
 
 178
-00:11:11.187 --> 00:11:15.925
+00:11:10.877 --> 00:11:15.615
 The decision: security engineering runs
 the library this way, with the CISO
 
 179
-00:11:15.925 --> 00:11:20.738
+00:11:15.615 --> 00:11:20.428
 setting priorities, and no rule opens
 incidents before it has passed through.
 
 180
-00:11:20.738 --> 00:11:22.620
+00:11:20.428 --> 00:11:22.310
 Next, response.
 
 181
-00:11:26.370 --> 00:11:29.732
+00:11:26.060 --> 00:11:29.422
 Detection without response
 doesn't reduce your exposure.
 
 182
-00:11:29.732 --> 00:11:34.295
+00:11:29.422 --> 00:11:33.985
 But automation without a gate can
 turn one noisy rule into an outage.
 
 183
-00:11:34.295 --> 00:11:36.045
+00:11:33.985 --> 00:11:35.735
 So responses climb a ladder.
 
 184
-00:11:36.045 --> 00:11:37.958
+00:11:35.735 --> 00:11:37.648
 Every alert is recorded.
 
 185
-00:11:37.958 --> 00:11:41.457
+00:11:37.648 --> 00:11:41.147
 Medium confidence gets context
 and an analyst decides.
 
 186
-00:11:41.457 --> 00:11:45.744
+00:11:41.147 --> 00:11:45.434
 High confidence gets a prepared
 containment, released by a named approver.
 
 187
-00:11:45.744 --> 00:11:50.208
+00:11:45.434 --> 00:11:49.898
 Fully automatic action is only for
 a short list of low-risk cases.
 
 188
-00:11:50.208 --> 00:11:54.434
+00:11:49.898 --> 00:11:54.124
 Three things always keep a person
 in the loop: isolating a server,
 
 189
-00:11:54.434 --> 00:11:59.219
+00:11:54.124 --> 00:11:58.909
 disabling a privileged or emergency
 account, and any tenant-wide change.
 
 190
-00:11:59.219 --> 00:12:03.796
+00:11:58.909 --> 00:12:03.486
 The decision: the CISO approves every
 playbook that acts on production, and the
 
 191
-00:12:03.796 --> 00:12:06.291
+00:12:03.486 --> 00:12:05.981
 authorizing official decides whether the
 
 192
-00:12:06.291 --> 00:12:08.995
+00:12:05.981 --> 00:12:08.685
 vendor's own automatic
 containment is allowed.
 
 193
-00:12:08.995 --> 00:12:10.730
+00:12:08.685 --> 00:12:10.420
 Next, evidence.
 
 194
-00:12:14.480 --> 00:12:18.217
+00:12:14.170 --> 00:12:17.907
 Continuous monitoring isn't a
 claim that monitoring happens.
 
 195
-00:12:18.217 --> 00:12:21.180
+00:12:17.907 --> 00:12:20.870
 It's evidence an assessor
 can check, and run again.
 
 196
-00:12:21.180 --> 00:12:25.530
+00:12:20.870 --> 00:12:25.220
 The practical test is simple: show me
 an alert from the last thirty days,
 
 197
-00:12:25.530 --> 00:12:28.455
+00:12:25.220 --> 00:12:28.145
 the incident it opened
 and what you did about it.
 
 198
-00:12:28.455 --> 00:12:32.338
+00:12:28.145 --> 00:12:32.028
 So every incident keeps four
 parts: the alert, the ticket,
 
 199
-00:12:32.338 --> 00:12:35.630
+00:12:32.028 --> 00:12:35.320
 the response notes, and
 a closure with its proof.
 
 200
-00:12:35.630 --> 00:12:38.018
+00:12:35.320 --> 00:12:37.708
 Closing a finding takes three steps.
 
 201
-00:12:38.018 --> 00:12:39.829
+00:12:37.708 --> 00:12:39.519
 The platform owner fixes it.
 
 202
-00:12:39.829 --> 00:12:42.142
+00:12:39.519 --> 00:12:41.832
 The next scan or check shows it's gone.
 
 203
-00:12:42.142 --> 00:12:43.817
+00:12:41.832 --> 00:12:43.507
 And the record links the two.
 
 204
-00:12:43.817 --> 00:12:49.205
+00:12:43.507 --> 00:12:48.895
 The decision: a finding closes only on
 that re-test, never on a ticket status.
 
 205
-00:12:49.205 --> 00:12:52.750
+00:12:48.895 --> 00:12:52.440
 Next, how you know the
 monitoring itself is working.
 
 206
-00:12:56.500 --> 00:12:58.994
+00:12:56.190 --> 00:12:58.683
 You need a small set of
 metrics that tell you
 
 207
-00:12:58.994 --> 00:13:01.487
+00:12:58.683 --> 00:13:01.177
 whether monitoring works,
 not how busy it is.
 
 208
-00:13:01.487 --> 00:13:05.887
+00:13:01.177 --> 00:13:05.577
 Coverage counts the required activities
 a working rule actually reads,
 
 209
-00:13:05.887 --> 00:13:07.500
+00:13:05.577 --> 00:13:07.190
 not how many rules you have.
 
 210
-00:13:07.500 --> 00:13:11.175
+00:13:07.190 --> 00:13:10.865
 Completeness counts how long a
 required source stayed silent.
 
 211
-00:13:11.175 --> 00:13:16.325
+00:13:10.865 --> 00:13:16.015
 Vulnerability remediation counts fixes
 closed on time, and fixes overdue.
 
 212
-00:13:16.325 --> 00:13:20.533
+00:13:16.015 --> 00:13:20.223
 Configuration counts passes,
 failures and exceptions separately,
 
 213
-00:13:20.533 --> 00:13:22.937
+00:13:20.223 --> 00:13:22.627
 so an exception never looks like a pass.
 
 214
-00:13:22.937 --> 00:13:26.876
+00:13:22.627 --> 00:13:26.566
 And maturity is reported by
 system, at its weakest point.
 
 215
-00:13:26.876 --> 00:13:31.483
+00:13:26.566 --> 00:13:31.173
 The decision belongs to the CISO:
 adopt the metric set and the rhythm,
 
 216
-00:13:31.483 --> 00:13:36.575
+00:13:31.173 --> 00:13:36.265
 with the SOC seeing it daily, and the
 CISO and authorizing official monthly.
 
 217
-00:13:36.575 --> 00:13:38.800
+00:13:36.265 --> 00:13:38.490
 Let's pull the decisions together.
 
 218
-00:13:42.550 --> 00:13:44.125
+00:13:42.240 --> 00:13:43.815
 So, the decisions.
 
 219
-00:13:44.125 --> 00:13:49.145
+00:13:43.815 --> 00:13:48.835
 The CISO owns the logging plan due November
 18, decides what each plane emits,
 
 220
-00:13:49.145 --> 00:13:52.597
+00:13:48.835 --> 00:13:52.287
 counts a source as monitored
 only when a rule reads it,
 
 221
-00:13:52.597 --> 00:13:55.813
+00:13:52.287 --> 00:13:55.503
 and approves any automated
 action on production.
 
 222
-00:13:55.813 --> 00:14:00.933
+00:13:55.503 --> 00:14:00.623
 The CIO funds visibility, not storage,
 and designates one top-level SOC.
 
 223
-00:14:00.933 --> 00:14:05.525
+00:14:00.623 --> 00:14:05.215
 Platform owners keep their logs
 flowing through every change.
 
 224
-00:14:05.525 --> 00:14:09.188
+00:14:05.215 --> 00:14:08.878
 Security engineering runs the
 detection library as code.
 
 225
-00:14:09.188 --> 00:14:12.663
+00:14:08.878 --> 00:14:12.353
 The records officer must agree
 before retention shrinks.
 
 226
-00:14:12.663 --> 00:14:15.563
+00:14:12.353 --> 00:14:15.253
 The SOC notifies CISA within the hour.
 
 227
-00:14:15.563 --> 00:14:20.337
+00:14:15.253 --> 00:14:20.027
 And the authorizing official decides
 every open-ended gap and missed deadline.
 
 228
-00:14:20.337 --> 00:14:23.000
+00:14:20.027 --> 00:14:22.690
 A gap nobody chose is still a decision.
 
 229
-00:14:23.000 --> 00:14:24.275
+00:14:22.690 --> 00:14:23.965
 Make it on purpose.
 
 230
-00:14:24.275 --> 00:14:29.400
+00:14:23.965 --> 00:14:29.090
 Security Operations and Telemetry has
 the detail, every claim footnoted.
 
 231
-00:14:29.400 --> 00:14:30.210
+00:14:29.090 --> 00:14:29.900
 Thank you.

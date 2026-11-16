@@ -1047,76 +1047,76 @@ check, read on November 6,
 before each new partner.
 
 217
-00:15:24.505 --> 00:15:26.460
+00:15:24.505 --> 00:15:26.250
 For an agency tenant in GCC,
 
 218
-00:15:26.460 --> 00:15:31.614
+00:15:26.250 --> 00:15:30.849
 entitlement management and connected
 organizations are available,
 
 219
-00:15:31.614 --> 00:15:36.591
-and a partner in GCC High or DoD
-connects as Entra ID in another cloud,
+00:15:30.849 --> 00:15:35.766
+and a partner in another Microsoft cloud
+connects as Entra ID in that cloud,
 
 220
-00:15:36.591 --> 00:15:39.968
+00:15:35.766 --> 00:15:38.780
 with both tenants enabling
 each other's cloud.
 
 221
-00:15:39.968 --> 00:15:45.048
+00:15:38.780 --> 00:15:43.860
 B2B direct connect isn't supported across
 clouds, and Teams doesn't support external
 
 222
-00:15:45.048 --> 00:15:50.056
+00:15:43.860 --> 00:15:48.868
 members across clouds, so check each
 application's government service description.
 
 223
-00:15:50.056 --> 00:15:52.542
+00:15:48.868 --> 00:15:51.355
 Cross-cloud sync carries users only.
 
 224
-00:15:52.542 --> 00:15:55.604
+00:15:51.355 --> 00:15:54.417
 Several things are honestly
 marked not verified.
 
 225
-00:15:55.604 --> 00:15:58.948
+00:15:54.417 --> 00:15:57.760
 Whether cross-cloud sync
 is generally available:
 
 226
-00:15:58.948 --> 00:16:02.943
+00:15:57.760 --> 00:16:01.755
 one Microsoft page called it
 public preview in August 2025.
 
 227
-00:16:02.943 --> 00:16:05.993
+00:16:01.755 --> 00:16:04.805
 The FedRAMP boundary rules
 for each feature used.
 
 228
-00:16:05.993 --> 00:16:09.117
+00:16:04.805 --> 00:16:07.930
 The records schedules for
 agreements and reviews.
 
 229
-00:16:09.117 --> 00:16:14.631
+00:16:07.930 --> 00:16:13.443
 And the SP 800-63C-4 planning note.
 
 230
-00:16:14.631 --> 00:16:17.018
+00:16:13.443 --> 00:16:15.831
 Confirm each before you rely on it.
 
 231
-00:16:17.018 --> 00:16:22.217
+00:16:15.831 --> 00:16:21.030
 The chapter, the record and the Entra
 profile carry every command and footnote.
 
 232
-00:16:22.217 --> 00:16:23.040
+00:16:21.030 --> 00:16:21.860
 Thank you.

@@ -298,6 +298,10 @@
   "title": "Endpoint security settings, and the crosswalk traps",
   "links": [
    {
+    "text": "ASR rules reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-reference"
+   },
+   {
     "text": "Book 05, Ch 08",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b05-devices/08-gpo-to-intune-policy-migration.html"
    },
@@ -462,10 +466,6 @@
    {
     "text": "Key Security Indicators",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
-   },
-   {
-    "text": "Intune government service",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
    },
    {
     "text": "Graph national clouds",

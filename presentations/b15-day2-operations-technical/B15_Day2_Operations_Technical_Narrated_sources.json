@@ -320,6 +320,10 @@
   "title": "Duplicates, stale CIs and what they break",
   "links": [
    {
+    "text": "DeviceInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
+   },
+   {
     "text": "NIST SP 800-53",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
    },
@@ -340,6 +344,10 @@
    {
     "text": "BOD 25-01",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Management Activity API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-management-activity-api"
    },
    {
     "text": "Book 15, Ch 08",

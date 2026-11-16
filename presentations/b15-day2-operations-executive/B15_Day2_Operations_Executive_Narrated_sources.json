@@ -116,6 +116,10 @@
   "title": "One front door, routed by the authority a task needs",
   "links": [
    {
+    "text": "Section 508",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#usc-29-794d-govinfo"
+   },
+   {
     "text": "CISA AA23-320A",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aa23-320a"
    },

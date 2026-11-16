@@ -1144,426 +1144,426 @@ and the login is dropped only after thirty
 more days show nothing depends on it.
 
 238
-00:16:29.508 --> 00:16:33.950
+00:16:29.508 --> 00:16:31.070
 And close an enabled SA here:
 disable it and rename it.
 
 239
-00:16:37.700 --> 00:16:42.869
+00:16:31.070 --> 00:16:36.239
 Module 5 covers the last five runbooks:
 NTLM, groups and the Conditional
 
 240
-00:16:42.869 --> 00:16:48.300
+00:16:36.239 --> 00:16:41.670
 Access perimeter, applications,
 continuous monitoring, and certificates.
 
 241
-00:16:48.300 --> 00:16:53.550
+00:16:41.670 --> 00:16:46.920
 Detection stays read-only, and every change
 is dry-run first through change control.
 
 242
-00:16:53.550 --> 00:16:57.940
+00:16:46.920 --> 00:16:51.310
 By the end, the posture is
 provable on every scheduled run.
 
 243
-00:17:01.690 --> 00:17:04.444
+00:16:55.060 --> 00:16:57.814
 Runbook R06 is detect, then remediate,
 
 244
-00:17:04.444 --> 00:17:10.040
+00:16:57.814 --> 00:17:03.410
 and most of what you find is a missing or
 misplaced name, not a protocol choice.
 
 245
-00:17:10.040 --> 00:17:13.796
+00:17:03.410 --> 00:17:07.166
 In the program's experience,
 a missing SPN is the most
 
 246
-00:17:13.796 --> 00:17:17.902
+00:17:07.166 --> 00:17:11.272
 common cause of silent NTLM,
 and a duplicate is the second.
 
 247
-00:17:17.902 --> 00:17:23.402
+00:17:11.272 --> 00:17:16.772
 Three read-only audits map the SPNs, the
 collisions and the delegation settings.
 
 248
-00:17:23.402 --> 00:17:28.427
+00:17:16.772 --> 00:17:21.797
 Remediation changes production, so the
 tools only produce reviewable plans.
 
 249
-00:17:28.427 --> 00:17:33.139
+00:17:21.797 --> 00:17:26.509
 Register missing SPNs, leave each
 one with exactly one enabled owner,
 
 250
-00:17:33.139 --> 00:17:36.197
+00:17:26.509 --> 00:17:29.567
 and move linked servers
 to Entra or Kerberos,
 
 251
-00:17:36.197 --> 00:17:39.916
+00:17:29.567 --> 00:17:33.286
 with a stored password only
 as a documented exception.
 
 252
-00:17:39.916 --> 00:17:43.470
+00:17:33.286 --> 00:17:36.840
 The Group Policy steps tighten in stages,
 
 253
-00:17:43.470 --> 00:17:46.815
+00:17:36.840 --> 00:17:40.185
 with the full block
 last, on April 1, 2027.
 
 254
-00:17:46.815 --> 00:17:50.852
+00:17:40.185 --> 00:17:44.222
 Verify from a remote client that
 the connection reads Kerberos.
 
 255
-00:17:50.852 --> 00:17:56.470
+00:17:44.222 --> 00:17:49.840
 Because the block comes last, the fixes
 are proven long before anything is refused.
 
 256
-00:18:00.220 --> 00:18:03.940
+00:17:53.590 --> 00:17:57.310
 Runbook R07 moves the
 access-control layer.
 
 257
-00:18:03.940 --> 00:18:05.637
+00:17:57.310 --> 00:17:59.007
 The group model survives.
 
 258
-00:18:05.637 --> 00:18:09.601
+00:17:59.007 --> 00:18:02.971
 What changes is who maintains
 membership, who can administer it,
 
 259
-00:18:09.601 --> 00:18:12.218
+00:18:02.971 --> 00:18:05.588
 and the boundary every
 sign-in has to cross.
 
 260
-00:18:12.218 --> 00:18:17.401
+00:18:05.588 --> 00:18:10.771
 Phase 1 is read-only: export the groups
 and the Conditional Access policies,
 
 261
-00:18:17.401 --> 00:18:23.091
+00:18:10.771 --> 00:18:16.461
 and classify every group into one of four
 types, from organizational unit (OU)-based
 
 262
-00:18:23.091 --> 00:18:28.617
+00:18:16.461 --> 00:18:21.987
 groups that become dynamic, to distribution
 lists that never get a SQL login.
 
 263
-00:18:28.617 --> 00:18:30.314
+00:18:21.987 --> 00:18:23.684
 Phase 2 has a fixed order.
 
 264
-00:18:30.314 --> 00:18:34.139
+00:18:23.684 --> 00:18:27.509
 Create the DBA administrative
 unit with restricted management
 
 265
-00:18:34.139 --> 00:18:37.476
+00:18:27.509 --> 00:18:30.846
 turned on at creation, because
 that can't be changed later.
 
 266
-00:18:37.476 --> 00:18:42.139
+00:18:30.846 --> 00:18:35.509
 Then scope the DBA lead's admin role
 to it through PIM, and add the groups.
 
 267
-00:18:42.139 --> 00:18:47.083
+00:18:35.509 --> 00:18:40.453
 The payoff: once every login is an Entra
 principal, Conditional Access becomes
 
 268
-00:18:47.083 --> 00:18:51.930
+00:18:40.453 --> 00:18:45.300
 the perimeter for human access, which
 the pilot needs to confirm for Arc.
 
 269
-00:18:55.680 --> 00:18:58.343
+00:18:49.050 --> 00:18:51.713
 Runbook R08 is the last mile.
 
 270
-00:18:58.343 --> 00:19:03.160
+00:18:51.713 --> 00:18:56.530
 An application that signs users in with
 Entra ID but reaches the database with
 
 271
-00:19:03.160 --> 00:19:07.830
+00:18:56.530 --> 00:19:01.200
 a stored password has moved its front
 door and left the back door where it was.
 
 272
-00:19:07.830 --> 00:19:11.572
+00:19:01.200 --> 00:19:04.942
 Phase 1 inventories which
 applications still bind to LDAP,
 
 273
-00:19:11.572 --> 00:19:15.539
+00:19:04.942 --> 00:19:08.909
 using domain controller logs, and
 joins that to the audit so each
 
 274
-00:19:15.539 --> 00:19:19.580
+00:19:08.909 --> 00:19:12.950
 application gets a class and a
 planned connection-string change.
 
 275
-00:19:19.580 --> 00:19:23.055
+00:19:12.950 --> 00:19:16.425
 Phase 2 is the simplest
 change and the most gated.
 
 276
-00:19:23.055 --> 00:19:26.730
+00:19:16.425 --> 00:19:20.100
 It's made in application
 configuration, never by a script.
 
 277
-00:19:26.730 --> 00:19:31.230
+00:19:20.100 --> 00:19:24.600
 In production, name a specific
 authentication mode rather than the default,
 
 278
-00:19:31.230 --> 00:19:34.730
+00:19:24.600 --> 00:19:28.100
 which tries providers in sequence
 and can switch identity.
 
 279
-00:19:34.730 --> 00:19:39.019
+00:19:28.100 --> 00:19:32.389
 Three gates come before cutover: the
 login exists, it has the right role,
 
 280
-00:19:39.019 --> 00:19:42.642
+00:19:32.389 --> 00:19:36.012
 and the change was tested on
 a production-equivalent stack.
 
 281
-00:19:42.642 --> 00:19:45.300
+00:19:36.012 --> 00:19:38.670
 Rollback is the old connection string.
 
 282
-00:19:49.050 --> 00:19:52.175
+00:19:42.420 --> 00:19:45.545
 Runbook R09 keeps proving the posture.
 
 283
-00:19:52.175 --> 00:19:54.436
+00:19:45.545 --> 00:19:47.806
 Closure isn't a day on the calendar;
 
 284
-00:19:54.436 --> 00:19:59.363
+00:19:47.806 --> 00:19:52.733
 it's a record that keeps coming back
 clean, and everything here is read-only.
 
 285
-00:19:59.363 --> 00:20:01.417
+00:19:52.733 --> 00:19:54.787
 The deep audit runs on a schedule,
 
 286
-00:20:01.417 --> 00:20:06.134
+00:19:54.787 --> 00:19:59.504
 and each run is projected onto the
 per-instance closure record, which comes
 
 287
-00:20:06.134 --> 00:20:10.775
+00:19:59.504 --> 00:20:04.145
 out closed, closed with an exception,
 or open, with the failing fields named.
 
 288
-00:20:10.775 --> 00:20:14.227
+00:20:04.145 --> 00:20:07.597
 The difference between two
 runs becomes drift events,
 
 289
-00:20:14.227 --> 00:20:18.062
+00:20:07.597 --> 00:20:11.432
 like mixed mode turned back on
 or the Arc agent going offline.
 
 290
-00:20:18.062 --> 00:20:22.900
+00:20:11.432 --> 00:20:16.270
 One caution: a registry change is
 invisible until the service restarts.
 
 291
-00:20:22.900 --> 00:20:25.636
+00:20:16.270 --> 00:20:19.006
 On top of that sits a behavioral layer,
 
 292
-00:20:25.636 --> 00:20:30.050
+00:20:19.006 --> 00:20:23.420
 where any NTLM or Kerberos
 connection is an immediate alert.
 
 293
-00:20:30.050 --> 00:20:35.037
+00:20:23.420 --> 00:20:28.408
 When six evidence sets hold together
 across the validation period,
 
 294
-00:20:35.037 --> 00:20:40.400
+00:20:28.408 --> 00:20:33.770
 the transformation is closed, and
 April 1, 2027 arrives as a non-event.
 
 295
-00:20:44.150 --> 00:20:47.387
+00:20:37.520 --> 00:20:40.757
 Runbook R10 is discovery,
 not provisioning.
 
 296
-00:20:47.387 --> 00:20:51.238
+00:20:40.757 --> 00:20:44.608
 Before anyone sets a date to switch
 off the certificate authority,
 
 297
-00:20:51.238 --> 00:20:53.688
+00:20:44.608 --> 00:20:47.058
 someone has to find out
 what it still signs.
 
 298
-00:20:53.688 --> 00:20:59.312
+00:20:47.058 --> 00:20:52.682
 The PKI and Certificates book has made
 the decision: a retained AD CS hierarchy
 
 299
-00:20:59.312 --> 00:21:04.763
+00:20:52.682 --> 00:20:58.133
 for internal server certificates, and
 Cloud PKI for Intune-managed devices.
 
 300
-00:21:04.763 --> 00:21:07.544
+00:20:58.133 --> 00:21:00.914
 So this runbook gathers
 the evidence for how
 
 301
-00:21:07.544 --> 00:21:10.401
+00:21:00.914 --> 00:21:03.771
 it applies to each SQL Server certificate.
 
 302
-00:21:10.401 --> 00:21:14.520
+00:21:03.771 --> 00:21:07.890
 A read-only audit records the
 issuing CA on every certificate,
 
 303
-00:21:14.520 --> 00:21:16.863
+00:21:07.890 --> 00:21:10.233
 with a few checks inside the engine.
 
 304
-00:21:16.863 --> 00:21:18.601
+00:21:10.233 --> 00:21:11.971
 Then three dependencies.
 
 305
-00:21:18.601 --> 00:21:21.264
+00:21:11.971 --> 00:21:14.633
 The engine's TLS certificate matters most,
 
 306
-00:21:21.264 --> 00:21:24.688
+00:21:14.633 --> 00:21:18.058
 because every Entra connection
 requires encryption.
 
 307
-00:21:24.688 --> 00:21:28.587
+00:21:18.058 --> 00:21:21.957
 Certificate-mapped logins carry
 less risk than the source claimed.
 
 308
-00:21:28.587 --> 00:21:30.692
+00:21:21.957 --> 00:21:24.062
 And certificate-based sign-in,
 
 309
-00:21:30.692 --> 00:21:35.574
+00:21:24.062 --> 00:21:28.944
 the interim answer for the NTLM long
 tail, needs a replacement CA first.
 
 310
-00:21:35.574 --> 00:21:38.090
+00:21:28.944 --> 00:21:31.460
 The finding comes down to one question:
 
 311
-00:21:38.090 --> 00:21:41.312
+00:21:31.460 --> 00:21:34.682
 does AD CS retire before
 its replacement is ready?
 
 312
-00:21:41.312 --> 00:21:45.480
+00:21:34.682 --> 00:21:38.850
 If so, the interim posture is
 lost exactly when it's needed.
 
 313
-00:21:49.230 --> 00:21:52.180
+00:21:42.600 --> 00:21:45.550
 To close, five things to
 take back to the estate.
 
 314
-00:21:52.180 --> 00:21:55.393
+00:21:45.550 --> 00:21:48.763
 Count before you migrate,
 because migrating an instance
 
 315
-00:21:55.393 --> 00:21:58.742
+00:21:48.763 --> 00:21:52.112
 you should have retired is wasted
 work against a fixed date.
 
 316
-00:21:58.742 --> 00:22:05.217
+00:21:52.112 --> 00:21:58.587
 Measure, don't assume, because a missing
 SPN turns Kerberos into NTLM silently.
 
 317
-00:22:05.217 --> 00:22:11.630
+00:21:58.587 --> 00:22:05.000
 Keep it reversible: create, validate,
 disable, observe for thirty days, then drop.
 
 318
-00:22:11.630 --> 00:22:14.824
+00:22:05.000 --> 00:22:08.194
 Finish the chain, because an
 instance isn't closed while
 
 319
-00:22:14.824 --> 00:22:18.018
+00:22:08.194 --> 00:22:11.388
 an application still reaches
 it with a stored password.
 
 320
-00:22:18.018 --> 00:22:22.767
+00:22:11.388 --> 00:22:16.137
 And prove it continuously, so done is a
 queryable posture rather than a claim.
 
 321
-00:22:22.767 --> 00:22:26.717
+00:22:16.137 --> 00:22:20.087
 April 1, 2027 is the program's backstop.
 
 322
-00:22:26.717 --> 00:22:29.009
+00:22:20.087 --> 00:22:22.379
 If the work is finished well before it,
 
 323
-00:22:29.009 --> 00:22:33.518
+00:22:22.379 --> 00:22:26.888
 and the evidence has been clean for
 months, the block arrives as a non-event.
 
 324
-00:22:33.518 --> 00:22:37.120
+00:22:26.888 --> 00:22:30.490
 Data Platform has the chapters
 and all ten runbooks,
 
 325
-00:22:37.120 --> 00:22:39.717
+00:22:30.490 --> 00:22:33.087
 with every external claim footnoted.
 
 326
-00:22:39.717 --> 00:22:40.540
+00:22:33.087 --> 00:22:33.910
 Thank you.

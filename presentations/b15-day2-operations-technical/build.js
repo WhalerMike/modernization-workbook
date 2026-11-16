@@ -376,7 +376,7 @@ Every reset triggers a notice through a channel other than the one recovered, an
 {
   const s = content(P1, "Close with evidence: three records that must agree");
   tag(s, "Who");
-  table(s, "Fields", 1.5, [2.45, 3.85], ["Field the ticket carries", "Why"], [
+  table(s, "Fields", 1.5, [2.4, 3.65], ["Field the ticket carries", "Why"], [
     ["Requester, UPN, request", "Who asked, and for what"],
     ["Authority class, triage outcome", "Why it took this pipeline"],
     ["Approval chain, names, times", "Who decided; not the requester or executor"],
@@ -564,7 +564,7 @@ The answer is a catalog: every routine change is a typed request against a named
 {
   const s = content(P2, "The identity catalog: ten items, five verbs");
   tag(s, "What");
-  table(s, "Catalog", 1.5, [2.35, 0.85, 2.95], ["Catalog item", "Control", "Approval gate (design guidance)"], [
+  table(s, "Catalog", 1.5, [2.3, 0.8, 2.85], ["Catalog item", "Control", "Approval gate (design guidance)"], [
     ["Joiner", "AC-2", "Manager and identity team"],
     ["Mover", "AC-6", "Manager and identity team"],
     ["Leaver", "AC-2", "Manager and identity team"],

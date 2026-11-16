@@ -553,35 +553,36 @@ to the Azure DNS Private Resolver.
 Not the private zone.
 
 118
-00:07:09.325 --> 00:07:12.090
-And Azure Government uses
-different zone names,
+00:07:09.325 --> 00:07:11.880
+And use Microsoft's
+recommended zone names,
 
 119
-00:07:12.090 --> 00:07:14.163
-so commercial rules don't carry over.
+00:07:11.880 --> 00:07:15.500
+because records are generated
+automatically only for those.
 
 120
-00:07:14.163 --> 00:07:17.492
+00:07:15.500 --> 00:07:18.829
 The Private Resolver is a
 bridge, not an authority,
 
 121
-00:07:17.492 --> 00:07:22.526
+00:07:18.829 --> 00:07:23.863
 so you reach it by forwarding, never by
 delegation, and deploy one per region.
 
 122
-00:07:22.526 --> 00:07:24.775
+00:07:23.863 --> 00:07:26.112
 Addresses need the same discipline,
 
 123
-00:07:24.775 --> 00:07:29.875
+00:07:26.112 --> 00:07:31.212
 with the enterprise IPAM as the authority
 and the clouds reconciled against it.
 
 124
-00:07:29.875 --> 00:07:33.200
+00:07:31.212 --> 00:07:34.540
 Put it together, and you
 get one governed path.
 
@@ -944,31 +945,31 @@ authorization and which run
 inside the agency's own boundary.
 
 200
-00:12:16.132 --> 00:12:20.483
+00:12:16.132 --> 00:12:19.370
 And a Moderate authorization
-doesn't cover GCC High or DoD.
+doesn't cover High systems.
 
 201
-00:12:20.483 --> 00:12:22.346
+00:12:19.370 --> 00:12:21.233
 Some risk remains either way.
 
 202
-00:12:22.346 --> 00:12:25.457
+00:12:21.233 --> 00:12:24.345
 Sync lag becomes the new
 source of divergence.
 
 203
-00:12:25.457 --> 00:12:29.482
+00:12:24.345 --> 00:12:28.370
 A management outage blocks changes,
 though resolution keeps working.
 
 204
-00:12:29.482 --> 00:12:34.996
+00:12:28.370 --> 00:12:33.883
 And encrypted DNS bypass stays possible
 where endpoint controls are incomplete.
 
 205
-00:12:34.996 --> 00:12:36.980
+00:12:33.883 --> 00:12:35.880
 So, the decisions.
 
 206

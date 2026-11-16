@@ -156,6 +156,10 @@
   "title": "Forward the public zone to one point in Azure",
   "links": [
    {
+    "text": "Private Endpoint DNS integration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-endpoint-dns-integration"
+   },
+   {
     "text": "endpoints and rulesets",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-dns-private-resolver-endpoints-and"
    },
@@ -180,6 +184,10 @@
    {
     "text": "Cisco Catalyst SD-WAN redirect DNS",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisco-sdwan-redirect-dns"
+   },
+   {
+    "text": "Private Endpoint DNS integration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-endpoint-dns-integration"
    },
    {
     "text": "Book 08, Chapter 08",
@@ -257,10 +265,6 @@
   "slide": 13,
   "title": "Choose on evidence, price the meters, record the risk",
   "links": [
-   {
-    "text": "Azure Retail Prices API",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-retail-prices-api"
-   },
    {
     "text": "FedRAMP Marketplace dataset",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"

@@ -310,10 +310,6 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
    },
    {
-    "text": "Planning identity for Azure Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
-   },
-   {
     "text": "Book 06",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/index.html"
    }
@@ -370,10 +366,6 @@
    {
     "text": "Entra authentication setup",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tutorial-set-up-microsoft-entra"
-   },
-   {
-    "text": "Arc in US Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc-in-us"
    },
    {
     "text": "azcmagent connect",

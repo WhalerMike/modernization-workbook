@@ -42,10 +42,6 @@
   "title": "Why the gap stays invisible, and the example corrected",
   "links": [
    {
-    "text": "Intune for US Government service description",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
-   },
-   {
     "text": "Adoption Score",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-adoption-score"
    },
@@ -226,8 +222,8 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-365-informed-network-routing"
    },
    {
-    "text": "Windows release health",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-check-windows-release-health"
+    "text": "GCC service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#office-365-gcc"
    },
    {
     "text": "Book 10, Ch. 04",

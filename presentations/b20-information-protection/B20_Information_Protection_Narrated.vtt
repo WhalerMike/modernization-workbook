@@ -787,362 +787,353 @@ and authentication contexts on labeled
 sites are on the engineering backlog.
 
 164
-00:10:52.545 --> 00:10:55.833
-GCC High and DoD are side notes.
+00:10:52.545 --> 00:10:57.039
+And where a feature is in development
+or not yet specified for GCC,
 
 165
-00:10:55.833 --> 00:11:01.315
-Their clients need DNS records to reach
-the government Rights Management service,
+00:10:57.039 --> 00:11:01.283
+the tenant treats it as unavailable
+until Microsoft lists it.
 
 166
-00:11:01.315 --> 00:11:04.572
-DoD doesn't list Advanced
-Message Encryption yet,
-
-167
-00:11:04.572 --> 00:11:09.021
-and two Learn pages disagree on
-Insider Risk Management in GCC High.
-
-168
-00:11:09.021 --> 00:11:12.250
+00:11:01.283 --> 00:11:04.512
 The rule for all of it: a
 license or cloud gap goes
 
-169
-00:11:12.250 --> 00:11:15.645
+167
+00:11:04.512 --> 00:11:07.907
 in a decision record, with
 a compensating control.
 
-170
-00:11:15.645 --> 00:11:18.640
+168
+00:11:07.907 --> 00:11:10.910
 It's a dependency, never a failed control.
 
-171
-00:11:22.390 --> 00:11:25.509
+169
+00:11:14.660 --> 00:11:17.779
 Information protection
 fails quietly when the
 
-172
-00:11:25.509 --> 00:11:28.940
+170
+00:11:17.779 --> 00:11:21.210
 person who decides is also
 the person who configures.
 
-173
-00:11:28.940 --> 00:11:32.977
+171
+00:11:21.210 --> 00:11:25.247
 The book uses six roles,
 by name, in every chapter.
 
-174
-00:11:32.977 --> 00:11:37.897
+172
+00:11:25.247 --> 00:11:30.167
 The policy owner, typically the C U I
 program manager, with the privacy official
 
-175
-00:11:37.897 --> 00:11:42.514
+173
+00:11:30.167 --> 00:11:34.784
 and the records officer, decides what
 the data is and how it must be handled.
 
-176
-00:11:42.514 --> 00:11:45.401
+174
+00:11:34.784 --> 00:11:37.671
 The platform owner, the
 Purview engineering lead,
 
-177
-00:11:45.401 --> 00:11:48.640
+175
+00:11:37.671 --> 00:11:40.910
 is accountable for the
 configuration and its baseline.
 
-178
-00:11:48.640 --> 00:11:51.852
+176
+00:11:40.910 --> 00:11:44.122
 The operator makes each change
 through change control.
 
-179
-00:11:51.852 --> 00:11:55.027
+177
+00:11:44.122 --> 00:11:47.297
 The security monitor
 triages alerts every day.
 
-180
-00:11:55.027 --> 00:11:56.883
+178
+00:11:47.297 --> 00:11:49.153
 The help desk answers users,
 
-181
-00:11:56.883 --> 00:12:00.916
+179
+00:11:49.153 --> 00:11:53.186
 and never removes a label or
 decrypts a file to close a ticket.
 
-182
-00:12:00.916 --> 00:12:05.334
+180
+00:11:53.186 --> 00:11:57.604
 And the assessor, the ISSO and the
 independent assessor, is accountable
 
-183
-00:12:05.334 --> 00:12:10.128
+181
+00:11:57.604 --> 00:12:02.398
 for the evidence package, while closure
 stays with the authorizing official.
 
-184
-00:12:10.128 --> 00:12:12.103
+182
+00:12:02.398 --> 00:12:04.373
 Three separations keep it honest.
 
-185
-00:12:12.103 --> 00:12:14.853
+183
+00:12:04.373 --> 00:12:07.123
 Owners decide and
 administrators configure.
 
-186
-00:12:14.853 --> 00:12:17.892
+184
+00:12:07.123 --> 00:12:10.162
 Super user recovery answers
 to the policy owner,
 
-187
-00:12:17.892 --> 00:12:20.703
+185
+00:12:10.162 --> 00:12:12.973
 because it reads content
 that owner governs.
 
-188
-00:12:20.703 --> 00:12:25.280
+186
+00:12:12.973 --> 00:12:17.550
 And in insider risk, no one both
 administers and investigates.
 
-189
-00:12:29.030 --> 00:12:33.817
+187
+00:12:21.300 --> 00:12:26.087
 Every control in the book follows the
 same path, and every step has a way back.
 
-190
-00:12:33.817 --> 00:12:35.356
+188
+00:12:26.087 --> 00:12:27.626
 Start with an inventory.
 
-191
-00:12:35.356 --> 00:12:40.067
+189
+00:12:27.626 --> 00:12:32.337
 Purview's content explorer exports
 where sensitive information types and
 
-192
-00:12:40.067 --> 00:12:44.705
+190
+00:12:32.337 --> 00:12:36.975
 labels already sit, one type at a time,
 so the rollout starts where the risk is.
 
-193
-00:12:44.705 --> 00:12:46.586
+191
+00:12:36.975 --> 00:12:38.856
 Treat it as a dated snapshot:
 
-194
-00:12:46.586 --> 00:12:51.330
+192
+00:12:38.856 --> 00:12:43.600
 counts can take up to seven days to
 update, and fourteen for SharePoint.
 
-195
-00:12:51.330 --> 00:12:54.815
+193
+00:12:43.600 --> 00:12:47.085
 Then a signed decision record,
 and the build, as code,
 
-196
-00:12:54.815 --> 00:12:59.793
+194
+00:12:47.085 --> 00:12:52.063
 in a test tenant first, because some
 label changes can't be cleanly undone.
 
-197
-00:12:59.793 --> 00:13:01.004
+195
+00:12:52.063 --> 00:12:53.274
 Then a pilot ring.
 
-198
-00:13:01.004 --> 00:13:04.080
+196
+00:12:53.274 --> 00:12:56.350
 For D L P, simulation is the pilot.
 
-199
-00:13:04.080 --> 00:13:09.555
+197
+00:12:56.350 --> 00:13:01.825
 It runs for up to fifteen days and keeps
 its data for thirty, so export the matches.
 
-200
-00:13:09.555 --> 00:13:14.384
+198
+00:13:01.825 --> 00:13:06.654
 It evaluates existing SharePoint and
 OneDrive content, but only new mail,
 
-201
-00:13:14.384 --> 00:13:18.817
+199
+00:13:06.654 --> 00:13:11.087
 Teams and device activity, so let
 those run through a business cycle.
 
-202
-00:13:18.817 --> 00:13:22.792
+200
+00:13:11.087 --> 00:13:15.062
 Then enforce ring by ring, and
 validate with a labeled sample.
 
-203
-00:13:22.792 --> 00:13:26.892
+201
+00:13:15.062 --> 00:13:19.162
 And rollback never means deleting
 a label, because content keeps it.
 
-204
-00:13:26.892 --> 00:13:28.920
+202
+00:13:19.162 --> 00:13:21.190
 You unpublish it instead.
 
-205
-00:13:32.670 --> 00:13:35.808
+203
+00:13:24.940 --> 00:13:28.078
 Everything ends in evidence
 an assessor can inspect.
 
-206
-00:13:35.808 --> 00:13:41.149
+204
+00:13:28.078 --> 00:13:33.419
 The baseline is one dated export of the
 labels, label policies, auto-labeling,
 
-207
-00:13:41.149 --> 00:13:46.320
+205
+00:13:33.419 --> 00:13:38.590
 D L P, audit status and the Rights
 Management configuration, taken monthly.
 
-208
-00:13:46.320 --> 00:13:49.666
+206
+00:13:38.590 --> 00:13:41.936
 Drift is any difference no
 change ticket explains,
 
-209
-00:13:49.666 --> 00:13:54.445
+207
+00:13:41.936 --> 00:13:46.715
 and drift that weakens a control on C
 U I goes to the authorizing official.
 
-210
-00:13:54.445 --> 00:13:58.951
+208
+00:13:46.715 --> 00:13:51.221
 The book carries three rows of the
 Zero Trust Assessment closure map,
 
-211
-00:13:58.951 --> 00:14:01.007
+209
+00:13:51.221 --> 00:13:53.277
 each with its minimum evidence.
 
-212
-00:14:01.007 --> 00:14:06.270
+210
+00:13:53.277 --> 00:13:58.540
 No labels, defaults or containers needs
 a policy export and a labeled sample.
 
-213
-00:14:06.270 --> 00:14:09.119
+211
+00:13:58.540 --> 00:14:01.389
 Rights Management and
 mail encryption need an
 
-214
-00:14:09.119 --> 00:14:11.895
+212
+00:14:01.389 --> 00:14:04.165
 encrypted test and the
 transport-rule export.
 
-215
-00:14:11.895 --> 00:14:14.845
+213
+00:14:04.165 --> 00:14:07.115
 Audit gaps need searchable
 synthetic events.
 
-216
-00:14:14.845 --> 00:14:18.093
+214
+00:14:07.115 --> 00:14:10.363
 And the metrics measure
 protection, not settings:
 
-217
-00:14:18.093 --> 00:14:22.847
+215
+00:14:10.363 --> 00:14:15.117
 the labeled share of sensitive content,
 container coverage of C U I sites,
 
-218
-00:14:22.847 --> 00:14:26.095
+216
+00:14:15.117 --> 00:14:18.365
 true-positive and override
 rates, and test passes.
 
-219
-00:14:26.095 --> 00:14:30.608
+217
+00:14:18.365 --> 00:14:22.878
 A policy that's on and catches nothing
 scores no better than one that's off.
 
-220
-00:14:30.608 --> 00:14:33.510
+218
+00:14:22.878 --> 00:14:25.780
 The package supports
 the controls it maps to;
 
-221
-00:14:33.510 --> 00:14:36.930
+219
+00:14:25.780 --> 00:14:29.200
 the assessor or authorizing
 official decides.
 
-222
-00:14:40.680 --> 00:14:42.055
+220
+00:14:32.950 --> 00:14:34.325
 So, four decisions.
 
-223
-00:14:42.055 --> 00:14:47.122
+221
+00:14:34.325 --> 00:14:39.392
 Name the classes and their owners: a small
 register built from the C U I Registry,
 
-224
-00:14:47.122 --> 00:14:51.955
+222
+00:14:39.392 --> 00:14:44.225
 the Privacy Act and records schedules,
 with an outcome an assessor can test.
 
-225
-00:14:51.955 --> 00:14:56.475
+223
+00:14:44.225 --> 00:14:48.745
 Publish a small taxonomy with safe
 defaults: non-encrypting defaults,
 
-226
-00:14:56.475 --> 00:14:59.593
+224
+00:14:48.745 --> 00:14:51.863
 mandatory labeling, and
 three container labels.
 
-227
-00:14:59.593 --> 00:15:02.997
+225
+00:14:51.863 --> 00:14:55.267
 Keep a tested way back in:
 the super user feature off,
 
-228
-00:15:02.997 --> 00:15:07.780
+226
+00:14:55.267 --> 00:15:00.050
 recovery through an approved role,
 and a decryption test every quarter.
 
-229
-00:15:07.780 --> 00:15:12.578
+227
+00:15:00.050 --> 00:15:04.848
 And decide AI and evidence before rollout:
 which labels Copilot may process,
 
-230
-00:15:12.578 --> 00:15:17.605
+228
+00:15:04.848 --> 00:15:09.875
 what oversharing gets fixed first, and a
 monthly baseline the assessor can read.
 
-231
-00:15:17.605 --> 00:15:19.755
+229
+00:15:09.875 --> 00:15:12.025
 The next step needs no new tooling.
 
-232
-00:15:19.755 --> 00:15:22.732
+230
+00:15:12.025 --> 00:15:15.002
 Draft the class register
 and the decision records,
 
-233
-00:15:22.732 --> 00:15:26.277
+231
+00:15:15.002 --> 00:15:18.547
 run a dated inventory with what
 the tenant already licenses,
 
-234
-00:15:26.277 --> 00:15:30.105
+232
+00:15:18.547 --> 00:15:22.375
 and confirm each feature for your
 own cloud before planning on it.
 
-235
-00:15:30.105 --> 00:15:32.268
+233
+00:15:22.375 --> 00:15:24.538
 Protection has to travel with the data.
 
-236
-00:15:32.268 --> 00:15:37.781
+234
+00:15:24.538 --> 00:15:30.051
 Information Protection and Microsoft Purview
 has the detail, every claim footnoted.
 
-237
-00:15:37.781 --> 00:15:41.293
+235
+00:15:30.051 --> 00:15:33.563
 It's a draft, so check it again
 after the editor's review.
 
-238
-00:15:41.293 --> 00:15:42.120
+236
+00:15:33.563 --> 00:15:34.390
 Thank you.

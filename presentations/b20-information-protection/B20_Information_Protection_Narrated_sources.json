@@ -237,20 +237,8 @@
  },
  {
   "slide": 10,
-  "title": "Government cloud: GCC first, then the side notes",
+  "title": "Government cloud: what GCC has",
   "links": [
-   {
-    "text": "Plan for Microsoft Purview: GCC",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-gcc-plan"
-   },
-   {
-    "text": "GCC High",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-gcc-high-plan"
-   },
-   {
-    "text": "DoD deployments",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-dod-plan"
-   },
    {
     "text": "Microsoft Purview service description",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-service-description"

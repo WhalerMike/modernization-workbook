@@ -70,6 +70,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
    },
    {
+    "text": "Appendix B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/appendix-b-identity-and-application-detections.html"
+   },
+   {
     "text": "Azure Policy remediation",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#remediate-non-compliant-resources-with-azure"
    },

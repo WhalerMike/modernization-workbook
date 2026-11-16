@@ -251,826 +251,821 @@ on controls you already implement.
 Now, what the federal rules actually say.
 
 54
-00:03:17.420 --> 00:03:20.833
+00:03:17.470 --> 00:03:20.883
 Federal AI policy was rewritten in 2025.
 
 55
-00:03:20.833 --> 00:03:26.143
+00:03:20.883 --> 00:03:26.193
 One OMB memo, M twenty-five twenty-one,
 governs use: a Chief AI Officer,
 
 56
-00:03:26.143 --> 00:03:31.744
+00:03:26.193 --> 00:03:31.794
 an annual use-case inventory, and
 minimum practices for high-impact AI.
 
 57
-00:03:31.744 --> 00:03:37.047
+00:03:31.794 --> 00:03:37.097
 Its companion, M twenty-five twenty-two,
 governs buying AI, and says plainly that
 
 58
-00:03:37.047 --> 00:03:42.757
+00:03:37.097 --> 00:03:42.807
 AI run as an information system needs an
 authorization to operate before it deploys.
 
 59
-00:03:42.757 --> 00:03:45.784
+00:03:42.807 --> 00:03:45.834
 The 2026 executive orders harden federal
 
 60
-00:03:45.784 --> 00:03:49.244
+00:03:45.834 --> 00:03:49.294
 systems and change
 vocabulary, not obligations.
 
 61
-00:03:49.244 --> 00:03:51.883
+00:03:49.294 --> 00:03:51.933
 What the rules don't do
 matters just as much.
 
 62
-00:03:51.883 --> 00:03:54.176
+00:03:51.933 --> 00:03:54.226
 There's no AI-specific authorization,
 
 63
-00:03:54.176 --> 00:03:57.208
+00:03:54.226 --> 00:03:57.258
 and the memo sets no identity
 requirements at all.
 
 64
-00:03:57.208 --> 00:03:59.444
+00:03:57.258 --> 00:03:59.494
 So don't build a second approval track.
 
 65
-00:03:59.444 --> 00:04:02.450
+00:03:59.494 --> 00:04:02.500
 Put the AI system's accounts
 in the boundary your
 
 66
-00:04:02.450 --> 00:04:06.057
+00:04:02.500 --> 00:04:06.107
 authorizing official already
 reviews, before it deploys.
 
 67
-00:04:06.057 --> 00:04:09.080
+00:04:06.107 --> 00:04:09.130
 High-impact AI adds one more signature.
 
 68
-00:04:12.830 --> 00:04:15.668
+00:04:12.880 --> 00:04:15.718
 High-impact AI is the
 kind whose output drives
 
 69
-00:04:15.668 --> 00:04:18.655
+00:04:15.718 --> 00:04:18.705
 decisions with real effects
 on rights or safety.
 
 70
-00:04:18.655 --> 00:04:24.557
+00:04:18.705 --> 00:04:24.607
 For it, the memo requires seven minimum
 practices: testing, an impact assessment,
 
 71
-00:04:24.557 --> 00:04:29.743
+00:04:24.607 --> 00:04:29.793
 monitoring, training, oversight with
 a fail-safe, appeals, and feedback.
 
 72
-00:04:29.743 --> 00:04:32.731
+00:04:29.793 --> 00:04:32.781
 The impact assessment ends
 with a signature from the
 
 73
-00:04:32.731 --> 00:04:35.992
+00:04:32.781 --> 00:04:36.042
 official accepting the risk,
 after an independent review.
 
 74
-00:04:35.992 --> 00:04:37.167
+00:04:36.042 --> 00:04:37.217
 Here's the catch.
 
 75
-00:04:37.167 --> 00:04:41.129
+00:04:37.217 --> 00:04:41.179
 That signature isn't an
 authorization, and the memo says so.
 
 76
-00:04:41.129 --> 00:04:45.323
+00:04:41.179 --> 00:04:45.373
 A high-impact use case needs both:
 the signed risk acceptance and the
 
 77
-00:04:45.323 --> 00:04:49.517
+00:04:45.373 --> 00:04:49.567
 system's authorization to operate,
 often from two different people.
 
 78
-00:04:49.517 --> 00:04:52.962
+00:04:49.567 --> 00:04:53.012
 So the decision is to put both
 decision-makers on the same
 
 79
-00:04:52.962 --> 00:04:56.554
+00:04:53.012 --> 00:04:56.604
 record of what the system is, who
 owns it and what it can reach.
 
 80
-00:04:56.554 --> 00:04:58.460
+00:04:56.604 --> 00:04:58.510
 Where does that record start?
 
 81
-00:05:02.210 --> 00:05:07.260
+00:05:02.260 --> 00:05:07.310
 It starts with the use-case inventory,
 the one AI list every agency keeps.
 
 82
-00:05:07.260 --> 00:05:10.568
+00:05:07.310 --> 00:05:10.618
 Read as identity data, it
 gives you a stable ID,
 
 83
-00:05:10.568 --> 00:05:15.485
+00:05:10.618 --> 00:05:15.535
 an office and a lifecycle stage,
 where retired means a leaver event.
 
 84
-00:05:15.485 --> 00:05:20.560
+00:05:15.535 --> 00:05:20.610
 It leaves blank everything that decides
 what an AI system can touch: the account
 
 85
-00:05:20.560 --> 00:05:25.173
+00:05:20.610 --> 00:05:25.223
 it signs in as, its credential, its
 permissions and its accountable owner.
 
 86
-00:05:25.173 --> 00:05:27.784
+00:05:25.223 --> 00:05:27.834
 And its high-impact fields report status.
 
 87
-00:05:27.784 --> 00:05:33.185
+00:05:27.834 --> 00:05:33.235
 They say yes or in progress; they don't
 carry a log, a document or a name.
 
 88
-00:05:33.185 --> 00:05:35.147
+00:05:33.235 --> 00:05:35.197
 So treat it as the seed list.
 
 89
-00:05:35.147 --> 00:05:39.075
+00:05:35.197 --> 00:05:39.125
 The decision belongs to the
 Chief AI Officer: no use case is
 
 90
-00:05:39.075 --> 00:05:43.822
+00:05:39.125 --> 00:05:43.872
 recorded as piloted or deployed
 without a link to its identity record.
 
 91
-00:05:43.822 --> 00:05:46.120
+00:05:43.872 --> 00:05:46.170
 Next, what kind of identity.
 
 92
-00:05:49.870 --> 00:05:52.633
+00:05:49.920 --> 00:05:52.620
 An AI system's identity isn't the model.
 
 93
-00:05:52.633 --> 00:05:56.369
+00:05:52.620 --> 00:05:56.357
 It's the software around it,
 sorted by whose token it presents.
 
 94
-00:05:56.369 --> 00:05:59.932
+00:05:56.357 --> 00:05:59.919
 A signed-in user's, so it can
 do everything that user can.
 
 95
-00:05:59.932 --> 00:06:02.886
+00:05:59.919 --> 00:06:02.873
 Its own, as a workload or agent identity,
 
 96
-00:06:02.886 --> 00:06:06.670
+00:06:02.873 --> 00:06:06.657
 where today the only policy
 control is to block it.
 
 97
-00:06:06.670 --> 00:06:08.958
+00:06:06.657 --> 00:06:08.946
 Or no token at all, just a key.
 
 98
-00:06:08.958 --> 00:06:14.889
+00:06:08.946 --> 00:06:14.707
 Microsoft's agent identity platform
 became generally available in April 2026,
 
 99
-00:06:14.889 --> 00:06:19.742
+00:06:14.707 --> 00:06:19.683
 but the agent policies are still
-preview, G C C has a partial subset,
+preview, and G C C has a partial subset.
 
 100
-00:06:19.742 --> 00:06:23.607
-and GCC High and DoD have
-no published availability.
-
-101
-00:06:23.607 --> 00:06:27.408
+00:06:19.683 --> 00:06:23.482
 And licensing governance for people
 doesn't license it for agents.
 
-102
-00:06:27.408 --> 00:06:30.951
+101
+00:06:23.482 --> 00:06:27.026
 So the CIO budgets the
 licenses, and every capability
 
-103
-00:06:30.951 --> 00:06:35.020
+102
+00:06:27.026 --> 00:06:31.090
 is confirmed in your own cloud
 before anyone plans on it.
 
-104
-00:06:38.770 --> 00:06:41.866
+103
+00:06:34.840 --> 00:06:37.936
 An agent has no hire date
 and no separation date,
 
-105
-00:06:41.866 --> 00:06:45.120
+104
+00:06:37.936 --> 00:06:41.190
 so its lifecycle has to hang
 from a person who does.
 
-106
-00:06:45.120 --> 00:06:49.745
+105
+00:06:41.190 --> 00:06:45.815
 Left to the defaults, the sponsor is
 whoever built it, often a developer.
 
-107
-00:06:49.745 --> 00:06:54.613
+106
+00:06:45.815 --> 00:06:50.683
 The book's rule is two named humans and
 a record: a federal employee as sponsor,
 
-108
-00:06:54.613 --> 00:06:58.709
+107
+00:06:50.683 --> 00:06:54.779
 a technical owner who holds the
 credentials but never sponsors,
 
-109
-00:06:58.709 --> 00:07:02.032
+108
+00:06:54.779 --> 00:06:58.102
 and an inventory record that
 names the same sponsor.
 
-110
-00:07:02.032 --> 00:07:05.799
+109
+00:06:58.102 --> 00:07:01.869
 When the sponsor leaves,
 sponsorship moves to their manager,
 
-111
-00:07:05.799 --> 00:07:10.470
+110
+00:07:01.869 --> 00:07:06.540
 who has ten business days to confirm,
 or the agent is orphaned and suspended.
 
-112
-00:07:10.470 --> 00:07:13.695
+111
+00:07:06.540 --> 00:07:09.765
 And access expires unless
 the sponsor renews it.
 
-113
-00:07:13.695 --> 00:07:17.771
+112
+00:07:09.765 --> 00:07:13.841
 The decision is the system owner's:
 name that sponsor at creation,
 
-114
-00:07:17.771 --> 00:07:21.140
+113
+00:07:13.841 --> 00:07:17.210
 and move it to the using
 program at publication.
 
-115
-00:07:24.890 --> 00:07:27.601
+114
+00:07:20.960 --> 00:07:23.671
 An agent can't be asked
 for a second factor,
 
-116
-00:07:27.601 --> 00:07:30.790
+115
+00:07:23.671 --> 00:07:26.860
 so everything it may do is
 decided before it asks.
 
-117
-00:07:30.790 --> 00:07:35.990
+116
+00:07:26.860 --> 00:07:32.060
 Credentials first: a managed identity or
 federation, so there's no stored secret;
 
-118
-00:07:35.990 --> 00:07:41.190
+117
+00:07:32.060 --> 00:07:37.260
 a certificate only where neither works;
 and a client secret never in production.
 
-119
-00:07:41.190 --> 00:07:42.440
+118
+00:07:37.260 --> 00:07:38.510
 Then permissions.
 
-120
-00:07:42.440 --> 00:07:45.402
+119
+00:07:38.510 --> 00:07:41.472
 Microsoft blocks the very
 top roles for agents,
 
-121
-00:07:45.402 --> 00:07:49.352
+120
+00:07:41.472 --> 00:07:45.422
 but still lets one hold Exchange
 or SharePoint administrator.
 
-122
-00:07:49.352 --> 00:07:51.677
+121
+00:07:45.422 --> 00:07:47.747
 That's a floor, not least privilege.
 
-123
-00:07:51.677 --> 00:07:56.188
+122
+00:07:47.747 --> 00:07:52.258
 So the book's rule is no standing
 privileged role for any AI identity,
 
-124
-00:07:56.188 --> 00:07:59.733
+123
+00:07:52.258 --> 00:07:55.803
 and a policy that blocks
 every agent not yet approved,
 
-125
-00:07:59.733 --> 00:08:02.552
+124
+00:07:55.803 --> 00:07:58.622
 kept in report-only mode
 while it's preview.
 
-126
-00:08:02.552 --> 00:08:04.578
+125
+00:07:58.622 --> 00:08:00.648
 The CISO sets those requirements,
 
-127
-00:08:04.578 --> 00:08:09.200
+126
+00:08:00.648 --> 00:08:05.270
 and identity engineering builds them,
 before the first production agent.
 
-128
-00:08:12.950 --> 00:08:17.025
+127
+00:08:09.020 --> 00:08:13.095
 An AI identity nobody watches
 drifts the day after it's issued,
 
-129
-00:08:17.025 --> 00:08:20.062
+128
+00:08:13.095 --> 00:08:16.132
 and AI nobody declared
 is drift from the start.
 
-130
-00:08:20.062 --> 00:08:23.589
+129
+00:08:16.132 --> 00:08:19.659
 So the program compares three
 things: what was declared,
 
-131
-00:08:23.589 --> 00:08:27.575
+130
+00:08:19.659 --> 00:08:23.645
 what known identities are seen
 doing, and what discovery finds.
 
-132
-00:08:27.575 --> 00:08:31.756
+131
+00:08:23.645 --> 00:08:27.826
 Shadow AI shows up in four
 places: AI services staff use,
 
-133
-00:08:31.756 --> 00:08:38.075
+132
+00:08:27.826 --> 00:08:34.145
 apps holding consented access, agents on
 endpoints, and AI built in your own clouds.
 
-134
-00:08:38.075 --> 00:08:42.025
+133
+00:08:34.145 --> 00:08:38.095
 No single tool sees all four,
 and none sees a static key.
 
-135
-00:08:42.025 --> 00:08:45.168
+134
+00:08:38.095 --> 00:08:41.238
 Each gap becomes a finding
 with an owner and a clock,
 
-136
-00:08:45.168 --> 00:08:47.488
+135
+00:08:41.238 --> 00:08:43.558
 and the serious ones halt for a person.
 
-137
-00:08:47.488 --> 00:08:50.324
+136
+00:08:43.558 --> 00:08:46.394
 Security operations contains shadow AI.
 
-138
-00:08:50.324 --> 00:08:56.062
+137
+00:08:46.394 --> 00:08:52.132
 Then the system owner decides its future,
 or the CIO, when it belongs to no system.
 
-139
-00:08:56.062 --> 00:08:57.550
+138
+00:08:52.132 --> 00:08:53.620
 So who owns it?
 
-140
-00:09:01.300 --> 00:09:05.824
+139
+00:08:57.370 --> 00:09:01.894
 Ask who owns an agent's identity and the
 AI office points at the identity team,
 
-141
-00:09:05.824 --> 00:09:07.619
+140
+00:09:01.894 --> 00:09:03.689
 the identity team points back,
 
-142
-00:09:07.619 --> 00:09:11.712
+141
+00:09:03.689 --> 00:09:07.782
 and the program office says it
 already signed the impact assessment.
 
-143
-00:09:11.712 --> 00:09:13.451
+142
+00:09:07.782 --> 00:09:09.521
 The answer is two tracks.
 
-144
-00:09:13.451 --> 00:09:16.419
+143
+00:09:09.521 --> 00:09:12.489
 The Chief AI Officer
 owns the declared side:
 
-145
-00:09:16.419 --> 00:09:20.213
+144
+00:09:12.489 --> 00:09:16.283
 the inventory, high-impact
 determinations and waivers.
 
-146
-00:09:20.213 --> 00:09:24.487
+145
+00:09:16.283 --> 00:09:20.557
 The authorizing official alone
 accepts the system's residual risk.
 
-147
-00:09:24.487 --> 00:09:26.566
+146
+00:09:20.557 --> 00:09:22.636
 Neither stands in for the other,
 
-148
-00:09:26.566 --> 00:09:30.963
+147
+00:09:22.636 --> 00:09:27.033
 and AI adds no new authorizing
 official and no new account manager.
 
-149
-00:09:30.963 --> 00:09:34.706
+148
+00:09:27.033 --> 00:09:30.776
 A few separations keep it honest;
 for example, the official who
 
-150
-00:09:34.706 --> 00:09:39.037
+149
+00:09:30.776 --> 00:09:35.107
 waived a practice shouldn't be that
 system's sole authorizing official.
 
-151
-00:09:39.037 --> 00:09:41.475
+150
+00:09:35.107 --> 00:09:37.545
 And one rule underpins everything:
 
-152
-00:09:41.475 --> 00:09:45.676
+151
+00:09:37.545 --> 00:09:41.746
 the identity record exists
 before any credential is issued.
 
-153
-00:09:45.676 --> 00:09:48.610
+152
+00:09:41.746 --> 00:09:44.680
 The identity governance
 officer decides that.
 
-154
-00:09:52.360 --> 00:09:56.097
+153
+00:09:48.430 --> 00:09:52.167
 Here's the matrix in one view,
 with one decider per row.
 
-155
-00:09:56.097 --> 00:10:01.236
+154
+00:09:52.167 --> 00:09:57.306
 The Chief AI Officer owns the inventory,
 the high-impact calls and waivers.
 
-156
-00:10:01.236 --> 00:10:04.672
+155
+00:09:57.306 --> 00:10:00.742
 The use-case risk acceptor
 signs the impact assessment;
 
-157
-00:10:04.672 --> 00:10:07.885
+156
+00:10:00.742 --> 00:10:03.955
 the authorizing official
 signs the authorization.
 
-158
-00:10:07.885 --> 00:10:10.595
+157
+00:10:03.955 --> 00:10:06.665
 The CISO sets the control requirements,
 
-159
-00:10:10.595 --> 00:10:14.582
+158
+00:10:06.665 --> 00:10:10.652
 the CIO owns licenses and shadow
 AI that belongs to no system,
 
-160
-00:10:14.582 --> 00:10:19.285
+159
+00:10:10.652 --> 00:10:15.355
 and the system owner names the sponsor
 and decides what the AI may reach.
 
-161
-00:10:19.285 --> 00:10:21.831
+160
+00:10:15.355 --> 00:10:17.901
 Contractors can build and run agents;
 
-162
-00:10:21.831 --> 00:10:25.772
+161
+00:10:17.901 --> 00:10:21.842
 government officials sponsor,
 authorize and accept risk.
 
-163
-00:10:25.772 --> 00:10:29.422
+162
+00:10:21.842 --> 00:10:25.492
 And because agents change
 quickly, one decision recurs.
 
-164
-00:10:29.422 --> 00:10:33.817
+163
+00:10:25.492 --> 00:10:29.888
 Every new tool, permission, user
 account or model is raised by the system
 
-165
-00:10:33.817 --> 00:10:38.660
+164
+00:10:29.888 --> 00:10:34.730
 owner as a possible significant change,
 and the authorizing official decides.
 
-166
-00:10:38.660 --> 00:10:40.750
+165
+00:10:34.730 --> 00:10:36.820
 Now, finding the gaps.
 
-167
-00:10:44.500 --> 00:10:49.459
+166
+00:10:40.570 --> 00:10:45.529
 The inventory scan is cheap, because it
 reads answers agencies have already given.
 
-168
-00:10:49.459 --> 00:10:54.559
+167
+00:10:45.529 --> 00:10:50.629
 It's useful only if every answer it questions
 ends with an owner who goes and looks.
 
-169
-00:10:54.559 --> 00:10:59.777
+168
+00:10:50.629 --> 00:10:55.847
 Run over the published 2025 file, the
 simple checks hit 72 percent of the live
 
-170
-00:10:59.777 --> 00:11:05.332
+169
+00:10:55.847 --> 00:11:01.402
 entries: more than half give no authorization
 answer, and a third name no contact.
 
-171
-00:11:05.332 --> 00:11:09.227
+170
+00:11:01.402 --> 00:11:05.297
 Those are answers to reconcile,
 not verdicts on agencies.
 
-172
-00:11:09.227 --> 00:11:13.428
+171
+00:11:05.297 --> 00:11:09.498
 The checks that matter most, like
 an agent with no identity record,
 
-173
-00:11:13.428 --> 00:11:16.616
+172
+00:11:09.498 --> 00:11:12.686
 need the directory, so only
 the agency can run them.
 
-174
-00:11:16.616 --> 00:11:21.433
+173
+00:11:12.686 --> 00:11:17.503
 The decision: run the checks on your own
 submission every vintage, agentic and
 
-175
-00:11:21.433 --> 00:11:23.389
+174
+00:11:17.503 --> 00:11:19.459
 authorization findings first,
 
-176
-00:11:23.389 --> 00:11:26.849
+175
+00:11:19.459 --> 00:11:22.919
 and close a finding only when
 a later look shows it fixed.
 
-177
-00:11:26.849 --> 00:11:28.240
+176
+00:11:22.919 --> 00:11:24.310
 And centrally?
 
-178
-00:11:31.990 --> 00:11:34.450
+177
+00:11:28.060 --> 00:11:30.520
 The same answer checks could run once,
 
-179
-00:11:34.450 --> 00:11:37.465
+178
+00:11:30.520 --> 00:11:33.535
 centrally, over every
 agency's published file.
 
-180
-00:11:37.465 --> 00:11:40.478
+179
+00:11:33.535 --> 00:11:36.548
 That's the book's proposal,
 not a federal program.
 
-181
-00:11:40.478 --> 00:11:44.602
+180
+00:11:36.548 --> 00:11:40.672
 It borrows one thing from Continuous
 Diagnostics and Mitigation:
 
-182
-00:11:44.602 --> 00:11:47.827
+181
+00:11:40.672 --> 00:11:43.897
 a central view, with agencies
 doing the remediation.
 
-183
-00:11:47.827 --> 00:11:52.401
+182
+00:11:43.897 --> 00:11:48.471
 But it reads public answers, not tool
 output, so it can't see whether a
 
-184
-00:11:52.401 --> 00:11:57.889
+183
+00:11:48.471 --> 00:11:53.959
 credential exists, rotated or was revoked,
 and it can't see AI nobody inventoried.
 
-185
-00:11:57.889 --> 00:12:02.877
+184
+00:11:53.959 --> 00:11:58.947
 A central scan is a good way to start a
 conversation with every agency at once.
 
-186
-00:12:02.877 --> 00:12:04.440
+185
+00:11:58.947 --> 00:12:00.510
 It isn't a way to finish one.
 
-187
-00:12:04.440 --> 00:12:07.165
+186
+00:12:00.510 --> 00:12:03.235
 Governing the credential
 stays with the agency,
 
-188
-00:12:07.165 --> 00:12:11.000
+187
+00:12:03.235 --> 00:12:07.070
 which brings us to what the
 authorizing official needs to see.
 
-189
-00:12:14.750 --> 00:12:19.487
+188
+00:12:10.820 --> 00:12:15.557
 Every record so far ends up in one
 place: the authorization package.
 
-190
-00:12:19.487 --> 00:12:22.962
+189
+00:12:15.557 --> 00:12:19.032
 First question: whose
 boundary does the AI run in?
 
-191
-00:12:22.962 --> 00:12:28.362
+190
+00:12:19.032 --> 00:12:24.432
 Inside an authorized system, it's a new
 component and a possible significant change.
 
-192
-00:12:28.362 --> 00:12:30.512
+191
+00:12:24.432 --> 00:12:26.582
 On its own, it's a new system.
 
-193
-00:12:30.512 --> 00:12:35.238
+192
+00:12:26.582 --> 00:12:31.308
 On a provider's certified cloud service,
 the certification covers the provider,
 
-194
-00:12:35.238 --> 00:12:39.750
+193
+00:12:31.308 --> 00:12:35.820
 but the identities and grants that
 service creates in your tenant are yours.
 
-195
-00:12:39.750 --> 00:12:44.311
+194
+00:12:35.820 --> 00:12:40.381
 Then the package answers five questions:
 who owns it, how it signs in,
 
-196
-00:12:44.311 --> 00:12:48.125
+195
+00:12:40.381 --> 00:12:44.195
 what it can reach, who's watching,
 and when its access ends.
 
-197
-00:12:48.125 --> 00:12:50.943
+196
+00:12:44.195 --> 00:12:47.013
 One gap to close: the control for services
 
-198
-00:12:50.943 --> 00:12:54.425
+197
+00:12:47.013 --> 00:12:50.495
 authenticating to each
 other isn't in any baseline.
 
-199
-00:12:54.425 --> 00:12:59.780
+198
+00:12:50.495 --> 00:12:55.850
 So the system owner tailors it in, and the
 authorizing official approves the plan.
 
-200
-00:13:03.530 --> 00:13:04.742
+199
+00:12:59.600 --> 00:13:00.812
 Then keep it current.
 
-201
-00:13:04.742 --> 00:13:10.067
+200
+00:13:00.812 --> 00:13:06.137
 AI governance adds three clocks beside the
 annual security testing you already run.
 
-202
-00:13:10.067 --> 00:13:12.331
+201
+00:13:06.137 --> 00:13:08.401
 The inventory, at least once a year.
 
-203
-00:13:12.331 --> 00:13:16.780
+202
+00:13:08.401 --> 00:13:12.850
 The compliance plan, every two
 years, with the next due in 2027,
 
-204
-00:13:16.780 --> 00:13:20.518
+203
+00:13:12.850 --> 00:13:16.588
 and it's easy to miss if you
 only track the inventory.
 
-205
-00:13:20.518 --> 00:13:26.080
+204
+00:13:16.588 --> 00:13:22.150
 And waivers, certified every year and
 reported within thirty days of any change.
 
-206
-00:13:26.080 --> 00:13:30.805
+205
+00:13:22.150 --> 00:13:26.875
 NIST's control overlays for AI aren't
 out yet; there's no public draft.
 
-207
-00:13:30.805 --> 00:13:31.843
+206
+00:13:26.875 --> 00:13:27.913
 So don't wait.
 
-208
-00:13:31.843 --> 00:13:35.168
+207
+00:13:27.913 --> 00:13:31.238
 Tailor the baseline now and
 compare when they're final.
 
-209
-00:13:35.168 --> 00:13:40.313
+208
+00:13:31.238 --> 00:13:36.383
 The decision: every waiver and pilot
 certification becomes a governed exception
 
-210
-00:13:40.313 --> 00:13:45.080
+209
+00:13:36.383 --> 00:13:41.150
 with an expiry date, and one with no end
 date goes to the authorizing official.
 
-211
-00:13:45.080 --> 00:13:47.290
+210
+00:13:41.150 --> 00:13:43.360
 Let's pull the decisions together.
 
-212
-00:13:51.040 --> 00:13:52.615
+211
+00:13:47.110 --> 00:13:48.685
 So, the decisions.
 
-213
-00:13:52.615 --> 00:13:56.359
+212
+00:13:48.685 --> 00:13:52.429
 System owners treat any agent
 with no governed identity
 
-214
-00:13:56.359 --> 00:13:59.465
+213
+00:13:52.429 --> 00:13:55.535
 as a high-priority finding
 the moment it's found.
 
-215
-00:13:59.465 --> 00:14:03.583
+214
+00:13:55.535 --> 00:13:59.653
 Authorizing officials authorize
 AI through the existing process,
 
-216
-00:14:03.583 --> 00:14:07.627
+215
+00:13:59.653 --> 00:14:03.697
 before deployment, with both
 high-impact signatures on one record.
 
-217
-00:14:07.627 --> 00:14:11.315
+216
+00:14:03.697 --> 00:14:07.385
 The Chief AI Officer links
 every live inventory entry
 
-218
-00:14:11.315 --> 00:14:14.840
+217
+00:14:07.385 --> 00:14:10.910
 to an identity record and
 runs the scan each vintage.
 
-219
-00:14:14.840 --> 00:14:17.278
+218
+00:14:10.910 --> 00:14:13.348
 The CIO budgets the licenses.
 
-220
-00:14:17.278 --> 00:14:21.245
+219
+00:14:13.348 --> 00:14:17.315
 System owners name an agency
 employee as every sponsor,
 
-221
-00:14:21.245 --> 00:14:24.953
+220
+00:14:17.315 --> 00:14:21.023
 and raise each new tool or
 model as a possible change.
 
-222
-00:14:24.953 --> 00:14:29.790
+221
+00:14:21.023 --> 00:14:25.860
 The CISO sets the rules: no production
 secrets, no standing privilege.
 
-223
-00:14:29.790 --> 00:14:33.690
+222
+00:14:25.860 --> 00:14:29.760
 And no credential is issued before
 its identity record exists.
 
-224
-00:14:33.690 --> 00:14:35.890
+223
+00:14:29.760 --> 00:14:31.960
 None of this needs a new authorization.
 
-225
-00:14:35.890 --> 00:14:40.153
+224
+00:14:31.960 --> 00:14:36.223
 AI Identity Governance has the
 detail, every claim footnoted.
 
-226
-00:14:40.153 --> 00:14:40.980
+225
+00:14:36.223 --> 00:14:37.050
 Thank you.

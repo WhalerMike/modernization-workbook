@@ -119,507 +119,507 @@ Which brings us to the
 order you do things in.
 
 26
-00:01:31.880 --> 00:01:35.668
+00:01:31.860 --> 00:01:35.648
 This is the spine of the whole
 deck: an order of operations.
 
 27
-00:01:35.668 --> 00:01:40.411
+00:01:35.648 --> 00:01:40.391
 Step zero is securing the governor
 itself, because an SD-WAN controller
 
 28
-00:01:40.411 --> 00:01:44.592
+00:01:40.391 --> 00:01:44.572
 is an internet-facing system with
 authority over every branch.
 
 29
-00:01:44.592 --> 00:01:49.184
+00:01:44.572 --> 00:01:49.164
 Then buy the pipe on measured physics,
 get the governor live and logging,
 
 30
-00:01:49.184 --> 00:01:51.986
+00:01:49.164 --> 00:01:51.966
 decide the boundary change before cutover,
 
 31
-00:01:51.986 --> 00:01:56.811
+00:01:51.966 --> 00:01:56.791
 handle Microsoft 365 through its own
 exception, and register the evidence,
 
 32
-00:01:56.811 --> 00:02:00.780
+00:01:56.791 --> 00:02:00.760
 including CISA's telemetry,
 before any old circuit goes away.
 
 33
-00:02:00.780 --> 00:02:04.514
+00:02:00.760 --> 00:02:04.494
 The book is candid that this
 is an engineering dependency,
 
 34
-00:02:04.514 --> 00:02:08.092
+00:02:04.494 --> 00:02:08.072
 not a mandate, and that's exactly
 why it holds up in review.
 
 35
-00:02:08.092 --> 00:02:09.680
+00:02:08.072 --> 00:02:09.660
 The table is our map.
 
 36
-00:02:09.680 --> 00:02:13.100
+00:02:09.660 --> 00:02:13.080
 Module 1 starts with what
 policy actually says.
 
 37
-00:02:16.850 --> 00:02:19.763
+00:02:16.830 --> 00:02:19.743
 Module 1 is TIC 3.0 in practice.
 
 38
-00:02:19.763 --> 00:02:22.561
+00:02:19.743 --> 00:02:22.541
 Branch decisions get
 argued in policy terms,
 
 39
-00:02:22.561 --> 00:02:27.100
+00:02:22.541 --> 00:02:27.080
 and most of those arguments don't
 survive a careful read of the documents.
 
 40
-00:02:27.100 --> 00:02:29.555
+00:02:27.080 --> 00:02:29.535
 But the opposite mistake
 is just as common:
 
 41
-00:02:29.555 --> 00:02:32.712
+00:02:29.535 --> 00:02:32.692
 assuming technology-neutral
 means requirement-free.
 
 42
-00:02:32.712 --> 00:02:34.328
+00:02:32.692 --> 00:02:34.308
 We'll read what's really there,
 
 43
-00:02:34.328 --> 00:02:38.120
+00:02:34.308 --> 00:02:38.100
 and finish with how token security
 changes where data can live.
 
 44
-00:02:41.830 --> 00:02:45.137
+00:02:41.850 --> 00:02:45.157
 Let's read TIC 3.0 from
 the documents themselves,
 
 45
-00:02:45.137 --> 00:02:47.055
+00:02:45.157 --> 00:02:47.075
 not from what people say about them.
 
 46
-00:02:47.055 --> 00:02:50.159
+00:02:47.075 --> 00:02:50.179
 There are four use cases,
 and no SASE use case;
 
 47
-00:02:50.159 --> 00:02:54.605
+00:02:50.179 --> 00:02:54.625
 CISA's SASE guide describes an
 approach, it doesn't require one.
 
 48
-00:02:54.605 --> 00:02:56.980
+00:02:54.625 --> 00:02:57.000
 What constrains a branch are two rules.
 
 49
-00:02:56.980 --> 00:03:02.593
+00:02:57.000 --> 00:03:02.613
 First, policy enforcement parity: if you
 need a capability anywhere, you need it on
 
 50
-00:03:02.593 --> 00:03:07.955
+00:03:02.613 --> 00:03:07.975
 every path, and that's the only place TIC
 mentions SD-WAN, as something to govern.
 
 51
-00:03:07.955 --> 00:03:12.330
+00:03:07.975 --> 00:03:12.350
 Second, CISA keeps its visibility
 when branches break out locally.
 
 52
-00:03:12.330 --> 00:03:16.605
+00:03:12.350 --> 00:03:16.625
 So technology-neutral gives you
 discretion, with an obligation attached.
 
 53
-00:03:16.605 --> 00:03:20.020
+00:03:16.625 --> 00:03:20.040
 And binding instruments
 sit right beside TIC.
 
 54
-00:03:23.770 --> 00:03:27.670
+00:03:23.790 --> 00:03:27.690
 This slide is the answer to
 "TIC doesn't require anything."
 
 55
-00:03:27.670 --> 00:03:31.395
+00:03:27.690 --> 00:03:31.415
 Four binding obligations land
 directly on branch equipment.
 
 56
-00:03:31.395 --> 00:03:34.804
+00:03:31.415 --> 00:03:34.824
 Egress DNS has to reach
 CISA's Protective DNS.
 
 57
-00:03:34.804 --> 00:03:39.020
+00:03:34.824 --> 00:03:39.040
 Management interfaces can't
 sit exposed on the internet.
 
 58
-00:03:39.020 --> 00:03:42.595
+00:03:39.040 --> 00:03:42.615
 End-of-support edge devices
 come out on a dated schedule.
 
 59
-00:03:42.595 --> 00:03:48.570
+00:03:42.615 --> 00:03:48.590
 And anything terminating TLS or IPsec
 has to support post-quantum key exchange.
 
 60
-00:03:48.570 --> 00:03:52.095
+00:03:48.590 --> 00:03:52.115
 None of them picks a product,
 but together they shape the box.
 
 61
-00:03:52.095 --> 00:03:56.409
+00:03:52.115 --> 00:03:56.429
 The big takeaway is the refresh:
 replacing branch hardware is already a
 
 62
-00:03:56.409 --> 00:04:00.870
+00:03:56.429 --> 00:04:00.890
 dated obligation, so that purchase is
 where the architecture gets chosen.
 
 63
-00:04:00.870 --> 00:04:05.180
+00:04:00.890 --> 00:04:05.200
 Next, the controls an agency
 asserts about its own boundary.
 
 64
-00:04:08.930 --> 00:04:13.030
+00:04:08.950 --> 00:04:13.050
 The hardest test at a branch is
 often one the agency wrote itself.
 
 65
-00:04:13.030 --> 00:04:16.575
+00:04:13.050 --> 00:04:16.595
 Once a branch breaks out locally,
 it's an external boundary,
 
 66
-00:04:16.575 --> 00:04:20.710
+00:04:16.595 --> 00:04:20.730
 and the security plan makes promises
 about it: boundary monitoring,
 
 67
-00:04:20.710 --> 00:04:24.255
+00:04:20.730 --> 00:04:24.275
 a traffic-flow policy per
 service, continuous monitoring.
 
 68
-00:04:24.255 --> 00:04:29.367
+00:04:24.275 --> 00:04:29.387
 Lacking SD-WAN isn't a finding; being
 unable to produce that evidence is.
 
 69
-00:04:29.367 --> 00:04:32.006
+00:04:29.387 --> 00:04:32.026
 On encryption, the book is precise.
 
 70
-00:04:32.006 --> 00:04:36.730
+00:04:32.026 --> 00:04:36.750
 The controls accept TLS or IPsec,
 and nothing in the baselines demands
 
 71
-00:04:36.730 --> 00:04:41.130
+00:04:36.750 --> 00:04:41.150
 an encrypted WAN when the payload
 is already protected end to end.
 
 72
-00:04:41.130 --> 00:04:44.627
+00:04:41.150 --> 00:04:44.647
 Where encryption really
 matters is cleartext protocols,
 
 73
-00:04:44.627 --> 00:04:48.343
+00:04:44.647 --> 00:04:48.363
 so inventory those and treat the
 list as an exposure register.
 
 74
-00:04:48.343 --> 00:04:51.610
+00:04:48.363 --> 00:04:51.630
 Now, what happens to DNS and telemetry.
 
 75
-00:04:55.360 --> 00:04:59.685
+00:04:55.380 --> 00:04:59.705
 When traffic stops passing the old
 access point, three things move with it.
 
 76
-00:04:59.685 --> 00:05:04.098
+00:04:59.705 --> 00:05:04.118
 DNS still has to end at CISA, and
 the trap is quietly forwarding to a
 
 77
-00:05:04.098 --> 00:05:09.072
+00:05:04.118 --> 00:05:09.092
 vendor's look-alike resolver: everything
 works, and you're out of compliance.
 
 78
-00:05:09.072 --> 00:05:15.760
+00:05:09.092 --> 00:05:15.780
 Logging now runs under M-26-14, with
 maturity dates already on the calendar.
 
 79
-00:05:15.760 --> 00:05:19.982
+00:05:15.780 --> 00:05:20.002
 And CISA's telemetry, which used to
 come from sensors on the MTIPS path,
 
 80
-00:05:19.982 --> 00:05:21.948
+00:05:20.002 --> 00:05:21.968
 has to come through CLAW instead.
 
 81
-00:05:21.948 --> 00:05:24.314
+00:05:21.968 --> 00:05:24.334
 The rule the book recommends is simple:
 
 82
-00:05:24.314 --> 00:05:29.197
+00:05:24.334 --> 00:05:29.217
 don't turn off MTIPS until CISA confirms
 the replacement telemetry is flowing.
 
 83
-00:05:29.197 --> 00:05:32.070
+00:05:29.217 --> 00:05:32.090
 Then a quick check on which
 policies are still current.
 
 84
-00:05:35.820 --> 00:05:39.788
+00:05:35.840 --> 00:05:39.808
 A lot of network documents carry
 at least one stale citation,
 
 85
-00:05:39.788 --> 00:05:42.645
+00:05:39.808 --> 00:05:42.665
 so here's where things
 stand in October 2026.
 
 86
-00:05:42.645 --> 00:05:47.713
+00:05:42.665 --> 00:05:47.733
 M-21-31 is gone, older vulnerability
 directives have been replaced,
 
 87
-00:05:47.713 --> 00:05:51.307
+00:05:47.733 --> 00:05:51.327
 and the legacy telecom
 contracts have expired.
 
 88
-00:05:51.307 --> 00:05:53.707
+00:05:51.327 --> 00:05:53.727
 The FedRAMP point matters most day to day.
 
 89
-00:05:53.707 --> 00:05:57.796
+00:05:53.727 --> 00:05:57.816
 FedRAMP certifies a cloud service,
 not the route you take to reach it.
 
 90
-00:05:57.796 --> 00:06:01.570
+00:05:57.816 --> 00:06:01.590
 So when someone refuses a network
 change for FedRAMP reasons,
 
 91
-00:06:01.570 --> 00:06:03.420
+00:06:01.590 --> 00:06:03.440
 ask which control it violates.
 
 92
-00:06:03.420 --> 00:06:06.073
+00:06:03.440 --> 00:06:06.093
 There isn't one, and the
 book treats a refusal
 
 93
-00:06:06.073 --> 00:06:09.020
+00:06:06.093 --> 00:06:09.040
 without a control basis
 as a governance problem.
 
 94
-00:06:09.020 --> 00:06:12.840
+00:06:09.040 --> 00:06:12.860
 Now the data-side idea that
 makes centralization safe.
 
 95
-00:06:16.590 --> 00:06:20.128
+00:06:16.610 --> 00:06:20.148
 This slide explains why network
 people should care about tokens.
 
 96
-00:06:20.128 --> 00:06:24.827
+00:06:20.148 --> 00:06:24.847
 The old reason to split data into many
 stores was isolation by perimeter.
 
 97
-00:06:24.827 --> 00:06:30.367
+00:06:24.847 --> 00:06:30.387
 Tokens remove it: when every request
 carries a verifiable identity, one store can
 
 98
-00:06:30.367 --> 00:06:35.989
+00:06:30.387 --> 00:06:36.009
 safely serve many trust domains, and the
 long-lived database password disappears.
 
 99
-00:06:35.989 --> 00:06:37.778
+00:06:36.009 --> 00:06:37.798
 The physics still applies, though.
 
 100
-00:06:37.778 --> 00:06:41.389
+00:06:37.798 --> 00:06:41.409
 Strong consistency over long
 distances is expensive,
 
 101
-00:06:41.389 --> 00:06:45.803
+00:06:41.409 --> 00:06:45.823
 so keep it inside a region and let
 everything else be asynchronous.
 
 102
-00:06:45.803 --> 00:06:49.127
+00:06:45.823 --> 00:06:49.147
 That choice decides which
 flows need a fast path at all.
 
 103
-00:06:49.127 --> 00:06:53.442
+00:06:49.147 --> 00:06:53.462
 And the price is named honestly:
 isolation now lives in code,
 
 104
-00:06:53.442 --> 00:06:57.052
+00:06:53.462 --> 00:06:57.072
 so that code has to be small,
 tested and fail-closed.
 
 105
-00:06:57.052 --> 00:06:59.080
+00:06:57.072 --> 00:06:59.100
 That wraps up Module 1.
 
 106
-00:07:02.830 --> 00:07:07.543
+00:07:02.850 --> 00:07:07.563
 Module 2 is governed transport and
 the legacy protocols that ride on it.
 
 107
-00:07:07.543 --> 00:07:09.301
+00:07:07.563 --> 00:07:09.321
 First the governor itself:
 
 108
-00:07:09.301 --> 00:07:13.056
+00:07:09.321 --> 00:07:13.076
 what SD-WAN and SASE each
 provide, and how to protect them.
 
 109
-00:07:13.056 --> 00:07:16.009
+00:07:13.076 --> 00:07:16.029
 Then what actually breaks
 when you re-route a branch,
 
 110
-00:07:16.009 --> 00:07:20.770
+00:07:16.029 --> 00:07:20.790
 which turns out to be a shorter, and
 different, list than the folklore suggests.
 
 111
-00:07:24.370 --> 00:07:27.145
+00:07:24.540 --> 00:07:27.315
 Here's the honest version
 of what SD-WAN does.
 
 112
-00:07:27.145 --> 00:07:32.089
+00:07:27.315 --> 00:07:32.259
 It can't beat the speed of light, but most
 real paths run well above that floor,
 
 113
-00:07:32.089 --> 00:07:34.720
+00:07:32.259 --> 00:07:34.890
 and the gap is where
 SD-WAN earns its keep.
 
 114
-00:07:34.720 --> 00:07:38.925
+00:07:34.890 --> 00:07:39.095
 It separates lean, latency-sensitive
 traffic from bulk transfers,
 
 115
-00:07:38.925 --> 00:07:41.983
+00:07:39.095 --> 00:07:42.153
 and it recovers some of
 the detour in real routes.
 
 116
-00:07:41.983 --> 00:07:43.983
+00:07:42.153 --> 00:07:44.153
 The underrated part is the tail.
 
 117
-00:07:43.983 --> 00:07:48.419
+00:07:44.153 --> 00:07:48.589
 A quorum commit or a voice call is
 only as good as its unluckiest packet,
 
 118
-00:07:48.419 --> 00:07:53.620
+00:07:48.589 --> 00:07:53.790
 and tools like forward error correction
 and packet duplication shrink that tail.
 
 119
-00:07:53.620 --> 00:07:55.920
+00:07:53.790 --> 00:07:56.090
 What it never does is go below the floor.
 
 120
-00:07:55.920 --> 00:07:58.170
+00:07:56.090 --> 00:07:58.340
 So what does SASE add on top?
 
 121
-00:08:01.920 --> 00:08:05.495
+00:08:02.090 --> 00:08:05.665
 SD-WAN decides paths; it
 doesn't inspect anything.
 
 122
-00:08:05.495 --> 00:08:07.441
+00:08:05.665 --> 00:08:07.611
 Boundary protection, web policy,
 
 123
-00:08:07.441 --> 00:08:12.270
+00:08:07.611 --> 00:08:12.440
 malware inspection and private-app access
 come from the SASE services above it,
 
 124
-00:08:12.270 --> 00:08:15.657
+00:08:12.440 --> 00:08:15.827
 and this table shows which
 layer provides which control.
 
 125
-00:08:15.657 --> 00:08:17.169
+00:08:15.827 --> 00:08:17.339
 Two practical points.
 
 126
-00:08:17.169 --> 00:08:21.848
+00:08:17.339 --> 00:08:22.018
 The enforcement point has a location,
 so a distant or poorly peered point
 
 127
-00:08:21.848 --> 00:08:26.370
+00:08:22.018 --> 00:08:26.540
 of presence is just a hairpin with a
 new name; measure it before cutover.
 
 128
-00:08:26.370 --> 00:08:29.648
+00:08:26.540 --> 00:08:29.818
 And FedRAMP status is per
 offering, not per vendor,
 
 129
-00:08:29.648 --> 00:08:33.645
+00:08:29.818 --> 00:08:33.815
 and it covers the cloud service,
 not the boxes in your offices.
 
 130
-00:08:33.645 --> 00:08:37.830
+00:08:33.815 --> 00:08:38.000
 Which raises the question nobody
 likes: who protects the governor?
 
@@ -692,12 +692,12 @@ but a network session is
 trusted once and then coasts.
 
 145
-00:09:37.685 --> 00:09:42.723
+00:09:37.685 --> 00:09:42.722
 The proposed governed path treats the
 path itself like a token, leased for one
 
 146
-00:09:42.723 --> 00:09:47.760
+00:09:42.722 --> 00:09:47.760
 purpose and expiring with it, so a flow
 with no token behind it shows up as drift.
 
@@ -976,12 +976,12 @@ So NPS gets less useful
 with every device you move.
 
 205
-00:13:46.796 --> 00:13:51.852
+00:13:46.796 --> 00:13:51.851
 The options are an on-premises NAC platform,
 a cloud RADIUS service with the right
 
 206
-00:13:51.852 --> 00:13:56.908
+00:13:51.851 --> 00:13:56.908
 FedRAMP status for that function, or taking
 RADIUS out of remote access entirely.
 
@@ -1215,12 +1215,12 @@ Naming one decider per step
 costs less than any product.
 
 255
-00:17:17.490 --> 00:17:20.728
+00:17:17.490 --> 00:17:20.727
 One rule ties the data and
 network layers together:
 
 256
-00:17:20.728 --> 00:17:24.890
+00:17:20.727 --> 00:17:24.890
 match each flow's consistency needs
 to the transport built for it.
 

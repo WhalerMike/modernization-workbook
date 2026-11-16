@@ -1022,11 +1022,11 @@
     "Microsoft supplies the instruments, not the orchestra"
    ],
    [
-    904,
+    903,
     "One decider per decision; the AO signs for risk"
    ],
    [
-    981,
+    980,
     "Three decisions that land on the wrong desk"
    ],
    [
@@ -1038,7 +1038,7 @@
     "Analyze, plan, deliver: nothing moves without a plan"
    ],
    [
-    1205,
+    1204,
     "The roadmap: seven phases, six gates, five workstreams"
    ],
    [
@@ -1046,7 +1046,7 @@
     "Gates go green on data, and rollback has an end"
    ],
    [
-    1354,
+    1353,
     "The clocks: FedRAMP's dates don't set the agency's"
    ],
    [
@@ -1281,15 +1281,15 @@
     "Sign-in moves to phishing-resistant credentials"
    ],
    [
-    467,
+    466,
     "Who decides, who does the work"
    ],
    [
-    528,
+    527,
     "How: discover, assess, build, migrate, prove"
    ],
    [
-    588,
+    587,
     "What a reference deployment produces"
    ],
    [
@@ -1414,11 +1414,11 @@
     "Phishing-resistant authentication, then the legacy cutoff"
    ],
    [
-    1205,
+    1204,
     "The eleven-phase playbook: each phase gated on validation"
    ],
    [
-    1259,
+    1258,
     "Proving it: logs, FedRAMP 20x indicators and drift"
    ],
    [
@@ -2381,99 +2381,99 @@
     "Windows in a GCC tenant: Autopilot or device preparation"
    ],
    [
-    391,
+    393,
     "Carrying the purchase order to the device's configuration"
    ],
    [
-    446,
+    448,
     "The day-zero baseline, and the four exception paths"
    ],
    [
-    499,
+    501,
     "Three paths to one end state: governed, manual and retrofit"
    ],
    [
-    555,
+    557,
     "The runbook's sharp edges: precedence, NTLM and SPNs"
    ],
    [
-    615,
+    617,
     "Module 2: The GPO sunset and policy migration"
    ],
    [
-    638,
+    640,
     "The sunset pipeline and Group Policy analytics"
    ],
    [
-    691,
+    693,
     "Classify, then dispose: tags, questions, landing zones"
    ],
    [
-    742,
+    744,
     "Coexistence: who wins while GPOs and Intune both apply"
    ],
    [
-    798,
+    800,
     "Seven phases at working level: durations, gates and waves"
    ],
    [
-    852,
+    854,
     "The policy library: attribute targeting and the compliance set"
    ],
    [
-    909,
+    911,
     "Endpoint security settings, and the crosswalk traps"
    ],
    [
-    973,
+    965,
     "Module 3: Servers under Azure Arc"
    ],
    [
-    992,
+    984,
     "What Arc changes, and what it doesn't"
    ],
    [
-    1047,
+    1039,
     "Which servers Arc reaches, and four tiers for the rest"
    ],
    [
-    1098,
+    1091,
     "Before you onboard: roles, network, tags and images"
    ],
    [
-    1153,
+    1145,
     "Onboarding a wave with a least-privileged principal"
    ],
    [
-    1203,
+    1196,
     "The day-one baseline: configuration, patching and protection"
    ],
    [
-    1255,
+    1248,
     "Extended Security Updates, Entra ID sign-in and rollback"
    ],
    [
-    1312,
+    1304,
     "Module 4: Operating and evidencing the fleet"
    ],
    [
-    1332,
+    1324,
     "Making the compliance signal accurate"
    ],
    [
-    1384,
+    1376,
     "Windows updates: rings, Autopatch and version currency"
    ],
    [
-    1438,
+    1428,
     "Reconciling three inventories, and retiring a device in order"
    ],
    [
-    1492,
+    1482,
     "Drift detection: what the logs can tell you, and when"
    ],
    [
-    1542,
+    1532,
     "The evidence an assessor reads, and the GCC boundary facts"
    ]
   ],
@@ -2534,43 +2534,43 @@
     "Where it runs, and what it costs"
    ],
    [
-    472,
+    470,
     "Access is now decided in five places"
    ],
    [
-    518,
+    516,
     "DBAs run the engine; application owners own the chain"
    ],
    [
-    562,
+    560,
     "Privileged steps sit outside the DBA team on purpose"
    ],
    [
-    606,
+    604,
     "Applications are the other half of the chain"
    ],
    [
-    646,
+    644,
     "NTLM: discover, restrict, then block on 2027-04-01"
    ],
    [
-    698,
+    696,
     "Certificates the AD CS retirement plan can't see"
    ],
    [
-    751,
+    749,
     "Done means five conditions, proven continuously"
    ],
    [
-    797,
+    795,
     "Risks that can still derail the schedule"
    ],
    [
-    842,
+    840,
     "The platform question comes after, per data domain"
    ],
    [
-    890,
+    888,
     "Decisions to make, owners and timing"
    ]
   ],
@@ -2611,27 +2611,27 @@
     "Azure Arc gives each instance an Entra identity"
    ],
    [
-    274,
+    269,
     "Logins move to Entra principals, in parallel"
    ],
    [
-    336,
+    330,
     "Who decides, who does the work for the data platform"
    ],
    [
-    399,
+    394,
     "Eliminate NTLM in three phases"
    ],
    [
-    464,
+    459,
     "Access by attribute, applications by driver"
    ],
    [
-    523,
+    518,
     "Closure is a posture you keep proving"
    ],
    [
-    585,
+    580,
     "What we need"
    ]
   ],
@@ -2736,31 +2736,31 @@
     "R05 — Login migration and the parallel run"
    ],
    [
-    997,
+    991,
     "Module 5 — Runbooks R06–R10: NTLM to certificates"
    ],
    [
-    1021,
+    1015,
     "R06 — NTLM detection and remediation"
    ],
    [
-    1080,
+    1073,
     "R07 — Groups, admin units and the CA perimeter"
    ],
    [
-    1135,
+    1129,
     "R08 — Application chain and connection strings"
    ],
    [
-    1189,
+    1182,
     "R09 — Continuous monitoring and closure"
    ],
    [
-    1244,
+    1237,
     "R10 — Certificate discovery for AD CS"
    ],
    [
-    1309,
+    1302,
     "What to take back to the estate"
    ]
   ],
@@ -2882,43 +2882,43 @@
     "The rules are moving under certificates already issued"
    ],
    [
-    172,
+    168,
     "What AD CS holds up, and the four verdicts"
    ],
    [
-    232,
+    229,
     "Harden what stays before anything moves"
    ],
    [
-    287,
+    284,
     "Four issuers, each for what only it can serve"
    ],
    [
-    354,
+    351,
     "One lifecycle platform: CyberArk Certificate Manager"
    ],
    [
-    416,
+    412,
     "Who decides, who does the work for certificates"
    ],
    [
-    478,
+    475,
     "Intune delivers the certificate, strongly mapped"
    ],
    [
-    542,
+    539,
     "Entra CBA validates certificates; it issues none"
    ],
    [
-    606,
+    603,
     "Run both PKIs, then migrate in six gated waves"
    ],
    [
-    667,
+    663,
     "Keep it renewed and checkable, then retire AD CS last"
    ],
    [
-    733,
+    729,
     "Decisions to make, and next steps"
    ]
   ],
@@ -3201,23 +3201,23 @@
     "Forward the public zone to one point in Azure"
    ],
    [
-    456,
+    458,
     "One governed path, five decisions that fail silently"
    ],
    [
-    514,
+    516,
     "Who decides, who does the work for DNS, DHCP and IPAM"
    ],
    [
-    577,
+    578,
     "Six phases, one cutover loop, rollback at every step"
    ],
    [
-    638,
+    639,
     "Operate it as one plane, and keep the evidence"
    ],
    [
-    698,
+    700,
     "Choose on evidence, price the meters, record the risk"
    ],
    [
@@ -3254,107 +3254,107 @@
     "What the mandates require, and the sequence that meets them"
    ],
    [
-    172,
+    173,
     "Module 1: Split-brain DNS and the AD DNS departure"
    ],
    [
-    196,
+    197,
     "Split-brain: same name, different answers, and no error"
    ],
    [
-    247,
+    248,
     "AD-integrated DNS: seven components, seven decisions"
    ],
    [
-    303,
+    304,
     "Locator records: what Netlogon registers, what fails"
    ],
    [
-    361,
+    362,
     "Secure dynamic updates, and the DHCP server's part in them"
    ],
    [
-    416,
+    417,
     "What Entra ID doesn't carry, and what to reprovision"
    ],
    [
-    469,
+    470,
     "Module 2: Edge interception, DNS identity and DNSSEC"
    ],
    [
-    492,
+    493,
     "SD-WAN redirect-dns: the destination decides policy"
    ],
    [
-    547,
+    548,
     "Encrypted DNS: terminate at agency resolvers"
    ],
    [
-    605,
+    606,
     "Rogue DHCP and router advertisements"
    ],
    [
-    659,
+    660,
     "DNS identity: certificate and token failures"
    ],
    [
-    711,
+    712,
     "DNSSEC: sign external zones, validate on resolvers"
    ],
    [
-    766,
+    767,
     "Operating DNSSEC and moving signed zones"
    ],
    [
-    818,
+    819,
     "Module 3: Private endpoints, IPAM and the reference architecture"
    ],
    [
-    837,
-    "Four private DNS models, and Azure private endpoints"
+    838,
+    "Five private DNS models, and Azure private endpoints"
    ],
    [
-    889,
+    891,
     "Forward the public zone; Private Resolver in the hub"
    ],
    [
-    941,
+    944,
     "IPAM is the authority for address blocks"
    ],
    [
-    992,
+    996,
     "The governed path, and five decisions that fail silently"
    ],
    [
-    1047,
+    1051,
     "The policy plane, and what federal clouds change"
    ],
    [
-    1108,
+    1114,
     "Module 4: Migration sequence and operating the control plane"
    ],
    [
-    1131,
+    1137,
     "Six phases, each closed by its validation, not by a date"
    ],
    [
-    1184,
+    1190,
     "Phases 1 and 2: sort every component, then coexist"
    ],
    [
-    1235,
+    1241,
     "Phase 3: move zones, scopes and clients, with a way back"
    ],
    [
-    1287,
+    1293,
     "Phases 4 and 5: prove it, then decommission by gate"
    ],
    [
-    1338,
+    1344,
     "Operating the plane: delegation, one API, telemetry"
    ],
    [
-    1390,
+    1396,
     "Keeping it honest: troubleshooting and the evidence checklist"
    ]
   ],
@@ -3912,39 +3912,39 @@
     "GCC is the worldwide service, minus a published list"
    ],
    [
-    570,
+    567,
     "A higher certification class won't bring the features back"
    ],
    [
-    654,
+    645,
     "One decider per row: who owns the boundary"
    ],
    [
-    737,
+    728,
     "Five decisions that look like engineering tickets"
    ],
    [
-    827,
+    818,
     "Three honest responses when a capability is outside"
    ],
    [
-    910,
+    901,
     "Exceptions: the provider's path, and the rules' limits"
    ],
    [
-    994,
+    986,
     "The alternative path: change the suite, keep the identity plane"
    ],
    [
-    1082,
+    1066,
     "What to ask a cloud provider for"
    ],
    [
-    1170,
+    1153,
     "Evidence the boundary in your own package"
    ],
    [
-    1251,
+    1234,
     "Five decisions, five owners, and the next step"
    ]
   ],
@@ -3977,51 +3977,51 @@
     "The invisible boundary, and the example corrected"
    ],
    [
-    159,
+    157,
     "Four things change across any boundary"
    ],
    [
-    216,
+    215,
     "FedRAMP 2026: classes, obligations, business days"
    ],
    [
-    275,
+    274,
     "GCC is the worldwide service, minus a list"
    ],
    [
-    335,
+    333,
     "The landing zone turns the boundary into policy"
    ],
    [
-    389,
+    386,
     "The address plan is the join key the evidence needs"
    ],
    [
-    448,
+    445,
     "The front door: no landing zone without a request"
    ],
    [
-    506,
+    503,
     "Who decides, who keeps the record, who does the work"
    ],
    [
-    564,
+    560,
     "Inventory, probe, then compensate or except"
    ],
    [
-    616,
+    613,
     "Change the suite, keep the identity plane"
    ],
    [
-    672,
+    662,
     "Write the boundary once; cite it everywhere"
    ],
    [
-    729,
+    721,
     "What to ask a cloud provider for"
    ],
    [
-    773,
+    765,
     "Decisions to make, and next steps"
    ]
   ],
@@ -4058,115 +4058,115 @@
     "Three checks, three owners, one overlap you can use"
    ],
    [
-    141,
+    143,
     "Why the boundary stays invisible, and a claim corrected"
    ],
    [
-    183,
+    187,
     "Four dimensions change across any boundary"
    ],
    [
-    224,
+    227,
     "FedRAMP 2026: services are certified; agencies authorize"
    ],
    [
-    268,
+    272,
     "Minimum Assessment Scope: a data test, per resource"
    ],
    [
-    308,
+    312,
     "Change is notified, not re-approved; data becomes a feed"
    ],
    [
-    348,
+    352,
     "Module 2: GCC, the gap and three responses"
    ],
    [
-    368,
+    372,
     "GCC is the worldwide service minus a published list"
    ],
    [
-    410,
+    416,
     "The largest documented loss: network observability"
    ],
    [
-    452,
-    "Three packages, and why High won't bring features back"
+    458,
+    "Two GCC packages, and why High won't bring features back"
    ],
    [
-    493,
+    498,
     "Work the gap as a list: register, probe, equivalent"
    ],
    [
-    531,
+    536,
     "Exceptions, scope arguments and buying the capability"
    ],
    [
-    572,
+    577,
     "Change the suite, keep the identity plane"
    ],
    [
-    613,
+    619,
     "Module 3: Landing zone and front door"
    ],
    [
-    631,
+    637,
     "The hierarchy is where boundary policy lands"
    ],
    [
-    672,
+    678,
     "Five boundary decisions, five enforced mechanisms"
    ],
    [
-    715,
-    "AWS, GovCloud and automation that declares its boundary"
+    721,
+    "AWS, and automation that declares its boundary"
    ],
    [
-    764,
+    769,
     "The address plan: the denominator every inventory needs"
    ],
    [
-    802,
+    807,
     "Mirror the authority, enforce the pool"
    ],
    [
-    841,
+    846,
     "Network as code: five modules in dependency order"
    ],
    [
-    882,
+    887,
     "The front door: six steps from request to closed change"
    ],
    [
-    924,
+    929,
     "Building the loop, and why the pipeline is in scope"
    ],
    [
-    961,
+    966,
     "Module 4: Who owns it, and the package"
    ],
    [
-    978,
+    983,
     "One decider per row: who owns the boundary"
    ],
    [
-    1019,
+    1024,
     "The boundary record: write it once, cite it everywhere"
    ],
    [
-    1058,
+    1063,
     "Narratives at the boundary, and whose package you read"
    ],
    [
-    1095,
+    1102,
     "Keeping the package current: one review, one decider"
    ],
    [
-    1134,
+    1141,
     "What to ask a cloud provider for, with the basis"
    ],
    [
-    1175,
+    1182,
     "Decisions to make, and the first week's work"
    ]
   ],
@@ -5475,31 +5475,31 @@
     "One loop on every cloud, closed on a re-test"
    ],
    [
-    505,
+    507,
     "Who runs day two: decisions away from the keyboard"
    ],
    [
-    551,
+    552,
     "Measure day-two health where the work happens"
    ],
    [
-    596,
+    598,
     "The CAB authorizes changes; it never accepts risk"
    ],
    [
-    637,
+    638,
     "Prove with systems; attest only what no system sees"
    ],
    [
-    681,
+    683,
     "Buy the native compliance apps first; build the gaps"
    ],
    [
-    730,
+    732,
     "The runbook checks the automation, not just the estate"
    ],
    [
-    775,
+    776,
     "Day-two decisions: owners and timing"
    ]
   ],
@@ -5689,7 +5689,7 @@
     "Three routes into the ITSM platform, one clock"
    ],
    [
-    1041,
+    1042,
     "AWS: Config and Security Hub CSPM, not Audit Manager"
    ],
    [
@@ -5835,43 +5835,43 @@
     "What federal workforce rules require"
    ],
    [
-    199,
+    197,
     "Education first, then training by role"
    ],
    [
-    257,
+    256,
     "The compliance track teaches tracing"
    ],
    [
-    315,
+    313,
     "Implementation: done means the evidence landed"
    ],
    [
-    372,
+    371,
     "Certify what people can show"
    ],
    [
-    430,
+    428,
     "Vendor training, and labs that can't hurt production"
    ],
    [
-    482,
+    481,
     "Every user signs in differently"
    ],
    [
-    537,
+    535,
     "One decider per row; the reporter doesn't decide"
    ],
    [
-    589,
+    588,
     "Run training on the roadmap's calendar"
    ],
    [
-    642,
+    641,
     "Measure readiness, not attendance"
    ],
    [
-    697,
+    696,
     "Decisions to make, and next steps"
    ]
   ],
@@ -5924,43 +5924,43 @@
     "Kinds of AI identity, and what your cloud has today"
    ],
    [
-    398,
+    394,
     "A named human, and a lifecycle that ends"
    ],
    [
-    444,
+    440,
     "No stored secrets, no standing privilege"
    ],
    [
-    492,
+    488,
     "Watch it, and find what nobody declared"
    ],
    [
-    541,
+    537,
     "Two decision tracks meet on one AI system"
    ],
    [
-    592,
+    588,
     "Who decides what for an AI identity"
    ],
    [
-    644,
+    640,
     "Run the inventory scan on the agency's own file"
    ],
    [
-    691,
+    688,
     "A central scan starts the conversation, not the fix"
    ],
    [
-    734,
+    730,
     "Evidence the authorizing official can use"
    ],
    [
-    783,
+    779,
     "Keep the evidence current: three AI clocks"
    ],
    [
-    831,
+    827,
     "Decisions to make, owners and timing"
    ]
   ],
@@ -6009,31 +6009,31 @@
     "Release stage and government cloud, October 2026"
    ],
    [
-    385,
+    383,
     "A named human, and a lifecycle that ends"
    ],
    [
-    438,
+    437,
     "No stored secrets, no standing privilege"
    ],
    [
-    491,
+    489,
     "Watch it, find what nobody declared, raise findings"
    ],
    [
-    550,
+    548,
     "Two decision tracks, one identity record"
    ],
    [
-    605,
+    603,
     "Run the inventory scan"
    ],
    [
-    660,
+    659,
     "Evidence the authorizing official can use"
    ],
    [
-    716,
+    715,
     "Decisions to make, and next steps"
    ]
   ],
@@ -6107,78 +6107,78 @@
    ],
    [
     495,
-    "What's GA, what's preview, and what each cloud has"
+    "What's GA, what's preview, and what GCC has"
    ],
    [
-    537,
+    535,
     "Six kinds of AI identity, and where the risk sits"
    ],
    [
-    578,
+    576,
     "Module 3: Owners, lifecycle, credentials and privilege"
    ],
    [
-    601,
+    599,
     "Owner, sponsor and manager, and the program's rule"
    ],
    [
-    643,
+    641,
     "The sponsor's HR events have to reach the agent"
    ],
    [
-    682,
+    680,
     "Retirement and orphans: disable first, then delete"
    ],
    [
-    728,
+    726,
     "Credential order: no stored secrets on the blueprint"
    ],
    [
-    768,
+    766,
     "Least privilege: Microsoft's block list is only a floor"
    ],
    [
-    812,
+    810,
     "Conditional Access follows the token subject"
    ],
    [
-    855,
+    853,
     "Three boundaries on what an agent can call"
    ],
    [
-    896,
+    894,
     "Module 4: Monitoring, the scan and authorization"
    ],
    [
-    915,
+    913,
     "Where AI sign-ins and changes land in the logs"
    ],
    [
-    957,
+    955,
     "Shadow AI: four surfaces, one reconciliation"
    ],
    [
-    999,
+    997,
     "AI drift findings: class, severity and who decides"
    ],
    [
-    1042,
+    1040,
     "The inventory scan: answers first, then the directory"
    ],
    [
-    1082,
+    1080,
     "A central scan: CDM's split, not its tooling"
    ],
    [
-    1123,
+    1121,
     "Five questions the authorizing official asks"
    ],
    [
-    1167,
+    1165,
     "OSCAL, the AI clocks, and overlays still to come"
    ],
    [
-    1209,
+    1207,
     "Decisions, owners, and what to start on Monday"
    ]
   ],
@@ -6573,22 +6573,22 @@
    ],
    [
     613,
-    "Government cloud: GCC first, then the side notes"
+    "Government cloud: what GCC has"
    ],
    [
-    682,
+    674,
     "Six roles run information protection"
    ],
    [
-    748,
+    741,
     "Roll out in rings, with a way back"
    ],
    [
-    812,
+    804,
     "Evidence an assessor can inspect"
    ],
    [
-    880,
+    872,
     "Decisions to make, and next steps"
    ]
   ],

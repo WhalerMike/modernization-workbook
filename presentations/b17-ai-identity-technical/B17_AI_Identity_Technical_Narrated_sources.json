@@ -225,15 +225,11 @@
  },
  {
   "slide": 14,
-  "title": "What's GA, what's preview, and what each cloud has",
+  "title": "What's GA, what's preview, and what GCC has",
   "links": [
    {
     "text": "Agent 365 service description",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-agent-365"
-   },
-   {
-    "text": "Entra feature availability",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
    },
    {
     "text": "Conditional Access for agents",
