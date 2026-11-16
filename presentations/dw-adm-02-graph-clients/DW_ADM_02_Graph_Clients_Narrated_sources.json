@@ -11,15 +11,11 @@
  },
  {
   "slide": 3,
-  "title": "Which cloud is which: four clouds, two sets of hosts",
+  "title": "Which cloud is which: GCC uses the worldwide hosts",
   "links": [
    {
-    "text": "Graph national clouds",
+    "text": "Graph national cloud deployments",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
-   },
-   {
-    "text": "Compare Azure Gov",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
    },
    {
     "text": "Get-MgEnvironment",
@@ -36,16 +32,8 @@
   "title": "What GCC with commercial Azure means for the code",
   "links": [
    {
-    "text": "Compare Azure Gov",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
-   },
-   {
     "text": "OAuth 2.0 client credentials flow",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-identity-platform-and-the-oauth-2"
-   },
-   {
-    "text": "Planning identity for Azure Gov",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
    },
    {
     "text": "Chapter 02",
@@ -82,6 +70,10 @@
    {
     "text": "national clouds with the Graph SDKs",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-national-cloud-deployments-with-the"
+   },
+   {
+    "text": "Graph deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
     "text": "Get-MgEnvironment",
@@ -176,14 +168,6 @@
   "title": "Beta without depending on it",
   "links": [
    {
-    "text": "List windowsAutopilotDeviceIdentities",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-windowsautopilotdeviceidentities"
-   },
-   {
-    "text": "Intune for US Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
-   },
-   {
     "text": "Chapter 02",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
    }
@@ -198,11 +182,11 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#overview-of-microsoft-graph-permissions"
    },
    {
-    "text": "List windowsAutopilotDeviceIdentities",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-windowsautopilotdeviceidentities"
+    "text": "national clouds with the Graph SDKs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-national-cloud-deployments-with-the"
    },
    {
-    "text": "Ch 02",
+    "text": "Chapter 02",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.html"
    }
   ]
@@ -219,7 +203,7 @@
  },
  {
   "slide": 15,
-  "title": "Lab 1: beta, PowerShell, and the test suites",
+  "title": "Lab 1: PowerShell, and the test suites",
   "links": [
    {
     "text": "Chapter 02",
@@ -234,14 +218,6 @@
    {
     "text": "national clouds with the Graph SDKs",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-national-cloud-deployments-with-the"
-   },
-   {
-    "text": "Planning identity for Azure Gov",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
-   },
-   {
-    "text": "Graph national cloud deployments",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
     "text": "Chapter 02",

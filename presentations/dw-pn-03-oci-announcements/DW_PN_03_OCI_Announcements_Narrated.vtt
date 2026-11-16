@@ -44,775 +44,754 @@ and walk two labs, the
 evidence and the dangers.
 
 10
-00:00:29.988 --> 00:00:31.563
-Two notes before we begin.
+00:00:29.988 --> 00:00:35.510
+One note before we begin: the code is
+illustrative, tested against fixtures.
 
 11
-00:00:31.563 --> 00:00:34.924
-This chapter is a draft,
-awaiting the owner's review.
-
-12
-00:00:34.924 --> 00:00:38.820
-And the code is illustrative,
-tested against fixtures.
-
-13
-00:00:42.570 --> 00:00:43.907
+00:00:39.260 --> 00:00:40.597
 Why Oracle Cloud?
 
-14
-00:00:43.907 --> 00:00:46.707
+12
+00:00:40.597 --> 00:00:43.397
 Because the estate isn't only Microsoft.
 
-15
-00:00:46.707 --> 00:00:50.649
+13
+00:00:43.397 --> 00:00:47.339
 Where an agency's HR platform runs
 on Oracle Cloud Infrastructure,
 
-16
-00:00:50.649 --> 00:00:55.020
+14
+00:00:47.339 --> 00:00:51.710
 a maintenance window on that platform
 reaches the people who depend on it,
 
-17
-00:00:55.020 --> 00:00:57.671
+15
+00:00:51.710 --> 00:00:54.361
 whether or not anyone
 read the announcement.
 
-18
-00:00:57.671 --> 00:00:59.320
+16
+00:00:54.361 --> 00:00:56.010
 So the goal is concrete.
 
-19
-00:00:59.320 --> 00:01:03.774
+17
+00:00:56.010 --> 00:01:00.464
 By the end of this chapter you can
 read every announcement for a tenancy,
 
-20
-00:01:03.774 --> 00:01:07.096
+18
+00:01:00.464 --> 00:01:03.786
 the latest in each chain,
 with its affected resources,
 
-21
-00:01:07.096 --> 00:01:10.720
+19
+00:01:03.786 --> 00:01:07.410
 into records that carry Oracle's
 own action-required date.
 
-22
-00:01:10.720 --> 00:01:13.846
+20
+00:01:07.410 --> 00:01:10.536
 Then the HR platform's
 maintenance goes to the
 
-23
-00:01:13.846 --> 00:01:17.160
+21
+00:01:10.536 --> 00:01:13.850
 HR system's owners before
 it lands, not after.
 
-24
-00:01:20.910 --> 00:01:22.160
+22
+00:01:17.600 --> 00:01:18.850
 Next, which realm.
 
-25
-00:01:22.160 --> 00:01:24.760
+23
+00:01:18.850 --> 00:01:21.450
 Oracle Cloud is divided into realms.
 
-26
-00:01:24.760 --> 00:01:28.610
+24
+00:01:21.450 --> 00:01:25.300
 The commercial realm, O C
 1, is what the lab uses.
 
-27
-00:01:28.610 --> 00:01:34.264
+25
+00:01:25.300 --> 00:01:30.954
 Oracle's US Government Cloud page lists
 the Announcements service in realm O C 2,
 
-28
-00:01:34.264 --> 00:01:37.348
+26
+00:01:30.954 --> 00:01:34.038
 at two government regions,
 Langley and Luke.
 
-29
-00:01:37.348 --> 00:01:42.181
-For realm O C 3, Oracle's page wasn't
-readable when the chapter was written,
+27
+00:01:34.038 --> 00:01:36.400
+Any other realm, the kit refuses.
 
-30
-00:01:42.181 --> 00:01:47.260
-so its endpoint is not yet specified,
-and the kit refuses it with that reason.
-
-31
-00:01:47.260 --> 00:01:48.347
+28
+00:01:36.400 --> 00:01:37.487
 Why does it matter?
 
-32
-00:01:48.347 --> 00:01:52.298
+29
+00:01:37.487 --> 00:01:41.438
 A government tenancy read in the
 commercial realm returns nothing.
 
-33
-00:01:52.298 --> 00:01:55.104
+30
+00:01:41.438 --> 00:01:44.243
 So the settings name the realm and region,
 
-34
-00:01:55.104 --> 00:01:58.260
+31
+00:01:44.243 --> 00:01:47.420
 and a region outside the realm is refused.
 
-35
-00:02:02.010 --> 00:02:03.760
+32
+00:01:51.170 --> 00:01:52.920
 Here's Oracle's starting point.
 
-36
-00:02:03.760 --> 00:02:08.046
+33
+00:01:52.920 --> 00:01:57.206
 Oracle's CLI reference documents
 the announcements list command,
 
-37
-00:02:08.046 --> 00:02:11.630
+34
+00:01:57.206 --> 00:02:00.790
 with a required compartment,
 an option to read all pages,
 
-38
-00:02:11.630 --> 00:02:15.760
+35
+00:02:00.790 --> 00:02:04.920
 and an option to show only the
 latest announcement in each chain.
 
-39
-00:02:15.760 --> 00:02:19.946
+36
+00:02:04.920 --> 00:02:09.106
 Oracle's Announcement model gives
 the fields: the type, two generic
 
-40
-00:02:19.946 --> 00:02:24.360
+37
+00:02:09.106 --> 00:02:13.520
 time fields each with its own type,
 the lifecycle state and the chain ID.
 
-41
-00:02:24.360 --> 00:02:27.988
+38
+00:02:13.520 --> 00:02:17.148
 A separate get command returns
 one announcement's details,
 
-42
-00:02:27.988 --> 00:02:30.135
+39
+00:02:17.148 --> 00:02:19.295
 including its affected resources.
 
-43
-00:02:30.135 --> 00:02:34.240
+40
+00:02:19.295 --> 00:02:23.400
 Oracle's policy reference makes
 announcements a resource type:
 
-44
-00:02:34.240 --> 00:02:37.260
+41
+00:02:23.400 --> 00:02:26.420
 inspect lists summaries,
 read adds the details.
 
-45
-00:02:37.260 --> 00:02:40.152
+42
+00:02:26.420 --> 00:02:29.312
 And Oracle's common policy
 is a single statement
 
-46
-00:02:40.152 --> 00:02:43.610
+43
+00:02:29.312 --> 00:02:32.770
 that lets a group read
 announcements in the tenancy.
 
-47
-00:02:47.360 --> 00:02:48.947
+44
+00:02:36.520 --> 00:02:38.107
 What does Oracle leave to you?
 
-48
-00:02:48.947 --> 00:02:53.198
+45
+00:02:38.107 --> 00:02:42.358
 Updates to one announcement form
 a chain, so a rescheduled window
 
-49
-00:02:53.198 --> 00:02:57.685
+46
+00:02:42.358 --> 00:02:46.845
 arrives as a new announcement; read
 every one and you keep the old date.
 
-50
-00:02:57.685 --> 00:03:00.747
+47
+00:02:46.845 --> 00:02:49.907
 Several announcement types
 mean the same kind of news.
 
-51
-00:03:00.747 --> 00:03:03.457
+48
+00:02:49.907 --> 00:02:52.617
 The window and the deadline sit in generic
 
-52
-00:03:03.457 --> 00:03:06.398
+49
+00:02:52.617 --> 00:02:55.558
 time fields whose meaning
 is in another field.
 
-53
-00:03:06.398 --> 00:03:09.734
+50
+00:02:55.558 --> 00:02:58.894
 The affected resources come
 only from the details call.
 
-54
-00:03:09.734 --> 00:03:13.047
+51
+00:02:58.894 --> 00:03:02.207
 Oracle's reference doesn't
 show the CLI's key casing.
 
-55
-00:03:13.047 --> 00:03:14.560
+52
+00:03:02.207 --> 00:03:03.720
 And the realms need a guard.
 
-56
-00:03:14.560 --> 00:03:16.585
+53
+00:03:03.720 --> 00:03:05.745
 Each gap is pinned by a test.
 
-57
-00:03:16.585 --> 00:03:20.300
+54
+00:03:05.745 --> 00:03:09.460
 The verdict: use Oracle's
 commands and policy as published,
 
-58
-00:03:20.300 --> 00:03:24.210
+55
+00:03:09.460 --> 00:03:13.370
 and build the chains, the time
 fields and the realm guard.
 
-59
-00:03:27.960 --> 00:03:28.898
+56
+00:03:17.120 --> 00:03:18.058
 Now the code.
 
-60
-00:03:28.898 --> 00:03:33.463
+57
+00:03:18.058 --> 00:03:22.623
 The collector makes the list call, then
 a get for each announcement, because only
 
-61
-00:03:33.463 --> 00:03:38.098
+58
+00:03:22.623 --> 00:03:27.258
 the details call names the affected
 resources and carries the full description.
 
-62
-00:03:38.098 --> 00:03:43.000
+59
+00:03:27.258 --> 00:03:32.160
 The normalizer keeps the latest announcement
 in each chain, by its update time,
 
-63
-00:03:43.000 --> 00:03:45.111
+60
+00:03:32.160 --> 00:03:34.271
 and gives the record the chain's ID,
 
-64
-00:03:45.111 --> 00:03:49.485
+61
+00:03:34.271 --> 00:03:38.645
 so a rescheduled window updates one
 notice instead of adding a second.
 
-65
-00:03:49.485 --> 00:03:52.038
+62
+00:03:38.645 --> 00:03:41.198
 The summary is the
 description from the details,
 
-66
-00:03:52.038 --> 00:03:54.400
+63
+00:03:41.198 --> 00:03:43.560
 an inactive announcement
 closes the notice,
 
-67
-00:03:54.400 --> 00:03:58.830
+64
+00:03:43.560 --> 00:03:47.990
 and the source link is the announcement
 on the realm's own Announcements host.
 
-68
-00:04:02.580 --> 00:04:03.618
+65
+00:03:51.740 --> 00:03:52.778
 Here's the mapping.
 
-69
-00:04:03.618 --> 00:04:08.179
+66
+00:03:52.778 --> 00:03:57.339
 A type that mentions maintenance is
 maintenance; one that mentions change,
 
-70
-00:04:08.179 --> 00:04:12.594
+67
+00:03:57.339 --> 00:04:01.754
 or the action-required type, is a
 change; a production event notification
 
-71
-00:04:12.594 --> 00:04:17.230
+68
+00:04:01.754 --> 00:04:06.390
 is an incident; and action-recommended
 or information types are advisories.
 
-72
-00:04:17.230 --> 00:04:22.696
+69
+00:04:06.390 --> 00:04:11.856
 The time fields are read by their types: a
 start or new start time opens the window,
 
-73
-00:04:22.696 --> 00:04:27.830
+70
+00:04:11.856 --> 00:04:16.990
 an end time closes it, and an action-required-by
 time is Oracle's own deadline.
 
-74
-00:04:27.830 --> 00:04:33.930
+71
+00:04:16.990 --> 00:04:23.090
 Notice what's different from Azure and
 Microsoft 365: Oracle flags action itself.
 
-75
-00:04:33.930 --> 00:04:38.252
+72
+00:04:23.090 --> 00:04:27.413
 So every action-required OCI
 notice says the provider decided,
 
-76
-00:04:38.252 --> 00:04:40.940
+73
+00:04:27.413 --> 00:04:30.100
 and the kit needs no rule of its own.
 
-77
-00:04:44.690 --> 00:04:49.534
+74
+00:04:33.850 --> 00:04:38.694
 The tests cover the collector and the live
 pieces: seven tests for the OCI block
 
-78
-00:04:49.534 --> 00:04:54.303
+75
+00:04:38.694 --> 00:04:43.463
 of the collectors, plus the live tests
 for the list command and the realm guard.
 
-79
-00:04:54.303 --> 00:04:55.864
+76
+00:04:43.463 --> 00:04:45.024
 The lab runs nine of them.
 
-80
-00:04:55.864 --> 00:04:58.340
+77
+00:04:45.024 --> 00:04:47.500
 But be clear about what
 this code isn't yet.
 
-81
-00:04:58.340 --> 00:05:02.161
+78
+00:04:47.500 --> 00:04:51.321
 The live reader was tested
 against stand-in CLI output,
 
-82
-00:05:02.161 --> 00:05:06.915
+79
+00:04:51.321 --> 00:04:56.075
 not a live tenancy, so review it and
 run Lab 2 before it reads a real one.
 
-83
-00:05:06.915 --> 00:05:09.728
-And two things are
-still not yet specified:
+80
+00:04:56.075 --> 00:04:58.679
+And one thing is still not yet specified:
 
-84
-00:05:09.728 --> 00:05:13.987
+81
+00:04:58.679 --> 00:05:03.210
 which key casing the CLI actually
-prints, so the kit accepts both,
+prints, so the kit accepts both.
 
-85
-00:05:13.987 --> 00:05:18.680
-and the Announcements endpoint in
-realm O C 3, so the kit refuses it.
-
-86
-00:05:22.430 --> 00:05:23.480
+82
+00:05:06.960 --> 00:05:08.010
 Who's involved?
 
-87
-00:05:23.480 --> 00:05:26.592
+83
+00:05:08.010 --> 00:05:11.122
 Developers maintain the
 collector and the realm guard.
 
-88
-00:05:26.592 --> 00:05:29.381
+84
+00:05:11.122 --> 00:05:13.911
 The OCI platform lead owns this gate.
 
-89
-00:05:29.381 --> 00:05:34.380
+85
+00:05:13.911 --> 00:05:18.910
 The owners of systems on OCI, an HR platform
 among them where the agency has one,
 
-90
-00:05:34.380 --> 00:05:37.818
+86
+00:05:18.910 --> 00:05:22.348
 receive the maintenance
 that names their resources.
 
-91
-00:05:37.818 --> 00:05:41.593
+87
+00:05:22.348 --> 00:05:26.123
 And the security officer keeps
 the policy and the run folder.
 
-92
-00:05:41.593 --> 00:05:46.530
+88
+00:05:26.123 --> 00:05:31.060
 What the reader may hold is one policy
 statement: read announcements in the tenancy.
 
-93
-00:05:46.530 --> 00:05:51.055
+89
+00:05:31.060 --> 00:05:35.585
 Inspect is enough to list, but read
 is what the details call needs.
 
-94
-00:05:51.055 --> 00:05:55.228
+90
+00:05:35.585 --> 00:05:39.758
 Grant only inspect and you get
 summaries without affected resources,
 
-95
-00:05:55.228 --> 00:05:58.180
+91
+00:05:39.758 --> 00:05:42.710
 so nothing routes as
 naming your resources.
 
-96
-00:06:01.930 --> 00:06:06.042
+92
+00:05:46.460 --> 00:05:50.572
 Lab 1 needs PowerShell 7 with
 Pester, in the kit's folder.
 
-97
-00:06:06.042 --> 00:06:10.357
+93
+00:05:50.572 --> 00:05:54.887
 The lab settings name a fictional
 tenancy in the commercial realm,
 
-98
-00:06:10.357 --> 00:06:12.867
+94
+00:05:54.887 --> 00:05:57.397
 in the Ashburn region; nothing signs in.
 
-99
-00:06:12.867 --> 00:06:18.056
+95
+00:05:57.397 --> 00:06:02.586
 Step 1 lists what OCI needs: inspect
 to list, read for the details.
 
-100
-00:06:18.056 --> 00:06:22.182
+96
+00:06:02.586 --> 00:06:06.564
 Step 2 shows the realms the kit
 knows: the commercial domain,
 
-101
-00:06:22.182 --> 00:06:27.405
+97
+00:06:06.564 --> 00:06:11.760
 the government domain with its two regions,
-and O C 3 refused with its reason.
+and a realm it doesn't know refused.
 
-102
-00:06:27.405 --> 00:06:33.260
-That refusal is deliberate: an endpoint
-nobody could confirm is never guessed.
+98
+00:06:11.760 --> 00:06:17.210
+That refusal is deliberate: a realm
+the kit doesn't know is never guessed.
 
-103
-00:06:37.010 --> 00:06:41.253
+99
+00:06:20.960 --> 00:06:25.203
 Step 3 collects OCI from the
 day-one fixtures: four notices,
 
-104
-00:06:41.253 --> 00:06:45.585
+100
+00:06:25.203 --> 00:06:29.535
 three open, one needing action,
 all valid against the schema.
 
-105
-00:06:45.585 --> 00:06:47.585
+101
+00:06:29.535 --> 00:06:31.535
 Step 4 reads the records.
 
-106
-00:06:47.585 --> 00:06:51.635
+102
+00:06:31.535 --> 00:06:35.585
 Look at the resources column: that's why
 the kit makes a get per announcement.
 
-107
-00:06:51.635 --> 00:06:56.735
+103
+00:06:35.585 --> 00:06:40.685
 The maintenance names a database system,
 with its window starting November 22.
 
-108
-00:06:56.735 --> 00:07:01.963
+104
+00:06:40.685 --> 00:06:45.913
 The change names a load balancer, and
 it's action required by December 15,
 
-109
-00:07:01.963 --> 00:07:04.710
+105
+00:06:45.913 --> 00:06:48.660
 by Oracle's own type, not by any kit rule.
 
-110
-00:07:04.710 --> 00:07:08.375
+106
+00:06:48.660 --> 00:06:52.325
 The advisory is open, and the
 incident is already closed,
 
-111
-00:07:08.375 --> 00:07:10.685
+107
+00:06:52.325 --> 00:06:54.635
 because Oracle marked it inactive.
 
-112
-00:07:10.685 --> 00:07:13.365
+108
+00:06:54.635 --> 00:06:57.315
 Because both name the agency's resources,
 
-113
-00:07:13.365 --> 00:07:17.510
+109
+00:06:57.315 --> 00:07:01.460
 Chapter 6 can route each one to
 the owners of those systems.
 
-114
-00:07:21.260 --> 00:07:25.198
+110
+00:07:05.210 --> 00:07:09.148
 Step 5 collects the second week,
 and this is the step to watch.
 
-115
-00:07:25.198 --> 00:07:27.534
+111
+00:07:09.148 --> 00:07:11.484
 Oracle rescheduled the maintenance.
 
-116
-00:07:27.534 --> 00:07:31.885
+112
+00:07:11.484 --> 00:07:15.835
 In Oracle's model, that arrives as a
 new announcement in the same chain.
 
-117
-00:07:31.885 --> 00:07:36.225
+113
+00:07:15.835 --> 00:07:20.175
 The kit keeps the chain's latest,
 so the database maintenance now
 
-118
-00:07:36.225 --> 00:07:40.647
+114
+00:07:20.175 --> 00:07:24.597
 starts November 29 instead of
 November 22, with its new window end.
 
-119
-00:07:40.647 --> 00:07:43.291
+115
+00:07:24.597 --> 00:07:27.241
 And it's still one
 notice, with the same ID,
 
-120
-00:07:43.291 --> 00:07:47.935
+116
+00:07:27.241 --> 00:07:31.885
 so Chapter 6 updates the existing
 task instead of opening a second one.
 
-121
-00:07:47.935 --> 00:07:50.172
+117
+00:07:31.885 --> 00:07:34.122
 Read every announcement on its own,
 
-122
-00:07:50.172 --> 00:07:53.690
+118
+00:07:34.122 --> 00:07:37.640
 and the old window would
 linger next to the new one.
 
-123
-00:07:57.440 --> 00:08:01.002
+119
+00:07:41.390 --> 00:07:44.952
 Step 6 builds the live list
 command without running it.
 
-124
-00:08:01.002 --> 00:08:05.419
+120
+00:07:44.952 --> 00:07:49.369
 These are the exact arguments a live
 run would pass to Oracle's CLI:
 
-125
-00:08:05.419 --> 00:08:10.162
+121
+00:07:49.369 --> 00:07:54.112
 the tenancy as the compartment, all
 pages, only the latest in each chain,
 
-126
-00:08:10.162 --> 00:08:13.352
+122
+00:07:54.112 --> 00:07:57.302
 the region from the
 settings, and JSON output.
 
-127
-00:08:13.352 --> 00:08:17.753
+123
+00:07:57.302 --> 00:08:01.703
 Compare them with Oracle's command
 reference: they're Oracle's own options.
 
-128
-00:08:17.753 --> 00:08:22.278
+124
+00:08:01.703 --> 00:08:06.228
 Step 7 runs this chapter's
 tests: nine pass, none fail.
 
-129
-00:08:22.278 --> 00:08:25.899
+125
+00:08:06.228 --> 00:08:09.849
 The raw folder holds the list
 and each announcement's details,
 
-130
-00:08:25.899 --> 00:08:28.314
+126
+00:08:09.849 --> 00:08:12.264
 which is what the security officer keeps.
 
-131
-00:08:28.314 --> 00:08:30.880
+127
+00:08:12.264 --> 00:08:14.830
 Delete the output folder when you're done.
 
-132
-00:08:34.630 --> 00:08:38.455
+128
+00:08:18.580 --> 00:08:22.405
 Lab 2 uses an OCI test
 tenancy, never production.
 
-133
-00:08:38.455 --> 00:08:43.574
+129
+00:08:22.405 --> 00:08:27.524
 As an IAM administrator, add Oracle's one
 policy statement for the reader's group,
 
-134
-00:08:43.574 --> 00:08:46.598
+130
+00:08:27.524 --> 00:08:30.548
 from a file so the shell
 doesn't touch its quotes,
 
-135
-00:08:46.598 --> 00:08:49.080
+131
+00:08:30.548 --> 00:08:33.030
 and keep the policy's ID for the back-out.
 
-136
-00:08:49.080 --> 00:08:52.781
+132
+00:08:33.030 --> 00:08:36.731
 Configure the CLI as the reader
 with Oracle's setup command,
 
-137
-00:08:52.781 --> 00:08:54.442
+133
+00:08:36.731 --> 00:08:38.392
 which creates the key pair.
 
-138
-00:08:54.442 --> 00:08:58.531
+134
+00:08:38.392 --> 00:08:42.481
 Then cross-check: Oracle's own list
 command counts the announcements,
 
-139
-00:08:58.531 --> 00:09:00.755
+135
+00:08:42.481 --> 00:08:44.705
 and the kit's collection should agree.
 
-140
-00:09:00.755 --> 00:09:05.742
+136
+00:08:44.705 --> 00:08:49.692
 Record the key casing the CLI printed,
 because Oracle's reference doesn't show it.
 
-141
-00:09:05.742 --> 00:09:11.290
+137
+00:08:49.692 --> 00:08:55.240
 Finally, delete the policy and the run,
 which names the tenancy's resources.
 
-142
-00:09:15.040 --> 00:09:19.840
+138
+00:08:58.990 --> 00:09:03.790
 Each output is evidence for something
 specific, against NIST's control catalog.
 
-143
-00:09:19.840 --> 00:09:23.103
+139
+00:09:03.790 --> 00:09:07.053
 A policy that lets the reader's
 group read announcements and
 
-144
-00:09:23.103 --> 00:09:26.627
+140
+00:09:07.053 --> 00:09:10.577
 nothing else supports monitoring
 an external service provider.
 
-145
-00:09:26.627 --> 00:09:30.546
+141
+00:09:10.577 --> 00:09:14.496
 A run folder showing every chain's
 latest announcement was read,
 
-146
-00:09:30.546 --> 00:09:35.427
+142
+00:09:14.496 --> 00:09:19.377
 in the right realm, supports that and
 receiving security alerts and advisories.
 
-147
-00:09:35.427 --> 00:09:40.320
+143
+00:09:19.377 --> 00:09:24.270
 Maintenance that names the agency's
 resources supports contingency planning,
 
-148
-00:09:40.320 --> 00:09:43.878
+144
+00:09:24.270 --> 00:09:27.828
 because Chapter 6 asks the
 system owner to review the plan.
 
-149
-00:09:43.878 --> 00:09:48.439
+145
+00:09:27.828 --> 00:09:32.389
 And a rescheduled window that stays one
 notice supports continuous monitoring.
 
-150
-00:09:48.439 --> 00:09:52.365
+146
+00:09:32.389 --> 00:09:36.315
 The indicators are FedRAMP's;
 the mapping is the program's.
 
-151
-00:09:52.365 --> 00:09:54.890
+147
+00:09:36.315 --> 00:09:38.840
 The assessor decides the controls.
 
-152
-00:09:58.640 --> 00:10:00.040
+148
+00:09:42.590 --> 00:09:43.990
 What breaks in production?
 
-153
-00:10:00.040 --> 00:10:04.805
+149
+00:09:43.990 --> 00:09:48.755
 Grant inspect instead of read and you
 get summaries without affected resources,
 
-154
-00:10:04.805 --> 00:10:07.365
+150
+00:09:48.755 --> 00:09:51.315
 so nothing routes as
 naming your resources.
 
-155
-00:10:07.365 --> 00:10:10.252
+151
+00:09:51.315 --> 00:09:54.203
 Read every announcement
 in a chain on its own
 
-156
-00:10:10.252 --> 00:10:13.140
+152
+00:09:54.203 --> 00:09:57.090
 and the old window lingers
 next to the new one.
 
-157
-00:10:13.140 --> 00:10:17.340
+153
+00:09:57.090 --> 00:10:01.290
 Read a government tenancy in the
 commercial realm and nothing comes back.
 
-158
-00:10:17.340 --> 00:10:21.850
+154
+00:10:01.290 --> 00:10:05.800
 Let only the help desk see the HR
 platform's maintenance and its owners learn
 
-159
-00:10:21.850 --> 00:10:26.002
+155
+00:10:05.800 --> 00:10:09.952
 of it after it lands, so the workbook's
 design guidance routes it to them.
 
-160
-00:10:26.002 --> 00:10:30.621
+156
+00:10:09.952 --> 00:10:14.571
 And treat the email as the record and it
 can be spoofed and isn't in the evidence;
 
-161
-00:10:30.621 --> 00:10:33.640
+157
+00:10:14.571 --> 00:10:17.590
 the task links the
 announcement the kit read.
 
-162
-00:10:37.390 --> 00:10:38.740
+158
+00:10:21.340 --> 00:10:22.690
 Here's what done looks like.
 
-163
-00:10:38.740 --> 00:10:42.740
+159
+00:10:22.690 --> 00:10:26.690
 The policy grants read announcements to
 the reader's group, and nothing more.
 
-164
-00:10:42.740 --> 00:10:46.079
+160
+00:10:26.690 --> 00:10:30.029
 The settings name the
 realm and the home region,
 
-165
-00:10:46.079 --> 00:10:48.477
+161
+00:10:30.029 --> 00:10:32.427
 and a government tenancy uses O C 2.
 
-166
-00:10:48.477 --> 00:10:52.339
+162
+00:10:32.427 --> 00:10:36.289
 Oracle's list and the kit's
 collection agree in the test tenancy.
 
-167
-00:10:52.339 --> 00:10:55.552
+163
+00:10:36.289 --> 00:10:39.502
 Maintenance notices name
 the affected resources.
 
-168
-00:10:55.552 --> 00:10:57.764
+164
+00:10:39.502 --> 00:10:41.714
 The key casing you saw is recorded.
 
-169
-00:10:57.764 --> 00:10:59.881
+165
+00:10:41.714 --> 00:10:43.831
 And the owners of systems on OCI,
 
-170
-00:10:59.881 --> 00:11:04.440
+166
+00:10:43.831 --> 00:10:48.390
 an HR platform among them where the
 agency has one, are in the routing.
 
-171
-00:11:04.440 --> 00:11:08.528
+167
+00:10:48.390 --> 00:10:52.478
 Next, Chapter 4 fills the
 same record from AWS Health.
 
-172
-00:11:08.528 --> 00:11:09.690
+168
+00:10:52.478 --> 00:10:53.640
 Thanks for watching.

@@ -29,7 +29,7 @@ The code behind the guide's Gate 1 and the plan's tasks I1.2 and I1.4: one recor
 ## Narrated tour
 {{< fmw-video DW_HR_01_Writer_Register_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-01-writer-register) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-01-writer-register) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-01-writer-register/DW_HR_01_Writer_Register_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-01-writer-register/DW_HR_01_Writer_Register_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_01_Writer_Register.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_01_Writer_Register_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-01-writer-register/DW_HR_01_Writer_Register_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-01-writer-register/DW_HR_01_Writer_Register_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

@@ -6,9 +6,9 @@
 |---|---|
 | `DW_TTM_05_Reread_Rule.pptx` | The deck: 16 narrated slides (the title and 15 content slides in Why, What, Who and How order), then a backup section with the chapter's footnotes in full |
 | `DW_TTM_05_Reread_Rule_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped |
-| `DW_TTM_05_Reread_Rule_Narrated.mp4` | The video, about 9 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_TTM_05_Reread_Rule_Narrated.mp4) |
+| `DW_TTM_05_Reread_Rule_Narrated.mp4` | The video, about 10 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_TTM_05_Reread_Rule_Narrated.mp4) |
 | `DW_TTM_05_Reread_Rule_Narrated.vtt` | The video's caption track |
-| `DW_TTM_05_Reread_Rule_Narration_Script.md` | The spoken narration, slide by slide (about 1,378 words) |
+| `DW_TTM_05_Reread_Rule_Narration_Script.md` | The spoken narration, slide by slide (about 1,391 words) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the chapter footnotes each slide cites (`cite`) |
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `DATECODE="YYYY-MM-DD HH:MM ET" node presentations/dw-ttm-05-reread-rule/build.js`, with the Eastern time taken from PowerShell. Then `narrate.py`, `captions.py`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README; `qa_export.ps1` checks the layout through PowerPoint.

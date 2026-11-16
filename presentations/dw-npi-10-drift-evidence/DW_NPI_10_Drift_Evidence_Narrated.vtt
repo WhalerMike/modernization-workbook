@@ -136,17 +136,17 @@ For this estate, Graph is
 the worldwide endpoint.
 
 29
-00:01:50.510 --> 00:01:55.888
+00:01:50.510 --> 00:01:55.569
 One report, the service principal sign-in
-activity, is beta and worldwide only,
+activity, is beta, and it's listed
 
 30
-00:01:55.888 --> 00:01:59.585
-so in the higher clouds the
-code records it as not read.
+00:01:55.569 --> 00:02:00.797
+for the global service, so a G C C tenant
+can read it on the worldwide endpoint.
 
 31
-00:01:59.585 --> 00:02:03.090
+00:02:00.797 --> 00:02:04.290
 And the other chapters feed
 in through a small contract.
 

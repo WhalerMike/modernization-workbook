@@ -108,741 +108,721 @@ so every call in this chapter goes to
 the commercial Resource Manager host.
 
 23
-00:01:26.755 --> 00:01:29.957
-GCC High and Department
-of Defense subscriptions
+00:01:26.755 --> 00:01:30.362
+The licenses for G C C are
+hosted in commercial Azure,
 
 24
-00:01:29.957 --> 00:01:32.855
-live in Azure Government,
-which has its own host.
+00:01:30.362 --> 00:01:34.305
+and the governance product PIM
+needs is available in G C C.
 
 25
-00:01:32.855 --> 00:01:36.863
-The licensing PIM needs is
-available in all of these clouds,
+00:01:34.305 --> 00:01:38.620
+Even so, the code makes you name the
+cloud every time, with no default,
 
 26
-00:01:36.863 --> 00:01:41.199
-but notice the honest gap: no page
-the chapter read states the PIM
+00:01:38.620 --> 00:01:42.900
+and refuses a desired-state file
+written for a different one.
 
 27
-00:01:41.199 --> 00:01:45.780
-Resource Manager API's availability
-in Azure Government outright.
-
-28
-00:01:45.780 --> 00:01:48.555
-So the code makes you name
-the cloud every time,
-
-29
-00:01:48.555 --> 00:01:51.690
-and refuses a file written
-for a different one.
-
-30
-00:01:55.440 --> 00:01:57.301
+00:01:46.650 --> 00:01:48.511
 Here's the first thing to know:
 
-31
-00:01:57.301 --> 00:02:00.790
+28
+00:01:48.511 --> 00:01:52.000
 PIM for Azure resources isn't
 in Microsoft Graph at all.
 
-32
-00:02:00.790 --> 00:02:03.658
+29
+00:01:52.000 --> 00:01:54.868
 Entra roles and groups
 are managed through Graph,
 
-33
-00:02:03.658 --> 00:02:08.065
+30
+00:01:54.868 --> 00:01:59.275
 but Azure resources go through Resource
 Manager, with no Graph permissions.
 
-34
-00:02:08.065 --> 00:02:11.982
+31
+00:01:59.275 --> 00:02:03.192
 Three resource types do the work:
 one for eligible assignments,
 
-35
-00:02:11.982 --> 00:02:16.577
+32
+00:02:03.192 --> 00:02:07.787
 one for active assignments and activations,
 and one for the role settings.
 
-36
-00:02:16.577 --> 00:02:21.403
+33
+00:02:07.787 --> 00:02:12.613
 The schedules they produce are the same
 lists Chapter 1's inventory already reads.
 
-37
-00:02:21.403 --> 00:02:25.896
+34
+00:02:12.613 --> 00:02:17.106
 And there's a deadline: the old
 beta endpoint stops returning data
 
-38
-00:02:25.896 --> 00:02:30.750
+35
+00:02:17.106 --> 00:02:21.960
 at the end of October 2026, so the
 chapter uses only the current API.
 
-39
-00:02:34.500 --> 00:02:36.188
+36
+00:02:25.710 --> 00:02:27.398
 Three facts shape the code.
 
-40
-00:02:36.188 --> 00:02:41.381
+37
+00:02:27.398 --> 00:02:32.591
 First, the version: the generally available
 release covers every PIM resource type,
 
-41
-00:02:41.381 --> 00:02:44.166
+38
+00:02:32.591 --> 00:02:35.376
 and the code pins it, even
 though one of Learn's
 
-42
-00:02:44.166 --> 00:02:46.725
+39
+00:02:35.376 --> 00:02:37.935
 how-to pages still shows an older preview.
 
-43
-00:02:46.725 --> 00:02:48.387
+40
+00:02:37.935 --> 00:02:39.597
 When Learn's pages disagree,
 
-44
-00:02:48.387 --> 00:02:52.650
+41
+00:02:39.597 --> 00:02:43.860
 the chapter follows the stricter one
 and writes the disagreement down.
 
-45
-00:02:52.650 --> 00:02:54.850
+42
+00:02:43.860 --> 00:02:46.060
 Second, settings don't inherit.
 
-46
-00:02:54.850 --> 00:02:59.050
+43
+00:02:46.060 --> 00:02:50.260
 A resource group under a governed
 subscription keeps its defaults,
 
-47
-00:02:59.050 --> 00:03:01.150
+44
+00:02:50.260 --> 00:02:52.360
 so the file has to list every scope.
 
-48
-00:03:01.150 --> 00:03:04.487
+45
+00:02:52.360 --> 00:02:55.697
 Third, only users and
 groups can be eligible.
 
-49
-00:03:04.487 --> 00:03:09.050
+46
+00:02:55.697 --> 00:03:00.260
 A pipeline's service principal can't
 activate, so it can't be converted.
 
-50
-00:03:12.800 --> 00:03:14.512
+47
+00:03:04.010 --> 00:03:05.722
 Here's what Microsoft gives you.
 
-51
-00:03:14.512 --> 00:03:17.509
+48
+00:03:05.722 --> 00:03:08.719
 Learn has three walkthroughs, one per job:
 
-52
-00:03:17.509 --> 00:03:21.387
+49
+00:03:08.719 --> 00:03:12.597
 eligible access, active
 access, and the role settings.
 
-53
-00:03:21.387 --> 00:03:24.927
+50
+00:03:12.597 --> 00:03:16.137
 Together they show how to
 list, grant, remove, activate,
 
-54
-00:03:24.927 --> 00:03:30.075
+51
+00:03:16.137 --> 00:03:21.285
 and patch a role's rules, and which errors
 come back when a request breaks a rule.
 
-55
-00:03:30.075 --> 00:03:32.988
+52
+00:03:21.285 --> 00:03:24.198
 Their source isn't public,
 so they can't be pinned.
 
-56
-00:03:32.988 --> 00:03:37.380
+53
+00:03:24.198 --> 00:03:28.590
 But Microsoft's request and response
 examples for the same calls are,
 
-57
-00:03:37.380 --> 00:03:41.926
+54
+00:03:28.590 --> 00:03:33.136
 so the repository pins six of them,
 unmodified, with hashes a test checks.
 
-58
-00:03:41.926 --> 00:03:45.683
+55
+00:03:33.136 --> 00:03:36.893
 A stand-in Resource Manager then
 replays them through the code,
 
-59
-00:03:45.683 --> 00:03:48.570
+56
+00:03:36.893 --> 00:03:39.780
 and nothing signs in
 or leaves the machine.
 
-60
-00:03:52.320 --> 00:03:55.358
+57
+00:03:43.530 --> 00:03:46.568
 Replaying the examples
 turns up some real traps.
 
-61
-00:03:55.358 --> 00:03:58.688
+58
+00:03:46.568 --> 00:03:49.898
 The list examples show
 one page for one person,
 
-62
-00:03:58.688 --> 00:04:01.669
+59
+00:03:49.898 --> 00:03:52.879
 but a busy subscription spans many pages.
 
-63
-00:04:01.669 --> 00:04:04.959
+60
+00:03:52.879 --> 00:03:56.169
 One example's role ID and
 its friendly name disagree,
 
-64
-00:04:04.959 --> 00:04:08.707
+61
+00:03:56.169 --> 00:03:59.917
 so code that trusts the name
 files a row under the wrong role.
 
-65
-00:04:08.707 --> 00:04:12.675
+62
+00:03:59.917 --> 00:04:03.885
 Another example says "assigned",
 but it's really an activation,
 
-66
-00:04:12.675 --> 00:04:15.770
+63
+00:04:03.885 --> 00:04:06.980
 and read naively it looks
 like standing access.
 
-67
-00:04:15.770 --> 00:04:20.458
+64
+00:04:06.980 --> 00:04:11.668
 The scope is written three different
 ways, which quietly breaks any diff.
 
-68
-00:04:20.458 --> 00:04:23.192
+65
+00:04:11.668 --> 00:04:14.402
 And the sample eligibility lasts a year,
 
-69
-00:04:23.192 --> 00:04:26.671
+66
+00:04:14.402 --> 00:04:17.881
 with no justification,
 longer than any tier allows.
 
-70
-00:04:26.671 --> 00:04:29.150
+67
+00:04:17.881 --> 00:04:20.360
 Each of these is pinned by a test.
 
-71
-00:04:32.900 --> 00:04:37.425
+68
+00:04:24.110 --> 00:04:28.635
 The rest of the gaps aren't mistakes,
 they're things the examples never try to do.
 
-72
-00:04:37.425 --> 00:04:40.426
+69
+00:04:28.635 --> 00:04:31.636
 They show one rule patched
 at one subscription,
 
-73
-00:04:40.426 --> 00:04:43.888
+70
+00:04:31.636 --> 00:04:35.098
 but settings don't inherit,
 so every scope needs its own.
 
-74
-00:04:43.888 --> 00:04:47.975
+71
+00:04:35.098 --> 00:04:39.185
 Nothing in them finds standing Owner,
 which is the whole point of the project.
 
-75
-00:04:47.975 --> 00:04:52.587
+72
+00:04:39.185 --> 00:04:43.797
 Every write is a request you send by
 hand, with nothing to review first.
 
-76
-00:04:52.587 --> 00:04:55.438
-And every request goes
-to the commercial host.
-
-77
-00:04:55.438 --> 00:04:59.614
+73
+00:04:43.797 --> 00:04:47.975
 So the verdict: use the walkthroughs
 as the procedure and the examples
 
-78
-00:04:59.614 --> 00:05:03.650
+74
+00:04:47.975 --> 00:04:52.010
 as the contract for shapes, but
 don't drive the estate from them.
 
-79
-00:05:07.400 --> 00:05:08.338
+75
+00:04:55.760 --> 00:04:56.698
 Now the code.
 
-80
-00:05:08.338 --> 00:05:13.067
+76
+00:04:56.698 --> 00:05:01.427
 It's a second module that imports
 Chapter 1's and changes nothing in it,
 
-81
-00:05:13.067 --> 00:05:16.801
+77
+00:05:01.427 --> 00:05:05.161
 so every read is declared,
 paged to the end, and recorded.
 
-82
-00:05:16.801 --> 00:05:18.788
+78
+00:05:05.161 --> 00:05:07.148
 The call list has two tasks.
 
-83
-00:05:18.788 --> 00:05:20.538
+79
+00:05:07.148 --> 00:05:08.898
 Reading needs only Reader.
 
-84
-00:05:20.538 --> 00:05:24.302
+80
+00:05:08.898 --> 00:05:12.662
 Writing needs User Access
 Administrator, which can manage role
 
-85
-00:05:24.302 --> 00:05:28.563
+81
+00:05:12.662 --> 00:05:16.923
 assignments but can't change the
 resources themselves, the way Owner can.
 
-86
-00:05:28.563 --> 00:05:32.772
+82
+00:05:16.923 --> 00:05:21.132
 There's one more candidate, the
 role-based access control administrator,
 
-87
-00:05:32.772 --> 00:05:34.737
+83
+00:05:21.132 --> 00:05:23.097
 which holds the same write action.
 
-88
-00:05:34.737 --> 00:05:38.882
+84
+00:05:23.097 --> 00:05:27.242
 But the PIM pages name only Owner
 and User Access Administrator,
 
-89
-00:05:38.882 --> 00:05:43.630
+85
+00:05:27.242 --> 00:05:31.990
 so the code takes the stricter
 reading until a lab proves otherwise.
 
-90
-00:05:47.380 --> 00:05:50.505
+86
+00:05:35.740 --> 00:05:38.865
 The heart of the configuration
 is one reviewed file.
 
-91
-00:05:50.505 --> 00:05:55.116
+87
+00:05:38.865 --> 00:05:43.476
 It names the scopes, the roles, who's
 eligible, and the settings for each tier,
 
-92
-00:05:55.116 --> 00:05:58.367
+88
+00:05:43.476 --> 00:05:46.727
 taken from the workbook's
 privileged-access design:
 
-93
-00:05:58.367 --> 00:06:03.054
+89
+00:05:46.727 --> 00:05:51.414
 shorter activations and tighter
 eligibility for the most sensitive tier,
 
-94
-00:06:03.054 --> 00:06:07.892
+90
+00:05:51.414 --> 00:05:56.252
 approval by a named group, and a
 justification and ticket on every activation.
 
-95
-00:06:07.892 --> 00:06:10.642
+91
+00:05:56.252 --> 00:05:59.002
 Those values are the
 program's design guidance.
 
-96
-00:06:10.642 --> 00:06:14.492
+92
+00:05:59.002 --> 00:06:02.852
 The loader also refuses what
 Learn or the program rules out.
 
-97
-00:06:14.492 --> 00:06:17.092
+93
+00:06:02.852 --> 00:06:05.452
 The subtle one is authentication context:
 
-98
-00:06:17.092 --> 00:06:21.845
+94
+00:06:05.452 --> 00:06:10.205
 Learn says to create its Conditional
 Access policy before you point PIM at it,
 
-99
-00:06:21.845 --> 00:06:24.950
+95
+00:06:10.205 --> 00:06:13.310
 so the file can't use it
 until that's confirmed.
 
-100
-00:06:28.080 --> 00:06:31.353
+96
+00:06:17.060 --> 00:06:20.333
 The read is straightforward:
 at each governed scope,
 
-101
-00:06:31.353 --> 00:06:34.093
+97
+00:06:20.333 --> 00:06:23.073
 both schedule lists and
 one policy per role.
 
-102
-00:06:34.093 --> 00:06:38.431
+98
+00:06:23.073 --> 00:06:27.411
 A schedule counts as permanently
 active only when it's assigned,
 
-103
-00:06:38.431 --> 00:06:41.379
+99
+00:06:27.411 --> 00:06:30.359
 never ends, isn't an
 activation, and is direct.
 
-104
-00:06:41.379 --> 00:06:43.330
+100
+00:06:30.359 --> 00:06:32.310
 The plan is where order matters.
 
-105
-00:06:43.330 --> 00:06:48.093
+101
+00:06:32.310 --> 00:06:37.073
 Policies go first, because a request
 that breaks the policy is refused.
 
-106
-00:06:48.093 --> 00:06:50.304
+102
+00:06:37.073 --> 00:06:39.284
 New eligible assignments go second.
 
-107
-00:06:50.304 --> 00:06:52.676
+103
+00:06:39.284 --> 00:06:41.656
 And standing access is removed last,
 
-108
-00:06:52.676 --> 00:06:55.917
+104
+00:06:41.656 --> 00:06:44.897
 so nobody loses a role
 before they can activate it.
 
-109
-00:06:55.917 --> 00:06:59.960
+105
+00:06:44.897 --> 00:06:48.940
 Anything eligible that the file
 doesn't mention is reported,
 
-110
-00:06:59.960 --> 00:07:04.210
+106
+00:06:48.940 --> 00:06:53.190
 not removed: taking access away
 is its own reviewed change.
 
-111
-00:07:07.960 --> 00:07:12.635
+107
+00:06:56.940 --> 00:07:01.615
 The plan also reports what it found, and
 just as important, what it won't touch.
 
-112
-00:07:12.635 --> 00:07:16.310
+108
+00:07:01.615 --> 00:07:05.290
 Standing privileged roles outside
 owned exceptions are findings.
 
-113
-00:07:16.310 --> 00:07:21.097
+109
+00:07:05.290 --> 00:07:10.077
 A service principal is reported, never
 converted, because it can't activate.
 
-114
-00:07:21.097 --> 00:07:23.986
+110
+00:07:10.077 --> 00:07:12.966
 Root-scope elevation is
 flagged for removal.
 
-115
-00:07:23.986 --> 00:07:27.982
+111
+00:07:12.966 --> 00:07:16.962
 The identity running the plan
 never plans away its own access;
 
-116
-00:07:27.982 --> 00:07:30.647
+112
+00:07:16.962 --> 00:07:19.627
 that's decided last, from another session.
 
-117
-00:07:30.647 --> 00:07:34.510
+113
+00:07:19.627 --> 00:07:23.490
 And a subscription that would end up
 with more than three owners is flagged.
 
-118
-00:07:34.510 --> 00:07:37.588
+114
+00:07:23.490 --> 00:07:26.568
 Writing, meanwhile, is
 hard to do by accident:
 
-119
-00:07:37.588 --> 00:07:42.205
+115
+00:07:26.568 --> 00:07:31.185
 it's a dry run unless you ask to
 apply, and every run leaves evidence,
 
-120
-00:07:42.205 --> 00:07:46.060
+116
+00:07:31.185 --> 00:07:35.040
 including the state as read,
 which is your back-out.
 
-121
-00:07:49.810 --> 00:07:50.872
+117
+00:07:38.790 --> 00:07:39.852
 Who is this for?
 
-122
-00:07:50.872 --> 00:07:53.169
+118
+00:07:39.852 --> 00:07:42.149
 The platform engineers who own the Azure
 
-123
-00:07:53.169 --> 00:07:56.073
+119
+00:07:42.149 --> 00:07:45.053
 management group hierarchy
 write and keep the file.
 
-124
-00:07:56.073 --> 00:08:00.266
+120
+00:07:45.053 --> 00:07:49.245
 The identity engineers and the
 information system security officers
 
-125
-00:08:00.266 --> 00:08:04.459
+121
+00:07:49.245 --> 00:07:53.439
 review every change before it's applied,
 by reading the diff and the plan.
 
-126
-00:08:04.459 --> 00:08:08.500
+122
+00:07:53.439 --> 00:07:57.480
 The eligible holders are people
 and groups, licensed for PIM,
 
-127
-00:08:08.500 --> 00:08:12.298
+123
+00:07:57.480 --> 00:08:01.278
 who'll now activate with a
 reason, a ticket and an approval.
 
-128
-00:08:12.298 --> 00:08:17.552
+124
+00:08:01.278 --> 00:08:06.532
 And the automation itself runs with as
 little as possible: Reader for the dry run,
 
-129
-00:08:17.552 --> 00:08:21.770
+125
+00:08:06.532 --> 00:08:10.750
 User Access Administrator held only
 for a day or so for the apply,
 
-130
-00:08:21.770 --> 00:08:25.000
+126
+00:08:10.750 --> 00:08:13.980
 never Owner, and no
 Graph permissions at all.
 
-131
-00:08:28.750 --> 00:08:32.800
+127
+00:08:17.730 --> 00:08:21.780
 Lab 1 runs on a laptop, with
 no tenant and no network.
 
-132
-00:08:32.800 --> 00:08:37.263
+128
+00:08:21.780 --> 00:08:26.243
 First you replay Microsoft's own
 examples, and the six tests pass.
 
-133
-00:08:37.263 --> 00:08:42.112
+129
+00:08:26.243 --> 00:08:31.092
 Read the second one: Microsoft's assignment
 example is really an activation.
 
-134
-00:08:42.112 --> 00:08:45.849
+130
+00:08:31.092 --> 00:08:34.829
 Next, ask the code which
 roles each task needs.
 
-135
-00:08:45.849 --> 00:08:47.638
+131
+00:08:34.829 --> 00:08:36.618
 Owner isn't needed for anything.
 
-136
-00:08:47.638 --> 00:08:51.475
+132
+00:08:36.618 --> 00:08:40.455
 Then plan against a small
 fictional estate, as a dry run.
 
-137
-00:08:51.475 --> 00:08:56.668
+133
+00:08:40.455 --> 00:08:45.649
 It reads the schedules and policies, plans
 eleven policy updates, five new eligible
 
-138
-00:08:56.668 --> 00:09:01.862
+134
+00:08:45.649 --> 00:08:50.842
 assignments and three removals, and writes
 nineteen requests without sending one.
 
-139
-00:09:01.862 --> 00:09:03.610
+135
+00:08:50.842 --> 00:08:52.590
 Let's read what it planned.
 
-140
-00:09:07.360 --> 00:09:09.635
+136
+00:08:56.340 --> 00:08:58.615
 Now read the plan the
 way a reviewer would.
 
-141
-00:09:09.635 --> 00:09:12.441
+137
+00:08:58.615 --> 00:09:01.421
 Three standing assignments
 become eligible,
 
-142
-00:09:12.441 --> 00:09:16.797
+138
+00:09:01.421 --> 00:09:05.777
 each with a matching removal, and
 two declared groups gain eligibility.
 
-143
-00:09:16.797 --> 00:09:21.648
+139
+00:09:05.777 --> 00:09:10.628
 Seventy policy rules change, but a policy
 that's already right isn't touched.
 
-144
-00:09:21.648 --> 00:09:25.906
+140
+00:09:10.628 --> 00:09:14.886
 The findings tell the rest: the
 automation's own access is left alone,
 
-145
-00:09:25.906 --> 00:09:30.772
+141
+00:09:14.886 --> 00:09:19.752
 a root-scope elevation is flagged, a
 pipeline's service principal is reported,
 
-146
-00:09:30.772 --> 00:09:34.498
+142
+00:09:19.752 --> 00:09:23.478
 not converted, and one subscription
 would have four owners.
 
-147
-00:09:34.498 --> 00:09:39.110
+143
+00:09:23.478 --> 00:09:28.090
 Then apply against the fake, and a
 fresh read shows nothing left to change.
 
-148
-00:09:39.110 --> 00:09:44.500
+144
+00:09:28.090 --> 00:09:33.480
 Finally, watch the code refuse an undeclared
 write and a scope it doesn't govern.
 
-149
-00:09:48.250 --> 00:09:52.812
+145
+00:09:37.230 --> 00:09:41.792
 Lab 2 moves to a test tenant and a
 test subscription, never production.
 
-150
-00:09:52.812 --> 00:09:55.129
+146
+00:09:41.792 --> 00:09:44.109
 You give a reader app nothing but Reader,
 
-151
-00:09:55.129 --> 00:09:59.341
+147
+00:09:44.109 --> 00:09:48.321
 write a small desired state with one
 hand-made standing Owner to convert,
 
-152
-00:09:59.341 --> 00:10:03.624
+148
+00:09:48.321 --> 00:09:52.604
 and plan live, comparing what the code
 read with what the admin center shows.
 
-153
-00:10:03.624 --> 00:10:06.891
+149
+00:09:52.604 --> 00:09:55.871
 Then you grant the write role
 for a single day, apply,
 
-154
-00:10:06.891 --> 00:10:10.313
+150
+00:09:55.871 --> 00:09:59.293
 and activate as the test user
 to see the approval flow.
 
-155
-00:10:10.313 --> 00:10:15.001
+151
+00:09:59.293 --> 00:10:03.981
 There's also a small experiment to settle
 an open question about the narrower role.
 
-156
-00:10:15.001 --> 00:10:17.668
+152
+00:10:03.981 --> 00:10:06.648
 And to back it out, wait
 five minutes first:
 
-157
-00:10:17.668 --> 00:10:21.330
+153
+00:10:06.648 --> 00:10:10.310
 Learn says a new assignment
 can't be removed sooner.
 
-158
-00:10:25.080 --> 00:10:29.378
+154
+00:10:14.060 --> 00:10:18.358
 Every danger here is a way a well-meant
 change goes wrong in production,
 
-159
-00:10:29.378 --> 00:10:31.230
+155
+00:10:18.358 --> 00:10:20.210
 and each has a guard in the code.
 
-160
-00:10:31.230 --> 00:10:35.316
+156
+00:10:20.210 --> 00:10:24.296
 The worst is order: remove
 standing Owner before the eligible
 
-161
-00:10:35.316 --> 00:10:39.242
+157
+00:10:24.296 --> 00:10:28.222
 role exists and someone loses
 access in the middle of a task.
 
-162
-00:10:39.242 --> 00:10:44.405
+158
+00:10:28.222 --> 00:10:33.385
 Close behind is the automation removing
 its own access halfway through a run.
 
-163
-00:10:44.405 --> 00:10:48.980
+159
+00:10:33.385 --> 00:10:37.960
 Others are quieter: a resource group
 nobody listed keeps its defaults, an
 
-164
-00:10:48.980 --> 00:10:52.716
+160
+00:10:37.960 --> 00:10:41.696
 authentication context points
 at a policy that isn't there,
 
-165
-00:10:52.716 --> 00:10:54.393
+161
+00:10:41.696 --> 00:10:43.373
 or a typo lands unreviewed.
 
-166
-00:10:54.393 --> 00:10:56.836
+162
+00:10:43.373 --> 00:10:45.816
 The pattern is the same as before:
 
-167
-00:10:56.836 --> 00:11:00.830
+163
+00:10:45.816 --> 00:10:49.810
 a dry run by default, and
 rules that run every time.
 
-168
-00:11:04.580 --> 00:11:05.930
+164
+00:10:53.560 --> 00:10:54.910
 Here's what done looks like.
 
-169
-00:11:05.930 --> 00:11:08.954
+165
+00:10:54.910 --> 00:10:57.934
 On the estate side: every
 governed scope is listed,
 
-170
-00:11:08.954 --> 00:11:13.822
+166
+00:10:57.934 --> 00:11:02.802
 and you've written down what isn't; each
 role's settings match the tier everywhere,
 
-171
-00:11:13.822 --> 00:11:18.763
+167
+00:11:02.802 --> 00:11:07.743
 and a fresh read after the apply shows
 nothing left; no standing privileged roles
 
-172
-00:11:18.763 --> 00:11:23.705
+168
+00:11:07.743 --> 00:11:12.685
 remain outside owned exceptions; and no
 subscription has more than three owners.
 
-173
-00:11:23.705 --> 00:11:28.797
+169
+00:11:12.685 --> 00:11:17.777
 On the run side: the right roles, held
 briefly, the right cloud, a reviewer who read
 
-174
-00:11:28.797 --> 00:11:33.967
+170
+00:11:17.777 --> 00:11:22.947
 the plan before the apply, and pinned
 examples still matching what was reviewed.
 
-175
-00:11:33.967 --> 00:11:37.968
+171
+00:11:22.947 --> 00:11:26.948
 Next, Chapter 7 reviews who
 holds these privileged roles.
 
-176
-00:11:37.968 --> 00:11:39.140
+172
+00:11:26.948 --> 00:11:28.120
 Thanks for watching.

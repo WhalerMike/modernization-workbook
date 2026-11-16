@@ -4,7 +4,7 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-15
+date-modified: 2026-11-13
 review-status: approved
 reviewed-sha256: 73f432c010f5e81749e4e78478fca9c7204d5443df8995fa45878636e38cd99c
 last-reviewed: 2026-11-09
@@ -163,7 +163,6 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [Azure Service Health FAQ](https://learn.microsoft.com/azure/service-health/service-health-faq){#azure-service-health-faq} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-service-health-faq"} |
 | [Azure Service Health portal](https://learn.microsoft.com/azure/service-health/service-health-portal-update){#azure-service-health-portal} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-service-health-portal"} |
 | [Azure Verified Modules: Application Gateway Web Application Firewall (WAF) Policies Bicep module](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/application-gateway-web-application-firewall-policy){#avm-waf-policy-module} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="avm-waf-policy-module"} |
-| [Connect to Azure Government with Azure CLI](https://learn.microsoft.com/azure/azure-government/documentation-government-get-started-connect-with-cli){#azure-government-connect-cli} | Retired | November 12, 2026 | [Not read yet]{.fmw-scan data-source="azure-government-connect-cli"} |
 | [Deploy Service Health alerts at scale using Azure Policy](https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy){#service-health-alerts-azure-policy} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="service-health-alerts-azure-policy"} |
 | [Elevated access to security advisories (Azure Service Health)](https://learn.microsoft.com/azure/service-health/security-advisories-elevated-access){#service-health-security-advisories-elevated} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="service-health-security-advisories-elevated"} |
 | [List serviceAnnouncement issues (Microsoft Graph)](https://learn.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0){#graph-serviceannouncement-list-issues} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="graph-serviceannouncement-list-issues"} |
@@ -256,7 +255,6 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [Combine multiple HTTP requests using JSON batching](https://learn.microsoft.com/graph/json-batching){#combine-multiple-http-requests-using-json} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="combine-multiple-http-requests-using-json"} |
 | [Common operations for Microsoft Entra Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common){#gsa-common-operations} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gsa-common-operations"} |
 | [Common questions, answers, and scenarios with policies and profiles in Microsoft Intune](https://learn.microsoft.com/intune/device-configuration/troubleshoot-device-profiles#conflicts){#common-questions-answers-and-scenarios-with} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="common-questions-answers-and-scenarios-with"} |
-| [Compare Azure Government and global Azure](https://learn.microsoft.com/azure/azure-government/compare-azure-government-global-azure){#compare-azure-government-and-global-azure} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="compare-azure-government-and-global-azure"} |
 | [Conditional Access authentication strengths](https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strengths){#conditional-access-authentication-strengths} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="conditional-access-authentication-strengths"} |
 | [Conditional Access for agents](https://learn.microsoft.com/entra/identity/conditional-access/agent-id){#conditional-access-for-agents} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="conditional-access-for-agents"} |
 | [Conditional Access for Azure SQL Database](https://learn.microsoft.com/azure/azure-sql/database/conditional-access-configure){#conditional-access-for-azure-sql} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="conditional-access-for-azure-sql"} |
@@ -546,7 +544,6 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [Plan and deploy Azure Arc-enabled servers](https://learn.microsoft.com/azure/azure-arc/servers/plan-at-scale-deployment){#plan-and-deploy-azure-arc-enabled-servers} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plan-and-deploy-azure-arc-enabled-servers"} |
 | [Plan your Microsoft Entra hybrid join implementation](https://learn.microsoft.com/entra/identity/devices/hybrid-join-plan){#plan-your-microsoft-entra-hybrid-join} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plan-your-microsoft-entra-hybrid-join"} |
 | [Plan your Microsoft Entra join deployment](https://learn.microsoft.com/en-us/entra/identity/devices/device-join-plan){#plan-your-microsoft-entra-join-deployment} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plan-your-microsoft-entra-join-deployment"} |
-| [Planning identity for Azure Government applications](https://learn.microsoft.com/azure/azure-government/documentation-government-plan-identity){#planning-identity-for-azure-government} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="planning-identity-for-azure-government"} |
 | [Policy CSP - ControlPolicyConflict](https://learn.microsoft.com/windows/client-management/mdm/policy-csp-controlpolicyconflict){#policy-csp-controlpolicyconflict} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="policy-csp-controlpolicyconflict"} |
 | [PowerShell sample: Export secrets and certificates for app registrations](https://learn.microsoft.com/entra/identity/enterprise-apps/scripts/powershell-export-all-app-registrations-secrets-and-certs){#powershell-sample-export-secrets-and} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="powershell-sample-export-secrets-and"} |
 | [PowerShell samples for dynamic membership processing](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership-powershell-samples){#powershell-samples-for-dynamic-membership} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="powershell-samples-for-dynamic-membership"} |
@@ -921,21 +918,20 @@ This register lists 764 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
-| November 15, 2026 | 3 sources | Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |
 | November 13, 2026 | 4 sources | Added: cited in the Azure Security guide and training labs |
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
 | November 12, 2026 | 22 sources | More slide wording links here |
-| November 12, 2026 | 171 sources | Added: cited on the narrated deck slides |
+| November 12, 2026 | 170 sources | Added: cited on the narrated deck slides |
 | November 11, 2026 | 13 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft |
 | November 8, 2026 | 9 sources | Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote) |
 | November 6, 2026 | 12 sources | Added: cited in the External Partner Identity chapter and profile (WD-143) |
-| November 5, 2026 | 446 sources | Added: cited on the narrated deck slides |
+| November 5, 2026 | 444 sources | Added: cited on the narrated deck slides |
 | November 5, 2026 | 70 sources | Added: cited on the Start series and Book 00 slides |
 | November 5, 2026 | 11 sources | More slide wording links here |
 

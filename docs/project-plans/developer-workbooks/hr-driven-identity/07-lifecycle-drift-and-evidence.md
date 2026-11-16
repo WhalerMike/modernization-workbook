@@ -29,7 +29,7 @@ The code behind the guide's [Gate 7](../../../books/guides/hr-driven-identity-im
 ## Narrated tour
 {{< fmw-video DW_HR_07_Drift_Metrics_Evidence_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-07-drift-metrics-evidence) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-07-drift-metrics-evidence) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-07-drift-metrics-evidence/DW_HR_07_Drift_Metrics_Evidence_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-07-drift-metrics-evidence/DW_HR_07_Drift_Metrics_Evidence_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_07_Drift_Metrics_Evidence.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_07_Drift_Metrics_Evidence_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-07-drift-metrics-evidence/DW_HR_07_Drift_Metrics_Evidence_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-07-drift-metrics-evidence/DW_HR_07_Drift_Metrics_Evidence_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

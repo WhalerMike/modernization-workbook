@@ -85,24 +85,6 @@
  },
  {
   "slide": 6,
-  "title": "The pinned copy, run against a fake tenant",
-  "links": [
-   {
-    "text": "MicrosoftDocs/entra-docs at 07cb73d",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#entra-docs-at-07cb73d"
-   },
-   {
-    "text": "PowerShell samples for dynamic membership processing",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
-   },
-   {
-    "text": "Chapter 04",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/04-dynamic-rules-as-code.html"
-   }
-  ]
- },
- {
-  "slide": 7,
   "title": "What the samples leave to you",
   "links": [
    {
@@ -120,7 +102,7 @@
   ]
  },
  {
-  "slide": 8,
+  "slide": 7,
   "title": "One file per group, with an owner and tests",
   "links": [
    {
@@ -130,7 +112,7 @@
   ]
  },
  {
-  "slide": 9,
+  "slide": 8,
   "title": "Parse and evaluate offline, as Learn's grammar says",
   "links": [
    {
@@ -144,7 +126,7 @@
   ]
  },
  {
-  "slide": 10,
+  "slide": 9,
   "title": "The linter: guards on the parsed tree",
   "links": [
    {
@@ -162,7 +144,7 @@
   ]
  },
  {
-  "slide": 11,
+  "slide": 10,
   "title": "What the linter found in Book 03's own table",
   "links": [
    {
@@ -180,7 +162,7 @@
   ]
  },
  {
-  "slide": 12,
+  "slide": 11,
   "title": "The shadow diff, the pause manifest and the tests",
   "links": [
    {
@@ -194,7 +176,7 @@
   ]
  },
  {
-  "slide": 13,
+  "slide": 12,
   "title": "Who owns the rules, and what each step may do",
   "links": [
    {
@@ -220,8 +202,8 @@
   ]
  },
  {
-  "slide": 14,
-  "title": "Lab 1: Learn's samples and the rules, offline",
+  "slide": 13,
+  "title": "Lab 1: lint and evaluate the rules, offline",
   "links": [
    {
     "text": "Chapter 04",
@@ -230,7 +212,7 @@
   ]
  },
  {
-  "slide": 15,
+  "slide": 14,
   "title": "Lab 1: the pull request check, broken on purpose",
   "links": [
    {
@@ -240,7 +222,7 @@
   ]
  },
  {
-  "slide": 16,
+  "slide": 15,
   "title": "Lab 2: a test tenant, Graph's evaluator, a drill",
   "links": [
    {
@@ -262,7 +244,7 @@
   ]
  },
  {
-  "slide": 17,
+  "slide": 16,
   "title": "Dangers, and the guard for each",
   "links": [
    {
@@ -284,7 +266,7 @@
   ]
  },
  {
-  "slide": 18,
+  "slide": 17,
   "title": "Done when: the chapter's checklist",
   "links": [
    {

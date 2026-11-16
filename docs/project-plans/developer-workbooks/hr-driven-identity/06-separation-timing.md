@@ -29,7 +29,7 @@ The measurement behind the guide's Gate 6 and plan tasks I4.1, I4.2 and I4.6: th
 ## Narrated tour
 {{< fmw-video DW_HR_06_Separation_Timing_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-06-separation-timing) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-06-separation-timing) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-06-separation-timing/DW_HR_06_Separation_Timing_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-06-separation-timing/DW_HR_06_Separation_Timing_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_06_Separation_Timing.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_06_Separation_Timing_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-06-separation-timing/DW_HR_06_Separation_Timing_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-06-separation-timing/DW_HR_06_Separation_Timing_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

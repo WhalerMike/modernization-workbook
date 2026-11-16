@@ -40,821 +40,803 @@ and walk two labs, the
 evidence and the dangers.
 
 9
-00:00:32.713 --> 00:00:34.287
-Two notes before we begin.
+00:00:32.713 --> 00:00:38.220
+One note before we begin: the code is
+illustrative, tested against fixtures.
 
 10
-00:00:34.287 --> 00:00:37.650
-This chapter is a draft,
-awaiting the owner's review.
-
-11
-00:00:37.650 --> 00:00:41.530
-And the code is illustrative,
-tested against fixtures.
-
-12
-00:00:45.280 --> 00:00:46.617
+00:00:41.970 --> 00:00:43.307
 Why start with a record?
 
-13
-00:00:46.617 --> 00:00:51.189
+11
+00:00:43.307 --> 00:00:47.879
 Because a reader should be able to
 ask, once, what needs action, by when,
 
-14
-00:00:51.189 --> 00:00:55.679
+12
+00:00:47.879 --> 00:00:52.369
 and who owns it, and five providers
 answer in five different shapes.
 
-15
-00:00:55.679 --> 00:00:58.080
+13
+00:00:52.369 --> 00:00:54.770
 So the goal of this chapter is concrete.
 
-16
-00:00:58.080 --> 00:01:03.006
+14
+00:00:54.770 --> 00:00:59.696
 By the end you can read every Service Health
 event for the subscriptions in scope,
 
-17
-00:01:03.006 --> 00:01:07.859
+15
+00:00:59.696 --> 00:01:04.549
 with the least-privileged role, into records
 that say what kind of notice each is,
 
-18
-00:01:07.859 --> 00:01:12.418
+16
+00:01:04.549 --> 00:01:09.108
 whether it needs action and by when, who
 said so, and which resources it names.
 
-19
-00:01:12.418 --> 00:01:15.507
+17
+00:01:09.108 --> 00:01:12.197
 And you can plan Service Health
 alerts at scale as a file
 
-20
-00:01:15.507 --> 00:01:19.300
+18
+00:01:12.197 --> 00:01:15.990
 that a reviewer approves by its
 hash before anything changes.
 
-21
-00:01:23.050 --> 00:01:24.413
+19
+00:01:19.740 --> 00:01:21.103
 Next, which cloud.
 
-22
-00:01:24.413 --> 00:01:29.697
+20
+00:01:21.103 --> 00:01:26.387
 The workbook's estate is a Microsoft
 365 GCC tenant with commercial Azure,
 
-23
-00:01:29.697 --> 00:01:35.501
+21
+00:01:26.387 --> 00:01:32.191
 so the Azure CLI is set to Azure Cloud and
 Resource Manager is the commercial host.
 
+22
+00:01:32.191 --> 00:01:36.434
+Learn's sample queries for Service
+Health each link to the Azure portal,
+
+23
+00:01:36.434 --> 00:01:40.390
+and every record's source link is
+the event on that commercial host.
+
 24
-00:01:35.501 --> 00:01:38.026
-Azure Government is a side note here:
-
-25
-00:01:38.026 --> 00:01:41.900
-its own CLI cloud name and
-its own Resource Manager host.
-
-26
-00:01:41.900 --> 00:01:46.330
-Learn's sample queries link the Azure
-Government portal, but a statement
-
-27
-00:01:46.330 --> 00:01:50.613
-that the table is available there, in
-so many words, is not yet specified.
-
-28
-00:01:50.613 --> 00:01:55.559
+00:01:40.390 --> 00:01:45.336
 The kit never guesses: the settings
 name the cloud, an unknown name throws,
 
-29
-00:01:55.559 --> 00:01:59.710
+25
+00:01:45.336 --> 00:01:49.490
 and the live run refuses a CLI
 that's set to another cloud.
 
-30
-00:02:03.460 --> 00:02:05.335
+26
+00:01:53.240 --> 00:01:55.115
 Here's Microsoft's starting point.
 
-31
-00:02:05.335 --> 00:02:10.252
+27
+00:01:55.115 --> 00:02:00.032
 Microsoft Learn publishes Resource
 Graph sample queries for Service Health:
 
-32
-00:02:10.252 --> 00:02:15.622
+28
+00:02:00.032 --> 00:02:05.402
 all active events, health advisories,
 upcoming retirements and planned maintenance.
 
-33
-00:02:15.622 --> 00:02:18.848
+29
+00:02:05.402 --> 00:02:08.628
 A second page gives the
 impacted-resources query.
 
-34
-00:02:18.848 --> 00:02:21.885
+30
+00:02:08.628 --> 00:02:11.665
 Reader on a subscription is
 enough to see its events,
 
-35
-00:02:21.885 --> 00:02:26.336
+31
+00:02:11.665 --> 00:02:16.116
 but a security advisory's sensitive
 fields and its impacted resources need
 
-36
-00:02:26.336 --> 00:02:30.786
+32
+00:02:16.116 --> 00:02:20.566
 Service Health Security Reader; Reader
 and Monitoring Reader can't see them.
 
-37
-00:02:30.786 --> 00:02:33.045
+33
+00:02:20.566 --> 00:02:22.825
 And for alerting between collections,
 
-38
-00:02:33.045 --> 00:02:37.424
+34
+00:02:22.825 --> 00:02:27.204
 Learn names a built-in policy that
 creates the Service Health alert rule in
 
-39
-00:02:37.424 --> 00:02:42.230
+35
+00:02:27.204 --> 00:02:32.010
 every subscription, with a remediation
 task for the ones that already exist.
 
-40
-00:02:45.980 --> 00:02:47.343
+36
+00:02:35.760 --> 00:02:37.123
 What does Learn leave to you?
 
-41
-00:02:47.343 --> 00:02:50.567
+37
+00:02:37.123 --> 00:02:40.347
 Each sample answers one
 question with its own columns,
 
-42
-00:02:50.567 --> 00:02:53.218
+38
+00:02:40.347 --> 00:02:42.998
 so there are several
 queries to run and merge.
 
-43
-00:02:53.218 --> 00:02:55.855
+39
+00:02:42.998 --> 00:02:45.635
 Each event comes back
 once per subscription,
 
-44
-00:02:55.855 --> 00:02:58.279
+40
+00:02:45.635 --> 00:02:48.059
 so one outage would be counted many times.
 
-45
-00:02:58.279 --> 00:03:02.592
+41
+00:02:48.059 --> 00:02:52.372
 Event types don't say what to do: a
 health advisory can be a retirement.
 
-46
-00:03:02.592 --> 00:03:04.568
+42
+00:02:52.372 --> 00:02:54.348
 Nothing says action is required.
 
-47
-00:03:04.568 --> 00:03:06.695
+43
+00:02:54.348 --> 00:02:56.475
 The alert policy is portal steps,
 
-48
-00:03:06.695 --> 00:03:10.005
+44
+00:02:56.475 --> 00:02:59.785
 with nothing a reviewer
 can approve before it runs.
 
-49
-00:03:10.005 --> 00:03:12.180
+45
+00:02:59.785 --> 00:03:01.960
 And nothing covers the other providers.
 
-50
-00:03:12.180 --> 00:03:14.705
+46
+00:03:01.960 --> 00:03:04.485
 Each of those gaps is pinned by a test.
 
-51
-00:03:14.705 --> 00:03:17.835
+47
+00:03:04.485 --> 00:03:07.615
 The verdict: keep Learn's
 queries as the model,
 
-52
-00:03:17.835 --> 00:03:22.350
+48
+00:03:07.615 --> 00:03:12.130
 and build the record, the merge,
 the kinds and the action rule.
 
-53
-00:03:26.100 --> 00:03:27.350
+49
+00:03:15.880 --> 00:03:17.130
 So here's the record.
 
-54
-00:03:27.350 --> 00:03:30.818
+50
+00:03:17.130 --> 00:03:20.598
 Every notice from every
 provider becomes one record,
 
-55
-00:03:30.818 --> 00:03:33.025
+51
+00:03:20.598 --> 00:03:22.805
 defined in the kit's JSON schema.
 
-56
-00:03:33.025 --> 00:03:36.475
+52
+00:03:22.805 --> 00:03:26.255
 It has an ID made of the provider
 and the provider's own ID,
 
-57
-00:03:36.475 --> 00:03:39.025
+53
+00:03:26.255 --> 00:03:28.805
 which is what the router de-duplicates on.
 
-58
-00:03:39.025 --> 00:03:43.520
+54
+00:03:28.805 --> 00:03:33.300
 It has one of six kinds, a status,
 plain-text title and summary,
 
-59
-00:03:43.520 --> 00:03:49.025
+55
+00:03:33.300 --> 00:03:38.805
 the impact window in UTC, and the
 services, regions and resources it names.
 
-60
-00:03:49.025 --> 00:03:53.818
+56
+00:03:38.805 --> 00:03:43.598
 The three action fields matter most:
 whether action is needed, by when,
 
-61
-00:03:53.818 --> 00:03:58.275
+57
+00:03:43.598 --> 00:03:48.055
 and who said so, the provider's own
 field or a stated rule of the kit.
 
-62
-00:03:58.275 --> 00:04:00.240
+58
+00:03:48.055 --> 00:03:50.020
 And it ends with a fingerprint.
 
-63
-00:04:03.990 --> 00:04:06.500
+59
+00:03:53.770 --> 00:03:56.280
 The fingerprint is the
 reason the router can tell
 
-64
-00:04:06.500 --> 00:04:08.765
+60
+00:03:56.280 --> 00:03:58.545
 a changed notice from
 one it has already seen.
 
-65
-00:04:08.765 --> 00:04:12.840
+61
+00:03:58.545 --> 00:04:02.620
 It's a hash of the record without the
 first-seen time and without itself,
 
-66
-00:04:12.840 --> 00:04:16.212
+62
+00:04:02.620 --> 00:04:05.992
 so when a provider edits a
 notice the fingerprint changes,
 
-67
-00:04:16.212 --> 00:04:20.427
+63
+00:04:05.992 --> 00:04:10.207
 and when the kit simply reads the same
 notice again a week later, it doesn't.
 
-68
-00:04:20.427 --> 00:04:22.216
+64
+00:04:10.207 --> 00:04:11.996
 And a record has to be valid.
 
-69
-00:04:22.216 --> 00:04:27.095
+65
+00:04:11.996 --> 00:04:16.875
 The kit checks the schema's rules in code,
 so the check runs on older PowerShell
 
-70
-00:04:27.095 --> 00:04:31.365
+66
+00:04:16.875 --> 00:04:21.145
 7 too, and the collector refuses to
 write a run with an invalid record.
 
-71
-00:04:31.365 --> 00:04:33.950
+67
+00:04:21.145 --> 00:04:23.730
 Every time is stored in UTC.
 
-72
-00:04:37.700 --> 00:04:39.238
+68
+00:04:27.480 --> 00:04:29.018
 Now the Azure collector.
 
-73
-00:04:39.238 --> 00:04:44.624
+69
+00:04:29.018 --> 00:04:34.404
 It makes two declared calls, the events
 query and the impacted-resources query,
 
-74
-00:04:44.624 --> 00:04:49.100
+70
+00:04:34.404 --> 00:04:38.880
 each a Resource Graph query in a
 live run and a file in fixture mode.
 
-75
-00:04:49.100 --> 00:04:52.687
+71
+00:04:38.880 --> 00:04:42.467
 Then the normalizer maps
 each event type to a kind.
 
-76
-00:04:52.687 --> 00:04:56.741
+72
+00:04:42.467 --> 00:04:46.521
 Service issues are incidents,
 planned maintenance is maintenance,
 
-77
-00:04:56.741 --> 00:05:01.375
+73
+00:04:46.521 --> 00:04:51.155
 and a health advisory is a plain advisory
 unless its subtype says retirement.
 
-78
-00:05:01.375 --> 00:05:06.873
+74
+00:04:51.155 --> 00:04:56.653
 Two kinds are action required by the kit's
 rule: a retirement, due at the advisory's
 
-79
-00:05:06.873 --> 00:05:12.037
+75
+00:04:56.653 --> 00:05:01.817
 end, and a security advisory, with no
 date, for the security officer to review.
 
-80
-00:05:12.037 --> 00:05:16.210
+76
+00:05:01.817 --> 00:05:05.990
 Anything else, like billing,
 is left out and counted.
 
-81
-00:05:19.960 --> 00:05:24.535
+77
+00:05:09.740 --> 00:05:14.315
 For alerting between collections, the
 kit follows Learn's built-in policy,
 
-82
-00:05:24.535 --> 00:05:26.860
+78
+00:05:14.315 --> 00:05:16.640
 but as a plan instead of portal clicks.
 
-83
-00:05:26.860 --> 00:05:30.248
+79
+00:05:16.640 --> 00:05:20.028
 The script reads the built-in
 definition and checks its name.
 
-84
-00:05:30.248 --> 00:05:33.445
+80
+00:05:20.028 --> 00:05:23.225
 It writes a plan with two
 steps: the policy assignment,
 
-85
-00:05:33.445 --> 00:05:36.861
+81
+00:05:23.225 --> 00:05:26.641
 with a managed identity that
 holds the definition's role,
 
-86
-00:05:36.861 --> 00:05:40.785
+82
+00:05:26.641 --> 00:05:30.565
 and a remediation task for the
 subscriptions that already exist.
 
-87
-00:05:40.785 --> 00:05:44.352
+83
+00:05:30.565 --> 00:05:34.132
 Learn's remediation page notes
 that only the portal grants
 
-88
-00:05:44.352 --> 00:05:47.847
+84
+00:05:34.132 --> 00:05:37.627
 that role automatically, so
 the plan names the role itself.
 
-89
-00:05:47.847 --> 00:05:51.816
+85
+00:05:37.627 --> 00:05:41.596
 The script refuses a resource group
 scope, prints the plan's hash,
 
-90
-00:05:51.816 --> 00:05:55.990
+86
+00:05:41.596 --> 00:05:45.770
 and changes nothing unless it's
 run again with that exact hash.
 
-91
-00:05:59.740 --> 00:06:00.840
+87
+00:05:49.520 --> 00:05:50.620
 Who is involved?
 
-92
-00:06:00.840 --> 00:06:03.353
+88
+00:05:50.620 --> 00:05:53.133
 Developers build and maintain the kit.
 
-93
-00:06:03.353 --> 00:06:05.961
+89
+00:05:53.133 --> 00:05:55.741
 The cloud platform lead owns this gate:
 
-94
-00:06:05.961 --> 00:06:09.791
+90
+00:05:55.741 --> 00:05:59.571
 the reader's roles, the alert
 policy and its change record.
 
-95
-00:06:09.791 --> 00:06:14.590
+91
+00:05:59.571 --> 00:06:04.370
 And the security officer keeps the
 evidence and reviews security advisories.
 
-96
-00:06:14.590 --> 00:06:16.477
+92
+00:06:04.370 --> 00:06:06.257
 What the reader may hold is short.
 
-97
-00:06:16.477 --> 00:06:20.453
+93
+00:06:06.257 --> 00:06:10.233
 Two calls, each needing Reader
 on each subscription in scope.
 
-98
-00:06:20.453 --> 00:06:25.189
+94
+00:06:10.233 --> 00:06:14.970
 Service Health Security Reader is named
 as the elevated role, because without
 
-99
-00:06:25.189 --> 00:06:29.927
+95
+00:06:14.970 --> 00:06:19.707
 it a security advisory is listed but its
 summary and impacted resources aren't.
 
-100
-00:06:29.927 --> 00:06:32.320
+96
+00:06:19.707 --> 00:06:22.100
 And nothing the reader holds can write.
 
-101
-00:06:36.070 --> 00:06:40.514
+97
+00:06:25.850 --> 00:06:30.294
 Lab 1 needs only PowerShell 7 with
 Pester, working in the kit's folder,
 
-102
-00:06:40.514 --> 00:06:44.482
+98
+00:06:30.294 --> 00:06:34.262
 against two weeks of fictional
 notices from every provider.
 
-103
-00:06:44.482 --> 00:06:45.408
+99
+00:06:34.262 --> 00:06:35.188
 No tenant.
 
-104
-00:06:45.408 --> 00:06:47.267
+100
+00:06:35.188 --> 00:06:37.047
 Step 1 lists what Azure needs:
 
-105
-00:06:47.267 --> 00:06:50.832
+101
+00:06:37.047 --> 00:06:40.612
 this is what a reviewer reads
 before granting anything.
 
-106
-00:06:50.832 --> 00:06:54.820
+102
+00:06:40.612 --> 00:06:44.600
 Two calls, each needing Reader
 on each subscription in scope,
 
-107
-00:06:54.820 --> 00:06:57.532
+103
+00:06:44.600 --> 00:06:47.312
 each linked to the
 Learn page that says so.
 
-108
-00:06:57.532 --> 00:07:00.045
+104
+00:06:47.312 --> 00:06:49.825
 Step 2 prints the kit's events query.
 
-109
-00:07:00.045 --> 00:07:04.702
+105
+00:06:49.825 --> 00:06:54.482
 Compare it with Learn's all-active sample:
 the same filter, with the retirement
 
-110
-00:07:04.702 --> 00:07:07.321
+106
+00:06:54.482 --> 00:06:57.101
 sample's subtype added,
 the times converted,
 
-111
-00:07:07.321 --> 00:07:10.160
+107
+00:06:57.101 --> 00:06:59.940
 and named columns projected and ordered.
 
-112
-00:07:13.910 --> 00:07:17.098
+108
+00:07:03.690 --> 00:07:06.878
 Step 3 collects Azure from
 the day-one fixtures.
 
-113
-00:07:17.098 --> 00:07:20.101
+109
+00:07:06.878 --> 00:07:09.881
 Five notices, all open,
 two needing action,
 
-114
-00:07:20.101 --> 00:07:24.872
+110
+00:07:09.881 --> 00:07:14.652
 one of each kind but change, and
 every one valid against the schema.
 
-115
-00:07:24.872 --> 00:07:27.672
+111
+00:07:14.652 --> 00:07:17.452
 Notice: five notices from six rows.
 
-116
-00:07:27.672 --> 00:07:31.422
+112
+00:07:17.452 --> 00:07:21.202
 The incident's rows from two
 subscriptions became one notice.
 
-117
-00:07:31.422 --> 00:07:33.922
+113
+00:07:21.202 --> 00:07:23.702
 Step 4 reads the records as a table.
 
-118
-00:07:33.922 --> 00:07:37.549
+114
+00:07:23.702 --> 00:07:27.329
 The retirement of basic
 public IP addresses
 
-119
-00:07:37.549 --> 00:07:40.784
+115
+00:07:27.329 --> 00:07:30.564
 is action required by September 30, 2027.
 
-120
-00:07:40.784 --> 00:07:44.397
+116
+00:07:30.564 --> 00:07:34.177
 The security advisory is
 action required with no date.
 
-121
-00:07:44.397 --> 00:07:48.672
+117
+00:07:34.177 --> 00:07:38.452
 The incident, the advisory and the
 planned maintenance need no action,
 
-122
-00:07:48.672 --> 00:07:51.100
+118
+00:07:38.452 --> 00:07:40.880
 and they'll go to the weekly digest.
 
-123
-00:07:54.850 --> 00:07:57.337
+119
+00:07:44.630 --> 00:07:47.117
 Step 5 reads the retirement in full.
 
-124
-00:07:57.337 --> 00:08:02.103
+120
+00:07:47.117 --> 00:07:51.883
 Look at the action basis: it names the
 kit's rule, an Azure retirement due at
 
-125
-00:08:02.103 --> 00:08:07.026
+121
+00:07:51.883 --> 00:07:56.806
 the advisory's end time, not Microsoft,
 as the reason the notice needs action.
 
-126
-00:08:07.026 --> 00:08:11.187
+122
+00:07:56.806 --> 00:08:00.967
 So nobody argues with Microsoft
 about a date Microsoft never set.
 
-127
-00:08:11.187 --> 00:08:15.249
+123
+00:08:00.967 --> 00:08:05.029
 The source link is the event on the
 commercial Resource Manager host.
 
-128
-00:08:15.249 --> 00:08:20.037
+124
+00:08:05.029 --> 00:08:09.817
 Step 6 reads the same fixtures a day
 later and compares the fingerprints.
 
-129
-00:08:20.037 --> 00:08:23.875
+125
+00:08:09.817 --> 00:08:13.655
 The first-seen time changes in
 the run, but no fingerprint does.
 
-130
-00:08:23.875 --> 00:08:28.220
+126
+00:08:13.655 --> 00:08:18.000
 The last line says zero differ, so
 the router will see nothing new.
 
-131
-00:08:31.970 --> 00:08:35.008
+127
+00:08:21.750 --> 00:08:24.788
 Step 7 plans the Service
 Health alert policy.
 
-132
-00:08:35.008 --> 00:08:37.990
+128
+00:08:24.788 --> 00:08:27.770
 The production fixture
 names a management group,
 
-133
-00:08:37.990 --> 00:08:42.718
+129
+00:08:27.770 --> 00:08:32.498
 so the plan assigns the built-in definition
 there and remediates the existing
 
-134
-00:08:42.718 --> 00:08:47.519
+130
+00:08:32.498 --> 00:08:37.299
 subscriptions: two would-apply steps, the
 plan's hash, and dry run, nothing changed.
 
-135
-00:08:47.519 --> 00:08:52.257
+131
+00:08:37.299 --> 00:08:42.037
 The role ID in the fixture is made
 up; Lab 2 reads the real one.
 
-136
-00:08:52.257 --> 00:08:54.977
+132
+00:08:42.037 --> 00:08:44.757
 Step 8 tries to apply it in fixture mode,
 
-137
-00:08:54.977 --> 00:08:58.632
+133
+00:08:44.757 --> 00:08:48.412
 and the script refuses before
 it even reads the hash.
 
-138
-00:08:58.632 --> 00:09:03.432
+134
+00:08:48.412 --> 00:08:53.212
 Step 9 runs this chapter's tests:
 twenty-six passed, none failed.
 
-139
-00:09:03.432 --> 00:09:05.630
+135
+00:08:53.212 --> 00:08:55.410
 Then delete the output folder.
 
-140
-00:09:09.380 --> 00:09:13.187
+136
+00:08:59.160 --> 00:09:02.967
 Lab 2 moves to an Azure test
 subscription in a test tenant,
 
-141
-00:09:13.187 --> 00:09:17.318
+137
+00:09:02.967 --> 00:09:07.098
 never production, and an empty
 list of events is a valid result.
 
-142
-00:09:17.318 --> 00:09:20.751
+138
+00:09:07.098 --> 00:09:10.531
 Grant the reader its two roles,
 sign in in the right cloud,
 
-143
-00:09:20.751 --> 00:09:25.080
+139
+00:09:10.531 --> 00:09:14.860
 and cross-check: Learn's own query
 and the kit's collection should agree.
 
-144
-00:09:25.080 --> 00:09:28.353
+140
+00:09:14.860 --> 00:09:18.133
 Then plan the alert policy
 at the test subscription,
 
-145
-00:09:28.353 --> 00:09:31.855
+141
+00:09:18.133 --> 00:09:21.635
 have a second person approve
 the hash, apply it, and check.
 
-146
-00:09:31.855 --> 00:09:36.811
+142
+00:09:21.635 --> 00:09:26.591
 Learn says the remediation creates a
 resource group, an alert rule and an action
 
-147
-00:09:36.811 --> 00:09:39.289
+143
+00:09:26.591 --> 00:09:29.069
 group that emails subscription owners;
 
-148
-00:09:39.289 --> 00:09:42.218
+144
+00:09:29.069 --> 00:09:31.998
 Service Health alerts
 are activity log alerts.
 
-149
-00:09:42.218 --> 00:09:44.140
+145
+00:09:31.998 --> 00:09:33.920
 Finally, back it all out.
 
-150
-00:09:47.890 --> 00:09:52.690
+146
+00:09:37.670 --> 00:09:42.470
 Each output is evidence for something
 specific, against NIST's control catalog.
 
-151
-00:09:52.690 --> 00:09:55.785
+147
+00:09:42.470 --> 00:09:45.565
 The reader's roles, and the
 fact that nothing can write,
 
-152
-00:09:55.785 --> 00:09:58.740
+148
+00:09:45.565 --> 00:09:48.520
 support monitoring an
 external service provider.
 
-153
-00:09:58.740 --> 00:10:01.952
+149
+00:09:48.520 --> 00:09:51.732
 The run folder shows every
 event in scope was read,
 
-154
-00:10:01.952 --> 00:10:05.790
+150
+00:09:51.732 --> 00:09:55.570
 which supports receiving
 security alerts and advisories.
 
-155
-00:10:05.790 --> 00:10:10.290
+151
+00:09:55.570 --> 00:10:00.070
 Valid records and unchanged fingerprints
 support continuous monitoring.
 
-156
-00:10:10.290 --> 00:10:12.766
+152
+00:10:00.070 --> 00:10:02.546
 The approved alert plan supports the same,
 
-157
-00:10:12.766 --> 00:10:17.790
+153
+00:10:02.546 --> 00:10:07.570
 and an approved rollback is configuration
 change control and contingency planning.
 
-158
-00:10:17.790 --> 00:10:20.261
+154
+00:10:07.570 --> 00:10:10.041
 The key security indicators are FedRAMP's,
 
-159
-00:10:20.261 --> 00:10:24.215
+155
+00:10:10.041 --> 00:10:13.995
 and which output supports which
 indicator is the program's mapping.
 
-160
-00:10:24.215 --> 00:10:29.250
+156
+00:10:13.995 --> 00:10:19.030
 The kit's records support these controls;
 the agency's assessor decides them.
 
-161
-00:10:33.000 --> 00:10:35.875
+157
+00:10:22.780 --> 00:10:25.655
 What breaks in production,
 and what guards against it?
 
-162
-00:10:35.875 --> 00:10:39.292
+158
+00:10:25.655 --> 00:10:29.072
 Read security advisories
 with Reader alone and you
 
-163
-00:10:39.292 --> 00:10:42.550
+159
+00:10:29.072 --> 00:10:32.330
 see the advisory but not
 its summary or resources.
 
-164
-00:10:42.550 --> 00:10:47.375
+160
+00:10:32.330 --> 00:10:37.155
 Read from the wrong cloud and you get nothing,
 and the gate passes on an empty list.
 
-165
-00:10:47.375 --> 00:10:51.463
+161
+00:10:37.155 --> 00:10:41.243
 Count an event per subscription
 and one outage becomes five tasks.
 
-166
-00:10:51.463 --> 00:10:55.900
+162
+00:10:41.243 --> 00:10:45.680
 Read a retirement as an advisory
 and the deadline passes unnoticed.
 
-167
-00:10:55.900 --> 00:11:00.988
+163
+00:10:45.680 --> 00:10:50.768
 Mistake a kit rule for Microsoft's and you
 argue about a date Microsoft never set.
 
-168
-00:11:00.988 --> 00:11:05.025
+164
+00:10:50.768 --> 00:10:54.805
 Apply the policy unreviewed and
 resources appear everywhere.
 
-169
-00:11:05.025 --> 00:11:10.400
+165
+00:10:54.805 --> 00:11:00.180
 And per Learn, remediation may
 overwrite hand edits to the alert rules.
 
-170
-00:11:14.150 --> 00:11:15.500
+166
+00:11:03.930 --> 00:11:05.280
 Here's what done looks like.
 
-171
-00:11:15.500 --> 00:11:18.076
+167
+00:11:05.280 --> 00:11:07.856
 The reader holds Reader
 everywhere in scope,
 
-172
-00:11:18.076 --> 00:11:22.950
+168
+00:11:07.856 --> 00:11:12.730
 the security reader role where security
 advisories matter, and nothing that writes.
 
-173
-00:11:22.950 --> 00:11:24.613
+169
+00:11:12.730 --> 00:11:14.393
 The settings name the cloud.
 
-174
-00:11:24.613 --> 00:11:27.224
+170
+00:11:14.393 --> 00:11:17.004
 Learn's query and the
 kit's collection agree.
 
-175
-00:11:27.224 --> 00:11:30.092
+171
+00:11:17.004 --> 00:11:19.872
 Every record validates,
 and says whether the
 
-176
-00:11:30.092 --> 00:11:33.037
+172
+00:11:19.872 --> 00:11:22.817
 provider or a kit rule
 made it action required.
 
-177
-00:11:33.037 --> 00:11:37.774
+173
+00:11:22.817 --> 00:11:27.554
 The alert plan's hash was approved by
 someone other than the person who applies it,
 
-178
-00:11:37.774 --> 00:11:40.955
+174
+00:11:27.554 --> 00:11:30.735
 the alert rule exists in
 each subscription untouched,
 
-179
-00:11:40.955 --> 00:11:43.075
+175
+00:11:30.735 --> 00:11:32.855
 and the rollback has been rehearsed.
 
-180
-00:11:43.075 --> 00:11:47.812
+176
+00:11:32.855 --> 00:11:37.592
 Next, Chapter 2 fills the same
 record from Microsoft 365.
 
-181
-00:11:47.812 --> 00:11:48.970
+177
+00:11:37.592 --> 00:11:38.750
 Thanks for watching.

@@ -26,8 +26,8 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
-    "text": "Microsoft Entra feature availability",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
+    "text": "List provisioningObjectSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-provisioningobjectsummary"
    },
    {
     "text": "CSV2SCIM at f2e8c59",
@@ -196,6 +196,10 @@
    {
     "text": "List provisioningObjectSummary",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-provisioningobjectsummary"
+   },
+   {
+    "text": "Graph deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
     "text": "inbound provisioning concepts",

@@ -3,6 +3,7 @@ landing pages and the Presentations page. Idempotent: run it again after a tour 
 
     python presentations/_build/link_tours.py "October 31, 2026"          # the recording date the pages show
     python presentations/_build/link_tours.py "October 31, 2026" ttm="November 1, 2026"   # one workbook's own date
+    python presentations/_build/link_tours.py "November 16, 2026" ttm-04="November 1, 2026"   # one chapter's own date
 
 The links on the chapter and landing pages sit between `<!-- tour:begin ... -->` and `<!-- tour:end -->`
 markers, and the script replaces only what is between them. Lengths come from data/video-durations.json
@@ -10,6 +11,7 @@ markers, and the script replaces only what is between them. Lengths come from da
 video isn't on the videos release yet (no length) gets no player, Watch or MP4 link, and a deck that no edition
 carries yet links to its folder on GitHub, so the page's link checks pass until the upload and the next edition.
 """
+import datetime
 import json
 import posixpath
 import re
@@ -19,7 +21,7 @@ from pathlib import Path
 ARGS = [a for a in sys.argv[2:] if "=" not in a]
 ROOT = Path(__file__).resolve().parents[2] if not ARGS else Path(ARGS[0])
 DATE = sys.argv[1]  # e.g. "October 31, 2026"
-# A workbook recorded on another day: wb="Month D, YYYY" after the date.
+# A workbook recorded on another day: wb="Month D, YYYY" after the date; one chapter: wb-NN="Month D, YYYY".
 DATES = dict(a.split("=", 1) for a in sys.argv[2:] if "=" in a)
 # Each workbook's folder: Book 19 under Books, the others under Projects.
 WB = {"adm": ("docs/books/b19-developer-workbook", "Building the Attribute-Driven Migration"),
@@ -68,7 +70,7 @@ for folder in sorted((ROOT / "presentations").glob("dw-*")):
     title = re.search(r'^title:\s*"Chapter \d\d — (.*)"\s*$', page.read_text(encoding="utf-8"), re.M).group(1)
     secs = durs.get(vid)
     mins = max(1, round(secs / 60)) if secs else None
-    when = DATES.get(wb, DATE)
+    when = DATES.get(f"{wb}-{nn}", DATES.get(wb, DATE))
     script = (folder / f"{base}_Narration_Script.md").read_text(encoding="utf-8")
     slides = len(re.findall(r"^## Slide \d+", script, re.M))
     words = sum(len(b.split()) for b in re.split(r"^## Slide .*$", script, flags=re.M)[1:])
@@ -120,7 +122,13 @@ The title slide carries the Date Code of the build and the chapter's review stat
     write(page, md)
     tours[wb].append((nn, title, page.name, rel, base, vid, mins))
     dates = tours.setdefault("_dates", {})
-    dates[wb] = when
+    dates.setdefault(wb, set()).add(when)
+
+def recorded(days):
+    """"on <date>", or "between <first> and <last>" when the workbook's tours were recorded on different days."""
+    days = sorted(days, key=lambda d: datetime.datetime.strptime(d, "%B %d, %Y"))
+    return f"on {days[0]}" if len(days) == 1 else f"between {days[0]} and {days[-1]}"
+
 
 def covered(wb, rows):
     """"Every chapter has" when each chapter page has a tour, else "Chapters 01 to NN each have"."""
@@ -143,7 +151,7 @@ for wb, rows in tours.items():
     md = MARKED.sub("", md)
     lines = ["## Narrated chapter tours", "",
              f"{covered(wb, rows)} a narrated tour: a deck in Why, What, Who and How order, a self-running edition with captions, and a video. "
-             f"The tours were recorded on {dates[wb]} from the approved chapters, and a tour is re-recorded when its chapter changes. "
+             f"The tours were recorded {recorded(dates[wb])} from the approved chapters, and a tour is re-recorded when its chapter changes. "
              + (f"All of them are also on the [Watch page]({docs}presentations/watch.md)." if all(r[6] for r in rows)
                 else "The videos and decks follow on the Watch page and the edition's Release when they are uploaded; until then each deck links to its folder on GitHub."), "",
              "| # | Chapter | Watch | Length | Deck | Narrated deck |", "|---|---|---|---|---|---|"]

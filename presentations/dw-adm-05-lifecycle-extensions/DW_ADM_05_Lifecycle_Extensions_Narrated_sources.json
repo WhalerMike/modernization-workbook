@@ -22,6 +22,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
+   },
+   {
     "text": "Chapter 05",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.html"
    }
@@ -210,8 +214,8 @@
   "title": "Lab 1: failures, the build and the read-backs",
   "links": [
    {
-    "text": "Compare Azure Government and global Azure",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+    "text": "Configure a Logic App",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
    },
    {
     "text": "Chapter 05",
@@ -248,10 +252,6 @@
    {
     "text": "Configure a Logic App",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-a-logic-app-for-lifecycle-workflow"
-   },
-   {
-    "text": "Compare Azure Government and global Azure",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
    }
   ]
  },

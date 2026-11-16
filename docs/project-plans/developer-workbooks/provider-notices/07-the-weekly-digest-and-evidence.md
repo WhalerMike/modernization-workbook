@@ -29,7 +29,7 @@ The digest and the evidence chain behind the guide's [G7 Digest and evidence](..
 ## Narrated tour
 {{< fmw-video DW_PN_07_Weekly_Digest_Evidence_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-07-weekly-digest-evidence) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-07-weekly-digest-evidence) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-07-weekly-digest-evidence/DW_PN_07_Weekly_Digest_Evidence_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-07-weekly-digest-evidence/DW_PN_07_Weekly_Digest_Evidence_Narrated.vtt). Recorded on November 12, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-07-weekly-digest-evidence) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-07-weekly-digest-evidence) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-07-weekly-digest-evidence/DW_PN_07_Weekly_Digest_Evidence_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-07-weekly-digest-evidence/DW_PN_07_Weekly_Digest_Evidence_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

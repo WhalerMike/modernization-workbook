@@ -15,7 +15,7 @@
  },
  {
   "slide": 3,
-  "title": "Which cloud: the limit depends on it",
+  "title": "Which cloud: the limits for GCC",
   "links": [
    {
     "text": "Entra CBA Certificate Revocation List",
@@ -207,16 +207,6 @@
  },
  {
   "slide": 15,
-  "title": "Lab 1: the same tenant for GCC High, and the tests",
-  "links": [
-   {
-    "text": "Chapter 05",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.html"
-   }
-  ]
- },
- {
-  "slide": 16,
   "title": "Lab 2: a test tenant, and a revoked card",
   "links": [
    {
@@ -230,7 +220,7 @@
   ]
  },
  {
-  "slide": 17,
+  "slide": 16,
   "title": "Dangers, and the guard for each",
   "links": [
    {
@@ -244,7 +234,7 @@
   ]
  },
  {
-  "slide": 18,
+  "slide": 17,
   "title": "Done when: the CBA checklist",
   "links": [
    {

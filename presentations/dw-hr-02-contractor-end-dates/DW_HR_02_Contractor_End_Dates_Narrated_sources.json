@@ -143,15 +143,11 @@
  },
  {
   "slide": 11,
-  "title": "Where Learn differs or says nothing",
+  "title": "Where Learn says nothing",
   "links": [
    {
     "text": "requestorManager",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#requestormanager-resource-type"
-   },
-   {
-    "text": "Perform bulkUpload",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#perform-bulkupload"
    },
    {
     "text": "Chapter 02",

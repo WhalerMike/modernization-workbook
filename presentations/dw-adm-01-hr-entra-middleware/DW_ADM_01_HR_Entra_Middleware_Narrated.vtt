@@ -87,47 +87,45 @@ the logs afterwards is part of the job.
 Next, which cloud.
 
 19
-00:01:14.720 --> 00:01:18.453
-Which cloud you're in decides which
-Graph host you call and where your
+00:01:14.720 --> 00:01:16.863
+Which cloud you're in decides which Graph
 
 20
-00:01:18.453 --> 00:01:22.382
-token comes from, and a token from one
-cloud simply doesn't work in another.
+00:01:16.863 --> 00:01:19.195
+host you call and where
+your token comes from.
 
 21
-00:01:22.382 --> 00:01:26.303
+00:01:19.195 --> 00:01:23.207
 A G C C tenant like this estate's
-uses the worldwide endpoint,
+uses the worldwide endpoints,
 
 22
-00:01:26.303 --> 00:01:29.183
-so Microsoft's sample
-works here as written.
+00:01:23.207 --> 00:01:28.582
+so Microsoft's sample works here as written,
+even though its address is hard-coded.
 
 23
-00:01:29.183 --> 00:01:32.017
-The higher government clouds
-have their own hosts,
+00:01:28.582 --> 00:01:32.549
+Sending a batch and reading
+the results are both available,
 
 24
-00:01:32.017 --> 00:01:35.257
-and the sample's address is
-hard-coded, so it can't reach them.
+00:01:32.549 --> 00:01:35.220
+because GCC uses the worldwide service.
 
 25
-00:01:35.257 --> 00:01:38.447
+00:01:35.220 --> 00:01:38.419
 The hardened client takes
 its endpoint from settings
 
 26
-00:01:38.447 --> 00:01:41.069
-and only accepts one of
-the three Graph hosts.
+00:01:38.419 --> 00:01:41.120
+and only accepts a host
+on its Graph allow-list.
 
 27
-00:01:41.069 --> 00:01:44.010
+00:01:41.120 --> 00:01:44.060
 Now let's see what Microsoft
 actually gives you.
 
@@ -651,141 +649,140 @@ Finish with the tests: seventy in
 Python and sixty-two in Pester.
 
 136
-00:09:09.020 --> 00:09:13.495
+00:09:10.150 --> 00:09:14.625
 Lab 2 moves to a test tenant with
 fictional records, never production.
 
 137
-00:09:13.495 --> 00:09:17.827
+00:09:14.625 --> 00:09:18.957
 You create the provisioning app, extend
 its schema with Microsoft's sample,
 
 138
-00:09:17.827 --> 00:09:20.761
+00:09:18.957 --> 00:09:21.891
 and give the sender one
 upload permission through
 
 139
-00:09:20.761 --> 00:09:23.695
+00:09:21.891 --> 00:09:24.825
 a managed identity or a
 certificate, never a secret.
 
 140
-00:09:23.695 --> 00:09:26.033
+00:09:24.825 --> 00:09:27.163
 Start the job with its safety nets on:
 
 141
-00:09:26.033 --> 00:09:30.007
+00:09:27.163 --> 00:09:31.137
 the notification email and
 accidental-deletion prevention.
 
 142
-00:09:30.007 --> 00:09:33.283
+00:09:31.137 --> 00:09:34.413
 Then send five records and
 get one accepted batch.
 
 143
-00:09:33.283 --> 00:09:36.482
+00:09:34.413 --> 00:09:37.612
 The step people skip is
 the next one: reconcile.
 
 144
-00:09:36.482 --> 00:09:40.907
+00:09:37.612 --> 00:09:42.037
 Every person key in the manifest should
 show up in the provisioning logs.
 
 145
-00:09:40.907 --> 00:09:42.490
+00:09:42.037 --> 00:09:43.620
 Then back it all out.
 
 146
-00:09:46.240 --> 00:09:49.915
+00:09:47.370 --> 00:09:51.045
 Each of these dangers is
 ordinary, and each has a guard.
 
 147
-00:09:49.915 --> 00:09:53.797
+00:09:51.045 --> 00:09:54.927
 The most tempting is sending a sample's
 output straight to production,
 
 148
-00:09:53.797 --> 00:09:57.277
+00:09:54.927 --> 00:09:58.407
 which lets pending workers and
 duplicates into the directory.
 
 149
-00:09:57.277 --> 00:10:00.880
+00:09:58.407 --> 00:10:02.010
 The most damaging is one bad
 extract disabling hundreds
 
 150
-00:10:00.880 --> 00:10:04.253
+00:10:02.010 --> 00:10:05.383
 of people before anyone looks,
 and the hold stops that.
 
 151
-00:10:04.253 --> 00:10:07.678
+00:10:05.383 --> 00:10:08.808
 The quietest is treating an
 accepted response as success,
 
 152
-00:10:07.678 --> 00:10:10.390
+00:10:08.808 --> 00:10:11.520
 when the record may have
 failed inside the job.
 
 153
-00:10:10.390 --> 00:10:14.104
+00:10:11.520 --> 00:10:15.234
 Notice that every guard is something
 the code does on every run,
 
 154
-00:10:14.104 --> 00:10:16.750
+00:10:15.234 --> 00:10:17.880
 not something a person has to remember.
 
 155
-00:10:20.500 --> 00:10:21.850
+00:10:21.630 --> 00:10:22.980
 Here's what done looks like.
 
 156
-00:10:21.850 --> 00:10:24.890
+00:10:22.980 --> 00:10:26.020
 On the code side: the
 sample's mapping validates,
 
 157
-00:10:24.890 --> 00:10:29.488
+00:10:26.020 --> 00:10:30.618
 the pinned copy is unchanged and
 reviewed, production goes through the
 
 158
-00:10:29.488 --> 00:10:33.775
+00:10:30.618 --> 00:10:34.905
 hardened client, both clients pass,
 and new rules refuse by default.
 
 159
-00:10:33.775 --> 00:10:38.502
+00:10:34.905 --> 00:10:39.632
 On the run side: the hold and the budget
 are set from your own numbers and license,
 
 160
-00:10:38.502 --> 00:10:41.120
+00:10:39.632 --> 00:10:42.250
 the sender has one
 permission and no secret,
 
 161
-00:10:41.120 --> 00:10:43.810
+00:10:42.250 --> 00:10:44.940
 the quarantine file
 stays in the audit store,
 
 162
-00:10:43.810 --> 00:10:48.537
+00:10:44.940 --> 00:10:49.667
 every missing person key becomes a finding,
 and the endpoint matches the cloud.
 
 163
-00:10:48.537 --> 00:10:51.999
-Chapter 2 builds Graph clients
-for the government clouds.
+00:10:49.667 --> 00:10:53.092
+Chapter 2 builds Graph clients for GCC.
 
 164
-00:10:51.999 --> 00:10:53.160
+00:10:53.092 --> 00:10:54.240
 Thanks for watching.

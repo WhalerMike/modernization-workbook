@@ -119,22 +119,22 @@ host and sign-in is the
 worldwide sign-in page.
 
 26
-00:01:36.235 --> 00:01:40.551
-GCC High and the Defense Department
-cloud would use their own hosts,
+00:01:36.235 --> 00:01:41.568
+Every call's Learn page lists the global
+service that G C C uses as available,
 
 27
-00:01:40.551 --> 00:01:45.098
-and every call's Learn page lists the
-US Government clouds as available.
+00:01:41.568 --> 00:01:45.610
+and the governance product PIM
+needs is available in G C C.
 
 28
-00:01:45.098 --> 00:01:49.571
+00:01:45.610 --> 00:01:50.084
 One small design choice matters: the
 code takes an explicit cloud name
 
 29
-00:01:49.571 --> 00:01:54.470
+00:01:50.084 --> 00:01:55.000
 and has no default, so nobody runs it
 against the wrong cloud by accident.
 

@@ -353,437 +353,432 @@ The facts behind the code, read
 on Learn on November first.
 
 74
-00:04:49.140 --> 00:04:53.684
-Create and create new version share
-one permission and the Lifecycle
+00:04:49.140 --> 00:04:54.082
+Create and create new version share one
+permission and the Lifecycle Workflows
 
 75
-00:04:53.684 --> 00:04:57.915
-Workflows Administrator role, and
-both are available at L4 and L5.
+00:04:54.082 --> 00:04:58.728
+Administrator role, and both are listed
+for the global service that GCC uses.
 
 76
-00:04:57.915 --> 00:05:00.723
+00:04:58.728 --> 00:05:01.536
 Changes are versions,
 not in-place updates,
 
 77
-00:05:00.723 --> 00:05:04.815
+00:05:01.536 --> 00:05:05.628
 and the tenant runs one schedule,
 every three hours by default.
 
 78
-00:05:04.815 --> 00:05:08.313
+00:05:05.628 --> 00:05:09.066
 The pass task has a fixed
-I D and a lifetime range,
+I D and a lifetime range.
 
 79
-00:05:08.313 --> 00:05:11.990
-and its availability in
-GCC High wasn't confirmed.
-
-80
-00:05:11.990 --> 00:05:16.690
+00:05:09.066 --> 00:05:13.765
 Execution limits quarantine a
 scheduled run but not an on-demand one.
 
-81
-00:05:16.690 --> 00:05:21.810
+80
+00:05:13.765 --> 00:05:18.880
 And a scheduled workflow catches up on a
 user for three days after the trigger date.
 
-82
-00:05:25.560 --> 00:05:28.326
+81
+00:05:22.630 --> 00:05:25.396
 Learn's own pages disagree in four places,
 
-83
-00:05:28.326 --> 00:05:31.498
+82
+00:05:25.396 --> 00:05:28.568
 recorded so a later edit
 doesn't loosen the code.
 
-84
-00:05:31.498 --> 00:05:35.697
+83
+00:05:28.568 --> 00:05:32.767
 The pass's lifetime argument has two
 names, and the lint reads either.
 
-85
-00:05:35.697 --> 00:05:38.685
+84
+00:05:32.767 --> 00:05:35.755
 The custom task extension has two I Ds.
 
-86
-00:05:38.685 --> 00:05:43.085
+85
+00:05:35.755 --> 00:05:40.155
 The mover category appears in an
 example but not in the property table.
 
-87
-00:05:43.085 --> 00:05:45.761
+86
+00:05:40.155 --> 00:05:42.831
 And the workflow ceiling
 is a hundred on two
 
-88
-00:05:45.761 --> 00:05:48.735
+87
+00:05:42.831 --> 00:05:45.805
 pages and fifty on another,
 so the budget is fifty.
 
-89
-00:05:48.735 --> 00:05:52.668
+88
+00:05:45.805 --> 00:05:49.532
 Still open: the trigger name
 for an extension attribute,
 
-90
-00:05:52.668 --> 00:05:58.670
-the execution limit the API doesn't carry,
-and the pass's availability in GCC High.
+89
+00:05:49.532 --> 00:05:52.880
+and the execution limit
+the API doesn't carry.
 
-91
-00:06:02.420 --> 00:06:04.270
+90
+00:05:56.630 --> 00:05:58.480
 What does this give the I S S O?
 
-92
-00:06:04.270 --> 00:06:08.206
+91
+00:05:58.480 --> 00:06:02.416
 The reviewed files and the plan
 that changed each version,
 
-93
-00:06:08.206 --> 00:06:13.782
+92
+00:06:02.416 --> 00:06:07.992
 with its manifest hash: the definitions
 and versions AC-2 enhancement 1 asks for.
 
-94
-00:06:13.782 --> 00:06:18.535
+93
+00:06:07.992 --> 00:06:12.745
 The lint's clean run, showing a one-time
 pass of at most twenty-four hours
 
-95
-00:06:18.535 --> 00:06:23.370
+94
+00:06:12.745 --> 00:06:17.580
 and an execution limit on every
 scheduled workflow, which supports IA-5.
 
-96
-00:06:23.370 --> 00:06:25.857
+95
+00:06:17.580 --> 00:06:20.067
 And the readiness summary
 for each start date.
 
-97
-00:06:25.857 --> 00:06:30.413
+96
+00:06:20.067 --> 00:06:24.623
 The pass is a bridge to phishing-resistant
 MFA, so an account still on a
 
-98
-00:06:30.413 --> 00:06:35.570
+97
+00:06:24.623 --> 00:06:29.780
 pass after the agreed window is a finding,
 though this code doesn't read it.
 
-99
-00:06:39.320 --> 00:06:40.245
+98
+00:06:33.530 --> 00:06:34.455
 Who does what?
 
-100
-00:06:40.245 --> 00:06:45.282
+99
+00:06:34.455 --> 00:06:39.492
 Developers build the lifecycle automation,
 and need to read Python and JSON.
 
-101
-00:06:45.282 --> 00:06:50.083
+100
+00:06:39.492 --> 00:06:44.293
 Identity engineers own the workflows:
 they set each execution limit in the
 
-102
-00:06:50.083 --> 00:06:54.883
+101
+00:06:44.293 --> 00:06:49.093
 admin center, and send each change as
 a Lifecycle Workflows Administrator.
 
-103
-00:06:54.883 --> 00:07:01.045
+102
+00:06:49.093 --> 00:06:55.255
 Reviewers approve each file and its plan,
 and the I S S O receives the evidence.
 
-104
-00:07:01.045 --> 00:07:05.502
+103
+00:06:55.255 --> 00:06:59.712
 The code itself only reads: the planning
 app holds a single workflow read
 
-105
-00:07:05.502 --> 00:07:10.460
+104
+00:06:59.712 --> 00:07:04.670
 permission, and the readiness reads
 hold only their four read permissions.
 
-106
-00:07:14.210 --> 00:07:16.110
+105
+00:07:08.420 --> 00:07:10.320
 Lab 1 runs on a laptop.
 
-107
-00:07:16.110 --> 00:07:19.273
+106
+00:07:10.320 --> 00:07:13.483
 Step one lists the reads
 and their permissions.
 
-108
-00:07:19.273 --> 00:07:24.047
+107
+00:07:13.483 --> 00:07:18.257
 The plan needs one read, of the
 workflows, with workflow read permission.
 
-109
-00:07:24.047 --> 00:07:27.673
+108
+00:07:18.257 --> 00:07:21.883
 Readiness reads the users, the
 pre-hire processing results
 
-110
-00:07:27.673 --> 00:07:31.522
+109
+00:07:21.883 --> 00:07:25.732
 and the package assignments, with
 four read permissions in all.
 
-111
-00:07:31.522 --> 00:07:34.935
+110
+00:07:25.732 --> 00:07:29.145
 Step two lints the
 program's six workflow files
 
-112
-00:07:34.935 --> 00:07:38.890
+111
+00:07:29.145 --> 00:07:33.100
 against a budget of fifty:
 no findings, no warnings.
 
-113
-00:07:42.640 --> 00:07:45.387
+112
+00:07:36.850 --> 00:07:39.597
 Step three lints three broken copies,
 
-114
-00:07:45.387 --> 00:07:48.665
+113
+00:07:39.597 --> 00:07:42.875
 with a budget of two so
 the ceiling rule fires.
 
-115
-00:07:48.665 --> 00:07:51.152
+114
+00:07:42.875 --> 00:07:45.362
 Seven findings and four warnings.
 
-116
-00:07:51.152 --> 00:07:53.974
+115
+00:07:45.362 --> 00:07:48.184
 The day-one copy has an
 offset of two hundred
 
-117
-00:07:53.974 --> 00:07:56.639
+116
+00:07:48.184 --> 00:07:50.849
 days and adds the user to groups directly.
 
-118
-00:07:56.639 --> 00:08:01.125
+117
+00:07:50.849 --> 00:07:55.335
 The leaver triggers on the hire date,
 deletes and disables in one workflow,
 
-119
-00:08:01.125 --> 00:08:04.140
+118
+00:07:55.335 --> 00:07:58.350
 and scopes on the manager,
 which Learn doesn't list.
 
-120
-00:08:04.140 --> 00:08:08.819
+119
+00:07:58.350 --> 00:08:03.029
 The pre-hire copy has no execution
 limit, scopes on a department name,
 
-121
-00:08:08.819 --> 00:08:12.078
+120
+00:08:03.029 --> 00:08:06.288
 and sends a three-day pass
 that isn't one-time use.
 
-122
-00:08:12.078 --> 00:08:13.950
+121
+00:08:06.288 --> 00:08:08.160
 The exit code is two.
 
-123
-00:08:17.700 --> 00:08:20.350
+122
+00:08:11.910 --> 00:08:14.560
 Step four plans against
 the tenant's export.
 
-124
-00:08:20.350 --> 00:08:23.985
+123
+00:08:14.560 --> 00:08:18.195
 The day-one workflow in the tenant
 requests a different package,
 
-125
-00:08:23.985 --> 00:08:25.288
+124
+00:08:18.195 --> 00:08:19.498
 so it gets a new version.
 
-126
-00:08:25.288 --> 00:08:29.051
+125
+00:08:19.498 --> 00:08:23.261
 The employee leaver doesn't
 exist yet, so it gets a create.
 
-127
-00:08:29.051 --> 00:08:33.800
+126
+00:08:23.261 --> 00:08:28.010
 The one warning is a legacy workflow
 made in the portal that no file defines.
 
-128
-00:08:33.800 --> 00:08:34.975
+127
+00:08:28.010 --> 00:08:29.185
 Nothing is sent.
 
-129
-00:08:34.975 --> 00:08:37.600
+128
+00:08:29.185 --> 00:08:31.810
 Plan the broken folder and it refuses.
 
-130
-00:08:37.600 --> 00:08:41.200
+129
+00:08:31.810 --> 00:08:35.410
 Step five measures day one:
 one of four hires ready.
 
-131
-00:08:41.200 --> 00:08:45.129
+130
+00:08:35.410 --> 00:08:39.339
 One lacks only the package,
 one is disabled and unlicensed,
 
-132
-00:08:45.129 --> 00:08:47.012
+131
+00:08:39.339 --> 00:08:41.222
 and one has no account at all.
 
-133
-00:08:47.012 --> 00:08:49.410
+132
+00:08:41.222 --> 00:08:43.620
 The fifty-seven tests pass.
 
-134
-00:08:53.160 --> 00:08:57.947
+133
+00:08:47.370 --> 00:08:52.157
 Lab 2 uses a test tenant, never
 production; the authors haven't run it.
 
-135
-00:08:57.947 --> 00:09:00.310
+134
+00:08:52.157 --> 00:08:54.520
 Export the workflows with a reader app.
 
-136
-00:09:00.310 --> 00:09:03.539
+135
+00:08:54.520 --> 00:08:57.749
 Make one example edit,
 moving the pre-hire trigger
 
-137
-00:09:03.539 --> 00:09:06.847
+136
+00:08:57.749 --> 00:09:01.057
 from seven days to five,
 and plan against the export.
 
-138
-00:09:06.847 --> 00:09:09.331
+137
+00:09:01.057 --> 00:09:03.541
 As a Lifecycle Workflows Administrator,
 
-139
-00:09:09.331 --> 00:09:12.910
+138
+00:09:03.541 --> 00:09:07.120
 send that one change with Graph
 PowerShell, scheduling off.
 
-140
-00:09:12.910 --> 00:09:15.473
+139
+00:09:07.120 --> 00:09:09.683
 Set the execution limit
 in the admin center,
 
-141
-00:09:15.473 --> 00:09:17.822
+140
+00:09:09.683 --> 00:09:12.032
 and read it back with the validation kit.
 
-142
-00:09:17.822 --> 00:09:20.660
+141
+00:09:12.032 --> 00:09:14.870
 Check the pass policy and
 the manager's mailbox,
 
-143
-00:09:20.660 --> 00:09:23.134
+142
+00:09:14.870 --> 00:09:17.344
 then measure readiness on the start date.
 
-144
-00:09:23.134 --> 00:09:25.932
+143
+00:09:17.344 --> 00:09:20.142
 Finally, back it out:
 remove what you created,
 
-145
-00:09:25.932 --> 00:09:29.240
+144
+00:09:20.142 --> 00:09:23.450
 or send the previous body
 as a further version.
 
-146
-00:09:32.990 --> 00:09:35.590
+145
+00:09:27.200 --> 00:09:29.800
 The dangers are mostly drift and scale.
 
-147
-00:09:35.590 --> 00:09:40.490
+146
+00:09:29.800 --> 00:09:34.700
 A workflow edited in the portal drifts
 from its file; every plan warns on it.
 
-148
-00:09:40.490 --> 00:09:44.715
+147
+00:09:34.700 --> 00:09:38.925
 A scope on a department name silently
 stops after a reorganization.
 
-149
-00:09:44.715 --> 00:09:48.490
+148
+00:09:38.925 --> 00:09:42.700
 A long or reusable pass
 outlives the card's arrival.
 
-150
-00:09:48.490 --> 00:09:52.320
+149
+00:09:42.700 --> 00:09:46.530
 A rehire whose old account kept
 its methods can't get a pass,
 
-151
-00:09:52.320 --> 00:09:54.315
+150
+00:09:46.530 --> 00:09:48.525
 so rehires need their own path.
 
-152
-00:09:54.315 --> 00:09:58.477
+151
+00:09:48.525 --> 00:09:52.687
 With no execution limit, a
 bad H R load runs to the end.
 
-153
-00:09:58.477 --> 00:10:02.640
+152
+00:09:52.687 --> 00:09:56.850
 A delete in the leaver removes the
 account before devices are retired.
 
-154
-00:10:02.640 --> 00:10:07.150
+153
+00:09:56.850 --> 00:10:01.360
 And a readiness figure from a midday
 export counts late fixes as ready.
 
-155
-00:10:10.900 --> 00:10:12.250
+154
+00:10:05.110 --> 00:10:06.460
 Here's what done looks like.
 
-156
-00:10:12.250 --> 00:10:14.810
+155
+00:10:06.460 --> 00:10:09.020
 Every workflow in the tenant has a file,
 
-157
-00:10:14.810 --> 00:10:17.850
+156
+00:10:09.020 --> 00:10:12.060
 and the last plan showed
 no unknown workflows.
 
-158
-00:10:17.850 --> 00:10:20.500
+157
+00:10:12.060 --> 00:10:14.710
 The lint is clean against
 a budget of fifty.
 
-159
-00:10:20.500 --> 00:10:25.100
+158
+00:10:14.710 --> 00:10:19.310
 Every execution limit matches its
 file, and the validation kit agrees.
 
-160
-00:10:25.100 --> 00:10:28.587
+159
+00:10:19.310 --> 00:10:22.797
 The pass is one-time and lasts
 at most twenty-four hours.
 
-161
-00:10:28.587 --> 00:10:33.013
+160
+00:10:22.797 --> 00:10:27.223
 Each change reached the tenant as a
 reviewed body with its hash recorded.
 
-162
-00:10:33.013 --> 00:10:35.463
+161
+00:10:27.223 --> 00:10:29.673
 The readers hold only read permissions.
 
-163
-00:10:35.463 --> 00:10:38.788
+162
+00:10:29.673 --> 00:10:32.998
 And the readiness rate is
 reported for every start date.
 
-164
-00:10:38.788 --> 00:10:44.275
+163
+00:10:32.998 --> 00:10:38.485
 Next, Chapter 4: access from attributes,
 and the mover's residual review.
 
-165
-00:10:44.275 --> 00:10:45.430
+164
+00:10:38.485 --> 00:10:39.640
 Thanks for watching.

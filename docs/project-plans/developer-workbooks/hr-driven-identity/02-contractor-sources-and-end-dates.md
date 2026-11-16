@@ -29,7 +29,7 @@ The code behind the guide's Gate 2 and the plan's decision D-I3 and task I5.2: c
 ## Narrated tour
 {{< fmw-video DW_HR_02_Contractor_End_Dates_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-02-contractor-end-dates) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-02-contractor-end-dates) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-02-contractor-end-dates/DW_HR_02_Contractor_End_Dates_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-02-contractor-end-dates/DW_HR_02_Contractor_End_Dates_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_02_Contractor_End_Dates.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_02_Contractor_End_Dates_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-02-contractor-end-dates/DW_HR_02_Contractor_End_Dates_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-02-contractor-end-dates/DW_HR_02_Contractor_End_Dates_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

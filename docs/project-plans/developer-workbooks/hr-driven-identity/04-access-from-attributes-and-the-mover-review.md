@@ -29,7 +29,7 @@ The code behind the guide's Gate 4, "department access by automatic assignment; 
 ## Narrated tour
 {{< fmw-video DW_HR_04_Access_From_Attributes_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-04-access-from-attributes) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-04-access-from-attributes) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-04-access-from-attributes/DW_HR_04_Access_From_Attributes_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-04-access-from-attributes/DW_HR_04_Access_From_Attributes_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_04_Access_From_Attributes.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_04_Access_From_Attributes_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-04-access-from-attributes/DW_HR_04_Access_From_Attributes_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-04-access-from-attributes/DW_HR_04_Access_From_Attributes_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
