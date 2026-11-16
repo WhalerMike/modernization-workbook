@@ -1,2704 +1,3829 @@
 {
- "generated": "2026-11-09T11:05:58+00:00",
+ "generated": "2026-11-16T11:07:00+00:00",
  "sources": {
   "aa23-039a": {
    "final_url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-039a",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "aa23-193a": {
    "final_url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-193a",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "aa23-278a": {
    "final_url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-278a",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "aa23-320a": {
    "final_url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "access-national-cloud-deployments-with-the": {
    "final_url": "https://learn.microsoft.com/en-us/graph/sdks/national-clouds",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "access-token-claims-reference": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity-platform/access-token-claims-reference",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "active-directory-accounts": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-default-user-accounts",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "active-directory-federation-services-ad-fs": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/decommission/adfs-decommission-guide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "active-directory-integrated-dns-zones": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/active-directory-integrated-dns-zones",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "add-a-certificate-to-an-app-by-using": {
    "final_url": "https://learn.microsoft.com/en-us/graph/applications-how-to-add-certificate",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "add-owner": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "administrative-units-in-microsoft-entra-id": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/administrative-units",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "advanced-analytics-overview": {
    "final_url": "https://learn.microsoft.com/en-us/intune/advanced-analytics/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "advanced-hunting-alertevidence-table": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-alertevidence-table",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "advanced-hunting-alertinfo-table": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-alertinfo-table",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "advanced-hunting-deviceinfo-table": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceinfo-table",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "advanced-hunting-devicetvmsoftwarevulnerabilities": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicetvmsoftwarevulnerabilities-table",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "advanced-hunting-migrate-from-mde": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-migrate-from-mde",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "advanced-hunting-schema-changes": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-schema-changes",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "advanced-hunting-schema-tables": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-schema-tables",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "agent-365-identity": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-agent-365/developer/identity",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "agent-id-faq": {
    "final_url": "https://learn.microsoft.com/en-us/entra/agent-id/faq",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "agent-identity-sponsor-tasks-in-lifecycle": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/agent-sponsor-tasks",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ai-100-1": {
    "final_url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "alter-user-transact-sql": {
    "final_url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-user-transact-sql?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "analyze-conditional-access-policy-impact": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-report-only",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ansible-azure-arc-role-at-afa62c3": {
    "final_url": "https://github.com/ansible-collections/azure/tree/afa62c3bcf3e283645336039e13c8e3019b8fcdd/roles/azure_arc",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "api-driven-inbound-provisioning-concepts": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/app-provisioning/inbound-provisioning-api-concepts",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "api-driven-inbound-provisioning-with": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/app-provisioning/inbound-provisioning-api-powershell",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "app-service-multi-region-tutorial": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/app-service/tutorial-multi-region-app",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "application-access-policies-legacy": {
    "final_url": "https://learn.microsoft.com/en-us/exchange/permissions-exo/application-access-policies",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "application-gateway-diagnostics": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/application-gateway/application-gateway-diagnostics",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "application-gateway-tls-policy-powershell": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/application-gateway/application-gateway-configure-ssl-policy-powershell",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "application-gateway-waf-faq": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/application-gateway-waf-faq",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "appliedconditionalaccesspolicy-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/appliedconditionalaccesspolicy?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "arc-servers-identity-and-authorization": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/security-identity-authorization",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "arc-servers-planning-and-deployment": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/security-onboarding",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "arc-sql-rotate-certificates": {
    "final_url": "https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/rotate-certificates?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
+  },
+  "asr-rules-configure": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-configure",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "asr-rules-deployment-test": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-deployment-test",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "asr-rules-monitor": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-monitor",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "asr-rules-overview": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-overview",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "asr-rules-reference": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-reference",
+   "last_checked": "2026-11-16",
+   "status": "ok"
   },
   "assign-appliesto": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-post-appliesto?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "assign-azure-resource-roles-in-privileged": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "assign-privileged-roles-using-pim-for": {
    "final_url": "https://learn.microsoft.com/en-us/graph/tutorial-assign-azureadroles",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "assured-workloads-supported-products": {
+   "final_url": "https://docs.cloud.google.com/assured-workloads/docs/supported-products",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "attack-disruption-exclusions": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/automatic-attack-disruption-exclusions",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "audit-use-of-ntlmv1-on-a-windows-server": {
    "final_url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-security/audit-domain-controller-ntlmv1",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "authorization-in-microsoft-entra-agent-id": {
    "final_url": "https://learn.microsoft.com/en-us/entra/agent-id/authorization-agent-id",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "automatic-attack-disruption-in-microsoft": {
    "final_url": "https://learn.microsoft.com/en-us/defender-xdr/automatic-attack-disruption",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "avm-waf-policy-module": {
+   "final_url": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/network/application-gateway-web-application-firewall-policy",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-alternate-contacts": {
+   "final_url": "https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact-alternate.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-cli-health": {
+   "final_url": "https://docs.aws.amazon.com/cli/latest/reference/health/",
+   "last_checked": "2026-11-16",
+   "status": "moved"
+  },
+  "aws-cli-health-describe-events": {
+   "final_url": "https://docs.aws.amazon.com/cli/latest/reference/health/describe-events.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-cli-iam-examples": {
+   "final_url": "https://docs.aws.amazon.com/cli/latest/userguide/cli_iam_code_examples.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-cli-sts-get-caller-identity": {
+   "final_url": "https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-health-api-access": {
+   "final_url": "https://docs.aws.amazon.com/health/latest/ug/health-api.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-health-api-affectedentity": {
+   "final_url": "https://docs.aws.amazon.com/health/latest/APIReference/API_AffectedEntity.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-health-api-event": {
+   "final_url": "https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-health-api-reference": {
+   "final_url": "https://docs.aws.amazon.com/health/latest/APIReference/Welcome.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-health-concepts": {
+   "final_url": "https://docs.aws.amazon.com/health/latest/ug/aws-health-concepts-and-terms.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-health-describe-event-details": {
+   "final_url": "https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetails.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-health-govcloud": {
+   "final_url": "https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-health.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-health-identity-policy-examples": {
+   "final_url": "https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-health-managed-policies": {
+   "final_url": "https://docs.aws.amazon.com/health/latest/ug/security-iam-awsmanpol.html",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "aws-migration-strategies": {
    "final_url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "aws-rds-iam-auth": {
    "final_url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "aws-route-53-dnssec": {
    "final_url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "aws-route-53-resolver": {
    "final_url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "aws-security-hub": {
    "final_url": "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-shield-and-waf": {
+   "final_url": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "aws-smc-end-of-support": {
    "final_url": "https://docs.aws.amazon.com/smc/latest/ag/smc-end-of-support.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "aws-vpc-ipam-infoblox": {
    "final_url": "https://aws.amazon.com/about-aws/whats-new/2025/11/amazon-vpc-ipam-automates-ip-from-infoblox/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "aws-waf-govcloud": {
+   "final_url": "https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-waf.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "az-monitor-log-analytics": {
+   "final_url": "https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics?view=azure-cli-latest",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "az-policy-exemption": {
+   "final_url": "https://learn.microsoft.com/en-us/cli/azure/policy/exemption?view=azure-cli-latest",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "azcmagent-connect": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/azcmagent-connect",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "azcmagent-disconnect": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/azcmagent-disconnect",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "azure-built-in-roles": {
    "final_url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "azure-dns-faq": {
    "final_url": "https://learn.microsoft.com/en-us/azure/dns/dns-faq",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "azure-dns-monitoring-data-reference": {
    "final_url": "https://learn.microsoft.com/en-us/azure/dns/monitor-dns-reference",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "azure-dns-private-resolver-endpoints-and": {
    "final_url": "https://learn.microsoft.com/en-us/azure/dns/private-resolver-endpoints-rulesets",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "azure-dynamics-365-microsoft-365-and-power": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-government/compliance/azure-services-in-fedramp-auditscope",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "azure-firewall-draft-deployment": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/firewall/draft-deploy",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "azure-firewall-monitoring-data-reference": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/firewall/monitor-firewall-reference",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "azure-firewall-nat-gateway": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/firewall/integrate-with-nat-gateway-v2",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "azure-firewall-premium-features": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "azure-firewall-traffic-inspection": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/networking/design-guide/azure-firewall",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "azure-network-security-zero-trust": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/networking/security/zero-trust-network-security",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "azure-policy-assignment-structure": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/assignment-structure",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "azure-policy-exemption-structure": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "azure-private-dns-faq": {
    "final_url": "https://learn.microsoft.com/en-us/azure/dns/dns-faq-private",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "azure-rest-api-specs-at-411fb22": {
    "final_url": "https://github.com/Azure/azure-rest-api-specs/tree/411fb227a905864f972d26ab88b21ef69e1f67b2/specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
-  "azure-retail-prices-api": {
-   "final_url": "https://prices.azure.com/api/retail/prices",
-   "last_checked": "2026-11-09",
+  "azure-service-health-faq": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/service-health/service-health-faq",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "azure-service-health-portal": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-update",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "best-practices-for-azure-rbac": {
    "final_url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "best-practices-for-microsoft-entra-agent-id": {
    "final_url": "https://learn.microsoft.com/en-us/entra/agent-id/best-practices-agent-id",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "bind-9-arm": {
    "final_url": "https://bind9.readthedocs.io/en/stable/reference.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "block-legacy-authentication-with-conditional": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-legacy-authentication",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "bod-23-01": {
    "final_url": "https://www.cisa.gov/news-events/directives/bod-23-01-improving-asset-visibility-and-vulnerability-detection-federal-networks",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "bod-23-02": {
    "final_url": "https://www.cisa.gov/news-events/directives/binding-operational-directive-23-02",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "bod-25-01": {
    "final_url": "https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "bod-25-01-implementation-guidance": {
    "final_url": "https://www.cisa.gov/news-events/directives/bod-25-01-implementation-guidance-implementing-secure-practices-cloud-services",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "bod-25-01-required-configurations": {
    "final_url": "https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "bod-26-02": {
    "final_url": "https://www.cisa.gov/news-events/directives/bod-26-02-mitigating-risk-end-support-edge-devices",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "bod-26-04": {
    "final_url": "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "cabf-baseline-requirements": {
    "final_url": "https://cabforum.org/working-groups/server/baseline-requirements/requirements/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cabf-sc-081v3": {
    "final_url": "https://cabforum.org/2025/04/11/ballot-sc081v3-introduce-schedule-of-reducing-validity-and-data-reuse-periods/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "certificate-creation-methods": {
    "final_url": "https://learn.microsoft.com/en-us/azure/key-vault/certificates/create-certificate",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "certificateauthoritydetail-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/certificateauthoritydetail?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "certified-pre-owned": {
    "final_url": "https://specterops.io/blog/2021/06/17/certified-pre-owned/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "certutil": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cfr-32-2002": {
    "final_url": "https://unblock.federalregister.gov/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cfr-36-1220-34": {
    "final_url": "https://www.law.cornell.edu/cfr/text/36/1220.34",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cfr-5-410-201": {
    "final_url": "https://www.law.cornell.edu/cfr/text/5/410.201",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cfr-5-930-301": {
    "final_url": "https://www.law.cornell.edu/cfr/text/5/930.301",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "change-server-authentication-mode": {
    "final_url": "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/change-server-authentication-mode?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "choose-an-authentication-mode": {
    "final_url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/choose-an-authentication-mode?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cis-benchmarks": {
    "final_url": "https://www.cisecurity.org/cis-benchmarks",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cis-microsoft-windows-server-benchmarks": {
    "final_url": "https://www.cisecurity.org/benchmark/microsoft_windows_server",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cisa-encrypted-dns": {
    "final_url": "https://www.cisa.gov/resources-tools/resources/encrypted-dns-implementation-guidance",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "cisa-incident-notification": {
    "final_url": "https://www.cisa.gov/federal-incident-notification-guidelines",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "cisa-kev": {
    "final_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "cisa-logging": {
-   "final_url": "https://www.cisa.gov/resources-tools/resources/logging-reference-architecture",
-   "last_checked": "2026-11-09",
-   "status": "moved"
+   "final_url": "",
+   "last_checked": "2026-11-16",
+   "status": "blocked"
   },
   "cisa-protective-dns": {
    "final_url": "https://www.cisa.gov/resources-tools/services/protective-domain-name-system-dns-resolver",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "cisa-sase-tic": {
    "final_url": "https://www.cisa.gov/resources-tools/resources/using-sase-modern-tic-30-solution",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "cisa-zero-trust-maturity-model": {
    "final_url": "https://www.cisa.gov/zero-trust-maturity-model",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "cisa-ztmm": {
    "final_url": "https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "cisco-sdwan-redirect-dns": {
    "final_url": "https://www.cisco.com/c/en/us/td/docs/routers/sdwan/configuration/policies/ios-xe-17/policies-book-xe/redirect-dns.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "cli-application-gateway-waf-policy": {
+   "final_url": "https://learn.microsoft.com/en-us/cli/azure/network/application-gateway/waf-policy?view=azure-cli-latest",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "cli-network-firewall-policy": {
+   "final_url": "https://learn.microsoft.com/en-us/cli/azure/network/firewall/policy?view=azure-cli-latest",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cloud-feature-availability-for-us-government": {
    "final_url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/feature-availability",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "co-management-workloads": {
    "final_url": "https://learn.microsoft.com/en-us/intune/configmgr/comanage/workloads",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "combine-multiple-http-requests-using-json": {
    "final_url": "https://learn.microsoft.com/en-us/graph/json-batching",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "common-questions-answers-and-scenarios-with": {
    "final_url": "https://learn.microsoft.com/en-us/intune/device-configuration/troubleshoot-device-profiles",
-   "last_checked": "2026-11-09",
-   "status": "ok"
-  },
-  "compare-azure-government-and-global-azure": {
-   "final_url": "https://learn.microsoft.com/en-us/azure/azure-government/compare-azure-government-global-azure",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "conditional-access-authentication-strengths": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "conditional-access-for-agents": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/agent-id",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "conditional-access-for-azure-sql": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/conditional-access-configure?view=azuresql",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "conditional-access-for-workload-identities": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/workload-identity",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "conditionalaccessconditionset-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/conditionalaccessconditionset?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-a-logic-app-for-lifecycle-workflow": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/configure-logic-app-lifecycle-workflows",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-an-app-to-trust-an-external": {
    "final_url": "https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-an-automatic-assignment-policy-for": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-auto-assignment-policy",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-and-use-pkcs-certificates-with": {
    "final_url": "https://learn.microsoft.com/en-us/intune/device-configuration/certificates/pkcs-profiles",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "configure-automatic-attack-disruption": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/configure-attack-disruption",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-azure-resource-role-settings-in": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-certificates-for-ldap-over-ssl-in": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/configure-ldap-signing-certificates",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-dynamic-membership-groups-with-the": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-rule-member-of",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-execution-limits-and-quarantine": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-execution-limits",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-inheritable-permissions-for-agent": {
    "final_url": "https://learn.microsoft.com/en-us/entra/agent-id/configure-inheritable-permissions-blueprints",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-microsoft-cloud-pki-bring-your-own": {
    "final_url": "https://learn.microsoft.com/en-us/intune/cloud-pki/configure-byoca",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-microsoft-entra-role-settings-in": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-oracle-human-capital-management": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/saas-apps/oracle-hcm-provisioning-tutorial",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-pim-for-groups-settings": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/groups-role-settings",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-restrictions-on-how-applications": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/configure-app-management-policies",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "configure-tenant-restrictions-v2": {
    "final_url": "https://learn.microsoft.com/en-us/entra/external-id/tenant-restrictions-v2",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "connect-machines-to-azure-arc-at-scale-with": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/onboard-ansible-playbooks",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "connect-to-exchange-online-powershell": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/exchange/connect-to-exchange-online-powershell?view=exchange-ps",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "continuous-access-evaluation": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-continuous-access-evaluation",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "controlled-unclassified-information-cui": {
    "final_url": "https://www.archives.gov/cui/faqs.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-a-key-distribution-service-kds-root": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-an-agent-identity-blueprint": {
    "final_url": "https://learn.microsoft.com/en-us/entra/agent-id/create-blueprint",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-assignmentpolicies": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-conditionalaccesspolicy": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-customtaskextensions": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/identitygovernance-lifecycleworkflowscontainer-post-customtaskextensions?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-definitions": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-federatedidentitycredential": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-post?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-group": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-login-transact-sql": {
    "final_url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-roleeligibilityschedulerequest": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleeligibilityschedulerequests?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "create-workflow": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/identitygovernance-lifecycleworkflowscontainer-post-workflows?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "creating-federal-hr-2-0-by-consolidating": {
    "final_url": "https://www.opm.gov/chcoc/latest-memos/creating-federal-hr-20-by-consolidating-core-human-capital-management-across-the-federal-government.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "csv2scim-at-f2e8c59": {
    "final_url": "https://github.com/AzureAD/entra-id-inbound-provisioning/tree/f2e8c59f0af497b066c3484fc36a4197c2b37711/PowerShell/CSV2SCIM",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cyberark-certificate-manager": {
    "final_url": "https://www.paloaltonetworks.com/network-security/next-gen-trust-security/certificate-manager",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cyberark-cm-hsm-configuration": {
    "final_url": "https://docs.venafi.com/Docs/current/TopNav/Content/EncryptionKeys/r-hsm-configuration.php",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cyberark-cm-log-server": {
    "final_url": "https://docs.venafi.com/Docs/current/TopNav/Content/Logging/c-logging-LogServer.php",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cyberark-cm-message-bus": {
    "final_url": "https://docs.venafi.com/Docs/current/TopNav/Content/AdminConsoles/cco-vcc-message-bus.php",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cyberark-cm-syslog-channel": {
    "final_url": "https://docs.venafi.com/Docs/current/TopNav/Content/Logging/c-logging-sysLogChannelConfig-tpp.php",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "cyberark-cm-system-requirements": {
    "final_url": "https://docs.venafi.com/Docs/current/TopNav/Content/Install/r-install-SysReq-ALLVenProducts.php",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "ddos-cost-optimization": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-optimization-guide",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "ddos-fundamental-best-practices": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/ddos-protection/fundamental-best-practices",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "ddos-network-protection-cli": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/ddos-protection/manage-ddos-protection-cli",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "ddos-protection-overview": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "ddos-protection-tier-comparison": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-sku-comparison",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "ddos-simulation-testing": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/ddos-protection/test-through-simulations",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "deactivate-an-app-registration": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/deactivate-app-registration",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "defender-for-cloud-apps-us-government": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-cloud-apps/editions-cloud-app-security-gcc",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "defender-for-endpoint-us-government": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/gov",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "defender-for-identity-us-government": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-for-identity/us-govt-gcc-high",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "defender-for-us-government": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/usgov",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "defender-urbac-activate": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/activate-defender-rbac",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "defender-urbac-create-custom-roles": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-xdr/create-custom-rbac-roles",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "delegated-managed-service-accounts-faq": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-faq",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "delegated-managed-service-accounts-overview": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "delete-approleassignedto": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "deprecated-features-for-windows-client": {
    "final_url": "https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "disable-adaccount": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/activedirectory/disable-adaccount?view=windowsserver2025-ps",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "disable-agent-identities-in-your-tenant": {
    "final_url": "https://learn.microsoft.com/en-us/entra/agent-id/disable-agent-identities",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "disable-sql-authentication-for-sql-server": {
    "final_url": "https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/disable-sql-authentication?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "disable-user-sign-in-for-an-application": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/disable-user-sign-in-portal",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "dns-and-ad-ds": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/dns-and-ad-ds",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "dns-resolver-policy": {
    "final_url": "https://learn.microsoft.com/en-us/azure/dns/dns-security-policy",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "dnssec-key-master": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/networking/dns/dnssec-key-master",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "dnssec-overview": {
    "final_url": "https://learn.microsoft.com/en-us/azure/dns/dnssec",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "dora-metrics": {
    "final_url": "https://dora.dev/guides/dora-metrics/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "dynamic-update": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/networking/dns/dynamic-update",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ed-26-03": {
    "final_url": "https://www.cisa.gov/news-events/directives/ed-26-03-mitigate-vulnerabilities-cisco-sd-wan-systems",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "enable-dns-logging-and-diagnostics": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-logging-and-diagnostics",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "enable-key-vault-logging": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/key-vault/general/howto-logging",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ending-support-in-2025": {
    "final_url": "https://learn.microsoft.com/en-us/lifecycle/end-of-support/end-of-support-2025",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ending-support-in-2026": {
    "final_url": "https://learn.microsoft.com/en-us/lifecycle/end-of-support/end-of-support-2026",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ending-support-in-2027": {
    "final_url": "https://learn.microsoft.com/en-us/lifecycle/end-of-support/end-of-support-2027",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ending-support-in-2029": {
    "final_url": "https://learn.microsoft.com/en-us/lifecycle/end-of-support/end-of-support-2029",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "endpoint-analytics-overview": {
    "final_url": "https://learn.microsoft.com/en-us/intune/endpoint-analytics/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "enterprise-access-model": {
    "final_url": "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "enterprise-mobility-security-for-us": {
    "final_url": "https://learn.microsoft.com/en-us/enterprise-mobility-security/solutions/ems-govt-service-description",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "entra-cba-crl": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "entra-cba-technical-concepts": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-technical-deep-dive",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "entra-docs-at-07cb73d": {
    "final_url": "https://github.com/MicrosoftDocs/entra-docs/tree/07cb73d6c6380414eecd040ba5e14c1c94d48b66/docs/identity/users/scripts",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "entra-docs-at-7f78b50": {
    "final_url": "https://github.com/MicrosoftDocs/entra-docs/tree/7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4/docs",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "entra-roles-best-practices": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "eo-14028": {
    "final_url": "https://www.govinfo.gov/content/pkg/FR-2021-05-17/pdf/2021-10460.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "eventbridge-aws-health-events": {
+   "final_url": "https://docs.aws.amazon.com/eventbridge/latest/ref/events-ref-health.html",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "evidence-act": {
    "final_url": "https://www.govinfo.gov/content/pkg/PLAW-115publ435/html/PLAW-115publ435.htm",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "exchange-app-only-authentication": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/exchange/app-only-auth-powershell-v2?view=exchange-ps",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "exchange-online-for-us-government": {
+   "final_url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "far-1-602-1": {
    "final_url": "https://www.acquisition.gov/far/1.602-1",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "far-39-103": {
    "final_url": "https://www.acquisition.gov/far/39.103",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-2026": {
    "final_url": "https://www.fedramp.gov/2026-06-25-propelling-change-fedramp-launches-consolidated-rules-for-2026/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-2026-rev5-controls": {
    "final_url": "https://www.fedramp.gov/2026/reference/controls/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-agency-use": {
    "final_url": "https://www.fedramp.gov/2026/agencies/rules/agency-use/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-certification-data-sharing": {
    "final_url": "https://www.fedramp.gov/2026/reference/certification-data-sharing/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-collaborative-conmon": {
    "final_url": "https://www.fedramp.gov/2026/reference/collaborative-continuous-monitoring/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-definitions": {
    "final_url": "https://www.fedramp.gov/2026/definitions/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-ksi": {
    "final_url": "https://www.fedramp.gov/2026/providers/20x/key-security-indicators/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-marketplace": {
    "final_url": "https://www.fedramp.gov/marketplace/products.json",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-marketplace-mso365mt": {
    "final_url": "https://www.fedramp.gov/marketplace/products/MSO365MT/",
-   "last_checked": "2026-11-09",
-   "status": "ok"
+   "last_checked": "2026-11-16",
+   "status": "gone"
   },
   "fedramp-minimum-assessment-scope": {
    "final_url": "https://www.fedramp.gov/2026/reference/minimum-assessment-scope/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-rev5-class-c": {
    "final_url": "https://www.fedramp.gov/2026/reference/rev5/c/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-rev5-packages": {
    "final_url": "https://www.fedramp.gov/2026/agencies/use/packages/rev5/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-security-decision-record": {
    "final_url": "https://www.fedramp.gov/2026/providers/20x/rules/security-decision-record/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fedramp-significant-change": {
    "final_url": "https://www.fedramp.gov/2026/reference/significant-change-notification/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ficam-architecture": {
    "final_url": "https://www.idmanagement.gov/arch/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ficam-ilm-playbook": {
    "final_url": "https://www.idmanagement.gov/playbooks/ilm/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fips-140-3-transition": {
    "final_url": "https://csrc.nist.gov/projects/fips-140-3-transition-effort",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fips-186-5": {
    "final_url": "https://csrc.nist.gov/pubs/fips/186-5/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fips-199": {
    "final_url": "https://csrc.nist.gov/pubs/fips/199/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fips-200": {
    "final_url": "https://csrc.nist.gov/pubs/fips/200/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fips-201-3": {
    "final_url": "https://csrc.nist.gov/pubs/fips/201-3/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fips-201-3-pdf": {
    "final_url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.201-3.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "flexible-federated-identity-credentials": {
    "final_url": "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-flexible-federated-identity-credentials",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "fowler-strangler-fig": {
    "final_url": "https://martinfowler.com/bliki/StranglerFigApplication.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "front-door-cli-quickstart": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/frontdoor/create-front-door-cli",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "front-door-origin-security": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/frontdoor/origin-security",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "front-door-overview": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "front-door-private-link-origins": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/frontdoor/private-link",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "gao-19-144": {
    "final_url": "",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "gao-19-471": {
    "final_url": "",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "gao-19-58": {
    "final_url": "",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "gao-22-106195": {
    "final_url": "",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "gao-25-107795": {
    "final_url": "",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "gao-26-107530": {
    "final_url": "",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "gao-26-107919": {
    "final_url": "",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
+  },
+  "gcloud-auth-login": {
+   "final_url": "https://docs.cloud.google.com/sdk/gcloud/reference/auth/login",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gcloud-projects-remove-iam-policy-binding": {
+   "final_url": "https://docs.cloud.google.com/sdk/gcloud/reference/projects/remove-iam-policy-binding",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gcloud-service-health-events-list": {
+   "final_url": "https://docs.cloud.google.com/sdk/gcloud/reference/service-health/events/list",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gcp-service-health-events-list": {
+   "final_url": "https://docs.cloud.google.com/service-health/docs/reference/rest/v1/projects.locations.events/list",
+   "last_checked": "2026-11-16",
+   "status": "ok"
   },
   "get-a-user": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "get-adserviceaccount": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-adserviceaccount?view=windowsserver2025-ps",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "get-aduser": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-aduser?view=windowsserver2025-ps",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "get-mgenvironment": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.authentication/get-mgenvironment?view=graph-powershell-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "get-mgrolemanagementdirectoryroleassignment": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.identity.governance/get-mgrolemanagementdirectoryroleassignment?view=graph-powershell-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "get-mgserviceprincipalowner": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.applications/get-mgserviceprincipalowner?view=graph-powershell-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "get-netfirewallprofile": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/module/netsecurity/get-netfirewallprofile?view=windowsserver2025-ps",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "get-onpremisesdirectorysynchronization": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "get-serviceprincipal": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/serviceprincipal-get?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "get-started-with-the-zero-trust-assessment": {
+   "final_url": "https://learn.microsoft.com/en-us/security/zero-trust/assessment/get-started",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "githooks": {
    "final_url": "https://git-scm.com/docs/githooks",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "github-about-protected-branches": {
    "final_url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "google-cloud-armor-overview": {
+   "final_url": "https://docs.cloud.google.com/armor/docs/cloud-armor-overview",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "google-cloud-notification-contacts": {
+   "final_url": "https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "google-private-service-connect": {
+   "final_url": "https://docs.cloud.google.com/vpc/docs/private-service-connect",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "govern-on-premises-service-accounts": {
    "final_url": "https://learn.microsoft.com/en-us/entra/architecture/service-accounts-govern-on-premises",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "grant-and-revoke-api-permissions": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/microsoftgraph/how-to-grant-revoke-api-permissions?view=graph-powershell-1.0",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "grant-or-revoke-api-permissions": {
    "final_url": "https://learn.microsoft.com/en-us/graph/permissions-grant-via-msgraph",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "graph-docs-at-a693031": {
    "final_url": "https://github.com/microsoftgraph/microsoft-graph-docs-contrib/tree/a69303123e9701eecbf56568d152ece936a97f1e",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "graph-powershell-authentication-cmdlets": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "graph-security-api-overview": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/security-api-overview?view=graph-rest-1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "graph-security-create-detectionrule": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/security-rulesroot-post-detectionrules?view=graph-rest-1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "graph-security-list-incidents": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/security-list-incidents?view=graph-rest-1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "graph-security-runhuntingquery": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/security-security-runhuntingquery?view=graph-rest-1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "graph-service-communications-api": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/service-communications-api-overview?view=graph-rest-1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "graph-serviceannouncement-list-issues": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "graph-serviceannouncement-list-messages": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "group-evaluatedynamicmembership": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/group-evaluatedynamicmembership?view=graph-rest-beta",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "group-policy-application-rules-for-domain": {
    "final_url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/group-policy-application-rules-for-domain-controller",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "group-policy-overview-for-windows-server": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "group-policy-processing": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "group-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-common-operations": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-operations-common",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-compliant-network-check": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-compliant-network",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-conditional-access-private-access-apps": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-target-resource-private-access-apps",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-cross-tenant-access-settings": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/networkaccess-crosstenantaccesssettings?view=graph-rest-beta",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-deployment-guide-microsoft-traffic": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/architecture/gsa-deployment-guide-microsoft-traffic",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "gsa-eis": {
    "final_url": "https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/enterprise-infrastructure-solutions",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "gsa-eis-pricer": {
    "final_url": "https://eis-public-pricer.eos.gsa.gov/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "gsa-eis-transition": {
    "final_url": "https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/enterprise-infrastructure-solutions/eis-transition",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
+  },
+  "gsa-forwarding-profile-resource": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/networkaccess-forwardingprofile?view=graph-rest-beta",
+   "last_checked": "2026-11-16",
+   "status": "ok"
   },
   "gsa-fpki-101": {
    "final_url": "https://www.idmanagement.gov/university/fpki/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-graph-network-access-apis": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/networkaccess-global-secure-access-api-overview?view=graph-rest-beta",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-install-windows-client": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-install-windows-client",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-internet-access-graph-tutorial": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/tutorial-entra-internet-access",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-known-limitations": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/reference-current-known-limitations",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-logs-and-monitoring": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-global-secure-access-logs-monitoring",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-operate-microsoft-traffic": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-operate-microsoft-traffic",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-operations-guide": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/overview-operations",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-per-app-access": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-per-app-access",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-private-access-domain-controllers": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-domain-controllers",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-private-access-graph-tutorial": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/tutorial-entra-private-access",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-security-operations": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-security-operations",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-source-ip-restoration": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-source-ip-restoration",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-tls-inspection-faq": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/faq-transport-layer-security",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-tls-inspection-policies": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-transport-layer-security",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-tls-own-certificate": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-transport-layer-security-settings",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-traffic-forwarding-profiles": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-traffic-forwarding",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-tutorial-compliant-network": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/tutorial-microsoft-traffic-compliant-network",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-tutorial-microsoft-traffic-profile": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/tutorial-microsoft-traffic-enable-profile",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-tutorial-tls-inspection": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/tutorial-internet-access-tls-inspection",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-universal-tenant-restrictions": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-universal-tenant-restrictions",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-update-conditional-access-settings": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/networkaccess-conditionalaccesssettings-update?view=graph-rest-beta",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "gsa-what-is-tls-inspection": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/concept-transport-layer-security",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "guidelines-for-enabling-smart-card-logon": {
    "final_url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/enabling-smart-card-logon-third-party-certification-authorities",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "how-to-check-windows-release-health": {
    "final_url": "https://learn.microsoft.com/en-us/windows/deployment/update/check-release-health",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "how-to-create-custom-machine-configuration": {
    "final_url": "https://learn.microsoft.com/en-us/azure/governance/machine-configuration/how-to/create-policy-definition",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "how-to-decommission-a-windows-enterprise": {
    "final_url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/decommission-enterprise-certification-authority-and-remove-objects",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "how-to-import-third-party-certification": {
    "final_url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/import-third-party-ca-to-enterprise-ntauth-store",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "how-to-manage-stale-devices-in-microsoft": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/devices/manage-stale-devices",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "how-to-publish-custom-machine-configuration": {
    "final_url": "https://learn.microsoft.com/en-us/azure/governance/machine-configuration/how-to/develop-custom-package/4-publish-package",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "how-to-sign-machine-configuration-packages": {
    "final_url": "https://learn.microsoft.com/en-us/azure/governance/machine-configuration/how-to/develop-custom-package/6-sign-package",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "how-to-test-machine-configuration-package": {
    "final_url": "https://learn.microsoft.com/en-us/azure/governance/machine-configuration/how-to/develop-custom-package/3-test-package",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "id-protection-for-agents": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-protection/concept-risky-agents",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ieee-802-1x-2020": {
    "final_url": "https://standards.ieee.org/ieee/802.1X/7345/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "import-and-analyze-your-on-premises-gpos": {
    "final_url": "https://learn.microsoft.com/en-us/intune/device-configuration/import-group-policy-analytics",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "important-considerations-and-restrictions": {
    "final_url": "https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-considerations",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "important-dates-for-the-consolidated-rules": {
    "final_url": "https://www.fedramp.gov/2026/timeline/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "information-and-communication-technology-ict": {
    "final_url": "https://www.access-board.gov/ict/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "integrate-your-existing-nps-infrastructure": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-nps-extension",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "internet-ingress-design-guide": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/networking/design-guide/internet-ingress",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "investigate-data-loss-prevention-alerts-with": {
    "final_url": "https://learn.microsoft.com/en-us/defender-xdr/dlp-investigate-alerts-defender",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ir-8547": {
-   "final_url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
-   "last_checked": "2026-11-09",
+   "final_url": "https://csrc.nist.gov/pubs/ir/8547/final",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "itu-t-g-114": {
    "final_url": "https://www.itu.int/rec/T-REC-G.114-200305-I/en",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "kb5014754-certificate-based-authentication": {
    "final_url": "https://support.microsoft.com/en-us/servicing/os/windows-server/2022/05/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "kerberos-generates-kdc-err-s-principal": {
    "final_url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-security/kerberos-error-kdc-err-s-principal-unknown-or-not-unique",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "kerberos-key-distribution-center-kdc-proxy": {
    "final_url": "https://learn.microsoft.com/en-us/openspecs/document_programs/ms-docproglp/2aa736a8-0727-4748-afe9-941120f3f4ae",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "key-vault-key-autorotation": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "key-vault-private-link": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/key-vault/general/private-link-service",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "keycredential-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/keycredential?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "known-issues-in-microsoft-graph": {
    "final_url": "https://learn.microsoft.com/en-us/graph/known-issues",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "last-logon-timestamp-attribute": {
    "final_url": "https://learn.microsoft.com/en-us/windows/win32/adschema/a-lastlogontimestamp",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "layers-and-models": {
    "final_url": "https://pages.nist.gov/OSCAL/learn/concepts/layer/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-accesspackageassignmentpolicy": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-activate-rights-management": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/activate-rights-management-service",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-auto-labeling": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-azure-cli-endpoints": {
+   "final_url": "https://learn.microsoft.com/en-us/cli/azure/azure-cli-endpoints?view=azure-cli-latest",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-b2b-user-properties": {
    "final_url": "https://learn.microsoft.com/en-us/entra/external-id/user-properties",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-cli-az-monitor-activity-log-alert": {
+   "final_url": "https://learn.microsoft.com/en-us/cli/azure/monitor/activity-log/alert?view=azure-cli-latest",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-cli-az-policy-assignment": {
+   "final_url": "https://learn.microsoft.com/en-us/cli/azure/policy/assignment?view=azure-cli-latest",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-cli-az-policy-remediation": {
+   "final_url": "https://learn.microsoft.com/en-us/cli/azure/policy/remediation?view=azure-cli-latest",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-connect-mggraph": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.authentication/connect-mggraph?view=graph-powershell-1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-copilot-data-protection-auditing": {
+   "final_url": "https://learn.microsoft.com/en-us/copilot/plan/architecture-data-protection-auditing",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-copilot-service-description": {
+   "final_url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/microsoft-365-copilot",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-cross-tenant-access-overview": {
    "final_url": "https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-cross-tenant-sync-configure": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-configure",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-cross-tenant-sync-overview": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-cross-tenant-sync-policy-update": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-dlp-microsoft-365-copilot": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/dlp-microsoft365-copilot-location-learn-about",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-dlp-plan": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/dlp-overview-plan-for-dlp",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-dlp-policy-tips": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/dlp-use-notifications-and-policy-tips",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-dlp-simulation-mode": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/dlp-simulation-mode-learn",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-dspm-for-ai": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/dspm-for-ai-considerations",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-em-access-package-assignments": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-assignments",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-em-connected-organizations": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-organization",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-em-external-users": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-external-users",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-endpoint-dlp-settings": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/dlp-configure-endpoint-settings",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-entitlementmanagementsettings": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/entitlementmanagementsettings?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-exact-data-match": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/sit-learn-about-exact-data-match-based-sits",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-export-contentexplorerdata": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/export-contentexplorerdata?view=exchange-ps",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-external-id-conditional-access": {
    "final_url": "https://learn.microsoft.com/en-us/entra/external-id/authentication-conditional-access",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-graph-list-health-overviews": {
+   "final_url": "https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-healthoverviews?view=graph-rest-1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-graph-powershell-app-only": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/microsoftgraph/app-only?view=graph-powershell-1.0",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-how-to-use-intune-endpoint-security": {
    "final_url": "https://learn.microsoft.com/en-us/intune/device-security/microsoft-defender/security-settings-management",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-insider-risk-management": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/insider-risk-management",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-insider-risk-management-permissions": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/insider-risk-management-permissions",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-irm-communication-compliance-privacy": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/insider-risk-solution-privacy",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-m365-cross-cloud-collaboration": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/cross-cloud-collaboration?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-mail-flow-rules-encrypt-email": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/define-mail-flow-rules-to-encrypt-email",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-management-activity-api": {
+   "final_url": "https://learn.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-reference",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-monitor-app-service-alerts": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/app-service/monitor-app-service",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-new-scheduledtaskaction": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtaskaction?view=windowsserver2025-ps",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-new-scheduledtasktrigger": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtasktrigger?view=windowsserver2025-ps",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-purview-audit": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/audit-solutions-overview",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-purview-content-explorer": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/data-classification-content-explorer",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-purview-data-explorer": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/data-classification-data-explorer",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-purview-gcc-plan": {
+   "final_url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-purview-message-encryption": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/ome",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-purview-service-description": {
+   "final_url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-register-scheduledtask": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/register-scheduledtask?view=windowsserver2025-ps",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-rights-management-super-users": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/encryption-super-users",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-sensitive-information-types": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/sit-sensitive-information-type-learn-about",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-sensitivity-label-groups": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/migrate-sensitivity-label-scheme",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-sensitivity-labels": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/sensitivity-labels",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-sensitivity-labels-default-sharing-link": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/sensitivity-labels-default-sharing-link",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-sensitivity-labels-groups-sites": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/sensitivity-labels-teams-groups-sites",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-sensitivity-labels-office-apps": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/sensitivity-labels-office-apps",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-sensitivity-labels-sharepoint-onedrive": {
+   "final_url": "https://learn.microsoft.com/en-us/purview/sensitivity-labels-sharepoint-onedrive-files",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-service-health-impacted-resources-samples": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/service-health/resource-graph-impacted-samples",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-service-health-security-advisories-access": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "learn-signin-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/signin?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "learn-unregister-scheduledtask": {
+   "final_url": "https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/unregister-scheduledtask?view=windowsserver2025-ps",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "least-privileged-roles-by-task-in-microsoft": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/delegate-by-task",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "lifecycle-workflow-built-in-tasks": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-tasks",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "lifecycle-workflows-custom-task-extension": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-extensibility",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "lifecycle-workflows-execution-conditions-and": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-execution-conditions",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "limitations-with-microsoft-entra-certificate": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-limitations",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-applications": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-definitions": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-directoryaudits": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/directoryaudit-list?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-group-members": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/group-list-members?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-manager": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/user-list-manager?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-methods": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-oauth2permissiongrants-delegated": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-provisioningobjectsummary": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-rolemanagementpolicyassignments": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-signins": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/signin-list?view=graph-rest-beta",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-subscribedskus": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-unifiedroleassignments": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-userprocessingresults": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-users": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "list-windowsautopilotdeviceidentities": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/intune-enrollment-windowsautopilotdeviceidentity-list?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-08-23": {
    "final_url": "https://georgewbush-whitehouse.archives.gov/omb/memoranda/fy2008/m08-23.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-17-12": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/memoranda/2017/m-17-12_0.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-19-17": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2019/05/M-19-17.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-19-26": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2019/09/M-19-26.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-21-07": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2020/11/M-21-07.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-22-09": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-24-08": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2023/12/M-24-08-Strengthening-Digital-Accessibility-and-the-Management-of-Section-508-of-the-Rehabilitation-Act.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-24-15": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2024/07/M-24-15-Modernizing-the-Federal-Risk-and-Authorization-Management-Program.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-25-05": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2025/01/M-25-05-Phase-2-Implementation-of-the-Foundations-for-Evidence-Based-Policymaking-Act-of-2018-Open-Government-Data-Access-and-Management-Guidance.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-25-21": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-21-Accelerating-Federal-Use-of-AI-through-Innovation-Governance-and-Public-Trust.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-25-22": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-22-Driving-Efficient-Acquisition-of-Artificial-Intelligence-in-Government.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-26-05": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2026/01/M-26-05-Adopting-a-Risk-based-Approach-to-Software-and-Hardware-Security.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-26-10": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2026/03/M-26-10-Reinforcing-Transparency-Accountability-and-Oversight-of-Federal-Technology.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-26-14": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "m-26-15": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "m365-admin-roles": {
+   "final_url": "https://learn.microsoft.com/en-us/microsoft-365/admin/add-users/about-admin-roles?view=o365-worldwide",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "m365-message-center": {
+   "final_url": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/message-center?view=o365-worldwide",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "machine-configuration-create-package-artifacts": {
    "final_url": "https://learn.microsoft.com/en-us/azure/governance/machine-configuration/how-to/develop-custom-package/2-create-package",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "machine-configuration-develop-custom-package": {
    "final_url": "https://learn.microsoft.com/en-us/azure/governance/machine-configuration/how-to/develop-custom-package/overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "manage-agent-identities-in-your-organization": {
    "final_url": "https://learn.microsoft.com/en-us/entra/agent-id/manage-agent-identities-admin",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "manage-audit-log-retention-policies": {
    "final_url": "https://learn.microsoft.com/en-us/purview/audit-log-retention-policies",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "manage-certificates-used-with-nps": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/networking/technologies/nps/nps-manage-certificates",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "manage-emergency-access-accounts-in": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "manage-endpoint-security-in-microsoft-intune": {
    "final_url": "https://learn.microsoft.com/en-us/intune/device-security/endpoint-security-policies",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "manage-group-managed-service-accounts": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "manage-rules-for-dynamic-membership-groups": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "managed-identity-best-practice": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "managed-identity-for-sql-server-enabled-by": {
    "final_url": "https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/managed-identity?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "mapping-to-the-certificateuserids-attribute": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "max-ticket-age-attribute": {
    "final_url": "https://learn.microsoft.com/en-us/windows/win32/adschema/a-maxticketage",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-configure-controlled-folder-access": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/controlled-folder-access-configure",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-configure-network-protection": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/enable-network-protection",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-configure-tamper-protection": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/tamper-protection-windows-configure",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-device-inventory-field-reference": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/device-inventory-field-reference",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-evaluate-network-protection": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/evaluate-network-protection",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-monitor-controlled-folder-access": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/controlled-folder-access-monitor",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-network-protection": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/network-protection",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-onboard-windows-intune": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/configure-endpoints-mdm",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-run-detection-test": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/run-detection-test",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-tamper-protection-overview": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/tamper-protection-overview",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "mde-troubleshoot-onboarding": {
+   "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-onboarding",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "mggraph-intune-samples-at-2e66845": {
    "final_url": "https://github.com/microsoft/mggraph-intune-samples/tree/2e668455288ebc43b7356b2d9b0c537e24c409f4/SettingsCatalog",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-365-endpoints": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-endpoints?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-365-informed-network-routing": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-365-network-assessment": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-score?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-365-network-connectivity": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-network-connectivity-principles?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-365-network-connectivity-test-tool": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-onboarding-tool?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-365-network-insights": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-insights?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-365-network-provider-program": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-networking-partner-program?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-adoption-score": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/admin/adoption/adoption-score?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-agent-365": {
    "final_url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365",
-   "last_checked": "2026-11-09",
-   "status": "ok"
-  },
-  "microsoft-azure-government-product-general": {
-   "final_url": "https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-product-roadmap",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-cloud-pki-deployment-for-microsoft": {
    "final_url": "https://learn.microsoft.com/en-us/intune/cloud-pki/deployment-models",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-audit-log-categories-and": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-audit-activities",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-authentication-for-sql": {
    "final_url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-built-in-roles": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-cloud-first-identity": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/guidance-it-architects-source-of-authority",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-connect-cloud-authentication": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-staged-rollout",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-data-retention": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-reports-data-retention",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-feature-availability": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/authentication/feature-availability",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-id-governance-licensing": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-licensing": {
    "final_url": "https://learn.microsoft.com/en-us/entra/fundamentals/licensing",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-recommendation-remove-unused": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/monitoring-health/recommendation-remove-unused-apps",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-entra-releases-and-announcements": {
    "final_url": "https://learn.microsoft.com/en-us/entra/fundamentals/whats-new",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-graph-permissions-reference": {
    "final_url": "https://learn.microsoft.com/en-us/graph/permissions-reference",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-graph-throttling-guidance": {
    "final_url": "https://learn.microsoft.com/en-us/graph/throttling",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-identity-manager-2016-news-and": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-identity-manager/microsoft-identity-manager-2016",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-identity-platform-and-the-oauth-2": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-intune-for-us-government-gcc-high": {
    "final_url": "https://learn.microsoft.com/en-us/intune/fundamentals/government-service",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "microsoft-sentinel-in-the-microsoft-defender": {
    "final_url": "https://learn.microsoft.com/en-us/azure/sentinel/microsoft-sentinel-defender-portal",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "migrate-from-federation-to-cloud": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "migrate-from-microsoft-entra-connect-to": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/connect-to-cloud-sync-decision-guide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "migrate-front-door-classic": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/frontdoor/migrate-tier",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "mitre-t1557-003": {
    "final_url": "https://attack.mitre.org/techniques/T1557/003/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "monitor-azure-key-vault": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/key-vault/general/monitor-key-vault",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ms-kds-prov-rootkey-class": {
    "final_url": "https://learn.microsoft.com/en-us/windows/win32/adschema/c-mskds-provrootkey",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ms-threat-intel-esxi": {
    "final_url": "https://www.microsoft.com/en-us/security/blog/2024/07/29/ransomware-operators-exploit-esxi-hypervisor-vulnerability-for-mass-encryption/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "mutable-subjects-in-federated-identity": {
    "final_url": "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-federated-credential-mutable-subjects",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nara-grs-3-1": {
    "final_url": "https://www.archives.gov/files/records-mgmt/grs/grs03-1.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nara-grs-3-2": {
    "final_url": "https://www.archives.gov/files/records-mgmt/grs/grs03-2.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "national-cloud-deployments": {
    "final_url": "https://learn.microsoft.com/en-us/graph/deployments",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "network-access-control-nac-integration-with": {
    "final_url": "https://learn.microsoft.com/en-us/intune/device-security/integrate-network-access-control",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "network-connectivity-in-the-microsoft-365": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-overview?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "network-policy-server-overview": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/networking/technologies/nps/nps-top",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "new-adserviceaccount": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/activedirectory/new-adserviceaccount?view=windowsserver2025-ps",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "new-mggroup": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.groups/new-mggroup?view=graph-powershell-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "niap-pcl": {
    "final_url": "https://www.niap-ccevs.org/products",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nist-cmvp": {
    "final_url": "https://csrc.nist.gov/projects/cryptographic-module-validation-program",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nist-codata-c": {
    "final_url": "https://physics.nist.gov/cgi-bin/cuu/Value?c",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nist-cosis": {
    "final_url": "https://csrc.nist.gov/projects/cosis",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nist-ncp": {
    "final_url": "https://csrc.nist.gov/projects/national-checklist-program",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "nist-sp-800-53-rev5-oscal-catalog": {
+   "final_url": "https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "nist-sp-800-60-v1r1": {
+   "final_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v1r1.pdf",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nist-sp-800-63-4": {
    "final_url": "https://pages.nist.gov/800-63-4/sp800-63.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nist-sp-800-63-4-final": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/63/4/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nist-sp-800-63c-4": {
    "final_url": "https://pages.nist.gov/800-63-4/sp800-63c.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nodejs-releases": {
    "final_url": "https://nodejs.org/en/about/previous-releases",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ntc-0004": {
    "final_url": "https://www.fedramp.gov/notices/0004/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ntc-0013": {
    "final_url": "https://www.fedramp.gov/notices/0013/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ntc-0014": {
    "final_url": "https://www.fedramp.gov/notices/0014/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "ntlm-overview": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/security/kerberos/ntlm-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "nygard-adr": {
    "final_url": "https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-announcement-model": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/tools/python/latest/api/announcements_service/models/oci.announcements_service.models.Announcement.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-announcements-policy-reference": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/announcementspolicyreference.htm",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-cli-announcements-get": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/announce/announcements/get.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-cli-announcements-list": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/announce/announcements/list.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-cli-iam-policy-create": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/create.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-cli-iam-policy-delete": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/delete.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-cli-install": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-common-policies": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/commonpolicies.htm",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-console-announcements": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/announcements.htm",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-network-firewall": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/Content/network-firewall/overview.htm",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-private-access": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/privateaccess.htm",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "oci-web-application-firewall": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/Content/WAF/Concepts/overview.htm",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "office-365-content-delivery-network-cdn": {
    "final_url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-cdn-quickstart?view=o365-worldwide",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "office-365-gcc": {
    "final_url": "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "omb-2025-ai-data-dictionary": {
    "final_url": "https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory/blob/main/Validation/data_dictionary.md",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "omb-2025-ai-reporting": {
    "final_url": "https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory/tree/main/Reporting%20Instructions",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "omb-a-108": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A108/omb_circular_a-108.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "omb-a-11": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/2025/08/a11.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "omb-a-130": {
    "final_url": "https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A130/a130revised.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "onpremisesextensionattributes-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/onpremisesextensionattributes?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "openapi-3-2-1": {
    "final_url": "https://spec.openapis.org/oas/v3.2.1.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "operate-microsoft-entra-internet-access": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-operate-internet-access",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "operate-microsoft-entra-private-access": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-operate-private-access",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "opm-awards-contract-for-first-ever": {
    "final_url": "https://www.opm.gov/news/news-releases/opm-awards-contract-for-first-ever-governmentwide-hr-platform/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "opm-gppa": {
    "final_url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "oracle-hcm-employee-atom-feeds": {
    "final_url": "https://docs.oracle.com/en/cloud/saas/human-resources/farws/Employee_Atom_Feeds.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
+  },
+  "oracle-us-government-cloud": {
+   "final_url": "https://docs.oracle.com/en-us/iaas/Content/gov-cloud/govfedramp.htm",
+   "last_checked": "2026-11-16",
+   "status": "moved"
   },
   "overview-of-enterprise-application-ownership": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/overview-assign-app-owners",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "overview-of-microsoft-cloud-pki-for": {
    "final_url": "https://learn.microsoft.com/en-us/intune/cloud-pki/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "overview-of-microsoft-graph-permissions": {
    "final_url": "https://learn.microsoft.com/en-us/graph/permissions-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "overview-of-the-servicenow-integration": {
    "final_url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/integration-servicenow",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "owasp-llm-top-10": {
    "final_url": "https://genai.owasp.org/llm-top-10/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "owasp-llm01": {
    "final_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "owasp-llm06": {
    "final_url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "owasp-llm10": {
    "final_url": "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "perform-bulkupload": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/synchronization-synchronizationjob-post-bulkupload?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "personalized-service-health-event": {
+   "final_url": "https://docs.cloud.google.com/service-health/docs/reference/rest/v1/projects.locations.events",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "personalized-service-health-list-events": {
+   "final_url": "https://docs.cloud.google.com/service-health/docs/list-events",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "plan-a-conditional-access-deployment": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/plan-conditional-access",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "plan-a-phishing-resistant-passwordless": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-deploy-phishing-resistant-passwordless-authentication",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "plan-a-privileged-identity-management": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "plan-and-deploy-azure-arc-enabled-servers": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/plan-at-scale-deployment",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "plan-your-microsoft-entra-hybrid-join": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-plan",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "plan-your-microsoft-entra-join-deployment": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/devices/device-join-plan",
-   "last_checked": "2026-11-09",
-   "status": "ok"
-  },
-  "planning-identity-for-azure-government": {
-   "final_url": "https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-plan-identity",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "plaw-115-91": {
    "final_url": "https://www.govinfo.gov/content/pkg/PLAW-115publ91/html/PLAW-115publ91.htm",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "policy-csp-controlpolicyconflict": {
    "final_url": "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-controlpolicyconflict",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "postgresql-versioning": {
    "final_url": "https://www.postgresql.org/support/versioning/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "powershell-sample-export-secrets-and": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/scripts/powershell-export-all-app-registrations-secrets-and-certs",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "powershell-samples-for-dynamic-membership": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership-powershell-samples",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "powershell-support-lifecycle": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/scripting/install/powershell-support-lifecycle?view=powershell-7.6",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "prepare-to-deliver-extended-security-updates": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/prepare-extended-security-updates",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "private-endpoint-dns-integration": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns-integration",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "private-endpoint-dns-zone-values": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "private-link-dns-at-scale": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "privileged-identity-management-apis": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-apis",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "privileged-identity-management-pim-for": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "privileged-roles-and-permissions-in": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/privileged-roles-permissions",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "pro-git-objects": {
    "final_url": "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "protect-resource-hierarchy": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/how-to/protect-resource-hierarchy",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "protected-branches": {
    "final_url": "https://docs.gitea.com/usage/access-control/protected-branches/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "public-ip-supported-metrics": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-network-publicipaddresses-metrics",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "radius-authentication-with-microsoft-entra": {
    "final_url": "https://learn.microsoft.com/en-us/entra/architecture/auth-radius",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "register-a-service-principal-name-for": {
    "final_url": "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "remediate-non-compliant-resources-with-azure": {
    "final_url": "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "remove-dhcpserverindc": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/dhcpserver/remove-dhcpserverindc?view=windowsserver2025-ps",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "renewal-of-enrollment-agent-certificate-used": {
    "final_url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/renewal-of-enrollment-agent-certificate-fail",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "requestormanager-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/requestormanager?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "resolve-dnsname": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "resource-graph-starter-queries": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/governance/resource-graph/samples/starter",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "review-access-to-administrative-roles-using": {
    "final_url": "https://learn.microsoft.com/en-us/graph/tutorial-accessreviews-roleassignments",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "review-permissions-granted-to-enterprise": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/manage-application-permissions",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "rfc-3645": {
    "final_url": "https://www.rfc-editor.org/info/rfc3645/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "rfc-4120": {
    "final_url": "https://www.rfc-editor.org/rfc/rfc4120.txt",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "rfc-4364": {
    "final_url": "https://www.rfc-editor.org/info/rfc4364/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "rfc-4821": {
    "final_url": "https://www.rfc-editor.org/rfc/rfc4821.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "rfc-6105": {
    "final_url": "https://www.rfc-editor.org/info/rfc6105/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "rfc-8555": {
    "final_url": "https://www.rfc-editor.org/info/rfc8555/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "rfc-8659": {
    "final_url": "https://www.rfc-editor.org/info/rfc8659/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "rfc-8785": {
    "final_url": "https://www.rfc-editor.org/info/rfc8785/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "rfc-9293": {
    "final_url": "https://www.rfc-editor.org/rfc/rfc9293.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "rfc-9457": {
    "final_url": "https://www.rfc-editor.org/rfc/rfc9457.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "role-based-access-control-for-applications": {
    "final_url": "https://learn.microsoft.com/en-us/exchange/permissions-exo/application-rbac",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "role-management-policies-update": {
    "final_url": "https://learn.microsoft.com/en-us/rest/api/authorization/role-management-policies/update?view=rest-authorization-2020-10-01",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "rules-in-pim-mapping-guide": {
    "final_url": "https://learn.microsoft.com/en-us/graph/identity-governance-pim-rules-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "run-the-zero-trust-assessment-3-1-0": {
+   "final_url": "https://github.com/microsoft/zerotrustassessment/blob/3.1.0/src/powershell/doc/readme.md",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sailpoint-isc-v2025-workflowbody": {
    "final_url": "https://github.com/sailpoint-oss/api-specs/blob/main/idn/v2025/schemas/workflows/WorkflowBody.yaml",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sailpoint-isc-v2025-workflows": {
    "final_url": "https://github.com/sailpoint-oss/api-specs/blob/main/idn/v2025/paths/workflows/workflows.yaml",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sailpoint-isc-v3-account": {
    "final_url": "https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/account.yaml",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sailpoint-isc-v3-accounts": {
    "final_url": "https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/accounts.yaml",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sailpoint-isc-v3-search": {
    "final_url": "https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/search-post.yaml",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sailpoint-lifecycle-states": {
    "final_url": "https://developer.sailpoint.com/docs/api/lifecycle-states/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sailpoint-sdim-best-practices": {
-   "final_url": "https://documentation.sailpoint.com/connectors/servicenow/sdim/help/integrating_servicenow_sdim/best_practices.html",
-   "last_checked": "2026-11-09",
-   "status": "ok"
+   "final_url": "https://documentation.sailpoint.com/connectors/service_desk_integrations/servicenow/help/index.html#best-practices",
+   "last_checked": "2026-11-16",
+   "status": "moved"
   },
   "sailpoint-sdim-intro": {
-   "final_url": "https://documentation.sailpoint.com/connectors/servicenow/sdim/help/integrating_servicenow_sdim/intro.html",
-   "last_checked": "2026-11-09",
-   "status": "ok"
+   "final_url": "https://documentation.sailpoint.com/connectors/service_desk_integrations/servicenow/help/index.html",
+   "last_checked": "2026-11-16",
+   "status": "moved"
   },
   "sailpoint-trigger-attributes-changed": {
    "final_url": "https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/identity-attribute-changed/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sailpoint-trigger-native-change": {
    "final_url": "https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/native-change-account-updated/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "scuba-entra-baseline": {
    "final_url": "https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "scubagear": {
    "final_url": "https://github.com/cisagov/ScubaGear",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "scubagoggles-releases": {
    "final_url": "https://github.com/cisagov/ScubaGoggles/releases",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "secure-application-gateway": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/application-gateway/secure-application-gateway",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "secure-autonomous-agents-with-conditional": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-autonomous-agents",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "secure-azure-key-vault": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/key-vault/general/secure-key-vault",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "secure-ddos-protection-deployment": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/ddos-protection/secure-ddos-protection",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "secure-delegate-and-audit-certification": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/secure-delegate-audit-certification-authority",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "secure-group-managed-service-accounts": {
    "final_url": "https://learn.microsoft.com/en-us/entra/architecture/service-accounts-group-managed",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "secure-user-based-service-accounts-in-active": {
    "final_url": "https://learn.microsoft.com/en-us/entra/architecture/service-accounts-user-on-premises",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "securing-service-principals-in-microsoft": {
    "final_url": "https://learn.microsoft.com/en-us/entra/architecture/service-accounts-principal",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "securing-workload-identities": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "security-assessment-certificates": {
    "final_url": "https://learn.microsoft.com/en-us/defender-for-identity/security-posture-assessments/certificates",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "security-exposure-management-overview": {
+   "final_url": "https://learn.microsoft.com/en-us/security-exposure-management/microsoft-security-exposure-management",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "security-hub-cspm-compliance-status": {
+   "final_url": "https://docs.aws.amazon.com/securityhub/latest/userguide/controls-overall-status.html",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "security-hub-cspm-nist-800-53-r5": {
+   "final_url": "https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "semver-2-0-0": {
    "final_url": "https://semver.org/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "service-health-alerts-azure-policy": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/service-health/service-health-alert-deploy-policy",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "service-health-iam-roles": {
+   "final_url": "https://docs.cloud.google.com/iam/docs/roles-permissions/servicehealth",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "service-health-resource-graph-samples": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/service-health/resource-graph-samples",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "service-health-security-advisories-elevated": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "service-health-subscription-vs-tenant": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/service-health/subscription-vs-tenant",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "servicenow-attachment-api": {
    "final_url": "https://www.servicenow.com/docs/r/MVRCUFVyKWd7vUoUukbW6g/lfpHTMPdNaq_xdajhuTwEg",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "servicenow-client-credentials": {
    "final_url": "https://www.servicenow.com/docs/r/oJu9n0q6rU~F9UHAnNCt5w/nEdqo82hKBPEeGDqhx~hqw",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "servicenow-pdis": {
    "final_url": "https://www.servicenow.com/docs/r/SmYvGPN0OygSQs53fsexIQ/yG_RdLKb649OcfnDiGEkwQ",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "servicenow-scripted-rest": {
    "final_url": "https://www.servicenow.com/docs/r/zurich/api-reference/rest-api-explorer/c_CustomWebServices.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "servicenow-table-api": {
    "final_url": "https://www.servicenow.com/docs/r/zurich/api-reference/rest-apis/c_TableAPI.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "moved"
   },
   "serviceprincipallockconfiguration-resource": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/serviceprincipallockconfiguration?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "set-entradirsyncfeature": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.entra.directorymanagement/set-entradirsyncfeature?view=entra-powershell",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "set-mgentitlementmanagementassignmentpolicy": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.identity.governance/set-mgentitlementmanagementassignmentpolicy?view=graph-powershell-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "set-up-microsoft-entra-certificate-based": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-certificate-based-authentication",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "setspn": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/setspn",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "setting-up-delegated-managed-service": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "shared-responsibility-in-the-cloud": {
    "final_url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-128": {
    "final_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-128.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-137": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/137/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-161": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/161/r1/upd1/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-181": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/181/r1/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-207": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/207/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-218": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/218/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-30": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-34": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-37": {
    "final_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-50": {
    "final_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-50r1.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-53": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-53a": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/53/a/r5/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-53b": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-63b-4": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/63/b/4/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-79-2": {
    "final_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-79-2.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-81": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/81/r3/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sp-800-88": {
    "final_url": "https://csrc.nist.gov/pubs/sp/800/88/r2/final",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "spanner-osdi-2012": {
    "final_url": "https://research.google/pubs/spanner-googles-globally-distributed-database-2/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "spiffe-overview": {
    "final_url": "https://spiffe.io/docs/latest/spiffe-about/overview/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "spring-boot-system-requirements": {
    "final_url": "https://docs.spring.io/spring-boot/system-requirements.html",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "spring-project-generations": {
    "final_url": "https://spring.io/projects/generations/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sql-server-enabled-by-azure-arc": {
    "final_url": "https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/overview?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
-   "status": "ok"
-  },
-  "sql-server-enabled-by-azure-arc-in-us": {
-   "final_url": "https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/us-government-region?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "start-adserviceaccountmigration": {
    "final_url": "https://learn.microsoft.com/en-us/powershell/module/activedirectory/start-adserviceaccountmigration?view=windowsserver2025-ps",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "status-code-0x32-and-you-can-t-join-a-domain": {
    "final_url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/status-code-0x32-cannot-join-domain",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "strangler-fig-pattern": {
    "final_url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/strangler-fig",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "subscription-vending": {
    "final_url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "support-matrices-for-defender-for-cloud": {
    "final_url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/support-matrix-defender-for-cloud",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "supported-operating-systems-and-browsers-in": {
    "final_url": "https://learn.microsoft.com/en-us/intune/fundamentals/ref-supported-platforms",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sys-dm-exec-connections-transact-sql": {
    "final_url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-exec-connections-transact-sql?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sys-linked-logins-transact-sql": {
    "final_url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-linked-logins-transact-sql?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "sys-server-principals-transact-sql": {
    "final_url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-server-principals-transact-sql?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "tcp-ip-performance-tuning-for-azure-vms": {
    "final_url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-tcpip-performance-tuning",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "tenantappmanagementpolicy-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/tenantappmanagementpolicy?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "tic-3-branch-office": {
-   "final_url": "https://www.cisa.gov/sites/default/files/2026-10/tic-3-branch-office-use-september-2026-508c.pdf",
-   "last_checked": "2026-11-09",
-   "status": "moved"
+   "final_url": "",
+   "last_checked": "2026-11-16",
+   "status": "blocked"
   },
   "tic-3-program-guidebook": {
    "final_url": "https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Program_Guidebook_September_2026_47.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "blocked"
+  },
+  "tic-3-remote-user-use-case": {
+   "final_url": "",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "tic-3-security-capabilities": {
    "final_url": "https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Security_Capabilities_Catalogs_September_2026_17.pdf",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "blocked"
   },
   "tmf-fit": {
    "final_url": "https://tmf.cio.gov/fit/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "trigger-logic-apps-based-on-custom-task": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/trigger-custom-task",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "troubleshoot-hybrid-dns-resolution-failures": {
    "final_url": "https://learn.microsoft.com/en-us/troubleshoot/azure/dns/troubleshoot-azure-dns-private-resolver-hybrid-resolution-failure",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "troubleshoot-private-endpoint-connectivity": {
+   "final_url": "https://learn.microsoft.com/en-us/troubleshoot/azure/private-link/troubleshoot-private-endpoint-connectivity-failure",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "troubleshoot-waf-blocking-legitimate": {
+   "final_url": "https://learn.microsoft.com/en-us/troubleshoot/azure/application-gateway/troubleshoot-waf-blocking-legitimate-requests-403",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "tutorial-configure-certificate-autorotation": {
    "final_url": "https://learn.microsoft.com/en-us/azure/key-vault/certificates/tutorial-rotate-certificates",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "tutorial-set-up-microsoft-entra": {
    "final_url": "https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/entra-authentication-setup-tutorial?view=sql-server-ver17",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "understand-and-manage-dynamic-group": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/users/manage-dynamic-group",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "understanding-lifecycle-workflows": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/understanding-lifecycle-workflows",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "understanding-the-active-directory-logical": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "update-application": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "update-rings-policy-settings": {
    "final_url": "https://learn.microsoft.com/en-us/intune/device-updates/windows/ref-update-ring-settings",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "update-rules-in-pim-by-using-microsoft-graph": {
    "final_url": "https://learn.microsoft.com/en-us/graph/how-to-pim-update-rules",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "update-serviceprincipal": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/serviceprincipal-update?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "update-tenantappmanagementpolicy": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/tenantappmanagementpolicy-update?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "us-office-of-personnel-management-selects": {
    "final_url": "https://www.oracle.com/news/announcement/us-office-of-personnel-management-selects-oracle-to-power-federal-workforce-modernization-2026-06-11/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "usc-29-794d-govinfo": {
    "final_url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title29/html/USCODE-2023-title29-chap16-subchapV-sec794d.htm",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "usc-44-3554": {
    "final_url": "https://www.law.cornell.edu/uscode/text/44/3554",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "usc-5-552a": {
    "final_url": "https://www.law.cornell.edu/uscode/text/5/552a",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "usc-5-552a-govinfo": {
    "final_url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title5/html/USCODE-2023-title5-partI-chap5-subchapII-sec552a.htm",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "use-access-policies-to-require-multi-admin": {
    "final_url": "https://learn.microsoft.com/en-us/intune/fundamentals/role-based-access-control/multi-admin-approval",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "use-kerberos-for-single-sign-on-sso-to-your": {
    "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-kerberos-sso",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "use-microsoft-entra-groups-to-manage-role": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "user-resource-type": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "users-in-active-directory-domain-services": {
    "final_url": "https://learn.microsoft.com/en-us/windows/win32/ad/users-in-active-directory-domain-services",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "using-a-fedramp-certified-cloud-service": {
    "final_url": "https://www.fedramp.gov/2026/agencies/use/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "using-expressroute-for-routing-microsoft-365": {
    "final_url": "https://learn.microsoft.com/en-us/azure/expressroute/using-expressroute-for-microsoft365",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "waf-application-ddos-protection": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/web-application-firewall/application-ddos-protection",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "waf-azure-policy": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/web-application-firewall/shared/waf-azure-policy",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "waf-rate-limit-application-gateway": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/rate-limiting-configure",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "walkthrough-create-an-intune-settings": {
    "final_url": "https://learn.microsoft.com/en-us/intune/device-configuration/settings-catalog/tutorial-group-policy-migration",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "webvtt-the-web-video-text-tracks-format": {
    "final_url": "https://www.w3.org/TR/webvtt1/",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-are-access-reviews": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-are-protected-actions-in-microsoft": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/protected-actions-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-is-active-directory-certificate": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/active-directory-certificate-services-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-is-azure-dns-private-resolver": {
    "final_url": "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-is-conditional-access": {
    "final_url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "what-is-global-secure-access": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/global-secure-access/overview-what-is-global-secure-access",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-is-microsoft-entra-privileged-identity": {
    "final_url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-is-multicloud-connector-enabled-by": {
    "final_url": "https://learn.microsoft.com/en-us/azure/azure-arc/multicloud-connector/overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-is-the-autoregistration-feature-in": {
    "final_url": "https://learn.microsoft.com/en-us/azure/dns/private-dns-autoregistration",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-is-the-zero-trust-assessment": {
    "final_url": "https://learn.microsoft.com/en-us/security/zero-trust/assessment/overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "what-s-new-in-windows-server-2025": {
    "final_url": "https://learn.microsoft.com/en-us/windows-server/get-started/whats-new-windows-server-2025",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "why-is-the-internet-so-slow": {
    "final_url": "https://link.springer.com/chapter/10.1007/978-3-319-54328-4_13",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "windows-10-reaching-end-of-support": {
    "final_url": "https://learn.microsoft.com/en-us/lifecycle/announcements/windows-10-end-of-support",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "windows-11-release-information": {
    "final_url": "https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "windows-autopilot-registration-overview": {
    "final_url": "https://learn.microsoft.com/en-us/autopilot/registration-overview",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "windows-message-center": {
    "final_url": "https://learn.microsoft.com/en-us/windows/release-health/windows-message-center",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "windows-server-release-information": {
    "final_url": "https://learn.microsoft.com/en-us/windows/release-health/windows-server-release-info",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "workflow-createnewversion": {
    "final_url": "https://learn.microsoft.com/en-us/graph/api/identitygovernance-workflow-createnewversion?view=graph-rest-1.0",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "workload-id-faq": {
    "final_url": "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-faqs",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
    "status": "ok"
   },
   "workload-identity-federation-concepts": {
    "final_url": "https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation",
-   "last_checked": "2026-11-09",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "zero-trust-application-gateway-waf": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/networking/security/zero-trust-application-gateway-waf",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "zero-trust-assessment-readme-3-1-0": {
+   "final_url": "https://github.com/microsoft/zerotrustassessment/blob/3.1.0/README.md",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "zero-trust-assessment-release-3-1-0": {
+   "final_url": "https://github.com/microsoft/zerotrustassessment/releases/tag/3.1.0",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "zero-trust-assessment-terminology": {
+   "final_url": "https://learn.microsoft.com/en-us/security/zero-trust/assessment/glossary",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "zero-trust-azure-firewall": {
+   "final_url": "https://learn.microsoft.com/en-us/azure/networking/security/zero-trust-azure-firewall",
+   "last_checked": "2026-11-16",
+   "status": "ok"
+  },
+  "zero-trust-protect-networks": {
+   "final_url": "https://learn.microsoft.com/en-us/entra/fundamentals/zero-trust-protect-networks",
+   "last_checked": "2026-11-16",
    "status": "ok"
   }
  }
