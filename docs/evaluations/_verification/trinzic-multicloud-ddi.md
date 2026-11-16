@@ -13,11 +13,11 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 1 | Design guidance: multi-cloud at Moderate may add Universal DDI for workloads in the commercial regions (confirm government-edition feature support); High systems in any region: A + C only | The answer in brief | design (labelled); GovCloud alternative dropped November 15, 2026 (WD-156) | — |
+| 1 | Design guidance reframed: multi-cloud at Moderate may add Universal DDI whether workloads are in commercial regions or in AWS GovCloud (US) (confirm government-edition feature support there); High systems in any region: A + C only | The answer in brief | design (labelled) | — |
 | 2 | Infoblox Government Cloud certified at Moderate and hosted in AWS GovCloud (US) | The answer in brief | verified (Marketplace data, Oct 22, 2026) | tz-fedramp |
-| 3 | AWS publishes FedRAMP scope per service and per Region (Class C East/West) | Footnote | verified 2026-10-29 (fact pack) | tz-fedramp |
+| 3 | AWS publishes FedRAMP scope per service and per Region (Class C East/West; Class D GovCloud) | Footnote | verified 2026-10-29 (fact pack) | tz-fedramp |
 | 4 | Deck slide 9 decision table: GovCloud moved from the High row into the Moderate multi-cloud row | Deck | reframed | — |
 
-## Government-cloud rule (November 15, 2026)
+## AWS GovCloud restored (November 16, 2026)
 
-Under WD-156 the program's AWS workloads run in the commercial Regions. The page no longer offers AWS GovCloud (US) as a Moderate location (claim 1), and the discovery sentence, option C's limit, the status note and the footnote's GovCloud column were trimmed (claim 3). Kept: Infoblox Government Cloud's hosting in AWS GovCloud (US) (claim 2), a fact about where the vendor's service runs. Claim 4 describes the released deck, which the deck pass updates.
+Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS GovCloud changes made on November 15, 2026 under WD-156 (PR #627) were reversed on this page: its GovCloud claims, footnotes and wording are back as verified before that date, and the rest of this record stands.

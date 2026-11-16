@@ -43,7 +43,7 @@ Checked October 21, 2026 by writer W5. Source: `docs/compliance/Vol_III_Book_04_
 | 38 | Source: Defender for Cloud does "multi-cloud CSPM/CWPP ingestion across Azure, AWS, and GCP" | Owned-tool-first | verified | Learn multicloud support matrix |
 | 39 | VMware row: Broadcom VCF Security Configuration and Hardening Guide (an SPM benchmark in VCF 9.1) as the vendor baseline; CIS VMware ESXi 8.0 1.4.0 and 9.0 1.0.0 as cross-check; STIG readiness content kept as optional High-only reference (claim 13 superseded in part) | Table; figure ch08-owned-tool-first | verified 2026-10-29 (Moderate-civilian sweep) | Broadcom TechDocs, VCF 9.1 Security Posture Management; CIS Benchmarks list |
 | 40 | Security Hub CSPM CIS AWS Foundations Benchmark standard (v5.0.0, v3.0.0, v1.4.0, v1.2.0; v5.0.0 recommended), available in every Security Hub CSPM Region | Table, AWS row | verified 2026-10-29 | Security Hub UG, CIS AWS Foundations Benchmark; Regional limits |
-| 41 | AWS US East/West Class C (formerly Moderate); scope per service, per Region; the program's AWS workloads run in the commercial Regions | AWS corrections bullet | verified 2026-10-29; design guidance restated November 15, 2026 | AWS FedRAMP page; Services in Scope |
+| 41 | AWS US East/West Class C (formerly Moderate), GovCloud (US) Class D (formerly High); scope per service, per Region; a Moderate system can run in GovCloud (High includes the Moderate controls) | AWS corrections bullet | verified 2026-10-29; "can run there" is inference | AWS FedRAMP page; Services in Scope |
 
 ## Carry-forward ledger
 
@@ -96,3 +96,7 @@ Added a paragraph linking the Azure Security Engineering implementation guide (S
 ## Government-cloud rule (November 15, 2026)
 
 Under WD-156 the program's AWS workloads run in the commercial Regions and Assured Workloads isn't the program's Google Cloud environment. The AWS row and the AWS corrections bullet no longer present GovCloud (US) as a Moderate location (claim 41); the Google row and the figure name Security Command Center only (claim 9), and footnote `c08-gcp-aw` was removed. Claim 6 records the source's original wording and stays as written. Figure `ch08-owned-tool-first` re-rendered; its header comment no longer mentions Azure Government.
+
+## AWS GovCloud restored (November 16, 2026)
+
+Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS row, the AWS corrections bullet and footnotes `c08-marketplace` and `c08-aws-fedramp` name the GovCloud offering again (claims 6 and 41). The Google Cloud changes of November 15 stand: Assured Workloads stays out of the program's mechanisms.

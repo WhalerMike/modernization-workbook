@@ -245,7 +245,7 @@ boundaries, not physical anchors.
 | |
 | Figure 5: Act 3 --- The Breaking Point: the same employee, Jane |
 | Smith, shows four contradictory records across VMware on-prem AD, |
-| Azure M365 GCC, AWS IAM, and Oracle OCI OPM Benefits, |
+| Azure M365 GCC, AWS GovCloud IAM, and Oracle OCI OPM Benefits, |
 | converging on a red question mark asking which is authoritative |
 +-----------------------------------------------------------------------+
 
@@ -256,7 +256,7 @@ that client and server are talking synchronously over a trusted link ---
 is fracturing across three environments and an upcoming fourth.
 
 > **The hard realization.** The bulk of mission compute still runs on
-> VMware on-premises. Red Hat workloads are moving to AWS.
+> VMware on-premises. Red Hat workloads are moving to AWS GovCloud.
 > Email and collaboration are in Azure. OPM HRIT on Oracle OCI is the
 > next boundary arriving. Identity is still in twelve regional AD
 > domains designed for a world where all four of those environments were

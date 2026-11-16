@@ -34,7 +34,7 @@
     },
     "aws": {
       "enabled": false,
-      "partition": "aws",
+      "partition": "aws-us-gov",
       "accountId": "<account-id>",
       "profile": "",
       "noticeContacts": []

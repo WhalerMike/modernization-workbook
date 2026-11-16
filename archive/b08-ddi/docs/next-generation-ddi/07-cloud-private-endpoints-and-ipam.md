@@ -52,7 +52,7 @@ AWS VPCs, Azure VNets, Google Cloud VPCs and VMware NSX segments each have their
 
 ### AWS VPC IPAM Integration
 
-Amazon VPC IPAM can use an external IPAM as its source of address space. Since November 2025 it has integrated with Infoblox Universal IPAM: cloud teams request address space through the AWS console, CLI or SDK, the external IPAM checks uniqueness and returns a conflict-free CIDR, and VPC IPAM organizes it into regional pools. The integration applies to private scopes and is available in the commercial Regions.[^c07-awsipam]
+Amazon VPC IPAM can use an external IPAM as its source of address space. Since November 2025 it has integrated with Infoblox Universal IPAM: cloud teams request address space through the AWS console, CLI or SDK, the external IPAM checks uniqueness and returns a conflict-free CIDR, and VPC IPAM organizes it into regional pools. The integration applies to private scopes and is not available in the AWS GovCloud (US) or China Regions, so it does not help a GovCloud estate today.[^c07-awsipam]
 
 ### Azure and Google Cloud
 
@@ -66,7 +66,7 @@ VMware Cloud Foundation 9.1 added native integration between NSX and Infoblox DD
 
 - Treat the enterprise IPAM as the authoritative source for address blocks used across on-premises, cloud and VMware environments.
 - Where native integration exists (AWS VPC IPAM in commercial Regions, VCF 9.1 and NSX), enable it so that cloud and VCF tenants allocate from the central authority rather than inventing CIDRs.
-- Where only discovery is available (Azure and Google Cloud), run continuous discovery and reconciliation, and require address blocks to be reserved in the enterprise IPAM before cloud or NSX networks are created.
+- Where only discovery is available (Azure, Google Cloud, and AWS GovCloud), run continuous discovery and reconciliation, and require address blocks to be reserved in the enterprise IPAM before cloud or NSX networks are created.
 - Pair address consistency with DNS consistency: private zones and records created in cloud or NSX DNS services must be synchronized or conditionally forwarded, so that resolution matches the address that was allocated.
 - Monitor synchronization health. Integration reduces independent authoring but adds a failure mode if the central IPAM is unreachable or sync lag allows a conflicting allocation.
 
@@ -86,7 +86,7 @@ Split-brain risk rises in dual-stack environments when IPv4 and IPv6 resolution 
 ::: {.callout-note}
 ## What this chapter establishes
 1. Every origin must forward privatelink zones to one resolution point, or private endpoints fall back silently to public addresses.
-2. The enterprise IPAM is the authority for address blocks; integration depth differs by platform.
+2. The enterprise IPAM is the authority for address blocks; integration depth differs by platform and is absent in GovCloud.
 3. Address consistency and name consistency are the same problem and need the same policy plane.
 :::
 

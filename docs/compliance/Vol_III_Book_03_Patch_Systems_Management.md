@@ -60,8 +60,8 @@ channel. That is a complete and correct *reference implementation* — for the
 Azure estate. It is not the whole estate.
 
 A federal agency operating under FedRAMP Moderate typically runs compute on more
-than one authorized platform at once: Azure (commercial, paired with the M365 GCC tenant), **AWS** (commercial
-Regions), **Oracle Cloud Infrastructure (OCI)**, on-premises **VMware**, and
+than one authorized platform at once: Azure (commercial, paired with the M365 GCC tenant), **AWS** (GovCloud (US) and
+commercial Regions, both valid Moderate locations), **Oracle Cloud Infrastructure (OCI)**, on-premises **VMware**, and
 **Red Hat** across all of them. Each platform ships its own patch and
 systems-management stack, each spanning Windows, Linux, and — above the guest OS
 — hypervisor, firmware, and managed-service layers that no single vendor's tool
@@ -224,7 +224,7 @@ silently in-boundary because a management agent touches it.
 # Phase 5 — The RedHat-on-AWS Estate Lands Here
 
 The program roadmap deferred one estate: the Red Hat virtual machines running
-in **AWS** ("VMs are currently RedHat in AWS, so those are after
+in **AWS GovCloud** ("VMs are currently RedHat in AWS, so those are after
 this"). Phase 5 is that estate's turn, and the landing shape is now decided:
 **extend in place, not a new volume.** The RedHat-on-AWS workstreams land as
 extensions of the books that already govern their functions — this book for
@@ -247,7 +247,7 @@ Vol VII Book 04 attestation and KSI loop; there is no separate AWS
 compliance narrative. Boundary notes carried from the accreditation section:
 Satellite and Ansible run in-boundary on customer infrastructure; Red Hat
 Insights is SaaS and enters only after an authorization review; each AWS service's
-FedRAMP scope in its Region and each Red Hat
+FedRAMP scope in its Region (GovCloud (US) or commercial) and each Red Hat
 product's authorization status are verified at procurement,
 holding the series' Moderate scope throughout.
 

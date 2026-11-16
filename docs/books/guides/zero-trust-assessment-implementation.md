@@ -51,7 +51,7 @@ How an agency runs Microsoft's Zero Trust Assessment and turns its report into e
 | `<upn>` | The assessment account's user principal name |
 | `<grant-id>` | The ID of a delegated permission grant, from Step 3's review command |
 | `<previous-run>`, `<current-run>` | Two normalized run folders the kit wrote |
-| `<region>` | An AWS Region where Security Hub CSPM runs, for example `us-east-1` |
+| `<region>` | An AWS Region where Security Hub CSPM runs, for example `us-east-1` or `us-gov-west-1` |
 
 : Placeholders used in this guide {.striped .hover}
 
@@ -106,7 +106,7 @@ Learn's Zero Trust Assessment pages don't mention GCC. GCC uses the worldwide en
 | Azure | `AzureCloud` | Tool source[^zta-connect] |
 | SharePoint Online admin | `-admin.sharepoint.com` | Tool source; Learn not read for the URL[^zta-connect] |
 | Azure Information Protection | Default | Tool source; not yet specified on Learn[^zta-connect] |
-| AWS Security Hub CSPM (Step 9) | Commercial Regions, where the program's AWS workloads run | Program design |
+| AWS Security Hub CSPM (Step 9) | Commercial Regions; GovCloud (US) is available, with product integrations, some controls and cross-Region aggregation limited | AWS[^zta-sh-gov] |
 
 : GCC availability for the run and the reconciliation {.striped .hover}
 
@@ -612,7 +612,7 @@ AWS also notes that a control with no corresponding resources produces a `PASSED
 
 **Steps.**
 
-1. **Pull Security Hub CSPM's active NIST SP 800-53 findings** where the agency runs AWS, as a role that can read Security Hub findings, in each Region in scope:[^zta-sh-asff]
+1. **Pull Security Hub CSPM's active NIST SP 800-53 findings** where the agency runs AWS, as a role that can read Security Hub findings, in each Region in scope (GovCloud uses its own Regions):[^zta-sh-asff]
 
     ```bash
     aws securityhub get-findings --region <region> \
@@ -638,7 +638,7 @@ AWS also notes that a control with no corresponding resources produces a `PASSED
 
 : Step 9 requirements and evidence {.striped .hover}
 
-**Government-cloud availability.** Security Hub CSPM runs in the AWS commercial Regions the program uses; check each Region in scope before collecting from it.
+**Government-cloud availability.** Security Hub CSPM is available in AWS GovCloud (US) with limits on integrations, some controls and cross-Region aggregation.[^zta-sh-gov]
 
 ::: {.callout-important}
 ## Validate (G9 Reconcile)
@@ -962,3 +962,4 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^zta-sh-nist]: AWS, AWS Security Hub CSPM User Guide, "NIST SP 800-53 Revision 5 in Security Hub CSPM," <https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html> (accessed Nov 11, 2026).
 [^zta-sh-asff]: AWS, AWS Security Hub CSPM User Guide, "Optional top-level ASFF attributes," `Compliance` (`AssociatedStandards` with `standards/nist-800-53/v/5.0.0`; `RelatedRequirements` such as `NIST.800-53.r5 AC-4`; `SecurityControlId`; `Status`), <https://docs.aws.amazon.com/securityhub/latest/userguide/asff-top-level-attributes.html>, and the AWS SDK reference for `GetFindings` filters (`ComplianceAssociatedStandardsId`), <https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SecurityHub.html> (both accessed Nov 11, 2026).
 [^zta-sh-status]: AWS, AWS Security Hub CSPM User Guide, "Evaluating compliance status and control status" (`PASSED`, `FAILED`, `WARNING`, `NOT_AVAILABLE`; an account-level `PASSED` finding when no resources correspond to a control), <https://docs.aws.amazon.com/securityhub/latest/userguide/controls-overall-status.html> (accessed Nov 11, 2026).
+[^zta-sh-gov]: AWS, AWS GovCloud (US) User Guide, "AWS Security Hub CSPM in AWS GovCloud (US)," "How Security Hub CSPM differs" (product integrations, controls, cross-Region aggregation), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html> (accessed Nov 11, 2026).

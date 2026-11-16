@@ -4,7 +4,7 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-13
+date-modified: 2026-11-15
 review-status: approved
 reviewed-sha256: 73f432c010f5e81749e4e78478fca9c7204d5443df8995fa45878636e38cd99c
 last-reviewed: 2026-11-09
@@ -45,6 +45,7 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [AWS Health in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-health.html){#aws-health-govcloud} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-govcloud"} |
 | [AWS managed policies for AWS Health](https://docs.aws.amazon.com/health/latest/ug/security-iam-awsmanpol.html){#aws-health-managed-policies} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-managed-policies"} |
 | [AWS Prescriptive Guidance: migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html){#aws-migration-strategies} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-migration-strategies"} |
+| [AWS Security Hub CSPM in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html){#security-hub-cspm-in-govcloud} | Retired | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-in-govcloud"} |
 | [AWS Security Hub CSPM User Guide](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html){#aws-security-hub} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-security-hub"} |
 | [AWS Service Management Connector end of support](https://docs.aws.amazon.com/smc/latest/ag/smc-end-of-support.html){#aws-smc-end-of-support} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-smc-end-of-support"} |
 | [AWS WAF in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-waf.html){#aws-waf-govcloud} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-waf-govcloud"} |
@@ -918,6 +919,7 @@ This register lists 764 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
+| November 15, 2026 | [AWS Security Hub CSPM in AWS GovCloud (US)](#security-hub-cspm-in-govcloud) | Retired: the Zero Trust Assessment guide no longer cites it; the program's AWS workloads run in the commercial Regions (WD-156) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |
@@ -925,7 +927,7 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
 | November 12, 2026 | 22 sources | More slide wording links here |
 | November 12, 2026 | 170 sources | Added: cited on the narrated deck slides |
-| November 11, 2026 | 13 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
+| November 11, 2026 | 14 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft |

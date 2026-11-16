@@ -34,9 +34,9 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 8 app. | 420 | 2026-11-15 |
 | **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 14 + 2 app. | 335 | 2026-11-15 |
 | **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Baseline** | 10 + 1 app. | 200 | 2026-11-15 |
-| **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Baseline** | 10 + 1 app. | 225 | 2026-11-15 |
+| **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Baseline** | 10 + 1 app. | 230 | 2026-11-15 |
 | **B18** | **[Application Modernization](b18-application-modernization/index.md)** | **Why is application modernization a portfolio decision, not a rewrite?** | **Draft** | 10 + 1 app. | 185 | 2026-11-15 |
-| **B19** | **[Building the Attribute-Driven Migration](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Baseline** | 10 | 385 | 2026-11-15 |
+| **B19** | **[Building the Attribute-Driven Migration](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Baseline** | 10 | 385 | 2026-11-16 |
 | **B20** | **[Information Protection & Microsoft Purview](b20-information-protection/index.md)** | **Why does protection have to travel with the data?** | **Draft** | 12 + 1 app. | 200 | 2026-11-13 |
 :::
 

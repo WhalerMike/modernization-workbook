@@ -19,7 +19,7 @@ w("settings.test.json", {
         "azure": {"enabled": True, "cloud": "AzureCloud", "subscriptions": ["00000000-0000-0000-0000-00000000aa01"], "managementGroup": "", "noticeContacts": ["cloud-ops@contoso.example"]},
         "m365": {"enabled": True, "cloud": "gcc", "tenantId": TENANT, "noticeContacts": ["m365-admins@contoso.example"]},
         "oci": {"enabled": True, "realm": "oc1", "region": "us-ashburn-1", "tenancyId": TENANCY, "noticeContacts": ["oci-admins@contoso.example"]},
-        "aws": {"enabled": False, "partition": "aws", "accountId": "<account-id>", "profile": "", "noticeContacts": []},
+        "aws": {"enabled": False, "partition": "aws-us-gov", "accountId": "<account-id>", "profile": "", "noticeContacts": []},
         "google": {"enabled": False, "scope": "project", "project": "<project-id>", "organization": "", "noticeContacts": []},
     },
     "routing": {"path": "config/routing.json", "send": False, "endpoint": "", "tokenVariable": ""},
@@ -34,7 +34,7 @@ w("settings.production.json", {
         "azure": {"enabled": True, "cloud": "AzureCloud", "subscriptions": [], "managementGroup": "mg-contoso-example", "noticeContacts": ["cloud-ops@contoso.example"]},
         "m365": {"enabled": True, "cloud": "gcc", "tenantId": TENANT, "noticeContacts": ["m365-admins@contoso.example"]},
         "oci": {"enabled": True, "realm": "oc1", "region": "us-ashburn-1", "tenancyId": TENANCY, "noticeContacts": ["oci-admins@contoso.example"]},
-        "aws": {"enabled": True, "partition": "aws", "accountId": "111122223333", "profile": "", "noticeContacts": ["aws-admins@contoso.example"]},
+        "aws": {"enabled": True, "partition": "aws-us-gov", "accountId": "111122223333", "profile": "", "noticeContacts": ["aws-admins@contoso.example"]},
         "google": {"enabled": True, "scope": "project", "project": "contoso-example-prod", "organization": "", "noticeContacts": ["gcp-admins@contoso.example"]},
     },
     "routing": {"path": "config/routing.json", "send": True, "endpoint": "https://instance.contoso.example/api/x_example/provider_notices", "tokenVariable": "PN_SERVICENOW_TOKEN"},
@@ -52,7 +52,7 @@ w("environment-test.json", {
 w("environment-production.json", {
     "_comment": "Fixture mode for the production environment. The policy definition holds only the fields the plan reads; its role ID is a made-up GUID, not the real definition's.",
     "tools": {"az": True, "Microsoft.Graph.Authentication": True, "oci": True, "aws": True, "gcloud": True},
-    "contexts": {"azure": "AzureCloud", "m365": {"Environment": "Global", "TenantId": TENANT}, "aws": "arn:aws:iam::111122223333:role/example-notice-reader"},
+    "contexts": {"azure": "AzureCloud", "m365": {"Environment": "Global", "TenantId": TENANT}, "aws": "arn:aws-us-gov:iam::111122223333:role/example-notice-reader"},
     "readsFrom": "../../../tests/fixtures/day2",
     "policyDefinition": {
         "name": "98903777-a9f6-47f5-90a9-acaf62ab01a8",

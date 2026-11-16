@@ -889,7 +889,7 @@ multi-cloud estate?" from a single console.
 
 ### 6.6 Geographic namespace and the application surface boundary
 
-As agencies deploy applications across multiple geographic regions — for performance, redundancy, data residency, or sovereignty — the DNS namespace must encode regional identity. The correct pattern is a hierarchical geographic namespace: `{app}.{region}.agency.gov`, where `{region}` is a stable label such as `eastus`, `westus`, or `useast1`.
+As agencies deploy applications across multiple geographic regions — for performance, redundancy, data residency, or sovereignty — the DNS namespace must encode regional identity. The correct pattern is a hierarchical geographic namespace: `{app}.{region}.agency.gov`, where `{region}` is a stable label such as `eastus`, `westus`, or `govcloud-east`.
 
 This namespace is populated with specific A records per application per region (`payroll.eastus.agency.gov`, `payroll.westus.agency.gov`) and optionally with leftmost-label wildcard records per region namespace (`*.eastus.agency.gov`, `*.westus.agency.gov`). These wildcard records are RFC 1034-compliant — the `*` occupies the leftmost label position.
 

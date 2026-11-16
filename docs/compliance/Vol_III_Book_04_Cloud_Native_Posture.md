@@ -56,7 +56,7 @@ A host vulnerability scanner answers "what CVEs are on this VM." It does not
 answer "is this storage bucket public," "can this workload reach the internet,"
 "does this IAM role grant far more than it uses," or "was this container image
 scanned before it ran." Those are **cloud-control-plane and container-layer**
-questions, and on a multi-cloud estate (AWS commercial Regions, Azure, GCP, OCI, VMware,
+questions, and on a multi-cloud estate (AWS GovCloud (US) and commercial Regions, Azure, GCP, OCI, VMware,
 plus Kubernetes — AKS/EKS/GKE/OKE/OpenShift) they are where a dominant class of
 cloud incidents begins: misconfiguration, excessive entitlement, and exposure —
 not an unpatched kernel.
@@ -96,7 +96,7 @@ Cloud's role there narrows to cross-account correlation rather than sole source:
 | Platform | Primary mechanism | Owned today | FedRAMP status | Moderate-boundary treatment |
 |---|---|---|---|---|
 | Azure | Microsoft Defender for Cloud | Yes | FedRAMP Moderate (GCC) | Native Moderate — coordinating default |
-| AWS | AWS Config (conformance packs) + AWS Security Hub CSPM (including its CIS AWS Foundations Benchmark standard) | Yes | Listed in AWS US East/West (FedRAMP Class C, formerly Moderate) | Native Moderate in the commercial Regions, where the agency's AWS workloads run. Owned, so primary for AWS rather than relying on Defender's AWS ingestion |
+| AWS | AWS Config (conformance packs) + AWS Security Hub CSPM (including its CIS AWS Foundations Benchmark standard) | Yes | Listed in both AWS US East/West (FedRAMP Class C, formerly Moderate) and AWS GovCloud (US) (Class D, formerly High) | Both locations are valid for a Moderate system: native Moderate in the commercial Regions; in GovCloud (US) the High offering includes the Moderate controls, with the boundary treatment documented. The agency's AWS workloads run in GovCloud (US). Owned, so primary for AWS rather than relying on Defender's AWS ingestion |
 | GCP | Google Security Command Center (posture) | No | FedRAMP-authorized, above Moderate (Google Cloud's High P-ATO) | Exceeds Moderate and needs the boundary treatment documented if adopted. Not procured today — Defender for Cloud's native GCP ingestion is the only mechanism actually in place |
 | OCI | OCI Cloud Guard (unified misconfiguration and threat detection across the OCI tenancy) | No | FedRAMP Certified Class D (High) (Oracle Cloud Infrastructure-Government Cloud, per the FedRAMP Marketplace) | Exceeds Moderate, boundary treatment documented; residual-gap closer only — Defender's native coverage does not extend to OCI/OKE |
 | VMware | VCF Operations Security Posture Management, measuring Broadcom's VMware Cloud Foundation Security Configuration and Hardening Guide (CIS VMware ESXi benchmarks as a cross-check) | Yes | Not a CSP offering — no independent FedRAMP authorization | Inherits the deploying system's own ATO boundary, same as other customer-operated software in the estate |
@@ -177,7 +177,7 @@ Management book owns host RA-5).
 |---|---|---|---|---|---|---|---|
 | CM-7 | Least Functionality | Container hardening + Kubernetes admission control (deny non-compliant workloads) | FedRAMP Moderate | NIST SP 800-53 Rev 5 | Security / supply chain | KSI-SVC | No |
 | SC-7 | Boundary Protection | Cloud network-exposure and attack-path analysis (CNAPP) — internet-reachable workloads flagged | FedRAMP Moderate | NIST SP 800-53 Rev 5; NIST SP 800-207 | Network | KSI-CNA | No |
-| CM-6 | Configuration Settings | Cloud resource misconfiguration detection across CSPs (CSPM) — Defender for Cloud (Azure/AWS/GCP, Moderate default); AWS Config + Security Hub CSPM (AWS, owned, primary for AWS — Moderate in the commercial Regions); Google Security Command Center (GCP, adoption default if procured, High-covers-Moderate); VCF Operations Security Posture Management with Broadcom's hardening guide and CIS ESXi (VMware, owned, boundary-inherited — not independently FedRAMP-authorized); OCI Cloud Guard (OCI, adoption default if procured, residual gap closer, High-covers-Moderate); Prisma Cloud (Moderate and High) / Wiz (High), alternatives | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA SCuBA | Security / supply chain | KSI-CMT, KSI-SVC | No |
+| CM-6 | Configuration Settings | Cloud resource misconfiguration detection across CSPs (CSPM) — Defender for Cloud (Azure/AWS/GCP, Moderate default); AWS Config + Security Hub CSPM (AWS, owned, primary for AWS — High-covers-Moderate in AWS GovCloud (US), where the program's AWS workloads run; Moderate in the commercial Regions); Google Security Command Center (GCP, adoption default if procured, High-covers-Moderate); VCF Operations Security Posture Management with Broadcom's hardening guide and CIS ESXi (VMware, owned, boundary-inherited — not independently FedRAMP-authorized); OCI Cloud Guard (OCI, adoption default if procured, residual gap closer, High-covers-Moderate); Prisma Cloud (Moderate and High) / Wiz (High), alternatives | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA SCuBA | Security / supply chain | KSI-CMT, KSI-SVC | No |
 | RA-5 | Vulnerability Monitoring and Scanning | Agentless cloud-workload + container-image vulnerability scanning (CNAPP/CWPP) | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 26-04 | Security / supply chain | KSI-MLA | No |
 | SA-11 | Developer Testing and Evaluation | Shift-left IaC and container-image scanning in CI (CNAPP code security) | FedRAMP Moderate | NIST SP 800-53 Rev 5; NIST SP 800-218 | Security / supply chain | KSI-SVC | No |
 | SI-3 | Malicious Code Protection | Container / workload runtime threat detection | FedRAMP Moderate | NIST SP 800-53 Rev 5 | Security / supply chain | KSI-MLA | No |
@@ -207,11 +207,11 @@ platform's adoption default — the specific mechanism to stand up the day GCP
 or OCI is actually procured — not a current-ownership claim; today Defender
 for Cloud covers GCP and OCI/OKE has no native posture mechanism in place.
 Where a mechanism (owned, preferred, or documented-default) is used from a
-FedRAMP High offering rather than a Moderate one — Security Command Center,
-OCI Cloud Guard, Prisma Cloud
+FedRAMP High offering rather than a Moderate one — AWS Config/Security Hub CSPM
+in GovCloud (US), Security Command Center, OCI Cloud Guard, Prisma Cloud
 GCS-HIGH or **Wiz for Government** — the High-covering-Moderate boundary
 treatment must be documented; this is not a disqualifier under the
-Moderate-exclusive rule. AWS Config and Security Hub CSPM are listed at
+Moderate-exclusive rule. AWS Config and Security Hub CSPM are also listed at
 Moderate in the commercial Regions, and Prisma Cloud at Moderate.
 Verify all authorization claims on the FedRAMP Marketplace at procurement.
 :::
@@ -227,7 +227,7 @@ Verify all authorization claims on the FedRAMP Marketplace at procurement.
 | CISA BOD 26-04 | Risk-based remediation; KEV listing is one of four variables. Known Exploited Vulnerabilities catalog — <https://www.cisa.gov/known-exploited-vulnerabilities-catalog> |
 | Microsoft Defender for Cloud (multi-cloud CSPM/CWPP) | <https://learn.microsoft.com/azure/defender-for-cloud/> |
 | AWS Config — NIST SP 800-53 Rev 5 conformance pack (AWS, owned) | <https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-nist-800-53_rev_5.html> |
-| AWS Security Hub CSPM (AWS, owned; FedRAMP Class C in US East/West) | <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/> (per-service, per-Region scope; accessed Oct 29, 2026) |
+| AWS Security Hub CSPM (AWS, owned; FedRAMP Class C in US East/West and Class D in GovCloud (US)) | <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/> (per-service, per-Region scope; accessed Oct 29, 2026) |
 | CIS AWS Foundations Benchmark in Security Hub CSPM (v5.0.0 recommended; available in every Security Hub CSPM Region) | <https://docs.aws.amazon.com/securityhub/latest/userguide/cis-aws-foundations-benchmark.html> (accessed Oct 29, 2026) |
 | Google Security Command Center (GCP, adoption default, FedRAMP-authorized above Moderate) | <https://cloud.google.com/security-command-center> |
 | VCF Operations Security Posture Management (VMware, owned; benchmarks include the VMware Cloud Foundation Security Configuration and Hardening Guide) | <https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/security-and-compliance/security-posture-management/compliance-assessment-and-reporting-using-security-posture-management.html> |

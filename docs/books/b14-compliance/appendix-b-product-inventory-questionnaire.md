@@ -76,7 +76,7 @@ Check each cloud service on the FedRAMP Marketplace.[^aB-marketplace] The same d
 
 | Category | Example products | In use? | Product and offering | FedRAMP status | Surface | Feeds |
 |---|---|---|---|---|---|---|
-| Cloud platforms | Microsoft Azure (commercial) and Microsoft 365 GCC, AWS (commercial Regions), Oracle Cloud Infrastructure, Google Cloud, VMware-based private cloud | | | | | [Book 10](../b10-cloud-boundary/index.md); all families |
+| Cloud platforms | Microsoft Azure (commercial) and Microsoft 365 GCC, AWS GovCloud, Oracle Cloud Infrastructure, Google Cloud, VMware-based private cloud | | | | | [Book 10](../b10-cloud-boundary/index.md); all families |
 | Naming and addressing (DNS, DHCP, IPAM) | Infoblox, BlueCat, NetBox | | | | | [Book 08](../b08-ddi/index.md); SC-20, SC-21, SC-22, CM-8 |
 | Certificates and PKI | Active Directory Certificate Services, Entrust, DigiCert, CyberArk Certificate Manager (formerly Venafi) | | | | | [Book 07](../b07-pki/index.md); SC-17, IA-5(2) |
 | HR system of record | Oracle HCM, Workday, SAP SuccessFactors | | | | | [Book 03](../b03-hr-identity/index.md); AC-2, IA-4, PS-4, PS-5 |

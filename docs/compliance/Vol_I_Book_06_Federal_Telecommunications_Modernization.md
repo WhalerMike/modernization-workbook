@@ -45,7 +45,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 
 1. **Voice has a pass/fail threshold, not a performance preference.** ITU-T G.114 specifies one-way voice delay must not exceed 150 ms. Field office agents in western locations already exceed this limit before a call begins under MPLS hairpin architecture.
 
-2. **Amazon Connect runs in AWS commercial (.com) regions, a valid Moderate location.** AWS's US East/West regions carry a FedRAMP Moderate certification, and the agency's AWS workloads, the contact center among them, run there. The region decision is documented in the ATO, reviewed at each renewal, and carries the boundary obligations described in this document.
+2. **Amazon Connect runs in AWS commercial (.com) regions, a valid Moderate location.** AWS's US East/West regions and GovCloud (US) are both places a Moderate system can run; the agency runs most AWS workloads in GovCloud (US) and the contact center in commercial regions. The region decision is documented in the ATO, reviewed at each renewal, and carries the boundary obligations described in this document.
 
 3. **Teams Phone in GCC Moderate is the correct path for internal telephony replacement.** It introduces no new authorization boundary beyond the existing GCC Moderate ATO — the PSTN/SBC interconnect is the one new boundary interface, and it is documented in this book — while its network dependencies are identical to Amazon Connect.
 
@@ -96,21 +96,29 @@ The N8NN contact center must sustain MOS above 4.0 consistently across all agent
 
 Amazon Connect is AWS's cloud-native contact center platform, providing inbound and outbound call handling, IVR via contact flows, skills-based routing, real-time and historical analytics, call recording, and the agent desktop (Contact Control Panel) as a managed SaaS service. Agents access all contact center functionality through a browser-based WebRTC softphone. There is no proprietary hardware at the agent's desk, no on-premises call processing equipment, and no PBX to maintain.
 
-## The Commercial Region Decision
+## The GovCloud (US) vs. Commercial Region Decision
 
 AWS structures its federal cloud offerings differently from Microsoft and Oracle:
 
 | Provider | Moderate Delivery Model | High / Sovereign Model |
 |----------|------------------------|----------------------|
-| AWS | US East/West commercial regions (FedRAMP Certified Class C, formerly Moderate) | GovCloud us-gov-east-1 / us-gov-west-1 (FedRAMP Certified Class D, formerly High; ITAR; US-persons operations; physically separate) |
+| AWS | US East/West commercial regions (FedRAMP Certified Class C, formerly Moderate) **or** GovCloud (US) (Class D, formerly High), since a Moderate system may run in a higher-certified region | GovCloud us-gov-east-1 / us-gov-west-1 (FedRAMP Certified Class D, formerly High; ITAR; US-persons operations; physically separate) |
 | Microsoft | Partitioned .com (GCC Moderate on Azure Commercial) | — |
 | Oracle | No commercial OCI infrastructure listing; Oracle SaaS such as Fusion Cloud is listed at Class C (formerly Moderate)[^v1b06-oci-mkt] | Oracle US Government Cloud (OC2), listed as Oracle Cloud Infrastructure-Government Cloud (FedRAMP Certified Class D, formerly High; separate realm)[^v1b06-oci-mkt] |
 
-AWS certifies its US East/West regions at Class C (formerly Moderate), and its services-in-scope list is checked per service and per region (AWS, "FedRAMP" and "FedRAMP — Services in Scope," <https://aws.amazon.com/compliance/fedramp/>, <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>, accessed 2026-10-29). Amazon Connect is in scope in the commercial regions, so the N8NN contact center runs there. The region decision is recorded in the ATO and owned by the AO.
+AWS has two FedRAMP boundaries, and a Moderate system can sit in either. AWS certifies its US East/West regions at Class C (formerly Moderate) and GovCloud (US) at Class D (formerly High), and its services-in-scope list is checked per service and per region (AWS, "FedRAMP" and "FedRAMP — Services in Scope," <https://aws.amazon.com/compliance/fedramp/>, <https://aws.amazon.com/compliance/services-in-scope/FedRAMP/>, accessed 2026-10-29). NIST's control baselines are cumulative, so GovCloud (US) isn't reserved for High systems. Amazon Connect is in scope in both: the commercial regions and **AWS GovCloud (US)**. At the time the agency evaluated platforms for the N8NN contact center, the GovCloud version presented operational capability gaps relative to the commercial (.com) version in three categories:
+
+- **AI-assisted contact center capabilities:** Contact Lens (real-time speech transcription, sentiment analysis, supervisor alerting) and Amazon Q agent assist availability lagged in GovCloud at time of evaluation.
+- **Third-party integration ecosystem:** AWS Marketplace integrations for CRM connectors, workforce management, and reporting were predominantly certified for commercial Connect.
+- **Operational tooling and support maturity:** AWS support procedures and feature release cadence in GovCloud lagged commercial, creating a growing capability gap.
+
+Stated as the trade it actually was: **the agency chose the commercial regions, with the capabilities it needed, over GovCloud (US) without them.** Both are valid Moderate locations, so this is a region decision, not a waiver. It is still the kind of trade an AO should own explicitly, and the ATO records it.
+
+> **Current evaluation required before any new agency deployment.** AWS continuously updates GovCloud service parity. The capability gaps identified at the time of this agency's evaluation may have closed. Any agency evaluating Amazon Connect for a new deployment **must conduct a current-state evaluation of GovCloud Connect against its specific requirements** before choosing the commercial regions for it.
 
 ## What the Commercial Region Means Structurally
 
-The agency's use of Amazon Connect on AWS commercial (.com) is the same structural pattern as GCC Moderate on Azure Commercial: a federally authorized service running on commercial infrastructure with FedRAMP Moderate controls applied. AWS commercial data centers are US-based. Data is encrypted in transit and at rest. Amazon Connect is in scope for FedRAMP in the commercial regions (Class C, formerly Moderate), the level a Moderate system needs.
+The agency's use of Amazon Connect on AWS commercial (.com) is the same structural pattern as GCC Moderate on Azure Commercial: a federally authorized service running on commercial infrastructure with FedRAMP Moderate controls applied. AWS commercial data centers are US-based. Data is encrypted in transit and at rest. Amazon Connect is in scope for FedRAMP in the commercial regions (Class C, formerly Moderate) and in GovCloud (US) (Class D, formerly High). The personnel screening, physical separation and ITAR/US-persons handling of GovCloud do not apply on the commercial side; for a Moderate system they aren't required.
 
 This does not make the deployment less secure — FedRAMP Moderate controls are extensive. It means the authorization boundary is explicitly a commercial environment with federal controls applied, and that boundary must be accurately reflected in the SSP, understood by the AO, and re-evaluated at each authorization renewal.
 
@@ -388,7 +396,7 @@ The shared network requirement row is the most operationally significant in this
 - Instrument SD-WAN dashboards to surface G.114 violations by location before they become citizen complaints
 - Integrate Amazon Connect Call Analytics with agency SIEM for AU-12 continuous monitoring
 - Establish MOS floor SLA (≥4.0) per agent location; alert when sustained MOS drops below threshold
-- Review the Amazon Connect region decision and its services-in-scope listing at each ATO renewal
+- Review the Amazon Connect region decision at each ATO renewal; evaluate whether GovCloud (US) capability gaps have been resolved
 - **FedRAMP 20x alignment (mandatory January 1, 2027):** Configure SD-WAN telemetry exports in machine-readable JSON format; ensure Connect audit logs, authentication events, and boundary crossing records meet structured KSI format requirements; validate SBC event logs feed SIEM in queryable format
 
 # Federal Framework Alignment

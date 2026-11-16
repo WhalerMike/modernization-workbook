@@ -44,12 +44,12 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-note}
-## Scope of this volume — FedRAMP Moderate, Microsoft GCC Moderate, AWS & the agency's own VMware estate
+## Scope of this volume — FedRAMP Moderate, Microsoft GCC Moderate, AWS GovCloud (US) & the agency's own VMware estate
 
 This volume targets **FedRAMP Moderate**: the **Microsoft GCC Moderate** boundary
 (Microsoft 365 GCC Moderate as the SaaS control plane and the agency's
 FedRAMP-authorized Azure resources targeted at the Moderate boundary), the agency's
-**AWS** resources in the commercial Regions (Book 06), and the agency's own **VMware Cloud
+**AWS GovCloud (US)** resources (Book 06), and the agency's own **VMware Cloud
 Foundation** estate under its physical control (Book 07). The ServiceNow
 instance runs on **ServiceNow Government Cloud, which holds FedRAMP High
 authorization** — High fully encompasses the Moderate control baseline this series

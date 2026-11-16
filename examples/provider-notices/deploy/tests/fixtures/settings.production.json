@@ -32,7 +32,7 @@
     },
     "aws": {
       "enabled": true,
-      "partition": "aws",
+      "partition": "aws-us-gov",
       "accountId": "111122223333",
       "profile": "",
       "noticeContacts": [

@@ -974,7 +974,7 @@ With this configuration, when a user initiates a PIM activation, Entra ID sends 
 
 The Entra PIM / PAW / Arc-JIT architecture above governs privileged access to the
 Microsoft estate — Azure RBAC, Entra directory roles, and Arc-connected servers.
-It does not, by itself, govern privileged identities in **AWS** (commercial Regions; IAM
+It does not, by itself, govern privileged identities in **AWS** (GovCloud (US) or commercial Regions; IAM
 roles, IAM Identity Center permission sets), **Oracle OCI** (IAM), or the
 standing service, break-glass, and appliance-admin accounts a dedicated PAM
 platform vaults. On a multi-cloud estate, **AC-5 / AC-6** least privilege must

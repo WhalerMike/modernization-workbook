@@ -124,7 +124,7 @@ Generated from the series compliance spine (`federal-compliance-compliance-spine
 - Patch compliance data is a point-in-time snapshot from the latest successful patching operation, not a continuous state — the capture time on each compliance report, not "now," is what the evidence trail actually attests to.
 - SSM hybrid activation governs guest OS and supported applications only; hypervisor, firmware, and managed-service patching reconcile in from their own native stacks (Vol III Book 03). Treating hybrid activation as the whole management plane is a doctrine violation the reconcile-exception queue is meant to catch — the identical failure mode the Arc note in Vol VII Book 03 guards against.
 - Native AWS Config auto-remediation still carries a Change record — automated actuation does not waive change control (CM-3); it makes the change record's *actuator* the SSM Automation document rather than a person.
-- AWS Config remediation actions are only available in a defined set of Regions, so a region-scoping check belongs in the reconcile-exception queue alongside the Arc/hybrid-activation bound above.
+- AWS Config remediation actions are only available in a defined set of Regions — including both AWS GovCloud (US-East) and AWS GovCloud (US-West) — so a region-scoping check belongs in the reconcile-exception queue alongside the Arc/hybrid-activation bound above.
 
 # Cross-References
 

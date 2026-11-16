@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **156** workbook decisions: 147 settled, 0 challenged and 9 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
+There are **157** workbook decisions: 147 settled, 0 challenged and 10 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -189,7 +189,8 @@ There are **156** workbook decisions: 147 settled, 0 challenged and 9 superseded
 | [WD-153](#wd-153) | 2026-11-11 | Does the Windows LAPS policy move to automatic account management? | Microsoft Learn | settled |
 | [WD-154](#wd-154) | 2026-11-11 | How are group managed service accounts created and restricted? | Workbook design | settled |
 | [WD-155](#wd-155) | 2026-11-13 | Which Microsoft 365 cloud and which federal sources does the workbook cover? | Workbook design | settled |
-| [WD-156](#wd-156) | 2026-11-15 | Where may a cloud provider's separate government cloud appear in the workbook? | Workbook design | settled |
+| [WD-156](#wd-156) | 2026-11-15 | Where may a cloud provider's separate government cloud appear in the workbook? | Workbook design | superseded by WD-157 |
+| [WD-157](#wd-157) | 2026-11-16 | Where does the program's AWS estate run, and where may other providers' government clouds appear? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2718,11 +2719,29 @@ There are **156** workbook decisions: 147 settled, 0 challenged and 9 superseded
 | **Sources** | [AWS, FedRAMP](https://aws.amazon.com/compliance/fedramp/); [Oracle, Oracle US Government Cloud](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govfedramp.htm); [FedRAMP, Marketplace product data](https://www.fedramp.gov/marketplace/products.json) |
 | **Pages affected** | [`CONTRIBUTING.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md), [Chapter 05 — The Landing Zone](../books/b10-cloud-boundary/05-the-landing-zone.md), [Chapter 09 — Control Compliance Automation: AWS and VMware](../books/b15-day2-operations/09-control-automation-aws-and-vmware.md), [Cloud DNS on AWS, Azure and Oracle Cloud: Native Resolvers, Infoblox and BIND](../evaluations/cloud-dns-resolvers-infoblox-bind.md) |
 | **Date** | 2026-11-15 |
-| **Status** | settled |
+| **Status** | superseded |
 | **Defined in** | [#627](https://github.com/WhalerMike/modernization-workbook/pull/627) |
+| **Superseded by** | [WD-157](#wd-157): Where does the program's AWS estate run, and where may other providers' government clouds appear? |
 | **Note** | Basis: workbook owner decision, November 15, 2026. Extends [WD-155](#wd-155) and supersedes nothing. The provider-notices kit keeps its AWS GovCloud (US) partition and Oracle OC2 realm support as a cross-provider collector. |
 
 [Agree, disagree or send evidence on WD-156](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-156%3A+)
+
+### WD-157: Where does the program's AWS estate run, and where may other providers' government clouds appear? {#wd-157}
+
+| | |
+|---|---|
+| **Options considered** | AWS commercial Regions, with AWS GovCloud (US) only in comparisons (WD-156); AWS GovCloud (US) as the program's AWS environment |
+| **Choice** | The program's AWS estate runs in AWS GovCloud (US) (partition aws-us-gov, Regions us-gov-west-1 and us-gov-east-1). Pages, kits and decks name AWS GovCloud (US) as the program's AWS environment; scripts and examples default to us-gov-west-1 and use the aws-us-gov partition in ARNs and endpoints. The rest of WD-156 stands: a provider's separate government cloud stays only where a workload actually runs there or where the provider's commercial side lacks the same authorization; Oracle US Government Cloud (realm OC2) stays wherever HR or Oracle pages need it, without stating which realm the Oracle HCM application runs in; Oracle US Defense Cloud and Oracle's impact-level wording stay out; Google Assured Workloads appears only in cross-provider comparisons. Microsoft 365 GCC Moderate with commercial Azure stays the baseline (WD-155). |
+| **Rationale** | The workbook owner confirmed that the AWS estate is in AWS GovCloud (US), so WD-156's test (a workload actually runs there) puts AWS GovCloud in the pages as the program's environment. AWS lists GovCloud (US) as FedRAMP Certified Class D (formerly High), which includes the Moderate controls. |
+| **Basis** | Workbook design |
+| **Sources** | [AWS, AWS GovCloud (US) User Guide](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/whatis.html); [AWS, FedRAMP](https://aws.amazon.com/compliance/fedramp/); [FedRAMP, Marketplace product data](https://www.fedramp.gov/marketplace/products.json) |
+| **Pages affected** | [`CONTRIBUTING.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md), [Chapter 07 — Cloud Private Endpoints, SDN and IPAM Consistency](../books/b08-ddi/07-cloud-private-endpoints-and-ipam.md), [Chapter 05 — The Landing Zone](../books/b10-cloud-boundary/05-the-landing-zone.md), [Chapter 09 — Control Compliance Automation: AWS and VMware](../books/b15-day2-operations/09-control-automation-aws-and-vmware.md), [Cloud DNS on AWS, Azure and Oracle Cloud: Native Resolvers, Infoblox and BIND](../evaluations/cloud-dns-resolvers-infoblox-bind.md) |
+| **Date** | 2026-11-16 |
+| **Status** | settled |
+| **Defined in** | [#642](https://github.com/WhalerMike/modernization-workbook/pull/642) |
+| **Note** | Basis: workbook owner decision, November 16, 2026. Supersedes [WD-156](#wd-156), whose rule it restates with AWS GovCloud (US) as the program's AWS environment. Restores the AWS GovCloud content that PR #627 and deck pass 3 changed to commercial Regions. |
+
+[Agree, disagree or send evidence on WD-157](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-157%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 
