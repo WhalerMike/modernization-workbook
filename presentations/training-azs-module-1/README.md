@@ -5,7 +5,7 @@
 | Part | Covers |
 |---|---|
 | Introduction | Title; a landing zone isn't a defense on its own; learning objectives and prerequisites |
-| Concepts | The books design and the guide engineers; labels, Skipped not Fail, and the order; the landing-zone security baseline in audit; the exposure register from Resource Graph; GCC on commercial Azure, Azure Government as side notes; the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure |
+| Concepts | The books design and the guide engineers; labels, Skipped not Fail, and the order; the landing-zone security baseline in audit; the exposure register from Resource Graph; GCC on commercial Azure, service by service; the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure |
 | Lab | Lab 2 steps 1 to 7 in a test subscription: sign in, the initiatives, platform logs, the four inventory queries, ownerless rows, back out (the module has no Lab 1, because the guide has no kit yet; the lab wasn't run by the authors) |
 | Check and summary | The federal requirement (CM-2, CM-6, CA-7, CM-8, SC-7) and evidence; two knowledge-check questions with answers; the summary and Module 2 |
 

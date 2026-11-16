@@ -83,20 +83,15 @@ permission to list incidents, and Threat
 Hunting dot Read dot All to run queries.
 
 18
-00:01:04.063 --> 00:01:08.920
-Connect with the environment
-of the tenant's cloud:
+00:01:04.063 --> 00:01:09.624
+Connect with the environment of the tenant's
+cloud: Global, the value for G C C.
 
 19
-00:01:08.920 --> 00:01:13.662
-Global for G C C, U S Gov for G C
-C High, U S Gov D O D for D O D.
-
-20
-00:01:13.662 --> 00:01:16.796
+00:01:09.624 --> 00:01:12.759
 A session in the wrong
 cloud returns an empty list,
 
-21
-00:01:16.796 --> 00:01:19.010
+20
+00:01:12.759 --> 00:01:14.950
 and an empty list looks like a pass.

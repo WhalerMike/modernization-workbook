@@ -182,48 +182,6 @@
    "Learn says changing device groups needs Global Administrator or Security Administrator."
   ]
  ],
- "5": [
-  [
-   0.05,
-   14.6,
-   "Automatic attack disruption has its own exclusions, under the automated response settings in Defender X D R. Microsoft Learn says the identities page holds user exclusions, and the devices page holds device groups and I P ranges."
-  ],
-  [
-   14.65,
-   8.262,
-   "Learn names service accounts and emergency admin accounts as the use for user exclusions, and cautions that exclusions reduce protection."
-  ],
-  [
-   22.913,
-   9.9,
-   "So the program excludes exactly two kinds of identity: the emergency access accounts, and the service accounts whose disablement would stop the S O C itself."
-  ],
-  [
-   32.812,
-   7.438,
-   "Learn adds that excluding a device group from attack disruption also affects automated investigation and response for that group."
-  ],
-  [
-   40.25,
-   6.338,
-   "Each exclusion goes in the register with the authorizing official's approval, and is reviewed every quarter."
-  ],
-  [
-   46.587,
-   1.538,
-   "Two more facts from Learn."
-  ],
-  [
-   48.125,
-   6.85,
-   "The contain user action needs sensor version ten point eight four seven zero or later, which the lab checks."
-  ],
-  [
-   54.975,
-   10.137,
-   "And attack disruption's availability in G C C, G C C High and D O D isn't specified on Learn's government pages, so confirm it in the tenant."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -571,6 +529,48 @@
    40.925,
    4.412,
    "Thank you for following Defender X D R Engineering and Operations."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   14.6,
+   "Automatic attack disruption has its own exclusions, under the automated response settings in Defender X D R. Microsoft Learn says the identities page holds user exclusions, and the devices page holds device groups and I P ranges."
+  ],
+  [
+   14.65,
+   8.262,
+   "Learn names service accounts and emergency admin accounts as the use for user exclusions, and cautions that exclusions reduce protection."
+  ],
+  [
+   22.913,
+   9.9,
+   "So the program excludes exactly two kinds of identity: the emergency access accounts, and the service accounts whose disablement would stop the S O C itself."
+  ],
+  [
+   32.812,
+   7.438,
+   "Learn adds that excluding a device group from attack disruption also affects automated investigation and response for that group."
+  ],
+  [
+   40.25,
+   6.338,
+   "Each exclusion goes in the register with the authorizing official's approval, and is reviewed every quarter."
+  ],
+  [
+   46.587,
+   1.538,
+   "Two more facts from Learn."
+  ],
+  [
+   48.125,
+   6.85,
+   "The contain user action needs sensor version ten point eight four seven zero or later, which the lab checks."
+  ],
+  [
+   54.975,
+   7.625,
+   "And attack disruption's availability in G C C isn't specified on Learn's government pages, so confirm it in the tenant."
   ]
  ]
 }

@@ -1,10 +1,10 @@
 // Defender XDR learning path, Module 1: Architecture, access and onboarding — the module's narrated deck.
 // Teaches docs/training/defender-xdr/01-architecture-access-and-onboarding.md, Learn-style: objectives, the concepts
-// (components, boundaries and control planes; each government cloud; roles and the read path; onboarding and sensor
+// (components, boundaries and control planes; what GCC has; roles and the read path; onboarding and sensor
 // health), Lab 2's exact commands in a test tenant (not run by the authors, as the page says; the path has no Lab 1),
 // the federal requirement and evidence, a two-question check, and the summary. Every fact comes from the module page and
 // the Defender XDR implementation guide it sends the learner to (Steps 1 and 2, the reference architecture, the
-// government-cloud table, and their footnotes); the deck adds none.
+// GCC availability table, and their footnotes); the deck adds none.
 // Helpers: ./shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-xdr-module-1/build.js \
 //                      presentations/training-xdr-module-1/Training_XDR_Module_1.pptx
@@ -26,9 +26,9 @@ const W3 = 3.9, G3 = 0.225;
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 1: Architecture, access and onboarding", "Defender XDR Engineering and Operations · The service, each cloud, the roles, and the sensor everywhere",
-    ["Components and control planes  ·  Each government cloud  ·  Roles and the read path", "Onboarding and sensor health  ·  Lab 2 in a test tenant  ·  Evidence"]);
+    ["Components and control planes  ·  What GCC has  ·  Roles and the read path", "Onboarding and sensor health  ·  Lab 2 in a test tenant  ·  Evidence"]);
   notes(s,
-`Welcome to Module 1 of the learning path Defender X D R Engineering and Operations: architecture, access and onboarding. Before any prevention setting matters, two things have to be true. The right people can see and act on the service, in the tenant's own cloud. And the sensor is on every device it should be. In this module you learn the service's shape and its government-cloud limits, you set who can do what, and you prove the sensor's coverage with a query whose result you can file. The module covers Steps 1 and 2 of the Defender X D R implementation guide. It takes about forty minutes, plus Lab 2 in your own test tenant. The path covers Windows clients and Windows Server only, for a civilian agency in Microsoft three sixty-five G C C, with notes for G C C High and D O D.`,
+`Welcome to Module 1 of the learning path Defender X D R Engineering and Operations: architecture, access and onboarding. Before any prevention setting matters, two things have to be true. The right people can see and act on the service, in the tenant's own cloud. And the sensor is on every device it should be. In this module you learn the service's shape and its G C C limits, you set who can do what, and you prove the sensor's coverage with a query whose result you can file. The module covers Steps 1 and 2 of the Defender X D R implementation guide. It takes about forty minutes, plus Lab 2 in your own test tenant. The path covers Windows clients and Windows Server only, for a civilian agency in Microsoft three sixty-five G C C.`,
   `${M} — "Introduction"; learning path index.`);
 }
 
@@ -58,9 +58,9 @@ const W3 = 3.9, G3 = 0.225;
 {
   const s = objectives(SI, "What you'll be able to do in Module 1", [
     "Name the components, the two trust boundaries and each setting's control plane",
-    "Read the government-cloud table; record a missing feature as a disposition",
+    "Read the GCC availability table; record a missing feature as a disposition",
     "Describe the unified RBAC roles and why PIM assigns them",
-    "Connect to Microsoft Graph in GCC, GCC High or DoD and read incidents",
+    "Connect to Microsoft Graph in GCC and read incidents",
     "Prove onboarding and sensor health on a device and across the fleet",
   ], [
     "The guide's \"How to read this guide\" and prerequisites",
@@ -69,7 +69,7 @@ const W3 = 3.9, G3 = 0.225;
   ], 40);
   sources(s, "Sources: Module 1, \"Learning objectives,\" \"Prerequisites\"; Exercise: Lab 2.");
   notes(s,
-`Here's what you'll be able to do by the end of this module. Name Defender X D R's components, its two trust boundaries, and which control plane holds which setting. Read the guide's government-cloud availability table, and record a feature your cloud doesn't have as a disposition, not a failed control. Describe the program's unified role-based access control roles, and why they're assigned through pim. Connect to Microsoft Graph in G C C, G C C High or D O D, and read incidents. And prove onboarding and sensor health, on one device and across the fleet. Before you start, read the guide's How to read this guide section and its prerequisites, and skim the Privileged Access implementation guide's pim model for the eligible roles. Lab 2 runs in a test tenant, never production.`,
+`Here's what you'll be able to do by the end of this module. Name Defender X D R's components, its two trust boundaries, and which control plane holds which setting. Read the guide's G C C availability table, and record a feature that isn't available as a disposition, not a failed control. Describe the program's unified role-based access control roles, and why they're assigned through pim. Connect to Microsoft Graph in G C C, and read incidents. And prove onboarding and sensor health, on one device and across the fleet. Before you start, read the guide's How to read this guide section and its prerequisites, and skim the Privileged Access implementation guide's pim model for the eligible roles. Lab 2 runs in a test tenant, never production.`,
   `${M} — "Learning objectives," "Prerequisites."`);
 }
 endModule(SI);
@@ -85,30 +85,30 @@ endModule(SI);
     ["Group Policy", "Wins over Intune by default for the same rule", "Never set one rule in both"],
   ], { fontSize: 12, limit: 4.9 });
   callout(s, "Boundaries", tb + 0.3, 1.0, "FaSitemap", HEX.navy, "Two boundaries: ",
-    "the agency's holds the devices, SOC tools and evidence; Microsoft's holds the service, built in Azure US Government for a US Government tenant.");
+    "the agency's holds the devices, SOC tools and evidence; Microsoft's holds the service, with its own GCC service endpoints for a GCC tenant.");
   sources(s, "Sources: Module 1, Unit 1; Guide, \"Reference architecture\"; Microsoft Learn, Configure ASR rules and exclusions; Microsoft Defender for US Government.");
   notes(s,
-`Unit 1 is the shape of the service. Defender X D R joins Defender for Endpoint, Defender for Identity, Defender for Office three sixty-five and Defender for Cloud Apps in one portal and one incident queue. Two trust boundaries matter. The agency's boundary holds the devices, the S O C's tools and the evidence store. Microsoft's holds the service. Microsoft Learn's page on Defender for U S Government says that for a U S Government tenant it's built in the Azure U S Government environment, and G C C, G C C High and D O D each have their own portal. Then the control planes. Learn says Intune is the recommended tool for distributing Defender for Endpoint settings, and that its policies apply to device objects only, so they're assigned to Entra device groups, never user groups. Settings Intune doesn't hold, like automation levels and custom detections, live in the Defender portal. Servers in Azure, A W S, Google Cloud or Oracle Cloud Infrastructure reach Defender through Defender for Servers and Azure Arc, as the Devices and Endpoints book describes. And one rule above all: one control plane per setting, because Group Policy wins over Intune by default.`,
+`Unit 1 is the shape of the service. Defender X D R joins Defender for Endpoint, Defender for Identity, Defender for Office three sixty-five and Defender for Cloud Apps in one portal and one incident queue. Two trust boundaries matter. The agency's boundary holds the devices, the S O C's tools and the evidence store. Microsoft's holds the service, and for a G C C tenant, as Microsoft Learn's page on Defender for U S Government describes, it has its own G C C service endpoints. Then the control planes. Learn says Intune is the recommended tool for distributing Defender for Endpoint settings, and that its policies apply to device objects only, so they're assigned to Entra device groups, never user groups. Settings Intune doesn't hold, like automation levels and custom detections, live in the Defender portal. Servers in Azure, A W S, Google Cloud or Oracle Cloud Infrastructure reach Defender through Defender for Servers and Azure Arc, as the Devices and Endpoints book describes. And one rule above all: one control plane per setting, because Group Policy wins over Intune by default.`,
   `${M} — Unit 1 "Components, boundaries and control planes"; guide, "Reference architecture" (trust boundaries, control planes, data flows); Microsoft Learn — "Configure attack surface reduction rules and exclusions," "Microsoft Defender for US Government."`);
 }
 
 // ================================================================== 5 Gov clouds
 {
-  const s = content(SC, "Unit 2: what each government cloud has");
+  const s = content(SC, "Unit 2: what GCC has");
   tag(s, "Who");
-  const tb = table(s, "Gov", 1.45, [4.3, 2.75, 2.55, 2.55], ["Feature", "GCC", "GCC High", "DoD"], [
-    ["Defender for Endpoint: prevent, detect, investigate, remediate", "Available", "Available", "Available"],
-    ["Defender portal", "security.microsoft.com", "security.microsoft.us", "security.apps.mil"],
-    ["Graph incidents and hunting", "Worldwide Graph host", "US Government L4", "US Government L5"],
-    ["Security Exposure Management", { text: "Not available", options: { color: HEX.red, bold: true } }, { text: "Not available", options: { color: HEX.red, bold: true } }, { text: "Not available", options: { color: HEX.red, bold: true } }],
-    ["Graph custom detections; attack disruption; Windows web content filtering", "Not yet specified", "Not yet specified", "Not yet specified"],
+  const tb = table(s, "Gov", 1.45, [6.4, 5.75], ["Feature", "GCC"], [
+    ["Defender for Endpoint: prevent, detect, investigate, remediate", "Available"],
+    ["Defender portal", "security.microsoft.com"],
+    ["Graph incidents and hunting", "Available, on the worldwide Graph host"],
+    ["Security Exposure Management", { text: "Not available: Public Cloud only", options: { color: HEX.red, bold: true } }],
+    ["Graph custom detections; attack disruption; Windows web content filtering", "Not yet specified"],
   ], { fontSize: 11.5, limit: 4.9 });
   callout(s, "Rule", tb + 0.3, 1.0, "FaScaleBalanced", HEX.teal, "Not yet specified means Learn doesn't say, ",
-    "not that it's available. A feature your cloud lacks is recorded as not applicable, never as a failed control.");
-  sources(s, "Sources: Module 1, Unit 2; Guide, \"Government-cloud availability by feature\"; Learn, Defender for Endpoint for US Government customers; What is Microsoft Security Exposure Management?");
+    "not that it's available. A feature GCC doesn't offer is recorded as not applicable, never as a failed control.");
+  sources(s, "Sources: Module 1, Unit 2; Guide, \"GCC availability by feature\"; Learn, Defender for Endpoint for US Government customers; What is Microsoft Security Exposure Management?");
   notes(s,
-`Unit 2 is what each government cloud has, from the guide's availability table, read on Microsoft Learn on November eleventh, 2026. Learn's page on Defender for Endpoint for U S Government customers says prevention, detection, investigation and remediation are available in G C C, G C C High and D O D. Each cloud has its own portal: security dot microsoft dot com for G C C, security dot microsoft dot U S for G C C High, and security dot apps dot mil for D O D. Graph's incident and hunting A P I's are available, with G C C on the worldwide Graph host. Then the gap. Learn's page on Security Exposure Management says it's available in Public Cloud only, not in U S Government clouds, so attack paths and the exposure graph aren't there. And Learn doesn't say whether custom detection rules through Graph, automatic attack disruption, or web content filtering on Windows reach these clouds. The guide's rule: not yet specified means Learn doesn't say, not that it's available. A feature your cloud doesn't offer goes in the decision record and the closure register as not applicable, never as a failed control.`,
-  `${M} — Unit 2 "What each government cloud has"; guide, "Government-cloud availability by feature"; Microsoft Learn — "Microsoft Defender for Endpoint for US Government customers," "Microsoft Defender for US Government," "What is Microsoft Security Exposure Management?"`);
+`Unit 2 is what G C C has, from the guide's availability table, read on Microsoft Learn on November eleventh, 2026. Learn's page on Defender for Endpoint for U S Government customers says prevention, detection, investigation and remediation are available in G C C. The portal is security dot microsoft dot com. Graph's incident and hunting A P I's are available, with G C C on the worldwide Graph host. Then the gap. Learn's page on Security Exposure Management says it's available in Public Cloud only, so attack paths and the exposure graph aren't there for G C C. And Learn doesn't say whether custom detection rules through Graph, automatic attack disruption, or web content filtering on Windows reach G C C. The guide's rule: not yet specified means Learn doesn't say, not that it's available. A feature G C C doesn't offer goes in the decision record and the closure register as not applicable, never as a failed control.`,
+  `${M} — Unit 2 "What GCC has"; guide, "GCC availability by feature"; Microsoft Learn — "Microsoft Defender for Endpoint for US Government customers," "Microsoft Defender for US Government," "What is Microsoft Security Exposure Management?"`);
 }
 
 // ================================================================== 6 Roles and the read path
@@ -122,13 +122,13 @@ endModule(SI);
     ["Tier 0 analyst only", "Advanced live response"],
   ], { fontSize: 12, limit: 3.6 });
   const c = code(s, "Connect", 0.6, tb + 0.2, 12.15, [
-    "# GCC: Global  ·  GCC High: USGov  ·  DoD: USGovDoD",
-    "Connect-MgGraph -Environment <graph-environment> -Scopes SecurityIncident.Read.All,ThreatHunting.Read.All",
+    "# GCC uses the worldwide Graph host: -Environment Global",
+    "Connect-MgGraph -Environment Global -Scopes SecurityIncident.Read.All,ThreatHunting.Read.All",
   ], { label: "THE SOC'S READ PATH (GUIDE STEP 1)", pt: 11 });
   line(s, "Order", "Create every role and assignment first, then activate the workloads (at least Security Administrator).", c + 0.15, 0.45, 13);
   sources(s, "Sources: Module 1, Unit 3; Guide, Step 1; Learn, Create custom roles with Defender unified RBAC; Activate Defender unified RBAC; List incidents; security: runHuntingQuery.");
   notes(s,
-`Unit 3 is who can do what. Microsoft Learn describes four permission groups in Defender's unified role-based access control: security operations, security posture, authorization and settings, and data operations. The program builds four roles from them; that's its risk-based recommendation. A read role, called Security data basics, for analysts and the assessor's read-only account. A responder role that adds alerts, response and basic live response. A detection engineer role with Detection tuning, manage, which the custom detection A P I accepts. And advanced live response only for Tier zero analysts. Each role is assigned to groups that pim governs, so no one holds it standing. Create every role and assignment before you activate the workloads; Learn says activation needs at least Security Administrator in Entra I D. Then connect the S O C's read path. Learn names Security Incident dot Read dot All as the least-privileged permission to list incidents, and Threat Hunting dot Read dot All to run queries. Connect with the environment of the tenant's cloud: Global for G C C, U S Gov for G C C High, U S Gov D O D for D O D. A session in the wrong cloud returns an empty list, and an empty list looks like a pass.`,
+`Unit 3 is who can do what. Microsoft Learn describes four permission groups in Defender's unified role-based access control: security operations, security posture, authorization and settings, and data operations. The program builds four roles from them; that's its risk-based recommendation. A read role, called Security data basics, for analysts and the assessor's read-only account. A responder role that adds alerts, response and basic live response. A detection engineer role with Detection tuning, manage, which the custom detection A P I accepts. And advanced live response only for Tier zero analysts. Each role is assigned to groups that pim governs, so no one holds it standing. Create every role and assignment before you activate the workloads; Learn says activation needs at least Security Administrator in Entra I D. Then connect the S O C's read path. Learn names Security Incident dot Read dot All as the least-privileged permission to list incidents, and Threat Hunting dot Read dot All to run queries. Connect with the environment of the tenant's cloud: Global, the value for G C C. A session in the wrong cloud returns an empty list, and an empty list looks like a pass.`,
   `${M} — Unit 3 "Roles and the read path"; guide, Step 1 (steps 1 to 3), RACI, "Dangers" (a Graph session in the wrong cloud); Microsoft Learn — "Create custom roles with Microsoft Defender unified RBAC," "Activate Microsoft Defender unified RBAC," "List incidents," "security: runHuntingQuery."`);
 }
 
@@ -253,12 +253,12 @@ endModule(SL);
 {
   const s = check(SS, "Check yourself: two questions on Module 1", [
     { q: "An Attack Surface Reduction policy in Intune is assigned to a user group. What happens?", options: ["a. It applies to every device the users sign in to", "b. It never applies: Defender for Endpoint management supports device objects only", "c. It applies after the next Group Policy refresh"] },
-    { q: "A GCC High SOC connects without -Environment and lists incidents. The list is empty. Most likely?", options: ["a. The tenant has no incidents", "b. The session read the worldwide host; connect with -Environment USGov", "c. The account lacks Security Reader"] },
-  ], "1 b: assign to Entra device groups. 2 b: an error would name the role; an empty list is the wrong-cloud danger.");
-  sources(s, "Sources: Module 1, \"Knowledge check,\" questions 1 and 3; Units 1 and 3; Guide, \"Reference architecture,\" \"Dangers.\"");
+    { q: "A Zero Trust Assessment test that needs Security Exposure Management is skipped in a GCC tenant. How is it recorded?", options: ["a. As a failed control", "b. As not applicable: Learn says Exposure Management is available in Public Cloud only", "c. As a pass"] },
+  ], "1 b: assign to Entra device groups. 2 b: a feature GCC doesn't offer is a disposition, not a failed control.");
+  sources(s, "Sources: Module 1, \"Knowledge check,\" questions 1 and 2; Units 1 and 2; Guide, \"Reference architecture,\" \"GCC availability by feature.\"");
   notes(s,
-`Check yourself with two questions. First: an Attack Surface Reduction policy in Intune is assigned to a user group. What happens? The answer is b. It never applies, because Microsoft Learn says Defender for Endpoint management supports device objects only. Assign it to an Entra device group. Second: a G C C High S O C connects to Graph without the environment parameter and lists incidents, and the list is empty. What's the most likely reason? The answer is b. The session read the worldwide host instead of the tenant's own cloud; connect with U S Gov. A missing role would have produced an error naming it. An empty list with no error is exactly the danger the guide warns about. The module page has three more questions, each linked to the unit that answers it.`,
-  `${M} — "Knowledge check," questions 1 and 3, and "Check your answers."`);
+`Check yourself with two questions. First: an Attack Surface Reduction policy in Intune is assigned to a user group. What happens? The answer is b. It never applies, because Microsoft Learn says Defender for Endpoint management supports device objects only. Assign it to an Entra device group. Second: a Zero Trust Assessment test that needs Security Exposure Management is skipped in a G C C tenant. How is it recorded? The answer is b: as not applicable, because Learn says Exposure Management is available in Public Cloud only. A feature G C C doesn't offer goes in the decision record and the closure register as a disposition, never as a failed control. The module page has two more questions, each linked to the unit that answers it.`,
+  `${M} — "Knowledge check," questions 1 and 2, and "Check your answers."`);
 }
 
 // ================================================================== 13 Summary
@@ -267,7 +267,7 @@ endModule(SL);
   tag(s, "How");
   const l = panel(s, "Did", 0.6, 1.45, 7.0, null, HEX.navy, HEX.navyTint, "IN THIS MODULE YOU", null, [
     "Placed each setting in its control plane",
-    "Checked what your government cloud offers",
+    "Checked what GCC offers",
     "Read incidents through Graph in the tenant's own cloud",
     "Proved the sensor on a device and across the fleet",
   ], 13.5);
@@ -278,7 +278,7 @@ endModule(SL);
     "the role export and PIM report, the EDR policy export, the weekly coverage file, the detection test with its alert, and the exception register.");
   sources(s, "Sources: Module 1, \"Summary\"; learning path index; Module 2.");
   notes(s,
-`To sum up. You placed each setting in its control plane: Intune for endpoint policy, the Defender portal for what Intune doesn't hold, and one plane per setting. You checked what your government cloud offers, and how to record what it doesn't. You read incidents through Microsoft Graph, in the tenant's own cloud. And you proved the sensor, on one device and across the fleet. The evidence an I S S O keeps from this module: the role export and the pim assignment report, the E D R policy export and its assignments, the weekly coverage file, the detection test with the alert it raised, and the exception register for every device not onboarded. Next is Module 2, prevention and Attack Surface Reduction, where the settings move through audit, warn and block, ring by ring.`,
+`To sum up. You placed each setting in its control plane: Intune for endpoint policy, the Defender portal for what Intune doesn't hold, and one plane per setting. You checked what G C C offers, and how to record what it doesn't. You read incidents through Microsoft Graph, in the tenant's own cloud. And you proved the sensor, on one device and across the fleet. The evidence an I S S O keeps from this module: the role export and the pim assignment report, the E D R policy export and its assignments, the weekly coverage file, the detection test with the alert it raised, and the exception register for every device not onboarded. Next is Module 2, prevention and Attack Surface Reduction, where the settings move through audit, warn and block, ring by ring.`,
   `${M} — "Summary," "Continue the path."`);
 }
 endModule(SS);
@@ -287,7 +287,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 1 deck", [
   "Module page: docs/training/defender-xdr/01-architecture-access-and-onboarding.md (Defender XDR Engineering and Operations, Module 1); the path's verification log is docs/training/defender-xdr/_verification/learning-path.md.",
-  "Defender XDR Engineering & Operations: An Implementation Guide: \"Reference architecture,\" \"Government-cloud availability by feature,\" Steps 1 and 2, \"Requirements and KSIs,\" \"Dangers,\" \"What couldn't be verified\"; its footnotes carry each source, read November 11, 2026.",
+  "Defender XDR Engineering & Operations: An Implementation Guide: \"Reference architecture,\" \"GCC availability by feature,\" Steps 1 and 2, \"Requirements and KSIs,\" \"Dangers,\" \"What couldn't be verified\"; its footnotes carry each source, read November 11, 2026.",
   "Microsoft Learn: Microsoft Defender for US Government; Defender for Endpoint for US Government customers; What is Microsoft Security Exposure Management?; Configure ASR rules and exclusions; Create custom roles with Defender unified RBAC; Activate Defender unified RBAC; List incidents; security: runHuntingQuery; Onboard Windows devices by using Intune; Troubleshoot Defender for Endpoint onboarding; Run a detection test; DeviceInfo; Device inventory field reference.",
   "NIST SP 800-53 Rev. 5 (AC-2, AC-6, AU-9 (4), CM-8, SI-4); OMB M-22-09; FedRAMP 20x KSIs, as Security Operations and Telemetry, Chapter 12, and Devices and Endpoints, Chapter 10, map them.",
   "Lab 2's commands are the page's, with its placeholders; the path has no Lab 1, and Lab 2 wasn't run by the authors.",

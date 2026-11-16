@@ -5,7 +5,7 @@
 // audit logs and a compromised key), where agencies are, the lab's exact commands in a test subscription (not run by the
 // authors, as the page says; the module has no Lab 1), the federal requirement and evidence, a two-question check, and the
 // summary. Every fact comes from the module page and the Azure Security Engineering implementation guide it sends the
-// learner to (Steps 7 and 8, Government-cloud availability, The same controls on AWS, Google Cloud and Oracle Cloud,
+// learner to (Steps 7 and 8, Availability in commercial Azure, The same controls on AWS, Google Cloud and Oracle Cloud,
 // Dangers, and their footnotes) or the path's verification log; the deck adds none.
 // Helpers: ../training-azs-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-azs-module-4/build.js \
@@ -175,16 +175,15 @@ endModule(SI);
     "Then disable the old key: disabling it first takes dependent services offline",
     "Back up keys that can't be recreated, and test a restore",
   ], 12.5);
-  const tb = table(s, "Gov", 1.45, [2.2, 3.75], ["", "Azure Government (side note)"], [
-    ["Zone names", "privatelink.vaultcore.usgovcloudapi.net"],
-    ["Key Vault", "vault.usgovcloudapi.net"],
-    ["Policy", "Needs the government zone names"],
+  const tb = table(s, "Gov", 1.45, [2.2, 3.75], ["", "Commercial Azure (GCC)"], [
+    ["Zone names", "One central zone per service, such as privatelink.vaultcore.azure.net"],
+    ["Key Vault", "Vaults at <vault>.vault.azure.net"],
   ], { fontSize: 12, limit: 4.5, x: 0.6 + W2 + G2 });
   line(s, "Other", "Other clouds: Google Cloud's Private Service Connect; OCI private endpoints, a private IP in a VCN subnet for an Oracle service. AWS PrivateLink isn't compared.", Math.max(p1, tb) + 0.3, 0.9, 13.5);
-  sources(s, "Sources: Module 4, Units 2 and 3; Guide, Step 8 (step 6), \"Government-cloud availability,\" \"The same controls ... Oracle Cloud\"; Secure your Azure Key Vault.");
+  sources(s, "Sources: Module 4, Units 2 and 3; Guide, Step 8 (step 6), \"Availability in commercial Azure,\" \"The same controls ... Oracle Cloud\"; Secure your Azure Key Vault.");
   notes(s,
-`Two more things. First, a suspected compromise. Learn's page, Secure your Azure Key Vault, says to rotate and migrate dependents before disabling the old key, because disabling it first takes dependent databases and storage offline. The guide lists that as a danger. Back up the keys that can't be recreated, and test a restore. Second, where agencies are. In commercial Azure, which a G C C tenant uses, the zone names are the ones in the commands, such as private link dot vault core dot azure dot net. As a side note for Azure Government, Learn's private endpoint D N S page gives different zone names, such as private link dot vault core dot U S gov cloud A P I dot net, so any policy that registers records needs the government names, and Key Vault's own endpoint differs too. On other clouds, the guide names Google Cloud's Private Service Connect, and O C I private endpoints, a private I P in a V C N subnet for an Oracle service.`,
-  `${M} — Units 2 and 3; guide, Step 8 (step 6), "Dangers," "Government-cloud availability" (Private Link, Key Vault rows), "The same controls on AWS, Google Cloud and Oracle Cloud"; Microsoft Learn — "Secure your Azure Key Vault," "Azure Private Endpoint private DNS zone values," "Compare Azure Government and global Azure"; Google Cloud and Oracle documentation.`);
+`Two more things. First, a suspected compromise. Learn's page, Secure your Azure Key Vault, says to rotate and migrate dependents before disabling the old key, because disabling it first takes dependent databases and storage offline. The guide lists that as a danger. Back up the keys that can't be recreated, and test a restore. Second, where agencies are. In commercial Azure, which a G C C tenant uses, the zone names are the ones in the commands: one central zone per service, such as private link dot vault core dot azure dot net, and the vaults sit at vault dot azure dot net. On other clouds, the guide names Google Cloud's Private Service Connect, and O C I private endpoints, a private I P in a V C N subnet for an Oracle service.`,
+  `${M} — Units 2 and 3; guide, Step 8 (step 6), "Dangers," "Availability in commercial Azure" (Private Link, Key Vault rows), "The same controls on AWS, Google Cloud and Oracle Cloud"; Microsoft Learn — "Secure your Azure Key Vault," "Azure Private Endpoint private DNS zone values"; Google Cloud and Oracle documentation.`);
 }
 endModule(SC);
 
@@ -294,7 +293,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 4 deck", [
   "Module page: docs/training/azure-security/04-private-link-dns-and-key-vault.md (Azure Security Engineering learning path, Module 4), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
-  "Azure Security Engineering (implementation guide): Steps 7 and 8; Government-cloud availability; The same controls on AWS, Google Cloud and Oracle Cloud; Dangers. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Integrate Key Vault with Azure Private Link; Private Endpoint DNS integration; Private Endpoint private DNS zone values; private endpoint troubleshooting; Cloud Adoption Framework, Private Link and DNS integration at scale; Secure your Azure Key Vault; key autorotation; Enable Key Vault logging; Compare Azure Government and global Azure; Google Cloud, Private Service Connect; OCI private access.",
+  "Azure Security Engineering (implementation guide): Steps 7 and 8; Availability in commercial Azure; The same controls on AWS, Google Cloud and Oracle Cloud; Dangers. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Integrate Key Vault with Azure Private Link; Private Endpoint DNS integration; Private Endpoint private DNS zone values; private endpoint troubleshooting; Cloud Adoption Framework, Private Link and DNS integration at scale; Secure your Azure Key Vault; key autorotation; Enable Key Vault logging; Google Cloud, Private Service Connect; OCI private access.",
   "Read for the lab, November 13, 2026: Microsoft Learn, Monitor Azure Key Vault; Azure CLI, az monitor log-analytics.",
   "Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities, Migration C. NIST SP 800-53 Rev. 5 (SC-7, AC-4, SC-12, SC-28, IA-5); FedRAMP 20x KSIs, as the guide's requirements table maps them.",
   "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",

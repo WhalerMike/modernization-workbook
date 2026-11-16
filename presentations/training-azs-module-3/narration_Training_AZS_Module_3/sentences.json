@@ -305,48 +305,6 @@
    "And east-west, as design guidance: spoke to spoke through the hub firewall, with N S Gs denying by default."
   ]
  ],
- "9": [
-  [
-   0.05,
-   1.312,
-   "Where are agencies?"
-  ],
-  [
-   1.363,
-   5.037,
-   "In commercial Azure, which a G C C tenant uses, both steps run as written."
-  ],
-  [
-   6.4,
-   3.45,
-   "As side notes for Azure Government, check regions first."
-  ],
-  [
-   9.85,
-   8.2,
-   "Learn's comparison page says Front Door Standard and Premium are generally available in U S Gov Arizona and U S Gov Texas."
-  ],
-  [
-   18.05,
-   13.975,
-   "Front Door Private Link lists three government regions, but the same page limits it to regions with availability zones, and Learn's Azure Government region list shows zones only in U S Gov Virginia, so test before relying on it."
-  ],
-  [
-   32.025,
-   8.488,
-   "Azure Firewall Premium's government regions are on the products-by-region page, not Learn, so the guide records them as not yet specified."
-  ],
-  [
-   40.513,
-   13.8,
-   "On other clouds, the guide names O C I Network Firewall, built on Palo Alto Networks, with intrusion detection and prevention, TLS inspection and URL filtering, reached through V C N route tables."
-  ],
-  [
-   54.312,
-   5.35,
-   "AWS Network Firewall and Google's Cloud N G F W aren't compared there."
-  ]
- ],
  "10": [
   [
    0.05,
@@ -550,6 +508,43 @@
    40.538,
    9.1,
    "Next is Module 4: Private Link, D N S and Key Vault, taking pass off the internet and putting vaults behind role-based access."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   6.763,
+   "In commercial Azure, which a G C C tenant uses, both steps run as written, but check regions first."
+  ],
+  [
+   8.125,
+   11.6,
+   "Front Door Standard and Premium are available; the classic tier retires on March thirty-first, 2027, and Premium is needed for managed firewall rules and Private Link origins."
+  ],
+  [
+   19.725,
+   7.3,
+   "Learn limits Front Door Private Link to regions with availability zones, so check the origin's region on the list."
+  ],
+  [
+   27.025,
+   8.662,
+   "And Azure Firewall Premium's region list is on the products-by-region page, not in Learn, so the guide records it under what couldn't be verified."
+  ],
+  [
+   35.688,
+   13.8,
+   "On other clouds, the guide names O C I Network Firewall, built on Palo Alto Networks, with intrusion detection and prevention, TLS inspection and URL filtering, reached through V C N route tables."
+  ],
+  [
+   49.487,
+   5.35,
+   "AWS Network Firewall and Google's Cloud N G F W aren't compared there."
   ]
  ]
 }

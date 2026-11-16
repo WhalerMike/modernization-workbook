@@ -16,50 +16,49 @@ and which control plane
 holds which setting.
 
 4
-00:00:09.400 --> 00:00:12.474
-Read the guide's government-cloud
-availability table,
+00:00:09.400 --> 00:00:12.064
+Read the guide's G C C availability table,
 
 5
-00:00:12.474 --> 00:00:17.050
-and record a feature your cloud doesn't have
+00:00:12.064 --> 00:00:17.312
+and record a feature that isn't available
 as a disposition, not a failed control.
 
 6
-00:00:17.050 --> 00:00:20.738
+00:00:17.312 --> 00:00:21.000
 Describe the program's unified
 role-based access control roles,
 
 7
-00:00:20.738 --> 00:00:22.825
+00:00:21.000 --> 00:00:23.087
 and why they're assigned through pim.
 
 8
-00:00:22.825 --> 00:00:29.812
-Connect to Microsoft Graph in G C C, G
-C C High or D O D, and read incidents.
+00:00:23.087 --> 00:00:27.600
+Connect to Microsoft Graph in
+G C C, and read incidents.
 
 9
-00:00:29.812 --> 00:00:34.250
+00:00:27.600 --> 00:00:32.038
 And prove onboarding and sensor health,
 on one device and across the fleet.
 
 10
-00:00:34.250 --> 00:00:38.132
+00:00:32.038 --> 00:00:35.920
 Before you start, read the guide's
 How to read this guide section and its
 
 11
-00:00:38.132 --> 00:00:40.742
+00:00:35.920 --> 00:00:38.530
 prerequisites, and skim
 the Privileged Access
 
 12
-00:00:40.742 --> 00:00:43.887
+00:00:38.530 --> 00:00:41.675
 implementation guide's pim
 model for the eligible roles.
 
 13
-00:00:43.887 --> 00:00:47.300
+00:00:41.675 --> 00:00:45.100
 Lab 2 runs in a test
 tenant, never production.
