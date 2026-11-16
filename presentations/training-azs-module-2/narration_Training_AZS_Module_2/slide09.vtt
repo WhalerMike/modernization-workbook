@@ -14,64 +14,45 @@ which a G C C tenant uses,
 everything in this module is available.
 
 4
-00:00:07.301 --> 00:00:09.265
-As a side note for Azure Government:
+00:00:07.301 --> 00:00:10.512
+The guide's availability
+table says what to plan for.
 
 5
-00:00:09.265 --> 00:00:13.873
-Learn's frequently asked questions for
-the Application Gateway firewall say it's
+00:00:10.512 --> 00:00:14.604
+The Application Gateway firewall's
+detection mode doesn't block,
 
 6
-00:00:13.873 --> 00:00:15.635
-supported in sovereign clouds,
+00:00:14.604 --> 00:00:16.499
+so Step 4 runs prevention mode.
 
 7
-00:00:15.635 --> 00:00:19.362
-but geo-filtering custom rules and
-bot protection rule sets aren't.
+00:00:16.499 --> 00:00:19.700
+Front Door's managed rule
+sets need the Premium tier.
 
 8
-00:00:19.362 --> 00:00:24.569
-So leave the bot manager rule set out, and
-record that Zero Trust test as skipped,
+00:00:19.700 --> 00:00:24.906
+And DDoS Network Protection is billed per
+plan, I P Protection per protected I P,
 
 9
-00:00:24.569 --> 00:00:28.013
-not applicable, for the
-environment, not as a failure.
+00:00:24.906 --> 00:00:28.750
+with simulations only through
+Learn's approved partners.
 
 10
-00:00:28.013 --> 00:00:31.672
-Front Door's own sovereign-cloud
-limits aren't yet specified;
-
-11
-00:00:31.672 --> 00:00:36.137
-assume the Application Gateway ones
-until a test policy shows otherwise.
-
-12
-00:00:36.137 --> 00:00:40.736
-DDoS Protection has no variation
-listed, but which simulation partners
-
-13
-00:00:40.736 --> 00:00:45.488
-serve Azure Government isn't specified,
-and Red Button is public cloud only.
-
-14
-00:00:45.488 --> 00:00:51.808
+00:00:28.750 --> 00:00:35.071
 On other clouds, the guide names AWS
 Shield and AWS W A F, Google Cloud Armor,
 
-15
-00:00:51.808 --> 00:00:57.287
+11
+00:00:35.071 --> 00:00:40.550
 and O C I W A F as a regional policy
 on a load balancer or at the edge.
 
-16
-00:00:57.287 --> 00:01:01.680
+12
+00:00:40.550 --> 00:00:44.930
 DDoS protection on Oracle Cloud
 Infrastructure isn't compared there.

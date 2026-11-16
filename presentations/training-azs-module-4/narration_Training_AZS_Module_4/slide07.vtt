@@ -36,44 +36,31 @@ recreated, and test a restore.
 Second, where agencies are.
 
 9
-00:00:22.425 --> 00:00:26.789
-In commercial Azure, which a G C C
-tenant uses, the zone names are the
+00:00:22.425 --> 00:00:25.190
+In commercial Azure,
+which a G C C tenant uses,
 
 10
-00:00:26.789 --> 00:00:31.638
-ones in the commands, such as private
-link dot vault core dot azure dot net.
+00:00:25.190 --> 00:00:29.721
+the zone names are the ones in the
+commands: one central zone per service,
 
 11
-00:00:31.638 --> 00:00:33.824
-As a side note for Azure Government,
+00:00:29.721 --> 00:00:33.023
+such as private link dot
+vault core dot azure dot net,
 
 12
-00:00:33.824 --> 00:00:37.669
-Learn's private endpoint D N S
-page gives different zone names,
+00:00:33.023 --> 00:00:35.788
+and the vaults sit at
+vault dot azure dot net.
 
 13
-00:00:37.669 --> 00:00:41.515
-such as private link dot vault core
-dot U S gov cloud A P I dot net,
-
-14
-00:00:41.515 --> 00:00:45.587
-so any policy that registers
-records needs the government names,
-
-15
-00:00:45.587 --> 00:00:48.075
-and Key Vault's own endpoint differs too.
-
-16
-00:00:48.075 --> 00:00:53.323
+00:00:35.788 --> 00:00:41.036
 On other clouds, the guide names Google
 Cloud's Private Service Connect,
 
-17
-00:00:53.323 --> 00:00:58.900
+14
+00:00:41.036 --> 00:00:46.610
 and O C I private endpoints, a private I
 P in a V C N subnet for an Oracle service.

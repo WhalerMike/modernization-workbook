@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:05.682
+You measured a ring's exit criteria, took
+the evidence export before the change,
+
+3
+00:00:05.682 --> 00:00:09.898
+rolled the test tenant back in the
+guide's order, took the export again
+
+4
+00:00:09.898 --> 00:00:14.187
+to show the state after the rollback,
+and removed the lab's test objects.
+
+5
+00:00:14.187 --> 00:00:16.949
+The evidence an I S S O
+keeps from this module:
+
+6
+00:00:16.949 --> 00:00:20.630
+the ring exit record with each
+criterion's measured value,
+
+7
+00:00:20.630 --> 00:00:24.310
+the ring one and rolled-back
+exports with their manifests,
+
+8
+00:00:24.310 --> 00:00:27.838
+the rollback change record,
+and the exception register.
+
+9
+00:00:27.838 --> 00:00:32.768
+In production, add the CISA telemetry
+agreement and the Zero Trust Assessment
+
+10
+00:00:32.768 --> 00:00:37.624
+rerun after each ring, with each network
+finding's closure chain entry updated.
+
+11
+00:00:37.624 --> 00:00:39.125
+That completes the path.
+
+12
+00:00:39.125 --> 00:00:44.040
+From here, work through the guide's
+implementation checklist, one ring at a time.

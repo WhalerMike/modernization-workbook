@@ -5,7 +5,7 @@
 | Part | Covers |
 |---|---|
 | Introduction | Title; two layers, and a mode that acts; learning objectives and prerequisites |
-| Concepts | The three DDoS tiers and what none covers; the plan, linked networks, logs and the attack alert; exercising the response through approved partners; the WAF and what the Zero Trust recommendations check; detection, tuning, prevention and rollback; the WAF's sovereign-cloud gaps and the other clouds |
+| Concepts | The three DDoS tiers and what none covers; the plan, linked networks, logs and the attack alert; exercising the response through approved partners; the WAF and what the Zero Trust recommendations check; detection, tuning, prevention and rollback; what to plan for in commercial Azure, and the other clouds |
 | Lab | Lab 2 steps 1 to 7 in a test subscription: DDoS state, plan, logs and alert; the WAF policy; a test request the WAF blocks and its log row (the module has no Lab 1, because the guide has no kit yet; the lab wasn't run by the authors) |
 | Check and summary | The federal requirement (SC-5, SI-4, SC-7, SI-10) and evidence; two knowledge-check questions with answers; the summary and Module 3 |
 

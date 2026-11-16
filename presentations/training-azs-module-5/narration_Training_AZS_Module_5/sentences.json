@@ -273,43 +273,6 @@
    "Findings from a Zero Trust assessment enter the closure chain that Zero Trust and Assessment sets out, weighted by exposure and blast radius, not pass rate."
   ]
  ],
- "8": [
-  [
-   0.05,
-   1.312,
-   "Where are agencies?"
-  ],
-  [
-   1.363,
-   6.475,
-   "Learn's comparison page lists no variation in Azure Policy between commercial Azure and Azure Government."
-  ],
-  [
-   7.838,
-   9.4,
-   "But the fed-ramp initiatives exist in separate versions for each cloud, as Cloud Boundary and Landing Zone notes, and built-in definitions differ by cloud."
-  ],
-  [
-   17.238,
-   6.463,
-   "That's why the guide lists them by display name, and has you look each one up in the cloud you're in, as the lab does."
-  ],
-  [
-   23.7,
-   6.425,
-   "In G C C, the workbook's baseline, the commercial subscriptions run Step 9 as written."
-  ],
-  [
-   30.125,
-   5.013,
-   "In Azure Government, use its own initiative versions and definition names."
-  ],
-  [
-   35.138,
-   10.637,
-   "And the guide lists assuming commercial features in Azure Government as a danger of its own: a test the cloud can't run is recorded as an environment decision, not a failed control."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -523,6 +486,38 @@
    40.337,
    8.387,
    "The guide's implementation checklist puts all ten steps on one page, and a developer workbook, with labs on fixtures, is planned."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   8.137,
+   "In G C C, the workbook's baseline, the subscriptions are commercial Azure, and the commercial subscriptions run Step 9 as written."
+  ],
+  [
+   9.5,
+   7.138,
+   "Azure Policy is available there, with the fed-ramp initiatives built in, as Cloud Boundary and Landing Zone notes."
+  ],
+  [
+   16.637,
+   4.062,
+   "But built-in definitions and the fed-ramp initiatives change version."
+  ],
+  [
+   20.7,
+   5.925,
+   "That's why the guide lists them by display name, and has you look each one up where you are, as the lab does."
+  ],
+  [
+   26.625,
+   7.287,
+   "And a test that can't run because the cloud doesn't offer the feature is recorded as an environment decision, not a failed control."
   ]
  ]
 }

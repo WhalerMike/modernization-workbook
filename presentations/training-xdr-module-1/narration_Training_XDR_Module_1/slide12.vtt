@@ -32,44 +32,39 @@ supports device objects only.
 Assign it to an Entra device group.
 
 8
-00:00:18.375 --> 00:00:21.979
-Second: a G C C High S O C
-connects to Graph without the
+00:00:18.375 --> 00:00:22.624
+Second: a Zero Trust Assessment
+test that needs Security
 
 9
-00:00:21.979 --> 00:00:26.613
-environment parameter and lists
-incidents, and the list is empty.
+00:00:22.624 --> 00:00:26.150
+Exposure Management is
+skipped in a G C C tenant.
 
 10
-00:00:26.613 --> 00:00:28.226
-What's the most likely reason?
+00:00:26.150 --> 00:00:27.362
+How is it recorded?
 
 11
-00:00:28.226 --> 00:00:29.450
-The answer is b.
+00:00:27.362 --> 00:00:29.464
+The answer is b: as not applicable,
 
 12
-00:00:29.450 --> 00:00:32.121
-The session read the
-worldwide host instead of
+00:00:29.464 --> 00:00:34.288
+because Learn says Exposure Management
+is available in Public Cloud only.
 
 13
-00:00:32.121 --> 00:00:34.449
-the tenant's own cloud;
-connect with U S Gov.
+00:00:34.288 --> 00:00:38.262
+A feature G C C doesn't offer
+goes in the decision record and
 
 14
-00:00:34.449 --> 00:00:37.462
-A missing role would have
-produced an error naming it.
+00:00:38.262 --> 00:00:42.651
+the closure register as a disposition,
+never as a failed control.
 
 15
-00:00:37.462 --> 00:00:41.787
-An empty list with no error is exactly
-the danger the guide warns about.
-
-16
-00:00:41.787 --> 00:00:46.750
-The module page has three more questions,
+00:00:42.651 --> 00:00:47.520
+The module page has two more questions,
 each linked to the unit that answers it.

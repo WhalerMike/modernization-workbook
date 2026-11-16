@@ -21,50 +21,45 @@ query text and status, and nothing is
 deployed that isn't in the repository.
 
 5
-00:00:18.787 --> 00:00:20.401
-Now the government clouds.
+00:00:18.787 --> 00:00:19.371
+Now G C C.
 
 6
-00:00:20.401 --> 00:00:26.036
-Microsoft Learn's run hunting query page
-has a national-cloud table: available
+00:00:19.371 --> 00:00:24.421
+Microsoft Learn's run hunting
+query page lists it as available
 
 7
-00:00:26.036 --> 00:00:31.238
-on the global service, which G C C uses,
-and in U S Government L four and L five.
+00:00:24.421 --> 00:00:28.888
+on the global service, the
+worldwide Graph host G C C uses.
 
 8
-00:00:31.238 --> 00:00:34.897
+00:00:28.888 --> 00:00:32.936
 Learn's detection rules pages
 have no national-cloud table,
 
 9
-00:00:34.897 --> 00:00:39.975
-so the guide records the A P I's government-cloud
-availability as not yet specified,
+00:00:32.936 --> 00:00:37.564
+so the guide records the A P I's G C
+C availability as not yet specified,
 
 10
-00:00:39.975 --> 00:00:42.888
+00:00:37.564 --> 00:00:40.787
 and lists it among the
 things it couldn't verify.
 
 11
-00:00:42.888 --> 00:00:46.247
-The interim path in G C C
-High and D O D is to create
+00:00:40.787 --> 00:00:45.775
+The interim path is to create the rule in
+the portal from the same repository file.
 
 12
-00:00:46.247 --> 00:00:49.950
-the rule in the portal from
-the same repository file.
-
-13
-00:00:49.950 --> 00:00:52.459
+00:00:45.775 --> 00:00:48.284
 The file stays the source
 of truth either way,
 
-14
-00:00:52.459 --> 00:00:55.440
+13
+00:00:48.284 --> 00:00:51.260
 and the deployed-rules check
 still compares the two.
