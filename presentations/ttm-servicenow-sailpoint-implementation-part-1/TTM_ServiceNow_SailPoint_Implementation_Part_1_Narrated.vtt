@@ -127,1075 +127,1063 @@ closing only on a re-read, and
 running the tempo with its evidence.
 
 27
-00:01:48.920 --> 00:01:52.903
+00:01:49.070 --> 00:01:53.053
 The workbook's Ticket-to-Machine
 loop has five steps: test,
 
 28
-00:01:52.903 --> 00:01:57.395
+00:01:53.053 --> 00:01:57.545
 detect drift, raise a typed task,
 actuate, and close with evidence.
 
 29
-00:01:57.395 --> 00:02:01.207
+00:01:57.545 --> 00:02:01.357
 Here, SailPoint and the kit's
 reconciliation do the testing.
 
 30
-00:02:01.207 --> 00:02:03.846
+00:02:01.357 --> 00:02:03.996
 SailPoint's change events detect drift.
 
 31
-00:02:03.846 --> 00:02:07.770
+00:02:03.996 --> 00:02:07.920
 A SailPoint workflow posting
 to ServiceNow raises the task.
 
 32
-00:02:07.770 --> 00:02:11.858
+00:02:07.920 --> 00:02:12.008
 SailPoint's connectors, and
 ServiceNow's Entra spoke, actuate.
 
 33
-00:02:11.858 --> 00:02:15.445
+00:02:12.008 --> 00:02:15.595
 And a re-read closes the
 loop, not the ticket status.
 
 34
-00:02:15.445 --> 00:02:19.757
+00:02:15.595 --> 00:02:19.907
 Used as shipped, the products fall
 short of the loop in four places.
 
 35
-00:02:19.757 --> 00:02:22.557
+00:02:19.907 --> 00:02:22.707
 First, a ticket status isn't a re-read.
 
 36
-00:02:22.557 --> 00:02:26.233
+00:02:22.707 --> 00:02:26.383
 SailPoint treats a mapped
 ServiceNow status as complete.
 
 37
-00:02:26.233 --> 00:02:30.695
+00:02:26.383 --> 00:02:30.845
 Second, the catalog app moves
 access approval into ServiceNow.
 
 38
-00:02:30.695 --> 00:02:35.557
+00:02:30.845 --> 00:02:35.707
 Third, SailPoint's service desk
 integration can't raise change requests.
 
 39
-00:02:35.557 --> 00:02:38.451
+00:02:35.707 --> 00:02:38.601
 And fourth, there are two
 doors into the directory,
 
 40
-00:02:38.451 --> 00:02:42.333
+00:02:38.601 --> 00:02:42.483
 because SailPoint and Entra inbound
 provisioning can both write.
 
 41
-00:02:42.333 --> 00:02:45.260
+00:02:42.483 --> 00:02:45.410
 Each gap is closed by a specific gate.
 
 42
-00:02:49.010 --> 00:02:51.985
+00:02:49.160 --> 00:02:52.135
 The first gate confirms
 the authorization boundary.
 
 43
-00:02:51.985 --> 00:02:54.711
+00:02:52.135 --> 00:02:54.861
 Check each product on
 the FedRAMP Marketplace
 
 44
-00:02:54.711 --> 00:02:57.297
+00:02:54.861 --> 00:02:57.447
 on the day you decide,
 and record what you read.
 
 45
-00:02:57.297 --> 00:02:58.847
+00:02:57.447 --> 00:02:58.997
 As of November 1, 2026,
 
 46
-00:02:58.847 --> 00:03:03.585
+00:02:58.997 --> 00:03:03.735
 ServiceNow's Government Community
 Cloud is certified at High.
 
 47
-00:03:03.585 --> 00:03:06.485
+00:03:03.735 --> 00:03:06.635
 Its commercial cloud has
 no listing of its own.
 
 48
-00:03:06.485 --> 00:03:10.285
+00:03:06.635 --> 00:03:10.435
 SailPoint Identity Security
 Cloud is certified at Moderate.
 
 49
-00:03:10.285 --> 00:03:14.035
+00:03:10.435 --> 00:03:14.185
 SailPoint's self-hosted product
 has no listing of its own.
 
 50
-00:03:14.035 --> 00:03:17.522
+00:03:14.185 --> 00:03:17.672
 Next, confirm what's actually
 inside the authorization.
 
 51
-00:03:17.522 --> 00:03:22.531
+00:03:17.672 --> 00:03:22.681
 Ask SailPoint in writing whether workflows,
 native change detection and the HTTP
 
 52
-00:03:22.531 --> 00:03:25.477
+00:03:22.681 --> 00:03:25.627
 request step are in the
 authorized environment,
 
 53
-00:03:25.477 --> 00:03:27.760
+00:03:25.627 --> 00:03:27.910
 since later gates depend on all three.
 
 54
-00:03:27.760 --> 00:03:30.822
+00:03:27.910 --> 00:03:30.972
 Then record which actions
 run from a vendor's cloud.
 
 55
-00:03:30.822 --> 00:03:35.120
+00:03:30.972 --> 00:03:35.270
 SailPoint's connectors call Microsoft
 Graph from SailPoint's cloud,
 
 56
-00:03:35.120 --> 00:03:37.910
+00:03:35.270 --> 00:03:38.060
 so each of those calls
 is a recorded data flow.
 
 57
-00:03:37.910 --> 00:03:42.010
+00:03:38.060 --> 00:03:42.160
 And confirm the apps are available
 in ServiceNow's government store.
 
 58
-00:03:45.760 --> 00:03:48.872
+00:03:45.910 --> 00:03:49.022
 Four integration identities
 carry this integration.
 
 59
-00:03:48.872 --> 00:03:54.042
+00:03:49.022 --> 00:03:54.192
 There's SailPoint's Entra connector,
 ServiceNow's Entra spoke, the ServiceNow user
 
 60
-00:03:54.042 --> 00:03:59.135
+00:03:54.192 --> 00:03:59.285
 the workflow posts as along with the verifier
 account, and SailPoint's A P I client.
 
 61
-00:03:59.135 --> 00:04:01.984
+00:03:59.285 --> 00:04:02.134
 Each has two owners and a federal sponsor,
 
 62
-00:04:01.984 --> 00:04:05.335
+00:04:02.134 --> 00:04:05.485
 and uses a certificate,
 never a long-lived secret.
 
 63
-00:04:05.335 --> 00:04:09.322
+00:04:05.485 --> 00:04:09.472
 The workbook's second and third chapters
 make their permissions checkable.
 
 64
-00:04:09.322 --> 00:04:13.673
+00:04:09.472 --> 00:04:13.823
 One file declares every call the
 kit makes, with its least privilege.
 
 65
-00:04:13.673 --> 00:04:16.472
+00:04:13.823 --> 00:04:16.622
 A test fails on any call
 that isn't declared.
 
 66
-00:04:16.472 --> 00:04:18.862
+00:04:16.622 --> 00:04:19.012
 Then a checker compares what each identity
 
 67
-00:04:18.862 --> 00:04:21.384
+00:04:19.012 --> 00:04:21.534
 was actually granted with
 what its task needs.
 
 68
-00:04:21.384 --> 00:04:24.372
+00:04:21.534 --> 00:04:24.522
 A verifier that also
 holds a broad role fails.
 
 69
-00:04:24.372 --> 00:04:29.261
+00:04:24.522 --> 00:04:29.411
 So does an evidence exporter reusing the
 verifier, because it could close findings.
 
 70
-00:04:29.261 --> 00:04:32.410
+00:04:29.411 --> 00:04:32.560
 A read client holding a
 manage scope fails too.
 
 71
-00:04:32.410 --> 00:04:34.260
+00:04:32.560 --> 00:04:34.410
 The roles are split by task.
 
 72
-00:04:34.260 --> 00:04:36.423
+00:04:34.410 --> 00:04:36.573
 The finding writer only creates.
 
 73
-00:04:36.423 --> 00:04:38.059
+00:04:36.573 --> 00:04:38.209
 The verifier closes.
 
 74
-00:04:38.059 --> 00:04:40.610
+00:04:38.209 --> 00:04:40.760
 The evidence reader only reads.
 
 75
-00:04:44.360 --> 00:04:48.428
+00:04:44.510 --> 00:04:48.578
 On the federal side, external system
 services calls for the Marketplace
 
 76
-00:04:48.428 --> 00:04:52.360
+00:04:48.578 --> 00:04:52.510
 listings with the date you read them,
 plus the vendor's written answers.
 
 77
-00:04:52.360 --> 00:04:57.535
+00:04:52.510 --> 00:04:57.685
 FedRAMP authorization calls for the package
 or letter for each offering you rely on.
 
 78
-00:04:57.535 --> 00:05:01.075
+00:04:57.685 --> 00:05:01.225
 Information exchange calls
 for a data-flow record:
 
 79
-00:05:01.075 --> 00:05:03.772
+00:05:01.225 --> 00:05:03.922
 source, destination, identity and data.
 
 80
-00:05:03.772 --> 00:05:06.743
+00:05:03.922 --> 00:05:06.893
 Least privilege and
 authenticator management call
 
 81
-00:05:06.743 --> 00:05:09.647
+00:05:06.893 --> 00:05:09.797
 for the identity register
 and two kit checks' output.
 
 82
-00:05:09.647 --> 00:05:14.187
+00:05:09.797 --> 00:05:14.337
 One check lists integration identities
 with high-privilege Graph roles,
 
 83
-00:05:14.187 --> 00:05:16.047
+00:05:14.337 --> 00:05:16.197
 each needing a justification.
 
 84
-00:05:16.047 --> 00:05:18.898
+00:05:16.197 --> 00:05:19.048
 The other flags credentials
 that last too long.
 
 85
-00:05:18.898 --> 00:05:23.160
+00:05:19.048 --> 00:05:23.310
 Most of this gate is a manual record,
 and there's nothing to roll back.
 
 86
-00:05:23.160 --> 00:05:26.100
+00:05:23.310 --> 00:05:26.250
 The guide uses SailPoint's
 cloud product because it
 
 87
-00:05:26.100 --> 00:05:28.972
+00:05:26.250 --> 00:05:29.122
 has a public listing and
 reaches both directories.
 
 88
-00:05:28.972 --> 00:05:33.873
+00:05:29.122 --> 00:05:34.023
 The self-hosted product fits an agency
 that needs High or an in-boundary system.
 
 89
-00:05:33.873 --> 00:05:37.196
+00:05:34.023 --> 00:05:37.346
 If a feature isn't confirmed
 in the FedRAMP environment,
 
 90
-00:05:37.196 --> 00:05:40.150
+00:05:37.346 --> 00:05:40.300
 build it in the sandbox
 and hold production.
 
 91
-00:05:43.900 --> 00:05:48.500
+00:05:44.050 --> 00:05:48.650
 The second gate settles two of the gaps
 on paper, before anything is connected.
 
 92
-00:05:48.500 --> 00:05:50.763
+00:05:48.650 --> 00:05:50.913
 First, one writer per attribute.
 
 93
-00:05:50.763 --> 00:05:55.673
+00:05:50.913 --> 00:05:55.823
 Either Entra inbound provisioning stays
 the door and SailPoint only reads HR and
 
 94
-00:05:55.673 --> 00:05:58.561
+00:05:55.823 --> 00:05:58.711
 governs entitlements, or
 SailPoint becomes the
 
 95
-00:05:58.561 --> 00:06:02.100
+00:05:58.711 --> 00:06:02.250
 provisioning service and takes
 on the middleware's duties.
 
 96
-00:06:02.100 --> 00:06:03.487
+00:06:02.250 --> 00:06:03.637
 Pick one, not both.
 
 97
-00:06:03.487 --> 00:06:08.862
+00:06:03.637 --> 00:06:09.012
 SailPoint's HR connector can write back
 only the user name and work email anyway.
 
 98
-00:06:08.862 --> 00:06:12.150
+00:06:09.012 --> 00:06:12.300
 Second, one approval system
 per authority class.
 
 99
-00:06:12.150 --> 00:06:16.976
+00:06:12.300 --> 00:06:17.126
 As the guide's example, ServiceNow approves
 the low-authority classes, SailPoint
 
 100
-00:06:16.976 --> 00:06:21.875
+00:06:17.126 --> 00:06:22.025
 approves owner-governed access, and the
 catalog app only collects those requests.
 
 101
-00:06:21.875 --> 00:06:26.313
+00:06:22.025 --> 00:06:26.463
 Every approval that times out should
 reject or cancel, never approve.
 
 102
-00:06:26.313 --> 00:06:30.587
+00:06:26.463 --> 00:06:30.737
 Write these decisions to the
 authoritative record as a reviewed change.
 
 103
-00:06:30.587 --> 00:06:33.900
+00:06:30.737 --> 00:06:34.050
 Every later gate builds
 on what this one decides.
 
 104
-00:06:37.650 --> 00:06:40.377
+00:06:37.800 --> 00:06:40.527
 Next, every operation class gets a lane.
 
 105
-00:06:40.377 --> 00:06:42.840
+00:06:40.527 --> 00:06:42.990
 This mapping is the program's inference.
 
 106
-00:06:42.840 --> 00:06:47.718
+00:06:42.990 --> 00:06:47.868
 Autonomous machine changes are SailPoint
 lifecycle states and birthright access,
 
 107
-00:06:47.718 --> 00:06:50.879
+00:06:47.868 --> 00:06:51.029
 but only for classes the
 authorizing official listed.
 
 108
-00:06:50.879 --> 00:06:54.609
+00:06:51.029 --> 00:06:54.759
 In ServiceNow, they're standard
 changes, pre-authorized.
 
 109
-00:06:54.609 --> 00:06:58.479
+00:06:54.759 --> 00:06:58.629
 Gated machine changes are approved
 SailPoint access requests,
 
 110
-00:06:58.479 --> 00:07:03.443
+00:06:58.629 --> 00:07:03.593
 or catalog items the spoke carries out, as
 normal changes where the class needs one.
 
 111
-00:07:03.443 --> 00:07:08.135
+00:07:03.593 --> 00:07:08.285
 Human decisions are certifications, or
 a ServiceNow approval or change board.
 
 112
-00:07:08.135 --> 00:07:12.592
+00:07:08.285 --> 00:07:12.742
 Certificates stay with the certificate
 platform, outside both products.
 
 113
-00:07:12.592 --> 00:07:16.150
+00:07:12.742 --> 00:07:16.300
 Disconnected applications
 run as declared exceptions,
 
 114
-00:07:16.150 --> 00:07:19.931
+00:07:16.300 --> 00:07:20.081
 with a service desk ticket, a
 recorded session and an end date.
 
 115
-00:07:19.931 --> 00:07:22.681
+00:07:20.081 --> 00:07:22.831
 And emergencies go straight
 to the change board.
 
 116
-00:07:22.681 --> 00:07:27.360
+00:07:22.831 --> 00:07:27.510
 The authorizing official has to accept
 any autonomous class in writing.
 
 117
-00:07:31.110 --> 00:07:34.003
+00:07:31.260 --> 00:07:34.153
 The workbook's eighth
 chapter checks the writer
 
 118
-00:07:34.003 --> 00:07:36.823
+00:07:34.153 --> 00:07:36.973
 decision against real
 configuration, offline.
 
 119
-00:07:36.823 --> 00:07:40.491
+00:07:36.973 --> 00:07:40.641
 It reads two exports: Entra's
 inbound provisioning schema,
 
 120
-00:07:40.491 --> 00:07:44.235
+00:07:40.641 --> 00:07:44.385
 and the provisioning policies
 on SailPoint's Entra source.
 
 121
-00:07:44.235 --> 00:07:48.850
+00:07:44.385 --> 00:07:49.000
 For every attribute both of them write,
 it flags a finding if both update it,
 
 122
-00:07:48.850 --> 00:07:52.785
+00:07:49.000 --> 00:07:52.935
 because each overwrites the other
 and the drift never settles.
 
 123
-00:07:52.785 --> 00:07:57.685
+00:07:52.935 --> 00:07:57.835
 It's a warning if one updates the attribute
 and the other only sets it at creation.
 
 124
-00:07:57.685 --> 00:08:01.172
+00:07:57.835 --> 00:08:01.322
 On the fictional exports,
 department is the finding.
 
 125
-00:08:01.172 --> 00:08:04.483
+00:08:01.322 --> 00:08:04.633
 SailPoint's field names
 don't always match Entra's,
 
 126
-00:08:04.483 --> 00:08:07.148
+00:08:04.633 --> 00:08:07.298
 so the check takes a reviewed alias list.
 
 127
-00:08:07.148 --> 00:08:12.272
+00:08:07.298 --> 00:08:12.422
 Map title to job title, and a second
 finding appears that was invisible before.
 
 128
-00:08:12.272 --> 00:08:15.241
+00:08:12.422 --> 00:08:15.391
 Point it at a directory
 name that doesn't exist,
 
 129
-00:08:15.241 --> 00:08:18.210
+00:08:15.391 --> 00:08:18.360
 and it fails rather than
 passing as no overlap.
 
 130
-00:08:18.210 --> 00:08:19.860
+00:08:18.360 --> 00:08:20.010
 It reads exports only.
 
 131
-00:08:19.860 --> 00:08:22.860
+00:08:20.010 --> 00:08:23.010
 Approvers and lanes are
 still checked by hand.
 
 132
-00:08:26.610 --> 00:08:31.297
+00:08:26.760 --> 00:08:31.447
 On the federal side, separation of duties
 calls for the table of one approval
 
 133
-00:08:31.297 --> 00:08:35.760
+00:08:31.447 --> 00:08:35.910
 system per class, merged with its
 review, so the requester never approves.
 
 134
-00:08:35.760 --> 00:08:38.072
+00:08:35.910 --> 00:08:38.222
 Change control calls for the lane table.
 
 135
-00:08:38.072 --> 00:08:42.585
+00:08:38.222 --> 00:08:42.735
 Account management calls for the attribute
 map, with each attribute's writer.
 
 136
-00:08:42.585 --> 00:08:47.122
+00:08:42.735 --> 00:08:47.272
 And any autonomous class needs the
 authorizing official's signed acceptance.
 
 137
-00:08:47.122 --> 00:08:51.210
+00:08:47.272 --> 00:08:51.360
 To validate, the writer check
 flags attributes with two writers.
 
 138
-00:08:51.210 --> 00:08:55.689
+00:08:51.360 --> 00:08:55.839
 The rest is a manual review:
 one writer, one approval system,
 
 139
-00:08:55.689 --> 00:08:59.048
+00:08:55.839 --> 00:08:59.198
 one lane and one record
 type each, all merged.
 
 140
-00:08:59.048 --> 00:09:00.947
+00:08:59.198 --> 00:09:01.097
 This gate uses nothing new.
 
 141
-00:09:00.947 --> 00:09:05.189
-The Entra features it relies on
-are available in Azure Government,
+00:09:01.097 --> 00:09:05.660
+In GCC, the Entra features it relies
+on are the commercial service.
 
 142
-00:09:05.189 --> 00:09:07.348
-and GCC is the commercial service.
-
-143
-00:09:07.348 --> 00:09:11.213
+00:09:05.660 --> 00:09:09.525
 If the HR pipeline isn't live
 yet, decide the writers now,
 
-144
-00:09:11.213 --> 00:09:15.335
+143
+00:09:09.525 --> 00:09:13.647
 and run the next gates against
 the HR extract the kit reads.
 
-145
-00:09:15.335 --> 00:09:18.610
+144
+00:09:13.647 --> 00:09:16.923
 To roll back, re-decide
 through a reviewed change.
 
-146
-00:09:18.610 --> 00:09:20.740
+145
+00:09:16.923 --> 00:09:19.070
 The record keeps the history.
 
-147
-00:09:24.490 --> 00:09:28.084
+146
+00:09:22.820 --> 00:09:26.414
 The third gate connects the
 sources, then measures how far
 
-148
-00:09:28.084 --> 00:09:31.902
+147
+00:09:26.414 --> 00:09:30.232
 the directory has drifted from
 HR before anything gets fixed.
 
-149
-00:09:31.902 --> 00:09:36.153
+148
+00:09:30.232 --> 00:09:34.483
 Pull HR into SailPoint as the
 authoritative source, read-only.
 
-150
-00:09:36.153 --> 00:09:38.975
+149
+00:09:34.483 --> 00:09:37.305
 Connect Entra ID through
 SailPoint's connector,
 
-151
-00:09:38.975 --> 00:09:42.291
+150
+00:09:37.305 --> 00:09:40.621
 and Active Directory through
 its on-premises appliance.
 
-152
-00:09:42.291 --> 00:09:45.293
-In GCC High, point the Entra source at the
-
-153
-00:09:45.293 --> 00:09:48.478
-US government Graph and sign-in endpoints.
-
-154
-00:09:48.478 --> 00:09:51.301
+151
+00:09:40.621 --> 00:09:43.443
 Correlate everything on the employee I D.
 
-155
-00:09:51.301 --> 00:09:56.366
+152
+00:09:43.443 --> 00:09:48.508
 Treat uncorrelated accounts as possible
 orphans, not errors to suppress.
 
-156
-00:09:56.366 --> 00:09:58.280
+153
+00:09:48.508 --> 00:09:50.423
 Turn on native change detection,
 
-157
-00:09:58.280 --> 00:10:02.677
+154
+00:09:50.423 --> 00:09:54.820
 which fires one event for each account
 that changed between aggregations.
 
-158
-00:10:02.677 --> 00:10:05.264
+155
+00:09:54.820 --> 00:09:57.407
 Then run the kit's drift reconciliation.
 
-159
-00:10:05.264 --> 00:10:08.315
+156
+00:09:57.407 --> 00:10:00.458
 It joins HR, Graph and
 SailPoint on the key,
 
-160
-00:10:08.315 --> 00:10:11.365
+157
+00:10:00.458 --> 00:10:03.508
 and reports the workbook's drift classes.
 
-161
-00:10:11.365 --> 00:10:13.715
+158
+00:10:03.508 --> 00:10:05.857
 File that first run as the baseline.
 
-162
-00:10:13.715 --> 00:10:17.515
+159
+00:10:05.857 --> 00:10:09.657
 And expect a burst of high-severity
 findings in the first month.
 
-163
-00:10:17.515 --> 00:10:19.990
+160
+00:10:09.657 --> 00:10:12.130
 That just means the
 measurement is working.
 
-164
-00:10:23.740 --> 00:10:28.440
+161
+00:10:15.880 --> 00:10:20.580
 The workbook's sixth chapter runs the
 reconciliation over saved exports.
 
-165
-00:10:28.440 --> 00:10:33.527
+162
+00:10:20.580 --> 00:10:25.667
 On day one, the fictional estate shows
 attribute drift, missing identities,
 
-166
-00:10:33.527 --> 00:10:37.465
+163
+00:10:25.667 --> 00:10:29.605
 orphan accounts, stale access,
 and one unauthorized write.
 
-167
-00:10:37.465 --> 00:10:42.403
+164
+00:10:29.605 --> 00:10:34.543
 Credential and schema drift are reported
 as not computed, never as zero.
 
-168
-00:10:42.403 --> 00:10:45.733
+165
+00:10:34.543 --> 00:10:37.873
 On day two, HR corrects
 a department to the value
 
-169
-00:10:45.733 --> 00:10:49.064
+166
+00:10:37.873 --> 00:10:41.204
 someone had already typed
 into Entra ID by hand.
 
-170
-00:10:49.064 --> 00:10:50.553
+167
+00:10:41.204 --> 00:10:42.693
 The counts don't change.
 
-171
-00:10:50.553 --> 00:10:53.653
+168
+00:10:42.693 --> 00:10:45.793
 A comparison by finding
 I D shows what moved.
 
-172
-00:10:53.653 --> 00:10:57.190
+169
+00:10:45.793 --> 00:10:49.330
 Entra now matches HR, so
 that finding resolves.
 
-173
-00:10:57.190 --> 00:11:01.078
+170
+00:10:49.330 --> 00:10:53.218
 SailPoint hasn't re-read
 yet, so a new finding opens.
 
-174
-00:11:01.078 --> 00:11:03.223
+171
+00:10:53.218 --> 00:10:55.363
 The unauthorized write stays open,
 
-175
-00:11:03.223 --> 00:11:07.216
+172
+00:10:55.363 --> 00:10:59.356
 because HR agreeing afterward
 doesn't make the write authorized.
 
-176
-00:11:07.216 --> 00:11:11.042
+173
+00:10:59.356 --> 00:11:03.182
 The comparison refuses two runs
 that computed different classes,
 
-177
-00:11:11.042 --> 00:11:14.103
+174
+00:11:03.182 --> 00:11:06.243
 since otherwise a skipped
 class would look resolved.
 
-178
-00:11:14.103 --> 00:11:16.728
+175
+00:11:06.243 --> 00:11:08.868
 And a resolved finding is only a lead.
 
-179
-00:11:16.728 --> 00:11:19.430
+176
+00:11:08.868 --> 00:11:11.570
 Its record still closes on a re-read.
 
-180
-00:11:23.180 --> 00:11:27.756
+177
+00:11:15.320 --> 00:11:19.896
 On the federal side, account management
 calls for the baseline drift report:
 
-181
-00:11:27.756 --> 00:11:30.880
+178
+00:11:19.896 --> 00:11:23.020
 accounts with no worker,
 and workers with no account.
 
-182
-00:11:30.880 --> 00:11:35.143
+179
+00:11:23.020 --> 00:11:27.283
 Continuous monitoring calls for that
 report with its date and checker version.
 
-183
-00:11:35.143 --> 00:11:39.874
+180
+00:11:27.283 --> 00:11:32.014
 Reading the inventory requirement for
 identities, which is the program's inference,
 
-184
-00:11:39.874 --> 00:11:43.592
+181
+00:11:32.014 --> 00:11:35.732
 gives the correlation rate and
 the list of uncorrelated accounts.
 
-185
-00:11:43.592 --> 00:11:47.077
+182
+00:11:35.732 --> 00:11:39.217
 To validate, the kit's tests
 prove the drift classes,
 
-186
-00:11:47.077 --> 00:11:50.230
+183
+00:11:39.217 --> 00:11:42.370
 and both clients produce
 the same finding I Ds.
 
-187
-00:11:50.230 --> 00:11:55.780
+184
+00:11:42.370 --> 00:11:47.920
 On a live system, the findings for a synthetic
 HR extract should match a hand count.
 
-188
-00:11:55.780 --> 00:11:58.361
+185
+00:11:47.920 --> 00:11:50.501
 And the validation
 kit's checks for missing
 
-189
-00:11:58.361 --> 00:12:00.942
+186
+00:11:50.501 --> 00:11:53.082
 and duplicate keys should
 be clean, or owned.
 
-190
-00:12:00.942 --> 00:12:04.855
+187
+00:11:53.082 --> 00:11:56.995
 SailPoint documents government
 endpoints for its Entra connector.
 
-191
-00:12:04.855 --> 00:12:09.243
+188
+00:11:56.995 --> 00:12:01.383
 Native change detection isn't yet
 confirmed in the FedRAMP environment.
 
-192
-00:12:09.243 --> 00:12:14.154
+189
+00:12:01.383 --> 00:12:06.294
 Without SailPoint, run the
 reconciliation on HR and Graph alone.
 
-193
-00:12:14.154 --> 00:12:16.630
+190
+00:12:06.294 --> 00:12:08.770
 To roll back, disconnect the source.
 
-194
-00:12:16.630 --> 00:12:18.730
+191
+00:12:08.770 --> 00:12:10.870
 This gate only reads.
 
-195
-00:12:22.480 --> 00:12:24.830
+192
+00:12:14.620 --> 00:12:16.970
 The fourth gate opens one front door.
 
-196
-00:12:24.830 --> 00:12:29.726
+193
+00:12:16.970 --> 00:12:21.866
 Every drift event, request and
 manual step arrives in ServiceNow
 
-197
-00:12:29.726 --> 00:12:33.443
+194
+00:12:21.866 --> 00:12:25.583
 as a typed task, with an
 owner, a clock and a severity.
 
-198
-00:12:33.443 --> 00:12:37.880
+195
+00:12:25.583 --> 00:12:30.020
 Build a finding table, plus an
 endpoint that validates each payload.
 
-199
-00:12:37.880 --> 00:12:41.789
+196
+00:12:30.020 --> 00:12:33.929
 The endpoint sets the priority
 and due date from the severity,
 
-200
-00:12:41.789 --> 00:12:46.005
+197
+00:12:33.929 --> 00:12:38.145
 removes duplicates, and stores the
 state a re-read will need to find.
 
-201
-00:12:46.005 --> 00:12:50.443
+198
+00:12:38.145 --> 00:12:42.583
 Then add one SailPoint workflow per
 trigger, posting to that endpoint.
 
-202
-00:12:50.443 --> 00:12:55.242
+199
+00:12:42.583 --> 00:12:47.382
 Workflows can't be created enabled,
 so turn each one on after a test run.
 
-203
-00:12:55.242 --> 00:13:00.317
+200
+00:12:47.382 --> 00:12:52.457
 The catalog app takes people's requests,
 using the approvals decided in gate two.
 
-204
-00:13:00.317 --> 00:13:04.507
+201
+00:12:52.457 --> 00:12:56.647
 The service desk integration is
 only for disconnected applications,
 
-205
-00:13:04.507 --> 00:13:07.468
+202
+00:12:56.647 --> 00:12:59.608
 and each of those tickets
 is a declared exception.
 
-206
-00:13:07.468 --> 00:13:12.380
+203
+00:12:59.608 --> 00:13:04.520
 Route everything by authority, and feed
 other detection tools into the same queue.
 
-207
-00:13:12.380 --> 00:13:18.530
+204
+00:13:04.520 --> 00:13:10.670
 Due dates follow the program's tempo:
 immediate, one hour, a day, or three days.
 
-208
-00:13:22.280 --> 00:13:24.845
+205
+00:13:14.420 --> 00:13:16.985
 The workbook's first
 and fourth chapters make
 
-209
-00:13:24.845 --> 00:13:27.680
+206
+00:13:16.985 --> 00:13:19.820
 the front door testable
 before anything is posted.
 
-210
-00:13:27.680 --> 00:13:30.369
+207
+00:13:19.820 --> 00:13:22.509
 The contract lives in ServiceNow's script,
 
-211
-00:13:30.369 --> 00:13:33.518
+208
+00:13:22.509 --> 00:13:25.658
 so a Python mirror applies
 the same rules offline.
 
-212
-00:13:33.518 --> 00:13:36.155
+209
+00:13:25.658 --> 00:13:28.295
 A test fails if the two ever drift apart.
 
-213
-00:13:36.155 --> 00:13:40.795
+210
+00:13:28.295 --> 00:13:32.935
 On five sample payloads, one gets a
 default priority and a one-hour window,
 
-214
-00:13:40.795 --> 00:13:45.280
+211
+00:13:32.935 --> 00:13:37.420
 two are rejected with the script's own
 error text, and one gets a warning.
 
-215
-00:13:45.280 --> 00:13:48.467
+212
+00:13:37.420 --> 00:13:40.607
 Its intended state names
 nothing a re-read could check,
 
-216
-00:13:48.467 --> 00:13:50.592
+213
+00:13:40.607 --> 00:13:42.732
 so the record would close on nothing.
 
-217
-00:13:50.592 --> 00:13:55.281
+214
+00:13:42.732 --> 00:13:47.421
 Then the fourth chapter resolves each
 SailPoint workflow against a saved trigger.
 
-218
-00:13:55.281 --> 00:13:56.917
+215
+00:13:47.421 --> 00:13:49.057
 That turned up two fixes.
 
-219
-00:13:56.917 --> 00:14:01.232
+216
+00:13:49.057 --> 00:13:53.372
 A change to a multi-valued attribute,
 like an added proxy address,
 
-220
-00:14:01.232 --> 00:14:03.918
+217
+00:13:53.372 --> 00:13:56.058
 used to produce an empty intended state.
 
-221
-00:14:03.918 --> 00:14:08.968
+218
+00:13:56.058 --> 00:14:01.108
 And two attributes drifting on the same
 user used to collapse into one record.
 
-222
-00:14:08.968 --> 00:14:14.150
+219
+00:14:01.108 --> 00:14:06.290
 Whether SailPoint resolves the body the
 same way is still on the verify list.
 
-223
-00:14:17.900 --> 00:14:20.906
+220
+00:14:10.040 --> 00:14:13.046
 On the federal side,
 change control calls for
 
-224
-00:14:20.906 --> 00:14:23.750
+221
+00:14:13.046 --> 00:14:15.890
 records with an origin,
 an owner and a clock.
 
-225
-00:14:23.750 --> 00:14:28.438
+222
+00:14:15.890 --> 00:14:20.578
 Risk response calls for due dates
 by severity, plus an overdue list.
 
-226
-00:14:28.438 --> 00:14:31.363
+223
+00:14:20.578 --> 00:14:23.503
 Continuous monitoring calls
 for the finding queue.
 
-227
-00:14:31.363 --> 00:14:35.787
+224
+00:14:23.503 --> 00:14:27.927
 Separation of duties calls for
 approval history on every request.
 
-228
-00:14:35.787 --> 00:14:40.446
+225
+00:14:27.927 --> 00:14:32.586
 The fully automated version of change
 control is in the High baseline only,
 
-229
-00:14:40.446 --> 00:14:42.700
+226
+00:14:32.586 --> 00:14:34.840
 so at Moderate it's adopted as design.
 
-230
-00:14:42.700 --> 00:14:46.709
+227
+00:14:34.840 --> 00:14:38.849
 To validate, the kit's tests
 cover the priority, the due date,
 
-231
-00:14:46.709 --> 00:14:50.300
+228
+00:14:38.849 --> 00:14:42.440
 the tempo, duplicate removal
 and rejected payloads.
 
-232
-00:14:50.300 --> 00:14:54.448
+229
+00:14:42.440 --> 00:14:46.588
 On a live system, one change
 should raise exactly one finding,
 
-233
-00:14:54.448 --> 00:14:56.688
+230
+00:14:46.588 --> 00:14:48.828
 and a repeat should merge into it.
 
-234
-00:14:56.688 --> 00:15:00.687
+231
+00:14:48.828 --> 00:14:52.827
 The SailPoint apps aren't yet confirmed
 in ServiceNow's government store.
 
-235
-00:15:00.687 --> 00:15:04.724
+232
+00:14:52.827 --> 00:14:56.864
 Without the catalog app, a ServiceNow
 flow can create the request.
 
-236
-00:15:04.724 --> 00:15:08.950
+233
+00:14:56.864 --> 00:15:01.090
 Without the workflows, push the
 reconciliation's findings on a schedule.
 
-237
-00:15:08.950 --> 00:15:12.750
+234
+00:15:01.090 --> 00:15:04.890
 To roll back, disable the
 workflows and catalog items.
 
-238
-00:15:12.750 --> 00:15:15.750
+235
+00:15:04.890 --> 00:15:07.890
 Findings already raised stay on record.
 
-239
-00:15:19.500 --> 00:15:24.438
+236
+00:15:11.640 --> 00:15:16.578
 To close Part 1, here's what each gate
 leaves behind, and what Part 2 builds on.
 
-240
-00:15:24.438 --> 00:15:29.190
+237
+00:15:16.578 --> 00:15:21.330
 The boundary gate leaves the identity
 register, and Part 2's actuation gate
 
-241
-00:15:29.190 --> 00:15:34.249
+238
+00:15:21.330 --> 00:15:26.389
 uses exactly those identities, re-checked
 so none holds more than its lane needs.
 
-242
-00:15:34.249 --> 00:15:39.325
+239
+00:15:26.389 --> 00:15:31.465
 The writers gate leaves the lane table,
 which actuation builds one lane at a time.
 
-243
-00:15:39.325 --> 00:15:42.216
+240
+00:15:31.465 --> 00:15:34.356
 The sources gate leaves
 the baseline drift report,
 
-244
-00:15:42.216 --> 00:15:45.175
+241
+00:15:34.356 --> 00:15:37.315
 which the tempo gate measures
 against on a schedule.
 
-245
-00:15:45.175 --> 00:15:48.343
+242
+00:15:37.315 --> 00:15:40.483
 And the front door leaves each
 finding's intended state,
 
-246
-00:15:48.343 --> 00:15:51.925
+243
+00:15:40.483 --> 00:15:44.065
 which the re-read gate compares
 against what it actually finds.
 
-247
-00:15:51.925 --> 00:15:56.888
+244
+00:15:44.065 --> 00:15:49.028
 Part 2 covers actuation, the re-read,
 and the tempo with its evidence.
 
-248
-00:15:56.888 --> 00:16:01.226
+245
+00:15:49.028 --> 00:15:53.366
 To build the code, use the developer
 workbook, Building Ticket-to-Machine.
 
-249
-00:16:01.226 --> 00:16:03.567
+246
+00:15:53.366 --> 00:15:55.707
 To learn it in order, with exercises,
 
-250
-00:16:03.567 --> 00:16:08.480
+247
+00:15:55.707 --> 00:16:00.620
 use the learning path for Ticket-to-Machine
 on ServiceNow and SailPoint.

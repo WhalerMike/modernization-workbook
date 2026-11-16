@@ -800,82 +800,82 @@ Test it in audit mode before
 anything enforces it.
 
 166
-00:11:36.880 --> 00:11:42.035
+00:11:36.880 --> 00:11:42.121
 Many estates already run Red Hat on AWS
 with Ansible, and Arc can connect it:
 
 167
-00:11:42.035 --> 00:11:46.937
-Red Hat is on the agent's list, and EC2
-instances take the agent one by one,
+00:11:42.121 --> 00:11:46.416
+Red Hat is on the agent's list,
+and EC2 instances take the agent,
 
 168
-00:11:46.937 --> 00:11:50.993
-since the multicloud connector
-isn't in Azure Government.
+00:11:46.416 --> 00:11:49.767
+one by one or through
+the multicloud connector.
 
 169
-00:11:50.993 --> 00:11:53.467
+00:11:49.767 --> 00:11:52.243
 The danger is two tools on one setting.
 
 170
-00:11:53.467 --> 00:11:56.998
+00:11:52.243 --> 00:11:55.773
 Under auto-correct, Ansible
 and machine configuration
 
 171
-00:11:56.998 --> 00:12:00.605
+00:11:55.773 --> 00:11:59.380
 can flip a value back and forth
 while both report success.
 
 172
-00:12:00.605 --> 00:12:04.480
+00:11:59.380 --> 00:12:03.255
 So the Ansible guide sets five
 rules, as design guidance.
 
 173
-00:12:04.480 --> 00:12:08.730
+00:12:03.255 --> 00:12:07.505
 The owner is an attribute,
 config_owner in the CMDB.
 
 174
-00:12:08.730 --> 00:12:10.772
+00:12:07.505 --> 00:12:09.547
 Ansible writes only what it owns,
 
 175
-00:12:10.772 --> 00:12:14.855
+00:12:09.547 --> 00:12:13.630
 enforced by its inventory group
 and an assertion in the playbook.
 
 176
-00:12:14.855 --> 00:12:16.543
+00:12:13.630 --> 00:12:15.318
 Onboarding isn't owning.
 
 177
-00:12:16.543 --> 00:12:18.642
+00:12:15.318 --> 00:12:17.417
 An exception is a dated record.
 
 178
-00:12:18.642 --> 00:12:20.662
+00:12:17.417 --> 00:12:19.437
 And patching has one owner too,
 
 179
-00:12:20.662 --> 00:12:24.379
+00:12:19.437 --> 00:12:23.154
 so where Ansible patches,
 Update Manager only assesses.
 
 180
-00:12:24.379 --> 00:12:27.355
+00:12:23.154 --> 00:12:26.130
 Both owners are mirrored
 to Arc tags at onboarding.
 
 181
-00:12:27.355 --> 00:12:30.875
+00:12:26.130 --> 00:12:29.650
 VK-ARC-07 then catches
 a server another tool
 
 182
-00:12:30.875 --> 00:12:35.450
+00:12:29.650 --> 00:12:34.230
 owns that machine configuration
 is also enforcing.
 
@@ -957,74 +957,74 @@ and test every overlap,
 not just each tool.
 
 199
-00:13:39.620 --> 00:13:42.720
-Gate 6 is the PIV and CAC binding.
+00:13:39.620 --> 00:13:41.945
+Gate 6 is the PIV binding.
 
 200
-00:13:42.720 --> 00:13:45.601
+00:13:41.945 --> 00:13:44.868
 Certificate sign-in is
 attribute-driven too:
 
 201
-00:13:45.601 --> 00:13:49.961
+00:13:44.868 --> 00:13:49.293
 Entra ID matches a field of the
 certificate to a field of the account,
 
 202
-00:13:49.961 --> 00:13:54.632
+00:13:49.293 --> 00:13:54.033
 so whoever writes that field decides
 which certificate signs in as whom.
 
 203
-00:13:54.632 --> 00:13:59.294
+00:13:54.033 --> 00:13:58.695
 The binding lives in
 certificateUserIds, as prefixed values.
 
 204
-00:13:59.294 --> 00:14:01.958
+00:13:58.695 --> 00:14:01.358
 Names and email addresses
 are low affinity.
 
 205
-00:14:01.958 --> 00:14:04.412
+00:14:01.358 --> 00:14:03.813
 The key identifier, the public key hash,
 
 206
-00:14:04.412 --> 00:14:09.244
+00:14:03.813 --> 00:14:08.645
 and issuer with serial number are high
 affinity, because they can't be reused.
 
 207
-00:14:09.244 --> 00:14:13.082
+00:14:08.645 --> 00:14:12.482
 That also means a reissued or
 renewed card changes the value.
 
 208
-00:14:13.082 --> 00:14:15.301
+00:14:12.482 --> 00:14:14.701
 The limits: ten values per user,
 
 209
-00:14:15.301 --> 00:14:19.383
+00:14:14.701 --> 00:14:18.783
 each unique in the tenant,
 with case-sensitive prefixes.
 
 210
-00:14:19.383 --> 00:14:24.632
+00:14:18.783 --> 00:14:24.032
 For cloud-only users, a Privileged
 Authentication Administrator or Graph writes it.
 
 211
-00:14:24.632 --> 00:14:29.935
+00:14:24.032 --> 00:14:29.335
 For synced users, only Entra Connect
 can, from altSecurityIdentities in AD,
 
 212
-00:14:29.935 --> 00:14:33.357
+00:14:29.335 --> 00:14:32.757
 and Microsoft doesn't
 document Cloud Sync for it.
 
 213
-00:14:33.357 --> 00:14:36.850
+00:14:32.757 --> 00:14:36.250
 Treat that AD write path
 like an access slot.
 

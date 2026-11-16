@@ -76,7 +76,7 @@ Connect-MgGraph -Environment Global -Scopes "NetworkAccess.ReadWrite.All","Polic
 | Piece | State |
 |---|---|
 | This guide | Draft, November 11, 2026 |
-| Narrated deck | Built, November 13, 2026: 16 narrated slides, about 16 minutes, in [`presentations/guide-global-secure-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/guide-global-secure-access); the video joins the Presentations page when it is exported |
+| Narrated deck | Built, November 13, 2026: 16 narrated slides, about 16 minutes, in [`presentations/guide-global-secure-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/guide-global-secure-access); the video is on the [Presentations](../../presentations/index.md#guide-global-secure-access) page, and each training module has its own |
 | Developer workbook with Lab 1 on fixtures and Lab 2 in a test tenant | Planned; there is no kit in `examples/` yet |
 | Training path | Draft, November 13, 2026: [Global Secure Access as the Identity-Aware Network](../../training/global-secure-access/index.md), six modules, each with a lab in a test tenant (the guide's own commands and Validate steps, not run by the authors) and a knowledge check |
 

@@ -209,7 +209,7 @@
  },
  {
   "slide": 17,
-  "title": "PIV and CAC: the certificate binding is an attribute",
+  "title": "PIV: the certificate binding is an attribute",
   "links": [
    {
     "text": "Set up CBA",

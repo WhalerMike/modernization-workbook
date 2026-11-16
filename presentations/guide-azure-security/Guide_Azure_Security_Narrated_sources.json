@@ -21,12 +21,8 @@
  },
  {
   "slide": 5,
-  "title": "GCC uses commercial Azure; Azure Government differs",
+  "title": "GCC uses commercial Azure: what to plan for",
   "links": [
-   {
-    "text": "Compare Azure Government and global Azure",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
-   },
    {
     "text": "Application Gateway WAF FAQ",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#application-gateway-waf-faq"

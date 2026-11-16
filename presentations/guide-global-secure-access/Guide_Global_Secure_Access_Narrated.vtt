@@ -109,1066 +109,1056 @@ edge enforces, and the logs prove it.
 Two facts shape everything after.
 
 24
-00:01:23.438 --> 00:01:28.717
-Learn's known limitations page says
-the service is available in G C C,
+00:01:23.438 --> 00:01:26.722
+Learn's known limitations
+page says the service
 
 25
-00:01:28.717 --> 00:01:33.713
-but isn't yet supported in G C C High,
-D O D, or other sovereign clouds.
+00:01:26.722 --> 00:01:29.513
+is available in G C C,
+for the whole product.
 
 26
-00:01:33.713 --> 00:01:37.202
+00:01:29.513 --> 00:01:33.001
 And Microsoft's Graph network
 access A P I's are in beta,
 
 27
-00:01:37.202 --> 00:01:41.802
+00:01:33.001 --> 00:01:37.601
 which Learn says is subject to change
 and not supported in production,
 
 28
-00:01:41.802 --> 00:01:45.926
+00:01:37.601 --> 00:01:41.725
 so the guide runs them by hand
 and keeps each result as evidence.
 
 29
-00:01:45.926 --> 00:01:51.136
+00:01:41.725 --> 00:01:46.936
 The twelve steps run in a set order, so
 the logs exist before anything is enforced,
 
 30
-00:01:51.136 --> 00:01:54.260
+00:01:46.936 --> 00:01:50.060
 and nothing blocks before its path exists.
 
 31
-00:01:58.010 --> 00:02:00.110
+00:01:53.810 --> 00:01:55.910
 Where does this sit in federal terms?
 
 32
-00:02:00.110 --> 00:02:05.097
+00:01:55.910 --> 00:02:00.897
 Tick three point oh is technology-neutral:
 it sets goals, not products.
 
 33
-00:02:05.097 --> 00:02:08.414
+00:02:00.897 --> 00:02:04.214
 CISA's Remote User Use Case
 has three security patterns,
 
 34
-00:02:08.414 --> 00:02:12.648
+00:02:04.214 --> 00:02:08.448
 and each has an option that runs through
 a security-as-a-service provider.
 
 35
-00:02:12.648 --> 00:02:16.568
+00:02:08.448 --> 00:02:12.368
 In the program's reading, Private
 Access is that option for the campus,
 
 36
-00:02:16.568 --> 00:02:21.314
+00:02:12.368 --> 00:02:17.114
 the Microsoft traffic profile with the
 compliant network check is the option for a
 
 37
-00:02:21.314 --> 00:02:25.440
+00:02:17.114 --> 00:02:21.240
 sanctioned cloud provider, and Internet
 Access is the option for the web,
 
 38
-00:02:25.440 --> 00:02:27.710
+00:02:21.240 --> 00:02:23.510
 which CISA calls the riskiest pattern.
 
 39
-00:02:27.710 --> 00:02:32.820
+00:02:23.510 --> 00:02:28.620
 For branches, remote networks get only
 the baseline profile and no Conditional
 
 40
-00:02:32.820 --> 00:02:37.698
+00:02:28.620 --> 00:02:33.498
 Access, so parity between a branch user
 and a client user is a design question.
 
 41
-00:02:37.698 --> 00:02:41.097
+00:02:33.498 --> 00:02:36.897
 The part a design most
 often loses is telemetry.
 
 42
-00:02:41.097 --> 00:02:45.953
+00:02:36.897 --> 00:02:41.753
 The use case says CISA's visibility
 must be preserved, so agree the path
 
 43
-00:02:45.953 --> 00:02:50.561
+00:02:41.753 --> 00:02:46.361
 with the agency's tick delegates before
 the V P N's web path is retired.
 
 44
-00:02:50.561 --> 00:02:54.443
+00:02:46.361 --> 00:02:50.243
 And none of this makes Global
 Secure Access a tick product:
 
 45
-00:02:54.443 --> 00:02:56.750
+00:02:50.243 --> 00:02:52.550
 CISA certifies no products.
 
 46
-00:03:00.500 --> 00:03:04.737
+00:02:56.300 --> 00:03:00.537
 Most agencies already hold a
 fed-ramp authorized S S E or V P N,
 
 47
-00:03:04.737 --> 00:03:10.012
+00:03:00.537 --> 00:03:05.812
 so the question is usually which functions
 to move, not which vendor to buy.
 
 48
-00:03:10.012 --> 00:03:15.385
+00:03:05.812 --> 00:03:11.185
 Global Secure Access decides policy
 in Entra Conditional Access, the same
 
 49
-00:03:15.385 --> 00:03:20.584
+00:03:11.185 --> 00:03:16.384
 engine as sign-in; a third party uses
 its own engine, usually fed by Entra I D.
 
 50
-00:03:20.584 --> 00:03:23.791
+00:03:16.384 --> 00:03:19.591
 Global Secure Access
 reaches G C C only today;
 
 51
-00:03:23.791 --> 00:03:28.037
+00:03:19.591 --> 00:03:23.837
 several third-party offerings
 hold fed-ramp High listings.
 
 52
-00:03:28.037 --> 00:03:32.334
+00:03:23.837 --> 00:03:28.134
 Three signals only Entra can produce:
 the compliant network check,
 
 53
-00:03:32.334 --> 00:03:36.162
+00:03:28.134 --> 00:03:31.962
 universal tenant restrictions,
 and source I P restoration.
 
 54
-00:03:36.162 --> 00:03:37.775
+00:03:31.962 --> 00:03:33.575
 Running both is supported.
 
 55
-00:03:37.775 --> 00:03:42.912
+00:03:33.575 --> 00:03:38.712
 Private apps in A W S, Google Cloud or
 Oracle Cloud Infrastructure are reached like
 
 56
-00:03:42.912 --> 00:03:47.596
+00:03:38.712 --> 00:03:43.396
 on-premises ones, through connectors
 with line of sight to the application,
 
 57
-00:03:47.596 --> 00:03:50.013
+00:03:43.396 --> 00:03:45.813
 one connector group per cloud network.
 
 58
-00:03:50.013 --> 00:03:53.810
+00:03:45.813 --> 00:03:49.610
 Learn has no procedure specific
 to any of those clouds.
 
 59
-00:03:57.560 --> 00:03:59.048
+00:03:53.360 --> 00:03:54.848
 Here are the twelve steps.
 
 60
-00:03:59.048 --> 00:04:02.603
+00:03:54.848 --> 00:03:58.403
 One: a decision record per
 function, with licenses,
 
 61
-00:04:02.603 --> 00:04:05.898
+00:03:58.403 --> 00:04:01.698
 a dated availability
 quote, and exit criteria.
 
 62
-00:04:05.898 --> 00:04:09.628
+00:04:01.698 --> 00:04:05.428
 Two: the reference architecture
 written down for this tenant,
 
 63
-00:04:09.628 --> 00:04:11.384
+00:04:05.428 --> 00:04:07.184
 with a configuration export.
 
 64
-00:04:11.384 --> 00:04:14.435
+00:04:07.184 --> 00:04:10.235
 Three: the client on every managed device.
 
 65
-00:04:14.435 --> 00:04:19.185
+00:04:10.235 --> 00:04:14.985
 Four: the Microsoft traffic profile,
 with source I P restoration.
 
 66
-00:04:19.185 --> 00:04:22.797
+00:04:14.985 --> 00:04:18.597
 Five: internet traffic,
 through security profiles.
 
 67
-00:04:22.797 --> 00:04:28.273
+00:04:18.597 --> 00:04:24.073
 Six: private applications, each with
 its own segments, group and policy.
 
 68
-00:04:28.273 --> 00:04:30.685
+00:04:24.073 --> 00:04:26.485
 Seven: the compliant network check.
 
 69
-00:04:30.685 --> 00:04:32.598
+00:04:26.485 --> 00:04:28.398
 Eight: tenant restrictions.
 
 70
-00:04:32.598 --> 00:04:35.110
+00:04:28.398 --> 00:04:30.910
 Nine: T L S inspection.
 
 71
-00:04:35.110 --> 00:04:37.185
+00:04:30.910 --> 00:04:32.985
 Ten: privileged protocols.
 
 72
-00:04:37.185 --> 00:04:41.123
+00:04:32.985 --> 00:04:36.923
 Eleven: coexistence and
 migration, ring by ring.
 
 73
-00:04:41.123 --> 00:04:43.684
+00:04:36.923 --> 00:04:39.484
 Twelve: telemetry and evidence.
 
 74
-00:04:43.684 --> 00:04:46.717
+00:04:39.484 --> 00:04:42.517
 They run in a different
 order: logging first,
 
 75
-00:04:46.717 --> 00:04:50.440
+00:04:42.517 --> 00:04:46.240
 and internet filtering
 and T L S inspection last.
 
 76
-00:04:54.190 --> 00:04:55.465
-What's available where?
+00:04:49.990 --> 00:04:52.178
+What's available in G C C?
 
 77
-00:04:55.465 --> 00:05:00.250
+00:04:52.178 --> 00:04:56.677
 Learn's statement covers the
-whole product: available in G C C,
+whole product: available in G C C.
 
 78
-00:05:00.250 --> 00:05:04.940
-not yet supported in G C C High,
-D O D, or other sovereign clouds.
-
-79
-00:05:04.940 --> 00:05:10.062
+00:04:56.677 --> 00:05:01.799
 No feature page narrows that, so the G
 C C column rests on that one sentence,
 
-80
-00:05:10.062 --> 00:05:14.415
+79
+00:05:01.799 --> 00:05:06.152
 and a preview feature's G C C
 availability is not yet specified.
 
-81
-00:05:14.415 --> 00:05:16.527
+80
+00:05:06.152 --> 00:05:08.264
 Licensing follows the profiles.
 
-82
-00:05:16.527 --> 00:05:21.852
+81
+00:05:08.264 --> 00:05:13.590
 The Microsoft traffic profile, and with
 it source I P restoration, the compliant
 
-83
-00:05:21.852 --> 00:05:25.241
+82
+00:05:13.590 --> 00:05:16.979
 network check and universal
 tenant restrictions,
 
-84
-00:05:25.241 --> 00:05:27.339
+83
+00:05:16.979 --> 00:05:19.077
 comes with Entra I D P one or P two.
 
-85
-00:05:27.339 --> 00:05:31.053
+84
+00:05:19.077 --> 00:05:22.790
 Internet Access and Private
 Access are separately licensed,
 
-86
-00:05:31.053 --> 00:05:32.728
+85
+00:05:22.790 --> 00:05:24.465
 or come with the Entra Suite.
 
-87
-00:05:32.728 --> 00:05:37.902
+86
+00:05:24.465 --> 00:05:29.640
 Remote networks need at least fifty P one
 and Internet Access licenses combined.
 
+87
+00:05:29.640 --> 00:05:33.196
+The Graph network access
+A P I is usable from
+
 88
-00:05:37.902 --> 00:05:42.693
-One conflict: Graph's settings pages
-list U S Government L four and L five,
+00:05:33.196 --> 00:05:36.752
+G C C on the worldwide
+Graph endpoint, in beta.
 
 89
-00:05:42.693 --> 00:05:45.616
-but the product page
-says not yet supported.
-
-90
-00:05:45.616 --> 00:05:47.634
-The guide follows the product page,
-
-91
-00:05:47.634 --> 00:05:51.115
-and the question goes to the
-agency's Microsoft account team.
-
-92
-00:05:51.115 --> 00:05:54.340
+00:05:36.752 --> 00:05:39.970
 Re-read the limitations
 page before each ring.
 
-93
-00:05:58.090 --> 00:06:01.140
+90
+00:05:43.720 --> 00:05:46.770
 The reference architecture
 has seven zones and planes.
 
-94
-00:06:01.140 --> 00:06:06.165
+91
+00:05:46.770 --> 00:05:51.795
 Managed Windows endpoints open a tunnel
 to the service edge after Entra sign-in.
 
-95
-00:06:06.165 --> 00:06:11.777
+92
+00:05:51.795 --> 00:05:57.407
 Branches send traffic over an I P sec
 tunnel, with no user identity on it.
 
-96
-00:06:11.777 --> 00:06:16.565
+93
+00:05:57.407 --> 00:06:02.195
 The control plane, Conditional Access,
 decides and never carries traffic.
 
-97
-00:06:16.565 --> 00:06:21.510
+94
+00:06:02.195 --> 00:06:07.140
 The policy plane holds the traffic
 forwarding profiles, security profiles,
 
-98
-00:06:21.510 --> 00:06:25.278
+95
+00:06:07.140 --> 00:06:10.908
 T L S policies and signaling,
 and configures the data plane.
 
-99
-00:06:25.278 --> 00:06:29.866
+96
+00:06:10.908 --> 00:06:15.496
 The data plane is Microsoft's service
 edge in commercial Azure regions,
 
-100
-00:06:29.866 --> 00:06:32.666
+97
+00:06:15.496 --> 00:06:18.296
 and it holds the agency's
 traffic in transit.
 
-101
-00:06:32.666 --> 00:06:37.263
+98
+00:06:18.296 --> 00:06:22.893
 The agency's private network holds
 connector groups, private D N S,
 
-102
-00:06:37.263 --> 00:06:42.202
+99
+00:06:22.893 --> 00:06:27.832
 applications and domain controllers
 with sensors, all outbound-only.
 
-103
-00:06:42.202 --> 00:06:46.303
+100
+00:06:27.832 --> 00:06:31.933
 And the evidence zone is the Log
 Analytics workspace and Sentinel.
 
-104
-00:06:46.303 --> 00:06:47.940
+101
+00:06:31.933 --> 00:06:33.570
 D N S stays split.
 
-105
-00:06:47.940 --> 00:06:51.495
+102
+00:06:33.570 --> 00:06:37.125
 The client doesn't support
 D N S over H T T P S,
 
-106
-00:06:51.495 --> 00:06:56.880
+103
+00:06:37.125 --> 00:06:42.510
 so secure D N S in browsers is
 turned off on managed devices.
 
-107
-00:07:00.630 --> 00:07:01.468
+104
+00:06:46.260 --> 00:06:47.098
 Now, who.
 
-108
-00:07:01.468 --> 00:07:06.962
+105
+00:06:47.098 --> 00:06:52.592
 Microsoft's operations guide gives a RACI
 with a service owner, network security
 
-109
-00:07:06.962 --> 00:07:12.129
+106
+00:06:52.592 --> 00:06:57.759
 engineer, identity engineer, S O C analyst,
 help desk and platform operations.
 
-110
-00:07:12.129 --> 00:07:15.666
+107
+00:06:57.759 --> 00:07:01.296
 The guide maps those to six
 roles and adds the assessor,
 
-111
-00:07:15.666 --> 00:07:17.630
+108
+00:07:01.296 --> 00:07:03.260
 who is independent of the work.
 
-112
-00:07:17.630 --> 00:07:21.398
+109
+00:07:03.260 --> 00:07:07.028
 The policy owner, the service
 owner with the I S S O consulted,
 
-113
-00:07:21.398 --> 00:07:26.703
+110
+00:07:07.028 --> 00:07:12.333
 is accountable for the decision record,
 the architecture, the traffic profiles, the
 
-114
-00:07:26.703 --> 00:07:31.855
+111
+00:07:12.333 --> 00:07:17.485
 Conditional Access policies and their
 exclusions, and the T L S inspection scope.
 
-115
-00:07:31.855 --> 00:07:35.486
+112
+00:07:17.485 --> 00:07:21.116
 The platform owner, the network
 security and identity engineers,
 
-116
-00:07:35.486 --> 00:07:37.368
+113
+00:07:21.116 --> 00:07:22.998
 is responsible for building them.
 
-117
-00:07:37.368 --> 00:07:42.556
+114
+00:07:22.998 --> 00:07:28.186
 Operators run the client rings, the
 connectors and the domain controller sensors.
 
-118
-00:07:42.556 --> 00:07:46.893
+115
+00:07:28.186 --> 00:07:32.523
 The security monitor owns alerts,
 log freshness and the metrics.
 
-119
-00:07:46.893 --> 00:07:49.642
+116
+00:07:32.523 --> 00:07:35.272
 The help desk takes tier-one user issues.
 
-120
-00:07:49.642 --> 00:07:54.297
+117
+00:07:35.272 --> 00:07:39.927
 The assessor assesses the evidence and
 recommends a finding ready for closure,
 
-121
-00:07:54.297 --> 00:07:56.554
+118
+00:07:39.927 --> 00:07:42.184
 and the authorizing official decides.
 
-122
-00:07:56.554 --> 00:08:00.140
+119
+00:07:42.184 --> 00:07:45.770
 Learn's advice is at least
 two people for every role.
 
-123
-00:08:03.890 --> 00:08:04.715
+120
+00:07:49.520 --> 00:07:50.345
 Now how.
 
-124
-00:08:04.715 --> 00:08:10.603
+121
+00:07:50.345 --> 00:07:56.233
 Step one decides, per function, because
 the gates differ: Microsoft traffic,
 
-125
-00:08:10.603 --> 00:08:14.402
+122
+00:07:56.233 --> 00:08:00.032
 internet, private and
 branch can each be adopted,
 
-126
-00:08:14.402 --> 00:08:18.865
+123
+00:08:00.032 --> 00:08:04.495
 kept on the current V P N or S S
 E, run side by side, or deferred.
 
-127
-00:08:18.865 --> 00:08:22.327
+124
+00:08:04.495 --> 00:08:07.957
 Read the tenant's licenses
 and onboarding state first.
 
-128
-00:08:22.327 --> 00:08:27.787
+125
+00:08:07.957 --> 00:08:13.417
 The decision record, the guide's second
 artifact, holds a dated availability quote,
 
-129
-00:08:27.787 --> 00:08:32.603
+126
+00:08:13.417 --> 00:08:18.233
 the license count, compensating
 controls, exit criteria and an approver.
 
-130
-00:08:32.603 --> 00:08:38.432
-In G C C High or D O D, don't build: record
-defer, and keep a compensating path,
+127
+00:08:18.233 --> 00:08:22.254
+When a function is kept on the
+current service or deferred,
 
-131
-00:08:38.432 --> 00:08:43.960
-such as a fed-ramp authorized S S E,
+128
+00:08:22.254 --> 00:08:27.282
+the record names a compensating path,
+such as a fed-ramp High S S E offering,
+
+129
+00:08:27.282 --> 00:08:32.394
 per-application V P N access lists,
-
-132
-00:08:43.960 --> 00:08:47.277
 and named-location Conditional Access.
 
-133
-00:08:47.277 --> 00:08:50.772
+130
+00:08:32.394 --> 00:08:35.889
 Step two: Learn's operations
 guidance is to back up the
 
-134
-00:08:50.772 --> 00:08:55.378
+131
+00:08:35.889 --> 00:08:40.495
 configuration through Graph exports
 weekly and before every change.
 
-135
-00:08:55.378 --> 00:08:57.108
+132
+00:08:40.495 --> 00:08:42.225
 The guide hashes that export,
 
-136
-00:08:57.108 --> 00:09:01.280
+133
+00:08:42.225 --> 00:08:46.410
 and it becomes the configuration
 evidence for every later step.
 
-137
-00:09:05.030 --> 00:09:08.380
+134
+00:08:50.160 --> 00:08:53.510
 Step three puts the client
 on every managed device.
 
-138
-00:09:08.380 --> 00:09:14.339
+135
+00:08:53.510 --> 00:08:59.469
 It runs on Windows ten L T S C 2021 or
 later and Windows eleven, on devices joined,
 
-139
-00:09:14.339 --> 00:09:17.598
+136
+00:08:59.469 --> 00:09:02.728
 hybrid joined or registered in the tenant;
 
-140
-00:09:17.598 --> 00:09:21.230
+137
+00:09:02.728 --> 00:09:06.360
 registered devices carry
 only Private Access.
 
-141
-00:09:21.230 --> 00:09:24.725
+138
+00:09:06.360 --> 00:09:09.855
 It can't go on a machine that
 hosts virtual machines with a
 
-142
-00:09:24.725 --> 00:09:28.368
+139
+00:09:09.855 --> 00:09:13.498
 Hyper-V external switch, and it
 tunnels I P version four only.
 
-143
-00:09:28.368 --> 00:09:31.737
+140
+00:09:13.498 --> 00:09:16.867
 Package Learn's installation
 script with the client,
 
-144
-00:09:31.737 --> 00:09:35.260
+141
+00:09:16.867 --> 00:09:20.390
 and create the Win32 app in
 Intune with Learn's commands,
 
-145
-00:09:35.260 --> 00:09:39.855
+142
+00:09:20.390 --> 00:09:24.985
 detection rule and return codes,
 assigned as required to the pilot group.
 
-146
-00:09:39.855 --> 00:09:43.906
+143
+00:09:24.985 --> 00:09:29.036
 Because the client doesn't
 support secure D N S,
 
-147
-00:09:43.906 --> 00:09:47.530
+144
+00:09:29.036 --> 00:09:32.660
 turn off D N S over H T
 T P S in Edge and Chrome.
 
-148
-00:09:47.530 --> 00:09:53.081
+145
+00:09:32.660 --> 00:09:38.211
 Learn's advice is to let users run unrestricted
 first; from ring two, a remediation
 
-149
-00:09:53.081 --> 00:09:58.218
+146
+00:09:38.211 --> 00:09:43.348
 hides the disable and sign-out buttons
 and restricts non-privileged users.
 
-150
-00:09:58.218 --> 00:10:01.766
+147
+00:09:43.348 --> 00:09:46.896
 Then count: the device usage
 summary's active devices,
 
-151
-00:10:01.766 --> 00:10:07.130
+148
+00:09:46.896 --> 00:09:52.260
 divided by Intune's in-scope Windows
 devices, is the client coverage metric.
 
-152
-00:10:10.880 --> 00:10:13.367
+149
+00:09:56.010 --> 00:09:58.497
 Steps four and seven belong together.
 
-153
-00:10:13.367 --> 00:10:17.200
+150
+00:09:58.497 --> 00:10:02.330
 The Microsoft traffic profile
 acquires Microsoft three
 
-154
-00:10:17.200 --> 00:10:20.793
+151
+00:10:02.330 --> 00:10:05.923
 sixty-five and Entra traffic,
 and only that profile can.
 
-155
-00:10:20.793 --> 00:10:25.196
+152
+00:10:05.923 --> 00:10:10.326
 Enable it, assign the pilot group in
 the portal, and turn on signaling,
 
-156
-00:10:25.196 --> 00:10:29.993
+153
+00:10:10.326 --> 00:10:15.123
 which carries source I P restoration,
 so Entra sees the user's real address.
 
-157
-00:10:29.993 --> 00:10:35.593
+154
+00:10:15.123 --> 00:10:20.723
 Learn's test: a SharePoint sign-in shows
 the same I P with the client on or off.
 
-158
-00:10:35.593 --> 00:10:39.467
+155
+00:10:20.723 --> 00:10:24.597
 The compliant network check then
 passes only for users who come
 
-159
-00:10:39.467 --> 00:10:43.780
+156
+00:10:24.597 --> 00:10:28.910
 through this tenant's Global Secure
 Access, and denies a replayed token.
 
-160
-00:10:43.780 --> 00:10:48.933
+157
+00:10:28.910 --> 00:10:34.063
 Learn's example policy goes straight to on;
 the guide runs it in report-only for ten
 
-161
-00:10:48.933 --> 00:10:54.317
+158
+00:10:34.063 --> 00:10:39.447
 business days, excluding the Intune enrollment
 apps and the emergency access group.
 
-162
-00:10:54.317 --> 00:10:56.092
+159
+00:10:39.447 --> 00:10:41.222
 Know the failure modes first.
 
-163
-00:10:56.092 --> 00:10:58.981
+160
+00:10:41.222 --> 00:10:44.111
 A disabled client is
 blocked at the next sign-in.
 
-164
-00:10:58.981 --> 00:11:04.080
+161
+00:10:44.111 --> 00:10:49.210
 In an outage, Microsoft's break-glass
 scripts switch the policies to report-only.
 
-165
-00:11:04.080 --> 00:11:07.618
+162
+00:10:49.210 --> 00:10:52.748
 Turning signaling off while
 policies are on blocks users.
 
-166
-00:11:07.618 --> 00:11:10.890
+163
+00:10:52.748 --> 00:10:56.020
 And the check doesn't apply
 to Private Access apps.
 
-167
-00:11:14.640 --> 00:11:15.615
+164
+00:10:59.770 --> 00:11:00.745
 Step five.
 
-168
-00:11:15.615 --> 00:11:20.210
+165
+00:11:00.745 --> 00:11:05.340
 Internet Access groups web content
 filtering, threat intelligence,
 
-169
-00:11:20.210 --> 00:11:24.079
+166
+00:11:05.340 --> 00:11:09.209
 T L S inspection and file
 policies into security profiles,
 
-170
-00:11:24.079 --> 00:11:27.465
+167
+00:11:09.209 --> 00:11:12.595
 and Conditional Access
 assigns a profile to users.
 
-171
-00:11:27.465 --> 00:11:29.955
+168
+00:11:12.595 --> 00:11:15.085
 Learn's Graph tutorial is the procedure:
 
-172
-00:11:29.955 --> 00:11:35.085
+169
+00:11:15.085 --> 00:11:20.215
 a filtering policy that blocks the categories
 the agency's acceptable-use policy
 
-173
-00:11:35.085 --> 00:11:38.027
+170
+00:11:20.215 --> 00:11:23.157
 names, a security profile,
 the link between them,
 
-174
-00:11:38.027 --> 00:11:42.252
+171
+00:11:23.157 --> 00:11:27.382
 and a Conditional Access policy that
 assigns it, scoped to the pilot.
 
-175
-00:11:42.252 --> 00:11:43.631
+172
+00:11:27.382 --> 00:11:28.761
 Enable both profiles,
 
-176
-00:11:43.631 --> 00:11:47.766
+173
+00:11:28.761 --> 00:11:32.896
 because the internet profile
 doesn't include Microsoft traffic.
 
-177
-00:11:47.766 --> 00:11:52.015
+174
+00:11:32.896 --> 00:11:37.145
 Put threat intelligence in the baseline
 profile so it covers everyone.
 
-178
-00:11:52.015 --> 00:11:55.759
+175
+00:11:37.145 --> 00:11:40.889
 Learn's limits: H T T P and
 H T T P S on ports eighty
 
-179
-00:11:55.759 --> 00:11:59.704
+176
+00:11:40.889 --> 00:11:44.834
 and four forty-three, no I
 P version six and no U D P.
 
-180
-00:11:59.704 --> 00:12:02.335
+177
+00:11:44.834 --> 00:11:47.465
 Quick isn't forwarded end to end,
 
-181
-00:12:02.335 --> 00:12:08.102
+178
+00:11:47.465 --> 00:11:53.232
 so the guide blocks U D P four
 forty-three with a Windows firewall rule.
 
-182
-00:12:08.102 --> 00:12:12.440
+179
+00:11:53.232 --> 00:11:57.570
 And every bypass gets an
 owner, a reason and an expiry.
 
-183
-00:12:16.190 --> 00:12:22.265
+180
+00:12:01.320 --> 00:12:07.395
 Steps six and ten replace the V P N's
 address pool with one path per application.
 
-184
-00:12:22.265 --> 00:12:27.148
+181
+00:12:07.395 --> 00:12:12.278
 Learn's Graph tutorial creates each
 application from the custom template,
 
-185
-00:12:27.148 --> 00:12:31.242
+182
+00:12:12.278 --> 00:12:16.372
 binds it to a connector group, and
 adds only the segments it uses:
 
-186
-00:12:31.242 --> 00:12:33.290
+183
+00:12:16.372 --> 00:12:18.420
 one host, its ports, its protocol.
 
-187
-00:12:33.290 --> 00:12:35.372
+184
+00:12:18.420 --> 00:12:20.502
 Assign a group, not individuals,
 
-188
-00:12:35.372 --> 00:12:39.215
+185
+00:12:20.502 --> 00:12:24.345
 and put Conditional Access on
 the app, in report-only first.
 
-189
-00:12:39.215 --> 00:12:43.665
+186
+00:12:24.345 --> 00:12:28.795
 Quick Access is the bridge: application
 discovery shows what's used,
 
-190
-00:12:43.665 --> 00:12:47.877
+187
+00:12:28.795 --> 00:12:33.007
 and each piece moves into its own
 app until Quick Access is empty.
 
-191
-00:12:47.877 --> 00:12:51.578
+188
+00:12:33.007 --> 00:12:36.708
 Step ten does the same for the
 paths an attacker wants most.
 
-192
-00:12:51.578 --> 00:12:55.915
+189
+00:12:36.708 --> 00:12:41.045
 Administrative hosts get their own apps
 on R D P, and their policy requires
 
-193
-00:12:55.915 --> 00:13:00.253
+190
+00:12:41.045 --> 00:12:45.383
 the phishing-resistant authentication
 strength and a compliant device.
 
-194
-00:13:00.253 --> 00:13:03.178
+191
+00:12:45.383 --> 00:12:48.308
 Domain controllers, for
 as long as they remain,
 
-195
-00:13:03.178 --> 00:13:06.952
+192
+00:12:48.308 --> 00:12:52.082
 get the Private Access sensor,
 which installs in audit mode.
 
-196
-00:13:06.952 --> 00:13:11.933
+193
+00:12:52.082 --> 00:12:57.063
 Learn's advice: protect application S
 P N's first and the domain controller's
 
-197
-00:13:11.933 --> 00:13:16.700
+194
+00:12:57.063 --> 00:13:01.830
 own later, to avoid locking out
 administrators, and test with klist.
 
-198
-00:13:20.450 --> 00:13:21.988
+195
+00:13:05.580 --> 00:13:07.118
 Steps eight and nine.
 
-199
-00:13:21.988 --> 00:13:27.333
+196
+00:13:07.118 --> 00:13:12.463
 Universal tenant restrictions apply the
 tenant restrictions version two policy to
 
-200
-00:13:27.333 --> 00:13:31.174
+197
+00:13:12.463 --> 00:13:16.304
 devices with the client, or on a
 remote network, without a proxy,
 
-201
-00:13:31.174 --> 00:13:34.487
+198
+00:13:16.304 --> 00:13:19.617
 so users can sign in only to
 tenants the policy allows.
 
-202
-00:13:34.487 --> 00:13:38.151
+199
+00:13:19.617 --> 00:13:23.281
 The policy comes first,
 default block, then tagging.
 
-203
-00:13:38.151 --> 00:13:41.485
+200
+00:13:23.281 --> 00:13:26.615
 It reaches sign-in and the
 Microsoft Graph data plane,
 
-204
-00:13:41.485 --> 00:13:44.137
+201
+00:13:26.615 --> 00:13:29.267
 not the SharePoint or Exchange data plane.
 
-205
-00:13:44.137 --> 00:13:46.690
+202
+00:13:29.267 --> 00:13:31.820
 Learn's four-case test checks a member,
 
-206
-00:13:46.690 --> 00:13:49.901
+203
+00:13:31.820 --> 00:13:35.031
 an allowed partner, a
 blocked tenant, and a guest.
 
-207
-00:13:49.901 --> 00:13:55.400
+204
+00:13:35.031 --> 00:13:40.530
 T L S inspection is the step most likely
 to break applications, so it comes last.
 
-208
-00:13:55.400 --> 00:14:00.207
+205
+00:13:40.530 --> 00:13:45.337
 Learn suggests a dedicated certificate
 authority, not your production P K I.
 
-209
-00:14:00.207 --> 00:14:05.700
+206
+00:13:45.337 --> 00:13:50.830
 Deploy trust before activation, because an
 expired certificate stops all inspection.
 
-210
-00:14:05.700 --> 00:14:09.622
+207
+00:13:50.830 --> 00:13:54.752
 The privacy officer approves
 the scope, users are told first,
 
-211
-00:14:09.622 --> 00:14:13.740
+208
+00:13:54.752 --> 00:13:58.870
 and a failure rate above one
 percent is a systemic problem.
 
-212
-00:14:17.490 --> 00:14:20.178
+209
+00:14:02.620 --> 00:14:05.308
 Steps eleven and twelve
 make it a migration.
 
-213
-00:14:20.178 --> 00:14:22.565
+210
+00:14:05.308 --> 00:14:07.695
 Ring zero is the implementing team.
 
-214
-00:14:22.565 --> 00:14:27.290
+211
+00:14:07.695 --> 00:14:12.420
 Ring one is a pilot of fewer than
 twenty users, for ten business days.
 
-215
-00:14:27.290 --> 00:14:31.740
+212
+00:14:12.420 --> 00:14:16.870
 Ring two is about ten percent,
 including one branch, for twenty.
 
-216
-00:14:31.740 --> 00:14:34.498
+213
+00:14:16.870 --> 00:14:19.628
 Ring three is everyone, in waves,
 
-217
-00:14:34.498 --> 00:14:38.953
+214
+00:14:19.628 --> 00:14:24.083
 and a V P N route is removed
 only after its wave holds.
 
-218
-00:14:38.953 --> 00:14:42.630
+215
+00:14:24.083 --> 00:14:27.760
 The emergency access group is
 excluded from every policy,
 
-219
-00:14:42.630 --> 00:14:44.852
+216
+00:14:27.760 --> 00:14:29.982
 and tested at the start of each ring.
 
-220
-00:14:44.852 --> 00:14:48.831
+217
+00:14:29.982 --> 00:14:33.961
 Rolling back runs newest first:
 policies to report-only,
 
-221
-00:14:48.831 --> 00:14:53.673
+218
+00:14:33.961 --> 00:14:38.803
 security profile links removed, the
 wave's group out of the profiles,
 
-222
-00:14:53.673 --> 00:14:57.478
+219
+00:14:38.803 --> 00:14:42.608
 the V P N route restored, and
 signaling turned off last.
 
-223
-00:14:57.478 --> 00:14:59.666
+220
+00:14:42.608 --> 00:14:44.796
 Telemetry comes before any of it.
 
-224
-00:14:59.666 --> 00:15:04.609
+221
+00:14:44.796 --> 00:14:49.739
 Learn keeps traffic logs in the service
 for thirty days, so a diagnostic setting
 
-225
-00:15:04.609 --> 00:15:07.980
+222
+00:14:49.739 --> 00:14:53.110
 exports the four network
 categories to the workspace,
 
-226
-00:15:07.980 --> 00:15:10.003
+223
+00:14:53.110 --> 00:14:55.133
 and a freshness query runs daily.
 
-227
-00:15:10.003 --> 00:15:13.721
+224
+00:14:55.133 --> 00:14:58.851
 A sudden drop in traffic
 volume is an alert in itself:
 
-228
-00:15:13.721 --> 00:15:17.980
+225
+00:14:58.851 --> 00:15:03.110
 it covers offboarding, a
 disabled profile, or an outage.
 
-229
-00:15:21.730 --> 00:15:23.593
+226
+00:15:06.860 --> 00:15:08.723
 To close, the dangers.
 
-230
-00:15:23.593 --> 00:15:28.868
-Building in G C C High or D O D,
-where the service isn't yet supported.
+227
+00:15:08.723 --> 00:15:11.757
+Bypass and allow-list
+entries without an expiry,
 
-231
-00:15:28.868 --> 00:15:33.293
+228
+00:15:11.757 --> 00:15:14.411
+which leave permanent holes in filtering.
+
+229
+00:15:14.411 --> 00:15:18.835
 Enforcing the compliant network before
 the client is everywhere in scope.
 
-232
-00:15:33.293 --> 00:15:36.943
+230
+00:15:18.835 --> 00:15:22.485
 Catching the emergency access
 accounts in a block policy.
 
-233
-00:15:36.943 --> 00:15:39.789
+231
+00:15:22.485 --> 00:15:25.332
 Leaving Quick Access
 as a V P N-wide range,
 
-234
-00:15:39.789 --> 00:15:44.017
+232
+00:15:25.332 --> 00:15:29.560
 which is the old lateral movement
 exposure under a new name.
 
-235
-00:15:44.017 --> 00:15:49.280
+233
+00:15:29.560 --> 00:15:34.823
 Issuing the T L S inspection certificate
 from the authentication P K I.
 
-236
-00:15:49.280 --> 00:15:54.055
+234
+00:15:34.823 --> 00:15:39.597
 And retiring the V P N's web path
 before CISA telemetry is agreed.
 
-237
-00:15:54.055 --> 00:15:55.892
+235
+00:15:39.597 --> 00:15:41.435
 Each has its guard in the steps.
 
-238
-00:15:55.892 --> 00:15:58.776
+236
+00:15:41.435 --> 00:15:44.542
 The guide is plain about
 what it couldn't verify:
 
-239
-00:15:58.776 --> 00:16:01.957
-government-cloud availability
-feature by feature,
+237
+00:15:44.542 --> 00:15:47.011
+G C C availability feature by feature,
 
-240
-00:16:01.957 --> 00:16:05.137
+238
+00:15:47.011 --> 00:15:50.436
 assigning users to a traffic
 profile through Graph,
 
-241
-00:16:05.137 --> 00:16:10.092
+239
+00:15:50.436 --> 00:15:55.773
 whether report-only policies apply security
 profiles, and the T L S status values.
 
-242
-00:16:10.092 --> 00:16:11.793
+240
+00:15:55.773 --> 00:15:57.472
 Nothing was run in a tenant.
 
-243
-00:16:11.793 --> 00:16:16.869
+241
+00:15:57.472 --> 00:16:02.550
 To go further, read Network and Transport,
 chapter five; the Conditional Access
 
-244
-00:16:16.869 --> 00:16:18.977
+242
+00:16:02.550 --> 00:16:04.658
 library in Access and Privilege;
 
-245
-00:16:18.977 --> 00:16:22.492
+243
+00:16:04.658 --> 00:16:08.173
 and Security Operations and
 Telemetry, chapter three.
 
-246
-00:16:22.492 --> 00:16:23.310
+244
+00:16:08.173 --> 00:16:08.990
 Thank you.

@@ -47,20 +47,6 @@
  },
  {
   "slide": 8,
-  "title": "AWS GovCloud (US) beside the commercial Regions",
-  "links": [
-   {
-    "text": "Book 08, Ch 07",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
-   },
-   {
-    "text": "Book 08, Ch 07",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
-   }
-  ]
- },
- {
-  "slide": 9,
   "title": "Azure: the DNS Private Resolver",
   "links": [
    {
@@ -78,7 +64,7 @@
   ]
  },
  {
-  "slide": 10,
+  "slide": 9,
   "title": "Azure: DNS resolver policy, logging and DNSSEC",
   "links": [
    {
@@ -92,7 +78,7 @@
   ]
  },
  {
-  "slide": 11,
+  "slide": 10,
   "title": "Oracle Cloud: how the VCN resolver answers",
   "links": [
    {
@@ -106,21 +92,17 @@
   ]
  },
  {
-  "slide": 13,
+  "slide": 12,
   "title": "Who authorizes it: AWS and Azure FedRAMP scope",
   "links": [
    {
     "text": "FedRAMP Marketplace products.json",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace"
-   },
-   {
-    "text": "Azure Retail Prices API",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-retail-prices-api"
    }
   ]
  },
  {
-  "slide": 14,
+  "slide": 13,
   "title": "Who authorizes it: Oracle US Government Cloud",
   "links": [
    {
@@ -134,7 +116,7 @@
   ]
  },
  {
-  "slide": 15,
+  "slide": 14,
   "title": "How the three resolvers meet on-premises DNS",
   "links": [
    {
@@ -144,7 +126,7 @@
   ]
  },
  {
-  "slide": 16,
+  "slide": 15,
   "title": "How Protective DNS, policy and logs reach each cloud",
   "links": [
    {
@@ -158,7 +140,7 @@
   ]
  },
  {
-  "slide": 17,
+  "slide": 16,
   "title": "What to confirm, and what Part 2 covers",
   "links": [
    {

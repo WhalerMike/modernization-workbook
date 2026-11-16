@@ -119,19 +119,19 @@
    "RHEL on AWS under Ansible: one owner per setting"
   ],
   [
-   759,
+   757,
    "What the overview simplified"
   ],
   [
-   819,
+   818,
    "PIV binding: certificateUserIds values and limits"
   ],
   [
-   880,
+   878,
    "Affinity, the binding's writer, and the open pilot"
   ],
   [
-   948,
+   946,
    "Decisions, owners, and on to Part 3"
   ]
  ],
@@ -353,83 +353,87 @@
    "What Azure Arc covers"
   ],
   [
-   320,
+   312,
    "Beyond users: Azure Arc servers, through Resource Manager"
   ],
   [
-   360,
+   352,
    "Devices neither covers: the strategy"
   ],
   [
-   405,
+   397,
    "Module 2: The non-person track and PIV"
   ],
   [
-   428,
+   420,
    "Non-person track: service accounts, MSAs and gMSAs"
   ],
   [
-   473,
+   466,
    "Non-person track: workload identities and AI agents"
   ],
   [
-   521,
+   513,
+   "Non-person identities: where they live, attributes or tags"
+  ],
+  [
+   556,
    "Beyond users: service principals and custom attributes"
   ],
   [
-   564,
+   596,
    "The object-type crosswalk: stores, writers, consumers"
   ],
   [
-   603,
-   "PIV and CAC: the certificate binding is an attribute"
+   635,
+   "PIV: the certificate binding is an attribute"
   ],
   [
-   643,
+   674,
    "certificateUserIds: who writes it, and the open pilot"
   ],
   [
-   689,
+   693,
    "Module 3: Running the migration"
   ],
   [
-   707,
+   731,
    "Worked example: one analyst, every mechanism"
   ],
   [
-   745,
+   767,
    "The mover event: one personnel action, no ticket"
   ],
   [
-   781,
+   807,
    "Stage 7: cut over in phases, wave by wave"
   ],
   [
-   822,
+   846,
    "Stage 8: detect drift and fix it at the source"
   ],
   [
-   861,
+   886,
    "Limits: administrative units"
   ],
   [
-   900,
+   924,
    "Lifecycle Workflows: the pieces and the limits"
   ],
   [
-   942,
+   970,
    "Lifecycle Workflows at our scale: what could break"
   ],
   [
-   988,
+   1012,
    "What still needs AD during hybrid"
   ],
   [
-   1030,
+   1052,
    "The checklist, stage by stage"
   ],
   [
-   1070,
+   1097,
    "Decisions, owners, and where to start"
   ]
  ],
@@ -2511,35 +2515,35 @@
    "Before you buy: check the evidence, not the brochure"
   ],
   [
-   421,
+   420,
    "Product evidence status, as of October 22, 2026"
   ],
   [
-   473,
+   472,
    "Divisions get a fenced scope; everything else is denied"
   ],
   [
-   525,
+   524,
    "Overlapping space, views and tags keep divisions apart"
   ],
   [
-   575,
+   574,
    "Approvals work only if nothing goes around them"
   ],
   [
-   625,
+   623,
    "Four delegation patterns, four sets of trade-offs"
   ],
   [
-   672,
+   671,
    "Worked example: four divisions, one governed platform"
   ],
   [
-   721,
+   719,
    "Who decides, under Book 08's responsibility matrix"
   ],
   [
-   771,
+   770,
    "Decisions to make, and the next steps"
   ]
  ],
@@ -9045,7 +9049,7 @@
    "Module 2: Ansible Automation Platform in a federal setting"
   ],
   [
-   453,
+   452,
    "Versions, and authorization status as published"
   ],
   [
@@ -9053,51 +9057,51 @@
    "FIPS mode and baseline content: what's published"
   ],
   [
-   554,
+   553,
    "Where the controller can run"
   ],
   [
-   597,
+   596,
    "Sign-in, logging and content: the controls to set"
   ],
   [
-   643,
+   642,
    "The controller is a non-person identity"
   ],
   [
-   684,
+   683,
    "Module 3: Evidence and dangers"
   ],
   [
-   707,
+   706,
    "Evidence for CM-2, CM-3, CM-6, CM-7 and CM-8"
   ],
   [
-   748,
+   747,
    "Audit, privilege, supply chain, and the evidence store"
   ],
   [
-   784,
+   783,
    "Dangers: blast radius, inventory drift, credential sprawl"
   ],
   [
-   830,
+   829,
    "Dangers: two tools, Galaxy content, root and idempotence"
   ],
   [
-   873,
+   872,
    "Module 4: Adoption and the example playbooks"
   ],
   [
-   897,
+   896,
    "A phased path: read-only first, enforcement later"
   ],
   [
-   940,
+   939,
    "The CMDB-driven inventory: groups from attributes"
   ],
   [
-   980,
+   979,
    "Four example playbooks, and what each one proves"
   ],
   [
@@ -9105,11 +9109,11 @@
    "How the examples are tested, and what they don't prove"
   ],
   [
-   1061,
+   1060,
    "The adoption checklist, area by area"
   ],
   [
-   1097,
+   1096,
    "Decisions, owners, and where to start"
   ]
  ],
@@ -9132,54 +9136,54 @@
   ],
   [
    243,
-   "GCC uses commercial Azure; Azure Government differs"
+   "GCC uses commercial Azure: what to plan for"
   ],
   [
-   304,
+   303,
    "The same controls on AWS, Google Cloud and Oracle"
   ],
   [
-   369,
+   367,
    "Eligible roles, named owners: who does what"
   ],
   [
-   425,
+   424,
    "Steps 1 and 2: baseline in audit, then inventory"
   ],
   [
-   490,
+   489,
    "Step 3: DDoS protection on every public IP"
   ],
   [
-   554,
+   553,
    "Step 4: the WAF, from detection to prevention"
   ],
   [
-   619,
+   614,
    "Step 5: an origin nothing can reach around the edge"
   ],
   [
-   682,
+   677,
    "Step 6: egress through Azure Firewall, then deny"
   ],
   [
-   746,
+   742,
    "Step 7: Private Link works only if DNS does"
   ],
   [
-   806,
+   797,
    "Step 8: vaults behind RBAC, with purge protection"
   ],
   [
-   867,
+   858,
    "Step 9: policy holds it; exemptions expire"
   ],
   [
-   928,
+   919,
    "Step 10: owners, cadence, metrics and requirements"
   ],
   [
-   990,
+   981,
    "Dangers, open questions and what comes next"
   ]
  ],
@@ -9263,55 +9267,55 @@
    "Two boundaries, one control plane per setting"
   ],
   [
-   177,
-   "Government clouds: what's there and what Learn doesn't say"
+   174,
+   "GCC: what's there and what Learn doesn't say"
   ],
   [
-   239,
+   232,
    "The ten gates on one page"
   ],
   [
-   307,
+   300,
    "Who does what: roles through PIM and the RACI"
   ],
   [
-   374,
+   367,
    "Gate 1: activate the roles, then read in the right cloud"
   ],
   [
-   434,
+   425,
    "Gate 2: prove the sensor is on and healthy everywhere"
   ],
   [
-   497,
+   487,
    "Gate 3: prevention goes through audit before it blocks"
   ],
   [
-   557,
+   547,
    "Gate 4: Attack Surface Reduction: audit, warn, block"
   ],
   [
-   620,
+   610,
    "Gate 5: exposure management without Exposure Management"
   ],
   [
-   683,
+   673,
    "Gate 6: one incident queue and a severity table"
   ],
   [
-   749,
+   739,
    "Gate 7: detections as code, tested before they're enabled"
   ],
   [
-   811,
+   803,
    "Gates 8 and 9: correlate the signals, bound the automation"
   ],
   [
-   878,
+   871,
    "Gate 10: measure protected coverage, not settings"
   ],
   [
-   942,
+   935,
    "Dangers, open questions and where to go next"
   ]
  ],
@@ -9415,59 +9419,59 @@
    "Why this matters: a VPN proves only that a device arrived"
   ],
   [
-   117,
+   113,
    "TIC 3.0: one way to build three remote-user options"
   ],
   [
-   180,
+   176,
    "Beside a third-party SSE, and across clouds"
   ],
   [
-   237,
+   233,
    "Twelve steps, run so the logs come first"
   ],
   [
-   294,
-   "Government cloud and licensing, feature by feature"
+   289,
+   "GCC and licensing, feature by feature"
   ],
   [
-   358,
+   343,
    "The reference architecture: planes and boundaries"
   ],
   [
-   420,
+   406,
    "Who does what: the RACI and the closure decision"
   ],
   [
-   483,
+   469,
    "Steps 1 and 2: decide per function, export a baseline"
   ],
   [
-   544,
+   530,
    "Step 3: package, harden and count the client"
   ],
   [
-   610,
+   595,
    "Steps 4 and 7: Microsoft traffic and the compliant network"
   ],
   [
-   674,
+   659,
    "Step 5: Internet Access through security profiles"
   ],
   [
-   736,
+   721,
    "Steps 6 and 10: per-app private access and admin paths"
   ],
   [
-   800,
+   785,
    "Steps 8 and 9: tenant restrictions and TLS inspection"
   ],
   [
-   857,
+   842,
    "Steps 11 and 12: rings, rollback and telemetry"
   ],
   [
-   921,
+   906,
    "Dangers, open questions and where to go next"
   ]
  ],
@@ -9552,42 +9556,42 @@
   ],
   [
    291,
-   "Government clouds: where Learn is silent or differs"
+   "GCC: the tool's defaults, the worldwide endpoints"
   ],
   [
-   348,
+   345,
    "Consent once, run as a reader: who does what"
   ],
   [
-   407,
+   405,
    "Step 2: a clean host and a protected output folder"
   ],
   [
-   466,
-   "Step 4: connect in the tenant's own cloud"
+   464,
+   "Step 4: connect in the GCC tenant"
   ],
   [
-   527,
+   512,
    "Step 5: run it, then hash the export first"
   ],
   [
-   584,
+   568,
    "Steps 6 and 7: a skipped test is not a failed control"
   ],
   [
-   648,
+   632,
    "Step 8: the closure register routes every finding"
   ],
   [
-   711,
+   695,
    "Step 9: reconcile through the setting and the control"
   ],
   [
-   772,
+   755,
    "Step 10: re-run, compare and seal the evidence"
   ],
   [
-   831,
+   815,
    "Dangers, open questions and where training starts"
   ]
  ],
@@ -9731,63 +9735,63 @@
    "Part 1: Writers, sources and joiners"
   ],
   [
-   53,
+   51,
    "The seven gates on one page: done when, proved by"
   ],
   [
-   108,
+   106,
    "Before G1: what the gates assume, and where they run"
   ],
   [
-   176,
+   174,
    "G1: the lifecycle rows of the writer register"
   ],
   [
-   237,
+   235,
    "G1: version the scope, remove the other writers"
   ],
   [
-   295,
+   293,
    "G1 in code: check the register, scan the audit log"
   ],
   [
-   350,
+   348,
    "G1: requirement, evidence, availability, rollback"
   ],
   [
-   410,
+   409,
    "G2: employees from HR, contractors from their own source"
   ],
   [
-   473,
+   471,
    "G2: ship the contractor leaver first: the earliest end"
   ],
   [
-   531,
+   529,
    "G2 in code: extract, build the requests, reconcile"
   ],
   [
-   591,
+   589,
    "G2: requirement, evidence, availability, rollback"
   ],
   [
-   655,
+   654,
    "G3: few workflows, scoped by code, with limits"
   ],
   [
-   715,
+   714,
    "G3: the Temporary Access Pass bridge and day-one access"
   ],
   [
-   773,
+   772,
    "G3 in code: lint, plan, and measure day one"
   ],
   [
-   834,
+   833,
    "G3: requirement, evidence, availability, rollback"
   ],
   [
-   897,
+   890,
    "Handing G1–G3 to Part 2"
   ]
  ],
@@ -9797,63 +9801,63 @@
    "Part 2: Access, credentials, separation and drift"
   ],
   [
-   56,
+   54,
    "G4–G7 on one page: done when, proved by, rollback"
   ],
   [
-   114,
+   112,
    "G4: department packages by automatic assignment"
   ],
   [
-   179,
+   177,
    "G4: approvals, the mover's residual, and privilege"
   ],
   [
-   234,
+   232,
    "G4 in code: lint the policies, list a mover's residual"
   ],
   [
-   291,
+   289,
    "G4: requirement, evidence, availability, rollback"
   ],
   [
-   356,
+   354,
    "G5: trust the issuing CAs, each with a CRL"
   ],
   [
-   410,
+   404,
    "G5: issuance and revocation follow HR events"
   ],
   [
-   466,
+   460,
    "G5 in code: measure the CRLs, check the settings"
   ],
   [
-   524,
+   517,
    "G5: requirement, evidence, availability, rollback"
   ],
   [
-   589,
+   582,
    "G6: block first, revoke in parallel, dispose last"
   ],
   [
-   652,
+   645,
    "G6 in code: separation timing from the logs"
   ],
   [
-   710,
+   703,
    "G6: requirement, evidence, availability, rollback"
   ],
   [
-   773,
+   766,
    "G7: lifecycle drift, six metrics, the sole source"
   ],
   [
-   833,
+   826,
    "G7 in code: package, chain, period; the evidence"
   ],
   [
-   892,
+   885,
    "One evidence file per population, and what's next"
   ]
  ],
@@ -9879,119 +9883,119 @@
    "Grid architecture: one database, many members"
   ],
   [
-   230,
+   227,
    "Universal DDI and the Infoblox Portal, with its limits"
   ],
   [
-   280,
+   278,
    "DNS: views, DNSSEC, DNS Firewall and encrypted DNS"
   ],
   [
-   335,
+   332,
    "DHCP and IPAM: failover, network views, discovery"
   ],
   [
-   385,
+   379,
    "Threat Defense: DNS-layer security and intelligence"
   ],
   [
-   438,
+   431,
    "Automation and logging: APIs, IaC, SIEM, reporting"
   ],
   [
-   489,
+   483,
    "Module 2: Why Infoblox, and why federal needs it"
   ],
   [
-   509,
+   502,
    "From requirement to capability to Infoblox feature"
   ],
   [
-   563,
+   556,
    "FedRAMP scope: what the Moderate listing covers"
   ],
   [
-   616,
+   608,
    "Trinzic hardware against the workbook's design"
   ],
   [
-   669,
+   662,
    "Trinzic alone, or with cloud DDI?"
   ],
   [
-   727,
+   717,
    "Assurance: baselines, FIPS 140, NIAP and SP 800-81r3"
   ],
   [
-   792,
+   781,
    "A fair comparison: dedicated DDI and native clouds"
   ],
   [
-   849,
+   838,
    "Risks: certifications, vulnerabilities, authorization"
   ],
   [
-   901,
+   890,
    "Risks: cost, capacity, features, and procurement asks"
   ],
   [
-   951,
+   940,
    "Module 3: Divisions on NIOS"
   ],
   [
-   969,
+   958,
    "The NIOS permission model: deny first, most specific"
   ],
   [
-   1018,
+   1007,
    "Scoping an admin group to one division"
   ],
   [
-   1064,
+   1053,
    "Network views, DNS views and extensible attributes"
   ],
   [
-   1115,
+   1104,
    "Approval workflow, and the CSV import gap"
   ],
   [
-   1163,
-   "Admin sign-in: CAC/PIV, SAML with Entra, directories"
+   1152,
+   "Admin sign-in: PIV, SAML with Entra, directories"
   ],
   [
-   1211,
+   1200,
    "Microsoft servers, what stays central, and reporting"
   ],
   [
-   1263,
+   1252,
    "Separating DNS, DHCP and IPAM by team"
   ],
   [
-   1316,
+   1304,
    "Service teams and divisions together"
   ],
   [
-   1366,
+   1355,
    "Module 4: Universal DDI divisions and operating model"
   ],
   [
-   1385,
+   1373,
    "Universal DDI: access views, IP spaces, federation"
   ],
   [
-   1438,
+   1427,
    "Four delegation patterns and their trade-offs"
   ],
   [
-   1489,
+   1478,
    "Worked example: four divisions on one Grid"
   ],
   [
-   1540,
+   1528,
    "Who does what: the DDI responsibility matrix"
   ],
   [
-   1592,
+   1580,
    "Rollout sequence, decisions and next steps"
   ]
  ],
@@ -10033,31 +10037,31 @@
    "G2: five targets, decided by type and where it runs"
   ],
   [
-   556,
+   554,
    "G2 in code: propose, check each decision, plan waves"
   ],
   [
-   618,
+   616,
    "G2: requirement, evidence, availability, rollback"
   ],
   [
-   682,
+   679,
    "G3: the tenant policy blocks secrets, caps certificates"
   ],
   [
-   745,
+   742,
    "G3: the vault, the upload, and secrets by exception"
   ],
   [
-   807,
+   805,
    "G3 in code: compare the policy, plan the rotation"
   ],
   [
-   867,
+   864,
    "G3: requirement, evidence, availability, rollback"
   ],
   [
-   932,
+   929,
    "Handing G1–G3 to Part 2"
   ]
  ],
@@ -10083,47 +10087,47 @@
    "G4: requirement, evidence, availability, rollback"
   ],
   [
-   302,
+   299,
    "G5: build the target, run in parallel, then disable"
   ],
   [
-   360,
+   358,
    "G5 in code: test the exchange, plan the Kerberos moves"
   ],
   [
-   417,
+   414,
    "G5: requirement, evidence, availability, rollback"
   ],
   [
-   479,
+   476,
    "G6: owner change, orphans and owner reviews"
   ],
   [
-   533,
+   530,
    "G6: disable first, then delete"
   ],
   [
-   588,
+   585,
    "G6 in code: drift, the review cycle, the evidence chain"
   ],
   [
-   644,
+   641,
    "G6: requirement, evidence, availability, rollback"
   ],
   [
-   705,
+   701,
    "SQL Server: the engine, the instance, the applications"
   ],
   [
-   766,
+   761,
    "AI agents: sponsors, blueprints and gated creation"
   ],
   [
-   828,
+   822,
    "Evidence and rollback across the track"
   ],
   [
-   892,
+   886,
    "The dangers to keep in view, and where to go next"
   ]
  ],
@@ -10133,107 +10137,107 @@
    "One Retirement Notice, End to End"
   ],
   [
-   41,
+   38,
    "The notice's path through the eight chapters"
   ],
   [
-   88,
+   85,
    "Scene 1: Azure says retirement; the kit makes a record"
   ],
   [
-   133,
+   129,
    "Try it: collect Azure and read the retirement"
   ],
   [
-   175,
+   172,
    "Check 1: who said RT5J-6KL needs action?"
   ],
   [
-   198,
+   195,
    "Scene 2: Microsoft 365 says it in its own field"
   ],
   [
-   246,
+   240,
    "Try it: the Graph host, and who said action is due"
   ],
   [
-   291,
-   "Check 2: a GCC High tenant on the wrong host"
+   284,
+   "Check 2: a read on the wrong Graph host"
   ],
   [
-   310,
+   302,
    "Scene 3: Oracle Cloud says it in the announcement type"
   ],
   [
-   357,
+   349,
    "Try it: Oracle's realms and its own flag"
   ],
   [
-   394,
+   381,
    "Check 3: a rescheduled maintenance window"
   ],
   [
-   413,
+   399,
    "Scene 4: AWS flags some retirements, the kit the rest"
   ],
   [
-   457,
+   444,
    "Try it: AWS's flag, and the kit's rule"
   ],
   [
-   499,
+   486,
    "Check 4: an account without a support plan"
   ],
   [
-   518,
+   505,
    "Scene 5: Google Cloud can't say retirement at all"
   ],
   [
-   562,
+   548,
    "Try it: two weeks of Google, all incidents"
   ],
   [
-   597,
+   583,
    "Check 5: no Google retirements in the digest"
   ],
   [
-   618,
+   603,
    "Scene 6: RT5J-6KL gets an owner and a typed task"
   ],
   [
-   667,
+   653,
    "Try it: read RT5J-6KL's payload; a re-run writes nothing"
   ],
   [
-   712,
+   698,
    "Check 6: Microsoft closes the retirement notice"
   ],
   [
-   729,
+   715,
    "Scene 7: the digest for owners, the chain for the ISSO"
   ],
   [
-   771,
+   757,
    "Try it: RT5J-6KL in the digest, then a tampered file"
   ],
   [
-   810,
+   796,
    "Check 7: the stage check in Lab 1"
   ],
   [
-   830,
+   815,
    "Scene 8: the loop goes live, test first"
   ],
   [
-   876,
+   861,
    "Try it: the runbook's dry run on the fixtures"
   ],
   [
-   912,
+   898,
    "Check 8: production before test passes"
   ],
   [
-   931,
+   917,
    "Your turn: Lab 2, and where to go next"
   ]
  ],
@@ -10243,63 +10247,63 @@
    "Part 1: Collecting what four providers publish"
   ],
   [
-   63,
+   54,
    "Why: notices nobody reads, owns or closes"
   ],
   [
-   115,
+   106,
    "Six kinds of notice, from five providers' types"
   ],
   [
-   175,
+   166,
    "The five providers compared"
   ],
   [
-   242,
+   233,
    "Before G1: decisions, a change process, a reader each"
   ],
   [
-   297,
+   288,
    "The seven gates on one page"
   ],
   [
-   349,
+   340,
    "G1: Azure Service Health, the steps"
   ],
   [
-   405,
+   396,
    "G1 in code: five notices, and the alert plan"
   ],
   [
-   460,
+   451,
    "G1: requirement, evidence, availability, rollback"
   ],
   [
-   519,
+   506,
    "G2: Microsoft 365 message center and service health"
   ],
   [
-   582,
+   565,
    "G2 in code: a provider's date, and a kit rule"
   ],
   [
-   642,
+   624,
    "G3: Oracle Cloud Infrastructure announcements"
   ],
   [
-   703,
+   681,
    "G3 in code: chains, resources, a new window"
   ],
   [
-   760,
+   738,
    "G4: AWS Health and the support plan"
   ],
   [
-   821,
+   799,
    "G4 in code: who said action is required"
   ],
   [
-   879,
+   857,
    "Handing G1–G4 to Part 2"
   ]
  ],
@@ -10309,63 +10313,63 @@
    "Part 2: Routing, the digest, evidence and rollback"
   ],
   [
-   61,
+   51,
    "Where Part 1 left off: one record, five providers"
   ],
   [
-   114,
+   104,
    "G5: Google Cloud Personalized Service Health"
   ],
   [
-   173,
+   163,
    "G5 in code: two incidents, one unverified call"
   ],
   [
-   225,
+   216,
    "G6: route every notice that needs action to an owner"
   ],
   [
-   285,
+   275,
    "G6 in code: day one makes twelve tasks, once"
   ],
   [
-   338,
+   328,
    "G6 in code: a week later, and the five clauses"
   ],
   [
-   392,
+   382,
    "G6: requirement, evidence, interim path, rollback"
   ],
   [
-   448,
+   439,
    "G7: preflight, the weekly run, and the go/no-go"
   ],
   [
-   507,
+   498,
    "G7 in code: the digest and the evidence chain"
   ],
   [
-   563,
+   553,
    "G7: what the ISSO keeps, and an edited file"
   ],
   [
-   617,
+   608,
    "Control states and change safety"
   ],
   [
-   675,
+   665,
    "Dangers, and how to avoid them"
   ],
   [
-   732,
+   722,
    "Evidence by gate: one file for the assessor"
   ],
   [
-   792,
+   783,
    "Rollback by gate, and what couldn't be verified"
   ],
   [
-   852,
+   841,
    "Done when: the guide's checklist"
   ]
  ],
@@ -10469,35 +10473,35 @@
    "FIPS and Common Criteria: controllers vs edges"
   ],
   [
-   619,
+   615,
    "TIC 3.0 patterns on Catalyst"
   ],
   [
-   675,
+   671,
    "Secure Access, Global Secure Access and GCC"
   ],
   [
-   729,
+   724,
    "Evidence and telemetry the fabric emits"
   ],
   [
-   778,
+   774,
    "The phased build, mapped to Book 09's gates"
   ],
   [
-   827,
+   823,
    "Where this changes Book 09's planning"
   ],
   [
-   883,
+   879,
    "Risks and vendor asks"
   ],
   [
-   932,
+   927,
    "The example collector: read-only, illustrative"
   ],
   [
-   980,
+   976,
    "What to verify, decide, and read next"
   ]
  ],
@@ -10519,55 +10523,51 @@
    "AWS: what the Route 53 VPC Resolver answers"
   ],
   [
-   229,
+   228,
    "AWS: inbound and outbound endpoints"
   ],
   [
-   291,
+   290,
    "AWS: rules, sharing, Profiles and private zones"
   ],
   [
-   349,
+   348,
    "AWS: DNS Firewall, query logging and DNSSEC"
   ],
   [
-   413,
-   "AWS GovCloud (US) beside the commercial Regions"
-  ],
-  [
-   474,
+   412,
    "Azure: the DNS Private Resolver"
   ],
   [
-   531,
+   469,
    "Azure: DNS resolver policy, logging and DNSSEC"
   ],
   [
-   593,
+   531,
    "Oracle Cloud: how the VCN resolver answers"
   ],
   [
-   653,
+   591,
    "Oracle Cloud: endpoints, rules and what's missing"
   ],
   [
-   716,
+   654,
    "Who authorizes it: AWS and Azure FedRAMP scope"
   ],
   [
-   776,
+   702,
    "Who authorizes it: Oracle US Government Cloud"
   ],
   [
-   842,
+   768,
    "How the three resolvers meet on-premises DNS"
   ],
   [
-   902,
+   828,
    "How Protective DNS, policy and logs reach each cloud"
   ],
   [
-   974,
+   899,
    "What to confirm, and what Part 2 covers"
   ]
  ],
@@ -10589,55 +10589,55 @@
    "vNIOS or BIND, and which BIND to run"
   ],
   [
-   213,
+   209,
    "Three roles, kept apart"
   ],
   [
-   259,
+   255,
    "Placement and high availability in each cloud"
   ],
   [
-   320,
+   315,
    "Forwarding to and from the native resolver"
   ],
   [
-   377,
+   373,
    "An illustrative forwarder configuration"
   ],
   [
-   443,
+   439,
    "DNSSEC validation and signing in the cloud"
   ],
   [
-   505,
+   500,
    "Response policy zones and CISA Protective DNS"
   ],
   [
-   569,
+   564,
    "Query and response logging into the SOC"
   ],
   [
-   633,
+   629,
    "Patching, settings and hardening baselines"
   ],
   [
-   717,
+   692,
    "Who owns the configuration: Git and Ansible"
   ],
   [
-   773,
+   747,
    "The alignment checklist: seven questions"
   ],
   [
-   843,
+   818,
    "Federal mapping: configuration and inventory"
   ],
   [
-   915,
+   890,
    "Federal mapping: resolution, logging and Protective DNS"
   ],
   [
-   992,
+   966,
    "Where Infoblox fits, and what to confirm"
   ]
  ],
@@ -10731,51 +10731,51 @@
    "Public and cloud CA drivers in 26.1"
   ],
   [
-   819,
+   812,
    "Intune coexistence: who owns device certificates"
   ],
   [
-   855,
+   849,
    "Part 3: Discover, own and automate"
   ],
   [
-   869,
+   863,
    "Discovery scans and CA import"
   ],
   [
-   902,
+   896,
    "Ownership: policy folders, owners and the CMDB"
   ],
   [
-   939,
+   933,
    "Enrollment automation: ACME, EST, SCEP, REST, agents"
   ],
   [
-   974,
+   967,
    "Kubernetes, ServiceNow and SIEM inside the boundary"
   ],
   [
-   1009,
+   1003,
    "Part 4: Migrate and operate"
   ],
   [
-   1024,
+   1018,
    "Build sequence mapped to Book 07's six waves"
   ],
   [
-   1063,
+   1057,
    "Renewal as public TLS lifetimes shrink"
   ],
   [
-   1096,
+   1090,
    "Monitoring and drift on the CLM platform"
   ],
   [
-   1127,
+   1121,
    "Decommissioning AD CS with the CLM inventory"
   ],
   [
-   1162,
+   1156,
    "Decisions, vendor asks and next steps"
   ]
  ],
@@ -10852,7 +10852,7 @@
   ],
   [
    200,
-   "Government clouds use different names"
+   "GCC uses the worldwide names"
   ],
   [
    244,
@@ -10863,23 +10863,23 @@
    "Amazon Connect and VMware"
   ],
   [
-   347,
+   339,
    "The clouds disagree on precedence"
   ],
   [
-   393,
+   385,
    "How it breaks: seven failure modes"
   ],
   [
-   439,
+   432,
    "Hub, not mesh"
   ],
   [
-   487,
+   479,
    "What the agency must do"
   ],
   [
-   538,
+   530,
    "Decisions, next steps and where this fits"
   ]
  ],
@@ -10917,39 +10917,39 @@
    "Azure, AWS and Google: who renews what"
   ],
   [
-   325,
+   319,
    "PIV: the card stays, AD's side goes"
   ],
   [
-   365,
+   360,
    "PIV today: strong mapping for non-Microsoft CAs"
   ],
   [
-   408,
+   403,
    "PIV in coexistence: Entra CBA and certificateUserIds"
   ],
   [
-   450,
+   444,
    "PIV after AD: who writes the binding"
   ],
   [
-   489,
+   483,
    "RADIUS: there is no Entra RADIUS"
   ],
   [
-   530,
+   525,
    "802.1X with Intune: EAP-TLS and compliance"
   ],
   [
-   570,
+   565,
    "RADIUS and NAC across the three stages"
   ],
   [
-   607,
+   602,
    "Who issues and who renews: the whole estate"
   ],
   [
-   640,
+   634,
    "What changed in the books, and next steps"
   ]
  ],
@@ -10987,87 +10987,87 @@
    "vNIOS on VMware, Azure and AWS"
   ],
   [
-   366,
+   362,
    "Part 2: Migrate from Microsoft"
   ],
   [
-   385,
+   381,
    "Method A: manage the Windows servers, then take over"
   ],
   [
-   433,
+   430,
    "Method B: import zones by transfer; bulk data by CSV"
   ],
   [
-   480,
+   476,
    "AD zones and Kerberos-signed updates: use AES"
   ],
   [
-   535,
+   531,
    "DHCP takeover: change assignments, never remove first"
   ],
   [
-   582,
+   578,
    "DHCP failover and DHCPv6 on NIOS"
   ],
   [
-   632,
+   628,
    "Rollback: what reverses, and how"
   ],
   [
-   681,
+   678,
    "Part 3: Sign and harden"
   ],
   [
-   700,
+   697,
    "DNSSEC on NIOS: set parameters before you sign"
   ],
   [
-   749,
+   746,
    "The HSM and DS publication"
   ],
   [
-   796,
+   793,
    "Hardening NIOS: the agency's settings baseline"
   ],
   [
-   868,
+   863,
    "FIPS mode: the procedure and what it changes"
   ],
   [
-   914,
+   909,
    "Administrator access and two upgrade gates"
   ],
   [
-   961,
+   956,
    "Part 4: Operate and evidence"
   ],
   [
-   980,
+   975,
    "Upgrades: five steps, and the point of no return"
   ],
   [
-   1030,
+   1025,
    "Patching: hotfixes, images and known exploits"
   ],
   [
-   1071,
+   1066,
    "Backup, restore and Grid Master recovery"
   ],
   [
-   1120,
+   1115,
    "Logging and evidence for the SIEM"
   ],
   [
-   1167,
+   1162,
    "Automation: what you can codify, and what you can't"
   ],
   [
-   1214,
+   1209,
    "The build mapped to Book 08's six phases"
   ],
   [
-   1265,
+   1260,
    "Decisions, vendor asks and next steps"
   ]
  ],
@@ -11121,7 +11121,7 @@
    "Federal availability and cautions"
   ],
   [
-   558,
+   551,
    "What to verify, decide, and read next"
   ]
  ],
@@ -11143,27 +11143,27 @@
    "What Trinzic alone sees in the clouds, and can't control"
   ],
   [
-   206,
+   204,
    "Option A: vNIOS members inside each cloud"
   ],
   [
-   262,
+   259,
    "Option B: the Grid joined to Universal DDI"
   ],
   [
-   312,
+   310,
    "Option C: Trinzic alongside native cloud DNS"
   ],
   [
-   363,
+   360,
    "The rules that prevent split-brain"
   ],
   [
-   411,
+   408,
    "Which option fits your agency? Design guidance"
   ],
   [
-   469,
+   460,
    "Where this fits the workbook, and next steps"
   ]
  ],
@@ -11381,31 +11381,31 @@
    "G2: requirement, evidence, availability, rollback"
   ],
   [
-   564,
+   562,
    "G3: aggregate, correlate on employeeId, detect change"
   ],
   [
-   623,
+   615,
    "G3 in code: the starting drift, day one and day two"
   ],
   [
-   683,
+   675,
    "G3: requirement, evidence, availability, rollback"
   ],
   [
-   742,
+   734,
    "G4: one front door for findings and requests"
   ],
   [
-   802,
+   794,
    "G4 in code: the contract, and what a workflow posts"
   ],
   [
-   857,
+   849,
    "G4: requirement, evidence, availability, rollback"
   ],
   [
-   919,
+   911,
    "Handing G1–G4 to Part 2"
   ]
  ],
@@ -11431,43 +11431,43 @@
    "G5: requirement, evidence, availability, rollback"
   ],
   [
-   301,
+   299,
    "G6: Awaiting verification, and the business rule"
   ],
   [
-   363,
+   361,
    "G6 in code: six waiting findings, re-read offline"
   ],
   [
-   426,
+   424,
    "G6: requirement, evidence, availability, rollback"
   ],
   [
-   486,
+   484,
    "G7: the tempo, the five measures, the schedules"
   ],
   [
-   550,
+   548,
    "G7: the identity fixes, routed through the loop"
   ],
   [
-   607,
+   606,
    "G7 in code: evidence records and the hash chain"
   ],
   [
-   670,
+   668,
    "G7: requirement, evidence, availability, rollback"
   ],
   [
-   726,
+   724,
    "The evidence record on ServiceNow and SailPoint"
   ],
   [
-   790,
+   788,
    "Dangers across the seven gates"
   ],
   [
-   854,
+   852,
    "From Draft to Proved, and where to go next"
   ]
  ],
