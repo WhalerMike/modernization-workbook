@@ -2054,6 +2054,6 @@
   - {title: 'AWS, FedRAMP', url: 'https://aws.amazon.com/compliance/fedramp/'}
   - {title: 'FedRAMP, Marketplace product data', url: 'https://www.fedramp.gov/marketplace/products.json'}
   pages: [CONTRIBUTING.md, docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md, docs/books/b10-cloud-boundary/05-the-landing-zone.md, docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.md, docs/evaluations/cloud-dns-resolvers-infoblox-bind.md]
-  prs: []
+  prs: [642]
   status: settled
   note: "Basis: workbook owner decision, November 16, 2026. Supersedes WD-156, whose rule it restates with AWS GovCloud (US) as the program's AWS environment. Restores the AWS GovCloud content that PR #627 and deck pass 3 changed to commercial Regions."

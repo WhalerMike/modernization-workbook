@@ -2738,7 +2738,7 @@ There are **157** workbook decisions: 147 settled, 0 challenged and 10 supersede
 | **Pages affected** | [`CONTRIBUTING.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md), [Chapter 07 — Cloud Private Endpoints, SDN and IPAM Consistency](../books/b08-ddi/07-cloud-private-endpoints-and-ipam.md), [Chapter 05 — The Landing Zone](../books/b10-cloud-boundary/05-the-landing-zone.md), [Chapter 09 — Control Compliance Automation: AWS and VMware](../books/b15-day2-operations/09-control-automation-aws-and-vmware.md), [Cloud DNS on AWS, Azure and Oracle Cloud: Native Resolvers, Infoblox and BIND](../evaluations/cloud-dns-resolvers-infoblox-bind.md) |
 | **Date** | 2026-11-16 |
 | **Status** | settled |
-| **Defined in** | — |
+| **Defined in** | [#642](https://github.com/WhalerMike/modernization-workbook/pull/642) |
 | **Note** | Basis: workbook owner decision, November 16, 2026. Supersedes [WD-156](#wd-156), whose rule it restates with AWS GovCloud (US) as the program's AWS environment. Restores the AWS GovCloud content that PR #627 and deck pass 3 changed to commercial Regions. |
 
 [Agree, disagree or send evidence on WD-157](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-157%3A+)
