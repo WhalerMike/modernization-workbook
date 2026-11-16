@@ -336,6 +336,10 @@
   "title": "Most record changes need no change board",
   "links": [
    {
+    "text": "Private Link and DNS integration at scale",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#private-link-dns-at-scale"
+   },
+   {
     "text": "Book 08, Chapter 09",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/09-who-owns-dns.html"
    }
@@ -423,10 +427,6 @@
   "slide": 18,
   "title": "Price the meters; keep the residual risk on record",
   "links": [
-   {
-    "text": "Azure Retail Prices API",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-retail-prices-api"
-   },
    {
     "text": "AWS VPC IPAM",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-vpc-ipam-infoblox"

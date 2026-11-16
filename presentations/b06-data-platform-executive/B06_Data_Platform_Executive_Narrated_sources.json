@@ -380,10 +380,6 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
    },
    {
-    "text": "Arc in US Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc-in-us"
-   },
-   {
     "text": "Arc managed identity",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#managed-identity-for-sql-server-enabled-by"
    },

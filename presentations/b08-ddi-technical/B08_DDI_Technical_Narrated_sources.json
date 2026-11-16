@@ -291,7 +291,7 @@
  },
  {
   "slide": 18,
-  "title": "Four private DNS models, and Azure private endpoints",
+  "title": "Five private DNS models, and Azure private endpoints",
   "links": [
    {
     "text": "AWS Route 53 VPC Resolver",
@@ -380,10 +380,6 @@
    {
     "text": "MSO365MT",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace-mso365mt"
-   },
-   {
-    "text": "Azure Government GA roadmap",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-azure-government-product-general"
    },
    {
     "text": "AWS VPC IPAM",

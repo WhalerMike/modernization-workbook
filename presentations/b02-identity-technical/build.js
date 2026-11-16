@@ -277,7 +277,7 @@ Finally, report only measured coverage.`,
 {
   const s = D.content(P1, "From gap list to a narrow, time-bound delegation request");
   tag(s, "How");
-  table(s, "Gaps", 1.5, [2.55, 2.85, 2.2], ["Gap", "Narrowest way to close it", "Read-only substitute"], [
+  table(s, "Gaps", 1.5, [2.45, 2.7, 2.1], ["Gap", "Narrowest way to close it", "Read-only substitute"], [
     ["Replication health", "Admin-run replication summary, or SIEM data", "None reliable"],
     ["DC event logs", "Log export or SIEM read access", "None"],
     ["DNS server settings", "DNS administrator export", "Zone reads cover records only"],
@@ -324,7 +324,7 @@ The program's position is that the assessment is an evidence-producing process, 
 {
   const s = D.content(P1, "Eight collection areas, each on the narrowest right");
   tag(s, "How");
-  table(s, "Rights", 1.5, [2.25, 3.45, 2.35], ["Collector area", "Minimum rights", "Main output"], [
+  table(s, "Rights", 1.5, [2.1, 3.35, 2.25], ["Collector area", "Minimum rights", "Main output"], [
     ["Topology", "Authenticated user", "ForestTopology.json"],
     ["OU hierarchy", "Read on OUs and their security descriptors", "OUHierarchy, OUDelegations"],
     ["Group Policy", "Read on GPOs and SYSVOL; delegated backup right", "GPOInventory, XML reports"],

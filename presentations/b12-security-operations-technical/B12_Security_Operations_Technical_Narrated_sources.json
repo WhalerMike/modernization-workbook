@@ -12,6 +12,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
    },
    {
+    "text": "App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/appendix-b-identity-and-application-detections.html"
+   },
+   {
     "text": "Book 12, Ch 01",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/01-you-cant-defend-what-you-cant-see.html"
    }
@@ -90,6 +94,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-26-14"
    },
    {
+    "text": "App. B",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/appendix-b-identity-and-application-detections.html"
+   },
+   {
     "text": "Book 12, Ch 03",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/03-identity-telemetry.html"
    }
@@ -138,6 +146,10 @@
   "title": "The unified audit log: verify, collect, deduplicate",
   "links": [
    {
+    "text": "Management Activity API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-management-activity-api"
+   },
+   {
     "text": "Book 12, Ch 04",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/04-platform-and-m365-telemetry.html"
    }
@@ -147,6 +159,10 @@
   "slide": 14,
   "title": "Unified audit retention follows the user's license",
   "links": [
+   {
+    "text": "Purview service description",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-purview-service-description"
+   },
    {
     "text": "Book 12, Ch 04",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/04-platform-and-m365-telemetry.html"
@@ -240,6 +256,10 @@
   "title": "Defender Vulnerability Management: prove the coverage",
   "links": [
    {
+    "text": "DeviceInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
+   },
+   {
     "text": "Book 12, Ch 06",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/06-vulnerability-management.html"
    }
@@ -309,6 +329,14 @@
   "slide": 27,
   "title": "DLP on three surfaces, simulated before enforced",
   "links": [
+   {
+    "text": "auto-labeling",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-auto-labeling"
+   },
+   {
+    "text": "endpoint DLP",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-endpoint-dlp-settings"
+   },
    {
     "text": "Book 12, Ch 09",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/09-data-protection-and-classification.html"

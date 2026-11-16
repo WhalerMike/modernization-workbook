@@ -42,10 +42,6 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#office-365-gcc"
    },
    {
-    "text": "Intune government service",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
-   },
-   {
     "text": "Book 10, Ch 01",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html"
    }
@@ -55,10 +51,6 @@
   "slide": 5,
   "title": "Why the boundary stays invisible, and a claim corrected",
   "links": [
-   {
-    "text": "Intune government service",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
-   },
    {
     "text": "endpoint analytics",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#endpoint-analytics-overview"
@@ -186,10 +178,6 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#office-365-gcc"
    },
    {
-    "text": "Windows release health",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#how-to-check-windows-release-health"
-   },
-   {
     "text": "Marketplace MSO365MT",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-marketplace-mso365mt"
    },
@@ -231,7 +219,7 @@
  },
  {
   "slide": 13,
-  "title": "Three packages, and why High won't bring features back",
+  "title": "Two GCC packages, and why High won't bring features back",
   "links": [
    {
     "text": "FedRAMP Marketplace products.json",
@@ -355,7 +343,7 @@
  },
  {
   "slide": 20,
-  "title": "AWS, GovCloud and automation that declares its boundary",
+  "title": "AWS, and automation that declares its boundary",
   "links": [
    {
     "text": "FedRAMP Marketplace",
