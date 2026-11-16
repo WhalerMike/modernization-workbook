@@ -252,7 +252,7 @@ endModule(SC);
     "$ Invoke-NpiList -Reader $r -CallId graph-user -Bind @{ id = 'x' }",
     "Undeclared call 'graph-user' for task 'inventory'; add it to config/calls.json with its permission.",
     "$ Get-NpiCloud GCC",
-    "Unknown cloud 'GCC'. Use global, gcc, gcchigh or dod.",
+    "Unknown cloud 'GCC'. Use global or gcc.",
     "# Step 6: read the hand-off to the Data Platform plan",
     "$ Import-Csv out/inventory/data-platform-handoff.csv | Format-Table Name, Type, Spns, Risk",
     "Name         Type        Spns                                     Risk",
@@ -261,10 +261,10 @@ endModule(SC);
     "svc-ldapbind Traditional                                          MEDIUM",
     "gmsa-sql$    gMSA        MSSQLSvc/sql02.corp.contoso.example:1433 MEDIUM",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (ERRORS SHOWN AS THEIR MESSAGES)", pt: 10.5 });
-  line(s, "Tests", "Step 7: Invoke-Pester -Path tests prints 513 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
+  line(s, "Tests", "Step 7: Invoke-Pester -Path tests prints 511 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 1, \"Exercise: Lab 1,\" steps 5 to 7; examples/non-person-identity (NpiCore; tests).");
   notes(s,
-`Step five shows the reader's rules at work. You build a reader for the inventory task, with the fixture invoker standing in for the network, and ask it for a call the task doesn't declare. It refuses before anything is sent, and tells you to add the call to the call list with its permission. Then you ask for the cloud G C C in capitals, and it refuses that too: the cloud names are global, gcc, gcchigh and dod, and it never guesses. Step six reads the hand-off to the Data Platform plan. Two accounts go by their SQL Server service principal names, svc sqlprod and the group managed account gmsa sql, and one, svc ldapbind, goes by its name. Step seven runs every test: five hundred thirteen pass, none fail. Then delete the output folder.`,
+`Step five shows the reader's rules at work. You build a reader for the inventory task, with the fixture invoker standing in for the network, and ask it for a call the task doesn't declare. It refuses before anything is sent, and tells you to add the call to the call list with its permission. Then you ask for the cloud G C C in capitals, and it refuses that too: the cloud names are global and gcc, and it never guesses. Step six reads the hand-off to the Data Platform plan. Two accounts go by their SQL Server service principal names, svc sqlprod and the group managed account gmsa sql, and one, svc ldapbind, goes by its name. Step seven runs every test: five hundred eleven pass, none fail. Then delete the output folder.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 5 to 7.`);
 }
 

@@ -245,10 +245,10 @@ endModule(SC);
     "  the test smoke report ran in fixture mode; promotion needs a live test run; ...",
     "preflight: 1 failed, 0 warning(s); dry run (nothing signed in, nothing called)",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10 });
-  line(s, "Tests", "Step 7: python -m pytest deploy/tests -q prints 46 passed. Step 8: rm -rf out.", c + 0.25, 0.45, 13.5);
+  line(s, "Tests", "Step 7: python -m pytest deploy/tests -q prints 44 passed. Step 8: rm -rf out.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 9, \"Exercise: Lab 1,\" steps 5 to 8; Book 19, Ch 10 \"Try the scripts against fixtures first.\"");
   notes(s,
-`Step five checks the stage's evidence against the requirement rows. Only two of seventeen are evidenced, both pre-flight rows, so the check fails with exit code two. Why are the others missing? A rollback add entry is recorded: it proves the change was written down, not that the step worked. And the smoke record is a failing fixture run. Then sha two fifty-six sum confirms every evidence record reads OK. Step six asks production's pre-flight check to promote on that report and that check. P F oh nine passes. P F ten fails: the hashes aren't the ones in the promotion record, the smoke report failed and ran in fixture mode, and promotion needs a live test run; the evidence check failed too. A fixture report, or a stage with unevidenced rows, can never promote. Step seven runs the tests, forty-six pass, and step eight cleans up.`,
+`Step five checks the stage's evidence against the requirement rows. Only two of seventeen are evidenced, both pre-flight rows, so the check fails with exit code two. Why are the others missing? A rollback add entry is recorded: it proves the change was written down, not that the step worked. And the smoke record is a failing fixture run. Then sha two fifty-six sum confirms every evidence record reads OK. Step six asks production's pre-flight check to promote on that report and that check. P F oh nine passes. P F ten fails: the hashes aren't the ones in the promotion record, the smoke report failed and ran in fixture mode, and promotion needs a live test run; the evidence check failed too. A fixture report, or a stage with unevidenced rows, can never promote. Step seven runs the tests, forty-four pass, and step eight cleans up.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 5 to 8.`);
 }
 

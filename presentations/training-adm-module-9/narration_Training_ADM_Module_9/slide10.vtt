@@ -71,6 +71,6 @@ A fixture report, or a stage with
 unevidenced rows, can never promote.
 
 16
-00:00:48.625 --> 00:00:53.350
-Step seven runs the tests, forty-six
+00:00:48.625 --> 00:00:53.330
+Step seven runs the tests, forty-four
 pass, and step eight cleans up.

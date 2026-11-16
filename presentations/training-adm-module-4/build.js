@@ -264,10 +264,10 @@ endModule(SC);
     "Drift           FMP-SC-202-Sign-in-and-power: changes device_vendor_msft_policy_config_power_allowhibernate",
     "(exit code 2; with -Apply, still exit 2, and nothing is created, not even SC-201)",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10 });
-  line(s, "More", "-Cloud usgov exits 1: not one of gcc, global, gcchigh, dod. Step 7: Invoke-Pester ./tests gives Tests Passed: 46.", c + 0.2, 0.7, 13.5);
+  line(s, "More", "-Cloud usgov exits 1: not one of gcc, global. Step 7: Invoke-Pester ./tests gives Tests Passed: 46.", c + 0.2, 0.7, 13.5);
   sources(s, "Sources: Module 4, \"Exercise: Lab 1,\" steps 5 to 8; examples/group-policy-as-code: Invoke-GpcSync.ps1, tests.");
   notes(s,
-`Step five runs the sync. The dry run says create for the error reporting policy, which isn't in the tenant, and no change for sign-in and power, which already matches. Then the apply says created, and both exit zero. The sync record shows the scope the apply asked for, read-write, and the I D it created. Ask for a cloud name the script doesn't know, U S gov, and it exits one: the cloud must be G C C, global, G C C High or D O D. Step six breaks something on purpose. Change the hibernate value in one library file, and the dry run exits two, with a drift that names the setting. Run it with apply, and it still exits two, and nothing is created, not even the error reporting policy. Put the value back. Step seven runs the tests: forty-six pass. Step eight deletes the out folder.`,
+`Step five runs the sync. The dry run says create for the error reporting policy, which isn't in the tenant, and no change for sign-in and power, which already matches. Then the apply says created, and both exit zero. The sync record shows the scope the apply asked for, read-write, and the I D it created. Ask for a cloud name the script doesn't know, U S gov, and it exits one: the cloud must be G C C or global. Step six breaks something on purpose. Change the hibernate value in one library file, and the dry run exits two, with a drift that names the setting. Run it with apply, and it still exits two, and nothing is created, not even the error reporting policy. Put the value back. Step seven runs the tests: forty-six pass. Step eight deletes the out folder.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 5 to 8.`);
 }
 
@@ -280,14 +280,14 @@ endModule(SC);
     ["Read", "Import a test GPO into Group Policy analytics; run VK-INT-07 live as a read-only operator; build the plan live"],
     ["Write", "Dry-run and apply as a Policy and Profile Manager"],
     ["Compare and drill", "Compare with what Migrate builds; change a value in the admin center, and see the Drift"],
-    ["Clouds", "In GCC High and DoD, use -Cloud gcchigh or -Cloud dod"],
+    ["Clouds", "Run with -Cloud gcc and the test tenant's ID"],
     ["Back it out", "Step 8 deletes the created policies by the IDs in out/apply/sync-record.json, and the Migrate policy"],
   ], { fontSize: 12.5, limit: 5.3 });
   callout(s, "NotRun", b + 0.25, 0.85, "FaTriangleExclamation", HEX.amber, "Not run by the authors: ",
     "follow Book 19, Chapter 06, Lab 2, step by step.");
   sources(s, "Sources: Module 4, Unit 5 \"Exercise: Lab 2 (your test tenant)\"; Book 19, Ch 06 \"Lab 2: test tenant.\"");
   notes(s,
-`Lab 2 runs the same code against a test tenant with Intune licenses and a test GPO export, never production. Import a test GPO into Group Policy analytics. Run VK-INT-07 live, as a read-only operator, and build the move plan live. Then dry-run and apply as a Policy and Profile Manager. Compare the result with what Group Policy analytics' own Migrate step builds. And drill drift: change a value in the admin center, and watch the dry run report it. In G C C High and D O D, pass the matching cloud option. To back it out, step eight deletes the created policies by the I D's in the sync record, and the Migrate comparison policy. The authors haven't run Lab 2. Follow Chapter 06's Lab 2, step by step.`,
+`Lab 2 runs the same code against a test tenant with Intune licenses and a test GPO export, never production. Import a test GPO into Group Policy analytics. Run VK-INT-07 live, as a read-only operator, and build the move plan live. Then dry-run and apply as a Policy and Profile Manager. Compare the result with what Group Policy analytics' own Migrate step builds. And drill drift: change a value in the admin center, and watch the dry run report it. Each run names the G C C cloud and the test tenant's I D. To back it out, step eight deletes the created policies by the I D's in the sync record, and the Migrate comparison policy. The authors haven't run Lab 2. Follow Chapter 06's Lab 2, step by step.`,
   `${M} — Unit 5 "Exercise: Lab 2 (your test tenant)"; Book 19, Chapter 06 — "Lab 2: test tenant."`);
 }
 endModule(SL);

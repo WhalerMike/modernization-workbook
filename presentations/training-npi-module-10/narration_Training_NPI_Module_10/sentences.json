@@ -518,53 +518,6 @@
    "The identity governance officer signs it."
   ]
  ],
- "13": [
-  [
-   0.05,
-   1.988,
-   "Step ten breaks it on purpose."
-  ],
-  [
-   2.038,
-   3.663,
-   "Append one line to the packaged summary, and verify again."
-  ],
-  [
-   5.7,
-   3.538,
-   "It exits one: the summary doesn't match its hash."
-  ],
-  [
-   9.238,
-   5.513,
-   "Then try to package day one as if it came after day two, chained to day two's manifest."
-  ],
-  [
-   14.75,
-   4.412,
-   "It exits one too: this run isn't later than the previous package."
-  ],
-  [
-   19.163,
-   8.012,
-   "So an edited file and a swapped package are both refused, and that's what lets the I S S O trust the chain without trusting you."
-  ],
-  [
-   27.175,
-   5.263,
-   "The step ends by linting the scheduled workflow, with no findings and no warnings."
-  ],
-  [
-   32.438,
-   10.15,
-   "Step eleven runs the tests in both folders: five hundred thirteen Pester tests pass in PowerShell, and one hundred forty-two pytest tests pass in the drift pipeline."
-  ],
-  [
-   42.587,
-   2.7,
-   "Then delete the output folder in both places."
-  ]
- ],
  "14": [
   [
    0.05,
@@ -751,6 +704,53 @@
    43.888,
    8.787,
    "It runs every gate's code in one safe order, with a preflight, a smoke test, an evidence record per requirement and a rehearsed rollback."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.988,
+   "Step ten breaks it on purpose."
+  ],
+  [
+   2.038,
+   3.663,
+   "Append one line to the packaged summary, and verify again."
+  ],
+  [
+   5.7,
+   3.538,
+   "It exits one: the summary doesn't match its hash."
+  ],
+  [
+   9.238,
+   5.513,
+   "Then try to package day one as if it came after day two, chained to day two's manifest."
+  ],
+  [
+   14.75,
+   4.412,
+   "It exits one too: this run isn't later than the previous package."
+  ],
+  [
+   19.163,
+   8.012,
+   "So an edited file and a swapped package are both refused, and that's what lets the I S S O trust the chain without trusting you."
+  ],
+  [
+   27.175,
+   5.263,
+   "The step ends by linting the scheduled workflow, with no findings and no warnings."
+  ],
+  [
+   32.438,
+   10.1,
+   "Step eleven runs the tests in both folders: five hundred eleven Pester tests pass in PowerShell, and one hundred thirty-nine pytest tests pass in the drift pipeline."
+  ],
+  [
+   42.538,
+   2.7,
+   "Then delete the output folder in both places."
   ]
  ]
 }

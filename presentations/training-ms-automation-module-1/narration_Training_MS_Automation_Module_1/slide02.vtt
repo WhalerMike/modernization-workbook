@@ -13,51 +13,51 @@ Picture your first evidence collector.
 It works in a commercial test tenant.
 
 4
-00:00:05.324 --> 00:00:08.657
-Then, the day it points
-at a GCC High tenant,
+00:00:05.324 --> 00:00:08.963
+Then, the day someone gives
+it a URL it didn't expect,
 
 5
-00:00:08.657 --> 00:00:12.675
+00:00:08.963 --> 00:00:12.600
 it fails, or worse, sends
 its token to the wrong host.
 
 6
-00:00:12.675 --> 00:00:16.988
+00:00:12.600 --> 00:00:16.913
 It reads the first page of users and
 reports a tenant of a hundred people,
 
 7
-00:00:16.988 --> 00:00:20.350
+00:00:16.913 --> 00:00:20.275
 and nobody notices because
 the number looks plausible.
 
 8
-00:00:20.350 --> 00:00:23.553
+00:00:20.275 --> 00:00:23.478
 It signs in with a client
 secret that nobody rotates,
 
 9
-00:00:23.553 --> 00:00:27.575
+00:00:23.478 --> 00:00:27.500
 though ScubaGear says application
 passwords should be blocked.
 
 10
-00:00:27.575 --> 00:00:32.275
+00:00:27.500 --> 00:00:32.200
 And it asks for broad permissions, so a
 compromised job could do more than read.
 
 11
-00:00:32.275 --> 00:00:36.650
+00:00:32.200 --> 00:00:36.575
 Each of those has a fix, and each
 fix is a unit in this module.
 
 12
-00:00:36.650 --> 00:00:40.723
+00:00:36.575 --> 00:00:40.648
 The cost of skipping them is simple:
 a collector that doesn't page,
 
 13
-00:00:40.723 --> 00:00:45.550
+00:00:40.648 --> 00:00:45.480
 retry and keep delta links produces
 evidence that looks complete, and isn't.

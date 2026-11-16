@@ -285,10 +285,10 @@ endModule(SC);
     ["Evidence kept outside the directory, unbroken", "Chain breaks 0, gaps 0", "met"],
     ["Sole source proved per population", "Not decided by this code", "not decided"],
   ], { fontSize: 12.5, limit: 5.9 });
-  line(s, "Exit", "Exit code 2. Step 7: 57 and 142 tests pass; then delete out, which holds fictional names.", b + 0.15, 0.45, 13.5);
+  line(s, "Exit", "Exit code 2. Step 7: 57 and 139 tests pass; then delete out, which holds fictional names.", b + 0.15, 0.45, 13.5);
   sources(s, "Sources: Module 7, \"Exercise: Lab 1,\" steps 6 and 7; Knowledge check, answer 4; examples/drift-pipeline/python/hr_evidence.py.");
   notes(s,
-`Step six assembles the period, from the first of October to the second of November. Two packages, no chain breaks, no coverage gaps, twenty findings open at the end, and complete is false. Exit code two. Print the period summary and you see why. It scores Gate 7's criteria. The evidence criterion is met: kept outside the directory, with an unbroken chain. But drift is still open, so the first criterion isn't met, and five metrics are out of bounds, so the second isn't either. The fourth, the sole source, isn't decided by this code at all. That's the point of this step: an unbroken chain proves the record is intact, not that the gate is passed. Step seven runs both test suites, fifty-seven and a hundred forty-two tests, and deletes the out folder.`,
+`Step six assembles the period, from the first of October to the second of November. Two packages, no chain breaks, no coverage gaps, twenty findings open at the end, and complete is false. Exit code two. Print the period summary and you see why. It scores Gate 7's criteria. The evidence criterion is met: kept outside the directory, with an unbroken chain. But drift is still open, so the first criterion isn't met, and five metrics are out of bounds, so the second isn't either. The fourth, the sole source, isn't decided by this code at all. That's the point of this step: an unbroken chain proves the record is intact, not that the gate is passed. Step seven runs both test suites, fifty-seven and a hundred thirty-nine tests, and deletes the out folder.`,
   `${M} — "Exercise: Lab 1 (fixtures, no tenant)," steps 6 and 7; "Knowledge check," answer 4.`);
 }
 
@@ -374,7 +374,7 @@ sourceSlide("Sources: HR Module 7 deck", [
   "The units it assigns: the HR-driven identity implementation guide, Step 7 and Evidence; Book 03, Chapter 11 and Appendix C; Book 19, Chapter 09; the developer workbook Building HR-Driven Identity, Chapter 07 (The drift classes; The metrics; The package, the chain and the period; Lab 1; Lab 2; Federal requirements and evidence).",
   "Path: docs/training/hr-driven-identity/index.md and its verification log, _verification/learning-path.md (Lab 1 re-run November 1, 2026; the write-once folder rule, claim 7; Lab 2 not run).",
   "Kit: examples/hr-lifecycle (README; python/lifecycle_drift.py; config/drift.json; tests/fixtures/ch01 to ch07) and examples/drift-pipeline (python/hr_evidence.py). Names and keys in the fixtures are fictional.",
-  "Lab output: run November 2, 2026 in a scratch copy of examples/ with Python 3.14.3 (57 and 142 tests passed); the Try it output is trimmed or rearranged where the slide says so. Lab 2 not run by the authors.",
+  "Lab output: run November 2, 2026 in a scratch copy of examples/ with Python 3.14.3 (57 and 139 tests passed); the Try it output is trimmed or rearranged where the slide says so. Lab 2 not run by the authors.",
 ]);
 
 finish(OUT);

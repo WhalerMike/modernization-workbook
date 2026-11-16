@@ -3,7 +3,7 @@
 // (the host and the output, consent and roles, what consent leaves behind, connecting in each cloud, the run), Lab 2's
 // exact commands in a test tenant (not run by the authors, as the page says; the module has no Lab 1), the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page, the Zero Trust
-// Assessment implementation guide it sends the learner to (Steps 2 to 5, "Government-cloud availability", and their
+// Assessment implementation guide it sends the learner to (Steps 2 to 5, "GCC availability", and their
 // footnotes); the deck adds none. The module page is a draft awaiting review; the title slide carries no draft notice.
 // Helpers: ../training-zta-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-zta-module-2/build.js \
@@ -60,7 +60,7 @@ const W3 = 3.9, G3 = 0.225;
     "Prepare a clean host with PowerShell 7.6, the pinned module and a restricted folder",
     "Explain who consents, who runs, and why the sources' role lists differ",
     "Review the delegated grant consent leaves, and say when not to revoke it",
-    "Connect in Commercial, GCC, GCC High or DoD, and confirm the session",
+    "Connect in Commercial or GCC, and confirm the session's tenant and cloud",
     "Run the assessment and hash its export",
   ], [
     "Module 1",
@@ -69,7 +69,7 @@ const W3 = 3.9, G3 = 0.225;
   ], 35);
   sources(s, "Sources: Module 2, \"Learning objectives,\" \"Prerequisites\"; Exercise: Lab 2.");
   notes(s,
-`Here's what you'll be able to do by the end of this module. You'll prepare a clean host with PowerShell seven point six, the pinned module, and a restricted report folder. You'll explain who consents, who runs, and why the two sources' role lists differ. You'll review the delegated grant the consent leaves behind, and say when not to revoke it. You'll connect in Commercial, G C C, G C C High or D O D, and confirm the session's tenant and cloud. And you'll run the assessment and hash its export. You need Module 1, and a skim of the Privileged Access implementation guide's pim model, for the run account's eligible roles. Lab 2 runs in a test tenant, never production.`,
+`Here's what you'll be able to do by the end of this module. You'll prepare a clean host with PowerShell seven point six, the pinned module, and a restricted report folder. You'll explain who consents, who runs, and why the two sources' role lists differ. You'll review the delegated grant the consent leaves behind, and say when not to revoke it. You'll connect in Commercial or G C C, and confirm the session's tenant and cloud. And you'll run the assessment and hash its export. You need Module 1, and a skim of the Privileged Access implementation guide's pim model, for the run account's eligible roles. Lab 2 runs in a test tenant, never production.`,
   `${M} — "Learning objectives," "Prerequisites."`);
 }
 endModule(SI);
@@ -139,53 +139,47 @@ endModule(SI);
 
 // ================================================================== 7 Connect
 {
-  const s = content(SC, "Unit 3: connect in the tenant's own cloud, GCC first");
+  const s = content(SC, "Unit 3: connect in GCC, the tenant's own cloud");
   tag(s, "How");
   const c = code(s, "Connect", 0.6, 1.45, 12.15, [
     "# GCC (the workbook's baseline) and Commercial: the default Global environment, the worldwide endpoints",
     "Connect-ZtAssessment -Tenant <tenant> -Environment Global -SharePointAdminUrl <spo-admin-url> -UserPrincipalName <upn>",
-    "# GCC High",
-    "Connect-ZtAssessment -Tenant <tenant> -Environment USGov -ExchangeEnvironmentName O365USGovGCCHigh `",
-    "    -SharePointAdminUrl <spo-admin-url> -UserPrincipalName <upn>",
-    "# DoD",
-    "Connect-ZtAssessment -Tenant <tenant> -Environment USGovDoD -ExchangeEnvironmentName O365USGovDoD `",
-    "    -SharePointAdminUrl <spo-admin-url> -UserPrincipalName <upn>",
     "# Confirm the session's tenant and cloud",
     "Get-MgContext | Format-List TenantId, Environment, Account",
-  ], { label: "THE GUIDE'S COMMANDS: THE TOOL'S 3.1.0 SOURCE, MATCHED TO LEARN'S PER-SERVICE PAGES", pt: 10.5 });
+  ], { label: "THE GUIDE'S COMMAND: THE TOOL'S 3.1.0 SOURCE, MATCHED TO LEARN'S PER-SERVICE PAGES", pt: 10.5 });
   const p1 = panel(s, "Silent", 0.6, c + 0.2, W3, null, HEX.navy, HEX.navyTint, "LEARN IS SILENT", null, [
     "Learn's Zero Trust Assessment pages don't mention government clouds; the tool's source does",
   ], 12);
   const p2 = panel(s, "SPO", 0.6 + W3 + G3, c + 0.2, W3, null, HEX.amber, HEX.amberTint, "ALWAYS PASS THE SPO URL", null, [
-    "In every cloud; otherwise the tool infers it from the initial domain",
+    "Otherwise the tool infers it from the initial domain",
   ], 12);
-  const p3 = panel(s, "DoD", 0.6 + 2 * (W3 + G3), c + 0.2, W3, null, HEX.red, HEX.redTint, "DOD: TWO ADDRESSES", null, [
-    "Learn and the tool give different Security & Compliance addresses: check it first",
+  const p3 = panel(s, "Defaults", 0.6 + 2 * (W3 + G3), c + 0.2, W3, null, HEX.teal, HEX.tealTint, "THE TOOL'S DEFAULTS", null, [
+    "-Environment Global and -ExchangeEnvironmentName O365Default",
   ], 12);
   if (Math.max(p1, p2, p3) > 6.61) console.warn("  ! Connect panels may overflow");
-  sources(s, "Sources: Module 2, Unit 3; Guide, Step 4, \"Government-cloud availability\"; Microsoft Graph national cloud deployments; Connect to Exchange Online PowerShell.");
+  sources(s, "Sources: Module 2, Unit 3; Guide, Step 4, \"GCC availability\"; Microsoft Graph national cloud deployments; Connect to Exchange Online PowerShell.");
   notes(s,
-`Unit 3 connects. Learn's Zero Trust Assessment pages don't mention government clouds; the tool's source does, and the guide matches its parameters to Learn's page for each service. Start with G C C, the workbook's baseline. A G C C tenant uses the worldwide Graph and Azure endpoints, so it connects with the default Global environment, the same command as commercial. G C C High uses the U S Gov environment, with the Exchange environment name for G C C High. D O D uses U S Gov D O D, with its own Exchange environment name. Then confirm the session's tenant and cloud with Get M G Context. Pass the SharePoint admin U R L in every cloud; otherwise the tool infers one from the initial domain. And in D O D, Learn and the tool give different Security and Compliance addresses. If the data pillar's tests come back disconnected there, check that first.`,
-  `${M} — Unit 3 "Connecting in each cloud"; guide, Step 4 (the commands), "Government-cloud availability"; Microsoft Learn — "Microsoft Graph national cloud deployments," "Connect to Exchange Online PowerShell," "Exchange app-only authentication"; the tool's 3.1.0 source, Connect-ZtAssessment.ps1.`);
+`Unit 3 connects. Learn's Zero Trust Assessment pages don't mention government clouds; the tool's source does, and the guide matches its parameters to Learn's page for each service. A G C C tenant, the workbook's baseline, uses the worldwide Graph and Azure endpoints, so it connects with the tool's defaults: the Global environment, and the default Exchange environment. That's the same command as commercial. Then confirm the session's tenant and cloud with Get M G Context. And pass the SharePoint admin U R L; otherwise the tool infers one from the initial domain.`,
+  `${M} — Unit 3 "Connecting in GCC"; guide, Step 4 (the commands), "GCC availability"; Microsoft Learn — "Microsoft Graph national cloud deployments," "Connect to Exchange Online PowerShell"; the tool's 3.1.0 source, Connect-ZtAssessment.ps1.`);
 }
 
 // ================================================================== 8 Gov clouds table
 {
-  const s = content(SC, "Where agencies are: each service, cloud by cloud");
+  const s = content(SC, "Where agencies are: each service in GCC");
   tag(s, "Who");
-  const tb = table(s, "Gov", 1.45, [2.75, 3.0, 3.1, 3.3], ["Service", "GCC and Commercial", "GCC High", "DoD"], [
-    ["Microsoft Graph (Learn)", "graph.microsoft.com; GCC uses worldwide", "graph.microsoft.us", "dod-graph.microsoft.us"],
-    ["Exchange Online (Learn)", "No parameter needed", "O365USGovGCCHigh", "O365USGovDoD"],
-    ["Security & Compliance", "Default endpoint", "ps.compliance.protection.office365.us", { text: "Learn and the tool's source differ", options: { color: HEX.red, bold: true } }],
-    ["Azure (Learn)", "AzureCloud", "AzureUSGovernment", "AzureUSGovernment"],
-    ["SharePoint Online admin", "-admin.sharepoint.com", "Pass it explicitly", "DoD's URL not yet specified"],
+  const tb = table(s, "Gov", 1.45, [4.0, 8.15], ["Service", "Commercial and GCC"], [
+    ["Microsoft Graph (Learn)", "graph.microsoft.com (Connect-MgGraph -Environment Global)"],
+    ["Exchange Online (Learn)", "O365Default (no parameter needed)"],
+    ["Security & Compliance (Purview)", "Default endpoint"],
+    ["Azure", "AzureCloud"],
+    ["SharePoint Online admin", "-admin.sharepoint.com"],
   ], { fontSize: 11.5, limit: 4.9 });
   callout(s, "Interim", tb + 0.3, 1.05, "FaRoute", HEX.teal, "Interim path: ",
     "until a run is proved in your cloud, run one pillar at a time in a test tenant of the same cloud; ScubaGear stays the federal baseline tool.");
-  sources(s, "Sources: Module 2, Unit 3; Guide, \"Government-cloud availability\"; Microsoft Graph national cloud deployments; Connect to Exchange Online PowerShell; Exchange app-only authentication.");
+  sources(s, "Sources: Module 2, Unit 3; Guide, \"GCC availability\"; Microsoft Graph national cloud deployments; Connect to Exchange Online PowerShell.");
   notes(s,
-`Here's where each service stands, cloud by cloud, from the guide's availability table. Microsoft Graph: G C C uses the worldwide graph dot microsoft dot com, G C C High uses graph dot microsoft dot U S, and D O D its own D O D graph host. Exchange Online: no parameter in G C C, and an environment name for each of the other two. Security and Compliance: the default endpoint in G C C; a dot U S address in G C C High; and in D O D, Learn and the tool's source give different addresses, and which one works wasn't tested. Azure: Azure Cloud for G C C, Azure U S Government for the other two. SharePoint admin: pass it explicitly; D O D's isn't yet specified. Until a run has been proved in your own cloud, run one pillar at a time in a test tenant of the same cloud, and keep ScubaGear as the federal baseline tool.`,
-  `${M} — Unit 3; guide, "Government-cloud availability" (table and interim path); Microsoft Learn — "Microsoft Graph national cloud deployments," "Connect to Exchange Online PowerShell," "App-only authentication ... Security & Compliance PowerShell," "Quickstart: Connect to Azure Government with PowerShell."`);
+`Here's where each service stands in G C C, from the guide's availability table. Microsoft Graph: G C C uses the worldwide graph dot microsoft dot com, with the Global environment. Exchange Online: the default environment, so no parameter is needed. Security and Compliance: the default endpoint. Azure: Azure Cloud. And the SharePoint admin address ends in dash admin dot sharepoint dot com. Until a run has been proved in your own cloud, run one pillar at a time in a test tenant of the same cloud, and keep ScubaGear as the federal baseline tool.`,
+  `${M} — Unit 3; guide, "GCC availability" (table and interim path); Microsoft Learn — "Microsoft Graph national cloud deployments," "Connect to Exchange Online PowerShell."`);
 }
 
 // ================================================================== 9 The run
@@ -264,8 +258,8 @@ endModule(SC);
     "remove the reader's roles; remove the grant only on a dedicated application, never the shared Graph PowerShell one if anything else uses it.");
   sources(s, "Sources: Module 2, \"Exercise: Lab 2,\" steps 4 to 6; Guide, Steps 4, 5 and 10.");
   notes(s,
-`Step four connects as the reader, after activating its roles in pim, in a new PowerShell session. The command on the slide is for G C C and commercial; for G C C High or D O D, use the connection commands from the guide's Step 4 instead. Then confirm the session's tenant, environment and account. Step five runs the assessment and hashes the export. Keep the report folder: Modules 3 and 4 read it. Step six backs it all out, when you finish the path. Disconnect, and remove the reader's role assignments in the test tenant. If you consented on a dedicated application, remove its grant as a Cloud Application Administrator, with the grant I D from step three. Don't revoke the shared Microsoft Graph PowerShell grant if anything else in the tenant uses it. Then delete the report folder.`,
-  `${M} — "Exercise: Lab 2," steps 4 to 6 ("You'll replace"; the GCC High and DoD note).`);
+`Step four connects as the reader, after activating its roles in pim, in a new PowerShell session. The command on the slide is for G C C and commercial. Then confirm the session's tenant, environment and account. Step five runs the assessment and hashes the export. Keep the report folder: Modules 3 and 4 read it. Step six backs it all out, when you finish the path. Disconnect, and remove the reader's role assignments in the test tenant. If you consented on a dedicated application, remove its grant as a Cloud Application Administrator, with the grant I D from step three. Don't revoke the shared Microsoft Graph PowerShell grant if anything else in the tenant uses it. Then delete the report folder.`,
+  `${M} — "Exercise: Lab 2," steps 4 to 6 ("You'll replace").`);
 }
 endModule(SL);
 
@@ -291,11 +285,11 @@ endModule(SL);
 {
   const s = check(SS, "Check yourself: two questions on Module 2", [
     { q: "Learn lists 21 Graph permissions; Get-ZtGraphScope in 3.1.0 prints 34. Which list does the consent review compare against?", options: ["a. Learn's, because Learn is the primary source", "b. Get-ZtGraphScope's, because it's what the version you're running requests", "c. Neither; consent is all or nothing"] },
-    { q: "A GCC tenant connects with which -Environment value?", options: ["a. Global, because GCC uses the worldwide Graph and Azure endpoints", "b. USGov", "c. USGovDoD"] },
+    { q: "A GCC tenant connects with which -Environment value?", options: ["a. Global, because GCC uses the worldwide Graph and Azure endpoints", "b. Commercial", "c. GCC"] },
   ], "1 b: compare with the version you run. 2 a: GCC uses Global, the same as commercial.");
-  sources(s, "Sources: Module 2, \"Knowledge check,\" questions 1 and 3; Units 2 and 3; Guide, Step 3, \"Government-cloud availability.\"");
+  sources(s, "Sources: Module 2, \"Knowledge check,\" questions 1 and 3; Units 2 and 3; Guide, Step 3, \"GCC availability.\"");
   notes(s,
-`Check yourself with two questions. First: Learn lists twenty-one Graph permissions, and Get Z T Graph Scope in three point one point oh prints thirty-four. Which list does the consent review compare against? The answer is b: Get Z T Graph Scope's, because it's what the version you're running requests. Second: a G C C tenant connects with which environment value? The answer is a, Global, because G C C uses the worldwide Graph and Azure endpoints. U S Gov is for G C C High, and U S Gov D O D for D O D. The module page has three more questions, each linked to the unit that answers it.`,
+`Check yourself with two questions. First: Learn lists twenty-one Graph permissions, and Get Z T Graph Scope in three point one point oh prints thirty-four. Which list does the consent review compare against? The answer is b: Get Z T Graph Scope's, because it's what the version you're running requests. Second: a G C C tenant connects with which environment value? The answer is a, Global, because G C C uses the worldwide Graph and Azure endpoints. There's no separate G C C value. The module page has three more questions, each linked to the unit that answers it.`,
   `${M} — "Knowledge check," questions 1 and 3, and "Check your answers."`);
 }
 
@@ -325,7 +319,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 2 deck", [
   "Module page: docs/training/zero-trust-assessment/02-running-the-assessment-safely.md (The Zero Trust Assessment as Evidence, Module 2), a draft awaiting review; the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
-  "Zero Trust Assessment: An Implementation Guide, Steps 2 to 5, \"Government-cloud availability\"; its footnotes carry each source, read November 11, 2026: Microsoft Learn, Get started with the Zero Trust Assessment; Graph PowerShell authentication cmdlets; Grant and revoke API permissions in Microsoft Entra ID; Microsoft Graph national cloud deployments; Connect to Exchange Online PowerShell; Exchange app-only authentication; Connect to Azure Government with PowerShell.",
+  "Zero Trust Assessment: An Implementation Guide, Steps 2 to 5, \"GCC availability\"; its footnotes carry each source, read November 11, 2026: Microsoft Learn, Get started with the Zero Trust Assessment; Graph PowerShell authentication cmdlets; Grant and revoke API permissions in Microsoft Entra ID; Microsoft Graph national cloud deployments; Connect to Exchange Online PowerShell.",
   "The tool, release 3.1.0: Run the Zero Trust Assessment (the tool's guide); its source for Connect-ZtAssessment and Get-ZtGraphScope.",
   "NIST SP 800-53 Rev. 5 (CM-6, AC-6, CA-2, CA-7, AU-9); FedRAMP 20x KSIs, as Book 13, Appendix A maps them. The Privileged Access implementation guide (the PIM model).",
   "Lab 2's commands are the page's, with its placeholders; the module has no Lab 1, and Lab 2 wasn't run by the authors.",

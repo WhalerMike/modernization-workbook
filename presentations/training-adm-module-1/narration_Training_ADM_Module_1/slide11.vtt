@@ -59,9 +59,10 @@ Nothing is sent until someone confirms
 it with the confirm large delta option.
 
 13
-00:00:42.063 --> 00:00:45.162
-Step seven runs the tests: seventy pass.
+00:00:42.063 --> 00:00:45.424
+Step seven runs the
+tests: seventy-one pass.
 
 14
-00:00:45.162 --> 00:00:46.610
+00:00:45.424 --> 00:00:46.850
 Step eight cleans up.

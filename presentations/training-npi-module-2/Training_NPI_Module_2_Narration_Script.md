@@ -42,7 +42,7 @@ Step five groups the findings by rule. Two apps have no valid owner at all: Lega
 
 ## Slide 11 — Try it: dry-run, apply, and a hash nobody approved
 
-Step seven computes the plan's hash and dry-runs the plan with it. Without the Apply switch, the write path runs its prechecks and stops, reporting three writes it would send: a directory disable for svc backup, a PATCH that turns off the Legacy Reports service principal, and a POST that adds an owner to HR Connector. Step eight sends them to the fake with Apply: three sent. In the results file, each disable tells the operator to record disabled on October thirtieth, and that the claim window ends November twenty-ninth. Then you run the same plan with a hash of all zeros, which nobody approved, and it refuses to run a plan nobody reviewed. Step nine runs every test: five hundred thirteen pass. Delete the output folder when you're done, because it names accounts and owners.
+Step seven computes the plan's hash and dry-runs the plan with it. Without the Apply switch, the write path runs its prechecks and stops, reporting three writes it would send: a directory disable for svc backup, a PATCH that turns off the Legacy Reports service principal, and a POST that adds an owner to HR Connector. Step eight sends them to the fake with Apply: three sent. In the results file, each disable tells the operator to record disabled on October thirtieth, and that the claim window ends November twenty-ninth. Then you run the same plan with a hash of all zeros, which nobody approved, and it refuses to run a plan nobody reviewed. Step nine runs every test: five hundred eleven pass. Delete the output folder when you're done, because it names accounts and owners.
 
 ## Slide 12 — Lab 2: two test orphans in your own tenant
 

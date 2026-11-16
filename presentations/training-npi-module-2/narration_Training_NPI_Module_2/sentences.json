@@ -328,43 +328,6 @@
    "And the claim for Build Pipeline named a guest, so the nominee is refused."
   ]
  ],
- "11": [
-  [
-   0.05,
-   4.025,
-   "Step seven computes the plan's hash and dry-runs the plan with it."
-  ],
-  [
-   4.075,
-   15.9,
-   "Without the Apply switch, the write path runs its prechecks and stops, reporting three writes it would send: a directory disable for svc backup, a PATCH that turns off the Legacy Reports service principal, and a POST that adds an owner to H R Connector."
-  ],
-  [
-   19.975,
-   3.75,
-   "Step eight sends them to the fake with Apply: three sent."
-  ],
-  [
-   23.725,
-   8.975,
-   "In the results file, each disable tells the operator to record disabled on October thirtieth, and that the claim window ends November twenty-ninth."
-  ],
-  [
-   32.7,
-   7.575,
-   "Then you run the same plan with a hash of all zeros, which nobody approved, and it refuses to run a plan nobody reviewed."
-  ],
-  [
-   40.275,
-   4.112,
-   "Step nine runs every test: five hundred thirteen pass."
-  ],
-  [
-   44.388,
-   4.487,
-   "Delete the output folder when you're done, because it names accounts and owners."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -662,6 +625,43 @@
    42.312,
    9.213,
    "Microsoft Learn's Governing Microsoft Entra service accounts documentation agrees on the shape: disable, but don't delete until the review is complete."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.025,
+   "Step seven computes the plan's hash and dry-runs the plan with it."
+  ],
+  [
+   4.075,
+   15.9,
+   "Without the Apply switch, the write path runs its prechecks and stops, reporting three writes it would send: a directory disable for svc backup, a PATCH that turns off the Legacy Reports service principal, and a POST that adds an owner to H R Connector."
+  ],
+  [
+   19.975,
+   3.75,
+   "Step eight sends them to the fake with Apply: three sent."
+  ],
+  [
+   23.725,
+   8.975,
+   "In the results file, each disable tells the operator to record disabled on October thirtieth, and that the claim window ends November twenty-ninth."
+  ],
+  [
+   32.7,
+   7.575,
+   "Then you run the same plan with a hash of all zeros, which nobody approved, and it refuses to run a plan nobody reviewed."
+  ],
+  [
+   40.275,
+   3.9,
+   "Step nine runs every test: five hundred eleven pass."
+  ],
+  [
+   44.175,
+   4.487,
+   "Delete the output folder when you're done, because it names accounts and owners."
   ]
  ]
 }

@@ -35,40 +35,40 @@ such as the contacts set
 in Essential Contacts.
 
 8
-00:00:22.075 --> 00:00:29.265
+00:00:22.075 --> 00:00:28.206
 Second, Assured Workloads' supported-products
 page lists Personalized Service Health
 
 9
-00:00:29.265 --> 00:00:35.175
+00:00:28.206 --> 00:00:32.741
 under twenty-five regional packages,
-including US Data Boundary, but not
+including US Data Boundary,
 
 10
-00:00:35.175 --> 00:00:40.100
-under FedRAMP Moderate, FedRAMP High, I
-L 2, I L 4, I L 5, C J I S or I T A R.
+00:00:32.741 --> 00:00:36.688
+but not under FedRAMP Moderate,
+FedRAMP High, C J I S or I T A R.
 
 11
-00:00:40.100 --> 00:00:42.535
+00:00:36.688 --> 00:00:39.123
 A workload in one of those packages has no
 
 12
-00:00:42.535 --> 00:00:45.113
+00:00:39.123 --> 00:00:41.701
 Personalized Service
 Health to read at all.
 
 13
-00:00:45.113 --> 00:00:49.212
+00:00:41.701 --> 00:00:45.800
 Both gaps share a danger: an
 empty list looks like good news.
 
 14
-00:00:49.212 --> 00:00:52.382
+00:00:45.800 --> 00:00:48.970
 So this gate collects
 what Google publishes,
 
 15
-00:00:52.382 --> 00:00:55.700
+00:00:48.970 --> 00:00:52.300
 and writes down, with the
 ISSO, what can't arrive.

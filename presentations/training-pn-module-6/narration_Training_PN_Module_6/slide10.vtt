@@ -35,30 +35,30 @@ Then the part that makes this gate
 different: record the gaps with the ISSO.
 
 8
-00:00:25.962 --> 00:00:30.787
+00:00:25.962 --> 00:00:30.994
 Whether the project is in an Assured
-Workloads FedRAMP or I L package, and in
+Workloads FedRAMP package, and in every case,
 
 9
-00:00:30.787 --> 00:00:35.612
-every case, that Google's planned
-maintenance doesn't come through this A P I.
+00:00:30.994 --> 00:00:34.974
+that Google's planned maintenance
+doesn't come through this A P I.
 
 10
-00:00:35.612 --> 00:00:40.149
+00:00:34.974 --> 00:00:39.512
 To back it out, step four removes
 the role binding and deletes the run.
 
 11
-00:00:40.149 --> 00:00:45.038
+00:00:39.512 --> 00:00:44.401
 It leaves the A P I enabled, unless
 the project owner decides otherwise.
 
 12
-00:00:45.038 --> 00:00:47.188
+00:00:44.401 --> 00:00:46.550
 The authors haven't run Lab 2.
 
 13
-00:00:47.188 --> 00:00:50.420
+00:00:46.550 --> 00:00:49.800
 The workbook's Chapter 5
 has the exact commands.

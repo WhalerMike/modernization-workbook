@@ -1,74 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.437
-The federal requirement.
+00:00:00.050 --> 00:00:03.550
+Check yourself with two questions
+from the module's knowledge check.
 
 2
-00:00:01.437 --> 00:00:06.694
-This gate supports two controls in
-NIST special publication eight hundred
+00:00:03.550 --> 00:00:07.120
+First: what happens when an
+issuing certificate authority
 
 3
-00:00:06.694 --> 00:00:11.533
-fifty-three: I A two, enhancement
-twelve, acceptance of PIV credentials,
+00:00:07.120 --> 00:00:10.325
+in the trust store has no
+revocation list configured?
 
 4
-00:00:11.533 --> 00:00:15.788
-and I A five, enhancement two,
-public key-based authentication.
+00:00:10.325 --> 00:00:11.288
+The answer is b.
 
 5
-00:00:15.788 --> 00:00:20.462
-It supports SCuBA's two
-phishing-resistant multifactor policies,
+00:00:11.288 --> 00:00:13.937
+Entra doesn't check revocation for that
 
 6
-00:00:20.462 --> 00:00:25.562
-three point one and three point
-six, which BOD 25-01 requires.
+00:00:13.937 --> 00:00:16.987
+authority's certificates,
+which is rule C B one.
 
 7
-00:00:25.562 --> 00:00:30.520
-And it supports FIPS two oh one dash
-three's issuance and termination rules,
+00:00:16.987 --> 00:00:22.725
+Second: an eighteen and a half million
+byte list raises C B five in GCC.
 
 8
-00:00:30.520 --> 00:00:34.599
-and special publication eight
-hundred sixty-three dash four.
+00:00:22.725 --> 00:00:23.413
+Why?
 
 9
-00:00:34.599 --> 00:00:38.775
-Your organization still sets the
-organization-defined parameters,
+00:00:23.413 --> 00:00:24.371
+The answer is b.
 
 10
-00:00:38.775 --> 00:00:41.925
-and the assessor decides
-whether each is satisfied.
+00:00:24.371 --> 00:00:28.123
+C B five warns at eighty percent
+of the interactive limit,
 
 11
-00:00:41.925 --> 00:00:46.860
-The evidence an ISSO keeps for Gate
-5: the configuration export and
+00:00:28.123 --> 00:00:31.876
+and GCC's limit is twenty
+megabytes, so eighteen and a half
 
 12
-00:00:46.860 --> 00:00:51.975
-the check's findings and manifest,
-dated, with each list's measurement.
+00:00:31.876 --> 00:00:35.788
+million bytes is over the line,
+though still under the limit.
 
 13
-00:00:51.975 --> 00:00:56.475
-The C B nine and C B ten rows,
-beside the ScubaGear report.
-
-14
-00:00:56.475 --> 00:01:01.863
-Lab 2's refused sign-in, with the revocation
-record and the list that published it.
-
-15
-00:01:01.863 --> 00:01:03.960
-And the mode rules in the export.
+00:00:35.788 --> 00:00:40.730
+The module page has two more questions,
+each linked to the section that teaches it.

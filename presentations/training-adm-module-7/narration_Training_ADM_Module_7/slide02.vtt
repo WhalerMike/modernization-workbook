@@ -47,30 +47,20 @@ extension that calls a Logic App.
 And here's the gap.
 
 11
-00:00:30.763 --> 00:00:35.769
+00:00:30.763 --> 00:00:35.606
 The definition on Microsoft Learn's
 page, Configure a Logic App for Lifecycle
 
 12
-00:00:35.769 --> 00:00:38.820
-Workflow use, calls back
-to the worldwide Graph,
+00:00:35.606 --> 00:00:40.299
+Workflow use, calls back to the Graph on
+beta, and it always says it completed.
 
 13
-00:00:38.820 --> 00:00:41.324
-on beta, and it always says it completed.
+00:00:40.299 --> 00:00:43.050
+So a revocation that failed reads as done.
 
 14
-00:00:41.324 --> 00:00:45.600
-In a GCC High tenant that
-callback goes to the wrong cloud.
-
-15
-00:00:45.600 --> 00:00:48.288
-And a revocation that
-failed reads as done.
-
-16
-00:00:48.288 --> 00:00:53.040
+00:00:43.050 --> 00:00:47.810
 In this module you see what that costs,
 and you run the definition that fixes it.

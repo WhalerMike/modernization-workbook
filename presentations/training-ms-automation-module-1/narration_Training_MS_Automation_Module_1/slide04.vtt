@@ -11,51 +11,46 @@ and a script has to call the hosts
 of the cloud its tenant lives in.
 
 3
-00:00:08.700 --> 00:00:13.725
-Commercial and Microsoft 365 GCC
-tenants use the same worldwide hosts:
+00:00:08.700 --> 00:00:14.225
+A Microsoft 365 GCC tenant
+lives in the worldwide service.
 
 4
-00:00:13.725 --> 00:00:18.665
+00:00:14.225 --> 00:00:17.477
+So commercial and GCC
+tenants use the same hosts:
+
+5
+00:00:17.477 --> 00:00:22.192
 login dot microsoftonline dot com
 for sign-in and graph dot microsoft
 
-5
-00:00:18.665 --> 00:00:23.350
+6
+00:00:22.192 --> 00:00:26.663
 dot com for Graph, with the Global
 environment in Graph PowerShell.
 
-6
-00:00:23.350 --> 00:00:26.425
+7
+00:00:26.663 --> 00:00:29.738
 Microsoft's own words are
 that a GCC environment
 
-7
-00:00:26.425 --> 00:00:29.500
+8
+00:00:29.738 --> 00:00:32.813
 should continue using
 the worldwide endpoints.
 
-8
-00:00:29.500 --> 00:00:35.252
-GCC High and DoD both sign in at
-login dot microsoftonline dot U S.
-
 9
-00:00:35.252 --> 00:00:39.701
-GCC High's Graph host is
-graph dot microsoft dot U S,
+00:00:32.813 --> 00:00:36.918
+For Azure PowerShell and the
+Azure CLI, the default is right,
 
 10
-00:00:39.701 --> 00:00:43.825
-and DoD's is dod dash graph
-dot microsoft dot U S.
+00:00:36.918 --> 00:00:41.025
+because a GCC tenant's
+subscriptions are commercial Azure.
 
 11
-00:00:43.825 --> 00:00:48.595
-In Graph PowerShell those are the U
-S Gov and U S Gov DoD environments,
-
-12
-00:00:48.595 --> 00:00:53.520
-and Azure PowerShell and the Azure
-CLI switch to Azure U S Government.
+00:00:41.025 --> 00:00:44.900
+Module 4 covers Azure
+Resource Manager in detail.

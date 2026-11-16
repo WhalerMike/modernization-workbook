@@ -54,10 +54,10 @@ the plan's hash isn't the approved one,
 so it won't run a plan nobody reviewed.
 
 12
-00:00:41.650 --> 00:00:46.663
+00:00:41.650 --> 00:00:46.550
 Step nine runs every test: five
-hundred thirteen pass, none fail.
+hundred eleven pass, none fail.
 
 13
-00:00:46.663 --> 00:00:48.550
+00:00:46.550 --> 00:00:48.460
 Then delete the output folder.

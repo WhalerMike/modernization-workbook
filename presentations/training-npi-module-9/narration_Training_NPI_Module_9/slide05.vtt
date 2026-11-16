@@ -25,34 +25,29 @@ it reads blueprints and agent identities
 and checks them against the rules.
 
 6
-00:00:20.538 --> 00:00:25.369
-In G C C High and D O D, where
-Microsoft Learn's feature availability
+00:00:20.538 --> 00:00:24.876
+Where a cloud has no agent
+identities, it runs in fallback mode.
 
 7
-00:00:25.369 --> 00:00:30.200
-page publishes no Agent I D
-availability, it runs in fallback mode.
-
-8
-00:00:30.200 --> 00:00:32.617
+00:00:24.876 --> 00:00:27.292
 It sends no agent identity read at all,
 
-9
-00:00:32.617 --> 00:00:37.138
+8
+00:00:27.292 --> 00:00:31.813
 and applies the same rules to the
 service principals the agents run as.
 
-10
-00:00:37.138 --> 00:00:41.138
+9
+00:00:31.813 --> 00:00:35.812
 So the rules don't change by cloud;
 only what the code reads does.
 
-11
-00:00:41.138 --> 00:00:44.125
+10
+00:00:35.812 --> 00:00:38.799
 Preview features are
 reported, never enforced.
 
-12
-00:00:44.125 --> 00:00:45.720
+11
+00:00:38.799 --> 00:00:40.390
 That's design guidance.

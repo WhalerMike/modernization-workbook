@@ -1,69 +1,75 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.831
-Lab 2 runs the library in a
-test tenant, never production,
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
 
 2
-00:00:03.831 --> 00:00:08.187
-with fictional users whose slots
-match the population fixture.
+00:00:01.437 --> 00:00:08.406
+The controls are NIST special publication
+eight hundred fifty-three controls in its
 
 3
-00:00:08.187 --> 00:00:11.195
-Sign in to the right cloud
-with the least you need:
+00:00:08.406 --> 00:00:11.841
+Moderate baseline: A C
+two, A C three, C M three,
 
 4
-00:00:11.195 --> 00:00:14.126
-a Groups Administrator,
-in a delegated session.
+00:00:11.841 --> 00:00:15.276
+C M four, C M three
+enhancement two, and A C six.
 
 5
-00:00:14.126 --> 00:00:17.800
-Create the library's groups
-paused, so nothing moves yet.
+00:00:15.276 --> 00:00:20.000
+A rule change is a configuration
+change, and its review is the evidence.
 
 6
-00:00:17.800 --> 00:00:22.330
-Compare the offline evaluator with
-Graph's beta evaluator for every test,
+00:00:20.000 --> 00:00:25.186
+The guards keep disabled accounts and guests
+out, for account management and access
 
 7
-00:00:22.330 --> 00:00:25.300
-so you know the evaluator
-agrees with the engine.
+00:00:25.186 --> 00:00:30.075
+enforcement; the evidence is the rule
+library and its fixture, in the repository.
 
 8
-00:00:25.300 --> 00:00:29.578
-Then turn processing on and
-shadow-diff live with V K D G oh four,
+00:00:30.075 --> 00:00:35.179
+Every rule passes its tests and each
+change's adds and removes are listed, for
 
 9
-00:00:29.578 --> 00:00:33.600
-and drill an incident pause
-and resume with the manifest.
+00:00:35.179 --> 00:00:40.688
+change control and impact analysis; that's
+the pull request, with its check results.
 
 10
-00:00:33.600 --> 00:00:36.475
-To back it out, step six
-deletes the test groups,
+00:00:40.688 --> 00:00:44.451
+A broken rule fails the check,
+which is the testing of changes.
 
 11
-00:00:36.475 --> 00:00:40.788
-then lists every dynamic group and
-administrative unit that isn't on,
+00:00:44.451 --> 00:00:48.207
+In Lab 2, the incident pause
+records each state first,
 
 12
-00:00:40.788 --> 00:00:45.100
-to confirm nothing is left paused
-that the record didn't pause before.
+00:00:48.207 --> 00:00:52.663
+and the resume touches only what
+it paused: the drill manifest.
 
 13
-00:00:45.100 --> 00:00:47.250
-The authors haven't run Lab 2.
+00:00:52.663 --> 00:00:57.788
+And the session asks only for what it
+needs, shown in the sign-in and audit logs.
 
 14
-00:00:47.250 --> 00:00:50.710
-Follow Chapter 04's Lab 2, step by step.
+00:00:57.788 --> 00:01:02.638
+The Key Security Indicators come from
+FedRAMP's Key Security Indicators list.
+
+15
+00:01:02.638 --> 00:01:06.260
+Which output supports which
+control is this workbook's reading.

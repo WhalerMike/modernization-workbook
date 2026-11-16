@@ -50,15 +50,15 @@ the plan's hash isn't the approved one,
 so it won't run a plan nobody reviewed.
 
 11
-00:00:37.162 --> 00:00:42.176
+00:00:37.162 --> 00:00:42.063
 Step nine runs every test: five
-hundred thirteen pass, none fail.
+hundred eleven pass, none fail.
 
 12
-00:00:42.176 --> 00:00:44.012
+00:00:42.063 --> 00:00:43.899
 Then delete the output folder.
 
 13
-00:00:44.012 --> 00:00:47.810
+00:00:43.899 --> 00:00:47.690
 The owner review names owners,
 so don't leave it lying around.

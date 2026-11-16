@@ -37,7 +37,7 @@ const LAB = "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MA
   const s = title(SI, "Module 7: Extend Lifecycle Workflows", "Attribute-Driven Migration learning path · Guide Gates 7 and 8, with Book 19 Chapter 05",
     ["Where the extensions sit  ·  What Learn's definition leaves to you  ·  The registry", "Lint, run, build, check  ·  The leaver order  ·  Try it: Lab 1  ·  Lab 2"]);
   notes(s,
-`Welcome to Module 7 of the Attribute-Driven Migration learning path: extend Lifecycle Workflows. This module serves Gates 7 and 8 of the implementation guide, and takes Chapter 05 of Building the Attribute-Driven Migration, on custom task extensions. It comes after Modules 4 to 6 because the path follows the gates: Chapter 05 serves Gates 7 and 8, after the Gate 5 work. You'll see what Learn's Logic App definition costs a GCC High leaver, and run the definition that fixes it, through transient failures and repeat deliveries. You'll build the deployment pieces from a reviewed registry, and check that the leaver blocks before the custom task runs. Nothing signs in. The code is illustrative: tested against fixtures and fakes, not against a production tenant.`,
+`Welcome to Module 7 of the Attribute-Driven Migration learning path: extend Lifecycle Workflows. This module serves Gates 7 and 8 of the implementation guide, and takes Chapter 05 of Building the Attribute-Driven Migration, on custom task extensions. It comes after Modules 4 to 6 because the path follows the gates: Chapter 05 serves Gates 7 and 8, after the Gate 5 work. You'll see what Learn's Logic App definition costs a leaver, and run the definition that fixes it, through transient failures and repeat deliveries. You'll build the deployment pieces from a reviewed registry, and check that the leaver blocks before the custom task runs. Nothing signs in. The code is illustrative: tested against fixtures and fakes, not against a production tenant.`,
   `${M} — Unit 1 "Introduction"; learning path index.`);
 }
 
@@ -52,10 +52,10 @@ const LAB = "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MA
     ["A custom task extension", "Carries the rest: the PIV credential, the devices, the servers, through a Logic App"],
   ], { fontSize: 13, limit: 4.4 });
   callout(s, "Point", b + 0.35, 0.95, "FaUserShield", HEX.red, "The gap: ",
-    "Learn's definition calls back to the worldwide Graph on beta, and always says it completed.");
+    "Learn's definition calls back on beta, and always says it completed.");
   sources(s, "Sources: Module 7, Unit 1; the implementation guide's Gates 7 and 8; Microsoft Learn, \"Configure a Logic App for Lifecycle Workflow use.\"");
   notes(s,
-`Why does this matter? In this workbook's implementation guide, Gate 7 proves that one personnel action changes access only through the attributes, with the mover workflow's run history as evidence. Gate 8 puts leaver automation first in every wave, and sizes Lifecycle Workflows for the agency. The built-in tasks cover the account. The rest of a leaver, such as the PIV credential, the devices and the servers, goes through a custom task extension that calls a Logic App. And here's the gap. The definition on Microsoft Learn's page, Configure a Logic App for Lifecycle Workflow use, calls back to the worldwide Graph, on beta, and it always says it completed. In a GCC High tenant that callback goes to the wrong cloud. And a revocation that failed reads as done. In this module you see what that costs, and you run the definition that fixes it.`,
+`Why does this matter? In this workbook's implementation guide, Gate 7 proves that one personnel action changes access only through the attributes, with the mover workflow's run history as evidence. Gate 8 puts leaver automation first in every wave, and sizes Lifecycle Workflows for the agency. The built-in tasks cover the account. The rest of a leaver, such as the PIV credential, the devices and the servers, goes through a custom task extension that calls a Logic App. And here's the gap. The definition on Microsoft Learn's page, Configure a Logic App for Lifecycle Workflow use, calls back to the Graph on beta, and it always says it completed. So a revocation that failed reads as done. In this module you see what that costs, and you run the definition that fixes it.`,
   `${M} — Unit 1 "Introduction"; Book 19, Chapter 05 — "Where the extensions sit."`);
 }
 
@@ -65,7 +65,7 @@ const LAB = "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MA
     "Describe where custom task extensions sit in a leaver, and the three rules the kit builds in code",
     "Explain what Learn's Logic App definition leaves to you",
     "Run a definition for a cloud, through failures and repeat deliveries, and read what Lifecycle Workflows records",
-    "Build the deployment pieces from the registry, and explain why an Azure Government build is refused",
+    "Build the deployment pieces from the registry",
     "Check a workflow read-back for the leaver order",
   ], [
     "Module 1: provisioning creates and updates accounts; Lifecycle Workflows act on accounts that exist",
@@ -73,7 +73,7 @@ const LAB = "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MA
   ], 50);
   sources(s, "Sources: Module 7, \"Learning objectives,\" \"Prerequisites\"; learning path index, \"What you need for the labs.\"");
   notes(s,
-`Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab. You'll describe where custom task extensions sit in a leaver, and the three rules of this workbook's guidance that the kit builds in code. You'll explain what Learn's Logic App definition leaves to you. You'll run a definition for a cloud, through transient failures and repeat deliveries, and read what Lifecycle Workflows records. You'll build the deployment pieces from the registry, and explain why an Azure Government build is refused. And you'll check a workflow read-back for the leaver order. Before you start, finish Module 1: provisioning creates and updates accounts, and Lifecycle Workflows act on accounts that already exist. Lab 1 needs Python 3.10 or later and a POSIX shell, and no tenant.`,
+`Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab. You'll describe where custom task extensions sit in a leaver, and the three rules of this workbook's guidance that the kit builds in code. You'll explain what Learn's Logic App definition leaves to you. You'll run a definition for a cloud, through transient failures and repeat deliveries, and read what Lifecycle Workflows records. You'll build the deployment pieces from the registry. And you'll check a workflow read-back for the leaver order. Before you start, finish Module 1: provisioning creates and updates accounts, and Lifecycle Workflows act on accounts that already exist. Lab 1 needs Python 3.10 or later and a POSIX shell, and no tenant.`,
   `${M} — Unit 1 "Learning objectives," "Prerequisites"; learning path index — "What you need for the labs."`);
 }
 endModule(SI);
@@ -92,11 +92,11 @@ endModule(SI);
     "The wait: 30 minutes to 3 hours, as an ISO 8601 duration",
     "The response: a POST to resume, completed or failed, in v1.0",
   ], 13);
-  callout(s, "Host", Math.max(l, r) + 0.3, 0.95, "FaTriangleExclamation", HEX.amber, "The clouds: ",
-    "GCC keeps graph.microsoft.com; GCC High uses graph.microsoft.us and DoD dod-graph.microsoft.us. A token for one doesn't work in another.");
+  callout(s, "Host", Math.max(l, r) + 0.3, 0.95, "FaTriangleExclamation", HEX.amber, "The cloud: ",
+    "GCC keeps the worldwide Graph endpoint, graph.microsoft.com, and a token for one cloud doesn't work in another.");
   sources(s, "Sources: Module 7, Unit 2; Microsoft Learn: \"Lifecycle Workflows custom task extension,\" \"taskProcessingResult: resume,\" \"Microsoft Graph national cloud deployments.\"");
   notes(s,
-`This workbook's guidance splits the work: inbound provisioning creates and updates accounts, and Lifecycle Workflows act on accounts that already exist. It also sets three rules, and the kit builds them in code. One parameterized Logic App per integration, not one per component. Block first: Disable user account and Revoke all refresh tokens for user run before the custom task. And custom tasks are idempotent, and retry with a bound. Microsoft Learn sets the contract. Its page on the Lifecycle Workflows custom task extension says that in launch and wait, the extension starts the Logic App and waits; if no response arrives within the wait, the task is considered failed. Learn's Graph reference sets the wait at thirty minutes to three hours. The response is a POST to resume, with a status of completed or failed, and Learn lists it in v1.0. And Learn's page on Microsoft Graph national cloud deployments gives the clouds: GCC keeps the worldwide Graph, GCC High and DoD have their own hosts, and a token for one cloud doesn't work in another.`,
+`This workbook's guidance splits the work: inbound provisioning creates and updates accounts, and Lifecycle Workflows act on accounts that already exist. It also sets three rules, and the kit builds them in code. One parameterized Logic App per integration, not one per component. Block first: Disable user account and Revoke all refresh tokens for user run before the custom task. And custom tasks are idempotent, and retry with a bound. Microsoft Learn sets the contract. Its page on the Lifecycle Workflows custom task extension says that in launch and wait, the extension starts the Logic App and waits; if no response arrives within the wait, the task is considered failed. Learn's Graph reference sets the wait at thirty minutes to three hours. The response is a POST to resume, with a status of completed or failed, and Learn lists it in v1.0. And Learn's page on Microsoft Graph national cloud deployments says GCC keeps the worldwide Graph endpoint, and a token for one cloud doesn't work in another.`,
   `${M} — Unit 2 "Where the extensions sit, and what Learn's definition leaves to you"; Book 19, Chapter 05 — "Where the extensions sit."`);
 }
 
@@ -106,7 +106,7 @@ endModule(SI);
   tag(s, "What");
   const b = table(s, "Gaps", 1.45, [4.7, 7.45], ["Learn's definition, run as published", "What examples/lifecycle-extensions adds"], [
     ["Resumes with a managed identity, no secret", "Kept as the model, with the trigger schema unchanged"],
-    ["Hard-codes graph.microsoft.com, on /beta", "A graphHost parameter: only the three Graph roots; the callback uses v1.0"],
+    ["Hard-codes graph.microsoft.com, on /beta", "A graphHost parameter set from the registry's cloud; the callback uses v1.0"],
     ["Uses callbackUriPath as it arrives", "Check_request refuses a path that isn't this task's resume path"],
     ["Always reports Completed", "The status comes from the integration call: completed or failed"],
     ["No callback when added work fails", "Resume runs after success, failure or time-out, so a failure is reported at once"],
@@ -117,7 +117,7 @@ endModule(SI);
     "the right shape and trigger, kept; not safe to run as the leaver's credential revocation as published.");
   sources(s, "Sources: Module 7, Unit 2; Microsoft Learn, \"Configure a Logic App for Lifecycle Workflow use\" (pinned from MicrosoftDocs/entra-docs at 07cb73d).");
   notes(s,
-`Microsoft Learn's page, Configure a Logic App for Lifecycle Workflow use, gives the definition to paste into code view. It's Microsoft's only sample for this integration, so the repository pins the page, from the entra docs repository. Running the definition against fakes shows what it leaves to you. It resumes the task with the Logic App's managed identity and no secret, and the kit keeps that. But it hard-codes the worldwide Graph host, and calls back on beta. It uses the callback path as it arrives, so any path appended to the Graph host gets a POST with the identity's token. It always reports completed, so a failed revocation reads as done. If work you add before the callback fails, no callback is sent, and the task waits out the whole timeout. It has no idempotency. And it carries the subject's name and email into run history. The verdict: the right shape and the right trigger, but not safe to run as the leaver's revocation as published.`,
+`Microsoft Learn's page, Configure a Logic App for Lifecycle Workflow use, gives the definition to paste into code view. It's Microsoft's only sample for this integration, so the repository pins the page, from the entra docs repository. Running the definition against fakes shows what it leaves to you. It resumes the task with the Logic App's managed identity and no secret, and the kit keeps that. But it hard-codes the worldwide Graph host, which is right for GCC but fixed in the definition, and it calls back on beta, which Learn doesn't support in production. It uses the callback path as it arrives, so any path appended to the Graph host gets a POST with the identity's token. It always reports completed, so a failed revocation reads as done. If work you add before the callback fails, no callback is sent, and the task waits out the whole timeout. It has no idempotency. And it carries the subject's name and email into run history. The verdict: the right shape and the right trigger, but not safe to run as the leaver's revocation as published.`,
   `${M} — Unit 2; Book 19, Chapter 05 — "What Learn gives you," "The pinned copy," "What it leaves to you."`);
 }
 
@@ -153,14 +153,14 @@ endModule(SI);
   ], 12.5);
   const r = panel(s, "Auth", 6.85, 1.45, 5.9, null, HEX.teal, HEX.tealTint, "AUTHORIZATION", null, [
     "Learn's proof-of-possession policy, with SAS turned off",
-    "Learn documents it only for Azure commercial, so an Azure Government build is refused",
+    "Learn documents it only for Azure commercial, so a build for any other Azure cloud is refused",
     "The callback identity holds no tenant-wide Lifecycle Workflows permission",
   ], 12.5);
   callout(s, "Order", Math.max(l, r) + 0.3, 0.85, "FaFileShield", HEX.navy, "The leaver order: ",
     "check-workflow requires Disable user account, then Revoke all refresh tokens for user, before the custom task.");
   sources(s, "Sources: Module 7, Unit 3; Microsoft Learn: \"Configure a Logic App for Lifecycle Workflow use,\" \"Best practices for securing the custom extension extensibility.\"");
   notes(s,
-`The kit's tool has five commands. Lint applies twelve rules to any definition, Learn's included. One of them, L X eleven, adds up the worst-case retry waits and fails the definition if they reach the extension's timeout. Run runs a definition against fakes for a cloud, with downstream failures and repeat deliveries. Build writes the Logic App's ARM resource and the extension's body, and refuses if lint finds anything. And two checks compare what you read back from Graph with the registry. For authorization, the builder writes the proof-of-possession policy from Learn's page, Configure a Logic App for Lifecycle Workflow use, with shared access signatures turned off, as Learn's best practices for securing the custom extension ask. Learn documents that policy only for Azure commercial, so for a Logic App in Azure Government the builder refuses rather than guess. The callback identity needs no tenant-wide Lifecycle Workflows permission, which Learn advises against. And the workflow check requires the leaver to block first, which is this workbook's guidance, in Microsoft's order: disable, then revoke, then the custom task.`,
+`The kit's tool has five commands. Lint applies twelve rules to any definition, Learn's included. One of them, L X eleven, adds up the worst-case retry waits and fails the definition if they reach the extension's timeout. Run runs a definition against fakes for a cloud, with downstream failures and repeat deliveries. Build writes the Logic App's ARM resource and the extension's body, and refuses if lint finds anything. And two checks compare what you read back from Graph with the registry. For authorization, the builder writes the proof-of-possession policy from Learn's page, Configure a Logic App for Lifecycle Workflow use, with shared access signatures turned off, as Learn's best practices for securing the custom extension ask. Learn documents that policy only for Azure commercial, so for a Logic App in any other Azure cloud the builder refuses rather than guess. The callback identity needs no tenant-wide Lifecycle Workflows permission, which Learn advises against. And the workflow check requires the leaver to block first, which is this workbook's guidance, in Microsoft's order: disable, then revoke, then the custom task.`,
   `${M} — Unit 3; Book 19, Chapter 05 — "Lint, run, build, check," "Authorization, built and checked," "The leaver order."`);
 }
 endModule(SC);
@@ -180,14 +180,15 @@ endModule(SC);
     "LX-08  Finding HTTP     always reports 'Completed', whatever happened",
     "...  two LX-10 warnings (run history) and one LX-11 warning (implicit retry policy)",
     "8 result(s); findings                                    (exit code 2)",
-    "$ python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud GCCHigh",
-    "  POST https://graph.microsoft.com/beta/identityGovernance/lifecycleWorkflows/workflows/.../resume ...",
-    "Lifecycle Workflows task: failed (no callback within PT1H)",
+    "$ python tools/lcwext.py run out/learn-sample.workflow.json tests/fixtures/trigger-leaver.json --cloud GCC",
+    "  POST https://graph.microsoft.com/beta/identityGovernance/lifecycleWorkflows/workflows/.../taskProcessingResults/...",
+    "downstream: 0 call(s), 0 effect(s)",
+    "Lifecycle Workflows task: completed",
   ], { label: LAB, pt: 10 });
-  line(s, "Global", "Run again with --cloud Global: Lifecycle Workflows task: completed. It works only in the worldwide cloud.", c + 0.25, 0.45, 13.5);
+  line(s, "Global", "Completed, though nothing downstream was called: the definition always says so, and calls back on beta.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 7, \"Exercise: Lab 1,\" steps 1 and 2; examples/lifecycle-extensions: tools/lcwext.py, tests/fixtures.");
   notes(s,
-`Try it. Lab 1 runs in the lifecycle extensions folder of the examples, and nothing signs in. Step one extracts Learn's definition from the pinned page, and lints it with a one-hour timeout. Eight results, and exit code two. Five are findings: it hard-codes the worldwide Graph host, calls back on beta, uses the callback path without checking it, sends no callback when the work fails, and always reports completed. Two warnings are for run history, and one for the implicit retry policy. Step two runs Learn's definition for a GCC High tenant. The one POST goes to the worldwide Graph, on beta, and the last line is what Lifecycle Workflows records: failed, no callback within an hour. So a GCC High leaver's task fails at the end of the wait. Run it again for a worldwide tenant, and the task is completed.`,
+`Try it. Lab 1 runs in the lifecycle extensions folder of the examples, and nothing signs in. Step one extracts Learn's definition from the pinned page, and lints it with a one-hour timeout. Eight results, and exit code two. Five are findings: it hard-codes the worldwide Graph host, calls back on beta, uses the callback path without checking it, sends no callback when the work fails, and always reports completed. Two warnings are for run history, and one for the implicit retry policy. Step two runs Learn's definition for a GCC tenant. The one POST goes to the worldwide Graph, on beta. Nothing downstream was called. And the last line is what Lifecycle Workflows records: completed. So the leaver's task reads as done, whatever happened.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 1 and 2.`);
 }
 
@@ -201,19 +202,19 @@ endModule(SC);
     "0 result(s); no findings",
     "$ python tools/lcwext.py lint logicapp/integration.workflow.json --timeout PT15M",
     "LX-11  Finding retryPolicy  worst-case retry waits (960s) reach the callback timeout PT15M   (exit code 2)",
-    "# Step 4: run it for GCC High (last two lines of each run)",
+    "# Step 4: run it for GCC (last two lines of each run)",
     "$ python tools/lcwext.py run logicapp/integration.workflow.json tests/fixtures/trigger-leaver.json \\",
-    "    --cloud GCCHigh --fail 503,503",
+    "    --cloud GCC --fail 503,503",
     "downstream: 3 call(s), 1 effect(s)            Lifecycle Workflows task: completed",
-    "$ ... --cloud GCCHigh --fail 503,503,503,503,503",
+    "$ ... --cloud GCC --fail 503,503,503,503,503",
     "downstream: 5 call(s), 0 effect(s)            Lifecycle Workflows task: failed",
-    "$ ... --cloud GCCHigh --deliveries 2",
+    "$ ... --cloud GCC --deliveries 2",
     "downstream: 2 call(s), 1 effect(s)            Lifecycle Workflows task: completed",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED AND JOINED: LAST TWO LINES PER RUN)", pt: 10 });
-  line(s, "Host", "Every callback goes to https://graph.microsoft.us/v1.0/... With five failures, the task fails at once.", c + 0.25, 0.45, 13.5);
+  line(s, "Host", "Every callback goes to https://graph.microsoft.com/v1.0/... With five failures, the task fails at once.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 7, \"Exercise: Lab 1,\" steps 3 and 4; examples/lifecycle-extensions/logicapp/integration.workflow.json.");
   notes(s,
-`Step three lints the program's definition. With a one-hour timeout: no findings. With a fifteen-minute timeout, L X eleven finds that the worst-case retry waits, nine hundred and sixty seconds, reach the callback timeout, and the exit code is two. So the retries have to fit inside the wait. Step four runs the program's definition for GCC High, three ways. Through two transient failures: three downstream calls, one effect, and the task is completed. Through five failures: five calls, no effect, and the task is failed, at once, not at the end of the wait. And with two deliveries of the same request: two calls, but one effect, and the task is completed. The idempotency key means the work is done once. Every callback goes to the GCC High Graph host, on v1.0. The slide joins each run's last two lines.`,
+`Step three lints the program's definition. With a one-hour timeout: no findings. With a fifteen-minute timeout, L X eleven finds that the worst-case retry waits, nine hundred and sixty seconds, reach the callback timeout, and the exit code is two. So the retries have to fit inside the wait. Step four runs the program's definition for GCC, three ways. Through two transient failures: three downstream calls, one effect, and the task is completed. Through five failures: five calls, no effect, and the task is failed, at once, not at the end of the wait. And with two deliveries of the same request: two calls, but one effect, and the task is completed. The idempotency key means the work is done once. Every callback goes to the worldwide Graph host, on v1.0. The slide joins each run's last two lines.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 3 and 4.`);
 }
 
@@ -222,12 +223,12 @@ endModule(SC);
   const s = content(SL, "Try it: build the pieces, and check the read-backs");
   tag(s, "How");
   const c = code(s, "Build", 0.6, 1.45, 12.15, [
-    "# Step 5: build from the registry; then once with the Logic App in Azure Government",
+    "# Step 5: build from the registry; then once with the Logic App's cloud set to AzureOther",
     "$ python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id 6e3a1f2b-...",
     "wrote out/arm-cms-revocation.json",
     "wrote out/extension-cms-revocation.json",
     "error: cms-revocation: Learn documents the PoP policy only for Azure commercial; no values for",
-    "  AzureUSGovernment (research gap), so nothing is built                 (exit code 1)",
+    "  AzureOther (research gap), so nothing is built                        (exit code 1)",
     "# Step 6: check-extension and check-workflow print 0 result(s); no findings. Then the custom task first:",
     "$ python tools/lcwext.py check-workflow ... workflow-seq0.json",
     "WX-03  Finding tasks  'Disable user account' doesn't run before the custom task (Book 03: block first)",
@@ -235,12 +236,12 @@ endModule(SC);
     "2 result(s); findings                                                  (exit code 2)",
     "# Step 7: the tests",
     "$ python -m unittest discover -s tests -v",
-    "Ran 55 tests ... OK",
+    "Ran 54 tests ... OK",
   ], { label: LAB, pt: 10 });
   line(s, "Clean", "Step 8 cleans up: rm -rf out workflow-seq0.json", c + 0.25, 0.45, 13.5);
-  sources(s, "Sources: Module 7, \"Exercise: Lab 1,\" steps 5 to 8; data/kit-captures/adm/05-9 (the Azure Government refusal).");
+  sources(s, "Sources: Module 7, \"Exercise: Lab 1,\" steps 5 to 8; data/kit-captures/adm/05-8 (the refusal).");
   notes(s,
-`Step five builds the deployment pieces from the registry, for the card management revocation integration. It writes two files: the Logic App's ARM resource, and the extension's body. Then set the Logic App's cloud to Azure Government, build again, and put it back. The second build exits one: Learn documents the proof-of-possession policy only for Azure commercial, so nothing is built. Step six checks the read-backs. The extension and the leaver workflow both come back with no findings. Then move the custom task to the front of a copy of the workflow, and check the copy. Two W X oh three findings: Disable user account, and Revoke all refresh tokens, don't run before the custom task. Block first. Exit code two. Step seven runs the tests: fifty-five, OK. Step eight cleans up.`,
+`Step five builds the deployment pieces from the registry, for the card management revocation integration. It writes two files: the Logic App's ARM resource, and the extension's body. Then set the Logic App's cloud to one Learn gives no policy values for, build again, and put it back. The second build exits one: Learn documents the proof-of-possession policy only for Azure commercial, so nothing is built. Step six checks the read-backs. The extension and the leaver workflow both come back with no findings. Then move the custom task to the front of a copy of the workflow, and check the copy. Two W X oh three findings: Disable user account, and Revoke all refresh tokens, don't run before the custom task. Block first. Exit code two. Step seven runs the tests: fifty-four, OK. Step eight cleans up.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 5 to 8.`);
 }
 
@@ -287,13 +288,13 @@ endModule(SL);
 // ================================================================== 13 Check
 {
   const s = check(SS, "Check yourself: two questions on extensions", [
-    { q: "Learn's definition runs for a GCC High leaver. What does Lifecycle Workflows record?", options: ["a. Completed", "b. Failed, at the end of the wait, because the callback went to the worldwide Graph on beta", "c. Failed at once"] },
-    { q: "Why does the builder refuse a Logic App in Azure Government?", options: ["a. Logic Apps don't run there", "b. Learn documents the proof-of-possession policy only for Azure commercial, so it refuses rather than guess", "c. The registry doesn't allow it"] },
-  ], "1 b: step 2 of the lab, failed (no callback within PT1H). 2 b: step 5 of the lab; nothing is built.");
-  sources(s, "Sources: Module 7, Unit 6 \"Knowledge check,\" questions 1 and 3, and \"Check your answers.\"");
+    { q: "Learn's definition runs for a GCC leaver. What does Lifecycle Workflows record?", options: ["a. Completed, though nothing downstream was called", "b. Failed, at the end of the wait", "c. Failed at once"] },
+    { q: "The downstream system fails five times in a row. What does the program's definition do?", options: ["a. It retries until the wait ends", "b. It calls back failed, so the task fails at once", "c. It calls back completed"] },
+  ], "1 a: step 2 of the lab; it always reports completed. 2 b: step 4 of the lab; 5 calls, 0 effects, failed.");
+  sources(s, "Sources: Module 7, Unit 6 \"Knowledge check,\" questions 1 and 2, and \"Check your answers.\"");
   notes(s,
-`Check yourself with two questions. First: Learn's definition runs for a GCC High leaver. What does Lifecycle Workflows record? The answer is b: failed, at the end of the wait, because the callback went to the worldwide Graph on beta. You saw it in step two: failed, no callback within an hour. Second: why does the builder refuse a Logic App in Azure Government? The answer is b: Learn documents the proof-of-possession policy only for Azure commercial, so the builder refuses rather than guess, and nothing is built. You saw that in step five. The module page has two more questions, on five downstream failures and on W X oh three, each linked to the section that answers it.`,
-  `${M} — Unit 6 "Knowledge check," questions 1 and 3; "Check your answers."`);
+`Check yourself with two questions. First: Learn's definition runs for a GCC leaver. What does Lifecycle Workflows record? The answer is a: completed, though nothing downstream was called. You saw it in step two: the definition always reports completed. Second: the downstream system fails five times in a row. What does the program's definition do? The answer is b: it calls back failed, so the task fails at once, not at the end of the wait. You saw that in step four: five calls, no effect, failed. The module page has one more question, on W X oh three, linked to the section that answers it.`,
+  `${M} — Unit 6 "Knowledge check," questions 1 and 2; "Check your answers."`);
 }
 
 // ================================================================== 14 Summary
@@ -325,7 +326,7 @@ sourceSlide("Sources: Module 7 deck", [
   "Module page: docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.md (Attribute-Driven Migration learning path, Module 7): Units 1 to 7, Lab 1, Lab 2, knowledge check and summary. The learning path index: prerequisites and what you need for the labs.",
   "What the module links for the design: Book 19, Chapter 05 \"Where the extensions sit,\" \"What it leaves to you,\" \"One Logic App per integration,\" \"The registry,\" \"Lint, run, build, check,\" \"Authorization, built and checked,\" \"The leaver order,\" Lab 2, Checklist; the implementation guide's Gates 7 and 8.",
   "Kit: examples/lifecycle-extensions (tools/lcwext.py; tools/wdl.py; logicapp/integration.workflow.json; config/integrations.json; tests; tests/fixtures), with the pinned Learn page in examples/third_party. Fictional identities. Illustrative: tested against fakes, not against a production tenant.",
-  "Lab output: run November 3, 2026 with Python 3.14.3 in a scratch copy of examples/lifecycle-extensions and examples/third_party; it matches the module page and data/kit-captures/adm (05-1 to 05-13). Verification: docs/training/attribute-driven-migration/_verification/learning-path.md. Lab 2 not run by the authors.",
+  "Lab output: run November 3, 2026 with Python 3.14.3 in a scratch copy of examples/lifecycle-extensions and examples/third_party; it matches the module page and data/kit-captures/adm (05-1 to 05-12). Verification: docs/training/attribute-driven-migration/_verification/learning-path.md. Lab 2 not run by the authors.",
 ]);
 
 finish(OUT);

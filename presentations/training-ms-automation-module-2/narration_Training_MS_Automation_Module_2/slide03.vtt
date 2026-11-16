@@ -36,20 +36,15 @@ You'll explain why a script checks
 Entra's logs but doesn't keep them.
 
 8
-00:00:25.262 --> 00:00:28.900
-You'll say what differs
-in GCC High and DoD.
-
-9
-00:00:28.900 --> 00:00:33.775
+00:00:25.262 --> 00:00:30.137
 And you'll run the five checks and read
 each finding against its ScubaGear policy.
 
-10
-00:00:33.775 --> 00:00:35.525
+9
+00:00:30.137 --> 00:00:31.887
 You need Module 1 first.
 
-11
-00:00:35.525 --> 00:00:42.100
+10
+00:00:31.887 --> 00:00:38.450
 Lab 1 needs no tenant; Lab 2 needs a
 test tenant with Entra ID P1 or P2.

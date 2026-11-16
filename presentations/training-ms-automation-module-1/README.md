@@ -1,13 +1,13 @@
 # Microsoft Automation learning path, Module 1: Graph and Azure Foundations
 
-**Deck name: Training_MS_Automation_Module_1.** The narrated deck for [Microsoft Automation, Module 1: Graph and Azure Foundations](../../docs/training/ms-automation-foundations.md), in the Microsoft Automation learning path ([Training](../../docs/training/index.md#microsoft-automation-learning-path)). It teaches the module the way Microsoft Learn does: the learning objectives, the concepts, a **Try it** slide with the real Lab 1 command and output, Lab 2, where agencies are with the government-cloud differences, the federal requirement and the evidence an ISSO keeps, a two-question knowledge check, and the summary. It is built with the shared kit in [`../_build/`](../_build/README.md). This folder sits outside `docs/`, so the site doesn't render it.
+**Deck name: Training_MS_Automation_Module_1.** The narrated deck for [Microsoft Automation, Module 1: Graph and Azure Foundations](../../docs/training/ms-automation-foundations.md), in the Microsoft Automation learning path ([Training](../../docs/training/index.md#microsoft-automation-learning-path)). It teaches the module the way Microsoft Learn does: the learning objectives, the concepts, a **Try it** slide with the real Lab 1 command and output, Lab 2, where agencies are, the federal requirement and the evidence an ISSO keeps, a two-question knowledge check, and the summary. It is built with the shared kit in [`../_build/`](../_build/README.md). This folder sits outside `docs/`, so the site doesn't render it.
 
 | Part | Covers |
 |---|---|
 | Introduction | Title; why it matters; learning objectives and prerequisites |
 | Concepts | Clouds and endpoints, signing in as a workload, permissions and tools, the four request patterns and throttling limits |
 | Lab | Try it: Lab 1 steps 2 to 5: the unknown cloud, the permissions for `stale-users`, the undeclared call, the host refusal and the pattern tests; Lab 2 in a test tenant (not run by the authors) |
-| Where agencies are | The starting state, what differs in GCC High and DoD, and the interim paths |
+| Where agencies are | The starting state, what GCC relies on in the worldwide service, and the interim paths |
 | Check and summary | The federal requirement and evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |

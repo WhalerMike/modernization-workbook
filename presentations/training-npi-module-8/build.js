@@ -286,10 +286,10 @@ endModule(SC);
     "The plan's SHA-256 is e8fb8355ee0989d9ce9d7b107cd52f45d0eea5f155a49c1667a1bf5840de9cca, not the approved",
     "  0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.",
   ], { label: "LAB 1 OUTPUT, RUN NOVEMBER 9, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
-  line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 513 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
+  line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 511 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 8 to 10; examples/non-person-identity (Invoke-NpiKerberosIslandAction.ps1; tests).");
   notes(s,
-`Step eight is the write path's dry run. You take the plan's hash, which in a real run a second person would review and pass to you, and give it to the action script. It reports four would-send lines, one for each write, and sends nothing. Step nine runs the same command with the apply switch, against the fake. Four writes are sent, including the completed migration for svc h r sync. Then you pass a hash of zeros, a hash nobody approved. The script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed. Pasted line by line, your shell carries on after the refusal. Step ten runs every test: five hundred thirteen pass, none fail. Then delete the output folder.`,
+`Step eight is the write path's dry run. You take the plan's hash, which in a real run a second person would review and pass to you, and give it to the action script. It reports four would-send lines, one for each write, and sends nothing. Step nine runs the same command with the apply switch, against the fake. Four writes are sent, including the completed migration for svc h r sync. Then you pass a hash of zeros, a hash nobody approved. The script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed. Pasted line by line, your shell carries on after the refusal. Step ten runs every test: five hundred eleven pass, none fail. Then delete the output folder.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 8 to 10; learning path verification log — "Found during the re-run."`);
 }
 

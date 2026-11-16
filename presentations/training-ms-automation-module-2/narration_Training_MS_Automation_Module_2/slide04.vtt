@@ -50,16 +50,11 @@ And who registered which authentication
 methods: the registration details report.
 
 11
-00:00:39.650 --> 00:00:44.862
+00:00:39.650 --> 00:00:44.462
 Every one of these is generally
 available in Graph version one point oh,
 
 12
-00:00:44.862 --> 00:00:48.043
-and each page lists it
-in the global service,
-
-13
-00:00:48.043 --> 00:00:51.550
-which GCC uses, and in the
-GCC High and DoD clouds.
+00:00:44.462 --> 00:00:49.340
+and each page lists it as available in
+the global service, which GCC uses.

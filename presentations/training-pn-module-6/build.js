@@ -35,15 +35,15 @@ const SS = "Check and summary";
     "Planned maintenance and security notices aren't in it",
     "They reach a project by other channels, such as Essential Contacts",
   ], 13.5);
-  const r = panel(s, "Aw", 6.85, 1.45, 5.9, null, HEX.amber, HEX.amberTint, "ASSURED WORKLOADS", "Not in the FedRAMP or IL packages", [
+  const r = panel(s, "Aw", 6.85, 1.45, 5.9, null, HEX.amber, HEX.amberTint, "ASSURED WORKLOADS", "Not in the FedRAMP packages", [
     "Listed under 25 regional packages, including US Data Boundary",
-    "Not under FedRAMP Moderate, FedRAMP High, IL2, IL4, IL5, CJIS or ITAR",
+    "Not under FedRAMP Moderate, FedRAMP High, CJIS or ITAR",
   ], 13.5);
   callout(s, "Honest", Math.max(l, r) + 0.3, 0.95, "FaTriangleExclamation", HEX.red, "An empty list looks like good news: ",
     "so the gate records what can't arrive, and where a workload has nothing to read, with the ISSO.");
   sources(s, "Sources: Module 6; Chapter 05 (What Google gives you): Personalized Service Health Event resource; Assured Workloads supported products; Book 15, Ch 14: Google Cloud contacts.");
   notes(s,
-`Why does Google Cloud need a module about a gap? Because of two facts. First, Personalized Service Health's event category has one value, incident, meaning a service outage or degradation. Planned maintenance isn't in it, and neither are security notices. Those reach a Google Cloud project by other channels, such as the contacts set in Essential Contacts. Second, Assured Workloads' supported-products page lists Personalized Service Health under twenty-five regional packages, including US Data Boundary, but not under FedRAMP Moderate, FedRAMP High, I L 2, I L 4, I L 5, C J I S or I T A R. A workload in one of those packages has no Personalized Service Health to read at all. Both gaps share a danger: an empty list looks like good news. So this gate collects what Google publishes, and writes down, with the ISSO, what can't arrive.`,
+`Why does Google Cloud need a module about a gap? Because of two facts. First, Personalized Service Health's event category has one value, incident, meaning a service outage or degradation. Planned maintenance isn't in it, and neither are security notices. Those reach a Google Cloud project by other channels, such as the contacts set in Essential Contacts. Second, Assured Workloads' supported-products page lists Personalized Service Health under twenty-five regional packages, including US Data Boundary, but not under FedRAMP Moderate, FedRAMP High, C J I S or I T A R. A workload in one of those packages has no Personalized Service Health to read at all. Both gaps share a danger: an empty list looks like good news. So this gate collects what Google publishes, and writes down, with the ISSO, what can't arrive.`,
   `${M} — Unit "Introduction"; Unit 2: workbook Chapter 05 — "What Google gives you"; the guide — Step 5.`);
 }
 
@@ -116,14 +116,14 @@ endModule(SI);
   ], 12.5);
   const p2 = panel(s, "Gap", 0.6 + w + g, 1.45, w, null, HEX.red, HEX.redTint, "THE GAPS, WITH THE ISSO", "Design guidance", [
     "No planned maintenance through this API, for every project",
-    "Any workload in a FedRAMP or IL package: nothing to read",
+    "Any workload in a FedRAMP package: nothing to read",
     "The ISSO decides the compensating channel",
   ], 12.5);
   callout(s, "Danger", Math.max(p1, p2) + 0.3, 0.95, "FaTriangleExclamation", HEX.amber, "The guide's danger: ",
     "Google maintenance assumed covered. A maintenance window lands with nobody told; the gap is in the record, the digest's provider table and the ISSO's file.");
   sources(s, "Sources: Module 6, Units 1 and 2; Chapter 05 (What it leaves to you; Dangers); the guide (Step 5, interim path; Dangers); Book 15, Ch 14 (Honest limits).");
   notes(s,
-`Two guards make this gate honest. First, the organization call. Google's REST reference documents it, but the G cloud flags for it weren't read. So the kit's call list marks it unverified, and the live invoker refuses to run it unless you pass allow unverified. The kit doesn't run a command on a guess. That's the guide's interim path for an organization. Second, the gaps. Every project records that Google's planned maintenance doesn't come through this A P I. And any workload in an Assured Workloads FedRAMP or I L package records that it has no Personalized Service Health to read; the ISSO decides the compensating channel. The guide lists the danger plainly: Google maintenance assumed covered, and a maintenance window lands with nobody told. The guard is the gap itself, in the record, in the digest's provider table and in the ISSO's file. Until the A P I carries maintenance, it reaches the agency by the contacts it sets.`,
+`Two guards make this gate honest. First, the organization call. Google's REST reference documents it, but the G cloud flags for it weren't read. So the kit's call list marks it unverified, and the live invoker refuses to run it unless you pass allow unverified. The kit doesn't run a command on a guess. That's the guide's interim path for an organization. Second, the gaps. Every project records that Google's planned maintenance doesn't come through this A P I. And any workload in an Assured Workloads FedRAMP package records that it has no Personalized Service Health to read; the ISSO decides the compensating channel. The guide lists the danger plainly: Google maintenance assumed covered, and a maintenance window lands with nobody told. The guard is the gap itself, in the record, in the digest's provider table and in the ISSO's file. Until the A P I carries maintenance, it reaches the agency by the contacts it sets.`,
   `${M} — Unit 1: the guide — Step 5, "Interim path," and "Dangers"; Unit 2: workbook Chapter 05 — "What it leaves to you," "Dangers"; Book 15, Chapter 14 — "Honest limits."`);
 }
 endModule(SC);
@@ -208,14 +208,14 @@ endModule(SC);
     ["You need", "A Google Cloud test project, never production, its project owner, and a Google group for the reader"],
     ["Set up", "Enable the API and grant the viewer role; sign in as the reader"],
     ["Cross-check", "Google's command against the collection; no incidents is a valid result"],
-    ["Record", "Whether the project is in an Assured Workloads FedRAMP or IL package; in every case, that maintenance doesn't come through"],
+    ["Record", "Whether the project is in an Assured Workloads FedRAMP package; in every case, that maintenance doesn't come through"],
     ["Back it out", "Remove the role binding and delete the run; the API stays enabled unless the project owner decides otherwise"],
   ], { fontSize: 12.5, limit: 4.9 });
   callout(s, "NotRun", b + 0.3, 0.95, "FaTriangleExclamation", HEX.amber, "Not run by the authors: ",
     "follow the workbook's Chapter 05, Lab 2, which has the exact commands.");
   sources(s, "Sources: Module 6, \"Exercise: Lab 2\"; Chapter 05 (Lab 2: a test project): gcloud auth login; gcloud projects remove-iam-policy-binding.");
   notes(s,
-`Lab 2 reads a real test project. You need a Google Cloud test project, never production, its project owner, and a Google group for the reader. Enable the A P I, grant the viewer role, and sign in as the reader. Then cross-check Google's own command against the collection. The project may have no incidents at all, and that's a valid result. Then the part that makes this gate different: record the gaps with the ISSO. Whether the project is in an Assured Workloads FedRAMP or I L package, and in every case, that Google's planned maintenance doesn't come through this A P I. To back it out, step four removes the role binding and deletes the run. It leaves the A P I enabled, unless the project owner decides otherwise. The authors haven't run Lab 2. The workbook's Chapter 5 has the exact commands.`,
+`Lab 2 reads a real test project. You need a Google Cloud test project, never production, its project owner, and a Google group for the reader. Enable the A P I, grant the viewer role, and sign in as the reader. Then cross-check Google's own command against the collection. The project may have no incidents at all, and that's a valid result. Then the part that makes this gate different: record the gaps with the ISSO. Whether the project is in an Assured Workloads FedRAMP package, and in every case, that Google's planned maintenance doesn't come through this A P I. To back it out, step four removes the role binding and deletes the run. It leaves the A P I enabled, unless the project owner decides otherwise. The authors haven't run Lab 2. The workbook's Chapter 5 has the exact commands.`,
   `${M} — Unit "Exercise: Lab 2, a test project"; workbook Chapter 05 — "Lab 2: a test project."`);
 }
 endModule(SL);
@@ -228,12 +228,12 @@ endModule(SL);
     ["SA-9 c", "KSI-SCR-MIT, KSI-SCR-MON", "Get-PnRequiredPermission -Provider google; the role binding"],
     ["SA-9 c; SI-5 a", "KSI-SCR-MIT, KSI-SCR-MON", "raw/google.json, notices.json, manifest.json"],
     ["SA-9 c", "KSI-SCR-MON", "A call nobody verified isn't run"],
-    ["SA-9 c; RA-3 f", "KSI-SCR-MON, KSI-SCR-MIT", "The gaps (no maintenance; not in the FedRAMP or IL packages), written down with the ISSO"],
+    ["SA-9 c; RA-3 f", "KSI-SCR-MON, KSI-SCR-MIT", "The gaps (no maintenance; not in the FedRAMP packages), written down with the ISSO"],
   ], { fontSize: 12, limit: 4.8 });
   line(s, "KSI", "KSIs are FedRAMP 20x indicators for providers; the agency lines its evidence up with them. The mapping is design guidance.", b + 0.25, 0.7, 13.5);
   sources(s, "Sources: Module 6, Introduction; Chapter 05 (Federal requirements and evidence): NIST SP 800-53 Rev. 5; FedRAMP 20x KSIs.");
   notes(s,
-`The federal requirement. Gate 5 supports NIST special publication eight hundred fifty-three S A nine, part c, monitoring external service providers on an ongoing basis, and S I five, part a, receiving security alerts and advisories. And recording the gaps supports R A three, part f: updating the risk assessment when there are significant changes to the environment of operation. The evidence is the permission list and the role binding; the raw Google response, the notices and the manifest; the refusal of a call nobody verified; and the gaps, no maintenance through the A P I and no Personalized Service Health in the FedRAMP or I L packages, written down with the ISSO. The gate's output is evidence for these controls. Your organization still sets their parameters, and the assessor decides whether each is satisfied. K S I's are FedRAMP twenty X indicators for cloud service providers; the agency lines its evidence up with them, and doesn't report them itself.`,
+`The federal requirement. Gate 5 supports NIST special publication eight hundred fifty-three S A nine, part c, monitoring external service providers on an ongoing basis, and S I five, part a, receiving security alerts and advisories. And recording the gaps supports R A three, part f: updating the risk assessment when there are significant changes to the environment of operation. The evidence is the permission list and the role binding; the raw Google response, the notices and the manifest; the refusal of a call nobody verified; and the gaps, no maintenance through the A P I and no Personalized Service Health in the FedRAMP packages, written down with the ISSO. The gate's output is evidence for these controls. Your organization still sets their parameters, and the assessor decides whether each is satisfied. K S I's are FedRAMP twenty X indicators for cloud service providers; the agency lines its evidence up with them, and doesn't report them itself.`,
   `${M} — Unit "Introduction" (the federal requirement); workbook Chapter 05 — "Federal requirements and evidence."`);
 }
 

@@ -6,59 +6,59 @@ Unit 1 starts in the guide's Step
 5, bind credentials to HR events.
 
 2
-00:00:05.087 --> 00:00:09.414
-Its first step gives the revocation
-list limits for each cloud,
+00:00:05.087 --> 00:00:08.406
+Its first step gives the
+revocation list limits,
 
 3
-00:00:09.414 --> 00:00:14.988
+00:00:08.406 --> 00:00:13.963
 and its later steps tie card issuance and
 revocation to HR and contractor events.
 
 4
-00:00:14.988 --> 00:00:20.550
+00:00:13.963 --> 00:00:19.525
 Chapter 09 of the HR-Driven Identity book
 explains why revocation checking matters,
 
 5
-00:00:20.550 --> 00:00:23.489
+00:00:19.525 --> 00:00:22.464
 and that a reissued card
 changes the binding
 
 6
-00:00:23.489 --> 00:00:26.588
+00:00:22.464 --> 00:00:25.563
 between the PIV certificate
 and the Entra user.
 
 7
-00:00:26.588 --> 00:00:28.787
+00:00:25.563 --> 00:00:27.762
 Notice what this module doesn't cover.
 
 8
-00:00:28.787 --> 00:00:34.394
+00:00:27.762 --> 00:00:33.368
 Binding coverage and affinity for each
 user belong to the validation kit's check,
 
 9
-00:00:34.394 --> 00:00:38.913
+00:00:33.368 --> 00:00:37.887
 V K PIV oh one, and to Gate 6 of the
 attribute-driven migration guide.
 
 10
-00:00:38.913 --> 00:00:41.285
+00:00:37.887 --> 00:00:40.260
 This module checks the tenant's settings:
 
 11
-00:00:41.285 --> 00:00:44.076
+00:00:40.260 --> 00:00:43.051
 the certificate authorities
 in the trust store,
 
 12
-00:00:44.076 --> 00:00:48.472
+00:00:43.051 --> 00:00:47.447
 the X dot five-oh-nine certificate
 method, the authentication strengths and
 
 13
-00:00:48.472 --> 00:00:52.990
+00:00:47.447 --> 00:00:51.980
 the Conditional Access policies, plus
 a measurement of each revocation list.

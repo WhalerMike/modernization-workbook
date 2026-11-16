@@ -10,7 +10,7 @@ Why does this matter? The assessment only reads, but running it takes real privi
 
 ## Slide 3 — What you'll be able to do in Module 2
 
-Here's what you'll be able to do by the end of this module. You'll prepare a clean host with PowerShell seven point six, the pinned module, and a restricted report folder. You'll explain who consents, who runs, and why the two sources' role lists differ. You'll review the delegated grant the consent leaves behind, and say when not to revoke it. You'll connect in Commercial, G C C, G C C High or D O D, and confirm the session's tenant and cloud. And you'll run the assessment and hash its export. You need Module 1, and a skim of the Privileged Access implementation guide's pim model, for the run account's eligible roles. Lab 2 runs in a test tenant, never production.
+Here's what you'll be able to do by the end of this module. You'll prepare a clean host with PowerShell seven point six, the pinned module, and a restricted report folder. You'll explain who consents, who runs, and why the two sources' role lists differ. You'll review the delegated grant the consent leaves behind, and say when not to revoke it. You'll connect in Commercial or G C C, and confirm the session's tenant and cloud. And you'll run the assessment and hash its export. You need Module 1, and a skim of the Privileged Access implementation guide's pim model, for the run account's eligible roles. Lab 2 runs in a test tenant, never production.
 
 ## Slide 4 — Unit 1: a clean host and a protected report folder
 
@@ -24,13 +24,13 @@ Unit 2 is consent and roles, and the two sources don't agree. Learn's get-starte
 
 Consent leaves something behind: a delegated permission grant, on the application the tool signs in through. By default that's the Microsoft Graph PowerShell application, which other scripts in the tenant share, so every script that uses it inherits the consent. Learn's page on the Graph PowerShell authentication commands recommends a custom application when you need to isolate the consent it holds, and the tool accepts one with the client I D parameter. The program uses a dedicated application; that's design guidance. Review the grant after every version change, and compare its scopes with the list Get Z T Graph Scope prints. When the tool is retired, revoke a dedicated application's grant, with Learn's revocation command. Never revoke the shared one without asking who else relies on it. Learn also notes that existing tokens stay valid for their lifetime after a grant is deleted.
 
-## Slide 7 — Unit 3: connect in the tenant's own cloud, GCC first
+## Slide 7 — Unit 3: connect in GCC, the tenant's own cloud
 
-Unit 3 connects. Learn's Zero Trust Assessment pages don't mention government clouds; the tool's source does, and the guide matches its parameters to Learn's page for each service. Start with G C C, the workbook's baseline. A G C C tenant uses the worldwide Graph and Azure endpoints, so it connects with the default Global environment, the same command as commercial. G C C High uses the U S Gov environment, with the Exchange environment name for G C C High. D O D uses U S Gov D O D, with its own Exchange environment name. Then confirm the session's tenant and cloud with Get M G Context. Pass the SharePoint admin U R L in every cloud; otherwise the tool infers one from the initial domain. And in D O D, Learn and the tool give different Security and Compliance addresses. If the data pillar's tests come back disconnected there, check that first.
+Unit 3 connects. Learn's Zero Trust Assessment pages don't mention government clouds; the tool's source does, and the guide matches its parameters to Learn's page for each service. A G C C tenant, the workbook's baseline, uses the worldwide Graph and Azure endpoints, so it connects with the tool's defaults: the Global environment, and the default Exchange environment. That's the same command as commercial. Then confirm the session's tenant and cloud with Get M G Context. And pass the SharePoint admin U R L; otherwise the tool infers one from the initial domain.
 
-## Slide 8 — Where agencies are: each service, cloud by cloud
+## Slide 8 — Where agencies are: each service in GCC
 
-Here's where each service stands, cloud by cloud, from the guide's availability table. Microsoft Graph: G C C uses the worldwide graph dot microsoft dot com, G C C High uses graph dot microsoft dot U S, and D O D its own D O D graph host. Exchange Online: no parameter in G C C, and an environment name for each of the other two. Security and Compliance: the default endpoint in G C C; a dot U S address in G C C High; and in D O D, Learn and the tool's source give different addresses, and which one works wasn't tested. Azure: Azure Cloud for G C C, Azure U S Government for the other two. SharePoint admin: pass it explicitly; D O D's isn't yet specified. Until a run has been proved in your own cloud, run one pillar at a time in a test tenant of the same cloud, and keep ScubaGear as the federal baseline tool.
+Here's where each service stands in G C C, from the guide's availability table. Microsoft Graph: G C C uses the worldwide graph dot microsoft dot com, with the Global environment. Exchange Online: the default environment, so no parameter is needed. Security and Compliance: the default endpoint. Azure: Azure Cloud. And the SharePoint admin address ends in dash admin dot sharepoint dot com. Until a run has been proved in your own cloud, run one pillar at a time in a test tenant of the same cloud, and keep ScubaGear as the federal baseline tool.
 
 ## Slide 9 — Unit 4: the run, then hash the export first
 
@@ -42,7 +42,7 @@ Lab 2 runs the real tool in a test tenant, never production. The authors haven't
 
 ## Slide 11 — Lab 2, steps 4 to 6: connect, run, hash, back out
 
-Step four connects as the reader, after activating its roles in pim, in a new PowerShell session. The command on the slide is for G C C and commercial; for G C C High or D O D, use the connection commands from the guide's Step 4 instead. Then confirm the session's tenant, environment and account. Step five runs the assessment and hashes the export. Keep the report folder: Modules 3 and 4 read it. Step six backs it all out, when you finish the path. Disconnect, and remove the reader's role assignments in the test tenant. If you consented on a dedicated application, remove its grant as a Cloud Application Administrator, with the grant I D from step three. Don't revoke the shared Microsoft Graph PowerShell grant if anything else in the tenant uses it. Then delete the report folder.
+Step four connects as the reader, after activating its roles in pim, in a new PowerShell session. The command on the slide is for G C C and commercial. Then confirm the session's tenant, environment and account. Step five runs the assessment and hashes the export. Keep the report folder: Modules 3 and 4 read it. Step six backs it all out, when you finish the path. Disconnect, and remove the reader's role assignments in the test tenant. If you consented on a dedicated application, remove its grant as a Cloud Application Administrator, with the grant I D from step three. Don't revoke the shared Microsoft Graph PowerShell grant if anything else in the tenant uses it. Then delete the report folder.
 
 ## Slide 12 — The federal requirement and evidence for Module 2
 
@@ -50,7 +50,7 @@ The federal requirement, from NIST special publication eight hundred fifty-three
 
 ## Slide 13 — Check yourself: two questions on Module 2
 
-Check yourself with two questions. First: Learn lists twenty-one Graph permissions, and Get Z T Graph Scope in three point one point oh prints thirty-four. Which list does the consent review compare against? The answer is b: Get Z T Graph Scope's, because it's what the version you're running requests. Second: a G C C tenant connects with which environment value? The answer is a, Global, because G C C uses the worldwide Graph and Azure endpoints. U S Gov is for G C C High, and U S Gov D O D for D O D. The module page has three more questions, each linked to the unit that answers it.
+Check yourself with two questions. First: Learn lists twenty-one Graph permissions, and Get Z T Graph Scope in three point one point oh prints thirty-four. Which list does the consent review compare against? The answer is b: Get Z T Graph Scope's, because it's what the version you're running requests. Second: a G C C tenant connects with which environment value? The answer is a, Global, because G C C uses the worldwide Graph and Azure endpoints. There's no separate G C C value. The module page has three more questions, each linked to the unit that answers it.
 
 ## Slide 14 — Summary: a safe run, hashed before it's opened
 

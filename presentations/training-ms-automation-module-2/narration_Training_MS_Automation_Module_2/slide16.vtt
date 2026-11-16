@@ -25,40 +25,36 @@ PIM schedules, application
 credentials and registration details.
 
 6
-00:00:15.637 --> 00:00:19.862
+00:00:15.637 --> 00:00:19.150
 You saw why a script checks
-Entra's logs but doesn't keep them,
+Entra's logs but doesn't keep them.
 
 7
-00:00:19.862 --> 00:00:22.362
-and what differs in GCC High and DoD.
-
-8
-00:00:22.362 --> 00:00:25.425
+00:00:19.150 --> 00:00:22.212
 And you ran the five checks
 in Python and PowerShell.
 
-9
-00:00:25.425 --> 00:00:28.008
+8
+00:00:22.212 --> 00:00:24.795
 Chapter 10 of the Access
 and Privilege book
 
-10
-00:00:28.008 --> 00:00:30.662
+9
+00:00:24.795 --> 00:00:27.449
 assembles the evidence
 package for a period.
 
-11
-00:00:30.662 --> 00:00:35.465
+10
+00:00:27.449 --> 00:00:32.252
 Next is Module 3, Intune through
 Microsoft Graph: devices, compliance,
 
-12
-00:00:35.465 --> 00:00:40.520
+11
+00:00:32.252 --> 00:00:37.307
 configuration and Autopilot, which
 APIs are only in beta, and five checks
 
-13
-00:00:40.520 --> 00:00:45.620
+12
+00:00:37.307 --> 00:00:42.430
 mapped to NIST special publication
 eight hundred fifty-three Moderate.

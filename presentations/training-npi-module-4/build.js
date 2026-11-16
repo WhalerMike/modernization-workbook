@@ -260,10 +260,10 @@ endModule(SC);
     "DryRun: 3 WouldSend ... RenewInKeyVault POST https://kv-npi-contoso.vault.azure.net/certificates/vendor-portal/create...",
     "Apply: 3 Sent",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (STEP 8 IN TWO COLUMNS; \"...\" MARKS CUTS)", pt: 10.5 });
-  line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 513 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
+  line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 511 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 4, \"Exercise: Lab 1,\" steps 7 to 10; examples/non-person-identity: Invoke-NpiRotation.ps1, tests/fixtures/ch04 (fictional).");
   notes(s,
-`Step seven builds the rotation plan. It reads seven app registrations and writes seven steps: two findings, three information items, and three writes. Nothing is sent. Step eight reads the plan. Vendor Portal's certificate is due within sixty days and an owner approved, so it's renewed in Key Vault. HR Connector's new certificate was verified, and the seven-day overlap has passed, so the old one is removed. Deploy Bot gets its new certificate attached. Three apps still hold secrets: Legacy Reports, Mail Automation and Payroll Export. Those are replaced, not rotated. Step nine dry-runs the plan, three writes it would send, then applies it to the fake. For Vendor Portal, Key Vault created the next version, and the next plan attaches it, after a new review. Step ten runs every test: five hundred thirteen pass.`,
+`Step seven builds the rotation plan. It reads seven app registrations and writes seven steps: two findings, three information items, and three writes. Nothing is sent. Step eight reads the plan. Vendor Portal's certificate is due within sixty days and an owner approved, so it's renewed in Key Vault. HR Connector's new certificate was verified, and the seven-day overlap has passed, so the old one is removed. Deploy Bot gets its new certificate attached. Three apps still hold secrets: Legacy Reports, Mail Automation and Payroll Export. Those are replaced, not rotated. Step nine dry-runs the plan, three writes it would send, then applies it to the fake. For Vendor Portal, Key Vault created the next version, and the next plan attaches it, after a new review. Step ten runs every test: five hundred eleven pass.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 7 to 10.`);
 }
 

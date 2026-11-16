@@ -236,10 +236,10 @@ endModule(SC);
     "4 by a second writer, 1 forbidden",
     "Exit code 2: the fixture holds findings",
   ], 13);
-  line(s, "Cloud", "--cloud has no default: gcc, gcchigh or dod picks the Graph host the saved queries are for.", c + 0.3, 0.45, 13.5);
+  line(s, "Cloud", "--cloud has no default: gcc names the Graph host the saved queries are for, graph.microsoft.com.", c + 0.3, 0.45, 13.5);
   sources(s, "Sources: Module 1, \"Exercise: Lab 1,\" step 3; examples/hr-lifecycle: writer_register.py, README \"Commands\" (clouds).");
   notes(s,
-`Step three scans October's audit records against the register. You give it the register, the audit export, a window from the first to the thirty-first of October, the cloud, and an output folder. The cloud option has no default; G C C, G C C High or D O D picks the Graph host. The scan found eleven protected writes. Five were by the writer the row names, which is what you want. One was by the backstop. Four were by a second writer, someone the register doesn't name at all. And one was by a writer the register forbids. That's five findings and one warning, so the exit code is two. The output folder's manifest lists every file's hash, so the run can be checked later. The output on the slide is wrapped to fit.`,
+`Step three scans October's audit records against the register. You give it the register, the audit export, a window from the first to the thirty-first of October, the cloud, and an output folder. The cloud option has no default; G C C names the Graph host, the worldwide graph dot microsoft dot com. The scan found eleven protected writes. Five were by the writer the row names, which is what you want. One was by the backstop. Four were by a second writer, someone the register doesn't name at all. And one was by a writer the register forbids. That's five findings and one warning, so the exit code is two. The output folder's manifest lists every file's hash, so the run can be checked later. The output on the slide is wrapped to fit.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," step 3; examples/hr-lifecycle README — "Commands."`);
 }
 

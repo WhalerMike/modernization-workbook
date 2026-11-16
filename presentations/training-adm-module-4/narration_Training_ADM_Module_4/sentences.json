@@ -125,323 +125,6 @@
    "Lab 1 needs PowerShell 7.1 or later and Pester 5, and no tenant."
   ]
  ],
- "9": [
-  [
-   0.05,
-   0.725,
-   "Try it."
-  ],
-  [
-   0.775,
-   5.037,
-   "Lab 1 runs in PowerShell 7, against fixtures, and nothing signs in."
-  ],
-  [
-   5.812,
-   7.188,
-   "Step one starts in the validation kit, and runs VK-INT-07 on its fail fixture."
-  ],
-  [
-   13.0,
-   2.25,
-   "One G P O is imported."
-  ],
-  [
-   15.25,
-   7.225,
-   "Two are targeted in Active Directory with a readiness of partial or error, so they hold settings Intune can't take over."
-  ],
-  [
-   22.475,
-   1.262,
-   "Those are findings."
-  ],
-  [
-   23.738,
-   4.25,
-   "An empty G P O is a warning: confirm where its settings go."
-  ],
-  [
-   27.988,
-   3.388,
-   "And one in-scope G P O was never imported at all."
-  ],
-  [
-   31.375,
-   8.188,
-   "Step two moves to the group policy folder, and runs Microsoft's import sample twice, with the same file, against the fake Graph."
-  ],
-  [
-   39.562,
-   5.388,
-   "Now the tenant holds error reporting and dumps twice, two policies with the same name."
-  ],
-  [
-   44.95,
-   2.525,
-   "And the calls are two POSTs and no GET."
-  ],
-  [
-   47.475,
-   1.462,
-   "The sample never looked."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   6.013,
-   "Step three builds the move plan from the fixture tenant: eleven rows, from three GPOs."
-  ],
-  [
-   6.062,
-   5.475,
-   "Five are candidates, such as disabling Windows Error Reporting and allowing crash dumps."
-  ],
-  [
-   11.537,
-   8.2,
-   "Allow hibernate is a conflict, on two rows, because the baseline G P O and the power G P O set it to different values."
-  ],
-  [
-   19.738,
-   2.712,
-   "The firewall rule goes to Endpoint security."
-  ],
-  [
-   22.45,
-   4.725,
-   "Two rows aren't supported, including a drive map, and one is deprecated."
-  ],
-  [
-   27.175,
-   5.912,
-   "Notice the user-scope rows keep their scope: user settings go to user groups on the H R track."
-  ],
-  [
-   33.087,
-   2.775,
-   "Step four lints the library against that plan."
-  ],
-  [
-   35.862,
-   10.838,
-   "There's one row, an information item, GPC oh eight: the hibernate setting has conflicting G P O values, and decision D R oh one oh five picks the value."
-  ],
-  [
-   46.7,
-   3.525,
-   "That's the conflict shown, with the decision that resolves it."
-  ],
-  [
-   50.225,
-   2.138,
-   "The output on the slide is trimmed."
-  ]
- ],
- "11": [
-  [
-   0.05,
-   1.887,
-   "Step five runs the sync."
-  ],
-  [
-   1.938,
-   8.375,
-   "The dry run says create for the error reporting policy, which isn't in the tenant, and no change for sign-in and power, which already matches."
-  ],
-  [
-   10.312,
-   3.462,
-   "Then the apply says created, and both exit zero."
-  ],
-  [
-   13.775,
-   5.612,
-   "The sync record shows the scope the apply asked for, read-write, and the I D it created."
-  ],
-  [
-   19.387,
-   12.325,
-   "Ask for a cloud name the script doesn't know, U S gov, and it exits one: the cloud must be G C C, global, G C C High or D O D. Step six breaks something on purpose."
-  ],
-  [
-   31.712,
-   7.213,
-   "Change the hibernate value in one library file, and the dry run exits two, with a drift that names the setting."
-  ],
-  [
-   38.925,
-   6.438,
-   "Run it with apply, and it still exits two, and nothing is created, not even the error reporting policy."
-  ],
-  [
-   45.362,
-   1.337,
-   "Put the value back."
-  ],
-  [
-   46.7,
-   3.275,
-   "Step seven runs the tests: forty-six pass."
-  ],
-  [
-   49.975,
-   2.15,
-   "Step eight deletes the out folder."
-  ]
- ],
- "12": [
-  [
-   0.05,
-   7.662,
-   "Lab 2 runs the same code against a test tenant with Intune licenses and a test G P O export, never production."
-  ],
-  [
-   7.713,
-   3.825,
-   "Import a test G P O into Group Policy analytics."
-  ],
-  [
-   11.537,
-   7.15,
-   "Run VK-INT-07 liv, as a read-only operator, and build the move plan liv."
-  ],
-  [
-   18.688,
-   3.862,
-   "Then dry-run and apply as a Policy and Profile Manager."
-  ],
-  [
-   22.55,
-   4.787,
-   "Compare the result with what Group Policy analytics' own Migrate step builds."
-  ],
-  [
-   27.337,
-   5.287,
-   "And drill drift: change a value in the admin center, and watch the dry run report it."
-  ],
-  [
-   32.625,
-   4.5,
-   "In G C C High and D O D, pass the matching cloud option."
-  ],
-  [
-   37.125,
-   7.375,
-   "To back it out, step eight deletes the created policies by the I D's in the sync record, and the Migrate comparison policy."
-  ],
-  [
-   44.5,
-   2.15,
-   "The authors haven't run Lab 2."
-  ],
-  [
-   46.65,
-   3.438,
-   "Follow Chapter 06's Lab 2, step by step."
-  ]
- ],
- "14": [
-  [
-   0.05,
-   1.975,
-   "Check yourself with two questions."
-  ],
-  [
-   2.025,
-   4.375,
-   "First: Microsoft's import sample runs twice with the same file."
-  ],
-  [
-   6.4,
-   1.012,
-   "What happens?"
-  ],
-  [
-   7.412,
-   6.838,
-   "The answer is b: two policies with the same name are created, because the sample never reads the tenant."
-  ],
-  [
-   14.25,
-   2.9,
-   "You saw the two POSTs and no GET in step two."
-  ],
-  [
-   17.15,
-   5.525,
-   "Second: one library file differs from the tenant's copy, and you run the sync with apply."
-  ],
-  [
-   22.675,
-   1.15,
-   "What does it create?"
-  ],
-  [
-   23.825,
-   1.962,
-   "The answer is b: nothing."
-  ],
-  [
-   25.788,
-   4.062,
-   "It exits two, and writes nothing while any policy is drift."
-  ],
-  [
-   29.85,
-   2.425,
-   "Not even the policy that was marked create."
-  ],
-  [
-   32.275,
-   1.75,
-   "You saw that in step six."
-  ],
-  [
-   34.025,
-   8.238,
-   "The module page has two more questions, on the conflict disposition and on the dry run's permission, each linked to the section that answers it."
-  ]
- ],
- "15": [
-  [
-   0.05,
-   0.825,
-   "To sum up."
-  ],
-  [
-   0.875,
-   11.988,
-   "You read Group Policy analytics into a plan per setting, kept the policies as reviewed files, and saw the sync create only what its dry run showed, and nothing at all when the library and the tenant disagree."
-  ],
-  [
-   12.863,
-   15.775,
-   "The evidence an I S S O keeps: VK-INT-07's run, the move plan with each pull request, the library and its decision records in Git, and the sync record with its scopes, file hashes and created I D's."
-  ],
-  [
-   28.637,
-   5.625,
-   "In Lab 2, add the Intune audit log for the import, the creation and the drift drill."
-  ],
-  [
-   34.263,
-   5.138,
-   "At deployment, Chapter 10 adds the G P O link states before and after."
-  ],
-  [
-   39.4,
-   3.65,
-   "Before shipping, work through the Chapter 06 checklist."
-  ],
-  [
-   43.05,
-   10.2,
-   "Next is Module 5: build machine configuration packages, for the server settings machine configuration owns, with a build that makes the same MOF every time."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -732,6 +415,120 @@
    "A policy that differs from Git is a decision for a person, and, in this workbook's guidance, a change becomes a new version under a new name."
   ]
  ],
+ "9": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.037,
+   "Lab 1 runs in PowerShell 7, against fixtures, and nothing signs in."
+  ],
+  [
+   5.812,
+   7.188,
+   "Step one starts in the validation kit, and runs VK-INT-07 on its fail fixture."
+  ],
+  [
+   13.0,
+   2.25,
+   "One G P O is imported."
+  ],
+  [
+   15.25,
+   7.225,
+   "Two are targeted in Active Directory with a readiness of partial or error, so they hold settings Intune can't take over."
+  ],
+  [
+   22.475,
+   1.262,
+   "Those are findings."
+  ],
+  [
+   23.738,
+   4.25,
+   "An empty G P O is a warning: confirm where its settings go."
+  ],
+  [
+   27.988,
+   3.388,
+   "And one in-scope G P O was never imported at all."
+  ],
+  [
+   31.375,
+   8.188,
+   "Step two moves to the group policy folder, and runs Microsoft's import sample twice, with the same file, against the fake Graph."
+  ],
+  [
+   39.562,
+   5.388,
+   "Now the tenant holds error reporting and dumps twice, two policies with the same name."
+  ],
+  [
+   44.95,
+   2.525,
+   "And the calls are two POSTs and no GET."
+  ],
+  [
+   47.475,
+   1.462,
+   "The sample never looked."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.013,
+   "Step three builds the move plan from the fixture tenant: eleven rows, from three GPOs."
+  ],
+  [
+   6.062,
+   5.475,
+   "Five are candidates, such as disabling Windows Error Reporting and allowing crash dumps."
+  ],
+  [
+   11.537,
+   8.2,
+   "Allow hibernate is a conflict, on two rows, because the baseline G P O and the power G P O set it to different values."
+  ],
+  [
+   19.738,
+   2.712,
+   "The firewall rule goes to Endpoint security."
+  ],
+  [
+   22.45,
+   4.725,
+   "Two rows aren't supported, including a drive map, and one is deprecated."
+  ],
+  [
+   27.175,
+   5.912,
+   "Notice the user-scope rows keep their scope: user settings go to user groups on the H R track."
+  ],
+  [
+   33.087,
+   2.775,
+   "Step four lints the library against that plan."
+  ],
+  [
+   35.862,
+   10.838,
+   "There's one row, an information item, GPC oh eight: the hibernate setting has conflicting G P O values, and decision D R oh one oh five picks the value."
+  ],
+  [
+   46.7,
+   3.525,
+   "That's the conflict shown, with the decision that resolves it."
+  ],
+  [
+   50.225,
+   2.138,
+   "The output on the slide is trimmed."
+  ]
+ ],
  "13": [
   [
    0.05,
@@ -782,6 +579,214 @@
    70.925,
    3.562,
    "Which output supports which control is this workbook's reading."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.375,
+   "First: Microsoft's import sample runs twice with the same file."
+  ],
+  [
+   6.4,
+   1.012,
+   "What happens?"
+  ],
+  [
+   7.412,
+   6.838,
+   "The answer is b: two policies with the same name are created, because the sample never reads the tenant."
+  ],
+  [
+   14.25,
+   2.9,
+   "You saw the two POSTs and no GET in step two."
+  ],
+  [
+   17.15,
+   5.525,
+   "Second: one library file differs from the tenant's copy, and you run the sync with apply."
+  ],
+  [
+   22.675,
+   1.15,
+   "What does it create?"
+  ],
+  [
+   23.825,
+   1.962,
+   "The answer is b: nothing."
+  ],
+  [
+   25.788,
+   4.062,
+   "It exits two, and writes nothing while any policy is drift."
+  ],
+  [
+   29.85,
+   2.425,
+   "Not even the policy that was marked create."
+  ],
+  [
+   32.275,
+   1.75,
+   "You saw that in step six."
+  ],
+  [
+   34.025,
+   8.238,
+   "The module page has two more questions, on the conflict disposition and on the dry run's permission, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   11.988,
+   "You read Group Policy analytics into a plan per setting, kept the policies as reviewed files, and saw the sync create only what its dry run showed, and nothing at all when the library and the tenant disagree."
+  ],
+  [
+   12.863,
+   15.775,
+   "The evidence an I S S O keeps: VK-INT-07's run, the move plan with each pull request, the library and its decision records in Git, and the sync record with its scopes, file hashes and created I D's."
+  ],
+  [
+   28.637,
+   5.625,
+   "In Lab 2, add the Intune audit log for the import, the creation and the drift drill."
+  ],
+  [
+   34.263,
+   5.138,
+   "At deployment, Chapter 10 adds the G P O link states before and after."
+  ],
+  [
+   39.4,
+   3.65,
+   "Before shipping, work through the Chapter 06 checklist."
+  ],
+  [
+   43.05,
+   10.2,
+   "Next is Module 5: build machine configuration packages, for the server settings machine configuration owns, with a build that makes the same MOF every time."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.887,
+   "Step five runs the sync."
+  ],
+  [
+   1.938,
+   8.375,
+   "The dry run says create for the error reporting policy, which isn't in the tenant, and no change for sign-in and power, which already matches."
+  ],
+  [
+   10.312,
+   3.462,
+   "Then the apply says created, and both exit zero."
+  ],
+  [
+   13.775,
+   5.612,
+   "The sync record shows the scope the apply asked for, read-write, and the I D it created."
+  ],
+  [
+   19.387,
+   7.612,
+   "Ask for a cloud name the script doesn't know, U S gov, and it exits one: the cloud must be G C C or global."
+  ],
+  [
+   27.0,
+   2.237,
+   "Step six breaks something on purpose."
+  ],
+  [
+   29.238,
+   7.213,
+   "Change the hibernate value in one library file, and the dry run exits two, with a drift that names the setting."
+  ],
+  [
+   36.45,
+   6.438,
+   "Run it with apply, and it still exits two, and nothing is created, not even the error reporting policy."
+  ],
+  [
+   42.888,
+   1.337,
+   "Put the value back."
+  ],
+  [
+   44.225,
+   3.275,
+   "Step seven runs the tests: forty-six pass."
+  ],
+  [
+   47.5,
+   2.15,
+   "Step eight deletes the out folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.662,
+   "Lab 2 runs the same code against a test tenant with Intune licenses and a test G P O export, never production."
+  ],
+  [
+   7.713,
+   3.825,
+   "Import a test G P O into Group Policy analytics."
+  ],
+  [
+   11.537,
+   7.15,
+   "Run VK-INT-07 liv, as a read-only operator, and build the move plan liv."
+  ],
+  [
+   18.688,
+   3.862,
+   "Then dry-run and apply as a Policy and Profile Manager."
+  ],
+  [
+   22.55,
+   4.787,
+   "Compare the result with what Group Policy analytics' own Migrate step builds."
+  ],
+  [
+   27.337,
+   5.287,
+   "And drill drift: change a value in the admin center, and watch the dry run report it."
+  ],
+  [
+   32.625,
+   4.362,
+   "Each run names the G C C cloud and the test tenant's I D."
+  ],
+  [
+   36.987,
+   7.375,
+   "To back it out, step eight deletes the created policies by the I D's in the sync record, and the Migrate comparison policy."
+  ],
+  [
+   44.362,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   46.513,
+   3.438,
+   "Follow Chapter 06's Lab 2, step by step."
   ]
  ]
 }

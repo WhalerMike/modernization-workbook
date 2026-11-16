@@ -1,72 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.537
-Each Microsoft 365 cloud
-has its own Graph host.
+00:00:00.050 --> 00:00:04.725
+A Microsoft 365 GCC tenant keeps
+the worldwide Graph endpoint,
 
 2
-00:00:04.537 --> 00:00:08.850
-GCC keeps the worldwide endpoint,
-graph dot microsoft dot com,
+00:00:04.725 --> 00:00:09.850
+graph dot microsoft dot com, and
+signs in with the Global environment.
 
 3
-00:00:08.850 --> 00:00:11.725
-and signs in with the Global environment.
-
-4
-00:00:11.725 --> 00:00:13.575
+00:00:09.850 --> 00:00:11.700
 That's the workbook's baseline.
 
+4
+00:00:11.700 --> 00:00:17.299
+Learn's overview says the service communications
+A P I is available on the Microsoft
+
 5
-00:00:13.575 --> 00:00:18.884
-As a side note, GCC High uses graph
-dot microsoft dot U S, and DoD uses
+00:00:17.299 --> 00:00:21.858
+Graph national clouds, and the kit
+has one row per cloud and no default,
 
 6
-00:00:18.884 --> 00:00:24.587
-dod dash graph dot microsoft dot U S,
-each with its own environment name.
+00:00:21.858 --> 00:00:23.938
+so an unknown cloud name throws.
 
 7
-00:00:24.587 --> 00:00:27.833
-The A P I is available
-on the national clouds,
-
-8
-00:00:27.833 --> 00:00:32.612
-and each list method's table shows
-U S Government L four and L five.
-
-9
-00:00:32.612 --> 00:00:34.187
+00:00:23.938 --> 00:00:25.513
 The kit has two guards.
 
-10
-00:00:34.187 --> 00:00:37.303
+8
+00:00:25.513 --> 00:00:28.627
 Before the first call, it
 compares the Graph session's
 
-11
-00:00:37.303 --> 00:00:41.126
+9
+00:00:28.627 --> 00:00:32.450
 environment and tenant with the
 settings, and refuses a mismatch.
 
-12
-00:00:41.126 --> 00:00:43.854
+10
+00:00:32.450 --> 00:00:35.179
 And a next link is a U
 R L the response chose,
 
-13
-00:00:43.854 --> 00:00:47.787
+11
+00:00:35.179 --> 00:00:39.112
 so the kit follows it only if it's
 on the cloud's own Graph host.
 
-14
-00:00:47.787 --> 00:00:49.439
+12
+00:00:39.112 --> 00:00:40.763
 Anything else is refused,
 
-15
-00:00:49.439 --> 00:00:53.280
+13
+00:00:40.763 --> 00:00:44.590
 so the token never goes somewhere
 the agency didn't choose.

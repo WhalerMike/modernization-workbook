@@ -73,48 +73,6 @@
    "Its checks read Intune's own records."
   ]
  ],
- "3": [
-  [
-   0.05,
-   5.45,
-   "Here's what you'll be able to do by the end of this module, which takes about eighty-five minutes with the lab."
-  ],
-  [
-   5.5,
-   7.412,
-   "You'll name the Graph A P I, least-privileged permission and stage for each of the workbook's device evidence questions."
-  ],
-  [
-   12.912,
-   3.8,
-   "You'll explain which three things the program relies on are beta-only."
-  ],
-  [
-   16.712,
-   6.388,
-   "You'll read managed devices and per-policy compliance status, including why the checks join on device name."
-  ],
-  [
-   23.1,
-   4.275,
-   "You'll keep remote actions and export jobs out of a read-only collector."
-  ],
-  [
-   27.375,
-   5.325,
-   "And you'll say what differs in G C C High and D O D, and run the five checks."
-  ],
-  [
-   32.7,
-   4.125,
-   "You need Module 1, and Module 2 for the Conditional Access side."
-  ],
-  [
-   36.825,
-   4.638,
-   "Lab 2 needs a test tenant with an Intune license and a few test devices."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -347,53 +305,6 @@
    "The permissions are a reader's set."
   ]
  ],
- "10": [
-  [
-   0.05,
-   0.725,
-   "Try it."
-  ],
-  [
-   0.775,
-   6.925,
-   "Lab 1 runs each check against a fictional fleet of nine devices and six Autopilot registrations."
-  ],
-  [
-   7.7,
-   2.462,
-   "Here's step two, compliance coverage."
-  ],
-  [
-   10.162,
-   7.737,
-   "Two policies reach no device: the kiosk policy has only an exclusion, and an old Mac pilot has no assignment at all."
-  ],
-  [
-   17.9,
-   7.812,
-   "Two devices, a kiosk and a Mac, have no policy reporting on them, so with the tenant's default setting they count as compliant."
-  ],
-  [
-   25.712,
-   8.662,
-   "And W S zero zero zero two is flagged as ambiguous: two devices share that name, so a status row could belong to either."
-  ],
-  [
-   34.375,
-   6.175,
-   "Step six asks the client to read the Autopilot collection as a G C C High run would."
-  ],
-  [
-   40.55,
-   9.762,
-   "It returns not available, with the reason, and makes no request, because the call list follows Intune's government service description, not the A P I page."
-  ],
-  [
-   50.312,
-   4.125,
-   "The lab repeats two checks in PowerShell, with the same results."
-  ]
- ],
  "11": [
   [
    0.05,
@@ -431,86 +342,7 @@
    "The authors haven't run Lab 2."
   ]
  ],
- "12": [
-  [
-   0.05,
-   1.312,
-   "Where are agencies?"
-  ],
-  [
-   1.363,
-   10.537,
-   "The agency the workbook's device plan describes manages Windows with Group Policy, and often Configuration Manager, and is moving to Intune in a G C C tenant."
-  ],
-  [
-   11.9,
-   2.925,
-   "G C C has no separate Intune instance."
-  ],
-  [
-   14.825,
-   8.625,
-   "In Microsoft's words, G C C is the same instance as Intune in the commercial space, and it uses the worldwide Graph host."
-  ],
-  [
-   23.45,
-   10.95,
-   "G C C High and D O D share a separate government instance, with their own Graph hosts, and moving between instances means unenrolling and re-enrolling every device."
-  ],
-  [
-   34.4,
-   13.137,
-   "Microsoft's service description lists what isn't available there, with no plans to add it: Windows Autopilot, Remediations, feature update and compatibility reports, the ServiceNow connector and Subscription Activation."
-  ],
-  [
-   47.538,
-   9.55,
-   "Standard device management, compliance, configuration and app policies, is available, with Log Analytics export and Defender security settings management."
-  ]
- ],
  "13": [
-  [
-   0.05,
-   1.475,
-   "One discrepancy to know."
-  ],
-  [
-   1.525,
-   12.825,
-   "The Graph reference pages for Autopilot device identities list the A P I in the G C C High and D O D clouds, while Intune's service description lists Windows Autopilot as not available there."
-  ],
-  [
-   14.35,
-   6.875,
-   "The service description decides whether the feature can be used; an endpoint that answers doesn't make the feature supported."
-  ],
-  [
-   21.225,
-   8.25,
-   "That's an inference, and the kit's call list follows the stricter statement, so the Autopilot check is for G C C and commercial tenants."
-  ],
-  [
-   29.475,
-   7.138,
-   "The interim paths: run compliance coverage until it lists nothing, then change the tenant's default to not compliant."
-  ],
-  [
-   36.612,
-   6.812,
-   "Devices still on Group Policy aren't in Intune yet, so track them with the validation kit's platform inventory."
-  ],
-  [
-   43.425,
-   8.6,
-   "In G C C High or D O D, Chapter 04 of the Devices and Endpoints book compares Autopilot device preparation."
-  ],
-  [
-   52.025,
-   3.038,
-   "And label the Settings Catalog export as beta."
-  ]
- ],
- "14": [
   [
    0.05,
    1.387,
@@ -542,7 +374,143 @@
    "The evidence an I S S O keeps: each check's dated output, with its evidences list and the beta label; the coverage result and the changed default; and encryption findings confirmed in Intune's own report."
   ]
  ],
- "15": [
+ "3": [
+  [
+   0.05,
+   5.45,
+   "Here's what you'll be able to do by the end of this module, which takes about eighty-five minutes with the lab."
+  ],
+  [
+   5.5,
+   7.412,
+   "You'll name the Graph A P I, least-privileged permission and stage for each of the workbook's device evidence questions."
+  ],
+  [
+   12.912,
+   3.8,
+   "You'll explain which three things the program relies on are beta-only."
+  ],
+  [
+   16.712,
+   6.388,
+   "You'll read managed devices and per-policy compliance status, including why the checks join on device name."
+  ],
+  [
+   23.1,
+   4.275,
+   "You'll keep remote actions and export jobs out of a read-only collector."
+  ],
+  [
+   27.375,
+   4.925,
+   "And you'll say why G C C follows commercial Intune, and run the five checks."
+  ],
+  [
+   32.3,
+   4.125,
+   "You need Module 1, and Module 2 for the Conditional Access side."
+  ],
+  [
+   36.425,
+   4.638,
+   "Lab 2 needs a test tenant with an Intune license and a few test devices."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.925,
+   "Lab 1 runs each check against a fictional fleet of nine devices and six Autopilot registrations."
+  ],
+  [
+   7.7,
+   2.462,
+   "Here's step two, compliance coverage."
+  ],
+  [
+   10.162,
+   7.737,
+   "Two policies reach no device: the kiosk policy has only an exclusion, and an old Mac pilot has no assignment at all."
+  ],
+  [
+   17.9,
+   7.812,
+   "Two devices, a kiosk and a Mac, have no policy reporting on them, so with the tenant's default setting they count as compliant."
+  ],
+  [
+   25.712,
+   8.662,
+   "And W S zero zero zero two is flagged as ambiguous: two devices share that name, so a status row could belong to either."
+  ],
+  [
+   34.375,
+   6.287,
+   "Step five reads Autopilot profile assignment, which is only in beta, and the result says so."
+  ],
+  [
+   40.663,
+   10.912,
+   "Of six registrations, two are assigned in sync and four aren't: one out of sync, one failed on hardware requirements, one not assigned, and one pending with no group tag."
+  ],
+  [
+   51.575,
+   6.9,
+   "The lab repeats two checks in PowerShell, with the same results, and the Intune tests pass: seventeen."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   12.537,
+   "The agency the workbook's device plan describes manages Windows with Group Policy, and often Configuration Manager, and is moving the fleet to Intune in a Microsoft 365 G C C tenant."
+  ],
+  [
+   13.9,
+   7.963,
+   "During the move some devices have no compliance policy, the tenant-wide default may still mark them compliant, and stale records pile up."
+  ],
+  [
+   21.863,
+   7.537,
+   "G C C has no separate Intune instance: it uses the commercial Intune service, and the worldwide Graph endpoint."
+  ],
+  [
+   29.4,
+   7.438,
+   "The Intune feature gaps a G C C tenant does have are the subject of the Devices and Endpoints book's Chapter 10."
+  ],
+  [
+   36.837,
+   5.25,
+   "For example, Windows Update for Business reports don't meet G C C requirements."
+  ],
+  [
+   42.087,
+   8.6,
+   "The interim paths, which are design guidance: run compliance coverage until it lists nothing, then change the tenant's default to not compliant."
+  ],
+  [
+   50.688,
+   8.312,
+   "Devices still on Group Policy or Configuration Manager aren't in Intune yet, so track them with the validation kit's platform inventory."
+  ],
+  [
+   59.0,
+   5.1,
+   "And label the Settings Catalog export as beta, and re-run it after a beta change."
+  ]
+ ],
+ "14": [
   [
    0.05,
    1.975,
@@ -570,21 +538,26 @@
   ],
   [
    17.113,
-   5.025,
-   "Second: what does the Autopilot check report in a G C C High tenant?"
+   2.788,
+   "Second: which of these is beta-only today?"
   ],
   [
-   22.137,
-   8.963,
-   "The answer is c: not evaluated, without calling Graph, because Intune's service description lists Windows Autopilot as not available there."
+   19.9,
+   5.875,
+   "The answer is c: reading an Autopilot registration's deployment profile assignment status."
   ],
   [
-   31.1,
-   4.912,
-   "The module page has three more questions, each linked to the unit that answers it."
+   25.775,
+   7.375,
+   "The profile assignment status, the profiles themselves, the Settings Catalog and assignment filters are all beta-only."
+  ],
+  [
+   33.15,
+   4.8,
+   "The module page has two more questions, each linked to the unit that answers it."
   ]
  ],
- "16": [
+ "15": [
   [
    0.05,
    0.825,
@@ -612,26 +585,26 @@
   ],
   [
    20.85,
-   5.763,
-   "And you ran the five checks, and saw why Autopilot is a G C C and commercial check."
+   3.6,
+   "And you ran the five checks, and saw which one depends on beta."
   ],
   [
-   26.613,
+   24.45,
    5.263,
    "To put the checks on a schedule, go to the Intune track implementation guide's Gate 6."
   ],
   [
-   31.875,
+   29.712,
    7.763,
    "Next is Module 4, Azure Arc through Azure Resource Manager and Resource Graph, which leaves Graph for the server estate."
   ],
   [
-   39.638,
+   37.475,
    7.125,
    "With it, the Microsoft Automation learning path has four modules, about five hours and fifty-five minutes in all."
   ],
   [
-   46.763,
+   44.6,
    4.162,
    "Modules on Teams, and on monitoring and evidence, are planned."
   ]

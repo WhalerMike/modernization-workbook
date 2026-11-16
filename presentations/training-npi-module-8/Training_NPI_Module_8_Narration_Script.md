@@ -46,7 +46,7 @@ Step six reads the plan. Nine actions, and these are the four writes. Set retrie
 
 ## Slide 12 — Try it: dry-run, apply to the fake, and a refusal
 
-Step eight is the write path's dry run. You take the plan's hash, which in a real run a second person would review and pass to you, and give it to the action script. It reports four would-send lines, one for each write, and sends nothing. Step nine runs the same command with the apply switch, against the fake. Four writes are sent, including the completed migration for svc h r sync. Then you pass a hash of zeros, a hash nobody approved. The script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed. Pasted line by line, your shell carries on after the refusal. Step ten runs every test: five hundred thirteen pass, none fail. Then delete the output folder.
+Step eight is the write path's dry run. You take the plan's hash, which in a real run a second person would review and pass to you, and give it to the action script. It reports four would-send lines, one for each write, and sends nothing. Step nine runs the same command with the apply switch, against the fake. Four writes are sent, including the completed migration for svc h r sync. Then you pass a hash of zeros, a hash nobody approved. The script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed. Pasted line by line, your shell carries on after the refusal. Step ten runs every test: five hundred eleven pass, none fail. Then delete the output folder.
 
 ## Slide 13 — Lab 2: a test domain, and a real migration
 

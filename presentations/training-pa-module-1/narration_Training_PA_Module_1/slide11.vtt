@@ -25,35 +25,29 @@ and tells you to add it to the
 call list with its permission.
 
 6
-00:00:16.225 --> 00:00:20.863
-Then you ask for a cloud called
-G C C High, with capital letters.
+00:00:16.225 --> 00:00:20.691
+Then you ask for a cloud the
+reader doesn't know, u s gov.
 
 7
-00:00:20.863 --> 00:00:26.784
-The names are case-sensitive on
-purpose, so that's an unknown cloud,
+00:00:20.691 --> 00:00:23.287
+It throws too: use global or G C C.
 
 8
-00:00:26.784 --> 00:00:30.951
-and it throws too: use global,
-G C C, G C C High or D O D.
-
-9
-00:00:30.951 --> 00:00:32.462
+00:00:23.287 --> 00:00:24.800
 There's no default cloud.
 
-10
-00:00:32.462 --> 00:00:37.662
+9
+00:00:24.800 --> 00:00:30.000
 Step six runs the whole test suite,
 three hundred thirty tests, and all pass.
 
-11
-00:00:37.662 --> 00:00:42.225
+10
+00:00:30.000 --> 00:00:34.562
 Then delete the output folder, because it
 names the fixture's privileged holders.
 
-12
-00:00:42.225 --> 00:00:46.870
+11
+00:00:34.562 --> 00:00:39.220
 Pester prints its summary on several
 lines; the slide shows it on one.

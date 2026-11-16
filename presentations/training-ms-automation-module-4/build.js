@@ -1,7 +1,7 @@
 // Microsoft Automation learning path, Module 4: Azure Arc through Azure Resource Manager and Resource Graph — the module's
 // narrated deck. Teaches docs/training/ms-automation-arc.md, Learn-style: objectives, the concepts, a "Try it" slide with the
 // real Lab 1 command and output (run November 12, 2026 in examples/ms-automation, the same output the page shows),
-// government-cloud differences, the federal requirement and evidence, a two-question check, and the summary. Every fact
+// where agencies are, the federal requirement and evidence, a two-question check, and the summary. Every fact
 // comes from the module page, its footnotes or the kit; the deck adds none. Helpers: ../training-ms-automation-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-ms-automation-module-4/build.js \
 //                      presentations/training-ms-automation-module-4/Training_MS_Automation_Module_4.pptx
@@ -77,15 +77,15 @@ endModule(SI);
   const s = content(SC, "Resource Manager isn't Graph: four things change");
   tag(s, "What");
   const b = table(s, "Arm", 1.45, [2.6, 4.5, 5.05], ["What changes", "Graph", "Resource Manager"], [
-    ["Host and token", "graph.microsoft.com, the Graph scope", "management.azure.com for GCC and commercial; management.usgovcloudapi.net for Azure Government; its own token"],
+    ["Host and token", "graph.microsoft.com, the Graph scope", "management.azure.com, in commercial Azure, which a GCC tenant's subscriptions use; its own token"],
     ["Who may call", "Application permissions in the token's roles claim", "Azure RBAC decides at each call; every call here needs only Reader (*/read)"],
     ["Versions", "v1.0 or beta", "An api-version on every call: subscriptions 2022-12-01, Resource Graph 2024-04-01, Arc machines 2026-09-01"],
     ["Paging", "@odata.nextLink", "nextLink; Resource Graph pages with $skipToken in the body"],
   ], { fontSize: 12, limit: 5.0 });
   line(s, "Two", "The five checks make two calls: GET /subscriptions, and POST to Resource Graph, a POST that only reads.", b + 0.25, 0.65, 14);
-  sources(s, "Sources: Module 4, Unit 2: Learn, Compare Azure Government and global Azure; Azure built-in roles (Reader); Subscriptions - List; Resource Graph REST; Machines - Get.");
+  sources(s, "Sources: Module 4, Unit 2: Learn, Endpoints used when installing the Azure CLI; Azure built-in roles (Reader); Subscriptions - List; Resource Graph REST; Machines - Get.");
   notes(s,
-`A script that already calls Graph correctly has four things to change. First, another host and another token. Resource Manager is management dot azure dot com in commercial Azure, and a GCC tenant's subscriptions are commercial Azure, so a GCC script calls that host. GCC High and DoD use Azure Government, management dot us gov cloud api dot net. A token is issued for one resource, so a Graph token can't call Resource Manager. Second, Azure role-based access control, not a permission list. A Resource Manager token carries no roles list; Azure decides at each call from the roles assigned. Every call here needs only the built-in Reader role, whose only action is read. Third, an api-version on every call, set by each resource provider. Fourth, paging: next link, not the O Data next link, and Resource Graph pages differently again. The five checks make just two calls, and the Resource Graph query is a POST only because the query travels in the body.`,
+`A script that already calls Graph correctly has four things to change. First, another host and another token. Resource Manager is management dot azure dot com in commercial Azure, and a GCC tenant's subscriptions are commercial Azure, so a GCC script calls that host. A token is issued for one resource, so a Graph token can't call Resource Manager. Second, Azure role-based access control, not a permission list. A Resource Manager token carries no roles list; Azure decides at each call from the roles assigned. Every call here needs only the built-in Reader role, whose only action is read. Third, an api-version on every call, set by each resource provider. Fourth, paging: next link, not the O Data next link, and Resource Graph pages differently again. The five checks make just two calls, and the Resource Graph query is a POST only because the query travels in the body.`,
   `${M} — Unit 2 "Resource Manager isn't Graph."`);
 }
 
@@ -245,25 +245,6 @@ endModule(SL);
   `${M} — Unit 6 "Where agencies are": the starting state, GCC, "Interim paths."`);
 }
 
-// ================================================================== 12 GCC High and DoD
-{
-  const s = content(SA, "GCC High and DoD: Azure Government differences");
-  tag(s, "Who");
-  const b = table(s, "Gov", 1.45, [5.2, 2.3, 2.3, 2.35], ["Service (Azure Government roadmap, Nov 11, 2026)", "FedRAMP High", "DoD IL4", "DoD IL5"], [
-    ["Resource Manager; Resource Graph; Arc-enabled servers", "GA", "GA", "GA"],
-    ["Arc-enabled SQL Server", "GA", "Awaiting review", "Awaiting review"],
-    ["Azure Policy; Azure Private Link", "GA", "GA", "GA"],
-  ], { fontSize: 12.5, limit: 3.4 });
-  panel(s, "Diff", 0.6, b + 0.25, 12.15, null, HEX.navy, HEX.navyTint, "WHAT CHANGES FOR THE CHECKS", null, [
-    "Host management.usgovcloudapi.net, the US Government sign-in, Connect-AzAccount -Environment AzureUSGovernment",
-    "SQL Server enabled by Arc: US Gov Virginia only, Windows only, no Entra authentication; sql-inventory sees only those",
-    "ESU-only Arc servers need fewer endpoints; Learn doesn't say whether Resource Graph's quota or paging differ",
-  ], 12.5);
-  sources(s, "Sources: Module 4, Unit 6: Learn, Azure Government GA roadmap; SQL Server enabled by Arc in US Government; Compare Azure Government; Arc ESUs (Nov 11, 2026).");
-  notes(s,
-`GCC High and DoD estates use Azure Government: management dot us gov cloud api dot net, the US Government sign-in authority, and the Azure US Government environment in PowerShell. Microsoft's Azure Government availability roadmap, read on November eleventh, 2026, shows Resource Manager, Resource Graph, Arc-enabled servers, Azure Policy and Private Link generally available and authorized at FedRAMP High and DoD impact levels four and five. Arc-enabled SQL Server is available at FedRAMP High, and awaiting review at levels four and five. Three differences affect the checks. SQL Server enabled by Arc is a subset there: the US Gov Virginia region only, on Windows only, with no Entra authentication, so SQL inventory sees only those instances. The private link scope is available, with its own endpoints. And E S U-only Arc servers need a smaller set of endpoints. Learn doesn't say whether Resource Graph's quota, paging or tables differ in Azure Government: not yet specified.`,
-  `${M} — Unit 6 "Where agencies are": GCC High and DoD.`);
-}
 endModule(SA);
 
 // ================================================================== 13 Federal requirement
@@ -327,8 +308,8 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 4 deck", [
   "Module page: docs/training/ms-automation-arc.md (Microsoft Automation learning path, Module 4), Units 1 to 11; its footnotes carry each Microsoft Learn page, read November 3, 2026 and rechecked November 11, 2026; its verification log is docs/training/_verification/ms-automation-arc.md.",
-  "Microsoft Learn pages the module cites: Compare Azure Government and global Azure; Azure built-in roles (Reader); Subscriptions - List; Resource Graph REST (Resources); Azure permissions for Management and governance; Resource Graph tables; Overview of Resource Graph; Work with large data sets; Guidance for pagination; throttled requests; Resource Manager throttling; Search-AzGraph; Invoke-AzRestMethod.",
-  "Also: Machines - Get; Machine Extensions - Get; Arc Resource Graph samples; Azure Monitor Agent; Arc VM extensions; Defender for Endpoint integration; sqlServerInstances template; policy assignment structure; policy compliance data; Policy Resource Graph samples; lifecycle pages; Windows Server 2012 ESUs; Arc ESUs; SQL Server ESUs and FAQ; Arc private link; Azure Government GA roadmap; SQL Server enabled by Arc in US Government; Azure CLI service principals.",
+  "Microsoft Learn pages the module cites: Endpoints used when installing the Azure CLI; Azure built-in roles (Reader); Subscriptions - List; Resource Graph REST (Resources); Azure permissions for Management and governance; Resource Graph tables; Overview of Resource Graph; Work with large data sets; Guidance for pagination; throttled requests; Resource Manager throttling; Search-AzGraph; Invoke-AzRestMethod.",
+  "Also: Machines - Get; Machine Extensions - Get; Arc Resource Graph samples; Azure Monitor Agent; Arc VM extensions; Defender for Endpoint integration; sqlServerInstances template; policy assignment structure; policy compliance data; Policy Resource Graph samples; lifecycle pages; Windows Server 2012 ESUs; Arc ESUs; SQL Server ESUs and FAQ; Arc private link; Azure CLI service principals.",
   "NIST SP 800-53 Rev. 5 Moderate baseline (OSCAL 5.2.0). The workbook's server standard: Book 00, Chapter 01. Federal context: Book 05, Chapter 09; the Arc track implementation guide.",
   "Lab output: examples/ms-automation (arc_tasks.py, armkit.py, arm-calls.json, arc-lifecycle.json, FmwArm.psm1, tests/fixtures/arc.json), run November 12, 2026 with Python 3.14.3, as of November 3, 2026, and the same as the page; the Try it output is trimmed. Lab 2 not run by the authors. Design guidance and inferences are labeled.",
 ]);

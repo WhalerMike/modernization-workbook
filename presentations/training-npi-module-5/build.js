@@ -284,10 +284,10 @@ endModule(SC);
     "  0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
   line(s, "Tests", "Both removals go through 5b000000-...-000000000010, Microsoft Graph's service principal: the resource, not the app.", c + 0.25, 0.45, 13.5);
-  line(s, "Tests2", "Step 9: Invoke-Pester -Path tests prints 513 passed, 0 failed. Then Remove-Item -Recurse -Force out: the review names owners.", c + 0.75, 0.45, 13.5);
+  line(s, "Tests2", "Step 9: Invoke-Pester -Path tests prints 511 passed, 0 failed. Then Remove-Item -Recurse -Force out: the review names owners.", c + 0.75, 0.45, 13.5);
   sources(s, "Sources: Module 5, \"Exercise: Lab 1,\" steps 7 to 9; Invoke-NpiLeastPrivilegeAction.ps1; Microsoft Learn, Delete appRoleAssignedTo.");
   notes(s,
-`Step seven dry-runs the plan with its approved hash. It would send three requests. Two are deletes, and look where they go: through the service principal ending in one oh, which is Microsoft Graph's own service principal. The removal goes through the resource, not the app, the way Microsoft Learn's Delete app role assigned to reference says. The third is a patch that narrows one delegated grant. Step eight applies the plan to the fake, and three are sent. Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed. Step nine runs every test: five hundred thirteen pass, none fail. Then delete the output folder. The owner review names owners, so don't leave it lying around.`,
+`Step seven dry-runs the plan with its approved hash. It would send three requests. Two are deletes, and look where they go: through the service principal ending in one oh, which is Microsoft Graph's own service principal. The removal goes through the resource, not the app, the way Microsoft Learn's Delete app role assigned to reference says. The third is a patch that narrows one delegated grant. Step eight applies the plan to the fake, and three are sent. Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed. Step nine runs every test: five hundred eleven pass, none fail. Then delete the output folder. The owner review names owners, so don't leave it lying around.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 7 to 9.`);
 }
 

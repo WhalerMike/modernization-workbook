@@ -20,56 +20,51 @@ tenant's subscriptions are commercial
 Azure, so a GCC script calls that host.
 
 5
-00:00:17.525 --> 00:00:24.262
-GCC High and DoD use Azure Government,
-management dot us gov cloud api dot net.
-
-6
-00:00:24.262 --> 00:00:29.749
+00:00:17.525 --> 00:00:23.012
 A token is issued for one resource, so a
 Graph token can't call Resource Manager.
 
-7
-00:00:29.749 --> 00:00:34.138
+6
+00:00:23.012 --> 00:00:27.400
 Second, Azure role-based access
 control, not a permission list.
 
-8
-00:00:34.138 --> 00:00:37.244
+7
+00:00:27.400 --> 00:00:30.506
 A Resource Manager token
 carries no roles list;
 
-9
-00:00:37.244 --> 00:00:40.588
+8
+00:00:30.506 --> 00:00:33.850
 Azure decides at each call
 from the roles assigned.
 
-10
-00:00:40.588 --> 00:00:45.762
+9
+00:00:33.850 --> 00:00:39.025
 Every call here needs only the built-in
 Reader role, whose only action is read.
 
-11
-00:00:45.762 --> 00:00:51.325
+10
+00:00:39.025 --> 00:00:44.587
 Third, an api-version on every
 call, set by each resource provider.
 
-12
-00:00:51.325 --> 00:00:54.763
+11
+00:00:44.587 --> 00:00:48.025
 Fourth, paging: next link,
 not the O Data next link,
 
-13
-00:00:54.763 --> 00:00:58.025
+12
+00:00:48.025 --> 00:00:51.287
 and Resource Graph
 pages differently again.
 
-14
-00:00:58.025 --> 00:01:01.581
+13
+00:00:51.287 --> 00:00:54.844
 The five checks make just two
 calls, and the Resource Graph
 
-15
-00:01:01.581 --> 00:01:05.110
+14
+00:00:54.844 --> 00:00:58.390
 query is a POST only because
 the query travels in the body.

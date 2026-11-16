@@ -1,41 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   6.625,
-   "Welcome to Module 9 of the Non-Person Identity learning path: govern A I agent identities."
-  ],
-  [
-   6.675,
-   6.138,
-   "This module teaches the guide's A I agents section, with Chapter 9 of the developer workbook."
-  ],
-  [
-   12.812,
-   5.625,
-   "A I agents are non-person identities, and they follow every gate before this module."
-  ],
-  [
-   18.438,
-   11.975,
-   "In it you'll check a fictional tenant's agents against the program's rules, see the same rules run in a cloud that has no agent identities, and plan two report-only Conditional Access policies for agents."
-  ],
-  [
-   30.413,
-   3.763,
-   "Then you'll apply one of them to a fake, by its approved hash."
-  ],
-  [
-   34.175,
-   4.825,
-   "The tenant and its agents are fictional, and the apply changes only a fake."
-  ],
-  [
-   39.0,
-   5.5,
-   "The code is illustrative: tested against fixtures, not run against a lyve tenant."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -81,63 +44,6 @@
    42.375,
    12.238,
    "In this module you check a fictional tenant's agents against the program's rules, see the same rules run where the cloud has no agent identities, and plan two report-only agent Conditional Access policies."
-  ]
- ],
- "4": [
-  [
-   0.05,
-   5.775,
-   "Unit 2 starts with what Microsoft Entra Agent I D is, in Microsoft Learn's words."
-  ],
-  [
-   5.825,
-   5.838,
-   "A blueprint holds the credentials and creates agent identities, and it gets tokens on their behalf."
-  ],
-  [
-   11.662,
-   4.325,
-   "So a compromise of the blueprint's credential affects every agent under it."
-  ],
-  [
-   15.988,
-   2.812,
-   "That's why the blueprint is the credential boundary."
-  ],
-  [
-   18.8,
-   4.338,
-   "The agent identities hold the permissions, and they're what appears in the logs."
-  ],
-  [
-   23.137,
-   9.738,
-   "The pieces are at different stages, and Learn's release announcements, its Conditional Access for agents page and the Agent three sixty-five service description say which."
-  ],
-  [
-   32.875,
-   5.912,
-   "The core objects, blueprints, agent identities and sponsors, are generally available."
-  ],
-  [
-   38.788,
-   7.975,
-   "Conditional Access for agents and agent risk are preview, and the Graph properties for agent policies exist only in beta."
-  ],
-  [
-   46.763,
-   3.987,
-   "In G C C, a documented subset is listed."
-  ],
-  [
-   50.75,
-   4.162,
-   "In G C C High and D O D, nothing is published yet."
-  ],
-  [
-   54.913,
-   3.038,
-   "So the program holds its decision about this as data."
   ]
  ],
  "6": [
@@ -291,95 +197,6 @@
    "Benefits Q and A Agent passes every rule."
   ]
  ],
- "11": [
-  [
-   0.05,
-   6.763,
-   "Step seven reads the sponsor fields Chapter 2 recorded, now filled for all eight A I identities."
-  ],
-  [
-   6.812,
-   8.525,
-   "Case Triage Agent has carol as both its sponsor and its technical owner, so whoever decides the agent should exist also holds its keys."
-  ],
-  [
-   15.338,
-   1.962,
-   "Records Search Agent is orphaned."
-  ],
-  [
-   17.3,
-   5.362,
-   "And Sandbox Helper has no sponsor, no inventory record and no handshake at all."
-  ],
-  [
-   22.663,
-   3.913,
-   "Step eight runs the decision's fallback in G C C High."
-  ],
-  [
-   26.575,
-   4.463,
-   "You run Chapters 1 and 2 again in that cloud, then the A I check."
-  ],
-  [
-   31.038,
-   6.725,
-   "It prints fallback mode in G C C High, with agent Conditional Access and agent risk not published."
-  ],
-  [
-   37.763,
-   6.438,
-   "Only one identity is checked, the ordinary service principal, and no agent identity read is sent."
-  ],
-  [
-   44.2,
-   2.837,
-   "Both agent policies are marked not available."
-  ]
- ],
- "12": [
-  [
-   0.05,
-   4.862,
-   "Step nine dry-runs the agent Conditional Access plan with its approved hash."
-  ],
-  [
-   4.912,
-   11.3,
-   "It would send exactly one request: a POST to the beta Conditional Access endpoint on the cloud's own Graph host, for the high-risk policy, because the other is already in place."
-  ],
-  [
-   16.212,
-   4.362,
-   "Step ten runs the same command with the apply switch, against the fake."
-  ],
-  [
-   20.575,
-   8.825,
-   "One write is sent, and the policy is created report-only, with a reminder to review its report-only results before any change of state."
-  ],
-  [
-   29.4,
-   9.688,
-   "Then you pass a hash of zeros, one nobody approved, and the script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed."
-  ],
-  [
-   39.087,
-   3.0,
-   "Pasted line by line, your shell carries on."
-  ],
-  [
-   42.087,
-   5.188,
-   "Step eleven runs every test: five hundred thirteen pass, none fail."
-  ],
-  [
-   47.275,
-   1.837,
-   "Then delete the output folder."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -531,6 +348,43 @@
    "The module page has three more questions, each linked to the section that answers it."
   ]
  ],
+ "1": [
+  [
+   0.05,
+   6.625,
+   "Welcome to Module 9 of the Non-Person Identity learning path: govern A I agent identities."
+  ],
+  [
+   6.675,
+   6.138,
+   "This module teaches the guide's A I agents section, with Chapter 9 of the developer workbook."
+  ],
+  [
+   12.812,
+   5.625,
+   "A I agents are non-person identities, and they follow every gate before this module."
+  ],
+  [
+   18.438,
+   8.088,
+   "In it you'll check a fictional tenant's agents against the program's rules, and plan two report-only Conditional Access policies for agents."
+  ],
+  [
+   26.525,
+   3.763,
+   "Then you'll apply one of them to a fake, by its approved hash."
+  ],
+  [
+   30.288,
+   4.825,
+   "The tenant and its agents are fictional, and the apply changes only a fake."
+  ],
+  [
+   35.112,
+   5.5,
+   "The code is illustrative: tested against fixtures, not run against a lyve tenant."
+  ]
+ ],
  "3": [
   [
    0.05,
@@ -544,28 +398,80 @@
   ],
   [
    12.2,
-   6.25,
-   "You'll explain decision D N P six as data, and what the code does in a cloud without Agent I D."
+   3.675,
+   "You'll explain decision D N P six as data."
   ],
   [
-   18.45,
+   15.875,
    5.75,
    "You'll run the A I identity check and read its findings, including the top-priority drift."
   ],
   [
-   24.2,
+   21.625,
    4.688,
    "You'll explain the ten-business-day sponsor rule, and what happens to an orphaned agent."
   ],
   [
-   28.887,
+   26.312,
    6.4,
    "And you'll show that the agent Conditional Access plan is report-only, and runs only by its approved hash."
   ],
   [
-   35.288,
+   32.712,
    9.425,
    "Before you start, finish Module 2, because the lab reads Chapter 2's ownership run, and Module 6, on Conditional Access for workload identities."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.775,
+   "Unit 2 starts with what Microsoft Entra Agent I D is, in Microsoft Learn's words."
+  ],
+  [
+   5.825,
+   5.838,
+   "A blueprint holds the credentials and creates agent identities, and it gets tokens on their behalf."
+  ],
+  [
+   11.662,
+   4.325,
+   "So a compromise of the blueprint's credential affects every agent under it."
+  ],
+  [
+   15.988,
+   2.812,
+   "That's why the blueprint is the credential boundary."
+  ],
+  [
+   18.8,
+   4.338,
+   "The agent identities hold the permissions, and they're what appears in the logs."
+  ],
+  [
+   23.137,
+   9.738,
+   "The pieces are at different stages, and Learn's release announcements, its Conditional Access for agents page and the Agent three sixty-five service description say which."
+  ],
+  [
+   32.875,
+   5.912,
+   "The core objects, blueprints, agent identities and sponsors, are generally available."
+  ],
+  [
+   38.788,
+   7.975,
+   "Conditional Access for agents and agent risk are preview, and the Graph properties for agent policies exist only in beta."
+  ],
+  [
+   46.763,
+   3.987,
+   "In G C C, a documented subset is listed."
+  ],
+  [
+   50.75,
+   3.038,
+   "So the program holds its decision about this as data."
   ]
  ],
  "5": [
@@ -586,26 +492,26 @@
   ],
   [
    20.538,
-   9.662,
-   "In G C C High and D O D, where Microsoft Learn's feature availability page publishes no Agent I D availability, it runs in fallback mode."
+   4.338,
+   "Where a cloud has no agent identities, it runs in fallback mode."
   ],
   [
-   30.2,
+   24.875,
    6.938,
    "It sends no agent identity read at all, and applies the same rules to the service principals the agents run as."
   ],
   [
-   37.138,
+   31.812,
    4.0,
    "So the rules don't change by cloud; only what the code reads does."
   ],
   [
-   41.138,
+   35.812,
    2.987,
    "Preview features are reported, never enforced."
   ],
   [
-   44.125,
+   38.8,
    1.538,
    "That's design guidance."
   ]
@@ -685,38 +591,97 @@
   ],
   [
    16.462,
-   9.262,
-   "Step two sends Microsoft Learn's Agent I D samples to the fake: thirteen pass, none fail, and forty-nine of the file's other tests aren't run."
+   9.25,
+   "Step two sends Microsoft Learn's Agent I D samples to the fake: twelve pass, none fail, and forty-nine of the file's other tests aren't run."
   ],
   [
-   25.725,
+   25.712,
    2.65,
    "Step three lists what each task needs."
   ],
   [
-   28.375,
+   28.363,
    4.7,
    "The read task holds ten read permissions, and none ends in ReadWrite."
   ],
   [
-   33.075,
+   33.062,
    3.425,
    "The write task holds only the two policy permissions."
   ],
   [
-   36.5,
+   36.487,
    4.4,
    "Step four reads decision D N P six for each cloud."
   ],
   [
-   40.9,
+   40.888,
    9.363,
    "The worldwide and G C C clouds run in Agent I D mode, with agent identities generally available and agent Conditional Access in preview."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.763,
+   "Step seven reads the sponsor fields Chapter 2 recorded, now filled for all eight A I identities."
   ],
   [
-   50.263,
-   4.85,
-   "G C C High and D O D run in fallback mode: nothing published."
+   6.812,
+   8.525,
+   "Case Triage Agent has carol as both its sponsor and its technical owner, so whoever decides the agent should exist also holds its keys."
+  ],
+  [
+   15.338,
+   1.962,
+   "Records Search Agent is orphaned."
+  ],
+  [
+   17.3,
+   5.362,
+   "And Sandbox Helper has no sponsor, no inventory record and no handshake at all."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   4.812,
+   "Step eight dry-runs the agent Conditional Access plan with its approved hash."
+  ],
+  [
+   4.862,
+   11.3,
+   "It would send exactly one request: a POST to the beta Conditional Access endpoint on the cloud's own Graph host, for the high-risk policy, because the other is already in place."
+  ],
+  [
+   16.163,
+   4.312,
+   "Step nine runs the same command with the apply switch, against the fake."
+  ],
+  [
+   20.475,
+   8.825,
+   "One write is sent, and the policy is created report-only, with a reminder to review its report-only results before any change of state."
+  ],
+  [
+   29.3,
+   9.688,
+   "Then you pass a hash of zeros, one nobody approved, and the script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed."
+  ],
+  [
+   38.987,
+   3.0,
+   "Pasted line by line, your shell carries on."
+  ],
+  [
+   41.987,
+   4.838,
+   "Step ten runs every test: five hundred eleven pass, none fail."
+  ],
+  [
+   46.825,
+   1.837,
+   "Then delete the output folder."
   ]
  ],
  "16": [
@@ -727,21 +692,21 @@
   ],
   [
    0.875,
-   17.438,
-   "You checked eight fictional A I identities, filled the sponsor fields Chapter 2 recorded, found an orphaned agent and four top-priority drift findings, ran the same rules in G C C High's fallback mode, and applied a report-only agent policy to a fake by its approved hash."
+   13.95,
+   "You checked eight fictional A I identities, filled the sponsor fields Chapter 2 recorded, found an orphaned agent and four top-priority drift findings, and applied a report-only agent policy to a fake by its approved hash."
   ],
   [
-   18.312,
+   14.825,
    18.75,
    "The evidence an I S S O keeps from this module is the A I identities file, the findings, the orphan candidates, the policy plan with its approved hash, and the dry run's and apply's results and manifests, all dated; the capability table for decision D N P six; and the test result."
   ],
   [
-   37.062,
+   33.575,
    4.388,
    "Next is Module 10: find drift and file the evidence."
   ],
   [
-   41.45,
+   37.962,
    7.825,
    "It keeps every gate's state true against an approved baseline, and hands the I S S O evidence they can verify themselves."
   ]

@@ -30,7 +30,7 @@ Findings go to the issue tracker without names; that's this workbook's guidance.
 
 ## Slide 8 — Try it: lint the workflows, print a cloud's hosts
 
-Try it. Lab 1 runs in the drift-pipeline folder of the examples, in a POSIX shell, and nothing signs in. Step one checks Learn's three sample workflows offline. Sample one has five findings and four warnings, sample two has seven findings and four warnings, and sample three has just one: it isn't valid YAML. The command exits two. Step two checks the pipeline's own workflow: zero findings, zero warnings. Step three prints a cloud's hosts. For DoD, the sign-in authority is login dot microsoftonline dot u s, the Graph host is dod-graph dot microsoft dot u s, and the Azure environment is Azure U S Government. Microsoft Learn's page, Microsoft Graph national cloud deployments, lists those GCC High and DoD Graph hosts. That's the trap: the Azure environment covers both GCC High and DoD, so the Graph host has to come from the profile. Then ask for a name it doesn't know, u s gov. It's refused, with exit code one, never mapped to worldwide.
+Try it. Lab 1 runs in the drift-pipeline folder of the examples, in a POSIX shell, and nothing signs in. Step one checks Learn's three sample workflows offline. Sample one has five findings and four warnings, sample two has seven findings and four warnings, and sample three has just one: it isn't valid YAML. The command exits two. Step two checks the pipeline's own workflow: zero findings, zero warnings. Step three prints a cloud's hosts. For G C C, the sign-in authority is login dot microsoftonline dot com, the Graph host is graph dot microsoft dot com, and the Azure environment is Azure Cloud. Microsoft Learn's page, Microsoft Graph national cloud deployments, says G C C uses those worldwide endpoints. Then ask for a name it doesn't know. It's refused, with exit code one, never mapped to worldwide.
 
 ## Slide 9 — Try it: a baseline, then the next day
 
@@ -42,7 +42,7 @@ Step six drafts the findings: six to open, two to close, no comments. Then searc
 
 ## Slide 11 — Try it: break the package, swap the runs
 
-Step eight breaks it on purpose. Append one line to the packaged drift summary, and verify again. It fails, with exit code one: the summary doesn't match its hash. An edit after packaging can't hide. Then swap the runs, and compare the twenty-ninth as previous with the twenty-eighth as current. That's refused too: the current run isn't later than the previous one. Runs out of order can't make a finding look resolved. Step nine runs the tests: one hundred forty-two pass. They take about two minutes. Step ten cleans up. Check your work: given two runs, you can say what's new, resolved, changed or unverified, and given a package, you can show it's unedited and chained to the day before.
+Step eight breaks it on purpose. Append one line to the packaged drift summary, and verify again. It fails, with exit code one: the summary doesn't match its hash. An edit after packaging can't hide. Then swap the runs, and compare the twenty-ninth as previous with the twenty-eighth as current. That's refused too: the current run isn't later than the previous one. Runs out of order can't make a finding look resolved. Step nine runs the tests: one hundred thirty-nine pass. They take about two minutes. Step ten cleans up. Check your work: given two runs, you can say what's new, resolved, changed or unverified, and given a package, you can show it's unedited and chained to the day before.
 
 ## Slide 12 — Lab 2: a scheduled run in your test tenant
 

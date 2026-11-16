@@ -37,13 +37,13 @@ const SS = "Check and summary";
   ], 13);
   const r = panel(s, "Host", 6.85, 1.45, 5.9, null, HEX.amber, HEX.amberTint, "THROUGH GRAPH", "One record, on the right host", [
     "Graph's service communications API reads posts and issues with two read permissions",
-    "A GCC High tenant read on the worldwide host returns nothing",
+    "A read on a host other than the tenant's own returns nothing",
   ], 13);
   callout(s, "Quiet", Math.max(l, r) + 0.3, 0.95, "FaTriangleExclamation", HEX.red, "An empty list looks like a quiet week: ",
     "so the kit reads only the cloud the settings name, and refuses a session in another environment or tenant.");
   sources(s, "Sources: Module 3, \"Introduction\"; Book 15, Ch 14 (Why provider notices go unread): Message center; Graph service communications API.");
   notes(s,
-`Why does Microsoft 365 need its own gate? In the admin center, each administrator's view of the Message center is their own. Archiving a post removes it only from that administrator's view, and the weekly digest goes, by default, to each administrator's own primary email. Microsoft gives at least thirty days' notice of a major update that needs action, and the act-by date is rare enough that Microsoft says to pay extra attention when it appears. So the program reads the posts from Microsoft Graph instead, through the service communications A P I, with two read permissions. There's a trap. A GCC High tenant read on the worldwide Graph host returns nothing, and an empty list looks like a quiet week. So the kit reads only the cloud the settings name, and refuses a session in another environment or tenant.`,
+`Why does Microsoft 365 need its own gate? In the admin center, each administrator's view of the Message center is their own. Archiving a post removes it only from that administrator's view, and the weekly digest goes, by default, to each administrator's own primary email. Microsoft gives at least thirty days' notice of a major update that needs action, and the act-by date is rare enough that Microsoft says to pay extra attention when it appears. So the program reads the posts from Microsoft Graph instead, through the service communications A P I, with two read permissions. There's a trap. A read on a host other than the tenant's own returns nothing, and an empty list looks like a quiet week. So the kit reads only the cloud the settings name, and refuses a session in another environment or tenant.`,
   `${M} — Unit "Introduction"; Compliance Automation and Day-Two Operations, Chapter 14 — "Why provider notices go unread."`);
 }
 
@@ -92,21 +92,19 @@ endModule(SI);
 
 // ================================================================== 5 Hosts
 {
-  const s = content(SC, "Each cloud has its own Graph host");
+  const s = content(SC, "GCC keeps the worldwide Graph host");
   tag(s, "What");
   const b = table(s, "Hosts", 1.45, [2.6, 4.75, 4.8], ["Settings cloud", "Graph host", "Connect-MgGraph -Environment"], [
     ["gcc", "graph.microsoft.com, the worldwide endpoint", "Global"],
-    ["gcchigh (side note)", "graph.microsoft.us", "USGov"],
-    ["dod (side note)", "dod-graph.microsoft.us", "USGovDoD"],
   ], { fontSize: 13, limit: 3.6 });
   panel(s, "Guard", 0.6, b + 0.25, 12.15, null, HEX.navy, HEX.navyTint, "THE GUARDS", null, [
     "The settings name the cloud and tenant; Assert-PnLiveContext compares Get-MgContext's environment and tenant before the first call",
     "A next link is a URL the response chose: followed only if it is on the cloud's own Graph host, or refused",
-    "The API is available on the national clouds; each list method's table shows US Government L4 and L5",
+    "One row per cloud and no default: an unknown cloud name throws",
   ], 12.5);
   sources(s, "Sources: Module 3, Unit 1; the guide, Step 2 (Government-cloud availability); workbook Chapter 02 (What it leaves to you); Graph national cloud deployments.");
   notes(s,
-`Each Microsoft 365 cloud has its own Graph host. GCC keeps the worldwide endpoint, graph dot microsoft dot com, and signs in with the Global environment. That's the workbook's baseline. As a side note, GCC High uses graph dot microsoft dot U S, and DoD uses dod dash graph dot microsoft dot U S, each with its own environment name. The A P I is available on the national clouds, and each list method's table shows U S Government L four and L five. The kit has two guards. Before the first call, it compares the Graph session's environment and tenant with the settings, and refuses a mismatch. And a next link is a U R L the response chose, so the kit follows it only if it's on the cloud's own Graph host. Anything else is refused, so the token never goes somewhere the agency didn't choose.`,
+`A Microsoft 365 GCC tenant keeps the worldwide Graph endpoint, graph dot microsoft dot com, and signs in with the Global environment. That's the workbook's baseline. Learn's overview says the service communications A P I is available on the Microsoft Graph national clouds, and the kit has one row per cloud and no default, so an unknown cloud name throws. The kit has two guards. Before the first call, it compares the Graph session's environment and tenant with the settings, and refuses a mismatch. And a next link is a U R L the response chose, so the kit follows it only if it's on the cloud's own Graph host. Anything else is refused, so the token never goes somewhere the agency didn't choose.`,
   `${M} — Unit 1: the guide — Step 2, "Government-cloud availability"; Unit 2: workbook Chapter 02 — "What it leaves to you," "The code."`);
 }
 
@@ -132,7 +130,7 @@ endModule(SC);
 
 // ================================================================== 7 Try it: permissions, hosts, collect
 {
-  const s = content(SL, "Try it: two permissions, three hosts, six notices");
+  const s = content(SL, "Try it: two permissions, one host, six notices");
   tag(s, "How");
   const c = code(s, "Lab", 0.6, 1.45, 12.15, [
     "# Lab 1, steps 1 to 3, in examples/provider-notices (PowerShell 7)",
@@ -140,10 +138,8 @@ endModule(SC);
     "m365-messages         ServiceMessage.Read.All     True",
     "m365-issues           ServiceHealth.Read.All      True",
     "m365-health-overviews ServiceHealth.Read.All      True",
-    "$ foreach ($c in 'gcc', 'gcchigh', 'dod') { $x = Get-PnCloud -Provider m365 -Cloud $c; ... }",
+    "$ foreach ($c in 'gcc') { $x = Get-PnCloud -Provider m365 -Cloud $c; ... }",
     "gcc      https://graph.microsoft.com      Global",
-    "gcchigh  https://graph.microsoft.us       USGov",
-    "dod      https://dod-graph.microsoft.us   USGovDoD",
     "$ ./Invoke-PnCollect.ps1 ... -FixturePath tests/fixtures/day1 -Provider m365 -AsOf 2026-11-09T12:00:00Z ...",
     "Provider Cloud        Notices   Open   Action  By kind",
     "m365     gcc                6      5        2  advisory 3, change 1, incident 1, retirement 1",
@@ -151,7 +147,7 @@ endModule(SC);
   line(s, "Read", "Two read permissions and nothing that writes. Six notices from a fictional GCC tenant: five open, two needing action.", c + 0.2, 0.45, 13.5);
   sources(s, "Sources: Module 3, \"Exercise: Lab 1,\" steps 1 to 3; examples/provider-notices: config/calls.json, tests/fixtures/day1 (fictional).");
   notes(s,
-`Try it. Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against a fictional tenant in G C C. Step one lists what Microsoft 365 needs: three calls, and only two permissions, Service Message dot Read dot All for the posts, and Service Health dot Read dot All for the issues and the health overviews. All three are marked verified, and nothing writes. Step two prints each cloud's Graph host: the worldwide host for G C C with the Global environment, then the U S Government hosts for GCC High and DoD. Step three collects Microsoft 365 from the day-one fixtures, as of November ninth, 2026: six notices, five open, two needing action. Three advisories, a change, an incident and a retirement.`,
+`Try it. Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against a fictional tenant in G C C. Step one lists what Microsoft 365 needs: three calls, and only two permissions, Service Message dot Read dot All for the posts, and Service Health dot Read dot All for the issues and the health overviews. All three are marked verified, and nothing writes. Step two prints the cloud's Graph host: the worldwide host for G C C, with the Global environment. Step three collects Microsoft 365 from the day-one fixtures, as of November ninth, 2026: six notices, five open, two needing action. Three advisories, a change, an incident and a retirement.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 1 to 3.`);
 }
 
@@ -230,7 +226,7 @@ endModule(SL);
   const s = content(SS, "Dangers the gate guards against");
   tag(s, "Who");
   const b = table(s, "Dang", 1.45, [4.1, 8.05], ["Danger", "The guard"], [
-    ["A GCC High or DoD tenant read on the worldwide host", "The cloud named in the settings; the session guard; every request on the cloud's own host"],
+    ["A read on a host other than the tenant's own", "The cloud named in the settings; the session guard; every request on the cloud's own host"],
     ["A next link to another host", "Next links followed only on the cloud's host"],
     ["A broad Graph scope for convenience", "Two read permissions, declared per call"],
     ["A kit rule mistaken for Microsoft's deadline", "actionBasis names the rule; no date is made up"],
@@ -239,7 +235,7 @@ endModule(SL);
   ], { fontSize: 12.5, limit: 5.6 });
   sources(s, "Sources: Module 3, Unit 2; workbook Chapter 02 (Dangers); Microsoft 365 admin roles; Book 15, Ch 03.");
   notes(s,
-`The workbook chapter lists six dangers, and each has a guard. A GCC High or DoD tenant read on the worldwide host returns nothing, and the gate passes on an empty list; the guard is the cloud named in the settings, the session guard, and every request on the cloud's own host. A next link to another host would send the token somewhere the agency didn't choose; next links are followed only on the cloud's host. A broad Graph scope for convenience would let the reader change the tenant; it holds two read permissions, declared per call. A kit rule mistaken for Microsoft's deadline would give a post with no date an invented one; the action basis names the rule. Data privacy posts go unseen by the reader's role, so name a privacy reader where they matter. And look-alike email gets acted on, so the task links the post the kit read from Graph, as the intake, triage and routing chapter of Compliance Automation and Day-Two Operations requires.`,
+`The workbook chapter lists six dangers, and each has a guard. A read on a host other than the tenant's own returns nothing, and the gate passes on an empty list; the guard is the cloud named in the settings, the session guard, and every request on the cloud's own host. A next link to another host would send the token somewhere the agency didn't choose; next links are followed only on the cloud's host. A broad Graph scope for convenience would let the reader change the tenant; it holds two read permissions, declared per call. A kit rule mistaken for Microsoft's deadline would give a post with no date an invented one; the action basis names the rule. Data privacy posts go unseen by the reader's role, so name a privacy reader where they matter. And look-alike email gets acted on, so the task links the post the kit read from Graph, as the intake, triage and routing chapter of Compliance Automation and Day-Two Operations requires.`,
   `${M} — Unit 2: workbook Chapter 02 — "Dangers."`);
 }
 
@@ -262,12 +258,12 @@ endModule(SL);
 // ================================================================== 13 Check
 {
   const s = check(SS, "Check yourself: two questions on Microsoft 365", [
-    { q: "A GCC tenant is read on which Graph host?", options: ["a. graph.microsoft.us", "b. dod-graph.microsoft.us", "c. graph.microsoft.com, the worldwide endpoint"] },
+    { q: "A GCC tenant is read on which Graph host?", options: ["a. management.azure.com", "b. login.microsoftonline.com", "c. graph.microsoft.com, the worldwide endpoint"] },
     { q: "m365:MC900003 is action required with no date. Why?", options: ["a. Microsoft set actionRequiredByDateTime", "b. The kit's rule marks a preventOrFixIssue post without a date, labeled rule:", "c. It is tagged Retirement"] },
   ], "1 c: GCC keeps the worldwide endpoint. 2 b: the record names the kit's rule, and no date is made up.");
   sources(s, "Sources: Module 3, \"Knowledge check,\" questions 2 and 3, and \"Check your answers.\"");
   notes(s,
-`Check yourself with two questions. First: a G C C tenant is read on which Graph host? The answer is c: graph dot microsoft dot com, the worldwide endpoint. GCC High and DoD have their own hosts, but G C C keeps the worldwide one. Second: M C nine hundred thousand and three is action required with no date. Why? The answer is b. The kit's rule marks a prevent-or-fix-issue post without a date as action required, and labels the basis rule. Microsoft didn't set a date, and the kit doesn't make one up. The module page has three more questions, each linked to the section that answers it.`,
+`Check yourself with two questions. First: a G C C tenant is read on which Graph host? The answer is c: graph dot microsoft dot com, the worldwide endpoint. G C C keeps the worldwide one. Second: M C nine hundred thousand and three is action required with no date. Why? The answer is b. The kit's rule marks a prevent-or-fix-issue post without a date as action required, and labels the basis rule. Microsoft didn't set a date, and the kit doesn't make one up. The module page has three more questions, each linked to the section that answers it.`,
   `${M} — Unit "Knowledge check," questions 2 and 3; "Check your answers."`);
 }
 
