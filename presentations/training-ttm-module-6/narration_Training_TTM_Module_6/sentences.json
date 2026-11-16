@@ -593,58 +593,6 @@
    "The authors haven't run Lab 2."
   ]
  ],
- "13": [
-  [
-   0.05,
-   2.062,
-   "What differs in the government clouds?"
-  ],
-  [
-   2.112,
-   3.888,
-   "The guide's availability notes for Gates 5 and 6 answer it."
-  ],
-  [
-   6.0,
-   3.212,
-   "pim is available in Azure for U S Government."
-  ],
-  [
-   9.213,
-   13.037,
-   "ServiceNow's Entra spoke points at the worldwide Graph host by default, and its page doesn't mention the U S Government clouds, so it fits G C C, but for G C C High, confirm with ServiceNow before use."
-  ],
-  [
-   22.25,
-   4.225,
-   "SailPoint's connector endpoints for G C C High are documented."
-  ],
-  [
-   26.475,
-   8.863,
-   "For the re-read itself, G C C uses the worldwide Graph endpoint, and G C C High uses graph dot microsoft dot u s."
-  ],
-  [
-   35.337,
-   4.588,
-   "And the ISC A P I domain for a fed-ramp tenant wasn't confirmed."
-  ],
-  [
-   39.925,
-   1.512,
-   "There are interim paths."
-  ],
-  [
-   41.438,
-   4.987,
-   "Until the change-record flow exists, the approver raises the change record by hand."
-  ],
-  [
-   46.425,
-   9.575,
-   "And until the re-read client runs on a schedule, the verifier runs it by hand once a day, dry run first; the business rule still blocks a person's close."
-  ]
- ],
  "14": [
   [
    0.05,
@@ -769,6 +717,53 @@
    34.987,
    11.975,
    "You'll learn what Gate 7 runs and reports, export closed findings as the workbook's evidence records, chain one period to the next, and verify the package the way an I S S O would."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.25,
+   "What does this look like in G C C?"
+  ],
+  [
+   2.3,
+   3.888,
+   "The guide's availability notes for Gates 5 and 6 answer it."
+  ],
+  [
+   6.188,
+   4.1,
+   "pim is part of the commercial Entra service that G C C uses."
+  ],
+  [
+   10.287,
+   9.225,
+   "ServiceNow's Entra spoke points at the worldwide Graph host by default, and its page doesn't mention the U S Government clouds, so it fits G C C."
+  ],
+  [
+   19.512,
+   4.9,
+   "For the re-read itself, G C C uses the worldwide Graph endpoint."
+  ],
+  [
+   24.413,
+   4.588,
+   "And the ISC A P I domain for a fed-ramp tenant wasn't confirmed."
+  ],
+  [
+   29.0,
+   1.512,
+   "There are interim paths."
+  ],
+  [
+   30.512,
+   4.987,
+   "Until the change-record flow exists, the approver raises the change record by hand."
+  ],
+  [
+   35.5,
+   9.575,
+   "And until the re-read client runs on a schedule, the verifier runs it by hand once a day, dry run first; the business rule still blocks a person's close."
   ]
  ]
 }

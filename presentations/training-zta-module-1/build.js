@@ -245,16 +245,15 @@ endModule(SL);
   const r = panel(s, "Owners", 0.6 + W2 + G2, 1.45, W2, null, HEX.teal, HEX.tealTint, "THE PILLAR OWNERS (STEP 6)", "They read their own tab", [
     "With the risk and status filters",
     "Note each Investigate, Skipped and Error result",
-    "And each Failed result whose feature may not exist in the cloud",
+    "And each Failed result whose feature may not exist in GCC",
   ], 12.5);
-  panel(s, "Fed", 0.6, Math.max(l, r) + 0.2, 12.15, null, HEX.amber, HEX.amberTint, "IN A FEDERAL TENANT", null, [
-    "GCC, the workbook's baseline: the default Global environment and the worldwide Graph and Azure endpoints",
-    "GCC High and DoD: Learn says impersonation protection and spoof intelligence aren't yet available, so a failed impersonation test is a boundary finding",
+  panel(s, "Fed", 0.6, Math.max(l, r) + 0.2, 12.15, null, HEX.amber, HEX.amberTint, "IN A GCC TENANT", null, [
+    "The workbook's baseline: the default Global environment and the worldwide Graph and Azure endpoints",
   ], 12.5);
-  sources(s, "Sources: Module 1, Units 1 and 2; Guide, Steps 1, 4 and 6; Microsoft Learn, Exchange Online for US government; Microsoft Graph national cloud deployments.");
+  sources(s, "Sources: Module 1, Units 1 and 2; Guide, Steps 1, 4 and 6; Microsoft Learn, Microsoft Graph national cloud deployments.");
   notes(s,
-`Who decides? The decision record, from the guide's Step 1, scopes each run: the tenant, the pillars, and the Azure subscriptions for the infrastructure pillar; the run account; the cadence; the pinned tool version; telemetry; and where the output goes. The see-so approves it. Then each pillar owner reads their own tab, with the filters, and notes every investigate, skipped and error result, and every failed result whose feature may not exist in the tenant's cloud. For a G C C tenant, the workbook's baseline, the tool uses the worldwide endpoints. In G C C High and D O D, there's a case to know. Learn's Exchange Online service description says anti-phishing impersonation protection and spoof intelligence aren't yet available there. So a failed impersonation test in those clouds is a boundary finding, not a configuration change to make today.`,
-  `${M} — Unit 1 (the decision record), Unit 2 (pillar owners; the GCC High example); guide, Step 1 (steps 1 to 3), Step 4, Step 6; "Government-cloud availability"; Microsoft Learn — "Exchange Online for US government environments," "Microsoft Graph national cloud deployments."`);
+`Who decides? The decision record, from the guide's Step 1, scopes each run: the tenant, the pillars, and the Azure subscriptions for the infrastructure pillar; the run account; the cadence; the pinned tool version; telemetry; and where the output goes. The see-so approves it. Then each pillar owner reads their own tab, with the filters, and notes every investigate, skipped and error result, and every failed result whose feature may not exist in G C C. For a G C C tenant, the workbook's baseline, the tool uses the default Global environment and the worldwide Graph and Azure endpoints.`,
+  `${M} — Unit 1 (the decision record), Unit 2 (pillar owners); guide, Step 1 (steps 1 to 3), Step 4, Step 6; "GCC availability"; Microsoft Learn — "Microsoft Graph national cloud deployments."`);
 }
 endModule(SW);
 
@@ -278,7 +277,7 @@ endModule(SW);
 // ================================================================== 13 Check
 {
   const s = check(SS, "Check yourself: two questions on Module 1", [
-    { q: "An agency already runs the Zero Trust Assessment monthly. Can it stop running ScubaGear?", options: ["a. Yes: the Zero Trust Assessment covers identity", "b. No: BOD 25-01 names CISA's SCuBA tools, and ScubaGear covers products the assessment doesn't test", "c. Only in GCC High"] },
+    { q: "An agency already runs the Zero Trust Assessment monthly. Can it stop running ScubaGear?", options: ["a. Yes: the Zero Trust Assessment covers identity", "b. No: BOD 25-01 names CISA's SCuBA tools, and ScubaGear covers products the assessment doesn't test", "c. Only in commercial tenants"] },
     { q: "A test is Skipped with NotLicensedEntraIDP2. How is it counted?", options: ["a. As a failed control", "b. As a pass, because nothing was found", "c. As Skipped-Licensing: a licensing decision, neither a failure nor a pass"] },
   ], "1 b: run both, alongside each other. 2 c: a skip goes in its own column, with its reason.");
   sources(s, "Sources: Module 1, \"Knowledge check,\" questions 1 and 2; Unit 1; Unit 3; Book 11, Ch 05.");

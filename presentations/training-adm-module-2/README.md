@@ -6,7 +6,7 @@
 |---|---|
 | Introduction | Title; why soft and hard match must be blocked; learning objectives and prerequisites |
 | Concepts | The five parts of a check and the wrapper that turns any exception into Error; the lesson in VK-SYNC-02's catalog entry (Global Administrator, so optional and export first); Finding, Warn and Info, and the unsafe default; the safety tests, and where the remediation goes |
-| Lab | Try it: Lab 1 steps 1 to 8: the fail fixture, the matching window (Warn, then Fail), the export, the scope and role, the default run, the 297 tests and the broken check; Lab 2 in a test tenant (not run by the authors) |
+| Lab | Try it: Lab 1 steps 1 to 8: the fail fixture, the matching window (Warn, then Fail), the export, the scope and role, the default run, the 296 tests and the broken check; Lab 2 in a test tenant (not run by the authors) |
 | Check and summary | The federal requirement (CM-6, CA-7, AC-2, AC-6, SA-11, CM-7, CM-3, CM-5, and SI-7 and AU-3 in Lab 2), the KSIs and the evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |

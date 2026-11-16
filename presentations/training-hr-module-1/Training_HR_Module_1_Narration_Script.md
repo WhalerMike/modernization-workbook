@@ -38,7 +38,7 @@ Try it. Lab 1 runs in the hr-lifecycle folder of the examples, on fictional fixt
 
 ## Slide 10 — Try it: scan a month of audit records
 
-Step three scans October's audit records against the register. You give it the register, the audit export, a window from the first to the thirty-first of October, the cloud, and an output folder. The cloud option has no default; G C C, G C C High or D O D picks the Graph host. The scan found eleven protected writes. Five were by the writer the row names, which is what you want. One was by the backstop. Four were by a second writer, someone the register doesn't name at all. And one was by a writer the register forbids. That's five findings and one warning, so the exit code is two. The output folder's manifest lists every file's hash, so the run can be checked later. The output on the slide is wrapped to fit.
+Step three scans October's audit records against the register. You give it the register, the audit export, a window from the first to the thirty-first of October, the cloud, and an output folder. The cloud option has no default; G C C names the Graph host, the worldwide graph dot microsoft dot com. The scan found eleven protected writes. Five were by the writer the row names, which is what you want. One was by the backstop. Four were by a second writer, someone the register doesn't name at all. And one was by a writer the register forbids. That's five findings and one warning, so the exit code is two. The output folder's manifest lists every file's hash, so the run can be checked later. The output on the slide is wrapped to fit.
 
 ## Slide 11 — Try it: read the findings and a saved query
 

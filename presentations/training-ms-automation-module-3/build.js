@@ -1,6 +1,6 @@
 // Microsoft Automation learning path, Module 3: Intune through Microsoft Graph — the module's narrated deck.
 // Teaches docs/training/ms-automation-intune.md, Learn-style: objectives, the concepts, a "Try it" slide with the real
-// Lab 1 commands and output (run November 1, 2026 in examples/ms-automation), government-cloud differences, the federal
+// Lab 1 commands and output (run November 1, 2026 in examples/ms-automation), where agencies are, the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page or the kit;
 // the deck adds none. Helpers: ../training-ms-automation-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-ms-automation-module-3/build.js \
@@ -60,7 +60,7 @@ const SS = "Check and summary";
     "Explain which three things are beta-only, and what that means for evidence",
     "Read managed devices and compliance status, including the device-name join",
     "Keep remote actions and export jobs out of a read-only collector",
-    "Say what differs in GCC High and DoD, and run the five checks on fixtures",
+    "Say why GCC follows commercial Intune, and run the five checks on fixtures",
   ], [
     "Module 1; Module 2 for the Conditional Access side",
     "Lab 1: the kit, Python and PowerShell; no tenant",
@@ -68,7 +68,7 @@ const SS = "Check and summary";
   ], 85);
   sources(s, "Sources: Module 3, Unit 1 \"Learning objectives,\" \"Prerequisites\"; Unit 9 \"Exercise: Lab 2.\"");
   notes(s,
-`Here's what you'll be able to do by the end of this module, which takes about eighty-five minutes with the lab. You'll name the Graph API, least-privileged permission and stage for each of the workbook's device evidence questions. You'll explain which three things the program relies on are beta-only. You'll read managed devices and per-policy compliance status, including why the checks join on device name. You'll keep remote actions and export jobs out of a read-only collector. And you'll say what differs in GCC High and DoD, and run the five checks. You need Module 1, and Module 2 for the Conditional Access side. Lab 2 needs a test tenant with an Intune license and a few test devices.`,
+`Here's what you'll be able to do by the end of this module, which takes about eighty-five minutes with the lab. You'll name the Graph API, least-privileged permission and stage for each of the workbook's device evidence questions. You'll explain which three things the program relies on are beta-only. You'll read managed devices and per-policy compliance status, including why the checks join on device name. You'll keep remote actions and export jobs out of a read-only collector. And you'll say why GCC follows commercial Intune, and run the five checks. You need Module 1, and Module 2 for the Conditional Access side. Lab 2 needs a test tenant with an Intune license and a few test devices.`,
   `${M} — Unit 1 "Learning objectives," "Prerequisites."`);
 }
 endModule(SI);
@@ -215,16 +215,16 @@ endModule(SC);
     "  \"policyFindings\": 2,",
     "  \"devicesWithNoPolicyReported\": [ KSK-0001 (Windows), MAC-0001 (macOS) ],",
     "  \"ambiguousNames\": [ \"WS-0002\" ]",
-    "# Lab 1, step 6: the Autopilot read as a GCC High run would make it",
-    "$ python -c \"...try_beta(GraphClient('gcchigh', ...), '/deviceManagement/windowsAutopilotDeviceIdentities')\"",
-    "{'stage': 'beta', 'available': False, 'items': [], 'reason': \"autopilot-device-identities isn't offered",
-    " in gcchigh (graph-calls.json not_in_clouds)\"}",
+    "# Lab 1, step 5: Autopilot profile assignment, on beta (output trimmed)",
+    "$ python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z autopilot-profiles",
+    "  \"stage\": \"beta\", \"evaluated\": true, \"total\": 6,",
+    "  notInSync: SN-1004 (assignedOutOfSync), SN-1003 (failed), SN-1002 (notAssigned), SN-1005 (pending)",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 1, 2026", pt: 10.5 });
-  line(s, "Read", "Two devices no policy reaches count as compliant by default. WS-0002 is two devices with one name. No request was made for GCC High.", c + 0.2, 0.7, 13.5);
-  sources(s, "Sources: Module 3, Unit 8 \"Exercise: Lab 1,\" steps 2 and 6; examples/ms-automation: intune_tasks.py, graphkit.py, graph-calls.json, tests/fixtures/intune.json.");
+  line(s, "Read", "Two devices no policy reaches count as compliant by default. WS-0002 is two devices with one name. Autopilot reads beta.", c + 0.2, 0.7, 13.5);
+  sources(s, "Sources: Module 3, Unit 8 \"Exercise: Lab 1,\" steps 2 and 5; examples/ms-automation: intune_tasks.py, graphkit.py, graph-calls.json, tests/fixtures/intune.json.");
   notes(s,
-`Try it. Lab 1 runs each check against a fictional fleet of nine devices and six Autopilot registrations. Here's step two, compliance coverage. Two policies reach no device: the kiosk policy has only an exclusion, and an old Mac pilot has no assignment at all. Two devices, a kiosk and a Mac, have no policy reporting on them, so with the tenant's default setting they count as compliant. And W S zero zero zero two is flagged as ambiguous: two devices share that name, so a status row could belong to either. Step six asks the client to read the Autopilot collection as a GCC High run would. It returns not available, with the reason, and makes no request, because the call list follows Intune's government service description, not the API page. The lab repeats two checks in PowerShell, with the same results.`,
-  `${M} — Unit 8 "Exercise: Lab 1 (fixtures, no tenant)," steps 2, 6 and 7.`);
+`Try it. Lab 1 runs each check against a fictional fleet of nine devices and six Autopilot registrations. Here's step two, compliance coverage. Two policies reach no device: the kiosk policy has only an exclusion, and an old Mac pilot has no assignment at all. Two devices, a kiosk and a Mac, have no policy reporting on them, so with the tenant's default setting they count as compliant. And W S zero zero zero two is flagged as ambiguous: two devices share that name, so a status row could belong to either. Step five reads Autopilot profile assignment, which is only in beta, and the result says so. Of six registrations, two are assigned in sync and four aren't: one out of sync, one failed on hardware requirements, one not assigned, and one pending with no group tag. The lab repeats two checks in PowerShell, with the same results, and the Intune tests pass: seventeen.`,
+  `${M} — Unit 8 "Exercise: Lab 1 (fixtures, no tenant)," steps 2, 5, 6 and 7.`);
 }
 
 // ================================================================== 11 Lab 2
@@ -250,52 +250,26 @@ endModule(SL);
 
 // ================================================================== 12 Where agencies are: instances
 {
-  const s = content(SA, "Where agencies are: one Intune for GCC, one for High");
+  const s = content(SA, "Where agencies are: GCC follows commercial Intune");
   tag(s, "Who");
-  const b = table(s, "Inst", 1.45, [2.5, 4.4, 5.25], ["Tenant", "Intune instance", "Graph host"], [
-    ["GCC", "\"The same instance as Microsoft Intune in the commercial space\"", "graph.microsoft.com"],
-    ["GCC High", "A separate government instance, shared with DoD", "graph.microsoft.us"],
-    ["DoD", "The same government instance", "dod-graph.microsoft.us"],
-  ], { fontSize: 13, limit: 3.5 });
-  const l = panel(s, "Na", 0.6, b + 0.25, 6.0, null, HEX.red, HEX.redTint, "GCC HIGH AND DOD: NOT AVAILABLE, NO PLANS", null, [
-    "Windows Autopilot; Remediations",
-    "Feature update and compatibility reports",
-    "The ServiceNow connector; Subscription Activation",
+  const l = panel(s, "Gcc", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "GCC", "No separate Intune instance", [
+    "GCC uses the commercial Intune service",
+    "And the worldwide Graph endpoint, https://graph.microsoft.com",
+    "GCC's own Intune gaps are Book 05, Chapter 10's: for example, Windows Update for Business reports don't meet GCC requirements",
   ], 12.5);
-  panel(s, "Av", 6.85, b + 0.25, 5.9, null, HEX.teal, HEX.tealTint, "AVAILABLE", null, [
-    "Standard MDM: compliance, configuration, app policies",
-    "Log Analytics export; Defender security settings management",
-    "Moving instances means unenrolling and re-enrolling every device",
-  ], 12.5);
-  sources(s, "Sources: Module 3, Unit 6: Learn, Intune for US Government GCC High and DoD service description; Graph national cloud deployments (Oct. 30, 2026).");
-  notes(s,
-`Where are agencies? The agency the workbook's device plan describes manages Windows with Group Policy, and often Configuration Manager, and is moving to Intune in a GCC tenant. GCC has no separate Intune instance. In Microsoft's words, GCC is the same instance as Intune in the commercial space, and it uses the worldwide Graph host. GCC High and DoD share a separate government instance, with their own Graph hosts, and moving between instances means unenrolling and re-enrolling every device. Microsoft's service description lists what isn't available there, with no plans to add it: Windows Autopilot, Remediations, feature update and compatibility reports, the ServiceNow connector and Subscription Activation. Standard device management, compliance, configuration and app policies, is available, with Log Analytics export and Defender security settings management.`,
-  `${M} — Unit 6 "Where agencies are": GCC; GCC High and DoD.`);
-}
-
-// ================================================================== 13 Autopilot and interim
-{
-  const s = content(SA, "Autopilot in GCC High and DoD, and interim paths");
-  tag(s, "Who");
-  const l = panel(s, "Disc", 0.6, 1.45, 6.0, null, HEX.amber, HEX.amberTint, "ONE DISCREPANCY", "The API answers; the feature isn't offered", [
-    "The Graph Autopilot pages list L4 and L5",
-    "The service description lists Windows Autopilot as not available in GCC High and DoD",
-    "The service description decides (inference); graph-calls.json follows it",
-    "So autopilot-profiles is a GCC and commercial check",
-  ], 13);
   const r = panel(s, "Int", 6.85, 1.45, 5.9, null, HEX.teal, HEX.tealTint, "INTERIM PATHS (DESIGN GUIDANCE)", null, [
     "Run compliance-coverage until it lists none, then set the default to Not compliant",
-    "Devices still on Group Policy aren't in Intune: track them with VK-INT-06",
-    "GCC High or DoD: Book 05, Ch 04 compares Autopilot device preparation",
-    "Label the Settings Catalog export beta",
-  ], 13);
-  callout(s, "Gcc", Math.max(l, r) + 0.3, 0.85, "FaCloud", HEX.navy, "GCC's own gaps: ",
-    "Book 05, Chapter 10's GCC (Moderate) boundary facts, such as Windows Update for Business reports.");
-  sources(s, "Sources: Module 3, Unit 6: Learn, List windowsAutopilotDeviceIdentities; Intune government service description (Oct. 30, 2026). Book 05, Ch 04 and Ch 10.");
+    "Devices still on Group Policy or Configuration Manager aren't in Intune: track them with VK-INT-06",
+    "Label the Settings Catalog export beta, and re-run it after a beta change",
+  ], 12.5);
+  callout(s, "Start", Math.max(l, r) + 0.3, 0.85, "FaCloud", HEX.navy, "The starting state: ",
+    "Group Policy and often Configuration Manager, moving to Intune in a GCC tenant; some devices have no compliance policy yet.");
+  sources(s, "Sources: Module 3, Unit 6 \"Where agencies are\"; Learn, Graph national cloud deployments (Oct. 30, 2026); Book 05, Ch 04 and Ch 10.");
   notes(s,
-`One discrepancy to know. The Graph reference pages for Autopilot device identities list the API in the GCC High and DoD clouds, while Intune's service description lists Windows Autopilot as not available there. The service description decides whether the feature can be used; an endpoint that answers doesn't make the feature supported. That's an inference, and the kit's call list follows the stricter statement, so the Autopilot check is for GCC and commercial tenants. The interim paths: run compliance coverage until it lists nothing, then change the tenant's default to not compliant. Devices still on Group Policy aren't in Intune yet, so track them with the validation kit's platform inventory. In GCC High or DoD, Chapter 04 of the Devices and Endpoints book compares Autopilot device preparation. And label the Settings Catalog export as beta.`,
-  `${M} — Unit 6 "Where agencies are": the Autopilot discrepancy, "Interim paths."`);
+`Where are agencies? The agency the workbook's device plan describes manages Windows with Group Policy, and often Configuration Manager, and is moving the fleet to Intune in a Microsoft 365 GCC tenant. During the move some devices have no compliance policy, the tenant-wide default may still mark them compliant, and stale records pile up. GCC has no separate Intune instance: it uses the commercial Intune service, and the worldwide Graph endpoint. The Intune feature gaps a GCC tenant does have are the subject of the Devices and Endpoints book's Chapter 10. For example, Windows Update for Business reports don't meet GCC requirements. The interim paths, which are design guidance: run compliance coverage until it lists nothing, then change the tenant's default to not compliant. Devices still on Group Policy or Configuration Manager aren't in Intune yet, so track them with the validation kit's platform inventory. And label the Settings Catalog export as beta, and re-run it after a beta change.`,
+  `${M} — Unit 6 "Where agencies are": GCC; "Interim paths."`);
 }
+
 endModule(SA);
 
 // ================================================================== 14 Federal requirement
@@ -322,12 +296,12 @@ endModule(SA);
 {
   const s = check(SS, "Check yourself: two questions on Intune", [
     { q: "A compliance policy's only assignment is an exclusion group. Which check reports it?", options: ["a. stale-checkin", "b. compliance-coverage: the policy reaches no device, and an unassigned device counts as compliant by default", "c. device-posture"] },
-    { q: "What does autopilot-profiles report in a GCC High tenant?", options: ["a. Every registration as notAssigned", "b. An error from Graph", "c. \"Not evaluated,\" without calling Graph"] },
-  ], "1 b: a policy with only exclusions reaches no device. 2 c: the service description lists Autopilot as not available.");
-  sources(s, "Sources: Module 3, Unit 10 \"Knowledge check,\" questions 2 and 4; Unit 3; Unit 6.");
+    { q: "Which of these is beta-only today?", options: ["a. Listing managed devices", "b. Listing compliance policies' device statuses", "c. Reading an Autopilot registration's deploymentProfileAssignmentStatus"] },
+  ], "1 b: a policy with only exclusions reaches no device. 2 c: profile assignment status, the profiles, the Settings Catalog and filters are beta-only.");
+  sources(s, "Sources: Module 3, Unit 10 \"Knowledge check,\" questions 2 and 1; Unit 2; Unit 3.");
   notes(s,
-`Check yourself with two questions. First: a compliance policy's only assignment is an exclusion group. Which check reports it? The answer is b, compliance coverage. A policy with only exclusions reaches no device, and by default an unassigned device counts as compliant. Second: what does the Autopilot check report in a GCC High tenant? The answer is c: not evaluated, without calling Graph, because Intune's service description lists Windows Autopilot as not available there. The module page has three more questions, each linked to the unit that answers it.`,
-  `${M} — Unit 10 "Knowledge check," questions 2 and 4.`);
+`Check yourself with two questions. First: a compliance policy's only assignment is an exclusion group. Which check reports it? The answer is b, compliance coverage. A policy with only exclusions reaches no device, and by default an unassigned device counts as compliant. Second: which of these is beta-only today? The answer is c: reading an Autopilot registration's deployment profile assignment status. The profile assignment status, the profiles themselves, the Settings Catalog and assignment filters are all beta-only. The module page has two more questions, each linked to the unit that answers it.`,
+  `${M} — Unit 10 "Knowledge check," questions 2 and 1.`);
 }
 
 // ================================================================== 16 Summary
@@ -339,7 +313,7 @@ endModule(SA);
     "Learned which three things are beta-only",
     "Read devices and compliance status, and why the checks join on name",
     "Kept remote actions and export jobs out of the collector",
-    "Ran the five checks, and saw why Autopilot is a GCC and commercial check",
+    "Ran the five checks, and saw which one depends on beta",
   ], 13.5);
   const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "NEXT", "Module 4: Azure Arc through Resource Manager", [
     "Put these checks on a schedule: the Intune track guide's Gate 6",
@@ -349,7 +323,7 @@ endModule(SA);
     "four modules, about 5 hours 55 minutes in all.");
   sources(s, "Sources: Module 3, Unit 11 \"Summary,\" \"Continue the path\"; Module 1, Unit 1 (the modules); Module 4; Training index; Intune track guide, Gate 6.");
   notes(s,
-`To sum up. You mapped the workbook's device evidence questions to Intune APIs, their least-privileged permissions and their stage. You learned which three things the program relies on are beta-only. You read managed devices and compliance status, and saw why the checks join on device name. You kept remote actions and export jobs out of the collector. And you ran the five checks, and saw why Autopilot is a GCC and commercial check. To put the checks on a schedule, go to the Intune track implementation guide's Gate 6. Next is Module 4, Azure Arc through Azure Resource Manager and Resource Graph, which leaves Graph for the server estate. With it, the Microsoft Automation learning path has four modules, about five hours and fifty-five minutes in all. Modules on Teams, and on monitoring and evidence, are planned.`,
+`To sum up. You mapped the workbook's device evidence questions to Intune APIs, their least-privileged permissions and their stage. You learned which three things the program relies on are beta-only. You read managed devices and compliance status, and saw why the checks join on device name. You kept remote actions and export jobs out of the collector. And you ran the five checks, and saw which one depends on beta. To put the checks on a schedule, go to the Intune track implementation guide's Gate 6. Next is Module 4, Azure Arc through Azure Resource Manager and Resource Graph, which leaves Graph for the server estate. With it, the Microsoft Automation learning path has four modules, about five hours and fifty-five minutes in all. Modules on Teams, and on monitoring and evidence, are planned.`,
   `${M} — Unit 11 "Summary," "Continue the path"; Module 1 — Unit 1 "Introduction" (the modules); Module 4.`);
 }
 endModule(SS);
@@ -359,7 +333,7 @@ backup();
 sourceSlide("Sources: Module 3 deck", [
   "Module page: docs/training/ms-automation-intune.md (Microsoft Automation learning path, Module 3), Units 1 to 11; its footnotes carry each Microsoft Learn page, read October 30, 2026; its verification log is docs/training/_verification/ms-automation-intune.md.",
   "Microsoft Learn pages the module cites: List managedDevices; managedDevice resource; deviceCompliancePolicies, assignments, deviceStatuses and resource; groupAssignmentTarget; deviceAndAppManagementAssignmentTarget; exclusionGroupAssignmentTarget (beta); deviceManagementSettings; deviceConfigurations; configurationPolicies (beta); assignmentFilters (beta).",
-  "Also: windowsAutopilotDeviceIdentities v1.0 and beta; Autopilot deployment profiles (beta); mobileApps; retire, wipe and syncDevice; paging; throttling limits (Intune); Export Intune reports; Create export job; report names; Intune reports; Intune for US Government GCC High and DoD; Graph national cloud deployments.",
+  "Also: windowsAutopilotDeviceIdentities v1.0 and beta; Autopilot deployment profiles (beta); mobileApps; retire, wipe and syncDevice; paging; throttling limits (Intune); Export Intune reports; Create export job; report names; Intune reports; Graph national cloud deployments.",
   "NIST SP 800-53 Rev. 5 Moderate baseline (OSCAL 5.2.0). CISA ScubaGear aad.md (MS.AAD.3.7v1 and the M-22-09 quotation) and baselines folder. Federal requirements by link: Book 11, Appendix A; Book 05, Chapter 10.",
   "Lab output: examples/ms-automation (intune_tasks.py, graphkit.py, graph-calls.json, FmwGraph.psm1, tests/fixtures/intune.json), run November 1, 2026 with Python 3.14.3 and PowerShell 7.6.9; the Try it output is trimmed. Lab 2 not run by the authors. Design guidance and inferences are labeled.",
 ]);

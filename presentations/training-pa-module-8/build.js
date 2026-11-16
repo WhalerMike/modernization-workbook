@@ -337,12 +337,12 @@ endModule(SC);
     "PS> Invoke-Pester -Path tests/EvidenceDrift.Tests.ps1      Tests Passed: 32",
     "PS> Invoke-Pester -Path tests                              Tests Passed: 330",
     "# Then the POSIX shell, in examples/drift-pipeline",
-    "$ python -m pytest tests -q                                142 passed",
+    "$ python -m pytest tests -q                                139 passed",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (EACH TEST RUN'S COUNT SHOWN BESIDE IT)", pt: 10.5 });
   line(s, "Read", "Each refusal exits 1. Then delete out in both folders: the out folders hold the fixture's privileged holders.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 10 and 11; the path's verification log (pytest needs the whole repository); examples/drift-pipeline.");
   notes(s,
-`Step ten breaks it on purpose. Append a word to the drift summary inside day two's package, and verify it: the file doesn't match its hash, an error. Compare the days the wrong way round: refused, because the current run isn't later than the previous one. Each refusal exits with one. And the sample workflow that would run all this on a schedule lints clean. Step eleven runs the tests in both shells. In PowerShell, the evidence tests, thirty-two pass, then the whole suite, three hundred thirty. In the POSIX shell, pytest in the drift pipeline: a hundred forty-two pass. The path's verification log notes that this suite needs the whole repository, not just the drift pipeline folder. Then delete the output folder in both places, because they hold the fixture's privileged holders.`,
+`Step ten breaks it on purpose. Append a word to the drift summary inside day two's package, and verify it: the file doesn't match its hash, an error. Compare the days the wrong way round: refused, because the current run isn't later than the previous one. Each refusal exits with one. And the sample workflow that would run all this on a schedule lints clean. Step eleven runs the tests in both shells. In PowerShell, the evidence tests, thirty-two pass, then the whole suite, three hundred thirty. In the POSIX shell, pytest in the drift pipeline: a hundred thirty-nine pass. The path's verification log notes that this suite needs the whole repository, not just the drift pipeline folder. Then delete the output folder in both places, because they hold the fixture's privileged holders.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 10 and 11; the learning path's verification log.`);
 }
 

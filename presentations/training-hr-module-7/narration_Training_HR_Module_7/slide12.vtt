@@ -58,10 +58,10 @@ the record is intact, not
 that the gate is passed.
 
 13
-00:00:42.088 --> 00:00:44.397
+00:00:42.088 --> 00:00:44.350
 Step seven runs both test suites,
 
 14
-00:00:44.397 --> 00:00:49.250
-fifty-seven and a hundred forty-two
+00:00:44.350 --> 00:00:49.270
+fifty-seven and a hundred thirty-nine
 tests, and deletes the out folder.

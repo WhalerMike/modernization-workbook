@@ -69,16 +69,11 @@ with a status of completed or
 failed, and Learn lists it in v1.0.
 
 15
-00:00:55.063 --> 00:01:00.753
-And Learn's page on Microsoft Graph national
-cloud deployments gives the clouds:
+00:00:55.063 --> 00:01:00.221
+And Learn's page on Microsoft Graph
+national cloud deployments says GCC keeps
 
 16
-00:01:00.753 --> 00:01:05.424
-GCC keeps the worldwide Graph, GCC
-High and DoD have their own hosts,
-
-17
-00:01:05.424 --> 00:01:08.810
-and a token for one cloud
-doesn't work in another.
+00:01:00.221 --> 00:01:05.350
+the worldwide Graph endpoint, and a token
+for one cloud doesn't work in another.

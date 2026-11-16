@@ -479,48 +479,6 @@
    "The page lists every command for the lab in order, ready to paste."
   ]
  ],
- "11": [
-  [
-   0.05,
-   1.025,
-   "Who decides?"
-  ],
-  [
-   1.075,
-   15.312,
-   "The decision record, from the guide's Step 1, scopes each run: the tenant, the pillars, and the Azure subscriptions for the infrastructure pillar; the run account; the cadence; the pinned tool version; telemetry; and where the output goes."
-  ],
-  [
-   16.387,
-   1.475,
-   "The see-so approves it."
-  ],
-  [
-   17.863,
-   11.463,
-   "Then each pillar owner reads their own tab, with the filters, and notes every investigate, skipped and error result, and every failed result whose feature may not exist in the tenant's cloud."
-  ],
-  [
-   29.325,
-   6.213,
-   "For a G C C tenant, the workbook's baseline, the tool uses the worldwide endpoints."
-  ],
-  [
-   35.538,
-   3.625,
-   "In G C C High and D O D, there's a case to know."
-  ],
-  [
-   39.163,
-   7.862,
-   "Learn's Exchange Online service description says anti-phishing impersonation protection and spoof intelligence aren't yet available there."
-  ],
-  [
-   47.025,
-   6.7,
-   "So a failed impersonation test in those clouds is a boundary finding, not a configuration change to make today."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -655,6 +613,33 @@
    32.587,
    9.425,
    "Next is Module 2, running the assessment safely: the host, consent and roles, connecting in each cloud, and the run and its hashes."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.025,
+   "Who decides?"
+  ],
+  [
+   1.075,
+   15.312,
+   "The decision record, from the guide's Step 1, scopes each run: the tenant, the pillars, and the Azure subscriptions for the infrastructure pillar; the run account; the cadence; the pinned tool version; telemetry; and where the output goes."
+  ],
+  [
+   16.387,
+   1.475,
+   "The see-so approves it."
+  ],
+  [
+   17.863,
+   11.412,
+   "Then each pillar owner reads their own tab, with the filters, and notes every investigate, skipped and error result, and every failed result whose feature may not exist in G C C."
+  ],
+  [
+   29.275,
+   9.312,
+   "For a G C C tenant, the workbook's baseline, the tool uses the default Global environment and the worldwide Graph and Azure endpoints."
   ]
  ]
 }

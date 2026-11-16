@@ -1,48 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.025
-Check yourself with two questions.
+00:00:00.050 --> 00:00:00.875
+To sum up.
 
 2
-00:00:02.025 --> 00:00:06.525
-First: a compliance policy's only
-assignment is an exclusion group.
+00:00:00.875 --> 00:00:05.145
+You mapped the workbook's device
+evidence questions to Intune APIs,
 
 3
-00:00:06.525 --> 00:00:07.825
-Which check reports it?
+00:00:05.145 --> 00:00:08.500
+their least-privileged
+permissions and their stage.
 
 4
-00:00:07.825 --> 00:00:10.450
-The answer is b, compliance coverage.
+00:00:08.500 --> 00:00:12.075
+You learned which three things the
+program relies on are beta-only.
 
 5
-00:00:10.450 --> 00:00:13.513
-A policy with only exclusions
-reaches no device,
+00:00:12.075 --> 00:00:14.845
+You read managed devices
+and compliance status,
 
 6
-00:00:13.513 --> 00:00:17.112
-and by default an unassigned
-device counts as compliant.
+00:00:14.845 --> 00:00:17.200
+and saw why the checks
+join on device name.
 
 7
-00:00:17.112 --> 00:00:22.138
-Second: what does the Autopilot
-check report in a GCC High tenant?
+00:00:17.200 --> 00:00:20.850
+You kept remote actions and
+export jobs out of the collector.
 
 8
-00:00:22.138 --> 00:00:25.488
-The answer is c: not evaluated,
-without calling Graph,
+00:00:20.850 --> 00:00:24.450
+And you ran the five checks, and
+saw which one depends on beta.
 
 9
-00:00:25.488 --> 00:00:31.100
-because Intune's service description lists
-Windows Autopilot as not available there.
+00:00:24.450 --> 00:00:26.385
+To put the checks on a schedule,
 
 10
-00:00:31.100 --> 00:00:36.070
-The module page has three more questions,
-each linked to the unit that answers it.
+00:00:26.385 --> 00:00:29.713
+go to the Intune track
+implementation guide's Gate 6.
+
+11
+00:00:29.713 --> 00:00:34.782
+Next is Module 4, Azure Arc through Azure
+Resource Manager and Resource Graph,
+
+12
+00:00:34.782 --> 00:00:37.475
+which leaves Graph for the server estate.
+
+13
+00:00:37.475 --> 00:00:41.657
+With it, the Microsoft Automation
+learning path has four modules,
+
+14
+00:00:41.657 --> 00:00:44.600
+about five hours and
+fifty-five minutes in all.
+
+15
+00:00:44.600 --> 00:00:48.820
+Modules on Teams, and on monitoring
+and evidence, are planned.

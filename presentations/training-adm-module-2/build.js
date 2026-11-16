@@ -223,7 +223,7 @@ endModule(SC);
     "False",
     "# Step 6: the whole kit's tests",
     "$ pwsh -NoProfile -Command \"Invoke-Pester -Path tests/powershell\"",
-    "Tests Passed: 297, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0",
+    "Tests Passed: 296, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0",
     "# Step 7: read 'blockSoftMatch', a property that doesn't exist; run fail, then pass; put it back, run pass",
     "Fail",
     "Fail",
@@ -232,7 +232,7 @@ endModule(SC);
   line(s, "Read", "The pass fixture fails too, because the missing value reads as off. Step 8 removes ./inputs.", c + 0.2, 0.45, 13.5);
   sources(s, "Sources: Module 2, \"Exercise: Lab 1,\" steps 4 to 8; examples/validation-kit: Private/Catalog.ps1, Checks/SYNC.ps1.");
   notes(s,
-`Step four shows what a live run would ask for: one permission, OnPremDirectorySynchronization dot Read dot All, and the delegated role, Global Administrator, the only role Microsoft Learn's Graph reference lists, with no application permission. Step five confirms the check isn't in a default run: the answer is False. Step six runs the whole kit's tests: two hundred ninety-seven pass, none fail. Step seven makes the check fail for the right reason. You change your copy of the check to read block soft match, a property that doesn't exist. The fail fixture still fails. And the pass fixture, with both blocks on, fails too, because the missing value reads as off. That's the unsafe default doing its job: a wrong property name can't produce a silent Pass. Put the name back, and the pass fixture passes again. Step eight removes the inputs folder.`,
+`Step four shows what a live run would ask for: one permission, OnPremDirectorySynchronization dot Read dot All, and the delegated role, Global Administrator, the only role Microsoft Learn's Graph reference lists, with no application permission. Step five confirms the check isn't in a default run: the answer is False. Step six runs the whole kit's tests: two hundred ninety-six pass, none fail. Step seven makes the check fail for the right reason. You change your copy of the check to read block soft match, a property that doesn't exist. The fail fixture still fails. And the pass fixture, with both blocks on, fails too, because the missing value reads as off. That's the unsafe default doing its job: a wrong property name can't produce a silent Pass. Put the name back, and the pass fixture passes again. Step eight removes the inputs folder.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 4 to 8.`);
 }
 

@@ -24,39 +24,6 @@ should exist also holds its keys.
 Records Search Agent is orphaned.
 
 6
-00:00:17.300 --> 00:00:22.662
+00:00:17.300 --> 00:00:22.730
 And Sandbox Helper has no sponsor, no
 inventory record and no handshake at all.
-
-7
-00:00:22.662 --> 00:00:26.576
-Step eight runs the decision's
-fallback in G C C High.
-
-8
-00:00:26.576 --> 00:00:31.038
-You run Chapters 1 and 2 again in
-that cloud, then the A I check.
-
-9
-00:00:31.038 --> 00:00:33.507
-It prints fallback mode in G C C High,
-
-10
-00:00:33.507 --> 00:00:37.763
-with agent Conditional Access
-and agent risk not published.
-
-11
-00:00:37.763 --> 00:00:41.919
-Only one identity is checked,
-the ordinary service principal,
-
-12
-00:00:41.919 --> 00:00:44.201
-and no agent identity read is sent.
-
-13
-00:00:44.201 --> 00:00:47.090
-Both agent policies are
-marked not available.

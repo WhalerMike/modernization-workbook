@@ -265,10 +265,10 @@ endModule(SC);
     "Apply: 3 Sent",
     "The plan's SHA-256 is 1e1799d7..., not the approved 0000...; refusing to run a plan nobody reviewed.",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
-  line(s, "Tests", "results.json: record DisabledOn 2026-10-30; the claim window ends 2026-11-29. Step 9: 513 tests passed, 0 failed.", c + 0.25, 0.7, 13.5);
+  line(s, "Tests", "results.json: record DisabledOn 2026-10-30; the claim window ends 2026-11-29. Step 9: 511 tests passed, 0 failed.", c + 0.25, 0.7, 13.5);
   sources(s, "Sources: Module 2, \"Exercise: Lab 1,\" steps 7 to 9; path verification log, claim 10; examples/non-person-identity/Invoke-NpiOrphanAction.ps1.");
   notes(s,
-`Step seven computes the plan's hash and dry-runs the plan with it. Without the Apply switch, the write path runs its prechecks and stops, reporting three writes it would send: a directory disable for svc backup, a PATCH that turns off the Legacy Reports service principal, and a POST that adds an owner to HR Connector. Step eight sends them to the fake with Apply: three sent. In the results file, each disable tells the operator to record disabled on October thirtieth, and that the claim window ends November twenty-ninth. Then you run the same plan with a hash of all zeros, which nobody approved, and it refuses to run a plan nobody reviewed. Step nine runs every test: five hundred thirteen pass. Delete the output folder when you're done, because it names accounts and owners.`,
+`Step seven computes the plan's hash and dry-runs the plan with it. Without the Apply switch, the write path runs its prechecks and stops, reporting three writes it would send: a directory disable for svc backup, a PATCH that turns off the Legacy Reports service principal, and a POST that adds an owner to HR Connector. Step eight sends them to the fake with Apply: three sent. In the results file, each disable tells the operator to record disabled on October thirtieth, and that the claim window ends November twenty-ninth. Then you run the same plan with a hash of all zeros, which nobody approved, and it refuses to run a plan nobody reviewed. Step nine runs every test: five hundred eleven pass. Delete the output folder when you're done, because it names accounts and owners.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 7 to 9; verification log, claim 10.`);
 }
 

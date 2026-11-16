@@ -46,7 +46,7 @@ Step five reads the open rows of the owner review. There are six. One of them sh
 
 ## Slide 12 — Try it: a dry run, the apply, and a refusal
 
-Step seven dry-runs the plan with its approved hash. It would send three requests. Two are deletes, and look where they go: through the service principal ending in one oh, which is Microsoft Graph's own service principal. The removal goes through the resource, not the app, the way Microsoft Learn's Delete app role assigned to reference says. The third is a patch that narrows one delegated grant. Step eight applies the plan to the fake, and three are sent. Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed. Step nine runs every test: five hundred thirteen pass, none fail. Then delete the output folder. The owner review names owners, so don't leave it lying around.
+Step seven dry-runs the plan with its approved hash. It would send three requests. Two are deletes, and look where they go: through the service principal ending in one oh, which is Microsoft Graph's own service principal. The removal goes through the resource, not the app, the way Microsoft Learn's Delete app role assigned to reference says. The third is a patch that narrows one delegated grant. Step eight applies the plan to the fake, and three are sent. Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed. Step nine runs every test: five hundred eleven pass, none fail. Then delete the output folder. The owner review names owners, so don't leave it lying around.
 
 ## Slide 13 — Lab 2: one real removal in your test tenant
 

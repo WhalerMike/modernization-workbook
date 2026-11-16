@@ -180,16 +180,16 @@ endModule(SC);
     "  Finding WF-01  file: Not valid YAML (mapping values are not allowed here); ...",
     "$ python python/workflow_lint.py workflow/drift-pipeline.yml",
     "workflow/drift-pipeline.yml: 0 finding(s), 0 warning(s)",
-    "$ python python/drift_pipeline.py cloud --name dod",
-    "  \"authority\": \"https://login.microsoftonline.us\", \"graph\": \"https://dod-graph.microsoft.us\",",
-    "  \"azure_environment\": \"AzureUSGovernment\", ...",
+    "$ python python/drift_pipeline.py cloud --name gcc",
+    "  \"authority\": \"https://login.microsoftonline.com\", \"graph\": \"https://graph.microsoft.com\",",
+    "  \"azure_environment\": \"AzureCloud\", ...",
     "$ python python/drift_pipeline.py cloud --name usgov",
-    "error: unknown cloud 'usgov'; expected one of gcc, gcchigh, dod",
+    "error: unknown cloud 'usgov'; expected one of gcc",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
   line(s, "Exit", "The sample lint exits 2; the unknown cloud exits 1. An unknown name is refused, never mapped to worldwide.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 1 to 3; Learn, \"Microsoft Graph national cloud deployments\"; examples/drift-pipeline: workflow_lint.py, drift_pipeline.py.");
   notes(s,
-`Try it. Lab 1 runs in the drift-pipeline folder of the examples, in a POSIX shell, and nothing signs in. Step one checks Learn's three sample workflows offline. Sample one has five findings and four warnings, sample two has seven findings and four warnings, and sample three has just one: it isn't valid YAML. The command exits two. Step two checks the pipeline's own workflow: zero findings, zero warnings. Step three prints a cloud's hosts. For DoD, the sign-in authority is login dot microsoftonline dot u s, the Graph host is dod-graph dot microsoft dot u s, and the Azure environment is Azure U S Government. Microsoft Learn's page, Microsoft Graph national cloud deployments, lists those GCC High and DoD Graph hosts. That's the trap: the Azure environment covers both GCC High and DoD, so the Graph host has to come from the profile. Then ask for a name it doesn't know, u s gov. It's refused, with exit code one, never mapped to worldwide.`,
+`Try it. Lab 1 runs in the drift-pipeline folder of the examples, in a POSIX shell, and nothing signs in. Step one checks Learn's three sample workflows offline. Sample one has five findings and four warnings, sample two has seven findings and four warnings, and sample three has just one: it isn't valid YAML. The command exits two. Step two checks the pipeline's own workflow: zero findings, zero warnings. Step three prints a cloud's hosts. For G C C, the sign-in authority is login dot microsoftonline dot com, the Graph host is graph dot microsoft dot com, and the Azure environment is Azure Cloud. Microsoft Learn's page, Microsoft Graph national cloud deployments, says G C C uses those worldwide endpoints. Then ask for a name it doesn't know. It's refused, with exit code one, never mapped to worldwide.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 1 to 3; Book 19, Chapter 09 — "Clouds."`);
 }
 
@@ -262,12 +262,12 @@ endModule(SC);
     "(exit code 1)",
     "# Step 9: the tests (the page says about two minutes)",
     "$ python -m pytest tests -q",
-    "142 passed",
+    "139 passed",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (WRAPPED)", pt: 10.5 });
   line(s, "Clean", "Step 10 cleans up: rm -rf out", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 8 to 10; examples/drift-pipeline/tests.");
   notes(s,
-`Step eight breaks it on purpose. Append one line to the packaged drift summary, and verify again. It fails, with exit code one: the summary doesn't match its hash. An edit after packaging can't hide. Then swap the runs, and compare the twenty-ninth as previous with the twenty-eighth as current. That's refused too: the current run isn't later than the previous one. Runs out of order can't make a finding look resolved. Step nine runs the tests: one hundred forty-two pass. They take about two minutes. Step ten cleans up. Check your work: given two runs, you can say what's new, resolved, changed or unverified, and given a package, you can show it's unedited and chained to the day before.`,
+`Step eight breaks it on purpose. Append one line to the packaged drift summary, and verify again. It fails, with exit code one: the summary doesn't match its hash. An edit after packaging can't hide. Then swap the runs, and compare the twenty-ninth as previous with the twenty-eighth as current. That's refused too: the current run isn't later than the previous one. Runs out of order can't make a finding look resolved. Step nine runs the tests: one hundred thirty-nine pass. They take about two minutes. Step ten cleans up. Check your work: given two runs, you can say what's new, resolved, changed or unverified, and given a package, you can show it's unedited and chained to the day before.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 8 to 10; "Check your work."`);
 }
 

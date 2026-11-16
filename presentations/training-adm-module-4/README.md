@@ -6,7 +6,7 @@
 |---|---|
 | Introduction | Title; why Group Policy has to move as code (Gates 0, 5 and 8); learning objectives and prerequisites |
 | Concepts | Where the code sits: one owner per setting, build unassigned, and what Learn says about Group Policy analytics; what Microsoft's import sample leaves to you; VK-INT-07 per GPO and the move plan's dispositions per setting; one file per policy and the linter (GPC-01 to GPC-10); diff, then create, and why the sync never sends PATCH or DELETE |
-| Lab | Try it: Lab 1 steps 1 to 8: the gate, Microsoft's sample run twice, the eleven-row plan, the GPC-08 lint row, the dry run and apply, the sync record, the `usgov` refusal, the Drift that stops the apply, and the tests; Lab 2 in a test tenant (not run by the authors) |
+| Lab | Try it: Lab 1 steps 1 to 8: the gate, Microsoft's sample run twice, the eleven-row plan, the GPC-08 lint row, the dry run and apply, the sync record, the unknown-cloud refusal, the Drift that stops the apply, and the tests; Lab 2 in a test tenant (not run by the authors) |
 | Check and summary | The federal requirement (CM-2, CA-7, CM-6, CM-3, AC-6, SA-11, SR-3), the KSIs and the evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |

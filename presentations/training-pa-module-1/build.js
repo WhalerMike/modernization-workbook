@@ -275,8 +275,8 @@ endModule(SC);
     "PS> $r = New-PaReader -Cloud gcc -Task inventory -Invoke (New-PaFixtureInvoker -Path tests/fixtures/tenant.json).Invoke",
     "PS> Invoke-PaList -Reader $r -CallId ca-policies",
     "Exception: Undeclared call 'ca-policies' for task 'inventory'; add it to config/calls.json with its permission.",
-    "PS> Get-PaCloud GCCHigh",
-    "Exception: Unknown cloud 'GCCHigh'. Use global, gcc, gcchigh or dod.",
+    "PS> Get-PaCloud usgov",
+    "Exception: Unknown cloud 'usgov'. Use global or gcc.",
     "",
     "# Step 6: run the tests, then delete out",
     "PS> Invoke-Pester -Path tests",
@@ -292,7 +292,7 @@ endModule(SC);
   ], 13);
   sources(s, "Sources: Module 1, \"Exercise: Lab 1,\" steps 5 and 6; examples/privileged-access/powershell/PrivilegedAccess/PrivilegedAccess.psm1.");
   notes(s,
-`Step five shows the reader refusing. You build a reader for the inventory task in G C C, on the fake, and ask it for the Conditional Access policies. That call isn't declared for the inventory task, so it throws, and tells you to add it to the call list with its permission. Then you ask for a cloud called G C C High, with capital letters. The names are case-sensitive on purpose, so that's an unknown cloud, and it throws too: use global, G C C, G C C High or D O D. There's no default cloud. Step six runs the whole test suite, three hundred thirty tests, and all pass. Then delete the output folder, because it names the fixture's privileged holders. Pester prints its summary on several lines; the slide shows it on one.`,
+`Step five shows the reader refusing. You build a reader for the inventory task in G C C, on the fake, and ask it for the Conditional Access policies. That call isn't declared for the inventory task, so it throws, and tells you to add it to the call list with its permission. Then you ask for a cloud the reader doesn't know, u s gov. It throws too: use global or G C C. There's no default cloud. Step six runs the whole test suite, three hundred thirty tests, and all pass. Then delete the output folder, because it names the fixture's privileged holders. Pester prints its summary on several lines; the slide shows it on one.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 5 and 6.`);
 }
 

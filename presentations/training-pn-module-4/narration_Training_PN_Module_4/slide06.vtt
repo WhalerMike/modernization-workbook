@@ -53,31 +53,21 @@ A government tenancy read in the
 commercial realm returns nothing.
 
 12
-00:00:37.613 --> 00:00:42.155
-The kit knows the commercial realm
-and Oracle's U S Government Cloud,
+00:00:37.613 --> 00:00:43.158
+The kit knows the commercial realm and
+Oracle's U S Government Cloud, realm O C two,
 
 13
-00:00:42.155 --> 00:00:46.212
+00:00:43.158 --> 00:00:47.360
 whose Announcements endpoints
-are in U S Langley and U S Luke.
+are in U S Langley and U S Luke,
 
 14
-00:00:46.212 --> 00:00:49.081
-As a side note, Oracle
-lists that cloud with
+00:00:47.360 --> 00:00:50.637
+as Oracle's U S Government
+Cloud page lists them.
 
 15
-00:00:49.081 --> 00:00:52.687
-FedRAMP High and DISA Impact
-Level 4 authorizations.
-
-16
-00:00:52.687 --> 00:00:57.946
-The third realm is refused, because its
-Announcements endpoint is not yet specified,
-
-17
-00:00:57.946 --> 00:01:00.790
-and a region outside the
-realm is refused too.
+00:00:50.637 --> 00:00:55.820
+Any other realm is refused, and a region
+outside the realm is refused too.

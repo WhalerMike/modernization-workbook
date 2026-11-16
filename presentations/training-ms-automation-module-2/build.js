@@ -1,6 +1,6 @@
 // Microsoft Automation learning path, Module 2: Microsoft Entra ID through Microsoft Graph — the module's narrated deck.
 // Teaches docs/training/ms-automation-entra.md, Learn-style: objectives, the concepts, a "Try it" slide with the real
-// Lab 1 command and output (run November 1, 2026 in examples/ms-automation), government-cloud differences, the federal
+// Lab 1 command and output (run November 1, 2026 in examples/ms-automation), where agencies are, the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page or the kit;
 // the deck adds none. Helpers: ../training-ms-automation-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-ms-automation-module-2/build.js \
@@ -53,7 +53,6 @@ const SS = "Check and summary";
     "Name the Graph API and least-privileged permission for each Book 02 and Book 04 evidence question",
     "Read sign-in activity, membership, Conditional Access, PIM, credentials and registration, and their traps",
     "Explain why a script checks Entra logs but doesn't keep them",
-    "Say which Entra ID features differ in GCC High and DoD",
     "Run the five checks on fixtures, and read each finding against its ScubaGear policy",
   ], [
     "Module 1: clouds, sign-in, paging and throttling",
@@ -62,7 +61,7 @@ const SS = "Check and summary";
   ], 95);
   sources(s, "Sources: Module 2, Unit 1 \"Learning objectives,\" \"Prerequisites\"; Unit 9 \"Exercise: Lab 2.\"");
   notes(s,
-`Here's what you'll be able to do by the end of this module, which takes about ninety-five minutes with the lab. You'll name the Graph API and least-privileged permission for each of the books' evidence questions. You'll read sign-in activity, group membership, Conditional Access, PIM schedules, application credentials and registration details, and know the trap in each. You'll explain why a script checks Entra's logs but doesn't keep them. You'll say what differs in GCC High and DoD. And you'll run the five checks and read each finding against its ScubaGear policy. You need Module 1 first. Lab 1 needs no tenant; Lab 2 needs a test tenant with Entra ID P1 or P2.`,
+`Here's what you'll be able to do by the end of this module, which takes about ninety-five minutes with the lab. You'll name the Graph API and least-privileged permission for each of the books' evidence questions. You'll read sign-in activity, group membership, Conditional Access, PIM schedules, application credentials and registration details, and know the trap in each. You'll explain why a script checks Entra's logs but doesn't keep them. And you'll run the five checks and read each finding against its ScubaGear policy. You need Module 1 first. Lab 1 needs no tenant; Lab 2 needs a test tenant with Entra ID P1 or P2.`,
   `${M} — Unit 1 "Learning objectives," "Prerequisites."`);
 }
 endModule(SI);
@@ -79,10 +78,10 @@ endModule(SI);
     ["Which apps have secrets or certificates?", "GET /applications with credentials selected", "Application.Read.All"],
     ["Who registered which methods?", "GET /reports/authenticationMethods/userRegistrationDetails", "AuditLog.Read.All"],
   ], { fontSize: 12, limit: 5.6 });
-  line(s, "Clouds", "Every API here is GA in v1.0, and each page lists it in the global service (which GCC uses), L4 (GCC High) and L5 (DoD).", b + 0.25, 0.65, 13.5);
+  line(s, "Clouds", "Every API here is GA in v1.0, and each page lists it as available in the global service, which GCC uses.", b + 0.25, 0.65, 13.5);
   sources(s, "Sources: Module 2, Unit 2 \"The APIs at a glance\": each API's Microsoft Graph v1.0 reference page and national cloud table (accessed Oct. 25, 2026).");
   notes(s,
-`Here are six of the module's sixteen evidence questions, with the Graph call and the least-privileged application permission for each. Who signed in, and when: list users with sign-in activity selected, which needs User dot Read dot All plus AuditLog dot Read dot All. Who's in a group, nested groups included: transitive members, with GroupMember dot ReadBasic dot All. What the Conditional Access policies say: Policy dot Read dot All. Who holds a role now: the role assignment schedules. Which applications have secrets or certificates: Application dot Read dot All. And who registered which authentication methods: the registration details report. Every one of these is generally available in Graph version one point oh, and each page lists it in the global service, which GCC uses, and in the GCC High and DoD clouds.`,
+`Here are six of the module's sixteen evidence questions, with the Graph call and the least-privileged application permission for each. Who signed in, and when: list users with sign-in activity selected, which needs User dot Read dot All plus AuditLog dot Read dot All. Who's in a group, nested groups included: transitive members, with GroupMember dot ReadBasic dot All. What the Conditional Access policies say: Policy dot Read dot All. Who holds a role now: the role assignment schedules. Which applications have secrets or certificates: Application dot Read dot All. And who registered which authentication methods: the registration details report. Every one of these is generally available in Graph version one point oh, and each page lists it as available in the global service, which GCC uses.`,
   `${M} — Unit 2 "The APIs at a glance."`);
 }
 
@@ -192,7 +191,7 @@ endModule(SI);
     "Confirm the method names against a real report (inference)",
   ], 13);
   callout(s, "Gov", Math.max(l, r) + 0.3, 0.85, "FaKey", HEX.navy, "One user's methods: ",
-    "UserAuthenticationMethod.Read.All. Not in the China cloud; available in GCC High and DoD.");
+    "UserAuthenticationMethod.Read.All, available in the global service, which GCC uses.");
   sources(s, "Sources: Module 2, Unit 5: Learn, List directoryAudits; List signIns; Entra data retention; userRegistrationDetails; List methods (Oct. 25, 2026).");
   notes(s,
 `Logs first. Directory audits and sign-ins both need AuditLog dot Read dot All, and the Conditional Access policies applied to a sign-in show up only for callers allowed to read Conditional Access data. Entra keeps audit and sign-in logs for seven days on the free tier and thirty days with P1 or P2. That's why ScubaGear requires sending the logs to the security operations center. A Graph script checks logs; it doesn't keep them. Authentication methods: the registration details report gives one row per user, with MFA registration, admin status, user type and the methods registered. One caution: Microsoft documents the method names only by example, so a count of phishing-resistant users has to choose which names to count, and should be confirmed against a real report.`,
@@ -276,26 +275,24 @@ endModule(SL);
 
 // ================================================================== 13 Where agencies are
 {
-  const s = content(SA, "Where agencies are: Entra ID in GCC High and DoD");
+  const s = content(SA, "Where agencies are: Entra ID in a GCC tenant");
   tag(s, "Who");
-  const b = table(s, "Gov", 1.45, [2.2, 9.95], ["Status", "Microsoft's US Government feature table for Entra ID, January 2026"], [
-    ["Available", "Conditional Access; PIM; access reviews; entitlement management; Lifecycle Workflows; ID Protection risky-account reports"],
-    ["Partial", "HR-driven provisioning, which depends on the HR app"],
-    ["Not available", "The My Staff portal; the Microsoft Entra threat intelligence risk detection"],
+  const b = table(s, "Gov", 1.45, [3.0, 9.15], ["The starting state", "Most agencies on this path"], [
+    ["Tenant", "Microsoft 365 GCC, synchronized from Active Directory"],
+    ["Conditional Access", "In place, with some policies still report-only"],
+    ["Roles and apps", "Permanent role assignments left from before PIM; applications that still hold client secrets"],
   ], { fontSize: 12.5, limit: 3.6 });
-  const l = panel(s, "Trusted", 0.6, b + 0.25, 6.0, null, HEX.navy, HEX.navyTint, "AZURE GOVERNMENT", null, [
-    "MFA's Trusted IPs isn't supported; use Conditional Access named locations",
-    "So ca-export's named locations hold network-based exceptions",
-    "GCC uses the commercial Entra ID service: the table doesn't apply",
+  const l = panel(s, "Trusted", 0.6, b + 0.25, 6.0, null, HEX.navy, HEX.navyTint, "GCC AVAILABILITY", null, [
+    "Book 02, Appendix A filters every identity control by GCC availability, licensing and Active Directory friction",
   ], 12.5);
   panel(s, "Interim", 6.85, b + 0.25, 5.9, null, HEX.teal, HEX.tealTint, "INTERIM PATHS (DESIGN GUIDANCE)", null, [
     "Schedule mfa-registration while CA022 stays report-only",
     "Move each permanent assignment to eligible, then rerun pim-report",
     "Replace app secrets; route logs out of Entra first",
   ], 12.5);
-  sources(s, "Sources: Module 2, Unit 6: Learn, Entra feature availability (Oct. 25, 2026); Compare Azure Government and global Azure, Identity (read Nov. 1, 2026).");
+  sources(s, "Sources: Module 2, Unit 6 \"Where agencies are\"; Book 02, Appendix A, \"Filter 1: government-cloud availability.\"");
   notes(s,
-`Where are agencies? Most on this path run a GCC tenant synchronized from Active Directory, with some Conditional Access policies still report-only, permanent role assignments left from before PIM, and applications that still hold secrets. The APIs are the same in GCC High and DoD; the endpoints differ, and so do some features. Microsoft's U S Government feature table lists Conditional Access, PIM, access reviews, entitlement management and Lifecycle Workflows as available, HR-driven provisioning as partial, and two features as not available. GCC uses the commercial Entra service, so the table doesn't apply to it. One Azure Government difference matters for the export: multifactor authentication's Trusted IPs isn't supported there, so network-based exceptions live in Conditional Access named locations. The interim paths are on the right.`,
+`Where are agencies? Most on this path run a Microsoft 365 GCC tenant, synchronized from Active Directory, with Conditional Access in place and some policies still report-only, permanent role assignments left from before PIM, and applications that still hold client secrets. Appendix A of the Identity and Directory book filters every identity control by GCC availability, licensing and Active Directory friction. The interim paths, which are design guidance: if phishing-resistant MFA isn't enforced for everyone yet, run the registration check on a schedule and keep CA022 report-only until the counts say it's safe. Move each permanent privileged assignment to eligible in PIM, and run the PIM report again to show it. Replace each application secret with a certificate or federated credential. And if logs aren't leaving Entra ID yet, treat that as the first fix.`,
   `${M} — Unit 6 "Where agencies are."`);
 }
 endModule(SA);
@@ -340,7 +337,6 @@ endModule(SA);
     "Mapped Book 02's and Book 04's evidence questions to Graph APIs and least-privileged permissions",
     "Learned the traps in sign-in activity, membership, PIM, credentials and registration",
     "Saw why a script checks logs but doesn't keep them",
-    "Saw what differs in GCC High and DoD",
     "Ran the five checks in Python and PowerShell",
   ], 13.5);
   const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "NEXT", "Module 3: Intune through Graph", [
@@ -352,7 +348,7 @@ endModule(SA);
     "Book 04, Chapter 10 assembles the evidence package.");
   sources(s, "Sources: Module 2, Unit 11 \"Summary\"; Module 3, Unit 1; Book 04, Chapter 10, \"The evidence package for a period.\"");
   notes(s,
-`To sum up. You mapped the books' Entra ID evidence questions to Graph APIs and their least-privileged permissions. You learned the traps in sign-in activity, group membership, PIM schedules, application credentials and registration details. You saw why a script checks Entra's logs but doesn't keep them, and what differs in GCC High and DoD. And you ran the five checks in Python and PowerShell. Chapter 10 of the Access and Privilege book assembles the evidence package for a period. Next is Module 3, Intune through Microsoft Graph: devices, compliance, configuration and Autopilot, which APIs are only in beta, and five checks mapped to NIST special publication eight hundred fifty-three Moderate.`,
+`To sum up. You mapped the books' Entra ID evidence questions to Graph APIs and their least-privileged permissions. You learned the traps in sign-in activity, group membership, PIM schedules, application credentials and registration details. You saw why a script checks Entra's logs but doesn't keep them. And you ran the five checks in Python and PowerShell. Chapter 10 of the Access and Privilege book assembles the evidence package for a period. Next is Module 3, Intune through Microsoft Graph: devices, compliance, configuration and Autopilot, which APIs are only in beta, and five checks mapped to NIST special publication eight hundred fifty-three Moderate.`,
   `${M} — Unit 11 "Summary"; Book 04, Chapter 10 — "The evidence package for a period."`);
 }
 endModule(SS);
@@ -360,9 +356,9 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 2 deck", [
-  "Module page: docs/training/ms-automation-entra.md (Microsoft Automation learning path, Module 2), Units 1 to 11; its footnotes carry each Microsoft Learn page and the date it was read (October 25, 2026; the Trusted IPs difference November 1, 2026).",
+  "Module page: docs/training/ms-automation-entra.md (Microsoft Automation learning path, Module 2), Units 1 to 11; its footnotes carry each Microsoft Learn page and the date it was read (October 25, 2026).",
   "Microsoft Learn pages the module cites: List users; user delta; user and signInActivity resources; List group transitive members; Conditional Access List policies, namedLocations, Create and resource; PIM APIs; role eligibility and assignment schedules; unifiedRoleAssignmentSchedule; expirationPattern; roleAssignmentScheduleRequests; built-in roles.",
-  "Also: List applications; passwordCredential; keyCredential; appRoleAssignedTo; oAuth2PermissionGrants; directoryAudits; signIns; Entra data retention; userRegistrationDetails; authentication methods; authenticationMethodsPolicy; riskyUsers; Entra feature availability in US Government; Compare Azure Government and global Azure (Identity).",
+  "Also: List applications; passwordCredential; keyCredential; appRoleAssignedTo; oAuth2PermissionGrants; directoryAudits; signIns; Entra data retention; userRegistrationDetails; authentication methods; authenticationMethodsPolicy; riskyUsers.",
   "CISA ScubaGear Microsoft Entra ID baseline (aad.md): MS.AAD.1.1v1, 2.1v1, 2.3v1, 3.1v1, 3.6v1, 4.1v1, 5.5v1 to 5.7v1, 7.1v1, 7.4v1. Federal requirements by link: Book 02, Appendix A (BOD 25-01; OMB M-22-09; NIST SP 800-53 mapping).",
   "Lab output: examples/ms-automation (entra_tasks.py, FmwGraph.psm1, tests/fixtures), run November 1, 2026 with Python 3.14.3 and PowerShell 7.6.9; the Try it output is trimmed. Lab 2 not run by the authors. Design guidance and inferences are labeled.",
 ]);

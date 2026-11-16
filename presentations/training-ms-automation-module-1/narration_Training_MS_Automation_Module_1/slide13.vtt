@@ -5,65 +5,69 @@ WEBVTT
 Where are agencies?
 
 2
-00:00:01.362 --> 00:00:07.400
-Most on this path run a Microsoft
-365 GCC tenant with commercial Azure.
+00:00:01.362 --> 00:00:05.705
+This path assumes a civilian
+agency at FedRAMP Moderate,
 
 3
-00:00:07.400 --> 00:00:11.814
-Their scripts are often older than
-the current tools: AzureAD cmdlets,
+00:00:05.705 --> 00:00:10.601
+most often with a Microsoft 365
+GCC tenant and commercial Azure.
 
 4
-00:00:11.814 --> 00:00:16.075
+00:00:10.601 --> 00:00:15.996
+Its scripts are often older than the
+current tools: AzureAD or MSOnline cmdlets,
+
+5
+00:00:15.996 --> 00:00:20.575
 a client secret in a scheduled task,
 a host name written into the code.
 
-5
-00:00:16.075 --> 00:00:18.088
-Some run GCC High.
-
 6
-00:00:18.088 --> 00:00:23.066
-For what this module relies on: in GCC
-High and DoD, the app is registered
+00:00:20.575 --> 00:00:24.333
+For what this module relies on,
+GCC is the same as commercial:
 
 7
-00:00:23.066 --> 00:00:27.787
-in the government cloud itself,
-and Graph Explorer isn't supported.
+00:00:24.333 --> 00:00:26.710
+the worldwide sign-in and Graph hosts,
 
 8
-00:00:27.787 --> 00:00:32.276
-Microsoft's Azure Government
-roadmap lists workload identities as
+00:00:26.710 --> 00:00:31.618
+app registration in the worldwide Entra
+admin center, and the standard token
 
 9
-00:00:32.276 --> 00:00:37.001
-generally available at FedRAMP High
-and DoD impact levels four and five.
+00:00:31.618 --> 00:00:36.450
+exchange audience when a managed identity
+is an app's federated credential.
 
 10
-00:00:37.001 --> 00:00:41.538
-And when a managed identity is an app's
-federated credential, the audience
+00:00:36.450 --> 00:00:39.497
+For each Graph API,
+check the global service
 
 11
-00:00:41.538 --> 00:00:46.075
-value differs: the U S Gov token exchange
-audience in the government cloud.
+00:00:39.497 --> 00:00:42.375
+column of the page's national cloud table.
 
 12
-00:00:46.075 --> 00:00:50.906
+00:00:42.375 --> 00:00:47.461
+GCC needs no endpoint change, but it can
+lack features commercial tenants have,
+
+13
+00:00:47.461 --> 00:00:50.825
+and Cloud Boundary and
+Landing Zone keeps that list.
+
+14
+00:00:50.825 --> 00:00:55.537
 The interim paths: rewrite retired-module
 scripts on Graph PowerShell,
 
-13
-00:00:50.906 --> 00:00:54.673
-use a certificate on premises
-until the server is on Arc,
-
-14
-00:00:54.673 --> 00:00:58.180
-and treat a GCC High move
-as a configuration change.
+15
+00:00:55.537 --> 00:00:59.520
+and use a certificate on premises
+until the server is on Arc.

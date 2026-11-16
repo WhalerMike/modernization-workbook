@@ -16,47 +16,51 @@ to the thirty-first of October,
 the cloud, and an output folder.
 
 4
-00:00:11.512 --> 00:00:18.700
-The cloud option has no default; G C C,
-G C C High or D O D picks the Graph host.
+00:00:11.512 --> 00:00:15.471
+The cloud option has no default;
+G C C names the Graph host,
 
 5
-00:00:18.700 --> 00:00:21.138
-The scan found eleven protected writes.
+00:00:15.471 --> 00:00:18.484
+the worldwide graph dot microsoft dot com.
 
 6
-00:00:21.138 --> 00:00:24.525
+00:00:18.484 --> 00:00:21.324
+The scan found eleven protected writes.
+
+7
+00:00:21.324 --> 00:00:24.713
 Five were by the writer the row
 names, which is what you want.
 
-7
-00:00:24.525 --> 00:00:26.000
+8
+00:00:24.713 --> 00:00:26.187
 One was by the backstop.
 
-8
-00:00:26.000 --> 00:00:29.800
+9
+00:00:26.187 --> 00:00:29.988
 Four were by a second writer, someone
 the register doesn't name at all.
 
-9
-00:00:29.800 --> 00:00:32.575
+10
+00:00:29.988 --> 00:00:32.763
 And one was by a writer
 the register forbids.
 
-10
-00:00:32.575 --> 00:00:36.600
+11
+00:00:32.763 --> 00:00:36.788
 That's five findings and one
 warning, so the exit code is two.
 
-11
-00:00:36.600 --> 00:00:39.967
+12
+00:00:36.788 --> 00:00:40.155
 The output folder's manifest
 lists every file's hash,
 
-12
-00:00:39.967 --> 00:00:41.925
+13
+00:00:40.155 --> 00:00:42.113
 so the run can be checked later.
 
-13
-00:00:41.925 --> 00:00:44.660
+14
+00:00:42.113 --> 00:00:44.860
 The output on the slide is wrapped to fit.

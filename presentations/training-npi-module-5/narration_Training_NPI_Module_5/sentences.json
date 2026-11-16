@@ -546,58 +546,6 @@
    "The other eight write nothing: three handed off, the kept ones, the rows awaiting a decision, and an Azure role for its owner to re-scope."
   ]
  ],
- "12": [
-  [
-   0.05,
-   3.2,
-   "Step seven dry-runs the plan with its approved hash."
-  ],
-  [
-   3.25,
-   1.863,
-   "It would send three requests."
-  ],
-  [
-   5.112,
-   7.975,
-   "Two are deletes, and look where they go: through the service principal ending in one oh, which is Microsoft Graph's own service principal."
-  ],
-  [
-   13.088,
-   7.075,
-   "The removal goes through the resource, not the app, the way Microsoft Learn's Delete app role assigned to reference says."
-  ],
-  [
-   20.163,
-   3.388,
-   "The third is a patch that narrows one delegated grant."
-  ],
-  [
-   23.55,
-   3.763,
-   "Step eight applies the plan to the fake, and three are sent."
-  ],
-  [
-   27.312,
-   9.85,
-   "Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed."
-  ],
-  [
-   37.163,
-   5.013,
-   "Step nine runs every test: five hundred thirteen pass, none fail."
-  ],
-  [
-   42.175,
-   1.837,
-   "Then delete the output folder."
-  ],
-  [
-   44.013,
-   3.725,
-   "The owner review names owners, so don't leave it lying around."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -789,6 +737,58 @@
    37.75,
    6.412,
    "Next is Module 6: Conditional Access for workload identities, the other half of Gate 4."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.2,
+   "Step seven dry-runs the plan with its approved hash."
+  ],
+  [
+   3.25,
+   1.863,
+   "It would send three requests."
+  ],
+  [
+   5.112,
+   7.975,
+   "Two are deletes, and look where they go: through the service principal ending in one oh, which is Microsoft Graph's own service principal."
+  ],
+  [
+   13.088,
+   7.075,
+   "The removal goes through the resource, not the app, the way Microsoft Learn's Delete app role assigned to reference says."
+  ],
+  [
+   20.163,
+   3.388,
+   "The third is a patch that narrows one delegated grant."
+  ],
+  [
+   23.55,
+   3.763,
+   "Step eight applies the plan to the fake, and three are sent."
+  ],
+  [
+   27.312,
+   9.85,
+   "Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed."
+  ],
+  [
+   37.163,
+   4.9,
+   "Step nine runs every test: five hundred eleven pass, none fail."
+  ],
+  [
+   42.062,
+   1.837,
+   "Then delete the output folder."
+  ],
+  [
+   43.9,
+   3.725,
+   "The owner review names owners, so don't leave it lying around."
   ]
  ]
 }

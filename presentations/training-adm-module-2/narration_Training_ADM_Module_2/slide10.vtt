@@ -26,51 +26,51 @@ Step five confirms the check isn't in
 a default run: the answer is False.
 
 6
-00:00:20.124 --> 00:00:25.588
-Step six runs the whole kit's tests: two
-hundred ninety-seven pass, none fail.
+00:00:20.124 --> 00:00:25.525
+Step six runs the whole kit's tests:
+two hundred ninety-six pass, none fail.
 
 7
-00:00:25.588 --> 00:00:28.600
+00:00:25.525 --> 00:00:28.538
 Step seven makes the check
 fail for the right reason.
 
 8
-00:00:28.600 --> 00:00:32.142
+00:00:28.538 --> 00:00:32.080
 You change your copy of the
 check to read block soft match,
 
 9
-00:00:32.142 --> 00:00:33.950
+00:00:32.080 --> 00:00:33.888
 a property that doesn't exist.
 
 10
-00:00:33.950 --> 00:00:35.850
+00:00:33.888 --> 00:00:35.788
 The fail fixture still fails.
 
 11
-00:00:35.850 --> 00:00:38.653
+00:00:35.788 --> 00:00:38.591
 And the pass fixture, with both blocks on,
 
 12
-00:00:38.653 --> 00:00:42.050
+00:00:38.591 --> 00:00:41.988
 fails too, because the
 missing value reads as off.
 
 13
-00:00:42.050 --> 00:00:44.606
+00:00:41.988 --> 00:00:44.543
 That's the unsafe default doing its job:
 
 14
-00:00:44.606 --> 00:00:47.800
+00:00:44.543 --> 00:00:47.737
 a wrong property name can't
 produce a silent Pass.
 
 15
-00:00:47.800 --> 00:00:50.988
+00:00:47.737 --> 00:00:50.925
 Put the name back, and the
 pass fixture passes again.
 
 16
-00:00:50.988 --> 00:00:53.640
+00:00:50.925 --> 00:00:53.590
 Step eight removes the inputs folder.

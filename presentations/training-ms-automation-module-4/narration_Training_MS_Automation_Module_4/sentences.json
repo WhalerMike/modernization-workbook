@@ -145,63 +145,6 @@
    "Lab 2 needs a test subscription in commercial Azure, never production, with a few Arc-enabled servers."
   ]
  ],
- "4": [
-  [
-   0.05,
-   4.1,
-   "A script that already calls Graph correctly has four things to change."
-  ],
-  [
-   4.15,
-   2.725,
-   "First, another host and another token."
-  ],
-  [
-   6.875,
-   10.65,
-   "Resource Manager is management dot azure dot com in commercial Azure, and a G C C tenant's subscriptions are commercial Azure, so a G C C script calls that host."
-  ],
-  [
-   17.525,
-   6.737,
-   "G C C High and D O D use Azure Government, management dot us gov cloud api dot net."
-  ],
-  [
-   24.262,
-   5.487,
-   "A token is issued for one resource, so a Graph token can't call Resource Manager."
-  ],
-  [
-   29.75,
-   4.388,
-   "Second, Azure role-based access control, not a permission list."
-  ],
-  [
-   34.138,
-   6.45,
-   "A Resource Manager token carries no roles list; Azure decides at each call from the roles assigned."
-  ],
-  [
-   40.587,
-   5.175,
-   "Every call here needs only the built-in Reader role, whose only action is read."
-  ],
-  [
-   45.763,
-   5.562,
-   "Third, an api-version on every call, set by each resource provider."
-  ],
-  [
-   51.325,
-   6.7,
-   "Fourth, paging: next link, not the O Data next link, and Resource Graph pages differently again."
-  ],
-  [
-   58.025,
-   7.037,
-   "The five checks make just two calls, and the Resource Graph query is a POST only because the query travels in the body."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -569,48 +512,6 @@
  "12": [
   [
    0.05,
-   12.838,
-   "G C C High and D O D estates use Azure Government: management dot us gov cloud api dot net, the U S Government sign-in authority, and the Azure U S Government environment in PowerShell."
-  ],
-  [
-   12.887,
-   18.275,
-   "Microsoft's Azure Government availability roadmap, read on November eleventh, 2026, shows Resource Manager, Resource Graph, Arc-enabled servers, Azure Policy and Private Link generally available and authorized at fed-ramp High and D O D impact levels four and five."
-  ],
-  [
-   31.163,
-   6.412,
-   "Arc-enabled sequel Server is available at fed-ramp High, and awaiting review at levels four and five."
-  ],
-  [
-   37.575,
-   1.975,
-   "Three differences affect the checks."
-  ],
-  [
-   39.55,
-   11.887,
-   "sequel Server enabled by Arc is a subset there: the U S Gov Virginia region only, on Windows only, with no Entra authentication, so sequel inventory sees only those instances."
-  ],
-  [
-   51.438,
-   3.85,
-   "The private link scope is available, with its own endpoints."
-  ],
-  [
-   55.288,
-   3.825,
-   "And E S U-only Arc servers need a smaller set of endpoints."
-  ],
-  [
-   59.112,
-   7.4,
-   "Learn doesn't say whether Resource Graph's quota, paging or tables differ in Azure Government: not yet specified."
-  ]
- ],
- "13": [
-  [
-   0.05,
    1.387,
    "The federal requirement."
   ],
@@ -635,7 +536,7 @@
    "The Arc track implementation guide's Step 8 puts this on a schedule."
   ]
  ],
- "14": [
+ "13": [
   [
    0.05,
    1.975,
@@ -682,7 +583,7 @@
    "The module page has three more questions, each linked to the unit that answers it."
   ]
  ],
- "15": [
+ "14": [
   [
    0.05,
    0.825,
@@ -722,6 +623,58 @@
    51.337,
    5.725,
    "Modules on Teams Phone and Teams administration, and on monitoring and evidence, are planned."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.1,
+   "A script that already calls Graph correctly has four things to change."
+  ],
+  [
+   4.15,
+   2.725,
+   "First, another host and another token."
+  ],
+  [
+   6.875,
+   10.65,
+   "Resource Manager is management dot azure dot com in commercial Azure, and a G C C tenant's subscriptions are commercial Azure, so a G C C script calls that host."
+  ],
+  [
+   17.525,
+   5.487,
+   "A token is issued for one resource, so a Graph token can't call Resource Manager."
+  ],
+  [
+   23.012,
+   4.388,
+   "Second, Azure role-based access control, not a permission list."
+  ],
+  [
+   27.4,
+   6.45,
+   "A Resource Manager token carries no roles list; Azure decides at each call from the roles assigned."
+  ],
+  [
+   33.85,
+   5.175,
+   "Every call here needs only the built-in Reader role, whose only action is read."
+  ],
+  [
+   39.025,
+   5.562,
+   "Third, an api-version on every call, set by each resource provider."
+  ],
+  [
+   44.587,
+   6.7,
+   "Fourth, paging: next link, not the O Data next link, and Resource Graph pages differently again."
+  ],
+  [
+   51.288,
+   7.037,
+   "The five checks make just two calls, and the Resource Graph query is a POST only because the query travels in the body."
   ]
  ]
 }

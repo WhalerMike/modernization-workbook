@@ -219,120 +219,6 @@
    "An inactive lifecycle state closes the notice, and the source link is the announcement on Oracle's own regional host."
   ]
  ],
- "6": [
-  [
-   0.05,
-   1.688,
-   "Two more things the kit adds."
-  ],
-  [
-   1.738,
-   1.475,
-   "First, chains."
-  ],
-  [
-   3.212,
-   8.812,
-   "The list call asks for only the latest announcement in each chain, and the kit keeps only the latest by its update time in each chain I D as well."
-  ],
-  [
-   12.025,
-   10.75,
-   "The record's I D is the chain's, so when Oracle reschedules a window, the notice keeps its I D and gets the new window, and the router updates its task instead of opening a second one."
-  ],
-  [
-   22.775,
-   9.338,
-   "The command line's output key casing isn't shown in Oracle's reference, so the kit accepts both styles; which one the C L I prints is not yet specified."
-  ],
-  [
-   32.112,
-   1.55,
-   "Second, realms."
-  ],
-  [
-   33.663,
-   3.95,
-   "A government tenancy read in the commercial realm returns nothing."
-  ],
-  [
-   37.612,
-   8.6,
-   "The kit knows the commercial realm and Oracle's U S Government Cloud, whose Announcements endpoints are in U S Langley and U S Luke."
-  ],
-  [
-   46.212,
-   6.475,
-   "As a side note, Oracle lists that cloud with fed-ramp High and DISA Impact Level 4 authorizations."
-  ],
-  [
-   52.688,
-   8.037,
-   "The third realm is refused, because its Announcements endpoint is not yet specified, and a region outside the realm is refused too."
-  ]
- ],
- "7": [
-  [
-   0.05,
-   0.725,
-   "Try it."
-  ],
-  [
-   0.775,
-   10.45,
-   "Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against a fictional tenancy in the commercial realm, in the U S Ashburn region."
-  ],
-  [
-   11.225,
-   1.788,
-   "Nothing signs in to anything."
-  ],
-  [
-   13.012,
-   2.65,
-   "Step one lists what Oracle Cloud needs."
-  ],
-  [
-   15.662,
-   0.988,
-   "Two calls."
-  ],
-  [
-   16.65,
-   2.95,
-   "The list call needs only inspect announcements."
-  ],
-  [
-   19.6,
-   4.812,
-   "The get call, the details with their affected resources, needs read announcements."
-  ],
-  [
-   24.413,
-   5.438,
-   "So the policy grants read, because inspect alone would give summaries without the resources."
-  ],
-  [
-   29.85,
-   1.587,
-   "Both are marked verified."
-  ],
-  [
-   31.438,
-   3.013,
-   "Step two asks for each realm the kit knows."
-  ],
-  [
-   34.45,
-   8.062,
-   "The commercial realm, on oracle cloud dot com. The government realm, on oracle gov cloud dot com, in its two regions."
-  ],
-  [
-   42.513,
-   10.787,
-   "And the third realm is refused, with the reason: its Announcements endpoint is not yet specified, because Oracle's page wasn't readable on November ninth, 2026."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -625,6 +511,115 @@
    44.987,
    6.95,
    "That's Gate 4, with the workbook's fourth chapter: three read actions, and a support plan the A P I needs."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.688,
+   "Two more things the kit adds."
+  ],
+  [
+   1.738,
+   1.475,
+   "First, chains."
+  ],
+  [
+   3.212,
+   8.812,
+   "The list call asks for only the latest announcement in each chain, and the kit keeps only the latest by its update time in each chain I D as well."
+  ],
+  [
+   12.025,
+   10.75,
+   "The record's I D is the chain's, so when Oracle reschedules a window, the notice keeps its I D and gets the new window, and the router updates its task instead of opening a second one."
+  ],
+  [
+   22.775,
+   9.338,
+   "The command line's output key casing isn't shown in Oracle's reference, so the kit accepts both styles; which one the C L I prints is not yet specified."
+  ],
+  [
+   32.112,
+   1.55,
+   "Second, realms."
+  ],
+  [
+   33.663,
+   3.95,
+   "A government tenancy read in the commercial realm returns nothing."
+  ],
+  [
+   37.612,
+   13.025,
+   "The kit knows the commercial realm and Oracle's U S Government Cloud, realm O C two, whose Announcements endpoints are in U S Langley and U S Luke, as Oracle's U S Government Cloud page lists them."
+  ],
+  [
+   50.638,
+   5.125,
+   "Any other realm is refused, and a region outside the realm is refused too."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   10.45,
+   "Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against a fictional tenancy in the commercial realm, in the U S Ashburn region."
+  ],
+  [
+   11.225,
+   1.788,
+   "Nothing signs in to anything."
+  ],
+  [
+   13.012,
+   2.65,
+   "Step one lists what Oracle Cloud needs."
+  ],
+  [
+   15.662,
+   0.988,
+   "Two calls."
+  ],
+  [
+   16.65,
+   2.95,
+   "The list call needs only inspect announcements."
+  ],
+  [
+   19.6,
+   4.812,
+   "The get call, the details with their affected resources, needs read announcements."
+  ],
+  [
+   24.413,
+   5.438,
+   "So the policy grants read, because inspect alone would give summaries without the resources."
+  ],
+  [
+   29.85,
+   1.587,
+   "Both are marked verified."
+  ],
+  [
+   31.438,
+   3.013,
+   "Step two asks for each realm the kit knows."
+  ],
+  [
+   34.45,
+   8.062,
+   "The commercial realm, on oracle cloud dot com. The government realm, on oracle gov cloud dot com, in its two regions."
+  ],
+  [
+   42.513,
+   2.775,
+   "A realm the kit doesn't know is refused."
   ]
  ]
 }

@@ -7,7 +7,7 @@
 | Introduction | Title; why the portal tells nobody unless someone made an alert; learning objectives and prerequisites |
 | Concepts | What Gate G1 asks for; what Learn gives and what the kit adds; each `EventType` as a kind; Service Health alerts at scale with the built-in Azure Policy, as a plan |
 | Lab | Try it: Lab 1 steps 1 to 7: the reader's roles and the kit's query, five notices from six rows, the alert plan and fixture mode's refusal; Lab 2 in a test subscription (not run by the authors) |
-| Check and summary | GCC on commercial Azure, with Azure Government as a side note; the federal requirement and evidence; two knowledge-check questions with answers; the summary |
+| Check and summary | GCC on commercial Azure, with the cloud named in the settings; the federal requirement and evidence; two knowledge-check questions with answers; the summary |
 
 | File | Use |
 |---|---|

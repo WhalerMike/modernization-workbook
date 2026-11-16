@@ -46,53 +46,6 @@
    "The code is illustrative: tested against fixtures, not run against a live project."
   ]
  ],
- "2": [
-  [
-   0.05,
-   2.625,
-   "Why does Google Cloud need a module about a gap?"
-  ],
-  [
-   2.675,
-   1.6,
-   "Because of two facts."
-  ],
-  [
-   4.275,
-   7.775,
-   "First, Personalized Service Health's event category has one value, incident, meaning a service outage or degradation."
-  ],
-  [
-   12.05,
-   3.925,
-   "Planned maintenance isn't in it, and neither are security notices."
-  ],
-  [
-   15.975,
-   6.1,
-   "Those reach a Google Cloud project by other channels, such as the contacts set in Essential Contacts."
-  ],
-  [
-   22.075,
-   18.025,
-   "Second, Assured Workloads' supported-products page lists Personalized Service Health under twenty-five regional packages, including U S Data Boundary, but not under fed-ramp Moderate, fed-ramp High, I L 2, I L 4, I L 5, C J I S or I T A R."
-  ],
-  [
-   40.1,
-   5.013,
-   "A workload in one of those packages has no Personalized Service Health to read at all."
-  ],
-  [
-   45.112,
-   4.1,
-   "Both gaps share a danger: an empty list looks like good news."
-  ],
-  [
-   49.212,
-   6.425,
-   "So this gate collects what Google publishes, and writes down, with the I S S O, what can't arrive."
-  ]
- ],
  "3": [
   [
    0.05,
@@ -242,68 +195,6 @@
    56.45,
    5.562,
    "The kit has no separate government endpoint for Personalized Service Health; the cloud is global."
-  ]
- ],
- "6": [
-  [
-   0.05,
-   1.863,
-   "Two guards make this gate honest."
-  ],
-  [
-   1.913,
-   2.175,
-   "First, the organization call."
-  ],
-  [
-   4.088,
-   4.8,
-   "Google's REST reference documents it, but the G cloud flags for it weren't read."
-  ],
-  [
-   8.887,
-   7.2,
-   "So the kit's call list marks it unverified, and the live invoker refuses to run it unless you pass allow unverified."
-  ],
-  [
-   16.087,
-   2.438,
-   "The kit doesn't run a command on a guess."
-  ],
-  [
-   18.525,
-   3.175,
-   "That's the guide's interim path for an organization."
-  ],
-  [
-   21.7,
-   1.587,
-   "Second, the gaps."
-  ],
-  [
-   23.288,
-   5.237,
-   "Every project records that Google's planned maintenance doesn't come through this A P I."
-  ],
-  [
-   28.525,
-   10.988,
-   "And any workload in an Assured Workloads fed-ramp or I L package records that it has no Personalized Service Health to read; the I S S O decides the compensating channel."
-  ],
-  [
-   39.513,
-   6.888,
-   "The guide lists the danger plainly: Google maintenance assumed covered, and a maintenance window lands with nobody told."
-  ],
-  [
-   46.4,
-   6.675,
-   "The guard is the gap itself, in the record, in the digest's provider table and in the I S S O's file."
-  ],
-  [
-   53.075,
-   5.412,
-   "Until the A P I carries maintenance, it reaches the agency by the contacts it sets."
   ]
  ],
  "7": [
@@ -472,100 +363,6 @@
    "Then delete the output folder."
   ]
  ],
- "10": [
-  [
-   0.05,
-   2.35,
-   "Lab 2 reads a real test project."
-  ],
-  [
-   2.4,
-   6.325,
-   "You need a Google Cloud test project, never production, its project owner, and a Google group for the reader."
-  ],
-  [
-   8.725,
-   5.138,
-   "Enable the A P I, grant the viewer role, and sign in as the reader."
-  ],
-  [
-   13.863,
-   3.263,
-   "Then cross-check Google's own command against the collection."
-  ],
-  [
-   17.125,
-   3.962,
-   "The project may have no incidents at all, and that's a valid result."
-  ],
-  [
-   21.087,
-   4.875,
-   "Then the part that makes this gate different: record the gaps with the I S S O."
-  ],
-  [
-   25.962,
-   9.65,
-   "Whether the project is in an Assured Workloads fed-ramp or I L package, and in every case, that Google's planned maintenance doesn't come through this A P I."
-  ],
-  [
-   35.612,
-   4.537,
-   "To back it out, step four removes the role binding and deletes the run."
-  ],
-  [
-   40.15,
-   4.888,
-   "It leaves the A P I enabled, unless the project owner decides otherwise."
-  ],
-  [
-   45.038,
-   2.15,
-   "The authors haven't run Lab 2."
-  ],
-  [
-   47.188,
-   3.188,
-   "The workbook's Chapter 5 has the exact commands."
-  ]
- ],
- "11": [
-  [
-   0.05,
-   1.387,
-   "The federal requirement."
-  ],
-  [
-   1.438,
-   14.963,
-   "Gate 5 supports nist special publication eight hundred fifty-three S A nine, part c, monitoring external service providers on an ongoing basis, and S I five, part a, receiving security alerts and advisories."
-  ],
-  [
-   16.4,
-   9.0,
-   "And recording the gaps supports R A three, part f: updating the risk assessment when there are significant changes to the environment of operation."
-  ],
-  [
-   25.4,
-   18.9,
-   "The evidence is the permission list and the role binding; the raw Google response, the notices and the manifest; the refusal of a call nobody verified; and the gaps, no maintenance through the A P I and no Personalized Service Health in the fed-ramp or I L packages, written down with the I S S O."
-  ],
-  [
-   44.3,
-   2.962,
-   "The gate's output is evidence for these controls."
-  ],
-  [
-   47.263,
-   6.062,
-   "Your organization still sets their parameters, and the assessor decides whether each is satisfied."
-  ],
-  [
-   53.325,
-   9.188,
-   "K S I's are fed-ramp twenty X indicators for cloud service providers; the agency lines its evidence up with them, and doesn't report them itself."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -653,6 +450,209 @@
    38.525,
    10.162,
    "It takes the notices every provider produced, and gives the ones that need action an owner, a severity and a due date, as typed tasks in the service desk's front door."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.625,
+   "Why does Google Cloud need a module about a gap?"
+  ],
+  [
+   2.675,
+   1.6,
+   "Because of two facts."
+  ],
+  [
+   4.275,
+   7.775,
+   "First, Personalized Service Health's event category has one value, incident, meaning a service outage or degradation."
+  ],
+  [
+   12.05,
+   3.925,
+   "Planned maintenance isn't in it, and neither are security notices."
+  ],
+  [
+   15.975,
+   6.1,
+   "Those reach a Google Cloud project by other channels, such as the contacts set in Essential Contacts."
+  ],
+  [
+   22.075,
+   14.613,
+   "Second, Assured Workloads' supported-products page lists Personalized Service Health under twenty-five regional packages, including U S Data Boundary, but not under fed-ramp Moderate, fed-ramp High, C J I S or I T A R."
+  ],
+  [
+   36.688,
+   5.013,
+   "A workload in one of those packages has no Personalized Service Health to read at all."
+  ],
+  [
+   41.7,
+   4.1,
+   "Both gaps share a danger: an empty list looks like good news."
+  ],
+  [
+   45.8,
+   6.425,
+   "So this gate collects what Google publishes, and writes down, with the I S S O, what can't arrive."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.863,
+   "Two guards make this gate honest."
+  ],
+  [
+   1.913,
+   2.175,
+   "First, the organization call."
+  ],
+  [
+   4.088,
+   4.8,
+   "Google's REST reference documents it, but the G cloud flags for it weren't read."
+  ],
+  [
+   8.887,
+   7.2,
+   "So the kit's call list marks it unverified, and the live invoker refuses to run it unless you pass allow unverified."
+  ],
+  [
+   16.087,
+   2.438,
+   "The kit doesn't run a command on a guess."
+  ],
+  [
+   18.525,
+   3.175,
+   "That's the guide's interim path for an organization."
+  ],
+  [
+   21.7,
+   1.587,
+   "Second, the gaps."
+  ],
+  [
+   23.288,
+   5.237,
+   "Every project records that Google's planned maintenance doesn't come through this A P I."
+  ],
+  [
+   28.525,
+   10.238,
+   "And any workload in an Assured Workloads fed-ramp package records that it has no Personalized Service Health to read; the I S S O decides the compensating channel."
+  ],
+  [
+   38.763,
+   6.888,
+   "The guide lists the danger plainly: Google maintenance assumed covered, and a maintenance window lands with nobody told."
+  ],
+  [
+   45.65,
+   6.675,
+   "The guard is the gap itself, in the record, in the digest's provider table and in the I S S O's file."
+  ],
+  [
+   52.325,
+   5.412,
+   "Until the A P I carries maintenance, it reaches the agency by the contacts it sets."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.35,
+   "Lab 2 reads a real test project."
+  ],
+  [
+   2.4,
+   6.325,
+   "You need a Google Cloud test project, never production, its project owner, and a Google group for the reader."
+  ],
+  [
+   8.725,
+   5.138,
+   "Enable the A P I, grant the viewer role, and sign in as the reader."
+  ],
+  [
+   13.863,
+   3.263,
+   "Then cross-check Google's own command against the collection."
+  ],
+  [
+   17.125,
+   3.962,
+   "The project may have no incidents at all, and that's a valid result."
+  ],
+  [
+   21.087,
+   4.875,
+   "Then the part that makes this gate different: record the gaps with the I S S O."
+  ],
+  [
+   25.962,
+   9.012,
+   "Whether the project is in an Assured Workloads fed-ramp package, and in every case, that Google's planned maintenance doesn't come through this A P I."
+  ],
+  [
+   34.975,
+   4.537,
+   "To back it out, step four removes the role binding and deletes the run."
+  ],
+  [
+   39.513,
+   4.888,
+   "It leaves the A P I enabled, unless the project owner decides otherwise."
+  ],
+  [
+   44.4,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   46.55,
+   3.188,
+   "The workbook's Chapter 5 has the exact commands."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   14.963,
+   "Gate 5 supports nist special publication eight hundred fifty-three S A nine, part c, monitoring external service providers on an ongoing basis, and S I five, part a, receiving security alerts and advisories."
+  ],
+  [
+   16.4,
+   9.0,
+   "And recording the gaps supports R A three, part f: updating the risk assessment when there are significant changes to the environment of operation."
+  ],
+  [
+   25.4,
+   18.175,
+   "The evidence is the permission list and the role binding; the raw Google response, the notices and the manifest; the refusal of a call nobody verified; and the gaps, no maintenance through the A P I and no Personalized Service Health in the fed-ramp packages, written down with the I S S O."
+  ],
+  [
+   43.575,
+   2.962,
+   "The gate's output is evidence for these controls."
+  ],
+  [
+   46.538,
+   6.062,
+   "Your organization still sets their parameters, and the assessor decides whether each is satisfied."
+  ],
+  [
+   52.6,
+   9.188,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers; the agency lines its evidence up with them, and doesn't report them itself."
   ]
  ]
 }

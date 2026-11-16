@@ -311,12 +311,12 @@ endModule(SC);
     "$ python python/workflow_lint.py workflow/npi-evidence.yml",
     "workflow\\npi-evidence.yml: 0 finding(s), 0 warning(s)",
     "# Step 11: the tests",
-    "Invoke-Pester -Path tests (PowerShell): 513 passed     python -m pytest tests -q: 142 passed",
+    "Invoke-Pester -Path tests (PowerShell): 511 passed     python -m pytest tests -q: 139 passed",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (WRAPPED; EXIT CODES ADDED)", pt: 10.5 });
   line(s, "Clean", "Delete out in both folders when you're done: Remove-Item -Recurse -Force out, and rm -rf out.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 10, \"Exercise: Lab 1,\" steps 10 and 11; examples/drift-pipeline (python/npi_evidence.py, workflow_lint.py; tests).");
   notes(s,
-`Step ten breaks it on purpose. Append one line to the packaged summary, and verify again. It exits one: the summary doesn't match its hash. Then try to package day one as if it came after day two, chained to day two's manifest. It exits one too: this run isn't later than the previous package. So an edited file and a swapped package are both refused, and that's what lets the ISSO trust the chain without trusting you. The step ends by linting the scheduled workflow, with no findings and no warnings. Step eleven runs the tests in both folders: five hundred thirteen Pester tests pass in PowerShell, and one hundred forty-two pytest tests pass in the drift pipeline. Then delete the output folder in both places.`,
+`Step ten breaks it on purpose. Append one line to the packaged summary, and verify again. It exits one: the summary doesn't match its hash. Then try to package day one as if it came after day two, chained to day two's manifest. It exits one too: this run isn't later than the previous package. So an edited file and a swapped package are both refused, and that's what lets the ISSO trust the chain without trusting you. The step ends by linting the scheduled workflow, with no findings and no warnings. Step eleven runs the tests in both folders: five hundred eleven Pester tests pass in PowerShell, and one hundred thirty-nine pytest tests pass in the drift pipeline. Then delete the output folder in both places.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 10 and 11.`);
 }
 

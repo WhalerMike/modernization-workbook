@@ -41,16 +41,16 @@ You'll keep remote actions and export
 jobs out of a read-only collector.
 
 9
-00:00:27.375 --> 00:00:32.700
-And you'll say what differs in GCC
-High and DoD, and run the five checks.
+00:00:27.375 --> 00:00:32.300
+And you'll say why GCC follows commercial
+Intune, and run the five checks.
 
 10
-00:00:32.700 --> 00:00:36.825
+00:00:32.300 --> 00:00:36.425
 You need Module 1, and Module 2
 for the Conditional Access side.
 
 11
-00:00:36.825 --> 00:00:41.520
+00:00:36.425 --> 00:00:41.110
 Lab 2 needs a test tenant with an
 Intune license and a few test devices.

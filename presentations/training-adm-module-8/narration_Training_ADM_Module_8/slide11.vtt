@@ -39,28 +39,28 @@ Runs out of order can't make
 a finding look resolved.
 
 9
-00:00:25.337 --> 00:00:29.112
+00:00:25.337 --> 00:00:29.237
 Step nine runs the tests:
-one hundred forty-two pass.
+one hundred thirty-nine pass.
 
 10
-00:00:29.112 --> 00:00:30.688
+00:00:29.237 --> 00:00:30.813
 They take about two minutes.
 
 11
-00:00:30.688 --> 00:00:32.163
+00:00:30.813 --> 00:00:32.287
 Step ten cleans up.
 
 12
-00:00:32.163 --> 00:00:36.940
+00:00:32.287 --> 00:00:37.065
 Check your work: given two runs, you
 can say what's new, resolved, changed or
 
 13
-00:00:36.940 --> 00:00:39.045
+00:00:37.065 --> 00:00:39.170
 unverified, and given a package,
 
 14
-00:00:39.045 --> 00:00:42.740
+00:00:39.170 --> 00:00:42.860
 you can show it's unedited
 and chained to the day before.

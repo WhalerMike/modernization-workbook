@@ -140,58 +140,6 @@
    "No tenant."
   ]
  ],
- "4": [
-  [
-   0.05,
-   7.525,
-   "Unit 1 is the guide's Step 2, and the slide shows part of its condensed decision table, which is the program's design guidance."
-  ],
-  [
-   7.575,
-   4.912,
-   "Anything disabled, unused or with no owner after Step 1 is retired."
-  ],
-  [
-   12.488,
-   5.838,
-   "A traditional account for an Azure workload goes to a managed identity, user-assigned preferred."
-  ],
-  [
-   18.325,
-   8.0,
-   "One calling Entra-protected A P I's from a host with an O I D C issuer gets an app registration with a federated credential."
-  ],
-  [
-   26.325,
-   8.537,
-   "A Kerberos-only account on premises goes to a group managed service account, or a delegated one on a Windows Server 2025 domain."
-  ],
-  [
-   34.862,
-   11.75,
-   "A managed service account is upgraded to a group managed one first, because, as Microsoft Learn's delegated managed service account documentation says, neither can be migrated to a delegated one."
-  ],
-  [
-   46.612,
-   6.013,
-   "And a client secret is replaced: a managed identity, then federation, then a certificate."
-  ],
-  [
-   52.625,
-   1.75,
-   "Two more points from Step 2."
-  ],
-  [
-   54.375,
-   1.762,
-   "High-risk accounts go first."
-  ],
-  [
-   56.138,
-   13.0,
-   "And a group managed account needs a K D S root key, created once for the forest; Microsoft Learn's Create a K D S root key documentation says domain controllers wait up to ten hours after that."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -489,6 +437,58 @@
    "The tenant can block new secrets and cap certificate lifetimes itself, and the rest is a rotation plan, from renewal to removal."
   ]
  ],
+ "4": [
+  [
+   0.05,
+   7.525,
+   "Unit 1 is the guide's Step 2, and the slide shows part of its condensed decision table, which is the program's design guidance."
+  ],
+  [
+   7.575,
+   4.912,
+   "Anything disabled, unused or with no owner after Step 1 is retired."
+  ],
+  [
+   12.488,
+   5.838,
+   "A traditional account for an Azure workload goes to a managed identity, user-assigned preferred."
+  ],
+  [
+   18.325,
+   8.0,
+   "One calling Entra-protected A P I's from a host with an O I D C issuer gets an app registration with a federated credential."
+  ],
+  [
+   26.325,
+   8.537,
+   "A Kerberos-only account on premises goes to a group managed service account, or a delegated one on a Windows Server 2025 domain."
+  ],
+  [
+   34.862,
+   11.75,
+   "A managed service account is upgraded to a group managed one first, because, as Microsoft Learn's delegated managed service account documentation says, neither can be migrated to a delegated one."
+  ],
+  [
+   46.612,
+   6.013,
+   "And a client secret is replaced: a managed identity, then federation, then a certificate."
+  ],
+  [
+   52.625,
+   1.75,
+   "Two more points from Step 2."
+  ],
+  [
+   54.375,
+   1.762,
+   "High-risk accounts go first."
+  ],
+  [
+   56.138,
+   13.0,
+   "And a group managed account needs a K D S root key, created once for the forest; Microsoft Learn's Create a K D S root key documentation says domain controllers wait up to ten hours after that."
+  ]
+ ],
  "7": [
   [
    0.05,
@@ -589,11 +589,11 @@
   ],
   [
    63.0,
-   4.213,
-   "Step eight runs every test: five hundred thirteen pass."
+   4.0,
+   "Step eight runs every test: five hundred eleven pass."
   ],
   [
-   67.213,
+   67.0,
    3.362,
    "Then delete the output, which names accounts and owners."
   ]

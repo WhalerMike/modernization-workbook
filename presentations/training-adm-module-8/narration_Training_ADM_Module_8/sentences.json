@@ -115,271 +115,6 @@
    "Lab 1 needs Python 3.10 or later with PyYAML and pytest, and a shell with sha two fifty-six sum, such as Git Bash."
   ]
  ],
- "9": [
-  [
-   0.05,
-   1.913,
-   "Step four records a baseline."
-  ],
-  [
-   1.962,
-   6.75,
-   "The fixtures are two fictional validation kit runs, one day apart: October twenty-eighth and twenty-ninth."
-  ],
-  [
-   8.713,
-   6.112,
-   "Compare the first with nothing, and it's a baseline: ten new findings, and the command exits two."
-  ],
-  [
-   14.825,
-   8.838,
-   "Package it with the other kits' provenance, and the evidence manifest's hash starts six d nine f f f. Step five compares the next day."
-  ],
-  [
-   23.663,
-   9.488,
-   "The summary reads: new three, resolved one, changed one, detail only one, unchanged six, unverified checks two."
-  ],
-  [
-   33.15,
-   2.188,
-   "Its table shows which checks moved."
-  ],
-  [
-   35.337,
-   3.85,
-   "VK-CA-01 went from Pass to Fail."
-  ],
-  [
-   39.188,
-   3.3,
-   "VK-piv-01 didn't run."
-  ],
-  [
-   42.487,
-   5.05,
-   "And VK-NPI-03 went from Fail to Error."
-  ],
-  [
-   47.538,
-   1.5,
-   "Look closely at that one."
-  ],
-  [
-   49.038,
-   1.837,
-   "Yesterday it had a finding."
-  ],
-  [
-   50.875,
-   1.488,
-   "Today its read failed."
-  ],
-  [
-   52.362,
-   2.975,
-   "So the finding is unverified, not resolved."
-  ],
-  [
-   55.337,
-   2.188,
-   "A failed read is never a fix."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   5.688,
-   "Step six drafts the findings: six to open, two to close, no comments."
-  ],
-  [
-   5.737,
-   1.575,
-   "Then search the drafts."
-  ],
-  [
-   7.312,
-   5.638,
-   "For a user's address, grep counts zero; the name isn't there, and grep exits one."
-  ],
-  [
-   12.95,
-   2.475,
-   "For the object I D, it counts one."
-  ],
-  [
-   15.425,
-   4.25,
-   "The tracker gets the object I D and the fingerprint, never the name."
-  ],
-  [
-   19.675,
-   6.625,
-   "Step seven packages the second day, chained to the first with the previous manifest option, and verifies it."
-  ],
-  [
-   26.3,
-   5.975,
-   "The manifest hash starts oh nine three two, and verify reports sixteen files."
-  ],
-  [
-   32.275,
-   9.988,
-   "Then the I S S O's own check, with no program code at all: sha two fifty-six sum, in the package's folder, prints nothing and exits zero."
-  ],
-  [
-   42.263,
-   11.688,
-   "Last, read two fields of day two's manifest: the previous package's manifest hash, which is day one's, six d nine f f f, and the fixture tenant's placeholder I D."
-  ],
-  [
-   53.95,
-   1.05,
-   "That's the chain."
-  ]
- ],
- "11": [
-  [
-   0.05,
-   1.925,
-   "Step eight breaks it on purpose."
-  ],
-  [
-   1.975,
-   4.05,
-   "Append one line to the packaged drift summary, and verify again."
-  ],
-  [
-   6.025,
-   4.65,
-   "It fails, with exit code one: the summary doesn't match its hash."
-  ],
-  [
-   10.675,
-   2.237,
-   "An edit after packaging can't hide."
-  ],
-  [
-   12.912,
-   5.225,
-   "Then swap the runs, and compare the twenty-ninth as previous with the twenty-eighth as current."
-  ],
-  [
-   18.137,
-   4.2,
-   "That's refused too: the current run isn't later than the previous one."
-  ],
-  [
-   22.337,
-   3.0,
-   "Runs out of order can't make a finding look resolved."
-  ],
-  [
-   25.337,
-   3.775,
-   "Step nine runs the tests: one hundred forty-two pass."
-  ],
-  [
-   29.113,
-   1.575,
-   "They take about two minutes."
-  ],
-  [
-   30.688,
-   1.475,
-   "Step ten cleans up."
-  ],
-  [
-   32.163,
-   10.525,
-   "Check your work: given two runs, you can say what's new, resolved, changed or unverified, and given a package, you can show it's unedited and chained to the day before."
-  ]
- ],
- "14": [
-  [
-   0.05,
-   1.975,
-   "Check yourself with two questions."
-  ],
-  [
-   2.025,
-   4.888,
-   "First: yesterday VK-NPI-03 had a finding."
-  ],
-  [
-   6.912,
-   2.425,
-   "Today its read failed with a four-oh-three."
-  ],
-  [
-   9.338,
-   1.788,
-   "What does the comparison report?"
-  ],
-  [
-   11.125,
-   3.487,
-   "The answer is b: unverified, not resolved."
-  ],
-  [
-   14.613,
-   4.425,
-   "A failed read is never a fix, and you saw it in step five of the lab."
-  ],
-  [
-   19.038,
-   4.725,
-   "Second: how does the I S S O check a package without the program's code?"
-  ],
-  [
-   23.762,
-   7.925,
-   "The answer is b: with sha two fifty-six sum, dash c, SHA256SUMS, in the package's folder."
-  ],
-  [
-   31.688,
-   4.787,
-   "You did exactly that in step seven, and it printed nothing and exited zero."
-  ],
-  [
-   36.475,
-   9.15,
-   "The module page has two more questions, on what goes into a drafted issue and on what shows a missing day, each linked to the section that answers it."
-  ]
- ],
- "15": [
-  [
-   0.05,
-   0.825,
-   "To sum up."
-  ],
-  [
-   0.875,
-   13.575,
-   "You compared two days of kit runs without letting a failed read close a finding, drafted findings without names, and packaged and verified a chain of evidence the I S S O can check with sha two fifty-six sum alone."
-  ],
-  [
-   14.45,
-   20.738,
-   "The evidence an I S S O keeps: each day's package, with its kit run, drift report, the other kits' provenance, the manifest and SHA256SUMS, in a container whose retention is locked in production; the findings in the tracker by fingerprint; and the workflow file and the pipeline app's registration."
-  ],
-  [
-   35.188,
-   4.475,
-   "Gate 9 adds the scan schedule, the limits register and the metrics."
-  ],
-  [
-   39.663,
-   3.712,
-   "Before shipping, work through the Chapter 09 checklist."
-  ],
-  [
-   43.375,
-   13.625,
-   "Next is Module 9, the last: deploy to test, then production, with one settings file per stage, a pre-flight check, a smoke test that says go or no-go, and a rollback written from a record of every change."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -603,61 +338,128 @@
    "Microsoft Learn's page on immutable storage says a locked time-based retention policy lets blobs be created and read, but not modified or deleted, until the retention interval ends."
   ]
  ],
- "8": [
+ "9": [
   [
    0.05,
-   0.725,
-   "Try it."
+   1.913,
+   "Step four records a baseline."
   ],
   [
-   0.775,
-   6.263,
-   "Lab 1 runs in the drift-pipeline folder of the examples, in a POSIX shell, and nothing signs in."
+   1.962,
+   6.75,
+   "The fixtures are two fictional validation kit runs, one day apart: October twenty-eighth and twenty-ninth."
   ],
   [
-   7.037,
-   3.725,
-   "Step one checks Learn's three sample workflows offline."
+   8.713,
+   6.112,
+   "Compare the first with nothing, and it's a baseline: ten new findings, and the command exits two."
   ],
   [
-   10.762,
-   9.312,
-   "Sample one has five findings and four warnings, sample two has seven findings and four warnings, and sample three has just one: it isn't valid YAML."
+   14.825,
+   8.838,
+   "Package it with the other kits' provenance, and the evidence manifest's hash starts six d nine f f f. Step five compares the next day."
   ],
   [
-   20.075,
-   1.538,
-   "The command exits two."
+   23.663,
+   9.488,
+   "The summary reads: new three, resolved one, changed one, detail only one, unchanged six, unverified checks two."
   ],
   [
-   21.613,
-   5.312,
-   "Step two checks the pipeline's own workflow: zero findings, zero warnings."
+   33.15,
+   2.188,
+   "Its table shows which checks moved."
   ],
   [
-   26.925,
-   2.375,
-   "Step three prints a cloud's hosts."
+   35.337,
+   3.85,
+   "VK-CA-01 went from Pass to Fail."
   ],
   [
-   29.3,
-   12.275,
-   "For D O D, the sign-in authority is login dot microsoftonline dot u s, the Graph host is dod-graph dot microsoft dot u s, and the Azure environment is Azure U S Government."
+   39.188,
+   3.3,
+   "VK-piv-01 didn't run."
   ],
   [
-   41.575,
-   8.762,
-   "Microsoft Learn's page, Microsoft Graph national cloud deployments, lists those G C C High and D O D Graph hosts."
+   42.487,
+   5.05,
+   "And VK-NPI-03 went from Fail to Error."
   ],
   [
-   50.337,
-   7.7,
-   "That's the trap: the Azure environment covers both G C C High and D O D, so the Graph host has to come from the profile."
+   47.538,
+   1.5,
+   "Look closely at that one."
   ],
   [
-   58.038,
-   6.963,
-   "Then ask for a name it doesn't know, u s gov. It's refused, with exit code one, never mapped to worldwide."
+   49.038,
+   1.837,
+   "Yesterday it had a finding."
+  ],
+  [
+   50.875,
+   1.488,
+   "Today its read failed."
+  ],
+  [
+   52.362,
+   2.975,
+   "So the finding is unverified, not resolved."
+  ],
+  [
+   55.337,
+   2.188,
+   "A failed read is never a fix."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.688,
+   "Step six drafts the findings: six to open, two to close, no comments."
+  ],
+  [
+   5.737,
+   1.575,
+   "Then search the drafts."
+  ],
+  [
+   7.312,
+   5.638,
+   "For a user's address, grep counts zero; the name isn't there, and grep exits one."
+  ],
+  [
+   12.95,
+   2.475,
+   "For the object I D, it counts one."
+  ],
+  [
+   15.425,
+   4.25,
+   "The tracker gets the object I D and the fingerprint, never the name."
+  ],
+  [
+   19.675,
+   6.625,
+   "Step seven packages the second day, chained to the first with the previous manifest option, and verifies it."
+  ],
+  [
+   26.3,
+   5.975,
+   "The manifest hash starts oh nine three two, and verify reports sixteen files."
+  ],
+  [
+   32.275,
+   9.988,
+   "Then the I S S O's own check, with no program code at all: sha two fifty-six sum, in the package's folder, prints nothing and exits zero."
+  ],
+  [
+   42.263,
+   11.688,
+   "Last, read two fields of day two's manifest: the previous package's manifest hash, which is day one's, six d nine f f f, and the fixture tenant's placeholder I D."
+  ],
+  [
+   53.95,
+   1.05,
+   "That's the chain."
   ]
  ],
  "12": [
@@ -767,6 +569,204 @@
    64.362,
    3.562,
    "Which output supports which control is this workbook's reading."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.888,
+   "First: yesterday VK-NPI-03 had a finding."
+  ],
+  [
+   6.912,
+   2.425,
+   "Today its read failed with a four-oh-three."
+  ],
+  [
+   9.338,
+   1.788,
+   "What does the comparison report?"
+  ],
+  [
+   11.125,
+   3.487,
+   "The answer is b: unverified, not resolved."
+  ],
+  [
+   14.613,
+   4.425,
+   "A failed read is never a fix, and you saw it in step five of the lab."
+  ],
+  [
+   19.038,
+   4.725,
+   "Second: how does the I S S O check a package without the program's code?"
+  ],
+  [
+   23.762,
+   7.925,
+   "The answer is b: with sha two fifty-six sum, dash c, SHA256SUMS, in the package's folder."
+  ],
+  [
+   31.688,
+   4.787,
+   "You did exactly that in step seven, and it printed nothing and exited zero."
+  ],
+  [
+   36.475,
+   9.15,
+   "The module page has two more questions, on what goes into a drafted issue and on what shows a missing day, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   13.575,
+   "You compared two days of kit runs without letting a failed read close a finding, drafted findings without names, and packaged and verified a chain of evidence the I S S O can check with sha two fifty-six sum alone."
+  ],
+  [
+   14.45,
+   20.738,
+   "The evidence an I S S O keeps: each day's package, with its kit run, drift report, the other kits' provenance, the manifest and SHA256SUMS, in a container whose retention is locked in production; the findings in the tracker by fingerprint; and the workflow file and the pipeline app's registration."
+  ],
+  [
+   35.188,
+   4.475,
+   "Gate 9 adds the scan schedule, the limits register and the metrics."
+  ],
+  [
+   39.663,
+   3.712,
+   "Before shipping, work through the Chapter 09 checklist."
+  ],
+  [
+   43.375,
+   13.625,
+   "Next is Module 9, the last: deploy to test, then production, with one settings file per stage, a pre-flight check, a smoke test that says go or no-go, and a rollback written from a record of every change."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   6.263,
+   "Lab 1 runs in the drift-pipeline folder of the examples, in a POSIX shell, and nothing signs in."
+  ],
+  [
+   7.037,
+   3.725,
+   "Step one checks Learn's three sample workflows offline."
+  ],
+  [
+   10.762,
+   9.312,
+   "Sample one has five findings and four warnings, sample two has seven findings and four warnings, and sample three has just one: it isn't valid YAML."
+  ],
+  [
+   20.075,
+   1.538,
+   "The command exits two."
+  ],
+  [
+   21.613,
+   5.312,
+   "Step two checks the pipeline's own workflow: zero findings, zero warnings."
+  ],
+  [
+   26.925,
+   2.375,
+   "Step three prints a cloud's hosts."
+  ],
+  [
+   29.3,
+   11.262,
+   "For G C C, the sign-in authority is login dot microsoftonline dot com, the Graph host is graph dot microsoft dot com, and the Azure environment is Azure Cloud."
+  ],
+  [
+   40.562,
+   7.725,
+   "Microsoft Learn's page, Microsoft Graph national cloud deployments, says G C C uses those worldwide endpoints."
+  ],
+  [
+   48.288,
+   1.9,
+   "Then ask for a name it doesn't know."
+  ],
+  [
+   50.188,
+   4.138,
+   "It's refused, with exit code one, never mapped to worldwide."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.925,
+   "Step eight breaks it on purpose."
+  ],
+  [
+   1.975,
+   4.05,
+   "Append one line to the packaged drift summary, and verify again."
+  ],
+  [
+   6.025,
+   4.65,
+   "It fails, with exit code one: the summary doesn't match its hash."
+  ],
+  [
+   10.675,
+   2.237,
+   "An edit after packaging can't hide."
+  ],
+  [
+   12.912,
+   5.225,
+   "Then swap the runs, and compare the twenty-ninth as previous with the twenty-eighth as current."
+  ],
+  [
+   18.137,
+   4.2,
+   "That's refused too: the current run isn't later than the previous one."
+  ],
+  [
+   22.337,
+   3.0,
+   "Runs out of order can't make a finding look resolved."
+  ],
+  [
+   25.337,
+   3.9,
+   "Step nine runs the tests: one hundred thirty-nine pass."
+  ],
+  [
+   29.238,
+   1.575,
+   "They take about two minutes."
+  ],
+  [
+   30.812,
+   1.475,
+   "Step ten cleans up."
+  ],
+  [
+   32.288,
+   10.525,
+   "Check your work: given two runs, you can say what's new, resolved, changed or unverified, and given a package, you can show it's unedited and chained to the day before."
   ]
  ]
 }

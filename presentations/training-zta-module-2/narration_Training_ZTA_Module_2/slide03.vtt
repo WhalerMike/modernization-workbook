@@ -30,31 +30,26 @@ grant the consent leaves behind,
 and say when not to revoke it.
 
 7
-00:00:20.125 --> 00:00:24.289
-You'll connect in Commercial,
-G C C, G C C High or D O D,
+00:00:20.125 --> 00:00:25.525
+You'll connect in Commercial or G C C, and
+confirm the session's tenant and cloud.
 
 8
-00:00:24.289 --> 00:00:28.025
-and confirm the session's
-tenant and cloud.
-
-9
-00:00:28.025 --> 00:00:30.862
+00:00:25.525 --> 00:00:28.362
 And you'll run the assessment
 and hash its export.
 
-10
-00:00:30.862 --> 00:00:35.025
+9
+00:00:28.362 --> 00:00:32.525
 You need Module 1, and a skim of
 the Privileged Access implementation
 
-11
-00:00:35.025 --> 00:00:38.238
+10
+00:00:32.525 --> 00:00:35.738
 guide's pim model, for the
 run account's eligible roles.
 
-12
-00:00:38.238 --> 00:00:41.660
+11
+00:00:35.738 --> 00:00:39.170
 Lab 2 runs in a test
 tenant, never production.

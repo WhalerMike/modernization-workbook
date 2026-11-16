@@ -44,9 +44,9 @@ Step five lists one mover's residual. You give it the mover, the mover's assignm
 
 Lab 2 runs the gate in your own test tenant: worldwide or G C C, never production, with Entra ID Governance trial or test licenses, two test access packages, and three test users with coded attributes. Export the tenant's policies, and run the scan beside Learn's read-only script, so you can compare them. Create one automatic policy. Move a test user through the pipeline, never by hand, and run the residual review. The reader app needs a certificate and two permissions, EntitlementManagement dot Read dot All and User dot Read dot All. Creating the policy takes the Identity Governance Administrator role. To back it out, remove the test policy, choosing whether its assignments are removed, restore the test user's code through the pipeline, remove the reader app, its permissions and certificate, and delete the export and output. The authors haven't run Lab 2.
 
-## Slide 12 — GCC High's gap, and privileged access out of rules
+## Slide 12 — Privileged access stays out of rules
 
-Two things differ by where you are and what you grant. First, government clouds. If your agency is in GCC High, note the gate's availability gap: administrative units with dynamic membership rules aren't available in Azure Government. The guide's Step 4 gives the gap and its interim path. Second, privileged access, wherever you are. A package that grants tier one administrator eligibility to everyone whose organization code matches is the A A oh nine finding. HR attributes should decide who may request eligibility, and the role is activated through PIM. That's what the program's request policy does. CISA's scuba policy seven point five keeps highly privileged roles only in a privileged access management system, and under BOD 25-01 it's required.
+One thing differs by what you grant: privileged access. A package that grants tier one administrator eligibility to everyone whose organization code matches is the A A oh nine finding. HR attributes should decide who may request eligibility, and the role is activated through PIM. That's what the program's request policy does. CISA's scuba policy seven point five keeps highly privileged roles only in a privileged access management system, and under BOD 25-01 it's required.
 
 ## Slide 13 — The federal requirement and evidence for Gate 4
 

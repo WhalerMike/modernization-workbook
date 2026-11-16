@@ -254,11 +254,10 @@ endModule(SL);
 
 // ================================================================== 12 Where agencies are
 {
-  const s = content(SA, "Where agencies are: GCC, GCC High, and interim paths");
+  const s = content(SA, "Where agencies are: GCC, and the interim path");
   tag(s, "Who");
-  const b = table(s, "Gov", 1.45, [2.6, 9.55], ["Tenant", "What changes for Gate 3"], [
+  const b = table(s, "Gov", 1.45, [2.6, 9.55], ["Where", "What changes for Gate 3"], [
     ["GCC", "Uses the worldwide endpoints"],
-    ["GCC High", "Set the Entra source's Graph and token endpoints to graph.microsoft.us and login.microsoftonline.us; the connector documents the overrides"],
     ["ISC FedRAMP", "Native Change Detection's presence there wasn't confirmed (Gate 1, step 2)"],
   ], { fontSize: 13, limit: 4.0 });
   panel(s, "Interim", 0.6, b + 0.25, 12.15, null, HEX.teal, HEX.tealTint, "INTERIM PATH", "Without SailPoint, or before it's connected", [
@@ -267,7 +266,7 @@ endModule(SL);
   ], 13);
   sources(s, "Sources: Module 4, Unit 2; the guide's Gate 3, step 2, Availability and Interim path; \"Where agencies start.\"");
   notes(s,
-`Where are agencies? Most on this path run Microsoft 365 GCC, and a minority GCC High. GCC tenants use the worldwide endpoints. In GCC High, you set the Entra source's Graph and token endpoints to graph dot microsoft dot U S and login dot microsoftonline dot U S; SailPoint's Entra connector documents those overrides. One open question for every tenant: Native Change Detection's presence in SailPoint's FedRAMP environment wasn't confirmed, which is one of the things Gate 1 asks SailPoint in writing. The interim path: without SailPoint, or before it's connected, run the kit's reconciliation against the HR extract and Graph alone, because the SailPoint inputs are optional files. Active Directory-only groups wait for the appliance.`,
+`Where are agencies? Agencies on this path run Microsoft 365 GCC, and GCC tenants use the worldwide endpoints, so the Entra source needs no endpoint change. One open question for every tenant: Native Change Detection's presence in SailPoint's FedRAMP environment wasn't confirmed, which is one of the things Gate 1 asks SailPoint in writing. The interim path: without SailPoint, or before it's connected, run the kit's reconciliation against the HR extract and Graph alone, because the SailPoint inputs are optional files. Active Directory-only groups wait for the appliance.`,
   `${M} — Unit 2 "Connecting the sources"; the guide — "Where agencies start"; "Step 3," step 2, Availability and Interim path.`);
 }
 endModule(SA);

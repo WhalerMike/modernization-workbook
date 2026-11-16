@@ -43,26 +43,25 @@ Two warnings are for run history, and
 one for the implicit retry policy.
 
 10
-00:00:31.512 --> 00:00:35.874
-Step two runs Learn's definition
-for a GCC High tenant.
+00:00:31.512 --> 00:00:35.687
+Step two runs Learn's
+definition for a GCC tenant.
 
 11
-00:00:35.874 --> 00:00:40.323
-The one POST goes to the worldwide
-Graph, on beta, and the last line
+00:00:35.687 --> 00:00:39.063
+The one POST goes to the
+worldwide Graph, on beta.
 
 12
-00:00:40.323 --> 00:00:45.275
-is what Lifecycle Workflows records:
-failed, no callback within an hour.
+00:00:39.063 --> 00:00:40.762
+Nothing downstream was called.
 
 13
-00:00:45.275 --> 00:00:49.500
-So a GCC High leaver's task
-fails at the end of the wait.
+00:00:40.762 --> 00:00:44.750
+And the last line is what Lifecycle
+Workflows records: completed.
 
 14
-00:00:49.500 --> 00:00:53.300
-Run it again for a worldwide
-tenant, and the task is completed.
+00:00:44.750 --> 00:00:48.170
+So the leaver's task reads
+as done, whatever happened.

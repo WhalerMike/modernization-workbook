@@ -42,7 +42,7 @@ Step three lists what didn't run, with its reason. One test is planned, under co
 
 ## Slide 11 — Who decides: the decision record and the owners
 
-Who decides? The decision record, from the guide's Step 1, scopes each run: the tenant, the pillars, and the Azure subscriptions for the infrastructure pillar; the run account; the cadence; the pinned tool version; telemetry; and where the output goes. The see-so approves it. Then each pillar owner reads their own tab, with the filters, and notes every investigate, skipped and error result, and every failed result whose feature may not exist in the tenant's cloud. For a G C C tenant, the workbook's baseline, the tool uses the worldwide endpoints. In G C C High and D O D, there's a case to know. Learn's Exchange Online service description says anti-phishing impersonation protection and spoof intelligence aren't yet available there. So a failed impersonation test in those clouds is a boundary finding, not a configuration change to make today.
+Who decides? The decision record, from the guide's Step 1, scopes each run: the tenant, the pillars, and the Azure subscriptions for the infrastructure pillar; the run account; the cadence; the pinned tool version; telemetry; and where the output goes. The see-so approves it. Then each pillar owner reads their own tab, with the filters, and notes every investigate, skipped and error result, and every failed result whose feature may not exist in G C C. For a G C C tenant, the workbook's baseline, the tool uses the default Global environment and the worldwide Graph and Azure endpoints.
 
 ## Slide 12 — The federal requirement and evidence for Module 1
 
