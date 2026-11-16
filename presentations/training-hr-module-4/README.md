@@ -1,13 +1,13 @@
 # HR-Driven Identity learning path, Module 4: Assign access from attributes and review what a move leaves
 
-**Deck name: Training_HR_Module_4.** The narrated deck for [Module 4: Assign access from attributes and review what a move leaves](../../docs/training/hr-driven-identity/04-access-and-movers.md), in the [HR-Driven Identity learning path](../../docs/training/hr-driven-identity/index.md). It teaches the module the way Microsoft Learn does: the learning objectives, the concepts, **Try it** slides with the real Lab 1 commands and output, Lab 2, the GCC High gap and privileged access, the federal requirement and the evidence an ISSO keeps, a two-question knowledge check, and the summary. It is built with the shared kit in [`../_build/`](../_build/README.md) and the training decks' helpers in [`../training-ms-automation-module-1/shared.js`](../training-ms-automation-module-1/shared.js). This folder sits outside `docs/`, so the site doesn't render it.
+**Deck name: Training_HR_Module_4.** The narrated deck for [Module 4: Assign access from attributes and review what a move leaves](../../docs/training/hr-driven-identity/04-access-and-movers.md), in the [HR-Driven Identity learning path](../../docs/training/hr-driven-identity/index.md). It teaches the module the way Microsoft Learn does: the learning objectives, the concepts, **Try it** slides with the real Lab 1 commands and output, Lab 2, privileged access, the federal requirement and the evidence an ISSO keeps, a two-question knowledge check, and the summary. It is built with the shared kit in [`../_build/`](../_build/README.md) and the training decks' helpers in [`../training-ms-automation-module-1/shared.js`](../training-ms-automation-module-1/shared.js). This folder sits outside `docs/`, so the site doesn't render it.
 
 | Part | Covers |
 |---|---|
 | Introduction | Title; why a rule on the organization code isn't enough; learning objectives and prerequisites |
 | Concepts | The guide's six rules for Gate 4 and the memberOf quarantine; the program's three policy files; the lint (AA-01 to AA-09); the mover's residual review and its classes |
 | Lab | Try it: Lab 1 steps 1 to 6: the reads, the clean lint, the broken lint, the memberOf scan, one mover's residual and the tests; Lab 2 in a test tenant (not run by the authors) |
-| Government clouds and privilege | The GCC High gap (administrative units with dynamic membership rules); privileged access kept out of rules (AA-09, SCuBA MS.AAD.7.5v1) |
+| Privileged access | Privileged access kept out of rules (AA-09, SCuBA MS.AAD.7.5v1) |
 | Check and summary | The federal requirement (AC-2, AC-6, AC-5, PS-5, MS.AAD.7.5v1) and evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |

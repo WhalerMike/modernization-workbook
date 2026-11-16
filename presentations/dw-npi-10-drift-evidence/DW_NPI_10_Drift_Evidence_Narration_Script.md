@@ -10,7 +10,7 @@ Why does this chapter come last? Because everything before it produces state, an
 
 ## Slide 3 — Learn's facts, the cloud and the other chapters
 
-Learn gives the facts the design turns on. A credential added to an existing app is high risk, and one added outside the expected process could be an attacker's. Learn names the exact audit events, keeps the log for thirty days with a premium license, and defines expiring as within thirty days and unused as over ninety. For this estate, Graph is the worldwide endpoint. One report, the service principal sign-in activity, is beta and worldwide only, so in the higher clouds the code records it as not read. And the other chapters feed in through a small contract.
+Learn gives the facts the design turns on. A credential added to an existing app is high risk, and one added outside the expected process could be an attacker's. Learn names the exact audit events, keeps the log for thirty days with a premium license, and defines expiring as within thirty days and unused as over ninety. For this estate, Graph is the worldwide endpoint. One report, the service principal sign-in activity, is beta, and it's listed for the global service, so a G C C tenant can read it on the worldwide endpoint. And the other chapters feed in through a small contract.
 
 ## Slide 4 — Microsoft's Sentinel rule, pinned and run offline
 

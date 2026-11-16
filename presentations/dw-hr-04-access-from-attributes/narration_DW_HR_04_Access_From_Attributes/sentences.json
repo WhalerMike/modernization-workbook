@@ -230,70 +230,6 @@
    "The sheet goes to the manager of record, and the interval from transfer to review is measured."
   ]
  ],
- "9": [
-  [
-   0.05,
-   1.6,
-   "The reads are one task."
-  ],
-  [
-   1.65,
-   3.875,
-   "Listing policies and assignments needs entitlement management read."
-  ],
-  [
-   5.525,
-   8.787,
-   "Group memberships use the transitive call on purpose, because it needs only user read, while another user's direct memberships need directory read."
-  ],
-  [
-   14.312,
-   2.438,
-   "The tools read Graph on the cloud you name."
-  ],
-  [
-   16.75,
-   10.062,
-   "One gap matters here: administrative units with dynamic rules exist only in global Azure, so a G C C High tenant uses the guide's interim path."
-  ],
-  [
-   26.812,
-   5.65,
-   "Nine tests cover this chapter, and all fifty-seven of the kit's tests pass with no tenant."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   3.575,
-   "The verified facts, each read on November first."
-  ],
-  [
-   3.625,
-   4.263,
-   "The automatic policy is generally available, with the limits we've seen."
-  ],
-  [
-   7.888,
-   3.0,
-   "Member-of rules are quarantined from November third."
-  ],
-  [
-   10.887,
-   6.15,
-   "The create call is in version one point oh, available in the L4 and L5 clouds."
-  ],
-  [
-   17.038,
-   4.25,
-   "And dynamic administrative units aren't available in Azure Government."
-  ],
-  [
-   21.288,
-   11.975,
-   "Two places where Learn stops are recorded so a later edit doesn't loosen the code: the fallback approver is required, not optional, and overlap is found only among the users the population holds."
-  ]
- ],
  "11": [
   [
    0.05,
@@ -578,6 +514,70 @@
    32.312,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.6,
+   "The reads are one task."
+  ],
+  [
+   1.65,
+   3.875,
+   "Listing policies and assignments needs entitlement management read."
+  ],
+  [
+   5.525,
+   8.787,
+   "Group memberships use the transitive call on purpose, because it needs only user read, while another user's direct memberships need directory read."
+  ],
+  [
+   14.312,
+   5.25,
+   "The tools read Graph on the cloud you name, and for G C C that's the worldwide host."
+  ],
+  [
+   19.562,
+   6.162,
+   "Administrative units with dynamic rules are available in the global Azure cloud that G C C uses."
+  ],
+  [
+   25.725,
+   5.65,
+   "Nine tests cover this chapter, and all fifty-seven of the kit's tests pass with no tenant."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.575,
+   "The verified facts, each read on November first."
+  ],
+  [
+   3.625,
+   4.263,
+   "The automatic policy is generally available, with the limits we've seen."
+  ],
+  [
+   7.888,
+   3.0,
+   "Member-of rules are quarantined from November third."
+  ],
+  [
+   10.887,
+   2.788,
+   "The create call is in version one point oh."
+  ],
+  [
+   13.675,
+   5.95,
+   "And dynamic administrative units are available in the global Azure cloud that G C C uses."
+  ],
+  [
+   19.625,
+   11.975,
+   "Two places where Learn stops are recorded so a later edit doesn't loosen the code: the fallback approver is required, not optional, and overlap is found only among the users the population holds."
   ]
  ]
 }

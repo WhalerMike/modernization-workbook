@@ -1,6 +1,6 @@
 // Building Provider Notices, Chapter 04 — AWS Health: the narrated tour.
 // Every fact comes from docs/project-plans/developer-workbooks/provider-notices/04-aws-health.md;
-// cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js. The chapter is a draft, and the tour says so.
+// cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js.
 // Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-pn-04-aws-health/build.js
 require("../_build/devwb.js")({
   workbook: "pn", chapter: 4, dir: __dirname,
@@ -9,8 +9,8 @@ require("../_build/devwb.js")({
   map: "Why AWS Health · what AWS gives and leaves · the support plan · the collector and its kinds · the partition guard · who · two labs · evidence · dangers",
   slides: [
     {
-      say: `Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 4: AWS Health. AWS tells each account which of its instances will be retired, and when. The API that says so needs a support plan, a policy you write yourself, and the right partition. We'll start from AWS's own documentation for the Health API, see what it leaves to you, then read the kit's collector, its kinds and its partition guard, and walk two labs, the evidence and the dangers. Two notes before we begin. This chapter is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures.`,
-      detail: `The chapter is the AWS collector behind the guide's G4 AWS Health. You start with what AWS documents: the Health API's three read operations, the support plans it needs, the read actions for a policy, and the single GovCloud (US) endpoint. Then you read how the kit pages events into details and entities ten at a time, maps categories to kinds, and keeps AWS's actionability apart from its own retirement rule. Lab 1 collects the fixture account and builds the GovCloud request without sending it; Lab 2 reads a test account and removes the policy afterwards. Status: the chapter is a draft (status: draft), awaiting the owner's review.`,
+      say: `Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 4: AWS Health. AWS tells each account which of its instances will be retired, and when. The API that says so needs a support plan, a policy you write yourself, and the right partition. We'll start from AWS's own documentation for the Health API, see what it leaves to you, then read the kit's collector, its kinds and its partition guard, and walk two labs, the evidence and the dangers. One note before we begin: the code is illustrative, tested against fixtures.`,
+      detail: `The chapter is the AWS collector behind the guide's G4 AWS Health. You start with what AWS documents: the Health API's three read operations, the support plans it needs, the read actions for a policy, and the single GovCloud (US) endpoint. Then you read how the kit pages events into details and entities ten at a time, maps categories to kinds, and keeps AWS's actionability apart from its own retirement rule. Lab 1 collects the fixture account and builds the GovCloud request without sending it; Lab 2 reads a test account and removes the policy afterwards.`,
       cite: ["pn04-events", "pn04-gov"],
       ref: "Opening; “In this chapter”",
     },

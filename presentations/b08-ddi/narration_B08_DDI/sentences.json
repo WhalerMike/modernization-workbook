@@ -398,58 +398,6 @@
    "Next, the most common source of split-brain."
   ]
  ],
- "8": [
-  [
-   0.05,
-   4.713,
-   "Azure private endpoints are the most common source of private-address split-brain."
-  ],
-  [
-   4.763,
-   6.713,
-   "When you create one, Azure writes its record into a private zone, and public D N S points into that name."
-  ],
-  [
-   11.475,
-   4.638,
-   "You only get the private answer if your query reaches a resolver linked to that zone."
-  ],
-  [
-   16.113,
-   1.512,
-   "So the rule is simple."
-  ],
-  [
-   17.625,
-   9.175,
-   "Every origin, whether on-premises, another cloud or the branch, forwards the service's public zone to the Azure D N S Private Resolver."
-  ],
-  [
-   26.8,
-   1.275,
-   "Not the private zone."
-  ],
-  [
-   28.075,
-   4.838,
-   "And Azure Government uses different zone names, so commercial rules don't carry over."
-  ],
-  [
-   32.913,
-   8.363,
-   "The Private Resolver is a bridge, not an authority, so you reach it by forwarding, never by delegation, and deploy one per region."
-  ],
-  [
-   41.275,
-   7.35,
-   "Addresses need the same discipline, with the enterprise eye-pam as the authority and the clouds reconciled against it."
-  ],
-  [
-   48.625,
-   2.962,
-   "Put it together, and you get one governed path."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -693,68 +641,6 @@
    "Now, choosing the platform."
   ]
  ],
- "13": [
-  [
-   0.05,
-   5.175,
-   "Choose the platform on the evidence it produces for your own boundary, not on a brochure."
-  ],
-  [
-   5.225,
-   5.975,
-   "Commercial D D I pricing is quoted per agency, so get every quote on the same assumptions."
-  ],
-  [
-   11.2,
-   4.562,
-   "The cloud-native pieces have public prices and show up in every model."
-  ],
-  [
-   15.762,
-   10.338,
-   "As one example, a hub with one inbound and one outbound Azure resolver endpoint costs about 362 dollars a month per region, and a second region doubles it."
-  ],
-  [
-   26.1,
-   4.487,
-   "Remember that authorization belongs to a specific offering, not a vendor."
-  ],
-  [
-   30.587,
-   6.825,
-   "The slide shows which D D I offerings have a fed-ramp authorization and which run inside the agency's own boundary."
-  ],
-  [
-   37.413,
-   4.35,
-   "And a Moderate authorization doesn't cover G C C High or DoD."
-  ],
-  [
-   41.763,
-   1.863,
-   "Some risk remains either way."
-  ],
-  [
-   43.625,
-   3.112,
-   "Sync lag becomes the new source of divergence."
-  ],
-  [
-   46.737,
-   4.025,
-   "A management outage blocks changes, though resolution keeps working."
-  ],
-  [
-   50.763,
-   5.513,
-   "And encrypted D N S bypass stays possible where endpoint controls are incomplete."
-  ],
-  [
-   56.275,
-   1.625,
-   "So, the decisions."
-  ]
- ],
  "14": [
   [
    0.05,
@@ -810,6 +696,120 @@
    62.987,
    0.762,
    "Thank you."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.713,
+   "Azure private endpoints are the most common source of private-address split-brain."
+  ],
+  [
+   4.763,
+   6.713,
+   "When you create one, Azure writes its record into a private zone, and public D N S points into that name."
+  ],
+  [
+   11.475,
+   4.638,
+   "You only get the private answer if your query reaches a resolver linked to that zone."
+  ],
+  [
+   16.113,
+   1.512,
+   "So the rule is simple."
+  ],
+  [
+   17.625,
+   9.175,
+   "Every origin, whether on-premises, another cloud or the branch, forwards the service's public zone to the Azure D N S Private Resolver."
+  ],
+  [
+   26.8,
+   1.275,
+   "Not the private zone."
+  ],
+  [
+   28.075,
+   6.175,
+   "And use Microsoft's recommended zone names, because records are generated automatically only for those."
+  ],
+  [
+   34.25,
+   8.363,
+   "The Private Resolver is a bridge, not an authority, so you reach it by forwarding, never by delegation, and deploy one per region."
+  ],
+  [
+   42.612,
+   7.35,
+   "Addresses need the same discipline, with the enterprise eye-pam as the authority and the clouds reconciled against it."
+  ],
+  [
+   49.962,
+   2.962,
+   "Put it together, and you get one governed path."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   5.175,
+   "Choose the platform on the evidence it produces for your own boundary, not on a brochure."
+  ],
+  [
+   5.225,
+   5.975,
+   "Commercial D D I pricing is quoted per agency, so get every quote on the same assumptions."
+  ],
+  [
+   11.2,
+   4.562,
+   "The cloud-native pieces have public prices and show up in every model."
+  ],
+  [
+   15.762,
+   10.338,
+   "As one example, a hub with one inbound and one outbound Azure resolver endpoint costs about 362 dollars a month per region, and a second region doubles it."
+  ],
+  [
+   26.1,
+   4.487,
+   "Remember that authorization belongs to a specific offering, not a vendor."
+  ],
+  [
+   30.587,
+   6.825,
+   "The slide shows which D D I offerings have a fed-ramp authorization and which run inside the agency's own boundary."
+  ],
+  [
+   37.413,
+   3.237,
+   "And a Moderate authorization doesn't cover High systems."
+  ],
+  [
+   40.65,
+   1.863,
+   "Some risk remains either way."
+  ],
+  [
+   42.513,
+   3.112,
+   "Sync lag becomes the new source of divergence."
+  ],
+  [
+   45.625,
+   4.025,
+   "A management outage blocks changes, though resolution keeps working."
+  ],
+  [
+   49.65,
+   5.513,
+   "And encrypted D N S bypass stays possible where endpoint controls are incomplete."
+  ],
+  [
+   55.163,
+   1.625,
+   "So, the decisions."
   ]
  ]
 }

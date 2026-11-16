@@ -6,65 +6,64 @@ Here's what you'll be able to
 do by the end of the module.
 
 2
-00:00:02.963 --> 00:00:06.626
+00:00:02.963 --> 00:00:06.799
 You'll state the interactive
-revocation list limits
+revocation list limit for GCC,
 
 3
-00:00:06.626 --> 00:00:09.874
-for GCC and GCC High, and
-the download time limit.
+00:00:06.799 --> 00:00:08.600
+and the download time limit.
 
 4
-00:00:09.874 --> 00:00:13.650
+00:00:08.600 --> 00:00:12.375
 You'll measure a set of lists and
 record the failures as findings.
 
 5
-00:00:13.650 --> 00:00:16.478
+00:00:12.375 --> 00:00:15.203
 You'll run the
 certificate-based authentication
 
 6
-00:00:16.478 --> 00:00:19.238
+00:00:15.203 --> 00:00:17.963
 check for a named cloud
 and explain what it finds.
 
 7
-00:00:19.238 --> 00:00:21.763
-And you'll explain why
-the same list can be
+00:00:17.963 --> 00:00:22.177
+And you'll explain why a list under
+the GCC limit can still be a warning,
 
 8
-00:00:21.763 --> 00:00:24.213
-a warning in one cloud and not in another.
+00:00:22.177 --> 00:00:24.100
+and why the check runs every day.
 
 9
-00:00:24.213 --> 00:00:28.593
+00:00:24.100 --> 00:00:28.481
 Before you start, finish Module
 3: there, the Temporary Access
 
 10
-00:00:28.593 --> 00:00:33.237
+00:00:28.481 --> 00:00:33.125
 Pass bridges a new hire to the card,
 and this gate ends that bridge.
 
 11
-00:00:33.237 --> 00:00:37.795
+00:00:33.125 --> 00:00:37.683
 Some familiarity with P K I terms
 helps, like issuing authority,
 
 12
-00:00:37.795 --> 00:00:43.054
+00:00:37.683 --> 00:00:42.942
 revocation list and policy O I D;
 Chapter 06 of the Federal Modernization
 
 13
-00:00:43.054 --> 00:00:47.524
+00:00:42.942 --> 00:00:47.412
 Workbook's PKI and Certificates
 book explains them for Entra.
 
 14
-00:00:47.524 --> 00:00:50.810
+00:00:47.412 --> 00:00:50.690
 Lab 1 needs Python and
 pytest, and no tenant.

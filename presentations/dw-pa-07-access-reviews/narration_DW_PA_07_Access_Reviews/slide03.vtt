@@ -36,16 +36,16 @@ worldwide Graph endpoint,
 and its Azure is commercial.
 
 8
-00:00:25.887 --> 00:00:29.949
+00:00:25.887 --> 00:00:30.237
 The Graph review APIs are listed
-for the government clouds too.
+for the global service it uses.
 
 9
-00:00:29.949 --> 00:00:33.428
+00:00:30.237 --> 00:00:33.595
 The Azure role reviews,
-though, run on a preview API,
+though, run on a Resource
 
 10
-00:00:33.428 --> 00:00:37.130
-and their government
-availability isn't confirmed.
+00:00:33.595 --> 00:00:37.870
+Manager API that Learn publishes
+only in preview versions.

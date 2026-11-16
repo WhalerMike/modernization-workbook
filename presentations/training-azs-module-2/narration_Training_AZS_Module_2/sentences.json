@@ -295,48 +295,6 @@
    "The guide also gives the policy as Bicep, from Azure Verified Modules."
   ]
  ],
- "9": [
-  [
-   0.05,
-   1.312,
-   "Where are agencies?"
-  ],
-  [
-   1.363,
-   5.938,
-   "In commercial Azure, which a G C C tenant uses, everything in this module is available."
-  ],
-  [
-   7.3,
-   12.062,
-   "As a side note for Azure Government: Learn's frequently asked questions for the Application Gateway firewall say it's supported in sovereign clouds, but geo-filtering custom rules and bot protection rule sets aren't."
-  ],
-  [
-   19.363,
-   8.65,
-   "So leave the bot manager rule set out, and record that Zero Trust test as skipped, not applicable, for the environment, not as a failure."
-  ],
-  [
-   28.012,
-   8.125,
-   "Front Door's own sovereign-cloud limits aren't yet specified; assume the Application Gateway ones until a test policy shows otherwise."
-  ],
-  [
-   36.138,
-   9.35,
-   "DDoS Protection has no variation listed, but which simulation partners serve Azure Government isn't specified, and Red Button is public cloud only."
-  ],
-  [
-   45.487,
-   11.8,
-   "On other clouds, the guide names AWS Shield and AWS W A F, Google Cloud Armor, and O C I W A F as a regional policy on a load balancer or at the edge."
-  ],
-  [
-   57.288,
-   4.325,
-   "DDoS protection on Oracle Cloud Infrastructure isn't compared there."
-  ]
- ],
  "10": [
   [
    0.05,
@@ -540,6 +498,48 @@
    37.163,
    8.537,
    "Next is Module 3, the edge and the egress: an origin nothing can reach around Front Door, and egress through Azure Firewall."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   5.938,
+   "In commercial Azure, which a G C C tenant uses, everything in this module is available."
+  ],
+  [
+   7.3,
+   3.212,
+   "The guide's availability table says what to plan for."
+  ],
+  [
+   10.512,
+   5.987,
+   "The Application Gateway firewall's detection mode doesn't block, so Step 4 runs prevention mode."
+  ],
+  [
+   16.5,
+   3.2,
+   "Front Door's managed rule sets need the Premium tier."
+  ],
+  [
+   19.7,
+   9.05,
+   "And DDoS Network Protection is billed per plan, I P Protection per protected I P, with simulations only through Learn's approved partners."
+  ],
+  [
+   28.75,
+   11.8,
+   "On other clouds, the guide names AWS Shield and AWS W A F, Google Cloud Armor, and O C I W A F as a regional policy on a load balancer or at the edge."
+  ],
+  [
+   40.55,
+   4.325,
+   "DDoS protection on Oracle Cloud Infrastructure isn't compared there."
   ]
  ]
 }

@@ -14,31 +14,20 @@ on the stable Graph version,
 except protected actions, which is beta.
 
 4
-00:00:07.501 --> 00:00:12.081
-For this estate's GCC tenant the host
-is the worldwide Graph endpoint,
+00:00:07.501 --> 00:00:13.143
+For this estate's GCC tenant the host is
+the worldwide Graph endpoint, and every
 
 5
-00:00:12.081 --> 00:00:17.225
-and every method used lists the government
-clouds in its availability table.
+00:00:13.143 --> 00:00:18.700
+method used lists the global service that
+G C C uses in its availability table.
 
 6
-00:00:17.225 --> 00:00:21.512
-Conditional Access and PIM are
-available in the government clouds too.
+00:00:18.700 --> 00:00:22.067
+The code never assumes a
+cloud: you name it explicitly,
 
 7
-00:00:21.512 --> 00:00:25.921
-One thing does change there: the
-two policies about Azure management
-
-8
-00:00:25.921 --> 00:00:30.562
-name a different application, so a GCC
-High program edits those two files.
-
-9
-00:00:30.562 --> 00:00:33.500
-The code never assumes
-a cloud; you name it.
+00:00:22.067 --> 00:00:24.430
+and there's no default to fall back on.

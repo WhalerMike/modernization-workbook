@@ -100,38 +100,6 @@
    "Next, which Azure."
   ]
  ],
- "4": [
-  [
-   0.05,
-   0.875,
-   "Which Azure?"
-  ],
-  [
-   0.925,
-   1.525,
-   "This is easy to get wrong."
-  ],
-  [
-   2.45,
-   10.975,
-   "The estate is a Microsoft 365 G C C tenant, and Learn says G C C uses the public directory, which can't be associated with an Azure Government subscription."
-  ],
-  [
-   13.425,
-   7.688,
-   "So the estate's Arc servers go to a commercial subscription, using the agent's default cloud and the commercial endpoints on the slide."
-  ],
-  [
-   21.113,
-   7.975,
-   "G C C High and Defense tenants are different: they use the government directory, Azure Government, and the dot U S endpoints."
-  ],
-  [
-   29.087,
-   2.888,
-   "The code guards both directions, as we'll see."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -233,33 +201,6 @@
    "Each gap gets a fix, and each is pinned by a test."
   ]
  ],
- "8": [
-  [
-   0.05,
-   3.038,
-   "The rest of the gaps are about the cloud and the record."
-  ],
-  [
-   3.087,
-   10.575,
-   "The role's token is for commercial Resource Manager, which is right for this estate, so the role-based playbook refuses any other cloud, and a separate playbook handles Azure Government."
-  ],
-  [
-   13.662,
-   7.013,
-   "The token is briefly visible on the server's command line; the chapter accepts that, since tokens are short-lived."
-  ],
-  [
-   20.675,
-   6.55,
-   "Nothing checks the region against the cloud, nothing is written down, and Learn's setup installs whatever's newest."
-  ],
-  [
-   27.225,
-   4.925,
-   "The verdict: use Microsoft's role, unchanged, and put the checks around it."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -317,60 +258,6 @@
    28.65,
    3.15,
    "Otherwise it's blocked, with the reason written down."
-  ]
- ],
- "11": [
-  [
-   0.05,
-   4.675,
-   "Before anything touches a server, the wave plan runs on the control node alone."
-  ],
-  [
-   4.725,
-   11.875,
-   "You give it a wave number, and it writes down exactly what it intends: every ready server, every blocked one, the resource group, region, cloud, both owners and the exact tag string."
-  ],
-  [
-   16.6,
-   9.537,
-   "It refuses to go on if there's no wave, if a region belongs to the other cloud, if a production server has slipped into a pilot wave, or if an owner is missing."
-  ],
-  [
-   26.137,
-   6.125,
-   "Both onboarding playbooks start with this plan, so if the plan stops, no server is contacted at all."
-  ]
- ],
- "12": [
-  [
-   0.05,
-   1.625,
-   "Now the onboarding itself."
-  ],
-  [
-   1.675,
-   8.912,
-   "The role-based playbook works one wave at a time: a single canary server, then five percent, then a quarter, and it stops at the first failure."
-  ],
-  [
-   10.588,
-   2.925,
-   "Each server is checked again before anything happens."
-  ],
-  [
-   13.512,
-   8.488,
-   "Without an explicit confirmation flag, it never calls the role; it just prints what each server would get, which is the dry run the role can't do."
-  ],
-  [
-   22.0,
-   8.438,
-   "With confirmation, it calls Microsoft's role unchanged, with the database's values and no stored secret, and writes a result file."
-  ],
-  [
-   30.438,
-   3.475,
-   "The older step-by-step playbook stays for Azure Government."
   ]
  ],
  "13": [
@@ -588,6 +475,114 @@
    33.925,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   0.875,
+   "Which Azure?"
+  ],
+  [
+   0.925,
+   1.525,
+   "This is easy to get wrong."
+  ],
+  [
+   2.45,
+   11.575,
+   "The estate is a Microsoft 365 G C C tenant, and Learn says Office 365 G C C is paired with Microsoft Entra I D in Azure, the commercial cloud."
+  ],
+  [
+   14.025,
+   7.688,
+   "So the estate's Arc servers go to a commercial subscription, using the agent's default cloud and the commercial endpoints on the slide."
+  ],
+  [
+   21.712,
+   7.588,
+   "The code keeps them there: the sample uses commercial regions, and the wave plan stops any other cloud or region, as we'll see."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.038,
+   "The rest of the gaps are about the cloud and the record."
+  ],
+  [
+   3.087,
+   7.987,
+   "The role's token is for commercial Resource Manager, which is right for this estate, so the role-based playbook refuses any other cloud."
+  ],
+  [
+   11.075,
+   7.013,
+   "The token is briefly visible on the server's command line; the chapter accepts that, since tokens are short-lived."
+  ],
+  [
+   18.087,
+   6.55,
+   "Nothing checks the region against the cloud, nothing is written down, and Learn's setup installs whatever's newest."
+  ],
+  [
+   24.637,
+   4.925,
+   "The verdict: use Microsoft's role, unchanged, and put the checks around it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.675,
+   "Before anything touches a server, the wave plan runs on the control node alone."
+  ],
+  [
+   4.725,
+   11.875,
+   "You give it a wave number, and it writes down exactly what it intends: every ready server, every blocked one, the resource group, region, cloud, both owners and the exact tag string."
+  ],
+  [
+   16.6,
+   10.0,
+   "It refuses to go on if there's no wave, if a region isn't a commercial Azure region, if a production server has slipped into a pilot wave, or if an owner is missing."
+  ],
+  [
+   26.6,
+   6.125,
+   "Both onboarding playbooks start with this plan, so if the plan stops, no server is contacted at all."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.625,
+   "Now the onboarding itself."
+  ],
+  [
+   1.675,
+   8.912,
+   "The role-based playbook works one wave at a time: a single canary server, then five percent, then a quarter, and it stops at the first failure."
+  ],
+  [
+   10.588,
+   2.925,
+   "Each server is checked again before anything happens."
+  ],
+  [
+   13.512,
+   8.488,
+   "Without an explicit confirmation flag, it never calls the role; it just prints what each server would get, which is the dry run the role can't do."
+  ],
+  [
+   22.0,
+   8.438,
+   "With confirmation, it calls Microsoft's role unchanged, with the database's values and no stored secret, and writes a result file."
+  ],
+  [
+   30.438,
+   4.388,
+   "The older step-by-step playbook stays, and now starts with the same plan."
   ]
  ]
 }

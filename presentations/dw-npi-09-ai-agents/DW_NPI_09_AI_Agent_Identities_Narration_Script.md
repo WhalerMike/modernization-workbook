@@ -10,7 +10,7 @@ Why does this chapter come with so many questions up front? Because an agent wor
 
 ## Slide 3 — Release stage by cloud, and D-NP6 as data
 
-Before any code, you need to know what's actually available, because the pieces are at different stages. The core objects are generally available. Conditional Access for agents and agent risk are preview, and the Graph properties for agent policies exist only in beta. In this estate's G C C cloud, the documented subset is listed, mostly for delegated access. In the higher government clouds, nothing is published yet. So the program's decision is held as data: in G C C the code reads agent identities, and elsewhere it falls back to applying the same rules to service principals.
+Before any code, you need to know what's actually available, because the pieces are at different stages. The core objects are generally available. Conditional Access for agents and agent risk are preview, and the Graph properties for agent policies exist only in beta. In this estate's G C C cloud, the documented subset is listed, mostly for delegated access. So the program's decision is held as data: in G C C the code reads agent identities, and where a cloud has none, it falls back to applying the same rules to service principals and managed identities.
 
 ## Slide 4 — The program's rules, NP6.1 to NP6.7
 
@@ -50,15 +50,15 @@ Who's involved? Developers build it. The identity governance officer keeps the h
 
 ## Slide 13 — Lab 1: Learn's samples, D-NP6, then the check
 
-Lab 1 runs on a laptop, with Chapters 1 and 2's output in place. First, send Learn's samples to the fake, and read the one test that matters most: the block-all-agents policy has no exclusion for approved agents. Then list each task's permissions, and read the decision table for each cloud: agent mode in the worldwide and G C C clouds, fallback in the higher ones. Then run the check in G C C. Eight AI identities, twenty-two findings, four of them top priority, and two orphan candidates for Chapter 2.
+Lab 1 runs on a laptop, with Chapters 1 and 2's output in place. First, send Learn's samples to the fake, and read the one test that matters most: the block-all-agents policy has no exclusion for approved agents. Then list each task's permissions, and read the decision table for each cloud: agent mode in both the worldwide and G C C clouds, with each capability's stage. Then run the check in G C C. Eight AI identities, twenty-two findings, four of them top priority, and two orphan candidates for Chapter 2.
 
 ## Slide 14 — Lab 1: reading the findings and the sponsor fields
 
 Reading the findings, the fictional tenant shows almost every way this can go wrong. One agent's handshake is incomplete and was reviewed a month after the agent already existed, and it holds a mail administrator role with no end date. Its blueprint has a secret, inherits every Graph role, and had a secret added outside any change window. Another agent's sponsor left and nobody confirmed a new one in time, so it's orphaned. There's a shadow agent nobody declared, and a piloted system with no identity at all. One agent passes everything, which is the target.
 
-## Slide 15 — Lab 1: the GCC High fallback, a dry run, a refusal
+## Slide 15 — Lab 1: a dry run, a refusal, and the tests
 
-Next, run the same estate as if it lived in G C C High. The code switches to fallback mode and sends no agent identity read at all. The one ordinary service principal gets the same credential and permission findings it got before, and three records that name agent identities become findings, because that cloud doesn't have them. Back in G C C, the dry run would send exactly one request: a report-only high-risk policy, since the other already exists. Applying it to the fake creates it report-only, and a hash nobody approved is refused.
+Now the write path. The dry run, with the plan's approved hash, would send exactly one request: a report-only policy for high-risk agents, since the other one already exists in the tenant. Applying it to the fake creates that policy, report-only, and reminds you to review its results before any change of state. Then try a hash nobody approved, and the write path refuses to run a plan nobody reviewed. Finally, run the whole suite: five hundred eleven tests pass, with no tenant and no network.
 
 ## Slide 16 — Lab 2: a test tenant, one governed agent
 
@@ -66,7 +66,7 @@ Lab 2 uses a licensed test tenant with fictional people, never production. Read 
 
 ## Slide 17 — Dangers, and the guard for each
 
-Agents make every familiar danger faster. Open creation means whoever builds an agent becomes its sponsor and owner. A secret on a blueprint isn't one credential, it's every agent made from it. Allow-all inheritance turns one future grant into a grant to every agent. A sponsor who leaves unnoticed leaves an agent nobody answers for. And preview features bring their own risks: enforcing a policy on a feature that can still change, or assuming the higher government clouds have objects they don't. Each danger has a guard that runs every week.
+Agents make every familiar danger faster. Open creation means whoever builds an agent becomes its sponsor and owner. A secret on a blueprint isn't one credential, it's every agent made from it. Allow-all inheritance turns one future grant into a grant to every agent. A sponsor who leaves unnoticed leaves an agent nobody answers for. And preview features bring their own risks: enforcing a policy on a feature that can still change, or assuming a cloud has objects it doesn't. Each danger has a guard that runs every week.
 
 ## Slide 18 — Done when: the chapter's checklist
 

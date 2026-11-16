@@ -332,7 +332,7 @@ Principle three: continuous evidence is a governance property, not a tool featur
 
 Principle four: governance must enforce, not only observe. The model's Governance capability runs from manual or static enforcement at Traditional to full automation with continuous enforcement and dynamic updates at Optimal. Enforcement isn't autonomy: in the program's design, the governance layer generates the corrective action and a human approves it, with high-blast-radius operations gated permanently. A gated preventive control is still a control. Convert one policy this quarter: a Conditional Access policy that blocks rather than reports, a baseline that's reapplied rather than compared, an assignment that expires rather than waits for review.
 
-Principle five: model the cloud boundary. Government clouds aren't the commercial service. Microsoft lists Office features unavailable in GCC, GCC High and DoD, and Intune features planned or unavailable for GCC High and DoD; GCC tenants use the commercial Intune service. A score read from a government tenant without knowing what it can use credits or penalizes the agency for platform decisions, so each gap is a governed finding with a compensating control or an accepted risk. Each mandate's edge is recorded too: BOD 25-01 stops at tenants with a SCuBA baseline.`,
+Principle five: model the cloud boundary. Government clouds aren't the commercial service. Microsoft lists Office features that aren't available in GCC, and GCC tenants use the commercial Intune service. A score read from a government tenant without knowing what it can use credits or penalizes the agency for platform decisions, so each gap is a governed finding with a compensating control or an accepted risk. Each mandate's edge is recorded too: BOD 25-01 stops at tenants with a SCuBA baseline.`,
   "Book 11, Chapter 02 — Governance Principles, \"Principle three,\" \"Principle four,\" \"Principle five: the cloud boundary must be modeled, not assumed away.\"");
 }
 
@@ -507,7 +507,7 @@ And the edge. The directive governs cloud tenant configuration for products with
     ["How it runs", "Windows PowerShell 5; OPA evaluates Rego policies", "PowerShell 7 module; Graph, Azure, Exchange, SharePoint"],
     ["Finding ID; severity", "Policy ID; SHALL or SHOULD, mandatory or not", "Numeric test ID; risk High, Medium or Low"],
     ["Run roles", "Global Reader; Power Platform and Power BI need admin roles and licenses", "Admin consent first; then reader roles; 21 Graph read permissions"],
-    ["Clouds", "-M365Environment commercial, gcc, gcchigh or dod", "Docs silent; source has USGov and USGovDoD; GCC is commercial"],
+    ["Clouds", "-M365Environment commercial or gcc", "Docs silent; source: GCC uses the default Global environment"],
     ["Changes the tenant?", "No", "No; data stays on the local machine"],
   ], { fontSize: 12, limit: 5.35 });
   callout(s, "Privilege", 5.5, 0.95, "FaUserShield", HEX.red, "Read-only isn't low privilege: ",
@@ -518,7 +518,7 @@ And the edge. The directive governs cloud tenant configuration for products with
 
 ScubaGear is CISA's tool. It runs in Windows PowerShell 5, queries the Microsoft 365 APIs and evaluates the settings with Open Policy Agent against Rego policies. Findings carry a policy ID such as MS.AAD.1.1v1, and severity comes from SHALL or SHOULD and whether the policy is mandatory. The Zero Trust Assessment is Microsoft's PowerShell 7 module with numeric test IDs and High, Medium or Low risk.
 
-Read-only describes behavior, not privilege. ScubaGear needs Global Reader for most products, but Power Platform needs the Power Platform Administrator role with a Power Apps for Office 365 license, and Power BI a Fabric Administrator with a Power BI or Fabric license, plus a first-run consent to Graph read permissions. Microsoft's get-started page for the Zero Trust Assessment asks for a Global Administrator for the first connection and consent, and several reader and administrator roles afterward, while also saying later runs can use Global Reader. Test which applies before you write the run book. Microsoft's documentation doesn't discuss government clouds; the 3.1.0 source has Environment values for USGov and USGovDoD, and a GCC tenant uses the commercial endpoints. Confirm the run in your own cloud.`,
+Read-only describes behavior, not privilege. ScubaGear needs Global Reader for most products, but Power Platform needs the Power Platform Administrator role with a Power Apps for Office 365 license, and Power BI a Fabric Administrator with a Power BI or Fabric license, plus a first-run consent to Graph read permissions. Microsoft's get-started page for the Zero Trust Assessment asks for a Global Administrator for the first connection and consent, and several reader and administrator roles afterward, while also saying later runs can use Global Reader. Test which applies before you write the run book. Microsoft's documentation doesn't discuss government clouds; the 3.1.0 source has an Environment parameter, and a GCC tenant uses the default Global value with the commercial endpoints. Confirm the run in your own cloud.`,
   "Book 11, Chapter 05 — ScubaGear and Microsoft's Zero Trust Assessment, \"The two tools at a glance,\" \"ScubaGear,\" \"The Zero Trust Assessment.\"");
 }
 
@@ -829,7 +829,7 @@ Logging. M-26-14 requires logs that identify the identity used for operations an
   tag(s, "How");
   table(s, "Run", 1.5, [2.0, 5.05, 5.1], ["", "ScubaGear 1.8.0", "Zero Trust Assessment 3.1.0"], [
     ["Runtime", "Windows PowerShell 5.1; Initialize-SCuBA installs OPA", "PowerShell 7.6 or later; Install-PSResource or Install-Module"],
-    ["Government cloud", "-M365Environment gcc, gcchigh or dod", "GCC uses the default Global environment"],
+    ["Government cloud", "-M365Environment gcc", "GCC uses the default Global environment"],
     ["Connections", "The Microsoft 365 APIs", "Graph, Azure, Exchange, Security & Compliance, SharePoint, AIP: each separate"],
     ["Recorded each run", "Tool version, configuration file hash, organization", "Tool version; review before comparing across versions"],
     ["Evidence file", "ScubaResults_{UUID}.json: hashed and copied only", "zt-export\\ZeroTrustAssessmentReport.json"],
@@ -842,7 +842,7 @@ Logging. M-26-14 requires logs that identify the identity used for operations an
   notes(s,
 `The run itself. The commands are in Chapter 09, illustrative and untested against production.
 
-ScubaGear installs from the PowerShell Gallery in Windows PowerShell 5.1; Initialize-SCuBA installs the dependencies, OPA included. For BOD 25-01 submissions, CISA's documentation calls for a configuration file and the organization's tenant name; M365Environment picks gcc, gcchigh or dod. The configuration file is where the agency's baseline decisions live: annotations with action plans, omissions with rationales and optional expiry, exclusions such as emergency access accounts. It's an input to the run, so it's versioned and its hash is recorded, exactly like the tool version.
+ScubaGear installs from the PowerShell Gallery in Windows PowerShell 5.1; Initialize-SCuBA installs the dependencies, OPA included. For BOD 25-01 submissions, CISA's documentation calls for a configuration file and the organization's tenant name; M365Environment picks gcc. The configuration file is where the agency's baseline decisions live: annotations with action plans, omissions with rationales and optional expiry, exclusions such as emergency access accounts. It's an input to the run, so it's versioned and its hash is recorded, exactly like the tool version.
 
 Each run writes a time-stamped directory. BaselineReports.html and the individual reports are for humans. The JSON file carries run and tenant metadata, summary counts, every result and the raw provider output, and it's the evidence: never edited, renamed or regenerated, only hashed and copied, the same rule CISA applies to CyberScope submissions. ActionPlan.csv lists failing SHALL controls only and seeds the POA&M.
 
@@ -1066,7 +1066,7 @@ sourceSlide("Sources behind the orientation and Module 1", [
   "Cyber Safety Review Board, Review of the Summer 2023 Microsoft Exchange Online Intrusion (Mar. 20, 2024).  ·  CISA and FBI, AA23-039A, ESXiArgs Ransomware Virtual Machine Recovery Guidance (Feb. 8, 2023).",
   "Recorded Future on ESXiArgs and OpenSLP (Feb. 2023).  ·  Microsoft Threat Intelligence, ransomware operators exploit ESXi hypervisor vulnerability, CVE-2024-37085 (July 29, 2024).",
   "VMware by Broadcom, vSphere Authentication 8.0, identity sources for vCenter Single Sign-On.  ·  NIST OSCAL.  ·  FedRAMP, Using a FedRAMP Certified Cloud Service (Consolidated Rules for 2026).",
-  "Microsoft Learn: continuous access evaluation; Privileged Identity Management; emergency access accounts; Office cloud features in GCC, GCC High and DoD; Intune for US Government.",
+  "Microsoft Learn: continuous access evaluation; Privileged Identity Management; emergency access accounts; Office application and feature availability in Government plans; Intune for US Government.",
   "Full footnotes with links and access dates: Book 11, Chapters 01–03.",
 ]);
 sourceSlide("Sources behind Module 2 — SCuBA, the tools, beyond M365", [

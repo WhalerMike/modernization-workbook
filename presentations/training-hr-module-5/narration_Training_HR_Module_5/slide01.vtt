@@ -49,16 +49,16 @@ revocation list validation and
 the phishing-resistant strength.
 
 11
-00:00:35.925 --> 00:00:39.281
+00:00:35.925 --> 00:00:39.298
 You'll run the check on a
-fictional tenant for GCC
+fictional tenant for GCC,
 
 12
-00:00:39.281 --> 00:00:42.638
-and then for GCC High, and
-see the findings change.
+00:00:39.298 --> 00:00:42.250
+and see how the GCC
+limit sets its warnings.
 
 13
-00:00:42.638 --> 00:00:45.860
+00:00:42.250 --> 00:00:45.120
 The module takes about
-forty-five minutes with its lab.
+fifty minutes with its lab.

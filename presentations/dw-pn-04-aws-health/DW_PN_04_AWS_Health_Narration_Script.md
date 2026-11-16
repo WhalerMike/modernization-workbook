@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 04: AWS Health
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 4: AWS Health. AWS tells each account which of its instances will be retired, and when. The API that says so needs a support plan, a policy you write yourself, and the right partition. We'll start from AWS's own documentation for the Health API, see what it leaves to you, then read the kit's collector, its kinds and its partition guard, and walk two labs, the evidence and the dangers. Two notes before we begin. This chapter is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 4: AWS Health. AWS tells each account which of its instances will be retired, and when. The API that says so needs a support plan, a policy you write yourself, and the right partition. We'll start from AWS's own documentation for the Health API, see what it leaves to you, then read the kit's collector, its kinds and its partition guard, and walk two labs, the evidence and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why AWS Health, and what done means
 

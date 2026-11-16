@@ -374,7 +374,7 @@ The matrix makes the standard the CISO's decision. The data platform team applie
   const s = content(S_WHAT, "Where it runs, and what it costs");
   tag(s, "What");
   rows(s, "Place", "WHERE THE SQL SERVER ARC RESOURCES LIVE", [
-    ["Commercial Azure", "Entra authentication isn't offered for Arc SQL in US Gov Virginia"],
+    ["Commercial Azure", "The Arc resources live in a commercial Azure subscription"],
     ["One directory", "A commercial subscription in the GCC tenant's directory"],
     ["Public cloud path", "SQL Server needs it to use Entra authentication"],
     ["FedRAMP High", "Each leveraged Azure service is in audit scope (Sep 21, 2026 list)"],
@@ -391,7 +391,7 @@ The matrix makes the standard the CISO's decision. The data platform team applie
   narrate(s,
 `The SQL Server host stays inside the agency's boundary, but it now depends on leveraged cloud services: Entra ID for tokens, Microsoft Graph for looking up users, groups and applications, and Azure Arc for the agent and the SQL extension.
 
-Placement first. SQL Server enabled by Azure Arc in the US Government Virginia region currently supports onboarding, inventory, licensing and billing, failover cluster management and ESU licenses; Microsoft Entra authentication isn't in that list. So the program assumes, as Book 05 does, a commercial Azure subscription in the same directory as the GCC tenant, and SQL Server needs access to the Azure public cloud to use Entra authentication.
+Placement first. The program assumes, as Book 05 does, a commercial Azure subscription in the same directory as the GCC tenant, and SQL Server needs access to the Azure public cloud to use Entra authentication.
 
 Microsoft's compliance-scope page, dated September 21, 2026, lists each of these Azure public-cloud services in scope for FedRAMP High. Appendix B is careful: an audit-scope listing isn't the agency's authorization. Leveraging a provider authorization still needs the agency's own review of the package and of customer responsibilities, and the decision stays with the authorizing official.
 
@@ -587,7 +587,7 @@ The matrix puts closure sign-off with the CIO and data leadership as system owne
   cards(s, "Risk", [
     ["FaFilter", "Scope", HEX.red, HEX.redTint, ["Instances found late, at the worst moment", "Cluster instances can't take Entra logins", "Apps on Domain Services hold their instance back"]],
     ["FaUserClock", "Sequence", HEX.amber, HEX.amberTint, ["Engine work held for domain unjoin", "AD CS retired before its replacement issues", "Migration still running when the block lands"]],
-    ["FaLock", "Control", HEX.navy, HEX.navyTint, ["Azure roles that can turn SQL logins back on", "One Arc identity shared by every app on a host", "No Entra auth for Arc SQL in US Gov Virginia (Oct 2026)"]],
+    ["FaLock", "Control", HEX.navy, HEX.navyTint, ["Azure roles that can turn SQL logins back on", "One Arc identity shared by every app on a host", "Entra auth needs the Azure public cloud"]],
   ], 13.5);
   decision(s, "Carry each residual risk in the exception registry with a compensating control, an owner and a sunset date",
     "ISSO runs it; AO accepts each", "From the first exception");
@@ -599,7 +599,7 @@ Scope. An estate that proceeds on an incomplete inventory discovers its missing 
 
 Sequence. Blocking engine Entra authentication on domain unjoin is, in the book's words, the most common cause of unnecessary delay. If AD CS is retired before a replacement issuer is in place, the program loses the interim posture at exactly the moment it's needed. And a posture confirmed only on the last day before the block is a posture nobody has had time to prove.
 
-Control. Contributor on the SQL Server resource can switch SQL authentication back on, so Azure role assignments are database controls. The Arc identity belongs to the server, so every process allowed to read it presents the same principal; one login per server is the honest unit of attribution, not one per application. And as of the book's check, Entra authentication isn't offered for Arc-connected SQL Server in the US Government Virginia region.
+Control. Contributor on the SQL Server resource can switch SQL authentication back on, so Azure role assignments are database controls. The Arc identity belongs to the server, so every process allowed to read it presents the same principal; one login per server is the honest unit of attribution, not one per application. And SQL Server needs access to the Azure public cloud to use Entra authentication.
 
 The book makes the exception registry the place: every NTLM, SQL-login and pre-2022 exception with its justification, compensating control and sunset date. The ISSO runs the registry and the authorizing official accepts each entry.`,
   "Book 06, Chapter 04 (The Phase 0 discovery instrument); Chapter 07 (failover cluster instances); Chapter 09 (two layers; US Government region); Chapter 11 (one login per server); Chapter 13 (Azure RBAC; ISSO; AO); Chapter 18 (Class 4); Chapter 21; Chapter 22 (sequencing).");

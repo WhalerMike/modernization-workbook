@@ -30,16 +30,10 @@ not a live tenancy, so review it and
 run Lab 2 before it reads a real one.
 
 7
-00:00:22.275 --> 00:00:25.088
-And two things are
-still not yet specified:
+00:00:22.275 --> 00:00:24.879
+And one thing is still not yet specified:
 
 8
-00:00:25.088 --> 00:00:29.347
+00:00:24.879 --> 00:00:29.110
 which key casing the CLI actually
-prints, so the kit accepts both,
-
-9
-00:00:29.347 --> 00:00:33.740
-and the Announcements endpoint in
-realm O C 3, so the kit refuses it.
+prints, so the kit accepts both.

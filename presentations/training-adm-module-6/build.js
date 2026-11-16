@@ -104,20 +104,20 @@ endModule(SI);
   const s = content(SC, "Which Azure a GCC estate's servers go to");
   tag(s, "What");
   const l = panel(s, "Gcc", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "A MICROSOFT 365 GCC ESTATE", "Commercial Azure", [
-    "Office 365 GCC uses Microsoft Entra Public",
-    "An Azure Government subscription can't be associated with a directory there",
-    "So the agent connects with --cloud AzureCloud, the default",
+    "Office 365 GCC is paired with Microsoft Entra ID in Azure",
+    "So the servers go to a commercial subscription",
+    "And the agent connects with --cloud AzureCloud, the default",
   ], 13);
-  const r = panel(s, "High", 6.85, 1.45, 5.9, null, HEX.teal, HEX.tealTint, "GCC HIGH AND DOD", "Azure Government", [
-    "Microsoft Entra Government and AzureUSGovernment",
-    "US Gov regions, and the .us endpoints",
-    "02_arc_onboarding.yml handles Azure Government",
+  const r = panel(s, "Endpoints", 6.85, 1.45, 5.9, null, HEX.teal, HEX.tealTint, "THE AGENT NEEDS", "The commercial endpoints, among others", [
+    "login.microsoftonline.com, *.login.microsoft.com, pas.windows.net",
+    "management.azure.com, only to connect or disconnect",
+    "*.his.arc.azure.com and *.guestconfiguration.azure.com",
   ], 13);
-  callout(s, "Cloud", Math.max(l, r) + 0.3, 0.95, "FaTriangleExclamation", HEX.amber, "Guarded both ways: ",
-    "the wave plan stops a region from the other cloud, and the role's playbook refuses any cloud but AzureCloud.");
-  sources(s, "Sources: Module 6, Unit 2; Microsoft Learn: \"Planning identity for Azure Government applications,\" \"azcmagent connect,\" \"Connected Machine agent network requirements.\"");
+  callout(s, "Cloud", Math.max(l, r) + 0.3, 0.95, "FaTriangleExclamation", HEX.amber, "Guarded twice: ",
+    "the wave plan stops a region that isn't a commercial Azure region, and the role's playbook refuses any cloud but AzureCloud.");
+  sources(s, "Sources: Module 6, Unit 2; Microsoft Learn: \"Cloud feature availability for US Government customers,\" \"azcmagent connect,\" \"Connected Machine agent network requirements.\"");
   notes(s,
-`One more piece of the setting: which Azure. The estate this workbook plans for is a Microsoft 365 GCC tenant. Microsoft Learn's page, Planning identity for Azure Government applications, says Office 365 GCC uses Microsoft Entra Public, and an Azure Government subscription can't be associated with a directory there. So a GCC estate's Arc servers go to a commercial subscription, and, as Learn's azcmagent connect reference shows, the agent connects with the AzureCloud cloud, which is the default. GCC High and DoD tenants are different: the same Learn pages, with the Connected Machine agent network requirements, give Microsoft Entra Government and Azure Government, with US Gov regions and the dot us endpoints. The kit guards this both ways. The wave plan stops a server whose region belongs to the other cloud, and the playbook that uses Microsoft's role refuses any cloud but AzureCloud. For Azure Government, the kit's other onboarding playbook, oh two, spells the steps out.`,
+`One more piece of the setting: which Azure. The estate this workbook plans for is a Microsoft 365 GCC tenant. Microsoft Learn's page, Cloud feature availability for US Government customers, says Office 365 GCC is paired with Microsoft Entra ID in Azure. So a GCC estate's Arc servers go to a commercial subscription, and, as Learn's azcmagent connect reference shows, the agent connects with the AzureCloud cloud, which is the default. The agent then needs the commercial endpoints, which Learn's Connected Machine agent network requirements list: the sign-in hosts, management dot azure dot com, only to connect or disconnect, and the Arc and guest configuration services, among others. The kit guards the cloud twice. The wave plan stops a server whose region isn't a commercial Azure region, and the playbook that uses Microsoft's role refuses any cloud but AzureCloud.`,
   `${M} — Unit 2; Book 19, Chapter 08 — "Where Ansible sits beside Arc" (Which Azure); "What it leaves to you."`);
 }
 
@@ -168,7 +168,7 @@ endModule(SI);
   tag(s, "What");
   const l = panel(s, "Plan", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "05_ARC_WAVE_PLAN.YML", "Runs only on the control node; it stops on", [
     "No wave given, or a wave with no ready server",
-    "A cloud that isn't AzureCloud or AzureUSGovernment, or a region from the other cloud",
+    "A cloud that isn't AzureCloud, or a region that isn't a commercial Azure region",
     "A production server in wave 0 or 1",
     "A server with no config_owner or patch_owner",
   ], 13);
@@ -181,7 +181,7 @@ endModule(SI);
     "no server is contacted. It writes arc-wave-N-plan-<time>.json and .csv under reports/.");
   sources(s, "Sources: Module 6, Unit 3; the kit's playbooks 05 and 06; Ansible documentation, \"Controlling playbook execution: strategies and more.\"");
   notes(s,
-`The kit's wave plan playbook runs only on the control node. You give it a wave number. It lists the wave's ready servers and the ones the CMDB blocked, and writes a JSON and a CSV plan under reports: host, configuration item, environment, resource group, region, cloud, both owners, the exact tag string and a state. It stops when no wave is given or the wave has no ready server, when the cloud is wrong or a region belongs to the other cloud, when a production server is planned in wave zero or one, which this workbook's Arc track keeps for non-production, and when a server has no owner. Both onboarding playbooks import it as their first play, so if the plan stops, no server is contacted. The playbook that uses Microsoft's role runs in batches, one canary server, then five, then twenty-five percent, with the batch keywords the Ansible documentation describes. It's in check mode unless you set confirm change to true. Then the role isn't called, and each server prints what it would get. With the flag, the role runs with the CMDB's values, authenticating with the managed identity.`,
+`The kit's wave plan playbook runs only on the control node. You give it a wave number. It lists the wave's ready servers and the ones the CMDB blocked, and writes a JSON and a CSV plan under reports: host, configuration item, environment, resource group, region, cloud, both owners, the exact tag string and a state. It stops when no wave is given or the wave has no ready server, when the cloud is wrong or a region isn't a commercial Azure region, when a production server is planned in wave zero or one, which this workbook's Arc track keeps for non-production, and when a server has no owner. Both onboarding playbooks import it as their first play, so if the plan stops, no server is contacted. The playbook that uses Microsoft's role runs in batches, one canary server, then five, then twenty-five percent, with the batch keywords the Ansible documentation describes. It's in check mode unless you set confirm change to true. Then the role isn't called, and each server prints what it would get. With the flag, the role runs with the CMDB's values, authenticating with the managed identity.`,
   `${M} — Unit 3; Book 19, Chapter 08 — "The wave plan," "Onboarding with Microsoft's role."`);
 }
 endModule(SC);
@@ -332,7 +332,7 @@ endModule(SL);
     "work through the Chapter 08 checklist in Book 19.");
   sources(s, "Sources: Module 6, Unit 7 \"Summary\"; Module 7, \"Unit 1: Introduction.\"");
   notes(s,
-`To sum up. You read the CMDB into groups and tags with both owners, planned a wave a reviewer can read before anything runs, and saw the dry run Microsoft's role can't do. The evidence an ISSO keeps: the CMDB export, each wave's plan and result files with the change record, the requirements file and the snapshot, and, from Lab 2, the role assignment record, V K ARC oh one and oh seven, and the back-out record. Gate 8's per-wave evidence is in the guide. Before shipping, work through the Chapter 08 checklist. Next is Module 7: extend Lifecycle Workflows. You'll see why Learn's Logic App definition costs a GCC High leaver, and run the definition that calls back in the right cloud, reports honestly, and checks that the leaver blocks before the custom task runs.`,
+`To sum up. You read the CMDB into groups and tags with both owners, planned a wave a reviewer can read before anything runs, and saw the dry run Microsoft's role can't do. The evidence an ISSO keeps: the CMDB export, each wave's plan and result files with the change record, the requirements file and the snapshot, and, from Lab 2, the role assignment record, V K ARC oh one and oh seven, and the back-out record. Gate 8's per-wave evidence is in the guide. Before shipping, work through the Chapter 08 checklist. Next is Module 7: extend Lifecycle Workflows. You'll see what Learn's Logic App definition costs a leaver, and run the definition that reports honestly, and checks that the leaver blocks before the custom task runs.`,
   `${M} — Unit 7 "Summary"; Module 7 — "Unit 1: Introduction."`);
 }
 endModule(SS);

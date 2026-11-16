@@ -659,63 +659,6 @@
    "Next, access."
   ]
  ],
- "11": [
-  [
-   0.05,
-   5.075,
-   "When Active Directory retires, being inside the network stops meaning anything."
-  ],
-  [
-   5.125,
-   10.05,
-   "M twenty-two oh-nine says users should log in to applications rather than networks, and multifactor authentication belongs at the application layer, not in a VPN."
-  ],
-  [
-   15.175,
-   11.912,
-   "The replacement is Zero Trust as the model, Conditional Access deciding each request, a secure access service edge replacing the VPN, and phishing-resistant authentication as the proof."
-  ],
-  [
-   27.087,
-   8.575,
-   "B O D twenty-five oh-one makes blocking legacy authentication and phishing-resistant M F A for all users mandatory."
-  ],
-  [
-   35.663,
-   7.775,
-   "fido two keys, passkeys, Windows Hello and piv or CAC cards qualify; SMS and voice don't."
-  ],
-  [
-   43.438,
-   2.525,
-   "Two consequences need an executive eye."
-  ],
-  [
-   45.962,
-   3.6,
-   "Smart-card sign-in is anchored in Active Directory today."
-  ],
-  [
-   49.562,
-   6.088,
-   "The card and pin stay, but certificate issuance needs a successor before Active Directory retires."
-  ],
-  [
-   55.65,
-   8.412,
-   "And privilege: every human admin assignment becomes eligible and time-bound, and emergency accounts are tested at least every 90 days."
-  ],
-  [
-   64.062,
-   13.312,
-   "The see-so decides: phishing-resistant M F A as the end state for everyone, Tier 0 administrators first, opening in Phase 1, and certificate issuance moved off A D DS by Gate G4."
-  ],
-  [
-   77.375,
-   1.5,
-   "Next, who leads."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -1307,6 +1250,63 @@
    74.7,
    0.762,
    "Thank you."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.075,
+   "When Active Directory retires, being inside the network stops meaning anything."
+  ],
+  [
+   5.125,
+   10.05,
+   "M twenty-two oh-nine says users should log in to applications rather than networks, and multifactor authentication belongs at the application layer, not in a VPN."
+  ],
+  [
+   15.175,
+   11.912,
+   "The replacement is Zero Trust as the model, Conditional Access deciding each request, a secure access service edge replacing the VPN, and phishing-resistant authentication as the proof."
+  ],
+  [
+   27.087,
+   8.575,
+   "B O D twenty-five oh-one makes blocking legacy authentication and phishing-resistant M F A for all users mandatory."
+  ],
+  [
+   35.663,
+   7.35,
+   "fido two keys, passkeys, Windows Hello and piv cards qualify; SMS and voice don't."
+  ],
+  [
+   43.013,
+   2.525,
+   "Two consequences need an executive eye."
+  ],
+  [
+   45.538,
+   3.6,
+   "Smart-card sign-in is anchored in Active Directory today."
+  ],
+  [
+   49.138,
+   6.088,
+   "The card and pin stay, but certificate issuance needs a successor before Active Directory retires."
+  ],
+  [
+   55.225,
+   8.412,
+   "And privilege: every human admin assignment becomes eligible and time-bound, and emergency accounts are tested at least every 90 days."
+  ],
+  [
+   63.638,
+   13.312,
+   "The see-so decides: phishing-resistant M F A as the end state for everyone, Tier 0 administrators first, opening in Phase 1, and certificate issuance moved off A D DS by Gate G4."
+  ],
+  [
+   76.95,
+   1.5,
+   "Next, who leads."
   ]
  ]
 }

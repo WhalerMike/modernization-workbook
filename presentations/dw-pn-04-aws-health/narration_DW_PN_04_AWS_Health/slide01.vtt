@@ -43,15 +43,6 @@ its kinds and its partition guard, and walk
 two labs, the evidence and the dangers.
 
 10
-00:00:32.324 --> 00:00:33.900
-Two notes before we begin.
-
-11
-00:00:33.900 --> 00:00:37.262
-This chapter is a draft,
-awaiting the owner's review.
-
-12
-00:00:37.262 --> 00:00:40.850
-And the code is illustrative,
-tested against fixtures.
+00:00:32.324 --> 00:00:37.540
+One note before we begin: the code is
+illustrative, tested against fixtures.

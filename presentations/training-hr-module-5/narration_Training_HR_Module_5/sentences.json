@@ -1,36 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   6.763,
-   "Welcome to Module 5 of the H R-Driven Identity learning path: check certificate-based authentication."
-  ],
-  [
-   6.812,
-   7.05,
-   "This is Gate 5 of the implementation guide, credentials, and it goes with Chapter 05 of the developer workbook."
-  ],
-  [
-   13.863,
-   5.463,
-   "A piv card's revocation reaches sign-in only through the certificate revocation list."
-  ],
-  [
-   19.325,
-   16.6,
-   "So in this module you'll measure every revocation list and check the tenant's certificate-based authentication settings against the limits for your cloud: the trust store, each list against the cloud's limit, the multifactor mapping, revocation list validation and the phishing-resistant strength."
-  ],
-  [
-   35.925,
-   6.713,
-   "You'll run the check on a fictional tenant for G C C and then for G C C High, and see the findings change."
-  ],
-  [
-   42.638,
-   3.163,
-   "The module takes about forty-five minutes with its lab."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -76,117 +44,6 @@
    36.062,
    7.275,
    "So this module measures each list and checks the tenant's settings against your cloud's limits, every day rather than once."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   2.913,
-   "Here's what you'll be able to do by the end of the module."
-  ],
-  [
-   2.962,
-   6.912,
-   "You'll state the interactive revocation list limits for G C C and G C C High, and the download time limit."
-  ],
-  [
-   9.875,
-   3.775,
-   "You'll measure a set of lists and record the failures as findings."
-  ],
-  [
-   13.65,
-   5.588,
-   "You'll run the certificate-based authentication check for a named cloud and explain what it finds."
-  ],
-  [
-   19.238,
-   4.975,
-   "And you'll explain why the same list can be a warning in one cloud and not in another."
-  ],
-  [
-   24.212,
-   9.025,
-   "Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge."
-  ],
-  [
-   33.237,
-   14.287,
-   "Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; Chapter 06 of the Federal Modernization Workbook's P K I and Certificates book explains them for Entra."
-  ],
-  [
-   47.525,
-   3.225,
-   "Lab 1 needs Python and pytest, and no tenant."
-  ]
- ],
- "4": [
-  [
-   0.05,
-   5.037,
-   "Unit 1 starts in the guide's Step 5, bind credentials to H R events."
-  ],
-  [
-   5.088,
-   9.9,
-   "Its first step gives the revocation list limits for each cloud, and its later steps tie card issuance and revocation to H R and contractor events."
-  ],
-  [
-   14.988,
-   11.6,
-   "Chapter 09 of the H R-Driven Identity book explains why revocation checking matters, and that a reissued card changes the binding between the piv certificate and the Entra user."
-  ],
-  [
-   26.587,
-   2.2,
-   "Notice what this module doesn't cover."
-  ],
-  [
-   28.788,
-   10.125,
-   "Binding coverage and affinity for each user belong to the validation kit's check, V K piv oh one, and to Gate 6 of the attribute-driven migration guide."
-  ],
-  [
-   38.913,
-   14.025,
-   "This module checks the tenant's settings: the certificate authorities in the trust store, the X dot five-oh-nine certificate method, the authentication strengths and the Conditional Access policies, plus a measurement of each revocation list."
-  ]
- ],
- "5": [
-  [
-   0.05,
-   3.15,
-   "Here are the limits the check holds each cloud to."
-  ],
-  [
-   3.2,
-   7.3,
-   "G C C uses the commercial service, so its interactive sign-in limit for a revocation list is twenty megabytes."
-  ],
-  [
-   10.5,
-   6.6,
-   "G C C High is Azure Government, at forty-five megabytes, and the kit holds D O D to the same."
-  ],
-  [
-   17.1,
-   3.575,
-   "In every cloud a list must download within ten seconds."
-  ],
-  [
-   20.675,
-   8.1,
-   "Learn gives those limits in megabytes; the kit reads them as decimal megabytes, a million bytes each, which is the stricter reading."
-  ],
-  [
-   28.775,
-   8.475,
-   "There's no default cloud in the kit: you name it every time, so a G C C High check can't silently run against G C C's numbers."
-  ],
-  [
-   37.25,
-   10.912,
-   "Two thresholds are the program's design guidance, not Learn's: a warning at eighty percent of the interactive limit, and a warning when an authority's certificate expires within ninety days."
   ]
  ],
  "6": [
@@ -377,96 +234,7 @@
    "Your times may differ from the slide; the fixtures are local files, so they read almost instantly."
   ]
  ],
- "10": [
-  [
-   0.05,
-   3.75,
-   "Step three checks the fictional tenant for G C C."
-  ],
-  [
-   3.8,
-   5.162,
-   "The first line names the limits it's using: twenty million bytes, and ten seconds."
-  ],
-  [
-   8.963,
-   4.537,
-   "Then the count: five Findings, seven Warns, and exit code two."
-  ],
-  [
-   13.5,
-   2.05,
-   "The lab asks you to find four of them."
-  ],
-  [
-   15.55,
-   10.025,
-   "C B four: one authority's list took eleven point four seconds to download, over the ten-second limit, so in real life sign-in would fail for its cards."
-  ],
-  [
-   25.575,
-   7.175,
-   "C B five: that same list is eighteen and a half million bytes, more than eighty percent of the G C C limit."
-  ],
-  [
-   32.75,
-   5.188,
-   "C B nine: the piv policy O I D isn't mapped to multifactor."
-  ],
-  [
-   37.938,
-   4.975,
-   "And C B ten: no enabled policy requires a phishing-resistant strength."
-  ],
-  [
-   42.913,
-   6.8,
-   "You'll also see a legacy intermediate with no list at all, and an issuing authority missing from the trust store."
-  ]
- ],
  "11": [
-  [
-   0.05,
-   1.413,
-   "What differs by cloud?"
-  ],
-  [
-   1.462,
-   5.4,
-   "Step four runs the same check on the same tenant, naming G C C High instead."
-  ],
-  [
-   6.862,
-   6.638,
-   "The limit line now says forty-five million bytes, and the count drops to five Findings and six Warns."
-  ],
-  [
-   13.5,
-   2.675,
-   "One warning went away: C B five."
-  ],
-  [
-   16.175,
-   10.6,
-   "The eighteen and a half million byte list was over eighty percent of G C C's twenty megabytes, but it's well under eighty percent of forty-five, so in G C C High it's fine."
-  ],
-  [
-   26.775,
-   1.762,
-   "The download time is different."
-  ],
-  [
-   28.538,
-   6.525,
-   "The ten-second limit applies in every cloud, so the eleven point four second download is still a Finding."
-  ],
-  [
-   35.062,
-   8.387,
-   "That's the lesson of this step: the same list can be a warning in one cloud and not in another, which is why the check always takes the cloud by name."
-  ]
- ],
- "12": [
   [
    0.05,
    8.15,
@@ -498,7 +266,7 @@
    "The authors haven't run Lab 2."
   ]
  ],
- "13": [
+ "12": [
   [
    0.05,
    1.387,
@@ -545,7 +313,207 @@
    "And the mode rules in the export."
   ]
  ],
- "14": [
+ "1": [
+  [
+   0.05,
+   6.763,
+   "Welcome to Module 5 of the H R-Driven Identity learning path: check certificate-based authentication."
+  ],
+  [
+   6.812,
+   7.05,
+   "This is Gate 5 of the implementation guide, credentials, and it goes with Chapter 05 of the developer workbook."
+  ],
+  [
+   13.863,
+   5.463,
+   "A piv card's revocation reaches sign-in only through the certificate revocation list."
+  ],
+  [
+   19.325,
+   16.6,
+   "So in this module you'll measure every revocation list and check the tenant's certificate-based authentication settings against the limits for your cloud: the trust store, each list against the cloud's limit, the multifactor mapping, revocation list validation and the phishing-resistant strength."
+  ],
+  [
+   35.925,
+   6.325,
+   "You'll run the check on a fictional tenant for G C C, and see how the G C C limit sets its warnings."
+  ],
+  [
+   42.25,
+   2.812,
+   "The module takes about fifty minutes with its lab."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of the module."
+  ],
+  [
+   2.962,
+   5.638,
+   "You'll state the interactive revocation list limit for G C C, and the download time limit."
+  ],
+  [
+   8.6,
+   3.775,
+   "You'll measure a set of lists and record the failures as findings."
+  ],
+  [
+   12.375,
+   5.588,
+   "You'll run the certificate-based authentication check for a named cloud and explain what it finds."
+  ],
+  [
+   17.962,
+   6.138,
+   "And you'll explain why a list under the G C C limit can still be a warning, and why the check runs every day."
+  ],
+  [
+   24.1,
+   9.025,
+   "Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge."
+  ],
+  [
+   33.125,
+   14.287,
+   "Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; Chapter 06 of the Federal Modernization Workbook's P K I and Certificates book explains them for Entra."
+  ],
+  [
+   47.413,
+   3.225,
+   "Lab 1 needs Python and pytest, and no tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.037,
+   "Unit 1 starts in the guide's Step 5, bind credentials to H R events."
+  ],
+  [
+   5.088,
+   8.875,
+   "Its first step gives the revocation list limits, and its later steps tie card issuance and revocation to H R and contractor events."
+  ],
+  [
+   13.963,
+   11.6,
+   "Chapter 09 of the H R-Driven Identity book explains why revocation checking matters, and that a reissued card changes the binding between the piv certificate and the Entra user."
+  ],
+  [
+   25.562,
+   2.2,
+   "Notice what this module doesn't cover."
+  ],
+  [
+   27.762,
+   10.125,
+   "Binding coverage and affinity for each user belong to the validation kit's check, V K piv oh one, and to Gate 6 of the attribute-driven migration guide."
+  ],
+  [
+   37.888,
+   14.025,
+   "This module checks the tenant's settings: the certificate authorities in the trust store, the X dot five-oh-nine certificate method, the authentication strengths and the Conditional Access policies, plus a measurement of each revocation list."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.3,
+   "Here are the limits the check holds G C C to."
+  ],
+  [
+   3.35,
+   7.575,
+   "Microsoft Learn's page on the certificate revocation list gives them for public Entra I D, which includes G C C."
+  ],
+  [
+   10.925,
+   6.862,
+   "For interactive sign-in, a revocation list must stay under twenty megabytes and download within ten seconds."
+  ],
+  [
+   17.788,
+   3.138,
+   "The service-side limit is sixty-five megabytes."
+  ],
+  [
+   20.925,
+   8.1,
+   "Learn gives those limits in megabytes; the kit reads them as decimal megabytes, a million bytes each, which is the stricter reading."
+  ],
+  [
+   29.025,
+   5.2,
+   "There's no default cloud in the kit: you name it every time, with cloud G C C."
+  ],
+  [
+   34.225,
+   10.912,
+   "Two thresholds are the program's design guidance, not Learn's: a warning at eighty percent of the interactive limit, and a warning when an authority's certificate expires within ninety days."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.75,
+   "Step three checks the fictional tenant for G C C."
+  ],
+  [
+   3.8,
+   5.162,
+   "The first line names the limits it's using: twenty million bytes, and ten seconds."
+  ],
+  [
+   8.963,
+   4.537,
+   "Then the count: five Findings, seven Warns, and exit code two."
+  ],
+  [
+   13.5,
+   2.05,
+   "The lab asks you to find four of them."
+  ],
+  [
+   15.55,
+   10.025,
+   "C B four: one authority's list took eleven point four seconds to download, over the ten-second limit, so in real life sign-in would fail for its cards."
+  ],
+  [
+   25.575,
+   7.175,
+   "C B five: that same list is eighteen and a half million bytes, more than eighty percent of the G C C limit."
+  ],
+  [
+   32.75,
+   5.188,
+   "C B nine: the piv policy O I D isn't mapped to multifactor."
+  ],
+  [
+   37.938,
+   4.975,
+   "And C B ten: no enabled policy requires a phishing-resistant strength."
+  ],
+  [
+   42.913,
+   6.8,
+   "You'll also see a legacy intermediate with no list at all, and an issuing authority missing from the trust store."
+  ],
+  [
+   49.712,
+   3.288,
+   "Step four runs the tests: fifty-seven pass."
+  ],
+  [
+   53.0,
+   1.613,
+   "Then delete the out folder."
+  ]
+ ],
+ "13": [
   [
    0.05,
    3.5,
@@ -563,26 +531,26 @@
   ],
   [
    16.988,
-   7.312,
-   "Second: an eighteen and a half million byte list raises C B five for G C C but not for G C C High."
+   5.737,
+   "Second: an eighteen and a half million byte list raises C B five in G C C."
   ],
   [
-   24.3,
+   22.725,
    0.688,
    "Why?"
   ],
   [
-   24.988,
-   10.762,
-   "The answer is b. C B five warns at eighty percent of the cloud's interactive limit, and G C C High's limit is forty-five megabytes, so the same size is under the line."
+   23.413,
+   12.375,
+   "The answer is b. C B five warns at eighty percent of the interactive limit, and G C C's limit is twenty megabytes, so eighteen and a half million bytes is over the line, though still under the limit."
   ],
   [
-   35.75,
+   35.788,
    4.875,
    "The module page has two more questions, each linked to the section that teaches it."
   ]
  ],
- "15": [
+ "14": [
   [
    0.05,
    0.825,
@@ -590,31 +558,31 @@
   ],
   [
    0.875,
-   10.512,
-   "You learned the interactive revocation list limits, twenty megabytes for G C C and forty-five for G C C High, with ten seconds to download in every cloud."
+   7.287,
+   "You learned the interactive revocation list limits for G C C: twenty megabytes, and ten seconds to download."
   ],
   [
-   11.387,
+   8.162,
    5.487,
    "You measured three lists, and the missing one became a recorded finding instead of a crash."
   ],
   [
-   16.875,
-   8.812,
-   "You checked a fictional tenant for G C C and then for G C C High, and saw how the cloud's limit changes the findings while the download limit doesn't."
+   13.65,
+   6.662,
+   "You checked a fictional tenant for G C C, and saw how the G C C limit sets the C B five warning."
   ],
   [
-   25.688,
+   20.312,
    6.612,
    "Keep the measurement and the check running every day, because a list that fits today can cross the limit next month."
   ],
   [
-   32.3,
+   26.925,
    8.15,
    "Next is Module 6, time separations from the logs: separation-to-block and separation-to-revocation for every leaver."
   ],
   [
-   40.45,
+   35.075,
    5.65,
    "It builds on this module, because a card's revocation reaches sign-in through the revocation list."
   ]

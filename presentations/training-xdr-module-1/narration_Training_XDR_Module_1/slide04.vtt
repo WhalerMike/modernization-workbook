@@ -29,74 +29,65 @@ The agency's boundary holds the devices,
 the S O C's tools and the evidence store.
 
 7
-00:00:21.025 --> 00:00:22.987
-Microsoft's holds the service.
+00:00:21.025 --> 00:00:26.640
+Microsoft's holds the service, and for a
+G C C tenant, as Microsoft Learn's page
 
 8
-00:00:22.987 --> 00:00:28.982
-Microsoft Learn's page on Defender for U S
-Government says that for a U S Government
+00:00:26.640 --> 00:00:32.437
+on Defender for U S Government describes,
+it has its own G C C service endpoints.
 
 9
-00:00:28.982 --> 00:00:33.124
-tenant it's built in the Azure
-U S Government environment,
-
-10
-00:00:33.124 --> 00:00:36.738
-and G C C, G C C High and D O
-D each have their own portal.
-
-11
-00:00:36.738 --> 00:00:38.299
+00:00:32.437 --> 00:00:34.000
 Then the control planes.
 
-12
-00:00:38.299 --> 00:00:43.092
+10
+00:00:34.000 --> 00:00:38.792
 Learn says Intune is the recommended tool
 for distributing Defender for Endpoint
 
-13
-00:00:43.092 --> 00:00:46.565
+11
+00:00:38.792 --> 00:00:42.265
 settings, and that its policies
 apply to device objects only,
 
-14
-00:00:46.565 --> 00:00:50.038
+12
+00:00:42.265 --> 00:00:45.738
 so they're assigned to Entra
 device groups, never user groups.
 
-15
-00:00:50.038 --> 00:00:53.500
+13
+00:00:45.738 --> 00:00:49.199
 Settings Intune doesn't
 hold, like automation levels
 
-16
-00:00:53.500 --> 00:00:56.726
+14
+00:00:49.199 --> 00:00:52.425
 and custom detections, live
 in the Defender portal.
 
-17
-00:00:56.726 --> 00:01:02.295
+15
+00:00:52.425 --> 00:00:57.995
 Servers in Azure, A W S, Google Cloud or
 Oracle Cloud Infrastructure reach Defender
 
-18
-00:01:02.295 --> 00:01:05.244
+16
+00:00:57.995 --> 00:01:00.944
 through Defender for
 Servers and Azure Arc,
 
-19
-00:01:05.244 --> 00:01:08.275
+17
+00:01:00.944 --> 00:01:03.975
 as the Devices and
 Endpoints book describes.
 
-20
-00:01:08.275 --> 00:01:11.756
+18
+00:01:03.975 --> 00:01:07.456
 And one rule above all: one
 control plane per setting,
 
-21
-00:01:11.756 --> 00:01:15.140
+19
+00:01:07.456 --> 00:01:10.820
 because Group Policy wins
 over Intune by default.

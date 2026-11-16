@@ -171,26 +171,26 @@ endModule(SI);
 
 // ================================================================== 8 Gov
 {
-  const s = content(SC, "Where agencies are: look built-ins up in your cloud");
+  const s = content(SC, "Where agencies are: look built-ins up where you are");
   tag(s, "Who");
   const p1 = panel(s, "Pol", 0.6, 1.45, W3, null, HEX.navy, HEX.navyTint, "AZURE POLICY", null, [
-    "No variation listed between commercial Azure and Azure Government",
-    "FedRAMP initiatives exist in separate versions for each cloud",
+    "Available in commercial Azure",
+    "The FedRAMP initiatives are built in",
   ], 12.5);
   const p2 = panel(s, "Built", 0.6 + W3 + G3, 1.45, W3, null, HEX.amber, HEX.amberTint, "BUILT-IN DEFINITIONS", null, [
-    "Differ by cloud: the guide lists them by display name",
+    "They and the FedRAMP initiatives change version: the guide lists them by display name",
     "Look each up where you are, as the lab does",
   ], 12.5);
-  const p3 = panel(s, "Env", 0.6 + 2 * (W3 + G3), 1.45, W3, null, HEX.red, HEX.redTint, "A DANGER OF ITS OWN", null, [
-    "Assuming commercial features in Azure Government",
-    "A test the cloud can't run: an environment decision, not a failure",
+  const p3 = panel(s, "Env", 0.6 + 2 * (W3 + G3), 1.45, W3, null, HEX.red, HEX.redTint, "A TEST THAT CAN'T RUN", null, [
+    "Because the cloud doesn't offer the feature",
+    "Recorded as an environment decision, not a failure",
   ], 12.5);
   callout(s, "GCC", Math.max(p1, p2, p3) + 0.3, 0.95, "FaCloud", HEX.teal, "GCC first: ",
-    "a GCC tenant's commercial subscriptions run Step 9 as written; Azure Government needs its own initiative versions and definition names.");
-  sources(s, "Sources: Module 5, Unit 3; Guide, \"Government-cloud availability\" (Azure Policy), \"What couldn't be verified,\" \"Dangers\"; Compare Azure Government and global Azure.");
+    "a GCC tenant's commercial subscriptions run Step 9 as written.");
+  sources(s, "Sources: Module 5, Unit 3; Guide, \"Availability in commercial Azure\" (Azure Policy), \"What couldn't be verified\"; Book 10, Ch 05.");
   notes(s,
-`Where are agencies? Learn's comparison page lists no variation in Azure Policy between commercial Azure and Azure Government. But the fed-ramp initiatives exist in separate versions for each cloud, as Cloud Boundary and Landing Zone notes, and built-in definitions differ by cloud. That's why the guide lists them by display name, and has you look each one up in the cloud you're in, as the lab does. In G C C, the workbook's baseline, the commercial subscriptions run Step 9 as written. In Azure Government, use its own initiative versions and definition names. And the guide lists assuming commercial features in Azure Government as a danger of its own: a test the cloud can't run is recorded as an environment decision, not a failed control.`,
-  `${M} — Unit 3; guide, "Government-cloud availability" (Azure Policy row), "What couldn't be verified" (built-in policy names), "Dangers"; Microsoft Learn — "Compare Azure Government and global Azure"; Book 10, Chapter 05.`);
+`Where are agencies? In G C C, the workbook's baseline, the subscriptions are commercial Azure, and the commercial subscriptions run Step 9 as written. Azure Policy is available there, with the fed-ramp initiatives built in, as Cloud Boundary and Landing Zone notes. But built-in definitions and the fed-ramp initiatives change version. That's why the guide lists them by display name, and has you look each one up where you are, as the lab does. And a test that can't run because the cloud doesn't offer the feature is recorded as an environment decision, not a failed control.`,
+  `${M} — Unit 3; guide, "Availability in commercial Azure" (Azure Policy row), "What couldn't be verified" (built-in policy names); Book 10, Chapter 05.`);
 }
 endModule(SC);
 
@@ -296,7 +296,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 5 deck", [
   "Module page: docs/training/azure-security/05-policy-drift-and-evidence.md (Azure Security Engineering learning path, Module 5), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
-  "Azure Security Engineering (implementation guide): Steps 9 and 10; RACI; Evidence catalog; Metrics; Control states and assessment mapping; Federal requirements and KSIs; Dangers; Implementation checklist. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Azure Policy assignment structure; Azure Policy exemption structure; Azure Web Application Firewall and Azure Policy; Secure your Azure DDoS Protection deployment; DDoS fundamental best practices; Layer 7 DDoS protection; Compare Azure Government and global Azure.",
+  "Azure Security Engineering (implementation guide): Steps 9 and 10; RACI; Evidence catalog; Metrics; Control states and assessment mapping; Federal requirements and KSIs; Dangers; Implementation checklist. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Azure Policy assignment structure; Azure Policy exemption structure; Azure Web Application Firewall and Azure Policy; Secure your Azure DDoS Protection deployment; DDoS fundamental best practices; Layer 7 DDoS protection.",
   "Read for the lab, November 13, 2026: Azure CLI, az policy exemption.",
   "Cloud Boundary and Landing Zone, Chapter 05; Governance, Drift and Evidence, Chapter 02; Zero Trust and Assessment, Chapter 10. NIST SP 800-53 Rev. 5 (CM-2, CM-6, CA-7, IR-4, CP-4, AU-6); FedRAMP 20x KSIs, as the guide's requirements table maps them.",
   "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",

@@ -42,7 +42,7 @@ The program's rule: discovery fills the configuration database, but the authorit
 
 ## Slide 11 — One loop on every cloud, closed on a re-test
 
-Control automation runs one loop everywhere: test the setting, spot the drift, raise a task against the asset, fix it on the native platform, and close it only when a re-test confirms the fix. The cloud tools already test most settings; your job is to own the result, and the coordination platform reads but never writes. The platforms differ in ways that matter. Some integrations aren't available in Azure Government, one AWS compliance service is in maintenance mode, and on your own VMware estate the evidence is entirely yours to build. The decision for the CISO: keep the platform's identity read-only, with every automated fix approved. Next, who runs it.
+Control automation runs one loop everywhere: test the setting, spot the drift, raise a task against the asset, fix it on the native platform, and close it only when a re-test confirms the fix. The cloud tools already test most settings; your job is to own the result, and the coordination platform reads but never writes. The platforms differ in ways that matter. Some integrations need extra plans or reach only part of the estate, one AWS compliance service is in maintenance mode, and on your own VMware estate the evidence is entirely yours to build. The decision for the CISO: keep the platform's identity read-only, with every automated fix approved. Next, who runs it.
 
 ## Slide 12 — Who runs day two: decisions away from the keyboard
 

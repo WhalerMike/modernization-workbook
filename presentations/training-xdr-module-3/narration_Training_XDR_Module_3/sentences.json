@@ -1,157 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   6.725,
-   "Welcome to Module 3 of Defender X D R Engineering and Operations: exposure and incidents."
-  ],
-  [
-   6.775,
-   7.975,
-   "Two queues decide whether the platform you built is used: the vulnerabilities waiting for an owner, and the incidents waiting for an analyst."
-  ],
-  [
-   14.75,
-   6.588,
-   "In this module you learn what Defender adds to the vulnerability program in a government cloud, and what it can't do there."
-  ],
-  [
-   21.337,
-   8.5,
-   "Then you learn how the security operations center triages, contains, hands off and closes every incident, to a table it can show."
-  ],
-  [
-   29.837,
-   5.275,
-   "The module covers Steps 5 and 6 of the Defender X D R implementation guide."
-  ],
-  [
-   35.112,
-   4.475,
-   "It takes about thirty-five minutes, plus Lab 2 in your own test tenant."
-  ]
- ],
- "2": [
-  [
-   0.05,
-   1.337,
-   "Why these two together?"
-  ],
-  [
-   1.387,
-   4.525,
-   "Because both are queues, and a queue without an owner is where risk waits."
-  ],
-  [
-   5.912,
-   10.162,
-   "The vulnerability queue: the remediation program, its clock and the Known Exploited Vulnerabilities catalog belong to the Security Operations and Telemetry book."
-  ],
-  [
-   16.075,
-   11.9,
-   "The guide adds what Defender contributes, and its rule that a vulnerability without an owner is a finding against C M eight, the inventory control, not just R A five, vulnerability monitoring."
-  ],
-  [
-   27.975,
-   2.825,
-   "That's the program's risk-based recommendation."
-  ],
-  [
-   30.8,
-   4.037,
-   "And in a U S Government cloud, the attack-path features aren't there."
-  ],
-  [
-   34.837,
-   13.688,
-   "The incident queue: one queue, with Sentinel onboarded to the Defender portal if the agency uses it, a triage window and a containment rung for each severity, and every incident closed with a classification and a determination."
-  ],
-  [
-   48.525,
-   10.088,
-   "The response ladder and device isolation stay in Security Operations and Telemetry; this module fixes severity, triage, evidence and hand-off."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   2.913,
-   "Here's what you'll be able to do by the end of this module."
-  ],
-  [
-   2.962,
-   9.125,
-   "Say which exposure features are available in G C C, G C C High and D O D, and record the one that isn't as not applicable."
-  ],
-  [
-   12.088,
-   6.6,
-   "Prioritize vulnerabilities with the guide's interim path, and give every device group a remediation owner."
-  ],
-  [
-   18.688,
-   5.287,
-   "Triage an incident to the severity table, pick its containment rung, and hand it off."
-  ],
-  [
-   23.975,
-   4.963,
-   "And export the open incidents, and one incident with its alerts, as evidence."
-  ],
-  [
-   28.938,
-   2.325,
-   "You need Module 1's Graph read path."
-  ],
-  [
-   31.262,
-   9.537,
-   "Skim the Security Operations and Telemetry book's Chapter 06, for the remediation program and its clock, and Chapter 11, for the response ladder."
-  ],
-  [
-   40.8,
-   3.362,
-   "Lab 2 runs in a test tenant, never production."
-  ]
- ],
- "4": [
-  [
-   0.05,
-   3.737,
-   "Unit 1 is the government-cloud fact that shapes this gate."
-  ],
-  [
-   3.788,
-   8.012,
-   "Microsoft Learn's page on Security Exposure Management says it's available in Public Cloud only, not in U S Government clouds."
-  ],
-  [
-   11.8,
-   5.638,
-   "That's the product that holds attack paths, the exposure graph and critical asset management."
-  ],
-  [
-   17.438,
-   14.912,
-   "Learn doesn't name G C C explicitly, but Defender for U S Government customers, G C C included, is built in Azure U S Government, so the guide treats G C C as not available too, and lists that as something it couldn't verify."
-  ],
-  [
-   32.35,
-   15.963,
-   "What the government clouds do have, from Learn's Defender for Endpoint government page: Defender Vulnerability Management, core and premium, without two features, report inaccuracy and request C V E support; and Secure Score, with some recommendations missing."
-  ],
-  [
-   48.312,
-   7.312,
-   "So a Zero Trust Assessment test that needs Exposure Management is recorded as not applicable in the tenant's cloud."
-  ],
-  [
-   55.625,
-   4.362,
-   "It goes in the closure register as a disposition, not a failed control."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -511,6 +358,149 @@
    "The module page has two more questions, each linked to the unit that answers it."
   ]
  ],
+ "1": [
+  [
+   0.05,
+   6.725,
+   "Welcome to Module 3 of Defender X D R Engineering and Operations: exposure and incidents."
+  ],
+  [
+   6.775,
+   7.975,
+   "Two queues decide whether the platform you built is used: the vulnerabilities waiting for an owner, and the incidents waiting for an analyst."
+  ],
+  [
+   14.75,
+   6.513,
+   "In this module you learn what Defender adds to the vulnerability program in G C C, and what it can't do there."
+  ],
+  [
+   21.262,
+   8.5,
+   "Then you learn how the security operations center triages, contains, hands off and closes every incident, to a table it can show."
+  ],
+  [
+   29.762,
+   5.275,
+   "The module covers Steps 5 and 6 of the Defender X D R implementation guide."
+  ],
+  [
+   35.038,
+   4.475,
+   "It takes about thirty-five minutes, plus Lab 2 in your own test tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.337,
+   "Why these two together?"
+  ],
+  [
+   1.387,
+   4.525,
+   "Because both are queues, and a queue without an owner is where risk waits."
+  ],
+  [
+   5.912,
+   10.162,
+   "The vulnerability queue: the remediation program, its clock and the Known Exploited Vulnerabilities catalog belong to the Security Operations and Telemetry book."
+  ],
+  [
+   16.075,
+   11.9,
+   "The guide adds what Defender contributes, and its rule that a vulnerability without an owner is a finding against C M eight, the inventory control, not just R A five, vulnerability monitoring."
+  ],
+  [
+   27.975,
+   2.825,
+   "That's the program's risk-based recommendation."
+  ],
+  [
+   30.8,
+   3.575,
+   "And in G C C, the attack-path features aren't there."
+  ],
+  [
+   34.375,
+   13.688,
+   "The incident queue: one queue, with Sentinel onboarded to the Defender portal if the agency uses it, a triage window and a containment rung for each severity, and every incident closed with a classification and a determination."
+  ],
+  [
+   48.062,
+   10.088,
+   "The response ladder and device isolation stay in Security Operations and Telemetry; this module fixes severity, triage, evidence and hand-off."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.662,
+   "Say which exposure features are available in G C C, and record the one that isn't as not applicable."
+  ],
+  [
+   9.625,
+   6.6,
+   "Prioritize vulnerabilities with the guide's interim path, and give every device group a remediation owner."
+  ],
+  [
+   16.225,
+   5.287,
+   "Triage an incident to the severity table, pick its containment rung, and hand it off."
+  ],
+  [
+   21.512,
+   4.963,
+   "And export the open incidents, and one incident with its alerts, as evidence."
+  ],
+  [
+   26.475,
+   2.325,
+   "You need Module 1's Graph read path."
+  ],
+  [
+   28.8,
+   9.537,
+   "Skim the Security Operations and Telemetry book's Chapter 06, for the remediation program and its clock, and Chapter 11, for the response ladder."
+  ],
+  [
+   38.337,
+   3.362,
+   "Lab 2 runs in a test tenant, never production."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   9.613,
+   "Unit 1 is the fact that shapes this gate in G C C. Microsoft Learn's page on Security Exposure Management says it's available in Public Cloud only."
+  ],
+  [
+   9.662,
+   8.05,
+   "That's the product that holds attack paths, the exposure graph and critical asset management, and it isn't available in G C C."
+  ],
+  [
+   17.712,
+   15.912,
+   "What G C C does have, from Learn's Defender for Endpoint government page: Defender Vulnerability Management, core and premium, without two features, report inaccuracy and request C V E support; and Secure Score, with some recommendations missing."
+  ],
+  [
+   33.625,
+   7.312,
+   "So a Zero Trust Assessment test that needs Exposure Management is recorded as not applicable in the tenant's cloud."
+  ],
+  [
+   40.938,
+   4.362,
+   "It goes in the closure register as a disposition, not a failed control."
+  ]
+ ],
  "12": [
   [
    0.05,
@@ -519,26 +509,26 @@
   ],
   [
    0.875,
-   6.65,
-   "You recorded Exposure Management as not applicable in a government cloud, and used the interim path instead."
+   6.487,
+   "You recorded Exposure Management as not applicable in G C C, and used the interim path instead."
   ],
   [
-   7.525,
+   7.362,
    6.662,
    "You filed the vulnerability and exposure queries, and checked that each exposed device has an owner and a ticket."
   ],
   [
-   14.188,
+   14.025,
    5.075,
    "And you exported the open incidents, and one incident with its alerts, for the record."
   ],
   [
-   19.262,
+   19.1,
    19.225,
    "The evidence an I S S O keeps from this module: the vulnerability query output and the remediation queue; the severity table and the incident response plan's version; the monthly incident export, with alerts, classification and timestamps; and every incident closed outside its window, with the reason."
   ],
   [
-   38.487,
+   38.325,
    6.463,
    "Next is Module 4: hunting, detections as code, and identity and cloud-app signals."
   ]

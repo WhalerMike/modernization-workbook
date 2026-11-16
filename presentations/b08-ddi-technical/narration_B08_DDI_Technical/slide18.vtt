@@ -1,59 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.085
+00:00:00.050 --> 00:00:05.164
 Each cloud ships its own private DNS,
 with its own console, API, zone model
 
 2
-00:00:05.085 --> 00:00:10.375
+00:00:05.164 --> 00:00:10.538
 and failure behavior, and none was
 designed to share policy with the others.
 
 3
-00:00:10.375 --> 00:00:15.950
-The slide compares AWS, Azure,
-Google Cloud and VMware NSX.
+00:00:10.538 --> 00:00:17.175
+The slide compares AWS, Azure, Google
+Cloud, Oracle Cloud and VMware NSX.
 
 4
-00:00:15.950 --> 00:00:18.510
+00:00:17.175 --> 00:00:19.735
 Azure private endpoints
 are the most common
 
 5
-00:00:18.510 --> 00:00:21.000
+00:00:19.735 --> 00:00:22.225
 source of split-brain,
 so they get the detail.
 
 6
-00:00:21.000 --> 00:00:23.319
+00:00:22.225 --> 00:00:24.544
 The private answer only comes back from a
 
 7
-00:00:23.319 --> 00:00:25.775
+00:00:24.544 --> 00:00:27.000
 resolver that can see
 a linked private zone.
 
 8
-00:00:25.775 --> 00:00:27.725
+00:00:27.000 --> 00:00:28.950
 Three behaviors catch teams out.
 
 9
-00:00:27.725 --> 00:00:32.500
+00:00:28.950 --> 00:00:33.725
 DNS answers don't grant access;
 the service's network setting does.
 
 10
-00:00:32.500 --> 00:00:37.388
+00:00:33.725 --> 00:00:38.613
 Use one zone per service type everywhere,
 with Microsoft's recommended names.
 
 11
-00:00:37.388 --> 00:00:42.495
+00:00:38.613 --> 00:00:43.719
 And watch the NXDOMAIN trap: a partner's
 storage account can lead into your empty
 
 12
-00:00:42.495 --> 00:00:47.590
+00:00:43.719 --> 00:00:48.820
 zone and fail, which is fixed by enabling
 fallback to internet on the zone's link.

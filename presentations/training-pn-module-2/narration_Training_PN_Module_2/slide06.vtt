@@ -66,11 +66,15 @@ Resources come from the impacted-resources
 rows with the same tracking I D.
 
 15
-00:00:47.788 --> 00:00:52.251
-The source link is the event on the
-cloud's own Resource Manager host.
+00:00:47.788 --> 00:00:51.631
+The source link is the event
+on the Resource Manager host,
 
 16
-00:00:52.251 --> 00:00:55.750
+00:00:51.631 --> 00:00:53.593
+management dot azure dot com.
+
+17
+00:00:53.593 --> 00:00:56.930
 An unknown cloud name
 throws; there is no default.

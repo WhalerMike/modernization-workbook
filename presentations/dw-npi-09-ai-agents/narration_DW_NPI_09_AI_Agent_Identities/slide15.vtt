@@ -1,44 +1,47 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.225
-Next, run the same estate as
-if it lived in G C C High.
+00:00:00.050 --> 00:00:01.312
+Now the write path.
 
 2
-00:00:04.225 --> 00:00:09.037
-The code switches to fallback mode and
-sends no agent identity read at all.
+00:00:01.312 --> 00:00:06.145
+The dry run, with the plan's approved
+hash, would send exactly one request: a
 
 3
-00:00:09.037 --> 00:00:13.995
-The one ordinary service principal gets
-the same credential and permission findings
+00:00:06.145 --> 00:00:08.803
+report-only policy for high-risk agents,
 
 4
-00:00:13.995 --> 00:00:18.334
-it got before, and three records that
-name agent identities become findings,
+00:00:08.803 --> 00:00:12.025
+since the other one already
+exists in the tenant.
 
 5
-00:00:18.334 --> 00:00:20.400
-because that cloud doesn't have them.
+00:00:12.025 --> 00:00:15.539
+Applying it to the fake creates
+that policy, report-only,
 
 6
-00:00:20.400 --> 00:00:24.632
-Back in G C C, the dry run
-would send exactly one request:
+00:00:15.539 --> 00:00:19.587
+and reminds you to review its
+results before any change of state.
 
 7
-00:00:24.632 --> 00:00:29.537
-a report-only high-risk policy,
-since the other already exists.
+00:00:19.587 --> 00:00:21.614
+Then try a hash nobody approved,
 
 8
-00:00:29.537 --> 00:00:32.491
-Applying it to the fake
-creates it report-only,
+00:00:21.614 --> 00:00:25.199
+and the write path refuses to
+run a plan nobody reviewed.
 
 9
-00:00:32.491 --> 00:00:34.970
-and a hash nobody approved is refused.
+00:00:25.199 --> 00:00:27.244
+Finally, run the whole suite:
+
+10
+00:00:27.244 --> 00:00:31.750
+five hundred eleven tests pass,
+with no tenant and no network.

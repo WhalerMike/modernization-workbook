@@ -30,16 +30,15 @@ Two notices are new, six changed, fifteen
 unchanged, and one is no longer listed.
 
 7
-00:00:22.588 --> 00:00:28.412
-The router writes just six payloads:
-one create, four updates and one close.
+00:00:22.588 --> 00:00:28.487
+The router writes just seven payloads:
+one create, four updates and two closes.
 
 8
-00:00:28.412 --> 00:00:32.531
-The routing hasn't changed, so the
-same twelve notices route to tasks,
+00:00:28.487 --> 00:00:30.389
+Twelve notices route to tasks,
 
 9
-00:00:32.531 --> 00:00:35.980
-but only the six with something
+00:00:30.389 --> 00:00:34.100
+but only the seven with something
 new to say make a payload.

@@ -1,7 +1,7 @@
 // Ticket-to-Machine learning path, Module 6: Actuation and the Re-read Rule — the module's narrated deck.
 // Teaches docs/training/ticket-to-machine/06-actuation-and-the-re-read.md, Learn-style: objectives, the concepts, two
 // "Try it" slides with the real Lab 1 commands and output (run November 2, 2026 in a copy of
-// examples/servicenow-sailpoint), Lab 2, what differs in government clouds, the federal requirement and evidence, a
+// examples/servicenow-sailpoint), Lab 2, availability in GCC, the federal requirement and evidence, a
 // two-question check, and the summary. Every fact comes from the module page, the sections it sends you to read (the
 // guide's Gates 5 and 6, the workbook's Chapter 05), its verification log, or the kit; the deck adds none.
 // Helpers: ../training-ms-automation-module-1/shared.js.
@@ -30,13 +30,13 @@ const title = (sec, t, sub, units) => {
 const SI = "Introduction";
 const SC = "Concepts";
 const SL = "Lab";
-const SA = "Government clouds";
+const SA = "Availability in GCC";
 const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 6: Actuation and the re-read rule", "Ticket-to-Machine learning path · A ticket authorizes a machine; only a re-read closes the finding",
-    ["Actuation by lane  ·  The business rule  ·  The re-read client  ·  The guard and offline mode", "Try it: Lab 1  ·  Lab 2  ·  Government clouds  ·  Evidence"]);
+    ["Actuation by lane  ·  The business rule  ·  The re-read client  ·  The guard and offline mode", "Try it: Lab 1  ·  Lab 2  ·  Availability in GCC  ·  Evidence"]);
   notes(s,
 `Welcome to Module 6 of the Ticket-to-Machine learning path: actuation and the re-read rule. This module covers the guide's Gates 5 and 6, and the developer workbook's Chapter 05. In Module 5, an event became a finding with an intended state. Now the fix has to happen, and the finding has to close. You'll see where the fix runs on these products, lane by lane. Then you'll see how a ServiceNow business rule and a re-read client enforce one rule: a finding closes only when a re-read of the target shows the intended state. In the lab, you'll watch the client decide six waiting findings on two days. The code is illustrative, tested against fictional fixtures.`,
   `${M} — Unit 1 "Introduction."`);
@@ -280,22 +280,21 @@ endModule(SC);
 }
 endModule(SL);
 
-// ================================================================== 13 Government clouds
+// ================================================================== 13 Availability in GCC
 {
-  const s = content(SA, "What differs in government clouds for Gates 5 and 6");
+  const s = content(SA, "What the guide found in GCC for Gates 5 and 6");
   tag(s, "Who");
   const b = table(s, "Gov", 1.45, [3.2, 8.95], ["Piece", "What the guide found"], [
-    ["PIM", "Available in Azure for US Government (read November 1, 2026)"],
-    ["ServiceNow Entra spoke", "Points at graph.microsoft.com by default; its page doesn't mention the US Government clouds. It fits GCC; for GCC High, confirm with ServiceNow"],
-    ["SailPoint connectors", "Endpoints for GCC High are documented"],
-    ["The re-read in Graph", "GCC uses the worldwide Graph endpoint; GCC High uses graph.microsoft.us"],
+    ["PIM", "Part of the commercial Entra service GCC uses"],
+    ["ServiceNow Entra spoke", "Points at graph.microsoft.com by default; its page doesn't mention the US Government clouds. It fits GCC"],
+    ["The re-read in Graph", "GCC uses the worldwide Graph endpoint"],
     ["ISC API domain", "For a FedRAMP tenant, not confirmed (Gate 1)"],
   ], { fontSize: 12.5, limit: 4.9 });
   callout(s, "Interim", b + 0.25, 0.95, "FaRoute", HEX.teal, "Interim path (design guidance): ",
     "until the client runs on a schedule, the verifier runs it by hand once a day, dry run first; the rule still blocks a person's close.");
   sources(s, "Sources: Module 6, Units 2 and 3; guide, Gate 5 and Gate 6, \"Availability\" and \"Interim path.\"");
   notes(s,
-`What differs in the government clouds? The guide's availability notes for Gates 5 and 6 answer it. PIM is available in Azure for U S Government. ServiceNow's Entra spoke points at the worldwide Graph host by default, and its page doesn't mention the U S Government clouds, so it fits GCC, but for GCC High, confirm with ServiceNow before use. SailPoint's connector endpoints for GCC High are documented. For the re-read itself, GCC uses the worldwide Graph endpoint, and GCC High uses graph dot microsoft dot u s. And the ISC API domain for a FedRAMP tenant wasn't confirmed. There are interim paths. Until the change-record flow exists, the approver raises the change record by hand. And until the re-read client runs on a schedule, the verifier runs it by hand once a day, dry run first; the business rule still blocks a person's close.`,
+`What does this look like in GCC? The guide's availability notes for Gates 5 and 6 answer it. PIM is part of the commercial Entra service that GCC uses. ServiceNow's Entra spoke points at the worldwide Graph host by default, and its page doesn't mention the U S Government clouds, so it fits GCC. For the re-read itself, GCC uses the worldwide Graph endpoint. And the ISC API domain for a FedRAMP tenant wasn't confirmed. There are interim paths. Until the change-record flow exists, the approver raises the change record by hand. And until the re-read client runs on a schedule, the verifier runs it by hand once a day, dry run first; the business rule still blocks a person's close.`,
   `${M} — Unit 2 "Actuation by lane"; Unit 3 "The business rule and the verifier"; guide — Gates 5 and 6, "Availability," "Interim path."`);
 }
 endModule(SA);

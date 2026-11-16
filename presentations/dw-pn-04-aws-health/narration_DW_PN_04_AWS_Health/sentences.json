@@ -1,46 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   5.638,
-   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
-  ],
-  [
-   5.688,
-   2.788,
-   "This is Chapter 4: AWS Health."
-  ],
-  [
-   8.475,
-   4.975,
-   "AWS tells each account which of its instances will be retired, and when."
-  ],
-  [
-   13.45,
-   6.112,
-   "The A P I that says so needs a support plan, a policy you write yourself, and the right partition."
-  ],
-  [
-   19.562,
-   12.762,
-   "We'll start from AWS's own documentation for the Health A P I, see what it leaves to you, then read the kit's collector, its kinds and its partition guard, and walk two labs, the evidence and the dangers."
-  ],
-  [
-   32.325,
-   1.575,
-   "Two notes before we begin."
-  ],
-  [
-   33.9,
-   3.362,
-   "This chapter is a draft, awaiting the owner's review."
-  ],
-  [
-   37.263,
-   3.525,
-   "And the code is illustrative, tested against fixtures."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -616,6 +574,38 @@
    33.263,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
+  ],
+  [
+   5.688,
+   2.788,
+   "This is Chapter 4: AWS Health."
+  ],
+  [
+   8.475,
+   4.975,
+   "AWS tells each account which of its instances will be retired, and when."
+  ],
+  [
+   13.45,
+   6.112,
+   "The A P I that says so needs a support plan, a policy you write yourself, and the right partition."
+  ],
+  [
+   19.562,
+   12.762,
+   "We'll start from AWS's own documentation for the Health A P I, see what it leaves to you, then read the kit's collector, its kinds and its partition guard, and walk two labs, the evidence and the dangers."
+  ],
+  [
+   32.325,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
   ]
  ]
 }

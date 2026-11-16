@@ -5,71 +5,65 @@ WEBVTT
 Where are agencies?
 
 2
-00:00:01.362 --> 00:00:06.400
-In commercial Azure, which a G C C
-tenant uses, both steps run as written.
+00:00:01.362 --> 00:00:04.525
+In commercial Azure,
+which a G C C tenant uses,
 
 3
-00:00:06.400 --> 00:00:09.850
-As side notes for Azure
-Government, check regions first.
+00:00:04.525 --> 00:00:08.126
+both steps run as written,
+but check regions first.
 
 4
-00:00:09.850 --> 00:00:14.074
-Learn's comparison page says
-Front Door Standard and Premium
+00:00:08.126 --> 00:00:11.267
+Front Door Standard and
+Premium are available;
 
 5
-00:00:14.074 --> 00:00:18.050
-are generally available in U S
-Gov Arizona and U S Gov Texas.
+00:00:11.267 --> 00:00:14.731
+the classic tier retires on
+March thirty-first, 2027,
 
 6
-00:00:18.050 --> 00:00:21.600
-Front Door Private Link lists
-three government regions,
+00:00:14.731 --> 00:00:19.725
+and Premium is needed for managed
+firewall rules and Private Link origins.
 
 7
-00:00:21.600 --> 00:00:25.529
-but the same page limits it to
-regions with availability zones,
+00:00:19.725 --> 00:00:24.513
+Learn limits Front Door Private Link
+to regions with availability zones,
 
 8
-00:00:25.529 --> 00:00:28.852
-and Learn's Azure Government
-region list shows zones
+00:00:24.513 --> 00:00:27.025
+so check the origin's region on the list.
 
 9
-00:00:28.852 --> 00:00:32.025
-only in U S Gov Virginia, so
-test before relying on it.
+00:00:27.025 --> 00:00:31.580
+And Azure Firewall Premium's region
+list is on the products-by-region page,
 
 10
-00:00:32.025 --> 00:00:37.027
-Azure Firewall Premium's government
-regions are on the products-by-region page,
+00:00:31.580 --> 00:00:35.687
+not in Learn, so the guide records
+it under what couldn't be verified.
 
 11
-00:00:37.027 --> 00:00:40.513
-not Learn, so the guide records
-them as not yet specified.
-
-12
-00:00:40.513 --> 00:00:44.356
+00:00:35.687 --> 00:00:39.531
 On other clouds, the guide
 names O C I Network Firewall,
 
-13
-00:00:44.356 --> 00:00:49.422
+12
+00:00:39.531 --> 00:00:44.597
 built on Palo Alto Networks, with
 intrusion detection and prevention,
 
-14
-00:00:49.422 --> 00:00:54.313
+13
+00:00:44.597 --> 00:00:49.488
 TLS inspection and URL filtering,
 reached through V C N route tables.
 
-15
-00:00:54.313 --> 00:00:59.710
+14
+00:00:49.488 --> 00:00:54.890
 AWS Network Firewall and Google's
 Cloud N G F W aren't compared there.

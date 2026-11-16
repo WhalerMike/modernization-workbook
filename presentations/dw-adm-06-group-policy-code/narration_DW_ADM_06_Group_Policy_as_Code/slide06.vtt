@@ -20,33 +20,33 @@ created with no assignments.
 The gaps are about safety.
 
 5
-00:00:13.125 --> 00:00:15.962
-The import always calls
-the worldwide host.
+00:00:13.125 --> 00:00:18.200
+The import always calls the worldwide host,
+whatever cloud the session signed in to.
 
 6
-00:00:15.962 --> 00:00:18.788
+00:00:18.200 --> 00:00:21.025
 It writes with whatever session
 you happen to have open.
 
 7
-00:00:18.788 --> 00:00:20.163
+00:00:21.025 --> 00:00:22.400
 There's no dry run.
 
 8
-00:00:20.163 --> 00:00:23.774
+00:00:22.400 --> 00:00:26.011
 And if you run it twice, you get
 two policies with the same name,
 
 9
-00:00:23.774 --> 00:00:26.301
+00:00:26.011 --> 00:00:28.538
 because it never looks
 at the tenant first.
 
 10
-00:00:26.301 --> 00:00:28.825
+00:00:28.538 --> 00:00:31.063
 Each of those gaps is pinned by a test.
 
 11
-00:00:28.825 --> 00:00:31.010
+00:00:31.063 --> 00:00:33.240
 There are more, on the record side.

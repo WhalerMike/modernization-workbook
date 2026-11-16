@@ -106,7 +106,7 @@ endModule(SI);
     ["Record validation", "Validates the mapping, not the values", "Fails closed: 9 of the fixture's 19 rows quarantined"],
     ["Order", "File order", "Leavers first, then managers before reports"],
     ["Mass change", "No limit", "max_disables_per_run holds the run"],
-    ["Clouds", "Hard-coded to graph.microsoft.com/beta", "One of the three Graph hosts; v1.0 or beta"],
+    ["Clouds", "Hard-coded to graph.microsoft.com/beta", "The endpoint must be on the Graph host allow-list; v1.0 or beta"],
     ["Least privilege", "Asks for Application.ReadWrite.All and more", "One permission to send; a separate log reader"],
     ["Repeatability", "A new random GUID per bulkId", "bulkId is the person key: same input, same hash"],
   ], { fontSize: 12.5, limit: 5.3 });
@@ -114,7 +114,7 @@ endModule(SI);
     "use CSV2SCIM to validate a mapping, extend the schema and read cycle logs; use the hardened client for production sends.");
   sources(s, "Sources: Microsoft, CSV2SCIM sample at f2e8c59; Microsoft Learn, \"Microsoft Graph national cloud deployments\"; Book 19, Ch 01 \"What it leaves to you.\"");
   notes(s,
-`Microsoft publishes a PowerShell sample for this integration, CSV2SCIM, with a full tutorial on Microsoft Learn. Use it; the repository keeps a pinned copy of Microsoft's sample at upstream commit f2e8c59. Run on the book's HR fixture, nineteen rows, it sends all nineteen. Here's what it leaves to you. It validates the mapping, not the values; the hardened client fails closed, and quarantines nine of the nineteen rows. It sends in file order; the client sends leavers first, then managers before their reports. It has no limit on mass change. Its endpoint is hard-coded to the worldwide beta host, and Learn's page on Microsoft Graph national cloud deployments gives other hosts for GCC High and DoD, so it can't reach them as written. Its sign-in asks for Application dot ReadWrite dot All, which can change any app in the tenant. And each bulk I D is a new random GUID, so a batch can't be traced to its inputs.`,
+`Microsoft publishes a PowerShell sample for this integration, CSV2SCIM, with a full tutorial on Microsoft Learn. Use it; the repository keeps a pinned copy of Microsoft's sample at upstream commit f2e8c59. Run on the book's HR fixture, nineteen rows, it sends all nineteen. Here's what it leaves to you. It validates the mapping, not the values; the hardened client fails closed, and quarantines nine of the nineteen rows. It sends in file order; the client sends leavers first, then managers before their reports. It has no limit on mass change. Its endpoint is hard-coded to the worldwide beta host, and its sign-in names no cloud. That works in GCC, which Learn's page on Microsoft Graph national cloud deployments says uses the worldwide endpoint; the client checks the endpoint against its Graph host allow-list. Its sign-in asks for Application dot ReadWrite dot All, which can change any app in the tenant. And each bulk I D is a new random GUID, so a batch can't be traced to its inputs.`,
   `${M} — Unit 2; Book 19, Chapter 01 — "Start with Microsoft's sample: CSV2SCIM," "What it leaves to you."`);
 }
 
@@ -253,12 +253,12 @@ endModule(SC);
     "(exit code 3)",
     "# Step 7: the tests",
     "$ python -m pytest -q -p no:cacheprovider tests/python",
-    "70 passed",
+    "71 passed",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10 });
   line(s, "Clean", "Step 8 cleans up: rm -rf out out-2 out-broken out-hold extract-broken.csv settings-hold.json", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 1, \"Exercise: Lab 1,\" steps 5 to 8; examples/hcm-entra: python/hcm_to_scim.py, tests/python.");
   notes(s,
-`Step five breaks a row on purpose. The sed command writes a copy of the extract with worker one hundred thousand and five's department code in lower case. Run the client on it, and the counts become eight ready and ten quarantined, and the quarantine says why: the lower-case value isn't a code. One small typo in HR, and the record stops at the middleware instead of reaching the directory. Step six holds a run. A settings file allows only one disable per run, and the fixture has three. So the client holds the whole run, with exit code three, and says why: three disables exceed the limit, held for confirmation. Nothing is sent until someone confirms it with the confirm large delta option. Step seven runs the tests: seventy pass. Step eight cleans up.`,
+`Step five breaks a row on purpose. The sed command writes a copy of the extract with worker one hundred thousand and five's department code in lower case. Run the client on it, and the counts become eight ready and ten quarantined, and the quarantine says why: the lower-case value isn't a code. One small typo in HR, and the record stops at the middleware instead of reaching the directory. Step six holds a run. A settings file allows only one disable per run, and the fixture has three. So the client holds the whole run, with exit code three, and says why: three disables exceed the limit, held for confirmation. Nothing is sent until someone confirms it with the confirm large delta option. Step seven runs the tests: seventy-one pass. Step eight cleans up.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 5 to 8.`);
 }
 

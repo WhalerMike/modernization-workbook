@@ -63,38 +63,6 @@
    "First, which cloud this runs against."
   ]
  ],
- "3": [
-  [
-   0.05,
-   0.9,
-   "Which cloud?"
-  ],
-  [
-   0.95,
-   7.513,
-   "Most of this chapter never touches a cloud at all: the matrix is offline logic over the files from the first two chapters."
-  ],
-  [
-   8.463,
-   8.688,
-   "It makes just two reads, both to Microsoft Graph, and for a G C C tenant like this estate's, that's the worldwide endpoint."
-  ],
-  [
-   17.15,
-   2.675,
-   "The higher government clouds have their own hosts."
-  ],
-  [
-   19.825,
-   13.625,
-   "One open question is the licensing trial: Learn says there's no free trial in the Azure Government clouds, but a G C C tenant signs in to the worldwide cloud, so the chapter leaves it as something to check in the test tenant."
-  ],
-  [
-   33.45,
-   1.8,
-   "Now, what Microsoft gives you."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -417,38 +385,6 @@
    "The findings tell the story: a high-risk account scheduled too late, a Kerberos account kept with no owner for its service principal name, an owner who overrode the matrix but gave a reason, and two apps on the licensing list that Conditional Access can't actually protect."
   ]
  ],
- "15": [
-  [
-   0.05,
-   1.3,
-   "Next, the waves."
-  ],
-  [
-   1.35,
-   3.575,
-   "The first wave has a named rollback owner and a clear way back."
-  ],
-  [
-   4.925,
-   4.912,
-   "The second has an empty owner, which is exactly why it drew a finding a moment ago."
-  ],
-  [
-   9.838,
-   10.588,
-   "Then the licensing scope: six apps could be covered by Conditional Access today, but only four after conversion, because one moves to a managed identity and one is retired."
-  ],
-  [
-   20.425,
-   3.312,
-   "That's the kind of thing you'd want to know before buying licenses."
-  ],
-  [
-   23.738,
-   7.938,
-   "Finally, run the whole suite: five hundred thirteen tests pass, and the run made just three requests, all reads."
-  ]
- ],
  "16": [
   [
    0.05,
@@ -538,6 +474,65 @@
    30.887,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.9,
+   "Which cloud?"
+  ],
+  [
+   0.95,
+   7.5,
+   "Most of this chapter never touches a cloud at all: the matrix is offline logic over the files from the first two chapters."
+  ],
+  [
+   8.45,
+   10.725,
+   "It makes just two reads, both to Microsoft Graph, and for a G C C tenant like this estate's, that's the worldwide endpoint, listed for the global service."
+  ],
+  [
+   19.175,
+   12.575,
+   "One open question is the licensing trial: a G C C tenant signs in to the worldwide cloud, and whether the Workload I D Premium trial is offered to it is something the chapter leaves to check in the test tenant."
+  ],
+  [
+   31.75,
+   1.8,
+   "Now, what Microsoft gives you."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.3,
+   "Next, the waves."
+  ],
+  [
+   1.35,
+   3.575,
+   "The first wave has a named rollback owner and a clear way back."
+  ],
+  [
+   4.925,
+   4.912,
+   "The second has an empty owner, which is exactly why it drew a finding a moment ago."
+  ],
+  [
+   9.838,
+   10.588,
+   "Then the licensing scope: six apps could be covered by Conditional Access today, but only four after conversion, because one moves to a managed identity and one is retired."
+  ],
+  [
+   20.425,
+   3.312,
+   "That's the kind of thing you'd want to know before buying licenses."
+  ],
+  [
+   23.738,
+   7.787,
+   "Finally, run the whole suite: five hundred eleven tests pass, and the run made just three requests, all reads."
   ]
  ]
 }

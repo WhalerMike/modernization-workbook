@@ -4,7 +4,7 @@
 // the SKUs, alert then deny through a draft, TLS inspection and segmentation), where agencies are, the lab's exact
 // commands in a test subscription (not run by the authors, as the page says; the module has no Lab 1), the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page and the Azure
-// Security Engineering implementation guide it sends the learner to (Steps 5 and 6, Government-cloud availability, The
+// Security Engineering implementation guide it sends the learner to (Steps 5 and 6, Availability in commercial Azure, The
 // same controls on AWS, Google Cloud and Oracle Cloud, What couldn't be verified, and their footnotes) or the path's
 // verification log; the deck adds none. Helpers: ../training-azs-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-azs-module-3/build.js \
@@ -198,16 +198,16 @@ endModule(SI);
 {
   const s = content(SC, "Where agencies are: regions to check first");
   tag(s, "Who");
-  const tb = table(s, "Gov", 1.45, [3.4, 3.4, 5.35], ["Service", "Commercial Azure (GCC)", "Azure Government (side note)"], [
-    ["Front Door Standard and Premium", "Available", "Generally available in US Gov Arizona and US Gov Texas"],
-    ["Front Door Private Link", "The listed regions", "Three listed, but needs availability zones, shown only in US Gov Virginia: test first"],
-    ["Azure Firewall Premium", "Available", "Regions on the products-by-region page, not Learn: not yet specified"],
+  const tb = table(s, "Gov", 1.45, [3.4, 2.6, 6.15], ["Service", "Commercial Azure", "What to plan for"], [
+    ["Front Door Standard and Premium", "Available", "Classic retires March 31, 2027; Premium for managed WAF rules and Private Link origins"],
+    ["Front Door Private Link", "The listed regions", "Learn limits it to regions with availability zones: check the origin's region on the list"],
+    ["Azure Firewall Premium", "Available", "Its region list is on the products-by-region page, not Learn: not verified"],
   ], { fontSize: 12, limit: 4.4 });
   line(s, "OCI", "Other clouds: OCI Network Firewall, built on Palo Alto Networks, with IDPS, TLS inspection and URL filtering, reached through VCN route tables. AWS Network Firewall and Cloud NGFW aren't compared.", tb + 0.3, 0.9, 13.5);
-  sources(s, "Sources: Module 3, Unit 3; Guide, \"Government-cloud availability,\" \"What couldn't be verified,\" \"The same controls ... Oracle Cloud\"; OCI Network Firewall.");
+  sources(s, "Sources: Module 3, Unit 3; Guide, \"Availability in commercial Azure,\" \"What couldn't be verified,\" \"The same controls ... Oracle Cloud\"; OCI Network Firewall.");
   notes(s,
-`Where are agencies? In commercial Azure, which a G C C tenant uses, both steps run as written. As side notes for Azure Government, check regions first. Learn's comparison page says Front Door Standard and Premium are generally available in U S Gov Arizona and U S Gov Texas. Front Door Private Link lists three government regions, but the same page limits it to regions with availability zones, and Learn's Azure Government region list shows zones only in U S Gov Virginia, so test before relying on it. Azure Firewall Premium's government regions are on the products-by-region page, not Learn, so the guide records them as not yet specified. On other clouds, the guide names O C I Network Firewall, built on Palo Alto Networks, with intrusion detection and prevention, TLS inspection and URL filtering, reached through V C N route tables. AWS Network Firewall and Google's Cloud N G F W aren't compared there.`,
-  `${M} — Unit 3; guide, "Government-cloud availability" (Front Door, Private Link, Azure Firewall rows), "What couldn't be verified," "The same controls on AWS, Google Cloud and Oracle Cloud"; Microsoft Learn — "Compare Azure Government and global Azure," "What is Azure Government?"; Oracle — "Network Firewall overview."`);
+`Where are agencies? In commercial Azure, which a G C C tenant uses, both steps run as written, but check regions first. Front Door Standard and Premium are available; the classic tier retires on March thirty-first, 2027, and Premium is needed for managed firewall rules and Private Link origins. Learn limits Front Door Private Link to regions with availability zones, so check the origin's region on the list. And Azure Firewall Premium's region list is on the products-by-region page, not in Learn, so the guide records it under what couldn't be verified. On other clouds, the guide names O C I Network Firewall, built on Palo Alto Networks, with intrusion detection and prevention, TLS inspection and URL filtering, reached through V C N route tables. AWS Network Firewall and Google's Cloud N G F W aren't compared there.`,
+  `${M} — Unit 3; guide, "Availability in commercial Azure" (Front Door, Private Link, Azure Firewall rows), "What couldn't be verified," "The same controls on AWS, Google Cloud and Oracle Cloud"; Oracle — "Network Firewall overview."`);
 }
 endModule(SC);
 
@@ -316,7 +316,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 3 deck", [
   "Module page: docs/training/azure-security/03-the-edge-and-the-egress.md (Azure Security Engineering learning path, Module 3), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
-  "Azure Security Engineering (implementation guide): Steps 5 and 6; Government-cloud availability; The same controls on AWS, Google Cloud and Oracle Cloud; Dangers; What couldn't be verified. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, What is Azure Front Door?; Front Door Private Link origins; Secure traffic to Azure Front Door origins; Migrate Azure Front Door (classic); the Front Door CLI quickstart; the multi-region App Service tutorial; Internet ingress; TLS policy on Application Gateway; Zero Trust recommendations for Azure Firewall; Azure Firewall and traffic inspection; Azure Firewall Premium features; az network firewall policy; Integrate NAT gateway with Azure Firewall; Azure Firewall Draft + Deployment; Compare Azure Government and global Azure; OCI Network Firewall.",
+  "Azure Security Engineering (implementation guide): Steps 5 and 6; Availability in commercial Azure; The same controls on AWS, Google Cloud and Oracle Cloud; Dangers; What couldn't be verified. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, What is Azure Front Door?; Front Door Private Link origins; Secure traffic to Azure Front Door origins; Migrate Azure Front Door (classic); the Front Door CLI quickstart; the multi-region App Service tutorial; Internet ingress; TLS policy on Application Gateway; Zero Trust recommendations for Azure Firewall; Azure Firewall and traffic inspection; Azure Firewall Premium features; az network firewall policy; Integrate NAT gateway with Azure Firewall; Azure Firewall Draft + Deployment; OCI Network Firewall.",
   "Read for the lab, November 13, 2026: Microsoft Learn, Monitoring data reference for Azure Firewall; Azure CLI, az monitor log-analytics.",
   "NIST SP 800-53 Rev. 5 (SC-7, SC-7(5), SC-8, CP-2, SI-4); FedRAMP 20x KSIs, as the guide's requirements table maps them.",
   "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",

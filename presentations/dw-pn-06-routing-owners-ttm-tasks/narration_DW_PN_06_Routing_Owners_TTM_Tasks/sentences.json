@@ -1,46 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   5.638,
-   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
-  ],
-  [
-   5.688,
-   4.75,
-   "This is Chapter 6: routing to owners, and Ticket-to-Machine tasks."
-  ],
-  [
-   10.438,
-   6.862,
-   "A notice nobody owns is a notice nobody reads, so routing gives each one an owner once, and never twice."
-  ],
-  [
-   17.3,
-   12.425,
-   "We'll start from the Ticket-to-Machine pattern and its finding contract, see what they leave to you for provider notices, then read the routing file, the task payload and the state that makes the router de-duplicate across runs."
-  ],
-  [
-   29.725,
-   3.35,
-   "Then two labs, the evidence and the dangers."
-  ],
-  [
-   33.075,
-   1.575,
-   "Two notes before we begin."
-  ],
-  [
-   34.65,
-   3.362,
-   "This chapter is a draft, awaiting the owner's review."
-  ],
-  [
-   38.013,
-   3.525,
-   "And the code is illustrative, tested against fixtures."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -191,28 +149,6 @@
    "And the file is checked before anything runs."
   ]
  ],
- "7": [
-  [
-   0.05,
-   4.55,
-   "Order matters, because rules are tried in order and the first match wins."
-  ],
-  [
-   4.6,
-   7.7,
-   "The workbook's design guidance is to put security advisories and retirements before the general rule for anything that needs action."
-  ],
-  [
-   12.3,
-   17.025,
-   "Here are the lab's six rules: security to a security operations team at P2, retirements and maintenance to cloud platform engineering at P3, incidents to the service desk at P2, changes to cloud operations, and one rule that ignores a Microsoft Viva post."
-  ],
-  [
-   29.325,
-   6.3,
-   "Get the order wrong, with a broad rule first, and security advisories land in the general queue."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -329,70 +265,6 @@
    "The public repository ships only templates and fictional examples."
   ]
  ],
- "11": [
-  [
-   0.05,
-   7.15,
-   "Lab 1 needs PowerShell 7 with Pester, in the kit's folder, against fictional notices and fictional teams."
-  ],
-  [
-   7.2,
-   1.175,
-   "Nothing is sent."
-  ],
-  [
-   8.375,
-   3.513,
-   "The finding contract the router mirrors comes in the same download."
-  ],
-  [
-   11.887,
-   8.188,
-   "Step 1 checks the lab's routing: six rules, in the order they're tried, each with its route, severity and assignment group."
-  ],
-  [
-   20.075,
-   6.05,
-   "Step 2 tries the template exactly as it ships, and it's refused: it still has a placeholder."
-  ],
-  [
-   26.125,
-   1.15,
-   "That's deliberate."
-  ],
-  [
-   27.275,
-   3.987,
-   "The template can't run until every placeholder is filled in at work."
-  ]
- ],
- "12": [
-  [
-   0.05,
-   15.8,
-   "Step 3 collects every provider from the day-one fixtures: twenty-two notices from five providers, Azure, Microsoft 365 in G C C, Oracle Cloud Infrastructure, AWS and Google Cloud, each valid against the schema."
-  ],
-  [
-   15.85,
-   2.462,
-   "Step 4 routes them as a dry run."
-  ],
-  [
-   18.312,
-   1.425,
-   "All twenty-two are new."
-  ],
-  [
-   19.738,
-   7.0,
-   "Twelve route to a task, nine go to the digest only, and one is ignored, the Microsoft Viva post."
-  ],
-  [
-   26.738,
-   8.188,
-   "So the run writes twelve create payloads, each with its severity and assignment group, and the last line says it: nothing was sent."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -423,80 +295,6 @@
    26.512,
    9.55,
    "Then the five clauses: the human decision lane, where it came from, the system owner as approver, what to do, the re-read check, and the evidence kept."
-  ]
- ],
- "14": [
-  [
-   0.05,
-   4.062,
-   "Step 6 routes the same collection again, on a copy of the state."
-  ],
-  [
-   4.112,
-   7.713,
-   "All twenty-two are unchanged, so nothing is written: no payloads, because nothing new or changed needs a task."
-  ],
-  [
-   11.825,
-   1.863,
-   "That's what keeps the queue readable."
-  ],
-  [
-   13.688,
-   2.938,
-   "Step 7 collects and routes the second week."
-  ],
-  [
-   16.625,
-   5.963,
-   "Two notices are new, six changed, fifteen unchanged, and one is no longer listed."
-  ],
-  [
-   22.587,
-   5.825,
-   "The router writes just six payloads: one create, four updates and one close."
-  ],
-  [
-   28.413,
-   7.5,
-   "The routing hasn't changed, so the same twelve notices route to tasks, but only the six with something new to say make a payload."
-  ]
- ],
- "15": [
-  [
-   0.05,
-   3.225,
-   "Step 8 reads what each of the six payloads is for."
-  ],
-  [
-   3.275,
-   8.725,
-   "Two rescheduled maintenance windows, one Azure and one Oracle Cloud, and an updated Microsoft 365 post are updates."
-  ],
-  [
-   12.0,
-   5.638,
-   "The Azure incident the provider no longer lists is an absent update, asking for the re-read."
-  ],
-  [
-   17.637,
-   3.875,
-   "The new Microsoft 365 post is a create."
-  ],
-  [
-   21.512,
-   6.763,
-   "And the AWS security notification that AWS closed is a close, which also asks for the re-read."
-  ],
-  [
-   28.275,
-   7.45,
-   "Step 9 runs the router's tests, including the one that reads the finding contract: thirty-one passed, none failed."
-  ],
-  [
-   35.725,
-   1.837,
-   "Then delete the output folder."
   ]
  ],
  "16": [
@@ -563,6 +361,198 @@
    "The kit's records support these controls; the agency's assessor decides them."
   ]
  ],
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
+  ],
+  [
+   5.688,
+   4.75,
+   "This is Chapter 6: routing to owners, and Ticket-to-Machine tasks."
+  ],
+  [
+   10.438,
+   6.862,
+   "A notice nobody owns is a notice nobody reads, so routing gives each one an owner once, and never twice."
+  ],
+  [
+   17.3,
+   12.425,
+   "We'll start from the Ticket-to-Machine pattern and its finding contract, see what they leave to you for provider notices, then read the routing file, the task payload and the state that makes the router de-duplicate across runs."
+  ],
+  [
+   29.725,
+   3.35,
+   "Then two labs, the evidence and the dangers."
+  ],
+  [
+   33.075,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.55,
+   "Order matters, because rules are tried in order and the first match wins."
+  ],
+  [
+   4.6,
+   7.7,
+   "The workbook's design guidance is to put security advisories and retirements before the general rule for anything that needs action."
+  ],
+  [
+   12.3,
+   25.113,
+   "Here are the lab's seven rules: security to a security operations team at P2, retirements and maintenance to cloud platform engineering at P3, incidents to the service desk at P2, including every open Microsoft 365 incident, because Microsoft 365 service health names no resources, changes to cloud operations, and one rule that ignores a Microsoft Viva post."
+  ],
+  [
+   37.413,
+   6.3,
+   "Get the order wrong, with a broad rule first, and security advisories land in the general queue."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.15,
+   "Lab 1 needs PowerShell 7 with Pester, in the kit's folder, against fictional notices and fictional teams."
+  ],
+  [
+   7.2,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   8.375,
+   3.513,
+   "The finding contract the router mirrors comes in the same download."
+  ],
+  [
+   11.887,
+   8.075,
+   "Step 1 checks the lab's routing: seven rules, in the order they're tried, each with its route, severity and assignment group."
+  ],
+  [
+   19.962,
+   6.05,
+   "Step 2 tries the template exactly as it ships, and it's refused: it still has a placeholder."
+  ],
+  [
+   26.012,
+   1.15,
+   "That's deliberate."
+  ],
+  [
+   27.163,
+   3.987,
+   "The template can't run until every placeholder is filled in at work."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   15.8,
+   "Step 3 collects every provider from the day-one fixtures: twenty-two notices from five providers, Azure, Microsoft 365 in G C C, Oracle Cloud Infrastructure, AWS and Google Cloud, each valid against the schema."
+  ],
+  [
+   15.85,
+   2.462,
+   "Step 4 routes them as a dry run."
+  ],
+  [
+   18.312,
+   1.425,
+   "All twenty-two are new."
+  ],
+  [
+   19.738,
+   9.762,
+   "Thirteen route to a task, including the open Exchange Online incident, eight go to the digest only, and one is ignored, the Microsoft Viva post."
+  ],
+  [
+   29.5,
+   8.312,
+   "So the run writes thirteen create payloads, each with its severity and assignment group, and the last line says it: nothing was sent."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   4.062,
+   "Step 6 routes the same collection again, on a copy of the state."
+  ],
+  [
+   4.112,
+   7.713,
+   "All twenty-two are unchanged, so nothing is written: no payloads, because nothing new or changed needs a task."
+  ],
+  [
+   11.825,
+   1.863,
+   "That's what keeps the queue readable."
+  ],
+  [
+   13.688,
+   2.938,
+   "Step 7 collects and routes the second week."
+  ],
+  [
+   16.625,
+   5.963,
+   "Two notices are new, six changed, fifteen unchanged, and one is no longer listed."
+  ],
+  [
+   22.587,
+   5.9,
+   "The router writes just seven payloads: one create, four updates and two closes."
+  ],
+  [
+   28.488,
+   5.55,
+   "Twelve notices route to tasks, but only the seven with something new to say make a payload."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.225,
+   "Step 8 reads what each of the seven payloads is for."
+  ],
+  [
+   3.275,
+   8.725,
+   "Two rescheduled maintenance windows, one Azure and one Oracle Cloud, and an updated Microsoft 365 post are updates."
+  ],
+  [
+   12.0,
+   5.638,
+   "The Azure incident the provider no longer lists is an absent update, asking for the re-read."
+  ],
+  [
+   17.637,
+   3.875,
+   "The new Microsoft 365 post is a create."
+  ],
+  [
+   21.512,
+   10.35,
+   "The AWS security notification that AWS closed, and the Exchange Online incident Microsoft resolved, are each a close, which also asks for the re-read."
+  ],
+  [
+   31.863,
+   7.438,
+   "Step 9 runs the router's tests, including the one that reads the finding contract: thirty-three passed, none failed."
+  ],
+  [
+   39.3,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
  "18": [
   [
    0.05,
@@ -591,16 +581,21 @@
   ],
   [
    22.3,
+   5.8,
+   "Microsoft 365 service health names no resources, so its incidents get their own rule."
+  ],
+  [
+   28.1,
    2.837,
    "Publish the routing and you publish who owns what."
   ],
   [
-   25.137,
+   30.938,
    4.45,
    "Put a token in the settings file and a secret gets filed with the change record."
   ],
   [
-   29.587,
+   35.388,
    5.963,
    "Confuse the two dates, or let the finding contract drift, and priorities stop meaning anything."
   ]
@@ -618,36 +613,36 @@
   ],
   [
    10.887,
-   4.3,
-   "Security advisories and retirements route before the general rule."
+   8.45,
+   "Security advisories and retirements route before the general rule, and an open Microsoft 365 incident routes to a task."
   ],
   [
-   15.188,
+   19.337,
    3.325,
    "Someone read a dry run's payloads before any were sent."
   ],
   [
-   18.512,
+   22.663,
    2.788,
    "A second run on the same collection writes nothing."
   ],
   [
-   21.3,
+   25.45,
    3.913,
    "Tasks are resolved on the re-read, not on the provider's closure."
   ],
   [
-   25.212,
+   29.363,
    4.263,
    "And the token lives only in the environment of the run that sends."
   ],
   [
-   29.475,
+   33.625,
    5.638,
    "Next, Chapter 7 writes the weekly digest and records every run as evidence."
   ],
   [
-   35.112,
+   39.263,
    1.1,
    "Thanks for watching."
   ]

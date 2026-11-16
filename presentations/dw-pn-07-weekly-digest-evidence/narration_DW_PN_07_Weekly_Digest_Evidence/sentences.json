@@ -1,46 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   5.638,
-   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
-  ],
-  [
-   5.688,
-   3.812,
-   "This is Chapter 7: the weekly digest, and evidence."
-  ],
-  [
-   9.5,
-   4.562,
-   "The digest is for the people who act; the evidence is for the people who check."
-  ],
-  [
-   14.062,
-   4.275,
-   "Both come from the same runs, so neither can drift from what was actually read."
-  ],
-  [
-   18.337,
-   13.35,
-   "We'll start from what the implementation guide asks the security officer to keep, then read the digest's five sections, the evidence record, the chain and the stage check, and walk two labs, the evidence and the dangers."
-  ],
-  [
-   31.688,
-   1.575,
-   "Two notes before we begin."
-  ],
-  [
-   33.263,
-   3.362,
-   "This chapter is a draft, awaiting the owner's review."
-  ],
-  [
-   36.625,
-   3.525,
-   "And the code is illustrative, tested against fixtures."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -327,38 +285,6 @@
    "Keep the evidence folder on agency storage, with the access the security officer sets."
   ]
  ],
- "10": [
-  [
-   0.05,
-   4.112,
-   "Lab 1 needs PowerShell 7 with Pester, in the kit's folder."
-  ],
-  [
-   4.162,
-   6.975,
-   "Step 1 makes a week of runs: Chapter 6's two collections and two routings, in one go."
-  ],
-  [
-   11.137,
-   6.575,
-   "Day one routes twelve creates; the second week makes one create, four updates and one close."
-  ],
-  [
-   17.712,
-   2.888,
-   "Step 2 writes the digest for the second week."
-  ],
-  [
-   20.6,
-   8.662,
-   "Sixteen open notices, eight needing action, five starting in the next thirty days, two new, and four closed or no longer listed."
-  ],
-  [
-   29.262,
-   3.288,
-   "It writes the page, the spreadsheet and a manifest."
-  ]
- ],
  "11": [
   [
    0.05,
@@ -470,48 +396,6 @@
    25.212,
    8.225,
    "Step 7 reads the records' index: three records, collect, route and digest, each a pass, with the steps it covers."
-  ]
- ],
- "15": [
-  [
-   0.05,
-   2.237,
-   "Step 8 is the one to remember."
-  ],
-  [
-   2.288,
-   5.425,
-   "Change a recorded file, by appending one line to the recorded digest, and check again."
-  ],
-  [
-   7.713,
-   1.163,
-   "Both checks fail."
-  ],
-  [
-   8.875,
-   5.975,
-   "The sums say the digest changed, and the chain says it no longer matches its record, naming the file."
-  ],
-  [
-   14.85,
-   3.225,
-   "That's what protects the evidence from an edit after the fact."
-  ],
-  [
-   18.075,
-   5.513,
-   "Step 9 runs the kit's whole test suite: a hundred and forty passed, none failed."
-  ],
-  [
-   23.587,
-   5.487,
-   "Before step 8, you had an evidence folder whose sums file you could hand to the security officer."
-  ],
-  [
-   29.075,
-   2.212,
-   "Delete the output folder when you're done."
   ]
  ],
  "16": [
@@ -655,6 +539,112 @@
    30.0,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
+  ],
+  [
+   5.688,
+   3.812,
+   "This is Chapter 7: the weekly digest, and evidence."
+  ],
+  [
+   9.5,
+   4.562,
+   "The digest is for the people who act; the evidence is for the people who check."
+  ],
+  [
+   14.062,
+   4.275,
+   "Both come from the same runs, so neither can drift from what was actually read."
+  ],
+  [
+   18.337,
+   13.35,
+   "We'll start from what the implementation guide asks the security officer to keep, then read the digest's five sections, the evidence record, the chain and the stage check, and walk two labs, the evidence and the dangers."
+  ],
+  [
+   31.688,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.112,
+   "Lab 1 needs PowerShell 7 with Pester, in the kit's folder."
+  ],
+  [
+   4.162,
+   6.975,
+   "Step 1 makes a week of runs: Chapter 6's two collections and two routings, in one go."
+  ],
+  [
+   11.137,
+   7.0,
+   "Day one routes thirteen creates; the second week makes one create, four updates and two closes."
+  ],
+  [
+   18.137,
+   2.888,
+   "Step 2 writes the digest for the second week."
+  ],
+  [
+   21.025,
+   8.662,
+   "Sixteen open notices, eight needing action, five starting in the next thirty days, two new, and four closed or no longer listed."
+  ],
+  [
+   29.688,
+   3.288,
+   "It writes the page, the spreadsheet and a manifest."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.237,
+   "Step 8 is the one to remember."
+  ],
+  [
+   2.288,
+   5.425,
+   "Change a recorded file, by appending one line to the recorded digest, and check again."
+  ],
+  [
+   7.713,
+   1.163,
+   "Both checks fail."
+  ],
+  [
+   8.875,
+   5.975,
+   "The sums say the digest changed, and the chain says it no longer matches its record, naming the file."
+  ],
+  [
+   14.85,
+   3.225,
+   "That's what protects the evidence from an edit after the fact."
+  ],
+  [
+   18.075,
+   5.725,
+   "Step 9 runs the kit's whole test suite: a hundred and forty-one passed, none failed."
+  ],
+  [
+   23.8,
+   5.487,
+   "Before step 8, you had an evidence folder whose sums file you could hand to the security officer."
+  ],
+  [
+   29.288,
+   2.212,
+   "Delete the output folder when you're done."
   ]
  ]
 }

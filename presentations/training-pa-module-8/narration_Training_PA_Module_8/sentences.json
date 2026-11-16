@@ -543,58 +543,6 @@
    "Object I D's only; the packages hold the names, under the evidence store's access control."
   ]
  ],
- "14": [
-  [
-   0.05,
-   1.988,
-   "Step ten breaks it on purpose."
-  ],
-  [
-   2.038,
-   7.237,
-   "Append a word to the drift summary inside day two's package, and verify it: the file doesn't match its hash, an error."
-  ],
-  [
-   9.275,
-   6.463,
-   "Compare the days the wrong way round: refused, because the current run isn't later than the previous one."
-  ],
-  [
-   15.738,
-   2.062,
-   "Each refusal exits with one."
-  ],
-  [
-   17.8,
-   4.0,
-   "And the sample workflow that would run all this on a schedule lints clean."
-  ],
-  [
-   21.8,
-   2.788,
-   "Step eleven runs the tests in both shells."
-  ],
-  [
-   24.587,
-   6.312,
-   "In PowerShell, the evidence tests, thirty-two pass, then the whole suite, three hundred thirty."
-  ],
-  [
-   30.9,
-   4.975,
-   "In the POSIX shell, pytest in the drift pipeline: a hundred forty-two pass."
-  ],
-  [
-   35.875,
-   6.575,
-   "The path's verification log notes that this suite needs the whole repository, not just the drift pipeline folder."
-  ],
-  [
-   42.45,
-   5.513,
-   "Then delete the output folder in both places, because they hold the fixture's privileged holders."
-  ]
- ],
  "15": [
   [
    0.05,
@@ -788,6 +736,58 @@
    40.962,
    5.575,
    "In the evidence manifest, the previous package's hash is day one's: that's the chain."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.988,
+   "Step ten breaks it on purpose."
+  ],
+  [
+   2.038,
+   7.237,
+   "Append a word to the drift summary inside day two's package, and verify it: the file doesn't match its hash, an error."
+  ],
+  [
+   9.275,
+   6.463,
+   "Compare the days the wrong way round: refused, because the current run isn't later than the previous one."
+  ],
+  [
+   15.738,
+   2.062,
+   "Each refusal exits with one."
+  ],
+  [
+   17.8,
+   4.0,
+   "And the sample workflow that would run all this on a schedule lints clean."
+  ],
+  [
+   21.8,
+   2.788,
+   "Step eleven runs the tests in both shells."
+  ],
+  [
+   24.587,
+   6.312,
+   "In PowerShell, the evidence tests, thirty-two pass, then the whole suite, three hundred thirty."
+  ],
+  [
+   30.9,
+   5.112,
+   "In the POSIX shell, pytest in the drift pipeline: a hundred thirty-nine pass."
+  ],
+  [
+   36.013,
+   6.575,
+   "The path's verification log notes that this suite needs the whole repository, not just the drift pipeline folder."
+  ],
+  [
+   42.587,
+   5.513,
+   "Then delete the output folder in both places, because they hold the fixture's privileged holders."
   ]
  ]
 }

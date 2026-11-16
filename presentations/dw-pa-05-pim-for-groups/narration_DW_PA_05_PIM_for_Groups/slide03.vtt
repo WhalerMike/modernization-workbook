@@ -15,25 +15,16 @@ and sign-in goes to the
 worldwide login page.
 
 4
-00:00:10.351 --> 00:00:13.888
-GCC High and DoD have hosts of their own.
+00:00:10.351 --> 00:00:15.824
+Every PIM for Groups API page the chapter
+read lists the global service that
 
 5
-00:00:13.888 --> 00:00:19.060
-Every PIM for Groups API page the chapter
-read lists the US Government clouds too,
+00:00:15.824 --> 00:00:21.038
+G C C uses, and the governance licensing
+PIM depends on is available in G C C.
 
 6
-00:00:19.060 --> 00:00:22.071
-and the governance
-licensing PIM depends on is
-
-7
-00:00:22.071 --> 00:00:25.237
-available in all three
-government environments.
-
-8
-00:00:25.237 --> 00:00:30.410
+00:00:21.038 --> 00:00:26.210
 The module never guesses: you name the
 cloud on every run, and there's no default.

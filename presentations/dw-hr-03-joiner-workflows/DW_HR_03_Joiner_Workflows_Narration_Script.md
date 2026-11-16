@@ -34,11 +34,11 @@ Readiness counts the hires whose hire date is today, and calls a hire ready when
 
 ## Slide 9 — The verified facts
 
-The facts behind the code, read on Learn on November first. Create and create new version share one permission and the Lifecycle Workflows Administrator role, and both are available at L4 and L5. Changes are versions, not in-place updates, and the tenant runs one schedule, every three hours by default. The pass task has a fixed I D and a lifetime range, and its availability in GCC High wasn't confirmed. Execution limits quarantine a scheduled run but not an on-demand one. And a scheduled workflow catches up on a user for three days after the trigger date.
+The facts behind the code, read on Learn on November first. Create and create new version share one permission and the Lifecycle Workflows Administrator role, and both are listed for the global service that GCC uses. Changes are versions, not in-place updates, and the tenant runs one schedule, every three hours by default. The pass task has a fixed I D and a lifetime range. Execution limits quarantine a scheduled run but not an on-demand one. And a scheduled workflow catches up on a user for three days after the trigger date.
 
 ## Slide 10 — Where Learn differs, and what stays open
 
-Learn's own pages disagree in four places, recorded so a later edit doesn't loosen the code. The pass's lifetime argument has two names, and the lint reads either. The custom task extension has two I Ds. The mover category appears in an example but not in the property table. And the workflow ceiling is a hundred on two pages and fifty on another, so the budget is fifty. Still open: the trigger name for an extension attribute, the execution limit the API doesn't carry, and the pass's availability in GCC High.
+Learn's own pages disagree in four places, recorded so a later edit doesn't loosen the code. The pass's lifetime argument has two names, and the lint reads either. The custom task extension has two I Ds. The mover category appears in an example but not in the property table. And the workflow ceiling is a hundred on two pages and fifty on another, so the budget is fifty. Still open: the trigger name for an extension attribute, and the execution limit the API doesn't carry.
 
 ## Slide 11 — What the output proves, and for whom
 

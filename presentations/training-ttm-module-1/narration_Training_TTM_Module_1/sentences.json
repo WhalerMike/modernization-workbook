@@ -499,46 +499,46 @@
  "12": [
   [
    0.05,
-   3.663,
-   "Step one runs the chapter's tests: twenty-two pass."
+   3.763,
+   "Step one runs the chapter's tests: twenty-six pass."
   ],
   [
-   3.712,
+   3.812,
    9.275,
    "Step three runs the ServiceNow script's own tests, the rules the Python mirrors, under Node: fifteen tests, fifteen pass, none fail."
   ],
   [
-   12.988,
+   13.088,
    6.188,
    "Then step four runs the drift reconciliation over the fixtures and checks every payload it would post."
   ],
   [
-   19.175,
+   19.275,
    1.613,
    "Twelve lines start ok."
   ],
   [
-   20.788,
+   20.887,
    10.387,
    "Attribute drift is P three, due in twenty-four hours; missing identities, orphans, stale access and the unauthorized write are P two, due in an hour."
   ],
   [
-   31.175,
+   31.275,
    7.075,
    "Three carry the warning: the two missing identities and the unauthorized write, the classes the loop routes to a person."
   ],
   [
-   38.25,
+   38.35,
    4.875,
    "And the last line is twelve accepted, none rejected, none de-duplicated."
   ],
   [
-   43.125,
+   43.225,
    5.812,
    "Erin's two drifts in Entra I D, her department and her manager, have their own keys."
   ],
   [
-   48.938,
+   49.038,
    2.487,
    "Step five deletes the output folder."
   ]

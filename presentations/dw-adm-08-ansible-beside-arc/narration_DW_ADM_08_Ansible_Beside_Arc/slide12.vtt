@@ -40,6 +40,6 @@ with the database's values and no stored
 secret, and writes a result file.
 
 9
-00:00:30.438 --> 00:00:33.980
-The older step-by-step playbook
-stays for Azure Government.
+00:00:30.438 --> 00:00:34.900
+The older step-by-step playbook stays,
+and now starts with the same plan.

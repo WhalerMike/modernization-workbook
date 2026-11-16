@@ -33,10 +33,10 @@ const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 5: Check certificate-based authentication", "HR-Driven Identity learning path · Gate G5 Credentials, for GCC and GCC High",
-    ["Credentials follow HR events  ·  CRL limits per cloud  ·  The measurement  ·  The check", "Try it: Lab 1  ·  Same CRL, two clouds  ·  Lab 2  ·  Evidence"]);
+  const s = title(SI, "Module 5: Check certificate-based authentication", "HR-Driven Identity learning path · Gate G5 Credentials, for GCC",
+    ["Credentials follow HR events  ·  The CRL limits  ·  The measurement  ·  The check", "Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
   notes(s,
-`Welcome to Module 5 of the HR-Driven Identity learning path: check certificate-based authentication. This is Gate 5 of the implementation guide, credentials, and it goes with Chapter 05 of the developer workbook. A PIV card's revocation reaches sign-in only through the certificate revocation list. So in this module you'll measure every revocation list and check the tenant's certificate-based authentication settings against the limits for your cloud: the trust store, each list against the cloud's limit, the multifactor mapping, revocation list validation and the phishing-resistant strength. You'll run the check on a fictional tenant for GCC and then for GCC High, and see the findings change. The module takes about forty-five minutes with its lab.`,
+`Welcome to Module 5 of the HR-Driven Identity learning path: check certificate-based authentication. This is Gate 5 of the implementation guide, credentials, and it goes with Chapter 05 of the developer workbook. A PIV card's revocation reaches sign-in only through the certificate revocation list. So in this module you'll measure every revocation list and check the tenant's certificate-based authentication settings against the limits for your cloud: the trust store, each list against the cloud's limit, the multifactor mapping, revocation list validation and the phishing-resistant strength. You'll run the check on a fictional tenant for GCC, and see how the GCC limit sets its warnings. The module takes about fifty minutes with its lab.`,
   `${M} — "Introduction"; module header.`);
 }
 
@@ -60,18 +60,18 @@ const SS = "Check and summary";
 // ================================================================== 3 Objectives
 {
   const s = objectives(SI, "What you'll be able to do in Module 5", [
-    "State the interactive CRL limits for GCC and GCC High, and the download time limit",
+    "State the interactive CRL limit for GCC, and the download time limit",
     "Measure a set of CRLs and record failures as findings",
     "Run the certificate-based authentication check for a named cloud and explain its findings",
-    "Explain why the same CRL can be a warning in one cloud and not in another",
+    "Explain why a CRL under the GCC limit can still be a warning, and why the check runs every day",
   ], [
     "Module 3: the Temporary Access Pass bridges to the card; this gate ends the bridge",
     "Some PKI terms: issuing CA, CRL, policy OID (Book 07, Chapter 06)",
     "Lab 1: Python 3.10+, pytest; no tenant",
-  ], 45);
+  ], 50);
   sources(s, "Sources: Module 5, \"Learning objectives,\" \"Prerequisites\"; HR-Driven Identity path, \"What you need for the labs.\"");
   notes(s,
-`Here's what you'll be able to do by the end of the module. You'll state the interactive revocation list limits for GCC and GCC High, and the download time limit. You'll measure a set of lists and record the failures as findings. You'll run the certificate-based authentication check for a named cloud and explain what it finds. And you'll explain why the same list can be a warning in one cloud and not in another. Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge. Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; Chapter 06 of the Federal Modernization Workbook's PKI and Certificates book explains them for Entra. Lab 1 needs Python and pytest, and no tenant.`,
+`Here's what you'll be able to do by the end of the module. You'll state the interactive revocation list limit for GCC, and the download time limit. You'll measure a set of lists and record the failures as findings. You'll run the certificate-based authentication check for a named cloud and explain what it finds. And you'll explain why a list under the GCC limit can still be a warning, and why the check runs every day. Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge. Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; Chapter 06 of the Federal Modernization Workbook's PKI and Certificates book explains them for Entra. Lab 1 needs Python and pytest, and no tenant.`,
   `${M} — "Learning objectives," "Prerequisites"; learning path index — "What you need for the labs."`);
 }
 endModule(SI);
@@ -81,7 +81,7 @@ endModule(SI);
   const s = content(SC, "Credentials follow HR events");
   tag(s, "What");
   const l = panel(s, "Step5", 0.6, 1.45, 7.0, null, HEX.navy, HEX.navyTint, "UNIT 1  ·  THE GUIDE'S STEP 5", "Bind credentials to HR events", [
-    "Its step 1 gives the CRL limits per cloud",
+    "Its step 1 gives the CRL limits",
     "Its later steps tie issuance and revocation to HR and contractor events",
     "Book 03, Chapter 09: why revocation checking matters",
     "Book 03, Chapter 09: a reissue changes the PIV certificate's binding to the Entra user",
@@ -95,22 +95,21 @@ endModule(SI);
     "the trust store's CAs, the X.509 method, the authentication strengths and Conditional Access, plus each CRL's measurement.");
   sources(s, "Sources: Module 5, Unit 1 \"Credentials follow HR events\"; examples/hr-lifecycle/python/cba_check.py (module docstring).");
   notes(s,
-`Unit 1 starts in the guide's Step 5, bind credentials to HR events. Its first step gives the revocation list limits for each cloud, and its later steps tie card issuance and revocation to HR and contractor events. Chapter 09 of the HR-Driven Identity book explains why revocation checking matters, and that a reissued card changes the binding between the PIV certificate and the Entra user. Notice what this module doesn't cover. Binding coverage and affinity for each user belong to the validation kit's check, V K PIV oh one, and to Gate 6 of the attribute-driven migration guide. This module checks the tenant's settings: the certificate authorities in the trust store, the X dot five-oh-nine certificate method, the authentication strengths and the Conditional Access policies, plus a measurement of each revocation list.`,
+`Unit 1 starts in the guide's Step 5, bind credentials to HR events. Its first step gives the revocation list limits, and its later steps tie card issuance and revocation to HR and contractor events. Chapter 09 of the HR-Driven Identity book explains why revocation checking matters, and that a reissued card changes the binding between the PIV certificate and the Entra user. Notice what this module doesn't cover. Binding coverage and affinity for each user belong to the validation kit's check, V K PIV oh one, and to Gate 6 of the attribute-driven migration guide. This module checks the tenant's settings: the certificate authorities in the trust store, the X dot five-oh-nine certificate method, the authentication strengths and the Conditional Access policies, plus a measurement of each revocation list.`,
   `${M} — Unit 1 "Credentials follow HR events"; examples/hr-lifecycle/python/cba_check.py.`);
 }
 
 // ================================================================== 5 Limits
 {
-  const s = content(SC, "The CRL limits the check holds each cloud to");
+  const s = content(SC, "The CRL limits the check holds GCC to");
   tag(s, "What");
   const b = table(s, "Limits", 1.45, [3.6, 4.6, 3.95], ["Cloud (--cloud)", "Interactive sign-in CRL limit", "Download within"], [
     ["gcc: the commercial service, which GCC uses", "20,000,000 bytes (20 MB)", "10 seconds"],
-    ["gcchigh: Azure Government", "45,000,000 bytes (45 MB)", "10 seconds"],
-    ["dod", "45,000,000 bytes", "10 seconds"],
+    ["The service-side limit", "65 MB", "—"],
   ], { fontSize: 13.5, limit: 4.0 });
   const l = panel(s, "Read", 0.6, b + 0.25, 6.0, null, HEX.navy, HEX.navyTint, "HOW THE KIT READS THEM", null, [
     "Learn gives the limits in MB; the check reads decimal MB, 1 MB = 1,000,000 bytes, the stricter reading",
-    "There is no default cloud: you name it",
+    "There is no default cloud: you name it, --cloud gcc",
   ], 13);
   panel(s, "Design", 6.85, b + 0.25, 5.9, null, HEX.amber, HEX.amberTint, "DESIGN GUIDANCE", null, [
     "Warn at 80 percent of the interactive limit",
@@ -118,7 +117,7 @@ endModule(SI);
   ], 13);
   sources(s, "Sources: Module 5, Unit 1; Knowledge check, answer 2; examples/hr-lifecycle: config/cba-expected.json, README \"Commands.\"");
   notes(s,
-`Here are the limits the check holds each cloud to. GCC uses the commercial service, so its interactive sign-in limit for a revocation list is twenty megabytes. GCC High is Azure Government, at forty-five megabytes, and the kit holds DoD to the same. In every cloud a list must download within ten seconds. Learn gives those limits in megabytes; the kit reads them as decimal megabytes, a million bytes each, which is the stricter reading. There's no default cloud in the kit: you name it every time, so a GCC High check can't silently run against GCC's numbers. Two thresholds are the program's design guidance, not Learn's: a warning at eighty percent of the interactive limit, and a warning when an authority's certificate expires within ninety days.`,
+`Here are the limits the check holds GCC to. Microsoft Learn's page on the certificate revocation list gives them for public Entra I D, which includes GCC. For interactive sign-in, a revocation list must stay under twenty megabytes and download within ten seconds. The service-side limit is sixty-five megabytes. Learn gives those limits in megabytes; the kit reads them as decimal megabytes, a million bytes each, which is the stricter reading. There's no default cloud in the kit: you name it every time, with cloud G C C. Two thresholds are the program's design guidance, not Learn's: a warning at eighty percent of the interactive limit, and a warning when an authority's certificate expires within ninety days.`,
   `${M} — Unit 1; "Knowledge check," answer 2; examples/hr-lifecycle/config/cba-expected.json; README "Commands."`);
 }
 
@@ -233,34 +232,14 @@ endModule(SC);
     "  CB-12 Finding: Contoso Example PIV Issuing CA 2: issuing CA the card program uses isn't in the trust store",
     "  CB-05 Warn: Contoso Example PIV Issuing CA 2 (renewed): CRL is 18,500,000 bytes, over 80% of the gcc ...",
     "  ... six more Warns: CB-01 (root), CB-02, CB-08 (two), CB-11, CB-13",
+    "# Step 4: the tests",
+    "$ python -m pytest tests -q        # 57 passed",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 2, 2026 (TRIMMED)", pt: 10.5 });
   line(s, "Exit", "Exit code 2. Four to find: CB-04 (11.4 seconds), CB-05 (18,500,000 bytes), CB-09 and CB-10.", c + 0.25, 0.45, 14);
-  sources(s, "Sources: Module 5, \"Exercise: Lab 1,\" step 3; examples/hr-lifecycle: cba_check.py, tests/fixtures/ch05/exports.");
+  sources(s, "Sources: Module 5, \"Exercise: Lab 1,\" steps 3 and 4; examples/hr-lifecycle: cba_check.py, tests/fixtures/ch05/exports.");
   notes(s,
-`Step three checks the fictional tenant for GCC. The first line names the limits it's using: twenty million bytes, and ten seconds. Then the count: five Findings, seven Warns, and exit code two. The lab asks you to find four of them. C B four: one authority's list took eleven point four seconds to download, over the ten-second limit, so in real life sign-in would fail for its cards. C B five: that same list is eighteen and a half million bytes, more than eighty percent of the GCC limit. C B nine: the PIV policy O I D isn't mapped to multifactor. And C B ten: no enabled policy requires a phishing-resistant strength. You'll also see a legacy intermediate with no list at all, and an issuing authority missing from the trust store.`,
-  `${M} — "Exercise: Lab 1 (fixtures, no tenant)," step 3.`);
-}
-
-// ================================================================== 11 Same CRL, two clouds
-{
-  const s = content(SL, "Try it: the same tenant, checked for GCC High");
-  tag(s, "How");
-  const c = code(s, "Lab", 0.6, 1.45, 12.15, [
-    "# Lab 1, step 4 (the command wrapped across lines)",
-    "$ python python/cba_check.py check --cloud gcchigh --exports tests/fixtures/ch05/exports \\",
-    "    --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json \\",
-    "    --as-of 2026-11-01 --out out/ch05/check-gcchigh",
-    "Cloud gcchigh: interactive CRL limit 45,000,000 bytes, download within 10 s",
-    "CBA: 5 Finding, 6 Warn, 0 Info",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 2, 2026 (FIRST TWO LINES OF OUTPUT)", pt: 11 });
-  const b = table(s, "Diff", c + 0.25, [4.0, 4.05, 4.1], ["The 18,500,000-byte CRL that took 11.4 s", "GCC (limit 20,000,000)", "GCC High (limit 45,000,000)"], [
-    ["Size: CB-05 warns at 80 percent", "Warn: over 16,000,000", "No Warn: under 36,000,000"],
-    ["Time: CB-04, 10 seconds in every cloud", "Finding", "Finding"],
-  ], { fontSize: 13, limit: 6.55 });
-  sources(s, "Sources: Module 5, \"Exercise: Lab 1,\" step 4; Knowledge check, answers 3 and 4; examples/hr-lifecycle/config/cba-expected.json.");
-  notes(s,
-`What differs by cloud? Step four runs the same check on the same tenant, naming GCC High instead. The limit line now says forty-five million bytes, and the count drops to five Findings and six Warns. One warning went away: C B five. The eighteen and a half million byte list was over eighty percent of GCC's twenty megabytes, but it's well under eighty percent of forty-five, so in GCC High it's fine. The download time is different. The ten-second limit applies in every cloud, so the eleven point four second download is still a Finding. That's the lesson of this step: the same list can be a warning in one cloud and not in another, which is why the check always takes the cloud by name.`,
-  `${M} — "Exercise: Lab 1 (fixtures, no tenant)," step 4; "Knowledge check," answers 3 and 4.`);
+`Step three checks the fictional tenant for GCC. The first line names the limits it's using: twenty million bytes, and ten seconds. Then the count: five Findings, seven Warns, and exit code two. The lab asks you to find four of them. C B four: one authority's list took eleven point four seconds to download, over the ten-second limit, so in real life sign-in would fail for its cards. C B five: that same list is eighteen and a half million bytes, more than eighty percent of the GCC limit. C B nine: the PIV policy O I D isn't mapped to multifactor. And C B ten: no enabled policy requires a phishing-resistant strength. You'll also see a legacy intermediate with no list at all, and an issuing authority missing from the trust store. Step four runs the tests: fifty-seven pass. Then delete the out folder.`,
+  `${M} — "Exercise: Lab 1 (fixtures, no tenant)," steps 3 and 4.`);
 }
 
 // ================================================================== 12 Lab 2
@@ -287,7 +266,7 @@ endModule(SL);
 {
   const s = content(SS, "The federal requirement, and the evidence to keep");
   tag(s, "Who");
-  const b = table(s, "Req", 1.45, [3.4, 8.75], ["Requirement", "What this gate meets"], [
+  const b = table(s, "Req", 1.45, [3.4, 8.75], ["Requirement", "What this gate supports"], [
     ["NIST SP 800-53", "IA-2(12) acceptance of PIV credentials; IA-5(2) public key-based authentication"],
     ["CISA SCuBA, under BOD 25-01", "MS.AAD.3.1v1 and MS.AAD.3.6v1: phishing-resistant MFA"],
     ["FIPS 201-3; NIST SP 800-63-4", "FIPS 201-3's issuance and termination rules; SP 800-63-4"],
@@ -307,11 +286,11 @@ endModule(SL);
 {
   const s = check(SS, "Check yourself: two questions on card sign-in", [
     { q: "What happens when an issuing CA in the trust store has no CRL configured?", options: ["a. Entra downloads the CRL from the certificate's distribution point", "b. Entra doesn't check revocation for that CA's certificates", "c. Sign-in fails for that CA's certificates"] },
-    { q: "An 18,500,000-byte CRL raises CB-05 for GCC but not for GCC High. Why?", options: ["a. GCC High doesn't check CRL size", "b. CB-05 warns at 80 percent of the cloud's interactive limit, and GCC High's is 45 MB", "c. GCC High caches CRLs"] },
-  ], "1 b: without a configured CRL, Entra doesn't check revocation (CB-01). 2 b: the same size is under 80 percent of 45 MB.");
+    { q: "An 18,500,000-byte CRL raises CB-05 in GCC. Why?", options: ["a. The CRL is over the GCC limit", "b. CB-05 warns at 80 percent of the interactive limit, and GCC's limit is 20 MB", "c. The CRL took too long to download"] },
+  ], "1 b: without a configured CRL, Entra doesn't check revocation (CB-01). 2 b: 18,500,000 bytes is over 80 percent of 20 MB.");
   sources(s, "Sources: Module 5, \"Knowledge check,\" questions 1 and 3, and \"Check your answers.\"");
   notes(s,
-`Check yourself with two questions from the module's knowledge check. First: what happens when an issuing certificate authority in the trust store has no revocation list configured? The answer is b. Entra doesn't check revocation for that authority's certificates, which is rule C B one. Second: an eighteen and a half million byte list raises C B five for GCC but not for GCC High. Why? The answer is b. C B five warns at eighty percent of the cloud's interactive limit, and GCC High's limit is forty-five megabytes, so the same size is under the line. The module page has two more questions, each linked to the section that teaches it.`,
+`Check yourself with two questions from the module's knowledge check. First: what happens when an issuing certificate authority in the trust store has no revocation list configured? The answer is b. Entra doesn't check revocation for that authority's certificates, which is rule C B one. Second: an eighteen and a half million byte list raises C B five in GCC. Why? The answer is b. C B five warns at eighty percent of the interactive limit, and GCC's limit is twenty megabytes, so eighteen and a half million bytes is over the line, though still under the limit. The module page has two more questions, each linked to the section that teaches it.`,
   `${M} — "Knowledge check," questions 1 and 3; "Check your answers."`);
 }
 
@@ -320,10 +299,10 @@ endModule(SL);
   const s = content(SS, "Summary, and next: Module 6, separation timing");
   tag(s, "How");
   const l = panel(s, "Did", 0.6, 1.45, 7.0, null, HEX.navy, HEX.navyTint, "IN THIS MODULE YOU", null, [
-    "Learned the interactive CRL limits: 20 MB for GCC, 45 MB for GCC High, 10 seconds everywhere",
+    "Learned the interactive CRL limits for GCC: 20 MB, and 10 seconds to download",
     "Measured three CRLs, and recorded the missing one as a finding",
-    "Checked a fictional tenant for GCC, then for GCC High",
-    "Saw how the cloud's limit changes the findings",
+    "Checked a fictional tenant for GCC",
+    "Saw how the GCC limit sets the CB-05 warning",
   ], 13.5);
   const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "NEXT", "Module 6: Time separations from the logs", [
     "Separation-to-block and separation-to-revocation",
@@ -333,7 +312,7 @@ endModule(SL);
     "measure and check every day rather than once; a CRL that fits today can cross the limit next month.");
   sources(s, "Sources: Module 5, \"Summary\" and \"Introduction\"; Module 6, \"Prerequisites.\"");
   notes(s,
-`To sum up. You learned the interactive revocation list limits, twenty megabytes for GCC and forty-five for GCC High, with ten seconds to download in every cloud. You measured three lists, and the missing one became a recorded finding instead of a crash. You checked a fictional tenant for GCC and then for GCC High, and saw how the cloud's limit changes the findings while the download limit doesn't. Keep the measurement and the check running every day, because a list that fits today can cross the limit next month. Next is Module 6, time separations from the logs: separation-to-block and separation-to-revocation for every leaver. It builds on this module, because a card's revocation reaches sign-in through the revocation list.`,
+`To sum up. You learned the interactive revocation list limits for GCC: twenty megabytes, and ten seconds to download. You measured three lists, and the missing one became a recorded finding instead of a crash. You checked a fictional tenant for GCC, and saw how the GCC limit sets the C B five warning. Keep the measurement and the check running every day, because a list that fits today can cross the limit next month. Next is Module 6, time separations from the logs: separation-to-block and separation-to-revocation for every leaver. It builds on this module, because a card's revocation reaches sign-in through the revocation list.`,
   `${M} — "Summary"; "Introduction"; Module 6 — "Prerequisites."`);
 }
 endModule(SS);

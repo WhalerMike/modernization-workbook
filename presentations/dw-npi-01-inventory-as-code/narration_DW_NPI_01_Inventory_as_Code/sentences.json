@@ -53,33 +53,6 @@
    "The trouble is that Microsoft's own commands give you several lists, and they don't agree."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   11.425,
-   "This estate is a G C C tenant with commercial Azure, so every host the read touches is a worldwide one: the worldwide Graph endpoint and the commercial Resource Manager endpoint."
-  ],
-  [
-   12.838,
-   8.613,
-   "G C C High and the Defense Department clouds have their own hosts, and the Graph pages this chapter relies on list the government service levels."
-  ],
-  [
-   21.45,
-   5.5,
-   "The code never guesses: you name the cloud explicitly, and it refuses one it doesn't know."
-  ],
-  [
-   26.95,
-   7.775,
-   "The directory reads work the same way, going only to the domain you name, never to whatever domain the machine happens to be in."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -508,6 +481,33 @@
    34.288,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   11.425,
+   "This estate is a G C C tenant with commercial Azure, so every host the read touches is a worldwide one: the worldwide Graph endpoint and the commercial Resource Manager endpoint."
+  ],
+  [
+   12.838,
+   5.287,
+   "The Graph pages this chapter relies on list the global service that G C C uses."
+  ],
+  [
+   18.125,
+   5.5,
+   "The code never guesses: you name the cloud explicitly, and it refuses one it doesn't know."
+  ],
+  [
+   23.625,
+   7.775,
+   "The directory reads work the same way, going only to the domain you name, never to whatever domain the machine happens to be in."
   ]
  ]
 }

@@ -63,31 +63,31 @@ as Learn's best practices for
 securing the custom extension ask.
 
 14
-00:00:45.088 --> 00:00:48.416
+00:00:45.088 --> 00:00:48.512
 Learn documents that policy
 only for Azure commercial,
 
 15
-00:00:48.416 --> 00:00:52.975
-so for a Logic App in Azure Government
+00:00:48.512 --> 00:00:53.425
+so for a Logic App in any other Azure cloud
 the builder refuses rather than guess.
 
 16
-00:00:52.975 --> 00:00:56.139
+00:00:53.425 --> 00:00:56.589
 The callback identity needs
 no tenant-wide Lifecycle
 
 17
-00:00:56.139 --> 00:00:59.163
+00:00:56.589 --> 00:00:59.613
 Workflows permission, which
 Learn advises against.
 
 18
-00:00:59.163 --> 00:01:04.651
+00:00:59.613 --> 00:01:05.100
 And the workflow check requires the leaver
 to block first, which is this workbook's
 
 19
-00:01:04.651 --> 00:01:09.480
+00:01:05.100 --> 00:01:09.910
 guidance, in Microsoft's order: disable,
 then revoke, then the custom task.

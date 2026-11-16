@@ -88,53 +88,6 @@
    "This module puts those detections in a repository and deploys them through the Graph A P I. Rules that correlate across other sources stay as Sentinel analytics rules, in that book."
   ]
  ],
- "3": [
-  [
-   0.05,
-   2.913,
-   "Here's what you'll be able to do by the end of this module."
-  ],
-  [
-   2.962,
-   5.088,
-   "Write a custom detection as a repository file, and say why it starts disabled."
-  ],
-  [
-   8.05,
-   4.688,
-   "Test a rule against a validation window, and explain the thirty-day limit."
-  ],
-  [
-   12.738,
-   10.35,
-   "Deploy a rule through the Graph detection rules A P I, and use the portal, from the same file, where the A P I's government-cloud availability isn't specified."
-  ],
-  [
-   23.087,
-   6.075,
-   "Name Defender for Identity's and Defender for Cloud Apps' government-cloud gaps, and their interim path."
-  ],
-  [
-   29.163,
-   4.862,
-   "And run the cross-source query that finds a user with alerts from more than one source."
-  ],
-  [
-   34.025,
-   1.425,
-   "You need Module 3."
-  ],
-  [
-   35.45,
-   5.6,
-   "Skim the rule lifecycle in the Security Operations and Telemetry book's Chapter 11."
-  ],
-  [
-   41.05,
-   3.312,
-   "Lab 2 runs in a test tenant, never production."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -234,152 +187,6 @@
    "Learn's page for the run hunting query A P I says it defaults to thirty days, and takes an I S O eighty-six oh one time span, such as P thirty D, which the lab uses."
   ]
  ],
- "6": [
-  [
-   0.05,
-   4.838,
-   "Deploying is a post of the file to the detection rules endpoint, then a read-back."
-  ],
-  [
-   4.888,
-   4.888,
-   "Validation is an export of everything deployed, compared with the repository."
-  ],
-  [
-   9.775,
-   9.012,
-   "The guide's pass: every rule in the repository is deployed with the same query text and status, and nothing is deployed that isn't in the repository."
-  ],
-  [
-   18.788,
-   1.613,
-   "Now the government clouds."
-  ],
-  [
-   20.4,
-   10.838,
-   "Microsoft Learn's run hunting query page has a national-cloud table: available on the global service, which G C C uses, and in U S Government L four and L five."
-  ],
-  [
-   31.238,
-   11.65,
-   "Learn's detection rules pages have no national-cloud table, so the guide records the A P I's government-cloud availability as not yet specified, and lists it among the things it couldn't verify."
-  ],
-  [
-   42.888,
-   7.062,
-   "The interim path in G C C High and D O D is to create the rule in the portal from the same repository file."
-  ],
-  [
-   49.95,
-   5.425,
-   "The file stays the source of truth either way, and the deployed-rules check still compares the two."
-  ]
- ],
- "7": [
-  [
-   0.05,
-   3.087,
-   "Unit 2 is identity and cloud-app signals."
-  ],
-  [
-   3.138,
-   15.25,
-   "Defender for Identity's sensors go on domain controllers, A D F S, A D C S and Entra Connect servers, and Defender for Cloud Apps' connectors bring in software-as-a-service behavior, so both land in the same incidents as the endpoint."
-  ],
-  [
-   18.387,
-   7.463,
-   "Pilot the sensors on one domain controller per domain first; domain controllers remain Tier zero until they're retired."
-  ],
-  [
-   25.85,
-   13.825,
-   "Microsoft Learn's government page for Defender for Identity gives each cloud its sensor endpoint: a G C C address for G C C, and an azure dot U S address for G C C High and D O D, or the service tag."
-  ],
-  [
-   39.675,
-   7.875,
-   "Learn also says new features reach the government clouds within ninety days of commercial release, and previews may not be supported there."
-  ],
-  [
-   47.55,
-   1.113,
-   "Then the gaps."
-  ],
-  [
-   48.663,
-   9.863,
-   "Learn's Cloud Apps government page lists App Governance's predefined policy alerts and threat-detection alerts as roadmap items in all three clouds."
-  ],
-  [
-   58.525,
-   5.9,
-   "And Learn's advanced hunting schema says Cloud Apps behaviors aren't available for G C C."
-  ],
-  [
-   64.425,
-   8.488,
-   "The interim path for O auth app abuse is the application detections in Sentinel, in the Security Operations and Telemetry book."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   4.688,
-   "Lab 2 runs the guide's own commands in a test tenant, never production."
-  ],
-  [
-   4.737,
-   3.0,
-   "The authors haven't run them, as the page says."
-  ],
-  [
-   7.737,
-   11.688,
-   "You need Module 1's test tenant, in the worldwide or G C C cloud; for G C C High or D O D, create the rule in the portal from the file instead of steps four and five."
-  ],
-  [
-   19.425,
-   11.463,
-   "You need an account with Detection tuning, manage, or Security Administrator, activated through pim, and Defender for Identity or Cloud Apps connected, for step six to return rows."
-  ],
-  [
-   30.887,
-   4.062,
-   "Step one connects with the hunting and custom detection permissions."
-  ],
-  [
-   34.95,
-   5.112,
-   "Step two writes the guide's example rule to a file, with its status disabled."
-  ],
-  [
-   40.062,
-   4.963,
-   "The slide shortens it; the page has the whole file, exactly as the guide gives it."
-  ],
-  [
-   45.025,
-   7.675,
-   "Step three reads the file back and runs its query against the last thirty days, saving the output as the rule's test record."
-  ],
-  [
-   52.7,
-   3.125,
-   "In a quiet test tenant it returns no rows."
-  ],
-  [
-   55.825,
-   2.3,
-   "That shows the known-good window only."
-  ],
-  [
-   58.125,
-   3.788,
-   "A rule isn't finished until its known-bad event is shown to fire."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -474,58 +281,6 @@
    "The gates support these controls, and the assessor decides whether each is satisfied."
   ]
  ],
- "11": [
-  [
-   0.05,
-   1.975,
-   "Check yourself with two questions."
-  ],
-  [
-   2.025,
-   5.95,
-   "First: an auditor asks for a rule's validation against the last ninety days of hunting data."
-  ],
-  [
-   7.975,
-   1.025,
-   "What's the limit?"
-  ],
-  [
-   9.0,
-   2.225,
-   "The answer is b, thirty days."
-  ],
-  [
-   11.225,
-   7.237,
-   "Advanced hunting keeps thirty days, and Microsoft Learn says the run hunting query A P I defaults to thirty."
-  ],
-  [
-   18.462,
-   4.775,
-   "That's also why the monthly evidence run in Module 5 files its results."
-  ],
-  [
-   23.238,
-   4.812,
-   "Second: a G C C High S O C wants to deploy rules as code."
-  ],
-  [
-   28.05,
-   1.425,
-   "What does the program do?"
-  ],
-  [
-   29.475,
-   15.188,
-   "The answer is b. Learn doesn't specify the detection rules A P I's national-cloud availability, so the interim path is to create the rule in the portal, from the same repository file, and keep comparing the deployed rules with the repository."
-  ],
-  [
-   44.663,
-   4.912,
-   "The module page has three more questions, each linked to the unit that answers it."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -561,6 +316,246 @@
    36.337,
    7.938,
    "Next is Module 5, the last: automation with approval boundaries, the operating cadence, and the monthly evidence run."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   5.088,
+   "Write a custom detection as a repository file, and say why it starts disabled."
+  ],
+  [
+   8.05,
+   4.688,
+   "Test a rule against a validation window, and explain the thirty-day limit."
+  ],
+  [
+   12.738,
+   9.637,
+   "Deploy a rule through the Graph detection rules A P I, and use the portal, from the same file, where the A P I's availability isn't specified."
+  ],
+  [
+   22.375,
+   6.125,
+   "Name Defender for Identity's and Defender for Cloud Apps' G C C gaps, and their interim path."
+  ],
+  [
+   28.5,
+   4.862,
+   "And run the cross-source query that finds a user with alerts from more than one source."
+  ],
+  [
+   33.362,
+   1.425,
+   "You need Module 3."
+  ],
+  [
+   34.788,
+   5.6,
+   "Skim the rule lifecycle in the Security Operations and Telemetry book's Chapter 11."
+  ],
+  [
+   40.388,
+   3.312,
+   "Lab 2 runs in a test tenant, never production."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.838,
+   "Deploying is a post of the file to the detection rules endpoint, then a read-back."
+  ],
+  [
+   4.888,
+   4.888,
+   "Validation is an export of everything deployed, compared with the repository."
+  ],
+  [
+   9.775,
+   9.012,
+   "The guide's pass: every rule in the repository is deployed with the same query text and status, and nothing is deployed that isn't in the repository."
+  ],
+  [
+   18.788,
+   10.1,
+   "Now G C C. Microsoft Learn's run hunting query page lists it as available on the global service, the worldwide Graph host G C C uses."
+  ],
+  [
+   28.887,
+   11.9,
+   "Learn's detection rules pages have no national-cloud table, so the guide records the A P I's G C C availability as not yet specified, and lists it among the things it couldn't verify."
+  ],
+  [
+   40.788,
+   4.987,
+   "The interim path is to create the rule in the portal from the same repository file."
+  ],
+  [
+   45.775,
+   5.425,
+   "The file stays the source of truth either way, and the deployed-rules check still compares the two."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.087,
+   "Unit 2 is identity and cloud-app signals."
+  ],
+  [
+   3.138,
+   15.25,
+   "Defender for Identity's sensors go on domain controllers, A D F S, A D C S and Entra Connect servers, and Defender for Cloud Apps' connectors bring in software-as-a-service behavior, so both land in the same incidents as the endpoint."
+  ],
+  [
+   18.387,
+   7.463,
+   "Pilot the sensors on one domain controller per domain first; domain controllers remain Tier zero until they're retired."
+  ],
+  [
+   25.85,
+   9.1,
+   "Microsoft Learn's government page for Defender for Identity gives the sensor endpoint for G C C, a G C C address, or the service tag."
+  ],
+  [
+   34.95,
+   7.875,
+   "Learn also says new features reach G C C within ninety days of commercial release, and previews may not be supported there."
+  ],
+  [
+   42.825,
+   1.113,
+   "Then the gaps."
+  ],
+  [
+   43.938,
+   9.412,
+   "Learn's Cloud Apps government page lists App Governance's predefined policy alerts and threat-detection alerts as roadmap items for G C C."
+  ],
+  [
+   53.35,
+   5.9,
+   "And Learn's advanced hunting schema says Cloud Apps behaviors aren't available for G C C."
+  ],
+  [
+   59.25,
+   8.488,
+   "The interim path for O auth app abuse is the application detections in Sentinel, in the Security Operations and Telemetry book."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.688,
+   "Lab 2 runs the guide's own commands in a test tenant, never production."
+  ],
+  [
+   4.737,
+   3.0,
+   "The authors haven't run them, as the page says."
+  ],
+  [
+   7.737,
+   4.838,
+   "You need Module 1's test tenant, in the worldwide or G C C cloud."
+  ],
+  [
+   12.575,
+   11.463,
+   "You need an account with Detection tuning, manage, or Security Administrator, activated through pim, and Defender for Identity or Cloud Apps connected, for step six to return rows."
+  ],
+  [
+   24.038,
+   4.062,
+   "Step one connects with the hunting and custom detection permissions."
+  ],
+  [
+   28.1,
+   5.112,
+   "Step two writes the guide's example rule to a file, with its status disabled."
+  ],
+  [
+   33.212,
+   4.963,
+   "The slide shortens it; the page has the whole file, exactly as the guide gives it."
+  ],
+  [
+   38.175,
+   7.675,
+   "Step three reads the file back and runs its query against the last thirty days, saving the output as the rule's test record."
+  ],
+  [
+   45.85,
+   3.125,
+   "In a quiet test tenant it returns no rows."
+  ],
+  [
+   48.975,
+   2.3,
+   "That shows the known-good window only."
+  ],
+  [
+   51.275,
+   3.788,
+   "A rule isn't finished until its known-bad event is shown to fire."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   5.95,
+   "First: an auditor asks for a rule's validation against the last ninety days of hunting data."
+  ],
+  [
+   7.975,
+   1.025,
+   "What's the limit?"
+  ],
+  [
+   9.0,
+   2.225,
+   "The answer is b, thirty days."
+  ],
+  [
+   11.225,
+   7.237,
+   "Advanced hunting keeps thirty days, and Microsoft Learn says the run hunting query A P I defaults to thirty."
+  ],
+  [
+   18.462,
+   4.775,
+   "That's also why the monthly evidence run in Module 5 files its results."
+  ],
+  [
+   23.238,
+   5.987,
+   "Second: a G C C agency needs the O auth app abuse alerts that App Governance would give."
+  ],
+  [
+   29.225,
+   1.488,
+   "What's the interim path?"
+  ],
+  [
+   30.712,
+   8.5,
+   "The answer is b: the application detections in Sentinel, because Learn lists App Governance's alerts as roadmap items for G C C."
+  ],
+  [
+   39.212,
+   4.912,
+   "The module page has three more questions, each linked to the unit that answers it."
   ]
  ]
 }

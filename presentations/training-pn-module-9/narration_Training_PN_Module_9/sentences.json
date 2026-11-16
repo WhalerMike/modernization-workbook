@@ -160,68 +160,6 @@
    "Module 8 matters most, for the evidence chain and the stage check this module passes."
   ]
  ],
- "4": [
-  [
-   0.05,
-   2.188,
-   "Unit 1 is what the runbook adds."
-  ],
-  [
-   2.237,
-   7.938,
-   "One settings file per stage holds every value the commands need, and the settings reader enforces its rules before any command runs."
-  ],
-  [
-   10.175,
-   11.75,
-   "No secrets: a secret-like name, such as password, client secret or token, with a value, stops the run, and the ServiceNow token is read at run time from an environment variable."
-  ],
-  [
-   21.925,
-   2.638,
-   "No placeholders in an enabled provider."
-  ],
-  [
-   24.562,
-   3.062,
-   "The stage it says it is, checked by the pre-flight."
-  ],
-  [
-   27.625,
-   3.337,
-   "And named notice contacts for each enabled provider."
-  ],
-  [
-   30.962,
-   2.013,
-   "Every collector call is a read."
-  ],
-  [
-   32.975,
-   16.988,
-   "The kit's writes are few, and each is gated: the Azure Policy assignment and its remediation, and the rollback, run only with apply and the plan's approved SHA-256; payloads go to the agency's endpoint only with send and the settings flag."
-  ],
-  [
-   49.962,
-   3.337,
-   "The settings file also names each provider's cloud."
-  ],
-  [
-   53.3,
-   9.363,
-   "The estate the runbook writes for is Microsoft 365 G C C with commercial Azure, on the worldwide Graph and Resource Manager hosts."
-  ],
-  [
-   62.663,
-   4.05,
-   "G C C High and D O D are other names in the same file."
-  ],
-  [
-   66.713,
-   4.125,
-   "The kit doesn't build the ServiceNow endpoint; that's the agency's."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -765,6 +703,68 @@
    56.125,
    2.5,
    "Go back to the learning path for the whole map."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.188,
+   "Unit 1 is what the runbook adds."
+  ],
+  [
+   2.237,
+   7.938,
+   "One settings file per stage holds every value the commands need, and the settings reader enforces its rules before any command runs."
+  ],
+  [
+   10.175,
+   11.75,
+   "No secrets: a secret-like name, such as password, client secret or token, with a value, stops the run, and the ServiceNow token is read at run time from an environment variable."
+  ],
+  [
+   21.925,
+   2.638,
+   "No placeholders in an enabled provider."
+  ],
+  [
+   24.562,
+   3.062,
+   "The stage it says it is, checked by the pre-flight."
+  ],
+  [
+   27.625,
+   3.337,
+   "And named notice contacts for each enabled provider."
+  ],
+  [
+   30.962,
+   2.013,
+   "Every collector call is a read."
+  ],
+  [
+   32.975,
+   16.988,
+   "The kit's writes are few, and each is gated: the Azure Policy assignment and its remediation, and the rollback, run only with apply and the plan's approved SHA-256; payloads go to the agency's endpoint only with send and the settings flag."
+  ],
+  [
+   49.962,
+   3.337,
+   "The settings file also names each provider's cloud."
+  ],
+  [
+   53.3,
+   9.363,
+   "The estate the runbook writes for is Microsoft 365 G C C with commercial Azure, on the worldwide Graph and Resource Manager hosts."
+  ],
+  [
+   62.663,
+   1.625,
+   "Any other name throws."
+  ],
+  [
+   64.287,
+   4.125,
+   "The kit doesn't build the ServiceNow endpoint; that's the agency's."
   ]
  ]
 }

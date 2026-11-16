@@ -10,7 +10,7 @@ Why does this chapter exist? Because of one quiet failure. A federated credentia
 
 ## Slide 3 — Which cloud: Graph, Resource Manager, sign-in
 
-Next, which cloud. This chapter talks to three hosts: Microsoft Graph for app registrations and sign-ins, Resource Manager for managed identities, and the sign-in host for tokens. The estate is a G C C tenant with commercial Azure, so all three are the worldwide endpoints. G C C High and the Defense Department clouds have their own hosts, and the code switches only for those. One gap worth knowing: the managed identity pages the chapter read don't say whether they're available in Azure Government, which is fine here because this estate's Azure is commercial.
+Next, which cloud. This chapter talks to three hosts: Microsoft Graph for app registrations and sign-ins, Resource Manager for managed identities, and the sign-in host for tokens. The estate is a G C C tenant with commercial Azure, so all three are the worldwide endpoints, and the code takes all three from its cloud table. The token exchange test never leaves the laptop, but the request it builds is addressed to the cloud's own sign-in host, with the audience the federation check accepts.
 
 ## Slide 4 — What a federated credential is, and its rules
 

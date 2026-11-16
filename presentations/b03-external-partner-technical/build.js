@@ -383,8 +383,8 @@ const divider = (sec, t, sub, items, mins) => {
   const t = "Government clouds, and what isn't verified";
   const s = slide("Module 3 — Proving it", "How", t);
   const rows = [
-    head(["Feature", "Agency tenant in GCC", "Partner in GCC High or DoD"]),
-    ["Entitlement management", "Available (ID Governance in GCC, GCC High, DoD)", "Connected org: Entra ID in another cloud"],
+    head(["Feature", "Agency tenant in GCC", "Partner in another Microsoft cloud"]),
+    ["Entitlement management", "Available (ID Governance in GCC)", "Connected org: Entra ID in another cloud"],
     ["B2B collaboration", "Available", "Both enable each other's cloud; no direct connect"],
     ["Cross-tenant sync", "Users and groups, same cloud", "Cross-cloud: users only; no manager"],
   ];

@@ -210,7 +210,7 @@ endModule(SI);
     "validate(payload): the 400s, the warnings, and the normalized severity, priority, system, subject, key and window",
     "The constants mirror the script's; a test reads the JavaScript and fails if they drift apart",
     "The command line checks a payload file, or every payload a drift run would post",
-    "22 tests",
+    "26 tests",
   ], 13);
   const r = panel(s, "Vacuous", 7.15, 1.45, 5.6, null, HEX.red, HEX.redTint, "is_checkable(intended)", "Present, but checks nothing", [
     "{\"attributes\": {}, \"entitlements_absent\": []} is a non-empty object",
@@ -259,7 +259,7 @@ endModule(SC);
   const c = code(s, "Lab", 0.6, 1.45, 12.15, [
     "# Step 1: this chapter's tests",
     "$ python -m pytest tests/python/test_finding_contract.py -q",
-    "22 passed in 1.38s",
+    "26 passed in 1.03s",
     "# Step 4: run the drift reconciliation over the fixtures, then check its payloads",
     "$ python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv \\",
     "    --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json \\",
@@ -276,7 +276,7 @@ endModule(SC);
   line(s, "Read", "Step 3, node --test tests/servicenow/servicenow_scripts.test.js, prints tests 15, pass 15, fail 0. In step 4, twelve lines start ok; three carry the warning.", c + 0.2, 0.7, 13.5);
   sources(s, "Sources: Module 1, Unit 4, steps 1, 3 and 4; workbook Chapter 01, Lab 1, step 4. Step 5 deletes the out folder.");
   notes(s,
-`Step one runs the chapter's tests: twenty-two pass. Step three runs the ServiceNow script's own tests, the rules the Python mirrors, under Node: fifteen tests, fifteen pass, none fail. Then step four runs the drift reconciliation over the fixtures and checks every payload it would post. Twelve lines start ok. Attribute drift is P three, due in twenty-four hours; missing identities, orphans, stale access and the unauthorized write are P two, due in an hour. Three carry the warning: the two missing identities and the unauthorized write, the classes the loop routes to a person. And the last line is twelve accepted, none rejected, none de-duplicated. Erin's two drifts in Entra ID, her department and her manager, have their own keys. Step five deletes the output folder.`,
+`Step one runs the chapter's tests: twenty-six pass. Step three runs the ServiceNow script's own tests, the rules the Python mirrors, under Node: fifteen tests, fifteen pass, none fail. Then step four runs the drift reconciliation over the fixtures and checks every payload it would post. Twelve lines start ok. Attribute drift is P three, due in twenty-four hours; missing identities, orphans, stale access and the unauthorized write are P two, due in an hour. Three carry the warning: the two missing identities and the unauthorized write, the classes the loop routes to a person. And the last line is twelve accepted, none rejected, none de-duplicated. Erin's two drifts in Entra ID, her department and her manager, have their own keys. Step five deletes the output folder.`,
   `${M} — Unit 4 "Exercise: Lab 1 (fixtures, no tenant)," steps 1, 3, 4 and 5; workbook Chapter 01 — "Lab 1: fixtures, no tenant," step 4.`);
 }
 

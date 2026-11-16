@@ -5,60 +5,74 @@ WEBVTT
 Where are agencies?
 
 2
-00:00:01.362 --> 00:00:07.043
+00:00:01.362 --> 00:00:07.208
 The agency the workbook's device plan
 describes manages Windows with Group Policy,
 
 3
-00:00:07.043 --> 00:00:11.900
-and often Configuration Manager, and
-is moving to Intune in a GCC tenant.
+00:00:07.208 --> 00:00:09.580
+and often Configuration Manager,
 
 4
-00:00:11.900 --> 00:00:14.825
-GCC has no separate Intune instance.
+00:00:09.580 --> 00:00:13.900
+and is moving the fleet to Intune
+in a Microsoft 365 GCC tenant.
 
 5
-00:00:14.825 --> 00:00:19.092
-In Microsoft's words, GCC is
-the same instance as Intune in
+00:00:13.900 --> 00:00:17.171
+During the move some devices
+have no compliance policy,
 
 6
-00:00:19.092 --> 00:00:23.450
-the commercial space, and it
-uses the worldwide Graph host.
+00:00:17.171 --> 00:00:21.863
+the tenant-wide default may still mark
+them compliant, and stale records pile up.
 
 7
-00:00:23.450 --> 00:00:28.966
-GCC High and DoD share a separate government
-instance, with their own Graph hosts,
+00:00:21.863 --> 00:00:24.375
+GCC has no separate Intune instance:
 
 8
-00:00:28.966 --> 00:00:34.400
-and moving between instances means
-unenrolling and re-enrolling every device.
+00:00:24.375 --> 00:00:29.400
+it uses the commercial Intune service,
+and the worldwide Graph endpoint.
 
 9
-00:00:34.400 --> 00:00:38.327
-Microsoft's service description
-lists what isn't available there,
+00:00:29.400 --> 00:00:33.077
+The Intune feature gaps a
+GCC tenant does have are the
 
 10
-00:00:38.327 --> 00:00:42.753
-with no plans to add it: Windows Autopilot,
-Remediations, feature update and
+00:00:33.077 --> 00:00:36.838
+subject of the Devices and
+Endpoints book's Chapter 10.
 
 11
-00:00:42.753 --> 00:00:47.537
-compatibility reports, the ServiceNow
-connector and Subscription Activation.
+00:00:36.838 --> 00:00:42.087
+For example, Windows Update for Business
+reports don't meet GCC requirements.
 
 12
-00:00:47.537 --> 00:00:51.985
-Standard device management, compliance,
-configuration and app policies,
+00:00:42.087 --> 00:00:46.314
+The interim paths, which are design
+guidance: run compliance coverage
 
 13
-00:00:51.985 --> 00:00:57.140
-is available, with Log Analytics export
-and Defender security settings management.
+00:00:46.314 --> 00:00:50.687
+until it lists nothing, then change
+the tenant's default to not compliant.
+
+14
+00:00:50.687 --> 00:00:55.364
+Devices still on Group Policy or
+Configuration Manager aren't in Intune yet,
+
+15
+00:00:55.364 --> 00:00:59.000
+so track them with the validation
+kit's platform inventory.
+
+16
+00:00:59.000 --> 00:01:04.150
+And label the Settings Catalog export as
+beta, and re-run it after a beta change.

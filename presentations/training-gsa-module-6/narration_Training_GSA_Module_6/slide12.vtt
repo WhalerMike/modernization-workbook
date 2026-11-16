@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.788
+First: when is the V P N route for
+a migrated application removed?
+
+3
+00:00:06.788 --> 00:00:10.711
+The answer is b: only after the
+wave holds, with the V P N's own
+
+4
+00:00:10.711 --> 00:00:15.387
+logs showing no traffic for that
+application for ten business days.
+
+5
+00:00:15.387 --> 00:00:18.749
+Second: in the guide's
+rollback, what comes last?
+
+6
+00:00:18.749 --> 00:00:23.721
+The answer is c: disabling signaling,
+only after no policy depends on it;
+
+7
+00:00:23.721 --> 00:00:26.463
+turning it off earlier can block users.
+
+8
+00:00:26.463 --> 00:00:31.440
+The module page has three more questions,
+each linked to the unit that answers it.

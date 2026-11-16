@@ -49,10 +49,10 @@ Pasted line by line, your shell
 carries on after the refusal.
 
 11
-00:00:38.263 --> 00:00:43.288
+00:00:38.263 --> 00:00:43.101
 Step ten runs every test: five
-hundred thirteen pass, none fail.
+hundred eleven pass, none fail.
 
 12
-00:00:43.288 --> 00:00:45.190
+00:00:43.101 --> 00:00:45.000
 Then delete the output folder.

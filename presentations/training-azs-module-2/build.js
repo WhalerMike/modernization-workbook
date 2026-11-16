@@ -4,7 +4,7 @@
 // Zero Trust checks, the rule set, rate limit, tuning and rollback, Front Door), where agencies are, the lab's exact
 // commands in a test subscription (not run by the authors, as the page says; the module has no Lab 1), the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page and the Azure
-// Security Engineering implementation guide it sends the learner to (Steps 3 and 4, Government-cloud availability, The
+// Security Engineering implementation guide it sends the learner to (Steps 3 and 4, Availability in commercial Azure, The
 // same controls on AWS, Google Cloud and Oracle Cloud, and their footnotes) or the path's verification log; the deck adds
 // none. Helpers: ../training-azs-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-azs-module-2/build.js \
@@ -204,20 +204,20 @@ endModule(SI);
 
 // ================================================================== 9 Gov and other clouds
 {
-  const s = content(SC, "Where agencies are: the WAF's sovereign-cloud gaps");
+  const s = content(SC, "Where agencies are: commercial Azure, and other clouds");
   tag(s, "Who");
-  const tb = table(s, "Gov", 1.45, [3.4, 3.55, 5.2], ["Service", "Commercial Azure (GCC)", "Azure Government (side note)"], [
-    ["Application Gateway WAF", "Everything in this module", "Supported; no bot protection rule sets, no geo-filtering custom rules"],
-    ["Front Door WAF", "Everything; Premium for managed rules", "Sovereign-cloud limits not yet specified: assume the Application Gateway ones"],
-    ["DDoS Protection", "Available", "No variation listed; partners other than Red Button not yet specified"],
+  const tb = table(s, "Gov", 1.45, [3.4, 2.6, 6.15], ["Service", "Commercial Azure", "What to plan for"], [
+    ["Azure WAF (Application Gateway)", "Available", "Detection mode doesn't block; Step 4 runs prevention mode"],
+    ["Azure WAF (Front Door)", "Available", "Managed rule sets need Front Door Premium"],
+    ["Azure DDoS Protection", "Available", "Network Protection per plan, IP Protection per IP; simulations only through Learn's approved partners"],
   ], { fontSize: 12, limit: 4.4 });
-  callout(s, "Skip", tb + 0.2, 0.95, "FaClipboardCheck", HEX.amber, "In Azure Government: ",
-    "leave out the bot manager rule set, and record its Zero Trust test as Skipped-Not-Applicable (environment), not Fail.");
+  callout(s, "Skip", tb + 0.2, 0.95, "FaClipboardCheck", HEX.amber, "In commercial Azure, ",
+    "which a GCC tenant uses, everything in this module is available.");
   line(s, "Other", "Other clouds: AWS Shield and AWS WAF; Google Cloud Armor; OCI WAF as a regional or edge policy (OCI DDoS not compared).", 5.95, 0.6, 13.5);
-  sources(s, "Sources: Module 2, Unit 3; Guide, \"Government-cloud availability,\" \"The same controls on AWS, Google Cloud and Oracle Cloud\"; Application Gateway WAF FAQ.");
+  sources(s, "Sources: Module 2, Unit 3; Guide, \"Availability in commercial Azure,\" \"The same controls on AWS, Google Cloud and Oracle Cloud.\"");
   notes(s,
-`Where are agencies? In commercial Azure, which a G C C tenant uses, everything in this module is available. As a side note for Azure Government: Learn's frequently asked questions for the Application Gateway firewall say it's supported in sovereign clouds, but geo-filtering custom rules and bot protection rule sets aren't. So leave the bot manager rule set out, and record that Zero Trust test as skipped, not applicable, for the environment, not as a failure. Front Door's own sovereign-cloud limits aren't yet specified; assume the Application Gateway ones until a test policy shows otherwise. DDoS Protection has no variation listed, but which simulation partners serve Azure Government isn't specified, and Red Button is public cloud only. On other clouds, the guide names AWS Shield and AWS W A F, Google Cloud Armor, and O C I W A F as a regional policy on a load balancer or at the edge. DDoS protection on Oracle Cloud Infrastructure isn't compared there.`,
-  `${M} — Unit 3; guide, "Government-cloud availability" (WAF and DDoS rows), "The same controls on AWS, Google Cloud and Oracle Cloud"; Microsoft Learn — "Frequently asked questions for Azure Web Application Firewall on Application Gateway," "Tutorial: Azure DDoS Protection simulation testing."`);
+`Where are agencies? In commercial Azure, which a G C C tenant uses, everything in this module is available. The guide's availability table says what to plan for. The Application Gateway firewall's detection mode doesn't block, so Step 4 runs prevention mode. Front Door's managed rule sets need the Premium tier. And DDoS Network Protection is billed per plan, I P Protection per protected I P, with simulations only through Learn's approved partners. On other clouds, the guide names AWS Shield and AWS W A F, Google Cloud Armor, and O C I W A F as a regional policy on a load balancer or at the edge. DDoS protection on Oracle Cloud Infrastructure isn't compared there.`,
+  `${M} — Unit 3; guide, "Availability in commercial Azure" (WAF and DDoS rows), "The same controls on AWS, Google Cloud and Oracle Cloud."`);
 }
 endModule(SC);
 
@@ -322,7 +322,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 2 deck", [
   "Module page: docs/training/azure-security/02-ddos-protection-and-the-waf.md (Azure Security Engineering learning path, Module 2), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
-  "Azure Security Engineering (implementation guide): Steps 3 and 4; Government-cloud availability; The same controls on AWS, Google Cloud and Oracle Cloud; Dangers. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, About Azure DDoS Protection tier comparison; What is Azure DDoS Protection?; DDoS Network Protection CLI quickstart; Secure your Azure DDoS Protection deployment; DDoS Protection cost optimization principles; DDoS simulation testing; Supported metrics for public IPs; Azure network security Zero Trust recommendations; Zero Trust recommendations for Application Gateway WAF; az network application-gateway waf-policy; rate limit custom rules; Secure your Azure Application Gateway; Application Gateway WAF FAQ; WAF troubleshooting; Azure Verified Modules.",
+  "Azure Security Engineering (implementation guide): Steps 3 and 4; Availability in commercial Azure; The same controls on AWS, Google Cloud and Oracle Cloud; Dangers. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, About Azure DDoS Protection tier comparison; What is Azure DDoS Protection?; DDoS Network Protection CLI quickstart; Secure your Azure DDoS Protection deployment; DDoS Protection cost optimization principles; DDoS simulation testing; Supported metrics for public IPs; Azure network security Zero Trust recommendations; Zero Trust recommendations for Application Gateway WAF; az network application-gateway waf-policy; rate limit custom rules; Secure your Azure Application Gateway; Application Gateway WAF FAQ; WAF troubleshooting; Azure Verified Modules.",
   "Read for the lab, November 13, 2026: Microsoft Learn, Diagnostic logs for Application Gateway; Azure CLI, az monitor log-analytics.",
   "NIST SP 800-53 Rev. 5 and SP 800-53B (SC-5, SI-4, SC-7, SI-10); FIPS 200; FedRAMP 20x KSIs, as the guide's requirements table maps them.",
   "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",

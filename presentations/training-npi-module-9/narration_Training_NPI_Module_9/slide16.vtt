@@ -5,61 +5,56 @@ WEBVTT
 To sum up.
 
 2
-00:00:00.875 --> 00:00:03.755
+00:00:00.875 --> 00:00:03.650
 You checked eight
 fictional A I identities,
 
 3
-00:00:03.755 --> 00:00:06.794
+00:00:03.650 --> 00:00:06.578
 filled the sponsor fields
 Chapter 2 recorded,
 
 4
-00:00:06.794 --> 00:00:10.874
+00:00:06.578 --> 00:00:10.509
 found an orphaned agent and four
 top-priority drift findings,
 
 5
-00:00:10.874 --> 00:00:13.834
-ran the same rules in G
-C C High's fallback mode,
-
-6
-00:00:13.834 --> 00:00:18.313
+00:00:10.509 --> 00:00:14.825
 and applied a report-only agent policy
 to a fake by its approved hash.
 
-7
-00:00:18.313 --> 00:00:23.192
+6
+00:00:14.825 --> 00:00:19.705
 The evidence an ISSO keeps from this
 module is the A I identities file,
 
-8
-00:00:23.192 --> 00:00:28.500
+7
+00:00:19.705 --> 00:00:25.013
 the findings, the orphan candidates,
 the policy plan with its approved hash,
 
-9
-00:00:28.500 --> 00:00:32.696
+8
+00:00:25.013 --> 00:00:29.209
 and the dry run's and apply's
 results and manifests, all dated;
 
-10
-00:00:32.696 --> 00:00:37.062
+9
+00:00:29.209 --> 00:00:33.575
 the capability table for decision
 D N P six; and the test result.
 
-11
-00:00:37.062 --> 00:00:41.450
+10
+00:00:33.575 --> 00:00:37.963
 Next is Module 10: find
 drift and file the evidence.
 
-12
-00:00:41.450 --> 00:00:45.564
+11
+00:00:37.963 --> 00:00:42.076
 It keeps every gate's state true
 against an approved baseline,
 
-13
-00:00:45.564 --> 00:00:49.340
+12
+00:00:42.076 --> 00:00:45.840
 and hands the ISSO evidence
 they can verify themselves.

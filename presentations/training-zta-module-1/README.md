@@ -7,7 +7,7 @@
 | Introduction | Title; why the report is a reading on one day, not a verdict; learning objectives and prerequisites |
 | Concepts | What the tool checks and the four things it isn't; alongside ScubaGear under BOD 25-01; Microsoft's three-scale rubric; the six statuses; why skipped isn't failed (the normalized taxonomy) |
 | Lab | Try it: Lab 1 steps 1 to 4: the export's metadata and status counts, the skip reasons, and the kit's ConvertTo-ZtaResult sorting them into the taxonomy |
-| Who reads it | The decision record and the pillar owners; GCC first, and the GCC High and DoD boundary finding for impersonation protection |
+| Who reads it | The decision record and the pillar owners; GCC, the workbook's baseline |
 | Check and summary | The federal requirement (CA-2, CA-7) and evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |

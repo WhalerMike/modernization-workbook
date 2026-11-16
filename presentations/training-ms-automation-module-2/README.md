@@ -7,7 +7,7 @@
 | Introduction | Title; why it matters; learning objectives and prerequisites |
 | Concepts | The evidence questions and their Graph APIs, sign-in activity and membership, Conditional Access, PIM, application credentials, logs and authentication methods, and the five checks |
 | Lab | Try it: Lab 1 step 3: `pim-report` on the PIM fixture, trimmed; Lab 2 in a test tenant (not run by the authors) |
-| Where agencies are | The starting state, what differs in GCC High and DoD, and the interim paths |
+| Where agencies are | The starting state in a GCC tenant, and the interim paths |
 | Check and summary | The federal requirement and evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |

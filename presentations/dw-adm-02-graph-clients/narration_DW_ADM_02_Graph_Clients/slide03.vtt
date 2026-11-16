@@ -16,35 +16,31 @@ the same as a commercial
 tenant: Learn says so plainly.
 
 4
-00:00:11.525 --> 00:00:15.008
-GCC was built when Microsoft
-had one cloud directory,
+00:00:11.525 --> 00:00:17.223
+Office 365 GCC is paired with Microsoft
+Entra ID in Azure, the commercial cloud,
 
 5
-00:00:15.008 --> 00:00:17.937
-and it still uses that
-commercial directory.
+00:00:17.223 --> 00:00:20.554
+so tokens come from the
+worldwide sign-in host,
 
 6
-00:00:17.937 --> 00:00:22.836
-It's GCC High and the Department of
-Defense cloud that have their own hosts,
+00:00:20.554 --> 00:00:24.850
+and Graph and Resource Manager
+are the worldwide hosts too.
 
 7
-00:00:22.836 --> 00:00:25.888
-for tokens, for Graph
-and for Resource Manager.
+00:00:24.850 --> 00:00:28.967
+The slide maps the two names the
+code knows, worldwide and GCC,
 
 8
-00:00:25.888 --> 00:00:29.199
-And a token from one cloud
-simply doesn't work in another.
-
-9
-00:00:29.199 --> 00:00:31.114
-The slide maps all four clouds,
-
-10
-00:00:31.114 --> 00:00:34.780
+00:00:28.967 --> 00:00:32.837
 including the PowerShell
 environment names you'll pass.
+
+9
+00:00:32.837 --> 00:00:36.600
+They resolve to the same values,
+but each is its own name.

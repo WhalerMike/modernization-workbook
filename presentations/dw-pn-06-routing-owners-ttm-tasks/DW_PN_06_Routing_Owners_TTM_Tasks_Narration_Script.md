@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 06: Routing to Owners and Ticket-to-Machine Tasks
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 6: routing to owners, and Ticket-to-Machine tasks. A notice nobody owns is a notice nobody reads, so routing gives each one an owner once, and never twice. We'll start from the Ticket-to-Machine pattern and its finding contract, see what they leave to you for provider notices, then read the routing file, the task payload and the state that makes the router de-duplicate across runs. Then two labs, the evidence and the dangers. Two notes before we begin. This chapter is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 6: routing to owners, and Ticket-to-Machine tasks. A notice nobody owns is a notice nobody reads, so routing gives each one an owner once, and never twice. We'll start from the Ticket-to-Machine pattern and its finding contract, see what they leave to you for provider notices, then read the routing file, the task payload and the state that makes the router de-duplicate across runs. Then two labs, the evidence and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why every notice needs an owner, once
 
@@ -26,7 +26,7 @@ The routing is a JSON file the agency writes at work, from the kit's template or
 
 ## Slide 7 — Rules in order: first match wins
 
-Order matters, because rules are tried in order and the first match wins. The workbook's design guidance is to put security advisories and retirements before the general rule for anything that needs action. Here are the lab's six rules: security to a security operations team at P2, retirements and maintenance to cloud platform engineering at P3, incidents to the service desk at P2, changes to cloud operations, and one rule that ignores a Microsoft Viva post. Get the order wrong, with a broad rule first, and security advisories land in the general queue.
+Order matters, because rules are tried in order and the first match wins. The workbook's design guidance is to put security advisories and retirements before the general rule for anything that needs action. Here are the lab's seven rules: security to a security operations team at P2, retirements and maintenance to cloud platform engineering at P3, incidents to the service desk at P2, including every open Microsoft 365 incident, because Microsoft 365 service health names no resources, changes to cloud operations, and one rule that ignores a Microsoft Viva post. Get the order wrong, with a broad rule first, and security advisories land in the general queue.
 
 ## Slide 8 — The payload, and two dates kept apart
 
@@ -42,11 +42,11 @@ Who's involved? The change manager owns this gate, and reviews the routing file 
 
 ## Slide 11 — Lab 1: check the routing; the template is refused
 
-Lab 1 needs PowerShell 7 with Pester, in the kit's folder, against fictional notices and fictional teams. Nothing is sent. The finding contract the router mirrors comes in the same download. Step 1 checks the lab's routing: six rules, in the order they're tried, each with its route, severity and assignment group. Step 2 tries the template exactly as it ships, and it's refused: it still has a placeholder. That's deliberate. The template can't run until every placeholder is filled in at work.
+Lab 1 needs PowerShell 7 with Pester, in the kit's folder, against fictional notices and fictional teams. Nothing is sent. The finding contract the router mirrors comes in the same download. Step 1 checks the lab's routing: seven rules, in the order they're tried, each with its route, severity and assignment group. Step 2 tries the template exactly as it ships, and it's refused: it still has a placeholder. That's deliberate. The template can't run until every placeholder is filled in at work.
 
 ## Slide 12 — Lab 1: collect five providers, then route day one
 
-Step 3 collects every provider from the day-one fixtures: twenty-two notices from five providers, Azure, Microsoft 365 in GCC, Oracle Cloud Infrastructure, AWS and Google Cloud, each valid against the schema. Step 4 routes them as a dry run. All twenty-two are new. Twelve route to a task, nine go to the digest only, and one is ignored, the Microsoft Viva post. So the run writes twelve create payloads, each with its severity and assignment group, and the last line says it: nothing was sent.
+Step 3 collects every provider from the day-one fixtures: twenty-two notices from five providers, Azure, Microsoft 365 in GCC, Oracle Cloud Infrastructure, AWS and Google Cloud, each valid against the schema. Step 4 routes them as a dry run. All twenty-two are new. Thirteen route to a task, including the open Exchange Online incident, eight go to the digest only, and one is ignored, the Microsoft Viva post. So the run writes thirteen create payloads, each with its severity and assignment group, and the last line says it: nothing was sent.
 
 ## Slide 13 — Lab 1: one payload, read in full
 
@@ -54,11 +54,11 @@ Step 5 reads one payload: the Azure retirement from Chapter 1. It's a create, wi
 
 ## Slide 14 — Lab 1: a re-run writes nothing; week two
 
-Step 6 routes the same collection again, on a copy of the state. All twenty-two are unchanged, so nothing is written: no payloads, because nothing new or changed needs a task. That's what keeps the queue readable. Step 7 collects and routes the second week. Two notices are new, six changed, fifteen unchanged, and one is no longer listed. The router writes just six payloads: one create, four updates and one close. The routing hasn't changed, so the same twelve notices route to tasks, but only the six with something new to say make a payload.
+Step 6 routes the same collection again, on a copy of the state. All twenty-two are unchanged, so nothing is written: no payloads, because nothing new or changed needs a task. That's what keeps the queue readable. Step 7 collects and routes the second week. Two notices are new, six changed, fifteen unchanged, and one is no longer listed. The router writes just seven payloads: one create, four updates and two closes. Twelve notices route to tasks, but only the seven with something new to say make a payload.
 
 ## Slide 15 — Lab 1: what each payload is for; the tests
 
-Step 8 reads what each of the six payloads is for. Two rescheduled maintenance windows, one Azure and one Oracle Cloud, and an updated Microsoft 365 post are updates. The Azure incident the provider no longer lists is an absent update, asking for the re-read. The new Microsoft 365 post is a create. And the AWS security notification that AWS closed is a close, which also asks for the re-read. Step 9 runs the router's tests, including the one that reads the finding contract: thirty-one passed, none failed. Then delete the output folder.
+Step 8 reads what each of the seven payloads is for. Two rescheduled maintenance windows, one Azure and one Oracle Cloud, and an updated Microsoft 365 post are updates. The Azure incident the provider no longer lists is an absent update, asking for the re-read. The new Microsoft 365 post is a create. The AWS security notification that AWS closed, and the Exchange Online incident Microsoft resolved, are each a close, which also asks for the re-read. Step 9 runs the router's tests, including the one that reads the finding contract: thirty-three passed, none failed. Then delete the output folder.
 
 ## Slide 16 — Lab 2: one payload to a ServiceNow developer instance
 
@@ -70,8 +70,8 @@ Here's what the routing proves, against NIST's control catalog. A routing file c
 
 ## Slide 18 — Dangers, and the guard for each
 
-What breaks in production? The biggest one: a task resolved because the provider resolved its notice, while the resource still runs the retired product. That's why a close and an absent notice both ask for the agency's own re-read. Ticket the same notice every week and people stop reading the queue. Put a broad rule first and security advisories land in the general queue. Publish the routing and you publish who owns what. Put a token in the settings file and a secret gets filed with the change record. Confuse the two dates, or let the finding contract drift, and priorities stop meaning anything.
+What breaks in production? The biggest one: a task resolved because the provider resolved its notice, while the resource still runs the retired product. That's why a close and an absent notice both ask for the agency's own re-read. Ticket the same notice every week and people stop reading the queue. Put a broad rule first and security advisories land in the general queue. Microsoft 365 service health names no resources, so its incidents get their own rule. Publish the routing and you publish who owns what. Put a token in the settings file and a secret gets filed with the change record. Confuse the two dates, or let the finding contract drift, and priorities stop meaning anything.
 
 ## Slide 19 — Done when: the chapter's checklist
 
-Here's what done looks like. The agency's routing was written at work from the template, passes the kit's check, and was reviewed by the change manager, and by the security officer for the security route. Security advisories and retirements route before the general rule. Someone read a dry run's payloads before any were sent. A second run on the same collection writes nothing. Tasks are resolved on the re-read, not on the provider's closure. And the token lives only in the environment of the run that sends. Next, Chapter 7 writes the weekly digest and records every run as evidence. Thanks for watching.
+Here's what done looks like. The agency's routing was written at work from the template, passes the kit's check, and was reviewed by the change manager, and by the security officer for the security route. Security advisories and retirements route before the general rule, and an open Microsoft 365 incident routes to a task. Someone read a dry run's payloads before any were sent. A second run on the same collection writes nothing. Tasks are resolved on the re-read, not on the provider's closure. And the token lives only in the environment of the run that sends. Next, Chapter 7 writes the weekly digest and records every run as evidence. Thanks for watching.

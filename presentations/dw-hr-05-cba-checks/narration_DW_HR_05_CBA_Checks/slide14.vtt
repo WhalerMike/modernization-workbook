@@ -34,6 +34,15 @@ The mode rule maps the wrong
 OID, so PIV is single-factor.
 
 8
-00:00:30.962 --> 00:00:34.370
+00:00:30.962 --> 00:00:34.312
 And the phishing-resistant
 policy is still report-only.
+
+9
+00:00:34.312 --> 00:00:37.600
+Step four runs the
+tests: fifty-seven pass.
+
+10
+00:00:37.600 --> 00:00:39.500
+Then delete the output folder.

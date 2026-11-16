@@ -1,69 +1,56 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.437
-The federal requirement.
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
 
 2
-00:00:01.437 --> 00:00:06.522
-Every control the checks evidence is in
-the NIST special publication eight hundred
+00:00:02.025 --> 00:00:06.525
+First: a compliance policy's only
+assignment is an exclusion group.
 
 3
-00:00:06.522 --> 00:00:10.734
-fifty-three Moderate baseline:
-configuration baseline and settings,
+00:00:06.525 --> 00:00:07.825
+Which check reports it?
 
 4
-00:00:10.734 --> 00:00:14.583
-the component inventory, protection
-of information at rest and
+00:00:07.825 --> 00:00:10.450
+The answer is b, compliance coverage.
 
 5
-00:00:14.583 --> 00:00:18.650
-encryption on mobile devices, and
-flaw remediation for the OS floor.
+00:00:10.450 --> 00:00:13.513
+A policy with only exclusions
+reaches no device,
 
 6
-00:00:18.650 --> 00:00:24.795
-Through Entra ID, compliance is the
-device-level signal that M-22-09 asks agencies
+00:00:13.513 --> 00:00:17.112
+and by default an unassigned
+device counts as compliant.
 
 7
-00:00:24.795 --> 00:00:27.159
-to consider when authorizing users,
+00:00:17.112 --> 00:00:19.901
+Second: which of these is beta-only today?
 
 8
-00:00:27.159 --> 00:00:30.625
-and that ScubaGear's
-managed-device policy relies on.
+00:00:19.901 --> 00:00:22.219
+The answer is c: reading an Autopilot
 
 9
-00:00:30.625 --> 00:00:33.788
-ScubaGear has no Intune
-baseline of its own.
+00:00:22.219 --> 00:00:25.775
+registration's deployment
+profile assignment status.
 
 10
-00:00:33.788 --> 00:00:38.977
-Appendix A of the Zero Trust and
-Assessment book has the M-22-09 mapping,
+00:00:25.775 --> 00:00:29.276
+The profile assignment status,
+the profiles themselves,
 
 11
-00:00:38.977 --> 00:00:43.188
-and Chapter 10 of Devices and
-Endpoints says what an assessor reads.
+00:00:29.276 --> 00:00:33.150
+the Settings Catalog and assignment
+filters are all beta-only.
 
 12
-00:00:43.188 --> 00:00:46.796
-The evidence an ISSO keeps:
-each check's dated output,
-
-13
-00:00:46.796 --> 00:00:51.661
-with its evidences list and the beta
-label; the coverage result and the
-
-14
-00:00:51.661 --> 00:00:56.930
-changed default; and encryption findings
-confirmed in Intune's own report.
+00:00:33.150 --> 00:00:38.020
+The module page has two more questions,
+each linked to the unit that answers it.

@@ -129,7 +129,7 @@ endModule(SC);
 
 // ================================================================== 7 Try it: rules and route
 {
-  const s = content(SL, "Try it: six rules, 22 notices, 12 tasks");
+  const s = content(SL, "Try it: seven rules, 22 notices, 13 tasks");
   tag(s, "How");
   const c = code(s, "Lab", 0.6, 1.45, 12.15, [
     "# Lab 1, step 1, in examples/provider-notices: the lab's routing (fictional teams)",
@@ -137,6 +137,7 @@ endModule(SC);
     "R02 task   P3       Cloud Platform Engineering (example)",
     "R03 task   P3       Cloud Platform Engineering (example)",
     "R04 task   P2       Service Desk (example)",
+    "R04b task  P2       Service Desk (example)",
     "R05 task   P3       Cloud Operations (example)",
     "R06 ignore",
     "# Step 2: the template as it ships",
@@ -144,14 +145,14 @@ endModule(SC);
     "# Steps 3 and 4: collect day one, then route it as a dry run",
     "$ ./Invoke-PnRoute.ps1 -NoticesPath out/day1/notices.json -RoutingPath config/routing.json ... ",
     "Notices: 22 new, 0 changed, 0 unchanged, 0 no longer listed",
-    "Routes:  12 task, 9 digest only, 1 ignored",
-    "Payloads: 12 create, 0 update, 0 close",
-    "Dry run: 12 payloads written to out/day1-route/tasks, nothing sent. State: out/state.json",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 12, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
-  line(s, "Viva", "The Microsoft Viva post is ignored by R06; the rest that need no task go to the digest.", c + 0.2, 0.45, 13.5);
+    "Routes:  13 task, 8 digest only, 1 ignored",
+    "Payloads: 13 create, 0 update, 0 close",
+    "Dry run: 13 payloads written to out/day1-route/tasks, nothing sent. State: out/state.json",
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 15, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
+  line(s, "Viva", "R04b makes the open Exchange Online incident a P2 task; R06 ignores the Viva post; the rest go to the digest.", c + 0.2, 0.45, 13.5);
   sources(s, "Sources: Module 7, \"Exercise: Lab 1,\" steps 1 to 4; examples/provider-notices: config/routing.json, templates/routing.template.json.");
   notes(s,
-`Try it. Lab 1 runs in the provider notices folder of the examples, in PowerShell 7. The teams in the lab's routing are fictional. Step one checks the lab's routing: six rules, in the order they're tried. Five route to a task: security operations at P2, cloud platform engineering at P3 twice, the service desk at P2, and cloud operations at P3. The sixth ignores. Step two tries the template as it ships, and the kit refuses it, because it still has a placeholder. It runs only once every value is filled in, at work. Step three collects every provider from the day-one fixtures: twenty-two notices, as in Module 1. Step four routes them as a dry run. Twenty-two new notices. Twelve route to a task, nine go to the digest only, and one is ignored: the Microsoft Viva post, by rule R06. That's twelve create payloads, written to a folder, and nothing sent.`,
+`Try it. Lab 1 runs in the provider notices folder of the examples, in PowerShell 7. The teams in the lab's routing are fictional. Step one checks the lab's routing: seven rules, in the order they're tried. Six route to a task: security operations at P2, cloud platform engineering at P3 twice, the service desk at P2 twice, and cloud operations at P3. The seventh ignores. Rule R04b makes every open Microsoft 365 incident a task: Microsoft 365 service health names no resources, so R04, which needs them, never matches one. Step two tries the template as it ships, and the kit refuses it, because it still has a placeholder. It runs only once every value is filled in, at work. Step three collects every provider from the day-one fixtures: twenty-two notices, as in Module 1. Step four routes them as a dry run. Twenty-two new notices. Thirteen route to a task, eight go to the digest only, and one is ignored: the Microsoft Viva post, by rule R06. The open Exchange Online incident is a P2 task for the service desk, by R04b. That's thirteen create payloads, written to a folder, and nothing sent.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 1 to 4.`);
 }
 
@@ -193,20 +194,21 @@ endModule(SC);
     "No payloads: nothing new or changed needs a task.",
     "# Steps 7 and 8: collect and route the second week; what each payload is for",
     "Notices: 2 new, 6 changed, 15 unchanged, 1 no longer listed",
-    "Payloads: 1 create, 4 update, 1 close",
+    "Payloads: 1 create, 4 update, 2 close",
     "change  ruleId action severity noticeId",
     "changed R01    close  P2       aws:arn:aws:health:us-east-1::event/IAM/AWS_IAM_SECURITY_NOTIFICATION/...",
     "absent  R04    update P2       azure:AB1C-2DE",
     "changed R03    update P3       azure:PM3F-4GH",
+    "changed default close          m365:EX900101",
     "changed R05    update P3       m365:MC900003",
     "new     R05    create P3       m365:MC900005",
     "changed R03    update P3       oci:chain-example-01",
-    "# Step 9: run the router's tests        PassedCount 31, FailedCount 0",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 12, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
-  line(s, "Close", "The AWS close and the Azure absent update both ask for the re-read; neither closes a task.", c + 0.2, 0.45, 13.5);
+    "# Step 9: run the router's tests        PassedCount 33, FailedCount 0",
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 15, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
+  line(s, "Close", "Both closes and the Azure absent update ask for the re-read; none of them closes a task.", c + 0.2, 0.45, 13.5);
   sources(s, "Sources: Module 7, \"Exercise: Lab 1,\" steps 6 to 9; examples/provider-notices/tests/Router.Tests.ps1; examples/servicenow-sailpoint (finding contract).");
   notes(s,
-`Step six routes the same collection again, on a copy of the state. All twenty-two notices are unchanged, and the router writes nothing: no payloads, because nothing new or changed needs a task. That's the guard against the same notice being ticketed every week. Step seven collects and routes the second week. Two new notices, six changed, fifteen unchanged, and one no longer listed: one create, four updates and one close. Step eight reads what each payload is for. The Azure and Oracle rescheduled maintenance windows, and the updated Microsoft 365 post, are changed updates. The Azure incident the provider no longer lists is an absent update, asking for the re-read. The new Microsoft 365 post is a create. And the AWS security notification that AWS closed is a close, which also asks for the re-read, not for the task to be closed. Step nine runs the router's tests, including the one that reads the finding contract: thirty-one pass, none fail. Then delete the output folder.`,
+`Step six routes the same collection again, on a copy of the state. All twenty-two notices are unchanged, and the router writes nothing: no payloads, because nothing new or changed needs a task. That's the guard against the same notice being ticketed every week. Step seven collects and routes the second week. Two new notices, six changed, fifteen unchanged, and one no longer listed: one create, four updates and two closes. Step eight reads what each payload is for. The Azure and Oracle rescheduled maintenance windows, and the updated Microsoft 365 post, are changed updates. The Azure incident the provider no longer lists is an absent update, asking for the re-read. The new Microsoft 365 post is a create. And the AWS security notification that AWS closed, and the Exchange Online incident Microsoft resolved, are each a close, which also asks for the re-read, not for the task to be closed. The resolved incident shows the default rule, since no task rule matches it now; its close keeps the task's severity and group. Step nine runs the router's tests, including the one that reads the finding contract: thirty-three pass, none fail. Then delete the output folder.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 6 to 9.`);
 }
 
@@ -264,10 +266,10 @@ endModule(SL);
   const s = content(SS, "Summary, and next: Module 8, digest and evidence");
   tag(s, "How");
   const l = panel(s, "Did", 0.6, 1.45, 7.0, null, HEX.navy, HEX.navyTint, "IN THIS MODULE YOU", null, [
-    "Checked six routing rules, and saw the template refused",
-    "Routed 22 notices into 12 task payloads",
+    "Checked seven routing rules, and saw the template refused",
+    "Routed 22 notices into 13 task payloads",
     "Read one with both its dates and its five clauses",
-    "Watched a re-run write nothing, and read week two's create, updates and close",
+    "Watched a re-run write nothing, and read week two's create, updates and closes",
   ], 13.5);
   const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "NEXT", "Module 8: Digest, evidence and go/no-go", [
     "Gate G7, with workbook Chapter 07",
@@ -277,7 +279,7 @@ endModule(SL);
     "each run's tasks/, tasks.json, routing.csv, state.json and manifest, dated; the reviewed routing file's SHA-256; and the change records the payloads open.");
   sources(s, "Sources: Module 7, \"Summary\"; Module 8; Chapter 06 (Checklist).");
   notes(s,
-`To sum up. You checked six routing rules and saw the template refused, routed twenty-two notices into twelve task payloads, read one with both its dates and its five clauses, watched a re-run write nothing, and read the second week's create, updates and close. The evidence an ISSO keeps for Gate 6 is each routing run's task payloads, task list, routing file, state and manifest, all dated; the reviewed routing file's SHA-256; and the change records the payloads open. Before you ship, work through the chapter's checklist. Next is Module 8: digest, evidence and go/no-go. That's Gate 7: the weekly digest the owners read for everything that isn't a task, and the hashed evidence chain that records every run.`,
+`To sum up. You checked seven routing rules and saw the template refused, routed twenty-two notices into thirteen task payloads, read one with both its dates and its five clauses, watched a re-run write nothing, and read the second week's create, updates and closes. The evidence an ISSO keeps for Gate 6 is each routing run's task payloads, task list, routing file, state and manifest, all dated; the reviewed routing file's SHA-256; and the change records the payloads open. Before you ship, work through the chapter's checklist. Next is Module 8: digest, evidence and go/no-go. That's Gate 7: the weekly digest the owners read for everything that isn't a task, and the hashed evidence chain that records every run.`,
   `${M} — Unit "Summary"; Module 8; workbook Chapter 06 — "Checklist."`);
 }
 endModule(SS);
@@ -288,7 +290,7 @@ sourceSlide("Sources: Module 7 deck", [
   "Module page: docs/training/provider-notices/07-routing-to-owners.md (Provider Notices learning path, Module 7): Introduction and its requirement table, objectives, prerequisites, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary.",
   "What the module sends the learner to: Book 15, Chapter 14, \"From notice to task to closure\"; Provider Notices: An Implementation Guide, \"Prerequisites\" and Step 6; workbook Chapter 06, \"What the program gives you,\" \"What it leaves to you,\" \"The routing file,\" \"The payload,\" \"Runs and state,\" \"Lab 2,\" \"Federal requirements and evidence,\" \"Dangers,\" \"Checklist\"; Book 13, Appendix B (severity and tempo, the five-clause request chain); NIST SP 800-53 Rev. 5; FedRAMP KSIs.",
   "Kit: examples/provider-notices (Invoke-PnCollect.ps1, Invoke-PnRoute.ps1; powershell/ProviderNotices; config/routing.json with fictional teams; templates/routing.template.json; tests/fixtures/day1, day2; tests/Router.Tests.ps1), with the finding contract in examples/servicenow-sailpoint. Illustrative: tested against fixtures, not run against a live instance.",
-  "Lab output: run November 12, 2026 with PowerShell 7.6 and Pester 5.9 in a scratch copy of examples/provider-notices with examples/servicenow-sailpoint beside it; the same output the module page shows. Output trimmed where the slides say so. Lab 2 not run by the authors.",
+  "Lab output: run November 12, 2026 (slides 7 and 9 re-run November 15, 2026) with PowerShell 7.6 and Pester 5.9 in a scratch copy of examples/provider-notices with examples/servicenow-sailpoint beside it; the same output the module page shows. Output trimmed where the slides say so. Lab 2 not run by the authors.",
 ]);
 
 finish(OUT);

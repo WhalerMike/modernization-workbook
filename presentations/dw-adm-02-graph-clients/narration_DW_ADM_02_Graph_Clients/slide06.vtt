@@ -20,30 +20,36 @@ where Graph lives, and any
 scope that names the Graph host.
 
 5
-00:00:13.062 --> 00:00:15.862
-Its example connects to GCC High.
+00:00:13.062 --> 00:00:19.032
+Its example connects to a national cloud,
+not the worldwide service GCC uses;
 
 6
-00:00:15.862 --> 00:00:18.876
+00:00:19.032 --> 00:00:22.349
+for GCC, all three are
+the worldwide values.
+
+7
+00:00:22.349 --> 00:00:25.363
 Other Learn pages cover
 paging and throttling.
 
-7
-00:00:18.876 --> 00:00:23.826
+8
+00:00:25.363 --> 00:00:30.314
 The Python examples live in Microsoft's
 snippets repository, so the workbook
 
-8
-00:00:23.826 --> 00:00:28.463
+9
+00:00:30.314 --> 00:00:34.951
 pins an unmodified copy of the two files
 it uses, with a hash a test checks.
 
-9
-00:00:28.463 --> 00:00:32.044
+10
+00:00:34.951 --> 00:00:38.532
 A test then runs them against
 stand-ins that record exactly
 
-10
-00:00:32.044 --> 00:00:35.260
+11
+00:00:38.532 --> 00:00:41.740
 what they'd sign in to,
 without signing in to anything.

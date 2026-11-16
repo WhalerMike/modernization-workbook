@@ -58,33 +58,6 @@
    "So the first gate is simply this: know what's standing today, and classify it by tier."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   11.963,
-   "For this estate's tenant, Microsoft 365 G C C with commercial Azure, every host is a worldwide one: the normal Graph endpoint and the normal Resource Manager endpoint."
-  ],
-  [
-   13.375,
-   4.4,
-   "G C C High and the Defense Department cloud use their own hosts."
-  ],
-  [
-   17.775,
-   11.312,
-   "The licenses for G C C are hosted in Azure commercial, and the governance product that pim needs is available in every one of these clouds, as is every Graph call the chapter uses."
-  ],
-  [
-   29.087,
-   6.537,
-   "The code never guesses: you name the cloud explicitly, and it refuses any name it doesn't recognize."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -206,38 +179,6 @@
    28.988,
    2.5,
    "Each of those misses is pinned by a test."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   2.938,
-   "The rest of the gaps are about trust and reach."
-  ],
-  [
-   2.987,
-   6.688,
-   "The sample prints raw identifiers with no names and no tier, and a reviewer can't act on an identifier."
-  ],
-  [
-   9.675,
-   3.975,
-   "It signs in without naming a cloud or limiting its permissions."
-  ],
-  [
-   13.65,
-   6.4,
-   "Its transitive read uses beta on a hard-coded worldwide host, which is wrong for the government clouds."
-  ],
-  [
-   20.05,
-   5.862,
-   "And it says nothing about Azure, where Owner and User Access Administrator are just as privileged."
-  ],
-  [
-   25.913,
-   6.6,
-   "So the verdict is: keep Learn's page as the model and the cross-check, but don't use its loop as the inventory."
   ]
  ],
  "9": [
@@ -528,6 +469,60 @@
    32.1,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   11.963,
+   "For this estate's tenant, Microsoft 365 G C C with commercial Azure, every host is a worldwide one: the normal Graph endpoint and the normal Resource Manager endpoint."
+  ],
+  [
+   13.375,
+   11.762,
+   "The licenses for G C C are hosted in Azure commercial, the governance product that pim needs is available in G C C, and every Graph call the chapter uses is listed for the global service."
+  ],
+  [
+   25.137,
+   6.537,
+   "The code never guesses: you name the cloud explicitly, and it refuses any name it doesn't recognize."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.938,
+   "The rest of the gaps are about trust and reach."
+  ],
+  [
+   2.987,
+   6.688,
+   "The sample prints raw identifiers with no names and no tier, and a reviewer can't act on an identifier."
+  ],
+  [
+   9.675,
+   3.975,
+   "It signs in without naming a cloud or limiting its permissions."
+  ],
+  [
+   13.65,
+   5.775,
+   "Its transitive read uses beta, on a worldwide host fixed in the code and never checked."
+  ],
+  [
+   19.425,
+   5.862,
+   "And it says nothing about Azure, where Owner and User Access Administrator are just as privileged."
+  ],
+  [
+   25.288,
+   6.6,
+   "So the verdict is: keep Learn's page as the model and the cross-check, but don't use its loop as the inventory."
   ]
  ]
 }

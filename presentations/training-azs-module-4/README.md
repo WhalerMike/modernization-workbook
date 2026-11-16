@@ -5,7 +5,7 @@
 | Part | Covers |
 |---|---|
 | Introduction | Title; a private endpoint nobody resolves isn't private; learning objectives and prerequisites |
-| Concepts | Zones once, centrally, and a zone group; policy at scale; vaults on RBAC with purge protection, roles at vault scope, rotation and audit logs; a compromised key, recovery, Azure Government zone names and the other clouds |
+| Concepts | Zones once, centrally, and a zone group; policy at scale; vaults on RBAC with purge protection, roles at vault scope, rotation and audit logs; a compromised key, recovery, the commercial zone names and the other clouds |
 | Lab | Lab 2 steps 1 to 10 in a test subscription: private and public resolution, the zone group, public PaaS, the vault's posture and rotation policy, an allowed and a denied read and their audit rows (the module has no Lab 1, because the guide has no kit yet; the lab wasn't run by the authors) |
 | Check and summary | The federal requirement (SC-7, AC-4, SC-12, SC-28, IA-5) and evidence; two knowledge-check questions with answers; the summary and Module 5 |
 

@@ -3,7 +3,7 @@ WEBVTT
 1
 00:00:00.050 --> 00:00:03.275
 Step 8 reads what each of
-the six payloads is for.
+the seven payloads is for.
 
 2
 00:00:03.275 --> 00:00:08.510
@@ -30,24 +30,25 @@ asking for the re-read.
 The new Microsoft 365 post is a create.
 
 7
-00:00:21.512 --> 00:00:26.021
-And the AWS security notification
-that AWS closed is a close,
+00:00:21.512 --> 00:00:26.517
+The AWS security notification that
+AWS closed, and the Exchange Online
 
 8
-00:00:26.021 --> 00:00:28.275
-which also asks for the re-read.
+00:00:26.517 --> 00:00:31.862
+incident Microsoft resolved, are each a
+close, which also asks for the re-read.
 
 9
-00:00:28.275 --> 00:00:31.795
+00:00:31.862 --> 00:00:35.302
 Step 9 runs the router's
 tests, including the one that
 
 10
-00:00:31.795 --> 00:00:35.725
+00:00:35.302 --> 00:00:39.301
 reads the finding contract:
-thirty-one passed, none failed.
+thirty-three passed, none failed.
 
 11
-00:00:35.725 --> 00:00:37.630
+00:00:39.301 --> 00:00:41.210
 Then delete the output folder.

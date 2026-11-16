@@ -217,7 +217,7 @@ const HOW = "How to roll it out and evidence it";
     ]],
   ], 14);
   callout(s, "GCC", 5.3, 1.2, "FaCloud", HEX.navy, "In GCC: ",
-    "manual, mandatory and container labels are listed as available. The SharePoint library default label is in development, and authentication contexts on labeled sites are on the engineering backlog, as in GCC High and DoD.");
+    "manual, mandatory and container labels are listed as available. The SharePoint library default label is in development, and authentication contexts on labeled sites are on the engineering backlog.");
   sources(s, "Sources: Microsoft Learn (Learn about sensitivity labels; labels in Office apps; labels for groups and sites; government planning pages). Book 20, Chapters 03 and 04.");
   narrate(s, T, "Chapter 03 — Label Publication and Defaults (Defaults the agency can justify; Mandatory labeling and the downgrade justification; Prerequisites); Chapter 04 — Teams, Groups and SharePoint Containers (What a container label does, and what it doesn't; Container classes and their settings; Prerequisites).");
 }
@@ -316,23 +316,23 @@ const HOW = "How to roll it out and evidence it";
     "Which prompts are captured, and who may read them",
   ], 14);
   callout(s, "GCC", 5.35, 1.15, "FaCloud", HEX.navy, "In GCC: ",
-    "Microsoft 365 Copilot and Purview's controls for it are listed as available; DSPM for AI sees Microsoft Copilot and supported AI sites. In GCC High, Copilot in Teams and SharePoint isn't currently available.");
+    "Microsoft 365 Copilot and Purview's controls for it are listed as available; DSPM for AI sees Microsoft Copilot and supported AI sites, and a GCC tenant can't create the \"browse to URL\" policy.");
   sources(s, "Sources: Microsoft Learn (Data protection and auditing for Microsoft Copilot; DSPM for AI; DLP for Copilot; Microsoft Copilot service description). Book 20, Chapter 11.");
   narrate(s, T, "Chapter 11 — AI Data Security (Why AI changes the problem, not the controls; The AI data decisions; DLP for Microsoft 365 Copilot; Prerequisites).");
 }
 
 // ------------------------------------------------------------------ What 7
 {
-  const T = "Government cloud: GCC first, then the side notes";
+  const T = "Government cloud: what GCC has";
   const s = slide(WHAT, "What", T);
-  table(s, ["Feature", "GCC", "GCC High and DoD"], [
-    ["Manual, mandatory and container labels", "Available", "Available"],
-    ["SharePoint library default label", "In development", "In development"],
-    ["Authentication context on labeled sites", "Engineering backlog", "Engineering backlog"],
-    ["Expiry and revocation (Advanced Message Encryption)", "Available", "GCC High available; not listed for DoD"],
-    ["DLP, endpoint DLP, auto-labeling, exact data match", "Available", "Available"],
-    ["Audit (Premium), one- and ten-year retention", "Available", "Available"],
-  ], [3.0, 1.75, 2.15], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.5, 0.5, 0.5, 0.58, 0.58, 0.5] });
+  table(s, ["Feature", "GCC"], [
+    ["Manual, mandatory and container labels", "Available"],
+    ["SharePoint library default label", "In development"],
+    ["Authentication context on labeled sites", "Engineering backlog"],
+    ["Expiry and revocation (Advanced Message Encryption)", "Available"],
+    ["DLP, endpoint DLP, auto-labeling, exact data match", "Available"],
+    ["Audit (Premium), one- and ten-year retention", "Available"],
+  ], [4.4, 2.5], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.5, 0.5, 0.5, 0.58, 0.58, 0.5] });
   tableBox(s, "Dep", "FaClipboardCheck", HEX.navy, HEX.navyTint, "A dependency, not a failure", [
     "A missing license or cloud feature goes in a decision record",
     "With a compensating control and its residual risk",
@@ -340,9 +340,9 @@ const HOW = "How to roll it out and evidence it";
     "Not yet specified: test in that cloud's test tenant",
   ], 3.54, 13);
   callout(s, "Read", 5.3, 1.2, "FaLandmark", HEX.navy, "Read on Microsoft Learn on November 11, 2026: ",
-    "where two Learn pages disagree, as they do on Insider Risk Management in GCC High, the decision record carries the conflict and the tenant treats the feature as unavailable.");
-  sources(s, "Sources: Microsoft Learn (Plan for Microsoft Purview: GCC, GCC High and DoD deployments; Microsoft Purview service description), Nov. 11, 2026. Book 20, Chapters 01–12.");
-  narrate(s, T, "index (Status — draft book); Chapter 01 (Government-cloud availability for the inventory; Decision record template); Chapters 03, 04, 06, 08, 09 and 10 (Prerequisites, availability tables); Chapter 05 (Prerequisites: GCC High and DoD DNS records); Chapter 11 (Prerequisites: the two Learn pages that disagree); Chapter 12 (Reassessment and the assessor's package).");
+    "where a feature is in development or not yet specified for GCC, the decision record carries it and the tenant treats the feature as unavailable.");
+  sources(s, "Sources: Microsoft Learn (Plan for Microsoft Purview: GCC deployments; Microsoft Purview service description), Nov. 11, 2026. Book 20, Chapters 01–12.");
+  narrate(s, T, "index (Status — draft book); Chapter 01 (Government-cloud availability for the inventory; Decision record template); Chapters 03, 04, 06, 08, 09 and 10 (Prerequisites, availability tables); Chapter 11 (Prerequisites); Chapter 12 (Reassessment and the assessor's package).");
 }
 
 // ------------------------------------------------------------------ Who
@@ -450,7 +450,7 @@ const HOW = "How to roll it out and evidence it";
   const s = D.content("Backup", "Sources behind the slides");
   const src = [
     "Microsoft Learn (read November 11, 2026): Learn about sensitivity labels; Manage sensitivity labels in Office apps; Migrate parent sensitivity labels to label groups; Use sensitivity labels to protect collaborative workspaces; default sharing links; Content Explorer and data explorer; Export-ContentExplorerData; Activate the Azure Rights Management service; super users; Message Encryption and mail flow rules; sensitivity labels in SharePoint and OneDrive.",
-    "Microsoft Learn, continued: DLP planning, simulation mode, policy tips and endpoint DLP; sensitive information types, exact data match and auto-labeling; Purview Audit, audit retention and the Management Activity API; Insider Risk Management and Communication Compliance; Data protection and auditing for Microsoft Copilot; DSPM for AI; DLP for Microsoft 365 Copilot; Microsoft Purview service description; Microsoft Copilot service description; Plan for Microsoft Purview: GCC, GCC High and DoD deployments.",
+    "Microsoft Learn, continued: DLP planning, simulation mode, policy tips and endpoint DLP; sensitive information types, exact data match and auto-labeling; Purview Audit, audit retention and the Management Activity API; Insider Risk Management and Communication Compliance; Data protection and auditing for Microsoft Copilot; DSPM for AI; DLP for Microsoft 365 Copilot; Microsoft Purview service description; Microsoft Copilot service description; Plan for Microsoft Purview: GCC deployments.",
     "Federal: 32 CFR Part 2002 (as in effect October 1, 2026); FIPS 199; NIST SP 800-60 Vol. 1 Rev. 1; NIST SP 800-53 Rev. 5, release 5.2.0; OMB M-22-09; OMB M-26-14; CISA BOD 25-01; CISA ZTMM v2.0 (April 2023); FedRAMP KSIs (Consolidated Rules for 2026).",
     "Status: a draft awaiting the editor's review, not part of Release 2.0, the baseline edition. Every external claim was checked against a primary source on November 11, 2026; government-cloud feature status is subject to change.",
     "Full footnotes with links and access dates: Book 20, every chapter and Appendix A (whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/).",

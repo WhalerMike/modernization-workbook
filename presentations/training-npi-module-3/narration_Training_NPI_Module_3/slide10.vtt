@@ -79,11 +79,11 @@ it to a managed identity, and
 managed identities aren't covered.
 
 17
-00:01:03.000 --> 00:01:07.213
+00:01:03.000 --> 00:01:07.000
 Step eight runs every test:
-five hundred thirteen pass.
+five hundred eleven pass.
 
 18
-00:01:07.213 --> 00:01:10.630
+00:01:07.000 --> 00:01:10.420
 Then delete the output, which
 names accounts and owners.

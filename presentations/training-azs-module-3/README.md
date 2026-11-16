@@ -5,7 +5,7 @@
 | Part | Covers |
 |---|---|
 | Introduction | Title; a WAF around which traffic flows protects nothing; learning objectives and prerequisites |
-| Concepts | Front Door, Application Gateway or both; locking the origin with Private Link or the tag and header; TLS, probes and failover; Azure Firewall and the Zero Trust checks; alert first, then deny through a draft; regions to check first in Azure Government, and OCI Network Firewall |
+| Concepts | Front Door, Application Gateway or both; locking the origin with Private Link or the tag and header; TLS, probes and failover; Azure Firewall and the Zero Trust checks; alert first, then deny through a draft; regions to check first in commercial Azure, and OCI Network Firewall |
 | Lab | Lab 2 steps 1 to 10 in a test subscription: the refused direct request, access restriction, TLS policy, failover (writes, then undone), effective routes, deny modes, the threat-intelligence test and its log row (the module has no Lab 1, because the guide has no kit yet; the lab wasn't run by the authors) |
 | Check and summary | The federal requirement (SC-7, SC-8, CP-2, SC-7(5), SI-4) and evidence; two knowledge-check questions with answers; the summary and Module 4 |
 

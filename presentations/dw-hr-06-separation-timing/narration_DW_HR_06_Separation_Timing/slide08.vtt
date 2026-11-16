@@ -16,25 +16,25 @@ reports read permission for a
 workflow's processing results.
 
 4
-00:00:11.850 --> 00:00:16.294
-Both come from Microsoft Graph,
-on the endpoint for your cloud,
+00:00:11.850 --> 00:00:16.560
+Both come from Microsoft Graph, on
+the worldwide endpoint GCC uses,
 
 5
-00:00:16.294 --> 00:00:20.737
-and both APIs are listed for the
-US Government L4 and L5 clouds.
+00:00:16.560 --> 00:00:19.900
+and both APIs are listed
+for the global service.
 
 6
-00:00:20.737 --> 00:00:25.025
-Lifecycle Workflows is available
-in Azure for US Government.
+00:00:19.900 --> 00:00:26.437
+Lifecycle Workflows is part of Microsoft
+Entra ID Governance, available in GCC.
 
 7
-00:00:25.025 --> 00:00:28.722
+00:00:26.437 --> 00:00:30.135
 The card system's and Intune's
 records arrive as exports;
 
 8
-00:00:28.722 --> 00:00:30.860
+00:00:30.135 --> 00:00:32.280
 the code reads neither service.

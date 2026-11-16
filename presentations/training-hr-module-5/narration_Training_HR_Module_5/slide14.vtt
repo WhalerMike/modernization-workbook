@@ -1,62 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.550
-Check yourself with two questions
-from the module's knowledge check.
+00:00:00.050 --> 00:00:00.875
+To sum up.
 
 2
-00:00:03.550 --> 00:00:07.120
-First: what happens when an
-issuing certificate authority
+00:00:00.875 --> 00:00:05.015
+You learned the interactive
+revocation list limits for GCC:
 
 3
-00:00:07.120 --> 00:00:10.325
-in the trust store has no
-revocation list configured?
+00:00:05.015 --> 00:00:08.162
+twenty megabytes, and
+ten seconds to download.
 
 4
-00:00:10.325 --> 00:00:11.288
-The answer is b.
+00:00:08.162 --> 00:00:09.719
+You measured three lists,
 
 5
-00:00:11.288 --> 00:00:13.937
-Entra doesn't check revocation for that
+00:00:09.719 --> 00:00:13.649
+and the missing one became a
+recorded finding instead of a crash.
 
 6
-00:00:13.937 --> 00:00:16.987
-authority's certificates,
-which is rule C B one.
+00:00:13.649 --> 00:00:16.611
+You checked a fictional tenant for GCC,
 
 7
-00:00:16.987 --> 00:00:20.894
-Second: an eighteen and
-a half million byte list
+00:00:16.611 --> 00:00:20.312
+and saw how the GCC limit
+sets the C B five warning.
 
 8
-00:00:20.894 --> 00:00:24.300
-raises C B five for GCC
-but not for GCC High.
+00:00:20.312 --> 00:00:23.407
+Keep the measurement and
+the check running every day,
 
 9
-00:00:24.300 --> 00:00:24.988
-Why?
+00:00:23.407 --> 00:00:26.924
+because a list that fits today
+can cross the limit next month.
 
 10
-00:00:24.988 --> 00:00:25.997
-The answer is b.
+00:00:26.924 --> 00:00:30.271
+Next is Module 6, time
+separations from the logs:
 
 11
-00:00:25.997 --> 00:00:30.453
-C B five warns at eighty percent
-of the cloud's interactive limit,
+00:00:30.271 --> 00:00:35.075
+separation-to-block and
+separation-to-revocation for every leaver.
 
 12
-00:00:30.453 --> 00:00:35.750
-and GCC High's limit is forty-five megabytes,
-so the same size is under the line.
+00:00:35.075 --> 00:00:38.112
+It builds on this module,
+because a card's revocation
 
 13
-00:00:35.750 --> 00:00:40.680
-The module page has two more questions,
-each linked to the section that teaches it.
+00:00:38.112 --> 00:00:40.780
+reaches sign-in through
+the revocation list.

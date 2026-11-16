@@ -123,14 +123,14 @@ endModule(SI);
   const r = panel(s, "Realm", 6.85, 1.45, 5.9, null, HEX.navy, HEX.navyTint, "REALMS", "Read where the tenancy lives", [
     "oc1, commercial: oraclecloud.com",
     "oc2, US Government Cloud: us-langley-1 and us-luke-1",
-    "oc3: refused; its Announcements endpoint is not yet specified",
+    "Any other realm is refused",
     "A region outside the realm is refused",
   ], 12.5);
-  callout(s, "Gov", Math.max(l, r) + 0.3, 0.95, "FaLandmark", HEX.amber, "Side note: ",
-    "Oracle lists its US Government Cloud with FedRAMP High and DISA Impact Level 4 authorizations, with Announcements endpoints in us-langley-1 and us-luke-1.");
+  callout(s, "Gov", Math.max(l, r) + 0.3, 0.95, "FaLandmark", HEX.amber, "OC2: ",
+    "Oracle's US Government Cloud page lists the Announcements API at announcements.us-langley-1 and announcements.us-luke-1, on oraclegovcloud.com.");
   sources(s, "Sources: Module 4, Unit 2; workbook Chapter 03 (What it leaves to you); the guide, Step 3; Oracle US Government Cloud; Book 15, Ch 14 (Government clouds).");
   notes(s,
-`Two more things the kit adds. First, chains. The list call asks for only the latest announcement in each chain, and the kit keeps only the latest by its update time in each chain I D as well. The record's I D is the chain's, so when Oracle reschedules a window, the notice keeps its I D and gets the new window, and the router updates its task instead of opening a second one. The command line's output key casing isn't shown in Oracle's reference, so the kit accepts both styles; which one the C L I prints is not yet specified. Second, realms. A government tenancy read in the commercial realm returns nothing. The kit knows the commercial realm and Oracle's U S Government Cloud, whose Announcements endpoints are in U S Langley and U S Luke. As a side note, Oracle lists that cloud with FedRAMP High and DISA Impact Level 4 authorizations. The third realm is refused, because its Announcements endpoint is not yet specified, and a region outside the realm is refused too.`,
+`Two more things the kit adds. First, chains. The list call asks for only the latest announcement in each chain, and the kit keeps only the latest by its update time in each chain I D as well. The record's I D is the chain's, so when Oracle reschedules a window, the notice keeps its I D and gets the new window, and the router updates its task instead of opening a second one. The command line's output key casing isn't shown in Oracle's reference, so the kit accepts both styles; which one the C L I prints is not yet specified. Second, realms. A government tenancy read in the commercial realm returns nothing. The kit knows the commercial realm and Oracle's U S Government Cloud, realm O C two, whose Announcements endpoints are in U S Langley and U S Luke, as Oracle's U S Government Cloud page lists them. Any other realm is refused, and a region outside the realm is refused too.`,
   `${M} — Unit 2: workbook Chapter 03 — "What it leaves to you"; Unit 1: the guide — Step 3, "Government-cloud availability."`);
 }
 endModule(SC);
@@ -146,16 +146,14 @@ endModule(SC);
     "Call                   Permissions                                                         Verified",
     "oci-announcements-list Allow group <group> to inspect announcements in tenancy (list only)     True",
     "oci-announcement-get   Allow group <group> to read announcements in tenancy                    True",
-    "$ foreach ($r in 'oc1', 'oc2', 'oc3') { try { $c = Get-PnCloud -Provider oci -Cloud $r; ... } catch { ... } }",
+    "$ foreach ($r in 'oc1', 'oc2') { try { $c = Get-PnCloud -Provider oci -Cloud $r; ... } catch { ... } }",
     "oc1 : oraclecloud.com",
     "oc2 : oraclegovcloud.com us-langley-1, us-luke-1",
-    "oc3 : OCI realm oc3: the Announcements endpoint there is not yet specified",
-    "      (Oracle's page wasn't readable on November 9, 2026).",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 12, 2026 (WRAPPED AND TRIMMED)", pt: 10.5 });
   line(s, "Read", "inspect is enough to list; read is what the details call, with its affected resources, needs.", c + 0.2, 0.45, 13.5);
   sources(s, "Sources: Module 4, \"Exercise: Lab 1,\" steps 1 and 2; examples/provider-notices: config/calls.json, ProviderNotices module.");
   notes(s,
-`Try it. Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against a fictional tenancy in the commercial realm, in the U S Ashburn region. Nothing signs in to anything. Step one lists what Oracle Cloud needs. Two calls. The list call needs only inspect announcements. The get call, the details with their affected resources, needs read announcements. So the policy grants read, because inspect alone would give summaries without the resources. Both are marked verified. Step two asks for each realm the kit knows. The commercial realm, on oracle cloud dot com. The government realm, on oracle gov cloud dot com, in its two regions. And the third realm is refused, with the reason: its Announcements endpoint is not yet specified, because Oracle's page wasn't readable on November ninth, 2026.`,
+`Try it. Lab 1 runs in the provider notices folder of the examples, in PowerShell 7, against a fictional tenancy in the commercial realm, in the U S Ashburn region. Nothing signs in to anything. Step one lists what Oracle Cloud needs. Two calls. The list call needs only inspect announcements. The get call, the details with their affected resources, needs read announcements. So the policy grants read, because inspect alone would give summaries without the resources. Both are marked verified. Step two asks for each realm the kit knows. The commercial realm, on oracle cloud dot com. The government realm, on oracle gov cloud dot com, in its two regions. A realm the kit doesn't know is refused.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 1 and 2.`);
 }
 
@@ -234,7 +232,7 @@ endModule(SL);
   const b = table(s, "Dang", 1.45, [4.3, 7.85], ["Danger", "The guard"], [
     ["inspect granted instead of read", "read announcements in config/calls.json; an empty resources on every maintenance notice is the sign"],
     ["Every announcement in a chain read as its own notice", "Latest in each chain, keyed by chainId"],
-    ["A government tenancy read in the commercial realm", "The settings name the realm; a region outside it is refused; OC3 is refused"],
+    ["A government tenancy read in the commercial realm", "The settings name the realm; a region outside it is refused; any other realm is refused"],
     ["HR platform maintenance seen only by the help desk", "Route OCI maintenance that names the HR system's resources to its owners (design guidance)"],
     ["The announcement email treated as the record", "The task links the announcement the kit read; the email is the interim path only"],
   ], { fontSize: 12.5, limit: 5.3 });

@@ -227,7 +227,7 @@ endModule("Orientation");
   tag(s, "What");
   const b = table(s, "Checks", 1.5, [2.15, 2.5, 3.85, 3.65], ["Check", "Who owns it", "The record to read", "What it can't tell you"], [
     ["The certification", "FedRAMP certifies; the provider scopes", "Marketplace listing (package and class); the provider's audit-scope list", "Which features a government environment switches off"],
-    ["The environment", "The provider", "Per-feature notes for GCC, GCC High and DoD", "Whether the agency authorized the integration"],
+    ["The environment", "The provider", "Per-feature notes for GCC", "Whether the agency authorized the integration"],
     ["The agency's authorization", "The authorizing official", "The agency's own SSP and package", "Anything outside the certified offering"],
   ], { fontSize: 13.5 });
   const edges = [
@@ -238,21 +238,21 @@ endModule("Orientation");
   ];
   const axes = [
     "The class sets assurance and what data may go in; features are per-environment product decisions",
-    "Network connectivity, INR and Adoption Score are missing in GCC High too, already Class D",
-    "Not a ladder: Windows release health and Office Scripts reach GCC, not GCC High",
+    "Network connectivity, INR and Adoption Score: unavailable in GCC, per product page",
+    "None of those pages ties the exclusion to the certification class",
   ];
   const y = b + 0.25, h = Math.max(panelNeed(5.95, "x", null, edges, 13.5), panelNeed(5.95, "x", null, axes, 13.5));
   panel(s, "Edges", 0.6, y, 5.95, h, HEX.navy, HEX.navyTint, "EDGES INSIDE AND OUTSIDE THE OFFERING", null, edges, 13.5);
   panel(s, "Axes", 6.8, y, 5.95, h, HEX.amber, HEX.amberTint, "IMPACT LEVEL AND FEATURES ARE DIFFERENT AXES", null, axes, 13.5);
   sources(s, "Sources: FedRAMP 2026 definitions, Using a Certified Service, MAS; Microsoft Learn — GCC service description, Intune government service, Office apps in Government plans. Book 10, Ch 01.");
   notes(s,
-`The first check is a lookup, not an inference. FedRAMP's 2026 definitions describe a cloud service offering as a specific, packaged product or service that is the subject of a certification, and a certification class as the assurance it supplies, from minimal at Class A to significant at Class D. The Marketplace is the record. For Azure, Microsoft publishes service by service what sits inside the FedRAMP High scope of Azure public and Azure Government. For Microsoft 365 the package describes what's inside, and Microsoft's GCC service description shows two edges plainly: GCC customer support is not included in the service accreditation boundary, and Viva Engage, which can be added to some GCC plans, does not support FedRAMP accreditation.
+`The first check is a lookup, not an inference. FedRAMP's 2026 definitions describe a cloud service offering as a specific, packaged product or service that is the subject of a certification, and a certification class as the assurance it supplies, from minimal at Class A to significant at Class D. The Marketplace is the record. For Azure, Microsoft publishes service by service what sits inside the FedRAMP High scope of Azure public. For Microsoft 365 the package describes what's inside, and Microsoft's GCC service description shows two edges plainly: GCC customer support is not included in the service accreditation boundary, and Viva Engage, which can be added to some GCC plans, does not support FedRAMP accreditation.
 
-The second check is the environment. GCC pairs with Entra ID in commercial Azure; GCC High and DoD pair with Entra ID in Azure Government. Intune has no separate GCC instance at all.
+The second check is the environment. GCC pairs with Entra ID in commercial Azure, and Intune has no separate GCC instance at all.
 
 The third check belongs to the agency. Its authorizing official accepts risk for the agency's specific use, including the configuration selected and the integrations enabled. Agency-operated components live here too. Software delivered for installation on agency systems and not operated under shared responsibility, typically agents and clients, is entirely outside FedRAMP's scope, which makes it the agency's to assess.
 
-And impact level is a different axis. The class governs assurance and, through the agency's categorization, what data may go in. The features missing in GCC are missing in GCC High too, and GCC High is already Class D. Restriction isn't a ladder either: Windows release health and Office Scripts in Excel reach GCC and stop there.`,
+And impact level is a different axis. The class governs assurance and, through the agency's categorization, what data may go in. Microsoft documents network connectivity, informed network routing and Adoption Score as unavailable to GCC on each product's own page, and none of those pages ties the exclusion to the certification class.`,
   "Book 10, Chapter 01, \"Three checks, three owners,\" \"Impact level and feature availability are different axes.\"");
 }
 
@@ -268,10 +268,10 @@ And impact level is a different axis. The class governs assurance and, through t
   ], 14.5);
   const b = table(s, "Corrected", 1.5, [1.95, 3.6, 2.0], ["In the old example", "What Microsoft documents", "GCC verdict"], [
     ["Endpoint analytics", "Intune in GCC is the commercial instance; no GCC exclusion listed", "Not a GCC gap"],
-    ["Device Health Attestation", "Planned for GCC High and DoD", "GCC High and DoD gap"],
-    ["Locations, network fence", "Admin-center network connectivity: not GCC, GCC High or DoD", { text: "Confirmed GCC gap", options: { bold: true, color: HEX.red } }],
+    ["Device Health Attestation", "Intune in GCC is the commercial instance; no GCC exclusion documented", "Not a GCC gap"],
+    ["Locations, network fence", "Admin-center network connectivity: not supported in GCC Moderate", { text: "Confirmed GCC gap", options: { bold: true, color: HEX.red } }],
     ["Azure Arc server monitoring", "An Azure service, in Azure public's FedRAMP High scope", "Different boundary"],
-    ["Expedited updates", "Planned for GCC High and DoD", "GCC High and DoD gap"],
+    ["Expedited updates", "Intune in GCC is the commercial instance; no GCC exclusion documented", "Not a GCC gap"],
   ], { fontSize: 12, x: 5.2 });
   noteBox(s, "Register", 5.2, b + 0.2, 7.55, null, HEX.navy, HEX.navyTint, "THE PROGRAM'S GCC GAP REGISTER: 26 ROWS",
     "8 vendor-confirmed, 15 inferred, 1 restricted, 2 retention-limited. Only confirmed rows support a claim; inferred rows are hypotheses to test.", 12.5);
@@ -279,7 +279,7 @@ And impact level is a different axis. The class governs assurance and, through t
   notes(s,
 `Why don't design teams see it? The program's working description is that GCC offers the same nominal product set, features appear in the portals and commercial documentation and get written into plans, and then some produce no data, raise no error, and have no documented GCC resolution. The mechanism has four parts. Shared surfaces: the same admin centers and documentation. Scattered exclusions: network connectivity, informed network routing, Adoption Score and the Office 365 CDN each carry a one-line exclusion on a separate page. Moving targets: Microsoft retired Adoption Score's whole Technology experiences area, including Network connectivity, Microsoft 365 Apps health and Endpoint analytics, for every tenant in January and February 2026. And silence: a control built on a signal that never arrives isn't a weak control; it's no control.
 
-Now the correction. The program's earlier model used five features as its worked example. Checked against current documentation, one holds: the Locations tab belongs to admin-center network connectivity, unavailable in GCC. Device Health Attestation and expedited updates are listed as planned for GCC High and DoD, so the example appears to have merged GCC High's exclusions into GCC. Endpoint analytics lists no GCC exclusion. And Arc is an Azure service, in Azure public's FedRAMP High scope.
+Now the correction. The program's earlier model used five features as its worked example. Checked against current documentation, one holds: the Locations tab belongs to admin-center network connectivity, unavailable in GCC. Endpoint analytics, Device Health Attestation and expedited updates aren't documented GCC gaps: Intune in GCC is the commercial instance, and Microsoft documents no GCC exclusion for them. And Arc is an Azure service, in Azure public's FedRAMP High scope.
 
 The lesson cuts both ways: an unverified boundary story hides features that are present and sends an agency to build compensations it doesn't need. The program's register of 26 GCC telemetry gaps keeps evidence classes apart. Even an inferred row, like degraded ID Protection risk scoring, needs its own evidence, because GCC pairs with Entra ID in commercial Azure.`,
   "Book 10, Chapter 02 — The Invisible Boundary, \"Why the boundary is invisible,\" \"The worked example, corrected.\"");
@@ -291,7 +291,7 @@ The lesson cuts both ways: an unverified boundary story hides features that are 
   tag(s, "What");
   const gcc = [
     "Telemetry: network connectivity, INR, Adoption Score absent",
-    "Identity: GCC pairs with commercial Entra ID; GCC High and DoD with Azure Government",
+    "Identity: GCC pairs with Entra ID in commercial Azure; another Microsoft cloud is a crossing",
     "Enforcement: path selection is the agency's own measurement",
     "Provenance: a rebuilt signal is labeled derived",
   ];
@@ -307,14 +307,14 @@ The lesson cuts both ways: an unverified boundary story hides features that are 
   panel(s, "Rules", 6.8, vy, 5.95, null, HEX.amber, HEX.amberTint, "FOUR EVIDENCE RULES", null, [
     "Cite per row, with the date the page was read",
     "Label confidence; build only on confirmed rows",
-    "Name the environment: GCC, GCC High, DoD",
+    "Name the environment: commercial and GCC, separately",
     "Re-read on a schedule; a register is a snapshot",
   ], 13.5);
   sources(s, "Sources: FedRAMP 2026 definitions; MAS-CSO-MDI; Microsoft Learn — Azure feature availability. Dimensions, drift classes and mechanisms are program design. Book 10, Ch 02.");
   notes(s,
 `A boundary in the program's architecture is any surface across which one of four things changes. This is the program's model, not a FedRAMP or Microsoft construct. Telemetry fidelity asks which signals actually arrive on this side; a violation raises DRIFT-SCHEMA or DRIFT-PROVENANCE. Identity authority asks who a claim's issuer resolves to here; DRIFT-IDENTITY. Enforcement responsibility asks whether the platform or the agency must enforce the control; DRIFT-AUTHZ. Provenance classification asks whether a claim is still authoritative or only derived; DRIFT-SEMANTIC. Be clear about maturity: on the workbook's Drift Engine page, detection for schema and provenance drift is shipped, semantic is a partial target, and authorization and identity drift are design only.
 
-Applied to GCC with documented facts only: the network and adoption signals are absent; GCC pairs with Entra ID in commercial Azure while GCC High and DoD pair with Azure Government, so a cross-cloud trust crosses an identity boundary; path selection rests on the agency's own SD-WAN measurements, a platform feature turned agency duty; and any rebuilt signal is labeled derived.
+Applied to GCC with documented facts only: the network and adoption signals are absent; GCC pairs with Entra ID in commercial Azure, so a trust into a different Microsoft cloud crosses an identity boundary; path selection rests on the agency's own SD-WAN measurements, a platform feature turned agency duty; and any rebuilt signal is labeled derived.
 
 Why the agency has to model this: FedRAMP's 2026 definition of federal customer data excludes analytics and telemetry generated by the provider, even though metadata about federal customer data is in the assessed scope. Nothing in a certification promises a telemetry feature.
 
@@ -344,7 +344,7 @@ The responses are design guidance: a boundary probe that records functional, par
     "\"Authorization boundary\": 0 times. \"Boundary\": 9 times: 1 in the MAS definition, 3 in agency rules about the agency's own system, 4 as tags on the MAS, CMU, VDR and CDS families, 1 in SR-03 guidance.", 12);
   sources(s, "Sources: FedRAMP NTC-0004 (Feb. 25, 2026), NTC-0013 (June 16, 2026); FedRAMP 2026 timeline, definitions, CMU; fedramp-consolidated-rules.json; NIST CSRC glossary. Book 10, Ch 03.");
   notes(s,
-`FedRAMP's 2026 rules rename the program's product. A cloud service offering is now FedRAMP Certified, at a Certification Class. FedRAMP announced the classes in Notice NTC-0004 in February 2026: Class B covers the former Li-SaaS and Low baselines, Class C includes the current Moderate baseline, Class D the current High baseline, and numbered levels were dropped to avoid confusion with the DoD impact level system. Two cautions. The class describes what FedRAMP assessed; the same notice lets agencies use a package at any security category they deem appropriate under the Risk Management Framework. And the Marketplace still shows the old word in parentheses, so cite the class.
+`FedRAMP's 2026 rules rename the program's product. A cloud service offering is now FedRAMP Certified, at a Certification Class. FedRAMP announced the classes in Notice NTC-0004 in February 2026: Class B covers the former Li-SaaS and Low baselines, Class C includes the current Moderate baseline, and Class D the current High baseline. Two cautions. The class describes what FedRAMP assessed; the same notice lets agencies use a package at any security category they deem appropriate under the Risk Management Framework. And the Marketplace still shows the old word in parentheses, so cite the class.
 
 Certification doesn't replace the agency's decision. Each agency still authorizes its own federal information systems and should never create a standalone authorization to operate for a cloud service offering.
 
@@ -420,7 +420,7 @@ endModule("Module 1");
   const s = divider(P1, "Module 2: GCC, the gap and three responses", "Part 1 — The boundary and what it removes  ·  Chapters 04, 09–10",
     ["GCC as the worldwide service minus a published list", "The register, the probe and equivalents that say they're derived", "Exceptions, scope arguments and the alternative path"], 12);
   notes(s,
-`Module 2: Microsoft 365 GCC and the three responses. First, how Microsoft itself describes GCC: the worldwide service with a published list of exclusions, not a perimeter that dims the commercial product. Then the largest documented loss, the admin center's network observability layer, and the three government packages on the Marketplace, including a second GCC package pursuing High. Then the playbook: a cited register, a boundary probe, in-boundary equivalents, documented exceptions, the scope arguments the 2026 rules allow, and the alternative path of changing the collaboration suite.`,
+`Module 2: Microsoft 365 GCC and the three responses. First, how Microsoft itself describes GCC: the worldwide service with a published list of exclusions, not a perimeter that dims the commercial product. Then the largest documented loss, the admin center's network observability layer, and the two GCC packages on the Marketplace, including a second one pursuing High. Then the playbook: a cited register, a boundary probe, in-boundary equivalents, documented exceptions, the scope arguments the 2026 rules allow, and the alternative path of changing the collaboration suite.`,
   "Book 10, Chapters 04, 09 and 10.");
 }
 
@@ -429,23 +429,21 @@ endModule("Module 1");
   const s = content(P1, "GCC is the worldwide service minus a published list");
   tag(s, "What");
   table(s, "Facts", 1.5, [4.15, 3.0], ["Documented fact", "What it means"], [
-    ["One endpoint list for \"Worldwide (including GCC)\"; separate lists for GCC High and DoD", "Same network endpoints as commercial"],
-    ["GCC pairs with Entra ID in Azure; GCC High and DoD with Entra ID in Azure Government", "Azure integration follows that pairing"],
+    ["One endpoint list for \"Microsoft 365 Worldwide (+GCC)\"", "Same network endpoints as commercial"],
+    ["\"Office 365 and Office 365 GCC are paired with Microsoft Entra ID in Azure\"", "GCC integrates with commercial Azure"],
     ["GCC customer support is \"not included in the service accreditation boundary\"", "Scope edges are marked per item"],
-    ["GCC High and DoD: extra endpoint restrictions; allowlist requests on a three-week SLA", "The separate network regime starts at GCC High"],
-    ["Windows release health: in GCC, not in GCC High or DoD", "There's no single ladder"],
   ], { fontSize: 12 });
   const im = img(s, "ch04-exclusions-both-ways", 7.95, 1.5, 4.8, 3.2);
   noteBox(s, "Both", 7.95, im.bottom + 0.2, 4.8, null, HEX.amber, HEX.amberTint, "CITE BOTH STATEMENTS",
     "The Marketplace says GCC \"leverages Azure Government as the IaaS/PaaS\"; Microsoft pairs GCC with commercial Entra ID. \"GCC Moderate\" names an environment, not a product.", 12);
-  sources(s, "Sources: Microsoft Learn — M365 endpoints, Azure feature availability, GCC service description, GCC High network, Windows release health; Marketplace MSO365MT. Book 10, Ch 04.");
+  sources(s, "Sources: Microsoft Learn — M365 endpoints, Azure feature availability, GCC service description; Marketplace MSO365MT. Book 10, Ch 04.");
   notes(s,
-`The usual picture of GCC is a compliance boundary around the commercial service that filters telemetry and withholds features for accreditation reasons. If that were right, the only moves would be to accept it or leave for GCC High. Microsoft's documentation describes something else, in five facts. There's no GCC endpoint list: Microsoft publishes one for Worldwide including GCC, and separate lists for GCC High and DoD. Office 365 GCC pairs with Entra ID in Azure, GCC High and DoD with Entra ID in Azure Government, so Azure integration follows that pairing. The GCC service description marks edges per item, such as customer support outside the accreditation boundary. The separately networked regime, with extra endpoint restrictions and on-premises allowlist requests on a three-week service level that can't be expedited, begins at GCC High. And some gaps run the other way: Windows release health, Word version history and Excel Office Scripts are in GCC and not GCC High.
+`The usual picture of GCC is a compliance boundary around the commercial service that filters telemetry and withholds features for accreditation reasons. If that were right, the only moves would be to accept it or leave the service. Microsoft's documentation describes something else, in three facts. There's no GCC endpoint list: Microsoft publishes one for Worldwide including GCC, so GCC users reach the same endpoints as commercial users. Office 365 GCC pairs with Entra ID in Azure, so GCC integrates with commercial Azure. And the GCC service description marks edges per item, such as customer support outside the accreditation boundary.
 
 One fact points the other way, and a reviewer may raise it. The Marketplace description says GCC leverages Azure Government as the IaaS and PaaS for the underlying infrastructure. That's about the infrastructure the package inherits controls from; it doesn't change the endpoint list or the Entra pairing you design against. Cite both statements in the system security plan, and paraphrase neither into "GCC runs on commercial Azure" or "GCC runs on Azure Government."
 
 And GCC Moderate names the environment, not a distinct product or certification.`,
-  "Book 10, Chapter 04 — GCC, GCC High and the Commercial Feature Gap, \"What GCC is, in Microsoft's own words,\" \"A note on names.\"");
+  "Book 10, Chapter 04 — GCC and the Commercial Feature Gap, \"What GCC is, in Microsoft's own words,\" \"A note on names.\"");
 }
 
 // ================================================================== 12 Network observability
@@ -464,13 +462,13 @@ And GCC Moderate names the environment, not a distinct product or certification.
     "Flags egress over 500 miles away: likely more than 25 ms of added TCP latency",
   ];
   const ph = Math.max(panelNeed(7.0, "x", "x", lost, 14), panelNeed(4.9, "x", "x", remains, 14));
-  panel(s, "Lost", 0.6, 1.5, 7.0, ph, HEX.red, HEX.redTint, "NOT IN GCC, GCC HIGH OR DOD", "Admin-center network connectivity", lost, 14);
+  panel(s, "Lost", 0.6, 1.5, 7.0, ph, HEX.red, HEX.redTint, "NOT IN GCC", "Admin-center network connectivity", lost, 14);
   panel(s, "Remains", 7.85, 1.5, 4.9, ph, HEX.teal, HEX.tealTint, "WHAT REMAINS IN GCC", "The connectivity test tool", remains, 14);
   callout(s, "Cost", 1.5 + ph + 0.25, 0.95, "FaChartLine", HEX.amber, "The cost: ",
     "a commercial tenant compares SASE and transport providers from a dashboard; a GCC agency funds its own measurement to decide.");
   sources(s, "Sources: Microsoft Learn — admin-center network connectivity, network assessment, Network Insights, provider details, connectivity test tool, Adoption Score, INR, CDN. Book 10, Ch 04.");
   notes(s,
-`The most consequential single exclusion isn't a telemetry detail; it's the whole network connectivity layer of the Microsoft 365 admin center. Microsoft says it supports commercial and 21Vianet tenants but not GCC Moderate, GCC High or DoD. A commercial tenant gets it at no extra license cost. It includes a network assessment for the tenant and each location: a 0 to 100 points value averaging TCP latency, download speed and UDP connection quality, compiled daily, with 80 as the healthy baseline, compared with other customers in the same city, and up to two years of history. It includes a per-location perimeter view: the egress point, in-use and optimal Exchange and SharePoint front doors, the recursive resolver and any proxy, with an estimated latency improvement. Network insights detect TLS interception. And provider attribution classes each network provider as ISP, Overlay or Corporate, attributes Exchange, SharePoint and Teams performance to each, and ranks providers by state in a Network Provider Index, currently US only.
+`The most consequential single exclusion isn't a telemetry detail; it's the whole network connectivity layer of the Microsoft 365 admin center. Microsoft says it supports commercial and 21Vianet tenants but not GCC Moderate. A commercial tenant gets it at no extra license cost. It includes a network assessment for the tenant and each location: a 0 to 100 points value averaging TCP latency, download speed and UDP connection quality, compiled daily, with 80 as the healthy baseline, compared with other customers in the same city, and up to two years of history. It includes a per-location perimeter view: the egress point, in-use and optimal Exchange and SharePoint front doors, the recursive resolver and any proxy, with an estimated latency improvement. Network insights detect TLS interception. And provider attribution classes each network provider as ISP, Overlay or Corporate, attributes Exchange, SharePoint and Teams performance to each, and ranks providers by state in a Network Provider Index, currently US only.
 
 Some measurement remains. The connectivity test tool supports GCC, with public report sharing disabled. It runs locally from the location being tested, and flags egress more than 500 miles from the office, which is likely to add more than 25 milliseconds of TCP latency.
 
@@ -478,9 +476,9 @@ Alongside it: Adoption Score is unavailable in GCC as a whole report; informed n
   "Book 10, Chapter 04, \"What agencies verifiably lose.\"");
 }
 
-// ================================================================== 13 Three packages
+// ================================================================== 13 Two GCC packages
 {
-  const s = content(P1, "Three packages, and why High won't bring features back");
+  const s = content(P1, "Two GCC packages, and why High won't bring features back");
   tag(s, "What");
   img(s, "ch04-three-packages", 0.6, 1.5, 12.15, 2.85);
   panel(s, "Fact", 0.6, 4.55, 5.95, 1.95, HEX.navy, HEX.navyTint, "FACT (MARKETPLACE, AS OF OCT. 21, 2026)", null, [
@@ -493,14 +491,14 @@ Alongside it: Adoption Score is unavailable in GCC as a whole report; informed n
     "A class change needs a new assessment, not an SCN",
     "Class changes what data may go in, not which features exist",
   ], 12);
-  sources(s, "Sources: FedRAMP Marketplace products.json (Oct. 21, 2026) — MSO365MT, MSO365MTA, FR1824057433; SCN-CSO-EVA; NTC-0004; Microsoft Learn — GCC service description. Book 10, Ch 04, 09.");
+  sources(s, "Sources: FedRAMP Marketplace products.json (Oct. 21, 2026) — MSO365MT, MSO365MTA; SCN-CSO-EVA; NTC-0004; Microsoft Learn — GCC service description. Book 10, Ch 04, 09.");
   notes(s,
-`The Marketplace carries three Microsoft 365 government packages that get run together. Read on October 21, 2026: MSO365MT, the GCC service most civilian agencies run, Certified at Class C, certification date November 20, 2014, with 100 authorizations. FR1824057433, GCC High, a different environment with its own endpoints and its own Entra pairing, Certified at Class D in December 2024, with 5. And MSO365MTA, which is new: the identical offering name and service description, the same independent assessor, In Process at Class D in Initial Implementation, with zero authorizations and status events on July 1, July 20 and October 19, 2026.
+`The Marketplace carries two Microsoft 365 GCC packages that get run together. Read on October 21, 2026: MSO365MT, the GCC service most civilian agencies run, Certified at Class C, certification date November 20, 2014, with 100 authorizations. And MSO365MTA, which is new: the identical offering name and service description, the same independent assessor, In Process at Class D in Initial Implementation, with zero authorizations and status events on July 1, July 20 and October 19, 2026.
 
 Keep fact and inference apart. The fact is that table. The inference is that MSO365MTA is a High certification effort for GCC running alongside the Class C one, which is consistent with the rule that a class change needs a new assessment. The Marketplace doesn't say whether it will supersede, run alongside or be withdrawn; that's a question for the provider, not a roadmap. Microsoft's own pages add a wrinkle: the GCC service description says Office 365 Government supports FedRAMP at a High impact level, while the Marketplace record says Class C. Cite the Marketplace and the package, and record the discrepancy.
 
-Why it matters: an architecture that hard-codes a Moderate ceiling may be building on something that moves. But a higher class doesn't restore features. Network connectivity is already absent at Class D in GCC High. Never plan to recover a feature by waiting for a class; ask the provider, per feature, what would move it.`,
-  "Book 10, Chapter 04, \"Microsoft is pursuing High for GCC, and what that doesn't change\"; Chapter 09, \"A higher class doesn't restore an excluded feature.\"");
+Why it matters: an architecture that hard-codes a Moderate ceiling may be building on something that moves. But a higher class doesn't restore features: Microsoft documents network connectivity as unavailable in GCC on the feature's own page, with no reference to a class. Never plan to recover a feature by waiting for a class; ask the provider, per feature, what would move it.`,
+  "Book 10, Chapter 04, \"Microsoft is pursuing High for GCC, and what that doesn't change,\" \"Impact level and feature availability are different axes\"; Chapter 09, \"A higher class doesn't restore an excluded feature.\"");
 }
 
 // ================================================================== 14 Register, probe, equivalent
@@ -582,13 +580,13 @@ Finally, buy the capability. The Network Provider Program is no longer open to n
     "Super admins use Google credentials, outside Conditional Access: few, 2SV, logged",
     "Anything the provisioning service didn't write is drift",
   ], 13.5);
-  sources(s, "Sources: FedRAMP Marketplace (Oct. 21, 2026); Google FedRAMP scope; Workspace Admin Help; Microsoft Learn — Google provisioning, SSO; Nextgov/FCW; Stars and Stripes. Book 10, Ch 10.");
+  sources(s, "Sources: FedRAMP Marketplace (Oct. 21, 2026); Google FedRAMP scope; Workspace Admin Help; Microsoft Learn — Google provisioning, SSO; Nextgov/FCW. Book 10, Ch 10.");
   notes(s,
 `The third answer is to change the service that delivers the workload. It's only safe if the identity plane stays put: the collaboration suite is a workload that consumes identity, not a second directory of record.
 
 Read the certification, not the announcement. As of October 21, 2026, Google Workspace is Certified at Class D, Zoom for Government and Webex for Government at Class C, Slack at C and GovSlack at D, Box at D, and Gemini for Government at Class B, Low, certified January 21, 2026. The provider says Workspace, Gemini in Workspace apps and the Gemini app are FedRAMP High authorized, so which AI features fall inside which offering is a question for the package. The Workspace listing says asterisked services don't meet SA-9(5), and the High configuration needs specific editions.
 
-The public record has both outcomes. In September 2025 a cabinet-level department awarded a five-year agreement of up to 89 million dollars to move more than 50,000 staff to Workspace with Gemini, on a temporary 71 percent discount, so a cost model must price the renewal years. None of the sources describes the identity integration. A military department went the other way, ending about 150,000 licenses after an audit found about 16 percent in use. Measure adoption in the pilot.
+The public record has one such move. In September 2025 a cabinet-level department awarded a five-year agreement of up to 89 million dollars to move more than 50,000 staff to Workspace with Gemini, on a temporary 71 percent discount, so a cost model must price the renewal years. None of the sources describes the identity integration. And speed of first deployment says nothing about the cost of coexistence, which runs until the last component moves.
 
 The identity pattern is design guidance. Entra ID provisions users and groups, on custom domains verified in both, with manager, department and OrgUnitPath mapped from governed attributes, and federates sign-in over SAML. Close the gaps: super administrators sign in with Google credentials outside Conditional Access, and the derived directory must be checked for drift.`,
   "Book 10, Chapter 10 — Alternative Collaboration Paths, \"Read the certification, not the announcement,\" \"A public example,\" \"Keep the identity plane where it is.\"");
@@ -600,7 +598,7 @@ endModule("Module 2");
   const s = divider(P2, "Module 3: Landing zone and front door", "Part 2 — Building it and owning it  ·  Chapters 05–07",
     ["Management groups and the policy each boundary decision becomes", "The address plan as join key; pools that mirror the authority", "Network as code and the governed provisioning loop"], 15);
   notes(s,
-`Module 3, the start of Part 2: the landing zone, where the boundary becomes something Azure Resource Manager enforces. We'll go through the management group hierarchy and the policy each boundary decision becomes, the same pattern on AWS and GovCloud, and the contract every piece of automation should carry. Then the address plan as the join key the inventory needs, Virtual Network Manager pools that mirror the enterprise IPAM, and network as code. Then the front door: the governed loop that turns "run the module" into an approved, evidenced and reconciled change.`,
+`Module 3, the start of Part 2: the landing zone, where the boundary becomes something Azure Resource Manager enforces. We'll go through the management group hierarchy and the policy each boundary decision becomes, the same pattern on AWS, and the contract every piece of automation should carry. Then the address plan as the join key the inventory needs, Virtual Network Manager pools that mirror the enterprise IPAM, and network as code. Then the front door: the governed loop that turns "run the module" into an approved, evidenced and reconciled change.`,
   "Book 10, Chapters 05–07.");
 }
 
@@ -616,11 +614,11 @@ endModule("Module 2");
     "Turn on RBAC for management group operations; default new subscriptions to Sandbox",
     "Moving a subscription is a boundary change",
   ], 14);
-  callout(s, "Gov", Math.max(im.bottom, rb) + 0.2, 0.85, "FaTriangleExclamation", HEX.amber, "Azure Government: ",
-    "the accelerators run unmodified only in public Azure; adapt policies, API versions and resources by hand.");
+  callout(s, "Gov", Math.max(im.bottom, rb) + 0.2, 0.85, "FaTriangleExclamation", HEX.amber, "Deploy from code: ",
+    "Microsoft's portal, Bicep and Terraform options are supported for public Azure, where the workbook's landing zone runs.");
   sources(s, "Sources: Microsoft Learn — What is an Azure landing zone, landing zone FAQ, design areas, management groups, subscription vending, Deploy Azure landing zones. Book 10, Ch 05.");
   notes(s,
-`Microsoft's Cloud Adoption Framework defines an Azure landing zone as an architecture for governing, securing and scaling a multi-subscription environment: one platform landing zone per Entra tenant, and workload landing zones, each an individual subscription. Microsoft's accelerators deploy the platform from Bicep or Terraform on Azure Verified Modules. The catch for Azure Government is that those options are supported only for public Azure, so the platform team adapts the code by hand: removing policies that don't exist there, adjusting API versions and removing unavailable resources.
+`Microsoft's Cloud Adoption Framework defines an Azure landing zone as an architecture for governing, securing and scaling a multi-subscription environment: one platform landing zone per Entra tenant, and workload landing zones, each an individual subscription. Microsoft's accelerators deploy the platform from Bicep or Terraform on Azure Verified Modules, and Microsoft recommends them over portal deployment. Those options are supported for the public Azure cloud, where the workbook's landing zone runs, with commercial subscriptions in the same directory as the GCC tenant.
 
 In the program's design the landing zone sits on four planes that must already be authoritative: naming and addressing, device and cryptographic identity, organizational identity, and governed transport.
 
@@ -634,7 +632,7 @@ The baseline hierarchy puts an intermediate root under the tenant root, so nothi
   tag(s, "How");
   img(s, "ch05-boundary-to-policy", 0.6, 1.5, 5.1, 4.95);
   const b = table(s, "Decisions", 1.5, [1.45, 5.35], ["Decision", "Mechanism and its fine print"], [
-    ["Which cloud", "Azure and Azure Government both Class D; Government's Resource Manager is management.usgovcloudapi.net"],
+    ["Which cloud", "Commercial Azure, FedRAMP High, Class D; GCC pairs with Entra ID there"],
     ["Which regions", "Allowed locations plus Allowed locations for resource groups, Deny at the intermediate root"],
     ["Which services", "Allowed resource types covers only types with tags and location: duplicate it in mode All"],
     ["Which settings", "FedRAMP regulatory compliance initiative in audit: \"only a partial view\""],
@@ -646,7 +644,7 @@ The baseline hierarchy puts an intermediate root under the tenant root, so nothi
   notes(s,
 `The package says what's in the boundary; the landing zone has to say the same thing in a form Resource Manager enforces. Each decision has a mechanism and a scope.
 
-Which cloud: Azure and Azure Government both hold FedRAMP High, and on the Marketplace both are Class D. Which regions: Allowed locations, which excludes global resources, so pair it with Allowed locations for resource groups, both Deny at the intermediate root. Which services: Microsoft's audit-scope lists, last updated February 2026. Out of scope isn't forbidden, but it isn't inherited. Enforce with Allowed resource types and read the fine print: the built-in only affects types that support tags and location, so duplicate it with mode All. Which settings: the FedRAMP Moderate or High regulatory compliance initiative, in audit mode, which Microsoft calls only a partial view of compliance. Which exceptions: an exemption, Mitigated or Waiver, with an optional expiresOn; the program requires an expiry and a reference to the authorizing decision.
+Which cloud: Azure public holds FedRAMP High, covering all its US regions, and on the Marketplace it's Class D; Microsoft 365 GCC pairs with Entra ID there. Which regions: Allowed locations, which excludes global resources, so pair it with Allowed locations for resource groups, both Deny at the intermediate root. Which services: Microsoft's audit-scope lists, last updated February 2026. Out of scope isn't forbidden, but it isn't inherited. Enforce with Allowed resource types and read the fine print: the built-in only affects types that support tags and location, so duplicate it with mode All. Which settings: the FedRAMP Moderate or High regulatory compliance initiative, in audit mode, which Microsoft calls only a partial view of compliance. Which exceptions: an exemption, Mitigated or Waiver, with an optional expiresOn; the program requires an expiry and a reference to the authorizing decision.
 
 Enforcement order matters: disabled first, then append and modify, then deny, then audit, with the if-not-exists effects after the provider succeeds. A deny match fails the request with a 403. Policy assigned at a management group evaluates only resources in subscriptions and resource groups. So roll out in audit at the intermediate root, review the report with the system owner and the ISSO, fix or exempt, then switch to Deny. A policy that blocks production on day one teaches teams to ask for exemptions instead of fixing designs.`,
   "Book 10, Chapter 05, \"Where each boundary decision lands,\" \"Enforcing without breaking things.\"");
@@ -654,13 +652,12 @@ Enforcement order matters: disabled first, then append and modify, then deny, th
 
 // ================================================================== 20 AWS and the adapter contract
 {
-  const s = content(P2, "AWS, GovCloud and automation that declares its boundary");
+  const s = content(P2, "AWS, and automation that declares its boundary");
   tag(s, "How");
   const aws = [
     "SCPs never grant; they cap IAM users and roles, root included, not the management account",
-    "GovCloud accounts are created in pairs from a commercial management account",
-    "Audit and Log Archive accounts must exist first; Account Factory Create account unavailable",
-    "No export-controlled data in Control Tower metadata",
+    "SCPs need an organization with all features enabled",
+    "Control Tower builds the landing zone on Organizations",
     "Landing Zone Accelerator \"will not, by itself, make you compliant\"",
   ];
   const contract = [
@@ -673,10 +670,10 @@ Enforcement order matters: disabled first, then append and modify, then deny, th
   panel(s, "AWS", 0.6, 1.5, 6.55, ph, HEX.navy, HEX.navyTint, "AWS ORGANIZATIONS AND CONTROL TOWER", null, aws, 14.5);
   panel(s, "Contract", 7.4, 1.5, 5.35, ph, HEX.teal, HEX.tealTint, "THE ADAPTER CONTRACT (DESIGN GUIDANCE)", null, contract, 14.5);
   callout(s, "Market", 1.5 + ph + 0.25, 0.95, "FaCloud", HEX.amber, "Marketplace, as of Oct. 21, 2026: ",
-    "AWS GovCloud Class D, US East/West Class C: both hold a Moderate system; check each service per Region. Azure and Azure Government both Class D.");
-  sources(s, "Sources: AWS — Organizations SCPs, Control Tower in GovCloud (US), Landing Zone Accelerator; FedRAMP Marketplace (Oct. 21, 2026). Adapter contract is program design. Book 10, Ch 05.");
+    "AWS US East/West Class C, where the program's AWS workloads run; check each service per Region. Azure (commercial) Class D.");
+  sources(s, "Sources: AWS — Organizations SCPs, Control Tower, LZA, FedRAMP scope; FedRAMP Marketplace (Oct. 21, 2026). Adapter contract is program design. Book 10, Ch 05.");
   notes(s,
-`AWS expresses the same structure with Organizations: accounts for subscriptions, organizational units for management groups, service control policies for deny assignments. An SCP never grants a permission; it sets the maximum for IAM users and roles in member accounts, including the root user, doesn't affect the management account, and needs an organization with all features enabled. Control Tower runs in both GovCloud Regions, differently. Accounts can't be created inside GovCloud: CreateGovCloudAccount runs from a commercial management account and creates a pair, a standalone GovCloud account and a linked commercial one for billing and support. The GovCloud organization is independent, and its Audit and Log Archive accounts must exist before setup. Account Factory's Create account isn't available, and new customers can't deploy Account Factory for Terraform there. Control Tower metadata must not contain export-controlled data. Landing Zone Accelerator supports the GovCloud partition and, in AWS's words, won't by itself make you compliant. GovCloud isn't only for High. Its Class D baseline contains the Moderate controls, so a Moderate system can run there or in the Class C commercial Regions; an agency may run most AWS workloads in GovCloud at Moderate and a contact center in the commercial Regions. AWS marks each service in scope per Region, so check the service, not just the partition.
+`AWS expresses the same structure with Organizations: accounts for subscriptions, organizational units for management groups, service control policies for deny assignments. An SCP never grants a permission; it sets the maximum for IAM users and roles in member accounts, including the root user, doesn't affect the management account, and needs an organization with all features enabled. Control Tower builds the landing zone on top of Organizations, and AWS recommends Landing Zone Accelerator on top of Control Tower for regulated workloads: open-source infrastructure as code that, in AWS's words, won't by itself make you compliant. AWS lists US East and West at Class C, formerly the Moderate baseline, and marks each service in scope per Region. The program's AWS workloads run in the commercial Regions, so check the service, Region by Region, before the design depends on it.
 
 The landing zone constrains what people deploy. Automation needs its own contract, because a collector that calls a commercial-only API from inside the boundary is a crossing nobody approved. The program's cloud specification is design guidance: every adapter operates in-boundary or through a named exception a formal decision added to a short canonical list, with no third option; endpoints resolve from the declared cloud; an unknown cloud fails closed; and every claim records its boundary, tenant, region and endpoint class: Graph v1.0, Graph beta, Resource Manager or Arc. A crossing without a declared exception shows up as provenance drift.`,
   "Book 10, Chapter 05, \"The same pattern on AWS,\" \"Every automation declares its boundary.\"");
@@ -900,7 +897,7 @@ The boundary record, kept by the system owner, holds in-scope services, tenants,
   noteBox(s, "Four", 0.6, b + 0.2, 8.75, null, HEX.teal, HEX.tealTint, "A COMPENSATING NARRATIVE IN FOUR SENTENCES",
     "What the control needs. What the provider documents as unavailable here, cited. What the agency runs instead, what it does and doesn't cover, marked derived. Where the remaining gap is recorded.", 12.5);
   panel(s, "Chain", 9.6, 1.5, 3.15, null, HEX.navy, HEX.navyTint, "THE INHERITANCE CHAIN", null, [
-    "GCC \"leverages Azure Government as the IaaS/PaaS\"",
+    "GCC \"leverages Azure Government as the IaaS/PaaS\" (Marketplace)",
     "Name both packages and the GCC SKU",
     "Listing's trust-center and guide fields empty (Oct. 21, 2026): get them via the package",
   ], 12.5);
@@ -1012,30 +1009,30 @@ sourceSlide("Sources behind the orientation and Module 1", [
   "FedRAMP machine-readable ruleset fedramp-consolidated-rules.json, version 2026.11.02.01 (Nov. 2, 2026).  ·  Notices NTC-0004 (Feb. 25, 2026) and NTC-0013 (June 16, 2026).  ·  FedRAMP Marketplace products.json (Oct. 21, 2026; re-read Nov. 9, 2026).",
   "NIST CSRC glossary, \"authorization boundary\" (SP 800-37 Rev. 2 and SP 800-53 Rev. 5, from OMB Circular A-130).",
   "Microsoft Learn: network connectivity in the admin center; informed network routing; Adoption Score; Office 365 CDN quickstart; Windows release health; Office application availability in Government plans.",
-  "Microsoft Learn: Azure, Dynamics 365, Microsoft 365 and Power Platform compliance scope; Office 365 GCC service description; Cloud feature availability for US Government; Intune for US Government GCC High and DoD.",
+  "Microsoft Learn: Azure, Dynamics 365, Microsoft 365 and Power Platform compliance scope; Office 365 GCC service description; Cloud feature availability for US Government; Intune for US Government.",
   "Microsoft Learn: Endpoint analytics overview; Advanced Analytics overview.",
   "Full footnotes with links and access dates: Book 10, Chapters 01–03.",
 ]);
 sourceSlide("Sources behind Module 2 — GCC, the gap, three responses", [
-  "Microsoft Learn: GCC High endpoints and endpoint list navigation; Azure feature availability (Microsoft 365 integration); Office 365 GCC service description; additional network requirements for GCC High and DoD.",
+  "Microsoft Learn: Microsoft 365 URLs and IP address ranges (Worldwide, including GCC); Azure feature availability (Microsoft 365 integration); Office 365 GCC service description.",
   "Microsoft Learn: network connectivity in the admin center; network assessment; Network Insights; network provider details and attribution; network connectivity test tool; Adoption Score; INR; Office 365 CDN.",
   "FedRAMP Marketplace products.json (Oct. 21, 2026): MSO365MT, MSO365MTA, FR1824057433, F1206081364, FR2604952026, FR1825941347A, F1511207635, FR1823447014, FR2230252267, F1212191840A.",
   "NIST SP 800-37 Rev. 2 (Task R-4, App. G); SP 800-53 Rev. 5 (CA-5).  ·  FedRAMP 2026: MAS, SCN, Agency Use (AGU-AGC-NAR, -TPP), Rev5 Class C, timeline.",
   "Microsoft Learn: Azure ExpressRoute for Microsoft 365; Assessing enterprise network last mile; Microsoft 365 Network Provider Program; Set up your network; Managing Microsoft 365 endpoints.",
-  "Google Cloud: FedRAMP and DoD compliance scope (Workspace); public-sector blog, Dec. 5, 2025.  ·  Google Workspace Admin Help: Setting up SSO; Super administrator SSO.",
+  "Google Cloud: FedRAMP compliance scope (Workspace); public-sector blog, Dec. 5, 2025.  ·  Google Workspace Admin Help: Setting up SSO; Super administrator SSO.",
   "Microsoft Learn: Google Workspace automatic user provisioning with Entra ID; Google SSO with Entra ID; Conditional Access target resources.",
-  "Public reporting: Nextgov/FCW (Oct. 29 and Dec. 29, 2025; Oct. 16, 2026); government-wide pricing agreement announcements (Apr. 10 and Aug. 21, 2025); Stars and Stripes and service news (Feb. 28, 2025).",
+  "Public reporting: Nextgov/FCW (Oct. 29 and Dec. 29, 2025; Oct. 16, 2026); government-wide pricing agreement announcements (Apr. 10 and Aug. 21, 2025).",
   "Full footnotes with links and access dates: Book 10, Chapters 04, 09 and 10.",
 ]);
 sourceSlide("Sources behind Module 3 — Landing zone and front door", [
   "Microsoft Learn (Cloud Adoption Framework): What is an Azure landing zone; landing zone FAQ; design areas; implementation options; Deploy Azure landing zones (sovereign clouds); management groups; subscription vending.",
-  "Microsoft Learn: compliance scope (Feb. 2026); Azure FedRAMP offering; Compare Azure Government and global Azure; built-in policies; disallowed resources; FedRAMP Moderate initiative; exemption structure.",
+  "Microsoft Learn: compliance scope (Feb. 2026); Azure FedRAMP offering; built-in policies; disallowed resources; FedRAMP Moderate initiative; exemption structure.",
   "Microsoft Learn: Azure Policy effect basics and deny; What is Azure Policy; get compliance data; Virtual Network FAQ; AVNM IPAM concept, Bicep pools and static CIDRs, preventing overlap with Policy.",
-  "AWS: Organizations service control policies; Control Tower in AWS GovCloud (US); Landing Zone Accelerator implementation guide; Amazon VPC subnet sizing.",
+  "AWS: Organizations service control policies; FedRAMP services in scope; Landing Zone Accelerator implementation guide; Amazon VPC subnet sizing.",
   "NIST SP 800-53 Rev. 5 release 5.2.0 (AC-4, AC-5, CM-2, CM-2(2), CM-3, CM-3(2), CM-5, CM-8, CM-8(1), SC-7, SC-20 to SC-22); SP 800-53B Moderate profile; SP 800-37 Rev. 2.",
   "CISA BOD 23-01 (Oct. 3, 2022).  ·  FedRAMP KSIs: PIY-GIV; CMT-LMC, -VTD, -RMV.  ·  Microsoft Learn: Microsoft 365 IP Address and URL web service.",
   "ServiceNow: CPG catalog item from a Terraform template.  ·  HashiCorp: ServiceNow Catalog approval workflow (Oct. 2, 2025); managing sensitive data in Terraform.",
-  "FedRAMP Marketplace (Oct. 21, 2026): Azure (F1209051525), Azure Government (F1603087869), AWS GovCloud, AWS US East/West, Infoblox Government Cloud, ServiceNow GCC, GitHub Enterprise Cloud, GitLab Dedicated.",
+  "FedRAMP Marketplace (Oct. 21, 2026): Azure (F1209051525), AWS US East/West, Infoblox Government Cloud, ServiceNow GCC, GitHub Enterprise Cloud, GitLab Dedicated.",
   "Full footnotes with links and access dates: Book 10, Chapters 05–07.",
 ]);
 sourceSlide("Sources behind Module 4 — Who owns it, and the package", [
@@ -1043,7 +1040,7 @@ sourceSlide("Sources behind Module 4 — Who owns it, and the package", [
   "NIST SP 800-53 Rev. 5: PL-2, SA-4, SA-9, CA-3, CA-5, CA-7.  ·  NIST OSCAL component definition model and layers.  ·  FAR 48 CFR 1.602-1.",
   "FedRAMP 2026: Using a Certified Cloud Service; Agency Use rules (AGU-USE-ABU, RSG, RCF, NFC, DSO; AGU-AGC-NAA, GRC, NAR, TPP); Federal Agencies responsibilities; Rev5 Certification Packages; Certification Packages.",
   "FedRAMP 2026: Collaborative Continuous Monitoring (CCM-AGM-ROR, -CSC); Significant Change Notification (incl. SCN-CSO-NOM); Certification Data Sharing; Cryptographic Module Use; timeline; Rev5 Class C.",
-  "FedRAMP Marketplace products.json (Oct. 21, 2026): MSO365MT service description and listing message; Azure Government; Azure Commercial Cloud; trust-center field counts.",
+  "FedRAMP Marketplace products.json (Oct. 21, 2026): MSO365MT service description and listing message; Azure Government (F1603087869); Azure Commercial Cloud; trust-center field counts.",
   "Microsoft Learn: Shared responsibility in the cloud; Azure landing zone and subscription vending; FedRAMP offering FAQ; network connectivity; ExpressRoute for Microsoft 365; GCC service description.",
   "NIST FIPS 140-2 certificates moved to the Historical List, Sept. 22, 2026 (as recorded in Book 09, Chapter 03).",
   "Full footnotes with links and access dates: Book 10, Chapters 08 and 11; Appendix A.",

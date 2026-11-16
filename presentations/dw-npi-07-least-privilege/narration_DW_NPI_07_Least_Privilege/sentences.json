@@ -26,33 +26,6 @@
    "One note before we begin: the code is illustrative, tested against fixtures."
   ]
  ],
- "2": [
-  [
-   0.05,
-   1.938,
-   "Start with what we're actually measuring."
-  ],
-  [
-   1.988,
-   12.438,
-   "An app can hold two kinds of permission: an application permission, which is a role it holds on another app's service principal, and a delegated permission, which is a grant to act for one person or for everyone."
-  ],
-  [
-   14.425,
-   7.688,
-   "Learn's way to see what an app can reach is to walk every service principal's role assignments, paying close attention to Microsoft Graph."
-  ],
-  [
-   22.113,
-   4.175,
-   "And remember that directory roles and mail roles grant access too."
-  ],
-  [
-   26.288,
-   8.162,
-   "For this estate, everything goes to the worldwide Graph and commercial Azure, and every call is available in the government clouds as well."
-  ]
- ],
  "3": [
   [
    0.05,
@@ -553,6 +526,33 @@
    32.475,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.938,
+   "Start with what we're actually measuring."
+  ],
+  [
+   1.988,
+   12.438,
+   "An app can hold two kinds of permission: an application permission, which is a role it holds on another app's service principal, and a delegated permission, which is a grant to act for one person or for everyone."
+  ],
+  [
+   14.425,
+   7.688,
+   "Learn's way to see what an app can reach is to walk every service principal's role assignments, paying close attention to Microsoft Graph."
+  ],
+  [
+   22.113,
+   4.175,
+   "And remember that directory roles and mail roles grant access too."
+  ],
+  [
+   26.288,
+   8.975,
+   "For this estate, everything goes to the worldwide Graph and commercial Azure, and every call is listed for the global service that G C C uses."
   ]
  ]
 }

@@ -68,33 +68,6 @@
    "That request I D becomes the key."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   4.6,
-   "The new read in this chapter is the directory audit log in Microsoft Graph."
-  ],
-  [
-   6.013,
-   8.2,
-   "This estate's G C C tenant uses the worldwide Graph endpoint, and its Azure reads go to the commercial Resource Manager host."
-  ],
-  [
-   14.213,
-   11.425,
-   "G C C High and the Department of Defense clouds have their own Graph hosts, and Learn lists the audit A P I as available in both government levels, with pim available everywhere too."
-  ],
-  [
-   25.637,
-   7.675,
-   "As in every chapter, the cloud is a required choice with no default, and the reader refuses to send a token anywhere else."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -568,6 +541,33 @@
    30.113,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   4.6,
+   "The new read in this chapter is the directory audit log in Microsoft Graph."
+  ],
+  [
+   6.013,
+   8.2,
+   "This estate's G C C tenant uses the worldwide Graph endpoint, and its Azure reads go to the commercial Resource Manager host."
+  ],
+  [
+   14.213,
+   9.662,
+   "Learn lists the audit A P I as available in the global service that G C C uses, and pim is part of the governance product available in G C C."
+  ],
+  [
+   23.875,
+   7.675,
+   "As in every chapter, the cloud is a required choice with no default, and the reader refuses to send a token anywhere else."
   ]
  ]
 }

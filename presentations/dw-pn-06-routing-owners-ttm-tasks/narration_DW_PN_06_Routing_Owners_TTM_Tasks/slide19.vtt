@@ -19,35 +19,40 @@ and by the security officer
 for the security route.
 
 5
-00:00:10.888 --> 00:00:15.187
+00:00:10.888 --> 00:00:15.752
 Security advisories and retirements
-route before the general rule.
+route before the general rule,
 
 6
-00:00:15.187 --> 00:00:18.513
+00:00:15.752 --> 00:00:19.337
+and an open Microsoft 365
+incident routes to a task.
+
+7
+00:00:19.337 --> 00:00:22.662
 Someone read a dry run's
 payloads before any were sent.
 
-7
-00:00:18.513 --> 00:00:21.300
+8
+00:00:22.662 --> 00:00:25.451
 A second run on the same
 collection writes nothing.
 
-8
-00:00:21.300 --> 00:00:25.213
+9
+00:00:25.451 --> 00:00:29.363
 Tasks are resolved on the re-read,
 not on the provider's closure.
 
-9
-00:00:25.213 --> 00:00:29.475
+10
+00:00:29.363 --> 00:00:33.626
 And the token lives only in the
 environment of the run that sends.
 
-10
-00:00:29.475 --> 00:00:35.113
+11
+00:00:33.626 --> 00:00:39.263
 Next, Chapter 7 writes the weekly digest
 and records every run as evidence.
 
-11
-00:00:35.113 --> 00:00:36.260
+12
+00:00:39.263 --> 00:00:40.420
 Thanks for watching.

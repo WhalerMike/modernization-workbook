@@ -6,36 +6,36 @@ The second gap is about
 government packages.
 
 2
-00:00:02.700 --> 00:00:09.658
+00:00:02.700 --> 00:00:08.704
 Google Cloud's Assured Workloads
 supported-products page lists Personalized Service
 
 3
-00:00:09.658 --> 00:00:15.948
-Health under twenty-five regional packages,
-including the U S Data Boundary, but
+00:00:08.704 --> 00:00:13.885
+Health under twenty-five regional
+packages, including the U S Data Boundary,
 
 4
-00:00:15.948 --> 00:00:21.000
-not under FedRAMP Moderate, FedRAMP High,
-I L 2, I L 4, I L 5, C J I S or I T A R.
+00:00:13.885 --> 00:00:17.750
+but not under FedRAMP Moderate,
+FedRAMP High, C J I S or I T A R.
 
 5
-00:00:21.000 --> 00:00:24.418
+00:00:17.750 --> 00:00:21.168
 So a workload in one of those
 packages has nothing to read,
 
 6
-00:00:24.418 --> 00:00:27.763
+00:00:21.168 --> 00:00:24.513
 and an empty list there looks
 like good news when it isn't.
 
 7
-00:00:27.763 --> 00:00:31.932
+00:00:24.513 --> 00:00:28.682
 The kit's answer, which is the program's
 design guidance, is to record the
 
 8
-00:00:31.932 --> 00:00:36.820
+00:00:28.682 --> 00:00:33.550
 package as a gap with the security officer,
 who decides the compensating channel.

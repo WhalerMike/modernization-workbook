@@ -35,31 +35,26 @@ and see how to pause and
 resume safely in an incident.
 
 8
-00:00:27.813 --> 00:00:32.846
-In the lab you'll run Microsoft Learn's
-own incident samples against a fake tenant,
+00:00:27.813 --> 00:00:32.581
+In the lab you'll lint the program's rule
+pattern table, evaluate a rule against
 
 9
-00:00:32.846 --> 00:00:37.430
-lint the program's rule pattern table,
-evaluate a rule against a fictional
+00:00:32.581 --> 00:00:37.349
+a fictional population, run the pull
+request check, and break a rule on purpose.
 
 10
-00:00:37.430 --> 00:00:41.487
-population, run the pull request
-check, and break a rule on purpose.
-
-11
-00:00:41.487 --> 00:00:46.177
+00:00:37.349 --> 00:00:42.040
 The code is illustrative: tested against
 fixtures and a fake tenant, and the
 
-12
-00:00:46.177 --> 00:00:48.975
+11
+00:00:42.040 --> 00:00:44.838
 evaluator follows
 Microsoft Learn's page on
 
-13
-00:00:48.975 --> 00:00:51.980
+12
+00:00:44.838 --> 00:00:47.860
 dynamic membership rules
 but isn't the service.

@@ -12,9 +12,9 @@ Why does this need code at all? Because the operator side is already written, in
 
 Here's what Microsoft itself says about these tools, and it's why a pipeline is worth building. Group Policy analytics reads your exports and tells you which settings have an equivalent, but only for Windows, and it only parses some settings, and only in English. The Migrate button is called best effort; Learn tells you not to move everything without review, and it simply stops when two policies disagree. And everything in Graph here, both the analytics reports and the settings catalog itself, is beta. Supported, but liable to change. Next, which cloud.
 
-## Slide 4 — Which cloud: Graph host and Intune instance
+## Slide 4 — Which cloud: the Graph host for GCC
 
-Which cloud matters, because Microsoft's import sample always calls the worldwide Graph host. For a GCC tenant like this estate's, that's correct: GCC uses the worldwide Graph and the same Intune instance as commercial customers. GCC High and the Defense cloud have their own Graph hosts, a shared government Intune instance and their own admin center, and a token from one cloud won't work in another. So the example maps each cloud name to its host and refuses any name it doesn't recognize. Now, Microsoft's samples.
+Which cloud matters, because Microsoft's import sample always calls the worldwide Graph host. For a GCC tenant like this estate's, that's correct: Learn says GCC uses the worldwide Graph, and every call the code makes is listed for the global service. But the host isn't taken from the session's cloud, and a token from one cloud won't work in another. So the example takes the cloud by name, maps it to its host, and refuses any name it doesn't recognize. Now, Microsoft's samples.
 
 ## Slide 5 — Microsoft's settings catalog samples, pinned
 
@@ -22,7 +22,7 @@ Microsoft does give you a starting point. Learn's Intune migration guide points 
 
 ## Slide 6 — What the samples get right, and the write gaps
 
-Running the samples against the fake Graph shows what they do well, and the example keeps that: the same create call, the same filter, the same paging, and policies created with no assignments. The gaps are about safety. The import always calls the worldwide host. It writes with whatever session you happen to have open. There's no dry run. And if you run it twice, you get two policies with the same name, because it never looks at the tenant first. Each of those gaps is pinned by a test. There are more, on the record side.
+Running the samples against the fake Graph shows what they do well, and the example keeps that: the same create call, the same filter, the same paging, and policies created with no assignments. The gaps are about safety. The import always calls the worldwide host, whatever cloud the session signed in to. It writes with whatever session you happen to have open. There's no dry run. And if you run it twice, you get two policies with the same name, because it never looks at the tenant first. Each of those gaps is pinned by a test. There are more, on the record side.
 
 ## Slide 7 — The record gaps, and the verdict
 
@@ -46,7 +46,7 @@ Now the heart of the sync: it diffs before it writes. It reads the tenant's poli
 
 ## Slide 12 — Verified calls, beta stage and open questions
 
-Here are the facts the code depends on, as Learn states them. Every call is beta, every read needs only the device configuration read permission, and only the create needs write. Learn lists all of them for the worldwide and both US Government levels. The chapter is just as careful about what Learn doesn't say. There's no Graph equivalent of the Migrate button, so the second lab compares the two by hand. And no Learn page confirms the analytics import itself works in GCC High or the Defense cloud, so that gets confirmed in a test tenant first.
+Here are the facts the code depends on, as Learn states them. Every call is beta, every read needs only the device configuration read permission, and only the create needs write. Learn lists all of them for the global service, which GCC uses. The chapter is just as careful about what Learn doesn't say. There's no Graph equivalent of the Migrate button, so the second lab compares the two by hand. And although one setting can now be changed through its own call, the code still never updates a policy, by design.
 
 ## Slide 13 — Who builds it, who approves it, which roles
 

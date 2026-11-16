@@ -872,43 +872,6 @@
    "Quarterly reviews close the loop."
   ]
  ],
- "25": [
-  [
-   0.05,
-   3.725,
-   "Authentication modernization starts from the federal requirement."
-  ],
-  [
-   3.775,
-   9.225,
-   "O M B M twenty-two oh-nine requires phishing-resistant M F A, and an end to methods like SMS and voice codes for routine access."
-  ],
-  [
-   13.0,
-   6.5,
-   "Its targets were set for the end of fiscal year 2024, so these are requirements now, not goals."
-  ],
-  [
-   19.5,
-   1.75,
-   "That reorders the roadmap."
-  ],
-  [
-   21.25,
-   11.537,
-   "Older plans put smart cards last, but a federal workforce already carries piv or CAC cards, so certificate-based authentication straight against Entra ID is the fastest path."
-  ],
-  [
-   32.788,
-   10.65,
-   "The program goes in four phases: privileged accounts first, then every card holder, then managed Windows devices on Windows Hello, then everyone else on passkeys."
-  ],
-  [
-   43.438,
-   8.213,
-   "Then the legacy cutoff: find the remaining legacy sign-ins, move them, block them, and watch for thirty days until there are none."
-  ]
- ],
  "26": [
   [
    0.05,
@@ -1065,6 +1028,43 @@
    50.188,
    0.762,
    "Thank you."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   3.725,
+   "Authentication modernization starts from the federal requirement."
+  ],
+  [
+   3.775,
+   9.225,
+   "O M B M twenty-two oh-nine requires phishing-resistant M F A, and an end to methods like SMS and voice codes for routine access."
+  ],
+  [
+   13.0,
+   6.5,
+   "Its targets were set for the end of fiscal year 2024, so these are requirements now, not goals."
+  ],
+  [
+   19.5,
+   1.75,
+   "That reorders the roadmap."
+  ],
+  [
+   21.25,
+   10.787,
+   "Older plans put smart cards last, but a federal workforce already carries piv cards, so certificate-based authentication straight against Entra I D is the fastest path."
+  ],
+  [
+   32.038,
+   10.65,
+   "The program goes in four phases: privileged accounts first, then every card holder, then managed Windows devices on Windows Hello, then everyone else on passkeys."
+  ],
+  [
+   42.688,
+   8.213,
+   "Then the legacy cutoff: find the remaining legacy sign-ins, move them, block them, and watch for thirty days until there are none."
   ]
  ]
 }

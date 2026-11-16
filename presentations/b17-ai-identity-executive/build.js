@@ -339,7 +339,7 @@ So the inventory is the seed list, joined from the directory side using the agen
     "Agent ID platform: generally available, April 2026",
     "Agent policies: preview; agent identities Block only",
     "GCC: a documented, partial subset",
-    "GCC High and DoD: no published availability",
+    "Not listed for GCC: treat as unavailable",
     "Agent 365: FedRAMP High authorization pending",
   ]);
   decision(s, "Budget the licenses agent governance needs, and confirm each capability in the agency's own cloud before anyone plans on it",
@@ -352,7 +352,7 @@ A signed-in user's: the agent can reach everything that user can, so the narrowi
 
 Beside ordinary service principals and managed identities, Microsoft Entra Agent ID adds blueprints, which hold the credential and are the credential boundary for every agent made from them, and agent identities, each with a required human sponsor.
 
-Now the dates. Microsoft announced the Agent ID platform as generally available in April 2026. Agent targets in Conditional Access are still labeled preview. GCC has a documented partial subset: identity and access governance for agents, but not Microsoft's audit and data protection for agent interactions. GCC High and DoD have no published availability, so treat agent identities as unavailable there. And Microsoft says Agent 365 meets the FedRAMP High controls its assessor reviewed, with final authorization pending as of October 1, 2026.
+Now the dates. Microsoft announced the Agent ID platform as generally available in April 2026. Agent targets in Conditional Access are still labeled preview. GCC has a documented partial subset: identity and access governance for agents, but not Microsoft's audit and data protection for agent interactions. Anything the service description doesn't list for GCC is treated as unavailable until Microsoft confirms it. And Microsoft says Agent 365 meets the FedRAMP High controls its assessor reviewed, with final authorization pending as of October 1, 2026.
 
 One licensing trap: Entra ID Governance for people doesn't license governance of agents; those features sit under Agent 365 or Microsoft 365 E7. So the CIO, who decides licenses with the executive sponsor, budgets them, and each capability is confirmed in the agency's own cloud first.`,
   "Book 17, Chapter 04 — Kinds of AI Identity (Workload identities; Agent identities: Microsoft Entra Agent ID; Delegated and autonomous access; Release stage, licensing and government clouds); Chapter 05 (Release stage and government-cloud availability: governance of people doesn't license governance of agents); Chapter 08 (The CIO).");
@@ -385,7 +385,7 @@ Agent ID separates accountability from administration. The sponsor, required at 
 
 The program's rule, which is design: the sponsor is a federal employee mastered in HR, normally the official named for the use case; a co-sponsor is a small dynamic group of the office's agent stewards, so accountability survives a departure; the technical owner never sponsors; the inventory record names the same sponsor; and administrators sponsor nothing.
 
-Then the lifecycle. When a sponsor leaves, Lifecycle Workflows transfers sponsorship to the manager, generally available since May 2026 and triggered by the same HR events as everyone's. The program treats the transfer as provisional: ten business days to confirm, nominate a successor or retire the agent, or it's orphaned and suspended. Access comes through packages with end dates, so a sponsor who does nothing lets it lapse. Retirement is disable, then delete, with a 30-day restore window. In GCC High and DoD the lifecycle runs on application objects and a ticket, which is weaker and belongs in the package.
+Then the lifecycle. When a sponsor leaves, Lifecycle Workflows transfers sponsorship to the manager, generally available since May 2026 and triggered by the same HR events as everyone's. The program treats the transfer as provisional: ten business days to confirm, nominate a successor or retire the agent, or it's orphaned and suspended. Access comes through packages with end dates, so a sponsor who does nothing lets it lapse. Retirement is disable, then delete, with a 30-day restore window. Where an agent feature isn't available in GCC, the lifecycle runs on application objects and a ticket, which is weaker and belongs in the package.
 
 The system owner names the sponsor at creation, and moves sponsorship to the using program at publication.`,
   "Book 17, Chapter 05 — Owners, Sponsors and the AI Identity Lifecycle (Three accountable relationships; The program's rule; When the sponsor moves or leaves; Recertification; Retirement; The orphaned agent; Where the agent features aren't available); Chapter 08 (The agent's sponsor and technical owner; responsibility matrix).");
@@ -706,8 +706,8 @@ None of these needs a new authorization. Every AI system gets an identity, an ow
   const src = [
     "Microsoft Learn, Microsoft Entra Agent ID: overview; what are agent identities; agent identities; the agent's user account; owners, sponsors and managers; authorization; best practices; create a blueprint; inheritable permissions; agent identity deletion; logs; FAQ; what's new (April 2026 general availability).",
     "Microsoft Learn, Conditional Access: for agents; target agent identities; Grant; secure autonomous agents; for workload identities.  ·  ID Protection for agents; securing workload identities.  ·  Entra ID Governance: governing agent identities; access packages for agents; Lifecycle Workflows sponsor tasks and templates; licensing fundamentals.",
-    "Microsoft Learn, Microsoft Agent 365 service description (feature availability, GCC column, FedRAMP High note as of October 1, 2026); Agent 365 identity; US Government cloud endpoints; MCP server approval.  ·  Microsoft Entra feature availability for Azure Government.",
-    "Microsoft Learn, Defender for Cloud Apps generative AI discovery; Global Secure Access shadow AI and AI agent discovery; Defender for Endpoint local AI agent discovery; Defender for Cloud AI security posture.  ·  AWS Bedrock AgentCore Identity and GovCloud; Google Cloud agent identity (named as examples only).",
+    "Microsoft Learn, Microsoft Agent 365 service description (feature availability, GCC column, FedRAMP High note as of October 1, 2026); Agent 365 identity; US Government cloud endpoints; MCP server approval.",
+    "Microsoft Learn, Defender for Cloud Apps generative AI discovery; Global Secure Access shadow AI and AI agent discovery; Defender for Endpoint local AI agent discovery; Defender for Cloud AI security posture.  ·  AWS Bedrock AgentCore Identity; Google Cloud agent identity (named as examples only).",
     "Full footnotes with links and access dates (October 21–22, 2026): Book 17, every chapter and Appendix A (whalermike.github.io/modernization-workbook/docs/books/b17-ai-identity/).",
   ];
   T(s, "Source list", bullets(src, 13), { x: 0.6, y: 1.5, w: 12.1, h: 5.0, paraSpaceAfter: 8 });

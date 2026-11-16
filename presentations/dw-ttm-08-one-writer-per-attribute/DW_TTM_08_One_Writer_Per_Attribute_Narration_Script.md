@@ -30,7 +30,7 @@ Six tests cover flow types, usage types and aliases, the three severities, disab
 
 ## Slide 8 — The verified facts behind the two exports
 
-The facts behind the exports, read on November first. Reading a synchronization schema is available in the government clouds; oddly, Learn lists a custom security attribute permission as the least-privileged application permission, with Synchronization dot Read dot All among the higher ones. The schema's shape is rules, object mappings and attribute mappings. SailPoint's policies come from the provisioning-policies endpoint with a read or manage scope, at the org admin user level, each with a name, usage type and fields. GCC uses the worldwide Graph host.
+The facts behind the exports, read on November first. Reading a synchronization schema has its own permissions, and oddly, Learn lists a custom security attribute permission as the least-privileged application permission, with Synchronization dot Read dot All among the higher ones. The schema's shape is rules, object mappings and attribute mappings. SailPoint's policies come from the provisioning-policies endpoint with a read or manage scope, at the org admin user level, each with a name, usage type and fields. GCC uses the worldwide Graph host.
 
 ## Slide 9 — What couldn't be verified about the writers
 

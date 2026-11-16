@@ -744,7 +744,7 @@ Each adapter also declares exactly one of five missions. Two classes by five mis
 
 Read-only comes first: discovery precedes change, and least privilege is AC-6. But read-only has to be verified. ScubaGear's Graph permissions all end in Read, yet assessing Power Platform needs an administrator role, and a Global Administrator always has the permissions. A tool built to observe can run under an identity that can change things, so the conformance check compares granted with declared.
 
-Each adapter tracks two versions: its own, by Semantic Versioning, and the platform API's, pinned. Microsoft says beta APIs aren't supported in production and deprecates a version at least 24 months before removal, so production adapters pin v1.0, and a beta-only dependency is a recorded risk with an owner. The endpoint comes from the declared cloud: GCC uses the global endpoint, GCC High and DoD their own.
+Each adapter tracks two versions: its own, by Semantic Versioning, and the platform API's, pinned. Microsoft says beta APIs aren't supported in production and deprecates a version at least 24 months before removal, so production adapters pin v1.0, and a beta-only dependency is a recorded risk with an owner. The endpoint comes from the declared cloud: GCC uses the global endpoint, and a token issued for one cloud can't be used in another.
 
 Active status is earned through three test levels; retirement names a successor and flags any remaining reference as provenance drift.`,
   "Book 13, Chapter 08 — The Adapter Model, \"The contract,\" \"Read-only first,\" \"Versioning,\" \"Earning active status, and retiring.\"");

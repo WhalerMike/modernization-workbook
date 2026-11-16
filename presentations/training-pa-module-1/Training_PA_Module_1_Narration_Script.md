@@ -42,7 +42,7 @@ Step four prints the ten findings. Seven are I N V oh one, standing privilege in
 
 ## Slide 11 — Try it: see the reader refuse, then run the tests
 
-Step five shows the reader refusing. You build a reader for the inventory task in G C C, on the fake, and ask it for the Conditional Access policies. That call isn't declared for the inventory task, so it throws, and tells you to add it to the call list with its permission. Then you ask for a cloud called G C C High, with capital letters. The names are case-sensitive on purpose, so that's an unknown cloud, and it throws too: use global, G C C, G C C High or D O D. There's no default cloud. Step six runs the whole test suite, three hundred thirty tests, and all pass. Then delete the output folder, because it names the fixture's privileged holders. Pester prints its summary on several lines; the slide shows it on one.
+Step five shows the reader refusing. You build a reader for the inventory task in G C C, on the fake, and ask it for the Conditional Access policies. That call isn't declared for the inventory task, so it throws, and tells you to add it to the call list with its permission. Then you ask for a cloud the reader doesn't know, u s gov. It throws too: use global or G C C. There's no default cloud. Step six runs the whole test suite, three hundred thirty tests, and all pass. Then delete the output folder, because it names the fixture's privileged holders. Pester prints its summary on several lines; the slide shows it on one.
 
 ## Slide 12 — Lab 2: inventory your own test tenant
 

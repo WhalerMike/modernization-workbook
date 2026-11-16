@@ -172,58 +172,6 @@
    "The Location header points at the provisioning logs, where each record's result appears."
   ]
  ],
- "5": [
-  [
-   0.05,
-   8.062,
-   "Microsoft publishes a PowerShell sample for this integration, CSV2SCIM, with a full tutorial on Microsoft Learn."
-  ],
-  [
-   8.113,
-   7.45,
-   "Use it; the repository keeps a pinned copy of Microsoft's sample at upstream commit f2e8c59."
-  ],
-  [
-   15.562,
-   5.125,
-   "Run on the book's H R fixture, nineteen rows, it sends all nineteen."
-  ],
-  [
-   20.688,
-   1.45,
-   "Here's what it leaves to you."
-  ],
-  [
-   22.137,
-   7.475,
-   "It validates the mapping, not the values; the hardened client fails closed, and quarantines nine of the nineteen rows."
-  ],
-  [
-   29.613,
-   5.9,
-   "It sends in file order; the client sends leavers first, then managers before their reports."
-  ],
-  [
-   35.513,
-   2.138,
-   "It has no limit on mass change."
-  ],
-  [
-   37.65,
-   11.95,
-   "Its endpoint is hard-coded to the worldwide beta host, and Learn's page on Microsoft Graph national cloud deployments gives other hosts for G C C High and D O D, so it can't reach them as written."
-  ],
-  [
-   49.6,
-   6.0,
-   "Its sign-in asks for Application dot ReadWrite dot All, which can change any app in the tenant."
-  ],
-  [
-   55.6,
-   5.725,
-   "And each bulk I D is a new random GUID, so a batch can't be traced to its inputs."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -499,58 +447,6 @@
    "The long commands on the slide are wrapped, and the manifest is trimmed."
   ]
  ],
- "11": [
-  [
-   0.05,
-   2.288,
-   "Step five breaks a row on purpose."
-  ],
-  [
-   2.337,
-   6.737,
-   "The sed command writes a copy of the extract with worker one hundred thousand and five's department code in lower case."
-  ],
-  [
-   9.075,
-   8.562,
-   "Run the client on it, and the counts become eight ready and ten quarantined, and the quarantine says why: the lower-case value isn't a code."
-  ],
-  [
-   17.637,
-   5.575,
-   "One small typo in H R, and the record stops at the middleware instead of reaching the directory."
-  ],
-  [
-   23.212,
-   1.6,
-   "Step six holds a run."
-  ],
-  [
-   24.812,
-   4.7,
-   "A settings file allows only one disable per run, and the fixture has three."
-  ],
-  [
-   29.512,
-   8.175,
-   "So the client holds the whole run, with exit code three, and says why: three disables exceed the limit, held for confirmation."
-  ],
-  [
-   37.688,
-   4.375,
-   "Nothing is sent until someone confirms it with the confirm large delta option."
-  ],
-  [
-   42.062,
-   3.1,
-   "Step seven runs the tests: seventy pass."
-  ],
-  [
-   45.163,
-   1.375,
-   "Step eight cleans up."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -732,6 +628,115 @@
    40.325,
    10.425,
    "You'll build and read V K SYNC oh two, the check that soft match and hard-match takeover are blocked, and see why a read-only check still asks for the least privilege it can."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   8.062,
+   "Microsoft publishes a PowerShell sample for this integration, CSV2SCIM, with a full tutorial on Microsoft Learn."
+  ],
+  [
+   8.113,
+   7.45,
+   "Use it; the repository keeps a pinned copy of Microsoft's sample at upstream commit f2e8c59."
+  ],
+  [
+   15.562,
+   5.125,
+   "Run on the book's H R fixture, nineteen rows, it sends all nineteen."
+  ],
+  [
+   20.688,
+   1.45,
+   "Here's what it leaves to you."
+  ],
+  [
+   22.137,
+   7.475,
+   "It validates the mapping, not the values; the hardened client fails closed, and quarantines nine of the nineteen rows."
+  ],
+  [
+   29.613,
+   5.9,
+   "It sends in file order; the client sends leavers first, then managers before their reports."
+  ],
+  [
+   35.513,
+   2.138,
+   "It has no limit on mass change."
+  ],
+  [
+   37.65,
+   5.45,
+   "Its endpoint is hard-coded to the worldwide beta host, and its sign-in names no cloud."
+  ],
+  [
+   43.1,
+   11.812,
+   "That works in G C C, which Learn's page on Microsoft Graph national cloud deployments says uses the worldwide endpoint; the client checks the endpoint against its Graph host allow-list."
+  ],
+  [
+   54.913,
+   6.0,
+   "Its sign-in asks for Application dot ReadWrite dot All, which can change any app in the tenant."
+  ],
+  [
+   60.913,
+   5.725,
+   "And each bulk I D is a new random GUID, so a batch can't be traced to its inputs."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.288,
+   "Step five breaks a row on purpose."
+  ],
+  [
+   2.337,
+   6.737,
+   "The sed command writes a copy of the extract with worker one hundred thousand and five's department code in lower case."
+  ],
+  [
+   9.075,
+   8.562,
+   "Run the client on it, and the counts become eight ready and ten quarantined, and the quarantine says why: the lower-case value isn't a code."
+  ],
+  [
+   17.637,
+   5.575,
+   "One small typo in H R, and the record stops at the middleware instead of reaching the directory."
+  ],
+  [
+   23.212,
+   1.6,
+   "Step six holds a run."
+  ],
+  [
+   24.812,
+   4.7,
+   "A settings file allows only one disable per run, and the fixture has three."
+  ],
+  [
+   29.512,
+   8.175,
+   "So the client holds the whole run, with exit code three, and says why: three disables exceed the limit, held for confirmation."
+  ],
+  [
+   37.688,
+   4.375,
+   "Nothing is sent until someone confirms it with the confirm large delta option."
+  ],
+  [
+   42.062,
+   3.362,
+   "Step seven runs the tests: seventy-one pass."
+  ],
+  [
+   45.425,
+   1.375,
+   "Step eight cleans up."
   ]
  ]
 }

@@ -27,18 +27,8 @@
   ],
   [
    32.625,
-   1.575,
-   "Two notes before we begin."
-  ],
-  [
-   34.2,
-   3.362,
-   "This chapter is a draft, awaiting the owner's review."
-  ],
-  [
-   37.562,
-   3.525,
-   "And the code is illustrative, tested against fixtures."
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
   ]
  ],
  "2": [
@@ -81,26 +71,21 @@
   ],
   [
    1.562,
-   15.775,
-   "A G C C tenant keeps the worldwide Microsoft Graph endpoint, so this workbook's baseline reads graph dot microsoft dot com. Microsoft Learn's national cloud page gives G C C High and the Defense Department their own hosts, a short side note here."
+   9.363,
+   "A G C C tenant keeps the worldwide Microsoft Graph endpoint, so this workbook's baseline reads graph dot microsoft dot com. Why does it matter?"
   ],
   [
-   17.337,
-   1.087,
-   "Why does it matter?"
-  ],
-  [
-   18.425,
+   10.925,
    2.312,
    "Because a wrong cloud fails silently."
   ],
   [
-   20.738,
-   7.088,
-   "A G C C High tenant read on the worldwide host simply returns nothing, and the gate passes on an empty list."
+   13.238,
+   6.362,
+   "A read on a host other than the tenant's own simply returns nothing, and the gate passes on an empty list."
   ],
   [
-   27.825,
+   19.6,
    7.825,
    "So the kit has one row per cloud and no default, and the lyve run refuses a Graph session in another environment or another tenant."
   ]
@@ -123,16 +108,21 @@
   ],
   [
    17.712,
-   9.4,
-   "There are three list methods on version one point oh: messages, issues and health overviews, each with its permission and its national-cloud availability."
+   7.35,
+   "There are three list methods on version one point oh: messages, issues and health overviews, each with its permission."
   ],
   [
-   27.113,
+   25.062,
+   2.812,
+   "G C C uses the worldwide endpoint."
+  ],
+  [
+   27.875,
    9.525,
    "One caveat from Learn's admin roles page: data privacy messages are visible only to Global Administrators and Message Center Privacy Readers."
   ],
   [
-   36.638,
+   37.4,
    4.775,
    "And Learn's own cmdlet for posts is the one we'll cross-check against in Lab 2."
   ]
@@ -320,16 +310,16 @@
   ],
   [
    17.05,
-   10.088,
-   "Step 2 prints each cloud's Graph host: G C C on the worldwide host with the Global environment, then G C C High and D O D on their own."
+   8.162,
+   "Step 2 prints each cloud's Graph host: worldwide and G C C both on the worldwide host, with the Global environment."
   ],
   [
-   27.137,
+   25.212,
    2.638,
    "There's one row per cloud and no default."
   ],
   [
-   29.775,
+   27.85,
    9.988,
    "Step 3 collects Microsoft 365 from the day-one fixtures: six notices, five open, two needing action, all valid against the schema."
   ]
@@ -426,21 +416,21 @@
   ],
   [
    8.625,
-   2.075,
-   "Fifteen pass, none fail."
+   2.038,
+   "Fourteen pass, none fail."
   ],
   [
-   10.7,
+   10.662,
    3.237,
    "The manifest lists the three calls with their permissions."
   ],
   [
-   13.938,
+   13.9,
    14.213,
    "So, in one short lab, you've seen two read permissions and nothing that writes, one Graph host per cloud with no default, Microsoft's date kept as Microsoft's and the kit's rule labeled as a rule, and a next link on another host refused."
   ],
   [
-   28.15,
+   28.113,
    5.525,
    "Delete the output folder when you're done, so no fixture output is mistaken for a real run."
   ]
@@ -512,31 +502,31 @@
   ],
   [
    1.45,
-   8.3,
-   "Read a G C C High or D O D tenant on the worldwide host and nothing comes back, so the gate passes on an empty list."
+   6.213,
+   "Read a tenant on a host other than its own and nothing comes back, so the gate passes on an empty list."
   ],
   [
-   9.75,
+   7.662,
    4.787,
    "Follow a next link to another host and the token goes somewhere you didn't choose."
   ],
   [
-   14.537,
+   12.45,
    4.487,
    "Grant a broad Graph scope for convenience and the reader can change the tenant."
   ],
   [
-   19.025,
+   16.938,
    4.65,
    "Mistake the kit's rule for Microsoft's deadline and a post gets an invented date."
   ],
   [
-   23.675,
+   21.587,
    3.462,
    "Data privacy posts go unseen without the right role."
   ],
   [
-   27.137,
+   25.05,
    8.475,
    "And trusting the email over the A P I means look-alike email gets acted on, so the task always links the post the kit read from Graph."
   ]

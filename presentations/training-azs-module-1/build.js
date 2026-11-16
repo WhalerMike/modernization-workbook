@@ -4,7 +4,7 @@
 // exposure inventory, where agencies are and the other clouds), the lab's exact commands in a test subscription (not run
 // by the authors, as the page says; the module has no Lab 1), the federal requirement and evidence, a two-question check,
 // and the summary. Every fact comes from the module page and the Azure Security Engineering implementation guide it sends
-// the learner to (How to read this guide, Where each topic is covered, Steps 1 and 2, Government-cloud availability, The
+// the learner to (How to read this guide, Where each topic is covered, Steps 1 and 2, Availability in commercial Azure, The
 // same controls on AWS, Google Cloud and Oracle Cloud, and their footnotes); the deck adds none.
 // Helpers: ./shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-azs-module-1/build.js \
@@ -63,7 +63,7 @@ const LAB = "LAB 2  ·  A TEST SUBSCRIPTION, NEVER PRODUCTION  ·  NOT RUN BY TH
     "Protect the hierarchy; assign the security initiatives in DoNotEnforce",
     "Find platform resources that don't send logs to the workspace",
     "Build the exposure register and find rows with no owner",
-    "Name what differs in Azure Government and on other clouds",
+    "Name what commercial Azure offers a GCC tenant, and the same controls on other clouds",
   ], [
     "Cloud Boundary and Landing Zone, Chapter 05: skim it",
     "The guide's prerequisites: roles eligible through PIM",
@@ -71,7 +71,7 @@ const LAB = "LAB 2  ·  A TEST SUBSCRIPTION, NEVER PRODUCTION  ·  NOT RUN BY TH
   ], 50);
   sources(s, "Sources: Module 1, \"Learning objectives,\" \"Prerequisites\"; Exercise: Lab 2.");
   notes(s,
-`Here's what you'll be able to do by the end of this module. You'll say which parts of Azure security the books design and which the guide engineers, and read the guide's authority labels. You'll protect the management group hierarchy and assign the security initiatives in do-not-enforce mode at the intermediate root. You'll find platform resources that don't send their logs to the workspace. You'll build the exposure register from Resource Graph and find the rows with no owner. And you'll name what differs in Azure Government, and the equivalent controls on AWS, Google Cloud and Oracle Cloud Infrastructure. Before you start, skim Chapter 05 of Cloud Boundary and Landing Zone, and the guide's prerequisites: the roles, eligible through pim. The lab runs in a test subscription, never production.`,
+`Here's what you'll be able to do by the end of this module. You'll say which parts of Azure security the books design and which the guide engineers, and read the guide's authority labels. You'll protect the management group hierarchy and assign the security initiatives in do-not-enforce mode at the intermediate root. You'll find platform resources that don't send their logs to the workspace. You'll build the exposure register from Resource Graph and find the rows with no owner. And you'll name what a G C C tenant's commercial Azure offers, and the equivalent controls on AWS, Google Cloud and Oracle Cloud Infrastructure. Before you start, skim Chapter 05 of Cloud Boundary and Landing Zone, and the guide's prerequisites: the roles, eligible through pim. The lab runs in a test subscription, never production.`,
   `${M} — "Learning objectives," "Prerequisites."`);
 }
 endModule(SI);
@@ -184,20 +184,20 @@ endModule(SI);
 {
   const s = content(SC, "Where agencies are: GCC uses commercial Azure");
   tag(s, "Who");
-  const tb = table(s, "Gov", 1.45, [3.4, 3.85, 4.9], ["Topic", "Commercial Azure (GCC)", "Azure Government (side note)"], [
-    ["Which tenants", "Microsoft 365 GCC pairs with it", "Pairs with GCC High and DoD"],
-    ["Endpoints", "The guide's commands as written", "Resource Manager at management.usgovcloudapi.net"],
-    ["Landing zone accelerators", "Supported", "Not supported unmodified: adapt the code"],
-    ["Azure Lighthouse", "Available", "No PIM for delegated access; no cross-cloud delegation"],
-    ["A listed service", "All features", "All features unless Learn lists a variation"],
+  const tb = table(s, "Gov", 1.45, [3.4, 2.6, 6.15], ["Service", "Commercial Azure", "What to plan for"], [
+    ["Azure Front Door Standard and Premium", "Available", "Classic retires March 31, 2027 and accepts no new profiles or domains"],
+    ["Azure DDoS Protection", "Available", "Network Protection is billed per plan, IP Protection per protected IP"],
+    ["Private Link and private DNS", "Available", "One central zone per service, such as privatelink.vaultcore.azure.net"],
+    ["Azure Policy", "Available", "FedRAMP initiatives are built in"],
+    ["Azure landing zone accelerators", "Supported", "Cloud Boundary and Landing Zone, Chapter 05"],
   ], { fontSize: 12, limit: 5.0 });
   code(s, "Cloud", 0.6, tb + 0.25, 12.15, [
-    "az cloud set --name <cloud>     # AzureCloud for a GCC tenant's subscriptions; AzureUSGovernment otherwise",
+    "az cloud set --name AzureCloud     # a GCC tenant's subscriptions are commercial Azure",
   ], { pt: 11 });
-  sources(s, "Sources: Module 1, Unit 4; Guide, \"Government-cloud availability\"; Compare Azure Government and global Azure.");
+  sources(s, "Sources: Module 1, Unit 4; Guide, \"Availability in commercial Azure\" (read Nov. 11, 2026); Cloud Boundary and Landing Zone, Ch 04.");
   notes(s,
-`Where are agencies? The workbook's baseline is G C C Moderate. Microsoft 365 G C C pairs with commercial Azure, so a G C C agency's subscriptions are usually commercial, and the guide's commands run as written, with the cloud set to Azure Cloud. Azure Government is a side note: it pairs with G C C High and D O D. Learn's page, Compare Azure Government and global Azure, says a service available there has all its features unless the page lists a variation. The differences that matter for this module: the endpoints differ, with Resource Manager at management dot U S gov cloud A P I dot net; the landing zone accelerators aren't supported unmodified, so the code has to be adapted; and Azure Lighthouse has no pim for delegated access and no delegation across clouds. Later modules name the gaps for their own steps.`,
-  `${M} — Unit 4; guide, "Government-cloud availability" (table); Prerequisites ("The right cloud"); Microsoft Learn — "Compare Azure Government and global Azure."`);
+`Where are agencies? The workbook's baseline is G C C Moderate. Microsoft 365 G C C pairs with commercial Azure, so a G C C agency's subscriptions are commercial, and the guide's commands run as written, with the cloud set to Azure Cloud. The guide's table, Availability in commercial Azure, says what to plan for, service by service. Front Door Standard and Premium are available, and Front Door classic retires on March thirty-first, 2027, and accepts no new profiles or domains. DDoS Network Protection is billed per plan, and I P Protection per protected I P. Private Link uses one central D N S zone per service. The FedRAMP initiatives are built into Azure Policy. And the landing zone accelerators are supported. Later modules name what to plan for in their own steps.`,
+  `${M} — Unit 4; guide, "Availability in commercial Azure" (table); Prerequisites ("The right cloud"); Book 10, Chapter 04.`);
 }
 
 // ================================================================== 9 Other clouds
@@ -304,7 +304,7 @@ endModule(SL);
     "Saw how the guide divides the work with the books",
     "Checked the initiatives in audit and the platform logs",
     "Built the exposure register, with an owner on every row",
-    "Saw what differs in Azure Government and on other clouds",
+    "Saw what commercial Azure offers, and the same controls on other clouds",
   ], 13.5);
   const r = panel(s, "Next", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "NEXT", "Module 2", [
     "DDoS protection on every public IP, and the web application firewall from detection to prevention",
@@ -313,7 +313,7 @@ endModule(SL);
     "the hierarchy and assignment exports, policy compliance in the workspace, the query text and dated register, and the reconciliation with Defender for Cloud.");
   sources(s, "Sources: Module 1, \"Summary\"; learning path index; Module 2.");
   notes(s,
-`To sum up. You saw how the guide divides the work with the books, and how its labels work. You checked the baseline's initiatives in audit at the pilot group, and the platform logs. You built the exposure register, with an owner on every row. And you saw what differs in Azure Government, and the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure. The evidence an I S S O keeps from this module: the hierarchy settings and initiative assignment exports, policy compliance in the workspace, the query text and the dated register, and its reconciliation with Defender for Cloud. Next is Module 2: DDoS protection on every public I P in that register, and the web application firewall, from detection to prevention.`,
+`To sum up. You saw how the guide divides the work with the books, and how its labels work. You checked the baseline's initiatives in audit at the pilot group, and the platform logs. You built the exposure register, with an owner on every row. And you saw what commercial Azure offers a G C C tenant, and the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure. The evidence an I S S O keeps from this module: the hierarchy settings and initiative assignment exports, policy compliance in the workspace, the query text and the dated register, and its reconciliation with Defender for Cloud. Next is Module 2: DDoS protection on every public I P in that register, and the web application firewall, from detection to prevention.`,
   `${M} — "Summary," "Continue the path."`);
 }
 endModule(SS);
@@ -322,7 +322,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 1 deck", [
   "Module page: docs/training/azure-security/01-the-baseline-and-the-exposure-register.md (Azure Security Engineering learning path, Module 1), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
-  "Azure Security Engineering (implementation guide): How to read this guide; Where each topic is covered; Prerequisites; Government-cloud availability; The same controls on AWS, Google Cloud and Oracle Cloud; Steps 1 and 2. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Protect your resource hierarchy; Azure Policy assignment structure; Starter Resource Graph query samples; Secure your Azure DDoS Protection deployment; Compare Azure Government and global Azure; AWS, Google Cloud and Oracle documentation.",
+  "Azure Security Engineering (implementation guide): How to read this guide; Where each topic is covered; Prerequisites; Availability in commercial Azure; The same controls on AWS, Google Cloud and Oracle Cloud; Steps 1 and 2. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Protect your resource hierarchy; Azure Policy assignment structure; Starter Resource Graph query samples; Secure your Azure DDoS Protection deployment; AWS, Google Cloud and Oracle documentation.",
   "Cloud Boundary and Landing Zone, Chapters 05, 07 and 08; Security Operations and Telemetry, Chapter 08; Zero Trust and Assessment, Chapter 10.",
   "NIST SP 800-53 Rev. 5 (CM-2, CM-6, CA-7, CM-8, SC-7); FedRAMP 20x KSIs, as the guide's requirements table maps them.",
   "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",

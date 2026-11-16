@@ -66,8 +66,8 @@
   },
   {
     "slide": 14,
-    "title": "What's GA, what's preview, and what each cloud has",
-    "say": "Your cloud decides what you can use, and this picture changes monthly. The platform is generally available. GCC has a documented subset: you can govern agent identity and access, but not yet get Microsoft's audit and data protection for agent activity. GCC High and DoD have nothing published, so treat agent identities as unavailable there until Microsoft confirms it in writing. Licensing is its own trap, and the FedRAMP High authorization is still pending. The program's rule is to build on what's generally available in your own cloud, and to treat preview as something you watch. So how do we classify all this?"
+    "title": "What's GA, what's preview, and what GCC has",
+    "say": "Your cloud decides what you can use, and this picture changes monthly. The platform is generally available. GCC has a documented subset: you can govern agent identity and access, but not yet get Microsoft's audit and data protection for agent activity. Anything not listed for GCC, treat as unavailable until Microsoft confirms it in writing. Licensing is its own trap, and the FedRAMP High authorization is still pending. The program's rule is to build on what's generally available in your own cloud, and to treat preview as something you watch. So how do we classify all this?"
   },
   {
     "slide": 15,

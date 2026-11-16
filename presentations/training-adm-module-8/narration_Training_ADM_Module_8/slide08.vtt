@@ -42,45 +42,29 @@ workflow: zero findings, zero warnings.
 Step three prints a cloud's hosts.
 
 10
-00:00:29.300 --> 00:00:34.247
-For DoD, the sign-in authority is
-login dot microsoftonline dot u s,
+00:00:29.300 --> 00:00:34.931
+For G C C, the sign-in authority is login
+dot microsoftonline dot com, the Graph
 
 11
-00:00:34.247 --> 00:00:37.819
-the Graph host is dod-graph
-dot microsoft dot u s,
+00:00:34.931 --> 00:00:40.562
+host is graph dot microsoft dot com, and
+the Azure environment is Azure Cloud.
 
 12
-00:00:37.819 --> 00:00:41.575
-and the Azure environment
-is Azure U S Government.
-
-13
-00:00:41.575 --> 00:00:47.124
+00:00:40.562 --> 00:00:45.401
 Microsoft Learn's page, Microsoft
 Graph national cloud deployments,
 
+13
+00:00:45.401 --> 00:00:48.287
+says G C C uses those worldwide endpoints.
+
 14
-00:00:47.124 --> 00:00:50.337
-lists those GCC High and DoD Graph hosts.
+00:00:48.287 --> 00:00:50.188
+Then ask for a name it doesn't know.
 
 15
-00:00:50.337 --> 00:00:54.906
-That's the trap: the Azure environment
-covers both GCC High and DoD,
-
-16
-00:00:54.906 --> 00:00:58.037
-so the Graph host has to
-come from the profile.
-
-17
-00:00:58.037 --> 00:01:00.858
-Then ask for a name it
-doesn't know, u s gov.
-
-18
-00:01:00.858 --> 00:01:05.060
+00:00:50.188 --> 00:00:54.380
 It's refused, with exit code
 one, never mapped to worldwide.

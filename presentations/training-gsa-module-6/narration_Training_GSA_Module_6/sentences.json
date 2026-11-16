@@ -357,53 +357,6 @@
    "And step four starts the rollback in the guide's order: each Conditional Access policy to report-only, Steps 10, 7, 6, then 5."
   ]
  ],
- "10": [
-  [
-   0.05,
-   3.188,
-   "Step five removes the security profile's links."
-  ],
-  [
-   3.237,
-   8.875,
-   "The T L S inspection policy comes out in Learn's order: unlink it from the pilot profile, delete the policy, then remove the certificate."
-  ],
-  [
-   12.113,
-   5.75,
-   "The filtering policy's Conditional Access policy goes to disabled, the Step 5 rollback."
-  ],
-  [
-   17.863,
-   6.2,
-   "Step six turns off tenant restrictions tagging; the tenant restrictions policy itself stays."
-  ],
-  [
-   24.062,
-   7.15,
-   "Step seven takes the groups out of each profile's assignments in the admin center, then disables the three profiles."
-  ],
-  [
-   31.212,
-   4.65,
-   "In production, the next line of the rollback is restoring the V P N route."
-  ],
-  [
-   35.862,
-   5.312,
-   "Step eight turns off signaling, last, now that no policy enforces on it."
-  ],
-  [
-   41.175,
-   11.05,
-   "Step nine takes the export again, so the evidence shows the state after the rollback: three profiles disabled, signaling and tagging disabled, and no test policy enabled."
-  ],
-  [
-   52.225,
-   10.15,
-   "Steps ten to twelve clean up: delete the test policies, apps, profile and filtering policy; remove the QUIC rule; and delete the telemetry setting."
-  ]
- ],
  "11": [
   [
    0.05,
@@ -508,6 +461,63 @@
    39.125,
    4.862,
    "From here, work through the guide's implementation checklist, one ring at a time."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.188,
+   "Step five removes the security profile's links."
+  ],
+  [
+   3.237,
+   8.875,
+   "The T L S inspection policy comes out in Learn's order: unlink it from the pilot profile, delete the policy, then remove the certificate."
+  ],
+  [
+   12.113,
+   5.75,
+   "The filtering policy's Conditional Access policy goes to disabled, the Step 5 rollback."
+  ],
+  [
+   17.863,
+   6.2,
+   "Step six turns off tenant restrictions tagging; the tenant restrictions policy itself stays."
+  ],
+  [
+   24.062,
+   7.15,
+   "Step seven takes the groups out of each profile's assignments in the admin center, then disables the three profiles."
+  ],
+  [
+   31.212,
+   4.65,
+   "In production, the next line of the rollback is restoring the V P N route."
+  ],
+  [
+   35.862,
+   5.312,
+   "Step eight turns off signaling, last, now that no policy enforces on it."
+  ],
+  [
+   41.175,
+   11.05,
+   "Step nine takes the export again, so the evidence shows the state after the rollback: three profiles disabled, signaling and tagging disabled, and no test policy enabled."
+  ],
+  [
+   52.225,
+   10.15,
+   "Steps ten to twelve clean up: delete the test policies, apps, profile and filtering policy; remove the QUIC rule; and delete the telemetry setting."
+  ],
+  [
+   62.375,
+   5.625,
+   "In production, that last one ends the evidence trail and happens only by change."
+  ],
+  [
+   68.0,
+   3.55,
+   "Keep the lab folder; it's the path's evidence package."
   ]
  ]
 }

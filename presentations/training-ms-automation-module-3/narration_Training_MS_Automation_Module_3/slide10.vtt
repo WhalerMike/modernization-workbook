@@ -49,21 +49,34 @@ two devices share that name, so a
 status row could belong to either.
 
 11
-00:00:34.374 --> 00:00:40.550
-Step six asks the client to read the
-Autopilot collection as a GCC High run would.
+00:00:34.374 --> 00:00:37.688
+Step five reads Autopilot
+profile assignment,
 
 12
-00:00:40.550 --> 00:00:45.352
-It returns not available, with the
-reason, and makes no request, because the
+00:00:37.688 --> 00:00:40.662
+which is only in beta,
+and the result says so.
 
 13
-00:00:45.352 --> 00:00:50.312
-call list follows Intune's government
-service description, not the API page.
+00:00:40.662 --> 00:00:45.712
+Of six registrations, two are assigned in
+sync and four aren't: one out of sync,
 
 14
-00:00:50.312 --> 00:00:54.500
-The lab repeats two checks in
-PowerShell, with the same results.
+00:00:45.712 --> 00:00:48.236
+one failed on hardware requirements,
+
+15
+00:00:48.236 --> 00:00:51.575
+one not assigned, and one
+pending with no group tag.
+
+16
+00:00:51.575 --> 00:00:54.436
+The lab repeats two checks in PowerShell,
+
+17
+00:00:54.436 --> 00:00:58.540
+with the same results, and the
+Intune tests pass: seventeen.

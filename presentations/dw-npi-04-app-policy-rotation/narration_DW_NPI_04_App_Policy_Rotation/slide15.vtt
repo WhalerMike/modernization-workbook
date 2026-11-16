@@ -35,6 +35,6 @@ And three apps still use secrets,
 which are flagged for replacement.
 
 8
-00:00:24.700 --> 00:00:29.900
+00:00:24.700 --> 00:00:29.690
 Apply it to the fake, run the full suite,
-and five hundred thirteen tests pass.
+and five hundred eleven tests pass.

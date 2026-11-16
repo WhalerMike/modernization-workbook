@@ -63,48 +63,6 @@
    "So this module adds the security settings the baseline needs, and builds the exposure register that Modules 2 to 5 check against."
   ]
  ],
- "3": [
-  [
-   0.05,
-   2.913,
-   "Here's what you'll be able to do by the end of this module."
-  ],
-  [
-   2.962,
-   6.938,
-   "You'll say which parts of Azure security the books design and which the guide engineers, and read the guide's authority labels."
-  ],
-  [
-   9.9,
-   7.463,
-   "You'll protect the management group hierarchy and assign the security initiatives in do-not-enforce mode at the intermediate root."
-  ],
-  [
-   17.363,
-   4.237,
-   "You'll find platform resources that don't send their logs to the workspace."
-  ],
-  [
-   21.6,
-   5.013,
-   "You'll build the exposure register from Resource Graph and find the rows with no owner."
-  ],
-  [
-   26.613,
-   8.125,
-   "And you'll name what differs in Azure Government, and the equivalent controls on AWS, Google Cloud and Oracle Cloud Infrastructure."
-  ],
-  [
-   34.737,
-   8.575,
-   "Before you start, skim Chapter 05 of Cloud Boundary and Landing Zone, and the guide's prerequisites: the roles, eligible through pim."
-  ],
-  [
-   43.312,
-   3.388,
-   "The lab runs in a test subscription, never production."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -301,38 +259,6 @@
    50.962,
    6.963,
    "And the register is a map of the attack surface: it stays inside the boundary, never in a public repository."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   1.312,
-   "Where are agencies?"
-  ],
-  [
-   1.363,
-   3.25,
-   "The workbook's baseline is G C C Moderate."
-  ],
-  [
-   4.612,
-   12.312,
-   "Microsoft 365 G C C pairs with commercial Azure, so a G C C agency's subscriptions are usually commercial, and the guide's commands run as written, with the cloud set to Azure Cloud."
-  ],
-  [
-   16.925,
-   13.738,
-   "Azure Government is a side note: it pairs with G C C High and D O D. Learn's page, Compare Azure Government and global Azure, says a service available there has all its features unless the page lists a variation."
-  ],
-  [
-   30.663,
-   18.675,
-   "The differences that matter for this module: the endpoints differ, with Resource Manager at management dot U S gov cloud A P I dot net; the landing zone accelerators aren't supported unmodified, so the code has to be adapted; and Azure Lighthouse has no pim for delegated access and no delegation across clouds."
-  ],
-  [
-   49.337,
-   2.925,
-   "Later modules name the gaps for their own steps."
   ]
  ],
  "9": [
@@ -540,6 +466,95 @@
    "The module page has three more questions, each linked to the unit that answers it."
   ]
  ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   6.938,
+   "You'll say which parts of Azure security the books design and which the guide engineers, and read the guide's authority labels."
+  ],
+  [
+   9.9,
+   7.463,
+   "You'll protect the management group hierarchy and assign the security initiatives in do-not-enforce mode at the intermediate root."
+  ],
+  [
+   17.363,
+   4.237,
+   "You'll find platform resources that don't send their logs to the workspace."
+  ],
+  [
+   21.6,
+   5.013,
+   "You'll build the exposure register from Resource Graph and find the rows with no owner."
+  ],
+  [
+   26.613,
+   9.425,
+   "And you'll name what a G C C tenant's commercial Azure offers, and the equivalent controls on AWS, Google Cloud and Oracle Cloud Infrastructure."
+  ],
+  [
+   36.038,
+   8.575,
+   "Before you start, skim Chapter 05 of Cloud Boundary and Landing Zone, and the guide's prerequisites: the roles, eligible through pim."
+  ],
+  [
+   44.612,
+   3.388,
+   "The lab runs in a test subscription, never production."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   3.25,
+   "The workbook's baseline is G C C Moderate."
+  ],
+  [
+   4.612,
+   11.9,
+   "Microsoft 365 G C C pairs with commercial Azure, so a G C C agency's subscriptions are commercial, and the guide's commands run as written, with the cloud set to Azure Cloud."
+  ],
+  [
+   16.512,
+   6.062,
+   "The guide's table, Availability in commercial Azure, says what to plan for, service by service."
+  ],
+  [
+   22.575,
+   10.375,
+   "Front Door Standard and Premium are available, and Front Door classic retires on March thirty-first, 2027, and accepts no new profiles or domains."
+  ],
+  [
+   32.95,
+   9.312,
+   "DDoS Network Protection is billed per plan, and I P Protection per protected I P. Private Link uses one central D N S zone per service."
+  ],
+  [
+   42.263,
+   3.4,
+   "The fed-ramp initiatives are built into Azure Policy."
+  ],
+  [
+   45.663,
+   2.525,
+   "And the landing zone accelerators are supported."
+  ],
+  [
+   48.188,
+   3.2,
+   "Later modules name what to plan for in their own steps."
+  ]
+ ],
  "14": [
   [
    0.05,
@@ -563,16 +578,16 @@
   ],
   [
    13.825,
-   7.612,
-   "And you saw what differs in Azure Government, and the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure."
+   8.85,
+   "And you saw what commercial Azure offers a G C C tenant, and the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure."
   ],
   [
-   21.438,
+   22.675,
    14.637,
    "The evidence an I S S O keeps from this module: the hierarchy settings and initiative assignment exports, policy compliance in the workspace, the query text and the dated register, and its reconciliation with Defender for Cloud."
   ],
   [
-   36.075,
+   37.312,
    9.3,
    "Next is Module 2: DDoS protection on every public I P in that register, and the web application firewall, from detection to prevention."
   ]

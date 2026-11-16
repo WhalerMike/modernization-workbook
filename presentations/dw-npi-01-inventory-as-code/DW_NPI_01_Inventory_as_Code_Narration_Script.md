@@ -10,7 +10,7 @@ Why start with an inventory? Because everything else in this project acts on an 
 
 ## Slide 3 — Which cloud and which directory, for this read
 
-Next, which cloud. This estate is a GCC tenant with commercial Azure, so every host the read touches is a worldwide one: the worldwide Graph endpoint and the commercial Resource Manager endpoint. GCC High and the Defense Department clouds have their own hosts, and the Graph pages this chapter relies on list the government service levels. The code never guesses: you name the cloud explicitly, and it refuses one it doesn't know. The directory reads work the same way, going only to the domain you name, never to whatever domain the machine happens to be in.
+Next, which cloud. This estate is a GCC tenant with commercial Azure, so every host the read touches is a worldwide one: the worldwide Graph endpoint and the commercial Resource Manager endpoint. The Graph pages this chapter relies on list the global service that GCC uses. The code never guesses: you name the cloud explicitly, and it refuses one it doesn't know. The directory reads work the same way, going only to the domain you name, never to whatever domain the machine happens to be in.
 
 ## Slide 4 — What the register has to hold
 

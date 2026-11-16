@@ -1,39 +1,35 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.050
-Which cloud you're in changes the answer.
+00:00:00.050 --> 00:00:05.525
+Learn gives the CRL limits for
+public Entra ID, which includes GCC.
 
 2
-00:00:02.050 --> 00:00:08.056
-For interactive sign-in, a CRL must stay
-under twenty megabytes in public Entra ID,
+00:00:05.525 --> 00:00:09.708
+For interactive sign-in, a CRL
+must stay under twenty megabytes,
 
 3
-00:00:08.056 --> 00:00:14.062
-which includes GCC, and forty-five in Azure
-US Government, which includes GCC High.
+00:00:09.708 --> 00:00:14.775
+and it must download within ten seconds;
+the service-side limit is sixty-five.
 
 4
-00:00:14.062 --> 00:00:16.912
-Either way it must download
-within ten seconds.
+00:00:14.775 --> 00:00:18.885
+The expected-configuration file holds
+the limits under the cloud name,
 
 5
-00:00:16.912 --> 00:00:20.112
-So the expected-configuration
-file holds both sets,
+00:00:18.885 --> 00:00:21.463
+and the check takes that
+name with no default.
 
 6
-00:00:20.112 --> 00:00:23.013
-and the check takes a
-cloud name with no default.
-
-7
-00:00:23.013 --> 00:00:25.451
+00:00:21.463 --> 00:00:23.901
 Learn doesn't say which megabyte it means,
 
-8
-00:00:25.451 --> 00:00:29.380
+7
+00:00:23.901 --> 00:00:27.840
 so the configuration reads the
 decimal one, the stricter reading.

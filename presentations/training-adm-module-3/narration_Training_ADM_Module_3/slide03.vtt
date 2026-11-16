@@ -64,11 +64,11 @@ Microsoft Automation Module 2 is optional
 background on groups through Graph.
 
 14
-00:00:39.526 --> 00:00:44.745
+00:00:39.526 --> 00:00:44.739
 You need PowerShell 7.1 or later, Pester
 5, and a Git clone of the repository,
 
 15
-00:00:44.745 --> 00:00:48.380
-because step four compares
+00:00:44.739 --> 00:00:48.460
+because step three compares
 the library with HEAD.

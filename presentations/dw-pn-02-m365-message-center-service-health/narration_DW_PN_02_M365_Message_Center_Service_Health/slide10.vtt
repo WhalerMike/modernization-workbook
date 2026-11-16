@@ -20,25 +20,24 @@ two permissions across three
 calls, and nothing that writes.
 
 5
-00:00:17.049 --> 00:00:22.094
-Step 2 prints each cloud's Graph
-host: GCC on the worldwide host
+00:00:17.049 --> 00:00:19.741
+Step 2 prints each cloud's Graph host:
 
 6
-00:00:22.094 --> 00:00:27.138
-with the Global environment, then
-GCC High and DoD on their own.
+00:00:19.741 --> 00:00:25.212
+worldwide and GCC both on the worldwide
+host, with the Global environment.
 
 7
-00:00:27.138 --> 00:00:29.775
+00:00:25.212 --> 00:00:27.850
 There's one row per cloud and no default.
 
 8
-00:00:29.775 --> 00:00:35.153
+00:00:27.850 --> 00:00:33.228
 Step 3 collects Microsoft 365 from
 the day-one fixtures: six notices,
 
 9
-00:00:35.153 --> 00:00:39.820
+00:00:33.228 --> 00:00:37.900
 five open, two needing action,
 all valid against the schema.

@@ -35,26 +35,25 @@ All three are marked
 verified, and nothing writes.
 
 8
-00:00:24.862 --> 00:00:30.416
-Step two prints each cloud's Graph
-host: the worldwide host for G C C with
+00:00:24.862 --> 00:00:27.611
+Step two prints the cloud's Graph host:
 
 9
-00:00:30.416 --> 00:00:36.160
-the Global environment, then the U S
-Government hosts for GCC High and DoD.
+00:00:27.611 --> 00:00:31.688
+the worldwide host for G C C,
+with the Global environment.
 
 10
-00:00:36.160 --> 00:00:40.947
+00:00:31.688 --> 00:00:36.914
 Step three collects Microsoft
 365 from the day-one fixtures,
 
 11
-00:00:40.947 --> 00:00:46.213
+00:00:36.914 --> 00:00:42.663
 as of November ninth, 2026: six
 notices, five open, two needing action.
 
 12
-00:00:46.213 --> 00:00:50.180
+00:00:42.663 --> 00:00:46.630
 Three advisories, a change,
 an incident and a retirement.

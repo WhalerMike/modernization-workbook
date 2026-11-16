@@ -49,20 +49,20 @@ A P I, with two read permissions.
 There's a trap.
 
 11
-00:00:37.187 --> 00:00:41.931
-A GCC High tenant read on the
-worldwide Graph host returns nothing,
+00:00:37.187 --> 00:00:40.788
+A read on a host other than the
+tenant's own returns nothing,
 
 12
-00:00:41.931 --> 00:00:44.776
+00:00:40.788 --> 00:00:43.263
 and an empty list looks like a quiet week.
 
 13
-00:00:44.776 --> 00:00:47.728
+00:00:43.263 --> 00:00:46.216
 So the kit reads only the
 cloud the settings name,
 
 14
-00:00:47.728 --> 00:00:51.190
+00:00:46.216 --> 00:00:49.680
 and refuses a session in
 another environment or tenant.

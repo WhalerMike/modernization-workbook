@@ -437,63 +437,6 @@
    "That's the precondition for the scan: a register you've checked is one you can test the audit log against."
   ]
  ],
- "10": [
-  [
-   0.05,
-   3.85,
-   "Step three scans October's audit records against the register."
-  ],
-  [
-   3.9,
-   7.612,
-   "You give it the register, the audit export, a window from the first to the thirty-first of October, the cloud, and an output folder."
-  ],
-  [
-   11.512,
-   7.188,
-   "The cloud option has no default; G C C, G C C High or D O D picks the Graph host."
-  ],
-  [
-   18.7,
-   2.438,
-   "The scan found eleven protected writes."
-  ],
-  [
-   21.137,
-   3.388,
-   "Five were by the writer the row names, which is what you want."
-  ],
-  [
-   24.525,
-   1.475,
-   "One was by the backstop."
-  ],
-  [
-   26.0,
-   3.8,
-   "Four were by a second writer, someone the register doesn't name at all."
-  ],
-  [
-   29.8,
-   2.775,
-   "And one was by a writer the register forbids."
-  ],
-  [
-   32.575,
-   4.025,
-   "That's five findings and one warning, so the exit code is two."
-  ],
-  [
-   36.6,
-   5.325,
-   "The output folder's manifest lists every file's hash, so the run can be checked later."
-  ],
-  [
-   41.925,
-   2.675,
-   "The output on the slide is wrapped to fit."
-  ]
- ],
  "11": [
   [
    0.05,
@@ -692,6 +635,58 @@
    31.712,
    13.15,
    "In Module 2 you'll compute each contractor's earliest end, reconcile the register, the card system and the directory without changing anything, and write a sponsor review that removes access when nobody responds."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.85,
+   "Step three scans October's audit records against the register."
+  ],
+  [
+   3.9,
+   7.612,
+   "You give it the register, the audit export, a window from the first to the thirty-first of October, the cloud, and an output folder."
+  ],
+  [
+   11.512,
+   9.812,
+   "The cloud option has no default; G C C names the Graph host, the worldwide graph dot microsoft dot com. The scan found eleven protected writes."
+  ],
+  [
+   21.325,
+   3.388,
+   "Five were by the writer the row names, which is what you want."
+  ],
+  [
+   24.712,
+   1.475,
+   "One was by the backstop."
+  ],
+  [
+   26.188,
+   3.8,
+   "Four were by a second writer, someone the register doesn't name at all."
+  ],
+  [
+   29.988,
+   2.775,
+   "And one was by a writer the register forbids."
+  ],
+  [
+   32.763,
+   4.025,
+   "That's five findings and one warning, so the exit code is two."
+  ],
+  [
+   36.788,
+   5.325,
+   "The output folder's manifest lists every file's hash, so the run can be checked later."
+  ],
+  [
+   42.112,
+   2.675,
+   "The output on the slide is wrapped to fit."
   ]
  ]
 }

@@ -63,33 +63,6 @@
    "This chapter makes sure that exception is real."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   3.925,
-   "The check reads Microsoft Graph, and the host depends on the tenant."
-  ],
-  [
-   5.338,
-   9.025,
-   "For a G C C tenant like this estate's, that's the worldwide Graph endpoint, and the alert sits in Azure Monitor in a commercial subscription."
-  ],
-  [
-   14.363,
-   10.662,
-   "The template the code writes names no host, so the same file could deploy in Azure Government for G C C High, although the chapter flags that full availability there wasn't confirmed."
-  ],
-  [
-   25.025,
-   8.988,
-   "And the two sign-in methods Learn wants for these accounts, passkeys and certificate-based authentication, are available in every one of these clouds."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -484,6 +457,33 @@
    31.975,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   3.925,
+   "The check reads Microsoft Graph, and the host depends on the tenant."
+  ],
+  [
+   5.338,
+   9.025,
+   "For a G C C tenant like this estate's, that's the worldwide Graph endpoint, and the alert sits in Azure Monitor in a commercial subscription."
+  ],
+  [
+   14.363,
+   3.175,
+   "It's deployed through the commercial Resource Manager host."
+  ],
+  [
+   17.538,
+   9.562,
+   "And the two sign-in methods Learn wants for these accounts, passkeys and certificate-based authentication, are kept different from the methods normal administrators use."
   ]
  ]
 }

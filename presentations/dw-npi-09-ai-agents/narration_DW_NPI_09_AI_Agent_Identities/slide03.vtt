@@ -34,16 +34,16 @@ the documented subset is listed,
 mostly for delegated access.
 
 8
-00:00:23.124 --> 00:00:26.413
-In the higher government clouds,
-nothing is published yet.
-
-9
-00:00:26.413 --> 00:00:31.609
+00:00:23.124 --> 00:00:28.406
 So the program's decision is held as data:
 in G C C the code reads agent identities,
 
+9
+00:00:28.406 --> 00:00:32.063
+and where a cloud has none,
+it falls back to applying the
+
 10
-00:00:31.609 --> 00:00:36.790
-and elsewhere it falls back to applying
-the same rules to service principals.
+00:00:32.063 --> 00:00:36.020
+same rules to service principals
+and managed identities.

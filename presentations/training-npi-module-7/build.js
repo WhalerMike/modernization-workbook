@@ -286,10 +286,10 @@ endModule(SC);
     "  0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
   line(s, "Order", "The identity id-webfront is created before its credential. Apply sends the four in the same order.", c + 0.25, 0.45, 13.5);
-  line(s, "Tests", "Step 9: Invoke-Pester -Path tests prints 513 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.75, 0.45, 13.5);
+  line(s, "Tests", "Step 9: Invoke-Pester -Path tests prints 511 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.75, 0.45, 13.5);
   sources(s, "Sources: Module 7, \"Exercise: Lab 1,\" steps 7 to 9; examples/non-person-identity/Invoke-NpiFederation.ps1.");
   notes(s,
-`Step seven dry-runs the plan with its approved hash. It would send four writes, in order. First, Disable A D Account for conversion one's legacy account. Disabled, not deleted. Then a post of an application's federated credential to Graph. Then a put of the user-assigned identity, id webfront, to Resource Manager, before a put of its credential. The identity always comes before its credential, one write at a time. Step eight applies the plan to the fake, and all four are sent, in the same order. Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed. Step nine runs every test: five hundred thirteen pass, none fail. Then delete the output folder.`,
+`Step seven dry-runs the plan with its approved hash. It would send four writes, in order. First, Disable A D Account for conversion one's legacy account. Disabled, not deleted. Then a post of an application's federated credential to Graph. Then a put of the user-assigned identity, id webfront, to Resource Manager, before a put of its credential. The identity always comes before its credential, one write at a time. Step eight applies the plan to the fake, and all four are sent, in the same order. Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed. Step nine runs every test: five hundred eleven pass, none fail. Then delete the output folder.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 7 to 9.`);
 }
 

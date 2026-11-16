@@ -7,7 +7,7 @@
 | Introduction | Title; why a closed ticket isn't a closed finding; learning objectives and prerequisites |
 | Concepts | Gate 5's four actuation lanes, the business rule, the re-read client, stale and missing reads, the guard and the offline mode, and the six fictional waiting records |
 | Lab | Try it: Lab 1 steps 1 and 2 (the tests and six findings at noon on November 1) and steps 3 to 5 (a day later, and the business rule's tests); Lab 2 in a ServiceNow developer instance (not run by the authors) |
-| Government clouds | What the guide found for PIM, the Entra spoke, SailPoint's connectors, the Graph re-read and the ISC API domain; the interim paths |
+| Availability in GCC | What the guide found for PIM, the Entra spoke, the Graph re-read and the ISC API domain; the interim paths |
 | Check and summary | The federal requirement and evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |

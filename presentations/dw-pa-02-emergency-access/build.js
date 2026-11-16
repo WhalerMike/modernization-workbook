@@ -38,17 +38,17 @@ require("../_build/devwb.js")({
     {
       part: "Why", title: "Which cloud: Graph host, alert subscription, methods",
       body: [
-        { table: { head: ["Piece", "Microsoft 365 GCC with commercial Azure", "GCC High and DoD"], w: [2.2, 5, 4.2], rows: [
-          ["The check reads", "Microsoft Graph at graph.microsoft.com", "graph.microsoft.us (GCC High); dod-graph.microsoft.us (DoD)"],
-          ["The alert runs in", "Azure Monitor, over the Log Analytics workspace that receives the Entra logs, in a commercial subscription through management.azure.com", "The same template, which names no host, deploys in Azure Government; full availability not confirmed (research gaps, row 7)"],
-          ["Account methods", "Passkeys (FIDO2) and certificate-based authentication", "Both available in Azure for US Government"],
-        ] }, pt: 13.5 },
+        { table: { head: ["Piece", "Microsoft 365 GCC with commercial Azure"], w: [3.0, 9.15], rows: [
+          ["The check reads", "Microsoft Graph at graph.microsoft.com, the worldwide host GCC uses"],
+          ["The alert runs in", "Azure Monitor, over the Log Analytics workspace that receives the Entra logs, in a commercial subscription through management.azure.com"],
+          ["Account methods", "Passkeys (FIDO2) and certificate-based authentication, different from the normal admin methods"],
+        ] }, pt: 14 },
         { callout: "the estate's tenant is GCC on the worldwide endpoints, so the check reads graph.microsoft.com and the alert lives in a commercial Azure subscription.", label: "For this estate: ", icon: "FaCloud", color: "teal" },
       ],
-      sources: "Sources: Learn, Microsoft Graph national cloud deployments; Learn, Microsoft Entra feature availability. Chapter 02, “Which cloud, for this check and this alert.”",
-      say: `Next, which cloud. The check reads Microsoft Graph, and the host depends on the tenant. For a GCC tenant like this estate's, that's the worldwide Graph endpoint, and the alert sits in Azure Monitor in a commercial subscription. The template the code writes names no host, so the same file could deploy in Azure Government for GCC High, although the chapter flags that full availability there wasn't confirmed. And the two sign-in methods Learn wants for these accounts, passkeys and certificate-based authentication, are available in every one of these clouds.`,
-      detail: `The check reads Microsoft Graph: graph.microsoft.com for GCC, graph.microsoft.us for GCC High and dod-graph.microsoft.us for DoD. The alert runs in Azure Monitor, over the Log Analytics workspace that receives the tenant's Entra logs. For Microsoft 365 GCC with commercial Azure, that workspace and the alert sit in a commercial subscription, deployed through management.azure.com. The template the code writes names no host, so the same file deploys in Azure Government for a GCC High or DoD tenant; whether every piece of it is available there wasn't confirmed (research gaps, row 7). Passkeys (FIDO2) and certificate-based authentication, the two methods Learn names for these accounts, are available in Azure for US Government.`,
-      cite: ["pa02-deployments", "pa02-availability"],
+      sources: "Sources: Learn, Microsoft Graph national cloud deployments; Learn, Manage emergency access accounts. Chapter 02, “Which cloud, for this check and this alert.”",
+      say: `Next, which cloud. The check reads Microsoft Graph, and the host depends on the tenant. For a GCC tenant like this estate's, that's the worldwide Graph endpoint, and the alert sits in Azure Monitor in a commercial subscription. It's deployed through the commercial Resource Manager host. And the two sign-in methods Learn wants for these accounts, passkeys and certificate-based authentication, are kept different from the methods normal administrators use.`,
+      detail: `The check reads Microsoft Graph at graph.microsoft.com, the worldwide host GCC uses. The alert runs in Azure Monitor, over the Log Analytics workspace that receives the tenant's Entra logs. For Microsoft 365 GCC with commercial Azure, that workspace and the alert sit in a commercial subscription, deployed through management.azure.com. Passkeys (FIDO2) and certificate-based authentication are the two methods Learn names for these accounts, different from the normal admin methods.`,
+      cite: ["pa02-deployments", "pa02-emergency"],
       ref: "“Which cloud, for this check and this alert”",
     },
     {

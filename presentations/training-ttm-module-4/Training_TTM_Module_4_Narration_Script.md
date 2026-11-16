@@ -44,9 +44,9 @@ Step three runs day two, after HR's correction. The counts are exactly the same,
 
 Lab 2 runs the client live. You need a test Entra tenant in the worldwide or GCC cloud, a SailPoint sandbox, and synthetic HR data like the fixtures. Grant the read permissions from Module 2, and nothing more. Write a synthetic HR extract that matches your test users, run the client against the tenant and the sandbox on two days, and compare the runs. Push nothing to ServiceNow. Two things the fixtures can't prove are on the verify list: the manager expansion, and SailPoint's employee I D attribute. Back it out in step five: delete the output folder, the synthetic extract, the app registration's permissions and certificate, and the sandbox API client. The authors haven't run Lab 2; follow Chapter 06's Lab 2.
 
-## Slide 12 — Where agencies are: GCC, GCC High, and interim paths
+## Slide 12 — Where agencies are: GCC, and the interim path
 
-Where are agencies? Most on this path run Microsoft 365 GCC, and a minority GCC High. GCC tenants use the worldwide endpoints. In GCC High, you set the Entra source's Graph and token endpoints to graph dot microsoft dot U S and login dot microsoftonline dot U S; SailPoint's Entra connector documents those overrides. One open question for every tenant: Native Change Detection's presence in SailPoint's FedRAMP environment wasn't confirmed, which is one of the things Gate 1 asks SailPoint in writing. The interim path: without SailPoint, or before it's connected, run the kit's reconciliation against the HR extract and Graph alone, because the SailPoint inputs are optional files. Active Directory-only groups wait for the appliance.
+Where are agencies? Agencies on this path run Microsoft 365 GCC, and GCC tenants use the worldwide endpoints, so the Entra source needs no endpoint change. One open question for every tenant: Native Change Detection's presence in SailPoint's FedRAMP environment wasn't confirmed, which is one of the things Gate 1 asks SailPoint in writing. The interim path: without SailPoint, or before it's connected, run the kit's reconciliation against the HR extract and Graph alone, because the SailPoint inputs are optional files. Active Directory-only groups wait for the appliance.
 
 ## Slide 13 — Validate Gate 3 before you file the baseline
 

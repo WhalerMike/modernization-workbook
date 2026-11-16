@@ -30,7 +30,7 @@ The SailPoint facts, each read on November first. The token endpoint supports cl
 
 ## Slide 8 — The verified facts: Graph, GCC and FedRAMP
 
-And the Graph facts. User dot Read dot All is the least-privileged application permission both to list users and to read one, and the audit needs AuditLog dot Read dot All; both reads are available in the US Government clouds. One wrinkle: application permissions aren't supported on the manager endpoint, and Learn documents expanding the manager on the users list instead. Microsoft 365 GCC uses the worldwide Graph host; GCC High and the Defense Department cloud have their own. SailPoint's Identity Security Cloud is FedRAMP Moderate.
+And the Graph facts. User dot Read dot All is the least-privileged application permission both to list users and to read one, and the audit needs AuditLog dot Read dot All. One wrinkle: application permissions aren't supported on the manager endpoint, and Learn documents expanding the manager on the users list instead. Microsoft 365 GCC uses the worldwide Graph host. SailPoint's Identity Security Cloud is FedRAMP Moderate.
 
 ## Slide 9 — What couldn't be verified on SailPoint and Graph
 

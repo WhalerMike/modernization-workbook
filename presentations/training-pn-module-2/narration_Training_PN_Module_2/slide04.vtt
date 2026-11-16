@@ -36,41 +36,36 @@ Second, sign in in the right cloud,
 with the Resource Graph extension.
 
 8
-00:00:24.212 --> 00:00:27.598
-A GCC agency's subscriptions
-are commercial Azure,
+00:00:24.212 --> 00:00:29.087
+A GCC agency's subscriptions are
+commercial Azure, the Azure Cloud setting.
 
 9
-00:00:27.598 --> 00:00:31.225
-the Azure Cloud setting;
-Azure Government uses its own.
-
-10
-00:00:31.225 --> 00:00:36.637
+00:00:29.087 --> 00:00:34.499
 Third, collect, with the kit's events
 query and Learn's impacted-resources query.
 
-11
-00:00:36.637 --> 00:00:39.928
+10
+00:00:34.499 --> 00:00:37.790
 And fourth, alert at scale:
 plan the built-in policy
 
-12
-00:00:39.928 --> 00:00:43.138
+11
+00:00:37.790 --> 00:00:41.000
 at the management group,
 with a remediation task.
 
-13
-00:00:43.138 --> 00:00:46.464
+12
+00:00:41.000 --> 00:00:44.326
 The gate passes when every
 subscription's events are
 
-14
-00:00:46.464 --> 00:00:49.638
+13
+00:00:44.326 --> 00:00:47.500
 listed and each security
 advisory has its summary.
 
-15
-00:00:49.638 --> 00:00:53.710
+14
+00:00:47.500 --> 00:00:51.580
 An empty summary is the sign that
 the reader lacks the elevated role.

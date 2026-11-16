@@ -98,7 +98,7 @@ Governance in Active Directory was mostly a ticket queue: someone asked for acce
 
 ## Slide 25 — Phishing-resistant authentication, then the legacy cutoff
 
-Authentication modernization starts from the federal requirement. OMB M-22-09 requires phishing-resistant MFA, and an end to methods like SMS and voice codes for routine access. Its targets were set for the end of fiscal year 2024, so these are requirements now, not goals. That reorders the roadmap. Older plans put smart cards last, but a federal workforce already carries PIV or CAC cards, so certificate-based authentication straight against Entra ID is the fastest path. The program goes in four phases: privileged accounts first, then every card holder, then managed Windows devices on Windows Hello, then everyone else on passkeys. Then the legacy cutoff: find the remaining legacy sign-ins, move them, block them, and watch for thirty days until there are none.
+Authentication modernization starts from the federal requirement. OMB M-22-09 requires phishing-resistant MFA, and an end to methods like SMS and voice codes for routine access. Its targets were set for the end of fiscal year 2024, so these are requirements now, not goals. That reorders the roadmap. Older plans put smart cards last, but a federal workforce already carries PIV cards, so certificate-based authentication straight against Entra ID is the fastest path. The program goes in four phases: privileged accounts first, then every card holder, then managed Windows devices on Windows Hello, then everyone else on passkeys. Then the legacy cutoff: find the remaining legacy sign-ins, move them, block them, and watch for thirty days until there are none.
 
 ## Slide 26 — The eleven-phase playbook: each phase gated on validation
 

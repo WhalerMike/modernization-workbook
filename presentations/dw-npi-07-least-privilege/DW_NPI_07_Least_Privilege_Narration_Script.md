@@ -6,7 +6,7 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Non
 
 ## Slide 2 — What an app can reach, and which cloud reads it
 
-Start with what we're actually measuring. An app can hold two kinds of permission: an application permission, which is a role it holds on another app's service principal, and a delegated permission, which is a grant to act for one person or for everyone. Learn's way to see what an app can reach is to walk every service principal's role assignments, paying close attention to Microsoft Graph. And remember that directory roles and mail roles grant access too. For this estate, everything goes to the worldwide Graph and commercial Azure, and every call is available in the government clouds as well.
+Start with what we're actually measuring. An app can hold two kinds of permission: an application permission, which is a role it holds on another app's service principal, and a delegated permission, which is a grant to act for one person or for everyone. Learn's way to see what an app can reach is to walk every service principal's role assignments, paying close attention to Microsoft Graph. And remember that directory roles and mail roles grant access too. For this estate, everything goes to the worldwide Graph and commercial Azure, and every call is listed for the global service that G C C uses.
 
 ## Slide 3 — The program's rules: review, justify, narrow, hand off
 

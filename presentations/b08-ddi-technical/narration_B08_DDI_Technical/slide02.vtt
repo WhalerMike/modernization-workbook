@@ -34,34 +34,34 @@ certificate checks, because
 revocation endpoints are names too.
 
 8
-00:00:28.500 --> 00:00:34.967
+00:00:28.500 --> 00:00:34.816
 Yet most agencies run DNS on as many
-as five platforms that share no state:
+as six platforms that share no state:
 
 9
-00:00:34.967 --> 00:00:39.062
-on-premises, AWS, Azure,
-Google Cloud and VMware.
+00:00:34.816 --> 00:00:40.062
+on-premises, AWS, Azure, Google
+Cloud, Oracle Cloud and VMware.
 
 10
-00:00:39.062 --> 00:00:41.587
+00:00:40.062 --> 00:00:42.587
 The cost shows up on every change.
 
 11
-00:00:41.587 --> 00:00:46.026
+00:00:42.587 --> 00:00:47.026
 A new Azure private endpoint
 can need four more DNS changes,
 
 12
-00:00:46.026 --> 00:00:48.562
+00:00:47.026 --> 00:00:49.562
 on four consoles, in four syntaxes.
 
 13
-00:00:48.562 --> 00:00:51.039
+00:00:49.562 --> 00:00:52.039
 And the forwarding
 rules that connect those
 
 14
-00:00:51.039 --> 00:00:53.520
+00:00:52.039 --> 00:00:54.500
 platforms usually belong
 to no single team.

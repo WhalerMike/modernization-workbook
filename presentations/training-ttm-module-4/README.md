@@ -7,7 +7,7 @@
 | Introduction | Title; why each drift needs a number before a ticket; learning objectives and prerequisites |
 | Concepts | Gate 3's six steps; Book 03's drift classes and what the kit computes; the reconciliation's inputs, stable finding IDs and outputs; run over run (new, persisting, resolved, and the refusal); the dangers of a nightly run |
 | Lab | Try it: Lab 1 steps 1 and 2 (day one, Erin's and Carol's rows) and steps 3 to 6 (the comparison, and the refusal without the audit); Lab 2 in a test tenant and a SailPoint sandbox (not run by the authors) |
-| Where agencies are | GCC and GCC High endpoints, Native Change Detection in the ISC FedRAMP environment, and the interim path |
+| Where agencies are | GCC on the worldwide endpoints, Native Change Detection in the ISC FedRAMP environment, and the interim path |
 | Check and summary | Validating Gate 3; the federal requirement (AC-2, CA-7, CM-8 by inference; SI-4) and evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |
