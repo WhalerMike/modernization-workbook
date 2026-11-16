@@ -1,0 +1,13 @@
+# Pagefind: the site's search (https://pagefind.app/). The deploy workflow runs
+#   npx --yes pagefind@1.5.2 --site _site
+# after the render and scripts/build_ai_exports.py; Pagefind reads this file
+# from the repository root. The search box is assets/site-search.html.
+#
+# Index only each page's own content. Quarto puts it in <main>; the navbar,
+# sidebars and table of contents sit outside it, so a search for "Book 07"
+# doesn't match every page through the navigation menu.
+root_selector: "main"
+exclude_selectors:
+  # Any navigation Quarto places inside <main> (previous and next page links).
+  - "nav"
+force_language: "en"
