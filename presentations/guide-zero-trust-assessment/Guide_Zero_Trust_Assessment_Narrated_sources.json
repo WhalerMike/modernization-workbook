@@ -51,7 +51,7 @@
  },
  {
   "slide": 6,
-  "title": "Government clouds: where Learn is silent or differs",
+  "title": "GCC: the tool's defaults, the worldwide endpoints",
   "links": [
    {
     "text": "Microsoft Graph national cloud deployments",
@@ -101,7 +101,7 @@
  },
  {
   "slide": 9,
-  "title": "Step 4: connect in the tenant's own cloud",
+  "title": "Step 4: connect in the GCC tenant",
   "links": [
    {
     "text": "Run the Zero Trust Assessment",
@@ -134,10 +134,6 @@
    {
     "text": "Zero Trust Assessment terminology",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-assessment-terminology"
-   },
-   {
-    "text": "Exchange Online for US government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#exchange-online-for-us-government"
    },
    {
     "text": "Book 11, Ch 10",
@@ -232,8 +228,8 @@
   "title": "Dangers, open questions and where training starts",
   "links": [
    {
-    "text": "The Zero Trust Assessment as Evidence",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/training/zero-trust-assessment/index.html"
+    "text": "Zero Trust Assessment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-the-zero-trust-assessment"
    }
   ]
  }

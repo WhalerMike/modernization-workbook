@@ -59,7 +59,7 @@
  },
  {
   "slide": 6,
-  "title": "Government cloud and licensing, feature by feature",
+  "title": "GCC and licensing, feature by feature",
   "links": [
    {
     "text": "Known limitations for Global Secure Access",
@@ -140,10 +140,6 @@
    {
     "text": "Known limitations for Global Secure Access",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
-   },
-   {
-    "text": "reports: getDeviceUsageSummary",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-get-device-usage-summary"
    }
   ]
  },

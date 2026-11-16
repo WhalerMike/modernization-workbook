@@ -6,1142 +6,1110 @@ Welcome to Part 1 of the implementation
 series for provider notices.
 
 2
-00:00:04.050 --> 00:00:09.112
-One thing first: Provider Notices,
-An Implementation Guide, is a draft.
-
-3
-00:00:09.112 --> 00:00:13.038
-It's awaiting the owner's review, so
-check it again after that review.
-
-4
-00:00:13.038 --> 00:00:15.425
+00:00:04.050 --> 00:00:06.438
 The guide's premise fits in one line.
 
-5
-00:00:15.425 --> 00:00:18.829
+3
+00:00:06.438 --> 00:00:09.842
 Every provider tells you, in
 writing and ahead of time,
 
-6
-00:00:18.829 --> 00:00:22.000
+4
+00:00:09.842 --> 00:00:13.013
 what it will change, retire
 or patch in your tenant.
 
-7
-00:00:22.000 --> 00:00:25.663
+5
+00:00:13.013 --> 00:00:16.675
 The gap is that nobody reads
 it, owns it or closes it.
 
-8
-00:00:25.663 --> 00:00:28.451
+6
+00:00:16.675 --> 00:00:19.463
 The guide closes that gap in seven gates.
 
-9
-00:00:28.451 --> 00:00:33.374
+7
+00:00:19.463 --> 00:00:24.386
 Part 1 covers the orientation and
 the four collection gates for Azure
 
-10
-00:00:33.374 --> 00:00:38.638
+8
+00:00:24.386 --> 00:00:29.650
 Service Health, Microsoft 365, Oracle
 Cloud Infrastructure and AWS Health.
 
-11
-00:00:38.638 --> 00:00:41.924
+9
+00:00:29.650 --> 00:00:32.936
 Part 2 covers Google
 Cloud, routing to owners,
 
-12
-00:00:41.924 --> 00:00:46.188
+10
+00:00:32.936 --> 00:00:37.200
 the digest and the evidence,
 then the dangers and rollback.
 
-13
-00:00:46.188 --> 00:00:50.622
+11
+00:00:37.200 --> 00:00:41.634
 For each gate you'll see the steps, what
 the kit really prints on its fixtures,
 
-14
-00:00:50.622 --> 00:00:54.413
+12
+00:00:41.634 --> 00:00:45.425
 the federal requirement, the
 evidence and the government cloud.
 
-15
-00:00:54.413 --> 00:01:00.280
+13
+00:00:45.425 --> 00:00:51.280
 The kit's code is illustrative, tested
 against fixtures, not against a live tenant.
 
-16
-00:01:04.030 --> 00:01:05.380
+14
+00:00:55.030 --> 00:00:56.380
 Why does this need a guide?
 
-17
-00:01:05.380 --> 00:01:09.217
+15
+00:00:56.380 --> 00:01:00.217
 Because the workbook mentions provider
 notices but doesn't run them.
 
-18
-00:01:09.217 --> 00:01:13.980
+16
+00:01:00.217 --> 00:01:04.980
 The day-two operations book routes Microsoft's
 service health email to the help desk
 
-19
-00:01:13.980 --> 00:01:16.633
+17
+00:01:04.980 --> 00:01:07.633
 supervisor, and warns
 that nothing is approved
 
-20
-00:01:16.633 --> 00:01:18.742
+18
+00:01:07.633 --> 00:01:09.742
 or changed on the strength of an email.
 
-21
-00:01:18.742 --> 00:01:21.411
+19
+00:01:09.742 --> 00:01:12.411
 The security operations book sends Azure's
 
-22
-00:01:21.411 --> 00:01:24.229
+20
+00:01:12.411 --> 00:01:15.229
 service health log
 category to the workspace.
 
-23
-00:01:24.229 --> 00:01:29.118
+21
+00:01:15.229 --> 00:01:20.118
 Neither collects the notices, assigns
 an owner, or tracks one to closure.
 
-24
-00:01:29.118 --> 00:01:32.380
+22
+00:01:20.118 --> 00:01:23.380
 So the goal, which is
 design guidance, is a loop.
 
-25
-00:01:32.380 --> 00:01:36.417
+23
+00:01:23.380 --> 00:01:27.417
 Every notice is collected on a
 schedule and held as one record.
 
-26
-00:01:36.417 --> 00:01:41.431
+24
+00:01:27.417 --> 00:01:32.431
 It either goes to an owner as a task with
 a due date, or into a weekly digest.
 
-27
-00:01:41.431 --> 00:01:44.655
+25
+00:01:32.431 --> 00:01:35.655
 And a task closes only when
 the next collection shows
 
-28
-00:01:44.655 --> 00:01:47.880
+26
+00:01:35.655 --> 00:01:38.880
 the notice closed or the
 resource no longer affected.
 
-29
-00:01:47.880 --> 00:01:51.460
+27
+00:01:38.880 --> 00:01:42.460
 That's the re-read, never
 someone's word that it's done.
 
-30
-00:01:55.210 --> 00:02:00.634
+28
+00:01:46.210 --> 00:01:51.634
 The kit turns every provider's notice
 into one record with one of six kinds:
 
-31
-00:02:00.634 --> 00:02:05.435
+29
+00:01:51.634 --> 00:01:56.435
 maintenance, retirement, advisory,
 security, change and incident.
 
-32
-00:02:05.435 --> 00:02:08.560
+30
+00:01:56.435 --> 00:01:59.560
 The table maps each provider's
 own types onto them.
 
-33
-00:02:08.560 --> 00:02:10.473
+31
+00:01:59.560 --> 00:02:01.473
 Two rows are worth a closer look.
 
-34
-00:02:10.473 --> 00:02:15.241
+32
+00:02:01.473 --> 00:02:06.241
 A retirement in Azure is a health advisory
 with the subtype retirement, and in
 
-35
-00:02:15.241 --> 00:02:20.234
+33
+00:02:06.241 --> 00:02:11.234
 AWS the kit infers it from a scheduled
 change whose event code names a retirement.
 
-36
-00:02:20.234 --> 00:02:23.572
+34
+00:02:11.234 --> 00:02:14.572
 That second one is the
 kit's rule, not AWS's.
 
-37
-00:02:23.572 --> 00:02:26.473
+35
+00:02:14.572 --> 00:02:17.473
 And Google Cloud's column is almost empty:
 
-38
-00:02:26.473 --> 00:02:31.336
+36
+00:02:17.473 --> 00:02:22.336
 its Personalized Service Health API
 has a single category, incident.
 
-39
-00:02:31.336 --> 00:02:36.322
+37
+00:02:22.336 --> 00:02:27.322
 Each record also says whether action
 is required, by when, and who said so.
 
-40
-00:02:36.322 --> 00:02:41.748
+38
+00:02:27.322 --> 00:02:32.748
 Microsoft 365, Oracle and AWS
 each have a field for that.
 
-41
-00:02:41.748 --> 00:02:46.378
+39
+00:02:32.748 --> 00:02:37.378
 Azure doesn't, so the kit applies
 its own stated rule: a retirement is
 
-42
-00:02:46.378 --> 00:02:51.380
+40
+00:02:37.378 --> 00:02:42.380
 due at the advisory's end, which
 Microsoft Learn says is its end time.
 
-43
-00:02:55.130 --> 00:02:57.847
+41
+00:02:46.130 --> 00:02:48.847
 Here are the five providers side by side,
 
-44
-00:02:57.847 --> 00:03:01.305
+42
+00:02:48.847 --> 00:02:52.305
 including Oracle Cloud,
 where the HR platform runs.
 
-45
-00:03:01.305 --> 00:03:03.881
+43
+00:02:52.305 --> 00:02:54.881
 Each keeps its notices in its own place:
 
-46
-00:03:03.881 --> 00:03:07.020
+44
+00:02:54.881 --> 00:02:58.020
 Azure's Service Health
 through Resource Graph,
 
-47
-00:03:07.020 --> 00:03:12.091
+45
+00:02:58.020 --> 00:03:03.091
 Microsoft 365's message center and
 service health through Microsoft Graph,
 
-48
-00:03:12.091 --> 00:03:15.472
+46
+00:03:03.091 --> 00:03:06.472
 Oracle's Announcements
 service, the AWS Health API,
 
-49
-00:03:15.472 --> 00:03:18.692
+47
+00:03:06.472 --> 00:03:09.692
 and Google Cloud's
 Personalized Service Health.
 
-50
-00:03:18.692 --> 00:03:23.114
+48
+00:03:09.692 --> 00:03:14.114
 The least-privileged reader is
 small everywhere: Reader in Azure,
 
-51
-00:03:23.114 --> 00:03:26.961
+49
+00:03:14.114 --> 00:03:17.961
 two read permissions in Graph,
 a read statement in Oracle,
 
-52
-00:03:26.961 --> 00:03:31.218
+50
+00:03:17.961 --> 00:03:22.218
 three describe actions in AWS,
 and a viewer role in Google Cloud.
 
-53
-00:03:31.218 --> 00:03:35.243
+51
+00:03:22.218 --> 00:03:26.243
 Only AWS has a cost: a
 qualifying support plan.
 
+52
+00:03:26.243 --> 00:03:32.327
+On government clouds, a GCC tenant's Azure
+subscriptions are in commercial Azure,
+
+53
+00:03:32.327 --> 00:03:36.868
+and Microsoft 365 GCC stays on
+the worldwide Graph endpoint.
+
 54
-00:03:35.243 --> 00:03:41.187
-On government clouds, Microsoft 365 GCC
-stays on the worldwide Graph endpoint,
-
-55
-00:03:41.187 --> 00:03:45.943
-while GCC High and the Defense
-Department have their own hosts.
-
-56
-00:03:45.943 --> 00:03:49.517
+00:03:36.868 --> 00:03:40.443
 Oracle's US Government
 Cloud has its own endpoints.
 
-57
-00:03:49.517 --> 00:03:51.656
+55
+00:03:40.443 --> 00:03:42.580
 AWS GovCloud has one.
 
-58
-00:03:51.656 --> 00:03:54.810
+56
+00:03:42.580 --> 00:03:45.735
 And Google's documentation
 doesn't list Personalized
 
-59
-00:03:54.810 --> 00:03:58.480
+57
+00:03:45.735 --> 00:03:49.380
 Service Health in its FedRAMP
 Moderate or High packages.
 
-60
-00:04:02.230 --> 00:04:04.505
+58
+00:03:53.130 --> 00:03:55.405
 Before the first gate, three things.
 
-61
-00:04:04.505 --> 00:04:09.505
+59
+00:03:55.405 --> 00:04:00.405
 Decisions first: who owns each provider's
 notices, which notices become tasks,
 
-62
-00:04:09.505 --> 00:04:14.817
+60
+00:04:00.405 --> 00:04:05.717
 for which group and at which severity, and
 who receives each provider's email today.
 
-63
-00:04:14.817 --> 00:04:17.080
+61
+00:04:05.717 --> 00:04:07.980
 That routing belongs to the agency.
 
-64
-00:04:17.080 --> 00:04:21.149
+62
+00:04:07.980 --> 00:04:12.049
 It's written at work from the
 kit's template, with its prompts in
 
-65
-00:04:21.149 --> 00:04:25.617
+63
+00:04:12.049 --> 00:04:16.517
 Microsoft 365 Copilot Chat, and it
 never goes in a public repository.
 
-66
-00:04:25.617 --> 00:04:28.768
+64
+00:04:16.517 --> 00:04:19.668
 Second, a change process
 that takes the tasks.
 
-67
-00:04:28.768 --> 00:04:32.826
+65
+00:04:19.668 --> 00:04:23.726
 The router writes ServiceNow-shaped
 payloads, and until the agency
 
-68
-00:04:32.826 --> 00:04:36.667
+66
+00:04:23.726 --> 00:04:27.567
 builds an endpoint for them, they're
 files the service desk reads.
 
-69
-00:04:36.667 --> 00:04:40.880
+67
+00:04:27.567 --> 00:04:31.780
 Third, a reader per provider,
 holding only its read role.
 
-70
-00:04:40.880 --> 00:04:44.992
+68
+00:04:31.780 --> 00:04:35.892
 The roles come from each provider's
 own documentation, and they're short.
 
-71
-00:04:44.992 --> 00:04:49.052
+69
+00:04:35.892 --> 00:04:39.952
 The writes, meaning the Azure
 Policy assignment and rollback,
 
-72
-00:04:49.052 --> 00:04:53.790
+70
+00:04:39.952 --> 00:04:44.690
 run as a different identity, and
 only with an explicit apply switch.
 
-73
-00:04:57.540 --> 00:04:59.777
+71
+00:04:48.440 --> 00:04:50.677
 Here are all seven gates on one page.
 
-74
-00:04:59.777 --> 00:05:04.911
+72
+00:04:50.677 --> 00:04:55.811
 The first five are collection, one
 per provider: Azure Service Health,
 
-75
-00:05:04.911 --> 00:05:10.315
+73
+00:04:55.811 --> 00:05:01.215
 Microsoft 365, Oracle Cloud Infrastructure,
 AWS Health and Google Cloud.
 
-76
-00:05:10.315 --> 00:05:14.528
+74
+00:05:01.215 --> 00:05:05.428
 They're independent, so enable only
 the providers the agency uses.
 
-77
-00:05:14.528 --> 00:05:19.302
+75
+00:05:05.428 --> 00:05:10.202
 Gate six routes what they collect: every
 notice that needs action gets a task,
 
-78
-00:05:19.302 --> 00:05:21.878
+76
+00:05:10.202 --> 00:05:12.778
 and a second run doesn't
 make a second task.
 
-79
-00:05:21.878 --> 00:05:24.252
+77
+00:05:12.778 --> 00:05:15.152
 Gate seven schedules the weekly run,
 
-80
-00:05:24.252 --> 00:05:28.765
+78
+00:05:15.152 --> 00:05:19.665
 sends the digest to the owners and
 checks the evidence for each stage.
 
-81
-00:05:28.765 --> 00:05:32.315
+79
+00:05:19.665 --> 00:05:23.215
 Each gate is validated with
 one of the kit's entry scripts.
 
-82
-00:05:32.315 --> 00:05:34.652
+80
+00:05:23.215 --> 00:05:25.552
 Every one of those checks only reads.
 
-83
-00:05:34.652 --> 00:05:37.352
+81
+00:05:25.552 --> 00:05:28.252
 The only writes are in
 the kit's deploy folder,
 
-84
-00:05:37.352 --> 00:05:41.291
+82
+00:05:28.252 --> 00:05:32.191
 and they run only with an apply
 switch and the plan's approved hash.
 
-85
-00:05:41.291 --> 00:05:46.170
+83
+00:05:32.191 --> 00:05:37.070
 And the checks are tested against
 fixtures, not proven against a live tenant.
 
-86
-00:05:49.920 --> 00:05:52.070
+84
+00:05:40.820 --> 00:05:42.970
 Gate one is Azure Service Health.
 
-87
-00:05:52.070 --> 00:05:56.169
+85
+00:05:42.970 --> 00:05:47.069
 Resource Graph answers the same
 questions for every subscription
 
-88
-00:05:56.169 --> 00:06:00.195
+86
+00:05:47.069 --> 00:05:51.095
 in scope with one query, and
 Microsoft Learn publishes the queries.
 
-89
-00:06:00.195 --> 00:06:01.207
+87
+00:05:51.095 --> 00:05:52.107
 Four steps.
 
-90
-00:06:01.207 --> 00:06:04.163
+88
+00:05:52.107 --> 00:05:55.063
 A subscription owner grants
 the reader two roles:
 
-91
-00:06:04.163 --> 00:06:06.758
+89
+00:05:55.063 --> 00:05:57.658
 Reader, and Service
 Health Security Reader.
 
-92
-00:06:06.758 --> 00:06:10.925
+90
+00:05:57.658 --> 00:06:01.825
 Learn explains why the second one
 matters: with Reader alone you see a
 
-93
-00:06:10.925 --> 00:06:15.532
+91
+00:06:01.825 --> 00:06:06.432
 security advisory, but not its sensitive
 fields or the resources it affects.
 
-94
-00:06:15.532 --> 00:06:19.658
+92
+00:06:06.432 --> 00:06:10.558
 Then sign in to the right cloud,
 with the Resource Graph extension.
 
-95
-00:06:19.658 --> 00:06:24.558
+93
+00:06:10.558 --> 00:06:15.458
 The workbook's estate is GCC with
 commercial Azure, so that's Azure Cloud.
 
-96
-00:06:24.558 --> 00:06:25.870
+94
+00:06:15.458 --> 00:06:16.770
 Third, collect.
 
-97
-00:06:25.870 --> 00:06:29.558
+95
+00:06:16.770 --> 00:06:20.458
 The kit's query starts from Learn's
 sample for all active events.
 
-98
-00:06:29.558 --> 00:06:33.256
+96
+00:06:20.458 --> 00:06:24.156
 Fourth, alert between collections
 with Learn's built-in policy,
 
-99
-00:06:33.256 --> 00:06:36.670
+97
+00:06:24.156 --> 00:06:27.570
 assigned at the management
 group with a remediation task.
 
-100
-00:06:36.670 --> 00:06:38.171
+98
+00:06:27.570 --> 00:06:29.071
 The kit writes it as a plan,
 
-101
-00:06:38.171 --> 00:06:42.110
+99
+00:06:29.071 --> 00:06:33.010
 and applies it only with the
 hash the change record approved.
 
-102
-00:06:45.860 --> 00:06:49.849
+100
+00:06:36.760 --> 00:06:40.749
 Here's what the kit really prints,
 from the workbook's first chapter,
 
-103
-00:06:49.849 --> 00:06:52.097
+101
+00:06:40.749 --> 00:06:42.997
 on fictional fixtures with no tenant.
 
-104
-00:06:52.097 --> 00:06:55.060
+102
+00:06:42.997 --> 00:06:45.960
 One collection gives five
 notices from six rows:
 
-105
-00:06:55.060 --> 00:06:59.134
+103
+00:06:45.960 --> 00:06:50.034
 an incident that appeared in two
 subscriptions became one notice.
 
-106
-00:06:59.134 --> 00:07:01.560
+104
+00:06:50.034 --> 00:06:52.460
 Every record is valid against the schema.
 
-107
-00:07:01.560 --> 00:07:04.198
+105
+00:06:52.460 --> 00:06:55.098
 The records show the two that need action.
 
-108
-00:07:04.198 --> 00:07:09.592
+106
+00:06:55.098 --> 00:07:00.492
 The retirement of basic public IP
 addresses is due September 30,
 
-109
-00:07:09.592 --> 00:07:11.322
+107
+00:07:00.492 --> 00:07:02.222
 2027, by the kit's rule.
 
-110
-00:07:11.322 --> 00:07:16.722
+108
+00:07:02.222 --> 00:07:07.622
 The security advisory needs action with no
 date, for the security officer to review.
 
-111
-00:07:16.722 --> 00:07:21.092
+109
+00:07:07.622 --> 00:07:11.992
 The incident, the advisory and the
 maintenance window need no action,
 
-112
-00:07:21.092 --> 00:07:23.161
+110
+00:07:11.992 --> 00:07:14.061
 so they'll go to the weekly digest.
 
-113
-00:07:23.161 --> 00:07:28.147
+111
+00:07:14.061 --> 00:07:19.047
 Then the alert plan: two steps, the
 policy assignment at the management group
 
-114
-00:07:28.147 --> 00:07:32.660
+112
+00:07:19.047 --> 00:07:23.560
 and its remediation, the plan's hash,
 and a dry run that changes nothing.
 
-115
-00:07:32.660 --> 00:07:36.560
+113
+00:07:23.560 --> 00:07:27.460
 And in fixture mode, the script
 refuses to apply at all.
 
-116
-00:07:40.310 --> 00:07:41.723
+114
+00:07:31.210 --> 00:07:32.623
 What does gate one support?
 
-117
-00:07:41.723 --> 00:07:43.647
+115
+00:07:32.623 --> 00:07:34.547
 Three things in NIST's catalog.
 
-118
-00:07:43.647 --> 00:07:48.273
+116
+00:07:34.547 --> 00:07:39.173
 Monitoring an external provider's
 control compliance on an ongoing basis.
 
-119
-00:07:48.273 --> 00:07:52.697
+117
+00:07:39.173 --> 00:07:43.597
 Receiving security alerts and
 advisories from outside organizations.
 
-120
-00:07:52.697 --> 00:07:57.348
+118
+00:07:43.597 --> 00:07:48.248
 And continuous monitoring, through the
 alert path that runs between collections.
 
-121
-00:07:57.348 --> 00:07:59.775
+119
+00:07:48.248 --> 00:07:50.675
 The key security indicators are FedRAMP's,
 
-122
-00:07:59.775 --> 00:08:03.659
+120
+00:07:50.675 --> 00:07:54.559
 and which record supports which
 indicator is the program's mapping.
 
-123
-00:08:03.659 --> 00:08:07.156
+121
+00:07:54.559 --> 00:07:58.056
 The security officer keeps the
 raw Azure file, the notices,
 
-124
-00:08:07.156 --> 00:08:10.288
+122
+00:07:58.056 --> 00:08:01.188
 and the manifest with every
 call and its permission,
 
-125
-00:08:10.288 --> 00:08:14.148
+123
+00:08:01.188 --> 00:08:05.048
 plus the alert plan and the change
 record that approved its hash.
 
+124
+00:08:05.048 --> 00:08:08.404
+A G C C tenant's subscriptions
+are in commercial Azure,
+
+125
+00:08:08.404 --> 00:08:10.998
+where Learn's Service Health samples run.
+
 126
-00:08:14.148 --> 00:08:19.201
-As a side note, Azure Government has its
-own CLI cloud and Resource Manager host,
-
-127
-00:08:19.201 --> 00:08:23.710
-and Learn hasn't stated the table's
-availability there in so many words.
-
-128
-00:08:23.710 --> 00:08:25.854
+00:08:10.998 --> 00:08:13.141
 Until the reader identity exists,
 
-129
-00:08:25.854 --> 00:08:29.835
+127
+00:08:13.141 --> 00:08:17.122
 a person with Reader runs Learn's
 own query and keeps the output.
 
-130
-00:08:29.835 --> 00:08:32.555
+128
+00:08:17.122 --> 00:08:19.842
 And rollback: the collection only reads,
 
-131
-00:08:32.555 --> 00:08:35.880
+129
+00:08:19.842 --> 00:08:23.180
 and the alert policy
 has a planned rollback.
 
-132
-00:08:39.630 --> 00:08:42.592
+130
+00:08:26.930 --> 00:08:29.892
 Gate two is Microsoft 365.
 
-133
-00:08:42.592 --> 00:08:46.780
+131
+00:08:29.892 --> 00:08:34.080
 The message center is where Microsoft
 announces changes, retirements and
 
-134
-00:08:46.780 --> 00:08:50.831
+132
+00:08:34.080 --> 00:08:38.131
 actions for a tenant, and service
 health lists incidents and advisories.
 
-135
-00:08:50.831 --> 00:08:54.980
+133
+00:08:38.131 --> 00:08:42.280
 Microsoft Graph's service
 communications API reads both.
 
-136
-00:08:54.980 --> 00:08:59.480
+134
+00:08:42.280 --> 00:08:46.780
 Two steps: sign in to the tenant's
 own cloud with two read permissions,
 
-137
-00:08:59.480 --> 00:09:02.855
+135
+00:08:46.780 --> 00:08:50.155
 and collect three lists,
 following every next link.
 
-138
-00:09:02.855 --> 00:09:07.562
+136
+00:08:50.155 --> 00:08:54.862
 Microsoft Learn says both permissions
 are granted only by an administrator,
 
-139
-00:09:07.562 --> 00:09:10.430
+137
+00:08:54.862 --> 00:08:57.730
 and a delegated sign-in
 also needs an admin role.
 
-140
-00:09:10.430 --> 00:09:13.595
+138
+00:08:57.730 --> 00:09:00.895
 Data privacy messages are
 visible only to Global
 
-141
-00:09:13.595 --> 00:09:16.992
+139
+00:09:00.895 --> 00:09:04.292
 Administrators and Message
 Center Privacy Readers.
 
-142
-00:09:16.992 --> 00:09:18.055
+140
+00:09:04.292 --> 00:09:05.355
 Now the cloud.
 
+141
+00:09:05.355 --> 00:09:10.093
+A GCC tenant keeps the worldwide
+Graph endpoint, which Learn's national
+
+142
+00:09:10.093 --> 00:09:14.430
+cloud page confirms, and the workbook's
+capture shows the kit's map.
+
 143
-00:09:18.055 --> 00:09:21.423
-A GCC tenant keeps the
-worldwide Graph endpoint,
-
-144
-00:09:21.423 --> 00:09:24.455
-which Learn's national
-cloud page confirms.
-
-145
-00:09:24.455 --> 00:09:28.093
-GCC High and the Defense
-Department have their own hosts,
-
-146
-00:09:28.093 --> 00:09:31.730
-and the workbook's capture shows
-the kit's map of all three.
-
-147
-00:09:31.730 --> 00:09:34.946
+00:09:14.430 --> 00:09:17.646
 The kit sends each call only
 to the cloud's own host,
 
-148
-00:09:34.946 --> 00:09:38.920
+144
+00:09:17.646 --> 00:09:21.610
 and refuses a session in
 another environment or tenant.
 
-149
-00:09:42.670 --> 00:09:48.608
+145
+00:09:25.360 --> 00:09:31.298
 On the fixtures, Microsoft 365 gives six
 notices: a retirement with a provider date,
 
-150
-00:09:48.608 --> 00:09:52.188
+146
+00:09:31.298 --> 00:09:34.878
 a change the kit marks
 action required by its rule,
 
-151
-00:09:52.188 --> 00:09:54.633
+147
+00:09:34.878 --> 00:09:37.323
 three advisories and an incident.
 
-152
-00:09:54.633 --> 00:09:57.382
+148
+00:09:37.323 --> 00:09:40.072
 The next capture shows the
 difference that matters.
 
-153
-00:09:57.382 --> 00:10:02.426
+149
+00:09:40.072 --> 00:09:45.116
 The retirement of basic authentication
 for SMTP client submission is action
 
-154
-00:10:02.426 --> 00:10:07.082
+150
+00:09:45.116 --> 00:09:49.772
 required because Microsoft said so,
 in its action-required-by date field.
 
-155
-00:10:07.082 --> 00:10:10.446
+151
+00:09:49.772 --> 00:09:53.136
 The SharePoint Framework change
 is action required because
 
-156
-00:10:10.446 --> 00:10:13.282
+152
+00:09:53.136 --> 00:09:55.972
 of a stated kit rule about
 a message center category.
 
-157
-00:10:13.282 --> 00:10:14.683
+153
+00:09:55.972 --> 00:09:57.373
 The record says which,
 
-158
-00:10:14.683 --> 00:10:18.883
+154
+00:09:57.373 --> 00:10:01.573
 so nobody argues with Microsoft
 about a date Microsoft never set.
 
-159
-00:10:18.883 --> 00:10:22.272
+155
+00:10:01.573 --> 00:10:04.962
 This gate supports the same
 two controls as gate one,
 
-160
-00:10:22.272 --> 00:10:27.395
+156
+00:10:04.962 --> 00:10:10.085
 plus configuration change control: a
 change Microsoft announces is reviewed,
 
-161
-00:10:27.395 --> 00:10:29.996
+157
+00:10:10.085 --> 00:10:12.686
 with an impact analysis, before it lands.
 
-162
-00:10:29.996 --> 00:10:34.320
+158
+00:10:12.686 --> 00:10:17.010
 Until the reader exists, Learn's
 own cmdlet lists the same posts.
 
-163
-00:10:34.320 --> 00:10:38.410
+159
+00:10:17.010 --> 00:10:21.100
 And there's nothing to roll
 back: the collection only reads.
 
-164
-00:10:42.160 --> 00:10:44.936
+160
+00:10:24.850 --> 00:10:27.626
 Gate three is Oracle Cloud Infrastructure,
 
-165
-00:10:44.936 --> 00:10:49.022
+161
+00:10:27.626 --> 00:10:31.712
 and it matters here because the
 HR platform runs on Oracle Cloud.
 
-166
-00:10:49.022 --> 00:10:52.146
+162
+00:10:31.712 --> 00:10:34.836
 Reading that tenancy's
 announcements means platform
 
-167
-00:10:52.146 --> 00:10:55.547
+163
+00:10:34.836 --> 00:10:38.237
 maintenance reaches the HR
 system's owners before it lands.
 
-168
-00:10:55.547 --> 00:11:00.184
+164
+00:10:38.237 --> 00:10:42.874
 Oracle publishes maintenance, changes,
 action-required notices and production
 
-169
-00:11:00.184 --> 00:11:04.198
+165
+00:10:42.874 --> 00:10:46.888
 events as announcements, and updates
 to one announcement form a chain.
 
-170
-00:11:04.198 --> 00:11:07.097
+166
+00:10:46.888 --> 00:10:49.787
 The kit keeps only the
 latest in each chain.
 
-171
-00:11:07.097 --> 00:11:10.220
+167
+00:10:49.787 --> 00:10:52.910
 Oracle's documentation
 gives the policy statement:
 
-172
-00:11:10.220 --> 00:11:13.923
+168
+00:10:52.910 --> 00:10:56.613
 allow the reader's group to read
 announcements in the tenancy.
 
-173
-00:11:13.923 --> 00:11:17.971
+169
+00:10:56.613 --> 00:11:00.661
 Read, not inspect, because
 inspect lists summaries only,
 
-174
-00:11:17.971 --> 00:11:20.347
+170
+00:11:00.661 --> 00:11:03.037
 without the affected resources.
 
-175
-00:11:20.347 --> 00:11:24.035
+171
+00:11:03.037 --> 00:11:06.725
 Then cross-check with Oracle's
 own list command, and collect.
 
-176
-00:11:24.035 --> 00:11:28.041
+172
+00:11:06.725 --> 00:11:10.731
 For government, Oracle's US
 Government Cloud page lists the
 
-177
-00:11:28.041 --> 00:11:32.373
+173
+00:11:10.731 --> 00:11:15.063
 Announcements endpoints in two
 regions, in the realm called OC2.
 
-178
-00:11:32.373 --> 00:11:35.119
-The third realm's
-endpoint isn't specified,
+174
+00:11:15.063 --> 00:11:18.240
+The kit refuses any realm it doesn't know.
 
-179
-00:11:35.119 --> 00:11:39.790
-because Oracle's page wasn't readable,
-so the kit refuses that realm.
-
-180
-00:11:43.540 --> 00:11:45.578
+175
+00:11:21.990 --> 00:11:24.028
 Here's Oracle on the fixtures.
 
-181
-00:11:45.578 --> 00:11:48.427
+176
+00:11:24.028 --> 00:11:26.877
 Day one gives four notices, one per chain.
 
-182
-00:11:48.427 --> 00:11:51.616
+177
+00:11:26.877 --> 00:11:30.066
 The maintenance names a
 database system and its window.
 
-183
-00:11:51.616 --> 00:11:54.649
+178
+00:11:30.066 --> 00:11:33.099
 The change is action
 required, by December 15,
 
-184
-00:11:54.649 --> 00:11:59.978
+179
+00:11:33.099 --> 00:11:38.428
 because Oracle's own action-required fields
 say so, and it names a load balancer.
 
-185
-00:11:59.978 --> 00:12:03.565
+180
+00:11:38.428 --> 00:11:42.015
 A week later, the provider has
 rescheduled the maintenance.
 
-186
-00:12:03.565 --> 00:12:08.024
+181
+00:11:42.015 --> 00:11:46.474
 Because the kit keeps only the latest
 in each chain, the new announcement
 
-187
-00:12:08.024 --> 00:12:12.928
+182
+00:11:46.474 --> 00:11:51.378
 replaces the original, with the new window,
 rather than becoming a second notice.
 
-188
-00:12:12.928 --> 00:12:16.140
+183
+00:11:51.378 --> 00:11:54.590
 That's exactly what the guide's
 try-it says to look for.
 
-189
-00:12:16.140 --> 00:12:19.678
+184
+00:11:54.590 --> 00:11:58.128
 Beyond monitoring the provider
 and receiving advisories,
 
-190
-00:12:19.678 --> 00:12:24.372
+185
+00:11:58.128 --> 00:12:02.822
 this gate supports contingency planning:
 maintenance that names the agency's
 
-191
-00:12:24.372 --> 00:12:27.116
+186
+00:12:02.822 --> 00:12:05.566
 resources prompts a
 contingency plan review,
 
-192
-00:12:27.116 --> 00:12:29.427
+187
+00:12:05.566 --> 00:12:07.877
 and the task carries a flag that says so.
 
-193
-00:12:29.427 --> 00:12:33.780
+188
+00:12:07.877 --> 00:12:12.230
 Until the reader exists, Oracle's
 announcement email is the interim path,
 
-194
-00:12:33.780 --> 00:12:36.760
+189
+00:12:12.230 --> 00:12:15.210
 and the settings file
 names who receives it.
 
-195
-00:12:40.510 --> 00:12:44.764
+190
+00:12:18.960 --> 00:12:23.214
 Gate four is AWS Health, which
 publishes issues, scheduled changes
 
-196
-00:12:44.764 --> 00:12:49.172
+191
+00:12:23.214 --> 00:12:27.622
 and account notifications per
 account, with the affected resources.
 
-197
-00:12:49.172 --> 00:12:51.235
+192
+00:12:27.622 --> 00:12:29.685
 It's the one provider with a cost.
 
-198
-00:12:51.235 --> 00:12:55.629
+193
+00:12:29.685 --> 00:12:34.079
 AWS's documentation says the account
 needs a qualifying support plan,
 
-199
-00:12:55.629 --> 00:12:59.872
+194
+00:12:34.079 --> 00:12:38.322
 and without one the API answers
 with a subscription-required error.
 
-200
-00:12:59.872 --> 00:13:03.261
+195
+00:12:38.322 --> 00:12:41.711
 AWS's own pages name the
 qualifying plans differently,
 
-201
-00:13:03.261 --> 00:13:06.198
+196
+00:12:41.711 --> 00:12:44.648
 so check the account
 against the current pages.
 
-202
-00:13:06.198 --> 00:13:10.765
+197
+00:12:44.648 --> 00:12:49.215
 The reader holds a customer managed
 policy with three describe actions,
 
-203
-00:13:10.765 --> 00:13:14.646
+198
+00:12:49.215 --> 00:12:53.096
 because AWS publishes no read-only
 managed policy for Health,
 
-204
-00:13:14.646 --> 00:13:17.386
+199
+00:12:53.096 --> 00:12:55.836
 and its full-access
 policy includes writes.
 
-205
-00:13:17.386 --> 00:13:19.745
+200
+00:12:55.836 --> 00:12:58.195
 Then cross-check from the Health endpoint,
 
-206
-00:13:19.745 --> 00:13:24.398
+201
+00:12:58.195 --> 00:13:02.848
 which is US East for commercial accounts
 and the GovCloud West region for GovCloud.
 
-207
-00:13:24.398 --> 00:13:25.373
+202
+00:13:02.848 --> 00:13:03.823
 And collect.
 
-208
-00:13:25.373 --> 00:13:26.998
+203
+00:13:03.823 --> 00:13:05.448
 Until the reader exists,
 
-209
-00:13:26.998 --> 00:13:31.548
+204
+00:13:05.448 --> 00:13:09.998
 an EventBridge rule on AWS Health
 events pushes scheduled changes.
 
-210
-00:13:31.548 --> 00:13:37.380
+205
+00:13:09.998 --> 00:13:15.830
 Without a support plan, the AWS Health
 Dashboard and its email are the only path.
 
-211
-00:13:41.130 --> 00:13:45.189
+206
+00:13:19.580 --> 00:13:23.639
 On the fixtures, AWS gives
 five notices: two retirements,
 
-212
-00:13:45.189 --> 00:13:50.218
+207
+00:13:23.639 --> 00:13:28.668
 a maintenance window, a security
 notification and a closed incident.
 
-213
-00:13:50.218 --> 00:13:51.380
+208
+00:13:28.668 --> 00:13:29.830
 Three need action.
 
-214
-00:13:51.380 --> 00:13:52.618
+209
+00:13:29.830 --> 00:13:31.068
 Look at the basis.
 
-215
-00:13:52.618 --> 00:13:57.344
+210
+00:13:31.068 --> 00:13:35.794
 The EC2 instance retirement and
 the IAM security notification are
 
-216
-00:13:57.344 --> 00:14:01.817
+211
+00:13:35.794 --> 00:13:40.267
 action required because AWS said
 so, in its actionability field.
 
-217
-00:14:01.817 --> 00:14:05.645
+212
+00:13:40.267 --> 00:13:44.095
 The Lambda lifecycle event is
 action required by the kit's rule:
 
-218
-00:14:05.645 --> 00:14:10.281
+213
+00:13:44.095 --> 00:13:48.731
 a scheduled change whose event code names
 a retirement, due at its start time.
 
-219
-00:14:10.281 --> 00:14:14.868
+214
+00:13:48.731 --> 00:13:53.318
 Again, the record tells you which is
 AWS's word and which is the kit's.
 
-220
-00:14:14.868 --> 00:14:19.583
+215
+00:13:53.318 --> 00:13:58.033
 And the kit holds AWS's documented
 limit: the details call takes one
 
-221
-00:14:19.583 --> 00:14:24.556
+216
+00:13:58.033 --> 00:14:03.006
 to ten event identifiers, so eleven
 is refused before anything is sent.
 
-222
-00:14:24.556 --> 00:14:27.284
+217
+00:14:03.006 --> 00:14:05.734
 Beyond monitoring and
 receiving advisories,
 
-223
-00:14:27.284 --> 00:14:31.880
+218
+00:14:05.734 --> 00:14:10.330
 this gate supports implementing directives
 in the established time frames:
 
-224
-00:14:31.880 --> 00:14:35.620
+219
+00:14:10.330 --> 00:14:14.070
 an action-required event becomes
 a task with its due date.
 
-225
-00:14:39.370 --> 00:14:43.932
+220
+00:14:17.820 --> 00:14:22.382
 To close Part 1, here's what the four
 collection gates leave in the evidence file.
 
-226
-00:14:43.932 --> 00:14:46.539
+221
+00:14:22.382 --> 00:14:24.989
 Each one keeps the
 provider's raw response,
 
-227
-00:14:46.539 --> 00:14:51.082
+222
+00:14:24.989 --> 00:14:29.532
 the normalized notices and a manifest
 with every call and its permission.
 
-228
-00:14:51.082 --> 00:14:53.894
+223
+00:14:29.532 --> 00:14:32.344
 Azure adds the alert plan and its results.
 
-229
-00:14:53.894 --> 00:14:58.577
+224
+00:14:32.344 --> 00:14:37.027
 Together they support monitoring external
 providers, receiving their advisories,
 
-230
-00:14:58.577 --> 00:15:02.925
+225
+00:14:37.027 --> 00:14:41.375
 continuous monitoring, configuration
 change control for announced changes,
 
-231
-00:15:02.925 --> 00:15:05.333
+226
+00:14:41.375 --> 00:14:43.783
 and contingency planning for maintenance.
 
-232
-00:15:05.333 --> 00:15:09.817
+227
+00:14:43.783 --> 00:14:48.267
 Part 2 picks up from there: Google
 Cloud's incidents and its maintenance gap,
 
-233
-00:15:09.817 --> 00:15:14.302
+228
+00:14:48.267 --> 00:14:52.752
 then routing every notice that needs
 action to an owner as a task, the weekly
 
-234
-00:15:14.302 --> 00:15:17.774
+229
+00:14:52.752 --> 00:14:56.224
 digest, and the evidence chain
 the security officer keeps,
 
-235
-00:15:17.774 --> 00:15:19.582
+230
+00:14:56.224 --> 00:14:58.032
 with the dangers and rollback.
 
-236
-00:15:19.582 --> 00:15:22.901
+231
+00:14:58.032 --> 00:15:01.351
 To build Part 1's code,
 use the developer workbook,
 
-237
-00:15:22.901 --> 00:15:27.796
+232
+00:15:01.351 --> 00:15:06.246
 Building Provider Notices, chapters
 one to four, each with a fixture lab.
 
-238
-00:15:27.796 --> 00:15:32.320
-And a last reminder: this guide is a
-draft, awaiting the owner's review.
-
-239
-00:15:32.320 --> 00:15:33.150
+233
+00:15:06.246 --> 00:15:07.070
 Thank you.

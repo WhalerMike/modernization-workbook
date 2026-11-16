@@ -1,0 +1,326 @@
+[
+ {
+  "slide": 1,
+  "title": "Content Delivery Modernization (DP Consolidation)",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 2,
+  "title": "The decision: refresh 1,500 servers, or consolidate?",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "The proposal under review",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#the-proposal-under-review"
+   },
+   {
+    "text": "Recommendation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#recommendation"
+   },
+   {
+    "text": "Position statement for a briefing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#position-statement-for-a-briefing"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Questions to answer before any money moves",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Decomposition request",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#decomposition-request"
+   },
+   {
+    "text": "The question that sizes the requirement",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#the-question-that-sizes-the-requirement"
+   },
+   {
+    "text": "Assumptions to validate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#assumptions-to-validate"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Capacity and timing: 24 needed, and a shrinking tier",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Published capacity limits",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#published-capacity-limits"
+   },
+   {
+    "text": "What changed",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#what-changed-since-the-model-was-adopted"
+   },
+   {
+    "text": "The timing problem",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#the-timing-problem"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Three options compared: refresh, consolidate, retire",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "What the distributed model costs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#what-the-distributed-model-costs"
+   },
+   {
+    "text": "Content tier: 24 distribution points",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#content-tier-24-distribution-points"
+   },
+   {
+    "text": "When to retire the last distribution point",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#when-to-retire-the-last-distribution-point"
+   },
+   {
+    "text": "Year 1 capital",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#year-1-capital"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The target: 12 hubs and 24 distribution points",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Hub topology: 12 sites",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#hub-topology-12-sites"
+   },
+   {
+    "text": "Content tier: 24 distribution points",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#content-tier-24-distribution-points"
+   },
+   {
+    "text": "Branch network",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#branch-network"
+   },
+   {
+    "text": "Sizing trigger",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#sizing-trigger"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Keeping content local without a branch server",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Keeping content local without a server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#keeping-content-local-without-a-server"
+   },
+   {
+    "text": "Connected Cache at the hubs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#connected-cache-at-the-hubs"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "A gate, not a date: retiring the last server",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "When to retire the last distribution point",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#when-to-retire-the-last-distribution-point"
+   },
+   {
+    "text": "A gate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#a-gate-not-a-date"
+   },
+   {
+    "text": "not a date",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#a-gate-not-a-date"
+   },
+   {
+    "text": "co-management workloads",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#co-management-workloads"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "What it costs: about $10 million in Year 1",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Sizing and bill of materials",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#sizing-and-bill-of-materials"
+   },
+   {
+    "text": "Year 1 capital",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#year-1-capital"
+   },
+   {
+    "text": "Annual recurring cost at steady state",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#annual-recurring-cost-at-steady-state"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Five years out, and the one number that decides it",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Five-year phased position",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#five-year-phased-position"
+   },
+   {
+    "text": "Sensitivity to current MPLS cost",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#sensitivity-to-current-mpls-cost"
+   },
+   {
+    "text": "Confidence statement",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#confidence-statement"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The roadmap: hubs first, offices at renewal",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Implementation roadmap",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#implementation-roadmap"
+   },
+   {
+    "text": "Why this order",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#why-this-order"
+   },
+   {
+    "text": "Security and TIC 3.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#security-and-tic-3.0"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Implementation 1 to 5: analyze, size, fund, build, peer",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Implementation roadmap",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#implementation-roadmap"
+   },
+   {
+    "text": "Keeping content local without a server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#keeping-content-local-without-a-server"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Implementation 6 to 10: migrate, package, shift, retire",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "When to retire the last distribution point",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#when-to-retire-the-last-distribution-point"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Risks, and the assumptions to check first",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Risks and mitigations",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#risks-and-mitigations"
+   },
+   {
+    "text": "Assumptions to validate",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#assumptions-to-validate"
+   },
+   {
+    "text": "Confidence statement",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#confidence-statement"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Next: one standard package for ConfigMgr and Intune",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "The ask: defer, decompose, validate, fund Phase 0",
+  "links": [
+   {
+    "text": "Book 09, Ch 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html"
+   },
+   {
+    "text": "Recommendation",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#recommendation"
+   },
+   {
+    "text": "Position statement for a briefing",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#position-statement-for-a-briefing"
+   },
+   {
+    "text": "Implementation roadmap",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b09-network/11-field-office-wan-transformation.html#implementation-roadmap"
+   }
+  ]
+ }
+]

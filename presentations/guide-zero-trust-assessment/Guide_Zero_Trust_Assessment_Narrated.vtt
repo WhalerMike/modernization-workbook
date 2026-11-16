@@ -360,722 +360,700 @@ which reads files only and
 never touches the tenant.
 
 76
-00:04:51.200 --> 00:04:52.925
-Does it work in a government cloud?
+00:04:51.200 --> 00:04:52.938
+Does it work in G C C?
 
 77
-00:04:52.925 --> 00:04:56.938
-Microsoft Learn's three Zero
-Trust Assessment pages don't say.
+00:04:52.938 --> 00:04:58.213
+Microsoft Learn's three Zero Trust
+Assessment pages don't mention G C C.
 
 78
-00:04:56.938 --> 00:05:02.369
-The tool's three point one point oh
-source does: its connect command takes an
+00:04:58.213 --> 00:05:03.710
+But G C C uses the worldwide endpoints,
+so a G C C run uses the tool's defaults:
 
 79
-00:05:02.369 --> 00:05:07.625
-environment, Global, U S Gov or U S Gov
-D O D, and an Exchange environment name.
+00:05:03.710 --> 00:05:08.474
+the Global environment, and the
+default Exchange environment.
 
 80
-00:05:07.625 --> 00:05:11.313
-Each service it signs in to is
-documented per cloud on Learn,
+00:05:08.474 --> 00:05:12.200
+Each service the tool signs
+in to is documented on Learn.
 
 81
-00:05:11.313 --> 00:05:14.925
-and the guide matches the tool's
-parameters to those pages.
+00:05:12.200 --> 00:05:15.191
+Microsoft Graph is graph
+dot microsoft dot com.
 
 82
-00:05:14.925 --> 00:05:19.609
-One place they conflict: for Security
-and Compliance in D O D, Learn gives
+00:05:15.191 --> 00:05:18.335
+Exchange Online needs no
+environment parameter,
 
 83
-00:05:19.609 --> 00:05:22.308
-compliance dot D O D
-dot microsoft dot com,
+00:05:18.335 --> 00:05:21.862
+and Security and Compliance
+uses its default endpoint.
 
 84
-00:05:22.308 --> 00:05:25.325
-and the tool's source
-uses a different address.
+00:05:21.862 --> 00:05:24.912
+Azure is Azure Cloud,
+from the tool's source.
 
 85
-00:05:25.325 --> 00:05:27.113
-Which one works wasn't tested.
+00:05:24.912 --> 00:05:29.149
+The SharePoint admin address is the
+tenant's admin dot sharepoint dot com,
 
 86
-00:05:27.113 --> 00:05:32.148
-For SharePoint, the tool infers a
-sharepoint dot U S admin address,
+00:05:29.149 --> 00:05:33.663
+and Azure Information Protection uses
+its default, from the tool's source only.
 
 87
-00:05:32.148 --> 00:05:35.412
-so pass it explicitly;
-D O D's isn't specified.
+00:05:33.663 --> 00:05:38.538
+Where neither Learn nor the tool's source
+says, the guide says not yet specified.
 
 88
-00:05:35.412 --> 00:05:39.581
-Until a run is proved in your cloud,
-run one pillar at a time in a test
+00:05:38.538 --> 00:05:42.110
+And keep ScubaGear as the
+federal baseline tool.
 
 89
-00:05:39.581 --> 00:05:44.560
-tenant of the same cloud, and keep
-ScubaGear as the federal baseline tool.
-
-90
-00:05:48.310 --> 00:05:49.148
+00:05:45.860 --> 00:05:46.698
 Now, who.
 
-91
-00:05:49.148 --> 00:05:53.972
+90
+00:05:46.698 --> 00:05:51.522
 The first connection asks an administrator
 to consent to the tool's Microsoft
 
-92
-00:05:53.972 --> 00:05:58.797
+91
+00:05:51.522 --> 00:05:56.347
 Graph read permissions; later runs don't
 ask again unless a new version adds one.
 
-93
-00:05:58.797 --> 00:06:00.434
+92
+00:05:56.347 --> 00:05:57.984
 The sources differ on who.
 
-94
-00:06:00.434 --> 00:06:02.522
+93
+00:05:57.984 --> 00:06:00.072
 Learn says a Global Administrator.
 
-95
-00:06:02.522 --> 00:06:07.462
+94
+00:06:00.072 --> 00:06:05.012
 The tool's guide for three point one point
 oh says a Cloud Application Administrator
 
-96
-00:06:07.462 --> 00:06:11.697
+95
+00:06:05.012 --> 00:06:09.247
 or Application Administrator, and
 that consent assigns no runtime role.
 
-97
-00:06:11.697 --> 00:06:16.723
+96
+00:06:09.247 --> 00:06:14.273
 Learn lists twenty-one permissions; the
 source requests thirty-four, all read.
 
-98
-00:06:16.723 --> 00:06:19.010
+97
+00:06:14.273 --> 00:06:16.560
 The program follows the tool's guide.
 
-99
-00:06:19.010 --> 00:06:22.997
+98
+00:06:16.560 --> 00:06:20.547
 The consent administrator consents
 and doesn't run the assessment.
 
-100
-00:06:22.997 --> 00:06:27.510
+99
+00:06:20.547 --> 00:06:25.060
 The run account is a dedicated reader
 whose roles are activated through pim
 
-101
-00:06:27.510 --> 00:06:32.309
+100
+00:06:25.060 --> 00:06:29.859
 before each run; SharePoint Administrator
 is the one write-capable role it needs.
 
-102
-00:06:32.309 --> 00:06:36.702
+101
+00:06:29.859 --> 00:06:34.252
 Consent lands on the shared Graph
 PowerShell application by default,
 
-103
-00:06:36.702 --> 00:06:38.898
+102
+00:06:34.252 --> 00:06:36.448
 so the program uses a dedicated one.
 
-104
-00:06:38.898 --> 00:06:43.810
+103
+00:06:36.448 --> 00:06:41.360
 The guide's RACI names who is responsible
 and accountable for each activity.
 
-105
-00:06:47.560 --> 00:06:49.723
+104
+00:06:45.110 --> 00:06:47.273
 Now how, starting with the host.
 
-106
-00:06:49.723 --> 00:06:53.972
+105
+00:06:47.273 --> 00:06:51.522
 The report and export hold tenant
 information an attacker could use.
 
-107
-00:06:53.972 --> 00:06:58.847
+106
+00:06:51.522 --> 00:06:56.397
 Learn says to share them only with authorized
 personnel, store the report securely,
 
-108
-00:06:58.847 --> 00:07:02.661
+107
+00:06:56.397 --> 00:07:00.211
 and delete the generated folder
 when the assessment is complete.
 
-109
-00:07:02.661 --> 00:07:06.886
+108
+00:07:00.211 --> 00:07:04.436
 The tool's guide adds that exports and
 logs can hold personal information,
 
-110
-00:07:06.886 --> 00:07:11.598
+109
+00:07:04.436 --> 00:07:09.148
 and that deleting the report folder doesn't
 remove the PowerShell logging folder.
 
-111
-00:07:11.598 --> 00:07:16.509
+110
+00:07:09.148 --> 00:07:14.059
 So open a clean PowerShell session on
 a dedicated host inside the boundary.
 
-112
-00:07:16.509 --> 00:07:21.206
+111
+00:07:14.059 --> 00:07:18.756
 Learn says PowerShell seven; the
 tool's guide asks for seven point six,
 
-113
-00:07:21.206 --> 00:07:23.348
+112
+00:07:18.756 --> 00:07:20.898
 for its pinned Exchange module.
 
-114
-00:07:23.348 --> 00:07:27.047
+113
+00:07:20.898 --> 00:07:24.597
 Install and pin the version
 the decision record names.
 
-115
-00:07:27.047 --> 00:07:30.189
+114
+00:07:24.597 --> 00:07:27.739
 Create a new, empty report
 folder for each run,
 
-116
-00:07:30.189 --> 00:07:34.348
+115
+00:07:27.739 --> 00:07:31.898
 restricted to the run account
 and the evidence custodians.
 
-117
-00:07:34.348 --> 00:07:39.109
+116
+00:07:31.898 --> 00:07:36.659
 In step ten, the unaltered export
 moves into the evidence repository,
 
-118
-00:07:39.109 --> 00:07:42.890
+117
+00:07:36.659 --> 00:07:40.440
 the copy is hashed, and the
 local folder is deleted.
 
-119
-00:07:46.640 --> 00:07:48.040
+118
+00:07:44.190 --> 00:07:45.590
 Step four connects.
 
-120
-00:07:48.040 --> 00:07:52.537
+119
+00:07:45.590 --> 00:07:50.087
 The tool signs in separately to
 Microsoft Graph, Azure, Exchange Online,
 
-121
-00:07:52.537 --> 00:07:57.567
+120
+00:07:50.087 --> 00:07:55.117
 Security and Compliance, SharePoint
 Online and Azure Information Protection,
 
-122
-00:07:57.567 --> 00:08:00.540
+121
+00:07:55.117 --> 00:07:58.090
 and a Graph connection
 doesn't grant the others.
 
+122
+00:07:58.090 --> 00:08:03.716
+Learn's get-started page shows only the
+commercial command, which G C C also uses,
+
 123
-00:08:00.540 --> 00:08:04.053
-Learn's get-started page shows
-only the commercial command,
+00:08:03.716 --> 00:08:08.477
+because G C C uses the worldwide
+endpoints: the Global environment.
 
 124
-00:08:04.053 --> 00:08:07.852
-so the guide takes each cloud's
-parameters from the tool's source.
-
-125
-00:08:07.852 --> 00:08:11.302
-Commercial and G C C use
-the Global environment.
-
-126
-00:08:11.302 --> 00:08:16.392
-G C C High uses U S Gov with
-its Exchange environment name,
-
-127
-00:08:16.392 --> 00:08:19.490
-and D O D uses U S Gov D O D with its own.
-
-128
-00:08:19.490 --> 00:08:24.990
+00:08:08.477 --> 00:08:13.977
 Then confirm the tenant and cloud with
 Get M G Context and Get A Z Context.
 
-129
-00:08:24.990 --> 00:08:30.165
-Pass the SharePoint admin U R L in
-every cloud, or the tool infers one.
+125
+00:08:13.977 --> 00:08:16.881
+Pass the SharePoint
+admin U R L explicitly,
 
-130
-00:08:30.165 --> 00:08:33.314
+126
+00:08:16.881 --> 00:08:20.615
+or the tool infers one from
+the tenant's initial domain.
+
+127
+00:08:20.615 --> 00:08:23.764
 If a service won't connect,
 connect the rest, run,
 
-131
-00:08:33.314 --> 00:08:37.540
+128
+00:08:23.764 --> 00:08:28.360
 and record its tests as skipped,
 disconnected, with the reason.
 
-132
-00:08:37.540 --> 00:08:41.096
-In D O D, if the Purview
-tests skip as disconnected,
-
-133
-00:08:41.096 --> 00:08:44.200
-check the conflicting address first.
-
-134
-00:08:47.950 --> 00:08:49.250
+129
+00:08:32.110 --> 00:08:33.410
 Step five runs it.
 
-135
-00:08:49.250 --> 00:08:52.950
+130
+00:08:33.410 --> 00:08:37.110
 The assessment is read-only
 and stores its data locally.
 
-136
-00:08:52.950 --> 00:08:56.750
+131
+00:08:37.110 --> 00:08:40.910
 On a large tenant it can take
 more than twenty-four hours,
 
-137
-00:08:56.750 --> 00:09:00.962
+132
+00:08:40.910 --> 00:08:45.122
 and Learn says not to stop it, even
 if it logs warnings or errors.
 
-138
-00:09:00.962 --> 00:09:05.385
+133
+00:08:45.122 --> 00:08:49.545
 The disable-telemetry switch
 suppresses the one telemetry event,
 
-139
-00:09:05.385 --> 00:09:09.325
+134
+00:08:49.545 --> 00:08:53.485
 which carries the tenant I D;
 using it is the see-so's decision.
 
-140
-00:09:09.325 --> 00:09:12.900
+135
+00:08:53.485 --> 00:08:57.060
 The no-browser switch keeps
 the report off a shared screen.
 
-141
-00:09:12.900 --> 00:09:18.653
+136
+00:08:57.060 --> 00:09:02.813
 As soon as the run finishes, before
 anyone opens or copies anything,
 
-142
-00:09:18.653 --> 00:09:23.988
+137
+00:09:02.813 --> 00:09:08.148
 hash the export, S H A two fifty-six,
 and hash every file into a C S V.
 
-143
-00:09:23.988 --> 00:09:26.687
+138
+00:09:08.148 --> 00:09:10.847
 Those hashes show the
 output wasn't modified.
 
-144
-00:09:26.687 --> 00:09:30.505
+139
+00:09:10.847 --> 00:09:14.665
 If the run fails, capture a support
 package in the same session,
 
-145
-00:09:30.505 --> 00:09:32.451
+140
+00:09:14.665 --> 00:09:16.611
 to a separate protected folder.
 
-146
-00:09:32.451 --> 00:09:36.532
+141
+00:09:16.611 --> 00:09:20.692
 Everything under the zt-export
 folder, including the jay-son
 
-147
-00:09:36.532 --> 00:09:40.810
+142
+00:09:20.692 --> 00:09:24.970
 report data the kit reads, is
 assessment data, not just logs.
 
-148
-00:09:44.560 --> 00:09:47.498
+143
+00:09:28.720 --> 00:09:31.658
 Steps six and seven read the results.
 
-149
-00:09:47.498 --> 00:09:49.547
+144
+00:09:31.658 --> 00:09:33.707
 Each pillar owner reads their tab.
 
-150
-00:09:49.547 --> 00:09:53.278
+145
+00:09:33.707 --> 00:09:37.438
 Every test ends in one
 of six statuses: passed,
 
-151
-00:09:53.278 --> 00:09:57.109
+146
+00:09:37.438 --> 00:09:41.269
 failed, investigate,
 skipped, planned, or error.
 
-152
-00:09:57.109 --> 00:09:59.622
+147
+00:09:41.269 --> 00:09:43.782
 Investigate means a person needs to look,
 
-153
-00:09:59.622 --> 00:10:03.685
+148
+00:09:43.782 --> 00:09:47.845
 and skipped carries a reason, such
 as not licensed or not connected.
 
-154
-00:10:03.685 --> 00:10:07.418
+149
+00:09:47.845 --> 00:09:51.578
 The kit records every result
 twice: the tool's value,
 
-155
-00:10:07.418 --> 00:10:10.885
+150
+00:09:51.578 --> 00:09:55.045
 unchanged, and one of
 seven normalized results.
 
-156
-00:10:10.885 --> 00:10:12.573
+151
+00:09:55.045 --> 00:09:56.733
 That's the rule in the title.
 
-157
-00:10:12.573 --> 00:10:16.247
+152
+00:09:56.733 --> 00:10:00.407
 A skipped test is not a failed
 control, and it's not a pass.
 
-158
-00:10:16.247 --> 00:10:22.086
+153
+00:10:00.407 --> 00:10:06.246
 It goes in its own column, with its reason:
 a licensing decision, or a run to fix.
 
-159
-00:10:22.086 --> 00:10:27.510
+154
+00:10:06.246 --> 00:10:11.670
 Investigate counts as a finding until a
 recorded review confirms or dismisses it.
 
-160
-00:10:27.510 --> 00:10:28.923
+155
+00:10:11.670 --> 00:10:13.083
 Two federal cases.
 
-161
-00:10:28.923 --> 00:10:32.103
+156
+00:10:13.083 --> 00:10:16.263
 Not dot gov domain
 usually means the agency's
 
-162
-00:10:32.103 --> 00:10:35.111
+157
+00:10:16.263 --> 00:10:19.271
 dot gov domain isn't
 verified in the tenant.
 
-163
-00:10:35.111 --> 00:10:40.412
-And Learn says impersonation protection
-isn't yet available in G C C High and D O D,
+158
+00:10:19.271 --> 00:10:23.919
+And each pillar owner notes every
+failed result whose feature may not be
 
-164
-00:10:40.412 --> 00:10:44.710
-so a failed impersonation test
-there is a boundary finding.
+159
+00:10:23.919 --> 00:10:28.610
+available in the tenant's cloud, so
+it's reviewed, not counted blindly.
 
-165
-00:10:48.460 --> 00:10:51.035
+160
+00:10:32.360 --> 00:10:34.935
 Step eight opens the closure register.
 
-166
-00:10:51.035 --> 00:10:55.153
+161
+00:10:34.935 --> 00:10:39.053
 Every finding gets one entry
 with the closure chain's fields,
 
-167
-00:10:55.153 --> 00:10:59.848
+162
+00:10:39.053 --> 00:10:43.748
 from the Zero Trust and Assessment
 book: the finding and tool version,
 
-168
-00:10:59.848 --> 00:11:03.719
+163
+00:10:43.748 --> 00:10:47.619
 the attack path, the owner,
 dependencies, the change, pilot,
 
-169
-00:11:03.719 --> 00:11:09.073
+164
+00:10:47.619 --> 00:10:52.973
 enforcement and test, the evidence,
 residual risk, reassessment and weighting.
 
-170
-00:11:09.073 --> 00:11:12.399
+165
+00:10:52.973 --> 00:10:56.299
 Each finding family routes to
 the page that remediates it,
 
-171
-00:11:12.399 --> 00:11:15.310
+166
+00:10:56.299 --> 00:10:59.210
 with the evidence that shows
 it's ready for closure.
 
-172
-00:11:15.310 --> 00:11:18.503
+167
+00:10:59.210 --> 00:11:02.403
 Emergency access goes to
 Access and Privilege,
 
-173
-00:11:18.503 --> 00:11:21.122
+168
+00:11:02.403 --> 00:11:05.022
 with a test sign-in that fired its alert.
 
-174
-00:11:21.122 --> 00:11:24.499
+169
+00:11:05.022 --> 00:11:08.399
 Conditional Access gaps
 go to its policy library,
 
-175
-00:11:24.499 --> 00:11:27.135
+170
+00:11:08.399 --> 00:11:11.035
 with a test sign-in blocked as designed.
 
-176
-00:11:27.135 --> 00:11:30.097
+171
+00:11:11.035 --> 00:11:13.997
 Skipped tests go to step
 seven's dispositions.
 
-177
-00:11:30.097 --> 00:11:33.935
+172
+00:11:13.997 --> 00:11:17.835
 A finding with no family goes
 to the Zero Trust program lead.
 
-178
-00:11:33.935 --> 00:11:38.110
+173
+00:11:17.835 --> 00:11:22.010
 The kit sets a default priority,
 and the owner writes the rationale.
 
-179
-00:11:38.110 --> 00:11:41.560
+174
+00:11:22.010 --> 00:11:25.460
 An exception with an expiry
 is the see-so's decision;
 
-180
-00:11:41.560 --> 00:11:44.435
+175
+00:11:25.460 --> 00:11:28.335
 one without is the authorizing official's.
 
-181
-00:11:44.435 --> 00:11:47.650
+176
+00:11:28.335 --> 00:11:31.550
 The kit never marks a
 finding ready for closure.
 
-182
-00:11:51.400 --> 00:11:53.063
+177
+00:11:35.300 --> 00:11:36.963
 Step nine reconciles.
 
-183
-00:11:53.063 --> 00:11:56.527
+178
+00:11:36.963 --> 00:11:40.427
 Tools with different identifiers
 can't be matched directly,
 
-184
-00:11:56.527 --> 00:12:00.686
+179
+00:11:40.427 --> 00:11:44.586
 so the program matches each to a common
 spine: the setting, and the control
 
-185
-00:12:00.686 --> 00:12:04.775
+180
+00:11:44.586 --> 00:11:48.675
 it supports in the NIST special
 publication eight hundred fifty-three.
 
-186
-00:12:04.775 --> 00:12:09.414
+181
+00:11:48.675 --> 00:11:53.314
 Two tools failing the same setting
 under the same control are one finding,
 
-187
-00:12:09.414 --> 00:12:12.000
+182
+00:11:53.314 --> 00:11:55.900
 with two pieces of evidence and one owner.
 
-188
-00:12:12.000 --> 00:12:17.250
+183
+00:11:55.900 --> 00:12:01.150
 CISA maps every SCuBA policy to those
 controls in the fed-ramp High baseline.
 
-189
-00:12:17.250 --> 00:12:22.168
+184
+00:12:01.150 --> 00:12:06.068
 On AWS, Security Hub's standard for that
 publication supports a subset of it,
 
-190
-00:12:22.168 --> 00:12:23.992
+185
+00:12:06.068 --> 00:12:07.892
 with automated checks only,
 
-191
-00:12:23.992 --> 00:12:28.275
+186
+00:12:07.892 --> 00:12:12.175
 and each finding lists its related
 requirements: that's the spine.
 
-192
-00:12:28.275 --> 00:12:33.117
+187
+00:12:12.175 --> 00:12:17.017
 Its statuses map to the taxonomy, and
 A W S warns that a control with no
 
-193
-00:12:33.117 --> 00:12:38.738
+188
+00:12:17.017 --> 00:12:22.638
 resources passes at the account level, so
 a pass can mean nothing was evaluated.
 
-194
-00:12:38.738 --> 00:12:43.069
+189
+00:12:22.638 --> 00:12:26.969
 On the other clouds, Oracle Cloud
 Infrastructure's Cloud Guard and Google
 
-195
-00:12:43.069 --> 00:12:48.390
+190
+00:12:26.969 --> 00:12:32.290
 Cloud's Security Command Center are compared
 in Security Operations and Telemetry.
 
-196
-00:12:52.140 --> 00:12:54.227
+191
+00:12:36.040 --> 00:12:38.127
 Step ten makes it repeatable.
 
-197
-00:12:54.227 --> 00:12:57.733
+192
+00:12:38.127 --> 00:12:41.633
 The kit compares each
 run with the last: new,
 
-198
-00:12:57.733 --> 00:13:02.040
+193
+00:12:41.633 --> 00:12:45.940
 regressed, fixed, still open,
 and no longer evaluated.
 
-199
-00:13:02.040 --> 00:13:04.028
+194
+00:12:45.940 --> 00:12:47.928
 That last class matters most.
 
-200
-00:13:04.028 --> 00:13:08.991
+195
+00:12:47.928 --> 00:12:52.891
 A finding the tool skipped this time
 isn't fixed: fix the run and run it again.
 
-201
-00:13:08.991 --> 00:13:11.684
+196
+00:12:52.891 --> 00:12:55.584
 Runs from different tool
 versions are refused
 
-202
-00:13:11.684 --> 00:13:14.240
+197
+00:12:55.584 --> 00:12:58.140
 until someone records
 a review of the change.
 
-203
-00:13:14.240 --> 00:13:19.180
+198
+00:12:58.140 --> 00:13:03.080
 Then seal the evidence: each output
 folder becomes a chained record with its
 
-204
-00:13:19.180 --> 00:13:22.865
+199
+00:13:03.080 --> 00:13:06.765
 controls, every file's hash,
 and the previous record's hash,
 
-205
-00:13:22.865 --> 00:13:25.453
+200
+00:13:06.765 --> 00:13:09.353
 which the I S S O can
 check without the kit.
 
-206
-00:13:25.453 --> 00:13:31.026
+201
+00:13:09.353 --> 00:13:14.926
 The cadence is design guidance from the
 day-two runbook in Compliance Automation and
 
-207
-00:13:31.026 --> 00:13:34.560
+202
+00:13:14.926 --> 00:13:18.460
 Day-2 Operations: monthly,
 after each remediation wave,
 
-208
-00:13:34.560 --> 00:13:36.915
+203
+00:13:18.460 --> 00:13:20.815
 before a tool upgrade, and quarterly.
 
-209
-00:13:36.915 --> 00:13:41.917
+204
+00:13:20.815 --> 00:13:25.817
 Learn's weekly digest playbook comes with
 two cautions: report counts, not its
 
-210
-00:13:41.917 --> 00:13:47.520
+205
+00:13:25.817 --> 00:13:31.420
 pass rate, and whether it runs against three
 point one point oh isn't yet specified.
 
-211
-00:13:51.270 --> 00:13:53.133
+206
+00:13:35.170 --> 00:13:37.033
 To close, the dangers.
 
-212
-00:13:53.133 --> 00:13:56.258
+207
+00:13:37.033 --> 00:13:40.158
 Counting a skipped test
 as a failure or a pass.
 
-213
-00:13:56.258 --> 00:13:59.344
+208
+00:13:40.158 --> 00:13:43.244
 Calling a finding fixed because
 the next run skipped it.
 
-214
-00:13:59.344 --> 00:14:01.945
+209
+00:13:43.244 --> 00:13:45.845
 Treating the pass rate
 as a maturity score.
 
-215
-00:14:01.945 --> 00:14:05.307
+210
+00:13:45.845 --> 00:13:49.207
 Running the Zero Trust
 Assessment instead of ScubaGear.
 
-216
-00:14:05.307 --> 00:14:10.571
+211
+00:13:49.207 --> 00:13:54.471
 Global Administrator for every run, or
 consent on the shared Graph application.
 
-217
-00:14:10.571 --> 00:14:14.270
-And the wrong cloud, or a
-report folder left on the host.
+212
+00:13:54.471 --> 00:13:57.532
+And a report folder left
+on the host or shared.
 
-218
-00:14:14.270 --> 00:14:16.107
+213
+00:13:57.532 --> 00:13:59.370
 Each has its guard in the steps.
 
-219
-00:14:16.107 --> 00:14:21.123
-The guide is plain about what it couldn't
-verify: government clouds on Learn,
+214
+00:13:59.370 --> 00:14:03.191
+The guide is plain about what it
+couldn't verify: G C C on Learn,
 
-220
-00:14:21.123 --> 00:14:25.412
-D O D's Security and Compliance
-address and SharePoint admin U R L,
+215
+00:14:03.191 --> 00:14:07.871
+Azure Information Protection's
+environment name, which run roles apply,
 
-221
-00:14:25.412 --> 00:14:29.619
-which run roles apply, and Graph
-permissions in G C C High and D O D.
+216
+00:14:07.871 --> 00:14:11.458
+and the export's schema, which
+Microsoft doesn't publish.
 
-222
-00:14:29.619 --> 00:14:31.533
+217
+00:14:11.458 --> 00:14:13.370
 Nothing was run against a tenant.
 
-223
-00:14:31.533 --> 00:14:36.577
+218
+00:14:13.370 --> 00:14:18.415
 To practice, start the learning path,
 The Zero Trust Assessment as Evidence:
 
-224
-00:14:36.577 --> 00:14:39.344
+219
+00:14:18.415 --> 00:14:21.182
 four modules, each with a knowledge check.
 
-225
-00:14:39.344 --> 00:14:44.308
+220
+00:14:21.182 --> 00:14:26.145
 Module one's first lab runs on the kit's
 fictional fixtures, with no tenant.
 
-226
-00:14:44.308 --> 00:14:45.120
+221
+00:14:26.145 --> 00:14:26.960
 Thank you.

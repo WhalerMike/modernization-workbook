@@ -240,7 +240,6 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [Azure Private DNS FAQ](https://learn.microsoft.com/azure/dns/dns-faq-private){#azure-private-dns-faq} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azure-private-dns-faq"} |
 | [Azure Private Endpoint DNS integration scenarios](https://learn.microsoft.com/azure/private-link/private-endpoint-dns-integration){#private-endpoint-dns-integration} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="private-endpoint-dns-integration"} |
 | [Azure Private Endpoint private DNS zone values](https://learn.microsoft.com/azure/private-link/private-endpoint-dns){#private-endpoint-dns-zone-values} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="private-endpoint-dns-zone-values"} |
-| [Azure Retail Prices API](https://prices.azure.com/api/retail/prices){#azure-retail-prices-api} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azure-retail-prices-api"} |
 | [Azure Web Application Firewall and Azure Policy](https://learn.microsoft.com/azure/web-application-firewall/shared/waf-azure-policy){#waf-azure-policy} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="waf-azure-policy"} |
 | [Azure, Dynamics 365, Microsoft 365, and Power Platform services compliance scope](https://learn.microsoft.com/azure/azure-government/compliance/azure-services-in-fedramp-auditscope){#azure-dynamics-365-microsoft-365-and-power} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="azure-dynamics-365-microsoft-365-and-power"} |
 | [Best practices for Azure RBAC](https://learn.microsoft.com/azure/role-based-access-control/best-practices){#best-practices-for-azure-rbac} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="best-practices-for-azure-rbac"} |
@@ -566,7 +565,6 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [Remediate non-compliant resources with Azure Policy](https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources){#remediate-non-compliant-resources-with-azure} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="remediate-non-compliant-resources-with-azure"} |
 | [Remove-DhcpServerInDC](https://learn.microsoft.com/powershell/module/dhcpserver/remove-dhcpserverindc?view=windowsserver2025-ps){#remove-dhcpserverindc} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="remove-dhcpserverindc"} |
 | [Renewal of 'Enrollment Agent' certificate used by NDES may fail](https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/renewal-of-enrollment-agent-certificate-fail){#renewal-of-enrollment-agent-certificate-used} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="renewal-of-enrollment-agent-certificate-used"} |
-| [reports: getDeviceUsageSummary (Microsoft Graph beta)](https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta){#gsa-get-device-usage-summary} | Retired | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gsa-get-device-usage-summary"} |
 | [requestorManager resource type](https://learn.microsoft.com/graph/api/resources/requestormanager?view=graph-rest-1.0){#requestormanager-resource-type} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="requestormanager-resource-type"} |
 | [Resolve-DnsName](https://learn.microsoft.com/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps){#resolve-dnsname} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="resolve-dnsname"} |
 | [Resource Graph sample queries for impacted resources](https://learn.microsoft.com/azure/service-health/resource-graph-impacted-samples){#learn-service-health-impacted-resources-samples} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-service-health-impacted-resources-samples"} |
@@ -923,22 +921,21 @@ This register lists 764 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
-| November 15, 2026 | [Azure Retail Prices API](#azure-retail-prices-api) | Retired: no workbook page cites it (Nov 15, 2026) |
 | November 15, 2026 | 3 sources | Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026) |
-| November 13, 2026 | 2 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
+| November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |
 | November 13, 2026 | 4 sources | Added: cited in the Azure Security guide and training labs |
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
 | November 12, 2026 | 22 sources | More slide wording links here |
-| November 12, 2026 | 172 sources | Added: cited on the narrated deck slides |
+| November 12, 2026 | 171 sources | Added: cited on the narrated deck slides |
 | November 11, 2026 | 13 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft |
 | November 8, 2026 | 9 sources | Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote) |
 | November 6, 2026 | 12 sources | Added: cited in the External Partner Identity chapter and profile (WD-143) |
-| November 5, 2026 | 447 sources | Added: cited on the narrated deck slides |
+| November 5, 2026 | 446 sources | Added: cited on the narrated deck slides |
 | November 5, 2026 | 70 sources | Added: cited on the Start series and Book 00 slides |
 | November 5, 2026 | 11 sources | More slide wording links here |
 

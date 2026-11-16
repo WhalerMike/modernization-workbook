@@ -310,948 +310,943 @@ eight can run in parallel by workload.
 Which cloud?
 
 65
-00:04:04.180 --> 00:04:09.430
+00:04:04.180 --> 00:04:08.815
 Microsoft three sixty-five G C C pairs
-with commercial Azure, so a G C C agency's
+with commercial Azure, so a G C C
 
 66
-00:04:09.430 --> 00:04:14.680
-subscriptions are usually commercial,
+00:04:08.815 --> 00:04:14.030
+agency's subscriptions are commercial,
 and every service here is available.
 
 67
-00:04:14.680 --> 00:04:19.272
-G C C High and D O D pair with Azure
-Government, and Microsoft Learn's page,
+00:04:14.030 --> 00:04:17.267
+What matters is what to plan
+for, service by service.
 
 68
-00:04:19.272 --> 00:04:22.122
-Compare Azure Government and global Azure,
+00:04:17.267 --> 00:04:22.933
+Front Door classic retires on March
+thirty-first, 2027, and takes no new profiles,
 
 69
-00:04:22.122 --> 00:04:27.030
-says a service there has all its features
-unless the page lists a variation.
+00:04:22.933 --> 00:04:28.342
+and Premium is the tier for managed
+firewall rules and Private Link origins.
 
 70
-00:04:27.030 --> 00:04:28.080
-A few matter.
+00:04:28.342 --> 00:04:33.834
+Microsoft Learn limits Private Link to
+origin to regions with availability zones,
 
 71
-00:04:28.080 --> 00:04:32.884
-Front Door Standard and Premium are
-generally available in two U S Gov regions,
+00:04:33.834 --> 00:04:36.380
+so check the origin's region on the list.
 
 72
-00:04:32.884 --> 00:04:36.580
-and Private Link origins outside
-Virginia are unconfirmed.
+00:04:36.380 --> 00:04:39.671
+On Application Gateway,
+Learn's web application
 
 73
-00:04:36.580 --> 00:04:42.021
-On Application Gateway, Learn's web application
-firewall F A Q says sovereign clouds
+00:04:39.671 --> 00:04:42.880
+firewall F A Q says
+detection mode doesn't block.
 
 74
-00:04:42.021 --> 00:04:46.297
-have no bot protection rule sets
-and no geo-filtering custom rules,
+00:04:42.880 --> 00:04:48.137
+DDoS Network Protection is billed per plan
+and I P Protection per protected address,
 
 75
-00:04:46.297 --> 00:04:51.505
-so that Zero Trust test is recorded as
-skipped, not applicable, rather than failed.
+00:04:48.137 --> 00:04:51.892
+and simulations run only through
+Learn's approved partners.
 
 76
-00:04:51.505 --> 00:04:57.042
-Private DNS zone names differ, and
-Lighthouse has no pim for delegated access.
+00:04:51.892 --> 00:04:55.893
+Private link D N S uses one
+central zone per service.
 
 77
-00:04:57.042 --> 00:05:01.270
-Whatever the cloud, sign in to
-the one the subscription lives in.
+00:04:55.893 --> 00:04:59.710
+Sign in to commercial Azure,
+where the subscriptions live.
 
 78
-00:05:05.020 --> 00:05:09.125
+00:05:03.460 --> 00:05:07.565
 An agency's H R platform may run
 on Oracle Cloud Infrastructure,
 
 79
-00:05:09.125 --> 00:05:12.520
+00:05:07.565 --> 00:05:10.960
 so the guide lines up the
 equivalents on four clouds.
 
 80
-00:05:12.520 --> 00:05:17.094
+00:05:10.960 --> 00:05:15.534
 For network-layer DDoS, Azure's
 infrastructure protection is free,
 
 81
-00:05:17.094 --> 00:05:21.501
+00:05:15.534 --> 00:05:19.941
 with Network or I P Protection on
 top; A W S has Shield Standard and
 
 82
-00:05:21.501 --> 00:05:26.407
+00:05:19.941 --> 00:05:24.847
 Shield Advanced; Google Cloud Armor
 is always on behind load balancers.
 
 83
-00:05:26.407 --> 00:05:32.722
+00:05:24.847 --> 00:05:31.162
 For the web application firewall: Azure
 W A F, A W S W A F, Cloud Armor policies,
 
 84
-00:05:32.722 --> 00:05:37.983
+00:05:31.162 --> 00:05:36.423
 and the O C I web application
 firewall, regional or at the edge.
 
 85
-00:05:37.983 --> 00:05:42.056
+00:05:36.423 --> 00:05:40.496
 For inspection, Azure Firewall
 Premium and the O C I Network
 
 86
-00:05:42.056 --> 00:05:46.295
+00:05:40.496 --> 00:05:44.735
 Firewall both offer intrusion
 detection and T L S inspection.
 
 87
-00:05:46.295 --> 00:05:50.013
+00:05:44.735 --> 00:05:48.453
 For private access to platform
 services: Private Link,
 
 88
-00:05:50.013 --> 00:05:54.145
+00:05:48.453 --> 00:05:52.585
 Google's Private Service Connect,
 and O C I private endpoints.
 
 89
-00:05:54.145 --> 00:05:59.709
+00:05:52.585 --> 00:05:58.149
 In the government clouds, A W S W A F
 in GovCloud offers only A W S managed
 
 90
-00:05:59.709 --> 00:06:05.730
+00:05:58.149 --> 00:06:04.170
 rule groups, and Oracle's government
 availability isn't yet specified.
 
 91
-00:06:09.480 --> 00:06:10.318
+00:06:07.920 --> 00:06:08.758
 Now, who.
 
 92
-00:06:10.318 --> 00:06:14.199
+00:06:08.758 --> 00:06:12.639
 Every role this work needs is
 eligible through pim, not standing,
 
 93
-00:06:14.199 --> 00:06:16.544
+00:06:12.639 --> 00:06:14.984
 as the Privileged Access guide sets up:
 
 94
-00:06:16.544 --> 00:06:19.474
+00:06:14.984 --> 00:06:17.914
 Network Contributor for
 the connectivity work,
 
 95
-00:06:19.474 --> 00:06:23.869
+00:06:17.914 --> 00:06:22.309
 Resource Policy Contributor for
 Azure Policy, Key Vault Administrator
 
 96
-00:06:23.869 --> 00:06:27.605
+00:06:22.309 --> 00:06:26.045
 for vault settings, and Security
 Admin for Defender for Cloud.
 
 97
-00:06:27.605 --> 00:06:31.085
+00:06:26.045 --> 00:06:29.525
 The guide's RACI follows Cloud
 Boundary and Landing Zone's
 
 98
-00:06:31.085 --> 00:06:34.493
+00:06:29.525 --> 00:06:32.933
 chapter on who owns the boundary,
 and it's design guidance.
 
 99
-00:06:34.493 --> 00:06:37.882
+00:06:32.933 --> 00:06:36.322
 The policy owner is accountable
 for the decision records,
 
 100
-00:06:37.882 --> 00:06:40.142
+00:06:36.322 --> 00:06:38.582
 the baseline and the evidence package.
 
 101
-00:06:40.142 --> 00:06:44.146
+00:06:38.582 --> 00:06:42.586
 The platform owner is accountable
 for the register, the DDoS plan,
 
 102
-00:06:44.146 --> 00:06:47.408
+00:06:42.586 --> 00:06:45.848
 the web application firewall
 and firewall policies,
 
 103
-00:06:47.408 --> 00:06:50.967
+00:06:45.848 --> 00:06:49.407
 and the private DNS zones, with
 the operator doing the work.
 
 104
-00:06:50.967 --> 00:06:55.005
+00:06:49.407 --> 00:06:53.445
 The security monitor owns alert
 response and DDoS incidents.
 
 105
-00:06:55.005 --> 00:06:57.799
+00:06:53.445 --> 00:06:56.239
 Application owners answer
 for their origins,
 
 106
-00:06:57.799 --> 00:07:02.270
+00:06:56.239 --> 00:07:00.710
 certificates and vault contents,
 and the assessor decides closure.
 
 107
-00:07:06.020 --> 00:07:08.770
+00:07:04.460 --> 00:07:07.210
 Now how, starting with steps one and two.
 
 108
-00:07:08.770 --> 00:07:12.795
+00:07:07.210 --> 00:07:11.235
 Step one adds the security
 settings the landing zone needs.
 
 109
-00:07:12.795 --> 00:07:17.683
+00:07:11.235 --> 00:07:16.123
 Protect the hierarchy, as Learn's page,
 Protect your resource hierarchy, shows:
 
 110
-00:07:17.683 --> 00:07:21.043
+00:07:16.123 --> 00:07:19.483
 require authorization to
 create management groups
 
 111
-00:07:21.043 --> 00:07:23.945
+00:07:19.483 --> 00:07:22.385
 and send new subscriptions
 to a default group.
 
 112
-00:07:23.945 --> 00:07:28.851
+00:07:22.385 --> 00:07:27.291
 Assign the Microsoft cloud security
 benchmark and the fed-ramp initiative at the
 
 113
-00:07:28.851 --> 00:07:33.108
+00:07:27.291 --> 00:07:31.548
 intermediate root in do-not-enforce
 mode, which, per Learn's Azure Policy
 
 114
-00:07:33.108 --> 00:07:38.158
+00:07:31.548 --> 00:07:36.598
 assignment structure, evaluates compliance
 without enforcing; step nine enforces.
 
 115
-00:07:38.158 --> 00:07:41.506
+00:07:36.598 --> 00:07:39.946
 Send every platform resource's
 logs to the workspace,
 
 116
-00:07:41.506 --> 00:07:43.408
+00:07:39.946 --> 00:07:41.848
 and turn on Defender for Cloud.
 
 117
-00:07:43.408 --> 00:07:47.513
+00:07:41.848 --> 00:07:45.953
 Step two builds what nothing else
 can be proved complete without:
 
 118
-00:07:47.513 --> 00:07:48.958
+00:07:45.953 --> 00:07:47.398
 a list of what's exposed.
 
 119
-00:07:48.958 --> 00:07:52.136
+00:07:47.398 --> 00:07:50.576
 Learn recommends an
 inventory of every public I P
 
 120
-00:07:52.136 --> 00:07:55.470
+00:07:50.576 --> 00:07:53.910
 and its protection status,
 kept with Resource Graph.
 
 121
-00:07:55.470 --> 00:07:59.326
+00:07:53.910 --> 00:07:57.766
 The register adds the owner, the
 D N S names and certificates,
 
 122
-00:07:59.326 --> 00:08:02.945
+00:07:57.766 --> 00:08:01.385
 and whether a web application
 firewall covers each one.
 
 123
-00:08:02.945 --> 00:08:07.010
+00:08:01.385 --> 00:08:05.450
 It's a map of the attack surface,
 so keep it inside the boundary.
 
 124
-00:08:10.760 --> 00:08:13.085
+00:08:09.200 --> 00:08:11.525
 Step three is DDoS protection.
 
 125
-00:08:13.085 --> 00:08:17.635
+00:08:11.525 --> 00:08:16.075
 Every public I P in Azure gets
 infrastructure protection at no cost.
 
 126
-00:08:17.635 --> 00:08:22.719
+00:08:16.075 --> 00:08:21.159
 Learn's tier comparison says Network
 Protection and I P Protection add adaptive
 
 127
-00:08:22.719 --> 00:08:26.817
+00:08:21.159 --> 00:08:25.257
 tuning, attack analytics, metrics,
 alerts and mitigation reports;
 
 128
-00:08:26.817 --> 00:08:31.522
+00:08:25.257 --> 00:08:29.962
 Network Protection also adds the Rapid
 Response team and cost protection.
 
 129
-00:08:31.522 --> 00:08:35.497
+00:08:29.962 --> 00:08:33.937
 Choose Network Protection when
 many public I Ps need coverage,
 
 130
-00:08:35.497 --> 00:08:39.472
+00:08:33.937 --> 00:08:37.912
 and I P Protection for a few critical
 ones, and record the choice.
 
 131
-00:08:39.472 --> 00:08:43.621
+00:08:37.912 --> 00:08:42.061
 Both work at layers three and
 four, so layer seven needs the web
 
 132
-00:08:43.621 --> 00:08:48.259
+00:08:42.061 --> 00:08:46.699
 application firewall, and neither
 covers a public I P on a NAT gateway.
 
 133
-00:08:48.259 --> 00:08:52.891
+00:08:46.699 --> 00:08:51.331
 Create one plan, link each virtual
 network, turn on diagnostic logs,
 
 134
-00:08:52.891 --> 00:08:57.522
+00:08:51.331 --> 00:08:55.962
 and alert on the metric that reads
 one while an attack is mitigated.
 
 135
-00:08:57.522 --> 00:08:59.797
+00:08:55.962 --> 00:08:58.237
 Then hold it with policy in step nine.
 
 136
-00:08:59.797 --> 00:09:05.624
+00:08:58.237 --> 00:09:04.064
 Exercise the response: Learn allows simulations
 only through approved partners, only
 
 137
-00:09:05.624 --> 00:09:11.250
+00:09:04.064 --> 00:09:09.690
 against your own protected I Ps, and one
 partner, Red Button, is public cloud only.
 
 138
-00:09:15.000 --> 00:09:17.620
+00:09:13.440 --> 00:09:16.060
 Step four is the web application firewall,
 
 139
-00:09:17.620 --> 00:09:21.287
+00:09:16.060 --> 00:09:19.727
 on Front Door globally or
 Application Gateway regionally.
 
 140
-00:09:21.287 --> 00:09:26.101
+00:09:19.727 --> 00:09:24.541
 Learn's Zero Trust recommendations for
 Application Gateway say it plainly:
 
 141
-00:09:26.101 --> 00:09:30.838
+00:09:24.541 --> 00:09:29.278
 detection mode logs an attack and
 forwards it; only prevention mode blocks.
 
 142
-00:09:30.838 --> 00:09:34.617
+00:09:29.278 --> 00:09:33.057
 The checks cover prevention
 mode, request body inspection,
 
 143
-00:09:34.617 --> 00:09:39.399
+00:09:33.057 --> 00:09:37.839
 the default rule set, bot protection,
 rate limiting and diagnostic logging.
 
 144
-00:09:39.399 --> 00:09:42.437
+00:09:37.839 --> 00:09:40.877
 Learn recommends the
 latest default rule set,
 
 145
-00:09:42.437 --> 00:09:46.512
+00:09:40.877 --> 00:09:44.952
 two point two when read, validated
 in log mode before blocking.
 
 146
-00:09:46.512 --> 00:09:50.976
+00:09:44.952 --> 00:09:49.416
 So create the policy in detection
 mode with request body inspection on,
 
 147
-00:09:50.976 --> 00:09:53.624
+00:09:49.416 --> 00:09:52.064
 naming the rule set version you validated.
 
 148
-00:09:53.624 --> 00:09:56.927
+00:09:52.064 --> 00:09:55.367
 Add bot protection, which
 is commercial Azure only,
 
 149
-00:09:56.927 --> 00:09:59.050
+00:09:55.367 --> 00:09:57.490
 and a rate limit on the login path.
 
 150
-00:09:59.050 --> 00:10:03.517
+00:09:57.490 --> 00:10:01.957
 Attach the policy, send the firewall
 log to the workspace, and tune for at
 
 151
-00:10:03.517 --> 00:10:08.212
+00:10:01.957 --> 00:10:06.652
 least a full business cycle, scoping
 every exception to the narrowest rule.
 
 152
-00:10:08.212 --> 00:10:09.826
+00:10:06.652 --> 00:10:08.266
 Then switch to prevention.
 
 153
-00:10:09.826 --> 00:10:12.162
+00:10:08.266 --> 00:10:10.950
 Front Door's managed rules need Premium.
 
 154
-00:10:12.162 --> 00:10:15.370
-In Azure Government, leave
-out the bot rule set.
-
-155
-00:10:19.120 --> 00:10:21.320
+00:10:14.700 --> 00:10:16.900
 Step five finishes the ingress.
 
-156
-00:10:21.320 --> 00:10:26.567
+155
+00:10:16.900 --> 00:10:22.147
 Front Door is global, at the Microsoft
 edge with built-in network-layer DDoS
 
-157
-00:10:26.567 --> 00:10:31.645
+156
+00:10:22.147 --> 00:10:27.225
 protection; Application Gateway is
 regional, in the agency's own network.
 
-158
-00:10:31.645 --> 00:10:34.207
+157
+00:10:27.225 --> 00:10:29.787
 Either works with the
 firewall from step four.
 
-159
-00:10:34.207 --> 00:10:38.101
+158
+00:10:29.787 --> 00:10:33.681
 What matters is that nothing can
 reach the origin around the edge,
 
-160
-00:10:38.101 --> 00:10:41.707
+159
+00:10:33.681 --> 00:10:37.287
 or an attacker skips both the
 firewall and the DDoS controls.
 
-161
-00:10:41.707 --> 00:10:46.415
+160
+00:10:37.287 --> 00:10:41.995
 Use Private Link where the origin
 supports it: Front Door Premium reaches
 
-162
-00:10:46.415 --> 00:10:51.045
+161
+00:10:41.995 --> 00:10:46.625
 App Service, Blob Storage, internal
 load balancers and others privately.
 
-163
-00:10:51.045 --> 00:10:55.413
+162
+00:10:46.625 --> 00:10:50.993
 Where it doesn't, Learn's page, Secure
 traffic to Azure Front Door origins,
 
-164
-00:10:55.413 --> 00:10:59.337
+163
+00:10:50.993 --> 00:10:54.917
 says to use the service tag and
 the Front Door I D header together,
 
-165
-00:10:59.337 --> 00:11:03.483
+164
+00:10:54.917 --> 00:10:59.063
 because the tag's addresses are
 shared by every Front Door customer.
 
-166
-00:11:03.483 --> 00:11:07.146
+165
+00:10:59.063 --> 00:11:02.726
 Set T L S one point two
 or one point three only.
 
-167
-00:11:07.146 --> 00:11:10.923
+166
+00:11:02.726 --> 00:11:06.503
 Build health probes and two
 origins in different regions,
 
-168
-00:11:10.923 --> 00:11:12.970
+167
+00:11:06.503 --> 00:11:08.550
 then stop one to prove failover.
 
-169
-00:11:12.970 --> 00:11:18.430
+168
+00:11:08.550 --> 00:11:14.010
 And migrate any classic Front Door
 before March thirty-first, 2027.
 
-170
-00:11:22.180 --> 00:11:24.280
+169
+00:11:17.760 --> 00:11:19.860
 Step six inspects what leaves.
 
-171
-00:11:24.280 --> 00:11:28.296
+170
+00:11:19.860 --> 00:11:23.876
 Network and Transport owns the
 agency's edge; inside Azure,
 
-172
-00:11:28.296 --> 00:11:33.317
+171
+00:11:23.876 --> 00:11:28.897
 Azure Firewall is the inspection point
 for egress and east-west traffic.
 
-173
-00:11:33.317 --> 00:11:38.458
+172
+00:11:28.897 --> 00:11:34.038
 Learn's Zero Trust recommendations for
 Azure Firewall check that outbound traffic
 
-174
-00:11:38.458 --> 00:11:43.084
+173
+00:11:34.038 --> 00:11:38.664
 routes through it, that threat intelligence
 and intrusion detection are in
 
-175
-00:11:43.084 --> 00:11:47.343
+174
+00:11:38.664 --> 00:11:42.923
 alert and deny mode, that outbound T L
 S is inspected, and that logs are on.
 
-176
-00:11:47.343 --> 00:11:50.840
+175
+00:11:42.923 --> 00:11:46.420
 Threat intelligence deny
 needs Standard or Premium;
 
-177
-00:11:50.840 --> 00:11:54.417
+176
+00:11:46.420 --> 00:11:49.997
 intrusion detection and T L
 S inspection need Premium.
 
-178
-00:11:54.417 --> 00:11:56.897
+177
+00:11:49.997 --> 00:11:52.477
 Create a Premium policy in alert mode,
 
-179
-00:11:56.897 --> 00:12:02.256
+178
+00:11:52.477 --> 00:11:57.836
 add a default route from each workload
 subnet to the firewall, and log everything.
 
-180
-00:12:02.256 --> 00:12:06.391
+179
+00:11:57.836 --> 00:12:01.971
 After two weeks of reading the
 alerts, move to deny through a draft,
 
-181
-00:12:06.391 --> 00:12:09.455
+180
+00:12:01.971 --> 00:12:05.035
 so every change lands at
 once and can be reviewed.
 
-182
-00:12:09.455 --> 00:12:13.735
+181
+00:12:05.035 --> 00:12:09.315
 Learn warns that deploying a draft
 replaces the whole applied policy,
 
-183
-00:12:13.735 --> 00:12:16.317
+182
+00:12:09.315 --> 00:12:11.897
 so live edits made after
 the draft are lost.
 
-184
-00:12:16.317 --> 00:12:20.476
+183
+00:12:11.897 --> 00:12:16.056
 T L S inspection needs a trusted
 certificate authority in Key Vault,
 
-185
-00:12:20.476 --> 00:12:22.770
+184
+00:12:16.056 --> 00:12:18.350
 and spokes talk through the hub.
 
-186
-00:12:26.520 --> 00:12:31.432
+185
+00:12:22.100 --> 00:12:27.012
 Step seven gives platform services a
 private address in the agency's network.
 
-187
-00:12:31.432 --> 00:12:35.858
+186
+00:12:27.012 --> 00:12:31.438
 A private endpoint does that; D N
 S decides whether clients use it.
 
-188
-00:12:35.858 --> 00:12:41.235
+187
+00:12:31.438 --> 00:12:36.815
 Learn's Key Vault Private Link page is
 clear that name resolution is where private
 
-189
-00:12:41.235 --> 00:12:45.664
+188
+00:12:36.815 --> 00:12:41.244
 endpoints fail: the zone must exist,
 be linked to the virtual network
 
-190
-00:12:45.664 --> 00:12:49.619
+189
+00:12:41.244 --> 00:12:45.199
 and hold the record, and on-premises
 D N S must forward to Azure.
 
-191
-00:12:49.619 --> 00:12:52.783
+190
+00:12:45.199 --> 00:12:48.363
 So create each private
 link zone once, centrally,
 
-192
-00:12:52.783 --> 00:12:56.420
+191
+00:12:48.363 --> 00:12:52.000
 in the connectivity subscription,
 and link it to the hub.
 
-193
-00:12:56.420 --> 00:12:59.011
+192
+00:12:52.000 --> 00:12:54.591
 Create the private endpoint
 with a zone group,
 
-194
-00:12:59.011 --> 00:13:02.420
+193
+00:12:54.591 --> 00:12:58.000
 which registers the record and
 removes it with the endpoint.
 
-195
-00:13:02.420 --> 00:13:06.320
+194
+00:12:58.000 --> 00:13:01.900
 At scale, the Cloud Adoption
 Framework's pattern lets policy do it:
 
-196
-00:13:06.320 --> 00:13:10.726
+195
+00:13:01.900 --> 00:13:06.306
 deny private link zones and public
 endpoints in workload subscriptions,
 
-197
-00:13:10.726 --> 00:13:13.182
+196
+00:13:06.306 --> 00:13:08.762
 and deploy the zone group automatically.
 
-198
-00:13:13.182 --> 00:13:17.732
+197
+00:13:08.762 --> 00:13:13.660
 Then turn public access off, and add
 conditional forwarders on premises.
 
-199
-00:13:17.732 --> 00:13:22.830
-In Azure Government the zone names
-differ, so policy needs those names.
-
-200
-00:13:26.580 --> 00:13:30.180
+198
+00:13:17.410 --> 00:13:21.010
 Step eight covers the vault
 that managed identities read.
 
-201
-00:13:30.180 --> 00:13:33.777
+199
+00:13:21.010 --> 00:13:24.607
 The identities themselves are
 in the Service Accounts guide:
 
-202
-00:13:33.777 --> 00:13:37.796
+200
+00:13:24.607 --> 00:13:28.626
 a workload that moves to Azure gets
 a user-assigned managed identity,
 
-203
-00:13:37.796 --> 00:13:41.393
+201
+00:13:28.626 --> 00:13:32.223
 and continuous delivery uses
 workload identity federation.
 
-204
-00:13:41.393 --> 00:13:46.857
+202
+00:13:32.223 --> 00:13:37.687
 Learn's page, Secure your Azure Key Vault,
 recommends one vault per application,
 
-205
-00:13:46.857 --> 00:13:51.732
+203
+00:13:37.687 --> 00:13:42.562
 region and environment; role-based
 access, not legacy access policies;
 
-206
-00:13:51.732 --> 00:13:56.775
+204
+00:13:42.562 --> 00:13:47.605
 pim for administrators; soft delete
 and purge protection; autorotation;
 
-207
-00:13:56.775 --> 00:14:01.230
+205
+00:13:47.605 --> 00:13:52.060
 audit logging and alerts; private
 endpoints; and tested backups.
 
-208
-00:14:01.230 --> 00:14:05.279
+206
+00:13:52.060 --> 00:13:56.109
 So create each vault on role-based
 access with purge protection,
 
-209
-00:14:05.279 --> 00:14:06.730
+207
+00:13:56.109 --> 00:13:57.560
 and close its firewall.
 
-210
-00:14:06.730 --> 00:14:11.455
+208
+00:13:57.560 --> 00:14:02.285
 Give the workload's identity a data-plane
 role at the vault, not the subscription.
 
-211
-00:14:11.455 --> 00:14:16.343
+209
+00:14:02.285 --> 00:14:07.173
 Rotate keys by a policy file, and
 send audit events to the workspace.
 
-212
-00:14:16.343 --> 00:14:21.256
+210
+00:14:07.173 --> 00:14:12.086
 If a key is suspected compromised,
 rotate and migrate its dependents first;
 
-213
-00:14:21.256 --> 00:14:24.140
+211
+00:14:12.086 --> 00:14:14.970
 disabling it first takes them offline.
 
-214
-00:14:27.890 --> 00:14:31.289
+212
+00:14:18.720 --> 00:14:22.119
 Step nine turns steps
 three to eight into policy,
 
-215
-00:14:31.289 --> 00:14:36.302
+213
+00:14:22.119 --> 00:14:27.132
 because drift is the threat, as
 Governance, Drift and Evidence explains.
 
-216
-00:14:36.302 --> 00:14:41.333
+214
+00:14:27.132 --> 00:14:32.163
 Gather the security definitions into
 one initiative at the intermediate root:
 
-217
-00:14:41.333 --> 00:14:44.457
+215
+00:14:32.163 --> 00:14:35.287
 DDoS protection on virtual
 networks and its logs,
 
-218
-00:14:44.457 --> 00:14:48.496
+216
+00:14:35.287 --> 00:14:39.326
 the web application firewall
 enabled and in the specified mode,
 
-219
-00:14:48.496 --> 00:14:52.916
+217
+00:14:39.326 --> 00:14:43.746
 the private D N S and public-access
 policies, and the Key Vault policies.
 
-220
-00:14:52.916 --> 00:14:55.952
+218
+00:14:43.746 --> 00:14:46.782
 Look up each definition's
 name in the cloud you're in,
 
-221
-00:14:55.952 --> 00:14:57.977
+219
+00:14:46.782 --> 00:14:48.807
 because built-ins differ by cloud.
 
-222
-00:14:57.977 --> 00:14:59.949
+220
+00:14:48.807 --> 00:14:50.779
 Assign it in do-not-enforce mode,
 
-223
-00:14:59.949 --> 00:15:03.589
+221
+00:14:50.779 --> 00:14:54.419
 review compliance with the
 owners, then switch to default.
 
-224
-00:15:03.589 --> 00:15:06.753
+222
+00:14:54.419 --> 00:14:57.583
 Run a remediation task
 for what already exists.
 
-225
-00:15:06.753 --> 00:15:09.803
+223
+00:14:57.583 --> 00:15:00.633
 Every exemption gets a
 category and an expiry.
 
-226
-00:15:09.803 --> 00:15:14.722
+224
+00:15:00.633 --> 00:15:05.552
 Learn's Azure Policy exemption structure
 says mitigated means the intent is met
 
-227
-00:15:14.722 --> 00:15:18.541
+225
+00:15:05.552 --> 00:15:09.371
 another way, waiver means
 non-compliance is accepted for a time,
 
-228
-00:15:18.541 --> 00:15:22.727
+226
+00:15:09.371 --> 00:15:13.557
 and an expired exemption is kept for
 the record but no longer honored.
 
-229
-00:15:22.727 --> 00:15:25.280
+227
+00:15:13.557 --> 00:15:16.110
 Export compliance every month.
 
-230
-00:15:29.030 --> 00:15:33.330
+228
+00:15:19.860 --> 00:15:24.160
 Step ten puts every owner,
 cadence and test in one place.
 
-231
-00:15:33.330 --> 00:15:38.682
+229
+00:15:24.160 --> 00:15:29.512
 The cadence is design guidance: weekly,
 rerun the exposure register; monthly,
 
-232
-00:15:38.682 --> 00:15:44.118
+230
+00:15:29.512 --> 00:15:34.948
 the policy compliance export, exemptions
 due, and false positives; quarterly,
 
-233
-00:15:44.118 --> 00:15:49.470
+231
+00:15:34.948 --> 00:15:40.300
 DDoS coverage and cost, firewall rules,
 vault access and the rule-set version;
 
-234
-00:15:49.470 --> 00:15:53.207
+232
+00:15:40.300 --> 00:15:44.037
 twice a year, a Front Door
 failover and a vault restore;
 
-235
-00:15:53.207 --> 00:15:57.030
+233
+00:15:44.037 --> 00:15:47.860
 and yearly, a DDoS simulation
 with an approved partner.
 
-236
-00:15:57.030 --> 00:16:00.618
+234
+00:15:47.860 --> 00:15:51.448
 In a DDoS attack, the alert
 pages the security monitor,
 
-237
-00:16:00.618 --> 00:16:05.592
+235
+00:15:51.448 --> 00:15:56.422
 and under Network Protection a severity
 A request goes to Rapid Response.
 
-238
-00:16:05.592 --> 00:16:09.754
+236
+00:15:56.422 --> 00:16:00.584
 The metrics measure protected
 coverage, not whether a setting exists.
 
-239
-00:16:09.754 --> 00:16:14.517
+237
+00:16:00.584 --> 00:16:05.347
 And each step supports controls in
 NIST special publication eight hundred
 
-240
-00:16:14.517 --> 00:16:18.448
+238
+00:16:05.347 --> 00:16:09.278
 fifty-three, such as denial-of-service
 and boundary protection,
 
-241
-00:16:18.448 --> 00:16:22.605
+239
+00:16:09.278 --> 00:16:13.435
 with the fed-ramp twenty X key
 security indicators as a vocabulary.
 
-242
-00:16:22.605 --> 00:16:26.590
+240
+00:16:13.435 --> 00:16:17.420
 The steps support those
 controls; the assessor decides.
 
-243
-00:16:30.340 --> 00:16:32.203
+241
+00:16:21.170 --> 00:16:23.033
 To close, the dangers.
 
-244
-00:16:32.203 --> 00:16:35.199
+242
+00:16:23.033 --> 00:16:26.029
 A web application firewall
 left in detection mode,
 
-245
-00:16:35.199 --> 00:16:37.553
+243
+00:16:26.029 --> 00:16:28.383
 logging attacks that reach the backend.
 
-246
-00:16:37.553 --> 00:16:39.912
+244
+00:16:28.383 --> 00:16:30.742
 An origin reachable around the edge,
 
-247
-00:16:39.912 --> 00:16:44.316
+245
+00:16:30.742 --> 00:16:35.146
 or protected only by a service tag
 every Front Door customer shares.
 
-248
-00:16:44.316 --> 00:16:46.315
+246
+00:16:35.146 --> 00:16:37.145
 A public I P nobody knows about.
 
-249
-00:16:46.315 --> 00:16:49.503
+247
+00:16:37.145 --> 00:16:40.333
 A firewall draft deployed
 over newer changes.
 
-250
-00:16:49.503 --> 00:16:52.440
-Commercial features assumed
-in Azure Government.
+248
+00:16:40.333 --> 00:16:44.274
+Private D N S zones scattered
+in workload subscriptions,
 
-251
-00:16:52.440 --> 00:16:57.227
+249
+00:16:44.274 --> 00:16:46.707
+so resolution fails or goes public.
+
+250
+00:16:46.707 --> 00:16:51.494
 And disabling a key to contain a compromise,
 which takes its dependents offline.
 
-252
-00:16:57.227 --> 00:16:59.065
+251
+00:16:51.494 --> 00:16:53.332
 Each has its guard in the steps.
 
+252
+00:16:53.332 --> 00:16:58.357
+The guide is plain about what it couldn't
+verify: Azure Firewall Premium's regions,
+
 253
-00:16:59.065 --> 00:17:01.853
-The guide is plain about
-what it couldn't verify:
+00:16:58.357 --> 00:17:02.782
+which Learn leaves to the products-by-region
+page; built-in policy names,
 
 254
-00:17:01.853 --> 00:17:06.427
-Front Door and its Private Link origins
-region by region in Azure Government,
+00:17:02.782 --> 00:17:05.557
+which change version;
+and, on the other clouds,
 
 255
-00:17:06.427 --> 00:17:09.357
-Front Door's firewall
-limits in sovereign clouds,
+00:17:05.557 --> 00:17:10.807
+Shield Advanced in GovCloud and Oracle's
+firewall services in its Government Cloud.
 
 256
-00:17:09.357 --> 00:17:13.503
-and which DDoS tiers and simulation
-partners serve Azure Government.
-
-257
-00:17:13.503 --> 00:17:15.602
+00:17:10.807 --> 00:17:12.908
 Nothing was run in a subscription.
 
-258
-00:17:15.602 --> 00:17:19.140
+257
+00:17:12.908 --> 00:17:16.446
 Remember that the guide is a draft
 awaiting the editor's review.
 
-259
-00:17:19.140 --> 00:17:23.090
+258
+00:17:16.446 --> 00:17:20.395
 Its developer workbook with labs
 and its training path are planned.
 
-260
-00:17:23.090 --> 00:17:23.910
+259
+00:17:20.395 --> 00:17:21.220
 Thank you.

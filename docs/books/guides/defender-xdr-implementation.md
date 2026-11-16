@@ -55,7 +55,7 @@ The books already own most of this subject; this guide builds what they decide. 
 | Piece | State |
 |---|---|
 | This guide | Draft, November 11, 2026 |
-| Narrated deck and video | Deck built, November 13, 2026: 16 narrated slides, about 15 minutes, with captions; the video is planned |
+| Narrated deck and video | Deck built, November 13, 2026: 16 narrated slides, about 17 minutes, with captions; the video is on the [Presentations](../../presentations/index.md#guide-defender-xdr) page, and each training module has its own |
 | Developer workbook with Lab 1 on fixtures and Lab 2 in a test tenant | Planned; until it exists, the training path's labs run this guide's Validate commands in a test tenant |
 | Training path | Draft, November 13, 2026: [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md), five modules |
 

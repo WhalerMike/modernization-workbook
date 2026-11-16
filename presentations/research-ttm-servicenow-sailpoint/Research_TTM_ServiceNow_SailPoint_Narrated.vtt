@@ -668,117 +668,112 @@ Federal availability is
 where you need the most care.
 
 140
-00:08:27.267 --> 00:08:32.626
+00:08:27.267 --> 00:08:33.330
 For a Microsoft 365 GCC tenant, the
-worldwide Graph endpoints apply,
+worldwide Graph endpoints apply.
 
 141
-00:08:32.626 --> 00:08:37.218
-and SailPoint documents endpoint
-overrides for GCC High.
-
-142
-00:08:37.218 --> 00:08:41.449
+00:08:33.330 --> 00:08:37.327
 ServiceNow's Entra spoke fits
 GCC through its default endpoint,
 
-143
-00:08:41.449 --> 00:08:46.718
-but its page doesn't cover GCC High, and
-it needs an Integration Hub subscription.
+142
+00:08:37.327 --> 00:08:40.192
+and it needs an Integration
+Hub subscription.
 
-144
-00:08:46.718 --> 00:08:51.367
+143
+00:08:40.192 --> 00:08:44.842
 SailPoint's ServiceNow apps aren't
 confirmed in ServiceNow's government Store.
 
-145
-00:08:51.367 --> 00:08:52.955
+144
+00:08:44.842 --> 00:08:46.429
 Then three cautions.
 
-146
-00:08:52.955 --> 00:08:56.722
+145
+00:08:46.429 --> 00:08:50.197
 SailPoint's cloud connectors call
 Graph from SailPoint's cloud,
 
-147
-00:08:56.722 --> 00:09:00.632
+146
+00:08:50.197 --> 00:08:54.107
 and only Active Directory runs
 through its on-premises appliance,
 
-148
-00:09:00.632 --> 00:09:03.617
+147
+00:08:54.107 --> 00:08:57.092
 so record which actions run
 from the vendor's cloud.
 
-149
-00:09:03.617 --> 00:09:08.617
+148
+00:08:57.092 --> 00:09:02.092
 A vendor's MFA feature isn't a help
 desk reset with identity proofing.
 
-150
-00:09:08.617 --> 00:09:12.880
+149
+00:09:02.092 --> 00:09:06.355
 And confirm what's in the FedRAMP
 environment before relying on any of it.
 
-151
-00:09:12.880 --> 00:09:14.460
+150
+00:09:06.355 --> 00:09:07.930
 So, what's next?
 
-152
-00:09:18.210 --> 00:09:21.302
+151
+00:09:11.680 --> 00:09:14.772
 To move this example from
 under review to proved,
 
-153
-00:09:21.302 --> 00:09:25.398
+152
+00:09:14.772 --> 00:09:18.868
 build the loop in a lab with a test
 tenant, and record the evidence.
 
-154
-00:09:25.398 --> 00:09:28.594
+153
+00:09:18.868 --> 00:09:22.064
 Start by confirming what the
 vendors haven't said publicly,
 
-155
-00:09:28.594 --> 00:09:33.160
+154
+00:09:22.064 --> 00:09:26.630
 like feature parity in the FedRAMP environment
 and the apps in the government Store.
 
-156
-00:09:33.160 --> 00:09:38.241
+155
+00:09:26.630 --> 00:09:31.711
 The decisions are the four gaps restated:
 what closes a record, one approver system
 
-157
-00:09:38.241 --> 00:09:43.172
+156
+00:09:31.711 --> 00:09:36.642
 per authority class, how change records
 get raised, and one writer per attribute.
 
-158
-00:09:43.172 --> 00:09:46.641
+157
+00:09:36.642 --> 00:09:40.111
 And remember, this is an
 example, not an endorsement;
 
-159
-00:09:46.641 --> 00:09:49.284
+158
+00:09:40.111 --> 00:09:42.754
 other products can fill the same slots.
 
-160
-00:09:49.284 --> 00:09:53.881
+159
+00:09:42.754 --> 00:09:47.351
 For the design itself, read the
 vendor-neutral Appendix B of Governance,
 
-161
-00:09:53.881 --> 00:09:56.842
+160
+00:09:47.351 --> 00:09:50.312
 Drift and Evidence, or
 watch its narrated deck,
 
-162
-00:09:56.842 --> 00:10:01.672
+161
+00:09:50.312 --> 00:09:55.142
 and then the draft on keeping identity
 correct after HR becomes the source.
 
-163
-00:10:01.672 --> 00:10:02.850
+162
+00:09:55.142 --> 00:09:56.320
 Thanks for listening.

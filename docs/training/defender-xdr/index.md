@@ -23,7 +23,7 @@ last-reviewed: 2026-11-13
 
 A Defender license is not a defended endpoint. The sensor has to be on every device and healthy, the prevention settings have to be enforced and not just configured, and every alert has to end in a decision someone can show. This learning path teaches you to build and run Microsoft Defender XDR that way on Windows clients and Windows Server, and to produce the evidence an assessor reads. You work through the ten gates of [Defender XDR Engineering & Operations: An Implementation Guide](../../books/guides/defender-xdr-implementation.md) in five modules.
 
-**Watch first.** The guide's narrated deck, about 15 minutes with captions, covers the ten gates in one sitting: [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Defender_XDR_Narrated), or find it on the [Presentations](../../presentations/index.md#guide-defender-xdr) page. Each module also has its own narrated deck, linked from the module's page.
+**Watch first.** The guide's narrated deck, about 17 minutes with captions, covers the ten gates in one sitting: [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Defender_XDR_Narrated), or find it on the [Presentations](../../presentations/index.md#guide-defender-xdr) page. Each module also has its own narrated deck, linked from the module's page.
 
 Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), it is a short series of modules, each built on the one before. The modules don't repeat the guide or the books it links ([Security Operations](../../books/b12-security-operations/index.md) and [Devices](../../books/b05-devices/index.md)). They tell you what to read, in what order, what to run, and what to check you understood.
 

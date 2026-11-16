@@ -247,929 +247,824 @@ That matters to any DNS server on
 EC2 that forwards to VPC plus two.
 
 53
-00:03:34.157 --> 00:03:39.556
-Route 53 Global Resolver is a different
-thing, an internet-reachable resolver for
+00:03:34.157 --> 00:03:38.833
+Route 53 Global Resolver is a
+different thing, an internet-reachable
 
 54
-00:03:39.556 --> 00:03:45.390
-branches and on-premises sites, listed in
-30 commercial Regions and not in GovCloud.
+00:03:38.833 --> 00:03:44.430
+resolver for branches and on-premises
+sites, listed in 30 commercial Regions.
 
 55
-00:03:49.140 --> 00:03:53.452
+00:03:48.180 --> 00:03:52.492
 Hybrid resolution in AWS runs
 through two kinds of endpoint.
 
 56
-00:03:53.452 --> 00:03:57.479
+00:03:52.492 --> 00:03:56.519
 An inbound endpoint lets outside
 resolvers forward queries
 
 57
-00:03:57.479 --> 00:04:01.427
+00:03:56.519 --> 00:04:00.467
 into a VPC and get the answers
 it sees, private zones included.
 
 58
-00:04:01.427 --> 00:04:05.366
+00:04:00.467 --> 00:04:04.406
 It has at least two addresses,
 in different Availability Zones.
 
 59
-00:04:05.366 --> 00:04:09.722
+00:04:04.406 --> 00:04:08.762
 Each address handles up to
 10,000 UDP queries per second,
 
 60
-00:04:09.722 --> 00:04:13.227
+00:04:08.762 --> 00:04:12.267
 but as few as 1,500 under
 connection tracking.
 
 61
-00:04:13.227 --> 00:04:17.446
+00:04:12.267 --> 00:04:16.486
 It speaks plain DNS, DNS over HTTPS,
 
 62
-00:04:17.446 --> 00:04:24.077
+00:04:16.486 --> 00:04:23.117
 and a FIPS 140-2 version of
 DNS over HTTPS, inbound only.
 
 63
-00:04:24.077 --> 00:04:29.415
+00:04:23.117 --> 00:04:28.455
 A second type, the delegation inbound
 endpoint, answers NS delegations.
 
 64
-00:04:29.415 --> 00:04:33.334
+00:04:28.455 --> 00:04:32.374
 An outbound endpoint goes the
 other way: it sends queries that
 
 65
-00:04:33.334 --> 00:04:37.253
+00:04:32.374 --> 00:04:36.293
 match a forwarding rule from the
 VPC to the agency's resolvers.
 
 66
-00:04:37.253 --> 00:04:44.678
+00:04:36.293 --> 00:04:43.718
 It speaks only plain DNS and DNS over
 HTTPS, so there's no FIPS option outbound.
 
 67
-00:04:44.678 --> 00:04:48.050
+00:04:43.718 --> 00:04:47.090
 And sharing a rule shares
 its outbound endpoint too.
 
 68
-00:04:51.800 --> 00:04:53.750
+00:04:50.840 --> 00:04:52.790
 Rules decide where queries go.
 
 69
-00:04:53.750 --> 00:04:57.487
+00:04:52.790 --> 00:04:56.527
 A forwarding rule names one
 domain and its target addresses.
 
 70
-00:04:57.487 --> 00:05:00.067
+00:04:56.527 --> 00:04:59.107
 The most specific matching rule wins,
 
 71
-00:05:00.067 --> 00:05:04.062
+00:04:59.107 --> 00:05:03.102
 and a rule overrides a private
 hosted zone of the same name.
 
 72
-00:05:04.062 --> 00:05:08.337
+00:05:03.102 --> 00:05:07.377
 A rule for the root, a single
 dot, forwards almost everything.
 
 73
-00:05:08.337 --> 00:05:12.109
+00:05:07.377 --> 00:05:11.149
 System rules carve a subdomain
 back out of a forwarding rule,
 
 74
-00:05:12.109 --> 00:05:16.787
+00:05:11.149 --> 00:05:15.827
 so it resolves locally, and delegation
 rules handle delegated subdomains.
 
 75
-00:05:16.787 --> 00:05:20.375
+00:05:15.827 --> 00:05:19.415
 Rules are shared through
 AWS Resource Access Manager.
 
 76
-00:05:20.375 --> 00:05:25.487
+00:05:19.415 --> 00:05:24.527
 The receiving account associates them with
 its VPCs but can't change or delete them.
 
 77
-00:05:25.487 --> 00:05:28.655
+00:05:24.527 --> 00:05:27.695
 Profiles go further,
 bundling zones, rules,
 
 78
-00:05:28.655 --> 00:05:33.362
+00:05:27.695 --> 00:05:32.402
 firewall rule groups and logging
 settings, one Profile per VPC.
 
 79
-00:05:33.362 --> 00:05:39.529
+00:05:32.402 --> 00:05:38.569
 Private hosted zones answer only inside
 associated VPCs, up to 300 per zone,
 
 80
-00:05:39.529 --> 00:05:45.350
+00:05:38.569 --> 00:05:44.390
 and an empty match returns NXDOMAIN,
 with no fallback to public DNS.
 
 81
-00:05:49.100 --> 00:05:53.938
+00:05:48.140 --> 00:05:52.978
 DNS Firewall applies rule groups
 of allow, alert and block rules.
 
 82
-00:05:53.938 --> 00:06:00.038
+00:05:52.978 --> 00:05:59.078
 It uses custom or AWS managed domain lists,
 and the managed lists can't be browsed.
 
 83
-00:06:00.038 --> 00:06:05.488
+00:05:59.078 --> 00:06:04.528
 The Advanced tier detects domain
 generation algorithms and DNS tunneling.
 
 84
-00:06:05.488 --> 00:06:10.237
+00:06:04.528 --> 00:06:09.277
 It filters only queries that pass
 through the VPC Resolver, including those
 
 85
-00:06:10.237 --> 00:06:15.363
+00:06:09.277 --> 00:06:14.403
 arriving through inbound endpoints, and by
 default it fails closed, with SERVFAIL.
 
 86
-00:06:15.363 --> 00:06:20.297
+00:06:14.403 --> 00:06:19.337
 Query logging records queries from
 the VPC, through the endpoints,
 
 87
-00:06:20.297 --> 00:06:24.424
+00:06:19.337 --> 00:06:23.464
 and firewall actions, to
 CloudWatch Logs, S3 or Firehose.
 
 88
-00:06:24.424 --> 00:06:29.725
+00:06:23.464 --> 00:06:28.765
 It logs only queries that reach the VPC
 Resolver, and not answers from its cache.
 
 89
-00:06:29.725 --> 00:06:35.500
+00:06:28.765 --> 00:06:34.540
 DNSSEC: the VPC Resolver can validate
 public signed names, enabled per VPC.
 
 90
-00:06:35.500 --> 00:06:38.700
+00:06:34.540 --> 00:06:37.740
 Route 53 signs public hosted zones only.
 
 91
-00:06:38.700 --> 00:06:42.008
+00:06:37.740 --> 00:06:41.048
 And the VPC Resolver
 returns no DNSSEC records,
 
 92
-00:06:42.008 --> 00:06:45.400
+00:06:41.048 --> 00:06:44.440
 so a resolver behind it
 can't validate for itself.
 
 93
-00:06:45.400 --> 00:06:50.090
+00:06:44.440 --> 00:06:49.130
 AWS warns that enabling validation
 could result in an outage.
 
 94
-00:06:53.840 --> 00:06:55.453
-What changes in GovCloud?
-
-95
-00:06:55.453 --> 00:07:00.914
-AWS's GovCloud page for Route 53 says
-public and private DNS work in GovCloud
-
-96
-00:07:00.914 --> 00:07:04.381
-US-West and US-East, the
-control plane is in US-West,
-
-97
-00:07:04.381 --> 00:07:10.015
-and public hosted zone queries are
-answered from within the FedRAMP boundary.
-
-98
-00:07:10.015 --> 00:07:13.237
-That page doesn't mention
-the Resolver features,
-
-99
-00:07:13.237 --> 00:07:15.653
-so the table draws on other AWS pages.
-
-100
-00:07:15.653 --> 00:07:18.078
-Endpoints and rules: yes.
-
-101
-00:07:18.078 --> 00:07:23.448
-Resolver delegation is the conflict: the
-GovCloud guide says it's not available,
-
-102
-00:07:23.448 --> 00:07:26.215
-and an April 2026 announcement says it is.
-
-103
-00:07:26.215 --> 00:07:27.102
-Confirm.
-
-104
-00:07:27.102 --> 00:07:30.564
-DNS Firewall and its managed lists: yes.
-
-105
-00:07:30.564 --> 00:07:32.515
-Of the Advanced protections,
-
-106
-00:07:32.515 --> 00:07:36.903
-only dictionary DGA was announced
-for GovCloud; confirm the rest.
-
-107
-00:07:36.903 --> 00:07:39.690
-Query logging and Profiles: yes.
-
-108
-00:07:39.690 --> 00:07:44.153
-Signing of public zones: yes,
-with the key in US-West.
-
-109
-00:07:44.153 --> 00:07:48.527
-Validation in the VPC Resolver
-isn't stated, so confirm.
-
-110
-00:07:48.527 --> 00:07:51.160
-And Global Resolver isn't listed.
-
-111
-00:07:54.910 --> 00:07:55.885
+00:06:52.880 --> 00:06:53.855
 Now Azure.
 
-112
-00:07:55.885 --> 00:08:00.859
+95
+00:06:53.855 --> 00:06:58.829
 The workbook's DNS, DHCP and IPAM
 book covers the Private Resolver's
 
-113
-00:08:00.859 --> 00:08:05.310
+96
+00:06:58.829 --> 00:07:03.280
 hub-and-spoke design, so here is
 the summary with today's limits.
 
-114
-00:08:05.310 --> 00:08:09.830
+97
+00:07:03.280 --> 00:07:07.800
 The inbound endpoint receives queries
 from on premises or other clouds
 
-115
-00:08:09.830 --> 00:08:13.898
+98
+00:07:07.800 --> 00:07:11.868
 and answers from private DNS zones
 linked to its virtual network.
 
-116
-00:08:13.898 --> 00:08:18.298
+99
+00:07:11.868 --> 00:07:16.268
 There can be five per resolver, at
 10,000 queries per second each.
 
-117
-00:08:18.298 --> 00:08:23.866
+100
+00:07:16.268 --> 00:07:21.836
 The outbound endpoint and its forwarding
 ruleset send queries for named domains to
 
-118
-00:08:23.866 --> 00:08:26.968
+101
+00:07:21.836 --> 00:07:24.938
 target servers; a ruleset
 holds up to 1,000 rules,
 
-119
-00:08:26.968 --> 00:08:29.911
+102
+00:07:24.938 --> 00:07:27.881
 and a virtual network
 links only one ruleset.
 
-120
-00:08:29.911 --> 00:08:33.751
+103
+00:07:27.881 --> 00:07:31.721
 It's a single-region service,
 zone-redundant inside the region,
 
-121
-00:08:33.751 --> 00:08:38.947
+104
+00:07:31.721 --> 00:07:36.917
 and it doesn't work in encrypted virtual
 networks or IPv6-enabled subnets.
 
-122
-00:08:38.947 --> 00:08:42.052
+105
+00:07:36.917 --> 00:07:40.022
 And Azure DNS doesn't
 support zone transfers,
 
-123
-00:08:42.052 --> 00:08:47.530
+106
+00:07:40.022 --> 00:07:45.500
 so a BIND server can't be a secondary of
 an Azure private zone, or the reverse.
 
-124
-00:08:51.280 --> 00:08:56.180
+107
+00:07:49.250 --> 00:07:54.150
 Azure's DNS-layer filter
 is DNS resolver policy.
 
-125
-00:08:56.180 --> 00:09:01.342
+108
+00:07:54.150 --> 00:07:59.312
 Microsoft renamed it from DNS security
 policy, so expect both names.
 
-126
-00:09:01.342 --> 00:09:06.576
+109
+00:07:59.312 --> 00:08:04.546
 A resolver policy filters and logs
 every query in a linked virtual network,
 
-127
-00:09:06.576 --> 00:09:10.206
+110
+00:08:04.546 --> 00:08:08.176
 public and private, with
 allow, block and alert rules.
 
-128
-00:09:10.206 --> 00:09:13.244
+111
+00:08:08.176 --> 00:08:11.214
 It includes a Microsoft-managed
 threat intelligence
 
-129
-00:09:13.244 --> 00:09:16.080
+112
+00:08:11.214 --> 00:08:14.050
 list from the Microsoft
 Security Response Center.
 
-130
-00:09:16.080 --> 00:09:20.176
+113
+00:08:14.050 --> 00:08:18.146
 Its logs go to Log Analytics,
 in the DNS query logs table,
 
-131
-00:09:20.176 --> 00:09:24.455
+114
+00:08:18.146 --> 00:08:22.425
 or to storage or Event Hubs,
 through diagnostic settings.
 
-132
-00:09:24.455 --> 00:09:28.348
+115
+00:08:22.425 --> 00:08:26.318
 Microsoft lists resource logs
 only for resolver policies,
 
-133
-00:09:28.348 --> 00:09:32.717
+116
+00:08:26.318 --> 00:08:30.687
 so the inference is that per-query
 logs come from a resolver policy,
 
-134
-00:09:32.717 --> 00:09:36.530
+117
+00:08:30.687 --> 00:08:34.500
 or Azure Firewall's DNS proxy,
 not from the resolver itself.
 
-135
-00:09:36.530 --> 00:09:38.974
+118
+00:08:34.500 --> 00:08:36.944
 DNSSEC: Azure can sign public zones,
 
-136
-00:09:38.974 --> 00:09:42.430
+119
+00:08:36.944 --> 00:08:40.400
 but the Azure-provided
 resolver doesn't validate.
 
-137
-00:09:42.430 --> 00:09:45.696
+120
+00:08:40.400 --> 00:08:43.666
 No Microsoft page describes
 signing private zones,
 
-138
-00:09:45.696 --> 00:09:49.780
+121
+00:08:43.666 --> 00:08:47.750
 or whether the Private Resolver
 validates, so confirm that.
 
-139
-00:09:53.530 --> 00:09:56.236
+122
+00:08:51.500 --> 00:08:54.206
 Oracle Cloud Infrastructure matters here
 
-140
-00:09:56.236 --> 00:09:59.017
+123
+00:08:54.206 --> 00:08:56.987
 because the HR platform
 runs on Oracle Cloud.
 
-141
-00:09:59.017 --> 00:10:07.892
+124
+00:08:56.987 --> 00:09:05.862
 Every VCN gets a dedicated resolver,
 listening on 169.254.169.254.
 
-142
-00:10:07.892 --> 00:10:11.669
+125
+00:09:05.862 --> 00:09:09.639
 It answers from the private
 views attached to it, in order,
 
-143
-00:10:11.669 --> 00:10:15.929
+126
+00:09:09.639 --> 00:09:13.899
 then its default view, then its
 resolver rules, then the internet.
 
-144
-00:10:15.929 --> 00:10:18.537
+127
+00:09:13.899 --> 00:09:16.507
 Oracle says it performs recursion to the
 
-145
-00:10:18.537 --> 00:10:21.680
+128
+00:09:16.507 --> 00:09:19.650
 internet and DNSSEC
 validation for signed zones.
 
-146
-00:10:21.680 --> 00:10:23.267
+129
+00:09:19.650 --> 00:09:21.237
 The trap is in that order.
 
-147
-00:10:23.267 --> 00:10:27.130
+130
+00:09:21.237 --> 00:09:25.100
 A match in the sequence ends
 resolution, even an NXDOMAIN.
 
-148
-00:10:27.130 --> 00:10:30.201
+131
+00:09:25.100 --> 00:09:28.171
 So a private zone for
 example dot com hides a
 
-149
-00:10:30.201 --> 00:10:33.528
+132
+00:09:28.171 --> 00:09:31.498
 forwarding rule for onprem
 dot example dot com.
 
-150
-00:10:33.528 --> 00:10:36.343
+133
+00:09:31.498 --> 00:09:34.313
 Views can be attached to many resolvers,
 
-151
-00:10:36.343 --> 00:10:39.755
+134
+00:09:34.313 --> 00:09:37.725
 sharing private DNS data
 across VCNs in a region.
 
-152
-00:10:39.755 --> 00:10:44.292
+135
+00:09:37.725 --> 00:09:42.262
 Same-name private and public
 zones give split-horizon DNS.
 
-153
-00:10:44.292 --> 00:10:49.960
+136
+00:09:42.262 --> 00:09:47.930
 Between VCNs, resolution uses resolver
 endpoints over a peering gateway.
 
-154
-00:10:53.710 --> 00:10:58.410
+137
+00:09:51.680 --> 00:09:56.380
 A listening endpoint receives queries
 from on premises or other VCNs.
 
-155
-00:10:58.410 --> 00:11:02.859
+138
+00:09:56.380 --> 00:10:00.829
 A forwarding endpoint sends
 queries no view answers to targets,
 
-156
-00:11:02.859 --> 00:11:04.873
+139
+00:10:00.829 --> 00:10:02.843
 under up to 50 resolver rules.
 
-157
-00:11:04.873 --> 00:11:10.448
+140
+00:10:02.843 --> 00:10:08.418
 A rule matches a client address block, a
 domain, or None, which matches any query.
 
-158
-00:11:10.448 --> 00:11:13.581
+141
+00:10:08.418 --> 00:10:11.551
 Forward is the only action,
 the first match wins,
 
-159
-00:11:13.581 --> 00:11:16.473
+142
+00:10:11.551 --> 00:10:14.443
 and an unreachable target ends processing.
 
-160
-00:11:16.473 --> 00:11:22.284
+143
+00:10:14.443 --> 00:10:20.254
 A subnet's DHCP options can name a custom
 resolver of up to three DNS servers.
 
-161
-00:11:22.284 --> 00:11:27.200
+144
+00:10:20.254 --> 00:10:25.170
 Those instances reach private views and
 
-162
-00:11:27.200 --> 00:11:32.260
+145
+00:10:25.170 --> 00:10:30.230
 rules only if 169.254.169.254
 is in that list.
 
-163
-00:11:32.260 --> 00:11:33.373
+146
+00:10:30.230 --> 00:10:31.343
 Then the gaps.
 
-164
-00:11:33.373 --> 00:11:36.275
+147
+00:10:31.343 --> 00:10:34.245
 There's no native DNS-layer policy:
 
-165
-00:11:36.275 --> 00:11:41.460
+148
+00:10:34.245 --> 00:10:39.430
 no Oracle page describes a DNS
 firewall for the VCN resolver.
 
-166
-00:11:41.460 --> 00:11:45.081
+149
+00:10:39.430 --> 00:10:43.051
 Private resolver logs, with
 each query's resolution path,
 
-167
-00:11:45.081 --> 00:11:48.085
+150
+00:10:43.051 --> 00:10:46.055
 are documented for the
 commercial realms only.
 
-168
-00:11:48.085 --> 00:11:52.330
+151
+00:10:46.055 --> 00:10:50.300
 And the resolver can serve stale
 answers for up to 24 hours.
 
-169
-00:11:56.080 --> 00:11:57.693
+152
+00:10:54.050 --> 00:10:55.663
 Who authorizes all this?
 
-170
-00:11:57.693 --> 00:12:04.234
-AWS's services-in-scope page, updated
-October fifteenth, 2026, lists one row,
+153
+00:10:55.663 --> 00:11:02.985
+AWS's services-in-scope page, updated October
+fifteenth, 2026, lists one row, Amazon
 
-171
-00:12:04.234 --> 00:12:09.810
-Amazon Route 53, in scope for
-FedRAMP Class C, formerly Moderate,
+154
+00:11:02.985 --> 00:11:09.651
+Route 53, in scope for FedRAMP Class C,
+formerly Moderate, in US East and West.
 
-172
-00:12:09.810 --> 00:12:14.743
-in US East and West, and Class
-D, formerly High, in GovCloud.
-
-173
-00:12:14.743 --> 00:12:17.785
+155
+00:11:09.651 --> 00:11:12.693
 There are no separate rows
 for the Resolver features;
 
-174
-00:12:17.785 --> 00:12:21.242
+156
+00:11:12.693 --> 00:11:16.150
 generally available features
 are in scope unless excluded.
 
-175
-00:12:21.242 --> 00:12:26.304
-For a Moderate civilian workload,
-both locations cover the DNS service.
+157
+00:11:16.150 --> 00:11:20.237
+For a Moderate civilian workload
+in the commercial Regions,
 
-176
-00:12:26.304 --> 00:12:29.630
+158
+00:11:20.237 --> 00:11:24.650
+where the program's AWS workloads
+run, that covers the DNS service.
+
+159
+00:11:24.650 --> 00:11:27.975
 As an inference, note that
 in the system security plan.
 
-177
-00:12:29.630 --> 00:12:34.411
-Microsoft's audit-scope page has one
-DNS row, at FedRAMP High in Azure and in
+160
+00:11:27.975 --> 00:11:33.000
+Microsoft's audit-scope page has one DNS
+row, in scope for FedRAMP High in Azure
 
-178
-00:12:34.411 --> 00:12:39.818
-Azure Government, with no separate row for
+161
+00:11:33.000 --> 00:11:38.390
+commercial, with no separate row for
 the Private Resolver or resolver policy.
 
-179
-00:12:39.818 --> 00:12:43.456
-No Learn page states their
-Azure Government availability.
-
-180
-00:12:43.456 --> 00:12:47.198
-The price list carries their
-meters in the US Gov zones:
-
-181
-00:12:47.198 --> 00:12:50.442
-a strong signal, not an
-availability statement.
-
-182
-00:12:50.442 --> 00:12:52.560
-Confirm in the target region.
-
-183
-00:12:56.310 --> 00:12:58.823
+162
+00:11:42.140 --> 00:11:44.653
 Oracle's government
 cloud works differently.
 
-184
-00:12:58.823 --> 00:13:03.899
+163
+00:11:44.653 --> 00:11:49.729
 The US Government Cloud is its own
 realm, called OC2, with US Gov East in
 
-185
-00:13:03.899 --> 00:13:09.510
+164
+00:11:49.729 --> 00:11:55.340
 Ashburn and US Gov West in Phoenix, and
 it holds a FedRAMP High authorization.
 
-186
-00:13:09.510 --> 00:13:13.317
+165
+00:11:55.340 --> 00:11:59.147
 And its DNS API is for private DNS only;
 
-187
-00:13:13.317 --> 00:13:18.598
+166
+00:11:59.147 --> 00:12:04.428
 public DNS isn't available
 in the government realms.
 
-188
-00:13:18.598 --> 00:13:21.937
+167
+00:12:04.428 --> 00:12:07.767
 The FedRAMP Marketplace lists
 the Government Cloud at High,
 
-189
-00:13:21.937 --> 00:13:24.810
+168
+00:12:07.767 --> 00:12:10.640
 and no commercial Oracle
 infrastructure offering.
 
-190
-00:13:24.810 --> 00:13:27.785
+169
+00:12:10.640 --> 00:12:13.615
 Oracle's software-as-a-service
 has its own listings,
 
-191
-00:13:27.785 --> 00:13:29.698
+170
+00:12:13.615 --> 00:12:15.528
 such as Fusion Cloud at Moderate.
 
-192
-00:13:29.698 --> 00:13:31.173
+171
+00:12:15.528 --> 00:12:17.003
 So, as inferences.
 
-193
-00:13:31.173 --> 00:13:34.125
+172
+00:12:17.003 --> 00:12:19.955
 A Moderate system on OCI
 infrastructure inherits
 
-194
-00:13:34.125 --> 00:13:36.936
+173
+00:12:19.955 --> 00:12:22.766
 from the Government
 Cloud's High authorization.
 
-195
-00:13:36.936 --> 00:13:41.471
+174
+00:12:22.766 --> 00:12:27.301
 Commercial OCI regions have no FedRAMP
 listing of their own, so a federal
 
-196
-00:13:41.471 --> 00:13:46.385
+175
+00:12:27.301 --> 00:12:32.215
 system placed there needs its own
 authorization basis, settled before design.
 
-197
-00:13:46.385 --> 00:13:49.321
+176
+00:12:32.215 --> 00:12:35.151
 Whether private resolver
 logging exists in the
 
-198
-00:13:49.321 --> 00:13:52.697
+177
+00:12:35.151 --> 00:12:38.527
 government realm isn't
 documented; confirm with Oracle.
 
-199
-00:13:52.697 --> 00:13:55.841
+178
+00:12:38.527 --> 00:12:41.671
 And an agency holding
 only the HR platform's
 
-200
-00:13:55.841 --> 00:13:58.910
+179
+00:12:41.671 --> 00:12:44.740
 software-as-a-service has no VCN at all.
 
-201
-00:14:02.660 --> 00:14:05.510
+180
+00:12:48.490 --> 00:12:51.340
 How do the three meet on-premises DNS?
 
-202
-00:14:05.510 --> 00:14:08.497
+181
+00:12:51.340 --> 00:12:54.327
 The same way, and the
 workbook's DNS design
 
-203
-00:14:08.497 --> 00:14:11.660
+182
+00:12:54.327 --> 00:12:57.490
 already holds the rules,
 as design guidance.
 
-204
-00:14:11.660 --> 00:14:15.858
+183
+00:12:57.490 --> 00:13:01.688
 Into the cloud: on-premises resolvers,
 and other clouds' resolvers,
 
-205
-00:14:15.858 --> 00:14:20.912
+184
+00:13:01.688 --> 00:13:06.742
 conditionally forward each cloud namespace
 to that cloud's inbound endpoint,
 
-206
-00:14:20.912 --> 00:14:23.322
+185
+00:13:06.742 --> 00:13:09.152
 using static addresses written once.
 
-207
-00:14:23.322 --> 00:14:27.072
+186
+00:13:09.152 --> 00:13:12.902
 On Oracle Cloud, the entry
 point is a listening endpoint.
 
-208
-00:14:27.072 --> 00:14:33.022
+187
+00:13:12.902 --> 00:13:18.852
 Neither the AWS nor the Azure inbound
 endpoint accepts an ordinary NS delegation
 
-209
-00:14:33.022 --> 00:14:38.797
+188
+00:13:18.852 --> 00:13:24.627
 of a private zone; AWS's delegation inbound
 endpoint is the exception, and it's new.
 
-210
-00:14:38.797 --> 00:14:42.250
+189
+00:13:24.627 --> 00:13:28.080
 Out of the cloud: each
 cloud forwards the agency's
 
-211
-00:14:42.250 --> 00:14:46.048
+190
+00:13:28.080 --> 00:13:31.878
 namespaces back to the agency
 resolvers, by its rules.
 
-212
-00:14:46.048 --> 00:14:49.596
+191
+00:13:31.878 --> 00:13:35.426
 On AWS, create the rules once
 in a network account and
 
-213
-00:14:49.596 --> 00:14:53.473
+192
+00:13:35.426 --> 00:13:39.303
 share them through Resource
 Access Manager or a Profile.
 
-214
-00:14:53.473 --> 00:14:55.910
+193
+00:13:39.303 --> 00:13:41.740
 Spokes associate them and can't edit them.
 
-215
-00:14:55.910 --> 00:14:59.210
+194
+00:13:41.740 --> 00:13:45.040
 That's the cloud form
 of one policy object.
 
-216
-00:15:02.960 --> 00:15:05.098
+195
+00:13:48.790 --> 00:13:50.928
 First, internet-bound queries.
 
-217
-00:15:05.098 --> 00:15:10.067
+196
+00:13:50.928 --> 00:13:55.897
 CISA requires Protective DNS
 for all egress DNS resolution,
 
-218
-00:15:10.067 --> 00:15:16.010
+197
+00:13:55.897 --> 00:14:01.840
 including from agency cloud deployments,
 directly or through agency DNS.
 
-219
-00:15:16.010 --> 00:15:21.898
+198
+00:14:01.840 --> 00:14:07.728
 None of the native resolvers forwards the
 default path to Protective DNS on its own.
 
-220
-00:15:21.898 --> 00:15:26.347
+199
+00:14:07.728 --> 00:14:12.177
 That takes a root rule in AWS or
 Azure, or a rule whose condition
 
-221
-00:15:26.347 --> 00:15:30.448
+200
+00:14:12.177 --> 00:14:16.278
 is None in Oracle Cloud, pointing
 at the agency resolvers.
 
-222
-00:15:30.448 --> 00:15:33.182
+201
+00:14:16.278 --> 00:14:19.012
 Whether cloud egress
 already reaches it some
 
-223
-00:15:33.182 --> 00:15:36.060
+202
+00:14:19.012 --> 00:14:21.890
 other way is for the agency
 to confirm with CISA.
 
-224
-00:15:36.060 --> 00:15:37.460
+203
+00:14:21.890 --> 00:14:23.290
 Second, policy.
 
-225
-00:15:37.460 --> 00:15:40.108
+204
+00:14:23.290 --> 00:14:25.938
 The clouds' own filters
 are a second policy
 
-226
-00:15:40.108 --> 00:15:43.285
+205
+00:14:25.938 --> 00:14:29.115
 surface beside the agency's
 response policy zones.
 
-227
-00:15:43.285 --> 00:15:47.658
+206
+00:14:29.115 --> 00:14:33.488
 The design guidance: feed them
 from the same indicator decisions,
 
-228
-00:15:47.658 --> 00:15:52.597
+207
+00:14:33.488 --> 00:14:38.427
 or use them as a backstop, so a block on
 premises is also a block in each cloud.
 
-229
-00:15:52.597 --> 00:15:55.731
+208
+00:14:38.427 --> 00:14:41.561
 Oracle has no such filter for private DNS,
 
-230
-00:15:55.731 --> 00:16:00.523
+209
+00:14:41.561 --> 00:14:46.353
 so its catch-all rule is the only
 way agency policy reaches a VCN.
 
-231
-00:16:00.523 --> 00:16:05.852
+210
+00:14:46.353 --> 00:14:51.682
 Third, logs: all three go to the SIEM,
 parsed through ASIM's DNS schema,
 
-232
-00:16:05.852 --> 00:16:10.460
+211
+00:14:51.682 --> 00:14:56.290
 as Microsoft Learn's ASIM
 documentation describes.
 
-233
-00:16:14.210 --> 00:16:18.610
+212
+00:15:00.040 --> 00:15:04.440
 To close Part 1, here's what the providers
 don't settle, so confirm it with them.
 
-234
-00:16:18.610 --> 00:16:23.573
-AWS: Resolver delegation and
-DNSSEC validation in GovCloud.
+213
+00:15:04.440 --> 00:15:08.052
+Azure: whether the Private
+Resolver validates DNSSEC.
 
-235
-00:16:23.573 --> 00:16:27.933
-Azure: the Private Resolver's and
-resolver policy's availability in each
-
-236
-00:16:27.933 --> 00:16:32.584
-Azure Government region, and whether
-the Private Resolver validates DNSSEC.
-
-237
-00:16:32.584 --> 00:16:36.190
+214
+00:15:08.052 --> 00:15:11.657
 Oracle: private resolver
 logging in the government realm,
 
-238
-00:16:36.190 --> 00:16:40.622
+215
+00:15:11.657 --> 00:15:16.089
 and whether the VCN resolver passes
 DNSSEC data to a resolver behind it.
 
-239
-00:16:40.622 --> 00:16:46.460
+216
+00:15:16.089 --> 00:15:21.928
 And CISA: whether Protective DNS returns
 DNSSEC data to agency forwarders.
 
-240
-00:16:46.460 --> 00:16:49.864
+217
+00:15:21.928 --> 00:15:25.332
 To prove the page, the plan
 is to build the pattern in
 
-241
-00:16:49.864 --> 00:16:53.835
+218
+00:15:25.332 --> 00:15:29.303
 test accounts and run the
 workbook's DNS validation matrix.
 
-242
-00:16:53.835 --> 00:16:57.538
+219
+00:15:29.303 --> 00:15:33.005
 Part 2 picks up from here: when
 to run your own DNS servers,
 
-243
-00:16:57.538 --> 00:17:01.160
+220
+00:15:33.005 --> 00:15:36.627
 BIND, the alignment checklist,
 and the federal mapping.
 
-244
-00:17:01.160 --> 00:17:06.085
+221
+00:15:36.627 --> 00:15:41.553
 This is research under review, not an
 endorsement by any federal agency.
 
-245
-00:17:06.085 --> 00:17:06.910
+222
+00:15:41.553 --> 00:15:42.370
 Thank you.
