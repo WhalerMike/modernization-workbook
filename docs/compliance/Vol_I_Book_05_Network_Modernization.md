@@ -135,7 +135,7 @@ And here is the critical moment: the agency still had **twelve regional Active D
 
 Now a field office in Portland authenticates to a regional DC physically in Washington. An application running on VMware queries a service in AWS. Email lives in Azure. The session-based contract — the assumption that client and server are talking synchronously over a trusted link — is fracturing across three environments and an upcoming fourth.
 
-> **The hard realization.** The bulk of mission compute still runs on VMware on-premises. Red Hat workloads are moving to AWS. Email and collaboration are in Azure. OPM HRIT on Oracle OCI is the next boundary arriving. Identity is still in twelve regional AD domains designed for a world where all four of those environments were the same room. The infrastructure could *do* things but could not *verify* them across that boundary. With program integrity now a national imperative, that is no longer acceptable.
+> **The hard realization.** The bulk of mission compute still runs on VMware on-premises. Red Hat workloads are moving to AWS GovCloud. Email and collaboration are in Azure. OPM HRIT on Oracle OCI is the next boundary arriving. Identity is still in twelve regional AD domains designed for a world where all four of those environments were the same room. The infrastructure could *do* things but could not *verify* them across that boundary. With program integrity now a national imperative, that is no longer acceptable.
 
 Meanwhile, the regional variations that started in Act 1 had calcified into institutional silos. California's benefit calculation differed from Massachusetts's. Regional databases had evolved incompatible schemas. And because single source of truth had never been restored, **nobody could see the discrepancies.** The fragmentation that made the system agile in 1995 had become the hiding place for systemic error — duplicate payments across states, records that should have been closed years ago, reconciliations nobody could complete.
 
@@ -376,7 +376,7 @@ The following table maps each concept in this narrative to the federal mandate, 
 
 ## A.1 — Cisco Catalyst SD-WAN: What It Is and What It Is Not
 
-Cisco Catalyst SD-WAN (formerly the Viptela platform, acquired 2017 and rebranded 2023) is Cisco's enterprise SD-WAN solution. In federal contexts it is typically deployed as one of two configurations: **on-premises managed** (SD-WAN Manager self-hosted in an agency data center or an agency cloud account) or **cloud-delivered** (Cisco SD-WAN Cloud SaaS, which carries its own FedRAMP authorization surface).
+Cisco Catalyst SD-WAN (formerly the Viptela platform, acquired 2017 and rebranded 2023) is Cisco's enterprise SD-WAN solution. In federal contexts it is typically deployed as one of two configurations: **on-premises managed** (SD-WAN Manager self-hosted in agency data center or GovCloud) or **cloud-delivered** (Cisco SD-WAN Cloud SaaS, which carries its own FedRAMP authorization surface).
 
 The platform has four functional planes:
 
@@ -389,7 +389,7 @@ The platform has four functional planes:
 
 : Cisco Catalyst SD-WAN Functional Planes {.striped .hover}
 
-**The FedRAMP boundary implication:** Only SD-WAN Manager (the management plane) is a cloud-hosted SaaS component when using the cloud-delivered model. The data plane (cEdge at the branch) is hardware deployed within the agency boundary. The control and orchestration planes operate inside the agency-managed FedRAMP boundary. This boundary partitioning is the first question an Authorizing Official must document.
+**The FedRAMP boundary implication:** Only SD-WAN Manager (the management plane) is a cloud-hosted SaaS component when using the cloud-delivered model. The data plane (cEdge at the branch) is hardware deployed within the agency boundary. The control and orchestration planes operate at the agency-managed FedRAMP boundary or in GovCloud. This boundary partitioning is the first question an Authorizing Official must document.
 
 ::: {.aan-important}
 **What Cisco Catalyst SD-WAN does not provide by itself.** Like all SD-WAN platforms, Cisco Catalyst SD-WAN does not provide user identity awareness, device posture enforcement, or data classification. It provides application identification (via DPI signatures and FQDN matching), path quality measurement, and application-steered routing. The SASE layer — Cisco Umbrella, or a third-party CASB/SWG — provides the identity and data planes. The two must be present together for the full AAN control stack.
@@ -463,7 +463,7 @@ In a Cisco Catalyst SD-WAN + Microsoft INR deployment, the boundary documentatio
 | Component | Inside or Outside FedRAMP Boundary | Documentation Required |
 |---|---|---|
 | Branch WAN Edge (cEdge) | **Inside** | Component inventory; CM-8 entry |
-| SD-WAN Manager (self-hosted, agency data center or cloud account) | **Inside** | Full FedRAMP control inheritance |
+| SD-WAN Manager (self-hosted GovCloud) | **Inside** | Full FedRAMP control inheritance |
 | SD-WAN Manager (Cisco cloud SaaS) | **Outside** — external service | Interconnection Security Agreement (ISA); verify Cisco SD-WAN Manager FedRAMP authorization status |
 | SD-WAN Controller (vSmart) | **Inside** | Component inventory |
 | Microsoft M365 GCC | **Outside** — FedRAMP-authorized external service | Microsoft CSP ISA; FedRAMP Moderate package reference (M365 GCC) |

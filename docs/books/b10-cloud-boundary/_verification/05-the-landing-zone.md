@@ -39,8 +39,11 @@ Checked 2026-10-21 against Microsoft Learn (CAF landing zone overview, design ar
 | 29 | MG-assigned policy evaluates only resources in subscriptions/RGs; start with audit | Enforcing | verified | overview |
 | 30 | 24-hour standard cycle; ~30 minutes for subscription created/moved | Enforcing | verified | compliance-data |
 | 31 | SCPs never grant permissions; max permissions incl. root user; don't affect management account; need all features | AWS | verified | scp |
-| 35 | LZA recommended atop Control Tower; "will not, by itself, make you compliant" | AWS | verified | lza |
-| 36 | Marketplace: AWS US East/West Class C | AWS | verified | fr |
+| 32 | Control Tower in both GovCloud Regions; usable there for workloads that require High | AWS | verified; reworded 2026-10-29 so it no longer reads as GovCloud being only for High (AWS: "You can utilize AWS Control Tower with workloads that require FedRAMP High categorization level in the AWS GovCloud (US) Regions") | ct |
+| 33 | CreateGovCloudAccount from commercial management account creates paired accounts; GovCloud org independent; bring existing Audit and Log Archive accounts | AWS | verified | ct |
+| 34 | Account Factory Create account removed; new customers can't deploy AFT in GovCloud; some controls ineffective; some Security Hub CSPM controls unavailable; metadata must not contain export-controlled data | AWS | verified | ct |
+| 35 | LZA recommended atop Control Tower; supports GovCloud; "will not, by itself, make you compliant" | AWS | verified | lza |
+| 36 | Marketplace: AWS GovCloud F1603047866 Class D; AWS US East/West Class C | AWS | verified | fr |
 | 37 | Source scope table: a separate Azure cloud labeled "GCC Moderate"; AWS GovCloud "FedRAMP High" as the boundary | Multi-environment | corrected: M365 GCC pairs with commercial Azure; the agency's own authorization covers its use, the provider's certification covers the service; table generalized and agency-specific estate removed | fedramp-use; Ch04 |
 | 38 | Azure VNets are Layer 3 overlays with no Layer 2 semantics; five reserved addresses | Multi-environment | verified (source's "synthetic DHCP injected by host agent" not carried; couldn't confirm wording) | vnetfaq |
 | 39 | AWS reserves five per subnet; DNS server at VPC base +2 | Multi-environment | corrected: source said EC2 gets IPs via "synthetic DHCP at CIDR +2"; +2 is the Amazon DNS server | aws-subnet |
@@ -48,8 +51,9 @@ Checked 2026-10-21 against Microsoft Learn (CAF landing zone overview, design ar
 | 41 | Authorization boundary definition (all components to be authorized; excludes separately authorized connected systems) | What a landing zone can't prove | verified | sp80037 |
 | 42 | "each agency still authorizes its own federal information systems"; SSP focuses on what the agency implements, configures, operates, or inherits | What a landing zone can't prove | verified | fedramp-use |
 | 43 | Source: FedRAMP 20x Consolidated Rules impose "automated, machine-readable compliance evidence enforced by IaC" on the agency landing zone | (not carried) | removed: the Consolidated Rules govern provider certification; the agency authorizes its own system (Book 01 Ch12; Chapter 03) | fedramp-use |
-| 44 | 2026-10-29: AWS US East/West FedRAMP Certified Class C (formerly Moderate); services-in-scope marked per service, per Region | AWS | verified (coordinator fact pack, 2026-10-29) | aws-fedramp |
-| 46 | The program's AWS workloads run in the commercial Regions; the package names which services run where | AWS | restated-as-design (WD-156, November 15, 2026) | — |
+| 44 | 2026-10-29: AWS US East/West FedRAMP Certified Class C (formerly Moderate), GovCloud (US) Class D (formerly High); services-in-scope marked per service, per Region | AWS | verified (coordinator fact pack, 2026-10-29) | aws-fedramp |
+| 45 | 2026-10-29: High baseline contains the Moderate controls, so a Moderate system can run in GovCloud (US) or commercial Regions | AWS | inference (SP 800-53B baselines are cumulative) | aws-fedramp |
+| 46 | 2026-10-29: most AWS workloads in GovCloud (US) at Moderate, a contact center in commercial Regions; two organizations, one per partition; package names which services run where | AWS | restated-as-design (agency-neutral pattern) | — |
 
 ## 2. Carry-forward ledger
 
@@ -98,6 +102,6 @@ Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 0
 | P4-2 | Rings, backout triggers, control states, evidence checklist for boundary policy | Enforcing without breaking things | restated-as-design | Program design | Nov 11, 2026 |
 | P4-3 | Links to the Azure Security Engineering guide, Steps 1 to 7 and 9 | Where each boundary decision lands; Internet-facing workloads | restated-as-design (cross-reference) | Azure Security Engineering implementation guide | Nov 11, 2026 |
 
-## Government-cloud rule (November 15, 2026)
+## AWS GovCloud restored (November 16, 2026)
 
-Under WD-156, AWS GovCloud (US) appears only in the cross-provider comparison table. Removed from the AWS section: Control Tower's GovCloud differences (claims 32 to 34, source `c05-ct`, footnote dropped), LZA's GovCloud partition support, the GovCloud Marketplace entry and the GovCloud-at-Moderate inference (claim 45); claim 46 now states the commercial-Region design. Kept: the GovCloud and Assured Workloads cells of the ingress comparison table (IN-11, IN-12) and Oracle US Government Cloud (IN-13).
+Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS GovCloud changes made on November 15, 2026 under WD-156 (PR #627) were reversed on this page: its GovCloud claims, footnotes and wording are back as verified before that date, and the rest of this record stands. Google Assured Workloads still appears only in the cross-provider comparison table (IN-12).

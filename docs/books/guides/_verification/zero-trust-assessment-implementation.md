@@ -50,6 +50,7 @@ Facts carried from the books (Book 11 Chapters 05, 07, 08, 09, 10; Book 13 Appen
 | 31 | Security Hub CSPM's NIST SP 800-53 Rev. 5 standard supports "a subset" of requirements, automated checks only, not manual-check requirements; the standard represents the service's understanding of the guidelines | Step 9 | verified (quoted) | NIST SP 800-53 Revision 5 in Security Hub CSPM, <https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html> | Nov 11, 2026 |
 | 32 | ASFF `Compliance`: `AssociatedStandards` with `standards/nist-800-53/v/5.0.0`, `RelatedRequirements` `NIST.800-53.r5 ...`, `SecurityControlId`, `Status`; `GetFindings` filter `ComplianceAssociatedStandardsId` | Step 9 | verified | Optional top-level ASFF attributes; SDK GetFindings reference | Nov 11, 2026 |
 | 33 | Compliance statuses `PASSED`, `FAILED`, `WARNING`, `NOT_AVAILABLE` and their meanings; account-level `PASSED` when no resources correspond | Step 9 | verified | Evaluating compliance status and control status, <https://docs.aws.amazon.com/securityhub/latest/userguide/controls-overall-status.html> | Nov 11, 2026 |
+| 34 | Security Hub CSPM in GovCloud (US): integrations, some controls and cross-Region aggregation limited | Availability table, Step 9 | verified | AWS GovCloud (US) User Guide, Security Hub CSPM | Nov 11, 2026 |
 
 ## Restated as design guidance
 
@@ -59,6 +60,6 @@ The taxonomy's application to the Security Hub statuses; the cadence; the dedica
 
 GCC on Learn's Zero Trust Assessment pages; AIP's environment on Learn; Learn's run roles (two statements); Learn's scheduled digest playbook against 3.1.0; the export's schema (no published schema).
 
-## Government-cloud rule (November 15, 2026)
+## AWS GovCloud restored (November 16, 2026)
 
-Under WD-156 the program's AWS workloads run in the commercial Regions. The availability table row for Security Hub CSPM now says so (program design), the placeholder example and Step 9 no longer name GovCloud Regions, and the GovCloud limits (claim 34, footnote `zta-sh-gov`) were removed.
+Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS GovCloud changes made on November 15, 2026 under WD-156 (PR #627) were reversed on this page: its GovCloud claims, footnotes and wording are back as verified before that date, and the rest of this record stands.

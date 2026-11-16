@@ -32,16 +32,22 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 13 | DNS Firewall actions Allow, Alert, Block (NODATA, NXDOMAIN, OVERRIDE); Advanced: DGA, tunneling, dictionary DGA | Part 1 table | verified | cdns-r53-fw-actions, cdns-r53-fw-adv |
 | 14 | DNS Firewall filters only queries through VPC DNS, plus inbound-endpoint queries into that VPC | Part 1 table, Part 3 | verified | cdns-r53-fw-how |
 | 15 | DNS Firewall fails closed (SERVFAIL) by default | Part 1 table | verified; overview page reads otherwise, configuration page relied on (noted in footnote) | cdns-r53-fw-config |
-| 16 | AWS managed lists can't be downloaded or browsed | Part 1 | verified | cdns-r53-fw-managed |
+| 16 | AWS managed lists can't be downloaded or browsed; available in GovCloud | Part 1 | verified | cdns-r53-fw-managed |
 | 17 | Query logging: VPC, inbound, outbound, Firewall actions; CloudWatch Logs, S3, Firehose; fields; not cache hits; RAM sharing | Part 1 table | verified | cdns-r53-qlog, cdns-r53-qlog-fields, cdns-r53-qlog-share |
 | 18 | PHZ: VPC settings; 300 VPCs per zone; cross-account by API only; NXDOMAIN on empty match; split view | Part 1 table | verified | cdns-r53-phz, cdns-r53-phz-xacct, cdns-r53-quotas |
 | 19 | Profiles: resources, RAM sharing, one per VPC, local wins on exact tie | Part 1 table | verified | cdns-r53-profiles |
 | 20 | DNSSEC validation per VPC for public signed names; signing public hosted zones only, KSK in KMS | Part 1 table, Part 3 | verified | cdns-r53-validate, cdns-r53-sign |
 | 21 | VPC Resolver ignores DO and CD bits, returns no DNSSEC records, no AD bit; own validation not supported behind it; "could result in an outage" | Part 1 table, Part 3 | verified (raw HTML) | cdns-r53-validate |
-| 22 | Global Resolver: anycast, Do53/DoT/DoH, GA March 9, 2026, 30 commercial Regions | Part 1 | verified | cdns-r53-global |
-| 27 | Dictionary DGA protection "available in all AWS Regions" (Nov 2025) | Part 1 component table | verified | cdns-r53-fw-adv |
-| 30 | FedRAMP page (Oct 15, 2026): one Amazon Route 53 row, Class C East/West; no Resolver rows; "generally available features ... in scope" | Part 1 FedRAMP | verified (raw HTML) | cdns-aws-fedramp |
-| 31 | Marketplace: AWS East/West Moderate (AGENCYAMAZONEW) | Part 1 FedRAMP | verified | cdns-fedramp-mkt |
+| 22 | Global Resolver: anycast, Do53/DoT/DoH, GA March 9, 2026, 30 Regions, not GovCloud | Part 1 | verified (not in GovCloud = absent from Region list) | cdns-r53-global |
+| 23 | GovCloud R53 page: public and private DNS and health checks; control plane US-West; "within FedRAMP boundary"; KMS key and log group US-West; routing types unavailable in PHZs | Part 1 GovCloud | verified (raw HTML) | cdns-gov-r53 |
+| 24 | GovCloud delegation conflict: user guide "not available" vs April 8, 2026 announcement | Part 1 table | verified (both sources); **confirm** | cdns-gov-r53, cdns-r53-gov-deleg |
+| 25 | Resolver and Profiles API endpoints in us-gov-east-1 and us-gov-west-1; Profiles in GovCloud since June 2024 | Part 1 table | verified | cdns-r53-regions |
+| 26 | DNS Firewall availability lists GovCloud | Part 1 table | verified | cdns-r53-fw-avail |
+| 27 | Dictionary DGA in GovCloud (Nov 2025); other Advanced protections in GovCloud | Part 1 table | verified for dictionary DGA; others **confirm** | cdns-r53-fw-adv |
+| 28 | Resolver query logging in GovCloud | Part 1 table | **confirm** (no page found) | — |
+| 29 | DNSSEC validation in GovCloud | Part 1 table | **confirm** (not on GovCloud page) | — |
+| 30 | FedRAMP page (Oct 15, 2026): one Amazon Route 53 row, Class C East/West, Class D GovCloud; no Resolver rows; "generally available features ... in scope" | Part 1 FedRAMP | verified (raw HTML) | cdns-aws-fedramp |
+| 31 | Marketplace: AWS East/West Moderate (AGENCYAMAZONEW); GovCloud High (F1603047866) | Part 1 FedRAMP | verified | cdns-fedramp-mkt |
 | 32 | Resolver features covered by the general statement, worth noting in the SSP | Part 1 FedRAMP | inference (labelled) | — |
 | 33 | Azure Private Resolver limits (5 endpoints each way, 10,000 QPS per endpoint, 1,000 rules, 500 links, 6 targets, one ruleset per VNet) | Part 1 Azure | verified; unchanged since Book 08 Ch07 (overview updated 2026-06-23) | cdns-az-pr, cdns-az-limits |
 | 34 | No encrypted VNets, no IPv6-enabled subnets; single-region, zone-redundant | Part 1 Azure | verified | cdns-az-pr, cdns-az-rel |
@@ -108,7 +114,10 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 
 ## What couldn't be verified (marked *confirm* on the page)
 
+- Route 53 Resolver delegation in GovCloud: AWS's GovCloud User Guide and its April 8, 2026 announcement conflict.
+- VPC Resolver DNSSEC validation in GovCloud: no AWS page states it. (Resolver query logging in GovCloud was confirmed on 2026-10-31; see claim 98.)
 - Oracle: private resolver logging in the government realm; whether the VCN resolver passes DNSSEC data to a resolver behind it.
+- DNS Firewall Advanced protections other than dictionary DGA in GovCloud.
 - Whether the Azure DNS Private Resolver validates DNSSEC.
 - Whether CISA Protective DNS returns DNSSEC data to agency forwarders.
 - The NCP dates of the CIS BIND benchmarks.
@@ -124,6 +133,7 @@ Oracle Cloud Infrastructure was added in Part 1 (a new subsection), in the meeti
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
+| 98 | Route 53 Resolver query logging available in GovCloud since September 2020; the "confirm" removed | Part 1 GovCloud table, status | verified (carried from Book 08 Ch07 PD-21) | cdns-r53-gov-qlog |
 | 99 | VCN resolver on 169.254.169.254; views in order, default view, rules, internet; "performs recursion to the internet and DNSSEC validation for DNSSEC-signed zones" | Part 1 OCI, Part 3 | verified (page text) | cdns-oci-pdns |
 | 100 | A view can be used by any number of resolvers and shares private DNS data across VCNs in the same region; split horizon | Part 1 OCI | verified | cdns-oci-pdns |
 | 101 | Cross-VCN resolution via listening and forwarding endpoints over LPG or RPG, same or other region | Part 1 OCI | verified | cdns-oci-pdns |
@@ -151,6 +161,6 @@ Re-checked after the weekly source watch (issue #499) reported a gone source and
 | Azure DNS monitoring data reference (queries-per-second wording) | No effect: resolver and ruleset metrics and resolver-policy-only resource logs unchanged |
 | FedRAMP Marketplace data: AWS US East/West (Class C), AWS GovCloud and Oracle Cloud Infrastructure-Government Cloud (Class D), Fusion Cloud (Class C) unchanged; the data no longer gives an impact level for any listing | No effect (dated footnotes) |
 
-## Government-cloud rule (November 15, 2026)
+## AWS GovCloud restored (November 16, 2026)
 
-Under WD-156 the program's AWS workloads run in the commercial Regions, so Part 1 no longer has the "GovCloud (US) and commercial Regions, as AWS states it" subsection or its availability table. Removed: claims 23 to 26, 28, 29 and 98, the three GovCloud items under "What couldn't be verified", and footnotes `cdns-gov-r53`, `cdns-r53-gov-deleg`, `cdns-r53-regions`, `cdns-r53-fw-avail` and `cdns-r53-gov-qlog`. Claims 16, 22, 27, 30 and 31 keep their commercial facts only. The vNIOS GovCloud failover point, the GovCloud placement question in the BIND checklist and the GovCloud open items in the status section were removed too; the delegation-rules row now points to the delegation inbound endpoint. Kept: Oracle US Government Cloud and realm OC2 (claims 109 and 110). The Part 1 deck row still describes the deck as released in edition 2026.11.5, which covers GovCloud; that changes in the deck pass.
+Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS GovCloud changes made on November 15, 2026 under WD-156 (PR #627) were reversed on this page: its GovCloud claims, footnotes and wording are back as verified before that date, and the rest of this record stands.

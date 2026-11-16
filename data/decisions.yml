@@ -2038,5 +2038,22 @@
   - {title: 'FedRAMP, Marketplace product data', url: 'https://www.fedramp.gov/marketplace/products.json'}
   pages: [CONTRIBUTING.md, docs/books/b10-cloud-boundary/05-the-landing-zone.md, docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.md, docs/evaluations/cloud-dns-resolvers-infoblox-bind.md]
   prs: [627]
-  status: settled
+  status: superseded
+  superseded_by: WD-157
   note: "Basis: workbook owner decision, November 15, 2026. Extends WD-155 and supersedes nothing. The provider-notices kit keeps its AWS GovCloud (US) partition and Oracle OC2 realm support as a cross-provider collector."
+
+- id: WD-157
+  date: 2026-11-16
+  question: Where does the program's AWS estate run, and where may other providers' government clouds appear?
+  options: ["AWS commercial Regions, with AWS GovCloud (US) only in comparisons (WD-156)", "AWS GovCloud (US) as the program's AWS environment"]
+  choice: "The program's AWS estate runs in AWS GovCloud (US) (partition aws-us-gov, Regions us-gov-west-1 and us-gov-east-1). Pages, kits and decks name AWS GovCloud (US) as the program's AWS environment; scripts and examples default to us-gov-west-1 and use the aws-us-gov partition in ARNs and endpoints. The rest of WD-156 stands: a provider's separate government cloud stays only where a workload actually runs there or where the provider's commercial side lacks the same authorization; Oracle US Government Cloud (realm OC2) stays wherever HR or Oracle pages need it, without stating which realm the Oracle HCM application runs in; Oracle US Defense Cloud and Oracle's impact-level wording stay out; Google Assured Workloads appears only in cross-provider comparisons. Microsoft 365 GCC Moderate with commercial Azure stays the baseline (WD-155)."
+  rationale: "The workbook owner confirmed that the AWS estate is in AWS GovCloud (US), so WD-156's test (a workload actually runs there) puts AWS GovCloud in the pages as the program's environment. AWS lists GovCloud (US) as FedRAMP Certified Class D (formerly High), which includes the Moderate controls."
+  basis: workbook-design
+  sources:
+  - {title: 'AWS, AWS GovCloud (US) User Guide', url: 'https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/whatis.html'}
+  - {title: 'AWS, FedRAMP', url: 'https://aws.amazon.com/compliance/fedramp/'}
+  - {title: 'FedRAMP, Marketplace product data', url: 'https://www.fedramp.gov/marketplace/products.json'}
+  pages: [CONTRIBUTING.md, docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md, docs/books/b10-cloud-boundary/05-the-landing-zone.md, docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.md, docs/evaluations/cloud-dns-resolvers-infoblox-bind.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 16, 2026. Supersedes WD-156, whose rule it restates with AWS GovCloud (US) as the program's AWS environment. Restores the AWS GovCloud content that PR #627 and deck pass 3 changed to commercial Regions."

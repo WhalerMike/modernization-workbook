@@ -27,6 +27,7 @@ All opened October 28, 2026: PostgreSQL versioning policy page and postgresql.or
 | 17 | SCT sources/targets: Oracle 10.1+, Db2 LUW 9.1–11.5, Db2 z/OS 12 → PostgreSQL etc.; FedRAMP compliance statement | Tools table | verified | AWS SCT user guide |
 | 18 | No SCT end-of-support notice found | Tools table | verified as negative search result | Web search; SCT user guide |
 | 19 | DMS SC: built on SCT engine; paths incl. Oracle, Db2 LUW, Db2 z/OS (API/CLI only) → Aurora/RDS PostgreSQL; gen AI on those paths; cross-Region inference | Tools table | verified | DMS Schema Conversion page |
+| 20 | DMS SC Region table lists no AWS GovCloud (US) Region | Tools table | verified (Region table read in full) | DMS Schema Conversion page |
 | 21 | SSMA for Db2 sources: z/OS 9.0+, LUW 9.8+, Db2 for i 7.1+; current v10.6 | Tools table | verified | SSMA Db2 install; What's new |
 | 22 | SSMA for Oracle v10.6; Copilot GA from v10.4; BYOK Azure OpenAI or Microsoft-managed endpoint with Entra ID (GA in 10.6); generated code must be reviewed, validated, tested | Tools table | verified | SSMA Oracle What's new; Copilot overview |
 | 23 | Ora2Pg: GPL v3; Oracle, MySQL/MariaDB, SQL Server → PostgreSQL; v25.0 April 20, 2025; cost assessment; diff "for test purposes"; no Db2 | Tools table | verified | Ora2Pg site, Features; GitHub releases |
@@ -60,6 +61,6 @@ A short "Privacy in the move" section was added (additive; no existing text chan
 | 3 | PM-5(1), PM-25, SI-12(2), SI-12(3) titles; privacy baseline | verified | OSCAL catalog and privacy profile 5.2.0 |
 | 4 | Validation reports and CDC copies as exposures; obligations table | restated-as-design | - |
 
-## Government-cloud rule (November 15, 2026)
+## AWS GovCloud restored (November 16, 2026)
 
-Under WD-156 the program's AWS workloads run in the commercial Regions, so the tools table no longer notes that DMS Schema Conversion's Region table lists no AWS GovCloud (US) Region (claim 20).
+Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS GovCloud changes made on November 15, 2026 under WD-156 (PR #627) were reversed on this page: its GovCloud claims, footnotes and wording are back as verified before that date, and the rest of this record stands.

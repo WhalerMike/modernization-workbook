@@ -10,7 +10,7 @@
               "noticeContacts": ["<who-receives-message-center-email>"] },
     "oci": { "enabled": true, "realm": "oc1", "region": "<home-region>", "tenancyId": "<tenancy-ocid>",
              "noticeContacts": ["<who-receives-oci-announcement-email>"] },
-    "aws": { "enabled": false, "partition": "aws", "accountId": "<account-id>", "profile": "",
+    "aws": { "enabled": false, "partition": "aws-us-gov", "accountId": "<account-id>", "profile": "",
              "noticeContacts": ["<who-receives-aws-health-email>"] },
     "google": { "enabled": false, "scope": "project", "project": "<project-id>", "organization": "",
                 "noticeContacts": ["<who-receives-google-service-health-email>"] }

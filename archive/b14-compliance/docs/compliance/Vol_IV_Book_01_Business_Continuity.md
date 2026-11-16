@@ -645,7 +645,7 @@ The AAR is the artifact that ties the test evidence together and demonstrates to
 
 The CP-6 / CP-7 / CP-8 architecture above is realized on the Microsoft estate
 (Azure Site Recovery, Azure Backup). A multi-cloud agency must also satisfy
-**CP-9 (backup)** and **CP-10 (recovery)** for workloads on **AWS**,
+**CP-9 (backup)** and **CP-10 (recovery)** for workloads on **AWS GovCloud**,
 **Oracle OCI**, and **VMware** — each with its own native DR/backup service, and
 each producing its own RTO/RPO evidence.
 

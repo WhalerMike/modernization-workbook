@@ -56,6 +56,6 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 |---|---|
 | FedRAMP Marketplace `products.json` re-read Nov 9, 2026 (`last_change` 2026-11-09T05:06Z, 791 listings): `impact_level` reads "Unknown" and `impact_level_number` 0 on every listing; `cert_date` and `fedramp_msg` are empty on every listing; statuses and classes of the listings cited here are unchanged | Recording FedRAMP status notes the "Unknown" impact level and what to record instead; footnote [^aB-products] updated |
 
-## Government-cloud rule (November 15, 2026)
+## AWS GovCloud restored (November 16, 2026)
 
-Under WD-156 the Cloud platforms example row names AWS (commercial Regions) instead of AWS GovCloud; no claim row changes.
+Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS GovCloud changes made on November 15, 2026 under WD-156 (PR #627) were reversed on this page: its GovCloud claims, footnotes and wording are back as verified before that date, and the rest of this record stands.

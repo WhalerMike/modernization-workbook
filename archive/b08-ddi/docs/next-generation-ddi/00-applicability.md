@@ -1,6 +1,6 @@
 ---
 title: "Applicability"
-subtitle: "Which parts of this book apply in commercial cloud, GCC-Moderate, FedRAMP High and air-gapped environments"
+subtitle: "Which parts of this book apply in commercial cloud, GCC-Moderate, AWS GovCloud (US) and air-gapped environments"
 doc-type: modernization-book-chapter
 audience: [Executive, Architect, Engineer]
 family: next-generation-ddi
@@ -13,7 +13,7 @@ lifecycle_review: 2027-01-01
 
 # Applicability
 
-*Which parts of this book apply in commercial cloud, GCC-Moderate, FedRAMP High and air-gapped environments.*
+*Which parts of this book apply in commercial cloud, GCC-Moderate, AWS GovCloud (US) and air-gapped environments.*
 
 ::: {.callout-tip}
 ## Download this page
@@ -34,11 +34,12 @@ The book is written for agencies whose workloads run in commercial Azure, commer
 - The AWS VPC IPAM integration with an external IPAM is available in commercial AWS Regions (Chapter 07).[^c00-awsipam]
 - Microsoft 365 GCC-Moderate uses the Worldwide endpoint list,[^c00-m365ww] so the DNS risk is path consistency rather than resolving to the wrong cloud (Chapter 02).
 
-## FedRAMP High systems
+## AWS GovCloud (US) at High
 
 The architecture is unchanged. The differences are in authorization and integration:
 
 - A policy plane authorized only at FedRAMP Moderate does not cover High-impact systems. Either use a service authorized at High, or keep the policy plane inside the agency's own High boundary (on-premises or in-tenant management), and confirm with the authorizing official.
+- The AWS VPC IPAM–Infoblox integration is not available in the AWS GovCloud (US) Regions. Treat GovCloud like Azure and Google Cloud in Chapter 07: discovery, reconciliation and a reservation process.
 
 ## Air-Gapped and Classified Networks
 
@@ -53,13 +54,13 @@ Mission-specific guidance governs these environments, and this book's sources do
 
 ## Quick Reference
 
-| Topic | Commercial / GCC-Moderate | FedRAMP High | Air-gapped |
+| Topic | Commercial / GCC-Moderate | AWS GovCloud (US) | Air-gapped |
 |----|----|----|----|
 | Single DDI policy plane | Applies | Applies | Applies |
 | SaaS management at FedRAMP Moderate | Sufficient with agency ATO | Not sufficient alone | Not applicable |
 | CISA Protective DNS forwarding | Required for FCEB egress | Required for FCEB egress | Not applicable |
 | Microsoft 365 INR | Not in GCC-Moderate (Worldwide commercial only) | Not applicable | Not applicable |
-| AWS VPC IPAM external-IPAM integration | Commercial Regions | Not in the AWS Regions authorized at High | Not applicable |
+| AWS VPC IPAM external-IPAM integration | Commercial Regions | Not in GovCloud | Not applicable |
 | Azure Private DNS DNSSEC signing | Not supported (public zones only) | Not applicable | Not applicable |
 
 ---
