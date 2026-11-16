@@ -23,35 +23,39 @@ access is needed at all,
 remembering that it's routing, not DNS.
 
 6
-00:00:14.813 --> 00:00:17.859
+00:00:14.813 --> 00:00:17.913
 The next steps are the things
 that couldn't be verified,
 
 7
-00:00:17.859 --> 00:00:21.515
-such as which Oracle environment
-the agency's tenant will use and
+00:00:17.913 --> 00:00:22.117
+such as which Oracle environment the
+agency's tenant will use and Oracle's
 
 8
-00:00:21.515 --> 00:00:25.374
-Oracle's government-realm DNS limits;
-they're all listed in the backup.
+00:00:22.117 --> 00:00:26.320
+government-realm DNS limits and
+Connect's private endpoints in GovCloud;
 
 9
-00:00:25.374 --> 00:00:31.282
+00:00:26.320 --> 00:00:28.112
+they're all listed in the backup.
+
+10
+00:00:28.112 --> 00:00:34.020
 In the workbook, the HR-Driven Identity
 book and the DNS, DHCP and IPAM book cover
 
-10
-00:00:31.282 --> 00:00:37.012
+11
+00:00:34.020 --> 00:00:39.750
 those two halves in depth, and three
 related research items sit beside this one.
 
-11
-00:00:37.012 --> 00:00:41.938
+12
+00:00:39.750 --> 00:00:44.675
 This is research under review, not an
 endorsement by any federal agency.
 
-12
-00:00:41.938 --> 00:00:42.770
+13
+00:00:44.675 --> 00:00:45.500
 Thank you.

@@ -494,466 +494,466 @@ model the cost over three to five years.
 Here's what those checks returned.
 
 104
-00:07:01.870 --> 00:07:07.820
+00:07:00.880 --> 00:07:06.830
 Here's what those checks returned for
 four DDI products on October 22, 2026.
 
 105
-00:07:07.820 --> 00:07:11.870
+00:07:06.830 --> 00:07:10.880
 It's a snapshot, not a ranking,
 so confirm on the day you decide.
 
 106
-00:07:11.870 --> 00:07:16.287
+00:07:10.880 --> 00:07:15.297
 Only Infoblox Government Cloud has
 a FedRAMP listing, at Moderate,
 
 107
-00:07:16.287 --> 00:07:19.820
+00:07:15.297 --> 00:07:18.830
 and it covers the SaaS, not
 the on-premises appliances.
 
 108
-00:07:19.820 --> 00:07:22.945
+00:07:18.830 --> 00:07:21.955
 The others run inside the
 agency's own boundary.
 
 109
-00:07:22.945 --> 00:07:27.732
+00:07:21.955 --> 00:07:26.742
 Only Infoblox has vendor-specific
 STIGs, which are a High only reference.
 
 110
-00:07:27.732 --> 00:07:31.597
+00:07:26.742 --> 00:07:30.607
 Only BlueCat holds an active
 FIPS 140-3 certificate,
 
 111
-00:07:31.597 --> 00:07:36.270
+00:07:30.607 --> 00:07:35.280
 while Infoblox's newer modules
 are still in NIST's review queue.
 
 112
-00:07:36.270 --> 00:07:39.804
+00:07:35.280 --> 00:07:38.814
 None of the four has a
 current NIAP certification,
 
 113
-00:07:39.804 --> 00:07:42.132
+00:07:38.814 --> 00:07:41.142
 and none is on the latest CDM list.
 
 114
-00:07:42.132 --> 00:07:44.711
+00:07:41.142 --> 00:07:43.721
 So every candidate has a gap to close,
 
 115
-00:07:44.711 --> 00:07:48.407
+00:07:43.721 --> 00:07:47.417
 in the contract or in a plan
 of action and milestones.
 
 116
-00:07:48.407 --> 00:07:49.950
+00:07:47.417 --> 00:07:48.960
 Now, who runs it.
 
 117
-00:07:53.700 --> 00:07:58.982
+00:07:52.710 --> 00:07:57.992
 Now the question many agencies care about
 most: can divisions run their own DNS,
 
 118
-00:07:58.982 --> 00:08:02.638
+00:07:57.992 --> 00:08:01.648
 DHCP and IPAM without
 breaking central governance?
 
 119
-00:08:02.638 --> 00:08:07.826
+00:08:01.648 --> 00:08:06.836
 The workbook's DNS design says yes, if
 the platform supports the right model.
 
 120
-00:08:07.826 --> 00:08:13.081
+00:08:06.836 --> 00:08:12.091
 Corporate administrators see everything,
 and each division gets a fenced scope of
 
 121
-00:08:13.081 --> 00:08:15.899
+00:08:12.091 --> 00:08:14.909
 its own zones, address
 blocks and DHCP scopes,
 
 122
-00:08:15.899 --> 00:08:18.413
+00:08:14.909 --> 00:08:17.423
 with everything else denied by default.
 
 123
-00:08:18.413 --> 00:08:22.773
+00:08:17.423 --> 00:08:21.783
 In Infoblox, for example, one setting
 stops a division with access to a
 
 124
-00:08:22.773 --> 00:08:27.287
+00:08:21.783 --> 00:08:26.297
 shared zone from pointing a name into
 another division's address space.
 
 125
-00:08:27.287 --> 00:08:30.623
+00:08:26.297 --> 00:08:29.633
 Only central superusers
 create groups and roles,
 
 126
-00:08:30.623 --> 00:08:33.226
+00:08:29.633 --> 00:08:32.236
 so a division can't widen its own rights.
 
 127
-00:08:33.226 --> 00:08:36.626
+00:08:32.236 --> 00:08:35.636
 Administrators sign in with
 PIV, or single sign-on,
 
 128
-00:08:36.626 --> 00:08:39.363
+00:08:35.636 --> 00:08:38.373
 and you keep a local break-glass account.
 
 129
-00:08:39.363 --> 00:08:41.610
+00:08:38.373 --> 00:08:40.620
 So how are divisions kept apart?
 
 130
-00:08:45.920 --> 00:08:48.282
+00:08:44.370 --> 00:08:46.732
 Three constructs keep divisions apart.
 
 131
-00:08:48.282 --> 00:08:50.658
+00:08:46.732 --> 00:08:49.108
 First, separate address spaces.
 
 132
-00:08:50.658 --> 00:08:55.695
+00:08:49.108 --> 00:08:54.145
 When a lab's private range overlaps
 headquarters and renumbering isn't practical,
 
 133
-00:08:55.695 --> 00:09:00.807
+00:08:54.145 --> 00:08:59.257
 the platform needs a separate routing domain
 so the same addresses can exist twice,
 
 134
-00:09:00.807 --> 00:09:03.845
+00:08:59.257 --> 00:09:02.295
 and that division then
 needs its own DHCP servers.
 
 135
-00:09:03.845 --> 00:09:08.608
+00:09:02.295 --> 00:09:07.058
 Second, DNS views, which give
 different answers to different clients.
 
 136
-00:09:08.608 --> 00:09:11.445
+00:09:07.058 --> 00:09:09.895
 The first match wins,
 so the order matters.
 
 137
-00:09:11.445 --> 00:09:15.720
+00:09:09.895 --> 00:09:14.170
 Third, tags for ownership,
 like division or cost center.
 
 138
-00:09:15.720 --> 00:09:19.603
+00:09:14.170 --> 00:09:18.053
 They drive reports, not permissions,
 and a required tag can be
 
 139
-00:09:19.603 --> 00:09:23.408
+00:09:18.053 --> 00:09:21.858
 skipped through the API, so the
 automation has to enforce it.
 
 140
-00:09:23.408 --> 00:09:27.479
+00:09:21.858 --> 00:09:25.929
 One trap to watch: report data
 may ignore object permissions,
 
 141
-00:09:27.479 --> 00:09:29.758
+00:09:25.929 --> 00:09:28.208
 so share dashboards per division.
 
 142
-00:09:29.758 --> 00:09:31.940
+00:09:28.208 --> 00:09:30.390
 Next, change control.
 
 143
-00:09:35.690 --> 00:09:40.640
+00:09:34.140 --> 00:09:39.090
 Delegation needs change control, and the
 useful pattern is an approval workflow.
 
 144
-00:09:40.640 --> 00:09:44.895
+00:09:39.090 --> 00:09:43.345
 A division submits a change with a ticket
 number, a central group approves it,
 
 145
-00:09:44.895 --> 00:09:47.934
+00:09:43.345 --> 00:09:46.384
 and the task runs with the
 submitter's own permissions,
 
 146
-00:09:47.934 --> 00:09:51.040
+00:09:46.384 --> 00:09:49.490
 so approval can't grant rights
 the division doesn't have.
 
 147
-00:09:51.040 --> 00:09:54.215
+00:09:49.490 --> 00:09:52.665
 The weakness of any workflow
 is what goes around it.
 
 148
-00:09:54.215 --> 00:09:59.072
+00:09:52.665 --> 00:09:57.522
 In NIOS, for example, CSV imports
 and service restarts skip approval,
 
 149
-00:09:59.072 --> 00:10:02.715
+00:09:57.522 --> 00:10:01.165
 so remove import rights
 from every division group.
 
 150
-00:10:02.715 --> 00:10:07.377
+00:10:01.165 --> 00:10:05.827
 And a zone delegated to a division's own
 servers leaves the platform entirely.
 
 151
-00:10:07.377 --> 00:10:13.097
+00:10:05.827 --> 00:10:11.547
 So decide what stays central in every
 pattern: superusers, roles, approvals,
 
 152
-00:10:13.097 --> 00:10:19.278
+00:10:11.547 --> 00:10:17.728
 sign-in policy, DNSSEC keys, security policy,
 top-level address blocks, and logging.
 
 153
-00:10:19.278 --> 00:10:21.760
+00:10:17.728 --> 00:10:20.210
 Those pieces make four patterns.
 
 154
-00:10:25.510 --> 00:10:28.378
+00:10:23.960 --> 00:10:26.828
 Those pieces make four
 delegation patterns,
 
 155
-00:10:28.378 --> 00:10:32.098
+00:10:26.828 --> 00:10:30.548
 each with a cost, and they apply
 to any comparable platform.
 
 156
-00:10:32.098 --> 00:10:36.245
+00:10:30.548 --> 00:10:34.695
 Pattern A is one central platform
 with delegated admin groups:
 
 157
-00:10:36.245 --> 00:10:40.073
+00:10:34.695 --> 00:10:38.523
 one database, one audit log,
 but a risk of permission sprawl.
 
 158
-00:10:40.073 --> 00:10:43.702
+00:10:38.523 --> 00:10:42.152
 Pattern B adds division-owned
 servers inside the platform,
 
 159
-00:10:43.702 --> 00:10:47.998
+00:10:42.152 --> 00:10:46.448
 for local resilience, while signed
 zones still keep a central primary.
 
 160
-00:10:47.998 --> 00:10:51.186
+00:10:46.448 --> 00:10:49.636
 Pattern C gives a division
 its own network view,
 
 161
-00:10:51.186 --> 00:10:54.373
+00:10:49.636 --> 00:10:52.823
 the only way to hold
 overlapping address space.
 
 162
-00:10:54.373 --> 00:10:59.778
+00:10:52.823 --> 00:10:58.228
 And pattern D delegates a zone to servers
 the division runs itself: full autonomy,
 
 163
-00:10:59.778 --> 00:11:04.861
+00:10:58.228 --> 00:11:03.311
 but central loses the audit trail, policy
 coverage and signing for that zone.
 
 164
-00:11:04.861 --> 00:11:08.980
+00:11:03.311 --> 00:11:07.430
 The patterns combine, and the
 worked example uses all four.
 
 165
-00:11:12.730 --> 00:11:16.756
+00:11:11.180 --> 00:11:15.206
 Here's an illustrative design,
 not a validated configuration,
 
 166
-00:11:16.756 --> 00:11:18.967
+00:11:15.206 --> 00:11:17.417
 for an agency with four divisions.
 
 167
-00:11:18.967 --> 00:11:21.988
+00:11:17.417 --> 00:11:20.438
 Headquarters is the
 central operations team,
 
 168
-00:11:21.988 --> 00:11:26.917
+00:11:20.438 --> 00:11:25.367
 holding its own block and zone under
 pattern A, plus the central superusers.
 
 169
-00:11:26.917 --> 00:11:31.704
+00:11:25.367 --> 00:11:30.154
 A law-enforcement bureau needs confidentiality
 from the other divisions, so it
 
 170
-00:11:31.704 --> 00:11:36.418
+00:11:30.154 --> 00:11:34.868
 gets its own block, zone and servers, and
 its data stays out of shared dashboards.
 
 171
-00:11:36.418 --> 00:11:41.847
+00:11:34.868 --> 00:11:40.297
 A regional office still runs Windows DNS
 and DHCP, which the platform manages,
 
 172
-00:11:41.847 --> 00:11:45.918
+00:11:40.297 --> 00:11:44.368
 with the region's group given
 rights on those servers only.
 
 173
-00:11:45.918 --> 00:11:50.713
+00:11:44.368 --> 00:11:49.163
 And a research lab that numbered itself
 into an overlapping range gets its
 
 174
-00:11:50.713 --> 00:11:55.355
+00:11:49.163 --> 00:11:53.805
 own network view and DHCP pair, with
 its zone delegated to its own servers.
 
 175
-00:11:55.355 --> 00:11:57.790
+00:11:53.805 --> 00:11:56.240
 Then the question is who decides.
 
 176
-00:12:01.540 --> 00:12:02.840
+00:11:59.990 --> 00:12:01.290
 Who decides all this?
 
 177
-00:12:02.840 --> 00:12:07.435
+00:12:01.290 --> 00:12:05.885
 The workbook's DNS responsibility
 matrix gives one decider per row,
 
 178
-00:12:07.435 --> 00:12:09.815
+00:12:05.885 --> 00:12:08.265
 and separates deciding from doing.
 
 179
-00:12:09.815 --> 00:12:14.090
+00:12:08.265 --> 00:12:12.540
 The sponsor and CIO choose the
 platform and how divisions are scoped.
 
 180
-00:12:14.090 --> 00:12:17.500
+00:12:12.540 --> 00:12:15.950
 The authorizing official decides
 whether a cloud-delivered
 
 181
-00:12:17.500 --> 00:12:21.377
+00:12:15.950 --> 00:12:19.827
 management plane is authorized, and
 accepts the standing exceptions.
 
 182
-00:12:21.377 --> 00:12:25.214
+00:12:19.827 --> 00:12:23.664
 The CISO and ISSO set
 the control requirements.
 
 183
-00:12:25.214 --> 00:12:29.419
+00:12:23.664 --> 00:12:27.869
 And the DNS and DDI team owns the
 namespace and the address plan,
 
 184
-00:12:29.419 --> 00:12:31.683
+00:12:27.869 --> 00:12:30.133
 and approves high-impact changes,
 
 185
-00:12:31.683 --> 00:12:36.777
+00:12:30.133 --> 00:12:35.227
 while routine record changes inside a
 division's own space are pre-approved.
 
 186
-00:12:36.777 --> 00:12:41.673
+00:12:35.227 --> 00:12:40.123
 Because that team holds the most powerful
 roles, the workbook scopes its automation,
 
 187
-00:12:41.673 --> 00:12:44.469
+00:12:40.123 --> 00:12:42.919
 adds a second approver
 for the riskiest changes,
 
 188
-00:12:44.469 --> 00:12:47.970
+00:12:42.919 --> 00:12:46.420
 and keeps its privileged
 roles eligible, not standing.
 
 189
-00:12:51.720 --> 00:12:54.707
+00:12:50.170 --> 00:12:53.157
 To wrap up, the decisions and next steps.
 
 190
-00:12:54.707 --> 00:13:00.827
+00:12:53.157 --> 00:12:59.277
 The sponsor and CIO authorize one
 authoritative DDI policy plane, and the DNS and
 
 191
-00:13:00.827 --> 00:13:06.946
+00:12:59.277 --> 00:13:05.396
 DDI team settles the workbook's five DNS
 configuration decisions within 90 days.
 
 192
-00:13:06.946 --> 00:13:09.478
+00:13:05.396 --> 00:13:07.928
 Write the requirement as capabilities,
 
 193
-00:13:09.478 --> 00:13:12.932
+00:13:07.928 --> 00:13:11.382
 each mapped to its rule,
 because no rule names a product.
 
 194
-00:13:12.932 --> 00:13:18.207
+00:13:11.382 --> 00:13:16.657
 Ask every candidate for the same evidence
 pack, and record every gap with an owner.
 
 195
-00:13:18.207 --> 00:13:21.507
+00:13:16.657 --> 00:13:19.957
 Pick a delegation pattern
 per division, and pilot it,
 
 196
-00:13:21.507 --> 00:13:24.883
+00:13:19.957 --> 00:13:23.333
 ideally with one that has
 overlapping address space.
 
 197
-00:13:24.883 --> 00:13:28.020
+00:13:23.333 --> 00:13:26.470
 And size logging for
 retention, tested at peak.
 
 198
-00:13:28.020 --> 00:13:32.181
+00:13:26.470 --> 00:13:30.631
 The next step needs no award:
 list every DNS, DHCP and IPAM
 
 199
-00:13:32.181 --> 00:13:37.295
+00:13:30.631 --> 00:13:35.745
 requirement your systems inherit,
 and the evidence that would prove it.
 
 200
-00:13:37.295 --> 00:13:38.110
+00:13:35.745 --> 00:13:36.560
 Thank you.

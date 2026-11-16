@@ -241,6 +241,43 @@
    "With those rules in place, here's how to choose."
   ]
  ],
+ "10": [
+  [
+   0.05,
+   1.9,
+   "To close, where this fits."
+  ],
+  [
+   1.95,
+   12.262,
+   "The workbook's D N S, DHCP and eye-pam book makes the vendor-neutral case, from split-brain to the policy plane, and the research deep dive on Infoblox D D I covers the platform itself."
+  ],
+  [
+   14.213,
+   10.262,
+   "The decisions to take are which option for each cloud and fed-ramp level, one named owner for every zone, where DNSSEC keys liv, and how address blocks reach each cloud."
+  ],
+  [
+   24.475,
+   7.1,
+   "The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for its government edition."
+  ],
+  [
+   31.575,
+   5.925,
+   "Then size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions."
+  ],
+  [
+   37.5,
+   4.925,
+   "This is research under review, not an endorsement by any federal agency."
+  ],
+  [
+   42.425,
+   0.762,
+   "Thank you."
+  ]
+ ],
  "4": [
   [
    0.05,
@@ -249,26 +286,26 @@
   ],
   [
    4.213,
-   8.338,
-   "It can discover cloud networks and virtual machines on a schedule, and it can import cloud zones so on-premises clients resolve cloud names."
+   9.812,
+   "It can discover cloud networks and virtual machines on a schedule, including GovCloud, and it can import cloud zones so on-premises clients resolve cloud names."
   ],
   [
-   12.55,
+   14.025,
    4.362,
    "But that import is one way, and edits made in NIOS get overwritten."
   ],
   [
-   16.913,
+   18.387,
    13.512,
    "It can't create or own a cloud private zone, manage cloud resolver rules, act as the outside authority for AWS VPC eye-pam, or run DHCP for cloud subnets; the clouds hand out their own addresses."
   ],
   [
-   30.425,
+   31.9,
    9.475,
    "So, as an inference: in the cloud, Infoblox's job is D N S and eye-pam, and the cloud's own resolver still answers cloud private zones."
   ],
   [
-   39.9,
+   41.375,
    1.85,
    "That leads to three options."
   ]
@@ -306,11 +343,11 @@
   ],
   [
    35.375,
-   8.575,
-   "The Grid owns the agency's blocks and hands each cloud a block, automated on commercial AWS and manual in Azure and Google."
+   9.25,
+   "The Grid owns the agency's blocks and hands each cloud a block, automated on commercial AWS and manual in GovCloud, Azure and Google."
   ],
   [
-   43.95,
+   44.625,
    2.312,
    "Whichever you pick, some rules apply."
   ]
@@ -333,55 +370,18 @@
   ],
   [
    21.087,
-   11.463,
-   "Multi-cloud at fed-ramp Moderate and below, consider Universal D D I through Government Cloud for workloads in the commercial regions, and confirm first which features its government edition supports."
+   13.5,
+   "Multi-cloud at fed-ramp Moderate and below, consider Universal D D I through Government Cloud, whether those workloads run in commercial regions or in GovCloud; there, confirm which features Infoblox supports first."
   ],
   [
-   32.55,
+   34.587,
    6.588,
    "And for fed-ramp High systems, stay with options A and C, because Infoblox's service is Moderate-only."
   ],
   [
-   39.138,
+   41.175,
    8.887,
    "In short: Trinzic plus native resolvers as the baseline, with vNIOS and Universal D D I added only where they earn their place."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   1.9,
-   "To close, where this fits."
-  ],
-  [
-   1.95,
-   12.262,
-   "The workbook's D N S, DHCP and eye-pam book makes the vendor-neutral case, from split-brain to the policy plane, and the research deep dive on Infoblox D D I covers the platform itself."
-  ],
-  [
-   14.213,
-   10.262,
-   "The decisions to take are which option for each cloud and fed-ramp level, one named owner for every zone, where DNSSEC keys liv, and how address blocks reach each cloud."
-  ],
-  [
-   24.475,
-   7.1,
-   "The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for its government edition."
-  ],
-  [
-   31.575,
-   5.925,
-   "Then size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions."
-  ],
-  [
-   37.5,
-   4.925,
-   "This is research under review, not an endorsement by any federal agency."
-  ],
-  [
-   42.425,
-   0.762,
-   "Thank you."
   ]
  ]
 }

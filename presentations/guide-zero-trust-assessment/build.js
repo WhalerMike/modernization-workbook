@@ -461,7 +461,7 @@ sourceSlide("Sources: the guide, the tool and the clouds", [
   "Microsoft Learn, for GCC: Microsoft Graph national cloud deployments; Graph PowerShell authentication cmdlets; Connect to Exchange Online PowerShell; Exchange app-only authentication.",
 ]);
 sourceSlide("Sources: reconciliation, requirements and the books", [
-  "CISA BOD 25-01; CISA ScubaGear. AWS: NIST SP 800-53 Rev. 5 in Security Hub CSPM; AWS Security Hub CSPM compliance status.",
+  "CISA BOD 25-01; CISA ScubaGear. AWS: NIST SP 800-53 Rev. 5 in Security Hub CSPM; AWS Security Hub CSPM compliance status; AWS Security Hub CSPM in AWS GovCloud (US).",
   "Federal requirements: NIST SP 800-53 Rev. 5 (CA-2, CA-5, CA-7, CM-6, CM-8, AC-2, AC-6, AU-9, AU-11, RA-7, SI-12); FedRAMP 20x Key Security Indicators, as Book 13, App. A maps them (design guidance).",
   "Book 11, Ch 05 (the two tools), Ch 07 (who owns Zero Trust), Ch 08 (close before you assess), Ch 09 (running the assessment), Ch 10 (evidence, not verdicts); Book 15, Ch 12 (cadence); Book 12, Ch 08 (posture tools on other clouds).",
   "The scripted steps: the guide's results kit, examples/zta-results. Training: the learning path The Zero Trust Assessment as Evidence, four modules with Lab 1 on fixtures and Lab 2 in a test tenant.",

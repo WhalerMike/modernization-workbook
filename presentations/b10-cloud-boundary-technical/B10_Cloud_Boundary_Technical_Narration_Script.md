@@ -66,7 +66,7 @@ Sometimes the honest answer is a different collaboration suite. That's only safe
 
 ## Slide 17 — Module 3: Landing zone and front door
 
-Part 2 starts with the landing zone, where the boundary becomes something the platform actually enforces. We'll cover policy, the same pattern on AWS, the address plan, network as code, and the front door every change has to pass through.
+Part 2 starts with the landing zone, where the boundary becomes something the platform actually enforces. We'll cover policy, AWS and GovCloud, the address plan, network as code, and the front door every change has to pass through.
 
 ## Slide 18 — The hierarchy is where boundary policy lands
 
@@ -76,9 +76,9 @@ If the boundary says a service is out of scope but the landing zone lets a team 
 
 Every line in the package's boundary description should have a mechanism behind it: which cloud, which regions, which services, which settings, and which exceptions. The fine print matters. The built-in allowed-types policy skips some resource types unless you copy it and change its mode. And the FedRAMP compliance initiative is, in Microsoft's own words, only a partial view. The rollout is the real lesson: audit first, review with the system owner and ISSO, fix or exempt, and only then deny. Block production on day one and teams learn to ask for exemptions. Next, the same idea on AWS.
 
-## Slide 20 — AWS, and automation that declares its boundary
+## Slide 20 — AWS, GovCloud and automation that declares its boundary
 
-AWS gets to the same place with accounts, organizational units and service control policies, with Control Tower building the landing zone and Landing Zone Accelerator on top, which AWS says won't by itself make you compliant. The program's AWS workloads run in the commercial Regions, at Class C, and AWS marks each service in scope per Region, so check each service, Region by Region. The other half of this slide is about your own automation. A collector calling a commercial-only API from inside the boundary is a crossing nobody approved. So every adapter declares its boundary, resolves endpoints from it, and fails closed when it doesn't recognize the cloud. Next, the address plan.
+AWS gets to the same place with accounts, organizational units and service control policies, but GovCloud works differently enough that you have to plan for it, not discover it. Accounts are created in pairs from the commercial side, and some factory features simply aren't there. And GovCloud isn't only for High. A Moderate system can run there or in the commercial Regions, and the program's AWS workloads run in GovCloud, so check each service, Region by Region. The other half of this slide is about your own automation. A collector calling a commercial-only API from inside the boundary is a crossing nobody approved. So every adapter declares its boundary, resolves endpoints from it, and fails closed when it doesn't recognize the cloud. Next, the address plan.
 
 ## Slide 21 — The address plan: the denominator every inventory needs
 

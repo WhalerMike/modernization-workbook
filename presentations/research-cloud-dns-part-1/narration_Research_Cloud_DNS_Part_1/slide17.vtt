@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.450
+To close Part 1, here's what the providers
+don't settle, so confirm it with them.
+
+2
+00:00:04.450 --> 00:00:09.413
+AWS: Resolver delegation and
+DNSSEC validation in GovCloud.
+
+3
+00:00:09.413 --> 00:00:13.024
+Azure: whether the Private
+Resolver validates DNSSEC.
+
+4
+00:00:13.024 --> 00:00:16.630
+Oracle: private resolver
+logging in the government realm,
+
+5
+00:00:16.630 --> 00:00:21.062
+and whether the VCN resolver passes
+DNSSEC data to a resolver behind it.
+
+6
+00:00:21.062 --> 00:00:26.900
+And CISA: whether Protective DNS returns
+DNSSEC data to agency forwarders.
+
+7
+00:00:26.900 --> 00:00:30.304
+To prove the page, the plan
+is to build the pattern in
+
+8
+00:00:30.304 --> 00:00:34.275
+test accounts and run the
+workbook's DNS validation matrix.
+
+9
+00:00:34.275 --> 00:00:37.978
+Part 2 picks up from here: when
+to run your own DNS servers,
+
+10
+00:00:37.978 --> 00:00:41.600
+BIND, the alignment checklist,
+and the federal mapping.
+
+11
+00:00:41.600 --> 00:00:46.525
+This is research under review, not an
+endorsement by any federal agency.
+
+12
+00:00:46.525 --> 00:00:47.350
+Thank you.

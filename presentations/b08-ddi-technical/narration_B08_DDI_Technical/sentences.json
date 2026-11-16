@@ -635,6 +635,43 @@
    "And watch the NXDOMAIN trap: a partner's storage account can lead into your empty zone and fail, which is fixed by enabling fallback to internet on the zone's link."
   ]
  ],
+ "19": [
+  [
+   0.05,
+   3.913,
+   "Two rules turn Azure private endpoints into something governed."
+  ],
+  [
+   3.962,
+   2.087,
+   "First, forward the public zone."
+  ],
+  [
+   6.05,
+   13.912,
+   "Every resolver outside Azure, on-premises, in other clouds and at branches, forwards each service's public zone, not the privatelink zone, to the Private Resolver's inbound endpoint or an agency resolver that does."
+  ],
+  [
+   19.962,
+   6.025,
+   "Use Microsoft's recommended zone names, because records are generated automatically only for those."
+  ],
+  [
+   25.988,
+   10.525,
+   "Second, build the resolver in the hub as a forwarding bridge, not an authority, so on-premises D N S reaches it by conditional forwarding, never delegation."
+  ],
+  [
+   36.513,
+   2.388,
+   "The slide carries the sizing limits."
+  ],
+  [
+   38.9,
+   9.9,
+   "The traps are worth remembering: don't link a ruleset to the network its own rule points at, or it loops, and don't list a custom resolver beside Azure's built-in one."
+  ]
+ ],
  "21": [
   [
    0.05,
@@ -936,43 +973,6 @@
    "Thank you."
   ]
  ],
- "19": [
-  [
-   0.05,
-   3.913,
-   "Two rules turn Azure private endpoints into something governed."
-  ],
-  [
-   3.962,
-   2.087,
-   "First, forward the public zone."
-  ],
-  [
-   6.05,
-   13.912,
-   "Every resolver outside Azure, on-premises, in other clouds and at branches, forwards each service's public zone, not the privatelink zone, to the Private Resolver's inbound endpoint or an agency resolver that does."
-  ],
-  [
-   19.962,
-   6.025,
-   "Use Microsoft's recommended zone names, because records are generated automatically only for those."
-  ],
-  [
-   25.988,
-   10.525,
-   "Second, build the resolver in the hub as a forwarding bridge, not an authority, so on-premises D N S reaches it by conditional forwarding, never delegation."
-  ],
-  [
-   36.513,
-   2.388,
-   "The slide carries the sizing limits."
-  ],
-  [
-   38.9,
-   9.9,
-   "The traps are worth remembering: don't link a ruleset to the network its own rule points at, or it loops, and don't list a custom resolver beside Azure's built-in one."
-  ]
- ],
  "20": [
   [
    0.05,
@@ -991,21 +991,21 @@
   ],
   [
    17.35,
-   11.438,
-   "AWS can hand authority for private address scopes to an external eye-pam, with Infoblox as the book's example, in the commercial Regions where the agency's AWS workloads run."
+   10.988,
+   "AWS can hand authority for private address scopes to an external eye-pam, with Infoblox as the book's example, but not in GovCloud, so it doesn't help a GovCloud estate today."
   ],
   [
-   28.788,
+   28.337,
    4.338,
    "Azure and Google Cloud can't hand off, so you mirror and reconcile."
   ],
   [
-   33.125,
+   32.675,
    10.975,
    "The rule: reserve blocks in the enterprise eye-pam before any cloud or NSX network is created, integrate where you can, reconcile where you can't, and monitor sync health."
   ],
   [
-   44.1,
+   43.65,
    3.475,
    "And plan IPv4 and I P version six together."
   ]
@@ -1048,11 +1048,11 @@
   ],
   [
    46.025,
-   9.688,
-   "A Moderate system runs in the commercial regions: G C C Moderate, commercial Azure and the AWS commercial Regions, and the slide lists what changes there."
+   15.838,
+   "Microsoft 365 runs in G C C Moderate with commercial Azure, and government regions such as AWS GovCloud, where the program's AWS workloads run, host Moderate systems too, so their gaps matter at Moderate, and the slide lists them."
   ],
   [
-   55.712,
+   61.862,
    3.4,
    "The right-hand column is High only, kept for reference."
   ]

@@ -1,6 +1,6 @@
 # Research: Cloud DNS, Part 1 — The Native Resolvers
 
-**Deck name: Research_Cloud_DNS_Part_1.** Part 1 of the two-part narrated deck on the evaluation [Cloud DNS on AWS, Azure and Oracle Cloud: Native Resolvers, Infoblox and BIND](../../docs/evaluations/cloud-dns-resolvers-infoblox-bind.md) (in review). It covers the page's "The answer in brief" and Part 1: the Route 53 VPC Resolver, the Azure DNS Private Resolver and the Oracle Cloud VCN resolver, their endpoints, rules, query logging and DNS-layer filters, each provider's FedRAMP scope and Oracle's US Government Cloud, and how all three meet on-premises DNS. [Part 2](../research-cloud-dns-part-2/README.md) covers when to run your own DNS servers, BIND, the alignment checklist and the federal mapping. It is built with the shared kit in [`../_build/`](../_build/README.md). This folder sits outside `docs/`, so the site doesn't render it.
+**Deck name: Research_Cloud_DNS_Part_1.** Part 1 of the two-part narrated deck on the evaluation [Cloud DNS on AWS, Azure and Oracle Cloud: Native Resolvers, Infoblox and BIND](../../docs/evaluations/cloud-dns-resolvers-infoblox-bind.md) (in review). It covers the page's "The answer in brief" and Part 1: the Route 53 VPC Resolver, the Azure DNS Private Resolver and the Oracle Cloud VCN resolver, their endpoints, rules, query logging and DNS-layer filters, what the providers state for AWS GovCloud (US) and Oracle's US Government Cloud, each provider's FedRAMP scope, and how all three meet on-premises DNS. [Part 2](../research-cloud-dns-part-2/README.md) covers when to run your own DNS servers, BIND, the alignment checklist and the federal mapping. It is built with the shared kit in [`../_build/`](../_build/README.md). This folder sits outside `docs/`, so the site doesn't render it.
 
 It belongs to the workbook's [Evaluations](../../docs/evaluations/index.md) section, next to the [Trinzic explainer](../research-trinzic-multicloud/README.md) and the [Infoblox DDI deep dive](../research-infoblox-ddi/README.md). It is not part of the vendor-neutral books. The title slide says "Research — in review"; the closing narration says this is research under review, not an endorsement by any federal agency. No specific federal agency is named.
 
@@ -13,18 +13,19 @@ It belongs to the workbook's [Evaluations](../../docs/evaluations/index.md) sect
 | 5 | What | AWS: inbound and outbound endpoints (diagram) | 1.0 |
 | 6 | What | AWS: rules, sharing, Profiles and private zones | 0.9 |
 | 7 | What | AWS: DNS Firewall, query logging and DNSSEC | 1.0 |
-| 8 | What | Azure: the DNS Private Resolver | 0.8 |
-| 9 | What | Azure: DNS resolver policy, logging and DNSSEC | 1.0 |
-| 10 | What | Oracle Cloud: how the VCN resolver answers (diagram) | 0.9 |
-| 11 | What | Oracle Cloud: endpoints, rules and what's missing | 1.0 |
-| 12 | Who | Who authorizes it: AWS and Azure FedRAMP scope | 0.9 |
-| 13 | Who | Who authorizes it: Oracle US Government Cloud | 1.0 |
-| 14 | How | How the three resolvers meet on-premises DNS (diagram) | 0.9 |
-| 15 | How | How Protective DNS, policy and logs reach each cloud | 1.1 |
-| 16 | How | What to confirm, and what Part 2 covers | 0.9 |
+| 8 | What | AWS GovCloud (US) beside the commercial Regions | 1.0 |
+| 9 | What | Azure: the DNS Private Resolver | 0.8 |
+| 10 | What | Azure: DNS resolver policy, logging and DNSSEC | 1.0 |
+| 11 | What | Oracle Cloud: how the VCN resolver answers (diagram) | 0.9 |
+| 12 | What | Oracle Cloud: endpoints, rules and what's missing | 1.0 |
+| 13 | Who | Who authorizes it: AWS and Azure FedRAMP scope | 0.9 |
+| 14 | Who | Who authorizes it: Oracle US Government Cloud | 1.0 |
+| 15 | How | How the three resolvers meet on-premises DNS (diagram) | 0.9 |
+| 16 | How | How Protective DNS, policy and logs reach each cloud | 1.1 |
+| 17 | How | What to confirm, and what Part 2 covers | 0.9 |
 | | Backup | Not narrated: labels, scope and open points; sources for AWS, Microsoft and Oracle, CISA and the workbook | — |
 
-Narrated total: about 2,100 words, about 15 minutes of audio.
+Narrated total: about 2,260 words, about 16 minutes of audio.
 
 | File | Use |
 |---|---|
@@ -53,5 +54,5 @@ Then, with PowerPoint closed, `qa_export.ps1`, `build_narrated.ps1` and `export_
 ## Sourcing rules
 
 - Every fact comes from the evaluation page ("The answer in brief", Part 1, "Status and review") and the sources it footnotes, checked on October 29, 2026 (AWS, Microsoft Learn, CISA, FedRAMP Marketplace) and October 30–31, 2026 (Oracle), with each claim in the page's [verification log](../../docs/evaluations/_verification/cloud-dns-resolvers-infoblox-bind.md), or from Book 08 and Book 12 pages the page links. The deck adds no external facts.
-- The page's labels are kept: *(design guidance)* for the program's recommendations, *(inference)* for conclusions the sources support but don't state, and *confirm* for points the providers don't document. The FedRAMP-scope and Oracle US Government Cloud rows are the page's tables.
+- The page's labels are kept: *(design guidance)* for the program's recommendations, *(inference)* for conclusions the sources support but don't state, and *confirm* for points the providers don't document. The government-cloud rows are the page's tables, including the GovCloud delegation conflict.
 - Every comparison covers AWS, Azure and Oracle Cloud Infrastructure, as the page does. Scope is FedRAMP Moderate civilian agencies.

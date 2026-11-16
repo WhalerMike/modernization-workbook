@@ -272,7 +272,7 @@ DNSSEC adds origin authentication and integrity, not encryption. The program's p
     "A resolver per region, both in every forwarder",
   ], 13), { x: 9.1, y: 2.42, w: 3.5, h: 2.55, paraSpaceAfter: 6 });
   callout(s, "IPAM", 5.25, 1.25, "FaAddressBook", HEX.teal, "IPAM is the authority for address blocks: ",
-    "AWS VPC IPAM can allocate from an external IPAM in the commercial Regions; on Azure and Google Cloud, mirror the reservations and reconcile. Names and addresses need the same plane.");
+    "AWS VPC IPAM can allocate from an external IPAM in commercial Regions, not GovCloud; on Azure and Google Cloud, mirror the reservations and reconcile. Names and addresses need the same plane.");
   sources(s, "Sources: Microsoft Learn — Private Endpoint DNS integration and zone values, DNS Private Resolver, endpoints and rulesets; AWS VPC IPAM. Book 08, Chapter 07.");
   narrate(s,
 `Azure private endpoints are the commonest source of private-IP split-brain.
@@ -281,7 +281,7 @@ When a private endpoint is created, Azure writes its A record into a privatelink
 
 The Private Resolver is a recursive bridge, not an authority: reach it by forwarding, never by delegation. Give each endpoint a dedicated subnet and a static address, avoid ruleset loops, and deploy one per region.
 
-Addresses need the same discipline, with the enterprise IPAM as the authority for address blocks. AWS VPC IPAM can allocate from an external IPAM in the commercial Regions where the agency's AWS workloads run; on Azure and Google Cloud, mirror the reservations and reconcile.`,
+Addresses need the same discipline, with the enterprise IPAM as the authority for address blocks. AWS VPC IPAM can allocate from an external IPAM in commercial Regions, but not in GovCloud; on Azure and Google Cloud, mirror the reservations and reconcile.`,
   "Book 08, Chapter 07 — Cloud Private Endpoints, SDN and IPAM Consistency.");
 }
 

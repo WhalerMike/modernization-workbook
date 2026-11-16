@@ -2629,39 +2629,39 @@
    "IPAM is the authority for address blocks"
   ],
   [
-   996,
+   995,
    "The governed path, and five decisions that fail silently"
   ],
   [
-   1051,
+   1050,
    "The policy plane, and what federal clouds change"
   ],
   [
-   1114,
+   1120,
    "Module 4: Migration sequence and operating the control plane"
   ],
   [
-   1137,
+   1143,
    "Six phases, each closed by its validation, not by a date"
   ],
   [
-   1190,
+   1195,
    "Phases 1 and 2: sort every component, then coexist"
   ],
   [
-   1241,
+   1247,
    "Phase 3: move zones, scopes and clients, with a way back"
   ],
   [
-   1293,
+   1298,
    "Phases 4 and 5: prove it, then decommission by gate"
   ],
   [
-   1344,
+   1349,
    "Operating the plane: delegation, one API, telemetry"
   ],
   [
-   1396,
+   1402,
    "Keeping it honest: troubleshooting and the evidence checklist"
   ]
  ],
@@ -3306,54 +3306,54 @@
   ],
   [
    721,
-   "AWS, and automation that declares its boundary"
+   "AWS, GovCloud and automation that declares its boundary"
   ],
   [
-   769,
+   772,
    "The address plan: the denominator every inventory needs"
   ],
   [
-   807,
+   810,
    "Mirror the authority, enforce the pool"
   ],
   [
-   846,
+   849,
    "Network as code: five modules in dependency order"
   ],
   [
-   887,
+   890,
    "The front door: six steps from request to closed change"
   ],
   [
-   929,
+   932,
    "Building the loop, and why the pipeline is in scope"
   ],
   [
-   966,
+   969,
    "Module 4: Who owns it, and the package"
   ],
   [
-   983,
+   986,
    "One decider per row: who owns the boundary"
   ],
   [
-   1024,
+   1027,
    "The boundary record: write it once, cite it everywhere"
   ],
   [
-   1063,
+   1066,
    "Narratives at the boundary, and whose package you read"
   ],
   [
-   1102,
+   1105,
    "Keeping the package current: one review, one decider"
   ],
   [
-   1141,
+   1144,
    "What to ask a cloud provider for, with the basis"
   ],
   [
-   1182,
+   1185,
    "Decisions to make, and the first week's work"
   ]
  ],
@@ -4579,15 +4579,15 @@
    "AWS: Config and Security Hub CSPM, not Audit Manager"
   ],
   [
-   1090,
+   1096,
    "VMware: the evidence the agency produces itself"
   ],
   [
-   1134,
+   1140,
    "Who runs day two: one decider per row"
   ],
   [
-   1180,
+   1185,
    "Decisions to make, and next steps for day two"
   ]
  ],
@@ -9887,107 +9887,107 @@
    "DHCP and IPAM: failover, network views, discovery"
   ],
   [
-   379,
+   383,
    "Threat Defense: DNS-layer security and intelligence"
   ],
   [
-   431,
+   436,
    "Automation and logging: APIs, IaC, SIEM, reporting"
   ],
   [
-   483,
+   487,
    "Module 2: Why Infoblox, and why federal needs it"
   ],
   [
-   502,
+   507,
    "From requirement to capability to Infoblox feature"
   ],
   [
-   556,
+   561,
    "FedRAMP scope: what the Moderate listing covers"
   ],
   [
-   608,
+   613,
    "Trinzic hardware against the workbook's design"
   ],
   [
-   662,
+   666,
    "Trinzic alone, or with cloud DDI?"
   ],
   [
-   717,
+   724,
    "Assurance: baselines, FIPS 140, NIAP and SP 800-81r3"
   ],
   [
-   781,
+   788,
    "A fair comparison: dedicated DDI and native clouds"
   ],
   [
-   838,
+   845,
    "Risks: certifications, vulnerabilities, authorization"
   ],
   [
-   890,
+   897,
    "Risks: cost, capacity, features, and procurement asks"
   ],
   [
-   940,
+   947,
    "Module 3: Divisions on NIOS"
   ],
   [
-   958,
+   965,
    "The NIOS permission model: deny first, most specific"
   ],
   [
-   1007,
+   1014,
    "Scoping an admin group to one division"
   ],
   [
-   1053,
+   1060,
    "Network views, DNS views and extensible attributes"
   ],
   [
-   1104,
+   1110,
    "Approval workflow, and the CSV import gap"
   ],
   [
-   1152,
+   1158,
    "Admin sign-in: PIV, SAML with Entra, directories"
   ],
   [
-   1200,
+   1206,
    "Microsoft servers, what stays central, and reporting"
   ],
   [
-   1252,
+   1258,
    "Separating DNS, DHCP and IPAM by team"
   ],
   [
-   1304,
+   1311,
    "Service teams and divisions together"
   ],
   [
-   1355,
+   1362,
    "Module 4: Universal DDI divisions and operating model"
   ],
   [
-   1373,
+   1380,
    "Universal DDI: access views, IP spaces, federation"
   ],
   [
-   1427,
+   1433,
    "Four delegation patterns and their trade-offs"
   ],
   [
-   1478,
+   1485,
    "Worked example: four divisions on one Grid"
   ],
   [
-   1528,
+   1535,
    "Who does what: the DDI responsibility matrix"
   ],
   [
-   1580,
+   1587,
    "Rollout sequence, decisions and next steps"
   ]
  ],
@@ -10515,51 +10515,55 @@
    "AWS: what the Route 53 VPC Resolver answers"
   ],
   [
-   228,
+   229,
    "AWS: inbound and outbound endpoints"
   ],
   [
-   290,
+   291,
    "AWS: rules, sharing, Profiles and private zones"
   ],
   [
-   348,
+   349,
    "AWS: DNS Firewall, query logging and DNSSEC"
   ],
   [
-   412,
+   413,
+   "AWS GovCloud (US) beside the commercial Regions"
+  ],
+  [
+   474,
    "Azure: the DNS Private Resolver"
   ],
   [
-   469,
+   531,
    "Azure: DNS resolver policy, logging and DNSSEC"
   ],
   [
-   531,
+   593,
    "Oracle Cloud: how the VCN resolver answers"
   ],
   [
-   591,
+   653,
    "Oracle Cloud: endpoints, rules and what's missing"
   ],
   [
-   654,
+   716,
    "Who authorizes it: AWS and Azure FedRAMP scope"
   ],
   [
-   702,
+   767,
    "Who authorizes it: Oracle US Government Cloud"
   ],
   [
-   768,
+   834,
    "How the three resolvers meet on-premises DNS"
   ],
   [
-   828,
+   894,
    "How Protective DNS, policy and logs reach each cloud"
   ],
   [
-   899,
+   965,
    "What to confirm, and what Part 2 covers"
   ]
  ],
@@ -10581,55 +10585,55 @@
    "vNIOS or BIND, and which BIND to run"
   ],
   [
-   209,
+   214,
    "Three roles, kept apart"
   ],
   [
-   255,
+   260,
    "Placement and high availability in each cloud"
   ],
   [
-   315,
+   320,
    "Forwarding to and from the native resolver"
   ],
   [
-   373,
+   378,
    "An illustrative forwarder configuration"
   ],
   [
-   439,
+   443,
    "DNSSEC validation and signing in the cloud"
   ],
   [
-   500,
+   505,
    "Response policy zones and CISA Protective DNS"
   ],
   [
-   564,
+   569,
    "Query and response logging into the SOC"
   ],
   [
-   629,
+   633,
    "Patching, settings and hardening baselines"
   ],
   [
-   692,
+   697,
    "Who owns the configuration: Git and Ansible"
   ],
   [
-   747,
+   752,
    "The alignment checklist: seven questions"
   ],
   [
-   818,
+   823,
    "Federal mapping: configuration and inventory"
   ],
   [
-   890,
+   895,
    "Federal mapping: resolution, logging and Protective DNS"
   ],
   [
-   966,
+   971,
    "Where Infoblox fits, and what to confirm"
   ]
  ],
@@ -10855,23 +10859,23 @@
    "Amazon Connect and VMware"
   ],
   [
-   339,
+   346,
    "The clouds disagree on precedence"
   ],
   [
-   385,
+   393,
    "How it breaks: seven failure modes"
   ],
   [
-   432,
+   439,
    "Hub, not mesh"
   ],
   [
-   479,
+   487,
    "What the agency must do"
   ],
   [
-   530,
+   537,
    "Decisions, next steps and where this fits"
   ]
  ],
@@ -10909,39 +10913,39 @@
    "Azure, AWS and Google: who renews what"
   ],
   [
-   319,
+   328,
    "PIV: the card stays, AD's side goes"
   ],
   [
-   360,
+   369,
    "PIV today: strong mapping for non-Microsoft CAs"
   ],
   [
-   403,
+   412,
    "PIV in coexistence: Entra CBA and certificateUserIds"
   ],
   [
-   444,
+   453,
    "PIV after AD: who writes the binding"
   ],
   [
-   483,
+   492,
    "RADIUS: there is no Entra RADIUS"
   ],
   [
-   525,
+   534,
    "802.1X with Intune: EAP-TLS and compliance"
   ],
   [
-   565,
+   574,
    "RADIUS and NAC across the three stages"
   ],
   [
-   602,
+   611,
    "Who issues and who renews: the whole estate"
   ],
   [
-   634,
+   643,
    "What changed in the books, and next steps"
   ]
  ],
@@ -10979,87 +10983,87 @@
    "vNIOS on VMware, Azure and AWS"
   ],
   [
-   362,
+   367,
    "Part 2: Migrate from Microsoft"
   ],
   [
-   381,
+   386,
    "Method A: manage the Windows servers, then take over"
   ],
   [
-   430,
+   435,
    "Method B: import zones by transfer; bulk data by CSV"
   ],
   [
-   476,
+   481,
    "AD zones and Kerberos-signed updates: use AES"
   ],
   [
-   531,
+   536,
    "DHCP takeover: change assignments, never remove first"
   ],
   [
-   578,
+   583,
    "DHCP failover and DHCPv6 on NIOS"
   ],
   [
-   628,
+   633,
    "Rollback: what reverses, and how"
   ],
   [
-   678,
+   683,
    "Part 3: Sign and harden"
   ],
   [
-   697,
+   702,
    "DNSSEC on NIOS: set parameters before you sign"
   ],
   [
-   746,
+   751,
    "The HSM and DS publication"
   ],
   [
-   793,
+   798,
    "Hardening NIOS: the agency's settings baseline"
   ],
   [
-   863,
+   868,
    "FIPS mode: the procedure and what it changes"
   ],
   [
-   909,
+   914,
    "Administrator access and two upgrade gates"
   ],
   [
-   956,
+   961,
    "Part 4: Operate and evidence"
   ],
   [
-   975,
+   980,
    "Upgrades: five steps, and the point of no return"
   ],
   [
-   1025,
+   1030,
    "Patching: hotfixes, images and known exploits"
   ],
   [
-   1066,
+   1071,
    "Backup, restore and Grid Master recovery"
   ],
   [
-   1115,
+   1120,
    "Logging and evidence for the SIEM"
   ],
   [
-   1162,
+   1167,
    "Automation: what you can codify, and what you can't"
   ],
   [
-   1209,
+   1214,
    "The build mapped to Book 08's six phases"
   ],
   [
-   1260,
+   1265,
    "Decisions, vendor asks and next steps"
   ]
  ],
@@ -11135,27 +11139,27 @@
    "What Trinzic alone sees in the clouds, and can't control"
   ],
   [
-   204,
+   205,
    "Option A: vNIOS members inside each cloud"
   ],
   [
-   259,
+   261,
    "Option B: the Grid joined to Universal DDI"
   ],
   [
-   310,
+   311,
    "Option C: Trinzic alongside native cloud DNS"
   ],
   [
-   360,
+   362,
    "The rules that prevent split-brain"
   ],
   [
-   408,
+   410,
    "Which option fits your agency? Design guidance"
   ],
   [
-   460,
+   464,
    "Where this fits the workbook, and next steps"
   ]
  ],
@@ -16055,35 +16059,35 @@
    "Where agencies are: one posture tool per platform"
   ],
   [
-   296,
+   298,
    "Unit 3: the cadence and the evidence package"
   ],
   [
-   355,
+   357,
    "Try it: compare Module 3's two runs"
   ],
   [
-   410,
+   412,
    "Try it: seal the second run and check the package"
   ],
   [
-   468,
+   470,
    "Try it: break the seal on purpose"
   ],
   [
-   512,
+   514,
    "Lab 2: a second run in your test tenant"
   ],
   [
-   571,
+   573,
    "The federal requirement and evidence for Module 4"
   ],
   [
-   625,
+   627,
    "Check yourself: two questions on Module 4"
   ],
   [
-   665,
+   666,
    "Summary: you've finished the path"
   ]
  ]

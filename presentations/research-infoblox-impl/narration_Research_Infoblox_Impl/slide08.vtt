@@ -26,21 +26,25 @@ such as both nodes in the same region
 and zone, and no IPv6 failover.
 
 6
-00:00:26.863 --> 00:00:30.688
-The HA prerequisites list the
-commercial cloud endpoints,
+00:00:26.863 --> 00:00:31.532
+Here's the gap that matters for
+government: the HA prerequisites list only
 
 7
-00:00:30.688 --> 00:00:33.420
-which is where the
-program's workloads run,
+00:00:31.532 --> 00:00:35.052
+commercial cloud endpoints,
+with nothing for GovCloud,
 
 8
-00:00:33.420 --> 00:00:37.713
-and failover time depends on each
-cloud's API, so test it in the pilot.
+00:00:35.052 --> 00:00:37.425
+where the program's AWS workloads run.
 
 9
-00:00:37.713 --> 00:00:43.490
+00:00:37.425 --> 00:00:42.825
+So ask Infoblox, in writing, before
+you rely on vNIOS failover there.
+
+10
+00:00:42.825 --> 00:00:48.600
 And one constraint that shapes Part 2: vNIOS
 members can't manage Microsoft servers.

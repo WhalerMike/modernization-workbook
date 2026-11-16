@@ -100,6 +100,7 @@ So the criteria, as design guidance. Run your own when a zone must be authoritat
   tag(s, "What");
   panel(s, "Choice", 0.6, 1.5, 6.0, 5.0, HEX.navy, HEX.navyTint, "vNIOS OR BIND", null, [
     "vNIOS where the agency's DNS runs on an Infoblox Grid: it joins the same Grid, takes zones, response policy zones and DNSSEC from the Grid Master, in the same console (option A in the Trinzic explainer)",
+    "Infoblox's cloud HA documentation lists only commercial endpoints, so vNIOS failover in GovCloud is a point to confirm (NIOS guide)",
     "BIND where there is no Grid, a vNIOS license or member isn't justified for a small footprint, or a tool expects BIND itself",
     "BIND has no policy plane of its own: for Book 08 its policy comes from the DDI platform and Git",
   ], 12);
@@ -112,7 +113,7 @@ So the criteria, as design guidance. Run your own when a zone must be authoritat
   ], 12);
   sources(s, "Sources: Evaluation page, Part 2 (vNIOS or BIND); NIOS implementation guide; Trinzic explainer; ISC support policy, Download and disclosure policy (Oct. 29, 2026).");
   say(s,
-`If the agency does run its own servers, which ones? Where its DNS runs on an Infoblox Grid, vNIOS is the natural choice. It joins the same Grid and takes its policy from the Grid Master, in the same console.
+`If the agency does run its own servers, which ones? Where its DNS runs on an Infoblox Grid, vNIOS is the natural choice. It joins the same Grid and takes its policy from the Grid Master, in the same console. One caution: vNIOS failover in GovCloud is a point to confirm.
 
 BIND is the choice when there's no Grid, for a small footprint, or when a tool expects BIND itself. BIND has no policy plane of its own; in the workbook's DNS design, its policy comes from the DDI platform and Git.
 
@@ -410,7 +411,7 @@ One owning tool: Ansible owns named.conf on these hosts, and nothing else writes
     ["2", "Source of truth: which zones, and who creates them?", "None, or zones transferred from the DDI platform", "Records created on the server, or zones also edited in Route 53 or on premises"],
     ["3", "Why BIND, not the VPC Resolver or vNIOS? Permanent or a bridge?", "A stated Part 2 need; a bridge has an end date and a retiring change", "\"We've always run BIND,\" or no end date"],
     ["4", "Configuration: in Git, applied by a tool, reviewed?", "Rendered from policy data, merged by reviewed pull request, drift-checked", "Edited on the host; no repository; no change records"],
-    ["5", "Placement: EC2 or VMware guests? Which Regions and VPCs? Shared rules?", "Hub VPC per Region, two or more across zones; rules shared through RAM or a Profile; each placement checked against Part 1", "Workload accounts; rules per account; one Region copied to the other unchecked"],
+    ["5", "Placement: EC2 or VMware guests? GovCloud or commercial? Shared rules?", "Hub VPC per Region, two or more across zones; rules shared through RAM or a Profile; each placement checked against Part 1", "Workload accounts; rules per account; one Region copied to the other unchecked"],
     ["6", "Shared policy: logs, Protective DNS, validation?", "Logs or dnstap in the SIEM with M-26-14 retention; same RPZ feed; upstream only Protective DNS; validation on", "No logs, or only VPC Resolver logs; no RPZs; its own upstream"],
     ["7", "Hardening, inventory, owner?", "Supported branch; stated baseline (CM-6); CMDB record (CM-8) and IPAM entry; named owner", "End-of-life branch; no baseline; not in the CMDB; \"the cloud team\""],
   ], { fontSize: 10.5, minRow: 0.3 });
@@ -482,6 +483,7 @@ For M-22-09's encrypted DNS and resolver logging: encrypted DNS to clients, DNS 
   panel(s, "IB", 0.6, 1.5, 4.0, 5.0, HEX.navy, HEX.navyTint, "WHERE INFOBLOX (vNIOS) FITS", null, [
     "Where the Grid already runs the agency's DNS: vNIOS joins it and gets its policy from the Grid Master",
     "Same criteria as BIND: run it only for a stated reason; it consumes the policy plane",
+    "Its cloud HA is documented for commercial endpoints only: confirm failover in GovCloud",
     "Options A, B and C: the Trinzic explainer; the build: the NIOS implementation guide",
   ], 11.5);
   panel(s, "Conf", 4.75, 1.5, 4.0, 5.0, HEX.red, "FFFFFF", "OPEN POINTS FOR PART 2", null, [
@@ -497,7 +499,7 @@ For M-22-09's encrypted DNS and resolver logging: encrypted DNS to clients, DNS 
   ], 11.5);
   sources(s, "Sources: Evaluation page, Part 2, Part 4 and \"Status and review\"; NIOS implementation guide; Trinzic explainer; Book 08, Ch 10.");
   say(s,
-`Where does Infoblox fit? Where the Grid already runs the agency's DNS, vNIOS is the choice, because it joins the same Grid and gets its policy from the Grid Master. The same criteria apply as for BIND.
+`Where does Infoblox fit? Where the Grid already runs the agency's DNS, vNIOS is the choice, because it joins the same Grid and gets its policy from the Grid Master. The same criteria apply as for BIND. Confirm its failover in GovCloud.
 
 The open points for this part: whether Oracle's VCN resolver passes DNSSEC data to a resolver behind it, and whether CISA's Protective DNS returns DNSSEC data to agency forwarders. And the illustrative configuration hasn't yet run in a VPC.
 
@@ -515,7 +517,7 @@ backup("Sources: labels, open points and full source lists on the following slid
     ["(inference)", "A conclusion the sources support but don't state: the VPC Resolver's view of BIND as the client; following the current ARM over CISA's 2024 BIND appendix; BIND's log as the record of who asked"],
     ["confirm", "A point the sources don't settle; the agency settles it with the provider or CISA"],
     ["Scope", "FedRAMP Moderate civilian agencies: the configuration authority is CISA, NIST SP 800-53 at Moderate, and CIS benchmarks or NIST National Checklist Program content"],
-    ["Open points", "Oracle VCN resolver DNSSEC pass-through; Protective DNS returning DNSSEC data; National Checklist Program dates for the CIS BIND benchmarks"],
+    ["Open points", "vNIOS failover in GovCloud; Oracle VCN resolver DNSSEC pass-through; Protective DNS returning DNSSEC data; National Checklist Program dates for the CIS BIND benchmarks"],
     ["Illustrative configuration", "Passed named-checkconf from BIND 9.18.39 (Ubuntu 24.04 package) in WSL; not run in a VPC; not checked on 9.20"],
   ], { fontSize: 11.5 });
   sources(s, "Sources: Evaluation page, \"Sources, labels and scope\" and \"Status and review\"; verification log.");

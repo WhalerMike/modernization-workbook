@@ -1,83 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.188
-First, internet-bound queries.
+00:00:00.050 --> 00:00:02.900
+How do the three meet on-premises DNS?
 
 2
-00:00:02.188 --> 00:00:07.157
-CISA requires Protective DNS
-for all egress DNS resolution,
+00:00:02.900 --> 00:00:05.887
+The same way, and the
+workbook's DNS design
 
 3
-00:00:07.157 --> 00:00:13.100
-including from agency cloud deployments,
-directly or through agency DNS.
+00:00:05.887 --> 00:00:09.050
+already holds the rules,
+as design guidance.
 
 4
-00:00:13.100 --> 00:00:18.988
-None of the native resolvers forwards the
-default path to Protective DNS on its own.
+00:00:09.050 --> 00:00:13.248
+Into the cloud: on-premises resolvers,
+and other clouds' resolvers,
 
 5
-00:00:18.988 --> 00:00:23.437
-That takes a root rule in AWS or
-Azure, or a rule whose condition
+00:00:13.248 --> 00:00:18.302
+conditionally forward each cloud namespace
+to that cloud's inbound endpoint,
 
 6
-00:00:23.437 --> 00:00:27.538
-is None in Oracle Cloud, pointing
-at the agency resolvers.
+00:00:18.302 --> 00:00:20.712
+using static addresses written once.
 
 7
-00:00:27.538 --> 00:00:30.272
-Whether cloud egress
-already reaches it some
+00:00:20.712 --> 00:00:24.462
+On Oracle Cloud, the entry
+point is a listening endpoint.
 
 8
-00:00:30.272 --> 00:00:33.150
-other way is for the agency
-to confirm with CISA.
+00:00:24.462 --> 00:00:30.412
+Neither the AWS nor the Azure inbound
+endpoint accepts an ordinary NS delegation
 
 9
-00:00:33.150 --> 00:00:34.550
-Second, policy.
+00:00:30.412 --> 00:00:36.187
+of a private zone; AWS's delegation inbound
+endpoint is the exception, and it's new.
 
 10
-00:00:34.550 --> 00:00:37.198
-The clouds' own filters
-are a second policy
+00:00:36.187 --> 00:00:39.640
+Out of the cloud: each
+cloud forwards the agency's
 
 11
-00:00:37.198 --> 00:00:40.375
-surface beside the agency's
-response policy zones.
+00:00:39.640 --> 00:00:43.438
+namespaces back to the agency
+resolvers, by its rules.
 
 12
-00:00:40.375 --> 00:00:44.748
-The design guidance: feed them
-from the same indicator decisions,
+00:00:43.438 --> 00:00:46.986
+On AWS, create the rules once
+in a network account and
 
 13
-00:00:44.748 --> 00:00:49.687
-or use them as a backstop, so a block on
-premises is also a block in each cloud.
+00:00:46.986 --> 00:00:50.863
+share them through Resource
+Access Manager or a Profile.
 
 14
-00:00:49.687 --> 00:00:52.821
-Oracle has no such filter for private DNS,
+00:00:50.863 --> 00:00:53.300
+Spokes associate them and can't edit them.
 
 15
-00:00:52.821 --> 00:00:57.613
-so its catch-all rule is the only
-way agency policy reaches a VCN.
-
-16
-00:00:57.613 --> 00:01:02.942
-Third, logs: all three go to the SIEM,
-parsed through ASIM's DNS schema,
-
-17
-00:01:02.942 --> 00:01:07.250
-as Microsoft Learn's ASIM
-documentation describes.
+00:00:53.300 --> 00:00:56.300
+That's the cloud form
+of one policy object.

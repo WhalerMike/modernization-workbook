@@ -26,35 +26,40 @@ network so resolution stays
 local if the WAN fails.
 
 6
-00:00:21.088 --> 00:00:23.489
+00:00:21.088 --> 00:00:23.741
 Multi-cloud at FedRAMP Moderate and below,
 
 7
-00:00:23.489 --> 00:00:28.226
-consider Universal DDI through Government
-Cloud for workloads in the commercial
+00:00:23.741 --> 00:00:26.927
+consider Universal DDI
+through Government Cloud,
 
 8
-00:00:28.226 --> 00:00:32.550
-regions, and confirm first which features
-its government edition supports.
+00:00:26.927 --> 00:00:31.098
+whether those workloads run in
+commercial regions or in GovCloud;
 
 9
-00:00:32.550 --> 00:00:36.129
+00:00:31.098 --> 00:00:34.587
+there, confirm which features
+Infoblox supports first.
+
+10
+00:00:34.587 --> 00:00:38.166
 And for FedRAMP High systems,
 stay with options A and C,
 
-10
-00:00:36.129 --> 00:00:39.138
+11
+00:00:38.166 --> 00:00:41.175
 because Infoblox's
 service is Moderate-only.
 
-11
-00:00:39.138 --> 00:00:43.146
+12
+00:00:41.175 --> 00:00:45.183
 In short: Trinzic plus native
 resolvers as the baseline,
 
-12
-00:00:43.146 --> 00:00:48.100
+13
+00:00:45.183 --> 00:00:50.110
 with vNIOS and Universal DDI added
 only where they earn their place.

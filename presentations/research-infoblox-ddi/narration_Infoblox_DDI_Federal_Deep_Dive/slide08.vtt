@@ -53,5 +53,10 @@ separate network views permit
 overlap, they don't prevent it.
 
 12
-00:00:40.400 --> 00:00:42.360
+00:00:40.400 --> 00:00:44.738
+And the AWS address-management
+integration excludes GovCloud.
+
+13
+00:00:44.738 --> 00:00:46.700
 Now, the security layer.

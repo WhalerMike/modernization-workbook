@@ -32,7 +32,7 @@
   {
     "slide": 7,
     "title": "Amazon Connect and VMware",
-    "say": "Two more components. Amazon Connect agents work in a browser, and AWS says that traffic traverses the public network and prefers a domain allowlist. If agents can't resolve the media relay names, the softphone can't set up its media channel, so don't over-restrict their DNS. Private API access covers only a subset of Connect, and, as an inference, helps API calls, not the agent or voice path. On VMware, a Broadcom article says changing vCenter's name or address is blocked if the name doesn't fully resolve. So keep those records right in the Grid. Next, the subtle one."
+    "say": "Two more components. Amazon Connect agents work in a browser, and AWS says that traffic traverses the public network and prefers a domain allowlist. If agents can't resolve the media relay names, the softphone can't set up its media channel, so don't over-restrict their DNS. In GovCloud, Connect is available only in the US-West region, uses its own names, and lacks several features. Private API access covers only a subset of Connect, and, as an inference, helps API calls, not the agent or voice path. On VMware, a Broadcom article says changing vCenter's name or address is blocked if the name doesn't fully resolve. So keep those records right in the Grid. Next, the subtle one."
   },
   {
     "slide": 8,
@@ -57,6 +57,6 @@
   {
     "slide": 12,
     "title": "Decisions, next steps and where this fits",
-    "say": "To close. The decisions are who owns each namespace, which middleware platform and so which resolver path, the hub design in each cloud, and whether Oracle's private access is needed at all, remembering that it's routing, not DNS. The next steps are the things that couldn't be verified, such as which Oracle environment the agency's tenant will use and Oracle's government-realm DNS limits; they're all listed in the backup. In the workbook, the HR-Driven Identity book and the DNS, DHCP and IPAM book cover those two halves in depth, and three related research items sit beside this one. This is research under review, not an endorsement by any federal agency. Thank you."
+    "say": "To close. The decisions are who owns each namespace, which middleware platform and so which resolver path, the hub design in each cloud, and whether Oracle's private access is needed at all, remembering that it's routing, not DNS. The next steps are the things that couldn't be verified, such as which Oracle environment the agency's tenant will use and Oracle's government-realm DNS limits and Connect's private endpoints in GovCloud; they're all listed in the backup. In the workbook, the HR-Driven Identity book and the DNS, DHCP and IPAM book cover those two halves in depth, and three related research items sit beside this one. This is research under review, not an endorsement by any federal agency. Thank you."
   }
 ]
