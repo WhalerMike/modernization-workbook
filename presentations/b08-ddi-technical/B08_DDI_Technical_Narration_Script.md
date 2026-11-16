@@ -6,7 +6,7 @@ Welcome. This is the technical deep dive for DNS, DHCP and IPAM, one of the book
 
 ## Slide 2 — Why this matters: DNS now decides far more than an address
 
-Here's why this matters. Almost every connection begins with a DNS query, and in a hybrid, multi-cloud agency the answer now decides far more than an address. NIST's 2026 DNS guide says DNS has become a security control, not just a service. Chapter 01 names six jobs it now does, from publishing private addresses for cloud endpoints to anchoring certificate checks, because revocation endpoints are names too. Yet most agencies run DNS on as many as five platforms that share no state: on-premises, AWS, Azure, Google Cloud and VMware. The cost shows up on every change. A new Azure private endpoint can need four more DNS changes, on four consoles, in four syntaxes. And the forwarding rules that connect those platforms usually belong to no single team.
+Here's why this matters. Almost every connection begins with a DNS query, and in a hybrid, multi-cloud agency the answer now decides far more than an address. NIST's 2026 DNS guide says DNS has become a security control, not just a service. Chapter 01 names six jobs it now does, from publishing private addresses for cloud endpoints to anchoring certificate checks, because revocation endpoints are names too. Yet most agencies run DNS on as many as six platforms that share no state: on-premises, AWS, Azure, Google Cloud, Oracle Cloud and VMware. The cost shows up on every change. A new Azure private endpoint can need four more DNS changes, on four consoles, in four syntaxes. And the forwarding rules that connect those platforms usually belong to no single team.
 
 ## Slide 3 — What the mandates require, and the sequence that meets them
 
@@ -68,9 +68,9 @@ Operating DNSSEC is mostly key management, automated and audited. NIST recommend
 
 Part 2 builds and runs the control plane, starting with Module 3, the design. Every cloud ships its own private DNS and its own address manager, and unless one plane governs both, names and addresses drift apart one console at a time.
 
-## Slide 18 — Four private DNS models, and Azure private endpoints
+## Slide 18 — Five private DNS models, and Azure private endpoints
 
-Each cloud ships its own private DNS, with its own console, API, zone model and failure behavior, and none was designed to share policy with the others. The slide compares AWS, Azure, Google Cloud and VMware NSX. Azure private endpoints are the most common source of split-brain, so they get the detail. The private answer only comes back from a resolver that can see a linked private zone. Three behaviors catch teams out. DNS answers don't grant access; the service's network setting does. Use one zone per service type everywhere, with Microsoft's recommended names. And watch the NXDOMAIN trap: a partner's storage account can lead into your empty zone and fail, which is fixed by enabling fallback to internet on the zone's link.
+Each cloud ships its own private DNS, with its own console, API, zone model and failure behavior, and none was designed to share policy with the others. The slide compares AWS, Azure, Google Cloud, Oracle Cloud and VMware NSX. Azure private endpoints are the most common source of split-brain, so they get the detail. The private answer only comes back from a resolver that can see a linked private zone. Three behaviors catch teams out. DNS answers don't grant access; the service's network setting does. Use one zone per service type everywhere, with Microsoft's recommended names. And watch the NXDOMAIN trap: a partner's storage account can lead into your empty zone and fail, which is fixed by enabling fallback to internet on the zone's link.
 
 ## Slide 19 — Forward the public zone; Private Resolver in the hub
 

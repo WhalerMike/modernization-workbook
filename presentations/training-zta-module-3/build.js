@@ -4,8 +4,8 @@
 // "Try it" slides with the real Lab 1 commands and output (run November 12, 2026 in a scratch copy of
 // examples/zta-results, the same output the page shows), Lab 2, the federal requirement and evidence, a two-question
 // check, and the summary. Every fact comes from the module page, the Zero Trust Assessment implementation guide it sends
-// the learner to (Steps 7 and 8), Book 11, Chapters 08 and 10, or the kit; the deck adds none. The module page is a draft awaiting review;
-// the title slide carries no draft notice. Helpers: ../training-zta-module-1/shared.js.
+// the learner to (Steps 7 and 8), Book 11, Chapters 08 and 10, or the kit; the deck adds none.
+// The title slide carries no draft notice. Helpers: ../training-zta-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-zta-module-3/build.js \
 //                      presentations/training-zta-module-3/Training_ZTA_Module_3.pptx
 const P = require("../training-zta-module-1/shared.js")({
@@ -330,7 +330,7 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 3 deck", [
-  "Module page: docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md (The Zero Trust Assessment as Evidence, Module 3), a draft awaiting review; the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
+  "Module page: docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md (The Zero Trust Assessment as Evidence, Module 3); the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
   "Zero Trust Assessment: An Implementation Guide, Step 7 (the taxonomy and dispositions) and Step 8 (the register, the finding families, \"Weigh, then order,\" \"Exceptions\"), with their footnotes, read November 11, 2026.",
   "Book 11, Chapter 08 (Finding families) and Chapter 10 (A normalized result taxonomy; The closure chain; weighing; exceptions). The remediation pages: Book 04, Chapters 04 and 08; Book 05, Chapter 10; Book 13, Chapter 14; the Azure Security Engineering guide.",
   "NIST SP 800-53 Rev. 5 (CA-2, CA-5, CA-7, CM-6, RA-7); FedRAMP 20x KSIs, as Book 13, Appendix A maps them.",

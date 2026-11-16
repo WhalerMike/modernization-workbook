@@ -4,7 +4,7 @@
 // exact commands in a test tenant (not run by the authors, as the page says; the module has no Lab 1), the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page, the Zero Trust
 // Assessment implementation guide it sends the learner to (Steps 2 to 5, "GCC availability", and their
-// footnotes); the deck adds none. The module page is a draft awaiting review; the title slide carries no draft notice.
+// footnotes); the deck adds none. The title slide carries no draft notice.
 // Helpers: ../training-zta-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-zta-module-2/build.js \
 //                      presentations/training-zta-module-2/Training_ZTA_Module_2.pptx
@@ -318,7 +318,7 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 2 deck", [
-  "Module page: docs/training/zero-trust-assessment/02-running-the-assessment-safely.md (The Zero Trust Assessment as Evidence, Module 2), a draft awaiting review; the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
+  "Module page: docs/training/zero-trust-assessment/02-running-the-assessment-safely.md (The Zero Trust Assessment as Evidence, Module 2); the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
   "Zero Trust Assessment: An Implementation Guide, Steps 2 to 5, \"GCC availability\"; its footnotes carry each source, read November 11, 2026: Microsoft Learn, Get started with the Zero Trust Assessment; Graph PowerShell authentication cmdlets; Grant and revoke API permissions in Microsoft Entra ID; Microsoft Graph national cloud deployments; Connect to Exchange Online PowerShell.",
   "The tool, release 3.1.0: Run the Zero Trust Assessment (the tool's guide); its source for Connect-ZtAssessment and Get-ZtGraphScope.",
   "NIST SP 800-53 Rev. 5 (CM-6, AC-6, CA-2, CA-7, AU-9); FedRAMP 20x KSIs, as Book 13, Appendix A maps them. The Privileged Access implementation guide (the PIM model).",

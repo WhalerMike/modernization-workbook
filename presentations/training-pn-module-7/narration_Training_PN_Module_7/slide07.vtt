@@ -15,66 +15,81 @@ The teams in the lab's
 routing are fictional.
 
 4
-00:00:08.800 --> 00:00:13.725
+00:00:08.800 --> 00:00:13.763
 Step one checks the lab's routing:
-six rules, in the order they're tried.
+seven rules, in the order they're tried.
 
 5
-00:00:13.725 --> 00:00:18.457
-Five route to a task: security
-operations at P2, cloud platform
+00:00:13.763 --> 00:00:19.404
+Six route to a task: security operations
+at P2, cloud platform engineering
 
 6
-00:00:18.457 --> 00:00:24.025
-engineering at P3 twice, the service
-desk at P2, and cloud operations at P3.
+00:00:19.404 --> 00:00:24.399
+at P3 twice, the service desk at P2
+twice, and cloud operations at P3.
 
 7
-00:00:24.025 --> 00:00:25.487
-The sixth ignores.
+00:00:24.399 --> 00:00:26.000
+The seventh ignores.
 
 8
-00:00:25.487 --> 00:00:27.873
-Step two tries the template as it ships,
+00:00:26.000 --> 00:00:32.486
+Rule R04b makes every open Microsoft
+365 incident a task: Microsoft 365
 
 9
-00:00:27.873 --> 00:00:31.376
+00:00:32.486 --> 00:00:39.412
+service health names no resources, so
+R04, which needs them, never matches one.
+
+10
+00:00:39.412 --> 00:00:41.798
+Step two tries the template as it ships,
+
+11
+00:00:41.798 --> 00:00:45.301
 and the kit refuses it, because
 it still has a placeholder.
 
-10
-00:00:31.376 --> 00:00:35.313
+12
+00:00:45.301 --> 00:00:49.238
 It runs only once every
 value is filled in, at work.
 
-11
-00:00:35.313 --> 00:00:39.553
+13
+00:00:49.238 --> 00:00:53.479
 Step three collects every provider
 from the day-one fixtures:
 
-12
-00:00:39.553 --> 00:00:41.799
+14
+00:00:53.479 --> 00:00:55.724
 twenty-two notices, as in Module 1.
 
-13
-00:00:41.799 --> 00:00:44.262
+15
+00:00:55.724 --> 00:00:58.187
 Step four routes them as a dry run.
 
-14
-00:00:44.262 --> 00:00:46.001
+16
+00:00:58.187 --> 00:00:59.926
 Twenty-two new notices.
 
-15
-00:00:46.001 --> 00:00:50.258
-Twelve route to a task,
-nine go to the digest only,
+17
+00:00:59.926 --> 00:01:04.314
+Thirteen route to a task,
+eight go to the digest only,
 
-16
-00:00:50.258 --> 00:00:55.062
+18
+00:01:04.314 --> 00:01:08.913
 and one is ignored: the
 Microsoft Viva post, by rule R06.
 
-17
-00:00:55.062 --> 00:00:59.450
-That's twelve create payloads,
+19
+00:01:08.913 --> 00:01:15.425
+The open Exchange Online incident is a
+P2 task for the service desk, by R04b.
+
+20
+00:01:15.425 --> 00:01:20.020
+That's thirteen create payloads,
 written to a folder, and nothing sent.

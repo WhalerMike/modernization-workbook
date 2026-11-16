@@ -142,23 +142,24 @@ Vendors and products appear only as the book's examples, never as endorsements. 
       { text: j[2], options: { fontSize: 12 } },
     ], { x: 1.28, y, w: 4.75, h: 0.72, fontSize: 12 });
   });
-  subhead(s, "Silo head", "FIVE PLATFORMS, NO SHARED STATE", 6.3, 1.5, 6.4);
+  subhead(s, "Silo head", "SIX PLATFORMS, NO SHARED STATE", 6.3, 1.5, 6.4);
   table(s, "Platforms", 1.85, [1.55, 2.6, 2.3], ["Platform", "How it resolves", "Native DNS policy"], [
     ["On-premises", "AD-integrated DNS on DCs, or a DDI grid", "RPZ or DNS firewall on the grid"],
     ["Route 53", "VPC Resolver at the VPC+2 address", "Resolver DNS Firewall, per VPC"],
     ["Azure", "Private zones only for linked VNets", "DNS resolver policy, per VNet"],
     ["Google Cloud", "Metadata server 169.254.169.254", "Cloud DNS response policies"],
+    ["Oracle Cloud", "VCN resolver 169.254.169.254, private views", "None for private DNS"],
     ["VMware NSX", "Forwarder on a gateway; opt-in listener IP", "None in the forwarder itself"],
   ], { x: 6.3, fontSize: 12 });
   callout(s, "Burden", 5.6, 0.9, "FaTriangleExclamation", HEX.red, "One private endpoint, four more changes: ",
     "the private zone and links, the Resolver ruleset, a Route 53 rule and on-premises forwarders, on four consoles.");
-  sources(s, "Sources: OMB M-08-23; NIST SP 800-81r3 (Mar. 2026); Microsoft Learn — Azure Storage private endpoints, M365 endpoints, DNS resolver policy; AWS Route 53 VPC Resolver; Google Cloud DNS; VMware NSX. Book 08, Ch 01.");
+  sources(s, "Sources: OMB M-08-23; NIST SP 800-81r3 (Mar. 2026); Microsoft Learn — Azure Storage private endpoints, M365 endpoints, DNS resolver policy; AWS Route 53 VPC Resolver; Google Cloud DNS; Oracle OCI Private DNS; VMware NSX. Book 08, Ch 01.");
   notes(s,
 `Why this matters. Almost every network connection begins with a DNS query, and in a hybrid multi-cloud agency the answer now decides far more than an address. NIST's 2026 DNS deployment guide, SP 800-81 Revision 3, says DNS infrastructure has become more than a service; it is also a security control.
 
 Chapter 01 names six jobs DNS now does. It publishes private addresses: an Azure Storage account with a private endpoint resolves privately inside the hosting virtual network and publicly everywhere else. It selects SaaS front doors: Microsoft 365 publishes its endpoint lists per cloud, and GCC Moderate uses the Worldwide list. It enforces security policy through response policy zones and DNS firewalls. It anchors certificate validation, because OCSP and CRL endpoints are names. And the FQDN is the service identity that gateways, certificates and Zero Trust policies are written against.
 
-Yet most agencies run it on as many as five platforms that share no state. AD DNS or a DDI grid on premises. Route 53's VPC Resolver, formerly Route 53 Resolver. Azure, where private zones resolve only for linked networks, and where DNS resolver policy now gives an RPZ equivalent. Google Cloud's metadata server. And the NSX forwarder, which workloads reach only if configured to.
+Yet most agencies run it on as many as six platforms that share no state. AD DNS or a DDI grid on premises. Route 53's VPC Resolver, formerly Route 53 Resolver. Azure, where private zones resolve only for linked networks, and where DNS resolver policy now gives an RPZ equivalent. Google Cloud's metadata server. Oracle Cloud's VCN resolver, which answers from private views and has no DNS policy of its own for private names. And the NSX forwarder, which workloads reach only if configured to.
 
 The cost shows up on every change. A new Azure private endpoint can need four more DNS changes, on four consoles, in four syntaxes. Chapter 09 assigns ownership, because the forwarding rules that connect the platforms usually belong to no single team.`,
   "Book 08, Chapter 01 — DNS Is Now the Control Plane.");
@@ -612,18 +613,19 @@ Moving a signed zone has its own sequence, run during Chapter 10's Phase 3 so th
   notes(s,
 `Part 2: building and running the control plane. Module 3 covers the design.
 
-Chapter 07's premise: every cloud ships its own private DNS and its own address manager, and unless one plane governs both, names and addresses drift apart one console at a time. We'll take the four private DNS models, Azure private endpoints and the Private Resolver in detail, then IPAM as the authority for address blocks across the clouds. Chapter 08 then draws the reference architecture and the five decisions that carry almost all of its operational risk, each with a check to run in the live configuration, and Appendix C sets out what changes in government clouds.`,
+Chapter 07's premise: every cloud ships its own private DNS and its own address manager, and unless one plane governs both, names and addresses drift apart one console at a time. We'll take the five private DNS models, Azure private endpoints and the Private Resolver in detail, then IPAM as the authority for address blocks across the clouds. Chapter 08 then draws the reference architecture and the five decisions that carry almost all of its operational risk, each with a check to run in the live configuration, and Appendix C sets out what changes in government clouds.`,
   "Book 08, Chapter 07 — Cloud Private Endpoints, SDN and IPAM Consistency; Chapter 08 — Reference Architecture; Appendix C — Applicability.");
 }
 
 // ================================================================== 18 Four private DNS models + Azure behavior
 {
-  const s = D.content(P2, "Four private DNS models, and Azure private endpoints");
+  const s = D.content(P2, "Five private DNS models, and Azure private endpoints");
   tag(s, "What");
   table(s, "Models", 1.5, [1.5, 2.85, 2.6, 2.65, 2.55], ["Platform", "Private namespace", "Entry from outside", "Forwarding out", "DNS-layer policy"], [
     ["AWS", "Route 53 private hosted zones at VPC+2", "VPC Resolver inbound endpoint", "Outbound endpoint + Resolver rules (shareable)", "Resolver DNS Firewall"],
     ["Azure", "Private DNS zones, linked VNets only", "Private Resolver inbound endpoint", "Outbound endpoint + forwarding rulesets", "DNS resolver policy"],
     ["Google Cloud", "Cloud DNS private zones per VPC", "Inbound server policy entry points", "Forwarding zones, outbound policies, peering", "Response policies (one per network)"],
+    ["Oracle Cloud", "Private zones in private views, VCN resolver", "Listening endpoint on the VCN resolver", "Forwarding endpoint + resolver rules (up to 50)", "None native for private DNS"],
     ["VMware NSX", "No private zone: forwarder on the gateway", "Forwarder IP, only if configured", "Up to 5 FQDN zones × 3 servers", "None beyond forwarding"],
   ], { fontSize: 11.5 });
   const cards = [
@@ -638,11 +640,11 @@ Chapter 07's premise: every cloud ships its own private DNS and its own address 
     T(s, `Card ${i + 1} head`, c[1], { x: x + 0.82, y: 4.58, w: 3.0, h: 0.55, bold: true, color: c[2], fontSize: 14.5, fontFace: "Cambria", valign: "middle" });
     T(s, `Card ${i + 1} text`, c[4], { x: x + 0.18, y: 5.2, w: 3.62, h: 1.2, fontSize: 12.5 });
   });
-  sources(s, "Sources: AWS Route 53 VPC Resolver, DNS Firewall; Microsoft Learn — Azure Private DNS, Private Resolver, DNS resolver policy, private endpoint DNS integration and zone values; Google Cloud DNS server policies, zones, response policies; NSX forwarder. Book 08, Ch 07.");
+  sources(s, "Sources: AWS Route 53 VPC Resolver, DNS Firewall; Microsoft Learn — Azure Private DNS, Private Resolver, DNS resolver policy, private endpoint DNS integration and zone values; Google Cloud DNS server policies, zones, response policies; Oracle OCI Private DNS, resolver rules; NSX forwarder. Book 08, Ch 07.");
   notes(s,
 `Each cloud ships its own private DNS, with its own console, API, zone model and failure behavior, and none was designed to share policy with the others.
 
-AWS has Route 53 private hosted zones answered by the VPC Resolver, inbound endpoints for queries from outside, outbound endpoints and Resolver rules, and DNS Firewall. Azure has Private DNS zones resolvable only from linked networks, the Private Resolver's endpoints and forwarding rulesets, and resolver policy. Google Cloud has private zones per VPC network, inbound server policies, forwarding and peering zones, and response policies. VMware NSX has no private zone at all: a gateway forwarder holds a default zone and up to five FQDN zones of three servers each, used only by workloads configured for it.
+AWS has Route 53 private hosted zones answered by the VPC Resolver, inbound endpoints for queries from outside, outbound endpoints and Resolver rules, and DNS Firewall. Azure has Private DNS zones resolvable only from linked networks, the Private Resolver's endpoints and forwarding rulesets, and resolver policy. Google Cloud has private zones per VPC network, inbound server policies, forwarding and peering zones, and response policies. Oracle Cloud holds private zones in private views, answered by each VCN's dedicated resolver, with a listening endpoint for queries from outside, a forwarding endpoint and up to fifty resolver rules, first match wins, and no native DNS policy for private names. VMware NSX has no private zone at all: a gateway forwarder holds a default zone and up to five FQDN zones of three servers each, used only by workloads configured for it.
 
 Azure private endpoints are the most common source of private-IP split-brain. With private DNS integration, a zone group writes the endpoint's A record into the matching privatelink zone and removes it when the endpoint goes. Public DNS carries a CNAME into the privatelink name, so connection strings don't change. The private answer comes back only from a resolver that can see a linked zone.
 

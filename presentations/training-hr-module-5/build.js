@@ -63,7 +63,7 @@ const SS = "Check and summary";
     "State the interactive CRL limit for GCC, and the download time limit",
     "Measure a set of CRLs and record failures as findings",
     "Run the certificate-based authentication check for a named cloud and explain its findings",
-    "Explain why the same CRL can be a warning in one cloud and not in another",
+    "Explain why a CRL under the GCC limit can still be a warning, and why the check runs every day",
   ], [
     "Module 3: the Temporary Access Pass bridges to the card; this gate ends the bridge",
     "Some PKI terms: issuing CA, CRL, policy OID (Book 07, Chapter 06)",
@@ -71,7 +71,7 @@ const SS = "Check and summary";
   ], 50);
   sources(s, "Sources: Module 5, \"Learning objectives,\" \"Prerequisites\"; HR-Driven Identity path, \"What you need for the labs.\"");
   notes(s,
-`Here's what you'll be able to do by the end of the module. You'll state the interactive revocation list limit for GCC, and the download time limit. You'll measure a set of lists and record the failures as findings. You'll run the certificate-based authentication check for a named cloud and explain what it finds. And you'll explain why the same list can be a warning in one cloud and not in another. Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge. Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; Chapter 06 of the Federal Modernization Workbook's PKI and Certificates book explains them for Entra. Lab 1 needs Python and pytest, and no tenant.`,
+`Here's what you'll be able to do by the end of the module. You'll state the interactive revocation list limit for GCC, and the download time limit. You'll measure a set of lists and record the failures as findings. You'll run the certificate-based authentication check for a named cloud and explain what it finds. And you'll explain why a list under the GCC limit can still be a warning, and why the check runs every day. Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge. Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; Chapter 06 of the Federal Modernization Workbook's PKI and Certificates book explains them for Entra. Lab 1 needs Python and pytest, and no tenant.`,
   `${M} — "Learning objectives," "Prerequisites"; learning path index — "What you need for the labs."`);
 }
 endModule(SI);
