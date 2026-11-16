@@ -15,45 +15,45 @@ HSM or software key, and a
 handful of integration choices.
 
 4
-00:00:09.413 --> 00:00:13.250
+00:00:09.413 --> 00:00:13.512
 There are a few questions to
 put to CyberArk in writing,
 
 5
-00:00:13.250 --> 00:00:17.600
+00:00:13.512 --> 00:00:18.250
 mainly around FIPS, Windows Server
-2025, and Azure Government.
+2025, and PIV console sign-in.
 
 6
-00:00:17.600 --> 00:00:22.683
+00:00:18.250 --> 00:00:23.333
 And the next steps are concrete: stand up
 the test cluster, create the CA account
 
 7
-00:00:22.683 --> 00:00:27.688
+00:00:23.333 --> 00:00:28.338
 under the ESC7 controls, and prove in the
 lab that it can't do more than it should.
 
 8
-00:00:27.688 --> 00:00:31.267
+00:00:28.338 --> 00:00:31.916
 The program's view is clear — this
 is the right platform for the
 
 9
-00:00:31.267 --> 00:00:35.276
+00:00:31.916 --> 00:00:35.925
 workbook's certificate plan, and
 its risks are known and manageable.
 
 10
-00:00:35.276 --> 00:00:38.166
+00:00:35.925 --> 00:00:38.816
 This is the program's
 research, under review,
 
 11
-00:00:38.166 --> 00:00:41.137
+00:00:38.816 --> 00:00:41.787
 and not an endorsement
 by any federal agency.
 
 12
-00:00:41.137 --> 00:00:42.290
+00:00:41.787 --> 00:00:42.940
 Thanks for watching.

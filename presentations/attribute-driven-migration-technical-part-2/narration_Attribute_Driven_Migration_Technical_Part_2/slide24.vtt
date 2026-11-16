@@ -30,25 +30,24 @@ members, not who can see them.
 Only some roles can be scoped to a unit.
 
 7
-00:00:18.062 --> 00:00:22.310
-Dynamic units work in G C C,
-but not in G C C High or D O D,
+00:00:18.062 --> 00:00:21.521
+Dynamic units hold one
+object type each and
 
 8
-00:00:22.310 --> 00:00:25.937
-where an automation job
-has to keep them up.
+00:00:21.521 --> 00:00:24.500
+run in the global cloud, which G C C uses.
 
 9
-00:00:25.937 --> 00:00:30.260
+00:00:24.500 --> 00:00:28.822
 And restricting a unit takes its
 members out of governance automation,
 
 10
-00:00:30.260 --> 00:00:33.263
+00:00:28.822 --> 00:00:31.825
 so restriction is a deliberate
 choice, default no.
 
 11
-00:00:33.263 --> 00:00:35.450
+00:00:31.825 --> 00:00:34.010
 Next, Lifecycle Workflows.

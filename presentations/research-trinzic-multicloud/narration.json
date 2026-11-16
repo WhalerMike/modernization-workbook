@@ -17,7 +17,7 @@
   {
     "slide": 4,
     "title": "What Trinzic alone sees in the clouds, and can't control",
-    "say": "At the cloud edge, Trinzic alone can see, but it can't control. It can discover cloud networks and virtual machines on a schedule, including GovCloud and Azure Government, and it can import cloud zones so on-premises clients resolve cloud names. But that import is one way, and edits made in NIOS get overwritten. It can't create or own a cloud private zone, manage cloud resolver rules, act as the outside authority for AWS VPC IPAM, or run DHCP for cloud subnets; the clouds hand out their own addresses. So, as an inference: in the cloud, Infoblox's job is DNS and IPAM, and the cloud's own resolver still answers cloud private zones. That leads to three options."
+    "say": "At the cloud edge, Trinzic alone can see, but it can't control. It can discover cloud networks and virtual machines on a schedule, and it can import cloud zones so on-premises clients resolve cloud names. But that import is one way, and edits made in NIOS get overwritten. It can't create or own a cloud private zone, manage cloud resolver rules, act as the outside authority for AWS VPC IPAM, or run DHCP for cloud subnets; the clouds hand out their own addresses. So, as an inference: in the cloud, Infoblox's job is DNS and IPAM, and the cloud's own resolver still answers cloud private zones. That leads to three options."
   },
   {
     "slide": 5,
@@ -32,7 +32,7 @@
   {
     "slide": 7,
     "title": "Option C: Trinzic alongside native cloud DNS",
-    "say": "Option C keeps the Grid authoritative for agency zones and lets each cloud's native DNS own its own private zones. The two meet through conditional forwarding: a rule that says, for names ending in this domain, ask that server. The Grid forwards cloud domains inward to the cloud's endpoints, and each cloud forwards agency domains back to the Grid. Google recommends exactly this design. One fact to keep in mind: a Route 53 private zone asked from outside its linked networks resolves on the public internet instead. Addresses follow the same idea. The Grid owns the agency's blocks and hands each cloud a block, automated on commercial AWS and manual in GovCloud, Azure and Google. Whichever you pick, some rules apply."
+    "say": "Option C keeps the Grid authoritative for agency zones and lets each cloud's native DNS own its own private zones. The two meet through conditional forwarding: a rule that says, for names ending in this domain, ask that server. The Grid forwards cloud domains inward to the cloud's endpoints, and each cloud forwards agency domains back to the Grid. Google recommends exactly this design. One fact to keep in mind: a Route 53 private zone asked from outside its linked networks resolves on the public internet instead. Addresses follow the same idea. The Grid owns the agency's blocks and hands each cloud a block, automated on commercial AWS and manual in Azure and Google. Whichever you pick, some rules apply."
   },
   {
     "slide": 8,
@@ -42,11 +42,11 @@
   {
     "slide": 9,
     "title": "Which option fits your agency? Design guidance",
-    "say": "Here's the decision table, and every row is design guidance, not an endorsement. If you're mostly on premises with a small cloud footprint, Trinzic plus native cloud resolvers and conditional forwarding is the lowest-cost start. Hybrid with one cloud, add a vNIOS pair in a hub network so resolution stays local if the WAN fails. Multi-cloud at FedRAMP Moderate and below, add Universal DDI through Government Cloud, whether those workloads run in commercial regions or in GovCloud and Azure Government; there, confirm which features Infoblox supports first. And for FedRAMP High or Defense Impact Levels 4 and 5, stay with options A and C, because Infoblox's service is Moderate-only. In short: Trinzic plus native resolvers as the baseline, with vNIOS and Universal DDI added only where they earn their place."
+    "say": "Here's the decision table, and every row is design guidance, not an endorsement. If you're mostly on premises with a small cloud footprint, Trinzic plus native cloud resolvers and conditional forwarding is the lowest-cost start. Hybrid with one cloud, add a vNIOS pair in a hub network so resolution stays local if the WAN fails. Multi-cloud at FedRAMP Moderate and below, consider Universal DDI through Government Cloud for workloads in the commercial regions, and confirm first which features its government edition supports. And for FedRAMP High systems, stay with options A and C, because Infoblox's service is Moderate-only. In short: Trinzic plus native resolvers as the baseline, with vNIOS and Universal DDI added only where they earn their place."
   },
   {
     "slide": 10,
     "title": "Where this fits the workbook, and next steps",
-    "say": "To close, where this fits. The workbook's DNS, DHCP and IPAM book makes the vendor-neutral case, from split-brain to the policy plane, and the research deep dive on Infoblox DDI covers the platform itself. The decisions to take are which option for each cloud and impact level, one named owner for every zone, where DNSSEC keys live, and how address blocks reach each cloud. The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for government accounts. Then confirm Azure Government availability, size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions. This is research under review, not an endorsement by any federal agency. Thank you."
+    "say": "To close, where this fits. The workbook's DNS, DHCP and IPAM book makes the vendor-neutral case, from split-brain to the policy plane, and the research deep dive on Infoblox DDI covers the platform itself. The decisions to take are which option for each cloud and FedRAMP level, one named owner for every zone, where DNSSEC keys live, and how address blocks reach each cloud. The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for its government edition. Then size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions. This is research under review, not an endorsement by any federal agency. Thank you."
   }
 ]

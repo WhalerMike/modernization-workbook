@@ -108,110 +108,6 @@
    "A finding is ready for closure when every applicable state has evidence; the authorizing official or the assessor decides."
   ]
  ],
- "3": [
-  [
-   0.05,
-   2.538,
-   "The architecture has two trust boundaries."
-  ],
-  [
-   2.587,
-   6.9,
-   "The agency's holds the devices, the S O C's Sentinel workspace, automation and the evidence store."
-  ],
-  [
-   9.488,
-   4.062,
-   "Microsoft's holds Defender X D R and its control planes."
-  ],
-  [
-   13.55,
-   11.525,
-   "Microsoft Learn says that for a U S Government tenant it's built in the Azure U S Government environment, and G C C, G C C High and D O D each have their own portal."
-  ],
-  [
-   25.075,
-   10.8,
-   "Intune is the recommended tool for Defender settings, through endpoint security policies, and they're assigned to Entra device groups, because Defender management supports device objects only."
-  ],
-  [
-   35.875,
-   5.275,
-   "Automation levels, device groups and custom detections liv in the Defender portal."
-  ],
-  [
-   41.15,
-   6.688,
-   "Telemetry flows to the tenant's instance, alerts become incidents, and advanced hunting keeps thirty days."
-  ],
-  [
-   47.837,
-   6.963,
-   "Servers in A W S, Google Cloud or Oracle Cloud Infrastructure arrive the way Azure Arc reaches them."
-  ],
-  [
-   54.8,
-   5.263,
-   "And use one control plane per setting: Group Policy wins over Intune by default."
-  ]
- ],
- "4": [
-  [
-   0.05,
-   1.85,
-   "What does the government cloud give you?"
-  ],
-  [
-   1.9,
-   12.162,
-   "Microsoft Learn says Defender for Endpoint, prevention through remediation, is available in G C C, G C C High and D O D, and so is security settings management for servers."
-  ],
-  [
-   14.062,
-   1.738,
-   "Each cloud has its own portal."
-  ],
-  [
-   15.8,
-   5.15,
-   "G C C reads incidents and runs hunting through the worldwide Graph host."
-  ],
-  [
-   20.95,
-   3.675,
-   "Vulnerability Management is there, minus two features."
-  ],
-  [
-   24.625,
-   7.388,
-   "Defender for Identity and Defender for Cloud Apps are available, with App Governance alerts listed as roadmap items."
-  ],
-  [
-   32.013,
-   1.113,
-   "Then the gaps."
-  ],
-  [
-   33.125,
-   6.888,
-   "Microsoft Security Exposure Management, which holds attack paths and the exposure graph, is Public Cloud only."
-  ],
-  [
-   40.013,
-   8.6,
-   "Learn doesn't say whether Graph custom detection rules, automatic attack disruption, or web content filtering on Windows reach these clouds."
-  ],
-  [
-   48.612,
-   5.213,
-   "The guide's rule: not yet specified means Learn doesn't say, not that it's available."
-  ],
-  [
-   53.825,
-   4.55,
-   "And an unlicensed feature is a licensing decision, not a failed control."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -324,53 +220,6 @@
    54.112,
    8.55,
    "The S O C owns incidents and detections, the help desk owns warn-mode unblock requests, and the assessor owns the assessment."
-  ]
- ],
- "7": [
-  [
-   0.05,
-   1.712,
-   "Now how, gate by gate."
-  ],
-  [
-   1.762,
-   7.513,
-   "Gate one builds the roles in the Defender portal, then activates unified role-based access control workload by workload."
-  ],
-  [
-   9.275,
-   2.8,
-   "Create every role and assignment first."
-  ],
-  [
-   12.075,
-   4.175,
-   "Rollback is to deactivate the workload, and the earlier roles return."
-  ],
-  [
-   16.25,
-   20.9,
-   "Then connect the S O C's read path in the tenant's own cloud: Global for G C C, U S Gov for G C C High, U S Gov D O D for D O D. Microsoft Learn names Security Incident dot Read dot All as the least-privileged permission to list incidents, and the signed-in user also needs a reader or operator role."
-  ],
-  [
-   37.15,
-   3.45,
-   "Threat Hunting dot Read dot All runs hunting queries."
-  ],
-  [
-   40.6,
-   2.487,
-   "Validate by listing five incidents."
-  ],
-  [
-   43.087,
-   5.138,
-   "A pass is a list, or an empty one in a new tenant, with no permission error."
-  ],
-  [
-   48.225,
-   8.25,
-   "But watch the danger the guide names: read a G C C High tenant from the worldwide host, and the empty list looks like a pass."
   ]
  ],
  "8": [
@@ -603,100 +452,6 @@
    "Every open incident has an owner, and every closed one carries a classification and determination."
   ]
  ],
- "13": [
-  [
-   0.05,
-   9.575,
-   "Gate seven puts detections in a repository and deploys them through the Graph A P I, following the rule lifecycle in Security Operations and Telemetry."
-  ],
-  [
-   9.625,
-   6.237,
-   "Each rule file starts disabled, and leaves out automated actions, because containment stays on the ladder."
-  ],
-  [
-   15.863,
-   7.412,
-   "Every rule has a validation dataset: a known-bad event it must find, and a known-good window it must stay quiet in."
-  ],
-  [
-   23.275,
-   2.85,
-   "A rule that can't be shown to fire isn't finished."
-  ],
-  [
-   26.125,
-   7.825,
-   "Test the query against the last thirty days, which is all advanced hunting keeps, then post the file to the detection rules endpoint."
-  ],
-  [
-   33.95,
-   5.075,
-   "Enabling is a change to the status in the repository, reviewed and redeployed."
-  ],
-  [
-   39.025,
-   15.1,
-   "Microsoft Learn's hunting A P I is available in U S Government L four and L five, but the detection rules A P I has no national cloud table, so in G C C High and D O D, create the rule in the portal from the same file."
-  ],
-  [
-   54.125,
-   4.112,
-   "Pass: the deployed rules match the repository, exactly."
-  ]
- ],
- "14": [
-  [
-   0.05,
-   1.312,
-   "Gates eight and nine."
-  ],
-  [
-   1.363,
-   6.188,
-   "Gate eight puts identity and S A A S behavior into the same incidents as the endpoint."
-  ],
-  [
-   7.55,
-   10.188,
-   "Defender for Identity's sensors go on domain controllers, A D F S, A D C S and Entra Connect servers, starting with one domain controller per domain."
-  ],
-  [
-   17.738,
-   3.712,
-   "Microsoft Learn gives each cloud its own sensor endpoint."
-  ],
-  [
-   21.45,
-   11.575,
-   "Two gaps: App Governance alerts are roadmap items, and Cloud Apps behaviors aren't in G C C. Validate with a correlation query: users with alerts from more than one source."
-  ],
-  [
-   33.025,
-   3.95,
-   "Gate nine sets Defender's automation to match the response ladder."
-  ],
-  [
-   36.975,
-   7.287,
-   "Pilot ring one's device group at the semi level that requires approval for all folders, and review two weeks of approvals."
-  ],
-  [
-   44.263,
-   9.262,
-   "Then workstations go to full, which Learn recommends, and servers stay at a semi level, because the program never isolates a server autonomously."
-  ],
-  [
-   53.525,
-   6.237,
-   "Exclude the emergency access accounts and the S O C's own service accounts from attack disruption."
-  ],
-  [
-   59.763,
-   2.538,
-   "Every disruption action can be undone."
-  ]
- ],
  "15": [
   [
    0.05,
@@ -794,6 +549,246 @@
    56.425,
    0.762,
    "Thank you."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.538,
+   "The architecture has two trust boundaries."
+  ],
+  [
+   2.587,
+   6.9,
+   "The agency's holds the devices, the S O C's Sentinel workspace, automation and the evidence store."
+  ],
+  [
+   9.488,
+   4.062,
+   "Microsoft's holds Defender X D R and its control planes."
+  ],
+  [
+   13.55,
+   19.15,
+   "For a G C C tenant, it has its own G C C service endpoints, and every crossing is authenticated by Entra I D. Intune is the recommended tool for Defender settings, through endpoint security policies, and they're assigned to Entra device groups, because Defender management supports device objects only."
+  ],
+  [
+   32.7,
+   5.275,
+   "Automation levels, device groups and custom detections liv in the Defender portal."
+  ],
+  [
+   37.975,
+   6.688,
+   "Telemetry flows to the tenant's instance, alerts become incidents, and advanced hunting keeps thirty days."
+  ],
+  [
+   44.663,
+   6.963,
+   "Servers in A W S, Google Cloud or Oracle Cloud Infrastructure arrive the way Azure Arc reaches them."
+  ],
+  [
+   51.625,
+   5.263,
+   "And use one control plane per setting: Group Policy wins over Intune by default."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.863,
+   "What does G C C give you?"
+  ],
+  [
+   1.913,
+   9.875,
+   "Microsoft Learn says Defender for Endpoint, prevention through remediation, is available in G C C, and so is security settings management for servers."
+  ],
+  [
+   11.787,
+   5.15,
+   "G C C reads incidents and runs hunting through the worldwide Graph host."
+  ],
+  [
+   16.938,
+   3.675,
+   "Vulnerability Management is there, minus two features."
+  ],
+  [
+   20.613,
+   7.388,
+   "Defender for Identity and Defender for Cloud Apps are available, with App Governance alerts listed as roadmap items."
+  ],
+  [
+   28.0,
+   1.113,
+   "Then the gaps."
+  ],
+  [
+   29.113,
+   6.888,
+   "Microsoft Security Exposure Management, which holds attack paths and the exposure graph, is Public Cloud only."
+  ],
+  [
+   36.0,
+   8.85,
+   "Learn doesn't say whether Graph custom detection rules, automatic attack disruption, or web content filtering on Windows reach G C C."
+  ],
+  [
+   44.85,
+   5.213,
+   "The guide's rule: not yet specified means Learn doesn't say, not that it's available."
+  ],
+  [
+   50.062,
+   4.55,
+   "And an unlicensed feature is a licensing decision, not a failed control."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.712,
+   "Now how, gate by gate."
+  ],
+  [
+   1.762,
+   7.513,
+   "Gate one builds the roles in the Defender portal, then activates unified role-based access control workload by workload."
+  ],
+  [
+   9.275,
+   2.8,
+   "Create every role and assignment first."
+  ],
+  [
+   12.075,
+   4.175,
+   "Rollback is to deactivate the workload, and the earlier roles return."
+  ],
+  [
+   16.25,
+   7.975,
+   "Then connect the S O C's read path in the right cloud: G C C uses Global, the worldwide Graph endpoints."
+  ],
+  [
+   24.225,
+   9.95,
+   "Microsoft Learn names Security Incident dot Read dot All as the least-privileged permission to list incidents, and the signed-in user also needs a reader or operator role."
+  ],
+  [
+   34.175,
+   3.45,
+   "Threat Hunting dot Read dot All runs hunting queries."
+  ],
+  [
+   37.625,
+   2.487,
+   "Validate by listing five incidents."
+  ],
+  [
+   40.112,
+   5.138,
+   "A pass is a list, or an empty one in a new tenant, with no permission error."
+  ],
+  [
+   45.25,
+   8.35,
+   "But watch the danger the guide names: a session connected to the wrong tenant or cloud returns nothing, and the empty list looks like a pass."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   9.575,
+   "Gate seven puts detections in a repository and deploys them through the Graph A P I, following the rule lifecycle in Security Operations and Telemetry."
+  ],
+  [
+   9.625,
+   6.237,
+   "Each rule file starts disabled, and leaves out automated actions, because containment stays on the ladder."
+  ],
+  [
+   15.863,
+   7.412,
+   "Every rule has a validation dataset: a known-bad event it must find, and a known-good window it must stay quiet in."
+  ],
+  [
+   23.275,
+   2.85,
+   "A rule that can't be shown to fire isn't finished."
+  ],
+  [
+   26.125,
+   7.825,
+   "Test the query against the last thirty days, which is all advanced hunting keeps, then post the file to the detection rules endpoint."
+  ],
+  [
+   33.95,
+   5.075,
+   "Enabling is a change to the status in the repository, reviewed and redeployed."
+  ],
+  [
+   39.025,
+   17.075,
+   "Microsoft Learn's hunting A P I is available on the worldwide Graph host that G C C uses, but the detection rules A P I has no national cloud table, so its G C C availability is not yet specified: create the rule in the portal from the same file."
+  ],
+  [
+   56.1,
+   4.112,
+   "Pass: the deployed rules match the repository, exactly."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.312,
+   "Gates eight and nine."
+  ],
+  [
+   1.363,
+   6.188,
+   "Gate eight puts identity and S A A S behavior into the same incidents as the endpoint."
+  ],
+  [
+   7.55,
+   10.188,
+   "Defender for Identity's sensors go on domain controllers, A D F S, A D C S and Entra Connect servers, starting with one domain controller per domain."
+  ],
+  [
+   17.738,
+   4.65,
+   "In G C C, the sensors reach the G C C sensor endpoint."
+  ],
+  [
+   22.387,
+   11.575,
+   "Two gaps: App Governance alerts are roadmap items, and Cloud Apps behaviors aren't in G C C. Validate with a correlation query: users with alerts from more than one source."
+  ],
+  [
+   33.962,
+   3.95,
+   "Gate nine sets Defender's automation to match the response ladder."
+  ],
+  [
+   37.913,
+   7.287,
+   "Pilot ring one's device group at the semi level that requires approval for all folders, and review two weeks of approvals."
+  ],
+  [
+   45.2,
+   9.262,
+   "Then workstations go to full, which Learn recommends, and servers stay at a semi level, because the program never isolates a server autonomously."
+  ],
+  [
+   54.462,
+   6.237,
+   "Exclude the emergency access accounts and the S O C's own service accounts from attack disruption."
+  ],
+  [
+   60.7,
+   2.538,
+   "Every disruption action can be undone."
   ]
  ]
 }

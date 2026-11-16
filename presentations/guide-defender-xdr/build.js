@@ -113,7 +113,7 @@ const W3 = 3.9, G3 = 0.225;
   const p1 = panel(s, "Bound", 0.6, 1.45, W2, null, HEX.navy, HEX.navyTint, "TRUST BOUNDARIES", null, [
     "The agency's: devices, the SOC's Sentinel workspace, automation, the evidence store",
     "Microsoft's: Defender XDR and its control planes, built in Azure US Government for a US Government tenant",
-    "GCC, GCC High and DoD each have their own portal; every crossing is authenticated by Entra ID",
+    "A GCC tenant has its own GCC service endpoints; every crossing is authenticated by Entra ID",
   ], 12.5);
   const p2 = panel(s, "Planes", 0.6 + W2 + G2, 1.45, W2, null, HEX.teal, HEX.tealTint, "CONTROL PLANES", null, [
     "Intune endpoint security policies, assigned to Entra device groups (device objects only)",
@@ -129,32 +129,32 @@ const W3 = 3.9, G3 = 0.225;
     "for Attack Surface Reduction, Group Policy wins over Intune by default unless MDMWinsOverGP is set. Don't set a rule in both.");
   sources(s, "Sources: Guide, \"Reference architecture\"; Microsoft Defender for US Government; Configure ASR rules and exclusions; Monitor ASR rule activity; Book 05, Ch 09 and 10.");
   notes(s,
-`The architecture has two trust boundaries. The agency's holds the devices, the S O C's Sentinel workspace, automation and the evidence store. Microsoft's holds Defender X D R and its control planes. Microsoft Learn says that for a U S Government tenant it's built in the Azure U S Government environment, and G C C, G C C High and D O D each have their own portal. Intune is the recommended tool for Defender settings, through endpoint security policies, and they're assigned to Entra device groups, because Defender management supports device objects only. Automation levels, device groups and custom detections live in the Defender portal. Telemetry flows to the tenant's instance, alerts become incidents, and advanced hunting keeps thirty days. Servers in A W S, Google Cloud or Oracle Cloud Infrastructure arrive the way Azure Arc reaches them. And use one control plane per setting: Group Policy wins over Intune by default.`,
+`The architecture has two trust boundaries. The agency's holds the devices, the S O C's Sentinel workspace, automation and the evidence store. Microsoft's holds Defender X D R and its control planes. For a G C C tenant, it has its own G C C service endpoints, and every crossing is authenticated by Entra I D. Intune is the recommended tool for Defender settings, through endpoint security policies, and they're assigned to Entra device groups, because Defender management supports device objects only. Automation levels, device groups and custom detections live in the Defender portal. Telemetry flows to the tenant's instance, alerts become incidents, and advanced hunting keeps thirty days. Servers in A W S, Google Cloud or Oracle Cloud Infrastructure arrive the way Azure Arc reaches them. And use one control plane per setting: Group Policy wins over Intune by default.`,
   `${G} — "Reference architecture" (trust boundaries, control planes, data flows); Microsoft Learn — "Microsoft Defender for US Government," "Configure attack surface reduction (ASR) rules and exclusions," "Monitor attack surface reduction (ASR) rule activity"; Book 05, Chapters 09 and 10.`);
 }
 endModule(SWHY);
 
 // ================================================================== 4 What: government clouds
 {
-  const s = content(SWHAT, "Government clouds: what's there and what Learn doesn't say");
+  const s = content(SWHAT, "GCC: what's there and what Learn doesn't say");
   tag(s, "What");
   const NA = (t) => ({ text: t, options: { color: HEX.red, bold: true } });
-  const tb = table(s, "Gov", 1.4, [4.2, 3.25, 2.35, 2.35], ["Feature (Learn, November 11, 2026)", "GCC", "GCC High", "DoD"], [
-    ["Defender for Endpoint; security settings management", "Available", "Available", "Available"],
-    ["Defender portal", "security.microsoft.com", "security.microsoft.us", "security.apps.mil"],
-    ["Graph security API: incidents, hunting", "Available (worldwide Graph host)", "US Government L4", "US Government L5"],
-    ["Defender Vulnerability Management", "Available, minus two features", "Same", "Same"],
-    ["Security Exposure Management", NA("Not available: Public Cloud only"), NA("Not available"), NA("Not available")],
-    ["Defender for Identity; Defender for Cloud Apps", "Available; App Governance alerts on the roadmap", "Same", "Same"],
-    ["Graph custom detection rules", "Not yet specified", "Not yet specified", "Not yet specified"],
-    ["Automatic attack disruption", "Not yet specified", "Not yet specified", "Not yet specified"],
-    ["Web content filtering on Windows", "Not yet specified", "Not yet specified", "Not yet specified"],
+  const tb = table(s, "Gov", 1.4, [6.0, 6.15], ["Feature (Learn, November 11, 2026)", "GCC"], [
+    ["Defender for Endpoint; security settings management", "Available"],
+    ["Defender portal", "security.microsoft.com"],
+    ["Graph security API: incidents, hunting", "Available (GCC uses the worldwide Graph host)"],
+    ["Defender Vulnerability Management", "Available, minus two features"],
+    ["Security Exposure Management", NA("Not available: Public Cloud only")],
+    ["Defender for Identity; Defender for Cloud Apps", "Available; App Governance alerts on the roadmap"],
+    ["Graph custom detection rules", "Not yet specified"],
+    ["Automatic attack disruption", "Not yet specified"],
+    ["Web content filtering on Windows", "Not yet specified"],
   ], { fontSize: 10.5, limit: 5.75 });
   line(s, "NYS", "\"Not yet specified\" means Learn doesn't say; it doesn't mean available. A feature the tenant isn't licensed for is a licensing decision, not a failed control.",
     tb + 0.1, 0.6, 13);
   sources(s, "Sources: Guide, \"Government-cloud availability by feature,\" \"Prerequisites\"; Microsoft Defender for US Government; Defender for Endpoint for US Government customers.");
   notes(s,
-`What does the government cloud give you? Microsoft Learn says Defender for Endpoint, prevention through remediation, is available in G C C, G C C High and D O D, and so is security settings management for servers. Each cloud has its own portal. G C C reads incidents and runs hunting through the worldwide Graph host. Vulnerability Management is there, minus two features. Defender for Identity and Defender for Cloud Apps are available, with App Governance alerts listed as roadmap items. Then the gaps. Microsoft Security Exposure Management, which holds attack paths and the exposure graph, is Public Cloud only. Learn doesn't say whether Graph custom detection rules, automatic attack disruption, or web content filtering on Windows reach these clouds. The guide's rule: not yet specified means Learn doesn't say, not that it's available. And an unlicensed feature is a licensing decision, not a failed control.`,
+`What does G C C give you? Microsoft Learn says Defender for Endpoint, prevention through remediation, is available in G C C, and so is security settings management for servers. G C C reads incidents and runs hunting through the worldwide Graph host. Vulnerability Management is there, minus two features. Defender for Identity and Defender for Cloud Apps are available, with App Governance alerts listed as roadmap items. Then the gaps. Microsoft Security Exposure Management, which holds attack paths and the exposure graph, is Public Cloud only. Learn doesn't say whether Graph custom detection rules, automatic attack disruption, or web content filtering on Windows reach G C C. The guide's rule: not yet specified means Learn doesn't say, not that it's available. And an unlicensed feature is a licensing decision, not a failed control.`,
   `${G} — "Government-cloud availability by feature" (table, the 90-day and three-month notes), "Prerequisites" (Licenses); Microsoft Learn — "Microsoft Defender for US Government," "Microsoft Defender for Endpoint for US Government customers," "What is Microsoft Security Exposure Management?," "Microsoft Defender for Identity for US Government offerings," "Microsoft Defender for Cloud Apps for US Government offerings," "List incidents," "security: runHuntingQuery."`);
 }
 
@@ -213,7 +213,7 @@ endModule(SWHO);
   const s = content(SHOW, "Gate 1: activate the roles, then read in the right cloud");
   tag(s, "How");
   const c = code(s, "G1", 0.6, 1.4, FULL, [
-    "# <graph-environment>: Global for GCC; USGov for GCC High; USGovDoD for DoD",
+    "# <graph-environment>: Global (GCC uses the worldwide Graph endpoints)",
     "Install-Module Microsoft.Graph.Authentication, Microsoft.Graph.Security -Scope CurrentUser",
     "Connect-MgGraph -Environment <graph-environment> -Scopes SecurityIncident.Read.All,ThreatHunting.Read.All",
     "# Validate: up to five incidents (or an empty list in a new tenant), and no permission error",
@@ -228,13 +228,13 @@ endModule(SWHO);
     "The user also needs Security Reader, Global Reader, Security Operator or Security Administrator",
   ], 11.5);
   const p3 = panel(s, "Wrong", 0.6 + 2 * (W3 + G3), c + 0.2, W3, null, HEX.red, HEX.redTint, "THE WRONG CLOUD PASSES", null, [
-    "A GCC High tenant read from the worldwide host returns nothing, and an empty list looks like a pass",
+    "A session connected to the wrong tenant or cloud returns nothing, and an empty list looks like a pass",
     "Check the tenant on every run",
   ], 11.5);
   fit("G1 panels", Math.max(p1, p2, p3));
   sources(s, "Sources: Guide, Step 1, \"Dangers\"; Microsoft Graph, List incidents; security: runHuntingQuery; Graph national cloud deployments; Activate Defender unified RBAC.");
   notes(s,
-`Now how, gate by gate. Gate one builds the roles in the Defender portal, then activates unified role-based access control workload by workload. Create every role and assignment first. Rollback is to deactivate the workload, and the earlier roles return. Then connect the S O C's read path in the tenant's own cloud: Global for G C C, U S Gov for G C C High, U S Gov D O D for D O D. Microsoft Learn names Security Incident dot Read dot All as the least-privileged permission to list incidents, and the signed-in user also needs a reader or operator role. Threat Hunting dot Read dot All runs hunting queries. Validate by listing five incidents. A pass is a list, or an empty one in a new tenant, with no permission error. But watch the danger the guide names: read a G C C High tenant from the worldwide host, and the empty list looks like a pass.`,
+`Now how, gate by gate. Gate one builds the roles in the Defender portal, then activates unified role-based access control workload by workload. Create every role and assignment first. Rollback is to deactivate the workload, and the earlier roles return. Then connect the S O C's read path in the right cloud: G C C uses Global, the worldwide Graph endpoints. Microsoft Learn names Security Incident dot Read dot All as the least-privileged permission to list incidents, and the signed-in user also needs a reader or operator role. Threat Hunting dot Read dot All runs hunting queries. Validate by listing five incidents. A pass is a list, or an empty one in a new tenant, with no permission error. But watch the danger the guide names: a session connected to the wrong tenant or cloud returns nothing, and the empty list looks like a pass.`,
   `${G} — Step 1 (steps 2 and 3, Rollback, Validate), "Dangers" (A Graph session in the wrong cloud); Microsoft Learn — "List incidents," "security: runHuntingQuery," "National cloud deployments," "Activate Microsoft Defender unified role-based access control (URBAC)."`);
 }
 
@@ -399,9 +399,9 @@ endModule(SWHO);
     "A known-bad event it must find; a known-good window it stays quiet in",
     "Advanced hunting holds 30 days, so the window is at most 30",
   ], 11.5);
-  const p2 = panel(s, "Gov", 0.6 + W3 + G3, c + 0.2, W3, null, HEX.amber, HEX.amberTint, "GOVERNMENT CLOUDS", null, [
-    "The hunting API: US Government L4 and L5",
-    "detectionRules: not yet specified; in GCC High and DoD, create the rule in the portal from the same file",
+  const p2 = panel(s, "Gov", 0.6 + W3 + G3, c + 0.2, W3, null, HEX.amber, HEX.amberTint, "GCC", null, [
+    "The hunting API: available on the worldwide Graph host GCC uses",
+    "detectionRules: GCC availability not yet specified; create the rule in the portal from the same file",
   ], 11.5);
   const p3 = panel(s, "Match", 0.6 + 2 * (W3 + G3), c + 0.2, W3, null, HEX.navy, HEX.navyTint, "PASS", null, [
     "Every repository rule deployed with the same query and status",
@@ -410,7 +410,7 @@ endModule(SWHO);
   fit("G7 panels", Math.max(p1, p2, p3));
   sources(s, "Sources: Guide, Step 7; Microsoft Graph, Create detectionRule; security: runHuntingQuery; Use the Microsoft Graph security API; Book 12, Ch 11 (rule lifecycle).");
   notes(s,
-`Gate seven puts detections in a repository and deploys them through the Graph A P I, following the rule lifecycle in Security Operations and Telemetry. Each rule file starts disabled, and leaves out automated actions, because containment stays on the ladder. Every rule has a validation dataset: a known-bad event it must find, and a known-good window it must stay quiet in. A rule that can't be shown to fire isn't finished. Test the query against the last thirty days, which is all advanced hunting keeps, then post the file to the detection rules endpoint. Enabling is a change to the status in the repository, reviewed and redeployed. Microsoft Learn's hunting A P I is available in U S Government L four and L five, but the detection rules A P I has no national cloud table, so in G C C High and D O D, create the rule in the portal from the same file. Pass: the deployed rules match the repository, exactly.`,
+`Gate seven puts detections in a repository and deploys them through the Graph A P I, following the rule lifecycle in Security Operations and Telemetry. Each rule file starts disabled, and leaves out automated actions, because containment stays on the ladder. Every rule has a validation dataset: a known-bad event it must find, and a known-good window it must stay quiet in. A rule that can't be shown to fire isn't finished. Test the query against the last thirty days, which is all advanced hunting keeps, then post the file to the detection rules endpoint. Enabling is a change to the status in the repository, reviewed and redeployed. Microsoft Learn's hunting A P I is available on the worldwide Graph host that G C C uses, but the detection rules A P I has no national cloud table, so its G C C availability is not yet specified: create the rule in the portal from the same file. Pass: the deployed rules match the repository, exactly.`,
   `${G} — Step 7 (Prerequisites, schema governance, validation datasets, steps 1 to 3, Rollback, Validate); Microsoft Learn — "Create detectionRule," "security: runHuntingQuery," "Use the Microsoft Graph security API" (Custom detections); Book 12, Chapter 11 — "Rule lifecycle and testing."`);
 }
 
@@ -420,7 +420,7 @@ endModule(SWHO);
   tag(s, "How");
   const p1 = panel(s, "G8", 0.6, 1.45, W2, null, HEX.teal, HEX.tealTint, "GATE 8: IDENTITY AND CLOUD-APP SIGNALS", null, [
     "Defender for Identity sensors on domain controllers, AD FS, AD CS and Entra Connect servers",
-    "GCC sensors reach *.atp.gcc.azure.com; GCC High and DoD, *.atp.azure.us",
+    "GCC sensors reach *.atp.gcc.azure.com, or the AzureAdvancedThreatProtection service tag",
     "Gaps: App Governance alerts on the roadmap; Cloud Apps behaviors in BehaviorInfo not in GCC",
     "Validate: an AlertEvidence query finds users with alerts from more than one source",
   ], 12);
@@ -438,7 +438,7 @@ endModule(SWHO);
   line(s, "Undo", "Every attack disruption action can be undone by the security team. Its government-cloud availability is not yet specified.", c + 0.12, 0.4, 13);
   sources(s, "Sources: Guide, Steps 8 and 9; Defender for Identity for US Government; Configure automatic attack disruption; Exclude assets from automated responses.");
   notes(s,
-`Gates eight and nine. Gate eight puts identity and S A A S behavior into the same incidents as the endpoint. Defender for Identity's sensors go on domain controllers, A D F S, A D C S and Entra Connect servers, starting with one domain controller per domain. Microsoft Learn gives each cloud its own sensor endpoint. Two gaps: App Governance alerts are roadmap items, and Cloud Apps behaviors aren't in G C C. Validate with a correlation query: users with alerts from more than one source. Gate nine sets Defender's automation to match the response ladder. Pilot ring one's device group at the semi level that requires approval for all folders, and review two weeks of approvals. Then workstations go to full, which Learn recommends, and servers stay at a semi level, because the program never isolates a server autonomously. Exclude the emergency access accounts and the S O C's own service accounts from attack disruption. Every disruption action can be undone.`,
+`Gates eight and nine. Gate eight puts identity and S A A S behavior into the same incidents as the endpoint. Defender for Identity's sensors go on domain controllers, A D F S, A D C S and Entra Connect servers, starting with one domain controller per domain. In G C C, the sensors reach the G C C sensor endpoint. Two gaps: App Governance alerts are roadmap items, and Cloud Apps behaviors aren't in G C C. Validate with a correlation query: users with alerts from more than one source. Gate nine sets Defender's automation to match the response ladder. Pilot ring one's device group at the semi level that requires approval for all folders, and review two weeks of approvals. Then workstations go to full, which Learn recommends, and servers stay at a semi level, because the program never isolates a server autonomously. Exclude the emergency access accounts and the S O C's own service accounts from attack disruption. Every disruption action can be undone.`,
   `${G} — Step 8 (Prerequisites, how-section notes, Validate); Step 9 (Prerequisites, Pilot, Report-only, Enforcement, Rollback, Exclusions, Validate); Microsoft Learn — "Microsoft Defender for Identity for US Government offerings," "Microsoft Defender for Cloud Apps for US Government offerings," "Understand the advanced hunting schema," "Configure automatic attack disruption in Microsoft Defender XDR," "Exclude assets from automated responses in automatic attack disruption," "Automatic attack disruption in Microsoft Defender."`);
 }
 

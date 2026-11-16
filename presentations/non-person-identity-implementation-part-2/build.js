@@ -214,8 +214,8 @@ Chapter 08 holds CA015, the location restriction, and CA037, the high-risk block
       "Rollback: policy back to report-only; a removed grant restored through approval from the Step 1 export",
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
-      "Workload ID Premium: in Azure Government clouds through the account manager; its free trial isn't",
-      "The sweep's reads and the removal: global, US Government L4 and L5 (workbook Ch 07)",
+      "Workload ID Premium: needed to create or change workload identity policies",
+      "The sweep's reads and the removal: the global service, which GCC uses (workbook Ch 07)",
       "isPrivileged, Microsoft's privileged label: beta API, preview",
       "Interim: without Premium, existing workload policies work but can't be edited; govern managed identities by role assignments and access reviews",
     ]]);
@@ -227,7 +227,7 @@ AC-6, least privilege, with enhancement 5, privileged accounts, and enhancement 
 
 Validate. VK-NPI-05 lists every service principal holding a critical or high Graph application permission or a privileged directory role. Each row is justified in its record, with an approver and a review date, or removed. Read the permission type, not the suffix. VK-NPI-04 lists single-tenant service principals not assigned directly to a workload identity policy: pass when no Tier 1 service principal is on the list, and the report-only results have been reviewed before switching to On. VK-NPI-07: no managed identity holds Owner, Contributor or User Access Administrator above resource-group scope without a recorded reason.
 
-Availability. Workload ID Premium is available in the Azure Government clouds through the account manager, and its free trial isn't. The workbook's Chapter 07 lists the sweep's Graph reads and the app role removal for the global service and US Government L4 and L5. Microsoft's isPrivileged label is in the beta API and in preview.
+Availability. Workload ID Premium is needed to create or change workload identity policies. The workbook's Chapter 07 lists the sweep's Graph reads and the app role removal for the global service, which GCC uses. Microsoft's isPrivileged label is in the beta API and in preview.
 
 The interim path: without Workload ID Premium, existing workload policies keep working but can't be edited. Managed identities are never covered, so govern them through role assignments and access reviews. Rollback: the policy back to report-only, and a removed grant restored through approval from the Step 1 export.`,
   `${IG}, "Licenses"; Step 4 — 4b, 4e; "Validate (G4 Least privilege)"; "Evidence"; "Rollback"; ${WB}, Chapter 07 — "Which cloud, for this sweep and these writes."`);
@@ -321,7 +321,7 @@ Chapter 06 turns each Kerberos account's reviewed disposition into a plan: an MS
       "Rollback: re-enable the legacy account and revert the app's configuration; possible until G6 deletes the account",
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
-      "Creating a federated credential and listing sign-ins: global, US Government L4 and L5 (workbook Ch 05)",
+      "GCC with commercial Azure: graph.microsoft.com, management.azure.com, login.microsoftonline.com (workbook Ch 05)",
       "dMSA: Windows Server 2025 on every host and a domain controller (workbook Ch 06)",
       "Interim (design guidance): an account that can't move yet stays on the Kerberos island, with an SPN owner and an end date",
     ]]);
@@ -333,7 +333,7 @@ IA-5, authenticator management, with enhancement 2: managed identities and feder
 
 Validate. Every high-risk account is converted or retired: VK-NPI-06 shows none still enabled with a password that never expires, outside a dated exception. VK-NPI-03 shows the converted apps no longer hold secrets.
 
-Availability, as the workbook states it. Creating a federated credential on an application, and listing sign-ins, are both available in US Government L4 and L5. The Resource Manager pages for user-assigned identities don't state Azure Government availability; this estate's Azure is commercial. A dMSA needs Windows Server 2025 on every host and at least one domain controller, and no unconstrained delegation.
+Availability, as the workbook states it. The estate is Microsoft 365 GCC with commercial Azure: Graph at graph.microsoft.com, Resource Manager at management.azure.com, and sign-in at login.microsoftonline.com, so the user-assigned identity calls go to commercial Resource Manager. A dMSA needs Windows Server 2025 on every host and at least one domain controller, and no unconstrained delegation.
 
 The interim path, design guidance from Chapter 06: an account that can't move yet stays on the Kerberos island, with an SPN owner and an end date no later than the program's legacy-authentication date. The island list is what the program's SPN retirement works from.
 
@@ -475,7 +475,7 @@ Then the drift pipeline packages each run with a SHA-256 per file and the tenant
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
       "Sign-in activity report: preview, beta, global service only; GCC uses the commercial service, so it's available",
-      "Not listed for US Government L4 or L5: the run records the unused check as not read (workbook Ch 10)",
+      "The run takes the cloud as a required parameter, with no default (workbook Ch 10)",
       "Owner-change tasks: Lifecycle Workflows custom task extensions, under Entra ID Governance",
       "Interim: where agent features aren't available, the same lifecycle on the service principals agents run as",
     ]]);
@@ -487,7 +487,7 @@ AC-2, account management, with enhancement 3, disable accounts: non-person ident
 
 Validate. VK-NPI-01 runs weekly, and a new zero-owner or single-owner app opens a ticket the same week. VK-NPI-02 runs weekly, and no production credential expires unplanned. VK-NPI-08: no agent identity without a confirmed sponsor beyond the ten-business-day grace period. VK-NPI-09 is optional and preview: it's off by default and runs with -IncludePreview, and every service principal with no sign-in in ninety days, the program's design guidance, is in an orphan or decommission ticket. And one test owner change and one test decommission have run end to end and left their records.
 
-Availability. The sign-in activity API is listed for the global service and not for US Government L4 or L5. A GCC tenant uses the commercial service, so it's available there. The workbook adds that a GCC High or DoD run doesn't send the call, and records the unused check as not read. Owner-change tasks run as Lifecycle Workflows custom task extensions under Entra ID Governance. Where the agent features aren't available, run this lifecycle on the service principals the agents run as.
+Availability. The sign-in activity API is beta and listed for the global service. A GCC tenant uses the commercial service, so it can read it on the worldwide endpoint. Owner-change tasks run as Lifecycle Workflows custom task extensions under Entra ID Governance. Where the agent features aren't available, run this lifecycle on the service principals the agents run as.
 
 Rollback: reactivate the app registration or re-enable the service principal; restore a deleted object within thirty days, then re-create its Conditional Access assignments.`,
   `${IG}, Step 6 — "Orphans," "Validate (G6 Lifecycle)"; "Evidence"; "Rollback"; "AI agents"; ${WB}, Chapter 10 — "Which cloud, for this read."`);
@@ -556,7 +556,7 @@ Two dangers belong to SQL Server. A renewed certificate nobody uploaded: the vau
     "AI identities: 8 checked (4 AgentIdentity, 3 AgentIdentityBlueprint, 1 ServicePrincipal); Chapter 02 sponsor fields filled: 2 of 2",
     "Findings: 22 Finding (4 P1, 2 P2), 6 Warn, 4 Info. Orphan candidates for Chapter 02: 2",
   ], { label: "CHAPTER 09, LAB 1, STEP 4 (COMMAND WRAPPED; OUTPUT TRIMMED)", pt: 10 });
-  line(s, "High", "GCC High and DoD: no published availability, so treat the agent features as unavailable and govern the service principals agents run as.",
+  line(s, "High", "Where an agent feature isn't available in GCC, govern the service principals the agents run as, with the same rules.",
     c1 + 0.1, 0.55, 13);
   sources(s, "Sources: Implementation guide, \"AI agents\"; Book 17, Ch 04, 05, 06; Developer workbook, Ch 09 (D-NP6 as data; NPI-AI-01 to -23; Lab 1, steps 4–7); data/kit-captures/npi/09-5.");
   notes(s,
@@ -566,9 +566,9 @@ Sponsors and blueprints. A sponsor is required when an agent identity or bluepri
 
 Creation is gated. Set Users can create agent blueprints to No, the agent analog of MS.AAD.5.1v1, and run a production handshake before any agent goes live. Credentials follow Step 3's order, with no secret on a production blueprint. An agent that calls a tool with an API key bypasses Entra ID entirely, so record each key as an exception with an owner, a vault and a rotation date. And recertification is by expiry: access through access packages with end dates, so a sponsor who does nothing removes access.
 
-Availability, as Book 17 states it. The Agent ID platform has been generally available since April 2026, with a documented partial subset in GCC. Sponsor lifecycle workflows have been generally available since May 2026. Agent targeting in Conditional Access and the agent risk condition are preview, available in GCC for agents with delegated access. The agent's user account is preview in Frontier program tenants only, and Agent 365's FedRAMP High authorization was pending as of October 1, 2026. For GCC High and DoD, Microsoft has published no availability.
+Availability, as Book 17 states it. The Agent ID platform has been generally available since April 2026, with a documented partial subset in GCC. Sponsor lifecycle workflows have been generally available since May 2026. Agent targeting in Conditional Access and the agent risk condition are preview, available in GCC for agents with delegated access. The agent's user account is preview in Frontier program tenants only, and Agent 365's FedRAMP High authorization was pending as of October 1, 2026.
 
-The workbook's Chapter 09 holds that as decision D-NP6, proposed, in data. In GCC it reads the blueprints and agents: here twenty-two Findings, four of them priority one drift, such as a shadow agent no record names. Run in GCC High, it falls back to the same rules on the service principals.`,
+The workbook's Chapter 09 holds that as decision D-NP6, proposed, in data. In GCC it reads the blueprints and agents: here twenty-two Findings, four of them priority one drift, such as a shadow agent no record names. Where a capability isn't available, it falls back to the same rules on the service principals.`,
   `${IG}, "AI agents"; Book 17, Chapter 04 — "The object model," "Release stage, licensing and government clouds"; Chapter 05 — "Creation," "Recertification: expiry is the review"; Chapter 06 — "No stored secrets"; ${WB}, Chapter 09 — "Decision D-NP6 as data," "The checks," "Lab 1," steps 4–7.`);
 }
 endModule(SX);

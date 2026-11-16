@@ -89,6 +89,6 @@ They need a key distribution root key,
 created once for the whole forest,
 
 20
-00:00:58.426 --> 00:01:02.420
+00:00:58.426 --> 00:01:02.363
 and domain controllers can wait up
 to ten hours after it's created.

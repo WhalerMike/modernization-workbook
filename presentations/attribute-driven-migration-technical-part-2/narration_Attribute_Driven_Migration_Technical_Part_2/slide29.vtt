@@ -24,35 +24,35 @@ The ICAM governance body owns the
 authority map and the person key.
 
 6
-00:00:15.413 --> 00:00:19.363
+00:00:15.413 --> 00:00:19.435
 HR owns the codes, the data
 architect the schema, and application
 
 7
-00:00:19.363 --> 00:00:23.687
+00:00:19.435 --> 00:00:23.837
 owners their own access rules and
 their service accounts' conversion.
 
 8
-00:00:23.687 --> 00:00:27.088
+00:00:23.837 --> 00:00:27.237
 The CISO owns the controls
 and the drift findings.
 
 9
-00:00:27.088 --> 00:00:32.554
+00:00:27.237 --> 00:00:32.711
 And you can start Monday without new tools:
 export the tree, name the HR feed early,
 
 10
-00:00:32.554 --> 00:00:37.275
+00:00:32.711 --> 00:00:37.438
 populate the person key, remove other
 writers, and route your logs out.
 
 11
-00:00:37.275 --> 00:00:40.213
+00:00:37.438 --> 00:00:40.376
 Make the attributes
 true, and keep them true.
 
 12
-00:00:40.213 --> 00:00:41.040
+00:00:40.376 --> 00:00:41.210
 Thank you.

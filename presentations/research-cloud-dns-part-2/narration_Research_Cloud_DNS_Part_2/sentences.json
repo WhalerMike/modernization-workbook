@@ -115,58 +115,6 @@
    "Otherwise, stay with the native resolver."
   ]
  ],
- "4": [
-  [
-   0.05,
-   3.263,
-   "If the agency does run its own servers, which ones?"
-  ],
-  [
-   3.312,
-   5.475,
-   "Where its D N S runs on an Infoblox Grid, vNIOS is the natural choice."
-  ],
-  [
-   8.787,
-   3.925,
-   "It joins the same Grid and takes its policy from the Grid Master."
-  ],
-  [
-   12.713,
-   5.575,
-   "One caution: vNIOS failover in GovCloud and Azure Government is a point to confirm."
-  ],
-  [
-   18.288,
-   6.1,
-   "BIND is the choice when there's no Grid, for a small footprint, or when a tool expects BIND itself."
-  ],
-  [
-   24.387,
-   8.625,
-   "BIND has no policy plane of its own; in the workbook's D N S design, its policy comes from the D D I platform and Git."
-  ],
-  [
-   33.013,
-   0.988,
-   "Which BIND?"
-  ],
-  [
-   34.0,
-   4.025,
-   "ISC supports each even-numbered branch for four years."
-  ],
-  [
-   38.025,
-   11.188,
-   "As of October twenty-ninth, 9.20 is the supported production branch, with end of life in 2028, and 9.18 reached end of life in June 2026."
-  ],
-  [
-   49.212,
-   4.975,
-   "Operating-system packages follow their vendor, so record which support you rely on."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -736,6 +684,53 @@
    "And Emergency Directive 19-01 is sunset, but its four actions remain sound practice."
   ]
  ],
+ "4": [
+  [
+   0.05,
+   3.263,
+   "If the agency does run its own servers, which ones?"
+  ],
+  [
+   3.312,
+   5.475,
+   "Where its D N S runs on an Infoblox Grid, vNIOS is the natural choice."
+  ],
+  [
+   8.787,
+   5.225,
+   "It joins the same Grid and takes its policy from the Grid Master, in the same console."
+  ],
+  [
+   14.012,
+   6.1,
+   "BIND is the choice when there's no Grid, for a small footprint, or when a tool expects BIND itself."
+  ],
+  [
+   20.113,
+   8.625,
+   "BIND has no policy plane of its own; in the workbook's D N S design, its policy comes from the D D I platform and Git."
+  ],
+  [
+   28.738,
+   0.988,
+   "Which BIND?"
+  ],
+  [
+   29.725,
+   4.025,
+   "ISC supports each even-numbered branch for four years."
+  ],
+  [
+   33.75,
+   11.188,
+   "As of October twenty-ninth, 9.20 is the supported production branch, with end of life in 2028, and 9.18 reached end of life in June 2026."
+  ],
+  [
+   44.938,
+   4.975,
+   "Operating-system packages follow their vendor, so record which support you rely on."
+  ]
+ ],
  "17": [
   [
    0.05,
@@ -754,31 +749,26 @@
   ],
   [
    13.512,
-   3.5,
-   "Confirm its failover in GovCloud and Azure Government."
-  ],
-  [
-   17.012,
    12.137,
    "The open points for this part: whether Oracle's VCN resolver passes DNSSEC data to a resolver behind it, and whether sis-uh's Protective D N S returns DNSSEC data to agency forwarders."
   ],
   [
-   29.15,
+   25.65,
    4.075,
    "And the illustrative configuration hasn't yet run in a VPC."
   ],
   [
-   33.225,
+   29.725,
    13.037,
    "The next steps: ask the seven questions of every cloud BIND server, build the forwarder pattern in a test account in each Region and realm, and run the workbook's D N S validation matrix from every origin."
   ],
   [
-   46.263,
+   42.763,
    4.925,
    "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   51.188,
+   47.688,
    0.762,
    "Thank you."
   ]

@@ -56,21 +56,20 @@ Learn doesn't enumerate
 the message center tags.
 
 12
-00:00:41.850 --> 00:00:44.768
-Oracle's CLI output keys
-and its third realm,
+00:00:41.850 --> 00:00:43.521
+Oracle's CLI output keys,
 
 13
-00:00:44.768 --> 00:00:49.063
+00:00:43.521 --> 00:00:47.950
 and the gcloud flags for organization
 events, weren't confirmed.
 
 14
-00:00:49.063 --> 00:00:52.924
+00:00:47.950 --> 00:00:51.812
 The ServiceNow side and the
 scheduler are the agency's to build.
 
 15
-00:00:52.924 --> 00:00:55.440
+00:00:51.812 --> 00:00:54.340
 And nothing in the guide
 was run in a tenant.

@@ -3,7 +3,7 @@
 //   Module 1 (the Intune and Arc tracks):  what Intune covers, Intune targeting, devices, dynamic device group dangers,
 //                                          what Arc covers, Arc servers, and the devices neither tool covers.
 //   Module 2 (the non-person track, PIV):  service accounts, workload identities and AI agents, service principals and
-//                                          custom security attributes, the object-type crosswalk, PIV and CAC binding.
+//                                          custom security attributes, the object-type crosswalk, PIV binding.
 //   Module 3 (running it):                 the worked mover example, Stages 7 and 8, the limits of administrative units and
 //                                          Lifecycle Workflows, what still needs AD, the checklist and the decisions.
 // Part 1 (../attribute-driven-migration-technical-part-1/) carries the model and the HR track, and holds the shared slide
@@ -33,7 +33,7 @@ const M3 = "Module 3 — Running it";
   notes(s,
 `This is Part 2 of the technical deep dive for the Federal Modernization Workbook's companion guide, Attribute-Driven Migration from Active Directory to Microsoft Entra ID. Part 1 covered the model and the HR track: the four tracks, what the migration accomplishes and the federal rules behind it, the attributes primer, sourcing and proving people's attributes, and the mechanisms that read them.
 
-Part 2 covers the other three tracks and then runs the migration. Module 1 is the Intune track for end-user devices and the Azure Arc track for servers, with what each tool covers and the four-tier strategy for what neither reaches. Module 2 is the non-person track, service accounts, service principals, managed and workload identities and AI agents, with the object-type crosswalk and PIV and CAC binding. Module 3 runs it: the worked mover example, the phased cutover, drift, the limits of administrative units and Lifecycle Workflows, what still needs AD, and the checklist and decisions for every track.
+Part 2 covers the other three tracks and then runs the migration. Module 1 is the Intune track for end-user devices and the Azure Arc track for servers, with what each tool covers and the four-tier strategy for what neither reaches. Module 2 is the non-person track, service accounts, service principals, managed and workload identities and AI agents, with the object-type crosswalk and PIV binding. Module 3 runs it: the worked mover example, the phased cutover, drift, the limits of administrative units and Lifecycle Workflows, what still needs AD, and the checklist and decisions for every track.
 
 The same three labels apply. The guide is a map and the books hold the depth; Microsoft facts were checked on Microsoft Learn on October 29, 2026; and the program's own recommendations are marked design guidance.`,
   `${G}, "Beyond users: the Intune, Arc and non-person identity tracks," Stages 7–8, "Limits," "Checklist."`);
@@ -90,12 +90,12 @@ endModule("Module 1");
 section(M2);
 {
   const s = divider(M2, "Module 2: The non-person track and PIV", "Service accounts, workload identities, AI agents  ·  Books 02, 06 and 17",
-    ["Service accounts, MSAs and gMSAs; workload identities and AI agents", "Service principals, custom security attributes, the object-type crosswalk", "PIV and CAC certificate binding as an attribute"], 16);
+    ["Service accounts, MSAs and gMSAs; workload identities and AI agents", "Service principals, custom security attributes, the object-type crosswalk", "PIV certificate binding as an attribute"], 16);
   notes(s,
 `Module 2: the non-person track. Service accounts, service principals, managed and workload identities and AI agents have no HR record. Their accountability is a named owner and sponsor, and their lifecycle runs on the owning system's record and on credential expiry, not on a hire or leave date.
 
-So: the AD service accounts, MSAs and gMSAs and the target for each; service principals, managed identities, workload identity federation and AI agent identities, each with its owner and sponsor, credentials and lifecycle; what Microsoft documents for targeting service principals by attribute, with custom security attributes; the object-type crosswalk across all four tracks; and PIV and CAC certificate binding, the people's credential, which is attribute-driven too.`,
-  `${G}, "Non-person identity track," "Which attribute store each mechanism can read," "Object types, stores, writers and consumers," "PIV and CAC certificates as attributes"; Book 02, Chapters 06, 09 and 10; Book 17, Chapters 04–06.`);
+So: the AD service accounts, MSAs and gMSAs and the target for each; service principals, managed identities, workload identity federation and AI agent identities, each with its owner and sponsor, credentials and lifecycle; what Microsoft documents for targeting service principals by attribute, with custom security attributes; the object-type crosswalk across all four tracks; and PIV certificate binding, the people's credential, which is attribute-driven too.`,
+  `${G}, "Non-person identity track," "Which attribute store each mechanism can read," "Object types, stores, writers and consumers," "PIV certificates as attributes"; Book 02, Chapters 06, 09 and 10; Book 17, Chapters 04–06.`);
 }
 ["npi1", "npi2", "npiMap", "sp", "crosswalk", "piv", "cuid"].forEach((k) => SL[k]());
 endModule("Module 2");
@@ -125,7 +125,7 @@ sourceSlide("Sources behind the recap and Module 1", [
   "Diagrams: Book 05 ch08-targeting-layers, ch09-arc-management-plane.",
 ]);
 sourceSlide("Sources behind Module 2 — The non-person track and PIV", [
-  "Attribute-Driven Migration guide: \"Non-person identity track,\" \"Which attribute store each mechanism can read,\" \"Object types, stores, writers and consumers,\" \"PIV and CAC certificates as attributes.\"",
+  "Attribute-Driven Migration guide: \"Non-person identity track,\" \"Which attribute store each mechanism can read,\" \"Object types, stores, writers and consumers,\" \"PIV certificates as attributes.\"",
   "Book 02, Ch 06 matrix; Ch 09 — \"Service accounts,\" migration path matrix, workload identity federation, governing service principals; Ch 10 — Phase 4.  ·  Book 17, Ch 04–06.  ·  Book 03, Ch 06, 09.  ·  Book 04, Ch 03, 05, 06.  ·  Book 07, Ch 06, 07.",
   "Microsoft Learn (Oct. 29, 2026): custom security attributes; CA filter for applications; app user and group assignment; CA for workload identities; Workload ID FAQ; application management policies; CBA technical concepts; Set up CBA; certificateUserIds; Authentication strengths; M-22-09 MFA.",
   "Unverified: certificateUserIds written through Graph by the card management system after AD (design guidance), workbook issue #130, open as of Oct. 29, 2026. Cloud Sync for certificateUserIds: not documented.",

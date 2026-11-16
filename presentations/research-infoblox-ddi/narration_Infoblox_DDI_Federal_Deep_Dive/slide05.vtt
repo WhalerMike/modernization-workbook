@@ -30,25 +30,24 @@ but promoting it is a manual job
 you can't do from the cloud portal.
 
 7
-00:00:26.112 --> 00:00:30.875
+00:00:26.112 --> 00:00:28.722
 The current hardware is Trinzic X6,
-and the virtual appliances run on
 
 8
-00:00:30.875 --> 00:00:35.888
-VMware and every major cloud, with
-Azure Government explicitly covered.
+00:00:28.722 --> 00:00:33.400
+and the virtual appliances run
+on VMware and every major cloud.
 
 9
-00:00:35.888 --> 00:00:40.588
+00:00:33.400 --> 00:00:38.100
 On versions, NIOS 9.1.0
 went GA in March 2026,
 
 10
-00:00:40.588 --> 00:00:45.288
+00:00:38.100 --> 00:00:42.800
 and 9.0.6 started a
 long-term-support train.
 
 11
-00:00:45.288 --> 00:00:47.400
+00:00:42.800 --> 00:00:44.930
 Next, the cloud-managed side.

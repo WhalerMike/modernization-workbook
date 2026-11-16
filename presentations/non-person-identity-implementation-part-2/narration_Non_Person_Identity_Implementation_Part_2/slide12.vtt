@@ -55,20 +55,16 @@ Then run one test owner change and
 one test decommission, end to end.
 
 12
-00:00:43.125 --> 00:00:48.261
-The sign-in activity report is listed
-only for the commercial service,
+00:00:43.125 --> 00:00:48.475
+The sign-in activity report is listed for
+the commercial service, so GCC has it.
 
 13
-00:00:48.261 --> 00:00:50.563
-so GCC has it, and GCC High doesn't.
-
-14
-00:00:50.563 --> 00:00:53.855
+00:00:48.475 --> 00:00:51.768
 To roll back, reactivate,
 or restore within thirty
 
-15
-00:00:53.855 --> 00:00:57.600
+14
+00:00:51.768 --> 00:00:55.510
 days and re-create the
 Conditional Access assignments.

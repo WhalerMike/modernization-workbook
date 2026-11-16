@@ -40,9 +40,9 @@ python ../_build/a11y_check.py Research_Trinzic_MultiCloud.pptx
 
 - Every fact comes from research briefs checked against primary sources on October 22, 2026. The main brief covers multi-cloud DDI. The others cover the Infoblox platform, federal requirements and validations, and the competitor comparison. Book 08 (Chapters 02, 07, 08 and 12) supplies the architecture context. Each slide's notes end with a short "Sources:" line, and the backup slides list every source by ID.
 - Release-stage and government-cloud caveats are kept exactly as found:
-  - Route 53 Resolver has been renamed Route 53 VPC Resolver, and its delegation feature isn't available in GovCloud.
-  - The AWS VPC IPAM–Infoblox integration isn't available in GovCloud and works only with the Advanced Tier and private scopes.
+  - Route 53 Resolver has been renamed Route 53 VPC Resolver.
+  - The AWS VPC IPAM–Infoblox integration works only with the Advanced Tier and private scopes.
   - Infoblox Government Cloud is FedRAMP Moderate, hosted in AWS GovCloud, with limited cloud discovery.
   - Universal DDI cloud forwarding runs on NIOS-X servers, not classic Trinzic.
-  - Azure Government availability of DNS Private Resolver and AVNM IPAM is unverified. The deck says "confirm".
+  - Which hybrid features Infoblox's government edition supports is unverified. The deck says "confirm".
 - Inferences are labeled as inferences, and the one Infoblox marketing source (the Government Cloud blog) is labeled vendor. Items that couldn't be verified are listed on a backup slide instead of being stated as fact.

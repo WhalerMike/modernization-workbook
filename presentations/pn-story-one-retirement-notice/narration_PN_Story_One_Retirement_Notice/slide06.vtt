@@ -45,15 +45,11 @@ It has that date, so its action
 basis says provider, not rule.
 
 10
-00:00:32.187 --> 00:00:37.475
+00:00:32.187 --> 00:00:36.747
 The workbook's tenant is GCC, which
-reads the worldwide Graph host.
+reads the worldwide Graph host,
 
 11
-00:00:37.475 --> 00:00:40.218
-GCC High and DoD have their own hosts,
-
-12
-00:00:40.218 --> 00:00:43.660
-and the kit refuses a
-session in the wrong one.
+00:00:36.747 --> 00:00:41.210
+and the kit refuses a session in
+another environment or tenant.

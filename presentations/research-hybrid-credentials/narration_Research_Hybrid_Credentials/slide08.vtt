@@ -5,44 +5,35 @@ WEBVTT
 The details differ a little by cloud.
 
 2
-00:00:02.250 --> 00:00:06.825
+00:00:02.250 --> 00:00:06.966
 Key Vault only renews by itself for
 its two partner CAs and for self-signed
 
 3
-00:00:06.825 --> 00:00:11.400
+00:00:06.966 --> 00:00:11.681
 certificates, so a certificate from the
 program's own CA comes from the CLM,
 
 4
-00:00:11.400 --> 00:00:16.200
-and the good news is that the CLM's Key
-Vault driver supports Azure Government.
+00:00:11.681 --> 00:00:14.387
+and Key Vault's own
+renewal stays off for it.
 
 5
-00:00:16.200 --> 00:00:19.751
+00:00:14.387 --> 00:00:18.003
 In AWS, Certificate Manager
 renews what it issues,
 
 6
-00:00:19.751 --> 00:00:24.688
+00:00:18.003 --> 00:00:23.031
 but never what you import, so imported
 certificates belong to the CLM.
 
 7
-00:00:24.688 --> 00:00:25.987
-Google is similar.
+00:00:23.031 --> 00:00:26.912
+Google is similar: what Google
+manages, Google renews.
 
 8
-00:00:25.987 --> 00:00:29.223
-One thing to confirm with
-CyberArk in writing:
-
-9
-00:00:29.223 --> 00:00:32.288
-its AWS driver pages
-don't mention GovCloud.
-
-10
-00:00:32.288 --> 00:00:34.150
+00:00:26.912 --> 00:00:28.780
 Now, the PIV card.

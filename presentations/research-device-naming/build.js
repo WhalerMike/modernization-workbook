@@ -536,7 +536,7 @@ After: turn on scavenging only after a quiet period, with lease times matched to
   panel(s, "Next", 4.75, 1.5, 4.0, 4.85, HEX.amber, HEX.amberTint, "NEXT STEPS (OPEN CHECKS)", null, [
     "Confirm which Apple setting Intune's macOS Rename sends, and how Macs handle DHCP names",
     "Confirm an Entra device's display name follows an Intune rename",
-    "Recheck Book 05 Ch04's device preparation text and the GCC High availability note",
+    "Recheck Book 05 Ch04's device preparation text",
     "Ask the VPN vendor about concentrator DDNS",
   ], 12);
   panel(s, "Fit", 8.9, 1.5, 3.85, 4.85, HEX.navy, HEX.navyTint, "WHERE IT FITS", null, [
@@ -548,7 +548,7 @@ After: turn on scavenging only after a quiet period, with lease times matched to
   notes(s,
 `The decisions: which tool names each kind of device, and how long names may be. The DHCP server as the registrant for endpoints, and exactly which keys may update each zone. DHCID or TXT ownership records. And whether Entra-joined Windows PCs try to register at all.
 
-The next steps are the things I couldn't verify. Which Apple setting Intune's Mac rename actually sends, and how Macs handle DHCP names. Whether an Entra-joined device's display name follows an Intune rename. Book 05's description of device preparation, and its note on availability in the higher government clouds, both need a recheck. And ask any third-party VPN vendor whether its concentrator registers clients.
+The next steps are the things I couldn't verify. Which Apple setting Intune's Mac rename actually sends, and how Macs handle DHCP names. Whether an Entra-joined device's display name follows an Intune rename. Book 05's description of device preparation needs a recheck. And ask any third-party VPN vendor whether its concentrator registers clients.
 
 Where does this fit? Book 05, Chapter 04 covers Intune-first onboarding and the naming convention. Book 08 covers the AD DNS departure in Chapter 04, cloud private DNS in Chapter 07, and the migration sequence in Chapter 10. And two research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud DDI, and Infoblox DDI for Federal Agencies.
 
@@ -591,7 +591,6 @@ One note on standing: this is research under review, not an endorsement by any f
     ["Windows temporary IPv6 addresses", "Whether Windows registers temporary (privacy) IPv6 addresses through dynamic update: no Microsoft statement found"],
     ["Global Secure Access", "Any Global Secure Access feature that registers remote clients in agency DNS: none documented; docs describe resolution only [S51]"],
     ["Route 53 and RFC 2136", "Whether private hosted zones accept RFC 2136 dynamic updates: no AWS statement either way [S22, S23]"],
-    ["Device preparation in GCC High", "Whether device-preparation naming is available in the higher government clouds: Book 05 Ch04 cites it as \"planned\"; not re-checked"],
     ["Red Hat documentation", "docs.redhat.com returned a bot block, not bypassed; Linux claims rely on systemd, NetworkManager, cloud-init and FreeIPA"],
     ["Not researched", "Jamf naming; third-party VPN concentrator DDNS; Android or Windows MAC-randomization MDM keys; whether Azure's [vmname] is the resource or computer name [S19]"],
   ], { fontSize: 11 });

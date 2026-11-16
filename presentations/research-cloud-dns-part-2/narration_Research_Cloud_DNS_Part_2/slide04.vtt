@@ -11,54 +11,53 @@ Where its DNS runs on an Infoblox
 Grid, vNIOS is the natural choice.
 
 3
-00:00:08.787 --> 00:00:12.712
-It joins the same Grid and takes
-its policy from the Grid Master.
+00:00:08.787 --> 00:00:11.476
+It joins the same Grid
+and takes its policy
 
 4
-00:00:12.712 --> 00:00:18.288
-One caution: vNIOS failover in GovCloud
-and Azure Government is a point to confirm.
+00:00:11.476 --> 00:00:14.012
+from the Grid Master, in the same console.
 
 5
-00:00:18.288 --> 00:00:20.744
+00:00:14.012 --> 00:00:16.468
 BIND is the choice when there's no Grid,
 
 6
-00:00:20.744 --> 00:00:24.388
+00:00:16.468 --> 00:00:20.112
 for a small footprint, or when
 a tool expects BIND itself.
 
 7
-00:00:24.388 --> 00:00:29.329
+00:00:20.112 --> 00:00:25.055
 BIND has no policy plane of its
 own; in the workbook's DNS design,
 
 8
-00:00:29.329 --> 00:00:33.012
+00:00:25.055 --> 00:00:28.738
 its policy comes from
 the DDI platform and Git.
 
 9
-00:00:33.012 --> 00:00:34.001
+00:00:28.738 --> 00:00:29.726
 Which BIND?
 
 10
-00:00:34.001 --> 00:00:38.025
+00:00:29.726 --> 00:00:33.750
 ISC supports each even-numbered
 branch for four years.
 
 11
-00:00:38.025 --> 00:00:43.830
+00:00:33.750 --> 00:00:39.555
 As of October twenty-ninth, 9.20 is
 the supported production branch,
 
 12
-00:00:43.830 --> 00:00:49.213
+00:00:39.555 --> 00:00:44.938
 with end of life in 2028, and 9.18
 reached end of life in June 2026.
 
 13
-00:00:49.213 --> 00:00:54.240
+00:00:44.938 --> 00:00:49.970
 Operating-system packages follow their
 vendor, so record which support you rely on.

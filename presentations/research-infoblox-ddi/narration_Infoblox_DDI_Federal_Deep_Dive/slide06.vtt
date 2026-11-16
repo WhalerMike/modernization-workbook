@@ -1,51 +1,51 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:06.064
+00:00:00.050 --> 00:00:05.980
 Universal DDI is the cloud-managed side,
 renamed from BloxOne DDI in September 2024,
 
 2
-00:00:06.064 --> 00:00:09.638
+00:00:05.980 --> 00:00:09.503
 and run from what's now
 called the Infoblox Portal.
 
 3
-00:00:09.638 --> 00:00:15.219
+00:00:09.503 --> 00:00:15.017
 Its servers run either on your infrastructure
 or as a service from Infoblox's points
 
 4
-00:00:15.219 --> 00:00:18.887
+00:00:15.017 --> 00:00:18.634
 of presence, and its management
 plane reaches out to the
 
 5
-00:00:18.887 --> 00:00:22.475
+00:00:18.634 --> 00:00:22.172
 major cloud DNS services and
 to Microsoft DNS and DHCP.
 
 6
-00:00:22.475 --> 00:00:26.685
+00:00:22.172 --> 00:00:26.335
 Infoblox markets it as a single
 control plane; that's a vendor claim,
 
 7
-00:00:26.685 --> 00:00:29.900
+00:00:26.335 --> 00:00:29.505
 and Infoblox's own pages
 show why you should test it.
 
 8
-00:00:29.900 --> 00:00:35.188
+00:00:29.505 --> 00:00:34.680
 The Portal can't promote a Grid Master
 Candidate or manage DHCP failover, the
 
 9
-00:00:35.188 --> 00:00:40.812
+00:00:34.680 --> 00:00:40.890
 as-a-service option has no IPv6, and the
 cloud DNS sync handles only simple records.
 
 10
-00:00:40.812 --> 00:00:46.460
+00:00:40.890 --> 00:00:46.460
 So "one console" is overstated: in practice
 you'll run both consoles side by side.

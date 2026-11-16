@@ -372,7 +372,7 @@ endModule(SWHO);
   ], 11.5);
   const p2 = panel(s, "Gov", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.navy, HEX.navyTint, "GCC FIRST (LEARN, NOV 11, 2026)", null, [
     "GCC: Graph sendMail on graph.microsoft.com; RBAC for Applications not yet specified: test it in the tenant",
-    "High Volume Email: Worldwide only. GCC High and DoD: sendMail at L4 and L5",
+    "High Volume Email: not listed for GCC; Learn names Worldwide only, other clouds under evaluation",
   ], 11.5);
   if (process.env.FIT) console.log(`  mail panels bottom ${Math.max(p1, p2).toFixed(2)}`);
   sources(s, "Sources: Guide, \"Sending mail from a gMSA workload,\" M1 to M4; Microsoft Learn, user: sendMail; RBAC for Applications in Exchange Online; receive connectors; HVE.");

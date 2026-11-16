@@ -5,64 +5,65 @@ WEBVTT
 Which cloud?
 
 2
-00:00:00.950 --> 00:00:06.200
+00:00:00.950 --> 00:00:05.585
 Microsoft three sixty-five G C C pairs
-with commercial Azure, so a G C C agency's
+with commercial Azure, so a G C C
 
 3
-00:00:06.200 --> 00:00:11.450
-subscriptions are usually commercial,
+00:00:05.585 --> 00:00:10.800
+agency's subscriptions are commercial,
 and every service here is available.
 
 4
-00:00:11.450 --> 00:00:16.042
-G C C High and D O D pair with Azure
-Government, and Microsoft Learn's page,
+00:00:10.800 --> 00:00:14.037
+What matters is what to plan
+for, service by service.
 
 5
-00:00:16.042 --> 00:00:18.892
-Compare Azure Government and global Azure,
+00:00:14.037 --> 00:00:19.703
+Front Door classic retires on March
+thirty-first, 2027, and takes no new profiles,
 
 6
-00:00:18.892 --> 00:00:23.800
-says a service there has all its features
-unless the page lists a variation.
+00:00:19.703 --> 00:00:25.112
+and Premium is the tier for managed
+firewall rules and Private Link origins.
 
 7
-00:00:23.800 --> 00:00:24.850
-A few matter.
+00:00:25.112 --> 00:00:30.604
+Microsoft Learn limits Private Link to
+origin to regions with availability zones,
 
 8
-00:00:24.850 --> 00:00:29.654
-Front Door Standard and Premium are
-generally available in two U S Gov regions,
+00:00:30.604 --> 00:00:33.150
+so check the origin's region on the list.
 
 9
-00:00:29.654 --> 00:00:33.350
-and Private Link origins outside
-Virginia are unconfirmed.
+00:00:33.150 --> 00:00:36.441
+On Application Gateway,
+Learn's web application
 
 10
-00:00:33.350 --> 00:00:38.791
-On Application Gateway, Learn's web application
-firewall F A Q says sovereign clouds
+00:00:36.441 --> 00:00:39.650
+firewall F A Q says
+detection mode doesn't block.
 
 11
-00:00:38.791 --> 00:00:43.067
-have no bot protection rule sets
-and no geo-filtering custom rules,
+00:00:39.650 --> 00:00:44.907
+DDoS Network Protection is billed per plan
+and I P Protection per protected address,
 
 12
-00:00:43.067 --> 00:00:48.275
-so that Zero Trust test is recorded as
-skipped, not applicable, rather than failed.
+00:00:44.907 --> 00:00:48.662
+and simulations run only through
+Learn's approved partners.
 
 13
-00:00:48.275 --> 00:00:53.812
-Private DNS zone names differ, and
-Lighthouse has no pim for delegated access.
+00:00:48.662 --> 00:00:52.663
+Private link D N S uses one
+central zone per service.
 
 14
-00:00:53.812 --> 00:00:57.740
-Whatever the cloud, sign in to
-the one the subscription lives in.
+00:00:52.663 --> 00:00:56.180
+Sign in to commercial Azure,
+where the subscriptions live.

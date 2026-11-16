@@ -49,30 +49,30 @@ and every exception closed.
 Security owns this gate.
 
 11
-00:00:35.876 --> 00:00:40.013
+00:00:35.876 --> 00:00:40.400
 Lifecycle Workflows and PIM are
-available in Azure Government.
+the commercial service in GCC.
 
 12
-00:00:40.013 --> 00:00:42.760
+00:00:40.400 --> 00:00:43.147
 The guide infers that a GCC tenant's Logic
 
 13
-00:00:42.760 --> 00:00:45.750
+00:00:43.147 --> 00:00:46.137
 App sits in a commercial
 Azure subscription.
 
 14
-00:00:45.750 --> 00:00:51.162
+00:00:46.137 --> 00:00:51.550
 Until the extensions exist, use a leaver
 checklist with a named owner for each row.
 
 15
-00:00:51.162 --> 00:00:55.613
+00:00:51.550 --> 00:00:56.000
 To roll back a cancelled separation,
 re-enable from the corrected record.
 
 16
-00:00:55.613 --> 00:00:59.020
+00:00:56.000 --> 00:00:59.400
 A deleted cloud user can be
 restored for thirty days.

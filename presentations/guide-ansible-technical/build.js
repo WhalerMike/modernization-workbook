@@ -344,7 +344,6 @@ Whichever identity signs in holds the Azure Connected Machine Onboarding role on
   const c = panel(s, "Agent", X3(2), 1.5, W3, null, HEX.amber, HEX.amberTint, "WHEN A PLAYBOOK CALLS AZCMAGENT", null, [
     "Pass the secret in a configuration file, not on the command line, to keep it out of console logs",
     "The config flag takes a JSON or YAML file; tags are Name=Value pairs",
-    "Azure Government: --cloud AzureUSGovernment with --location",
   ], 13.5);
   callout(s, "Gate", Math.max(a, b, c) + 0.3, 0.95, "FaDoorClosed", HEX.teal, "The example, 02_arc_onboarding.yml: ",
     "the same steps spelled out with azcmagent, gated so nothing changes without confirm_change=true.");
@@ -354,7 +353,7 @@ Whichever identity signs in holds the Azure Connected Machine Onboarding role on
 
 Run onboarding in Book 05's waves: credential, connect, attach the baseline, verify, close. The wave's credential is removed when the wave closes.
 
-Where a playbook calls azcmagent connect itself, Microsoft recommends passing the service principal secret in a configuration file rather than on the command line, to keep it out of console logs. The config flag takes a JSON or YAML file of the command's flags, and the tags flag takes a comma-delimited list of Name equals Value pairs. For Azure Government, the cloud flag set to AzureUSGovernment goes with the location flag.
+Where a playbook calls azcmagent connect itself, Microsoft recommends passing the service principal secret in a configuration file rather than on the command line, to keep it out of console logs. The config flag takes a JSON or YAML file of the command's flags, and the tags flag takes a comma-delimited list of Name equals Value pairs.
 
 The example playbook, 02 Arc onboarding, spells those steps out with azcmagent, gated so nothing changes without confirm_change set to true. It's a teaching example, so the gate, the waves, the tags and the secret handling are visible and testable. For production, the guide says to prefer Microsoft's role.`,
   "Where Ansible fits — Arc onboarding at scale.");
@@ -441,7 +440,7 @@ So: the supported versions; authorization status, exactly as published; what Red
   const tb = table(s, "FedRAMP", 1.5, [3.1, 4.5], ["Offering", "FedRAMP status, as published"], [
     ["Self-managed, on agency infrastructure or agency-provisioned cloud VMs", "Not a cloud service offering; not on the Marketplace. Neither Red Hat nor FedRAMP publishes a statement; inside the agency's own boundary, as Book 12 treats it"],
     ["Service on AWS (Red Hat runs the control plane)", "Not on the FedRAMP Marketplace; not on Red Hat's FedRAMP list"],
-    ["On Microsoft Azure (managed application)", "Not on the Marketplace; Azure Government availability not published"],
+    ["On Microsoft Azure (managed application)", "Not on the Marketplace; commercial regions only"],
     ["For contrast: OpenShift Service on AWS", "FedRAMP Certified at High (FR2102031769)"],
   ], { x: 5.15, fontSize: 12.5, limit: 5.4 });
   callout(s, "Default", Math.max(a, tb) + 0.2, 0.9, "FaLandmark", HEX.navy, "Program default (design guidance): ",
@@ -450,7 +449,7 @@ So: the supported versions; authorization status, exactly as published; what Red
   notes(s,
 `Versions first, because they set what you're authorizing. Ansible Automation Platform 2.7 became generally available on June 2, 2026, with full support until June 2, 2027 and maintenance until June 2, 2029. 2.6 left full support on October 1, 2026 and is maintained until October 1, 2028. The default engine is ansible-core 2.16, which Red Hat supports for the whole life of 2.5, 2.6 and 2.7 even though the community version reached end of life in July 2025; 2.18 execution environments are supported the same way, and 2.7 adds an optional 2.20 stream. 2.7 installs as containers on RHEL 9 or 10, rootless by default, or through the operator on OpenShift; there's no RPM installer. And the platform gateway is the only supported path for external sign-in and API access.
 
-Authorization status, exactly as published. Self-managed Automation Platform isn't a cloud service offering and isn't on the FedRAMP Marketplace; neither Red Hat nor FedRAMP publishes a statement about it. It's customer-operated software inside the agency system's own boundary, as Book 12 treats it. Red Hat's service on AWS isn't on the Marketplace or on Red Hat's FedRAMP list. Automation Platform on Azure isn't on the Marketplace, and its Azure Government availability isn't published. For contrast, OpenShift Service on AWS is FedRAMP Certified at High. Red Hat's page says FedRAMP is only applicable to the products listed, and the Marketplace data held no Ansible offering on October 29.
+Authorization status, exactly as published. Self-managed Automation Platform isn't a cloud service offering and isn't on the FedRAMP Marketplace; neither Red Hat nor FedRAMP publishes a statement about it. It's customer-operated software inside the agency system's own boundary, as Book 12 treats it. Red Hat's service on AWS isn't on the Marketplace or on Red Hat's FedRAMP list. Automation Platform on Azure isn't on the Marketplace, and it's published for commercial regions only. For contrast, OpenShift Service on AWS is FedRAMP Certified at High. Red Hat's page says FedRAMP is only applicable to the products listed, and the Marketplace data held no Ansible offering on October 29.
 
 So the program's default, as design guidance, is self-managed, inside the system boundary, authorized as an agency-operated component and hardened like any other, with the managed offerings considered only after their status changes.`,
   "Ansible Automation Platform in a federal setting — Versions; Authorization status.");
@@ -470,7 +469,6 @@ So the program's default, as design guidance, is self-managed, inside the system
     "Managed RHEL hosts: Red Hat's CIS profiles, remediated with an SSG Ansible playbook; customize in Git, check mode first",
     "Community CIS roles (Ansible Lockdown, e.g. RHEL9-CIS and RHEL9-CIS-Audit): review and pin as third-party content",
     "Controller host: CIS RHEL 9 or 10 plus agency settings; 2.7 documents fapolicyd, noexec and umask caveats",
-    "High only: a DISA STIG for the controller (first released April 2023), an optional reference",
   ], 13);
   sources(s, "Sources: Red Hat FIPS page; AAP 2.5 notes; NIST SP 800-53 CM-6; CIS Benchmarks; RHEL Security hardening; Ansible Lockdown; AAP 2.7 hardened hosts. Guide: FIPS; Baseline content.");
   notes(s,
@@ -482,7 +480,7 @@ Baseline content. A Moderate civilian agency doesn't adopt a hardening profile w
 
 For RHEL hosts, Red Hat's SCAP Security Guide ships CIS profiles, Level 1 and Level 2 for servers and workstations, and Red Hat's RHEL 9 and 10 security hardening guides document remediating a system to a baseline using an SSG Ansible playbook from that package. CIS publishes the benchmarks themselves, including RHEL 9 version 3.0.0 and RHEL 10 version 1.0.1. The community Ansible Lockdown project, sponsored by MindPoint Group, publishes CIS roles such as RHEL9-CIS, which warns that it will make changes to the system, and RHEL9-CIS-Audit, which only checks; on October 29 both tracked CIS RHEL 9 version 2.0.0, behind CIS's 3.0.0. It's community content, not Red Hat-supported, so review it, pin it and check which benchmark version it tracks. Whatever content is adopted is customized in Git to the agency's CM-6 settings and run in check mode first.
 
-For the controller, the 2.7 documentation covers installing on hosts hardened to CIS, PCI DSS or the DISA STIG: fapolicyd rules, noexec on tmp and var during installation, and the umask a containerized install needs. So the controller host is hardened like any other RHEL server, to the CIS RHEL 9 or 10 Benchmark and the agency's CM-6 settings. Red Hat also lists a DISA STIG for Red Hat Ansible Automation Controller, first released in April 2023. That's High only: material for FedRAMP High or Defense environments, kept as an optional reference for the controller's own settings, not a requirement. Its current release couldn't be confirmed at the DoD Cyber Exchange.`,
+For the controller, the 2.7 documentation covers installing on hosts hardened to CIS, PCI DSS or a STIG: fapolicyd rules, noexec on tmp and var during installation, and the umask a containerized install needs. So the controller host is hardened like any other RHEL server, to the CIS RHEL 9 or 10 Benchmark and the agency's CM-6 settings, with those installation caveats.`,
   "Ansible Automation Platform in a federal setting — FIPS mode; Baseline content.");
 }
 
@@ -504,9 +502,9 @@ For the controller, the 2.7 documentation covers installing on hosts hardened to
 
 On premises, Red Hat documents a containerized installation on RHEL or the OpenShift operator. The program's view is that this is the default where the managed estate is on premises, because it's nearest to the targets.
 
-Self-managed on cloud VMs the agency provisions, for example in AWS GovCloud (US), AWS US East/West or Azure Government: Red Hat lists self-managed offers on the AWS, Google Cloud and Oracle marketplaces, and on any cloud the agency can install on RHEL VMs it provisions itself. The controller then inherits the cloud's infrastructure authorization for the services and Region it uses, checked per service, and adds its own controls, and a managed identity becomes possible where the controller is an Azure VM.
+Self-managed on cloud VMs the agency provisions, for example in AWS US East/West or commercial Azure: Red Hat lists self-managed offers on the AWS, Google Cloud and Oracle marketplaces, and on any cloud the agency can install on RHEL VMs it provisions itself. The controller then inherits the cloud's infrastructure authorization for the services and Region it uses, checked per service, and adds its own controls, and a managed identity becomes possible where the controller is an Azure VM.
 
-The Azure managed application deploys from Azure Marketplace into the customer's tenant, and Red Hat reaches only the managed resource group. The AWS managed service has Red Hat run the control plane in its own infrastructure, with execution nodes in the customer's network, and job logs erased every 30 days. Red Hat publishes no Azure Government or GovCloud availability for either managed offering; both guides' region tables list commercial regions only. A commercial Region isn't the obstacle for a Moderate system: AWS lists US East/West as FedRAMP Certified Class C, formerly the Moderate baseline, and GovCloud (US) as Class D, formerly High, and records each service's authorization per Region. What keeps the managed offerings out of the default is that neither is FedRAMP-listed. And the 30-day log erasure means job results must be exported for audit retention.
+The Azure managed application deploys from Azure Marketplace into the customer's tenant, and Red Hat reaches only the managed resource group. The AWS managed service has Red Hat run the control plane in its own infrastructure, with execution nodes in the customer's network, and job logs erased every 30 days. Both guides' region tables list commercial regions only. A commercial Region isn't the obstacle for a Moderate system: AWS lists its US East/West Regions as FedRAMP Certified Class C, formerly the Moderate baseline, and records each service's authorization per Region. What keeps the managed offerings out of the default is that neither is FedRAMP-listed. And the 30-day log erasure means job results must be exported for audit retention.
 
 Wherever the controller runs, the management traffic to its targets crosses a boundary edge, and Book 12 records each such channel as an external connection with its own agreement.`,
   "Ansible Automation Platform in a federal setting — Hosting.");
@@ -894,7 +892,7 @@ sourceSlide("Sources behind the orientation and Module 1", [
 sourceSlide("Sources behind Module 2 — The platform, federal setting", [
   "Red Hat: Ansible Automation Platform Life Cycle; Ansible ansible-core support matrix; AAP 2.7 containerized and OpenShift installation; pluggable authentication and mandatory gateway authentication; tokens.",
   "FedRAMP Marketplace products (searched for Ansible and Red Hat); FedRAMP Marketplace, Red Hat OpenShift Service on AWS (FR2102031769); Red Hat Customer Portal, FedRAMP.",
-  "Red Hat: AAP on Microsoft Azure guide; AAP Service on AWS; deployment options. AWS: FedRAMP; FedRAMP services in scope. Red Hat Customer Portal: FIPS; DISA STIG (High only). AAP 2.5 release notes (AAP-39146). Red Hat blog, \"DISA releases the first Ansible STIG\" (Apr. 11, 2023).",
+  "Red Hat: AAP on Microsoft Azure guide; AAP Service on AWS; deployment options. AWS: FedRAMP; FedRAMP services in scope. Red Hat Customer Portal: FIPS. AAP 2.5 release notes (AAP-39146); AAP 2.7 installing on hardened hosts.",
   "Red Hat AAP 2.7: host-level security controls and security profiles; logging to third-party aggregators; activity streams; secure logging; content in automation hub; content signing; project signing; webhooks; credential types; Vault OIDC credentials. AAP 2.5 cleanup jobs.",
   "Red Hat: RHEL 9 and RHEL 10 Security hardening (CIS profiles; remediating with an SSG Ansible playbook). CIS Benchmarks. Ansible Lockdown (RHEL9-CIS, RHEL9-CIS-Audit). CISA SCuBA. Ansible documentation: Ansible Vault; Logging Ansible output (no_log).",
   "Workbook: Book 02, Chapter 09; Book 04, Chapter 05; Book 05, Chapter 09; Book 12, Chapter 07. Full footnotes (Oct. 29, 2026): the guide, \"Ansible Automation Platform in a federal setting.\"",
@@ -911,9 +909,9 @@ sourceSlide("Federal requirements: full citations", [
   "NIST, SP 800-53 Rev. 5, Security and Privacy Controls for Information Systems and Organizations, release 5.2.0 (Aug. 27, 2025): CM-2, CM-3, CM-6 (organization-defined common secure configurations), CM-7, CM-8, AU-2, AU-12, AC-6, AC-6(5), IA-5, SR-3, SR-11, and withdrawn SA-12. csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
   "NIST, OSCAL Rev. 5 catalog and Moderate baseline profile, version 5.2.0 (control titles, baseline membership, SA-12 withdrawal). github.com/usnistgov/oscal-content, nist.gov/SP800-53/rev5",
   "FedRAMP, Marketplace Products (searched for Ansible and Red Hat offerings), fedramp.gov/marketplace/products; Red Hat OpenShift Service on AWS, package FR2102031769 (FedRAMP Certified, High).",
-  "NIST, SP 800-70 Rev. 5, National Checklist Program (May 2026), csrc.nist.gov/pubs/sp/800/70/r5/final. High only: DISA STIG for Red Hat Ansible Automation Controller, as listed at access.redhat.com/compliance/disa-stig; current release unverified.",
+  "NIST, SP 800-70 Rev. 5, National Checklist Program (May 2026), csrc.nist.gov/pubs/sp/800/70/r5/final.",
   "FIPS 140 certificates for RHEL cryptographic modules, as listed on Red Hat Customer Portal, FIPS, access.redhat.com/compliance/fips. AAP 2.6 and 2.7 FIPS-mode support statement: not found.",
-  "All accessed Oct. 29, 2026. Short forms on the slides: \"NIST SP 800-53 Rev. 5.2.0\", \"FedRAMP Marketplace\", \"Red Hat DISA STIG page\", \"Red Hat FIPS page\".",
+  "All accessed Oct. 29, 2026. Short forms on the slides: \"NIST SP 800-53 Rev. 5.2.0\", \"FedRAMP Marketplace\", \"Red Hat FIPS page\".",
 ], 12.5);
 
 console.log(`notes: ${words} words, about ${(words / WPM).toFixed(1)} minutes at ${WPM} wpm`);

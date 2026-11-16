@@ -92,7 +92,7 @@ const W3 = 3.9, G3 = 0.225;
     "Conditional Access decides; the service edge enforces; the logs prove it",
   ], 13);
   const p2 = panel(s, "Where", 0.6 + W2 + G2, 1.45, W2, null, HEX.red, HEX.redTint, "WHERE IT RUNS TODAY", null, [
-    "Available in GCC; not yet supported in GCC High, DoD or other sovereign clouds (Learn)",
+    "Available in GCC, for the whole product (Learn's limitations page)",
     "The Graph network access APIs are beta: run interactively, keep each result as evidence",
   ], 13);
   const p3 = panel(s, "Order", 0.6, Math.max(p1, p2) + 0.2, FULL, null, HEX.teal, HEX.tealTint, "THE ORDER THE GUIDE RUNS THE TWELVE STEPS", null, [
@@ -103,7 +103,7 @@ const W3 = 3.9, G3 = 0.225;
     "every applicable control state has evidence. The authorizing official or assessor decides.");
   sources(s, "Sources: Guide, \"How to read this guide,\" \"Where each topic lives\"; Known limitations for Global Secure Access; Microsoft Graph network access APIs (preview).");
   notes(s,
-`Why does this matter? Global Secure Access is Microsoft's security service edge: Entra Internet Access and Entra Private Access, used as the agency's identity-aware network layer. It carries three kinds of traffic, each with its own profile: Microsoft traffic, internet traffic, and private traffic. Conditional Access decides, the service edge enforces, and the logs prove it. Two facts shape everything after. Learn's known limitations page says the service is available in G C C, but isn't yet supported in G C C High, D O D, or other sovereign clouds. And Microsoft's Graph network access A P I's are in beta, which Learn says is subject to change and not supported in production, so the guide runs them by hand and keeps each result as evidence. The twelve steps run in a set order, so the logs exist before anything is enforced, and nothing blocks before its path exists.`,
+`Why does this matter? Global Secure Access is Microsoft's security service edge: Entra Internet Access and Entra Private Access, used as the agency's identity-aware network layer. It carries three kinds of traffic, each with its own profile: Microsoft traffic, internet traffic, and private traffic. Conditional Access decides, the service edge enforces, and the logs prove it. Two facts shape everything after. Learn's known limitations page says the service is available in G C C, for the whole product. And Microsoft's Graph network access A P I's are in beta, which Learn says is subject to change and not supported in production, so the guide runs them by hand and keeps each result as evidence. The twelve steps run in a set order, so the logs exist before anything is enforced, and nothing blocks before its path exists.`,
   `${G} — "How to read this guide" (The Graph API is beta), "Where each topic lives" (run order), "The control states and the closure chain"; Microsoft Learn — "Known limitations for Global Secure Access," "Secure access … using Microsoft Graph network access APIs (preview)."`);
 }
 
@@ -182,22 +182,22 @@ endModule(SWHY);
 
 // ================================================================== 6 What: government cloud and licensing
 {
-  const s = content(SWHAT, "Government cloud and licensing, feature by feature");
+  const s = content(SWHAT, "GCC and licensing, feature by feature");
   tag(s, "What");
-  const tb = table(s, "Gov", 1.4, [4.6, 2.35, 2.2, 3.0], ["Feature", "GCC", "GCC High and DoD", "License (with Entra ID P1 or P2)"], [
-    ["Windows client", "Available (product-wide)", "Not yet supported", "Per the profiles it carries"],
-    ["Microsoft traffic profile; source IP restoration; compliant network; universal tenant restrictions", "Available (product-wide)", "Not yet supported", "Included in P1 or P2"],
-    ["Internet Access: web filtering, threat intelligence, TLS inspection", "Available (product-wide)", "Not yet supported", "Internet Access or Entra Suite"],
-    ["Cloud firewall for clients; Explicit Forward Proxy (preview)", "Not yet specified", "Not yet supported", "Internet Access or Suite"],
-    ["Private Access; the domain controller sensor", "Available (product-wide)", "Not yet supported", "Private Access or Suite"],
-    ["Remote networks (branch IPsec)", "Available (product-wide)", "Not yet supported", "At least 50 P1 and Internet Access combined"],
+  const tb = table(s, "Gov", 1.4, [5.4, 3.0, 3.75], ["Feature", "GCC", "License (with Entra ID P1 or P2)"], [
+    ["Windows client", "Available (product-wide)", "Per the profiles it carries"],
+    ["Microsoft traffic profile; source IP restoration; compliant network; universal tenant restrictions", "Available (product-wide)", "Included in P1 or P2"],
+    ["Internet Access: web filtering, threat intelligence, TLS inspection", "Available (product-wide)", "Internet Access or Entra Suite"],
+    ["Cloud firewall for clients; Explicit Forward Proxy (preview)", "Not yet specified", "Internet Access or Suite"],
+    ["Private Access; the domain controller sensor", "Available (product-wide)", "Private Access or Suite"],
+    ["Remote networks (branch IPsec)", "Available (product-wide)", "At least 50 P1 and Internet Access combined"],
   ], { fontSize: 11, limit: 5.3 });
-  line(s, "Conflict", "A conflict on Learn: Graph's settings pages list US Government L4 and L5; the product page says not yet supported. The guide follows the product page and asks the account team.",
+  line(s, "Reread", "The Graph network access API is usable from GCC on graph.microsoft.com, in beta. Re-read Learn's limitations page before each ring.",
     tb + 0.12, 0.6, 13);
-  sources(s, "Sources: Guide, \"Government cloud and licensing\"; Known limitations for Global Secure Access; Global Secure Access traffic forwarding profiles; Book 09, Ch 05; Book 10, Ch 04.");
+  sources(s, "Sources: Guide, \"GCC and licensing\"; Known limitations for Global Secure Access; Global Secure Access traffic forwarding profiles; Book 09, Ch 05; Book 10, Ch 04.");
   notes(s,
-`What's available where? Learn's statement covers the whole product: available in G C C, not yet supported in G C C High, D O D, or other sovereign clouds. No feature page narrows that, so the G C C column rests on that one sentence, and a preview feature's G C C availability is not yet specified. Licensing follows the profiles. The Microsoft traffic profile, and with it source I P restoration, the compliant network check and universal tenant restrictions, comes with Entra I D P one or P two. Internet Access and Private Access are separately licensed, or come with the Entra Suite. Remote networks need at least fifty P one and Internet Access licenses combined. One conflict: Graph's settings pages list U S Government L four and L five, but the product page says not yet supported. The guide follows the product page, and the question goes to the agency's Microsoft account team. Re-read the limitations page before each ring.`,
-  `${G} — "Government cloud and licensing, feature by feature" (table, the conflict between Learn pages, Authorization); Microsoft Learn — "Known limitations for Global Secure Access," "Global Secure Access traffic forwarding profiles," "Update conditionalAccessSettings"; Book 09, Chapter 05; Book 10, Chapter 04.`);
+`What's available in G C C? Learn's statement covers the whole product: available in G C C. No feature page narrows that, so the G C C column rests on that one sentence, and a preview feature's G C C availability is not yet specified. Licensing follows the profiles. The Microsoft traffic profile, and with it source I P restoration, the compliant network check and universal tenant restrictions, comes with Entra I D P one or P two. Internet Access and Private Access are separately licensed, or come with the Entra Suite. Remote networks need at least fifty P one and Internet Access licenses combined. The Graph network access A P I is usable from G C C on the worldwide Graph endpoint, in beta. Re-read the limitations page before each ring.`,
+  `${G} — "GCC and licensing, feature by feature" (table, Authorization); Microsoft Learn — "Known limitations for Global Secure Access," "Global Secure Access traffic forwarding profiles," "Update conditionalAccessSettings"; Book 09, Chapter 05; Book 10, Chapter 04.`);
 }
 
 // ================================================================== 7 What: the reference architecture
@@ -263,14 +263,14 @@ endModule(SWHO);
     "Microsoft traffic, internet, private, branch: adopt, retain-current, coexist or defer",
     "Availability quote dated within 30 days; license count; compensating controls; exit criteria; approver",
   ], 12);
-  const p2 = panel(s, "Defer", 0.6 + W2 + G2, c + 0.15, W2, null, HEX.red, HEX.redTint, "GCC HIGH AND DOD: DON'T BUILD", null, [
-    "Record defer, cite the limitations sentence",
-    "Compensating path: a FedRAMP-authorized SSE, per-app VPN lists, named-location Conditional Access, device TRv2",
+  const p2 = panel(s, "Defer", 0.6 + W2 + G2, c + 0.15, W2, null, HEX.red, HEX.redTint, "RETAIN OR DEFER: A COMPENSATING PATH", null, [
+    "Required in the record when a function is retain-current or defer",
+    "For example: a FedRAMP High SSE offering, per-app VPN lists, named-location Conditional Access, device TRv2",
   ], 12);
   fit("Decide panels", Math.max(p1, p2));
   sources(s, "Sources: Guide, Steps 1 and 2; What is Global Secure Access?; Common operations for Global Secure Access; Known limitations for Global Secure Access.");
   notes(s,
-`Now how. Step one decides, per function, because the gates differ: Microsoft traffic, internet, private and branch can each be adopted, kept on the current V P N or S S E, run side by side, or deferred. Read the tenant's licenses and onboarding state first. The decision record, the guide's second artifact, holds a dated availability quote, the license count, compensating controls, exit criteria and an approver. In G C C High or D O D, don't build: record defer, and keep a compensating path, such as a fed-ramp authorized S S E, per-application V P N access lists, and named-location Conditional Access. Step two: Learn's operations guidance is to back up the configuration through Graph exports weekly and before every change. The guide hashes that export, and it becomes the configuration evidence for every later step.`,
+`Now how. Step one decides, per function, because the gates differ: Microsoft traffic, internet, private and branch can each be adopted, kept on the current V P N or S S E, run side by side, or deferred. Read the tenant's licenses and onboarding state first. The decision record, the guide's second artifact, holds a dated availability quote, the license count, compensating controls, exit criteria and an approver. When a function is kept on the current service or deferred, the record names a compensating path, such as a fed-ramp High S S E offering, per-application V P N access lists, and named-location Conditional Access. Step two: Learn's operations guidance is to back up the configuration through Graph exports weekly and before every change. The guide hashes that export, and it becomes the configuration evidence for every later step.`,
   `${G} — Step 1 (1.1 to 1.3, Validate), Step 2 (2.1, Validate); Microsoft Learn — "What is Global Secure Access?" (licensing), "Common operations for Microsoft Entra Global Secure Access" (configuration backup), "Known limitations for Global Secure Access."`);
 }
 
@@ -451,7 +451,7 @@ endModule(SWHO);
   const s = content(SHOW, "Dangers, open questions and where to go next");
   tag(s, "How");
   const tb = table(s, "Dangers", 1.4, [4.6, 7.55], ["Danger", "The guard"], [
-    ["Building in GCC High or DoD", "Step 1 stops; the compensating path recorded"],
+    ["Bypass and allow-list entries without expiry", "An exception register with expiry; the bypass metric"],
     ["Compliant network enforced before the client is everywhere", "Report-only for 10 days; ring by ring; the client coverage metric first"],
     ["Emergency access caught by a block policy", "The excluded group on every policy; a quarterly sign-in test"],
     ["Quick Access left as a VPN-wide range", "Application discovery; per-app moves; Quick Access residual to zero"],
@@ -459,7 +459,7 @@ endModule(SWHO);
     ["VPN web path retired without CISA telemetry agreed", "Step 12.3 before ring 3"],
   ], { fontSize: 11, limit: 4.6 });
   const p1 = panel(s, "Open", 0.6, tb + 0.15, W2, null, HEX.red, HEX.redTint, "WHAT COULDN'T BE VERIFIED", null, [
-    "Per-feature government-cloud availability; profile assignment through Graph",
+    "GCC availability feature by feature; profile assignment through Graph",
     "Report-only with security profiles; TlsStatus values; nothing run in a tenant",
   ], 11.5);
   const p2 = panel(s, "Next", 0.6 + W2 + G2, tb + 0.15, W2, null, HEX.teal, HEX.tealTint, "WHERE TO GO NEXT", null, [
@@ -469,7 +469,7 @@ endModule(SWHO);
   fit("Close panels", Math.max(p1, p2));
   sources(s, "Sources: Guide, \"Dangers and how to avoid them,\" \"What couldn't be verified,\" \"Implementation checklist,\" \"Back to the books.\"");
   notes(s,
-`To close, the dangers. Building in G C C High or D O D, where the service isn't yet supported. Enforcing the compliant network before the client is everywhere in scope. Catching the emergency access accounts in a block policy. Leaving Quick Access as a V P N-wide range, which is the old lateral movement exposure under a new name. Issuing the T L S inspection certificate from the authentication P K I. And retiring the V P N's web path before CISA telemetry is agreed. Each has its guard in the steps. The guide is plain about what it couldn't verify: government-cloud availability feature by feature, assigning users to a traffic profile through Graph, whether report-only policies apply security profiles, and the T L S status values. Nothing was run in a tenant. To go further, read Network and Transport, chapter five; the Conditional Access library in Access and Privilege; and Security Operations and Telemetry, chapter three. Thank you.`,
+`To close, the dangers. Bypass and allow-list entries without an expiry, which leave permanent holes in filtering. Enforcing the compliant network before the client is everywhere in scope. Catching the emergency access accounts in a block policy. Leaving Quick Access as a V P N-wide range, which is the old lateral movement exposure under a new name. Issuing the T L S inspection certificate from the authentication P K I. And retiring the V P N's web path before CISA telemetry is agreed. Each has its guard in the steps. The guide is plain about what it couldn't verify: G C C availability feature by feature, assigning users to a traffic profile through Graph, whether report-only policies apply security profiles, and the T L S status values. Nothing was run in a tenant. To go further, read Network and Transport, chapter five; the Conditional Access library in Access and Privilege; and Security Operations and Telemetry, chapter three. Thank you.`,
   `${G} — "Dangers and how to avoid them," "What couldn't be verified," "Implementation checklist," "Back to the books"; Book 09, Chapter 05; Book 04, Chapter 07; Book 12, Chapter 03.`);
 }
 endModule(SHOW);

@@ -1,56 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   4.8,
-   "Welcome to Part 2 of the implementation series for H R-driven identity."
-  ],
-  [
-   4.85,
-   8.075,
-   "Part 1 named one writer for every account state, brought employees and contractors in from their sources, and got joiners ready on day one."
-  ],
-  [
-   12.925,
-   2.413,
-   "Part 2 covers the last four gates."
-  ],
-  [
-   15.338,
-   6.0,
-   "First, access assigned from H R attributes, with a review of what a move leaves behind."
-  ],
-  [
-   21.337,
-   3.938,
-   "Then piv and CAC credentials tied to H R events."
-  ],
-  [
-   25.275,
-   3.4,
-   "Then separations, timed and proven from the logs."
-  ],
-  [
-   28.675,
-   4.862,
-   "And finally drift, metrics and the evidence an I S S O files."
-  ],
-  [
-   33.538,
-   2.125,
-   "The format is the same as Part 1."
-  ],
-  [
-   35.663,
-   11.537,
-   "Each gate gets its steps, the workbook's lab commands, the federal requirement and evidence, availability in G C C and G C C High, an interim path, and a rollback."
-  ],
-  [
-   47.2,
-   5.55,
-   "Design guidance is labeled, and the code is tested against fixtures, not a lyve tenant."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -269,100 +217,6 @@
    "One finding stands out: the review is still open thirteen days after the move, past the program's ten."
   ]
  ],
- "6": [
-  [
-   0.05,
-   9.8,
-   "On the federal side, account management, least privilege and separation of duties call for the policy exports, with their rules and the separation-of-duties settings."
-  ],
-  [
-   9.85,
-   5.037,
-   "Personnel transfer calls for the transfer-to-review times and the review decisions."
-  ],
-  [
-   14.887,
-   5.125,
-   "Account review results must be exported before Entra's thirty-day history closes."
-  ],
-  [
-   20.012,
-   12.125,
-   "sis-uh's baseline requires highly privileged roles to come only through a privileged access system, so the I S S O shows pim eligibility through packages, and no standing role assigned by a rule."
-  ],
-  [
-   32.138,
-   3.913,
-   "To validate, compare membership before and after a test move."
-  ],
-  [
-   36.05,
-   5.775,
-   "No kit check reads the policies yet, so keep the export and a clean group-membership scan."
-  ],
-  [
-   41.825,
-   3.825,
-   "Most features are available in Azure Government, with one gap."
-  ],
-  [
-   45.65,
-   8.275,
-   "Administrative units with dynamic membership aren't available there, so G C C High uses assigned units, filled by a scheduled job."
-  ],
-  [
-   53.925,
-   7.062,
-   "To roll back, remove the policy, but keep the old dynamic group until the package has run clean for a full cycle."
-  ]
- ],
- "7": [
-  [
-   0.05,
-   3.938,
-   "A piv card without a binding to the account is just a badge."
-  ],
-  [
-   3.987,
-   4.55,
-   "The binding names one specific certificate, so any reissue changes it."
-  ],
-  [
-   8.537,
-   5.688,
-   "The first step is to trust each issuing authority, and give each one a revocation list."
-  ],
-  [
-   14.225,
-   3.275,
-   "Without a list, Entra doesn't check revocation at all."
-  ],
-  [
-   17.5,
-   1.788,
-   "The limits depend on the cloud."
-  ],
-  [
-   19.288,
-   8.938,
-   "For interactive sign-in, a list can be twenty megabytes in G C C and forty-five in G C C High, and it must download within ten seconds."
-  ],
-  [
-   28.225,
-   6.562,
-   "If Entra can't download a configured list, certificate sign-in fails for every certificate from that authority."
-  ],
-  [
-   34.788,
-   5.15,
-   "So host the lists on highly available endpoints, ideally over HTTP."
-  ],
-  [
-   39.938,
-   9.2,
-   "Next, raise piv certificates to multifactor strength by issuer or policy, and require phishing-resistant strength in Conditional Access."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -413,68 +267,6 @@
    46.225,
    6.35,
    "The guide is open that the card system's interface, and the contractor piv path, are still pending proof."
-  ]
- ],
- "9": [
-  [
-   0.05,
-   2.6,
-   "The workbook's fifth chapter does two things."
-  ],
-  [
-   2.65,
-   7.037,
-   "First, it measures each revocation list once, recording its size, its download time, and any error."
-  ],
-  [
-   9.688,
-   4.162,
-   "A failed download is the finding, so it's recorded, not raised."
-  ],
-  [
-   13.85,
-   3.725,
-   "Then it checks the tenant's settings against the limits for a named cloud."
-  ],
-  [
-   17.575,
-   2.25,
-   "The fictional tenant tells a story."
-  ],
-  [
-   19.825,
-   6.575,
-   "One certificate authority was renewed, so the card program's expected authority is gone from the trust store."
-  ],
-  [
-   26.4,
-   8.262,
-   "The renewed list is eighteen and a half million bytes, takes over eleven seconds to download, and is served over HTTPS."
-  ],
-  [
-   34.663,
-   2.9,
-   "The slow download fails in every cloud."
-  ],
-  [
-   37.562,
-   3.587,
-   "The policy mapping points at the wrong piv identifier."
-  ],
-  [
-   41.15,
-   3.938,
-   "And the phishing-resistant policy is still in report-only mode."
-  ],
-  [
-   45.087,
-   3.987,
-   "Run the same check for G C C High and one warning disappears."
-  ],
-  [
-   49.075,
-   4.55,
-   "That size is close to the commercial limit, but well under Azure Government's."
   ]
  ],
  "10": [
@@ -636,63 +428,6 @@
    49.6,
    4.425,
    "The agency sets the real period, and sets it together with the schedule."
-  ]
- ],
- "13": [
-  [
-   0.05,
-   12.725,
-   "On the federal side, personnel termination and account disabling call for both measured times for each leaver, along with the workflow run, the device actions, and the card revocation with the list that published it."
-  ],
-  [
-   12.775,
-   3.175,
-   "Contractors add the time from end date to block."
-  ],
-  [
-   15.95,
-   7.875,
-   "FIPS 201 says a card that can't be collected must be revoked within eighteen hours of notice, so keep both timestamps."
-  ],
-  [
-   23.825,
-   2.987,
-   "Emergency disables are logged as changes."
-  ],
-  [
-   26.812,
-   7.2,
-   "To validate, run a full pay period with no missed leavers, blocks within the limit, and every exception closed."
-  ],
-  [
-   34.013,
-   1.863,
-   "Security owns this gate."
-  ],
-  [
-   35.875,
-   4.138,
-   "Lifecycle Workflows and pim are available in Azure Government."
-  ],
-  [
-   40.013,
-   5.737,
-   "The guide infers that a G C C tenant's Logic App sits in a commercial Azure subscription."
-  ],
-  [
-   45.75,
-   5.412,
-   "Until the extensions exist, use a leaver checklist with a named owner for each row."
-  ],
-  [
-   51.163,
-   4.45,
-   "To roll back a cancelled separation, re-enable from the corrected record."
-  ],
-  [
-   55.612,
-   3.35,
-   "A deleted cloud user can be restored for thirty days."
   ]
  ],
  "14": [
@@ -874,6 +609,261 @@
    59.938,
    5.763,
    "These seven gates make the H R record decide what happens to it, and they leave the evidence that it did."
+  ]
+ ],
+ "1": [
+  [
+   0.05,
+   4.8,
+   "Welcome to Part 2 of the implementation series for H R-driven identity."
+  ],
+  [
+   4.85,
+   8.075,
+   "Part 1 named one writer for every account state, brought employees and contractors in from their sources, and got joiners ready on day one."
+  ],
+  [
+   12.925,
+   2.413,
+   "Part 2 covers the last four gates."
+  ],
+  [
+   15.338,
+   6.0,
+   "First, access assigned from H R attributes, with a review of what a move leaves behind."
+  ],
+  [
+   21.337,
+   3.388,
+   "Then piv credentials tied to H R events."
+  ],
+  [
+   24.725,
+   3.4,
+   "Then separations, timed and proven from the logs."
+  ],
+  [
+   28.125,
+   4.862,
+   "And finally drift, metrics and the evidence an I S S O files."
+  ],
+  [
+   32.987,
+   2.125,
+   "The format is the same as Part 1."
+  ],
+  [
+   35.112,
+   10.2,
+   "Each gate gets its steps, the workbook's lab commands, the federal requirement and evidence, availability in G C C, an interim path, and a rollback."
+  ],
+  [
+   45.312,
+   5.55,
+   "Design guidance is labeled, and the code is tested against fixtures, not a lyve tenant."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   9.8,
+   "On the federal side, account management, least privilege and separation of duties call for the policy exports, with their rules and the separation-of-duties settings."
+  ],
+  [
+   9.85,
+   5.037,
+   "Personnel transfer calls for the transfer-to-review times and the review decisions."
+  ],
+  [
+   14.887,
+   5.125,
+   "Account review results must be exported before Entra's thirty-day history closes."
+  ],
+  [
+   20.012,
+   12.125,
+   "sis-uh's baseline requires highly privileged roles to come only through a privileged access system, so the I S S O shows pim eligibility through packages, and no standing role assigned by a rule."
+  ],
+  [
+   32.138,
+   3.913,
+   "To validate, compare membership before and after a test move."
+  ],
+  [
+   36.05,
+   5.775,
+   "No kit check reads the policies yet, so keep the export and a clean group-membership scan."
+  ],
+  [
+   41.825,
+   7.025,
+   "In G C C, these features are the commercial service, and that includes administrative units with dynamic membership."
+  ],
+  [
+   48.85,
+   4.737,
+   "Before Governance is licensed, department access stays on dynamic groups."
+  ],
+  [
+   53.587,
+   7.062,
+   "To roll back, remove the policy, but keep the old dynamic group until the package has run clean for a full cycle."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.938,
+   "A piv card without a binding to the account is just a badge."
+  ],
+  [
+   3.987,
+   4.55,
+   "The binding names one specific certificate, so any reissue changes it."
+  ],
+  [
+   8.537,
+   5.688,
+   "The first step is to trust each issuing authority, and give each one a revocation list."
+  ],
+  [
+   14.225,
+   3.275,
+   "Without a list, Entra doesn't check revocation at all."
+  ],
+  [
+   17.5,
+   7.05,
+   "For interactive sign-in in G C C, a list can be twenty megabytes, and it must download within ten seconds."
+  ],
+  [
+   24.55,
+   6.562,
+   "If Entra can't download a configured list, certificate sign-in fails for every certificate from that authority."
+  ],
+  [
+   31.113,
+   5.15,
+   "So host the lists on highly available endpoints, ideally over HTTP."
+  ],
+  [
+   36.263,
+   9.2,
+   "Next, raise piv certificates to multifactor strength by issuer or policy, and require phishing-resistant strength in Conditional Access."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.6,
+   "The workbook's fifth chapter does two things."
+  ],
+  [
+   2.65,
+   7.037,
+   "First, it measures each revocation list once, recording its size, its download time, and any error."
+  ],
+  [
+   9.688,
+   4.162,
+   "A failed download is the finding, so it's recorded, not raised."
+  ],
+  [
+   13.85,
+   4.875,
+   "Then it checks the tenant's settings against the limits for the named cloud, G C C."
+  ],
+  [
+   18.725,
+   2.25,
+   "The fictional tenant tells a story."
+  ],
+  [
+   20.975,
+   6.575,
+   "One certificate authority was renewed, so the card program's expected authority is gone from the trust store."
+  ],
+  [
+   27.55,
+   8.262,
+   "The renewed list is eighteen and a half million bytes, takes over eleven seconds to download, and is served over HTTPS."
+  ],
+  [
+   35.812,
+   2.825,
+   "The slow download fails the ten-second limit."
+  ],
+  [
+   38.638,
+   3.587,
+   "The policy mapping points at the wrong piv identifier."
+  ],
+  [
+   42.225,
+   3.938,
+   "And the phishing-resistant policy is still in report-only mode."
+  ],
+  [
+   46.163,
+   6.388,
+   "And the renewed list's size is over eighty percent of G C C's interactive limit, so that's a warning."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   12.725,
+   "On the federal side, personnel termination and account disabling call for both measured times for each leaver, along with the workflow run, the device actions, and the card revocation with the list that published it."
+  ],
+  [
+   12.775,
+   3.175,
+   "Contractors add the time from end date to block."
+  ],
+  [
+   15.95,
+   7.875,
+   "FIPS 201 says a card that can't be collected must be revoked within eighteen hours of notice, so keep both timestamps."
+  ],
+  [
+   23.825,
+   2.987,
+   "Emergency disables are logged as changes."
+  ],
+  [
+   26.812,
+   7.2,
+   "To validate, run a full pay period with no missed leavers, blocks within the limit, and every exception closed."
+  ],
+  [
+   34.013,
+   1.863,
+   "Security owns this gate."
+  ],
+  [
+   35.875,
+   4.525,
+   "Lifecycle Workflows and pim are the commercial service in G C C."
+  ],
+  [
+   40.4,
+   5.737,
+   "The guide infers that a G C C tenant's Logic App sits in a commercial Azure subscription."
+  ],
+  [
+   46.138,
+   5.412,
+   "Until the extensions exist, use a leaver checklist with a named owner for each row."
+  ],
+  [
+   51.55,
+   4.45,
+   "To roll back a cancelled separation, re-enable from the corrected record."
+  ],
+  [
+   56.0,
+   3.35,
+   "A deleted cloud user can be restored for thirty days."
   ]
  ]
 }

@@ -137,38 +137,6 @@
    "Next, a trap that fails quietly."
   ]
  ],
- "5": [
-  [
-   0.05,
-   4.525,
-   "The government clouds use different names, and getting this wrong fails quietly."
-  ],
-  [
-   4.575,
-   13.35,
-   "A G C C tenant keeps using the worldwide Graph and sign-in endpoints, while G C C High uses dot-us addresses, and Microsoft says access tokens from one national cloud aren't interchangeable with another's."
-  ],
-  [
-   17.925,
-   5.3,
-   "The provisioning agent has its own list of relay names that change in the government cloud too."
-  ],
-  [
-   23.225,
-   8.2,
-   "It needs no inbound ports, and Microsoft's guidance, from search excerpts, is to avoid inline TLS inspection on that path."
-  ],
-  [
-   31.425,
-   6.45,
-   "The practical lesson is simple: keep a per-cloud list of names, and test through the real egress path."
-  ],
-  [
-   37.875,
-   2.55,
-   "Now to Oracle, and a common mistake."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -209,48 +177,6 @@
    46.163,
    2.075,
    "Next, two more components."
-  ]
- ],
- "7": [
-  [
-   0.05,
-   1.35,
-   "Two more components."
-  ],
-  [
-   1.4,
-   8.225,
-   "Amazon Connect agents work in a browser, and AWS says that traffic traverses the public network and prefers a domain allowlist."
-  ],
-  [
-   9.625,
-   8.15,
-   "If agents can't resolve the media relay names, the softphone can't set up its media channel, so don't over-restrict their D N S."
-  ],
-  [
-   17.775,
-   7.375,
-   "In GovCloud, Connect is available only in the US-West region, uses its own names, and lacks several features."
-  ],
-  [
-   25.15,
-   9.287,
-   "Private API access covers only a subset of Connect, and, as an inference, helps API calls, not the agent or voice path."
-  ],
-  [
-   34.438,
-   7.925,
-   "On VMware, a Broadcom article says changing vCenter's name or address is blocked if the name doesn't fully resolve."
-  ],
-  [
-   42.362,
-   2.125,
-   "So keep those records right in the Grid."
-  ],
-  [
-   44.487,
-   1.7,
-   "Next, the subtle one."
   ]
  ],
  "8": [
@@ -411,6 +337,75 @@
    "Any public answer or missing name for a private name is a defect."
   ]
  ],
+ "5": [
+  [
+   0.05,
+   2.85,
+   "Which names does a G C C tenant use?"
+  ],
+  [
+   2.9,
+   2.15,
+   "Getting this wrong fails quietly."
+  ],
+  [
+   5.05,
+   10.5,
+   "A G C C tenant keeps using the worldwide Graph and sign-in endpoints, and Microsoft says access tokens from one national cloud aren't interchangeable with another's."
+  ],
+  [
+   15.55,
+   7.037,
+   "The provisioning agent has its own list of relay names, the public cloud's, which G C C tenants also use."
+  ],
+  [
+   22.587,
+   8.2,
+   "It needs no inbound ports, and Microsoft's guidance, from search excerpts, is to avoid inline TLS inspection on that path."
+  ],
+  [
+   30.788,
+   6.688,
+   "The practical lesson is simple: keep a list of the names your tenant uses, and test through the real egress path."
+  ],
+  [
+   37.475,
+   2.55,
+   "Now to Oracle, and a common mistake."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.35,
+   "Two more components."
+  ],
+  [
+   1.4,
+   8.225,
+   "Amazon Connect agents work in a browser, and AWS says that traffic traverses the public network and prefers a domain allowlist."
+  ],
+  [
+   9.625,
+   17.65,
+   "If agents can't resolve the media relay names, the softphone can't set up its media channel, so don't over-restrict their D N S. Private A P I access covers only a subset of Connect, and, as an inference, helps A P I calls, not the agent or voice path."
+  ],
+  [
+   27.275,
+   7.925,
+   "On VMware, a Broadcom article says changing vCenter's name or address is blocked if the name doesn't fully resolve."
+  ],
+  [
+   35.2,
+   2.125,
+   "So keep those records right in the Grid."
+  ],
+  [
+   37.325,
+   1.7,
+   "Next, the subtle one."
+  ]
+ ],
  "12": [
   [
    0.05,
@@ -424,21 +419,21 @@
   ],
   [
    14.812,
-   10.488,
-   "The next steps are the things that couldn't be verified, such as which Oracle environment the agency's tenant will use and what's available in the government clouds; they're all listed in the backup."
+   10.562,
+   "The next steps are the things that couldn't be verified, such as which Oracle environment the agency's tenant will use and Oracle's government-realm D N S limits; they're all listed in the backup."
   ],
   [
-   25.3,
+   25.375,
    11.637,
    "In the workbook, the H R-Driven Identity book and the D N S, DHCP and eye-pam book cover those two halves in depth, and three related research items sit beside this one."
   ],
   [
-   36.938,
+   37.013,
    4.925,
    "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   41.862,
+   41.938,
    0.762,
    "Thank you."
   ]

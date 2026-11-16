@@ -35,15 +35,11 @@ and every output on a slide is
 what the kit really printed.
 
 8
-00:00:27.388 --> 00:00:28.962
-Two notes before we begin.
+00:00:27.388 --> 00:00:30.814
+One note before we begin:
+the code is illustrative,
 
 9
-00:00:28.962 --> 00:00:32.312
-The workbook is a draft,
-awaiting the owner's review.
-
-10
-00:00:32.312 --> 00:00:37.680
-And the code is illustrative, tested
-against fixtures, not against a live tenant.
+00:00:30.814 --> 00:00:34.390
+tested against fixtures,
+not against a live tenant.

@@ -15,49 +15,39 @@ traverses the public network
 and prefers a domain allowlist.
 
 4
-00:00:09.625 --> 00:00:12.671
+00:00:09.625 --> 00:00:13.026
 If agents can't resolve
 the media relay names,
 
 5
-00:00:12.671 --> 00:00:17.775
+00:00:13.026 --> 00:00:18.726
 the softphone can't set up its media
 channel, so don't over-restrict their DNS.
 
 6
-00:00:17.775 --> 00:00:21.929
-In GovCloud, Connect is available
-only in the US-West region,
-
-7
-00:00:21.929 --> 00:00:25.150
-uses its own names, and
-lacks several features.
-
-8
-00:00:25.150 --> 00:00:29.644
+00:00:18.726 --> 00:00:22.862
 Private API access covers only
 a subset of Connect, and,
 
-9
-00:00:29.644 --> 00:00:34.437
+7
+00:00:22.862 --> 00:00:27.275
 as an inference, helps API calls,
 not the agent or voice path.
 
-10
-00:00:34.437 --> 00:00:38.528
+8
+00:00:27.275 --> 00:00:31.365
 On VMware, a Broadcom article
 says changing vCenter's name
 
-11
-00:00:38.528 --> 00:00:42.363
+9
+00:00:31.365 --> 00:00:35.200
 or address is blocked if the
 name doesn't fully resolve.
 
-12
-00:00:42.363 --> 00:00:44.487
+10
+00:00:35.200 --> 00:00:37.325
 So keep those records right in the Grid.
 
-13
-00:00:44.487 --> 00:00:46.250
+11
+00:00:37.325 --> 00:00:39.100
 Next, the subtle one.

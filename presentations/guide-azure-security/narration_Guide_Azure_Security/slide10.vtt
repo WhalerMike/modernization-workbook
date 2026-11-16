@@ -72,10 +72,5 @@ every exception to the narrowest rule.
 Then switch to prevention.
 
 16
-00:00:54.876 --> 00:00:57.212
+00:00:54.876 --> 00:00:57.260
 Front Door's managed rules need Premium.
-
-17
-00:00:57.212 --> 00:01:00.120
-In Azure Government, leave
-out the bot rule set.

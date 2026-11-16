@@ -61,29 +61,24 @@ Each has a credential target, or an
 exception that says why it can't move.
 
 13
-00:00:42.249 --> 00:00:45.529
-Workload ID Premium is
-available in Azure Government
+00:00:42.249 --> 00:00:48.088
+Whether the Workload ID Premium trial is
+offered to a GCC tenant is a lab check.
 
 14
-00:00:45.529 --> 00:00:48.662
-through the account manager,
-but its free trial isn't.
-
-15
-00:00:48.662 --> 00:00:52.354
+00:00:48.088 --> 00:00:51.778
 The interim path is an account
 kept on Kerberos, islanded,
 
-16
-00:00:52.354 --> 00:00:56.438
+15
+00:00:51.778 --> 00:00:55.862
 with an owner and an end date
 the authorizing official accepts.
 
-17
-00:00:56.438 --> 00:00:58.313
+16
+00:00:55.862 --> 00:00:57.737
 To roll back, re-decide.
 
-18
-00:00:58.313 --> 00:01:00.140
+17
+00:00:57.737 --> 00:00:59.570
 The record keeps the history.

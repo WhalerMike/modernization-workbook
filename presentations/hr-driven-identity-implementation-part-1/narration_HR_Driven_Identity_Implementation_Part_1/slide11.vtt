@@ -59,27 +59,27 @@ evidence is the reconciliation re-run,
 with no contractor past their end.
 
 13
-00:00:43.375 --> 00:00:46.053
-In Azure Government, API-driven inbound
+00:00:43.375 --> 00:00:46.719
+In GCC, API-driven
+inbound provisioning and
 
 14
-00:00:46.053 --> 00:00:49.300
-provisioning and access
-reviews are available.
+00:00:46.719 --> 00:00:50.063
+access reviews are the commercial service.
 
 15
-00:00:49.300 --> 00:00:51.920
+00:00:50.063 --> 00:00:52.682
 Until the contractor source is automated,
 
 16
-00:00:51.920 --> 00:00:56.188
+00:00:52.682 --> 00:00:56.950
 keep the contract end date as the
 leave date so the leaver still fires.
 
 17
-00:00:56.188 --> 00:00:58.813
+00:00:56.950 --> 00:00:59.575
 To roll back, pause the contractor app.
 
 18
-00:00:58.813 --> 00:01:00.140
+00:00:59.575 --> 00:01:00.910
 It keeps its state.

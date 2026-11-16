@@ -1,58 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.875
-PIV and CAC sign-in is attribute-driven
+00:00:00.050 --> 00:00:04.462
+PIV sign-in is attribute-driven
 too, which is easy to miss.
 
 2
-00:00:04.875 --> 00:00:07.697
+00:00:04.462 --> 00:00:07.316
 Entra ID finds the user
 by matching a field
 
 3
-00:00:07.697 --> 00:00:10.600
+00:00:07.316 --> 00:00:10.250
 on the certificate to
 a field on the account.
 
 4
-00:00:10.600 --> 00:00:14.182
+00:00:10.250 --> 00:00:13.832
 Some matches are low affinity,
 like the name on the card,
 
 5
-00:00:14.182 --> 00:00:17.525
+00:00:13.832 --> 00:00:17.175
 and some are high, tied to
 one specific certificate.
 
 6
-00:00:17.525 --> 00:00:18.688
+00:00:17.175 --> 00:00:18.338
 Two highpoints.
 
 7
-00:00:18.688 --> 00:00:23.320
+00:00:18.338 --> 00:00:22.969
 Certificate-based sign-in is only as
 strong as the weakest binding you allow,
 
 8
-00:00:23.320 --> 00:00:26.850
+00:00:22.969 --> 00:00:26.499
 and the program's position is
 high affinity in production.
 
 9
-00:00:26.850 --> 00:00:29.597
+00:00:26.499 --> 00:00:29.247
 But switch the whole tenant
 to high before every
 
 10
-00:00:29.597 --> 00:00:32.275
+00:00:29.247 --> 00:00:31.925
 account's value is right,
 and you lock people out.
 
 11
-00:00:32.275 --> 00:00:33.475
+00:00:31.925 --> 00:00:33.125
 Pilot it first.
 
 12
-00:00:33.475 --> 00:00:35.350
+00:00:33.125 --> 00:00:35.020
 So where does that value come from?

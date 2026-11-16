@@ -129,7 +129,7 @@ const P2 = "Part 2 — Divisions under central governance";
 After a three-minute orientation, it comes in two parts, of about thirteen and twelve minutes, in four modules you can watch on their own. Part 1 covers the platform, then the case for it: which federal requirements it answers, what its FedRAMP listing actually covers, how it compares with BlueCat, EfficientIP, Microsoft and the native cloud services, and the risks you have to manage if you choose it. Part 2 covers divisions: how a central team hands DNS, DHCP and address management to bureaus and offices, on NIOS and on Universal DDI, without losing control, and it ends with a worked example, a responsibility matrix and a rollout sequence.
 
 Two ground rules. Every fact here comes from a primary source opened on October twenty-second, 2026. And anything that is only Infoblox marketing is called a vendor claim when it appears.`,
-  "Infoblox NIOS 9.1.x and Universal DDI docs; FedRAMP Marketplace products.json; NIST CMVP; DISA STIG file store (High only reference); OMB and CISA publications; CIS Benchmarks list and NIST SP 800-53 CM-6 (Oct. 29, 2026); Book 08.");
+  "Infoblox NIOS 9.1.x and Universal DDI docs; FedRAMP Marketplace products.json; NIST CMVP; the STIG file store (High only reference); OMB and CISA publications; CIS Benchmarks list and NIST SP 800-53 CM-6 (Oct. 29, 2026); Book 08.");
 }
 
 // ================================================================== 2 Control plane
@@ -233,8 +233,8 @@ Before arguing for or against Infoblox, we need an accurate picture of what it i
   table(s, "Forms", 1.5, [2.0, 4.35], ["Form factor", "What the docs say"], [
     ["Trinzic X6", "Current hardware; NIOS 9.0.1 and later"],
     ["vNIOS for VMware", "X6 models 4 vCPU/32 GB to 32 vCPU/384 GB; all can be Grid Master"],
-    ["vNIOS for Azure", "HA from 9.0.4; Azure Government covered; no DHCP for on-prem networks"],
-    ["vNIOS for AWS", "Grid Master or HA from 9.0.4; vDiscovery has a GovCloud option"],
+    ["vNIOS for Azure", "HA from 9.0.4; no DHCP for on-prem networks"],
+    ["vNIOS for AWS", "Grid Master or HA from 9.0.4; vDiscovery pulls networks and VMs"],
     ["Google Cloud, OCI", "Shared VPC support; OCI HA new in 9.1.0"],
     ["NIOS-X servers", "Universal DDI data plane: VM, container, bare metal, B1 hardware"],
   ], { x: 6.4, fontSize: 11.5 });
@@ -248,7 +248,7 @@ Before arguing for or against Infoblox, we need an accurate picture of what it i
 
 Members can be physical Infoblox hardware or virtual vNIOS, singly or in HA pairs. The Grid Master talks to every member hub-and-spoke, over encrypted VPN tunnels on UDP 1194 by default, after a challenge-response authentication on port 2114. A Grid Master Candidate holds a complete copy of the database. Promoting it is a manual operation, and you can't do it from the cloud portal. HA pairs share one virtual IP and virtual MAC, with VRRP advertisements as the heartbeat. A Grid can run IPv4-only, IPv6-only or dual mode.
 
-Form factors. The current hardware line is Trinzic X6, supported from NIOS 9.0.1. vNIOS for VMware runs from four virtual CPUs and thirty-two gigabytes up to thirty-two CPUs and three hundred eighty-four, and every model can be a Grid Master. vNIOS for Azure supports HA from 9.0.4 and explicitly covers Azure Government; note that Azure doesn't support running DHCP in Azure for on-premises networks. vNIOS for AWS can be a Grid Master in HA, and its vDiscovery has a GovCloud option. Google Cloud and Oracle Cloud are covered too, with OCI HA new in 9.1. NIOS-X servers are the data plane for Universal DDI, which is next.
+Form factors. The current hardware line is Trinzic X6, supported from NIOS 9.0.1. vNIOS for VMware runs from four virtual CPUs and thirty-two gigabytes up to thirty-two CPUs and three hundred eighty-four, and every model can be a Grid Master. vNIOS for Azure supports HA from 9.0.4; note that Azure doesn't support running DHCP in Azure for on-premises networks. vNIOS for AWS can be a Grid Master in HA, and vDiscovery pulls networks and virtual machines on a schedule. Google Cloud and Oracle Cloud are covered too, with OCI HA new in 9.1. NIOS-X servers are the data plane for Universal DDI, which is next.
 
 Versions: NIOS 9.1.0 went GA in March 2026 and ships BIND 9.20. NIOS 9.0.6 introduced a Long-Term Support train with up to twenty-four months of support.`,
   "Infoblox NIOS 9.1.x About Grids, Promoting a Grid Master Candidate, About HA Failover, 9.1.0 What's New; vNIOS install guides; Supported Platforms for NIOS-X Servers; Infoblox NIOS 9.0.6 and 9.1.0 blogs.");
@@ -337,14 +337,14 @@ One configuration item you must change: the default DNSSEC algorithm is RSA with
     "AWS VPC IPAM: Infoblox as external authority (private scope, Advanced tier)",
   ], 12);
   callout(s, "Views", 5.4, 1.05, "FaTriangleExclamation", HEX.amber, "Network views permit overlap; they don't prevent it. ",
-    "Uniqueness across contexts comes from one view, or from IPAM Federation in Universal DDI. The AWS IPAM handoff excludes GovCloud.");
+    "Uniqueness across contexts comes from one view, or from IPAM Federation in Universal DDI.");
   sources(s, "Sources: Infoblox NIOS 9.1.x — DHCP Failover; DHCPv6; Fingerprints; Lease History; Network Views; Discovery; Network Insight; EAs. Asset Insights. AWS VPC IPAM docs.");
   notes(s,
 `DHCP first. Failover peers form an association over TCP, split clients by a hash of the MAC address, fifty-fifty by default, and send each other lease updates directly. The Grid Master isn't involved in failover, whatever older material says. An association serves ranges in one network view only, and failover is IPv4 only. That last point matters under the IPv6 mandate, though as we'll see in Module 2, Windows has the same gap. DHCPv6 itself is supported, including prefix delegation, and fixed addresses arrived in 9.0.6. Fingerprinting matches options 55 and 60 and is on by default, and filters can deny leases to device types per range. Lease history is archived and exportable, which is the address-to-asset record NIST asks for. Dynamic DNS updates from DHCP are something you turn on, not automatic.
 
 IPAM. A network view is a single routing domain, up to one thousand per Grid. Views are mutually exclusive, so the same address space can exist in two of them. A DHCP member serves only one network view. Network containers hold the large blocks, and extensible attributes tag objects with metadata such as division or cost center. Discovery uses ICMP, NetBIOS or TCP, and vDiscovery reads vCenter, OpenStack, Azure and AWS. Network Insight, the layer-two and layer-three device discovery, needs its own license and dedicated appliances that run no DNS or DHCP; budget for that. Universal Asset Insights is the SaaS inventory service. And AWS documents Infoblox as the external authority for a VPC IPAM private scope, on the Advanced tier.
 
-Two corrections to common claims. Separate network views permit overlap; they don't prevent it. And the AWS IPAM integration excludes the GovCloud regions.`,
+Two corrections to common claims. Separate network views permit overlap; they don't prevent it.`,
   "Infoblox NIOS 9.1.x: DHCP Failover, DHCPv6 RFC Compliance, DHCP Fingerprint Detection, Lease History, Enabling DDNS, Configuring Network Views, About Discovery, About Network Insight, Extensible Attributes; Universal Asset Insights; AWS VPC IPAM user guide; AWS What's New, Nov. 17, 2025.");
 }
 
@@ -420,12 +420,12 @@ And the built-in Reporting appliances have daily ingest caps: ten gigabytes on t
 {
   const s = divider(P1, "Module 2: Why Infoblox, and why federal needs it", "Part 1 — The platform and the case for it",
     ["Requirement → capability → Infoblox feature", "FedRAMP scope and boundary; baselines, FIPS 140, NIAP", "A fair comparison, the risks and the procurement asks"], 8,
-    "Sources: FedRAMP Marketplace; CIS Benchmarks; DISA STIG store (High only); NIST CMVP; NIAP PCL; CISA CDM APL; NVD; CISA KEV; vendor and cloud docs.");
+    "Sources: FedRAMP Marketplace; CIS Benchmarks; STIG store (High only); NIST CMVP; NIAP PCL; CISA CDM APL; NVD; CISA KEV; vendor and cloud docs.");
   notes(s,
 `Module 2: why Infoblox is a top recommendation, and why federal networks need what it does.
 
 We'll build the case in four steps. First, map each federal requirement to the capability it demands and to the Infoblox feature that delivers it. Second, look closely at what the FedRAMP listing covers and what stays inside the agency's own boundary. Third, compare the assurance evidence and the features against BlueCat, EfficientIP, Microsoft and the native cloud services. And fourth, lay out the risks plainly, with how to manage each one and what to ask for in the contract. A recommendation that hides its risks isn't one an authorizing official can use.`,
-  "FedRAMP Marketplace products.json; CIS Benchmarks list; DISA STIG file store (High only reference); NIST CMVP; NIAP PCL; CISA CDM APL; NVD; CISA KEV.");
+  "FedRAMP Marketplace products.json; CIS Benchmarks list; STIG file store (High only reference); NIST CMVP; NIAP PCL; CISA CDM APL; NVD; CISA KEV.");
 }
 
 // ================================================================== 12 Mapping
@@ -467,7 +467,7 @@ Read across the rows: seven of eight requirements land on one platform and one d
     "Hosted in AWS GovCloud (US); certified Dec. 15, 2022",
     "Agency-path certification; assessor: Kratos",
     "One agency authorization; reuse 0",
-    "No High listing; DoD IL not verified",
+    "No High listing",
   ], 12.5);
   const boxes = [
     [HEX.teal, HEX.tealTint, "IN THE LISTING'S SCOPE", "Universal DDI · Universal Asset Insights · TIDE · Dossier. Infoblox's July 2026 post adds NIOS-X servers (vendor claim)."],
@@ -483,22 +483,22 @@ Read across the rows: seven of eight requirements land on one platform and one d
     ], { x: 5.0, y: y + 0.08, w: 7.6, h: 0.88, fontSize: 12.5 });
   });
   T(s, "Paths", [
-    { text: "High or DoD systems: ", options: { bold: true, color: HEX.navy } },
-    { text: "plan agency-operated vNIOS, for example from the Azure Government Marketplace, not the SaaS. " },
+    { text: "High systems: ", options: { bold: true, color: HEX.navy } },
+    { text: "plan agency-operated vNIOS and native cloud DNS, not the SaaS. " },
     { text: "Feature lag: ", options: { bold: true, color: HEX.navy } },
     { text: "the FedRAMP release notes end Mar. 14, 2026; commercial runs to Oct. 17 (an inference of lag)." },
   ], { x: 4.8, y: 4.95, w: 7.95, h: 1.5, fontSize: 12.5 });
-  sources(s, "Sources: FedRAMP Marketplace products.json (FR2017257053, Oct. 22, 2026); Infoblox blog, July 22, 2026 (vendor); What's New for FedRAMP; vNIOS for Azure (Azure Government).");
+  sources(s, "Sources: FedRAMP Marketplace products.json (FR2017257053, Oct. 22, 2026); Infoblox blog, July 22, 2026 (vendor); What's New for FedRAMP; vNIOS guides.");
   notes(s,
 `FedRAMP is the most misquoted part of any Infoblox proposal, so let's read the record.
 
-The Marketplace lists Infoblox Government Cloud, package FR2017257053, as FedRAMP Certified at Moderate, which the Marketplace now labels Class C, on the agency path, as SaaS hosted in AWS GovCloud. It was certified in December 2022 through the agency path, with Kratos as assessor. It shows one agency authorization and a reuse count of zero. There's no High listing, and we couldn't verify any DoD impact level.
+The Marketplace lists Infoblox Government Cloud, package FR2017257053, as FedRAMP Certified at Moderate, which the Marketplace now labels Class C, on the agency path, as SaaS hosted in AWS GovCloud. It was certified in December 2022 through the agency path, with Kratos as assessor. It shows one agency authorization and a reuse count of zero. There's no High listing.
 
 What's in scope? The listing names Universal DDI, Universal Asset Insights, and the Threat Defense component services TIDE and Dossier. Infoblox's July 2026 blog says the offering now includes NIOS-X servers; treat that as a vendor claim until the package says so. What isn't named: the Threat Defense cloud resolver, the DNS Forwarding Proxy and the Data Connector. Ask Infoblox for the authorization boundary diagram before you design around them.
 
 And the biggest point: NIOS appliances and vNIOS running on agency infrastructure aren't a cloud service at all. No FedRAMP authorization covers them. They sit inside the agency's own boundary and its own ATO, so a statement like "Infoblox's FedRAMP authorization covers the DDI layer" is an overclaim.
 
-For High or DoD systems, the path is agency-operated vNIOS, for example from the Azure Government Marketplace, which Infoblox documents.
+For High systems, the path is agency-operated vNIOS and native cloud DNS, without depending on the Moderate SaaS.
 
 Two practical notes. With reuse at zero, expect to do your own ATO work rather than ride a widely reused package. And Infoblox keeps separate FedRAMP release notes whose latest entry is March fourteenth, while the commercial notes run to October seventeenth, which suggests the FedRAMP instance lags commercial features. Ask for the parity list.`,
   "FedRAMP Marketplace products.json, FR2017257053 (accessed Oct. 22, 2026); Infoblox blog, July 22, 2026 (vendor); What's New in Universal DDI for FedRAMP; vNIOS for Azure.");
@@ -515,7 +515,7 @@ Two practical notes. With reuse at zero, expect to do your own ATO work rather t
     ["Encrypted DNS (DoT, DoH)", "Served by BIND from NIOS 9.1.0, on X6 appliances", "Free only on X6; X5 needs an extra license (vendor)"],
     ["IPAM authority and discovery", "Network views, containers, extensible attributes; ICMP, NetBIOS, TCP discovery; vDiscovery", "Network Insight needs a Discovery license and dedicated ND-series appliances that run no DNS or DHCP"],
     ["Logs at federal retention", "Reporting appliances: TR-2205 10 GB a day; TR-1405 and TR-805 5 GB a day", "5 overruns in 30 days lock reporting; send logs to the SIEM"],
-    ["Authorization boundary", "Trinzic runs inside the agency's own boundary and ATO", "Not covered by the FedRAMP Moderate SaaS listing; it is the path for High or DoD"],
+    ["Authorization boundary", "Trinzic runs inside the agency's own boundary and ATO", "Not covered by the FedRAMP Moderate SaaS listing; it is the path for High"],
     ["Assurance and lifecycle", "FIPS 140-2 #4531 (Trinzic HW) Historical, Sept. 2026; 140-3 Trinzic modules Pending Review; NIAP: \"Trinzic Appliances with NIOS v9.0\" in evaluation since Aug. 17, 2026", "X6 needs NIOS 9.0.1+; hardware typically supported ~4 years after last order date; BOD 26-02 if internet-facing at end of support"],
   ], { fontSize: 10.5 });
   sources(s, "Sources: Infoblox NIOS 9.1.x — GMC, Scale, GSS-TSIG, DNSSEC, HSM, DoT/DoH, Network Insight, Reporting; NIST CMVP #4531, MIP list; NIAP PCL; Infoblox EOL policy; CISA BOD 26-02; Book 08.");
@@ -530,7 +530,7 @@ DNSSEC signing is central, on the Grid Master, with keys there or in a Thales Lu
 
 IPAM and basic discovery are built in, but Network Insight needs a Discovery license and dedicated ND-series appliances that run no DNS or DHCP. Reporting appliances have daily ingest caps; five overruns in thirty days lock reporting, so send logs to the SIEM.
 
-Trinzic sits inside the agency's own boundary and ATO. The FedRAMP Moderate listing doesn't cover it, which is why it's the path for High and DoD.
+Trinzic sits inside the agency's own boundary and ATO. The FedRAMP Moderate listing doesn't cover it, which is why it's the path for High systems.
 
 Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical in September, the FIPS 140-3 Trinzic modules are pending review, and NIAP has been evaluating Trinzic appliances with NIOS 9.0 since August 17. X6 needs NIOS 9.0.1 or later. Hardware is typically supported about four years after its last order date, and an internet-facing appliance past end of support may fall under BOD 26-02, though it doesn't name DNS appliances.`,
   "Infoblox NIOS 9.1.x: Promoting a Grid Master Candidate, About Grids, About GSS-TSIG, Configuring DNSSEC on a Grid, Setting DNSSEC Parameters, Thales Luna HSM, DoT and DoH Architecture, About Network Insight, Supported Reporting Appliances; NIOS 9.1.0 blog (vendor); NIST CMVP certificate 4531 and Modules In Process list; NIAP PCL; Infoblox End-of-Life policy; CISA BOD 26-02; FedRAMP products.json; Book 08.");
@@ -547,9 +547,9 @@ Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical i
     "Not the VPC IPAM authority; no DHCP in cloud subnets",
   ], 11.5);
   const opts = [
-    [HEX.teal, HEX.tealTint, "A  vNIOS in each cloud", "Grid members in AWS, Azure (incl. Azure Government) or Google Cloud, in HA pairs; they serve signed zones without holding keys."],
+    [HEX.teal, HEX.tealTint, "A  vNIOS in each cloud", "Grid members in AWS, Azure or Google Cloud, in HA pairs; they serve signed zones without holding keys."],
     [HEX.navy, HEX.navyTint, "B  Grid + Universal DDI", "The only Infoblox path that writes back to cloud DNS. Government edition: Moderate, limited discovery. Cloud forwarders run on NIOS-X, not classic Trinzic."],
-    [HEX.amber, HEX.amberTint, "C  Trinzic beside native cloud DNS", "Conditional forwarding both ways through the clouds' resolver endpoints. The VPC IPAM handoff to Infoblox isn't available in GovCloud."],
+    [HEX.amber, HEX.amberTint, "C  Trinzic beside native cloud DNS", "Conditional forwarding both ways through the clouds' resolver endpoints."],
   ];
   opts.forEach((o, i) => {
     const y = 1.5 + i * 0.85;
@@ -563,8 +563,8 @@ Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical i
   const rows = [
     ["Mostly on premises", "C: the Grid stays authoritative; clouds forward to it"],
     ["Hybrid, one cloud", "A + C: an HA vNIOS pair keeps answers local"],
-    ["Multi-cloud at Moderate", "Add B for write-back; in GovCloud or Azure Gov, confirm support first"],
-    ["High or IL4–5", "A + C only; don't depend on the Moderate SaaS"],
+    ["Multi-cloud at Moderate", "Add B for write-back in the commercial regions; confirm the government edition's features first"],
+    ["FedRAMP High", "A + C only; don't depend on the Moderate SaaS"],
   ];
   const gw = (12.15 - 3 * 0.15) / 4;
   rows.forEach((r, i) => {
@@ -585,9 +585,9 @@ Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical i
 
 On its own, it can see into the clouds. vDiscovery pulls in cloud networks and VMs on a schedule, and NIOS can import Route 53, Azure DNS and Google Cloud DNS zones, one way only. What it can't do is own cloud DNS. Changes made in NIOS don't write back, and it can't create the clouds' private zones. No NIOS document describes managing Route 53 VPC Resolver rules or Azure DNS Private Resolver rulesets. It isn't the authority for AWS VPC IPAM, and DHCP in cloud subnets stays with the cloud fabric.
 
-There are three ways to extend it, and they combine. Option A puts vNIOS members in each cloud, joined to the Grid, Azure Government included, so answers stay local during a WAN cut. Option B joins the Grid to Universal DDI, the only Infoblox path that writes back to cloud DNS, but the government edition is Moderate only, with limited discovery: single AWS accounts and no Azure tenants. Its cloud forwarders run on NIOS-X servers, not classic Trinzic. Option C keeps the native cloud resolvers and wires them to the Grid with conditional forwarding in both directions. And the AWS VPC IPAM handoff to Infoblox isn't available in GovCloud.
+There are three ways to extend it, and they combine. Option A puts vNIOS members in each cloud, joined to the Grid, so answers stay local during a WAN cut. Option B joins the Grid to Universal DDI, the only Infoblox path that writes back to cloud DNS, but the government edition is Moderate only, with limited discovery: single AWS accounts and no Azure tenants. Its cloud forwarders run on NIOS-X servers, not classic Trinzic. Option C keeps the native cloud resolvers and wires them to the Grid with conditional forwarding in both directions.
 
-The bottom row is design guidance, not a rule. Mostly on premises: Option C. Hybrid with one cloud: A plus C. Multi-cloud at Moderate or below: add B. That holds in commercial regions and in GovCloud or Azure Government at Moderate, but there, confirm first which hybrid features the government edition supports against those accounts. FedRAMP High, or IL4 and IL5: A plus C, and don't depend on the Moderate SaaS. For the full reasoning, see the Research explainer, Trinzic Alone, or Trinzic Plus Cloud DDI?`,
+The bottom row is design guidance, not a rule. Mostly on premises: Option C. Hybrid with one cloud: A plus C. Multi-cloud at Moderate or below: add B, for workloads in the commercial regions, and confirm first which hybrid features the government edition supports. FedRAMP High, in any region: A plus C, and don't depend on the Moderate SaaS. For the full reasoning, see the Research explainer, Trinzic Alone, or Trinzic Plus Cloud DDI?`,
   "Infoblox NIOS 9.1.x vDiscovery and Cloud Network Automation; Route 53, Azure DNS and Google Cloud DNS integration pages; vNIOS for AWS, Azure and Google Cloud; Onboarding NIOS Services; Configuring Cloud Forwarders; What's New in Universal DDI for FedRAMP; Universal Asset Insights credential pages; Limitations of Universal DDI; AWS Route 53 VPC Resolver and VPC IPAM docs, What's New Nov. 17, 2025; Microsoft Learn Azure DNS Private Resolver; Google Cloud DNS best practices.");
 }
 
@@ -596,7 +596,7 @@ The bottom row is design guidance, not a rule. Mostly on premises: Option C. Hyb
   const s = content(P1, "Assurance: baselines, FIPS 140, NIAP and SP 800-81r3");
   tag(s, "What");
   table(s, "Assurance", 1.5, [2.25, 5.4], ["Check (Oct. 22, 2026)", "Infoblox status"], [
-    [{ text: "Hardening baseline" }, "No CIS Benchmark for NIOS: the agency's CM-6 settings from SP 800-81r3 and Infoblox docs. DISA NIOS 9.x and IB 8.x DNS STIGs: optional cross-checks (High only)"],
+    [{ text: "Hardening baseline" }, "No CIS Benchmark for NIOS: the agency's CM-6 settings from SP 800-81r3 and Infoblox docs. NIOS 9.x and IB 8.x DNS STIGs: optional cross-checks (High only)"],
     ["FIPS 140, active", "None"],
     ["FIPS 140-2", "#4531 (hardware), #4535 (virtual): Historical since the Sept. 21, 2026 sunset; existing systems only"],
     ["FIPS 140-3", "Four modules in CMVP review or pending review (Sept. 29 – Oct. 9, 2026)"],
@@ -609,18 +609,18 @@ The bottom row is design guidance, not a rule. Mostly on premises: Option C. Hyb
     "Two of its three authors, Cricket Liu and Ross Gibson, are Infoblox employees",
     "That's influence, not an authorization: disclose it when citing 800-81r3 for Infoblox",
   ], 12.5);
-  sources(s, "Sources: CIS Benchmarks list; NIST SP 800-53 CM-6; DISA STIG store (High only); NIST CMVP #4531, #4535, MIP list; NIAP PCL; CC Portal; CISA CDM APL; NIST SP 800-81r3.");
+  sources(s, "Sources: CIS Benchmarks list; NIST SP 800-53 CM-6; STIG store (High only); NIST CMVP #4531, #4535, MIP list; NIAP PCL; CC Portal; CISA CDM APL; NIST SP 800-81r3.");
   notes(s,
 `Assurance evidence, checked on October twenty-second.
 
-First, the hardening baseline. For a Moderate civilian agency it's the agency's own configuration settings, under NIST SP 800-53 control CM-6, drawn from a common secure configuration it chooses. There's no CIS Benchmark for NIOS, so the settings come from NIST SP 800-81 revision 3 and Infoblox's documentation. DISA's file store does have product-specific checklists, an Infoblox NIOS 9.x STIG, version 1 release 1, with forty-five rules, and an Infoblox 8.x DNS STIG at version 1 release 4, with sixty-nine rules. They're High only, Defense material, but they're useful cross-checks, and neither BlueCat nor EfficientIP has a vendor-specific STIG. High only marks material that applies to FedRAMP High or Defense environments, not to the Moderate civilian baseline this workbook targets.
+First, the hardening baseline. For a Moderate civilian agency it's the agency's own configuration settings, under NIST SP 800-53 control CM-6, drawn from a common secure configuration it chooses. There's no CIS Benchmark for NIOS, so the settings come from NIST SP 800-81 revision 3 and Infoblox's documentation. There are product-specific checklists, an Infoblox NIOS 9.x STIG, version 1 release 1, with forty-five rules, and an Infoblox 8.x DNS STIG at version 1 release 4, with sixty-nine rules. They're High only, but they're useful cross-checks, and neither BlueCat nor EfficientIP has a vendor-specific STIG. High only marks material that applies to FedRAMP High environments, not to the Moderate civilian baseline this workbook targets.
 
 FIPS 140 is the weak spot, so say it plainly. Infoblox has no active FIPS 140 certificate today. Its FIPS 140-2 certificates, 4531 for hardware and 4535 for virtual appliances, moved to the Historical list with the September 21, 2026 sunset, and NIST says Historical modules may be used for existing systems only. Four FIPS 140-3 submissions are in the CMVP queue, in review or pending review since late September and early October. Until those certificates post, a new NIOS deployment that depends on validated crypto can't cite an active certificate.
 
 NIAP: there's no current Common Criteria certificate. NIOS 9.0 has been in evaluation since August 17, 2026. Infoblox isn't on the CDM Approved Products List, and that list isn't accepting new submissions, so don't expect it to change.
 
 And a word on NIST SP 800-81 Revision 3, the Secure DNS Deployment Guide, final in March 2026. It's the best practical guide we have: Protective DNS, query logging, lease history, encrypted DNS, DNSSEC. But two of its three authors, Cricket Liu and Ross Gibson, are Infoblox employees. That's expertise and influence, not an authorization. Whenever you cite 800-81r3 in support of choosing Infoblox, disclose it.`,
-  "Center for Internet Security, CIS Benchmarks list (no NIOS benchmark; accessed Oct. 29, 2026); NIST SP 800-53 Rev. 5 CM-6 (OSCAL catalog, read Oct. 29, 2026); DISA STIG file store, U_Infoblox_NIOS_9-x_V1R1 and U_IB_8-x_DNS_V1R4 (High only reference); NIST CMVP certificates 4531, 4535 and modules-in-process list; NIAP PCL; Common Criteria Portal; CISA CDM APL, April 2025; NIST SP 800-81r3 title page.");
+  "Center for Internet Security, CIS Benchmarks list (no NIOS benchmark; accessed Oct. 29, 2026); NIST SP 800-53 Rev. 5 CM-6 (OSCAL catalog, read Oct. 29, 2026); STIG file store, U_Infoblox_NIOS_9-x_V1R1 and U_IB_8-x_DNS_V1R4 (High only reference); NIST CMVP certificates 4531, 4535 and modules-in-process list; NIAP PCL; Common Criteria Portal; CISA CDM APL, April 2025; NIST SP 800-81r3 title page.");
 }
 
 // ================================================================== 15 Comparison
@@ -631,7 +631,7 @@ And a word on NIST SP 800-81 Revision 3, the Secure DNS Deployment Guide, final 
   table(s, "Compare", 1.5, [1.9, 2.1, 2.0, 1.75, 1.85, 2.55], ["Dimension", "Infoblox", "BlueCat", "EfficientIP", "Windows Server", "Azure / AWS / Google"], [
     ["FedRAMP", C("Moderate SaaS"), C("None"), C("None"), C("n/a (agency-run)"), C("High (each CSP)")],
     ["FIPS 140 active", C("None; 140-3 in review"), C("#5506, 140-3, to 2029"), C("None"), C("CNG (not re-verified)"), C("Inherit CSP")],
-    ["DISA STIG (High only)", C("NIOS 9.x, IB 8.x DNS"), C("None"), C("None"), C("Windows DNS"), C("n/a")],
+    ["STIG (High only)", C("NIOS 9.x, IB 8.x DNS"), C("None"), C("None"), C("Windows DNS"), C("n/a")],
     ["Multi-cloud DNS", C("Route 53, Azure, Google (one console)"), C("AWS, Azure, GCP (vendor)"), C("Route 53, Azure; GCP (vendor)"), C("None"), C("Own cloud only")],
     ["DNS security", C("RPZ, TIDE, tunneling, DGA"), C("RPZ, feeds (vendor)"), C("DNS Guardian (vendor)"), C("Query policies; no feeds"), C("Firewall or policy lists; AWS adds DGA")],
     ["DHCPv6 failover", C("No (IPv4 only)"), C("Not verified"), C("Claims HA modes"), C("No (IPv4 only)"), C("n/a")],
@@ -639,7 +639,7 @@ And a word on NIST SP 800-81 Revision 3, the Secure DNS Deployment Guide, final 
   ], { fontSize: 11 });
   callout(s, "Fair", 5.35, 1.1, "FaScaleBalanced", HEX.teal, "Fair framing: ",
     "the only purpose-built DDI platform with a FedRAMP-authorized SaaS, integrated by AWS and Google. A strong default for a hybrid estate, not the only viable choice.");
-  sources(s, "Sources: FedRAMP products.json; NIST CMVP #5506; DISA STIG store (High only); BlueCat, EfficientIP pages (vendor); Microsoft Learn; AWS, Google Cloud docs; Terraform; Ansible Galaxy.");
+  sources(s, "Sources: FedRAMP products.json; NIST CMVP #5506; STIG store (High only); BlueCat, EfficientIP pages (vendor); Microsoft Learn; AWS, Google Cloud docs; Terraform; Ansible Galaxy.");
   notes(s,
 `A fair comparison, column by column.
 
@@ -658,7 +658,7 @@ DHCPv6 failover is missing everywhere we checked, Infoblox and Windows included,
 Automation: two partner-tier Terraform providers, two Ansible collections and ServiceNow give Infoblox the deepest set. EfficientIP's Terraform provider is community tier.
 
 Where alternatives win: BlueCat's Micetro manages existing Windows and BIND servers in place, and a single-cloud workload may need no third-party plane. So the fair claim is the one on the slide: a strong default for a hybrid federal estate, not the only viable choice.`,
-  "FedRAMP Marketplace products.json; NIST CMVP certificate 5506; DISA STIG store; BlueCat Integrity and Micetro pages, EfficientIP SOLIDserver datasheet (vendor); Microsoft Learn DNS Policies and DHCP failover; Azure DNS resolver policy; Route 53 DNS Firewall Advanced; Google Cloud response policies and DNS Armor; Terraform Registry; Ansible Galaxy. DISA STIG store is a High only reference.");
+  "FedRAMP Marketplace products.json; NIST CMVP certificate 5506; STIG store; BlueCat Integrity and Micetro pages, EfficientIP SOLIDserver datasheet (vendor); Microsoft Learn DNS Policies and DHCP failover; Azure DNS resolver policy; Route 53 DNS Firewall Advanced; Google Cloud response policies and DNS Armor; Terraform Registry; Ansible Galaxy. The STIG store is a High only reference.");
 }
 
 // ================================================================== 16 Risks 1
@@ -670,7 +670,7 @@ Where alternatives win: BlueCat's Micetro manages existing Windows and BIND serv
     ["No NIAP certificate; not on CDM APL", "NIOS 9.0 in NIAP evaluation; the APL is closed to submissions", "Track the evaluation; don't promise APL status"],
     ["Critical NIOS CVEs, 2025–2026", "Four CVEs at 9.1–9.8 (Feb. 2025); RCE CVE-2025-61880 (Feb. 2026). None in CISA KEV", "Patch cadence and LTS train in the ATO plan; Grid management off untrusted networks"],
     ["BIND dependency", "NIOS-X updates in Sept. 2026 fixed BIND CVEs; CISA added BIND CVE-2015-5477 to KEV Oct. 8", "Ask for a BIND-advisory SLA and a not-affected attestation; track ISC advisories"],
-    ["Moderate ceiling, low reuse", "SaaS is Moderate only; 1 authorization, reuse 0", "Agency-operated vNIOS for High or DoD; budget a full ATO"],
+    ["Moderate ceiling, low reuse", "SaaS is Moderate only; 1 authorization, reuse 0", "Agency-operated vNIOS for High; budget a full ATO"],
   ], { fontSize: 11.5 });
   sources(s, "Sources: NIST CMVP (#4531, #4535, #5506, modules in process); NIAP PCL; CISA CDM APL; NVD CVE API; CISA KEV catalog 2026.10.21; Infoblox Cloud release notes; FedRAMP products.json.");
   notes(s,
@@ -684,7 +684,7 @@ Third, vulnerabilities. NVD lists four NIOS CVEs from February 2025 rated betwee
 
 Fourth, the BIND dependency. NIOS and NIOS-X run on BIND, and NIOS-X updates in September 2026 shipped to address lists of BIND CVEs. On October eighth CISA added an old BIND flaw, CVE-2015-5477, to the KEV catalog. Ask Infoblox for its BIND advisory SLA and a written attestation that current releases aren't affected by KEV-listed BIND CVEs, and track ISC's advisories yourself.
 
-Fifth, the SaaS ceiling is Moderate, and reuse is zero. Use agency-operated vNIOS for High or DoD systems, and budget a full ATO.`,
+Fifth, the SaaS ceiling is Moderate, and reuse is zero. Use agency-operated vNIOS for High systems, and budget a full ATO.`,
   "NIST CMVP certificates 4531, 4535, 5506 and modules-in-process list; NIAP PCL; CISA CDM APL; NVD CVE API (keyword Infoblox); CISA KEV catalog 2026.10.21; Infoblox Cloud release notes; FedRAMP products.json.");
 }
 
@@ -897,12 +897,12 @@ Now the gap. CSV imports bypass approval entirely. Infoblox's own page says CSV 
 
 // ================================================================== 23 Authentication
 {
-  const s = content(P2, "Admin sign-in: CAC/PIV, SAML with Entra, directories");
+  const s = content(P2, "Admin sign-in: PIV, SAML with Entra, directories");
   tag(s, "Who");
   table(s, "Auth", 1.5, [2.2, 5.2], ["Method", "What NIOS documents"], [
     ["Policy", "Ordered list of server groups; remote groups map to local admin groups by name; first match wins"],
     ["AD, LDAP, RADIUS, TACACS+", "Directory group decides the admin group; AD nested groups resolved"],
-    ["CAC / PIV", "X.509 client certificate plus OCSP check; both must pass; name matched from SAN UPN, email or DN"],
+    ["PIV", "X.509 client certificate plus OCSP check; both must pass; name matched from SAN UPN, email or DN"],
     ["SAML 2.0 (\"Azure SSO\")", "IdP group attribute must exactly match a NIOS group name; else saml-group"],
     ["Local", "The admin superuser stays as break-glass"],
   ], { fontSize: 11.5 });
@@ -918,7 +918,7 @@ Now the gap. CSV imports bypass approval entirely. Infoblox's own page says CSV 
 
 NIOS supports local accounts, RADIUS, Active Directory, LDAP, TACACS+ and SAML, in any combination. The authentication policy is an ordered list of server groups, plus an ordered list that maps remote groups to local admin groups by name. The first match wins, and there's an optional default group. So a directory, for example an AD security group per division, decides which division an administrator belongs to, and AD nested groups are resolved recursively.
 
-For federal staff the important one is certificate authentication. NIOS authenticates administrators by X.509 client certificate, and its documentation names CAC and PIV smart-card holders as the example. Certificate status is checked against an ordered list of OCSP responders, and both the authentication policy and the OCSP check must pass. The admin name is matched from the certificate's UPN, email or subject.
+For federal staff the important one is certificate authentication. NIOS authenticates administrators by X.509 client certificate, and its documentation names smart-card holders as the example, which covers PIV. Certificate status is checked against an ordered list of OCSP responders, and both the authentication policy and the OCSP check must pass. The admin name is matched from the certificate's UPN, email or subject.
 
 SAML 2.0 lists Azure SSO among its identity provider types. The provider sends a group attribute, and the user lands in the NIOS group whose name exactly matches; otherwise in a default SAML group.
 
@@ -1243,23 +1243,23 @@ srcSlide("Sources behind the orientation and Module 1", [
   "Book 08, Federal Modernization Workbook: Ch 01 (DNS Is Now the Control Plane), Ch 08 (Reference Architecture), Ch 09 (Who Owns DNS, DHCP and IPAM), Ch 10 (Migration Sequence).",
   "Infoblox NIOS 9.1.x admin guide (infoblox-docs.atlassian.net, space nios91x): About Grids; Promoting a Grid Master Candidate; About HA Failover; 9.1.0 What's New; DNS Views; Anycast; DNSSEC on a Grid; Setting DNSSEC Parameters; Thales Luna HSM; DNS Firewall; GSS-TSIG; Managing Microsoft Servers; DoT and DoH Architecture.",
   "Infoblox NIOS 9.1.x: DHCP Failover; DHCPv6 RFC Compliance; DHCP Fingerprint Detection; Lease History; Enabling DDNS; Network Views; Network Containers; Discovery; Network Insight; Extensible Attributes; Query and Response Captures; dnstap limitations; Reporting Cluster Modes; Supported Reporting Appliances.",
-  "Infoblox vNIOS guides (VMware X6, Azure incl. Azure Government, AWS, Google Cloud, OCI); Supported Platforms for NIOS-X Servers; NIOS upgrade matrix  ·  Universal DDI: What's New (commercial and FedRAMP); Limitations of Universal DDI; Limitations of NIOS-X as a Service; Hybrid Deployment; IPAM Federation; Route 53, Azure DNS, GCP integration limits.",
+  "Infoblox vNIOS guides (VMware X6, Azure, AWS, Google Cloud, OCI); Supported Platforms for NIOS-X Servers; NIOS upgrade matrix  ·  Universal DDI: What's New (commercial and FedRAMP); Limitations of Universal DDI; Limitations of NIOS-X as a Service; Hybrid Deployment; IPAM Federation; Route 53, Azure DNS, GCP integration limits.",
   "Infoblox Threat Defense: About; Licensing and Subscriptions; Dossier and TIDE; DNS Forwarding Proxy; TDDM for NIOS; Threat Insight  ·  Universal DDI API Guide; WAPI 2.0; WAPI Passthrough; Data Connector; Sentinel HTTPS destination.",
   "GitHub infobloxopen: terraform-provider-infoblox (v3.0.0-beta, v2.13.0), terraform-provider-bloxone, terraform-provider-nios, infoblox-ansible, universal-ddi-ansible  ·  ServiceNow Infoblox spoke  ·  Splunkbase 2934  ·  Microsoft Sentinel connectors reference  ·  AWS VPC IPAM + Infoblox; Google Cloud DNS Armor.",
   "Vendor (labeled as vendor claims): infoblox.com NIOS, Universal DDI and Threat Defense product pages; NIOS 9.0.6 and 9.1.0 blogs.",
 ]);
 srcSlide("Sources behind Module 2 — Federal fit and risks", [
-  "FedRAMP Marketplace dataset, fedramp.gov/marketplace/products.json (meta last_change Oct. 22, 2026): FR2017257053 Infoblox Government Cloud; Azure Government, AWS GovCloud, Google Services listings.",
-  "DISA STIG file store (High only), dl.dod.cyber.mil: U_Infoblox_NIOS_9-x_V1R1_STIG (benchmark Jul. 28, 2026); U_IB_8-x_DNS_V1R4_STIG (Sept. 30, 2026); DNS SRG V4R3.",
+  "FedRAMP Marketplace dataset, fedramp.gov/marketplace/products.json (meta last_change Oct. 22, 2026): FR2017257053 Infoblox Government Cloud; Azure, AWS and Google Services listings.",
+  "STIG file store (High only): U_Infoblox_NIOS_9-x_V1R1_STIG (benchmark Jul. 28, 2026); U_IB_8-x_DNS_V1R4_STIG (Sept. 30, 2026); DNS SRG V4R3.",
   "NIST CMVP: certificates #4531, #4535, #3332, #3330 (Infoblox, Historical); #5506 and #4692 (BlueCat); validated-modules search (EfficientIP, Men&Mice); Modules In Process list; FIPS 140-3 transition page.",
   "NIAP Product Compliant List (API) — Infoblox Trinzic Appliances with NIOS v9.0, In Progress; Common Criteria Portal certified and archived CSVs  ·  CISA CDM APL page and April 2025 APL workbook.",
   "NVD CVE API (keyword Infoblox): CVE-2024-37566, -37567, -36046, -36047; CVE-2025-61880, -61879  ·  CISA KEV JSON, catalog 2026.10.21 (incl. CVE-2015-5477)  ·  Infoblox Cloud release notes (NIOS-X DNS 3.8.11, 3.8.12).",
   "Comparison: BlueCat Integrity and Micetro pages; EfficientIP SOLIDserver DDI datasheet (Jan. 2026) — vendor  ·  Microsoft Learn: IPAM overview and WS2012 R2 planning; DNS Policies; DHCP failover; removed and deprecated features; Azure DNSSEC; DNS resolver policy; AVNM IPAM.",
-  "AWS: VPC IPAM; Integrate VPC IPAM with Infoblox; What's New Nov. 17, 2025; Route 53 DNSSEC signing; Route 53 in GovCloud; DNS Firewall Advanced  ·  Google Cloud: DNSSEC; response policies; DNS Armor.",
+  "AWS: VPC IPAM; Integrate VPC IPAM with Infoblox; What's New Nov. 17, 2025; Route 53 DNSSEC signing; DNS Firewall Advanced  ·  Google Cloud: DNSSEC; response policies; DNS Armor.",
   "Terraform Registry API (infobloxopen, bluecatlabs, efficientip-labs, menandmice providers); Ansible Galaxy API (infoblox, menandmice collections).",
   "Infoblox (vendor): Universal DDI Tokens FAQ; Universal DDI Supplemental Terms; End-of-Life policy (Mar. 31, 2025); \"Universal DDI comes to Infoblox Government Cloud\" (July 22, 2026); \"Top 12 Questions\" post (search summary).",
   "Trinzic slides — Infoblox: vDiscovery (Endpoint Server, AWS, Azure, Guidelines); Cloud Network Automation; Cloud Platform License Limitations; Route 53, Azure DNS, Google Cloud DNS integration and limits; vNIOS for AWS, Azure, Google Cloud (About, Limitations); Shared-Services VPC; Onboarding NIOS Services; Cloud Forwarders; Discovering Cloud Forwarder Endpoints; UAI AWS, Azure, GCP credentials; CMVP Modules In Process; CISA BOD 26-02.",
-  "Trinzic slides — clouds: AWS Route 53 private hosted zones, VPC Resolver, inbound/outbound forwarding, GovCloud Route 53, DHCP option sets, VPC IPAM + Infoblox; Microsoft Learn DNS Private Resolver, VNet name resolution, AVNM IPAM; Google Cloud DNS best practices, server policies, Assured Workloads.",
+  "Trinzic slides — clouds: AWS Route 53 private hosted zones, VPC Resolver, inbound/outbound forwarding, DHCP option sets, VPC IPAM + Infoblox; Microsoft Learn DNS Private Resolver, VNet name resolution, AVNM IPAM; Google Cloud DNS best practices, server policies.",
 ]);
 srcSlide("Sources behind Part 2 — Divisions and operating model", [
   "Infoblox NIOS (spaces nios91x and nios90): About Administrative Permissions; About Admin Groups; About Admin Roles; Creating Limited-Access and Superuser Admin Groups; Applying Permissions and Managing Overlaps; Global and Object Permissions.",

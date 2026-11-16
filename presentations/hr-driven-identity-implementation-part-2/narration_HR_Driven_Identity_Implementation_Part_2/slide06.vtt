@@ -49,26 +49,26 @@ so keep the export and a
 clean group-membership scan.
 
 11
-00:00:41.825 --> 00:00:45.650
-Most features are available in
-Azure Government, with one gap.
+00:00:41.825 --> 00:00:44.825
+In GCC, these features are
+the commercial service,
 
 12
-00:00:45.650 --> 00:00:50.256
-Administrative units with dynamic
-membership aren't available there,
+00:00:44.825 --> 00:00:48.850
+and that includes administrative
+units with dynamic membership.
 
 13
-00:00:50.256 --> 00:00:53.925
-so GCC High uses assigned units,
-filled by a scheduled job.
+00:00:48.850 --> 00:00:53.587
+Before Governance is licensed, department
+access stays on dynamic groups.
 
 14
-00:00:53.925 --> 00:00:57.496
+00:00:53.587 --> 00:00:57.158
 To roll back, remove the
 policy, but keep the old dynamic
 
 15
-00:00:57.496 --> 00:01:01.060
+00:00:57.158 --> 00:01:00.720
 group until the package has
 run clean for a full cycle.

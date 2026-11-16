@@ -59,28 +59,24 @@ so no integration identity
 holds more than its lane needs.
 
 13
-00:00:41.100 --> 00:00:43.687
-PIM is available in Azure Government.
+00:00:41.100 --> 00:00:44.662
+PIM is part of the
+commercial service GCC uses.
 
 14
-00:00:43.687 --> 00:00:48.852
-The spoke's documentation shows
-only the worldwide Graph endpoint,
+00:00:44.662 --> 00:00:50.801
+The spoke's documentation shows only the
+worldwide Graph endpoint, so it fits GCC.
 
 15
-00:00:48.852 --> 00:00:52.725
-so it fits GCC, but confirm
-GCC High with ServiceNow.
-
-16
-00:00:52.725 --> 00:00:55.113
+00:00:50.801 --> 00:00:53.188
 To roll back, run the paired action.
 
-17
-00:00:55.113 --> 00:00:58.074
+16
+00:00:53.188 --> 00:00:56.150
 A leaver's deprovisioning
 is never rolled back.
 
-18
-00:00:58.074 --> 00:01:00.360
+17
+00:00:56.150 --> 00:00:58.440
 They come back through a new request.

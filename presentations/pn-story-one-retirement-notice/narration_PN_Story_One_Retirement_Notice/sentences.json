@@ -17,18 +17,8 @@
   ],
   [
    27.387,
-   1.575,
-   "Two notes before we begin."
-  ],
-  [
-   28.962,
-   3.35,
-   "The workbook is a draft, awaiting the owner's review."
-  ],
-  [
-   32.312,
-   5.3,
-   "And the code is illustrative, tested against fixtures, not against a lyve tenant."
+   6.938,
+   "One note before we begin: the code is illustrative, tested against fixtures, not against a lyve tenant."
   ]
  ],
  "2": [
@@ -247,13 +237,8 @@
   ],
   [
    32.188,
-   5.287,
-   "The workbook's tenant is G C C, which reads the worldwide Graph host."
-  ],
-  [
-   37.475,
-   6.125,
-   "G C C High and D O D have their own hosts, and the kit refuses a session in the wrong one."
+   8.95,
+   "The workbook's tenant is G C C, which reads the worldwide Graph host, and the kit refuses a session in another environment or tenant."
   ]
  ],
  "7": [
@@ -264,36 +249,36 @@
   ],
   [
    0.775,
-   8.525,
-   "First, the hosts the kit knows: G C C on the worldwide Graph endpoint, G C C High and D O D on their own."
+   6.562,
+   "First, the hosts the kit knows: global and G C C, both on the worldwide Graph endpoint."
   ],
   [
-   9.3,
+   7.338,
    5.088,
    "Then collect Microsoft 365 from the fixtures and read the records."
   ],
   [
-   14.387,
+   12.425,
    6.688,
    "The SMTP AUTH retirement is action required by January 31, 2027."
   ],
   [
-   21.075,
+   19.113,
    2.65,
    "Then read each notice's action basis."
   ],
   [
-   23.725,
+   21.762,
    5.513,
    "The retirement's says provider, action required by date time: Microsoft's own field."
   ],
   [
-   29.238,
+   27.275,
    6.987,
    "The SharePoint Framework post says rule: a prevent-or-fix post with no date is action required by the kit's rule."
   ],
   [
-   36.225,
+   34.263,
    5.338,
    "Same record shape as our Azure retirement, with the source of each decision written down."
   ]
@@ -306,16 +291,16 @@
   ],
   [
    0.875,
-   4.275,
-   "A G C C High tenant's settings say G C C by mistake."
+   3.95,
+   "A collection is pointed at a Graph host that isn't the tenant's own."
   ],
   [
-   5.15,
-   2.763,
-   "Without the kit's guard, what would the collection do?"
+   4.825,
+   2.175,
+   "Without the kit's guard, what would it do?"
   ],
   [
-   7.912,
+   7.0,
    7.237,
    "Fail loudly, read the posts anyway, return nothing and pass on an empty list, or read someone else's posts?"
   ]
@@ -380,21 +365,21 @@
   ],
   [
    7.45,
-   8.575,
-   "The third realm is refused, with the reason: Oracle's page for its endpoint wasn't readable when the chapter was written, so the kit won't guess."
+   3.775,
+   "A realm it doesn't know is refused, so the kit won't guess."
   ],
   [
-   16.025,
+   11.225,
    2.825,
    "Then read the day-one OCI records."
   ],
   [
-   18.85,
+   14.05,
    9.925,
    "A database maintenance window that names a database system, the certificate bundle change that's action required by December 15, an advisory and a closed incident."
   ],
   [
-   28.775,
+   23.975,
    3.975,
    "Same record, same fields, from a fourth provider's shape."
   ]
@@ -550,8 +535,8 @@
   ],
   [
    32.7,
-   7.425,
-   "One more gap: Google lists no Personalized Service Health in its Assured Workloads fed-ramp and impact-level packages."
+   6.487,
+   "One more gap: Google lists no Personalized Service Health in its Assured Workloads fed-ramp packages."
   ]
  ],
  "16": [

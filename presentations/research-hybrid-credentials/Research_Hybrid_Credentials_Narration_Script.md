@@ -30,7 +30,7 @@ Every cloud has its own certificate service, and each one can issue and renew ce
 
 ## Slide 8 — Azure, AWS and Google: who renews what
 
-The details differ a little by cloud. Key Vault only renews by itself for its two partner CAs and for self-signed certificates, so a certificate from the program's own CA comes from the CLM, and the good news is that the CLM's Key Vault driver supports Azure Government. In AWS, Certificate Manager renews what it issues, but never what you import, so imported certificates belong to the CLM. Google is similar. One thing to confirm with CyberArk in writing: its AWS driver pages don't mention GovCloud. Now, the PIV card.
+The details differ a little by cloud. Key Vault only renews by itself for its two partner CAs and for self-signed certificates, so a certificate from the program's own CA comes from the CLM, and Key Vault's own renewal stays off for it. In AWS, Certificate Manager renews what it issues, but never what you import, so imported certificates belong to the CLM. Google is similar: what Google manages, Google renews. Now, the PIV card.
 
 ## Slide 9 — PIV: the card stays, AD's side goes
 
@@ -66,4 +66,4 @@ This is the page to keep. Each row is a credential, each column a stage, and eac
 
 ## Slide 17 — What changed in the books, and next steps
 
-Finally, this research changed the books in five places: the SQL Server and application chapters on how certificates rotate and who renews them, the PKI and Certificates book on federal smart card mapping, and the Network and Transport book on the forgotten NPS certificate and the access control server's certificate. The next steps are tests, not more reading: prove the SQL key type, prove the card system can write the binding, and get CyberArk's answer on GovCloud. This is the program's research, under review, and not an endorsement by any federal agency. Thanks for watching.
+Finally, this research changed the books in five places: the SQL Server and application chapters on how certificates rotate and who renews them, the PKI and Certificates book on federal smart card mapping, and the Network and Transport book on the forgotten NPS certificate and the access control server's certificate. The next steps are tests, not more reading: prove the SQL key type, prove the card system can write the binding, and patch the access control servers before the new certificates arrive. This is the program's research, under review, and not an endorsement by any federal agency. Thanks for watching.

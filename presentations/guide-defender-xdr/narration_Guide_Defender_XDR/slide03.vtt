@@ -19,55 +19,55 @@ Microsoft's holds Defender X
 D R and its control planes.
 
 5
-00:00:13.550 --> 00:00:19.404
-Microsoft Learn says that for a U S
-Government tenant it's built in the Azure U S
+00:00:13.550 --> 00:00:16.911
+For a G C C tenant, it has its
+own G C C service endpoints,
 
 6
-00:00:19.404 --> 00:00:25.075
-Government environment, and G C C, G C C
-High and D O D each have their own portal.
+00:00:16.911 --> 00:00:20.038
+and every crossing is
+authenticated by Entra I D.
 
 7
-00:00:25.075 --> 00:00:28.075
+00:00:20.038 --> 00:00:23.555
 Intune is the recommended
 tool for Defender settings,
 
 8
-00:00:28.075 --> 00:00:32.542
+00:00:23.555 --> 00:00:28.792
 through endpoint security policies, and
 they're assigned to Entra device groups,
 
 9
-00:00:32.542 --> 00:00:35.875
+00:00:28.792 --> 00:00:32.700
 because Defender management
 supports device objects only.
 
 10
-00:00:35.875 --> 00:00:41.150
+00:00:32.700 --> 00:00:37.975
 Automation levels, device groups and custom
 detections live in the Defender portal.
 
 11
-00:00:41.150 --> 00:00:43.734
+00:00:37.975 --> 00:00:40.559
 Telemetry flows to the tenant's instance,
 
 12
-00:00:43.734 --> 00:00:47.838
+00:00:40.559 --> 00:00:44.663
 alerts become incidents, and
 advanced hunting keeps thirty days.
 
 13
-00:00:47.838 --> 00:00:50.932
+00:00:44.663 --> 00:00:47.758
 Servers in A W S, Google
 Cloud or Oracle Cloud
 
 14
-00:00:50.932 --> 00:00:54.800
+00:00:47.758 --> 00:00:51.626
 Infrastructure arrive the
 way Azure Arc reaches them.
 
 15
-00:00:54.800 --> 00:01:00.120
+00:00:51.626 --> 00:00:56.950
 And use one control plane per setting:
 Group Policy wins over Intune by default.

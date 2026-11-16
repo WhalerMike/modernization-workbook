@@ -28,62 +28,58 @@ in SailPoint's FedRAMP environment,
 and what is its A P I domain?
 
 7
-00:00:19.300 --> 00:00:21.738
-Are the apps in ServiceNow's
-government store?
+00:00:19.300 --> 00:00:22.975
+And are the apps and the Entra spoke
+in ServiceNow's government store?
 
 8
-00:00:21.738 --> 00:00:24.588
-And does the Entra spoke work in GCC High?
-
-9
-00:00:24.588 --> 00:00:28.925
+00:00:22.975 --> 00:00:27.313
 To build the code, use the developer
 workbook, Building Ticket-to-Machine.
 
-10
-00:00:28.925 --> 00:00:32.762
+9
+00:00:27.313 --> 00:00:31.149
 It has nine chapters, eight
 with labs that run on a laptop.
 
-11
-00:00:32.762 --> 00:00:34.693
+10
+00:00:31.149 --> 00:00:33.080
 To learn the material in order,
 
-12
-00:00:34.693 --> 00:00:39.325
+11
+00:00:33.080 --> 00:00:37.712
 use the learning path for Ticket-to-Machine
 on ServiceNow and SailPoint.
 
-13
-00:00:39.325 --> 00:00:43.531
+12
+00:00:37.712 --> 00:00:41.918
 For the reasons behind it, see two
 of the workbook's books: Governance,
 
-14
-00:00:43.531 --> 00:00:47.887
+13
+00:00:41.918 --> 00:00:46.274
 Drift and Evidence, and Compliance
 Automation and Day-Two Operations.
 
-15
-00:00:47.887 --> 00:00:50.301
+14
+00:00:46.274 --> 00:00:48.688
 The loop, closed, looks like this.
 
-16
-00:00:50.301 --> 00:00:55.291
+15
+00:00:48.688 --> 00:00:53.679
 The ticket authorizes a machine, the
 machine acts under a service identity,
 
-17
-00:00:55.291 --> 00:00:57.625
+16
+00:00:53.679 --> 00:00:56.013
 and only a re-read closes the ticket.
 
-18
-00:00:57.625 --> 00:01:01.676
+17
+00:00:56.013 --> 00:01:00.064
 The guide was rewritten as
 a gated guide on November 1,
 
-19
-00:01:01.676 --> 00:01:05.230
+18
+00:01:00.064 --> 00:01:03.620
 2026, and that rewrite
 hasn't been reviewed yet.

@@ -58,29 +58,29 @@ administrator sign-in with PIV or
 SAML; and DNS logs in the SIEM.
 
 13
-00:00:45.600 --> 00:00:50.004
-The DISA STIG for NIOS 9 is the
-only product-specific checklist,
+00:00:45.600 --> 00:00:49.657
+The STIG for NIOS 9 is the only
+product-specific checklist,
 
 14
-00:00:50.004 --> 00:00:54.662
-so it makes a useful cross-check,
-but it's High only, Defense material.
+00:00:49.657 --> 00:00:53.038
+so it makes a useful
+cross-check, but it's High only.
 
 15
-00:00:54.662 --> 00:00:59.325
+00:00:53.038 --> 00:00:57.700
 It covers only the appliance's
 DNS, with forty-five rules.
 
 16
-00:00:59.325 --> 00:01:01.734
+00:00:57.700 --> 00:01:00.109
 One tip from it applies to any baseline:
 
 17
-00:01:01.734 --> 00:01:05.725
+00:01:00.109 --> 00:01:04.100
 check these settings at the zone
 level, not only at the Grid level.
 
 18
-00:01:05.725 --> 00:01:07.730
+00:01:04.100 --> 00:01:06.100
 Next, FIPS mode.

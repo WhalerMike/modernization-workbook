@@ -6,68 +6,58 @@ Welcome to Part 2 of the implementation
 series for provider notices.
 
 2
-00:00:04.225 --> 00:00:09.054
-As in Part 1, one thing first: Provider
-Notices, An Implementation Guide,
-
-3
-00:00:09.054 --> 00:00:14.050
-is a draft, awaiting the owner's review,
-so check it again after that review.
-
-4
-00:00:14.050 --> 00:00:19.477
+00:00:04.225 --> 00:00:09.652
 Part 1 collected four providers into
 one record: Azure Service Health,
 
-5
-00:00:19.477 --> 00:00:24.062
+3
+00:00:09.652 --> 00:00:14.237
 Microsoft 365, Oracle Cloud
 Infrastructure and AWS Health.
 
-6
-00:00:24.062 --> 00:00:25.774
+4
+00:00:14.237 --> 00:00:15.950
 Part 2 finishes the loop.
 
-7
-00:00:25.774 --> 00:00:28.144
+5
+00:00:15.950 --> 00:00:18.319
 Gate five adds Google Cloud's incidents,
 
-8
-00:00:28.144 --> 00:00:30.800
+6
+00:00:18.319 --> 00:00:20.975
 and records the gap for
 planned maintenance.
 
-9
-00:00:30.800 --> 00:00:34.859
+7
+00:00:20.975 --> 00:00:25.034
 Gate six routes every notice
 that needs action to an owner,
 
-10
-00:00:34.859 --> 00:00:36.888
+8
+00:00:25.034 --> 00:00:27.063
 as a task, without duplicates.
 
-11
-00:00:36.888 --> 00:00:40.132
+9
+00:00:27.063 --> 00:00:30.306
 Gate seven writes the weekly
 digest the owners read,
 
-12
-00:00:40.132 --> 00:00:43.300
+10
+00:00:30.306 --> 00:00:33.474
 and the evidence chain the
 security officer keeps.
 
-13
-00:00:43.300 --> 00:00:47.000
+11
+00:00:33.474 --> 00:00:37.175
 Then how to run it safely:
 control states and change rings,
 
-14
-00:00:47.000 --> 00:00:51.488
+12
+00:00:37.175 --> 00:00:41.663
 the dangers, the evidence file,
 rollback, and what couldn't be verified.
 
-15
-00:00:51.488 --> 00:00:57.050
+13
+00:00:41.663 --> 00:00:47.230
 The kit's code is illustrative, tested
 against fixtures, not against a live tenant.

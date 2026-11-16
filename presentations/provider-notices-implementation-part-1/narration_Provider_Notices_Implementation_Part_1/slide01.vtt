@@ -6,69 +6,59 @@ Welcome to Part 1 of the implementation
 series for provider notices.
 
 2
-00:00:04.050 --> 00:00:09.112
-One thing first: Provider Notices,
-An Implementation Guide, is a draft.
-
-3
-00:00:09.112 --> 00:00:13.038
-It's awaiting the owner's review, so
-check it again after that review.
-
-4
-00:00:13.038 --> 00:00:15.425
+00:00:04.050 --> 00:00:06.438
 The guide's premise fits in one line.
 
-5
-00:00:15.425 --> 00:00:18.829
+3
+00:00:06.438 --> 00:00:09.842
 Every provider tells you, in
 writing and ahead of time,
 
-6
-00:00:18.829 --> 00:00:22.000
+4
+00:00:09.842 --> 00:00:13.013
 what it will change, retire
 or patch in your tenant.
 
-7
-00:00:22.000 --> 00:00:25.663
+5
+00:00:13.013 --> 00:00:16.675
 The gap is that nobody reads
 it, owns it or closes it.
 
-8
-00:00:25.663 --> 00:00:28.451
+6
+00:00:16.675 --> 00:00:19.463
 The guide closes that gap in seven gates.
 
-9
-00:00:28.451 --> 00:00:33.374
+7
+00:00:19.463 --> 00:00:24.386
 Part 1 covers the orientation and
 the four collection gates for Azure
 
-10
-00:00:33.374 --> 00:00:38.638
+8
+00:00:24.386 --> 00:00:29.650
 Service Health, Microsoft 365, Oracle
 Cloud Infrastructure and AWS Health.
 
-11
-00:00:38.638 --> 00:00:41.924
+9
+00:00:29.650 --> 00:00:32.936
 Part 2 covers Google
 Cloud, routing to owners,
 
-12
-00:00:41.924 --> 00:00:46.188
+10
+00:00:32.936 --> 00:00:37.200
 the digest and the evidence,
 then the dangers and rollback.
 
-13
-00:00:46.188 --> 00:00:50.622
+11
+00:00:37.200 --> 00:00:41.634
 For each gate you'll see the steps, what
 the kit really prints on its fixtures,
 
-14
-00:00:50.622 --> 00:00:54.413
+12
+00:00:41.634 --> 00:00:45.425
 the federal requirement, the
 evidence and the government cloud.
 
-15
-00:00:54.413 --> 00:00:59.980
+13
+00:00:45.425 --> 00:00:50.980
 The kit's code is illustrative, tested
 against fixtures, not against a live tenant.

@@ -668,7 +668,7 @@ Gate 3 leaves the sync configuration export, the reconciliation report, the shad
 
 The kits don't read everything. No check reads Gate 0's decisions, and VK-SYNC-01 reads slot values, not the sync configuration, scoping or match blocking. The guide's "where the kits stop" table names the stand-in evidence for each.
 
-Part 2 takes Gates 4 to 6: the dynamic group library and administrative units, the Conditional Access personas and the device, server and non-person targeting conventions, and PIV and CAC binding. The attributes are now true and flowing. Next, the mechanisms that read them.`,
+Part 2 takes Gates 4 to 6: the dynamic group library and administrative units, the Conditional Access personas and the device, server and non-person targeting conventions, and PIV binding. The attributes are now true and flowing. Next, the mechanisms that read them.`,
   `${IG}, Gates 0–3, Evidence; Gate 4, Prerequisites; "Where the kits stop"; "In this guide."`);
 }
 endModule(SC);

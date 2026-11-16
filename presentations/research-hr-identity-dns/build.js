@@ -227,22 +227,20 @@ On-premises systems reach cloud private names by forwarding from the Grid, meani
   "Research brief §8, What must resolve where, and the sources in each row: Microsoft Learn [S2, S4, S4b (excerpt), S8 (excerpt), S11b (excerpt), S13–S15 (excerpts)]; Oracle [S20–S24]; AWS [S29, S30]; Broadcom [S36]; Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S31, S57].");
 }
 
-// ================================================================== 5 Government-cloud names differ
+// ================================================================== 5 GCC uses the worldwide names
 {
-  const s = content(SEC, "Government clouds use different names");
+  const s = content(SEC, "GCC uses the worldwide names");
   tag(s, "Why");
   table(s, "Graph", 1.45, [2.6, 3.3, 2.75], ["Microsoft 365 environment", "Microsoft Graph", "Sign-in"], [
     ["GCC", "graph.microsoft.com (worldwide)", "login.microsoftonline.com"],
-    ["GCC High", "graph.microsoft.us", "login.microsoftonline.us"],
-    ["The higher government cloud", "a separate .us Graph host", "login.microsoftonline.us"],
   ], { fontSize: 11.5 });
   T(s, "Tokens", [
     { text: "Microsoft: ", options: { bold: true, color: HEX.red } },
     { text: "access tokens from one national cloud \"are not interchangeable\" with another." },
   ], { x: 0.6, y: 3.2, w: 8.65, h: 0.32, fontSize: 12 });
-  table(s, "Agent", 3.65, [1.9, 3.3, 3.45], ["Provisioning agent", "Public cloud (also GCC)", "U.S. Government cloud"], [
-    ["Service relay", "*.msappproxy.net, *.servicebus.windows.net", "*.msappproxy.us, *.servicebus.usgovcloudapi.net"],
-    ["Certificate checks (port 80)", "crl.microsoft.com, ocsp.msocsp.com and others", "crl.microsoft.us, ocsp.msocsp.us and others"],
+  table(s, "Agent", 3.65, [3.0, 5.65], ["Provisioning agent", "Public cloud (also GCC)"], [
+    ["Service relay", "*.msappproxy.net, *.servicebus.windows.net"],
+    ["Certificate checks (port 80)", "crl.microsoft.com, ocsp.msocsp.com and others"],
   ], { fontSize: 11 });
   panel(s, "Agent rules", 9.5, 1.5, 3.25, 4.85, HEX.navy, HEX.navyTint, "THE AGENT'S NETWORK RULES", null, [
     "Outbound 443 for service traffic; 80 for certificate revocation lists",
@@ -252,16 +250,16 @@ On-premises systems reach cloud private names by forwarding from the Grid, meani
   ], 11.5);
   sources(s, "Sources: Microsoft Learn Graph national clouds [S2]; cloud sync prerequisites [S4]; troubleshooting [S4b (excerpt)]; agent install [S7 (excerpt)]; agents [S6 (excerpt)].");
   notes(s,
-`Next, the government clouds use different names, and getting this wrong fails quietly.
+`Next, which names a GCC tenant uses, because getting this wrong fails quietly.
 
-Microsoft Graph has a separate address per cloud. A GCC tenant, Microsoft's government community cloud, keeps using the worldwide endpoints: graph dot microsoft dot com, and login dot microsoftonline dot com. A GCC High tenant uses graph dot microsoft dot us, and login dot microsoftonline dot us. The higher government cloud has its own Graph host and the same dot-us sign-in. Microsoft says access tokens from one national cloud aren't interchangeable with another's.
+A GCC tenant, Microsoft's government community cloud, keeps using the worldwide endpoints: graph dot microsoft dot com, and login dot microsoftonline dot com. Microsoft says access tokens from one national cloud aren't interchangeable with another's, so a call to the wrong cloud's host fails.
 
-The provisioning agent has its own list. In the public cloud, which GCC tenants also use, it reaches relay names under msappproxy dot net and servicebus dot windows dot net. In the U.S. Government cloud those become msappproxy dot us and servicebus dot usgovcloudapi dot net, with dot-us certificate-check names too.
+The provisioning agent has its own list. In the public cloud, which GCC tenants also use, it reaches relay names under msappproxy dot net and servicebus dot windows dot net, and certificate-check names such as crl dot microsoft dot com.
 
 The agent uses outbound port 443 for service traffic and port 80 for certificate revocation lists, and needs no inbound ports. Per Microsoft Learn, from search excerpts: public DNS for these names is a chain of CNAME records, you should avoid inline TLS inspection, meaning a proxy that decrypts the traffic, and the agent installs to the default Azure environment unless told otherwise.
 
-So keep a per-cloud list of names, and test through the real egress path.`,
-  "Microsoft Learn: Microsoft Graph national cloud deployments [S2]; Prerequisites for Microsoft Entra Cloud Sync, firewall and proxy requirements [S4]; Cloud sync troubleshooting [S4b (excerpt)]; On-premises application provisioning architecture [S6 (excerpt)]; Install the provisioning agent and Hybrid identity considerations for Azure Government [S7 (excerpt)].");
+So keep a list of the names your tenant uses, and test through the real egress path.`,
+  "Microsoft Learn: Microsoft Graph national cloud deployments [S2]; Prerequisites for Microsoft Entra Cloud Sync, firewall and proxy requirements [S4]; Cloud sync troubleshooting [S4b (excerpt)]; On-premises application provisioning architecture [S6 (excerpt)]; Install the provisioning agent [S7 (excerpt)].");
 }
 
 // ================================================================== 6 Oracle
@@ -310,9 +308,7 @@ Third, FedRAMP. The Marketplace lists Oracle Fusion Cloud at FedRAMP Moderate. O
     "Voice media relays (TURN): TurnNlb-*.elb.<region>.amazonaws.com, UDP 3478",
     "Can't resolve TURN names → the softphone can't set up its media channel",
   ], 11.5);
-  panel(s, "Gov", 4.8, 1.5, 4.05, 4.85, HEX.navy, HEX.navyTint, "GOVCLOUD AND PRIVATE PATHS", null, [
-    "Connect in GovCloud: US-West only; names under *.govcloud.connect.aws",
-    "Not there: Customer Profiles, Cases, outbound campaigns, email, AI agents and others; no cross-partition integration",
+  panel(s, "Gov", 4.8, 1.5, 4.05, 4.85, HEX.navy, HEX.navyTint, "PRIVATE PATHS", null, [
     "PrivateLink covers a subset of Connect APIs (inference: API calls, not the agent or voice path)",
     "A Lambda in a VPC reaches only that VPC without NAT",
   ], 11.5);
@@ -321,18 +317,16 @@ Third, FedRAMP. The Marketplace lists Oracle Fusion Cloud at FedRAMP Moderate. O
     "The change is blocked if the name doesn't fully resolve",
     "Fix the A and PTR records first; keep them in the Grid",
   ], 11.5);
-  sources(s, "Sources: AWS Connect CCP networking [S27], GovCloud Connect [S28], Connect interface endpoints [S29], Lambda in a VPC [S30]; Broadcom KB 440783 [S36].");
+  sources(s, "Sources: AWS Connect CCP networking [S27], Connect interface endpoints [S29], Lambda in a VPC [S30]; Broadcom KB 440783 [S36].");
   notes(s,
 `Two more components: Amazon Connect, AWS's contact center service, and VMware.
 
 Connect agents work in a browser, in the Contact Control Panel, and AWS says that traffic traverses the public network. AWS prefers a domain allowlist: the instance name under my dot connect dot aws, plus telemetry, participant and transport names, and media names for TURN, a relay that carries the call audio, on UDP port 3478. If agents' DNS can't resolve those TURN names, the softphone can't set up its media channel. So don't over-restrict DNS for agents.
 
-In AWS GovCloud, Connect is available only in the US-West region. It uses names under govcloud dot connect dot aws, has no cross-partition integration with commercial regions, and lacks several features, including Customer Profiles, Cases and outbound campaigns.
-
 AWS PrivateLink, which gives an AWS API a private address inside your network, covers only a subset of Connect APIs. As an inference, that helps workloads making API calls, not the agent or voice path. A Lambda function attached to a VPC can reach only that VPC unless you add NAT or interface endpoints.
 
 VMware: a Broadcom knowledge article says changing vCenter's hostname or address runs forward and reverse DNS lookups, and the change is blocked if the name doesn't fully resolve. Keep those records right in the Grid.`,
-  "AWS: Amazon Connect, Set up your network for the CCP [S27]; AWS GovCloud (US) User Guide, Connect Customer [S28]; Amazon Connect and interface VPC endpoints [S29]; AWS Lambda, Giving functions access to resources in a VPC [S30]; Broadcom KB 440783, VAMI hostname or IP change fails [S36].");
+  "AWS: Amazon Connect, Set up your network for the CCP [S27]; Amazon Connect and interface VPC endpoints [S29]; AWS Lambda, Giving functions access to resources in a VPC [S30]; Broadcom KB 440783, VAMI hostname or IP change fails [S36].");
 }
 
 // ================================================================== 8 Precedence
@@ -376,7 +370,7 @@ So, as an inference, the same zone and the same rule give different answers in e
     ["Grid falls back to the internet", "NIOS: with \"Use Forwarders Only\" off, failed forwarders → root hints (inference: a public answer)", "Turn on \"Use Forwarders Only\" for cloud private zones (inference)"],
     ["Forwarding loops", "Azure: a rule targeting an inbound endpoint, linked to that endpoint's own network", "One authoritative path per namespace; review for cycles"],
     ["TLS name mismatch", "Connecting by private name or IP fails certificate checks (inference)", "Keep the public FQDN in every connection string"],
-    ["Wrong cloud's endpoints", "A GCC High tenant calling the worldwide Graph fails", "Per-cloud endpoint inventory"],
+    ["Wrong cloud's endpoints", "A call to another cloud's Graph host fails: tokens aren't interchangeable", "An endpoint inventory for the tenant's cloud"],
     ["Resolver capacity", "Route 53: 10,000 queries/s per endpoint IP, as low as 1,500 with connection tracking", "Size before each onboarding wave"],
   ], { fontSize: 10.5 });
   sources(s, "Sources: Microsoft Learn [S2, S10, S10b, S12, S14b — excerpts]; AWS [S25, S32]; Oracle [S23]; Infoblox NIOS 9.1 [S37]; Book 08 Ch02, Ch10. Full table in Backup.");
@@ -495,8 +489,7 @@ And test from every origin. Any public answer or NXDOMAIN for a private name is 
   ], 12);
   panel(s, "Next", 4.75, 1.5, 4.0, 4.85, HEX.amber, HEX.amberTint, "NEXT STEPS (OPEN CHECKS)", null, [
     "Which Oracle environment and hostnames the agency's Core HCM tenant uses",
-    "Whether /bulkUpload is available in the U.S. Government Graph cloud",
-    "Government-cloud availability of Azure DNS Private Resolver, Lifecycle Workflows and Connect PrivateLink",
+    "Private Link for Graph; OCI private DNS limits and government-realm endpoints",
     "VMware install-guide DNS rules; Oracle's connectivity patterns",
   ], 12);
   panel(s, "Fit", 8.9, 1.5, 3.85, 4.85, HEX.navy, HEX.navyTint, "WHERE IT FITS", null, [
@@ -508,7 +501,7 @@ And test from every origin. Any public answer or NXDOMAIN for a private name is 
   notes(s,
 `The decisions. Who owns each namespace, the Grid or a cloud. Which middleware platform, and so which network and resolver path it uses. The hub design in each cloud. And whether Oracle's private access is needed at all, remembering that it's routing, not DNS.
 
-The next steps are the things I couldn't verify. Which Oracle environment and hostnames the agency's Core HCM tenant will use. Whether API-driven inbound provisioning is available in the U.S. Government Graph cloud. Whether Azure's DNS Private Resolver, Lifecycle Workflows and Connect private endpoints are available in the government clouds. And the VMware install guides' DNS rules and Oracle's own connectivity patterns, which I couldn't open. They're all listed in the backup.
+The next steps are the things I couldn't verify. Which Oracle environment and hostnames the agency's Core HCM tenant will use. Private Link for Graph, and OCI's private DNS limits and government-realm endpoints. And the VMware install guides' DNS rules and Oracle's own connectivity patterns, which I couldn't open. They're all listed in the backup.
 
 Where does this fit? Book 03 covers HR-driven identity, with Federal HR 2.0 in Chapter 03 and the provisioning pipeline in Chapter 05. Book 08 covers DNS, DHCP and IP address management: split-brain DNS in Chapter 02, cloud private endpoints in Chapter 07, the reference architecture in Chapter 08, and the migration sequence in Chapter 10. Three research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud DDI; Infoblox DDI for Federal Agencies; and Who Names the Device After AD.
 
@@ -528,13 +521,13 @@ const WHERE_W = [2.3, 3.75, 1.2, 1.5, 3.4];
   const s = content("Backup", "Resolve where: middleware, workflows, agents");
   table(s, "Where A", 1.45, WHERE_W, WHERE_HEAD, [
     ["HR middleware: Functions or Logic Apps Standard (VNet-integrated)", "<env>.fa.ocs.oraclecloud.com (Atom, REST, extracts) [S20, S19]", "Public", "Oracle", "Agency resolver, recursive; no private zone"],
-    ["", "Graph and sign-in for your cloud: worldwide for GCC, .us for GCC High and the higher cloud [S2]", "Public", "Microsoft", "Recursive; allow the AzureActiveDirectory service tag [S16 (excerpt)]"],
+    ["", "Graph and sign-in: worldwide for GCC [S2]", "Public", "Microsoft", "Recursive; allow the AzureActiveDirectory service tag [S16 (excerpt)]"],
     ["", "Evidence store, Key Vault (*.blob.core.windows.net, *.vault.azure.net)", "Private (privatelink)", "Agency (cloud)", "Linked privatelink zone, or WEBSITE_DNS_SERVER → resolver forwarding to Azure [S13, S14 (excerpts)]"],
     ["HR middleware: Oracle Integration", "Fusion host; Graph and sign-in", "Public", "Oracle; Microsoft", "OIC itself; the agent goes over the internet [S24]"],
     ["", "VCN-private targets", "Private", "Agency (OCI)", "Private endpoint, by FQDN [S24]; OCI view or rule [S23]"],
     ["Lifecycle Workflows extension (Consumption Logic App)", "Public targets only (inference)", "Public", "Varies", "Multitenant; no VNet [S11b, S15 (excerpts)]"],
     ["Entra provisioning agent / cloud sync (on-premises)", "AD domain controller locators (SRV, _msdcs)", "Private", "Agency (AD DNS → Grid)", "Internal resolver [S8 (excerpt); Book 08 Ch08 Decision 4]"],
-    ["", "*.msappproxy.net, *.servicebus.windows.net, sign-in, CRL/OCSP; gov: *.msappproxy.us, *.servicebus.usgovcloudapi.net, *.microsoftonline.us, crl.microsoft.us [S4]", "Public", "Microsoft", "Recursive through proxy or egress; no TLS inspection [S4b (excerpt)]"],
+    ["", "*.msappproxy.net, *.servicebus.windows.net, sign-in, CRL/OCSP [S4]", "Public", "Microsoft", "Recursive through proxy or egress; no TLS inspection [S4b (excerpt)]"],
     ["Entra provisioning service (cloud), for writeback", "Fusion host (SCIM /hcmRestApi/scim/Users)", "Public", "Oracle", "Microsoft side; the agency has no control"],
   ], { fontSize: 10, minRow: 0.28 });
   sources(s, "Sources: research brief §8, What must resolve where (rows 1–9), with the source keys shown in each cell.");
@@ -547,7 +540,7 @@ const WHERE_W = [2.3, 3.75, 1.2, 1.5, 3.4];
     ["", "OCI private views (for example, an OIC private target's zone)", "Private", "Agency (OCI)", "Grid → OCI listening endpoint [S23]"],
     ["", "Fusion, Entra and Connect hosts", "Public", "Vendors", "Recursive (Protective DNS chain) [Book 08 Ch08 Decision 2]"],
     ["Fusion private-access users (on-premises)", "<env>.fa.ocs.oraclecloud.com", "Public DNS, private routing", "Oracle", "Service Gateway transit; disable content acceleration [S21, S22]"],
-    ["Amazon Connect agents (browser)", "<instance>.my.connect.aws (or *.govcloud.connect.aws), telemetry, participant, transport, TurnNlb-*.elb.<region>.amazonaws.com, *.cloudfront.net, SAML IdP [S27, S28]", "Public", "AWS; Microsoft", "Recursive; allow TURN resolution"],
+    ["Amazon Connect agents (browser)", "<instance>.my.connect.aws, telemetry, participant, transport, TurnNlb-*.elb.<region>.amazonaws.com, *.cloudfront.net, SAML IdP [S27]", "Public", "AWS; Microsoft", "Recursive; allow TURN resolution"],
     ["Connect flow Lambda (VPC-attached)", "Agency HR or identity APIs", "Private", "Agency (Grid)", "VPC Resolver outbound rule → Grid [prior-M S31]"],
     ["", "AWS APIs (for example connect.<region>.amazonaws.com)", "Private via interface endpoint, or public via NAT", "AWS", "[S29, S30]"],
     ["vCenter, ESXi, NSX", "Each other's FQDNs, forward and reverse", "Private", "Agency (Grid)", "Grid A and PTR records [S36]"],
@@ -575,7 +568,7 @@ const FAIL_W = [0.55, 2.5, 5.2, 3.9];
   const s = content("Backup", "Failure modes F9–F16");
   table(s, "Fail B", 1.45, FAIL_W, FAIL_HEAD, [
     ["F9", "TLS name mismatch", "DNS must resolve the connection string's FQDN [S10b (excerpt)]; OIC needs an FQDN, not an IP [S24]; no TLS inspection for Entra agents [S4b (excerpt)]", "Keep the public FQDN; exempt agent traffic from break-and-inspect"],
-    ["F10", "Wrong cloud's endpoints", "Tokens not interchangeable [S2]; agent defaults to public environment [S7 (excerpt)]; gov .us names [S4]; Connect GovCloud domain [S28]", "Per-cloud endpoint inventory and allowlist; test through production egress"],
+    ["F10", "Wrong cloud's endpoints", "Tokens not interchangeable [S2]; agent defaults to public environment [S7 (excerpt)]", "An endpoint inventory and allowlist for the tenant's cloud; test through production egress"],
     ["F11", "Resolver quotas", "Route 53: 10,000 UDP QPS per endpoint IP, as low as 1,500 with connection tracking or an NLB [S32]. Azure: 10,000 QPS per endpoint; 5/5 endpoints [S10; prior-M S28]", "Size from metrics; add endpoint IPs at 50% load [S32]"],
     ["F12", "DNS blocked for media", "Connect softphone fails when TurnNlb-* names can't resolve [S27]", "Allow resolution of the Connect names"],
     ["F13", "Middleware loses egress or DNS", "Atom data can be purged [S18]; delay can lose changes [S1]; VPC Lambda has no internet without NAT [S30]; App Service DNS 3 s per server [S15b (excerpt)]", "Reconcile with full extracts; redundant resolvers"],
@@ -590,11 +583,8 @@ const FAIL_W = [0.55, 2.5, 5.2, 3.9];
   table(s, "Unverified", 1.45, [3.4, 8.75], ["Open question", "Status as of Oct. 22, 2026"], [
     ["Oracle's Fusion connectivity patterns", "The Oracle A-Team page returned HTTP 403 (not retried or worked around); the support note needs a login; Oracle's docs give no DNS guidance for private access"],
     ["The agency Core HCM tenant", "Which Oracle environment it runs in, and its hostname domain; no document ties the tenant to Oracle's government cloud or gives its URLs"],
-    ["/bulkUpload in the U.S. Government Graph cloud", "The API reference showed no national-cloud availability table"],
     ["Private Link for Graph or Entra sign-in", "None found; treat them as public-only"],
-    ["Azure DNS Private Resolver and Lifecycle Workflows in Azure Government", "Resolver availability page is client-rendered; Lifecycle Workflows not checked"],
     ["OCI private DNS limits and government-realm endpoints", "Numeric limits not on the page; only \"private DNS zones are supported\" is documented for the government realm"],
-    ["Connect PrivateLink in GovCloud", "The Connect PrivateLink page doesn't mention GovCloud"],
     ["VMware install-guide DNS rules", "Forward and reverse records required, and vCenter–ESXi mutual resolution, seen only in search excerpts; VCF 9.x prerequisites not opened"],
     ["Forwarding-loop guidance from AWS or Infoblox", "None found; only Azure documents loops"],
     ["Excerpt-only Microsoft pages", "Windows forwarder timeout, Lifecycle Workflows and the agent's government install pages were read as search excerpts"],
@@ -608,14 +598,14 @@ const srcSlide = (title, src) => {
 };
 srcSlide("Sources: Microsoft Learn", [
   "Entra provisioning: S1 Configure Oracle HCM for automatic user provisioning  ·  S3 API-driven inbound provisioning FAQ  ·  S5 Perform bulkUpload (Graph v1.0)  ·  S6 On-premises application provisioning architecture (excerpt)  ·  S7b Provisioning users into applications using PowerShell (excerpt)  ·  S8 Plan cloud HR application to Entra user provisioning (excerpt).",
-  "Clouds and agents: S2 Microsoft Graph national cloud deployments  ·  S4 Prerequisites for Microsoft Entra Cloud Sync, firewall and proxy  ·  S4b Cloud sync troubleshooting (excerpt)  ·  S7 Install the provisioning agent; Hybrid identity considerations for Azure Government (excerpts)  ·  S7c Entra Connect special considerations for instances (excerpt).",
+  "Clouds and agents: S2 Microsoft Graph national cloud deployments  ·  S4 Prerequisites for Microsoft Entra Cloud Sync, firewall and proxy  ·  S4b Cloud sync troubleshooting (excerpt)  ·  S7 Install the provisioning agent (excerpt)  ·  S7c Entra Connect special considerations for instances (excerpt).",
   "Lifecycle Workflows and Logic Apps: S11 Synchronize attributes for Lifecycle workflows; LCW with synced users (excerpts)  ·  S11b Lifecycle Workflows custom task extension (excerpt)  ·  S13 Secure traffic between Standard logic apps and virtual networks (excerpt)  ·  S15 Logic Apps scenarios (excerpt)  ·  S15b Troubleshoot VNet integration with App Service (excerpt).",
   "Azure DNS: S9b Azure DNS Private Resolver architecture (excerpt)  ·  S10 Private Resolver endpoints and rulesets (excerpt)  ·  S10b Private endpoint DNS zone values (excerpt)  ·  S10c Private resolver architecture (excerpt)  ·  S12 Troubleshoot NXDOMAIN from a private DNS zone (excerpt)  ·  S12b Fallback to internet (excerpt).",
   "Networking: S14 Integrate your app with an Azure virtual network (excerpt)  ·  S14b Name resolution for resources in Azure virtual networks (excerpt)  ·  S14c Azure ML custom DNS (excerpt)  ·  S16 Purview private endpoints, AzureActiveDirectory service tag (excerpt).",
 ]);
 srcSlide("Sources: Oracle, AWS, Broadcom, Infoblox, FedRAMP", [
   "Oracle: S18 REST API for Fusion Cloud HCM, Working with Atom  ·  S19 Employee Atom Feeds  ·  S20 Fusion Applications demo environment setup (host pattern)  ·  S21 Securely Accessing Fusion Applications  ·  S22 Transit Routing for Private Access to Oracle Services  ·  S23 OCI Private DNS  ·  S24 Oracle Integration connectivity agent; Private Endpoint vs. Connectivity Agent; Connect to Private Resources  ·  S26 US Government Cloud with FedRAMP authorization.",
-  "AWS: S25 Route 53, Considerations when working with a private hosted zone  ·  S27 Amazon Connect, Set up your network for the CCP  ·  S28 GovCloud (US) User Guide, Connect Customer  ·  S29 Amazon Connect and interface VPC endpoints  ·  S30 Lambda, Giving functions access to resources in a VPC  ·  S32 Route 53 quotas  ·  S33 Managing forwarding rules  ·  S34 Using rules to control which queries are forwarded.",
+  "AWS: S25 Route 53, Considerations when working with a private hosted zone  ·  S27 Amazon Connect, Set up your network for the CCP  ·  S29 Amazon Connect and interface VPC endpoints  ·  S30 Lambda, Giving functions access to resources in a VPC  ·  S32 Route 53 quotas  ·  S33 Managing forwarding rules  ·  S34 Using rules to control which queries are forwarded.",
   "Broadcom: S36 KB 440783, VAMI hostname or IP change fails (vCenter 7.x/8.x).  Infoblox NIOS 9.1 (vendor documentation): S37 Specifying Forwarders (May 20, 2026)  ·  S38 Configuring a Forward Zone (May 25, 2026).",
   "FedRAMP: S40 FedRAMP Marketplace products.json (last change Oct. 22, 2026), records for Oracle Fusion Cloud, Oracle Cloud Infrastructure-Government Cloud, Amazon Connect and Microsoft 365.  Not opened (HTTP 403): Oracle A-Team, Network connectivity patterns for Oracle Cloud HCM and ERP on OCI.",
   "Workbook and prior research: Book 03 Ch03 Federal HR 2.0, Ch05 Provisioning Services  ·  Book 08 Ch02 Split-Brain DNS, Ch07 Cloud Private Endpoints, Ch08 Reference Architecture, Ch10 Migration Sequence  ·  Trinzic Alone, or Trinzic Plus Cloud DDI? (multi-cloud research, S27, S28, S31, S33, S57 as cited there).",

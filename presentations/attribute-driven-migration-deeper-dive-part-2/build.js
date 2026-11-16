@@ -2,7 +2,7 @@
 //   Gate 4: the dynamic group library (rule text, guards, rule tests, shadow diff, memberOf, deltas) and administrative units.
 //   Gate 5: Conditional Access personas, device targeting, and moving Group Policy for devices and servers ("adopt, don't
 //           build"), with one owning tool per setting for fleets Ansible already runs.
-//   Gate 6: the PIV and CAC binding (certificateUserIds, affinity, the writer, the open pilot).
+//   Gate 6: the PIV binding (certificateUserIds, affinity, the writer, the open pilot).
 // Follows docs/books/guides/attribute-driven-migration-implementation.md and data/project-plans/attribute-driven-migration.yaml.
 // Every fact, command, rule and payload is taken from a workbook chapter, a guide, docs/research or examples/; nothing is
 // added from outside. Design guidance is labeled; beta and preview features carry their stage.
@@ -20,7 +20,7 @@ const IG = "Attribute-Driven Migration implementation guide";
 
 const M1 = "Gate 4 — Groups and units";
 const M2 = "Gate 5 — Targeting and moving Group Policy";
-const M3 = "Gate 6 — PIV and CAC binding";
+const M3 = "Gate 6 — PIV binding";
 
 // ------------------------------------------------------------------ local helpers
 const LIMIT = 6.6;
@@ -71,7 +71,7 @@ section("Orientation");
   notes(s,
 `This is Part 2 of the deeper dive implementation series on attribute-driven migration from Active Directory to Microsoft Entra ID. The series sits below the two-part technical deep dive: it works at the level an engineer runs, with the rule text, the commands and their parameters, the input files the validation kit reads, what a failing check looks like, and the rollback for each gate.
 
-It follows the workbook's implementation guide, which runs the migration's shared foundation as ten gates, and the project plan that schedules them, with task IDs and decisions. Part 1 covered Gates 0 to 3: reading the OU tree, the schema and coded slots, proving the attributes, and mapping them through sync. Part 2 covers Gates 4 to 6. Gate 4 is the dynamic group library and the administrative units. Gate 5 is the Conditional Access personas and the targeting conventions, and the core of this part, moving Group Policy for devices and for servers by adopting Microsoft's tools rather than building our own. Gate 6 is the PIV and CAC certificate binding. Part 3 covers Gates 7 to 9.
+It follows the workbook's implementation guide, which runs the migration's shared foundation as ten gates, and the project plan that schedules them, with task IDs and decisions. Part 1 covered Gates 0 to 3: reading the OU tree, the schema and coded slots, proving the attributes, and mapping them through sync. Part 2 covers Gates 4 to 6. Gate 4 is the dynamic group library and the administrative units. Gate 5 is the Conditional Access personas and the targeting conventions, and the core of this part, moving Group Policy for devices and for servers by adopting Microsoft's tools rather than building our own. Gate 6 is the PIV certificate binding. Part 3 covers Gates 7 to 9.
 
 The labels are the series' usual ones. Facts come from the workbook's chapters and guides, which carry their Microsoft Learn sources. The program's recommendations are marked design guidance. Beta and preview features carry their stage.`,
   `${IG}, "How to use this guide," "The path on one page"; project plan (data/project-plans/attribute-driven-migration.yaml).`);
@@ -255,7 +255,7 @@ Scoped roles go to role-assignable groups whose members are eligible through PIM
 
 The decision that can't be undone is restriction, D-AT4, owned by identity engineering. Decide it before the unit exists. The default is no: restriction can't be changed afterward, and it takes the unit's users and groups out of PIM, entitlement management, Lifecycle Workflows and access reviews. Reserve it for small sets, such as executives and break-glass accounts. A tenant can have at most 100.
 
-VK-DG-07 reads au-group-map.csv and reports any mapped unit that isn't dynamic, or whose rule differs from its group's. It reads restricted-au-reasons.csv and reports any restricted unit with no recorded reason. Know what a unit doesn't do: units don't nest, they limit who can change members, not who can see them, and in GCC High and DoD, where dynamic units aren't available, an automation job keeps membership current.`,
+VK-DG-07 reads au-group-map.csv and reports any mapped unit that isn't dynamic, or whose rule differs from its group's. It reads restricted-au-reasons.csv and reports any restricted unit with no recorded reason. Know what a unit doesn't do: units don't nest, and they limit who can change members, not who can see them.`,
   `${IG}, Gate 4 steps 7–9, "Validate (Gate 4)"; project plan D-AT4, AT4.3; Book 02, Chapter 05 — "The three-tier model," "Administrative unit registry," "Illustrative code," "Restricted management: a per-AU decision"; Book 03, Chapter 10 — "Administrative units"; validation kit, Checks/DG.ps1 (VK-DG-07).`);
 }
 endModule(M1);
@@ -482,7 +482,7 @@ One more: if a server disconnects, its guest assignments are kept locally for 14
   ], { fontSize: 11, limit: 6.5 });
   const p = panel(s, "Connect", 7.45, 1.45, 5.3, null, HEX.teal, HEX.tealTint, "ARC CAN CONNECT THIS FLEET", null, [
     "RHEL 7–10 supported by the Connected Machine agent",
-    "EC2: the agent on each instance. The multicloud connector isn't in Azure Government",
+    "EC2: the agent on each instance, or the multicloud connector, which installs it",
     "Tags at connect: ConfigOwner from config_owner, PatchOwner from patch_owner",
     "Only PatchOwner UpdateManager servers get a patch schedule",
   ], 12);
@@ -499,7 +499,7 @@ One more: if a server disconnects, its guest assignments are kept locally for 14
   if (process.env.FIT) console.log(`  ansible: code ${c.toFixed(2)}, table ${t2.toFixed(2)}`);
   sources(s, "Sources: Ansible guide, \"One owning tool per setting\" (rules 1–5), \"Cloud VMs\"; Arc track guide, Step 2 tags, Step 7; Book 05, Ch 09; examples/ansible; validation kit ARC.ps1.");
   notes(s,
-`A common estate already runs Ansible: Red Hat Enterprise Linux on AWS, configured and patched by playbooks. Arc can connect it. RHEL 7 to 10 is on the Connected Machine agent's supported list. EC2 instances connect with the agent on each instance, or through the multicloud connector, which discovers instances and installs the agent, but the connector isn't available in Azure Government. Microsoft lists Ansible's azure_arc role among the at-scale onboarding methods.
+`A common estate already runs Ansible: Red Hat Enterprise Linux on AWS, configured and patched by playbooks. Arc can connect it. RHEL 7 to 10 is on the Connected Machine agent's supported list. EC2 instances connect with the agent on each instance, or through the multicloud connector, which discovers instances and installs the agent. Microsoft lists Ansible's azure_arc role among the at-scale onboarding methods.
 
 The danger is two tools on one setting. Ansible can write to a server that machine configuration already governs, and nothing in either tool notices; under auto-correct, the two flip a value back and forth while both report success. The Ansible guide's five rules, design guidance. One: the owner is an attribute, the CMDB's config_owner. Two: Ansible reads anything and writes only what it owns; a changing playbook runs only against hosts whose config_owner is Ansible, enforced by the inventory group built from that attribute and by an assertion in the playbook, as the example Linux baseline check does. Three: onboarding isn't owning. Four: an exception is a dated record with a reason, and the owner's baseline is updated within its life. Five: patching has one owner too, patch_owner, mirrored to the PatchOwner tag. Where Ansible already patches the fleet, Update Manager keeps periodic assessment only and schedules nothing on those servers.
 
@@ -573,16 +573,16 @@ section(M3);
     "PATCH /users/{id}   { \"authorizationInfo\": { \"certificateUserIds\": [ \"X509:<SKI>…\" ] } }",
     "Get-EntraUserCertificateUserIdsFromCertificate    # computes the values from a certificate",
   ], { label: "CLOUD-ONLY WRITE PATH (GRAPH) · MICROSOFT ENTRA POWERSHELL", pt: 11 });
-  sources(s, "Sources: Book 03, Ch 09 \"Binding the PIV certificate to the Entra user\"; companion guide, \"PIV and CAC certificates as attributes\"; implementation guide, Gate 6 step 1.");
+  sources(s, "Sources: Book 03, Ch 09 \"Binding the PIV certificate to the Entra user\"; companion guide, \"PIV certificates as attributes\"; implementation guide, Gate 6 step 1.");
   notes(s,
-`Gate 6 is the PIV and CAC binding. Certificate-based authentication is attribute-driven too: Entra ID finds the user by matching a field of the presented certificate to a field of the account, so who writes that field matters as much as any HR field. Plan task AT6.1 measures coverage first.
+`Gate 6 is the PIV binding. Certificate-based authentication is attribute-driven too: Entra ID finds the user by matching a field of the presented certificate to a field of the account, so who writes that field matters as much as any HR field. Plan task AT6.1 measures coverage first.
 
 By default the SAN Principal Name maps to userPrincipalName. The stronger option is certificateUserIds, which holds explicit identifiers, each with an X509 prefix naming the field. The table is Book 03 Chapter 09's. Principal name, RFC822 name, subject and issuer-and-subject are low affinity: they're built on names and email addresses. Subject key identifier, SHA1 public key, and issuer and serial number are high affinity: identifiers that can't be reused. The consequence for lifecycle: a high-affinity value identifies one certificate, so a card reissue, and even a renewal on the same key, changes it.
 
 The limits, as the companion guide states them: up to 10 values of up to 1,024 characters, each unique in the tenant, with case-sensitive X509 prefixes; the admin center takes up to four values of 120 characters.
 
 Who can write it depends on where the user is mastered. For cloud-only users, at least a Privileged Authentication Administrator, in the admin center or through Graph, a PATCH on the user with authorizationInfo.certificateUserIds. The Microsoft Entra PowerShell cmdlet on the slide computes the correct values from a certificate. For synced users, only Entra Connect can update it, by syncing a value from AD such as altSecurityIdentities through sync rules the administrator adds, and it needs at least the Hybrid Identity Administrator role. Microsoft's page doesn't document Cloud Sync for this attribute. And note Microsoft's warning: AD administrators can change the value for any synced account, so the write path to altSecurityIdentities is governed like an access slot.`,
-  `${IG}, Gate 6 steps 1–2; companion guide — "PIV and CAC certificates as attributes" ("Username binding," "certificateUserIds"); Book 03, Chapter 09 — "Binding the PIV certificate to the Entra user."`);
+  `${IG}, Gate 6 steps 1–2; companion guide — "PIV certificates as attributes" ("Username binding," "certificateUserIds"); Book 03, Chapter 09 — "Binding the PIV certificate to the Entra user."`);
 }
 
 // 15 Affinity and writer
@@ -623,7 +623,7 @@ The leaver removes the binding as well as revoking the card.
 And decide the writer after AD, D-AT7, owned by the ICAM governance body. Design guidance, unverified: after AD, the card management system writes certificateUserIds through Microsoft Graph at issuance. That's an open pilot, workbook issue 130, because Microsoft documents neither the permission a workload needs nor how the write behaves for cloud-mastered users. It has to be decided before the program moves issuance off AD CS.
 
 VK-PIV-01 validates it. It reads certificateUserIds for every holder in pilot-card-holders.csv, by user principal name or ID, and reports holders not found or not readable, holders with no value, and holders with only low-affinity values, by account and binding type, never by certificate value. Affinity comes from each value's X509 prefix, and RequiredAffinity defaults to High. For a synced holder with no value, the row points at altSecurityIdentities in AD. A value matching no supported pattern is a Warn, since the prefixes are case-sensitive. Two limits: it can't tell whether a value belongs to a current card, so reconcile its rows with the card management system; and whether Global Reader can read authorizationInfo is unconfirmed, so run it app-only or confirm in a test tenant. Add the pilot's sign-in logs showing CBA succeeding under the high-affinity rule. Rollback is the affinity setting or the per-issuer rule; a binding value is restored from the card management system.`,
-  `${IG}, Gate 6 steps 1–6, "Validate (Gate 6)," "Rollback"; project plan AT6.1, AT6.2, D-AT6, D-AT7; companion guide, "PIV and CAC certificates as attributes"; Book 03, Chapter 09; Book 07, Chapter 06 — "Username bindings and affinity"; Book 04, Chapter 03 — "Authentication strengths."`);
+  `${IG}, Gate 6 steps 1–6, "Validate (Gate 6)," "Rollback"; project plan AT6.1, AT6.2, D-AT6, D-AT7; companion guide, "PIV certificates as attributes"; Book 03, Chapter 09; Book 07, Chapter 06 — "Username bindings and affinity"; Book 04, Chapter 03 — "Authentication strengths."`);
 }
 
 // 16 Decisions
@@ -633,7 +633,7 @@ VK-PIV-01 validates it. It reads certificateUserIds for every holder in pilot-ca
   const tb = table(s, "Decisions", 1.45, [1.0, 3.3, 2.2, 5.65], ["ID", "Decision", "Owner", "Options (project plan)"], [
     ["D-AT4", "Restricted management, unit by unit, before each unit exists", "Identity engineering", "No (default); yes for a small sensitive set, accepting they leave PIM, entitlement management, Lifecycle Workflows and reviews"],
     ["D-AT5", "The persona set the Conditional Access library targets", "CISO", "Worker type and account type personas; plus division overlays; fewer personas with more exclusions (not recommended)"],
-    ["D-AT6", "Required affinity binding for PIV and CAC", "CISO", "High in production, custom rule per issuer in the pilot; low until coverage is complete, dated; mixed by issuer"],
+    ["D-AT6", "Required affinity binding for PIV", "CISO", "High in production, custom rule per issuer in the pilot; low until coverage is complete, dated; mixed by issuer"],
     ["D-AT7", "Who writes the binding after AD", "ICAM governance body", "Card system through Graph (design guidance, open pilot); Connect while AD remains; manual entry (not at scale)"],
   ], { fontSize: 11.5, limit: 6.5 });
   callout(s, "Next", tb + 0.3, 0.95, "FaRoute", HEX.teal, "Part 3, Gates 7–9: ",
@@ -673,9 +673,9 @@ sourceSlide("Sources behind Gate 5 — targeting and Group Policy", [
   "Ansible configuration automation guide: \"One owning tool per setting\" (rules 1–5), \"Arc onboarding at scale,\" \"Linux and Unix baselines,\" \"Cloud VMs,\" dangers. Arc track guide: Step 2.1 tag table, Step 5, Step 7. Intune track guide: Gates 2–3.",
   "examples/ms-automation README and FmwGraph.psm1 (ca-export); examples/ansible 03_linux_baseline_check.yml; validation kit README, Checks/CA.ps1 (VK-CA-01), Checks/INT.ps1 (VK-INT-01, 04, 07) and Checks/ARC.ps1 (VK-ARC-07, owner spellings normalized).",
 ]);
-sourceSlide("Sources behind Gate 6 — PIV and CAC binding", [
+sourceSlide("Sources behind Gate 6 — PIV binding", [
   "Implementation guide, Gate 6 steps 1–6, Validate, Rollback, Evidence; \"Where the kits stop.\" Project plan: AT6.1, AT6.2, D-AT6, D-AT7, ATG6, and the margins note. Validation kit README and Checks/PIV.ps1 (VK-PIV-01).",
-  "Companion guide, \"PIV and CAC certificates as attributes\" (username binding, affinity, certificateUserIds limits and writers, authentication strength, where the binding comes from).",
+  "Companion guide, \"PIV certificates as attributes\" (username binding, affinity, certificateUserIds limits and writers, authentication strength, where the binding comes from).",
   "Book 03, Ch 09 \"Binding the PIV certificate to the Entra user,\" \"The canonical leaver sequence.\" Book 07, Ch 06 \"Username bindings and affinity.\" Book 04, Ch 03 \"Authentication strengths.\"",
   "Unverified: certificateUserIds written through Graph by the card management system after AD (design guidance), workbook issue #130, an open pilot. Cloud Sync for certificateUserIds: not documented by Microsoft.",
 ]);

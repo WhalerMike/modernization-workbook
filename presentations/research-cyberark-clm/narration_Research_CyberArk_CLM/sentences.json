@@ -606,33 +606,6 @@
    "We limit what the account can request, prove in the lab that a request outside those templates fails, and alert if one ever succeeds."
   ]
  ],
- "22": [
-  [
-   0.05,
-   7.875,
-   "For public certificates, the platform has drivers for the major public CAs, and two changes in this release matter before you upgrade."
-  ],
-  [
-   7.925,
-   6.05,
-   "Entrust is no longer supported as a public CA, so if that's your provider, plan the path first."
-  ],
-  [
-   13.975,
-   5.213,
-   "And DigiCert client certificates now need an email address, or renewals fail."
-  ],
-  [
-   19.188,
-   5.775,
-   "On the cloud side, the platform can issue through AWS and install into Azure Key Vault."
-  ],
-  [
-   24.962,
-   6.15,
-   "What I couldn't confirm is Key Vault support in Azure Government, so test it or ask before you rely on it."
-  ]
- ],
  "23": [
   [
    0.05,
@@ -875,6 +848,28 @@
    "After Active Directory, server certificates come from a standalone CA under the same root, still driven by the platform."
   ]
  ],
+ "22": [
+  [
+   0.05,
+   7.875,
+   "For public certificates, the platform has drivers for the major public CAs, and two changes in this release matter before you upgrade."
+  ],
+  [
+   7.925,
+   6.05,
+   "Entrust is no longer supported as a public CA, so if that's your provider, plan the path first."
+  ],
+  [
+   13.975,
+   5.213,
+   "And DigiCert client certificates now need an email address, or renewals fail."
+  ],
+  [
+   19.188,
+   5.775,
+   "On the cloud side, the platform can issue through AWS and install into Azure Key Vault."
+  ]
+ ],
  "34": [
   [
    0.05,
@@ -888,26 +883,26 @@
   ],
   [
    9.412,
-   8.188,
-   "There are a few questions to put to CyberArk in writing, mainly around FIPS, Windows Server 2025, and Azure Government."
+   8.838,
+   "There are a few questions to put to CyberArk in writing, mainly around FIPS, Windows Server 2025, and piv console sign-in."
   ],
   [
-   17.6,
+   18.25,
    10.088,
    "And the next steps are concrete: stand up the test cluster, create the CA account under the ESC7 controls, and prove in the lab that it can't do more than it should."
   ],
   [
-   27.688,
+   28.337,
    7.588,
    "The program's view is clear ,  this is the right platform for the workbook's certificate plan, and its risks are known and manageable."
   ],
   [
-   35.275,
+   35.925,
    5.862,
    "This is the program's research, under review, and not an endorsement by any federal agency."
   ],
   [
-   41.138,
+   41.788,
    1.1,
    "Thanks for watching."
   ]

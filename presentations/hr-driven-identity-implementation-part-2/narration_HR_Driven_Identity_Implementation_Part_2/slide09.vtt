@@ -21,53 +21,54 @@ A failed download is the finding,
 so it's recorded, not raised.
 
 5
-00:00:13.850 --> 00:00:17.575
+00:00:13.850 --> 00:00:18.725
 Then it checks the tenant's settings
-against the limits for a named cloud.
+against the limits for the named cloud, GCC.
 
 6
-00:00:17.575 --> 00:00:19.825
+00:00:18.725 --> 00:00:20.975
 The fictional tenant tells a story.
 
 7
-00:00:19.825 --> 00:00:22.236
+00:00:20.975 --> 00:00:23.386
 One certificate authority was renewed,
 
 8
-00:00:22.236 --> 00:00:26.400
+00:00:23.386 --> 00:00:27.550
 so the card program's expected
 authority is gone from the trust store.
 
 9
-00:00:26.400 --> 00:00:30.187
+00:00:27.550 --> 00:00:31.337
 The renewed list is eighteen
 and a half million bytes,
 
 10
-00:00:30.187 --> 00:00:34.662
+00:00:31.337 --> 00:00:35.812
 takes over eleven seconds to
 download, and is served over HTTPS.
 
 11
-00:00:34.662 --> 00:00:37.563
-The slow download fails in every cloud.
+00:00:35.812 --> 00:00:38.637
+The slow download fails
+the ten-second limit.
 
 12
-00:00:37.563 --> 00:00:41.149
+00:00:38.637 --> 00:00:42.225
 The policy mapping points at
 the wrong PIV identifier.
 
 13
-00:00:41.149 --> 00:00:45.088
+00:00:42.225 --> 00:00:46.163
 And the phishing-resistant policy
 is still in report-only mode.
 
 14
-00:00:45.088 --> 00:00:49.074
-Run the same check for GCC High
-and one warning disappears.
+00:00:46.163 --> 00:00:49.521
+And the renewed list's size
+is over eighty percent
 
 15
-00:00:49.074 --> 00:00:53.690
-That size is close to the commercial
-limit, but well under Azure Government's.
+00:00:49.521 --> 00:00:52.610
+of GCC's interactive limit,
+so that's a warning.

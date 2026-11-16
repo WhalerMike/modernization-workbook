@@ -1,9 +1,9 @@
 // Companion guide — Zero Trust Assessment: An Implementation Guide.
 // A narrated Why / What / Who / How deck of about 15 minutes (15 narrated slides, then a backup section).
 //   Why:   a score isn't a verdict; what the tool checks and the four things it isn't; run it alongside ScubaGear.
-//   What:  the ten steps on one page; government-cloud availability, where Learn is silent and where it differs.
+//   What:  the ten steps on one page; GCC availability, the tool's defaults on the worldwide endpoints.
 //   Who:   consent once, run as an eligible reader; the RACI.
-//   How:   the host and the output folder; connecting in each cloud; the run and its hashes; statuses and the taxonomy;
+//   How:   the host and the output folder; connecting in the GCC tenant; the run and its hashes; statuses and the taxonomy;
 //          the closure register; reconciling with ScubaGear and Security Hub CSPM; re-run, compare and seal;
 //          dangers, what couldn't be verified, and where the training path starts.
 // Sources: docs/books/guides/zero-trust-assessment-implementation.md and the sources it footnotes (Microsoft Learn's
@@ -65,7 +65,7 @@ const W3 = 3.9, G3 = 0.225;
 {
   const s = titleSlide(SWHY, "The Zero Trust Assessment: evidence, not a verdict", "An implementation guide: ten steps from the first consent to a sealed evidence package");
   txt(s, "Session map", [
-    { text: "Why: a score isn't a verdict   ·   What: the ten steps, and the government clouds", options: { color: HEX.navy, bold: true, breakLine: true } },
+    { text: "Why: a score isn't a verdict   ·   What: the ten steps, and GCC", options: { color: HEX.navy, bold: true, breakLine: true } },
     { text: "Who: consent once, run as a reader; the RACI", options: { color: HEX.teal, bold: true, breakLine: true } },
     { text: "How: host, connect, run, read, normalize, register, reconcile, re-run and seal; dangers and the training path", options: { color: HEX.ink } },
   ], { x: 0.8, y: 4.75, w: 11.0, h: 1.3, fontSize: 15, paraSpaceAfter: 2 });
@@ -158,7 +158,7 @@ endModule(SWHY);
     ["1 Decide and scope", "The decision record is approved: scope, account, cadence, version, output handling", "The signed record"],
     ["2 Prepare the host", "A clean host has PowerShell 7.6 and the pinned module, and a protected report folder", "Get-Module -ListAvailable"],
     ["3 Consent and roles", "Consent granted once; the run account holds read roles only; the grants reviewed", "The grant review's output"],
-    ["4 Connect in each cloud", "Every service connects in the tenant's own cloud", "Get-MgContext; connection messages"],
+    ["4 Connect in the GCC tenant", "Every service connects in the tenant's own cloud", "Get-MgContext; connection messages"],
     ["5 Run it", "The report and export exist and are hashed", "The export's SHA-256"],
     ["6 Read the report", "Pillar owners have read their tabs; skips and errors are noted", "The reading notes"],
     ["7 Normalize", "Every result normalized; no unmapped value", "Invoke-ZtaNormalize.ps1"],
@@ -173,25 +173,25 @@ endModule(SWHY);
   `${G} — "The path on one page," "Prerequisites" ("For the kit").`);
 }
 
-// ================================================================== 6 What: government clouds
+// ================================================================== 6 What: GCC availability
 {
-  const s = content(SWHAT, "Government clouds: where Learn is silent or differs");
+  const s = content(SWHAT, "GCC: the tool's defaults, the worldwide endpoints");
   tag(s, "What");
-  const tb = table(s, "Gov", 1.4, [2.6, 2.75, 3.35, 3.45], ["Capability", "Commercial and GCC", "GCC High", "DoD"], [
-    ["The tool (Connect-ZtAssessment)", "-Environment Global", "-Environment USGov; not yet specified on Learn", "-Environment USGovDoD; not yet specified on Learn"],
-    ["Microsoft Graph (Learn)", "graph.microsoft.com; GCC uses worldwide", "graph.microsoft.us", "dod-graph.microsoft.us"],
-    ["Exchange Online (Learn)", "O365Default, no parameter", "O365USGovGCCHigh", "O365USGovDoD"],
-    [{ text: "Security & Compliance", options: { bold: true } }, "Default endpoint", "ps.compliance.protection.office365.us", { text: "Learn: compliance.dod.microsoft.com; the tool: l5.ps.compliance.protection.office365.us", options: { color: HEX.red, bold: true } }],
-    ["Azure (Learn)", "AzureCloud", "AzureUSGovernment", "AzureUSGovernment"],
-    ["SharePoint Online admin", "-admin.sharepoint.com", "Tool infers -admin.sharepoint.us; pass it explicitly", "Tool infers -admin.sharepoint.us; DoD's URL not yet specified"],
-    ["Azure Information Protection", "Default", "AzureUSGovernment (tool source only)", "AzureUSGovernment (tool source only)"],
+  const tb = table(s, "Gov", 1.4, [3.6, 5.0, 3.55], ["Capability", "Commercial and GCC", "Source"], [
+    ["The tool (Connect-ZtAssessment)", "Default Global environment; GCC uses the worldwide Graph and Azure endpoints", "Tool source; Learn silent"],
+    ["Microsoft Graph", "graph.microsoft.com (Connect-MgGraph -Environment Global)", "Learn"],
+    ["Exchange Online", "O365Default (no parameter needed)", "Learn"],
+    ["Security & Compliance (Purview)", "Default endpoint", "Learn"],
+    ["Azure", "AzureCloud", "Tool source"],
+    ["SharePoint Online admin", "-admin.sharepoint.com", "Tool source; Learn not read for the URL"],
+    ["Azure Information Protection", "Default", { text: "Tool source; not yet specified on Learn", options: { color: HEX.red, bold: true } }],
   ], { fontSize: 10.5, limit: 5.6 });
-  line(s, "Interim", "Interim path: one pillar at a time (-Pillar Identity needs only Graph) in a test tenant of the same cloud; ScubaGear stays the federal baseline tool.",
+  line(s, "Interim", "Where neither Learn nor the tool's source says, the guide says not yet specified. ScubaGear stays the federal baseline tool.",
     tb + 0.12, 0.6, 13.5);
-  sources(s, "Sources: Guide, \"Government-cloud availability\"; Microsoft Learn, Microsoft Graph national cloud deployments; Connect to Exchange Online PowerShell; Exchange app-only authentication.");
+  sources(s, "Sources: Guide, \"GCC availability\"; Microsoft Learn, Microsoft Graph national cloud deployments; Connect to Exchange Online PowerShell; Exchange app-only authentication.");
   notes(s,
-`Does it work in a government cloud? Microsoft Learn's three Zero Trust Assessment pages don't say. The tool's three point one point oh source does: its connect command takes an environment, Global, U S Gov or U S Gov D O D, and an Exchange environment name. Each service it signs in to is documented per cloud on Learn, and the guide matches the tool's parameters to those pages. One place they conflict: for Security and Compliance in D O D, Learn gives compliance dot D O D dot microsoft dot com, and the tool's source uses a different address. Which one works wasn't tested. For SharePoint, the tool infers a sharepoint dot U S admin address, so pass it explicitly; D O D's isn't specified. Until a run is proved in your cloud, run one pillar at a time in a test tenant of the same cloud, and keep ScubaGear as the federal baseline tool.`,
-  `${G} — "Government-cloud availability" (table and interim path); Microsoft Learn — "Microsoft Graph national cloud deployments," "Connect to Exchange Online PowerShell," "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell," "Quickstart: Connect to Azure Government with PowerShell"; the tool's 3.1.0 source, Connect-ZtAssessment.ps1.`);
+`Does it work in G C C? Microsoft Learn's three Zero Trust Assessment pages don't mention G C C. But G C C uses the worldwide endpoints, so a G C C run uses the tool's defaults: the Global environment, and the default Exchange environment. Each service the tool signs in to is documented on Learn. Microsoft Graph is graph dot microsoft dot com. Exchange Online needs no environment parameter, and Security and Compliance uses its default endpoint. Azure is Azure Cloud, from the tool's source. The SharePoint admin address is the tenant's admin dot sharepoint dot com, and Azure Information Protection uses its default, from the tool's source only. Where neither Learn nor the tool's source says, the guide says not yet specified. And keep ScubaGear as the federal baseline tool.`,
+  `${G} — "GCC availability" (table); Microsoft Learn — "Microsoft Graph national cloud deployments," "Authentication module cmdlets in Microsoft Graph PowerShell," "Connect to Exchange Online PowerShell," "App-only authentication for unattended scripts in Exchange Online PowerShell and Security & Compliance PowerShell"; the tool's 3.1.0 source, Connect-ZtAssessment.ps1.`);
 }
 endModule(SWHAT);
 
@@ -258,19 +258,13 @@ endModule(SWHO);
   `${G} — Step 2, steps 1 to 3; Step 10, step 3; "Prerequisites"; Microsoft Learn — "Get started with the Zero Trust Assessment"; the tool's guide, 3.1.0 (data handling; install).`);
 }
 
-// ================================================================== 9 How: connect in each cloud
+// ================================================================== 9 How: connect in the GCC tenant
 {
-  const s = content(SHOW, "Step 4: connect in the tenant's own cloud");
+  const s = content(SHOW, "Step 4: connect in the GCC tenant");
   tag(s, "How");
   const c = code(s, "Connect", 0.6, 1.4, FULL, [
     "# Commercial and GCC (GCC uses the worldwide endpoints)",
     "Connect-ZtAssessment -Tenant <tenant> -Environment Global -SharePointAdminUrl <spo-admin-url> -UserPrincipalName <upn>",
-    "# GCC High",
-    "Connect-ZtAssessment -Tenant <tenant> -Environment USGov -ExchangeEnvironmentName O365USGovGCCHigh `",
-    "    -SharePointAdminUrl <spo-admin-url> -UserPrincipalName <upn>",
-    "# DoD",
-    "Connect-ZtAssessment -Tenant <tenant> -Environment USGovDoD -ExchangeEnvironmentName O365USGovDoD `",
-    "    -SharePointAdminUrl <spo-admin-url> -UserPrincipalName <upn>",
     "# Then confirm the tenant and the cloud the session is in",
     "Get-MgContext | Format-List TenantId, Environment, Account, Scopes",
     "Get-AzContext | Format-List Tenant, Environment, Subscription",
@@ -281,17 +275,17 @@ endModule(SWHO);
   ], 11.5);
   const p2 = panel(s, "SPO", 0.6 + W3 + G3, c + 0.15, W3, null, HEX.amber, HEX.amberTint, "ALWAYS PASS -SharePointAdminUrl", null, [
     "Otherwise the tool infers it from the initial domain",
-    "In GCC High and DoD it infers a sharepoint.us address",
+    "Pass the tenant's -admin.sharepoint.com address",
   ], 11.5);
   const p3 = panel(s, "Fail", 0.6 + 2 * (W3 + G3), c + 0.15, W3, null, HEX.red, HEX.redTint, "IF A SERVICE WON'T CONNECT", null, [
     "Connect the rest with -Service Graph,Azure and run",
     "Record those tests as Skipped-Disconnected, with the reason",
   ], 11.5);
   fit("Connect panels", Math.max(p1, p2, p3));
-  sources(s, "Sources: Guide, Step 4, \"Government-cloud availability\"; Run the Zero Trust Assessment (the tool's guide, 3.1.0); Microsoft Graph national cloud deployments.");
+  sources(s, "Sources: Guide, Step 4, \"GCC availability\"; Run the Zero Trust Assessment (the tool's guide, 3.1.0); Microsoft Graph national cloud deployments.");
   notes(s,
-`Step four connects. The tool signs in separately to Microsoft Graph, Azure, Exchange Online, Security and Compliance, SharePoint Online and Azure Information Protection, and a Graph connection doesn't grant the others. Learn's get-started page shows only the commercial command, so the guide takes each cloud's parameters from the tool's source. Commercial and G C C use the Global environment. G C C High uses U S Gov with its Exchange environment name, and D O D uses U S Gov D O D with its own. Then confirm the tenant and cloud with Get M G Context and Get A Z Context. Pass the SharePoint admin U R L in every cloud, or the tool infers one. If a service won't connect, connect the rest, run, and record its tests as skipped, disconnected, with the reason. In D O D, if the Purview tests skip as disconnected, check the conflicting address first.`,
-  `${G} — Step 4 (steps, the SharePoint and DoD notes, interim path); "Government-cloud availability"; the tool's guide and source, 3.1.0; Microsoft Learn — "Microsoft Graph national cloud deployments."`);
+`Step four connects. The tool signs in separately to Microsoft Graph, Azure, Exchange Online, Security and Compliance, SharePoint Online and Azure Information Protection, and a Graph connection doesn't grant the others. Learn's get-started page shows only the commercial command, which G C C also uses, because G C C uses the worldwide endpoints: the Global environment. Then confirm the tenant and cloud with Get M G Context and Get A Z Context. Pass the SharePoint admin U R L explicitly, or the tool infers one from the tenant's initial domain. If a service won't connect, connect the rest, run, and record its tests as skipped, disconnected, with the reason.`,
+  `${G} — Step 4 (steps, the SharePoint note, interim path); "GCC availability"; the tool's guide and source, 3.1.0; Microsoft Learn — "Microsoft Graph national cloud deployments."`);
 }
 
 // ================================================================== 10 How: run and hash
@@ -343,12 +337,12 @@ endModule(SWHO);
   const c = code(s, "Norm", 0.6, tb + 0.15, FULL, [
     "./Invoke-ZtaNormalize.ps1 -ExportPath <report-folder> -OutputPath out/<run-date> -ReviewsPath <reviews-file>",
   ], { pt: 10.5, limit: 6.0 });
-  line(s, "Gov", "In a federal tenant, NotDotGovDomain usually means the .gov domain isn't verified. In GCC High and DoD, a failed impersonation test is a boundary finding.",
+  line(s, "Gov", "In a federal tenant, NotDotGovDomain usually means the .gov domain isn't verified. A Failed result whose feature may not be in the tenant's cloud is noted for review.",
     c + 0.1, 0.55, 13);
-  sources(s, "Sources: Guide, Steps 6 and 7; Microsoft Learn, Zero Trust Assessment terminology; Exchange Online for US government; the tool's 3.1.0 source; Book 11, Ch 10.");
+  sources(s, "Sources: Guide, Steps 6 and 7; Microsoft Learn, Zero Trust Assessment terminology; the tool's 3.1.0 source; Book 11, Ch 10.");
   notes(s,
-`Steps six and seven read the results. Each pillar owner reads their tab. Every test ends in one of six statuses: passed, failed, investigate, skipped, planned, or error. Investigate means a person needs to look, and skipped carries a reason, such as not licensed or not connected. The kit records every result twice: the tool's value, unchanged, and one of seven normalized results. That's the rule in the title. A skipped test is not a failed control, and it's not a pass. It goes in its own column, with its reason: a licensing decision, or a run to fix. Investigate counts as a finding until a recorded review confirms or dismisses it. Two federal cases. Not dot gov domain usually means the agency's dot gov domain isn't verified in the tenant. And Learn says impersonation protection isn't yet available in G C C High and D O D, so a failed impersonation test there is a boundary finding.`,
-  `${G} — Step 6 (statuses, the rubric, the GCC High example), Step 7 (the taxonomy, NotDotGovDomain, steps); Microsoft Learn — "Zero Trust assessment terminology," "Exchange Online for US government environments"; the tool's 3.1.0 source; Book 11, Chapter 10 — "A normalized result taxonomy."`);
+`Steps six and seven read the results. Each pillar owner reads their tab. Every test ends in one of six statuses: passed, failed, investigate, skipped, planned, or error. Investigate means a person needs to look, and skipped carries a reason, such as not licensed or not connected. The kit records every result twice: the tool's value, unchanged, and one of seven normalized results. That's the rule in the title. A skipped test is not a failed control, and it's not a pass. It goes in its own column, with its reason: a licensing decision, or a run to fix. Investigate counts as a finding until a recorded review confirms or dismisses it. Two federal cases. Not dot gov domain usually means the agency's dot gov domain isn't verified in the tenant. And each pillar owner notes every failed result whose feature may not be available in the tenant's cloud, so it's reviewed, not counted blindly.`,
+  `${G} — Step 6 (statuses, the rubric, step 2), Step 7 (the taxonomy, NotDotGovDomain, steps); Microsoft Learn — "Zero Trust assessment terminology"; the tool's 3.1.0 source; Book 11, Chapter 10 — "A normalized result taxonomy."`);
 }
 
 // ================================================================== 12 How: closure register
@@ -440,11 +434,11 @@ endModule(SWHO);
     ["The pass rate as the maturity score", "Counts by normalized result and pillar; the weighted register"],
     ["The Zero Trust Assessment instead of ScubaGear", "Run both; Step 9"],
     ["Global Administrator for every run; consent on the shared app", "Consent once; a dedicated reader with eligible roles; a dedicated application"],
-    ["Wrong cloud, or the report folder left on the host", "Step 4's per-cloud commands and Get-MgContext; Step 10's move and delete"],
+    ["The report folder left on the host or shared", "Step 2's restricted folder; Step 10's move and delete"],
   ], { fontSize: 11, limit: 4.6 });
   const p1 = panel(s, "Open", 0.6, tb + 0.15, W2, null, HEX.red, HEX.redTint, "WHAT COULDN'T BE VERIFIED", null, [
-    "Government clouds on Learn; DoD's Security & Compliance address; DoD's SharePoint admin URL",
-    "Which run roles apply; Graph scopes in GCC High and DoD; nothing run against a tenant",
+    "GCC on Learn; Azure Information Protection's environment name (tool source only)",
+    "Which run roles apply; the export's schema; nothing run against a tenant",
   ], 11.5);
   const p2 = panel(s, "Train", 0.6 + W2 + G2, tb + 0.15, W2, null, HEX.teal, HEX.tealTint, "WHERE TRAINING STARTS", null, [
     "The Zero Trust Assessment as Evidence: four modules, each with a knowledge check",
@@ -453,7 +447,7 @@ endModule(SWHO);
   fit("Close panels", Math.max(p1, p2));
   sources(s, "Sources: Guide, \"Dangers and how to avoid them,\" \"What couldn't be verified,\" \"Labs for this guide\"; learning path, The Zero Trust Assessment as Evidence.");
   notes(s,
-`To close, the dangers. Counting a skipped test as a failure or a pass. Calling a finding fixed because the next run skipped it. Treating the pass rate as a maturity score. Running the Zero Trust Assessment instead of ScubaGear. Global Administrator for every run, or consent on the shared Graph application. And the wrong cloud, or a report folder left on the host. Each has its guard in the steps. The guide is plain about what it couldn't verify: government clouds on Learn, D O D's Security and Compliance address and SharePoint admin U R L, which run roles apply, and Graph permissions in G C C High and D O D. Nothing was run against a tenant. To practice, start the learning path, The Zero Trust Assessment as Evidence: four modules, each with a knowledge check. Module one's first lab runs on the kit's fictional fixtures, with no tenant. Thank you.`,
+`To close, the dangers. Counting a skipped test as a failure or a pass. Calling a finding fixed because the next run skipped it. Treating the pass rate as a maturity score. Running the Zero Trust Assessment instead of ScubaGear. Global Administrator for every run, or consent on the shared Graph application. And a report folder left on the host or shared. Each has its guard in the steps. The guide is plain about what it couldn't verify: G C C on Learn, Azure Information Protection's environment name, which run roles apply, and the export's schema, which Microsoft doesn't publish. Nothing was run against a tenant. To practice, start the learning path, The Zero Trust Assessment as Evidence: four modules, each with a knowledge check. Module one's first lab runs on the kit's fictional fixtures, with no tenant. Thank you.`,
   `${G} — "Dangers and how to avoid them," "What couldn't be verified," "Labs for this guide"; learning path, The Zero Trust Assessment as Evidence, Module 1.`);
 }
 endModule(SHOW);
@@ -461,13 +455,13 @@ endModule(SHOW);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: the guide, the tool and the clouds", [
-  "Zero Trust Assessment: An Implementation Guide (companion guide): \"How to read this guide,\" \"The track at a glance,\" \"Prerequisites,\" \"Government-cloud availability,\" \"The path on one page,\" Steps 1 to 10, \"RACI,\" \"Federal requirements and KSIs,\" \"Dangers,\" \"What couldn't be verified.\" Its verification log lists every claim.",
+  "Zero Trust Assessment: An Implementation Guide (companion guide): \"How to read this guide,\" \"The track at a glance,\" \"Prerequisites,\" \"GCC availability,\" \"The path on one page,\" Steps 1 to 10, \"RACI,\" \"Federal requirements and KSIs,\" \"Dangers,\" \"What couldn't be verified.\" Its verification log lists every claim.",
   "Microsoft Learn, read November 11, 2026: What is the Zero Trust Assessment?; Get started with the Zero Trust Assessment; Zero Trust assessment terminology; Operate Microsoft Entra Private Access and Operate Microsoft Entra Internet Access (the scheduled digest playbook).",
   "The tool, release 3.1.0 (October 20, 2026): Zero Trust Assessment release 3.1.0; Zero Trust Assessment README; Run the Zero Trust Assessment (the tool's guide); its source for Connect-ZtAssessment, Get-ZtGraphScope, the statuses and the skip reasons.",
-  "Microsoft Learn, per cloud: Microsoft Graph national cloud deployments; Graph PowerShell authentication cmdlets; Connect to Exchange Online PowerShell; Exchange app-only authentication; Connect to Azure Government with PowerShell; Exchange Online for US government.",
+  "Microsoft Learn, for GCC: Microsoft Graph national cloud deployments; Graph PowerShell authentication cmdlets; Connect to Exchange Online PowerShell; Exchange app-only authentication.",
 ]);
 sourceSlide("Sources: reconciliation, requirements and the books", [
-  "CISA BOD 25-01; CISA ScubaGear. AWS: NIST SP 800-53 Rev. 5 in Security Hub CSPM; AWS Security Hub CSPM compliance status; AWS Security Hub CSPM in AWS GovCloud (US).",
+  "CISA BOD 25-01; CISA ScubaGear. AWS: NIST SP 800-53 Rev. 5 in Security Hub CSPM; AWS Security Hub CSPM compliance status.",
   "Federal requirements: NIST SP 800-53 Rev. 5 (CA-2, CA-5, CA-7, CM-6, CM-8, AC-2, AC-6, AU-9, AU-11, RA-7, SI-12); FedRAMP 20x Key Security Indicators, as Book 13, App. A maps them (design guidance).",
   "Book 11, Ch 05 (the two tools), Ch 07 (who owns Zero Trust), Ch 08 (close before you assess), Ch 09 (running the assessment), Ch 10 (evidence, not verdicts); Book 15, Ch 12 (cadence); Book 12, Ch 08 (posture tools on other clouds).",
   "The scripted steps: the guide's results kit, examples/zta-results. Training: the learning path The Zero Trust Assessment as Evidence, four modules with Lab 1 on fixtures and Lab 2 in a test tenant.",

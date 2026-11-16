@@ -15,48 +15,43 @@ the Grid Master isn't involved,
 whatever older material says.
 
 4
-00:00:08.163 --> 00:00:12.987
+00:00:08.163 --> 00:00:13.385
 But failover is IPv4 only, which
 matters under the IPv6 mandate,
 
 5
-00:00:12.987 --> 00:00:15.399
+00:00:13.385 --> 00:00:15.649
 though Windows has the same gap.
 
 6
-00:00:15.399 --> 00:00:20.363
+00:00:15.649 --> 00:00:20.613
 Lease history is archived, which is the
 address-to-asset record NIST asks for.
 
 7
-00:00:20.363 --> 00:00:24.177
+00:00:20.613 --> 00:00:24.427
 On the IPAM side, a network view
 is a single routing domain,
 
 8
-00:00:24.177 --> 00:00:29.470
+00:00:24.427 --> 00:00:29.720
 and discovery tools read both the network
 and the clouds, though the deeper device
 
 9
-00:00:29.470 --> 00:00:34.451
+00:00:29.720 --> 00:00:34.701
 discovery needs its own license and
 dedicated appliances, so budget for that.
 
 10
-00:00:34.451 --> 00:00:36.496
+00:00:34.701 --> 00:00:36.746
 Two corrections to common claims:
 
 11
-00:00:36.496 --> 00:00:40.150
+00:00:36.746 --> 00:00:40.400
 separate network views permit
 overlap, they don't prevent it.
 
 12
-00:00:40.150 --> 00:00:44.488
-And the AWS address-management
-integration excludes GovCloud.
-
-13
-00:00:44.488 --> 00:00:46.440
+00:00:40.400 --> 00:00:42.360
 Now, the security layer.

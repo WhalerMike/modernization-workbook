@@ -115,58 +115,6 @@
    "Part 2 covers that."
   ]
  ],
- "4": [
-  [
-   0.05,
-   1.587,
-   "Start with AWS."
-  ],
-  [
-   1.637,
-   9.7,
-   "AWS renamed the Route 53 Resolver the Route 53 VPC Resolver when it introduced Route 53 Global Resolver."
-  ],
-  [
-   11.338,
-   5.1,
-   "Several AWS pages still use the older name, so both appear in runbooks."
-  ],
-  [
-   16.438,
-   6.25,
-   "Every VPC reaches it at the VPC's base address plus two, called VPC plus two."
-  ],
-  [
-   22.688,
-   9.45,
-   "It answers the VPC's own EC2 names and records in private hosted zones associated with the VPC, and it recurses for public names."
-  ],
-  [
-   32.138,
-   1.363,
-   "One quota matters."
-  ],
-  [
-   33.5,
-   8.938,
-   "Each network interface may send 1,024 packets per second to link-local services, shared by D N S and other services."
-  ],
-  [
-   42.438,
-   3.188,
-   "It can't be raised, and traffic over it is rejected."
-  ],
-  [
-   45.625,
-   5.912,
-   "That matters to any D N S server on EC2 that forwards to VPC plus two."
-  ],
-  [
-   51.538,
-   10.875,
-   "Route 53 Global Resolver is a different thing, an internet-reachable resolver for branches and on-premises sites, listed in 30 commercial Regions and not in GovCloud."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -316,68 +264,6 @@
  "8": [
   [
    0.05,
-   1.613,
-   "What changes in GovCloud?"
-  ],
-  [
-   1.663,
-   14.562,
-   "AWS's GovCloud page for Route 53 says public and private D N S work in GovCloud U S-West and U S-East, the control plane is in U S-West, and public hosted zone queries are answered from within the fed-ramp boundary."
-  ],
-  [
-   16.225,
-   5.638,
-   "That page doesn't mention the Resolver features, so the table draws on other AWS pages."
-  ],
-  [
-   21.863,
-   2.425,
-   "Endpoints and rules: yes."
-  ],
-  [
-   24.288,
-   8.137,
-   "Resolver delegation is the conflict: the GovCloud guide says it's not available, and an April 2026 announcement says it is."
-  ],
-  [
-   32.425,
-   0.887,
-   "Confirm."
-  ],
-  [
-   33.312,
-   3.462,
-   "D N S Firewall and its managed lists: yes."
-  ],
-  [
-   36.775,
-   6.338,
-   "Of the Advanced protections, only dictionary DGA was announced for GovCloud; confirm the rest."
-  ],
-  [
-   43.112,
-   2.788,
-   "Query logging and Profiles: yes."
-  ],
-  [
-   45.9,
-   4.463,
-   "Signing of public zones: yes, with the key in U S-West."
-  ],
-  [
-   50.362,
-   4.375,
-   "Validation in the VPC Resolver isn't stated, so confirm."
-  ],
-  [
-   54.737,
-   2.275,
-   "And Global Resolver isn't listed."
-  ]
- ],
- "9": [
-  [
-   0.05,
    0.975,
    "Now Azure."
   ],
@@ -412,7 +298,7 @@
    "And Azure D N S doesn't support zone transfers, so a BIND server can't be a secondary of an Azure private zone, or the reverse."
   ]
  ],
- "10": [
+ "9": [
   [
    0.05,
    4.9,
@@ -454,7 +340,7 @@
    "No Microsoft page describes signing private zones, or whether the Private Resolver validates, so confirm that."
   ]
  ],
- "11": [
+ "10": [
   [
    0.05,
    5.487,
@@ -501,7 +387,7 @@
    "Between VCNs, resolution uses resolver endpoints over a peering gateway."
   ]
  ],
- "12": [
+ "11": [
   [
    0.05,
    4.7,
@@ -556,53 +442,6 @@
  "13": [
   [
    0.05,
-   1.613,
-   "Who authorizes all this?"
-  ],
-  [
-   1.663,
-   17.05,
-   "AWS's services-in-scope page, updated October fifteenth, 2026, lists one row, Amazon Route 53, in scope for fed-ramp Class C, formerly Moderate, in U S East and West, and Class D, formerly High, in GovCloud."
-  ],
-  [
-   18.712,
-   6.5,
-   "There are no separate rows for the Resolver features; generally available features are in scope unless excluded."
-  ],
-  [
-   25.212,
-   5.062,
-   "For a Moderate civilian workload, both locations cover the D N S service."
-  ],
-  [
-   30.275,
-   3.325,
-   "As an inference, note that in the system security plan."
-  ],
-  [
-   33.6,
-   10.188,
-   "Microsoft's audit-scope page has one D N S row, at fed-ramp High in Azure and in Azure Government, with no separate row for the Private Resolver or resolver policy."
-  ],
-  [
-   43.788,
-   3.638,
-   "No Learn page states their Azure Government availability."
-  ],
-  [
-   47.425,
-   6.987,
-   "The price list carries their meters in the U S Gov zones: a strong signal, not an availability statement."
-  ],
-  [
-   54.413,
-   1.75,
-   "Confirm in the target region."
-  ]
- ],
- "14": [
-  [
-   0.05,
    2.513,
    "Oracle's government cloud works differently."
   ],
@@ -652,7 +491,7 @@
    "And an agency holding only the H R platform's software-as-a-service has no VCN at all."
   ]
  ],
- "15": [
+ "14": [
   [
    0.05,
    2.85,
@@ -699,7 +538,7 @@
    "That's the cloud form of one policy object."
   ]
  ],
- "16": [
+ "15": [
   [
    0.05,
    2.138,
@@ -751,7 +590,91 @@
    "Third, logs: all three go to the sim, parsed through ASIM's D N S schema, as Microsoft Learn's ASIM documentation describes."
   ]
  ],
- "17": [
+ "4": [
+  [
+   0.05,
+   1.587,
+   "Start with AWS."
+  ],
+  [
+   1.637,
+   9.7,
+   "AWS renamed the Route 53 Resolver the Route 53 VPC Resolver when it introduced Route 53 Global Resolver."
+  ],
+  [
+   11.338,
+   5.1,
+   "Several AWS pages still use the older name, so both appear in runbooks."
+  ],
+  [
+   16.438,
+   6.25,
+   "Every VPC reaches it at the VPC's base address plus two, called VPC plus two."
+  ],
+  [
+   22.688,
+   9.45,
+   "It answers the VPC's own EC2 names and records in private hosted zones associated with the VPC, and it recurses for public names."
+  ],
+  [
+   32.138,
+   1.363,
+   "One quota matters."
+  ],
+  [
+   33.5,
+   8.938,
+   "Each network interface may send 1,024 packets per second to link-local services, shared by D N S and other services."
+  ],
+  [
+   42.438,
+   3.188,
+   "It can't be raised, and traffic over it is rejected."
+  ],
+  [
+   45.625,
+   5.912,
+   "That matters to any D N S server on EC2 that forwards to VPC plus two."
+  ],
+  [
+   51.538,
+   9.925,
+   "Route 53 Global Resolver is a different thing, an internet-reachable resolver for branches and on-premises sites, listed in 30 commercial Regions."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.613,
+   "Who authorizes all this?"
+  ],
+  [
+   1.663,
+   13.988,
+   "AWS's services-in-scope page, updated October fifteenth, 2026, lists one row, Amazon Route 53, in scope for fed-ramp Class C, formerly Moderate, in U S East and West."
+  ],
+  [
+   15.65,
+   6.5,
+   "There are no separate rows for the Resolver features; generally available features are in scope unless excluded."
+  ],
+  [
+   22.15,
+   8.5,
+   "For a Moderate civilian workload in the commercial Regions, where the program's AWS workloads run, that covers the D N S service."
+  ],
+  [
+   30.65,
+   3.325,
+   "As an inference, note that in the system security plan."
+  ],
+  [
+   33.975,
+   10.05,
+   "Microsoft's audit-scope page has one D N S row, in scope for fed-ramp High in Azure commercial, with no separate row for the Private Resolver or resolver policy."
+  ]
+ ],
+ "16": [
   [
    0.05,
    4.4,
@@ -759,41 +682,36 @@
   ],
   [
    4.45,
-   4.963,
-   "AWS: Resolver delegation and DNSSEC validation in GovCloud."
+   3.612,
+   "Azure: whether the Private Resolver validates DNSSEC."
   ],
   [
-   9.412,
-   9.012,
-   "Azure: the Private Resolver's and resolver policy's availability in each Azure Government region, and whether the Private Resolver validates DNSSEC."
-  ],
-  [
-   18.425,
+   8.062,
    8.037,
    "Oracle: private resolver logging in the government realm, and whether the VCN resolver passes DNSSEC data to a resolver behind it."
   ],
   [
-   26.462,
+   16.1,
    5.838,
    "And sis-uh: whether Protective D N S returns DNSSEC data to agency forwarders."
   ],
   [
-   32.3,
+   21.938,
    7.375,
    "To prove the page, the plan is to build the pattern in test accounts and run the workbook's D N S validation matrix."
   ],
   [
-   39.675,
+   29.312,
    7.325,
    "Part 2 picks up from here: when to run your own D N S servers, BIND, the alignment checklist, and the federal mapping."
   ],
   [
-   47.0,
+   36.638,
    4.925,
    "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   51.925,
+   41.562,
    0.762,
    "Thank you."
   ]

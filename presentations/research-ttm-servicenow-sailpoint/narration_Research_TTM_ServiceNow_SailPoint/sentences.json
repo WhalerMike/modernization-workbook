@@ -521,41 +521,41 @@
   ],
   [
    3.388,
-   9.95,
-   "For a Microsoft 365 G C C tenant, the worldwide Graph endpoints apply, and SailPoint documents endpoint overrides for G C C High."
+   6.062,
+   "For a Microsoft 365 G C C tenant, the worldwide Graph endpoints apply."
   ],
   [
-   13.338,
-   9.5,
-   "ServiceNow's Entra spoke fits G C C through its default endpoint, but its page doesn't cover G C C High, and it needs an Integration Hub subscription."
+   9.45,
+   6.862,
+   "ServiceNow's Entra spoke fits G C C through its default endpoint, and it needs an Integration Hub subscription."
   ],
   [
-   22.837,
+   16.312,
    4.65,
    "SailPoint's ServiceNow apps aren't confirmed in ServiceNow's government Store."
   ],
   [
-   27.488,
+   20.962,
    1.587,
    "Then three cautions."
   ],
   [
-   29.075,
+   22.55,
    10.662,
    "SailPoint's cloud connectors call Graph from SailPoint's cloud, and only Active Directory runs through its on-premises appliance, so record which actions run from the vendor's cloud."
   ],
   [
-   39.737,
+   33.212,
    5.0,
    "A vendor's M F A feature isn't a help desk reset with identity proofing."
   ],
   [
-   44.737,
+   38.212,
    4.263,
    "And confirm what's in the fed-ramp environment before relying on any of it."
   ],
   [
-   49.0,
+   42.475,
    1.225,
    "So, what's next?"
   ]

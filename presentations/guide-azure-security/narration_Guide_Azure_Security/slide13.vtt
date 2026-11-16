@@ -60,11 +60,6 @@ endpoints in workload subscriptions,
 and deploy the zone group automatically.
 
 13
-00:00:46.712 --> 00:00:51.262
+00:00:46.712 --> 00:00:51.310
 Then turn public access off, and add
 conditional forwarders on premises.
-
-14
-00:00:51.262 --> 00:00:56.060
-In Azure Government the zone names
-differ, so policy needs those names.
