@@ -20,44 +20,49 @@ and takes its policy
 from the Grid Master, in the same console.
 
 5
-00:00:14.012 --> 00:00:16.468
-BIND is the choice when there's no Grid,
+00:00:14.012 --> 00:00:18.600
+One caution: vNIOS failover in
+GovCloud is a point to confirm.
 
 6
-00:00:16.468 --> 00:00:20.112
+00:00:18.600 --> 00:00:21.056
+BIND is the choice when there's no Grid,
+
+7
+00:00:21.056 --> 00:00:24.700
 for a small footprint, or when
 a tool expects BIND itself.
 
-7
-00:00:20.112 --> 00:00:25.055
+8
+00:00:24.700 --> 00:00:29.642
 BIND has no policy plane of its
 own; in the workbook's DNS design,
 
-8
-00:00:25.055 --> 00:00:28.738
+9
+00:00:29.642 --> 00:00:33.325
 its policy comes from
 the DDI platform and Git.
 
-9
-00:00:28.738 --> 00:00:29.726
+10
+00:00:33.325 --> 00:00:34.313
 Which BIND?
 
-10
-00:00:29.726 --> 00:00:33.750
+11
+00:00:34.313 --> 00:00:38.337
 ISC supports each even-numbered
 branch for four years.
 
-11
-00:00:33.750 --> 00:00:39.555
+12
+00:00:38.337 --> 00:00:44.142
 As of October twenty-ninth, 9.20 is
 the supported production branch,
 
-12
-00:00:39.555 --> 00:00:44.938
+13
+00:00:44.142 --> 00:00:49.525
 with end of life in 2028, and 9.18
 reached end of life in June 2026.
 
-13
-00:00:44.938 --> 00:00:49.970
+14
+00:00:49.525 --> 00:00:54.550
 Operating-system packages follow their
 vendor, so record which support you rely on.

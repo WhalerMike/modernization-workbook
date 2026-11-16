@@ -349,325 +349,339 @@ traverses the public network
 and prefers a domain allowlist.
 
 74
-00:05:06.145 --> 00:05:09.546
+00:05:06.145 --> 00:05:09.191
 If agents can't resolve
 the media relay names,
 
 75
-00:05:09.546 --> 00:05:15.246
+00:05:09.191 --> 00:05:14.295
 the softphone can't set up its media
 channel, so don't over-restrict their DNS.
 
 76
-00:05:15.246 --> 00:05:19.382
+00:05:14.295 --> 00:05:18.456
+In GovCloud, Connect is available
+only in the US-West region,
+
+77
+00:05:18.456 --> 00:05:21.683
+uses its own names, and
+lacks several features.
+
+78
+00:05:21.683 --> 00:05:26.237
 Private API access covers only
 a subset of Connect, and,
 
-77
-00:05:19.382 --> 00:05:23.795
+79
+00:05:26.237 --> 00:05:31.095
 as an inference, helps API calls,
 not the agent or voice path.
 
-78
-00:05:23.795 --> 00:05:27.885
+80
+00:05:31.095 --> 00:05:35.185
 On VMware, a Broadcom article
 says changing vCenter's name
 
-79
-00:05:27.885 --> 00:05:31.720
+81
+00:05:35.185 --> 00:05:39.020
 or address is blocked if the
 name doesn't fully resolve.
 
-80
-00:05:31.720 --> 00:05:33.845
+82
+00:05:39.020 --> 00:05:41.145
 So keep those records right in the Grid.
 
-81
-00:05:33.845 --> 00:05:35.920
+83
+00:05:41.145 --> 00:05:43.210
 Next, the subtle one.
 
-82
-00:05:39.670 --> 00:05:40.945
+84
+00:05:46.960 --> 00:05:48.235
 Here's the subtle one.
 
-83
-00:05:40.945 --> 00:05:43.342
+85
+00:05:48.235 --> 00:05:50.632
 Suppose a cloud network has both a private
 
-84
-00:05:43.342 --> 00:05:45.807
+86
+00:05:50.632 --> 00:05:53.097
 zone and a forwarding
 rule for the same name.
 
-85
-00:05:45.807 --> 00:05:46.846
+87
+00:05:53.097 --> 00:05:54.136
 Which wins?
 
-86
-00:05:46.846 --> 00:05:48.595
+88
+00:05:54.136 --> 00:05:55.885
 The three clouds disagree.
 
-87
-00:05:48.595 --> 00:05:50.820
+89
+00:05:55.885 --> 00:05:58.110
 In AWS the rule wins.
 
-88
-00:05:50.820 --> 00:05:55.258
+90
+00:05:58.110 --> 00:06:02.548
 In Azure the private zone wins,
 and the rule is silently ignored.
 
-89
-00:05:55.258 --> 00:06:00.582
+91
+00:06:02.548 --> 00:06:07.872
 In Oracle the private view wins, and
 evaluation stops even on a negative answer.
 
-90
-00:06:00.582 --> 00:06:04.340
+92
+00:06:07.872 --> 00:06:11.630
 And a private zone that covers
 a name but has no record for
 
-91
-00:06:04.340 --> 00:06:08.257
+93
+00:06:11.630 --> 00:06:15.547
 it says the name doesn't exist,
 instead of asking anyone else.
 
-92
-00:06:08.257 --> 00:06:10.843
+94
+00:06:15.547 --> 00:06:18.133
 So, as an inference, the only design that
 
-93
-00:06:10.843 --> 00:06:14.157
+95
+00:06:18.133 --> 00:06:21.447
 behaves the same everywhere
 is one owner per name.
 
-94
-00:06:14.157 --> 00:06:18.430
+96
+00:06:21.447 --> 00:06:25.720
 The Grid owns agency zones, each
 cloud owns its own private zones,
 
-95
-00:06:18.430 --> 00:06:20.445
+97
+00:06:25.720 --> 00:06:27.735
 and everything else forwards.
 
-96
-00:06:20.445 --> 00:06:22.040
+98
+00:06:27.735 --> 00:06:29.330
 So how does it break?
 
-97
-00:06:25.790 --> 00:06:30.215
+99
+00:06:33.080 --> 00:06:37.505
 The brief lists sixteen ways this
 breaks, and the slide picks seven.
 
-98
-00:06:30.215 --> 00:06:35.252
+100
+00:06:37.505 --> 00:06:42.542
 Shadowing is the classic: someone creates
 a private zone for a vendor's domain,
 
-99
-00:06:35.252 --> 00:06:40.053
+101
+00:06:42.542 --> 00:06:47.343
 say oraclecloud dot com, and every name
 not copied into it stops resolving.
 
-100
-00:06:40.053 --> 00:06:41.906
+102
+00:06:47.343 --> 00:06:49.196
 Silent fallback is sneakier:
 
-101
-00:06:41.906 --> 00:06:46.926
+103
+00:06:49.196 --> 00:06:54.216
 a private name resolves to the public
 address because a rule is missing or slow,
 
-102
-00:06:46.926 --> 00:06:51.714
+104
+00:06:54.216 --> 00:06:59.004
 which is why Windows forwarders to
 Azure need a timeout above four seconds.
 
-103
-00:06:51.714 --> 00:06:56.678
+105
+00:06:59.004 --> 00:07:03.968
 The Grid itself can fall back to the internet's
 root servers if its forwarders fail.
 
-104
-00:06:56.678 --> 00:07:01.731
+106
+00:07:03.968 --> 00:07:09.021
 Then there are loops, certificate name
 mismatches, the wrong cloud's endpoints,
 
-105
-00:07:01.731 --> 00:07:06.240
+107
+00:07:09.021 --> 00:07:13.530
 and capacity, so size resolver
 endpoints before each onboarding wave.
 
-106
-00:07:06.240 --> 00:07:08.570
+108
+00:07:13.530 --> 00:07:15.860
 So how should forwarding be wired?
 
-107
-00:07:12.320 --> 00:07:17.258
+109
+00:07:19.610 --> 00:07:24.548
 With several clouds, every vendor documents
 a hub, and none recommends a mesh.
 
-108
-00:07:17.258 --> 00:07:19.395
+110
+00:07:24.548 --> 00:07:26.685
 Here's some illustrative arithmetic.
 
-109
-00:07:19.395 --> 00:07:22.386
+111
+00:07:26.685 --> 00:07:29.676
 With five environments,
 a full mesh needs up to
 
-110
-00:07:22.386 --> 00:07:25.770
+112
+00:07:29.676 --> 00:07:33.060
 twenty one-way rule sets,
 while a hub needs about five.
 
-111
-00:07:25.770 --> 00:07:30.205
+113
+00:07:33.060 --> 00:07:37.495
 As an inference, every extra path is
 one more place for the precedence,
 
-112
-00:07:30.205 --> 00:07:32.695
+114
+00:07:37.495 --> 00:07:39.985
 fallback and loop failures we just saw.
 
-113
-00:07:32.695 --> 00:07:37.040
+115
+00:07:39.985 --> 00:07:44.330
 The Infoblox Grid is a natural hub
 for agency names, and Infoblox's
 
-114
-00:07:37.040 --> 00:07:42.270
+116
+00:07:44.330 --> 00:07:49.560
 reference design puts its virtual
 appliance in a shared-services hub network.
 
-115
-00:07:42.270 --> 00:07:45.588
+117
+00:07:49.560 --> 00:07:52.878
 The earlier multi-cloud
 research, as design guidance,
 
-116
-00:07:45.588 --> 00:07:49.961
+118
+00:07:52.878 --> 00:07:57.251
 recommends the Grid plus each cloud's
 native resolver as the baseline,
 
-117
-00:07:49.961 --> 00:07:53.958
+119
+00:07:57.251 --> 00:08:01.248
 with customer-operated appliances
 for FedRAMP High workloads.
 
-118
-00:07:53.958 --> 00:07:56.270
+120
+00:08:01.248 --> 00:08:03.560
 So what does the agency actually do?
 
-119
-00:08:00.020 --> 00:08:04.307
+121
+00:08:07.310 --> 00:08:11.597
 Here's what the agency must do,
 condensed from a thirteen-step checklist,
 
-120
-00:08:04.307 --> 00:08:07.795
+122
+00:08:11.597 --> 00:08:15.085
 and it's program design guidance,
 not a vendor requirement.
 
-121
-00:08:07.795 --> 00:08:13.361
+123
+00:08:15.085 --> 00:08:20.651
 Start with names and owners: inventory
 every name in the HR path per cloud, never
 
-122
-00:08:13.361 --> 00:08:16.358
+124
+00:08:20.651 --> 00:08:23.648
 create a private zone
 for a vendor's domain,
 
-123
-00:08:16.358 --> 00:08:19.270
+125
+00:08:23.648 --> 00:08:26.560
 and give each agency namespace one owner.
 
-124
-00:08:19.270 --> 00:08:24.175
+126
+00:08:26.560 --> 00:08:31.465
 Then forwarding: forward from the Grid
 to inbound endpoints in two regions,
 
-125
-00:08:24.175 --> 00:08:27.893
+127
+00:08:31.465 --> 00:08:35.183
 raise Windows forwarder timeouts,
 run a hub in each cloud,
 
-126
-00:08:27.893 --> 00:08:31.057
+128
+00:08:35.183 --> 00:08:38.347
 and size endpoints before
 each onboarding wave.
 
-127
-00:08:31.057 --> 00:08:36.102
+129
+00:08:38.347 --> 00:08:43.392
 Then the components: run at least two
 provisioning agents, treat middleware
 
-128
-00:08:36.102 --> 00:08:40.507
+130
+00:08:43.392 --> 00:08:47.797
 DNS as a data-integrity control,
 and keep VMware records in the Grid.
 
-129
-00:08:40.507 --> 00:08:42.421
+131
+00:08:47.797 --> 00:08:49.711
 And test from every origin.
 
-130
-00:08:42.421 --> 00:08:46.900
+132
+00:08:49.711 --> 00:08:54.190
 Any public answer or missing name
 for a private name is a defect.
 
-131
-00:08:50.650 --> 00:08:51.575
+133
+00:08:57.940 --> 00:08:58.865
 To close.
 
-132
-00:08:51.575 --> 00:08:54.311
+134
+00:08:58.865 --> 00:09:01.601
 The decisions are who owns each namespace,
 
-133
-00:08:54.311 --> 00:08:59.628
+135
+00:09:01.601 --> 00:09:06.918
 which middleware platform and so which
 resolver path, the hub design in each cloud,
 
-134
-00:08:59.628 --> 00:09:02.989
+136
+00:09:06.918 --> 00:09:10.279
 and whether Oracle's private
 access is needed at all,
 
-135
-00:09:02.989 --> 00:09:05.413
+137
+00:09:10.279 --> 00:09:12.703
 remembering that it's routing, not DNS.
 
-136
-00:09:05.413 --> 00:09:08.459
+138
+00:09:12.703 --> 00:09:15.803
 The next steps are the things
 that couldn't be verified,
 
-137
-00:09:08.459 --> 00:09:12.115
-such as which Oracle environment
-the agency's tenant will use and
+139
+00:09:15.803 --> 00:09:20.007
+such as which Oracle environment the
+agency's tenant will use and Oracle's
 
-138
-00:09:12.115 --> 00:09:15.974
-Oracle's government-realm DNS limits;
+140
+00:09:20.007 --> 00:09:24.210
+government-realm DNS limits and
+Connect's private endpoints in GovCloud;
+
+141
+00:09:24.210 --> 00:09:26.002
 they're all listed in the backup.
 
-139
-00:09:15.974 --> 00:09:21.882
+142
+00:09:26.002 --> 00:09:31.910
 In the workbook, the HR-Driven Identity
 book and the DNS, DHCP and IPAM book cover
 
-140
-00:09:21.882 --> 00:09:27.612
+143
+00:09:31.910 --> 00:09:37.640
 those two halves in depth, and three
 related research items sit beside this one.
 
-141
-00:09:27.612 --> 00:09:32.538
+144
+00:09:37.640 --> 00:09:42.565
 This is research under review, not an
 endorsement by any federal agency.
 
-142
-00:09:32.538 --> 00:09:33.370
+145
+00:09:42.565 --> 00:09:43.390
 Thank you.

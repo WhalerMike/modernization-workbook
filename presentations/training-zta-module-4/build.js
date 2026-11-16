@@ -119,16 +119,16 @@ endModule(SI);
   tag(s, "Who");
   const tb = table(s, "Tools", 1.45, [3.3, 4.45, 4.4], ["Platform", "Posture tool on the spine", "Note"], [
     ["Microsoft 365 GCC and Azure", "Zero Trust Assessment; ScubaGear for Microsoft 365", "The workbook's baseline; ScubaGear is the BOD 25-01 tool"],
-    ["AWS", "Security Hub CSPM, its NIST SP 800-53 Rev. 5 standard", "Runs in the AWS commercial Regions the program uses: check each Region in scope"],
+    ["AWS", "Security Hub CSPM, its NIST SP 800-53 Rev. 5 standard", "GovCloud (US): available, with limits on integrations, some controls and cross-Region aggregation"],
     ["Oracle Cloud Infrastructure", "Cloud Guard", "Book 12, Ch 08 compares it"],
     ["Google Cloud", "Security Command Center", "Book 12, Ch 08 compares it"],
   ], { fontSize: 12.5, limit: 4.8 });
   callout(s, "Spine", tb + 0.3, 1.0, "FaRoute", HEX.teal, "The same spine on every cloud: ",
     "each tool's finding, matched to the setting and the control, with one owner. The reconciliation table holds one row per control.");
-  sources(s, "Sources: Module 4, Unit 2; Guide, Step 9, \"Government-cloud availability\"; Book 12, Ch 08.");
+  sources(s, "Sources: Module 4, Unit 2; Guide, Step 9, \"Government-cloud availability\"; Book 12, Ch 08; AWS Security Hub CSPM in AWS GovCloud (US).");
   notes(s,
-`Where are agencies? Most run more than one platform, and each has its own posture tool on the same spine. For Microsoft three sixty-five G C C and Azure, the workbook's baseline, it's the Zero Trust Assessment, with ScubaGear as the directive's tool for Microsoft three sixty-five. On AWS, it's Security Hub, with its standard for NIST eight hundred fifty-three, revision five. It runs in the AWS commercial Regions the program uses, so check each Region in scope before collecting from it. On Oracle Cloud Infrastructure, it's Cloud Guard, and on Google Cloud, Security Command Center. The chapter on cloud-native posture in Security Operations and Telemetry compares those two, and how their findings enter the evidence contract. The rule is the same everywhere: each finding is matched to the setting and the control, with one owner, in one row of the reconciliation table.`,
-  `${M} — Unit 2 (each tool sees its own platform; OCI and Google Cloud); guide, Step 9 ("The same spine on the other clouds," the reconciliation table), "Government-cloud availability"; Book 12, Chapter 08.`);
+`Where are agencies? Most run more than one platform, and each has its own posture tool on the same spine. For Microsoft three sixty-five G C C and Azure, the workbook's baseline, it's the Zero Trust Assessment, with ScubaGear as the directive's tool for Microsoft three sixty-five. On AWS, it's Security Hub, with its standard for NIST eight hundred fifty-three, revision five. In AWS GovCloud, Security Hub is available, with limits on product integrations, some controls, and cross-Region aggregation. On Oracle Cloud Infrastructure, it's Cloud Guard, and on Google Cloud, Security Command Center. The chapter on cloud-native posture in Security Operations and Telemetry compares those two, and how their findings enter the evidence contract. The rule is the same everywhere: each finding is matched to the setting and the control, with one owner, in one row of the reconciliation table.`,
+  `${M} — Unit 2 (each tool sees its own platform; OCI and Google Cloud); guide, Step 9 ("The same spine on the other clouds," the reconciliation table), "Government-cloud availability"; Book 12, Chapter 08; AWS — "AWS Security Hub CSPM in AWS GovCloud (US)."`);
 }
 
 // ================================================================== 7 Cadence and package
@@ -320,7 +320,7 @@ backup();
 sourceSlide("Sources: Module 4 deck", [
   "Module page: docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md (The Zero Trust Assessment as Evidence, Module 4); the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
   "Zero Trust Assessment: An Implementation Guide, Step 9 (the spine, ScubaGear, Security Hub CSPM, other clouds) and Step 10 (compare, seal, cadence, the evidence package, retention), \"Government-cloud availability\"; its footnotes, read November 11, 2026.",
-  "AWS: NIST SP 800-53 Rev. 5 in Security Hub CSPM; AWS Security Hub CSPM compliance status. CISA BOD 25-01; CISA ScubaGear. Microsoft Learn, Operate Microsoft Entra Private Access (the scheduled digest playbook).",
+  "AWS: NIST SP 800-53 Rev. 5 in Security Hub CSPM; AWS Security Hub CSPM compliance status; AWS Security Hub CSPM in AWS GovCloud (US). CISA BOD 25-01; CISA ScubaGear. Microsoft Learn, Operate Microsoft Entra Private Access (the scheduled digest playbook).",
   "Book 11, Chapter 09 (retention) and Chapter 10 (Reconcile at the control); Book 12, Chapter 08 (posture tools on other clouds, including Oracle Cloud Infrastructure Cloud Guard); Book 15, Chapter 12 (cadence). NIST SP 800-53 Rev. 5 (CA-5, CA-7, AU-9, AU-11); FedRAMP 20x KSIs, as Book 13, Appendix A maps them.",
   "Lab output: examples/zta-results (Invoke-ZtaCompare.ps1, Invoke-ZtaEvidence.ps1, the out folder from Module 3's Lab 1), run November 12, 2026 with PowerShell 7.6, the same as the page; trimmed where the slides say so. Lab 2 not run by the authors.",
 ]);

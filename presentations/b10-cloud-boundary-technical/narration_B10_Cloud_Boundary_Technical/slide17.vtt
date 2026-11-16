@@ -10,11 +10,11 @@ where the boundary becomes something
 the platform actually enforces.
 
 3
-00:00:05.850 --> 00:00:09.782
-We'll cover policy, the same
-pattern on AWS, the address plan,
+00:00:05.850 --> 00:00:09.536
+We'll cover policy, AWS and
+GovCloud, the address plan,
 
 4
-00:00:09.782 --> 00:00:14.350
+00:00:09.536 --> 00:00:14.300
 network as code, and the front door
 every change has to pass through.

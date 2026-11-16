@@ -63,16 +63,25 @@ at the right level, or keep the
 plane inside the agency's boundary.
 
 14
-00:00:46.025 --> 00:00:50.830
-A Moderate system runs in the commercial
-regions: GCC Moderate, commercial
+00:00:46.025 --> 00:00:50.134
+Microsoft 365 runs in GCC
+Moderate with commercial Azure,
 
 15
-00:00:50.830 --> 00:00:55.713
-Azure and the AWS commercial Regions,
-and the slide lists what changes there.
+00:00:50.134 --> 00:00:55.956
+and government regions such as AWS GovCloud,
+where the program's AWS workloads run,
 
 16
-00:00:55.713 --> 00:00:59.180
+00:00:55.956 --> 00:00:57.839
+host Moderate systems too,
+
+17
+00:00:57.839 --> 00:01:01.863
+so their gaps matter at Moderate,
+and the slide lists them.
+
+18
+00:01:01.863 --> 00:01:05.330
 The right-hand column is High
 only, kept for reference.

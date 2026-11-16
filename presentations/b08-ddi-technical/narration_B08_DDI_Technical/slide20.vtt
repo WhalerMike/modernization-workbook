@@ -24,38 +24,39 @@ and nobody knows until a conflict appears.
 Integration depth varies.
 
 6
-00:00:17.350 --> 00:00:22.217
+00:00:17.350 --> 00:00:22.093
 AWS can hand authority for private
 address scopes to an external IPAM,
 
 7
-00:00:22.217 --> 00:00:24.570
-with Infoblox as the book's example,
+00:00:22.093 --> 00:00:25.650
+with Infoblox as the book's
+example, but not in GovCloud,
 
 8
-00:00:24.570 --> 00:00:28.788
-in the commercial Regions where
-the agency's AWS workloads run.
+00:00:25.650 --> 00:00:28.338
+so it doesn't help a
+GovCloud estate today.
 
 9
-00:00:28.788 --> 00:00:33.126
+00:00:28.338 --> 00:00:32.675
 Azure and Google Cloud can't hand
 off, so you mirror and reconcile.
 
 10
-00:00:33.126 --> 00:00:38.653
+00:00:32.675 --> 00:00:38.203
 The rule: reserve blocks in the enterprise
 IPAM before any cloud or NSX network is
 
 11
-00:00:38.653 --> 00:00:40.816
+00:00:38.203 --> 00:00:40.366
 created, integrate where you can,
 
 12
-00:00:40.816 --> 00:00:44.100
+00:00:40.366 --> 00:00:43.650
 reconcile where you can't,
 and monitor sync health.
 
 13
-00:00:44.100 --> 00:00:47.640
+00:00:43.650 --> 00:00:47.180
 And plan IPv4 and IPv6 together.

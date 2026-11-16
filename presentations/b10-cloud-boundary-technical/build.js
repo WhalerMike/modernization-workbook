@@ -598,7 +598,7 @@ endModule("Module 2");
   const s = divider(P2, "Module 3: Landing zone and front door", "Part 2 — Building it and owning it  ·  Chapters 05–07",
     ["Management groups and the policy each boundary decision becomes", "The address plan as join key; pools that mirror the authority", "Network as code and the governed provisioning loop"], 15);
   notes(s,
-`Module 3, the start of Part 2: the landing zone, where the boundary becomes something Azure Resource Manager enforces. We'll go through the management group hierarchy and the policy each boundary decision becomes, the same pattern on AWS, and the contract every piece of automation should carry. Then the address plan as the join key the inventory needs, Virtual Network Manager pools that mirror the enterprise IPAM, and network as code. Then the front door: the governed loop that turns "run the module" into an approved, evidenced and reconciled change.`,
+`Module 3, the start of Part 2: the landing zone, where the boundary becomes something Azure Resource Manager enforces. We'll go through the management group hierarchy and the policy each boundary decision becomes, the same pattern on AWS and GovCloud, and the contract every piece of automation should carry. Then the address plan as the join key the inventory needs, Virtual Network Manager pools that mirror the enterprise IPAM, and network as code. Then the front door: the governed loop that turns "run the module" into an approved, evidenced and reconciled change.`,
   "Book 10, Chapters 05–07.");
 }
 
@@ -652,12 +652,13 @@ Enforcement order matters: disabled first, then append and modify, then deny, th
 
 // ================================================================== 20 AWS and the adapter contract
 {
-  const s = content(P2, "AWS, and automation that declares its boundary");
+  const s = content(P2, "AWS, GovCloud and automation that declares its boundary");
   tag(s, "How");
   const aws = [
     "SCPs never grant; they cap IAM users and roles, root included, not the management account",
-    "SCPs need an organization with all features enabled",
-    "Control Tower builds the landing zone on Organizations",
+    "GovCloud accounts are created in pairs from a commercial management account",
+    "Audit and Log Archive accounts must exist first; Account Factory Create account unavailable",
+    "No export-controlled data in Control Tower metadata",
     "Landing Zone Accelerator \"will not, by itself, make you compliant\"",
   ];
   const contract = [
@@ -670,10 +671,10 @@ Enforcement order matters: disabled first, then append and modify, then deny, th
   panel(s, "AWS", 0.6, 1.5, 6.55, ph, HEX.navy, HEX.navyTint, "AWS ORGANIZATIONS AND CONTROL TOWER", null, aws, 14.5);
   panel(s, "Contract", 7.4, 1.5, 5.35, ph, HEX.teal, HEX.tealTint, "THE ADAPTER CONTRACT (DESIGN GUIDANCE)", null, contract, 14.5);
   callout(s, "Market", 1.5 + ph + 0.25, 0.95, "FaCloud", HEX.amber, "Marketplace, as of Oct. 21, 2026: ",
-    "AWS US East/West Class C, where the program's AWS workloads run; check each service per Region. Azure (commercial) Class D.");
-  sources(s, "Sources: AWS — Organizations SCPs, Control Tower, LZA, FedRAMP scope; FedRAMP Marketplace (Oct. 21, 2026). Adapter contract is program design. Book 10, Ch 05.");
+    "AWS GovCloud Class D, US East/West Class C: both hold a Moderate system; check each service per Region. Azure (commercial) Class D.");
+  sources(s, "Sources: AWS — Organizations SCPs, Control Tower in GovCloud (US), LZA, FedRAMP scope; FedRAMP Marketplace (Oct. 21, 2026). Adapter contract is program design. Book 10, Ch 05.");
   notes(s,
-`AWS expresses the same structure with Organizations: accounts for subscriptions, organizational units for management groups, service control policies for deny assignments. An SCP never grants a permission; it sets the maximum for IAM users and roles in member accounts, including the root user, doesn't affect the management account, and needs an organization with all features enabled. Control Tower builds the landing zone on top of Organizations, and AWS recommends Landing Zone Accelerator on top of Control Tower for regulated workloads: open-source infrastructure as code that, in AWS's words, won't by itself make you compliant. AWS lists US East and West at Class C, formerly the Moderate baseline, and marks each service in scope per Region. The program's AWS workloads run in the commercial Regions, so check the service, Region by Region, before the design depends on it.
+`AWS expresses the same structure with Organizations: accounts for subscriptions, organizational units for management groups, service control policies for deny assignments. An SCP never grants a permission; it sets the maximum for IAM users and roles in member accounts, including the root user, doesn't affect the management account, and needs an organization with all features enabled. Control Tower runs in both GovCloud Regions, differently. Accounts can't be created inside GovCloud: CreateGovCloudAccount runs from a commercial management account and creates a pair, a standalone GovCloud account and a linked commercial one for billing and support. The GovCloud organization is independent, and its Audit and Log Archive accounts must exist before setup. Account Factory's Create account isn't available, and new customers can't deploy Account Factory for Terraform there. Control Tower metadata must not contain export-controlled data. Landing Zone Accelerator supports the GovCloud partition and, in AWS's words, won't by itself make you compliant. GovCloud isn't only for High. Its Class D baseline contains the Moderate controls, so a Moderate system can run there or in the Class C commercial Regions; an agency may run most AWS workloads in GovCloud at Moderate and a contact center in the commercial Regions. AWS marks each service in scope per Region, so check the service, not just the partition.
 
 The landing zone constrains what people deploy. Automation needs its own contract, because a collector that calls a commercial-only API from inside the boundary is a crossing nobody approved. The program's cloud specification is design guidance: every adapter operates in-boundary or through a named exception a formal decision added to a short canonical list, with no third option; endpoints resolve from the declared cloud; an unknown cloud fails closed; and every claim records its boundary, tenant, region and endpoint class: Graph v1.0, Graph beta, Resource Manager or Arc. A crossing without a declared exception shows up as provenance drift.`,
   "Book 10, Chapter 05, \"The same pattern on AWS,\" \"Every automation declares its boundary.\"");
@@ -1028,11 +1029,11 @@ sourceSlide("Sources behind Module 3 — Landing zone and front door", [
   "Microsoft Learn (Cloud Adoption Framework): What is an Azure landing zone; landing zone FAQ; design areas; implementation options; Deploy Azure landing zones (sovereign clouds); management groups; subscription vending.",
   "Microsoft Learn: compliance scope (Feb. 2026); Azure FedRAMP offering; built-in policies; disallowed resources; FedRAMP Moderate initiative; exemption structure.",
   "Microsoft Learn: Azure Policy effect basics and deny; What is Azure Policy; get compliance data; Virtual Network FAQ; AVNM IPAM concept, Bicep pools and static CIDRs, preventing overlap with Policy.",
-  "AWS: Organizations service control policies; FedRAMP services in scope; Landing Zone Accelerator implementation guide; Amazon VPC subnet sizing.",
+  "AWS: Organizations service control policies; Control Tower in AWS GovCloud (US); FedRAMP services in scope; Landing Zone Accelerator implementation guide; Amazon VPC subnet sizing.",
   "NIST SP 800-53 Rev. 5 release 5.2.0 (AC-4, AC-5, CM-2, CM-2(2), CM-3, CM-3(2), CM-5, CM-8, CM-8(1), SC-7, SC-20 to SC-22); SP 800-53B Moderate profile; SP 800-37 Rev. 2.",
   "CISA BOD 23-01 (Oct. 3, 2022).  ·  FedRAMP KSIs: PIY-GIV; CMT-LMC, -VTD, -RMV.  ·  Microsoft Learn: Microsoft 365 IP Address and URL web service.",
   "ServiceNow: CPG catalog item from a Terraform template.  ·  HashiCorp: ServiceNow Catalog approval workflow (Oct. 2, 2025); managing sensitive data in Terraform.",
-  "FedRAMP Marketplace (Oct. 21, 2026): Azure (F1209051525), AWS US East/West, Infoblox Government Cloud, ServiceNow GCC, GitHub Enterprise Cloud, GitLab Dedicated.",
+  "FedRAMP Marketplace (Oct. 21, 2026): Azure (F1209051525), AWS GovCloud, AWS US East/West, Infoblox Government Cloud, ServiceNow GCC, GitHub Enterprise Cloud, GitLab Dedicated.",
   "Full footnotes with links and access dates: Book 10, Chapters 05–07.",
 ]);
 sourceSlide("Sources behind Module 4 — Who owns it, and the package", [

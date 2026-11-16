@@ -49,15 +49,15 @@ on the public internet instead.
 Addresses follow the same idea.
 
 11
-00:00:35.375 --> 00:00:39.706
+00:00:35.375 --> 00:00:39.697
 The Grid owns the agency's blocks
 and hands each cloud a block,
 
 12
-00:00:39.706 --> 00:00:43.950
-automated on commercial AWS
-and manual in Azure and Google.
+00:00:39.697 --> 00:00:44.625
+automated on commercial AWS and
+manual in GovCloud, Azure and Google.
 
 13
-00:00:43.950 --> 00:00:46.320
+00:00:44.625 --> 00:00:46.990
 Whichever you pick, some rules apply.

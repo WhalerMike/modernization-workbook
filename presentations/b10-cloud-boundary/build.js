@@ -533,8 +533,8 @@ The license says what you bought; the boundary says what you may use. Book 10 ha
     "NIST SP 800-37 Rev. 2; SP 800-53 Rev. 5 (release 5.2.0) and SP 800-53B; OSCAL component definition model.  ·  CISA BOD 23-01.  ·  FAR 1.602-1.",
     "Microsoft Learn, Microsoft 365: network connectivity, assessment, insights and provider attribution; informed network routing; Adoption Score; Office 365 CDN; IP Address and URL web service; ExpressRoute for Microsoft 365; Office and Intune government service descriptions.",
     "Microsoft Learn, Azure: cloud feature availability for US Government; FedRAMP audit scope; landing zones, management groups, subscription vending; Azure Policy; Virtual Network Manager IPAM; shared responsibility.",
-    "AWS: Organizations SCPs; Control Tower; Landing Zone Accelerator; FedRAMP services in scope.  ·  HashiCorp: ServiceNow Catalog for Terraform; sensitive data.  ·  ServiceNow Cloud Provisioning and Governance.",
-    "Google Cloud FedRAMP scope; Google Workspace Admin Help; Microsoft Learn — Google Workspace provisioning and SSO.  ·  GSA (April 10 and August 21, 2025).  ·  Nextgov/FCW.",
+    "AWS: Organizations SCPs; Control Tower in GovCloud (US); Landing Zone Accelerator.  ·  HashiCorp: ServiceNow Catalog for Terraform; sensitive data.  ·  ServiceNow Cloud Provisioning and Governance.",
+    "Google Cloud FedRAMP scope; Google Workspace Admin Help; Microsoft Learn — Google Workspace provisioning and SSO.  ·  GSA (April 10 and August 21, 2025).  ·  Nextgov/FCW.  ·  Stars and Stripes.",
     "Full footnotes with links and access dates: Book 10, every chapter (whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/).",
   ];
   txt(s, "Source list", bullets(src, 12.5), { x: 0.6, y: 1.55, w: 12.1, h: 5.0, paraSpaceAfter: 6 });

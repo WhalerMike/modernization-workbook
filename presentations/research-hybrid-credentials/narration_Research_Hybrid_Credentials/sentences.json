@@ -607,6 +607,11 @@
   ],
   [
    26.913,
+   9.088,
+   "One thing to confirm with CyberArk in writing: its AWS driver pages don't mention GovCloud, where the program's AWS workloads run."
+  ],
+  [
+   36.0,
    1.8,
    "Now, the piv card."
   ]
@@ -619,16 +624,16 @@
   ],
   [
    19.2,
-   10.762,
-   "The next steps are tests, not more reading: prove the sequel key type, prove the card system can write the binding, and patch the access control servers before the new certificates arrive."
+   9.037,
+   "The next steps are tests, not more reading: prove the sequel key type, prove the card system can write the binding, and get CyberArk's answer on GovCloud."
   ],
   [
-   29.962,
+   28.238,
    5.862,
    "This is the program's research, under review, and not an endorsement by any federal agency."
   ],
   [
-   35.825,
+   34.1,
    1.1,
    "Thanks for watching."
   ]

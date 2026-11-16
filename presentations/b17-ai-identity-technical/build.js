@@ -1000,7 +1000,7 @@ sourceSlide("Sources behind Module 2 — Inventory and kinds of identity", [
   "Microsoft Learn: Conditional Access for agents; Target agent identities; Conditional Access: Grant; Conditional Access for workload identities; Workload ID FAQ; Managed identities overview; Workload identity federation.",
   "Microsoft Learn: What are agent identities; What is Entra Agent ID; Governing agent identities; Agent ID design patterns; Agent identities; Agent's user account; Agent 365 identity; agentIdentity resource; Disable agent identities.",
   "Microsoft Learn: ID Protection for agents; Agent 365 service description; Agent 365 CLI for US Government clouds; Entra releases (March–May 2026); Foundry agent identity.",
-  "AWS: Amazon Bedrock AgentCore Identity.  ·  Google Cloud: Agent identity overview.",
+  "AWS: Amazon Bedrock AgentCore Identity; AgentCore in AWS GovCloud (US).  ·  Google Cloud: Agent identity overview.",
   "Full footnotes with links and access dates (Oct. 21, 2026): Book 17, Chapters 03–04.",
 ]);
 sourceSlide("Sources behind Module 3 — Owners, credentials and access", [

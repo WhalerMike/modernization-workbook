@@ -295,7 +295,7 @@ One product detail to check. Endpoint DNS agents commonly listen on the device's
   tag(s, "What");
   panel(s, "Cap4", 0.6, 1.45, 5.98, 5.05, HEX.navy, HEX.navyTint, "CAPABILITY 4", "IPAM as authority, with discovery", [
     "Every block reserved in the enterprise IPAM before a cloud or NSX network is created",
-    "Hand allocation to it where the cloud allows: AWS VPC IPAM can use an external IPAM in the commercial Regions",
+    "Hand allocation to it where the cloud allows: AWS VPC IPAM can use an external IPAM in commercial Regions, not GovCloud",
     "Elsewhere, mirror reservations into native pools and reconcile continuously",
     "Discovery across all address space; public IPs and domains attested quarterly",
     "IPv4 and IPv6 planned in one place",
@@ -309,7 +309,7 @@ One product detail to check. Endpoint DNS agents commonly listen on the device's
   ], 13, "NIST SP 800-81r3 (lease history); M-22-09; M-21-07");
   sources(s, "Sources: NIST SP 800-53 CM-8; CISA BOD 23-01, BOD 26-04; OMB M-21-07; AWS VPC IPAM; Microsoft DHCP failover; Infoblox NIOS DHCP failover; NIST SP 800-81r3; MITRE T1557.003. Book 08, Ch. 04, 05, 07, 10.");
   narrate(s,
-`Fourth, IPAM as the authority, with discovery. Left alone, each cloud's address manager allocates independently, recreating split-brain for addresses. The book's rule is that every block is reserved in the enterprise IPAM before a cloud or NSX network is created. Where a cloud lets an external IPAM hold allocation authority, use it; AWS VPC IPAM can, in the commercial Regions. Elsewhere, mirror the reservations into the native pools and reconcile continuously.
+`Fourth, IPAM as the authority, with discovery. Left alone, each cloud's address manager allocates independently, recreating split-brain for addresses. The book's rule is that every block is reserved in the enterprise IPAM before a cloud or NSX network is created. Where a cloud lets an external IPAM hold allocation authority, use it; AWS VPC IPAM can, but only in commercial Regions, not GovCloud. Elsewhere, mirror the reservations into the native pools and reconcile continuously.
 
 Discovery is where IPAM supports the directives. BOD 23-01 asks for automated discovery across all agency IPv4 space every seven days, and you can't scan space you haven't recorded. BOD 26-04 asks agencies to attest their public IP addresses and domains every quarter. And M-21-07's IPv6-only milestones mean IPv4 and IPv6 have to be planned in the same tool.
 
@@ -670,7 +670,7 @@ srcSlide("Sources: product evidence and vendor documentation", [
   "STIG file store (High only): Infoblox NIOS 9.x STIG V1R1; Infoblox 8.x DNS STIG V1R4; DNS SRG V4R3. None found for BlueCat, EfficientIP or Micetro.",
   "CIS Benchmarks list (no NIOS benchmark); NIST SP 800-70 Rev. 5 and the National Checklist Program; NIST SP 800-53 Rev. 5 CM-6; all read Oct. 29, 2026.",
   "Infoblox documentation (vendor): NIOS 9.0/9.1 admin guide (permissions, admin groups and roles, network and DNS views, extensible attributes, approval workflows, audit log, authentication, SAML, PIV, Microsoft servers, DNSSEC, DHCP failover, reporting, dnstap, WAPI); Universal DDI (access views, IP spaces, IPAM Federation, tags); Universal DDI tokens FAQ.",
-  "Microsoft Learn: DHCP failover; DNS logging and diagnostics; Azure DNSSEC; DNS resolver policy; Azure Private DNS; Windows DNSSEC zone signing  ·  AWS: Route 53 DNSSEC signing; VPC IPAM and the Infoblox integration.",
+  "Microsoft Learn: DHCP failover; DNS logging and diagnostics; Azure DNSSEC; DNS resolver policy; Azure Private DNS; Windows DNSSEC zone signing  ·  AWS: Route 53 DNSSEC signing; VPC IPAM and the Infoblox integration (not in GovCloud).",
   "BlueCat Cloud Discovery & Visibility and Azure deployment documentation; EfficientIP SOLIDserver DNS Cloud (vendor), as cited in Book 08, Chapter 12.",
   "Azure Retail Prices API (October 20, 2026), as cited in Book 08, Chapter 12  ·  NIST NVD and ISC BIND advisories.",
   "All product facts were checked on October 22, 2026; confirm current status on the day of any decision.",

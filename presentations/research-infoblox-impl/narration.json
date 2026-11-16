@@ -37,7 +37,7 @@
   {
     "slide": 8,
     "title": "vNIOS on VMware, Azure and AWS",
-    "say": "Virtual appliances, vNIOS, run on VMware, Azure and AWS. On VMware, the advice is to leave the VM's settings alone, because changing them may violate the licensing terms and stop it joining. On Azure and AWS, high availability arrived in 9.0.4, with limits to plan around, such as both nodes in the same region and zone, and no IPv6 failover. The HA prerequisites list the commercial cloud endpoints, which is where the program's workloads run, and failover time depends on each cloud's API, so test it in the pilot. And one constraint that shapes Part 2: vNIOS members can't manage Microsoft servers."
+    "say": "Virtual appliances, vNIOS, run on VMware, Azure and AWS. On VMware, the advice is to leave the VM's settings alone, because changing them may violate the licensing terms and stop it joining. On Azure and AWS, high availability arrived in 9.0.4, with limits to plan around, such as both nodes in the same region and zone, and no IPv6 failover. Here's the gap that matters for government: the HA prerequisites list only commercial cloud endpoints, with nothing for GovCloud, where the program's AWS workloads run. So ask Infoblox, in writing, before you rely on vNIOS failover there. And one constraint that shapes Part 2: vNIOS members can't manage Microsoft servers."
   },
   {
     "slide": 9,

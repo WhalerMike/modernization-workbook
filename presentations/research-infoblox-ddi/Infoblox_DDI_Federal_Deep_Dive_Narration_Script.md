@@ -30,7 +30,7 @@ DNS on NIOS is strong, with a catch for each feature. DNS views give different a
 
 ## Slide 8 — DHCP and IPAM: failover, network views, discovery
 
-DHCP first. Failover peers talk to each other directly; the Grid Master isn't involved, whatever older material says. But failover is IPv4 only, which matters under the IPv6 mandate, though Windows has the same gap. Lease history is archived, which is the address-to-asset record NIST asks for. On the IPAM side, a network view is a single routing domain, and discovery tools read both the network and the clouds, though the deeper device discovery needs its own license and dedicated appliances, so budget for that. Two corrections to common claims: separate network views permit overlap, they don't prevent it. Now, the security layer.
+DHCP first. Failover peers talk to each other directly; the Grid Master isn't involved, whatever older material says. But failover is IPv4 only, which matters under the IPv6 mandate, though Windows has the same gap. Lease history is archived, which is the address-to-asset record NIST asks for. On the IPAM side, a network view is a single routing domain, and discovery tools read both the network and the clouds, though the deeper device discovery needs its own license and dedicated appliances, so budget for that. Two corrections to common claims: separate network views permit overlap, they don't prevent it. And the AWS address-management integration excludes GovCloud. Now, the security layer.
 
 ## Slide 9 — Threat Defense: DNS-layer security and intelligence
 
@@ -58,7 +58,7 @@ A narrower question: if an agency buys Trinzic, the physical appliances, how wel
 
 ## Slide 15 — Trinzic alone, or with cloud DDI?
 
-Can Trinzic run an agency's DDI alone once workloads move to the clouds? On its own, it can see into them, discovering networks and importing zones one way, but it can't own cloud DNS. There are three ways to extend it, and they combine: virtual appliances in each cloud, Universal DDI, which is the only Infoblox path that writes back to cloud DNS, or native cloud resolvers wired to the Grid with forwarding both ways. The design guidance is this: mostly on premises, use native resolvers with forwarding; hybrid, add virtual appliances; multi-cloud at Moderate, add Universal DDI for workloads in the commercial regions, after confirming which features the government edition supports; and for FedRAMP High, don't depend on the Moderate SaaS. The Trinzic explainer has the full reasoning.
+Can Trinzic run an agency's DDI alone once workloads move to the clouds? On its own, it can see into them, discovering networks and importing zones one way, but it can't own cloud DNS. There are three ways to extend it, and they combine: virtual appliances in each cloud, Universal DDI, which is the only Infoblox path that writes back to cloud DNS, or native cloud resolvers wired to the Grid with forwarding both ways. The design guidance is this: mostly on premises, use native resolvers with forwarding; hybrid, add virtual appliances; multi-cloud at Moderate, add Universal DDI; in GovCloud at Moderate, where the program's AWS workloads run, confirm the government edition supports those accounts first; and for FedRAMP High, don't depend on the Moderate SaaS. The Trinzic explainer has the full reasoning.
 
 ## Slide 16 — Assurance: baselines, FIPS 140, NIAP and SP 800-81r3
 

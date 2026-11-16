@@ -695,7 +695,7 @@ The rules that matter. Each endpoint gets its own delegated subnet, slash twenty
   const s = D.content(P2, "IPAM is the authority for address blocks");
   tag(s, "How");
   table(s, "IPAM", 1.5, [2.25, 5.1, 4.8], ["Platform", "What it offers", "The program's control"], [
-    ["AWS VPC IPAM", "An external IPAM can own a private scope (Infoblox example, since Nov. 2025); Advanced Tier", "Enable it in the commercial Regions where the workloads run"],
+    ["AWS VPC IPAM", "An external IPAM can own a private scope (Infoblox example, since Nov. 2025); Advanced Tier", "Enable in commercial Regions; not in GovCloud (US) or China"],
     ["Azure VNet Manager", "Hierarchical pools (root + 7 layers), IPv4 and IPv6, static CIDRs for outside ranges", "Mirror enterprise reservations as static CIDRs; reconcile"],
     ["Google Cloud", "Internal ranges, including ranges reserved for use outside the network", "Mirror reservations as internal ranges; reconcile"],
     ["VCF 9.1 and NSX", "Native allocation from Infoblox; tenant FQDNs registered automatically", "Enable; confirm IPv6 and limits (vendor blog only)"],
@@ -712,7 +712,7 @@ The rules that matter. Each endpoint gets its own delegated subnet, slash twenty
   notes(s,
 `The address side has the same structure as the name side. AWS VPCs, Azure virtual networks, Google Cloud VPC networks and NSX segments each allocate on their own, so a CIDR created in a console can overlap on-premises space, another cloud or another division, and the enterprise DDI system doesn't know until discovery runs or a conflict appears.
 
-Integration depth differs. Amazon VPC IPAM can hand a private scope's authority to an external IPAM; since November 2025 the book's example is Infoblox, which chooses a block or accepts or rejects a requested one. It needs the Advanced Tier, covers private scopes only, and is available in the commercial Regions where the agency's AWS workloads run. Azure Virtual Network Manager offers hierarchical pools, a root and up to seven layers, IPv4 and IPv6, with static CIDRs for ranges outside Azure. Google Cloud's internal ranges can reserve blocks. Neither hands authority to an external IPAM, so mirror the enterprise reservations into them and reconcile. VMware Cloud Foundation 9.1 added native Infoblox allocation and FQDN registration; the source is a vendor blog without IPv6 or limits, so confirm the scope first.
+Integration depth differs. Amazon VPC IPAM can hand a private scope's authority to an external IPAM; since November 2025 the book's example is Infoblox, which chooses a block or accepts or rejects a requested one. It needs the Advanced Tier, covers private scopes only, and isn't available in GovCloud or China, so it doesn't help a GovCloud estate today. Azure Virtual Network Manager offers hierarchical pools, a root and up to seven layers, IPv4 and IPv6, with static CIDRs for ranges outside Azure. Google Cloud's internal ranges can reserve blocks. Neither hands authority to an external IPAM, so mirror the enterprise reservations into them and reconcile. VMware Cloud Foundation 9.1 added native Infoblox allocation and FQDN registration; the source is a vendor blog without IPv6 or limits, so confirm the scope first.
 
 The rule: reserve blocks in the enterprise IPAM before any cloud or NSX network is created, integrate where you can, mirror and reconcile where you can't, and monitor sync health. Federation plus active and passive discovery produce one hierarchy, which catches overlap before two networks are peered and reports the CM-8 inventory. The program also wants IPAM to track FQDNs, wildcards and bound certificates.
 
@@ -755,11 +755,11 @@ Decision 1, the redirect-dns destination: a DDI resolver or forwarding proxy at 
     "Local resolvers and agents: keep resolving if management is unreachable",
     "Route 53 and Azure still serve their zones; the plane holds one policy object",
   ], 12);
-  table(s, "Federal", 1.5, [2.55, 2.4, 2.6], ["Component", "Moderate: commercial regions, GCC Moderate", "FedRAMP High (High only)"], [
+  table(s, "Federal", 1.5, [2.55, 2.4, 2.6], ["Component", "Moderate: commercial or GovCloud regions", "FedRAMP High (High only)"], [
     ["Cloud DDI management plane", "FedRAMP Moderate + agency ATO", "Moderate doesn't cover High"],
     ["Five decisions, RPZ, Protective DNS", "Apply", "Apply (air-gapped differs)"],
     ["Private endpoint zone names", "Commercial (privatelink.*.windows.net)", "Commercial, as at Moderate"],
-    ["VPC IPAM external authority", "Commercial Regions", "Not in the AWS Regions authorized at High"],
+    ["VPC IPAM external authority", "Commercial Regions, not GovCloud", "Not in GovCloud (US)"],
     ["Azure DNS Private Resolver", "Available", "Confirm separately"],
     ["Azure Private DNS signing", "Not supported", "Not supported"],
     ["M365 informed network routing", "Not in GCC Moderate", "Not available"],
@@ -770,7 +770,7 @@ Decision 1, the redirect-dns destination: a DDI resolver or forwarding proxy at 
 
 Infoblox is the book's example: the NIOS grid, and Universal DDI as the cloud plane. Its FedRAMP-listed offering is Infoblox Government Cloud, certified at Moderate; on-premises NIOS appliances aren't a FedRAMP cloud service and sit inside the agency's boundary. Chapter 12 evaluates other platforms against the same requirements.
 
-The architecture is the same everywhere; authorization and a few integrations change. A Moderate system runs in the commercial regions: Microsoft 365 GCC Moderate, commercial Azure and the AWS commercial Regions, where AWS publishes FedRAMP scope per service and per Region. The right-hand column, marked High only, applies to FedRAMP High environments, not to the Moderate civilian baseline this workbook targets. A plane certified at Moderate, plus the agency's own authorization, suffices for Moderate systems but doesn't cover High: use a service certified at the required level or keep the plane inside the agency's boundary. Azure private endpoint zones keep their commercial names. VPC IPAM's external authority is available in the commercial Regions. Azure Private DNS can't be signed anywhere. And informed network routing isn't available in GCC Moderate.`,
+The architecture is the same everywhere; authorization and a few integrations change. A Moderate system runs in the commercial regions or in a government region such as AWS GovCloud (US), where the program's AWS workloads run, so the GovCloud gaps on the slide are Moderate concerns too, not only High ones. AWS publishes FedRAMP scope per service and per Region. The right-hand column, marked High only, applies to FedRAMP High environments, not to the Moderate civilian baseline this workbook targets. A plane certified at Moderate, plus the agency's own authorization, suffices for Moderate systems but doesn't cover High: use a service certified at the required level or keep the plane inside the agency's boundary. Azure private endpoint zones keep their commercial names. VPC IPAM's external authority isn't in GovCloud. Azure Private DNS can't be signed anywhere. And informed network routing isn't available in GCC Moderate.`,
   "Book 08, Chapter 08 — Reference Architecture, \"What a DDI policy plane is made of\" and \"Commercial and federal clouds compared\"; Appendix C — Applicability.");
 }
 

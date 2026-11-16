@@ -190,404 +190,409 @@ At the cloud edge, Trinzic alone
 can see, but it can't control.
 
 41
-00:02:42.532 --> 00:02:46.521
+00:02:42.532 --> 00:02:47.290
 It can discover cloud networks and
-virtual machines on a schedule,
+virtual machines on a schedule, including
 
 42
-00:02:46.521 --> 00:02:50.871
-and it can import cloud zones so
+00:02:47.290 --> 00:02:52.345
+GovCloud, and it can import cloud zones so
 on-premises clients resolve cloud names.
 
 43
-00:02:50.871 --> 00:02:55.232
+00:02:52.345 --> 00:02:56.707
 But that import is one way, and
 edits made in NIOS get overwritten.
 
 44
-00:02:55.232 --> 00:03:00.322
+00:02:56.707 --> 00:03:01.796
 It can't create or own a cloud private
 zone, manage cloud resolver rules,
 
 45
-00:03:00.322 --> 00:03:03.744
+00:03:01.796 --> 00:03:05.218
 act as the outside
 authority for AWS VPC IPAM,
 
 46
-00:03:03.744 --> 00:03:08.745
+00:03:05.218 --> 00:03:10.219
 or run DHCP for cloud subnets; the
 clouds hand out their own addresses.
 
 47
-00:03:08.745 --> 00:03:13.437
+00:03:10.219 --> 00:03:14.912
 So, as an inference: in the cloud,
 Infoblox's job is DNS and IPAM,
 
 48
-00:03:13.437 --> 00:03:18.220
+00:03:14.912 --> 00:03:19.695
 and the cloud's own resolver
 still answers cloud private zones.
 
 49
-00:03:18.220 --> 00:03:20.430
+00:03:19.695 --> 00:03:21.920
 That leads to three options.
 
 50
-00:03:24.180 --> 00:03:27.562
+00:03:25.670 --> 00:03:29.052
 Option A puts vNIOS
 members inside each cloud,
 
 51
-00:03:27.562 --> 00:03:33.168
+00:03:29.052 --> 00:03:34.658
 as Grid members in high-availability
 pairs, usually in a shared-services hub.
 
 52
-00:03:33.168 --> 00:03:37.129
+00:03:34.658 --> 00:03:38.619
 Signed zones stay signed, with
 the keys kept on the Grid Master.
 
 53
-00:03:37.129 --> 00:03:40.455
+00:03:38.619 --> 00:03:41.945
 Workloads reach vNIOS in one of two ways.
 
 54
-00:03:40.455 --> 00:03:45.495
+00:03:41.945 --> 00:03:46.985
 Either you point the network's DNS
 straight at vNIOS, which is simple,
 
 55
-00:03:45.495 --> 00:03:51.255
+00:03:46.985 --> 00:03:52.745
 but in Azure it means vNIOS must forward
 Azure-private names back to Azure DNS.
 
 56
-00:03:51.255 --> 00:03:54.300
+00:03:52.745 --> 00:03:55.790
 Or you keep the cloud's
 own resolver and forward
 
 57
-00:03:54.300 --> 00:03:57.580
+00:03:55.790 --> 00:03:59.070
 chosen domains to vNIOS,
 so clients change nothing.
 
 58
-00:03:57.580 --> 00:04:02.812
+00:03:59.070 --> 00:04:04.302
 One AWS caution: to resolve Route 53
 private zones for other networks,
 
 59
-00:04:02.812 --> 00:04:07.768
+00:04:04.302 --> 00:04:09.258
 forward to an inbound endpoint,
 not the built-in resolver address.
 
 60
-00:04:07.768 --> 00:04:10.708
+00:04:09.258 --> 00:04:12.198
 And every vNIOS member is agency-operated,
 
 61
-00:04:10.708 --> 00:04:13.731
+00:04:12.198 --> 00:04:15.221
 with no FedRAMP authorization covering it.
 
 62
-00:04:13.731 --> 00:04:16.030
+00:04:15.221 --> 00:04:17.520
 Next, the cloud service.
 
 63
-00:04:19.780 --> 00:04:25.271
+00:04:21.270 --> 00:04:26.761
 Option B joins the Grid to Universal
 DDI, Infoblox's software-as-a-service
 
 64
-00:04:25.271 --> 00:04:29.755
+00:04:26.761 --> 00:04:31.245
 control plane, while the Grid
 stays primary for its DNS data.
 
 65
-00:04:29.755 --> 00:04:32.696
+00:04:31.245 --> 00:04:34.186
 What it adds is the one
 thing the others lack:
 
 66
-00:04:32.696 --> 00:04:37.680
+00:04:34.186 --> 00:04:39.170
 it's the only documented Infoblox
 mechanism that writes back to cloud DNS.
 
 67
-00:04:37.680 --> 00:04:42.477
+00:04:39.170 --> 00:04:43.967
 It syncs Route 53, Azure DNS
 and Google Cloud DNS both ways,
 
 68
-00:04:42.477 --> 00:04:48.192
+00:04:43.967 --> 00:04:49.682
 and on commercial AWS it can be
 the outside authority for VPC IPAM.
 
 69
-00:04:48.192 --> 00:04:49.842
+00:04:49.682 --> 00:04:51.332
 The limits are real, though.
 
 70
-00:04:49.842 --> 00:04:54.170
+00:04:51.332 --> 00:04:55.660
 DNSSEC records aren't synced, some
 zones can't be created from the portal,
 
 71
-00:04:54.170 --> 00:04:57.031
+00:04:55.660 --> 00:04:58.521
 and the Grid Master stays
 the recovery console.
 
 72
-00:04:57.031 --> 00:05:00.508
+00:04:58.521 --> 00:05:01.998
 The government edition is
 FedRAMP Certified at Moderate,
 
 73
-00:05:00.508 --> 00:05:04.855
+00:05:01.998 --> 00:05:06.345
 but with narrower cloud discovery, so
 confirm the details with Infoblox.
 
 74
-00:05:04.855 --> 00:05:06.660
+00:05:06.345 --> 00:05:08.150
 Now the simplest option.
 
 75
-00:05:10.410 --> 00:05:14.336
+00:05:11.900 --> 00:05:15.826
 Option C keeps the Grid
 authoritative for agency zones
 
 76
-00:05:14.336 --> 00:05:18.348
+00:05:15.826 --> 00:05:19.838
 and lets each cloud's native
 DNS own its own private zones.
 
 77
-00:05:18.348 --> 00:05:22.505
+00:05:19.838 --> 00:05:23.995
 The two meet through conditional
 forwarding: a rule that says,
 
 78
-00:05:22.505 --> 00:05:25.685
+00:05:23.995 --> 00:05:27.175
 for names ending in this
 domain, ask that server.
 
 79
-00:05:25.685 --> 00:05:29.707
+00:05:27.175 --> 00:05:31.197
 The Grid forwards cloud domains
 inward to the cloud's endpoints,
 
 80
-00:05:29.707 --> 00:05:33.198
+00:05:31.197 --> 00:05:34.688
 and each cloud forwards agency
 domains back to the Grid.
 
 81
-00:05:33.198 --> 00:05:35.622
+00:05:34.688 --> 00:05:37.112
 Google recommends exactly this design.
 
 82
-00:05:35.622 --> 00:05:39.287
+00:05:37.112 --> 00:05:40.777
 One fact to keep in mind: a
 Route 53 private zone asked from
 
 83
-00:05:39.287 --> 00:05:43.810
+00:05:40.777 --> 00:05:45.300
 outside its linked networks resolves
 on the public internet instead.
 
 84
-00:05:43.810 --> 00:05:45.735
+00:05:45.300 --> 00:05:47.225
 Addresses follow the same idea.
 
 85
-00:05:45.735 --> 00:05:50.066
+00:05:47.225 --> 00:05:51.547
 The Grid owns the agency's blocks
 and hands each cloud a block,
 
 86
-00:05:50.066 --> 00:05:54.310
-automated on commercial AWS
-and manual in Azure and Google.
+00:05:51.547 --> 00:05:56.475
+automated on commercial AWS and
+manual in GovCloud, Azure and Google.
 
 87
-00:05:54.310 --> 00:05:56.980
+00:05:56.475 --> 00:05:59.140
 Whichever you pick, some rules apply.
 
 88
-00:06:00.730 --> 00:06:04.268
+00:06:02.890 --> 00:06:06.428
 Whatever option you pick, four
 rules keep split-brain away.
 
 89
-00:06:04.268 --> 00:06:08.263
+00:06:06.428 --> 00:06:10.423
 First, every zone has exactly
 one writable owner, never two,
 
 90
-00:06:08.263 --> 00:06:12.342
+00:06:10.423 --> 00:06:14.502
 and everything else forwards to
 it or holds a read-only copy.
 
 91
-00:06:12.342 --> 00:06:16.592
+00:06:14.502 --> 00:06:18.752
 Decide ownership before you turn
 sync on, because sync overwrites.
 
 92
-00:06:16.592 --> 00:06:19.355
+00:06:18.752 --> 00:06:21.515
 Second, divide the namespace by owner.
 
 93
-00:06:19.355 --> 00:06:23.383
+00:06:21.515 --> 00:06:25.543
 For example, corp dot agency
 dot gov lives on the Grid,
 
 94
-00:06:23.383 --> 00:06:27.318
+00:06:25.543 --> 00:06:29.478
 and aws dot corp dot agency
 dot gov lives in Route 53.
 
 95
-00:06:27.318 --> 00:06:32.304
+00:06:29.478 --> 00:06:34.464
 Third, DNSSEC keys stay on the Grid
 Master or its hardware security module,
 
 96
-00:06:32.304 --> 00:06:35.329
+00:06:34.464 --> 00:06:37.489
 and validation belongs
 on agency resolvers.
 
 97
-00:06:35.329 --> 00:06:38.087
+00:06:37.489 --> 00:06:40.247
 Fourth, address authority
 stays on the Grid,
 
 98
-00:06:38.087 --> 00:06:41.992
+00:06:40.247 --> 00:06:44.152
 with clouds getting delegated
 blocks so overlaps get caught.
 
 99
-00:06:41.992 --> 00:06:45.020
+00:06:44.152 --> 00:06:47.180
 With those rules in place,
 here's how to choose.
 
 100
-00:06:48.770 --> 00:06:53.995
+00:06:50.930 --> 00:06:56.155
 Here's the decision table, and every row
 is design guidance, not an endorsement.
 
 101
-00:06:53.995 --> 00:06:58.125
+00:06:56.155 --> 00:07:00.285
 If you're mostly on premises with a
 small cloud footprint, Trinzic plus
 
 102
-00:06:58.125 --> 00:07:02.683
+00:07:00.285 --> 00:07:04.843
 native cloud resolvers and conditional
 forwarding is the lowest-cost start.
 
 103
-00:07:02.683 --> 00:07:06.020
+00:07:04.843 --> 00:07:08.180
 Hybrid with one cloud,
 add a vNIOS pair in a hub
 
 104
-00:07:06.020 --> 00:07:09.808
+00:07:08.180 --> 00:07:11.968
 network so resolution stays
 local if the WAN fails.
 
 105
-00:07:09.808 --> 00:07:12.209
+00:07:11.968 --> 00:07:14.621
 Multi-cloud at FedRAMP Moderate and below,
 
 106
-00:07:12.209 --> 00:07:16.946
-consider Universal DDI through Government
-Cloud for workloads in the commercial
+00:07:14.621 --> 00:07:17.807
+consider Universal DDI
+through Government Cloud,
 
 107
-00:07:16.946 --> 00:07:21.270
-regions, and confirm first which features
-its government edition supports.
+00:07:17.807 --> 00:07:21.978
+whether those workloads run in
+commercial regions or in GovCloud;
 
 108
-00:07:21.270 --> 00:07:24.849
+00:07:21.978 --> 00:07:25.467
+there, confirm which features
+Infoblox supports first.
+
+109
+00:07:25.467 --> 00:07:29.046
 And for FedRAMP High systems,
 stay with options A and C,
 
-109
-00:07:24.849 --> 00:07:27.858
+110
+00:07:29.046 --> 00:07:32.055
 because Infoblox's
 service is Moderate-only.
 
-110
-00:07:27.858 --> 00:07:31.866
+111
+00:07:32.055 --> 00:07:36.063
 In short: Trinzic plus native
 resolvers as the baseline,
 
-111
-00:07:31.866 --> 00:07:37.120
+112
+00:07:36.063 --> 00:07:41.290
 with vNIOS and Universal DDI added
 only where they earn their place.
 
-112
-00:07:40.870 --> 00:07:42.770
+113
+00:07:45.040 --> 00:07:46.940
 To close, where this fits.
 
-113
-00:07:42.770 --> 00:07:47.590
+114
+00:07:46.940 --> 00:07:51.760
 The workbook's DNS, DHCP and IPAM
 book makes the vendor-neutral case,
 
-114
-00:07:47.590 --> 00:07:50.127
+115
+00:07:51.760 --> 00:07:54.297
 from split-brain to the policy plane,
 
-115
-00:07:50.127 --> 00:07:55.032
+116
+00:07:54.297 --> 00:07:59.202
 and the research deep dive on Infoblox
 DDI covers the platform itself.
 
-116
-00:07:55.032 --> 00:07:59.518
+117
+00:07:59.202 --> 00:08:03.688
 The decisions to take are which option
 for each cloud and FedRAMP level,
 
-117
-00:07:59.518 --> 00:08:02.787
+118
+00:08:03.688 --> 00:08:06.957
 one named owner for every
 zone, where DNSSEC keys live,
 
-118
-00:08:02.787 --> 00:08:05.295
+119
+00:08:06.957 --> 00:08:09.465
 and how address blocks reach each cloud.
 
-119
-00:08:05.295 --> 00:08:08.669
+120
+00:08:09.465 --> 00:08:12.839
 The next steps start with
 Infoblox: ask for the Government
 
-120
-00:08:08.669 --> 00:08:12.395
+121
+00:08:12.839 --> 00:08:16.565
 Cloud boundary and a feature
 matrix for its government edition.
 
-121
-00:08:12.395 --> 00:08:15.813
+122
+00:08:16.565 --> 00:08:19.983
 Then size NIOS-X capacity if
 you want cloud forwarders,
 
-122
-00:08:15.813 --> 00:08:18.320
+123
+00:08:19.983 --> 00:08:22.490
 and test forwarding in both directions.
 
-123
-00:08:18.320 --> 00:08:23.245
+124
+00:08:22.490 --> 00:08:27.415
 This is research under review, not an
 endorsement by any federal agency.
 
-124
-00:08:23.245 --> 00:08:24.070
+125
+00:08:27.415 --> 00:08:28.240
 Thank you.

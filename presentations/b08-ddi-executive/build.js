@@ -396,7 +396,7 @@ The CISO sets the signing and validation requirements. Moving an internal zone t
   sideBox(s, "Authority", "FaSitemap", HEX.navy, HEX.navyTint, "One authority for address blocks", [
     "Enterprise IPAM is the authority; clouds allocate from it",
     "Native integration: AWS commercial Regions and VMware VCF 9.1",
-    "Azure and Google Cloud: reserve first, mirror, reconcile",
+    "Azure, Google Cloud and GovCloud: reserve first, mirror, reconcile",
     "Federation finds overlaps before networks are joined",
     "The address layer of the asset inventory Zero Trust needs",
   ], { x: 5.1, w: 7.65 });
@@ -406,7 +406,7 @@ The CISO sets the signing and validation requirements. Moving an internal zone t
   narrate(s,
 `Names and addresses are the same problem. Every cloud, and VMware, ships its own address manager. Left alone, each allocates address space independently, and that recreates for addresses the divergence split-brain creates for names: overlaps that surface only when two networks are joined, and address space an audit finds undocumented.
 
-The book's answer is that the enterprise IPAM is the authority for address blocks. The figure shows that integration depth differs. AWS VPC IPAM can allocate from an external IPAM, in the commercial Regions where the agency's AWS workloads run. VMware Cloud Foundation 9.1 allocates from it natively. Azure Virtual Network Manager and Google Cloud mirror reservations and rely on discovery and reconciliation. Where there's no native integration, the rule is to reserve first, then mirror, then reconcile continuously.
+The book's answer is that the enterprise IPAM is the authority for address blocks. The figure shows that integration depth differs. AWS VPC IPAM can allocate from an external IPAM, but in commercial Regions only, not GovCloud. VMware Cloud Foundation 9.1 allocates from it natively. Azure Virtual Network Manager and Google Cloud mirror reservations and rely on discovery and reconciliation. Where there's no native integration, the rule is to reserve first, then mirror, then reconcile continuously.
 
 Federation is what turns separate address managers into one inventory, which makes overlap detection, collision-free planning and reporting possible. It's also the address layer of the asset inventory: M-22-09 expects a complete inventory of every device the agency operates, and CISA's maturity model counts cloud network resources, DNS services included. And DDI is where dual-stack and IPv6-only address management happens, against M-21-07 milestones that have now passed.
 

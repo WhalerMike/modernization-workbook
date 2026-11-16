@@ -308,7 +308,9 @@ Third, FedRAMP. The Marketplace lists Oracle Fusion Cloud at FedRAMP Moderate. O
     "Voice media relays (TURN): TurnNlb-*.elb.<region>.amazonaws.com, UDP 3478",
     "Can't resolve TURN names → the softphone can't set up its media channel",
   ], 11.5);
-  panel(s, "Gov", 4.8, 1.5, 4.05, 4.85, HEX.navy, HEX.navyTint, "PRIVATE PATHS", null, [
+  panel(s, "Gov", 4.8, 1.5, 4.05, 4.85, HEX.navy, HEX.navyTint, "GOVCLOUD AND PRIVATE PATHS", null, [
+    "Connect in GovCloud: US-West only; names under *.govcloud.connect.aws",
+    "Not there: Customer Profiles, Cases, outbound campaigns, email, AI agents and others; no cross-partition integration",
     "PrivateLink covers a subset of Connect APIs (inference: API calls, not the agent or voice path)",
     "A Lambda in a VPC reaches only that VPC without NAT",
   ], 11.5);
@@ -317,16 +319,18 @@ Third, FedRAMP. The Marketplace lists Oracle Fusion Cloud at FedRAMP Moderate. O
     "The change is blocked if the name doesn't fully resolve",
     "Fix the A and PTR records first; keep them in the Grid",
   ], 11.5);
-  sources(s, "Sources: AWS Connect CCP networking [S27], Connect interface endpoints [S29], Lambda in a VPC [S30]; Broadcom KB 440783 [S36].");
+  sources(s, "Sources: AWS Connect CCP networking [S27], GovCloud Connect [S28], Connect interface endpoints [S29], Lambda in a VPC [S30]; Broadcom KB 440783 [S36].");
   notes(s,
 `Two more components: Amazon Connect, AWS's contact center service, and VMware.
 
 Connect agents work in a browser, in the Contact Control Panel, and AWS says that traffic traverses the public network. AWS prefers a domain allowlist: the instance name under my dot connect dot aws, plus telemetry, participant and transport names, and media names for TURN, a relay that carries the call audio, on UDP port 3478. If agents' DNS can't resolve those TURN names, the softphone can't set up its media channel. So don't over-restrict DNS for agents.
 
+In AWS GovCloud, Connect is available only in the US-West region. It uses names under govcloud dot connect dot aws, has no cross-partition integration with commercial regions, and lacks several features, including Customer Profiles, Cases and outbound campaigns.
+
 AWS PrivateLink, which gives an AWS API a private address inside your network, covers only a subset of Connect APIs. As an inference, that helps workloads making API calls, not the agent or voice path. A Lambda function attached to a VPC can reach only that VPC unless you add NAT or interface endpoints.
 
 VMware: a Broadcom knowledge article says changing vCenter's hostname or address runs forward and reverse DNS lookups, and the change is blocked if the name doesn't fully resolve. Keep those records right in the Grid.`,
-  "AWS: Amazon Connect, Set up your network for the CCP [S27]; Amazon Connect and interface VPC endpoints [S29]; AWS Lambda, Giving functions access to resources in a VPC [S30]; Broadcom KB 440783, VAMI hostname or IP change fails [S36].");
+  "AWS: Amazon Connect, Set up your network for the CCP [S27]; AWS GovCloud (US) User Guide, Connect Customer [S28]; Amazon Connect and interface VPC endpoints [S29]; AWS Lambda, Giving functions access to resources in a VPC [S30]; Broadcom KB 440783, VAMI hostname or IP change fails [S36].");
 }
 
 // ================================================================== 8 Precedence
@@ -489,7 +493,7 @@ And test from every origin. Any public answer or NXDOMAIN for a private name is 
   ], 12);
   panel(s, "Next", 4.75, 1.5, 4.0, 4.85, HEX.amber, HEX.amberTint, "NEXT STEPS (OPEN CHECKS)", null, [
     "Which Oracle environment and hostnames the agency's Core HCM tenant uses",
-    "Private Link for Graph; OCI private DNS limits and government-realm endpoints",
+    "Private Link for Graph; OCI private DNS limits and government-realm endpoints; Connect PrivateLink in GovCloud",
     "VMware install-guide DNS rules; Oracle's connectivity patterns",
   ], 12);
   panel(s, "Fit", 8.9, 1.5, 3.85, 4.85, HEX.navy, HEX.navyTint, "WHERE IT FITS", null, [
@@ -501,7 +505,7 @@ And test from every origin. Any public answer or NXDOMAIN for a private name is 
   notes(s,
 `The decisions. Who owns each namespace, the Grid or a cloud. Which middleware platform, and so which network and resolver path it uses. The hub design in each cloud. And whether Oracle's private access is needed at all, remembering that it's routing, not DNS.
 
-The next steps are the things I couldn't verify. Which Oracle environment and hostnames the agency's Core HCM tenant will use. Private Link for Graph, and OCI's private DNS limits and government-realm endpoints. And the VMware install guides' DNS rules and Oracle's own connectivity patterns, which I couldn't open. They're all listed in the backup.
+The next steps are the things I couldn't verify. Which Oracle environment and hostnames the agency's Core HCM tenant will use. Private Link for Graph, OCI's private DNS limits and government-realm endpoints, and whether Connect private endpoints work in GovCloud. And the VMware install guides' DNS rules and Oracle's own connectivity patterns, which I couldn't open. They're all listed in the backup.
 
 Where does this fit? Book 03 covers HR-driven identity, with Federal HR 2.0 in Chapter 03 and the provisioning pipeline in Chapter 05. Book 08 covers DNS, DHCP and IP address management: split-brain DNS in Chapter 02, cloud private endpoints in Chapter 07, the reference architecture in Chapter 08, and the migration sequence in Chapter 10. Three research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud DDI; Infoblox DDI for Federal Agencies; and Who Names the Device After AD.
 
@@ -540,7 +544,7 @@ const WHERE_W = [2.3, 3.75, 1.2, 1.5, 3.4];
     ["", "OCI private views (for example, an OIC private target's zone)", "Private", "Agency (OCI)", "Grid → OCI listening endpoint [S23]"],
     ["", "Fusion, Entra and Connect hosts", "Public", "Vendors", "Recursive (Protective DNS chain) [Book 08 Ch08 Decision 2]"],
     ["Fusion private-access users (on-premises)", "<env>.fa.ocs.oraclecloud.com", "Public DNS, private routing", "Oracle", "Service Gateway transit; disable content acceleration [S21, S22]"],
-    ["Amazon Connect agents (browser)", "<instance>.my.connect.aws, telemetry, participant, transport, TurnNlb-*.elb.<region>.amazonaws.com, *.cloudfront.net, SAML IdP [S27]", "Public", "AWS; Microsoft", "Recursive; allow TURN resolution"],
+    ["Amazon Connect agents (browser)", "<instance>.my.connect.aws (or *.govcloud.connect.aws), telemetry, participant, transport, TurnNlb-*.elb.<region>.amazonaws.com, *.cloudfront.net, SAML IdP [S27, S28]", "Public", "AWS; Microsoft", "Recursive; allow TURN resolution"],
     ["Connect flow Lambda (VPC-attached)", "Agency HR or identity APIs", "Private", "Agency (Grid)", "VPC Resolver outbound rule → Grid [prior-M S31]"],
     ["", "AWS APIs (for example connect.<region>.amazonaws.com)", "Private via interface endpoint, or public via NAT", "AWS", "[S29, S30]"],
     ["vCenter, ESXi, NSX", "Each other's FQDNs, forward and reverse", "Private", "Agency (Grid)", "Grid A and PTR records [S36]"],
@@ -568,7 +572,7 @@ const FAIL_W = [0.55, 2.5, 5.2, 3.9];
   const s = content("Backup", "Failure modes F9–F16");
   table(s, "Fail B", 1.45, FAIL_W, FAIL_HEAD, [
     ["F9", "TLS name mismatch", "DNS must resolve the connection string's FQDN [S10b (excerpt)]; OIC needs an FQDN, not an IP [S24]; no TLS inspection for Entra agents [S4b (excerpt)]", "Keep the public FQDN; exempt agent traffic from break-and-inspect"],
-    ["F10", "Wrong cloud's endpoints", "Tokens not interchangeable [S2]; agent defaults to public environment [S7 (excerpt)]", "An endpoint inventory and allowlist for the tenant's cloud; test through production egress"],
+    ["F10", "Wrong cloud's endpoints", "Tokens not interchangeable [S2]; agent defaults to public environment [S7 (excerpt)]; Connect GovCloud domain [S28]", "Per-cloud endpoint inventory and allowlist; test through production egress"],
     ["F11", "Resolver quotas", "Route 53: 10,000 UDP QPS per endpoint IP, as low as 1,500 with connection tracking or an NLB [S32]. Azure: 10,000 QPS per endpoint; 5/5 endpoints [S10; prior-M S28]", "Size from metrics; add endpoint IPs at 50% load [S32]"],
     ["F12", "DNS blocked for media", "Connect softphone fails when TurnNlb-* names can't resolve [S27]", "Allow resolution of the Connect names"],
     ["F13", "Middleware loses egress or DNS", "Atom data can be purged [S18]; delay can lose changes [S1]; VPC Lambda has no internet without NAT [S30]; App Service DNS 3 s per server [S15b (excerpt)]", "Reconcile with full extracts; redundant resolvers"],
@@ -584,6 +588,7 @@ const FAIL_W = [0.55, 2.5, 5.2, 3.9];
     ["Oracle's Fusion connectivity patterns", "The Oracle A-Team page returned HTTP 403 (not retried or worked around); the support note needs a login; Oracle's docs give no DNS guidance for private access"],
     ["The agency Core HCM tenant", "Which Oracle environment it runs in, and its hostname domain; no document ties the tenant to Oracle's government cloud or gives its URLs"],
     ["Private Link for Graph or Entra sign-in", "None found; treat them as public-only"],
+    ["Connect PrivateLink in GovCloud", "The Connect PrivateLink page doesn't mention GovCloud"],
     ["OCI private DNS limits and government-realm endpoints", "Numeric limits not on the page; only \"private DNS zones are supported\" is documented for the government realm"],
     ["VMware install-guide DNS rules", "Forward and reverse records required, and vCenter–ESXi mutual resolution, seen only in search excerpts; VCF 9.x prerequisites not opened"],
     ["Forwarding-loop guidance from AWS or Infoblox", "None found; only Azure documents loops"],
@@ -605,7 +610,7 @@ srcSlide("Sources: Microsoft Learn", [
 ]);
 srcSlide("Sources: Oracle, AWS, Broadcom, Infoblox, FedRAMP", [
   "Oracle: S18 REST API for Fusion Cloud HCM, Working with Atom  ·  S19 Employee Atom Feeds  ·  S20 Fusion Applications demo environment setup (host pattern)  ·  S21 Securely Accessing Fusion Applications  ·  S22 Transit Routing for Private Access to Oracle Services  ·  S23 OCI Private DNS  ·  S24 Oracle Integration connectivity agent; Private Endpoint vs. Connectivity Agent; Connect to Private Resources  ·  S26 US Government Cloud with FedRAMP authorization.",
-  "AWS: S25 Route 53, Considerations when working with a private hosted zone  ·  S27 Amazon Connect, Set up your network for the CCP  ·  S29 Amazon Connect and interface VPC endpoints  ·  S30 Lambda, Giving functions access to resources in a VPC  ·  S32 Route 53 quotas  ·  S33 Managing forwarding rules  ·  S34 Using rules to control which queries are forwarded.",
+  "AWS: S25 Route 53, Considerations when working with a private hosted zone  ·  S27 Amazon Connect, Set up your network for the CCP  ·  S28 GovCloud (US) User Guide, Connect Customer  ·  S29 Amazon Connect and interface VPC endpoints  ·  S30 Lambda, Giving functions access to resources in a VPC  ·  S32 Route 53 quotas  ·  S33 Managing forwarding rules  ·  S34 Using rules to control which queries are forwarded.",
   "Broadcom: S36 KB 440783, VAMI hostname or IP change fails (vCenter 7.x/8.x).  Infoblox NIOS 9.1 (vendor documentation): S37 Specifying Forwarders (May 20, 2026)  ·  S38 Configuring a Forward Zone (May 25, 2026).",
   "FedRAMP: S40 FedRAMP Marketplace products.json (last change Oct. 22, 2026), records for Oracle Fusion Cloud, Oracle Cloud Infrastructure-Government Cloud, Amazon Connect and Microsoft 365.  Not opened (HTTP 403): Oracle A-Team, Network connectivity patterns for Oracle Cloud HCM and ERP on OCI.",
   "Workbook and prior research: Book 03 Ch03 Federal HR 2.0, Ch05 Provisioning Services  ·  Book 08 Ch02 Split-Brain DNS, Ch07 Cloud Private Endpoints, Ch08 Reference Architecture, Ch10 Migration Sequence  ·  Trinzic Alone, or Trinzic Plus Cloud DDI? (multi-cloud research, S27, S28, S31, S33, S57 as cited there).",

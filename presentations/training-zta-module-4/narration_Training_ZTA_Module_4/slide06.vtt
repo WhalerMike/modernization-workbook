@@ -37,41 +37,41 @@ with its standard for NIST eight
 hundred fifty-three, revision five.
 
 9
-00:00:24.300 --> 00:00:27.780
-It runs in the AWS commercial
-Regions the program uses,
+00:00:24.300 --> 00:00:27.252
+In AWS GovCloud, Security
+Hub is available,
 
 10
-00:00:27.780 --> 00:00:31.337
-so check each Region in scope
-before collecting from it.
+00:00:27.252 --> 00:00:32.988
+with limits on product integrations, some
+controls, and cross-Region aggregation.
 
 11
-00:00:31.337 --> 00:00:34.467
+00:00:32.988 --> 00:00:36.117
 On Oracle Cloud Infrastructure,
 it's Cloud Guard,
 
 12
-00:00:34.467 --> 00:00:37.362
+00:00:36.117 --> 00:00:39.012
 and on Google Cloud,
 Security Command Center.
 
 13
-00:00:37.362 --> 00:00:41.775
+00:00:39.012 --> 00:00:43.426
 The chapter on cloud-native posture
 in Security Operations and Telemetry
 
 14
-00:00:41.775 --> 00:00:45.975
+00:00:43.426 --> 00:00:47.626
 compares those two, and how their
 findings enter the evidence contract.
 
 15
-00:00:45.975 --> 00:00:50.577
+00:00:47.626 --> 00:00:52.227
 The rule is the same everywhere: each
 finding is matched to the setting
 
 16
-00:00:50.577 --> 00:00:55.150
+00:00:52.227 --> 00:00:56.810
 and the control, with one owner, in
 one row of the reconciliation table.

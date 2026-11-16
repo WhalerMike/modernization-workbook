@@ -47,6 +47,20 @@
  },
  {
   "slide": 8,
+  "title": "AWS GovCloud (US) beside the commercial Regions",
+  "links": [
+   {
+    "text": "Book 08, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   },
+   {
+    "text": "Book 08, Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
   "title": "Azure: the DNS Private Resolver",
   "links": [
    {
@@ -64,7 +78,7 @@
   ]
  },
  {
-  "slide": 9,
+  "slide": 10,
   "title": "Azure: DNS resolver policy, logging and DNSSEC",
   "links": [
    {
@@ -78,7 +92,7 @@
   ]
  },
  {
-  "slide": 10,
+  "slide": 11,
   "title": "Oracle Cloud: how the VCN resolver answers",
   "links": [
    {
@@ -92,7 +106,7 @@
   ]
  },
  {
-  "slide": 12,
+  "slide": 13,
   "title": "Who authorizes it: AWS and Azure FedRAMP scope",
   "links": [
    {
@@ -102,7 +116,7 @@
   ]
  },
  {
-  "slide": 13,
+  "slide": 14,
   "title": "Who authorizes it: Oracle US Government Cloud",
   "links": [
    {
@@ -116,7 +130,7 @@
   ]
  },
  {
-  "slide": 14,
+  "slide": 15,
   "title": "How the three resolvers meet on-premises DNS",
   "links": [
    {
@@ -126,7 +140,7 @@
   ]
  },
  {
-  "slide": 15,
+  "slide": 16,
   "title": "How Protective DNS, policy and logs reach each cloud",
   "links": [
    {
@@ -140,7 +154,7 @@
   ]
  },
  {
-  "slide": 16,
+  "slide": 17,
   "title": "What to confirm, and what Part 2 covers",
   "links": [
    {

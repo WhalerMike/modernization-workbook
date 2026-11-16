@@ -1,65 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.025
-Now Azure.
+00:00:00.050 --> 00:00:01.663
+What changes in GovCloud?
 
 2
-00:00:01.025 --> 00:00:05.999
-The workbook's DNS, DHCP and IPAM
-book covers the Private Resolver's
+00:00:01.663 --> 00:00:07.124
+AWS's GovCloud page for Route 53 says
+public and private DNS work in GovCloud
 
 3
-00:00:05.999 --> 00:00:10.450
-hub-and-spoke design, so here is
-the summary with today's limits.
+00:00:07.124 --> 00:00:10.591
+US-West and US-East, the
+control plane is in US-West,
 
 4
-00:00:10.450 --> 00:00:14.970
-The inbound endpoint receives queries
-from on premises or other clouds
+00:00:10.591 --> 00:00:16.225
+and public hosted zone queries are
+answered from within the FedRAMP boundary.
 
 5
-00:00:14.970 --> 00:00:19.038
-and answers from private DNS zones
-linked to its virtual network.
+00:00:16.225 --> 00:00:19.447
+That page doesn't mention
+the Resolver features,
 
 6
-00:00:19.038 --> 00:00:23.438
-There can be five per resolver, at
-10,000 queries per second each.
+00:00:19.447 --> 00:00:21.863
+so the table draws on other AWS pages.
 
 7
-00:00:23.438 --> 00:00:29.006
-The outbound endpoint and its forwarding
-ruleset send queries for named domains to
+00:00:21.863 --> 00:00:24.288
+Endpoints and rules: yes.
 
 8
-00:00:29.006 --> 00:00:32.108
-target servers; a ruleset
-holds up to 1,000 rules,
+00:00:24.288 --> 00:00:29.658
+Resolver delegation is the conflict: the
+GovCloud guide says it's not available,
 
 9
-00:00:32.108 --> 00:00:35.051
-and a virtual network
-links only one ruleset.
+00:00:29.658 --> 00:00:32.425
+and an April 2026 announcement says it is.
 
 10
-00:00:35.051 --> 00:00:38.891
-It's a single-region service,
-zone-redundant inside the region,
+00:00:32.425 --> 00:00:33.312
+Confirm.
 
 11
-00:00:38.891 --> 00:00:44.087
-and it doesn't work in encrypted virtual
-networks or IPv6-enabled subnets.
+00:00:33.312 --> 00:00:36.774
+DNS Firewall and its managed lists: yes.
 
 12
-00:00:44.087 --> 00:00:47.192
-And Azure DNS doesn't
-support zone transfers,
+00:00:36.774 --> 00:00:38.725
+Of the Advanced protections,
 
 13
-00:00:47.192 --> 00:00:52.370
-so a BIND server can't be a secondary of
-an Azure private zone, or the reverse.
+00:00:38.725 --> 00:00:43.113
+only dictionary DGA was announced
+for GovCloud; confirm the rest.
+
+14
+00:00:43.113 --> 00:00:45.900
+Query logging and Profiles: yes.
+
+15
+00:00:45.900 --> 00:00:50.363
+Signing of public zones: yes,
+with the key in US-West.
+
+16
+00:00:50.363 --> 00:00:54.737
+Validation in the VPC Resolver
+isn't stated, so confirm.
+
+17
+00:00:54.737 --> 00:00:57.070
+And Global Resolver isn't listed.

@@ -325,7 +325,7 @@ Licenses. Member licenses bind to a hardware ID, Grid-wide licenses bind to the 
   label(s, "Gov label", "CLOUD HA ENDPOINTS", 0.6, 4.35, 12.15);
   T(s, "Gov", [
     { text: "The HA prerequisites list commercial endpoints. ", options: { bold: true, color: HEX.navy } },
-    { text: "Azure HA needs management.azure.com and login.microsoftonline.com; AWS HA reaches the IAM and EC2 endpoints. Failover time depends on the cloud's API, so test it in the pilot." },
+    { text: "AWS HA lists global and China endpoints only, not GovCloud; Azure HA needs management.azure.com and login.microsoftonline.com. Failover time depends on the cloud's API. Confirm before relying on vNIOS HA failover in GovCloud." },
   ], { x: 0.6, y: 4.65, w: 12.15, h: 1.1, fontSize: 12.5 });
   T(s, "Managing", [
     { text: "And vNIOS can't manage Windows servers: ", options: { bold: true, color: HEX.red } },
@@ -341,7 +341,7 @@ On Azure, marketplace deployment is supported on Azure public, with managed disk
 
 On AWS, high availability also starts at 9.0.4, and needs the VPC and subnets, an HA IAM role, and a Grid DNS resolver that can reach the IAM and EC2 endpoints. Same limits: no IPv6 HA, same region, zone and instance type.
 
-The HA prerequisites list the commercial endpoints, which is where the program's workloads run. Azure needs management dot azure dot com and login dot microsoftonline dot com. And failover time depends on the cloud's own API, so test it in the pilot.
+The HA prerequisites list only commercial endpoints. AWS lists the global and China endpoints, not GovCloud, where the program's AWS workloads run. Azure needs management dot azure dot com and login dot microsoftonline dot com. And failover time depends on the cloud's own API. So ask Infoblox, in writing, before you rely on vNIOS failover in GovCloud.
 
 One more constraint that shapes Part 2: vNIOS members can't manage Microsoft servers.`,
   "Infoblox vNIOS for VMware installation guide (OVA, VM settings, SR-IOV); vNIOS for Azure (Marketplace support, managed disks, HA prerequisites, custom role and managed identity, limitations page version 19, Aug. 31, 2026); vNIOS for AWS (HA prerequisites and limitations); NIOS 9.1.x Guidelines for managing Microsoft servers.");
@@ -969,6 +969,7 @@ And Phase 6: the remaining settings in the agency's baseline, the approved long-
     "FIPS 140-3 and CC certificate dates",
     "GSS-TSIG with Windows Server 2025 DCs",
     "Address continuity in a DHCP takeover; a SHA-2 NTP key",
+    "vNIOS HA in GovCloud",
   ], 11.5);
   panel(s, "Next", 8.9, 1.5, 3.85, 4.95, HEX.teal, HEX.tealTint, "NEXT STEPS", null, [
     "Stand up the lab Grid on evaluation images",
@@ -982,7 +983,7 @@ And Phase 6: the remaining settings in the agency's baseline, the approved long-
 
 The decisions to take. FIPS mode, knowing it costs cloud management. Whether the signing keys go in a hardware security module or stay in the Grid Master's database, documented either way. NSEC or NSEC3 for internal zones. Whether the locator zones stay on AD DNS, which is Book 08's default, or move to NIOS. And how many physical managing members you need, and where.
 
-Ask Infoblox, in writing: which build is the current approved federal long-term-support release; when the FIPS 140-3 and Common Criteria certificates are expected; whether Kerberos-signed updates are supported with Windows Server 2025 domain controllers; whether clients keep their addresses in a DHCP takeover; and whether a SHA-2 NTP key type is coming.
+Ask Infoblox, in writing: which build is the current approved federal long-term-support release; when the FIPS 140-3 and Common Criteria certificates are expected; whether Kerberos-signed updates are supported with Windows Server 2025 domain controllers; whether vNIOS high availability works in GovCloud; whether clients keep their addresses in a DHCP takeover; and whether a SHA-2 NTP key type is coming.
 
 Next steps. Stand up a lab Grid on Infoblox's evaluation images. Set the DNSSEC defaults, then sign a test zone and validate it. Pilot one DHCP scope takeover end to end. And check the lab against the agency's settings baseline.
 
@@ -1041,6 +1042,7 @@ The program's view is plain: Infoblox NIOS can carry Book 08's design, and its r
     "A SHA-2 NTP authentication key type: not listed in 9.1 (MD5, DES and SHA1 only).",
     "Data Connector on a FIPS-mode Grid, and SHA-256-only DS submission: inferences, not vendor statements.",
     "Universal DDI and NIOS-X FIPS posture for the cloud-managed data plane: not researched here.",
+    "vNIOS HA in AWS GovCloud: the endpoint lists omit government endpoints.",
   ], 13), { x: 0.6, y: 1.5, w: 12.1, h: 5.0, paraSpaceAfter: 6, fontSize: 13 });
   sources(s, "Sources: research brief, Couldn't verify / login-gated, Oct. 23, 2026.");
 }

@@ -1238,215 +1238,220 @@ Next, AWS, where the
 ground shifted this year.
 
 259
-00:17:22.040 --> 00:17:26.240
+00:17:22.710 --> 00:17:26.910
 On AWS, the evidence path has
 changed under people's feet.
 
 260
-00:17:26.240 --> 00:17:30.965
+00:17:26.910 --> 00:17:31.635
 Config conformance packs and Security
 Hub's posture checks are the foundation.
 
 261
-00:17:30.965 --> 00:17:35.405
-They run in the commercial Regions
-where the program's AWS workloads are,
+00:17:31.635 --> 00:17:35.208
+Both run in GovCloud, where the
+program's AWS workloads are,
 
 262
-00:17:35.405 --> 00:17:40.290
-and you test each remediation action
-before turning on automatic remediation.
+00:17:35.208 --> 00:17:39.897
+and in the commercial Regions, but
+GovCloud has differences you need to test,
 
 263
-00:17:40.290 --> 00:17:45.215
+00:17:39.897 --> 00:17:44.735
+so you test each remediation action
+before turning on automatic remediation.
+
+264
+00:17:44.735 --> 00:17:49.660
 Security Hub keeps findings for only
 ninety days, so copy them out first.
 
-264
-00:17:45.215 --> 00:17:50.414
+265
+00:17:49.660 --> 00:17:54.843
 The big correction is Audit Manager: it
 closed to new customers in April 2026,
 
-265
-00:17:50.414 --> 00:17:54.127
-and its FedRAMP framework is
-still on the old revision.
-
 266
-00:17:54.127 --> 00:17:57.053
+00:17:54.843 --> 00:18:00.273
+has no GovCloud endpoint, and its FedRAMP
+framework is still on the old revision.
+
+267
+00:18:00.273 --> 00:18:03.197
 Nobody should start a federal
 evidence program on it.
 
-267
-00:17:57.053 --> 00:18:00.570
+268
+00:18:03.197 --> 00:18:06.716
 And the ServiceNow
 connector most agencies used
 
-268
-00:18:00.570 --> 00:18:04.002
+269
+00:18:06.716 --> 00:18:10.148
 loses support in March
 2027, so plan that move now.
 
-269
-00:18:04.002 --> 00:18:06.210
+270
+00:18:10.148 --> 00:18:12.350
 VMware is harder still.
 
-270
-00:18:10.800 --> 00:18:14.475
+271
+00:18:16.100 --> 00:18:19.775
 In the agency's own data center,
 there's nothing to inherit.
 
-271
-00:18:14.475 --> 00:18:18.924
+272
+00:18:19.775 --> 00:18:24.224
 No provider operates the hypervisor,
 no one publishes a control mapping,
 
-272
-00:18:18.924 --> 00:18:23.150
+273
+00:18:24.224 --> 00:18:28.450
 and an agent inside a virtual machine
 can't see the host underneath it.
 
-273
-00:18:23.150 --> 00:18:26.675
+274
+00:18:28.450 --> 00:18:31.975
 So every piece of evidence
 is the agency's to produce.
 
-274
-00:18:26.675 --> 00:18:32.740
+275
+00:18:31.975 --> 00:18:38.040
 The tools exist, but they're moving:
 Broadcom replaced its compliance feature
 
-275
-00:18:32.740 --> 00:18:38.425
+276
+00:18:38.040 --> 00:18:43.725
 between versions 9.0 and 9.1, and the
 new one doesn't list an 800-53 benchmark.
 
-276
-00:18:38.425 --> 00:18:43.250
+277
+00:18:43.725 --> 00:18:48.550
 Moving clusters to images unlocks both
 the patch and configuration tests.
 
-277
-00:18:43.250 --> 00:18:45.873
+278
+00:18:48.550 --> 00:18:51.173
 And where no machine
 can reach, a recorded,
 
-278
-00:18:45.873 --> 00:18:48.650
+279
+00:18:51.173 --> 00:18:53.950
 time-boxed session is
 a declared exception.
 
-279
-00:18:48.650 --> 00:18:51.110
+280
+00:18:53.950 --> 00:18:56.410
 Finally, who runs all of this.
 
-280
-00:18:54.860 --> 00:18:59.172
+281
+00:19:00.160 --> 00:19:04.472
 Day two is run by the people who touch
 the estate most and decide the least,
 
-281
-00:18:59.172 --> 00:19:03.772
+282
+00:19:04.472 --> 00:19:09.072
 so the design puts every decision with
 someone who isn't holding the keyboard.
 
-282
-00:19:03.772 --> 00:19:05.897
+283
+00:19:09.072 --> 00:19:11.197
 The slide shows one decider per row,
 
-283
-00:19:05.897 --> 00:19:10.144
+284
+00:19:11.197 --> 00:19:15.444
 from the CISO's verification procedure
 to the change advisory board,
 
-284
-00:19:10.144 --> 00:19:14.098
+285
+00:19:15.444 --> 00:19:19.398
 which authorizes changes even to
 the approval rules themselves.
 
-285
-00:19:14.098 --> 00:19:17.585
+286
+00:19:19.398 --> 00:19:22.885
 Only the authorizing official
 accepts open-ended risk.
 
-286
-00:19:17.585 --> 00:19:19.886
+287
+00:19:22.885 --> 00:19:25.186
 The separations on the
 right are the ones the
 
-287
-00:19:19.886 --> 00:19:22.622
+288
+00:19:25.186 --> 00:19:27.922
 platform should enforce
 rather than leave to memory.
 
-288
-00:19:22.622 --> 00:19:25.178
+289
+00:19:27.922 --> 00:19:30.478
 Above all, nobody approves their own work,
 
-289
-00:19:25.178 --> 00:19:28.034
+290
+00:19:30.478 --> 00:19:33.334
 and nobody changes the
 gate they pass through.
 
-290
-00:19:28.034 --> 00:19:31.390
+291
+00:19:33.334 --> 00:19:36.690
 Contractors can prepare every
 decision here except the
 
-291
-00:19:31.390 --> 00:19:34.673
+292
+00:19:36.690 --> 00:19:39.973
 authorizing official's, which
 is a government-only role.
 
-292
-00:19:34.673 --> 00:19:36.730
+293
+00:19:39.973 --> 00:19:42.030
 So, what to decide first?
 
-293
-00:19:40.480 --> 00:19:44.655
+294
+00:19:45.780 --> 00:19:49.955
 Six decisions, each with a named
 owner, and the table shows who.
 
-294
-00:19:44.655 --> 00:19:49.271
+295
+00:19:49.955 --> 00:19:54.571
 Two stand out: the verification ladder,
 because it protects every reset,
 
-295
-00:19:49.271 --> 00:19:53.417
+296
+00:19:54.571 --> 00:19:58.717
 and the SaaS threshold, because
 it's a gate nothing else replaces.
 
-296
-00:19:53.417 --> 00:19:57.118
+297
+00:19:58.717 --> 00:20:02.418
 The first step needs no procurement:
 measure before you build.
 
-297
-00:19:57.118 --> 00:20:01.962
+298
+00:20:02.418 --> 00:20:07.262
 Run the read-only inventories and collectors
 against a test scope, size the work
 
-298
-00:20:01.962 --> 00:20:06.806
+299
+00:20:07.262 --> 00:20:12.106
 from what they find, and start the move
 off the AWS connector before its deadline.
 
-299
-00:20:06.806 --> 00:20:10.117
+300
+00:20:12.106 --> 00:20:15.417
 Then build only what the native
 tools don't already provide.
 
-300
-00:20:10.117 --> 00:20:15.331
+301
+00:20:15.417 --> 00:20:20.631
 Operations is where modernization either
 becomes routine or quietly reverts.
 
-301
-00:20:15.331 --> 00:20:18.955
+302
+00:20:20.631 --> 00:20:24.255
 The book has the detail,
 with every claim footnoted.
 
-302
-00:20:18.955 --> 00:20:19.770
+303
+00:20:24.255 --> 00:20:25.070
 Thank you.

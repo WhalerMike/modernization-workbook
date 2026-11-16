@@ -210,7 +210,7 @@ Why does that matter? Book 08 of the workbook argues for one DDI policy plane: a
   const s = content(SEC, "What Trinzic alone sees in the clouds, and can't control");
   tag(s, "What");
   panel(s, "Sees", 0.6, 1.5, 6.0, 3.85, HEX.teal, HEX.tealTint, "WHAT IT CAN DO BY ITSELF", "See, import and automate", [
-    "vDiscovery: scheduled pull of networks and VMs from AWS, Azure, GCP, VMware",
+    "vDiscovery: scheduled pull of networks and VMs from AWS, Azure, GCP, VMware; GovCloud option (AWS)",
     "Discovered subnets become managed networks; DNS records for VMs only in zones NIOS already has",
     "Imports Route 53, Azure DNS, Google Cloud DNS zones one way into NIOS (Cloud Network Automation license on the Grid Master)",
     "Serves imported zones to on-prem clients; Cloud Platform members and an AWS API proxy automate provisioning",
@@ -226,7 +226,7 @@ Why does that matter? Book 08 of the workbook argues for one DDI policy plane: a
     "in the clouds, Infoblox's job is DNS and IPAM; DHCP stays with the cloud fabric, and the cloud resolver still answers cloud private zones.");
   sources(s, "Sources: Infoblox NIOS 9.1.x vDiscovery (S1–S5); Cloud Network Automation (S6); Route 53, Azure DNS, GCP sync (S13–S18); AWS DHCP option sets (S23); vNIOS GCP, Azure (S20, S24).");
   notes(s,
-`It can see. vDiscovery logs in to AWS, Azure, Google Cloud or VMware on a schedule and pulls back networks and virtual machines. Discovered subnets become managed networks, and the Grid can create records for discovered machines in zones it already has. It's a scheduled pull, not a live feed.
+`It can see. vDiscovery logs in to AWS, Azure, Google Cloud or VMware on a schedule and pulls back networks and virtual machines. AWS jobs have a GovCloud option. Discovered subnets become managed networks, and the Grid can create records for discovered machines in zones it already has. It's a scheduled pull, not a live feed.
 
 It can also import cloud zones. With a Cloud Network Automation license, NIOS copies Route 53, Azure DNS and Google Cloud DNS zones into the Grid, so on-premises clients can resolve cloud names. The import is one way. For Route 53, Infoblox says the sync runs into NIOS, not vice versa, and NIOS edits to those records are overwritten.
 
@@ -269,7 +269,7 @@ So, as an inference: in the cloud, Infoblox's job is DNS and IPAM, and the cloud
     "Azure, pattern 1: Azure private zones are not consulted first, so vNIOS must forward Azure names back",
     "AWS: to resolve Route 53 private zones for other networks, forward to an inbound endpoint, not the VPC's +2 resolver address",
     "Plan an HA pair per region that must survive a WAN cut (inference)",
-    "Every vNIOS member is agency-operated, and no FedRAMP authorization covers it",
+    "vNIOS covers GovCloud discovery; every member is agency-operated, and no FedRAMP authorization covers it",
   ], 11.5);
   sources(s, "Sources: vNIOS for AWS, Azure, GCP (S20, S24–S27); AWS DHCP options, Resolver (S23, S30, S31, S33); Microsoft Learn (S28, S29); Google Cloud DNS (S32); research_platform.");
   notes(s,
@@ -322,7 +322,7 @@ What does it add? It's the only documented Infoblox mechanism that writes back t
 
 The limits are documented. Route 53 sync doesn't support non-simple routing policies. Azure and Google private zones can't be created from the portal. DNSSEC records aren't synced. And the portal can't promote a Grid Master Candidate or manage DHCP failover, so the Grid Master stays the recovery console.
 
-Two more notes. The cloud forwarding and private-zone features run on NIOS-X servers, not classic Trinzic, so you'd need NIOS-X capacity. And the government edition: Infoblox Government Cloud is FedRAMP Certified at Moderate, hosted in AWS GovCloud. Its cloud discovery is limited: single AWS accounts and no Azure tenants. The VPC IPAM handoff isn't in its release notes. Confirm the rest with Infoblox.`,
+Two more notes. The cloud forwarding and private-zone features run on NIOS-X servers, not classic Trinzic, so you'd need NIOS-X capacity. And the government edition: Infoblox Government Cloud is FedRAMP Certified at Moderate, hosted in AWS GovCloud. Its cloud discovery is limited: single AWS accounts and no Azure tenants. The VPC IPAM handoff isn't in its release notes, and AWS excludes GovCloud from that integration. Confirm the rest with Infoblox.`,
   "Infoblox Onboarding NIOS Services, NIOS Grid Connector, Managing NIOS from Infoblox Portal, Universal DDI and NIOS Grid Hybrid Deployment, Limitations of AWS Route 53 Integration, Microsoft Azure Integration, Google Cloud Platform Integration, Cloud Forwarders and prerequisites, Discovering Cloud Forwarder Endpoints, Limitations of Universal DDI; AWS Integrate VPC IPAM with Infoblox and What's New Nov. 17, 2025; What's New in Universal DDI for FedRAMP; Universal Asset Insights AWS, Azure, GCP discovery pages; FedRAMP Marketplace FR2017257053.");
 }
 
@@ -349,14 +349,15 @@ Two more notes. The cloud forwarding and private-zone features run on NIOS-X ser
   ], { x: 0.6, y: 5.12, w: 4.35, h: 0.36, fontSize: 10.5 });
   T(s, "C ipam", [
     { text: "IPAM handoff: ", options: { bold: true, color: HEX.navy } },
-    { text: "the Grid owns the supernets; each cloud gets a block. Commercial AWS can automate it (VPC IPAM + Universal DDI). Azure, Google: manual — reserve in NIOS, create the cloud pool with that range, let vDiscovery check." },
+    { text: "the Grid owns the supernets; each cloud gets a block. Commercial AWS can automate it (VPC IPAM + Universal DDI). GovCloud, Azure, Google: manual — reserve in NIOS, create the cloud pool with that range, let vDiscovery check." },
   ], { x: 0.6, y: 5.5, w: 8.25, h: 0.95, fontSize: 11.5 });
   panel(s, "C facts", 9.1, 1.5, 3.65, 4.95, HEX.navy, "FFFFFF", "FACTS TO KNOW", null, [
     "Route 53 private zones answer only linked VPCs or via an inbound endpoint; elsewhere the name resolves on the internet",
     "Azure, with Azure-provided DNS: linked private zones, then rulesets, then Azure DNS",
     "Google: two authoritative systems; no zone transfers; forwarded answers cached 60 s",
+    "GovCloud: Route 53 private DNS and Resolver endpoints work; Resolver delegation doesn't",
   ], 11);
-  sources(s, "Sources: AWS private hosted zones, Resolver (S22, S30–S33, S57, S62); Microsoft Learn (S28, S64, S65); Google Cloud DNS (S67, S68); AWS VPC IPAM (S38, S39).");
+  sources(s, "Sources: AWS private hosted zones, Resolver, GovCloud Route 53 (S22, S30–S33, S57, S61, S62); Microsoft Learn (S28, S64, S65); Google Cloud DNS (S67, S68); AWS VPC IPAM (S38, S39).");
   notes(s,
 `Option C keeps the Grid authoritative for agency zones and lets each cloud's native DNS own its own private zones. The two connect by conditional forwarding: a rule that says, for names ending in this domain, ask that server.
 
@@ -364,8 +365,10 @@ Inward: the Grid forwards cloud domains to an inbound endpoint in AWS or Azure, 
 
 Facts to know. A Route 53 private hosted zone answers only inside its linked VPCs or through an inbound endpoint. Asked from anywhere else, the name resolves on the public internet instead. In Azure, a network using Azure-provided DNS checks linked private zones first, then forwarding rulesets, then Azure DNS. Google recommends exactly this design: two authoritative systems, conditional forwarding, no zone transfers.
 
-Addresses follow the same idea. The Grid owns the agency's address blocks and hands each cloud a block. On commercial AWS, that handoff can be automated through Universal DDI. In Azure and Google, it's manual: reserve the block in the Grid, create the cloud pool with that range, and let vDiscovery check the result.`,
-  "AWS Working with private hosted zones, What is Route 53 VPC Resolver, Forwarding inbound and outbound queries, Resolving queries between VPCs and your network, Route 53 endpoints; Microsoft Learn DNS Private Resolver, Azure Private DNS, AVNM IPAM; Google Cloud DNS best practices and server policies; AWS Integrate VPC IPAM with Infoblox and What's New Nov. 17, 2025.");
+In GovCloud, Route 53 public and private DNS work, and Resolver endpoints and rules are available, but Resolver delegation isn't.
+
+Addresses follow the same idea. The Grid owns the agency's address blocks and hands each cloud a block. On commercial AWS, that handoff can be automated through Universal DDI. In GovCloud, Azure and Google, it's manual: reserve the block in the Grid, create the cloud pool with that range, and let vDiscovery check the result.`,
+  "AWS Working with private hosted zones, What is Route 53 VPC Resolver, Forwarding inbound and outbound queries, Resolving queries between VPCs and your network, GovCloud Route 53 user guide, Route 53 endpoints; Microsoft Learn DNS Private Resolver, Azure Private DNS, AVNM IPAM; Google Cloud DNS best practices and server policies; AWS Integrate VPC IPAM with Infoblox and What's New Nov. 17, 2025.");
 }
 
 // ================================================================== 8 Split-brain rules
@@ -381,7 +384,7 @@ Addresses follow the same idea. The Grid owns the agency's address blocks and ha
   txt(s, "S up label", "AWS forwards the parent to the Grid", { x: 2.95, y: 3.0, w: 1.5, h: 0.55, fontSize: 10.5, italic: true, color: HEX.teal, align: "right", valign: "middle" });
   T(s, "S mech", [
     { text: "One owner each, joined by forwarding. ", options: { bold: true, color: HEX.navy } },
-    { text: "AWS also allows inbound delegation (NS glue), through the delegation inbound endpoint." },
+    { text: "AWS also allows inbound delegation (NS glue), but Resolver delegation isn't available in GovCloud." },
   ], { x: 0.6, y: 4.95, w: 4.6, h: 0.9, fontSize: 11.5 });
   const cards = [
     ["1  One writable owner per zone", HEX.red, HEX.redTint, "Grid, Route 53, Azure Private DNS or Cloud DNS, never two. NIOS overwrites edits to imported zones; portal-owned resolver rules overwrite cloud changes: decide ownership before sync."],
@@ -393,18 +396,18 @@ Addresses follow the same idea. The Grid owns the agency's address blocks and ha
     const x = 5.5 + (i % 2) * 3.65, y = 1.5 + Math.floor(i / 2) * 2.5;
     node(s, `Rule ${i + 1}`, x, y, 3.5, 2.35, c[1], c[2], c[0], c[3], 11.5);
   });
-  sources(s, "Sources: research_multicloud §5 (S13, S17, S18, S22, S28, S30, S33, S48, S63, S66, S67); research_platform (DNSSEC on a Grid, network views); Book 08, Ch 02.");
+  sources(s, "Sources: research_multicloud §5 (S13, S17, S18, S22, S28, S30, S33, S48, S61, S63, S66, S67); research_platform (DNSSEC on a Grid, network views); Book 08, Ch 02.");
   notes(s,
 `Whatever option you pick, four rules prevent split-brain.
 
 One: every zone has exactly one writable owner. That's the Grid, Route 53, Azure Private DNS or Cloud DNS, never two. Everything else reaches the owner by forwarding, or holds a copy that is explicitly read-only. NIOS overwrites edits to imported cloud zones, and portal-owned resolver rules overwrite cloud-side changes. So decide ownership before you turn sync on.
 
-Two: divide the namespace by owner. For example, corp dot agency dot gov lives on the Grid, and aws dot corp dot agency dot gov lives in a Route 53 private hosted zone. On-premises resolvers forward the child to AWS, and AWS forwards the parent to the Grid. AWS also allows inbound delegation. And don't create a cloud private zone with the same name as a Grid zone unless it's a deliberate split-horizon view.
+Two: divide the namespace by owner. For example, corp dot agency dot gov lives on the Grid, and aws dot corp dot agency dot gov lives in a Route 53 private hosted zone. On-premises resolvers forward the child to AWS, and AWS forwards the parent to the Grid. AWS also allows inbound delegation, but Resolver delegation isn't available in GovCloud. And don't create a cloud private zone with the same name as a Grid zone unless it's a deliberate split-horizon view.
 
 Three: DNSSEC keys stay on the Grid Master or its hardware security module. Route 53 can't sign private hosted zones, and Universal DDI doesn't sync DNSSEC records, so don't sign in one system and manage through sync from another. Validation belongs on agency resolvers; the Azure-provided resolver doesn't validate.
 
 Four: IPAM authority stays on the Grid. Clouds get delegated blocks, and one network view for routable space lets the Grid catch overlaps.`,
-  "Research synthesis, Avoiding split-brain, DNSSEC keys and IPAM authority: Infoblox Route 53, Azure DNS and GCP sync pages; Discovering Cloud Forwarder Endpoints; AWS private hosted zones, Resolver, DNSSEC signing; Microsoft Learn DNS Private Resolver and Azure DNSSEC; Google Cloud DNS best practices; Infoblox DNSSEC on a Grid and Network Views; Book 08, Chapter 02.");
+  "Research synthesis, Avoiding split-brain, DNSSEC keys and IPAM authority: Infoblox Route 53, Azure DNS and GCP sync pages; Discovering Cloud Forwarder Endpoints; AWS private hosted zones, Resolver, GovCloud Route 53, DNSSEC signing; Microsoft Learn DNS Private Resolver and Azure DNSSEC; Google Cloud DNS best practices; Infoblox DNSSEC on a Grid and Network Views; Book 08, Chapter 02.");
 }
 
 // ================================================================== 9 Decision table
@@ -417,8 +420,8 @@ Four: IPAM authority stays on the Grid. Clouds get delegated blocks, and one net
   ], { x: 0.6, y: 1.45, w: 12.15, h: 0.32, fontSize: 12.5 });
   table(s, "Decision", 1.85, [2.45, 3.3, 3.35, 3.05], ["Agency situation", "Pattern", "Why", "Rests on"], [
     ["Mostly on-prem, small cloud", "Trinzic + native resolvers + conditional forwarding (minimal C)", "Lowest cost and boundary impact; no new SaaS authorization", "NIOS can't own cloud zones; documented forwarding in all three clouds"],
-    ["Hybrid, one cloud", "A + C: HA vNIOS pair in a hub; native rules forward agency zones to it", "Resolution stays local if the WAN fails; RPZ, signed zones and Grid IPAM reach the cloud", "vNIOS documented for AWS, Azure and Google Cloud"],
-    ["Multi-cloud at FedRAMP Moderate, commercial regions", "B on top of A or C (Government Cloud for federal work)", "Only Infoblox path that writes to cloud DNS and discovers resolver rules", "Government Cloud: single AWS accounts, no Azure tenants, no VPC IPAM handoff; hybrid features: confirm"],
+    ["Hybrid, one cloud (commercial or GovCloud)", "A + C: HA vNIOS pair in a hub; native rules forward agency zones to it", "Resolution stays local if the WAN fails; RPZ, signed zones and Grid IPAM reach the cloud", "vNIOS documented for AWS (including GovCloud discovery), Azure and Google Cloud"],
+    ["Multi-cloud at FedRAMP Moderate (commercial or GovCloud)", "B on top of A or C (Government Cloud for federal work)", "Only Infoblox path that writes to cloud DNS and discovers resolver rules", "Government Cloud: single AWS accounts, no Azure tenants, no VPC IPAM handoff; GovCloud accounts: confirm"],
     ["FedRAMP High systems, in any region", "A + C only; don't depend on Universal DDI SaaS", "Infoblox's SaaS is Moderate-only; native services carry higher authorizations", "Infoblox Government Cloud is certified at Moderate"],
   ], { fontSize: 11.5 });
   sources(s, "Sources: research_multicloud §5 decision table (S2, S3, S13, S20–S31, S38, S39, S41–S48, S50–S55, S62, S67); research_federal and research_compare (FedRAMP levels).");
@@ -427,14 +430,14 @@ Four: IPAM authority stays on the Grid. Clouds get delegated blocks, and one net
 
 Mostly on premises, with a small cloud footprint: Trinzic with native cloud resolvers and conditional forwarding, the minimal form of Option C. It's the lowest cost, needs no new SaaS authorization, and NIOS can't own cloud zones anyway.
 
-Hybrid with one cloud: add an HA vNIOS pair in a hub network, Option A plus C. It keeps resolution local if the WAN fails and extends response policy, signed zones and Grid IPAM into the cloud.
+Hybrid with one cloud: add an HA vNIOS pair in a hub network, Option A plus C. It keeps resolution local if the WAN fails and extends response policy, signed zones and Grid IPAM into the cloud. vNIOS is documented for GovCloud discovery.
 
-Multi-cloud at FedRAMP Moderate and below: consider Universal DDI on top, through Government Cloud for federal work, for workloads in the commercial regions. Infoblox Government Cloud itself is certified at Moderate and hosted in AWS GovCloud (US). It's the only Infoblox mechanism that writes to cloud DNS, within the Government Cloud limits. Confirm first with Infoblox which hybrid features its government edition supports.
+Multi-cloud at FedRAMP Moderate and below: consider Universal DDI on top, through Government Cloud for federal work. That holds whether the Moderate workloads run in commercial regions or in GovCloud, where the program's AWS workloads run; Infoblox Government Cloud itself is certified at Moderate and hosted in AWS GovCloud (US). It's the only Infoblox mechanism that writes to cloud DNS, within the Government Cloud limits, and the VPC IPAM integration excludes GovCloud. Confirm with Infoblox which hybrid features work against GovCloud accounts.
 
 FedRAMP High systems, in any region: stay with options A and C only, vNIOS and native cloud DNS, without depending on the Moderate SaaS. Infoblox's SaaS is Moderate-only, and native services carry the higher authorizations.
 
 In short, the design guidance is: Trinzic plus native cloud resolvers as the baseline, with vNIOS and Universal DDI added only where they earn their place.`,
-  "Research decision guidance table and its cited sources: Infoblox vDiscovery, vNIOS for AWS and Azure, Route 53 sync, Universal DDI integrations and FedRAMP release notes, Universal Asset Insights discovery pages; AWS Resolver, VPC IPAM + Infoblox; FedRAMP Marketplace products.json.");
+  "Research decision guidance table and its cited sources: Infoblox vDiscovery, vNIOS for AWS and Azure, Route 53 sync, Universal DDI integrations and FedRAMP release notes, Universal Asset Insights discovery pages; AWS Resolver, VPC IPAM + Infoblox, GovCloud Route 53; FedRAMP Marketplace products.json.");
 }
 
 // ================================================================== 10 Where it fits, decisions, next steps
@@ -455,7 +458,7 @@ In short, the design guidance is: Trinzic plus native cloud resolvers as the bas
     "How address blocks reach each cloud",
   ], 12.5);
   panel(s, "Next", 8.75, 1.5, 4.0, 4.95, HEX.amber, HEX.amberTint, "NEXT STEPS", null, [
-    "Ask Infoblox for the Government Cloud boundary and a feature matrix for its government edition",
+    "Ask Infoblox for the Government Cloud boundary and a feature matrix for GovCloud accounts",
     "Size NIOS-X capacity if you want cloud forwarders",
     "Test forwarding both ways from every origin",
   ], 12);
@@ -465,7 +468,7 @@ In short, the design guidance is: Trinzic plus native cloud resolvers as the bas
 
 The decisions to take: which option for each cloud and FedRAMP level; one named owner for every zone; where DNSSEC keys live; and how address blocks reach each cloud.
 
-The next steps. Ask Infoblox for the Government Cloud authorization boundary and a feature matrix for its government edition. Size NIOS-X capacity if you want cloud forwarders. And test forwarding in both directions from every origin.
+The next steps. Ask Infoblox for the Government Cloud authorization boundary and a feature matrix for GovCloud accounts. Size NIOS-X capacity if you want cloud forwarders. And test forwarding in both directions from every origin.
 
 One note on standing: this is research under review, not an endorsement by any federal agency. Thank you.`,
   "Book 08, Chapters 02, 07, 08 and 12; research item Infoblox DDI for Federal Agencies; research_multicloud, Couldn't verify.");
@@ -504,7 +507,8 @@ One note on standing: this is research under review, not an endorsement by any f
 {
   const s = content("Backup", "What we couldn't verify, and dropped");
   table(s, "Unverified", 1.5, [4.6, 7.55], ["Open question", "Status as of Oct. 22, 2026"], [
-    ["Government Cloud write sync, cloud forwarders and Cloud Grid Management", "Listed in the FedRAMP release stream; no page states end-to-end support. Ask Infoblox for the boundary and feature matrix"],
+    ["Government Cloud write sync, cloud forwarders and Cloud Grid Management with GovCloud accounts", "Listed in the FedRAMP release stream; no page states end-to-end support. Ask Infoblox for the boundary and feature matrix"],
+    ["vNIOS GovCloud AMI / Marketplace availability", "Enablement section referenced, not opened"],
     ["NIOS managing Route 53 Resolver rules or Azure rulesets", "No NIOS doc found (absence of evidence)"],
     ["Google Cloud IPAM equivalent; DNSSEC on Cloud DNS private zones", "Not found or not researched"],
     ["Zone transfers from Route 53 or Azure DNS to NIOS", "Not checked; Google states Cloud DNS does not support zone transfers"],
@@ -528,14 +532,14 @@ srcSlide("Sources: Infoblox NIOS and vNIOS", [
 srcSlide("Sources: Universal DDI and the government edition", [
   "S35 Onboarding NIOS Services (BloxOneDDI)  ·  S36 Enabling the NIOS Grid Connector Service  ·  S37 Managing NIOS from Infoblox Portal  ·  S40 Universal DDI and NIOS Grid Hybrid Deployment  ·  S56 Limitations of Universal DDI (Mar. 18, 2026).",
   "S41 Limitations of AWS Route 53 Integration  ·  S42 Microsoft Azure Integration  ·  S43 Importing Azure Private Zones as Forward Zones  ·  S45 Google Cloud Platform Integration  ·  S46 Configuring and Creating Cloud Forwarders  ·  S47 Prerequisites for Cloud Forwarders  ·  S48 Discovering Cloud Forwarder Endpoints.",
-  "S38 AWS, Integrate VPC IPAM with Infoblox infrastructure; Infoblox, Amazon VPC IPAM and Universal DDI Integration  ·  S39 AWS What's New, VPC IPAM automates IP assignments from Infoblox IPAM (Nov. 17, 2025).",
+  "S38 AWS, Integrate VPC IPAM with Infoblox infrastructure; Infoblox, Amazon VPC IPAM and Universal DDI Integration  ·  S39 AWS What's New, VPC IPAM automates IP assignments from Infoblox IPAM (Nov. 17, 2025; excludes China and GovCloud).",
   "S44, S50 What's New in Infoblox Universal DDI for FedRAMP (latest entry Mar. 14, 2026)  ·  S49 Infoblox blog, \"Universal DDI Comes to Infoblox Government Cloud\" (July 22, 2026) — vendor.",
-  "S51–S55 Universal Asset Insights: Creating AWS and Azure Credentials; AWS, Azure and GCP General discovery pages (FedRAMP edition limits).",
+  "S51–S55 Universal Asset Insights: Creating AWS and Azure Credentials; AWS, Azure and GCP General discovery pages (GovCloud (FedRAMP) limits).",
   "FedRAMP Marketplace dataset, fedramp.gov/marketplace/products.json: FR2017257053 Infoblox Government Cloud (FedRAMP Certified, Moderate, Agency path, SaaS, AWS GovCloud (US)).",
 ]);
 srcSlide("Sources: AWS, Microsoft, Google and Book 08", [
   "AWS: S10a What is IPAM?  ·  S22 Working with private hosted zones  ·  S23 DHCP option sets  ·  S30 What is Route 53 VPC Resolver?  ·  S31 Forwarding outbound queries  ·  S33 Resolving queries between VPCs and your network  ·  S57 Forwarding inbound queries  ·  S58 Modify IPAM tier.",
-  "AWS: S60 VPC IPAM in Asia Pacific (Taipei) (June 13, 2025)  ·  S62 General Reference, Route 53 endpoints  ·  S63 Configuring DNSSEC signing in Route 53.",
+  "AWS: S59 VPC IPAM in GovCloud (US) (Dec. 8, 2022)  ·  S60 VPC IPAM in Asia Pacific (Taipei) (June 13, 2025)  ·  S61 GovCloud (US) User Guide, Amazon Route 53  ·  S62 General Reference, Route 53 endpoints  ·  S63 Configuring DNSSEC signing in Route 53  ·  GovCloud VPC differences.",
   "Microsoft Learn: S28 What is Azure DNS Private Resolver?  ·  S29 Name resolution for resources in Azure virtual networks  ·  S64 What is Azure Private DNS?  ·  S65 IPAM in Azure Virtual Network Manager  ·  S66 Azure DNSSEC overview.",
   "Google Cloud: S32, S67 Cloud DNS best practices  ·  S68 DNS server policies overview  ·  Forwarding zones.",
   "Book 08, Federal Modernization Workbook: Ch 02 (Split-Brain DNS), Ch 07 (Cloud Private Endpoints, SDN and IPAM), Ch 08 (Reference Architecture; What a DDI policy plane is made of), Ch 12 (Platform Selection, Cost and Residual Risk).",

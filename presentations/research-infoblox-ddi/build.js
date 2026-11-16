@@ -234,7 +234,7 @@ Before arguing for or against Infoblox, we need an accurate picture of what it i
     ["Trinzic X6", "Current hardware; NIOS 9.0.1 and later"],
     ["vNIOS for VMware", "X6 models 4 vCPU/32 GB to 32 vCPU/384 GB; all can be Grid Master"],
     ["vNIOS for Azure", "HA from 9.0.4; no DHCP for on-prem networks"],
-    ["vNIOS for AWS", "Grid Master or HA from 9.0.4; vDiscovery pulls networks and VMs"],
+    ["vNIOS for AWS", "Grid Master or HA from 9.0.4; vDiscovery has a GovCloud option"],
     ["Google Cloud, OCI", "Shared VPC support; OCI HA new in 9.1.0"],
     ["NIOS-X servers", "Universal DDI data plane: VM, container, bare metal, B1 hardware"],
   ], { x: 6.4, fontSize: 11.5 });
@@ -248,7 +248,7 @@ Before arguing for or against Infoblox, we need an accurate picture of what it i
 
 Members can be physical Infoblox hardware or virtual vNIOS, singly or in HA pairs. The Grid Master talks to every member hub-and-spoke, over encrypted VPN tunnels on UDP 1194 by default, after a challenge-response authentication on port 2114. A Grid Master Candidate holds a complete copy of the database. Promoting it is a manual operation, and you can't do it from the cloud portal. HA pairs share one virtual IP and virtual MAC, with VRRP advertisements as the heartbeat. A Grid can run IPv4-only, IPv6-only or dual mode.
 
-Form factors. The current hardware line is Trinzic X6, supported from NIOS 9.0.1. vNIOS for VMware runs from four virtual CPUs and thirty-two gigabytes up to thirty-two CPUs and three hundred eighty-four, and every model can be a Grid Master. vNIOS for Azure supports HA from 9.0.4; note that Azure doesn't support running DHCP in Azure for on-premises networks. vNIOS for AWS can be a Grid Master in HA, and vDiscovery pulls networks and virtual machines on a schedule. Google Cloud and Oracle Cloud are covered too, with OCI HA new in 9.1. NIOS-X servers are the data plane for Universal DDI, which is next.
+Form factors. The current hardware line is Trinzic X6, supported from NIOS 9.0.1. vNIOS for VMware runs from four virtual CPUs and thirty-two gigabytes up to thirty-two CPUs and three hundred eighty-four, and every model can be a Grid Master. vNIOS for Azure supports HA from 9.0.4; note that Azure doesn't support running DHCP in Azure for on-premises networks. vNIOS for AWS can be a Grid Master in HA, and its vDiscovery has a GovCloud option. Google Cloud and Oracle Cloud are covered too, with OCI HA new in 9.1. NIOS-X servers are the data plane for Universal DDI, which is next.
 
 Versions: NIOS 9.1.0 went GA in March 2026 and ships BIND 9.20. NIOS 9.0.6 introduced a Long-Term Support train with up to twenty-four months of support.`,
   "Infoblox NIOS 9.1.x About Grids, Promoting a Grid Master Candidate, About HA Failover, 9.1.0 What's New; vNIOS install guides; Supported Platforms for NIOS-X Servers; Infoblox NIOS 9.0.6 and 9.1.0 blogs.");
@@ -337,14 +337,14 @@ One configuration item you must change: the default DNSSEC algorithm is RSA with
     "AWS VPC IPAM: Infoblox as external authority (private scope, Advanced tier)",
   ], 12);
   callout(s, "Views", 5.4, 1.05, "FaTriangleExclamation", HEX.amber, "Network views permit overlap; they don't prevent it. ",
-    "Uniqueness across contexts comes from one view, or from IPAM Federation in Universal DDI.");
+    "Uniqueness across contexts comes from one view, or from IPAM Federation in Universal DDI. The AWS IPAM handoff excludes GovCloud.");
   sources(s, "Sources: Infoblox NIOS 9.1.x — DHCP Failover; DHCPv6; Fingerprints; Lease History; Network Views; Discovery; Network Insight; EAs. Asset Insights. AWS VPC IPAM docs.");
   notes(s,
 `DHCP first. Failover peers form an association over TCP, split clients by a hash of the MAC address, fifty-fifty by default, and send each other lease updates directly. The Grid Master isn't involved in failover, whatever older material says. An association serves ranges in one network view only, and failover is IPv4 only. That last point matters under the IPv6 mandate, though as we'll see in Module 2, Windows has the same gap. DHCPv6 itself is supported, including prefix delegation, and fixed addresses arrived in 9.0.6. Fingerprinting matches options 55 and 60 and is on by default, and filters can deny leases to device types per range. Lease history is archived and exportable, which is the address-to-asset record NIST asks for. Dynamic DNS updates from DHCP are something you turn on, not automatic.
 
 IPAM. A network view is a single routing domain, up to one thousand per Grid. Views are mutually exclusive, so the same address space can exist in two of them. A DHCP member serves only one network view. Network containers hold the large blocks, and extensible attributes tag objects with metadata such as division or cost center. Discovery uses ICMP, NetBIOS or TCP, and vDiscovery reads vCenter, OpenStack, Azure and AWS. Network Insight, the layer-two and layer-three device discovery, needs its own license and dedicated appliances that run no DNS or DHCP; budget for that. Universal Asset Insights is the SaaS inventory service. And AWS documents Infoblox as the external authority for a VPC IPAM private scope, on the Advanced tier.
 
-Two corrections to common claims. Separate network views permit overlap; they don't prevent it.`,
+Two corrections to common claims. Separate network views permit overlap; they don't prevent it. And the AWS IPAM integration excludes the GovCloud regions.`,
   "Infoblox NIOS 9.1.x: DHCP Failover, DHCPv6 RFC Compliance, DHCP Fingerprint Detection, Lease History, Enabling DDNS, Configuring Network Views, About Discovery, About Network Insight, Extensible Attributes; Universal Asset Insights; AWS VPC IPAM user guide; AWS What's New, Nov. 17, 2025.");
 }
 
@@ -549,7 +549,7 @@ Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical i
   const opts = [
     [HEX.teal, HEX.tealTint, "A  vNIOS in each cloud", "Grid members in AWS, Azure or Google Cloud, in HA pairs; they serve signed zones without holding keys."],
     [HEX.navy, HEX.navyTint, "B  Grid + Universal DDI", "The only Infoblox path that writes back to cloud DNS. Government edition: Moderate, limited discovery. Cloud forwarders run on NIOS-X, not classic Trinzic."],
-    [HEX.amber, HEX.amberTint, "C  Trinzic beside native cloud DNS", "Conditional forwarding both ways through the clouds' resolver endpoints."],
+    [HEX.amber, HEX.amberTint, "C  Trinzic beside native cloud DNS", "Conditional forwarding both ways through the clouds' resolver endpoints. The VPC IPAM handoff to Infoblox isn't available in GovCloud."],
   ];
   opts.forEach((o, i) => {
     const y = 1.5 + i * 0.85;
@@ -563,7 +563,7 @@ Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical i
   const rows = [
     ["Mostly on premises", "C: the Grid stays authoritative; clouds forward to it"],
     ["Hybrid, one cloud", "A + C: an HA vNIOS pair keeps answers local"],
-    ["Multi-cloud at Moderate", "Add B for write-back in the commercial regions; confirm the government edition's features first"],
+    ["Multi-cloud at Moderate", "Add B for write-back; in GovCloud, confirm support first"],
     ["FedRAMP High", "A + C only; don't depend on the Moderate SaaS"],
   ];
   const gw = (12.15 - 3 * 0.15) / 4;
@@ -587,7 +587,7 @@ On its own, it can see into the clouds. vDiscovery pulls in cloud networks and V
 
 There are three ways to extend it, and they combine. Option A puts vNIOS members in each cloud, joined to the Grid, so answers stay local during a WAN cut. Option B joins the Grid to Universal DDI, the only Infoblox path that writes back to cloud DNS, but the government edition is Moderate only, with limited discovery: single AWS accounts and no Azure tenants. Its cloud forwarders run on NIOS-X servers, not classic Trinzic. Option C keeps the native cloud resolvers and wires them to the Grid with conditional forwarding in both directions.
 
-The bottom row is design guidance, not a rule. Mostly on premises: Option C. Hybrid with one cloud: A plus C. Multi-cloud at Moderate or below: add B, for workloads in the commercial regions, and confirm first which hybrid features the government edition supports. FedRAMP High, in any region: A plus C, and don't depend on the Moderate SaaS. For the full reasoning, see the Research explainer, Trinzic Alone, or Trinzic Plus Cloud DDI?`,
+The bottom row is design guidance, not a rule. Mostly on premises: Option C. Hybrid with one cloud: A plus C. Multi-cloud at Moderate or below: add B. That holds in commercial regions and in GovCloud at Moderate, but in GovCloud, confirm first which hybrid features the government edition supports against those accounts. FedRAMP High, in any region: A plus C, and don't depend on the Moderate SaaS. For the full reasoning, see the Research explainer, Trinzic Alone, or Trinzic Plus Cloud DDI?`,
   "Infoblox NIOS 9.1.x vDiscovery and Cloud Network Automation; Route 53, Azure DNS and Google Cloud DNS integration pages; vNIOS for AWS, Azure and Google Cloud; Onboarding NIOS Services; Configuring Cloud Forwarders; What's New in Universal DDI for FedRAMP; Universal Asset Insights credential pages; Limitations of Universal DDI; AWS Route 53 VPC Resolver and VPC IPAM docs, What's New Nov. 17, 2025; Microsoft Learn Azure DNS Private Resolver; Google Cloud DNS best practices.");
 }
 
@@ -1249,17 +1249,17 @@ srcSlide("Sources behind the orientation and Module 1", [
   "Vendor (labeled as vendor claims): infoblox.com NIOS, Universal DDI and Threat Defense product pages; NIOS 9.0.6 and 9.1.0 blogs.",
 ]);
 srcSlide("Sources behind Module 2 — Federal fit and risks", [
-  "FedRAMP Marketplace dataset, fedramp.gov/marketplace/products.json (meta last_change Oct. 22, 2026): FR2017257053 Infoblox Government Cloud; Azure, AWS and Google Services listings.",
+  "FedRAMP Marketplace dataset, fedramp.gov/marketplace/products.json (meta last_change Oct. 22, 2026): FR2017257053 Infoblox Government Cloud; Azure, AWS GovCloud and Google Services listings.",
   "STIG file store (High only): U_Infoblox_NIOS_9-x_V1R1_STIG (benchmark Jul. 28, 2026); U_IB_8-x_DNS_V1R4_STIG (Sept. 30, 2026); DNS SRG V4R3.",
   "NIST CMVP: certificates #4531, #4535, #3332, #3330 (Infoblox, Historical); #5506 and #4692 (BlueCat); validated-modules search (EfficientIP, Men&Mice); Modules In Process list; FIPS 140-3 transition page.",
   "NIAP Product Compliant List (API) — Infoblox Trinzic Appliances with NIOS v9.0, In Progress; Common Criteria Portal certified and archived CSVs  ·  CISA CDM APL page and April 2025 APL workbook.",
   "NVD CVE API (keyword Infoblox): CVE-2024-37566, -37567, -36046, -36047; CVE-2025-61880, -61879  ·  CISA KEV JSON, catalog 2026.10.21 (incl. CVE-2015-5477)  ·  Infoblox Cloud release notes (NIOS-X DNS 3.8.11, 3.8.12).",
   "Comparison: BlueCat Integrity and Micetro pages; EfficientIP SOLIDserver DDI datasheet (Jan. 2026) — vendor  ·  Microsoft Learn: IPAM overview and WS2012 R2 planning; DNS Policies; DHCP failover; removed and deprecated features; Azure DNSSEC; DNS resolver policy; AVNM IPAM.",
-  "AWS: VPC IPAM; Integrate VPC IPAM with Infoblox; What's New Nov. 17, 2025; Route 53 DNSSEC signing; DNS Firewall Advanced  ·  Google Cloud: DNSSEC; response policies; DNS Armor.",
+  "AWS: VPC IPAM; Integrate VPC IPAM with Infoblox; What's New Nov. 17, 2025; Route 53 DNSSEC signing; Route 53 in GovCloud; DNS Firewall Advanced  ·  Google Cloud: DNSSEC; response policies; DNS Armor.",
   "Terraform Registry API (infobloxopen, bluecatlabs, efficientip-labs, menandmice providers); Ansible Galaxy API (infoblox, menandmice collections).",
   "Infoblox (vendor): Universal DDI Tokens FAQ; Universal DDI Supplemental Terms; End-of-Life policy (Mar. 31, 2025); \"Universal DDI comes to Infoblox Government Cloud\" (July 22, 2026); \"Top 12 Questions\" post (search summary).",
   "Trinzic slides — Infoblox: vDiscovery (Endpoint Server, AWS, Azure, Guidelines); Cloud Network Automation; Cloud Platform License Limitations; Route 53, Azure DNS, Google Cloud DNS integration and limits; vNIOS for AWS, Azure, Google Cloud (About, Limitations); Shared-Services VPC; Onboarding NIOS Services; Cloud Forwarders; Discovering Cloud Forwarder Endpoints; UAI AWS, Azure, GCP credentials; CMVP Modules In Process; CISA BOD 26-02.",
-  "Trinzic slides — clouds: AWS Route 53 private hosted zones, VPC Resolver, inbound/outbound forwarding, DHCP option sets, VPC IPAM + Infoblox; Microsoft Learn DNS Private Resolver, VNet name resolution, AVNM IPAM; Google Cloud DNS best practices, server policies.",
+  "Trinzic slides — clouds: AWS Route 53 private hosted zones, VPC Resolver, inbound/outbound forwarding, GovCloud Route 53, DHCP option sets, VPC IPAM + Infoblox; Microsoft Learn DNS Private Resolver, VNet name resolution, AVNM IPAM; Google Cloud DNS best practices, server policies.",
 ]);
 srcSlide("Sources behind Part 2 — Divisions and operating model", [
   "Infoblox NIOS (spaces nios91x and nios90): About Administrative Permissions; About Admin Groups; About Admin Roles; Creating Limited-Access and Superuser Admin Groups; Applying Permissions and Managing Overlaps; Global and Object Permissions.",
