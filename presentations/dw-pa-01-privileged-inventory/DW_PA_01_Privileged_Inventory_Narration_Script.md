@@ -10,7 +10,7 @@ Why start with an inventory? Because you can't fix what you can't list. A role r
 
 ## Slide 3 — Which cloud: Graph and Resource Manager hosts
 
-Next, which cloud. For this estate's tenant, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: the normal Graph endpoint and the normal Resource Manager endpoint. GCC High and the Defense Department cloud use their own hosts. The licenses for GCC are hosted in Azure commercial, and the governance product that PIM needs is available in every one of these clouds, as is every Graph call the chapter uses. The code never guesses: you name the cloud explicitly, and it refuses any name it doesn't recognize.
+Next, which cloud. For this estate's tenant, Microsoft 365 GCC with commercial Azure, every host is a worldwide one: the normal Graph endpoint and the normal Resource Manager endpoint. The licenses for GCC are hosted in Azure commercial, the governance product that PIM needs is available in GCC, and every Graph call the chapter uses is listed for the global service. The code never guesses: you name the cloud explicitly, and it refuses any name it doesn't recognize.
 
 ## Slide 4 — What the inventory reads: five collections
 
@@ -30,7 +30,7 @@ This is the heart of the chapter. Run against the fixture tenant, Learn's sample
 
 ## Slide 8 — What the samples miss: names, clouds, Azure
 
-The rest of the gaps are about trust and reach. The sample prints raw identifiers with no names and no tier, and a reviewer can't act on an identifier. It signs in without naming a cloud or limiting its permissions. Its transitive read uses beta on a hard-coded worldwide host, which is wrong for the government clouds. And it says nothing about Azure, where Owner and User Access Administrator are just as privileged. So the verdict is: keep Learn's page as the model and the cross-check, but don't use its loop as the inventory.
+The rest of the gaps are about trust and reach. The sample prints raw identifiers with no names and no tier, and a reviewer can't act on an identifier. It signs in without naming a cloud or limiting its permissions. Its transitive read uses beta, on a worldwide host fixed in the code and never checked. And it says nothing about Azure, where Owner and User Access Administrator are just as privileged. So the verdict is: keep Learn's page as the model and the cross-check, but don't use its loop as the inventory.
 
 ## Slide 9 — The reader and its four rules
 

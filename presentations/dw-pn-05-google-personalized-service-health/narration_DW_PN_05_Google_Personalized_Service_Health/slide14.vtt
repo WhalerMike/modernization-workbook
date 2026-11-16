@@ -42,16 +42,16 @@ most in this chapter:
 record the gaps with the security officer.
 
 10
-00:00:23.537 --> 00:00:28.237
-Planned maintenance doesn't come through
-this API, and a project in an Assured
+00:00:23.537 --> 00:00:27.631
+Planned maintenance doesn't come
+through this API, and a project in an
 
 11
-00:00:28.237 --> 00:00:33.376
-Workloads FedRAMP or impact-level folder
-has no Personalized Service Health at all.
+00:00:27.631 --> 00:00:32.226
+Assured Workloads FedRAMP folder has
+no Personalized Service Health at all.
 
 12
-00:00:33.376 --> 00:00:36.940
+00:00:32.226 --> 00:00:35.810
 Finally, remove the role
 binding and delete the run.

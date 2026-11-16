@@ -58,33 +58,6 @@
    "The plan's order is fixed too: one pilot class first, then every tier, one at a time."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   8.65,
-   "Everything here is Microsoft Graph, version one, with no Resource Manager calls at all; Azure resource roles wait for Chapter 6."
-  ],
-  [
-   10.062,
-   7.713,
-   "This estate's tenant is G C C, so Graph is the worldwide host and sign-in is the worldwide sign-in page."
-  ],
-  [
-   17.775,
-   8.863,
-   "G C C High and the Defense Department cloud would use their own hosts, and every call's Learn page lists the U S Government clouds as available."
-  ],
-  [
-   26.637,
-   9.025,
-   "One small design choice matters: the code takes an explicit cloud name and has no default, so nobody runs it against the wrong cloud by accident."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -518,6 +491,33 @@
    33.5,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   8.65,
+   "Everything here is Microsoft Graph, version one, with no Resource Manager calls at all; Azure resource roles wait for Chapter 6."
+  ],
+  [
+   10.062,
+   7.713,
+   "This estate's tenant is G C C, so Graph is the worldwide host and sign-in is the worldwide sign-in page."
+  ],
+  [
+   17.775,
+   9.375,
+   "Every call's Learn page lists the global service that G C C uses as available, and the governance product pim needs is available in G C C."
+  ],
+  [
+   27.15,
+   9.025,
+   "One small design choice matters: the code takes an explicit cloud name and has no default, so nobody runs it against the wrong cloud by accident."
   ]
  ]
 }

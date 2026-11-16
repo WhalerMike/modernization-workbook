@@ -20,26 +20,21 @@ and the alert sits in Azure Monitor
 in a commercial subscription.
 
 5
-00:00:14.363 --> 00:00:16.884
-The template the code
-writes names no host,
+00:00:14.363 --> 00:00:17.538
+It's deployed through the
+commercial Resource Manager host.
 
 6
-00:00:16.884 --> 00:00:20.558
-so the same file could deploy in
-Azure Government for GCC High,
+00:00:17.538 --> 00:00:20.770
+And the two sign-in methods
+Learn wants for these accounts,
 
 7
-00:00:20.558 --> 00:00:25.025
-although the chapter flags that full
-availability there wasn't confirmed.
+00:00:20.770 --> 00:00:23.531
+passkeys and certificate-based
+authentication,
 
 8
-00:00:25.025 --> 00:00:29.302
-And the two sign-in methods Learn
-wants for these accounts, passkeys and
-
-9
-00:00:29.302 --> 00:00:34.080
-certificate-based authentication, are
-available in every one of these clouds.
+00:00:23.531 --> 00:00:27.170
+are kept different from the
+methods normal administrators use.

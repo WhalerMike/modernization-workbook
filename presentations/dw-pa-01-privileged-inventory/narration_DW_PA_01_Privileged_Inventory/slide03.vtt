@@ -15,31 +15,26 @@ worldwide one: the normal Graph endpoint
 and the normal Resource Manager endpoint.
 
 4
-00:00:13.376 --> 00:00:17.775
-GCC High and the Defense Department
-cloud use their own hosts.
-
-5
-00:00:17.775 --> 00:00:21.153
+00:00:13.376 --> 00:00:16.769
 The licenses for GCC are
 hosted in Azure commercial,
 
+5
+00:00:16.769 --> 00:00:20.559
+the governance product that
+PIM needs is available in GCC,
+
 6
-00:00:21.153 --> 00:00:25.316
-and the governance product that
-PIM needs is available in every
+00:00:20.559 --> 00:00:25.137
+and every Graph call the chapter uses
+is listed for the global service.
 
 7
-00:00:25.316 --> 00:00:29.087
-one of these clouds, as is every
-Graph call the chapter uses.
-
-8
-00:00:29.087 --> 00:00:32.682
+00:00:25.137 --> 00:00:28.732
 The code never guesses: you
 name the cloud explicitly,
 
-9
-00:00:32.682 --> 00:00:35.690
+8
+00:00:28.732 --> 00:00:31.730
 and it refuses any name
 it doesn't recognize.

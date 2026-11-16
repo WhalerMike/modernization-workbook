@@ -58,38 +58,6 @@
    "The platform became generally available in April; the extra security features need Agent 365."
   ]
  ],
- "3": [
-  [
-   0.05,
-   5.725,
-   "Before any code, you need to know what's actually available, because the pieces are at different stages."
-  ],
-  [
-   5.775,
-   2.513,
-   "The core objects are generally available."
-  ],
-  [
-   8.287,
-   7.975,
-   "Conditional Access for agents and agent risk are preview, and the Graph properties for agent policies exist only in beta."
-  ],
-  [
-   16.262,
-   6.862,
-   "In this estate's G C C cloud, the documented subset is listed, mostly for delegated access."
-  ],
-  [
-   23.125,
-   3.288,
-   "In the higher government clouds, nothing is published yet."
-  ],
-  [
-   26.413,
-   10.312,
-   "So the program's decision is held as data: in G C C the code reads agent identities, and elsewhere it falls back to applying the same rules to service principals."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -353,28 +321,6 @@
    "The write task holds only the policy permissions, in a person's signed-in session."
   ]
  ],
- "13": [
-  [
-   0.05,
-   4.763,
-   "Lab 1 runs on a laptop, with Chapters 1 and 2's output in place."
-  ],
-  [
-   4.812,
-   9.262,
-   "First, send Learn's samples to the fake, and read the one test that matters most: the block-all-agents policy has no exclusion for approved agents."
-  ],
-  [
-   14.075,
-   10.363,
-   "Then list each task's permissions, and read the decision table for each cloud: agent mode in the worldwide and G C C clouds, fallback in the higher ones."
-  ],
-  [
-   24.438,
-   9.875,
-   "Then run the check in G C C. Eight A I identities, twenty-two findings, four of them top priority, and two orphan candidates for Chapter 2."
-  ]
- ],
  "14": [
   [
    0.05,
@@ -407,33 +353,6 @@
    "One agent passes everything, which is the target."
   ]
  ],
- "15": [
-  [
-   0.05,
-   4.175,
-   "Next, run the same estate as if it lived in G C C High."
-  ],
-  [
-   4.225,
-   4.812,
-   "The code switches to fallback mode and sends no agent identity read at all."
-  ],
-  [
-   9.037,
-   11.363,
-   "The one ordinary service principal gets the same credential and permission findings it got before, and three records that name agent identities become findings, because that cloud doesn't have them."
-  ],
-  [
-   20.4,
-   9.137,
-   "Back in G C C, the dry run would send exactly one request: a report-only high-risk policy, since the other already exists."
-  ],
-  [
-   29.538,
-   5.362,
-   "Applying it to the fake creates it report-only, and a hash nobody approved is refused."
-  ]
- ],
  "16": [
   [
    0.05,
@@ -459,43 +378,6 @@
    33.612,
    1.675,
    "Then remove it all by hand."
-  ]
- ],
- "17": [
-  [
-   0.05,
-   2.837,
-   "Agents make every familiar danger faster."
-  ],
-  [
-   2.888,
-   4.7,
-   "Open creation means whoever builds an agent becomes its sponsor and owner."
-  ],
-  [
-   7.588,
-   4.9,
-   "A secret on a blueprint isn't one credential, it's every agent made from it."
-  ],
-  [
-   12.488,
-   5.175,
-   "Allow-all inheritance turns one future grant into a grant to every agent."
-  ],
-  [
-   17.663,
-   4.025,
-   "A sponsor who leaves unnoticed leaves an agent nobody answers for."
-  ],
-  [
-   21.688,
-   9.238,
-   "And preview features bring their own risks: enforcing a policy on a feature that can still change, or assuming the higher government clouds have objects they don't."
-  ],
-  [
-   30.925,
-   2.875,
-   "Each danger has a guard that runs every week."
   ]
  ],
  "18": [
@@ -538,6 +420,119 @@
    35.325,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.725,
+   "Before any code, you need to know what's actually available, because the pieces are at different stages."
+  ],
+  [
+   5.775,
+   2.513,
+   "The core objects are generally available."
+  ],
+  [
+   8.287,
+   7.975,
+   "Conditional Access for agents and agent risk are preview, and the Graph properties for agent policies exist only in beta."
+  ],
+  [
+   16.262,
+   6.862,
+   "In this estate's G C C cloud, the documented subset is listed, mostly for delegated access."
+  ],
+  [
+   23.125,
+   12.838,
+   "So the program's decision is held as data: in G C C the code reads agent identities, and where a cloud has none, it falls back to applying the same rules to service principals and managed identities."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.763,
+   "Lab 1 runs on a laptop, with Chapters 1 and 2's output in place."
+  ],
+  [
+   4.812,
+   9.262,
+   "First, send Learn's samples to the fake, and read the one test that matters most: the block-all-agents policy has no exclusion for approved agents."
+  ],
+  [
+   14.075,
+   10.713,
+   "Then list each task's permissions, and read the decision table for each cloud: agent mode in both the worldwide and G C C clouds, with each capability's stage."
+  ],
+  [
+   24.788,
+   9.875,
+   "Then run the check in G C C. Eight A I identities, twenty-two findings, four of them top priority, and two orphan candidates for Chapter 2."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.262,
+   "Now the write path."
+  ],
+  [
+   1.312,
+   10.713,
+   "The dry run, with the plan's approved hash, would send exactly one request: a report-only policy for high-risk agents, since the other one already exists in the tenant."
+  ],
+  [
+   12.025,
+   7.562,
+   "Applying it to the fake creates that policy, report-only, and reminds you to review its results before any change of state."
+  ],
+  [
+   19.587,
+   5.612,
+   "Then try a hash nobody approved, and the write path refuses to run a plan nobody reviewed."
+  ],
+  [
+   25.2,
+   6.487,
+   "Finally, run the whole suite: five hundred eleven tests pass, with no tenant and no network."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   2.837,
+   "Agents make every familiar danger faster."
+  ],
+  [
+   2.888,
+   4.7,
+   "Open creation means whoever builds an agent becomes its sponsor and owner."
+  ],
+  [
+   7.588,
+   4.9,
+   "A secret on a blueprint isn't one credential, it's every agent made from it."
+  ],
+  [
+   12.488,
+   5.175,
+   "Allow-all inheritance turns one future grant into a grant to every agent."
+  ],
+  [
+   17.663,
+   4.025,
+   "A sponsor who leaves unnoticed leaves an agent nobody answers for."
+  ],
+  [
+   21.688,
+   8.213,
+   "And preview features bring their own risks: enforcing a policy on a feature that can still change, or assuming a cloud has objects it doesn't."
+  ],
+  [
+   29.9,
+   2.875,
+   "Each danger has a guard that runs every week."
   ]
  ]
 }

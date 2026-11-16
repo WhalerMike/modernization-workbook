@@ -10,7 +10,7 @@ Why reviews at all? The approval gate from the earlier chapters controls when pr
 
 ## Slide 3 — What it costs, and which cloud it runs in
 
-Two practical questions next: what does it cost, and where does it run. Access reviews belong to Entra ID Governance. Learn's tutorial says the P2 license or Governance will do, but the licensing page asks for Governance for everyone who reviews or is reviewed, so the program budgets for the stricter one. As for the cloud, this estate's GCC tenant uses the worldwide Graph endpoint, and its Azure is commercial. The Graph review APIs are listed for the government clouds too. The Azure role reviews, though, run on a preview API, and their government availability isn't confirmed.
+Two practical questions next: what does it cost, and where does it run. Access reviews belong to Entra ID Governance. Learn's tutorial says the P2 license or Governance will do, but the licensing page asks for Governance for everyone who reviews or is reviewed, so the program budgets for the stricter one. As for the cloud, this estate's GCC tenant uses the worldwide Graph endpoint, and its Azure is commercial. The Graph review APIs are listed for the global service it uses. The Azure role reviews, though, run on a Resource Manager API that Learn publishes only in preview versions.
 
 ## Slide 4 — Learn's tutorial, pinned and run against a fake
 

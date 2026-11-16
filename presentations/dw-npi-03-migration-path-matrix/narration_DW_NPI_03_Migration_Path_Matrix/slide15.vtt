@@ -34,11 +34,11 @@ That's the kind of thing you'd want
 to know before buying licenses.
 
 8
-00:00:23.737 --> 00:00:28.287
+00:00:23.737 --> 00:00:28.124
 Finally, run the whole suite:
-five hundred thirteen tests pass,
+five hundred eleven tests pass,
 
 9
-00:00:28.287 --> 00:00:31.730
+00:00:28.124 --> 00:00:31.580
 and the run made just
 three requests, all reads.

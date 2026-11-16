@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 03: Oracle Cloud Infrastructure Announcements
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 3: Oracle Cloud Infrastructure announcements. When a platform the agency doesn't run is patched on a Saturday night, the people who own what runs on it should hear from the provider's own record, not from the help desk on Monday. We'll start from what Oracle's documentation gives you, see what it leaves to you, then read how the kit fills the record, and walk two labs, the evidence and the dangers. Two notes before we begin. This chapter is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 3: Oracle Cloud Infrastructure announcements. When a platform the agency doesn't run is patched on a Saturday night, the people who own what runs on it should hear from the provider's own record, not from the help desk on Monday. We'll start from what Oracle's documentation gives you, see what it leaves to you, then read how the kit fills the record, and walk two labs, the evidence and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why read OCI's announcements
 
@@ -10,7 +10,7 @@ Why Oracle Cloud? Because the estate isn't only Microsoft. Where an agency's HR 
 
 ## Slide 3 — Which realm: commercial OC1, government OC2
 
-Next, which realm. Oracle Cloud is divided into realms. The commercial realm, O C 1, is what the lab uses. Oracle's US Government Cloud page lists the Announcements service in realm O C 2, at two government regions, Langley and Luke. For realm O C 3, Oracle's page wasn't readable when the chapter was written, so its endpoint is not yet specified, and the kit refuses it with that reason. Why does it matter? A government tenancy read in the commercial realm returns nothing. So the settings name the realm and region, and a region outside the realm is refused.
+Next, which realm. Oracle Cloud is divided into realms. The commercial realm, O C 1, is what the lab uses. Oracle's US Government Cloud page lists the Announcements service in realm O C 2, at two government regions, Langley and Luke. Any other realm, the kit refuses. Why does it matter? A government tenancy read in the commercial realm returns nothing. So the settings name the realm and region, and a region outside the realm is refused.
 
 ## Slide 4 — What Oracle's documentation gives you
 
@@ -30,7 +30,7 @@ Here's the mapping. A type that mentions maintenance is maintenance; one that me
 
 ## Slide 8 — The tests, and what the code isn't yet
 
-The tests cover the collector and the live pieces: seven tests for the OCI block of the collectors, plus the live tests for the list command and the realm guard. The lab runs nine of them. But be clear about what this code isn't yet. The live reader was tested against stand-in CLI output, not a live tenancy, so review it and run Lab 2 before it reads a real one. And two things are still not yet specified: which key casing the CLI actually prints, so the kit accepts both, and the Announcements endpoint in realm O C 3, so the kit refuses it.
+The tests cover the collector and the live pieces: seven tests for the OCI block of the collectors, plus the live tests for the list command and the realm guard. The lab runs nine of them. But be clear about what this code isn't yet. The live reader was tested against stand-in CLI output, not a live tenancy, so review it and run Lab 2 before it reads a real one. And one thing is still not yet specified: which key casing the CLI actually prints, so the kit accepts both.
 
 ## Slide 9 — Who owns it, and what the reader may hold
 
@@ -38,7 +38,7 @@ Who's involved? Developers maintain the collector and the realm guard. The OCI p
 
 ## Slide 10 — Lab 1: what OCI needs, and the realms it knows
 
-Lab 1 needs PowerShell 7 with Pester, in the kit's folder. The lab settings name a fictional tenancy in the commercial realm, in the Ashburn region; nothing signs in. Step 1 lists what OCI needs: inspect to list, read for the details. Step 2 shows the realms the kit knows: the commercial domain, the government domain with its two regions, and O C 3 refused with its reason. That refusal is deliberate: an endpoint nobody could confirm is never guessed.
+Lab 1 needs PowerShell 7 with Pester, in the kit's folder. The lab settings name a fictional tenancy in the commercial realm, in the Ashburn region; nothing signs in. Step 1 lists what OCI needs: inspect to list, read for the details. Step 2 shows the realms the kit knows: the commercial domain, the government domain with its two regions, and a realm it doesn't know refused. That refusal is deliberate: a realm the kit doesn't know is never guessed.
 
 ## Slide 11 — Lab 1: collect, and the records name the resources
 

@@ -27,21 +27,16 @@
   ],
   [
    27.562,
-   1.675,
-   "Three notes before we begin."
+   1.575,
+   "Two notes before we begin."
   ],
   [
-   29.238,
-   3.225,
-   "The chapter is a draft, awaiting the owner's review."
-  ],
-  [
-   32.462,
+   29.137,
    5.425,
    "Nobody has run this runbook against a lyve tenant, account, tenancy or project."
   ],
   [
-   37.888,
+   34.562,
    3.775,
    "And the code is illustrative, run only in fixture mode."
   ]
@@ -96,11 +91,6 @@
   ],
   [
    26.825,
-   6.825,
-   "As a side note, G C C High and the Defense Department cloud sign in to Graph with their own environment names."
-  ],
-  [
-   33.65,
    4.225,
    "Any other name throws, and a session signed in elsewhere is refused."
   ]
@@ -562,11 +552,11 @@
   ],
   [
    24.125,
-   14.838,
-   "And the known gaps are recorded with the security officer: Google's planned maintenance, any AWS account without a support plan, any workload in an Assured Workloads fed-ramp or impact-level package, and what the guide lists as not yet specified."
+   13.738,
+   "And the known gaps are recorded with the security officer: Google's planned maintenance, any AWS account without a support plan, any workload in an Assured Workloads fed-ramp package, and what the guide lists as not yet specified."
   ],
   [
-   38.962,
+   37.862,
    3.388,
    "The security officer and the board record the decision."
   ]

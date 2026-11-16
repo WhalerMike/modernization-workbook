@@ -10,7 +10,7 @@ Why start here? Because the order matters. If approval for privileged roles is s
 
 ## Slide 3 — Which cloud: Graph host, alert subscription, methods
 
-Next, which cloud. The check reads Microsoft Graph, and the host depends on the tenant. For a GCC tenant like this estate's, that's the worldwide Graph endpoint, and the alert sits in Azure Monitor in a commercial subscription. The template the code writes names no host, so the same file could deploy in Azure Government for GCC High, although the chapter flags that full availability there wasn't confirmed. And the two sign-in methods Learn wants for these accounts, passkeys and certificate-based authentication, are available in every one of these clouds.
+Next, which cloud. The check reads Microsoft Graph, and the host depends on the tenant. For a GCC tenant like this estate's, that's the worldwide Graph endpoint, and the alert sits in Azure Monitor in a commercial subscription. It's deployed through the commercial Resource Manager host. And the two sign-in methods Learn wants for these accounts, passkeys and certificate-based authentication, are kept different from the methods normal administrators use.
 
 ## Slide 4 — Microsoft's standard for emergency access accounts
 

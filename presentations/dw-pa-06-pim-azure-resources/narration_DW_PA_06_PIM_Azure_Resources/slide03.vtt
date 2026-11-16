@@ -15,36 +15,21 @@ so every call in this chapter goes to
 the commercial Resource Manager host.
 
 4
-00:00:11.175 --> 00:00:14.378
-GCC High and Department
-of Defense subscriptions
+00:00:11.175 --> 00:00:14.782
+The licenses for G C C are
+hosted in commercial Azure,
 
 5
-00:00:14.378 --> 00:00:17.275
-live in Azure Government,
-which has its own host.
+00:00:14.782 --> 00:00:18.725
+and the governance product PIM
+needs is available in G C C.
 
 6
-00:00:17.275 --> 00:00:21.283
-The licensing PIM needs is
-available in all of these clouds,
+00:00:18.725 --> 00:00:23.040
+Even so, the code makes you name the
+cloud every time, with no default,
 
 7
-00:00:21.283 --> 00:00:25.619
-but notice the honest gap: no page
-the chapter read states the PIM
-
-8
-00:00:25.619 --> 00:00:30.200
-Resource Manager API's availability
-in Azure Government outright.
-
-9
-00:00:30.200 --> 00:00:32.975
-So the code makes you name
-the cloud every time,
-
-10
-00:00:32.975 --> 00:00:35.810
-and refuses a file written
-for a different one.
+00:00:23.040 --> 00:00:27.020
+and refuses a desired-state file
+written for a different one.

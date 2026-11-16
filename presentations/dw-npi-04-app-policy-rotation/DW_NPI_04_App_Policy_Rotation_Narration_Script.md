@@ -10,7 +10,7 @@ Why does this chapter matter? Because both of its subjects fail quietly. A tenan
 
 ## Slide 3 — Which cloud: Graph and Key Vault hosts
 
-Next, which cloud. This chapter talks to two services, so it needs two hosts. The policy and application calls go to Microsoft Graph, and for a GCC tenant like this estate's, that's the worldwide Graph endpoint. The certificates live in Key Vault, and because GCC's estate uses commercial Azure, the vault sits on the commercial vault domain. GCC High and DoD have their own hosts for both, and every policy page the chapter calls lists the US Government clouds. The code never guesses: you pass the cloud, and it builds both hosts from it.
+Next, which cloud. This chapter talks to two services, so it needs two hosts. The policy and application calls go to Microsoft Graph, and for a GCC tenant like this estate's, that's the worldwide Graph endpoint. The certificates live in Key Vault, and because GCC's estate uses commercial Azure, the vault sits on the commercial vault domain. Every policy page the chapter calls lists the global service that GCC uses. The code never guesses: you pass the cloud, and it builds both hosts from it.
 
 ## Slide 4 — What an app management policy is
 
@@ -58,7 +58,7 @@ Lab 1 needs only a laptop, PowerShell 7 and Pester. First you send Microsoft's s
 
 ## Slide 15 — Lab 1: the rotation plan, applied to the fake
 
-The rotation plan is where the design becomes concrete. Each fictional app is at a different point in its life. One is due and freshly approved, so it's renewed in Key Vault. One was already renewed by the vault, so the new certificate is attached beside the old. One has been verified and has finished its overlap, so its old certificate goes. And three apps still use secrets, which are flagged for replacement. Apply it to the fake, run the full suite, and five hundred thirteen tests pass.
+The rotation plan is where the design becomes concrete. Each fictional app is at a different point in its life. One is due and freshly approved, so it's renewed in Key Vault. One was already renewed by the vault, so the new certificate is attached beside the old. One has been verified and has finished its overlap, so its old certificate goes. And three apps still use secrets, which are flagged for replacement. Apply it to the fake, run the full suite, and five hundred eleven tests pass.
 
 ## Slide 16 — Lab 2: a test tenant and a test key vault
 

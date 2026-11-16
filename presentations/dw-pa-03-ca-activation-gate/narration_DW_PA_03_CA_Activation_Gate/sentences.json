@@ -80,38 +80,6 @@
    "So this chapter builds the gate, and leaves selecting it to Chapter 4."
   ]
  ],
- "4": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   6.088,
-   "Every call in this chapter is on the stable Graph version, except protected actions, which is beta."
-  ],
-  [
-   7.5,
-   9.725,
-   "For this estate's G C C tenant the host is the worldwide Graph endpoint, and every method used lists the government clouds in its availability table."
-  ],
-  [
-   17.225,
-   4.287,
-   "Conditional Access and pim are available in the government clouds too."
-  ],
-  [
-   21.512,
-   9.05,
-   "One thing does change there: the two policies about Azure management name a different application, so a G C C High program edits those two files."
-  ],
-  [
-   30.562,
-   2.875,
-   "The code never assumes a cloud; you name it."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -518,6 +486,28 @@
    34.163,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   6.088,
+   "Every call in this chapter is on the stable Graph version, except protected actions, which is beta."
+  ],
+  [
+   7.5,
+   11.2,
+   "For this estate's G C C tenant the host is the worldwide Graph endpoint, and every method used lists the global service that G C C uses in its availability table."
+  ],
+  [
+   18.7,
+   5.662,
+   "The code never assumes a cloud: you name it explicitly, and there's no default to fall back on."
   ]
  ]
 }

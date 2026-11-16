@@ -63,33 +63,6 @@
    "The order of conversion is the workbook's design: managed identities where the host is in Azure, federated credentials where the host speaks O I D C, certificates only where neither works."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   10.175,
-   "This chapter talks to three hosts: Microsoft Graph for app registrations and sign-ins, Resource Manager for managed identities, and the sign-in host for tokens."
-  ],
-  [
-   11.588,
-   6.388,
-   "The estate is a G C C tenant with commercial Azure, so all three are the worldwide endpoints."
-  ],
-  [
-   17.975,
-   6.463,
-   "G C C High and the Defense Department clouds have their own hosts, and the code switches only for those."
-  ],
-  [
-   24.438,
-   10.425,
-   "One gap worth knowing: the managed identity pages the chapter read don't say whether they're available in Azure Government, which is fine here because this estate's Azure is commercial."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -578,6 +551,28 @@
    34.263,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   10.175,
+   "This chapter talks to three hosts: Microsoft Graph for app registrations and sign-ins, Resource Manager for managed identities, and the sign-in host for tokens."
+  ],
+  [
+   11.588,
+   9.375,
+   "The estate is a G C C tenant with commercial Azure, so all three are the worldwide endpoints, and the code takes all three from its cloud table."
+  ],
+  [
+   20.962,
+   9.637,
+   "The token exchange test never leaves the laptop, but the request it builds is addressed to the cloud's own sign-in host, with the audience the federation check accepts."
   ]
  ]
 }

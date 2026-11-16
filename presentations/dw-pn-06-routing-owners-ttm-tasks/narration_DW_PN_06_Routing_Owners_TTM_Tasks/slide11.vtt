@@ -20,30 +20,30 @@ The finding contract the router
 mirrors comes in the same download.
 
 5
-00:00:11.888 --> 00:00:16.493
-Step 1 checks the lab's routing: six
+00:00:11.888 --> 00:00:16.501
+Step 1 checks the lab's routing: seven
 rules, in the order they're tried,
 
 6
-00:00:16.493 --> 00:00:20.075
+00:00:16.501 --> 00:00:19.962
 each with its route, severity
 and assignment group.
 
 7
-00:00:20.075 --> 00:00:23.184
+00:00:19.962 --> 00:00:23.071
 Step 2 tries the template
 exactly as it ships,
 
 8
-00:00:23.184 --> 00:00:26.125
+00:00:23.071 --> 00:00:26.012
 and it's refused: it
 still has a placeholder.
 
 9
-00:00:26.125 --> 00:00:27.275
+00:00:26.012 --> 00:00:27.162
 That's deliberate.
 
 10
-00:00:27.275 --> 00:00:31.320
+00:00:27.162 --> 00:00:31.200
 The template can't run until every
 placeholder is filled in at work.

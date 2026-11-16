@@ -8,9 +8,9 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Non
 
 Why does this chapter matter? Because three different things get blurred together, and the code keeps them apart. The matrix proposes a target for each account, based on what it is, where it runs and what credential it holds. The application owner decides, and may disagree, as long as the reason is on the record. And the security officer's gate checks that every account has both, that the riskiest go first, and that there's a way back. Treat a proposal as a decision and you convert accounts nobody agreed to. First, which cloud this runs against.
 
-## Slide 3 — Which cloud: Graph hosts, licenses and the trial
+## Slide 3 — Which cloud: the Graph host, licenses and the trial
 
-Which cloud? Most of this chapter never touches a cloud at all: the matrix is offline logic over the files from the first two chapters. It makes just two reads, both to Microsoft Graph, and for a GCC tenant like this estate's, that's the worldwide endpoint. The higher government clouds have their own hosts. One open question is the licensing trial: Learn says there's no free trial in the Azure Government clouds, but a GCC tenant signs in to the worldwide cloud, so the chapter leaves it as something to check in the test tenant. Now, what Microsoft gives you.
+Which cloud? Most of this chapter never touches a cloud at all: the matrix is offline logic over the files from the first two chapters. It makes just two reads, both to Microsoft Graph, and for a GCC tenant like this estate's, that's the worldwide endpoint, listed for the global service. One open question is the licensing trial: a GCC tenant signs in to the worldwide cloud, and whether the Workload ID Premium trial is offered to it is something the chapter leaves to check in the test tenant. Now, what Microsoft gives you.
 
 ## Slide 4 — What Learn gives: a preference order and two tables
 
@@ -58,7 +58,7 @@ Reading the output is where the rules turn real. Six accounts are proposed for r
 
 ## Slide 15 — Lab 1: the waves, the D-NP4 scope, the tests
 
-Next, the waves. The first wave has a named rollback owner and a clear way back. The second has an empty owner, which is exactly why it drew a finding a moment ago. Then the licensing scope: six apps could be covered by Conditional Access today, but only four after conversion, because one moves to a managed identity and one is retired. That's the kind of thing you'd want to know before buying licenses. Finally, run the whole suite: five hundred thirteen tests pass, and the run made just three requests, all reads.
+Next, the waves. The first wave has a named rollback owner and a clear way back. The second has an empty owner, which is exactly why it drew a finding a moment ago. Then the licensing scope: six apps could be covered by Conditional Access today, but only four after conversion, because one moves to a managed identity and one is retired. That's the kind of thing you'd want to know before buying licenses. Finally, run the whole suite: five hundred eleven tests pass, and the run made just three requests, all reads.
 
 ## Slide 16 — Lab 2: a test tenant, read only
 

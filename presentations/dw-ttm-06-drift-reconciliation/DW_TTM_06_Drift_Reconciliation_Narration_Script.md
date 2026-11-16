@@ -26,7 +26,7 @@ Four new tests cover the day-two story, identical runs, the refusal and the comm
 
 ## Slide 7 — The verified facts behind the join
 
-The facts the join depends on, read on November first. Graph lists users with User dot Read dot All. For the manager, Learn documents expanding it on the users list, while the manager endpoint itself doesn't support application permissions. The audit needs AuditLog dot Read dot All and is available in the government clouds. SailPoint identities come from Search, paged past ten thousand, and uncorrelated accounts from the Accounts API with a filter, at most two hundred fifty a page. And GCC uses the worldwide Graph host.
+The facts the join depends on, read on November first. Graph lists users with User dot Read dot All. For the manager, Learn documents expanding it on the users list, while the manager endpoint itself doesn't support application permissions. The audit needs AuditLog dot Read dot All. SailPoint identities come from Search, paged past ten thousand, and uncorrelated accounts from the Accounts API with a filter, at most two hundred fifty a page. And GCC uses the worldwide Graph host.
 
 ## Slide 8 — What couldn't be verified about the join
 

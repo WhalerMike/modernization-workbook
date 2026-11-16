@@ -10,7 +10,7 @@ Why does this chapter exist? Because a setting someone changed by hand in the po
 
 ## Slide 3 — Which cloud: Graph v1.0 on the worldwide host
 
-Next, which cloud. Everything here is Microsoft Graph, version one, with no Resource Manager calls at all; Azure resource roles wait for Chapter 6. This estate's tenant is GCC, so Graph is the worldwide host and sign-in is the worldwide sign-in page. GCC High and the Defense Department cloud would use their own hosts, and every call's Learn page lists the US Government clouds as available. One small design choice matters: the code takes an explicit cloud name and has no default, so nobody runs it against the wrong cloud by accident.
+Next, which cloud. Everything here is Microsoft Graph, version one, with no Resource Manager calls at all; Azure resource roles wait for Chapter 6. This estate's tenant is GCC, so Graph is the worldwide host and sign-in is the worldwide sign-in page. Every call's Learn page lists the global service that G C C uses as available, and the governance product PIM needs is available in G C C. One small design choice matters: the code takes an explicit cloud name and has no default, so nobody runs it against the wrong cloud by accident.
 
 ## Slide 4 — Settings are per role, and Graph calls them rules
 

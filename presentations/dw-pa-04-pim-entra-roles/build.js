@@ -39,17 +39,17 @@ require("../_build/devwb.js")({
     {
       part: "Why", title: "Which cloud: Graph v1.0 on the worldwide host",
       body: [
-        { table: { head: ["Piece", "Microsoft 365 GCC", "GCC High and DoD"], w: [2.4, 5, 4.75], rows: [
-          ["Every call", "Microsoft Graph v1.0 at graph.microsoft.com; sign-in at login.microsoftonline.com", "graph.microsoft.us (GCC High); dod-graph.microsoft.us (DoD)"],
-          ["Resource Manager", "Not used here; PIM for Azure resources is Chapter 06", "—"],
-          ["Each call's Learn page", "Global service available", "US Government L4 and L5 available"],
-          ["The services", "Microsoft Entra ID Governance available in GCC", "PIM in Azure for US Government; ID Governance in GCC High and DoD"],
+        { table: { head: ["Piece", "Microsoft 365 GCC"], w: [3.4, 8.75], rows: [
+          ["Every call", "Microsoft Graph v1.0 at graph.microsoft.com; sign-in at login.microsoftonline.com"],
+          ["Resource Manager", "Not used here; PIM for Azure resources is Chapter 06"],
+          ["Each call's Learn page", "The global service, which GCC uses, available"],
+          ["The services", "Microsoft Entra ID Governance, which PIM needs, available in GCC"],
         ] }, pt: 13.5 },
         { callout: "the code takes an explicit cloud name and has no default; this estate's GCC tenant runs with gcc, on the worldwide endpoints.", label: "For this estate: ", icon: "FaCloud", color: "teal" },
       ],
       sources: "Sources: Learn, Graph national cloud deployments; Entra feature availability; the Graph API pages for each call. Chapter 04, “Which cloud, for these calls.”",
-      say: `Next, which cloud. Everything here is Microsoft Graph, version one, with no Resource Manager calls at all; Azure resource roles wait for Chapter 6. This estate's tenant is GCC, so Graph is the worldwide host and sign-in is the worldwide sign-in page. GCC High and the Defense Department cloud would use their own hosts, and every call's Learn page lists the US Government clouds as available. One small design choice matters: the code takes an explicit cloud name and has no default, so nobody runs it against the wrong cloud by accident.`,
-      detail: `Every call in this chapter is Microsoft Graph v1.0. For Microsoft 365 GCC, Graph is the worldwide host, graph.microsoft.com, and sign-in is login.microsoftonline.com; GCC High uses graph.microsoft.us and DoD dod-graph.microsoft.us. No call here uses Resource Manager; PIM for Azure resources is Chapter 06. Every call's Learn page lists the global service, US Government L4 and US Government L5 as available. PIM is available in Azure for US Government, and Microsoft Entra ID Governance is available in GCC, GCC High and DoD. The code takes an explicit cloud name and has no default.`,
+      say: `Next, which cloud. Everything here is Microsoft Graph, version one, with no Resource Manager calls at all; Azure resource roles wait for Chapter 6. This estate's tenant is GCC, so Graph is the worldwide host and sign-in is the worldwide sign-in page. Every call's Learn page lists the global service that G C C uses as available, and the governance product PIM needs is available in G C C. One small design choice matters: the code takes an explicit cloud name and has no default, so nobody runs it against the wrong cloud by accident.`,
+      detail: `Every call in this chapter is Microsoft Graph v1.0. For Microsoft 365 GCC, Graph is the worldwide host, graph.microsoft.com, and sign-in is login.microsoftonline.com. No call here uses Resource Manager; PIM for Azure resources is Chapter 06. Every call's Learn page lists the global service, which GCC uses, as available. Microsoft Entra ID Governance, which PIM needs, is available in GCC. The code takes an explicit cloud name and has no default.`,
       cite: ["pa04-deployments", "pa04-availability", "pa04-list-rmpa", "pa04-update-rule", "pa04-res-list", "pa04-res-request", "pa04-ras-request"],
       ref: "“Which cloud, for these calls”",
     },

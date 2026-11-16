@@ -16,31 +16,36 @@ retirements before the general rule
 for anything that needs action.
 
 4
-00:00:12.300 --> 00:00:17.176
-Here are the lab's six rules: security
+00:00:12.300 --> 00:00:17.511
+Here are the lab's seven rules: security
 to a security operations team at P2,
 
 5
-00:00:17.176 --> 00:00:21.722
+00:00:17.511 --> 00:00:22.209
 retirements and maintenance to
 cloud platform engineering at P3,
 
 6
-00:00:21.722 --> 00:00:26.102
-incidents to the service desk at
-P2, changes to cloud operations,
+00:00:22.209 --> 00:00:27.932
+incidents to the service desk at P2,
+including every open Microsoft 365 incident,
 
 7
-00:00:26.102 --> 00:00:29.325
-and one rule that ignores
-a Microsoft Viva post.
+00:00:27.932 --> 00:00:32.032
+because Microsoft 365 service
+health names no resources,
 
 8
-00:00:29.325 --> 00:00:32.189
+00:00:32.032 --> 00:00:37.413
+changes to cloud operations, and one
+rule that ignores a Microsoft Viva post.
+
+9
+00:00:37.413 --> 00:00:40.277
 Get the order wrong,
 with a broad rule first,
 
-9
-00:00:32.189 --> 00:00:35.690
+10
+00:00:40.277 --> 00:00:43.780
 and security advisories
 land in the general queue.

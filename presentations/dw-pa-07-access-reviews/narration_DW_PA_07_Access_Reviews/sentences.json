@@ -26,80 +26,6 @@
    "One note before we begin: the code is illustrative, tested against fixtures."
   ]
  ],
- "2": [
-  [
-   0.05,
-   1.25,
-   "Why reviews at all?"
-  ],
-  [
-   1.3,
-   4.487,
-   "The approval gate from the earlier chapters controls when privilege is used."
-  ],
-  [
-   5.787,
-   3.0,
-   "Reviews control who keeps the right to use it."
-  ],
-  [
-   8.787,
-   2.925,
-   "Without them, eligibility only grows."
-  ],
-  [
-   11.713,
-   9.6,
-   "The workbook's design sets the schedule: the most sensitive tier every month, the rest every quarter, with access removed when reviewers stay silent."
-  ],
-  [
-   21.312,
-   1.212,
-   "And why as code?"
-  ],
-  [
-   22.525,
-   2.513,
-   "Because a review set up by hand drifts."
-  ],
-  [
-   25.038,
-   5.888,
-   "Someone leaves, a duration gets shortened, auto-apply is switched off once and never back on."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   4.15,
-   "Two practical questions next: what does it cost, and where does it run."
-  ],
-  [
-   4.2,
-   3.312,
-   "Access reviews belong to Entra I D Governance."
-  ],
-  [
-   7.513,
-   11.262,
-   "Learn's tutorial says the P2 license or Governance will do, but the licensing page asks for Governance for everyone who reviews or is reviewed, so the program budgets for the stricter one."
-  ],
-  [
-   18.775,
-   7.112,
-   "As for the cloud, this estate's G C C tenant uses the worldwide Graph endpoint, and its Azure is commercial."
-  ],
-  [
-   25.887,
-   4.062,
-   "The Graph review A P I's are listed for the government clouds too."
-  ],
-  [
-   29.95,
-   7.125,
-   "The Azure role reviews, though, run on a preview A P I, and their government availability isn't confirmed."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -578,6 +504,85 @@
    33.538,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.25,
+   "Why reviews at all?"
+  ],
+  [
+   1.3,
+   4.487,
+   "The approval gate from the earlier chapters controls when privilege is used."
+  ],
+  [
+   5.787,
+   3.0,
+   "Reviews control who keeps the right to use it."
+  ],
+  [
+   8.787,
+   2.925,
+   "Without them, eligibility only grows."
+  ],
+  [
+   11.713,
+   9.6,
+   "The workbook's design sets the schedule: the most sensitive tier every month, the rest every quarter, with access removed when reviewers stay silent."
+  ],
+  [
+   21.312,
+   1.212,
+   "And why as code?"
+  ],
+  [
+   22.525,
+   2.513,
+   "Because a review set up by hand drifts."
+  ],
+  [
+   25.038,
+   5.888,
+   "Someone leaves, a duration gets shortened, auto-apply is switched off once and never back on."
+  ],
+  [
+   30.925,
+   4.338,
+   "In code, every series has a file, a diff and a reviewer."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.15,
+   "Two practical questions next: what does it cost, and where does it run."
+  ],
+  [
+   4.2,
+   3.312,
+   "Access reviews belong to Entra I D Governance."
+  ],
+  [
+   7.513,
+   11.262,
+   "Learn's tutorial says the P2 license or Governance will do, but the licensing page asks for Governance for everyone who reviews or is reviewed, so the program budgets for the stricter one."
+  ],
+  [
+   18.775,
+   7.112,
+   "As for the cloud, this estate's G C C tenant uses the worldwide Graph endpoint, and its Azure is commercial."
+  ],
+  [
+   25.887,
+   4.35,
+   "The Graph review A P I's are listed for the global service it uses."
+  ],
+  [
+   30.238,
+   7.575,
+   "The Azure role reviews, though, run on a Resource Manager A P I that Learn publishes only in preview versions."
   ]
  ]
 }

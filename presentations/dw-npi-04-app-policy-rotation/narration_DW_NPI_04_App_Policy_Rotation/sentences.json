@@ -68,38 +68,6 @@
    "Let's see where it runs."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   3.663,
-   "This chapter talks to two services, so it needs two hosts."
-  ],
-  [
-   5.075,
-   8.938,
-   "The policy and application calls go to Microsoft Graph, and for a G C C tenant like this estate's, that's the worldwide Graph endpoint."
-  ],
-  [
-   14.012,
-   8.2,
-   "The certificates liv in Key Vault, and because G C C's estate uses commercial Azure, the vault sits on the commercial vault domain."
-  ],
-  [
-   22.212,
-   8.162,
-   "G C C High and D O D have their own hosts for both, and every policy page the chapter calls lists the U S Government clouds."
-  ],
-  [
-   30.375,
-   4.612,
-   "The code never guesses: you pass the cloud, and it builds both hosts from it."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -477,43 +445,6 @@
    "Next, the rotation half."
   ]
  ],
- "15": [
-  [
-   0.05,
-   3.362,
-   "The rotation plan is where the design becomes concrete."
-  ],
-  [
-   3.413,
-   3.0,
-   "Each fictional app is at a different point in its life."
-  ],
-  [
-   6.412,
-   3.925,
-   "One is due and freshly approved, so it's renewed in Key Vault."
-  ],
-  [
-   10.338,
-   5.237,
-   "One was already renewed by the vault, so the new certificate is attached beside the old."
-  ],
-  [
-   15.575,
-   4.875,
-   "One has been verified and has finished its overlap, so its old certificate goes."
-  ],
-  [
-   20.45,
-   4.25,
-   "And three apps still use secrets, which are flagged for replacement."
-  ],
-  [
-   24.7,
-   5.138,
-   "Apply it to the fake, run the full suite, and five hundred thirteen tests pass."
-  ]
- ],
  "16": [
   [
    0.05,
@@ -598,6 +529,75 @@
    34.788,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   3.663,
+   "This chapter talks to two services, so it needs two hosts."
+  ],
+  [
+   5.075,
+   8.938,
+   "The policy and application calls go to Microsoft Graph, and for a G C C tenant like this estate's, that's the worldwide Graph endpoint."
+  ],
+  [
+   14.012,
+   8.2,
+   "The certificates liv in Key Vault, and because G C C's estate uses commercial Azure, the vault sits on the commercial vault domain."
+  ],
+  [
+   22.212,
+   5.25,
+   "Every policy page the chapter calls lists the global service that G C C uses."
+  ],
+  [
+   27.462,
+   4.612,
+   "The code never guesses: you pass the cloud, and it builds both hosts from it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.362,
+   "The rotation plan is where the design becomes concrete."
+  ],
+  [
+   3.413,
+   3.0,
+   "Each fictional app is at a different point in its life."
+  ],
+  [
+   6.412,
+   3.925,
+   "One is due and freshly approved, so it's renewed in Key Vault."
+  ],
+  [
+   10.338,
+   5.237,
+   "One was already renewed by the vault, so the new certificate is attached beside the old."
+  ],
+  [
+   15.575,
+   4.875,
+   "One has been verified and has finished its overlap, so its old certificate goes."
+  ],
+  [
+   20.45,
+   4.25,
+   "And three apps still use secrets, which are flagged for replacement."
+  ],
+  [
+   24.7,
+   4.938,
+   "Apply it to the fake, run the full suite, and five hundred eleven tests pass."
   ]
  ]
 }

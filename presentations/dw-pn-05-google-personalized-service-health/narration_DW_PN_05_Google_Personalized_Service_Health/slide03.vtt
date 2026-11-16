@@ -34,16 +34,15 @@ organization when the settings say so.
 The API is enabled once per project.
 
 8
-00:00:26.375 --> 00:00:31.487
+00:00:26.375 --> 00:00:31.437
 And for government workloads, the question
 isn't an endpoint at all, but a package:
 
 9
-00:00:31.487 --> 00:00:34.585
-as we'll see, Personalized
-Service Health isn't in
+00:00:31.437 --> 00:00:34.045
+as we'll see, Personalized Service Health
 
 10
-00:00:34.585 --> 00:00:38.280
-the Assured Workloads FedRAMP
-or impact-level packages.
+00:00:34.045 --> 00:00:37.180
+isn't in the Assured
+Workloads FedRAMP packages.
