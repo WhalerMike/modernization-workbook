@@ -10,7 +10,7 @@ Why does this gate need code? Because revocation is where card sign-in quietly b
 
 ## Slide 3 — What you'll be able to do in Module 5
 
-Here's what you'll be able to do by the end of the module. You'll state the interactive revocation list limit for GCC, and the download time limit. You'll measure a set of lists and record the failures as findings. You'll run the certificate-based authentication check for a named cloud and explain what it finds. And you'll explain why the same list can be a warning in one cloud and not in another. Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge. Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; Chapter 06 of the Federal Modernization Workbook's PKI and Certificates book explains them for Entra. Lab 1 needs Python and pytest, and no tenant.
+Here's what you'll be able to do by the end of the module. You'll state the interactive revocation list limit for GCC, and the download time limit. You'll measure a set of lists and record the failures as findings. You'll run the certificate-based authentication check for a named cloud and explain what it finds. And you'll explain why a list under the GCC limit can still be a warning, and why the check runs every day. Before you start, finish Module 3: there, the Temporary Access Pass bridges a new hire to the card, and this gate ends that bridge. Some familiarity with P K I terms helps, like issuing authority, revocation list and policy O I D; Chapter 06 of the Federal Modernization Workbook's PKI and Certificates book explains them for Entra. Lab 1 needs Python and pytest, and no tenant.
 
 ## Slide 4 — Credentials follow HR events
 

@@ -40,7 +40,7 @@ After this module, you'll be able to:
 - state the interactive CRL limit for GCC, and the download time limit;
 - measure a set of CRLs and record failures as findings;
 - run the certificate-based authentication check for a named cloud and explain its findings;
-- explain why the same CRL can be a warning in one cloud and not in another.
+- explain why a CRL under the GCC limit can still be a warning, and why the check runs every day.
 
 ## Prerequisites (1 minute)
 

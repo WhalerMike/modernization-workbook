@@ -46,7 +46,7 @@ Try it. Lab 1 runs in the kit's folder, on a laptop, against fictional fixtures,
 
 ## Slide 12 — Try it: every payload the drift client would post
 
-Step one runs the chapter's tests: twenty-two pass. Step three runs the ServiceNow script's own tests, the rules the Python mirrors, under Node: fifteen tests, fifteen pass, none fail. Then step four runs the drift reconciliation over the fixtures and checks every payload it would post. Twelve lines start ok. Attribute drift is P three, due in twenty-four hours; missing identities, orphans, stale access and the unauthorized write are P two, due in an hour. Three carry the warning: the two missing identities and the unauthorized write, the classes the loop routes to a person. And the last line is twelve accepted, none rejected, none de-duplicated. Erin's two drifts in Entra ID, her department and her manager, have their own keys. Step five deletes the output folder.
+Step one runs the chapter's tests: twenty-six pass. Step three runs the ServiceNow script's own tests, the rules the Python mirrors, under Node: fifteen tests, fifteen pass, none fail. Then step four runs the drift reconciliation over the fixtures and checks every payload it would post. Twelve lines start ok. Attribute drift is P three, due in twenty-four hours; missing identities, orphans, stale access and the unauthorized write are P two, due in an hour. Three carry the warning: the two missing identities and the unauthorized write, the classes the loop routes to a person. And the last line is twelve accepted, none rejected, none de-duplicated. Erin's two drifts in Entra ID, her department and her manager, have their own keys. Step five deletes the output folder.
 
 ## Slide 13 — Lab 2: post a checked payload to a developer instance
 

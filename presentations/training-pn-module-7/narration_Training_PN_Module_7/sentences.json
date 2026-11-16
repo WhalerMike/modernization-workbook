@@ -334,53 +334,63 @@
   ],
   [
    8.8,
-   4.925,
-   "Step one checks the lab's routing: six rules, in the order they're tried."
+   4.963,
+   "Step one checks the lab's routing: seven rules, in the order they're tried."
   ],
   [
-   13.725,
-   10.3,
-   "Five route to a task: security operations at P2, cloud platform engineering at P3 twice, the service desk at P2, and cloud operations at P3."
+   13.762,
+   10.637,
+   "Six route to a task: security operations at P2, cloud platform engineering at P3 twice, the service desk at P2 twice, and cloud operations at P3."
   ],
   [
-   24.025,
-   1.462,
-   "The sixth ignores."
+   24.4,
+   1.6,
+   "The seventh ignores."
   ],
   [
-   25.488,
+   26.0,
+   13.412,
+   "Rule R04b makes every open Microsoft 365 incident a task: Microsoft 365 service health names no resources, so R04, which needs them, never matches one."
+  ],
+  [
+   39.413,
    5.888,
    "Step two tries the template as it ships, and the kit refuses it, because it still has a placeholder."
   ],
   [
-   31.375,
+   45.3,
    3.938,
    "It runs only once every value is filled in, at work."
   ],
   [
-   35.312,
+   49.237,
    6.487,
    "Step three collects every provider from the day-one fixtures: twenty-two notices, as in Module 1."
   ],
   [
-   41.8,
+   55.725,
    2.462,
    "Step four routes them as a dry run."
   ],
   [
-   44.263,
+   58.188,
    1.738,
    "Twenty-two new notices."
   ],
   [
-   46.0,
-   9.062,
-   "Twelve route to a task, nine go to the digest only, and one is ignored: the Microsoft Viva post, by rule R06."
+   59.925,
+   8.988,
+   "Thirteen route to a task, eight go to the digest only, and one is ignored: the Microsoft Viva post, by rule R06."
   ],
   [
-   55.062,
-   4.338,
-   "That's twelve create payloads, written to a folder, and nothing sent."
+   68.912,
+   6.513,
+   "The open Exchange Online incident is a P2 task for the service desk, by R04b."
+  ],
+  [
+   75.425,
+   4.525,
+   "That's thirteen create payloads, written to a folder, and nothing sent."
   ]
  ],
  "8": [
@@ -448,41 +458,46 @@
   ],
   [
    18.962,
-   8.637,
-   "Two new notices, six changed, fifteen unchanged, and one no longer listed: one create, four updates and one close."
+   8.688,
+   "Two new notices, six changed, fifteen unchanged, and one no longer listed: one create, four updates and two closes."
   ],
   [
-   27.6,
+   27.65,
    2.65,
    "Step eight reads what each payload is for."
   ],
   [
-   30.25,
+   30.3,
    7.975,
    "The Azure and Oracle rescheduled maintenance windows, and the updated Microsoft 365 post, are changed updates."
   ],
   [
-   38.225,
+   38.275,
    5.638,
    "The Azure incident the provider no longer lists is an absent update, asking for the re-read."
   ],
   [
-   43.862,
+   43.913,
    3.875,
    "The new Microsoft 365 post is a create."
   ],
   [
-   47.737,
-   8.713,
-   "And the AWS security notification that AWS closed is a close, which also asks for the re-read, not for the task to be closed."
+   47.788,
+   12.312,
+   "And the AWS security notification that AWS closed, and the Exchange Online incident Microsoft resolved, are each a close, which also asks for the re-read, not for the task to be closed."
   ],
   [
-   56.45,
-   7.525,
-   "Step nine runs the router's tests, including the one that reads the finding contract: thirty-one pass, none fail."
+   60.1,
+   8.162,
+   "The resolved incident shows the default rule, since no task rule matches it now; its close keeps the task's severity and group."
   ],
   [
-   63.975,
+   68.263,
+   7.487,
+   "Step nine runs the router's tests, including the one that reads the finding contract: thirty-three pass, none fail."
+  ],
+  [
+   75.75,
    1.837,
    "Then delete the output folder."
   ]
@@ -651,26 +666,26 @@
   ],
   [
    0.875,
-   15.213,
-   "You checked six routing rules and saw the template refused, routed twenty-two notices into twelve task payloads, read one with both its dates and its five clauses, watched a re-run write nothing, and read the second week's create, updates and close."
+   15.537,
+   "You checked seven routing rules and saw the template refused, routed twenty-two notices into thirteen task payloads, read one with both its dates and its five clauses, watched a re-run write nothing, and read the second week's create, updates and closes."
   ],
   [
-   16.087,
+   16.413,
    15.988,
    "The evidence an I S S O keeps for Gate 6 is each routing run's task payloads, task list, routing file, state and manifest, all dated; the reviewed routing file's SHA-256; and the change records the payloads open."
   ],
   [
-   32.075,
+   32.4,
    3.075,
    "Before you ship, work through the chapter's checklist."
   ],
   [
-   35.15,
+   35.475,
    4.725,
    "Next is Module 8: digest, evidence and go/no-go."
   ],
   [
-   39.875,
+   40.2,
    8.613,
    "That's Gate 7: the weekly digest the owners read for everything that isn't a task, and the hashed evidence chain that records every run."
   ]

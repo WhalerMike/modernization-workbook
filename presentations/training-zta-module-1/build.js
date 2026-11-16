@@ -4,7 +4,7 @@
 // examples/zta-results, the same output the page shows), the decision record and who reads the report, the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page, the
 // Zero Trust Assessment implementation guide it sends the learner to (Steps 1, 6 and 7, and their footnotes), Book 11,
-// Chapter 05, or the kit; the deck adds none. The module page is a draft awaiting review; the title slide carries no draft notice.
+// Chapter 05, or the kit; the deck adds none. The title slide carries no draft notice.
 // Helpers: ./shared.js (which wraps ../training-ms-automation-module-1/shared.js).
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-zta-module-1/build.js \
 //                      presentations/training-zta-module-1/Training_ZTA_Module_1.pptx
@@ -311,7 +311,7 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 1 deck", [
-  "Module page: docs/training/zero-trust-assessment/01-evidence-not-a-verdict.md (The Zero Trust Assessment as Evidence, Module 1), a draft awaiting review; the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
+  "Module page: docs/training/zero-trust-assessment/01-evidence-not-a-verdict.md (The Zero Trust Assessment as Evidence, Module 1); the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
   "Zero Trust Assessment: An Implementation Guide, Steps 1, 4, 6 and 7 and \"Government-cloud availability\"; its footnotes carry each source, read November 11, 2026: Microsoft Learn, What is the Zero Trust Assessment?; Get started with the Zero Trust Assessment; Zero Trust assessment terminology; Operate Microsoft Entra Private Access; Exchange Online for US government; Microsoft Graph national cloud deployments.",
   "The tool, release 3.1.0: Zero Trust Assessment release 3.1.0; Zero Trust Assessment README; its source for the statuses and the skip reasons. CISA BOD 25-01; CISA ScubaGear.",
   "Book 11, Chapter 05 (the two tools) and Chapter 10 (A normalized result taxonomy). NIST SP 800-53 Rev. 5 (CA-2, CA-7); FedRAMP 20x KSIs, as Book 13, Appendix A maps them; Book 00, Appendix B.",

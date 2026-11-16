@@ -5,7 +5,7 @@
 // 2026 in a scratch copy of examples/zta-results after Module 3's Lab 1, the same output the page shows), Lab 2, the
 // federal requirement and evidence, a two-question check, and the summary. Every fact comes from the module page, the
 // Zero Trust Assessment implementation guide it sends the learner to (Steps 9 and 10, and their footnotes), Book 11,
-// Chapter 10, or the kit; the deck adds none. The module page is a draft awaiting review; the title slide carries no draft notice.
+// Chapter 10, or the kit; the deck adds none. The title slide carries no draft notice.
 // Helpers: ../training-zta-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-zta-module-4/build.js \
 //                      presentations/training-zta-module-4/Training_ZTA_Module_4.pptx
@@ -318,7 +318,7 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 4 deck", [
-  "Module page: docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md (The Zero Trust Assessment as Evidence, Module 4), a draft awaiting review; the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
+  "Module page: docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md (The Zero Trust Assessment as Evidence, Module 4); the path's verification log is docs/training/zero-trust-assessment/_verification/learning-path.md.",
   "Zero Trust Assessment: An Implementation Guide, Step 9 (the spine, ScubaGear, Security Hub CSPM, other clouds) and Step 10 (compare, seal, cadence, the evidence package, retention), \"Government-cloud availability\"; its footnotes, read November 11, 2026.",
   "AWS: NIST SP 800-53 Rev. 5 in Security Hub CSPM; AWS Security Hub CSPM compliance status. CISA BOD 25-01; CISA ScubaGear. Microsoft Learn, Operate Microsoft Entra Private Access (the scheduled digest playbook).",
   "Book 11, Chapter 09 (retention) and Chapter 10 (Reconcile at the control); Book 12, Chapter 08 (posture tools on other clouds, including Oracle Cloud Infrastructure Cloud Guard); Book 15, Chapter 12 (cadence). NIST SP 800-53 Rev. 5 (CA-5, CA-7, AU-9, AU-11); FedRAMP 20x KSIs, as Book 13, Appendix A maps them.",

@@ -59,21 +59,21 @@
   ],
   [
    28.5,
-   10.562,
-   "Yet most agencies run D N S on as many as five platforms that share no state: on-premises, AWS, Azure, Google Cloud and VMware."
+   11.562,
+   "Yet most agencies run D N S on as many as six platforms that share no state: on-premises, AWS, Azure, Google Cloud, Oracle Cloud and VMware."
   ],
   [
-   39.062,
+   40.062,
    2.525,
    "The cost shows up on every change."
   ],
   [
-   41.587,
+   42.587,
    6.975,
    "A new Azure private endpoint can need four more D N S changes, on four consoles, in four syntaxes."
   ],
   [
-   48.562,
+   49.562,
    4.888,
    "And the forwarding rules that connect those platforms usually belong to no single team."
   ]
@@ -596,41 +596,41 @@
  "18": [
   [
    0.05,
-   10.325,
-   "Each cloud ships its own private D N S, with its own console, API, zone model and failure behavior, and none was designed to share policy with the others."
+   10.488,
+   "Each cloud ships its own private D N S, with its own console, A P I, zone model and failure behavior, and none was designed to share policy with the others."
   ],
   [
-   10.375,
-   5.575,
-   "The slide compares AWS, Azure, Google Cloud and VMware NSX."
+   10.537,
+   6.638,
+   "The slide compares AWS, Azure, Google Cloud, Oracle Cloud and VMware NSX."
   ],
   [
-   15.95,
+   17.175,
    5.05,
    "Azure private endpoints are the most common source of split-brain, so they get the detail."
   ],
   [
-   21.0,
+   22.225,
    4.775,
    "The private answer only comes back from a resolver that can see a linked private zone."
   ],
   [
-   25.775,
+   27.0,
    1.95,
    "Three behaviors catch teams out."
   ],
   [
-   27.725,
+   28.95,
    4.775,
    "D N S answers don't grant access; the service's network setting does."
   ],
   [
-   32.5,
+   33.725,
    4.888,
    "Use one zone per service type everywhere, with Microsoft's recommended names."
   ],
   [
-   37.388,
+   38.612,
    10.137,
    "And watch the NXDOMAIN trap: a partner's storage account can lead into your empty zone and fail, which is fixed by enabling fallback to internet on the zone's link."
   ]
