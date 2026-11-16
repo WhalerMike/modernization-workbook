@@ -880,17 +880,17 @@ The step ends by linting the scheduled
 workflow, with no findings and no warnings.
 
 184
-00:12:14.668 --> 00:12:19.856
+00:12:14.668 --> 00:12:19.681
 Step eleven runs the tests in both folders:
-five hundred thirteen Pester tests pass
+five hundred eleven Pester tests pass
 
 185
-00:12:19.856 --> 00:12:24.818
-in PowerShell, and one hundred forty-two
+00:12:19.681 --> 00:12:24.768
+in PowerShell, and one hundred thirty-nine
 pytest tests pass in the drift pipeline.
 
 186
-00:12:24.818 --> 00:12:27.870
+00:12:24.768 --> 00:12:27.820
 Then delete the output
 folder in both places.
 

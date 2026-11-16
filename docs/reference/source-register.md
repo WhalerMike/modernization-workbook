@@ -45,7 +45,6 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [AWS Health in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-health.html){#aws-health-govcloud} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-govcloud"} |
 | [AWS managed policies for AWS Health](https://docs.aws.amazon.com/health/latest/ug/security-iam-awsmanpol.html){#aws-health-managed-policies} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-managed-policies"} |
 | [AWS Prescriptive Guidance: migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html){#aws-migration-strategies} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-migration-strategies"} |
-| [AWS Security Hub CSPM in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html){#security-hub-cspm-in-govcloud} | Retired | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-in-govcloud"} |
 | [AWS Security Hub CSPM User Guide](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html){#aws-security-hub} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-security-hub"} |
 | [AWS Service Management Connector end of support](https://docs.aws.amazon.com/smc/latest/ag/smc-end-of-support.html){#aws-smc-end-of-support} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-smc-end-of-support"} |
 | [AWS WAF in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-waf.html){#aws-waf-govcloud} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-waf-govcloud"} |
@@ -440,7 +439,6 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [Microsoft 365 Network Provider Program](https://learn.microsoft.com/microsoft-365/enterprise/microsoft-365-networking-partner-program?view=o365-worldwide){#microsoft-365-network-provider-program} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-365-network-provider-program"} |
 | [Microsoft Adoption Score](https://learn.microsoft.com/microsoft-365/admin/adoption/adoption-score?view=o365-worldwide){#microsoft-adoption-score} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-adoption-score"} |
 | [Microsoft Agent 365](https://learn.microsoft.com/office365/servicedescriptions/microsoft-agent-365/microsoft-agent-365){#microsoft-agent-365} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-agent-365"} |
-| [Microsoft Azure Government Product General Availability (GA) Roadmap](https://learn.microsoft.com/azure/azure-government/documentation-government-product-roadmap){#microsoft-azure-government-product-general} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-azure-government-product-general"} |
 | [Microsoft Cloud PKI deployment for Microsoft Intune](https://learn.microsoft.com/intune/cloud-pki/deployment-models){#microsoft-cloud-pki-deployment-for-microsoft} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="microsoft-cloud-pki-deployment-for-microsoft"} |
 | [Microsoft Defender for Cloud Apps for US Government offerings](https://learn.microsoft.com/defender-cloud-apps/editions-cloud-app-security-gcc){#defender-for-cloud-apps-us-government} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="defender-for-cloud-apps-us-government"} |
 | [Microsoft Defender for Endpoint for US Government customers](https://learn.microsoft.com/defender-endpoint/gov){#defender-for-endpoint-us-government} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="defender-for-endpoint-us-government"} |
@@ -602,7 +600,6 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [Shared responsibility in the cloud](https://learn.microsoft.com/azure/security/fundamentals/shared-responsibility){#shared-responsibility-in-the-cloud} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="shared-responsibility-in-the-cloud"} |
 | [Source IP restoration](https://learn.microsoft.com/entra/global-secure-access/how-to-source-ip-restoration){#gsa-source-ip-restoration} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gsa-source-ip-restoration"} |
 | [SQL Server enabled by Azure Arc](https://learn.microsoft.com/sql/sql-server/azure-arc/overview){#sql-server-enabled-by-azure-arc} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sql-server-enabled-by-azure-arc"} |
-| [SQL Server enabled by Azure Arc in US Government](https://learn.microsoft.com/sql/sql-server/azure-arc/us-government-region){#sql-server-enabled-by-azure-arc-in-us} | Retired | November 5, 2026 | [Not read yet]{.fmw-scan data-source="sql-server-enabled-by-azure-arc-in-us"} |
 | [SQL Server enabled by Azure Arc: Rotate certificates](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/rotate-certificates){#arc-sql-rotate-certificates} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="arc-sql-rotate-certificates"} |
 | [Start-ADServiceAccountMigration](https://learn.microsoft.com/powershell/module/activedirectory/start-adserviceaccountmigration){#start-adserviceaccountmigration} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="start-adserviceaccountmigration"} |
 | [Starter Resource Graph query samples](https://learn.microsoft.com/azure/governance/resource-graph/samples/starter){#resource-graph-starter-queries} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="resource-graph-starter-queries"} |
@@ -927,8 +924,7 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | Date | Source | Change |
 |---|---|---|
 | November 15, 2026 | [Azure Retail Prices API](#azure-retail-prices-api) | Retired: no workbook page cites it (Nov 15, 2026) |
-| November 15, 2026 | 5 sources | Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026) |
-| November 15, 2026 | [AWS Security Hub CSPM in AWS GovCloud (US)](#security-hub-cspm-in-govcloud) | Retired: the Zero Trust Assessment guide no longer cites it; the program's AWS workloads run in the commercial Regions (WD-156) |
+| November 15, 2026 | 3 sources | Retired: the workbook covers commercial Azure and GCC Moderate only (Nov 15, 2026) |
 | November 13, 2026 | 2 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |
@@ -936,13 +932,13 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
 | November 12, 2026 | 22 sources | More slide wording links here |
 | November 12, 2026 | 172 sources | Added: cited on the narrated deck slides |
-| November 11, 2026 | 14 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
+| November 11, 2026 | 13 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [NIST IR 8547, Transition to Post-Quantum Cryptography Standards](#ir-8547) | Link moved from the initial public draft to the final report (October 27, 2026), which obsoletes the draft |
 | November 8, 2026 | 9 sources | Added: cited on the External Partner Identity technical deck slides (Book 04, Appendix C footnote) |
 | November 6, 2026 | 12 sources | Added: cited in the External Partner Identity chapter and profile (WD-143) |
-| November 5, 2026 | 449 sources | Added: cited on the narrated deck slides |
+| November 5, 2026 | 447 sources | Added: cited on the narrated deck slides |
 | November 5, 2026 | 70 sources | Added: cited on the Start series and Book 00 slides |
 | November 5, 2026 | 11 sources | More slide wording links here |
 

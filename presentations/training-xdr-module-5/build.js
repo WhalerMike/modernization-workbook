@@ -26,7 +26,7 @@ const W3 = 3.9, G3 = 0.225;
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 5: Automation, operations and evidence", "Defender XDR Engineering and Operations · Automation set to the ladder, and evidence every month",
-    ["Automation levels  ·  Attack disruption exclusions  ·  The cadence", "The monthly evidence run  ·  Metrics  ·  Lab 2 in a test tenant"]);
+    ["Automation levels  ·  Attack disruption exclusions  ·  The cadence", "The monthly evidence run  ·  Metrics  ·  Lab 2 in a test tenant"], 5.0);
   notes(s,
 `Welcome to Module 5, the last module of Defender X D R Engineering and Operations: automation, operations and evidence. Automation is where speed and outage meet. The same setting that contains a compromised laptop in minutes can lock out the account the security operations center needs to respond. In this module you set Defender's automation to the program's response ladder, and exclude what must never be contained automatically. Then you run the platform: the cadence, the monthly evidence run, the synthetic events, and the metrics an assessor reads. The module covers Steps 9 and 10 of the Defender X D R implementation guide. It takes about forty minutes, plus Lab 2 in your own test tenant.`,
   `${M} — "Introduction"; learning path index.`);

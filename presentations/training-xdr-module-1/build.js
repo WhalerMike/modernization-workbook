@@ -26,7 +26,7 @@ const W3 = 3.9, G3 = 0.225;
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 1: Architecture, access and onboarding", "Defender XDR Engineering and Operations · The service, each cloud, the roles, and the sensor everywhere",
-    ["Components and control planes  ·  What GCC has  ·  Roles and the read path", "Onboarding and sensor health  ·  Lab 2 in a test tenant  ·  Evidence"]);
+    ["Components and control planes  ·  What GCC has  ·  Roles and the read path", "Onboarding and sensor health  ·  Lab 2 in a test tenant  ·  Evidence"], 5.0);
   notes(s,
 `Welcome to Module 1 of the learning path Defender X D R Engineering and Operations: architecture, access and onboarding. Before any prevention setting matters, two things have to be true. The right people can see and act on the service, in the tenant's own cloud. And the sensor is on every device it should be. In this module you learn the service's shape and its G C C limits, you set who can do what, and you prove the sensor's coverage with a query whose result you can file. The module covers Steps 1 and 2 of the Defender X D R implementation guide. It takes about forty minutes, plus Lab 2 in your own test tenant. The path covers Windows clients and Windows Server only, for a civilian agency in Microsoft three sixty-five G C C.`,
   `${M} — "Introduction"; learning path index.`);

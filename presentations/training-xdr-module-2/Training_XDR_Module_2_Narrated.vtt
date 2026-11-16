@@ -1,0 +1,977 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.559
+Welcome to Module 2 of Defender
+X D R Engineering and Operations:
+
+2
+00:00:04.559 --> 00:00:07.537
+prevention and Attack Surface Reduction.
+
+3
+00:00:07.537 --> 00:00:11.610
+A setting in a policy protects nothing
+until it's enforced on the device,
+
+4
+00:00:11.610 --> 00:00:15.475
+and enforcing it all at once breaks
+the applications nobody listed.
+
+5
+00:00:15.475 --> 00:00:19.021
+In this module you learn the
+order of the prevention settings,
+
+6
+00:00:19.021 --> 00:00:23.749
+which of them have an audit mode, how Attack
+Surface Reduction moves through audit,
+
+7
+00:00:23.749 --> 00:00:26.460
+warn and block, ring by
+ring, and how to prove each
+
+8
+00:00:26.460 --> 00:00:29.450
+setting on the device rather
+than trusting a report.
+
+9
+00:00:29.450 --> 00:00:34.700
+The module covers Steps 3 and 4 of the
+Defender X D R implementation guide.
+
+10
+00:00:34.700 --> 00:00:39.230
+It takes about fifty minutes, plus
+Lab 2 in your own test tenant.
+
+11
+00:00:42.980 --> 00:00:44.530
+Why does this module matter?
+
+12
+00:00:44.530 --> 00:00:47.205
+The guide separates
+configured from enforced.
+
+13
+00:00:47.205 --> 00:00:50.192
+Configured is a setting
+in an Intune policy.
+
+14
+00:00:50.192 --> 00:00:54.206
+Audit mode is configured, and it
+logs, but it protects nothing.
+
+15
+00:00:54.206 --> 00:00:58.017
+And on Windows Server, Microsoft
+lists a known issue where an Attack
+
+16
+00:00:58.017 --> 00:01:01.830
+Surface Reduction rule reports
+compliant without being enforced.
+
+17
+00:01:01.830 --> 00:01:06.464
+Enforced is block mode on the ring,
+after the ring's exit criteria are met,
+
+18
+00:01:06.464 --> 00:01:08.898
+proved on the device and in the events,
+
+19
+00:01:08.898 --> 00:01:12.668
+with every exclusion recorded
+with an owner and an expiry.
+
+20
+00:01:12.668 --> 00:01:15.962
+Getting there safely is
+the work of this module:
+
+21
+00:01:15.962 --> 00:01:19.593
+audit first, then enforce ring
+by ring, with a way back.
+
+22
+00:01:19.593 --> 00:01:24.292
+The guide counts Gates 3 and 4 as the
+closure map's endpoint hardening row:
+
+23
+00:01:24.292 --> 00:01:28.757
+prevention baselines and Attack
+Surface Reduction by staged rings,
+
+24
+00:01:28.757 --> 00:01:32.020
+evidenced by policy
+and endpoint telemetry.
+
+25
+00:01:35.770 --> 00:01:38.683
+Here's what you'll be able to
+do by the end of this module.
+
+26
+00:01:38.683 --> 00:01:42.807
+Name the prevention settings that have
+an audit mode, and the ones that don't.
+
+27
+00:01:42.807 --> 00:01:47.685
+Move network protection and controlled
+folder access from audit to block,
+
+28
+00:01:47.685 --> 00:01:51.146
+ring by ring, with exit
+criteria and backout triggers.
+
+29
+00:01:51.146 --> 00:01:55.627
+Run every Attack Surface Reduction rule
+through audit and warn into block,
+
+30
+00:01:55.627 --> 00:01:57.795
+and name the two rules that skip warn.
+
+31
+00:01:57.795 --> 00:02:02.445
+Record per-rule exclusions, and
+prefer an exclusion to a step back.
+
+32
+00:02:02.445 --> 00:02:07.257
+And verify each setting on the device, and
+read the fleet's audit and block events.
+
+33
+00:02:07.257 --> 00:02:10.720
+You need Module 1, so the
+ring's devices are onboarded.
+
+34
+00:02:10.720 --> 00:02:15.567
+Skim the Devices and Endpoints book's
+policies E S oh-oh-one for antivirus,
+
+35
+00:02:15.567 --> 00:02:20.656
+E S oh-oh-three for the firewall, and E S
+oh-oh-five for Attack Surface Reduction:
+
+36
+00:02:20.656 --> 00:02:23.645
+the setting values live
+there, not in the guide.
+
+37
+00:02:23.645 --> 00:02:27.360
+Lab 2 runs in a test
+tenant, never production.
+
+38
+00:02:31.110 --> 00:02:33.447
+Unit 1 is prevention through audit.
+
+39
+00:02:33.447 --> 00:02:37.748
+Antivirus, firewall and tamper
+protection carry the values from the
+
+40
+00:02:37.748 --> 00:02:42.198
+Devices and Endpoints book's policy
+library, and they have no audit mode.
+
+41
+00:02:42.198 --> 00:02:46.522
+They go straight to ring one, with
+backout triggers set before the change.
+
+42
+00:02:46.522 --> 00:02:49.461
+Two settings do have an
+audit mode, value two.
+
+43
+00:02:49.461 --> 00:02:54.690
+Microsoft Learn says network protection
+in audit logs the connections it would
+
+44
+00:02:54.690 --> 00:02:57.969
+block, as event eleven
+twenty-five, and in block mode,
+
+45
+00:02:57.969 --> 00:03:00.935
+value one, the block is
+event eleven twenty-six.
+
+46
+00:03:00.935 --> 00:03:06.266
+Controlled folder access in audit logs
+untrusted writes to protected folders, event
+
+47
+00:03:06.266 --> 00:03:11.072
+eleven twenty-four, and blocks them in
+block mode as event eleven twenty-three.
+
+48
+00:03:11.072 --> 00:03:15.627
+Network protection has prerequisites:
+Defender Antivirus in active mode,
+
+49
+00:03:15.627 --> 00:03:19.960
+behavior monitoring, and cloud
+protection with working connectivity.
+
+50
+00:03:19.960 --> 00:03:22.569
+On Windows Server twenty
+nineteen and later,
+
+51
+00:03:22.569 --> 00:03:27.010
+it also needs the setting that allows
+network protection on Windows Server.
+
+52
+00:03:27.010 --> 00:03:32.096
+And on servers with heavy U D P traffic,
+such as domain controllers, D N S,
+
+53
+00:03:32.096 --> 00:03:37.720
+file and sequel servers, Learn says
+to set datagram processing to false.
+
+54
+00:03:41.470 --> 00:03:42.633
+Then enforcement.
+
+55
+00:03:42.633 --> 00:03:46.133
+The pilot runs on rings zero
+and one for at least two weeks,
+
+56
+00:03:46.133 --> 00:03:50.081
+with network protection and
+controlled folder access in audit;
+
+57
+00:03:50.081 --> 00:03:53.507
+that length is the program's
+risk-based recommendation.
+
+58
+00:03:53.507 --> 00:03:56.336
+Read the audit events
+every week and add allowed
+
+59
+00:03:56.336 --> 00:04:00.083
+applications for controlled
+folder access before you enforce.
+
+60
+00:04:00.083 --> 00:04:04.483
+Then turn each setting to block in
+the Intune policy, ring by ring.
+
+61
+00:04:04.483 --> 00:04:09.092
+Ring zero, the implementing team, exits
+when the audit events are reviewed,
+
+62
+00:04:09.092 --> 00:04:12.720
+the test site is blocked and no
+one has called the help desk.
+
+63
+00:04:12.720 --> 00:04:15.454
+Ring one, the pilot
+group, after two weeks,
+
+64
+00:04:15.454 --> 00:04:20.507
+when every audited line-of-business
+block has an allow entry or a decision.
+
+65
+00:04:20.507 --> 00:04:24.325
+Ring two, early adopters, after
+one week, with help-desk calls
+
+66
+00:04:24.325 --> 00:04:28.532
+tagged Defender block under the
+threshold set before the change.
+
+67
+00:04:28.532 --> 00:04:30.484
+Ring three, everyone in scope,
+
+68
+00:04:30.484 --> 00:04:34.470
+when post-change validation
+passes on a sample at each site.
+
+69
+00:04:34.470 --> 00:04:39.186
+The backout triggers are a blocked
+critical application with no allow path,
+
+70
+00:04:39.186 --> 00:04:41.582
+or help-desk volume over the threshold.
+
+71
+00:04:41.582 --> 00:04:44.920
+Rollback sets the mode back
+to audit in the same policy.
+
+72
+00:04:44.920 --> 00:04:47.552
+Microsoft Learn says tamper protection is
+
+73
+00:04:47.552 --> 00:04:50.550
+turned off only from
+the console that set it.
+
+74
+00:04:54.300 --> 00:04:56.825
+Unit 2 is Attack Surface Reduction.
+
+75
+00:04:56.825 --> 00:05:01.038
+Microsoft Learn's rule modes
+are zero for off, one for block,
+
+76
+00:05:01.038 --> 00:05:04.900
+two for audit, five for not
+configured, and six for warn.
+
+77
+00:05:04.900 --> 00:05:07.728
+Before you audit, Learn
+says to turn off any
+
+78
+00:05:07.728 --> 00:05:10.637
+related rule that's
+already in block or warn.
+
+79
+00:05:10.637 --> 00:05:13.590
+Then put every rule in
+audit at once on ring one,
+
+80
+00:05:13.590 --> 00:05:18.174
+which Learn recommends, to see which
+rules everyday business triggers.
+
+81
+00:05:18.174 --> 00:05:21.425
+The program's stages are
+risk-based recommendations.
+
+82
+00:05:21.425 --> 00:05:23.867
+Audit on ring one for thirty days,
+
+83
+00:05:23.867 --> 00:05:28.662
+until every audited rule hit has
+an exclusion, a fix or a decision.
+
+84
+00:05:28.662 --> 00:05:33.040
+Then warn, first on ring one and
+then on ring two, for fourteen days,
+
+85
+00:05:33.040 --> 00:05:36.839
+counting unblock requests,
+until no business-critical
+
+86
+00:05:36.839 --> 00:05:40.225
+application is left without
+a per-rule exclusion.
+
+87
+00:05:40.225 --> 00:05:43.822
+Then block, ring by ring,
+until blocks per rule per week
+
+88
+00:05:43.822 --> 00:05:47.500
+are stable and help-desk
+volume is under the threshold.
+
+89
+00:05:47.500 --> 00:05:50.452
+Microsoft's own position,
+from its rules overview,
+
+90
+00:05:50.452 --> 00:05:55.277
+is that the standard protection rules can
+go to block without extensive testing,
+
+91
+00:05:55.277 --> 00:05:57.725
+and other rules are tested in audit first.
+
+92
+00:05:57.725 --> 00:06:02.110
+The program runs all three
+stages anyway, and says so.
+
+93
+00:06:05.860 --> 00:06:09.123
+Warn shows the user the
+block, with a way to proceed.
+
+94
+00:06:09.123 --> 00:06:13.690
+Microsoft Learn's rules overview
+says warn needs Windows ten, version
+
+95
+00:06:13.690 --> 00:06:18.810
+eighteen oh nine or later, and a recent
+Defender Antivirus platform and engine.
+
+96
+00:06:18.810 --> 00:06:21.708
+It isn't available in
+Configuration Manager,
+
+97
+00:06:21.708 --> 00:06:24.998
+and on older Windows a rule
+set to warn acts as block.
+
+98
+00:06:24.998 --> 00:06:26.885
+Warn isn't a safety valve, though.
+
+99
+00:06:26.885 --> 00:06:30.582
+Since platform four point
+eighteen point two six oh six oh,
+
+100
+00:06:30.582 --> 00:06:35.281
+using Unblock on a warn rule needs
+administrator approval, and Microsoft
+
+101
+00:06:35.281 --> 00:06:40.210
+says a persistent need belongs in a
+per-rule exclusion, not repeated unblocks.
+
+102
+00:06:40.210 --> 00:06:42.805
+So brief the help desk
+before the warn ring;
+
+103
+00:06:42.805 --> 00:06:47.105
+the guide's RACI makes the help desk
+responsible for unblock requests
+
+104
+00:06:47.105 --> 00:06:50.960
+and user impact, and the policy
+owner accountable for the rings.
+
+105
+00:06:50.960 --> 00:06:55.235
+Two rules don't support warn at all,
+and go from audit straight to block.
+
+106
+00:06:55.235 --> 00:07:00.198
+One blocks credential stealing from the
+Windows local security authority subsystem.
+
+107
+00:07:00.198 --> 00:07:05.320
+The other blocks Office applications from
+injecting code into other processes.
+
+108
+00:07:09.070 --> 00:07:12.045
+Unit 3 is exclusions, and the traps.
+
+109
+00:07:12.045 --> 00:07:16.327
+When a rule in block breaks an
+application, Microsoft's advice in Learn
+
+110
+00:07:16.327 --> 00:07:20.682
+is that an exclusion is better than
+turning the rule off or back to audit.
+
+111
+00:07:20.682 --> 00:07:25.740
+Per-rule exclusions go in the same policy,
+under A S R only per rule exclusions,
+
+112
+00:07:25.740 --> 00:07:29.111
+as a file path rather than
+a folder wherever you can,
+
+113
+00:07:29.111 --> 00:07:33.045
+and each one goes in the register
+with an owner and an expiry.
+
+114
+00:07:33.045 --> 00:07:36.277
+Learn adds that if Disable
+Local Admin Merge is true,
+
+115
+00:07:36.277 --> 00:07:38.607
+local per-rule exclusions don't apply.
+
+116
+00:07:38.607 --> 00:07:42.714
+Rollback, when you need it,
+moves a rule one stage back:
+
+117
+00:07:42.714 --> 00:07:45.007
+block to warn, or warn to audit.
+
+118
+00:07:45.007 --> 00:07:46.245
+Then the dangers.
+
+119
+00:07:46.245 --> 00:07:50.265
+Configure a rule in Intune or
+in Group Policy, never both:
+
+120
+00:07:50.265 --> 00:07:55.683
+Learn says Group Policy wins by default,
+so the Intune value silently loses.
+
+121
+00:07:55.683 --> 00:07:59.800
+And on Windows Server, Learn lists
+a known issue, with no fix date,
+
+122
+00:07:59.800 --> 00:08:03.283
+where a rule shows compliant
+without being enforced.
+
+123
+00:08:03.283 --> 00:08:07.029
+So on servers, trust the
+device-side check and the events,
+
+124
+00:08:07.029 --> 00:08:09.180
+not the compliance report.
+
+125
+00:08:12.930 --> 00:08:17.466
+Lab 2 runs the guide's validate
+commands on a ring zero test device,
+
+126
+00:08:17.466 --> 00:08:19.818
+in a test tenant, never production.
+
+127
+00:08:19.818 --> 00:08:22.818
+The authors haven't run
+them, as the page says.
+
+128
+00:08:22.818 --> 00:08:26.963
+You need Module 1's test tenant and
+test device, with the antivirus,
+
+129
+00:08:26.963 --> 00:08:32.105
+firewall and Attack Surface Reduction
+policies assigned to its ring zero group.
+
+130
+00:08:32.105 --> 00:08:36.055
+Steps one to five run on the
+device, in an elevated session.
+
+131
+00:08:36.055 --> 00:08:39.150
+Step one shows tamper
+and real-time protection;
+
+132
+00:08:39.150 --> 00:08:41.768
+both should be true, which means enabled.
+
+133
+00:08:41.768 --> 00:08:47.083
+Step two shows the network protection
+and controlled folder access modes:
+
+134
+00:08:47.083 --> 00:08:50.855
+zero off, one block, two audit,
+matching the ring's stage.
+
+135
+00:08:50.855 --> 00:08:54.268
+Step three shows the firewall
+profiles as enforced,
+
+136
+00:08:54.268 --> 00:08:56.967
+with the values the firewall policy sets.
+
+137
+00:08:56.967 --> 00:09:00.637
+Step four is Microsoft Learn's
+network protection test:
+
+138
+00:09:00.637 --> 00:09:04.467
+in a browser other than Edge,
+open the test site on the slide.
+
+139
+00:09:04.467 --> 00:09:08.965
+In block mode the connection is blocked
+with a notification, event eleven
+
+140
+00:09:08.965 --> 00:09:13.242
+twenty-six; in audit it isn't blocked,
+and the event is eleven twenty-five.
+
+141
+00:09:13.242 --> 00:09:17.769
+Step five is Learn's command that
+lists each rule and its mode:
+
+142
+00:09:17.769 --> 00:09:20.667
+two for audit, six for
+warn, one for block.
+
+143
+00:09:20.667 --> 00:09:23.690
+On a server, this is the check to trust.
+
+144
+00:09:27.440 --> 00:09:32.940
+Steps six to eight run on your workstation,
+through Graph, so each result is a file.
+
+145
+00:09:32.940 --> 00:09:37.278
+The slide shortens them to fit;
+the page has every command in full.
+
+146
+00:09:37.278 --> 00:09:41.872
+Step six connects and counts the fleet's
+prevention events over seven days:
+
+147
+00:09:41.872 --> 00:09:44.392
+network protection audited and blocked,
+
+148
+00:09:44.392 --> 00:09:48.765
+controlled folder access audited
+and blocked, and tampering attempts.
+
+149
+00:09:48.765 --> 00:09:51.190
+Step four's test should appear among them.
+
+150
+00:09:51.190 --> 00:09:54.349
+Step seven is Microsoft
+Learn's query for Attack
+
+151
+00:09:54.349 --> 00:09:57.665
+Surface Reduction events
+by rule over thirty days.
+
+152
+00:09:57.665 --> 00:10:01.062
+Each rule has its own audited
+and blocked action types,
+
+153
+00:10:01.062 --> 00:10:05.440
+and Learn says the events are throttled
+to unique processes each hour.
+
+154
+00:10:05.440 --> 00:10:08.609
+Step eight is Learn's pattern
+for one rule's detail,
+
+155
+00:10:08.609 --> 00:10:12.782
+here the Office child-process rule:
+the devices, files and command
+
+156
+00:10:12.782 --> 00:10:17.265
+lines it audited or blocked, which
+is what an exclusion decision reads.
+
+157
+00:10:17.265 --> 00:10:19.477
+Step nine is the only write.
+
+158
+00:10:19.477 --> 00:10:23.477
+It's the guide's rollback for a
+single device under investigation:
+
+159
+00:10:23.477 --> 00:10:26.440
+Learn's local command sets
+one rule back to audit.
+
+160
+00:10:26.440 --> 00:10:29.490
+Step five's command now
+shows the rule at two.
+
+161
+00:10:29.490 --> 00:10:33.460
+Intune overwrites the local
+value at the next policy refresh,
+
+162
+00:10:33.460 --> 00:10:36.690
+and that's the back-out;
+nothing else is needed.
+
+163
+00:10:40.440 --> 00:10:43.752
+The federal requirement, from
+the guide's requirements table.
+
+164
+00:10:43.752 --> 00:10:49.615
+Gate three supports four controls from
+NIST special publication eight hundred
+
+165
+00:10:49.615 --> 00:10:54.777
+fifty-three, revision five: S I three,
+malicious code protection; S C seven,
+
+166
+00:10:54.777 --> 00:10:58.452
+boundary protection, here
+the host firewall; C M six,
+
+167
+00:10:58.452 --> 00:11:03.702
+configuration settings; and S I seven,
+integrity, here tamper protection.
+
+168
+00:11:03.702 --> 00:11:08.790
+The evidence is the policy exports, the
+device checks and the audit results.
+
+169
+00:11:08.790 --> 00:11:15.365
+Gate four supports C M seven, least
+functionality, with C M six and S I three.
+
+170
+00:11:15.365 --> 00:11:17.957
+The evidence is the rule-by-ring matrix,
+
+171
+00:11:17.957 --> 00:11:21.927
+with the date each rule entered
+block, and the per-rule tests.
+
+172
+00:11:21.927 --> 00:11:26.034
+Each row lines up with fed-ramp
+twenty X key security indicators,
+
+173
+00:11:26.034 --> 00:11:31.303
+which bind cloud service providers; the
+agency lines its own evidence up with them.
+
+174
+00:11:31.303 --> 00:11:33.393
+The gates support these controls,
+
+175
+00:11:33.393 --> 00:11:36.970
+and the assessor decides
+whether each is satisfied.
+
+176
+00:11:40.720 --> 00:11:42.695
+Check yourself with two questions.
+
+177
+00:11:42.695 --> 00:11:47.783
+First: which two Attack Surface Reduction
+rules go from audit straight to block?
+
+178
+00:11:47.783 --> 00:11:52.300
+The answer is a: the rule that blocks
+credential stealing from the local security
+
+179
+00:11:52.300 --> 00:11:55.739
+authority, and the rule that
+blocks Office applications from
+
+180
+00:11:55.739 --> 00:11:59.582
+injecting code into other processes,
+because neither supports warn.
+
+181
+00:11:59.582 --> 00:12:03.883
+Second: a Windows Server shows
+a rule as compliant in Intune.
+
+182
+00:12:03.883 --> 00:12:05.282
+Is that enough evidence?
+
+183
+00:12:05.282 --> 00:12:06.821
+The answer is b, no.
+
+184
+00:12:06.821 --> 00:12:11.603
+Microsoft lists a known issue where the
+server shows compliant without the rule
+
+185
+00:12:11.603 --> 00:12:14.244
+being enforced, so check
+on the server itself,
+
+186
+00:12:14.244 --> 00:12:16.457
+with Get M P Preference and the events.
+
+187
+00:12:16.457 --> 00:12:20.608
+Setting the rule in Group Policy
+too would only add the other danger.
+
+188
+00:12:20.608 --> 00:12:25.870
+The module page has three more questions,
+each linked to the unit that answers it.
+
+189
+00:12:29.620 --> 00:12:30.445
+To sum up.
+
+190
+00:12:30.445 --> 00:12:34.883
+You checked every prevention setting
+and every rule on a test device.
+
+191
+00:12:34.883 --> 00:12:38.194
+You triggered Microsoft Learn's
+network protection test.
+
+192
+00:12:38.194 --> 00:12:40.806
+You filed the fleet's
+audit and block events,
+
+193
+00:12:40.806 --> 00:12:43.708
+and its Attack Surface
+Reduction events by rule.
+
+194
+00:12:43.708 --> 00:12:48.395
+And you stepped one rule back on one
+device, the way the guide's rollback does.
+
+195
+00:12:48.395 --> 00:12:52.292
+The evidence an I S S O keeps
+from this module: the antivirus,
+
+196
+00:12:52.292 --> 00:12:56.919
+firewall and Attack Surface Reduction
+policy exports for each ring;
+
+197
+00:12:56.919 --> 00:12:59.680
+the weekly audit and block query results;
+
+198
+00:12:59.680 --> 00:13:04.307
+the network protection test and the
+tamper status; the per-rule tests;
+
+199
+00:13:04.307 --> 00:13:08.366
+the rule-by-ring matrix, with
+the date each rule entered block;
+
+200
+00:13:08.366 --> 00:13:11.695
+and every exclusion, with
+its approver and expiry.
+
+201
+00:13:11.695 --> 00:13:14.603
+Next is Module 3, exposure and incidents,
+
+202
+00:13:14.603 --> 00:13:20.740
+where every vulnerability gets an owner
+and every incident gets triaged to a table.

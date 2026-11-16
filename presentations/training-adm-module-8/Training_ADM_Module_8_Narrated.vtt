@@ -509,538 +509,522 @@ workflow: zero findings, zero warnings.
 Step three prints a cloud's hosts.
 
 106
-00:07:04.920 --> 00:07:09.867
-For DoD, the sign-in authority is
-login dot microsoftonline dot u s,
+00:07:04.920 --> 00:07:10.551
+For G C C, the sign-in authority is login
+dot microsoftonline dot com, the Graph
 
 107
-00:07:09.867 --> 00:07:13.439
-the Graph host is dod-graph
-dot microsoft dot u s,
+00:07:10.551 --> 00:07:16.182
+host is graph dot microsoft dot com, and
+the Azure environment is Azure Cloud.
 
 108
-00:07:13.439 --> 00:07:17.195
-and the Azure environment
-is Azure U S Government.
-
-109
-00:07:17.195 --> 00:07:22.744
+00:07:16.182 --> 00:07:21.021
 Microsoft Learn's page, Microsoft
 Graph national cloud deployments,
 
+109
+00:07:21.021 --> 00:07:23.907
+says G C C uses those worldwide endpoints.
+
 110
-00:07:22.744 --> 00:07:25.957
-lists those GCC High and DoD Graph hosts.
+00:07:23.907 --> 00:07:25.808
+Then ask for a name it doesn't know.
 
 111
-00:07:25.957 --> 00:07:30.526
-That's the trap: the Azure environment
-covers both GCC High and DoD,
-
-112
-00:07:30.526 --> 00:07:33.657
-so the Graph host has to
-come from the profile.
-
-113
-00:07:33.657 --> 00:07:36.478
-Then ask for a name it
-doesn't know, u s gov.
-
-114
-00:07:36.478 --> 00:07:40.980
+00:07:25.808 --> 00:07:30.300
 It's refused, with exit code
 one, never mapped to worldwide.
 
-115
-00:07:44.730 --> 00:07:46.643
+112
+00:07:34.050 --> 00:07:35.963
 Step four records a baseline.
 
-116
-00:07:46.643 --> 00:07:49.978
+113
+00:07:35.963 --> 00:07:39.298
 The fixtures are two
 fictional validation kit runs,
 
-117
-00:07:49.978 --> 00:07:53.392
+114
+00:07:39.298 --> 00:07:42.712
 one day apart: October
 twenty-eighth and twenty-ninth.
 
-118
-00:07:53.392 --> 00:07:56.690
+115
+00:07:42.712 --> 00:07:46.010
 Compare the first with
 nothing, and it's a baseline:
 
-119
-00:07:56.690 --> 00:07:59.505
+116
+00:07:46.010 --> 00:07:48.825
 ten new findings, and
 the command exits two.
 
-120
-00:07:59.505 --> 00:08:02.451
+117
+00:07:48.825 --> 00:07:51.771
 Package it with the
 other kits' provenance,
 
-121
-00:08:02.451 --> 00:08:06.155
+118
+00:07:51.771 --> 00:07:55.475
 and the evidence manifest's
 hash starts six d nine f f f.
 
-122
-00:08:06.155 --> 00:08:08.343
+119
+00:07:55.475 --> 00:07:57.663
 Step five compares the next day.
 
-123
-00:08:08.343 --> 00:08:13.087
+120
+00:07:57.663 --> 00:08:02.407
 The summary reads: new three,
 resolved one, changed one,
 
-124
-00:08:13.087 --> 00:08:17.831
+121
+00:08:02.407 --> 00:08:07.151
 detail only one, unchanged
 six, unverified checks two.
 
-125
-00:08:17.831 --> 00:08:20.018
+122
+00:08:07.151 --> 00:08:09.338
 Its table shows which checks moved.
 
-126
-00:08:20.018 --> 00:08:23.867
+123
+00:08:09.338 --> 00:08:13.187
 VK-CA-01 went from Pass to Fail.
 
-127
-00:08:23.867 --> 00:08:27.168
+124
+00:08:13.187 --> 00:08:16.488
 VK-PIV-01 didn't run.
 
-128
-00:08:27.168 --> 00:08:32.217
+125
+00:08:16.488 --> 00:08:21.537
 And VK-NPI-03 went from Fail to Error.
 
-129
-00:08:32.217 --> 00:08:33.718
+126
+00:08:21.537 --> 00:08:23.038
 Look closely at that one.
 
-130
-00:08:33.718 --> 00:08:35.555
+127
+00:08:23.038 --> 00:08:24.875
 Yesterday it had a finding.
 
-131
-00:08:35.555 --> 00:08:37.043
+128
+00:08:24.875 --> 00:08:26.363
 Today its read failed.
 
-132
-00:08:37.043 --> 00:08:40.017
+129
+00:08:26.363 --> 00:08:29.337
 So the finding is
 unverified, not resolved.
 
-133
-00:08:40.017 --> 00:08:42.560
+130
+00:08:29.337 --> 00:08:31.880
 A failed read is never a fix.
 
-134
-00:08:46.310 --> 00:08:51.998
+131
+00:08:35.630 --> 00:08:41.318
 Step six drafts the findings: six
 to open, two to close, no comments.
 
-135
-00:08:51.998 --> 00:08:53.572
+132
+00:08:41.318 --> 00:08:42.892
 Then search the drafts.
 
-136
-00:08:53.572 --> 00:08:59.210
+133
+00:08:42.892 --> 00:08:48.530
 For a user's address, grep counts zero;
 the name isn't there, and grep exits one.
 
-137
-00:08:59.210 --> 00:09:01.685
+134
+00:08:48.530 --> 00:08:51.005
 For the object ID, it counts one.
 
-138
-00:09:01.685 --> 00:09:05.935
+135
+00:08:51.005 --> 00:08:55.255
 The tracker gets the object ID and
 the fingerprint, never the name.
 
-139
-00:09:05.935 --> 00:09:08.118
+136
+00:08:55.255 --> 00:08:57.438
 Step seven packages the second day,
 
-140
-00:09:08.118 --> 00:09:12.560
+137
+00:08:57.438 --> 00:09:01.880
 chained to the first with the previous
 manifest option, and verifies it.
 
-141
-00:09:12.560 --> 00:09:18.535
+138
+00:09:01.880 --> 00:09:07.855
 The manifest hash starts oh nine three
 two, and verify reports sixteen files.
 
-142
-00:09:18.535 --> 00:09:22.608
+139
+00:09:07.855 --> 00:09:11.928
 Then the ISSO's own check,
 with no program code at all:
 
-143
-00:09:22.608 --> 00:09:28.523
+140
+00:09:11.928 --> 00:09:17.843
 sha two fifty-six sum, in the package's
 folder, prints nothing and exits zero.
 
-144
-00:09:28.523 --> 00:09:34.700
+141
+00:09:17.843 --> 00:09:24.020
 Last, read two fields of day two's manifest:
 the previous package's manifest hash,
 
-145
-00:09:34.700 --> 00:09:40.211
+142
+00:09:24.020 --> 00:09:29.531
 which is day one's, six d nine f f f,
 and the fixture tenant's placeholder ID.
 
-146
-00:09:40.211 --> 00:09:41.620
+143
+00:09:29.531 --> 00:09:30.940
 That's the chain.
 
-147
-00:09:45.370 --> 00:09:47.295
+144
+00:09:34.690 --> 00:09:36.615
 Step eight breaks it on purpose.
 
-148
-00:09:47.295 --> 00:09:51.345
+145
+00:09:36.615 --> 00:09:40.665
 Append one line to the packaged
 drift summary, and verify again.
 
-149
-00:09:51.345 --> 00:09:55.995
+146
+00:09:40.665 --> 00:09:45.315
 It fails, with exit code one: the
 summary doesn't match its hash.
 
-150
-00:09:55.995 --> 00:09:58.232
+147
+00:09:45.315 --> 00:09:47.552
 An edit after packaging can't hide.
 
-151
-00:09:58.232 --> 00:10:00.878
+148
+00:09:47.552 --> 00:09:50.198
 Then swap the runs, and
 compare the twenty-ninth
 
-152
-00:10:00.878 --> 00:10:03.457
+149
+00:09:50.198 --> 00:09:52.777
 as previous with the
 twenty-eighth as current.
 
-153
-00:10:03.457 --> 00:10:07.657
+150
+00:09:52.777 --> 00:09:56.977
 That's refused too: the current run
 isn't later than the previous one.
 
-154
-00:10:07.657 --> 00:10:10.657
+151
+00:09:56.977 --> 00:09:59.977
 Runs out of order can't make
 a finding look resolved.
 
-155
-00:10:10.657 --> 00:10:14.432
+152
+00:09:59.977 --> 00:10:03.877
 Step nine runs the tests:
-one hundred forty-two pass.
+one hundred thirty-nine pass.
 
-156
-00:10:14.432 --> 00:10:16.008
+153
+00:10:03.877 --> 00:10:05.453
 They take about two minutes.
 
-157
-00:10:16.008 --> 00:10:17.483
+154
+00:10:05.453 --> 00:10:06.927
 Step ten cleans up.
 
-158
-00:10:17.483 --> 00:10:22.260
+155
+00:10:06.927 --> 00:10:11.705
 Check your work: given two runs, you
 can say what's new, resolved, changed or
 
-159
-00:10:22.260 --> 00:10:24.365
+156
+00:10:11.705 --> 00:10:13.810
 unverified, and given a package,
 
-160
-00:10:24.365 --> 00:10:28.360
+157
+00:10:13.810 --> 00:10:17.800
 you can show it's unedited
 and chained to the day before.
 
-161
-00:10:32.110 --> 00:10:36.742
+158
+00:10:21.550 --> 00:10:26.182
 Lab 2 runs the pipeline for real, in
 a test tenant and a test subscription,
 
-162
-00:10:36.742 --> 00:10:39.960
+159
+00:10:26.182 --> 00:10:29.400
 never production, from a
 private test repository
 
-163
-00:10:39.960 --> 00:10:43.022
+160
+00:10:29.400 --> 00:10:32.462
 that holds the validation
 kit and this example.
 
-164
-00:10:43.022 --> 00:10:47.840
+161
+00:10:32.462 --> 00:10:37.280
 Register an app that trusts the repository
 through a federated credential,
 
-165
-00:10:47.840 --> 00:10:50.898
+162
+00:10:37.280 --> 00:10:40.338
 so no secret is stored, and
 grant it only the reads.
 
-166
-00:10:50.898 --> 00:10:54.568
+163
+00:10:40.338 --> 00:10:44.008
 Make an evidence container with
 an unlocked retention policy,
 
-167
-00:10:54.568 --> 00:10:56.897
+164
+00:10:44.008 --> 00:10:46.337
 and set up the repository's environment.
 
-168
-00:10:56.897 --> 00:11:01.897
+165
+00:10:46.337 --> 00:10:51.337
 Run the workflow by hand for a baseline,
 make one real change, and run it again.
 
-169
-00:11:01.897 --> 00:11:03.435
+166
+00:10:51.337 --> 00:10:52.875
 Then let the schedule run.
 
-170
-00:11:03.435 --> 00:11:07.747
+167
+00:10:52.875 --> 00:10:57.187
 To back it out, step eight deletes
 the federated credential and the app.
 
-171
-00:11:07.747 --> 00:11:12.750
+168
+00:10:57.187 --> 00:11:02.190
 Leave the test retention policy unlocked:
 Microsoft Learn's page on immutable
 
-172
-00:11:12.750 --> 00:11:16.752
+169
+00:11:02.190 --> 00:11:06.192
 storage says an unlocked policy
 is only for short-term testing,
 
-173
-00:11:16.752 --> 00:11:18.060
+170
+00:11:06.192 --> 00:11:07.500
 and it can be deleted.
 
-174
-00:11:18.060 --> 00:11:20.210
+171
+00:11:07.500 --> 00:11:09.650
 The authors haven't run Lab 2.
 
-175
-00:11:20.210 --> 00:11:23.960
+172
+00:11:09.650 --> 00:11:13.400
 Follow Chapter 09's Lab 2, step by step.
 
-176
-00:11:27.710 --> 00:11:29.097
+173
+00:11:17.150 --> 00:11:18.537
 The federal requirement.
 
-177
-00:11:29.097 --> 00:11:35.111
+174
+00:11:18.537 --> 00:11:24.551
 The controls are from NIST SP
 800-53, at NIST's Moderate baseline.
 
-178
-00:11:35.111 --> 00:11:38.156
+175
+00:11:24.551 --> 00:11:27.596
 This chapter turns the
 other chapters' outputs
 
-179
-00:11:38.156 --> 00:11:41.123
+176
+00:11:27.596 --> 00:11:30.563
 into continuous monitoring,
 control C A seven.
 
-180
-00:11:41.123 --> 00:11:45.511
+177
+00:11:30.563 --> 00:11:34.951
 The first run is a packaged
 baseline, for baseline configuration.
 
-181
-00:11:45.511 --> 00:11:49.475
+178
+00:11:34.951 --> 00:11:38.915
 Each run says what is new,
 resolved, changed and unverified,
 
-182
-00:11:49.475 --> 00:11:53.935
+179
+00:11:38.915 --> 00:11:43.375
 and a failed read never resolves
 a finding, for system monitoring.
 
-183
-00:11:53.935 --> 00:11:57.448
+180
+00:11:43.375 --> 00:11:46.888
 Each finding is opened or
 closed by fingerprint,
 
-184
-00:11:57.448 --> 00:12:00.698
+181
+00:11:46.888 --> 00:11:50.138
 with object IDs and no
 names, for audit review.
 
-185
-00:12:00.698 --> 00:12:05.417
+182
+00:11:50.138 --> 00:11:54.857
 The package hashes every file, carries
 the other kits' provenance and chains
 
-186
-00:12:05.417 --> 00:12:09.911
+183
+00:11:54.857 --> 00:11:59.351
 to the day before, for the protection
 of audit information and integrity.
 
-187
-00:12:09.911 --> 00:12:14.835
+184
+00:11:59.351 --> 00:12:04.275
 An edit after packaging and runs out of
 order are refused, and the tests show it.
 
-188
-00:12:14.835 --> 00:12:16.246
+185
+00:12:04.275 --> 00:12:05.686
 Every action is pinned,
 
-189
-00:12:16.246 --> 00:12:19.810
+186
+00:12:05.686 --> 00:12:09.250
 and the job that reads the tenant
 can't write to the tracker.
 
-190
-00:12:19.810 --> 00:12:23.921
+187
+00:12:09.250 --> 00:12:13.361
 And in Lab 2, the pipeline signs
 in with a federated credential,
 
-191
-00:12:23.921 --> 00:12:25.372
+188
+00:12:13.361 --> 00:12:14.812
 with no secret stored.
 
-192
-00:12:25.372 --> 00:12:28.884
+189
+00:12:14.812 --> 00:12:18.324
 The KSI column is from FedRAMP's
 Key Security Indicators,
 
-193
-00:12:28.884 --> 00:12:32.022
+190
+00:12:18.324 --> 00:12:21.462
 which are indicators for
 cloud service providers.
 
-194
-00:12:32.022 --> 00:12:35.950
+191
+00:12:21.462 --> 00:12:25.390
 Which output supports which
 control is this workbook's reading.
 
-195
-00:12:39.700 --> 00:12:41.675
+192
+00:12:29.140 --> 00:12:31.115
 Check yourself with two questions.
 
-196
-00:12:41.675 --> 00:12:46.563
+193
+00:12:31.115 --> 00:12:36.003
 First: yesterday VK-NPI-03 had a finding.
 
-197
-00:12:46.563 --> 00:12:48.987
+194
+00:12:36.003 --> 00:12:38.427
 Today its read failed
 with a four-oh-three.
 
-198
-00:12:48.987 --> 00:12:50.776
+195
+00:12:38.427 --> 00:12:40.216
 What does the comparison report?
 
-199
-00:12:50.776 --> 00:12:54.262
+196
+00:12:40.216 --> 00:12:43.702
 The answer is b: unverified, not resolved.
 
-200
-00:12:54.262 --> 00:12:58.688
+197
+00:12:43.702 --> 00:12:48.128
 A failed read is never a fix, and
 you saw it in step five of the lab.
 
-201
-00:12:58.688 --> 00:13:03.413
+198
+00:12:48.128 --> 00:12:52.853
 Second: how does the ISSO check a
 package without the program's code?
 
-202
-00:13:03.413 --> 00:13:07.315
+199
+00:12:52.853 --> 00:12:56.755
 The answer is b: with
 sha two fifty-six sum,
 
-203
-00:13:07.315 --> 00:13:11.337
+200
+00:12:56.755 --> 00:13:00.777
 dash c, SHA256SUMS, in
 the package's folder.
 
-204
-00:13:11.337 --> 00:13:16.125
+201
+00:13:00.777 --> 00:13:05.565
 You did exactly that in step seven,
 and it printed nothing and exited zero.
 
-205
-00:13:16.125 --> 00:13:20.662
+202
+00:13:05.565 --> 00:13:10.102
 The module page has two more questions,
 on what goes into a drafted issue
 
-206
-00:13:20.662 --> 00:13:25.650
+203
+00:13:10.102 --> 00:13:15.090
 and on what shows a missing day, each
 linked to the section that answers it.
 
-207
-00:13:29.400 --> 00:13:30.225
+204
+00:13:18.840 --> 00:13:19.665
 To sum up.
 
-208
-00:13:30.225 --> 00:13:35.385
+205
+00:13:19.665 --> 00:13:24.825
 You compared two days of kit runs without
 letting a failed read close a finding,
 
-209
-00:13:35.385 --> 00:13:39.751
+206
+00:13:24.825 --> 00:13:29.191
 drafted findings without names,
 and packaged and verified a chain
 
-210
-00:13:39.751 --> 00:13:43.800
+207
+00:13:29.191 --> 00:13:33.240
 of evidence the ISSO can check
 with sha two fifty-six sum alone.
 
-211
-00:13:43.800 --> 00:13:49.138
+208
+00:13:33.240 --> 00:13:38.578
 The evidence an ISSO keeps: each day's
 package, with its kit run, drift report,
 
-212
-00:13:49.138 --> 00:13:53.163
+209
+00:13:38.578 --> 00:13:42.603
 the other kits' provenance,
 the manifest and SHA256SUMS,
 
-213
-00:13:53.163 --> 00:13:58.588
+210
+00:13:42.603 --> 00:13:48.028
 in a container whose retention is locked
 in production; the findings in the
 
-214
-00:13:58.588 --> 00:14:04.538
+211
+00:13:48.028 --> 00:13:53.978
 tracker by fingerprint; and the workflow
 file and the pipeline app's registration.
 
-215
-00:14:04.538 --> 00:14:09.013
+212
+00:13:53.978 --> 00:13:58.453
 Gate 9 adds the scan schedule, the
 limits register and the metrics.
 
-216
-00:14:09.013 --> 00:14:12.725
+213
+00:13:58.453 --> 00:14:02.165
 Before shipping, work through
 the Chapter 09 checklist.
 
-217
-00:14:12.725 --> 00:14:16.717
+214
+00:14:02.165 --> 00:14:06.157
 Next is Module 9, the last:
 deploy to test, then production,
 
-218
-00:14:16.717 --> 00:14:21.577
+215
+00:14:06.157 --> 00:14:11.017
 with one settings file per stage, a
 pre-flight check, a smoke test that
 
-219
-00:14:21.577 --> 00:14:26.400
+216
+00:14:11.017 --> 00:14:15.840
 says go or no-go, and a rollback
 written from a record of every change.

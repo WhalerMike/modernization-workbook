@@ -775,324 +775,324 @@ scope the apply asked for,
 read-write, and the I D it created.
 
 164
-00:10:26.817 --> 00:10:30.960
+00:10:26.817 --> 00:10:30.721
 Ask for a cloud name the
 script doesn't know, U S gov,
 
 165
-00:10:30.960 --> 00:10:35.931
-and it exits one: the cloud must be
-G C C, global, G C C High or D O D.
+00:10:30.721 --> 00:10:34.429
+and it exits one: the cloud
+must be G C C or global.
 
 166
-00:10:35.931 --> 00:10:39.142
+00:10:34.429 --> 00:10:36.667
 Step six breaks something on purpose.
 
 167
-00:10:39.142 --> 00:10:42.339
+00:10:36.667 --> 00:10:39.865
 Change the hibernate
 value in one library file,
 
 168
-00:10:42.339 --> 00:10:46.355
+00:10:39.865 --> 00:10:43.881
 and the dry run exits two, with
 a drift that names the setting.
 
 169
-00:10:46.355 --> 00:10:48.898
+00:10:43.881 --> 00:10:46.423
 Run it with apply, and it still exits two,
 
 170
-00:10:48.898 --> 00:10:52.793
+00:10:46.423 --> 00:10:50.318
 and nothing is created, not even
 the error reporting policy.
 
 171
-00:10:52.793 --> 00:10:54.129
+00:10:50.318 --> 00:10:51.655
 Put the value back.
 
 172
-00:10:54.129 --> 00:10:57.405
+00:10:51.655 --> 00:10:54.930
 Step seven runs the tests: forty-six pass.
 
 173
-00:10:57.405 --> 00:10:59.910
+00:10:54.930 --> 00:10:57.430
 Step eight deletes the out folder.
 
 174
-00:11:03.660 --> 00:11:07.271
+00:11:01.180 --> 00:11:04.791
 Lab 2 runs the same code
 against a test tenant with
 
 175
-00:11:07.271 --> 00:11:11.322
+00:11:04.791 --> 00:11:08.842
 Intune licenses and a test
 GPO export, never production.
 
 176
-00:11:11.322 --> 00:11:15.148
+00:11:08.842 --> 00:11:12.668
 Import a test GPO into
 Group Policy analytics.
 
 177
-00:11:15.148 --> 00:11:22.297
+00:11:12.668 --> 00:11:19.817
 Run VK-INT-07 live, as a read-only
 operator, and build the move plan live.
 
 178
-00:11:22.297 --> 00:11:26.160
+00:11:19.817 --> 00:11:23.680
 Then dry-run and apply as a
 Policy and Profile Manager.
 
 179
-00:11:26.160 --> 00:11:30.947
+00:11:23.680 --> 00:11:28.467
 Compare the result with what Group Policy
 analytics' own Migrate step builds.
 
 180
-00:11:30.947 --> 00:11:34.231
+00:11:28.467 --> 00:11:31.751
 And drill drift: change a
 value in the admin center,
 
 181
-00:11:34.231 --> 00:11:36.234
+00:11:31.751 --> 00:11:33.754
 and watch the dry run report it.
 
 182
-00:11:36.234 --> 00:11:40.735
-In G C C High and D O D, pass
-the matching cloud option.
+00:11:33.754 --> 00:11:38.117
+Each run names the G C C cloud
+and the test tenant's I D.
 
 183
-00:11:40.735 --> 00:11:44.537
+00:11:38.117 --> 00:11:41.919
 To back it out, step eight deletes
 the created policies by the
 
 184
-00:11:44.537 --> 00:11:48.110
+00:11:41.919 --> 00:11:45.492
 I D's in the sync record, and
 the Migrate comparison policy.
 
 185
-00:11:48.110 --> 00:11:50.260
+00:11:45.492 --> 00:11:47.642
 The authors haven't run Lab 2.
 
 186
-00:11:50.260 --> 00:11:54.050
+00:11:47.642 --> 00:11:51.450
 Follow Chapter 06's Lab 2, step by step.
 
 187
-00:11:57.800 --> 00:11:59.187
+00:11:55.200 --> 00:11:56.587
 The federal requirement.
 
 188
-00:11:59.187 --> 00:12:04.692
+00:11:56.587 --> 00:12:02.092
 Moving Group Policy to Intune changes the
 baseline of every device, so the plan,
 
 189
-00:12:04.692 --> 00:12:10.365
+00:12:02.092 --> 00:12:07.765
 the library and the sync record are
 evidence for NIST special publication eight
 
 190
-00:12:10.365 --> 00:12:14.938
+00:12:07.765 --> 00:12:12.338
 hundred fifty-three's
 configuration-management controls: C M two,
 
 191
-00:12:14.938 --> 00:12:19.510
+00:12:12.338 --> 00:12:16.910
 baseline configuration, C M three,
 configuration change control,
 
 192
-00:12:19.510 --> 00:12:23.575
+00:12:16.910 --> 00:12:20.975
 and C M six, configuration settings,
 with C A seven and A C six.
 
 193
-00:12:23.575 --> 00:12:31.400
+00:12:20.975 --> 00:12:28.800
 VK-INT-07's results show every in-scope
 GPO imported and ready, or listed.
 
 194
-00:12:31.400 --> 00:12:34.132
+00:12:28.800 --> 00:12:31.532
 The move plan, saved
 with the pull request,
 
 195
-00:12:34.132 --> 00:12:37.988
+00:12:31.532 --> 00:12:35.388
 gives each setting a disposition
 and shows the conflicts.
 
 196
-00:12:37.988 --> 00:12:42.750
+00:12:35.388 --> 00:12:40.150
 The library and its decision records give
 one owner and one decision per setting.
 
 197
-00:12:42.750 --> 00:12:45.750
+00:12:40.150 --> 00:12:43.150
 The sync record shows what
 the sync would create,
 
 198
-00:12:45.750 --> 00:12:49.275
+00:12:43.150 --> 00:12:46.675
 then wrote only that, with a
 read-only scope for the dry run.
 
 199
-00:12:49.275 --> 00:12:54.087
+00:12:46.675 --> 00:12:51.487
 A library that differs from the tenant
 stops the release, and the run log shows it.
 
 200
-00:12:54.087 --> 00:12:57.574
+00:12:51.487 --> 00:12:54.974
 And Microsoft's sample is
 pinned and its behavior tested.
 
 201
-00:12:57.574 --> 00:13:02.508
+00:12:54.974 --> 00:12:59.908
 The Key Security Indicators come from
 FedRAMP's Consolidated Rules for 2026:
 
 202
-00:13:02.508 --> 00:13:05.746
+00:12:59.908 --> 00:13:03.146
 they're FedRAMP 20x
 indicators for providers,
 
 203
-00:13:05.746 --> 00:13:08.675
+00:13:03.146 --> 00:13:06.075
 and the agency lines its
 evidence up with them.
 
 204
-00:13:08.675 --> 00:13:12.590
+00:13:06.075 --> 00:13:09.990
 Which output supports which
 control is this workbook's reading.
 
 205
-00:13:16.340 --> 00:13:18.315
+00:13:13.740 --> 00:13:15.715
 Check yourself with two questions.
 
 206
-00:13:18.315 --> 00:13:22.690
+00:13:15.715 --> 00:13:20.090
 First: Microsoft's import sample
 runs twice with the same file.
 
 207
-00:13:22.690 --> 00:13:23.702
+00:13:20.090 --> 00:13:21.102
 What happens?
 
 208
-00:13:23.702 --> 00:13:27.657
+00:13:21.102 --> 00:13:25.057
 The answer is b: two policies
 with the same name are created,
 
 209
-00:13:27.657 --> 00:13:30.540
+00:13:25.057 --> 00:13:27.940
 because the sample never reads the tenant.
 
 210
-00:13:30.540 --> 00:13:33.440
+00:13:27.940 --> 00:13:30.840
 You saw the two POSTs
 and no GET in step two.
 
 211
-00:13:33.440 --> 00:13:36.992
+00:13:30.840 --> 00:13:34.392
 Second: one library file
 differs from the tenant's copy,
 
 212
-00:13:36.992 --> 00:13:38.965
+00:13:34.392 --> 00:13:36.365
 and you run the sync with apply.
 
 213
-00:13:38.965 --> 00:13:40.115
+00:13:36.365 --> 00:13:37.515
 What does it create?
 
 214
-00:13:40.115 --> 00:13:42.077
+00:13:37.515 --> 00:13:39.477
 The answer is b: nothing.
 
 215
-00:13:42.077 --> 00:13:46.140
+00:13:39.477 --> 00:13:43.540
 It exits two, and writes nothing
 while any policy is drift.
 
 216
-00:13:46.140 --> 00:13:48.565
+00:13:43.540 --> 00:13:45.965
 Not even the policy
 that was marked create.
 
 217
-00:13:48.565 --> 00:13:50.315
+00:13:45.965 --> 00:13:47.715
 You saw that in step six.
 
 218
-00:13:50.315 --> 00:13:54.505
+00:13:47.715 --> 00:13:51.905
 The module page has two more questions,
 on the conflict disposition and
 
 219
-00:13:54.505 --> 00:13:58.900
+00:13:51.905 --> 00:13:56.300
 on the dry run's permission, each
 linked to the section that answers it.
 
 220
-00:14:02.650 --> 00:14:03.475
+00:14:00.050 --> 00:14:00.875
 To sum up.
 
 221
-00:14:03.475 --> 00:14:06.777
+00:14:00.875 --> 00:14:04.177
 You read Group Policy analytics
 into a plan per setting,
 
 222
-00:14:06.777 --> 00:14:11.084
+00:14:04.177 --> 00:14:08.484
 kept the policies as reviewed files,
 and saw the sync create only what its
 
 223
-00:14:11.084 --> 00:14:15.463
+00:14:08.484 --> 00:14:12.863
 dry run showed, and nothing at all when
 the library and the tenant disagree.
 
 224
-00:14:15.463 --> 00:14:22.045
+00:14:12.863 --> 00:14:19.445
 The evidence an ISSO keeps: VK-INT-07's
 run, the move plan with each pull request,
 
 225
-00:14:22.045 --> 00:14:25.806
+00:14:19.445 --> 00:14:23.206
 the library and its
 decision records in Git,
 
 226
-00:14:25.806 --> 00:14:31.238
+00:14:23.206 --> 00:14:28.638
 and the sync record with its scopes,
 file hashes and created I D's.
 
 227
-00:14:31.238 --> 00:14:36.862
+00:14:28.638 --> 00:14:34.262
 In Lab 2, add the Intune audit log for the
 import, the creation and the drift drill.
 
 228
-00:14:36.862 --> 00:14:42.001
+00:14:34.262 --> 00:14:39.401
 At deployment, Chapter 10 adds the
 GPO link states before and after.
 
 229
-00:14:42.001 --> 00:14:45.650
+00:14:39.401 --> 00:14:43.050
 Before shipping, work through
 the Chapter 06 checklist.
 
 230
-00:14:45.650 --> 00:14:50.909
+00:14:43.050 --> 00:14:48.309
 Next is Module 5: build machine configuration
 packages, for the server settings
 
 231
-00:14:50.909 --> 00:14:55.900
+00:14:48.309 --> 00:14:53.300
 machine configuration owns, with a build
 that makes the same MOF every time.

@@ -722,264 +722,264 @@ it to a managed identity, and
 managed identities aren't covered.
 
 151
-00:10:01.280 --> 00:10:05.493
+00:10:01.280 --> 00:10:05.280
 Step eight runs every test:
-five hundred thirteen pass.
+five hundred eleven pass.
 
 152
-00:10:05.493 --> 00:10:09.210
+00:10:05.280 --> 00:10:09.000
 Then delete the output, which
 names accounts and owners.
 
 153
-00:10:12.960 --> 00:10:18.022
+00:10:12.750 --> 00:10:17.812
 Lab 2 runs the matrix against your
 own test tenant, worldwide or G C C,
 
 154
-00:10:18.022 --> 00:10:21.152
+00:10:17.812 --> 00:10:20.942
 never production, with fictional people,
 
 155
-00:10:21.152 --> 00:10:25.110
+00:10:20.942 --> 00:10:24.900
 and with the Lab 2 runs of
 Modules 1 and 2 already done.
 
 156
-00:10:25.110 --> 00:10:26.848
+00:10:24.900 --> 00:10:26.638
 The run only reads.
 
 157
-00:10:26.848 --> 00:10:30.061
+00:10:26.638 --> 00:10:29.851
 Grant User dot Read dot
 All and License Assignment
 
 158
-00:10:30.061 --> 00:10:32.585
+00:10:29.851 --> 00:10:32.375
 dot Read dot All to
 Module 1's reading app.
 
 159
-00:10:32.585 --> 00:10:35.456
+00:10:32.375 --> 00:10:35.246
 Write the owners' inputs
 for your test accounts:
 
 160
-00:10:35.456 --> 00:10:38.548
+00:10:35.246 --> 00:10:38.338
 where each workload runs,
 and each owner's decision.
 
 161
-00:10:38.548 --> 00:10:39.797
+00:10:38.338 --> 00:10:39.587
 Run the matrix.
 
 162
-00:10:39.797 --> 00:10:41.829
+00:10:39.587 --> 00:10:41.619
 Record what the license read shows,
 
 163
-00:10:41.829 --> 00:10:45.962
+00:10:41.619 --> 00:10:45.752
 and check in the admin center which
 principals Conditional Access can
 
 164
-00:10:45.962 --> 00:10:49.885
+00:10:45.752 --> 00:10:49.675
 actually target, because that's the
 scope the D N P 4 decision rests on.
 
 165
-00:10:49.885 --> 00:10:54.497
+00:10:49.675 --> 00:10:54.287
 To back it out, step six removes the
 two permissions and deletes the output.
 
 166
-00:10:54.497 --> 00:10:56.647
+00:10:54.287 --> 00:10:56.437
 The authors haven't run Lab 2.
 
 167
-00:10:56.647 --> 00:11:00.150
+00:10:56.437 --> 00:10:59.940
 The workbook's Chapter 3
 has the exact commands.
 
 168
-00:11:03.900 --> 00:11:05.287
+00:11:03.690 --> 00:11:05.077
 The federal requirement.
 
 169
-00:11:05.287 --> 00:11:10.090
+00:11:05.077 --> 00:11:09.880
 Gate 2 supports NIST special
 publication eight hundred fifty-three
 
 170
-00:11:10.090 --> 00:11:14.050
+00:11:09.880 --> 00:11:13.840
 A C two and I A five, and the
 module's table maps the evidence.
 
 171
-00:11:14.050 --> 00:11:18.225
+00:11:13.840 --> 00:11:18.015
 Your organization still sets the
 organization-defined parameters,
 
 172
-00:11:18.225 --> 00:11:21.375
+00:11:18.015 --> 00:11:21.165
 and the assessor decides
 whether each is satisfied.
 
 173
-00:11:21.375 --> 00:11:24.988
+00:11:21.165 --> 00:11:24.778
 For account and authenticator
 management, the proposals,
 
 174
-00:11:24.988 --> 00:11:28.150
+00:11:24.778 --> 00:11:27.940
 the reviewed matrix file
 and the owners' decisions.
 
 175
-00:11:28.150 --> 00:11:32.100
+00:11:27.940 --> 00:11:31.890
 For privileged accounts, with
 high-risk first, the findings.
 
 176
-00:11:32.100 --> 00:11:36.113
+00:11:31.890 --> 00:11:35.903
 For configuration change control,
 the waves and their rollback.
 
 177
-00:11:36.113 --> 00:11:40.075
+00:11:35.903 --> 00:11:39.865
 For access enforcement, the
 Workload I D Premium scope.
 
 178
-00:11:40.075 --> 00:11:43.550
+00:11:39.865 --> 00:11:43.340
 And for continuous monitoring,
 the gate's own status file.
 
 179
-00:11:43.550 --> 00:11:48.188
+00:11:43.340 --> 00:11:47.978
 K S I's are FedRAMP twenty X indicators
 for cloud service providers.
 
 180
-00:11:48.188 --> 00:11:52.627
+00:11:47.978 --> 00:11:52.417
 The agency lines its evidence up
 with what its providers report;
 
 181
-00:11:52.627 --> 00:11:54.637
+00:11:52.417 --> 00:11:54.427
 it doesn't report K S I's itself.
 
 182
-00:11:54.637 --> 00:11:58.250
+00:11:54.427 --> 00:11:58.040
 Which file supports which
 indicator is the program's mapping.
 
 183
-00:12:02.000 --> 00:12:03.975
+00:12:01.790 --> 00:12:03.765
 Check yourself with two questions.
 
 184
-00:12:03.975 --> 00:12:07.175
+00:12:03.765 --> 00:12:06.965
 First: who decides an
 identity's disposition?
 
 185
-00:12:07.175 --> 00:12:13.375
+00:12:06.965 --> 00:12:13.165
 The answer is b: the application owner,
 account by account, under decision D N P 3.
 
 186
-00:12:13.375 --> 00:12:18.063
+00:12:13.165 --> 00:12:17.853
 The matrix only proposes,
 and the ISSO checks the gate.
 
 187
-00:12:18.063 --> 00:12:22.713
+00:12:17.853 --> 00:12:22.503
 Second: a high-risk account is
 scheduled for re-platforming in wave 2.
 
 188
-00:12:22.713 --> 00:12:23.724
+00:12:22.503 --> 00:12:23.514
 What happens?
 
 189
-00:12:23.724 --> 00:12:24.969
+00:12:23.514 --> 00:12:24.759
 The answer is a.
 
 190
-00:12:24.969 --> 00:12:31.087
+00:12:24.759 --> 00:12:30.877
 N P I M A T oh seven raises a finding,
 because high-risk accounts go in wave 1.
 
 191
-00:12:31.087 --> 00:12:34.512
+00:12:30.877 --> 00:12:34.302
 The code reports it; it doesn't
 move the account itself.
 
 192
-00:12:34.512 --> 00:12:39.499
+00:12:34.302 --> 00:12:39.289
 You saw exactly that finding
 for svc hrsync in step five.
 
 193
-00:12:39.499 --> 00:12:41.927
+00:12:39.289 --> 00:12:41.717
 The module page has three more questions,
 
 194
-00:12:41.927 --> 00:12:44.780
+00:12:41.717 --> 00:12:44.570
 each linked to the
 section that answers it.
 
 195
-00:12:48.530 --> 00:12:49.355
+00:12:48.320 --> 00:12:49.145
 To sum up.
 
 196
-00:12:49.355 --> 00:12:54.538
+00:12:49.145 --> 00:12:54.328
 You proposed a target for twenty identities,
 checked the owners' dispositions,
 
 197
-00:12:54.538 --> 00:12:58.843
+00:12:54.328 --> 00:12:58.633
 read two waves and their rollback,
 and scoped Workload I D Premium.
 
 198
-00:12:58.843 --> 00:13:02.118
+00:12:58.633 --> 00:13:01.908
 Gate 2 isn't met on the
 fixtures, and you can say why.
 
 199
-00:13:02.118 --> 00:13:07.017
+00:13:01.908 --> 00:13:06.807
 The evidence an ISSO keeps for Gate
 2 from this module is the proposals,
 
 200
-00:13:07.017 --> 00:13:12.087
+00:13:06.807 --> 00:13:11.877
 the decisions, the waves, the license
 scope, the findings, the gate's status,
 
 201
-00:13:12.087 --> 00:13:16.142
+00:13:11.877 --> 00:13:15.932
 and the manifest that hashes
 them and the inputs, all dated.
 
 202
-00:13:16.142 --> 00:13:19.218
+00:13:15.932 --> 00:13:19.008
 Before you ship, work through
 the chapter's checklist.
 
 203
-00:13:19.218 --> 00:13:22.418
+00:13:19.008 --> 00:13:22.208
 Next is Module 4: set
 the credential rules.
 
 204
-00:13:22.418 --> 00:13:27.275
+00:13:22.208 --> 00:13:27.065
 The tenant can block new secrets and
 cap certificate lifetimes itself,
 
 205
-00:13:27.275 --> 00:13:31.030
+00:13:27.065 --> 00:13:30.820
 and the rest is a rotation
 plan, from renewal to removal.

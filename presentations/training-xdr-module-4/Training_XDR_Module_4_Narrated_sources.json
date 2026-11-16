@@ -1,0 +1,80 @@
+[
+ {
+  "slide": 4,
+  "title": "Unit 1: the rule file, in Learn's shape, disabled",
+  "links": [
+   {
+    "text": "Create detectionRule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-create-detectionrule"
+   },
+   {
+    "text": "Use the Microsoft Graph security API",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-api-overview"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Validation datasets, schema governance, 30 days",
+  "links": [
+   {
+    "text": "security: runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Advanced hunting schema naming changes",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-schema-changes"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Deploying through Graph, and what GCC has",
+  "links": [
+   {
+    "text": "security: runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Create detectionRule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-create-detectionrule"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Unit 2: identity and cloud-app signals, and their gaps",
+  "links": [
+   {
+    "text": "Defender for Identity for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-identity-us-government"
+   },
+   {
+    "text": "Defender for Cloud Apps for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-cloud-apps-us-government"
+   },
+   {
+    "text": "Understand the advanced hunting schema",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-schema-tables"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The federal requirement and evidence for Module 4",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

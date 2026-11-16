@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Defender XDR learning path](index.md). Guide [Step 1](../../books/guides/defender-xdr-implementation.md#step-1-service-architecture-and-access) and [Step 2](../../books/guides/defender-xdr-implementation.md#step-2-endpoint-onboarding). About 40 minutes, plus Lab 2.*
 
+**Watch:** the narrated deck for this module (about 14 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_1_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-1) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-1/Training_XDR_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-1/Training_XDR_Module_1_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#xdr-m1-introduction}
 
 Before any prevention setting matters, two things have to be true: the right people can see and act on the service, in the tenant's own cloud, and the sensor is on every device it should be. In this module you learn the service's shape and its GCC limits, set who can do what, and prove the sensor's coverage with a query whose result you can file.

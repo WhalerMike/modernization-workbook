@@ -136,743 +136,691 @@ grant the consent leaves behind,
 and say when not to revoke it.
 
 29
-00:01:49.005 --> 00:01:53.169
-You'll connect in Commercial,
-G C C, G C C High or D O D,
+00:01:49.005 --> 00:01:54.405
+You'll connect in Commercial or G C C, and
+confirm the session's tenant and cloud.
 
 30
-00:01:53.169 --> 00:01:56.905
-and confirm the session's
-tenant and cloud.
-
-31
-00:01:56.905 --> 00:01:59.742
+00:01:54.405 --> 00:01:57.242
 And you'll run the assessment
 and hash its export.
 
-32
-00:01:59.742 --> 00:02:03.905
+31
+00:01:57.242 --> 00:02:01.405
 You need Module 1, and a skim of
 the Privileged Access implementation
 
-33
-00:02:03.905 --> 00:02:07.118
+32
+00:02:01.405 --> 00:02:04.618
 guide's pim model, for the
 run account's eligible roles.
 
-34
-00:02:07.118 --> 00:02:10.840
+33
+00:02:04.618 --> 00:02:08.350
 Lab 2 runs in a test
 tenant, never production.
 
-35
-00:02:14.590 --> 00:02:17.165
+34
+00:02:12.100 --> 00:02:14.675
 Unit 1 is the host and the output.
 
-36
-00:02:17.165 --> 00:02:19.290
+35
+00:02:14.675 --> 00:02:16.800
 Learn asks for PowerShell seven.
 
-37
-00:02:19.290 --> 00:02:23.983
+36
+00:02:16.800 --> 00:02:21.493
 Release three point one point oh's own
 guide asks for seven point six or later,
 
-38
-00:02:23.983 --> 00:02:26.740
+37
+00:02:21.493 --> 00:02:24.250
 because its pinned
 Exchange module needs it,
 
-39
-00:02:26.740 --> 00:02:30.390
+38
+00:02:24.250 --> 00:02:27.900
 and recommends a dedicated,
 clean Windows virtual machine.
 
-40
-00:02:30.390 --> 00:02:33.056
+39
+00:02:27.900 --> 00:02:30.566
 On other platforms, the
 SharePoint Online and
 
-41
-00:02:33.056 --> 00:02:36.002
+40
+00:02:30.566 --> 00:02:33.512
 Azure Information Protection
 checks are skipped.
 
-42
-00:02:36.002 --> 00:02:40.265
+41
+00:02:33.512 --> 00:02:37.775
 Install the module version the decision
 record pins, and nothing newer.
 
-43
-00:02:40.265 --> 00:02:43.259
+42
+00:02:37.775 --> 00:02:40.769
 Every run gets a new,
 empty folder that only the
 
-44
-00:02:43.259 --> 00:02:46.490
+43
+00:02:40.769 --> 00:02:44.000
 run account and the evidence
 custodians can read.
 
-45
-00:02:46.490 --> 00:02:50.395
+44
+00:02:44.000 --> 00:02:47.905
 And one thing people miss: deleting
 the report folder doesn't remove
 
-46
-00:02:50.395 --> 00:02:54.440
+45
+00:02:47.905 --> 00:02:51.950
 PowerShell's separate logging folder,
 which can also hold tenant data.
 
-47
-00:02:54.440 --> 00:02:59.580
+46
+00:02:51.950 --> 00:02:57.090
 The tool's guide says so, and the program
 treats that folder as part of the output.
 
-48
-00:03:03.330 --> 00:03:07.605
+47
+00:03:00.840 --> 00:03:05.115
 Unit 2 is consent and roles,
 and the two sources don't agree.
 
-49
-00:03:07.605 --> 00:03:12.680
+48
+00:03:05.115 --> 00:03:10.190
 Learn's get-started page says the first
 connection needs a Global Administrator,
 
-50
-00:03:12.680 --> 00:03:14.649
+49
+00:03:10.190 --> 00:03:12.159
 lists four roles for later runs,
 
-51
-00:03:14.649 --> 00:03:17.755
+50
+00:03:12.159 --> 00:03:15.265
 and on the same page says
 a Global Reader is enough.
 
-52
-00:03:17.755 --> 00:03:22.682
+51
+00:03:15.265 --> 00:03:20.192
 The tool's guide for three point one point
 oh says a Cloud Application Administrator
 
-53
-00:03:22.682 --> 00:03:26.412
+52
+00:03:20.192 --> 00:03:23.922
 or Application Administrator
 can grant the delegated consent,
 
-54
-00:03:26.412 --> 00:03:28.805
+53
+00:03:23.922 --> 00:03:26.315
 and that consent assigns no runtime role.
 
-55
-00:03:28.805 --> 00:03:32.503
+54
+00:03:26.315 --> 00:03:30.013
 It says the module validates Global
 Reader for the Graph context,
 
-56
-00:03:32.503 --> 00:03:36.680
+55
+00:03:30.013 --> 00:03:34.190
 and that the SharePoint tenant commands
 need SharePoint Administrator.
 
-57
-00:03:36.680 --> 00:03:39.526
+56
+00:03:34.190 --> 00:03:37.036
 Learn lists twenty-one Graph permissions;
 
-58
-00:03:39.526 --> 00:03:44.405
+57
+00:03:37.036 --> 00:03:41.915
 Get Z T Graph Scope in three point one
 point oh prints thirty-four, all read.
 
-59
-00:03:44.405 --> 00:03:49.205
+58
+00:03:41.915 --> 00:03:46.715
 The program follows the tool's guide,
 because it describes the version being run.
 
-60
-00:03:49.205 --> 00:03:53.192
+59
+00:03:46.715 --> 00:03:50.702
 The consent administrator consents
 and doesn't run the assessment.
 
-61
-00:03:53.192 --> 00:03:55.739
+60
+00:03:50.702 --> 00:03:53.249
 The run account is a
 dedicated reader whose
 
-62
-00:03:55.739 --> 00:03:58.920
+61
+00:03:53.249 --> 00:03:56.430
 roles are activated through
 pim before each run.
 
-63
-00:04:02.670 --> 00:04:06.409
+62
+00:04:00.180 --> 00:04:03.919
 Consent leaves something behind:
 a delegated permission grant,
 
-64
-00:04:06.409 --> 00:04:09.020
+63
+00:04:03.919 --> 00:04:06.530
 on the application the
 tool signs in through.
 
-65
-00:04:09.020 --> 00:04:13.350
+64
+00:04:06.530 --> 00:04:10.860
 By default that's the Microsoft Graph
 PowerShell application, which other
 
-66
-00:04:13.350 --> 00:04:17.820
+65
+00:04:10.860 --> 00:04:15.330
 scripts in the tenant share, so every
 script that uses it inherits the consent.
 
-67
-00:04:17.820 --> 00:04:22.545
+66
+00:04:15.330 --> 00:04:20.055
 Learn's page on the Graph PowerShell
 authentication commands recommends a custom
 
-68
-00:04:22.545 --> 00:04:25.832
+67
+00:04:20.055 --> 00:04:23.342
 application when you need to
 isolate the consent it holds,
 
-69
-00:04:25.832 --> 00:04:28.845
+68
+00:04:23.342 --> 00:04:26.355
 and the tool accepts one with
 the client I D parameter.
 
-70
-00:04:28.845 --> 00:04:32.983
+69
+00:04:26.355 --> 00:04:30.493
 The program uses a dedicated
 application; that's design guidance.
 
-71
-00:04:32.983 --> 00:04:35.795
+70
+00:04:30.493 --> 00:04:33.305
 Review the grant after
 every version change,
 
-72
-00:04:35.795 --> 00:04:39.671
+71
+00:04:33.305 --> 00:04:37.181
 and compare its scopes with the
 list Get Z T Graph Scope prints.
 
-73
-00:04:39.671 --> 00:04:43.827
+72
+00:04:37.181 --> 00:04:41.337
 When the tool is retired, revoke
 a dedicated application's grant,
 
-74
-00:04:43.827 --> 00:04:45.945
+73
+00:04:41.337 --> 00:04:43.455
 with Learn's revocation command.
 
-75
-00:04:45.945 --> 00:04:50.107
+74
+00:04:43.455 --> 00:04:47.617
 Never revoke the shared one without
 asking who else relies on it.
 
-76
-00:04:50.107 --> 00:04:53.029
+75
+00:04:47.617 --> 00:04:50.539
 Learn also notes that
 existing tokens stay valid
 
-77
-00:04:53.029 --> 00:04:55.960
+76
+00:04:50.539 --> 00:04:53.470
 for their lifetime after
 a grant is deleted.
 
-78
-00:04:59.710 --> 00:05:01.185
+77
+00:04:57.220 --> 00:04:58.695
 Unit 3 connects.
 
-79
-00:05:01.185 --> 00:05:05.875
+78
+00:04:58.695 --> 00:05:03.385
 Learn's Zero Trust Assessment pages don't
 mention government clouds; the tool's
 
-80
-00:05:05.875 --> 00:05:10.710
+79
+00:05:03.385 --> 00:05:08.220
 source does, and the guide matches its
 parameters to Learn's page for each service.
 
+80
+00:05:08.220 --> 00:05:10.588
+A G C C tenant, the workbook's baseline,
+
 81
-00:05:10.710 --> 00:05:14.148
-Start with G C C, the workbook's baseline.
+00:05:10.588 --> 00:05:15.483
+uses the worldwide Graph and Azure
+endpoints, so it connects with the tool's
 
 82
-00:05:14.148 --> 00:05:18.004
-A G C C tenant uses the worldwide
-Graph and Azure endpoints,
+00:05:15.483 --> 00:05:20.220
+defaults: the Global environment,
+and the default Exchange environment.
 
 83
-00:05:18.004 --> 00:05:23.548
-so it connects with the default Global
-environment, the same command as commercial.
+00:05:20.220 --> 00:05:22.420
+That's the same command as commercial.
 
 84
-00:05:23.548 --> 00:05:26.515
-G C C High uses the U S Gov environment,
-
-85
-00:05:26.515 --> 00:05:30.472
-with the Exchange environment
-name for G C C High.
-
-86
-00:05:30.472 --> 00:05:36.360
-D O D uses U S Gov D O D, with
-its own Exchange environment name.
-
-87
-00:05:36.360 --> 00:05:40.760
+00:05:22.420 --> 00:05:26.820
 Then confirm the session's tenant
 and cloud with Get M G Context.
 
-88
-00:05:40.760 --> 00:05:43.924
-Pass the SharePoint admin
-U R L in every cloud;
+85
+00:05:26.820 --> 00:05:29.102
+And pass the SharePoint admin U R L;
 
-89
-00:05:43.924 --> 00:05:47.773
+86
+00:05:29.102 --> 00:05:33.130
 otherwise the tool infers
 one from the initial domain.
 
-90
-00:05:47.773 --> 00:05:53.447
-And in D O D, Learn and the tool give
-different Security and Compliance addresses.
+87
+00:05:36.880 --> 00:05:42.167
+Here's where each service stands in G C
+C, from the guide's availability table.
 
-91
-00:05:53.447 --> 00:05:57.970
-If the data pillar's tests come back
-disconnected there, check that first.
-
-92
-00:06:01.720 --> 00:06:04.730
-Here's where each service
-stands, cloud by cloud,
-
-93
-00:06:04.730 --> 00:06:07.045
-from the guide's availability table.
-
-94
-00:06:07.045 --> 00:06:13.296
+88
+00:05:42.167 --> 00:05:47.427
 Microsoft Graph: G C C uses the
 worldwide graph dot microsoft dot com,
 
-95
-00:06:13.296 --> 00:06:19.658
-G C C High uses graph dot microsoft dot
-U S, and D O D its own D O D graph host.
+89
+00:05:47.427 --> 00:05:49.681
+with the Global environment.
 
-96
-00:06:19.658 --> 00:06:22.337
-Exchange Online: no parameter in G C C,
+90
+00:05:49.681 --> 00:05:54.130
+Exchange Online: the default
+environment, so no parameter is needed.
 
-97
-00:06:22.337 --> 00:06:25.908
-and an environment name
-for each of the other two.
+91
+00:05:54.130 --> 00:05:57.393
+Security and Compliance:
+the default endpoint.
 
-98
-00:06:25.908 --> 00:06:29.970
-Security and Compliance: the
-default endpoint in G C C;
+92
+00:05:57.393 --> 00:05:59.142
+Azure: Azure Cloud.
 
-99
-00:06:29.970 --> 00:06:34.217
-a dot U S address in G C C High;
-and in D O D, Learn and the tool's
+93
+00:05:59.142 --> 00:06:03.763
+And the SharePoint admin address ends
+in dash admin dot sharepoint dot com.
 
-100
-00:06:34.217 --> 00:06:39.295
-source give different addresses,
-and which one works wasn't tested.
-
-101
-00:06:39.295 --> 00:06:44.457
-Azure: Azure Cloud for G C C, Azure
-U S Government for the other two.
-
-102
-00:06:44.457 --> 00:06:49.508
-SharePoint admin: pass it explicitly;
-D O D's isn't yet specified.
-
-103
-00:06:49.508 --> 00:06:53.899
+94
+00:06:03.763 --> 00:06:08.085
 Until a run has been proved in your own
 cloud, run one pillar at a time in a
 
-104
-00:06:53.899 --> 00:06:59.110
+95
+00:06:08.085 --> 00:06:13.230
 test tenant of the same cloud, and keep
 ScubaGear as the federal baseline tool.
 
-105
-00:07:02.860 --> 00:07:04.860
+96
+00:06:16.980 --> 00:06:18.980
 Unit 4 is the run itself.
 
-106
-00:07:04.860 --> 00:07:08.318
+97
+00:06:18.980 --> 00:06:22.438
 On a large tenant it can take
 more than twenty-four hours,
 
-107
-00:07:08.318 --> 00:07:10.347
+98
+00:06:22.438 --> 00:06:24.467
 and Microsoft says not to stop it.
 
-108
-00:07:10.347 --> 00:07:14.874
+99
+00:06:24.467 --> 00:06:28.994
 The disable-telemetry switch suppresses
 the tool's one telemetry event,
 
-109
-00:07:14.874 --> 00:07:16.610
+100
+00:06:28.994 --> 00:06:30.730
 which carries the tenant I D.
 
-110
-00:07:16.610 --> 00:07:21.172
+101
+00:06:30.730 --> 00:06:35.292
 Whether to use it is the see-so's
 decision, written in the decision record.
 
-111
-00:07:21.172 --> 00:07:24.623
+102
+00:06:35.292 --> 00:06:38.743
 The no-browser switch keeps the
 report from opening on screen.
 
-112
-00:07:24.623 --> 00:07:29.694
+103
+00:06:38.743 --> 00:06:43.814
 As soon as the run ends, before
 anyone opens or copies a file,
 
-113
-00:07:29.694 --> 00:07:32.547
+104
+00:06:43.814 --> 00:06:46.667
 hash the export, S H A two fifty-six.
 
-114
-00:07:32.547 --> 00:07:35.773
+105
+00:06:46.667 --> 00:06:49.893
 That hash is what later shows
 the output wasn't changed.
 
-115
-00:07:35.773 --> 00:07:38.479
+106
+00:06:49.893 --> 00:06:52.599
 And if the run fails,
 capture a support package
 
-116
-00:07:38.479 --> 00:07:40.759
+107
+00:06:52.599 --> 00:06:54.879
 in the same session, before you close it.
 
-117
-00:07:40.759 --> 00:07:42.702
+108
+00:06:54.879 --> 00:06:56.822
 The guide's Step 5 has the command,
 
-118
-00:07:42.702 --> 00:07:46.650
+109
+00:06:56.822 --> 00:07:00.770
 and says to write the package
 to a separate protected folder.
 
-119
-00:07:50.400 --> 00:07:54.512
+110
+00:07:04.520 --> 00:07:08.632
 Lab 2 runs the real tool in a
 test tenant, never production.
 
-120
-00:07:54.512 --> 00:07:57.437
+111
+00:07:08.632 --> 00:07:11.557
 The authors haven't run
 it, as the page says.
 
-121
-00:07:57.437 --> 00:08:01.651
+112
+00:07:11.557 --> 00:07:15.771
 You need a test tenant in the cloud
 you'll assess, with fictional users;
 
-122
-00:08:01.651 --> 00:08:05.421
+113
+00:07:15.771 --> 00:07:19.541
 a consent administrator; a reader
 account with Global Reader,
 
-123
-00:08:05.421 --> 00:08:09.708
+114
+00:07:19.541 --> 00:07:23.828
 Security Reader and SharePoint
 Administrator, eligible through pim;
 
-124
-00:08:09.708 --> 00:08:12.813
+115
+00:07:23.828 --> 00:07:26.933
 and a Windows host with
 PowerShell seven point six.
 
-125
-00:08:12.813 --> 00:08:15.524
+116
+00:07:26.933 --> 00:07:29.644
 Values you supply are in angle brackets.
 
-126
-00:08:15.524 --> 00:08:19.090
+117
+00:07:29.644 --> 00:07:33.210
 Step one prepares the host:
 check the PowerShell version,
 
-127
-00:08:19.090 --> 00:08:23.337
+118
+00:07:33.210 --> 00:07:37.457
 install the pinned module, create
 the report folder, and restrict it.
 
-128
-00:08:23.337 --> 00:08:26.779
+119
+00:07:37.457 --> 00:07:40.899
 Step two consents once, as
 the consent administrator:
 
-129
-00:08:26.779 --> 00:08:32.099
+120
+00:07:40.899 --> 00:07:46.219
 print the scopes the tool will request, then
 connect to Graph and accept the prompt.
 
-130
-00:08:32.099 --> 00:08:35.350
+121
+00:07:46.219 --> 00:07:49.470
 Step three reviews the grant
 while you're still signed in.
 
-131
-00:08:35.350 --> 00:08:37.955
+122
+00:07:49.470 --> 00:07:52.075
 The scope field lists every permission the
 
-132
-00:08:37.955 --> 00:08:40.488
+123
+00:07:52.075 --> 00:07:54.608
 tool's application now
 holds in the tenant.
 
-133
-00:08:40.488 --> 00:08:45.440
+124
+00:07:54.608 --> 00:07:59.560
 Compare it with the list Get Z T Graph
 Scope printed, and keep the output.
 
-134
-00:08:49.190 --> 00:08:51.379
+125
+00:08:03.310 --> 00:08:05.499
 Step four connects as the reader,
 
-135
-00:08:51.379 --> 00:08:55.515
+126
+00:08:05.499 --> 00:08:09.635
 after activating its roles in
 pim, in a new PowerShell session.
 
-136
-00:08:55.515 --> 00:09:00.401
-The command on the slide is for G C C
-and commercial; for G C C High or D O D,
+127
+00:08:09.635 --> 00:08:13.135
+The command on the slide is
+for G C C and commercial.
 
-137
-00:09:00.401 --> 00:09:04.677
-use the connection commands from
-the guide's Step 4 instead.
-
-138
-00:09:04.677 --> 00:09:08.440
+128
+00:08:13.135 --> 00:08:16.898
 Then confirm the session's
 tenant, environment and account.
 
-139
-00:09:08.440 --> 00:09:11.978
+129
+00:08:16.898 --> 00:08:20.435
 Step five runs the assessment
 and hashes the export.
 
-140
-00:09:11.978 --> 00:09:15.714
+130
+00:08:20.435 --> 00:08:24.172
 Keep the report folder:
 Modules 3 and 4 read it.
 
-141
-00:09:15.714 --> 00:09:18.990
+131
+00:08:24.172 --> 00:08:27.448
 Step six backs it all out,
 when you finish the path.
 
-142
-00:09:18.990 --> 00:09:23.265
+132
+00:08:27.448 --> 00:08:31.723
 Disconnect, and remove the reader's
 role assignments in the test tenant.
 
-143
-00:09:23.265 --> 00:09:27.205
+133
+00:08:31.723 --> 00:08:35.662
 If you consented on a dedicated
 application, remove its grant as a
 
-144
-00:09:27.205 --> 00:09:31.290
+134
+00:08:35.662 --> 00:08:39.747
 Cloud Application Administrator,
 with the grant I D from step three.
 
-145
-00:09:31.290 --> 00:09:34.610
+135
+00:08:39.747 --> 00:08:43.067
 Don't revoke the shared
 Microsoft Graph PowerShell
 
-146
-00:09:34.610 --> 00:09:37.390
+136
+00:08:43.067 --> 00:08:45.847
 grant if anything else
 in the tenant uses it.
 
-147
-00:09:37.390 --> 00:09:39.580
+137
+00:08:45.847 --> 00:08:48.030
 Then delete the report folder.
 
-148
-00:09:43.330 --> 00:09:45.941
+138
+00:08:51.780 --> 00:08:54.391
 The federal requirement, from NIST special
 
-149
-00:09:45.941 --> 00:09:49.205
+139
+00:08:54.391 --> 00:08:57.655
 publication eight hundred
 fifty-three, revision five.
 
-150
-00:09:49.205 --> 00:09:51.430
+140
+00:08:57.655 --> 00:08:59.880
 C M six, configuration settings:
 
-151
-00:09:51.430 --> 00:09:56.480
+141
+00:08:59.880 --> 00:09:04.930
 the host's pinned module and PowerShell
 versions, recorded for each run.
 
-152
-00:09:56.480 --> 00:10:00.658
+142
+00:09:04.930 --> 00:09:09.108
 A C six, least privilege: read
 roles only, activated just in time,
 
-153
-00:10:00.658 --> 00:10:04.917
+143
+00:09:09.108 --> 00:09:13.367
 with the consent administrator
 separate from the run account;
 
-154
-00:10:04.917 --> 00:10:10.242
+144
+00:09:13.367 --> 00:09:18.692
 the evidence is the role assignments, the
 pim activations, and the grant review.
 
-155
-00:10:10.242 --> 00:10:14.850
+145
+00:09:18.692 --> 00:09:23.300
 C A two and C A seven: the assessment
 run, in the tenant's own cloud;
 
-156
-00:10:14.850 --> 00:10:19.367
+146
+00:09:23.300 --> 00:09:27.817
 the evidence is the connection
 context and the export's hash.
 
-157
-00:10:19.367 --> 00:10:22.498
+147
+00:09:27.817 --> 00:09:30.949
 And A U nine, protection
 of audit information:
 
-158
-00:10:22.498 --> 00:10:25.630
+148
+00:09:30.949 --> 00:09:34.080
 hashes taken before
 anyone opened the files.
 
-159
-00:10:25.630 --> 00:10:29.917
+149
+00:09:34.080 --> 00:09:38.367
 Each row lines up with a fed-ramp
 twenty X key security indicator.
 
-160
-00:10:29.917 --> 00:10:34.080
+150
+00:09:38.367 --> 00:09:42.530
 The evidence supports the
 controls; the assessor decides.
 
-161
-00:10:37.830 --> 00:10:39.805
+151
+00:09:46.280 --> 00:09:48.255
 Check yourself with two questions.
 
-162
-00:10:39.805 --> 00:10:43.008
+152
+00:09:48.255 --> 00:09:51.458
 First: Learn lists twenty-one
 Graph permissions,
 
-163
-00:10:43.008 --> 00:10:47.493
+153
+00:09:51.458 --> 00:09:55.943
 and Get Z T Graph Scope in three
 point one point oh prints thirty-four.
 
-164
-00:10:47.493 --> 00:10:50.593
+154
+00:09:55.943 --> 00:09:59.043
 Which list does the consent
 review compare against?
 
-165
-00:10:50.593 --> 00:10:52.828
+155
+00:09:59.043 --> 00:10:01.278
 The answer is b: Get Z T Graph Scope's,
 
-166
-00:10:52.828 --> 00:10:56.342
+156
+00:10:01.278 --> 00:10:04.792
 because it's what the version
 you're running requests.
 
-167
-00:10:56.342 --> 00:11:00.530
+157
+00:10:04.792 --> 00:10:08.980
 Second: a G C C tenant connects
 with which environment value?
 
-168
-00:11:00.530 --> 00:11:06.905
+158
+00:10:08.980 --> 00:10:15.355
 The answer is a, Global, because G C C uses
 the worldwide Graph and Azure endpoints.
 
-169
-00:11:06.905 --> 00:11:12.480
-U S Gov is for G C C High,
-and U S Gov D O D for D O D.
+159
+00:10:15.355 --> 00:10:17.955
+There's no separate G C C value.
 
-170
-00:11:12.480 --> 00:11:17.750
+160
+00:10:17.955 --> 00:10:23.230
 The module page has three more questions,
 each linked to the unit that answers it.
 
-171
-00:11:21.500 --> 00:11:22.325
+161
+00:10:26.980 --> 00:10:27.805
 To sum up.
 
-172
-00:11:22.325 --> 00:11:26.875
+162
+00:10:27.805 --> 00:10:32.355
 You prepared a clean host with the pinned
 module and a restricted report folder.
 
-173
-00:11:26.875 --> 00:11:29.787
+163
+00:10:32.355 --> 00:10:35.268
 You consented once, as
 a consent administrator,
 
-174
-00:11:29.787 --> 00:11:32.700
+164
+00:10:35.268 --> 00:10:38.180
 and reviewed the grant
 the consent left behind.
 
-175
-00:11:32.700 --> 00:11:36.725
+165
+00:10:38.180 --> 00:10:42.205
 You connected in the tenant's
 own cloud, starting with G C C.
 
-176
-00:11:36.725 --> 00:11:39.127
+166
+00:10:42.205 --> 00:10:44.607
 And you ran the assessment as a reader and
 
-177
-00:11:39.127 --> 00:11:41.600
+167
+00:10:44.607 --> 00:10:47.080
 hashed its export before anyone opened it.
 
-178
-00:11:41.600 --> 00:11:46.934
+168
+00:10:47.080 --> 00:10:52.414
 The evidence an I S S O keeps from this
 module: the module and PowerShell versions,
 
-179
-00:11:46.934 --> 00:11:51.460
+169
+00:10:52.414 --> 00:10:56.940
 the grant review, the reader's role
 assignments and pim activations,
 
-180
-00:11:51.460 --> 00:11:54.450
+170
+00:10:56.940 --> 00:10:59.930
 the connection context,
 and the export's hash.
 
-181
-00:11:54.450 --> 00:11:58.036
+171
+00:10:59.930 --> 00:11:03.516
 Next is Module 3, from
 results to a closure register,
 
-182
-00:11:58.036 --> 00:12:02.030
+172
+00:11:03.516 --> 00:11:07.510
 where the kit turns an export
 into findings with owners.

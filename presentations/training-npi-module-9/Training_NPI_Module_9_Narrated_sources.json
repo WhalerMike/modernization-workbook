@@ -15,7 +15,7 @@
  },
  {
   "slide": 5,
-  "title": "Decision D-N6 as data: AgentId or Fallback mode",
+  "title": "Decision D-NP6 as data: AgentId or Fallback mode",
   "links": [
    {
     "text": "Microsoft Entra feature availability",
@@ -25,7 +25,7 @@
  },
  {
   "slide": 6,
-  "title": "The program's rules the code holds, N6.1 to N6.7",
+  "title": "The program's rules the code holds, NP6.1 to NP6.7",
   "links": [
    {
     "text": "Configure inheritable permissions",

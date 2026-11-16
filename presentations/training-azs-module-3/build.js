@@ -28,7 +28,7 @@ const LAB = "LAB 2  ·  A TEST SUBSCRIPTION, NEVER PRODUCTION  ·  NOT RUN BY TH
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 3: The edge and the egress", "Azure Security Engineering · In through an edge nothing goes around; out through a firewall that denies",
-    ["Front Door or Application Gateway  ·  Locking the origin  ·  TLS, probes and failover", "Azure Firewall egress  ·  Alert, then deny  ·  Lab 2 in a test subscription  ·  Evidence"]);
+    ["Front Door or Application Gateway  ·  Locking the origin  ·  TLS, probes and failover", "Azure Firewall egress  ·  Alert, then deny  ·  Lab 2 in a test subscription  ·  Evidence"], 5.0);
   notes(s,
 `Welcome to Module 3 of the Azure Security Engineering learning path: the edge and the egress. Module 2 put a web application firewall in front of each web workload. This module makes sure nothing can go around it, and then turns to the other direction: traffic leaving Azure, through Azure Firewall, with threat intelligence and intrusion detection denying. It covers Steps 5 and 6 of the Azure Security Engineering implementation guide, and takes about fifty-five minutes, plus a lab in your own test subscription.`,
   `${M} — "Introduction"; learning path index.`);

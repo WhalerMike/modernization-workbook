@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Defender XDR learning path](index.md). Guide [Step 7](../../books/guides/defender-xdr-implementation.md#step-7-advanced-hunting-and-detections-as-code) and [Step 8](../../books/guides/defender-xdr-implementation.md#step-8-identity-and-cloud-app-signals). About 45 minutes, plus Lab 2.*
 
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_4_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_4_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-4/Training_XDR_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-4/Training_XDR_Module_4_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#xdr-m4-introduction}
 
 A detection that lives only in a portal can't be reviewed, compared or rolled back, and one that can't be shown to fire isn't a control. In this module you learn to keep custom detections as files, test each against data it must find and data it must stay quiet in, and deploy it through Microsoft Graph. Then you join the identity and cloud-app sensors to the endpoint's alerts in one query.

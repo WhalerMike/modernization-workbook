@@ -11595,43 +11595,43 @@
    "What Microsoft's CSV2SCIM sample leaves to you"
   ],
   [
-   277,
+   282,
    "Fail closed: every row is built or refused"
   ],
   [
-   335,
+   341,
    "Send it whole, leavers first, and hold a mass disable"
   ],
   [
-   403,
+   408,
    "The provenance manifest: every batch tied by hash"
   ],
   [
-   456,
+   462,
    "Try it: run the client and read the quarantine"
   ],
   [
-   515,
+   521,
    "Try it: check the provenance, then rerun"
   ],
   [
-   567,
+   572,
    "Try it: break a row, hold a run, run the tests"
   ],
   [
-   618,
+   623,
    "Lab 2: send five records to your test tenant"
   ],
   [
-   668,
+   674,
    "The federal requirement and evidence for Module 1"
   ],
   [
-   735,
+   740,
    "Check yourself: two questions on the middleware"
   ],
   [
-   786,
+   791,
    "Summary, and next: Module 2, a validation kit check"
   ]
  ],
@@ -11699,55 +11699,51 @@
    "Module 3: Keep dynamic rules as code"
   ],
   [
-   55,
+   51,
    "Why a dynamic rule is access policy"
   ],
   [
-   102,
+   98,
    "What you'll be able to do in Module 3"
   ],
   [
-   155,
+   151,
    "The guards every rule needs, and the engine's limits"
   ],
   [
-   223,
+   219,
    "What Learn's incident samples leave to you"
   ],
   [
-   287,
+   284,
    "One file per group, evaluated offline"
   ],
   [
-   346,
+   344,
    "The linter, the shadow diff and the pause manifest"
   ],
   [
-   403,
-   "Try it: run Learn's samples against a fake tenant"
-  ],
-  [
-   461,
+   400,
    "Try it: lint the patterns, evaluate a rule, run the check"
   ],
   [
-   524,
+   470,
    "Try it: break a rule on purpose, then run the tests"
   ],
   [
-   581,
+   523,
    "Lab 2: create the groups paused, then drill a pause"
   ],
   [
-   636,
+   578,
    "The federal requirement and evidence for Module 3"
   ],
   [
-   714,
+   648,
    "Check yourself: two questions on rules as code"
   ],
   [
-   762,
+   697,
    "Summary, and next: Module 4, Group Policy as code"
   ]
  ],
@@ -11797,19 +11793,19 @@
    "Try it: dry run, apply, then break it on purpose"
   ],
   [
-   663,
+   661,
    "Lab 2: plan, sync and drill drift in a test tenant"
   ],
   [
-   717,
+   715,
    "The federal requirement and evidence for Module 4"
   ],
   [
-   796,
+   793,
    "Check yourself: two questions on Group Policy"
   ],
   [
-   842,
+   840,
    "Summary, and next: Module 5, machine configuration"
   ]
  ],
@@ -11897,43 +11893,43 @@
    "Which Azure a GCC estate's servers go to"
   ],
   [
-   304,
+   298,
    "What Microsoft's azure_arc role leaves to you"
   ],
   [
-   378,
+   372,
    "The inventory: owners become groups and tags"
   ],
   [
-   447,
+   441,
    "The wave plan, and onboarding in check mode"
   ],
   [
-   520,
+   514,
    "Try it: see what the CMDB becomes, then run the role"
   ],
   [
-   583,
+   577,
    "Try it: plan wave 0, then dry-run it"
   ],
   [
-   642,
+   636,
    "Try it: break the CMDB on purpose, run the tests"
   ],
   [
-   704,
+   698,
    "Lab 2: connect one disposable server"
   ],
   [
-   764,
+   759,
    "The federal requirement and evidence for Module 6"
   ],
   [
-   834,
+   828,
    "Check yourself: two questions on onboarding"
   ],
   [
-   882,
+   876,
    "Summary, and next: Module 7, Lifecycle Workflows"
   ]
  ],
@@ -11943,55 +11939,55 @@
    "Module 7: Extend Lifecycle Workflows"
   ],
   [
-   53,
+   52,
    "Why the rest of a leaver needs an extension"
   ],
   [
-   110,
+   104,
    "What you'll be able to do in Module 7"
   ],
   [
-   162,
+   152,
    "Where the extensions sit, and the three rules"
   ],
   [
-   235,
+   221,
    "What Learn's Logic App definition leaves to you"
   ],
   [
-   297,
+   289,
    "One Logic App per integration, in four steps"
   ],
   [
-   371,
+   364,
    "Lint, run, build, check, and authorization"
   ],
   [
-   445,
+   438,
    "Try it: lint and run Learn's definition"
   ],
   [
-   502,
+   490,
    "Try it: the program's definition, through failures"
   ],
   [
-   561,
+   548,
    "Try it: build the pieces, and check the read-backs"
   ],
   [
-   616,
+   605,
    "Lab 2: run a test leaver in your test tenant"
   ],
   [
-   675,
+   664,
    "The federal requirement and evidence for Module 7"
   ],
   [
-   745,
+   734,
    "Check yourself: two questions on extensions"
   ],
   [
-   793,
+   777,
    "Summary, and next: Module 8, drift and evidence"
   ]
  ],
@@ -12029,31 +12025,31 @@
    "Try it: lint the workflows, print a cloud's hosts"
   ],
   [
-   464,
+   454,
    "Try it: a baseline, then the next day"
   ],
   [
-   526,
+   515,
    "Try it: draft findings, then package the chain"
   ],
   [
-   585,
+   574,
    "Try it: break the package, swap the runs"
   ],
   [
-   632,
+   621,
    "Lab 2: a scheduled run in your test tenant"
   ],
   [
-   687,
+   677,
    "The federal requirement and evidence for Module 8"
   ],
   [
-   759,
+   749,
    "Check yourself: two questions on drift"
   ],
   [
-   809,
+   798,
    "Summary, and next: Module 9, test then production"
   ]
  ],
@@ -12115,6 +12111,604 @@
    "Summary: you've finished the path"
   ]
  ],
+ "Training_AZS_Module_1_Narrated": [
+  [
+   0,
+   "Module 1: The baseline and the exposure register"
+  ],
+  [
+   40,
+   "Why: a landing zone isn't a defense on its own"
+  ],
+  [
+   86,
+   "What you'll be able to do in Module 1"
+  ],
+  [
+   138,
+   "Unit 1: the books design; the guide engineers"
+  ],
+  [
+   200,
+   "Labels, Skipped not Fail, and the order of the steps"
+  ],
+  [
+   261,
+   "Unit 2: the landing-zone security baseline, in audit"
+  ],
+  [
+   326,
+   "Unit 3: the exposure register, from Resource Graph"
+  ],
+  [
+   388,
+   "Where agencies are: GCC uses commercial Azure"
+  ],
+  [
+   443,
+   "The same controls on AWS, Google Cloud and Oracle"
+  ],
+  [
+   516,
+   "Lab 2, steps 1 to 4: sign in, initiatives, logs"
+  ],
+  [
+   577,
+   "Lab 2, steps 5 to 7: the inventory and its owners"
+  ],
+  [
+   629,
+   "The federal requirement and evidence for Module 1"
+  ],
+  [
+   687,
+   "Check yourself: two questions on Module 1"
+  ],
+  [
+   724,
+   "Summary: a baseline in audit, and a list with owners"
+  ]
+ ],
+ "Training_AZS_Module_2_Narrated": [
+  [
+   0,
+   "Module 2: DDoS protection and the web application firewall"
+  ],
+  [
+   35,
+   "Why: two layers, and a mode that acts, not only logs"
+  ],
+  [
+   85,
+   "What you'll be able to do in Module 2"
+  ],
+  [
+   133,
+   "Unit 1: three DDoS tiers, and what none covers"
+  ],
+  [
+   193,
+   "One plan, linked networks, logs and the attack alert"
+  ],
+  [
+   256,
+   "Exercise the response: approved partners only"
+  ],
+  [
+   317,
+   "Unit 2: the WAF, and what Zero Trust checks"
+  ],
+  [
+   370,
+   "Detection first, then tune, then prevention"
+  ],
+  [
+   434,
+   "Where agencies are: commercial Azure, and other clouds"
+  ],
+  [
+   483,
+   "Lab 2, steps 1 to 3: every public IP's DDoS state"
+  ],
+  [
+   539,
+   "Lab 2, steps 4 to 7: the WAF blocks a test request"
+  ],
+  [
+   605,
+   "The federal requirement and evidence for Module 2"
+  ],
+  [
+   666,
+   "Check yourself: two questions on Module 2"
+  ],
+  [
+   704,
+   "Summary: protected, alerting, and blocking"
+  ]
+ ],
+ "Training_AZS_Module_3_Narrated": [
+  [
+   0,
+   "Module 3: The edge and the egress"
+  ],
+  [
+   36,
+   "Why: a WAF around which traffic flows protects nothing"
+  ],
+  [
+   89,
+   "What you'll be able to do in Module 3"
+  ],
+  [
+   135,
+   "Unit 1: Front Door, Application Gateway, or both"
+  ],
+  [
+   197,
+   "Lock the origin: Private Link, or tag plus header"
+  ],
+  [
+   256,
+   "TLS 1.2 or later, health probes, and failover"
+  ],
+  [
+   317,
+   "Unit 2: Azure Firewall for egress and east-west"
+  ],
+  [
+   382,
+   "Alert first, then deny through one reviewed draft"
+  ],
+  [
+   450,
+   "Where agencies are: regions to check first"
+  ],
+  [
+   509,
+   "Lab 2, steps 1 to 5: origin, TLS and failover"
+  ],
+  [
+   567,
+   "Lab 2, steps 6 to 10: routes, deny modes, the log"
+  ],
+  [
+   628,
+   "The federal requirement and evidence for Module 3"
+  ],
+  [
+   685,
+   "Check yourself: two questions on Module 3"
+  ],
+  [
+   727,
+   "Summary: no way around the edge, no way out unseen"
+  ]
+ ],
+ "Training_AZS_Module_4_Narrated": [
+  [
+   0,
+   "Module 4: Private Link, DNS and Key Vault"
+  ],
+  [
+   46,
+   "Why: a private endpoint nobody resolves isn't private"
+  ],
+  [
+   101,
+   "What you'll be able to do in Module 4"
+  ],
+  [
+   158,
+   "Unit 1: zones once, centrally, and a zone group"
+  ],
+  [
+   220,
+   "At scale, let policy place the records"
+  ],
+  [
+   277,
+   "Unit 2: vaults on RBAC, with purge protection"
+  ],
+  [
+   338,
+   "A compromised key, recovery, and the other clouds"
+  ],
+  [
+   389,
+   "Lab 2, steps 1 to 6: resolution and the vault's posture"
+  ],
+  [
+   450,
+   "Lab 2, steps 7 to 10: an allowed and a denied read"
+  ],
+  [
+   511,
+   "The federal requirement and evidence for Module 4"
+  ],
+  [
+   566,
+   "Check yourself: two questions on Module 4"
+  ],
+  [
+   605,
+   "Summary: private by name, readable by one identity"
+  ]
+ ],
+ "Training_AZS_Module_5_Narrated": [
+  [
+   0,
+   "Module 5: Policy, drift and evidence"
+  ],
+  [
+   37,
+   "Why: everything you built can drift"
+  ],
+  [
+   90,
+   "What you'll be able to do in Module 5"
+  ],
+  [
+   139,
+   "Unit 1: one initiative, audit first, then enforce"
+  ],
+  [
+   202,
+   "Exemptions expire, and compliance is filed monthly"
+  ],
+  [
+   255,
+   "Unit 2: the DDoS runbook and the review calendar"
+  ],
+  [
+   323,
+   "Measure coverage, then let the assessor decide"
+  ],
+  [
+   389,
+   "Where agencies are: look built-ins up where you are"
+  ],
+  [
+   427,
+   "Lab 2, steps 1 to 4: enforcement, the export, exemptions"
+  ],
+  [
+   482,
+   "Lab 2, steps 5 and 6: two metrics, then back out"
+  ],
+  [
+   536,
+   "The federal requirement and evidence for Module 5"
+  ],
+  [
+   597,
+   "Check yourself: two questions on Module 5"
+  ],
+  [
+   634,
+   "Summary: held in place, run, and evidenced"
+  ]
+ ],
+ "Training_GSA_Module_1_Narrated": [
+  [
+   0,
+   "Module 1: Decide, design and log first"
+  ],
+  [
+   43,
+   "Why: three functions, three gates, and logs first"
+  ],
+  [
+   87,
+   "What you'll be able to do in Module 1"
+  ],
+  [
+   135,
+   "Unit 1: the run order, and a beta API run by hand"
+  ],
+  [
+   197,
+   "Unit 2: one decision per function"
+  ],
+  [
+   260,
+   "Where agencies are: available in GCC, feature by feature"
+  ],
+  [
+   315,
+   "Unit 3: the reference architecture's zones and planes"
+  ],
+  [
+   382,
+   "Unit 4: logs before the pilot, and CISA's visibility"
+  ],
+  [
+   445,
+   "Lab 2, steps 1 to 3: licenses, status, export"
+  ],
+  [
+   507,
+   "Lab 2, steps 4 and 5: telemetry on, then freshness"
+  ],
+  [
+   557,
+   "The federal requirement and evidence for Module 1"
+  ],
+  [
+   616,
+   "Check yourself: two questions on Module 1"
+  ],
+  [
+   654,
+   "Summary: decided, designed, and logging first"
+  ]
+ ],
+ "Training_GSA_Module_2_Narrated": [
+  [
+   0,
+   "Module 2: The client and Microsoft traffic"
+  ],
+  [
+   34,
+   "Why: the client and the profile carry everything after"
+  ],
+  [
+   77,
+   "What you'll be able to do in Module 2"
+  ],
+  [
+   125,
+   "Unit 1: where the client runs, and where it can't"
+  ],
+  [
+   183,
+   "Unit 2: package the client the way Learn does"
+  ],
+  [
+   238,
+   "Unit 2, continued: DNS, hardening and upgrades"
+  ],
+  [
+   302,
+   "Unit 3: the Microsoft traffic profile and source IP"
+  ],
+  [
+   363,
+   "No report-only mode: the pilot is the audit phase"
+  ],
+  [
+   413,
+   "Lab 2, steps 1 to 5: package, check and count"
+  ],
+  [
+   470,
+   "Lab 2, steps 6 to 9: profile, signaling, source IP"
+  ],
+  [
+   528,
+   "The federal requirement and evidence for Module 2"
+  ],
+  [
+   586,
+   "Check yourself: two questions on Module 2"
+  ],
+  [
+   624,
+   "Summary: a client counted, a profile measured"
+  ]
+ ],
+ "Training_GSA_Module_3_Narrated": [
+  [
+   0,
+   "Module 3: Compliant network and tenant restrictions"
+  ],
+  [
+   38,
+   "Why: a stolen token, and a personal tenant"
+  ],
+  [
+   75,
+   "What you'll be able to do in Module 3"
+  ],
+  [
+   124,
+   "Unit 1: what the compliant network check denies"
+  ],
+  [
+   182,
+   "Unit 2: five failure modes, before you enforce"
+  ],
+  [
+   257,
+   "Unit 3: universal tenant restrictions"
+  ],
+  [
+   312,
+   "Learn's four-case test, and where agencies are"
+  ],
+  [
+   365,
+   "Pilot, enforce, roll back: the two side by side"
+  ],
+  [
+   446,
+   "Lab 2, steps 1 to 5: the policy, report-only first"
+  ],
+  [
+   511,
+   "Lab 2, steps 6 to 9: tagging and the four cases"
+  ],
+  [
+   564,
+   "The federal requirement and evidence for Module 3"
+  ],
+  [
+   623,
+   "Check yourself: two questions on Module 3"
+  ],
+  [
+   662,
+   "Summary: two signals, proved before they block"
+  ]
+ ],
+ "Training_GSA_Module_4_Narrated": [
+  [
+   0,
+   "Module 4: Private apps and administrative paths"
+  ],
+  [
+   35,
+   "Why: from an address pool to one path per app"
+  ],
+  [
+   82,
+   "What you'll be able to do in Module 4"
+  ],
+  [
+   135,
+   "Unit 1: Quick Access is the bridge, per-app the goal"
+  ],
+  [
+   206,
+   "Connectors: on premises, and in every cloud network"
+  ],
+  [
+   257,
+   "Least privilege, measured: the Quick Access residual"
+  ],
+  [
+   321,
+   "Unit 2: administrative RDP as its own application"
+  ],
+  [
+   381,
+   "Unit 3: domain controllers, for as long as they remain"
+  ],
+  [
+   445,
+   "Lab 2, steps 1 to 5: one application, one path"
+  ],
+  [
+   501,
+   "Lab 2, steps 6 to 12: admin path, profile, tests"
+  ],
+  [
+   571,
+   "The federal requirement and evidence for Module 4"
+  ],
+  [
+   640,
+   "Check yourself: two questions on Module 4"
+  ],
+  [
+   678,
+   "Summary: one path per app, admin paths locked"
+  ]
+ ],
+ "Training_GSA_Module_5_Narrated": [
+  [
+   0,
+   "Module 5: Internet Access and TLS inspection"
+  ],
+  [
+   34,
+   "Why: an identity-aware web gateway, inspection last"
+  ],
+  [
+   79,
+   "What you'll be able to do in Module 5"
+  ],
+  [
+   134,
+   "Unit 1: security profiles, from Learn's Graph tutorial"
+  ],
+  [
+   196,
+   "Unit 2: Learn's limits, QUIC, and every bypass"
+  ],
+  [
+   275,
+   "Unit 3: TLS inspection, from a dedicated CA"
+  ],
+  [
+   351,
+   "Privacy, pinned applications and the 1% line"
+  ],
+  [
+   439,
+   "Lab 2, steps 1 to 5: a pilot security profile"
+  ],
+  [
+   493,
+   "Lab 2, steps 6 to 9: QUIC, issuer, TLS outcomes"
+  ],
+  [
+   556,
+   "The federal requirement and evidence for Module 5"
+  ],
+  [
+   626,
+   "Check yourself: two questions on Module 5"
+  ],
+  [
+   666,
+   "Summary: filtered by identity, inspected in scope"
+  ]
+ ],
+ "Training_GSA_Module_6_Narrated": [
+  [
+   0,
+   "Module 6: Rings, rollback and the evidence package"
+  ],
+  [
+   33,
+   "Why: a pilot becomes a migration, then evidence"
+  ],
+  [
+   76,
+   "What you'll be able to do in Module 6"
+  ],
+  [
+   121,
+   "Unit 1: four rings, each with exit criteria"
+  ],
+  [
+   192,
+   "Coexistence during the move, and branch parity"
+  ],
+  [
+   261,
+   "Unit 2: who does what, and who decides closure"
+  ],
+  [
+   329,
+   "Five states, five kinds of evidence"
+  ],
+  [
+   398,
+   "Unit 3: metrics, then the rollback order"
+  ],
+  [
+   466,
+   "Lab 2, steps 1 to 4: measure, export, report-only"
+  ],
+  [
+   528,
+   "Lab 2, steps 5 to 12: the rest, in order, then clean up"
+  ],
+  [
+   603,
+   "The federal requirement and evidence for Module 6"
+  ],
+  [
+   661,
+   "Check yourself: two questions on Module 6"
+  ],
+  [
+   697,
+   "Summary: moved in rings, rolled back in order"
+  ]
+ ],
  "Training_HR_Module_1_Narrated": [
   [
    0,
@@ -12157,11 +12751,11 @@
    "Try it: scan a month of audit records"
   ],
   [
-   522,
+   523,
    "Try it: read the findings and a saved query"
   ],
   [
-   580,
+   581,
    "Lab 2: scan your own test tenant"
   ],
   [
@@ -12169,7 +12763,7 @@
    "The federal requirement and evidence for Gate 1"
   ],
   [
-   692,
+   693,
    "Check yourself: two questions on writers"
   ],
   [
@@ -12348,18 +12942,18 @@
   ],
   [
    588,
-   "GCC High's gap, and privileged access out of rules"
+   "Privileged access stays out of rules"
   ],
   [
-   640,
+   623,
    "The federal requirement and evidence for Gate 4"
   ],
   [
-   709,
+   691,
    "Check yourself: two questions on access and movers"
   ],
   [
-   757,
+   739,
    "Summary, and next: Module 5, certificate checks"
   ]
  ],
@@ -12373,55 +12967,51 @@
    "Why revocation is the weak link in card sign-in"
   ],
   [
-   97,
+   96,
    "What you'll be able to do in Module 5"
   ],
   [
-   152,
+   151,
    "Credentials follow HR events"
   ],
   [
-   209,
-   "The CRL limits the check holds each cloud to"
+   207,
+   "The CRL limits the check holds GCC to"
   ],
   [
-   261,
+   256,
    "The measurement: download each CRL once"
   ],
   [
-   306,
+   301,
    "The check, part 1: the trust store and each CRL"
   ],
   [
-   361,
+   356,
    "The check, part 2: the method and the policy"
   ],
   [
-   419,
+   414,
    "Try it: list the reads and measure the CRLs"
   ],
   [
-   468,
+   463,
    "Try it: check the fictional tenant for GCC"
   ],
   [
    521,
-   "Try it: the same tenant, checked for GCC High"
-  ],
-  [
-   569,
    "Lab 2: revoke a test card and watch Entra refuse it"
   ],
   [
-   619,
+   571,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   687,
+   639,
    "Check yourself: two questions on card sign-in"
   ],
   [
-   731,
+   684,
    "Summary, and next: Module 6, separation timing"
   ]
  ],
@@ -12567,55 +13157,55 @@
    "What you'll be able to do in Module 1"
   ],
   [
-   134,
+   131,
    "Clouds and endpoints: pick the cloud first"
   ],
   [
-   191,
-   "What changes in a government cloud beyond hosts"
+   180,
+   "What a script still has to get right beyond the hosts"
   ],
   [
-   249,
+   237,
    "Sign in as a workload, without a secret"
   ],
   [
-   308,
+   296,
    "Least-privileged permissions, and what they hide"
   ],
   [
-   369,
+   357,
    "Use the current tools; the old modules are retired"
   ],
   [
-   431,
+   419,
    "Four request patterns every Graph script needs"
   ],
   [
-   490,
+   478,
    "Throttling limits, and what changes a request's cost"
   ],
   [
-   543,
+   531,
    "Try it: the client refuses the wrong cloud and call"
   ],
   [
-   608,
+   593,
    "Lab 2: one permission, in your own test tenant"
   ],
   [
-   658,
-   "Where agencies are: GCC, GCC High and DoD"
+   643,
+   "Where agencies are: GCC with commercial Azure"
   ],
   [
-   720,
+   707,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   779,
+   766,
    "Check yourself: two questions on foundations"
   ],
   [
-   822,
+   808,
    "Summary, and next: Module 2, Entra ID"
   ]
  ],
@@ -12633,55 +13223,55 @@
    "What you'll be able to do in Module 2"
   ],
   [
-   140,
+   136,
    "Evidence questions mapped to Graph APIs"
   ],
   [
-   196,
+   190,
    "Sign-in activity and membership: the traps"
   ],
   [
-   247,
+   241,
    "Conditional Access: read it with one permission"
   ],
   [
-   297,
+   291,
    "PIM: eligible, active, and permanent active"
   ],
   [
-   347,
+   341,
    "Application credentials against three ScubaGear rules"
   ],
   [
-   387,
+   381,
    "Logs, retention, and authentication methods"
   ],
   [
-   440,
+   434,
    "The five checks, and a reader's permissions"
   ],
   [
-   495,
+   489,
    "Try it: find permanent privileged assignments"
   ],
   [
-   543,
+   537,
    "Lab 2: run the checks read-only in a test tenant"
   ],
   [
-   597,
-   "Where agencies are: Entra ID in GCC High and DoD"
+   591,
+   "Where agencies are: Entra ID in a GCC tenant"
   ],
   [
-   657,
+   652,
    "The federal requirement and evidence for Entra ID"
   ],
   [
-   717,
+   712,
    "Check yourself: two questions on Entra ID"
   ],
   [
-   755,
+   750,
    "Summary, and next: Module 3, Intune"
   ]
  ],
@@ -12703,11 +13293,11 @@
    "The workbook's device questions mapped to Intune APIs"
   ],
   [
-   199,
+   198,
    "Three things the program relies on are beta-only"
   ],
   [
-   252,
+   251,
    "Managed devices: what the checks read and leave out"
   ],
   [
@@ -12715,39 +13305,35 @@
    "Compliance status, coverage, and the name join"
   ],
   [
-   355,
+   354,
    "Keep remote actions and exports out of a collector"
   ],
   [
-   407,
+   406,
    "The five checks and the controls they evidence"
   ],
   [
-   465,
+   464,
    "Try it: find the devices no policy reaches"
   ],
   [
-   523,
+   527,
    "Lab 2: read your test tenant's fleet, read-only"
   ],
   [
-   579,
-   "Where agencies are: one Intune for GCC, one for High"
+   583,
+   "Where agencies are: GCC follows commercial Intune"
   ],
   [
-   640,
-   "Autopilot in GCC High and DoD, and interim paths"
-  ],
-  [
-   700,
+   651,
    "The federal requirement and evidence for Intune"
   ],
   [
-   760,
+   712,
    "Check yourself: two questions on Intune"
   ],
   [
-   801,
+   754,
    "Summary, and next: Module 4, Azure Arc"
   ]
  ],
@@ -12769,47 +13355,43 @@
    "Resource Manager isn't Graph: four things change"
   ],
   [
-   247,
+   241,
    "Resource Graph: four traps that lose rows quietly"
   ],
   [
-   316,
+   309,
    "Machines, extensions and SQL Server: what the checks read"
   ],
   [
-   382,
+   375,
    "Policy enforcement and product lifecycle"
   ],
   [
-   457,
+   451,
    "The five checks and the controls they evidence"
   ],
   [
-   522,
+   515,
    "Try it: find the servers past their support date"
   ],
   [
-   601,
+   594,
    "Lab 2: your test subscription, with Reader only"
   ],
   [
-   670,
+   663,
    "Where agencies are: GCC is commercial Azure"
   ],
   [
-   739,
-   "GCC High and DoD: Azure Government differences"
-  ],
-  [
-   810,
+   732,
    "The federal requirement and evidence for Arc servers"
   ],
   [
-   881,
+   803,
    "Check yourself: two questions on Arc"
   ],
   [
-   927,
+   850,
    "Summary: you've finished the path"
   ]
  ],
@@ -12995,19 +13577,19 @@
    "Try it: the reader refuses, and the hand-off"
   ],
   [
-   615,
+   614,
    "Lab 2: inventory your own test tenant"
   ],
   [
-   668,
+   667,
    "The federal requirement and evidence for Gate G1"
   ],
   [
-   737,
+   736,
    "Check yourself: two questions on the inventory"
   ],
   [
-   792,
+   790,
    "Summary, and next: Module 2, owners and orphans"
   ]
  ],
@@ -13069,7 +13651,7 @@
    "Check yourself: two questions on owners"
   ],
   [
-   764,
+   763,
    "Summary, and next: Module 3, decide the target"
   ]
  ],
@@ -13185,7 +13767,7 @@
    "The federal requirement and evidence for Gate G3"
   ],
   [
-   748,
+   747,
    "Check yourself: two questions on credentials"
   ],
   [
@@ -13243,7 +13825,7 @@
    "Try it: a dry run, the apply, and a refusal"
   ],
   [
-   684,
+   683,
    "Lab 2: one real removal in your test tenant"
   ],
   [
@@ -13449,7 +14031,7 @@
    "Lab 2: a test domain, and a real migration"
   ],
   [
-   785,
+   784,
    "The federal requirement and evidence for Gate G5"
   ],
   [
@@ -13467,63 +14049,63 @@
    "Module 9: Govern AI agent identities"
   ],
   [
-   48,
+   44,
    "Why agents add three things to every gate"
   ],
   [
-   107,
+   103,
    "What you'll be able to do in Module 9"
   ],
   [
-   156,
+   149,
    "Agent ID: blueprints, agent identities, and the stage"
   ],
   [
-   218,
+   207,
    "Decision D-NP6 as data: AgentId or Fallback mode"
   ],
   [
-   267,
+   251,
    "The program's rules the code holds, NP6.1 to NP6.7"
   ],
   [
-   326,
+   310,
    "The checks: NPI-AI-01 to NPI-AI-23"
   ],
   [
-   379,
+   363,
    "The agent CA plan and the separate write path"
   ],
   [
-   437,
+   421,
    "Try it: Learn's samples, permissions, D-NP6 by cloud"
   ],
   [
-   497,
+   476,
    "Try it: check eight AI identities, read the findings"
   ],
   [
-   557,
-   "Try it: the sponsor fields, and the GCC High fallback"
+   536,
+   "Try it: the sponsor fields Chapter 02 recorded"
   ],
   [
-   608,
+   563,
    "Try it: dry-run, apply to the fake, and a refusal"
   ],
   [
-   661,
+   615,
    "Lab 2: one governed agent in your test tenant"
   ],
   [
-   719,
+   673,
    "The federal requirement and evidence for AI agents"
   ],
   [
-   783,
+   737,
    "Check yourself: two questions on agents"
   ],
   [
-   835,
+   789,
    "Summary, and next: Module 10, drift and evidence"
   ]
  ],
@@ -13573,19 +14155,19 @@
    "Try it: see the reader refuse, then run the tests"
   ],
   [
-   616,
+   609,
    "Lab 2: inventory your own test tenant"
   ],
   [
-   666,
+   658,
    "The federal requirement and evidence for Gate 0"
   ],
   [
-   734,
+   727,
    "Check yourself: two questions on the inventory"
   ],
   [
-   781,
+   773,
    "Summary, and next: Module 2, emergency access first"
   ]
  ],
@@ -14123,27 +14705,27 @@
    "What Gate G1 asks for: two roles, the right cloud"
   ],
   [
-   214,
+   212,
    "What Learn gives you, and what the kit adds"
   ],
   [
-   270,
+   268,
    "The Azure collector: each event type becomes a kind"
   ],
   [
-   330,
+   329,
    "Alerts at scale: the built-in policy, as a plan"
   ],
   [
-   399,
+   398,
    "Try it: the reader's roles, and the kit's query"
   ],
   [
-   456,
+   455,
    "Try it: five notices from six rows"
   ],
   [
-   520,
+   519,
    "Try it: plan the alert policy; fixture mode refuses"
   ],
   [
@@ -14151,19 +14733,19 @@
    "Lab 2: a test subscription, with a second approver"
   ],
   [
-   636,
-   "GCC is commercial Azure; Azure Government differs"
+   635,
+   "GCC is commercial Azure: name the cloud"
   ],
   [
-   690,
+   673,
    "The federal requirement and evidence for Gate G1"
   ],
   [
-   755,
+   738,
    "Check yourself: two questions on Azure"
   ],
   [
-   799,
+   783,
    "Summary, and next: Module 3, the Message center"
   ]
  ],
@@ -14177,51 +14759,51 @@
    "Each administrator's Message center is their own"
   ],
   [
-   111,
+   110,
    "What you'll be able to do in Module 3"
   ],
   [
-   161,
+   159,
    "What Microsoft gives you: three calls, two permissions"
   ],
   [
-   215,
-   "Each cloud has its own Graph host"
+   213,
+   "GCC keeps the worldwide Graph host"
   ],
   [
-   272,
+   262,
    "Posts and issues become kinds, with their basis"
   ],
   [
-   333,
-   "Try it: two permissions, three hosts, six notices"
+   323,
+   "Try it: two permissions, one host, six notices"
   ],
   [
-   387,
+   373,
    "Try it: Microsoft's date, or the kit's rule"
   ],
   [
-   443,
+   429,
    "Try it: the second week, and a refused next link"
   ],
   [
-   498,
+   484,
    "Lab 2: a test tenant, delegated, two read scopes"
   ],
   [
-   553,
+   539,
    "Dangers the gate guards against"
   ],
   [
-   614,
+   599,
    "The federal requirement and evidence for Gate G2"
   ],
   [
-   677,
+   661,
    "Check yourself: two questions on Microsoft 365"
   ],
   [
-   720,
+   701,
    "Summary, and next: Module 4, OCI announcements"
   ]
  ],
@@ -14251,35 +14833,35 @@
    "The latest in each chain, in the tenancy's realm"
   ],
   [
-   329,
+   324,
    "Try it: the reader's policy, and the realms it knows"
   ],
   [
-   387,
+   374,
    "Try it: four announcements, Oracle's own date"
   ],
   [
-   440,
+   427,
    "Try it: a rescheduled window stays one notice"
   ],
   [
-   492,
+   479,
    "Lab 2: a test tenancy, one policy, then delete it"
   ],
   [
-   544,
+   531,
    "Dangers: inspect, chains, realms and the HR platform"
   ],
   [
-   606,
+   593,
    "The federal requirement and evidence for Gate G3"
   ],
   [
-   670,
+   657,
    "Check yourself: two questions on OCI"
   ],
   [
-   713,
+   700,
    "Summary, and next: Module 5, AWS Health"
   ]
  ],
@@ -14347,47 +14929,47 @@
    "One category, and a gap in the federal packages"
   ],
   [
-   113,
+   109,
    "What you'll be able to do in Module 6"
   ],
   [
-   162,
+   159,
    "Gate G5: enable, grant the viewer, then collect"
   ],
   [
-   215,
+   211,
    "The incident reader: what Google leaves to you"
   ],
   [
-   281,
+   277,
    "A call nobody verified isn't run; the gaps go on file"
   ],
   [
-   343,
+   339,
    "Try it: the viewer role, and two incidents"
   ],
   [
-   405,
+   400,
    "Try it: a second week, and still one kind"
   ],
   [
-   456,
+   452,
    "Try it: the unverified call is refused"
   ],
   [
-   512,
+   508,
    "Lab 2: a test project, and the gaps recorded"
   ],
   [
-   566,
+   562,
    "The federal requirement and evidence for Gate G5"
   ],
   [
-   633,
+   627,
    "Check yourself: two questions on Google Cloud"
   ],
   [
-   682,
+   677,
    "Summary, and next: Module 7, routing to owners"
   ]
  ],
@@ -14418,30 +15000,30 @@
   ],
   [
    375,
-   "Try it: six rules, 22 notices, 12 tasks"
+   "Try it: seven rules, 22 notices, 13 tasks"
   ],
   [
-   438,
+   459,
    "Try it: read the Azure retirement's payload"
   ],
   [
-   501,
+   522,
    "Try it: a re-run writes nothing; week two updates"
   ],
   [
-   571,
+   603,
    "Lab 2: one payload to a developer instance"
   ],
   [
-   637,
+   670,
    "The federal requirement and evidence for Gate G6"
   ],
   [
-   709,
+   742,
    "Check yourself: two questions on routing"
   ],
   [
-   758,
+   790,
    "Summary, and next: Module 8, digest and evidence"
   ]
  ],
@@ -14521,43 +15103,43 @@
    "The settings file, and the kit's only writes"
   ],
   [
-   243,
+   241,
    "The pre-flight: seven checks, reads only"
   ],
   [
-   309,
+   307,
    "Stage 1: test, in nine steps"
   ],
   [
-   378,
+   376,
    "The go/no-go, and production's dry-run week"
   ],
   [
-   447,
+   445,
    "Try it: the test stage's pre-flight and weekly run"
   ],
   [
-   514,
+   511,
    "Try it: the stage check passes, then PF-07"
   ],
   [
-   577,
+   575,
    "Try it: plans in reverse, and a hash nobody approved"
   ],
   [
-   644,
+   641,
    "Lab 2: the test stage, then production"
   ],
   [
-   706,
+   704,
    "The federal requirement and evidence for deploying"
   ],
   [
-   775,
+   773,
    "Check yourself: two questions on deploying"
   ],
   [
-   823,
+   820,
    "Summary: you've finished the Provider Notices path"
   ]
  ],
@@ -14615,7 +15197,7 @@
    "Lab 2: post a checked payload to a developer instance"
   ],
   [
-   670,
+   671,
    "The federal requirement, and the evidence to keep"
   ],
   [
@@ -14806,22 +15388,22 @@
   ],
   [
    561,
-   "Where agencies are: GCC, GCC High, and interim paths"
+   "Where agencies are: GCC, and the interim path"
   ],
   [
-   615,
+   603,
    "Validate Gate 3 before you file the baseline"
   ],
   [
-   665,
+   653,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   718,
+   706,
    "Check yourself: two questions on drift runs"
   ],
   [
-   763,
+   752,
    "Summary, and next: Module 5, a typed task"
   ]
  ],
@@ -14942,18 +15524,18 @@
   ],
   [
    635,
-   "What differs in government clouds for Gates 5 and 6"
+   "What the guide found in GCC for Gates 5 and 6"
   ],
   [
-   696,
+   685,
    "The federal requirement, and the evidence to keep"
   ],
   [
-   760,
+   749,
    "Check yourself: two questions on the re-read rule"
   ],
   [
-   801,
+   790,
    "Summary, and next: Module 7, evidence for the ISSO"
   ]
  ],
@@ -15023,6 +15605,264 @@
    "Summary: you've finished the path"
   ]
  ],
+ "Training_XDR_Module_1_Narrated": [
+  [
+   0,
+   "Module 1: Architecture, access and onboarding"
+  ],
+  [
+   50,
+   "Why: a license is not a defended endpoint"
+  ],
+  [
+   108,
+   "What you'll be able to do in Module 1"
+  ],
+  [
+   157,
+   "Unit 1: two boundaries, one control plane per setting"
+  ],
+  [
+   232,
+   "Unit 2: what GCC has"
+  ],
+  [
+   298,
+   "Unit 3: roles through PIM, then read in the right cloud"
+  ],
+  [
+   376,
+   "Unit 4: onboard by management plane, ring by ring"
+  ],
+  [
+   453,
+   "Sensor health: Active, or a ticket, or an exception"
+  ],
+  [
+   521,
+   "Lab 2, steps 1 to 3: connect, read, check the sensor"
+  ],
+  [
+   586,
+   "Lab 2, steps 4 to 6: coverage, detection test, back out"
+  ],
+  [
+   655,
+   "The federal requirement and evidence for Module 1"
+  ],
+  [
+   721,
+   "Check yourself: two questions on Module 1"
+  ],
+  [
+   772,
+   "Summary: the right access, and the sensor everywhere"
+  ]
+ ],
+ "Training_XDR_Module_2_Narrated": [
+  [
+   0,
+   "Module 2: Prevention and Attack Surface Reduction"
+  ],
+  [
+   42,
+   "Why: configured is not enforced"
+  ],
+  [
+   95,
+   "What you'll be able to do in Module 2"
+  ],
+  [
+   151,
+   "Unit 1: which prevention settings have an audit mode"
+  ],
+  [
+   221,
+   "Enforce ring by ring, with backout triggers"
+  ],
+  [
+   294,
+   "Unit 2: Attack Surface Reduction, audit, warn, block"
+  ],
+  [
+   365,
+   "Warn is friction, not a safety valve"
+  ],
+  [
+   429,
+   "Unit 3: exclusions, one plane, and the server report"
+  ],
+  [
+   492,
+   "Lab 2, steps 1 to 5: check every setting on the device"
+  ],
+  [
+   567,
+   "Lab 2, steps 6 to 9: the fleet's events, one step back"
+  ],
+  [
+   640,
+   "The federal requirement and evidence for Module 2"
+  ],
+  [
+   700,
+   "Check yourself: two questions on Module 2"
+  ],
+  [
+   749,
+   "Summary: audit first, block by ring, prove on device"
+  ]
+ ],
+ "Training_XDR_Module_3_Narrated": [
+  [
+   0,
+   "Module 3: Exposure and incidents"
+  ],
+  [
+   43,
+   "Why: two queues decide whether the platform is used"
+  ],
+  [
+   105,
+   "What you'll be able to do in Module 3"
+  ],
+  [
+   151,
+   "Unit 1: exposure without Exposure Management"
+  ],
+  [
+   200,
+   "The interim path: exposure, internet-facing, Tier 0"
+  ],
+  [
+   263,
+   "Unit 2: one queue, one severity table"
+  ],
+  [
+   328,
+   "Contain, hand off, close: what the record must show"
+  ],
+  [
+   395,
+   "Lab 2, steps 1 to 3: vulnerabilities and exposure"
+  ],
+  [
+   457,
+   "Lab 2, steps 4 to 6: export the incidents, back out"
+  ],
+  [
+   511,
+   "The federal requirement and evidence for Module 3"
+  ],
+  [
+   571,
+   "Check yourself: two questions on Module 3"
+  ],
+  [
+   622,
+   "Summary: owned vulnerabilities, classified incidents"
+  ]
+ ],
+ "Training_XDR_Module_4_Narrated": [
+  [
+   0,
+   "Module 4: Hunting, detections and identity signals"
+  ],
+  [
+   47,
+   "Why: a rule that can't be shown to fire isn't a control"
+  ],
+  [
+   106,
+   "What you'll be able to do in Module 4"
+  ],
+  [
+   153,
+   "Unit 1: the rule file, in Learn's shape, disabled"
+  ],
+  [
+   219,
+   "Validation datasets, schema governance, 30 days"
+  ],
+  [
+   278,
+   "Deploying through Graph, and what GCC has"
+  ],
+  [
+   333,
+   "Unit 2: identity and cloud-app signals, and their gaps"
+  ],
+  [
+   405,
+   "Lab 2, steps 1 to 3: connect, write the file, test it"
+  ],
+  [
+   464,
+   "Lab 2, steps 4 to 7: deploy disabled, compare, correlate"
+  ],
+  [
+   535,
+   "The federal requirement and evidence for Module 4"
+  ],
+  [
+   598,
+   "Check yourself: two questions on Module 4"
+  ],
+  [
+   647,
+   "Summary: tested detections, correlated signals"
+  ]
+ ],
+ "Training_XDR_Module_5_Narrated": [
+  [
+   0,
+   "Module 5: Automation, operations and evidence"
+  ],
+  [
+   48,
+   "Why: automation is where speed and outage meet"
+  ],
+  [
+   102,
+   "What you'll be able to do in Module 5"
+  ],
+  [
+   147,
+   "Unit 1: automation levels per device group"
+  ],
+  [
+   213,
+   "Attack disruption: exclude what must never be contained"
+  ],
+  [
+   279,
+   "Unit 2: the cadence and the monthly evidence run"
+  ],
+  [
+   343,
+   "Metrics measure coverage and effect, not settings"
+  ],
+  [
+   417,
+   "Lab 2, steps 1 and 2: sensor version, device groups"
+  ],
+  [
+   482,
+   "Lab 2, steps 3 to 5: the monthly run and its hashes"
+  ],
+  [
+   552,
+   "The federal requirement and evidence for Module 5"
+  ],
+  [
+   616,
+   "Check yourself: two questions on Module 5"
+  ],
+  [
+   659,
+   "Summary: bounded automation, evidence every month"
+  ]
+ ],
  "Training_ZTA_Module_1_Narrated": [
   [
    0,
@@ -15069,15 +15909,15 @@
    "Who decides: the decision record and the owners"
   ],
   [
-   594,
+   579,
    "The federal requirement and evidence for Module 1"
   ],
   [
-   650,
+   635,
    "Check yourself: two questions on Module 1"
   ],
   [
-   693,
+   678,
    "Summary: evidence, not a verdict"
   ]
  ],
@@ -15095,47 +15935,47 @@
    "What you'll be able to do in Module 2"
   ],
   [
-   134,
+   132,
    "Unit 1: a clean host and a protected report folder"
   ],
   [
-   183,
+   180,
    "Unit 2: consent and roles, two sources side by side"
   ],
   [
-   242,
+   240,
    "What consent leaves behind: a delegated grant"
   ],
   [
-   299,
-   "Unit 3: connect in the tenant's own cloud, GCC first"
+   297,
+   "Unit 3: connect in GCC, the tenant's own cloud"
   ],
   [
-   361,
-   "Where agencies are: each service, cloud by cloud"
+   336,
+   "Where agencies are: each service in GCC"
   ],
   [
-   422,
+   376,
    "Unit 4: the run, then hash the export first"
   ],
   [
-   470,
+   424,
    "Lab 2, steps 1 to 3: host, consent, review the grant"
   ],
   [
-   529,
+   483,
    "Lab 2, steps 4 to 6: connect, run, hash, back out"
   ],
   [
-   583,
+   531,
    "The federal requirement and evidence for Module 2"
   ],
   [
-   637,
+   586,
    "Check yourself: two questions on Module 2"
   ],
   [
-   681,
+   626,
    "Summary: a safe run, hashed before it's opened"
   ]
  ],
@@ -15223,35 +16063,35 @@
    "Where agencies are: one posture tool per platform"
   ],
   [
-   298,
+   296,
    "Unit 3: the cadence and the evidence package"
   ],
   [
-   357,
+   355,
    "Try it: compare Module 3's two runs"
   ],
   [
-   412,
+   410,
    "Try it: seal the second run and check the package"
   ],
   [
-   470,
+   468,
    "Try it: break the seal on purpose"
   ],
   [
-   514,
+   512,
    "Lab 2: a second run in your test tenant"
   ],
   [
-   573,
+   571,
    "The federal requirement and evidence for Module 4"
   ],
   [
-   627,
+   625,
    "Check yourself: two questions on Module 4"
   ],
   [
-   666,
+   665,
    "Summary: you've finished the path"
   ]
  ]

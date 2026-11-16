@@ -708,245 +708,221 @@ and delete the export and output.
 The authors haven't run Lab 2.
 
 149
-00:09:48.200 --> 00:09:51.075
-Two things differ by where
-you are and what you grant.
+00:09:48.200 --> 00:09:51.500
+One thing differs by what
+you grant: privileged access.
 
 150
-00:09:51.075 --> 00:09:52.950
-First, government clouds.
-
-151
-00:09:52.950 --> 00:09:57.858
-If your agency is in GCC High, note the
-gate's availability gap: administrative
-
-152
-00:09:57.858 --> 00:10:02.612
-units with dynamic membership rules
-aren't available in Azure Government.
-
-153
-00:10:02.612 --> 00:10:06.213
-The guide's Step 4 gives the
-gap and its interim path.
-
-154
-00:10:06.213 --> 00:10:09.362
-Second, privileged
-access, wherever you are.
-
-155
-00:10:09.362 --> 00:10:13.193
+00:09:51.500 --> 00:09:55.331
 A package that grants tier one
 administrator eligibility to
 
-156
-00:10:13.193 --> 00:10:17.399
+151
+00:09:55.331 --> 00:09:59.537
 everyone whose organization code
 matches is the A A oh nine finding.
 
-157
-00:10:17.399 --> 00:10:21.160
+152
+00:09:59.537 --> 00:10:03.297
 HR attributes should decide
 who may request eligibility,
 
-158
-00:10:21.160 --> 00:10:23.588
+153
+00:10:03.297 --> 00:10:05.725
 and the role is activated through PIM.
 
-159
-00:10:23.588 --> 00:10:26.150
+154
+00:10:05.725 --> 00:10:08.287
 That's what the program's
 request policy does.
 
-160
-00:10:26.150 --> 00:10:31.213
+155
+00:10:08.287 --> 00:10:13.350
 CISA's scuba policy seven point five
 keeps highly privileged roles only in
 
-161
-00:10:31.213 --> 00:10:37.190
+156
+00:10:13.350 --> 00:10:19.340
 a privileged access management system,
 and under BOD 25-01 it's required.
 
-162
-00:10:40.940 --> 00:10:42.327
+157
+00:10:23.090 --> 00:10:24.477
 The federal requirement.
 
-163
-00:10:42.327 --> 00:10:47.197
+158
+00:10:24.477 --> 00:10:29.347
 This gate supports NIST special publication
 eight hundred fifty-three A C two,
 
-164
-00:10:47.197 --> 00:10:49.519
+159
+00:10:29.347 --> 00:10:31.669
 which asks you to authorize access on
 
-165
-00:10:49.519 --> 00:10:53.115
+160
+00:10:31.669 --> 00:10:35.265
 organization-defined attributes
 and to review accounts.
 
-166
-00:10:53.115 --> 00:10:58.927
+161
+00:10:35.265 --> 00:10:41.077
 It supports A C six, least privilege,
 and A C five, separation of duties.
 
-167
-00:10:58.927 --> 00:11:04.441
+162
+00:10:41.077 --> 00:10:46.591
 It supports P S five, personnel transfer,
 which is what the residual review is for.
 
-168
-00:11:04.441 --> 00:11:09.412
+163
+00:10:46.591 --> 00:10:51.562
 And it supports scuba policy seven
 point five, highly privileged roles only
 
-169
-00:11:09.412 --> 00:11:15.015
+164
+00:10:51.562 --> 00:10:57.165
 through a privileged access management
 system, required under BOD 25-01.
 
-170
-00:11:15.015 --> 00:11:19.190
+165
+00:10:57.165 --> 00:11:01.340
 Your organization still sets the
 organization-defined parameters,
 
-171
-00:11:19.190 --> 00:11:22.340
+166
+00:11:01.340 --> 00:11:04.490
 and the assessor decides
 whether each is satisfied.
 
-172
-00:11:22.340 --> 00:11:27.363
+167
+00:11:04.490 --> 00:11:09.513
 The evidence an ISSO keeps for
 Gate 4: the reviewed policy files,
 
-173
-00:11:27.363 --> 00:11:31.227
+168
+00:11:09.513 --> 00:11:13.377
 the lint's clean run, and
 the hash of each body sent.
 
-174
-00:11:31.227 --> 00:11:34.027
+169
+00:11:13.377 --> 00:11:16.177
 The member-of scan's
 output with zero rows.
 
-175
-00:11:34.027 --> 00:11:35.816
+170
+00:11:16.177 --> 00:11:17.966
 A A oh nine's clean run.
 
-176
-00:11:35.816 --> 00:11:37.564
+171
+00:11:17.966 --> 00:11:19.714
 Each mover's residual sheet,
 
-177
-00:11:37.564 --> 00:11:41.365
+172
+00:11:19.714 --> 00:11:23.515
 the manager's decisions and the
 transfer-to-review interval.
 
-178
-00:11:41.365 --> 00:11:45.580
+173
+00:11:23.515 --> 00:11:27.730
 And the separation-of-duties settings
 in the package configuration.
 
-179
-00:11:49.330 --> 00:11:51.305
+174
+00:11:31.480 --> 00:11:33.455
 Check yourself with two questions.
 
-180
-00:11:51.305 --> 00:11:53.462
+175
+00:11:33.455 --> 00:11:35.612
 First: from November 3, 2026,
 
-181
-00:11:53.462 --> 00:11:59.442
+176
+00:11:35.612 --> 00:11:41.592
 what happens to an automatic assignment
 policy whose rule uses member-of?
 
-182
-00:11:59.442 --> 00:12:01.917
+177
+00:11:41.592 --> 00:11:44.067
 The answer is b: it's quarantined.
 
-183
-00:12:01.917 --> 00:12:06.380
+178
+00:11:44.067 --> 00:11:48.530
 It stays, but it adds and removes
 nothing until the operator is removed,
 
-184
-00:12:06.380 --> 00:12:10.304
+179
+00:11:48.530 --> 00:11:52.454
 and Learn publishes a read-only
 script to find those policies.
 
-185
-00:12:10.304 --> 00:12:14.917
+180
+00:11:52.454 --> 00:11:57.067
 Second: in the residual review, which
 items go to the manager of record?
 
-186
-00:12:14.917 --> 00:12:18.843
+181
+00:11:57.067 --> 00:12:00.993
 The answer is c: assignments
 that came from request policies,
 
-187
-00:12:18.843 --> 00:12:21.042
+182
+00:12:00.993 --> 00:12:03.192
 and groups held outside packages.
 
-188
-00:12:21.042 --> 00:12:24.835
+183
+00:12:03.192 --> 00:12:06.985
 Everything a rule manages,
 kept, removed after grace,
 
-189
-00:12:24.835 --> 00:12:28.717
+184
+00:12:06.985 --> 00:12:10.867
 package-managed or rule-managed,
 takes care of itself.
 
-190
-00:12:28.717 --> 00:12:33.980
+185
+00:12:10.867 --> 00:12:16.130
 The module page has two more questions,
 each linked to the section that answers it.
 
-191
-00:12:37.730 --> 00:12:38.555
+186
+00:12:19.880 --> 00:12:20.705
 To sum up.
 
-192
-00:12:38.555 --> 00:12:43.480
+187
+00:12:20.705 --> 00:12:25.630
 You linted three good and five broken
 assignment policies over a population.
 
-193
-00:12:43.480 --> 00:12:46.418
+188
+00:12:25.630 --> 00:12:28.568
 You found a member-of
 policy in a tenant export.
 
-194
-00:12:46.418 --> 00:12:50.993
+189
+00:12:28.568 --> 00:12:33.143
 And you listed one mover's residual
 access, with a review that's overdue.
 
-195
-00:12:50.993 --> 00:12:55.695
+190
+00:12:33.143 --> 00:12:37.845
 Carry one thing forward: a move reaches
 the directory through the pipeline,
 
-196
-00:12:55.695 --> 00:12:59.867
+191
+00:12:37.845 --> 00:12:42.017
 never by hand, and then the rules
 and the residual review do the rest.
 
-197
-00:12:59.867 --> 00:13:04.006
+192
+00:12:42.017 --> 00:12:46.156
 Next is Module 5: check
 certificate-based authentication.
 
-198
-00:13:04.006 --> 00:13:07.624
+193
+00:12:46.156 --> 00:12:49.774
 You'll check the certificate-based
 authentication trust store,
 
-199
-00:13:07.624 --> 00:13:11.450
+194
+00:12:49.774 --> 00:12:53.600
 and each certificate revocation
 list, against your cloud's limits.

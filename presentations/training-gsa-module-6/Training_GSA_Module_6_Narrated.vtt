@@ -1,0 +1,866 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.203
+Welcome to Module 6 of Global Secure
+Access as the Identity-Aware Network:
+
+2
+00:00:05.203 --> 00:00:08.075
+rings, rollback and the evidence package.
+
+3
+00:00:08.075 --> 00:00:11.450
+Modules 1 to 5 built
+every piece for a pilot.
+
+4
+00:00:11.450 --> 00:00:15.687
+This module makes it a migration, and
+then hands an assessor the evidence.
+
+5
+00:00:15.687 --> 00:00:20.634
+It covers Steps 11 and 12 of the Global
+Secure Access implementation guide,
+
+6
+00:00:20.634 --> 00:00:24.703
+with its RACI, evidence catalog,
+metrics, dangers and rollback,
+
+7
+00:00:24.703 --> 00:00:30.250
+and takes about forty minutes, plus a lab
+that rolls your whole test tenant back.
+
+8
+00:00:34.000 --> 00:00:35.150
+Why does this matter?
+
+9
+00:00:35.150 --> 00:00:37.013
+A pilot isn't a deployment.
+
+10
+00:00:37.013 --> 00:00:41.531
+In this module the pilot becomes a
+migration: users move ring by ring,
+
+11
+00:00:41.531 --> 00:00:46.373
+each ring exits on criteria you measure,
+the V P N route for an application
+
+12
+00:00:46.373 --> 00:00:51.537
+goes only after its wave holds, and anything
+can be rolled back in a known order.
+
+13
+00:00:51.537 --> 00:00:56.269
+Then each network finding gets an
+evidence package an assessor can check:
+
+14
+00:00:56.269 --> 00:01:00.924
+configuration, test, operational,
+exception, and reassessment evidence.
+
+15
+00:01:00.924 --> 00:01:03.964
+The assessor recommends a
+finding ready for closure,
+
+16
+00:01:03.964 --> 00:01:06.175
+and the authorizing official decides.
+
+17
+00:01:06.175 --> 00:01:09.426
+In the lab, you rehearse the
+rollback on your test tenant,
+
+18
+00:01:09.426 --> 00:01:13.250
+and keep the exports that show
+the state before and after it.
+
+19
+00:01:17.000 --> 00:01:19.913
+Here's what you'll be able to
+do by the end of this module.
+
+20
+00:01:19.913 --> 00:01:21.498
+You'll run the four rings,
+
+21
+00:01:21.498 --> 00:01:25.937
+with exit criteria and backout
+triggers set before each one starts.
+
+22
+00:01:25.937 --> 00:01:30.040
+You'll keep the V P N, DirectAccess
+and another security service edge
+
+23
+00:01:30.040 --> 00:01:34.288
+working beside the service during
+the move, and explain branch parity.
+
+24
+00:01:34.288 --> 00:01:38.126
+You'll say who is responsible and
+accountable for each activity,
+
+25
+00:01:38.126 --> 00:01:39.574
+and who decides closure.
+
+26
+00:01:39.574 --> 00:01:43.350
+You'll assemble the five kinds of
+evidence for each network finding.
+
+27
+00:01:43.350 --> 00:01:47.712
+And you'll compute the guide's coverage
+metrics, and roll back in the guide's order.
+
+28
+00:01:47.712 --> 00:01:50.229
+You need Modules 1 to 5 and their labs,
+
+29
+00:01:50.229 --> 00:01:54.675
+and Zero Trust and Assessment,
+chapter ten, for the closure chain.
+
+30
+00:01:54.675 --> 00:01:58.190
+The lab runs in a test
+tenant, never production.
+
+31
+00:02:01.940 --> 00:02:03.502
+Unit 1 is the rings.
+
+32
+00:02:03.502 --> 00:02:07.077
+Ring zero is the implementing
+team; it exits when every
+
+33
+00:02:07.077 --> 00:02:11.128
+step's Validate has passed and
+break-glass has been rehearsed.
+
+34
+00:02:11.128 --> 00:02:15.663
+Ring one is the pilot, fewer than
+twenty users across roles and sites,
+
+35
+00:02:15.663 --> 00:02:19.794
+for ten business days, with no
+unresolved severity-two ticket,
+
+36
+00:02:19.794 --> 00:02:24.491
+the client active on every pilot
+device, and clean report-only results.
+
+37
+00:02:24.491 --> 00:02:28.452
+Ring two is about ten percent
+of users, including one branch,
+
+38
+00:02:28.452 --> 00:02:32.334
+for twenty business days, with
+help desk volume within the
+
+39
+00:02:32.334 --> 00:02:36.215
+agreed threshold and a T L S
+failure rate under one percent.
+
+40
+00:02:36.215 --> 00:02:42.052
+Ring three is everyone in scope, in waves
+by organization, each wave meeting ring
+
+41
+00:02:42.052 --> 00:02:44.970
+two's criteria, and each application's V P
+
+42
+00:02:44.970 --> 00:02:47.977
+N route removed only after its wave holds.
+
+43
+00:02:47.977 --> 00:02:53.615
+Around every ring: the emergency access
+group is excluded from every policy in Steps
+
+44
+00:02:53.615 --> 00:02:58.770
+5 to 10 and tested the day each ring
+starts; backout triggers are set in advance;
+
+45
+00:02:58.770 --> 00:03:03.281
+and, as Learn categorizes changes,
+enabling a new traffic profile or
+
+46
+00:03:03.281 --> 00:03:09.030
+restructuring connector groups is a major
+change for the change advisory board.
+
+47
+00:03:12.780 --> 00:03:15.805
+During the move, everything
+runs side by side.
+
+48
+00:03:15.805 --> 00:03:19.237
+The V P N stays for
+applications not yet published,
+
+49
+00:03:19.237 --> 00:03:22.166
+in split-include mode
+where it supports it,
+
+50
+00:03:22.166 --> 00:03:26.435
+so Private Access and the V P N
+don't contend for the same routes;
+
+51
+00:03:26.435 --> 00:03:29.867
+a V P N route is removed only
+after the V P N's own logs
+
+52
+00:03:29.867 --> 00:03:33.968
+show no traffic for that
+application for ten business days.
+
+53
+00:03:33.968 --> 00:03:38.468
+DirectAccess can't coexist with
+Private Access on the same device.
+
+54
+00:03:38.468 --> 00:03:42.906
+Where a proxy is set at the
+operating system or browser level,
+
+55
+00:03:42.906 --> 00:03:48.143
+Learn's P A C file guidance excludes
+every F Q D N and I P the client tunnels.
+
+56
+00:03:48.143 --> 00:03:52.542
+A third-party security service edge
+kept for internet traffic follows
+
+57
+00:03:52.542 --> 00:03:56.643
+its coexistence page on Learn, for
+the bypasses in both directions.
+
+58
+00:03:56.643 --> 00:04:01.944
+And branches: a remote network carries
+the Microsoft and internet profiles, not
+
+59
+00:04:01.944 --> 00:04:07.405
+Private Access, and applies only the baseline
+profile, with no Conditional Access.
+
+60
+00:04:07.405 --> 00:04:10.645
+That's a parity gap under
+tick's Branch Office use case,
+
+61
+00:04:10.645 --> 00:04:14.327
+so the guide keeps the client
+on managed devices at branches,
+
+62
+00:04:14.327 --> 00:04:17.850
+and uses the remote network
+for devices without one.
+
+63
+00:04:21.600 --> 00:04:23.463
+Unit 2 is who does what.
+
+64
+00:04:23.463 --> 00:04:28.958
+Microsoft's operations guide gives a RACI
+with a service owner, network security
+
+65
+00:04:28.958 --> 00:04:34.125
+engineer, identity engineer, S O C analyst,
+help desk and platform operations.
+
+66
+00:04:34.125 --> 00:04:37.661
+The guide maps those to six
+roles and adds the assessor,
+
+67
+00:04:37.661 --> 00:04:39.625
+who is independent of the work.
+
+68
+00:04:39.625 --> 00:04:43.393
+The policy owner, the service
+owner with the I S S O consulted,
+
+69
+00:04:43.393 --> 00:04:48.467
+is accountable for the decision record,
+the architecture, the traffic profiles,
+
+70
+00:04:48.467 --> 00:04:52.004
+the Conditional Access
+policies and their exclusions,
+
+71
+00:04:52.004 --> 00:04:55.387
+the T L S inspection scope,
+and the exception register.
+
+72
+00:04:55.387 --> 00:04:59.018
+The platform owner, the network
+security and identity engineers,
+
+73
+00:04:59.018 --> 00:05:00.900
+is responsible for building them.
+
+74
+00:05:00.900 --> 00:05:06.088
+Operators run the client rings, the
+connectors and the domain controller sensors.
+
+75
+00:05:06.088 --> 00:05:10.426
+The security monitor owns alerts,
+log freshness and the metrics.
+
+76
+00:05:10.426 --> 00:05:13.175
+The help desk takes tier-one user issues.
+
+77
+00:05:13.175 --> 00:05:17.802
+The assessor assesses the evidence and
+recommends a finding ready for closure,
+
+78
+00:05:17.802 --> 00:05:22.500
+and the authorizing official decides, or
+the assessor for an assessment finding.
+
+79
+00:05:22.500 --> 00:05:26.070
+Learn's advice is at least
+two people for every role.
+
+80
+00:05:29.820 --> 00:05:31.207
+What goes in the package?
+
+81
+00:05:31.207 --> 00:05:34.070
+The guide's evidence
+catalog has five kinds.
+
+82
+00:05:34.070 --> 00:05:38.346
+Configuration: the hashed Graph
+export, rerun before every change,
+
+83
+00:05:38.346 --> 00:05:43.245
+plus the decision and architecture
+records and the diagnostic setting GET.
+
+84
+00:05:43.245 --> 00:05:46.635
+Test: each Validate record,
+expected and observed,
+
+85
+00:05:46.635 --> 00:05:50.934
+from the client health check
+through the source I P comparison,
+
+86
+00:05:50.934 --> 00:05:55.234
+the blocked category, the port
+tests, the disable-and-retry test,
+
+87
+00:05:55.234 --> 00:05:58.458
+the four cases, the T L S
+issuer, and the klist test.
+
+88
+00:05:58.458 --> 00:06:02.146
+Operational: the queries,
+run on the day-two cadence.
+
+89
+00:06:02.146 --> 00:06:06.417
+Exception: the register, with
+every exclusion and bypass,
+
+90
+00:06:06.417 --> 00:06:08.507
+its approver and its expiry.
+
+91
+00:06:08.507 --> 00:06:12.713
+And reassessment: the Zero Trust
+Assessment rerun after each ring,
+
+92
+00:06:12.713 --> 00:06:16.307
+with each network finding's
+closure chain entry updated.
+
+93
+00:06:16.307 --> 00:06:20.880
+A finding is ready for closure when
+every applicable control state,
+
+94
+00:06:20.880 --> 00:06:25.533
+designed, configured, enforced,
+evidenced and operated, has evidence.
+
+95
+00:06:25.533 --> 00:06:30.226
+And a Zero Trust Assessment test skipped
+because the tenant has no Internet
+
+96
+00:06:30.226 --> 00:06:35.280
+Access or Private Access license is a
+licensing result, not a failed control.
+
+97
+00:06:39.030 --> 00:06:39.905
+Unit 3.
+
+98
+00:06:39.905 --> 00:06:44.067
+The metrics measure protected
+coverage, not whether a setting exists.
+
+99
+00:06:44.067 --> 00:06:47.543
+Client coverage, ninety-eight
+percent after ring three.
+
+100
+00:06:47.543 --> 00:06:50.592
+Sign-ins through the service,
+ninety-five percent.
+
+101
+00:06:50.592 --> 00:06:54.455
+Compliant network enforcement, a
+hundred percent after ring three.
+
+102
+00:06:54.455 --> 00:06:59.930
+The Quick Access residual, and apps
+without an assignment or policy, both zero.
+
+103
+00:06:59.930 --> 00:07:02.520
+The T L S failure share under one percent,
+
+104
+00:07:02.520 --> 00:07:05.580
+with more than ninety
+days of certificate life.
+
+105
+00:07:05.580 --> 00:07:08.292
+And no table silent for twenty-four hours.
+
+106
+00:07:08.292 --> 00:07:09.517
+Then the rollback.
+
+107
+00:07:09.517 --> 00:07:13.958
+In an incident that touches several
+steps, reverse newest first:
+
+108
+00:07:13.958 --> 00:07:18.481
+Conditional Access policies from
+Steps 10, 7, 6 and 5 to report-only;
+
+109
+00:07:18.481 --> 00:07:20.994
+the security profile links removed;
+
+110
+00:07:20.994 --> 00:07:24.596
+universal tenant restrictions
+tagging turned off;
+
+111
+00:07:24.596 --> 00:07:30.040
+the affected groups removed from the
+traffic profiles; the V P N route restored;
+
+112
+00:07:30.040 --> 00:07:34.480
+and signaling turned off last, only
+after no policy depends on it.
+
+113
+00:07:34.480 --> 00:07:37.222
+Every rollback is a change with a record,
+
+114
+00:07:37.222 --> 00:07:42.400
+followed by the Step 2.1 export, so
+the evidence shows the state after it.
+
+115
+00:07:46.150 --> 00:07:50.975
+The lab runs in a test tenant, never
+production, and the authors haven't run it.
+
+116
+00:07:50.975 --> 00:07:53.650
+It removes what Modules 1 to 5 built.
+
+117
+00:07:53.650 --> 00:07:57.962
+Step one measures ring one's
+exit criteria: in the workspace,
+
+118
+00:07:57.962 --> 00:08:03.331
+run Step 4's sign-in share, Step 9's T L
+S outcomes and Step 12's freshness query,
+
+119
+00:08:03.331 --> 00:08:08.435
+and write the ring exit record, each
+criterion with its measured value,
+
+120
+00:08:08.435 --> 00:08:12.132
+from these queries, Module
+2's device usage summary,
+
+121
+00:08:12.132 --> 00:08:15.388
+and the report-only
+results of Modules 3 and 4.
+
+122
+00:08:15.388 --> 00:08:19.663
+A table with no rows in twenty-four
+hours fails the freshness metric.
+
+123
+00:08:19.663 --> 00:08:23.909
+Step two takes the evidence
+export, the guide's Step 2.1,
+
+124
+00:08:23.909 --> 00:08:27.962
+into a dated ring-one folder
+with its hash manifest.
+
+125
+00:08:27.962 --> 00:08:30.903
+Step three lists the I
+D's the rollback needs:
+
+126
+00:08:30.903 --> 00:08:34.824
+the four test policies and
+the three forwarding profiles.
+
+127
+00:08:34.824 --> 00:08:39.112
+And step four starts the
+rollback in the guide's order:
+
+128
+00:08:39.112 --> 00:08:44.620
+each Conditional Access policy to
+report-only, Steps 10, 7, 6, then 5.
+
+129
+00:08:48.370 --> 00:08:51.558
+Step five removes the
+security profile's links.
+
+130
+00:08:51.558 --> 00:08:55.058
+The T L S inspection policy
+comes out in Learn's order:
+
+131
+00:08:55.058 --> 00:09:00.432
+unlink it from the pilot profile, delete
+the policy, then remove the certificate.
+
+132
+00:09:00.432 --> 00:09:03.308
+The filtering policy's Conditional Access
+
+133
+00:09:03.308 --> 00:09:06.183
+policy goes to disabled,
+the Step 5 rollback.
+
+134
+00:09:06.183 --> 00:09:09.362
+Step six turns off tenant
+restrictions tagging;
+
+135
+00:09:09.362 --> 00:09:12.383
+the tenant restrictions
+policy itself stays.
+
+136
+00:09:12.383 --> 00:09:16.220
+Step seven takes the groups out
+of each profile's assignments
+
+137
+00:09:16.220 --> 00:09:19.532
+in the admin center, then
+disables the three profiles.
+
+138
+00:09:19.532 --> 00:09:24.182
+In production, the next line of the
+rollback is restoring the V P N route.
+
+139
+00:09:24.182 --> 00:09:29.494
+Step eight turns off signaling, last,
+now that no policy enforces on it.
+
+140
+00:09:29.494 --> 00:09:31.641
+Step nine takes the export again,
+
+141
+00:09:31.641 --> 00:09:36.650
+so the evidence shows the state after
+the rollback: three profiles disabled,
+
+142
+00:09:36.650 --> 00:09:40.545
+signaling and tagging disabled,
+and no test policy enabled.
+
+143
+00:09:40.545 --> 00:09:45.534
+Steps ten to twelve clean up: delete
+the test policies, apps, profile and
+
+144
+00:09:45.534 --> 00:09:50.695
+filtering policy; remove the QUIC
+rule; and delete the telemetry setting.
+
+145
+00:09:50.695 --> 00:09:56.320
+In production, that last one ends the
+evidence trail and happens only by change.
+
+146
+00:09:56.320 --> 00:10:00.240
+Keep the lab folder; it's
+the path's evidence package.
+
+147
+00:10:03.990 --> 00:10:06.601
+The federal requirement, from NIST special
+
+148
+00:10:06.601 --> 00:10:09.865
+publication eight hundred
+fifty-three, revision five.
+
+149
+00:10:09.865 --> 00:10:13.507
+The rings support C M three,
+C M four and C P two:
+
+150
+00:10:13.507 --> 00:10:18.565
+each wave moved with exit
+criteria, rollback and validation.
+
+151
+00:10:18.565 --> 00:10:23.690
+The evidence is the ring exit records, with
+the criteria and their measured values.
+
+152
+00:10:23.690 --> 00:10:28.684
+The telemetry supports A U two,
+A U six, A U twelve and S I four:
+
+153
+00:10:28.684 --> 00:10:33.890
+network logs exported, fresh,
+reviewed, and shared as agreed.
+
+154
+00:10:33.890 --> 00:10:36.536
+The evidence is the
+diagnostic setting GET,
+
+155
+00:10:36.536 --> 00:10:39.990
+the freshness result, and
+the CISA telemetry agreement.
+
+156
+00:10:39.990 --> 00:10:45.356
+Step 12's logging is mandated in part, by
+O M B memo M twenty-six fourteen and tick
+
+157
+00:10:45.356 --> 00:10:50.890
+three point oh's telemetry requirement;
+the specific measures are the program's.
+
+158
+00:10:50.890 --> 00:10:54.140
+Each row lines up with
+fed-ramp twenty X indicators.
+
+159
+00:10:54.140 --> 00:10:58.290
+The evidence supports the
+controls; the assessor decides.
+
+160
+00:11:02.040 --> 00:11:04.015
+Check yourself with two questions.
+
+161
+00:11:04.015 --> 00:11:08.778
+First: when is the V P N route for
+a migrated application removed?
+
+162
+00:11:08.778 --> 00:11:12.701
+The answer is b: only after the
+wave holds, with the V P N's own
+
+163
+00:11:12.701 --> 00:11:17.377
+logs showing no traffic for that
+application for ten business days.
+
+164
+00:11:17.377 --> 00:11:20.739
+Second: in the guide's
+rollback, what comes last?
+
+165
+00:11:20.739 --> 00:11:25.711
+The answer is c: disabling signaling,
+only after no policy depends on it;
+
+166
+00:11:25.711 --> 00:11:28.453
+turning it off earlier can block users.
+
+167
+00:11:28.453 --> 00:11:33.730
+The module page has three more questions,
+each linked to the unit that answers it.
+
+168
+00:11:37.480 --> 00:11:38.305
+To sum up.
+
+169
+00:11:38.305 --> 00:11:43.112
+You measured a ring's exit criteria, took
+the evidence export before the change,
+
+170
+00:11:43.112 --> 00:11:47.328
+rolled the test tenant back in the
+guide's order, took the export again
+
+171
+00:11:47.328 --> 00:11:51.617
+to show the state after the rollback,
+and removed the lab's test objects.
+
+172
+00:11:51.617 --> 00:11:54.379
+The evidence an I S S O
+keeps from this module:
+
+173
+00:11:54.379 --> 00:11:58.060
+the ring exit record with each
+criterion's measured value,
+
+174
+00:11:58.060 --> 00:12:01.740
+the ring one and rolled-back
+exports with their manifests,
+
+175
+00:12:01.740 --> 00:12:05.268
+the rollback change record,
+and the exception register.
+
+176
+00:12:05.268 --> 00:12:10.198
+In production, add the CISA telemetry
+agreement and the Zero Trust Assessment
+
+177
+00:12:10.198 --> 00:12:15.054
+rerun after each ring, with each network
+finding's closure chain entry updated.
+
+178
+00:12:15.054 --> 00:12:16.555
+That completes the path.
+
+179
+00:12:16.555 --> 00:12:21.470
+From here, work through the guide's
+implementation checklist, one ring at a time.

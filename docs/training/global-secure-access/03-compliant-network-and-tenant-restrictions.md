@@ -13,7 +13,9 @@ last-reviewed: 2026-11-13
 
 *Part of the [Global Secure Access learning path](index.md). Guide [Step 7](../../books/guides/global-secure-access-implementation.md#step-7-compliant-network) and [Step 8](../../books/guides/global-secure-access-implementation.md#step-8-tenant-restrictions). About 45 minutes, plus Lab 2.*
 
-**Watch first:** slides 11 and 14 of the guide's narrated deck (Microsoft traffic and the compliant network; tenant restrictions and TLS inspection), in its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md).
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_GSA_Module_3_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_GSA_Module_3_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-gsa-module-3) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-3/Training_GSA_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-3/Training_GSA_Module_3_Narrated.vtt). The deck files join the next edition.
+
+, in its [video](../../presentations/watch.html?v=Guide_Global_Secure_Access_Narrated) or its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md).
 
 ## Introduction (3 minutes) {#gsa-m3-intro}
 

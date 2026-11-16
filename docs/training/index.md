@@ -142,13 +142,19 @@ Four modules on running Microsoft's Zero Trust Assessment as evidence rather tha
 
 Five modules on engineering and operating Microsoft Defender XDR on Windows clients and Windows Server, in the order of the ten gates of the [Defender XDR implementation guide](../books/guides/defender-xdr-implementation.md): the service architecture, government-cloud availability, unified RBAC roles and onboarding with proof of sensor health; endpoint prevention and Attack Surface Reduction through audit, warn and block; exposure management without Security Exposure Management, and incidents triaged to a severity table; advanced hunting, custom detections deployed as code through Microsoft Graph, and identity and cloud-app signals; and automation levels set to the response ladder, with the monthly evidence run. The guide has no kit or developer workbook yet, so each module's lab runs the guide's own Validate commands in your own test tenant; each module ends with a knowledge check. Start at the [learning path](defender-xdr/index.md).
 
+**Watch:** each module has a narrated deck, about 11 to 14 minutes, linked from the module's page.
+
 ## Global Secure Access learning path
 
 Six modules on deploying Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, in the run order of the twelve steps of the [Global Secure Access implementation guide](../books/guides/global-secure-access-implementation.md): deciding each function and turning the network logs on before anything is enforced; the Windows client and the Microsoft traffic profile with source IP restoration; the compliant network check and universal tenant restrictions, in report-only or a pilot first; per-app Private Access and phishing-resistant administrative paths; Internet Access security profiles and TLS inspection within a privacy scope; and cutover rings, rollback in order and the evidence package. The guide has no kit or developer workbook yet, so there is no fixture lab: each module's lab runs the guide's own commands and Validate steps in your own test tenant, and ends with a knowledge check. Learn says Global Secure Access is available in GCC. Start at the [learning path](global-secure-access/index.md).
 
+**Watch:** each module has a narrated deck, about 11 to 12 minutes, linked from the module's page.
+
 ## Azure Security Engineering learning path
 
 Five modules on engineering and proving the security of an agency's Azure estate, in the order of the ten steps of the [Azure Security Engineering implementation guide](../books/guides/azure-security-implementation.md): the security baseline in audit and the exposure register; DDoS protection on every public IP and the web application firewall from detection to prevention; an origin nothing can reach around Front Door or Application Gateway, and egress through Azure Firewall; Private Link, private DNS and Key Vault; and the security initiative, expiring exemptions, the operating model and the evidence. GCC Moderate with commercial Azure, and the AWS, Google Cloud and Oracle Cloud Infrastructure equivalents. The guide has no kit or developer workbook yet, so each module's lab runs the guide's own checks in your test subscription; each module ends with a knowledge check. Start at the [learning path](azure-security/index.md).
+
+**Watch:** each module has a narrated deck, about 11 to 13 minutes, linked from the module's page.
 
 ## External learning paths
 

@@ -1,0 +1,829 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.933
+Welcome to Module 3 of Defender
+X D R Engineering and Operations:
+
+2
+00:00:04.933 --> 00:00:06.775
+exposure and incidents.
+
+3
+00:00:06.775 --> 00:00:10.006
+Two queues decide whether the
+platform you built is used:
+
+4
+00:00:10.006 --> 00:00:14.750
+the vulnerabilities waiting for an owner,
+and the incidents waiting for an analyst.
+
+5
+00:00:14.750 --> 00:00:17.855
+In this module you learn
+what Defender adds to the
+
+6
+00:00:17.855 --> 00:00:21.263
+vulnerability program in G C
+C, and what it can't do there.
+
+7
+00:00:21.263 --> 00:00:25.921
+Then you learn how the security
+operations center triages, contains,
+
+8
+00:00:25.921 --> 00:00:29.762
+hands off and closes every
+incident, to a table it can show.
+
+9
+00:00:29.762 --> 00:00:35.037
+The module covers Steps 5 and 6 of the
+Defender X D R implementation guide.
+
+10
+00:00:35.037 --> 00:00:39.880
+It takes about thirty-five minutes,
+plus Lab 2 in your own test tenant.
+
+11
+00:00:43.630 --> 00:00:44.967
+Why these two together?
+
+12
+00:00:44.967 --> 00:00:49.492
+Because both are queues, and a queue
+without an owner is where risk waits.
+
+13
+00:00:49.492 --> 00:00:54.684
+The vulnerability queue: the remediation
+program, its clock and the Known Exploited
+
+14
+00:00:54.684 --> 00:00:59.654
+Vulnerabilities catalog belong to the
+Security Operations and Telemetry book.
+
+15
+00:00:59.654 --> 00:01:02.325
+The guide adds what Defender contributes,
+
+16
+00:01:02.325 --> 00:01:07.359
+and its rule that a vulnerability without
+an owner is a finding against C M eight,
+
+17
+00:01:07.359 --> 00:01:11.555
+the inventory control, not just R
+A five, vulnerability monitoring.
+
+18
+00:01:11.555 --> 00:01:14.380
+That's the program's
+risk-based recommendation.
+
+19
+00:01:14.380 --> 00:01:17.955
+And in G C C, the attack-path
+features aren't there.
+
+20
+00:01:17.955 --> 00:01:19.721
+The incident queue: one queue,
+
+21
+00:01:19.721 --> 00:01:23.916
+with Sentinel onboarded to the
+Defender portal if the agency uses it,
+
+22
+00:01:23.916 --> 00:01:27.375
+a triage window and a containment
+rung for each severity,
+
+23
+00:01:27.375 --> 00:01:31.643
+and every incident closed with a
+classification and a determination.
+
+24
+00:01:31.643 --> 00:01:37.712
+The response ladder and device isolation
+stay in Security Operations and Telemetry;
+
+25
+00:01:37.712 --> 00:01:42.080
+this module fixes severity,
+triage, evidence and hand-off.
+
+26
+00:01:45.830 --> 00:01:48.743
+Here's what you'll be able to
+do by the end of this module.
+
+27
+00:01:48.743 --> 00:01:52.199
+Say which exposure features
+are available in G C C,
+
+28
+00:01:52.199 --> 00:01:55.404
+and record the one that
+isn't as not applicable.
+
+29
+00:01:55.404 --> 00:01:59.039
+Prioritize vulnerabilities
+with the guide's interim path,
+
+30
+00:01:59.039 --> 00:02:02.005
+and give every device
+group a remediation owner.
+
+31
+00:02:02.005 --> 00:02:04.648
+Triage an incident to the severity table,
+
+32
+00:02:04.648 --> 00:02:07.292
+pick its containment
+rung, and hand it off.
+
+33
+00:02:07.292 --> 00:02:12.255
+And export the open incidents, and one
+incident with its alerts, as evidence.
+
+34
+00:02:12.255 --> 00:02:14.580
+You need Module 1's Graph read path.
+
+35
+00:02:14.580 --> 00:02:18.702
+Skim the Security Operations
+and Telemetry book's Chapter 06,
+
+36
+00:02:18.702 --> 00:02:24.117
+for the remediation program and its clock,
+and Chapter 11, for the response ladder.
+
+37
+00:02:24.117 --> 00:02:27.840
+Lab 2 runs in a test
+tenant, never production.
+
+38
+00:02:31.590 --> 00:02:34.630
+Unit 1 is the fact that
+shapes this gate in G C C.
+
+39
+00:02:34.630 --> 00:02:37.670
+Microsoft Learn's page
+on Security Exposure
+
+40
+00:02:37.670 --> 00:02:41.203
+Management says it's available
+in Public Cloud only.
+
+41
+00:02:41.203 --> 00:02:44.019
+That's the product that
+holds attack paths,
+
+42
+00:02:44.019 --> 00:02:49.252
+the exposure graph and critical asset
+management, and it isn't available in G C C.
+
+43
+00:02:49.252 --> 00:02:53.844
+What G C C does have, from Learn's
+Defender for Endpoint government page:
+
+44
+00:02:53.844 --> 00:02:58.831
+Defender Vulnerability Management, core
+and premium, without two features,
+
+45
+00:02:58.831 --> 00:03:01.681
+report inaccuracy and
+request C V E support;
+
+46
+00:03:01.681 --> 00:03:05.164
+and Secure Score, with some
+recommendations missing.
+
+47
+00:03:05.164 --> 00:03:08.475
+So a Zero Trust Assessment
+test that needs Exposure
+
+48
+00:03:08.475 --> 00:03:12.477
+Management is recorded as not
+applicable in the tenant's cloud.
+
+49
+00:03:12.477 --> 00:03:17.200
+It goes in the closure register as
+a disposition, not a failed control.
+
+50
+00:03:20.950 --> 00:03:24.600
+The guide's interim path for
+attack paths uses what is there.
+
+51
+00:03:24.600 --> 00:03:28.376
+From the device info table:
+exposure level and whether the
+
+52
+00:03:28.376 --> 00:03:32.625
+device is internet-facing, with
+its asset value and machine group.
+
+53
+00:03:32.625 --> 00:03:36.143
+From Defender Vulnerability
+Management: its recommendations,
+
+54
+00:03:36.143 --> 00:03:40.525
+and the high and critical vulnerabilities
+by software and recommended update.
+
+55
+00:03:40.525 --> 00:03:44.442
+And as the critical-asset list,
+the Tier zero inventory from the
+
+56
+00:03:44.442 --> 00:03:48.812
+Access and Privilege book, standing
+in for critical asset management.
+
+57
+00:03:48.812 --> 00:03:49.963
+Then ownership.
+
+58
+00:03:49.963 --> 00:03:54.997
+Each device group or device tag maps to a
+remediation owner in the decision record,
+
+59
+00:03:54.997 --> 00:03:57.884
+and the vulnerability
+manager works Security
+
+60
+00:03:57.884 --> 00:04:00.624
+Operations and Telemetry's
+queue every week.
+
+61
+00:04:00.624 --> 00:04:04.021
+One trap from Microsoft
+Learn's table reference:
+
+62
+00:04:04.021 --> 00:04:06.737
+the device T V M tables stay in Defender.
+
+63
+00:04:06.737 --> 00:04:10.826
+They aren't ingested into Sentinel,
+so a Sentinel query that names them
+
+64
+00:04:10.826 --> 00:04:14.774
+returns nothing, and a silent rule
+there is not a clean bill of health.
+
+65
+00:04:14.774 --> 00:04:19.520
+Run these queries in Defender, or
+through Graph, as the lab does.
+
+66
+00:04:23.270 --> 00:04:25.395
+Unit 2 is the incident queue.
+
+67
+00:04:25.395 --> 00:04:29.935
+Microsoft Learn's page on listing
+incidents says Defender X D R correlates
+
+68
+00:04:29.935 --> 00:04:34.182
+alerts that share attack techniques
+or an attacker into one incident.
+
+69
+00:04:34.182 --> 00:04:37.883
+With Sentinel onboarded to the
+Defender portal, there's one queue.
+
+70
+00:04:37.883 --> 00:04:42.457
+The severity table is the program's
+design, a risk-based recommendation.
+
+71
+00:04:42.457 --> 00:04:45.233
+A high incident is
+triaged within one hour.
+
+72
+00:04:45.233 --> 00:04:47.854
+Its containment rung is L three, gated:
+
+73
+00:04:47.854 --> 00:04:52.507
+the playbook prepares the action,
+and a named approver releases it.
+
+74
+00:04:52.507 --> 00:04:56.297
+It's handed off to the incident
+response lead and the I S S O,
+
+75
+00:04:56.297 --> 00:05:01.295
+with the U S cert reporting decision
+made under the incident response plan.
+
+76
+00:05:01.295 --> 00:05:06.015
+A medium incident is triaged within
+twenty-four hours, at L two,
+
+77
+00:05:06.015 --> 00:05:10.457
+advise: enrich it and open a
+ticket, and the analyst decides.
+
+78
+00:05:10.457 --> 00:05:14.472
+A low or informational incident
+within seventy-two hours,
+
+79
+00:05:14.472 --> 00:05:18.570
+at L one, observe, with a tuning
+review if it keeps coming back.
+
+80
+00:05:18.570 --> 00:05:21.207
+The rungs come from the response ladder in
+
+81
+00:05:21.207 --> 00:05:24.580
+Security Operations and
+Telemetry's Chapter 11.
+
+82
+00:05:28.330 --> 00:05:30.042
+Three rules complete the gate.
+
+83
+00:05:30.042 --> 00:05:33.320
+First, what's never contained
+by a playbook: servers,
+
+84
+00:05:33.320 --> 00:05:36.755
+privileged accounts and
+emergency access accounts.
+
+85
+00:05:36.755 --> 00:05:38.943
+For those, a human decides.
+
+86
+00:05:38.943 --> 00:05:41.355
+Second, how an incident closes.
+
+87
+00:05:41.355 --> 00:05:45.276
+Every incident closes with a
+classification and a determination,
+
+88
+00:05:45.276 --> 00:05:49.125
+and Microsoft Learn says the Graph
+incident record carries both,
+
+89
+00:05:49.125 --> 00:05:51.905
+along with who it's assigned
+to and the comments.
+
+90
+00:05:51.905 --> 00:05:53.568
+Third, the way back.
+
+91
+00:05:53.568 --> 00:05:57.244
+Containment actions are reversible
+from the Action center,
+
+92
+00:05:57.244 --> 00:06:01.066
+such as releasing a device from
+isolation or re-enabling a user,
+
+93
+00:06:01.066 --> 00:06:04.080
+as Security Operations
+and Telemetry describes.
+
+94
+00:06:04.080 --> 00:06:07.642
+An incident closed by mistake
+is reopened with a comment.
+
+95
+00:06:07.642 --> 00:06:10.929
+The pilot is two weeks of
+the day shift triaging every
+
+96
+00:06:10.929 --> 00:06:14.067
+incident to the table and
+recording time to triage.
+
+97
+00:06:14.067 --> 00:06:16.968
+The S O C lead reviews the queue daily.
+
+98
+00:06:16.968 --> 00:06:21.623
+And the evidence: the severity table and
+the incident response plan's version,
+
+99
+00:06:21.623 --> 00:06:26.278
+the monthly incident export with alerts,
+classification and timestamps, the
+
+100
+00:06:26.278 --> 00:06:28.096
+quarterly exercise incident,
+
+101
+00:06:28.096 --> 00:06:32.160
+and every incident closed outside
+its window, with the reason.
+
+102
+00:06:35.910 --> 00:06:40.885
+Lab 2 runs the guide's validate queries
+in a test tenant, never production.
+
+103
+00:06:40.885 --> 00:06:43.885
+The authors haven't run
+them, as the page says.
+
+104
+00:06:43.885 --> 00:06:47.010
+Every step reads; nothing
+in the tenant changes.
+
+105
+00:06:47.010 --> 00:06:51.368
+You need Module 1's test tenant and
+reader account, with vulnerability data
+
+106
+00:06:51.368 --> 00:06:55.585
+from at least one onboarded device,
+and at least one incident in the queue.
+
+107
+00:06:55.585 --> 00:06:58.297
+Module 1's detection test raises one.
+
+108
+00:06:58.297 --> 00:07:00.723
+Step one connects in the tenant's cloud.
+
+109
+00:07:00.723 --> 00:07:04.320
+Step two files the high and
+critical vulnerabilities,
+
+110
+00:07:04.320 --> 00:07:07.198
+by vendor, software
+and recommended update.
+
+111
+00:07:07.198 --> 00:07:11.386
+One caution the guide records: Learn's
+table reference doesn't list the
+
+112
+00:07:11.386 --> 00:07:16.009
+severity strings, so the guide uses
+critical and high as the portal shows them.
+
+113
+00:07:16.009 --> 00:07:20.422
+If the file comes back empty, check the
+values in your tenant before you trust it.
+
+114
+00:07:20.422 --> 00:07:24.794
+Step three files the exposed and
+internet-facing Windows devices,
+
+115
+00:07:24.794 --> 00:07:27.497
+with their asset value and machine group.
+
+116
+00:07:27.497 --> 00:07:30.226
+The guide's pass: every
+row has an owner in the
+
+117
+00:07:30.226 --> 00:07:34.000
+decision record and a ticket
+in the remediation queue.
+
+118
+00:07:37.750 --> 00:07:40.312
+Step four exports the open incidents.
+
+119
+00:07:40.312 --> 00:07:45.630
+The filter asks for incidents whose status
+is active, and the export keeps the I D,
+
+120
+00:07:45.630 --> 00:07:49.900
+the name, the severity, who it's
+assigned to, and when it was created.
+
+121
+00:07:49.900 --> 00:07:54.062
+The second command reads the file
+back, so you can see the owner column.
+
+122
+00:07:54.062 --> 00:07:57.438
+The guide's pass: every
+open incident has an owner.
+
+123
+00:07:57.438 --> 00:08:00.576
+Step five exports one
+incident with its alerts.
+
+124
+00:08:00.576 --> 00:08:03.275
+Use an incident number
+from step four's output.
+
+125
+00:08:03.275 --> 00:08:07.052
+Microsoft Learn's page shows
+the expand property for alerts,
+
+126
+00:08:07.052 --> 00:08:11.281
+so the file carries every alert in
+the incident and its evidence, and,
+
+127
+00:08:11.281 --> 00:08:15.662
+once the incident is resolved, its
+classification and determination.
+
+128
+00:08:15.662 --> 00:08:19.325
+That file is what an assessor
+traces from alert to closure.
+
+129
+00:08:19.325 --> 00:08:20.863
+Step six backs it out.
+
+130
+00:08:20.863 --> 00:08:24.051
+Nothing changed in the tenant,
+so you only disconnect.
+
+131
+00:08:24.051 --> 00:08:27.630
+Keep the evidence folder with
+the rest of the path's files.
+
+132
+00:08:31.380 --> 00:08:34.692
+The federal requirement, from
+the guide's requirements table.
+
+133
+00:08:34.692 --> 00:08:39.982
+Gate five supports R A five, vulnerability
+monitoring and scanning, S I two,
+
+134
+00:08:39.982 --> 00:08:44.491
+flaw remediation, and C M eight,
+the system component inventory,
+
+135
+00:08:44.491 --> 00:08:49.954
+all from NIST special publication eight
+hundred fifty-three, revision five.
+
+136
+00:08:49.954 --> 00:08:54.405
+The evidence is the vulnerability
+query output and the remediation queue.
+
+137
+00:08:54.405 --> 00:08:59.904
+Gate six supports the incident response
+family: I R four, incident handling;
+
+138
+00:08:59.904 --> 00:09:04.250
+I R five, incident monitoring;
+and I R six, incident reporting;
+
+139
+00:09:04.250 --> 00:09:08.330
+with A U six, audit record
+review, analysis and reporting.
+
+140
+00:09:08.330 --> 00:09:12.317
+The evidence is the incident
+exports, with their classification.
+
+141
+00:09:12.317 --> 00:09:16.423
+Each row lines up with fed-ramp
+twenty X key security indicators,
+
+142
+00:09:16.423 --> 00:09:21.692
+which bind cloud service providers; the
+agency lines its own evidence up with them.
+
+143
+00:09:21.692 --> 00:09:23.782
+The gates support these controls,
+
+144
+00:09:23.782 --> 00:09:27.360
+and the assessor decides
+whether each is satisfied.
+
+145
+00:09:31.110 --> 00:09:33.085
+Check yourself with two questions.
+
+146
+00:09:33.085 --> 00:09:38.197
+First: a G C C agency wants attack
+paths for its domain controllers.
+
+147
+00:09:38.197 --> 00:09:39.623
+What does the program do?
+
+148
+00:09:39.623 --> 00:09:40.571
+The answer is b.
+
+149
+00:09:40.571 --> 00:09:44.761
+Microsoft Learn says Exposure
+Management is Public Cloud only,
+
+150
+00:09:44.761 --> 00:09:49.346
+so record it as not applicable, and
+use the interim path: exposure level,
+
+151
+00:09:49.346 --> 00:09:54.089
+internet-facing devices, Vulnerability
+Management's recommendations,
+
+152
+00:09:54.089 --> 00:09:57.647
+and the Tier zero inventory
+as the critical-asset list.
+
+153
+00:09:57.647 --> 00:10:03.360
+Second: during a high incident, a playbook
+proposes isolating a domain controller.
+
+154
+00:10:03.360 --> 00:10:04.372
+What happens?
+
+155
+00:10:04.372 --> 00:10:05.597
+The answer is b.
+
+156
+00:10:05.597 --> 00:10:06.973
+A human decides.
+
+157
+00:10:06.973 --> 00:10:10.023
+Servers, and privileged
+or emergency accounts,
+
+158
+00:10:10.023 --> 00:10:13.698
+are never contained by a
+playbook, whatever the severity.
+
+159
+00:10:13.698 --> 00:10:18.860
+The module page has two more questions,
+each linked to the unit that answers it.
+
+160
+00:10:22.610 --> 00:10:23.435
+To sum up.
+
+161
+00:10:23.435 --> 00:10:27.563
+You recorded Exposure Management
+as not applicable in G C C,
+
+162
+00:10:27.563 --> 00:10:29.922
+and used the interim path instead.
+
+163
+00:10:29.922 --> 00:10:32.931
+You filed the vulnerability
+and exposure queries,
+
+164
+00:10:32.931 --> 00:10:36.584
+and checked that each exposed
+device has an owner and a ticket.
+
+165
+00:10:36.584 --> 00:10:38.792
+And you exported the open incidents,
+
+166
+00:10:38.792 --> 00:10:41.660
+and one incident with its
+alerts, for the record.
+
+167
+00:10:41.660 --> 00:10:44.462
+The evidence an I S S O
+keeps from this module:
+
+168
+00:10:44.462 --> 00:10:48.276
+the vulnerability query output
+and the remediation queue;
+
+169
+00:10:48.276 --> 00:10:52.168
+the severity table and the
+incident response plan's version;
+
+170
+00:10:52.168 --> 00:10:56.915
+the monthly incident export, with
+alerts, classification and timestamps;
+
+171
+00:10:56.915 --> 00:11:00.885
+and every incident closed outside
+its window, with the reason.
+
+172
+00:11:00.885 --> 00:11:07.420
+Next is Module 4: hunting, detections as
+code, and identity and cloud-app signals.

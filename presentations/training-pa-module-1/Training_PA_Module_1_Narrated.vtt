@@ -711,291 +711,285 @@ and tells you to add it to the
 call list with its permission.
 
 149
-00:09:42.085 --> 00:09:46.723
-Then you ask for a cloud called
-G C C High, with capital letters.
+00:09:42.085 --> 00:09:46.551
+Then you ask for a cloud the
+reader doesn't know, u s gov.
 
 150
-00:09:46.723 --> 00:09:52.644
-The names are case-sensitive on
-purpose, so that's an unknown cloud,
+00:09:46.551 --> 00:09:49.147
+It throws too: use global or G C C.
 
 151
-00:09:52.644 --> 00:09:56.811
-and it throws too: use global,
-G C C, G C C High or D O D.
-
-152
-00:09:56.811 --> 00:09:58.322
+00:09:49.147 --> 00:09:50.660
 There's no default cloud.
 
-153
-00:09:58.322 --> 00:10:03.522
+152
+00:09:50.660 --> 00:09:55.860
 Step six runs the whole test suite,
 three hundred thirty tests, and all pass.
 
-154
-00:10:03.522 --> 00:10:08.085
+153
+00:09:55.860 --> 00:10:00.422
 Then delete the output folder, because it
 names the fixture's privileged holders.
 
-155
-00:10:08.085 --> 00:10:13.030
+154
+00:10:00.422 --> 00:10:05.380
 Pester prints its summary on several
 lines; the slide shows it on one.
 
-156
-00:10:16.780 --> 00:10:21.944
+155
+00:10:09.130 --> 00:10:14.294
 Lab 2 runs the inventory against your own
 test tenant, in the worldwide or G C C
 
-157
-00:10:21.944 --> 00:10:27.518
+156
+00:10:14.294 --> 00:10:19.868
 cloud, with a test Azure subscription,
 never production, and with fictional people.
 
-158
-00:10:27.518 --> 00:10:29.255
+157
+00:10:19.868 --> 00:10:21.605
 The run only reads.
 
-159
-00:10:29.255 --> 00:10:31.822
+158
+00:10:21.605 --> 00:10:24.172
 You register a reader
 app with a certificate,
 
-160
-00:10:31.822 --> 00:10:35.638
+159
+00:10:24.172 --> 00:10:27.988
 and grant it the five Graph
 application permissions from step two,
 
-161
-00:10:35.638 --> 00:10:38.830
+160
+00:10:27.988 --> 00:10:31.180
 with admin consent, and Reader
 on the test subscription.
 
-162
-00:10:38.830 --> 00:10:43.186
+161
+00:10:31.180 --> 00:10:35.536
 Then you run the inventory, cross-check
 it against the admin center's download,
 
-163
-00:10:43.186 --> 00:10:45.705
+162
+00:10:35.536 --> 00:10:38.055
 and check the two things
 the fixture assumed.
 
-164
-00:10:45.705 --> 00:10:49.518
+163
+00:10:38.055 --> 00:10:41.868
 To back it out, remove the Reader
 assignment, the five permissions,
 
-165
-00:10:49.518 --> 00:10:53.967
+164
+00:10:41.868 --> 00:10:46.317
 the app registration and its certificate,
 and delete the test output folder,
 
-166
-00:10:53.967 --> 00:10:56.580
+165
+00:10:46.317 --> 00:10:48.930
 which names the tenant's
 privileged holders.
 
-167
-00:10:56.580 --> 00:11:02.530
+166
+00:10:48.930 --> 00:10:54.880
 The path's authors haven't run Lab 2;
 the workbook's Lab 2 gives every step.
 
-168
-00:11:06.280 --> 00:11:07.667
+167
+00:10:58.630 --> 00:11:00.017
 The federal requirement.
 
-169
-00:11:07.667 --> 00:11:10.733
+168
+00:11:00.017 --> 00:11:03.083
 The inventory is the evidence
 for the plan's Gate 0:
 
-170
-00:11:10.733 --> 00:11:15.293
+169
+00:11:03.083 --> 00:11:07.643
 standing administrative privilege
 inventoried and classified by tier.
 
-171
-00:11:15.293 --> 00:11:19.999
+170
+00:11:07.643 --> 00:11:12.349
 It supports NIST special publication
 eight hundred fifty-three A C two,
 
-172
-00:11:19.999 --> 00:11:23.191
+171
+00:11:12.349 --> 00:11:15.541
 account management, and A
 C six, enhancement five,
 
-173
-00:11:23.191 --> 00:11:26.542
+172
+00:11:15.541 --> 00:11:18.892
 privileged accounts
 restricted to defined roles.
 
-174
-00:11:26.542 --> 00:11:32.207
+173
+00:11:18.892 --> 00:11:24.557
 And it supports CISA's B O D twenty-five
 oh-one and the ScubaGear baseline M S A A D
 
-175
-00:11:32.207 --> 00:11:37.437
+174
+00:11:24.557 --> 00:11:29.787
 seven point four, version one: no
 permanent active assignment to a highly
 
-176
-00:11:37.437 --> 00:11:42.492
+175
+00:11:29.787 --> 00:11:34.842
 privileged role, with the emergency
 access accounts as the exception.
 
-177
-00:11:42.492 --> 00:11:46.268
+176
+00:11:34.842 --> 00:11:38.618
 The table pairs each with
 a KSI and an evidence file.
 
-178
-00:11:46.268 --> 00:11:51.553
+177
+00:11:38.618 --> 00:11:43.903
 KSIs are FedRAMP's twenty X Key Security
 Indicators for cloud service providers;
 
-179
-00:11:51.553 --> 00:11:55.734
+178
+00:11:43.903 --> 00:11:48.084
 the agency lines its evidence up
 with what its providers report,
 
-180
-00:11:55.734 --> 00:11:57.706
+179
+00:11:48.084 --> 00:11:50.056
 and doesn't report KSIs itself.
 
-181
-00:11:57.706 --> 00:12:01.797
+180
+00:11:50.056 --> 00:11:54.147
 The evidence an ISSO keeps for
 Gate 0: the inventory files,
 
-182
-00:12:01.797 --> 00:12:06.587
+181
+00:11:54.147 --> 00:11:58.937
 in the access-controlled evidence
 store, because they name people;
 
-183
-00:12:06.587 --> 00:12:10.950
+182
+00:11:58.937 --> 00:12:03.300
 the findings; and the manifest,
 beside the files it lists.
 
-184
-00:12:14.700 --> 00:12:16.675
+183
+00:12:07.050 --> 00:12:09.025
 Check yourself with two questions.
 
-185
-00:12:16.675 --> 00:12:21.813
+184
+00:12:09.025 --> 00:12:14.163
 First: why doesn't the inventory use Microsoft
 Learn's all-roles sample as its read?
 
-186
-00:12:21.813 --> 00:12:25.410
+185
+00:12:14.163 --> 00:12:17.760
 The answer is b: the sample
 sees no eligible assignment,
 
-187
-00:12:25.410 --> 00:12:29.487
+186
+00:12:17.760 --> 00:12:21.837
 and that's the state the project
 moves every human holder into.
 
-188
-00:12:29.487 --> 00:12:32.861
+187
+00:12:21.837 --> 00:12:25.211
 Under PIM almost every
 human holder is eligible,
 
-189
-00:12:32.861 --> 00:12:36.150
+188
+00:12:25.211 --> 00:12:28.500
 so an active-only list
 stops being an inventory.
 
-190
-00:12:36.150 --> 00:12:40.021
+189
+00:12:28.500 --> 00:12:32.371
 Second: why is the emergency
 account, E A oh one,
 
-191
-00:12:40.021 --> 00:12:43.788
+190
+00:12:32.371 --> 00:12:36.138
 reported as Info, not as
 an I N V oh one finding?
 
-192
-00:12:43.788 --> 00:12:47.562
+191
+00:12:36.138 --> 00:12:39.912
 The answer is c: it's on the
 exceptions list with an owner.
 
-193
-00:12:47.562 --> 00:12:50.076
+192
+00:12:39.912 --> 00:12:42.426
 An exception with no owner doesn't count.
 
-194
-00:12:50.076 --> 00:12:52.450
+193
+00:12:42.426 --> 00:12:44.800
 You saw that in Lab 1, step four.
 
-195
-00:12:52.450 --> 00:12:57.720
+194
+00:12:44.800 --> 00:12:50.070
 The module page has two more questions,
 each linked to the section that answers it.
 
-196
-00:13:01.470 --> 00:13:02.295
+195
+00:12:53.820 --> 00:12:54.645
 To sum up.
 
-197
-00:13:02.295 --> 00:13:07.183
+196
+00:12:54.645 --> 00:12:59.533
 You ran Microsoft Learn's samples and
 saw them miss every eligible holder.
 
-198
-00:13:07.183 --> 00:13:11.514
+197
+00:12:59.533 --> 00:13:03.864
 Then you read thirty assignments from
 a fictional tenant, each with a tier,
 
-199
-00:13:11.514 --> 00:13:13.290
+198
+00:13:03.864 --> 00:13:05.640
 and found standing privilege,
 
-200
-00:13:13.290 --> 00:13:17.195
+199
+00:13:05.640 --> 00:13:09.545
 too many Global Administrators
 and too many subscription Owners.
 
-201
-00:13:17.195 --> 00:13:21.583
+200
+00:13:09.545 --> 00:13:13.933
 And you saw the reader refuse an
 undeclared call and an unknown cloud.
 
-202
-00:13:21.583 --> 00:13:24.580
+201
+00:13:13.933 --> 00:13:16.930
 Carry one thing forward:
 the emergency account
 
-203
-00:13:24.580 --> 00:13:27.808
+202
+00:13:16.930 --> 00:13:20.158
 was Info only because the
 exceptions list names it.
 
-204
-00:13:27.808 --> 00:13:31.419
+203
+00:13:20.158 --> 00:13:23.769
 Next is Module 2: emergency access first.
 
-205
-00:13:31.419 --> 00:13:35.973
+204
+00:13:23.769 --> 00:13:28.323
 It's the one step in this project that
 can't move, because approval switched on
 
-206
-00:13:35.973 --> 00:13:40.670
+205
+00:13:28.323 --> 00:13:33.020
 before the emergency accounts exist is
 the sequence that locks the agency out.
 
-207
-00:13:40.670 --> 00:13:45.657
+206
+00:13:33.020 --> 00:13:38.007
 In Module 2 you check each emergency
 account against Microsoft Learn's standard,
 
-208
-00:13:45.657 --> 00:13:48.990
+207
+00:13:38.007 --> 00:13:41.340
 and build the alert that
 watches them between drills.

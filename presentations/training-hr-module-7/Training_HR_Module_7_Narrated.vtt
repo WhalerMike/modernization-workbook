@@ -764,12 +764,12 @@ the record is intact, not
 that the gate is passed.
 
 161
-00:10:21.938 --> 00:10:24.247
+00:10:21.938 --> 00:10:24.200
 Step seven runs both test suites,
 
 162
-00:10:24.247 --> 00:10:29.400
-fifty-seven and a hundred forty-two
+00:10:24.200 --> 00:10:29.420
+fifty-seven and a hundred thirty-nine
 tests, and deletes the out folder.
 
 163

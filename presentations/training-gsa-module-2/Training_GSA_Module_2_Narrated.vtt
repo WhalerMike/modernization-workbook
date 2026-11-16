@@ -1,0 +1,787 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.139
+Welcome to Module 2 of Global Secure
+Access as the Identity-Aware Network:
+
+2
+00:00:05.139 --> 00:00:07.475
+the client and Microsoft traffic.
+
+3
+00:00:07.475 --> 00:00:10.860
+Everything after this module
+depends on two things:
+
+4
+00:00:10.860 --> 00:00:15.819
+a client on every managed Windows
+device, and the Microsoft traffic profile
+
+5
+00:00:15.819 --> 00:00:20.463
+carrying that device's Microsoft three
+sixty-five and Entra I D traffic.
+
+6
+00:00:20.463 --> 00:00:26.324
+This module covers Steps 3 and 4 of the
+Global Secure Access implementation guide.
+
+7
+00:00:26.324 --> 00:00:30.920
+It takes about forty-five minutes,
+plus a lab in your own test tenant.
+
+8
+00:00:34.670 --> 00:00:35.820
+Why does this matter?
+
+9
+00:00:35.820 --> 00:00:40.113
+The client goes on every managed
+Windows device, deployed by Intune,
+
+10
+00:00:40.113 --> 00:00:44.482
+and opens a tunnel to the service edge
+after the user signs in to Entra.
+
+11
+00:00:44.482 --> 00:00:49.583
+How many devices actually carry it is the
+first metric every later step leans on.
+
+12
+00:00:49.583 --> 00:00:54.684
+The Microsoft traffic profile is what makes
+the real source address visible to Entra
+
+13
+00:00:54.684 --> 00:00:57.988
+I D, and it is the prerequisite
+for the compliant network
+
+14
+00:00:57.988 --> 00:01:01.796
+check and universal tenant
+restrictions, which come in Module 3.
+
+15
+00:01:01.796 --> 00:01:05.272
+So in this module you package
+the client the way Learn does,
+
+16
+00:01:05.272 --> 00:01:09.111
+scope the profile to a pilot group,
+turn on source I P restoration,
+
+17
+00:01:09.111 --> 00:01:13.820
+and measure how much of the pilot's
+traffic the service actually carries.
+
+18
+00:01:17.570 --> 00:01:20.483
+Here's what you'll be able to
+do by the end of this module.
+
+19
+00:01:20.483 --> 00:01:23.427
+You'll name the client's
+platforms and prerequisites,
+
+20
+00:01:23.427 --> 00:01:25.769
+and the configurations it doesn't support.
+
+21
+00:01:25.769 --> 00:01:29.574
+You'll package it as a Win32 app
+with Learn's install command,
+
+22
+00:01:29.574 --> 00:01:31.670
+return codes and detection rule.
+
+23
+00:01:31.670 --> 00:01:36.027
+You'll explain why D N S over H T
+T P S is turned off in browsers,
+
+24
+00:01:36.027 --> 00:01:40.020
+and why the hardening
+remediation waits for ring two.
+
+25
+00:01:40.020 --> 00:01:43.922
+You'll enable the Microsoft
+traffic profile for a pilot group,
+
+26
+00:01:43.922 --> 00:01:45.682
+with source I P restoration.
+
+27
+00:01:45.682 --> 00:01:50.058
+And you'll compute client coverage, and
+the share of sign-ins the service carries.
+
+28
+00:01:50.058 --> 00:01:52.898
+You need Module 1, with the telemetry on,
+
+29
+00:01:52.898 --> 00:01:58.133
+and a skim of Devices and Endpoints,
+chapter four, for the Win32 app model.
+
+30
+00:01:58.133 --> 00:02:01.640
+The lab runs in a test
+tenant, never production.
+
+31
+00:02:05.390 --> 00:02:07.602
+Unit 1 is where the client runs.
+
+32
+00:02:07.602 --> 00:02:12.548
+Learn's client page: Windows ten L
+T S C 2021 or later, Windows eleven,
+
+33
+00:02:12.548 --> 00:02:17.951
+and Windows eleven on Arm, which has
+a separate installer; Azure Virtual
+
+34
+00:02:17.951 --> 00:02:23.903
+Desktop single-session and Windows three
+sixty-five, but not A V D multi-session.
+
+35
+00:02:23.903 --> 00:02:26.513
+It can't be installed
+on a machine that hosts
+
+36
+00:02:26.513 --> 00:02:29.415
+virtual machines with a
+Hyper-V external switch.
+
+37
+00:02:29.415 --> 00:02:33.901
+The device must be joined, hybrid
+joined or registered in the tenant,
+
+38
+00:02:33.901 --> 00:02:37.265
+and registered devices
+carry only Private Access.
+
+39
+00:02:37.265 --> 00:02:43.471
+The client tunnels I P version four only,
+and it doesn't support secure D N S,
+
+40
+00:02:43.471 --> 00:02:49.677
+D N S over T C P from browsers' built-in
+resolvers, or Group Policy N R P T rules.
+
+41
+00:02:49.677 --> 00:02:53.220
+Like the rest of the service,
+it's available in G C C.
+
+42
+00:02:53.220 --> 00:02:56.408
+Hosts it can't run on go
+on the exception list,
+
+43
+00:02:56.408 --> 00:02:59.330
+each with an owner and a review date.
+
+44
+00:03:03.080 --> 00:03:05.105
+Unit 2 packages the client.
+
+45
+00:03:05.105 --> 00:03:09.470
+Download it from the Global Secure
+Access admin center, put it beside
+
+46
+00:03:09.470 --> 00:03:14.218
+Learn's installation script, and wrap
+both with the Win32 Content Prep Tool.
+
+47
+00:03:14.218 --> 00:03:17.277
+Learn's script sets I P
+version four preferred,
+
+48
+00:03:17.277 --> 00:03:22.268
+runs the installer quietly, and returns
+thirty ten when a restart is needed.
+
+49
+00:03:22.268 --> 00:03:26.668
+Then create the Win32 app in
+Intune with Learn's values.
+
+50
+00:03:26.668 --> 00:03:29.767
+The install command runs the
+script through PowerShell.
+
+51
+00:03:29.767 --> 00:03:35.343
+The uninstall command runs the client with
+uninstall, quiet and no-restart switches.
+
+52
+00:03:35.343 --> 00:03:37.179
+Install behavior is System.
+
+53
+00:03:37.179 --> 00:03:39.767
+The return codes are zero for success,
+
+54
+00:03:39.767 --> 00:03:43.855
+thirty ten for a soft reboot,
+and sixteen eighteen for retry.
+
+55
+00:03:43.855 --> 00:03:48.780
+The detection rule is the client's file,
+by version, at least the packaged version.
+
+56
+00:03:48.780 --> 00:03:51.897
+And the assignment is
+Required, to the pilot group,
+
+57
+00:03:51.897 --> 00:03:54.690
+with the restart grace period enabled.
+
+58
+00:03:58.440 --> 00:04:00.178
+Three more client decisions.
+
+59
+00:04:00.178 --> 00:04:04.140
+First, D N S over H T T P S.
+
+60
+00:04:04.140 --> 00:04:07.041
+The client doesn't support secure D N S,
+
+61
+00:04:07.041 --> 00:04:12.561
+so an Intune settings catalog profile
+sets Control the mode of D N S over
+
+62
+00:04:12.561 --> 00:04:17.427
+H T T P S to Disabled, in Edge and
+Chrome, assigned to the same group.
+
+63
+00:04:17.427 --> 00:04:19.003
+Second, hardening.
+
+64
+00:04:19.003 --> 00:04:22.208
+Learn's remediation scripts
+can hide the disable and
+
+65
+00:04:22.208 --> 00:04:25.341
+sign-out buttons and restrict
+non-privileged users.
+
+66
+00:04:25.341 --> 00:04:30.676
+Learn's advice is to let users run
+unrestricted first and confirm nobody needs
+
+67
+00:04:30.676 --> 00:04:35.602
+to disable the client, for a website or
+a parallel V P N, before restricting.
+
+68
+00:04:35.602 --> 00:04:39.852
+So the guide deploys the remediation
+from ring two, not in the pilot.
+
+69
+00:04:39.852 --> 00:04:44.136
+Third, upgrades, in rings: a
+new app for each new version,
+
+70
+00:04:44.136 --> 00:04:49.102
+assigned to a small group, widened,
+and the old app deleted last.
+
+71
+00:04:49.102 --> 00:04:51.577
+Rolling back re-assigns the previous app.
+
+72
+00:04:51.577 --> 00:04:58.310
+And don't disable QUIC in browsers for
+this; Step 5 handles QUIC, in Module 5.
+
+73
+00:05:02.060 --> 00:05:05.073
+Unit 3 is the Microsoft traffic profile.
+
+74
+00:05:05.073 --> 00:05:09.459
+It acquires Microsoft three
+sixty-five and Entra I D traffic,
+
+75
+00:05:09.459 --> 00:05:14.197
+and only this profile can; the
+Internet Access profile never does.
+
+76
+00:05:14.197 --> 00:05:16.725
+Enable it with Learn's Graph request,
+
+77
+00:05:16.725 --> 00:05:20.010
+filtered on the m three
+sixty-five traffic type.
+
+78
+00:05:20.010 --> 00:05:25.020
+Then assign the pilot group in the admin
+center, under traffic forwarding; the pages
+
+79
+00:05:25.020 --> 00:05:29.522
+the guide read give no Graph request for
+the assignment, so it's a portal step.
+
+80
+00:05:29.522 --> 00:05:30.909
+Then set signaling.
+
+81
+00:05:30.909 --> 00:05:36.535
+Signaling carries source I P restoration,
+so Entra sees the user's real address.
+
+82
+00:05:36.535 --> 00:05:40.819
+It's on by default only for tenants
+that onboarded after June 2025,
+
+83
+00:05:40.819 --> 00:05:44.310
+so the guide sets it explicitly
+and records the state.
+
+84
+00:05:44.310 --> 00:05:47.372
+It's also the setting the
+compliant network check needs.
+
+85
+00:05:47.372 --> 00:05:52.509
+And Learn's caution: once Conditional Access
+policies depend on I P locations or the
+
+86
+00:05:52.509 --> 00:05:56.082
+compliant network, turning
+signaling off can block users,
+
+87
+00:05:56.082 --> 00:05:59.430
+so those policies come
+out of enforcement first.
+
+88
+00:06:03.180 --> 00:06:04.480
+How do you know it works?
+
+89
+00:06:04.480 --> 00:06:09.099
+The Microsoft traffic profile has no
+report-only mode, so the pilot group
+
+90
+00:06:09.099 --> 00:06:13.642
+is the audit phase, read through the
+sign-in query for five business days.
+
+91
+00:06:13.642 --> 00:06:14.742
+Three measures.
+
+92
+00:06:14.742 --> 00:06:18.692
+Client coverage: the device usage
+summary's active device count,
+
+93
+00:06:18.692 --> 00:06:21.971
+divided by Intune's count of
+in-scope Windows devices;
+
+94
+00:06:21.971 --> 00:06:26.218
+the guide's starting target is
+ninety-eight percent after ring three.
+
+95
+00:06:26.218 --> 00:06:30.966
+Sign-ins through the service: the share
+of sign-ins marked as through Global
+
+96
+00:06:30.966 --> 00:06:35.792
+Secure Access, for in-scope users; the
+starting target is ninety-five percent.
+
+97
+00:06:35.792 --> 00:06:40.366
+And source I P restoration, by Learn's
+deployment guide test: a SharePoint
+
+98
+00:06:40.366 --> 00:06:45.243
+sign-in shows the same I P address with
+the client running and with it disabled.
+
+99
+00:06:45.243 --> 00:06:50.130
+The rollback is simple: remove the ring's
+group from the profile's assignment.
+
+100
+00:06:53.880 --> 00:06:58.705
+The lab runs in a test tenant, never
+production, and the authors haven't run it.
+
+101
+00:06:58.705 --> 00:07:03.976
+You need Module 1's lab done, one Windows
+eleven test device joined to Entra I D,
+
+102
+00:07:03.976 --> 00:07:06.821
+enrolled in Intune and in the pilot group,
+
+103
+00:07:06.821 --> 00:07:11.005
+the client and Learn's script,
+and the Win32 Content Prep Tool.
+
+104
+00:07:11.005 --> 00:07:14.143
+Step one packages the
+client in Command Prompt.
+
+105
+00:07:14.143 --> 00:07:19.919
+Steps two and three are in Intune:
+the Win32 app with Learn's values,
+
+106
+00:07:19.919 --> 00:07:24.092
+and the D N S over H T T P
+S profile; no hardening yet.
+
+107
+00:07:24.092 --> 00:07:26.124
+Step four checks the pilot device:
+
+108
+00:07:26.124 --> 00:07:29.535
+the file version should be
+the packaged version or later,
+
+109
+00:07:29.535 --> 00:07:33.817
+Disabled Components should read hex
+twenty, I P version four preferred,
+
+110
+00:07:33.817 --> 00:07:36.430
+and the four hardening
+values aren't set yet.
+
+111
+00:07:36.430 --> 00:07:41.118
+Open the client's health check, keep the
+export, and the tray must read Connected.
+
+112
+00:07:41.118 --> 00:07:44.160
+Step five asks Graph for
+the device usage summary,
+
+113
+00:07:44.160 --> 00:07:47.120
+which is the numerator of client coverage.
+
+114
+00:07:50.870 --> 00:07:53.815
+Step six finds the
+Microsoft traffic profile
+
+115
+00:07:53.815 --> 00:07:56.682
+with Learn's filtered
+request and enables it.
+
+116
+00:07:56.682 --> 00:08:00.544
+This writes to the test tenant,
+and Module 6 rolls it back.
+
+117
+00:08:00.544 --> 00:08:03.943
+Step seven assigns the pilot
+group in the admin center,
+
+118
+00:08:03.943 --> 00:08:06.058
+as an Application Administrator.
+
+119
+00:08:06.058 --> 00:08:10.012
+Step eight turns on signaling and
+records the setting to a file;
+
+120
+00:08:10.012 --> 00:08:12.446
+signaling status should read enabled.
+
+121
+00:08:12.446 --> 00:08:14.470
+Step nine is the validation.
+
+122
+00:08:14.470 --> 00:08:18.304
+On the pilot device, sign in to
+SharePoint with the client running,
+
+123
+00:08:18.304 --> 00:08:22.920
+then disable the client from the tray and
+sign in again in a new browser session.
+
+124
+00:08:22.920 --> 00:08:27.933
+With source I P restoration, the two
+sign-ins show the same I P address.
+
+125
+00:08:27.933 --> 00:08:29.357
+Re-enable the client.
+
+126
+00:08:29.357 --> 00:08:33.048
+Then, in the workspace, run
+the guide's sign-in query:
+
+127
+00:08:33.048 --> 00:08:37.458
+P C T through G S A is the share
+of sign-ins the service carried.
+
+128
+00:08:37.458 --> 00:08:40.233
+Run Module 1's freshness query again too.
+
+129
+00:08:40.233 --> 00:08:44.570
+Keep the profile and signaling
+on; Module 3 needs them.
+
+130
+00:08:48.320 --> 00:08:50.931
+The federal requirement, from NIST special
+
+131
+00:08:50.931 --> 00:08:54.195
+publication eight hundred
+fifty-three, revision five.
+
+132
+00:08:54.195 --> 00:08:57.963
+The client supports C M six,
+C M seven and S I four:
+
+133
+00:08:57.963 --> 00:09:03.120
+managed devices carry the client
+and can't silently turn it off.
+
+134
+00:09:03.120 --> 00:09:06.947
+The evidence is the Intune app's
+assignment and detection rule,
+
+135
+00:09:06.947 --> 00:09:10.258
+the remediation results, and
+the device usage summary.
+
+136
+00:09:10.258 --> 00:09:15.786
+The Microsoft traffic profile supports
+A C seventeen, A U three and S I four:
+
+137
+00:09:15.786 --> 00:09:19.955
+Microsoft three sixty-five
+and Entra traffic acquired,
+
+138
+00:09:19.955 --> 00:09:22.946
+and sign-ins carrying the real source I P.
+
+139
+00:09:22.946 --> 00:09:26.525
+The evidence is the profile
+export and its assignments,
+
+140
+00:09:26.525 --> 00:09:29.482
+the signaling GET, and
+the sign-in query result.
+
+141
+00:09:29.482 --> 00:09:33.827
+Each row lines up with fed-ramp twenty
+X indicators, and the program's
+
+142
+00:09:33.827 --> 00:09:38.482
+mapping lines Step 4 up with tick three
+point oh's Remote User Pattern two.
+
+143
+00:09:38.482 --> 00:09:42.640
+The evidence supports the
+controls; the assessor decides.
+
+144
+00:09:46.390 --> 00:09:48.365
+Check yourself with two questions.
+
+145
+00:09:48.365 --> 00:09:51.658
+First: when does the guide
+deploy the remediation that
+
+146
+00:09:51.658 --> 00:09:55.390
+hides the disable button and
+restricts non-privileged users?
+
+147
+00:09:55.390 --> 00:09:59.089
+The answer is b: from ring
+two, after confirming nobody
+
+148
+00:09:59.089 --> 00:10:03.040
+in the pilot needs to disable
+the client, as Learn advises.
+
+149
+00:10:03.040 --> 00:10:09.115
+Second: which profile can acquire Microsoft
+three sixty-five and Entra I D traffic?
+
+150
+00:10:09.115 --> 00:10:12.565
+The answer is a: only the
+Microsoft traffic profile.
+
+151
+00:10:12.565 --> 00:10:15.377
+The Internet Access
+profile never acquires it.
+
+152
+00:10:15.377 --> 00:10:20.650
+The module page has three more questions,
+each linked to the unit that answers it.
+
+153
+00:10:24.400 --> 00:10:25.225
+To sum up.
+
+154
+00:10:25.225 --> 00:10:29.460
+You packaged the client with Learn's
+values, checked it on a pilot device,
+
+155
+00:10:29.460 --> 00:10:34.055
+counted the devices the service sees,
+enabled the Microsoft traffic profile
+
+156
+00:10:34.055 --> 00:10:38.075
+for the pilot, turned on signaling,
+and proved source I P restoration.
+
+157
+00:10:38.075 --> 00:10:40.854
+The evidence an I S S O
+keeps from this module:
+
+158
+00:10:40.854 --> 00:10:44.327
+the Intune app's assignment
+export and detection rule,
+
+159
+00:10:44.327 --> 00:10:49.499
+the client health check export, the device
+usage summary with the coverage ratio,
+
+160
+00:10:49.499 --> 00:10:53.204
+the profile export and its
+assignments, the signaling GET,
+
+161
+00:10:53.204 --> 00:10:56.137
+the source I P comparison,
+and the sign-in share.
+
+162
+00:10:56.137 --> 00:11:00.428
+Next is Module 3, the compliant
+network and tenant restrictions,
+
+163
+00:11:00.428 --> 00:11:04.151
+the two signals only Entra
+can produce from the network,
+
+164
+00:11:04.151 --> 00:11:07.770
+run in report-only or a pilot
+before they block anyone.

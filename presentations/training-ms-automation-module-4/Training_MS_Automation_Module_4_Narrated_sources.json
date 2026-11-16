@@ -18,10 +18,6 @@
   "title": "Resource Manager isn't Graph: four things change",
   "links": [
    {
-    "text": "Compare Azure Government and global Azure",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
-   },
-   {
     "text": "Azure built-in roles",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-built-in-roles"
    }
@@ -53,20 +49,6 @@
  },
  {
   "slide": 12,
-  "title": "GCC High and DoD: Azure Government differences",
-  "links": [
-   {
-    "text": "Azure Government GA roadmap",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-azure-government-product-general"
-   },
-   {
-    "text": "Arc in US Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sql-server-enabled-by-azure-arc-in-us"
-   }
-  ]
- },
- {
-  "slide": 13,
   "title": "The federal requirement and evidence for Arc servers",
   "links": [
    {

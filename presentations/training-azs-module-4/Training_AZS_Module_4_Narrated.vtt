@@ -1,0 +1,788 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.055
+Welcome to Module 4 of the Azure
+Security Engineering learning path:
+
+2
+00:00:05.055 --> 00:00:07.250
+Private Link, D N S and Key Vault.
+
+3
+00:00:07.250 --> 00:00:12.688
+A private endpoint gives a pass resource
+an address inside the agency's network,
+
+4
+00:00:12.688 --> 00:00:15.325
+and D N S decides whether anyone uses it.
+
+5
+00:00:15.325 --> 00:00:19.000
+The secrets and keys a workload
+needs belong in a vault that
+
+6
+00:00:19.000 --> 00:00:22.975
+only its managed identity and
+eligible administrators can use.
+
+7
+00:00:22.975 --> 00:00:27.554
+This module takes pass off the internet,
+starting with Key Vault, and puts
+
+8
+00:00:27.554 --> 00:00:32.362
+the vault itself behind role-based
+access, purge protection and an audit log.
+
+9
+00:00:32.362 --> 00:00:37.591
+It covers Steps 7 and 8 of the Azure
+Security Engineering implementation guide,
+
+10
+00:00:37.591 --> 00:00:42.540
+and takes about fifty minutes, plus
+a lab in your own test subscription.
+
+11
+00:00:46.290 --> 00:00:47.440
+Why does this matter?
+
+12
+00:00:47.440 --> 00:00:51.235
+Learn's page, Integrate Key
+Vault with Azure Private Link,
+
+13
+00:00:51.235 --> 00:00:55.352
+is blunt about where private
+endpoints fail: name resolution.
+
+14
+00:00:55.352 --> 00:01:00.156
+The private D N S zone has to exist
+and be linked to the virtual network,
+
+15
+00:01:00.156 --> 00:01:04.791
+it has to hold the record, and
+on-premises D N S has to forward to Azure.
+
+16
+00:01:04.791 --> 00:01:09.428
+Miss any of the three and clients
+quietly keep using the public address.
+
+17
+00:01:09.428 --> 00:01:13.148
+And the vault: Learn's page,
+Secure your Azure Key Vault,
+
+18
+00:01:13.148 --> 00:01:18.898
+recommends role-based access, not legacy
+access policies; pim for administrators;
+
+19
+00:01:18.898 --> 00:01:21.604
+purge protection; rotation; audit logs;
+
+20
+00:01:21.604 --> 00:01:25.240
+and private endpoints with
+public access disabled.
+
+21
+00:01:25.240 --> 00:01:29.926
+So this module builds central private
+D N S, turns public access off,
+
+22
+00:01:29.926 --> 00:01:33.079
+and puts each vault
+behind role-based access,
+
+23
+00:01:33.079 --> 00:01:38.120
+with purge protection, a closed
+firewall, rotation and an audit log.
+
+24
+00:01:41.870 --> 00:01:44.783
+Here's what you'll be able to
+do by the end of this module.
+
+25
+00:01:44.783 --> 00:01:48.670
+You'll name the three things
+private-endpoint name resolution needs,
+
+26
+00:01:48.670 --> 00:01:50.170
+and say where the zones live.
+
+27
+00:01:50.170 --> 00:01:53.301
+You'll explain what a private
+D N S zone group does,
+
+28
+00:01:53.301 --> 00:01:55.258
+and how policy does it at scale.
+
+29
+00:01:55.258 --> 00:01:58.190
+You'll prove a vault resolves
+to a private address
+
+30
+00:01:58.190 --> 00:02:01.408
+inside the network and
+refuses requests from outside.
+
+31
+00:02:01.408 --> 00:02:03.944
+You'll check a vault's role-based access,
+
+32
+00:02:03.944 --> 00:02:07.907
+purge protection, firewall and
+public access in one command.
+
+33
+00:02:07.907 --> 00:02:12.061
+And you'll read the audit log for an
+allowed and a denied secret read,
+
+34
+00:02:12.061 --> 00:02:15.082
+and say why disabling a
+suspected key comes last.
+
+35
+00:02:15.082 --> 00:02:21.323
+You need Module 3; Migration C of the
+service account guide, Service Accounts,
+
+36
+00:02:21.323 --> 00:02:26.970
+from User Accounts to gMSAs to
+Microsoft Entra Workload Identities,
+
+37
+00:02:26.970 --> 00:02:30.536
+for the managed identities;
+and a skim of D N S,
+
+38
+00:02:30.536 --> 00:02:35.060
+D H C P and I P A M, which owns
+the agency's D N S authority.
+
+39
+00:02:38.810 --> 00:02:41.147
+Unit 1 is the guide's Step 7.
+
+40
+00:02:41.147 --> 00:02:44.207
+Create each private link
+zone once, centrally,
+
+41
+00:02:44.207 --> 00:02:47.911
+in the connectivity subscription,
+and link it to the hub.
+
+42
+00:02:47.911 --> 00:02:52.623
+The example is Key Vault's zone, from
+Learn's Private Link integration page.
+
+43
+00:02:52.623 --> 00:02:56.985
+Then create the private endpoint,
+with a private D N S zone group.
+
+44
+00:02:56.985 --> 00:03:01.885
+Learn's D N S integration page says the
+zone group registers the A record with the
+
+45
+00:03:01.885 --> 00:03:06.710
+endpoint and removes it when the endpoint
+goes, so nobody edits records by hand.
+
+46
+00:03:06.710 --> 00:03:10.072
+Once the private path works,
+turn public access off;
+
+47
+00:03:10.072 --> 00:03:13.835
+for Key Vault, the firewall's
+default action becomes deny.
+
+48
+00:03:13.835 --> 00:03:17.152
+On premises, add conditional
+forwarders for the
+
+49
+00:03:17.152 --> 00:03:20.635
+vault's public zones to
+Azure D N S Private Resolver.
+
+50
+00:03:20.635 --> 00:03:25.669
+And one exfiltration note: a private
+endpoint reaches only its own resource,
+
+51
+00:03:25.669 --> 00:03:28.385
+but traffic to it can bypass the firewall.
+
+52
+00:03:28.385 --> 00:03:32.159
+Where inspection is required,
+Learn's troubleshooting page shows a
+
+53
+00:03:32.159 --> 00:03:36.490
+slash thirty-two route for the
+endpoint's address through the firewall.
+
+54
+00:03:40.240 --> 00:03:42.302
+At scale, let policy do it.
+
+55
+00:03:42.302 --> 00:03:45.006
+The Cloud Adoption Framework's pattern,
+
+56
+00:03:45.006 --> 00:03:48.940
+Private Link and D N S integration
+at scale, has three parts.
+
+57
+00:03:48.940 --> 00:03:52.277
+Deny private link zones in
+workload subscriptions.
+
+58
+00:03:52.277 --> 00:03:54.466
+Deny pass with public endpoints.
+
+59
+00:03:54.466 --> 00:03:59.015
+And a deploy-if-not-exists policy that
+adds the zone group in the central zone.
+
+60
+00:03:59.015 --> 00:04:01.346
+The Azure landing zones initiative,
+
+61
+00:04:01.346 --> 00:04:04.920
+Configure Azure pass services
+to use private D N S zones,
+
+62
+00:04:04.920 --> 00:04:08.649
+carries the built-in definitions,
+and the policy's managed
+
+63
+00:04:08.649 --> 00:04:12.378
+identity needs Private D N S
+Zone Contributor on the zones.
+
+64
+00:04:12.378 --> 00:04:17.065
+This prevents a danger the guide
+lists: zones in workload subscriptions
+
+65
+00:04:17.065 --> 00:04:21.753
+split records across zones, and
+resolution fails or quietly goes public.
+
+66
+00:04:21.753 --> 00:04:26.421
+The rollout follows the usual pattern:
+the deny policies in audit first,
+
+67
+00:04:26.421 --> 00:04:29.112
+with Module 1's public pass list reviewed,
+
+68
+00:04:29.112 --> 00:04:33.340
+then public access off per
+resource, then the deny policies.
+
+69
+00:04:37.090 --> 00:04:39.315
+Unit 2 is the guide's Step 8.
+
+70
+00:04:39.315 --> 00:04:43.346
+Managed identities themselves are
+covered in the service account guide;
+
+71
+00:04:43.346 --> 00:04:45.328
+this step covers the vault they read.
+
+72
+00:04:45.328 --> 00:04:50.040
+Create vaults on role-based access with
+purge protection, and close the firewall,
+
+73
+00:04:50.040 --> 00:04:53.627
+with the commands from Learn's
+Private Link integration page.
+
+74
+00:04:53.627 --> 00:04:56.602
+Purge protection can't be
+turned off once it's on;
+
+75
+00:04:56.602 --> 00:05:00.340
+that's the point, and the guide
+never excludes a vault from it.
+
+76
+00:05:00.340 --> 00:05:03.936
+Grant the workload's managed
+identity a data-plane role,
+
+77
+00:05:03.936 --> 00:05:08.627
+such as Key Vault Secrets User, at the
+vault's scope, not the subscription's.
+
+78
+00:05:08.627 --> 00:05:13.252
+Administrators get Key Vault Administrator
+as an eligible pim assignment.
+
+79
+00:05:13.252 --> 00:05:18.712
+Rotate keys by policy, with Learn's autorotation
+command; the periods in the guide's
+
+80
+00:05:18.712 --> 00:05:23.690
+policy file are an example, and the
+agency's key management policy sets them.
+
+81
+00:05:23.690 --> 00:05:26.860
+And send the audit event
+log to the workspace,
+
+82
+00:05:26.860 --> 00:05:30.115
+as Learn's page, Enable
+Key Vault logging, shows.
+
+83
+00:05:30.115 --> 00:05:35.080
+Learn also recommends one vault per
+application, region and environment.
+
+84
+00:05:38.830 --> 00:05:39.943
+Two more things.
+
+85
+00:05:39.943 --> 00:05:42.255
+First, a suspected compromise.
+
+86
+00:05:42.255 --> 00:05:44.697
+Learn's page, Secure your Azure Key Vault,
+
+87
+00:05:44.697 --> 00:05:48.842
+says to rotate and migrate dependents
+before disabling the old key,
+
+88
+00:05:48.842 --> 00:05:53.505
+because disabling it first takes
+dependent databases and storage offline.
+
+89
+00:05:53.505 --> 00:05:55.467
+The guide lists that as a danger.
+
+90
+00:05:55.467 --> 00:05:59.156
+Back up the keys that can't be
+recreated, and test a restore.
+
+91
+00:05:59.156 --> 00:06:01.205
+Second, where agencies are.
+
+92
+00:06:01.205 --> 00:06:03.970
+In commercial Azure,
+which a G C C tenant uses,
+
+93
+00:06:03.970 --> 00:06:08.501
+the zone names are the ones in the
+commands: one central zone per service,
+
+94
+00:06:08.501 --> 00:06:11.803
+such as private link dot
+vault core dot azure dot net,
+
+95
+00:06:11.803 --> 00:06:14.568
+and the vaults sit at
+vault dot azure dot net.
+
+96
+00:06:14.568 --> 00:06:19.816
+On other clouds, the guide names Google
+Cloud's Private Service Connect,
+
+97
+00:06:19.816 --> 00:06:25.690
+and O C I private endpoints, a private I
+P in a V C N subnet for an Oracle service.
+
+98
+00:06:29.440 --> 00:06:34.303
+The lab runs the guide's Step 7 and Step
+8 checks in a test subscription where
+
+99
+00:06:34.303 --> 00:06:38.461
+someone has applied them to a test
+vault, with a private endpoint,
+
+100
+00:06:38.461 --> 00:06:42.540
+public access off, a test secret
+and a key with a rotation policy.
+
+101
+00:06:42.540 --> 00:06:45.840
+The authors haven't run it,
+and nothing in Azure changes.
+
+102
+00:06:45.840 --> 00:06:50.042
+Step one runs on a Windows test
+V M inside a linked network:
+
+103
+00:06:50.042 --> 00:06:51.740
+look up the vault's name.
+
+104
+00:06:51.740 --> 00:06:55.051
+The guide's Validate step says
+it returns a private address,
+
+105
+00:06:55.051 --> 00:06:56.740
+through the private link zone.
+
+106
+00:06:56.740 --> 00:06:59.702
+Step two runs on your
+own machine, outside:
+
+107
+00:06:59.702 --> 00:07:05.015
+the lookup returns the public frontend,
+and the secret request is refused.
+
+108
+00:07:05.015 --> 00:07:07.865
+Step three lists the
+endpoint's zone group.
+
+109
+00:07:07.865 --> 00:07:13.015
+Step four reruns Module 1's public pass
+query; the vault shouldn't appear.
+
+110
+00:07:13.015 --> 00:07:17.683
+Step five checks the vault's
+posture with the guide's own query:
+
+111
+00:07:17.683 --> 00:07:22.077
+expect true, true, Deny, and,
+with public access off, Disabled.
+
+112
+00:07:22.077 --> 00:07:26.810
+Step six exports the key's rotation
+policy, which is evidence.
+
+113
+00:07:30.560 --> 00:07:34.108
+Steps seven and eight read
+the same secret twice,
+
+114
+00:07:34.108 --> 00:07:37.035
+on the test V M, so the
+network allows both.
+
+115
+00:07:37.035 --> 00:07:40.931
+First as the V M's managed
+identity, which has the Key Vault
+
+116
+00:07:40.931 --> 00:07:44.910
+Secrets User role on the vault:
+the secret's name comes back.
+
+117
+00:07:44.910 --> 00:07:48.408
+Then as yourself, with no
+data-plane role on the vault:
+
+118
+00:07:48.408 --> 00:07:50.848
+the request is refused as forbidden.
+
+119
+00:07:50.848 --> 00:07:53.934
+The network allowed it;
+role-based access didn't.
+
+120
+00:07:53.934 --> 00:07:56.960
+That's the pair the guide's
+Validate step asks for.
+
+121
+00:07:56.960 --> 00:08:01.535
+Step nine, back on your machine,
+finds both reads in the audit log.
+
+122
+00:08:01.535 --> 00:08:06.675
+The guide's diagnostic setting writes to
+the workspace's Azure Diagnostics table,
+
+123
+00:08:06.675 --> 00:08:11.210
+and Learn's page, Monitor Azure Key
+Vault, filters it by resource provider.
+
+124
+00:08:11.210 --> 00:08:17.223
+Its result signature column holds the H
+T T P status, such as O K or Forbidden.
+
+125
+00:08:17.223 --> 00:08:19.247
+Expect a row for each read.
+
+126
+00:08:19.247 --> 00:08:23.319
+Step ten: both az logout commands
+signed you out of the test V M,
+
+127
+00:08:23.319 --> 00:08:27.350
+and nothing in Azure changed,
+so there's nothing to undo.
+
+128
+00:08:31.100 --> 00:08:36.155
+The federal requirement, from NIST special
+publication eight hundred fifty-three,
+
+129
+00:08:36.155 --> 00:08:39.525
+revision five, as the guide's
+requirements table maps it.
+
+130
+00:08:39.525 --> 00:08:43.806
+Step 7 supports S C seven,
+boundary protection, and A C four,
+
+131
+00:08:43.806 --> 00:08:48.087
+information flow enforcement;
+its evidence is the zones,
+
+132
+00:08:48.087 --> 00:08:52.550
+the endpoints, and the public-access
+state of each resource.
+
+133
+00:08:52.550 --> 00:08:57.597
+Step 8 supports S C twelve, cryptographic
+key establishment and management,
+
+134
+00:08:57.597 --> 00:09:01.682
+S C twenty-eight, protection of
+information at rest, and I A five,
+
+135
+00:09:01.682 --> 00:09:05.768
+authenticator management; its
+evidence is the vault posture,
+
+136
+00:09:05.768 --> 00:09:08.812
+the rotation policies,
+and the audit event log.
+
+137
+00:09:08.812 --> 00:09:11.548
+Each row lines up with the fed-ramp twenty
+
+138
+00:09:11.548 --> 00:09:14.363
+X key security indicators the guide names.
+
+139
+00:09:14.363 --> 00:09:19.304
+The steps support these controls; the
+organization still sets their parameters,
+
+140
+00:09:19.304 --> 00:09:22.830
+and the assessor decides
+whether each is satisfied.
+
+141
+00:09:26.580 --> 00:09:28.555
+Check yourself with two questions.
+
+142
+00:09:28.555 --> 00:09:30.776
+First: a private endpoint exists,
+
+143
+00:09:30.776 --> 00:09:34.230
+but clients still reach
+the vault's public address.
+
+144
+00:09:34.230 --> 00:09:35.593
+Where do you look first?
+
+145
+00:09:35.593 --> 00:09:38.457
+The answer is b, name
+resolution: the zone,
+
+146
+00:09:38.457 --> 00:09:43.492
+its link to the virtual network, the
+record, and on-premises forwarding.
+
+147
+00:09:43.492 --> 00:09:46.542
+Second: a key is suspected compromised.
+
+148
+00:09:46.542 --> 00:09:47.842
+What comes first?
+
+149
+00:09:47.842 --> 00:09:52.502
+The answer is b: rotate and migrate
+dependents, then disable the old key,
+
+150
+00:09:52.502 --> 00:09:56.680
+because disabling it first takes
+dependent services offline.
+
+151
+00:09:56.680 --> 00:10:01.940
+The module page has three more questions,
+each linked to the unit that answers it.
+
+152
+00:10:05.690 --> 00:10:06.515
+To sum up.
+
+153
+00:10:06.515 --> 00:10:11.103
+You built central private D N S,
+with zone groups placed by policy.
+
+154
+00:10:11.103 --> 00:10:14.181
+You proved the vault resolves
+to a private address
+
+155
+00:10:14.181 --> 00:10:17.478
+inside the network and
+refuses requests from outside.
+
+156
+00:10:17.478 --> 00:10:22.953
+You checked its role-based access, purge
+protection, firewall and rotation policy.
+
+157
+00:10:22.953 --> 00:10:26.552
+And you found an allowed and a
+denied read in its audit log.
+
+158
+00:10:26.552 --> 00:10:30.599
+The evidence an I S S O keeps from
+this module: the zones, links,
+
+159
+00:10:30.599 --> 00:10:36.297
+endpoints and zone groups; policy compliance
+for the private D N S and public-access
+
+160
+00:10:36.297 --> 00:10:40.673
+policies; the two lookup results
+and the refused public request;
+
+161
+00:10:40.673 --> 00:10:45.958
+the vault properties, role assignments
+at vault scope and rotation policies;
+
+162
+00:10:45.958 --> 00:10:49.591
+the audit event rows; and the
+restore test when it runs.
+
+163
+00:10:49.591 --> 00:10:52.603
+Next is Module 5: policy,
+drift and evidence,
+
+164
+00:10:52.603 --> 00:10:57.310
+holding all of it in place and
+handing the assessor what they need.

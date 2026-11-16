@@ -1,0 +1,96 @@
+[
+ {
+  "slide": 2,
+  "title": "Why: automation is where speed and outage meet",
+  "links": [
+   {
+    "text": "Configure automatic attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-automatic-attack-disruption"
+   },
+   {
+    "text": "Exclude assets from automated responses",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#attack-disruption-exclusions"
+   },
+   {
+    "text": "automatic attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#automatic-attack-disruption-in-microsoft"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Unit 1: automation levels per device group",
+  "links": [
+   {
+    "text": "Configure automatic attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-automatic-attack-disruption"
+   },
+   {
+    "text": "Exclude assets from automated responses",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#attack-disruption-exclusions"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Attack disruption: exclude what must never be contained",
+  "links": [
+   {
+    "text": "Exclude assets from automated responses",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#attack-disruption-exclusions"
+   },
+   {
+    "text": "Configure automatic attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-automatic-attack-disruption"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 2: the cadence and the monthly evidence run",
+  "links": [
+   {
+    "text": "Monitor ASR rule activity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-monitor"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 2, steps 1 and 2: sensor version, device groups",
+  "links": [
+   {
+    "text": "Configure automatic attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-automatic-attack-disruption"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 2, steps 3 to 5: the monthly run and its hashes",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The federal requirement and evidence for Module 5",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

@@ -14,10 +14,6 @@
   "title": "Which Azure a GCC estate's servers go to",
   "links": [
    {
-    "text": "Planning identity for Azure Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
-   },
-   {
     "text": "azcmagent connect",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
    }

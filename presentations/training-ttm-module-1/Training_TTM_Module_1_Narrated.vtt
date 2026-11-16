@@ -700,65 +700,65 @@ matching findings to Awaiting verification.
 It never closes them.
 
 148
-00:09:27.880 --> 00:09:31.543
+00:09:27.880 --> 00:09:31.643
 Step one runs the chapter's
-tests: twenty-two pass.
+tests: twenty-six pass.
 
 149
-00:09:31.543 --> 00:09:35.164
+00:09:31.643 --> 00:09:35.264
 Step three runs the ServiceNow
 script's own tests,
 
 150
-00:09:35.164 --> 00:09:40.817
+00:09:35.264 --> 00:09:40.917
 the rules the Python mirrors, under Node:
 fifteen tests, fifteen pass, none fail.
 
 151
-00:09:40.817 --> 00:09:43.876
+00:09:40.917 --> 00:09:43.976
 Then step four runs the
 drift reconciliation over
 
 152
-00:09:43.876 --> 00:09:47.006
+00:09:43.976 --> 00:09:47.106
 the fixtures and checks
 every payload it would post.
 
 153
-00:09:47.006 --> 00:09:48.618
+00:09:47.106 --> 00:09:48.718
 Twelve lines start ok.
 
 154
-00:09:48.618 --> 00:09:53.812
+00:09:48.718 --> 00:09:53.911
 Attribute drift is P three, due in
 twenty-four hours; missing identities,
 
 155
-00:09:53.812 --> 00:09:59.005
+00:09:53.911 --> 00:09:59.104
 orphans, stale access and the unauthorized
 write are P two, due in an hour.
 
 156
-00:09:59.005 --> 00:10:03.770
+00:09:59.104 --> 00:10:03.870
 Three carry the warning: the two missing
 identities and the unauthorized write,
 
 157
-00:10:03.770 --> 00:10:06.080
+00:10:03.870 --> 00:10:06.180
 the classes the loop routes to a person.
 
 158
-00:10:06.080 --> 00:10:10.955
+00:10:06.180 --> 00:10:11.055
 And the last line is twelve accepted,
 none rejected, none de-duplicated.
 
 159
-00:10:10.955 --> 00:10:16.767
+00:10:11.055 --> 00:10:16.867
 Erin's two drifts in Entra ID, her department
 and her manager, have their own keys.
 
 160
-00:10:16.767 --> 00:10:19.610
+00:10:16.867 --> 00:10:19.710
 Step five deletes the output folder.
 
 161

@@ -1,0 +1,1009 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.683
+Welcome to Module 1 of the
+learning path Defender X D R
+
+2
+00:00:03.683 --> 00:00:08.225
+Engineering and Operations:
+architecture, access and onboarding.
+
+3
+00:00:08.225 --> 00:00:12.175
+Before any prevention setting
+matters, two things have to be true.
+
+4
+00:00:12.175 --> 00:00:16.525
+The right people can see and act on
+the service, in the tenant's own cloud.
+
+5
+00:00:16.525 --> 00:00:19.225
+And the sensor is on
+every device it should be.
+
+6
+00:00:19.225 --> 00:00:23.913
+In this module you learn the service's
+shape and its G C C limits, you set who can
+
+7
+00:00:23.913 --> 00:00:28.825
+do what, and you prove the sensor's coverage
+with a query whose result you can file.
+
+8
+00:00:28.825 --> 00:00:33.963
+The module covers Steps 1 and 2 of the
+Defender X D R implementation guide.
+
+9
+00:00:33.963 --> 00:00:38.112
+It takes about forty minutes, plus
+Lab 2 in your own test tenant.
+
+10
+00:00:38.112 --> 00:00:42.345
+The path covers Windows clients
+and Windows Server only,
+
+11
+00:00:42.345 --> 00:00:46.840
+for a civilian agency in
+Microsoft three sixty-five G C C.
+
+12
+00:00:50.590 --> 00:00:51.628
+Why start here?
+
+13
+00:00:51.628 --> 00:00:53.427
+The guide opens with one idea.
+
+14
+00:00:53.427 --> 00:00:56.303
+A Defender license is
+not a defended endpoint.
+
+15
+00:00:56.303 --> 00:00:59.056
+The sensor has to be on
+every device and healthy,
+
+16
+00:00:59.056 --> 00:01:03.080
+the prevention settings have to be
+enforced and not just configured,
+
+17
+00:01:03.080 --> 00:01:06.328
+and every alert has to end in
+a decision someone can show.
+
+18
+00:01:06.328 --> 00:01:09.914
+A license gives you the right to
+run the sensor and the service.
+
+19
+00:01:09.914 --> 00:01:14.400
+It doesn't put the sensor on every device,
+it doesn't give anyone the right role,
+
+20
+00:01:14.400 --> 00:01:19.028
+and it doesn't connect the security
+operations center to the tenant's own cloud.
+
+21
+00:01:19.028 --> 00:01:23.090
+So this module proves three things
+before anything else is built.
+
+22
+00:01:23.090 --> 00:01:24.840
+The right people can see and act,
+
+23
+00:01:24.840 --> 00:01:28.340
+through roles assigned with
+privileged identity management.
+
+24
+00:01:28.340 --> 00:01:33.465
+The S O C reads incidents through
+Microsoft Graph, in the tenant's own cloud.
+
+25
+00:01:33.465 --> 00:01:37.093
+And every in-scope device is
+onboarded with an active sensor,
+
+26
+00:01:37.093 --> 00:01:39.777
+or is in the exception
+register with a reason.
+
+27
+00:01:39.777 --> 00:01:44.960
+Gates 1 and 2 come first in the guide,
+and every later gate depends on them.
+
+28
+00:01:48.710 --> 00:01:51.623
+Here's what you'll be able to
+do by the end of this module.
+
+29
+00:01:51.623 --> 00:01:55.224
+Name Defender X D R's components,
+its two trust boundaries,
+
+30
+00:01:55.224 --> 00:01:58.060
+and which control plane
+holds which setting.
+
+31
+00:01:58.060 --> 00:02:00.724
+Read the guide's G C C availability table,
+
+32
+00:02:00.724 --> 00:02:05.972
+and record a feature that isn't available
+as a disposition, not a failed control.
+
+33
+00:02:05.972 --> 00:02:09.660
+Describe the program's unified
+role-based access control roles,
+
+34
+00:02:09.660 --> 00:02:11.747
+and why they're assigned through pim.
+
+35
+00:02:11.747 --> 00:02:16.260
+Connect to Microsoft Graph in
+G C C, and read incidents.
+
+36
+00:02:16.260 --> 00:02:20.698
+And prove onboarding and sensor health,
+on one device and across the fleet.
+
+37
+00:02:20.698 --> 00:02:24.580
+Before you start, read the guide's
+How to read this guide section and its
+
+38
+00:02:24.580 --> 00:02:27.190
+prerequisites, and skim
+the Privileged Access
+
+39
+00:02:27.190 --> 00:02:30.335
+implementation guide's pim
+model for the eligible roles.
+
+40
+00:02:30.335 --> 00:02:34.060
+Lab 2 runs in a test
+tenant, never production.
+
+41
+00:02:37.810 --> 00:02:40.122
+Unit 1 is the shape of the service.
+
+42
+00:02:40.122 --> 00:02:44.402
+Defender X D R joins Defender for
+Endpoint, Defender for Identity,
+
+43
+00:02:44.402 --> 00:02:47.731
+Defender for Office three
+sixty-five and Defender
+
+44
+00:02:47.731 --> 00:02:51.060
+for Cloud Apps in one portal
+and one incident queue.
+
+45
+00:02:51.060 --> 00:02:52.860
+Two trust boundaries matter.
+
+46
+00:02:52.860 --> 00:02:58.785
+The agency's boundary holds the devices,
+the S O C's tools and the evidence store.
+
+47
+00:02:58.785 --> 00:03:04.400
+Microsoft's holds the service, and for a
+G C C tenant, as Microsoft Learn's page
+
+48
+00:03:04.400 --> 00:03:10.197
+on Defender for U S Government describes,
+it has its own G C C service endpoints.
+
+49
+00:03:10.197 --> 00:03:11.760
+Then the control planes.
+
+50
+00:03:11.760 --> 00:03:16.552
+Learn says Intune is the recommended tool
+for distributing Defender for Endpoint
+
+51
+00:03:16.552 --> 00:03:20.025
+settings, and that its policies
+apply to device objects only,
+
+52
+00:03:20.025 --> 00:03:23.498
+so they're assigned to Entra
+device groups, never user groups.
+
+53
+00:03:23.498 --> 00:03:26.959
+Settings Intune doesn't
+hold, like automation levels
+
+54
+00:03:26.959 --> 00:03:30.185
+and custom detections, live
+in the Defender portal.
+
+55
+00:03:30.185 --> 00:03:35.755
+Servers in Azure, A W S, Google Cloud or
+Oracle Cloud Infrastructure reach Defender
+
+56
+00:03:35.755 --> 00:03:38.704
+through Defender for
+Servers and Azure Arc,
+
+57
+00:03:38.704 --> 00:03:41.735
+as the Devices and
+Endpoints book describes.
+
+58
+00:03:41.735 --> 00:03:45.216
+And one rule above all: one
+control plane per setting,
+
+59
+00:03:45.216 --> 00:03:48.880
+because Group Policy wins
+over Intune by default.
+
+60
+00:03:52.630 --> 00:03:57.224
+Unit 2 is what G C C has, from
+the guide's availability table,
+
+61
+00:03:57.224 --> 00:04:01.330
+read on Microsoft Learn on
+November eleventh, 2026.
+
+62
+00:04:01.330 --> 00:04:06.922
+Learn's page on Defender for Endpoint for
+U S Government customers says prevention,
+
+63
+00:04:06.922 --> 00:04:11.217
+detection, investigation and
+remediation are available in G C C.
+
+64
+00:04:11.217 --> 00:04:14.580
+The portal is security
+dot microsoft dot com.
+
+65
+00:04:14.580 --> 00:04:18.215
+Graph's incident and hunting
+A P I's are available,
+
+66
+00:04:18.215 --> 00:04:20.942
+with G C C on the worldwide Graph host.
+
+67
+00:04:20.942 --> 00:04:21.918
+Then the gap.
+
+68
+00:04:21.918 --> 00:04:26.736
+Learn's page on Security Exposure
+Management says it's available in Public
+
+69
+00:04:26.736 --> 00:04:31.167
+Cloud only, so attack paths and the
+exposure graph aren't there for G C C.
+
+70
+00:04:31.167 --> 00:04:35.526
+And Learn doesn't say whether custom
+detection rules through Graph,
+
+71
+00:04:35.526 --> 00:04:40.429
+automatic attack disruption, or web
+content filtering on Windows reach G C C.
+
+72
+00:04:40.429 --> 00:04:44.142
+The guide's rule: not yet
+specified means Learn doesn't say,
+
+73
+00:04:44.142 --> 00:04:45.643
+not that it's available.
+
+74
+00:04:45.643 --> 00:04:49.548
+A feature G C C doesn't offer
+goes in the decision record and
+
+75
+00:04:49.548 --> 00:04:54.300
+the closure register as not
+applicable, never as a failed control.
+
+76
+00:04:58.050 --> 00:05:00.000
+Unit 3 is who can do what.
+
+77
+00:05:00.000 --> 00:05:05.373
+Microsoft Learn describes four permission
+groups in Defender's unified role-based
+
+78
+00:05:05.373 --> 00:05:08.903
+access control: security
+operations, security posture,
+
+79
+00:05:08.903 --> 00:05:12.050
+authorization and settings,
+and data operations.
+
+80
+00:05:12.050 --> 00:05:16.537
+The program builds four roles from them;
+that's its risk-based recommendation.
+
+81
+00:05:16.537 --> 00:05:19.136
+A read role, called Security data basics,
+
+82
+00:05:19.136 --> 00:05:22.363
+for analysts and the
+assessor's read-only account.
+
+83
+00:05:22.363 --> 00:05:27.025
+A responder role that adds alerts,
+response and basic live response.
+
+84
+00:05:27.025 --> 00:05:30.382
+A detection engineer role
+with Detection tuning,
+
+85
+00:05:30.382 --> 00:05:33.575
+manage, which the custom
+detection A P I accepts.
+
+86
+00:05:33.575 --> 00:05:37.238
+And advanced live response
+only for Tier zero analysts.
+
+87
+00:05:37.238 --> 00:05:41.737
+Each role is assigned to groups that pim
+governs, so no one holds it standing.
+
+88
+00:05:41.737 --> 00:05:46.012
+Create every role and assignment
+before you activate the workloads;
+
+89
+00:05:46.012 --> 00:05:50.587
+Learn says activation needs at least
+Security Administrator in Entra I D.
+
+90
+00:05:50.587 --> 00:05:53.512
+Then connect the S O C's read path.
+
+91
+00:05:53.512 --> 00:05:57.549
+Learn names Security Incident dot
+Read dot All as the least-privileged
+
+92
+00:05:57.549 --> 00:06:02.063
+permission to list incidents, and Threat
+Hunting dot Read dot All to run queries.
+
+93
+00:06:02.063 --> 00:06:07.624
+Connect with the environment of the tenant's
+cloud: Global, the value for G C C.
+
+94
+00:06:07.624 --> 00:06:10.759
+A session in the wrong
+cloud returns an empty list,
+
+95
+00:06:10.759 --> 00:06:13.250
+and an empty list looks like a pass.
+
+96
+00:06:17.000 --> 00:06:19.888
+Unit 4 is onboarding, by management plane.
+
+97
+00:06:19.888 --> 00:06:25.185
+Windows clients onboard through Intune's
+endpoint detection and response policy,
+
+98
+00:06:25.185 --> 00:06:29.176
+E S oh-oh-four in the Devices and
+Endpoints book's policy library,
+
+99
+00:06:29.176 --> 00:06:31.863
+with the package type Auto from connector.
+
+100
+00:06:31.863 --> 00:06:36.612
+Assign it to ring zero, then ring
+one, then rings two and three.
+
+101
+00:06:36.612 --> 00:06:40.502
+Windows Server onboards through
+Defender for Servers on Azure Arc.
+
+102
+00:06:40.502 --> 00:06:45.503
+Microsoft Learn's government page says
+Windows Server twenty nineteen needs update K
+
+103
+00:06:45.503 --> 00:06:48.767
+B four five eight six eight
+three nine before onboarding,
+
+104
+00:06:48.767 --> 00:06:50.851
+so it reaches the right environment.
+
+105
+00:06:50.851 --> 00:06:54.863
+The program's own standard assumes
+twenty nineteen as the minimum.
+
+106
+00:06:54.863 --> 00:06:59.638
+Rollback is the offboarding package,
+deployed as an E D R policy.
+
+107
+00:06:59.638 --> 00:07:03.007
+Learn says the package expires
+seven days after download,
+
+108
+00:07:03.007 --> 00:07:07.851
+and you never deploy onboarding and offboarding
+to the same device at the same time.
+
+109
+00:07:07.851 --> 00:07:11.565
+A device the sensor can't reach,
+such as an unsupported system,
+
+110
+00:07:11.565 --> 00:07:13.794
+an isolated network or an appliance,
+
+111
+00:07:13.794 --> 00:07:17.510
+goes in the exception register
+with a compensating control:
+
+112
+00:07:17.510 --> 00:07:21.671
+the streamlined connectivity set or
+a proxy, or, where no path exists,
+
+113
+00:07:21.671 --> 00:07:25.312
+Windows Event Forwarding of
+the Defender operational log,
+
+114
+00:07:25.312 --> 00:07:29.610
+which Learn names for centralizing
+events without the service.
+
+115
+00:07:33.360 --> 00:07:35.110
+How do you know the sensor is healthy?
+
+116
+00:07:35.110 --> 00:07:37.735
+On the device, the
+sense service is running
+
+117
+00:07:37.735 --> 00:07:40.660
+and the onboarding state
+in the registry is one.
+
+118
+00:07:40.660 --> 00:07:44.341
+In the service, the device info
+table carries two columns:
+
+119
+00:07:44.341 --> 00:07:47.160
+onboarding status, and
+sensor health state.
+
+120
+00:07:47.160 --> 00:07:52.423
+Microsoft Learn's device inventory field
+reference lists five sensor health values.
+
+121
+00:07:52.423 --> 00:07:53.873
+Active is the pass.
+
+122
+00:07:53.873 --> 00:07:58.097
+Inactive means no contact,
+typically for seven days or more.
+
+123
+00:07:58.097 --> 00:08:02.460
+Then no sensor data, impaired
+communications, and misconfigured.
+
+124
+00:08:02.460 --> 00:08:06.474
+Every value but active is a ticket;
+for impaired communications,
+
+125
+00:08:06.474 --> 00:08:10.260
+start with the government U R L
+list the firewall has to allow.
+
+126
+00:08:10.260 --> 00:08:15.672
+Intune's E D R onboarding status report
+shows the same thing from the Intune side.
+
+127
+00:08:15.672 --> 00:08:19.756
+The guide sets the day-two rule: the
+operator reviews coverage weekly,
+
+128
+00:08:19.756 --> 00:08:23.984
+and every device that hasn't been
+active for seven days becomes a ticket.
+
+129
+00:08:23.984 --> 00:08:26.797
+The weekly coverage file
+is kept twelve months.
+
+130
+00:08:26.797 --> 00:08:30.710
+The platform owner reviews the
+exception register every quarter.
+
+131
+00:08:30.710 --> 00:08:34.235
+And the assessor-ready
+artifact is coverage by ring,
+
+132
+00:08:34.235 --> 00:08:38.120
+against the inventory the
+C M eight control asks for.
+
+133
+00:08:41.870 --> 00:08:47.245
+Lab 2 runs the guide's own validate commands
+in a test tenant, never production.
+
+134
+00:08:47.245 --> 00:08:50.242
+The authors haven't run
+them, as the page says,
+
+135
+00:08:50.242 --> 00:08:54.820
+and the path has no Lab 1 on fixtures,
+because the guide has no kit yet.
+
+136
+00:08:54.820 --> 00:08:59.515
+You need a test tenant licensed for Defender
+for Endpoint Plan 2, a reader account
+
+137
+00:08:59.515 --> 00:09:04.420
+activated through pim, and a ring zero
+Windows test device onboarded through Intune.
+
+138
+00:09:04.420 --> 00:09:07.132
+Values you supply are in angle brackets.
+
+139
+00:09:07.132 --> 00:09:11.951
+Step one, on your workstation: install
+the two Graph modules, connect with the
+
+140
+00:09:11.951 --> 00:09:16.769
+environment for your cloud, and create
+a folder for this lab's evidence files.
+
+141
+00:09:16.769 --> 00:09:18.657
+Step two reads incidents.
+
+142
+00:09:18.657 --> 00:09:22.046
+As the guide states it, a
+pass is up to five incidents,
+
+143
+00:09:22.046 --> 00:09:25.757
+or an empty list in a new
+tenant, with no permission error.
+
+144
+00:09:25.757 --> 00:09:30.008
+An error naming the role means the
+account lacks one of the reader roles.
+
+145
+00:09:30.008 --> 00:09:33.593
+Step three runs on the test
+device, in an elevated session:
+
+146
+00:09:33.593 --> 00:09:38.170
+query the sense service, and read the
+onboarding state from the registry.
+
+147
+00:09:38.170 --> 00:09:42.480
+Microsoft Learn gives the value
+one for an onboarded device.
+
+148
+00:09:46.230 --> 00:09:48.580
+Step four files the fleet's coverage.
+
+149
+00:09:48.580 --> 00:09:51.859
+The query takes the latest
+record for each Windows device
+
+150
+00:09:51.859 --> 00:09:55.343
+and counts them by onboarding
+status and sensor health state.
+
+151
+00:09:55.343 --> 00:09:58.954
+It runs through Graph so the
+result is a file you can keep.
+
+152
+00:09:58.954 --> 00:10:03.617
+On the slide it's wrapped to fit; on
+the page each command is one line.
+
+153
+00:10:03.617 --> 00:10:07.604
+The guide's pass: every device
+onboarded with an active sensor,
+
+154
+00:10:07.604 --> 00:10:09.480
+or in the exception register.
+
+155
+00:10:09.480 --> 00:10:12.737
+Learn doesn't list the exact
+onboarding status strings,
+
+156
+00:10:12.737 --> 00:10:15.993
+so the query groups by them
+rather than filtering on one.
+
+157
+00:10:15.993 --> 00:10:20.379
+Step five is Microsoft's detection
+test, on the test device, under its
+
+158
+00:10:20.379 --> 00:10:25.392
+change record, from an elevated Command
+Prompt, exactly as Learn publishes it.
+
+159
+00:10:25.392 --> 00:10:28.367
+Learn says an alert appears
+in about ten minutes.
+
+160
+00:10:28.367 --> 00:10:30.393
+One caution the guide records:
+
+161
+00:10:30.393 --> 00:10:35.903
+Learn's page lists Windows Server versions
+as supported, not Windows ten or eleven,
+
+162
+00:10:35.903 --> 00:10:38.981
+so on a client a missing
+alert is inconclusive;
+
+163
+00:10:38.981 --> 00:10:43.356
+rely on the coverage query and
+Module 2's network protection test.
+
+164
+00:10:43.356 --> 00:10:44.893
+Step six backs it out.
+
+165
+00:10:44.893 --> 00:10:47.664
+Nothing changed but the
+alert the test raised:
+
+166
+00:10:47.664 --> 00:10:51.450
+resolve that incident in the
+test tenant, and disconnect.
+
+167
+00:10:55.200 --> 00:10:58.512
+The federal requirement, from
+the guide's requirements table.
+
+168
+00:10:58.512 --> 00:11:03.807
+Gate one supports A C two and A C six from
+NIST special publication eight hundred
+
+169
+00:11:03.807 --> 00:11:08.300
+fifty-three, revision five: account
+management and least privilege,
+
+170
+00:11:08.300 --> 00:11:10.787
+here for the security tooling itself.
+
+171
+00:11:10.787 --> 00:11:16.225
+It also supports A U nine, enhancement
+four, which limits access to audit tools.
+
+172
+00:11:16.225 --> 00:11:20.025
+The evidence is the role export
+and the pim assignment report.
+
+173
+00:11:20.025 --> 00:11:25.179
+Gate two supports C M eight, the system
+component inventory, and S I four,
+
+174
+00:11:25.179 --> 00:11:30.599
+system monitoring, along with O M B
+memorandum M twenty-two oh-nine's device
+
+175
+00:11:30.599 --> 00:11:35.753
+actions, including endpoint detection
+and response deployed widely,
+
+176
+00:11:35.753 --> 00:11:38.063
+as M twenty-two oh-one describes.
+
+177
+00:11:38.063 --> 00:11:41.751
+The evidence is the coverage
+file and the exception register.
+
+178
+00:11:41.751 --> 00:11:46.685
+Each row lines up with a fed-ramp twenty
+X key security indicator, which binds
+
+179
+00:11:46.685 --> 00:11:52.012
+cloud service providers; the agency uses
+them as a vocabulary for its own evidence.
+
+180
+00:11:52.012 --> 00:11:54.050
+The gates support these controls.
+
+181
+00:11:54.050 --> 00:11:57.420
+The assessor decides
+whether each is satisfied.
+
+182
+00:12:01.170 --> 00:12:03.145
+Check yourself with two questions.
+
+183
+00:12:03.145 --> 00:12:08.457
+First: an Attack Surface Reduction policy
+in Intune is assigned to a user group.
+
+184
+00:12:08.457 --> 00:12:09.470
+What happens?
+
+185
+00:12:09.470 --> 00:12:10.695
+The answer is b.
+
+186
+00:12:10.695 --> 00:12:14.081
+It never applies, because
+Microsoft Learn says Defender
+
+187
+00:12:14.081 --> 00:12:17.395
+for Endpoint management
+supports device objects only.
+
+188
+00:12:17.395 --> 00:12:19.495
+Assign it to an Entra device group.
+
+189
+00:12:19.495 --> 00:12:23.744
+Second: a Zero Trust Assessment
+test that needs Security
+
+190
+00:12:23.744 --> 00:12:27.270
+Exposure Management is
+skipped in a G C C tenant.
+
+191
+00:12:27.270 --> 00:12:28.482
+How is it recorded?
+
+192
+00:12:28.482 --> 00:12:30.584
+The answer is b: as not applicable,
+
+193
+00:12:30.584 --> 00:12:35.408
+because Learn says Exposure Management
+is available in Public Cloud only.
+
+194
+00:12:35.408 --> 00:12:39.382
+A feature G C C doesn't offer
+goes in the decision record and
+
+195
+00:12:39.382 --> 00:12:43.771
+the closure register as a disposition,
+never as a failed control.
+
+196
+00:12:43.771 --> 00:12:48.940
+The module page has two more questions,
+each linked to the unit that answers it.
+
+197
+00:12:52.690 --> 00:12:53.515
+To sum up.
+
+198
+00:12:53.515 --> 00:12:58.133
+You placed each setting in its control
+plane: Intune for endpoint policy,
+
+199
+00:12:58.133 --> 00:13:02.827
+the Defender portal for what Intune
+doesn't hold, and one plane per setting.
+
+200
+00:13:02.827 --> 00:13:06.865
+You checked what G C C offers,
+and how to record what it doesn't.
+
+201
+00:13:06.865 --> 00:13:11.003
+You read incidents through Microsoft
+Graph, in the tenant's own cloud.
+
+202
+00:13:11.003 --> 00:13:14.615
+And you proved the sensor, on
+one device and across the fleet.
+
+203
+00:13:14.615 --> 00:13:17.424
+The evidence an I S S O
+keeps from this module:
+
+204
+00:13:17.424 --> 00:13:20.389
+the role export and the
+pim assignment report,
+
+205
+00:13:20.389 --> 00:13:24.758
+the E D R policy export and its
+assignments, the weekly coverage file,
+
+206
+00:13:24.758 --> 00:13:27.567
+the detection test with
+the alert it raised,
+
+207
+00:13:27.567 --> 00:13:31.390
+and the exception register for
+every device not onboarded.
+
+208
+00:13:31.390 --> 00:13:35.472
+Next is Module 2, prevention
+and Attack Surface Reduction,
+
+209
+00:13:35.472 --> 00:13:40.140
+where the settings move through
+audit, warn and block, ring by ring.

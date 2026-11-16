@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Azure Security Engineering learning path](index.md). Guide [Step 7](../../books/guides/azure-security-implementation.md#step-7-private-link-and-dns) and [Step 8](../../books/guides/azure-security-implementation.md#step-8-managed-identities-and-key-vault). About 50 minutes, plus the lab.*
 
+**Watch:** the narrated deck for this module (about 11 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_AZS_Module_4_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_AZS_Module_4_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-azs-module-4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-4/Training_AZS_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-4/Training_AZS_Module_4_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#azs-m4-introduction}
 
 A private endpoint gives a PaaS resource an address inside the agency's network; DNS decides whether anyone uses it. And the secrets and keys a workload needs belong in a vault that only its managed identity and eligible administrators can use. This module takes PaaS off the internet, starting with Key Vault, and puts the vault itself behind RBAC, purge protection and an audit log.
@@ -67,7 +69,7 @@ Read the Private Link and Key Vault rows of the guide's [availability table](../
 
 On other clouds, the guide's [comparison](../../books/guides/azure-security-implementation.md#other-clouds) names Google Cloud's Private Service Connect and OCI private endpoints, a private IP in a VCN subnet for an Oracle service; AWS PrivateLink isn't compared there.
 
-**Watch.** The guide's narrated deck covers this module in slides 13 and 14, *Private Link works only if DNS does* and *vaults behind RBAC, with purge protection*. Its video is being exported; until then, read the narration in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
+**Watch.** The guide's narrated deck covers this module in slides 13 and 14, *Private Link works only if DNS does* and *vaults behind RBAC, with purge protection*. [▶ Watch the guide's video](../../presentations/watch.html?v=Guide_Azure_Security_Narrated), or read  in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 
 ## Exercise: Lab 2, a test subscription {#azs-m4-lab-2}
 *Not timed. Not run by the authors. Never production.*

@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Azure Security Engineering learning path](index.md). Guide [Step 3](../../books/guides/azure-security-implementation.md#step-3-ddos-protection) and [Step 4](../../books/guides/azure-security-implementation.md#step-4-web-application-firewall). About 50 minutes, plus the lab.*
 
+**Watch:** the narrated deck for this module (about 13 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_AZS_Module_2_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_AZS_Module_2_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-azs-module-2) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-2/Training_AZS_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-2/Training_AZS_Module_2_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#azs-m2-introduction}
 
 DDoS protection works at layers 3 and 4; a web application firewall works at layer 7. An internet-facing workload needs both, and each has to be in the mode that acts, not only the mode that logs. In this module you take every public IP in the register from Module 1 to DDoS protection with logs and an alert, and every HTTP endpoint to a WAF in prevention mode.
@@ -67,7 +69,7 @@ Read the DDoS and WAF rows of the guide's [availability table](../../books/guide
 
 On other clouds, the guide's [comparison](../../books/guides/azure-security-implementation.md#other-clouds) names AWS Shield and AWS WAF, Google Cloud Armor, and OCI WAF as a regional policy on a load balancer or at the edge; DDoS protection on Oracle Cloud Infrastructure isn't compared there.
 
-**Watch.** The guide's narrated deck covers this module in slides 9 and 10, *DDoS protection on every public IP* and *the WAF, from detection to prevention*. Its video is being exported; until then, read the narration in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
+**Watch.** The guide's narrated deck covers this module in slides 9 and 10, *DDoS protection on every public IP* and *the WAF, from detection to prevention*. [▶ Watch the guide's video](../../presentations/watch.html?v=Guide_Azure_Security_Narrated), or read  in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 
 ## Exercise: Lab 2, a test subscription {#azs-m2-lab-2}
 *Not timed. Not run by the authors. Never production.*

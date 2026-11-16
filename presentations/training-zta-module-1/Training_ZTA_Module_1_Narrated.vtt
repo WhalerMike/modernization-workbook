@@ -679,221 +679,202 @@ telemetry; and where the output goes.
 The see-so approves it.
 
 144
-00:09:14.342 --> 00:09:17.990
+00:09:14.342 --> 00:09:18.281
 Then each pillar owner reads
 their own tab, with the filters,
 
 145
-00:09:17.990 --> 00:09:21.340
+00:09:18.281 --> 00:09:21.897
 and notes every investigate,
 skipped and error result,
 
 146
-00:09:21.340 --> 00:09:25.806
-and every failed result whose feature
-may not exist in the tenant's cloud.
+00:09:21.897 --> 00:09:25.755
+and every failed result whose
+feature may not exist in G C C.
 
 147
-00:09:25.806 --> 00:09:32.018
-For a G C C tenant, the workbook's baseline,
-the tool uses the worldwide endpoints.
+00:09:25.755 --> 00:09:29.807
+For a G C C tenant, the workbook's
+baseline, the tool uses the
 
 148
-00:09:32.018 --> 00:09:35.643
-In G C C High and D O D,
-there's a case to know.
+00:09:29.807 --> 00:09:35.420
+default Global environment and the
+worldwide Graph and Azure endpoints.
 
 149
-00:09:35.643 --> 00:09:39.211
-Learn's Exchange Online service
-description says anti-phishing
-
-150
-00:09:39.211 --> 00:09:43.505
-impersonation protection and spoof
-intelligence aren't yet available there.
-
-151
-00:09:43.505 --> 00:09:47.702
-So a failed impersonation test in
-those clouds is a boundary finding,
-
-152
-00:09:47.702 --> 00:09:50.560
-not a configuration change to make today.
-
-153
-00:09:54.310 --> 00:09:55.697
+00:09:39.170 --> 00:09:40.557
 The federal requirement.
 
-154
-00:09:55.697 --> 00:10:01.504
+150
+00:09:40.557 --> 00:09:46.364
 Scoping and reading the assessment supports
 two controls in NIST special publication
 
-155
-00:10:01.504 --> 00:10:04.605
+151
+00:09:46.364 --> 00:09:49.465
 eight hundred fifty-three,
 revision five: C A two,
 
-156
-00:10:04.605 --> 00:10:08.423
+152
+00:09:49.465 --> 00:09:53.283
 control assessments, and C A
 seven, continuous monitoring.
 
-157
-00:10:08.423 --> 00:10:12.909
+153
+00:09:53.283 --> 00:09:57.769
 The approved decision record evidences
 planning the assessment and its scope.
 
-158
-00:10:12.909 --> 00:10:15.185
+154
+00:09:57.769 --> 00:10:00.045
 Each pillar owner's dated reading notes
 
-159
-00:10:15.185 --> 00:10:17.873
+155
+00:10:00.045 --> 00:10:02.733
 evidence that the owners
 reviewed the results.
 
-160
-00:10:17.873 --> 00:10:22.948
+156
+00:10:02.733 --> 00:10:07.808
 And the calendar entry, with its owner,
 evidences the frequency of assessment.
 
-161
-00:10:22.948 --> 00:10:27.173
+157
+00:10:07.808 --> 00:10:12.033
 Each row also names a fed-ramp
 twenty X key security indicator.
 
-162
-00:10:27.173 --> 00:10:30.423
+158
+00:10:12.033 --> 00:10:15.283
 Those indicators are written
 for cloud service providers.
 
-163
-00:10:30.423 --> 00:10:35.273
+159
+00:10:15.283 --> 00:10:20.133
 The agency lines its own evidence up with
 them; it doesn't report them itself.
 
-164
-00:10:35.273 --> 00:10:39.110
+160
+00:10:20.133 --> 00:10:23.970
 The evidence supports the
 controls, and the assessor decides.
 
-165
-00:10:39.110 --> 00:10:42.511
+161
+00:10:23.970 --> 00:10:27.371
 So the evidence an I S S O
 keeps from this module is the
 
-166
-00:10:42.511 --> 00:10:46.980
+162
+00:10:27.371 --> 00:10:31.840
 approved decision record and each
 owner's dated reading notes.
 
-167
-00:10:50.730 --> 00:10:52.705
+163
+00:10:35.590 --> 00:10:37.565
 Check yourself with two questions.
 
-168
-00:10:52.705 --> 00:10:57.205
+164
+00:10:37.565 --> 00:10:42.065
 First: an agency already runs the
 Zero Trust Assessment monthly.
 
-169
-00:10:57.205 --> 00:10:58.905
+165
+00:10:42.065 --> 00:10:43.765
 Can it stop running ScubaGear?
 
-170
-00:10:58.905 --> 00:11:00.080
+166
+00:10:43.765 --> 00:10:44.940
 The answer is b, no.
 
-171
-00:11:00.080 --> 00:11:05.785
+167
+00:10:44.940 --> 00:10:50.645
 CISA's directive names CISA's SCuBA tools,
 and ScubaGear covers Exchange Online,
 
-172
-00:11:05.785 --> 00:11:09.058
+168
+00:10:50.645 --> 00:10:53.918
 Teams, SharePoint and
 Power Platform policies
 
-173
-00:11:09.058 --> 00:11:11.743
+169
+00:10:53.918 --> 00:10:56.603
 the Zero Trust Assessment doesn't test.
 
-174
-00:11:11.743 --> 00:11:16.617
+170
+00:10:56.603 --> 00:11:01.477
 Second: a test is skipped with the
 reason not licensed Entra I D P two.
 
-175
-00:11:16.617 --> 00:11:17.755
+171
+00:11:01.477 --> 00:11:02.615
 How is it counted?
 
-176
-00:11:17.755 --> 00:11:20.668
+172
+00:11:02.615 --> 00:11:05.528
 The answer is c: skipped, licensing.
 
-177
-00:11:20.668 --> 00:11:24.556
+173
+00:11:05.528 --> 00:11:09.416
 It's a licensing decision,
 neither a failure nor a pass.
 
-178
-00:11:24.556 --> 00:11:29.840
+174
+00:11:09.416 --> 00:11:14.700
 The module page has three more questions,
 each linked to the unit that answers it.
 
-179
-00:11:33.590 --> 00:11:34.415
+175
+00:11:18.450 --> 00:11:19.275
 To sum up.
 
-180
-00:11:34.415 --> 00:11:39.028
+176
+00:11:19.275 --> 00:11:23.888
 You saw what the Zero Trust Assessment
 checks, and the four things it isn't:
 
-181
-00:11:39.028 --> 00:11:43.565
+177
+00:11:23.888 --> 00:11:28.425
 a verdict, a substitute for ScubaGear,
 a supported product, or a detector.
 
-182
-00:11:43.565 --> 00:11:46.728
+178
+00:11:28.425 --> 00:11:31.588
 You placed it alongside
 ScubaGear, never instead.
 
-183
-00:11:46.728 --> 00:11:50.266
+179
+00:11:31.588 --> 00:11:35.126
 You read Microsoft's rubric
 and the tool's six statuses.
 
-184
-00:11:50.266 --> 00:11:55.356
+180
+00:11:35.126 --> 00:11:40.216
 And in Lab 1 you sorted a fictional
 export's skips into the program's taxonomy,
 
-185
-00:11:55.356 --> 00:11:58.265
+181
+00:11:40.216 --> 00:11:43.125
 and saw why none of them
 is a failure or a pass.
 
-186
-00:11:58.265 --> 00:12:03.268
+182
+00:11:43.125 --> 00:11:48.128
 The evidence an I S S O keeps from this
 module is the approved decision record,
 
-187
-00:12:03.268 --> 00:12:06.127
+183
+00:11:48.128 --> 00:11:50.987
 and each pillar owner's
 dated reading notes.
 
-188
-00:12:06.127 --> 00:12:10.336
+184
+00:11:50.987 --> 00:11:55.196
 Next is Module 2, running the
 assessment safely: the host,
 
-189
-00:12:10.336 --> 00:12:15.610
+185
+00:11:55.196 --> 00:12:00.470
 consent and roles, connecting in each
 cloud, and the run and its hashes.

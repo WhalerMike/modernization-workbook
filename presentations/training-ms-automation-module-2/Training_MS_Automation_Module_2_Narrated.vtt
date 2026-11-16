@@ -64,906 +64,892 @@ sign-in without a secret,
 and paging, apply throughout.
 
 14
-00:00:52.670 --> 00:00:53.645
+00:00:53.990 --> 00:00:54.965
 Why script it?
 
 15
-00:00:53.645 --> 00:00:57.033
+00:00:54.965 --> 00:00:58.353
 Your ISSO asks the same
 questions every month.
 
 16
-00:00:57.033 --> 00:00:58.282
+00:00:58.353 --> 00:00:59.602
 Who hasn't signed in?
 
 17
-00:00:58.282 --> 00:01:00.769
+00:00:59.602 --> 00:01:02.089
 What do the Conditional
 Access policies say?
 
 18
-00:01:00.769 --> 00:01:02.933
+00:01:02.089 --> 00:01:04.253
 Who holds a privileged role permanently?
 
 19
-00:01:02.933 --> 00:01:05.157
+00:01:04.253 --> 00:01:06.477
 Which applications still have passwords?
 
 20
-00:01:05.157 --> 00:01:09.019
+00:01:06.477 --> 00:01:10.339
 And who can't yet use phishing-resistant
 multifactor authentication?
 
 21
-00:01:09.019 --> 00:01:12.867
+00:01:10.339 --> 00:01:14.187
 Too often, someone answers by
 clicking through the admin center and
 
 22
-00:01:12.867 --> 00:01:16.645
+00:01:14.187 --> 00:01:17.965
 pasting screenshots, and the answer
 can't be reproduced next month.
 
 23
-00:01:16.645 --> 00:01:20.979
+00:01:17.965 --> 00:01:22.299
 In this module each question becomes
 a Graph call with a least-privileged
 
 24
-00:01:20.979 --> 00:01:25.598
+00:01:22.299 --> 00:01:26.918
 permission, and five of them become
 read-only checks you can rerun on a schedule,
 
 25
-00:01:25.598 --> 00:01:29.380
+00:01:26.918 --> 00:01:30.700
 with output an assessor can diff
 from one month to the next.
 
 26
-00:01:33.130 --> 00:01:35.963
+00:01:34.450 --> 00:01:37.283
 Here's what you'll be able to
 do by the end of this module,
 
 27
-00:01:35.963 --> 00:01:38.667
+00:01:37.283 --> 00:01:39.987
 which takes about ninety-five
 minutes with the lab.
 
 28
-00:01:38.667 --> 00:01:41.356
+00:01:39.987 --> 00:01:42.676
 You'll name the Graph
 API and least-privileged
 
 29
-00:01:41.356 --> 00:01:44.468
+00:01:42.676 --> 00:01:45.788
 permission for each of the
 books' evidence questions.
 
 30
-00:01:44.468 --> 00:01:49.582
+00:01:45.788 --> 00:01:50.902
 You'll read sign-in activity, group
 membership, Conditional Access, PIM schedules,
 
 31
-00:01:49.582 --> 00:01:54.467
+00:01:50.902 --> 00:01:55.787
 application credentials and registration
 details, and know the trap in each.
 
 32
-00:01:54.467 --> 00:01:58.342
+00:01:55.787 --> 00:01:59.662
 You'll explain why a script checks
 Entra's logs but doesn't keep them.
 
 33
-00:01:58.342 --> 00:02:01.980
-You'll say what differs
-in GCC High and DoD.
-
-34
-00:02:01.980 --> 00:02:06.855
+00:01:59.662 --> 00:02:04.537
 And you'll run the five checks and read
 each finding against its ScubaGear policy.
 
-35
-00:02:06.855 --> 00:02:08.605
+34
+00:02:04.537 --> 00:02:06.287
 You need Module 1 first.
 
-36
-00:02:08.605 --> 00:02:15.480
+35
+00:02:06.287 --> 00:02:13.150
 Lab 1 needs no tenant; Lab 2 needs a
 test tenant with Entra ID P1 or P2.
 
-37
-00:02:19.230 --> 00:02:22.364
+36
+00:02:16.900 --> 00:02:20.034
 Here are six of the module's
 sixteen evidence questions,
 
-38
-00:02:22.364 --> 00:02:26.792
+37
+00:02:20.034 --> 00:02:24.462
 with the Graph call and the least-privileged
 application permission for each.
 
-39
-00:02:26.792 --> 00:02:31.032
+38
+00:02:24.462 --> 00:02:28.702
 Who signed in, and when: list users
 with sign-in activity selected,
 
-40
-00:02:31.032 --> 00:02:35.192
+39
+00:02:28.702 --> 00:02:32.862
 which needs User dot Read dot All
 plus AuditLog dot Read dot All.
 
-41
-00:02:35.192 --> 00:02:37.748
+40
+00:02:32.862 --> 00:02:35.418
 Who's in a group, nested groups included:
 
-42
-00:02:37.748 --> 00:02:41.742
+41
+00:02:35.418 --> 00:02:39.412
 transitive members, with
 GroupMember dot ReadBasic dot All.
 
-43
-00:02:41.742 --> 00:02:45.767
+42
+00:02:39.412 --> 00:02:43.437
 What the Conditional Access policies
 say: Policy dot Read dot All.
 
-44
-00:02:45.767 --> 00:02:48.967
+43
+00:02:43.437 --> 00:02:46.637
 Who holds a role now: the
 role assignment schedules.
 
-45
-00:02:48.967 --> 00:02:54.005
+44
+00:02:46.637 --> 00:02:51.675
 Which applications have secrets or
 certificates: Application dot Read dot All.
 
-46
-00:02:54.005 --> 00:02:58.830
+45
+00:02:51.675 --> 00:02:56.500
 And who registered which authentication
 methods: the registration details report.
 
-47
-00:02:58.830 --> 00:03:04.042
+46
+00:02:56.500 --> 00:03:01.313
 Every one of these is generally
 available in Graph version one point oh,
 
+47
+00:03:01.313 --> 00:03:06.490
+and each page lists it as available in
+the global service, which GCC uses.
+
 48
-00:03:04.042 --> 00:03:07.223
-and each page lists it
-in the global service,
-
-49
-00:03:07.223 --> 00:03:11.030
-which GCC uses, and in the
-GCC High and DoD clouds.
-
-50
-00:03:14.780 --> 00:03:19.605
+00:03:10.240 --> 00:03:15.065
 Sign-in activity is how a script finds
 dormant accounts, and it has traps.
 
-51
-00:03:19.605 --> 00:03:23.568
+49
+00:03:15.065 --> 00:03:19.028
 Use both dates, the interactive
 and the non-interactive sign-in,
 
-52
-00:03:23.568 --> 00:03:28.293
+50
+00:03:19.028 --> 00:03:23.753
 because Microsoft notes some users
 reach resources only through clients.
 
-53
-00:03:28.293 --> 00:03:33.592
+51
+00:03:23.753 --> 00:03:29.052
 It needs Entra ID P1 or P2 and the
 AuditLog dot Read dot All permission.
 
-54
-00:03:33.592 --> 00:03:36.705
+52
+00:03:29.052 --> 00:03:32.165
 Selecting it caps the page
 at five hundred users.
 
-55
-00:03:36.705 --> 00:03:39.455
+53
+00:03:32.165 --> 00:03:34.915
 And it's returned only when
 you name it in select.
 
-56
-00:03:39.455 --> 00:03:43.199
+54
+00:03:34.915 --> 00:03:38.659
 For groups, transitive members
 is effective membership,
 
-57
-00:03:43.199 --> 00:03:46.305
+55
+00:03:38.659 --> 00:03:41.765
 nested groups included;
 members is direct only.
 
-58
-00:03:46.305 --> 00:03:50.330
+56
+00:03:41.765 --> 00:03:45.790
 The transitive call costs five
 resource units against three.
 
-59
-00:03:50.330 --> 00:03:53.330
+57
+00:03:45.790 --> 00:03:48.790
 The basic membership read
 permission is enough,
 
-60
-00:03:53.330 --> 00:03:57.530
+58
+00:03:48.790 --> 00:03:52.990
 and members of a type you can't read
 come back with only an ID and a type.
 
-61
-00:03:57.530 --> 00:04:02.330
+59
+00:03:52.990 --> 00:03:57.790
 For change tracking, the users delta
 call follows Module 1's pattern.
 
-62
-00:04:06.080 --> 00:04:09.722
+60
+00:04:01.540 --> 00:04:05.182
 Conditional Access is the
 easiest read in the module:
 
-63
-00:04:09.722 --> 00:04:12.205
+61
+00:04:05.182 --> 00:04:07.665
 it needs only Policy dot Read dot All.
 
-64
-00:04:12.205 --> 00:04:14.996
+62
+00:04:07.665 --> 00:04:10.456
 Each policy's state is enabled, disabled,
 
-65
-00:04:14.996 --> 00:04:19.393
+63
+00:04:10.456 --> 00:04:14.853
 or enabled for reporting but not
 enforced, which is report-only.
 
-66
-00:04:19.393 --> 00:04:23.805
+64
+00:04:14.853 --> 00:04:19.265
 The workbook's Conditional Access
 rollout depends on knowing which policies
 
-67
-00:04:23.805 --> 00:04:28.081
+65
+00:04:19.265 --> 00:04:23.541
 are report-only; its phishing-resistant
 policy for everyone starts that way.
 
-68
-00:04:28.081 --> 00:04:29.430
+66
+00:04:23.541 --> 00:04:24.890
 The collector reads.
 
-69
-00:04:29.430 --> 00:04:33.418
+67
+00:04:24.890 --> 00:04:28.877
 The ca-export check writes one
 sorted JSON file per policy,
 
-70
-00:04:33.418 --> 00:04:37.405
+68
+00:04:28.877 --> 00:04:32.865
 so any change shows up as a
 readable diff between two exports.
 
-71
-00:04:37.405 --> 00:04:40.047
+69
+00:04:32.865 --> 00:04:35.507
 Writing is different:
 creating a policy needs
 
-72
-00:04:40.047 --> 00:04:42.967
+70
+00:04:35.507 --> 00:04:38.427
 the Conditional Access
 read-write permission too.
 
-73
-00:04:42.967 --> 00:04:47.443
+71
+00:04:38.427 --> 00:04:42.903
 The workbook keeps the policies as
 code, so as design guidance, a pipeline
 
-74
-00:04:47.443 --> 00:04:52.430
+72
+00:04:42.903 --> 00:04:47.890
 holds the write permission and the
 evidence collector holds only the read.
 
-75
-00:04:55.660 --> 00:04:59.117
+73
+00:04:51.640 --> 00:04:55.097
 Privileged Identity Management's
 current APIs are under
 
-76
-00:04:59.117 --> 00:05:02.647
+74
+00:04:55.097 --> 00:04:58.627
 role management slash directory,
 and two schedules matter.
 
-77
-00:05:02.647 --> 00:05:05.884
+75
+00:04:58.627 --> 00:05:01.864
 Eligibility schedules say
 who may activate a role.
 
-78
-00:05:05.884 --> 00:05:08.510
+76
+00:05:01.864 --> 00:05:04.490
 Assignment schedules say who holds it now.
 
-79
-00:05:08.510 --> 00:05:13.117
+77
+00:05:04.490 --> 00:05:09.097
 The assignment type is Assigned for a
 direct assignment, or Activated for an
 
-80
-00:05:13.117 --> 00:05:16.480
+78
+00:05:09.097 --> 00:05:12.460
 activation, and the member
 type says whether it's direct,
 
-81
-00:05:16.480 --> 00:05:18.235
+79
+00:05:12.460 --> 00:05:14.215
 through a group, or inherited.
 
-82
-00:05:18.235 --> 00:05:23.123
+80
+00:05:14.215 --> 00:05:19.103
 An assignment's end is in its expiration,
 whose type can be no expiration.
 
-83
-00:05:23.123 --> 00:05:28.002
+81
+00:05:19.103 --> 00:05:23.982
 Put those together: an Assigned schedule
 with no expiration is permanent active,
 
-84
-00:05:28.002 --> 00:05:32.810
+82
+00:05:23.982 --> 00:05:28.790
 which ScubaGear's policy seven point four
 forbids for highly privileged roles.
 
-85
-00:05:32.810 --> 00:05:37.585
+83
+00:05:28.790 --> 00:05:33.565
 Role template IDs are stable; Global
 Administrator's is on the slide.
 
-86
-00:05:37.585 --> 00:05:42.210
+84
+00:05:33.565 --> 00:05:38.190
 Changes need a read-write permission,
 which the collector never asks for.
 
-87
-00:05:45.960 --> 00:05:50.782
+85
+00:05:41.940 --> 00:05:46.762
 An application's secrets and certificates
 each carry a start and an end date,
 
-88
-00:05:50.782 --> 00:05:55.680
+86
+00:05:46.762 --> 00:05:51.660
 in U T C, and those dates are enough to
 test ScubaGear's three application rules:
 
-89
-00:05:55.680 --> 00:06:00.502
+87
+00:05:51.660 --> 00:05:56.482
 no application passwords, passwords
 valid for at most a hundred eighty days,
 
-90
-00:06:00.502 --> 00:06:04.635
+88
+00:05:56.482 --> 00:06:00.615
 and certificates valid for at most
 three hundred sixty-five days.
 
-91
-00:06:04.635 --> 00:06:08.934
+89
+00:06:00.615 --> 00:06:04.914
 Microsoft's app management policies
 enforce the same limits going forward;
 
-92
-00:06:08.934 --> 00:06:12.073
+90
+00:06:04.914 --> 00:06:08.053
 the check finds what existed
 before they were turned on.
 
-93
-00:06:12.073 --> 00:06:16.705
+91
+00:06:08.053 --> 00:06:12.685
 Two related reads support consent review:
 who has been given an application's roles,
 
-94
-00:06:16.705 --> 00:06:19.725
+92
+00:06:12.685 --> 00:06:15.705
 and which delegated permissions
 have been consented,
 
-95
-00:06:19.725 --> 00:06:22.230
+93
+00:06:15.705 --> 00:06:18.210
 which needs Directory dot Read dot All.
 
-96
-00:06:25.980 --> 00:06:27.093
+94
+00:06:21.960 --> 00:06:23.073
 Logs first.
 
-97
-00:06:27.093 --> 00:06:31.117
+95
+00:06:23.073 --> 00:06:27.097
 Directory audits and sign-ins both
 need AuditLog dot Read dot All,
 
-98
-00:06:31.117 --> 00:06:34.917
+96
+00:06:27.097 --> 00:06:30.897
 and the Conditional Access
 policies applied to a sign-in show
 
-99
-00:06:34.917 --> 00:06:38.643
+97
+00:06:30.897 --> 00:06:34.623
 up only for callers allowed to
 read Conditional Access data.
 
-100
-00:06:38.643 --> 00:06:42.090
+98
+00:06:34.623 --> 00:06:38.070
 Entra keeps audit and
 sign-in logs for seven days
 
-101
-00:06:42.090 --> 00:06:45.193
+99
+00:06:38.070 --> 00:06:41.173
 on the free tier and
 thirty days with P1 or P2.
 
-102
-00:06:45.193 --> 00:06:49.804
+100
+00:06:41.173 --> 00:06:45.784
 That's why ScubaGear requires sending the
 logs to the security operations center.
 
-103
-00:06:49.804 --> 00:06:52.843
+101
+00:06:45.784 --> 00:06:48.823
 A Graph script checks
 logs; it doesn't keep them.
 
-104
-00:06:52.843 --> 00:06:58.529
+102
+00:06:48.823 --> 00:06:54.509
 Authentication methods: the registration
 details report gives one row per user,
 
-105
-00:06:58.529 --> 00:07:03.706
+103
+00:06:54.509 --> 00:06:59.686
 with MFA registration, admin status,
 user type and the methods registered.
 
-106
-00:07:03.706 --> 00:07:07.736
+104
+00:06:59.686 --> 00:07:03.716
 One caution: Microsoft documents
 the method names only by example,
 
-107
-00:07:07.736 --> 00:07:12.133
+105
+00:07:03.716 --> 00:07:08.113
 so a count of phishing-resistant users
 has to choose which names to count,
 
-108
-00:07:12.133 --> 00:07:15.290
+106
+00:07:08.113 --> 00:07:11.270
 and should be confirmed
 against a real report.
 
-109
-00:07:19.040 --> 00:07:21.390
+107
+00:07:15.020 --> 00:07:17.370
 Five of those reads are built as checks.
 
-110
-00:07:21.390 --> 00:07:26.449
+108
+00:07:17.370 --> 00:07:22.429
 Stale-users lists enabled members with no
 sign-in of either kind in ninety days,
 
-111
-00:07:26.449 --> 00:07:29.328
+109
+00:07:22.429 --> 00:07:25.308
 and never-signed-in
 accounts older than that.
 
-112
-00:07:29.328 --> 00:07:33.748
+110
+00:07:25.308 --> 00:07:29.728
 Ca-export writes every policy as
 sorted JSON with counts by state,
 
-113
-00:07:33.748 --> 00:07:37.378
+111
+00:07:29.728 --> 00:07:33.358
 evidence for ScubaGear's
 Conditional Access settings.
 
-114
-00:07:37.378 --> 00:07:42.846
+112
+00:07:33.358 --> 00:07:38.826
 Pim-report counts Global Administrators
 and lists every permanent active assignment
 
-115
-00:07:42.846 --> 00:07:47.865
+113
+00:07:38.826 --> 00:07:43.845
 to a role you name as privileged, for policies
 seven point one and seven point four.
 
-116
-00:07:47.865 --> 00:07:50.390
+114
+00:07:43.845 --> 00:07:46.370
 App-credentials lists every secret and
 
-117
-00:07:50.390 --> 00:07:53.527
+115
+00:07:46.370 --> 00:07:49.507
 certificate with its
 lifetime and days to expiry.
 
-118
-00:07:53.527 --> 00:07:57.492
+116
+00:07:49.507 --> 00:07:53.472
 And mfa-registration counts
 members without MFA or without a
 
-119
-00:07:57.492 --> 00:08:01.766
+117
+00:07:53.472 --> 00:07:57.746
 phishing-resistant method, and
 names administrators without one.
 
-120
-00:08:01.766 --> 00:08:04.627
+118
+00:07:57.746 --> 00:08:00.607
 The permissions for all
 five are a reader's set.
 
-121
-00:08:04.627 --> 00:08:06.502
+119
+00:08:00.607 --> 00:08:02.482
 None of them can change the tenant,
 
-122
-00:08:06.502 --> 00:08:09.550
+120
+00:08:02.482 --> 00:08:05.530
 and you grant only the ones
 for the checks you run.
 
-123
-00:08:13.300 --> 00:08:14.025
+121
+00:08:09.280 --> 00:08:10.005
 Try it.
 
-124
-00:08:14.025 --> 00:08:19.119
+122
+00:08:10.005 --> 00:08:15.099
 In the lab, you run each check against a
 fictional tenant with the from-json option,
 
-125
-00:08:19.119 --> 00:08:23.225
+123
+00:08:15.099 --> 00:08:19.205
 which evaluates a saved Graph
 response instead of calling Graph.
 
-126
-00:08:23.225 --> 00:08:25.166
+124
+00:08:19.205 --> 00:08:21.146
 Here's step three: the PIM report,
 
-127
-00:08:25.166 --> 00:08:28.375
+125
+00:08:21.146 --> 00:08:24.355
 with the Privileged Role
 Administrator role added.
 
-128
-00:08:28.375 --> 00:08:31.112
+126
+00:08:24.355 --> 00:08:27.092
 Global Administrator is always included.
 
-129
-00:08:31.112 --> 00:08:34.103
+127
+00:08:27.092 --> 00:08:30.083
 The fixture has three
 Global Administrators,
 
-130
-00:08:34.103 --> 00:08:38.038
+128
+00:08:30.083 --> 00:08:34.018
 which is within two to eight, so
 policy seven point one passes.
 
-131
-00:08:38.038 --> 00:08:41.798
+129
+00:08:34.018 --> 00:08:37.778
 But two principals hold
 privileged roles permanently,
 
-132
-00:08:41.798 --> 00:08:45.313
+130
+00:08:37.778 --> 00:08:41.293
 with no expiration, so policy
 seven point four fails.
 
-133
-00:08:45.313 --> 00:08:50.511
+131
+00:08:41.293 --> 00:08:46.491
 The PowerShell function returns exactly
 the same JSON, and the Pester tests compare
 
-134
-00:08:50.511 --> 00:08:54.987
+132
+00:08:46.491 --> 00:08:50.967
 every PowerShell check with the Python
 results, so the two can't drift apart.
 
-135
-00:08:54.987 --> 00:08:57.930
+133
+00:08:50.967 --> 00:08:53.910
 The lab runs all five checks this way.
 
-136
-00:09:01.680 --> 00:09:07.042
+134
+00:08:57.660 --> 00:09:03.022
 Lab 2 runs the same checks read-only
 against your own test tenant,
 
-137
-00:09:07.042 --> 00:09:13.618
+135
+00:09:03.022 --> 00:09:09.598
 worldwide or GCC, never production, with
 Entra ID P1 or P2 for sign-in and PIM data.
 
-138
-00:09:13.618 --> 00:09:17.170
+136
+00:09:09.598 --> 00:09:13.150
 Register one app in the tenant's
 own cloud with a certificate,
 
-139
-00:09:17.170 --> 00:09:20.580
+137
+00:09:13.150 --> 00:09:16.560
 and grant only the read
 permissions for the checks you run;
 
-140
-00:09:20.580 --> 00:09:24.630
+138
+00:09:16.560 --> 00:09:20.610
 the module lists them per check,
 straight from graph-calls dot JSON.
 
-141
-00:09:24.630 --> 00:09:29.680
+139
+00:09:20.610 --> 00:09:25.660
 Run each task in Python, or connect in
 PowerShell and run the same task there.
 
-142
-00:09:29.680 --> 00:09:33.505
+140
+00:09:25.660 --> 00:09:29.485
 The client checks the token
 first: a missing permission stops
 
-143
-00:09:33.505 --> 00:09:37.330
+141
+00:09:29.485 --> 00:09:33.310
 the run before any Graph call,
 and an extra one prints a warning.
 
-144
-00:09:37.330 --> 00:09:39.843
+142
+00:09:33.310 --> 00:09:35.823
 Compare each result with the admin center.
 
-145
-00:09:39.843 --> 00:09:44.561
+143
+00:09:35.823 --> 00:09:40.541
 Then back it out: remove the permissions,
 delete the app registration and its
 
-146
-00:09:44.561 --> 00:09:49.354
+144
+00:09:40.541 --> 00:09:45.334
 certificate, and delete the saved output,
 which holds user names and policies.
 
-147
-00:09:49.354 --> 00:09:51.870
+145
+00:09:45.334 --> 00:09:47.850
 The authors haven't run Lab 2.
 
-148
-00:09:55.620 --> 00:09:56.932
+146
+00:09:51.600 --> 00:09:52.912
 Where are agencies?
 
-149
-00:09:56.932 --> 00:10:01.371
-Most on this path run a GCC tenant
+147
+00:09:52.912 --> 00:09:56.089
+Most on this path run a
+Microsoft 365 GCC tenant,
+
+148
+00:09:56.089 --> 00:09:58.613
 synchronized from Active Directory,
 
+149
+00:09:58.613 --> 00:10:04.394
+with Conditional Access in place and some
+policies still report-only, permanent role
+
 150
-00:10:01.371 --> 00:10:06.038
-with some Conditional Access policies
-still report-only, permanent role
+00:10:04.394 --> 00:10:10.013
+assignments left from before PIM, and
+applications that still hold client secrets.
 
 151
-00:10:06.038 --> 00:10:10.858
-assignments left from before PIM, and
-applications that still hold secrets.
+00:10:10.013 --> 00:10:14.870
+Appendix A of the Identity and
+Directory book filters every identity
 
 152
-00:10:10.858 --> 00:10:14.335
-The APIs are the same in GCC High and DoD;
+00:10:14.870 --> 00:10:19.812
+control by GCC availability, licensing
+and Active Directory friction.
 
 153
-00:10:14.335 --> 00:10:18.357
-the endpoints differ,
-and so do some features.
+00:10:19.812 --> 00:10:22.738
+The interim paths, which
+are design guidance:
 
 154
-00:10:18.357 --> 00:10:23.030
-Microsoft's U S Government feature
-table lists Conditional Access, PIM,
+00:10:22.738 --> 00:10:27.958
+if phishing-resistant MFA isn't enforced
+for everyone yet, run the registration
 
 155
-00:10:23.030 --> 00:10:28.256
-access reviews, entitlement management
-and Lifecycle Workflows as available,
+00:10:27.958 --> 00:10:32.862
+check on a schedule and keep CA022
+report-only until the counts say it's safe.
 
 156
-00:10:28.256 --> 00:10:32.770
-HR-driven provisioning as partial,
-and two features as not available.
+00:10:32.862 --> 00:10:36.864
+Move each permanent privileged
+assignment to eligible in PIM,
 
 157
-00:10:32.770 --> 00:10:37.608
-GCC uses the commercial Entra service,
-so the table doesn't apply to it.
+00:10:36.864 --> 00:10:39.250
+and run the PIM report again to show it.
 
 158
-00:10:37.608 --> 00:10:41.064
-One Azure Government difference
-matters for the export:
+00:10:39.250 --> 00:10:43.950
+Replace each application secret with
+a certificate or federated credential.
 
 159
-00:10:41.064 --> 00:10:45.034
-multifactor authentication's
-Trusted IPs isn't supported there,
+00:10:43.950 --> 00:10:48.730
+And if logs aren't leaving Entra ID
+yet, treat that as the first fix.
 
 160
-00:10:45.034 --> 00:10:49.446
-so network-based exceptions live in
-Conditional Access named locations.
-
-161
-00:10:49.446 --> 00:10:51.770
-The interim paths are on the right.
-
-162
-00:10:55.520 --> 00:10:56.907
+00:10:52.480 --> 00:10:53.867
 The federal requirement.
 
-163
-00:10:56.907 --> 00:11:01.711
+161
+00:10:53.867 --> 00:10:58.671
 BOD 25-01 makes ScubaGear's
 mandatory Entra ID policies
 
-164
-00:11:01.711 --> 00:11:06.346
+162
+00:10:58.671 --> 00:11:03.306
 required for in-scope tenants,
 with continuous reporting to CISA.
 
-165
-00:11:06.346 --> 00:11:10.704
+163
+00:11:03.306 --> 00:11:07.664
 Four of the checks produce evidence for
 those: the Conditional Access settings,
 
-166
-00:11:10.704 --> 00:11:14.469
+164
+00:11:07.664 --> 00:11:11.429
 the Global Administrator count,
 permanent privileged assignments,
 
-167
-00:11:14.469 --> 00:11:16.583
+165
+00:11:11.429 --> 00:11:13.543
 and phishing-resistant registration.
 
-168
-00:11:16.583 --> 00:11:20.420
+166
+00:11:13.543 --> 00:11:17.380
 In NIST special publication
 eight hundred fifty-three terms,
 
-169
-00:11:20.420 --> 00:11:25.085
+167
+00:11:17.380 --> 00:11:22.045
 that's account management, A C two;
 least privilege for privileged accounts;
 
-170
-00:11:25.085 --> 00:11:28.696
+168
+00:11:22.045 --> 00:11:25.656
 multifactor authentication;
 and continuous monitoring.
 
-171
-00:11:28.696 --> 00:11:32.061
+169
+00:11:25.656 --> 00:11:29.021
 M-22-09's phishing-resistant
 requirement is what
 
-172
-00:11:32.061 --> 00:11:34.833
+170
+00:11:29.021 --> 00:11:31.793
 the registration check
 measures progress toward.
 
-173
-00:11:34.833 --> 00:11:37.700
+171
+00:11:31.793 --> 00:11:34.660
 Appendix A of the Identity
 and Directory book
 
-174
-00:11:37.700 --> 00:11:40.795
+172
+00:11:34.660 --> 00:11:37.755
 has which policies are
 mandatory, and the mapping.
 
-175
-00:11:40.795 --> 00:11:45.817
+173
+00:11:37.755 --> 00:11:42.777
 The evidence an ISSO keeps: each check's
 dated output with the app's permissions,
 
-176
-00:11:45.817 --> 00:11:48.212
+174
+00:11:42.777 --> 00:11:45.172
 the Conditional Access export in Git,
 
-177
-00:11:48.212 --> 00:11:52.290
+175
+00:11:45.172 --> 00:11:49.250
 and the findings with the change
 records that closed them.
 
-178
-00:11:54.720 --> 00:11:56.695
+176
+00:11:53.000 --> 00:11:54.975
 Check yourself with two questions.
 
-179
-00:11:56.695 --> 00:12:01.520
+177
+00:11:54.975 --> 00:11:59.800
 First: an Assigned role schedule has
 an expiration type of no expiration.
 
-180
-00:12:01.520 --> 00:12:02.320
+178
+00:11:59.800 --> 00:12:00.600
 What is it?
 
-181
-00:12:02.320 --> 00:12:04.635
+179
+00:12:00.600 --> 00:12:02.915
 The answer is b: it's permanent active,
 
-182
-00:12:04.635 --> 00:12:08.107
+180
+00:12:02.915 --> 00:12:06.387
 which ScubaGear forbids for
 highly privileged roles.
 
-183
-00:12:08.107 --> 00:12:10.481
+181
+00:12:06.387 --> 00:12:08.761
 Second: why doesn't a Graph script replace
 
-184
-00:12:10.481 --> 00:12:13.483
+182
+00:12:08.761 --> 00:12:11.763
 sending the logs to the
 security operations center?
 
-185
-00:12:13.483 --> 00:12:14.482
+183
+00:12:11.763 --> 00:12:12.762
 The answer is a.
 
-186
-00:12:14.482 --> 00:12:19.149
+184
+00:12:12.762 --> 00:12:17.429
 Entra keeps audit and sign-in logs
 for seven days on the free tier and
 
-187
-00:12:19.149 --> 00:12:23.732
+185
+00:12:17.429 --> 00:12:22.012
 thirty days with P1 or P2, so the
 record has to be kept somewhere else.
 
-188
-00:12:23.732 --> 00:12:29.000
+186
+00:12:22.012 --> 00:12:27.280
 The module page has three more questions,
 each linked to the unit that answers it.
 
-189
-00:12:32.750 --> 00:12:33.575
+187
+00:12:31.030 --> 00:12:31.855
 To sum up.
 
-190
-00:12:33.575 --> 00:12:36.883
+188
+00:12:31.855 --> 00:12:35.163
 You mapped the books'
 Entra ID evidence questions
 
-191
-00:12:36.883 --> 00:12:40.513
+189
+00:12:35.163 --> 00:12:38.793
 to Graph APIs and their
 least-privileged permissions.
 
-192
-00:12:40.513 --> 00:12:44.164
+190
+00:12:38.793 --> 00:12:42.444
 You learned the traps in sign-in
 activity, group membership,
 
-193
-00:12:44.164 --> 00:12:48.337
+191
+00:12:42.444 --> 00:12:46.617
 PIM schedules, application
 credentials and registration details.
 
-194
-00:12:48.337 --> 00:12:52.562
+192
+00:12:46.617 --> 00:12:50.130
 You saw why a script checks
-Entra's logs but doesn't keep them,
+Entra's logs but doesn't keep them.
 
-195
-00:12:52.562 --> 00:12:55.062
-and what differs in GCC High and DoD.
-
-196
-00:12:55.062 --> 00:12:58.125
+193
+00:12:50.130 --> 00:12:53.192
 And you ran the five checks
 in Python and PowerShell.
 
-197
-00:12:58.125 --> 00:13:00.708
+194
+00:12:53.192 --> 00:12:55.775
 Chapter 10 of the Access
 and Privilege book
 
-198
-00:13:00.708 --> 00:13:03.362
+195
+00:12:55.775 --> 00:12:58.429
 assembles the evidence
 package for a period.
 
-199
-00:13:03.362 --> 00:13:08.165
+196
+00:12:58.429 --> 00:13:03.232
 Next is Module 3, Intune through
 Microsoft Graph: devices, compliance,
 
-200
-00:13:08.165 --> 00:13:13.220
+197
+00:13:03.232 --> 00:13:08.287
 configuration and Autopilot, which
 APIs are only in beta, and five checks
 
-201
-00:13:13.220 --> 00:13:18.320
+198
+00:13:08.287 --> 00:13:13.410
 mapped to NIST special publication
 eight hundred fifty-three Moderate.

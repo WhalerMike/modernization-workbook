@@ -688,37 +688,37 @@ and tells you to add the call to
 the call list with its permission.
 
 144
-00:09:39.728 --> 00:09:44.683
+00:09:39.728 --> 00:09:44.540
 Then you ask for the cloud G C C in
 capitals, and it refuses that too:
 
 145
-00:09:44.683 --> 00:09:49.827
-the cloud names are global, gcc,
-gcchigh and dod, and it never guesses.
+00:09:44.540 --> 00:09:48.627
+the cloud names are global
+and gcc, and it never guesses.
 
 146
-00:09:49.827 --> 00:09:53.315
+00:09:48.627 --> 00:09:52.115
 Step six reads the hand-off
 to the Data Platform plan.
 
 147
-00:09:53.315 --> 00:09:59.195
+00:09:52.115 --> 00:09:57.995
 Two accounts go by their SQL Server
 service principal names, svc sqlprod and
 
 148
-00:09:59.195 --> 00:10:04.452
+00:09:57.995 --> 00:10:03.252
 the group managed account gmsa sql, and
 one, svc ldapbind, goes by its name.
 
 149
-00:10:04.452 --> 00:10:09.489
+00:10:03.252 --> 00:10:08.153
 Step seven runs every test: five
-hundred thirteen pass, none fail.
+hundred eleven pass, none fail.
 
 150
-00:10:09.489 --> 00:10:11.690
+00:10:08.153 --> 00:10:10.340
 Then delete the output folder.
 
 151

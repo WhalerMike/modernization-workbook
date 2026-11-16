@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Azure Security Engineering learning path](index.md). Guide [Step 1](../../books/guides/azure-security-implementation.md#step-1-landing-zone-security-baseline) and [Step 2](../../books/guides/azure-security-implementation.md#step-2-public-exposure-inventory). About 50 minutes, plus the lab.*
 
+**Watch:** the narrated deck for this module (about 13 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_AZS_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_AZS_Module_1_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-azs-module-1) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-1/Training_AZS_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-1/Training_AZS_Module_1_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (4 minutes) {#azs-m1-introduction}
 
 A landing zone decides what can be deployed. It doesn't decide what the internet can reach, and nothing in Steps 3 to 8 can be proved complete without a list of what is exposed. In this module you learn how the guide is put together, add the security settings the baseline needs on top of the landing zone, and build the exposure register every later module checks against.
@@ -73,7 +75,7 @@ Read the guide's [commercial Azure availability](../../books/guides/azure-securi
 - **GCC Moderate first.** Microsoft 365 GCC pairs with commercial Azure, so a GCC agency's subscriptions are commercial, and the guide's commands run as written with `az cloud set --name AzureCloud`.
 - **Other clouds.** The table compares DDoS protection, the web application firewall, the inspecting firewall and private access to PaaS across Azure, AWS, Google Cloud and Oracle Cloud Infrastructure. An agency whose HR platform runs on Oracle Cloud Infrastructure has OCI WAF, OCI Network Firewall and OCI private endpoints to engineer the same way; their availability in OCI Government Cloud is not yet specified.
 
-**Watch.** The guide's narrated deck covers this module in its first eight slides, from *Azure security, engineered one service at a time* to *Steps 1 and 2: baseline in audit, then inventory*. Its video is being exported; until it is on the [Presentations](../../presentations/index.md) page, read the slides' narration in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
+**Watch.** The guide's narrated deck covers this module in its first eight slides, from *Azure security, engineered one service at a time* to *Steps 1 and 2: baseline in audit, then inventory*. [▶ Watch the guide's video](../../presentations/watch.html?v=Guide_Azure_Security_Narrated), or read  in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 
 ## Exercise: Lab 2, a test subscription {#azs-m1-lab-2}
 *Not timed. Not run by the authors. Never production.*

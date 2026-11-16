@@ -1,0 +1,112 @@
+[
+ {
+  "slide": 4,
+  "title": "Unit 1: two boundaries, one control plane per setting",
+  "links": [
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   },
+   {
+    "text": "Microsoft Defender for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-us-government"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Unit 2: what GCC has",
+  "links": [
+   {
+    "text": "Defender for Endpoint for US Government customers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-endpoint-us-government"
+   },
+   {
+    "text": "What is Microsoft Security Exposure Management?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-exposure-management-overview"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 3: roles through PIM, then read in the right cloud",
+  "links": [
+   {
+    "text": "Create custom roles with Defender unified RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-urbac-create-custom-roles"
+   },
+   {
+    "text": "Activate Defender unified RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-urbac-activate"
+   },
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "security: runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Unit 4: onboard by management plane, ring by ring",
+  "links": [
+   {
+    "text": "Onboard Windows devices by using Intune",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-onboard-windows-intune"
+   },
+   {
+    "text": "Defender for Endpoint for US Government customers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-endpoint-us-government"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Sensor health: Active, or a ticket, or an exception",
+  "links": [
+   {
+    "text": "Device inventory field reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-device-inventory-field-reference"
+   },
+   {
+    "text": "DeviceInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2, steps 4 to 6: coverage, detection test, back out",
+  "links": [
+   {
+    "text": "Run a detection test",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-run-detection-test"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Module 1",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]
