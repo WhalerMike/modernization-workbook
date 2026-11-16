@@ -164,7 +164,7 @@ The packager doesn't sign. The hashes show that nothing changed after packaging;
 
 ### The tests
 
-`tests/test_drift_pipeline.py` has 53 tests: loading and refusing runs (including runs of different or unrecorded tenants, and the override), every result type, issue drafts, provenance, packaging, the hash chain, verification and the cloud table. `tests/test_workflow_lint.py` has 20: Learn's three samples as published, the pinned action, and the sample workflow with one defect introduced at a time. Neither needs a tenant or a network. The other three test files in `tests` hold the remaining 68 of the 142 that step 9 expects. The fixtures are two fictional kit runs for `contoso.example`, one day apart, written by `tests/make_fixtures.py`, and the provenance files the other kits wrote from their own fixtures.
+`tests/test_drift_pipeline.py` has 53 tests: loading and refusing runs (including runs of different or unrecorded tenants, and the override), every result type, issue drafts, provenance, packaging, the hash chain, verification and the cloud table. `tests/test_workflow_lint.py` has 18: Learn's three samples as published, the pinned action, and the sample workflow with one defect introduced at a time. Neither needs a tenant or a network. The other three test files in `tests` hold the remaining 68 of the 139 that step 9 expects. The fixtures are two fictional kit runs for `contoso.example`, one day apart, written by `tests/make_fixtures.py`, and the provenance files the other kits wrote from their own fixtures.
 
 ::: {.callout-important}
 ## Illustrative code

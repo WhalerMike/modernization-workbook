@@ -14,40 +14,40 @@ Then export October's
 five fictional findings.
 
 4
-00:00:05.401 --> 00:00:09.100
-Four closed on a re-read, and
-one is a declared exception.
+00:00:05.401 --> 00:00:08.175
+Four closed, and one is
+a declared exception.
 
 5
-00:00:09.100 --> 00:00:12.138
+00:00:08.175 --> 00:00:11.213
 Two of three judged closures
 were inside the window.
 
 6
-00:00:12.138 --> 00:00:15.019
+00:00:11.213 --> 00:00:14.095
 Then the problems, by
 name: one closed late,
 
 7
-00:00:15.019 --> 00:00:18.241
+00:00:14.095 --> 00:00:17.317
 one whose evidence no
 longer matches its hash,
 
 8
-00:00:18.241 --> 00:00:21.378
+00:00:17.317 --> 00:00:20.454
 and one closed with no
 re-read evidence at all;
 
 9
-00:00:21.378 --> 00:00:26.549
+00:00:20.454 --> 00:00:25.625
 its close note just says done, which
 the workbook calls prose, not evidence.
 
 10
-00:00:26.549 --> 00:00:31.013
+00:00:25.625 --> 00:00:30.088
 The command exits with a failure rather
 than producing a clean-looking package.
 
 11
-00:00:31.013 --> 00:00:32.980
+00:00:30.088 --> 00:00:32.040
 The last line is the chain's head.

@@ -5,7 +5,7 @@ Workbook folder: `docs/books/b19-developer-workbook/`. Files and folders startin
 | File | Title | Code |
 |---|---|---|
 | `01-the-hr-to-entra-middleware.md` | Chapter 01 — The HR-to-Entra Middleware | `examples/hcm-entra` (written) |
-| `02-graph-clients-for-government-clouds.md` | Chapter 02 — Graph Clients for the Government Clouds | `examples/ms-automation` |
+| `02-graph-clients-for-government-clouds.md` | Chapter 02 — Graph Clients for GCC | `examples/ms-automation` |
 | `03-writing-a-validation-kit-check.md` | Chapter 03 — Writing a Validation Kit Check | `examples/validation-kit` (written) |
 | `04-dynamic-rules-as-code.md` | Chapter 04 — Dynamic Rules as Code | `examples/dynamic-rules` (written) |
 | `05-lifecycle-workflows-custom-extensions.md` | Chapter 05 — Lifecycle Workflows Custom Extensions | new example |

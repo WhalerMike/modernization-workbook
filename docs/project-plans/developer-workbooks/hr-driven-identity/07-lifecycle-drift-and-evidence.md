@@ -123,7 +123,7 @@ The thresholds in `config/drift.json` are proposed starting values (*design guid
 
 ### The tests
 
-This chapter's tests are the four `test_drift_*` tests in `examples/hr-lifecycle/tests/test_credentials_separation_drift.py`, which build every chapter output from the fixtures first, and the six in `examples/drift-pipeline/tests/test_hr_evidence.py`. The kit's 57 tests and the drift pipeline's 142 pass under Python 3.10 or later with no package beyond pytest, no tenant and no network.
+This chapter's tests are the four `test_drift_*` tests in `examples/hr-lifecycle/tests/test_credentials_separation_drift.py`, which build every chapter output from the fixtures first, and the six in `examples/drift-pipeline/tests/test_hr_evidence.py`. The kit's 57 tests and the drift pipeline's 139 pass under Python 3.10 or later with no package beyond pytest, no tenant and no network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -334,7 +334,7 @@ cd ../hr-lifecycle && rm -rf out
 
    <!-- capture:end -->
 
-**Expected result:** `57 passed`, then `142 passed`. Delete `out` when you're done; it holds fictional names. The tests left you in `examples/drift-pipeline`:
+**Expected result:** `57 passed`, then `139 passed`. Delete `out` when you're done; it holds fictional names. The tests left you in `examples/drift-pipeline`:
 
 ```bash
 cd ../hr-lifecycle && rm -rf out

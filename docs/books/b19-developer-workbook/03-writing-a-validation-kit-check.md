@@ -480,7 +480,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 02 — Graph Clients for the Government Clouds](02-graph-clients-for-government-clouds.md) · [Workbook index](index.md) · [Next: Chapter 04 — Dynamic Rules as Code →](04-dynamic-rules-as-code.md)
+[← Previous: Chapter 02 — Graph Clients for GCC](02-graph-clients-for-government-clouds.md) · [Workbook index](index.md) · [Next: Chapter 04 — Dynamic Rules as Code →](04-dynamic-rules-as-code.md)
 :::
 
 [^c03-existing]: Microsoft Learn, "Configure Microsoft Entra Connect for an existing tenant," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-existing-tenant> (accessed Oct 30, 2026).

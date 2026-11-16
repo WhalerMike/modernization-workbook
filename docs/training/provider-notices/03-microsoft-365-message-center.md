@@ -191,7 +191,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests/Collectors.Tests.ps1, tests/Live.Tests.ps1 -FullNameFilter 'Microsoft 365 service communications*', '*Graph*' -Output None -PassThru | Select-Object PassedCount, FailedCount
     ```
 
-    Expect `PassedCount 15`, `FailedCount 0`.
+    Expect `PassedCount 14`, `FailedCount 0`.
 
 Delete `out` when you're done:
 

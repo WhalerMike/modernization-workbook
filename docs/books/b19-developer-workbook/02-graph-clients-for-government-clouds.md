@@ -162,12 +162,12 @@ Beta APIs can change or disappear, and Learn says not to use them in production 
 
 ### The tests
 
-The Python suite has 70 tests (pytest) and the Pester suite 44. Chapter 02 added 35 and 27 of them, 4 of the Pester tests when research gap 16 was closed:
+The Python suite has 86 tests (pytest) and the Pester suite 52. Chapter 02's are 28 and 23 of them, 4 of the Pester tests added when research gap 16 was closed:
 
-- `tests/python/test_learn_sample.py`, 9 tests: Microsoft's pinned snippets against stand-ins, and our provider's authority for each cloud.
-- `tests/python/test_graph_clients.py`, 24 tests: endpoints against the shared fixture, refused cloud names, the call list against each task's permissions, refused calls, the token audit, headers on every page, retrying a page with the last good link, `Retry-After` as an HTTP date, backoff with no header, and beta.
+- `tests/python/test_learn_sample.py`, 5 tests: Microsoft's pinned snippets against stand-ins, and our provider's authority for each cloud.
+- `tests/python/test_graph_clients.py`, 22 tests: endpoints against the shared fixture, refused cloud names, the call list against each task's permissions, refused calls, the token audit, headers on every page, retrying a page with the last good link, `Retry-After` as an HTTP date, backoff with no header, and beta.
 - `tests/python/test_intune_tasks.py`, a new test: a beta `404` is "not evaluated".
-- `tests/powershell/GraphClients.Tests.ps1`, 27 tests: the same rules in PowerShell, including the session check, with `Connect-MgGraph`, `Get-MgContext` and `Invoke-MgGraphRequest` mocked.
+- `tests/powershell/GraphClients.Tests.ps1`, 23 tests: the same rules in PowerShell, including the session check, with `Connect-MgGraph`, `Get-MgContext` and `Invoke-MgGraphRequest` mocked.
 
 None needs a module, a tenant or a network.
 

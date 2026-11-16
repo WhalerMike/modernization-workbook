@@ -243,7 +243,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-**Expected result:** `PassedCount` 15 and `FailedCount` 0, and `out/m365/manifest.json` listing the three calls with their permissions. Delete `out` when you're done:
+**Expected result:** `PassedCount` 14 and `FailedCount` 0, and `out/m365/manifest.json` listing the three calls with their permissions. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out

@@ -209,25 +209,25 @@
   ],
   [
    21.262,
-   9.738,
-   "For the two classes the loop sends to a person first, missing identity and an unauthorized write, the warning says that's expected until that person decides."
+   11.162,
+   "For the three classes the program sends to a person first, missing identity, an orphan account and an unauthorized write, the warning says that's expected until that person decides."
   ]
  ],
  "8": [
   [
    0.05,
-   2.15,
-   "The chapter's tests number twenty-two."
+   2.337,
+   "The chapter's tests number twenty-six."
   ],
   [
-   2.2,
-   15.438,
-   "They compare the constants against the script, try every rejection the script makes, cover closure signals and system defaults, check both checkable and empty intended states and the tempo, and accept every payload the drift client builds from the fixtures."
+   2.388,
+   18.05,
+   "They compare the constants against the script, try every rejection the script makes, cover closure signals and system defaults, check both checkable and empty intended states, the three classes a person decides first, and the tempo, and accept every payload the drift client builds from the fixtures."
   ],
   [
-   17.637,
-   10.613,
-   "With the rest of the kit, a hundred and seven Python tests pass, plus fifteen Node tests of the ServiceNow scripts and forty PowerShell tests, all without a tenant or a network."
+   20.438,
+   13.3,
+   "With the rest of the kit, including Chapter 9's thirty-two, a hundred and forty-one Python tests pass, plus fifteen Node tests of the ServiceNow scripts and thirty-eight PowerShell tests, all without a tenant or a network."
   ]
  ],
  "9": [
@@ -351,31 +351,31 @@
   ],
   [
    2.8,
-   2.95,
-   "First, run the chapter's twenty-two tests."
+   3.025,
+   "First, run the chapter's twenty-six tests."
   ],
   [
-   5.75,
+   5.825,
    4.688,
    "Then check five sample payloads at a fixed clock, noon on November first."
   ],
   [
-   10.438,
+   10.512,
    7.062,
    "The first is accepted: it had no severity, so the class default gave it P2 and a due time one hour later."
   ],
   [
-   17.5,
+   17.575,
    4.763,
    "The second has a typo in its class and is rejected with the list of valid ones."
   ],
   [
-   22.262,
+   22.337,
    4.463,
    "The third is accepted but warned: its intended state names nothing."
   ],
   [
-   26.725,
+   26.8,
    5.612,
    "The fourth has a bad severity, and the fifth is a closure signal that never closes anything."
   ]
@@ -398,21 +398,26 @@
   ],
   [
    12.812,
-   7.9,
-   "Three carry the warning, and they're exactly the classes a person decides first: two missing identities and the unauthorized write."
+   4.713,
+   "Three carry the warning: two missing identities and the unauthorized write."
   ],
   [
-   20.712,
+   17.525,
+   7.662,
+   "The three orphan accounts are decided by a person too, but their payloads already say what a re-read must find, so they don't warn."
+  ],
+  [
+   25.188,
    5.388,
    "Notice Erin's two attribute drifts in Entra I D, department and manager."
   ],
   [
-   26.1,
+   30.575,
    1.663,
    "They now have separate keys."
   ],
   [
-   27.762,
+   32.237,
    5.575,
    "Before Chapter 4's fix, they shared one, and the second would have vanished into the first."
   ]
