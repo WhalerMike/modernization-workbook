@@ -29,7 +29,7 @@ The record every notice becomes, and the Azure collector that fills it, behind t
 ## Narrated tour
 {{< fmw-video DW_PN_01_Notice_Record_Azure_Service_Health_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-01-notice-record-azure-service-health) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-01-notice-record-azure-service-health) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-01-notice-record-azure-service-health/DW_PN_01_Notice_Record_Azure_Service_Health_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-01-notice-record-azure-service-health/DW_PN_01_Notice_Record_Azure_Service_Health_Narrated.vtt). Recorded on November 12, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-01-notice-record-azure-service-health) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-01-notice-record-azure-service-health) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-01-notice-record-azure-service-health/DW_PN_01_Notice_Record_Azure_Service_Health_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-01-notice-record-azure-service-health/DW_PN_01_Notice_Record_Azure_Service_Health_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

@@ -28,10 +28,6 @@
   "title": "Which Azure: a GCC estate goes to commercial",
   "links": [
    {
-    "text": "Planning identity for Azure Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
-   },
-   {
     "text": "azcmagent connect",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azcmagent-connect"
    },
@@ -250,10 +246,6 @@
    {
     "text": "Plan and deploy Azure Arc-enabled servers",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-and-deploy-azure-arc-enabled-servers"
-   },
-   {
-    "text": "Planning identity for Azure Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#planning-identity-for-azure-government"
    }
   ]
  }

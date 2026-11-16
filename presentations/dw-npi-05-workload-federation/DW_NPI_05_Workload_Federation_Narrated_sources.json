@@ -22,20 +22,16 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
-    "text": "Compare Azure Government and global Azure",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
-   },
-   {
-    "text": "Create federatedIdentityCredential",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-federatedidentitycredential"
-   },
-   {
-    "text": "List signIns",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+    "text": "Azure CLI endpoints",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-azure-cli-endpoints"
    },
    {
     "text": "Chapter 05",
     "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.html"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
    }
   ]
  },
@@ -172,6 +168,10 @@
    {
     "text": "List signIns",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-signins"
+   },
+   {
+    "text": "signIn resource type",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-signin-resource-type"
    },
    {
     "text": "Chapter 05",

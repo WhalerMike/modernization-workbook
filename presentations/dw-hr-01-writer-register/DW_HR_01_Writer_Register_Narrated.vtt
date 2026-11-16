@@ -86,706 +86,706 @@ This chapter makes it checkable.
 Which cloud matters for this read.
 
 19
-00:01:08.050 --> 00:01:13.103
+00:01:08.050 --> 00:01:13.109
 The scan reads two Graph collections, the
 directory audits and the provisioning log,
 
 20
-00:01:13.103 --> 00:01:17.650
-and both are listed for the global
-service and for both US Government levels.
+00:01:13.109 --> 00:01:15.638
+and both are listed
+for the global service.
 
 21
-00:01:17.650 --> 00:01:23.712
-G C C uses the global Graph host; G
-C C High and level 5 have their own.
+00:01:15.638 --> 00:01:19.137
+G C C uses the global
+service's Graph host.
 
 22
-00:01:23.712 --> 00:01:27.774
+00:01:19.137 --> 00:01:23.199
 The export script takes the cloud
 as an argument and has no default.
 
 23
-00:01:27.774 --> 00:01:32.024
+00:01:23.199 --> 00:01:27.449
 And Entra keeps audit records for
 only thirty days with P1 or P2,
 
 24
-00:01:32.024 --> 00:01:36.110
+00:01:27.449 --> 00:01:31.535
 so the export has to run on a
 schedule well inside that window,
 
 25
-00:01:36.110 --> 00:01:40.150
+00:01:31.535 --> 00:01:35.570
 with the logs already flowing
 to the agency's own store.
 
 26
-00:01:43.900 --> 00:01:45.900
+00:01:39.320 --> 00:01:41.320
 Start with Microsoft's procedure.
 
 27
-00:01:45.900 --> 00:01:49.058
+00:01:41.320 --> 00:01:44.478
 Learn's list directory
 audits page gives the read,
 
 28
-00:01:49.058 --> 00:01:53.988
+00:01:44.478 --> 00:01:49.408
 its least-privileged permission, audit
 log read all, and the filter operators.
 
 29
-00:01:53.988 --> 00:01:58.412
+00:01:49.408 --> 00:01:53.832
 Its example shows the record: the
 activity name and time, the result,
 
 30
-00:01:58.412 --> 00:02:02.998
+00:01:53.832 --> 00:01:58.418
 who initiated it, either an app with
 its service principal ID or a user,
 
 31
-00:02:02.998 --> 00:02:05.975
+00:01:58.418 --> 00:02:01.395
 and the target with its
 modified properties.
 
 32
-00:02:05.975 --> 00:02:09.784
+00:02:01.395 --> 00:02:05.204
 The audit activity reference
 names the six user activities
 
 33
-00:02:09.784 --> 00:02:13.212
+00:02:05.204 --> 00:02:08.632
 this chapter watches, from
 add user to set user manager.
 
 34
-00:02:13.212 --> 00:02:16.263
+00:02:08.632 --> 00:02:11.683
 What Learn doesn't give is a
 test of who may write what.
 
 35
-00:02:16.263 --> 00:02:18.730
+00:02:11.683 --> 00:02:14.150
 There's no Microsoft sample for that.
 
 36
-00:02:22.480 --> 00:02:25.380
+00:02:17.900 --> 00:02:20.800
 Here's what Learn leaves to
 you, and what the kit adds.
 
 37
-00:02:25.380 --> 00:02:28.554
+00:02:20.800 --> 00:02:23.974
 The log records every
 write and its initiator,
 
 38
-00:02:28.554 --> 00:02:32.980
+00:02:23.974 --> 00:02:28.400
 but not which identity may write
 which value: that's the register.
 
 39
-00:02:32.980 --> 00:02:36.334
+00:02:28.400 --> 00:02:31.754
 One enable activity covers
 two lifecycle rows,
 
 40
-00:02:36.334 --> 00:02:40.118
+00:02:31.754 --> 00:02:35.538
 hire and cancellation, which
 must agree on one writer.
 
 41
-00:02:40.118 --> 00:02:45.331
+00:02:35.538 --> 00:02:40.751
 Every change is logged, but testing each
 successful protected write is yours.
 
 42
-00:02:45.331 --> 00:02:50.293
+00:02:40.751 --> 00:02:45.713
 So are the saved queries, least privilege
 per task, and evidence nobody edited.
 
 43
-00:02:50.293 --> 00:02:52.807
+00:02:45.713 --> 00:02:48.227
 The verdict: use Learn's API as it is,
 
 44
-00:02:52.807 --> 00:02:56.570
+00:02:48.227 --> 00:02:51.990
 and build the register
 and the test against it.
 
 45
-00:03:00.320 --> 00:03:03.182
+00:02:55.740 --> 00:02:58.602
 The register holds the
 guide's lifecycle rows.
 
 46
-00:03:03.182 --> 00:03:05.543
+00:02:58.602 --> 00:03:00.963
 Each row names the audited activity,
 
 47
-00:03:05.543 --> 00:03:09.083
+00:03:00.963 --> 00:03:04.503
 and for an update user record,
 the property it protects.
 
 48
-00:03:09.083 --> 00:03:11.610
+00:03:04.503 --> 00:03:07.030
 It names one writer, an optional backstop,
 
 49
-00:03:11.610 --> 00:03:14.882
+00:03:07.030 --> 00:03:10.302
 and for deletion, a list of
 writers that are forbidden.
 
 50
-00:03:14.882 --> 00:03:20.120
+00:03:10.302 --> 00:03:15.540
 Writers are named groups of service principal
 IDs: inbound provisioning, Lifecycle
 
 51
-00:03:20.120 --> 00:03:24.758
+00:03:15.540 --> 00:03:20.178
 Workflows, the card system's binding
 writer, and the interim directory sync.
 
 52
-00:03:24.758 --> 00:03:28.271
+00:03:20.178 --> 00:03:23.691
 One caution: the property names
 aren't documented on Learn.
 
 53
-00:03:28.271 --> 00:03:32.300
+00:03:23.691 --> 00:03:27.720
 They're the program's best
 reading, and Lab 2 confirms them.
 
 54
-00:03:36.050 --> 00:03:38.038
+00:03:31.470 --> 00:03:33.458
 The check reads the register's shape.
 
 55
-00:03:38.038 --> 00:03:42.825
+00:03:33.458 --> 00:03:38.245
 The first rule flags a row without a
 single writer, or a row listed twice.
 
 56
-00:03:42.825 --> 00:03:45.380
+00:03:38.245 --> 00:03:40.800
 Others flag a writer that isn't defined,
 
 57
-00:03:45.380 --> 00:03:49.213
+00:03:40.800 --> 00:03:44.633
 or one with no identities, so
 its writes can't be attributed.
 
 58
-00:03:49.213 --> 00:03:53.188
+00:03:44.633 --> 00:03:48.608
 A required account-state transition
 with no row is a finding.
 
 59
-00:03:53.188 --> 00:03:55.435
+00:03:48.608 --> 00:03:50.855
 So is deletion by inbound provisioning,
 
 60
-00:03:55.435 --> 00:03:58.975
+00:03:50.855 --> 00:03:54.395
 since the guide deletes through
 the post-separation workflow.
 
 61
-00:03:58.975 --> 00:04:01.296
+00:03:54.395 --> 00:03:56.716
 A backstop can't be the writer itself,
 
 62
-00:04:01.296 --> 00:04:04.313
+00:03:56.716 --> 00:03:59.733
 and rows for the same
 audited change must agree.
 
 63
-00:04:04.313 --> 00:04:08.920
+00:03:59.733 --> 00:04:04.340
 An unsigned register and an
 unversioned scope filter are warnings.
 
 64
-00:04:12.670 --> 00:04:16.907
+00:04:08.090 --> 00:04:12.327
 The scan tests every protected write
 in the window against the register.
 
 65
-00:04:16.907 --> 00:04:20.093
+00:04:12.327 --> 00:04:15.513
 A write by an identity that's
 neither the writer nor
 
 66
-00:04:20.093 --> 00:04:23.582
+00:04:15.513 --> 00:04:19.002
 the backstop is a finding:
 that's the unauthorized write.
 
 67
-00:04:23.582 --> 00:04:28.008
+00:04:19.002 --> 00:04:23.428
 A write by the backstop is a warning,
 because the writer should have acted first.
 
 68
-00:04:28.008 --> 00:04:31.469
+00:04:23.428 --> 00:04:26.889
 And a write by a writer the
 row forbids is a finding.
 
 69
-00:04:31.469 --> 00:04:35.304
+00:04:26.889 --> 00:04:30.724
 The scan reads only successful
 records inside the window,
 
 70
-00:04:35.304 --> 00:04:40.336
+00:04:30.724 --> 00:04:35.756
 takes the first app or user as the
 initiator, and counts an enable record once,
 
 71
-00:04:40.336 --> 00:04:44.120
+00:04:35.756 --> 00:04:39.540
 not against both the hire
 and the cancellation rows.
 
 72
-00:04:47.870 --> 00:04:52.741
+00:04:43.290 --> 00:04:48.161
 The writers scan task needs two permissions,
 each the least-privileged for its call:
 
 73
-00:04:52.741 --> 00:04:55.282
+00:04:48.161 --> 00:04:50.702
 audit log read all for
 the directory audits,
 
 74
-00:04:55.282 --> 00:04:58.670
+00:04:50.702 --> 00:04:54.090
 and that plus directory read
 all for the provisioning log.
 
 75
-00:04:58.670 --> 00:04:59.820
+00:04:54.090 --> 00:04:55.240
 Both are reads.
 
 76
-00:04:59.820 --> 00:05:01.733
+00:04:55.240 --> 00:04:57.153
 And here's what the scan can't see.
 
 77
-00:05:01.733 --> 00:05:05.007
+00:04:57.153 --> 00:05:00.427
 The Entra log records
 writes made in Entra I D.
 
 78
-00:05:05.007 --> 00:05:09.064
+00:05:00.427 --> 00:05:04.484
 For synced users, the slots are
 mastered in Active Directory,
 
 79
-00:05:09.064 --> 00:05:12.471
+00:05:04.484 --> 00:05:07.891
 and those writes show up
 only in A D change auditing.
 
 80
-00:05:12.471 --> 00:05:16.003
+00:05:07.891 --> 00:05:11.423
 So the register names the sync
 agent as the interim writer,
 
 81
-00:05:16.003 --> 00:05:19.460
+00:05:11.423 --> 00:05:14.880
 and the O U permissions
 are reviewed every quarter.
 
 82
-00:05:23.210 --> 00:05:25.498
+00:05:18.630 --> 00:05:20.918
 The tests hold all of this in place.
 
 83
-00:05:25.498 --> 00:05:30.633
+00:05:20.918 --> 00:05:26.053
 Nine belong to this chapter: the shipped
 register is clean, the shape rules work,
 
 84
-00:05:30.633 --> 00:05:33.793
+00:05:26.053 --> 00:05:29.213
 rows for one change agree,
 one enable counts once,
 
 85
-00:05:33.793 --> 00:05:37.980
+00:05:29.213 --> 00:05:33.400
 second writers and the forbidden
 delete are found, and failures,
 
 86
-00:05:37.980 --> 00:05:42.247
+00:05:33.400 --> 00:05:37.667
 unprotected changes and records
 outside the window are ignored.
 
 87
-00:05:42.247 --> 00:05:45.503
+00:05:37.667 --> 00:05:40.924
 Ten more are shared: the
 call list, the cloud table,
 
 88
-00:05:45.503 --> 00:05:48.760
+00:05:40.924 --> 00:05:44.180
 the output folder and the
 export that only reads.
 
 89
-00:05:48.760 --> 00:05:53.989
+00:05:44.180 --> 00:05:49.409
 All fifty-seven tests in the kit
 pass under Python 3.10 or later,
 
 90
-00:05:53.989 --> 00:05:57.230
+00:05:49.409 --> 00:05:52.650
 with no package, tenant or network.
 
 91
-00:06:00.980 --> 00:06:04.555
+00:05:56.400 --> 00:05:59.975
 The verified facts, each
 read on November first.
 
 92
-00:06:04.555 --> 00:06:10.026
-The directory audits list is version 1.0
-and listed for both government levels,
+00:05:59.975 --> 00:06:05.067
+The directory audits list is version
+1.0, on the Graph host GCC uses,
 
 93
-00:06:10.026 --> 00:06:13.393
+00:06:05.067 --> 00:06:08.838
 with the filter operators
 the saved queries use.
 
 94
-00:06:13.393 --> 00:06:17.081
+00:06:08.838 --> 00:06:12.526
 The six user activities come from
 the Core Directory reference.
 
 95
-00:06:17.081 --> 00:06:20.493
+00:06:12.526 --> 00:06:15.938
 Retention is thirty days,
 and it isn't retroactive.
 
 96
-00:06:20.493 --> 00:06:23.262
+00:06:15.938 --> 00:06:18.707
 And two places Learn says
 nothing are recorded,
 
 97
-00:06:23.262 --> 00:06:27.596
+00:06:18.707 --> 00:06:23.041
 so a later edit doesn't loosen the code:
 the display name each property gets
 
 98
-00:06:27.596 --> 00:06:32.500
+00:06:23.041 --> 00:06:27.950
 in the modified properties, and the
 service principal each service writes as.
 
 99
-00:06:36.250 --> 00:06:38.250
+00:06:31.700 --> 00:06:33.700
 What does this prove, and for whom?
 
 100
-00:06:38.250 --> 00:06:42.015
+00:06:33.700 --> 00:06:37.465
 The register's rows, version,
 signature and scope filter,
 
 101
-00:06:42.015 --> 00:06:46.353
+00:06:37.465 --> 00:06:41.803
 checked by the nine register
 rules, support account management
 
 102
-00:06:46.353 --> 00:06:50.200
+00:06:41.803 --> 00:06:45.650
 and identifier management,
 AC-2 and IA-4, at Moderate.
 
 103
-00:06:50.200 --> 00:06:54.175
+00:06:45.650 --> 00:06:49.625
 The I S S O keeps the signed
 register and the check's output.
 
 104
-00:06:54.175 --> 00:06:59.683
+00:06:49.625 --> 00:06:55.133
 The scan's findings support audit review,
 AU-6, for writes outside the named writer;
 
 105
-00:06:59.683 --> 00:07:02.478
+00:06:55.133 --> 00:06:57.928
 keep the output folder with its manifest,
 
 106
-00:07:02.478 --> 00:07:07.575
+00:06:57.928 --> 00:07:03.025
 the saved queries and the A D auditing
 settings, which this code doesn't read.
 
 107
-00:07:07.575 --> 00:07:12.500
+00:07:03.025 --> 00:07:07.950
 And the privacy basis for the feed comes
 from the privacy office, not from code.
 
 108
-00:07:16.250 --> 00:07:17.175
+00:07:11.700 --> 00:07:12.625
 Who does what?
 
 109
-00:07:17.175 --> 00:07:20.123
+00:07:12.625 --> 00:07:15.573
 Developers build the
 HR lifecycle's checks;
 
 110
-00:07:20.123 --> 00:07:25.037
+00:07:15.573 --> 00:07:20.487
 they need to read Python and JSON, and
 they don't need a tenant until Lab 2.
 
 111
-00:07:25.037 --> 00:07:27.426
+00:07:20.487 --> 00:07:22.876
 The data architect owns the register.
 
 112
-00:07:27.426 --> 00:07:32.732
+00:07:22.876 --> 00:07:28.182
 Identity engineers remove the other write
 paths, which is how every second-writer
 
 113
-00:07:32.732 --> 00:07:37.025
+00:07:28.182 --> 00:07:32.475
 finding closes: by removing the
 write path, not by editing the value.
 
 114
-00:07:37.025 --> 00:07:39.620
+00:07:32.475 --> 00:07:35.070
 And the I S S O keeps the signed register,
 
 115
-00:07:39.620 --> 00:07:43.880
+00:07:35.070 --> 00:07:39.330
 the check's output, and the
 scan's output folder as evidence.
 
 116
-00:07:47.630 --> 00:07:51.480
+00:07:43.080 --> 00:07:46.930
 Lab 1 runs on a laptop,
 in the H R lifecycle kit.
 
 117
-00:07:51.480 --> 00:07:54.962
+00:07:46.930 --> 00:07:50.412
 Step one lists what the
 scan reads: two GET calls,
 
 118
-00:07:54.962 --> 00:07:58.355
+00:07:50.412 --> 00:07:53.805
 with audit log read all
 and directory read all.
 
 119
-00:07:58.355 --> 00:08:02.480
+00:07:53.805 --> 00:07:57.930
 Step two checks the register:
 no findings, no warnings.
 
 120
-00:08:02.480 --> 00:08:05.455
+00:07:57.930 --> 00:08:00.905
 Step three scans October's audit records.
 
 121
-00:08:05.455 --> 00:08:08.890
+00:08:00.905 --> 00:08:04.340
 It counts eleven protected
 writes: five by the writer,
 
 122
-00:08:08.890 --> 00:08:12.793
+00:08:04.340 --> 00:08:08.243
 one by the backstop, four by a
 second writer and one forbidden.
 
 123
-00:08:12.793 --> 00:08:16.803
+00:08:08.243 --> 00:08:12.253
 That's five findings and one
 warning, the exit code is two,
 
 124
-00:08:16.803 --> 00:08:20.040
+00:08:12.253 --> 00:08:15.490
 and the manifest lists every file's hash.
 
 125
-00:08:23.790 --> 00:08:25.865
+00:08:19.240 --> 00:08:21.315
 Step four reads the findings.
 
 126
-00:08:25.865 --> 00:08:29.432
+00:08:21.315 --> 00:08:24.882
 A help desk administrator
 disabled a user at separation,
 
 127
-00:08:29.432 --> 00:08:31.253
+00:08:24.882 --> 00:08:26.703
 and edited another's manager.
 
 128
-00:08:31.253 --> 00:08:33.328
+00:08:26.703 --> 00:08:28.778
 Another account wrote a leave date.
 
 129
-00:08:33.328 --> 00:08:36.153
+00:08:28.778 --> 00:08:31.603
 A fix-up script wrote
 an organization code.
 
 130
-00:08:36.153 --> 00:08:37.890
+00:08:31.603 --> 00:08:33.340
 All four are second writers.
 
 131
-00:08:37.890 --> 00:08:42.140
+00:08:33.340 --> 00:08:37.590
 Inbound provisioning deleted an
 account, which the register forbids.
 
 132
-00:08:42.140 --> 00:08:46.134
+00:08:37.590 --> 00:08:41.584
 And Lifecycle Workflows, the
 backstop, enabled a new hire,
 
 133
-00:08:46.134 --> 00:08:48.853
+00:08:41.584 --> 00:08:44.303
 so confirm the writer acted or was late.
 
 134
-00:08:48.853 --> 00:08:52.221
+00:08:44.303 --> 00:08:47.671
 Three records aren't counted:
 an unprotected change,
 
 135
-00:08:52.221 --> 00:08:55.041
+00:08:47.671 --> 00:08:50.491
 a failed disable and
 one outside the window.
 
 136
-00:08:55.041 --> 00:09:00.590
+00:08:50.491 --> 00:08:56.040
 Step five reads a saved query, and
 step six: fifty-seven tests pass.
 
 137
-00:09:04.340 --> 00:09:08.225
+00:08:59.790 --> 00:09:03.675
 Lab 2 uses a test tenant in
 the worldwide or G C C cloud,
 
 138
-00:09:08.225 --> 00:09:11.478
+00:09:03.675 --> 00:09:06.928
 never production; the
 authors haven't run it.
 
 139
-00:09:11.478 --> 00:09:16.241
+00:09:06.928 --> 00:09:11.691
 Register a reader app with a certificate
 and exactly the two read permissions.
 
 140
-00:09:16.241 --> 00:09:21.065
+00:09:11.691 --> 00:09:16.515
 As a test administrator, change a user's
 hire date and disable another user.
 
 141
-00:09:21.065 --> 00:09:22.340
+00:09:16.515 --> 00:09:17.790
 Export the window.
 
 142
-00:09:22.340 --> 00:09:25.691
+00:09:17.790 --> 00:09:21.141
 Then confirm the property
 names against the real records,
 
 143
-00:09:25.691 --> 00:09:28.902
+00:09:21.141 --> 00:09:24.352
 and correct any that differ
 in your copy of the register.
 
 144
-00:09:28.902 --> 00:09:33.362
+00:09:24.352 --> 00:09:28.812
 Write the tenant's real service
 principal IDs into the copy and scan:
 
 145
-00:09:33.362 --> 00:09:36.866
+00:09:28.812 --> 00:09:32.316
 both of your changes should
 appear as second writers.
 
 146
-00:09:36.866 --> 00:09:38.430
+00:09:32.316 --> 00:09:33.880
 Then back it all out.
 
 147
-00:09:42.180 --> 00:09:43.205
+00:09:37.630 --> 00:09:38.655
 The dangers.
 
 148
-00:09:43.205 --> 00:09:47.671
+00:09:38.655 --> 00:09:43.121
 Two writers of account state let a
 late active value undo a disable;
 
 149
-00:09:47.671 --> 00:09:52.705
+00:09:43.121 --> 00:09:48.155
 one writer per row, agreement across
 rows, and the backstop warning guard it.
 
 150
-00:09:52.705 --> 00:09:57.736
+00:09:48.155 --> 00:09:53.186
 A property name that doesn't match is
 the quiet one: the scan reports nothing
 
 151
-00:09:57.736 --> 00:10:02.605
+00:09:53.186 --> 00:09:58.055
 for that value, and silence looks clean,
 so Lab 2 confirms every name first.
 
 152
-00:10:02.605 --> 00:10:06.430
+00:09:58.055 --> 00:10:01.880
 Logs expire after thirty
 days, so export on a schedule.
 
 153
-00:10:06.430 --> 00:10:09.767
+00:10:01.880 --> 00:10:05.217
 A D writes for synced users
 aren't in the Entra log.
 
 154
-00:10:09.767 --> 00:10:12.842
+00:10:05.217 --> 00:10:08.292
 Deletion by the provisioning
 app is caught twice.
 
 155
-00:10:12.842 --> 00:10:17.040
+00:10:08.292 --> 00:10:12.490
 And the findings name people, so
 keep them under access control.
 
 156
-00:10:20.790 --> 00:10:22.140
+00:10:16.240 --> 00:10:17.590
 Here's what done looks like.
 
 157
-00:10:22.140 --> 00:10:26.528
+00:10:17.590 --> 00:10:21.978
 The register file matches the signed
 register, and the check reports nothing.
 
 158
-00:10:26.528 --> 00:10:30.512
+00:10:21.978 --> 00:10:25.962
 Every writer group lists the
 tenant's real service principal IDs,
 
 159
-00:10:30.512 --> 00:10:34.202
+00:10:25.962 --> 00:10:29.652
 and every property name was
 confirmed against a real record.
 
 160
-00:10:34.202 --> 00:10:37.591
+00:10:29.652 --> 00:10:33.041
 The reader app holds exactly
 the two read permissions.
 
 161
-00:10:37.591 --> 00:10:42.140
+00:10:33.041 --> 00:10:37.590
 The scan runs on a schedule inside the
 thirty days, into the evidence store.
 
 162
-00:10:42.140 --> 00:10:46.353
+00:10:37.590 --> 00:10:41.803
 Every finding has an owner and
 closes by removing the write path.
 
 163
-00:10:46.353 --> 00:10:50.366
+00:10:41.803 --> 00:10:45.816
 And A D change auditing covers
 every population still synced.
 
 164
-00:10:50.366 --> 00:10:55.027
+00:10:45.816 --> 00:10:50.477
 Next, Chapter 2: contractor
 sources and enforced end dates.
 
 165
-00:10:55.027 --> 00:10:56.190
+00:10:50.477 --> 00:10:51.640
 Thanks for watching.

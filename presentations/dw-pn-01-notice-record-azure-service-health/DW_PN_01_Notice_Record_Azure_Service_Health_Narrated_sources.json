@@ -14,10 +14,6 @@
   "title": "Which cloud, for this read",
   "links": [
    {
-    "text": "Connect to Azure Government with Azure CLI",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-government-connect-cli"
-   },
-   {
     "text": "Azure CLI endpoints",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-azure-cli-endpoints"
    },

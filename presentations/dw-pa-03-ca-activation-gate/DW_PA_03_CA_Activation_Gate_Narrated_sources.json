@@ -60,10 +60,6 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
-    "text": "Entra feature availability",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
-   },
-   {
     "text": "Chapter 03",
     "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.html"
    }
@@ -297,7 +293,7 @@
    },
    {
     "text": "rollback",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#rollback"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/07-the-conditional-access-policy-library.html#b04-ps-rollback"
    },
    {
     "text": "Chapter 03",

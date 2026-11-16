@@ -97,703 +97,679 @@ contractor source's own provisioning app,
 through the same middleware employees use.
 
 21
-00:01:20.008 --> 00:01:25.797
-Learn's feature availability page lists
-API-driven inbound provisioning as available
+00:01:20.008 --> 00:01:24.139
+API-driven inbound provisioning
+and access reviews are
 
 22
-00:01:25.797 --> 00:01:30.794
-in Azure Government, and access reviews
-too; GCC uses the commercial service.
+00:01:24.139 --> 00:01:28.095
+part of the commercial Entra
+ID service, which GCC uses.
 
 23
-00:01:30.794 --> 00:01:34.583
-The bulk upload page itself
-has no national cloud table.
+00:01:28.095 --> 00:01:30.652
+The middleware accepts
+only the Graph host,
 
 24
-00:01:34.583 --> 00:01:37.773
-The middleware accepts only
-the three Graph endpoints,
-
-25
-00:01:37.773 --> 00:01:41.171
+00:01:30.652 --> 00:01:34.132
 and the reconciliation reads
 users from the cloud you name.
 
-26
-00:01:41.171 --> 00:01:42.720
+25
+00:01:34.132 --> 00:01:35.660
 There's no default.
 
-27
-00:01:46.470 --> 00:01:48.445
+26
+00:01:39.410 --> 00:01:41.385
 Start with what Microsoft gives you.
 
-28
-00:01:48.445 --> 00:01:53.351
+27
+00:01:41.385 --> 00:01:46.291
 Learn's bulk upload page is the contract:
 a SCIM post to the provisioning job,
 
-29
-00:01:53.351 --> 00:01:57.783
+28
+00:01:46.291 --> 00:01:50.723
 at most fifty user operations a
 request and forty requests a second.
 
-30
-00:01:57.783 --> 00:02:02.347
+29
+00:01:50.723 --> 00:01:55.287
 The service matches on the attributes
 the job maps, resolves the manager,
 
-31
-00:02:02.347 --> 00:02:05.770
+30
+00:01:55.287 --> 00:01:58.710
 and disables the user when
 a record sends active false.
 
-32
-00:02:05.770 --> 00:02:10.970
+31
+00:01:58.710 --> 00:02:03.910
 A successful call returns accepted, with a
 header pointing to the provisioning logs.
 
-33
-00:02:10.970 --> 00:02:15.845
+32
+00:02:03.910 --> 00:02:08.785
 For recertification, an assignment
 policy's review settings carry reviewers,
 
-34
-00:02:15.845 --> 00:02:19.290
+33
+00:02:08.785 --> 00:02:12.230
 a schedule, and what happens
 when nobody responds.
 
-35
-00:02:23.040 --> 00:02:24.690
+34
+00:02:15.980 --> 00:02:17.630
 Here's what Learn leaves to you.
 
-36
-00:02:24.690 --> 00:02:29.203
+35
+00:02:17.630 --> 00:02:22.143
 It disables an account when told to,
 but not when an engagement has ended.
 
-37
-00:02:29.203 --> 00:02:35.178
+36
+00:02:22.143 --> 00:02:28.118
 It accepts any record, so refusing a
 contractor with no end or no sponsor is yours.
 
-38
-00:02:35.178 --> 00:02:40.398
+37
+00:02:28.118 --> 00:02:33.338
 Mapping the register into the canonical
 record, reconciling before anything changes,
 
-39
-00:02:40.398 --> 00:02:44.240
+38
+00:02:33.338 --> 00:02:37.180
 and writing the review settings
 as a reviewed body are yours too.
 
-40
-00:02:44.240 --> 00:02:46.115
+39
+00:02:37.180 --> 00:02:39.055
 Each row is pinned by a test.
 
-41
-00:02:46.115 --> 00:02:49.028
+40
+00:02:39.055 --> 00:02:41.968
 And the verdict: don't
 write a second SCIM client.
 
-42
-00:02:49.028 --> 00:02:55.070
+41
+00:02:41.968 --> 00:02:48.010
 The existing middleware already validates,
 batches, paces and records provenance.
 
-43
-00:02:58.820 --> 00:03:01.557
+42
+00:02:51.760 --> 00:02:54.497
 The heart of the chapter
 is the earliest end.
 
-44
-00:03:01.557 --> 00:03:06.820
+43
+00:02:54.497 --> 00:02:59.760
 For each register row, the extract computes
 every end condition that applies and
 
-45
-00:03:06.820 --> 00:03:10.904
+44
+00:02:59.760 --> 00:03:03.844
 takes the first: the contract end
 or an earlier completion date,
 
-46
-00:03:10.904 --> 00:03:14.910
+45
+00:03:03.844 --> 00:03:07.850
 suitability withdrawn, a card
 terminated, revoked or expired,
 
-47
-00:03:14.910 --> 00:03:19.858
+46
+00:03:07.850 --> 00:03:12.798
 a sponsor gone past the grace period, or
 a sponsor recertification that's due.
 
-48
-00:03:19.858 --> 00:03:23.131
+47
+00:03:12.798 --> 00:03:16.071
 The thirty-day grace period
 and the hundred-and-eighty-day
 
-49
-00:03:23.131 --> 00:03:25.519
+48
+00:03:16.071 --> 00:03:18.459
 cycle are design guidance the agency sets.
 
-50
-00:03:25.519 --> 00:03:29.638
+49
+00:03:18.459 --> 00:03:22.578
 A record past its end goes out
 inactive, and every record carries
 
-51
-00:03:29.638 --> 00:03:33.800
+50
+00:03:22.578 --> 00:03:26.740
 its end as the termination date,
 so the leaver fires that day.
 
-52
-00:03:37.550 --> 00:03:40.450
+51
+00:03:30.490 --> 00:03:33.390
 Two sets of rules sit
 around that computation.
 
-53
-00:03:40.450 --> 00:03:44.217
+52
+00:03:33.390 --> 00:03:37.157
 The source checks quarantine
 a record with no contract end,
 
-54
-00:03:44.217 --> 00:03:48.752
+53
+00:03:37.157 --> 00:03:41.692
 or whose sponsor isn't in the HR export,
 warn when a sponsor has separated,
 
-55
-00:03:48.752 --> 00:03:51.750
+54
+00:03:41.692 --> 00:03:44.690
 and note an engagement
 ending within two weeks.
 
-56
-00:03:51.750 --> 00:03:56.640
+55
+00:03:44.690 --> 00:03:49.580
 The reconciliation compares the register,
 the card system and the directory:
 
-57
-00:03:56.640 --> 00:03:59.772
+56
+00:03:49.580 --> 00:03:52.712
 an enabled account past
 its end, an orphan account,
 
-58
-00:03:59.772 --> 00:04:02.523
+57
+00:03:52.712 --> 00:03:55.463
 a card for someone the
 register doesn't hold,
 
-59
-00:04:02.523 --> 00:04:06.725
+58
+00:03:55.463 --> 00:03:59.665
 a record with no account, and a leave
 date that isn't the earliest end.
 
-60
-00:04:06.725 --> 00:04:09.650
+59
+00:03:59.665 --> 00:04:02.590
 It's read only, joined on the person key.
 
-61
-00:04:13.400 --> 00:04:17.154
+60
+00:04:06.340 --> 00:04:10.094
 The reconciliation makes one
 Graph call: a filtered read of
 
-62
-00:04:17.154 --> 00:04:21.675
+61
+00:04:10.094 --> 00:04:14.615
 contractor users with their leave
 dates, needing two read permissions.
 
-63
-00:04:21.675 --> 00:04:23.088
+62
+00:04:14.615 --> 00:04:16.028
 Then the sponsor review.
 
-64
-00:04:23.088 --> 00:04:27.760
+63
+00:04:16.028 --> 00:04:20.700
 The review command writes the review
 settings for the contractor package's
 
-65
-00:04:27.760 --> 00:04:32.209
+64
+00:04:20.700 --> 00:04:25.149
 assignment policy: every six months,
 the requestor's manager as reviewer,
 
-66
-00:04:32.209 --> 00:04:35.250
+65
+00:04:25.149 --> 00:04:28.190
 a named fallback, and remove
 access on no response.
 
-67
-00:04:35.250 --> 00:04:40.375
+66
+00:04:28.190 --> 00:04:33.315
 So a missed recertification ends access,
 just as the earliest-end rule says.
 
-68
-00:04:40.375 --> 00:04:41.850
+67
+00:04:33.315 --> 00:04:34.790
 The code sends nothing.
 
-69
-00:04:41.850 --> 00:04:44.079
+68
+00:04:34.790 --> 00:04:37.019
 Learn's cmdlet takes the whole policy,
 
-70
-00:04:44.079 --> 00:04:47.470
+69
+00:04:37.019 --> 00:04:40.410
 so you merge the block into
 the policy you read back.
 
-71
-00:04:51.220 --> 00:04:55.683
+70
+00:04:44.160 --> 00:04:48.623
 The chapter's tests are seven, in the
 writers-and-contractors test file.
 
-72
-00:04:55.683 --> 00:04:59.430
+71
+00:04:48.623 --> 00:04:52.370
 They check that the earliest
 end takes the first condition,
 
-73
-00:04:59.430 --> 00:05:01.954
+72
+00:04:52.370 --> 00:04:54.894
 that an expired card ends an engagement,
 
-74
-00:05:01.954 --> 00:05:05.319
+73
+00:04:54.894 --> 00:04:58.259
 that a record with no end or
 no sponsor is quarantined,
 
-75
-00:05:05.319 --> 00:05:07.766
+74
+00:04:58.259 --> 00:05:00.706
 that a duplicate person key is refused,
 
-76
-00:05:07.766 --> 00:05:12.737
+75
+00:05:00.706 --> 00:05:05.677
 that the extract matches the middleware's
 layout and marks past ends inactive,
 
-77
-00:05:12.737 --> 00:05:15.490
+76
+00:05:05.677 --> 00:05:08.430
 that the reconciliation finds every class,
 
-78
-00:05:15.490 --> 00:05:19.008
+77
+00:05:08.430 --> 00:05:11.948
 and that the review removes
 access when no one responds.
 
-79
-00:05:19.008 --> 00:05:24.370
+78
+00:05:11.948 --> 00:05:17.310
 All fifty-seven tests in the kit pass
 with no package, tenant or network.
 
-80
-00:05:28.120 --> 00:05:31.695
+79
+00:05:21.060 --> 00:05:24.635
 The verified facts, each
 read on November first.
 
-81
-00:05:31.695 --> 00:05:36.601
+80
+00:05:24.635 --> 00:05:29.541
 Bulk upload is a version one point
 oh API: fifty operations a request,
 
-82
-00:05:36.601 --> 00:05:41.683
+81
+00:05:29.541 --> 00:05:34.623
 forty requests a second, and an
 accepted response pointing to the logs.
 
-83
-00:05:41.683 --> 00:05:44.920
+82
+00:05:34.623 --> 00:05:37.860
 Its least permission is the
 owned-by upload permission.
 
-84
-00:05:44.920 --> 00:05:49.431
+83
+00:05:37.860 --> 00:05:42.435
 The review settings and the access
-review procedure are both documented,
+review procedure are both documented.
 
-85
-00:05:49.431 --> 00:05:52.758
-and access reviews are
-available in Azure Government.
-
-86
-00:05:52.758 --> 00:05:57.070
+84
+00:05:42.435 --> 00:05:46.747
 The requestor manager subject set
 is documented for approval stages.
 
-87
-00:05:57.070 --> 00:06:02.160
+85
+00:05:46.747 --> 00:05:51.840
 And the policy update cmdlet needs the
 entitlement management read-write permission.
 
+86
+00:05:55.590 --> 00:06:00.265
+One place Learn's pages say nothing:
+the requestor's manager as a reviewer.
+
+87
+00:06:00.265 --> 00:06:03.280
+Learn documents that
+subject set for approvals,
+
 88
-00:06:05.910 --> 00:06:08.798
-Two places Learn's pages
-differ or say nothing.
+00:06:03.280 --> 00:06:07.803
+and the portal offers Manager as a
+reviewer, but no page shows it in review
 
 89
-00:06:08.798 --> 00:06:11.586
-First, the requestor's
-manager as a reviewer:
+00:06:07.803 --> 00:06:12.552
+settings, so Lab 2 confirms it in a test
+tenant before the program relies on it.
 
 90
-00:06:11.586 --> 00:06:15.612
-Learn documents that subject set
-for approvals, and the portal
-
-91
-00:06:15.612 --> 00:06:19.948
-offers Manager as a reviewer, but no
-page shows it in review settings.
-
-92
-00:06:19.948 --> 00:06:21.486
-Lab 2 confirms it.
-
-93
-00:06:21.486 --> 00:06:25.826
-Second, bulk upload in the national
-clouds: the API page has no table,
-
-94
-00:06:25.826 --> 00:06:31.272
-and the program reads the feature availability
-page as saying it's available there.
-
-95
-00:06:31.272 --> 00:06:33.673
+00:06:12.552 --> 00:06:14.952
 And remember the code is illustrative:
 
-96
-00:06:33.673 --> 00:06:38.750
+91
+00:06:14.952 --> 00:06:20.030
 it runs on fictional data and doesn't
 prove a tenant maps the same attributes.
 
-97
-00:06:42.500 --> 00:06:43.950
+92
+00:06:23.780 --> 00:06:25.230
 What does the output prove?
 
-98
-00:06:43.950 --> 00:06:49.085
+93
+00:06:25.230 --> 00:06:30.365
 For account management and third-party
 personnel security, AC-2 and PS-7,
 
-99
-00:06:49.085 --> 00:06:54.810
+94
+00:06:30.365 --> 00:06:36.090
 the code gives every earliest end with its
 reason, and a reconciliation run before
 
-100
-00:06:54.810 --> 00:07:00.450
+95
+00:06:36.090 --> 00:06:41.730
 the contractor leaver ships and again after,
 with no enabled account past its end.
 
-101
-00:07:00.450 --> 00:07:03.213
+96
+00:06:41.730 --> 00:06:44.493
 Keep both output folders
 with their manifests.
 
-102
-00:07:03.213 --> 00:07:07.237
+97
+00:06:44.493 --> 00:06:48.517
 The worker type on every record
 supports identifier management.
 
-103
-00:07:07.237 --> 00:07:11.449
+98
+00:06:48.517 --> 00:06:52.729
 The register as one named source
 per fact supports the OMB memos,
 
-104
-00:07:11.449 --> 00:07:14.388
+99
+00:06:52.729 --> 00:06:55.668
 though the signed
 authority table isn't code.
 
-105
-00:07:14.388 --> 00:07:18.410
+100
+00:06:55.668 --> 00:06:59.690
 And the privacy office's
 determination covers the data flows.
 
-106
-00:07:22.160 --> 00:07:23.085
+101
+00:07:03.440 --> 00:07:04.365
 Who does what?
 
-107
-00:07:23.085 --> 00:07:27.147
+102
+00:07:04.365 --> 00:07:08.427
 Developers build the contractor
 source's integration,
 
-108
-00:07:27.147 --> 00:07:29.885
+103
+00:07:08.427 --> 00:07:11.165
 and need to read Python, CSV and JSON.
 
-109
-00:07:29.885 --> 00:07:33.535
+104
+00:07:11.165 --> 00:07:14.815
 The owner of the contractor
 register signs the authority table,
 
-110
-00:07:33.535 --> 00:07:36.910
+105
+00:07:14.815 --> 00:07:18.190
 and the governance body names
 which register is the source.
 
-111
-00:07:36.910 --> 00:07:40.802
+106
+00:07:18.190 --> 00:07:22.082
 Identity engineers run the
 provisioning app, and the middleware's
 
-112
-00:07:40.802 --> 00:07:44.623
+107
+00:07:22.082 --> 00:07:25.903
 identity holds the upload permission
 on the contractor app only.
 
-113
-00:07:44.623 --> 00:07:49.337
+108
+00:07:25.903 --> 00:07:30.617
 The I S S O keeps the reconciliation
 folders and the provenance manifest,
 
-114
-00:07:49.337 --> 00:07:55.120
+109
+00:07:30.617 --> 00:07:36.400
 the privacy office covers the data flows,
 and every quarantined record has an owner.
 
-115
-00:07:58.870 --> 00:08:00.770
+110
+00:07:40.150 --> 00:07:42.050
 Lab 1 runs on a laptop.
 
-116
-00:08:00.770 --> 00:08:05.283
+111
+00:07:42.050 --> 00:07:46.563
 Step one lists the reconciliation's
 one read and its two permissions.
 
-117
-00:08:05.283 --> 00:08:09.504
+112
+00:07:46.563 --> 00:07:50.784
 Step two computes the earliest
 ends: nine records, three active,
 
-118
-00:08:09.504 --> 00:08:13.481
+113
+00:07:50.784 --> 00:07:54.761
 four inactive past their earliest
 end, and two quarantined,
 
-119
-00:08:13.481 --> 00:08:16.971
+114
+00:07:54.761 --> 00:07:58.251
 with an exit code of two
 because the run has findings.
 
-120
-00:08:16.971 --> 00:08:19.245
+115
+00:07:58.251 --> 00:08:00.525
 Step three reads the decisions.
 
-121
-00:08:19.245 --> 00:08:24.645
+116
+00:08:00.525 --> 00:08:05.925
 One record has no contract end;
 another's sponsor isn't in the HR export.
 
-122
-00:08:24.645 --> 00:08:29.007
+117
+00:08:05.925 --> 00:08:10.287
 And one shows the rule at work: its
 card expired on October twenty-eighth,
 
-123
-00:08:29.007 --> 00:08:33.660
+118
+00:08:10.287 --> 00:08:14.940
 but its recertification was due three
 days earlier, which comes first.
 
-124
-00:08:37.410 --> 00:08:40.260
+119
+00:08:18.690 --> 00:08:21.540
 Step four hands the
 extract to the middleware,
 
-125
-00:08:40.260 --> 00:08:44.085
+120
+00:08:21.540 --> 00:08:25.365
 which builds seven records in
 one batch, four of them disables.
 
-126
-00:08:44.085 --> 00:08:47.885
+121
+00:08:25.365 --> 00:08:29.165
 Nothing is sent: the middleware's
 dry run is its default.
 
-127
-00:08:47.885 --> 00:08:50.381
+122
+00:08:29.165 --> 00:08:31.661
 Step five reconciles the register,
 
-128
-00:08:50.381 --> 00:08:54.598
+123
+00:08:31.661 --> 00:08:35.878
 the cards and the directory:
 seven findings and one warning.
 
-129
-00:08:54.598 --> 00:08:57.861
+124
+00:08:35.878 --> 00:08:39.141
 Four accounts are still enabled
 past their earliest end.
 
-130
-00:08:57.861 --> 00:09:02.156
+125
+00:08:39.141 --> 00:08:43.436
 There's an orphan account, a card for
 someone the source doesn't hold, a leave
 
-131
-00:09:02.156 --> 00:09:06.522
+126
+00:08:43.436 --> 00:08:47.802
 date that would fire the leaver on the
 wrong day, and a record with no account.
 
-132
-00:09:06.522 --> 00:09:10.010
+127
+00:08:47.802 --> 00:08:51.290
 Those four accounts are
 exactly the four disables.
 
-133
-00:09:13.760 --> 00:09:18.135
+128
+00:08:55.040 --> 00:08:59.415
 Step six writes the sponsor review
 settings for review, and sends nothing.
 
-134
-00:09:18.135 --> 00:09:22.890
+129
+00:08:59.415 --> 00:09:04.170
 The block removes access on no
 response, names the requestor's manager
 
-135
-00:09:22.890 --> 00:09:27.235
+130
+00:09:04.170 --> 00:09:08.515
 at level one as the primary reviewer,
 and recurs every six months.
 
-136
-00:09:27.235 --> 00:09:31.235
+131
+00:09:08.515 --> 00:09:12.515
 Step seven runs the whole
 kit's tests: fifty-seven pass.
 
-137
-00:09:31.235 --> 00:09:33.430
+132
+00:09:12.515 --> 00:09:14.710
 Then delete the output folder.
 
-138
-00:09:37.180 --> 00:09:40.792
+133
+00:09:18.460 --> 00:09:22.072
 Lab 2 uses a test tenant;
 the authors haven't run it.
 
-139
-00:09:40.792 --> 00:09:43.117
+134
+00:09:22.072 --> 00:09:24.397
 Set up the contractor provisioning app,
 
-140
-00:09:43.117 --> 00:09:47.343
+135
+00:09:24.397 --> 00:09:28.623
 and grant the middleware the owned-by
 upload permission on that app only.
 
-141
-00:09:47.343 --> 00:09:51.335
+136
+00:09:28.623 --> 00:09:32.615
 Send two test contractors, one
 active and one past its end,
 
-142
-00:09:51.335 --> 00:09:53.543
+137
+00:09:32.615 --> 00:09:34.823
 and read the provisioning logs.
 
-143
-00:09:53.543 --> 00:09:55.168
+138
+00:09:34.823 --> 00:09:36.448
 Reconcile against the tenant:
 
-144
-00:09:55.168 --> 00:09:58.418
+139
+00:09:36.448 --> 00:09:39.698
 there should be no finding for
 the account you just disabled.
 
-145
-00:09:58.418 --> 00:10:02.782
+140
+00:09:39.698 --> 00:09:44.062
 Then apply the review settings by merging
 them into the policy you read back,
 
-146
-00:10:02.782 --> 00:10:05.068
+141
+00:09:44.062 --> 00:09:46.348
 and confirm the reviewer is the manager.
 
-147
-00:10:05.068 --> 00:10:08.320
+142
+00:09:46.348 --> 00:09:49.600
 Finally, restore the policy and clean up.
 
-148
-00:10:12.070 --> 00:10:16.145
+143
+00:09:53.350 --> 00:09:57.425
 The dangers all come down to access
 outliving the reason for it.
 
-149
-00:10:16.145 --> 00:10:20.748
+144
+00:09:57.425 --> 00:10:02.028
 A trusted spreadsheet end date lets
 access outlive the engagement;
 
-150
-00:10:20.748 --> 00:10:23.132
+145
+00:10:02.028 --> 00:10:04.412
 the computed earliest end stops it.
 
-151
-00:10:23.132 --> 00:10:26.745
+146
+00:10:04.412 --> 00:10:08.025
 An open-ended contractor never
 leaves, so it's quarantined.
 
-152
-00:10:26.745 --> 00:10:31.920
+147
+00:10:08.025 --> 00:10:13.200
 A sponsor who left leaves nobody accountable,
 so access ends after the grace period.
 
-153
-00:10:31.920 --> 00:10:34.732
+148
+00:10:13.200 --> 00:10:16.012
 A missed recertification removes access.
 
-154
-00:10:34.732 --> 00:10:39.469
+149
+00:10:16.012 --> 00:10:20.749
 A drifted leave date is caught, and so
 is a card for someone nobody sponsors.
 
-155
-00:10:39.469 --> 00:10:41.823
+150
+00:10:20.749 --> 00:10:23.103
 And a second SCIM client
 means two writers,
 
-156
-00:10:41.823 --> 00:10:44.820
+151
+00:10:23.103 --> 00:10:26.100
 so everything goes through
 the one middleware.
 
-157
-00:10:48.570 --> 00:10:49.920
+152
+00:10:29.850 --> 00:10:31.200
 Here's what done looks like.
 
-158
-00:10:49.920 --> 00:10:54.245
+153
+00:10:31.200 --> 00:10:35.525
 The contractor source is named and
 its owner signed the authority table.
 
-159
-00:10:54.245 --> 00:10:58.933
+154
+00:10:35.525 --> 00:10:40.213
 The rules file holds the agency's
 grace period and recertification cycle.
 
-160
-00:10:58.933 --> 00:11:01.436
+155
+00:10:40.213 --> 00:10:42.716
 The extract runs on the
 middleware's schedule,
 
-161
-00:11:01.436 --> 00:11:03.544
+156
+00:10:42.716 --> 00:10:44.824
 and quarantined records have an owner.
 
-162
-00:11:03.544 --> 00:11:08.149
+157
+00:10:44.824 --> 00:10:49.429
 The reconciliation ran before and
 after the contractor leaver shipped,
 
-163
-00:11:08.149 --> 00:11:10.758
+158
+00:10:49.429 --> 00:10:52.038
 with no account left enabled past its end.
 
-164
-00:11:10.758 --> 00:11:14.799
+159
+00:10:52.038 --> 00:10:56.079
 The review settings are confirmed
 by read-back, the upload permission
 
-165
-00:11:14.799 --> 00:11:18.770
+160
+00:10:56.079 --> 00:11:00.050
 is scoped to the contractor app, and
 the privacy office has signed off.
 
-166
-00:11:18.770 --> 00:11:22.257
+161
+00:11:00.050 --> 00:11:03.537
 Next, Chapter 3: joiner workflows as code.
 
-167
-00:11:22.257 --> 00:11:23.420
+162
+00:11:03.537 --> 00:11:04.700
 Thanks for watching.

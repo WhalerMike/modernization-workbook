@@ -19,7 +19,7 @@
  },
  {
   "slide": 3,
-  "title": "Which cloud: Graph hosts and availability",
+  "title": "Which cloud: the Graph host and availability",
   "links": [
    {
     "text": "Microsoft Graph national cloud deployments",
@@ -162,8 +162,12 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#plan-a-privileged-identity-management"
    },
    {
+    "text": "Book 04, Ch 10",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/10-access-as-code-and-evidence.html"
+   },
+   {
     "text": "Chapter 05",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.html"
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b04-access/05-applications-and-workload-identities.html"
    }
   ]
  },

@@ -29,7 +29,7 @@ The router behind the guide's [G6 Routing](../../../books/guides/provider-notice
 ## Narrated tour
 {{< fmw-video DW_PN_06_Routing_Owners_TTM_Tasks_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-06-routing-owners-ttm-tasks) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-06-routing-owners-ttm-tasks) (about 13 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-06-routing-owners-ttm-tasks/DW_PN_06_Routing_Owners_TTM_Tasks_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-06-routing-owners-ttm-tasks/DW_PN_06_Routing_Owners_TTM_Tasks_Narrated.vtt). Recorded on November 12, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-06-routing-owners-ttm-tasks) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-06-routing-owners-ttm-tasks) (about 13 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-06-routing-owners-ttm-tasks/DW_PN_06_Routing_Owners_TTM_Tasks_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-06-routing-owners-ttm-tasks/DW_PN_06_Routing_Owners_TTM_Tasks_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

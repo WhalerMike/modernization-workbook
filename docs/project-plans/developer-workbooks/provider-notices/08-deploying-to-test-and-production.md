@@ -29,7 +29,7 @@ The runbook that takes the kit from the labs of Chapters 01 to 07 to a live test
 ## Narrated tour
 {{< fmw-video DW_PN_08_Deploying_Test_Production_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-08-deploying-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-08-deploying-test-production) (about 14 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-08-deploying-test-production/DW_PN_08_Deploying_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-08-deploying-test-production/DW_PN_08_Deploying_Test_Production_Narrated.vtt). Recorded on November 12, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-08-deploying-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-08-deploying-test-production) (about 14 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-08-deploying-test-production/DW_PN_08_Deploying_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-08-deploying-test-production/DW_PN_08_Deploying_Test_Production_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

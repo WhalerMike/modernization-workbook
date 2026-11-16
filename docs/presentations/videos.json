@@ -9586,63 +9586,63 @@
     "Which cloud, for this read"
    ],
    [
-    103,
+    99,
     "What Microsoft Learn gives you"
    ],
    [
-    142,
+    137,
     "What Learn leaves to you, and what the kit adds"
    ],
    [
-    180,
+    175,
     "The register: one writer and a backstop per row"
    ],
    [
-    216,
+    211,
     "The register checks: WR-01 to WR-09"
    ],
    [
-    252,
+    248,
     "The scan: every protected write, tested"
    ],
    [
-    287,
+    283,
     "Two GET permissions, and what the scan can't see"
    ],
    [
-    323,
+    318,
     "The tests: nine for this chapter, 57 in all"
    ],
    [
-    360,
+    356,
     "The verified facts, and where Learn is silent"
    ],
    [
-    396,
+    391,
     "What the register and scan prove, and for whom"
    ],
    [
-    436,
+    431,
     "Who builds, who owns, who removes"
    ],
    [
-    467,
+    463,
     "Lab 1: what the scan reads, and October's scan"
    ],
    [
-    503,
+    499,
     "Lab 1: the findings, a saved query, the tests"
    ],
    [
-    544,
+    539,
     "Lab 2: real records in a test tenant"
    ],
    [
-    582,
+    577,
     "Dangers, and the guard for each"
    ],
    [
-    620,
+    616,
     "Done when: the writer register checklist"
    ]
   ],
@@ -9686,67 +9686,67 @@
     "Which cloud, for these reads and writes"
    ],
    [
-    106,
+    99,
     "What Microsoft gives you"
    ],
    [
-    142,
+    135,
     "What it leaves to you, and the kit adds"
    ],
    [
-    178,
+    171,
     "The earliest end: the first condition wins"
    ],
    [
-    217,
+    210,
     "The source checks and the reconciliation"
    ],
    [
-    253,
+    246,
     "One read, and the sponsor review as code"
    ],
    [
-    291,
+    284,
     "The tests: seven new, 57 in the kit"
    ],
    [
-    328,
+    321,
     "The verified facts"
    ],
    [
-    365,
-    "Where Learn differs or says nothing"
+    355,
+    "Where Learn says nothing"
    ],
    [
-    402,
+    383,
     "What the output proves, and for whom"
    ],
    [
-    442,
+    423,
     "Who builds, who owns, who runs it"
    ],
    [
-    478,
+    460,
     "Lab 1: the read, the extract, the decisions"
    ],
    [
-    517,
+    498,
     "Lab 1: the SCIM requests and the reconciliation"
    ],
    [
-    553,
+    534,
     "Lab 1: the review settings and the tests"
    ],
    [
-    577,
+    558,
     "Lab 2: a test tenant"
    ],
    [
-    612,
+    593,
     "Dangers, and the guard for each"
    ],
    [
-    648,
+    629,
     "Done when: the contractor checklist"
    ]
   ],
@@ -9819,39 +9819,39 @@
     "The verified facts"
    ],
    [
-    325,
+    322,
     "Where Learn differs, and what stays open"
    ],
    [
-    362,
+    356,
     "What the output proves, and for whom"
    ],
    [
-    399,
+    393,
     "Who builds, who owns, who approves"
    ],
    [
-    434,
+    428,
     "Lab 1: the reads, and a clean lint"
    ],
    [
-    462,
+    456,
     "Lab 1: three broken copies"
    ],
    [
-    497,
+    491,
     "Lab 1: the plan, and day one measured"
    ],
    [
-    533,
+    527,
     "Lab 2: one change, through the plan"
    ],
    [
-    572,
+    567,
     "Dangers, and the guard for each"
    ],
    [
-    610,
+    605,
     "Done when: the Gate 3 checklist"
    ]
   ],
@@ -9924,39 +9924,39 @@
     "The reads, the clouds and the tests"
    ],
    [
-    334,
+    333,
     "The verified facts, and where Learn stops"
    ],
    [
-    371,
+    369,
     "What the output proves, and for whom"
    ],
    [
-    412,
+    410,
     "Who builds, who owns, who reviews"
    ],
    [
-    448,
+    446,
     "Lab 1: the reads, and a clean lint"
    ],
    [
-    480,
+    477,
     "Lab 1: five broken policies"
    ],
    [
-    518,
+    515,
     "Lab 1: the memberOf scan and a mover's residual"
    ],
    [
-    558,
+    555,
     "Lab 2: one policy and one move, in a test tenant"
    ],
    [
-    595,
+    592,
     "Dangers, and the guard for each"
    ],
    [
-    632,
+    629,
     "Done when: the Gate 4 checklist"
    ]
   ],
@@ -9997,66 +9997,62 @@
    ],
    [
     75,
-    "Which cloud: the limit depends on it"
+    "Which cloud: the limits for GCC"
    ],
    [
-    108,
+    107,
     "What Microsoft gives you"
    ],
    [
-    150,
+    149,
     "What it leaves to you"
    ],
    [
-    187,
+    185,
     "cba_check.py: measure, then check"
    ],
    [
-    227,
+    225,
     "The check: CB-01 to CB-13"
    ],
    [
-    268,
+    266,
     "Three read permissions, and the root CA"
    ],
    [
-    309,
+    307,
     "The verified facts"
    ],
    [
-    347,
+    345,
     "Where Learn says nothing, or differs"
    ],
    [
-    385,
+    383,
     "What the check proves, and for whom"
    ],
    [
-    424,
+    422,
     "Who builds, who runs the CAs, who keeps it"
    ],
    [
-    461,
+    459,
     "Lab 1: the read, and the measurement"
    ],
    [
-    495,
+    493,
     "Lab 1: the fictional tenant, checked for GCC"
    ],
    [
-    534,
-    "Lab 1: the same tenant for GCC High, and the tests"
-   ],
-   [
-    565,
+    537,
     "Lab 2: a test tenant, and a revoked card"
    ],
    [
-    603,
+    574,
     "Dangers, and the guard for each"
    ],
    [
-    641,
+    613,
     "Done when: the CBA checklist"
    ]
   ],
@@ -10107,11 +10103,11 @@
     "The rules: ST-01 to ST-05"
    ],
    [
-    215,
+    214,
     "The rules: ST-06 to ST-09, and the thresholds"
    ],
    [
-    253,
+    252,
     "The read: two permissions, which cloud"
    ],
    [
@@ -10123,7 +10119,7 @@
     "The verified facts"
    ],
    [
-    360,
+    359,
     "Where Learn says nothing or differs"
    ],
    [
@@ -10131,31 +10127,31 @@
     "What the intervals prove, and for whom"
    ],
    [
-    434,
+    432,
     "Who builds, who owns, who reports"
    ],
    [
-    472,
+    470,
     "Lab 1: the read and the measurement"
    ],
    [
-    508,
+    506,
     "Lab 1: the findings and the intervals"
    ],
    [
-    545,
+    543,
     "Lab 1: the tests, then clean up"
    ],
    [
-    564,
+    562,
     "Lab 2: measure a real test leaver"
    ],
    [
-    597,
+    595,
     "Dangers, and the guard for each"
    ],
    [
-    635,
+    633,
     "Done when: the separation checklist"
    ]
   ],
@@ -10229,43 +10225,43 @@
     "The verified facts"
    ],
    [
-    313,
+    308,
     "What stays open, and what's design guidance"
    ],
    [
-    349,
+    344,
     "What the evidence proves, and for whom"
    ],
    [
-    394,
+    389,
     "Who runs the checks, who fixes, who signs"
    ],
    [
-    423,
+    418,
     "Lab 1: the chapter outputs, then the first run"
    ],
    [
-    462,
+    456,
     "Lab 1: reading the findings"
    ],
    [
-    500,
+    494,
     "Lab 1: package both runs, chained, and verify"
    ],
    [
-    533,
+    527,
     "Lab 1: the period, and the tests"
    ],
    [
-    578,
+    573,
     "Lab 2: a run against a test tenant"
    ],
    [
-    619,
+    613,
     "Dangers, and the guard for each"
    ],
    [
-    654,
+    649,
     "Done when: the Gate 7 checklist"
    ]
   ],
@@ -10275,7 +10271,7 @@
   "id": "DW_NPI_01_Inventory_as_Code_Narrated",
   "title": "Building Non-Person Identity, Chapter 01 — Non-Person Identity Inventory as Code: narrated tour",
   "group": "developer",
-  "minutes": 12,
+  "minutes": 11,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_01_Inventory_as_Code_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/dw-npi-01-inventory-as-code/DW_NPI_01_Inventory_as_Code_Narrated.vtt",
@@ -10304,63 +10300,63 @@
     "Which cloud and which directory, for this read"
    ],
    [
-    115,
+    111,
     "What the register has to hold"
    ],
    [
-    154,
+    151,
     "Two directory reads, nine Graph, one Resource Manager"
    ],
    [
-    193,
+    189,
     "Risk, candidate target and stale lead: the program's"
    ],
    [
-    229,
+    226,
     "What Learn gives you, and the pinned copies"
    ],
    [
-    270,
+    267,
     "What the samples miss in Active Directory"
    ],
    [
-    308,
+    305,
     "What the samples miss in Entra, and the verdict"
    ],
    [
-    347,
+    343,
     "The reader: five rules every call obeys"
    ],
    [
-    381,
+    378,
     "The register: one row, the same columns, every type"
    ],
    [
-    423,
+    419,
     "The findings, the manifest and the tests"
    ],
    [
-    462,
+    459,
     "Who builds it, who runs it, what it may read"
    ],
    [
-    501,
+    498,
     "Lab 1: Learn's samples, the permissions, the run"
    ],
    [
-    539,
+    536,
     "Lab 1: the eight HIGH rows, the guards, the hand-off"
    ],
    [
-    575,
+    572,
     "Lab 2: a test tenant and a test domain"
    ],
    [
-    613,
+    610,
     "Dangers, and the guard for each"
    ],
    [
-    650,
+    646,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -10399,15 +10395,15 @@
     "Which cloud, for this check and these writes"
    ],
    [
-    112,
+    113,
     "The rule the code holds: stricter than Learn's"
    ],
    [
-    148,
+    149,
     "The orphan rule: disable first, never delete"
    ],
    [
-    194,
+    195,
     "Learn's Graph samples, pinned and sent to a fake"
    ],
    [
@@ -10415,11 +10411,11 @@
     "What the query counts wrong"
    ],
    [
-    266,
+    267,
     "What the samples leave out entirely, and the verdict"
    ],
    [
-    303,
+    304,
     "The check: nine rules, NPI-OWN-01 to NPI-OWN-09"
    ],
    [
@@ -10431,11 +10427,11 @@
     "The separate write path, and why it's a person"
    ],
    [
-    415,
+    416,
     "Who keeps each input, and who decides"
    ],
    [
-    454,
+    455,
     "Lab 1: samples, permissions, the check and the plan"
    ],
    [
@@ -10447,7 +10443,7 @@
     "Lab 2: two test orphans, confirmed and disabled"
    ],
    [
-    568,
+    569,
     "Dangers, and the guard for each"
    ],
    [
@@ -10487,66 +10483,66 @@
    ],
    [
     76,
-    "Which cloud: Graph hosts, licenses and the trial"
+    "Which cloud: the Graph host, licenses and the trial"
    ],
    [
-    115,
+    114,
     "What Learn gives: a preference order and two tables"
    ],
    [
-    160,
+    158,
     "What Learn's tables miss: dMSA, retire, the facts"
    ],
    [
-    196,
+    194,
     "What they miss: federation, coverage, a record"
    ],
    [
-    234,
+    232,
     "The code and the inputs it reads"
    ],
    [
-    275,
+    273,
     "The proposal: scope first, then the matrix rows"
    ],
    [
-    313,
+    311,
     "The decision check: nine rules, NPI-MAT-01 to -09"
    ],
    [
-    353,
+    352,
     "Waves and their rollback (NP2.2)"
    ],
    [
-    389,
+    388,
     "The Workload ID Premium scope (D-NP4) and Gate 2"
    ],
    [
-    429,
+    427,
     "Who proposes, decides, approves, and what it reads"
    ],
    [
-    464,
+    462,
     "Lab 1: Learn's tables, then the matrix run"
    ],
    [
-    501,
+    499,
     "Lab 1: reading the proposals and the findings"
    ],
    [
-    537,
+    536,
     "Lab 1: the waves, the D-NP4 scope, the tests"
    ],
    [
-    573,
+    571,
     "Lab 2: a test tenant, read only"
    ],
    [
-    608,
+    606,
     "Dangers, and the guard for each"
    ],
    [
-    646,
+    644,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -10585,63 +10581,63 @@
     "Which cloud: Graph and Key Vault hosts"
    ],
    [
-    116,
+    113,
     "What an app management policy is"
    ],
    [
-    154,
+    151,
     "The program's rules: policy, lock, license, rotation"
    ],
    [
-    190,
+    187,
     "Microsoft's samples, pinned and sent to fakes"
    ],
    [
-    229,
+    226,
     "What the policy samples leave to you"
    ],
    [
-    267,
+    264,
     "What the certificate and Key Vault samples leave"
    ],
    [
-    301,
+    298,
     "The code and the inputs it reads"
    ],
    [
-    339,
+    336,
     "The policy: compare, merge, plan"
    ],
    [
-    376,
+    373,
     "Rotation: one step per certificate"
    ],
    [
-    413,
+    410,
     "The separate write path, and what it refuses"
    ],
    [
-    449,
+    447,
     "Who builds, runs, approves and reviews"
    ],
    [
-    489,
+    486,
     "Lab 1: the samples, then the policy plan"
    ],
    [
-    524,
+    521,
     "Lab 1: the rotation plan, applied to the fake"
    ],
    [
-    558,
+    555,
     "Lab 2: a test tenant and a test key vault"
    ],
    [
-    594,
+    591,
     "Dangers, and the guard for each"
    ],
    [
-    631,
+    628,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -10680,63 +10676,63 @@
     "Which cloud: Graph, Resource Manager, sign-in"
    ],
    [
-    122,
+    118,
     "What a federated credential is, and its rules"
    ],
    [
-    162,
+    158,
     "Learn's samples, pinned and sent to fakes"
    ],
    [
-    203,
+    199,
     "What the samples accept in silence"
    ],
    [
-    241,
+    236,
     "What the samples leave to you"
    ],
    [
-    278,
+    274,
     "The code: one module, a reviewed file, a cutover log"
    ],
    [
-    317,
+    313,
     "The checks: nine rules, NPI-WIF-01 to NPI-WIF-09"
    ],
    [
-    356,
+    351,
     "What the workload presents, and the exchange test"
    ],
    [
-    395,
+    391,
     "The plan: actions, and the evidence for a clean run"
    ],
    [
-    438,
+    433,
     "The separate write path: an approved hash, one at a time"
    ],
    [
-    477,
+    473,
     "Who builds it, who runs it, what it may touch"
    ],
    [
-    517,
+    513,
     "Lab 1: Microsoft's samples, then the plan"
    ],
    [
-    556,
+    552,
     "Lab 1: findings, conversions, dry run and apply"
    ],
    [
-    595,
+    590,
     "Lab 2: a test tenant, a real token, a real disable"
    ],
    [
-    634,
+    630,
     "Dangers, and the guard for each"
    ],
    [
-    671,
+    667,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -10831,7 +10827,7 @@
     "Dangers, and the guard for each"
    ],
    [
-    717,
+    716,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -10841,7 +10837,7 @@
   "id": "DW_NPI_07_Least_Privilege_Narrated",
   "title": "Building Non-Person Identity, Chapter 07 — Least Privilege for Service Principals: narrated tour",
   "group": "developer",
-  "minutes": 11,
+  "minutes": 12,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_07_Least_Privilege_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/dw-npi-07-least-privilege/DW_NPI_07_Least_Privilege_Narrated.vtt",
@@ -10866,7 +10862,7 @@
     "What an app can reach, and which cloud reads it"
    ],
    [
-    80,
+    81,
     "The program's rules: review, justify, narrow, hand off"
    ],
    [
@@ -10874,31 +10870,31 @@
     "Learn's review-and-revoke script, pinned and run"
    ],
    [
-    157,
+    158,
     "What the script gets wrong: removals and targets"
    ],
    [
-    197,
+    198,
     "What the script misses: reads, roles and hosts"
    ],
    [
-    237,
+    238,
     "The code, its inputs and the sweep"
    ],
    [
-    276,
+    277,
     "The check: nine rules, NPI-LP-01 to NPI-LP-09"
    ],
    [
-    314,
+    315,
     "The hand-off and the quarterly owner review"
    ],
    [
-    353,
+    354,
     "The plan: one action per broad grant or decision"
    ],
    [
-    394,
+    395,
     "The separate write path, and why it's a person"
    ],
    [
@@ -10906,27 +10902,27 @@
     "Who answers the review, and what each task may hold"
    ],
    [
-    464,
+    465,
     "Lab 1: Learn's script, then the sweep"
    ],
    [
-    502,
+    503,
     "Lab 1: the findings, the hand-off and the review"
    ],
    [
-    539,
+    540,
     "Lab 1: the plan, a dry run and a refusal"
    ],
    [
-    578,
+    579,
     "Lab 2: a test tenant, one real removal"
    ],
    [
-    615,
+    616,
     "Dangers, and the guard for each"
    ],
    [
-    651,
+    652,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -11060,7 +11056,7 @@
     "Release stage by cloud, and D-NP6 as data"
    ],
    [
-    127,
+    126,
     "The program's rules, NP6.1 to NP6.7"
    ],
    [
@@ -11080,23 +11076,23 @@
     "The code, its inputs and what it reads"
    ],
    [
-    320,
+    319,
     "The checks, part 1: creation, handshake, sponsors"
    ],
    [
-    358,
+    357,
     "The checks, part 2: privilege, sponsors, CA, drift"
    ],
    [
-    395,
+    394,
     "The agent CA plan and the separate write path"
    ],
    [
-    432,
+    431,
     "Who keeps the records, and what each task may hold"
    ],
    [
-    470,
+    469,
     "Lab 1: Learn's samples, D-NP6, then the check"
    ],
    [
@@ -11105,18 +11101,18 @@
    ],
    [
     547,
-    "Lab 1: the GCC High fallback, a dry run, a refusal"
+    "Lab 1: a dry run, a refusal, and the tests"
    ],
    [
-    586,
+    582,
     "Lab 2: a test tenant, one governed agent"
    ],
    [
-    625,
+    622,
     "Dangers, and the guard for each"
    ],
    [
-    663,
+    659,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -11160,59 +11156,59 @@
     "Learn's facts, the cloud and the other chapters"
    ],
    [
-    126,
+    127,
     "Microsoft's Sentinel rule, pinned and run offline"
    ],
    [
-    168,
+    169,
     "What the rule misses: initiators, keys, targets"
    ],
    [
-    204,
+    206,
     "What it misses: the pipeline, names and scope"
    ],
    [
-    240,
+    241,
     "The run, the approved baseline and the reads"
    ],
    [
-    280,
+    281,
     "The drift rules: NPI-DRF-01 to NPI-DRF-09"
    ],
    [
-    319,
+    321,
     "The review cycle and the annual vintage comparison"
    ],
    [
-    358,
+    360,
     "The package, the chain and what the ISSO receives"
    ],
    [
-    397,
+    399,
     "Who runs it, who signs it, and what it may read"
    ],
    [
-    433,
+    434,
     "Lab 1: the rule, then two days of runs"
    ],
    [
-    470,
+    471,
     "Lab 1: reading the drift and the vintage"
    ],
    [
-    509,
+    510,
     "Lab 1: package, verify, the period, then break it"
    ],
    [
-    550,
+    551,
     "Lab 2: a test tenant, three changes to see"
    ],
    [
-    586,
+    588,
     "Dangers, and the guard for each"
    ],
    [
-    625,
+    626,
     "Done when: the checklist, and the workbook's end"
    ]
   ],
@@ -11251,63 +11247,63 @@
     "Which cloud: Graph and Resource Manager hosts"
    ],
    [
-    117,
+    113,
     "What the inventory reads: five collections"
    ],
    [
-    154,
+    150,
     "The tier comes from the program, not Microsoft"
    ],
    [
-    193,
+    189,
     "Learn's samples, pinned and run against stand-ins"
    ],
    [
-    235,
+    231,
     "What the samples miss: eligibility, paging, groups"
    ],
    [
-    270,
+    266,
     "What the samples miss: names, clouds, Azure"
    ],
    [
-    307,
+    302,
     "The reader and its four rules"
    ],
    [
-    342,
+    338,
     "The rows: one per assignment, counted once"
    ],
    [
-    379,
+    375,
     "The findings: nine rules, PA-INV-01 to PA-INV-09"
    ],
    [
-    420,
+    415,
     "The manifest, the tests, and one known gap"
    ],
    [
-    456,
+    451,
     "Who builds it, who reviews it, what it may read"
    ],
    [
-    493,
+    489,
     "Lab 1: run Learn's samples and the inventory offline"
    ],
    [
-    530,
+    525,
     "Lab 1: reading the findings and the refusals"
    ],
    [
-    568,
+    564,
     "Lab 2: a test tenant, read-only, cross-checked"
    ],
    [
-    605,
+    600,
     "Dangers, and the guard for each"
    ],
    [
-    641,
+    637,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -11346,55 +11342,55 @@
     "Which cloud: Graph host, alert subscription, methods"
    ],
    [
-    117,
+    111,
     "Microsoft's standard for emergency access accounts"
    ],
    [
-    153,
+    146,
     "Learn's sample alert, pinned and run offline"
    ],
    [
-    189,
+    182,
     "What the sample misses, and what the code adds"
    ],
    [
-    224,
+    217,
     "The code: four commands and two input files"
    ],
    [
-    261,
+    254,
     "The check: ten rules, PA-EA-01 to PA-EA-10"
    ],
    [
-    298,
+    291,
     "Every enforced policy, and where the sources differ"
    ],
    [
-    338,
+    331,
     "The alert: three legs and a reviewed template"
    ],
    [
-    378,
+    372,
     "Who builds it, who runs it, what it may read"
    ],
    [
-    413,
+    406,
     "Lab 1: run Learn's queries and the check offline"
    ],
    [
-    447,
+    441,
     "Lab 1: reading the findings and the guards"
    ],
    [
-    486,
+    479,
     "Lab 2: a test tenant, a real query, a drill"
    ],
    [
-    521,
+    514,
     "Dangers, and the guard for each"
    ],
    [
-    558,
+    551,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -11437,59 +11433,59 @@
     "Which cloud: Graph v1.0 on the worldwide host"
    ],
    [
-    152,
+    143,
     "Microsoft's template for administrators, pinned"
    ],
    [
-    193,
+    184,
     "What the template misses: roles, strength, IDs"
    ],
    [
-    228,
+    219,
     "What the template misses: exclusion, state, gate"
    ],
    [
-    263,
+    254,
     "The code and the policy files"
    ],
    [
-    303,
+    294,
     "The pre-merge check: PA-CA-01 to PA-CA-09"
    ],
    [
-    343,
+    334,
     "Report-only policies and the emergency exclusion"
    ],
    [
-    383,
+    374,
     "The plan, the dry run and the writes"
    ],
    [
-    421,
+    412,
     "Where Learn's pages differ, recorded"
    ],
    [
-    458,
+    449,
     "Who builds it, who reviews it, what it may do"
    ],
    [
-    494,
+    485,
     "Lab 1: check the template and the files offline"
    ],
    [
-    532,
+    523,
     "Lab 1: plan, dry run, and three applies to the fake"
    ],
    [
-    569,
+    560,
     "Lab 2: a test tenant, report-only, then the gate"
    ],
    [
-    607,
+    598,
     "Dangers, and the guard for each"
    ],
    [
-    642,
+    632,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -11532,7 +11528,7 @@
     "Settings are per role, and Graph calls them rules"
    ],
    [
-    156,
+    157,
     "The authentication context: its policy, then PIM"
    ],
    [
@@ -11544,15 +11540,15 @@
     "What the rules sample leaves to you"
    ],
    [
-    268,
+    269,
     "What the tutorial leaves to you, and the verdict"
    ],
    [
-    302,
+    303,
     "The code: one reviewed file per role, inside bounds"
    ],
    [
-    341,
+    342,
     "The checks: PA-PIM-01 to PA-PIM-09"
    ],
    [
@@ -11560,23 +11556,23 @@
     "The calls, and a permission for each task"
    ],
    [
-    414,
+    415,
     "The diff, the plan, the read-back, the conversion"
    ],
    [
-    453,
+    454,
     "Who builds it, who owns it, who reviews it"
    ],
    [
-    490,
+    491,
     "Lab 1: Learn's samples, permissions, a dry run"
    ],
    [
-    526,
+    527,
     "Lab 1: reading the diff, the block and the apply"
    ],
    [
-    563,
+    564,
     "Lab 2: one role in a test tenant, then back out"
    ],
    [
@@ -11594,7 +11590,7 @@
   "id": "DW_PA_05_PIM_for_Groups_Narrated",
   "title": "Building Privileged Access, Chapter 05 — PIM for Groups and the PRV Groups: narrated tour",
   "group": "developer",
-  "minutes": 12,
+  "minutes": 11,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_PA_05_PIM_for_Groups_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/dw-pa-05-pim-for-groups/DW_PA_05_PIM_for_Groups_Narrated.vtt",
@@ -11620,66 +11616,66 @@
    ],
    [
     75,
-    "Which cloud: Graph hosts and availability"
+    "Which cloud: the Graph host and availability"
    ],
    [
-    110,
+    105,
     "Two independent features meet in a PRV group"
    ],
    [
-    147,
+    142,
     "Where a group's PIM state lives in Graph"
    ],
    [
-    183,
+    179,
     "Microsoft's samples, pinned and sent to a fake"
    ],
    [
-    220,
+    216,
     "What the samples leave to you"
    ],
    [
-    258,
+    254,
     "The code, the reviewed file and the tier policy"
    ],
    [
-    295,
+    291,
     "Activation limits and the authentication context"
    ],
    [
-    348,
+    327,
     "The findings: PA-PG-01 to PA-PG-09"
    ],
    [
-    386,
+    366,
     "The plan, the dry run, -Apply and seven guards"
    ],
    [
-    430,
+    403,
     "Where Learn's pages differ, recorded on purpose"
    ],
    [
-    466,
+    440,
     "Who builds it, and the least privilege per call"
    ],
    [
-    504,
+    478,
     "Lab 1: Microsoft's samples, then a dry run"
    ],
    [
-    541,
+    515,
     "Lab 1: findings, the diff, a guard and -Apply"
    ],
    [
-    587,
+    552,
     "Lab 2: a test tenant, lab groups, two apps"
    ],
    [
-    627,
+    589,
     "Dangers, and the guard for each"
    ],
    [
-    663,
+    626,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -11718,63 +11714,63 @@
     "Which cloud: the Resource Manager host"
    ],
    [
-    115,
+    106,
     "Resource Manager, not Graph: three resource types"
    ],
    [
-    154,
+    145,
     "The version, the scopes and who can be eligible"
    ],
    [
-    192,
+    183,
     "Microsoft's sample: walkthroughs and pinned examples"
    ],
    [
-    232,
+    223,
     "What the examples get wrong if read naively"
    ],
    [
-    272,
+    264,
     "What the examples leave out entirely"
    ],
    [
-    307,
+    295,
     "The code: a call list with least-privileged roles"
    ],
    [
-    347,
+    335,
     "The desired state: settings by tier, and its refusals"
    ],
    [
-    388,
+    377,
     "The read and the plan, in the order it must run"
    ],
    [
-    428,
+    416,
     "Findings, and an apply that is off by default"
    ],
    [
-    470,
+    458,
     "Who owns it, who reviews it, what it runs as"
    ],
    [
-    509,
+    497,
     "Lab 1: replay the examples and plan a dry run"
    ],
    [
-    547,
+    536,
     "Lab 1: reading the plan, applying, the refusals"
    ],
    [
-    588,
+    577,
     "Lab 2: a test subscription, a live plan, a back-out"
    ],
    [
-    625,
+    614,
     "Dangers, and the guard for each"
    ],
    [
-    665,
+    653,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -11809,67 +11805,67 @@
     "Why reviews, and why as code"
    ],
    [
-    81,
+    82,
     "What it costs, and which cloud it runs in"
    ],
    [
-    122,
+    124,
     "Learn's tutorial, pinned and run against a fake"
    ],
    [
-    161,
+    163,
     "What the tutorial leaves to you: the review itself"
    ],
    [
-    200,
+    203,
     "What it leaves to you: evidence, targets, permission"
    ],
    [
-    236,
+    238,
     "The reviewed file: seven series in the fixture"
    ],
    [
-    275,
+    277,
     "The bodies: built only from Learn's documented shapes"
    ],
    [
-    316,
+    318,
     "The checks: PA-AR-01 to PA-AR-14"
    ],
    [
-    354,
+    356,
     "PA-AR-06: the one guard that changes the setting"
    ],
    [
-    393,
+    396,
     "The dry run, the diff, and -Apply"
    ],
    [
-    429,
+    432,
     "The evidence: decisions read back for the ISSO"
    ],
    [
-    469,
+    471,
     "Who owns the reviews, and least privilege per call"
    ],
    [
-    508,
+    511,
     "Lab 1: run the tutorial and the dry run offline"
    ],
    [
-    548,
+    551,
     "Lab 1: Learn's body, the apply, the evidence"
    ],
    [
-    583,
+    585,
     "Lab 2: one real review, closed and read back"
    ],
    [
-    621,
+    624,
     "Dangers, and the guard for each"
    ],
    [
-    658,
+    660,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -11913,63 +11909,63 @@
     "Which cloud: the audit read's Graph host"
    ],
    [
-    117,
+    115,
     "Learn's PIM audit page and its three queries"
    ],
    [
-    156,
+    154,
     "What the queries find, and what they mix up"
    ],
    [
-    198,
+    196,
     "What the queries leave out entirely"
    ],
    [
-    238,
+    236,
     "The run: state, events, and one folder per run"
    ],
    [
-    277,
+    275,
     "The audit read, and what it flags"
    ],
    [
-    314,
+    312,
     "Where Learn's pages differ, and why it fails closed"
    ],
    [
-    351,
+    349,
     "Compare, by fingerprint; Tier 0 drift is an incident"
    ],
    [
-    390,
+    389,
     "No names in the tracker; packages in a hash chain"
    ],
    [
-    430,
+    428,
     "The period the ISSO receives, and the schedule"
    ],
    [
-    471,
+    469,
     "Who runs it, who receives it, what it may read"
    ],
    [
-    506,
+    504,
     "Lab 1: Learn's queries and two days of runs"
    ],
    [
-    544,
+    542,
     "Lab 1: compare, package, the period, a break"
    ],
    [
-    582,
+    581,
     "Lab 2: a test tenant, one activation, read twice"
    ],
    [
-    620,
+    619,
     "Dangers, and the guard for each"
    ],
    [
-    657,
+    656,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12000,71 +11996,71 @@
     "Chapter 01: The Notice Record and Azure Service Health"
    ],
    [
-    45,
+    41,
     "Why one record comes first"
    ],
    [
-    83,
+    79,
     "Which cloud, for this read"
    ],
    [
-    123,
+    113,
     "What Microsoft Learn gives you"
    ],
    [
-    165,
+    155,
     "What it leaves to you, and the verdict"
    ],
    [
-    206,
+    195,
     "The record: one shape for every provider"
    ],
    [
-    243,
+    233,
     "The fingerprint, and a record that must be valid"
    ],
    [
-    277,
+    267,
     "The Azure collector: event type to kind"
    ],
    [
-    319,
+    309,
     "The alert policy: a plan, a hash, then -Apply"
    ],
    [
-    359,
+    349,
     "Who builds it, who runs it, what it may read"
    ],
    [
-    396,
+    385,
     "Lab 1: what Azure needs, and the kit's query"
    ],
    [
-    433,
+    423,
     "Lab 1: collect Azure, then read the records"
    ],
    [
-    474,
+    464,
     "Lab 1: the retirement in full, and a second read"
    ],
    [
-    511,
+    501,
     "Lab 1: plan the alert policy; fixture mode refuses"
    ],
    [
-    549,
+    539,
     "Lab 2: an Azure test subscription"
    ],
    [
-    587,
+    577,
     "Federal requirements and the evidence"
    ],
    [
-    632,
+    622,
     "Dangers, and the guard for each"
    ],
    [
-    674,
+    663,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12095,67 +12091,67 @@
     "Chapter 02: Microsoft 365 Message Center, Service Health"
    ],
    [
-    45,
+    41,
     "Why read Message center from the API"
    ],
    [
-    84,
+    81,
     "Which cloud: GCC on the worldwide Graph host"
    ],
    [
-    124,
+    112,
     "What Microsoft Learn gives you"
    ],
    [
-    169,
+    158,
     "What it leaves to you, and the verdict"
    ],
    [
-    211,
+    200,
     "The collector: three declared calls"
    ],
    [
-    246,
+    235,
     "Posts and issues to kinds, and who decided"
    ],
    [
-    283,
+    272,
     "The host guard: the request, the next link, the session"
    ],
    [
-    321,
+    310,
     "Who owns it, and what the reader may hold"
    ],
    [
-    361,
+    350,
     "Lab 1: what Microsoft 365 needs, each cloud's host"
    ],
    [
-    405,
+    392,
     "Lab 1: the records, and who said they need action"
    ],
    [
-    445,
+    432,
     "Lab 1: the second week, and a refused next link"
    ],
    [
-    483,
+    470,
     "Lab 1: the chapter's tests pass"
    ],
    [
-    521,
+    508,
     "Lab 2: a Microsoft 365 test tenant"
    ],
    [
-    563,
+    550,
     "Federal requirements and the evidence"
    ],
    [
-    607,
+    594,
     "Dangers, and the guard for each"
    ],
    [
-    646,
+    632,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12186,67 +12182,67 @@
     "Chapter 03: Oracle Cloud Infrastructure Announcements"
    ],
    [
-    42,
+    39,
     "Why read OCI's announcements"
    ],
    [
-    80,
+    77,
     "Which realm: commercial OC1, government OC2"
    ],
    [
-    121,
+    111,
     "What Oracle's documentation gives you"
    ],
    [
-    167,
+    156,
     "What it leaves to you, and the verdict"
    ],
    [
-    207,
+    197,
     "The collector: a list, then a get for each"
    ],
    [
-    242,
+    231,
     "Announcement types to kinds, and Oracle's flag"
    ],
    [
-    284,
+    273,
     "The tests, and what the code isn't yet"
    ],
    [
-    322,
+    306,
     "Who owns it, and what the reader may hold"
    ],
    [
-    361,
+    346,
     "Lab 1: what OCI needs, and the realms it knows"
    ],
    [
-    396,
+    380,
     "Lab 1: collect, and the records name the resources"
    ],
    [
-    441,
+    425,
     "Lab 1: Oracle reschedules; still one notice"
    ],
    [
-    477,
+    461,
     "Lab 1: the live command, and the tests"
    ],
    [
-    514,
+    498,
     "Lab 2: an OCI test tenancy"
    ],
    [
-    554,
+    538,
     "Federal requirements and the evidence"
    ],
    [
-    598,
+    582,
     "Dangers, and the guard for each"
    ],
    [
-    637,
+    621,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12277,67 +12273,67 @@
     "Chapter 04: AWS Health"
    ],
    [
-    44,
+    41,
     "Why AWS Health, and what done means"
    ],
    [
-    84,
+    81,
     "Which partition, for this read"
    ],
    [
-    125,
+    122,
     "What AWS's documentation gives you"
    ],
    [
-    171,
+    168,
     "AWS's pages disagree on the support plan"
    ],
    [
-    215,
+    212,
     "What it leaves to you, and the verdict"
    ],
    [
-    261,
+    258,
     "The collector: three calls, ten ARNs at a time"
    ],
    [
-    303,
+    299,
     "Category to kind, and who said action is required"
    ],
    [
-    346,
+    343,
     "The partition guard, and the tests"
    ],
    [
-    386,
+    383,
     "Who owns it, and the policy it may hold"
    ],
    [
-    424,
+    421,
     "Lab 1: what AWS needs, and each partition's region"
    ],
    [
-    461,
+    457,
     "Lab 1: collect AWS, then read the records"
    ],
    [
-    497,
+    493,
     "Lab 1: who said so, and the GovCloud request"
    ],
    [
-    537,
+    534,
     "Lab 1: the tests, then Lab 2 in a test account"
    ],
    [
-    581,
+    578,
     "Federal requirements and the evidence"
    ],
    [
-    627,
+    624,
     "Dangers, and the guard for each"
    ],
    [
-    673,
+    669,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12368,67 +12364,67 @@
     "Chapter 05: Google Cloud Personalized Service Health"
    ],
    [
-    45,
+    42,
     "Why this chapter: read it, and say what's missing"
    ],
    [
-    82,
+    79,
     "Which cloud and which scope, for this read"
    ],
    [
-    125,
+    120,
     "What Google Cloud's documentation gives you"
    ],
    [
-    160,
+    156,
     "Gap one: incidents only, no planned maintenance"
    ],
    [
-    202,
-    "Gap two: not in the FedRAMP or IL packages"
+    198,
+    "Gap two: not in the FedRAMP packages"
    ],
    [
-    243,
+    235,
     "What it leaves to you, and the verdict"
    ],
    [
-    288,
+    280,
     "The collector: incidents into the record"
    ],
    [
-    328,
+    321,
     "The unverified call, and the tests"
    ],
    [
-    367,
+    359,
     "Who owns it, and the role it may hold"
    ],
    [
-    406,
+    398,
     "Lab 1: what Google Cloud needs, and week one"
    ],
    [
-    447,
+    439,
     "Lab 1: week two, and only one kind"
    ],
    [
-    480,
+    472,
     "Lab 1: the refusal, the command, the tests"
    ],
    [
-    518,
+    511,
     "Lab 2: a Google Cloud test project"
    ],
    [
-    559,
+    550,
     "Federal requirements and the evidence"
    ],
    [
-    601,
+    592,
     "Dangers, and the guard for each"
    ],
    [
-    642,
+    633,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12464,75 +12460,75 @@
     "Chapter 06: Routing to Owners and Ticket-to-Machine Tasks"
    ],
    [
-    45,
+    42,
     "Why every notice needs an owner, once"
    ],
    [
-    82,
+    79,
     "Today's intake, and five providers into one router"
    ],
    [
-    124,
+    121,
     "The pattern: a typed task and its finding contract"
    ],
    [
-    162,
+    159,
     "What the pattern leaves to you, and the verdict"
    ],
    [
-    202,
+    198,
     "The routing file, written at work and checked"
    ],
    [
-    242,
+    239,
     "Rules in order: first match wins"
    ],
    [
-    282,
+    287,
     "The payload, and two dates kept apart"
    ],
    [
-    323,
+    328,
     "Runs and state: new, changed, unchanged, absent"
    ],
    [
-    362,
+    367,
     "Who writes the routing, who keeps the evidence"
    ],
    [
-    402,
+    407,
     "Lab 1: check the routing; the template is refused"
    ],
    [
-    437,
+    442,
     "Lab 1: collect five providers, then route day one"
    ],
    [
-    476,
+    484,
     "Lab 1: one payload, read in full"
    ],
    [
-    516,
+    524,
     "Lab 1: a re-run writes nothing; week two"
    ],
    [
-    556,
+    562,
     "Lab 1: what each payload is for; the tests"
    ],
    [
-    598,
+    607,
     "Lab 2: one payload to a ServiceNow developer instance"
    ],
    [
-    638,
+    647,
     "Federal requirements and the evidence"
    ],
    [
-    681,
+    691,
     "Dangers, and the guard for each"
    ],
    [
-    721,
+    736,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12563,75 +12559,75 @@
     "Chapter 07: The Weekly Digest and Evidence"
    ],
    [
-    44,
+    40,
     "Why the digest and the evidence share the runs"
    ],
    [
-    78,
+    75,
     "What the guide asks the ISSO to keep"
    ],
    [
-    126,
+    122,
     "What the guide leaves to you, and the verdict"
    ],
    [
-    164,
+    160,
     "The digest: five sections for the owners"
    ],
    [
-    201,
+    198,
     "The evidence record: one run, every file hashed"
    ],
    [
-    241,
+    238,
     "Which run covers which step, and the chain"
    ],
    [
-    281,
+    278,
     "The check, and the stage check for a go/no-go"
    ],
    [
-    322,
+    319,
     "Who reads the digest, who keeps the evidence"
    ],
    [
-    356,
+    353,
     "Lab 1: a week of runs, then the digest"
    ],
    [
-    393,
+    390,
     "Lab 1: read the digest's action-required table"
    ],
    [
-    435,
+    432,
     "Lab 1: upcoming, new, and closed this week"
    ],
    [
-    478,
+    476,
     "Lab 1: record three runs as evidence"
    ],
    [
-    514,
+    511,
     "Lab 1: check the chain and the test stage"
    ],
    [
-    552,
+    549,
     "Lab 1: change a recorded file; run every test"
    ],
    [
-    587,
+    584,
     "Lab 2: a test environment's runs"
    ],
    [
-    626,
+    623,
     "Federal requirements and the evidence"
    ],
    [
-    669,
+    667,
     "Dangers, and the guard for each"
    ],
    [
-    707,
+    704,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12662,79 +12658,79 @@
     "Chapter 08: Deploying to Test and Production"
    ],
    [
-    45,
+    42,
     "Why a runbook, run twice"
    ],
    [
-    80,
+    77,
     "Which cloud, for these steps"
    ],
    [
-    122,
+    112,
     "The order, and the only writes"
    ],
    [
-    161,
+    151,
     "One settings file per stage, and its rules"
    ],
    [
-    203,
+    193,
     "The deploy scripts, each with a dry run"
    ],
    [
-    245,
+    235,
     "The dry run on the kit's fixtures"
    ],
    [
-    288,
+    278,
     "The pre-flight: seven read-only checks"
    ],
    [
-    327,
+    317,
     "Who holds what, and who approves"
    ],
    [
-    370,
+    360,
     "Steps 1.1 and 1.2: sign in, then the pre-flight"
    ],
    [
-    414,
+    404,
     "Step 1.3: staged enable, one provider at a time"
    ],
    [
-    459,
+    448,
     "Steps 1.4 and 1.5: route as a dry run, smoke test"
    ],
    [
-    502,
+    492,
     "Step 1.6: the alert policy at the test subscription"
    ],
    [
-    542,
+    532,
     "Step 1.7: the weekly run, on a schedule"
    ],
    [
-    586,
+    576,
     "Steps 1.8 and 1.9: the evidence, then the rollback"
    ],
    [
-    629,
+    619,
     "Go/no-go: promote only when every row passes"
    ],
    [
-    676,
+    664,
     "Stage 2: production, the same commands"
    ],
    [
-    717,
+    706,
     "Requirements, KSIs and the evidence kept"
    ],
    [
-    760,
+    749,
     "Dangers, and the guard for each"
    ],
    [
-    801,
+    790,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12877,26 +12873,26 @@
   "chapters": [
    [
     0,
-    "Chapter 02: Graph Clients for the Government Clouds"
+    "Chapter 02: Graph Clients for GCC"
    ],
    [
-    44,
+    43,
     "Why one client pattern, and why it comes first"
    ],
    [
     81,
-    "Which cloud is which: four clouds, two sets of hosts"
+    "Which cloud is which: GCC uses the worldwide hosts"
    ],
    [
-    120,
+    121,
     "What GCC with commercial Azure means for the code"
    ],
    [
-    161,
+    154,
     "The clients this chapter is the reference for"
    ],
    [
-    197,
+    190,
     "Microsoft's national cloud snippets, pinned"
    ],
    [
@@ -12904,47 +12900,47 @@
     "What the snippets leave to you: cloud and credentials"
    ],
    [
-    272,
+    273,
     "What they leave to you: permissions, paging, beta"
    ],
    [
-    310,
+    313,
     "One table of endpoints, and every call declared"
    ],
    [
-    347,
+    350,
     "The token check before a live run"
    ],
    [
-    385,
+    388,
     "Paging and throttling the way Learn documents"
    ],
    [
-    424,
+    427,
     "Beta without depending on it"
    ],
    [
-    461,
+    456,
     "Who builds it, who reviews it, and what it may hold"
    ],
    [
-    498,
+    493,
     "Lab 1: Learn's snippets, the endpoints, the call list"
    ],
    [
-    531,
-    "Lab 1: beta, PowerShell, and the test suites"
+    523,
+    "Lab 1: PowerShell, and the test suites"
    ],
    [
-    568,
+    549,
     "Lab 2: a test tenant and one permission"
    ],
    [
-    605,
+    586,
     "Dangers, and the guard for each"
    ],
    [
-    644,
+    620,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -12983,63 +12979,63 @@
     "Which cloud: the Graph host and the read's reach"
    ],
    [
-    114,
+    110,
     "The anatomy of a check: five parts"
    ],
    [
-    151,
+    147,
     "The catalog entry, and the lesson in it"
    ],
    [
-    184,
+    181,
     "When the only supported role is Global Administrator"
    ],
    [
-    220,
+    217,
     "The function, and the wrapper every check shares"
    ],
    [
-    257,
+    253,
     "One data path, and evidence of which path was used"
    ],
    [
-    294,
+    290,
     "Rows and outcome: three severities, unsafe defaults"
    ],
    [
-    331,
+    328,
     "Fixtures and tests: both directions, exact counts"
    ],
    [
-    371,
+    367,
     "The safety tests, and why the fix stays out"
    ],
    [
-    407,
+    403,
     "Verified facts: the calls behind the check"
    ],
    [
-    445,
+    442,
     "Who extends the kit, who runs what, with which role"
    ],
    [
-    481,
+    477,
     "Lab 1: run the check on the fixtures"
    ],
    [
-    516,
+    512,
     "Lab 1: scope, default run, and a planted mistake"
    ],
    [
-    553,
+    549,
     "Lab 2: an export from a test tenant"
    ],
    [
-    590,
+    586,
     "Dangers, and the guard for each"
    ],
    [
-    627,
+    623,
     "Done when: the reviewer's checklist"
    ]
   ],
@@ -13049,7 +13045,7 @@
   "id": "DW_ADM_04_Dynamic_Rules_Narrated",
   "title": "Building the Attribute-Driven Migration, Chapter 04 — Dynamic Rules as Code: narrated tour",
   "group": "developer",
-  "minutes": 11,
+  "minutes": 10,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_ADM_04_Dynamic_Rules_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/dw-adm-04-dynamic-rules/DW_ADM_04_Dynamic_Rules_Narrated.vtt",
@@ -13082,59 +13078,55 @@
     "Which cloud: sign-in, evaluator and memberOf"
    ],
    [
-    152,
+    157,
     "What Learn gives you: syntax, and five samples"
    ],
    [
-    190,
-    "The pinned copy, run against a fake tenant"
-   ],
-   [
-    227,
+    195,
     "What the samples leave to you"
    ],
    [
-    261,
+    230,
     "One file per group, with an owner and tests"
    ],
    [
-    297,
+    266,
     "Parse and evaluate offline, as Learn's grammar says"
    ],
    [
-    337,
+    306,
     "The linter: guards on the parsed tree"
    ],
    [
-    369,
+    338,
     "What the linter found in Book 03's own table"
    ],
    [
-    404,
+    373,
     "The shadow diff, the pause manifest and the tests"
    ],
    [
-    440,
+    409,
     "Who owns the rules, and what each step may do"
    ],
    [
-    476,
-    "Lab 1: Learn's samples and the rules, offline"
+    446,
+    "Lab 1: lint and evaluate the rules, offline"
    ],
    [
-    512,
+    478,
     "Lab 1: the pull request check, broken on purpose"
    ],
    [
-    545,
+    510,
     "Lab 2: a test tenant, Graph's evaluator, a drill"
    ],
    [
-    582,
+    548,
     "Dangers, and the guard for each"
    ],
    [
-    616,
+    582,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -13181,55 +13173,55 @@
     "What it leaves to you: cloud, path and status"
    ],
    [
-    207,
+    211,
     "What it leaves to you: failure, repeats and secrets"
    ],
    [
-    242,
+    246,
     "The appid value, and the verdict"
    ],
    [
-    279,
+    283,
     "One Logic App per integration, in four steps"
    ],
    [
-    316,
+    321,
     "Idempotency, the callback path and the registry"
    ],
    [
-    355,
+    359,
     "Five commands, and the workbook's leaver order"
    ],
    [
-    399,
+    403,
     "Authorization, built from the registry and checked"
    ],
    [
-    438,
+    442,
     "Where Learn's pages disagree, and what the code does"
    ],
    [
-    475,
+    479,
     "Who builds it, approves it, and what it needs"
    ],
    [
-    512,
+    517,
     "Lab 1: Learn's definition, then the program's"
    ],
    [
-    549,
+    553,
     "Lab 1: failures, the build and the read-backs"
    ],
    [
-    586,
+    591,
     "Lab 2: a test tenant, a real run, a failure drill"
    ],
    [
-    622,
+    627,
     "Dangers, and the guard for each"
    ],
    [
-    660,
+    665,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -13274,62 +13266,62 @@
    ],
    [
     116,
-    "Which cloud: Graph host and Intune instance"
+    "Which cloud: the Graph host for GCC"
    ],
    [
-    154,
+    151,
     "Microsoft's settings catalog samples, pinned"
    ],
    [
-    193,
+    190,
     "What the samples get right, and the write gaps"
    ],
    [
-    228,
+    227,
     "The record gaps, and the verdict"
    ],
    [
-    266,
+    265,
     "Read: the VK-INT-07 gate and the move plan"
    ],
    [
-    304,
+    303,
     "Write: one reviewed file per policy"
    ],
    [
-    341,
+    340,
     "Lint: ten rules, four that carry the program"
    ],
    [
-    378,
+    377,
     "Diff, then create only what is missing"
    ],
    [
-    417,
+    416,
     "Verified calls, beta stage and open questions"
    ],
    [
-    454,
+    451,
     "Who builds it, who approves it, which roles"
    ],
    [
-    491,
+    487,
     "Lab 1: the gate, the sample twice, the plan"
    ],
    [
-    528,
+    525,
     "Lab 1: lint, dry run, apply, break it on purpose"
    ],
    [
-    563,
+    560,
     "Lab 2: a test tenant, a real import, Migrate"
    ],
    [
-    604,
+    601,
     "Dangers, and the guard for each"
    ],
    [
-    643,
+    639,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -13376,15 +13368,15 @@
     "What Learn gives you: the procedure, step by step"
    ],
    [
-    193,
+    192,
     "Learn's three don'ts, and the pinned sample"
    ],
    [
-    231,
+    230,
     "What the cmdlets leave to you: the package"
    ],
    [
-    266,
+    265,
     "What the cmdlets leave to you: the definition"
    ],
    [
@@ -13396,15 +13388,15 @@
     "The code and the release registry"
    ],
    [
-    380,
+    379,
     "Clean the MOF, then check the package"
    ],
    [
-    416,
+    415,
     "Check the definition, and record what shipped"
    ],
    [
-    455,
+    454,
     "Who writes baselines, who reviews, which roles"
    ],
    [
@@ -13412,7 +13404,7 @@
     "Lab 1: follow Learn by hand, and see the gaps"
    ],
    [
-    528,
+    527,
     "Lab 1: the checked build, and breaking it"
    ],
    [
@@ -13424,7 +13416,7 @@
     "Dangers, and the guard for each"
    ],
    [
-    638,
+    637,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -13467,59 +13459,59 @@
     "Which Azure: a GCC estate goes to commercial"
    ],
    [
-    151,
+    148,
     "What Learn gives you: the azure_arc role"
    ],
    [
-    191,
+    189,
     "The pinned role, and what Learn's page doesn't say"
    ],
    [
-    228,
+    226,
     "What the role leaves to you: owners and waves"
    ],
    [
-    266,
+    263,
     "What the role leaves to you: cloud and record"
    ],
    [
-    302,
+    297,
     "First, the patch_owner column"
    ],
    [
-    341,
+    336,
     "The inventory: owners to groups and tags"
    ],
    [
-    377,
+    372,
     "The wave plan, written before anything runs"
    ],
    [
-    414,
+    409,
     "Onboarding with Microsoft's role, gated"
    ],
    [
-    452,
+    448,
     "Who runs it, and the least role that onboards"
    ],
    [
-    488,
+    484,
     "Lab 1: the inventory, and the role's failed dry run"
    ],
    [
-    526,
+    522,
     "Lab 1: plan, dry-run and break the CMDB"
    ],
    [
-    563,
+    559,
     "Lab 2: one disposable server, connected for real"
    ],
    [
-    602,
+    599,
     "Dangers, and the guard for each"
    ],
    [
-    641,
+    637,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -13573,63 +13565,63 @@
     "Why GitHub Actions"
    ],
    [
-    122,
+    116,
     "Which cloud: authority, Graph host, audience"
    ],
    [
-    161,
+    155,
     "Learn's sample workflows, pinned and linted"
    ],
    [
-    201,
+    197,
     "What the samples leave to you: schedule and pins"
    ],
    [
-    238,
+    234,
     "What the samples leave to you: subject and scope"
    ],
    [
-    276,
+    273,
     "The workflow: one job reads, one job writes"
    ],
    [
-    312,
+    309,
     "Compare: refuse what can't be compared"
    ],
    [
-    349,
+    346,
     "Five results, fingerprints, and no names"
    ],
    [
-    386,
+    383,
     "The evidence package and its hash chain"
    ],
    [
-    422,
+    419,
     "Where the sources differ, and release stage"
    ],
    [
-    458,
+    455,
     "Who owns the pipeline, who receives the evidence"
    ],
    [
-    494,
+    491,
     "Lab 1: lint the samples, record a baseline"
    ],
    [
-    531,
+    527,
     "Lab 1: the next day, issues, chain, tamper"
    ],
    [
-    569,
+    566,
     "Lab 2: a test tenant, a federated credential"
    ],
    [
-    608,
+    604,
     "Dangers, and the guard for each"
    ],
    [
-    645,
+    641,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -13684,43 +13676,43 @@
     "The empty intended state that looks present"
    ],
    [
-    260,
-    "The tests: 22 for the contract, 107 in all"
+    262,
+    "The tests: 26 for the contract, 141 in all"
    ],
    [
-    292,
+    299,
     "The verified facts the code depends on"
    ],
    [
-    330,
+    337,
     "What couldn't be verified"
    ],
    [
-    365,
+    372,
     "What the typed finding proves, and for whom"
    ],
    [
-    404,
+    411,
     "Who builds it and who approves it"
    ],
    [
-    436,
+    443,
     "Lab 1: five sample payloads, checked"
    ],
    [
-    473,
+    480,
     "Lab 1: the script's tests and the drift payloads"
    ],
    [
-    510,
+    522,
     "Lab 2: post one finding to a developer instance"
    ],
    [
-    544,
+    556,
     "Dangers, and the guard for each"
    ],
    [
-    579,
+    590,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -13862,39 +13854,39 @@
     "The verified facts: ISC token, Search, Accounts"
    ],
    [
-    260,
+    255,
     "The verified facts: Graph, GCC and FedRAMP"
    ],
    [
-    300,
+    287,
     "What couldn't be verified on SailPoint and Graph"
    ],
    [
-    333,
+    321,
     "What the scopes prove, and for whom"
    ],
    [
-    373,
+    360,
     "Who owns the SailPoint side"
    ],
    [
-    407,
+    395,
     "Lab 1: what the drift client needs from ISC"
    ],
    [
-    440,
+    428,
     "Lab 1: two jobs, two clients; the Graph app"
    ],
    [
-    472,
+    459,
     "Lab 2: two API clients in a sandbox tenant"
    ],
    [
-    508,
+    495,
     "Dangers, and the guard for each"
    ],
    [
-    545,
+    533,
     "Done when: the SailPoint and Graph checklist"
    ]
   ],
@@ -14123,35 +14115,35 @@
     "The verified facts behind the join"
    ],
    [
-    256,
+    254,
     "What couldn't be verified about the join"
    ],
    [
-    289,
+    287,
     "What the reconciliation proves, and for whom"
    ],
    [
-    327,
+    324,
     "Who schedules it and who reads it"
    ],
    [
-    361,
+    359,
     "Lab 1: day one and day two"
    ],
    [
-    405,
+    402,
     "Lab 1: comparing the days, and the refusal"
    ],
    [
-    442,
+    439,
     "Lab 2: a live run on synthetic data"
    ],
    [
-    478,
+    475,
     "Dangers, and the guard for each"
    ],
    [
-    515,
+    513,
     "Done when: the reconciliation checklist"
    ]
   ],
@@ -14222,15 +14214,15 @@
     "Lab 1: exporting October's closed findings"
    ],
    [
-    400,
+    399,
     "Lab 1: verify, continue the chain, tamper"
    ],
    [
-    437,
+    436,
     "Lab 2: a live export from a developer instance"
    ],
    [
-    471,
+    470,
     "Dangers, and the guard for each"
    ],
    [
@@ -14244,7 +14236,7 @@
   "id": "DW_TTM_08_One_Writer_Per_Attribute_Narrated",
   "title": "Building Ticket-to-Machine, Chapter 08 — One Writer per Attribute: narrated tour",
   "group": "developer",
-  "minutes": 10,
+  "minutes": 9,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_TTM_08_One_Writer_Per_Attribute_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/dw-ttm-08-one-writer-per-attribute/DW_TTM_08_One_Writer_Per_Attribute_Narrated.vtt",
@@ -14293,15 +14285,15 @@
     "The verified facts behind the two exports"
    ],
    [
-    288,
+    287,
     "What couldn't be verified about the writers"
    ],
    [
-    324,
+    323,
     "What the writer check proves, and for whom"
    ],
    [
-    359,
+    358,
     "Who owns each writer, and who decides"
    ],
    [
@@ -14309,11 +14301,11 @@
     "Lab 1: department has two writers"
    ],
    [
-    429,
+    428,
     "Lab 1: the alias, the guard, the reads"
    ],
    [
-    462,
+    461,
     "Lab 2: your own exports, reviewed"
    ],
    [

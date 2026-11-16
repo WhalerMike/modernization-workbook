@@ -109,692 +109,687 @@ worldwide one: the normal Graph endpoint
 and the normal Resource Manager endpoint.
 
 24
-00:01:31.166 --> 00:01:35.565
-GCC High and the Defense Department
-cloud use their own hosts.
-
-25
-00:01:35.565 --> 00:01:38.943
+00:01:31.166 --> 00:01:34.559
 The licenses for GCC are
 hosted in Azure commercial,
 
+25
+00:01:34.559 --> 00:01:38.349
+the governance product that
+PIM needs is available in GCC,
+
 26
-00:01:38.943 --> 00:01:43.106
-and the governance product that
-PIM needs is available in every
+00:01:38.349 --> 00:01:42.927
+and every Graph call the chapter uses
+is listed for the global service.
 
 27
-00:01:43.106 --> 00:01:46.877
-one of these clouds, as is every
-Graph call the chapter uses.
-
-28
-00:01:46.877 --> 00:01:50.472
+00:01:42.927 --> 00:01:46.522
 The code never guesses: you
 name the cloud explicitly,
 
-29
-00:01:50.472 --> 00:01:53.780
+28
+00:01:46.522 --> 00:01:49.820
 and it refuses any name
 it doesn't recognize.
 
-30
-00:01:57.530 --> 00:01:59.642
+29
+00:01:53.570 --> 00:01:55.682
 So what does the inventory actually read?
 
-31
-00:01:59.642 --> 00:02:04.253
+30
+00:01:55.682 --> 00:02:00.293
 On the Microsoft Entra side: the role
 definitions, so every row gets a name;
 
-32
-00:02:04.253 --> 00:02:08.786
+31
+00:02:00.293 --> 00:02:04.826
 the active assignments, with whether
 each one is assigned or activated,
 
-33
-00:02:08.786 --> 00:02:13.089
+32
+00:02:04.826 --> 00:02:09.129
 direct or through a group, and when
 it ends; the eligible assignments,
 
-34
-00:02:13.089 --> 00:02:17.468
+33
+00:02:09.129 --> 00:02:13.508
 with their expiration; and the
 members of each role-assignable group.
 
-35
-00:02:17.468 --> 00:02:20.925
+34
+00:02:13.508 --> 00:02:16.965
 On the Azure side, two Resource
 Manager collections give
 
-36
-00:02:20.925 --> 00:02:24.530
+35
+00:02:16.965 --> 00:02:20.570
 active and eligible role
 schedules for each scope you name.
 
-37
-00:02:24.530 --> 00:02:28.193
+36
+00:02:20.570 --> 00:02:24.233
 Everything is on the stable,
 generally available versions.
 
-38
-00:02:28.193 --> 00:02:30.610
+37
+00:02:24.233 --> 00:02:26.650
 Next, where the tier comes from.
 
-39
-00:02:34.360 --> 00:02:35.798
+38
+00:02:30.400 --> 00:02:31.838
 Where does the tier come from?
 
-40
-00:02:35.798 --> 00:02:37.211
+39
+00:02:31.838 --> 00:02:33.251
 Not from Microsoft.
 
-41
-00:02:37.211 --> 00:02:42.296
+40
+00:02:33.251 --> 00:02:38.336
 Microsoft does label some roles as
 privileged, but that label is still a preview,
 
-42
-00:02:42.296 --> 00:02:44.300
+41
+00:02:38.336 --> 00:02:40.340
 read through the beta endpoint,
 
-43
-00:02:44.300 --> 00:02:47.460
+42
+00:02:40.340 --> 00:02:43.500
 so the program treats it as
 an input, not the answer.
 
-44
-00:02:47.460 --> 00:02:50.424
+43
+00:02:43.500 --> 00:02:46.464
 The tiers live in a small
 file the program owns,
 
-45
-00:02:50.424 --> 00:02:55.310
+44
+00:02:46.464 --> 00:02:51.350
 keyed by each role's template identifier,
 which is the same in every tenant.
 
-46
-00:02:55.310 --> 00:03:00.685
+45
+00:02:51.350 --> 00:02:56.725
 Any role that isn't in the file is reported
 as unclassified, never assumed safe.
 
-47
-00:03:00.685 --> 00:03:05.144
+46
+00:02:56.725 --> 00:03:01.184
 Azure roles get their tier from the
 workbook's privileged-access design,
 
-48
-00:03:05.144 --> 00:03:07.448
+47
+00:03:01.184 --> 00:03:03.488
 a placement table by role and by scope.
 
-49
-00:03:07.448 --> 00:03:09.890
+48
+00:03:03.488 --> 00:03:05.930
 Both are labeled design guidance.
 
-50
-00:03:12.370 --> 00:03:16.708
+49
+00:03:09.680 --> 00:03:14.018
 Microsoft's starting point is Learn's
 page on listing role assignments.
 
-51
-00:03:16.708 --> 00:03:21.421
+50
+00:03:14.018 --> 00:03:18.731
 It covers the admin center, PowerShell
 and Graph itself, and its all-roles
 
-52
-00:03:21.421 --> 00:03:26.683
+51
+00:03:18.731 --> 00:03:23.993
 sample reads every role definition, then
 lists each role's assignments one by one.
 
-53
-00:03:26.683 --> 00:03:30.380
+52
+00:03:23.993 --> 00:03:27.690
 For Azure, Learn says there's no
 single command for both kinds,
 
-54
-00:03:30.380 --> 00:03:33.708
+53
+00:03:27.690 --> 00:03:31.018
 so you list eligible and
 active schedules separately.
 
-55
-00:03:33.708 --> 00:03:38.695
+54
+00:03:31.018 --> 00:03:36.005
 Those samples only live inside the web
 page, so the repository pins the page's
 
-56
-00:03:38.695 --> 00:03:43.844
+55
+00:03:36.005 --> 00:03:41.154
 source unmodified, checks its hash in a
 test, and watches for upstream changes.
 
-57
-00:03:43.844 --> 00:03:48.882
+56
+00:03:41.154 --> 00:03:46.192
 A harness then runs the samples,
 exactly as published, against stand-ins.
 
-58
-00:03:48.882 --> 00:03:50.440
+57
+00:03:46.192 --> 00:03:47.750
 Nothing signs in.
 
-59
-00:03:54.190 --> 00:03:55.952
+58
+00:03:51.500 --> 00:03:53.262
 This is the heart of the chapter.
 
-60
-00:03:55.952 --> 00:03:59.235
+59
+00:03:53.262 --> 00:03:56.545
 Run against the fixture tenant,
 Learn's sample lists the
 
-61
-00:03:59.235 --> 00:04:02.590
+60
+00:03:56.545 --> 00:03:59.900
 active assignments well, so
 that part is kept as the model.
 
-62
-00:04:02.590 --> 00:04:04.770
+61
+00:03:59.900 --> 00:04:02.080
 But it can't see eligibility at all,
 
-63
-00:04:04.770 --> 00:04:09.207
+62
+00:04:02.080 --> 00:04:06.517
 and under PIM eligibility is where
 almost every human holder ends up,
 
-64
-00:04:09.207 --> 00:04:14.578
+63
+00:04:06.517 --> 00:04:11.888
 so an active-only list shrinks as the project
 succeeds and stops being an inventory.
 
-65
-00:04:14.578 --> 00:04:18.254
+64
+00:04:11.888 --> 00:04:15.564
 It also makes one call per
 role, never asks for every page,
 
-66
-00:04:18.254 --> 00:04:23.128
+65
+00:04:15.564 --> 00:04:20.438
 and treats a group as a single holder,
 so the people behind it are invisible.
 
-67
-00:04:23.128 --> 00:04:25.980
+66
+00:04:20.438 --> 00:04:23.290
 Each of those misses is pinned by a test.
 
-68
-00:04:29.730 --> 00:04:32.668
+67
+00:04:27.040 --> 00:04:29.978
 The rest of the gaps are
 about trust and reach.
 
-69
-00:04:32.668 --> 00:04:36.663
+68
+00:04:29.978 --> 00:04:33.973
 The sample prints raw identifiers
 with no names and no tier,
 
-70
-00:04:36.663 --> 00:04:39.355
+69
+00:04:33.973 --> 00:04:36.665
 and a reviewer can't act on an identifier.
 
-71
-00:04:39.355 --> 00:04:43.330
+70
+00:04:36.665 --> 00:04:40.640
 It signs in without naming a
 cloud or limiting its permissions.
 
+71
+00:04:40.640 --> 00:04:42.702
+Its transitive read uses beta,
+
 72
-00:04:43.330 --> 00:04:47.140
-Its transitive read uses beta
-on a hard-coded worldwide host,
+00:04:42.702 --> 00:04:46.415
+on a worldwide host fixed in
+the code and never checked.
 
 73
-00:04:47.140 --> 00:04:49.730
-which is wrong for the government clouds.
-
-74
-00:04:49.730 --> 00:04:51.612
+00:04:46.415 --> 00:04:48.297
 And it says nothing about Azure,
 
-75
-00:04:51.612 --> 00:04:55.592
+74
+00:04:48.297 --> 00:04:52.277
 where Owner and User Access
 Administrator are just as privileged.
 
-76
-00:04:55.592 --> 00:04:59.786
+75
+00:04:52.277 --> 00:04:56.471
 So the verdict is: keep Learn's page
 as the model and the cross-check,
 
-77
-00:04:59.786 --> 00:05:02.550
+76
+00:04:56.471 --> 00:04:59.230
 but don't use its loop as the inventory.
 
-78
-00:05:06.300 --> 00:05:07.238
+77
+00:05:02.980 --> 00:05:03.918
 Now the code.
 
-79
-00:05:07.238 --> 00:05:12.501
+78
+00:05:03.918 --> 00:05:09.181
 It's one PowerShell module, two entry
 scripts, the call list and the tier map.
 
-80
-00:05:12.501 --> 00:05:16.830
+79
+00:05:09.181 --> 00:05:13.510
 Every call goes through one reader,
 built for one task in one cloud,
 
-81
-00:05:16.830 --> 00:05:21.962
+80
+00:05:13.510 --> 00:05:18.642
 and the only thing that touches the network
 is a small script block you hand it:
 
-82
-00:05:21.962 --> 00:05:25.250
+81
+00:05:18.642 --> 00:05:21.930
 a live one for real runs, or
 a fake for labs and tests.
 
-83
-00:05:25.250 --> 00:05:28.575
+82
+00:05:21.930 --> 00:05:25.255
 The reader enforces four
 rules, shown on the slide.
 
-84
-00:05:28.575 --> 00:05:32.021
+83
+00:05:25.255 --> 00:05:28.701
 It only makes calls the
 task declares, only reads,
 
-85
-00:05:32.021 --> 00:05:37.730
+84
+00:05:28.701 --> 00:05:34.410
 only sends its token to the cloud's own
 host, and always reads to the last page.
 
-86
-00:05:41.480 --> 00:05:46.418
+85
+00:05:38.160 --> 00:05:43.098
 What comes out is one row per assignment,
 with everything a reviewer needs on it:
 
-87
-00:05:46.418 --> 00:05:50.217
+86
+00:05:43.098 --> 00:05:46.897
 which plane, which role and tier,
 which scope, what state it's in,
 
-88
-00:05:50.217 --> 00:05:54.168
+87
+00:05:46.897 --> 00:05:50.848
 when it ends, and whether it
 arrived directly or through a group.
 
-89
-00:05:54.168 --> 00:05:57.780
+88
+00:05:50.848 --> 00:05:54.460
 The subtle part is counting
 each assignment exactly once.
 
-90
-00:05:57.780 --> 00:06:02.419
+89
+00:05:54.460 --> 00:05:59.099
 Microsoft returns group-delivered
 assignments as their own active rows,
 
-91
-00:06:02.419 --> 00:06:05.842
+90
+00:05:59.099 --> 00:06:02.522
 but the code expands the group
 itself, so it skips those.
 
-92
-00:06:05.842 --> 00:06:09.573
+91
+00:06:02.522 --> 00:06:06.253
 And Azure returns the same
 schedule from more than one scope,
 
-93
-00:06:09.573 --> 00:06:13.080
+92
+00:06:06.253 --> 00:06:09.760
 so the code removes duplicates
 and skips inherited rows.
 
-94
-00:06:13.080 --> 00:06:14.990
+93
+00:06:09.760 --> 00:06:11.670
 Next, the findings.
 
-95
-00:06:18.740 --> 00:06:23.277
+94
+00:06:15.420 --> 00:06:19.957
 Test-PaInventory turns those rows
 into the nine findings on the slide.
 
-96
-00:06:23.277 --> 00:06:28.050
+95
+00:06:19.957 --> 00:06:24.730
 Two thresholds come straight from Learn:
 fewer than five Global Administrators,
 
-97
-00:06:28.050 --> 00:06:30.828
+96
+00:06:24.730 --> 00:06:27.508
 and no more than three
 owners on a subscription.
 
-98
-00:06:30.828 --> 00:06:32.807
+97
+00:06:27.508 --> 00:06:29.487
 Learn also backs the biggest one,
 
-99
-00:06:32.807 --> 00:06:37.355
+98
+00:06:29.487 --> 00:06:34.035
 standing privilege in the top tiers
 outside a short, owned exceptions list,
 
-100
-00:06:37.355 --> 00:06:40.949
+99
+00:06:34.035 --> 00:06:37.629
 and the root-scope finding,
 because elevating access hands
 
-101
-00:06:40.949 --> 00:06:44.690
+100
+00:06:37.629 --> 00:06:41.370
 someone User Access Administrator
 over every subscription.
 
-102
-00:06:44.690 --> 00:06:49.735
+101
+00:06:41.370 --> 00:06:46.415
 The rest are the program's own design,
 labeled that way: roles assigned straight
 
-103
-00:06:49.735 --> 00:06:55.060
+102
+00:06:46.415 --> 00:06:51.740
 to people, badly named groups, unmapped
 roles, and eligibility that never ends.
 
-104
-00:06:58.810 --> 00:07:04.228
+103
+00:06:55.490 --> 00:07:00.908
 Each run writes the inventory, the findings
 and a manifest the reviewer can check:
 
-105
-00:07:04.228 --> 00:07:09.160
+104
+00:07:00.908 --> 00:07:05.840
 which task, which cloud, every request
 with its time, and a hash of every file.
 
-106
-00:07:09.160 --> 00:07:14.923
+105
+00:07:05.840 --> 00:07:11.603
 The manifest names no one, but the inventory
 does, so treat the folder as sensitive.
 
-107
-00:07:14.923 --> 00:07:17.723
+106
+00:07:11.603 --> 00:07:14.403
 The chapter's tests run
 with no tenant at all.
 
-108
-00:07:17.723 --> 00:07:21.050
+107
+00:07:14.403 --> 00:07:17.730
 And here's an honest gap:
 Learn documents that the stable
 
-109
-00:07:21.050 --> 00:07:24.522
+108
+00:07:17.730 --> 00:07:21.202
 members call doesn't return
 service principals in a group.
 
-110
-00:07:24.522 --> 00:07:27.260
+109
+00:07:21.202 --> 00:07:23.940
 Neither workaround fits
 the reader's rules,
 
-111
-00:07:27.260 --> 00:07:31.200
+110
+00:07:23.940 --> 00:07:27.880
 so that gap is recorded rather
 than quietly papered over.
 
-112
-00:07:34.950 --> 00:07:36.012
+111
+00:07:31.630 --> 00:07:32.692
 Who is this for?
 
-113
-00:07:36.012 --> 00:07:38.176
+112
+00:07:32.692 --> 00:07:34.856
 Developers build the read path.
 
-114
-00:07:38.176 --> 00:07:42.638
+113
+00:07:34.856 --> 00:07:39.318
 Identity engineers and the I S
 S O's review what it produces.
 
-115
-00:07:42.638 --> 00:07:45.406
+114
+00:07:39.318 --> 00:07:42.086
 The app's permissions are
 the union of its calls,
 
-116
-00:07:45.406 --> 00:07:49.525
+115
+00:07:42.086 --> 00:07:46.205
 each the least privileged for the job,
 and nothing in the list can write.
 
-117
-00:07:49.525 --> 00:07:51.427
+116
+00:07:46.205 --> 00:07:48.107
 One choice is worth noticing:
 
-118
-00:07:51.427 --> 00:07:56.975
+117
+00:07:48.107 --> 00:07:53.655
 the basic user read permission is added
 alongside group members, because without it,
 
-119
-00:07:56.975 --> 00:08:01.175
+118
+00:07:53.655 --> 00:07:57.855
 Learn says, a member comes back
 with only an identifier and a type.
 
-120
-00:08:01.175 --> 00:08:04.790
+119
+00:07:57.855 --> 00:08:01.470
 If a member still comes back
 unnamed, the code keeps the row and
 
-121
-00:08:04.790 --> 00:08:08.820
+120
+00:08:01.470 --> 00:08:05.500
 raises a warning rather than
 dropping someone who holds a role.
 
-122
-00:08:12.570 --> 00:08:18.508
+121
+00:08:09.250 --> 00:08:15.188
 Lab 1 needs only a laptop: PowerShell
 7 and Pester, no tenant, no network.
 
-123
-00:08:18.508 --> 00:08:23.231
+122
+00:08:15.188 --> 00:08:19.911
 First you run Learn's own samples against
 the stand-ins, and one test shows what
 
-124
-00:08:23.231 --> 00:08:27.882
+123
+00:08:19.911 --> 00:08:24.562
 you'd otherwise take on trust: the
 eligible-only holders simply never appear.
 
-125
-00:08:27.882 --> 00:08:31.658
+124
+00:08:24.562 --> 00:08:28.338
 Then you list the permissions,
 five of them, and none can write.
 
-126
-00:08:31.658 --> 00:08:36.694
+125
+00:08:28.338 --> 00:08:33.374
 Finally you run the inventory against a
 fictional tenant with three Azure scopes.
 
-127
-00:08:36.694 --> 00:08:40.339
+126
+00:08:33.374 --> 00:08:37.019
 It returns thirty rows across
 the tiers, ten findings,
 
-128
-00:08:40.339 --> 00:08:43.320
+127
+00:08:37.019 --> 00:08:40.000
 seven warnings and one informational item.
 
-129
-00:08:43.320 --> 00:08:45.340
+128
+00:08:40.000 --> 00:08:42.020
 Let's read those findings.
 
-130
-00:08:49.090 --> 00:08:52.115
+129
+00:08:45.770 --> 00:08:48.795
 Reading the findings is
 where the rules become real.
 
-131
-00:08:52.115 --> 00:08:56.521
+130
+00:08:48.795 --> 00:08:53.201
 Seven rows are standing privilege in
 the top tiers, including a service
 
-132
-00:08:56.521 --> 00:09:00.853
+131
+00:08:53.201 --> 00:08:57.533
 principal whose exception nobody
 owns, so the exception doesn't count.
 
-133
-00:09:00.853 --> 00:09:04.015
+132
+00:08:57.533 --> 00:09:00.695
 One Global Administrator
 also elevated to root.
 
-134
-00:09:04.015 --> 00:09:08.244
+133
+00:09:00.695 --> 00:09:04.924
 There are five Global Administrators
 once the group's members are counted,
 
-135
-00:09:08.244 --> 00:09:10.290
+134
+00:09:04.924 --> 00:09:06.970
 and five owners on one subscription.
 
-136
-00:09:10.290 --> 00:09:13.133
+135
+00:09:06.970 --> 00:09:09.813
 The emergency account
 is only informational,
 
-137
-00:09:13.133 --> 00:09:15.902
+136
+00:09:09.813 --> 00:09:12.582
 because it's a listed
 exception with an owner.
 
-138
-00:09:15.902 --> 00:09:20.341
+137
+00:09:12.582 --> 00:09:17.021
 Then you watch the reader refuse an
 undeclared call and an unknown cloud.
 
-139
-00:09:20.341 --> 00:09:23.800
+138
+00:09:17.021 --> 00:09:20.480
 The whole suite passes,
 three hundred thirty tests.
 
-140
-00:09:27.550 --> 00:09:30.808
+139
+00:09:24.230 --> 00:09:27.488
 Lab 2 moves to a test tenant
 with fictional people,
 
-141
-00:09:30.808 --> 00:09:33.112
+140
+00:09:27.488 --> 00:09:29.792
 never production, and it only reads.
 
-142
-00:09:33.112 --> 00:09:37.955
+141
+00:09:29.792 --> 00:09:34.635
 You register the app in the tenant's own
 cloud with a certificate, grant exactly
 
-143
-00:09:37.955 --> 00:09:42.350
+142
+00:09:34.635 --> 00:09:39.030
 the five permissions plus Reader on a
 test subscription, sign in, and run.
 
-144
-00:09:42.350 --> 00:09:45.681
+143
+00:09:39.030 --> 00:09:42.361
 Then comes the useful part:
 download the admin center's
 
-145
-00:09:45.681 --> 00:09:48.863
+144
+00:09:42.361 --> 00:09:45.543
 list of assignments, as
 Learn describes, and compare.
 
-146
-00:09:48.863 --> 00:09:51.549
+145
+00:09:45.543 --> 00:09:48.229
 Every active row should
 be in the inventory,
 
-147
-00:09:51.549 --> 00:09:56.175
+146
+00:09:48.229 --> 00:09:52.855
 and the inventory should also hold the
 eligible rows the download can't see.
 
-148
-00:09:56.175 --> 00:10:00.540
+147
+00:09:52.855 --> 00:09:57.220
 Check the two assumptions the fixture
 made, then back everything out.
 
-149
-00:10:04.290 --> 00:10:06.528
+148
+00:10:00.970 --> 00:10:03.208
 Every danger here has a guard in the code,
 
-150
-00:10:06.528 --> 00:10:09.852
+149
+00:10:03.208 --> 00:10:06.532
 and most of them are about
 something quietly going missing.
 
-151
-00:10:09.852 --> 00:10:14.140
+150
+00:10:06.532 --> 00:10:10.820
 The worst is an active-only
 inventory: as the project succeeds,
 
-152
-00:10:14.140 --> 00:10:17.839
+151
+00:10:10.820 --> 00:10:14.519
 the list shrinks, and the gate
 passes on an empty table.
 
-153
-00:10:17.839 --> 00:10:21.878
+152
+00:10:14.519 --> 00:10:18.558
 Close behind are a group counted
 as one person, a member dropped
 
-154
-00:10:21.878 --> 00:10:26.227
+153
+00:10:18.558 --> 00:10:22.907
 because its name couldn't be read,
 and an exceptions list nobody owns.
 
-155
-00:10:26.227 --> 00:10:31.090
+154
+00:10:22.907 --> 00:10:27.770
 Notice the one honest gap: service principals
 in a group aren't returned at all.
 
-156
-00:10:31.090 --> 00:10:33.943
+155
+00:10:27.770 --> 00:10:30.623
 And remember the inventory
 itself is sensitive,
 
-157
-00:10:33.943 --> 00:10:36.800
+156
+00:10:30.623 --> 00:10:33.480
 because it names every privileged holder.
 
-158
-00:10:40.550 --> 00:10:41.900
+157
+00:10:37.230 --> 00:10:38.580
 Here's what done looks like.
 
-159
-00:10:41.900 --> 00:10:45.696
+158
+00:10:38.580 --> 00:10:42.376
 The inventory reads eligible
 as well as active assignments,
 
-160
-00:10:45.696 --> 00:10:49.113
+159
+00:10:42.376 --> 00:10:45.793
 and its counts match what the
 admin center and PIM show.
 
-161
-00:10:49.113 --> 00:10:53.373
+160
+00:10:45.793 --> 00:10:50.053
 Every group is expanded with nobody
 dropped, every role has a tier
 
-162
-00:10:53.373 --> 00:10:57.476
+161
+00:10:50.053 --> 00:10:54.156
 or an owned decision, and the
 exceptions list is short and owned.
 
-163
-00:10:57.476 --> 00:11:01.832
+162
+00:10:54.156 --> 00:10:58.512
 On the other side, the app holds
 exactly its five permissions and Reader
 
-164
-00:11:01.832 --> 00:11:06.188
+163
+00:10:58.512 --> 00:11:02.868
 with a certificate, the cloud is
 explicit, and the evidence hashes match.
 
-165
-00:11:06.188 --> 00:11:09.587
+164
+00:11:02.868 --> 00:11:06.267
 Next, Chapter 2 builds the
 emergency access accounts,
 
-166
-00:11:09.587 --> 00:11:12.600
+165
+00:11:06.267 --> 00:11:09.280
 the one exception this
 inventory lets through.
 
-167
-00:11:12.600 --> 00:11:13.760
+166
+00:11:09.280 --> 00:11:10.440
 Thanks for watching.

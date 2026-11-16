@@ -45,777 +45,773 @@ One note before we begin: the code is
 illustrative, tested against fixtures.
 
 10
-00:00:41.900 --> 00:00:43.625
+00:00:40.890 --> 00:00:42.615
 Why does this chapter exist?
 
 11
-00:00:43.625 --> 00:00:48.549
+00:00:42.615 --> 00:00:47.539
 Because the program's last gates ask for
 things a single snapshot can't give: a
 
 12
-00:00:48.549 --> 00:00:53.863
+00:00:47.539 --> 00:00:52.853
 Tier 0 drift handled as an incident, and
 evidence for every elevation in the period.
 
 13
-00:00:53.863 --> 00:00:58.537
+00:00:52.853 --> 00:00:57.527
 The workbook's privileged-access design
 already says what goes in the package.
 
 14
-00:00:58.537 --> 00:01:01.576
+00:00:57.527 --> 00:01:00.566
 Learn supplies the two
 facts the design turns on.
 
 15
-00:01:01.576 --> 00:01:04.482
+00:01:00.566 --> 00:01:03.472
 First, the audit log
 only keeps thirty days,
 
 16
-00:01:04.482 --> 00:01:07.887
+00:01:03.472 --> 00:01:06.877
 so evidence has to be
 collected before it ages out.
 
 17
-00:01:07.887 --> 00:01:12.563
+00:01:06.877 --> 00:01:11.553
 Second, one activation can show
 up under several correlation IDs,
 
 18
-00:01:12.563 --> 00:01:14.901
+00:01:11.553 --> 00:01:13.891
 but its request ID never changes.
 
 19
-00:01:14.901 --> 00:01:17.550
+00:01:13.891 --> 00:01:16.540
 That request ID becomes the key.
 
 20
-00:01:21.300 --> 00:01:22.663
+00:01:20.290 --> 00:01:21.653
 Next, which cloud.
 
 21
-00:01:22.663 --> 00:01:27.263
+00:01:21.653 --> 00:01:26.253
 The new read in this chapter is the
 directory audit log in Microsoft Graph.
 
 22
-00:01:27.263 --> 00:01:31.241
+00:01:26.253 --> 00:01:30.231
 This estate's GCC tenant uses
 the worldwide Graph endpoint,
 
 23
-00:01:31.241 --> 00:01:35.463
+00:01:30.231 --> 00:01:34.453
 and its Azure reads go to the
 commercial Resource Manager host.
 
 24
-00:01:35.463 --> 00:01:40.158
-GCC High and the Department of Defense
-clouds have their own Graph hosts,
+00:01:34.453 --> 00:01:39.860
+Learn lists the audit API as available
+in the global service that G C C uses,
 
 25
-00:01:40.158 --> 00:01:44.619
-and Learn lists the audit API as
-available in both government levels,
+00:01:39.860 --> 00:01:44.115
+and PIM is part of the governance
+product available in G C C.
 
 26
-00:01:44.619 --> 00:01:46.888
-with PIM available everywhere too.
-
-27
-00:01:46.888 --> 00:01:51.160
+00:01:44.115 --> 00:01:48.388
 As in every chapter, the cloud is
 a required choice with no default,
 
-28
-00:01:51.160 --> 00:01:54.930
+27
+00:01:48.388 --> 00:01:52.150
 and the reader refuses to
 send a token anywhere else.
 
-29
-00:01:58.680 --> 00:02:00.392
+28
+00:01:55.900 --> 00:01:57.612
 Here's what Microsoft gives you.
 
-30
-00:02:00.392 --> 00:02:05.404
+29
+00:01:57.612 --> 00:02:02.624
 Learn's audit history page shows PIM's own
 audit view, says it covers thirty days,
 
-31
-00:02:05.404 --> 00:02:10.185
+30
+00:02:02.624 --> 00:02:07.405
 and gives three sample queries: one for
 role activations, one that follows a
 
-32
-00:02:10.185 --> 00:02:15.505
+31
+00:02:07.405 --> 00:02:12.725
 single request, and one that follows a
 whole cycle from activation to deactivation.
 
-33
-00:02:15.505 --> 00:02:18.594
+32
+00:02:12.725 --> 00:02:15.814
 Learn's activity list
 names every event PIM logs,
 
-34
-00:02:18.594 --> 00:02:21.992
+33
+00:02:15.814 --> 00:02:19.212
 and its security operations
 guide says what to watch.
 
-35
-00:02:21.992 --> 00:02:26.421
+34
+00:02:19.212 --> 00:02:23.641
 The queries only exist in the web
 page, so the repository pins it,
 
-36
-00:02:26.421 --> 00:02:31.530
+35
+00:02:23.641 --> 00:02:28.750
 unmodified, and the tests run all three
 over a set of fictional audit rows.
 
-37
-00:02:31.530 --> 00:02:34.040
+36
+00:02:28.750 --> 00:02:31.260
 It's a test, not a query engine.
 
-38
-00:02:37.790 --> 00:02:41.827
+37
+00:02:35.010 --> 00:02:39.047
 Running the queries over fictional
 rows shows exactly what they catch.
 
-39
-00:02:41.827 --> 00:02:45.153
+38
+00:02:39.047 --> 00:02:42.373
 The first query finds the
 activations, which is good.
 
-40
-00:02:45.153 --> 00:02:48.757
+39
+00:02:42.373 --> 00:02:45.977
 But it also sweeps in two role
 assignments made outside PIM,
 
-41
-00:02:48.757 --> 00:02:52.877
+40
+00:02:45.977 --> 00:02:50.097
 so a standing Tier 0 assignment
 looks like just another activation.
 
-42
-00:02:52.877 --> 00:02:57.777
+41
+00:02:50.097 --> 00:02:54.997
 It misses deactivations and the setting
 change Learn says to always alert on.
 
-43
-00:02:57.777 --> 00:03:01.036
+42
+00:02:54.997 --> 00:02:58.256
 And the second query, copied
 with its placeholder,
 
-44
-00:03:01.036 --> 00:03:05.803
+43
+00:02:58.256 --> 00:03:03.023
 doesn't select one request at all; it
 returns everything with a request ID.
 
-45
-00:03:05.803 --> 00:03:09.958
+44
+00:03:03.023 --> 00:03:07.178
 Given a real ID, though, the
 queries show the key idea:
 
-46
-00:03:09.958 --> 00:03:14.114
+45
+00:03:07.178 --> 00:03:11.334
 one request, three correlation
 IDs, one activation.
 
-47
-00:03:14.114 --> 00:03:15.740
+46
+00:03:11.334 --> 00:03:12.960
 The code keeps that.
 
-48
-00:03:19.490 --> 00:03:22.278
+47
+00:03:16.710 --> 00:03:19.498
 The bigger gaps are about scale and proof.
 
-49
-00:03:22.278 --> 00:03:26.502
+48
+00:03:19.498 --> 00:03:23.722
 The queries look at one request at
 a time, with no window, no tier,
 
-50
-00:03:26.502 --> 00:03:28.988
+49
+00:03:23.722 --> 00:03:26.208
 and no check that anyone approved it,
 
-51
-00:03:28.988 --> 00:03:33.627
+50
+00:03:26.208 --> 00:03:30.847
 and "every elevation in the period"
 can't be shown one request at a time.
 
-52
-00:03:33.627 --> 00:03:35.964
+51
+00:03:30.847 --> 00:03:33.184
 They also only run in Log Analytics,
 
-53
-00:03:35.964 --> 00:03:39.428
+52
+00:03:33.184 --> 00:03:36.648
 which needs a workspace
 before any evidence exists.
 
-54
-00:03:39.428 --> 00:03:42.756
+53
+00:03:36.648 --> 00:03:39.976
 And they stop at the
 query: nothing compares,
 
-55
-00:03:42.756 --> 00:03:45.715
+54
+00:03:39.976 --> 00:03:42.935
 packages or hands anything to the ISSO.
 
-56
-00:03:45.715 --> 00:03:50.400
+55
+00:03:42.935 --> 00:03:47.620
 So the verdict: keep Learn's request
 ID as the key and its activity names
 
-57
-00:03:50.400 --> 00:03:55.690
+56
+00:03:47.620 --> 00:03:52.910
 as the vocabulary, but don't treat the
 first query as evidence of elevation.
 
-58
-00:03:59.440 --> 00:04:04.320
+57
+00:03:56.660 --> 00:04:01.540
 Now the code, in two pieces: a PowerShell
 run that reads the tenant, and new
 
-59
-00:04:04.320 --> 00:04:09.778
+58
+00:04:01.540 --> 00:04:06.998
 Python files beside the first workbook's
 drift pipeline, which stays unchanged.
 
-60
-00:04:09.778 --> 00:04:11.602
+59
+00:04:06.998 --> 00:04:08.822
 The design has three parts.
 
-61
-00:04:11.602 --> 00:04:14.616
+60
+00:04:08.822 --> 00:04:11.836
 Chapters 1 and 2 describe
 the tenant's state.
 
-62
-00:04:14.616 --> 00:04:17.515
+61
+00:04:11.836 --> 00:04:14.735
 The audit read describes
 the events in a window.
 
-63
-00:04:17.515 --> 00:04:21.102
+62
+00:04:14.735 --> 00:04:18.322
 And comparing with the last
 run turns state into drift.
 
-64
-00:04:21.102 --> 00:04:23.256
+63
+00:04:18.322 --> 00:04:20.476
 Chain those windows with no gaps,
 
-65
-00:04:23.256 --> 00:04:26.527
+64
+00:04:20.476 --> 00:04:23.747
 and you have every elevation
 in the period, in code.
 
-66
-00:04:26.527 --> 00:04:31.164
+65
+00:04:23.747 --> 00:04:28.385
 Each run writes one folder, with
 a run file that records the cloud,
 
-67
-00:04:31.164 --> 00:04:34.950
+66
+00:04:28.385 --> 00:04:32.170
 tenant, window and a hash
 of each task's manifest.
 
-68
-00:04:38.700 --> 00:04:42.935
+67
+00:04:35.920 --> 00:04:40.155
 The audit read asks Graph's directory
 audit log for one window at a time:
 
-69
-00:04:42.935 --> 00:04:45.929
+68
+00:04:40.155 --> 00:04:43.149
 everything PIM logged,
 plus the role assignments
 
-70
-00:04:45.929 --> 00:04:48.850
+69
+00:04:43.149 --> 00:04:46.070
 the directory logs when
 someone goes around PIM.
 
-71
-00:04:48.850 --> 00:04:52.163
+70
+00:04:46.070 --> 00:04:49.383
 It goes through the same
 careful reader as Chapter 1,
 
-72
-00:04:52.163 --> 00:04:54.783
+71
+00:04:49.383 --> 00:04:52.003
 refuses a window older than the log keeps,
 
-73
-00:04:54.783 --> 00:04:59.175
+72
+00:04:52.003 --> 00:04:56.395
 and starts each window where the last
 one ended, so no hour goes unread.
 
-74
-00:04:59.175 --> 00:05:01.500
+73
+00:04:56.395 --> 00:04:58.720
 It keeps IDs and drops names.
 
-75
-00:05:01.500 --> 00:05:06.249
+74
+00:04:58.720 --> 00:05:03.469
 Then four checks: a role assigned
 outside PIM, a sensitive activation with
 
-76
-00:05:06.249 --> 00:05:11.450
+75
+00:05:03.469 --> 00:05:08.670
 no approval, someone approving their
 own request, and a PIM setting changed.
 
-77
-00:05:15.200 --> 00:05:18.563
+76
+00:05:12.420 --> 00:05:15.783
 Learn's pages disagree in
 two places that matter here,
 
-78
-00:05:18.563 --> 00:05:23.225
+77
+00:05:15.783 --> 00:05:20.445
 and the chapter writes both down so
 nobody quietly loosens the code later.
 
-79
-00:05:23.225 --> 00:05:25.983
+78
+00:05:20.445 --> 00:05:23.203
 They name PIM's logging
 service differently,
 
-80
-00:05:25.983 --> 00:05:29.337
+79
+00:05:23.203 --> 00:05:26.557
 so the code asks for both
 names and removes duplicates.
 
-81
-00:05:29.337 --> 00:05:31.863
+80
+00:05:26.557 --> 00:05:29.083
 And they disagree on where
 approvals are logged.
 
-82
-00:05:31.863 --> 00:05:36.403
+81
+00:05:29.083 --> 00:05:33.623
 The code reads PIM's service, so if an
 approval only shows up somewhere else,
 
-83
-00:05:36.403 --> 00:05:38.562
+82
+00:05:33.623 --> 00:05:35.782
 the no-approval check fires anyway.
 
-84
-00:05:38.562 --> 00:05:43.751
+83
+00:05:35.782 --> 00:05:40.971
 That's deliberate: it fails closed, giving
 a false finding rather than a missed one.
 
-85
-00:05:43.751 --> 00:05:48.310
+84
+00:05:40.971 --> 00:05:45.530
 The lab in a test tenant then records
 which way each one really goes.
 
-86
-00:05:52.060 --> 00:05:54.835
+85
+00:05:49.280 --> 00:05:52.055
 The comparison is where
 state becomes drift.
 
-87
-00:05:54.835 --> 00:06:00.184
+86
+00:05:52.055 --> 00:05:57.404
 Before it compares anything, it checks both
 runs: every file against its manifest,
 
-88
-00:06:00.184 --> 00:06:04.735
+87
+00:05:57.404 --> 00:06:01.955
 the same tenant, cloud and mode, and
 a current run that's actually later.
 
-89
-00:06:04.735 --> 00:06:06.810
+88
+00:06:01.955 --> 00:06:04.030
 Then every difference gets a result.
 
-90
-00:06:06.810 --> 00:06:08.885
+89
+00:06:04.030 --> 00:06:06.105
 Two of them are careful by design.
 
-91
-00:06:08.885 --> 00:06:12.382
+90
+00:06:06.105 --> 00:06:09.602
 A task that failed this time
 is unverified, not resolved,
 
-92
-00:06:12.382 --> 00:06:16.260
+91
+00:06:09.602 --> 00:06:13.480
 so a permissions error can't make
 yesterday's findings vanish.
 
-93
-00:06:16.260 --> 00:06:19.188
+92
+00:06:13.480 --> 00:06:16.408
 And activations are left
 out of assignment drift,
 
-94
-00:06:19.188 --> 00:06:23.473
+93
+00:06:16.408 --> 00:06:20.693
 because they come and go within hours
 and the audit already records them.
 
-95
-00:06:23.473 --> 00:06:28.170
+94
+00:06:20.693 --> 00:06:25.390
 Any Tier 0 change is an incident;
 that's the workbook's design.
 
-96
-00:06:31.920 --> 00:06:34.407
+95
+00:06:29.140 --> 00:06:31.627
 Two design choices protect the evidence.
 
-97
-00:06:34.407 --> 00:06:37.270
+96
+00:06:31.627 --> 00:06:34.490
 First, no names reach the issue tracker.
 
-98
-00:06:37.270 --> 00:06:42.504
+97
+00:06:34.490 --> 00:06:39.724
 Issue titles come from a fixed catalog,
 bodies carry object IDs and fingerprints,
 
-99
-00:06:42.504 --> 00:06:46.332
+98
+00:06:39.724 --> 00:06:43.552
 and a test checks that no name
 from either run slips through.
 
-100
-00:06:46.332 --> 00:06:49.308
+99
+00:06:43.552 --> 00:06:46.528
 Names stay in the
 access-controlled evidence store.
 
-101
-00:06:49.308 --> 00:06:53.144
+100
+00:06:46.528 --> 00:06:50.364
 Second, each package records
 the hash of the one before it,
 
-102
-00:06:53.144 --> 00:06:55.021
+101
+00:06:50.364 --> 00:06:52.241
 so the packages form a chain.
 
-103
-00:06:55.021 --> 00:06:59.020
+102
+00:06:52.241 --> 00:06:56.240
 Replace a package, or skip a day,
 and the chain breaks visibly.
 
-104
-00:06:59.020 --> 00:07:02.903
+103
+00:06:56.240 --> 00:07:00.123
 There's no signature; the hashes
 plus storage that can't be
 
-105
-00:07:02.903 --> 00:07:07.640
+104
+00:07:00.123 --> 00:07:04.860
 edited or deleted do that job, and
 signing stays the ISSO's choice.
 
-106
-00:07:11.390 --> 00:07:12.803
+105
+00:07:08.610 --> 00:07:10.023
 This is the deliverable.
 
-107
-00:07:12.803 --> 00:07:16.963
+106
+00:07:10.023 --> 00:07:14.183
 For any period, the code verifies
 every package, checks the chain,
 
-108
-00:07:16.963 --> 00:07:20.575
+107
+00:07:14.183 --> 00:07:17.795
 confirms the windows cover
 the whole period with no gap,
 
-109
-00:07:20.575 --> 00:07:23.402
+108
+00:07:17.795 --> 00:07:20.622
 and writes a summary
 laid out against Gate 4.
 
-110
-00:07:23.402 --> 00:07:25.587
+109
+00:07:20.622 --> 00:07:22.807
 It's clear about who decides what:
 
-111
-00:07:25.587 --> 00:07:29.958
+110
+00:07:22.807 --> 00:07:27.178
 the authorizing official accepts
 residual standing privilege,
 
-112
-00:07:29.958 --> 00:07:33.276
+111
+00:07:27.178 --> 00:07:30.496
 the ISSO judges the
 elevations, and one criterion,
 
-113
-00:07:33.276 --> 00:07:37.727
+112
+00:07:30.496 --> 00:07:34.947
 retiring old group policy settings,
 simply isn't a privileged read.
 
-114
-00:07:37.727 --> 00:07:42.069
+113
+00:07:34.947 --> 00:07:39.289
 The sample workflow runs daily with
 a federated sign-in and no secret,
 
-115
-00:07:42.069 --> 00:07:44.964
+114
+00:07:39.289 --> 00:07:42.184
 and assembles last month's
 period on the first.
 
-116
-00:07:44.964 --> 00:07:48.340
+115
+00:07:42.184 --> 00:07:45.560
 Six-hourly runs need
 only a shorter schedule.
 
-117
-00:07:52.090 --> 00:07:53.152
+116
+00:07:49.310 --> 00:07:50.372
 Who is this for?
 
-118
-00:07:53.152 --> 00:07:56.953
+117
+00:07:50.372 --> 00:07:54.173
 Developers and pipeline engineers
 own the scheduled checks.
 
-119
-00:07:56.953 --> 00:08:01.012
+118
+00:07:54.173 --> 00:07:58.232
 The ISSO and the identity governance
 officers receive the evidence,
 
-120
-00:08:01.012 --> 00:08:05.714
+119
+00:07:58.232 --> 00:08:02.934
 and they can check every package with
 nothing more than a standard hashing tool.
 
-121
-00:08:05.714 --> 00:08:08.443
+120
+00:08:02.934 --> 00:08:05.663
 The governance officer
 signs the period summary,
 
-122
-00:08:08.443 --> 00:08:12.702
+121
+00:08:05.663 --> 00:08:09.922
 and the authorizing official accepts
 whatever standing privilege remains.
 
-123
-00:08:12.702 --> 00:08:15.500
+122
+00:08:09.922 --> 00:08:12.720
 The reader app holds
 nine Graph permissions,
 
-124
-00:08:15.500 --> 00:08:19.203
+123
+00:08:12.720 --> 00:08:16.423
 and not one of them can write,
 plus Reader on each Azure scope.
 
-125
-00:08:19.203 --> 00:08:24.070
+124
+00:08:16.423 --> 00:08:21.290
 It signs in with a certificate or a
 federated credential, never a secret.
 
-126
-00:08:27.820 --> 00:08:30.620
+125
+00:08:25.040 --> 00:08:27.840
 Lab 1 runs on a laptop with no tenant.
 
-127
-00:08:30.620 --> 00:08:34.470
+126
+00:08:27.840 --> 00:08:31.690
 First, run Learn's queries
 over the fictional audit rows.
 
-128
-00:08:34.470 --> 00:08:37.216
+127
+00:08:31.690 --> 00:08:34.436
 Eight tests pass, and
 the third shows the trap:
 
-129
-00:08:37.216 --> 00:08:41.670
+128
+00:08:34.436 --> 00:08:38.890
 two of the rows the first query returns
 are assignments made outside PIM.
 
-130
-00:08:41.670 --> 00:08:43.995
+129
+00:08:38.890 --> 00:08:41.215
 Next, list the run's permissions.
 
-131
-00:08:43.995 --> 00:08:46.395
+130
+00:08:41.215 --> 00:08:43.615
 There are nine, and
 none of them can write.
 
-132
-00:08:46.395 --> 00:08:49.283
+131
+00:08:43.615 --> 00:08:46.503
 Then run two days against
 the fictional tenant.
 
-133
-00:08:49.283 --> 00:08:53.798
+132
+00:08:46.503 --> 00:08:51.018
 The second day has three Tier 0
 findings: a role assigned outside PIM,
 
-134
-00:08:53.798 --> 00:08:57.669
+133
+00:08:51.018 --> 00:08:54.889
 an activation nobody approved,
 and a changed role setting.
 
-135
-00:08:57.669 --> 00:09:01.960
+134
+00:08:54.889 --> 00:08:59.180
 Open the events file, and
 you'll see IDs, not names.
 
-136
-00:09:05.710 --> 00:09:10.600
+135
+00:09:02.930 --> 00:09:07.820
 The second half of the lab follows
 the evidence all the way to the ISSO.
 
-137
-00:09:10.600 --> 00:09:13.173
+136
+00:09:07.820 --> 00:09:10.393
 Compare day one, and it's the baseline.
 
-138
-00:09:13.173 --> 00:09:18.485
+137
+00:09:10.393 --> 00:09:15.705
 Compare day two, and six incidents
 appear, while six old findings resolve.
 
-139
-00:09:18.485 --> 00:09:21.496
+138
+00:09:15.705 --> 00:09:18.716
 Draft the issues, and a
 search for the fictional
 
-140
-00:09:21.496 --> 00:09:24.585
+139
+00:09:18.716 --> 00:09:21.805
 domain finds nothing: no
 names reach the tracker.
 
-141
-00:09:24.585 --> 00:09:28.547
+140
+00:09:21.805 --> 00:09:25.767
 Package day two, chained to
 day one, and it verifies.
 
-142
-00:09:28.547 --> 00:09:32.759
+141
+00:09:25.767 --> 00:09:29.979
 Assemble the period, and the Gate
 4 table shows two criteria not met,
 
-143
-00:09:32.759 --> 00:09:35.209
+142
+00:09:29.979 --> 00:09:32.429
 which is exactly right for this tenant.
 
-144
-00:09:35.209 --> 00:09:40.140
+143
+00:09:32.429 --> 00:09:37.360
 Finally, edit one file or swap
 the days, and the checks refuse.
 
-145
-00:09:43.890 --> 00:09:48.828
+144
+00:09:41.110 --> 00:09:46.048
 Lab 2 uses a test tenant, never
 production, and the run only reads.
 
-146
-00:09:48.828 --> 00:09:53.944
+145
+00:09:46.048 --> 00:09:51.164
 You register the reader app with the nine
 permissions, make one test activation
 
-147
-00:09:53.944 --> 00:09:58.440
+146
+00:09:51.164 --> 00:09:55.660
 of a low-tier role, and run the evidence
 twice, once before and once after.
 
-148
-00:09:58.440 --> 00:10:02.596
+147
+00:09:55.660 --> 00:09:59.816
 Then comes the real point of the lab:
 checking what the fixtures assumed,
 
-149
-00:10:02.596 --> 00:10:07.315
+148
+00:09:59.816 --> 00:10:04.535
 like which service name PIM's events carry
 and whether the request ID is filled in.
 
-150
-00:10:07.315 --> 00:10:10.136
+149
+00:10:04.535 --> 00:10:07.356
 Cross-check against PIM's own audit view,
 
-151
-00:10:10.136 --> 00:10:14.153
+150
+00:10:07.356 --> 00:10:11.373
 as Learn describes, then compare
 and package the two runs.
 
-152
-00:10:14.153 --> 00:10:18.200
+151
+00:10:11.373 --> 00:10:15.420
 Back it out, and in production,
 lock the retention policy.
 
-153
-00:10:21.950 --> 00:10:24.613
+152
+00:10:19.170 --> 00:10:21.833
 Every danger here is a
 way evidence can lie.
 
-154
-00:10:24.613 --> 00:10:27.704
+153
+00:10:21.833 --> 00:10:24.924
 The quietest is a failed
 read that looks like a fix:
 
-155
-00:10:27.704 --> 00:10:31.474
+154
+00:10:24.924 --> 00:10:28.694
 a permissions error, and
 yesterday's findings simply vanish.
 
-156
-00:10:31.474 --> 00:10:35.350
+155
+00:10:28.694 --> 00:10:32.570
 The code marks the task as an error
 and keeps those findings open.
 
-157
-00:10:35.350 --> 00:10:37.534
+156
+00:10:32.570 --> 00:10:34.754
 Close behind is a day nobody read,
 
-158
-00:10:37.534 --> 00:10:40.688
+157
+00:10:34.754 --> 00:10:37.908
 which would let a gate pass
 on the days that were.
 
-159
-00:10:40.688 --> 00:10:44.645
+158
+00:10:37.908 --> 00:10:41.865
 Others are about trust: names
 leaking into the tracker,
 
-160
-00:10:44.645 --> 00:10:48.338
+159
+00:10:41.865 --> 00:10:45.558
 a run edited or swapped, a
 package quietly replaced.
 
-161
-00:10:48.338 --> 00:10:52.034
+160
+00:10:45.558 --> 00:10:49.254
 And one is about attention:
 count every activation as drift,
 
-162
-00:10:52.034 --> 00:10:55.100
+161
+00:10:49.254 --> 00:10:52.320
 and people stop reading
 the incident queue.
 
-163
-00:10:58.850 --> 00:11:00.200
+162
+00:10:56.070 --> 00:10:57.420
 Here's what done looks like.
 
-164
-00:11:00.200 --> 00:11:02.890
+163
+00:10:57.420 --> 00:11:00.110
 On the run side: all three tasks succeed,
 
-165
-00:11:02.890 --> 00:11:08.438
+164
+00:11:00.110 --> 00:11:05.658
 the reader holds exactly nine read-only
 permissions and no secret, every window
 
-166
-00:11:08.438 --> 00:11:13.313
+165
+00:11:05.658 --> 00:11:10.533
 picks up where the last one ended, and
 every Tier 0 incident has a record.
 
-167
-00:11:13.313 --> 00:11:16.146
+166
+00:11:10.533 --> 00:11:13.366
 On the evidence side: no
 names in the tracker,
 
-168
-00:11:16.146 --> 00:11:21.028
+167
+00:11:13.366 --> 00:11:18.248
 every package verifies with a standard
 hashing tool, the chain is unbroken,
 
-169
-00:11:21.028 --> 00:11:25.437
+168
+00:11:18.248 --> 00:11:22.657
 the storage is locked, and the period
 summary is signed and accepted.
 
-170
-00:11:25.437 --> 00:11:28.912
+169
+00:11:22.657 --> 00:11:26.132
 Next is Chapter 9, deploying
 to test and production.
 
-171
-00:11:28.912 --> 00:11:30.070
+170
+00:11:26.132 --> 00:11:27.290
 Thanks for watching.

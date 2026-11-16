@@ -29,7 +29,7 @@ The OCI collector behind the guide's [G3 Oracle Cloud Infrastructure](../../../b
 ## Narrated tour
 {{< fmw-video DW_PN_03_OCI_Announcements_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-03-oci-announcements) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-03-oci-announcements) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-03-oci-announcements/DW_PN_03_OCI_Announcements_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-03-oci-announcements/DW_PN_03_OCI_Announcements_Narrated.vtt). Recorded on November 12, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-03-oci-announcements) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-03-oci-announcements) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-03-oci-announcements/DW_PN_03_OCI_Announcements_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-03-oci-announcements/DW_PN_03_OCI_Announcements_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

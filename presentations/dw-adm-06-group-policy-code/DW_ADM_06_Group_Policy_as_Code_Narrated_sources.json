@@ -33,7 +33,7 @@
  },
  {
   "slide": 4,
-  "title": "Which cloud: Graph host and Intune instance",
+  "title": "Which cloud: the Graph host for GCC",
   "links": [
    {
     "text": "Graph national cloud deployments",
@@ -42,10 +42,6 @@
    {
     "text": "Get-MgEnvironment",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-mgenvironment"
-   },
-   {
-    "text": "Intune for US Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
    },
    {
     "text": "Chapter 06",
@@ -208,12 +204,8 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#import-and-analyze-your-on-premises-gpos"
    },
    {
-    "text": "Graph deployments",
+    "text": "Graph national cloud deployments",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
-   },
-   {
-    "text": "Intune for US Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
    },
    {
     "text": "Chapter 06",

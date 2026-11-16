@@ -15,7 +15,7 @@
  },
  {
   "slide": 3,
-  "title": "Release stage by cloud, and D-N6 as data",
+  "title": "Release stage by cloud, and D-NP6 as data",
   "links": [
    {
     "text": "Create a blueprint",
@@ -37,7 +37,7 @@
  },
  {
   "slide": 4,
-  "title": "The program's rules, N6.1 to N6.7",
+  "title": "The program's rules, NP6.1 to NP6.7",
   "links": [
    {
     "text": "Create a blueprint",
@@ -211,7 +211,7 @@
  },
  {
   "slide": 13,
-  "title": "Lab 1: Learn's samples, D-N6, then the check",
+  "title": "Lab 1: Learn's samples, D-NP6, then the check",
   "links": [
    {
     "text": "Chapter 09",
@@ -231,7 +231,7 @@
  },
  {
   "slide": 15,
-  "title": "Lab 1: the GCC High fallback, a dry run, a refusal",
+  "title": "Lab 1: a dry run, a refusal, and the tests",
   "links": [
    {
     "text": "Chapter 09",

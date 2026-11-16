@@ -91,718 +91,719 @@ against the thresholds, and the
 separations that need someone's attention.
 
 20
-00:01:10.190 --> 00:01:12.165
+00:01:10.520 --> 00:01:12.495
 Start with what Microsoft gives you.
 
 21
-00:01:12.165 --> 00:01:18.023
+00:01:12.495 --> 00:01:18.353
 The audit trail names four activities:
 disable account, enable account, delete user,
 
 22
-00:01:18.023 --> 00:01:21.929
+00:01:18.353 --> 00:01:22.259
 and an update to the refresh
 token valid-from timestamp,
 
 23
-00:01:21.929 --> 00:01:25.240
+00:01:22.259 --> 00:01:25.570
 each with its time, result,
 initiator and target.
 
 24
-00:01:25.240 --> 00:01:28.730
+00:01:25.570 --> 00:01:29.060
 Each workflow run has its
 own record, with its status,
 
 25
-00:01:28.730 --> 00:01:31.328
+00:01:29.060 --> 00:01:31.658
 its times and its count of failed tasks.
 
 26
-00:01:31.328 --> 00:01:35.003
+00:01:31.658 --> 00:01:35.333
 The schedule moves the timing:
 every three hours by default,
 
 27
-00:01:35.003 --> 00:01:36.953
+00:01:35.333 --> 00:01:37.283
 with a three-day catch-up window.
 
 28
-00:01:36.953 --> 00:01:41.400
+00:01:37.283 --> 00:01:41.730
 And the disable task doesn't support
 users who hold directory roles.
 
 29
-00:01:45.150 --> 00:01:49.450
+00:01:45.480 --> 00:01:49.780
 Here's what those records leave to
 you, and each row is pinned by a test.
 
 30
-00:01:49.450 --> 00:01:53.656
+00:01:49.780 --> 00:01:53.986
 The disable and the session update
 are separate records, and a disabled
 
 31
-00:01:53.656 --> 00:01:58.075
+00:01:53.986 --> 00:01:58.405
 account with live sessions isn't blocked,
 so the block is the later of the two.
 
 32
-00:01:58.075 --> 00:02:02.362
+00:01:58.405 --> 00:02:02.692
 A run's completion says the workflow
 finished, not when access stopped.
 
 33
-00:02:02.362 --> 00:02:06.899
+00:02:02.692 --> 00:02:07.229
 The catch-up window is only prose,
 so a late entry gets its own rule.
 
 34
-00:02:06.899 --> 00:02:11.562
+00:02:07.229 --> 00:02:11.892
 A failed disable sits in the same log,
 so only successful records count.
 
 35
-00:02:11.562 --> 00:02:15.540
+00:02:11.892 --> 00:02:15.870
 And a failed task, or a
 re-enable, each gets a rule.
 
 36
-00:02:19.290 --> 00:02:21.415
+00:02:19.620 --> 00:02:21.745
 The code is one command, measure.
 
 37
-00:02:21.415 --> 00:02:26.098
+00:02:21.745 --> 00:02:26.428
 It reads the exports, the HR separations,
 the card system's revocations,
 
 38
-00:02:26.098 --> 00:02:29.893
+00:02:26.428 --> 00:02:30.223
 Intune's device actions and
 the privileged role holders,
 
 39
-00:02:29.893 --> 00:02:34.415
+00:02:30.223 --> 00:02:34.745
 and writes the intervals, a summary
 and the findings with a manifest.
 
 40
-00:02:34.415 --> 00:02:36.111
+00:02:34.745 --> 00:02:36.441
 For each passed separation,
 
 41
-00:02:36.111 --> 00:02:39.652
+00:02:36.441 --> 00:02:39.982
 blocked is the later of the
 disable and the session update.
 
 42
-00:02:39.652 --> 00:02:44.666
+00:02:39.982 --> 00:02:44.996
 Revoked is the latest of the block, the
 card revocation and the last device action.
 
 43
-00:02:44.666 --> 00:02:47.928
+00:02:44.996 --> 00:02:48.258
 A cancelled separation
 is listed, not measured.
 
 44
-00:02:47.928 --> 00:02:52.920
+00:02:48.258 --> 00:02:53.250
 One open point: Lab 2 confirms which
 task writes the session update.
 
 45
-00:02:56.670 --> 00:02:59.708
+00:02:57.000 --> 00:03:00.038
 Nine rules turn the
 intervals into a work list.
 
 46
-00:02:59.708 --> 00:03:02.921
+00:03:00.038 --> 00:03:03.251
 S T 1 flags a block slower
 than the threshold,
 
 47
-00:03:02.921 --> 00:03:07.920
+00:03:03.251 --> 00:03:08.250
 which is P S 4's organization-defined
 period; the sample is four hours.
 
 48
-00:03:07.920 --> 00:03:11.020
+00:03:08.250 --> 00:03:11.350
 S T 2 flags a leaver
 who was never blocked.
 
 49
-00:03:11.020 --> 00:03:15.126
+00:03:11.350 --> 00:03:15.456
 S T 3 flags a separation entered
 more than three days late:
 
 50
-00:03:15.126 --> 00:03:19.582
+00:03:15.456 --> 00:03:19.912
 a finding if nothing caught it, a
 warning if an on-demand run did.
 
 51
-00:03:19.582 --> 00:03:23.342
+00:03:19.912 --> 00:03:22.776
 S T 4 flags an uncollected
 card revoked more
 
 52
-00:03:23.342 --> 00:03:27.520
+00:03:22.776 --> 00:03:26.675
 than eighteen hours after
 notice, from FIPS 201-3.
 
 53
-00:03:27.520 --> 00:03:31.600
+00:03:26.675 --> 00:03:30.750
 And S T 5 flags a re-enable
 that HR didn't cancel.
 
 54
-00:03:35.350 --> 00:03:38.432
+00:03:34.500 --> 00:03:37.582
 S T 6 warns when a privileged
 role holder leaves,
 
 55
-00:03:38.432 --> 00:03:42.700
+00:03:37.582 --> 00:03:41.850
 because Learn says the disable
 task doesn't support role holders.
 
 56
-00:03:42.700 --> 00:03:44.941
+00:03:41.850 --> 00:03:44.091
 S T 7 sends a failed leaver run,
 
 57
-00:03:44.941 --> 00:03:49.050
+00:03:44.091 --> 00:03:48.200
 or one with failed tasks, to
 a high-priority exception.
 
 58
-00:03:49.050 --> 00:03:52.241
+00:03:48.200 --> 00:03:51.391
 S T 8 flags a user
 deleted before the device
 
 59
-00:03:52.241 --> 00:03:56.162
+00:03:51.391 --> 00:03:55.312
 retire or wipe completed,
 since disposal comes last.
 
 60
-00:03:56.162 --> 00:03:59.925
+00:03:55.312 --> 00:03:59.075
 And S T 9 flags revocation
 slower than its threshold;
 
 61
-00:03:59.925 --> 00:04:02.200
+00:03:59.075 --> 00:04:01.350
 the sample is twenty-four hours.
 
 62
-00:04:02.200 --> 00:04:03.888
+00:04:01.350 --> 00:04:03.038
 The thresholds are samples.
 
 63
-00:04:03.888 --> 00:04:05.645
+00:04:03.038 --> 00:04:04.795
 The agency sets the period,
 
 64
-00:04:05.645 --> 00:04:09.750
+00:04:04.795 --> 00:04:08.900
 and the tenant schedule is part
 of it, so set them together.
 
 65
-00:04:13.500 --> 00:04:17.623
+00:04:12.650 --> 00:04:16.773
 The read needs two permissions, each
 the least privileged for its call:
 
 66
-00:04:17.623 --> 00:04:21.675
+00:04:16.773 --> 00:04:20.825
 audit log read for the directory
 audits, and the Lifecycle Workflows
 
 67
-00:04:21.675 --> 00:04:25.300
+00:04:20.825 --> 00:04:24.450
 reports read permission for a
 workflow's processing results.
 
 68
-00:04:25.300 --> 00:04:29.744
-Both come from Microsoft Graph,
-on the endpoint for your cloud,
+00:04:24.450 --> 00:04:29.160
+Both come from Microsoft Graph, on
+the worldwide endpoint GCC uses,
 
 69
-00:04:29.744 --> 00:04:34.187
-and both APIs are listed for the
-US Government L4 and L5 clouds.
+00:04:29.160 --> 00:04:32.500
+and both APIs are listed
+for the global service.
 
 70
-00:04:34.187 --> 00:04:38.475
-Lifecycle Workflows is available
-in Azure for US Government.
+00:04:32.500 --> 00:04:39.037
+Lifecycle Workflows is part of Microsoft
+Entra ID Governance, available in GCC.
 
 71
-00:04:38.475 --> 00:04:42.172
+00:04:39.037 --> 00:04:42.735
 The card system's and Intune's
 records arrive as exports;
 
 72
-00:04:42.172 --> 00:04:44.610
+00:04:42.735 --> 00:04:45.180
 the code reads neither service.
 
 73
-00:04:48.360 --> 00:04:52.239
+00:04:48.930 --> 00:04:52.809
 Four tests cover this chapter:
 the intervals and the summary,
 
 74
-00:04:52.239 --> 00:04:56.350
+00:04:52.809 --> 00:04:56.920
 every rule on the fixture, a failed
 audit record that isn't a block,
 
 75
-00:04:56.350 --> 00:04:59.298
+00:04:56.920 --> 00:04:59.868
 and a cancelled separation
 that isn't flagged.
 
 76
-00:04:59.298 --> 00:05:05.093
+00:04:59.868 --> 00:05:05.663
 With the other chapters' tests, fifty-seven
 pass under Python 3.10 or later,
 
 77
-00:05:05.093 --> 00:05:07.798
+00:05:05.663 --> 00:05:08.368
 with no package, tenant or network.
 
 78
-00:05:07.798 --> 00:05:10.248
+00:05:08.368 --> 00:05:10.818
 Remember that the code is illustrative.
 
 79
-00:05:10.248 --> 00:05:13.446
+00:05:10.818 --> 00:05:14.016
 It runs against fictional
 leavers and exports,
 
 80
-00:05:13.446 --> 00:05:18.630
+00:05:14.016 --> 00:05:19.200
 so review it and run Lab 2 in a test
 tenant before it reports a real leaver.
 
 81
-00:05:22.380 --> 00:05:27.030
+00:05:22.950 --> 00:05:27.600
 These are the facts behind the code,
 each read on Learn on November first.
 
 82
-00:05:27.030 --> 00:05:29.943
+00:05:27.600 --> 00:05:30.513
 The four audit activities
 are generally available.
 
 83
-00:05:29.943 --> 00:05:35.020
+00:05:30.513 --> 00:05:35.590
 The directory audits list needs
 audit log read and filters on equals,
 
 84
-00:05:35.020 --> 00:05:38.405
+00:05:35.590 --> 00:05:38.975
 greater or equal, less or
 equal, and starts with.
 
 85
-00:05:38.405 --> 00:05:42.961
+00:05:38.975 --> 00:05:42.642
 The processing results list needs
 the reports read permission,
 
 86
-00:05:42.961 --> 00:05:45.368
-and both are in the L4 and L5 clouds.
+00:05:42.642 --> 00:05:45.063
+and both are listed
+for the global service.
 
 87
-00:05:45.368 --> 00:05:49.443
+00:05:45.063 --> 00:05:49.138
 The schedule runs every three hours
 by default with a three-day catch-up.
 
 88
-00:05:49.443 --> 00:05:52.193
+00:05:49.138 --> 00:05:51.888
 The disable task excludes role holders.
 
 89
-00:05:52.193 --> 00:05:56.230
-And Lifecycle Workflows is
-available for US Government.
+00:05:51.888 --> 00:05:56.010
+And Lifecycle Workflows
+is available in G C C.
 
 90
-00:05:59.980 --> 00:06:03.900
+00:05:59.760 --> 00:06:03.680
 Two places where Learn says nothing
 or differs are written down,
 
 91
-00:06:03.900 --> 00:06:06.193
+00:06:03.680 --> 00:06:05.973
 so a later edit doesn't loosen the code.
 
 92
-00:06:06.193 --> 00:06:10.334
+00:06:05.973 --> 00:06:10.114
 First, what records the revocation:
 Learn lists the timestamp
 
 93
-00:06:10.334 --> 00:06:14.556
+00:06:10.114 --> 00:06:14.336
 update but doesn't tie it to the
 revoke task, and Lab 2 confirms it.
 
 94
-00:06:14.556 --> 00:06:16.468
+00:06:14.336 --> 00:06:16.248
 Second, the preview trigger.
 
 95
-00:06:16.468 --> 00:06:20.233
+00:06:16.248 --> 00:06:20.013
 Learn says version two of the
 time-based attribute trigger,
 
 96
-00:06:20.233 --> 00:06:23.306
+00:06:20.013 --> 00:06:23.086
 still in preview, has no
 three-day catch-up window.
 
 97
-00:06:23.306 --> 00:06:26.050
+00:06:23.086 --> 00:06:25.830
 Rule S T 3 assumes the standard trigger,
 
 98
-00:06:26.050 --> 00:06:31.720
+00:06:25.830 --> 00:06:31.500
 so a workflow on version two skips a
 late separation even inside three days.
 
 99
-00:06:35.470 --> 00:06:36.583
+00:06:35.250 --> 00:06:36.363
 What does this prove?
 
 100
-00:06:36.583 --> 00:06:41.086
+00:06:36.363 --> 00:06:40.866
 Each leaver's two intervals against
 the organization-defined period,
 
 101
-00:06:41.086 --> 00:06:44.734
+00:06:40.866 --> 00:06:44.514
 which is personnel termination
 and disabling accounts,
 
 102
-00:06:44.734 --> 00:06:47.995
+00:06:44.514 --> 00:06:47.775
 P S 4 and A C 2 enhancement
 3, in the Moderate baseline.
 
 103
-00:06:47.995 --> 00:06:53.645
+00:06:47.775 --> 00:06:53.425
 The I S S O keeps each run's outputs with
 the manifest and the exports behind them.
 
 104
-00:06:53.645 --> 00:06:57.120
+00:06:53.425 --> 00:06:56.900
 The same intervals cover
 contractors under P S 7.
 
 105
-00:06:57.120 --> 00:07:03.195
+00:06:56.900 --> 00:07:01.338
 Rule S T 4 shows FIPS 201-3's
 eighteen-hour card rule.
 
 106
-00:07:03.195 --> 00:07:06.970
+00:07:01.338 --> 00:07:05.112
 And the on-demand emergency path
 supports high-risk disables.
 
 107
-00:07:06.970 --> 00:07:10.760
+00:07:05.112 --> 00:07:08.910
 The summary's percentiles
 feed Chapter 7's metrics.
 
 108
-00:07:14.510 --> 00:07:15.435
+00:07:12.660 --> 00:07:13.585
 Who does what?
 
 109
-00:07:15.435 --> 00:07:18.168
+00:07:13.585 --> 00:07:16.318
 Developers build the leaver's evidence,
 
 110
-00:07:18.168 --> 00:07:21.398
+00:07:16.318 --> 00:07:19.548
 and need to read Python,
 but no tenant until Lab 2.
 
 111
-00:07:21.398 --> 00:07:24.473
+00:07:19.548 --> 00:07:22.623
 The security team owns the
 leaver path end to end,
 
 112
-00:07:24.473 --> 00:07:28.548
+00:07:22.623 --> 00:07:26.698
 including the privileged leavers
 the disable task can't handle.
 
 113
-00:07:28.548 --> 00:07:32.877
+00:07:26.698 --> 00:07:31.027
 And the I S S O reports P S 4,
 keeping each run's intervals,
 
 114
-00:07:32.877 --> 00:07:36.123
+00:07:31.027 --> 00:07:34.273
 summary and findings with the manifest.
 
 115
-00:07:36.123 --> 00:07:40.573
+00:07:34.273 --> 00:07:38.723
 The checklist makes ownership
 concrete: every late entry, re-enable,
 
 116
-00:07:40.573 --> 00:07:44.070
+00:07:38.723 --> 00:07:42.220
 failed run and early delete
 has an owner and a closure,
 
 117
-00:07:44.070 --> 00:07:48.240
+00:07:42.220 --> 00:07:46.390
 and every privileged leaver
 has a recorded verified path.
 
 118
-00:07:51.990 --> 00:07:56.578
+00:07:50.140 --> 00:07:54.728
 Lab 1 runs on a laptop
 with Python 3.10 or later.
 
 119
-00:07:56.578 --> 00:08:02.041
+00:07:54.728 --> 00:08:00.191
 Step one lists the read: two calls, two
 read permissions, nothing that writes.
 
 120
-00:08:02.041 --> 00:08:04.916
+00:08:00.191 --> 00:08:03.066
 Step two measures the fictional leavers:
 
 121
-00:08:04.916 --> 00:08:08.215
+00:08:03.066 --> 00:08:06.365
 seven separated, one
 cancelled, one not blocked.
 
 122
-00:08:08.215 --> 00:08:10.462
+00:08:06.365 --> 00:08:08.612
 The median block is a quarter of an hour,
 
 123
-00:08:10.462 --> 00:08:15.306
+00:08:08.612 --> 00:08:13.456
 but the ninetieth percentile is five and a
 half hours against a four-hour threshold,
 
 124
-00:08:15.306 --> 00:08:17.833
+00:08:13.456 --> 00:08:15.983
 and revocation's ninetieth percentile is a
 
 125
-00:08:17.833 --> 00:08:20.290
+00:08:15.983 --> 00:08:18.440
 hundred and ten hours against twenty-four.
 
 126
-00:08:20.290 --> 00:08:24.590
+00:08:18.440 --> 00:08:22.740
 Ten findings and two warnings,
 so it exits with code two.
 
 127
-00:08:28.340 --> 00:08:32.740
+00:08:26.490 --> 00:08:30.890
 Steps three and four read the findings
 and the intervals side by side.
 
 128
-00:08:32.740 --> 00:08:35.128
+00:08:30.890 --> 00:08:33.278
 Every fictional leaver tells a story.
 
 129
-00:08:35.128 --> 00:08:37.687
+00:08:33.278 --> 00:08:35.837
 Casey blocked after five and a half hours,
 
 130
-00:08:37.687 --> 00:08:42.278
+00:08:35.837 --> 00:08:40.428
 and Casey's uncollected card was
 revoked twenty-three hours after notice.
 
 131
-00:08:42.278 --> 00:08:44.941
+00:08:40.428 --> 00:08:43.091
 Drew was entered almost seven days late,
 
 132
-00:08:44.941 --> 00:08:48.491
+00:08:43.091 --> 00:08:46.641
 and the only disable failed,
 so Drew was never blocked.
 
 133
-00:08:48.491 --> 00:08:52.578
+00:08:46.641 --> 00:08:50.728
 Emery was caught on demand, but
 blocked after eighty-five hours.
 
 134
-00:08:52.578 --> 00:08:56.228
+00:08:50.728 --> 00:08:54.378
 Harper was re-enabled by the
 pipeline and had a failed task.
 
 135
-00:08:56.228 --> 00:08:57.790
+00:08:54.378 --> 00:08:55.940
 Kai holds a privileged role.
 
 136
-00:08:57.790 --> 00:09:01.690
+00:08:55.940 --> 00:08:59.840
 And Blake was deleted before
 the device retire completed.
 
 137
-00:09:05.440 --> 00:09:08.790
+00:09:03.590 --> 00:09:06.940
 Step five runs the
 tests: fifty-seven pass.
 
 138
-00:09:08.790 --> 00:09:11.065
+00:09:06.940 --> 00:09:09.215
 Then delete the output folder either way.
 
 139
-00:09:11.065 --> 00:09:15.049
+00:09:09.215 --> 00:09:13.199
 The tool refuses to write into a
 folder that already holds a run,
 
 140
-00:09:15.049 --> 00:09:20.310
+00:09:13.199 --> 00:09:18.460
 and Chapter 7's first step measures the
 separations again into the same place.
 
 141
-00:09:24.060 --> 00:09:27.381
+00:09:22.210 --> 00:09:25.531
 Lab 2 uses a test tenant with
 a leaver workflow in the
 
 142
-00:09:27.381 --> 00:09:30.547
+00:09:25.531 --> 00:09:28.697
 workbook's leaver order;
 the authors haven't run it.
 
 143
-00:09:30.547 --> 00:09:33.772
+00:09:28.697 --> 00:09:31.922
 Register a reader app with
 only the two permissions.
 
 144
-00:09:33.772 --> 00:09:38.779
+00:09:31.922 --> 00:09:36.929
 Give one test user a leave date a few
 hours ahead and wait for the scheduled run,
 
 145
-00:09:38.779 --> 00:09:41.360
+00:09:36.929 --> 00:09:39.510
 and run the leaver on demand for a second.
 
 146
-00:09:41.360 --> 00:09:44.481
+00:09:39.510 --> 00:09:42.631
 Export the logs, and
 confirm which activity the
 
 147
-00:09:44.481 --> 00:09:47.522
+00:09:42.631 --> 00:09:45.672
 revoke task really wrote,
 and who initiated it.
 
 148
-00:09:47.522 --> 00:09:48.497
+00:09:45.672 --> 00:09:46.647
 Then measure.
 
 149
-00:09:48.497 --> 00:09:51.636
+00:09:46.647 --> 00:09:49.786
 Each block should include the
 wait for the tenant schedule.
 
 150
-00:09:51.636 --> 00:09:53.950
+00:09:49.786 --> 00:09:52.100
 Finally, back everything out.
 
 151
-00:09:57.150 --> 00:09:58.925
+00:09:55.850 --> 00:09:57.625
 The dangers are quiet ones.
 
 152
-00:09:58.925 --> 00:10:02.574
+00:09:57.625 --> 00:10:01.274
 A disable with live sessions
 lets the leaver keep working,
 
 153
-00:10:02.574 --> 00:10:04.550
+00:10:01.274 --> 00:10:03.250
 so the block needs both records.
 
 154
-00:10:04.550 --> 00:10:10.462
+00:10:03.250 --> 00:10:09.162
 A late H R entry is never processed by
 the schedule, so S T 3 runs every time.
 
 155
-00:10:10.462 --> 00:10:12.888
+00:10:09.162 --> 00:10:11.588
 A late re-send brings the account back.
 
 156
-00:10:12.888 --> 00:10:16.712
+00:10:11.588 --> 00:10:15.412
 A failed revocation leaves the
 card valid with nobody hearing.
 
 157
-00:10:16.712 --> 00:10:19.525
+00:10:15.412 --> 00:10:18.225
 A privileged leaver's
 disable task can't run.
 
 158
-00:10:19.525 --> 00:10:23.375
+00:10:18.225 --> 00:10:22.075
 Deleting before devices are
 retired leaves certificates valid.
 
 159
-00:10:23.375 --> 00:10:26.513
+00:10:22.075 --> 00:10:25.213
 A threshold set without the
 schedule passes everyone.
 
 160
-00:10:26.513 --> 00:10:30.740
+00:10:25.213 --> 00:10:29.440
 And logs that age out before
 export can't prove anything later.
 
 161
-00:10:34.490 --> 00:10:35.840
+00:10:33.190 --> 00:10:34.540
 Here's what done looks like.
 
 162
-00:10:35.840 --> 00:10:39.375
+00:10:34.540 --> 00:10:38.075
 The configuration holds the
 agency's approved thresholds,
 
 163
-00:10:39.375 --> 00:10:42.765
+00:10:38.075 --> 00:10:41.465
 and the tenant schedule fits
 inside the block threshold.
 
 164
-00:10:42.765 --> 00:10:46.553
+00:10:41.465 --> 00:10:45.253
 Lab 2 confirmed which activity
 the revoke task writes.
 
 165
-00:10:46.553 --> 00:10:51.803
+00:10:45.253 --> 00:10:50.503
 The run covers every separation in the
 period, with no leaver left unblocked.
 
 166
-00:10:51.803 --> 00:10:57.816
+00:10:50.503 --> 00:10:56.516
 Every late entry, re-enable, failed run and
 early delete has an owner and a closure.
 
 167
-00:10:57.816 --> 00:11:00.728
+00:10:56.516 --> 00:10:59.428
 Every privileged leaver
 has a verified path.
 
 168
-00:11:00.728 --> 00:11:03.790
+00:10:59.428 --> 00:11:02.490
 And the reader app holds
 exactly two permissions.
 
 169
-00:11:03.790 --> 00:11:08.378
+00:11:02.490 --> 00:11:07.078
 Next, Chapter 7: lifecycle
 drift, metrics and evidence.
 
 170
-00:11:08.378 --> 00:11:09.530
+00:11:07.078 --> 00:11:08.230
 Thanks for watching.

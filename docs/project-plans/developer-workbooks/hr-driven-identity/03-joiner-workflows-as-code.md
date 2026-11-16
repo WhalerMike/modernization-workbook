@@ -29,7 +29,7 @@ The code behind the guide's Gate 3, "pre-hire and day-one workflows run with lim
 ## Narrated tour
 {{< fmw-video DW_HR_03_Joiner_Workflows_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-03-joiner-workflows) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-hr-03-joiner-workflows) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-03-joiner-workflows/DW_HR_03_Joiner_Workflows_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-03-joiner-workflows/DW_HR_03_Joiner_Workflows_Narrated.vtt). Recorded on November 2, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_03_Joiner_Workflows.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/DW_HR_03_Joiner_Workflows_Narrated.pptx) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-03-joiner-workflows/DW_HR_03_Joiner_Workflows_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-hr-03-joiner-workflows/DW_HR_03_Joiner_Workflows_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

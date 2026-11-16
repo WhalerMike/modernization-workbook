@@ -12,6 +12,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
+    "text": "Azure CLI endpoints",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-azure-cli-endpoints"
+   },
+   {
     "text": "Chapter 07",
     "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.html"
    }

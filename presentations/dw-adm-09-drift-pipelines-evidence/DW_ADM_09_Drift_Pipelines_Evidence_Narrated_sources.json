@@ -40,6 +40,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
+    "text": "Connect-MgGraph",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-connect-mggraph"
+   },
+   {
     "text": "Chapter 09",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
    }
@@ -83,6 +87,10 @@
   "slide": 8,
   "title": "The workflow: one job reads, one job writes",
   "links": [
+   {
+    "text": "Connect-MgGraph",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-connect-mggraph"
+   },
    {
     "text": "Chapter 09",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"
@@ -135,6 +143,10 @@
   "slide": 12,
   "title": "Where the sources differ, and release stage",
   "links": [
+   {
+    "text": "Connect-MgGraph",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-connect-mggraph"
+   },
    {
     "text": "Chapter 09",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.html"

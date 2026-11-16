@@ -15,7 +15,7 @@
  },
  {
   "slide": 3,
-  "title": "Which cloud: Graph hosts, licenses and the trial",
+  "title": "Which cloud: the Graph host, licenses and the trial",
   "links": [
    {
     "text": "Microsoft Graph national cloud deployments",
@@ -205,7 +205,7 @@
  },
  {
   "slide": 10,
-  "title": "Waves and their rollback (N2.2)",
+  "title": "Waves and their rollback (NP2.2)",
   "links": [
    {
     "text": "Get a user",
@@ -231,7 +231,7 @@
  },
  {
   "slide": 11,
-  "title": "The Workload ID Premium scope (D-N4) and Gate 2",
+  "title": "The Workload ID Premium scope (D-NP4) and Gate 2",
   "links": [
    {
     "text": "Workload ID FAQ",
@@ -291,7 +291,7 @@
  },
  {
   "slide": 15,
-  "title": "Lab 1: the waves, the D-N4 scope, the tests",
+  "title": "Lab 1: the waves, the D-NP4 scope, the tests",
   "links": [
    {
     "text": "Chapter 03",

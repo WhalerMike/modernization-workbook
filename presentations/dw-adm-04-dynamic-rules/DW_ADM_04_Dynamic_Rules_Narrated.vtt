@@ -145,654 +145,605 @@ Which cloud you're in
 matters here in a quiet way.
 
 31
-00:01:58.537 --> 00:02:01.407
-Learn's incident samples
-ask you for the cloud,
+00:01:58.537 --> 00:02:03.400
+Learn's incident samples ask you for the
+cloud, but if they don't recognize your
 
 32
-00:02:01.407 --> 00:02:06.389
-but if they don't recognize your answer,
-they fall back to the worldwide endpoint,
+00:02:03.400 --> 00:02:08.263
+answer, such as GCC, they fall back to
+the worldwide endpoint without saying so.
 
 33
-00:02:06.389 --> 00:02:10.013
-so a GCC High tenant could be
-signed in to as the wrong cloud.
+00:02:08.263 --> 00:02:11.652
+That's right for GCC by
+accident: a typo isn't caught,
 
 34
-00:02:10.013 --> 00:02:14.688
+00:02:11.652 --> 00:02:15.288
+and nothing records which
+cloud the run was meant for.
+
+35
+00:02:15.288 --> 00:02:19.962
 The chapter's code uses the same hosts
 but refuses a cloud name it doesn't know.
 
-35
-00:02:14.688 --> 00:02:18.765
+36
+00:02:19.962 --> 00:02:24.445
 Graph's own rule evaluator is
 a beta, delegated-only action,
 
-36
-00:02:18.765 --> 00:02:22.926
-listed for the global service
-and the US Government clouds.
-
 37
-00:02:22.926 --> 00:02:25.697
+00:02:24.445 --> 00:02:27.900
+listed for the global
+service, which GCC uses.
+
+38
+00:02:27.900 --> 00:02:30.672
 And the memberOf preview
 is public cloud only,
 
-38
-00:02:25.697 --> 00:02:29.060
+39
+00:02:30.672 --> 00:02:34.020
 which is one more reason
 the library doesn't use it.
 
-39
-00:02:32.810 --> 00:02:34.460
+40
+00:02:37.770 --> 00:02:39.420
 So what does Microsoft give you?
 
-40
-00:02:34.460 --> 00:02:38.716
+41
+00:02:39.420 --> 00:02:43.676
 For writing rules: a syntax page
 with every property and operator,
 
-41
-00:02:38.716 --> 00:02:41.160
+42
+00:02:43.676 --> 00:02:46.120
 and a page on writing efficient rules.
 
-42
-00:02:41.160 --> 00:02:44.026
+43
+00:02:46.120 --> 00:02:48.986
 There's no sample library
 of rules or tests;
 
-43
-00:02:44.026 --> 00:02:47.548
+44
+00:02:48.986 --> 00:02:52.508
 the closest thing is Graph's
 evaluator, which is beta.
 
-44
-00:02:47.548 --> 00:02:52.029
+45
+00:02:52.508 --> 00:02:56.989
 For running the engine, there's more:
 five PowerShell samples for an incident,
 
-45
-00:02:52.029 --> 00:02:55.372
+46
+00:02:56.989 --> 00:03:00.332
 when a rule change starts moving
 people you didn't intend.
 
-46
-00:02:55.372 --> 00:02:59.848
+47
+00:03:00.332 --> 00:03:04.808
 You pause processing, then resume
 it in order, critical groups first.
 
-47
-00:02:59.848 --> 00:03:03.290
+48
+00:03:04.808 --> 00:03:08.250
 Each script works in two
 phases, asks before it acts,
 
-48
-00:03:03.290 --> 00:03:06.520
+49
+00:03:08.250 --> 00:03:11.480
 and asks only for the
 permissions it needs.
 
-49
-00:03:10.270 --> 00:03:13.156
-The scripts only exist
-inside Learn's pages,
-
 50
-00:03:13.156 --> 00:03:16.923
-so the repository pins the
-pages themselves, unmodified,
-
-51
-00:03:16.923 --> 00:03:21.733
-at a known commit, with hashes a test
-checks and a weekly watch for changes.
-
-52
-00:03:21.733 --> 00:03:25.686
-Then a small harness pulls each
-script out of its pinned page
-
-53
-00:03:25.686 --> 00:03:29.482
-at test time and runs it, as
-published, against a fake tenant.
-
-54
-00:03:29.482 --> 00:03:33.178
-Only the things it calls
-outside itself are swapped out:
-
-55
-00:03:33.178 --> 00:03:37.357
-the prompts, the screen output,
-the sleep, and four Graph cmdlets.
-
-56
-00:03:37.357 --> 00:03:40.477
-That way you can watch
-Microsoft's own scripts behave,
-
-57
-00:03:40.477 --> 00:03:42.320
-instead of taking them on trust.
-
-58
-00:03:42.320 --> 00:03:43.950
-Here's what that showed.
-
-59
-00:03:47.700 --> 00:03:49.462
+00:03:15.230 --> 00:03:16.992
 This is the heart of the chapter.
 
-60
-00:03:49.462 --> 00:03:53.975
+51
+00:03:16.992 --> 00:03:21.505
 Learn's pause script does its job well,
 and the code keeps it as the model.
 
-61
-00:03:53.975 --> 00:03:56.325
+52
+00:03:21.505 --> 00:03:23.855
 But it records nothing
 about what it paused.
 
-62
-00:03:56.325 --> 00:03:59.934
+53
+00:03:23.855 --> 00:03:27.464
 So when you resume, Learn's script
 turns on every paused group,
 
-63
-00:03:59.934 --> 00:04:04.337
+54
+00:03:27.464 --> 00:03:31.867
 including one that was deliberately
 frozen before the incident started.
 
-64
-00:04:04.337 --> 00:04:08.310
-It also falls back to the worldwide
-cloud on an answer it doesn't know,
+55
+00:03:31.867 --> 00:03:35.239
+It also falls back to the
+worldwide cloud, silently,
 
-65
-00:04:08.310 --> 00:04:10.863
-and nothing makes you
-wait before resuming.
+56
+00:03:35.239 --> 00:03:39.893
+on an answer it doesn't know, and
+nothing makes you wait before resuming.
 
-66
-00:04:10.863 --> 00:04:12.650
+57
+00:03:39.893 --> 00:03:41.680
 The verdict: during recovery,
 
-67
-00:04:12.650 --> 00:04:16.300
+58
+00:03:41.680 --> 00:03:45.330
 the questions are what did we
 pause, and what was already off.
 
-68
-00:04:16.300 --> 00:04:18.260
+59
+00:03:45.330 --> 00:03:47.280
 Only a record answers them.
 
-69
-00:04:22.010 --> 00:04:23.910
+60
+00:03:51.030 --> 00:03:52.930
 Here's what a rule looks like as code.
 
-70
-00:04:23.910 --> 00:04:28.487
+61
+00:03:52.930 --> 00:03:57.507
 Each group is one small file: a name,
 whether it holds users or devices,
 
-71
-00:04:28.487 --> 00:04:33.880
+62
+00:03:57.507 --> 00:04:02.900
 an owner who approves changes, a flag saying
 whether it's critical in an incident,
 
-72
-00:04:33.880 --> 00:04:37.885
+63
+00:04:02.900 --> 00:04:06.905
 the rule itself with its two guards
 at the top, and a few tests.
 
-73
-00:04:37.885 --> 00:04:42.813
+64
+00:04:06.905 --> 00:04:11.833
 The tests name people in a fictional
 population built to trip every guard:
 
-74
-00:04:42.813 --> 00:04:46.690
+65
+00:04:11.833 --> 00:04:15.710
 someone disabled, a guest who
 copied an organization code,
 
-75
-00:04:46.690 --> 00:04:49.760
+66
+00:04:15.710 --> 00:04:18.780
 a worker with an empty
 type, a code in lower case.
 
-76
-00:04:49.760 --> 00:04:54.060
+67
+00:04:18.780 --> 00:04:23.080
 If the rule ever lets the wrong
 person in, a test says so.
 
-77
-00:04:57.810 --> 00:05:01.335
+68
+00:04:26.830 --> 00:04:30.355
 To test rules without a tenant,
 the code needs to read them.
 
-78
-00:05:01.335 --> 00:05:06.123
+69
+00:04:30.355 --> 00:04:35.143
 The parser follows the grammar on
 Learn's syntax page: the operators,
 
-79
-00:05:06.123 --> 00:05:10.997
+70
+00:04:35.143 --> 00:04:40.017
 lists, collections, nulls, escaped
 quotes and the order of precedence.
 
-80
-00:05:10.997 --> 00:05:13.426
+71
+00:04:40.017 --> 00:04:42.446
 It even accepts the en dash that some of
 
-81
-00:05:13.426 --> 00:05:16.310
+72
+00:04:42.446 --> 00:04:45.330
 Learn's own examples
 print instead of a hyphen.
 
-82
-00:05:16.310 --> 00:05:20.994
+73
+00:04:45.330 --> 00:04:50.014
 The evaluator then checks a parsed
 rule against one fictional person,
 
-83
-00:05:20.994 --> 00:05:23.498
+74
+00:04:50.014 --> 00:04:52.518
 ignoring case, just as the engine does.
 
-84
-00:05:23.498 --> 00:05:28.648
+75
+00:04:52.518 --> 00:04:57.668
 It's honest about its limits: anything it
 can't evaluate faithfully, it refuses.
 
-85
-00:05:28.648 --> 00:05:33.530
+76
+00:04:57.668 --> 00:05:02.550
 It's a test tool, not the engine,
 and Lab 2 checks it against Graph's.
 
-86
-00:05:37.280 --> 00:05:40.017
+77
+00:05:06.300 --> 00:05:09.037
 The linter is where the
 guards become enforceable.
 
-87
-00:05:40.017 --> 00:05:43.040
+78
+00:05:09.037 --> 00:05:12.060
 Its most important check
 is that the two guards sit
 
-88
-00:05:43.040 --> 00:05:45.918
+79
+00:05:12.060 --> 00:05:14.938
 at the top of the rule,
 ANDed with everything else.
 
-89
-00:05:45.918 --> 00:05:48.784
+80
+00:05:14.938 --> 00:05:17.804
 A guard tucked inside an
 "or" protects nothing,
 
-90
-00:05:48.784 --> 00:05:52.968
+81
+00:05:17.804 --> 00:05:21.988
 yet a simple text search would still
 find it and call the rule fine.
 
-91
-00:05:52.968 --> 00:05:56.356
+82
+00:05:21.988 --> 00:05:25.376
 That's why the linter works on
 the parsed rule, not the text.
 
-92
-00:05:56.356 --> 00:05:59.680
+83
+00:05:25.376 --> 00:05:28.700
 Another check is subtler:
 "not equal to contractor"
 
-93
-00:05:59.680 --> 00:06:02.842
+84
+00:05:28.700 --> 00:05:31.862
 also lets in someone whose
 worker type is empty.
 
-94
-00:06:02.842 --> 00:06:05.970
+85
+00:05:31.862 --> 00:05:34.990
 The linter flags it,
 and the owner decides.
 
-95
-00:06:09.720 --> 00:06:13.445
+86
+00:05:38.740 --> 00:05:42.465
 The best proof a linter is useful
 is that it finds something real.
 
-96
-00:06:13.445 --> 00:06:16.601
+87
+00:05:42.465 --> 00:05:45.621
 Run against the HR-Driven
 Identity book's own
 
-97
-00:06:16.601 --> 00:06:19.757
+88
+00:05:45.621 --> 00:05:48.777
 table of rule patterns,
 it found three things.
 
-98
-00:06:19.757 --> 00:06:23.234
+89
+00:05:48.777 --> 00:05:52.254
 One pattern had no guest guard,
 so a guest with a matching
 
-99
-00:06:23.234 --> 00:06:26.483
+90
+00:05:52.254 --> 00:05:55.503
 employer name could have
 qualified; that's now fixed.
 
-100
-00:06:26.483 --> 00:06:28.973
+91
+00:05:55.503 --> 00:05:57.993
 Another let in a worker
 with an empty type,
 
-101
-00:06:28.973 --> 00:06:32.782
+92
+00:05:57.993 --> 00:06:01.802
 and the owner decided that shouldn't
 count, so it gained a clause.
 
-102
-00:06:32.782 --> 00:06:35.919
+93
+00:06:01.802 --> 00:06:04.939
 And the direct reports rule
 can't carry guards at all,
 
-103
-00:06:35.919 --> 00:06:41.100
+94
+00:06:04.939 --> 00:06:10.120
 because Learn says it can't be combined
 with anything, so the linter just notes it.
 
-104
-00:06:43.410 --> 00:06:45.385
+95
+00:06:13.870 --> 00:06:15.845
 Two more pieces finish the code.
 
-105
-00:06:45.385 --> 00:06:50.391
+96
+00:06:15.845 --> 00:06:20.851
 The shadow diff runs the old rule and
 the new one over the fictional population
 
-106
-00:06:50.391 --> 00:06:55.397
+97
+00:06:20.851 --> 00:06:25.857
 and lists exactly who a change adds and
 who it removes, right in the pull request.
 
-107
-00:06:55.397 --> 00:06:58.560
+98
+00:06:25.857 --> 00:06:29.020
 The same idea runs live
 in the validation kit.
 
-108
-00:06:58.560 --> 00:07:02.286
+99
+00:06:29.020 --> 00:06:32.746
 The pause manifest is the record
 Learn's samples leave out:
 
-109
-00:07:02.286 --> 00:07:06.168
+100
+00:06:32.746 --> 00:06:36.628
 before anything is paused, it
 writes down every group's state,
 
-110
-00:07:06.168 --> 00:07:10.360
+101
+00:06:36.628 --> 00:06:40.820
 then pauses only what was on, and
 later resumes only what it paused.
 
-111
-00:07:10.360 --> 00:07:14.880
-Seventy tests cover all of it,
-with no tenant and no network.
+102
+00:06:40.820 --> 00:06:45.700
+Fifty-seven tests cover all of
+it, with no tenant and no network.
 
-112
-00:07:18.630 --> 00:07:19.692
+103
+00:06:49.450 --> 00:06:50.512
 Who is this for?
 
-113
-00:07:19.692 --> 00:07:23.393
+104
+00:06:50.512 --> 00:06:54.213
 Developers build and maintain
 the library and its checks.
 
-114
-00:07:23.393 --> 00:07:26.099
+105
+00:06:54.213 --> 00:06:56.919
 Identity engineers own the group library,
 
-115
-00:07:26.099 --> 00:07:29.967
+106
+00:06:56.919 --> 00:07:00.787
 and every rule file names the
 owner who approves its changes.
 
-116
-00:07:29.967 --> 00:07:34.204
+107
+00:07:00.787 --> 00:07:05.024
 Reviewers approve each change, with
 the shadow diff in front of them.
 
-117
-00:07:34.204 --> 00:07:36.805
+108
+00:07:05.024 --> 00:07:07.625
 And each step asks for the least it needs.
 
-118
-00:07:36.805 --> 00:07:41.092
+109
+00:07:07.625 --> 00:07:11.912
 Creating groups needs group write rights
 with the Groups Administrator role.
 
-119
-00:07:41.092 --> 00:07:45.579
+110
+00:07:11.912 --> 00:07:16.399
 Testing a rule with Graph needs only
 read rights when you supply the rule.
 
-120
-00:07:45.579 --> 00:07:48.504
+111
+00:07:16.399 --> 00:07:19.324
 Pausing administrative
 units is the heavier one:
 
-121
-00:07:48.504 --> 00:07:51.500
+112
+00:07:19.324 --> 00:07:22.320
 it needs the Privileged
 Role Administrator.
 
-122
-00:07:55.250 --> 00:07:59.388
+113
+00:07:26.070 --> 00:07:30.208
 Lab 1 needs only a laptop
 with PowerShell 7 and Pester.
 
-123
-00:07:59.388 --> 00:08:03.176
-First you run Learn's own pause
-and resume scripts against a fake
+114
+00:07:30.208 --> 00:07:34.308
+First you lint the rule table
+from the HR-Driven Identity book.
 
-124
-00:08:03.176 --> 00:08:06.750
-tenant with two groups, one of
-them already paused for review.
+115
+00:07:34.308 --> 00:07:38.839
+Two rows come back: a finding on the
+rule that reads a display-name attribute
 
-125
-00:08:06.750 --> 00:08:11.075
-After the resume, both are on:
-the held group came back to life.
+116
+00:07:38.839 --> 00:07:40.227
+instead of a coded slot,
 
-126
-00:08:11.075 --> 00:08:15.250
-Try an unknown cloud name and
-you'll see it sign in to worldwide.
+117
+00:07:40.227 --> 00:07:43.882
+and a note on the direct reports
+rule, which can't carry guards.
 
-127
-00:08:15.250 --> 00:08:18.436
-Then you lint the HR-Driven
-Identity book's table
+118
+00:07:43.882 --> 00:07:47.033
+Then you evaluate a rule
+over the fictional people.
 
-128
-00:08:18.436 --> 00:08:21.463
-and evaluate a rule over
-the fictional people.
+119
+00:07:47.033 --> 00:07:50.920
+The disabled account and the guest
+stay out, because of the guards,
 
-129
-00:08:21.463 --> 00:08:24.203
-The disabled account
-and the guest stay out,
-
-130
-00:08:24.203 --> 00:08:27.610
+120
+00:07:50.920 --> 00:07:54.590
 and the lower-case code gets
-in, just as Learn says.
+in, just as Learn says it will.
 
-131
-00:08:30.020 --> 00:08:32.382
+121
+00:07:58.340 --> 00:08:00.702
 Now the part that makes
 the case for all this.
 
-132
-00:08:32.382 --> 00:08:37.608
+122
+00:08:00.702 --> 00:08:05.928
 Run the pull request check and it
 passes cleanly: six rules, no findings.
 
-133
-00:08:37.608 --> 00:08:40.524
+123
+00:08:05.928 --> 00:08:08.844
 Then break a rule on purpose
 by deleting the clause
 
-134
-00:08:40.524 --> 00:08:43.371
+124
+00:08:08.844 --> 00:08:11.691
 that keeps out empty worker
 types, and run it again.
 
-135
-00:08:43.371 --> 00:08:45.070
+125
+00:08:11.691 --> 00:08:13.390
 Three things fire at once.
 
-136
-00:08:45.070 --> 00:08:49.604
+126
+00:08:13.390 --> 00:08:17.924
 The linter flags the empty-slot risk,
 the membership test for the worker with
 
-137
-00:08:49.604 --> 00:08:53.995
+127
+00:08:17.924 --> 00:08:22.315
 no type fails, and the shadow diff shows
 exactly who the change would let in.
 
-138
-00:08:53.995 --> 00:08:58.640
+128
+00:08:22.315 --> 00:08:27.290
 Put the clause back, run the whole
-suite, and seventy tests pass.
+suite, and fifty-seven tests pass.
 
-139
-00:09:02.390 --> 00:09:05.375
+129
+00:08:31.040 --> 00:08:34.025
 Lab 2 moves to a test
 tenant, never production,
 
-140
-00:09:05.375 --> 00:09:08.603
+130
+00:08:34.025 --> 00:08:37.253
 with fictional users that
 match the population.
 
-141
-00:09:08.603 --> 00:09:13.640
+131
+00:08:37.253 --> 00:08:42.290
 You create the groups from the library,
 paused, so they can't move anyone yet.
 
-142
-00:09:13.640 --> 00:09:17.623
+132
+00:08:42.290 --> 00:08:46.273
 Then the key step: ask Graph's own
 evaluator about every test user,
 
-143
-00:09:17.623 --> 00:09:20.328
+133
+00:08:46.273 --> 00:08:48.978
 and compare its answer
 with the offline one.
 
-144
-00:09:20.328 --> 00:09:24.228
+134
+00:08:48.978 --> 00:08:52.878
 Any disagreement is a finding
 against the offline evaluator.
 
-145
-00:09:24.228 --> 00:09:27.552
+135
+00:08:52.878 --> 00:08:56.202
 Next you turn processing on
 and diff two rules live.
 
-146
-00:09:27.552 --> 00:09:31.205
+136
+00:08:56.202 --> 00:08:59.855
 Finally you drill an incident:
 take the record, pause,
 
-147
-00:09:31.205 --> 00:09:35.810
+137
+00:08:59.855 --> 00:09:04.460
 resume the critical groups by
 name, then back everything out.
 
-148
-00:09:39.560 --> 00:09:42.522
+138
+00:09:08.210 --> 00:09:11.172
 Each of these dangers has a
 guard, and most of them are
 
-149
-00:09:42.522 --> 00:09:45.898
+139
+00:09:11.172 --> 00:09:14.548
 rules that run every time rather
 than someone remembering.
 
-150
-00:09:45.898 --> 00:09:49.233
+140
+00:09:14.548 --> 00:09:17.883
 The quietest one is a guard
 hidden inside an "or":
 
-151
-00:09:49.233 --> 00:09:53.973
+141
+00:09:17.883 --> 00:09:22.623
 the rule looks right, a text search
 agrees, and guests get in anyway.
 
-152
-00:09:53.973 --> 00:09:57.769
+142
+00:09:22.623 --> 00:09:26.419
 The loudest is a change that moves
 hundreds of people within hours,
 
-153
-00:09:57.769 --> 00:10:00.598
+143
+00:09:26.419 --> 00:09:29.248
 which is why every change
 carries tests and a diff.
 
-154
-00:10:00.598 --> 00:10:04.297
+144
+00:09:29.248 --> 00:09:32.947
 After an incident, resuming
 everything is its own danger.
 
-155
-00:10:04.297 --> 00:10:10.220
+145
+00:09:32.947 --> 00:09:38.870
 And one row stays honestly open: agents'
 accounts, until Learn names the property.
 
-156
-00:10:13.970 --> 00:10:15.320
+146
+00:09:42.620 --> 00:09:43.970
 Here's what done looks like.
 
-157
-00:10:15.320 --> 00:10:19.795
+147
+00:09:43.970 --> 00:09:48.445
 Every group has a file with an owner and
 tests for someone in and someone out.
 
-158
-00:10:19.795 --> 00:10:23.945
+148
+00:09:48.445 --> 00:09:52.595
 The pull request check passes, with
 its diff in front of the reviewer.
 
-159
-00:10:23.945 --> 00:10:29.040
+149
+00:09:52.595 --> 00:09:57.690
 Every rule starts with the two guards,
 avoids memberOf and display-name attributes,
 
-160
-00:10:29.040 --> 00:10:31.920
+150
+00:09:57.690 --> 00:10:00.570
 and makes a written
 decision about empty slots.
 
-161
-00:10:31.920 --> 00:10:35.820
+151
+00:10:00.570 --> 00:10:04.470
 The offline evaluator agrees
 with Graph's for every test.
 
-162
-00:10:35.820 --> 00:10:40.357
+152
+00:10:04.470 --> 00:10:09.007
 And the incident runbook takes its record
 before pausing and resumes from it.
 
-163
-00:10:40.357 --> 00:10:44.783
+153
+00:10:09.007 --> 00:10:13.433
 Next, Chapter 5 builds Lifecycle
 Workflows custom extensions.
 
-164
-00:10:44.783 --> 00:10:45.940
+154
+00:10:13.433 --> 00:10:14.590
 Thanks for watching.

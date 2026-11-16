@@ -29,7 +29,7 @@ The Google Cloud collector behind the guide's [G5 Google Cloud](../../../books/g
 ## Narrated tour
 {{< fmw-video DW_PN_05_Google_Personalized_Service_Health_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-05-google-personalized-service-health) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-05-google-personalized-service-health) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-05-google-personalized-service-health/DW_PN_05_Google_Personalized_Service_Health_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-05-google-personalized-service-health/DW_PN_05_Google_Personalized_Service_Health_Narrated.vtt). Recorded on November 12, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-05-google-personalized-service-health) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-pn-05-google-personalized-service-health) (about 11 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-05-google-personalized-service-health/DW_PN_05_Google_Personalized_Service_Health_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-pn-05-google-personalized-service-health/DW_PN_05_Google_Personalized_Service_Health_Narrated.vtt). Recorded on November 16, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
