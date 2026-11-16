@@ -10,7 +10,7 @@ Why do contractors need their own code? Because they aren't in the HR system's s
 
 ## Slide 3 — Which cloud, for these reads and writes
 
-Which cloud? The records reach Entra ID through the contractor source's own provisioning app, through the same middleware employees use. Learn's feature availability page lists API-driven inbound provisioning as available in Azure Government, and access reviews too; GCC uses the commercial service. The bulk upload page itself has no national cloud table. The middleware accepts only the three Graph endpoints, and the reconciliation reads users from the cloud you name. There's no default.
+Which cloud? The records reach Entra ID through the contractor source's own provisioning app, through the same middleware employees use. API-driven inbound provisioning and access reviews are part of the commercial Entra ID service, which GCC uses. The middleware accepts only the Graph host, and the reconciliation reads users from the cloud you name. There's no default.
 
 ## Slide 4 — What Microsoft gives you
 
@@ -38,11 +38,11 @@ The chapter's tests are seven, in the writers-and-contractors test file. They ch
 
 ## Slide 10 — The verified facts
 
-The verified facts, each read on November first. Bulk upload is a version one point oh API: fifty operations a request, forty requests a second, and an accepted response pointing to the logs. Its least permission is the owned-by upload permission. The review settings and the access review procedure are both documented, and access reviews are available in Azure Government. The requestor manager subject set is documented for approval stages. And the policy update cmdlet needs the entitlement management read-write permission.
+The verified facts, each read on November first. Bulk upload is a version one point oh API: fifty operations a request, forty requests a second, and an accepted response pointing to the logs. Its least permission is the owned-by upload permission. The review settings and the access review procedure are both documented. The requestor manager subject set is documented for approval stages. And the policy update cmdlet needs the entitlement management read-write permission.
 
-## Slide 11 — Where Learn differs or says nothing
+## Slide 11 — Where Learn says nothing
 
-Two places Learn's pages differ or say nothing. First, the requestor's manager as a reviewer: Learn documents that subject set for approvals, and the portal offers Manager as a reviewer, but no page shows it in review settings. Lab 2 confirms it. Second, bulk upload in the national clouds: the API page has no table, and the program reads the feature availability page as saying it's available there. And remember the code is illustrative: it runs on fictional data and doesn't prove a tenant maps the same attributes.
+One place Learn's pages say nothing: the requestor's manager as a reviewer. Learn documents that subject set for approvals, and the portal offers Manager as a reviewer, but no page shows it in review settings, so Lab 2 confirms it in a test tenant before the program relies on it. And remember the code is illustrative: it runs on fictional data and doesn't prove a tenant maps the same attributes.
 
 ## Slide 12 — What the output proves, and for whom
 

@@ -1,44 +1,46 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.575
-To test rules without a tenant,
-the code needs to read them.
+00:00:00.050 --> 00:00:02.787
+The linter is where the
+guards become enforceable.
 
 2
-00:00:03.575 --> 00:00:08.363
-The parser follows the grammar on
-Learn's syntax page: the operators,
+00:00:02.787 --> 00:00:05.810
+Its most important check
+is that the two guards sit
 
 3
-00:00:08.363 --> 00:00:13.237
-lists, collections, nulls, escaped
-quotes and the order of precedence.
+00:00:05.810 --> 00:00:08.688
+at the top of the rule,
+ANDed with everything else.
 
 4
-00:00:13.237 --> 00:00:15.666
-It even accepts the en dash that some of
+00:00:08.688 --> 00:00:11.554
+A guard tucked inside an
+"or" protects nothing,
 
 5
-00:00:15.666 --> 00:00:18.550
-Learn's own examples
-print instead of a hyphen.
+00:00:11.554 --> 00:00:15.738
+yet a simple text search would still
+find it and call the rule fine.
 
 6
-00:00:18.550 --> 00:00:23.234
-The evaluator then checks a parsed
-rule against one fictional person,
+00:00:15.738 --> 00:00:19.126
+That's why the linter works on
+the parsed rule, not the text.
 
 7
-00:00:23.234 --> 00:00:25.738
-ignoring case, just as the engine does.
+00:00:19.126 --> 00:00:22.450
+Another check is subtler:
+"not equal to contractor"
 
 8
-00:00:25.738 --> 00:00:30.888
-It's honest about its limits: anything it
-can't evaluate faithfully, it refuses.
+00:00:22.450 --> 00:00:25.612
+also lets in someone whose
+worker type is empty.
 
 9
-00:00:30.888 --> 00:00:35.470
-It's a test tool, not the engine,
-and Lab 2 checks it against Graph's.
+00:00:25.612 --> 00:00:28.440
+The linter flags it,
+and the owner decides.

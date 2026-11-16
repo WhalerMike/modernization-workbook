@@ -6,48 +6,48 @@ Here's what Learn gives you:
 one page with three workflows.
 
 2
-00:00:03.612 --> 00:00:06.545
-One signs in and runs
-a single Azure command,
+00:00:03.612 --> 00:00:07.754
+The two for commercial Azure
+are the ones a GCC estate uses:
 
 3
-00:00:06.545 --> 00:00:10.375
-one adds PowerShell, and one
-signs in to Azure Government.
+00:00:07.754 --> 00:00:12.587
+one signs in and runs a single Azure
+command, and one adds PowerShell.
 
 4
-00:00:10.375 --> 00:00:13.061
+00:00:12.587 --> 00:00:15.274
 Each job asks for exactly one permission,
 
 5
-00:00:13.061 --> 00:00:17.800
+00:00:15.274 --> 00:00:20.013
 the right to request a sign-in token,
 and keeps its identifiers in secrets.
 
 6
-00:00:17.800 --> 00:00:19.116
+00:00:20.013 --> 00:00:21.328
 Before any of it works,
 
 7
-00:00:19.116 --> 00:00:23.063
+00:00:21.328 --> 00:00:25.275
 the app needs a federated credential
 that trusts the repository.
 
 8
-00:00:23.063 --> 00:00:26.133
+00:00:25.275 --> 00:00:28.346
 Those workflows only
 exist inside the web page,
 
 9
-00:00:26.133 --> 00:00:30.227
+00:00:28.346 --> 00:00:32.440
 so the repository pins the page
 and the action's own definition,
 
 10
-00:00:30.227 --> 00:00:34.400
+00:00:32.440 --> 00:00:36.613
 and a linter checks each workflow
 offline against twelve rules.
 
 11
-00:00:34.400 --> 00:00:36.600
+00:00:36.613 --> 00:00:38.810
 Nothing runs, nothing signs in.

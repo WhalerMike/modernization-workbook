@@ -16,31 +16,31 @@ configuration read permission,
 and only the create needs write.
 
 4
-00:00:11.050 --> 00:00:15.488
+00:00:11.050 --> 00:00:15.525
 Learn lists all of them for the
-worldwide and both US Government levels.
+global service, which GCC uses.
 
 5
-00:00:15.488 --> 00:00:18.738
+00:00:15.525 --> 00:00:18.775
 The chapter is just as careful
 about what Learn doesn't say.
 
 6
-00:00:18.738 --> 00:00:21.717
+00:00:18.775 --> 00:00:21.754
 There's no Graph equivalent
 of the Migrate button,
 
 7
-00:00:21.717 --> 00:00:24.188
+00:00:21.754 --> 00:00:24.225
 so the second lab
 compares the two by hand.
 
 8
-00:00:24.188 --> 00:00:28.615
-And no Learn page confirms the
-analytics import itself works in GCC
+00:00:24.225 --> 00:00:28.099
+And although one setting can now
+be changed through its own call,
 
 9
-00:00:28.615 --> 00:00:33.260
-High or the Defense cloud, so that
-gets confirmed in a test tenant first.
+00:00:28.099 --> 00:00:31.010
+the code still never
+updates a policy, by design.

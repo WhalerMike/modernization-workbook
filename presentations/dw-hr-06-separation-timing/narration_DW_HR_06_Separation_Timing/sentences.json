@@ -159,38 +159,6 @@
    "One open point: Lab 2 confirms which task writes the session update."
   ]
  ],
- "6": [
-  [
-   0.05,
-   3.038,
-   "Nine rules turn the intervals into a work list."
-  ],
-  [
-   3.087,
-   8.213,
-   "S T 1 flags a block slower than the threshold, which is P S 4's organization-defined period; the sample is four hours."
-  ],
-  [
-   11.3,
-   3.1,
-   "S T 2 flags a leaver who was never blocked."
-  ],
-  [
-   14.4,
-   8.562,
-   "S T 3 flags a separation entered more than three days late: a finding if nothing caught it, a warning if an on-demand run did."
-  ],
-  [
-   22.962,
-   7.938,
-   "S T 4 flags an uncollected card revoked more than eighteen hours after notice, from FIPS 201-3."
-  ],
-  [
-   30.9,
-   3.712,
-   "And S T 5 flags a re-enable that H R didn't cancel."
-  ]
- ],
  "7": [
   [
    0.05,
@@ -223,28 +191,6 @@
    "The agency sets the period, and the tenant schedule is part of it, so set them together."
   ]
  ],
- "8": [
-  [
-   0.05,
-   11.8,
-   "The read needs two permissions, each the least privileged for its call: audit log read for the directory audits, and the Lifecycle Workflows reports read permission for a workflow's processing results."
-  ],
-  [
-   11.85,
-   8.887,
-   "Both come from Microsoft Graph, on the endpoint for your cloud, and both A P I's are listed for the U S Government L4 and L5 clouds."
-  ],
-  [
-   20.738,
-   4.287,
-   "Lifecycle Workflows is available in Azure for U S Government."
-  ],
-  [
-   25.025,
-   5.787,
-   "The card system's and Intune's records arrive as exports; the code reads neither service."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -265,43 +211,6 @@
    21.938,
    8.037,
    "It runs against fictional leavers and exports, so review it and run Lab 2 in a test tenant before it reports a real leaver."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   4.65,
-   "These are the facts behind the code, each read on Learn on November first."
-  ],
-  [
-   4.7,
-   2.913,
-   "The four audit activities are generally available."
-  ],
-  [
-   7.612,
-   8.463,
-   "The directory audits list needs audit log read and filters on equals, greater or equal, less or equal, and starts with."
-  ],
-  [
-   16.075,
-   6.963,
-   "The processing results list needs the reports read permission, and both are in the L4 and L5 clouds."
-  ],
-  [
-   23.038,
-   4.075,
-   "The schedule runs every three hours by default with a three-day catch-up."
-  ],
-  [
-   27.113,
-   2.75,
-   "The disable task excludes role holders."
-  ],
-  [
-   29.863,
-   3.675,
-   "And Lifecycle Workflows is available for U S Government."
   ]
  ],
  "11": [
@@ -329,43 +238,6 @@
    23.375,
    8.062,
    "Rule S T 3 assumes the standard trigger, so a workflow on version two skips a late separation even inside three days."
-  ]
- ],
- "12": [
-  [
-   0.05,
-   1.113,
-   "What does this prove?"
-  ],
-  [
-   1.163,
-   11.412,
-   "Each leaver's two intervals against the organization-defined period, which is personnel termination and disabling accounts, P S 4 and A C 2 enhancement 3, in the Moderate baseline."
-  ],
-  [
-   12.575,
-   5.65,
-   "The I S S O keeps each run's outputs with the manifest and the exports behind them."
-  ],
-  [
-   18.225,
-   3.475,
-   "The same intervals cover contractors under P S 7."
-  ],
-  [
-   21.7,
-   6.075,
-   "Rule S T 4 shows FIPS 201-3's eighteen-hour card rule."
-  ],
-  [
-   27.775,
-   3.775,
-   "And the on-demand emergency path supports high-risk disables."
-  ],
-  [
-   31.55,
-   3.438,
-   "The summary's percentiles feed Chapter 7's metrics."
   ]
  ],
  "13": [
@@ -610,6 +482,134 @@
    33.938,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.038,
+   "Nine rules turn the intervals into a work list."
+  ],
+  [
+   3.087,
+   8.213,
+   "S T 1 flags a block slower than the threshold, which is P S 4's organization-defined period; the sample is four hours."
+  ],
+  [
+   11.3,
+   3.1,
+   "S T 2 flags a leaver who was never blocked."
+  ],
+  [
+   14.4,
+   8.562,
+   "S T 3 flags a separation entered more than three days late: a finding if nothing caught it, a warning if an on-demand run did."
+  ],
+  [
+   22.962,
+   6.763,
+   "S T 4 flags an uncollected card revoked more than eighteen hours after notice, from fips two-oh-one-three."
+  ],
+  [
+   29.725,
+   3.712,
+   "And S T 5 flags a re-enable that H R didn't cancel."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   11.8,
+   "The read needs two permissions, each the least privileged for its call: audit log read for the directory audits, and the Lifecycle Workflows reports read permission for a workflow's processing results."
+  ],
+  [
+   11.85,
+   8.05,
+   "Both come from Microsoft Graph, on the worldwide endpoint G C C uses, and both A P I's are listed for the global service."
+  ],
+  [
+   19.9,
+   6.537,
+   "Lifecycle Workflows is part of Microsoft Entra I D Governance, available in G C C."
+  ],
+  [
+   26.438,
+   5.787,
+   "The card system's and Intune's records arrive as exports; the code reads neither service."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.65,
+   "These are the facts behind the code, each read on Learn on November first."
+  ],
+  [
+   4.7,
+   2.913,
+   "The four audit activities are generally available."
+  ],
+  [
+   7.612,
+   8.463,
+   "The directory audits list needs audit log read and filters on equals, greater or equal, less or equal, and starts with."
+  ],
+  [
+   16.075,
+   6.088,
+   "The processing results list needs the reports read permission, and both are listed for the global service."
+  ],
+  [
+   22.163,
+   4.075,
+   "The schedule runs every three hours by default with a three-day catch-up."
+  ],
+  [
+   26.238,
+   2.75,
+   "The disable task excludes role holders."
+  ],
+  [
+   28.988,
+   3.763,
+   "And Lifecycle Workflows is available in G C C."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.113,
+   "What does this prove?"
+  ],
+  [
+   1.163,
+   11.412,
+   "Each leaver's two intervals against the organization-defined period, which is personnel termination and disabling accounts, P S 4 and A C 2 enhancement 3, in the Moderate baseline."
+  ],
+  [
+   12.575,
+   5.65,
+   "The I S S O keeps each run's outputs with the manifest and the exports behind them."
+  ],
+  [
+   18.225,
+   3.475,
+   "The same intervals cover contractors under P S 7."
+  ],
+  [
+   21.7,
+   4.438,
+   "Rule S T 4 shows fips two-oh-one-three's eighteen-hour card rule."
+  ],
+  [
+   26.137,
+   3.775,
+   "And the on-demand emergency path supports high-risk disables."
+  ],
+  [
+   29.913,
+   3.438,
+   "The summary's percentiles feed Chapter 7's metrics."
   ]
  ]
 }

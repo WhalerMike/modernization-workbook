@@ -6,41 +6,36 @@ Each of these dangers
 has a guard in the code.
 
 2
-00:00:02.525 --> 00:00:07.962
-The two that bite this estate first are
-treating GCC as a government dot-u-s cloud,
+00:00:02.525 --> 00:00:07.348
+The two that bite this estate first
+are treating GCC as a dot-u-s cloud,
 
 3
-00:00:07.962 --> 00:00:11.587
+00:00:07.348 --> 00:00:11.138
 and a cloud name that silently
-defaults to worldwide.
+falls back to a default.
 
 4
-00:00:11.587 --> 00:00:15.304
+00:00:11.138 --> 00:00:14.853
 The most dangerous is a
 token sent to the wrong host,
 
 5
-00:00:15.304 --> 00:00:18.313
+00:00:14.853 --> 00:00:17.862
 so every address, on
 every page, is checked.
 
 6
-00:00:18.313 --> 00:00:22.036
+00:00:17.862 --> 00:00:21.580
 Others creep in slowly:
 permissions the job doesn't need,
 
 7
-00:00:22.036 --> 00:00:26.974
+00:00:21.580 --> 00:00:26.105
 a call added without its permission,
-or a beta property renamed overnight.
+headers dropped after page one,
 
 8
-00:00:26.974 --> 00:00:31.808
-And the subtlest is an API that answers
-where the feature isn't offered,
-
-9
-00:00:31.808 --> 00:00:34.780
-handing you a clean,
-empty, and wrong result.
+00:00:26.105 --> 00:00:30.290
+retries that never stop, or a
+beta property renamed overnight.

@@ -63,33 +63,6 @@
    "Per-user binding coverage is the validation kit's job; this chapter checks the tenant's settings, which that kit doesn't read."
   ]
  ],
- "3": [
-  [
-   0.05,
-   2.0,
-   "Which cloud you're in changes the answer."
-  ],
-  [
-   2.05,
-   12.012,
-   "For interactive sign-in, a CRL must stay under twenty megabytes in public Entra I D, which includes G C C, and forty-five in Azure U S Government, which includes G C C High."
-  ],
-  [
-   14.062,
-   2.85,
-   "Either way it must download within ten seconds."
-  ],
-  [
-   16.913,
-   6.1,
-   "So the expected-configuration file holds both sets, and the check takes a cloud name with no default."
-  ],
-  [
-   23.012,
-   6.312,
-   "Learn doesn't say which megabyte it means, so the configuration reads the decimal one, the stricter reading."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -235,38 +208,6 @@
    "Learn's prerequisite is wider, so Lab 2 confirms the root's revocation path."
   ]
  ],
- "9": [
-  [
-   0.05,
-   3.325,
-   "The verified facts, all read on November first."
-  ],
-  [
-   3.375,
-   9.15,
-   "The CRL limits are generally available: twenty and forty-five megabytes for interactive sign-in, a ten-second download, and larger service limits."
-  ],
-  [
-   12.525,
-   3.737,
-   "Entra checks CRLs up to ten CAs toward the root."
-  ],
-  [
-   16.262,
-   9.175,
-   "The trust store, the certificate method, the strengths and the Conditional Access policies are all in Graph version one point oh, with the permissions you just saw."
-  ],
-  [
-   25.438,
-   5.513,
-   "The certificate method's bindings include the low-affinity principal name and email fields."
-  ],
-  [
-   30.95,
-   3.663,
-   "And both features are available in Azure for U S Government."
-  ]
- ],
  "10": [
   [
    0.05,
@@ -385,81 +326,7 @@
    "The check in the next step reads a different file, the fictional tenant's own measurements, where one CRL is eighteen and a half million bytes and took eleven point four seconds."
   ]
  ],
- "14": [
-  [
-   0.05,
-   5.825,
-   "Step three checks the fictional tenant for G C C, with its twenty-million-byte limit."
-  ],
-  [
-   5.875,
-   3.975,
-   "Five findings and seven warnings, and the exit code is two."
-  ],
-  [
-   9.85,
-   1.975,
-   "Read the story in the fixture."
-  ],
-  [
-   11.825,
-   11.537,
-   "Issuing CA 2 was renewed, so the thumbprint the card program expects is gone from the trust store, and the renewed CA's CRL is large, slow and served over HTTPS."
-  ],
-  [
-   23.363,
-   2.975,
-   "A legacy intermediate has no CRL at all."
-  ],
-  [
-   26.337,
-   4.625,
-   "The mode rule maps the wrong OID, so piv is single-factor."
-  ],
-  [
-   30.962,
-   3.35,
-   "And the phishing-resistant policy is still report-only."
-  ]
- ],
  "15": [
-  [
-   0.05,
-   6.275,
-   "Step four runs the same tenant for G C C High, where the limit is forty-five million bytes."
-  ],
-  [
-   6.325,
-   2.525,
-   "Now it's five findings and six warnings."
-  ],
-  [
-   8.85,
-   7.013,
-   "The same eighteen and a half million bytes is under eighty percent of the larger limit, so the early warning drops away."
-  ],
-  [
-   15.863,
-   3.95,
-   "But the eleven-second download is a finding in every cloud."
-  ],
-  [
-   19.812,
-   2.6,
-   "That's why the cloud is a required argument."
-  ],
-  [
-   22.413,
-   3.4,
-   "Step five runs the tests: fifty-seven pass."
-  ],
-  [
-   25.812,
-   1.837,
-   "Then delete the output folder."
-  ]
- ],
- "16": [
   [
    0.05,
    7.088,
@@ -501,7 +368,7 @@
    "Finally, back everything out."
   ]
  ],
- "17": [
+ "16": [
   [
    0.05,
    2.312,
@@ -543,7 +410,7 @@
    "And a report-only policy is a requirement only on paper."
   ]
  ],
- "18": [
+ "17": [
   [
    0.05,
    1.35,
@@ -583,6 +450,107 @@
    32.388,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.475,
+   "Learn gives the CRL limits for public Entra I D, which includes G C C."
+  ],
+  [
+   5.525,
+   9.25,
+   "For interactive sign-in, a CRL must stay under twenty megabytes, and it must download within ten seconds; the service-side limit is sixty-five."
+  ],
+  [
+   14.775,
+   6.688,
+   "The expected-configuration file holds the limits under the cloud name, and the check takes that name with no default."
+  ],
+  [
+   21.462,
+   6.312,
+   "Learn doesn't say which megabyte it means, so the configuration reads the decimal one, the stricter reading."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.325,
+   "The verified facts, all read on November first."
+  ],
+  [
+   3.375,
+   8.387,
+   "The CRL limits are generally available: twenty megabytes for interactive sign-in, a ten-second download, and a larger service limit."
+  ],
+  [
+   11.762,
+   3.737,
+   "Entra checks CRLs up to ten CAs toward the root."
+  ],
+  [
+   15.5,
+   9.175,
+   "The trust store, the certificate method, the strengths and the Conditional Access policies are all in Graph version one point oh, with the permissions you just saw."
+  ],
+  [
+   24.675,
+   5.513,
+   "The certificate method's bindings include the low-affinity principal name and email fields."
+  ],
+  [
+   30.188,
+   4.013,
+   "And both features are part of the commercial service G C C uses."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.825,
+   "Step three checks the fictional tenant for G C C, with its twenty-million-byte limit."
+  ],
+  [
+   5.875,
+   3.975,
+   "Five findings and seven warnings, and the exit code is two."
+  ],
+  [
+   9.85,
+   1.975,
+   "Read the story in the fixture."
+  ],
+  [
+   11.825,
+   11.537,
+   "Issuing CA 2 was renewed, so the thumbprint the card program expects is gone from the trust store, and the renewed CA's CRL is large, slow and served over HTTPS."
+  ],
+  [
+   23.363,
+   2.975,
+   "A legacy intermediate has no CRL at all."
+  ],
+  [
+   26.337,
+   4.625,
+   "The mode rule maps the wrong OID, so piv is single-factor."
+  ],
+  [
+   30.962,
+   3.35,
+   "And the phishing-resistant policy is still report-only."
+  ],
+  [
+   34.312,
+   3.288,
+   "Step four runs the tests: fifty-seven pass."
+  ],
+  [
+   37.6,
+   1.837,
+   "Then delete the output folder."
   ]
  ]
 }

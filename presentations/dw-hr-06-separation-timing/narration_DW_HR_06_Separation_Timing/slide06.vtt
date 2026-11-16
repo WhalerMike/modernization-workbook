@@ -31,16 +31,16 @@ a finding if nothing caught it, a
 warning if an on-demand run did.
 
 7
-00:00:22.962 --> 00:00:26.722
+00:00:22.962 --> 00:00:25.826
 S T 4 flags an uncollected
 card revoked more
 
 8
-00:00:26.722 --> 00:00:30.900
+00:00:25.826 --> 00:00:29.725
 than eighteen hours after
 notice, from FIPS 201-3.
 
 9
-00:00:30.900 --> 00:00:34.680
+00:00:29.725 --> 00:00:33.500
 And S T 5 flags a re-enable
 that HR didn't cancel.

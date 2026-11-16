@@ -10,7 +10,7 @@ Why does this gate come first? Because every later gate leans on it. The guide's
 
 ## Slide 3 — Which cloud, for this read
 
-Which cloud matters for this read. The scan reads two Graph collections, the directory audits and the provisioning log, and both are listed for the global service and for both US Government levels. G C C uses the global Graph host; G C C High and level 5 have their own. The export script takes the cloud as an argument and has no default. And Entra keeps audit records for only thirty days with P1 or P2, so the export has to run on a schedule well inside that window, with the logs already flowing to the agency's own store.
+Which cloud matters for this read. The scan reads two Graph collections, the directory audits and the provisioning log, and both are listed for the global service. G C C uses the global service's Graph host. The export script takes the cloud as an argument and has no default. And Entra keeps audit records for only thirty days with P1 or P2, so the export has to run on a schedule well inside that window, with the logs already flowing to the agency's own store.
 
 ## Slide 4 — What Microsoft Learn gives you
 
@@ -42,7 +42,7 @@ The tests hold all of this in place. Nine belong to this chapter: the shipped re
 
 ## Slide 11 — The verified facts, and where Learn is silent
 
-The verified facts, each read on November first. The directory audits list is version 1.0 and listed for both government levels, with the filter operators the saved queries use. The six user activities come from the Core Directory reference. Retention is thirty days, and it isn't retroactive. And two places Learn says nothing are recorded, so a later edit doesn't loosen the code: the display name each property gets in the modified properties, and the service principal each service writes as.
+The verified facts, each read on November first. The directory audits list is version 1.0, on the Graph host GCC uses, with the filter operators the saved queries use. The six user activities come from the Core Directory reference. Retention is thirty days, and it isn't retroactive. And two places Learn says nothing are recorded, so a later edit doesn't loosen the code: the display name each property gets in the modified properties, and the service principal each service writes as.
 
 ## Slide 12 — What the register and scan prove, and for whom
 

@@ -39,10 +39,13 @@ const WORKBOOKS = {
   npi: { dir: "docs/project-plans/developer-workbooks/non-person-identity", name: "Building Non-Person Identity", kit: "examples/non-person-identity" },
   ttm: { dir: "docs/project-plans/developer-workbooks/ticket-to-machine", name: "Building Ticket-to-Machine", kit: "examples/servicenow-sailpoint" },
   hr: { dir: "docs/project-plans/developer-workbooks/hr-driven-identity", name: "Building HR-Driven Identity", kit: "examples/hr-lifecycle" },
-  pn: { dir: "docs/project-plans/developer-workbooks/provider-notices", name: "Building Provider Notices", kit: "examples/provider-notices" },
+  pn: { dir: "docs/project-plans/developer-workbooks/provider-notices", name: "Building Provider Notices", kit: "examples/provider-notices", approved: true },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b/i;
+// The workbook is Microsoft 365 GCC Moderate with commercial Azure only: no other Microsoft cloud, and no
+// defense cloud or defense policy source, on a slide or in the notes.
+const OUT_OF_SCOPE = /GCC[ -]?High|\bGCCH\b|\bDoD\b|USGovDoD|Azure Government|AzureUSGovernment|\busgov|\bCAC\b|Common Access Card|Department of Defense|\bCMMC\b|\bIL[456]\b|Impact Level [456]|\bOC3\b|Defense Cloud/i;
 
 // The chapter page: title, review status and footnotes ([^name]: text, one line each).
 function readChapter(wb, n) {
@@ -78,7 +81,11 @@ module.exports = function build(spec) {
   const TOP = 1.45, LIMIT = 6.5, X = 0.6, W = 12.15, GAP = 0.2;
   const errors = [];
   const fail = (m) => errors.push(m);
-  const neutral = (what, t) => { if (BANNED.test(t)) fail(`neutrality: ${what}: ${String(t).slice(0, 90)}`); };
+  const neutral = (what, t) => {
+    if (BANNED.test(t)) fail(`neutrality: ${what}: ${String(t).slice(0, 90)}`);
+    const o = String(t).match(OUT_OF_SCOPE);
+    if (o) fail(`out of scope (GCC Moderate only): ${what}: "${o[0]}"`);
+  };
   const lh = (pt) => pt / 72 * 1.2;
   const nlines = (t, w, pt, k = 0.5) => String(t).split("\n").reduce((a, p) => a + Math.max(1, Math.ceil((p.length * k * pt / 72) / Math.max(0.3, w))), 0);
 
@@ -327,7 +334,7 @@ module.exports = function build(spec) {
     txt(sl, "Tour map", [
       { text: spec.map || "", options: { color: HEX.navy, bold: true, breakLine: true } },
       // A draft chapter says so first: the tour is of a page still awaiting the owner's review.
-      ch.status === "draft"
+      ch.status === "draft" && !wb.approved
         ? { text: "Draft chapter, awaiting the owner's review  ·  Illustrative code, tested against fixtures", options: { color: HEX.red, bold: true, breakLine: true } }
         : { text: `Chapter review status: ${ch.review}  ·  Illustrative code, tested against fixtures`, options: { color: HEX.ink, breakLine: true } },
       { text: `Date Code ${DATECODE}`, options: { color: HEX.teal, bold: true } },

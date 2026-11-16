@@ -58,38 +58,6 @@
    "Which register to use is the governance body's decision; the code works with whichever one is named."
   ]
  ],
- "3": [
-  [
-   0.05,
-   0.9,
-   "Which cloud?"
-  ],
-  [
-   0.95,
-   7.338,
-   "The records reach Entra I D through the contractor source's own provisioning app, through the same middleware employees use."
-  ],
-  [
-   8.287,
-   10.787,
-   "Learn's feature availability page lists A P I-driven inbound provisioning as available in Azure Government, and access reviews too; G C C uses the commercial service."
-  ],
-  [
-   19.075,
-   3.788,
-   "The bulk upload page itself has no national cloud table."
-  ],
-  [
-   22.863,
-   6.588,
-   "The middleware accepts only the three Graph endpoints, and the reconciliation reads users from the cloud you name."
-  ],
-  [
-   29.45,
-   1.175,
-   "There's no default."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -245,65 +213,6 @@
    27.837,
    5.0,
    "All fifty-seven tests in the kit pass with no package, tenant or network."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   3.575,
-   "The verified facts, each read on November first."
-  ],
-  [
-   3.625,
-   9.988,
-   "Bulk upload is a version one point oh A P I: fifty operations a request, forty requests a second, and an accepted response pointing to the logs."
-  ],
-  [
-   13.613,
-   3.237,
-   "Its least permission is the owned-by upload permission."
-  ],
-  [
-   16.85,
-   7.838,
-   "The review settings and the access review procedure are both documented, and access reviews are available in Azure Government."
-  ],
-  [
-   24.688,
-   4.312,
-   "The requestor manager subject set is documented for approval stages."
-  ],
-  [
-   29.0,
-   4.725,
-   "And the policy update cmdlet needs the entitlement management read-write permission."
-  ]
- ],
- "11": [
-  [
-   0.05,
-   2.888,
-   "Two places Learn's pages differ or say nothing."
-  ],
-  [
-   2.938,
-   11.15,
-   "First, the requestor's manager as a reviewer: Learn documents that subject set for approvals, and the portal offers Manager as a reviewer, but no page shows it in review settings."
-  ],
-  [
-   14.088,
-   1.538,
-   "Lab 2 confirms it."
-  ],
-  [
-   15.625,
-   9.787,
-   "Second, bulk upload in the national clouds: the A P I page has no table, and the program reads the feature availability page as saying it's available there."
-  ],
-  [
-   25.413,
-   7.125,
-   "And remember the code is illustrative: it runs on fictional data and doesn't prove a tenant maps the same attributes."
   ]
  ],
  "12": [
@@ -560,6 +469,82 @@
    33.737,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.9,
+   "Which cloud?"
+  ],
+  [
+   0.95,
+   7.338,
+   "The records reach Entra I D through the contractor source's own provisioning app, through the same middleware employees use."
+  ],
+  [
+   8.287,
+   8.088,
+   "A P I-driven inbound provisioning and access reviews are part of the commercial Entra I D service, which G C C uses."
+  ],
+  [
+   16.375,
+   6.037,
+   "The middleware accepts only the Graph host, and the reconciliation reads users from the cloud you name."
+  ],
+  [
+   22.413,
+   1.175,
+   "There's no default."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.575,
+   "The verified facts, each read on November first."
+  ],
+  [
+   3.625,
+   9.988,
+   "Bulk upload is a version one point oh A P I: fifty operations a request, forty requests a second, and an accepted response pointing to the logs."
+  ],
+  [
+   13.613,
+   3.237,
+   "Its least permission is the owned-by upload permission."
+  ],
+  [
+   16.85,
+   4.575,
+   "The review settings and the access review procedure are both documented."
+  ],
+  [
+   21.425,
+   4.312,
+   "The requestor manager subject set is documented for approval stages."
+  ],
+  [
+   25.738,
+   4.725,
+   "And the policy update cmdlet needs the entitlement management read-write permission."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.675,
+   "One place Learn's pages say nothing: the requestor's manager as a reviewer."
+  ],
+  [
+   4.725,
+   12.287,
+   "Learn documents that subject set for approvals, and the portal offers Manager as a reviewer, but no page shows it in review settings, so Lab 2 confirms it in a test tenant before the program relies on it."
+  ],
+  [
+   17.012,
+   7.125,
+   "And remember the code is illustrative: it runs on fictional data and doesn't prove a tenant maps the same attributes."
   ]
  ]
 }

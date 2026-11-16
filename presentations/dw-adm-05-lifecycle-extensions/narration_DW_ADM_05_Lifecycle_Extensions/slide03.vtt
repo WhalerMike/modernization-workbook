@@ -5,44 +5,49 @@ WEBVTT
 Now, which cloud.
 
 2
-00:00:01.463 --> 00:00:06.428
+00:00:01.463 --> 00:00:06.039
 The callback goes to Microsoft Graph,
 and the host depends on the tenant:
 
 3
-00:00:06.428 --> 00:00:11.646
-a GCC tenant like this estate's keeps
-the worldwide endpoint, while GCC High
+00:00:06.039 --> 00:00:09.917
+a GCC tenant like this estate's
+keeps the worldwide endpoint,
 
 4
-00:00:11.646 --> 00:00:16.612
-and DoD each have their own, and a token
-for one cloud won't work in another.
+00:00:09.917 --> 00:00:12.787
+and a token for one cloud
+won't work in another.
 
 5
-00:00:16.612 --> 00:00:18.601
-The Logic App's side matters too.
+00:00:12.787 --> 00:00:15.841
+The resume call is in
+version one point oh,
 
 6
-00:00:18.601 --> 00:00:23.038
-Learn documents the proof-of-possession
-policy only for commercial Azure.
+00:00:15.841 --> 00:00:19.074
+listed for the global
+service that GCC uses.
 
 7
-00:00:23.038 --> 00:00:27.850
-For Azure Government it gives nothing, so
-the builder refuses rather than guess.
+00:00:19.074 --> 00:00:21.063
+The Logic App's side matters too.
 
 8
-00:00:27.850 --> 00:00:31.792
-Licensing and availability are
-covered in all the US clouds,
+00:00:21.063 --> 00:00:25.632
+Learn documents the proof-of-possession
+policy for commercial Azure,
 
 9
-00:00:31.792 --> 00:00:34.788
-and the tenant limits
-are the same everywhere.
+00:00:25.632 --> 00:00:29.887
+the cloud a GCC estate uses, and
+the builder writes no other values.
 
 10
-00:00:34.788 --> 00:00:37.060
+00:00:29.887 --> 00:00:34.412
+And Microsoft Entra ID
+Governance is available in GCC.
+
+11
+00:00:34.412 --> 00:00:36.700
 Next, Microsoft's own sample.

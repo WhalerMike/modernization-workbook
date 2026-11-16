@@ -73,107 +73,6 @@
    "A check that errored proves nothing."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.413,
-   "Why GitHub Actions?"
-  ],
-  [
-   1.462,
-   5.912,
-   "Learn documents two ways to run a scheduled job that signs in to Azure with no stored secret."
-  ],
-  [
-   7.375,
-   2.987,
-   "The chapter picks GitHub Actions for three reasons."
-  ],
-  [
-   10.363,
-   5.575,
-   "Learn publishes complete sample workflows for it, including the U S Government sign-in."
-  ],
-  [
-   15.938,
-   4.162,
-   "The sign-in action is Microsoft's own, with its source published."
-  ],
-  [
-   20.1,
-   5.487,
-   "And for the other option, Azure Pipelines, the automatic setup doesn't work in Azure Government."
-  ],
-  [
-   25.587,
-   6.675,
-   "For this estate either would do, but one path that also documents the higher clouds is easier to hand on."
-  ],
-  [
-   32.263,
-   3.5,
-   "And the comparator and packager work the same under either."
-  ]
- ],
- "4": [
-  [
-   0.05,
-   10.613,
-   "Which cloud matters at every step: the sign-in authority, the Graph host, the Azure environment, the token audience and the Graph PowerShell environment all have to agree."
-  ],
-  [
-   10.662,
-   6.037,
-   "For a G C C tenant like this estate's, Learn says apps keep using the worldwide endpoints."
-  ],
-  [
-   16.7,
-   10.787,
-   "The higher clouds share a government sign-in authority, and here's the trap: the Azure sign-in environment is the same for G C C High and the Defense cloud, but their Graph hosts differ."
-  ],
-  [
-   27.488,
-   4.325,
-   "So the Graph host must come from the cloud profile, never from the sign-in."
-  ],
-  [
-   31.812,
-   2.95,
-   "An unknown cloud name is refused outright."
-  ]
- ],
- "5": [
-  [
-   0.05,
-   3.562,
-   "Here's what Learn gives you: one page with three workflows."
-  ],
-  [
-   3.612,
-   6.763,
-   "One signs in and runs a single Azure command, one adds PowerShell, and one signs in to Azure Government."
-  ],
-  [
-   10.375,
-   7.425,
-   "Each job asks for exactly one permission, the right to request a sign-in token, and keeps its identifiers in secrets."
-  ],
-  [
-   17.8,
-   5.263,
-   "Before any of it works, the app needs a federated credential that trusts the repository."
-  ],
-  [
-   23.062,
-   11.338,
-   "Those workflows only exist inside the web page, so the repository pins the page and the action's own definition, and a linter checks each workflow offline against twelve rules."
-  ],
-  [
-   34.4,
-   2.138,
-   "Nothing runs, nothing signs in."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -199,43 +98,6 @@
    28.238,
    4.25,
    "And the U S Government sample, copied as is, doesn't even parse."
-  ]
- ],
- "7": [
-  [
-   0.05,
-   3.075,
-   "The rest of the gaps are about identity and scope."
-  ],
-  [
-   3.125,
-   9.325,
-   "The sample jobs name no environment, so the token's subject changes with the branch or event, and a federated credential matches one subject exactly."
-  ],
-  [
-   12.45,
-   4.175,
-   "The pipeline runs in a named environment, so the subject is fixed."
-  ],
-  [
-   16.625,
-   6.062,
-   "The samples stop right after signing in to Azure: no Graph token, nothing on the higher clouds."
-  ],
-  [
-   22.688,
-   2.225,
-   "They don't stop two runs overlapping."
-  ],
-  [
-   24.913,
-   2.075,
-   "And after sign-in there's nothing at all."
-  ],
-  [
-   26.988,
-   6.825,
-   "The verdict: use Learn's sign-in exactly as published, pin it, schedule it, and put everything else behind it."
   ]
  ],
  "8": [
@@ -420,80 +282,6 @@
    "No identity both reads the tenant and writes to the tracker."
   ]
  ],
- "14": [
-  [
-   0.05,
-   3.487,
-   "Lab 1 runs on a laptop with Python and no tenant."
-  ],
-  [
-   3.538,
-   11.8,
-   "First, lint Learn's three samples as published: the first two have several findings each, unpinned actions and latest versions among them, and the Government sample fails because it isn't valid at all."
-  ],
-  [
-   15.338,
-   3.075,
-   "Then lint the chapter's own workflow, and it's clean."
-  ],
-  [
-   18.413,
-   6.425,
-   "Print the Defense cloud's profile to see its hosts, and try a cloud name that doesn't exist: refused."
-  ],
-  [
-   24.837,
-   3.862,
-   "Then record the first day's run as a baseline and package it."
-  ],
-  [
-   28.7,
-   3.825,
-   "Note the manifest hash; the next package will point back to it."
-  ]
- ],
- "15": [
-  [
-   0.05,
-   2.462,
-   "Now compare the second day with the first."
-  ],
-  [
-   2.513,
-   6.362,
-   "You'll see each kind of result, and one matters most: a check whose read failed with an access-denied error."
-  ],
-  [
-   8.875,
-   3.962,
-   "Its finding isn't resolved; it's unverified, and stays open."
-  ],
-  [
-   12.838,
-   5.95,
-   "Draft the issues and search for a person's name: it isn't there, only the object identifier."
-  ],
-  [
-   18.788,
-   6.062,
-   "Package the second run, chained to the first, and verify it with the pipeline and with the standard tool."
-  ],
-  [
-   24.85,
-   3.513,
-   "Then tamper with one file, and verification fails."
-  ],
-  [
-   28.363,
-   2.95,
-   "Swap the runs, and the comparison refuses."
-  ],
-  [
-   31.312,
-   2.975,
-   "Run the tests, and a hundred and forty-two pass."
-  ]
- ],
  "16": [
   [
    0.05,
@@ -583,6 +371,203 @@
    33.612,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.413,
+   "Why GitHub Actions?"
+  ],
+  [
+   1.462,
+   5.912,
+   "Learn documents two ways to run a scheduled job that signs in to Azure with no stored secret."
+  ],
+  [
+   7.375,
+   2.925,
+   "The chapter picks GitHub Actions for two reasons."
+  ],
+  [
+   10.3,
+   5.938,
+   "Learn publishes complete sample workflows for it, on one page, and that's where the chapter starts."
+  ],
+  [
+   16.238,
+   5.325,
+   "And the sign-in action is Microsoft's own, with its source and its inputs published."
+  ],
+  [
+   21.562,
+   8.512,
+   "An agency standardized on Azure Pipelines can still use the same comparator, packager and tests; only the workflow file changes."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   10.613,
+   "Which cloud matters at every step: the sign-in authority, the Graph host, the Azure environment, the token audience and the Graph PowerShell environment all have to agree."
+  ],
+  [
+   10.662,
+   9.438,
+   "For a G C C tenant like this estate's, Learn says apps keep using the worldwide endpoints, so every value on the slide is the worldwide one."
+  ],
+  [
+   20.1,
+   9.85,
+   "Tokens for one cloud don't work in another, so the Graph host comes from the cloud profile, never from the sign-in, and a check in the linter makes the workflow agree with it."
+  ],
+  [
+   29.95,
+   4.588,
+   "An unknown cloud name is refused outright, never mapped to worldwide."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.562,
+   "Here's what Learn gives you: one page with three workflows."
+  ],
+  [
+   3.612,
+   8.975,
+   "The two for commercial Azure are the ones a G C C estate uses: one signs in and runs a single Azure command, and one adds PowerShell."
+  ],
+  [
+   12.588,
+   7.425,
+   "Each job asks for exactly one permission, the right to request a sign-in token, and keeps its identifiers in secrets."
+  ],
+  [
+   20.012,
+   5.263,
+   "Before any of it works, the app needs a federated credential that trusts the repository."
+  ],
+  [
+   25.275,
+   11.338,
+   "Those workflows only exist inside the web page, so the repository pins the page and the action's own definition, and a linter checks each workflow offline against twelve rules."
+  ],
+  [
+   36.612,
+   2.138,
+   "Nothing runs, nothing signs in."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.075,
+   "The rest of the gaps are about identity and scope."
+  ],
+  [
+   3.125,
+   9.325,
+   "The sample jobs name no environment, so the token's subject changes with the branch or event, and a federated credential matches one subject exactly."
+  ],
+  [
+   12.45,
+   4.175,
+   "The pipeline runs in a named environment, so the subject is fixed."
+  ],
+  [
+   16.625,
+   6.675,
+   "The samples stop right after signing in to Azure: no Graph token, and nothing ties the Graph host to the cloud."
+  ],
+  [
+   23.3,
+   2.225,
+   "They don't stop two runs overlapping."
+  ],
+  [
+   25.525,
+   2.075,
+   "And after sign-in there's nothing at all."
+  ],
+  [
+   27.6,
+   6.825,
+   "The verdict: use Learn's sign-in exactly as published, pin it, schedule it, and put everything else behind it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.487,
+   "Lab 1 runs on a laptop with Python and no tenant."
+  ],
+  [
+   3.538,
+   11.25,
+   "First, lint Learn's three samples as published: the first two have several findings each, unpinned actions and latest versions among them, and the third fails because it isn't valid at all."
+  ],
+  [
+   14.787,
+   3.075,
+   "Then lint the chapter's own workflow, and it's clean."
+  ],
+  [
+   17.863,
+   6.162,
+   "Print the G C C profile to see its hosts, and try a cloud name the kit doesn't know: refused."
+  ],
+  [
+   24.025,
+   3.862,
+   "Then record the first day's run as a baseline and package it."
+  ],
+  [
+   27.887,
+   3.825,
+   "Note the manifest hash; the next package will point back to it."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.462,
+   "Now compare the second day with the first."
+  ],
+  [
+   2.513,
+   6.362,
+   "You'll see each kind of result, and one matters most: a check whose read failed with an access-denied error."
+  ],
+  [
+   8.875,
+   3.962,
+   "Its finding isn't resolved; it's unverified, and stays open."
+  ],
+  [
+   12.838,
+   5.95,
+   "Draft the issues and search for a person's name: it isn't there, only the object identifier."
+  ],
+  [
+   18.788,
+   6.062,
+   "Package the second run, chained to the first, and verify it with the pipeline and with the standard tool."
+  ],
+  [
+   24.85,
+   3.513,
+   "Then tamper with one file, and verification fails."
+  ],
+  [
+   28.363,
+   2.95,
+   "Swap the runs, and the comparison refuses."
+  ],
+  [
+   31.312,
+   3.062,
+   "Run the tests, and a hundred and thirty-nine pass."
   ]
  ]
 }

@@ -34,11 +34,11 @@ The residual review takes the mover's old and new attributes, the effective date
 
 ## Slide 9 — The reads, the clouds and the tests
 
-The reads are one task. Listing policies and assignments needs entitlement management read. Group memberships use the transitive call on purpose, because it needs only user read, while another user's direct memberships need directory read. The tools read Graph on the cloud you name. One gap matters here: administrative units with dynamic rules exist only in global Azure, so a GCC High tenant uses the guide's interim path. Nine tests cover this chapter, and all fifty-seven of the kit's tests pass with no tenant.
+The reads are one task. Listing policies and assignments needs entitlement management read. Group memberships use the transitive call on purpose, because it needs only user read, while another user's direct memberships need directory read. The tools read Graph on the cloud you name, and for GCC that's the worldwide host. Administrative units with dynamic rules are available in the global Azure cloud that GCC uses. Nine tests cover this chapter, and all fifty-seven of the kit's tests pass with no tenant.
 
 ## Slide 10 — The verified facts, and where Learn stops
 
-The verified facts, each read on November first. The automatic policy is generally available, with the limits we've seen. Member-of rules are quarantined from November third. The create call is in version one point oh, available in the L4 and L5 clouds. And dynamic administrative units aren't available in Azure Government. Two places where Learn stops are recorded so a later edit doesn't loosen the code: the fallback approver is required, not optional, and overlap is found only among the users the population holds.
+The verified facts, each read on November first. The automatic policy is generally available, with the limits we've seen. Member-of rules are quarantined from November third. The create call is in version one point oh. And dynamic administrative units are available in the global Azure cloud that GCC uses. Two places where Learn stops are recorded so a later edit doesn't loosen the code: the fallback approver is required, not optional, and overlap is found only among the users the population holds.
 
 ## Slide 11 — What the output proves, and for whom
 

@@ -29,16 +29,21 @@ the SDK won't retry throttled items inside
 a batch, and there's nothing about beta.
 
 7
-00:00:19.912 --> 00:00:24.536
+00:00:19.912 --> 00:00:24.685
 So the verdict: use Learn's page as the
-model for the three things that change per
+model for the three things a client sets,
 
 8
-00:00:24.536 --> 00:00:28.802
-cloud, add the authority, and for
-background jobs use the hardened client,
+00:00:24.685 --> 00:00:27.335
+which for GCC are all
+the worldwide values,
 
 9
-00:00:28.802 --> 00:00:33.480
+00:00:27.335 --> 00:00:30.365
+and for background jobs
+use the hardened client,
+
+10
+00:00:30.365 --> 00:00:35.350
 because a reviewer will ask which calls,
 with which permissions, in which cloud.

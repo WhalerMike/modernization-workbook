@@ -1,46 +1,40 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.188
-Lab 1 needs only a laptop
-with PowerShell 7 and Pester.
+00:00:00.050 --> 00:00:02.412
+Now the part that makes
+the case for all this.
 
 2
-00:00:04.188 --> 00:00:07.976
-First you run Learn's own pause
-and resume scripts against a fake
+00:00:02.412 --> 00:00:07.638
+Run the pull request check and it
+passes cleanly: six rules, no findings.
 
 3
-00:00:07.976 --> 00:00:11.550
-tenant with two groups, one of
-them already paused for review.
+00:00:07.638 --> 00:00:10.554
+Then break a rule on purpose
+by deleting the clause
 
 4
-00:00:11.550 --> 00:00:15.875
-After the resume, both are on:
-the held group came back to life.
+00:00:10.554 --> 00:00:13.401
+that keeps out empty worker
+types, and run it again.
 
 5
-00:00:15.875 --> 00:00:20.050
-Try an unknown cloud name and
-you'll see it sign in to worldwide.
+00:00:13.401 --> 00:00:15.100
+Three things fire at once.
 
 6
-00:00:20.050 --> 00:00:23.236
-Then you lint the HR-Driven
-Identity book's table
+00:00:15.100 --> 00:00:19.634
+The linter flags the empty-slot risk,
+the membership test for the worker with
 
 7
-00:00:23.236 --> 00:00:26.263
-and evaluate a rule over
-the fictional people.
+00:00:19.634 --> 00:00:24.025
+no type fails, and the shadow diff shows
+exactly who the change would let in.
 
 8
-00:00:26.263 --> 00:00:29.003
-The disabled account
-and the guest stay out,
-
-9
-00:00:29.003 --> 00:00:32.110
-and the lower-case code gets
-in, just as Learn says.
+00:00:24.025 --> 00:00:28.700
+Put the clause back, run the whole
+suite, and fifty-seven tests pass.

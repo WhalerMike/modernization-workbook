@@ -240,70 +240,6 @@
    "The chapter adds nine tests, and all fifty-seven of the kit's tests pass with no tenant or network."
   ]
  ],
- "9": [
-  [
-   0.05,
-   3.7,
-   "The facts behind the code, read on Learn on November first."
-  ],
-  [
-   3.75,
-   8.775,
-   "Create and create new version share one permission and the Lifecycle Workflows Administrator role, and both are available at L4 and L5."
-  ],
-  [
-   12.525,
-   6.9,
-   "Changes are versions, not in-place updates, and the tenant runs one schedule, every three hours by default."
-  ],
-  [
-   19.425,
-   7.175,
-   "The pass task has a fixed I D and a lifetime range, and its availability in G C C High wasn't confirmed."
-  ],
-  [
-   26.6,
-   4.7,
-   "Execution limits quarantine a scheduled run but not an on-demand one."
-  ],
-  [
-   31.3,
-   4.763,
-   "And a scheduled workflow catches up on a user for three days after the trigger date."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   5.938,
-   "Learn's own pages disagree in four places, recorded so a later edit doesn't loosen the code."
-  ],
-  [
-   5.987,
-   4.2,
-   "The pass's lifetime argument has two names, and the lint reads either."
-  ],
-  [
-   10.188,
-   2.987,
-   "The custom task extension has two I Ds."
-  ],
-  [
-   13.175,
-   4.4,
-   "The mover category appears in an example but not in the property table."
-  ],
-  [
-   17.575,
-   5.65,
-   "And the workflow ceiling is a hundred on two pages and fifty on another, so the budget is fifty."
-  ],
-  [
-   23.225,
-   9.575,
-   "Still open: the trigger name for an extension attribute, the execution limit the A P I doesn't carry, and the pass's availability in G C C High."
-  ]
- ],
  "11": [
   [
    0.05,
@@ -593,6 +529,70 @@
    33.425,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.7,
+   "The facts behind the code, read on Learn on November first."
+  ],
+  [
+   3.75,
+   9.588,
+   "Create and create new version share one permission and the Lifecycle Workflows Administrator role, and both are listed for the global service that G C C uses."
+  ],
+  [
+   13.338,
+   6.9,
+   "Changes are versions, not in-place updates, and the tenant runs one schedule, every three hours by default."
+  ],
+  [
+   20.238,
+   3.438,
+   "The pass task has a fixed I D and a lifetime range."
+  ],
+  [
+   23.675,
+   4.7,
+   "Execution limits quarantine a scheduled run but not an on-demand one."
+  ],
+  [
+   28.375,
+   4.763,
+   "And a scheduled workflow catches up on a user for three days after the trigger date."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.938,
+   "Learn's own pages disagree in four places, recorded so a later edit doesn't loosen the code."
+  ],
+  [
+   5.987,
+   4.2,
+   "The pass's lifetime argument has two names, and the lint reads either."
+  ],
+  [
+   10.188,
+   2.987,
+   "The custom task extension has two I Ds."
+  ],
+  [
+   13.175,
+   4.4,
+   "The mover category appears in an example but not in the property table."
+  ],
+  [
+   17.575,
+   5.65,
+   "And the workflow ceiling is a hundred on two pages and fifty on another, so the budget is fifty."
+  ],
+  [
+   23.225,
+   6.725,
+   "Still open: the trigger name for an extension attribute, and the execution limit the A P I doesn't carry."
   ]
  ]
 }

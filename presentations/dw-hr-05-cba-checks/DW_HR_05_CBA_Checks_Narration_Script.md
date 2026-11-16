@@ -8,9 +8,9 @@ Welcome back to Building HR-Driven Identity. This is Chapter 5: certificate-base
 
 Why does this gate need code? The guide's Gate 5 ties the card's lifecycle to the person's: the card is issued from a joiner record and revoked from a leaver. But revocation only reaches sign-in through the CRL, and a CRL grows with every revocation. The day it crosses the limit is the day sign-in fails for every card from that CA. So the check runs every day. Per-user binding coverage is the validation kit's job; this chapter checks the tenant's settings, which that kit doesn't read.
 
-## Slide 3 — Which cloud: the limit depends on it
+## Slide 3 — Which cloud: the limits for GCC
 
-Which cloud you're in changes the answer. For interactive sign-in, a CRL must stay under twenty megabytes in public Entra ID, which includes GCC, and forty-five in Azure US Government, which includes GCC High. Either way it must download within ten seconds. So the expected-configuration file holds both sets, and the check takes a cloud name with no default. Learn doesn't say which megabyte it means, so the configuration reads the decimal one, the stricter reading.
+Learn gives the CRL limits for public Entra ID, which includes GCC. For interactive sign-in, a CRL must stay under twenty megabytes, and it must download within ten seconds; the service-side limit is sixty-five. The expected-configuration file holds the limits under the cloud name, and the check takes that name with no default. Learn doesn't say which megabyte it means, so the configuration reads the decimal one, the stricter reading.
 
 ## Slide 4 — What Microsoft gives you
 
@@ -34,7 +34,7 @@ The read needs three permissions, each the least-privileged for its call: one to
 
 ## Slide 9 — The verified facts
 
-The verified facts, all read on November first. The CRL limits are generally available: twenty and forty-five megabytes for interactive sign-in, a ten-second download, and larger service limits. Entra checks CRLs up to ten CAs toward the root. The trust store, the certificate method, the strengths and the Conditional Access policies are all in Graph version one point oh, with the permissions you just saw. The certificate method's bindings include the low-affinity principal name and email fields. And both features are available in Azure for US Government.
+The verified facts, all read on November first. The CRL limits are generally available: twenty megabytes for interactive sign-in, a ten-second download, and a larger service limit. Entra checks CRLs up to ten CAs toward the root. The trust store, the certificate method, the strengths and the Conditional Access policies are all in Graph version one point oh, with the permissions you just saw. The certificate method's bindings include the low-affinity principal name and email fields. And both features are part of the commercial service G C C uses.
 
 ## Slide 10 — Where Learn says nothing, or differs
 
@@ -54,20 +54,16 @@ Lab 1 runs on a laptop with no tenant. Step one lists the configuration read: fi
 
 ## Slide 14 — Lab 1: the fictional tenant, checked for GCC
 
-Step three checks the fictional tenant for GCC, with its twenty-million-byte limit. Five findings and seven warnings, and the exit code is two. Read the story in the fixture. Issuing CA 2 was renewed, so the thumbprint the card program expects is gone from the trust store, and the renewed CA's CRL is large, slow and served over HTTPS. A legacy intermediate has no CRL at all. The mode rule maps the wrong OID, so PIV is single-factor. And the phishing-resistant policy is still report-only.
+Step three checks the fictional tenant for GCC, with its twenty-million-byte limit. Five findings and seven warnings, and the exit code is two. Read the story in the fixture. Issuing CA 2 was renewed, so the thumbprint the card program expects is gone from the trust store, and the renewed CA's CRL is large, slow and served over HTTPS. A legacy intermediate has no CRL at all. The mode rule maps the wrong OID, so PIV is single-factor. And the phishing-resistant policy is still report-only. Step four runs the tests: fifty-seven pass. Then delete the output folder.
 
-## Slide 15 — Lab 1: the same tenant for GCC High, and the tests
-
-Step four runs the same tenant for GCC High, where the limit is forty-five million bytes. Now it's five findings and six warnings. The same eighteen and a half million bytes is under eighty percent of the larger limit, so the early warning drops away. But the eleven-second download is a finding in every cloud. That's why the cloud is a required argument. Step five runs the tests: fifty-seven pass. Then delete the output folder.
-
-## Slide 16 — Lab 2: a test tenant, and a revoked card
+## Slide 15 — Lab 2: a test tenant, and a revoked card
 
 Lab 2 uses a test tenant with certificate-based authentication set up for a test CA; the authors haven't run it. Register a reader app with a certificate and only the three permissions. Export the configuration and check its shape matches the fixture. Measure the real CRLs from outside the agency network. Run the check with your test PKI's thumbprints and policy OIDs, and your cloud. Then the real proof: revoke a test certificate, wait for the next CRL, and sign in. Entra should refuse it. Finally, back everything out.
 
-## Slide 17 — Dangers, and the guard for each
+## Slide 16 — Dangers, and the guard for each
 
 The dangers, and the guard for each. A CRL that grows past the limit takes down every card from that CA, so the size rule and its early warning run every time. A slow or unreachable endpoint causes the same outage from the network side. A CA without a CRL lets revoked cards sign in. A renewed CA nobody added locks out new cards. A troubleshooting exemption that stays turns revocation off. PIV mapped as single-factor means the card isn't what meets MFA. And a report-only policy is a requirement only on paper.
 
-## Slide 18 — Done when: the CBA checklist
+## Slide 17 — Done when: the CBA checklist
 
 Here's what done looks like. The expected file names every issuing CA by thumbprint and every PIV policy OID, with the limits for your cloud. Every CRL was measured from outside the network within the last day, none near the limit or slower than ten seconds. The check shows no finding, and every exemption has a ticket and an end date. An enabled policy requires a phishing-resistant strength. A revoked test card was refused, with the evidence filed. Next, Chapter 6: separation timing from the logs. Thanks for watching.
