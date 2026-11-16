@@ -73,7 +73,7 @@ The de-duplication key the module reports is the one [Chapter 04](04-drift-to-a-
 
 ### The tests
 
-`tests/python/test_finding_contract.py`, 26 tests: the constants against the script, every rejection the script makes, the closure-signal rules, the system defaults, the checkable and vacuous intended states, the three human-first classes, the tempo, and every payload the drift client builds from the fixtures accepted. With the rest of the kit, including Chapter 09's 32, 143 pytest tests pass, plus 15 node:test and 40 Pester tests, with no tenant or network.
+`tests/python/test_finding_contract.py`, 26 tests: the constants against the script, every rejection the script makes, the closure-signal rules, the system defaults, the checkable and vacuous intended states, the three human-first classes, the tempo, and every payload the drift client builds from the fixtures accepted. With the rest of the kit, including Chapter 09's 32, 141 pytest tests pass, plus 15 node:test and 38 Pester tests, with no tenant or network.
 
 ::: {.callout-important}
 ## Illustrative code

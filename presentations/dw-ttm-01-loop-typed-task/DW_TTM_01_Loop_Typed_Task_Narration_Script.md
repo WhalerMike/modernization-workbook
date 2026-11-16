@@ -26,11 +26,11 @@ So the chapter adds a Python mirror of the contract. Its validate function appli
 
 ## Slide 7 — The empty intended state that looks present
 
-Here's the subtle case the chapter guards against. An intended state like the one on the slide is a non-empty object, so it looks present. But it names nothing: no attribute, no entitlement. A re-read compares against it, finds no difference, and would close the record on nothing. The check warns rather than rejects, because ServiceNow would accept it. For the two classes the loop sends to a person first, missing identity and an unauthorized write, the warning says that's expected until that person decides.
+Here's the subtle case the chapter guards against. An intended state like the one on the slide is a non-empty object, so it looks present. But it names nothing: no attribute, no entitlement. A re-read compares against it, finds no difference, and would close the record on nothing. The check warns rather than rejects, because ServiceNow would accept it. For the three classes the program sends to a person first, missing identity, an orphan account and an unauthorized write, the warning says that's expected until that person decides.
 
-## Slide 8 — The tests: 22 for the contract, 107 in all
+## Slide 8 — The tests: 26 for the contract, 141 in all
 
-The chapter's tests number twenty-two. They compare the constants against the script, try every rejection the script makes, cover closure signals and system defaults, check both checkable and empty intended states and the tempo, and accept every payload the drift client builds from the fixtures. With the rest of the kit, a hundred and seven Python tests pass, plus fifteen Node tests of the ServiceNow scripts and forty PowerShell tests, all without a tenant or a network.
+The chapter's tests number twenty-six. They compare the constants against the script, try every rejection the script makes, cover closure signals and system defaults, check both checkable and empty intended states, the three classes a person decides first, and the tempo, and accept every payload the drift client builds from the fixtures. With the rest of the kit, including Chapter 9's thirty-two, a hundred and forty-one Python tests pass, plus fifteen Node tests of the ServiceNow scripts and thirty-eight PowerShell tests, all without a tenant or a network.
 
 ## Slide 9 — The verified facts the code depends on
 
@@ -50,11 +50,11 @@ Who is this for? Developers who build either side of the integration, and the re
 
 ## Slide 13 — Lab 1: five sample payloads, checked
 
-Lab 1 needs only a laptop with Python. First, run the chapter's twenty-two tests. Then check five sample payloads at a fixed clock, noon on November first. The first is accepted: it had no severity, so the class default gave it P2 and a due time one hour later. The second has a typo in its class and is rejected with the list of valid ones. The third is accepted but warned: its intended state names nothing. The fourth has a bad severity, and the fifth is a closure signal that never closes anything.
+Lab 1 needs only a laptop with Python. First, run the chapter's twenty-six tests. Then check five sample payloads at a fixed clock, noon on November first. The first is accepted: it had no severity, so the class default gave it P2 and a due time one hour later. The second has a typo in its class and is rejected with the list of valid ones. The third is accepted but warned: its intended state names nothing. The fourth has a bad severity, and the fifth is a closure signal that never closes anything.
 
 ## Slide 14 — Lab 1: the script's tests and the drift payloads
 
-Next, run the ServiceNow script's own fifteen tests in Node, the rules the Python mirrors. Then run the drift reconciliation over the fixtures and check every payload it would post. Twelve are accepted. Three carry the warning, and they're exactly the classes a person decides first: two missing identities and the unauthorized write. Notice Erin's two attribute drifts in Entra ID, department and manager. They now have separate keys. Before Chapter 4's fix, they shared one, and the second would have vanished into the first.
+Next, run the ServiceNow script's own fifteen tests in Node, the rules the Python mirrors. Then run the drift reconciliation over the fixtures and check every payload it would post. Twelve are accepted. Three carry the warning: two missing identities and the unauthorized write. The three orphan accounts are decided by a person too, but their payloads already say what a re-read must find, so they don't warn. Notice Erin's two attribute drifts in Entra ID, department and manager. They now have separate keys. Before Chapter 4's fix, they shared one, and the second would have vanished into the first.
 
 ## Slide 15 — Lab 2: post one finding to a developer instance
 

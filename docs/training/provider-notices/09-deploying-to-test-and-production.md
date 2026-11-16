@@ -253,7 +253,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path deploy/tests -Output None -PassThru | Select-Object PassedCount, FailedCount, NotRunCount
     ```
 
-    Expect `PassedCount 25`, `FailedCount 0`, `NotRunCount 0`, on Windows: one of the 25 runs only there. The tests sit outside `tests/`, so the 140 Module 8 counts doesn't change.
+    Expect `PassedCount 25`, `FailedCount 0`, `NotRunCount 0`, on Windows: one of the 25 runs only there. The tests sit outside `tests/`, so the 141 Module 8 counts doesn't change.
 
 Delete the dry run's folders when you're done:
 

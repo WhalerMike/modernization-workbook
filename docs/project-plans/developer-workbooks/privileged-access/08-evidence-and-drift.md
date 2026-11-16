@@ -178,7 +178,7 @@ The project plan's A3.6 sets drift every six hours. A run that often only needs 
 
 ### The tests
 
-Pester 5 under PowerShell 7: `tests/EvidenceDrift.Tests.ps1`, 32 tests, 8 of them Learn's queries as published; the other chapters' test files in `examples/privileged-access` run beside it unchanged. pytest: `tests/test_pa_evidence.py`, 41 tests over the two fixture runs; with the first workbook's, 142 tests in `examples/drift-pipeline`. A Pester test reruns the evidence run from the fixtures and checks that its data files match the fixture runs the Python tests read. None of them needs a tenant or a network.
+Pester 5 under PowerShell 7: `tests/EvidenceDrift.Tests.ps1`, 32 tests, 8 of them Learn's queries as published; the other chapters' test files in `examples/privileged-access` run beside it unchanged. pytest: `tests/test_pa_evidence.py`, 41 tests over the two fixture runs; with the first workbook's, 139 tests in `examples/drift-pipeline`. A Pester test reruns the evidence run from the fixtures and checks that its data files match the fixture runs the Python tests read. None of them needs a tenant or a network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -476,7 +476,7 @@ rm -rf out
 
     <!-- capture:end -->
 
-**Expected result:** the first Pester run passes 32 tests, the second runs every chapter's tests and should pass them all, and pytest passes 142.
+**Expected result:** the first Pester run passes 32 tests, the second runs every chapter's tests and should pass them all, and pytest passes 139.
 
 When you're done, delete `out` in both folders, in `examples/privileged-access`, then in `examples/drift-pipeline`:
 

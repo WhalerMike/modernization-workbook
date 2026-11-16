@@ -197,7 +197,7 @@ For each control the period gives the open Findings and Warns at the period's en
 
 ### The tests
 
-Pester 5 under PowerShell 7: `tests/NpiDrift.Tests.ps1`, 51 tests, 11 of them Microsoft's rule as published, beside the other chapters' tests, unchanged. pytest: `tests/test_npi_evidence.py`, 21 tests over the two fixture runs and the vintage comparison; with the other workbooks' tests, 142 in `examples/drift-pipeline`. A Pester test reruns the drift run and the vintage comparison from the fixtures and checks that their data files match the fixtures the Python tests read. None of them needs a tenant or a network.
+Pester 5 under PowerShell 7: `tests/NpiDrift.Tests.ps1`, 51 tests, 11 of them Microsoft's rule as published, beside the other chapters' tests, unchanged. pytest: `tests/test_npi_evidence.py`, 21 tests over the two fixture runs and the vintage comparison; with the other workbooks' tests, 139 in `examples/drift-pipeline`. A Pester test reruns the drift run and the vintage comparison from the fixtures and checks that their data files match the fixtures the Python tests read. None of them needs a tenant or a network.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -521,7 +521,7 @@ rm -rf out
 
     <!-- capture:end -->
 
-**Expected result:** the Pester run passes 511 tests, and the pytest run passes 142. Delete `out` in both folders when you're done. In `examples/non-person-identity`:
+**Expected result:** the Pester run passes 511 tests, and the pytest run passes 139. Delete `out` in both folders when you're done. In `examples/non-person-identity`:
 
 ```powershell
 Remove-Item -Recurse -Force out

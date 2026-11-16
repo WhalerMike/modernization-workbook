@@ -152,7 +152,7 @@ For the callback, the Logic App's managed identity needs no Graph permission. Ap
 
 ### The tests
 
-`tests/test_wdl.py` has 15 tests for the interpreter. `tests/test_learn_sample.py` has 9 that run Learn's definition, unmodified, against the fakes. `tests/test_extension.py` has 31 for the program's definition, the clouds, the outcomes, the builders and the read-back checks. None needs a package, a tenant or a network.
+`tests/test_wdl.py` has 15 tests for the interpreter. `tests/test_learn_sample.py` has 8 that run Learn's definition, unmodified, against the fakes. `tests/test_extension.py` has 31 for the program's definition, the clouds, the outcomes, the builders and the read-back checks. None needs a package, a tenant or a network.
 
 ::: {.callout-important}
 ## Illustrative code

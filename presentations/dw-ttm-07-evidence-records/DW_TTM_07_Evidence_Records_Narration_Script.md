@@ -42,7 +42,7 @@ Who's involved? Developers who build the evidence pipeline, and the I S S O and 
 
 ## Slide 11 — Lab 1: exporting October's closed findings
 
-Lab 1. Eight tests pass. Then export October's five fictional findings. Four closed on a re-read, and one is a declared exception. Two of three judged closures were inside the window. Then the problems, by name: one closed late, one whose evidence no longer matches its hash, and one closed with no re-read evidence at all; its close note just says done, which the workbook calls prose, not evidence. The command exits with a failure rather than producing a clean-looking package. The last line is the chain's head.
+Lab 1. Eight tests pass. Then export October's five fictional findings. Four closed, and one is a declared exception. Two of three judged closures were inside the window. Then the problems, by name: one closed late, one whose evidence no longer matches its hash, and one closed with no re-read evidence at all; its close note just says done, which the workbook calls prose, not evidence. The command exits with a failure rather than producing a clean-looking package. The last line is the chain's head.
 
 ## Slide 12 — Lab 1: verify, continue the chain, tamper
 

@@ -274,7 +274,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-**Expected result:** `PassedCount` 142 and `FailedCount` 0, and an evidence folder whose `SHA256SUMS` you could hand to the ISSO, before step 8 changed it. Delete `out` when you're done:
+**Expected result:** `PassedCount` 141 and `FailedCount` 0, and an evidence folder whose `SHA256SUMS` you could hand to the ISSO, before step 8 changed it. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
