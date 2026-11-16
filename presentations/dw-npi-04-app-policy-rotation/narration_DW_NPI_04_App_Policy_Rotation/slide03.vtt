@@ -30,16 +30,11 @@ the vault sits on the
 commercial vault domain.
 
 7
-00:00:22.212 --> 00:00:25.358
-GCC High and DoD have
-their own hosts for both,
+00:00:22.212 --> 00:00:27.462
+Every policy page the chapter calls
+lists the global service that GCC uses.
 
 8
-00:00:25.358 --> 00:00:30.374
-and every policy page the chapter
-calls lists the US Government clouds.
-
-9
-00:00:30.374 --> 00:00:35.040
+00:00:27.462 --> 00:00:32.140
 The code never guesses: you pass the
 cloud, and it builds both hosts from it.

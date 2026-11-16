@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 02: Microsoft 365 Message Center, Service Health
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 2: Microsoft 365 Message center and service health. Message center already tells a tenant what will change and when. The work is reading it from the API, on the right cloud, and saying who decided a post needs action. We'll start from Microsoft Learn's service communications API, see what it leaves to you, then read how the kit fills the record from Chapter 1, and walk two labs, the evidence and the dangers. Two notes before we begin. This chapter is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 2: Microsoft 365 Message center and service health. Message center already tells a tenant what will change and when. The work is reading it from the API, on the right cloud, and saying who decided a post needs action. We'll start from Microsoft Learn's service communications API, see what it leaves to you, then read how the kit fills the record from Chapter 1, and walk two labs, the evidence and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why read Message center from the API
 
@@ -10,11 +10,11 @@ Why this chapter? Message center is where Microsoft tells a tenant about retirem
 
 ## Slide 3 — Which cloud: GCC on the worldwide Graph host
 
-First, which cloud. A GCC tenant keeps the worldwide Microsoft Graph endpoint, so this workbook's baseline reads graph dot microsoft dot com. Microsoft Learn's national cloud page gives GCC High and the Defense Department their own hosts, a short side note here. Why does it matter? Because a wrong cloud fails silently. A GCC High tenant read on the worldwide host simply returns nothing, and the gate passes on an empty list. So the kit has one row per cloud and no default, and the live run refuses a Graph session in another environment or another tenant.
+First, which cloud. A GCC tenant keeps the worldwide Microsoft Graph endpoint, so this workbook's baseline reads graph dot microsoft dot com. Why does it matter? Because a wrong cloud fails silently. A read on a host other than the tenant's own simply returns nothing, and the gate passes on an empty list. So the kit has one row per cloud and no default, and the live run refuses a Graph session in another environment or another tenant.
 
 ## Slide 4 — What Microsoft Learn gives you
 
-Here's Microsoft's starting point. Microsoft Learn's service communications API overview names the resources and the two permissions: one to read Message center posts, one to read service health. Both are granted only by an administrator, and a delegated sign-in also needs an admin role. There are three list methods on version one point oh: messages, issues and health overviews, each with its permission and its national-cloud availability. One caveat from Learn's admin roles page: data privacy messages are visible only to Global Administrators and Message Center Privacy Readers. And Learn's own cmdlet for posts is the one we'll cross-check against in Lab 2.
+Here's Microsoft's starting point. Microsoft Learn's service communications API overview names the resources and the two permissions: one to read Message center posts, one to read service health. Both are granted only by an administrator, and a delegated sign-in also needs an admin role. There are three list methods on version one point oh: messages, issues and health overviews, each with its permission. G C C uses the worldwide endpoint. One caveat from Learn's admin roles page: data privacy messages are visible only to Global Administrators and Message Center Privacy Readers. And Learn's own cmdlet for posts is the one we'll cross-check against in Lab 2.
 
 ## Slide 5 — What it leaves to you, and the verdict
 
@@ -38,7 +38,7 @@ Who's involved? Developers maintain the collector. The Microsoft 365 service own
 
 ## Slide 10 — Lab 1: what Microsoft 365 needs, each cloud's host
 
-Lab 1 needs PowerShell 7 with Pester, working in the kit's folder. The lab settings name a fictional tenant in GCC; nothing signs in. Step 1 lists what Microsoft 365 needs: two permissions across three calls, and nothing that writes. Step 2 prints each cloud's Graph host: GCC on the worldwide host with the Global environment, then GCC High and DoD on their own. There's one row per cloud and no default. Step 3 collects Microsoft 365 from the day-one fixtures: six notices, five open, two needing action, all valid against the schema.
+Lab 1 needs PowerShell 7 with Pester, working in the kit's folder. The lab settings name a fictional tenant in GCC; nothing signs in. Step 1 lists what Microsoft 365 needs: two permissions across three calls, and nothing that writes. Step 2 prints each cloud's Graph host: worldwide and GCC both on the worldwide host, with the Global environment. There's one row per cloud and no default. Step 3 collects Microsoft 365 from the day-one fixtures: six notices, five open, two needing action, all valid against the schema.
 
 ## Slide 11 — Lab 1: the records, and who said they need action
 
@@ -50,7 +50,7 @@ Step 6 collects the second week and reads what changed. Seven notices now. A new
 
 ## Slide 13 — Lab 1: the chapter's tests pass
 
-Step 8 runs this chapter's tests: the Microsoft 365 collector block and every Graph test in the live tests. Fifteen pass, none fail. The manifest lists the three calls with their permissions. So, in one short lab, you've seen two read permissions and nothing that writes, one Graph host per cloud with no default, Microsoft's date kept as Microsoft's and the kit's rule labeled as a rule, and a next link on another host refused. Delete the output folder when you're done, so no fixture output is mistaken for a real run.
+Step 8 runs this chapter's tests: the Microsoft 365 collector block and every Graph test in the live tests. Fourteen pass, none fail. The manifest lists the three calls with their permissions. So, in one short lab, you've seen two read permissions and nothing that writes, one Graph host per cloud with no default, Microsoft's date kept as Microsoft's and the kit's rule labeled as a rule, and a next link on another host refused. Delete the output folder when you're done, so no fixture output is mistaken for a real run.
 
 ## Slide 14 — Lab 2: a Microsoft 365 test tenant
 
@@ -62,7 +62,7 @@ Each output is evidence for something specific, against NIST's control catalog. 
 
 ## Slide 16 — Dangers, and the guard for each
 
-What breaks in production? Read a GCC High or DoD tenant on the worldwide host and nothing comes back, so the gate passes on an empty list. Follow a next link to another host and the token goes somewhere you didn't choose. Grant a broad Graph scope for convenience and the reader can change the tenant. Mistake the kit's rule for Microsoft's deadline and a post gets an invented date. Data privacy posts go unseen without the right role. And trusting the email over the API means look-alike email gets acted on, so the task always links the post the kit read from Graph.
+What breaks in production? Read a tenant on a host other than its own and nothing comes back, so the gate passes on an empty list. Follow a next link to another host and the token goes somewhere you didn't choose. Grant a broad Graph scope for convenience and the reader can change the tenant. Mistake the kit's rule for Microsoft's deadline and a post gets an invented date. Data privacy posts go unseen without the right role. And trusting the email over the API means look-alike email gets acted on, so the task always links the post the kit read from Graph.
 
 ## Slide 17 — Done when: the chapter's checklist
 

@@ -35,16 +35,6 @@ AWS its commercial or GovCloud partition,
 and Google Cloud its global name.
 
 8
-00:00:26.825 --> 00:00:30.041
-As a side note, G C C High
-and the Defense Department
-
-9
-00:00:30.041 --> 00:00:33.650
-cloud sign in to Graph with
-their own environment names.
-
-10
-00:00:33.650 --> 00:00:37.940
+00:00:26.825 --> 00:00:31.100
 Any other name throws, and a session
 signed in elsewhere is refused.

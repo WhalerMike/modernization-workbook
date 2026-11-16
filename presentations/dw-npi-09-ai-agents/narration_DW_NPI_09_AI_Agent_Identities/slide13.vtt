@@ -16,24 +16,24 @@ the block-all-agents policy has
 no exclusion for approved agents.
 
 4
-00:00:14.074 --> 00:00:19.471
+00:00:14.074 --> 00:00:19.431
 Then list each task's permissions, and
 read the decision table for each cloud:
 
 5
-00:00:19.471 --> 00:00:24.438
-agent mode in the worldwide and G C C
-clouds, fallback in the higher ones.
+00:00:19.431 --> 00:00:24.788
+agent mode in both the worldwide and G C
+C clouds, with each capability's stage.
 
 6
-00:00:24.438 --> 00:00:26.267
+00:00:24.788 --> 00:00:26.617
 Then run the check in G C C.
 
 7
-00:00:26.267 --> 00:00:29.375
+00:00:26.617 --> 00:00:29.726
 Eight AI identities, twenty-two findings,
 
 8
-00:00:29.375 --> 00:00:34.370
+00:00:29.726 --> 00:00:34.730
 four of them top priority, and two
 orphan candidates for Chapter 2.

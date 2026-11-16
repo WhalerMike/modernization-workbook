@@ -21,20 +21,19 @@ while the manager endpoint itself
 doesn't support application permissions.
 
 5
-00:00:14.813 --> 00:00:20.124
-The audit needs AuditLog dot Read dot All
-and is available in the government clouds.
+00:00:14.813 --> 00:00:17.537
+The audit needs AuditLog dot Read dot All.
 
 6
-00:00:20.124 --> 00:00:25.400
+00:00:17.537 --> 00:00:22.813
 SailPoint identities come from Search,
 paged past ten thousand, and uncorrelated
 
 7
-00:00:25.400 --> 00:00:30.287
+00:00:22.813 --> 00:00:27.700
 accounts from the Accounts API with a
 filter, at most two hundred fifty a page.
 
 8
-00:00:30.287 --> 00:00:33.580
+00:00:27.700 --> 00:00:31.010
 And GCC uses the worldwide Graph host.

@@ -1,41 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   5.638,
-   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
-  ],
-  [
-   5.688,
-   3.975,
-   "This is Chapter 1: the notice record, and Azure Service Health."
-  ],
-  [
-   9.662,
-   10.363,
-   "Five providers publish the same kinds of news in five shapes, so the first job is one shape, so you can ask what needs action, by when, and who owns it, just once."
-  ],
-  [
-   20.025,
-   12.688,
-   "We'll start from Microsoft Learn's own Resource Graph queries and alert policy, see what they leave to you, then read the kit's record and its Azure collector, and walk two labs, the evidence and the dangers."
-  ],
-  [
-   32.712,
-   1.575,
-   "Two notes before we begin."
-  ],
-  [
-   34.288,
-   3.362,
-   "This chapter is a draft, awaiting the owner's review."
-  ],
-  [
-   37.65,
-   3.525,
-   "And the code is illustrative, tested against fixtures."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -61,33 +24,6 @@
    27.188,
    6.513,
    "And you can plan Service Health alerts at scale as a file that a reviewer approves by its hash before anything changes."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   11.088,
-   "The workbook's estate is a Microsoft 365 G C C tenant with commercial Azure, so the Azure CLI is set to Azure Cloud and Resource Manager is the commercial host."
-  ],
-  [
-   12.5,
-   6.4,
-   "Azure Government is a side note here: its own CLI cloud name and its own Resource Manager host."
-  ],
-  [
-   18.9,
-   8.713,
-   "Learn's sample queries link the Azure Government portal, but a statement that the table is available there, in so many words, is not yet specified."
-  ],
-  [
-   27.613,
-   8.738,
-   "The kit never guesses: the settings name the cloud, an unknown name throws, and the lyve run refuses a CLI that's set to another cloud."
   ]
  ],
  "4": [
@@ -613,6 +549,55 @@
    33.712,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
+  ],
+  [
+   5.688,
+   3.975,
+   "This is Chapter 1: the notice record, and Azure Service Health."
+  ],
+  [
+   9.662,
+   10.363,
+   "Five providers publish the same kinds of news in five shapes, so the first job is one shape, so you can ask what needs action, by when, and who owns it, just once."
+  ],
+  [
+   20.025,
+   12.688,
+   "We'll start from Microsoft Learn's own Resource Graph queries and alert policy, see what they leave to you, then read the kit's record and its Azure collector, and walk two labs, the evidence and the dangers."
+  ],
+  [
+   32.712,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   11.088,
+   "The workbook's estate is a Microsoft 365 G C C tenant with commercial Azure, so the Azure CLI is set to Azure Cloud and Resource Manager is the commercial host."
+  ],
+  [
+   12.5,
+   8.2,
+   "Learn's sample queries for Service Health each link to the Azure portal, and every record's source link is the event on that commercial host."
+  ],
+  [
+   20.7,
+   8.738,
+   "The kit never guesses: the settings name the cloud, an unknown name throws, and the lyve run refuses a CLI that's set to another cloud."
   ]
  ]
 }

@@ -10,7 +10,7 @@ Why does this chapter exist? Because the program's last gates ask for things a s
 
 ## Slide 3 — Which cloud: the audit read's Graph host
 
-Next, which cloud. The new read in this chapter is the directory audit log in Microsoft Graph. This estate's GCC tenant uses the worldwide Graph endpoint, and its Azure reads go to the commercial Resource Manager host. GCC High and the Department of Defense clouds have their own Graph hosts, and Learn lists the audit API as available in both government levels, with PIM available everywhere too. As in every chapter, the cloud is a required choice with no default, and the reader refuses to send a token anywhere else.
+Next, which cloud. The new read in this chapter is the directory audit log in Microsoft Graph. This estate's GCC tenant uses the worldwide Graph endpoint, and its Azure reads go to the commercial Resource Manager host. Learn lists the audit API as available in the global service that G C C uses, and PIM is part of the governance product available in G C C. As in every chapter, the cloud is a required choice with no default, and the reader refuses to send a token anywhere else.
 
 ## Slide 4 — Learn's PIM audit page and its three queries
 

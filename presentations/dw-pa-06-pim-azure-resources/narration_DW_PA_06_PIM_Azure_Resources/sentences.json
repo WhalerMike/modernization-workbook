@@ -58,33 +58,6 @@
    "The chapter governs the three roles the plan names, Owner, Contributor and User Access Administrator, with Microsoft's ceiling of three subscription owners on top."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.363,
-   "Next, which cloud."
-  ],
-  [
-   1.413,
-   9.762,
-   "This estate's tenant is G C C on the worldwide endpoints, with commercial Azure, so every call in this chapter goes to the commercial Resource Manager host."
-  ],
-  [
-   11.175,
-   6.1,
-   "G C C High and Department of Defense subscriptions liv in Azure Government, which has its own host."
-  ],
-  [
-   17.275,
-   12.925,
-   "The licensing pim needs is available in all of these clouds, but notice the honest gap: no page the chapter read states the pim Resource Manager A P I's availability in Azure Government outright."
-  ],
-  [
-   30.2,
-   5.55,
-   "So the code makes you name the cloud every time, and refuses a file written for a different one."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -216,38 +189,6 @@
    34.4,
    2.112,
    "Each of these is pinned by a test."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   4.525,
-   "The rest of the gaps aren't mistakes, they're things the examples never try to do."
-  ],
-  [
-   4.575,
-   6.463,
-   "They show one rule patched at one subscription, but settings don't inherit, so every scope needs its own."
-  ],
-  [
-   11.037,
-   4.088,
-   "Nothing in them finds standing Owner, which is the whole point of the project."
-  ],
-  [
-   15.125,
-   4.612,
-   "Every write is a request you send by hand, with nothing to review first."
-  ],
-  [
-   19.738,
-   2.85,
-   "And every request goes to the commercial host."
-  ],
-  [
-   22.587,
-   7.85,
-   "So the verdict: use the walkthroughs as the procedure and the examples as the contract for shapes, but don't drive the estate from them."
   ]
  ],
  "9": [
@@ -568,6 +509,55 @@
    33.438,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.363,
+   "Next, which cloud."
+  ],
+  [
+   1.413,
+   9.762,
+   "This estate's tenant is G C C on the worldwide endpoints, with commercial Azure, so every call in this chapter goes to the commercial Resource Manager host."
+  ],
+  [
+   11.175,
+   7.55,
+   "The licenses for G C C are hosted in commercial Azure, and the governance product pim needs is available in G C C."
+  ],
+  [
+   18.725,
+   8.238,
+   "Even so, the code makes you name the cloud every time, with no default, and refuses a desired-state file written for a different one."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.525,
+   "The rest of the gaps aren't mistakes, they're things the examples never try to do."
+  ],
+  [
+   4.575,
+   6.463,
+   "They show one rule patched at one subscription, but settings don't inherit, so every scope needs its own."
+  ],
+  [
+   11.037,
+   4.088,
+   "Nothing in them finds standing Owner, which is the whole point of the project."
+  ],
+  [
+   15.125,
+   4.612,
+   "Every write is a request you send by hand, with nothing to review first."
+  ],
+  [
+   19.738,
+   7.85,
+   "So the verdict: use the walkthroughs as the procedure and the examples as the contract for shapes, but don't drive the estate from them."
   ]
  ]
 }

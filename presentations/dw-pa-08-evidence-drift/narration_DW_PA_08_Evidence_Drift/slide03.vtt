@@ -20,25 +20,21 @@ and its Azure reads go to the
 commercial Resource Manager host.
 
 5
-00:00:14.213 --> 00:00:18.908
-GCC High and the Department of Defense
-clouds have their own Graph hosts,
+00:00:14.213 --> 00:00:19.620
+Learn lists the audit API as available
+in the global service that G C C uses,
 
 6
-00:00:18.908 --> 00:00:23.369
-and Learn lists the audit API as
-available in both government levels,
+00:00:19.620 --> 00:00:23.875
+and PIM is part of the governance
+product available in G C C.
 
 7
-00:00:23.369 --> 00:00:25.638
-with PIM available everywhere too.
-
-8
-00:00:25.638 --> 00:00:29.910
+00:00:23.875 --> 00:00:28.148
 As in every chapter, the cloud is
 a required choice with no default,
 
-9
-00:00:29.910 --> 00:00:33.380
+8
+00:00:28.148 --> 00:00:31.610
 and the reader refuses to
 send a token anywhere else.

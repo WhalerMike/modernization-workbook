@@ -53,19 +53,17 @@ require("../_build/devwb.js")({
     {
       part: "Why", title: "Which cloud: Graph v1.0 on the worldwide host",
       body: [
-        { table: { head: ["Piece", "Microsoft 365 GCC with commercial Azure", "GCC High and DoD"], w: [2.6, 4.9, 4.65], rows: [
-          ["Graph host", "graph.microsoft.com", "graph.microsoft.us (GCC High); dod-graph.microsoft.us (DoD)"],
-          ["API stage", "v1.0 for every call, apart from the protected actions API, which is beta", "The same"],
-          ["Policies, contexts, strengths, templates", "Global service, US Government L4 and L5 in each national cloud table", "The same"],
-          ["Conditional Access and PIM", "Available", "Available in Azure for US Government"],
-          ["CA025 and CA027", "Windows Azure Service Management API", "A different application; a GCC High program changes those two files"],
-        ] }, pt: 12.5 },
+        { table: { head: ["Piece", "Microsoft 365 GCC with commercial Azure"], w: [3.8, 8.35], rows: [
+          ["Graph host", "graph.microsoft.com, the worldwide host"],
+          ["API stage", "v1.0 for every call, apart from the protected actions API, which is beta"],
+          ["Policies, contexts, strengths, templates", "The global service, which GCC uses, in each national cloud table"],
+        ] }, pt: 13.5 },
         { callout: "the estate's tenant is GCC on the worldwide endpoints. The code takes gcc as an explicit cloud name and has no default.", label: "For this estate: ", icon: "FaCloud", color: "teal" },
       ],
-      sources: "Sources: Learn, Graph national cloud deployments; the policy, context, strength and template method pages; Entra feature availability. Chapter 03, “Which cloud, for these calls.”",
-      say: `Next, which cloud. Every call in this chapter is on the stable Graph version, except protected actions, which is beta. For this estate's GCC tenant the host is the worldwide Graph endpoint, and every method used lists the government clouds in its availability table. Conditional Access and PIM are available in the government clouds too. One thing does change there: the two policies about Azure management name a different application, so a GCC High program edits those two files. The code never assumes a cloud; you name it.`,
-      detail: `Every call in this chapter is Microsoft Graph v1.0, apart from the protected actions API, which is beta. For Microsoft 365 GCC the host is the worldwide graph.microsoft.com; GCC High uses graph.microsoft.us and DoD dod-graph.microsoft.us. The methods for policies, contexts, strengths and templates list the global service, US Government L4 and US Government L5 in their national cloud tables. Conditional Access and PIM are available in Azure for US Government. The code takes gcc as an explicit cloud name and has no default. In Azure Government, a policy that targets Azure management names a different application than the Windows Azure Service Management API that CA025 and CA027 use (Book 04, Chapter 07, government cloud notes); a GCC High program changes those two files.`,
-      cite: ["pa03-deployments", "pa03-ca-list", "pa03-ca-create", "pa03-ca-update", "pa03-ctx-list", "pa03-ctx-upsert", "pa03-strength-list", "pa03-template-get", "pa03-availability"],
+      sources: "Sources: Learn, Graph national cloud deployments; the policy, context, strength and template method pages. Chapter 03, “Which cloud, for these calls.”",
+      say: `Next, which cloud. Every call in this chapter is on the stable Graph version, except protected actions, which is beta. For this estate's GCC tenant the host is the worldwide Graph endpoint, and every method used lists the global service that G C C uses in its availability table. The code never assumes a cloud: you name it explicitly, and there's no default to fall back on.`,
+      detail: `Every call in this chapter is Microsoft Graph v1.0, apart from the protected actions API, which is beta. For Microsoft 365 GCC the host is the worldwide graph.microsoft.com. The methods for policies, contexts, strengths and templates list the global service, which GCC uses, in their national cloud tables. The code takes gcc as an explicit cloud name and has no default.`,
+      cite: ["pa03-deployments", "pa03-ca-list", "pa03-ca-create", "pa03-ca-update", "pa03-ctx-list", "pa03-ctx-upsert", "pa03-strength-list", "pa03-template-get"],
       ref: "“Which cloud, for these calls”",
     },
     {

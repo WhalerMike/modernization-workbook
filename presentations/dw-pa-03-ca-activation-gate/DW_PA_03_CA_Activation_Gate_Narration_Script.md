@@ -14,7 +14,7 @@ Learn sets the order, and getting it wrong leaves no gate at all. You create and
 
 ## Slide 4 — Which cloud: Graph v1.0 on the worldwide host
 
-Next, which cloud. Every call in this chapter is on the stable Graph version, except protected actions, which is beta. For this estate's GCC tenant the host is the worldwide Graph endpoint, and every method used lists the government clouds in its availability table. Conditional Access and PIM are available in the government clouds too. One thing does change there: the two policies about Azure management name a different application, so a GCC High program edits those two files. The code never assumes a cloud; you name it.
+Next, which cloud. Every call in this chapter is on the stable Graph version, except protected actions, which is beta. For this estate's GCC tenant the host is the worldwide Graph endpoint, and every method used lists the global service that G C C uses in its availability table. The code never assumes a cloud: you name it explicitly, and there's no default to fall back on.
 
 ## Slide 5 — Microsoft's template for administrators, pinned
 

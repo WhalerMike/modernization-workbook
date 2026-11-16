@@ -223,33 +223,6 @@
    "Run Lab 2 on your own exports and review the alias list before acting on any result."
   ]
  ],
- "8": [
-  [
-   0.05,
-   3.487,
-   "The facts behind the exports, read on November first."
-  ],
-  [
-   3.538,
-   13.825,
-   "Reading a synchronization schema is available in the government clouds; oddly, Learn lists a custom security attribute permission as the least-privileged application permission, with Synchronization dot Read dot All among the higher ones."
-  ],
-  [
-   17.363,
-   4.55,
-   "The schema's shape is rules, object mappings and attribute mappings."
-  ],
-  [
-   21.913,
-   10.338,
-   "SailPoint's policies come from the provisioning-policies endpoint with a read or manage scope, at the org admin user level, each with a name, usage type and fields."
-  ],
-  [
-   32.25,
-   3.125,
-   "G C C uses the worldwide Graph host."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -534,6 +507,33 @@
    31.3,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.487,
+   "The facts behind the exports, read on November first."
+  ],
+  [
+   3.538,
+   13.05,
+   "Reading a synchronization schema has its own permissions, and oddly, Learn lists a custom security attribute permission as the least-privileged application permission, with Synchronization dot Read dot All among the higher ones."
+  ],
+  [
+   16.587,
+   4.55,
+   "The schema's shape is rules, object mappings and attribute mappings."
+  ],
+  [
+   21.137,
+   10.338,
+   "SailPoint's policies come from the provisioning-policies endpoint with a read or manage scope, at the org admin user level, each with a name, usage type and fields."
+  ],
+  [
+   31.475,
+   3.125,
+   "G C C uses the worldwide Graph host."
   ]
  ]
 }

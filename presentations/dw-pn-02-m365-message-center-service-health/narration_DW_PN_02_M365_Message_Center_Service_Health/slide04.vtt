@@ -24,26 +24,30 @@ and a delegated sign-in
 also needs an admin role.
 
 6
-00:00:17.712 --> 00:00:22.153
-There are three list methods on version
-one point oh: messages, issues and
+00:00:17.712 --> 00:00:21.004
+There are three list methods
+on version one point oh:
 
 7
-00:00:22.153 --> 00:00:27.112
-health overviews, each with its permission
-and its national-cloud availability.
+00:00:21.004 --> 00:00:25.062
+messages, issues and health
+overviews, each with its permission.
 
 8
-00:00:27.112 --> 00:00:31.553
+00:00:25.062 --> 00:00:27.874
+G C C uses the worldwide endpoint.
+
+9
+00:00:27.874 --> 00:00:32.315
 One caveat from Learn's admin roles
 page: data privacy messages are
 
-9
-00:00:31.553 --> 00:00:36.638
+10
+00:00:32.315 --> 00:00:37.400
 visible only to Global Administrators
 and Message Center Privacy Readers.
 
-10
-00:00:36.638 --> 00:00:41.470
+11
+00:00:37.400 --> 00:00:42.240
 And Learn's own cmdlet for posts is the
 one we'll cross-check against in Lab 2.

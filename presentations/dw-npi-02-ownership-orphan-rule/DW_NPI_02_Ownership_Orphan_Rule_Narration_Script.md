@@ -10,7 +10,7 @@ Why does ownership come before everything else? Because an owner isn't just a na
 
 ## Slide 3 — Which cloud, for this check and these writes
 
-Which cloud? For this estate, a GCC tenant, every Graph read and write goes to the worldwide endpoint, and the three Graph calls this chapter writes with are all listed for the government service levels as well. The code takes the host from its cloud table and checks it on every request, which matters because Learn's tutorial simply hard-codes the worldwide host. On the directory side, the disables go only to the domain you name, and one detail to remember: the disable command won't work against a read-only domain controller.
+Which cloud? For this estate, a GCC tenant, every Graph read and write goes to the worldwide endpoint, and the three Graph calls this chapter writes with are all listed for the global service that GCC uses. The code takes the host from its cloud table and checks it on every request, which matters because Learn's tutorial simply hard-codes the worldwide host. On the directory side, the disables go only to the domain you name, and one detail to remember: the disable command won't work against a read-only domain controller.
 
 ## Slide 4 — The rule the code holds: stricter than Learn's
 

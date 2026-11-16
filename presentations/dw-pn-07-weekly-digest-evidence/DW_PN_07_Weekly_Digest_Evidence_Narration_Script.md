@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 07: The Weekly Digest and Evidence
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 7: the weekly digest, and evidence. The digest is for the people who act; the evidence is for the people who check. Both come from the same runs, so neither can drift from what was actually read. We'll start from what the implementation guide asks the security officer to keep, then read the digest's five sections, the evidence record, the chain and the stage check, and walk two labs, the evidence and the dangers. Two notes before we begin. This chapter is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 7: the weekly digest, and evidence. The digest is for the people who act; the evidence is for the people who check. Both come from the same runs, so neither can drift from what was actually read. We'll start from what the implementation guide asks the security officer to keep, then read the digest's five sections, the evidence record, the chain and the stage check, and walk two labs, the evidence and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why the digest and the evidence share the runs
 
@@ -38,7 +38,7 @@ Who's involved? The owners read the digest each week and act on their rows. The 
 
 ## Slide 10 — Lab 1: a week of runs, then the digest
 
-Lab 1 needs PowerShell 7 with Pester, in the kit's folder. Step 1 makes a week of runs: Chapter 6's two collections and two routings, in one go. Day one routes twelve creates; the second week makes one create, four updates and one close. Step 2 writes the digest for the second week. Sixteen open notices, eight needing action, five starting in the next thirty days, two new, and four closed or no longer listed. It writes the page, the spreadsheet and a manifest.
+Lab 1 needs PowerShell 7 with Pester, in the kit's folder. Step 1 makes a week of runs: Chapter 6's two collections and two routings, in one go. Day one routes thirteen creates; the second week makes one create, four updates and two closes. Step 2 writes the digest for the second week. Sixteen open notices, eight needing action, five starting in the next thirty days, two new, and four closed or no longer listed. It writes the page, the spreadsheet and a manifest.
 
 ## Slide 11 — Lab 1: read the digest's action-required table
 
@@ -58,7 +58,7 @@ Step 5 checks the chain: twenty-five files match the sums, and three records, ch
 
 ## Slide 15 — Lab 1: change a recorded file; run every test
 
-Step 8 is the one to remember. Change a recorded file, by appending one line to the recorded digest, and check again. Both checks fail. The sums say the digest changed, and the chain says it no longer matches its record, naming the file. That's what protects the evidence from an edit after the fact. Step 9 runs the kit's whole test suite: a hundred and forty passed, none failed. Before step 8, you had an evidence folder whose sums file you could hand to the security officer. Delete the output folder when you're done.
+Step 8 is the one to remember. Change a recorded file, by appending one line to the recorded digest, and check again. Both checks fail. The sums say the digest changed, and the chain says it no longer matches its record, naming the file. That's what protects the evidence from an edit after the fact. Step 9 runs the kit's whole test suite: a hundred and forty-one passed, none failed. Before step 8, you had an evidence folder whose sums file you could hand to the security officer. Delete the output folder when you're done.
 
 ## Slide 16 — Lab 2: a test environment's runs
 

@@ -1,46 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   5.638,
-   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
-  ],
-  [
-   5.688,
-   4.112,
-   "This is Chapter 5: Google Cloud's Personalized Service Health."
-  ],
-  [
-   9.8,
-   6.112,
-   "It's the smallest collector, with the largest gaps, and saying plainly what it can't see is part of the job."
-  ],
-  [
-   15.912,
-   13.988,
-   "We'll start from Google Cloud's own documentation for the events A P I and the viewer role, see what it leaves to you, then read how the kit fills the record, which two gaps it writes down instead of hiding, and why one call is refused."
-  ],
-  [
-   29.9,
-   3.35,
-   "Then two labs, the evidence and the dangers."
-  ],
-  [
-   33.25,
-   1.575,
-   "Two notes before we begin."
-  ],
-  [
-   34.825,
-   3.362,
-   "This chapter is a draft, awaiting the owner's review."
-  ],
-  [
-   38.188,
-   3.525,
-   "And the code is illustrative, tested against fixtures."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -71,33 +29,6 @@
    25.587,
    7.487,
    "It's for developers who maintain the kit, the project owner who owns this gate, and the security officer, who records the gaps."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   2.263,
-   "Next, which cloud and which scope."
-  ],
-  [
-   2.312,
-   12.6,
-   "Unlike Azure or AWS, Personalized Service Health has no separate government endpoint in the kit's table, so the cloud is simply global, and each record links to the event on Google's Service Health host."
-  ],
-  [
-   14.912,
-   8.688,
-   "The scope comes from the settings: a project, which is the call Google's command line was verified for, or an organization when the settings say so."
-  ],
-  [
-   23.6,
-   2.775,
-   "The A P I is enabled once per project."
-  ],
-  [
-   26.375,
-   11.85,
-   "And for government workloads, the question isn't an endpoint at all, but a package: as we'll see, Personalized Service Health isn't in the Assured Workloads fed-ramp or impact-level packages."
   ]
  ],
  "4": [
@@ -177,28 +108,6 @@
    33.087,
    4.85,
    "The danger is assuming it's covered, and a maintenance window landing with nobody told."
-  ]
- ],
- "6": [
-  [
-   0.05,
-   2.65,
-   "The second gap is about government packages."
-  ],
-  [
-   2.7,
-   18.3,
-   "Google Cloud's Assured Workloads supported-products page lists Personalized Service Health under twenty-five regional packages, including the U S Data Boundary, but not under fed-ramp Moderate, fed-ramp High, I L 2, I L 4, I L 5, C J I S or I T A R."
-  ],
-  [
-   21.0,
-   6.763,
-   "So a workload in one of those packages has nothing to read, and an empty list there looks like good news when it isn't."
-  ],
-  [
-   27.762,
-   8.988,
-   "The kit's answer, which is the program's design guidance, is to record the package as a gap with the security officer, who decides the compensating channel."
   ]
  ],
  "7": [
@@ -445,43 +354,6 @@
    "Then delete the output folder."
   ]
  ],
- "14": [
-  [
-   0.05,
-   6.438,
-   "Lab 2 moves to a Google Cloud test project, never production, and no incidents is a valid result."
-  ],
-  [
-   6.487,
-   5.4,
-   "As the project owner, enable the A P I and grant the viewer role to the reader's group."
-  ],
-  [
-   11.887,
-   1.7,
-   "Sign in as the reader."
-  ],
-  [
-   13.588,
-   4.713,
-   "Cross-check with Google's own command: its count and the kit's collection should agree."
-  ],
-  [
-   18.3,
-   5.237,
-   "Then the step that matters most in this chapter: record the gaps with the security officer."
-  ],
-  [
-   23.538,
-   9.838,
-   "Planned maintenance doesn't come through this A P I, and a project in an Assured Workloads fed-ramp or impact-level folder has no Personalized Service Health at all."
-  ],
-  [
-   33.375,
-   3.513,
-   "Finally, remove the role binding and delete the run."
-  ]
- ],
  "15": [
   [
    0.05,
@@ -519,6 +391,124 @@
    "The kit's records support these controls; the agency's assessor decides them."
   ]
  ],
+ "1": [
+  [
+   0.05,
+   5.638,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices."
+  ],
+  [
+   5.688,
+   4.112,
+   "This is Chapter 5: Google Cloud's Personalized Service Health."
+  ],
+  [
+   9.8,
+   6.112,
+   "It's the smallest collector, with the largest gaps, and saying plainly what it can't see is part of the job."
+  ],
+  [
+   15.912,
+   13.988,
+   "We'll start from Google Cloud's own documentation for the events A P I and the viewer role, see what it leaves to you, then read how the kit fills the record, which two gaps it writes down instead of hiding, and why one call is refused."
+  ],
+  [
+   29.9,
+   3.35,
+   "Then two labs, the evidence and the dangers."
+  ],
+  [
+   33.25,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.263,
+   "Next, which cloud and which scope."
+  ],
+  [
+   2.312,
+   12.6,
+   "Unlike Azure or AWS, Personalized Service Health has no separate government endpoint in the kit's table, so the cloud is simply global, and each record links to the event on Google's Service Health host."
+  ],
+  [
+   14.912,
+   8.688,
+   "The scope comes from the settings: a project, which is the call Google's command line was verified for, or an organization when the settings say so."
+  ],
+  [
+   23.6,
+   2.775,
+   "The A P I is enabled once per project."
+  ],
+  [
+   26.375,
+   10.738,
+   "And for government workloads, the question isn't an endpoint at all, but a package: as we'll see, Personalized Service Health isn't in the Assured Workloads fed-ramp packages."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.65,
+   "The second gap is about government packages."
+  ],
+  [
+   2.7,
+   15.05,
+   "Google Cloud's Assured Workloads supported-products page lists Personalized Service Health under twenty-five regional packages, including the U S Data Boundary, but not under fed-ramp Moderate, fed-ramp High, C J I S or I T A R."
+  ],
+  [
+   17.75,
+   6.763,
+   "So a workload in one of those packages has nothing to read, and an empty list there looks like good news when it isn't."
+  ],
+  [
+   24.512,
+   8.988,
+   "The kit's answer, which is the program's design guidance, is to record the package as a gap with the security officer, who decides the compensating channel."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.438,
+   "Lab 2 moves to a Google Cloud test project, never production, and no incidents is a valid result."
+  ],
+  [
+   6.487,
+   5.4,
+   "As the project owner, enable the A P I and grant the viewer role to the reader's group."
+  ],
+  [
+   11.887,
+   1.7,
+   "Sign in as the reader."
+  ],
+  [
+   13.588,
+   4.713,
+   "Cross-check with Google's own command: its count and the kit's collection should agree."
+  ],
+  [
+   18.3,
+   5.237,
+   "Then the step that matters most in this chapter: record the gaps with the security officer."
+  ],
+  [
+   23.538,
+   8.688,
+   "Planned maintenance doesn't come through this A P I, and a project in an Assured Workloads fed-ramp folder has no Personalized Service Health at all."
+  ],
+  [
+   32.225,
+   3.513,
+   "Finally, remove the role binding and delete the run."
+  ]
+ ],
  "16": [
   [
    0.05,
@@ -532,16 +522,16 @@
   ],
   [
    13.325,
-   12.15,
-   "Expect Personalized Service Health in a fed-ramp or impact-level workload, and an empty list looks like good news; the guard is recording the package, so the security officer can choose a compensating channel."
+   12.275,
+   "Expect Personalized Service Health in an Assured Workloads fed-ramp workload, and an empty list looks like good news; the guard is recording the package, so the security officer can choose a compensating channel."
   ],
   [
-   25.475,
+   25.6,
    5.987,
    "Run the unverified call, and you've run a command whose flags nobody read; it's refused."
   ],
   [
-   31.462,
+   31.587,
    5.4,
    "And grant the viewer role at the organization for a project read, and you've granted more than needed."
   ]
@@ -574,16 +564,16 @@
   ],
   [
    19.1,
-   8.125,
-   "And the two gaps are written down: planned maintenance, and any workload in an Assured Workloads fed-ramp or impact-level package."
+   6.987,
+   "And the two gaps are written down: planned maintenance, and any workload in an Assured Workloads fed-ramp package."
   ],
   [
-   27.225,
+   26.087,
    6.275,
    "Next, Chapter 6 routes what all five collectors gather to owners, as Ticket-to-Machine tasks."
   ],
   [
-   33.5,
+   32.362,
    1.1,
    "Thanks for watching."
   ]

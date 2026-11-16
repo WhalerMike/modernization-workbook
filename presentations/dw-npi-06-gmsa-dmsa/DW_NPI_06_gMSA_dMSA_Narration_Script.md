@@ -58,7 +58,7 @@ Reading the findings is where the rules become concrete. Every decision here is 
 
 ## Slide 15 — Lab 1: the island list, a dry run and a refusal
 
-Next you read the island list and the reconciliation side by side. Each row now carries its disposition from Chapter 3. Two rows aren't ready for hand-off, so the flag stays false. The web front end carries the authorizing official's acceptance, so it becomes ready once it has an S P N owner. That's the point: which is the point: an incomplete list never goes. Then the write path. A dry run with the approved hash reports the four writes it would send. Applying it to the fake sends them, and the results tell the operator what comes next, such as installing each new account on its hosts. Finally you pass a hash nobody approved, and it refuses outright. The full suite is five hundred thirteen passing tests.
+Next you read the island list and the reconciliation side by side. Each row now carries its disposition from Chapter 3. Two rows aren't ready for hand-off, so the flag stays false. The web front end carries the authorizing official's acceptance, so it becomes ready once it has an S P N owner. That's the point: which is the point: an incomplete list never goes. Then the write path. A dry run with the approved hash reports the four writes it would send. Applying it to the fake sends them, and the results tell the operator what comes next, such as installing each new account on its hosts. Finally you pass a hash nobody approved, and it refuses outright. The full suite is five hundred eleven passing tests.
 
 ## Slide 16 — Lab 2: a test domain, a real migration
 

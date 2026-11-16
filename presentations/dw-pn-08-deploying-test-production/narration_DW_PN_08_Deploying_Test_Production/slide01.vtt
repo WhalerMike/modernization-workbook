@@ -39,20 +39,15 @@ run once against test and again,
 unchanged, against production.
 
 9
-00:00:27.563 --> 00:00:29.237
-Three notes before we begin.
+00:00:27.563 --> 00:00:29.137
+Two notes before we begin.
 
 10
-00:00:29.237 --> 00:00:32.463
-The chapter is a draft,
-awaiting the owner's review.
-
-11
-00:00:32.463 --> 00:00:37.887
+00:00:29.137 --> 00:00:34.562
 Nobody has run this runbook against a
 live tenant, account, tenancy or project.
 
-12
-00:00:37.887 --> 00:00:41.710
+11
+00:00:34.562 --> 00:00:38.400
 And the code is illustrative,
 run only in fixture mode.

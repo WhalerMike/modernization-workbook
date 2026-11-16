@@ -8,9 +8,9 @@ Welcome to the Federal Modernization Workbook's developer workbook, Building Pri
 
 Why does this matter? Because the program never hands a privileged role to a person directly. It hands it to a group with the tier in its name, so the tier shows up in every review and alert. That means the group itself is now the privilege: whoever adds a member, or changes the activation policy, has effectively changed who holds the role. Chapter 1 already reads these groups. This chapter writes them, from a reviewed file, and because people can still change membership around it, the code reads the tenant first and treats anything it didn't put there as drift.
 
-## Slide 3 — Which cloud: Graph hosts and availability
+## Slide 3 — Which cloud: the Graph host and availability
 
-Next, which cloud. For a GCC tenant like this estate's, every call goes to the worldwide Graph host, and sign-in goes to the worldwide login page. GCC High and DoD have hosts of their own. Every PIM for Groups API page the chapter read lists the US Government clouds too, and the governance licensing PIM depends on is available in all three government environments. The module never guesses: you name the cloud on every run, and there's no default.
+Next, which cloud. For a GCC tenant like this estate's, every call goes to the worldwide Graph host, and sign-in goes to the worldwide login page. Every PIM for Groups API page the chapter read lists the global service that G C C uses, and the governance licensing PIM depends on is available in G C C. The module never guesses: you name the cloud on every run, and there's no default.
 
 ## Slide 4 — Two independent features meet in a PRV group
 

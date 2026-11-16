@@ -20,16 +20,16 @@ Step 1 lists what OCI needs: inspect
 to list, read for the details.
 
 5
-00:00:16.176 --> 00:00:20.302
+00:00:16.176 --> 00:00:20.154
 Step 2 shows the realms the kit
 knows: the commercial domain,
 
 6
-00:00:20.302 --> 00:00:25.525
+00:00:20.154 --> 00:00:25.350
 the government domain with its two regions,
-and O C 3 refused with its reason.
+and a realm it doesn't know refused.
 
 7
-00:00:25.525 --> 00:00:31.080
-That refusal is deliberate: an endpoint
-nobody could confirm is never guessed.
+00:00:25.350 --> 00:00:30.500
+That refusal is deliberate: a realm
+the kit doesn't know is never guessed.

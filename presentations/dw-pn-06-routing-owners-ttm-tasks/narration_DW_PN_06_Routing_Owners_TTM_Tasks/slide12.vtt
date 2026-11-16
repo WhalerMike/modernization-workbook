@@ -24,21 +24,21 @@ Step 4 routes them as a dry run.
 All twenty-two are new.
 
 6
-00:00:19.737 --> 00:00:23.427
-Twelve route to a task,
-nine go to the digest only,
+00:00:19.737 --> 00:00:24.661
+Thirteen route to a task, including
+the open Exchange Online incident,
 
 7
-00:00:23.427 --> 00:00:26.738
-and one is ignored, the
-Microsoft Viva post.
+00:00:24.661 --> 00:00:29.500
+eight go to the digest only, and one
+is ignored, the Microsoft Viva post.
 
 8
-00:00:26.738 --> 00:00:30.871
-So the run writes twelve create
+00:00:29.500 --> 00:00:33.773
+So the run writes thirteen create
 payloads, each with its severity
 
 9
-00:00:30.871 --> 00:00:34.990
+00:00:33.773 --> 00:00:37.870
 and assignment group, and the last
 line says it: nothing was sent.

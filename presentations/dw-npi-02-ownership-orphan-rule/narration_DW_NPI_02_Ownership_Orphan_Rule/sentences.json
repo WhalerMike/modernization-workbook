@@ -53,28 +53,6 @@
    "Learn points the same way: at least two owners, a reference to a team record that outlives any one person, and a short list reviewed regularly."
   ]
  ],
- "3": [
-  [
-   0.05,
-   0.9,
-   "Which cloud?"
-  ],
-  [
-   0.95,
-   11.838,
-   "For this estate, a G C C tenant, every Graph read and write goes to the worldwide endpoint, and the three Graph calls this chapter writes with are all listed for the government service levels as well."
-  ],
-  [
-   12.787,
-   8.9,
-   "The code takes the host from its cloud table and checks it on every request, which matters because Learn's tutorial simply hard-codes the worldwide host."
-  ],
-  [
-   21.688,
-   10.363,
-   "On the directory side, the disables go only to the domain you name, and one detail to remember: the disable command won't work against a read-only domain controller."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -541,6 +519,28 @@
    31.35,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.9,
+   "Which cloud?"
+  ],
+  [
+   0.95,
+   12.375,
+   "For this estate, a G C C tenant, every Graph read and write goes to the worldwide endpoint, and the three Graph calls this chapter writes with are all listed for the global service that G C C uses."
+  ],
+  [
+   13.325,
+   8.9,
+   "The code takes the host from its cloud table and checks it on every request, which matters because Learn's tutorial simply hard-codes the worldwide host."
+  ],
+  [
+   22.225,
+   10.363,
+   "On the directory side, the disables go only to the domain you name, and one detail to remember: the disable command won't work against a read-only domain controller."
   ]
  ]
 }

@@ -73,38 +73,6 @@
    "The code's job is to turn state, events and an approved baseline into evidence with no gaps."
   ]
  ],
- "3": [
-  [
-   0.05,
-   2.513,
-   "Learn gives the facts the design turns on."
-  ],
-  [
-   2.562,
-   6.975,
-   "A credential added to an existing app is high risk, and one added outside the expected process could be an attacker's."
-  ],
-  [
-   9.537,
-   10.637,
-   "Learn names the exact audit events, keeps the log for thirty days with a premium license, and defines expiring as within thirty days and unused as over ninety."
-  ],
-  [
-   20.175,
-   3.525,
-   "For this estate, Graph is the worldwide endpoint."
-  ],
-  [
-   23.7,
-   9.075,
-   "One report, the service principal sign-in activity, is beta and worldwide only, so in the higher clouds the code records it as not read."
-  ],
-  [
-   32.775,
-   3.138,
-   "And the other chapters feed in through a small contract."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -551,6 +519,38 @@
    32.913,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.513,
+   "Learn gives the facts the design turns on."
+  ],
+  [
+   2.562,
+   6.975,
+   "A credential added to an existing app is high risk, and one added outside the expected process could be an attacker's."
+  ],
+  [
+   9.537,
+   10.637,
+   "Learn names the exact audit events, keeps the log for thirty days with a premium license, and defines expiring as within thirty days and unused as over ninety."
+  ],
+  [
+   20.175,
+   3.525,
+   "For this estate, Graph is the worldwide endpoint."
+  ],
+  [
+   23.7,
+   10.287,
+   "One report, the service principal sign-in activity, is beta, and it's listed for the global service, so a G C C tenant can read it on the worldwide endpoint."
+  ],
+  [
+   33.987,
+   3.138,
+   "And the other chapters feed in through a small contract."
   ]
  ]
 }

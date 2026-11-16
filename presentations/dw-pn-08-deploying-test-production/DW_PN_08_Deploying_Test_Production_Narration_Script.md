@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 08: Deploying to Test and Production
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 8: deploying to test and production. Each chapter's second lab proves one provider in isolation. A deployment proves them together, on a schedule, with a rollback someone has already run. This chapter is a runbook: one ordered set of copy-paste commands, run once against test and again, unchanged, against production. Three notes before we begin. The chapter is a draft, awaiting the owner's review. Nobody has run this runbook against a live tenant, account, tenancy or project. And the code is illustrative, run only in fixture mode.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 8: deploying to test and production. Each chapter's second lab proves one provider in isolation. A deployment proves them together, on a schedule, with a rollback someone has already run. This chapter is a runbook: one ordered set of copy-paste commands, run once against test and again, unchanged, against production. Two notes before we begin. Nobody has run this runbook against a live tenant, account, tenancy or project. And the code is illustrative, run only in fixture mode.
 
 ## Slide 2 — Why a runbook, run twice
 
@@ -10,7 +10,7 @@ Why a runbook? Because each earlier lab proves one provider on its own, and prod
 
 ## Slide 3 — Which cloud, for these steps
 
-Next, which cloud. Every command reads the cloud from the settings file, one name per provider. The estate this runbook writes for is Microsoft 365 G C C with commercial Azure, so Graph and Resource Manager are the worldwide hosts, as Microsoft Learn's national cloud page lists them. Oracle Cloud takes its commercial or government realm, AWS its commercial or GovCloud partition, and Google Cloud its global name. As a side note, G C C High and the Defense Department cloud sign in to Graph with their own environment names. Any other name throws, and a session signed in elsewhere is refused.
+Next, which cloud. Every command reads the cloud from the settings file, one name per provider. The estate this runbook writes for is Microsoft 365 G C C with commercial Azure, so Graph and Resource Manager are the worldwide hosts, as Microsoft Learn's national cloud page lists them. Oracle Cloud takes its commercial or government realm, AWS its commercial or GovCloud partition, and Google Cloud its global name. Any other name throws, and a session signed in elsewhere is refused.
 
 ## Slide 4 — The order, and the only writes
 
@@ -62,7 +62,7 @@ Step 1.8 checks the stage's evidence: every file matches its hash, the chain is 
 
 ## Slide 16 — Go/no-go: promote only when every row passes
 
-Before production comes the go/no-go, and you promote only when every row passes. The test stage's evidence passes. Every provider's collection matched its own command. The smoke test passed. The routing was reviewed, and every security advisory and retirement became a task. The alert policy was applied, and its rollback rehearsed. Every provider's notice contacts are named. And the known gaps are recorded with the security officer: Google's planned maintenance, any AWS account without a support plan, any workload in an Assured Workloads FedRAMP or impact-level package, and what the guide lists as not yet specified. The security officer and the board record the decision.
+Before production comes the go/no-go, and you promote only when every row passes. The test stage's evidence passes. Every provider's collection matched its own command. The smoke test passed. The routing was reviewed, and every security advisory and retirement became a task. The alert policy was applied, and its rollback rehearsed. Every provider's notice contacts are named. And the known gaps are recorded with the security officer: Google's planned maintenance, any AWS account without a support plan, any workload in an Assured Workloads FedRAMP package, and what the guide lists as not yet specified. The security officer and the board record the decision.
 
 ## Slide 17 — Stage 2: production, the same commands
 

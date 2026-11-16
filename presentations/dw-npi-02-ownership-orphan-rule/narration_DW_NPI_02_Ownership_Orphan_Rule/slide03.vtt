@@ -5,35 +5,35 @@ WEBVTT
 Which cloud?
 
 2
-00:00:00.950 --> 00:00:02.652
+00:00:00.950 --> 00:00:02.786
 For this estate, a GCC tenant,
 
 3
-00:00:02.652 --> 00:00:07.757
+00:00:02.786 --> 00:00:07.896
 every Graph read and write goes to the
-worldwide endpoint, and the three Graph calls
+worldwide endpoint, and the three Graph
 
 4
-00:00:07.757 --> 00:00:12.788
-this chapter writes with are all listed
-for the government service levels as well.
+00:00:07.896 --> 00:00:13.325
+calls this chapter writes with are all
+listed for the global service that GCC uses.
 
 5
-00:00:12.788 --> 00:00:17.130
+00:00:13.325 --> 00:00:17.668
 The code takes the host from its cloud
 table and checks it on every request,
 
 6
-00:00:17.130 --> 00:00:21.687
+00:00:17.668 --> 00:00:22.225
 which matters because Learn's tutorial
 simply hard-codes the worldwide host.
 
 7
-00:00:21.687 --> 00:00:26.791
+00:00:22.225 --> 00:00:27.328
 On the directory side, the disables go only
 to the domain you name, and one detail
 
 8
-00:00:26.791 --> 00:00:32.110
+00:00:27.328 --> 00:00:32.640
 to remember: the disable command won't work
 against a read-only domain controller.

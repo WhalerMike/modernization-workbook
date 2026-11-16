@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 01: The Notice Record and Azure Service Health
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 1: the notice record, and Azure Service Health. Five providers publish the same kinds of news in five shapes, so the first job is one shape, so you can ask what needs action, by when, and who owns it, just once. We'll start from Microsoft Learn's own Resource Graph queries and alert policy, see what they leave to you, then read the kit's record and its Azure collector, and walk two labs, the evidence and the dangers. Two notes before we begin. This chapter is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Provider Notices. This is Chapter 1: the notice record, and Azure Service Health. Five providers publish the same kinds of news in five shapes, so the first job is one shape, so you can ask what needs action, by when, and who owns it, just once. We'll start from Microsoft Learn's own Resource Graph queries and alert policy, see what they leave to you, then read the kit's record and its Azure collector, and walk two labs, the evidence and the dangers. One note before we begin: the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why one record comes first
 
@@ -10,7 +10,7 @@ Why start with a record? Because a reader should be able to ask, once, what need
 
 ## Slide 3 — Which cloud, for this read
 
-Next, which cloud. The workbook's estate is a Microsoft 365 GCC tenant with commercial Azure, so the Azure CLI is set to Azure Cloud and Resource Manager is the commercial host. Azure Government is a side note here: its own CLI cloud name and its own Resource Manager host. Learn's sample queries link the Azure Government portal, but a statement that the table is available there, in so many words, is not yet specified. The kit never guesses: the settings name the cloud, an unknown name throws, and the live run refuses a CLI that's set to another cloud.
+Next, which cloud. The workbook's estate is a Microsoft 365 GCC tenant with commercial Azure, so the Azure CLI is set to Azure Cloud and Resource Manager is the commercial host. Learn's sample queries for Service Health each link to the Azure portal, and every record's source link is the event on that commercial host. The kit never guesses: the settings name the cloud, an unknown name throws, and the live run refuses a CLI that's set to another cloud.
 
 ## Slide 4 — What Microsoft Learn gives you
 

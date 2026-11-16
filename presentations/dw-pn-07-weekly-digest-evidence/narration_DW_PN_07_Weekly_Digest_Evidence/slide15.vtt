@@ -32,20 +32,20 @@ That's what protects the evidence
 from an edit after the fact.
 
 8
-00:00:18.075 --> 00:00:23.588
-Step 9 runs the kit's whole test suite:
-a hundred and forty passed, none failed.
+00:00:18.075 --> 00:00:23.800
+Step 9 runs the kit's whole test suite: a
+hundred and forty-one passed, none failed.
 
 9
-00:00:23.588 --> 00:00:26.260
+00:00:23.800 --> 00:00:26.473
 Before step 8, you had
 an evidence folder whose
 
 10
-00:00:26.260 --> 00:00:29.074
+00:00:26.473 --> 00:00:29.287
 sums file you could hand
 to the security officer.
 
 11
-00:00:29.074 --> 00:00:31.340
+00:00:29.287 --> 00:00:31.560
 Delete the output folder when you're done.

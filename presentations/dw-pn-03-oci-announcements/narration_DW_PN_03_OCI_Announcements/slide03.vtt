@@ -24,28 +24,22 @@ at two government regions,
 Langley and Luke.
 
 6
-00:00:16.488 --> 00:00:21.321
-For realm O C 3, Oracle's page wasn't
-readable when the chapter was written,
+00:00:16.488 --> 00:00:18.850
+Any other realm, the kit refuses.
 
 7
-00:00:21.321 --> 00:00:26.400
-so its endpoint is not yet specified,
-and the kit refuses it with that reason.
-
-8
-00:00:26.400 --> 00:00:27.487
+00:00:18.850 --> 00:00:19.937
 Why does it matter?
 
-9
-00:00:27.487 --> 00:00:31.438
+8
+00:00:19.937 --> 00:00:23.888
 A government tenancy read in the
 commercial realm returns nothing.
 
-10
-00:00:31.438 --> 00:00:34.244
+9
+00:00:23.888 --> 00:00:26.693
 So the settings name the realm and region,
 
-11
-00:00:34.244 --> 00:00:37.100
+10
+00:00:26.693 --> 00:00:29.570
 and a region outside the realm is refused.

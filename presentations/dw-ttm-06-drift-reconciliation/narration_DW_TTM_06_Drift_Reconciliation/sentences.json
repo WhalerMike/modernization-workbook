@@ -196,38 +196,6 @@
    "The workbook calls that the measurement working."
   ]
  ],
- "7": [
-  [
-   0.05,
-   3.45,
-   "The facts the join depends on, read on November first."
-  ],
-  [
-   3.5,
-   2.975,
-   "Graph lists users with User dot Read dot All."
-  ],
-  [
-   6.475,
-   8.338,
-   "For the manager, Learn documents expanding it on the users list, while the manager endpoint itself doesn't support application permissions."
-  ],
-  [
-   14.812,
-   5.312,
-   "The audit needs AuditLog dot Read dot All and is available in the government clouds."
-  ],
-  [
-   20.125,
-   10.162,
-   "SailPoint identities come from Search, paged past ten thousand, and uncorrelated accounts from the Accounts A P I with a filter, at most two hundred fifty a page."
-  ],
-  [
-   30.288,
-   3.237,
-   "And G C C uses the worldwide Graph host."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -517,6 +485,38 @@
    30.4,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.45,
+   "The facts the join depends on, read on November first."
+  ],
+  [
+   3.5,
+   2.975,
+   "Graph lists users with User dot Read dot All."
+  ],
+  [
+   6.475,
+   8.338,
+   "For the manager, Learn documents expanding it on the users list, while the manager endpoint itself doesn't support application permissions."
+  ],
+  [
+   14.812,
+   2.725,
+   "The audit needs AuditLog dot Read dot All."
+  ],
+  [
+   17.538,
+   10.162,
+   "SailPoint identities come from Search, paged past ten thousand, and uncorrelated accounts from the Accounts A P I with a filter, at most two hundred fifty a page."
+  ],
+  [
+   27.7,
+   3.237,
+   "And G C C uses the worldwide Graph host."
   ]
  ]
 }

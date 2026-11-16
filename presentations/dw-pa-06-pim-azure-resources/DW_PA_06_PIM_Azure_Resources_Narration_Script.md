@@ -10,7 +10,7 @@ Why does this matter? Because a standing Owner is privilege that's always on. No
 
 ## Slide 3 — Which cloud: the Resource Manager host
 
-Next, which cloud. This estate's tenant is GCC on the worldwide endpoints, with commercial Azure, so every call in this chapter goes to the commercial Resource Manager host. GCC High and Department of Defense subscriptions live in Azure Government, which has its own host. The licensing PIM needs is available in all of these clouds, but notice the honest gap: no page the chapter read states the PIM Resource Manager API's availability in Azure Government outright. So the code makes you name the cloud every time, and refuses a file written for a different one.
+Next, which cloud. This estate's tenant is GCC on the worldwide endpoints, with commercial Azure, so every call in this chapter goes to the commercial Resource Manager host. The licenses for G C C are hosted in commercial Azure, and the governance product PIM needs is available in G C C. Even so, the code makes you name the cloud every time, with no default, and refuses a desired-state file written for a different one.
 
 ## Slide 4 — Resource Manager, not Graph: three resource types
 
@@ -30,7 +30,7 @@ Replaying the examples turns up some real traps. The list examples show one page
 
 ## Slide 8 — What the examples leave out entirely
 
-The rest of the gaps aren't mistakes, they're things the examples never try to do. They show one rule patched at one subscription, but settings don't inherit, so every scope needs its own. Nothing in them finds standing Owner, which is the whole point of the project. Every write is a request you send by hand, with nothing to review first. And every request goes to the commercial host. So the verdict: use the walkthroughs as the procedure and the examples as the contract for shapes, but don't drive the estate from them.
+The rest of the gaps aren't mistakes, they're things the examples never try to do. They show one rule patched at one subscription, but settings don't inherit, so every scope needs its own. Nothing in them finds standing Owner, which is the whole point of the project. Every write is a request you send by hand, with nothing to review first. So the verdict: use the walkthroughs as the procedure and the examples as the contract for shapes, but don't drive the estate from them.
 
 ## Slide 9 — The code: a call list with least-privileged roles
 
