@@ -355,7 +355,7 @@ For synced users: an administrator can reset an on-premises-mastered password on
   ], { fontSize: 12 });
   facts(s, "Facts", b + 0.15, 6.5 - b - 0.15, [
     ["SP 800-63B-4", HEX.navy, HEX.navyTint, "At AAL2: two codes by different methods, a code plus a bound factor, or re-proofing. Always notify. OTPs aren't phishing-resistant"],
-    ["Entra account recovery", HEX.teal, HEX.tealTint, "Verified ID with Face Check, GA May 2026; needs P1 and Face Check. Verified ID in GCC, not GCC High"],
+    ["Entra account recovery", HEX.teal, HEX.tealTint, "Verified ID with Face Check, GA May 2026; needs P1 and Face Check. GCC availability not yet specified: held"],
     ["Record the rung, not the proof", HEX.amber, HEX.amberTint, "No document numbers, photos or dates of birth in the ticket; notify on another channel"],
   ], 12);
   sources(s, "Sources: CISA AA23-320A; NIST SP 800-63B-4; Microsoft Learn — Verified helpdesk; account recovery overview and FAQ; Verified ID what's new; TAP. Book 15, Ch 03.");
@@ -364,7 +364,7 @@ For synced users: an administrator can reset an on-premises-mastered password on
 
 SP 800-63B-4 is the federal reference. It names social engineering as a risk wherever recovery is human-assisted. Recovery may rely on saved or issued recovery codes, recovery contacts, or repeated identity proofing; at AAL2 that's two codes obtained by different methods, one code plus a bound single-factor authenticator, or re-proofing. Every recovery notifies the subscriber. And phishing resistance needs cryptographic authentication; one-time passwords and out-of-band codes don't qualify.
 
-Microsoft's verified help desk guidance says personal information and knowledge questions are no match for phishing, social engineering and AI voice cloning. Its pattern for total loss is Verified ID with Face Check before any pass or reset. Entra account recovery productizes it: a third-party verifier checks a government document and liveness, the Verified ID is matched to the Entra profile, by first and last name unless a custom extension checks more, and the user gets a Temporary Access Pass. Microsoft announced it generally available in May 2026; it needs Entra ID P1 and a Face Check license, and Verified ID has been supported in GCC, not GCC High, since September 2025. Confirm availability and have the privacy office review the provider's terms.
+Microsoft's verified help desk guidance says personal information and knowledge questions are no match for phishing, social engineering and AI voice cloning. Its pattern for total loss is Verified ID with Face Check before any pass or reset. Entra account recovery productizes it: a third-party verifier checks a government document and liveness, the Verified ID is matched to the Entra profile, by first and last name unless a custom extension checks more, and the user gets a Temporary Access Pass. Microsoft announced it generally available in May 2026; it needs Entra ID P1 and a Face Check license, and Microsoft lists Verified ID as supported in GCC but doesn't state GCC availability for account recovery, so the program holds it. Confirm availability and have the privacy office review the provider's terms.
 
 The ladder on the slide is a CISO decision, and the values are program defaults. Email alone, caller ID and knowledge questions verify no one.
 
@@ -624,7 +624,7 @@ The leaver fails audits. AC-2(3) asks for disablement within a defined time. The
   ], { x: 5.65, y: 5.1, w: 7.1, h: 1.35, fontSize: 12.5, valign: "middle" });
   sources(s, "Sources: FCC 19-76; 47 CFR 9.3, 9.16; Microsoft Learn — PSTN options; emergency addresses; dynamic emergency calling; call records; PSTN usage report. Book 15, Ch 05.");
   notes(s,
-`Teams Phone carries day-two work that's usually run by ad hoc administrator action. In GCC High and DoD, Direct Routing must be configured for Teams voice to work.
+`Teams Phone carries day-two work that's usually run by ad hoc administrator action.
 
 The emergency-address item is where a silent error has physical consequences, and where federal rules bind the agency directly. Kari's Law requires a multi-line telephone system to let a user dial 911 without a prefix and to notify someone, such as a front desk, when 911 is called, for systems installed after February 16, 2020. RAY BAUM'S Act Section 506 led to rules so a dispatchable location is conveyed with every 911 call. In 47 CFR part 9, an MLTS includes VoIP and systems owned or leased by governmental agencies; the person installing, managing or operating it must configure direct dialing, notification and dispatchable location. Fixed on-premises phones had to provide location by January 6, 2021, and non-fixed and off-premises devices by January 6, 2022. This is guidance, not legal advice; counsel and the telecommunications office own the determination.
 
@@ -680,7 +680,7 @@ So phase 1 configures nothing. The verdict is the gate. The program's default fo
   facts(s, "Fix", b + 0.15, 6.5 - b - 0.15, [
     ["OwnedBy is enough", HEX.navy, HEX.navyTint, "Synchronization.ReadWrite.All is higher-privileged and would undo the ownership boundary"],
     ["Assignment grants anything", HEX.red, HEX.redTint, "Keep it off the connector: a PIM-activated person binds the access group once"],
-    ["Self-signed only", HEX.amber, HEX.amberTint, "The certificate call can't apply agency policy; upload instead. Not in GCC High or DoD"],
+    ["Self-signed only", HEX.amber, HEX.amberTint, "The certificate call can't apply agency policy; upload instead. Global service, which GCC uses"],
   ], 12);
   sources(s, "Sources: Microsoft Learn — Graph v1.0 instantiate, servicePrincipal, addTokenSigningCertificate, synchronization, appRoleAssignedTo; permissions reference. Book 15, Ch 06.");
   notes(s,
@@ -688,7 +688,7 @@ So phase 1 configures nothing. The verdict is the gate. The program's default fo
 
 Adding a gallery or non-gallery application, setting the single sign-on mode, creating a signing certificate, creating the provisioning job, storing provisioning credentials and pushing one user on demand all list Application.ReadWrite.OwnedBy as the least-privileged application permission.
 
-Three corrections. First, Application.ReadWrite.OwnedBy is enough, and Synchronization.ReadWrite.All isn't needed. OwnedBy allows the same operations as ReadWrite.All but only on applications and service principals the calling app owns, though it can still list every app in the tenant. Adding the tenant-wide synchronization permission would undo the ownership boundary the design relies on. Second, assignment needs a permission that can grant anything. Assigning users or groups through appRoleAssignedTo requires AppRoleAssignment.ReadWrite.All, and Microsoft warns that such permissions let an app grant additional privileges to itself, other apps or any user. A connector holding it is effectively a privileged administrator, so the program keeps it off: a person in the approved role, activated through PIM against the ticket, binds the application's access group once, and ongoing access is group membership. Third, addTokenSigningCertificate creates a self-signed certificate, valid up to three years, and isn't available in GCC High or DoD. It's fine for a short-lived certificate on controlled rotation, but it can't place a certificate issued under the agency's policy; that's an upload.
+Three corrections. First, Application.ReadWrite.OwnedBy is enough, and Synchronization.ReadWrite.All isn't needed. OwnedBy allows the same operations as ReadWrite.All but only on applications and service principals the calling app owns, though it can still list every app in the tenant. Adding the tenant-wide synchronization permission would undo the ownership boundary the design relies on. Second, assignment needs a permission that can grant anything. Assigning users or groups through appRoleAssignedTo requires AppRoleAssignment.ReadWrite.All, and Microsoft warns that such permissions let an app grant additional privileges to itself, other apps or any user. A connector holding it is effectively a privileged administrator, so the program keeps it off: a person in the approved role, activated through PIM against the ticket, binds the application's access group once, and ongoing access is group membership. Third, addTokenSigningCertificate creates a self-signed certificate, valid up to three years, in the global service, which GCC uses. It's fine for a short-lived certificate on controlled rotation, but it can't place a certificate issued under the agency's policy; that's an upload.
 
 The connector refuses execution when the change record is unapproved or the approver equals the requester. Negative tests prove the refusals, including configuring without a verdict. And the book's limit is candid: measure the population first with its read-only inventory script, and scale the catalog to what it finds.`,
   "Book 15, Chapter 06, \"The actuation surface, least privilege first,\" \"Tests that would prove the design wrong\" and \"Honest limits.\"");
@@ -785,8 +785,8 @@ So the program runs one loop on every surface, then asks how results reach the I
     { text: "the coordination platform reads control state and never writes it; a task closes on a re-test, not a click (design guidance)." },
   ], { x: 0.6, y: 5.35, w: 5.5, h: 1.1, fontSize: 12.5, valign: "middle" });
   table(s, "M365", 1.5, [1.95, 4.5], ["Source", "What it gives day two"], [
-    ["ScubaGear", "SCuBA results in JSON with stable IDs such as MS.AAD.1.1v1; -M365Environment gcc, gcchigh or dod; an omission is an exception with an expiry"],
-    ["Graph: Conditional Access", "Policy.Read.All, Global or Security Reader; graph.microsoft.com for GCC, .us for GCC High, dod-graph for DoD"],
+    ["ScubaGear", "SCuBA results in JSON with stable IDs such as MS.AAD.1.1v1; -M365Environment gcc; an omission is an exception with an expiry"],
+    ["Graph: Conditional Access", "Policy.Read.All, Global or Security Reader; GCC keeps the worldwide graph.microsoft.com"],
     ["Purview audit", "Management Activity API per cloud; Standard keeps 180 days, Premium one year by default, up to ten"],
     ["Compliance Manager", "A readiness signal, not the evidence of record; 24-hour refresh; continuous assessments still rolling out in GCC"],
   ], { x: 6.3, fontSize: 12 });
@@ -802,7 +802,7 @@ Two rules hold it together. The coordination platform reads; it doesn't write. A
 
 On Microsoft 365, ScubaGear checks the tenant against the SCuBA baselines. For day two the JSON matters: each result carries a stable policy ID, such as MS.AAD.1.1v1, legacy authentication blocked, so the mapping from policy to task is data. An omission becomes an exception record with an approver and an expiry, not a line in a config file.
 
-Graph reads Conditional Access with Policy.Read.All, as Global Reader or Security Reader. GCC keeps graph.microsoft.com; GCC High uses graph.microsoft.us and DoD dod-graph.microsoft.us, each with an app registration in that cloud. That read catches an exclusion still present after its request expired, a high-severity finding.
+Graph reads Conditional Access with Policy.Read.All, as Global Reader or Security Reader. A GCC tenant keeps using the worldwide graph.microsoft.com. That read catches an exclusion still present after its request expired, a high-severity finding.
 
 Purview's unified audit log comes through the Management Activity API, with its own endpoint per cloud. Compliance Manager is the closest Microsoft product. It's a readiness signal, not the evidence of record, because Microsoft itself says a high score isn't an absolute measure of compliance, and in GCC continuous assessments are still rolling out.`,
   "Book 15, Chapter 08 — Control Compliance Automation: Microsoft 365 and Azure, \"One loop on every surface\" and \"Microsoft 365: what produces the evidence.\"");
@@ -813,7 +813,7 @@ Purview's unified audit log comes through the Management Activity API, with its 
   const s = content(P2, "Azure: Policy, Defender for Cloud and Resource Graph");
   tag(s, "What");
   panel(s, "Policy", 0.6, 1.5, 3.95, 4.95, HEX.navy, HEX.navyTint, "AZURE POLICY", "FedRAMP initiatives", [
-    "FedRAMP Moderate built-in, and a separate Azure Government one",
+    "FedRAMP Moderate built-in initiative for Azure",
     "\"Compliant\" covers only the definitions: a partial view",
     "Daily cycle; a changed resource shows in about 15 minutes",
     "Exemption: Waiver or Mitigated, expiresOn; the object is kept",
@@ -823,19 +823,19 @@ Purview's unified audit log comes through the Management Activity API, with its 
     "Standards are Policy initiatives; manual controls greyed out",
     "Any plan except Servers Plan 1 or APIs Plan 1",
     "FedRAMP High and Moderate; 800-53 R5.1.1 on Azure, AWS, Google",
-    "Export and workflow automation GA in Azure and Azure Government",
+    "Continuous export and workflow automation on state changes",
     "Export sends on change: silence isn't proof",
   ], 12.5);
   panel(s, "ARG", 8.8, 1.5, 3.95, 4.95, HEX.amber, HEX.amberTint, "AZURE RESOURCE GRAPH", "The read path", [
     "PolicyResources: policystates",
     "SecurityResources: regulatorycompliancestandards, with passed and failed counts",
     "Exempt resources queryable too",
-    "Generally available in Azure Government",
+    "Read-only: one query covers many subscriptions",
     "1,000 records per request: page with a skip token",
   ], 12.5);
   sources(s, "Sources: Microsoft Learn — FedRAMP Moderate initiatives; Policy compliance data; exemption structure; Defender for Cloud standards, support matrix; Resource Graph. Book 15, Ch 08.");
   notes(s,
-`Azure Policy publishes regulatory compliance built-in initiatives, including FedRAMP Moderate for Azure and a separate FedRAMP Moderate for Azure Government, with its own definitions. Microsoft's caveat is the most important sentence to carry into an assessment: compliant refers only to the policy definitions themselves and doesn't ensure you're fully compliant with a control; it's a partial view. So the initiative is a source of findings for the settings it covers, not a verdict on a control.
+`Azure Policy publishes regulatory compliance built-in initiatives, including a FedRAMP Moderate initiative for Azure. Microsoft's caveat is the most important sentence to carry into an assessment: compliant refers only to the policy definitions themselves and doesn't ensure you're fully compliant with a control; it's a partial view. So the initiative is a source of findings for the settings it covers, not a verdict on a control.
 
 Timing matters for the record. Azure Policy re-evaluates in a standard cycle every 24 hours; a new or updated resource's result appears about fifteen minutes after the change. A task closed on "the next evaluation" closes up to a day after the fix, and the record carries the evaluation time.
 
@@ -843,7 +843,7 @@ Exceptions have a native form. An exemption is a Waiver, the non-compliance temp
 
 Defender for Cloud's regulatory compliance dashboard presents standards that are Policy initiatives underneath. Assigning a standard needs any Defender plan except Servers Plan 1 or APIs Plan 1. Export sends on state change, so silence isn't proof that nothing is open.
 
-Resource Graph is the simplest read-only path: policy states in PolicyResources, Defender's per-standard state in SecurityResources, and exemptions. It's generally available in Azure Government and returns at most a thousand records per request, so a collector pages with a skip token.`,
+Resource Graph is the simplest read-only path: policy states in PolicyResources, Defender's per-standard state in SecurityResources, and exemptions. It returns at most a thousand records per request, so a collector pages with a skip token.`,
   "Book 15, Chapter 08, \"Azure: what produces the evidence.\"");
 }
 
@@ -851,8 +851,8 @@ Resource Graph is the simplest read-only path: policy states in PolicyResources,
 {
   const s = content(P2, "Three routes into the ITSM platform, one clock");
   tag(s, "How");
-  const b = table(s, "Routes", 1.5, [1.85, 4.3, 3.0, 3.0], ["Route", "What it does", "Government clouds", "Program treatment"], [
-    ["Vendor connector", "Defender for Cloud's ServiceNow integration opens incidents, changes or problems from recommendations; syncs every 24 hours", "Needs Defender CSPM; GA in Azure, not in Azure Government", "A routing convenience, not the evidence record"],
+  const b = table(s, "Routes", 1.5, [1.85, 4.3, 3.0, 3.0], ["Route", "What it does", "Government-cloud note", "Program treatment"], [
+    ["Vendor connector", "Defender for Cloud's ServiceNow integration opens incidents, changes or problems from recommendations; syncs every 24 hours", "Needs Defender CSPM; GA in Azure", "Usable for Azure commercial subscriptions; a routing convenience, not the evidence record"],
     ["Platform import", "ServiceNow Configuration Compliance imports Defender results and matches CMDB records; it doesn't calculate them", "Depends on what the instance and scope can reach", "Strong where licensed"],
     ["Program collector", "A read-only identity reads Resource Graph, Graph and ScubaGear output and writes evidence records", "Works in every cloud, endpoints set per cloud", "The default; the only route covering ScubaGear"],
   ], { fontSize: 12 });
@@ -871,7 +871,7 @@ Resource Graph is the simplest read-only path: policy states in PolicyResources,
   notes(s,
 `There are three ways a result reaches the ITSM platform, and the program uses whichever the agency can run in its own cloud, always landing the same evidence record.
 
-The vendor connector: Defender for Cloud's ServiceNow integration creates and links incidents, changes or problems from recommendations, synchronizing every 24 hours. It needs the Defender CSPM plan and is generally available in Azure but not in Azure Government. The GCC case is easy to get wrong: GCC tenants pair with Entra ID in commercial Azure, so a GCC agency's Defender subscriptions are usually commercial, where the connector works; an agency on Azure Government can't use it. The platform import: ServiceNow Configuration Compliance imports Defender test results and matches them to CMDB records; it imports results, it doesn't calculate them. The program collector: a read-only service identity reads Resource Graph, Graph and ScubaGear output and writes evidence-contract records that open or update tasks. It works in every cloud and is the only route that also covers ScubaGear. Routes can be combined, but each source feeds through exactly one; two routes for one finding make two tasks with two clocks.
+The vendor connector: Defender for Cloud's ServiceNow integration creates and links incidents, changes or problems from recommendations, synchronizing every 24 hours. It needs the Defender CSPM plan and is generally available in Azure. GCC tenants pair with Entra ID in commercial Azure, so a GCC agency's Defender subscriptions are commercial, where the connector works. The platform import: ServiceNow Configuration Compliance imports Defender test results and matches them to CMDB records; it imports results, it doesn't calculate them. The program collector: a read-only service identity reads Resource Graph, Graph and ScubaGear output and writes evidence-contract records that open or update tasks. It works in every cloud and is the only route that also covers ScubaGear. Routes can be combined, but each source feeds through exactly one; two routes for one finding make two tasks with two clocks.
 
 Every task carries a due date, and its source matters. For vulnerabilities and patches the agency's clock is BOD 26-04, Prioritizing Security Updates Based on Risk, June 10, 2026, which sets deadlines by public exposure and whether the vulnerability is in the Known Exploited Vulnerabilities catalog, and is mandatory for federal civilian agencies. The source volume used FedRAMP's PAIN timeframe table instead; those rules apply to providers with FedRAMP certifications and state their timeframes as SHOULD.
 
@@ -883,22 +883,22 @@ ServiceNow's Continuous Authorization and Monitoring, a separate subscription, c
 {
   const s = content(P2, "AWS: Config and Security Hub CSPM, not Audit Manager");
   tag(s, "What");
-  const b = table(s, "AWS", 1.5, [2.1, 4.05, 3.15, 2.85], ["Service", "What it gives the loop", "AWS GovCloud (US)", "Keep in mind"], [
-    ["Config conformance packs", "FedRAMP Low, Moderate, High and NIST 800-53 rev 5 sample packs; per-resource results with run times", "Both Regions; remediation documents conflict across AWS pages: test", "Samples don't guarantee compliance; rev 5 pack primary (design guidance)"],
-    ["Security Hub CSPM", "FSBP, CIS AWS Foundations and a NIST 800-53 Rev. 5 subset; ASFF findings", "Both Regions; shorter integration list; no Patch Manager", "No backfill; 90-day retention; auto-resolves"],
-    ["New Security Hub", "Correlates CSPM, Inspector, Macie, GuardDuty", "Since Mar 30, 2026; no third-party integrations", "Its ServiceNow integration is commercial only"],
-    ["Patch Manager", "Patch compliance against the agency's baseline", "Patch data from Systems Manager directly", "Point-in-time snapshot; BOD 26-04 clock"],
-    [{ text: "Audit Manager", options: { color: HEX.red } }, "Maintenance mode since Apr 30, 2026; no new frameworks", "No GovCloud endpoint", "FedRAMP framework is Rev. 4: don't build on it"],
+  const b = table(s, "AWS", 1.5, [2.3, 5.4, 4.45], ["Service", "What it gives the loop", "Keep in mind"], [
+    ["Config conformance packs", "FedRAMP Low, Moderate, High and NIST 800-53 rev 5 sample packs; per-resource results with run times", "Samples don't guarantee compliance; rev 5 pack primary; test remediation first (design guidance)"],
+    ["Security Hub CSPM", "FSBP, CIS AWS Foundations and a NIST 800-53 Rev. 5 subset; ASFF findings", "No backfill; 90-day retention; auto-resolves"],
+    ["New Security Hub", "Correlates CSPM, Inspector, Macie, GuardDuty", "Its ServiceNow ITSM integration creates incidents or problems"],
+    ["Patch Manager", "Patch compliance against the agency's baseline", "Point-in-time snapshot; BOD 26-04 clock"],
+    [{ text: "Audit Manager", options: { color: HEX.red } }, "Maintenance mode since Apr 30, 2026; no new frameworks", "FedRAMP framework is Rev. 4: don't build on it"],
   ], { fontSize: 11.5 });
   callout(s, "SMC", b + 0.15, 6.5 - b - 0.15, "FaPlugCircleXmark", HEX.amber, "Connector deadline: ",
     "AWS's Service Management Connector for ServiceNow took no new customers after March 31, 2026; support ends March 31, 2027. Plan the move now.");
-  sources(s, "Sources: AWS docs — Config conformance packs and samples; GovCloud Config; Security Hub CSPM and GovCloud; Audit Manager availability change; SMC end of support. Book 15, Ch 09.");
+  sources(s, "Sources: AWS docs — Config conformance packs and samples; Config remediation; Security Hub CSPM and Security Hub; Audit Manager availability change; SMC end of support. Book 15, Ch 09.");
   notes(s,
-`AWS Config evaluates resources with rules, and a conformance pack is a collection of rules and remediation actions deployed as one entity. AWS is as plain as Microsoft about limits: the samples aren't designed to ensure compliance, and the FedRAMP Moderate page aligns to a subset without saying which baseline revision it maps. So for a Rev. 5 system the program uses the rev 5 pack as the primary mapping and the FedRAMP pack as a cross-check. Both AWS locations are valid for a Moderate system: AWS lists US East and West at Class C, formerly Moderate, and GovCloud at Class D, formerly High, which includes the Moderate controls, and it lists FedRAMP scope per service and per Region. An agency may run most workloads in GovCloud at Moderate and a contact center in a commercial Region. The column on the slide shows where GovCloud differs. On remediation in GovCloud, the Config guide lists both Regions as supporting remediation actions, but the GovCloud user guide says the SSM documents for Config remediation aren't available. Test in a GovCloud account and plan on the agency's own Automation documents.
+`AWS Config evaluates resources with rules, and a conformance pack is a collection of rules and remediation actions deployed as one entity. AWS is as plain as Microsoft about limits: the samples aren't designed to ensure compliance, and the FedRAMP Moderate page aligns to a subset without saying which baseline revision it maps. So for a Rev. 5 system the program uses the rev 5 pack as the primary mapping and the FedRAMP pack as a cross-check. The program's AWS workloads run in the commercial Regions, where AWS lists FedRAMP scope per service and per Region. Config remediates through Systems Manager Automation documents, in the Regions the Config guide lists as supporting remediation actions; test each remediation action in a test account before turning on automatic remediation.
 
-Security Hub CSPM runs control checks against standards including FSBP, a NIST 800-53 Rev. 5 standard that supports a subset, and the CIS AWS Foundations Benchmark, versions 5.0.0 back to 1.2.0 with 5.0.0 recommended, available in every Region where Security Hub CSPM runs. For a civilian agency the CIS standard is the published hardening benchmark for the account layer. Three properties shape the loop: no backfill, so the first cycle is a baseline; findings kept 90 days after the last update, so copy them to the evidence store; and automatic resolution when a control passes, which means a synced ticket can close itself. In GovCloud, Patch Manager isn't on the integration list, so patch compliance comes from Systems Manager. The new AWS Security Hub reached GovCloud on March 30, 2026, without third-party integrations, so its ServiceNow integration is commercial only.
+Security Hub CSPM runs control checks against standards including FSBP, a NIST 800-53 Rev. 5 standard that supports a subset, and the CIS AWS Foundations Benchmark, versions 5.0.0 back to 1.2.0 with 5.0.0 recommended, available in every Region where Security Hub CSPM runs. For a civilian agency the CIS standard is the published hardening benchmark for the account layer. Three properties shape the loop: no backfill, so the first cycle is a baseline; findings kept 90 days after the last update, so copy them to the evidence store; and automatic resolution when a control passes, which means a synced ticket can close itself. A newer, separate service now carries the Security Hub name: AWS Security Hub correlates CSPM, Inspector, Macie and GuardDuty, and its ServiceNow ITSM integration creates incidents or problems from findings.
 
-Audit Manager is no longer a foundation. From April 30, 2026 it can't be set up in new accounts, and AWS adds no new frameworks. It has no GovCloud endpoint, and its FedRAMP framework is Rev. 4, with 36 automated and 289 manual controls for Moderate. And the Service Management Connector ends support March 31, 2027; the program's collector reads Config and Security Hub CSPM through the APIs, and EventBridge can push finding changes.`,
+Audit Manager is no longer a foundation. From April 30, 2026 it can't be set up in new accounts, and AWS adds no new frameworks. Its FedRAMP framework is Rev. 4, with 36 automated and 289 manual controls for Moderate. And the Service Management Connector ends support March 31, 2027; the program's collector reads Config and Security Hub CSPM through the APIs, and EventBridge can push finding changes.`,
   "Book 15, Chapter 09 — Control Compliance Automation: AWS and VMware, \"AWS: what produces the evidence.\"");
 }
 
@@ -925,9 +925,9 @@ Audit Manager is no longer a foundation. From April 30, 2026 it can't be set up 
 
 vSphere Configuration Profiles sets one desired configuration for all hosts in a cluster. It needs a cluster managed with a vSphere Lifecycle Manager image, hosts at ESX 8.0 Update 1 or later, and vCenter 9.0 or later; baseline clusters use Host Profiles, and switching is permanent. vLCM images are the patch test: in vSphere 9.0, using baselines to upgrade is deprecated, and images must be used for hosts at 8.0 and later. So one image move unlocks both tests, and in the program's design a cluster still on baselines is its own finding with a migration date.
 
-In VCF 9.1 the compliance benchmarks of VCF Operations, formerly Aria Operations, which included DISA and NIST 800-53 R5, were deprecated in favor of Security Posture Management. No 800-53 benchmark is listed, so an agency moving to 9.1 can lose the 800-53 view it had.
+In VCF 9.1 the compliance benchmarks of VCF Operations, formerly Aria Operations, which included STIG and NIST 800-53 R5, were deprecated in favor of Security Posture Management. No 800-53 benchmark is listed, so an agency moving to 9.1 can lose the 800-53 view it had.
 
-For a Moderate civilian agency the baseline is Broadcom's own VMware Cloud Foundation Security Configuration and Hardening Guide, which Security Posture Management measures, with CIS's ESXi 8.0 and 9.0 benchmarks as a cross-check, written as the agency's CM-6 settings. Broadcom's DISA STIG readiness content is High only: an optional reference, not a civilian requirement. An agency that borrows it records the readiness-guide version, because identifiers will change.
+For a Moderate civilian agency the baseline is Broadcom's own VMware Cloud Foundation Security Configuration and Hardening Guide, which Security Posture Management measures, with CIS's ESXi 8.0 and 9.0 benchmarks as a cross-check, written as the agency's CM-6 settings. Broadcom's STIG readiness content is High only: an optional reference, not a civilian requirement. An agency that borrows it records the readiness-guide version, because identifiers will change.
 
 No current VMware-to-ServiceNow compliance integration could be verified, so the collector is the default. Where no machine reaches, Book 13's rule applies: a declared, time-boxed, proxied, recorded privileged session, closing a task as a documented process, never a pipeline-validated change.`,
   "Book 15, Chapter 09, \"VMware: the on-premises evidence gap\" and \"One contract, four platforms.\"");
@@ -1038,9 +1038,9 @@ sourceSlide("Sources behind Module 3 — Catalogs, SaaS and the CMDB", [
   "NIST SP 800-53 Rev. 5 release 5.2.0 (AC, AU, CA, CM, IA, PS, SA, SC, SI controls cited); SP 800-53B baselines; SP 800-128 (2011, updated Oct. 10, 2019).",
   "ServiceNow: Entra ID Spoke (sample offboarding flow); Discovery; Service Graph Connector for Microsoft Azure; IRE; reconciliation rules; CMDB Health; CMDB Data Manager.",
   "FCC 19-76 (Aug. 2019), Kari's Law and RAY BAUM'S Act §506.  ·  47 CFR §§ 9.3 and 9.16.",
-  "Microsoft Learn: PSTN connectivity options; Teams service description; GCC High and DoD; manage emergency calling; Calling Plan emergency considerations; dynamic emergency calling.",
+  "Microsoft Learn: PSTN connectivity options; Teams service description; manage emergency calling; Calling Plan emergency considerations; dynamic emergency calling.",
   "Microsoft Learn: Graph call records; Teams PSTN usage report.  ·  CISA BOD 25-01 and its required configurations (MS.TEAMS, MS.AAD.5.1v1–5.3v1).",
-  "Microsoft Learn: Cloud feature availability for US Government; Azure Government identity; Graph national clouds; application gallery risk scores; Teams government clouds.",
+  "Microsoft Learn: Cloud feature availability for US Government; Graph national clouds; application gallery risk scores; Teams government clouds.",
   "FedRAMP Consolidated Rules for 2026 (Using a certified service; KSI-PIY-GIV).  ·  FedRAMP Marketplace products.json (781 listings, Oct. 21, 2026).  ·  CISA BOD 23-01.",
   "Microsoft Learn: illicit consent grants; app consent investigation; app governance FAQ; Defender for Cloud Apps for US Government; EMS for US Government; how provisioning works; SSO.",
   "Microsoft Graph v1.0: applicationTemplate instantiate; servicePrincipal update and addTokenSigningCertificate; synchronization jobs, secrets, provisionOnDemand; appRoleAssignedTo; permissions reference.",
@@ -1049,12 +1049,12 @@ sourceSlide("Sources behind Module 3 — Catalogs, SaaS and the CMDB", [
 sourceSlide("Sources behind Module 4 — Control automation and roles", [
   "CISA ScubaGear v1.8.0 README, parameters and Entra ID baseline.  ·  CISA BOD 25-01 (Dec. 17, 2024).  ·  CISA BOD 26-04 (June 10, 2026).",
   "Microsoft Learn: Graph Conditional Access list; Graph national clouds; Office 365 Management Activity API; Purview auditing; Purview GCC planning; Compliance Manager regulations and actions.",
-  "Microsoft Learn: FedRAMP Moderate initiatives (Azure and Azure Government); Policy compliance data; exemption structure; Resource Graph samples and paging; Azure Government GA roadmap.",
-  "Microsoft Learn: Defender for Cloud regulatory compliance standards, assignment, dashboard, support matrix and ServiceNow integration; Microsoft and CMMC (cloud pairing).",
+  "Microsoft Learn: FedRAMP Moderate initiative (Azure); Policy compliance data; exemption structure; Resource Graph samples and paging.",
+  "Microsoft Learn: Defender for Cloud regulatory compliance standards, assignment, dashboard, support matrix and ServiceNow integration; Cloud feature availability for US Government customers (Microsoft 365 integration).",
   "ServiceNow: Configuration Compliance (Defender for Cloud import); Continuous Authorization and Monitoring and release notes; change types; CAB workbench; CSDM Foundation.",
   "FedRAMP Consolidated Rules for 2026, Vulnerability Detection and Response.  ·  FedRAMP Marketplace products.json, ServiceNow F1305072116.",
-  "AWS docs: Config conformance packs and samples; FedRAMP (Moderate) practices; get-conformance-pack-compliance-details; remediation; Config in GovCloud.",
-  "AWS docs: Security Hub CSPM, NIST 800-53 Rev. 5, endpoints, Regional limits, ASFF filters; Security Hub in GovCloud and ServiceNow; Audit Manager change; SMC end of support; CIS AWS Foundations Benchmark in Security Hub CSPM; AWS FedRAMP and services in scope.",
+  "AWS docs: Config conformance packs and samples; FedRAMP (Moderate) practices; get-conformance-pack-compliance-details; remediation; Config remediation Regions.",
+  "AWS docs: Security Hub CSPM, NIST 800-53 Rev. 5, endpoints, Regional limits, ASFF filters; Security Hub and ServiceNow; Audit Manager change; SMC end of support; CIS AWS Foundations Benchmark in Security Hub CSPM; AWS FedRAMP and services in scope.",
   "Broadcom: vSphere Configuration Profiles and vLCM (9.0); VCF Operations compliance (9.0) and Security Posture Management (9.1); CIS Benchmarks (VMware ESXi 8.0, 9.0); VCF 9.1 STIG blog (High only reference); Advanced Cyber Compliance blog.",
   "NIST SP 800-37 Rev. 2; SP 800-53 Rev. 5 (AC-5, CM-3, CM-5, CM-8, CM-9); SP 800-128.  ·  Full footnotes: Book 15, Chapters 08–10.",
 ]);

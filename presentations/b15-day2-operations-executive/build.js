@@ -392,7 +392,7 @@ The matrix splits ownership three ways. The DNS and addressing team decides iden
   figSide(s, "ch08-one-loop", 5.2, "Loop", "FaCloud", HEX.navy, HEX.navyTint, "What differs by platform", [
     "The ITSM platform reads; it never writes the estate",
     "Patch clocks come from BOD 26-04, not FedRAMP's provider table",
-    "Defender's ServiceNow connector: not in Azure Government",
+    "Defender's ServiceNow connector: GA in Azure, needs Defender CSPM",
     "AWS Audit Manager is in maintenance mode; VMware evidence is the agency's own",
   ], 13.5);
   decision(s, "Keep the coordination platform read-only on the estate; every automated fix runs as a scoped, approved action with its own change record",
@@ -403,7 +403,7 @@ The matrix splits ownership three ways. The DNS and addressing team decides iden
 
 Two rules hold the loop together. The coordination platform reads; it doesn't write. A workflow tool with standing write access to Conditional Access or tenant configuration would itself be a least-privilege problem, so a safe automated fix runs as a scoped, logged action under its own approval. And a task closes on a re-test of the same asset, not on a click.
 
-What differs is the platform, and the dates matter. The clock on vulnerabilities comes from BOD 26-04, issued June 10, 2026, not from FedRAMP's provider timeframes. Defender for Cloud's ServiceNow integration is generally available in commercial Azure and not in Azure Government. AWS Audit Manager went into maintenance mode on April 30, 2026, so nobody should start a federal evidence program on it, and the AWS Service Management Connector ends March 31, 2027. On its own VMware estate the agency inherits nothing: in VCF 9.1 the old compliance benchmarks were replaced, and no NIST benchmark is listed, so the mapping is the agency's work.
+What differs is the platform, and the dates matter. The clock on vulnerabilities comes from BOD 26-04, issued June 10, 2026, not from FedRAMP's provider timeframes. Defender for Cloud's ServiceNow integration is generally available in commercial Azure, where a GCC agency's subscriptions are. AWS Audit Manager went into maintenance mode on April 30, 2026, so nobody should start a federal evidence program on it, and the AWS Service Management Connector ends March 31, 2027. On its own VMware estate the agency inherits nothing: in VCF 9.1 the old compliance benchmarks were replaced, and no NIST benchmark is listed, so the mapping is the agency's work.
 
 The matrix gives the CISO the decision on the automation's service identity and its permissions.`,
   "Book 15, Chapter 08 (One loop on every surface; Getting results into the ITSM platform; The clock on each task; Honest limits); Chapter 09 (AWS Audit Manager; VMware: the on-premises evidence gap; Honest limits); Chapter 10 (automation service identity row).");
@@ -529,7 +529,7 @@ One correction from the book: FedRAMP's Key Security Indicators bind providers, 
     ["Control records, scheduled tests, issues", "Policy and Compliance Mgmt", "Load controls from the control map"],
     ["RMF workflow, package, POA&M view", "Continuous Authorization and Monitoring", "Link each POA&M item to its task"],
     ["OSCAL export of plan, POA&M, results", "CAM, recent releases", "Validate against the OSCAL release"],
-    ["Posture findings into tracked work", "Configuration Compliance (commercial Azure)", "A path for Azure Gov, AWS, VMware"],
+    ["Posture findings into tracked work", "Configuration Compliance (commercial Azure)", "An equivalent path for AWS and VMware"],
     ["Closure only with proof; map kept in step", "Workflow configuration; none", "Closure gate; a map check in CI"],
   ];
   leftTable(s, ["Need", "Native coverage", "What the agency adds"], n.map((r) => [bold(r[0]), { text: r[1] }, { text: r[2] }]),
@@ -538,7 +538,7 @@ One correction from the book: FedRAMP's Key Security Indicators bind providers, 
     "CIO, with the ITSM platform team", "Before any custom build");
   sources(s, "Sources: ServiceNow PCM, CAM and Configuration Compliance docs; Microsoft Learn (Defender for Cloud support matrix); FedRAMP Marketplace (Oct 21, 2026). Book 15, Chapter 11.");
   narrate(s,
-`Before anyone builds a compliance application, the agency should know what its platform already does. As of October 2026, and every release changes this, ServiceNow ships much of the attestation loop. Policy and Compliance Management schedules control tests and turns gaps into issues. Continuous Authorization and Monitoring walks the seven RMF steps, shows every POA&M in one view, and in recent releases imports and exports OSCAL security plans, POA&Ms, assessment plans and results. It's a separate subscription. Configuration Compliance imports Defender for Cloud findings, but Microsoft lists that integration as not available in Azure Government. A partner has announced an application for FedRAMP's indicators; that's a vendor announcement, not a verified capability.
+`Before anyone builds a compliance application, the agency should know what its platform already does. As of October 2026, and every release changes this, ServiceNow ships much of the attestation loop. Policy and Compliance Management schedules control tests and turns gaps into issues. Continuous Authorization and Monitoring walks the seven RMF steps, shows every POA&M in one view, and in recent releases imports and exports OSCAL security plans, POA&Ms, assessment plans and results. It's a separate subscription. Configuration Compliance imports Defender for Cloud findings for the Azure scope the instance can reach. A partner has announced an application for FedRAMP's indicators; that's a vendor announcement, not a verified capability.
 
 The platform itself is authorized for federal use: the Marketplace lists ServiceNow's Government Community Cloud at Class D, High, with 101 agency authorizations as of October 21, 2026.
 

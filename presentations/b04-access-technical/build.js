@@ -479,8 +479,8 @@ An eligible role is only as safe as the moment it turns active. So that moment n
   ], 3.0, 1.65, 12);
   callout(s, "License", 4.9, 1.5, "FaTriangleExclamation", HEX.red, "License continuity is a control dependency: ",
     "if P2 or Governance lapses, eligible Entra role assignments are removed, PIM settings are removed and role reviews end. Keep the role inventory exported so eligibility can be restored.");
-  sources(s, "Sources: Microsoft Learn — PIM overview, role settings, approval workflow, ID Governance licensing, DoD Zero Trust user pillar. Book 04, Ch. 08.");
-  notes(s, `Self-request has two layers, and an agency can run either or both. Self-request for eligibility is a person asking to become eligible for a role. It's decided in entitlement management, through an access package for the role-assignable group, and it answers: may this person ever hold this role? Self-request for activation is an already-eligible person asking to turn the role on for a bounded window. It's decided in PIM, and it answers: may this person use this role right now? Microsoft's guidance for the DoD Zero Trust user pillar treats the two as composable.
+  sources(s, "Sources: Microsoft Learn — PIM overview, role settings, approval workflow, ID Governance licensing. Book 04, Ch. 08.");
+  notes(s, `Self-request has two layers, and an agency can run either or both. Self-request for eligibility is a person asking to become eligible for a role. It's decided in entitlement management, through an access package for the role-assignable group, and it answers: may this person ever hold this role? Self-request for activation is an already-eligible person asking to turn the role on for a bounded window. It's decided in PIM, and it answers: may this person use this role right now?
 
 This module builds the second layer, because it produces a per-use, time-bounded, individually justified record of privileged use, which is what AC-6(9) and AC-17(4) are tested against. Eligibility without an activation gate is standing privilege through a nicer front door. If an agency runs only one layer, it should run this one.
 

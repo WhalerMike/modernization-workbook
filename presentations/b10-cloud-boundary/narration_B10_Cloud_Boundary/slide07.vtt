@@ -52,15 +52,15 @@ an expiry date; the slide maps them.
 Roll every policy out in audit mode first.
 
 12
-00:00:40.362 --> 00:00:44.932
-One catch: Microsoft's accelerators
-are supported only in public Azure,
+00:00:40.362 --> 00:00:43.096
+Microsoft's accelerators
+deploy it from code,
 
 13
-00:00:44.932 --> 00:00:49.037
-so in Azure Government the platform
-team adapts the code by hand.
+00:00:43.096 --> 00:00:47.700
+and they're supported for public Azure,
+where the workbook's landing zone runs.
 
 14
-00:00:49.037 --> 00:00:50.860
+00:00:47.700 --> 00:00:49.510
 Next, the address plan.

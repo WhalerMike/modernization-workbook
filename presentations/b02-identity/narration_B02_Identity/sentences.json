@@ -328,53 +328,6 @@
    "So the program's default is unrestricted units, with restricted management a deliberate, recorded choice for sensitive accounts."
   ]
  ],
- "8": [
-  [
-   0.05,
-   4.338,
-   "One more thing changes, and users will feel it: how they sign in."
-  ],
-  [
-   4.388,
-   6.688,
-   "M twenty-two oh-nine requires phishing-resistant M F A, and it names piv as the simplest route."
-  ],
-  [
-   11.075,
-   1.988,
-   "That flips the usual roadmap."
-  ],
-  [
-   13.062,
-   3.112,
-   "Older plans saved smart-card sign-in for last."
-  ],
-  [
-   16.175,
-   12.25,
-   "But federal staff already carry piv or CAC cards, so certificate-based authentication in Entra ID is the fastest path: the credential's already issued, and no federation server is needed."
-  ],
-  [
-   28.425,
-   10.312,
-   "The book runs four waves: privileged accounts first, then card holders, then managed Windows devices with Windows Hello, and finally everyone else with passkeys."
-  ],
-  [
-   38.737,
-   7.638,
-   "Along the way, SMS and voice codes go for staff, and so do legacy protocols that send a password with every request."
-  ],
-  [
-   46.375,
-   5.2,
-   "Those are found in the sign-in logs, fixed, blocked, and watched for thirty days."
-  ],
-  [
-   51.575,
-   5.9,
-   "One thing stays on: password hash sync, for leaked-credential detection and as a fallback."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -561,6 +514,53 @@
    54.788,
    0.762,
    "Thank you."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.338,
+   "One more thing changes, and users will feel it: how they sign in."
+  ],
+  [
+   4.388,
+   6.688,
+   "M twenty-two oh-nine requires phishing-resistant M F A, and it names piv as the simplest route."
+  ],
+  [
+   11.075,
+   1.988,
+   "That flips the usual roadmap."
+  ],
+  [
+   13.062,
+   3.112,
+   "Older plans saved smart-card sign-in for last."
+  ],
+  [
+   16.175,
+   11.588,
+   "But federal staff already carry piv cards, so certificate-based authentication in Entra I D is the fastest path: the credential's already issued, and no federation server is needed."
+  ],
+  [
+   27.762,
+   10.312,
+   "The book runs four waves: privileged accounts first, then card holders, then managed Windows devices with Windows Hello, and finally everyone else with passkeys."
+  ],
+  [
+   38.075,
+   7.638,
+   "Along the way, SMS and voice codes go for staff, and so do legacy protocols that send a password with every request."
+  ],
+  [
+   45.712,
+   5.2,
+   "Those are found in the sign-in logs, fixed, blocked, and watched for thirty days."
+  ],
+  [
+   50.913,
+   5.9,
+   "One thing stays on: password hash sync, for leaked-credential detection and as a fallback."
   ]
  ]
 }

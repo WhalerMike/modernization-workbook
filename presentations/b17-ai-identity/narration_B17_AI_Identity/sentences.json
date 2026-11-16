@@ -326,53 +326,6 @@
    "Next, what's actually available, and where."
   ]
  ],
- "7": [
-  [
-   0.05,
-   7.225,
-   "The agency's cloud decides what it can use, so this book dates every product statement to October 2026."
-  ],
-  [
-   7.275,
-   9.375,
-   "The core Agent I D platform, with blueprints, agent identities and sponsors, was announced as generally available in April 2026."
-  ],
-  [
-   16.65,
-   5.787,
-   "But several controls are still preview, including agent targeting in Conditional Access."
-  ],
-  [
-   22.438,
-   1.288,
-   "The slide lists them."
-  ],
-  [
-   23.725,
-   2.212,
-   "The government clouds are the bigger issue."
-  ],
-  [
-   25.938,
-   10.375,
-   "G C C has a partial, documented subset: identity and access governance for agents, but not Microsoft's audit, data loss prevention or network controls."
-  ],
-  [
-   36.312,
-   12.3,
-   "G C C High and DOD have no published availability, so treat agent identities as unavailable there until Microsoft confirms otherwise in writing, and govern A I as workload identities."
-  ],
-  [
-   48.612,
-   6.763,
-   "The rule is simple: build on what's generally available in your own cloud, and keep preview features as watch items."
-  ],
-  [
-   55.375,
-   2.5,
-   "Next, the person behind each agent."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -725,6 +678,53 @@
    58.837,
    0.762,
    "Thank you."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   7.225,
+   "The agency's cloud decides what it can use, so this book dates every product statement to October 2026."
+  ],
+  [
+   7.275,
+   9.375,
+   "The core Agent I D platform, with blueprints, agent identities and sponsors, was announced as generally available in April 2026."
+  ],
+  [
+   16.65,
+   5.787,
+   "But several controls are still preview, including agent targeting in Conditional Access."
+  ],
+  [
+   22.438,
+   1.288,
+   "The slide lists them."
+  ],
+  [
+   23.725,
+   2.212,
+   "The government clouds are the bigger issue."
+  ],
+  [
+   25.938,
+   10.375,
+   "G C C has a partial, documented subset: identity and access governance for agents, but not Microsoft's audit, data loss prevention or network controls."
+  ],
+  [
+   36.312,
+   10.688,
+   "Treat any agent capability that isn't listed for G C C as unavailable until Microsoft confirms otherwise in writing, and govern A I as workload identities there."
+  ],
+  [
+   47.0,
+   6.763,
+   "The rule is simple: build on what's generally available in your own cloud, and keep preview features as watch items."
+  ],
+  [
+   53.763,
+   2.5,
+   "Next, the person behind each agent."
   ]
  ]
 }

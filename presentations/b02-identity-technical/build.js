@@ -556,7 +556,7 @@ Handling: the data is a map for an attacker. Encrypt it, restrict the repository
   notes(s,
 `Part 2: building the Entra ID target and migrating onto it. Module 3 is the target design.
 
-The chapter's premise fits in one sentence. In Active Directory, where an object sits decides what applies to it. In Entra ID, what an object says about itself decides. So the target has to be built from attributes, not copied from containers. The environment throughout is a Microsoft 365 Government Community Cloud tenant, which uses the worldwide Microsoft Graph endpoint, not the separate endpoints that GCC High and DoD use. Check each feature against the government service descriptions, because some reach GCC later.`,
+The chapter's premise fits in one sentence. In Active Directory, where an object sits decides what applies to it. In Entra ID, what an object says about itself decides. So the target has to be built from attributes, not copied from containers. The environment throughout is a Microsoft 365 Government Community Cloud tenant, which uses the worldwide Microsoft Graph endpoint. Check each feature against the government service descriptions, because some reach GCC later.`,
   "Book 02, Chapter 09 — Building the Entra ID Target.");
 }
 
@@ -868,8 +868,8 @@ Reviews close the loop. PIM-eligible role assignments are reviewed quarterly by 
   const s = D.content(P2, "Phishing-resistant authentication, then the legacy cutoff");
   tag(s, "How");
   table(s, "Roadmap", 1.5, [0.75, 2.4, 3.0, 1.35], ["Phase", "Population", "Method", "Estimate"], [
-    ["1", "Privileged accounts", "FIDO2 passkeys; PIV or CAC via CBA", "4–6 weeks"],
-    ["2", "PIV and CAC holders", "Entra certificate-based authentication", "8–12 weeks"],
+    ["1", "Privileged accounts", "FIDO2 passkeys; PIV via CBA", "4–6 weeks"],
+    ["2", "PIV holders", "Entra certificate-based authentication", "8–12 weeks"],
     ["3", "Managed Windows devices", "Windows Hello for Business", "8–12 weeks"],
     ["4", "Everyone else, mobile too", "Passkeys in Microsoft Authenticator", "8–12 weeks"],
   ], { fontSize: 12.5 });
@@ -889,9 +889,9 @@ Reviews close the loop. PIM-eligible role assignments are reviewed quarterly by 
   notes(s,
 `Authentication modernization starts from the federal requirement. OMB M-22-09 requires phishing-resistant MFA for staff, contractors and partners, and requires agencies to stop supporting methods that fail to resist phishing, such as SMS and voice codes, for routine access. It names PIV as the simplest route. Its targets were set for the end of fiscal year 2024, so as of October 2026 these are requirements to meet, not goals.
 
-That reorders the roadmap. Older plans put smart-card sign-in last. But a federal workforce already carries PIV or CAC cards, so Entra certificate-based authentication is the fastest path: the credential is issued, and it works directly against Entra ID without a federation server.
+That reorders the roadmap. Older plans put smart-card sign-in last. But a federal workforce already carries PIV cards, so Entra certificate-based authentication is the fastest path: the credential is issued, and it works directly against Entra ID without a federation server.
 
-Phase one, privileged accounts: FIDO2 passkeys with attestation enforced, plus PIV or CAC through certificate-based authentication where the admin holds a card, in four to six weeks. Phase two, every PIV and CAC holder through certificate-based authentication. Phase three, managed Windows devices on Windows Hello for Business. Phase four, everyone else, including mobile, on passkeys in Microsoft Authenticator. Those last three are eight to twelve weeks each, and all four methods meet the built-in phishing-resistant strength. For NIST control IA-2(6), separate device, the program counts PIV cards and FIDO2 keys; Windows Hello lives in the device gaining access, so it isn't counted for privileged accounts.
+Phase one, privileged accounts: FIDO2 passkeys with attestation enforced, plus PIV through certificate-based authentication where the admin holds a card, in four to six weeks. Phase two, every PIV holder through certificate-based authentication. Phase three, managed Windows devices on Windows Hello for Business. Phase four, everyone else, including mobile, on passkeys in Microsoft Authenticator. Those last three are eight to twelve weeks each, and all four methods meet the built-in phishing-resistant strength. For NIST control IA-2(6), separate device, the program counts PIV cards and FIDO2 keys; Windows Hello lives in the device gaining access, so it isn't counted for privileged accounts.
 
 The authentication methods policy: SMS and voice off for staff. Temporary Access Pass is one-time use with a one-hour life, against Microsoft's multi-use default. Passkey registration needs MFA in the last five minutes.
 

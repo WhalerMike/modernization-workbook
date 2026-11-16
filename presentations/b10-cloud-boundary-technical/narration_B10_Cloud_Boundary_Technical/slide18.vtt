@@ -41,14 +41,14 @@ so new subscriptions
 can't land outside it.
 
 9
-00:00:27.474 --> 00:00:29.917
-One trap for Azure Government teams:
+00:00:27.474 --> 00:00:32.331
+And deploy it from code: Microsoft's
+accelerators are supported for public Azure,
 
 10
-00:00:29.917 --> 00:00:34.150
-Microsoft's accelerators only
-run unmodified in public Azure.
+00:00:32.331 --> 00:00:34.650
+where the workbook's landing zone runs.
 
 11
-00:00:34.150 --> 00:00:36.430
+00:00:34.650 --> 00:00:36.910
 Next, the policies themselves.

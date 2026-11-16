@@ -1,4 +1,46 @@
 {
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   12.262,
+   "This is the technical deep dive on external partner identity, from the H R-Driven Identity book of the Federal Modernization Workbook, and its Microsoft Entra profile in Access and Privilege."
+  ],
+  [
+   13.025,
+   6.037,
+   "It's for identity engineers, Conditional Access owners, I S S O's and the governance office."
+  ],
+  [
+   19.062,
+   4.475,
+   "After the rule the whole profile enforces, it runs in three modules."
+  ],
+  [
+   23.538,
+   3.938,
+   "Module 1 is assurance and the default route into the tenant."
+  ],
+  [
+   27.475,
+   5.263,
+   "Module 2 is cross-tenant synchronization as an exception, and who does the work."
+  ],
+  [
+   32.737,
+   9.787,
+   "Module 3 is proof: the partner identity record, ten validation tests, monitoring, the requirements and evidence, and the government-cloud check."
+  ],
+  [
+   42.525,
+   4.912,
+   "Every Microsoft setting here comes from Microsoft Learn, as the profile cites it."
+  ]
+ ],
  "2": [
   [
    0.05,
@@ -29,6 +71,23 @@
    43.812,
    1.812,
    "The rest of this deck is how."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.862,
+   "Module 1 is assurance and the default route."
+  ],
+  [
+   2.913,
+   5.2,
+   "First, how much assurance each partner transaction needs, and who performs each part."
+  ],
+  [
+   8.113,
+   12.062,
+   "Then how a partner person gets into the tenant the normal way: through a connected organization and an access package, with cross-tenant trust scoped to that one partner, and one partner list in Conditional Access."
   ]
  ],
  "4": [
@@ -229,6 +288,23 @@
    "A read-only Graph check compares the list across the five policies and against the partner entries in cross-tenant access settings."
   ]
  ],
+ "8": [
+  [
+   0.05,
+   3.925,
+   "Module 2 is the exception: cross-tenant synchronization."
+  ],
+  [
+   3.975,
+   11.675,
+   "It covers the conditions that must all hold before sync is allowed, the terms the agency states and then tests in its own tenant, and how to end a sync relationship without leaving accounts behind."
+  ],
+  [
+   15.65,
+   4.65,
+   "It closes with who does the work, on the partner's side and the agency's."
+  ]
+ ],
  "9": [
   [
    0.05,
@@ -358,6 +434,18 @@
    43.462,
    10.912,
    "On the partner's side, the partner keeps its affiliation record accurate, issues and revokes credentials, sends mover and leaver notices, and coordinates incidents under the agreement."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.85,
+   "Module 3 is proof."
+  ],
+  [
+   1.9,
+   15.713,
+   "The partner identity record that holds every decision, the ten validation tests, the monitoring and drift checks, the requirements and evidence an I S S O keeps, and finally the government-cloud check, with the things the profile honestly hasn't verified."
   ]
  ],
  "13": [
@@ -541,146 +629,58 @@
   ],
   [
    7.325,
-   15.463,
-   "For an agency tenant in G C C, entitlement management and connected organizations are available, and a partner in G C C High or D O D connects as Entra I D in another cloud, with both tenants enabling each other's cloud."
+   14.275,
+   "For an agency tenant in G C C, entitlement management and connected organizations are available, and a partner in another Microsoft cloud connects as Entra I D in that cloud, with both tenants enabling each other's cloud."
   ],
   [
-   22.788,
+   21.6,
    10.088,
    "B to B direct connect isn't supported across clouds, and Teams doesn't support external members across clouds, so check each application's government service description."
   ],
   [
-   32.875,
+   31.688,
    2.487,
    "Cross-cloud sync carries users only."
   ],
   [
-   35.362,
+   34.175,
    3.062,
    "Several things are honestly marked not verified."
   ],
   [
-   38.425,
+   37.237,
    7.338,
    "Whether cross-cloud sync is generally available: one Microsoft page called it public preview in August 2025."
   ],
   [
-   45.763,
+   44.575,
    3.05,
    "The fed-ramp boundary rules for each feature used."
   ],
   [
-   48.812,
+   47.625,
    3.125,
    "The records schedules for agreements and reviews."
   ],
   [
-   51.938,
+   50.75,
    5.513,
    "And the special publication eight hundred sixty-three C, revision four planning note."
   ],
   [
-   57.45,
+   56.263,
    2.388,
    "Confirm each before you rely on it."
   ],
   [
-   59.837,
+   58.65,
    5.2,
    "The chapter, the record and the Entra profile carry every command and footnote."
   ],
   [
-   65.037,
+   63.85,
    0.762,
    "Thank you."
-  ]
- ],
- "1": [
-  [
-   0.05,
-   0.713,
-   "Welcome."
-  ],
-  [
-   0.762,
-   12.262,
-   "This is the technical deep dive on external partner identity, from the H R-Driven Identity book of the Federal Modernization Workbook, and its Microsoft Entra profile in Access and Privilege."
-  ],
-  [
-   13.025,
-   6.037,
-   "It's for identity engineers, Conditional Access owners, I S S O's and the governance office."
-  ],
-  [
-   19.062,
-   4.475,
-   "After the rule the whole profile enforces, it runs in three modules."
-  ],
-  [
-   23.538,
-   3.938,
-   "Module 1 is assurance and the default route into the tenant."
-  ],
-  [
-   27.475,
-   5.263,
-   "Module 2 is cross-tenant synchronization as an exception, and who does the work."
-  ],
-  [
-   32.737,
-   9.787,
-   "Module 3 is proof: the partner identity record, ten validation tests, monitoring, the requirements and evidence, and the government-cloud check."
-  ],
-  [
-   42.525,
-   4.912,
-   "Every Microsoft setting here comes from Microsoft Learn, as the profile cites it."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   2.862,
-   "Module 1 is assurance and the default route."
-  ],
-  [
-   2.913,
-   5.2,
-   "First, how much assurance each partner transaction needs, and who performs each part."
-  ],
-  [
-   8.113,
-   12.062,
-   "Then how a partner person gets into the tenant the normal way: through a connected organization and an access package, with cross-tenant trust scoped to that one partner, and one partner list in Conditional Access."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   3.925,
-   "Module 2 is the exception: cross-tenant synchronization."
-  ],
-  [
-   3.975,
-   11.675,
-   "It covers the conditions that must all hold before sync is allowed, the terms the agency states and then tests in its own tenant, and how to end a sync relationship without leaving accounts behind."
-  ],
-  [
-   15.65,
-   4.65,
-   "It closes with who does the work, on the partner's side and the agency's."
-  ]
- ],
- "12": [
-  [
-   0.05,
-   1.85,
-   "Module 3 is proof."
-  ],
-  [
-   1.9,
-   15.713,
-   "The partner identity record that holds every decision, the ten validation tests, the monitoring and drift checks, the requirements and evidence an I S S O keeps, and finally the government-cloud check, with the things the profile honestly hasn't verified."
   ]
  ]
 }

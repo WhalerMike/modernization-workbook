@@ -14,11 +14,11 @@ Module 1 builds the foundation. First, the three checks and who owns each one. T
 
 ## Slide 4 — Three checks, three owners, one overlap you can use
 
-Each check answers a different question, and none of them can stand in for the others. The Marketplace tells you what's certified, but not which features your environment switches off. The provider's notes tell you about features, but not whether your agency authorized the integration. And your own package covers your choices, but nothing outside the certified offering. Two highpoints. Agents you install on agency machines are outside FedRAMP entirely, so they're yours to assess. And impact level and features are different axes: the features missing in GCC are missing in GCC High too. Next, why nobody notices.
+Each check answers a different question, and none of them can stand in for the others. The Marketplace tells you what's certified, but not which features your environment switches off. The provider's notes tell you about features, but not whether your agency authorized the integration. And your own package covers your choices, but nothing outside the certified offering. Two highpoints. Agents you install on agency machines are outside FedRAMP entirely, so they're yours to assess. And impact level and features are different axes: Microsoft documents each missing feature on its own page, with no reference to a certification class. Next, why nobody notices.
 
 ## Slide 5 — Why the boundary stays invisible, and a claim corrected
 
-Why don't teams see it coming? The consoles are shared, each exclusion hides in one sentence on its own page, features change underneath you, and a missing signal just looks like a quiet day. But the correction matters just as much. A widely repeated example listed five features as missing from GCC. Checked against the documentation, only one actually is. The rest are GCC High gaps, or belong to Azure entirely. An unverified story sends you to build compensations you don't need. So only vendor-confirmed rows count. Now, a way to describe what changes across any boundary.
+Why don't teams see it coming? The consoles are shared, each exclusion hides in one sentence on its own page, features change underneath you, and a missing signal just looks like a quiet day. But the correction matters just as much. A widely repeated example listed five features as missing from GCC. Checked against the documentation, only one actually is. Three of the rest aren't documented GCC gaps at all, and one belongs to Azure entirely. An unverified story sends you to build compensations you don't need. So only vendor-confirmed rows count. Now, a way to describe what changes across any boundary.
 
 ## Slide 6 — Four dimensions change across any boundary
 
@@ -42,15 +42,15 @@ Module 2 gets specific about Microsoft 365 GCC: what it really is, what it verif
 
 ## Slide 11 — GCC is the worldwide service minus a published list
 
-The common picture of GCC is a fence around the commercial service. Microsoft's own documentation describes something else: the worldwide service, on the same endpoints, with a list of specific features left out. That's good news, because a list can be read, argued and worked one line at a time, while a fence can only be accepted or left. And the list isn't a ladder. Some features reach GCC and stop there. One honest wrinkle: the Marketplace says GCC rides on Azure Government infrastructure. Cite both statements and paraphrase neither. So what does GCC actually lose?
+The common picture of GCC is a fence around the commercial service. Microsoft's own documentation describes something else: the worldwide service, on the same endpoints, with a list of specific features left out. That's good news, because a list can be read, argued and worked one line at a time, while a fence can only be accepted or left. And each exclusion is published in its own note, with a citation you can hand an assessor. One honest wrinkle: the Marketplace description says GCC leverages Azure Government as its infrastructure. Cite both statements and paraphrase neither. So what does GCC actually lose?
 
 ## Slide 12 — The largest documented loss: network observability
 
 The biggest documented loss isn't a telemetry detail. It's the whole network connectivity layer in the admin center: scores per location, insights like spotting TLS interception, and attribution of performance to named network providers. A commercial agency compares its SASE and transport options from a dashboard. A GCC agency gets none of that. Some measurement survives: the connectivity test tool still works in GCC, run from each location. But the practical message is budget. If you need comparative network evidence, you'll be funding the measurement yourself. Next, the question everyone asks about High.
 
-## Slide 13 — Three packages, and why High won't bring features back
+## Slide 13 — Two GCC packages, and why High won't bring features back
 
-The Marketplace shows three Microsoft 365 government packages, and a new one stands out: a package with the same name as GCC, now pursuing High. The fact is the listing. The reading, that it's a High effort for GCC, is inference, so ask the provider rather than planning around it. Here's the key point. A higher class changes what data you can put in the service. It doesn't bring excluded features back. Network connectivity is already missing in GCC High, which is certified High today. So never wait on a class for a feature. Next, what to do instead.
+The Marketplace shows two Microsoft 365 GCC packages, and the new one stands out: a package with the same name as GCC, now pursuing High. The fact is the listing. The reading, that it's a High effort for GCC, is inference, so ask the provider rather than planning around it. Here's the key point. A higher class changes what data you can put in the service. It doesn't bring excluded features back, because Microsoft documents each exclusion per feature, with no reference to a class. So never wait on a class for a feature. Next, what to do instead.
 
 ## Slide 14 — Work the gap as a list: register, probe, equivalent
 
@@ -62,23 +62,23 @@ When there's no equivalent, you take an exception, and there are two kinds. The 
 
 ## Slide 16 — Change the suite, keep the identity plane
 
-Sometimes the honest answer is a different collaboration suite. That's only safe if identity stays where it is: the suite is a workload that consumes identity, not a second source of truth. Read the certification, not the press release, because announcements and listings don't always match. The public record shows both outcomes: one department moved fifty thousand people on a steep temporary discount, and another dropped licenses almost nobody used. Keep Entra ID provisioning and federating sign-in, watch the admin accounts that skip it, and treat stray edits in the second directory as drift. That's Part 1.
+Sometimes the honest answer is a different collaboration suite. That's only safe if identity stays where it is: the suite is a workload that consumes identity, not a second source of truth. Read the certification, not the press release, because announcements and listings don't always match. The public record shows one such move: a department moved fifty thousand people on a steep temporary discount, and coexistence costs run until the last component moves. Keep Entra ID provisioning and federating sign-in, watch the admin accounts that skip it, and treat stray edits in the second directory as drift. That's Part 1.
 
 ## Slide 17 — Module 3: Landing zone and front door
 
-Part 2 starts with the landing zone, where the boundary becomes something the platform actually enforces. We'll cover policy, AWS and GovCloud, the address plan, network as code, and the front door every change has to pass through.
+Part 2 starts with the landing zone, where the boundary becomes something the platform actually enforces. We'll cover policy, the same pattern on AWS, the address plan, network as code, and the front door every change has to pass through.
 
 ## Slide 18 — The hierarchy is where boundary policy lands
 
-If the boundary says a service is out of scope but the landing zone lets a team deploy it anyway, the boundary is just a document. The management group hierarchy is where it becomes a control. Boundary policy goes on an intermediate root, and every subscription beneath inherits it. Keep the tree flat, separate environments by subscription so test faces the same rules as production, and protect the hierarchy so new subscriptions can't land outside it. One trap for Azure Government teams: Microsoft's accelerators only run unmodified in public Azure. Next, the policies themselves.
+If the boundary says a service is out of scope but the landing zone lets a team deploy it anyway, the boundary is just a document. The management group hierarchy is where it becomes a control. Boundary policy goes on an intermediate root, and every subscription beneath inherits it. Keep the tree flat, separate environments by subscription so test faces the same rules as production, and protect the hierarchy so new subscriptions can't land outside it. And deploy it from code: Microsoft's accelerators are supported for public Azure, where the workbook's landing zone runs. Next, the policies themselves.
 
 ## Slide 19 — Five boundary decisions, five enforced mechanisms
 
 Every line in the package's boundary description should have a mechanism behind it: which cloud, which regions, which services, which settings, and which exceptions. The fine print matters. The built-in allowed-types policy skips some resource types unless you copy it and change its mode. And the FedRAMP compliance initiative is, in Microsoft's own words, only a partial view. The rollout is the real lesson: audit first, review with the system owner and ISSO, fix or exempt, and only then deny. Block production on day one and teams learn to ask for exemptions. Next, the same idea on AWS.
 
-## Slide 20 — AWS, GovCloud and automation that declares its boundary
+## Slide 20 — AWS, and automation that declares its boundary
 
-AWS gets to the same place with accounts, organizational units and service control policies, but GovCloud works differently enough that you have to plan for it, not discover it. Accounts are created in pairs from the commercial side, and some factory features simply aren't there. And GovCloud isn't only for High. A Moderate system can run there or in the commercial Regions, and an agency can use both, so check each service, Region by Region. The other half of this slide is about your own automation. A collector calling a commercial-only API from inside the boundary is a crossing nobody approved. So every adapter declares its boundary, resolves endpoints from it, and fails closed when it doesn't recognize the cloud. Next, the address plan.
+AWS gets to the same place with accounts, organizational units and service control policies, with Control Tower building the landing zone and Landing Zone Accelerator on top, which AWS says won't by itself make you compliant. The program's AWS workloads run in the commercial Regions, at Class C, and AWS marks each service in scope per Region, so check each service, Region by Region. The other half of this slide is about your own automation. A collector calling a commercial-only API from inside the boundary is a crossing nobody approved. So every adapter declares its boundary, resolves endpoints from it, and fails closed when it doesn't recognize the cloud. Next, the address plan.
 
 ## Slide 21 — The address plan: the denominator every inventory needs
 
@@ -114,7 +114,7 @@ Your agency never authorizes a cloud service. It authorizes its own system that 
 
 ## Slide 29 — Narratives at the boundary, and whose package you read
 
-Most controls aren't touched by the boundary. The ones that are fall into four patterns, and naming the pattern lets an assessor follow you. The hard one is compensating. Don't describe the missing feature as if you had it, and don't hide the substitute either. Say what the control needs, what's unavailable with the citation, what you run instead and what it misses, and where the remaining gap is recorded. Also know whose package you're reading: GCC inherits from Azure Government, so your chain runs through two packages, plus the SKU. Next, keeping it current.
+Most controls aren't touched by the boundary. The ones that are fall into four patterns, and naming the pattern lets an assessor follow you. The hard one is compensating. Don't describe the missing feature as if you had it, and don't hide the substitute either. Say what the control needs, what's unavailable with the citation, what you run instead and what it misses, and where the remaining gap is recorded. Also know whose package you're reading: the GCC listing says it leverages Azure Government as its infrastructure, so your chain runs through two packages, plus the SKU. Next, keeping it current.
 
 ## Slide 30 — Keeping the package current: one review, one decider
 

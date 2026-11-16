@@ -255,8 +255,8 @@ Workbook: Book 02, Chapter 05 — Delegation Without OUs.`);
   const s = D.content("What changes", "Sign-in moves to phishing-resistant credentials");
   tag(s, "What");
   const rows = [
-    ["1", "Privileged accounts", "FIDO2 security keys (passkeys); PIV or CAC where the admin holds a card"],
-    ["2", "PIV and CAC holders", "Entra certificate-based authentication — the credential is already issued"],
+    ["1", "Privileged accounts", "FIDO2 security keys (passkeys); PIV where the admin holds a card"],
+    ["2", "PIV holders", "Entra certificate-based authentication — the credential is already issued"],
     ["3", "Managed Windows devices", "Windows Hello for Business"],
     ["4", "Everyone else, including mobile", "Passkeys in Microsoft Authenticator"],
   ];
@@ -280,9 +280,9 @@ Workbook: Book 02, Chapter 05 — Delegation Without OUs.`);
   s.addNotes(
 `[6:26–7:56]  One more thing changes, and users will feel it: how they sign in.
 
-OMB M-22-09 requires phishing-resistant multifactor authentication for agency staff, and it names PIV as the simplest route. That reorders the usual roadmap. Earlier plans treated smart-card sign-in as the last phase, for high-security users only. But a federal workforce already carries PIV or CAC cards, so Entra certificate-based authentication is the fastest path: the credential is already issued, and it works directly against Entra ID without a federation server.
+OMB M-22-09 requires phishing-resistant multifactor authentication for agency staff, and it names PIV as the simplest route. That reorders the usual roadmap. Earlier plans treated smart-card sign-in as the last phase, for high-security users only. But a federal workforce already carries PIV cards, so Entra certificate-based authentication is the fastest path: the credential is already issued, and it works directly against Entra ID without a federation server.
 
-The book runs four waves. Privileged accounts first, on FIDO2 security keys, or their PIV card. Then everyone who holds a PIV or CAC card, through certificate-based authentication. Then managed Windows devices, with Windows Hello for Business. And finally everyone else, including mobile users, with passkeys in Microsoft Authenticator. All four meet Entra's built-in phishing-resistant authentication strength.
+The book runs four waves. Privileged accounts first, on FIDO2 security keys, or their PIV card. Then everyone who holds a PIV card, through certificate-based authentication. Then managed Windows devices, with Windows Hello for Business. And finally everyone else, including mobile users, with passkeys in Microsoft Authenticator. All four meet Entra's built-in phishing-resistant authentication strength.
 
 Some things go away: SMS and voice codes for staff, which the memo requires agencies to stop using for routine access, and legacy protocols that send a password with every request. Those are found in the sign-in logs, fixed, then blocked, and watched for thirty days.
 
@@ -365,7 +365,7 @@ Workbook: Book 02, Chapter 06 — Who Owns the Migration.`);
 
 One, discover. Start with read-only access, which every employee already has, and learn the topology, OU tree, groups and Group Policy links. Then ask for narrow, time-bound access for only what you couldn't see. Two, assess: the full forest inventory, including certificate templates, trusts and delegation, without ever requesting the rights that expose secrets.
 
-Three, build the target. The book recommends Cloud Sync unless a Connect-only requirement applies, password hash sync everywhere, Privileged Identity Management for every admin role, and a tested Conditional Access baseline. Four, migrate in waves: phishing-resistant authentication, including PIV and CAC through certificate-based authentication, and legacy authentication turned off. Five, prove it: drift checks against the baseline and an evidence bundle the authorizing official can rely on.
+Three, build the target. The book recommends Cloud Sync unless a Connect-only requirement applies, password hash sync everywhere, Privileged Identity Management for every admin role, and a tested Conditional Access baseline. Four, migrate in waves: phishing-resistant authentication, including PIV through certificate-based authentication, and legacy authentication turned off. Five, prove it: drift checks against the baseline and an evidence bundle the authorizing official can rely on.
 
 A few rules hold for every wave. Never enforce an untested policy on all users. Keep two cloud-only break-glass accounts on phishing-resistant credentials. Convert service accounts to managed or workload identities. And treat every closure as unproven until it carries its evidence.
 

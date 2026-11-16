@@ -40,69 +40,59 @@ and details like that decide
 what you can turn on.
 
 9
-00:00:30.112 --> 00:00:32.463
-The public record shows both outcomes.
+00:00:30.112 --> 00:00:32.526
+The public record shows one such move.
 
 10
-00:00:32.463 --> 00:00:38.193
+00:00:32.526 --> 00:00:38.256
 In September 2025 a cabinet-level department
 signed a five-year agreement worth up
 
 11
-00:00:38.193 --> 00:00:43.426
+00:00:38.256 --> 00:00:43.489
 to 89 million dollars to move more than
 50,000 employees to Google Workspace,
 
 12
-00:00:43.426 --> 00:00:46.499
+00:00:43.489 --> 00:00:46.562
 with a temporary 71
 percent price reduction.
 
 13
-00:00:46.499 --> 00:00:49.638
+00:00:46.562 --> 00:00:49.700
 So a five-year model has to
 price the renewal years.
 
 14
-00:00:49.638 --> 00:00:54.011
-A military department went the
-other way, ending about 150,000
+00:00:49.700 --> 00:00:53.475
+And coexistence costs run
+until the last component moves.
 
 15
-00:00:54.011 --> 00:00:58.726
-Google email licenses after an
-audit found about 16 percent in use.
-
-16
-00:00:58.726 --> 00:01:01.675
-Measure adoption in the
-pilot; don't assume it.
-
-17
-00:01:01.675 --> 00:01:05.475
+00:00:53.475 --> 00:00:57.275
 The choice is only safe if
 the identity plane stays put.
 
-18
-00:01:05.475 --> 00:01:09.509
+16
+00:00:57.275 --> 00:01:01.447
 Entra ID remains the source,
 and the suite consumes identity,
 
-19
-00:01:09.509 --> 00:01:12.413
+17
+00:01:01.447 --> 00:01:04.450
 with Conditional Access
 applied at sign-in.
 
-20
-00:01:12.413 --> 00:01:16.924
+18
+00:01:04.450 --> 00:01:08.962
 The sponsor and CIO make the suite
 decision as its own approval, separate
 
-21
-00:01:16.924 --> 00:01:21.812
+19
+00:01:08.962 --> 00:01:13.850
 from identity modernization, and read
 the listing again on the day they decide.
 
-22
-00:01:21.812 --> 00:01:24.020
+20
+00:01:13.850 --> 00:01:16.060
 Next, what to ask your provider.

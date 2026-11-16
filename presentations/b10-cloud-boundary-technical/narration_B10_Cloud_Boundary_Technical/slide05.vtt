@@ -29,20 +29,24 @@ Checked against the documentation,
 only one actually is.
 
 7
-00:00:22.887 --> 00:00:27.237
-The rest are GCC High gaps,
-or belong to Azure entirely.
+00:00:22.887 --> 00:00:26.437
+Three of the rest aren't
+documented GCC gaps at all,
 
 8
-00:00:27.237 --> 00:00:31.438
+00:00:26.437 --> 00:00:28.862
+and one belongs to Azure entirely.
+
+9
+00:00:28.862 --> 00:00:33.063
 An unverified story sends you to
 build compensations you don't need.
 
-9
-00:00:31.438 --> 00:00:33.938
+10
+00:00:33.063 --> 00:00:35.562
 So only vendor-confirmed rows count.
 
-10
-00:00:33.938 --> 00:00:37.580
+11
+00:00:35.562 --> 00:00:39.220
 Now, a way to describe what
 changes across any boundary.

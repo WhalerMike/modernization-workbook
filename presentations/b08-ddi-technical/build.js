@@ -129,7 +129,7 @@ Vendors and products appear only as the book's examples, never as endorsements. 
   subhead(s, "Jobs head", "THE SIX JOBS DNS NOW DOES (CHAPTER 01)", 0.6, 1.5, 5.4);
   const jobs = [
     ["FaCloud", "Private address publication", "One service name: private inside the linked network, public everywhere else"],
-    ["FaGlobe", "SaaS endpoint selection", "Microsoft 365 publishes separate lists: Worldwide (incl. GCC), GCC High, DoD"],
+    ["FaGlobe", "SaaS endpoint selection", "Microsoft 365 publishes a list per cloud; GCC Moderate uses the Worldwide list"],
     ["FaShieldHalved", "Security policy enforcement", "Response policy zones and DNS firewalls block before a connection is made"],
     ["FaFileShield", "Certificate validation", "OCSP responders and CRL distribution points are DNS names"],
     ["FaFingerprint", "Service identity and app surface", "The FQDN is the stable identity; a wildcard declares a namespace of apps"],
@@ -156,7 +156,7 @@ Vendors and products appear only as the book's examples, never as endorsements. 
   notes(s,
 `Why this matters. Almost every network connection begins with a DNS query, and in a hybrid multi-cloud agency the answer now decides far more than an address. NIST's 2026 DNS deployment guide, SP 800-81 Revision 3, says DNS infrastructure has become more than a service; it is also a security control.
 
-Chapter 01 names six jobs DNS now does. It publishes private addresses: an Azure Storage account with a private endpoint resolves privately inside the hosting virtual network and publicly everywhere else. It selects SaaS front doors: Microsoft 365 publishes a Worldwide list, which includes GCC, and separate lists and namespaces for GCC High and DoD. It enforces security policy through response policy zones and DNS firewalls. It anchors certificate validation, because OCSP and CRL endpoints are names. And the FQDN is the service identity that gateways, certificates and Zero Trust policies are written against.
+Chapter 01 names six jobs DNS now does. It publishes private addresses: an Azure Storage account with a private endpoint resolves privately inside the hosting virtual network and publicly everywhere else. It selects SaaS front doors: Microsoft 365 publishes its endpoint lists per cloud, and GCC Moderate uses the Worldwide list. It enforces security policy through response policy zones and DNS firewalls. It anchors certificate validation, because OCSP and CRL endpoints are names. And the FQDN is the service identity that gateways, certificates and Zero Trust policies are written against.
 
 Yet most agencies run it on as many as five platforms that share no state. AD DNS or a DDI grid on premises. Route 53's VPC Resolver, formerly Route 53 Resolver. Azure, where private zones resolve only for linked networks, and where DNS resolver policy now gives an RPZ equivalent. Google Cloud's metadata server. And the NSX forwarder, which workloads reach only if configured to.
 
@@ -179,7 +179,7 @@ The cost shows up on every change. A new Azure private endpoint can need four mo
   panel(s, "FedRAMP", 8.1, 1.5, 4.65, 3.55, HEX.teal, HEX.tealTint, "FEDRAMP AND AUTHORIZATION", "It certifies a service, not a design", [
     "The agency still authorizes its own DDI system",
     "Example listing: Infoblox Government Cloud, Class C (Moderate), SaaS in AWS GovCloud",
-    "Moderate doesn't cover High or DoD",
+    "Moderate doesn't cover High",
     "On-prem appliances sit inside the agency boundary",
   ], 12.5);
   flow(s, "Sequence", 5.25, 1.22, [
@@ -196,7 +196,7 @@ The cost shows up on every change. A new Azure private endpoint can need four mo
 
 OMB M-22-09 says agencies must resolve DNS queries using encrypted DNS wherever it is technically supported, and should explicitly configure endpoints to use agency-designated encrypted DNS servers rather than relying on automatic network discovery. CISA's Protective DNS is required for federal civilian agencies, and CISA's guidance says it is used for all egress DNS resolution. OMB M-26-14 rescinded M-21-31 and its event-logging tiers; it doesn't name DNS at all, but its baseline needs source and destination network address information, and logs actively searchable for six months and retrievable for a year. M-08-23 required DNSSEC by December 2009, and SC-20 and SC-21 carry signing and validation into every baseline. M-21-07's IPv6-only targets have all passed. And TIC 3.0, version 3.3, lists five DNS enforcement capabilities. NIST SP 800-81 Revision 3, from March 2026, is the practical guide to meeting them; it's guidance, not a mandate. Read together: agency-controlled resolvers that log, encrypt, validate, forward egress through Protective DNS, and can't be routed around.
 
-FedRAMP certifies a cloud service, not an architecture, and the agency still authorizes its own system. As an example, the Marketplace lists Infoblox Government Cloud at Class C, its label for Moderate, delivered as SaaS in AWS GovCloud. A Moderate certification doesn't cover High or DoD, and on-premises appliances sit inside the agency's own boundary.
+FedRAMP certifies a cloud service, not an architecture, and the agency still authorizes its own system. As an example, the Marketplace lists Infoblox Government Cloud at Class C, its label for Moderate, delivered as SaaS in AWS GovCloud. A Moderate certification doesn't cover High, and on-premises appliances sit inside the agency's own boundary.
 
 Every chapter follows one sequence: inventory, coexist, migrate authority, federate clouds, decommission AD DNS and DHCP, then harden and evidence. Five configuration decisions carry most of the risk along the way; we'll meet each one in its module.`,
   "Book 08, Chapter 03 — Federal Requirements: NIST SP 800-81, FedRAMP and Zero Trust; index, \"The canonical sequence.\"");
@@ -225,7 +225,7 @@ Chapter 02 defines the structural problem: the same name returning different ans
   ], 12.5);
   panel(s, "SaaS", 4.7, 1.5, 3.95, 3.7, HEX.teal, HEX.tealTint, "PUBLIC SAAS SPLIT-BRAIN", "Microsoft 365", [
     "GCC uses the Worldwide endpoint list: the risk is path consistency, not a wrong cloud",
-    "GCC High and DoD use their own namespaces, such as *.office365.us",
+    "Every reachable resolver must return what Microsoft publishes, through the designed egress",
     "Drift shows up as sign-in failures or Conditional Access denials",
   ], 12.5);
   panel(s, "Policy", 8.8, 1.5, 3.95, 3.7, HEX.red, HEX.redTint, "SECURITY POLICY SPLIT-BRAIN", "The weakest resolver wins", [
@@ -235,13 +235,13 @@ Chapter 02 defines the structural problem: the same name returning different ans
   ], 12.5);
   callout(s, "Process", 5.35, 1.15, "FaArrowsRotate", HEX.amber, "Runbooks can't fix it: ",
     "the failure is silent, the change surface is too large, and each system has its own API, rate limits and propagation. Only a plane holding the authoritative objects can.");
-  sources(s, "Sources: Microsoft Learn — Azure Storage private endpoints; private endpoint DNS values; 403 through a private endpoint; M365 and GCC High endpoints. AWS Route 53 VPC Resolver, DNS Firewall. NIST SP 800-81r3. Book 08, Ch 02.");
+  sources(s, "Sources: Microsoft Learn — Azure Storage private endpoints; private endpoint DNS values; 403 through a private endpoint; M365 URLs and IP address ranges. AWS Route 53 VPC Resolver, DNS Firewall. NIST SP 800-81r3. Book 08, Ch 02.");
   notes(s,
 `Split-brain is the same name returning different answers depending on where the query originates. Intentional split-horizon, designed and governed, is legitimate. The unintentional kind is the problem, and with several DNS systems holding copies of the same names and no shared state, it's close to guaranteed. Chapter 02 shows three forms.
 
 Private-IP split-brain. An Azure Storage private endpoint gives the public name a CNAME into the privatelink subdomain, and the private zone maps it to, say, 10.1.0.4. An EC2 instance sees that only if a Route 53 outbound rule forwards blob.core.windows.net to an Azure Private Resolver inbound endpoint, or to an agency resolver that does. If the rule is missing or stale, the name still resolves, to the public address. Microsoft's guide to 403 errors through a private endpoint attributes roughly seventy percent of cases to exactly that.
 
-Public SaaS split-brain. GCC uses the Worldwide endpoint list, so for a GCC-Moderate agency the risk isn't a wrong-cloud answer; it's path consistency: every reachable resolver must return what Microsoft publishes, through the designed egress. GCC High and DoD have their own namespaces. Drift looks like sign-in failures or Conditional Access denials.
+Public SaaS split-brain. GCC uses the Worldwide endpoint list, so for a GCC-Moderate agency the risk isn't a wrong-cloud answer; it's path consistency: every reachable resolver must return what Microsoft publishes, through the designed egress. Drift looks like sign-in failures or Conditional Access denials.
 
 Security policy split-brain. Block lists apply only at the resolver that answers, and the cloud equivalents are configured per network, so the effective posture is the weakest resolver a client can reach. That matters beyond compliance: NIST notes DNS servers can often prevent security incidents earlier than other systems.
 
@@ -414,7 +414,7 @@ Every control in the policy plane, response policy zones, DNSSEC validation, log
   panel(s, "Target", 6.75, 3.7, 6.0, 2.75, HEX.red, HEX.redTint, "THE PROGRAM'S POSITION", null, [
     "Target = a network-addressable agency resolver, never a loopback agent",
     "A SASE resolver (even one integrating with Protective DNS) sits behind it",
-    "M365 INR: Worldwide commercial only, not GCC Moderate, GCC High or DoD",
+    "M365 INR: Worldwide commercial only, not GCC Moderate",
   ], 12.5);
   sources(s, "Sources: Cisco — Redirect DNS in Catalyst SD-WAN service-side VPNs; Umbrella integration (2021). Infoblox Endpoint docs (vendor). FedRAMP Marketplace FR2304757473A. Microsoft Learn — M365 informed network routing. Book 08, Ch 05.");
   notes(s,
@@ -426,7 +426,7 @@ The feature has documented limits. Service-side redirect arrived in IOS XE 17.8.
 
 Two refinements. The target must be a server the edge can address; a loopback agent such as Infoblox Endpoint protects the roaming device but isn't a redirect target. And a SASE resolver, even Cisco's Umbrella for Government in an offering listed FedRAMP Certified at High, which describes Protective DNS integration, still bypasses the agency's own plane. So the redirect target is always the agency resolver, with any SASE resolver behind it.
 
-Microsoft 365 informed network routing supports Worldwide commercial tenants only, not GCC Moderate, GCC High or DoD. It's a traffic optimization, not a DNS dependency.`,
+Microsoft 365 informed network routing supports Worldwide commercial tenants only, not GCC Moderate. It's a traffic optimization, not a DNS dependency.`,
   "Book 08, Chapter 05 — Edge Interception, Encrypted DNS and Rogue DHCP, \"SD-WAN DNS interception.\"");
 }
 
@@ -507,7 +507,7 @@ Prevention is never complete, so watch for failure: hosts whose queries never re
   const s = D.content(P1, "DNS identity: certificate and token failures");
   tag(s, "What");
   table(s, "Names", 1.5, [2.15, 3.95], ["Name that must resolve", "What the book establishes"], [
-    ["Token endpoint", "GCC uses login.microsoftonline.com; GCC High and DoD use login.microsoftonline.us"],
+    ["Token endpoint", "GCC uses the global login.microsoftonline.com (the whitepaper's grouping corrected)"],
     ["Token audience", "v2.0 aud is the API's client ID, a GUID: a host rename shows as an audience error"],
     ["Certificate SANs", "DNS to a host without the asked-for name fails the handshake"],
     ["Revocation", "Entra CBA checks one HTTP CRL per CA, no OCSP: the CRL URL must resolve"],
@@ -530,7 +530,7 @@ Prevention is never complete, so watch for failure: hosts whose queries never re
   notes(s,
 `DNS identity, the authoritative mapping of names to addresses, owners and lifecycle, is the first link in the trust chain. Certificates, FQDN-based policy and tokens all name their subject by FQDN and trust DNS to take the caller there.
 
-Moving from Kerberos to Entra ID tokens removes the KDC but adds names that must resolve consistently. The token endpoint: GCC uses the global login dot microsoftonline dot com; Azure Government, serving GCC High and DoD, uses the dot us endpoint. The whitepaper grouped GCC with dot us; the book corrected it. The token audience in v2.0 tokens is the API's client ID, a GUID, so a host rename clients don't pick up fails as an audience or redirect-URI error. SANs must contain the name the client asked for. Entra certificate-based authentication checks one HTTP CRL per CA and no OCSP, so the CRL URL must resolve. And ACME dns-01 makes the zone the gate for automated issuance, exercised constantly as public TLS lifetimes fall toward forty-seven days.
+Moving from Kerberos to Entra ID tokens removes the KDC but adds names that must resolve consistently. The token endpoint: GCC uses the global login dot microsoftonline dot com, because Microsoft describes GCC as operating with the Azure public cloud. The whitepaper grouped GCC with a separate government endpoint; the book corrected it. The token audience in v2.0 tokens is the API's client ID, a GUID, so a host rename clients don't pick up fails as an audience or redirect-URI error. SANs must contain the name the client asked for. Entra certificate-based authentication checks one HTTP CRL per CA and no OCSP, so the CRL URL must resolve. And ACME dns-01 makes the zone the gate for automated issuance, exercised constantly as public TLS lifetimes fall toward forty-seven days.
 
 Certificate split-brain: a service's OCSP and CRL names exist only in AD DNS, and an EC2 caller has no Route 53 rule for them. A hard-fail client breaks the handshake; a soft-fail client skips the check. The agency resolver logs nothing, and the ticket goes to PKI. That's Decision 5.
 
@@ -595,7 +595,7 @@ The platforms aren't equal. Windows Server uses a Key Master, can replicate keys
   });
   T(s, "Compensations", [
     { text: "Two compensations corrected: ", options: { bold: true, color: HEX.red } },
-    { text: "Azure VNet traffic isn't encrypted by default (VNet encryption is opt-in, limited, and in preview in Azure Government), and Private Link doesn't make in-network answers tamper-proof." },
+    { text: "Azure VNet traffic isn't encrypted by default (VNet encryption is opt-in and limited), and Private Link doesn't make in-network answers tamper-proof." },
   ], { x: 0.6, y: 5.35, w: 6.1, h: 1.1, fontSize: 12.5 });
   sources(s, "Sources: NIST SP 800-81r3 §3.8; RFC 9824; RFC 6891; Microsoft Learn — Sign DNS zones (Windows), Azure DNSSEC, unsign an Azure Public DNS zone, Azure Virtual Network encryption. Book 08, Ch 06.");
   notes(s,
@@ -654,15 +654,15 @@ Three behaviors catch teams out. DNS answers don't grant access: the public chai
 {
   const s = D.content(P2, "Forward the public zone; Private Resolver in the hub");
   tag(s, "How");
-  table(s, "Zones", 1.5, [1.6, 2.55, 2.55], ["Service", "Forward from other resolvers", "Azure Government zone"], [
-    ["Blob storage", "blob.core.windows.net", "privatelink.blob.core.usgovcloudapi.net"],
-    ["Azure SQL Database", "database.windows.net", "privatelink.database.usgovcloudapi.net"],
-    ["Key Vault", "vault.azure.net, vaultcore.azure.net", "privatelink.vaultcore.usgovcloudapi.net"],
-    ["App Service", "azurewebsites.net, scm.azurewebsites.net", "privatelink.azurewebsites.us"],
+  table(s, "Zones", 1.5, [1.6, 2.55, 2.55], ["Service", "Private DNS zone", "Forward from other resolvers"], [
+    ["Blob storage", "privatelink.blob.core.windows.net", "blob.core.windows.net"],
+    ["Azure SQL Database", "privatelink.database.windows.net", "database.windows.net"],
+    ["Key Vault", "privatelink.vaultcore.azure.net", "vault.azure.net, vaultcore.azure.net"],
+    ["App Service", "privatelink.azurewebsites.net", "azurewebsites.net, scm.azurewebsites.net"],
   ], { fontSize: 11.5 });
   T(s, "Rule", [
     { text: "Forward the public zone, not privatelink: ", options: { bold: true, color: HEX.red } },
-    { text: "from on-premises, Route 53 rules, Cloud DNS forwarding zones and branches, to the inbound endpoint. Commercial and Government names differ; spanning both needs both sets." },
+    { text: "from on-premises, Route 53 rules, Cloud DNS forwarding zones and branches, to the inbound endpoint. Use Microsoft's recommended zone names: records are generated only for those." },
   ], { x: 0.6, y: 4.2, w: 6.7, h: 1.1, fontSize: 12.5 });
   T(s, "Autoreg", [
     { text: "Autoregistration: ", options: { bold: true, color: HEX.navy } },
@@ -680,7 +680,7 @@ Three behaviors catch teams out. DNS answers don't grant access: the public chai
   notes(s,
 `Two rules turn Azure private endpoints from a source of split-brain into something governed.
 
-First, forward the public zone. Forwarders on non-Azure resolvers point at each service's public zone, for example database dot windows dot net, not the privatelink zone. Every origin, on-premises resolvers, Route 53 rules, Cloud DNS forwarding zones and branch paths, sends it to the Private Resolver's inbound endpoint, or to an agency resolver that forwards there. Azure Government uses different names, so a design spanning both clouds needs both sets. Forwarding a whole public zone also carries other organizations' lookups, which is why fallback to internet goes on the links. Autoregistration is separate: VMs only, primary NIC only, no PTR records, and no role in privatelink zones.
+First, forward the public zone. Forwarders on non-Azure resolvers point at each service's public zone, for example database dot windows dot net, not the privatelink zone. Every origin, on-premises resolvers, Route 53 rules, Cloud DNS forwarding zones and branch paths, sends it to the Private Resolver's inbound endpoint, or to an agency resolver that forwards there. Use Microsoft's recommended zone names, because records are generated automatically only for those. Forwarding a whole public zone also carries other organizations' lookups, which is why fallback to internet goes on the links. Autoregistration is separate: VMs only, primary NIC only, no PTR records, and no role in privatelink zones.
 
 Second, build the resolver in the hub as a forwarding bridge, not an authority. Because it isn't authoritative, on-premises DNS reaches it by conditional forwarding, never by NS delegation.
 
@@ -693,7 +693,7 @@ The rules that matter. Each endpoint gets its own delegated subnet, slash twenty
   const s = D.content(P2, "IPAM is the authority for address blocks");
   tag(s, "How");
   table(s, "IPAM", 1.5, [2.25, 5.1, 4.8], ["Platform", "What it offers", "The program's control"], [
-    ["AWS VPC IPAM", "An external IPAM can own a private scope (Infoblox example, since Nov. 2025); Advanced Tier", "Enable in commercial Regions; not in GovCloud (US) or China"],
+    ["AWS VPC IPAM", "An external IPAM can own a private scope (Infoblox example, since Nov. 2025); Advanced Tier", "Enable it in the commercial Regions where the workloads run"],
     ["Azure VNet Manager", "Hierarchical pools (root + 7 layers), IPv4 and IPv6, static CIDRs for outside ranges", "Mirror enterprise reservations as static CIDRs; reconcile"],
     ["Google Cloud", "Internal ranges, including ranges reserved for use outside the network", "Mirror reservations as internal ranges; reconcile"],
     ["VCF 9.1 and NSX", "Native allocation from Infoblox; tenant FQDNs registered automatically", "Enable; confirm IPv6 and limits (vendor blog only)"],
@@ -710,7 +710,7 @@ The rules that matter. Each endpoint gets its own delegated subnet, slash twenty
   notes(s,
 `The address side has the same structure as the name side. AWS VPCs, Azure virtual networks, Google Cloud VPC networks and NSX segments each allocate on their own, so a CIDR created in a console can overlap on-premises space, another cloud or another division, and the enterprise DDI system doesn't know until discovery runs or a conflict appears.
 
-Integration depth differs. Amazon VPC IPAM can hand a private scope's authority to an external IPAM; since November 2025 the book's example is Infoblox, which chooses a block or accepts or rejects a requested one. It needs the Advanced Tier, covers private scopes only, and isn't available in GovCloud or China, so it doesn't help a GovCloud estate today. Azure Virtual Network Manager offers hierarchical pools, a root and up to seven layers, IPv4 and IPv6, with static CIDRs for ranges outside Azure. Google Cloud's internal ranges can reserve blocks. Neither hands authority to an external IPAM, so mirror the enterprise reservations into them and reconcile. VMware Cloud Foundation 9.1 added native Infoblox allocation and FQDN registration; the source is a vendor blog without IPv6 or limits, so confirm the scope first.
+Integration depth differs. Amazon VPC IPAM can hand a private scope's authority to an external IPAM; since November 2025 the book's example is Infoblox, which chooses a block or accepts or rejects a requested one. It needs the Advanced Tier, covers private scopes only, and is available in the commercial Regions where the agency's AWS workloads run. Azure Virtual Network Manager offers hierarchical pools, a root and up to seven layers, IPv4 and IPv6, with static CIDRs for ranges outside Azure. Google Cloud's internal ranges can reserve blocks. Neither hands authority to an external IPAM, so mirror the enterprise reservations into them and reconcile. VMware Cloud Foundation 9.1 added native Infoblox allocation and FQDN registration; the source is a vendor blog without IPv6 or limits, so confirm the scope first.
 
 The rule: reserve blocks in the enterprise IPAM before any cloud or NSX network is created, integrate where you can, mirror and reconcile where you can't, and monitor sync health. Federation plus active and passive discovery produce one hierarchy, which catches overlap before two networks are peered and reports the CM-8 inventory. The program also wants IPAM to track FQDNs, wildcards and bound certificates.
 
@@ -753,22 +753,22 @@ Decision 1, the redirect-dns destination: a DDI resolver or forwarding proxy at 
     "Local resolvers and agents: keep resolving if management is unreachable",
     "Route 53 and Azure still serve their zones; the plane holds one policy object",
   ], 12);
-  table(s, "Federal", 1.5, [2.55, 2.4, 2.6], ["Component", "Moderate: commercial or gov regions", "High only: GCC High, High systems, DoD"], [
+  table(s, "Federal", 1.5, [2.55, 2.4, 2.6], ["Component", "Moderate: commercial regions, GCC Moderate", "FedRAMP High (High only)"], [
     ["Cloud DDI management plane", "FedRAMP Moderate + agency ATO", "Moderate doesn't cover High"],
     ["Five decisions, RPZ, Protective DNS", "Apply", "Apply (air-gapped differs)"],
-    ["Private endpoint zone names", "Commercial; Azure Gov uses its own", "*.usgovcloudapi.net, *.azure.us"],
-    ["VPC IPAM external authority", "Commercial Regions, not GovCloud", "Not in GovCloud (US)"],
-    ["Azure DNS Private Resolver", "Available (GA in Azure Gov)", "FedRAMP High; forecast at IL4–IL5"],
+    ["Private endpoint zone names", "Commercial (privatelink.*.windows.net)", "Commercial, as at Moderate"],
+    ["VPC IPAM external authority", "Commercial Regions", "Not in the AWS Regions authorized at High"],
+    ["Azure DNS Private Resolver", "Available", "Confirm separately"],
     ["Azure Private DNS signing", "Not supported", "Not supported"],
-    ["M365 informed network routing", "Not in GCC-Moderate", "Not available"],
+    ["M365 informed network routing", "Not in GCC Moderate", "Not available"],
   ], { x: 5.2, fontSize: 11.5, firstColor: HEX.teal });
-  sources(s, "Sources: Infoblox release notes and press release (vendor); FedRAMP Marketplace FR2017257053, MSO365MT; FedRAMP Consolidated Rules 2026; Microsoft Learn — Azure Government GA roadmap, private endpoint zone values, INR; AWS VPC IPAM. Book 08, Ch 08; App. C.");
+  sources(s, "Sources: Infoblox release notes and press release (vendor); FedRAMP Marketplace FR2017257053, MSO365MT; FedRAMP Consolidated Rules 2026; Microsoft Learn — private endpoint zone values, INR; AWS VPC IPAM and FedRAMP scope. Book 08, Ch 08; App. C.");
   notes(s,
 `The policy plane isn't one box. It has three parts, which products package differently. An on-premises DNS and DHCP layer hosts the internal zones that replace AD DNS, serves recursion, and applies response policy zones and DNSSEC. Grid members answer from local copies, so the program's position is that changes converge in seconds, not milliseconds, and an emergency block must be verified on the members serving the affected clients. A management plane, increasingly a cloud service, holds the system of record and pushes it everywhere. And local resolvers and agents keep resolving from local state if management is unreachable. It's overlay, not replacement: Route 53 and Azure Private DNS still serve their zones.
 
 Infoblox is the book's example: the NIOS grid, and Universal DDI as the cloud plane. Its FedRAMP-listed offering is Infoblox Government Cloud, certified at Moderate; on-premises NIOS appliances aren't a FedRAMP cloud service and sit inside the agency's boundary. Chapter 12 evaluates other platforms against the same requirements.
 
-The architecture is the same everywhere; authorization and integrations change. A Moderate system can run in commercial regions or in a government region such as GovCloud or Azure Government, so the government-region gaps on the slide are Moderate concerns too, not only High ones; the right-hand column, marked High only, applies to FedRAMP High or Defense environments, not to the Moderate civilian baseline this workbook targets. A plane certified at Moderate, plus the agency's own authorization, suffices for Moderate systems but doesn't cover High: use a service authorized at the required level or keep the plane inside the agency's boundary. Azure Government's zone names differ. VPC IPAM's external authority isn't in GovCloud. The Private Resolver is at FedRAMP High in Azure Government and forecast, not yet authorized, at IL4 and IL5. Azure Private DNS can't be signed anywhere. And informed network routing isn't available in GCC-Moderate, GCC High or DoD.`,
+The architecture is the same everywhere; authorization and a few integrations change. A Moderate system runs in the commercial regions: Microsoft 365 GCC Moderate, commercial Azure and the AWS commercial Regions, where AWS publishes FedRAMP scope per service and per Region. The right-hand column, marked High only, applies to FedRAMP High environments, not to the Moderate civilian baseline this workbook targets. A plane certified at Moderate, plus the agency's own authorization, suffices for Moderate systems but doesn't cover High: use a service certified at the required level or keep the plane inside the agency's boundary. Azure private endpoint zones keep their commercial names. VPC IPAM's external authority is available in the commercial Regions. Azure Private DNS can't be signed anywhere. And informed network routing isn't available in GCC Moderate.`,
   "Book 08, Chapter 08 — Reference Architecture, \"What a DDI policy plane is made of\" and \"Commercial and federal clouds compared\"; Appendix C — Applicability.");
 }
 
@@ -1021,7 +1021,7 @@ srcSlide("Sources behind the orientation and Module 1", [
   "CISA Protective DNS Resolver; CISA Encrypted DNS Implementation Guidance, May 16, 2024; CISA TIC 3.0 Security Capabilities Catalog v3.3, Sept. 2026; CISA Zero Trust Maturity Model v2.0, Apr. 2023.",
   "NIST SP 800-81r3, Secure DNS Deployment Guide, Mar. 2026  ·  NIST SP 800-53 Rev. 5 (SC-20, SC-21, SC-22 and others)  ·  NIST SP 800-207, Zero Trust Architecture, Aug. 2020.",
   "FedRAMP Consolidated Rules for 2026, \"Using a FedRAMP Certified Cloud Service\"; FedRAMP Marketplace FR2017257053 (Infoblox Government Cloud). Infoblox press release, July 22, 2026 (vendor).",
-  "Microsoft Learn: Azure Storage private endpoints; private endpoint DNS zone values; 403 errors through a private endpoint; Microsoft 365 endpoints (Worldwide incl. GCC; GCC High); DNS resolver policy; DNS Private Resolver.",
+  "Microsoft Learn: Azure Storage private endpoints; private endpoint DNS zone values; 403 errors through a private endpoint; Microsoft 365 endpoints (Worldwide, which includes GCC); DNS resolver policy; DNS Private Resolver.",
   "AWS Route 53 Developer Guide: Route 53 VPC Resolver; DNS Firewall  ·  Google Cloud: DNS server policies; response policies  ·  VMware NSX 4.1: DNS forwarder service  ·  IETF RFCs 882, 1034, 1035.",
   "Microsoft Learn (Ch 04): DNS and AD DS; DNS zones; Add-DnsServerPrimaryZone; Add-DnsServerConditionalForwarderZone; Set-DnsServerGlobalNameZone; DNSSEC Key Master; Locating domain controllers; Policy CSP ADMX_Netlogon; KB 816587; Kerberos SSP/AP.",
   "Microsoft Learn (Ch 04): Dynamic update; DHCP failover; Event ID 1056; Set-DhcpServerv4DnsSetting; DNS scavenging and DHCP lease duration; Entra cloud-first identity guidance; What's new in Windows Server 2025; Entra Domain Services DNS.",
@@ -1043,7 +1043,7 @@ srcSlide("Sources behind Part 2 — The control plane", [
   "Microsoft Learn (Ch 07): What is Azure Private DNS; Private Resolver overview, endpoints and rulesets; private endpoint DNS integration and zone values; autoregistration; Azure Architecture Center (Private Resolver; hybrid DNS); AKS DNS troubleshooting.",
   "Microsoft Learn: Configure DNS for Azure VNets; Azure Public DNS; Private Resolver PowerShell quickstart; Azure Virtual Network Manager IPAM  ·  Google Cloud: zones, server policies, response policies, internal ranges.",
   "AWS: \"Amazon VPC IPAM automates IP assignments from Infoblox IPAM,\" Nov. 17, 2025; VPC IPAM User Guide  ·  VMware VCF 9.1 DDI blog, May 15, 2026 (vendor)  ·  Infoblox Azure DNS integration limits (vendor).",
-  "Ch 08 and App. C: CISA Protective DNS Resolver; Infoblox release notes Nov. 2025–Jan. 2026 (vendor); FedRAMP Marketplace FR2017257053 and MSO365MT; Azure Government GA roadmap; Azure Government DoD overview; Compare Azure Government.",
+  "Ch 08 and App. C: CISA Protective DNS Resolver; Infoblox release notes Nov. 2025–Jan. 2026 (vendor); FedRAMP Marketplace FR2017257053 and MSO365MT; AWS FedRAMP services in scope; Microsoft 365 informed network routing.",
   "Microsoft Learn (Ch 10): DnsServer module; Get/Set-DnsServerResourceRecord; Export-DnsServerZone; Export/Import-DhcpServer; Azure Private DNS FAQ; Azure DNS FAQ; Private Resolver troubleshooting; az dns-resolver forwarding-rule.",
   "Microsoft Learn (Ch 10): DHCP failover overview; Create, change or delete a virtual network; Azure VNet FAQ; Remove-DhcpServerInDC; Add-DnsServerConditionalForwarderZone; Resolve-DnsName.",
   "Microsoft Learn (Ch 11): AD security groups and privileged groups; protect DNS and private DNS zones; secure Azure DNS; DNS logging and diagnostics; Sentinel Windows DNS via AMA; DNS traffic; Azure DNS monitoring reference; dangling DNS.",

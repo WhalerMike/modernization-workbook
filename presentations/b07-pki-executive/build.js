@@ -328,11 +328,11 @@ The gate is program design. The book's wave plan has the PKI owner and the secur
   ], 13.5, 7.2, 5.55);
   decision(s, "Adopt the four-issuer target, with the cloud issuing CA anchored to the existing offline root (BYOCA)",
     "Sponsor and CIO", "Before Wave 2 (Foundation)");
-  sources(s, "Sources: Microsoft Learn — Cloud PKI overview and fundamentals; What's new in Intune (Sep 28, 2026); Intune GCC High and DoD; GSA FPKI 101; FIPS 201-3. Book 07, Chapters 04 and 05.");
+  sources(s, "Sources: Microsoft Learn — Cloud PKI overview and fundamentals; What's new in Intune (Sep 28, 2026); Intune for US Government; GSA FPKI 101; FIPS 201-3. Book 07, Chapters 04 and 05.");
   narrate(s,
 `The guide this book replaced said Cloud PKI removes the need for on-premises AD CS for most use cases. That's true for devices and wrong for the estate.
 
-Microsoft Cloud PKI hosts the root and issuing CAs, a SCEP registration authority and the revocation endpoints. But it issues only to devices enrolled in Intune: Windows, macOS, iOS and Android, never Windows Server. It doesn't issue the server certificates RADIUS, Wi-Fi and VPN infrastructure present; it has no OCSP responder; and a tenant can hold only three CAs. On availability, a GCC tenant uses the commercial Intune service; Cloud PKI reached GCC High in the week of September 28, 2026 and isn't supported in DoD. Licensing changed in 2026: Microsoft 365 E5 and E7 include it for commercial customers from July, and government plans are planned to align, so confirm the entitlement rather than assume it.
+Microsoft Cloud PKI hosts the root and issuing CAs, a SCEP registration authority and the revocation endpoints. But it issues only to devices enrolled in Intune: Windows, macOS, iOS and Android, never Windows Server. It doesn't issue the server certificates RADIUS, Wi-Fi and VPN infrastructure present; it has no OCSP responder; and a tenant can hold only three CAs. On availability, a GCC tenant uses the commercial Intune service, so Cloud PKI availability follows it and licensing is the question. Licensing changed in 2026: Microsoft 365 E5 and E7 include it for commercial customers from July, and government plans are planned to align, so confirm the entitlement rather than assume it.
 
 So the target is an issuer per class of subject. Cloud PKI for Intune-managed devices. A retained, hardened AD CS for domain controllers and LDAPS, NPS and VPN servers, internal server TLS including SQL Server, network equipment and HSM-held code signing. The Federal PKI for PIV, through the card management system, which the migration doesn't change. And public CAs for names the internet must trust. Entra ID sits beside all of them as a relying party.
 
@@ -663,7 +663,7 @@ None of this starts with a purchase; the program already has the platform. It st
   const s = content("Backup", "Sources: Microsoft PKI, Intune and Entra");
   const src = [
     "Microsoft Learn (AD CS): What is AD CS?; Certification Authority role; certificate templates; Monitor AD CS publication health; Secure, delegate and audit CA administration; Operate certificate revocation, CRL publication and CDP changes; Post-Quantum Cryptography in AD CS; Decommission an enterprise CA (KB 889250); smart card logon with third-party CAs; NTAuth import.",
-    "Microsoft Learn (Intune and Cloud PKI): Cloud PKI overview, fundamentals, deployment models, BYOCA, renewal and monitoring; Intune supported platforms; GCC High and DoD service description; What's new in Intune (June and September 2026); SCEP, PKCS and trusted certificate profiles; Certificate Connector; custom compliance.",
+    "Microsoft Learn (Intune and Cloud PKI): Cloud PKI overview, fundamentals, deployment models, BYOCA, renewal and monitoring; Intune supported platforms; Intune for US Government service description; What's new in Intune (June and September 2026); SCEP, PKCS and trusted certificate profiles; Certificate Connector; custom compliance.",
     "Microsoft Learn (Entra and Defender): Entra CBA overview, technical concepts, setup, CRL and limitations; certificateUserIds; staged rollout; migrate from federation; AD FS decommission guide; Defender for Identity certificate assessments.  ·  Microsoft Support, KB5014754.",
   ];
   fit("Source list 1", need(src, 12.1 - 0.3, 13, 8), 5.0);

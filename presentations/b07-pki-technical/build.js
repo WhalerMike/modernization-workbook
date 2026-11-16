@@ -225,7 +225,7 @@ That makes hardening the first technical workstream, not a cleanup task at the e
 
 The ESC names come from SpecterOps' 2021 research; Microsoft adopted the same labels in Defender for Identity, which is why they're the shared vocabulary. The book uses them only as labels for defensive checks. The classes live in four control points. Template objects hold ESC1 through ESC4. The Public Key Services objects hold ESC5, which Defender for Identity doesn't assess, so detection is an ACL review plus directory change auditing, event 5136. The CA's own configuration holds ESC6 and ESC7, and HTTP enrollment endpoints hold ESC8. Certificate template assessments are available to every customer with AD CS; CA assessments need a Defender for Identity sensor on the AD CS server, so install it on every enterprise CA that stays.
 
-Two caveats from the book. In GCC, Defender for Identity uses the security dot microsoft dot com portal; Microsoft says new features reach GCC, GCC High and DoD within ninety days of commercial release, but preview features may not be supported there. The ESC1 and ESC6 assessments are still labeled preview, so confirm they appear in your tenant, and run the manual checks in the meantime.`,
+Two caveats from the book. In GCC, Defender for Identity uses the security dot microsoft dot com portal; Microsoft says new features reach GCC within ninety days of commercial release, but preview features may not be supported there. The ESC1 and ESC6 assessments are still labeled preview, so confirm they appear in your tenant, and run the manual checks in the meantime.`,
   "Book 07, Chapter 03 — Hardening What Stays, \"The migration gate\" and \"The ESC taxonomy.\"");
 }
 
@@ -421,7 +421,7 @@ There's no single replacement for AD CS. The target is four issuers, each chosen
   const facts = [
     ["Keys", HEX.navy, HEX.navyTint, "Licensed CAs: Azure Managed HSM, no subscription of your own. Trial CAs: software keys, never converted"],
     ["Licensing", HEX.teal, HEX.tealTint, "Add-on to Intune Plan 1 or 2. M365 E5 and E7 include it for commercial customers from July 2026; confirm Government entitlement"],
-    ["Clouds", HEX.amber, HEX.amberTint, "GCC uses the commercial Intune service. GCC High from the week of Sept. 28, 2026. Not supported in DoD"],
+    ["Clouds", HEX.amber, HEX.amberTint, "GCC uses the commercial Intune service, so availability follows it; licensing is the question"],
   ];
   const top = b + 0.15, h = 6.5 - top;
   facts.forEach((f, i) => {
@@ -432,7 +432,7 @@ There's no single replacement for AD CS. The target is four issuers, each chosen
       { text: f[3], options: { fontSize: 12 } },
     ], { x: x + 0.15, y: top + 0.08, w: 3.65, h: h - 0.14, valign: "middle" });
   });
-  sources(s, "Sources: Microsoft Learn — Cloud PKI overview, fundamentals, deployment models, configure CA; Intune supported platforms; Intune add-ons, planning guide, what's new (2606, 2609); Intune GCC High and DoD. Book 07, Ch 04.");
+  sources(s, "Sources: Microsoft Learn — Cloud PKI overview, fundamentals, deployment models, configure CA; Intune supported platforms; Intune add-ons, planning guide, what's new (2606, 2609); Intune for US Government. Book 07, Ch 04.");
   notes(s,
 `Cloud PKI is a Microsoft-hosted PKI managed in the Intune admin center. It hosts the root and issuing CAs, a SCEP registration authority for each issuing CA, the CRL distribution point and the AIA endpoint, which together replace the on-premises CA, NDES server and Certificate Connector for device certificates.
 
@@ -440,7 +440,7 @@ What it can do. Issue client-authentication certificates to Intune-enrolled Andr
 
 What it can't. Issue to anything not enrolled in Intune; Intune doesn't support Windows Server, so no domain controller, NPS server, web server or SQL Server gets a Cloud PKI certificate. Issue the server certificates RADIUS and VPN gateways present; Microsoft says those must come from another CA. Issue through PKCS. Answer OCSP. And change a CA's EKUs after creation. Plan the three-CA count before you create anything.
 
-Keys: licensed CAs use Azure Managed HSM; trial CAs use software keys that can't be converted after purchase. Licensing: Cloud PKI is a subscription on top of Intune Plan 1 or 2. From July 2026, Microsoft 365 E5 and E7 include it for commercial customers; Microsoft says Government plans are planned to align, subject to compliance and regulatory requirements, so confirm the entitlement on the current SKU. And availability: GCC uses the commercial Intune service, so availability follows it and licensing is the question. Cloud PKI became available in GCC High in the week of September 28, 2026, and isn't supported in DoD.`,
+Keys: licensed CAs use Azure Managed HSM; trial CAs use software keys that can't be converted after purchase. Licensing: Cloud PKI is a subscription on top of Intune Plan 1 or 2. From July 2026, Microsoft 365 E5 and E7 include it for commercial customers; Microsoft says Government plans are planned to align, subject to compliance and regulatory requirements, so confirm the entitlement on the current SKU. And availability: GCC uses the commercial Intune service, so availability follows it and licensing is the question.`,
   "Book 07, Chapter 04 — The Target PKI, \"Microsoft Cloud PKI.\"");
 }
 
@@ -685,16 +685,16 @@ To find weak certificates, sweep the KDC's System log for events 39, 40 and 41. 
   ], 12.5);
   panel(s, "CRL", 6.8, 3.45, 5.95, 2.95, HEX.red, HEX.redTint, "REVOCATION", null, [
     "One CRL per CA, internet HTTP or HTTPS (HTTP recommended); no OCSP, no LDAP",
-    "Downloaded in 10 seconds; 20 MB commercial and GCC, 45 MB Azure Government",
+    "Downloaded in 10 seconds; up to 20 MB in the commercial cloud, which includes GCC",
     "Cached until next update: revoke sessions for an immediate cutoff",
   ], 12.5);
   sources(s, "Sources: Microsoft Learn — Entra CBA technical concepts; set up Entra CBA; Entra CBA CRL; What is Entra CBA (unsupported scenarios). Book 07, Ch 06.");
   notes(s,
-`How a CBA sign-in works, as Microsoft documents it. The user enters a username; Entra ID performs home realm discovery and offers Use a certificate or smart card. The client is redirected to the certificate authentication endpoint, certauth dot login dot microsoftonline dot com in the commercial cloud, which includes GCC, and the dot us endpoint in Azure Government. It requests the client certificate in a mutual-TLS handshake. Entra ID checks the chain and the CRL, and finds one user through the username bindings. If Conditional Access requires MFA and the certificate counts as multifactor, the user is signed in; if it's single-factor, Entra offers a registered second factor. Allow the endpoint through proxies and turn off TLS inspection for it, or the client certificate never reaches Entra ID.
+`How a CBA sign-in works, as Microsoft documents it. The user enters a username; Entra ID performs home realm discovery and offers Use a certificate or smart card. The client is redirected to the certificate authentication endpoint, certauth dot login dot microsoftonline dot com in the commercial cloud, which includes GCC. It requests the client certificate in a mutual-TLS handshake. Entra ID checks the chain and the CRL, and finds one user through the username bindings. If Conditional Access requires MFA and the certificate counts as multifactor, the user is signed in; if it's single-factor, Entra offers a registered second factor. Allow the endpoint through proxies and turn off TLS inspection for it, or the client certificate never reaches Entra ID.
 
 The trust store. Upload every CA in the chain that issues user certificates. Microsoft highly recommends the PKI-based trust store, which holds up to two hundred fifty CAs. Managing it takes Privileged Authentication Administrator, and bulk upload needs P1 or P2. The trust store is also a blast radius: adding a CA lets any certificate it issues authenticate any user it can be bound to.
 
-Revocation. Set each CA's base CRL URL, and the delta if published; without one, a revoked certificate still authenticates, so turn on Require CRL validation. Entra ID supports one CRL endpoint per CA over HTTP or HTTPS, with HTTP recommended, downloaded within ten seconds. It doesn't support OCSP. Interactive sign-in downloads CRLs up to twenty megabytes in the commercial cloud including GCC, and forty-five in Azure Government. And it caches the CRL until its next update, so revoke the user's sessions when revocation must be immediate.`,
+Revocation. Set each CA's base CRL URL, and the delta if published; without one, a revoked certificate still authenticates, so turn on Require CRL validation. Entra ID supports one CRL endpoint per CA over HTTP or HTTPS, with HTTP recommended, downloaded within ten seconds. It doesn't support OCSP. Interactive sign-in downloads CRLs up to twenty megabytes in the commercial cloud including GCC. And it caches the CRL until its next update, so revoke the user's sessions when revocation must be immediate.`,
   "Book 07, Chapter 06 — Device and User Certificates, \"How a CBA sign-in works\" and \"The trust store.\"");
 }
 
@@ -812,7 +812,7 @@ Trust runs both ways. AD CS into Entra ID: upload the root and every intermediat
   const b = table(s, "CRLs", 1.5, [2.65, 3.0, 3.1, 3.4], ["CA", "Where its CRL lives", "Who must reach it", "Watch for"], [
     ["Cloud PKI root and issuing", "Intune-hosted; seven days, republished every 3.5", "Every relying party, including on-premises RADIUS and VPN", "Outbound HTTP from RADIUS and VPN servers to the Intune CDP and AIA"],
     ["BYOCA issuing CA", "Intune-hosted", "As above", "Parent CRL and AIA come from the private CA; AD CS defaults to LDAP AIA"],
-    ["AD CS CAs for CBA user certificates", "Often LDAP plus an internal HTTP URL", "Entra ID, over the internet: one HTTP (or HTTPS) URL per CA", "Internal-only URLs; CRLs over 20 MB (commercial and GCC) or 45 MB (Azure Government)"],
+    ["AD CS CAs for CBA user certificates", "Often LDAP plus an internal HTTP URL", "Entra ID, over the internet: one HTTP (or HTTPS) URL per CA", "Internal-only URLs; CRLs over 20 MB (commercial and GCC) for interactive sign-in"],
     ["AD CS behind DC certificates", "As above", "Entra-joined devices, before authentication", "LDAP-only CDPs: publish an HTTP CDP first"],
   ], { fontSize: 12 });
   callout(s, "Fix", b + 0.15, 6.5 - b - 0.15, "FaRoute", HEX.amber, "Fixing a CDP: ",
@@ -821,7 +821,7 @@ Trust runs both ways. AD CS into Entra ID: upload the root and every intermediat
   notes(s,
 `Most coexistence outages are revocation outages. Relying parties now sit in three places, inside the network, on the internet, and in Entra ID, and each CA's CRL must be reachable from all three wherever its certificates are validated.
 
-Every relying party that validates Cloud PKI certificates, including on-premises RADIUS and VPN servers, needs outbound HTTP to the Intune-hosted CDP and AIA. A BYOCA issuing CA's own CRL is Intune-hosted too, but its parent CRL and AIA come from the private CA, and AD CS defaults to an LDAP AIA location. AD CS CAs that issue user certificates for Entra CBA usually publish over LDAP plus an internal HTTP URL; Entra ID needs one internet HTTP or HTTPS URL per CA, HTTP recommended, with no OCSP and no LDAP, and watch the CRL size limits, twenty megabytes for commercial and GCC and forty-five for Azure Government. And the CAs behind domain controller certificates must serve Entra-joined devices that haven't authenticated yet, so LDAP-only distribution points break them.
+Every relying party that validates Cloud PKI certificates, including on-premises RADIUS and VPN servers, needs outbound HTTP to the Intune-hosted CDP and AIA. A BYOCA issuing CA's own CRL is Intune-hosted too, but its parent CRL and AIA come from the private CA, and AD CS defaults to an LDAP AIA location. AD CS CAs that issue user certificates for Entra CBA usually publish over LDAP plus an internal HTTP URL; Entra ID needs one internet HTTP or HTTPS URL per CA, HTTP recommended, with no OCSP and no LDAP, and watch the CRL size limits, twenty megabytes for commercial and GCC. And the CAs behind domain controller certificates must serve Entra-joined devices that haven't authenticated yet, so LDAP-only distribution points break them.
 
 Fixing an AD CS distribution point means two things. Add an HTTP location reachable from the internet, using HTTP rather than HTTPS. And recognize that the new URL appears only in certificates issued after the change. Entra ID uses the CRL URL configured in its trust store, not the one inside each certificate, so CBA works as soon as the trust store points at the published CRL; other relying parties keep failing until their certificates renew. The program publishes on plain anonymous HTTP, not through an application proxy, because Entra ID must download the CRL without authentication within ten seconds.`,
   "Book 07, Chapter 07 — Coexistence and Migration, \"CRL availability.\"");
@@ -972,7 +972,7 @@ endModule("Module 4");
   const src = [
     "Microsoft Learn: Microsoft Cloud PKI fundamentals; Overview of Microsoft Cloud PKI (prerequisites, features, architecture, trial, limitations); Cloud PKI deployment models.",
     "Microsoft Learn: Configure root and issuing CA for Cloud PKI; Configure Cloud PKI — Bring your own CA; Renew a certificate authority in Cloud PKI.",
-    "Microsoft Learn: Intune supported operating systems and browsers; Intune Suite add-on capabilities; Intune planning guide (costs and licensing); Intune for US Government GCC High and DoD.",
+    "Microsoft Learn: Intune supported operating systems and browsers; Intune Suite add-on capabilities; Intune planning guide (costs and licensing); Intune for US Government.",
     "Microsoft Learn: What's new in Microsoft Intune, weeks of June 29, 2026 (2606) and September 28, 2026 (2609).",
     "Microsoft Learn: What is Entra CBA (unsupported scenarios); Entra CBA CRL; Guidelines for smart card logon with third-party CAs; Manage AD CS certificate templates.",
     "GSA IDManagement.gov, Federal Public Key Infrastructure 101.  ·  NIST FIPS 201-3, PIV of Federal Employees and Contractors (Jan. 2022).",

@@ -255,7 +255,7 @@ The evidence supports SP 800-53 CM-2, CM-6, CM-7, CM-8 and SI-2, which Chapter 1
 
 Intune isn't only for Microsoft platforms. It manages Windows 11, Windows 365 Cloud PCs and Azure Virtual Desktop, the last with limits; macOS, iOS and iPadOS through Apple Business Manager; Android Enterprise in its work-profile, fully managed and dedicated modes; and Ubuntu and Red Hat desktops, where management is compliance. ChromeOS shows up in Intune as inventory with remote actions, but enrollment and policy stay in the Google Admin console.
 
-Azure Arc reaches servers wherever they run: Windows Server 2016 to 2025 and the supported Linux distributions, physical or on any hypervisor; VMware vSphere VMs through Arc-enabled vSphere and vCenter; and AWS EC2 and Google Cloud VMs, with the agent or the multicloud connector, which covers AWS, has GCP in preview and isn't available in Azure Government. Azure VMs don't take Arc at all; Microsoft says they already have the same capabilities. AIX, Solaris, mainframe operating systems, network devices, printers and IoT are on neither list.
+Azure Arc reaches servers wherever they run: Windows Server 2016 to 2025 and the supported Linux distributions, physical or on any hypervisor; VMware vSphere VMs through Arc-enabled vSphere and vCenter; and AWS EC2 and Google Cloud VMs, with the agent or the multicloud connector, which covers AWS and has GCP in preview. Azure VMs don't take Arc at all; Microsoft says they already have the same capabilities. AIX, Solaris, mainframe operating systems, network devices, printers and IoT are on neither list.
 
 So every class of device goes in one of four tiers, as program design guidance. One: managed by Intune or Arc, the default. Two: managed by the platform's own tool, with an evidence feed and the CMDB as the attribute source. Three: discovered and monitored only, through Defender device discovery, network access control and CISA's CDM feeds. Four: segmented and isolated, or retired, with a risk acceptance and a date. That's how the inventory supports CM-8: every component, none counted twice. A device in no tier is a finding.`,
   "Book 05, Chapter 03 (Which end-user devices Intune covers; What Intune and Arc don't reach, the four tiers, CM-8); Chapter 09 (Which servers Arc reaches); Chapter 10 (CM-8). Platform facts as Microsoft Learn documented them on October 29, 2026. The tiers are program design guidance.");
@@ -729,7 +729,6 @@ The decision on the 2012 hosts can't wait. Server infrastructure acts now, and t
     { x: 0.6, y: 4.0, w: 6.9, h: 0.95, fontSize: 14, valign: "middle" });
   sideBox(s, "Auto", "FaArrowsRotate", HEX.teal, HEX.tealTint, "Windows Autopatch, in GCC", [
     "Included with Microsoft 365 G3 or G5 GCC",
-    "Not supported in GCC High or DoD",
     "It runs the rings; don't add custom ones",
     "Update evidence from Intune reports",
   ]);
@@ -741,7 +740,7 @@ The decision on the 2012 hosts can't wait. Server infrastructure acts now, and t
 
 With those values a quality update reaches every online device within about 16 days of release, and an update that breaks the Test or First ring can be paused before it reaches Broad. That pause is an emergency stop, decided by the team running the ring.
 
-Windows Autopatch automates ring management and reporting. For government tenants it's included for GCC customers with Microsoft 365 G3 or G5 GCC, and isn't supported in GCC High or DoD. When Autopatch manages a device it maintains the rings itself, and administrators shouldn't add their own. The program's position: use it where licensed, and keep the ring table as the specification Autopatch is configured to.
+Windows Autopatch automates ring management and reporting. For government tenants it's included for GCC customers with Microsoft 365 G3 or G5 GCC. When Autopatch manages a device it maintains the rings itself, and administrators shouldn't add their own. The program's position: use it where licensed, and keep the ring table as the specification Autopatch is configured to.
 
 This matters to assessors. NIST's SI-2 asks for security updates within a defined period of release, and that period is the agency's own parameter. The ring deadlines are what sets it, so the assessor reads them. In GCC, update evidence comes from Intune and Autopatch reports, because the Log Analytics–based reporting service doesn't meet GCC requirements.
 

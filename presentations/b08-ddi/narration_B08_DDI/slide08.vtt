@@ -42,34 +42,35 @@ to the Azure DNS Private Resolver.
 Not the private zone.
 
 10
-00:00:28.075 --> 00:00:30.840
-And Azure Government uses
-different zone names,
+00:00:28.075 --> 00:00:30.630
+And use Microsoft's
+recommended zone names,
 
 11
-00:00:30.840 --> 00:00:32.913
-so commercial rules don't carry over.
+00:00:30.630 --> 00:00:34.250
+because records are generated
+automatically only for those.
 
 12
-00:00:32.913 --> 00:00:36.242
+00:00:34.250 --> 00:00:37.579
 The Private Resolver is a
 bridge, not an authority,
 
 13
-00:00:36.242 --> 00:00:41.276
+00:00:37.579 --> 00:00:42.613
 so you reach it by forwarding, never by
 delegation, and deploy one per region.
 
 14
-00:00:41.276 --> 00:00:43.525
+00:00:42.613 --> 00:00:44.862
 Addresses need the same discipline,
 
 15
-00:00:43.525 --> 00:00:48.625
+00:00:44.862 --> 00:00:49.962
 with the enterprise IPAM as the authority
 and the clouds reconciled against it.
 
 16
-00:00:48.625 --> 00:00:51.650
+00:00:49.962 --> 00:00:52.990
 Put it together, and you
 get one governed path.

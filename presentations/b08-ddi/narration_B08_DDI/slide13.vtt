@@ -50,29 +50,29 @@ authorization and which run
 inside the agency's own boundary.
 
 11
-00:00:37.412 --> 00:00:41.763
+00:00:37.412 --> 00:00:40.650
 And a Moderate authorization
-doesn't cover GCC High or DoD.
+doesn't cover High systems.
 
 12
-00:00:41.763 --> 00:00:43.626
+00:00:40.650 --> 00:00:42.513
 Some risk remains either way.
 
 13
-00:00:43.626 --> 00:00:46.737
+00:00:42.513 --> 00:00:45.625
 Sync lag becomes the new
 source of divergence.
 
 14
-00:00:46.737 --> 00:00:50.762
+00:00:45.625 --> 00:00:49.650
 A management outage blocks changes,
 though resolution keeps working.
 
 15
-00:00:50.762 --> 00:00:56.276
+00:00:49.650 --> 00:00:55.163
 And encrypted DNS bypass stays possible
 where endpoint controls are incomplete.
 
 16
-00:00:56.276 --> 00:00:57.960
+00:00:55.163 --> 00:00:56.860
 So, the decisions.
