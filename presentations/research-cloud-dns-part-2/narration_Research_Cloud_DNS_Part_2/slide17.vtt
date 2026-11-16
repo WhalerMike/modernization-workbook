@@ -19,49 +19,44 @@ gets its policy from the Grid Master.
 The same criteria apply as for BIND.
 
 5
-00:00:13.512 --> 00:00:17.012
-Confirm its failover in
-GovCloud and Azure Government.
-
-6
-00:00:17.012 --> 00:00:18.980
+00:00:13.512 --> 00:00:15.480
 The open points for this part:
 
-7
-00:00:18.980 --> 00:00:23.901
+6
+00:00:15.480 --> 00:00:20.401
 whether Oracle's VCN resolver passes
 DNSSEC data to a resolver behind it,
 
-8
-00:00:23.901 --> 00:00:29.149
+7
+00:00:20.401 --> 00:00:25.649
 and whether CISA's Protective DNS
 returns DNSSEC data to agency forwarders.
 
-9
-00:00:29.149 --> 00:00:33.225
+8
+00:00:25.649 --> 00:00:29.725
 And the illustrative configuration
 hasn't yet run in a VPC.
 
-10
-00:00:33.225 --> 00:00:37.518
+9
+00:00:29.725 --> 00:00:34.018
 The next steps: ask the seven
 questions of every cloud BIND server,
 
-11
-00:00:37.518 --> 00:00:42.128
+10
+00:00:34.018 --> 00:00:38.628
 build the forwarder pattern in a test
 account in each Region and realm,
 
-12
-00:00:42.128 --> 00:00:46.262
+11
+00:00:38.628 --> 00:00:42.762
 and run the workbook's DNS
 validation matrix from every origin.
 
-13
-00:00:46.262 --> 00:00:51.188
+12
+00:00:42.762 --> 00:00:47.688
 This is research under review, not an
 endorsement by any federal agency.
 
-14
-00:00:51.188 --> 00:00:52.010
+13
+00:00:47.688 --> 00:00:48.500
 Thank you.

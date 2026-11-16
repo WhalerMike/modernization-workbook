@@ -50,7 +50,7 @@ The second module is about running the Automation Platform somewhere a federal a
 
 ## Slide 13 — Versions, and authorization status as published
 
-Start with what you're authorizing. The current release has full support into 2027, with maintenance after that, and it installs only as containers or on OpenShift. On authorization, be careful with words. The self-managed platform isn't a cloud service, so it isn't on the FedRAMP Marketplace, and nobody publishes a statement about it. Neither managed offering is listed either, and Azure Government availability isn't published. So the program's default, which is design guidance, is to run it yourself, inside your own boundary, and authorize it like any other component. Then come the two questions every assessor asks.
+Start with what you're authorizing. The current release has full support into 2027, with maintenance after that, and it installs only as containers or on OpenShift. On authorization, be careful with words. The self-managed platform isn't a cloud service, so it isn't on the FedRAMP Marketplace, and nobody publishes a statement about it. Neither managed offering is listed either, and both are published for commercial regions only. So the program's default, which is design guidance, is to run it yourself, inside your own boundary, and authorize it like any other component. Then come the two questions every assessor asks.
 
 ## Slide 14 — FIPS mode and baseline content: what's published
 

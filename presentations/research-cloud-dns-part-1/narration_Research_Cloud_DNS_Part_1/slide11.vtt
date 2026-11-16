@@ -1,72 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.756
-Oracle Cloud Infrastructure matters here
+00:00:00.050 --> 00:00:04.750
+A listening endpoint receives queries
+from on premises or other VCNs.
 
 2
-00:00:02.756 --> 00:00:05.537
-because the HR platform
-runs on Oracle Cloud.
+00:00:04.750 --> 00:00:09.199
+A forwarding endpoint sends
+queries no view answers to targets,
 
 3
-00:00:05.537 --> 00:00:14.412
-Every VCN gets a dedicated resolver,
-listening on 169.254.169.254.
+00:00:09.199 --> 00:00:11.213
+under up to 50 resolver rules.
 
 4
-00:00:14.412 --> 00:00:18.189
-It answers from the private
-views attached to it, in order,
+00:00:11.213 --> 00:00:16.788
+A rule matches a client address block, a
+domain, or None, which matches any query.
 
 5
-00:00:18.189 --> 00:00:22.449
-then its default view, then its
-resolver rules, then the internet.
+00:00:16.788 --> 00:00:19.921
+Forward is the only action,
+the first match wins,
 
 6
-00:00:22.449 --> 00:00:25.057
-Oracle says it performs recursion to the
+00:00:19.921 --> 00:00:22.813
+and an unreachable target ends processing.
 
 7
-00:00:25.057 --> 00:00:28.200
-internet and DNSSEC
-validation for signed zones.
+00:00:22.813 --> 00:00:28.624
+A subnet's DHCP options can name a custom
+resolver of up to three DNS servers.
 
 8
-00:00:28.200 --> 00:00:29.787
-The trap is in that order.
+00:00:28.624 --> 00:00:33.540
+Those instances reach private views and
 
 9
-00:00:29.787 --> 00:00:33.650
-A match in the sequence ends
-resolution, even an NXDOMAIN.
+00:00:33.540 --> 00:00:38.600
+rules only if 169.254.169.254
+is in that list.
 
 10
-00:00:33.650 --> 00:00:36.721
-So a private zone for
-example dot com hides a
+00:00:38.600 --> 00:00:39.713
+Then the gaps.
 
 11
-00:00:36.721 --> 00:00:40.048
-forwarding rule for onprem
-dot example dot com.
+00:00:39.713 --> 00:00:42.615
+There's no native DNS-layer policy:
 
 12
-00:00:40.048 --> 00:00:42.863
-Views can be attached to many resolvers,
+00:00:42.615 --> 00:00:47.800
+no Oracle page describes a DNS
+firewall for the VCN resolver.
 
 13
-00:00:42.863 --> 00:00:46.275
-sharing private DNS data
-across VCNs in a region.
+00:00:47.800 --> 00:00:51.421
+Private resolver logs, with
+each query's resolution path,
 
 14
-00:00:46.275 --> 00:00:50.812
-Same-name private and public
-zones give split-horizon DNS.
+00:00:51.421 --> 00:00:54.425
+are documented for the
+commercial realms only.
 
 15
-00:00:50.812 --> 00:00:56.180
-Between VCNs, resolution uses resolver
-endpoints over a peering gateway.
+00:00:54.425 --> 00:00:58.370
+And the resolver can serve stale
+answers for up to 24 hours.

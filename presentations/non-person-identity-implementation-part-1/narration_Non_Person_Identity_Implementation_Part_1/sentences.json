@@ -654,71 +654,76 @@
    "And a multitenant app is on the premium list, though Conditional Access can't cover it."
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
-   3.737,
-   "The guide's evidence table maps by requirement, not by gate."
+   2.4,
+   "The third gate sets the credential rules."
   ],
   [
-   3.788,
-   2.663,
-   "So which rows this gate feeds is our reading."
+   2.45,
+   1.975,
+   "They're design guidance from the books."
   ],
   [
-   6.45,
-   7.975,
-   "The decisions set the order that authenticator management asks for: managed identities and federation first, and no new secrets."
+   4.425,
+   1.825,
+   "No long-lived secrets."
   ],
   [
-   14.425,
-   4.85,
-   "Retire decisions lead to disabled accounts, which account management asks for."
+   6.25,
+   4.9,
+   "Managed identities first, then federated credentials, then certificates."
   ],
   [
-   19.275,
-   5.138,
-   "And the fourth phase of the workbook's directory migration is its gate for service accounts."
+   11.15,
+   3.812,
+   "And every certificate in a vault, on a rotation calendar."
   ],
   [
-   24.413,
-   4.55,
-   "To validate, every row in the record has a target and a decide-by date."
+   14.963,
+   3.7,
+   "Step one turns on the tenant's default app management policy."
   ],
   [
-   28.962,
-   6.013,
-   "The kit check for Active Directory accounts shows every high-risk one in the first wave, or retired."
+   18.663,
+   6.325,
+   "It blocks new password secrets and symmetric keys, and caps new certificates at a hundred and eighty days."
   ],
   [
-   34.975,
-   3.112,
-   "The check for secrets lists each app that holds one."
+   24.988,
+   2.487,
+   "Those are Microsoft's recommended settings."
   ],
   [
-   38.087,
-   4.162,
-   "Each has a credential target, or an exception that says why it can't move."
+   27.475,
+   6.525,
+   "Each restriction applies only to apps created after a chosen date, so set it to the policy's effective date."
   ],
   [
-   42.25,
-   6.412,
-   "Workload I D Premium is available in Azure Government through the account manager, but its free trial isn't."
+   34.0,
+   3.55,
+   "The panel shows the workbook's diff against a fictional tenant."
   ],
   [
-   48.663,
-   7.775,
-   "The interim path is an account kept on Kerberos, islanded, with an owner and an end date the authorizing official accepts."
+   37.55,
+   9.012,
+   "Its default policy is off, so turning it on is a change, and every restriction is an add, for both application and service principal objects."
   ],
   [
-   56.438,
-   1.875,
-   "To roll back, re-decide."
+   46.562,
+   3.75,
+   "A restriction the tenant already had is kept, never dropped."
   ],
   [
-   58.312,
-   1.775,
-   "The record keeps the history."
+   50.312,
+   3.962,
+   "Existing workloads rotate at least yearly while they're fixed."
+  ],
+  [
+   54.275,
+   4.425,
+   "New ones start under the cap, which addresses the scuba certificate policy."
   ]
  ],
  "13": [
@@ -840,6 +845,58 @@
    "Secrets are replaced, not rotated."
   ]
  ],
+ "15": [
+  [
+   0.05,
+   4.15,
+   "On the federal side, authenticator management is the main requirement."
+  ],
+  [
+   4.2,
+   6.688,
+   "The evidence is the policy export, the kit runs for credentials and secrets, and the rotation calendar."
+  ],
+  [
+   10.887,
+   7.662,
+   "The policy also addresses three scuba policies: no app passwords, and capped password and certificate lifetimes."
+  ],
+  [
+   18.55,
+   6.412,
+   "They're SHOULD policies in ScubaGear, not required configurations, and their report is filed with the gate."
+  ],
+  [
+   24.962,
+   6.162,
+   "Audit requirements cover credential changes, so the entries for added credentials are logged and reviewed."
+  ],
+  [
+   31.125,
+   6.225,
+   "To validate, the credential check shows nothing issued after the effective date that runs longer than the cap."
+  ],
+  [
+   37.35,
+   5.062,
+   "Every credential that expires within sixty days has an owner and a renewal date."
+  ],
+  [
+   42.413,
+   6.85,
+   "The secrets check shows each app still on a secret is in a conversion wave, or has an exception with an end date."
+  ],
+  [
+   49.263,
+   5.438,
+   "App management policies are free, and Microsoft lists their calls for the government clouds."
+  ],
+  [
+   54.7,
+   6.412,
+   "To roll back, give one application a policy exception with an end date, in the exception register."
+  ]
+ ],
  "16": [
   [
    0.05,
@@ -897,128 +954,71 @@
    "Each has its labs and a narrated tour."
   ]
  ],
- "12": [
+ "11": [
   [
    0.05,
-   2.4,
-   "The third gate sets the credential rules."
+   3.737,
+   "The guide's evidence table maps by requirement, not by gate."
   ],
   [
-   2.45,
-   1.975,
-   "They're design guidance from the books."
+   3.788,
+   2.663,
+   "So which rows this gate feeds is our reading."
   ],
   [
-   4.425,
-   1.825,
-   "No long-lived secrets."
+   6.45,
+   7.975,
+   "The decisions set the order that authenticator management asks for: managed identities and federation first, and no new secrets."
   ],
   [
-   6.25,
-   4.9,
-   "Managed identities first, then federated credentials, then certificates."
+   14.425,
+   4.85,
+   "Retire decisions lead to disabled accounts, which account management asks for."
   ],
   [
-   11.15,
-   3.812,
-   "And every certificate in a vault, on a rotation calendar."
+   19.275,
+   5.138,
+   "And the fourth phase of the workbook's directory migration is its gate for service accounts."
   ],
   [
-   14.963,
-   3.7,
-   "Step one turns on the tenant's default app management policy."
+   24.413,
+   4.55,
+   "To validate, every row in the record has a target and a decide-by date."
   ],
   [
-   18.663,
-   6.325,
-   "It blocks new password secrets and symmetric keys, and caps new certificates at a hundred and eighty days."
+   28.962,
+   6.013,
+   "The kit check for Active Directory accounts shows every high-risk one in the first wave, or retired."
   ],
   [
-   24.988,
-   2.487,
-   "Those are Microsoft's recommended settings."
+   34.975,
+   3.112,
+   "The check for secrets lists each app that holds one."
   ],
   [
-   27.475,
-   6.525,
-   "Each restriction applies only to apps created after a chosen date, so set it to the policy's effective date."
+   38.087,
+   4.162,
+   "Each has a credential target, or an exception that says why it can't move."
   ],
   [
-   34.0,
-   3.55,
-   "The panel shows the workbook's diff against a fictional tenant."
+   42.25,
+   5.838,
+   "Whether the Workload I D Premium trial is offered to a G C C tenant is a lab check."
   ],
   [
-   37.55,
-   9.012,
-   "Its default policy is off, so turning it on is a change, and every restriction is an add, for both application and service principal objects."
+   48.087,
+   7.775,
+   "The interim path is an account kept on Kerberos, islanded, with an owner and an end date the authorizing official accepts."
   ],
   [
-   46.562,
-   3.75,
-   "A restriction the tenant already had is kept, never dropped."
+   55.862,
+   1.875,
+   "To roll back, re-decide."
   ],
   [
-   50.312,
-   3.962,
-   "Existing workloads rotate at least yearly while they're fixed."
-  ],
-  [
-   54.275,
-   4.425,
-   "New ones start under the cap, which addresses the scuba certificate policy."
-  ]
- ],
- "15": [
-  [
-   0.05,
-   4.15,
-   "On the federal side, authenticator management is the main requirement."
-  ],
-  [
-   4.2,
-   6.688,
-   "The evidence is the policy export, the kit runs for credentials and secrets, and the rotation calendar."
-  ],
-  [
-   10.887,
-   7.662,
-   "The policy also addresses three scuba policies: no app passwords, and capped password and certificate lifetimes."
-  ],
-  [
-   18.55,
-   6.412,
-   "They're SHOULD policies in ScubaGear, not required configurations, and their report is filed with the gate."
-  ],
-  [
-   24.962,
-   6.162,
-   "Audit requirements cover credential changes, so the entries for added credentials are logged and reviewed."
-  ],
-  [
-   31.125,
-   6.225,
-   "To validate, the credential check shows nothing issued after the effective date that runs longer than the cap."
-  ],
-  [
-   37.35,
-   5.062,
-   "Every credential that expires within sixty days has an owner and a renewal date."
-  ],
-  [
-   42.413,
-   6.85,
-   "The secrets check shows each app still on a secret is in a conversion wave, or has an exception with an end date."
-  ],
-  [
-   49.263,
-   5.438,
-   "App management policies are free, and Microsoft lists their calls for the government clouds."
-  ],
-  [
-   54.7,
-   6.412,
-   "To roll back, give one application a policy exception with an end date, in the exception register."
+   57.737,
+   1.775,
+   "The record keeps the history."
   ]
  ]
 }

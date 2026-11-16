@@ -2,7 +2,7 @@
 
 ## Slide 1 — One Retirement Notice, End to End
 
-Welcome to the story deck for Building Provider Notices, a developer workbook in the Federal Modernization Workbook. Instead of eight chapters one at a time, we'll follow one notice all the way through: an Azure Service Health retirement of basic public IP addresses, action required by September 30, 2027. It's fictional: every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed. Two notes before we begin. The workbook is a draft, awaiting the owner's review. And the code is illustrative, tested against fixtures, not against a live tenant.
+Welcome to the story deck for Building Provider Notices, a developer workbook in the Federal Modernization Workbook. Instead of eight chapters one at a time, we'll follow one notice all the way through: an Azure Service Health retirement of basic public IP addresses, action required by September 30, 2027. It's fictional: every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed. One note before we begin: the code is illustrative, tested against fixtures, not against a live tenant.
 
 ## Slide 2 — The notice's path through the eight chapters
 
@@ -22,15 +22,15 @@ Check one. The record says our retirement is action required by September 30, 20
 
 ## Slide 6 — Scene 2: Microsoft 365 says it in its own field
 
-The answer to check one: the kit's stated rule. Microsoft's Service Health event has no field for it. Scene two asks the same question of Microsoft 365. Here Microsoft does say it. Microsoft Learn's service communications API gives a Message center post an action-required-by date, Microsoft's own. The fixtures hold a Microsoft 365 retirement too: Basic authentication for SMTP AUTH client submission. It has that date, so its action basis says provider, not rule. The workbook's tenant is GCC, which reads the worldwide Graph host. GCC High and DoD have their own hosts, and the kit refuses a session in the wrong one.
+The answer to check one: the kit's stated rule. Microsoft's Service Health event has no field for it. Scene two asks the same question of Microsoft 365. Here Microsoft does say it. Microsoft Learn's service communications API gives a Message center post an action-required-by date, Microsoft's own. The fixtures hold a Microsoft 365 retirement too: Basic authentication for SMTP AUTH client submission. It has that date, so its action basis says provider, not rule. The workbook's tenant is GCC, which reads the worldwide Graph host, and the kit refuses a session in another environment or tenant.
 
 ## Slide 7 — Try it: the Graph host, and who said action is due
 
-Try it. First, the hosts the kit knows: GCC on the worldwide Graph endpoint, GCC High and DoD on their own. Then collect Microsoft 365 from the fixtures and read the records. The SMTP AUTH retirement is action required by January 31, 2027. Then read each notice's action basis. The retirement's says provider, action required by date time: Microsoft's own field. The SharePoint Framework post says rule: a prevent-or-fix post with no date is action required by the kit's rule. Same record shape as our Azure retirement, with the source of each decision written down.
+Try it. First, the hosts the kit knows: global and GCC, both on the worldwide Graph endpoint. Then collect Microsoft 365 from the fixtures and read the records. The SMTP AUTH retirement is action required by January 31, 2027. Then read each notice's action basis. The retirement's says provider, action required by date time: Microsoft's own field. The SharePoint Framework post says rule: a prevent-or-fix post with no date is action required by the kit's rule. Same record shape as our Azure retirement, with the source of each decision written down.
 
-## Slide 8 — Check 2: a GCC High tenant on the wrong host
+## Slide 8 — Check 2: a read on the wrong Graph host
 
-Check two. A GCC High tenant's settings say G C C by mistake. Without the kit's guard, what would the collection do? Fail loudly, read the posts anyway, return nothing and pass on an empty list, or read someone else's posts?
+Check two. A collection is pointed at a Graph host that isn't the tenant's own. Without the kit's guard, what would it do? Fail loudly, read the posts anyway, return nothing and pass on an empty list, or read someone else's posts?
 
 ## Slide 9 — Scene 3: Oracle Cloud says it in the announcement type
 
@@ -38,7 +38,7 @@ The answer to check two: it would return nothing, and the gate would pass on an 
 
 ## Slide 10 — Try it: Oracle's realms and its own flag
 
-Try it. First, the realms the kit knows. The commercial realm, and the US Government realm with its two regions. The third realm is refused, with the reason: Oracle's page for its endpoint wasn't readable when the chapter was written, so the kit won't guess. Then read the day-one OCI records. A database maintenance window that names a database system, the certificate bundle change that's action required by December 15, an advisory and a closed incident. Same record, same fields, from a fourth provider's shape.
+Try it. First, the realms the kit knows. The commercial realm, and the US Government realm with its two regions. A realm it doesn't know is refused, so the kit won't guess. Then read the day-one OCI records. A database maintenance window that names a database system, the certificate bundle change that's action required by December 15, an advisory and a closed incident. Same record, same fields, from a fourth provider's shape.
 
 ## Slide 11 — Check 3: a rescheduled maintenance window
 
@@ -58,7 +58,7 @@ Check four. An AWS account has no qualifying support plan. What does the Health 
 
 ## Slide 15 — Scene 5: Google Cloud can't say retirement at all
 
-The answer to check four: AWS answers with a subscription required error, and the agency records the gap with the security officer. Scene five, Google Cloud. Google's documentation for Personalized Service Health says its event has one category: incident. Planned maintenance isn't in it. So a notice like our retirement can never arrive from Google through this interface. The kit doesn't pretend otherwise. Every Google notice is an incident, and the gap is written into the guide, the chapter and the security officer's record. One more gap: Google lists no Personalized Service Health in its Assured Workloads FedRAMP and impact-level packages.
+The answer to check four: AWS answers with a subscription required error, and the agency records the gap with the security officer. Scene five, Google Cloud. Google's documentation for Personalized Service Health says its event has one category: incident. Planned maintenance isn't in it. So a notice like our retirement can never arrive from Google through this interface. The kit doesn't pretend otherwise. Every Google notice is an incident, and the gap is written into the guide, the chapter and the security officer's record. One more gap: Google lists no Personalized Service Health in its Assured Workloads FedRAMP packages.
 
 ## Slide 16 — Try it: two weeks of Google, all incidents
 

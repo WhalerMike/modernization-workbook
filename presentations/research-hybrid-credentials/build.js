@@ -250,17 +250,17 @@ const P5 = "Path 5 — Who issues and who renews";
 {
   const s = content(P2, "Azure, AWS and Google: who renews what");
   tag(s, "Who");
-  const b = table(s, "Clouds", 1.5, [2.2, 3.6, 3.45, 2.9], ["Cloud", "The cloud renews by itself", "The CLM's part", "Government"], [
-    ["Azure Key Vault", "Partner CAs (DigiCert, GlobalSign) and self-signed only; any other CA: \"Key Vault doesn't enroll or renew\"", "Pushes certificates, keys and chains; Key Vault's own renewal off for these", "Driver Environment can be AzureUSGovernment; endpoint vault.usgovcloudapi.net"],
-    ["AWS ACM and Private CA", "ACM-issued certificates; never imported ones", "Imports CLM-issued certificates and renews them; or requests from ACM and monitors", "ACM, Private CA, KMS, Secrets Manager in GovCloud; CLM driver pages silent on GovCloud"],
-    ["Google Cloud", "Google-managed certificates in Certificate Manager", "Pushes classic SSL certificates to load balancers; can request from CA Service", "Assured Workloads lists the services; CLM pages silent"],
+  const b = table(s, "Clouds", 1.5, [2.6, 4.75, 4.8], ["Cloud", "The cloud renews by itself", "The CLM's part"], [
+    ["Azure Key Vault", "Partner CAs (DigiCert, GlobalSign) and self-signed only; any other CA: \"Key Vault doesn't enroll or renew\"", "Pushes certificates, keys and chains; Key Vault's own renewal off for these"],
+    ["AWS ACM and Private CA", "ACM-issued certificates; never imported ones", "Imports CLM-issued certificates and renews them; or requests from ACM and monitors"],
+    ["Google Cloud", "Google-managed certificates in Certificate Manager", "Pushes classic SSL certificates to load balancers; can request from CA Service"],
   ], { fontSize: 11.5 });
   callout(s, "Driver cred", b + 0.25, Math.min(0.95, 6.5 - b - 0.25), "FaKey", HEX.amber, "Don't forget the CLM's own credential: ",
     "the Key Vault driver signs in with an app-registration certificate. Inventory it in the CLM with its own owner.");
-  sources(s, "Sources: Microsoft Learn: Key Vault certificates, CSR merge, Azure Government comparison; AWS ACM and GovCloud guides; CyberArk 26.1 Web SDK schema and drivers.");
+  sources(s, "Sources: Microsoft Learn: Key Vault certificates, CSR merge, renewal; AWS ACM guides; Google Certificate Manager; CyberArk 26.1 Web SDK schema and drivers.");
   notes(s,
-`Azure: "When a Key Vault certificate is created, an addressable key and secret are also created with the same name." Auto-renewal works with partner providers DigiCert and GlobalSign, "Supported in all Key Vault service locations in public cloud and Azure Government", and Key Vault handles autorenewal of self-signed certificates; lifetime actions default to 80 percent of the lifetime. For a non-partnered CA, IssuerName is Unknown and "Key Vault doesn't enroll or renew the certificate"; the workflow is CSR, sign, merge. The CLM's Web SDK schema has an Environment attribute that "can replace the default AzureGlobalCloud with an environment: AzureUSGovernment", closing a gap the earlier CLM guide listed. AWS: ACM renews Amazon-issued certificates; "ACM does not provide managed renewal for imported certificates"; private certificates issued directly through the Private CA IssueCertificate API aren't eligible either. CyberArk's ACM driver can request from ACM and Private CA and advises leaving ACM renewal on and widening the CLM renewal window about a week. GovCloud: ACM, Private CA, KMS and Secrets Manager run in US-West and US-East; the CLM AWS driver pages show no aws-us-gov partition (couldn't verify). Google: Certificate Manager issues and renews Google-managed certificates, including through CA Service; the CLM's load balancer driver uses compute.sslCertificates, not Certificate Manager maps (inference).`,
-  "Microsoft Learn: About Azure Key Vault certificates; Configure certificate auto-rotation (July 8, 2026); Create and merge a CSR (July 8, 2026); Compare Azure Government and global Azure; AWS: ACM managed renewal, import, GovCloud ACM and Private CA; Google: Certificate Manager, CA Service, Assured Workloads; CyberArk 26.1: Azure Key Vault schema, ACM CA template, AWS, Google Cloud Load Balancer, CA Service drivers.");
+`Azure: "When a Key Vault certificate is created, an addressable key and secret are also created with the same name." Auto-renewal works with partner providers DigiCert and GlobalSign, and Key Vault handles autorenewal of self-signed certificates; lifetime actions default to 80 percent of the lifetime. For a non-partnered CA, IssuerName is Unknown and "Key Vault doesn't enroll or renew the certificate"; the workflow is CSR, sign, merge. The CLM's Azure Key Vault driver stores certificates, keys and chains in a vault, and for certificates the CLM pushes, Key Vault's own renewal stays off, so there is one renewer. AWS: ACM renews Amazon-issued certificates; "ACM does not provide managed renewal for imported certificates"; private certificates issued directly through the Private CA IssueCertificate API aren't eligible either. CyberArk's ACM driver can request from ACM and Private CA and advises leaving ACM renewal on and widening the CLM renewal window about a week. Google: Certificate Manager issues and renews Google-managed certificates, including through CA Service; the CLM's load balancer driver uses compute.sslCertificates, not Certificate Manager maps (inference).`,
+  "Microsoft Learn: About Azure Key Vault certificates; Configure certificate auto-rotation (July 8, 2026); Create and merge a CSR (July 8, 2026); AWS: ACM managed renewal, import; Google: Certificate Manager, CA Service; CyberArk 26.1: Azure Key Vault schema, ACM CA template, AWS, Google Cloud Load Balancer, CA Service drivers.");
 }
 
 // ================================================================== 9 PIV diagram
@@ -366,7 +366,7 @@ const P5 = "Path 5 — Who issues and who renews";
   ], 12);
   sources(s, "Sources: Microsoft Learn: Plan NPS server and proxy; Entra join planning (June 17, 2026); NPS MFA extension; RADIUS with Entra ID; Microsoft Q&A; FedRAMP Marketplace, Oct. 23, 2026.");
   notes(s,
-`NPS: "To allow the NPS to read the dial-in properties of user accounts during the authorization process, you must add the computer account of the NPS to the RAS and NPSs group for each domain." "The NPS proxy can be a domain member or it can be a stand-alone server with no domain membership", because it "does not perform authorization"; no page documents an authorizing NPS without AD (couldn't verify). Entra-joined devices "don't support RADIUS authentication using an on-premises computer object and certificate for connecting to Wi-Fi"; use "certificates pushed via Intune or user credentials". The NPS extension "connects to Active Directory Domain Services (AD DS) to perform the primary authentication"; PAP supports all methods; CHAPv2 and EAP support phone call and app notification; no number matching. Microsoft's RADIUS architecture page reaches RADIUS only through NPS and recommends SAML federation for VPNs. "Entra ID does not have a native RADIUS feature" is a Microsoft Q&A accepted answer, community-tier. FedRAMP Marketplace (last change Oct. 23, 2026, 781 products): the only RADIUS-first listing, IronWiFi Cloud RADIUS, is at Initial Implementation; Forescout for Government is FedRAMP High (authorized Mar. 20, 2026) but describes visibility and enforcement, not RADIUS. Global Secure Access: available in GCC, "isn't yet supported" in GCC High or DoD; Internet Access doesn't support UDP yet.`,
+`NPS: "To allow the NPS to read the dial-in properties of user accounts during the authorization process, you must add the computer account of the NPS to the RAS and NPSs group for each domain." "The NPS proxy can be a domain member or it can be a stand-alone server with no domain membership", because it "does not perform authorization"; no page documents an authorizing NPS without AD (couldn't verify). Entra-joined devices "don't support RADIUS authentication using an on-premises computer object and certificate for connecting to Wi-Fi"; use "certificates pushed via Intune or user credentials". The NPS extension "connects to Active Directory Domain Services (AD DS) to perform the primary authentication"; PAP supports all methods; CHAPv2 and EAP support phone call and app notification; no number matching. Microsoft's RADIUS architecture page reaches RADIUS only through NPS and recommends SAML federation for VPNs. "Entra ID does not have a native RADIUS feature" is a Microsoft Q&A accepted answer, community-tier. FedRAMP Marketplace (last change Oct. 23, 2026, 781 products): the only RADIUS-first listing, IronWiFi Cloud RADIUS, is at Initial Implementation; Forescout for Government is FedRAMP High (authorized Mar. 20, 2026) but describes visibility and enforcement, not RADIUS. Global Secure Access: available in GCC; Internet Access doesn't support UDP yet.`,
   "Microsoft Learn: Plan NPS as a RADIUS server (Mar. 11, 2025); Plan NPS as a RADIUS proxy; Plan your Entra join deployment (June 17, 2026); NPS extension for Entra MFA; RADIUS authentication with Entra ID; Global Secure Access known limitations; Microsoft Q&A, RADIUS feature in Entra ID; FedRAMP Marketplace products.json.");
 }
 
@@ -442,13 +442,12 @@ const P5 = "Path 5 — Who issues and who renews";
   panel(s, "Next", 6.75, 1.5, 6.0, 4.95, HEX.teal, HEX.tealTint, "NEXT STEPS (DESIGN GUIDANCE)", null, [
     "Lab: prove a CLM-renewed SQL certificate shows KeySpec = 1",
     "Pilot: card management system writes certificateUserIds through Graph",
-    "Ask CyberArk in writing: AWS GovCloud and Google government regions for its drivers",
     "Patch Cisco ISE before Intune certificates carry the SID URI",
     "Plan SQL Server 2025 upgrades to retire the app certificate",
   ], 12);
   sources(s, "Sources: research brief §1.1 and §8; Books 04, 06, 07 and 09 as updated Oct. 23, 2026.");
   notes(s,
-`Book corrections from this research: Book 06 Chapter 10's table said the Key Vault certificate is "not rotated automatically", true only for the customer-managed pattern. Book 06 Chapter 22 and Book 04 Chapter 05 named Entra ID as a renewer; it isn't. Book 04 Chapter 05 now notes managed identities are available on Azure Arc-enabled servers too. Book 06 Chapter 22 gains the KeySpec test gate. Book 07 Chapter 06 gains the federal name-based strong-mapping option and notes the federal CBA guide's low-affinity recommendation versus the program's high affinity. Book 09 Chapter 07 gains the NPS extension's self-signed two-year certificate and narrows the NAC server certificate path. Couldn't verify: CLM drivers in AWS GovCloud and Google government regions; CSP versus KSP in the CAPI driver; always-encrypted on the 2025 managed-identity path (stated only for 2022); Cloud Sync writing certificateUserIds; Graph writes for SOA-converted users; an official Microsoft statement that Entra has no RADIUS; NPS authorizing without AD; Aruba ClearPass documentation (HTTP 403); ISE or ClearPass SCEP or EST enrollment for their own certificates; the NAC partner's Entra app credential type. This is the program's research, under review, not an endorsement by any federal agency.`,
+`Book corrections from this research: Book 06 Chapter 10's table said the Key Vault certificate is "not rotated automatically", true only for the customer-managed pattern. Book 06 Chapter 22 and Book 04 Chapter 05 named Entra ID as a renewer; it isn't. Book 04 Chapter 05 now notes managed identities are available on Azure Arc-enabled servers too. Book 06 Chapter 22 gains the KeySpec test gate. Book 07 Chapter 06 gains the federal name-based strong-mapping option and notes the federal CBA guide's low-affinity recommendation versus the program's high affinity. Book 09 Chapter 07 gains the NPS extension's self-signed two-year certificate and narrows the NAC server certificate path. Couldn't verify: CSP versus KSP in the CAPI driver; always-encrypted on the 2025 managed-identity path (stated only for 2022); Cloud Sync writing certificateUserIds; Graph writes for SOA-converted users; an official Microsoft statement that Entra has no RADIUS; NPS authorizing without AD; Aruba ClearPass documentation (HTTP 403); ISE or ClearPass SCEP or EST enrollment for their own certificates; the NAC partner's Entra app credential type. This is the program's research, under review, not an endorsement by any federal agency.`,
   "Research brief sections 1.1 and 8; Books 04, 06, 07 and 09.");
 }
 
@@ -462,7 +461,6 @@ const P5 = "Path 5 — Who issues and who renews";
 {
   const s = content("Backup", "Couldn't verify");
   T(s, "Gaps", bullets([
-    "CyberArk drivers in AWS GovCloud and Google government regions: the driver pages show no us-gov regions or aws-us-gov partition.",
     "Whether the CLM's CAPI driver generates a CSP (KeySpec 1) or KSP key for SQL Server: not documented.",
     "\"Always encrypted\" for SQL Server 2025's managed-identity path: stated only on the 2022 tutorial.",
     "Cloud Sync writing certificateUserIds; Graph writes for Source-of-Authority-converted users; HR-driven provisioning of the attribute.",
@@ -470,7 +468,6 @@ const P5 = "Path 5 — Who issues and who renews";
     "Aruba ClearPass documentation (HTTP 403, not bypassed): device-ID formats, government cloud, server-certificate enrollment.",
     "Cisco ISE or ClearPass SCEP or EST enrollment of their own server certificates; native ACME for ISE (community post only).",
     "The NAC partner's Entra app credential type; whether Idira's FedRAMP High offering includes Secrets Hub or Secrets Manager.",
-    "Google Assured Workloads per-package membership for Certificate Manager, CA Service, KMS and Secret Manager (inferred from table position).",
   ], 12.5), { x: 0.6, y: 1.5, w: 12.1, h: 5.0, paraSpaceAfter: 5, fontSize: 12.5 });
   sources(s, "Sources: research brief §8 (couldn't verify), Oct. 23, 2026.");
 }
@@ -481,8 +478,8 @@ const srcSlide = (title, src) => {
   sources(s, "Sources: primary documents as listed. Access date for all: Oct. 23, 2026.");
 };
 srcSlide("Sources: Microsoft", [
-  "SQL Server: Entra authentication overview; Arc setup tutorial; managed identity; managed identity setup; automation tutorial; Rotate certificates; without Arc; Arc in US Government; encrypting connections; certificate requirements; Azure SQL root CA change.",
-  "Azure: managed identity on Arc-enabled servers; Key Vault certificates; auto-rotation; CSR merge; renewal; certificate lifecycle architecture; Azure Government comparison.",
+  "SQL Server: Entra authentication overview; Arc setup tutorial; managed identity; managed identity setup; automation tutorial; Rotate certificates; without Arc; encrypting connections; certificate requirements; Azure SQL root CA change.",
+  "Azure: managed identity on Arc-enabled servers; Key Vault certificates; auto-rotation; CSR merge; renewal; certificate lifecycle architecture.",
   "Entra: CBA overview, configuration, classic CA store, technical concepts; certificateUserIds; Windows smart card sign-in; migration from federation; authentication strengths; Source of Authority; Entra join planning.",
   "Windows: KB5014754; smart card logon with third-party CAs; Windows security book, smart cards; Public Sector Blog, name-based strong mapping in government scenarios.",
   "Network: Plan NPS as a RADIUS server and proxy; EAP-TLS certificate requirements; NPS extension for Entra MFA; RADIUS with Entra ID; Microsoft Q&A RADIUS answer; NAC integration with Intune; Global Secure Access overview, Private Access, known limitations.",
@@ -490,8 +487,8 @@ srcSlide("Sources: Microsoft", [
 srcSlide("Sources: CyberArk, clouds, government and vendors", [
   "CyberArk Certificate Manager, Self-Hosted 26.1 (docs.venafi.com): system requirements; cloud overview; Azure prerequisites, credential and permissions; Azure Key Vault Web SDK schema; ACM CA template; AWS driver, object settings, lifecycle, FQDN; Google Cloud Load Balancer; Google CA Service; HashiCorp Vault; CAPI driver and object settings.",
   "CyberArk docs: Secrets Manager (Self-Hosted); Secrets Hub.",
-  "AWS: ACM managed renewal, import, private certificate renewal and export; GovCloud ACM, Private CA and KMS; Secrets Manager and endpoints.",
-  "Google Cloud: Certificate Manager; CA Service; Secret Manager; Cloud KMS; Assured Workloads supported products.",
+  "AWS: ACM managed renewal, import, private certificate renewal and export; Secrets Manager and endpoints.",
+  "Google Cloud: Certificate Manager; CA Service; Secret Manager; Cloud KMS.",
   "IDManagement.gov: CBA on Entra ID guide v2.0; Network Smart Card Logon for Windows; FCPCA trust; Windows Hello for Business v1.3; FPKI notifications; GSA PKI SSP guide.",
   "Cisco: FN74227; ISE 3.1 and 3.4 administrator guides  ·  HPE Aruba ClearPass Intune pages (HTTP 403, not read)  ·  FedRAMP Marketplace products.json (Oct. 23, 2026).",
 ]);

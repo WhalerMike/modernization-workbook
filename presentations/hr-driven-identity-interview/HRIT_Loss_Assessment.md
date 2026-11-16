@@ -70,7 +70,7 @@ Four independent read-throughs produced the findings. I re-checked the headline 
 
 - `/bulkUpload`: the corpus has the middleware choose POST or PATCH and send only changed fields. Microsoft's contract is the opposite: send the full record and let the service decide. **The bundle is right.**
 - The corpus has HCM writing to AD through Cloud Sync writeback, and claims a native Oracle connector exists. **The bundle matches Microsoft.**
-- The corpus says "Azure Government". GCC-Moderate uses the worldwide endpoints. **The bundle is right.**
+- The corpus points at government-cloud endpoints. GCC Moderate uses the worldwide endpoints. **The bundle is right.**
 - Rehire with a new HR ID: the corpus makes it a new identity. The bundle's enterprise person key is the stronger IA-4 position.
 - **Unresolved, check before presenting:**
   - Leave of absence: inactive (D3.1) or active with a flag (D4.4, D2.8)?

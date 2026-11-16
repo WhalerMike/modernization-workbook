@@ -16,9 +16,9 @@ Here's the idea the rest of the talk builds on. Almost every name in this path i
 
 This table maps each component to what it must resolve, and the full version is in the backup. The HR middleware resolves Fusion, Graph and sign-in publicly, but its evidence store and key vault sit behind private endpoints, so it needs a linked private zone or a resolver that forwards to Azure. Lifecycle Workflow extensions, as an inference, can reach only public names. The provisioning agent needs domain controller records internally and Microsoft's relay names publicly. On-premises systems reach cloud private names by forwarding from the Infoblox Grid to each cloud's inbound endpoint. And VMware hosts need forward and reverse records in the Grid. Next, a trap that fails quietly.
 
-## Slide 5 — Government clouds use different names
+## Slide 5 — GCC uses the worldwide names
 
-The government clouds use different names, and getting this wrong fails quietly. A GCC tenant keeps using the worldwide Graph and sign-in endpoints, while GCC High uses dot-us addresses, and Microsoft says access tokens from one national cloud aren't interchangeable with another's. The provisioning agent has its own list of relay names that change in the government cloud too. It needs no inbound ports, and Microsoft's guidance, from search excerpts, is to avoid inline TLS inspection on that path. The practical lesson is simple: keep a per-cloud list of names, and test through the real egress path. Now to Oracle, and a common mistake.
+Which names does a GCC tenant use? Getting this wrong fails quietly. A GCC tenant keeps using the worldwide Graph and sign-in endpoints, and Microsoft says access tokens from one national cloud aren't interchangeable with another's. The provisioning agent has its own list of relay names, the public cloud's, which GCC tenants also use. It needs no inbound ports, and Microsoft's guidance, from search excerpts, is to avoid inline TLS inspection on that path. The practical lesson is simple: keep a list of the names your tenant uses, and test through the real egress path. Now to Oracle, and a common mistake.
 
 ## Slide 6 — Oracle: private access is routing, not DNS
 
@@ -26,7 +26,7 @@ Oracle Fusion offers private access from on-premises, and it sounds like a DNS f
 
 ## Slide 7 — Amazon Connect and VMware
 
-Two more components. Amazon Connect agents work in a browser, and AWS says that traffic traverses the public network and prefers a domain allowlist. If agents can't resolve the media relay names, the softphone can't set up its media channel, so don't over-restrict their DNS. In GovCloud, Connect is available only in the US-West region, uses its own names, and lacks several features. Private API access covers only a subset of Connect, and, as an inference, helps API calls, not the agent or voice path. On VMware, a Broadcom article says changing vCenter's name or address is blocked if the name doesn't fully resolve. So keep those records right in the Grid. Next, the subtle one.
+Two more components. Amazon Connect agents work in a browser, and AWS says that traffic traverses the public network and prefers a domain allowlist. If agents can't resolve the media relay names, the softphone can't set up its media channel, so don't over-restrict their DNS. Private API access covers only a subset of Connect, and, as an inference, helps API calls, not the agent or voice path. On VMware, a Broadcom article says changing vCenter's name or address is blocked if the name doesn't fully resolve. So keep those records right in the Grid. Next, the subtle one.
 
 ## Slide 8 — The clouds disagree on precedence
 
@@ -46,4 +46,4 @@ Here's what the agency must do, condensed from a thirteen-step checklist, and it
 
 ## Slide 12 — Decisions, next steps and where this fits
 
-To close. The decisions are who owns each namespace, which middleware platform and so which resolver path, the hub design in each cloud, and whether Oracle's private access is needed at all, remembering that it's routing, not DNS. The next steps are the things that couldn't be verified, such as which Oracle environment the agency's tenant will use and what's available in the government clouds; they're all listed in the backup. In the workbook, the HR-Driven Identity book and the DNS, DHCP and IPAM book cover those two halves in depth, and three related research items sit beside this one. This is research under review, not an endorsement by any federal agency. Thank you.
+To close. The decisions are who owns each namespace, which middleware platform and so which resolver path, the hub design in each cloud, and whether Oracle's private access is needed at all, remembering that it's routing, not DNS. The next steps are the things that couldn't be verified, such as which Oracle environment the agency's tenant will use and Oracle's government-realm DNS limits; they're all listed in the backup. In the workbook, the HR-Driven Identity book and the DNS, DHCP and IPAM book cover those two halves in depth, and three related research items sit beside this one. This is research under review, not an endorsement by any federal agency. Thank you.

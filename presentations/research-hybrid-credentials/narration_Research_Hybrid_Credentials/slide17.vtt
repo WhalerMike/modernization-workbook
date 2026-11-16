@@ -26,25 +26,30 @@ certificate and the access
 control server's certificate.
 
 6
-00:00:19.200 --> 00:00:23.274
+00:00:19.200 --> 00:00:23.094
 The next steps are tests, not more
 reading: prove the SQL key type,
 
 7
-00:00:23.274 --> 00:00:28.237
-prove the card system can write the binding,
-and get CyberArk's answer on GovCloud.
+00:00:23.094 --> 00:00:25.643
+prove the card system
+can write the binding,
 
 8
-00:00:28.237 --> 00:00:31.129
+00:00:25.643 --> 00:00:29.962
+and patch the access control servers
+before the new certificates arrive.
+
+9
+00:00:29.962 --> 00:00:32.853
 This is the program's
 research, under review,
 
-9
-00:00:31.129 --> 00:00:34.100
+10
+00:00:32.853 --> 00:00:35.824
 and not an endorsement
 by any federal agency.
 
-10
-00:00:34.100 --> 00:00:35.260
+11
+00:00:35.824 --> 00:00:36.980
 Thanks for watching.

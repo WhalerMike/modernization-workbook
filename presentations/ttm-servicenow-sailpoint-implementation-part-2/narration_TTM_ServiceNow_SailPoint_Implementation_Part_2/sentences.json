@@ -217,73 +217,6 @@
    "The ServiceNow flow chooses the change type from the class, so a pre-authorized standard change, a normal change with approvals, or an emergency change each leave the record the class needs."
   ]
  ],
- "5": [
-  [
-   0.05,
-   6.763,
-   "On the federal side, access restrictions for change call for the connector and spoke identities, with their permissions."
-  ],
-  [
-   6.812,
-   7.075,
-   "Access enforcement and least privilege call for SailPoint's provisioning events and pim activation records."
-  ],
-  [
-   13.887,
-   3.962,
-   "Change control calls for change records linked from each request."
-  ],
-  [
-   17.85,
-   7.713,
-   "Session audit isn't in any baseline, but it's added here, so declared-exception sessions are recorded with counsel consulted."
-  ],
-  [
-   25.562,
-   2.675,
-   "And each exception gets a plan-of-action item."
-  ],
-  [
-   28.238,
-   1.725,
-   "Validation is manual."
-  ],
-  [
-   29.962,
-   4.987,
-   "Run one task per lane from start to finish, and confirm each leaves its record."
-  ],
-  [
-   34.95,
-   6.15,
-   "Then re-run the identity check, so no integration identity holds more than its lane needs."
-  ],
-  [
-   41.1,
-   2.587,
-   "pim is available in Azure Government."
-  ],
-  [
-   43.688,
-   9.037,
-   "The spoke's documentation shows only the worldwide Graph endpoint, so it fits G C C, but confirm G C C High with ServiceNow."
-  ],
-  [
-   52.725,
-   2.388,
-   "To roll back, run the paired action."
-  ],
-  [
-   55.112,
-   2.962,
-   "A leaver's deprovisioning is never rolled back."
-  ],
-  [
-   58.075,
-   2.225,
-   "They come back through a new request."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -421,58 +354,6 @@
    51.237,
    8.225,
    "Before this chapter, the client could only run against a live instance and tenant, so its decisions were visible only in mocked unit tests."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   6.188,
-   "On the federal side, change control calls for the evidence attachment and hash on every closed record."
-  ],
-  [
-   6.237,
-   3.837,
-   "Control verification calls for the re-read result and its time."
-  ],
-  [
-   10.075,
-   5.263,
-   "Continuous monitoring calls for counts of closed and reopened records each period."
-  ],
-  [
-   15.338,
-   4.075,
-   "Audit record generation calls for the verifier account's audit trail."
-  ],
-  [
-   19.413,
-   9.15,
-   "To validate, the kit's tests prove that a dry run writes nothing, that a match closes, that a mismatch reopens, and that a stale read waits."
-  ],
-  [
-   28.562,
-   8.275,
-   "On a lyve system, a person's close should land in awaiting verification, and only the client should close it, once the account matches."
-  ],
-  [
-   36.837,
-   5.575,
-   "The re-read uses SailPoint's account and search A P I's and Graph's users endpoint."
-  ],
-  [
-   42.413,
-   3.138,
-   "G C C High uses its own Graph host."
-  ],
-  [
-   45.55,
-   4.7,
-   "Until the client runs on a schedule, the verifier runs it by hand once a day."
-  ],
-  [
-   50.25,
-   5.388,
-   "To roll back, disable the business rule, though closures lose their evidence while it's off."
   ]
  ],
  "9": [
@@ -827,6 +708,125 @@
    "Most of these come down to a decision made early, in gates one and two, and enforced later by the re-read and the reviews."
   ]
  ],
+ "5": [
+  [
+   0.05,
+   6.763,
+   "On the federal side, access restrictions for change call for the connector and spoke identities, with their permissions."
+  ],
+  [
+   6.812,
+   7.075,
+   "Access enforcement and least privilege call for SailPoint's provisioning events and pim activation records."
+  ],
+  [
+   13.887,
+   3.962,
+   "Change control calls for change records linked from each request."
+  ],
+  [
+   17.85,
+   7.713,
+   "Session audit isn't in any baseline, but it's added here, so declared-exception sessions are recorded with counsel consulted."
+  ],
+  [
+   25.562,
+   2.675,
+   "And each exception gets a plan-of-action item."
+  ],
+  [
+   28.238,
+   1.725,
+   "Validation is manual."
+  ],
+  [
+   29.962,
+   4.987,
+   "Run one task per lane from start to finish, and confirm each leaves its record."
+  ],
+  [
+   34.95,
+   6.15,
+   "Then re-run the identity check, so no integration identity holds more than its lane needs."
+  ],
+  [
+   41.1,
+   3.562,
+   "pim is part of the commercial service G C C uses."
+  ],
+  [
+   44.663,
+   6.138,
+   "The spoke's documentation shows only the worldwide Graph endpoint, so it fits G C C."
+  ],
+  [
+   50.8,
+   2.388,
+   "To roll back, run the paired action."
+  ],
+  [
+   53.188,
+   2.962,
+   "A leaver's deprovisioning is never rolled back."
+  ],
+  [
+   56.15,
+   2.225,
+   "They come back through a new request."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.188,
+   "On the federal side, change control calls for the evidence attachment and hash on every closed record."
+  ],
+  [
+   6.237,
+   3.837,
+   "Control verification calls for the re-read result and its time."
+  ],
+  [
+   10.075,
+   5.263,
+   "Continuous monitoring calls for counts of closed and reopened records each period."
+  ],
+  [
+   15.338,
+   4.075,
+   "Audit record generation calls for the verifier account's audit trail."
+  ],
+  [
+   19.413,
+   9.15,
+   "To validate, the kit's tests prove that a dry run writes nothing, that a match closes, that a mismatch reopens, and that a stale read waits."
+  ],
+  [
+   28.562,
+   8.275,
+   "On a lyve system, a person's close should land in awaiting verification, and only the client should close it, once the account matches."
+  ],
+  [
+   36.837,
+   5.575,
+   "The re-read uses SailPoint's account and search A P I's and Graph's users endpoint."
+  ],
+  [
+   42.413,
+   3.225,
+   "G C C uses the worldwide Graph endpoint."
+  ],
+  [
+   45.638,
+   4.7,
+   "Until the client runs on a schedule, the verifier runs it by hand once a day."
+  ],
+  [
+   50.337,
+   5.388,
+   "To roll back, disable the business rule, though closures lose their evidence while it's off."
+  ]
+ ],
  "15": [
   [
    0.05,
@@ -850,46 +850,41 @@
   ],
   [
    19.3,
-   2.438,
-   "Are the apps in ServiceNow's government store?"
+   3.675,
+   "And are the apps and the Entra spoke in ServiceNow's government store?"
   ],
   [
-   21.738,
-   2.85,
-   "And does the Entra spoke work in G C C High?"
-  ],
-  [
-   24.587,
+   22.975,
    4.338,
    "To build the code, use the developer workbook, Building Ticket-to-Machine."
   ],
   [
-   28.925,
+   27.312,
    3.837,
    "It has nine chapters, eight with labs that run on a laptop."
   ],
   [
-   32.763,
+   31.15,
    6.562,
    "To learn the material in order, use the learning path for Ticket-to-Machine on ServiceNow and SailPoint."
   ],
   [
-   39.325,
+   37.712,
    8.562,
    "For the reasons behind it, see two of the workbook's books: Governance, Drift and Evidence, and Compliance Automation and Day-Two Operations."
   ],
   [
-   47.888,
+   46.275,
    2.413,
    "The loop, closed, looks like this."
   ],
   [
-   50.3,
+   48.688,
    7.325,
    "The ticket authorizes a machine, the machine acts under a service identity, and only a re-read closes the ticket."
   ],
   [
-   57.625,
+   56.013,
    7.55,
    "The guide was rewritten as a gated guide on November 1, 2026, and that rewrite hasn't been reviewed yet."
   ]

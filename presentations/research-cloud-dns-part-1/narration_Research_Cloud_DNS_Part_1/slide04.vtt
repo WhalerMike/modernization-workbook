@@ -59,11 +59,11 @@ That matters to any DNS server on
 EC2 that forwards to VPC plus two.
 
 13
-00:00:51.537 --> 00:00:56.936
-Route 53 Global Resolver is a different
-thing, an internet-reachable resolver for
+00:00:51.537 --> 00:00:56.213
+Route 53 Global Resolver is a
+different thing, an internet-reachable
 
 14
-00:00:56.936 --> 00:01:02.470
-branches and on-premises sites, listed in
-30 commercial Regions and not in GovCloud.
+00:00:56.213 --> 00:01:01.510
+resolver for branches and on-premises
+sites, listed in 30 commercial Regions.

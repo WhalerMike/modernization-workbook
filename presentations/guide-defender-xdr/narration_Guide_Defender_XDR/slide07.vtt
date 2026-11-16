@@ -24,49 +24,49 @@ Rollback is to deactivate the
 workload, and the earlier roles return.
 
 6
-00:00:16.250 --> 00:00:20.467
+00:00:16.250 --> 00:00:20.337
 Then connect the S O C's read
-path in the tenant's own cloud:
+path in the right cloud:
 
 7
-00:00:20.467 --> 00:00:24.225
-Global for G C C, U S Gov for G C
-C High, U S Gov D O D for D O D.
+00:00:20.337 --> 00:00:24.225
+G C C uses Global, the
+worldwide Graph endpoints.
 
 8
-00:00:24.225 --> 00:00:30.458
+00:00:24.225 --> 00:00:29.024
 Microsoft Learn names Security Incident
 dot Read dot All as the least-privileged
 
 9
-00:00:30.458 --> 00:00:32.750
+00:00:29.024 --> 00:00:30.788
 permission to list incidents,
 
 10
-00:00:32.750 --> 00:00:37.150
+00:00:30.788 --> 00:00:34.175
 and the signed-in user also
 needs a reader or operator role.
 
 11
-00:00:37.150 --> 00:00:40.600
+00:00:34.175 --> 00:00:37.625
 Threat Hunting dot Read dot
 All runs hunting queries.
 
 12
-00:00:40.600 --> 00:00:43.087
+00:00:37.625 --> 00:00:40.112
 Validate by listing five incidents.
 
 13
-00:00:43.087 --> 00:00:48.225
+00:00:40.112 --> 00:00:45.250
 A pass is a list, or an empty one in a
 new tenant, with no permission error.
 
 14
-00:00:48.225 --> 00:00:52.307
-But watch the danger the guide
-names: read a G C C High tenant
+00:00:45.250 --> 00:00:49.462
+But watch the danger the guide names:
+a session connected to the wrong
 
 15
-00:00:52.307 --> 00:00:56.540
-from the worldwide host, and the
-empty list looks like a pass.
+00:00:49.462 --> 00:00:53.660
+tenant or cloud returns nothing, and
+the empty list looks like a pass.

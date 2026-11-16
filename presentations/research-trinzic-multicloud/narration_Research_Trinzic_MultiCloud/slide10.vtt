@@ -19,44 +19,43 @@ and the research deep dive on Infoblox
 DDI covers the platform itself.
 
 5
-00:00:14.212 --> 00:00:19.274
+00:00:14.212 --> 00:00:18.698
 The decisions to take are which option
-for each cloud and impact level, one named
+for each cloud and FedRAMP level,
 
 6
-00:00:19.274 --> 00:00:21.958
-owner for every zone,
-where DNSSEC keys live,
+00:00:18.698 --> 00:00:21.967
+one named owner for every
+zone, where DNSSEC keys live,
 
 7
-00:00:21.958 --> 00:00:24.488
+00:00:21.967 --> 00:00:24.475
 and how address blocks reach each cloud.
 
 8
-00:00:24.488 --> 00:00:27.894
+00:00:24.475 --> 00:00:27.849
 The next steps start with
 Infoblox: ask for the Government
 
 9
-00:00:27.894 --> 00:00:31.513
+00:00:27.849 --> 00:00:31.575
 Cloud boundary and a feature
-matrix for government accounts.
+matrix for its government edition.
 
 10
-00:00:31.513 --> 00:00:35.883
-Then confirm Azure Government
-availability, size NIOS-X capacity if
+00:00:31.575 --> 00:00:34.993
+Then size NIOS-X capacity if
+you want cloud forwarders,
 
 11
-00:00:35.883 --> 00:00:40.100
-you want cloud forwarders, and test
-forwarding in both directions.
+00:00:34.993 --> 00:00:37.500
+and test forwarding in both directions.
 
 12
-00:00:40.100 --> 00:00:45.025
+00:00:37.500 --> 00:00:42.425
 This is research under review, not an
 endorsement by any federal agency.
 
 13
-00:00:45.025 --> 00:00:45.840
+00:00:42.425 --> 00:00:43.250
 Thank you.

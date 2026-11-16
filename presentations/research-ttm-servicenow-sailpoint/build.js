@@ -409,10 +409,10 @@ const FIXHEAD = ["Fix", "Detect", "Route and track", "Fix and carry back"];
 {
   const s = content(S4, "Federal availability and cautions");
   tag(s, "What");
-  const b = table(s, "Availability", 1.5, [3.1, 3.35, 2.9, 2.8], ["Piece", "GCC (Microsoft 365 Moderate)", "GCC High", "Note"], [
-    ["SailPoint ISC", "Worldwide Microsoft Graph endpoints apply", "Endpoint overrides documented for the Entra source", "FedRAMP Moderate"],
-    ["ServiceNow Entra ID spoke", "Default Graph endpoint fits", "Not documented on the spoke page", "Needs an Integration Hub subscription"],
-    ["SailPoint's ServiceNow apps", "Not confirmed in ServiceNow's government Store", "Not confirmed", "The government cloud has an isolated Store instance"],
+  const b = table(s, "Availability", 1.5, [3.4, 4.75, 4.0], ["Piece", "GCC (Microsoft 365 Moderate)", "Note"], [
+    ["SailPoint ISC", "Worldwide Microsoft Graph endpoints apply", "FedRAMP Moderate"],
+    ["ServiceNow Entra ID spoke", "Default Graph endpoint fits", "Needs an Integration Hub subscription"],
+    ["SailPoint's ServiceNow apps", "Not confirmed in ServiceNow's government Store", "The government cloud has an isolated Store instance"],
   ], { fontSize: 12.5 });
   const py = b + 0.2, ph = 6.45 - py, pw = (12.15 - 0.3) / 3;
   panel(s, "Where", 0.6, py, pw, ph, HEX.amber, HEX.amberTint, "CAUTION 1", "Where the connector runs", [
@@ -427,9 +427,9 @@ const FIXHEAD = ["Fix", "Detect", "Route and track", "Fix and carry back"];
     "No SailPoint page found lists which features are or aren't in the FedRAMP environment",
     "Ask before relying on any of this",
   ], 12.5);
-  sources(s, "Sources: Microsoft Learn, Graph national cloud deployments; SailPoint Azure Government endpoints, AD and Entra docs; ServiceNow Entra spoke; federal Store page. Oct 24, 2026.");
+  sources(s, "Sources: Microsoft Learn, Graph national cloud deployments; SailPoint AD and Entra docs; ServiceNow Entra spoke; federal Store page. Oct 24, 2026.");
   notes(s,
-`Federal availability. SailPoint ISC: in GCC (Microsoft 365 Moderate) the worldwide Microsoft Graph endpoints apply; for GCC High, endpoint overrides are documented for the Entra source; FedRAMP Moderate. The ServiceNow Entra ID spoke: the default Graph endpoint fits GCC; GCC High isn't documented on the spoke page; it needs an Integration Hub subscription. SailPoint's ServiceNow apps: not confirmed in ServiceNow's government Store for either; ServiceNow's government cloud has an isolated Store instance. Cautions. Where the connector runs matters: SailPoint's cloud connectors call Microsoft Graph from SailPoint's cloud; only the Active Directory path runs through SailPoint's on-premises appliance. Book 15's rule is to execute through a connector inside the boundary, so record which actions run from the vendor's cloud (inference). Vendor claims aren't help desk policy: the Entra connector lists "MFA attribute management"; that isn't the same as an authentication-method reset with identity proofing, which stays with the help desk procedure in Book 15. Confirm what's in the FedRAMP environment: no SailPoint page was found that lists which features are or aren't available in the FedRAMP environment; ask before relying on any of the above.`,
+`Federal availability. SailPoint ISC: in GCC (Microsoft 365 Moderate) the worldwide Microsoft Graph endpoints apply; FedRAMP Moderate. The ServiceNow Entra ID spoke: the default Graph endpoint fits GCC; it needs an Integration Hub subscription. SailPoint's ServiceNow apps: not confirmed in ServiceNow's government Store; ServiceNow's government cloud has an isolated Store instance. Cautions. Where the connector runs matters: SailPoint's cloud connectors call Microsoft Graph from SailPoint's cloud; only the Active Directory path runs through SailPoint's on-premises appliance. Book 15's rule is to execute through a connector inside the boundary, so record which actions run from the vendor's cloud (inference). Vendor claims aren't help desk policy: the Entra connector lists "MFA attribute management"; that isn't the same as an authentication-method reset with identity proofing, which stays with the help desk procedure in Book 15. Confirm what's in the FedRAMP environment: no SailPoint page was found that lists which features are or aren't available in the FedRAMP environment; ask before relying on any of the above.`,
   `${PAGE} (Federal availability and cautions).`);
 }
 
@@ -441,8 +441,7 @@ const FIXHEAD = ["Fix", "Detect", "Route and track", "Fix and carry back"];
   panel(s, "Verify", 0.6, 1.5, pw, ph, HEX.navy, HEX.navyTint, "VERIFY IN A LAB", "From under review to Proved", [
     "Build the loop with a test tenant and record the evidence",
     "ISC feature parity in the FedRAMP environment",
-    "The SailPoint apps in the government Store",
-    "The Entra spoke in GCC High",
+    "The SailPoint apps and the Entra spoke in the government Store",
   ], 13.5);
   panel(s, "Decide", 0.6 + pw + 0.15, 1.5, pw, ph, HEX.teal, HEX.tealTint, "DECIDE (DESIGN GUIDANCE)", "The four gaps, as decisions", [
     "A record closes on a re-read, not a ticket status",
@@ -459,7 +458,7 @@ const FIXHEAD = ["Fix", "Detect", "Route and track", "Fix and carry back"];
     "other products can fill the same slots. The loop, the lanes and the fixes are the design; the products illustrate it.", 14.5);
   sources(s, "Sources: research page (Status and review; Related); Book 13, Appendix B; identity-maintenance draft.");
   notes(s,
-`Status: in review. To move this example to Proved, build the loop in a lab with a test tenant and record the evidence on the page. What couldn't be verified, and so should be checked: the ServiceNow Store listings for the SailPoint apps, their availability in the government Store, the Service Catalog app's internals, ISC feature parity in the FedRAMP environment, the Service Desk status-check interval, event retention in SailPoint, end-dated access requests, and the Entra spoke in GCC High. Decisions, restating the four gaps as design guidance: the ServiceNow record closes only on evidence from a re-read; one approver system per authority class, written down; a ServiceNow flow raises change records where a change class needs one; one writer per attribute into the directory, not both. Read next: Book 13, Appendix B — Ticket-to-Machine Reference and its narrated deck; Book 15 — Compliance Automation & Day-2 Operations; and the draft Keeping Identity Correct After HR Becomes the Source. The page names products to illustrate the vendor-neutral design; it isn't an endorsement by any agency. Comments and corrections are welcome as issues on GitHub.`,
+`Status: in review. To move this example to Proved, build the loop in a lab with a test tenant and record the evidence on the page. What couldn't be verified, and so should be checked: the ServiceNow Store listings for the SailPoint apps, their availability in the government Store, the Service Catalog app's internals, ISC feature parity in the FedRAMP environment, the Service Desk status-check interval, event retention in SailPoint, and end-dated access requests. Decisions, restating the four gaps as design guidance: the ServiceNow record closes only on evidence from a re-read; one approver system per authority class, written down; a ServiceNow flow raises change records where a change class needs one; one writer per attribute into the directory, not both. Read next: Book 13, Appendix B — Ticket-to-Machine Reference and its narrated deck; Book 15 — Compliance Automation & Day-2 Operations; and the draft Keeping Identity Correct After HR Becomes the Source. The page names products to illustrate the vendor-neutral design; it isn't an endorsement by any agency. Comments and corrections are welcome as issues on GitHub.`,
   `${PAGE} (Status and review; Related).`);
 }
 
@@ -479,7 +478,6 @@ const FIXHEAD = ["Fix", "Detect", "Route and track", "Fix and carry back"];
     "The Service Desk status-check interval (documented only as \"at regular intervals\").",
     "Event retention in SailPoint.",
     "End-dated access requests.",
-    "The ServiceNow Entra ID spoke in GCC High.",
   ], 16), { x: 0.6, y: 1.5, w: 12.1, h: 4.6, paraSpaceAfter: 8, fontSize: 16 });
   sources(s, "Sources: research page (Status and review), Oct 24, 2026. To move the example to Proved, build the loop in a lab with a test tenant.");
 }
@@ -488,7 +486,7 @@ const FIXHEAD = ["Fix", "Detect", "Route and track", "Fix and carry back"];
   T(s, "Source list", bullets([
     "FedRAMP Marketplace data, fedramp.gov/marketplace/products.json (last change Oct 24, 2026): ServiceNow Government Community Cloud (F1305072116); SailPoint Identity Security Cloud (FR2001938710A); UberEther IAM Advantage (FR2208555094).",
     "SailPoint documentation: Configuring IdentityIQ to Integrate with ServiceNow; Integrating SailPoint with ServiceNow Service Desk (Sept 21, 2026); SDIM: Status Mapping, Configuring SailPoint, Best Practices; Getting Started with ServiceNow; Integrating ISC with the ServiceNow Service Catalog Application (Oct 23, 2026).",
-    "SailPoint documentation: Understanding Certifications; Microsoft Entra SaaS: Supported Features; Azure Government Endpoint Configuration; Integrating SailPoint with Active Directory (Sept 17, 2026); Oracle HCM Cloud SaaS: Supported Features.",
+    "SailPoint documentation: Understanding Certifications; Microsoft Entra SaaS: Supported Features; Integrating SailPoint with Active Directory (Sept 17, 2026); Oracle HCM Cloud SaaS: Supported Features.",
     "SailPoint Developer: Lifecycle States; Identity Attributes Changed and Native Change Account Updated event triggers; Workflows; Search; Access Request Approvals.",
     "SailPoint: Human Fabric product page; press release, Non-Employee Risk Management FedRAMP authorized (Mar 4, 2025).",
     "ServiceNow: Microsoft Entra ID spoke (Zurich); Change types (Zurich IT Service Management); Environments with federal or regional ServiceNow Store instances (Yokohama).",

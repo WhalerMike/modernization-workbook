@@ -7,7 +7,7 @@
 | Module | Covers | Gate and gap | Main sources |
 |---|---|---|---|
 | Orientation | Title; G5–G7 on one page (done when, gap, validate with, rollback) | — | Guide, "The path on one page," "Rollback" |
-| G5 — Actuation | Connectors for A2 and A3 (sessions revoked on disable), the Entra spoke for A0 and A1 and its gaps, PIM with the ticket number, verifying the person; change records by class and the declared-exception lane; requirement, evidence, availability (the spoke in GCC High unconfirmed), the manual lab, rollback | G5; gap 3 | Guide, Step 5; Book 15, Ch 03 |
+| G5 — Actuation | Connectors for A2 and A3 (sessions revoked on disable), the Entra spoke for A0 and A1 and its gaps, PIM with the ticket number, verifying the person; change records by class and the declared-exception lane; requirement, evidence, GCC availability, the manual lab, rollback | G5; gap 3 | Guide, Step 5; Book 15, Ch 03 |
 | G6 — Re-read | *Awaiting verification* and the business rule on findings and Service Desk tickets, the re-read client and the grace period; `reread_verification.py` offline over six records, a day apart; requirement, evidence, availability, interim path | G6; gap 1 | Guide, Step 6; workbook Chapter 05 |
 | G7 — Tempo and evidence | The tempo and the five measures, the schedules and reviews; the identity fixes on these products; `evidence_export.py`, the four checks and the hash chain; requirement, evidence, interim path; the evidence record field by field | G7 | Guide, Step 7 and "Evidence"; workbook Chapter 07 |
 | Close | The dangers across the seven gates; the guide's status and what Proved takes; the workbook, the learning path, the kit page | — | Guide, "Dangers," "Status and review," "What couldn't be verified" |

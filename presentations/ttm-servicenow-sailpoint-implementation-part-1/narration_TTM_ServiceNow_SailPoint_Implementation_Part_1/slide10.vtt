@@ -44,29 +44,25 @@ type each, all merged.
 This gate uses nothing new.
 
 10
-00:00:34.387 --> 00:00:38.629
-The Entra features it relies on
-are available in Azure Government,
+00:00:34.387 --> 00:00:38.950
+In GCC, the Entra features it relies
+on are the commercial service.
 
 11
-00:00:38.629 --> 00:00:40.788
-and GCC is the commercial service.
-
-12
-00:00:40.788 --> 00:00:44.653
+00:00:38.950 --> 00:00:42.815
 If the HR pipeline isn't live
 yet, decide the writers now,
 
-13
-00:00:44.653 --> 00:00:48.775
+12
+00:00:42.815 --> 00:00:46.937
 and run the next gates against
 the HR extract the kit reads.
 
-14
-00:00:48.775 --> 00:00:52.050
+13
+00:00:46.937 --> 00:00:50.213
 To roll back, re-decide
 through a reviewed change.
 
-15
-00:00:52.050 --> 00:00:53.880
+14
+00:00:50.213 --> 00:00:52.060
 The record keeps the history.

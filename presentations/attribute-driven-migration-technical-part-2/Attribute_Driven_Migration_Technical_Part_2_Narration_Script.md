@@ -64,9 +64,9 @@ Applications and service principals are the partial answer. The table repeats th
 
 This crosswalk is the reference you'll come back to, the store table seen by object type: every object type, the store its attributes live in, who writes them and what reads them. Users, devices, Arc servers and service principals each have their own stores and their own consumers. The highpoint is the third column. Every row names one writer, whether that's HR provisioning, device registration, the Arc agent or an attribute administrator. That's the same single-writer rule we set for the user schema, applied to everything. And one user row leads straight into PIV.
 
-## Slide 17 — PIV and CAC: the certificate binding is an attribute
+## Slide 17 — PIV: the certificate binding is an attribute
 
-PIV and CAC sign-in is attribute-driven too, which is easy to miss. Entra ID finds the user by matching a field on the certificate to a field on the account. Some matches are low affinity, like the name on the card, and some are high, tied to one specific certificate. Two highpoints. Certificate-based sign-in is only as strong as the weakest binding you allow, and the program's position is high affinity in production. But switch the whole tenant to high before every account's value is right, and you lock people out. Pilot it first. So where does that value come from?
+PIV sign-in is attribute-driven too, which is easy to miss. Entra ID finds the user by matching a field on the certificate to a field on the account. Some matches are low affinity, like the name on the card, and some are high, tied to one specific certificate. Two highpoints. Certificate-based sign-in is only as strong as the weakest binding you allow, and the program's position is high affinity in production. But switch the whole tenant to high before every account's value is right, and you lock people out. Pilot it first. So where does that value come from?
 
 ## Slide 18 — certificateUserIds: who writes it, and the open pilot
 
@@ -94,7 +94,7 @@ Stage eight keeps the statements true after cutover; without it, everything slow
 
 ## Slide 24 — Limits: administrative units
 
-Administrative units are the delegation replacement, so their limits shape the whole delegation model. They don't nest, so the tree becomes a flat set, and a role covering several units gets one assignment per unit. They limit who can change members, not who can see them. Only some roles can be scoped to a unit. Dynamic units work in G C C, but not in G C C High or D O D, where an automation job has to keep them up. And restricting a unit takes its members out of governance automation, so restriction is a deliberate choice, default no. Next, Lifecycle Workflows.
+Administrative units are the delegation replacement, so their limits shape the whole delegation model. They don't nest, so the tree becomes a flat set, and a role covering several units gets one assignment per unit. They limit who can change members, not who can see them. Only some roles can be scoped to a unit. Dynamic units hold one object type each and run in the global cloud, which G C C uses. And restricting a unit takes its members out of governance automation, so restriction is a deliberate choice, default no. Next, Lifecycle Workflows.
 
 ## Slide 25 — Lifecycle Workflows: the pieces and the limits
 

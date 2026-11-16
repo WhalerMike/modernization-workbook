@@ -69,11 +69,5 @@ Announcements endpoints in two
 regions, in the realm called OC2.
 
 15
-00:00:50.263 --> 00:00:53.009
-The third realm's
-endpoint isn't specified,
-
-16
-00:00:53.009 --> 00:00:57.380
-because Oracle's page wasn't readable,
-so the kit refuses that realm.
+00:00:50.263 --> 00:00:53.140
+The kit refuses any realm it doesn't know.

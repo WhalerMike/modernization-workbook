@@ -1,58 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.078
+00:00:00.050 --> 00:00:03.037
 This is the core of the
 argument: each requirement,
 
 2
-00:00:03.078 --> 00:00:06.475
+00:00:03.037 --> 00:00:06.389
 the Infoblox feature that
 delivers it, and what to watch.
 
 3
-00:00:06.475 --> 00:00:11.569
+00:00:06.389 --> 00:00:11.398
 Signing and resilient DNS map to the
 Grid Master and Grid replication,
 
 4
-00:00:11.569 --> 00:00:16.487
+00:00:11.398 --> 00:00:16.251
 but candidate promotion is manual,
 so it belongs in a tested runbook.
 
 5
-00:00:16.487 --> 00:00:20.338
+00:00:16.251 --> 00:00:19.973
 Encrypted DNS works on X6 hardware only.
 
 6
-00:00:20.338 --> 00:00:24.781
+00:00:19.973 --> 00:00:24.473
 Protective DNS forwarding works
 per view, but no Infoblox document
 
 7
-00:00:24.781 --> 00:00:28.987
+00:00:24.473 --> 00:00:28.623
 was found on encrypted forwarding
 to CISA, so confirm it in a lab.
 
 8
-00:00:28.987 --> 00:00:33.701
+00:00:28.623 --> 00:00:33.300
 Logging and inventory are well covered,
 with the caps and hardware we just saw.
 
 9
-00:00:33.701 --> 00:00:37.512
+00:00:33.300 --> 00:00:37.676
 IPv6 is there, but without DHCP failover.
 
 10
-00:00:37.512 --> 00:00:42.726
+00:00:37.676 --> 00:00:42.823
 And validated cryptography is the real
 gap, with no active certificate today.
 
 11
-00:00:42.726 --> 00:00:47.837
+00:00:42.823 --> 00:00:47.865
 Still, seven of eight requirements
 land on one platform and one database.
 
 12
-00:00:47.837 --> 00:00:50.020
+00:00:47.865 --> 00:00:50.020
 That consolidation is the case.

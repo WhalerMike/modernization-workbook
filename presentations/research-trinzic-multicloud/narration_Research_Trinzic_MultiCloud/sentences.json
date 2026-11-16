@@ -120,38 +120,6 @@
    "The open question is the cloud edge."
   ]
  ],
- "4": [
-  [
-   0.05,
-   4.162,
-   "At the cloud edge, Trinzic alone can see, but it can't control."
-  ],
-  [
-   4.213,
-   10.812,
-   "It can discover cloud networks and virtual machines on a schedule, including GovCloud and Azure Government, and it can import cloud zones so on-premises clients resolve cloud names."
-  ],
-  [
-   15.025,
-   4.362,
-   "But that import is one way, and edits made in NIOS get overwritten."
-  ],
-  [
-   19.387,
-   13.512,
-   "It can't create or own a cloud private zone, manage cloud resolver rules, act as the outside authority for AWS VPC eye-pam, or run DHCP for cloud subnets; the clouds hand out their own addresses."
-  ],
-  [
-   32.9,
-   9.475,
-   "So, as an inference: in the cloud, Infoblox's job is D N S and eye-pam, and the cloud's own resolver still answers cloud private zones."
-  ],
-  [
-   42.375,
-   1.85,
-   "That leads to three options."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -231,48 +199,6 @@
    "Now the simplest option."
   ]
  ],
- "7": [
-  [
-   0.05,
-   7.938,
-   "Option C keeps the Grid authoritative for agency zones and lets each cloud's native D N S own its own private zones."
-  ],
-  [
-   7.987,
-   7.338,
-   "The two meet through conditional forwarding: a rule that says, for names ending in this domain, ask that server."
-  ],
-  [
-   15.325,
-   7.513,
-   "The Grid forwards cloud domains inward to the cloud's endpoints, and each cloud forwards agency domains back to the Grid."
-  ],
-  [
-   22.837,
-   2.425,
-   "Google recommends exactly this design."
-  ],
-  [
-   25.262,
-   8.188,
-   "One fact to keep in mind: a Route 53 private zone asked from outside its linked networks resolves on the public internet instead."
-  ],
-  [
-   33.45,
-   1.925,
-   "Addresses follow the same idea."
-  ],
-  [
-   35.375,
-   9.25,
-   "The Grid owns the agency's blocks and hands each cloud a block, automated on commercial AWS and manual in GovCloud, Azure and Google."
-  ],
-  [
-   44.625,
-   2.312,
-   "Whichever you pick, some rules apply."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -315,6 +241,80 @@
    "With those rules in place, here's how to choose."
   ]
  ],
+ "4": [
+  [
+   0.05,
+   4.162,
+   "At the cloud edge, Trinzic alone can see, but it can't control."
+  ],
+  [
+   4.213,
+   8.338,
+   "It can discover cloud networks and virtual machines on a schedule, and it can import cloud zones so on-premises clients resolve cloud names."
+  ],
+  [
+   12.55,
+   4.362,
+   "But that import is one way, and edits made in NIOS get overwritten."
+  ],
+  [
+   16.913,
+   13.512,
+   "It can't create or own a cloud private zone, manage cloud resolver rules, act as the outside authority for AWS VPC eye-pam, or run DHCP for cloud subnets; the clouds hand out their own addresses."
+  ],
+  [
+   30.425,
+   9.475,
+   "So, as an inference: in the cloud, Infoblox's job is D N S and eye-pam, and the cloud's own resolver still answers cloud private zones."
+  ],
+  [
+   39.9,
+   1.85,
+   "That leads to three options."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   7.938,
+   "Option C keeps the Grid authoritative for agency zones and lets each cloud's native D N S own its own private zones."
+  ],
+  [
+   7.987,
+   7.338,
+   "The two meet through conditional forwarding: a rule that says, for names ending in this domain, ask that server."
+  ],
+  [
+   15.325,
+   7.513,
+   "The Grid forwards cloud domains inward to the cloud's endpoints, and each cloud forwards agency domains back to the Grid."
+  ],
+  [
+   22.837,
+   2.425,
+   "Google recommends exactly this design."
+  ],
+  [
+   25.262,
+   8.188,
+   "One fact to keep in mind: a Route 53 private zone asked from outside its linked networks resolves on the public internet instead."
+  ],
+  [
+   33.45,
+   1.925,
+   "Addresses follow the same idea."
+  ],
+  [
+   35.375,
+   8.575,
+   "The Grid owns the agency's blocks and hands each cloud a block, automated on commercial AWS and manual in Azure and Google."
+  ],
+  [
+   43.95,
+   2.312,
+   "Whichever you pick, some rules apply."
+  ]
+ ],
  "9": [
   [
    0.05,
@@ -333,16 +333,16 @@
   ],
   [
    21.087,
-   14.463,
-   "Multi-cloud at fed-ramp Moderate and below, add Universal D D I through Government Cloud, whether those workloads run in commercial regions or in GovCloud and Azure Government; there, confirm which features Infoblox supports first."
+   11.463,
+   "Multi-cloud at fed-ramp Moderate and below, consider Universal D D I through Government Cloud for workloads in the commercial regions, and confirm first which features its government edition supports."
   ],
   [
-   35.55,
-   8.688,
-   "And for fed-ramp High or Defense Impact Levels 4 and 5, stay with options A and C, because Infoblox's service is Moderate-only."
+   32.55,
+   6.588,
+   "And for fed-ramp High systems, stay with options A and C, because Infoblox's service is Moderate-only."
   ],
   [
-   44.237,
+   39.138,
    8.887,
    "In short: Trinzic plus native resolvers as the baseline, with vNIOS and Universal D D I added only where they earn their place."
   ]
@@ -360,26 +360,26 @@
   ],
   [
    14.213,
-   10.275,
-   "The decisions to take are which option for each cloud and impact level, one named owner for every zone, where DNSSEC keys liv, and how address blocks reach each cloud."
+   10.262,
+   "The decisions to take are which option for each cloud and fed-ramp level, one named owner for every zone, where DNSSEC keys liv, and how address blocks reach each cloud."
   ],
   [
-   24.488,
-   7.025,
-   "The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for government accounts."
+   24.475,
+   7.1,
+   "The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for its government edition."
   ],
   [
-   31.512,
-   8.588,
-   "Then confirm Azure Government availability, size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions."
+   31.575,
+   5.925,
+   "Then size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions."
   ],
   [
-   40.1,
+   37.5,
    4.925,
    "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   45.025,
+   42.425,
    0.762,
    "Thank you."
   ]

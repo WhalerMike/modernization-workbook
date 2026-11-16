@@ -20,54 +20,36 @@ and a Graph connection
 doesn't grant the others.
 
 5
-00:00:13.950 --> 00:00:17.463
-Learn's get-started page shows
-only the commercial command,
+00:00:13.950 --> 00:00:19.576
+Learn's get-started page shows only the
+commercial command, which G C C also uses,
 
 6
-00:00:17.463 --> 00:00:21.262
-so the guide takes each cloud's
-parameters from the tool's source.
+00:00:19.576 --> 00:00:24.337
+because G C C uses the worldwide
+endpoints: the Global environment.
 
 7
-00:00:21.262 --> 00:00:24.712
-Commercial and G C C use
-the Global environment.
-
-8
-00:00:24.712 --> 00:00:29.802
-G C C High uses U S Gov with
-its Exchange environment name,
-
-9
-00:00:29.802 --> 00:00:32.900
-and D O D uses U S Gov D O D with its own.
-
-10
-00:00:32.900 --> 00:00:38.400
+00:00:24.337 --> 00:00:29.837
 Then confirm the tenant and cloud with
 Get M G Context and Get A Z Context.
 
-11
-00:00:38.400 --> 00:00:43.575
-Pass the SharePoint admin U R L in
-every cloud, or the tool infers one.
+8
+00:00:29.837 --> 00:00:32.741
+Pass the SharePoint
+admin U R L explicitly,
 
-12
-00:00:43.575 --> 00:00:46.724
+9
+00:00:32.741 --> 00:00:36.475
+or the tool infers one from
+the tenant's initial domain.
+
+10
+00:00:36.475 --> 00:00:39.624
 If a service won't connect,
 connect the rest, run,
 
-13
-00:00:46.724 --> 00:00:50.950
+11
+00:00:39.624 --> 00:00:43.920
 and record its tests as skipped,
 disconnected, with the reason.
-
-14
-00:00:50.950 --> 00:00:54.506
-In D O D, if the Purview
-tests skip as disconnected,
-
-15
-00:00:54.506 --> 00:00:57.310
-check the conflicting address first.

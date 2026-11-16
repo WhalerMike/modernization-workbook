@@ -30,15 +30,6 @@ need an email address, or renewals fail.
 On the cloud side, the platform can issue
 
 7
-00:00:21.910 --> 00:00:24.963
+00:00:21.910 --> 00:00:25.030
 through AWS and install
 into Azure Key Vault.
-
-8
-00:00:24.963 --> 00:00:28.889
-What I couldn't confirm is Key
-Vault support in Azure Government,
-
-9
-00:00:28.889 --> 00:00:31.180
-so test it or ask before you rely on it.

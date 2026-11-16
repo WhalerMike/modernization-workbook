@@ -2,8 +2,6 @@
 
 **Deck name: PN_Story_One_Retirement_Notice.** A narrated story deck for the developer workbook [*Building Provider Notices*](../../docs/project-plans/developer-workbooks/provider-notices/index.md). Instead of one chapter at a time, it teaches the whole workbook through one case followed end to end: `azure:RT5J-6KL`, "Retirement: Basic SKU public IP addresses", a fictional Azure Service Health retirement in the kit's own fixtures. It is built with the shared helpers in [`../attribute-driven-migration-technical-part-1/slides.js`](../attribute-driven-migration-technical-part-1/slides.js) and the deeper dive's code-panel helper, on the shared kit in [`../_build/`](../_build/README.md). This folder sits outside `docs/`, so the site doesn't render it.
 
-Every chapter of the workbook is a draft awaiting the owner's review; the title slide and the opening narration say so.
-
 ## The case
 
 Every value on the slides comes from [`examples/provider-notices/tests/fixtures`](../../examples/provider-notices/tests/fixtures) (`day1` and `day2`, fictional), and every terminal panel is a workbook chapter's Lab 1 command with the output it printed, read at build time from [`data/kit-captures/pn/`](../../data/kit-captures/pn) (trimmed where the slide says so).

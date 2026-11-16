@@ -247,43 +247,48 @@
  "6": [
   [
    0.05,
-   1.725,
-   "Does it work in a government cloud?"
+   1.738,
+   "Does it work in G C C?"
   ],
   [
-   1.775,
-   4.013,
-   "Microsoft Learn's three Zero Trust Assessment pages don't say."
-  ],
-  [
-   5.787,
-   10.688,
-   "The tool's three point one point oh source does: its connect command takes an environment, Global, U S Gov or U S Gov D O D, and an Exchange environment name."
-  ],
-  [
-   16.475,
-   7.3,
-   "Each service it signs in to is documented per cloud on Learn, and the guide matches the tool's parameters to those pages."
-  ],
-  [
-   23.775,
-   10.4,
-   "One place they conflict: for Security and Compliance in D O D, Learn gives compliance dot D O D dot microsoft dot com, and the tool's source uses a different address."
-  ],
-  [
-   34.175,
    1.788,
-   "Which one works wasn't tested."
+   5.275,
+   "Microsoft Learn's three Zero Trust Assessment pages don't mention G C C."
   ],
   [
-   35.962,
-   8.3,
-   "For SharePoint, the tool infers a sharepoint dot U S admin address, so pass it explicitly; D O D's isn't specified."
+   7.062,
+   10.262,
+   "But G C C uses the worldwide endpoints, so a G C C run uses the tool's defaults: the Global environment, and the default Exchange environment."
   ],
   [
-   44.263,
-   8.8,
-   "Until a run is proved in your cloud, run one pillar at a time in a test tenant of the same cloud, and keep ScubaGear as the federal baseline tool."
+   17.325,
+   3.725,
+   "Each service the tool signs in to is documented on Learn."
+  ],
+  [
+   21.05,
+   9.662,
+   "Microsoft Graph is graph dot microsoft dot com. Exchange Online needs no environment parameter, and Security and Compliance uses its default endpoint."
+  ],
+  [
+   30.712,
+   3.05,
+   "Azure is Azure Cloud, from the tool's source."
+  ],
+  [
+   33.763,
+   8.75,
+   "The SharePoint admin address is the tenant's admin dot sharepoint dot com, and Azure Information Protection uses its default, from the tool's source only."
+  ],
+  [
+   42.513,
+   4.875,
+   "Where neither Learn nor the tool's source says, the guide says not yet specified."
+  ],
+  [
+   47.388,
+   3.225,
+   "And keep ScubaGear as the federal baseline tool."
   ]
  ],
  "7": [
@@ -403,38 +408,23 @@
   ],
   [
    13.95,
-   7.312,
-   "Learn's get-started page shows only the commercial command, so the guide takes each cloud's parameters from the tool's source."
+   10.387,
+   "Learn's get-started page shows only the commercial command, which G C C also uses, because G C C uses the worldwide endpoints: the Global environment."
   ],
   [
-   21.262,
-   3.45,
-   "Commercial and G C C use the Global environment."
-  ],
-  [
-   24.712,
-   8.188,
-   "G C C High uses U S Gov with its Exchange environment name, and D O D uses U S Gov D O D with its own."
-  ],
-  [
-   32.9,
+   24.337,
    5.5,
    "Then confirm the tenant and cloud with Get M G Context and Get A Z Context."
   ],
   [
-   38.4,
-   5.175,
-   "Pass the SharePoint admin U R L in every cloud, or the tool infers one."
+   29.837,
+   6.638,
+   "Pass the SharePoint admin U R L explicitly, or the tool infers one from the tenant's initial domain."
   ],
   [
-   43.575,
+   36.475,
    7.375,
    "If a service won't connect, connect the rest, run, and record its tests as skipped, disconnected, with the reason."
-  ],
-  [
-   50.95,
-   6.312,
-   "In D O D, if the Purview tests skip as disconnected, check the conflicting address first."
   ]
  ],
  "10": [
@@ -542,8 +532,8 @@
   ],
   [
    50.6,
-   9.238,
-   "And Learn says impersonation protection isn't yet available in G C C High and D O D, so a failed impersonation test there is a boundary finding."
+   8.988,
+   "And each pillar owner notes every failed result whose feature may not be available in the tenant's cloud, so it's reviewed, not counted blindly."
   ]
  ],
  "12": [
@@ -710,36 +700,36 @@
   ],
   [
    19.35,
-   3.7,
-   "And the wrong cloud, or a report folder left on the host."
+   3.062,
+   "And a report folder left on the host or shared."
   ],
   [
-   23.05,
+   22.413,
    1.837,
    "Each has its guard in the steps."
   ],
   [
-   24.887,
-   13.512,
-   "The guide is plain about what it couldn't verify: government clouds on Learn, D O D's Security and Compliance address and SharePoint admin U R L, which run roles apply, and Graph permissions in G C C High and D O D."
+   24.25,
+   12.088,
+   "The guide is plain about what it couldn't verify: G C C on Learn, Azure Information Protection's environment name, which run roles apply, and the export's schema, which Microsoft doesn't publish."
   ],
   [
-   38.4,
+   36.337,
    1.913,
    "Nothing was run against a tenant."
   ],
   [
-   40.312,
+   38.25,
    7.812,
    "To practice, start the learning path, The Zero Trust Assessment as Evidence: four modules, each with a knowledge check."
   ],
   [
-   48.125,
+   46.062,
    4.963,
    "Module one's first lab runs on the kit's fictional fixtures, with no tenant."
   ],
   [
-   53.087,
+   51.025,
    0.762,
    "Thank you."
   ]

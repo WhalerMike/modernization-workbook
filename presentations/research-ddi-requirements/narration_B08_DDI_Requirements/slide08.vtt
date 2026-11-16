@@ -15,54 +15,54 @@ Start with FedRAMP, and read a
 listing's scope, not just its badge.
 
 4
-00:00:09.487 --> 00:00:14.176
+00:00:09.487 --> 00:00:13.752
 It covers a specific cloud offering,
-not the software or appliances the
+not the software or appliances
 
 5
-00:00:14.176 --> 00:00:18.625
-agency runs itself, and Moderate
-doesn't cover High or DoD workloads.
+00:00:13.752 --> 00:00:17.863
+the agency runs itself, and Moderate
+doesn't cover High workloads.
 
 6
-00:00:18.625 --> 00:00:23.045
+00:00:17.863 --> 00:00:22.283
 Then ask what hardening guidance
 the agency's settings can come from:
 
 7
-00:00:23.045 --> 00:00:27.387
+00:00:22.283 --> 00:00:26.625
 a C I S Benchmark, the vendor's own
 hardening guide, or a NIST checklist.
 
 8
-00:00:27.387 --> 00:00:30.537
-A DISA STIG is High
-only, Defense material.
+00:00:26.625 --> 00:00:29.563
+A STIG is High only,
+an optional reference.
 
 9
-00:00:30.537 --> 00:00:36.388
+00:00:29.563 --> 00:00:35.412
 And ask for an active FIPS 140-3
 certificate, checking its status yourself.
 
 10
-00:00:36.388 --> 00:00:42.763
+00:00:35.412 --> 00:00:41.788
 FIPS 140-2 certificates moved to NIST's
 historical list on September 21,
 
 11
-00:00:42.763 --> 00:00:46.113
+00:00:41.788 --> 00:00:45.138
 2026, so a new deployment can't cite one.
 
 12
-00:00:46.113 --> 00:00:50.700
+00:00:45.138 --> 00:00:49.726
 Ask how the vendor tracks the
 open-source DNS code underneath.
 
 13
-00:00:50.700 --> 00:00:55.362
+00:00:49.726 --> 00:00:54.387
 And understand what's metered, then
 model the cost over three to five years.
 
 14
-00:00:55.362 --> 00:00:57.100
+00:00:54.387 --> 00:00:56.110
 Here's what those checks returned.

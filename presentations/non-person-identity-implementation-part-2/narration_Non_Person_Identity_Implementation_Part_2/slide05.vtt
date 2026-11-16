@@ -53,26 +53,21 @@ One looks for managed identities
 with broad Azure roles.
 
 12
-00:00:39.912 --> 00:00:43.192
-Workload ID Premium is
-available in Azure Government
+00:00:39.912 --> 00:00:44.176
+Workload ID Premium is needed to
+create or change these policies.
 
 13
-00:00:43.192 --> 00:00:46.325
-through the account manager,
-but its free trial isn't.
-
-14
-00:00:46.325 --> 00:00:50.713
-Without Premium, existing policies
+00:00:44.176 --> 00:00:48.137
+Without it, existing policies
 keep working but can't be edited.
 
-15
-00:00:50.713 --> 00:00:53.768
+14
+00:00:48.137 --> 00:00:51.194
 To roll back, set the
 policy back to report-only,
 
-16
-00:00:53.768 --> 00:00:56.880
+15
+00:00:51.194 --> 00:00:54.310
 and restore a removed
 grant through approval.

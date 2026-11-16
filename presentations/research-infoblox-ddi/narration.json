@@ -22,7 +22,7 @@
   {
     "slide": 5,
     "title": "Grid architecture: one database, many members",
-    "say": "The NIOS Grid is a group of appliances sharing one distributed database, run from a single point, the Grid Master, which every administrator goes through. Members can be physical hardware or virtual appliances, singly or in high-availability pairs, and they talk to the Grid Master over encrypted tunnels. A Grid Master Candidate holds a full copy, but promoting it is a manual job you can't do from the cloud portal. The current hardware is Trinzic X6, and the virtual appliances run on VMware and every major cloud, with Azure Government explicitly covered. On versions, NIOS 9.1.0 went GA in March 2026, and 9.0.6 started a long-term-support train. Next, the cloud-managed side."
+    "say": "The NIOS Grid is a group of appliances sharing one distributed database, run from a single point, the Grid Master, which every administrator goes through. Members can be physical hardware or virtual appliances, singly or in high-availability pairs, and they talk to the Grid Master over encrypted tunnels. A Grid Master Candidate holds a full copy, but promoting it is a manual job you can't do from the cloud portal. The current hardware is Trinzic X6, and the virtual appliances run on VMware and every major cloud. On versions, NIOS 9.1.0 went GA in March 2026, and 9.0.6 started a long-term-support train. Next, the cloud-managed side."
   },
   {
     "slide": 6,
@@ -37,7 +37,7 @@
   {
     "slide": 8,
     "title": "DHCP and IPAM: failover, network views, discovery",
-    "say": "DHCP first. Failover peers talk to each other directly; the Grid Master isn't involved, whatever older material says. But failover is IPv4 only, which matters under the IPv6 mandate, though Windows has the same gap. Lease history is archived, which is the address-to-asset record NIST asks for. On the IPAM side, a network view is a single routing domain, and discovery tools read both the network and the clouds, though the deeper device discovery needs its own license and dedicated appliances, so budget for that. Two corrections to common claims: separate network views permit overlap, they don't prevent it. And the AWS address-management integration excludes GovCloud. Now, the security layer."
+    "say": "DHCP first. Failover peers talk to each other directly; the Grid Master isn't involved, whatever older material says. But failover is IPv4 only, which matters under the IPv6 mandate, though Windows has the same gap. Lease history is archived, which is the address-to-asset record NIST asks for. On the IPAM side, a network view is a single routing domain, and discovery tools read both the network and the clouds, though the deeper device discovery needs its own license and dedicated appliances, so budget for that. Two corrections to common claims: separate network views permit overlap, they don't prevent it. Now, the security layer."
   },
   {
     "slide": 9,
@@ -62,7 +62,7 @@
   {
     "slide": 13,
     "title": "FedRAMP scope: what the Moderate listing covers",
-    "say": "FedRAMP is the most misquoted part of any Infoblox proposal, so let's read the record. The Marketplace lists Infoblox Government Cloud as FedRAMP Certified at Moderate, as SaaS in AWS GovCloud, with one agency authorization and a reuse count of zero. It covers Universal DDI and some security services, but not everything; ask Infoblox for the authorization boundary diagram. And the biggest point: NIOS appliances and virtual appliances on agency infrastructure aren't a cloud service, so no FedRAMP authorization covers them. They sit inside the agency's own boundary, and that's the path for High or DoD systems. With reuse at zero, expect to do your own ATO work. Ask, too, for a list of features the FedRAMP instance has versus commercial."
+    "say": "FedRAMP is the most misquoted part of any Infoblox proposal, so let's read the record. The Marketplace lists Infoblox Government Cloud as FedRAMP Certified at Moderate, as SaaS in AWS GovCloud, with one agency authorization and a reuse count of zero. It covers Universal DDI and some security services, but not everything; ask Infoblox for the authorization boundary diagram. And the biggest point: NIOS appliances and virtual appliances on agency infrastructure aren't a cloud service, so no FedRAMP authorization covers them. They sit inside the agency's own boundary, and that's the path for High systems. With reuse at zero, expect to do your own ATO work. Ask, too, for a list of features the FedRAMP instance has versus commercial."
   },
   {
     "slide": 14,
@@ -72,12 +72,12 @@
   {
     "slide": 15,
     "title": "Trinzic alone, or with cloud DDI?",
-    "say": "Can Trinzic run an agency's DDI alone once workloads move to the clouds? On its own, it can see into them, discovering networks and importing zones one way, but it can't own cloud DNS. There are three ways to extend it, and they combine: virtual appliances in each cloud, Universal DDI, which is the only Infoblox path that writes back to cloud DNS, or native cloud resolvers wired to the Grid with forwarding both ways. The design guidance is this: mostly on premises, use native resolvers with forwarding; hybrid, add virtual appliances; multi-cloud at Moderate, add Universal DDI; in GovCloud or Azure Government at Moderate, confirm the government edition supports those accounts first; and for FedRAMP High or the higher Defense levels, don't depend on the Moderate SaaS. The Trinzic explainer has the full reasoning."
+    "say": "Can Trinzic run an agency's DDI alone once workloads move to the clouds? On its own, it can see into them, discovering networks and importing zones one way, but it can't own cloud DNS. There are three ways to extend it, and they combine: virtual appliances in each cloud, Universal DDI, which is the only Infoblox path that writes back to cloud DNS, or native cloud resolvers wired to the Grid with forwarding both ways. The design guidance is this: mostly on premises, use native resolvers with forwarding; hybrid, add virtual appliances; multi-cloud at Moderate, add Universal DDI for workloads in the commercial regions, after confirming which features the government edition supports; and for FedRAMP High, don't depend on the Moderate SaaS. The Trinzic explainer has the full reasoning."
   },
   {
     "slide": 16,
     "title": "Assurance: baselines, FIPS 140, NIAP and SP 800-81r3",
-    "say": "Now the assurance evidence, checked on October twenty-second. There's no C I S Benchmark for NIOS, so the hardening baseline is the agency's own settings, drawn from NIST's DNS guide and Infoblox's documentation. Infoblox does have two current DISA STIGs, which neither BlueCat nor EfficientIP has; they're High only, Defense material, but useful cross-checks. FIPS 140 is the weak spot, so let's say it plainly. Infoblox has no active certificate today. Its FIPS 140-2 certificates moved to the historical list with the September 21, 2026 sunset, and four FIPS 140-3 submissions are still in NIST's queue. There's no current NIAP certificate either, with NIOS 9.0 in evaluation. And a note on NIST's DNS deployment guide: it's the best practical guide we have, but two of its three authors are Infoblox employees, so disclose that whenever you cite it in support of choosing Infoblox."
+    "say": "Now the assurance evidence, checked on October twenty-second. There's no C I S Benchmark for NIOS, so the hardening baseline is the agency's own settings, drawn from NIST's DNS guide and Infoblox's documentation. Infoblox does have two current STIGs, which neither BlueCat nor EfficientIP has; they're High only, but useful cross-checks. FIPS 140 is the weak spot, so let's say it plainly. Infoblox has no active certificate today. Its FIPS 140-2 certificates moved to the historical list with the September 21, 2026 sunset, and four FIPS 140-3 submissions are still in NIST's queue. There's no current NIAP certificate either, with NIOS 9.0 in evaluation. And a note on NIST's DNS deployment guide: it's the best practical guide we have, but two of its three authors are Infoblox employees, so disclose that whenever you cite it in support of choosing Infoblox."
   },
   {
     "slide": 17,
@@ -121,8 +121,8 @@
   },
   {
     "slide": 25,
-    "title": "Admin sign-in: CAC/PIV, SAML with Entra, directories",
-    "say": "Who can sign in, and which group they land in, is the other half of division scoping. NIOS maps directory groups to its own admin groups, with the first match winning, so an AD group per division can decide where an administrator belongs. For federal staff, the important path is certificate sign-in with CAC or PIV, checked against OCSP. SAML works too, including with Entra, where the user lands in the group whose name exactly matches. A few things to test: certificate sign-in to the API can conflict with certain cloud licenses, SAML-only users get no command line, and it's not confirmed whether Entra sends the group name or its ID. Order mappings carefully, and keep a local break-glass admin."
+    "title": "Admin sign-in: PIV, SAML with Entra, directories",
+    "say": "Who can sign in, and which group they land in, is the other half of division scoping. NIOS maps directory groups to its own admin groups, with the first match winning, so an AD group per division can decide where an administrator belongs. For federal staff, the important path is certificate sign-in with PIV, checked against OCSP. SAML works too, including with Entra, where the user lands in the group whose name exactly matches. A few things to test: certificate sign-in to the API can conflict with certain cloud licenses, SAML-only users get no command line, and it's not confirmed whether Entra sends the group name or its ID. Order mappings carefully, and keep a local break-glass admin."
   },
   {
     "slide": 26,

@@ -187,48 +187,6 @@
    "Steps one and two come first; three to eight can run in parallel by workload."
   ]
  ],
- "5": [
-  [
-   0.05,
-   0.9,
-   "Which cloud?"
-  ],
-  [
-   0.95,
-   10.5,
-   "Microsoft three sixty-five G C C pairs with commercial Azure, so a G C C agency's subscriptions are usually commercial, and every service here is available."
-  ],
-  [
-   11.45,
-   12.35,
-   "G C C High and D O D pair with Azure Government, and Microsoft Learn's page, Compare Azure Government and global Azure, says a service there has all its features unless the page lists a variation."
-  ],
-  [
-   23.8,
-   1.05,
-   "A few matter."
-  ],
-  [
-   24.85,
-   8.5,
-   "Front Door Standard and Premium are generally available in two U S Gov regions, and Private Link origins outside Virginia are unconfirmed."
-  ],
-  [
-   33.35,
-   14.925,
-   "On Application Gateway, Learn's web application firewall F A Q says sovereign clouds have no bot protection rule sets and no geo-filtering custom rules, so that Zero Trust test is recorded as skipped, not applicable, rather than failed."
-  ],
-  [
-   48.275,
-   5.537,
-   "Private D N S zone names differ, and Lighthouse has no pim for delegated access."
-  ],
-  [
-   53.812,
-   3.875,
-   "Whatever the cloud, sign in to the one the subscription lives in."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -387,58 +345,6 @@
    "Exercise the response: Learn allows simulations only through approved partners, only against your own protected I Ps, and one partner, Red Button, is public cloud only."
   ]
  ],
- "10": [
-  [
-   0.05,
-   6.287,
-   "Step four is the web application firewall, on Front Door globally or Application Gateway regionally."
-  ],
-  [
-   6.338,
-   9.55,
-   "Learn's Zero Trust recommendations for Application Gateway say it plainly: detection mode logs an attack and forwards it; only prevention mode blocks."
-  ],
-  [
-   15.887,
-   8.562,
-   "The checks cover prevention mode, request body inspection, the default rule set, bot protection, rate limiting and diagnostic logging."
-  ],
-  [
-   24.45,
-   7.112,
-   "Learn recommends the latest default rule set, two point two when read, validated in log mode before blocking."
-  ],
-  [
-   31.562,
-   7.112,
-   "So create the policy in detection mode with request body inspection on, naming the rule set version you validated."
-  ],
-  [
-   38.675,
-   5.425,
-   "Add bot protection, which is commercial Azure only, and a rate limit on the login path."
-  ],
-  [
-   44.1,
-   9.162,
-   "Attach the policy, send the firewall log to the workspace, and tune for at least a full business cycle, scoping every exception to the narrowest rule."
-  ],
-  [
-   53.263,
-   1.613,
-   "Then switch to prevention."
-  ],
-  [
-   54.875,
-   2.337,
-   "Front Door's managed rules need Premium."
-  ],
-  [
-   57.212,
-   2.85,
-   "In Azure Government, leave out the bot rule set."
-  ]
- ],
  "11": [
   [
    0.05,
@@ -526,48 +432,6 @@
    54.188,
    6.088,
    "T L S inspection needs a trusted certificate authority in Key Vault, and spokes talk through the hub."
-  ]
- ],
- "13": [
-  [
-   0.05,
-   4.912,
-   "Step seven gives platform services a private address in the agency's network."
-  ],
-  [
-   4.963,
-   4.425,
-   "A private endpoint does that; D N S decides whether clients use it."
-  ],
-  [
-   9.387,
-   13.762,
-   "Learn's Key Vault Private Link page is clear that name resolution is where private endpoints fail: the zone must exist, be linked to the virtual network and hold the record, and on-premises D N S must forward to Azure."
-  ],
-  [
-   23.15,
-   6.8,
-   "So create each private link zone once, centrally, in the connectivity subscription, and link it to the hub."
-  ],
-  [
-   29.95,
-   6.0,
-   "Create the private endpoint with a zone group, which registers the record and removes it with the endpoint."
-  ],
-  [
-   35.95,
-   10.762,
-   "At scale, the Cloud Adoption Framework's pattern lets policy do it: deny private link zones and public endpoints in workload subscriptions, and deploy the zone group automatically."
-  ],
-  [
-   46.712,
-   4.55,
-   "Then turn public access off, and add conditional forwarders on premises."
-  ],
-  [
-   51.263,
-   4.737,
-   "In Azure Government the zone names differ, so policy needs those names."
   ]
  ],
  "14": [
@@ -681,6 +545,137 @@
    "The steps support those controls; the assessor decides."
   ]
  ],
+ "5": [
+  [
+   0.05,
+   0.9,
+   "Which cloud?"
+  ],
+  [
+   0.95,
+   9.85,
+   "Microsoft three sixty-five G C C pairs with commercial Azure, so a G C C agency's subscriptions are commercial, and every service here is available."
+  ],
+  [
+   10.8,
+   3.237,
+   "What matters is what to plan for, service by service."
+  ],
+  [
+   14.037,
+   11.075,
+   "Front Door classic retires on March thirty-first, 2027, and takes no new profiles, and Premium is the tier for managed firewall rules and Private Link origins."
+  ],
+  [
+   25.113,
+   8.037,
+   "Microsoft Learn limits Private Link to origin to regions with availability zones, so check the origin's region on the list."
+  ],
+  [
+   33.15,
+   6.5,
+   "On Application Gateway, Learn's web application firewall F A Q says detection mode doesn't block."
+  ],
+  [
+   39.65,
+   9.012,
+   "DDoS Network Protection is billed per plan and I P Protection per protected address, and simulations run only through Learn's approved partners."
+  ],
+  [
+   48.663,
+   4.0,
+   "Private link D N S uses one central zone per service."
+  ],
+  [
+   52.663,
+   3.462,
+   "Sign in to commercial Azure, where the subscriptions liv."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.287,
+   "Step four is the web application firewall, on Front Door globally or Application Gateway regionally."
+  ],
+  [
+   6.338,
+   9.55,
+   "Learn's Zero Trust recommendations for Application Gateway say it plainly: detection mode logs an attack and forwards it; only prevention mode blocks."
+  ],
+  [
+   15.887,
+   8.562,
+   "The checks cover prevention mode, request body inspection, the default rule set, bot protection, rate limiting and diagnostic logging."
+  ],
+  [
+   24.45,
+   7.112,
+   "Learn recommends the latest default rule set, two point two when read, validated in log mode before blocking."
+  ],
+  [
+   31.562,
+   7.112,
+   "So create the policy in detection mode with request body inspection on, naming the rule set version you validated."
+  ],
+  [
+   38.675,
+   5.425,
+   "Add bot protection, which is commercial Azure only, and a rate limit on the login path."
+  ],
+  [
+   44.1,
+   9.162,
+   "Attach the policy, send the firewall log to the workspace, and tune for at least a full business cycle, scoping every exception to the narrowest rule."
+  ],
+  [
+   53.263,
+   1.613,
+   "Then switch to prevention."
+  ],
+  [
+   54.875,
+   2.337,
+   "Front Door's managed rules need Premium."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.912,
+   "Step seven gives platform services a private address in the agency's network."
+  ],
+  [
+   4.963,
+   4.425,
+   "A private endpoint does that; D N S decides whether clients use it."
+  ],
+  [
+   9.387,
+   13.762,
+   "Learn's Key Vault Private Link page is clear that name resolution is where private endpoints fail: the zone must exist, be linked to the virtual network and hold the record, and on-premises D N S must forward to Azure."
+  ],
+  [
+   23.15,
+   6.8,
+   "So create each private link zone once, centrally, in the connectivity subscription, and link it to the hub."
+  ],
+  [
+   29.95,
+   6.0,
+   "Create the private endpoint with a zone group, which registers the record and removes it with the endpoint."
+  ],
+  [
+   35.95,
+   10.762,
+   "At scale, the Cloud Adoption Framework's pattern lets policy do it: deny private link zones and public endpoints in workload subscriptions, and deploy the zone group automatically."
+  ],
+  [
+   46.712,
+   4.55,
+   "Then turn public access off, and add conditional forwarders on premises."
+  ]
+ ],
  "17": [
   [
    0.05,
@@ -709,41 +704,41 @@
   ],
   [
    19.212,
-   2.938,
-   "Commercial features assumed in Azure Government."
+   6.375,
+   "Private D N S zones scattered in workload subscriptions, so resolution fails or goes public."
   ],
   [
-   22.15,
+   25.587,
    4.787,
    "And disabling a key to contain a compromise, which takes its dependents offline."
   ],
   [
-   26.938,
+   30.375,
    1.837,
    "Each has its guard in the steps."
   ],
   [
-   28.775,
-   14.438,
-   "The guide is plain about what it couldn't verify: Front Door and its Private Link origins region by region in Azure Government, Front Door's firewall limits in sovereign clouds, and which DDoS tiers and simulation partners serve Azure Government."
+   32.212,
+   17.475,
+   "The guide is plain about what it couldn't verify: Azure Firewall Premium's regions, which Learn leaves to the products-by-region page; built-in policy names, which change version; and, on the other clouds, Shield Advanced in GovCloud and Oracle's firewall services in its Government Cloud."
   ],
   [
-   43.212,
+   49.688,
    2.1,
    "Nothing was run in a subscription."
   ],
   [
-   45.312,
+   51.788,
    3.538,
    "Remember that the guide is a draft awaiting the editor's review."
   ],
   [
-   48.85,
+   55.325,
    3.95,
    "Its developer workbook with labs and its training path are planned."
   ],
   [
-   52.8,
+   59.275,
    0.762,
    "Thank you."
   ]

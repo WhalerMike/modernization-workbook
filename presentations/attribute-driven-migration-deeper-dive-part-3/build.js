@@ -430,7 +430,7 @@ On the right, the unit and role registry against the tenant, from Book 02 Chapte
     ["Lifecycle Workflows; custom task extensions", "100 each"],
     ["Tasks per workflow", "25"],
     ["Restricted management units", "100"],
-    ["Dynamic units", "Global cloud (GCC); not GCC High or DoD"],
+    ["Dynamic units", "Global cloud, which GCC uses"],
     ["memberOf rule preview", "Ends November 3, 2026"],
   ], { x: 6.7, fontSize: 11.5, limit: 5.6 });
   callout(s, "Review", Math.max(a, b) + 0.2, 0.62, "FaListCheck", HEX.navy, "Review the register with every design change: ",
@@ -441,7 +441,7 @@ On the right, the unit and role registry against the tenant, from Book 02 Chapte
 
 Logs leave Entra ID from day one. Entra ID's own retention is far shorter than any federal records schedule and it isn't retroactive, so route the audit, sign-in and provisioning logs to Azure Monitor, a storage account or the agency's SIEM from the pilot's first day. That's AU-11 in Book 03's mapping.
 
-Step four keeps a limits register, plan task AT9.2, reviewed with every design change. The values on the right are the companion guide's. A dynamic rule body is at most 3,072 characters. A tenant holds at most 15,000 dynamic groups, and dynamic units count against the same total. Lifecycle Workflows allow 100 workflows and 100 custom task extensions, with 25 tasks per workflow. There are at most 100 restricted management units. Dynamic administrative units run in the global cloud, which GCC uses, and not in GCC High or DoD. And the memberOf rule preview ends on November 3, 2026, after which groups that use it freeze in their last state.
+Step four keeps a limits register, plan task AT9.2, reviewed with every design change. The values on the right are the companion guide's. A dynamic rule body is at most 3,072 characters. A tenant holds at most 15,000 dynamic groups, and dynamic units count against the same total. Lifecycle Workflows allow 100 workflows and 100 custom task extensions, with 25 tasks per workflow. There are at most 100 restricted management units. Dynamic administrative units run in the global cloud, which GCC uses. And the memberOf rule preview ends on November 3, 2026, after which groups that use it freeze in their last state.
 
 Step five, plan task AT9.3, runs a full drift cycle on the whole estate after cut-over and closes the findings at the source until the nightly plan is zero-action.`,
   `${IG}, Gate 9, steps 3–5 (AT9.2, AT9.3); companion guide, "Limits," "Monitoring both"; Book 02, Chapter 10 — "The assessment pipeline"; Book 06, Chapter 17 — "Access reviews"; Book 03, Chapters 10 and 11; Book 02, Chapter 05.`);

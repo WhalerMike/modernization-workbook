@@ -1,53 +1,53 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.387
+00:00:00.050 --> 00:00:02.374
 Here's the whole platform on one page.
 
 2
-00:00:02.387 --> 00:00:07.425
+00:00:02.374 --> 00:00:07.383
 Every server runs the same software and
 talks to the same database; what makes
 
 3
-00:00:07.425 --> 00:00:12.226
+00:00:07.383 --> 00:00:12.156
 a server a "web server" or a "back-end
 server" is which components you switch on.
 
 4
-00:00:12.226 --> 00:00:17.350
+00:00:12.156 --> 00:00:17.253
 The web servers sit behind a load balancer
 and give people and automation a way in.
 
 5
-00:00:17.350 --> 00:00:19.771
+00:00:17.253 --> 00:00:19.651
 The ACME servers are kept separate,
 
 6
-00:00:19.771 --> 00:00:24.613
+00:00:19.651 --> 00:00:24.466
 because CyberArk doesn't allow FIPS
 mode on a server that handles ACME.
 
 7
-00:00:24.613 --> 00:00:26.922
+00:00:24.466 --> 00:00:26.773
 The back-end servers do the real work —
 
 8
-00:00:26.922 --> 00:00:30.001
+00:00:26.773 --> 00:00:29.835
 issuing, renewing and
 installing certificates.
 
 9
-00:00:30.001 --> 00:00:33.888
+00:00:29.835 --> 00:00:33.701
 The log servers keep the audit
 trail and send events to the SIEM.
 
 10
-00:00:33.888 --> 00:00:38.105
+00:00:33.701 --> 00:00:38.123
 And underneath: one SQL Server
 database, the keys that protect it,
 
 11
-00:00:38.105 --> 00:00:41.350
+00:00:38.123 --> 00:00:41.350
 and a message bus that
 keeps every server in step.

@@ -283,58 +283,6 @@
    "Next, buying."
   ]
  ],
- "8": [
-  [
-   0.05,
-   5.075,
-   "Before buying anything, check the evidence an assessor will ask for, not the brochure."
-  ],
-  [
-   5.125,
-   4.362,
-   "Start with fed-ramp, and read a listing's scope, not just its badge."
-  ],
-  [
-   9.488,
-   9.137,
-   "It covers a specific cloud offering, not the software or appliances the agency runs itself, and Moderate doesn't cover High or DoD workloads."
-  ],
-  [
-   18.625,
-   8.762,
-   "Then ask what hardening guidance the agency's settings can come from: a C I S Benchmark, the vendor's own hardening guide, or a nist checklist."
-  ],
-  [
-   27.387,
-   3.15,
-   "A DISA STIG is High only, Defense material."
-  ],
-  [
-   30.538,
-   5.85,
-   "And ask for an active FIPS 140-3 certificate, checking its status yourself."
-  ],
-  [
-   36.388,
-   9.725,
-   "FIPS 140-2 certificates moved to nist's historical list on September 21, 2026, so a new deployment can't cite one."
-  ],
-  [
-   46.112,
-   4.588,
-   "Ask how the vendor tracks the open-source D N S code underneath."
-  ],
-  [
-   50.7,
-   4.662,
-   "And understand what's metered, then model the cost over three to five years."
-  ],
-  [
-   55.362,
-   1.675,
-   "Here's what those checks returned."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -380,43 +328,6 @@
    46.587,
    1.188,
    "Now, who runs it."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   8.938,
-   "Now the question many agencies care about most: can divisions run their own D N S, DHCP and eye-pam without breaking central governance?"
-  ],
-  [
-   8.988,
-   5.188,
-   "The workbook's D N S design says yes, if the platform supports the right model."
-  ],
-  [
-   14.175,
-   10.588,
-   "Corporate administrators see everything, and each division gets a fenced scope of its own zones, address blocks and DHCP scopes, with everything else denied by default."
-  ],
-  [
-   24.762,
-   8.875,
-   "In Infoblox, for example, one setting stops a division with access to a shared zone from pointing a name into another division's address space."
-  ],
-  [
-   33.638,
-   5.938,
-   "Only central superusers create groups and roles, so a division can't widen its own rights."
-  ],
-  [
-   39.575,
-   6.7,
-   "Administrators sign in with piv or CAC, or single sign-on, and you keep a local break-glass account."
-  ],
-  [
-   46.275,
-   1.887,
-   "So how are divisions kept apart?"
   ]
  ],
  "11": [
@@ -644,6 +555,95 @@
    45.625,
    0.762,
    "Thank you."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.075,
+   "Before buying anything, check the evidence an assessor will ask for, not the brochure."
+  ],
+  [
+   5.125,
+   4.362,
+   "Start with fed-ramp, and read a listing's scope, not just its badge."
+  ],
+  [
+   9.488,
+   8.375,
+   "It covers a specific cloud offering, not the software or appliances the agency runs itself, and Moderate doesn't cover High workloads."
+  ],
+  [
+   17.863,
+   8.762,
+   "Then ask what hardening guidance the agency's settings can come from: a C I S Benchmark, the vendor's own hardening guide, or a nist checklist."
+  ],
+  [
+   26.625,
+   2.938,
+   "A STIG is High only, an optional reference."
+  ],
+  [
+   29.562,
+   5.85,
+   "And ask for an active FIPS 140-3 certificate, checking its status yourself."
+  ],
+  [
+   35.413,
+   9.725,
+   "FIPS 140-2 certificates moved to nist's historical list on September 21, 2026, so a new deployment can't cite one."
+  ],
+  [
+   45.138,
+   4.588,
+   "Ask how the vendor tracks the open-source D N S code underneath."
+  ],
+  [
+   49.725,
+   4.662,
+   "And understand what's metered, then model the cost over three to five years."
+  ],
+  [
+   54.388,
+   1.675,
+   "Here's what those checks returned."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   8.938,
+   "Now the question many agencies care about most: can divisions run their own D N S, DHCP and eye-pam without breaking central governance?"
+  ],
+  [
+   8.988,
+   5.188,
+   "The workbook's D N S design says yes, if the platform supports the right model."
+  ],
+  [
+   14.175,
+   10.588,
+   "Corporate administrators see everything, and each division gets a fenced scope of its own zones, address blocks and DHCP scopes, with everything else denied by default."
+  ],
+  [
+   24.762,
+   8.875,
+   "In Infoblox, for example, one setting stops a division with access to a shared zone from pointing a name into another division's address space."
+  ],
+  [
+   33.638,
+   5.938,
+   "Only central superusers create groups and roles, so a division can't widen its own rights."
+  ],
+  [
+   39.575,
+   6.138,
+   "Administrators sign in with piv, or single sign-on, and you keep a local break-glass account."
+  ],
+  [
+   45.712,
+   1.887,
+   "So how are divisions kept apart?"
   ]
  ]
 }

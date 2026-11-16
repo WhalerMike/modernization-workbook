@@ -1,44 +1,44 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.438
+00:00:00.050 --> 00:00:04.407
 Recovery hinges on a pair: the
 database and the key that protects it.
 
 2
-00:00:04.438 --> 00:00:08.730
+00:00:04.407 --> 00:00:08.665
 Back up both, store them separately,
 and if an HSM holds the key,
 
 3
-00:00:08.730 --> 00:00:14.051
+00:00:08.665 --> 00:00:13.948
 run the HSMs as a pair, because the platform
 shuts down when it can't reach one.
 
 4
-00:00:14.051 --> 00:00:18.135
+00:00:13.948 --> 00:00:18.017
 CyberArk's recovery steps are on
 the slide; the one people forget is
 
 5
-00:00:18.135 --> 00:00:23.038
+00:00:18.017 --> 00:00:23.105
 re-enabling SQL Service Broker after a
 restore, which quietly stops everything.
 
 6
-00:00:23.038 --> 00:00:25.382
+00:00:23.105 --> 00:00:25.432
 The program's rule is to rehearse a full
 
 7
-00:00:25.382 --> 00:00:28.238
+00:00:25.432 --> 00:00:28.270
 restore before the second
 migration wave ends.
 
 8
-00:00:28.238 --> 00:00:29.276
+00:00:28.270 --> 00:00:29.294
 That's the build.
 
 9
-00:00:29.276 --> 00:00:31.970
+00:00:29.294 --> 00:00:31.970
 Now let's connect it to the
 certificate authorities.

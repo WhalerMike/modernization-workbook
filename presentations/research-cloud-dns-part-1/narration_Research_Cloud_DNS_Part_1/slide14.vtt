@@ -1,87 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.563
-Oracle's government
-cloud works differently.
+00:00:00.050 --> 00:00:02.900
+How do the three meet on-premises DNS?
 
 2
-00:00:02.563 --> 00:00:07.639
-The US Government Cloud is its own
-realm, called OC2, with US Gov East in
+00:00:02.900 --> 00:00:05.887
+The same way, and the
+workbook's DNS design
 
 3
-00:00:07.639 --> 00:00:13.250
-Ashburn and US Gov West in Phoenix, and
-it holds a FedRAMP High authorization.
+00:00:05.887 --> 00:00:09.050
+already holds the rules,
+as design guidance.
 
 4
-00:00:13.250 --> 00:00:17.057
-And its DNS API is for private DNS only;
+00:00:09.050 --> 00:00:13.248
+Into the cloud: on-premises resolvers,
+and other clouds' resolvers,
 
 5
-00:00:17.057 --> 00:00:22.338
-public DNS isn't available
-in the government realms.
+00:00:13.248 --> 00:00:18.302
+conditionally forward each cloud namespace
+to that cloud's inbound endpoint,
 
 6
-00:00:22.338 --> 00:00:25.677
-The FedRAMP Marketplace lists
-the Government Cloud at High,
+00:00:18.302 --> 00:00:20.712
+using static addresses written once.
 
 7
-00:00:25.677 --> 00:00:28.550
-and no commercial Oracle
-infrastructure offering.
+00:00:20.712 --> 00:00:24.462
+On Oracle Cloud, the entry
+point is a listening endpoint.
 
 8
-00:00:28.550 --> 00:00:31.525
-Oracle's software-as-a-service
-has its own listings,
+00:00:24.462 --> 00:00:30.412
+Neither the AWS nor the Azure inbound
+endpoint accepts an ordinary NS delegation
 
 9
-00:00:31.525 --> 00:00:33.438
-such as Fusion Cloud at Moderate.
+00:00:30.412 --> 00:00:36.187
+of a private zone; AWS's delegation inbound
+endpoint is the exception, and it's new.
 
 10
-00:00:33.438 --> 00:00:34.913
-So, as inferences.
+00:00:36.187 --> 00:00:39.640
+Out of the cloud: each
+cloud forwards the agency's
 
 11
-00:00:34.913 --> 00:00:37.865
-A Moderate system on OCI
-infrastructure inherits
+00:00:39.640 --> 00:00:43.438
+namespaces back to the agency
+resolvers, by its rules.
 
 12
-00:00:37.865 --> 00:00:40.676
-from the Government
-Cloud's High authorization.
+00:00:43.438 --> 00:00:46.986
+On AWS, create the rules once
+in a network account and
 
 13
-00:00:40.676 --> 00:00:45.211
-Commercial OCI regions have no FedRAMP
-listing of their own, so a federal
+00:00:46.986 --> 00:00:50.863
+share them through Resource
+Access Manager or a Profile.
 
 14
-00:00:45.211 --> 00:00:50.125
-system placed there needs its own
-authorization basis, settled before design.
+00:00:50.863 --> 00:00:53.300
+Spokes associate them and can't edit them.
 
 15
-00:00:50.125 --> 00:00:53.061
-Whether private resolver
-logging exists in the
-
-16
-00:00:53.061 --> 00:00:56.437
-government realm isn't
-documented; confirm with Oracle.
-
-17
-00:00:56.437 --> 00:00:59.581
-And an agency holding
-only the HR platform's
-
-18
-00:00:59.581 --> 00:01:02.350
-software-as-a-service has no VCN at all.
+00:00:53.300 --> 00:00:56.300
+That's the cloud form
+of one policy object.

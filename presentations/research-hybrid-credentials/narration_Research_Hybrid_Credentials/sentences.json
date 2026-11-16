@@ -283,33 +283,6 @@
    "The CLM manages certificates, not secrets."
   ]
  ],
- "8": [
-  [
-   0.05,
-   2.2,
-   "The details differ a little by cloud."
-  ],
-  [
-   2.25,
-   13.95,
-   "Key Vault only renews by itself for its two partner CAs and for self-signed certificates, so a certificate from the program's own CA comes from the CLM, and the good news is that the CLM's Key Vault driver supports Azure Government."
-  ],
-  [
-   16.2,
-   9.787,
-   "In AWS, Certificate Manager renews what it issues, but never what you import, so imported certificates belong to the CLM. Google is similar."
-  ],
-  [
-   25.988,
-   6.3,
-   "One thing to confirm with CyberArk in writing: its AWS driver pages don't mention GovCloud."
-  ],
-  [
-   32.288,
-   1.8,
-   "Now, the piv card."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -616,6 +589,28 @@
    "Wherever two systems could renew the same certificate, the program picks one, and writes it down."
   ]
  ],
+ "8": [
+  [
+   0.05,
+   2.2,
+   "The details differ a little by cloud."
+  ],
+  [
+   2.25,
+   12.137,
+   "Key Vault only renews by itself for its two partner CAs and for self-signed certificates, so a certificate from the program's own CA comes from the CLM, and Key Vault's own renewal stays off for it."
+  ],
+  [
+   14.387,
+   12.525,
+   "In AWS, Certificate Manager renews what it issues, but never what you import, so imported certificates belong to the CLM. Google is similar: what Google manages, Google renews."
+  ],
+  [
+   26.913,
+   1.8,
+   "Now, the piv card."
+  ]
+ ],
  "17": [
   [
    0.05,
@@ -624,16 +619,16 @@
   ],
   [
    19.2,
-   9.037,
-   "The next steps are tests, not more reading: prove the sequel key type, prove the card system can write the binding, and get CyberArk's answer on GovCloud."
+   10.762,
+   "The next steps are tests, not more reading: prove the sequel key type, prove the card system can write the binding, and patch the access control servers before the new certificates arrive."
   ],
   [
-   28.238,
+   29.962,
    5.862,
    "This is the program's research, under review, and not an endorsement by any federal agency."
   ],
   [
-   34.1,
+   35.825,
    1.1,
    "Thanks for watching."
   ]

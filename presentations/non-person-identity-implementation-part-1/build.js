@@ -253,7 +253,7 @@ Sponsor. A sponsor who is a federal employee mastered in HR. A contractor can bu
 
 Optionally, tag service principals with custom security attributes such as SystemId, Environment and Tier. Microsoft suggests it for a filterable inventory and for attribute-based decisions, and Step 4 uses the same attributes for Conditional Access filters.
 
-And the interim path for AI. Where the tenant doesn't expose the agent features, the guide says to run its lifecycle on the service principals the agents run as. For GCC High and DoD, Microsoft has published no availability for the agent features, so the guide treats them as unavailable there.`,
+And the interim path for AI. Where the tenant doesn't expose the agent features, the guide says to run its lifecycle on the service principals the agents run as.`,
   `${IG}, Step 1 — 1f; "AI agents"; Book 02, Chapter 09 — "Governing service principals"; Chapter 10 — "Phase 4"; Book 04, Chapter 05 — "Ownership"; Book 17, Chapter 05.`);
 }
 
@@ -334,8 +334,8 @@ Two notes for the gate. The workbook follows the plan's decision D-NP2, disable 
     "Owner: the identity governance office; the CMDB owner signs the join (design guidance)",
   ], 11.5);
   const p2 = panel(s, "Avail", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.teal, HEX.tealTint, "AVAILABILITY AND ROLLBACK", null, [
-    "The inventory's Graph reads list the global service, US Government L4 and L5; GCC uses graph.microsoft.com, GCC High graph.microsoft.us",
-    "Agent ID: generally available in commercial and, with documented gaps, in GCC; no published availability for GCC High and DoD",
+    "The inventory's Graph reads list the global service, which GCC uses, at graph.microsoft.com",
+    "Agent ID: generally available in commercial and, with documented gaps, in GCC",
     "Rollback: nothing to roll back; the inventory is read-only",
   ], 11.5);
   if (process.env.FIT) console.log(`  G1 panels bottom ${Math.max(p1, p2).toFixed(2)}`);
@@ -347,7 +347,7 @@ AC-2, account management: non-person identities are a defined account type with 
 
 Validate. VK-NPI-06 reports every AD account with password never expires, a password older than the threshold, where Book 02's script treats more than 365 days as high risk, an SPN, or a type other than gMSA or dMSA; every row is joined to a record or listed as unowned. VK-NPI-01 reports zero service principals and app registrations with no owner, and those with one owner each carry a dated finding. VK-NPI-07 lists every managed identity with its role assignments, with every user-assigned one joined to a record. VK-NPI-08 lists every agent identity with a sponsor, where the tenant exposes Agent ID. The gate owner is the identity governance office, with the CMDB owner signing that the join is complete; that's design guidance.
 
-Availability. The workbook's Chapter 01 says the Graph calls whose pages carry a national cloud table list the global service, US Government L4 and L5. GCC uses the worldwide hosts; GCC High uses graph.microsoft.us. Agent ID is generally available in commercial and, with documented gaps, in GCC; for GCC High and DoD Microsoft has published nothing.
+Availability. The workbook's Chapter 01 says the Graph calls whose pages carry a national cloud table list the global service, which GCC uses, on the worldwide hosts. Agent ID is generally available in commercial and, with documented gaps, in GCC.
 
 Rollback: nothing to roll back. The inventory is read-only.`,
   `${IG}, "Evidence"; Step 1 — "Validate (G1 Inventory)"; "AI agents"; "Rollback"; ${WB}, Chapter 01 — "Which cloud and which directory, for this read."`);
@@ -424,7 +424,7 @@ The code reads two things, the SPN and rollback owners with User.Read.All, and t
     "Owner: the application owner, with the identity governance office",
   ], 11.5);
   const p2 = panel(s, "Avail", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.teal, HEX.tealTint, "AVAILABILITY, INTERIM PATH, ROLLBACK", null, [
-    "Workload ID Premium: in Azure Government through the account manager; its free trial isn't",
+    "Workload ID Premium for Tier 1 single-tenant service principals; whether its trial is offered to GCC is a Lab 2 check",
     "dMSA: only on a Windows Server 2025 domain, and every host must support it",
     "Interim: keep on Kerberos, islanded, with an SPN owner and an end date the authorizing official accepts",
     "Rollback: re-decide; the record keeps the history; each wave records its own rollback",
@@ -438,7 +438,7 @@ IA-5, authenticator management: the guide's row reads managed identities and fed
 
 Validate. Every row in the Step 1 record has a target and a decide-by date. VK-NPI-06: every high-risk AD account, password never expires or a password older than the threshold, is scheduled in the first conversion wave or retired. VK-NPI-03 lists apps that hold secrets; each one has a credential target, or an exception record naming why it can't move. The gate owner is the application owner, with the identity governance office.
 
-Availability. The guide says Workload ID Premium is available in Azure Government clouds through the account manager, and its free trial isn't; Chapter 03 adds that a GCC tenant signs in to the worldwide cloud, so the trial question for it is a test-tenant check. A dMSA needs a Windows Server 2025 domain, and every host that uses it must support dMSAs.
+Availability. The program licenses Workload ID Premium for Tier 1 single-tenant service principals. Chapter 03 adds that a GCC tenant signs in to the worldwide cloud, so whether the Premium trial is offered to it is a Lab 2 check. A dMSA needs a Windows Server 2025 domain, and every host that uses it must support dMSAs.
 
 Interim path: the workbook's keep-on-Kerberos disposition, islanded with an SPN owner and an end date the authorizing official accepts. Rollback: re-decide; the record keeps the history. Chapter 03 also records each wave's rollback from its members' targets.`,
   `${IG}, "Evidence"; Step 2 — "Validate (G2 Decision)"; "Licenses"; "Rollback"; ${WB}, Chapter 03 — "The decisions the code holds," "Which cloud, for these reads," "The disposition and the waves."`);
@@ -553,8 +553,8 @@ Step 7: Vendor Portal's certificate is renewed in Key Vault; Deploy Bot's new on
     "The ScubaGear result for MS.AAD.5.5v1 to 5.7v1, filed with the gate",
   ], 11.5);
   const p2 = panel(s, "Avail", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.teal, HEX.tealTint, "AVAILABILITY, INTERIM PATH, ROLLBACK", null, [
-    "App management policies: free; the policy pages list the global service, US Government L4 and L5",
-    "Key Vault: vault.azure.net for GCC's commercial Azure, vault.usgovcloudapi.net in Azure Government",
+    "App management policies: free; the policy pages list the global service, which GCC uses",
+    "Key Vault: <vault>.vault.azure.net in commercial Azure, which GCC's estate uses",
     "Interim: yearly rotation while a workload is fixed; secrets by exception, six months at most",
     "Rollback: a per-application policy exception with an end date, in the exception register",
   ], 11.5);
@@ -567,7 +567,7 @@ IA-5, authenticator management, and IA-5 enhancement 2: managed identities and f
 
 Validate. VK-NPI-02 reports each secret and certificate with its lifetime and days to expiry. Pass: no credential issued after the policy's effective date runs longer than the cap, 180 days for certificates and no new secrets, and every credential that expires within N days, where the program uses 60, design guidance, has an owner and a renewal date. VK-NPI-03 reports apps that still use secrets; each is either in a Step 5 wave or has an exception with an end date. The ScubaGear result for MS.AAD.5.5v1 to 5.7v1 is filed with the gate.
 
-Availability. The guide lists application management policies as free, and the workbook's Chapter 04 says every policy page it calls lists the global service, US Government L4 and L5. Key Vault's host is vault.azure.net in commercial Azure, which GCC's estate uses, and vault.usgovcloudapi.net in Azure Government.
+Availability. The guide lists application management policies as free, and the workbook's Chapter 04 says every policy page it calls lists the global service, which GCC uses. Key Vault's host is vault.azure.net in commercial Azure, which GCC's estate uses.
 
 Interim path: existing workloads move onto certificates rotated at least yearly while they're fixed, and secrets live only by exception, six months at most. Rollback: a per-application policy exception with an end date, in the exception register.`,
   `${IG}, "Evidence"; Step 3 — steps 2 and 6, "Validate (G3 Credential rules)"; "Licenses"; "Rollback"; ${WB}, Chapter 04 — "The rules the code holds," "Which cloud, for these reads and writes."`);
@@ -612,7 +612,7 @@ sourceSlide("Sources: orientation and G1", [
   "Design guidance in this part: the system inventory as master; the federal sponsor for every identity; the CMDB owner's sign-off; the risk rule and candidate targets; the orphan plan's claim window; the 60-day renewal window; the 7-day overlap.",
 ]);
 sourceSlide("Sources: G2", [
-  "Non-Person Identity: An Implementation Guide: Step 2 (the decision table, order of work, gMSA prerequisites, Validate); \"Licenses\" (Workload ID Premium in Azure Government); \"Evidence\"; \"Rollback.\"",
+  "Non-Person Identity: An Implementation Guide: Step 2 (the decision table, order of work, gMSA prerequisites, Validate); \"Licenses\" (Workload ID Premium); \"Evidence\"; \"Rollback.\"",
   "Microsoft Learn pages the guide footnotes for G2: Create a KDS root key; Secure group managed service accounts; Workload ID FAQ (all read October 29, 2026).",
   "Book 02, Ch 09 (the migration path matrix); Ch 10 (Phase 4, order of work); Book 04, Ch 05 (managed identities).",
   "Developer workbook, Chapter 03 (the decisions the code holds; the proposal, NP2.1; the disposition, D-NP3, and the waves, NP2.2; the Workload ID Premium scope, D-NP4; Gate 2; which cloud; Lab 1, steps 3 and 5).",

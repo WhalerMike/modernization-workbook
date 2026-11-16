@@ -7,51 +7,41 @@
   ],
   [
    4.05,
-   5.062,
-   "One thing first: Provider Notices, An Implementation Guide, is a draft."
-  ],
-  [
-   9.113,
-   3.925,
-   "It's awaiting the owner's review, so check it again after that review."
-  ],
-  [
-   13.037,
    2.388,
    "The guide's premise fits in one line."
   ],
   [
-   15.425,
+   6.438,
    6.575,
    "Every provider tells you, in writing and ahead of time, what it will change, retire or patch in your tenant."
   ],
   [
-   22.0,
+   13.012,
    3.663,
    "The gap is that nobody reads it, owns it or closes it."
   ],
   [
-   25.663,
+   16.675,
    2.788,
    "The guide closes that gap in seven gates."
   ],
   [
-   28.45,
+   19.462,
    10.188,
    "Part 1 covers the orientation and the four collection gates for Azure Service Health, Microsoft 365, Oracle Cloud Infrastructure and AWS Health."
   ],
   [
-   38.638,
+   29.65,
    7.55,
    "Part 2 covers Google Cloud, routing to owners, the digest and the evidence, then the dangers and rollback."
   ],
   [
-   46.188,
+   37.2,
    8.225,
    "For each gate you'll see the steps, what the kit really prints on its fixtures, the federal requirement, the evidence and the government cloud."
   ],
   [
-   54.413,
+   45.425,
    5.5,
    "The kit's code is illustrative, tested against fixtures, not against a lyve tenant."
   ]
@@ -178,21 +168,21 @@
   ],
   [
    40.163,
-   10.7,
-   "On government clouds, Microsoft 365 G C C stays on the worldwide Graph endpoint, while G C C High and the Defense Department have their own hosts."
+   10.625,
+   "On government clouds, a G C C tenant's Azure subscriptions are in commercial Azure, and Microsoft 365 G C C stays on the worldwide Graph endpoint."
   ],
   [
-   50.862,
+   50.788,
    3.575,
    "Oracle's U S Government Cloud has its own endpoints."
   ],
   [
-   54.438,
+   54.362,
    2.138,
    "AWS GovCloud has one."
   ],
   [
-   56.575,
+   56.5,
    6.45,
    "And Google's documentation doesn't list Personalized Service Health in its fed-ramp Moderate or High packages."
   ]
@@ -433,16 +423,16 @@
   ],
   [
    33.888,
-   9.562,
-   "As a side note, Azure Government has its own CLI cloud and Resource Manager host, and Learn hasn't stated the table's availability there in so many words."
+   5.95,
+   "A G C C tenant's subscriptions are in commercial Azure, where Learn's Service Health samples run."
   ],
   [
-   43.45,
+   39.837,
    6.125,
    "Until the reader identity exists, a person with Reader runs Learn's own query and keeps the output."
   ],
   [
-   49.575,
+   45.962,
    5.688,
    "And rollback: the collection only reads, and the alert policy has a planned rollback."
   ]
@@ -485,16 +475,11 @@
   ],
   [
    38.475,
-   6.4,
-   "A G C C tenant keeps the worldwide Graph endpoint, which Learn's national cloud page confirms."
+   9.075,
+   "A G C C tenant keeps the worldwide Graph endpoint, which Learn's national cloud page confirms, and the workbook's capture shows the kit's map."
   ],
   [
-   44.875,
-   7.275,
-   "G C C High and the Defense Department have their own hosts, and the workbook's capture shows the kit's map of all three."
-  ],
-  [
-   52.15,
+   47.55,
    6.825,
    "The kit sends each call only to the cloud's own host, and refuses a session in another environment or tenant."
   ]
@@ -584,8 +569,8 @@
   ],
   [
    50.263,
-   7.062,
-   "The third realm's endpoint isn't specified, because Oracle's page wasn't readable, so the kit refuses that realm."
+   2.812,
+   "The kit refuses any realm it doesn't know."
   ]
  ],
  "13": [
@@ -757,11 +742,6 @@
   ],
   [
    48.475,
-   4.525,
-   "And a last reminder: this guide is a draft, awaiting the owner's review."
-  ],
-  [
-   53.0,
    0.762,
    "Thank you."
   ]

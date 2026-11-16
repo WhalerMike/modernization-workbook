@@ -459,7 +459,7 @@ The defensible evidence path, and this is my inference, is FIPS-mode Windows, wh
     "Web console SSO by OIDC or SAML; Microsoft Entra ID listed as supported for SAML, OIDC and SCIM",
     "MMC snap-ins sign in with the OIDC device flow; the Authentication node holds one SAML connector",
     "Client-certificate login: trusted CAs selected, IIS set to require client certificates; identity from SAN UPN, email, CN or SID",
-    "PIV and CAC are not named anywhere",
+    "PIV is not named anywhere",
   ], 12);
   label(s, "Design label", "PROGRAM DESIGN GUIDANCE", 6.75, 1.5, 6.0);
   panel(s, "Design", 6.75, 1.82, 6.0, 3.68, HEX.teal, HEX.tealTint, null, "Entra SSO, with Entra CBA for PIV", [
@@ -476,7 +476,7 @@ The defensible evidence path, and this is my inference, is FIPS-mode Windows, wh
   notes(s,
 `Who signs in to the console, and how.
 
-Version 26.1 supports single sign-on to the web console through OIDC or SAML, and CyberArk's vendor table lists Microsoft Entra ID as supported for SAML, OIDC and SCIM. The MMC snap-ins sign in with the OIDC device flow. CyberArk also documents client-certificate login: you enable certificate authentication, choose the trusted CAs, and set the IIS site to require client certificates; the platform takes the identity from the certificate's UPN, email, common name, or SID extension. What CyberArk doesn't document is PIV or CAC by name.
+Version 26.1 supports single sign-on to the web console through OIDC or SAML, and CyberArk's vendor table lists Microsoft Entra ID as supported for SAML, OIDC and SCIM. The MMC snap-ins sign in with the OIDC device flow. CyberArk also documents client-certificate login: you enable certificate authentication, choose the trusted CAs, and set the IIS site to require client certificates; the platform takes the identity from the certificate's UPN, email, common name, or SID extension. What CyberArk doesn't document is PIV by name.
 
 So the program's design guidance is to federate the web console to Entra ID, and let administrators present their PIV card through Entra certificate-based authentication, as Book 07 Chapter 06 configures it. That keeps one CBA trust store and Conditional Access in front of the console, rather than a second, separate trust store in IIS. The native client-certificate login stays a fallback. Master Admin is eligible, not standing, and the local master admin is the break-glass.
 
@@ -637,7 +637,6 @@ The program's controls, as design guidance. A dedicated account, a group managed
     "AWS Certificate Manager driver issues public and private certificates, with Amazon Private CA",
     "CA Import from Amazon Private CA via audit reports in S3 (at most every 30 minutes)",
     "Azure Key Vault is a provisioning target, not a CA: Certificates Officer and Secrets Officer roles",
-    "Azure Government endpoints for Key Vault: not documented",
   ], 12);
   callout(s, "Entrust", 5.05, 1.4, "FaTriangleExclamation", HEX.amber, "Before upgrading to 26.1: ",
     "if the agency's public CA is Entrust, plan the issuing path first, and fix DigiCert client templates that lack an email SAN.");
@@ -649,7 +648,7 @@ For public TLS, 26.1 documents drivers for DigiCert, Sectigo, GlobalSign, HID, Q
 
 Note one absence. There's no documented ACME client driver for public CAs, so no Let's Encrypt-style path out to the internet. The platform is an ACME server for your own clients, not an ACME client to public CAs.
 
-On the cloud side, I'm stating only what's documented. The AWS Certificate Manager driver issues public and private certificates and works with Amazon Private CA, and CA Import can pull Private CA certificates through audit reports written to S3, which AWS limits to once every thirty minutes. Azure Key Vault is a provisioning target, not a CA: the platform stores certificates, keys and chains there and can bind them to web apps. What I couldn't find is any statement that the Key Vault driver supports Azure Government endpoints. Test that, or ask CyberArk, before you rely on it.`,
+On the cloud side, I'm stating only what's documented. The AWS Certificate Manager driver issues public and private certificates and works with Amazon Private CA, and CA Import can pull Private CA certificates through audit reports written to S3, which AWS limits to once every thirty minutes. Azure Key Vault is a provisioning target, not a CA: the platform stores certificates, keys and chains there and can bind them to web apps.`,
   "CyberArk 26.1 System Requirements; Supported integrations; Deprecated features; Important considerations; DigiCert, GlobalSign and Entrust CA Gateway driver pages; AWS Certificate Manager CA template; Configuring import from Amazon Private CA; Azure integration prerequisites and permissions.");
 }
 
@@ -972,8 +971,7 @@ After Active Directory retires, Book 07 moves server issuance to a standalone AD
     "ACME and FIPS: which statement governs",
     "AD CS on Windows Server 2025: supported",
     "Which crypto module the product uses; any CMVP coverage",
-    "Key Vault driver on Azure Government",
-    "PIV/CAC console login",
+    "PIV console login",
   ], 11.5);
   panel(s, "Next", 8.9, 1.5, 3.85, 4.95, HEX.teal, HEX.tealTint, "NEXT STEPS", null, [
     "Stand up the Wave 1 test cluster",
@@ -987,7 +985,7 @@ After Active Directory retires, Book 07 moves server issuance to a standalone AD
 
 The decisions to take. Which servers run in FIPS mode, and which separate servers run ACME. Whether database secrets are protected by an HSM or by the software key, and whether SQL is Enterprise or Standard. Console sign-in through Entra single sign-on with certificate-based authentication. The public CA path, if the agency uses Entrust today. Whether to build the Cloud PKI feed on a beta API, and whether to adopt the ServiceNow app.
 
-Ask CyberArk, in writing: which statement governs ACME and FIPS; whether AD CS on Windows Server 2025 is supported, given the stale table; which cryptographic module the product uses, and whether any CMVP certificate covers it; whether the Key Vault driver works with Azure Government; and whether PIV or CAC console login is supported as such.
+Ask CyberArk, in writing: which statement governs ACME and FIPS; whether AD CS on Windows Server 2025 is supported, given the stale table; which cryptographic module the product uses, and whether any CMVP certificate covers it; and whether PIV console login is supported as such.
 
 Next steps: stand up the Wave 1 test cluster, create the CA account under the ESC7 controls, and lab-test allowed and denied requests. Book 07 has been updated in Chapters 03 and 05 for the ESC7 caveat, Chapter 04 for Cloud PKI reporting, and Chapter 08 for ACME and FIPS.
 
@@ -1040,9 +1038,8 @@ The program's recommendation is plain: CyberArk Certificate Manager, Self-Hosted
   T(s, "Gaps", bullets([
     "CyberArk Community and Marketplace (Prereq Check Script, Base Configuration Utility, Knowledge Center deprecation list, product life-cycle dates): login-gated.",
     "Which cryptographic module the product uses, and whether CMVP #5205 covers it: no vendor statement found.",
-    "Azure Key Vault driver support for Azure Government endpoints: not found.",
     "CyberArk's own ServiceNow integration (Service Graph Connector): the blog redirects to a Palo Alto Idira page; scope and edition unknown.",
-    "Explicit PIV/CAC smart-card login to the console: not documented (client-certificate login is).",
+    "Explicit PIV smart-card login to the console: not documented (client-certificate login is).",
     "Certificate-manager restriction configuration on Windows Server 2025 AD CS: Microsoft says it isn't documented.",
     "Let's Encrypt or any generic ACME-client issuance from the platform to public CAs: not documented.",
     "NIST CMVP status-filtered searches returned identical lists for Active, Historical and Revoked; the two CyberArk certificates read Active on their own pages.",

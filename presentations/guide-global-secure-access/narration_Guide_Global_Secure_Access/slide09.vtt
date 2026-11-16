@@ -35,34 +35,35 @@ the license count, compensating
 controls, exit criteria and an approver.
 
 8
-00:00:28.763 --> 00:00:34.592
-In G C C High or D O D, don't build: record
-defer, and keep a compensating path,
+00:00:28.763 --> 00:00:32.784
+When a function is kept on the
+current service or deferred,
 
 9
-00:00:34.592 --> 00:00:40.120
-such as a fed-ramp authorized S S E,
-per-application V P N access lists,
+00:00:32.784 --> 00:00:37.812
+the record names a compensating path,
+such as a fed-ramp High S S E offering,
 
 10
-00:00:40.120 --> 00:00:43.437
+00:00:37.812 --> 00:00:42.924
+per-application V P N access lists,
 and named-location Conditional Access.
 
 11
-00:00:43.437 --> 00:00:46.932
+00:00:42.924 --> 00:00:46.419
 Step two: Learn's operations
 guidance is to back up the
 
 12
-00:00:46.932 --> 00:00:51.538
+00:00:46.419 --> 00:00:51.025
 configuration through Graph exports
 weekly and before every change.
 
 13
-00:00:51.538 --> 00:00:53.268
+00:00:51.025 --> 00:00:52.755
 The guide hashes that export,
 
 14
-00:00:53.268 --> 00:00:57.140
+00:00:52.755 --> 00:00:56.640
 and it becomes the configuration
 evidence for every later step.

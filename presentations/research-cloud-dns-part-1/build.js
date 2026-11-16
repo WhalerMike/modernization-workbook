@@ -1,10 +1,10 @@
 // Cloud DNS on AWS, Azure and Oracle Cloud, PART 1: THE NATIVE RESOLVERS. A ~16-minute narrated evaluation deck.
 //   Why:  1 Title · 2 Why cloud DNS belongs to one policy plane · 3 The answer in brief
 //   What: 4 Route 53 VPC Resolver · 5 its endpoints · 6 rules, sharing, Profiles, private zones · 7 DNS Firewall, logging, DNSSEC
-//         8 GovCloud beside the commercial Regions · 9 Azure DNS Private Resolver · 10 resolver policy, logging, DNSSEC
-//         11 Oracle VCN resolver · 12 its endpoints, rules and gaps
-//   Who:  13 AWS and Azure FedRAMP scope · 14 Oracle US Government Cloud
-//   How:  15 meeting on-premises DNS · 16 Protective DNS, policy and logs · 17 what to confirm, and Part 2
+//         8 Azure DNS Private Resolver · 9 resolver policy, logging, DNSSEC
+//         10 Oracle VCN resolver · 11 its endpoints, rules and gaps
+//   Who:  12 AWS and Azure FedRAMP scope · 13 Oracle US Government Cloud
+//   How:  14 meeting on-premises DNS · 15 Protective DNS, policy and logs · 16 what to confirm, and Part 2
 //   Backup (not narrated): labels and open points, three source lists.
 // Every fact comes from docs/evaluations/cloud-dns-resolvers-infoblox-bind.md (Part 1, "The answer in brief", and its
 // footnoted sources, checked Oct 29 and Oct 31, 2026, with the claims log in docs/evaluations/_verification/) or from
@@ -58,7 +58,7 @@ Statements marked design guidance are the program's recommendations, inferences 
   ], 12.5);
   table(s, "Gaps", 4.15, [3.6, 8.55], ["Where the workbook stood", "What this evaluation adds"], [
     ["Infoblox with Azure and AWS: covered", "Book 08 Ch 07 and 08, and the Trinzic explainer's options A, B and C, already cover it"],
-    ["Route 53 Resolver: covered thinly", "Part 1 lays out how it works, and what differs in GovCloud, service by service"],
+    ["Route 53 Resolver: covered thinly", "Part 1 lays out how it works, component by component, with its FedRAMP scope"],
     ["Oracle Cloud: comparison level only", "Part 1 adds its resolver in the same depth, with the US Government Cloud and FedRAMP scope"],
     ["BIND in AWS or Azure: not covered", "Part 2: when to run it, how, and how it stays inside the single policy plane"],
   ], { fontSize: 11.5 });
@@ -111,7 +111,7 @@ And, as design guidance, run your own DNS servers in a cloud only for a stated r
   const s = content("What", "AWS: what the Route 53 VPC Resolver answers");
   tag(s, "What");
   panel(s, "Every VPC", 0.6, 1.5, 6.9, 3.1, HEX.amber, HEX.amberTint, "THE RESOLVER IN EVERY VPC", null, [
-    "Renamed Route 53 VPC Resolver when AWS introduced Route 53 Global Resolver; the VPC guide, the API, the GovCloud guide and the FedRAMP page still use the old name",
+    "Renamed Route 53 VPC Resolver when AWS introduced Route 53 Global Resolver; the VPC guide, the API and the FedRAMP page still use the old name",
     "Reached at the VPC's base address plus two (VPC+2) and at 169.254.169.253",
     "Answers the VPC's own EC2 names and its associated private hosted zones; recurses for public names",
     "Answers only recursive queries; network ACLs and security groups can't filter traffic to it",
@@ -123,7 +123,7 @@ And, as design guidance, run your own DNS servers in a cloud only for a stated r
   ], 12);
   panel(s, "Global", 0.6, 4.8, 12.15, 1.7, HEX.navy, "FFFFFF", "A DIFFERENT THING: ROUTE 53 GLOBAL RESOLVER", null, [
     "Generally available since March 2026: an internet-reachable anycast resolver (Do53, DoT and DoH) for authorized clients in branches and on-premises sites",
-    "Resolves private hosted zones and filters malicious domains; listed in 30 commercial Regions and not in GovCloud",
+    "Resolves private hosted zones and filters malicious domains; listed in 30 commercial Regions",
   ], 12);
   sources(s, "Sources: AWS Route 53 Developer Guide, What is Route 53 VPC Resolver? and What is Route 53 Global Resolver?; VPC User Guide, Understanding Amazon DNS (Oct. 29, 2026).");
   say(s,
@@ -133,7 +133,7 @@ Every VPC reaches it at the VPC's base address plus two, called VPC plus two. It
 
 One quota matters. Each network interface may send 1,024 packets per second to link-local services, shared by DNS and other services. It can't be raised, and traffic over it is rejected. That matters to any DNS server on EC2 that forwards to VPC plus two.
 
-Route 53 Global Resolver is a different thing, an internet-reachable resolver for branches and on-premises sites, listed in 30 commercial Regions and not in GovCloud.`,
+Route 53 Global Resolver is a different thing, an internet-reachable resolver for branches and on-premises sites, listed in 30 commercial Regions.`,
   "AWS Route 53 Developer Guide, What is Route 53 VPC Resolver?; AWS VPC User Guide, Understanding Amazon DNS (link-local quota); What is Route 53 Global Resolver? and What's New, March 9, 2026. All accessed Oct. 29, 2026.",
   `${EV}, Part 1, "AWS: the Route 53 VPC Resolver".`);
 }
@@ -179,7 +179,7 @@ An outbound endpoint goes the other way: it sends queries that match a forwardin
   table(s, "Rules", 1.45, [2.2, 5.15, 4.8], ["Component", "What it does", "Limits and points to know"], [
     ["Forwarding rules", "One rule per domain, with target addresses; the most specific match wins, and a rule overrides a private hosted zone of the same name", "1,000 rules per Region; 6 targets per rule; a \".\" rule forwards almost everything"],
     ["System rules", "Carve a subdomain back out of a forwarding rule so it resolves locally; AWS also creates autodefined rules, reverse DNS among them", "The recursive Internet Resolver rule handles everything else and can't be deleted"],
-    ["Delegation rules", "Forward queries whose answers carry NS records for a delegated subdomain to the agency's resolvers", "GovCloud availability conflicts (slide 8)"],
+    ["Delegation rules", "Forward queries whose answers carry NS records for a delegated subdomain to the agency's resolvers", "Answered through the delegation inbound endpoint type"],
     ["Rule sharing (AWS RAM)", "Shares rules with accounts, OUs or the whole organization; receivers associate them but can't change or delete them", "Moving an account between OUs removes its associations unless the rule is shared with the new OU too"],
     ["Profiles", "Bundle private hosted zones, rules, DNS Firewall rule groups, interface endpoints and query log settings; share through RAM", "One Profile per VPC; local VPC settings win on an exact-name tie"],
     ["Private hosted zones", "Answered only inside associated VPCs; same-name public and private zones give split-view DNS", "300 VPCs per zone; cross-account association by API only; an empty match returns NXDOMAIN, no public fallback"],
@@ -230,35 +230,6 @@ Query logging records queries from the VPC, through the endpoints, and firewall 
 DNSSEC: the VPC Resolver can validate public signed names, enabled per VPC. Route 53 signs public hosted zones only. And the VPC Resolver returns no DNSSEC records, so a resolver behind it can't validate for itself. AWS warns that enabling validation could result in an outage.`,
   "AWS Route 53 Developer Guide: Using DNS Firewall; How Resolver DNS Firewall works; Rule actions; DNS Firewall VPC configuration; AWS Managed Domain Lists; DNS Firewall Advanced; Resolver query logging and its values; sharing query logging configurations; Enabling DNSSEC validation; Configuring DNSSEC signing. Accessed Oct. 29, 2026.",
   `${EV}, Part 1, Route 53 VPC Resolver component table (DNS Firewall, query logging, DNSSEC).`);
-}
-
-// ================================================================== 8 GovCloud
-{
-  const s = content("What", "AWS GovCloud (US) beside the commercial Regions");
-  tag(s, "What");
-  T(s, "Gov page", [
-    { text: "AWS's GovCloud Route 53 page: ", options: { bold: true, color: HEX.navy } },
-    { text: "public and private DNS in US-West and US-East; control plane in US-West; public zone queries \"answered from within FedRAMP boundary\"; no latency, geo or IP-based routing in private zones. It doesn't mention the Resolver features; other AWS pages do." },
-  ], { x: 0.6, y: 1.45, w: 12.15, h: 0.62, fontSize: 12 });
-  table(s, "Gov", 2.15, [4.6, 1.9, 5.65], ["Capability (checked Oct. 29, 2026)", "Commercial", "AWS GovCloud (US)"], [
-    ["Endpoints, forwarding and system rules", "Yes", "Yes: Resolver API endpoints in us-gov-east-1 and us-gov-west-1"],
-    ["Resolver delegation", "Yes", { text: "Conflicting: GovCloud guide says not available; an April 8, 2026 announcement says it is. Confirm", options: { color: HEX.red, bold: true } }],
-    ["DNS Firewall and AWS managed domain lists", "Yes", "Yes"],
-    ["DNS Firewall Advanced", "Yes", "Dictionary DGA announced Nov. 2025; confirm the other protections"],
-    ["Resolver query logging", "Yes", "Yes, since Sept. 2020 (the GovCloud guide doesn't list it)"],
-    ["Route 53 Profiles", "Yes", "Yes, since June 2024"],
-    ["DNSSEC signing of public hosted zones", "Yes", "Yes; the KMS key must be in GovCloud (US-West)"],
-    ["DNSSEC validation in the VPC Resolver", "Yes", "Not stated on the GovCloud page; confirm"],
-    ["Route 53 Global Resolver", "30 Regions", "Not listed"],
-    ["VPC IPAM allocation from Infoblox", "Yes", "No (Book 08, Ch 07)"],
-  ], { fontSize: 11, minRow: 0.3 });
-  sources(s, "Sources: AWS GovCloud (US) User Guide, Route 53; Route 53 endpoints and quotas; What's New (Apr. 8, 2026; Nov. 17, 2025; Sept. 2020; June 4, 2024); Book 08, Ch 07.");
-  say(s,
-`What changes in GovCloud? AWS's GovCloud page for Route 53 says public and private DNS work in GovCloud US-West and US-East, the control plane is in US-West, and public hosted zone queries are answered from within the FedRAMP boundary. That page doesn't mention the Resolver features, so the table draws on other AWS pages.
-
-Endpoints and rules: yes. Resolver delegation is the conflict: the GovCloud guide says it's not available, and an April 2026 announcement says it is. Confirm. DNS Firewall and its managed lists: yes. Of the Advanced protections, only dictionary DGA was announced for GovCloud; confirm the rest. Query logging and Profiles: yes. Signing of public zones: yes, with the key in US-West. Validation in the VPC Resolver isn't stated, so confirm. And Global Resolver isn't listed.`,
-  "AWS GovCloud (US) User Guide, Amazon Route 53 in AWS GovCloud (US); AWS General Reference, Route 53 endpoints and quotas; AWS What's New, April 8, 2026 (delegation), November 17, 2025 (dictionary DGA), September 2020 (query logging), June 4, 2024 (Profiles); DNS Firewall availability and managed lists pages; Book 08, Chapter 07.",
-  `${EV}, Part 1, "GovCloud (US) and commercial Regions, as AWS states it"; Book 08, Chapter 07.`);
 }
 
 // ================================================================== 9 Azure DNS Private Resolver
@@ -383,26 +354,25 @@ Then the gaps. There's no native DNS-layer policy: no Oracle page describes a DN
   const s = content("Who", "Who authorizes it: AWS and Azure FedRAMP scope");
   tag(s, "Who");
   panel(s, "AWS scope", 0.6, 1.5, 6.0, 5.0, HEX.amber, HEX.amberTint, "AWS", null, [
-    "Services-in-scope page (Oct. 15, 2026): one row, Amazon Route 53, in scope for FedRAMP Class C (formerly Moderate) in US East/West and Class D (formerly High) in GovCloud",
+    "Services-in-scope page (Oct. 15, 2026): one row, Amazon Route 53, in scope for FedRAMP Class C (formerly Moderate) in US East/West",
     "No separate rows for the VPC Resolver, DNS Firewall or Profiles; generally available features are in scope unless specifically excluded",
-    "FedRAMP Marketplace: AWS US East/West at Moderate, AWS GovCloud at High; both cover the DNS service for a Moderate workload",
+    "FedRAMP Marketplace: AWS US East/West at Moderate; for a Moderate workload in the commercial Regions, where the program's AWS workloads run, that covers the DNS service",
     "The Resolver features are covered by AWS's general statement, not a row of their own: worth noting in the SSP (inference)",
   ], 12);
   panel(s, "Azure scope", 6.75, 1.5, 6.0, 5.0, HEX.navy, HEX.navyTint, "AZURE", null, [
-    "Audit-scope page (Feb. 2026): one DNS row, FedRAMP High in Azure and in Azure Government; no separate row for the Private Resolver or resolver policy",
-    "No Learn page states their Azure Government availability; the products-by-region table shows no Azure Government regions",
-    "The retail price list carries Private Resolver meters in US Gov zones (Oct. 1, 2024) and resolver policy meters (June 1, 2026)",
-    "A meter is a strong signal, not an availability statement: confirm in the target region before design (inference)",
+    "Audit-scope page (Feb. 2026): one DNS row, in scope for FedRAMP High in Azure commercial",
+    "No separate row for the Private Resolver or resolver policy",
+    "Commercial Azure is where a GCC tenant's subscriptions run",
   ], 12);
-  sources(s, "Sources: AWS Services in Scope, FedRAMP; FedRAMP Marketplace products.json; Microsoft Learn compliance scope; Products by region; Azure Retail Prices API (Oct. 29, 2026).");
+  sources(s, "Sources: AWS Services in Scope, FedRAMP; FedRAMP Marketplace products.json; Microsoft Learn compliance scope (Oct. 29, 2026).");
   say(s,
 `Who authorizes all this?
 
-AWS's services-in-scope page, updated October fifteenth, 2026, lists one row, Amazon Route 53, in scope for FedRAMP Class C, formerly Moderate, in US East and West, and Class D, formerly High, in GovCloud. There are no separate rows for the Resolver features; generally available features are in scope unless excluded. For a Moderate civilian workload, both locations cover the DNS service. As an inference, note that in the system security plan.
+AWS's services-in-scope page, updated October fifteenth, 2026, lists one row, Amazon Route 53, in scope for FedRAMP Class C, formerly Moderate, in US East and West. There are no separate rows for the Resolver features; generally available features are in scope unless excluded. For a Moderate civilian workload in the commercial Regions, where the program's AWS workloads run, that covers the DNS service. As an inference, note that in the system security plan.
 
-Microsoft's audit-scope page has one DNS row, at FedRAMP High in Azure and in Azure Government, with no separate row for the Private Resolver or resolver policy. No Learn page states their Azure Government availability. The price list carries their meters in the US Gov zones: a strong signal, not an availability statement. Confirm in the target region.`,
-  "AWS Services in Scope by Compliance Program: FedRAMP (updated Oct. 15, 2026); FedRAMP Marketplace products.json; Microsoft Learn, services compliance scope (Feb. 2026); Products available by region and Compare Azure Government and global Azure; Azure Retail Prices API. Accessed Oct. 29, 2026.",
-  `${EV}, Part 1, "FedRAMP scope" (AWS) and "Azure Government and FedRAMP scope".`);
+Microsoft's audit-scope page has one DNS row, in scope for FedRAMP High in Azure commercial, with no separate row for the Private Resolver or resolver policy.`,
+  "AWS Services in Scope by Compliance Program: FedRAMP (updated Oct. 15, 2026); FedRAMP Marketplace products.json; Microsoft Learn, services compliance scope (Feb. 2026). Accessed Oct. 29, 2026.",
+  `${EV}, Part 1, "FedRAMP scope" (AWS) and "Azure FedRAMP scope".`);
 }
 
 // ================================================================== 14 Who: Oracle US Government Cloud
@@ -515,8 +485,7 @@ Third, logs: all three go to the SIEM, parsed through ASIM's DNS schema, as Micr
   const s = content("How", "What to confirm, and what Part 2 covers");
   tag(s, "How");
   panel(s, "Confirm", 0.6, 1.5, 6.0, 5.0, HEX.red, "FFFFFF", "OPEN POINTS TO CONFIRM", null, [
-    "AWS: Resolver delegation in GovCloud, where AWS's own pages conflict; DNSSEC validation in GovCloud",
-    "Azure: Private Resolver and resolver policy availability in each Azure Government region; whether the Private Resolver validates DNSSEC",
+    "Azure: whether the Private Resolver validates DNSSEC",
     "Oracle: private resolver logging in the government realm; whether the VCN resolver passes DNSSEC data to a resolver behind it",
     "CISA: whether Protective DNS returns DNSSEC data to agency forwarders",
   ], 12);
@@ -532,7 +501,7 @@ Third, logs: all three go to the SIEM, parsed through ASIM's DNS schema, as Micr
   say(s,
 `To close Part 1, here's what the providers don't settle, so confirm it with them.
 
-AWS: Resolver delegation and DNSSEC validation in GovCloud. Azure: the Private Resolver's and resolver policy's availability in each Azure Government region, and whether the Private Resolver validates DNSSEC. Oracle: private resolver logging in the government realm, and whether the VCN resolver passes DNSSEC data to a resolver behind it. And CISA: whether Protective DNS returns DNSSEC data to agency forwarders.
+Azure: whether the Private Resolver validates DNSSEC. Oracle: private resolver logging in the government realm, and whether the VCN resolver passes DNSSEC data to a resolver behind it. And CISA: whether Protective DNS returns DNSSEC data to agency forwarders.
 
 To prove the page, the plan is to build the pattern in test accounts and run the workbook's DNS validation matrix.
 
@@ -549,9 +518,8 @@ backup("Sources: labels, open points and full source lists on the following slid
     ["(design guidance)", "The program's recommendation, not a provider statement"],
     ["(inference)", "A conclusion the sources support but don't state"],
     ["confirm", "A point the providers don't document; the agency settles it with them before design"],
-    ["Scope", "FedRAMP Moderate civilian agencies; AWS commercial and GovCloud (US), Azure and Azure Government, and Oracle's commercial and US Government realms are all candidate places for Moderate workloads; authorization is checked per service and per region"],
-    ["AWS open points", "Resolver delegation in GovCloud (the GovCloud guide and an Apr. 8, 2026 announcement conflict); DNSSEC validation in GovCloud; DNS Firewall Advanced protections other than dictionary DGA in GovCloud"],
-    ["Azure open points", "Private Resolver and resolver policy availability per Azure Government region (price meters only); Private Resolver DNSSEC validation; private zone signing"],
+    ["Scope", "FedRAMP Moderate civilian agencies; AWS commercial Regions, commercial Azure, and Oracle's commercial and US Government realms are the places considered for Moderate workloads; authorization is checked per service and per region"],
+    ["Azure open points", "Private Resolver DNSSEC validation; private zone signing"],
     ["Oracle open points", "Private resolver logging in the government realm; whether the VCN resolver passes DNSSEC records and the AD bit to a resolver behind it"],
   ], { fontSize: 11.5 });
   sources(s, "Sources: Evaluation page, \"Sources, labels and scope\" and \"Status and review\"; verification log (claims marked confirm).");
@@ -561,16 +529,16 @@ srcSlide("Sources: AWS (Part 1)", [
   "Amazon Route 53 Developer Guide: Using DNS Firewall  ·  How Resolver DNS Firewall works  ·  Rule actions in DNS Firewall  ·  DNS Firewall VPC configuration  ·  AWS Managed Domain Lists  ·  DNS Firewall Advanced  ·  DNS Firewall availability.",
   "Amazon Route 53 Developer Guide: Resolver query logging  ·  Values that appear in VPC Resolver query logs  ·  Sharing query logging configurations  ·  Working with private hosted zones, and considerations  ·  Cross-account association  ·  What are Route 53 Profiles?  ·  Enabling DNSSEC validation  ·  Configuring DNSSEC signing  ·  What is Route 53 Global Resolver?",
   "Amazon VPC User Guide, Understanding Amazon DNS (VPC+2, 169.254.169.253, the 1,024 packets-per-second link-local quota).",
-  "AWS GovCloud (US) User Guide, Amazon Route 53 in AWS GovCloud (US)  ·  AWS General Reference, Route 53 endpoints and quotas.",
-  "AWS What's New: Route 53 Global Resolver GA (Mar. 9, 2026)  ·  Resolver endpoints support delegation in GovCloud (Apr. 8, 2026)  ·  dictionary DGA protection (Nov. 17, 2025)  ·  Resolver query logging in GovCloud (Sept. 2020)  ·  Route 53 Profiles in GovCloud (June 4, 2024).",
-  "AWS Services in Scope by Compliance Program: FedRAMP (updated Oct. 15, 2026)  ·  FedRAMP Marketplace, products.json (AWS US East/West Moderate; AWS GovCloud High).",
+  "AWS General Reference, Route 53 endpoints and quotas.",
+  "AWS What's New: Route 53 Global Resolver GA (Mar. 9, 2026).",
+  "AWS Services in Scope by Compliance Program: FedRAMP (updated Oct. 15, 2026)  ·  FedRAMP Marketplace, products.json (AWS US East/West Moderate).",
   "All AWS sources accessed Oct. 29, 2026, as footnoted on the evaluation page.",
-], "Sources: the evaluation page's footnotes (cdns-r53-*, cdns-vpc-dns, cdns-gov-r53, cdns-aws-fedramp, cdns-fedramp-mkt).");
+], "Sources: the evaluation page's footnotes (cdns-r53-*, cdns-vpc-dns, cdns-aws-fedramp, cdns-fedramp-mkt).");
 srcSlide("Sources: Microsoft and Oracle (Part 1)", [
   "Microsoft Learn: What is Azure DNS Private Resolver?  ·  Azure DNS Private Resolver endpoints and rulesets  ·  Azure subscription and service limits  ·  Reliability in Azure DNS Private Resolver  ·  Azure DNS FAQ (zone transfers).",
   "Microsoft Learn: Overview of DNS resolver policy  ·  Secure and view DNS traffic  ·  Azure DNS monitoring data reference  ·  DNSSEC overview (Azure DNS).",
   "Microsoft Learn, Azure Architecture Center: Design a hybrid DNS solution by using Azure  ·  Azure DNS Private Resolver.",
-  "Microsoft Learn: services compliance scope (Feb. 2026)  ·  Compare Azure Government and global Azure  ·  Microsoft, Products available by region  ·  Azure Retail Prices API (US Gov meters). Accessed Oct. 29, 2026.",
+  "Microsoft Learn: services compliance scope (Feb. 2026). Accessed Oct. 29, 2026.",
   "Oracle Cloud Infrastructure Documentation: Private DNS  ·  Creating a Resolver Rule  ·  Troubleshooting DNS  ·  DNS in a Virtual Cloud Network  ·  Traffic Management Steering Policies  ·  Private DNS Logs  ·  Oracle Cloud Infrastructure US Government Cloud with FedRAMP Authorization. Accessed Oct. 30–31, 2026.",
   "FedRAMP Marketplace, products.json (dataset of Oct. 31, 2026): Oracle Cloud Infrastructure-Government Cloud (High, JAB); Fusion Cloud (Moderate).",
 ], "Sources: the evaluation page's footnotes (cdns-az-*, cdns-oci-*).");

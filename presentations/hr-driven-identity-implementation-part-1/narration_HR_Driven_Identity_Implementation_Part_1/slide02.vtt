@@ -34,36 +34,35 @@ and day-one workflows run with limits,
 and day-one readiness is measured.
 
 8
-00:00:23.425 --> 00:00:27.381
+00:00:23.425 --> 00:00:27.384
 Part 2 picks up from there:
 access assigned from attributes,
 
 9
-00:00:27.381 --> 00:00:30.126
-with a review of what
-a move leaves behind;
+00:00:27.384 --> 00:00:32.392
+with a review of what a move leaves
+behind; PIV credentials tied to HR events;
 
 10
-00:00:30.126 --> 00:00:35.374
-PIV and CAC credentials tied to HR events;
+00:00:32.392 --> 00:00:36.997
 separations that block access first
+and dispose of the account last;
 
 11
-00:00:35.374 --> 00:00:40.137
-and dispose of the account last; and
-drift found and closed at the source.
+00:00:36.997 --> 00:00:39.663
+and drift found and closed at the source.
 
 12
-00:00:40.137 --> 00:00:43.904
+00:00:39.663 --> 00:00:43.429
 Each gate names the validation
 kit checks that prove part of it,
 
 13
-00:00:43.904 --> 00:00:46.438
+00:00:43.429 --> 00:00:45.963
 and says plainly where
 no check exists yet.
 
 14
-00:00:46.438 --> 00:00:51.790
+00:00:45.963 --> 00:00:51.310
 Every threshold is a proposed starting
 point the agency approves or replaces.

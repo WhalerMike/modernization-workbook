@@ -20,40 +20,39 @@ so an AD group per division can decide
 where an administrator belongs.
 
 5
-00:00:14.626 --> 00:00:18.544
-For federal staff, the
-important path is certificate
+00:00:14.626 --> 00:00:17.512
+For federal staff, the important path is
 
 6
-00:00:18.544 --> 00:00:21.750
-sign-in with CAC or PIV,
-checked against OCSP.
+00:00:17.512 --> 00:00:21.187
+certificate sign-in with
+PIV, checked against OCSP.
 
 7
-00:00:21.750 --> 00:00:24.328
+00:00:21.187 --> 00:00:23.766
 SAML works too, including with Entra,
 
 8
-00:00:24.328 --> 00:00:28.487
+00:00:23.766 --> 00:00:27.925
 where the user lands in the
 group whose name exactly matches.
 
 9
-00:00:28.487 --> 00:00:33.721
+00:00:27.925 --> 00:00:33.114
 A few things to test: certificate sign-in
 to the API can conflict with certain cloud
 
 10
-00:00:33.721 --> 00:00:36.645
+00:00:33.114 --> 00:00:36.014
 licenses, SAML-only users
 get no command line,
 
 11
-00:00:36.645 --> 00:00:40.800
+00:00:36.014 --> 00:00:40.135
 and it's not confirmed whether Entra
 sends the group name or its ID.
 
 12
-00:00:40.800 --> 00:00:44.590
+00:00:40.135 --> 00:00:44.020
 Order mappings carefully, and
 keep a local break-glass admin.

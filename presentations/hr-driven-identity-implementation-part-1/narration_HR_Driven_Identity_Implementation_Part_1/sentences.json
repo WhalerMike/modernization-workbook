@@ -1,83 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   4.713,
-   "Welcome to Part 1 of the implementation series for H R-driven identity."
-  ],
-  [
-   4.763,
-   2.638,
-   "The H R pipeline makes an account exist."
-  ],
-  [
-   7.4,
-   5.987,
-   "This guide makes the H R record decide everything that happens to that account afterward, and proves it did."
-  ],
-  [
-   13.387,
-   1.725,
-   "It does that in seven gates."
-  ],
-  [
-   15.113,
-   15.488,
-   "For each gate, we'll cover what done means, the steps, the commands from the developer workbook's first lab, the federal requirement and the evidence an I S S O keeps, what's available in G C C and G C C High, and how to roll it back."
-  ],
-  [
-   30.6,
-   9.2,
-   "Part 1 takes the first three gates: one writer for every account state, employees and contractors from their sources, and joiners ready on day one."
-  ],
-  [
-   39.8,
-   1.875,
-   "Part 2 takes the other four."
-  ],
-  [
-   41.675,
-   7.263,
-   "Design guidance is labeled, and the workbook's code is illustrative, tested against fixtures rather than a lyve tenant."
-  ]
- ],
- "2": [
-  [
-   0.05,
-   2.237,
-   "Here are all seven gates on one page."
-  ],
-  [
-   2.288,
-   7.875,
-   "The first is done when every account state and H R attribute has exactly one recorded writer, and the other write paths are gone."
-  ],
-  [
-   10.162,
-   6.662,
-   "The second is done when employees come from H R, and contractors come from a named source with an enforced end date."
-  ],
-  [
-   16.825,
-   6.6,
-   "The third is done when the pre-hire and day-one workflows run with limits, and day-one readiness is measured."
-  ],
-  [
-   23.425,
-   16.712,
-   "Part 2 picks up from there: access assigned from attributes, with a review of what a move leaves behind; piv and CAC credentials tied to H R events; separations that block access first and dispose of the account last; and drift found and closed at the source."
-  ],
-  [
-   40.138,
-   6.3,
-   "Each gate names the validation kit checks that prove part of it, and says plainly where no check exists yet."
-  ],
-  [
-   46.438,
-   5.3,
-   "Every threshold is a proposed starting point the agency approves or replaces."
-  ]
- ],
  "3": [
   [
    0.05,
@@ -524,53 +445,6 @@
    "That clean re-run is the evidence for the gate."
   ]
  ],
- "11": [
-  [
-   0.05,
-   11.688,
-   "On the federal side, account management and external personnel security call for the source decision, the reconciliation report, and how long each contractor's access took to block after their end date."
-  ],
-  [
-   11.738,
-   5.625,
-   "Identifying each person by status means the worker type code appears on every account."
-  ],
-  [
-   17.363,
-   12.025,
-   "O M B's zero trust memo says enterprise identity draws on H R, contract management and personnel security, so the governance body signs a table that names one authority for each fact."
-  ],
-  [
-   29.387,
-   6.638,
-   "To validate, one kit check lists enabled accounts with no key, which is where contractors without one show up."
-  ],
-  [
-   36.025,
-   7.35,
-   "No check reads end dates, so the evidence is the reconciliation re-run, with no contractor past their end."
-  ],
-  [
-   43.375,
-   5.925,
-   "In Azure Government, A P I-driven inbound provisioning and access reviews are available."
-  ],
-  [
-   49.3,
-   6.888,
-   "Until the contractor source is automated, keep the contract end date as the leave date so the leaver still fires."
-  ],
-  [
-   56.188,
-   2.625,
-   "To roll back, pause the contractor app."
-  ],
-  [
-   58.812,
-   1.275,
-   "It keeps its state."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -752,58 +626,6 @@
    "Run it on an export from the start of the day."
   ]
  ],
- "15": [
-  [
-   0.05,
-   9.775,
-   "On the federal side, automated account management calls for the workflow definitions, their versions, and run history exported before Entra's thirty-day view drops it."
-  ],
-  [
-   9.825,
-   6.338,
-   "Authenticator management requires that the first authenticator is time-limited and goes to an accountable person."
-  ],
-  [
-   16.163,
-   4.388,
-   "So the I S S O keeps the pass policy and the task's settings."
-  ],
-  [
-   20.55,
-   5.675,
-   "To validate, one kit check flags hires whose start date has passed with no processing record."
-  ],
-  [
-   26.225,
-   5.112,
-   "Another confirms execution limits are set, and counts workflows against the ceiling."
-  ],
-  [
-   31.337,
-   4.15,
-   "Add the run history for the last group of hires, and the readiness rate."
-  ],
-  [
-   35.487,
-   5.088,
-   "Lifecycle Workflows and entitlement management are available in Azure Government."
-  ],
-  [
-   40.575,
-   8.113,
-   "But Microsoft's government table has no row for the Temporary Access Pass, so its availability in G C C High isn't confirmed."
-  ],
-  [
-   48.688,
-   7.025,
-   "Before Governance is licensed, the pipeline enables the account on the hire date and the help desk issues the pass."
-  ],
-  [
-   55.712,
-   2.925,
-   "To roll back, disable the workflow's schedule."
-  ]
- ],
  "16": [
   [
    0.05,
@@ -854,6 +676,179 @@
    53.562,
    9.512,
    "And to learn it in order, use the learning path for H R-driven identity: seven modules, one per gate, each with a fixture lab and a knowledge check."
+  ]
+ ],
+ "1": [
+  [
+   0.05,
+   4.713,
+   "Welcome to Part 1 of the implementation series for H R-driven identity."
+  ],
+  [
+   4.763,
+   2.638,
+   "The H R pipeline makes an account exist."
+  ],
+  [
+   7.4,
+   5.987,
+   "This guide makes the H R record decide everything that happens to that account afterward, and proves it did."
+  ],
+  [
+   13.387,
+   1.725,
+   "It does that in seven gates."
+  ],
+  [
+   15.113,
+   14.113,
+   "For each gate, we'll cover what done means, the steps, the commands from the developer workbook's first lab, the federal requirement and the evidence an I S S O keeps, what's available in G C C, and how to roll it back."
+  ],
+  [
+   29.225,
+   9.2,
+   "Part 1 takes the first three gates: one writer for every account state, employees and contractors from their sources, and joiners ready on day one."
+  ],
+  [
+   38.425,
+   1.875,
+   "Part 2 takes the other four."
+  ],
+  [
+   40.3,
+   7.263,
+   "Design guidance is labeled, and the workbook's code is illustrative, tested against fixtures rather than a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.237,
+   "Here are all seven gates on one page."
+  ],
+  [
+   2.288,
+   7.875,
+   "The first is done when every account state and H R attribute has exactly one recorded writer, and the other write paths are gone."
+  ],
+  [
+   10.162,
+   6.662,
+   "The second is done when employees come from H R, and contractors come from a named source with an enforced end date."
+  ],
+  [
+   16.825,
+   6.6,
+   "The third is done when the pre-hire and day-one workflows run with limits, and day-one readiness is measured."
+  ],
+  [
+   23.425,
+   16.238,
+   "Part 2 picks up from there: access assigned from attributes, with a review of what a move leaves behind; piv credentials tied to H R events; separations that block access first and dispose of the account last; and drift found and closed at the source."
+  ],
+  [
+   39.663,
+   6.3,
+   "Each gate names the validation kit checks that prove part of it, and says plainly where no check exists yet."
+  ],
+  [
+   45.962,
+   5.3,
+   "Every threshold is a proposed starting point the agency approves or replaces."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   11.688,
+   "On the federal side, account management and external personnel security call for the source decision, the reconciliation report, and how long each contractor's access took to block after their end date."
+  ],
+  [
+   11.738,
+   5.625,
+   "Identifying each person by status means the worker type code appears on every account."
+  ],
+  [
+   17.363,
+   12.025,
+   "O M B's zero trust memo says enterprise identity draws on H R, contract management and personnel security, so the governance body signs a table that names one authority for each fact."
+  ],
+  [
+   29.387,
+   6.638,
+   "To validate, one kit check lists enabled accounts with no key, which is where contractors without one show up."
+  ],
+  [
+   36.025,
+   7.35,
+   "No check reads end dates, so the evidence is the reconciliation re-run, with no contractor past their end."
+  ],
+  [
+   43.375,
+   6.688,
+   "In G C C, A P I-driven inbound provisioning and access reviews are the commercial service."
+  ],
+  [
+   50.062,
+   6.888,
+   "Until the contractor source is automated, keep the contract end date as the leave date so the leaver still fires."
+  ],
+  [
+   56.95,
+   2.625,
+   "To roll back, pause the contractor app."
+  ],
+  [
+   59.575,
+   1.275,
+   "It keeps its state."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   9.775,
+   "On the federal side, automated account management calls for the workflow definitions, their versions, and run history exported before Entra's thirty-day view drops it."
+  ],
+  [
+   9.825,
+   6.338,
+   "Authenticator management requires that the first authenticator is time-limited and goes to an accountable person."
+  ],
+  [
+   16.163,
+   4.388,
+   "So the I S S O keeps the pass policy and the task's settings."
+  ],
+  [
+   20.55,
+   5.675,
+   "To validate, one kit check flags hires whose start date has passed with no processing record."
+  ],
+  [
+   26.225,
+   5.112,
+   "Another confirms execution limits are set, and counts workflows against the ceiling."
+  ],
+  [
+   31.337,
+   4.15,
+   "Add the run history for the last group of hires, and the readiness rate."
+  ],
+  [
+   35.487,
+   7.338,
+   "Lifecycle Workflows, entitlement management and the Temporary Access Pass are the commercial service in G C C."
+  ],
+  [
+   42.825,
+   7.025,
+   "Before Governance is licensed, the pipeline enables the account on the hire date and the help desk issues the pass."
+  ],
+  [
+   49.85,
+   2.925,
+   "To roll back, disable the workflow's schedule."
   ]
  ]
 }

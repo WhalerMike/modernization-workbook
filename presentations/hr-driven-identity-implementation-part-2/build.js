@@ -78,14 +78,14 @@ const SC = "Close";
     { text: "G4 Access and the mover's residual   ·   G5 Credentials bound to HR events", options: { color: HEX.navy, bold: true, breakLine: true } },
     { text: "G6 Separation timing   ·   G7 Drift, metrics and evidence", options: { color: HEX.teal, bold: true, breakLine: true } },
     { text: "Part 1: G1 Writers  ·  G2 Sources  ·  G3 Joiners", options: { color: HEX.ink, breakLine: true } },
-    { text: "Steps, Lab 1 commands, federal evidence, government-cloud availability and rollback", options: { color: HEX.ink } },
+    { text: "Steps, Lab 1 commands, federal evidence, GCC availability and rollback", options: { color: HEX.ink } },
   ], { x: 0.8, y: 4.75, w: 10.2, h: 1.65, fontSize: 15, paraSpaceAfter: 2 });
   notes(s,
 `This is Part 2 of the implementation series for HR-Driven Identity. Part 1 fixed one writer for every account state, brought employees and contractors in from their sources, and made joiners ready on day one.
 
-Part 2 takes the last four gates. G4 assigns access from HR attributes, routes approvals to the supervisor of record, and reviews what a move leaves behind. G5 binds PIV and CAC credentials to HR events. G6 times separations and deprovisioning, and proves the block landed in time. G7 keeps the record true with drift checks and metrics, and files the evidence.
+Part 2 takes the last four gates. G4 assigns access from HR attributes, routes approvals to the supervisor of record, and reviews what a move leaves behind. G5 binds PIV credentials to HR events. G6 times separations and deprovisioning, and proves the block landed in time. G7 keeps the record true with drift checks and metrics, and files the evidence.
 
-The form is the same as Part 1. For each gate: what done means, the steps, the commands from the developer workbook's first lab, the federal requirement and the evidence an ISSO keeps, what's available in GCC and GCC High as the guide states it, the interim path, and the rollback.
+The form is the same as Part 1. For each gate: what done means, the steps, the commands from the developer workbook's first lab, the federal requirement and the evidence an ISSO keeps, what's available in GCC as the guide states it, the interim path, and the rollback.
 
 The program's recommendations are marked design guidance, and conclusions the sources support but don't state are marked inference. The workbook's code is illustrative and fixture-tested, not proven against a live tenant.`,
   `${IG}, "In this guide," "The path on one page," Steps 4–7.`);
@@ -244,9 +244,9 @@ The code reads transitive memberships on purpose: the least-privileged permissio
       "Rollback: remove the automatic policy; keep the dynamic group until the package runs clean for a full cycle",
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
-      "Entitlement management, access reviews, PIM, dynamic groups: Azure Government; commercial in GCC",
-      "Not in GCC High: administrative units with dynamic membership rules (global Azure cloud only)",
-      "Interim (GCC High): assigned units set by a scheduled job from the group's rule, compared in G7",
+      "Entitlement management, access reviews, PIM, dynamic groups: commercial service in GCC",
+      "Administrative units with dynamic membership rules: global Azure cloud only, which GCC tenants have",
+      "Interim: before Governance is licensed, department access stays on dynamic groups; packages wait",
     ]]);
   sources(s, "Sources: Implementation guide, Step 4 (requirements and evidence; availability; interim path; Validate; Rollback); Book 04, Ch 09.");
   notes(s,
@@ -256,10 +256,10 @@ AC-2, authorizing access on organization-defined attributes, AC-6, least privile
 
 Validate. VK-DG-05, run against a snapshot taken before a test move, shows exactly the expected membership changes, and VK-HR-03 reconciles counts per organization code with the HR export. No kit check reads automatic assignment policies yet, so the evidence is the policy export, the memberOf scan's output with zero rows, and the mover workflow's run history for the test user.
 
-Availability: entitlement management, access reviews, PIM and dynamic groups are available in Azure Government, and the commercial service in GCC. One gap: administrative units with dynamic membership rules exist only in the global Azure cloud, not in Azure Government, so GCC High doesn't have them. The interim path there is assigned units whose membership a scheduled job sets from the same rule the dynamic group uses, compared with the group in G7. That's design guidance.
+Availability: entitlement management, access reviews, PIM and dynamic groups are the commercial service in GCC. Administrative units with dynamic membership rules exist only in the global Azure cloud, and GCC tenants, on the commercial service, have them. The interim path: before Governance is licensed, department access stays on dynamic groups, and packages and automatic assignment wait.
 
 Rollback: remove the automatic policy; Learn's checkboxes control whether assignments are removed. Keep the dynamic group that carried the access until the package has run clean for a full cycle.`,
-  `${IG}, Step 4 — "Federal requirements and evidence," "Government-cloud availability," "Interim path," "Validate (G4 Access and movers)," "Rollback"; Book 04, Chapter 09.`);
+  `${IG}, Step 4 — "Federal requirements and evidence," "GCC availability," "Interim path," "Validate (G4 Access and movers)," "Rollback"; Book 04, Chapter 09.`);
 }
 endModule(SG4);
 
@@ -267,10 +267,10 @@ endModule(SG4);
 {
   const s = content(SG5, "G5: trust the issuing CAs, each with a CRL");
   tag(s, "Why");
-  const tb = table(s, "CRL", 1.45, [3.2, 2.6, 2.6], ["CRL limit", "GCC (commercial)", "GCC High (Azure Gov.)"], [
-    ["Interactive sign-in", "20 MB", "45 MB"],
-    ["Service side", "65 MB", "150 MB"],
-    ["Download time", "10 seconds", "10 seconds"],
+  const tb = table(s, "CRL", 1.45, [4.6, 3.8], ["CRL limit", "GCC (commercial service)"], [
+    ["Interactive sign-in", "20 MB"],
+    ["Service side", "65 MB"],
+    ["Download time", "10 seconds"],
   ], { fontSize: 12.5, limit: 6.6 });
   const p = panel(s, "Rules", 9.25, 1.45, 3.5, null, HEX.red, HEX.redTint, "WHAT FAILS", null, [
     "No configured CRL: no revocation check",
@@ -287,7 +287,7 @@ endModule(SG4);
   notes(s,
 `G5 binds credentials to HR events. Book 03's point is short: a PIV card without the binding to the account is a badge. The binding identifies one certificate, so a reissue changes it, and the card management system has to rewrite it. Binding coverage and affinity are the ADM guide's Gate 6; this gate ties the credential's lifecycle to the person's. The prerequisites are the issuing CAs' CRL sizes checked, plan task I1.6, and ADM Gate 6's affinity decision.
 
-Step 1: trust the issuing CAs, each with a CRL. Without a configured CRL, Entra doesn't check revocation. A CRL must download within ten seconds, and stay under twenty megabytes for interactive sign-in in the commercial service, which GCC uses, or forty-five megabytes in Azure Government, which GCC High uses. The service-side limits are sixty-five and a hundred and fifty megabytes. And if Entra can't download a configured CRL, certificate-based authentication fails for that CA's certificates, so host CRLs on highly available endpoints. Learn recommends HTTP.
+Step 1: trust the issuing CAs, each with a CRL. Without a configured CRL, Entra doesn't check revocation. A CRL must download within ten seconds, and stay under twenty megabytes for interactive sign-in in the commercial service, which GCC uses. The service-side limit is sixty-five megabytes. And if Entra can't download a configured CRL, certificate-based authentication fails for that CA's certificates, so host CRLs on highly available endpoints. Learn recommends HTTP.
 
 Step 2: require phishing-resistant strength. Raise PIV certificates to multifactor by issuer or policy OID, and require the phishing-resistant authentication strength in Conditional Access.
 
@@ -336,16 +336,14 @@ The guide is open about what isn't proved. The card system's event interface and
     "    --as-of 2026-11-01 --out out/ch05/check",
     "#   Cloud gcc: interactive CRL limit 20,000,000 bytes, download within 10 s",
     "#   CBA: 5 Finding, 7 Warn, 0 Info",
-    "python python/cba_check.py check --cloud gcchigh ...  --out out/ch05/check-gcchigh",
-    "#   Cloud gcchigh: interactive CRL limit 45,000,000 bytes   CBA: 5 Finding, 6 Warn",
   ], { label: "COMMANDS AND OUTPUT (CHAPTER 05, LAB 1)", pt: 10.5 });
   const tb = table(s, "Find", c1 + 0.2, [1.0, 7.1], ["Rule", "Finding in the fixture"], [
-    ["CB-04", "The renewed CA 2's CRL took 11.4 s to download: a Finding in every cloud"],
+    ["CB-04", "The renewed CA 2's CRL took 11.4 s to download; the limit is 10 s"],
     ["CB-12", "An issuing CA the card program uses isn't in the trust store"],
     ["CB-10", "No enforced policy requires a phishing-resistant strength (MS.AAD.3.1v1)"],
   ], { fontSize: 11, limit: 6.6 });
   panel(s, "Note", 8.95, 1.45, 3.8, null, HEX.navy, HEX.navyTint, "HOW TO READ IT", null, [
-    "18.5 million bytes is over 80% of GCC's limit (CB-05, Warn) but not GCC High's",
+    "18.5 million bytes is over 80% of GCC's interactive limit (CB-05, Warn)",
     "CB-09: the mode rule maps the wrong PIV policy OID",
     "CB-01: an intermediate with no CRL is a Finding; a root, a Warn to confirm",
     "Reads the PKI-based trust store, not the older configuration",
@@ -355,9 +353,7 @@ The guide is open about what isn't proved. The card system's event interface and
   notes(s,
 `The workbook's Chapter 05 has two commands. Measure downloads each CRL once and records its bytes, seconds and any error; a failed download is recorded, not raised, because the unreachable CRL is the finding. Run it from the internet-facing path Entra uses, not from inside the PKI's own network; that's design guidance.
 
-Check reads the tenant's exports and the measurements for one named cloud. For GCC, the interactive limit is twenty million bytes and ten seconds. The fictional tenant gives five Findings and seven Warns. CA 2 was renewed, so the thumbprint the card program expects is gone from the trust store, CB-12, and the renewed CA's CRL is eighteen and a half million bytes, slow at eleven point four seconds, and on HTTPS. The slow download is a Finding in every cloud. The mode rule maps the wrong PIV policy OID, CB-09. And the phishing-resistant policy is still report-only, so no enforced policy for all users requires that strength, CB-10, which is SCuBA's MS.AAD.3.1v1.
-
-Run the same check for GCC High and one Warn drops away: eighteen and a half million bytes is over eighty percent of the commercial limit, but not of Azure Government's forty-five million.
+Check reads the tenant's exports and the measurements for the named cloud, G C C. For GCC, the interactive limit is twenty million bytes and ten seconds. The fictional tenant gives five Findings and seven Warns. CA 2 was renewed, so the thumbprint the card program expects is gone from the trust store, CB-12, and the renewed CA's CRL is eighteen and a half million bytes, slow at eleven point four seconds, and on HTTPS. The slow download is a Finding: the limit is ten seconds. The mode rule maps the wrong PIV policy OID, CB-09. And the phishing-resistant policy is still report-only, so no enforced policy for all users requires that strength, CB-10, which is SCuBA's MS.AAD.3.1v1.
 
 Two design points. A root CA with no CRL is a Warn, not a Finding, because a root that issues only CA certificates may publish none; the Warn asks you to confirm the root's revocation path. And the code reads the PKI-based trust store, not the older configuration, whose delegated read needs Global Administrator.`,
   `${WB}, Chapter 05 — "The measurement," "The check," "Lab 1: fixtures, no tenant," steps 2–4.`);
@@ -380,7 +376,7 @@ Two design points. A root CA with no CRL is a Warn, not a Finding, because a roo
       "Rollback: affinity back; a CRL exemption only while it's fixed, with an end date; bindings from the card system",
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
-      "CBA and Conditional Access: Azure Government; commercial in GCC; the CRL limits differ by cloud",
+      "CBA and Conditional Access: commercial service in GCC, with the commercial CRL limits",
       "Interim: who writes certificateUserIds after AD is an open pilot; keep the binding in altSecurityIdentities, synced, until it closes",
     ]]);
   sources(s, "Sources: Implementation guide, Step 5 (requirements and evidence; availability; interim path; Validate; Rollback); Book 03, Ch 09.");
@@ -391,7 +387,7 @@ IA-2 enhancement 12, acceptance of PIV credentials, and IA-5 enhancement 2, publ
 
 Validate. VK-PIV-01 reports pilot card holders with no binding or only low-affinity values, by account, never by value. No kit check reads the configuration or the CRL, so the evidence is the configuration export, each CA's CRL size and download time against the cloud's limits, and a revoked test certificate refused at sign-in after the next CRL publication. The gate owner is the CISO, with the PIV and credentialing office.
 
-Availability: certificate-based authentication and Conditional Access are available in Azure Government, and the commercial service in GCC; the CRL limits differ by cloud. The interim path: after AD retires, who writes certificateUserIds for cloud-mastered users is an open pilot, so keep the binding in altSecurityIdentities, synced, for every population still synced.
+Availability: certificate-based authentication and Conditional Access are the commercial service in GCC, with the commercial CRL limits. The interim path: after AD retires, who writes certificateUserIds for cloud-mastered users is an open pilot, so keep the binding in altSecurityIdentities, synced, for every population still synced.
 
 Rollback: required affinity back to its previous value; a CA exempted from CRL validation only while its CRL is fixed, with an end date; binding values restored from the card system, never edited in the directory.`,
   `${IG}, Step 5 — "Federal requirements and evidence," "Government-cloud availability," "Interim path," "Validate (G5 Credentials)," "Rollback."`);
@@ -489,7 +485,7 @@ The thresholds are samples. The agency sets PS-4's period, and the tenant schedu
       "Rollback: a cancelled separation re-enables from the corrected record; a deleted cloud user restores for 30 days",
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
-      "Lifecycle Workflows and PIM: Azure Government; commercial in GCC",
+      "Lifecycle Workflows and PIM: commercial service in GCC",
       "Custom task extensions have no row; a GCC tenant's Logic App most likely sits in a commercial subscription (inference)",
       "Interim: built-in tasks plus a leaver checklist with a named owner per row",
     ]]);
@@ -501,7 +497,7 @@ PS-4, personnel termination, asks for access disabled within the organization-de
 
 Validate. VK-HR-05 reports users whose leave date is past with no processing record: the late separations step 5 must have run on demand. VK-HR-06 confirms execution limits on the leaver workflows. Then the leaver runs for a full pay-period cycle on the covered population: zero missed leavers, separation-to-block within the approved threshold, and every exception closed through an alternate path. The gate owner is security, which owns the leaver path end to end.
 
-Availability: Lifecycle Workflows and PIM are available in Azure Government, and the commercial service in GCC. Custom task extensions have no row of their own. A GCC tenant is a commercial Entra tenant, and an Azure Government subscription trusts only an Azure Government directory, so the guide's inference is that the Logic App sits in a commercial Azure subscription linked to the tenant. The interim path, until the extensions exist, is the built-in tasks and a leaver checklist with a named owner per row.
+Availability: Lifecycle Workflows and PIM are the commercial service in GCC. Custom task extensions have no row of their own. A GCC tenant is a commercial Entra tenant that operates with the Azure public cloud, so the guide's inference is that the Logic App sits in a commercial Azure subscription linked to the tenant. The interim path, until the extensions exist, is the built-in tasks and a leaver checklist with a named owner per row.
 
 Rollback: a cancelled separation re-enables from the corrected record, with evidence, and manually granted access comes back only by request and review. A deleted cloud user can be restored for thirty days.`,
   `${IG}, Step 6 — "Federal requirements and evidence," "Government-cloud availability," "Interim path," "Validate (G6 Separation)," "Rollback"; Book 03, Chapter 12 — "Phase 4."`);
@@ -569,8 +565,8 @@ hr_evidence.py in the drift pipeline packages each run with a manifest and SHA-2
 
 The federal requirements: CA-7, continuous monitoring with system-level metrics: the six metrics per period with thresholds. AU-6 and AU-11, review and retention of audit records, and SI-12: the log export configuration, findings closed at the source, and retention set to the records schedule. BOD 25-01's continuous reporting: ScubaGear results for the identity policies in G4 and G5.
 
-Validate on the drift cadence with VK-HR-01, 03, 04 and 07 and VK-DG-05, with the HCM correlation tool for record-by-record drift. Reports and SIEM connectivity are available in Azure Government. Before the SIEM takes identity logs, route them to a storage account from day one. The owner is the CISO, and there's no rollback: it's the standing loop.`,
-  `${WB}, Chapter 07 — "The run," "The drift classes," "The package, the chain and the period," "Lab 1," steps 2–6; ${IG}, Step 7 — "Federal requirements and evidence," "Government-cloud availability," "Interim path," "Validate (G7 Drift and evidence)," "Rollback."`);
+Validate on the drift cadence with VK-HR-01, 03, 04 and 07 and VK-DG-05, with the HCM correlation tool for record-by-record drift. Reports and SIEM connectivity are the commercial service in GCC. Before the SIEM takes identity logs, route them to a storage account from day one. The owner is the CISO, and there's no rollback: it's the standing loop.`,
+  `${WB}, Chapter 07 — "The run," "The drift classes," "The package, the chain and the period," "Lab 1," steps 2–6; ${IG}, Step 7 — "Federal requirements and evidence," "GCC availability," "Interim path," "Validate (G7 Drift and evidence)," "Rollback."`);
 }
 endModule(SG7);
 
@@ -613,7 +609,7 @@ sourceSlide("Sources: orientation and G4", [
 ]);
 sourceSlide("Sources: G5 and G6", [
   "HR-Driven Identity: An Implementation Guide: Step 5 and Step 6 (steps, requirements and evidence, availability, interim paths, Validate, Rollback); \"What couldn't be verified\" (custom task extension location; certificateUserIds writer; card system interface).",
-  "Microsoft Learn pages the guide footnotes: CBA certificate revocation list; ID Governance service limits; Lifecycle Workflows custom task extension; planning identity for Azure Government; Entra feature availability. CISA BOD 25-01, MS.AAD.3.1v1 and 3.6v1. NIST SP 800-53B Moderate baseline.",
+  "Microsoft Learn pages the guide footnotes: CBA certificate revocation list; ID Governance service limits; Lifecycle Workflows custom task extension; the Office 365 GCC service description; Entra feature availability. CISA BOD 25-01, MS.AAD.3.1v1 and 3.6v1. NIST SP 800-53B Moderate baseline.",
   "Book 03, Ch 08 (triggers and schedule; emergency termination; deletion; one leaver reaches four tracks); Ch 09 (binding; the contractor PIV path; assurance as data; the canonical leaver sequence; what the evidence must show); Ch 12 (Phase 4); Appendix A, C. Book 04, Ch 03. Book 19, Ch 05.",
   "Developer workbook, Chapter 05 (measure; check, CB-01 to CB-13; Lab 1, steps 2–4) and Chapter 06 (intervals; rules, ST-01 to ST-09; Lab 1, steps 2–4). examples/hr-lifecycle: python/cba_check.py, python/separation_timing.py, tests/fixtures/ch05 and ch06.",
 ]);
@@ -621,7 +617,7 @@ sourceSlide("Sources: G7 and the close", [
   "HR-Driven Identity: An Implementation Guide: Step 7 (steps 1–5, requirements and evidence, availability, interim path, Validate, Rollback); \"Evidence\"; \"Back to the books.\"",
   "Book 03, Ch 11 (drift between HR and the directory; the measured lifecycle; the evidence each event leaves; control support); Appendix C (proving HR is the sole source). Book 02, Appendix A (BOD 25-01). Identity maintenance explainer (the fixes that still happen).",
   "Developer workbook, Chapter 07 (what the evidence has to show; the run; LD-01 to LD-08; the metrics; the package, the chain and the period; Lab 1, steps 1–6). examples/hr-lifecycle: python/lifecycle_drift.py, config/drift.json, tests/fixtures/ch07; examples/drift-pipeline/python/hr_evidence.py.",
-  "Design guidance in this part: the grace periods and the 14-day warning; the GCC High assigned-unit interim; the separation and metric thresholds (samples); the control mapping in the period summary; running the CRL measurement from the internet-facing path.",
+  "Design guidance in this part: the grace periods and the 14-day warning; the separation and metric thresholds (samples); the control mapping in the period summary; running the CRL measurement from the internet-facing path.",
   "Learning path: HR-Driven Identity in Microsoft Entra ID (seven modules, one per gate; each runs the chapter's Lab 1 and ends with a knowledge check).",
 ]);
 

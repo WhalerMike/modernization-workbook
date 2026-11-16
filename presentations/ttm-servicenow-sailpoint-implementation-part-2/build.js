@@ -190,9 +190,8 @@ The danger the guide names here is the declared exception that never ends: a dis
       "Rollback: the paired action; a leaver recovers by a new request",
     ]],
     ["AVAILABILITY", [
-      "PIM: available in Azure Government",
-      "The Entra spoke points at graph.microsoft.com and doesn't mention the government clouds: it fits GCC; for GCC High, confirm with ServiceNow",
-      "SailPoint's GCC High connector endpoints are documented",
+      "PIM: part of the commercial Entra service GCC uses",
+      "The Entra spoke points at graph.microsoft.com by default and doesn't mention the US Government clouds: it fits GCC",
     ]]);
   sources(s, "Sources: Guide, G5 (requirements and evidence; availability; interim path; Validate); Book 13, Ch 10; Book 15, Ch 03.");
   notes(s,
@@ -202,7 +201,7 @@ CM-5, access restrictions for change: changes run under scoped service identitie
 
 Validate. There's no automated check yet; Pass 1 doesn't actuate, so the kit has no test for this gate. The manual lab runs one task per lane end to end: an L3 access request provisions through the connector, an A1 task runs through the spoke, a disconnected-application ticket runs as a declared exception with its recording, and an emergency change is recorded after the fact. Each leaves its record. And VK-NPI-05 is re-run: no integration identity holds a Graph permission beyond what its lane needs.
 
-Availability: PIM is available in Azure for US Government. The Entra spoke's connection points at graph.microsoft.com by default and its page doesn't mention the US Government clouds: it fits GCC, and for GCC High, confirm with ServiceNow before use. SailPoint's connector endpoints for GCC High are documented. Where the spoke isn't licensed, A0 and A1 tasks stay help desk tasks against an approved ticket, with the PIM activation recorded.
+Availability: PIM is part of the commercial Entra service GCC uses. The Entra spoke's connection points at graph.microsoft.com by default and its page doesn't mention the US Government clouds: it fits GCC. Where the spoke isn't licensed, A0 and A1 tasks stay help desk tasks against an approved ticket, with the PIM activation recorded.
 
 Rollback: each connector action is reversed by its paired action, re-enable, re-add or reassign, through the same lane. A leaver's deprovisioning is rollback-never by design, with recovery through a new request.`,
   `${IG}, Step 5 — "Federal requirements and evidence," "Availability," "Interim path," "Validate (G5 Actuation)"; Book 13, Chapter 10 — "Which change classes qualify."`);
@@ -297,7 +296,7 @@ The business rule's own tests run alongside: a person's close is redirected to A
       "Rollback: disable the business rule; closures lose evidence until it's back",
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
-      "ISC's Accounts and Search APIs and Graph's users endpoint; GCC worldwide, GCC High graph.microsoft.us",
+      "ISC's Accounts and Search APIs and Graph's users endpoint; GCC uses the worldwide Graph endpoint",
       "The ISC API domain for a FedRAMP tenant: not confirmed (G1)",
       "Interim: the verifier runs the client by hand once a day, dry run first; the rule still blocks a person's close",
     ]]);
@@ -309,7 +308,7 @@ CM-3, with records of changes retained: each closure carries its proof, so the e
 
 Validate. The kit's tests prove the logic against mocked data: the Python and PowerShell re-read tests cover a dry run that writes nothing, a match that closes with evidence and an attachment, a mismatch that reopens with a note, and a stale ISC read that waits for the grace period; the business rule's tests cover a person's close redirected to Awaiting verification, evidence alone or the verifier alone not being enough, and, on incident, only Service Desk tickets being governed. Live, a person's close becomes Awaiting verification, the client closes it only after the account shows the intended state, and a mismatch reopens it; those are items 2 and 3 of the kit's lab.
 
-Availability: the re-read uses ISC's Accounts and Search APIs and Graph's users endpoint. GCC uses the worldwide Graph endpoint and GCC High graph.microsoft.us. The ISC API domain for a FedRAMP tenant wasn't confirmed; that's G1's question.
+Availability: the re-read uses ISC's Accounts and Search APIs and Graph's users endpoint. GCC uses the worldwide Graph endpoint. The ISC API domain for a FedRAMP tenant wasn't confirmed; that's G1's question.
 
 The interim path: before the client runs on a schedule, the verifier runs it by hand once a day, dry run first, then apply, and the business rule still blocks a person's close. Rollback: disable the business rule; records return to the platform's normal state model, and closures lose their evidence until it's re-enabled.`,
   `${IG}, Step 6 — "Federal requirements and evidence," "Availability," "Interim path," "Validate (G6 Re-read)."`);
@@ -526,7 +525,7 @@ MFA attribute management taken for a reset procedure: a connector changes authen
     "Build Gates 3 to 6 in a ServiceNow developer instance and a SailPoint sandbox",
     "Run the kit's lab items",
     "Record the evidence on the guide",
-    "Still open: ISC feature parity in the FedRAMP environment, its API domain, the apps in the government Store, the spoke in GCC High",
+    "Still open: ISC feature parity in the FedRAMP environment, its API domain, the apps and the spoke in the government Store",
   ], 12);
   const p2 = panel(s, "Next", 0.6 + w + 0.25, 1.45, w, null, HEX.teal, HEX.tealTint, "WHERE TO GO NEXT", null, [
     "Build it: the developer workbook Building Ticket-to-Machine, nine chapters, eight with labs",
@@ -540,7 +539,7 @@ MFA attribute management taken for a reset procedure: a connector changes authen
   notes(s,
 `To close the series: where the guide stands, and where to go next.
 
-The guide is a Draft. It was rewritten on November 1, 2026 from a short example into a gated implementation guide, and the rewrite hasn't been reviewed. To move it to Proved: build Gates 3 to 6 in a ServiceNow developer instance and a SailPoint sandbox, run the kit's lab items, and record the evidence on the guide. Some things couldn't be verified from public documentation: whether Workflows, Native Change Detection and the HTTP Request step are in ISC's FedRAMP environment; the ISC API domain for a FedRAMP tenant; whether SailPoint's ServiceNow apps and the Entra spoke are in ServiceNow's government Store; and the spoke in GCC High.
+The guide is a Draft. It was rewritten on November 1, 2026 from a short example into a gated implementation guide, and the rewrite hasn't been reviewed. To move it to Proved: build Gates 3 to 6 in a ServiceNow developer instance and a SailPoint sandbox, run the kit's lab items, and record the evidence on the guide. Some things couldn't be verified from public documentation: whether Workflows, Native Change Detection and the HTTP Request step are in ISC's FedRAMP environment; the ISC API domain for a FedRAMP tenant; and whether SailPoint's ServiceNow apps and the Entra spoke are in ServiceNow's government Store.
 
 Where to go next. To build the code, the developer workbook Building Ticket-to-Machine: nine chapters, eight of them starting from the kit, adding code with tests, and running a lab against fixtures with no tenant. To learn it in order, with exercises and knowledge checks, the learning path for Ticket-to-Machine on ServiceNow and SailPoint. For the kit's Pass 1, the integration kit page and the kit's README. And for the why: Book 13's Chapter 10 and Appendix B for the tempo, the lanes and the evidence record, and Book 15's Chapter 03 for triage and the authority split.
 
@@ -553,7 +552,7 @@ endModule(SC);
 backup();
 sourceSlide("Sources: orientation and G5", [
   "Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide: \"The path on one page,\" Step 5 (steps 1–6, requirements and evidence, availability, interim path, Validate), \"Rollback.\"",
-  "Vendor and Microsoft pages the guide footnotes: SailPoint Entra SaaS supported features; SailPoint Service Desk integration (ticket types); ServiceNow Entra ID spoke; SailPoint Azure Government endpoint configuration; Microsoft Entra feature availability (PIM).",
+  "Vendor and Microsoft pages the guide footnotes: SailPoint Entra SaaS supported features; SailPoint Service Desk integration (ticket types); ServiceNow Entra ID spoke; Microsoft Graph national cloud deployments; Microsoft Entra feature availability (PIM).",
   "Book 13, Ch 10 (when no machine can reach the surface; which change classes qualify) and Appendix B (the five-clause request chain). Book 15, Ch 03 (connector coverage; what Entra ID enforces; verify the person; the evidence each ticket leaves). Integration kit page, planned for Pass 2.",
 ]);
 sourceSlide("Sources: G6 and G7", [

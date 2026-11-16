@@ -415,6 +415,48 @@
    "Next, how attributes reach applications."
   ]
  ],
+ "14": [
+  [
+   0.05,
+   3.6,
+   "Before that, one map of every non-person identity."
+  ],
+  [
+   3.65,
+   14.075,
+   "The four A D kinds, service accounts, M S As, g M S As and d M S As, liv only in Active Directory, and they're described only by A D attributes; none of them carries an Azure tag."
+  ],
+  [
+   17.725,
+   16.2,
+   "Everything else lives in Entra I D: app registrations, managed identities, federated credentials and agent identities, each described by attributes on the object, such as its owners, the record it points to, and custom security attributes."
+  ],
+  [
+   33.925,
+   7.975,
+   "Tags come in only where there's an Azure resource: a user-assigned managed identity, or the Arc machine behind a server's identity."
+  ],
+  [
+   41.9,
+   1.312,
+   "The difference matters."
+  ],
+  [
+   43.212,
+   2.263,
+   "Attributes are fields on the object."
+  ],
+  [
+   45.475,
+   5.062,
+   "Tags are plain-text labels that Azure tools read, and they're never a security boundary."
+  ],
+  [
+   50.538,
+   2.8,
+   "Now, how attributes reach applications."
+  ]
+ ],
  "15": [
   [
    0.05,
@@ -487,48 +529,6 @@
    32.237,
    3.2,
    "And one user row leads straight into piv."
-  ]
- ],
- "17": [
-  [
-   0.05,
-   4.825,
-   "piv and CAC sign-in is attribute-driven too, which is easy to miss."
-  ],
-  [
-   4.875,
-   5.725,
-   "Entra ID finds the user by matching a field on the certificate to a field on the account."
-  ],
-  [
-   10.6,
-   6.925,
-   "Some matches are low affinity, like the name on the card, and some are high, tied to one specific certificate."
-  ],
-  [
-   17.525,
-   1.163,
-   "Two highpoints."
-  ],
-  [
-   18.688,
-   8.162,
-   "Certificate-based sign-in is only as strong as the weakest binding you allow, and the program's position is high affinity in production."
-  ],
-  [
-   26.85,
-   5.425,
-   "But switch the whole tenant to high before every account's value is right, and you lock people out."
-  ],
-  [
-   32.275,
-   1.2,
-   "Pilot it first."
-  ],
-  [
-   33.475,
-   1.825,
-   "So where does that value come from?"
   ]
  ],
  "18": [
@@ -753,43 +753,6 @@
    "Now, the limits."
   ]
  ],
- "24": [
-  [
-   0.05,
-   5.987,
-   "Administrative units are the delegation replacement, so their limits shape the whole delegation model."
-  ],
-  [
-   6.037,
-   6.425,
-   "They don't nest, so the tree becomes a flat set, and a role covering several units gets one assignment per unit."
-  ],
-  [
-   12.463,
-   3.175,
-   "They limit who can change members, not who can see them."
-  ],
-  [
-   15.637,
-   2.425,
-   "Only some roles can be scoped to a unit."
-  ],
-  [
-   18.062,
-   7.875,
-   "Dynamic units work in G C C, but not in G C C High or D O D, where an automation job has to keep them up."
-  ],
-  [
-   25.938,
-   7.325,
-   "And restricting a unit takes its members out of governance automation, so restriction is a deliberate choice, default no."
-  ],
-  [
-   33.263,
-   2.125,
-   "Next, Lifecycle Workflows."
-  ]
- ],
  "25": [
   [
    0.05,
@@ -973,6 +936,85 @@
    "Finally, who decides."
   ]
  ],
+ "17": [
+  [
+   0.05,
+   4.412,
+   "piv sign-in is attribute-driven too, which is easy to miss."
+  ],
+  [
+   4.463,
+   5.787,
+   "Entra I D finds the user by matching a field on the certificate to a field on the account."
+  ],
+  [
+   10.25,
+   6.925,
+   "Some matches are low affinity, like the name on the card, and some are high, tied to one specific certificate."
+  ],
+  [
+   17.175,
+   1.163,
+   "Two highpoints."
+  ],
+  [
+   18.337,
+   8.162,
+   "Certificate-based sign-in is only as strong as the weakest binding you allow, and the program's position is high affinity in production."
+  ],
+  [
+   26.5,
+   5.425,
+   "But switch the whole tenant to high before every account's value is right, and you lock people out."
+  ],
+  [
+   31.925,
+   1.2,
+   "Pilot it first."
+  ],
+  [
+   33.125,
+   1.825,
+   "So where does that value come from?"
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   5.987,
+   "Administrative units are the delegation replacement, so their limits shape the whole delegation model."
+  ],
+  [
+   6.037,
+   6.425,
+   "They don't nest, so the tree becomes a flat set, and a role covering several units gets one assignment per unit."
+  ],
+  [
+   12.463,
+   3.175,
+   "They limit who can change members, not who can see them."
+  ],
+  [
+   15.637,
+   2.425,
+   "Only some roles can be scoped to a unit."
+  ],
+  [
+   18.062,
+   6.438,
+   "Dynamic units hold one object type each and run in the global cloud, which G C C uses."
+  ],
+  [
+   24.5,
+   7.325,
+   "And restricting a unit takes its members out of governance automation, so restriction is a deliberate choice, default no."
+  ],
+  [
+   31.825,
+   2.125,
+   "Next, Lifecycle Workflows."
+  ]
+ ],
  "29": [
   [
    0.05,
@@ -991,70 +1033,28 @@
   ],
   [
    15.412,
-   8.275,
-   "HR owns the codes, the data architect the schema, and application owners their own access rules and their service accounts' conversion."
+   8.425,
+   "H R owns the codes, the data architect the schema, and application owners their own access rules and their service accounts' conversion."
   ],
   [
-   23.688,
+   23.837,
    3.4,
    "The see-so owns the controls and the drift findings."
   ],
   [
-   27.087,
-   10.188,
-   "And you can start Monday without new tools: export the tree, name the HR feed early, populate the person key, remove other writers, and route your logs out."
+   27.238,
+   10.2,
+   "And you can start Monday without new tools: export the tree, name the H R feed early, populate the person key, remove other writers, and route your logs out."
   ],
   [
-   37.275,
+   37.438,
    2.938,
    "Make the attributes true, and keep them true."
   ],
   [
-   40.212,
+   40.375,
    0.762,
    "Thank you."
-  ]
- ],
- "14": [
-  [
-   0.05,
-   3.6,
-   "Before that, one map of every non-person identity."
-  ],
-  [
-   3.65,
-   14.075,
-   "The four A D kinds, service accounts, M S As, g M S As and d M S As, liv only in Active Directory, and they're described only by A D attributes; none of them carries an Azure tag."
-  ],
-  [
-   17.725,
-   16.2,
-   "Everything else lives in Entra I D: app registrations, managed identities, federated credentials and agent identities, each described by attributes on the object, such as its owners, the record it points to, and custom security attributes."
-  ],
-  [
-   33.925,
-   7.975,
-   "Tags come in only where there's an Azure resource: a user-assigned managed identity, or the Arc machine behind a server's identity."
-  ],
-  [
-   41.9,
-   1.312,
-   "The difference matters."
-  ],
-  [
-   43.212,
-   2.263,
-   "Attributes are fields on the object."
-  ],
-  [
-   45.475,
-   5.062,
-   "Tags are plain-text labels that Azure tools read, and they're never a security boundary."
-  ],
-  [
-   50.538,
-   2.8,
-   "Now, how attributes reach applications."
   ]
  ]
 }

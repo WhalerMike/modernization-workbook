@@ -6,49 +6,45 @@ At the cloud edge, Trinzic alone
 can see, but it can't control.
 
 2
-00:00:04.212 --> 00:00:08.177
+00:00:04.212 --> 00:00:08.201
 It can discover cloud networks and
 virtual machines on a schedule,
 
 3
-00:00:08.177 --> 00:00:10.700
-including GovCloud and Azure Government,
-
-4
-00:00:10.700 --> 00:00:15.025
+00:00:08.201 --> 00:00:12.551
 and it can import cloud zones so
 on-premises clients resolve cloud names.
 
-5
-00:00:15.025 --> 00:00:19.387
+4
+00:00:12.551 --> 00:00:16.912
 But that import is one way, and
 edits made in NIOS get overwritten.
 
-6
-00:00:19.387 --> 00:00:24.476
+5
+00:00:16.912 --> 00:00:22.002
 It can't create or own a cloud private
 zone, manage cloud resolver rules,
 
-7
-00:00:24.476 --> 00:00:27.898
+6
+00:00:22.002 --> 00:00:25.424
 act as the outside
 authority for AWS VPC IPAM,
 
-8
-00:00:27.898 --> 00:00:32.899
+7
+00:00:25.424 --> 00:00:30.425
 or run DHCP for cloud subnets; the
 clouds hand out their own addresses.
 
-9
-00:00:32.899 --> 00:00:37.592
+8
+00:00:30.425 --> 00:00:35.117
 So, as an inference: in the cloud,
 Infoblox's job is DNS and IPAM,
 
-10
-00:00:37.592 --> 00:00:42.375
+9
+00:00:35.117 --> 00:00:39.900
 and the cloud's own resolver
 still answers cloud private zones.
 
-11
-00:00:42.375 --> 00:00:44.280
+10
+00:00:39.900 --> 00:00:41.810
 That leads to three options.

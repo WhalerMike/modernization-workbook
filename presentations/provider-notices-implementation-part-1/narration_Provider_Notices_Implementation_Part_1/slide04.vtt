@@ -54,30 +54,30 @@ Only AWS has a cost: a
 qualifying support plan.
 
 12
-00:00:40.163 --> 00:00:46.107
-On government clouds, Microsoft 365 GCC
-stays on the worldwide Graph endpoint,
+00:00:40.163 --> 00:00:46.247
+On government clouds, a GCC tenant's Azure
+subscriptions are in commercial Azure,
 
 13
-00:00:46.107 --> 00:00:50.863
-while GCC High and the Defense
-Department have their own hosts.
+00:00:46.247 --> 00:00:50.788
+and Microsoft 365 GCC stays on
+the worldwide Graph endpoint.
 
 14
-00:00:50.863 --> 00:00:54.437
+00:00:50.788 --> 00:00:54.363
 Oracle's US Government
 Cloud has its own endpoints.
 
 15
-00:00:54.437 --> 00:00:56.576
+00:00:54.363 --> 00:00:56.500
 AWS GovCloud has one.
 
 16
-00:00:56.576 --> 00:00:59.730
+00:00:56.500 --> 00:00:59.655
 And Google's documentation
 doesn't list Personalized
 
 17
-00:00:59.730 --> 00:01:03.100
+00:00:59.655 --> 00:01:03.000
 Service Health in its FedRAMP
 Moderate or High packages.

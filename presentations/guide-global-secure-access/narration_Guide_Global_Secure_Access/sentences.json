@@ -46,48 +46,6 @@
    "We'll go in four parts: why, what, who, and how."
   ]
  ],
- "2": [
-  [
-   0.05,
-   1.15,
-   "Why does this matter?"
-  ],
-  [
-   1.2,
-   10.662,
-   "Global Secure Access is Microsoft's security service edge: Entra Internet Access and Entra Private Access, used as the agency's identity-aware network layer."
-  ],
-  [
-   11.863,
-   7.55,
-   "It carries three kinds of traffic, each with its own profile: Microsoft traffic, internet traffic, and private traffic."
-  ],
-  [
-   19.413,
-   5.075,
-   "Conditional Access decides, the service edge enforces, and the logs prove it."
-  ],
-  [
-   24.488,
-   2.25,
-   "Two facts shape everything after."
-  ],
-  [
-   26.738,
-   10.275,
-   "Learn's known limitations page says the service is available in G C C, but isn't yet supported in G C C High, D O D, or other sovereign clouds."
-  ],
-  [
-   37.013,
-   12.213,
-   "And Microsoft's Graph network access A P I's are in beta, which Learn says is subject to change and not supported in production, so the guide runs them by hand and keeps each result as evidence."
-  ],
-  [
-   49.225,
-   7.975,
-   "The twelve steps run in a set order, so the logs exist before anything is enforced, and nothing blocks before its path exists."
-  ]
- ],
  "3": [
   [
    0.05,
@@ -234,58 +192,6 @@
    "They run in a different order: logging first, and internet filtering and T L S inspection last."
   ]
  ],
- "6": [
-  [
-   0.05,
-   1.275,
-   "What's available where?"
-  ],
-  [
-   1.325,
-   9.475,
-   "Learn's statement covers the whole product: available in G C C, not yet supported in G C C High, D O D, or other sovereign clouds."
-  ],
-  [
-   10.8,
-   9.475,
-   "No feature page narrows that, so the G C C column rests on that one sentence, and a preview feature's G C C availability is not yet specified."
-  ],
-  [
-   20.275,
-   2.112,
-   "Licensing follows the profiles."
-  ],
-  [
-   22.387,
-   10.812,
-   "The Microsoft traffic profile, and with it source I P restoration, the compliant network check and universal tenant restrictions, comes with Entra I D P one or P two."
-  ],
-  [
-   33.2,
-   5.388,
-   "Internet Access and Private Access are separately licensed, or come with the Entra Suite."
-  ],
-  [
-   38.587,
-   5.175,
-   "Remote networks need at least fifty P one and Internet Access licenses combined."
-  ],
-  [
-   43.763,
-   7.713,
-   "One conflict: Graph's settings pages list U S Government L four and L five, but the product page says not yet supported."
-  ],
-  [
-   51.475,
-   5.5,
-   "The guide follows the product page, and the question goes to the agency's Microsoft account team."
-  ],
-  [
-   56.975,
-   2.862,
-   "Re-read the limitations page before each ring."
-  ]
- ],
  "7": [
   [
    0.05,
@@ -388,43 +294,6 @@
    55.975,
    3.225,
    "Learn's advice is at least two people for every role."
-  ]
- ],
- "9": [
-  [
-   0.05,
-   0.825,
-   "Now how."
-  ],
-  [
-   0.875,
-   14.15,
-   "Step one decides, per function, because the gates differ: Microsoft traffic, internet, private and branch can each be adopted, kept on the current V P N or S S E, run side by side, or deferred."
-  ],
-  [
-   15.025,
-   3.462,
-   "Read the tenant's licenses and onboarding state first."
-  ],
-  [
-   18.488,
-   10.275,
-   "The decision record, the guide's second artifact, holds a dated availability quote, the license count, compensating controls, exit criteria and an approver."
-  ],
-  [
-   28.762,
-   14.675,
-   "In G C C High or D O D, don't build: record defer, and keep a compensating path, such as a fed-ramp authorized S S E, per-application V P N access lists, and named-location Conditional Access."
-  ],
-  [
-   43.438,
-   8.1,
-   "Step two: Learn's operations guidance is to back up the configuration through Graph exports weekly and before every change."
-  ],
-  [
-   51.538,
-   5.55,
-   "The guide hashes that export, and it becomes the configuration evidence for every later step."
   ]
  ],
  "10": [
@@ -694,6 +563,132 @@
    "A sudden drop in traffic volume is an alert in itself: it covers offboarding, a disabled profile, or an outage."
   ]
  ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   10.662,
+   "Global Secure Access is Microsoft's security service edge: Entra Internet Access and Entra Private Access, used as the agency's identity-aware network layer."
+  ],
+  [
+   11.863,
+   7.55,
+   "It carries three kinds of traffic, each with its own profile: Microsoft traffic, internet traffic, and private traffic."
+  ],
+  [
+   19.413,
+   5.075,
+   "Conditional Access decides, the service edge enforces, and the logs prove it."
+  ],
+  [
+   24.488,
+   2.25,
+   "Two facts shape everything after."
+  ],
+  [
+   26.738,
+   6.075,
+   "Learn's known limitations page says the service is available in G C C, for the whole product."
+  ],
+  [
+   32.812,
+   12.213,
+   "And Microsoft's Graph network access A P I's are in beta, which Learn says is subject to change and not supported in production, so the guide runs them by hand and keeps each result as evidence."
+  ],
+  [
+   45.025,
+   7.975,
+   "The twelve steps run in a set order, so the logs exist before anything is enforced, and nothing blocks before its path exists."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.188,
+   "What's available in G C C?"
+  ],
+  [
+   2.237,
+   4.5,
+   "Learn's statement covers the whole product: available in G C C."
+  ],
+  [
+   6.737,
+   9.475,
+   "No feature page narrows that, so the G C C column rests on that one sentence, and a preview feature's G C C availability is not yet specified."
+  ],
+  [
+   16.212,
+   2.112,
+   "Licensing follows the profiles."
+  ],
+  [
+   18.325,
+   10.812,
+   "The Microsoft traffic profile, and with it source I P restoration, the compliant network check and universal tenant restrictions, comes with Entra I D P one or P two."
+  ],
+  [
+   29.137,
+   5.388,
+   "Internet Access and Private Access are separately licensed, or come with the Entra Suite."
+  ],
+  [
+   34.525,
+   5.175,
+   "Remote networks need at least fifty P one and Internet Access licenses combined."
+  ],
+  [
+   39.7,
+   7.112,
+   "The Graph network access A P I is usable from G C C on the worldwide Graph endpoint, in beta."
+  ],
+  [
+   46.812,
+   2.862,
+   "Re-read the limitations page before each ring."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.825,
+   "Now how."
+  ],
+  [
+   0.875,
+   14.15,
+   "Step one decides, per function, because the gates differ: Microsoft traffic, internet, private and branch can each be adopted, kept on the current V P N or S S E, run side by side, or deferred."
+  ],
+  [
+   15.025,
+   3.462,
+   "Read the tenant's licenses and onboarding state first."
+  ],
+  [
+   18.488,
+   10.275,
+   "The decision record, the guide's second artifact, holds a dated availability quote, the license count, compensating controls, exit criteria and an approver."
+  ],
+  [
+   28.762,
+   14.162,
+   "When a function is kept on the current service or deferred, the record names a compensating path, such as a fed-ramp High S S E offering, per-application V P N access lists, and named-location Conditional Access."
+  ],
+  [
+   42.925,
+   8.1,
+   "Step two: Learn's operations guidance is to back up the configuration through Graph exports weekly and before every change."
+  ],
+  [
+   51.025,
+   5.55,
+   "The guide hashes that export, and it becomes the configuration evidence for every later step."
+  ]
+ ],
  "16": [
   [
    0.05,
@@ -702,56 +697,56 @@
   ],
   [
    1.913,
-   5.275,
-   "Building in G C C High or D O D, where the service isn't yet supported."
+   5.688,
+   "Bypass and allow-list entries without an expiry, which leave permanent holes in filtering."
   ],
   [
-   7.188,
+   7.6,
    4.425,
    "Enforcing the compliant network before the client is everywhere in scope."
   ],
   [
-   11.613,
+   12.025,
    3.65,
    "Catching the emergency access accounts in a block policy."
   ],
   [
-   15.262,
+   15.675,
    7.075,
    "Leaving Quick Access as a V P N-wide range, which is the old lateral movement exposure under a new name."
   ],
   [
-   22.337,
+   22.75,
    5.263,
    "Issuing the T L S inspection certificate from the authentication P K I."
   ],
   [
-   27.6,
+   28.012,
    4.775,
    "And retiring the V P N's web path before sis-uh telemetry is agreed."
   ],
   [
-   32.375,
+   32.788,
    1.837,
    "Each has its guard in the steps."
   ],
   [
-   34.212,
-   14.2,
-   "The guide is plain about what it couldn't verify: government-cloud availability feature by feature, assigning users to a traffic profile through Graph, whether report-only policies apply security profiles, and the T L S status values."
+   34.625,
+   14.338,
+   "The guide is plain about what it couldn't verify: G C C availability feature by feature, assigning users to a traffic profile through Graph, whether report-only policies apply security profiles, and the T L S status values."
   ],
   [
-   48.413,
+   48.962,
    1.7,
    "Nothing was run in a tenant."
   ],
   [
-   50.112,
+   50.663,
    10.7,
    "To go further, read Network and Transport, chapter five; the Conditional Access library in Access and Privilege; and Security Operations and Telemetry, chapter three."
   ],
   [
-   60.812,
+   61.362,
    0.762,
    "Thank you."
   ]

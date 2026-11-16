@@ -7,41 +7,36 @@
   ],
   [
    4.225,
-   9.825,
-   "As in Part 1, one thing first: Provider Notices, An Implementation Guide, is a draft, awaiting the owner's review, so check it again after that review."
-  ],
-  [
-   14.05,
    10.012,
    "Part 1 collected four providers into one record: Azure Service Health, Microsoft 365, Oracle Cloud Infrastructure and AWS Health."
   ],
   [
-   24.062,
+   14.238,
    1.712,
    "Part 2 finishes the loop."
   ],
   [
-   25.775,
+   15.95,
    5.025,
    "Gate five adds Google Cloud's incidents, and records the gap for planned maintenance."
   ],
   [
-   30.8,
+   20.975,
    6.088,
    "Gate six routes every notice that needs action to an owner, as a task, without duplicates."
   ],
   [
-   36.888,
+   27.062,
    6.412,
    "Gate seven writes the weekly digest the owners read, and the evidence chain the security officer keeps."
   ],
   [
-   43.3,
+   33.475,
    8.188,
    "Then how to run it safely: control states and change rings, the dangers, the evidence file, rollback, and what couldn't be verified."
   ],
   [
-   51.487,
+   41.663,
    5.5,
    "The kit's code is illustrative, tested against fixtures, not against a lyve tenant."
   ]
@@ -720,16 +715,16 @@
   ],
   [
    41.85,
-   7.213,
-   "Oracle's CLI output keys and its third realm, and the gcloud flags for organization events, weren't confirmed."
+   6.1,
+   "Oracle's CLI output keys, and the gcloud flags for organization events, weren't confirmed."
   ],
   [
-   49.062,
+   47.95,
    3.862,
    "The ServiceNow side and the scheduler are the agency's to build."
   ],
   [
-   52.925,
+   51.812,
    2.462,
    "And nothing in the guide was run in a tenant."
   ]
@@ -782,11 +777,6 @@
   ],
   [
    50.55,
-   6.525,
-   "And one last time: this guide is a draft, awaiting the owner's review, so check it again after that review."
-  ],
-  [
-   57.075,
    0.762,
    "Thank you."
   ]

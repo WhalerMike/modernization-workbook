@@ -497,120 +497,6 @@
    "Approvers and lanes are still checked by hand."
   ]
  ],
- "10": [
-  [
-   0.05,
-   9.15,
-   "On the federal side, separation of duties calls for the table of one approval system per class, merged with its review, so the requester never approves."
-  ],
-  [
-   9.2,
-   2.312,
-   "Change control calls for the lane table."
-  ],
-  [
-   11.512,
-   4.513,
-   "Account management calls for the attribute map, with each attribute's writer."
-  ],
-  [
-   16.025,
-   4.537,
-   "And any autonomous class needs the authorizing official's signed acceptance."
-  ],
-  [
-   20.562,
-   4.088,
-   "To validate, the writer check flags attributes with two writers."
-  ],
-  [
-   24.65,
-   7.838,
-   "The rest is a manual review: one writer, one approval system, one lane and one record type each, all merged."
-  ],
-  [
-   32.487,
-   1.9,
-   "This gate uses nothing new."
-  ],
-  [
-   34.388,
-   6.4,
-   "The Entra features it relies on are available in Azure Government, and G C C is the commercial service."
-  ],
-  [
-   40.788,
-   7.987,
-   "If the H R pipeline isn't lyve yet, decide the writers now, and run the next gates against the H R extract the kit reads."
-  ],
-  [
-   48.775,
-   3.275,
-   "To roll back, re-decide through a reviewed change."
-  ],
-  [
-   52.05,
-   1.775,
-   "The record keeps the history."
-  ]
- ],
- "11": [
-  [
-   0.05,
-   7.412,
-   "The third gate connects the sources, then measures how far the directory has drifted from H R before anything gets fixed."
-  ],
-  [
-   7.463,
-   4.25,
-   "Pull H R into SailPoint as the authoritative source, read-only."
-  ],
-  [
-   11.713,
-   6.138,
-   "Connect Entra I D through SailPoint's connector, and Active Directory through its on-premises appliance."
-  ],
-  [
-   17.85,
-   6.188,
-   "In G C C High, point the Entra source at the U S government Graph and sign-in endpoints."
-  ],
-  [
-   24.038,
-   7.888,
-   "Correlate everything on the employee I D. Treat uncorrelated accounts as possible orphans, not errors to suppress."
-  ],
-  [
-   31.925,
-   6.312,
-   "Turn on native change detection, which fires one event for each account that changed between aggregations."
-  ],
-  [
-   38.237,
-   2.587,
-   "Then run the kit's drift reconciliation."
-  ],
-  [
-   40.825,
-   6.1,
-   "It joins H R, Graph and SailPoint on the key, and reports the workbook's drift classes."
-  ],
-  [
-   46.925,
-   2.35,
-   "File that first run as the baseline."
-  ],
-  [
-   49.275,
-   3.8,
-   "And expect a burst of high-severity findings in the first month."
-  ],
-  [
-   53.075,
-   2.112,
-   "That just means the measurement is working."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -936,6 +822,115 @@
    41.775,
    7.188,
    "To learn it in order, with exercises, use the learning path for Ticket-to-Machine on ServiceNow and SailPoint."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   9.15,
+   "On the federal side, separation of duties calls for the table of one approval system per class, merged with its review, so the requester never approves."
+  ],
+  [
+   9.2,
+   2.312,
+   "Change control calls for the lane table."
+  ],
+  [
+   11.512,
+   4.513,
+   "Account management calls for the attribute map, with each attribute's writer."
+  ],
+  [
+   16.025,
+   4.537,
+   "And any autonomous class needs the authorizing official's signed acceptance."
+  ],
+  [
+   20.562,
+   4.088,
+   "To validate, the writer check flags attributes with two writers."
+  ],
+  [
+   24.65,
+   7.838,
+   "The rest is a manual review: one writer, one approval system, one lane and one record type each, all merged."
+  ],
+  [
+   32.487,
+   1.9,
+   "This gate uses nothing new."
+  ],
+  [
+   34.388,
+   4.562,
+   "In G C C, the Entra features it relies on are the commercial service."
+  ],
+  [
+   38.95,
+   7.987,
+   "If the H R pipeline isn't lyve yet, decide the writers now, and run the next gates against the H R extract the kit reads."
+  ],
+  [
+   46.938,
+   3.275,
+   "To roll back, re-decide through a reviewed change."
+  ],
+  [
+   50.212,
+   1.775,
+   "The record keeps the history."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.412,
+   "The third gate connects the sources, then measures how far the directory has drifted from H R before anything gets fixed."
+  ],
+  [
+   7.463,
+   4.25,
+   "Pull H R into SailPoint as the authoritative source, read-only."
+  ],
+  [
+   11.713,
+   6.138,
+   "Connect Entra I D through SailPoint's connector, and Active Directory through its on-premises appliance."
+  ],
+  [
+   17.85,
+   7.888,
+   "Correlate everything on the employee I D. Treat uncorrelated accounts as possible orphans, not errors to suppress."
+  ],
+  [
+   25.738,
+   6.312,
+   "Turn on native change detection, which fires one event for each account that changed between aggregations."
+  ],
+  [
+   32.05,
+   2.587,
+   "Then run the kit's drift reconciliation."
+  ],
+  [
+   34.638,
+   6.1,
+   "It joins H R, Graph and SailPoint on the key, and reports the workbook's drift classes."
+  ],
+  [
+   40.737,
+   2.35,
+   "File that first run as the baseline."
+  ],
+  [
+   43.087,
+   3.8,
+   "And expect a burst of high-severity findings in the first month."
+  ],
+  [
+   46.888,
+   2.112,
+   "That just means the measurement is working."
   ]
  ]
 }

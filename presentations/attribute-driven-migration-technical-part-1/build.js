@@ -133,7 +133,7 @@ The wave go/no-go, drift findings, service-account conversion and AI sponsors ar
     "Service accounts, MSAs and gMSAs",
     "Service principals, managed and workload identities, AI agents",
     "The object-type crosswalk",
-    "PIV and CAC binding; certificateUserIds",
+    "PIV binding; certificateUserIds",
   ], 13.5);
   const c = panel(s, "P2C", 8.85, 1.5, 3.9, null, HEX.amber, HEX.amberTint, "MODULE 3", "Running it", [
     "One analyst through a mover event",
@@ -149,7 +149,7 @@ The wave go/no-go, drift findings, service-account conversion and AI sponsors ar
 
 Module 1 of Part 2 is the Intune and Arc tracks: what Intune covers, which isn't only Windows, how it targets devices and how device attributes are written, the dangers of dynamic device groups, what Azure Arc covers and how a server becomes attribute-driven through Azure Resource Manager, and the four-tier strategy for devices neither tool reaches.
 
-Module 2 is the non-person track: service accounts, MSAs and gMSAs and their targets; service principals, managed identities, workload identities and AI agents, each with an owner and sponsor, a credential and a lifecycle; the object-type crosswalk; and PIV and CAC certificate binding.
+Module 2 is the non-person track: service accounts, MSAs and gMSAs and their targets; service principals, managed identities, workload identities and AI agents, each with an owner and sponsor, a credential and a lifecycle; the object-type crosswalk; and PIV certificate binding.
 
 Module 3 runs it: one analyst through a mover event, the phased cutover, drift correction at the source, the limits of administrative units and Lifecycle Workflows and what still needs AD during hybrid, and the checklist and decisions for every track. Part 2 opens with a short recap of the four tracks and the store table.`,
   `${G}, "Beyond users," Stages 7–8, "Limits," "Checklist."`);

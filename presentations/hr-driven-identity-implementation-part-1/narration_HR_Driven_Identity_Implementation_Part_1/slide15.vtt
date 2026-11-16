@@ -50,31 +50,26 @@ Add the run history for the last group
 of hires, and the readiness rate.
 
 11
-00:00:35.487 --> 00:00:40.575
-Lifecycle Workflows and entitlement
-management are available in Azure Government.
+00:00:35.487 --> 00:00:39.076
+Lifecycle Workflows,
+entitlement management and the
 
 12
-00:00:40.575 --> 00:00:45.524
-But Microsoft's government table has
-no row for the Temporary Access Pass,
+00:00:39.076 --> 00:00:42.825
+Temporary Access Pass are the
+commercial service in GCC.
 
 13
-00:00:45.524 --> 00:00:48.688
-so its availability in
-GCC High isn't confirmed.
-
-14
-00:00:48.688 --> 00:00:52.201
+00:00:42.825 --> 00:00:46.338
 Before Governance is licensed,
 the pipeline enables the
 
-15
-00:00:52.201 --> 00:00:55.713
+14
+00:00:46.338 --> 00:00:49.850
 account on the hire date and
 the help desk issues the pass.
 
-16
-00:00:55.713 --> 00:00:58.700
+15
+00:00:49.850 --> 00:00:52.820
 To roll back, disable
 the workflow's schedule.

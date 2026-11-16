@@ -24,45 +24,40 @@ afterward, and proves it did.
 It does that in seven gates.
 
 6
-00:00:15.112 --> 00:00:18.680
+00:00:15.112 --> 00:00:18.557
 For each gate, we'll cover
 what done means, the steps,
 
 7
-00:00:18.680 --> 00:00:22.509
-the commands from the
-developer workbook's first lab,
+00:00:18.557 --> 00:00:24.018
+the commands from the developer workbook's
+first lab, the federal requirement
 
 8
-00:00:22.509 --> 00:00:26.511
-the federal requirement and
-the evidence an ISSO keeps,
+00:00:24.018 --> 00:00:29.226
+and the evidence an ISSO keeps, what's
+available in GCC, and how to roll it back.
 
 9
-00:00:26.511 --> 00:00:30.601
-what's available in GCC and GCC
-High, and how to roll it back.
-
-10
-00:00:30.601 --> 00:00:35.007
+00:00:29.226 --> 00:00:33.632
 Part 1 takes the first three gates:
 one writer for every account state,
 
-11
-00:00:35.007 --> 00:00:39.800
+10
+00:00:33.632 --> 00:00:38.425
 employees and contractors from their
 sources, and joiners ready on day one.
 
-12
-00:00:39.800 --> 00:00:41.675
+11
+00:00:38.425 --> 00:00:40.300
 Part 2 takes the other four.
 
-13
-00:00:41.675 --> 00:00:45.825
+12
+00:00:40.300 --> 00:00:44.450
 Design guidance is labeled, and the
 workbook's code is illustrative,
 
-14
-00:00:45.825 --> 00:00:49.010
+13
+00:00:44.450 --> 00:00:47.620
 tested against fixtures
 rather than a live tenant.

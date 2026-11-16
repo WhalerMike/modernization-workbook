@@ -34,35 +34,35 @@ edge enforces, and the logs prove it.
 Two facts shape everything after.
 
 8
-00:00:26.738 --> 00:00:32.017
-Learn's known limitations page says
-the service is available in G C C,
+00:00:26.738 --> 00:00:30.022
+Learn's known limitations
+page says the service
 
 9
-00:00:32.017 --> 00:00:37.013
-but isn't yet supported in G C C High,
-D O D, or other sovereign clouds.
+00:00:30.022 --> 00:00:32.813
+is available in G C C,
+for the whole product.
 
 10
-00:00:37.013 --> 00:00:40.502
+00:00:32.813 --> 00:00:36.301
 And Microsoft's Graph network
 access A P I's are in beta,
 
 11
-00:00:40.502 --> 00:00:45.102
+00:00:36.301 --> 00:00:40.901
 which Learn says is subject to change
 and not supported in production,
 
 12
-00:00:45.102 --> 00:00:49.226
+00:00:40.901 --> 00:00:45.025
 so the guide runs them by hand
 and keeps each result as evidence.
 
 13
-00:00:49.226 --> 00:00:54.436
+00:00:45.025 --> 00:00:50.236
 The twelve steps run in a set order, so
 the logs exist before anything is enforced,
 
 14
-00:00:54.436 --> 00:00:57.260
+00:00:50.236 --> 00:00:53.060
 and nothing blocks before its path exists.

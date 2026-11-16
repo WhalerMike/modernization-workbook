@@ -1,65 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.250
+00:00:00.050 --> 00:00:04.191
 Ownership records only help if the
 old and new systems agree on them.
 
 2
-00:00:04.250 --> 00:00:07.321
+00:00:04.191 --> 00:00:07.214
 Infoblox has two modes,
 Interim and Standard,
 
 3
-00:00:07.321 --> 00:00:10.725
+00:00:07.214 --> 00:00:10.570
 and documents that checking
 fails in three cases.
 
 4
-00:00:10.725 --> 00:00:14.616
+00:00:10.570 --> 00:00:14.400
 The big one is migration from
 Microsoft systems, where,
 
 5
-00:00:14.616 --> 00:00:19.025
+00:00:14.400 --> 00:00:18.747
 in Infoblox's words, new DDNS
 updates fail after the migration.
 
 6
-00:00:19.025 --> 00:00:22.535
+00:00:18.747 --> 00:00:22.224
 The others are mixed DHCP
 vendors and laptops whose
 
 7
-00:00:22.535 --> 00:00:25.800
+00:00:22.224 --> 00:00:25.443
 wired and Wi-Fi interfaces
 look like two clients.
 
 8
-00:00:25.800 --> 00:00:29.684
+00:00:25.443 --> 00:00:29.252
 Macs add a twist: private Wi-Fi
 addresses can rotate, and,
 
 9
-00:00:29.684 --> 00:00:34.862
+00:00:29.252 --> 00:00:34.358
 as an inference, that changes the
 identity the ownership record rests on.
 
 10
-00:00:34.862 --> 00:00:39.149
+00:00:34.358 --> 00:00:38.545
 An MDM profile can turn it off
 on macOS fifteen and later.
 
 11
-00:00:39.149 --> 00:00:43.489
+00:00:38.545 --> 00:00:42.877
 The design guidance: pick one
 mode once, migrate deliberately,
 
 12
-00:00:43.489 --> 00:00:47.062
+00:00:42.877 --> 00:00:46.400
 and turn off address
 randomization on agency Wi-Fi.
 
 13
-00:00:47.062 --> 00:00:49.060
+00:00:46.400 --> 00:00:49.060
 Next, IPv6.

@@ -247,53 +247,6 @@
    "Enforcement waits for the see-so's decision and a reviewed sign-in summary."
   ]
  ],
- "5": [
-  [
-   0.05,
-   10.887,
-   "On the federal side, least privilege and the review of privileged accounts call for the kit runs, with a justification for every high grant, and the results of the pim access reviews."
-  ],
-  [
-   10.938,
-   11.3,
-   "sis-uh's baseline requires that only administrators register apps, that user consent is restricted, and that an admin consent workflow is in place, so keep the ScubaGear report."
-  ],
-  [
-   22.238,
-   2.625,
-   "To validate, run three kit checks."
-  ],
-  [
-   24.863,
-   5.05,
-   "One lists every high-privilege grant, and each must be justified or removed."
-  ],
-  [
-   29.913,
-   6.575,
-   "One lists single-tenant apps outside a directly assigned policy, and no Tier 1 app may be on it."
-  ],
-  [
-   36.487,
-   3.425,
-   "One looks for managed identities with broad Azure roles."
-  ],
-  [
-   39.913,
-   6.412,
-   "Workload I D Premium is available in Azure Government through the account manager, but its free trial isn't."
-  ],
-  [
-   46.325,
-   4.388,
-   "Without Premium, existing policies keep working but can't be edited."
-  ],
-  [
-   50.712,
-   6.112,
-   "To roll back, set the policy back to report-only, and restore a removed grant through approval."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -646,58 +599,6 @@
    "Orphans and passwords that never expire are still open."
   ]
  ],
- "12": [
-  [
-   0.05,
-   9.4,
-   "On the federal side, account management calls for the identity record, the owner-change and decommission tickets, and the kit runs for owners and agent sponsors."
-  ],
-  [
-   9.45,
-   5.263,
-   "Identifier management calls for a record keyed by object I D, never reused."
-  ],
-  [
-   14.713,
-   7.6,
-   "Audit controls call for the logs routed out of Entra I D, including every credential added and every deactivation."
-  ],
-  [
-   22.312,
-   3.837,
-   "To validate, run the owner and expiry checks every week."
-  ],
-  [
-   26.15,
-   3.9,
-   "A new app with fewer than two owners opens a ticket that week."
-  ],
-  [
-   30.05,
-   4.088,
-   "No agent may go past ten business days without a confirmed sponsor."
-  ],
-  [
-   34.138,
-   4.287,
-   "An optional preview check lists service principals idle for ninety days."
-  ],
-  [
-   38.425,
-   4.7,
-   "Then run one test owner change and one test decommission, end to end."
-  ],
-  [
-   43.125,
-   7.438,
-   "The sign-in activity report is listed only for the commercial service, so G C C has it, and G C C High doesn't."
-  ],
-  [
-   50.562,
-   6.987,
-   "To roll back, reactivate, or restore within thirty days and re-create the Conditional Access assignments."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -753,53 +654,6 @@
    48.325,
    8.438,
    "And on an Arc server, every allowed process presents the same identity, so treat one login per server as the unit of attribution."
-  ]
- ],
- "14": [
-  [
-   0.05,
-   5.9,
-   "A I agents follow this guide, with a few additions from the workbook's A I Identity Governance book."
-  ],
-  [
-   5.95,
-   2.638,
-   "Every agent needs a sponsor when it's created."
-  ],
-  [
-   8.588,
-   5.85,
-   "The blueprint holds the credentials, so one action on the blueprint reaches every agent made from it."
-  ],
-  [
-   14.438,
-   6.463,
-   "Ordinary users can't create blueprints, and a production handshake comes before any agent goes lyve."
-  ],
-  [
-   20.9,
-   6.325,
-   "No production blueprint holds a secret, and every A P I key is recorded as an exception."
-  ],
-  [
-   27.225,
-   5.688,
-   "Access comes through packages with end dates, so a sponsor who does nothing lets access expire."
-  ],
-  [
-   32.913,
-   9.988,
-   "The agent platform has been generally available since April 2026, with a partial subset in G C C. Agent Conditional Access is still in preview."
-  ],
-  [
-   42.9,
-   6.713,
-   "The workbook's ninth chapter checks all of this, and here it finds twenty-two findings, four of them top priority."
-  ],
-  [
-   49.612,
-   7.8,
-   "For G C C High and D O D, Microsoft has published nothing, so govern the service principals the agents run as."
   ]
  ],
  "15": [
@@ -924,6 +778,152 @@
    54.888,
    2.188,
    "These gates build the record that does."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   10.887,
+   "On the federal side, least privilege and the review of privileged accounts call for the kit runs, with a justification for every high grant, and the results of the pim access reviews."
+  ],
+  [
+   10.938,
+   11.3,
+   "sis-uh's baseline requires that only administrators register apps, that user consent is restricted, and that an admin consent workflow is in place, so keep the ScubaGear report."
+  ],
+  [
+   22.238,
+   2.625,
+   "To validate, run three kit checks."
+  ],
+  [
+   24.863,
+   5.05,
+   "One lists every high-privilege grant, and each must be justified or removed."
+  ],
+  [
+   29.913,
+   6.575,
+   "One lists single-tenant apps outside a directly assigned policy, and no Tier 1 app may be on it."
+  ],
+  [
+   36.487,
+   3.425,
+   "One looks for managed identities with broad Azure roles."
+  ],
+  [
+   39.913,
+   4.263,
+   "Workload I D Premium is needed to create or change these policies."
+  ],
+  [
+   44.175,
+   3.962,
+   "Without it, existing policies keep working but can't be edited."
+  ],
+  [
+   48.138,
+   6.112,
+   "To roll back, set the policy back to report-only, and restore a removed grant through approval."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   9.4,
+   "On the federal side, account management calls for the identity record, the owner-change and decommission tickets, and the kit runs for owners and agent sponsors."
+  ],
+  [
+   9.45,
+   5.263,
+   "Identifier management calls for a record keyed by object I D, never reused."
+  ],
+  [
+   14.713,
+   7.6,
+   "Audit controls call for the logs routed out of Entra I D, including every credential added and every deactivation."
+  ],
+  [
+   22.312,
+   3.837,
+   "To validate, run the owner and expiry checks every week."
+  ],
+  [
+   26.15,
+   3.9,
+   "A new app with fewer than two owners opens a ticket that week."
+  ],
+  [
+   30.05,
+   4.088,
+   "No agent may go past ten business days without a confirmed sponsor."
+  ],
+  [
+   34.138,
+   4.287,
+   "An optional preview check lists service principals idle for ninety days."
+  ],
+  [
+   38.425,
+   4.7,
+   "Then run one test owner change and one test decommission, end to end."
+  ],
+  [
+   43.125,
+   5.35,
+   "The sign-in activity report is listed for the commercial service, so G C C has it."
+  ],
+  [
+   48.475,
+   6.987,
+   "To roll back, reactivate, or restore within thirty days and re-create the Conditional Access assignments."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   5.9,
+   "A I agents follow this guide, with a few additions from the workbook's A I Identity Governance book."
+  ],
+  [
+   5.95,
+   2.638,
+   "Every agent needs a sponsor when it's created."
+  ],
+  [
+   8.588,
+   5.85,
+   "The blueprint holds the credentials, so one action on the blueprint reaches every agent made from it."
+  ],
+  [
+   14.438,
+   6.463,
+   "Ordinary users can't create blueprints, and a production handshake comes before any agent goes lyve."
+  ],
+  [
+   20.9,
+   6.325,
+   "No production blueprint holds a secret, and every A P I key is recorded as an exception."
+  ],
+  [
+   27.225,
+   5.688,
+   "Access comes through packages with end dates, so a sponsor who does nothing lets access expire."
+  ],
+  [
+   32.913,
+   9.988,
+   "The agent platform has been generally available since April 2026, with a partial subset in G C C. Agent Conditional Access is still in preview."
+  ],
+  [
+   42.9,
+   6.713,
+   "The workbook's ninth chapter checks all of this, and here it finds twenty-two findings, four of them top priority."
+  ],
+  [
+   49.612,
+   6.525,
+   "Where an agent feature isn't available in G C C, govern the service principals the agents run as."
   ]
  ]
 }

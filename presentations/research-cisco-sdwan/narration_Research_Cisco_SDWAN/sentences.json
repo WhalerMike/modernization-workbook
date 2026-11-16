@@ -461,48 +461,6 @@
    "Next, FIPS."
   ]
  ],
- "12": [
-  [
-   0.05,
-   6.95,
-   "If an acquisition has to state a FIPS 140-3 expectation, the honest answer has two halves."
-  ],
-  [
-   7.0,
-   13.4,
-   "The control components are in good shape: FIPS mode is on by default on recent releases and in the hosted environment, and Cisco's letter for the current train cites an active FIPS 140-3 module."
-  ],
-  [
-   20.4,
-   1.363,
-   "The edges are different."
-  ],
-  [
-   21.762,
-   7.287,
-   "Cisco's current letters don't name SD-WAN mode, and Cisco's own example shows an edge with FIPS mode disabled."
-  ],
-  [
-   29.05,
-   5.275,
-   "So get edge validation in SD-WAN mode as a written vendor commitment before award."
-  ],
-  [
-   34.325,
-   9.0,
-   "For edge hardening, the agency sets its own baseline from the Center for Internet Security benchmark for IOS XE and Cisco's hardening guide."
-  ],
-  [
-   43.325,
-   4.25,
-   "The router STIGs are Defense material, an optional cross-check at most."
-  ],
-  [
-   47.575,
-   1.863,
-   "Next, tick three point oh."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -817,6 +775,43 @@
    41.487,
    1.125,
    "Thanks for listening."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.95,
+   "If an acquisition has to state a FIPS 140-3 expectation, the honest answer has two halves."
+  ],
+  [
+   7.0,
+   13.4,
+   "The control components are in good shape: FIPS mode is on by default on recent releases and in the hosted environment, and Cisco's letter for the current train cites an active FIPS 140-3 module."
+  ],
+  [
+   20.4,
+   1.363,
+   "The edges are different."
+  ],
+  [
+   21.762,
+   7.287,
+   "Cisco's current letters don't name SD-WAN mode, and Cisco's own example shows an edge with FIPS mode disabled."
+  ],
+  [
+   29.05,
+   5.275,
+   "So get edge validation in SD-WAN mode as a written vendor commitment before award."
+  ],
+  [
+   34.325,
+   9.0,
+   "For edge hardening, the agency sets its own baseline from the Center for Internet Security benchmark for IOS XE and Cisco's hardening guide."
+  ],
+  [
+   43.325,
+   1.863,
+   "Next, tick three point oh."
   ]
  ]
 }

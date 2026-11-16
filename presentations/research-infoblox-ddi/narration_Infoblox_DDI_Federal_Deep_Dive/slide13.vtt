@@ -40,20 +40,16 @@ infrastructure aren't a cloud service,
 so no FedRAMP authorization covers them.
 
 9
-00:00:34.451 --> 00:00:37.332
+00:00:34.451 --> 00:00:39.388
 They sit inside the agency's own boundary,
+and that's the path for High systems.
 
 10
-00:00:37.332 --> 00:00:40.213
-and that's the path for
-High or DoD systems.
-
-11
-00:00:40.213 --> 00:00:44.012
+00:00:39.388 --> 00:00:43.188
 With reuse at zero, expect
 to do your own ATO work.
 
-12
-00:00:44.012 --> 00:00:48.910
+11
+00:00:43.188 --> 00:00:48.100
 Ask, too, for a list of features the
 FedRAMP instance has versus commercial.

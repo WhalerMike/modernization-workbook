@@ -1,59 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.475
+00:00:00.050 --> 00:00:04.078
 IPv6 adds addresses that nobody registers.
 
 2
-00:00:03.475 --> 00:00:09.137
+00:00:04.078 --> 00:00:09.507
 If a DHCPv6 server assigns the address,
 it knows it and can register the record.
 
 3
-00:00:09.137 --> 00:00:13.920
+00:00:09.507 --> 00:00:14.162
 But with SLAAC, the device builds its own
 address from what the router announces,
 
 4
-00:00:13.920 --> 00:00:16.674
+00:00:14.162 --> 00:00:16.852
 and creates temporary
 privacy addresses too.
 
 5
-00:00:16.674 --> 00:00:20.116
+00:00:16.852 --> 00:00:20.201
 As an inference, no server
 ever learns those addresses,
 
 6
-00:00:20.116 --> 00:00:23.710
+00:00:20.201 --> 00:00:23.699
 so no server-side registration
 creates a record for them,
 
 7
-00:00:23.710 --> 00:00:27.763
+00:00:23.699 --> 00:00:27.643
 and a post-AD Windows client can't
 register them securely itself.
 
 8
-00:00:27.763 --> 00:00:32.850
+00:00:27.643 --> 00:00:32.585
 The consequence, also an inference:
 treat those records as absent by design.
 
 9
-00:00:32.850 --> 00:00:36.950
+00:00:32.585 --> 00:00:36.517
 Find endpoints by their
 DHCP-assigned addresses,
 
 10
-00:00:36.950 --> 00:00:41.850
+00:00:36.517 --> 00:00:41.995
 and track IPv6 activity from
 DHCP and neighbor logs, not DNS.
 
 11
-00:00:41.850 --> 00:00:45.775
+00:00:41.995 --> 00:00:45.816
 Whether Windows registers temporary
 addresses couldn't be verified.
 
 12
-00:00:45.775 --> 00:00:47.350
+00:00:45.816 --> 00:00:47.350
 Servers work differently.

@@ -1,50 +1,50 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.137
+00:00:00.050 --> 00:00:03.116
 Drivers are how the platform
 reaches the outside world.
 
 2
-00:00:03.137 --> 00:00:08.938
+00:00:03.116 --> 00:00:08.864
 CA drivers request certificates
 from AD CS, public CAs or AWS.
 
 3
-00:00:08.938 --> 00:00:13.125
+00:00:08.864 --> 00:00:13.036
 Application drivers install
 certificates on IIS, F5,
 
 4
-00:00:13.125 --> 00:00:17.788
+00:00:13.036 --> 00:00:17.668
 NetScaler, Key Vault and the
 rest, usually without any agent.
 
 5
-00:00:17.788 --> 00:00:19.324
+00:00:17.668 --> 00:00:19.222
 Where a driver can't reach,
 
 6
-00:00:19.324 --> 00:00:22.688
+00:00:19.222 --> 00:00:22.563
 a small Server Agent checks
 in and does the work locally.
 
 7
-00:00:22.688 --> 00:00:25.809
+00:00:22.563 --> 00:00:25.887
 Everything is stored in
 one SQL Server database,
 
 8
-00:00:25.809 --> 00:00:29.007
+00:00:25.887 --> 00:00:29.065
 and that database's secrets
 are protected by a key —
 
 9
-00:00:29.007 --> 00:00:33.376
+00:00:29.065 --> 00:00:33.405
 either a software key you must back
 up, or a hardware security module.
 
 10
-00:00:33.376 --> 00:00:38.020
+00:00:33.405 --> 00:00:38.020
 Lose that key and you lose the data,
 which is why it's treated as Tier 0.

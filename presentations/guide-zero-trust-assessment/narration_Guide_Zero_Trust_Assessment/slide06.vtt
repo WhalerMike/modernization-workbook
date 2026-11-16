@@ -1,69 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.775
-Does it work in a government cloud?
+00:00:00.050 --> 00:00:01.788
+Does it work in G C C?
 
 2
-00:00:01.775 --> 00:00:05.788
-Microsoft Learn's three Zero
-Trust Assessment pages don't say.
+00:00:01.788 --> 00:00:07.063
+Microsoft Learn's three Zero Trust
+Assessment pages don't mention G C C.
 
 3
-00:00:05.788 --> 00:00:11.219
-The tool's three point one point oh
-source does: its connect command takes an
+00:00:07.063 --> 00:00:12.559
+But G C C uses the worldwide endpoints,
+so a G C C run uses the tool's defaults:
 
 4
-00:00:11.219 --> 00:00:16.475
-environment, Global, U S Gov or U S Gov
-D O D, and an Exchange environment name.
+00:00:12.559 --> 00:00:17.324
+the Global environment, and the
+default Exchange environment.
 
 5
-00:00:16.475 --> 00:00:20.163
-Each service it signs in to is
-documented per cloud on Learn,
+00:00:17.324 --> 00:00:21.050
+Each service the tool signs
+in to is documented on Learn.
 
 6
-00:00:20.163 --> 00:00:23.775
-and the guide matches the tool's
-parameters to those pages.
+00:00:21.050 --> 00:00:24.041
+Microsoft Graph is graph
+dot microsoft dot com.
 
 7
-00:00:23.775 --> 00:00:28.459
-One place they conflict: for Security
-and Compliance in D O D, Learn gives
+00:00:24.041 --> 00:00:27.185
+Exchange Online needs no
+environment parameter,
 
 8
-00:00:28.459 --> 00:00:31.158
-compliance dot D O D
-dot microsoft dot com,
+00:00:27.185 --> 00:00:30.712
+and Security and Compliance
+uses its default endpoint.
 
 9
-00:00:31.158 --> 00:00:34.175
-and the tool's source
-uses a different address.
+00:00:30.712 --> 00:00:33.762
+Azure is Azure Cloud,
+from the tool's source.
 
 10
-00:00:34.175 --> 00:00:35.963
-Which one works wasn't tested.
+00:00:33.762 --> 00:00:37.999
+The SharePoint admin address is the
+tenant's admin dot sharepoint dot com,
 
 11
-00:00:35.963 --> 00:00:40.998
-For SharePoint, the tool infers a
-sharepoint dot U S admin address,
+00:00:37.999 --> 00:00:42.513
+and Azure Information Protection uses
+its default, from the tool's source only.
 
 12
-00:00:40.998 --> 00:00:44.262
-so pass it explicitly;
-D O D's isn't specified.
+00:00:42.513 --> 00:00:47.388
+Where neither Learn nor the tool's source
+says, the guide says not yet specified.
 
 13
-00:00:44.262 --> 00:00:48.431
-Until a run is proved in your cloud,
-run one pillar at a time in a test
-
-14
-00:00:48.431 --> 00:00:53.110
-tenant of the same cloud, and keep
-ScubaGear as the federal baseline tool.
+00:00:47.388 --> 00:00:50.660
+And keep ScubaGear as the
+federal baseline tool.

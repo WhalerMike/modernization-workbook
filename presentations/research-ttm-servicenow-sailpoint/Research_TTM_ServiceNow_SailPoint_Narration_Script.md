@@ -46,7 +46,7 @@ The remaining fixes lean more on people. An account that matches nobody goes to 
 
 ## Slide 12 — Federal availability and cautions
 
-Federal availability is where you need the most care. For a Microsoft 365 GCC tenant, the worldwide Graph endpoints apply, and SailPoint documents endpoint overrides for GCC High. ServiceNow's Entra spoke fits GCC through its default endpoint, but its page doesn't cover GCC High, and it needs an Integration Hub subscription. SailPoint's ServiceNow apps aren't confirmed in ServiceNow's government Store. Then three cautions. SailPoint's cloud connectors call Graph from SailPoint's cloud, and only Active Directory runs through its on-premises appliance, so record which actions run from the vendor's cloud. A vendor's MFA feature isn't a help desk reset with identity proofing. And confirm what's in the FedRAMP environment before relying on any of it. So, what's next?
+Federal availability is where you need the most care. For a Microsoft 365 GCC tenant, the worldwide Graph endpoints apply. ServiceNow's Entra spoke fits GCC through its default endpoint, and it needs an Integration Hub subscription. SailPoint's ServiceNow apps aren't confirmed in ServiceNow's government Store. Then three cautions. SailPoint's cloud connectors call Graph from SailPoint's cloud, and only Active Directory runs through its on-premises appliance, so record which actions run from the vendor's cloud. A vendor's MFA feature isn't a help desk reset with identity proofing. And confirm what's in the FedRAMP environment before relying on any of it. So, what's next?
 
 ## Slide 13 — What to verify, decide, and read next
 

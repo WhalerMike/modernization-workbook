@@ -1,52 +1,52 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.025
+00:00:00.050 --> 00:00:02.012
 Two things to settle before you build.
 
 2
-00:00:02.025 --> 00:00:03.688
+00:00:02.012 --> 00:00:03.657
 First, where it runs.
 
 3
-00:00:03.688 --> 00:00:07.049
+00:00:03.657 --> 00:00:07.006
 There's no FedRAMP package
 for CyberArk's cloud edition,
 
 4
-00:00:07.049 --> 00:00:11.652
+00:00:07.006 --> 00:00:11.580
 so the program runs the self-hosted
 edition inside the agency's own boundary,
 
 5
-00:00:11.652 --> 00:00:14.575
+00:00:11.580 --> 00:00:14.484
 next to the certificate
 authorities it manages.
 
 6
-00:00:14.575 --> 00:00:18.873
+00:00:14.484 --> 00:00:18.745
 Second, what it runs on: Windows
 servers, English-language builds,
 
 7
-00:00:18.873 --> 00:00:24.063
+00:00:18.745 --> 00:00:24.137
 all on the same version, with a SQL Server
 database that lives on its own server.
 
 8
-00:00:24.063 --> 00:00:26.830
+00:00:24.137 --> 00:00:26.888
 Plan for an upgrade
 roughly every six months,
 
 9
-00:00:26.830 --> 00:00:29.374
+00:00:26.888 --> 00:00:29.410
 because that's CyberArk's release rhythm.
 
 10
-00:00:29.374 --> 00:00:31.400
+00:00:29.410 --> 00:00:31.426
 The full requirements are on the slide.
 
 11
-00:00:31.400 --> 00:00:35.640
+00:00:31.426 --> 00:00:35.640
 Next, let's open the box and see what
 the platform is actually made of.

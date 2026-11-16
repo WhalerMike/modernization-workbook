@@ -531,63 +531,6 @@
    "Test it in audit mode before anything enforces it."
   ]
  ],
- "12": [
-  [
-   0.05,
-   14.113,
-   "Many estates already run Red Hat on AWS with Ansible, and Arc can connect it: Red Hat is on the agent's list, and EC2 instances take the agent one by one, since the multicloud connector isn't in Azure Government."
-  ],
-  [
-   14.162,
-   2.475,
-   "The danger is two tools on one setting."
-  ],
-  [
-   16.637,
-   7.138,
-   "Under auto-correct, Ansible and machine configuration can flip a value back and forth while both report success."
-  ],
-  [
-   23.775,
-   3.875,
-   "So the Ansible guide sets five rules, as design guidance."
-  ],
-  [
-   27.65,
-   4.25,
-   "The owner is an attribute, config_owner in the CMDB."
-  ],
-  [
-   31.9,
-   6.125,
-   "Ansible writes only what it owns, enforced by its inventory group and an assertion in the playbook."
-  ],
-  [
-   38.025,
-   1.688,
-   "Onboarding isn't owning."
-  ],
-  [
-   39.712,
-   2.1,
-   "An exception is a dated record."
-  ],
-  [
-   41.812,
-   5.737,
-   "And patching has one owner too, so where Ansible patches, Update Manager only assesses."
-  ],
-  [
-   47.55,
-   2.975,
-   "Both owners are mirrored to Arc tags at onboarding."
-  ],
-  [
-   50.525,
-   7.725,
-   "VK-ARC-07 then catches a server another tool owns that machine configuration is also enforcing."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -648,58 +591,6 @@
    50.9,
    5.463,
    "So count the groups that won't go dynamic, and test every overlap, not just each tool."
-  ]
- ],
- "14": [
-  [
-   0.05,
-   3.1,
-   "Gate 6 is the piv and CAC binding."
-  ],
-  [
-   3.15,
-   11.912,
-   "Certificate sign-in is attribute-driven too: Entra ID matches a field of the certificate to a field of the account, so whoever writes that field decides which certificate signs in as whom."
-  ],
-  [
-   15.062,
-   4.662,
-   "The binding lives in certificateUserIds, as prefixed values."
-  ],
-  [
-   19.725,
-   2.663,
-   "Names and email addresses are low affinity."
-  ],
-  [
-   22.387,
-   7.287,
-   "The key identifier, the public key hash, and issuer with serial number are high affinity, because they can't be reused."
-  ],
-  [
-   29.675,
-   3.837,
-   "That also means a reissued or renewed card changes the value."
-  ],
-  [
-   33.513,
-   6.3,
-   "The limits: ten values per user, each unique in the tenant, with case-sensitive prefixes."
-  ],
-  [
-   39.812,
-   5.25,
-   "For cloud-only users, a Privileged Authentication Administrator or Graph writes it."
-  ],
-  [
-   45.062,
-   8.725,
-   "For synced users, only Entra Connect can, from altSecurityIdentities in A D, and Microsoft doesn't document Cloud Sync for it."
-  ],
-  [
-   53.788,
-   3.125,
-   "Treat that A D write path like an access slot."
   ]
  ],
  "15": [
@@ -799,6 +690,115 @@
    46.237,
    0.762,
    "Thank you."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   12.887,
+   "Many estates already run Red Hat on AWS with Ansible, and Arc can connect it: Red Hat is on the agent's list, and EC2 instances take the agent, one by one or through the multicloud connector."
+  ],
+  [
+   12.938,
+   2.475,
+   "The danger is two tools on one setting."
+  ],
+  [
+   15.412,
+   7.138,
+   "Under auto-correct, Ansible and machine configuration can flip a value back and forth while both report success."
+  ],
+  [
+   22.55,
+   3.875,
+   "So the Ansible guide sets five rules, as design guidance."
+  ],
+  [
+   26.425,
+   4.25,
+   "The owner is an attribute, config_owner in the CMDB."
+  ],
+  [
+   30.675,
+   6.125,
+   "Ansible writes only what it owns, enforced by its inventory group and an assertion in the playbook."
+  ],
+  [
+   36.8,
+   1.688,
+   "Onboarding isn't owning."
+  ],
+  [
+   38.487,
+   2.1,
+   "An exception is a dated record."
+  ],
+  [
+   40.587,
+   5.737,
+   "And patching has one owner too, so where Ansible patches, Update Manager only assesses."
+  ],
+  [
+   46.325,
+   2.975,
+   "Both owners are mirrored to Arc tags at onboarding."
+  ],
+  [
+   49.3,
+   7.725,
+   "VK-ARC-07 then catches a server another tool owns that machine configuration is also enforcing."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.325,
+   "Gate 6 is the piv binding."
+  ],
+  [
+   2.375,
+   12.088,
+   "Certificate sign-in is attribute-driven too: Entra I D matches a field of the certificate to a field of the account, so whoever writes that field decides which certificate signs in as whom."
+  ],
+  [
+   14.463,
+   4.662,
+   "The binding lives in certificateUserIds, as prefixed values."
+  ],
+  [
+   19.125,
+   2.663,
+   "Names and email addresses are low affinity."
+  ],
+  [
+   21.788,
+   7.287,
+   "The key identifier, the public key hash, and issuer with serial number are high affinity, because they can't be reused."
+  ],
+  [
+   29.075,
+   3.837,
+   "That also means a reissued or renewed card changes the value."
+  ],
+  [
+   32.913,
+   6.3,
+   "The limits: ten values per user, each unique in the tenant, with case-sensitive prefixes."
+  ],
+  [
+   39.212,
+   5.25,
+   "For cloud-only users, a Privileged Authentication Administrator or Graph writes it."
+  ],
+  [
+   44.462,
+   8.725,
+   "For synced users, only Entra Connect can, from altSecurityIdentities in A D, and Microsoft doesn't document Cloud Sync for it."
+  ],
+  [
+   53.188,
+   3.125,
+   "Treat that A D write path like an access slot."
   ]
  ]
 }

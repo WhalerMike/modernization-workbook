@@ -16,50 +16,50 @@ own settings, drawn from NIST's DNS
 guide and Infoblox's documentation.
 
 4
-00:00:14.151 --> 00:00:18.680
-Infoblox does have two current DISA
-STIGs, which neither BlueCat nor
+00:00:14.151 --> 00:00:19.540
+Infoblox does have two current STIGs,
+which neither BlueCat nor EfficientIP has;
 
 5
-00:00:18.680 --> 00:00:23.687
-EfficientIP has; they're High only,
-Defense material, but useful cross-checks.
+00:00:19.540 --> 00:00:22.275
+they're High only, but
+useful cross-checks.
 
 6
-00:00:23.687 --> 00:00:27.850
+00:00:22.275 --> 00:00:26.437
 FIPS 140 is the weak spot,
 so let's say it plainly.
 
 7
-00:00:27.850 --> 00:00:30.538
+00:00:26.437 --> 00:00:29.126
 Infoblox has no active certificate today.
 
 8
-00:00:30.538 --> 00:00:37.266
+00:00:29.126 --> 00:00:35.853
 Its FIPS 140-2 certificates moved to the
 historical list with the September 21,
 
 9
-00:00:37.266 --> 00:00:43.063
+00:00:35.853 --> 00:00:41.650
 2026 sunset, and four FIPS 140-3
 submissions are still in NIST's queue.
 
 10
-00:00:43.063 --> 00:00:48.924
+00:00:41.650 --> 00:00:47.512
 There's no current NIAP certificate
 either, with NIOS 9.0 in evaluation.
 
 11
-00:00:48.924 --> 00:00:53.607
+00:00:47.512 --> 00:00:52.195
 And a note on NIST's DNS deployment guide:
 it's the best practical guide we have,
 
 12
-00:00:53.607 --> 00:00:56.803
+00:00:52.195 --> 00:00:55.391
 but two of its three authors
 are Infoblox employees,
 
 13
-00:00:56.803 --> 00:01:01.180
+00:00:55.391 --> 00:00:59.760
 so disclose that whenever you cite
 it in support of choosing Infoblox.

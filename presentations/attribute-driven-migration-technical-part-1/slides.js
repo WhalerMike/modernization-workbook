@@ -791,7 +791,7 @@ Devices are the other half of Stage 6, and Part 2 takes them up on the Intune tr
 
 Windows. Windows 11 in its editions, Windows 10 LTSC 2019 and 2021 and Windows 11 LTSC 2024 are managed, enrolling through Autopilot or Autopilot device preparation, Entra join with automatic enrollment, a provisioning package, co-management, Group Policy-triggered enrollment for hybrid-joined devices, or a work account for personal devices. Windows 10 outside LTSC went out of support on October 14, 2025, so Intune treats it as allowed: it enrolls, but functionality isn't guaranteed. Windows 7, 8.1 and devices with Unified Write Filter on aren't supported.
 
-Windows 365 Cloud PCs are provisioned, joined and enrolled automatically. Azure Virtual Desktop is managed with limits: the settings catalog plus certificate and device-tunnel VPN templates only, no Autopilot or Enrollment Status Page, some update rings and remote actions unsupported, pooled host pools only for multi-session; it's supported in GCC, GCC High and DoD.
+Windows 365 Cloud PCs are provisioned, joined and enrolled automatically. Azure Virtual Desktop is managed with limits: the settings catalog plus certificate and device-tunnel VPN templates only, no Autopilot or Enrollment Status Page, some update rings and remote actions unsupported, pooled host pools only for multi-session; it's supported in GCC.
 
 Apple. macOS 15 and later is supported, and 13 and later allowed for devices with no user affinity; iOS and iPadOS 18 and later supported, 16 and later allowed. Automated Device Enrollment through Apple Business Manager or Apple School Manager, Apple Configurator, and the Company Portal or account-driven user enrollment for personal devices.
 
@@ -881,7 +881,7 @@ Assignment filters evaluate Intune properties at check-in, operating-system vers
     ["Physical servers; VMs on any hypervisor", "Supported, with the Connected Machine agent"],
     ["VMware vSphere VMs, including Azure VMware Solution", "Supported through a resource bridge to vCenter 8, then the agent; ESXi hosts appear as inventory only"],
     ["System Center VMM VMs", "Retiring: new onboardings stop by October 2026, the service ends September 2029"],
-    ["AWS EC2 and Google Cloud VMs", "Supported: the agent, or the multicloud connector (AWS; Google Cloud in preview; not in Azure Government)"],
+    ["AWS EC2 and Google Cloud VMs", "Supported: the agent, or the multicloud connector (AWS; Google Cloud in preview)"],
     ["Azure Local; Kubernetes; SQL Server", "Azure Local through its built-in Arc plane; Arc-enabled Kubernetes; SQL Server enabled by Arc (Book 06)"],
     ["Azure VMs; Windows 10 and 11", "Azure VMs are native, so no Arc; clients only in server-like roles, since end-user machines belong in Intune"],
     ["Not covered", "2008 R2 and earlier, 32-bit; AIX, Solaris, HP-UX, mainframe, network devices; sealed appliances (program's reading)"],
@@ -896,7 +896,7 @@ Linux: Red Hat Enterprise Linux 7 to 10, Rocky and AlmaLinux 8 and 9, Oracle Lin
 
 Physical servers and VMs on any other hypervisor are supported with the agent. VMware vSphere VMs, including Azure VMware Solution, connect through an Arc resource bridge to vCenter Server 8, up to 9,500 VMs per bridge, then guest management installs the agent; ESXi hosts are discovered as inventory, and that the host itself takes no agent is the program's reading. VMs under System Center Virtual Machine Manager are retiring: new onboardings stop by October 2026 and the service ends in September 2029.
 
-AWS EC2 and Google Cloud VMs take the agent, or the multicloud connector, which covers AWS, with Google Cloud in preview, and isn't available in Azure Government. Azure Local is supported through its built-in Arc control plane. Arc-enabled Kubernetes attaches any CNCF-certified cluster, and SQL Server enabled by Arc is Book 06's subject.
+AWS EC2 and Google Cloud VMs take the agent, or the multicloud connector, which covers AWS, with Google Cloud in preview. Azure Local is supported through its built-in Arc control plane. Arc-enabled Kubernetes attaches any CNCF-certified cluster, and SQL Server enabled by Arc is Book 06's subject.
 
 Azure VMs aren't Arc: Microsoft says not to install Arc on them, because they're already native Azure resources. Windows 10 and 11 clients are only for server-like roles such as signage; end-user machines belong in Intune. And AIX, Solaris, HP-UX, mainframe operating systems and network devices aren't on Microsoft's list; vendor-sealed appliances aren't covered where the vendor doesn't allow an agent, which is the program's reading.`,
   `${G}, "Which servers Arc covers" (Microsoft Learn, Oct. 29, 2026: Connected Machine agent prerequisites, choosing Arc, Arc-enabled VMware vSphere, Arc-enabled SCVMM retirement, multicloud connector, Arc-enabled Kubernetes); Book 05, Chapter 09 — "Which servers Arc reaches"; Book 06, Chapter 09.`);
@@ -998,7 +998,7 @@ Credentials and lifecycle. High-risk accounts, password never expires and over-p
     ["AI agent identity (Agent ID)", "Sponsor required at creation. Program: an HR-mastered federal employee plus a small steward group; the owner is never the sponsor", "None of its own: the blueprint holds them, so it is the credential boundary", "Sponsor mover and leaver tasks in Lifecycle Workflows; access packages with end dates; disable, then delete"],
   ], { fontSize: 11.5, limit: 5.6 });
   callout(s, "AgentCloud", tb + 0.2, 0.8, "FaCloud", HEX.red, "Check the agency's cloud: ",
-    "Agent ID has no Azure Government feature-list entry; GCC has a documented subset. Workload CA doesn't cover managed identities.");
+    "GCC has a partial, documented subset of Agent ID; treat anything not listed as unavailable. Workload CA doesn't cover managed identities.");
   sources(s, "Sources: Book 02, Ch 09 (WIF; workload CA; governing SPs); Book 17, Ch 04, 05 (Microsoft Learn as footnoted, Oct. 2026); Guide, non-person track. Program rules are design guidance.");
   notes(s,
 `The rest of the non-person track lives in Entra ID: service principals, managed identities, workload identities and, now, AI agents. For each one, the question is who answers for it, what credential it holds and what ends its life.
@@ -1011,7 +1011,7 @@ Workload identity federation lets an app registration or user-assigned managed i
 
 AI agents, from Book 17. Microsoft Entra Agent ID gives each agent an agent identity, a special service principal with no credentials of its own; the blueprint holds them, so Microsoft calls the blueprint the credential boundary. A sponsor is required at creation. The program's rule, design guidance: the sponsor is a federal employee mastered in HR, a second sponsor is a small dynamic group of the office's stewards, and the technical owner is never the sponsor. Lifecycle Workflows' sponsor tasks, generally available in May 2026, carry the sponsor's mover and leaver event; access packages carry end dates so expiry is the review; and retirement is disable, then delete, with a 30-day soft-delete window.
 
-The callout: check the agency's cloud. Agent ID has no entry on Entra's Azure Government feature list; GCC has a documented subset, and GCC High and DoD should treat agent identities as unavailable until Microsoft confirms in writing. Where they aren't available, the same governance applies to the service principals and managed identities the agents run as.`,
+The callout: check the agency's cloud. GCC has a partial, documented subset: Microsoft's Agent 365 service description has a GCC column, and an agency should treat any agent capability it doesn't list for GCC as unavailable until Microsoft confirms otherwise in writing. Where they aren't available, the same governance applies to the service principals and managed identities the agents run as.`,
   `Book 02, Chapter 09 — "Workload identity federation," "Conditional Access for workload identities," "Governing service principals"; Book 17, Chapter 04 — "Workload identities," "Agent identities," "Release stage, licensing and government clouds"; Chapter 05 — "The program's rule," "The lifecycle, event by event," "Retirement"; Book 04, Chapters 05 and 06.`);
 };
 
@@ -1106,7 +1106,7 @@ The pattern to take away: every row names one writer. That's the same single-wri
 
   // 24 PIV binding
   SL.piv = () => {
-  const s = content(SEC, "PIV and CAC: the certificate binding is an attribute");
+  const s = content(SEC, "PIV: the certificate binding is an attribute");
   tag(s, "What");
   const pic = img(s, "b03-hr-identity/ch09-credential-assurance", 0.6, 1.45, 12.15, 2.15);
   const tb = table(s, "Bindings", pic.bottom + 0.2, [2.9, 3.6, 0.95], ["Certificate field", "User attributes it can bind to", "Affinity"], [
@@ -1128,8 +1128,8 @@ Microsoft Learn, October 29, 2026. By default the SAN Principal Name maps to use
 
 High-affinity bindings use identifiers that can't be reused. The tenant's required affinity defaults to low, can be set to high or overridden by rules on issuer or policy OID, and when high applies the low bindings are dropped. With several bindings, CBA is only as secure as the lowest one. Setting the tenant to high before every user's value is right can lock users out. The program's position is high affinity in production.
 
-And strength. The built-in phishing-resistant strength accepts multifactor CBA; the binding policy treats every certificate as single-factor by default, and issuer or OID rules raise PIV or CAC certificates to multifactor.`,
-  `${G}, "PIV and CAC certificates as attributes": "Username binding," "Affinity," "Authentication strength"; verification log D6; Book 03, Chapter 09 — "Binding the PIV certificate to the Entra user"; Book 07, Chapter 06 — "Entra certificate-based authentication," "Username bindings and affinity."`);
+And strength. The built-in phishing-resistant strength accepts multifactor CBA; the binding policy treats every certificate as single-factor by default, and issuer or OID rules raise PIV certificates to multifactor.`,
+  `${G}, "PIV certificates as attributes": "Username binding," "Affinity," "Authentication strength"; verification log D6; Book 03, Chapter 09 — "Binding the PIV certificate to the Entra user"; Book 07, Chapter 06 — "Entra certificate-based authentication," "Username bindings and affinity."`);
 };
 
   // 25 certificateUserIds
@@ -1154,14 +1154,14 @@ And strength. The built-in phishing-resistant strength accepts multifactor CBA; 
   ], 12.5);
   sources(s, "Sources: Microsoft Learn, Mapping to the certificateUserIds attribute (Oct. 29, 2026). Guide, PIV section; workbook issue #130; Book 03, Ch 09; Book 07, Ch 06, Ch 07.");
   notes(s,
-`The certificate user IDs attribute is the one that carries a PIV or CAC binding, so who writes it matters as much as any HR attribute. From Microsoft Learn, October 29, 2026.
+`The certificate user IDs attribute is the one that carries a PIV binding, so who writes it matters as much as any HR attribute. From Microsoft Learn, October 29, 2026.
 
 It holds up to ten values of up to 1,024 characters, each unique in the tenant, with case-sensitive prefixes. For cloud-only users, at least a Privileged Authentication Administrator writes it, in the admin center, up to four values of 120 characters there, or through Graph on the user's authorization info. For synced users, at least the Hybrid Identity Administrator role is needed and only Microsoft Entra Connect can update it, by syncing a value from AD such as altSecurityIdentities, or an expression over the UPN. Microsoft notes that AD administrators can change the value for any synced account, and asks that only current valid certificates be populated and that values be removed on expiry or revocation. The page names Entra Connect only; it doesn't document Cloud Sync for this attribute, and the guide says so.
 
 Where the binding comes from. HR supplies the person: the record, the key and the joiner event. The card management system supplies the binding, because a high-affinity value identifies one certificate and a reissue changes it. During hybrid it's written to altSecurityIdentities in AD, which strong certificate mapping also uses on domain controllers, and synced.
 
 After AD, the design is that the card management system writes the value through Graph at issuance. That's design guidance and unverified: an open pilot, workbook issue 130, asking which permission a workload needs and how the write behaves once source of authority has moved. Microsoft documents neither. Module 3 of this part puts all of this to work.`,
-  `${G}, "PIV and CAC certificates as attributes": "certificateUserIds," "Where the binding comes from"; verification log claims 70 and 74, "Could not verify"; Book 03, Chapter 09 — "Binding the PIV certificate," "The canonical leaver sequence"; Book 07, Chapter 06 — "Strong certificate mapping"; Chapter 07 — "AD CS chain into Entra ID."`);
+  `${G}, "PIV certificates as attributes": "certificateUserIds," "Where the binding comes from"; verification log claims 70 and 74, "Could not verify"; Book 03, Chapter 09 — "Binding the PIV certificate," "The canonical leaver sequence"; Book 07, Chapter 06 — "Strong certificate mapping"; Chapter 07 — "AD CS chain into Entra ID."`);
 };
 
   // 27 Worked example
@@ -1397,7 +1397,7 @@ Latency. Membership is usually processed within a few hours but can take more th
     ["No nesting", "The OU tree becomes a flat set of units", "Flat units; where a role covers several, one assignment per unit, generated from one list"],
     ["A write boundary, not a confidentiality boundary", "Units limit who can change members, not who can read them", "Custom security attributes and app-level controls for confidentiality"],
     ["Only some roles can be unit-scoped", "Part of the delegation matrix may not fit a unit", "Check every role against Microsoft's list; the rest stay central or behind PIM approval"],
-    ["Dynamic units: global Azure cloud only", "GCC can use them; GCC High and DoD can't", "In GCC High or DoD, maintain units with an automation job under change control and drift checks"],
+    ["Dynamic units: one object type, the global Azure cloud", "A GCC tenant uses the global cloud, so it can use them", "One unit per object type; fine in GCC, the program's target"],
     ["At most 100 restricted units; members outside ID Governance", "Restriction stops joiner, mover and leaver automation for its members", "Restrict only by explicit decision, default no; never restrict a large HR population"],
   ], { fontSize: 12.5, limit: 5.3 });
   callout(s, "Writes", tb + 0.3, 0.85, "FaUsersGear", HEX.navy, "Units scope writes, not reads: ",
@@ -1412,7 +1412,7 @@ A write boundary, not a confidentiality boundary. A unit limits who can change i
 
 Only some roles can be unit-scoped. Check every role in the delegation matrix against Microsoft's list; roles that can't be scoped stay central or go behind PIM approval.
 
-Dynamic units are available only in the global Azure cloud. A GCC tenant, the program's target, can use them; GCC High and DoD can't, so there units are maintained by an automation job under change control and covered by the drift checks. Microsoft's prerequisite still read that way on October 29.
+Dynamic units hold one object type each and run in the global Azure cloud, which a GCC tenant, the program's target, uses. So each object type needs its own unit, and that's fine in GCC. Microsoft's prerequisite still read that way on October 29.
 
 At most 100 restricted management units, and their members fall outside Entra ID Governance. So restriction is an explicit decision, default no, and never applied to a large HR population, or the joiner, mover and leaver automation stops for those people.`,
   `${G}, "Limits: administrative units"; LIMITS shared content (design guidance responses); Book 01, Chapter 04 — "Administrative units: the delegation replacement," "The three-tier model"; Book 02, Chapter 05 — "Restricted management administrative units."`);
@@ -1441,7 +1441,7 @@ At most 100 restricted management units, and their members fall outside Entra ID
     "an on-demand run bypasses quarantine and the workflow's own conditions. Edits create new versions.");
   sources(s, "Sources: Microsoft Learn: ID Governance service limits; Lifecycle Workflow deployment; execution limits and quarantine; extensibility; understanding lifecycle workflows (Oct. 29, 2026).");
   notes(s,
-`Lifecycle Workflows carry the joiner, mover and leaver events, so their pieces and limits matter. They need Entra ID Governance or Microsoft Entra Suite, and the books record ID Governance as available in GCC, GCC High and DoD; re-check feature-level availability on Microsoft's government pages.
+`Lifecycle Workflows carry the joiner, mover and leaver events, so their pieces and limits matter. They need Entra ID Governance or Microsoft Entra Suite, and the books record ID Governance as available in GCC; re-check feature-level availability on Microsoft's government pages.
 
 The pieces. A workflow is one automated process for one scenario, joiner, mover, leaver, pre-hire and so on. Its execution conditions are a trigger, a time-based attribute such as employeeHireDate or employeeLeaveDateTime with an offset, or an attribute change, and a scope, a rule over user properties. Then an ordered list of tasks. Built-in tasks include a welcome email, a Temporary Access Pass, adding or removing groups and Teams, requesting or removing access packages, removing licenses, and disabling or deleting the account. A custom task extension calls an Azure Logic App, so the workflow can reach systems Microsoft doesn't, such as a card management system, Intune device retire, a ticketing system or an HR write-back, fire-and-forget or waiting for a callback.
 
@@ -1554,7 +1554,7 @@ Stage 4: every access rule on codes, excluding disabled accounts, guests and age
 Stage 7: the signed validation report, the dry run with writes off, seven days of sole-source proof, then the ticket path closed and provisioning retargeted per population. PIV: name the card management system as the binding writer, pilot high affinity before the tenant setting changes, require phishing-resistant strength for CBA users, and make the leaver remove the binding. Stage 8: drift scans scheduled, logs routed outside Entra ID from day one, findings closed at the source.
 
 The track rows come from the per-track success criteria, design guidance. Intune: device attributes written by provisioning at registration, policy targeted by them, and computer-side GPO links disabled population by population with rollback tested, Book 05 Chapter 08. Arc: every in-scope server Arc-enabled, the tag taxonomy applied at connection time, and its baseline assigned and evaluated by Azure Policy, Book 05 Chapter 09. Non-person: every service account and service principal with an owner, sponsor, reason and target, no password that never expires, at least two human owners per app registration, Book 02 Chapter 09, and every agent identity sponsored by an HR-mastered federal employee, Book 17 Chapter 05.`,
-  `${G}, "Checklist"; Stages 0–8 and "PIV and CAC certificates as attributes"; Book 02, Chapter 09; Book 05, Chapters 08–09; Book 17, Chapter 05; series framing (per-track success criteria, design guidance).`);
+  `${G}, "Checklist"; Stages 0–8 and "PIV certificates as attributes"; Book 02, Chapter 09; Book 05, Chapters 08–09; Book 17, Chapter 05; series framing (per-track success criteria, design guidance).`);
 };
 
   // 34 Decisions

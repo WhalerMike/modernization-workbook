@@ -2,7 +2,7 @@
 // Audience: CIOs, CISOs, network and DDI leads, and acquisition teams choosing or building a DDI platform.
 // Build:  node presentations/research-ddi-requirements/build.js presentations/research-ddi-requirements/B08_DDI_Requirements.pptx
 // Every claim comes from Book 08 (docs/books/b08-ddi/, footnoted) or from primary sources checked on
-// October 22, 2026 (FedRAMP products.json, NIST CMVP, NIAP PCL, DISA STIG file store, CISA, OMB, vendor docs);
+// October 22, 2026 (FedRAMP products.json, NIST CMVP, NIAP PCL, the STIG file store, CISA, OMB, vendor docs);
 // civilian hardening sources (CIS Benchmarks list, NIST NCP, NIST SP 800-53 CM-6) read October 29, 2026. STIGs are "High only".
 // Vendor-neutral: products appear only as examples of a requirement or as dated status facts, never ranked.
 const D = require("../_build/lib.js")({
@@ -148,7 +148,7 @@ const S_HOW = "How to decide";
 Four parts. Why the name and address layer is now a control plane, and what federal rules ask of it. What a platform has to deliver, and what to check before buying one. Who runs it, including how divisions can manage their own DNS, DHCP and IPAM under central governance. And how to decide.
 
 Vendors appear on these slides only as examples. Nothing here recommends or ranks a product, and the status facts carry a date, because they change. Every claim comes from Book 08 or from primary sources checked in October 2026.`,
-  "Book 08, index; Chapters 01, 03, 08, 09, 11 and 12. Product status facts: primary sources checked October 22, 2026 (FedRAMP Marketplace data, NIST CMVP, NIAP Product Compliant List, DISA STIG file store, CISA, OMB, vendor documentation), listed in the backup section; CIS Benchmarks list, NIST National Checklist Program and NIST SP 800-53 CM-6 read October 29, 2026.");
+  "Book 08, index; Chapters 01, 03, 08, 09, 11 and 12. Product status facts: primary sources checked October 22, 2026 (FedRAMP Marketplace data, NIST CMVP, NIAP Product Compliant List, the STIG file store, CISA, OMB, vendor documentation), listed in the backup section; CIS Benchmarks list, NIST National Checklist Program and NIST SP 800-53 CM-6 read October 29, 2026.");
 }
 
 // ================================================================== 2 Why: control plane
@@ -295,7 +295,7 @@ One product detail to check. Endpoint DNS agents commonly listen on the device's
   tag(s, "What");
   panel(s, "Cap4", 0.6, 1.45, 5.98, 5.05, HEX.navy, HEX.navyTint, "CAPABILITY 4", "IPAM as authority, with discovery", [
     "Every block reserved in the enterprise IPAM before a cloud or NSX network is created",
-    "Hand allocation to it where the cloud allows: AWS VPC IPAM can use an external IPAM in commercial Regions, not GovCloud",
+    "Hand allocation to it where the cloud allows: AWS VPC IPAM can use an external IPAM in the commercial Regions",
     "Elsewhere, mirror reservations into native pools and reconcile continuously",
     "Discovery across all address space; public IPs and domains attested quarterly",
     "IPv4 and IPv6 planned in one place",
@@ -309,7 +309,7 @@ One product detail to check. Endpoint DNS agents commonly listen on the device's
   ], 13, "NIST SP 800-81r3 (lease history); M-22-09; M-21-07");
   sources(s, "Sources: NIST SP 800-53 CM-8; CISA BOD 23-01, BOD 26-04; OMB M-21-07; AWS VPC IPAM; Microsoft DHCP failover; Infoblox NIOS DHCP failover; NIST SP 800-81r3; MITRE T1557.003. Book 08, Ch. 04, 05, 07, 10.");
   narrate(s,
-`Fourth, IPAM as the authority, with discovery. Left alone, each cloud's address manager allocates independently, recreating split-brain for addresses. The book's rule is that every block is reserved in the enterprise IPAM before a cloud or NSX network is created. Where a cloud lets an external IPAM hold allocation authority, use it; AWS VPC IPAM can, but only in commercial Regions, not GovCloud. Elsewhere, mirror the reservations into the native pools and reconcile continuously.
+`Fourth, IPAM as the authority, with discovery. Left alone, each cloud's address manager allocates independently, recreating split-brain for addresses. The book's rule is that every block is reserved in the enterprise IPAM before a cloud or NSX network is created. Where a cloud lets an external IPAM hold allocation authority, use it; AWS VPC IPAM can, in the commercial Regions. Elsewhere, mirror the reservations into the native pools and reconcile continuously.
 
 Discovery is where IPAM supports the directives. BOD 23-01 asks for automated discovery across all agency IPv4 space every seven days, and you can't scan space you haven't recorded. BOD 26-04 asks agencies to attest their public IP addresses and domains every quarter. And M-21-07's IPv6-only milestones mean IPv4 and IPv6 have to be planned in the same tool.
 
@@ -350,8 +350,8 @@ Capacity is where designs fail. Microsoft measured about five percent degradatio
   rows(s, "Check", "ASK EVERY CANDIDATE FOR THE SAME EVIDENCE", [
     ["FedRAMP listing", "The exact offering, its class (impact level) and what its scope covers"],
     ["Deployment model", "SaaS can be in FedRAMP scope; software you run sits in your boundary"],
-    ["Impact level", "A Moderate certification doesn't cover High or DoD"],
-    ["Hardening guide", "A CIS Benchmark, vendor guide or NCP checklist; DISA STIG is High only"],
+    ["Impact level", "A Moderate certification doesn't cover High"],
+    ["Hardening guide", "A CIS Benchmark, vendor guide or NCP checklist; a STIG is High only"],
     ["FIPS 140-3", "An ACTIVE certificate; 140-2 certificates went historical Sept. 21, 2026", HEX.red],
     ["NIAP", "A current Common Criteria certification, or one in evaluation"],
     ["CDM APL", "Closed to new submissions; the latest list is April 2025"],
@@ -365,16 +365,16 @@ Capacity is where designs fail. Microsoft measured about five percent degradatio
     "Historical FIPS modules: \"existing systems only\"",
     "BIND: CISA added a 2015 BIND CVE to KEV on Oct. 8, 2026",
   ], 12.5);
-  sources(s, "Sources: FedRAMP Rules and Marketplace; NIST CMVP; NIAP PCL; CIS Benchmarks; NIST NCP; DISA STIGs (High only); CISA CDM APL and KEV; Azure prices. Book 08, Ch. 03, 12.");
+  sources(s, "Sources: FedRAMP Rules and Marketplace; NIST CMVP; NIAP PCL; CIS Benchmarks; NIST NCP; STIGs (High only); CISA CDM APL and KEV; Azure prices. Book 08, Ch. 03, 12.");
   narrate(s,
 `Before buying any DDI product, check the evidence an assessor will ask for, not the feature list.
 
-Start with FedRAMP, and read the listing's scope, not just its badge. FedRAMP certifies a specific cloud service offering. A SaaS management plane needs a certification at the right level, and the agency still authorizes its own DDI system. Software and appliances the agency runs aren't covered by any listing; they sit inside the agency's own boundary. And a Moderate certification doesn't cover High or DoD workloads.
+Start with FedRAMP, and read the listing's scope, not just its badge. FedRAMP certifies a specific cloud service offering. A SaaS management plane needs a certification at the right level, and the agency still authorizes its own DDI system. Software and appliances the agency runs aren't covered by any listing; they sit inside the agency's own boundary. And a Moderate certification doesn't cover High workloads.
 
-Then the hardening baseline. The agency writes its own configuration settings for the product, under NIST SP 800-53 control CM-6, so ask what they can be written from: a CIS Benchmark, the vendor's own hardening guide, or a checklist in NIST's National Checklist Program. A vendor-specific DISA STIG, or the generic DNS security requirements guide, is High only, Defense material, though a civilian agency may borrow one when it's the only published checklist for a product. High only marks material that applies to FedRAMP High or Defense environments, not to the Moderate civilian baseline this workbook targets. Ask for an active FIPS 140-3 certificate, and look up its status yourself. FIPS 140-2 certificates moved to NIST's historical list on September 21, 2026, and historical modules may be used for existing systems only. So a new deployment that relies on validated cryptography can't cite a historical certificate. Ask about NIAP. And know that CISA's CDM Approved Products List isn't accepting new submissions; the latest list is from April 2025.
+Then the hardening baseline. The agency writes its own configuration settings for the product, under NIST SP 800-53 control CM-6, so ask what they can be written from: a CIS Benchmark, the vendor's own hardening guide, or a checklist in NIST's National Checklist Program. A vendor-specific STIG, or the generic DNS security requirements guide, is High only, though a civilian agency may borrow one when it's the only published checklist for a product. High only marks material that applies to FedRAMP High environments, not to the Moderate civilian baseline this workbook targets. Ask for an active FIPS 140-3 certificate, and look up its status yourself. FIPS 140-2 certificates moved to NIST's historical list on September 21, 2026, and historical modules may be used for existing systems only. So a new deployment that relies on validated cryptography can't cite a historical certificate. Ask about NIAP. And know that CISA's CDM Approved Products List isn't accepting new submissions; the latest list is from April 2025.
 
 Advisory response: does the vendor track the open-source DNS code underneath? CISA added an old BIND vulnerability to its Known Exploited Vulnerabilities catalog on October 8, 2026. And licensing: know what's metered. Azure's DNS Private Resolver bills 180 dollars a month per endpoint at list price; one DDI vendor's SaaS uses subscription tokens that expire at term end. Model three to five years.`,
-  "Book 08, Chapter 03 (FedRAMP and agency authorization), Chapter 12 — Platform Selection, Cost and Residual Risk (What the cloud-native path meters; Selection criteria; Authorization status, as the Marketplace shows it) — with verified research beyond the book: NIST CMVP program and FIPS 140-3 transition pages (140-2 certificates historical September 21, 2026; \"existing systems only\"); NIAP PCL; Center for Internet Security, CIS Benchmarks list (no NIOS benchmark), NIST SP 800-70 Rev. 5 and the National Checklist Program, and NIST SP 800-53 Rev. 5 CM-6, read October 29, 2026; DISA STIG file store and DNS SRG V4R3 (High only reference); CISA CDM APL page (not accepting new submissions; April 2025 list); CISA KEV catalog 2026.10.21 (CVE-2015-5477 added October 8, 2026); Infoblox Universal DDI tokens FAQ (vendor), checked October 22, 2026.");
+  "Book 08, Chapter 03 (FedRAMP and agency authorization), Chapter 12 — Platform Selection, Cost and Residual Risk (What the cloud-native path meters; Selection criteria; Authorization status, as the Marketplace shows it) — with verified research beyond the book: NIST CMVP program and FIPS 140-3 transition pages (140-2 certificates historical September 21, 2026; \"existing systems only\"); NIAP PCL; Center for Internet Security, CIS Benchmarks list (no NIOS benchmark), NIST SP 800-70 Rev. 5 and the National Checklist Program, and NIST SP 800-53 Rev. 5 CM-6, read October 29, 2026; the STIG file store and DNS SRG V4R3 (High only reference); CISA CDM APL page (not accepting new submissions; April 2025 list); CISA KEV catalog 2026.10.21 (CVE-2015-5477 added October 8, 2026); Infoblox Universal DDI tokens FAQ (vendor), checked October 22, 2026.");
 }
 
 // ================================================================== 9 What: status table
@@ -383,27 +383,27 @@ Advisory response: does the vendor track the open-source DNS code underneath? CI
   tag(s, "What");
   const b = table(s, "Status", 1.45, [2.35, 3.25, 2.4, 2.0, 2.15], ["Check", "Infoblox", "BlueCat", "EfficientIP", "Micetro"], [
     ["FedRAMP Marketplace", "Infoblox Government Cloud: Certified, Moderate (Class C), SaaS in AWS GovCloud; 1 agency authorization", "No listing", "No listing", "No listing"],
-    ["DISA STIG (High only)", "NIOS 9.x V1R1 (2026); Infoblox 8.x DNS V1R4; no CIS Benchmark", "None found", "None found", "None found"],
+    ["STIG (High only)", "NIOS 9.x V1R1 (2026); Infoblox 8.x DNS V1R4; no CIS Benchmark", "None found", "None found", "None found"],
     ["Active FIPS 140 certificate", "None: 140-2 certificates historical; four 140-3 modules in NIST review", "#5506, FIPS 140-3, Level 1; sunset Aug. 2029", "None found", "None found"],
     ["NIAP / Common Criteria", "None current; NIOS 9.0 in evaluation", "Archived only (2013)", "None found", "None found"],
     ["CDM APL (April 2025)", "Not listed", "Not listed", "Not listed", "Not listed"],
   ], { fontSize: 12, minRow: 0.42 });
   callout(s, "Read", b + 0.25, Math.min(1.45, 6.5 - b - 0.25), "FaScaleBalanced", HEX.navy, "Status, not a ranking: ",
-    "FedRAMP covers only vendor-run cloud services; products run inside your boundary are assessed in your own authorization. Cloud DNS services inherit their cloud's authorization. Not verified: DoDIN APL, GSA schedules, DoD impact levels, whether #5506 covers Micetro.");
-  sources(s, "Sources: FedRAMP products.json; NIST CMVP certificates and Modules In Process list; NIAP PCL; CC Portal; DISA STIG store (High only); CIS list (Oct. 29); CISA CDM APL (April 2025). Checked Oct. 22, 2026. Book 08, Ch. 12.");
+    "FedRAMP covers only vendor-run cloud services; products run inside your boundary are assessed in your own authorization. Cloud DNS services inherit their cloud's authorization. Not verified: GSA schedules, whether #5506 covers Micetro.");
+  sources(s, "Sources: FedRAMP products.json; NIST CMVP certificates and Modules In Process list; NIAP PCL; CC Portal; STIG store (High only); CIS list (Oct. 29); CISA CDM APL (April 2025). Checked Oct. 22, 2026. Book 08, Ch. 12.");
   narrate(s,
 `Here's what those checks returned for four DDI products on October 22, 2026. It's a status snapshot, not a ranking, and any cell can change, so confirm on the day you decide.
 
 FedRAMP. One of the four has a listing: Infoblox Government Cloud, Certified at Class C, Moderate, as SaaS in AWS GovCloud, with one agency authorization. It covers the SaaS, not on-premises NIOS appliances. BlueCat, EfficientIP and Micetro have no listing. Their products run as software or appliances inside the agency's own boundary, where the agency's authorization covers them.
 
-STIGs, a High only reference. DISA publishes vendor-specific STIGs for Infoblox: NIOS 9.x, version 1 release 1, and the 8.x DNS STIG, version 1 release 4. None was found for the other three. There's no CIS Benchmark for NIOS, so for Infoblox the STIG is the only product-specific checklist, useful as a cross-check on the agency's own settings.
+STIGs, a High only reference. There are vendor-specific STIGs for Infoblox: NIOS 9.x, version 1 release 1, and the 8.x DNS STIG, version 1 release 4. None was found for the other three. There's no CIS Benchmark for NIOS, so for Infoblox the STIG is the only product-specific checklist, useful as a cross-check on the agency's own settings.
 
 FIPS 140. BlueCat holds an active FIPS 140-3 certificate, number 5506, a Level 1 software module that sunsets in August 2029. Infoblox's FIPS 140-2 certificates are now historical, and four FIPS 140-3 modules are in NIST's review queue. No certificate was found for EfficientIP or Micetro, and it wasn't verified whether BlueCat's certificate covers Micetro.
 
 NIAP. None of the four has a current certification. Infoblox's NIOS 9.0 is in evaluation, and BlueCat's entries are archived. And none appears on the April 2025 CDM list.
 
 So every candidate has a gap to close, in the contract or in a plan of action and milestones, whether that's an authorization, a hardening checklist or a validated module.`,
-  "Book 08, Chapter 12 (Authorization status, as the Marketplace shows it), Chapter 03 (FedRAMP and agency authorization) — with verified research beyond the book: FedRAMP products.json (meta last_change October 22, 2026; FR2017257053); NIST CMVP certificates #5506, #4692, #4535, #4531, #3332, #3330 and the Modules In Process list; NIAP Product Compliant List API; Common Criteria Portal certified and archived CSVs; DISA STIG file store (U_Infoblox_NIOS_9-x_V1R1_STIG, U_IB_8-x_DNS_V1R4_STIG; High only reference); CIS Benchmarks list, accessed October 29, 2026; CISA CDM APL April 2025, all checked October 22, 2026.");
+  "Book 08, Chapter 12 (Authorization status, as the Marketplace shows it), Chapter 03 (FedRAMP and agency authorization) — with verified research beyond the book: FedRAMP products.json (meta last_change October 22, 2026; FR2017257053); NIST CMVP certificates #5506, #4692, #4535, #4531, #3332, #3330 and the Modules In Process list; NIAP Product Compliant List API; Common Criteria Portal certified and archived CSVs; the STIG file store (U_Infoblox_NIOS_9-x_V1R1_STIG, U_IB_8-x_DNS_V1R4_STIG; High only reference); CIS Benchmarks list, accessed October 29, 2026; CISA CDM APL April 2025, all checked October 22, 2026.");
 }
 
 // ================================================================== 10 Who: fenced scope
@@ -418,21 +418,21 @@ So every candidate has a gap to close, in the contract or in a plan of action an
     ["Everything else", "Denied by default; only central creates groups, roles and tags", HEX.red],
   ], 0.6, 1.9, 0.82, 0.74, 7.0, 1.85, 13);
   panel(s, "Auth", 7.85, 1.45, 4.9, 5.05, HEX.teal, HEX.tealTint, "STRONG ADMIN AUTHENTICATION", "Prove who the administrator is", [
-    "PIV or CAC: X.509 client certificates checked against OCSP",
+    "PIV: X.509 client certificates checked against OCSP",
     "SAML single sign-on: the identity provider's group decides the division (NIOS: exact name match, first match wins)",
     "A local break-glass administrator, kept and controlled",
     "Check automation scoping: Universal DDI service users can't use access views with API keys",
   ], 12.5);
-  sources(s, "Sources: Infoblox NIOS 9.0/9.1 admin guide (permissions, admin groups, authentication, SAML, CAC/PIV); Infoblox Universal DDI access views. Book 08, Chapters 09 and 11.");
+  sources(s, "Sources: Infoblox NIOS 9.0/9.1 admin guide (permissions, admin groups, authentication, SAML, PIV); Infoblox Universal DDI access views. Book 08, Chapters 09 and 11.");
   narrate(s,
 `Now the question many agencies care about most: can divisions run their own DNS, DHCP and IPAM without breaking central governance? Book 08 says yes, if the platform supports a specific model. Corporate administrators see everything. Each division gets a scope limited to its own zones, address blocks and DHCP scopes, with predefined manager, operator and auditor roles, and automation accounts held to the same scope.
 
 As an example, in Infoblox NIOS every resource is denied by default. A division's administrator group gets read-write on its own address block, which cascades to its networks, ranges and reservations; read-write on its own zones, with read-only on the parent view; and DNS and DHCP permissions, including service restarts, on its own servers only. One setting matters: it makes address and pointer records need rights on both the zone and the address block, so a division with access to a shared zone can't point a name into another division's space. And only central superusers create groups, roles and tag definitions, so a division can't widen its own rights.
 
-Administrators must prove who they are. Expect PIV and CAC certificate login checked against OCSP, and SAML single sign-on where the identity provider's group decides the user's division. In NIOS, group names must match exactly and the first match wins, so order the mappings deliberately. Keep a local break-glass administrator.
+Administrators must prove who they are. Expect PIV certificate login checked against OCSP, and SAML single sign-on where the identity provider's group decides the user's division. In NIOS, group names must match exactly and the first match wins, so order the mappings deliberately. Keep a local break-glass administrator.
 
 And check automation scoping in the product you're evaluating. In Universal DDI, service users can't sign in to a divisional access view with API keys.`,
-  "Book 08, Chapter 11 — Operating the Control Plane (Delegated administration across divisions; Illustrative implementation), Chapter 09 — Who Owns DNS, DHCP and IPAM (Roles in each system) — with verified research beyond the book: Infoblox NIOS admin guide pages \"About Administrative Permissions\", \"Administrative Permissions for Network Views\", \"Permissions for DNS Resources in Networks and Ranges\", \"Defining DNS and DHCP Permissions on Grid Members\", \"Defining the Authentication Policy\", SAML and two-factor (CAC/PIV) pages; Universal DDI \"Access View Behavior for Interactive and Service Users\", checked October 22, 2026.");
+  "Book 08, Chapter 11 — Operating the Control Plane (Delegated administration across divisions; Illustrative implementation), Chapter 09 — Who Owns DNS, DHCP and IPAM (Roles in each system) — with verified research beyond the book: Infoblox NIOS admin guide pages \"About Administrative Permissions\", \"Administrative Permissions for Network Views\", \"Permissions for DNS Resources in Networks and Ranges\", \"Defining DNS and DHCP Permissions on Grid Members\", \"Defining the Authentication Policy\", SAML and two-factor (PIV) pages; Universal DDI \"Access View Behavior for Interactive and Service Users\", checked October 22, 2026.");
 }
 
 // ================================================================== 11 Who: views and tags
@@ -664,20 +664,20 @@ srcSlide("Sources: federal requirements and guidance", [
   "Full footnotes with links and access dates: Book 08, Chapters 01, 03, 06, 07, 11 and 12, and Appendix B.",
 ]);
 srcSlide("Sources: product evidence and vendor documentation", [
-  "FedRAMP Marketplace: Infoblox Government Cloud (FR2017257053); no BlueCat, EfficientIP or Micetro listing; Azure, AWS GovCloud and Google Cloud listings.",
+  "FedRAMP Marketplace: Infoblox Government Cloud (FR2017257053); no BlueCat, EfficientIP or Micetro listing; Azure, AWS and Google Cloud listings.",
   "NIST CMVP certificates: BlueCat #5506 (FIPS 140-3, Active) and #4692 (Historical); Infoblox #4535, #4531, #3332, #3330 (FIPS 140-2, Historical); four Infoblox FIPS 140-3 modules on the Modules In Process list; no EfficientIP or Micetro certificate.",
   "NIAP Product Compliant List (API): Infoblox Trinzic Appliances with NIOS v9.0, In Progress; archived BlueCat and Infoblox entries  ·  Common Criteria Portal certified and archived lists.",
-  "DISA STIG file store (High only): Infoblox NIOS 9.x STIG V1R1; Infoblox 8.x DNS STIG V1R4; DNS SRG V4R3. None found for BlueCat, EfficientIP or Micetro.",
+  "STIG file store (High only): Infoblox NIOS 9.x STIG V1R1; Infoblox 8.x DNS STIG V1R4; DNS SRG V4R3. None found for BlueCat, EfficientIP or Micetro.",
   "CIS Benchmarks list (no NIOS benchmark); NIST SP 800-70 Rev. 5 and the National Checklist Program; NIST SP 800-53 Rev. 5 CM-6; all read Oct. 29, 2026.",
-  "Infoblox documentation (vendor): NIOS 9.0/9.1 admin guide (permissions, admin groups and roles, network and DNS views, extensible attributes, approval workflows, audit log, authentication, SAML, CAC/PIV, Microsoft servers, DNSSEC, DHCP failover, reporting, dnstap, WAPI); Universal DDI (access views, IP spaces, IPAM Federation, tags); Universal DDI tokens FAQ.",
-  "Microsoft Learn: DHCP failover; DNS logging and diagnostics; Azure DNSSEC; DNS resolver policy; Azure Private DNS; Windows DNSSEC zone signing  ·  AWS: Route 53 DNSSEC signing; VPC IPAM and the Infoblox integration (not in GovCloud).",
+  "Infoblox documentation (vendor): NIOS 9.0/9.1 admin guide (permissions, admin groups and roles, network and DNS views, extensible attributes, approval workflows, audit log, authentication, SAML, PIV, Microsoft servers, DNSSEC, DHCP failover, reporting, dnstap, WAPI); Universal DDI (access views, IP spaces, IPAM Federation, tags); Universal DDI tokens FAQ.",
+  "Microsoft Learn: DHCP failover; DNS logging and diagnostics; Azure DNSSEC; DNS resolver policy; Azure Private DNS; Windows DNSSEC zone signing  ·  AWS: Route 53 DNSSEC signing; VPC IPAM and the Infoblox integration.",
   "BlueCat Cloud Discovery & Visibility and Azure deployment documentation; EfficientIP SOLIDserver DNS Cloud (vendor), as cited in Book 08, Chapter 12.",
   "Azure Retail Prices API (October 20, 2026), as cited in Book 08, Chapter 12  ·  NIST NVD and ISC BIND advisories.",
   "All product facts were checked on October 22, 2026; confirm current status on the day of any decision.",
 ]);
 srcSlide("Not verified, and therefore not claimed", [
   "DoDIN Approved Products List, GSA Multiple Award Schedule and NASA SEWP listings for any of the four DDI vendors (sites unreachable or needed form submission).",
-  "DoD Cloud Service Catalog or impact-level authorization for Infoblox Government Cloud; any FedRAMP High plan for it.",
+  "Any FedRAMP High plan for Infoblox Government Cloud.",
   "Whether BlueCat's FIPS 140-3 certificate #5506 covers Micetro, and Micetro's corporate ownership, against a primary source.",
   "Whether the Infoblox Government Cloud listing covers the Threat Defense resolver, DNS Forwarding Proxy or Data Connector (the listing names Universal DDI, Universal Asset Insights, TIDE and Dossier only).",
   "Infoblox's July 2026 statement that NIOS-X servers are in the certified offering is a vendor claim; the deck cites the Marketplace description.",

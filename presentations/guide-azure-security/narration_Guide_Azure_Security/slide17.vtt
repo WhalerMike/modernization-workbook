@@ -32,53 +32,57 @@ A firewall draft deployed
 over newer changes.
 
 8
-00:00:19.213 --> 00:00:22.150
-Commercial features assumed
-in Azure Government.
+00:00:19.213 --> 00:00:23.154
+Private D N S zones scattered
+in workload subscriptions,
 
 9
-00:00:22.150 --> 00:00:26.937
+00:00:23.154 --> 00:00:25.587
+so resolution fails or goes public.
+
+10
+00:00:25.587 --> 00:00:30.374
 And disabling a key to contain a compromise,
 which takes its dependents offline.
 
-10
-00:00:26.937 --> 00:00:28.775
+11
+00:00:30.374 --> 00:00:32.212
 Each has its guard in the steps.
 
-11
-00:00:28.775 --> 00:00:31.563
-The guide is plain about
-what it couldn't verify:
-
 12
-00:00:31.563 --> 00:00:36.137
-Front Door and its Private Link origins
-region by region in Azure Government,
+00:00:32.212 --> 00:00:37.237
+The guide is plain about what it couldn't
+verify: Azure Firewall Premium's regions,
 
 13
-00:00:36.137 --> 00:00:39.067
-Front Door's firewall
-limits in sovereign clouds,
+00:00:37.237 --> 00:00:41.662
+which Learn leaves to the products-by-region
+page; built-in policy names,
 
 14
-00:00:39.067 --> 00:00:43.213
-and which DDoS tiers and simulation
-partners serve Azure Government.
+00:00:41.662 --> 00:00:44.437
+which change version;
+and, on the other clouds,
 
 15
-00:00:43.213 --> 00:00:45.312
-Nothing was run in a subscription.
+00:00:44.437 --> 00:00:49.687
+Shield Advanced in GovCloud and Oracle's
+firewall services in its Government Cloud.
 
 16
-00:00:45.312 --> 00:00:48.850
+00:00:49.687 --> 00:00:51.788
+Nothing was run in a subscription.
+
+17
+00:00:51.788 --> 00:00:55.326
 Remember that the guide is a draft
 awaiting the editor's review.
 
-17
-00:00:48.850 --> 00:00:52.800
+18
+00:00:55.326 --> 00:00:59.275
 Its developer workbook with labs
 and its training path are planned.
 
-18
-00:00:52.800 --> 00:00:53.620
+19
+00:00:59.275 --> 00:01:00.100
 Thank you.

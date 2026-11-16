@@ -67,12 +67,12 @@ const SC = "Close";
     { text: "G1 One writer for every state   ·   G2 Employees and contractors from their sources", options: { color: HEX.navy, bold: true, breakLine: true } },
     { text: "G3 Joiners ready on day one", options: { color: HEX.teal, bold: true, breakLine: true } },
     { text: "Part 2: G4 Access and movers  ·  G5 Credentials  ·  G6 Separation  ·  G7 Drift and evidence", options: { color: HEX.ink, breakLine: true } },
-    { text: "Steps, Lab 1 commands, federal evidence, government-cloud availability and rollback", options: { color: HEX.ink } },
+    { text: "Steps, Lab 1 commands, federal evidence, GCC availability and rollback", options: { color: HEX.ink } },
   ], { x: 0.8, y: 4.75, w: 10.2, h: 1.65, fontSize: 15, paraSpaceAfter: 2 });
   notes(s,
 `This is Part 1 of the implementation series for HR-Driven Identity. The HR pipeline makes the account exist. The implementation guide makes the HR record decide everything that happens to the account after that, and proves it did. It does that as seven gates an operator can run.
 
-This series stays at the level of those gates. For each one: what "done" means, the steps, the commands from the developer workbook's first lab where the workbook has them, the federal requirement the gate supports and the evidence an ISSO keeps, what's available in GCC and GCC High as the guide states it, and how to roll the gate back.
+This series stays at the level of those gates. For each one: what "done" means, the steps, the commands from the developer workbook's first lab where the workbook has them, the federal requirement the gate supports and the evidence an ISSO keeps, what's available in GCC as the guide states it, and how to roll the gate back.
 
 Part 1 covers Gates G1 to G3: one writer for every account state and attribute, employees and contractors from their sources, and joiners ready on day one. Part 2 covers G4 to G7: access and movers, credentials, separation, and drift and evidence.
 
@@ -127,7 +127,7 @@ The Identity Lifecycle and Provisioning plan schedules this work, and Book 03's 
     "The HR platform runs on Oracle Cloud Infrastructure",
     "The lifecycle's automation runs in Azure: a custom task extension calls a Logic App on the consumption plan",
     "Apps on AWS or Oracle Cloud get lifecycle changes only through the access Entra ID grants, by provisioning or federation",
-    "GCC uses the commercial Entra service; GCC High rows cite Learn's Azure Government table",
+    "GCC uses the commercial Entra service; Learn names Entra ID Governance for GCC",
   ], 12);
   sources(s, "Sources: Implementation guide, \"Prerequisites,\" \"Where agencies start\" (government-cloud availability; where the parts run).");
   notes(s,
@@ -271,7 +271,7 @@ Two limits. The scan reads the Entra audit log, not AD; for synced users AD chan
     "Owner: the ICAM governance body, with the data architect",
   ], 12);
   const p2 = panel(s, "Avail", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.teal, HEX.tealTint, "AVAILABILITY AND ROLLBACK", null, [
-    "User and group management, dynamic groups and directory sync: commercial service in GCC; available in Azure Government for GCC High",
+    "User and group management, dynamic groups and directory sync: commercial service in GCC",
     "Rollback: a writer change is a register change, signed like the original",
     "A removed write permission comes back only by recorded change, with an end date",
   ], 12);
@@ -284,7 +284,7 @@ AC-2, account management, covers account types, conditions of membership and acc
 
 Validate. VK-HR-04 reports zero duplicate employee I D values, and VK-HR-07 reports the fill rate of the key, worker type, manager and coded slots against the threshold. Both measure values, not writers. No kit check reads who can write, so the evidence is the delegation export, the OU ACL review and a clean run of the saved audit queries over the pilot's last thirty days. The gate owner is the ICAM governance body, with the data architect.
 
-Availability: user and group management, dynamic groups and directory sync are the commercial service in GCC, and available in Azure Government for GCC High.
+Availability: user and group management, dynamic groups and directory sync are the commercial service in GCC.
 
 Rollback: a writer change is a register change, signed like the original. A removed write permission comes back only by recorded change, with an end date.`,
   `${IG}, Step 1 — "Federal requirements and evidence," "Government-cloud availability," "Validate (G1 Writers)," "Rollback"; Book 03, Chapter 11 — "Control support"; Appendix B — "The privacy basis."`);
@@ -420,7 +420,7 @@ Once the requests are sent, the next reconciliation shows no CR-01. That re-run 
     "Rollback: pause the contractor app; a paused job keeps its state",
   ], 12);
   const p2 = panel(s, "Avail", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.teal, HEX.tealTint, "AVAILABILITY AND INTERIM PATH", null, [
-    "Azure Government: API-driven inbound provisioning available; HR-driven provisioning \"Partial\"; access reviews available. GCC: commercial",
+    "GCC: API-driven inbound provisioning, the provisioning agent and access reviews are the commercial service",
     "Interim: the contract end date as employeeLeaveDateTime, so the leaver still fires; retire the COR spreadsheets as a source of truth",
   ], 12);
   if (process.env.FIT) console.log(`  G2 panels bottom ${Math.max(p1, p2).toFixed(2)}`);
@@ -432,7 +432,7 @@ AC-2 and PS-7, external personnel security, both Moderate: the ISSO keeps the co
 
 Validate. VK-HR-01 lists enabled member users with no employee I D, excluding owned exceptions, so contractors without a key show up there. VK-HR-07 reports the worker type fill rate. No kit check reads contractor end dates, so the evidence is the reconciliation, re-run after the contractor leaver ships, with zero enabled contractor accounts past their earliest end.
 
-Availability: in Azure Government, API-driven inbound provisioning and provisioning-agent registration are listed as available. HR-driven provisioning as a row is marked partial, pointing to the HR apps table, where the API-driven app is available. Access reviews are available too. GCC is the commercial service.
+Availability: API-driven inbound provisioning, the provisioning agent and access reviews are the commercial service in GCC.
 
 The interim path: until the contractor source feeds the middleware, each contractor account carries the contract end as its leave date, so the leaver workflow still fires. Rollback: pause the contractor provisioning app, which keeps its state.`,
   `${IG}, Step 2 — "Federal requirements and evidence," "Government-cloud availability," "Interim path," "Validate (G2 Sources)," "Rollback"; Book 03, Chapter 12 — "Phase 1."`);
@@ -560,8 +560,7 @@ Readiness counts the day's hires and calls a hire ready when the account is enab
     "Rollback: disable the workflow's schedule; it keeps its versions",
   ], 12);
   const p2 = panel(s, "Avail", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.teal, HEX.tealTint, "AVAILABILITY AND INTERIM PATH", null, [
-    "Lifecycle Workflows and entitlement management: available in Azure Government; commercial in GCC",
-    "No Azure Government row for the Temporary Access Pass: GCC High not confirmed",
+    "Lifecycle Workflows, entitlement management and the Temporary Access Pass: commercial service in GCC",
     "Interim: the pipeline enables on the hire date; the help desk issues the pass by procedure; access from dynamic groups",
   ], 12);
   if (process.env.FIT) console.log(`  G3 panels bottom ${Math.max(p1, p2).toFixed(2)}`);
@@ -573,7 +572,7 @@ AC-2 enhancement 1, automated system account management, Moderate: the ISSO keep
 
 Validate. VK-HR-05 reports users whose hire date is past with no processing record: late HR data or a missed catch-up window. VK-HR-06 reports whether execution limits are set and the workflow count against the ceiling. The kit's ceiling is a hundred; hold it to fifty. Add the pre-hire and day-one run history for the pilot's last hire cohort, and the readiness rate against the approved threshold. The gate owner is identity engineering, with HR for the timeliness of hire entries.
 
-Availability: Lifecycle Workflows and entitlement management are available in Azure Government, and the commercial service in GCC. Learn's Azure Government table has no row for the Temporary Access Pass, so its availability in GCC High wasn't confirmed.
+Availability: Lifecycle Workflows, entitlement management and the Temporary Access Pass are the commercial service in GCC.
 
 Interim path: before Governance is licensed, the pipeline creates the account disabled and enables it on the hire date as the single writer, the help desk issues the pass under a written procedure, and onboarding access comes from dynamic groups. Rollback: disable the workflow's schedule; it keeps its versions.`,
   `${IG}, Step 3 — "Federal requirements and evidence," "Government-cloud availability," "Interim path," "Validate (G3 Joiners)," "Rollback"; "What couldn't be verified."`);
@@ -625,7 +624,7 @@ sourceSlide("Sources: G2", [
   "OMB M-22-09 (section A, identity) and M-19-17, as the guide cites them; NIST SP 800-53B Moderate baseline (AC-2, IA-4(4), PS-7), as the guide cites it.",
 ]);
 sourceSlide("Sources: G3 and the handoff", [
-  "HR-Driven Identity: An Implementation Guide: Step 3 (steps 1–6, requirements and evidence, availability, interim path, Validate, Rollback); \"Evidence\"; \"What couldn't be verified\" (Temporary Access Pass in GCC High; the workflow ceiling).",
+  "HR-Driven Identity: An Implementation Guide: Step 3 (steps 1–6, requirements and evidence, availability, interim path, Validate, Rollback); \"Evidence\"; \"What couldn't be verified\" (the workflow ceiling).",
   "Microsoft Learn pages the guide footnotes: Entra feature availability; ID Governance licensing fundamentals and service limits; Lifecycle Workflow built-in tasks (Generate Temporary Access Pass); Temporary Access Pass policy; synchronizing attributes for Lifecycle Workflows; Lifecycle Workflows APIs (all read November 1, 2026).",
   "Book 03, Ch 08 (guardrails; triggers and schedule); Ch 11 (the measured lifecycle; the evidence each event leaves); Appendix C (acceptance). Book 04, Ch 09 (Lifecycle Workflows at the access level).",
   "Developer workbook, Chapter 03 (the workflow files; the lint, JW-01 to JW-15; the plan; day-one readiness; Lab 1, steps 2–5). examples/hr-lifecycle: python/joiner_workflows.py, config/workflows, tests/fixtures/ch03.",

@@ -76,11 +76,11 @@ and here it finds twenty-two
 findings, four of them top priority.
 
 17
-00:00:49.613 --> 00:00:53.603
-For GCC High and DoD, Microsoft
-has published nothing,
+00:00:49.613 --> 00:00:52.747
+Where an agent feature
+isn't available in GCC,
 
 18
-00:00:53.603 --> 00:00:57.480
-so govern the service
-principals the agents run as.
+00:00:52.747 --> 00:00:56.210
+govern the service principals
+the agents run as.

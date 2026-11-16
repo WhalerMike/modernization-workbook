@@ -25,39 +25,34 @@ Without a list, Entra doesn't
 check revocation at all.
 
 6
-00:00:17.500 --> 00:00:19.288
-The limits depend on the cloud.
+00:00:17.500 --> 00:00:21.747
+For interactive sign-in in GCC,
+a list can be twenty megabytes,
 
 7
-00:00:19.288 --> 00:00:23.843
-For interactive sign-in, a list
-can be twenty megabytes in GCC and
+00:00:21.747 --> 00:00:24.550
+and it must download within ten seconds.
 
 8
-00:00:23.843 --> 00:00:28.226
-forty-five in GCC High, and it
-must download within ten seconds.
-
-9
-00:00:28.226 --> 00:00:30.650
+00:00:24.550 --> 00:00:26.975
 If Entra can't download a configured list,
 
-10
-00:00:30.650 --> 00:00:34.787
+9
+00:00:26.975 --> 00:00:31.112
 certificate sign-in fails for every
 certificate from that authority.
 
-11
-00:00:34.787 --> 00:00:39.938
+10
+00:00:31.112 --> 00:00:36.263
 So host the lists on highly available
 endpoints, ideally over HTTP.
 
-12
-00:00:39.938 --> 00:00:44.818
+11
+00:00:36.263 --> 00:00:41.143
 Next, raise PIV certificates to
 multifactor strength by issuer or policy,
 
-13
-00:00:44.818 --> 00:00:49.200
+12
+00:00:41.143 --> 00:00:45.530
 and require phishing-resistant
 strength in Conditional Access.

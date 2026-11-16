@@ -1,54 +1,52 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.575
-The government clouds use different names,
-and getting this wrong fails quietly.
+00:00:00.050 --> 00:00:02.900
+Which names does a GCC tenant use?
 
 2
-00:00:04.575 --> 00:00:09.025
-A GCC tenant keeps using the
-worldwide Graph and sign-in endpoints,
+00:00:02.900 --> 00:00:05.050
+Getting this wrong fails quietly.
 
 3
-00:00:09.025 --> 00:00:13.232
-while GCC High uses dot-us
-addresses, and Microsoft says access
+00:00:05.050 --> 00:00:10.261
+A GCC tenant keeps using the worldwide
+Graph and sign-in endpoints, and Microsoft
 
 4
-00:00:13.232 --> 00:00:17.925
-tokens from one national cloud aren't
-interchangeable with another's.
+00:00:10.261 --> 00:00:15.550
+says access tokens from one national cloud
+aren't interchangeable with another's.
 
 5
-00:00:17.925 --> 00:00:20.643
-The provisioning agent
-has its own list of relay
+00:00:15.550 --> 00:00:19.412
+The provisioning agent has
+its own list of relay names,
 
 6
-00:00:20.643 --> 00:00:23.225
-names that change in the
-government cloud too.
+00:00:19.412 --> 00:00:22.587
+the public cloud's, which
+GCC tenants also use.
 
 7
-00:00:23.225 --> 00:00:26.739
+00:00:22.587 --> 00:00:26.101
 It needs no inbound ports,
 and Microsoft's guidance,
 
 8
-00:00:26.739 --> 00:00:31.425
+00:00:26.101 --> 00:00:30.787
 from search excerpts, is to avoid
 inline TLS inspection on that path.
 
 9
-00:00:31.425 --> 00:00:35.406
-The practical lesson is simple:
-keep a per-cloud list of names,
+00:00:30.787 --> 00:00:35.172
+The practical lesson is simple: keep
+a list of the names your tenant uses,
 
 10
-00:00:35.406 --> 00:00:37.875
+00:00:35.172 --> 00:00:37.476
 and test through the real egress path.
 
 11
-00:00:37.875 --> 00:00:40.490
+00:00:37.476 --> 00:00:40.080
 Now to Oracle, and a common mistake.

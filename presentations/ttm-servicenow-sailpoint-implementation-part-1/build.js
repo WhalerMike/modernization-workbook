@@ -85,7 +85,7 @@ const SC = "Close";
 
 The guide's argument is in its first line: two products can carry the loop, but neither closes it on its own. The ticket has to authorize a machine, and only a re-read can close the ticket.
 
-This series stays at the level of the guide's seven gates. For each one: what done means, the steps, the commands from the developer workbook's first lab where it has them, the federal requirement and the evidence an ISSO keeps, the FedRAMP status of each product and the Entra features in GCC and GCC High as the guide states them, and the rollback.
+This series stays at the level of the guide's seven gates. For each one: what done means, the steps, the commands from the developer workbook's first lab where it has them, the federal requirement and the evidence an ISSO keeps, the FedRAMP status of each product and the Entra features in GCC as the guide states them, and the rollback.
 
 Part 1 covers G1 to G4: confirm the authorization boundary, decide the writers and approvers, connect the sources and measure the starting drift, and open the front door. Part 2 covers G5 to G7: actuate on the native surface, close only on a re-read, and operate the tempo.
 
@@ -382,7 +382,7 @@ The guide's Validate step is plain about the limits: the check reads exports. It
       "Rollback: re-decide by a reviewed change; the record keeps the history",
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
-      "Nothing new is used. API-driven inbound provisioning, PIM, entitlement management, access reviews and Lifecycle Workflows: Azure Government; GCC is commercial",
+      "Nothing new is used. In GCC, Entra ID is the commercial service: API-driven inbound provisioning, PIM, entitlement management, access reviews and Lifecycle Workflows",
       "Interim: HR pipeline not live yet? Decide the writers now, and run G3 to G6 against the HR extract the kit reads",
     ]]);
   sources(s, "Sources: Guide, G2 (requirements and evidence; availability; interim path; Validate); Microsoft Learn feature availability, as footnoted.");
@@ -393,7 +393,7 @@ AC-5, separation of duties, at Moderate: one approver system per class, and the 
 
 Validate. Automated and read-only, writer_check.py compares the Entra inbound provisioning mappings with SailPoint's provisioning policies and flags any attribute with two writers. It reads exports; it doesn't check approver systems or lanes. The manual part: every HR-mastered attribute has exactly one writer in the attribute map, every authority class has exactly one approver system, every operation class has a lane and a change-record type, and the decisions are merged in the record.
 
-Availability: nothing new is used. Book 03's API-driven inbound provisioning, if it's the writer, is available in Azure for US Government, as are PIM, entitlement management, access reviews and Lifecycle Workflows. In GCC, Entra ID is the commercial service.
+Availability: nothing new is used. In GCC, Entra ID is the commercial service, so Book 03's API-driven inbound provisioning, if it's the writer, is available, as are PIM, entitlement management, access reviews and Lifecycle Workflows. Learn lists Microsoft Entra ID Governance as available in GCC.
 
 The interim path: where the HR pipeline isn't live yet, SailPoint can't be measured against a source of authority. Decide the writers now, and run Gates 3 to 6 against the HR extract the kit reads, until Book 03's pipeline lands. Rollback: re-decide by a reviewed change; the record keeps the history.`,
   `${IG}, Step 2 — "Federal requirements and evidence," "Availability," "Interim path," "Validate (G2 Writers and approvers)."`);
@@ -406,7 +406,7 @@ endModule(SG2);
   tag(s, "How");
   const tb = table(s, "Steps", 1.45, [2.75, 9.4], ["Step", "What it does"], [
     ["1 Aggregate HR", "Into SailPoint as the authoritative source, read-only under G2's first pattern"],
-    ["2 Connect Entra ID and AD", "The Entra SaaS connector (accounts, groups, licenses, roles, administrative units, access packages, PIM); AD through the virtual appliance. GCC High: graph.microsoft.us and login.microsoftonline.us"],
+    ["2 Connect Entra ID and AD", "The Entra SaaS connector (accounts, groups, licenses, roles, administrative units, access packages, PIM); AD through the virtual appliance"],
     ["3 Correlate on employeeId", "The key Book 03 joins on. Uncorrelated accounts are orphan candidates, not errors to suppress"],
     ["4 Native Change Detection", "On the Entra and AD sources: compares stored and new data on aggregation, one event per changed account; not on Non-Employee Lifecycle Management sources"],
     ["5 Run the reconciliation", "The kit joins the HR extract, Graph and ISC on employeeId, read-only, and reports Book 03's drift classes"],
@@ -417,7 +417,7 @@ endModule(SG2);
   notes(s,
 `G3 is the loop's first two steps for identity: SailPoint reads the sources, and the kit measures how far the directory is from HR before anything is fixed. The prerequisites are G2, and the integration identities from G1 in place with read permissions only.
 
-Step 1 aggregates HR into SailPoint as the authoritative source, read-only under G2's first pattern. Step 2 connects Entra ID and Active Directory as SailPoint sources: the Entra SaaS connector, which covers accounts, groups, licenses, roles, administrative units, access packages and PIM, and the AD connector through the virtual appliance. In GCC High, set the Entra source's Graph and token endpoints to graph.microsoft.us and login.microsoftonline.us.
+Step 1 aggregates HR into SailPoint as the authoritative source, read-only under G2's first pattern. Step 2 connects Entra ID and Active Directory as SailPoint sources: the Entra SaaS connector, which covers accounts, groups, licenses, roles, administrative units, access packages and PIM, and the AD connector through the virtual appliance.
 
 Step 3 correlates on employeeId, the key Book 03 joins on. Treat uncorrelated accounts as orphan candidates, not errors to suppress.
 
@@ -483,7 +483,7 @@ Three guards. Each finding's ID is a hash of its class, system, employee ID, obj
       "Rollback: disconnect the source or turn off Native Change Detection; the gate only reads",
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
-      "SailPoint's Entra connector documents Azure Government endpoint overrides; GCC uses the worldwide endpoints",
+      "GCC tenants use the worldwide endpoints",
       "Native Change Detection in the ISC FedRAMP environment: not confirmed (G1, step 2)",
       "Interim: without SailPoint, run the reconciliation on the HR extract and Graph alone; AD-only groups wait for the appliance",
     ]]);
@@ -495,7 +495,7 @@ AC-2, account management: the gate finds accounts with no worker, and workers wi
 
 Validate. The integration kit's tests prove the logic against mocked data: test_identity_drift.py and the PowerShell Get-IdentityDrift tests prove the drift classes against the fixtures, the same finding IDs from both clients, and that unauthorized writes are reported as not computed without an audit extract. Live, the reconciliation's findings on a synthetic HR extract should match a hand count; that's item 4 of the kit's lab. And from the validation kit, VK-HR-01, enabled members with no employeeId, and VK-HR-04, duplicate employeeId values, should be clean or have an owner for each row, because the join depends on the key.
 
-Availability: SailPoint's Entra connector documents Azure Government endpoint overrides, and GCC tenants use the worldwide endpoints. Native Change Detection's presence in the ISC FedRAMP environment wasn't confirmed; that's G1's step 2 question.
+Availability: GCC tenants use the worldwide endpoints. Native Change Detection's presence in the ISC FedRAMP environment wasn't confirmed; that's G1's step 2 question.
 
 The interim path: without SailPoint, or before it's connected, run the kit's reconciliation against the HR extract and Graph alone, because the ISC inputs are optional files. AD-only groups wait for the appliance. Rollback: disconnect the source or turn off Native Change Detection; the gate only reads.`,
   `${IG}, Step 3 — "Federal requirements and evidence," "Availability," "Interim path," "Validate (G3 Sources and starting drift)"; integration kit page, "How it's tested and what must still be proven."`);
@@ -646,7 +646,7 @@ sourceSlide("Sources: orientation and G1", [
 ]);
 sourceSlide("Sources: G2 and G3", [
   "Guide: Step 2 (steps 1–4, the lanes table, requirements and evidence, availability, interim path, Validate) and Step 3 (steps 1–6, requirements and evidence, availability, interim path, Validate).",
-  "Vendor pages the guide footnotes: SailPoint Oracle HCM Cloud supported features; SailPoint access request approvals; ServiceNow change types; SailPoint Entra SaaS supported features and Azure Government endpoint configuration; SailPoint Native Change Detection; Microsoft Graph national cloud deployments; Entra feature availability.",
+  "Vendor pages the guide footnotes: SailPoint Oracle HCM Cloud supported features; SailPoint access request approvals; ServiceNow change types; SailPoint Entra SaaS supported features; SailPoint Native Change Detection; Microsoft Graph national cloud deployments; Entra feature availability.",
   "Book 03, Ch 05 (the middleware's duties), Ch 06 (program attribute map), Ch 11 (drift classes). Book 15, Ch 03 (authority classes). Book 13, Ch 09 (who approves rule changes); Appendix B (operation classes and lanes). Integration kit page, Build 3; how it's tested.",
   "Developer workbook, Chapter 08 (writer_check.py; Lab 1) and Chapter 06 (identity_drift.py; drift_compare.py; Lab 1). examples/servicenow-sailpoint: clients/python/writer_check.py, identity_drift.py, drift_compare.py, tests/fixtures (writers, hr_extract, hr_extract_day2).",
 ]);

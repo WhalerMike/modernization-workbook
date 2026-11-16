@@ -433,43 +433,6 @@
    "We'll cover what's authorized and what isn't, the cryptography and hardening questions, where to host it, the controls to switch on, and why the controller is an identity in its own right."
   ]
  ],
- "13": [
-  [
-   0.05,
-   1.675,
-   "Start with what you're authorizing."
-  ],
-  [
-   1.725,
-   8.738,
-   "The current release has full support into 2027, with maintenance after that, and it installs only as containers or on OpenShift."
-  ],
-  [
-   10.463,
-   2.725,
-   "On authorization, be careful with words."
-  ],
-  [
-   13.188,
-   7.475,
-   "The self-managed platform isn't a cloud service, so it isn't on the fed-ramp Marketplace, and nobody publishes a statement about it."
-  ],
-  [
-   20.663,
-   5.65,
-   "Neither managed offering is listed either, and Azure Government availability isn't published."
-  ],
-  [
-   26.312,
-   8.35,
-   "So the program's default, which is design guidance, is to run it yourself, inside your own boundary, and authorize it like any other component."
-  ],
-  [
-   34.663,
-   3.038,
-   "Then come the two questions every assessor asks."
-  ]
- ],
  "14": [
   [
    0.05,
@@ -1065,6 +1028,43 @@
    42.1,
    0.762,
    "Thank you."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.675,
+   "Start with what you're authorizing."
+  ],
+  [
+   1.725,
+   8.738,
+   "The current release has full support into 2027, with maintenance after that, and it installs only as containers or on OpenShift."
+  ],
+  [
+   10.463,
+   2.725,
+   "On authorization, be careful with words."
+  ],
+  [
+   13.188,
+   7.475,
+   "The self-managed platform isn't a cloud service, so it isn't on the fed-ramp Marketplace, and nobody publishes a statement about it."
+  ],
+  [
+   20.663,
+   5.4,
+   "Neither managed offering is listed either, and both are published for commercial regions only."
+  ],
+  [
+   26.062,
+   8.35,
+   "So the program's default, which is design guidance, is to run it yourself, inside your own boundary, and authorize it like any other component."
+  ],
+  [
+   34.413,
+   3.038,
+   "Then come the two questions every assessor asks."
   ]
  ]
 }

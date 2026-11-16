@@ -54,31 +54,21 @@ Center Privacy Readers.
 Now the cloud.
 
 12
-00:00:38.475 --> 00:00:41.843
-A GCC tenant keeps the
-worldwide Graph endpoint,
+00:00:38.475 --> 00:00:43.213
+A GCC tenant keeps the worldwide
+Graph endpoint, which Learn's national
 
 13
-00:00:41.843 --> 00:00:44.875
-which Learn's national
-cloud page confirms.
+00:00:43.213 --> 00:00:47.550
+cloud page confirms, and the workbook's
+capture shows the kit's map.
 
 14
-00:00:44.875 --> 00:00:48.513
-GCC High and the Defense
-Department have their own hosts,
-
-15
-00:00:48.513 --> 00:00:52.150
-and the workbook's capture shows
-the kit's map of all three.
-
-16
-00:00:52.150 --> 00:00:55.366
+00:00:47.550 --> 00:00:50.766
 The kit sends each call only
 to the cloud's own host,
 
-17
-00:00:55.366 --> 00:00:59.040
+15
+00:00:50.766 --> 00:00:54.430
 and refuses a session in
 another environment or tenant.
