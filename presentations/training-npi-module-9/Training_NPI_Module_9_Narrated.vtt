@@ -24,1053 +24,990 @@ A I agents are non-person identities, and
 they follow every gate before this module.
 
 6
-00:00:18.437 --> 00:00:22.819
+00:00:18.437 --> 00:00:22.695
 In it you'll check a fictional tenant's
 agents against the program's rules,
 
 7
-00:00:22.819 --> 00:00:26.470
-see the same rules run in a cloud
-that has no agent identities,
-
-8
-00:00:26.470 --> 00:00:30.413
+00:00:22.695 --> 00:00:26.526
 and plan two report-only Conditional
 Access policies for agents.
 
-9
-00:00:30.413 --> 00:00:34.176
+8
+00:00:26.526 --> 00:00:30.288
 Then you'll apply one of them to
 a fake, by its approved hash.
 
-10
-00:00:34.176 --> 00:00:39.000
+9
+00:00:30.288 --> 00:00:35.113
 The tenant and its agents are fictional,
 and the apply changes only a fake.
 
-11
-00:00:39.000 --> 00:00:44.870
+10
+00:00:35.113 --> 00:00:40.980
 The code is illustrative: tested against
 fixtures, not run against a live tenant.
 
-12
-00:00:48.620 --> 00:00:50.370
+11
+00:00:44.730 --> 00:00:46.480
 Why does this module exist?
 
-13
-00:00:50.370 --> 00:00:54.420
+12
+00:00:46.480 --> 00:00:50.530
 Agents follow every gate before
 it, but they add three things.
 
-14
-00:00:54.420 --> 00:00:56.245
+13
+00:00:50.530 --> 00:00:52.355
 First, an agent can act.
 
-15
-00:00:56.245 --> 00:01:00.532
+14
+00:00:52.355 --> 00:00:56.642
 So an orphaned agent is disabled as
 soon as the finding is confirmed.
 
-16
-00:01:00.532 --> 00:01:03.782
+15
+00:00:56.642 --> 00:00:59.892
 That's the program's orphan
 rule for every identity,
 
-17
-00:01:03.782 --> 00:01:06.258
+16
+00:00:59.892 --> 00:01:02.368
 and agents are why it's the stricter one.
 
-18
-00:01:06.258 --> 00:01:11.170
+17
+00:01:02.368 --> 00:01:07.280
 Second, Microsoft Learn's Agent I D
 documentation says a blueprint holds the
 
-19
-00:01:11.170 --> 00:01:13.821
+18
+00:01:07.280 --> 00:01:09.931
 credentials for every agent made from it,
 
-20
-00:01:13.821 --> 00:01:17.096
+19
+00:01:09.931 --> 00:01:13.206
 so one secret on a blueprint
 is every agent's secret.
 
-21
-00:01:17.096 --> 00:01:21.712
+20
+00:01:13.206 --> 00:01:17.822
 And third, Learn's page on administrative
 relationships in Agent I D says that by
 
-22
-00:01:21.712 --> 00:01:25.070
+21
+00:01:17.822 --> 00:01:21.180
 default the user who creates
 an agent becomes its sponsor,
 
-23
-00:01:25.070 --> 00:01:29.058
+22
+00:01:21.180 --> 00:01:25.168
 and the guide adds that the creator
 becomes the blueprint's owner too.
 
-24
-00:01:29.058 --> 00:01:30.944
+23
+00:01:25.168 --> 00:01:27.054
 So creation has to be gated.
 
-25
-00:01:30.944 --> 00:01:35.782
+24
+00:01:27.054 --> 00:01:31.892
 In this module you check a fictional
 tenant's agents against the program's rules,
 
-26
-00:01:35.782 --> 00:01:39.519
+25
+00:01:31.892 --> 00:01:35.629
 see the same rules run where the
 cloud has no agent identities,
 
-27
-00:01:39.519 --> 00:01:43.540
+26
+00:01:35.629 --> 00:01:39.650
 and plan two report-only agent
 Conditional Access policies.
 
-28
-00:01:47.290 --> 00:01:50.169
+27
+00:01:43.400 --> 00:01:46.279
 Here's what you'll be able to
 do by the end of this module,
 
-29
-00:01:50.169 --> 00:01:52.852
+28
+00:01:46.279 --> 00:01:48.962
 which takes about sixty-five
 minutes with the lab.
 
-30
-00:01:52.852 --> 00:01:56.439
+29
+00:01:48.962 --> 00:01:52.549
 You'll describe a blueprint, an
 agent identity and a sponsor,
 
-31
-00:01:56.439 --> 00:01:59.440
+30
+00:01:52.549 --> 00:01:55.550
 and why the blueprint is
 the credential boundary.
 
+31
+00:01:55.550 --> 00:01:59.225
+You'll explain decision D N P six as data.
+
 32
-00:01:59.440 --> 00:02:02.218
-You'll explain decision D N P six as data,
-
-33
-00:02:02.218 --> 00:02:05.690
-and what the code does in
-a cloud without Agent I D.
-
-34
-00:02:05.690 --> 00:02:09.204
+00:01:59.225 --> 00:02:02.739
 You'll run the A I identity
 check and read its findings,
 
-35
-00:02:09.204 --> 00:02:11.440
+33
+00:02:02.739 --> 00:02:04.975
 including the top-priority drift.
 
-36
-00:02:11.440 --> 00:02:14.081
+34
+00:02:04.975 --> 00:02:07.616
 You'll explain the
 ten-business-day sponsor rule,
 
-37
-00:02:14.081 --> 00:02:16.128
+35
+00:02:07.616 --> 00:02:09.663
 and what happens to an orphaned agent.
 
-38
-00:02:16.128 --> 00:02:20.419
+36
+00:02:09.663 --> 00:02:13.954
 And you'll show that the agent
 Conditional Access plan is report-only,
 
-39
-00:02:20.419 --> 00:02:22.527
+37
+00:02:13.954 --> 00:02:16.062
 and runs only by its approved hash.
 
-40
-00:02:22.527 --> 00:02:27.891
+38
+00:02:16.062 --> 00:02:21.424
 Before you start, finish Module 2, because
 the lab reads Chapter 2's ownership run,
 
-41
-00:02:27.891 --> 00:02:32.320
+39
+00:02:21.424 --> 00:02:25.840
 and Module 6, on Conditional
 Access for workload identities.
 
-42
-00:02:36.070 --> 00:02:41.845
+40
+00:02:29.590 --> 00:02:35.365
 Unit 2 starts with what Microsoft Entra
 Agent I D is, in Microsoft Learn's words.
 
-43
-00:02:41.845 --> 00:02:45.690
+41
+00:02:35.365 --> 00:02:39.210
 A blueprint holds the credentials
 and creates agent identities,
 
-44
-00:02:45.690 --> 00:02:47.683
+42
+00:02:39.210 --> 00:02:41.203
 and it gets tokens on their behalf.
 
-45
-00:02:47.683 --> 00:02:52.007
+43
+00:02:41.203 --> 00:02:45.527
 So a compromise of the blueprint's
 credential affects every agent under it.
 
-46
-00:02:52.007 --> 00:02:54.820
+44
+00:02:45.527 --> 00:02:48.340
 That's why the blueprint is
 the credential boundary.
 
-47
-00:02:54.820 --> 00:02:59.158
+45
+00:02:48.340 --> 00:02:52.678
 The agent identities hold the permissions,
 and they're what appears in the logs.
 
-48
-00:02:59.158 --> 00:03:03.134
+46
+00:02:52.678 --> 00:02:56.654
 The pieces are at different stages,
 and Learn's release announcements,
 
-49
-00:03:03.134 --> 00:03:05.809
+47
+00:02:56.654 --> 00:02:59.329
 its Conditional Access
 for agents page and the
 
-50
-00:03:05.809 --> 00:03:08.895
+48
+00:02:59.329 --> 00:03:02.415
 Agent three sixty-five
 service description say which.
 
-51
-00:03:08.895 --> 00:03:10.893
+49
+00:03:02.415 --> 00:03:04.413
 The core objects, blueprints,
 
-52
-00:03:10.893 --> 00:03:14.807
+50
+00:03:04.413 --> 00:03:08.327
 agent identities and sponsors,
 are generally available.
 
-53
-00:03:14.807 --> 00:03:18.636
+51
+00:03:08.327 --> 00:03:12.156
 Conditional Access for agents
 and agent risk are preview,
 
-54
-00:03:18.636 --> 00:03:22.783
+52
+00:03:12.156 --> 00:03:16.303
 and the Graph properties for
 agent policies exist only in beta.
 
-55
-00:03:22.783 --> 00:03:26.770
+53
+00:03:16.303 --> 00:03:20.290
 In G C C, a documented subset is listed.
 
-56
-00:03:26.770 --> 00:03:30.932
-In G C C High and D O D,
-nothing is published yet.
-
-57
-00:03:30.932 --> 00:03:34.330
+54
+00:03:20.290 --> 00:03:23.700
 So the program holds its
 decision about this as data.
 
-58
-00:03:38.080 --> 00:03:42.621
+55
+00:03:27.450 --> 00:03:31.991
 The program's decision D N P six is
 held as data, in a configuration
 
-59
-00:03:42.621 --> 00:03:47.505
+56
+00:03:31.991 --> 00:03:36.875
 file with each capability's stage by
 cloud, and its status is proposed.
 
-60
-00:03:47.505 --> 00:03:49.768
+57
+00:03:36.875 --> 00:03:39.138
 The code reads it and picks a mode.
 
-61
-00:03:49.768 --> 00:03:53.435
+58
+00:03:39.138 --> 00:03:42.805
 In the worldwide and G C C clouds
 it runs in Agent I D mode:
 
-62
-00:03:53.435 --> 00:03:58.568
+59
+00:03:42.805 --> 00:03:47.938
 it reads blueprints and agent identities
 and checks them against the rules.
 
-63
-00:03:58.568 --> 00:04:03.399
-In G C C High and D O D, where
-Microsoft Learn's feature availability
+60
+00:03:47.938 --> 00:03:52.276
+Where a cloud has no agent
+identities, it runs in fallback mode.
 
-64
-00:04:03.399 --> 00:04:08.230
-page publishes no Agent I D
-availability, it runs in fallback mode.
-
-65
-00:04:08.230 --> 00:04:10.647
+61
+00:03:52.276 --> 00:03:54.692
 It sends no agent identity read at all,
 
-66
-00:04:10.647 --> 00:04:15.168
+62
+00:03:54.692 --> 00:03:59.213
 and applies the same rules to the
 service principals the agents run as.
 
-67
-00:04:15.168 --> 00:04:19.168
+63
+00:03:59.213 --> 00:04:03.212
 So the rules don't change by cloud;
 only what the code reads does.
 
-68
-00:04:19.168 --> 00:04:22.155
+64
+00:04:03.212 --> 00:04:06.199
 Preview features are
 reported, never enforced.
 
-69
-00:04:22.155 --> 00:04:24.050
+65
+00:04:06.199 --> 00:04:08.090
 That's design guidance.
 
-70
-00:04:27.800 --> 00:04:30.225
+66
+00:04:11.840 --> 00:04:14.265
 Here are the program's
 rules the code holds.
 
-71
-00:04:30.225 --> 00:04:33.550
+67
+00:04:14.265 --> 00:04:17.590
 They're the program's design
 guidance, not Microsoft's.
 
-72
-00:04:33.550 --> 00:04:37.712
+68
+00:04:17.590 --> 00:04:21.752
 Creation is closed: users
 can't create agent blueprints.
 
-73
-00:04:37.712 --> 00:04:42.382
+69
+00:04:21.752 --> 00:04:26.422
 Every production agent has a reviewed
 handshake before it exists, naming its
 
-74
-00:04:42.382 --> 00:04:47.051
+70
+00:04:26.422 --> 00:04:31.091
 sponsor and group, a technical owner who
 isn't the sponsor, and its permissions.
 
-75
-00:04:47.051 --> 00:04:50.644
+71
+00:04:31.091 --> 00:04:34.684
 Credentials prefer a managed
 identity, then federation,
 
-76
-00:04:50.644 --> 00:04:54.238
+72
+00:04:34.684 --> 00:04:38.278
 then a certificate, and never
 a production client secret.
 
-77
-00:04:54.238 --> 00:04:59.332
+73
+00:04:38.278 --> 00:04:43.372
 Least privilege means inheritance is never
 allow-all for application roles, because,
 
-78
-00:04:59.332 --> 00:05:03.135
+74
+00:04:43.372 --> 00:04:47.175
 as Microsoft Learn's page on
 inheritable permissions explains,
 
-79
-00:05:03.135 --> 00:05:07.225
+75
+00:04:47.175 --> 00:04:51.265
 any future grant to the blueprint
 then becomes a grant to every agent,
 
-80
-00:05:07.225 --> 00:05:09.951
+76
+00:04:51.265 --> 00:04:53.991
 and no agent holds a
 standing privileged role.
 
-81
-00:05:09.951 --> 00:05:13.717
+77
+00:04:53.991 --> 00:04:57.757
 Sponsors are federal employees,
 and on a move or leave the new
 
-82
-00:05:13.717 --> 00:05:17.937
+78
+00:04:57.757 --> 00:05:01.977
 sponsor confirms within ten business
 days, or the agent is orphaned.
 
-83
-00:05:17.937 --> 00:05:19.851
+79
+00:05:01.977 --> 00:05:03.891
 Two report-only policies.
 
-84
-00:05:19.851 --> 00:05:23.010
+80
+00:05:03.891 --> 00:05:07.050
 And three kinds of drift are top priority.
 
-85
-00:05:26.760 --> 00:05:31.497
+81
+00:05:10.800 --> 00:05:15.537
 The checks are twenty-three rules,
 N P I A I oh one to twenty-three.
 
-86
-00:05:31.497 --> 00:05:35.518
+82
+00:05:15.537 --> 00:05:19.558
 The first three check that creation
 is closed, with a recent reading,
 
-87
-00:05:35.518 --> 00:05:38.534
+83
+00:05:19.558 --> 00:05:22.574
 and flag an agent on an
 ordinary service principal.
 
-88
-00:05:38.534 --> 00:05:43.272
+84
+00:05:22.574 --> 00:05:27.312
 Four to nine check the handshake, made
 before the agent existed, and the people:
 
-89
-00:05:43.272 --> 00:05:48.010
+85
+00:05:27.312 --> 00:05:32.050
 a sponsor who's an enabled employee, and
 a technical owner who isn't the sponsor.
 
-90
-00:05:48.010 --> 00:05:50.185
+86
+00:05:32.050 --> 00:05:34.225
 Ten and eleven are the credentials:
 
-91
-00:05:50.185 --> 00:05:53.560
+87
+00:05:34.225 --> 00:05:37.600
 a client secret on a production
 blueprint is a finding.
 
-92
-00:05:53.560 --> 00:05:55.748
+88
+00:05:37.600 --> 00:05:39.788
 Twelve to fifteen are privilege.
 
-93
-00:05:55.748 --> 00:05:59.118
+89
+00:05:39.788 --> 00:05:43.158
 Sixteen and seventeen are
 the program's sponsor clock:
 
-94
-00:05:59.118 --> 00:06:03.910
+90
+00:05:43.158 --> 00:05:47.950
 a move or leave unconfirmed after ten
 business days makes the agent orphaned.
 
-95
-00:06:03.910 --> 00:06:05.968
+91
+00:05:47.950 --> 00:05:50.008
 The days skip federal holidays,
 
-96
-00:06:05.968 --> 00:06:09.610
+92
+00:05:50.008 --> 00:05:53.650
 so a leaver on October ninth
 is due October twenty-sixth.
 
-97
-00:06:09.610 --> 00:06:12.016
+93
+00:05:53.650 --> 00:05:56.056
 Eighteen to twenty check the two policies,
 
-98
-00:06:12.016 --> 00:06:15.610
+94
+00:05:56.056 --> 00:05:59.650
 and twenty-one to twenty-three
 are the top-priority drift.
 
-99
-00:06:19.360 --> 00:06:23.458
+95
+00:06:03.400 --> 00:06:07.498
 The only thing this chapter ever
 writes is the two agent policies,
 
-100
-00:06:23.458 --> 00:06:25.810
+96
+00:06:07.498 --> 00:06:09.850
 report-only, and that's the kit's design.
 
-101
-00:06:25.810 --> 00:06:30.024
+97
+00:06:09.850 --> 00:06:14.064
 The plan compares the two reviewed
 policies with the tenant's,
 
-102
-00:06:30.024 --> 00:06:32.998
+98
+00:06:14.064 --> 00:06:17.038
 and says create, in place,
 or differs for each.
 
-103
-00:06:32.998 --> 00:06:36.145
+99
+00:06:17.038 --> 00:06:20.185
 Where decision D N P six
 says agent Conditional
 
-104
-00:06:36.145 --> 00:06:39.535
+100
+00:06:20.185 --> 00:06:23.575
 Access isn't published, it
 marks them not available.
 
-105
-00:06:39.535 --> 00:06:43.298
+101
+00:06:23.575 --> 00:06:27.338
 And it refuses a reviewed file
 that isn't report-only Block.
 
-106
-00:06:43.298 --> 00:06:45.523
+102
+00:06:27.338 --> 00:06:29.563
 The write path is a separate script.
 
-107
-00:06:45.523 --> 00:06:49.537
+103
+00:06:29.563 --> 00:06:33.577
 It refuses to run unless the
 plan's hash is the approved one,
 
-108
-00:06:49.537 --> 00:06:53.384
+104
+00:06:33.577 --> 00:06:37.424
 for this tenant and cloud, and
 no more than seven days old.
 
-109
-00:06:53.384 --> 00:06:58.010
+105
+00:06:37.424 --> 00:06:42.050
 Every write creates a report-only
 policy with Block as the only grant.
 
-110
-00:06:58.010 --> 00:07:02.023
+106
+00:06:42.050 --> 00:06:46.063
 It runs as a person with the
 Conditional Access Administrator role.
 
-111
-00:07:02.023 --> 00:07:03.960
+107
+00:06:46.063 --> 00:06:48.000
 And it never turns a policy on.
 
-112
-00:07:03.960 --> 00:07:08.803
+108
+00:06:48.000 --> 00:06:52.843
 Microsoft Learn's page on Conditional
 Access for agents lists the feature as
 
-113
-00:07:08.803 --> 00:07:14.230
+109
+00:06:52.843 --> 00:06:58.270
 preview, so that waits until the agent
 targets leave preview in the agency's cloud.
 
-114
-00:07:17.980 --> 00:07:18.705
+110
+00:07:02.020 --> 00:07:02.745
 Try it.
 
-115
-00:07:18.705 --> 00:07:24.380
+111
+00:07:02.745 --> 00:07:08.420
 Lab 1 runs in the non-person identity
 folder of the examples, in PowerShell 7.
 
-116
-00:07:24.380 --> 00:07:28.659
+112
+00:07:08.420 --> 00:07:12.699
 Its step one makes Chapter 1's register
 and Chapter 2's ownership run,
 
-117
-00:07:28.659 --> 00:07:31.180
+113
+00:07:12.699 --> 00:07:15.220
 so the chapter's steps are one ahead here.
 
-118
-00:07:31.180 --> 00:07:34.392
+114
+00:07:15.220 --> 00:07:18.432
 The ownership run's last
 line is its plan's hash.
 
-119
-00:07:34.392 --> 00:07:38.602
+115
+00:07:18.432 --> 00:07:22.714
 Step two sends Microsoft Learn's
 Agent I D samples to the fake:
 
-120
-00:07:38.602 --> 00:07:43.654
-thirteen pass, none fail, and forty-nine
+116
+00:07:22.714 --> 00:07:27.682
+twelve pass, none fail, and forty-nine
 of the file's other tests aren't run.
 
-121
-00:07:43.654 --> 00:07:46.305
+117
+00:07:27.682 --> 00:07:30.332
 Step three lists what each task needs.
 
-122
-00:07:46.305 --> 00:07:51.005
+118
+00:07:30.332 --> 00:07:35.033
 The read task holds ten read
 permissions, and none ends in ReadWrite.
 
-123
-00:07:51.005 --> 00:07:54.430
+119
+00:07:35.033 --> 00:07:38.457
 The write task holds only
 the two policy permissions.
 
-124
-00:07:54.430 --> 00:07:58.830
+120
+00:07:38.457 --> 00:07:42.857
 Step four reads decision
 D N P six for each cloud.
 
-125
-00:07:58.830 --> 00:08:02.204
+121
+00:07:42.857 --> 00:07:46.232
 The worldwide and G C C
 clouds run in Agent I D mode,
 
-126
-00:08:02.204 --> 00:08:08.193
+122
+00:07:46.232 --> 00:07:52.570
 with agent identities generally available
 and agent Conditional Access in preview.
 
-127
-00:08:08.193 --> 00:08:13.410
-G C C High and D O D run in
-fallback mode: nothing published.
-
-128
-00:08:17.160 --> 00:08:21.897
+123
+00:07:56.320 --> 00:08:01.057
 Step five checks the A I identities
 in G C C and builds the plan.
 
-129
-00:08:21.897 --> 00:08:26.428
+124
+00:08:01.057 --> 00:08:05.588
 Eight are checked: four agent identities,
 three blueprints and one ordinary
 
-130
-00:08:26.428 --> 00:08:30.959
+125
+00:08:05.588 --> 00:08:10.119
 service principal, and the two sponsor
 fields Chapter 2 recorded are filled.
 
-131
-00:08:30.959 --> 00:08:35.619
+126
+00:08:10.119 --> 00:08:14.779
 There are twenty-two findings, four of
 them priority one and two priority two,
 
-132
-00:08:35.619 --> 00:08:40.573
+127
+00:08:14.779 --> 00:08:19.733
 six warnings and four information items,
 and two orphan candidates for Chapter 2.
 
-133
-00:08:40.573 --> 00:08:44.840
+128
+00:08:19.733 --> 00:08:24.000
 The policy plan: the block-unapproved
 policy is already in place,
 
-134
-00:08:44.840 --> 00:08:47.497
+129
+00:08:24.000 --> 00:08:26.657
 and the high-risk policy is to be created.
 
-135
-00:08:47.497 --> 00:08:48.672
+130
+00:08:26.657 --> 00:08:27.832
 Nothing is sent.
 
-136
-00:08:48.672 --> 00:08:51.972
+131
+00:08:27.832 --> 00:08:31.132
 Step six groups the
 findings: sixteen rules.
 
-137
-00:08:51.972 --> 00:08:53.010
+132
+00:08:31.132 --> 00:08:32.170
 Look for these.
 
-138
-00:08:53.010 --> 00:08:55.500
+133
+00:08:32.170 --> 00:08:34.660
 A client secret on Case Triage Blueprint,
 
-139
-00:08:55.500 --> 00:08:58.648
+134
+00:08:34.660 --> 00:08:37.808
 and on Correspondence
 Drafting's app registration.
 
-140
-00:08:58.648 --> 00:09:02.135
+135
+00:08:37.808 --> 00:08:41.295
 Case Triage Blueprint
 inherits every Graph role.
 
-141
-00:09:02.135 --> 00:09:05.054
+136
+00:08:41.295 --> 00:08:44.214
 Records Search's sponsor
 left on October ninth,
 
-142
-00:09:05.054 --> 00:09:08.122
+137
+00:08:44.214 --> 00:08:47.282
 and nobody confirmed a new
 one by the twenty-sixth.
 
-143
-00:09:08.122 --> 00:09:09.873
+138
+00:08:47.282 --> 00:08:49.033
 And the top-priority drift.
 
-144
-00:09:09.873 --> 00:09:13.550
+139
+00:08:49.033 --> 00:08:52.710
 Benefits Q and A Agent passes every rule.
 
-145
-00:09:17.300 --> 00:09:21.288
+140
+00:08:56.460 --> 00:09:00.448
 Step seven reads the sponsor
 fields Chapter 2 recorded,
 
-146
-00:09:21.288 --> 00:09:24.063
+141
+00:09:00.448 --> 00:09:03.223
 now filled for all eight A I identities.
 
-147
-00:09:24.063 --> 00:09:28.635
+142
+00:09:03.223 --> 00:09:07.794
 Case Triage Agent has carol as both
 its sponsor and its technical owner,
 
-148
-00:09:28.635 --> 00:09:32.587
+143
+00:09:07.794 --> 00:09:11.747
 so whoever decides the agent
 should exist also holds its keys.
 
-149
-00:09:32.587 --> 00:09:34.550
+144
+00:09:11.747 --> 00:09:13.710
 Records Search Agent is orphaned.
 
-150
-00:09:34.550 --> 00:09:39.912
+145
+00:09:13.710 --> 00:09:19.440
 And Sandbox Helper has no sponsor, no
 inventory record and no handshake at all.
 
-151
-00:09:39.912 --> 00:09:43.826
-Step eight runs the decision's
-fallback in G C C High.
-
-152
-00:09:43.826 --> 00:09:48.288
-You run Chapters 1 and 2 again in
-that cloud, then the A I check.
-
-153
-00:09:48.288 --> 00:09:50.757
-It prints fallback mode in G C C High,
-
-154
-00:09:50.757 --> 00:09:55.013
-with agent Conditional Access
-and agent risk not published.
-
-155
-00:09:55.013 --> 00:09:59.169
-Only one identity is checked,
-the ordinary service principal,
-
-156
-00:09:59.169 --> 00:10:01.451
-and no agent identity read is sent.
-
-157
-00:10:01.451 --> 00:10:04.640
-Both agent policies are
-marked not available.
-
-158
-00:10:08.390 --> 00:10:13.252
-Step nine dry-runs the agent Conditional
+146
+00:09:23.190 --> 00:09:28.002
+Step eight dry-runs the agent Conditional
 Access plan with its approved hash.
 
-159
-00:10:13.252 --> 00:10:15.496
+147
+00:09:28.002 --> 00:09:30.246
 It would send exactly one request:
 
-160
-00:10:15.496 --> 00:10:20.465
+148
+00:09:30.246 --> 00:09:35.215
 a POST to the beta Conditional Access
 endpoint on the cloud's own Graph host,
 
-161
-00:10:20.465 --> 00:10:24.552
+149
+00:09:35.215 --> 00:09:39.302
 for the high-risk policy, because
 the other is already in place.
 
-162
-00:10:24.552 --> 00:10:28.914
-Step ten runs the same command with
+150
+00:09:39.302 --> 00:09:43.615
+Step nine runs the same command with
 the apply switch, against the fake.
 
-163
-00:10:28.914 --> 00:10:32.592
+151
+00:09:43.615 --> 00:09:47.292
 One write is sent, and the
 policy is created report-only,
 
-164
-00:10:32.592 --> 00:10:37.740
+152
+00:09:47.292 --> 00:09:52.440
 with a reminder to review its report-only
 results before any change of state.
 
-165
-00:10:37.740 --> 00:10:42.503
+153
+00:09:52.440 --> 00:09:57.203
 Then you pass a hash of zeros, one
 nobody approved, and the script refuses:
 
-166
-00:10:42.503 --> 00:10:47.428
+154
+00:09:57.203 --> 00:10:02.128
 the plan's hash isn't the approved one,
 and it won't run a plan nobody reviewed.
 
-167
-00:10:47.428 --> 00:10:50.427
+155
+00:10:02.128 --> 00:10:05.127
 Pasted line by line,
 your shell carries on.
 
-168
-00:10:50.427 --> 00:10:55.615
-Step eleven runs every test: five
-hundred thirteen pass, none fail.
+156
+00:10:05.127 --> 00:10:09.965
+Step ten runs every test: five
+hundred eleven pass, none fail.
 
-169
-00:10:55.615 --> 00:10:57.820
+157
+00:10:09.965 --> 00:10:12.160
 Then delete the output folder.
 
-170
-00:11:01.570 --> 00:11:05.515
+158
+00:10:15.910 --> 00:10:19.855
 Lab 2 moves to your own test
 tenant, worldwide or G C C,
 
-171
-00:11:05.515 --> 00:11:08.708
+159
+00:10:19.855 --> 00:10:23.048
 never production, with fictional people.
 
-172
-00:11:08.708 --> 00:11:14.610
+160
+00:10:23.048 --> 00:10:28.950
 It needs Agent three sixty-five, or
 Microsoft three sixty-five E seven,
 
-173
-00:11:14.610 --> 00:11:20.720
+161
+00:10:28.950 --> 00:10:35.060
 with Entra I D P one, and P two for agent
 risk, and Chapters 1 and 2's Lab 2 runs.
 
-174
-00:11:20.720 --> 00:11:25.257
+162
+00:10:35.060 --> 00:10:39.597
 Read the setting that lets users create
 agent blueprints, and set it to No.
 
-175
-00:11:25.257 --> 00:11:28.225
+163
+00:10:39.597 --> 00:10:42.565
 Make one governed agent,
 with a sponsor who isn't
 
-176
-00:11:28.225 --> 00:11:31.420
+164
+00:10:42.565 --> 00:10:45.760
 its owner and a managed
 identity as its credential.
 
-177
-00:11:31.420 --> 00:11:35.398
+165
+00:10:45.760 --> 00:10:49.738
 Run the check with an app holding
 only the read task's permissions,
 
-178
-00:11:35.398 --> 00:11:40.408
+166
+00:10:49.738 --> 00:10:54.748
 then dry-run and apply the plan as a person
 with Conditional Access Administrator.
 
-179
-00:11:40.408 --> 00:11:44.810
+167
+00:10:54.748 --> 00:10:59.150
 To back it out, step six, in the
 admin center: delete the two policies,
 
-180
-00:11:44.810 --> 00:11:49.620
+168
+00:10:59.150 --> 00:11:03.960
 remove the attribute, disable then
 delete the test agent and blueprint,
 
-181
-00:11:49.620 --> 00:11:51.658
+169
+00:11:03.960 --> 00:11:05.998
 and delete the output folders.
 
-182
-00:11:51.658 --> 00:11:53.233
+170
+00:11:05.998 --> 00:11:07.573
 The code deletes nothing.
 
-183
-00:11:53.233 --> 00:11:55.750
+171
+00:11:07.573 --> 00:11:10.090
 The authors haven't run Lab 2.
 
-184
-00:11:59.500 --> 00:12:00.887
+172
+00:11:13.840 --> 00:11:15.227
 The federal requirement.
 
-185
-00:12:00.887 --> 00:12:06.275
+173
+00:11:15.227 --> 00:11:20.615
 The guide's A I agents section adds to
 the gates, and its evidence table carries
 
-186
-00:12:06.275 --> 00:12:11.663
+174
+00:11:20.615 --> 00:11:26.003
 CISA's ScubaGear baseline policy for risky
 agents, M S dot A A D dot nine dot one.
 
-187
-00:12:11.663 --> 00:12:15.738
+175
+00:11:26.003 --> 00:11:30.078
 The controls are NIST special
 publication eight hundred fifty-three's.
 
-188
-00:12:15.738 --> 00:12:18.501
+176
+00:11:30.078 --> 00:11:32.841
 The module's table maps each lab step.
 
-189
-00:12:18.501 --> 00:12:24.225
+177
+00:11:32.841 --> 00:11:38.565
 Account management and section three B
 five of O M B M twenty-five twenty-one:
 
-190
-00:12:24.225 --> 00:12:29.488
+178
+00:11:38.565 --> 00:11:43.828
 the A I identities file, with a sponsor,
 group, owner and record for each.
 
-191
-00:12:29.488 --> 00:12:33.413
+179
+00:11:43.828 --> 00:11:47.753
 Separation of duties: the
 handshake and sponsor findings.
 
-192
-00:12:33.413 --> 00:12:38.250
+180
+00:11:47.753 --> 00:11:52.590
 Authenticators and least privilege:
 the credential and privilege findings.
 
-193
-00:12:38.250 --> 00:12:41.275
+181
+00:11:52.590 --> 00:11:55.615
 Inventory and automated audit actions:
 
-194
-00:12:41.275 --> 00:12:44.575
+182
+00:11:55.615 --> 00:11:58.915
 the drift findings, so
 no shadow A I identity.
 
-195
-00:12:44.575 --> 00:12:48.453
+183
+00:11:58.915 --> 00:12:02.793
 Access enforcement and change
 control: the policy plan,
 
-196
-00:12:48.453 --> 00:12:52.163
+184
+00:12:02.793 --> 00:12:06.503
 with the dry run's and the
 apply's results and manifest.
 
-197
-00:12:52.163 --> 00:12:55.624
+185
+00:12:06.503 --> 00:12:09.964
 And external system services:
 the capabilities file.
 
-198
-00:12:55.624 --> 00:12:59.650
+186
+00:12:09.964 --> 00:12:13.990
 Which file supports which K
 S I is the program's mapping.
 
-199
-00:13:03.400 --> 00:13:05.375
+187
+00:12:17.740 --> 00:12:19.715
 Check yourself with two questions.
 
-200
-00:13:05.375 --> 00:13:09.525
+188
+00:12:19.715 --> 00:12:23.865
 First: why is a client secret on
 a production blueprint a finding?
 
-201
-00:13:09.525 --> 00:13:10.495
+189
+00:12:23.865 --> 00:12:24.835
 The answer is b.
 
-202
-00:13:10.495 --> 00:13:16.155
+190
+00:12:24.835 --> 00:12:30.495
 Microsoft Learn's Agent I D documentation
 says the blueprint holds the credentials
 
-203
-00:13:16.155 --> 00:13:20.925
+191
+00:12:30.495 --> 00:12:35.265
 for every agent made from it, so one
 leaked secret is every agent's secret.
 
-204
-00:13:20.925 --> 00:13:23.750
+192
+00:12:35.265 --> 00:12:38.090
 That's why the blueprint is
 the credential boundary,
 
-205
-00:13:23.750 --> 00:13:26.313
+193
+00:12:38.090 --> 00:12:40.653
 and why the program
 prefers a managed identity.
 
-206
-00:13:26.313 --> 00:13:28.237
+194
+00:12:40.653 --> 00:12:42.577
 Second: a sponsor leaves.
 
-207
-00:13:28.237 --> 00:13:30.287
+195
+00:12:42.577 --> 00:12:44.627
 When does the agent become orphaned?
 
-208
-00:13:30.287 --> 00:13:35.426
+196
+00:12:44.627 --> 00:12:49.766
 The answer is c: when the new sponsor
 hasn't confirmed within ten business days.
 
-209
-00:13:35.426 --> 00:13:37.927
+197
+00:12:49.766 --> 00:12:52.267
 That's the program's design guidance,
 
-210
-00:13:37.927 --> 00:13:42.263
+198
+00:12:52.267 --> 00:12:56.603
 and N P I A I sixteen checks it,
 counting around federal holidays.
 
-211
-00:13:42.263 --> 00:13:46.300
+199
+00:12:56.603 --> 00:13:00.640
 Then the orphaned agent goes to
 Chapter 2's orphan candidates.
 
-212
-00:13:46.300 --> 00:13:48.727
+200
+00:13:00.640 --> 00:13:03.067
 The module page has three more questions,
 
-213
-00:13:48.727 --> 00:13:51.580
+201
+00:13:03.067 --> 00:13:05.920
 each linked to the
 section that answers it.
 
-214
-00:13:55.330 --> 00:13:56.155
+202
+00:13:09.670 --> 00:13:10.495
 To sum up.
 
-215
-00:13:56.155 --> 00:13:59.035
+203
+00:13:10.495 --> 00:13:13.270
 You checked eight
 fictional A I identities,
 
-216
-00:13:59.035 --> 00:14:02.074
+204
+00:13:13.270 --> 00:13:16.198
 filled the sponsor fields
 Chapter 2 recorded,
 
-217
-00:14:02.074 --> 00:14:06.154
+205
+00:13:16.198 --> 00:13:20.129
 found an orphaned agent and four
 top-priority drift findings,
 
-218
-00:14:06.154 --> 00:14:09.114
-ran the same rules in G
-C C High's fallback mode,
-
-219
-00:14:09.114 --> 00:14:13.593
+206
+00:13:20.129 --> 00:13:24.445
 and applied a report-only agent policy
 to a fake by its approved hash.
 
-220
-00:14:13.593 --> 00:14:18.472
+207
+00:13:24.445 --> 00:13:29.325
 The evidence an ISSO keeps from this
 module is the A I identities file,
 
-221
-00:14:18.472 --> 00:14:23.780
+208
+00:13:29.325 --> 00:13:34.633
 the findings, the orphan candidates,
 the policy plan with its approved hash,
 
-222
-00:14:23.780 --> 00:14:27.976
+209
+00:13:34.633 --> 00:13:38.829
 and the dry run's and apply's
 results and manifests, all dated;
 
-223
-00:14:27.976 --> 00:14:32.342
+210
+00:13:38.829 --> 00:13:43.195
 the capability table for decision
 D N P six; and the test result.
 
-224
-00:14:32.342 --> 00:14:36.730
+211
+00:13:43.195 --> 00:13:47.583
 Next is Module 10: find
 drift and file the evidence.
 
-225
-00:14:36.730 --> 00:14:40.844
+212
+00:13:47.583 --> 00:13:51.696
 It keeps every gate's state true
 against an approved baseline,
 
-226
-00:14:40.844 --> 00:14:44.620
+213
+00:13:51.696 --> 00:13:55.460
 and hands the ISSO evidence
 they can verify themselves.

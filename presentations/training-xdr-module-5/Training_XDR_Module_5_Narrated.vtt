@@ -1,0 +1,895 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.996
+Welcome to Module 5, the last
+module of Defender X D R
+
+2
+00:00:03.996 --> 00:00:09.163
+Engineering and Operations:
+automation, operations and evidence.
+
+3
+00:00:09.163 --> 00:00:12.100
+Automation is where speed and outage meet.
+
+4
+00:00:12.100 --> 00:00:15.754
+The same setting that contains a
+compromised laptop in minutes can
+
+5
+00:00:15.754 --> 00:00:19.538
+lock out the account the security
+operations center needs to respond.
+
+6
+00:00:19.538 --> 00:00:24.071
+In this module you set Defender's automation
+to the program's response ladder,
+
+7
+00:00:24.071 --> 00:00:27.400
+and exclude what must never
+be contained automatically.
+
+8
+00:00:27.400 --> 00:00:31.486
+Then you run the platform: the
+cadence, the monthly evidence run,
+
+9
+00:00:31.486 --> 00:00:35.100
+the synthetic events, and the
+metrics an assessor reads.
+
+10
+00:00:35.100 --> 00:00:40.337
+The module covers Steps 9 and 10 of the
+Defender X D R implementation guide.
+
+11
+00:00:40.337 --> 00:00:44.840
+It takes about forty minutes, plus
+Lab 2 in your own test tenant.
+
+12
+00:00:48.590 --> 00:00:50.590
+Why does automation need a boundary?
+
+13
+00:00:50.590 --> 00:00:52.253
+Because it cuts both ways.
+
+14
+00:00:52.253 --> 00:00:57.219
+On the speed side: Microsoft Learn recommends
+the full remediation level for device
+
+15
+00:00:57.219 --> 00:01:01.973
+groups, so threats on workstations are
+remediated automatically, and Learn says
+
+16
+00:01:01.973 --> 00:01:06.514
+every automatic attack disruption action
+can be undone by the security team.
+
+17
+00:01:06.514 --> 00:01:10.590
+On the outage side: a contained
+server is an outage, and a contained
+
+18
+00:01:10.590 --> 00:01:14.815
+emergency access account is a lockout,
+in the middle of the incident.
+
+19
+00:01:14.815 --> 00:01:16.890
+The guide names both as dangers.
+
+20
+00:01:16.890 --> 00:01:20.480
+And Learn itself cautions that
+exclusions reduce protection,
+
+21
+00:01:20.480 --> 00:01:22.690
+so you can't exclude your way out either.
+
+22
+00:01:22.690 --> 00:01:25.288
+The Security Operations
+and Telemetry book's
+
+23
+00:01:25.288 --> 00:01:28.365
+response ladder decides what
+may act without a person.
+
+24
+00:01:28.365 --> 00:01:33.271
+This module sets Defender's own automation
+to match it, with two settings: each
+
+25
+00:01:33.271 --> 00:01:35.417
+device group's remediation level,
+
+26
+00:01:35.417 --> 00:01:39.140
+and the exclusions for
+automatic attack disruption.
+
+27
+00:01:42.890 --> 00:01:45.803
+Here's what you'll be able to
+do by the end of this module.
+
+28
+00:01:45.803 --> 00:01:47.772
+Name the five automation levels,
+
+29
+00:01:47.772 --> 00:01:51.127
+and set each device group's
+level to the response ladder.
+
+30
+00:01:51.127 --> 00:01:55.987
+Record attack disruption exclusions for
+emergency access and service accounts,
+
+31
+00:01:55.987 --> 00:01:58.489
+with the authorizing official's approval.
+
+32
+00:01:58.489 --> 00:02:02.378
+Run the monthly evidence run, and
+check its hashes a month later.
+
+33
+00:02:02.378 --> 00:02:06.104
+And use the synthetic events,
+the metrics and the evidence
+
+34
+00:02:06.104 --> 00:02:10.141
+catalog to show that the controls
+work, not just that they exist.
+
+35
+00:02:10.141 --> 00:02:11.902
+You need Modules 1 to 4.
+
+36
+00:02:11.902 --> 00:02:16.000
+Skim the Security Operations
+and Telemetry book's Chapter 11,
+
+37
+00:02:16.000 --> 00:02:19.777
+for the response ladder, and
+Chapter 12, for the metric set.
+
+38
+00:02:19.777 --> 00:02:23.510
+Lab 2 runs in a test
+tenant, never production.
+
+39
+00:02:27.260 --> 00:02:31.997
+Unit 1 is automated investigation
+and response, set per device group.
+
+40
+00:02:31.997 --> 00:02:34.522
+Microsoft Learn lists five levels.
+
+41
+00:02:34.522 --> 00:02:37.435
+Full, remediate threats automatically.
+
+42
+00:02:37.435 --> 00:02:41.290
+Three semi levels, requiring
+approval for core folders,
+
+43
+00:02:41.290 --> 00:02:43.972
+for non-temp folders, or for all folders.
+
+44
+00:02:43.972 --> 00:02:45.822
+And no automated response.
+
+45
+00:02:45.822 --> 00:02:49.073
+The program's choices are
+risk-based recommendations.
+
+46
+00:02:49.073 --> 00:02:53.809
+The pilot puts ring one's workstation
+group at semi, require approval for all
+
+47
+00:02:53.809 --> 00:02:56.666
+folders, so every
+remediation is proposed and
+
+48
+00:02:56.666 --> 00:02:59.373
+an analyst approves it
+in the Action center.
+
+49
+00:02:59.373 --> 00:03:01.568
+Those two weeks of pending actions,
+
+50
+00:03:01.568 --> 00:03:04.823
+with the approval rate
+recorded, are the audit phase.
+
+51
+00:03:04.823 --> 00:03:08.272
+Then workstation groups go to
+full, which Learn recommends.
+
+52
+00:03:08.272 --> 00:03:10.485
+Server groups stay at a semi level,
+
+53
+00:03:10.485 --> 00:03:15.147
+because isolating a server is never
+autonomous in the program's ladder.
+
+54
+00:03:15.147 --> 00:03:18.449
+Rollback sets a device
+group back to a semi level,
+
+55
+00:03:18.449 --> 00:03:23.648
+on the Devices page under automated
+responses in the Defender X D R settings.
+
+56
+00:03:23.648 --> 00:03:26.024
+Learn says changing device groups needs
+
+57
+00:03:26.024 --> 00:03:29.310
+Global Administrator or
+Security Administrator.
+
+58
+00:03:33.060 --> 00:03:36.459
+Automatic attack disruption
+has its own exclusions,
+
+59
+00:03:36.459 --> 00:03:40.012
+under the automated response
+settings in Defender X D R.
+
+60
+00:03:40.012 --> 00:03:44.184
+Microsoft Learn says the identities
+page holds user exclusions,
+
+61
+00:03:44.184 --> 00:03:47.660
+and the devices page holds
+device groups and I P ranges.
+
+62
+00:03:47.660 --> 00:03:51.791
+Learn names service accounts and
+emergency admin accounts as the use
+
+63
+00:03:51.791 --> 00:03:55.922
+for user exclusions, and cautions
+that exclusions reduce protection.
+
+64
+00:03:55.922 --> 00:04:00.758
+So the program excludes exactly two
+kinds of identity: the emergency access
+
+65
+00:04:00.758 --> 00:04:05.823
+accounts, and the service accounts whose
+disablement would stop the S O C itself.
+
+66
+00:04:05.823 --> 00:04:09.473
+Learn adds that excluding a device
+group from attack disruption
+
+67
+00:04:09.473 --> 00:04:13.260
+also affects automated investigation
+and response for that group.
+
+68
+00:04:13.260 --> 00:04:16.640
+Each exclusion goes in the
+register with the authorizing
+
+69
+00:04:16.640 --> 00:04:19.598
+official's approval, and
+is reviewed every quarter.
+
+70
+00:04:19.598 --> 00:04:21.135
+Two more facts from Learn.
+
+71
+00:04:21.135 --> 00:04:24.716
+The contain user action needs
+sensor version ten point
+
+72
+00:04:24.716 --> 00:04:27.985
+eight four seven zero or
+later, which the lab checks.
+
+73
+00:04:27.985 --> 00:04:31.998
+And attack disruption's availability
+in G C C isn't specified
+
+74
+00:04:31.998 --> 00:04:35.970
+on Learn's government pages,
+so confirm it in the tenant.
+
+75
+00:04:39.720 --> 00:04:41.545
+Unit 2 is operations.
+
+76
+00:04:41.545 --> 00:04:46.252
+The operating rhythm belongs to the
+Security Operations and Telemetry book;
+
+77
+00:04:46.252 --> 00:04:48.679
+this gate produces Defender's part of it,
+
+78
+00:04:48.679 --> 00:04:52.283
+on a cadence that's the program's
+risk-based recommendation.
+
+79
+00:04:52.283 --> 00:04:56.709
+Weekly: sensor health and coverage, with
+a ticket for every device not active,
+
+80
+00:04:56.709 --> 00:04:59.730
+and prevention and Attack
+Surface Reduction drift,
+
+81
+00:04:59.730 --> 00:05:03.383
+with the policy export compared
+against the last approved one.
+
+82
+00:05:03.383 --> 00:05:08.414
+Quarterly: detection tuning for each
+rule, the exception register review,
+
+83
+00:05:08.414 --> 00:05:12.044
+and an exercise, a tabletop
+plus the synthetic events.
+
+84
+00:05:12.044 --> 00:05:15.808
+Monthly: the metrics and the
+evidence package, hashed.
+
+85
+00:05:15.808 --> 00:05:19.108
+The monthly evidence run is a
+short script from the guide.
+
+86
+00:05:19.108 --> 00:05:24.101
+It runs the read-only coverage, Attack
+Surface Reduction and prevention queries,
+
+87
+00:05:24.101 --> 00:05:27.381
+exports the last thirty days
+of incidents with their
+
+88
+00:05:27.381 --> 00:05:30.958
+classification and determination,
+and hashes every file.
+
+89
+00:05:30.958 --> 00:05:32.383
+Why file the results?
+
+90
+00:05:32.383 --> 00:05:36.332
+Because Microsoft Learn says
+advanced hunting keeps thirty days.
+
+91
+00:05:36.332 --> 00:05:40.190
+The monthly run is how anyone
+can answer for an older month.
+
+92
+00:05:43.940 --> 00:05:47.318
+The metrics measure protected
+coverage and effectiveness,
+
+93
+00:05:47.318 --> 00:05:48.940
+not whether a setting exists.
+
+94
+00:05:48.940 --> 00:05:52.427
+They join Security Operations
+and Telemetry's metric set,
+
+95
+00:05:52.427 --> 00:05:54.752
+and the targets are the program's to set.
+
+96
+00:05:54.752 --> 00:05:56.791
+Four examples from the guide's seven.
+
+97
+00:05:56.791 --> 00:06:00.662
+Protected coverage is onboarded
+devices with an active sensor,
+
+98
+00:06:00.662 --> 00:06:04.388
+divided by in-scope devices in
+the inventory, because a policy
+
+99
+00:06:04.388 --> 00:06:08.552
+assigned to a group says nothing
+about devices that never checked in.
+
+100
+00:06:08.552 --> 00:06:13.415
+Enforcement depth is devices with every
+Attack Surface Reduction rule in block,
+
+101
+00:06:13.415 --> 00:06:16.752
+or an approved exception,
+divided by onboarded devices,
+
+102
+00:06:16.752 --> 00:06:20.090
+because audit mode is configured
+but protects nothing.
+
+103
+00:06:20.090 --> 00:06:23.616
+Detection validity is enabled
+detections with a passing
+
+104
+00:06:23.616 --> 00:06:27.215
+known-bad test this quarter,
+divided by enabled detections.
+
+105
+00:06:27.215 --> 00:06:30.488
+And synthetic-event success
+is events that produced
+
+106
+00:06:30.488 --> 00:06:33.165
+their expected alert,
+divided by events run.
+
+107
+00:06:33.165 --> 00:06:37.426
+The synthetic events, run on ring
+zero devices under a change record,
+
+108
+00:06:37.426 --> 00:06:41.002
+are the detection test, the
+network protection test site,
+
+109
+00:06:41.002 --> 00:06:44.351
+a controlled folder access
+write by an untrusted app,
+
+110
+00:06:44.351 --> 00:06:48.840
+a demonstration for each rule, and a
+custom detection's known-bad replay.
+
+111
+00:06:48.840 --> 00:06:53.960
+They show an assessor that telemetry,
+detection and routing work end to end.
+
+112
+00:06:57.710 --> 00:07:02.510
+Lab 2 runs the guide's validate steps
+in a test tenant, never production.
+
+113
+00:07:02.510 --> 00:07:05.510
+The authors haven't run
+them, as the page says.
+
+114
+00:07:05.510 --> 00:07:09.835
+Every step reads, apart from the evidence
+files it writes in your own folder.
+
+115
+00:07:09.835 --> 00:07:13.430
+You need Module 1's test tenant,
+reader account and test device,
+
+116
+00:07:13.430 --> 00:07:17.518
+an account that can view the Defender
+portal's settings, and the ladder
+
+117
+00:07:17.518 --> 00:07:21.747
+decision record for the test tenant, or
+the guide's Step 9 as the reference.
+
+118
+00:07:21.747 --> 00:07:24.097
+Step one runs on the test device.
+
+119
+00:07:24.097 --> 00:07:28.723
+It's Microsoft Learn's command that reads
+the sensor version from the registry.
+
+120
+00:07:28.723 --> 00:07:32.684
+Contain user needs ten point
+eight four seven zero or later.
+
+121
+00:07:32.684 --> 00:07:36.422
+Step two is a click path in the
+Defender portal for your cloud.
+
+122
+00:07:36.422 --> 00:07:41.686
+Open the devices page under automated
+responses and note each device group's level.
+
+123
+00:07:41.686 --> 00:07:45.485
+Then open the identities page
+and note the excluded users.
+
+124
+00:07:45.485 --> 00:07:47.923
+Compare both with the
+ladder decision record.
+
+125
+00:07:47.923 --> 00:07:51.126
+The guide's pass: every
+server group at a semi level,
+
+126
+00:07:51.126 --> 00:07:54.798
+every workstation group at
+full or a recorded exception,
+
+127
+00:07:54.798 --> 00:07:59.210
+and the emergency access accounts
+in the identity exclusions.
+
+128
+00:08:02.960 --> 00:08:05.987
+Step three is the guide's
+monthly evidence run,
+
+129
+00:08:05.987 --> 00:08:08.935
+shortened on the slide;
+the page has it in full.
+
+130
+00:08:08.935 --> 00:08:14.185
+Use a new, empty evidence folder,
+because the run hashes every file in it.
+
+131
+00:08:14.185 --> 00:08:18.030
+It connects, runs the three
+read-only queries for coverage,
+
+132
+00:08:18.030 --> 00:08:22.435
+Attack Surface Reduction and
+prevention, and writes each to a file.
+
+133
+00:08:22.435 --> 00:08:27.553
+It exports the last thirty days of incidents,
+filtered on the created date time,
+
+134
+00:08:27.553 --> 00:08:30.387
+which Microsoft Learn lists as filterable,
+
+135
+00:08:30.387 --> 00:08:34.560
+with their severity, status,
+classification and determination.
+
+136
+00:08:34.560 --> 00:08:38.435
+Then it hashes every file in
+the folder into a checksum file.
+
+137
+00:08:38.435 --> 00:08:40.531
+You should see the coverage, A S R,
+
+138
+00:08:40.531 --> 00:08:44.160
+prevention and incidents
+files, and the checksum file.
+
+139
+00:08:44.160 --> 00:08:48.748
+Step four checks the hashes, the way
+next month's run checks last month's.
+
+140
+00:08:48.748 --> 00:08:52.740
+It reads the checksum file, leaves
+out the checksum file's own entry,
+
+141
+00:08:52.740 --> 00:08:55.643
+since the run writes it
+into the folder it hashes,
+
+142
+00:08:55.643 --> 00:08:58.547
+and compares each recorded
+hash with a fresh one.
+
+143
+00:08:58.547 --> 00:09:01.373
+Matches should be true
+for every evidence file.
+
+144
+00:09:01.373 --> 00:09:03.997
+False means a file changed
+after it was filed.
+
+145
+00:09:03.997 --> 00:09:08.870
+Step five backs it out: nothing
+changed in the tenant, so disconnect.
+
+146
+00:09:12.620 --> 00:09:15.932
+The federal requirement, from
+the guide's requirements table.
+
+147
+00:09:15.932 --> 00:09:21.693
+Gate nine supports I R four, enhancement
+one, automated incident handling processes,
+
+148
+00:09:21.693 --> 00:09:26.631
+and S I four, enhancement seven,
+automated response to suspicious events,
+
+149
+00:09:26.631 --> 00:09:31.569
+from NIST special publication eight
+hundred fifty-three, revision five.
+
+150
+00:09:31.569 --> 00:09:34.169
+The evidence is the device group levels,
+
+151
+00:09:34.169 --> 00:09:37.083
+the exclusions, and the
+Action center export.
+
+152
+00:09:37.083 --> 00:09:41.566
+Gate ten supports C A seven,
+continuous monitoring; A U eleven,
+
+153
+00:09:41.566 --> 00:09:46.320
+audit record retention; and I R
+three, incident response testing.
+
+154
+00:09:46.320 --> 00:09:50.095
+The evidence is the monthly
+package and the exercise record.
+
+155
+00:09:50.095 --> 00:09:54.201
+Each row lines up with fed-ramp
+twenty X key security indicators,
+
+156
+00:09:54.201 --> 00:09:59.470
+which bind cloud service providers; the
+agency lines its own evidence up with them.
+
+157
+00:09:59.470 --> 00:10:04.095
+The guide counts Gates two, seven
+and ten, with the synthetic events,
+
+158
+00:10:04.095 --> 00:10:07.207
+as the closure map's
+audit and visibility row.
+
+159
+00:10:07.207 --> 00:10:09.298
+The gates support these controls,
+
+160
+00:10:09.298 --> 00:10:12.870
+and the assessor decides
+whether each is satisfied.
+
+161
+00:10:16.620 --> 00:10:18.595
+Check yourself with two questions.
+
+162
+00:10:18.595 --> 00:10:22.570
+First: what level does the program
+set for a server device group?
+
+163
+00:10:22.570 --> 00:10:24.995
+The answer is b, a semi level.
+
+164
+00:10:24.995 --> 00:10:29.530
+Microsoft recommends full, and the
+program uses full for workstations,
+
+165
+00:10:29.530 --> 00:10:33.757
+but isolating a server is never
+autonomous in the program's ladder.
+
+166
+00:10:33.757 --> 00:10:38.633
+Second: an assessor asks for the coverage
+query result from four months ago.
+
+167
+00:10:38.633 --> 00:10:39.807
+Where does it come from?
+
+168
+00:10:39.807 --> 00:10:42.758
+The answer is b: that
+month's evidence run.
+
+169
+00:10:42.758 --> 00:10:47.725
+Advanced hunting keeps thirty days, so
+the filed and hashed result is the record,
+
+170
+00:10:47.725 --> 00:10:50.208
+and its checksum shows it hasn't changed.
+
+171
+00:10:50.208 --> 00:10:55.370
+The module page has two more questions,
+each linked to the unit that answers it.
+
+172
+00:10:59.120 --> 00:10:59.945
+To sum up.
+
+173
+00:10:59.945 --> 00:11:02.945
+You checked the sensor version
+that contain user needs.
+
+174
+00:11:02.945 --> 00:11:05.609
+You compared the device
+group levels and the attack
+
+175
+00:11:05.609 --> 00:11:08.520
+disruption exclusions with
+the ladder decision record.
+
+176
+00:11:08.520 --> 00:11:10.484
+You ran the monthly evidence run,
+
+177
+00:11:10.484 --> 00:11:13.757
+and you checked its hashes
+the way next month's run will.
+
+178
+00:11:13.757 --> 00:11:16.443
+The evidence an I S S O
+keeps from this module:
+
+179
+00:11:16.443 --> 00:11:19.577
+the device group list with
+each remediation level,
+
+180
+00:11:19.577 --> 00:11:24.724
+the attack disruption exclusions with
+their approvals, the monthly Action center
+
+181
+00:11:24.724 --> 00:11:27.111
+export, the quarterly exercise record,
+
+182
+00:11:27.111 --> 00:11:30.020
+and the monthly package
+with its checksum file.
+
+183
+00:11:30.020 --> 00:11:31.895
+That completes the learning path.
+
+184
+00:11:31.895 --> 00:11:36.404
+From here, work the implementation
+guide's checklist, gate by gate,
+
+185
+00:11:36.404 --> 00:11:39.995
+from one to ten, and keep
+the evidence each gate names.
+
+186
+00:11:39.995 --> 00:11:44.480
+Thank you for following Defender
+X D R Engineering and Operations.

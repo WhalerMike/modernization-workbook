@@ -26,7 +26,7 @@ const W3 = 3.9, G3 = 0.225;
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 3: Exposure and incidents", "Defender XDR Engineering and Operations · An owner for every vulnerability, a table for every incident",
-    ["Exposure without Exposure Management  ·  The interim path  ·  Owners", "One queue  ·  The severity table  ·  Lab 2 in a test tenant  ·  Evidence"]);
+    ["Exposure without Exposure Management  ·  The interim path  ·  Owners", "One queue  ·  The severity table  ·  Lab 2 in a test tenant  ·  Evidence"], 5.0);
   notes(s,
 `Welcome to Module 3 of Defender X D R Engineering and Operations: exposure and incidents. Two queues decide whether the platform you built is used: the vulnerabilities waiting for an owner, and the incidents waiting for an analyst. In this module you learn what Defender adds to the vulnerability program in G C C, and what it can't do there. Then you learn how the security operations center triages, contains, hands off and closes every incident, to a table it can show. The module covers Steps 5 and 6 of the Defender X D R implementation guide. It takes about thirty-five minutes, plus Lab 2 in your own test tenant.`,
   `${M} — "Introduction"; learning path index.`);

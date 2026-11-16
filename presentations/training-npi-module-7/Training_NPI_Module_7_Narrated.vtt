@@ -814,12 +814,12 @@ the plan's hash isn't the approved one,
 so it won't run a plan nobody reviewed.
 
 170
-00:11:01.980 --> 00:11:06.993
+00:11:01.980 --> 00:11:06.880
 Step nine runs every test: five
-hundred thirteen pass, none fail.
+hundred eleven pass, none fail.
 
 171
-00:11:06.993 --> 00:11:09.180
+00:11:06.880 --> 00:11:09.090
 Then delete the output folder.
 
 172

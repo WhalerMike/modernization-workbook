@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Defender XDR learning path](index.md). Guide [Step 9](../../books/guides/defender-xdr-implementation.md#step-9-automation-with-approval-boundaries) and [Step 10](../../books/guides/defender-xdr-implementation.md#step-10-operations-and-evidence). About 40 minutes, plus Lab 2.*
 
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_5_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_5_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-5) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-5/Training_XDR_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-5/Training_XDR_Module_5_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#xdr-m5-introduction}
 
 Automation is where speed and outage meet: the same setting that contains a compromised laptop in minutes can lock out the account the SOC needs to respond. In this module you set Defender's automation to the program's response ladder, exclude what must never be contained automatically, and then run the platform: the cadence, the monthly evidence run, the synthetic events and the metrics an assessor reads.

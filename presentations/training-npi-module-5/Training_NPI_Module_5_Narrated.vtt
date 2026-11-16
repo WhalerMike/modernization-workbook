@@ -844,16 +844,16 @@ the plan's hash isn't the approved one,
 so it won't run a plan nobody reviewed.
 
 176
-00:11:09.382 --> 00:11:14.396
+00:11:09.382 --> 00:11:14.283
 Step nine runs every test: five
-hundred thirteen pass, none fail.
+hundred eleven pass, none fail.
 
 177
-00:11:14.396 --> 00:11:16.232
+00:11:14.283 --> 00:11:16.119
 Then delete the output folder.
 
 178
-00:11:16.232 --> 00:11:20.330
+00:11:16.119 --> 00:11:20.210
 The owner review names owners,
 so don't leave it lying around.
 

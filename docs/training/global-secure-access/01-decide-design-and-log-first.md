@@ -13,7 +13,9 @@ last-reviewed: 2026-11-13
 
 *Part of the [Global Secure Access learning path](index.md). Guide [Step 1](../../books/guides/global-secure-access-implementation.md#step-1-decision-and-licensing), [Step 2](../../books/guides/global-secure-access-implementation.md#step-2-reference-architecture) and the logging half of [Step 12](../../books/guides/global-secure-access-implementation.md#step-12-telemetry-and-evidence). About 45 minutes, plus Lab 2.*
 
-**Watch first:** slides 2 to 9 of the guide's narrated deck (why, TIC 3.0, the twelve steps, availability, the reference architecture, the RACI, Steps 1 and 2), in its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md).
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_GSA_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_GSA_Module_1_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-gsa-module-1) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-1/Training_GSA_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-1/Training_GSA_Module_1_Narrated.vtt). The deck files join the next edition.
+
+, in its [video](../../presentations/watch.html?v=Guide_Global_Secure_Access_Narrated) or its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md).
 
 ## Introduction (3 minutes) {#gsa-m1-intro}
 

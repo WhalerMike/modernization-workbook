@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Defender XDR learning path](index.md). Guide [Step 5](../../books/guides/defender-xdr-implementation.md#step-5-exposure-management) and [Step 6](../../books/guides/defender-xdr-implementation.md#step-6-xdr-incidents). About 35 minutes, plus Lab 2.*
 
+**Watch:** the narrated deck for this module (about 11 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_3_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_3_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-3) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-3/Training_XDR_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-3/Training_XDR_Module_3_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#xdr-m3-introduction}
 
 Two queues decide whether the platform you built is used: the vulnerabilities waiting for an owner, and the incidents waiting for an analyst. In this module you learn what Defender adds to the vulnerability program in GCC and what it can't do there, and how the SOC triages, contains, hands off and closes every incident to a table it can show.

@@ -101,15 +101,11 @@
  },
  {
   "slide": 13,
-  "title": "Where agencies are: Entra ID in GCC High and DoD",
+  "title": "Where agencies are: Entra ID in a GCC tenant",
   "links": [
    {
-    "text": "Entra feature availability",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-feature-availability"
-   },
-   {
-    "text": "Compare Azure Government and global Azure",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#compare-azure-government-and-global-azure"
+    "text": "Book 02, Appendix A",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html"
    }
   ]
  },

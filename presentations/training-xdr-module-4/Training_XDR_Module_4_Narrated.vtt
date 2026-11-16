@@ -1,0 +1,848 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.934
+Welcome to Module 4 of Defender
+X D R Engineering and Operations:
+
+2
+00:00:04.934 --> 00:00:08.712
+hunting, detections as
+code, and identity signals.
+
+3
+00:00:08.712 --> 00:00:12.327
+A detection that lives only in
+a portal can't be reviewed,
+
+4
+00:00:12.327 --> 00:00:16.963
+compared or rolled back, and one that
+can't be shown to fire isn't a control.
+
+5
+00:00:16.963 --> 00:00:20.816
+In this module you learn to keep
+custom detections as files,
+
+6
+00:00:20.816 --> 00:00:25.220
+test each one against data it must
+find and data it must stay quiet in,
+
+7
+00:00:25.220 --> 00:00:27.737
+and deploy it through Microsoft Graph.
+
+8
+00:00:27.737 --> 00:00:30.289
+Then you join the identity and cloud-app
+
+9
+00:00:30.289 --> 00:00:33.150
+sensors to the endpoint's
+alerts, in one query.
+
+10
+00:00:33.150 --> 00:00:38.562
+The module covers Steps 7 and 8 of the
+Defender X D R implementation guide.
+
+11
+00:00:38.562 --> 00:00:43.310
+It takes about forty-five minutes,
+plus Lab 2 in your own test tenant.
+
+12
+00:00:47.060 --> 00:00:48.572
+Why detections as code?
+
+13
+00:00:48.572 --> 00:00:52.047
+A rule that lives only in a
+portal has three problems.
+
+14
+00:00:52.047 --> 00:00:54.185
+No one reviews it before it runs.
+
+15
+00:00:54.185 --> 00:00:57.123
+No one can compare what's
+deployed with what was approved.
+
+16
+00:00:57.123 --> 00:00:58.848
+And there's no clean way back.
+
+17
+00:00:58.848 --> 00:01:01.435
+A rule kept as a file fixes all three.
+
+18
+00:01:01.435 --> 00:01:06.360
+It's reviewed, deployed disabled, and
+enabled by a reviewed change to the file.
+
+19
+00:01:06.360 --> 00:01:09.445
+It's tested against a
+known-bad event it must find,
+
+20
+00:01:09.445 --> 00:01:12.222
+and a known-good window
+it must stay quiet in.
+
+21
+00:01:12.222 --> 00:01:15.972
+And a weekly export compares what's
+deployed with the repository.
+
+22
+00:01:15.972 --> 00:01:20.227
+The lifecycle itself, author, test,
+alert-only, promote and review,
+
+23
+00:01:20.227 --> 00:01:25.768
+comes from the Security Operations and
+Telemetry book's Chapter 11, which also says
+
+24
+00:01:25.768 --> 00:01:31.147
+a rule that reads only Defender tables is
+written as a Defender custom detection.
+
+25
+00:01:31.147 --> 00:01:34.273
+This module puts those
+detections in a repository
+
+26
+00:01:34.273 --> 00:01:36.654
+and deploys them through the Graph A P I.
+
+27
+00:01:36.654 --> 00:01:39.333
+Rules that correlate across other sources
+
+28
+00:01:39.333 --> 00:01:42.510
+stay as Sentinel analytics
+rules, in that book.
+
+29
+00:01:46.260 --> 00:01:49.173
+Here's what you'll be able to
+do by the end of this module.
+
+30
+00:01:49.173 --> 00:01:54.260
+Write a custom detection as a repository
+file, and say why it starts disabled.
+
+31
+00:01:54.260 --> 00:01:58.948
+Test a rule against a validation window,
+and explain the thirty-day limit.
+
+32
+00:01:58.948 --> 00:02:04.029
+Deploy a rule through the Graph detection
+rules A P I, and use the portal,
+
+33
+00:02:04.029 --> 00:02:08.585
+from the same file, where the A P
+I's availability isn't specified.
+
+34
+00:02:08.585 --> 00:02:11.773
+Name Defender for
+Identity's and Defender for
+
+35
+00:02:11.773 --> 00:02:14.710
+Cloud Apps' G C C gaps,
+and their interim path.
+
+36
+00:02:14.710 --> 00:02:17.141
+And run the cross-source
+query that finds a
+
+37
+00:02:17.141 --> 00:02:19.572
+user with alerts from
+more than one source.
+
+38
+00:02:19.572 --> 00:02:20.997
+You need Module 3.
+
+39
+00:02:20.997 --> 00:02:26.598
+Skim the rule lifecycle in the Security
+Operations and Telemetry book's Chapter 11.
+
+40
+00:02:26.598 --> 00:02:30.260
+Lab 2 runs in a test
+tenant, never production.
+
+41
+00:02:34.010 --> 00:02:35.897
+Unit 1 is the rule file.
+
+42
+00:02:35.897 --> 00:02:41.119
+It follows the example shape on Microsoft
+Learn's page for creating a detection
+
+43
+00:02:41.119 --> 00:02:45.865
+rule: the type, a short client-chosen I
+D, a display name, the status, the query,
+
+44
+00:02:45.865 --> 00:02:49.266
+a schedule, and the alert
+template, with its severity,
+
+45
+00:02:49.266 --> 00:02:52.035
+entity mappings and the attack technique.
+
+46
+00:02:52.035 --> 00:02:56.565
+The guide's example looks for
+encoded PowerShell launched by Word,
+
+47
+00:02:56.565 --> 00:02:58.460
+Excel or Outlook, every hour.
+
+48
+00:02:58.460 --> 00:02:59.685
+Four rules apply.
+
+49
+00:02:59.685 --> 00:03:03.535
+The file starts with status
+disabled, until its test passes.
+
+50
+00:03:03.535 --> 00:03:06.231
+Automated actions such
+as isolate are left out,
+
+51
+00:03:06.231 --> 00:03:09.135
+because containment stays
+on the response ladder.
+
+52
+00:03:09.135 --> 00:03:14.385
+Enabling a rule is a change to the status
+in the file, reviewed and redeployed.
+
+53
+00:03:14.385 --> 00:03:17.360
+And rollback sets the
+status back to disabled.
+
+54
+00:03:17.360 --> 00:03:22.896
+Learn says deploying needs the Custom
+Detection dot Read Write dot All permission,
+
+55
+00:03:22.896 --> 00:03:26.266
+and a role the A P I accepts:
+Detection tuning, manage,
+
+56
+00:03:26.266 --> 00:03:30.598
+in unified role-based access
+control, or Security Administrator.
+
+57
+00:03:30.598 --> 00:03:36.010
+The Graph security A P I's quota is
+ten new rules a minute per application.
+
+58
+00:03:39.760 --> 00:03:42.095
+Every rule has a validation dataset,
+
+59
+00:03:42.095 --> 00:03:45.285
+and a rule that can't be
+shown to fire isn't finished.
+
+60
+00:03:45.285 --> 00:03:48.540
+The known-bad half is an
+event the rule must find,
+
+61
+00:03:48.540 --> 00:03:53.048
+from the guide's synthetic events
+or a replay on a ring zero device.
+
+62
+00:03:53.048 --> 00:03:56.732
+The known-good half is a window
+the rule must stay quiet in,
+
+63
+00:03:56.732 --> 00:03:58.535
+or stay under its threshold.
+
+64
+00:03:58.535 --> 00:04:02.560
+Then schema governance, the
+program's risk-based recommendation.
+
+65
+00:04:02.560 --> 00:04:05.971
+Each rule file names the
+tables and columns it reads,
+
+66
+00:04:05.971 --> 00:04:11.048
+and a weekly review runs each rule's query
+and fails it when a column is renamed.
+
+67
+00:04:11.048 --> 00:04:15.747
+Microsoft Learn keeps a list of naming
+changes in the advanced hunting schema.
+
+68
+00:04:15.747 --> 00:04:17.598
+One limit shapes all of this.
+
+69
+00:04:17.598 --> 00:04:23.135
+Advanced hunting keeps thirty days, so a
+validation window is at most thirty days.
+
+70
+00:04:23.135 --> 00:04:28.863
+Learn's page for the run hunting query A
+P I says it defaults to thirty days, and
+
+71
+00:04:28.863 --> 00:04:34.780
+takes an I S O eighty-six oh one time span,
+such as P thirty D, which the lab uses.
+
+72
+00:04:38.530 --> 00:04:43.368
+Deploying is a post of the file to the
+detection rules endpoint, then a read-back.
+
+73
+00:04:43.368 --> 00:04:48.256
+Validation is an export of everything
+deployed, compared with the repository.
+
+74
+00:04:48.256 --> 00:04:52.647
+The guide's pass: every rule in the
+repository is deployed with the same
+
+75
+00:04:52.647 --> 00:04:57.267
+query text and status, and nothing is
+deployed that isn't in the repository.
+
+76
+00:04:57.267 --> 00:04:57.851
+Now G C C.
+
+77
+00:04:57.851 --> 00:05:02.901
+Microsoft Learn's run hunting
+query page lists it as available
+
+78
+00:05:02.901 --> 00:05:07.368
+on the global service, the
+worldwide Graph host G C C uses.
+
+79
+00:05:07.368 --> 00:05:11.416
+Learn's detection rules pages
+have no national-cloud table,
+
+80
+00:05:11.416 --> 00:05:16.044
+so the guide records the A P I's G C
+C availability as not yet specified,
+
+81
+00:05:16.044 --> 00:05:19.267
+and lists it among the
+things it couldn't verify.
+
+82
+00:05:19.267 --> 00:05:24.255
+The interim path is to create the rule in
+the portal from the same repository file.
+
+83
+00:05:24.255 --> 00:05:26.764
+The file stays the source
+of truth either way,
+
+84
+00:05:26.764 --> 00:05:30.040
+and the deployed-rules check
+still compares the two.
+
+85
+00:05:33.790 --> 00:05:36.877
+Unit 2 is identity and cloud-app signals.
+
+86
+00:05:36.877 --> 00:05:41.164
+Defender for Identity's sensors go
+on domain controllers, A D F S,
+
+87
+00:05:41.164 --> 00:05:46.605
+A D C S and Entra Connect servers, and
+Defender for Cloud Apps' connectors bring in
+
+88
+00:05:46.605 --> 00:05:52.128
+software-as-a-service behavior, so both
+land in the same incidents as the endpoint.
+
+89
+00:05:52.128 --> 00:05:55.896
+Pilot the sensors on one domain
+controller per domain first;
+
+90
+00:05:55.896 --> 00:05:59.590
+domain controllers remain Tier
+zero until they're retired.
+
+91
+00:05:59.590 --> 00:06:04.443
+Microsoft Learn's government page
+for Defender for Identity gives
+
+92
+00:06:04.443 --> 00:06:08.690
+the sensor endpoint for G C C, a
+G C C address, or the service tag.
+
+93
+00:06:08.690 --> 00:06:13.966
+Learn also says new features reach G C C
+within ninety days of commercial release,
+
+94
+00:06:13.966 --> 00:06:16.565
+and previews may not be supported there.
+
+95
+00:06:16.565 --> 00:06:17.678
+Then the gaps.
+
+96
+00:06:17.678 --> 00:06:22.467
+Learn's Cloud Apps government page
+lists App Governance's predefined
+
+97
+00:06:22.467 --> 00:06:27.090
+policy alerts and threat-detection
+alerts as roadmap items for G C C.
+
+98
+00:06:27.090 --> 00:06:30.286
+And Learn's advanced
+hunting schema says Cloud
+
+99
+00:06:30.286 --> 00:06:32.990
+Apps behaviors aren't available for G C C.
+
+100
+00:06:32.990 --> 00:06:38.325
+The interim path for O auth app abuse is
+the application detections in Sentinel,
+
+101
+00:06:38.325 --> 00:06:41.840
+in the Security Operations
+and Telemetry book.
+
+102
+00:06:45.590 --> 00:06:50.278
+Lab 2 runs the guide's own commands
+in a test tenant, never production.
+
+103
+00:06:50.278 --> 00:06:53.277
+The authors haven't run
+them, as the page says.
+
+104
+00:06:53.277 --> 00:06:58.115
+You need Module 1's test tenant,
+in the worldwide or G C C cloud.
+
+105
+00:06:58.115 --> 00:07:03.106
+You need an account with Detection
+tuning, manage, or Security Administrator,
+
+106
+00:07:03.106 --> 00:07:06.459
+activated through pim, and
+Defender for Identity or
+
+107
+00:07:06.459 --> 00:07:09.578
+Cloud Apps connected, for
+step six to return rows.
+
+108
+00:07:09.578 --> 00:07:13.640
+Step one connects with the hunting
+and custom detection permissions.
+
+109
+00:07:13.640 --> 00:07:18.752
+Step two writes the guide's example rule
+to a file, with its status disabled.
+
+110
+00:07:18.752 --> 00:07:23.715
+The slide shortens it; the page has the
+whole file, exactly as the guide gives it.
+
+111
+00:07:23.715 --> 00:07:28.677
+Step three reads the file back and runs
+its query against the last thirty days,
+
+112
+00:07:28.677 --> 00:07:31.390
+saving the output as
+the rule's test record.
+
+113
+00:07:31.390 --> 00:07:34.515
+In a quiet test tenant it returns no rows.
+
+114
+00:07:34.515 --> 00:07:36.815
+That shows the known-good window only.
+
+115
+00:07:36.815 --> 00:07:40.970
+A rule isn't finished until its
+known-bad event is shown to fire.
+
+116
+00:07:44.720 --> 00:07:48.520
+Step four is the lab's only
+write: it posts the file to the
+
+117
+00:07:48.520 --> 00:07:52.658
+detection rules endpoint, then
+reads the rule back by its I D.
+
+118
+00:07:52.658 --> 00:07:55.218
+It should come back with the file's query
+
+119
+00:07:55.218 --> 00:07:57.857
+text and status disabled,
+so it never runs.
+
+120
+00:07:57.857 --> 00:08:02.260
+Step five exports everything deployed,
+which is the guide's validate step:
+
+121
+00:08:02.260 --> 00:08:06.374
+every rule in the repository deployed
+with the same query and status,
+
+122
+00:08:06.374 --> 00:08:09.333
+and nothing deployed that
+isn't in the repository.
+
+123
+00:08:09.333 --> 00:08:12.108
+Step six is the guide's
+cross-source query.
+
+124
+00:08:12.108 --> 00:08:16.479
+It takes the user entities in the
+last seven days of alert evidence,
+
+125
+00:08:16.479 --> 00:08:20.850
+joins the alert info, and counts,
+for each user, the distinct service
+
+126
+00:08:20.850 --> 00:08:24.983
+sources that raised alerts, keeping
+users seen by more than one.
+
+127
+00:08:24.983 --> 00:08:27.152
+An identity seen by the endpoint,
+
+128
+00:08:27.152 --> 00:08:30.769
+identity and cloud-app sensors
+together is a priority.
+
+129
+00:08:30.769 --> 00:08:35.707
+The guide's pass: the query runs and returns
+rows from more than one service source
+
+130
+00:08:35.707 --> 00:08:40.570
+across the fleet, showing the identity
+and cloud-app sources are feeding alerts.
+
+131
+00:08:40.570 --> 00:08:43.595
+A test tenant with few
+alerts may return none.
+
+132
+00:08:43.595 --> 00:08:45.220
+Step seven backs it out.
+
+133
+00:08:45.220 --> 00:08:47.210
+The rule is deployed disabled,
+
+134
+00:08:47.210 --> 00:08:51.620
+which is the guide's rollback
+state; leave it so, and disconnect.
+
+135
+00:08:55.370 --> 00:08:58.682
+The federal requirement, from
+the guide's requirements table.
+
+136
+00:08:58.682 --> 00:09:02.473
+Gate seven supports S I four,
+system monitoring; A U six,
+
+137
+00:09:02.473 --> 00:09:08.417
+enhancements one and three, automated
+process integration and correlating audit
+
+138
+00:09:08.417 --> 00:09:10.829
+record repositories; and C M three,
+
+139
+00:09:10.829 --> 00:09:14.620
+configuration change control,
+here for rule changes.
+
+140
+00:09:14.620 --> 00:09:19.907
+The evidence is the rule repository, the
+test outputs and the deployed-rules export.
+
+141
+00:09:19.907 --> 00:09:26.084
+Gate eight supports S I four; A U six,
+enhancement three, correlating repositories;
+
+142
+00:09:26.084 --> 00:09:31.432
+and A C two, enhancement twelve,
+account monitoring for atypical usage.
+
+143
+00:09:31.432 --> 00:09:35.532
+The evidence is the correlation
+query output and the sensors' health.
+
+144
+00:09:35.532 --> 00:09:40.245
+All from NIST special publication eight
+hundred fifty-three, revision five.
+
+145
+00:09:40.245 --> 00:09:44.351
+Each row lines up with fed-ramp
+twenty X key security indicators,
+
+146
+00:09:44.351 --> 00:09:49.620
+which bind cloud service providers; the
+agency lines its own evidence up with them.
+
+147
+00:09:49.620 --> 00:09:51.710
+The gates support these controls,
+
+148
+00:09:51.710 --> 00:09:55.280
+and the assessor decides
+whether each is satisfied.
+
+149
+00:09:59.030 --> 00:10:01.005
+Check yourself with two questions.
+
+150
+00:10:01.005 --> 00:10:03.980
+First: an auditor asks
+for a rule's validation
+
+151
+00:10:03.980 --> 00:10:06.955
+against the last ninety
+days of hunting data.
+
+152
+00:10:06.955 --> 00:10:07.980
+What's the limit?
+
+153
+00:10:07.980 --> 00:10:10.205
+The answer is b, thirty days.
+
+154
+00:10:10.205 --> 00:10:12.672
+Advanced hunting keeps thirty days,
+
+155
+00:10:12.672 --> 00:10:17.442
+and Microsoft Learn says the run
+hunting query A P I defaults to thirty.
+
+156
+00:10:17.442 --> 00:10:22.217
+That's also why the monthly evidence
+run in Module 5 files its results.
+
+157
+00:10:22.217 --> 00:10:24.995
+Second: a G C C agency
+needs the O auth app
+
+158
+00:10:24.995 --> 00:10:28.205
+abuse alerts that App
+Governance would give.
+
+159
+00:10:28.205 --> 00:10:29.693
+What's the interim path?
+
+160
+00:10:29.693 --> 00:10:33.488
+The answer is b: the application
+detections in Sentinel,
+
+161
+00:10:33.488 --> 00:10:38.192
+because Learn lists App Governance's
+alerts as roadmap items for G C C.
+
+162
+00:10:38.192 --> 00:10:43.460
+The module page has three more questions,
+each linked to the unit that answers it.
+
+163
+00:10:47.210 --> 00:10:48.035
+To sum up.
+
+164
+00:10:48.035 --> 00:10:50.029
+You wrote a detection as a file,
+
+165
+00:10:50.029 --> 00:10:53.460
+in Microsoft Learn's shape,
+with its status disabled.
+
+166
+00:10:53.460 --> 00:10:57.263
+You tested its query against a
+thirty-day validation window,
+
+167
+00:10:57.263 --> 00:10:59.697
+and saved the result as its test record.
+
+168
+00:10:59.697 --> 00:11:02.047
+You deployed it through
+Graph, read it back,
+
+169
+00:11:02.047 --> 00:11:05.135
+and compared everything
+deployed with the repository.
+
+170
+00:11:05.135 --> 00:11:07.644
+And you ran the cross-source
+query that finds
+
+171
+00:11:07.644 --> 00:11:10.085
+a user with alerts from
+more than one source.
+
+172
+00:11:10.085 --> 00:11:12.994
+The evidence an I S S O
+keeps from this module:
+
+173
+00:11:12.994 --> 00:11:17.761
+the detection repository at a tagged
+commit, each rule's test output, the
+
+174
+00:11:17.761 --> 00:11:21.316
+deployed-rules export, the
+correlation query output,
+
+175
+00:11:21.316 --> 00:11:23.497
+and the identity sensors' health.
+
+176
+00:11:23.497 --> 00:11:27.842
+Next is Module 5, the last:
+automation with approval boundaries,
+
+177
+00:11:27.842 --> 00:11:31.490
+the operating cadence, and
+the monthly evidence run.

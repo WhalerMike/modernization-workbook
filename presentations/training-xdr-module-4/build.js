@@ -26,7 +26,7 @@ const W3 = 3.9, G3 = 0.225;
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 4: Hunting, detections and identity signals", "Defender XDR Engineering and Operations · Detections as files, tested before they run, and one query across sources",
-    ["The rule file  ·  Validation datasets  ·  Deploying through Graph", "Identity and cloud-app signals  ·  Lab 2 in a test tenant  ·  Evidence"]);
+    ["The rule file  ·  Validation datasets  ·  Deploying through Graph", "Identity and cloud-app signals  ·  Lab 2 in a test tenant  ·  Evidence"], 5.0);
   notes(s,
 `Welcome to Module 4 of Defender X D R Engineering and Operations: hunting, detections as code, and identity signals. A detection that lives only in a portal can't be reviewed, compared or rolled back, and one that can't be shown to fire isn't a control. In this module you learn to keep custom detections as files, test each one against data it must find and data it must stay quiet in, and deploy it through Microsoft Graph. Then you join the identity and cloud-app sensors to the endpoint's alerts, in one query. The module covers Steps 7 and 8 of the Defender X D R implementation guide. It takes about forty-five minutes, plus Lab 2 in your own test tenant.`,
   `${M} — "Introduction"; learning path index.`);

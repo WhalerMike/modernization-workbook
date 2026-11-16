@@ -1,0 +1,823 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.320
+Welcome to Module 5 of Global Secure
+Access as the Identity-Aware Network:
+
+2
+00:00:05.320 --> 00:00:07.912
+Internet Access and T L S inspection.
+
+3
+00:00:07.912 --> 00:00:12.587
+Internet Access is the identity-aware
+web gateway for remote users.
+
+4
+00:00:12.587 --> 00:00:16.329
+T L S inspection comes last of
+all, because it's the step most
+
+5
+00:00:16.329 --> 00:00:20.850
+likely to break applications and to
+read content the agency shouldn't.
+
+6
+00:00:20.850 --> 00:00:26.403
+This module covers Steps 5 and 9 of the
+Global Secure Access implementation guide,
+
+7
+00:00:26.403 --> 00:00:31.020
+and takes about fifty minutes, plus
+a lab in your own test tenant.
+
+8
+00:00:34.770 --> 00:00:35.920
+Why does this matter?
+
+9
+00:00:35.920 --> 00:00:41.124
+With Internet Access, Conditional Access
+decides which security profile a user gets,
+
+10
+00:00:41.124 --> 00:00:43.982
+and the profile decides
+what the user can reach.
+
+11
+00:00:43.982 --> 00:00:47.756
+It comes late in the run order
+because it's separately licensed,
+
+12
+00:00:47.756 --> 00:00:52.619
+and because an agency may keep its current
+gateway; that's a decision from Module 1.
+
+13
+00:00:52.619 --> 00:00:55.158
+T L S inspection comes last of all.
+
+14
+00:00:55.158 --> 00:00:57.919
+It's the step most likely
+to break applications,
+
+15
+00:00:57.919 --> 00:01:01.459
+and the step most likely to read
+content the agency shouldn't,
+
+16
+00:01:01.459 --> 00:01:05.070
+so it starts only after filtering
+works on server names alone.
+
+17
+00:01:05.070 --> 00:01:09.289
+In this module you build a pilot
+security profile, govern every bypass,
+
+18
+00:01:09.289 --> 00:01:13.217
+and then add inspection from a
+dedicated certificate authority,
+
+19
+00:01:13.217 --> 00:01:16.280
+within a scope the
+privacy officer approved.
+
+20
+00:01:20.030 --> 00:01:22.943
+Here's what you'll be able to
+do by the end of this module.
+
+21
+00:01:22.943 --> 00:01:26.015
+You'll build a filtering
+policy, a security profile,
+
+22
+00:01:26.015 --> 00:01:30.405
+the link between them, and the
+Conditional Access policy that assigns it.
+
+23
+00:01:30.405 --> 00:01:34.690
+You'll explain why both the Microsoft
+and internet profiles are enabled,
+
+24
+00:01:34.690 --> 00:01:36.618
+and what Learn's limits leave out.
+
+25
+00:01:36.618 --> 00:01:40.854
+You'll govern every bypass and
+allow-list entry with an owner,
+
+26
+00:01:40.854 --> 00:01:42.380
+a reason and an expiry.
+
+27
+00:01:42.380 --> 00:01:46.114
+You'll choose the certificate
+authority for T L S inspection,
+
+28
+00:01:46.114 --> 00:01:48.355
+and deploy trust before activation.
+
+29
+00:01:48.355 --> 00:01:52.148
+And you'll set the privacy boundary,
+handle pinned applications,
+
+30
+00:01:52.148 --> 00:01:55.368
+and read the T L S outcomes
+against the one percent line.
+
+31
+00:01:55.368 --> 00:02:01.386
+You need Module 2, Network and Transport,
+chapter five, on Internet Access policy,
+
+32
+00:02:01.386 --> 00:02:07.130
+and a skim of PKI and Certificates, chapter
+four, for the dedicated issuing C A.
+
+33
+00:02:07.130 --> 00:02:10.660
+The lab runs in a test
+tenant, never production.
+
+34
+00:02:14.410 --> 00:02:18.623
+Unit 1 is security profiles,
+built with Learn's Graph tutorial.
+
+35
+00:02:18.623 --> 00:02:24.191
+A filtering policy blocks the categories
+the agency's acceptable-use policy names;
+
+36
+00:02:24.191 --> 00:02:29.598
+artificial intelligence is Learn's example,
+and the category list is the agency's.
+
+37
+00:02:29.598 --> 00:02:32.914
+A security profile groups
+web content filtering,
+
+38
+00:02:32.914 --> 00:02:36.635
+threat intelligence, T L S
+inspection and file policies.
+
+39
+00:02:36.635 --> 00:02:41.435
+A policy link puts the filtering policy
+into the profile, with logging on.
+
+40
+00:02:41.435 --> 00:02:44.533
+A Conditional Access policy
+assigns the profile:
+
+41
+00:02:44.533 --> 00:02:49.597
+it targets All internet resources with
+Global Secure Access, with the filtering
+
+42
+00:02:49.597 --> 00:02:54.660
+profile session control, scoped to the
+pilot, and with emergency access excluded.
+
+43
+00:02:54.660 --> 00:02:59.109
+The baseline profile applies to all
+traffic, last; the guide puts threat
+
+44
+00:02:59.109 --> 00:03:03.935
+intelligence filtering there, so it
+covers everyone in the internet profile.
+
+45
+00:03:03.935 --> 00:03:08.235
+And enable both profiles: the
+internet profile doesn't include the
+
+46
+00:03:08.235 --> 00:03:13.200
+Microsoft traffic profile's destinations,
+so full coverage needs both.
+
+47
+00:03:16.950 --> 00:03:17.788
+Unit 2.
+
+48
+00:03:17.788 --> 00:03:24.291
+First, Learn's limits: two hundred fifty-six
+security profiles, a thousand policies,
+
+49
+00:03:24.291 --> 00:03:30.126
+a thousand rules and eight thousand
+destinations per tenant; H T T P and H T T
+
+50
+00:03:30.126 --> 00:03:35.674
+P S on ports eighty and four forty-three
+only; no I P version six, and no U D P.
+
+51
+00:03:35.674 --> 00:03:37.338
+Second, QUIC.
+
+52
+00:03:37.338 --> 00:03:41.113
+Internet Access doesn't
+forward QUIC end to end.
+
+53
+00:03:41.113 --> 00:03:46.161
+Learn's newer guidance blocks it with the
+cloud firewall, which is preview; its T
+
+54
+00:03:46.161 --> 00:03:51.287
+L S inspection page blocks outbound U D
+P four forty-three with Windows Firewall.
+
+55
+00:03:51.287 --> 00:03:56.441
+Until the cloud firewall for clients is
+generally available, the guide uses the
+
+56
+00:03:56.441 --> 00:04:01.438
+generally available path: a firewall
+rule delivered by Intune, piloted first.
+
+57
+00:04:01.438 --> 00:04:06.329
+Third, every custom bypass and allow-list
+entry gets an owner's approval,
+
+58
+00:04:06.329 --> 00:04:11.801
+a reason, and an expiry, in the exception
+register, as Learn's change guidance asks.
+
+59
+00:04:11.801 --> 00:04:14.630
+Custom bypass doesn't
+work on remote networks;
+
+60
+00:04:14.630 --> 00:04:17.013
+those are made on the branch equipment.
+
+61
+00:04:17.013 --> 00:04:19.929
+And one gap: the pages
+read don't say whether
+
+62
+00:04:19.929 --> 00:04:23.262
+a report-only policy
+applies a security profile.
+
+63
+00:04:23.262 --> 00:04:26.947
+So the pilot is a policy set to
+on for the pilot group only,
+
+64
+00:04:26.947 --> 00:04:31.480
+with an allow policy, with logging,
+for categories under review.
+
+65
+00:04:35.230 --> 00:04:37.942
+Unit 3 is T L S inspection.
+
+66
+00:04:37.942 --> 00:04:41.798
+It decrypts H T T P S at the
+service edge, so full U R L's,
+
+67
+00:04:41.798 --> 00:04:47.440
+files and content can be filtered, then
+re-encrypts; it's the prerequisite
+
+68
+00:04:47.440 --> 00:04:52.518
+for U R L rules, file and content
+policies, and A I prompt inspection.
+
+69
+00:04:52.518 --> 00:04:56.617
+Learn offers a Microsoft-managed
+certificate, or the agency's own.
+
+70
+00:04:56.617 --> 00:05:00.395
+With the agency's own, the agency
+signs an intermediate C A,
+
+71
+00:05:00.395 --> 00:05:04.493
+and the service issues short-lived
+leaf certificates from it.
+
+72
+00:05:04.493 --> 00:05:08.890
+Learn's limits: valid at least six
+months, only one active at a time,
+
+73
+00:05:08.890 --> 00:05:13.205
+with server authentication and
+the C A extensions Learn lists.
+
+74
+00:05:13.205 --> 00:05:14.193
+Which C A?
+
+75
+00:05:14.193 --> 00:05:19.143
+Learn's tutorial suggests a dedicated
+C A, not your production P K I.
+
+76
+00:05:19.143 --> 00:05:23.865
+The program issues it from a dedicated
+issuing C A under the agency's root,
+
+77
+00:05:23.865 --> 00:05:28.430
+never from the C A that issues
+authentication certificates, because a
+
+78
+00:05:28.430 --> 00:05:33.467
+compromised inspection C A can impersonate
+any site to every managed device.
+
+79
+00:05:33.467 --> 00:05:35.645
+Deploy trust before activation:
+
+80
+00:05:35.645 --> 00:05:40.643
+the root and intermediate go to clients
+by Intune first, because an expired
+
+81
+00:05:40.643 --> 00:05:45.480
+inspection certificate disables all
+T L S inspection across the tenant.
+
+82
+00:05:45.480 --> 00:05:48.010
+Renew at least ninety days ahead.
+
+83
+00:05:51.760 --> 00:05:53.785
+Three more things before you inspect.
+
+84
+00:05:53.785 --> 00:05:58.628
+The privacy scope: Learn auto-creates
+a system bypass rule for incompatible
+
+85
+00:05:58.628 --> 00:06:03.010
+destinations, and an editable
+recommended bypass for the Education,
+
+86
+00:06:03.010 --> 00:06:06.623
+Finance, Government, and Health
+and Medicine categories.
+
+87
+00:06:06.623 --> 00:06:10.782
+The guide keeps them, adds the
+categories the privacy officer names,
+
+88
+00:06:10.782 --> 00:06:14.497
+and records the scope in the
+system's privacy documentation.
+
+89
+00:06:14.497 --> 00:06:17.611
+Learn says to establish
+and communicate a T
+
+90
+00:06:17.611 --> 00:06:20.810
+L S policy to users
+before inspection starts.
+
+91
+00:06:20.810 --> 00:06:23.298
+Pinned applications fail under inspection;
+
+92
+00:06:23.298 --> 00:06:26.457
+Learn's answer is a custom
+bypass for their destinations,
+
+93
+00:06:26.457 --> 00:06:28.542
+without duplicating the system list,
+
+94
+00:06:28.542 --> 00:06:32.710
+and developer tools with their own
+certificate stores need the root added.
+
+95
+00:06:32.710 --> 00:06:36.216
+And the failure line:
+Microsoft's recommendation treats
+
+96
+00:06:36.216 --> 00:06:39.572
+a failure rate above one
+percent as a systemic problem.
+
+97
+00:06:39.572 --> 00:06:47.572
+Inspection doesn't negotiate H T T P two,
+and doesn't follow A I A or O C S P links.
+
+98
+00:06:47.572 --> 00:06:51.836
+Learn's pages give the T L S status
+values differently in two places,
+
+99
+00:06:51.836 --> 00:06:56.410
+so group by what your workspace
+actually holds before writing an alert.
+
+100
+00:06:56.410 --> 00:06:57.773
+Where are agencies?
+
+101
+00:06:57.773 --> 00:07:03.236
+Internet Access and T L S inspection need
+an Internet Access or Suite license,
+
+102
+00:07:03.236 --> 00:07:07.334
+and are available in G C C by
+Learn's product-wide statement.
+
+103
+00:07:07.334 --> 00:07:12.384
+The cloud firewall for clients and the
+Explicit Forward Proxy are preview,
+
+104
+00:07:12.384 --> 00:07:15.910
+and their G C C availability
+isn't yet specified.
+
+105
+00:07:19.660 --> 00:07:24.485
+The lab runs in a test tenant, never
+production, and the authors haven't run it.
+
+106
+00:07:24.485 --> 00:07:28.735
+You need Module 2's lab done and
+an Internet Access test license.
+
+107
+00:07:28.735 --> 00:07:32.847
+Step one finds the internet profile
+with Learn's filtered request,
+
+108
+00:07:32.847 --> 00:07:36.435
+enables it, and assigns the
+pilot group in the admin center.
+
+109
+00:07:36.435 --> 00:07:38.888
+Step two creates the filtering policy,
+
+110
+00:07:38.888 --> 00:07:42.797
+blocking Learn's example
+category, artificial intelligence.
+
+111
+00:07:42.797 --> 00:07:45.870
+Step three creates the
+pilot security profile
+
+112
+00:07:45.870 --> 00:07:48.548
+and links the policy to
+it, with logging on.
+
+113
+00:07:48.548 --> 00:07:52.147
+Step four assigns the profile
+with Conditional Access,
+
+114
+00:07:52.147 --> 00:07:55.511
+scoped to the pilot, with
+emergency access excluded.
+
+115
+00:07:55.511 --> 00:07:59.308
+Step five tests it: on the
+pilot device, as a pilot user,
+
+116
+00:07:59.308 --> 00:08:03.547
+browse to a site in that category
+and expect the block page.
+
+117
+00:08:03.547 --> 00:08:06.281
+Then the guide's traffic
+query in the workspace
+
+118
+00:08:06.281 --> 00:08:09.450
+should show a denied count
+on the pilot user's row.
+
+119
+00:08:13.200 --> 00:08:18.703
+Step six adds the QUIC rule on the pilot
+device, Learn's Windows Firewall command;
+
+120
+00:08:18.703 --> 00:08:23.288
+in production the same rule goes
+out through Intune, piloted first.
+
+121
+00:08:23.288 --> 00:08:27.607
+Steps seven and eight need a T L
+S inspection certificate created,
+
+122
+00:08:27.607 --> 00:08:30.167
+enabled and trusted on the test device,
+
+123
+00:08:30.167 --> 00:08:35.367
+and a pilot T L S policy linked to the
+pilot security profile, never the baseline,
+
+124
+00:08:35.367 --> 00:08:37.367
+as the guide's Step 9 describes,
+
+125
+00:08:37.367 --> 00:08:40.887
+with the privacy officer's
+approval of the test scope.
+
+126
+00:08:40.887 --> 00:08:45.841
+Step seven checks the issuer of an
+inspected site in the browser's certificate
+
+127
+00:08:45.841 --> 00:08:50.413
+viewer: Microsoft Global Secure Access
+Intermediate, or your test chain.
+
+128
+00:08:50.413 --> 00:08:56.007
+Step eight reads the T L S outcomes: T L
+S action reads bypassed or intercepted,
+
+129
+00:08:56.007 --> 00:08:59.825
+and the failure share should
+stay under one percent.
+
+130
+00:08:59.825 --> 00:09:02.937
+Step nine exports the
+profiles and policies.
+
+131
+00:09:02.937 --> 00:09:04.288
+Keep it all in place.
+
+132
+00:09:04.288 --> 00:09:08.247
+Module 6 removes it, and the
+T L S policy in Learn's order:
+
+133
+00:09:08.247 --> 00:09:13.280
+the link from the profile, then
+the policy, then the certificate.
+
+134
+00:09:17.030 --> 00:09:19.641
+The federal requirement, from NIST special
+
+135
+00:09:19.641 --> 00:09:22.905
+publication eight hundred
+fifty-three, revision five.
+
+136
+00:09:22.905 --> 00:09:28.821
+Internet Access supports S C seven, its
+enhancement five, S I three and S I four:
+
+137
+00:09:28.821 --> 00:09:34.268
+web access filtered by identity-aware
+policy, with bypasses governed.
+
+138
+00:09:34.268 --> 00:09:39.249
+The evidence is the filtering policy,
+profile and Conditional Access exports,
+
+139
+00:09:39.249 --> 00:09:42.468
+the blocked-category test,
+and the bypass register.
+
+140
+00:09:42.468 --> 00:09:48.134
+T L S inspection supports S C eight, S
+C twelve, S C seventeen and S I four:
+
+141
+00:09:48.134 --> 00:09:51.777
+encrypted web traffic inspected within an
+
+142
+00:09:51.777 --> 00:09:55.318
+approved privacy scope,
+with a governed C A.
+
+143
+00:09:55.318 --> 00:10:00.610
+The evidence is the certificate and chain,
+the trust profile's deployment status,
+
+144
+00:10:00.610 --> 00:10:04.006
+the policy export, the issuer
+check, the failure rate,
+
+145
+00:10:04.006 --> 00:10:06.692
+the privacy approval and the user notice.
+
+146
+00:10:06.692 --> 00:10:11.814
+The program's mapping lines Step 5 up with
+tick three point oh's Remote User Pattern
+
+147
+00:10:11.814 --> 00:10:14.149
+three, which CISA calls the riskiest,
+
+148
+00:10:14.149 --> 00:10:18.217
+and Step 9 with tick's web policy
+enforcement point capabilities.
+
+149
+00:10:18.217 --> 00:10:22.370
+The evidence supports the
+controls; the assessor decides.
+
+150
+00:10:26.120 --> 00:10:28.095
+Check yourself with two questions.
+
+151
+00:10:28.095 --> 00:10:31.362
+First: which certificate
+authority issues the T L S
+
+152
+00:10:31.362 --> 00:10:34.707
+inspection intermediate,
+in the program's position?
+
+153
+00:10:34.707 --> 00:10:39.232
+The answer is b: a dedicated
+issuing C A under the agency's root,
+
+154
+00:10:39.232 --> 00:10:43.395
+never the C A that issues
+authentication certificates.
+
+155
+00:10:43.395 --> 00:10:47.257
+Second: what happens when the
+inspection certificate expires?
+
+156
+00:10:47.257 --> 00:10:51.299
+The answer is b: all T L S
+inspection across the tenant stops,
+
+157
+00:10:51.299 --> 00:10:57.108
+so the guide renews at least ninety days
+ahead and deploys trust before activation.
+
+158
+00:10:57.108 --> 00:11:02.370
+The module page has three more questions,
+each linked to the unit that answers it.
+
+159
+00:11:06.120 --> 00:11:06.945
+To sum up.
+
+160
+00:11:06.945 --> 00:11:09.863
+You enabled the internet
+profile for the pilot,
+
+161
+00:11:09.863 --> 00:11:15.174
+built a security profile with one blocked
+category and assigned it with Conditional
+
+162
+00:11:15.174 --> 00:11:17.867
+Access, proved the block,
+added the QUIC rule,
+
+163
+00:11:17.867 --> 00:11:21.383
+checked the inspection issuer,
+and read the T L S outcomes.
+
+164
+00:11:21.383 --> 00:11:25.802
+The evidence an I S S O keeps from
+this module: the filtering profile,
+
+165
+00:11:25.802 --> 00:11:28.454
+policy and Conditional Access exports;
+
+166
+00:11:28.454 --> 00:11:33.035
+the blocked-category test and the
+traffic query; the bypass register;
+
+167
+00:11:33.035 --> 00:11:38.098
+the certificate and chain, the trust
+profile's deployment status, the issuer
+
+168
+00:11:38.098 --> 00:11:42.920
+check and the failure share; and the
+privacy approval and the user notice.
+
+169
+00:11:42.920 --> 00:11:48.171
+Next is Module 6, rings, rollback and the
+evidence package, where the pilot becomes
+
+170
+00:11:48.171 --> 00:11:53.160
+a migration, and where you roll the whole
+test tenant back in the guide's order.

@@ -953,295 +953,295 @@ Pasted line by line, your shell
 carries on after the refusal.
 
 198
-00:11:53.913 --> 00:11:58.938
+00:11:53.913 --> 00:11:58.751
 Step ten runs every test: five
-hundred thirteen pass, none fail.
+hundred eleven pass, none fail.
 
 199
-00:11:58.938 --> 00:12:01.140
+00:11:58.751 --> 00:12:00.950
 Then delete the output folder.
 
 200
-00:12:04.890 --> 00:12:09.761
+00:12:04.700 --> 00:12:09.571
 Lab 2 moves to a test Active
 Directory domain, never production,
 
 201
-00:12:09.761 --> 00:12:15.476
+00:12:09.571 --> 00:12:15.286
 with at least one Windows Server 2025
 domain controller, a Windows Server
 
 202
-00:12:15.476 --> 00:12:20.628
+00:12:15.286 --> 00:12:20.438
 2025 member server, an existing K D S
 root key, and Chapter 1's Lab 2 run.
 
 203
-00:12:20.628 --> 00:12:24.352
+00:12:20.438 --> 00:12:24.162
 Make a traditional test account
 and a test managed service account.
 
 204
-00:12:24.352 --> 00:12:28.777
+00:12:24.162 --> 00:12:28.587
 Grant the read only the root key's
 two date attributes, nothing else.
 
 205
-00:12:28.777 --> 00:12:31.044
+00:12:28.587 --> 00:12:30.854
 Run the check, then apply the plan as a
 
 206
-00:12:31.044 --> 00:12:34.065
+00:12:30.854 --> 00:12:33.875
 person with Domain Admins
 or equivalent rights.
 
 207
-00:12:34.065 --> 00:12:39.602
+00:12:33.875 --> 00:12:39.412
 Start the D M S A migration, and complete
 it after the thirty-day parallel run.
 
 208
-00:12:39.602 --> 00:12:44.365
+00:12:39.412 --> 00:12:44.175
 To back it out, step six runs the undo
 command from Microsoft Learn's page on
 
 209
-00:12:44.365 --> 00:12:47.956
+00:12:44.175 --> 00:12:47.766
 setting up delegated managed
 service accounts, by hand,
 
 210
-00:12:47.956 --> 00:12:51.703
+00:12:47.766 --> 00:12:51.513
 because the code never runs it,
 re-enables the test account,
 
 211
-00:12:51.703 --> 00:12:55.841
+00:12:51.513 --> 00:12:55.651
 removes the test objects by hand,
 and deletes the output folders.
 
 212
-00:12:55.841 --> 00:12:57.990
+00:12:55.651 --> 00:12:57.800
 The authors haven't run Lab 2.
 
 213
-00:12:57.990 --> 00:13:01.490
+00:12:57.800 --> 00:13:01.300
 The workbook's Chapter 6
 has the exact commands.
 
 214
-00:13:05.240 --> 00:13:06.627
+00:13:05.050 --> 00:13:06.437
 The federal requirement.
 
 215
-00:13:06.627 --> 00:13:10.768
+00:13:06.437 --> 00:13:10.578
 The Kerberos accounts are the
 on-premises part of Gate 5,
 
 216
-00:13:10.768 --> 00:13:15.178
+00:13:10.578 --> 00:13:14.988
 and the guide's validate step names
 I A five, I A nine and A U two.
 
 217
-00:13:15.178 --> 00:13:19.240
+00:13:14.988 --> 00:13:19.050
 These are NIST special publication
 eight hundred fifty-three controls.
 
 218
-00:13:19.240 --> 00:13:22.878
+00:13:19.050 --> 00:13:22.688
 The module's table maps each
 lab step to its evidence.
 
 219
-00:13:22.878 --> 00:13:26.367
+00:13:22.688 --> 00:13:26.177
 For authenticator management
 and change control,
 
 220
-00:13:26.367 --> 00:13:29.690
+00:13:26.177 --> 00:13:29.500
 the plan, with the register's
 and each input's hash.
 
 221
-00:13:29.690 --> 00:13:31.965
+00:13:29.500 --> 00:13:31.775
 For account management, the findings.
 
 222
-00:13:31.965 --> 00:13:35.440
+00:13:31.775 --> 00:13:35.250
 For least privilege and access
 restrictions for change,
 
 223
-00:13:35.440 --> 00:13:39.877
+00:13:35.250 --> 00:13:39.687
 the rights each task holds, and the
 reviewed list of password retrievers.
 
 224
-00:13:39.877 --> 00:13:43.528
+00:13:39.687 --> 00:13:43.338
 For the inventory, the island
 list and the reconciliation.
 
 225
-00:13:43.528 --> 00:13:46.555
+00:13:43.338 --> 00:13:46.365
 And for change control
 and disabling accounts,
 
 226
-00:13:46.555 --> 00:13:49.427
+00:13:46.365 --> 00:13:49.237
 the results and manifest
 in the apply folder.
 
 227
-00:13:49.427 --> 00:13:53.557
+00:13:49.237 --> 00:13:53.367
 K S I's are FedRAMP twenty X indicators
 for cloud service providers;
 
 228
-00:13:53.557 --> 00:13:56.184
+00:13:53.367 --> 00:13:55.994
 the agency lines its
 evidence up with them,
 
 229
-00:13:56.184 --> 00:14:00.590
+00:13:55.994 --> 00:14:00.400
 and which file supports which
 indicator is the program's mapping.
 
 230
-00:14:04.340 --> 00:14:06.315
+00:14:04.150 --> 00:14:06.125
 Check yourself with two questions.
 
 231
-00:14:06.315 --> 00:14:10.290
+00:14:06.125 --> 00:14:10.100
 First: an account is kept
 on Kerberos, Keep Kerberos.
 
 232
-00:14:10.290 --> 00:14:11.415
+00:14:10.100 --> 00:14:11.225
 What must it have?
 
 233
-00:14:11.415 --> 00:14:15.385
+00:14:11.225 --> 00:14:15.195
 The answer is b: the authorizing
 official's acceptance,
 
 234
-00:14:15.385 --> 00:14:19.090
+00:14:15.195 --> 00:14:18.900
 an S P N owner and an end date
 no later than D oh eight's.
 
 235
-00:14:19.090 --> 00:14:25.124
+00:14:18.900 --> 00:14:24.934
 That's Chapter 3's rule for an account
 kept on Kerberos; a kept G M S A or
 
 236
-00:14:25.124 --> 00:14:30.828
+00:14:24.934 --> 00:14:30.638
 D M S A ends by G 5 instead, and needs
 an S P N owner only if it has S P N's.
 
 237
-00:14:30.828 --> 00:14:35.666
+00:14:30.638 --> 00:14:35.476
 The check enforces it with N
 P I K R B oh five and oh six.
 
 238
-00:14:35.666 --> 00:14:40.147
+00:14:35.476 --> 00:14:39.957
 Second: why would this chapter
 block a D M S A for svc webfront,
 
 239
-00:14:40.147 --> 00:14:43.165
+00:14:39.957 --> 00:14:42.975
 the reason its owner kept it on Kerberos?
 
 240
-00:14:43.165 --> 00:14:44.390
+00:14:42.975 --> 00:14:44.200
 The answer is b.
 
 241
-00:14:44.390 --> 00:14:47.853
+00:14:44.200 --> 00:14:47.663
 The account is trusted for
 unconstrained delegation,
 
 242
-00:14:47.853 --> 00:14:52.548
+00:14:47.663 --> 00:14:52.358
 and Microsoft Learn's delegated
 managed service account documentation
 
 243
-00:14:52.548 --> 00:14:56.165
+00:14:52.358 --> 00:14:55.975
 says that stops working once
 a D M S A migration completes.
 
 244
-00:14:56.165 --> 00:14:59.918
+00:14:55.975 --> 00:14:59.727
 That's N P I K R B oh four,
 and it's why the owner kept
 
 245
-00:14:59.918 --> 00:15:04.065
+00:14:59.727 --> 00:15:03.875
 the account on Kerberos
 instead of planning a D M S A.
 
 246
-00:15:04.065 --> 00:15:06.492
+00:15:03.875 --> 00:15:06.302
 The module page has three more questions,
 
 247
-00:15:06.492 --> 00:14:58.690
+00:15:06.302 --> 00:14:58.500
 each linked to the
 section that answers it.
 
 248
-00:14:58.690 --> 00:14:59.515
+00:14:58.500 --> 00:14:59.325
 To sum up.
 
 249
-00:14:59.515 --> 00:15:03.296
+00:14:59.325 --> 00:15:03.106
 You checked nine Kerberos
 accounts in a fictional domain,
 
 250
-00:15:03.296 --> 00:15:07.470
+00:15:03.106 --> 00:15:07.280
 read a plan with four writes, an
 island list and a reconciliation,
 
 251
-00:15:07.470 --> 00:15:12.353
+00:15:07.280 --> 00:15:12.163
 applied the plan to a fake by its hash,
 and saw a plan nobody approved refused.
 
 252
-00:15:12.353 --> 00:15:17.989
+00:15:12.163 --> 00:15:17.799
 The evidence an ISSO keeps for Gate 5 from
 this module is the plan with its approved
 
 253
-00:15:17.989 --> 00:15:21.718
+00:15:17.799 --> 00:15:21.528
 hash, the findings, the island
 list, the reconciliation,
 
 254
-00:15:21.718 --> 00:15:26.691
+00:15:21.528 --> 00:15:26.501
 and the apply folder's results and
 manifest, all dated, and the test result.
 
 255
-00:15:26.691 --> 00:15:29.765
+00:15:26.501 --> 00:15:29.575
 Before you ship, work through
 the chapter's checklist.
 
 256
-00:15:29.765 --> 00:15:34.040
+00:15:29.575 --> 00:15:33.850
 Next is Module 9: govern
 AI agent identities.
 
 257
-00:15:34.040 --> 00:15:39.487
+00:15:33.850 --> 00:15:39.297
 Agents follow every gate you've done so far,
 and add three things: an agent can act,
 
 258
-00:15:39.487 --> 00:15:44.580
+00:15:39.297 --> 00:15:44.390
 a blueprint holds every agent's
 credentials, and creation has to be gated.

@@ -45,16 +45,6 @@
  },
  {
   "slide": 8,
-  "title": "Try it: run Learn's samples against a fake tenant",
-  "links": [
-   {
-    "text": "PowerShell samples for dynamic membership processing",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#powershell-samples-for-dynamic-membership"
-   }
-  ]
- },
- {
-  "slide": 9,
   "title": "Try it: lint the patterns, evaluate a rule, run the check",
   "links": [
    {
@@ -64,7 +54,7 @@
   ]
  },
  {
-  "slide": 11,
+  "slide": 10,
   "title": "Lab 2: create the groups paused, then drill a pause",
   "links": [
    {
@@ -74,7 +64,7 @@
   ]
  },
  {
-  "slide": 12,
+  "slide": 11,
   "title": "The federal requirement and evidence for Module 3",
   "links": [
    {

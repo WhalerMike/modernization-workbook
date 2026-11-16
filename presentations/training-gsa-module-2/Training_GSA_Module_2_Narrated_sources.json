@@ -92,55 +92,5 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
    }
   ]
- },
- {
-  "slide": 15,
-  "title": "Sources: Module 2 deck",
-  "links": [
-   {
-    "text": "KSIs",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
-   },
-   {
-    "text": "Install the Global Secure Access client for Windows",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-install-windows-client"
-   },
-   {
-    "text": "Known limitations for Global Secure Access",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
-   },
-   {
-    "text": "Tutorial: Enable the Microsoft traffic profile",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-tutorial-microsoft-traffic-profile"
-   },
-   {
-    "text": "Source IP restoration",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-source-ip-restoration"
-   },
-   {
-    "text": "forwardingProfile resource type",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-forwarding-profile-resource"
-   },
-   {
-    "text": "reports: getDeviceUsageSummary",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-get-device-usage-summary"
-   },
-   {
-    "text": "deployment guide for Microsoft Traffic",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-deployment-guide-microsoft-traffic"
-   },
-   {
-    "text": "TIC 3.0 Remote User Use Case v2.2",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#tic-3-remote-user-use-case"
-   },
-   {
-    "text": "NIST SP 800-53 Rev. 5",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
-   },
-   {
-    "text": "FedRAMP 20x KSIs",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
-   }
-  ]
  }
 ]

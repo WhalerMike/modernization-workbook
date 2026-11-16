@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Azure Security Engineering learning path](index.md). Guide [Step 5](../../books/guides/azure-security-implementation.md#step-5-front-door-and-application-gateway) and [Step 6](../../books/guides/azure-security-implementation.md#step-6-firewall-and-segmentation). About 55 minutes, plus the lab.*
 
+**Watch:** the narrated deck for this module (about 13 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_AZS_Module_3_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_AZS_Module_3_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-azs-module-3) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-3/Training_AZS_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-3/Training_AZS_Module_3_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#azs-m3-introduction}
 
 A WAF in prevention mode protects nothing if an attacker can call the origin directly. And a workload whose traffic leaves Azure without inspection can reach a command-and-control server unseen. This module covers both directions: traffic in, through an edge nothing can go around, and traffic out, through Azure Firewall with threat intelligence and IDPS denying.
@@ -66,7 +68,7 @@ Read the Front Door, Private Link and Azure Firewall rows of the guide's [availa
 
 On other clouds, the guide's [comparison](../../books/guides/azure-security-implementation.md#other-clouds) names OCI Network Firewall, built on Palo Alto Networks, with IDPS, TLS inspection and URL filtering, reached through VCN route tables; AWS Network Firewall and Google Cloud NGFW aren't compared there.
 
-**Watch.** The guide's narrated deck covers this module in slides 11 and 12, *an origin nothing can reach around the edge* and *egress through Azure Firewall, then deny*. Its video is being exported; until then, read the narration in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
+**Watch.** The guide's narrated deck covers this module in slides 11 and 12, *an origin nothing can reach around the edge* and *egress through Azure Firewall, then deny*. [▶ Watch the guide's video](../../presentations/watch.html?v=Guide_Azure_Security_Narrated), or read  in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 
 ## Exercise: Lab 2, a test subscription {#azs-m3-lab-2}
 *Not timed. Not run by the authors. Never production.*

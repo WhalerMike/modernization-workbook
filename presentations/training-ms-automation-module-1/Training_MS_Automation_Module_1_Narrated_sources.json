@@ -15,19 +15,11 @@
  },
  {
   "slide": 5,
-  "title": "What changes in a government cloud beyond hosts",
+  "title": "What a script still has to get right beyond the hosts",
   "links": [
    {
-    "text": "Graph national cloud deployments",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
-   },
-   {
-    "text": "national clouds with the Graph SDKs",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#access-national-cloud-deployments-with-the"
-   },
-   {
-    "text": "List methods",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-methods"
+    "text": "Book 10, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html"
    }
   ]
  },
@@ -93,15 +85,15 @@
  },
  {
   "slide": 13,
-  "title": "Where agencies are: GCC, GCC High and DoD",
+  "title": "Where agencies are: GCC with commercial Azure",
   "links": [
    {
     "text": "Graph deployments",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
    },
    {
-    "text": "Azure Government GA roadmap",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-azure-government-product-general"
+    "text": "Book 10, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.html"
    }
   ]
  },

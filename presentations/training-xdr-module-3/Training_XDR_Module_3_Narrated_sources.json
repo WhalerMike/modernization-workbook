@@ -1,0 +1,78 @@
+[
+ {
+  "slide": 4,
+  "title": "Unit 1: exposure without Exposure Management",
+  "links": [
+   {
+    "text": "What is Microsoft Security Exposure Management?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-exposure-management-overview"
+   },
+   {
+    "text": "Defender for Endpoint for US Government customers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-endpoint-us-government"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The interim path: exposure, internet-facing, Tier 0",
+  "links": [
+   {
+    "text": "DeviceInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
+   },
+   {
+    "text": "DeviceTvmSoftwareVulnerabilities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-devicetvmsoftwarevulnerabilities"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 2: one queue, one severity table",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Contain, hand off, close: what the record must show",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 2, steps 4 to 6: export the incidents, back out",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "The federal requirement and evidence for Module 3",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

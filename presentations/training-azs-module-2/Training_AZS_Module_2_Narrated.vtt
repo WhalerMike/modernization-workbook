@@ -1,0 +1,884 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.318
+Welcome to Module 2 of the Azure
+Security Engineering learning path:
+
+2
+00:00:04.318 --> 00:00:07.462
+DDoS protection and the
+web application firewall.
+
+3
+00:00:07.462 --> 00:00:10.313
+In Module 1 you built
+the exposure register.
+
+4
+00:00:10.313 --> 00:00:14.433
+In this module you take every public
+I P in it to DDoS protection,
+
+5
+00:00:14.433 --> 00:00:17.841
+with logs and an alert, and
+every internet-facing web
+
+6
+00:00:17.841 --> 00:00:21.724
+endpoint to a web application
+firewall in prevention mode.
+
+7
+00:00:21.724 --> 00:00:26.854
+It covers Steps 3 and 4 of the Azure
+Security Engineering implementation guide,
+
+8
+00:00:26.854 --> 00:00:31.720
+and takes about fifty minutes, plus
+a lab in your own test subscription.
+
+9
+00:00:35.470 --> 00:00:36.395
+Why both?
+
+10
+00:00:36.395 --> 00:00:40.802
+Learn's overview, What is Azure DDoS
+Protection, says it works at layers
+
+11
+00:00:40.802 --> 00:00:45.133
+three and four, and that layer seven
+needs a web application firewall.
+
+12
+00:00:45.133 --> 00:00:48.108
+So an internet-facing workload needs both.
+
+13
+00:00:48.108 --> 00:00:52.670
+And each has to be in the mode that
+acts, not only the mode that logs.
+
+14
+00:00:52.670 --> 00:00:57.723
+Learn's Zero Trust recommendations for
+the Application Gateway web application
+
+15
+00:00:57.723 --> 00:01:01.587
+firewall put it plainly: in
+detection mode it logs and forwards;
+
+16
+00:01:01.587 --> 00:01:03.370
+only prevention mode blocks.
+
+17
+00:01:03.370 --> 00:01:08.157
+A firewall left in detection mode is the
+first danger in the guide's dangers table.
+
+18
+00:01:08.157 --> 00:01:13.459
+So this module takes every public I P in
+the register to DDoS protection with logs
+
+19
+00:01:13.459 --> 00:01:17.891
+and an alert, and every web endpoint
+to a firewall in prevention mode,
+
+20
+00:01:17.891 --> 00:01:21.420
+tuned first so it doesn't
+block legitimate users.
+
+21
+00:01:25.170 --> 00:01:28.083
+Here's what you'll be able to
+do by the end of this module.
+
+22
+00:01:28.083 --> 00:01:30.865
+You'll say what DDoS
+infrastructure protection,
+
+23
+00:01:30.865 --> 00:01:35.595
+I P Protection and Network Protection each
+give, and what neither paid tier covers.
+
+24
+00:01:35.595 --> 00:01:40.157
+You'll check that every public I P
+is protected, logged and alerting.
+
+25
+00:01:40.157 --> 00:01:44.443
+You'll explain why a simulation runs
+only through an approved partner,
+
+26
+00:01:44.443 --> 00:01:46.882
+and only against your own protected I Ps.
+
+27
+00:01:46.882 --> 00:01:51.400
+You'll take a web application firewall
+policy from detection to prevention,
+
+28
+00:01:51.400 --> 00:01:55.345
+with request body inspection, the
+current rule set and a rate limit.
+
+29
+00:01:55.345 --> 00:01:57.617
+And you'll prove it blocks a test request,
+
+30
+00:01:57.617 --> 00:02:00.370
+and roll it back if it
+blocks legitimate traffic.
+
+31
+00:02:00.370 --> 00:02:04.801
+You need Module 1 and its public I P
+query, and the guide's decision record
+
+32
+00:02:04.801 --> 00:02:09.750
+template, because the DDoS tier and
+the Front Door tier are recorded there.
+
+33
+00:02:13.500 --> 00:02:15.750
+Unit 1 is the guide's Step 3.
+
+34
+00:02:15.750 --> 00:02:18.750
+Learn's tier comparison is
+the source for this table.
+
+35
+00:02:18.750 --> 00:02:23.300
+Every public I P in Azure gets
+infrastructure protection at no cost.
+
+36
+00:02:23.300 --> 00:02:28.830
+I P Protection, billed per protected I P,
+and Network Protection, billed per plan,
+
+37
+00:02:28.830 --> 00:02:34.700
+both add adaptive tuning, attack analytics,
+metrics, alerts and mitigation reports.
+
+38
+00:02:34.700 --> 00:02:38.504
+Network Protection also adds
+the DDoS Rapid Response team,
+
+39
+00:02:38.504 --> 00:02:42.230
+cost protection and a web
+application firewall discount,
+
+40
+00:02:42.230 --> 00:02:46.112
+and it protects Basic public I
+Ps, which I P Protection doesn't.
+
+41
+00:02:46.112 --> 00:02:51.350
+Learn's cost optimization guidance suggests
+Network Protection when many public I
+
+42
+00:02:51.350 --> 00:02:56.363
+Ps across subscriptions need coverage, and
+I P Protection for a few critical ones.
+
+43
+00:02:56.363 --> 00:02:57.375
+Two limits.
+
+44
+00:02:57.375 --> 00:03:01.058
+Neither covers a public I P
+attached to a NAT gateway;
+
+45
+00:03:01.058 --> 00:03:03.713
+the guide lists those as an exclusion.
+
+46
+00:03:03.713 --> 00:03:06.538
+And both work at layers
+three and four only.
+
+47
+00:03:06.538 --> 00:03:10.130
+Whichever you choose, record
+it in the decision record.
+
+48
+00:03:13.880 --> 00:03:18.280
+Here are the guide's Step 3 commands,
+from Learn's DDoS quickstarts.
+
+49
+00:03:18.280 --> 00:03:22.647
+Create one Network Protection plan
+in the connectivity subscription,
+
+50
+00:03:22.647 --> 00:03:25.830
+and link each virtual network
+that holds public I Ps.
+
+51
+00:03:25.830 --> 00:03:30.154
+Or, for I P Protection, enable
+it on one Standard public I P.
+
+52
+00:03:30.154 --> 00:03:35.605
+Turn on diagnostic logs for each
+protected public I P, to the workspace.
+
+53
+00:03:35.605 --> 00:03:37.043
+Then alert on attack.
+
+54
+00:03:37.043 --> 00:03:41.667
+The metric called Under DDoS attack
+or not reads one during mitigation,
+
+55
+00:03:41.667 --> 00:03:45.117
+and Learn's tutorial alerts
+at a maximum of one or more.
+
+56
+00:03:45.117 --> 00:03:47.281
+One caution from Learn's quickstart:
+
+57
+00:03:47.281 --> 00:03:52.112
+a virtual network with DDoS protection
+can't be moved between resource groups or
+
+58
+00:03:52.112 --> 00:03:56.943
+subscriptions, and disabling protection
+to move it resets the tuned thresholds.
+
+59
+00:03:56.943 --> 00:03:59.917
+Then hold it with policy
+in Step 9: Learn's page,
+
+60
+00:03:59.917 --> 00:04:04.901
+Secure your Azure DDoS Protection
+deployment, names the built-in policies,
+
+61
+00:04:04.901 --> 00:04:09.242
+one that protects virtual networks
+with a Modify or Audit effect,
+
+62
+00:04:09.242 --> 00:04:12.570
+and one that requires
+the DDoS resource logs.
+
+63
+00:04:16.320 --> 00:04:18.394
+The response has to be exercised,
+
+64
+00:04:18.394 --> 00:04:22.695
+and Learn sets the rules in its
+tutorial on DDoS simulation testing.
+
+65
+00:04:22.695 --> 00:04:27.559
+Simulations run only through
+Microsoft's approved partners, MazeBolt,
+
+66
+00:04:27.559 --> 00:04:33.000
+Red Button and RedWolf, only against the
+agency's own protected Azure public I Ps,
+
+67
+00:04:33.000 --> 00:04:36.133
+and preferably in staging
+or off-peak windows.
+
+68
+00:04:36.133 --> 00:04:40.570
+Before the exercise, write the response
+team and runbook that Learn's page on
+
+69
+00:04:40.570 --> 00:04:44.865
+securing a DDoS deployment recommends,
+including how to raise a severity
+
+70
+00:04:44.865 --> 00:04:49.020
+A support request to the Rapid Response
+team under Network Protection.
+
+71
+00:04:49.020 --> 00:04:53.862
+The exercise proves three things the
+guide's Validate step asks for: the alert
+
+72
+00:04:53.862 --> 00:04:57.039
+fired, the action group
+paged the security monitor,
+
+73
+00:04:57.039 --> 00:04:59.082
+and the logs show the mitigation.
+
+74
+00:04:59.082 --> 00:05:03.577
+The rollout itself is gentle:
+one non-production network first,
+
+75
+00:05:03.577 --> 00:05:07.985
+the policy in audit for an evaluation
+cycle, then rings, the hub,
+
+76
+00:05:07.985 --> 00:05:13.710
+then Online and Corp landing zones, and
+only then the policy's Modify effect.
+
+77
+00:05:17.460 --> 00:05:21.522
+Unit 2 is the guide's Step 4,
+the web application firewall.
+
+78
+00:05:21.522 --> 00:05:26.078
+Azure W A F runs in two places:
+on Front Door, which is global,
+
+79
+00:05:26.078 --> 00:05:31.022
+and on Application Gateway W A F
+version two, which is regional.
+
+80
+00:05:31.022 --> 00:05:35.173
+Either way it's a policy of managed
+rules, custom rules and settings.
+
+81
+00:05:35.173 --> 00:05:37.960
+Front Door's managed rules
+need the Premium tier.
+
+82
+00:05:37.960 --> 00:05:43.347
+Microsoft's Azure network security Zero
+Trust recommendations check the same things
+
+83
+00:05:43.347 --> 00:05:48.135
+on both: prevention mode, request body
+inspection, the default rule set, the bot
+
+84
+00:05:48.135 --> 00:05:53.298
+protection rule set, rate limiting, a
+JavaScript challenge, and diagnostic logging.
+
+85
+00:05:53.298 --> 00:05:57.005
+Application Gateway adds
+the H T T P DDoS rule set;
+
+86
+00:05:57.005 --> 00:05:59.785
+Front Door adds a CAPTCHA challenge.
+
+87
+00:05:59.785 --> 00:06:02.994
+The Zero Trust Assessment
+automates these checks,
+
+88
+00:06:02.994 --> 00:06:06.330
+so a policy that misses
+one shows up as a finding.
+
+89
+00:06:10.080 --> 00:06:13.473
+Here are the guide's
+Application Gateway commands,
+
+90
+00:06:13.473 --> 00:06:15.655
+from Learn's Azure C L I reference.
+
+91
+00:06:15.655 --> 00:06:20.130
+Create the policy in detection mode,
+with request body inspection on.
+
+92
+00:06:20.130 --> 00:06:24.110
+The C L I's default rule set is
+version two point one; Learn's page,
+
+93
+00:06:24.110 --> 00:06:28.169
+Secure your Azure Application
+Gateway, recommends the latest,
+
+94
+00:06:28.169 --> 00:06:32.930
+two point two at the guide's reading,
+validated in log mode before blocking.
+
+95
+00:06:32.930 --> 00:06:34.980
+So name the version you've validated.
+
+96
+00:06:34.980 --> 00:06:39.127
+Add the bot protection rule set, in
+commercial Azure, and a rate limit
+
+97
+00:06:39.127 --> 00:06:43.792
+grouped by client address on the login
+path, from Learn's rate limit examples.
+
+98
+00:06:43.792 --> 00:06:47.315
+Then tune: detection for at
+least one full business cycle,
+
+99
+00:06:47.315 --> 00:06:51.735
+two weeks by the program's default,
+reading the firewall log for matches
+
+100
+00:06:51.735 --> 00:06:56.231
+on legitimate traffic, and scoping
+each exception to the narrowest rule.
+
+101
+00:06:56.231 --> 00:06:59.505
+Then switch to prevention,
+one application at a time.
+
+102
+00:06:59.505 --> 00:07:02.935
+Rollback is the same command
+with the mode back to detection,
+
+103
+00:07:02.935 --> 00:07:05.405
+which Learn documents for false positives.
+
+104
+00:07:05.405 --> 00:07:10.500
+The guide also gives the policy as
+Bicep, from Azure Verified Modules.
+
+105
+00:07:14.250 --> 00:07:15.562
+Where are agencies?
+
+106
+00:07:15.562 --> 00:07:18.661
+In commercial Azure,
+which a G C C tenant uses,
+
+107
+00:07:18.661 --> 00:07:21.501
+everything in this module is available.
+
+108
+00:07:21.501 --> 00:07:24.712
+The guide's availability
+table says what to plan for.
+
+109
+00:07:24.712 --> 00:07:28.804
+The Application Gateway firewall's
+detection mode doesn't block,
+
+110
+00:07:28.804 --> 00:07:30.699
+so Step 4 runs prevention mode.
+
+111
+00:07:30.699 --> 00:07:33.900
+Front Door's managed rule
+sets need the Premium tier.
+
+112
+00:07:33.900 --> 00:07:39.106
+And DDoS Network Protection is billed per
+plan, I P Protection per protected I P,
+
+113
+00:07:39.106 --> 00:07:42.950
+with simulations only through
+Learn's approved partners.
+
+114
+00:07:42.950 --> 00:07:49.271
+On other clouds, the guide names AWS
+Shield and AWS W A F, Google Cloud Armor,
+
+115
+00:07:49.271 --> 00:07:54.750
+and O C I W A F as a regional policy
+on a load balancer or at the edge.
+
+116
+00:07:54.750 --> 00:07:59.430
+DDoS protection on Oracle Cloud
+Infrastructure isn't compared there.
+
+117
+00:08:03.180 --> 00:08:06.539
+The lab runs the guide's Step
+3 and Step 4 checks in a test
+
+118
+00:08:06.539 --> 00:08:11.167
+subscription where someone has applied
+those steps to a test application.
+
+119
+00:08:11.167 --> 00:08:14.367
+Nothing in Azure changes, and
+the authors haven't run it.
+
+120
+00:08:14.367 --> 00:08:18.796
+You need a DDoS Network Protection
+plan linked to a test virtual network,
+
+121
+00:08:18.796 --> 00:08:23.076
+a protected Standard public I P with
+its diagnostic setting and alert,
+
+122
+00:08:23.076 --> 00:08:28.168
+and a test application behind an Application
+Gateway firewall in prevention mode.
+
+123
+00:08:28.168 --> 00:08:31.780
+Step one lists every
+public I P's DDoS state.
+
+124
+00:08:31.780 --> 00:08:35.158
+The guide's Validate step says
+each should show Enabled,
+
+125
+00:08:35.158 --> 00:08:38.168
+or Virtual Network Inherited
+in a linked network.
+
+126
+00:08:38.168 --> 00:08:41.289
+Step two exports the plan
+and its linked networks,
+
+127
+00:08:41.289 --> 00:08:44.030
+which the guide's
+evidence checklist names.
+
+128
+00:08:44.030 --> 00:08:47.043
+Step three checks the
+protected I P's diagnostic
+
+129
+00:08:47.043 --> 00:08:50.055
+setting and the alert on
+the under-attack metric.
+
+130
+00:08:50.055 --> 00:08:52.276
+The simulation isn't part of the lab:
+
+131
+00:08:52.276 --> 00:08:55.770
+Learn allows it only
+through an approved partner.
+
+132
+00:08:59.520 --> 00:09:03.838
+Step four checks the policy, with
+the guide's own Validate query:
+
+133
+00:09:03.838 --> 00:09:07.657
+mode, request body inspection
+and the managed rule sets.
+
+134
+00:09:07.657 --> 00:09:10.995
+Expect Prevention,
+true, and the rule sets.
+
+135
+00:09:10.995 --> 00:09:14.628
+Step five sends a test
+request carrying a benign SQL
+
+136
+00:09:14.628 --> 00:09:17.945
+injection string to a path
+on the test application.
+
+137
+00:09:17.945 --> 00:09:23.045
+That request is the path's; the guide says
+to send one and expect a four oh three.
+
+138
+00:09:23.045 --> 00:09:26.632
+Step six finds the matching
+row in the firewall log.
+
+139
+00:09:26.632 --> 00:09:31.936
+The guide's Step 4 sends the log to
+resource-specific tables, and Learn's page,
+
+140
+00:09:31.936 --> 00:09:34.929
+Diagnostic logs for Application Gateway,
+
+141
+00:09:34.929 --> 00:09:38.008
+names the firewall table
+A G W Firewall Logs.
+
+142
+00:09:38.008 --> 00:09:42.936
+The query command comes from the
+Azure C L I's log analytics extension,
+
+143
+00:09:42.936 --> 00:09:46.739
+and takes the workspace's I D,
+a GUID, not its resource I D.
+
+144
+00:09:46.739 --> 00:09:49.333
+Logs can take a few minutes to arrive.
+
+145
+00:09:49.333 --> 00:09:53.232
+Step seven: nothing changed,
+so there's nothing to undo.
+
+146
+00:09:53.232 --> 00:09:58.085
+If step five returned anything but four
+oh three, the firewall isn't blocking:
+
+147
+00:09:58.085 --> 00:10:02.220
+report it to the application owner,
+and don't fix it in the lab.
+
+148
+00:10:05.970 --> 00:10:11.025
+The federal requirement, from NIST special
+publication eight hundred fifty-three,
+
+149
+00:10:11.025 --> 00:10:14.395
+revision five, as the guide's
+requirements table maps it.
+
+150
+00:10:14.395 --> 00:10:18.872
+Step 3 supports S C five,
+denial-of-service protection, and S I four,
+
+151
+00:10:18.872 --> 00:10:24.616
+system monitoring, aligned with the fed-ramp
+twenty X key security indicators the
+
+152
+00:10:24.616 --> 00:10:27.488
+guide names; the evidence is the coverage,
+
+153
+00:10:27.488 --> 00:10:30.782
+the metrics and logs, and
+the simulation report.
+
+154
+00:10:30.782 --> 00:10:33.854
+The guide labels the
+control itself Mandated,
+
+155
+00:10:33.854 --> 00:10:39.349
+because S C five is in the Moderate baseline
+that FIPS two hundred requires, and the
+
+156
+00:10:39.349 --> 00:10:44.683
+way to meet it, DDoS Protection on every
+public I P, as Microsoft's recommendation.
+
+157
+00:10:44.683 --> 00:10:50.449
+Step 4 supports S C seven, boundary
+protection, and S I ten, information input
+
+158
+00:10:50.449 --> 00:10:54.075
+validation; its evidence
+is the policy exports,
+
+159
+00:10:54.075 --> 00:10:56.958
+the logs and the blocked test request.
+
+160
+00:10:56.958 --> 00:10:59.034
+The steps support these controls,
+
+161
+00:10:59.034 --> 00:11:02.570
+and the assessor decides
+whether each is satisfied.
+
+162
+00:11:06.320 --> 00:11:08.295
+Check yourself with two questions.
+
+163
+00:11:08.295 --> 00:11:12.245
+First: a public I P is
+attached to a NAT gateway.
+
+164
+00:11:12.245 --> 00:11:14.732
+What does DDoS Network
+Protection do for it?
+
+165
+00:11:14.732 --> 00:11:16.620
+The answer is b, nothing.
+
+166
+00:11:16.620 --> 00:11:20.860
+Learn's tier comparison says NAT
+gateway I Ps aren't supported,
+
+167
+00:11:20.860 --> 00:11:23.520
+so the guide lists them as an exclusion.
+
+168
+00:11:23.520 --> 00:11:27.495
+Second: a web application
+firewall policy shows Detection.
+
+169
+00:11:27.495 --> 00:11:29.545
+What happens to an attack request?
+
+170
+00:11:29.545 --> 00:11:33.170
+The answer is b: it's logged
+and forwarded to the backend.
+
+171
+00:11:33.170 --> 00:11:35.057
+Only prevention mode blocks.
+
+172
+00:11:35.057 --> 00:11:40.340
+The module page has three more questions,
+each linked to the unit that answers it.
+
+173
+00:11:44.090 --> 00:11:44.915
+To sum up.
+
+174
+00:11:44.915 --> 00:11:48.203
+You chose a DDoS tier and
+named what it doesn't cover.
+
+175
+00:11:48.203 --> 00:11:52.764
+You checked that every public I P
+is protected, logged and alerting.
+
+176
+00:11:52.764 --> 00:11:57.577
+You took the web application firewall from
+detection to prevention, tuned first.
+
+177
+00:11:57.577 --> 00:12:01.889
+And you proved it blocks a test request,
+with the matching row in its log.
+
+178
+00:12:01.889 --> 00:12:07.226
+The evidence an I S S O keeps from this
+module: the plan and its linked networks,
+
+179
+00:12:07.226 --> 00:12:11.292
+the per-I P mode export, DDoS
+metrics, logs and alert history,
+
+180
+00:12:11.292 --> 00:12:17.136
+the simulation report when the exercise
+runs, the firewall policy exports and logs,
+
+181
+00:12:17.136 --> 00:12:21.202
+the blocked test request, and
+the rule-exception register.
+
+182
+00:12:21.202 --> 00:12:23.962
+Next is Module 3, the edge and the egress:
+
+183
+00:12:23.962 --> 00:12:29.810
+an origin nothing can reach around Front
+Door, and egress through Azure Firewall.

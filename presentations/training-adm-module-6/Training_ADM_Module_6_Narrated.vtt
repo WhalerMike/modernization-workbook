@@ -283,853 +283,844 @@ The estate this workbook plans
 for is a Microsoft 365 GCC tenant.
 
 59
-00:04:05.221 --> 00:04:10.383
-Microsoft Learn's page, Planning identity
-for Azure Government applications,
+00:04:05.221 --> 00:04:11.516
+Microsoft Learn's page, Cloud feature
+availability for US Government customers,
 
 60
-00:04:10.383 --> 00:04:13.560
-says Office 365 GCC uses
-Microsoft Entra Public,
+00:04:11.516 --> 00:04:16.308
+says Office 365 GCC is paired
+with Microsoft Entra ID in Azure.
 
 61
-00:04:13.560 --> 00:04:18.882
-and an Azure Government subscription can't
-be associated with a directory there.
-
-62
-00:04:18.882 --> 00:04:22.967
+00:04:16.308 --> 00:04:20.392
 So a GCC estate's Arc servers go
 to a commercial subscription, and,
 
-63
-00:04:22.967 --> 00:04:25.895
+62
+00:04:20.392 --> 00:04:23.320
 as Learn's azcmagent
 connect reference shows,
 
-64
-00:04:25.895 --> 00:04:30.133
+63
+00:04:23.320 --> 00:04:27.558
 the agent connects with the AzureCloud
 cloud, which is the default.
 
+64
+00:04:27.558 --> 00:04:30.507
+The agent then needs the
+commercial endpoints,
+
 65
-00:04:30.133 --> 00:04:33.962
-GCC High and DoD tenants are
-different: the same Learn pages,
+00:04:30.507 --> 00:04:35.724
+which Learn's Connected Machine agent
+network requirements list: the sign-in hosts,
 
 66
-00:04:33.962 --> 00:04:39.042
-with the Connected Machine agent network
-requirements, give Microsoft Entra
+00:04:35.724 --> 00:04:39.428
+management dot azure dot com,
+only to connect or disconnect,
 
 67
-00:04:39.042 --> 00:04:44.044
-Government and Azure Government, with US
-Gov regions and the dot us endpoints.
+00:04:39.428 --> 00:04:43.133
+and the Arc and guest configuration
+services, among others.
 
 68
-00:04:44.044 --> 00:04:46.007
-The kit guards this both ways.
+00:04:43.133 --> 00:04:45.182
+The kit guards the cloud twice.
 
 69
-00:04:46.007 --> 00:04:50.190
+00:04:45.182 --> 00:04:49.683
 The wave plan stops a server whose
-region belongs to the other cloud,
+region isn't a commercial Azure region,
 
 70
-00:04:50.190 --> 00:04:54.970
+00:04:49.683 --> 00:04:54.840
 and the playbook that uses Microsoft's
 role refuses any cloud but AzureCloud.
 
 71
-00:04:54.970 --> 00:04:58.810
-For Azure Government, the kit's
-other onboarding playbook,
-
-72
-00:04:58.810 --> 00:05:00.930
-oh two, spells the steps out.
-
-73
-00:05:04.680 --> 00:05:09.215
+00:04:58.590 --> 00:05:03.125
 Microsoft Learn's page, Connect machines
 to Azure Arc at scale with Ansible,
 
-74
-00:05:09.215 --> 00:05:11.922
+72
+00:05:03.125 --> 00:05:05.832
 documents onboarding through the Azure Arc
 
-75
-00:05:11.922 --> 00:05:14.555
+73
+00:05:05.832 --> 00:05:08.465
 onboarding role in the
 azure az collection.
 
-76
-00:05:14.555 --> 00:05:18.643
+74
+00:05:08.465 --> 00:05:12.553
 It installs the Connected Machine
 agent and registers each host.
 
-77
-00:05:18.643 --> 00:05:22.973
+75
+00:05:12.553 --> 00:05:16.883
 The repository keeps a pinned copy
 of the role's code, from the ansible
 
-78
-00:05:22.973 --> 00:05:27.304
+76
+00:05:16.883 --> 00:05:21.214
 collections azure repository at the
 four point two point oh release.
 
-79
-00:05:27.304 --> 00:05:31.280
+77
+00:05:21.214 --> 00:05:25.190
 Running it offline, and reading its
 code, shows what it leaves to you.
 
-80
-00:05:31.280 --> 00:05:34.362
+78
+00:05:25.190 --> 00:05:28.272
 It connects whatever
 hosts the inventory names;
 
-81
-00:05:34.362 --> 00:05:37.830
+79
+00:05:28.272 --> 00:05:31.740
 the kit reads both owners and
 writes them into the tags.
 
-82
-00:05:37.830 --> 00:05:42.705
+80
+00:05:31.740 --> 00:05:36.615
 It has no waves; the kit adds a wave
 column, one canary server, then five,
 
-83
-00:05:42.705 --> 00:05:47.842
+81
+00:05:36.615 --> 00:05:41.752
 then twenty-five percent, and keeps
 production out of waves zero and one.
 
-84
-00:05:47.842 --> 00:05:51.020
+82
+00:05:41.752 --> 00:05:44.930
 It can't run in check mode on
 a server without the agent;
 
-85
-00:05:51.020 --> 00:05:54.342
+83
+00:05:44.930 --> 00:05:48.252
 the kit's playbook doesn't call
 it without a confirm flag.
 
-86
-00:05:54.342 --> 00:05:58.760
+84
+00:05:48.252 --> 00:05:52.670
 The role's code sends a signal with
 the subscription and tenant by default,
 
-87
-00:05:58.760 --> 00:06:02.092
+85
+00:05:52.670 --> 00:05:56.002
 which Learn's page doesn't
 mention; the kit turns that off.
 
-88
-00:06:02.092 --> 00:06:04.801
+86
+00:05:56.002 --> 00:05:58.711
 And it leaves no record,
 and the requirements
 
-89
-00:06:04.801 --> 00:06:07.730
+87
+00:05:58.711 --> 00:06:01.640
 file on Learn's page
 installs the latest version.
 
-90
-00:06:07.730 --> 00:06:10.206
+88
+00:06:01.640 --> 00:06:04.116
 The verdict, which is this workbook's:
 
-91
-00:06:10.206 --> 00:06:14.530
+89
+00:06:04.116 --> 00:06:08.440
 use Microsoft's role, unchanged,
 and add what sits around it.
 
-92
-00:06:18.280 --> 00:06:23.592
+90
+00:06:12.190 --> 00:06:17.502
 The kit's CMDB inventory script turns
 each owner into a group and a tag.
 
-93
-00:06:23.592 --> 00:06:28.694
+91
+00:06:17.502 --> 00:06:22.604
 A config owner of arc machine configuration,
 Ansible, Intune and so on becomes a
 
-94
-00:06:28.694 --> 00:06:33.717
+92
+00:06:22.604 --> 00:06:27.627
 group, and a Config Owner tag in the
 spelling of this workbook's Arc track guide.
 
-95
-00:06:33.717 --> 00:06:35.680
+93
+00:06:27.627 --> 00:06:29.590
 The patch owner works the same way.
 
-96
-00:06:35.680 --> 00:06:39.987
+94
+00:06:29.590 --> 00:06:33.897
 An empty owner on a tier one or
 two record goes to a missing group,
 
-97
-00:06:39.987 --> 00:06:43.879
+95
+00:06:33.897 --> 00:06:37.789
 which is a finding under NIST
 special publication eight
 
-98
-00:06:43.879 --> 00:06:47.855
+96
+00:06:37.789 --> 00:06:41.765
 hundred fifty-three control
 CM-8, inventory, never a target.
 
-99
-00:06:47.855 --> 00:06:49.805
+97
+00:06:41.765 --> 00:06:43.715
 And the wave becomes a wave group.
 
-100
-00:06:49.805 --> 00:06:51.605
+98
+00:06:43.715 --> 00:06:45.515
 Three rules fail closed.
 
-101
-00:06:51.605 --> 00:06:54.393
+99
+00:06:45.515 --> 00:06:48.303
 An owner value the script
 doesn't know stops it.
 
-102
-00:06:54.393 --> 00:06:58.502
+100
+00:06:48.303 --> 00:06:52.412
 A typo like update manager written
 as one word would otherwise create a
 
-103
-00:06:58.502 --> 00:07:02.680
+101
+00:06:52.412 --> 00:06:56.590
 group nothing reads, and drop the server
 out of the group that protects it.
 
-104
-00:07:02.680 --> 00:07:04.730
+102
+00:06:56.590 --> 00:06:58.640
 A wave that isn't a number stops it.
 
-105
-00:07:04.730 --> 00:07:10.008
+103
+00:06:58.640 --> 00:07:03.918
 And a server is a candidate only if its
 record has both owners, a resource group,
 
-106
-00:07:10.008 --> 00:07:12.812
+104
+00:07:03.918 --> 00:07:06.722
 a region, a wave, and
 tag values Arc accepts;
 
-107
-00:07:12.812 --> 00:07:18.255
+105
+00:07:06.722 --> 00:07:12.165
 Learn's azcmagent connect reference takes
 the tags as one comma-delimited list.
 
-108
-00:07:18.255 --> 00:07:21.180
+106
+00:07:12.165 --> 00:07:15.090
 Otherwise it's blocked,
 with the reasons recorded.
 
-109
-00:07:21.180 --> 00:07:23.450
+107
+00:07:15.090 --> 00:07:17.360
 All three are the kit's design.
 
-110
-00:07:27.200 --> 00:07:30.800
+108
+00:07:21.110 --> 00:07:24.710
 The kit's wave plan playbook
 runs only on the control node.
 
-111
-00:07:30.800 --> 00:07:32.163
+109
+00:07:24.710 --> 00:07:26.073
 You give it a wave number.
 
-112
-00:07:32.163 --> 00:07:37.074
+110
+00:07:26.073 --> 00:07:30.984
 It lists the wave's ready servers
 and the ones the CMDB blocked,
 
-113
-00:07:37.074 --> 00:07:42.851
+111
+00:07:30.984 --> 00:07:36.761
 and writes a JSON and a CSV plan under
 reports: host, configuration item,
 
-114
-00:07:42.851 --> 00:07:46.222
+112
+00:07:36.761 --> 00:07:40.132
 environment, resource
 group, region, cloud,
 
-115
-00:07:46.222 --> 00:07:49.688
+113
+00:07:40.132 --> 00:07:43.598
 both owners, the exact
 tag string and a state.
 
-116
-00:07:49.688 --> 00:07:53.397
+114
+00:07:43.598 --> 00:07:47.301
 It stops when no wave is given
 or the wave has no ready server,
 
-117
-00:07:53.397 --> 00:07:57.182
-when the cloud is wrong or a
-region belongs to the other cloud,
+115
+00:07:47.301 --> 00:07:51.382
+when the cloud is wrong or a region
+isn't a commercial Azure region,
 
-118
-00:07:57.182 --> 00:08:01.270
+116
+00:07:51.382 --> 00:07:55.463
 when a production server is planned
 in wave zero or one, which this
 
-119
-00:08:01.270 --> 00:08:05.963
+117
+00:07:55.463 --> 00:08:00.148
 workbook's Arc track keeps for non-production,
 and when a server has no owner.
 
-120
-00:08:05.963 --> 00:08:09.559
+118
+00:08:00.148 --> 00:08:03.744
 Both onboarding playbooks
 import it as their first play,
 
-121
-00:08:09.559 --> 00:08:12.237
+119
+00:08:03.744 --> 00:08:06.422
 so if the plan stops,
 no server is contacted.
 
-122
-00:08:12.237 --> 00:08:17.096
+120
+00:08:06.422 --> 00:08:11.281
 The playbook that uses Microsoft's role
 runs in batches, one canary server,
 
-123
-00:08:17.096 --> 00:08:19.407
+121
+00:08:11.281 --> 00:08:13.592
 then five, then twenty-five percent,
 
-124
-00:08:19.407 --> 00:08:23.549
+122
+00:08:13.592 --> 00:08:17.734
 with the batch keywords the
 Ansible documentation describes.
 
-125
-00:08:23.549 --> 00:08:26.775
+123
+00:08:17.734 --> 00:08:20.960
 It's in check mode unless you
 set confirm change to true.
 
-126
-00:08:26.775 --> 00:08:30.550
+124
+00:08:20.960 --> 00:08:24.735
 Then the role isn't called, and each
 server prints what it would get.
 
-127
-00:08:30.550 --> 00:08:33.623
+125
+00:08:24.735 --> 00:08:27.808
 With the flag, the role runs
 with the CMDB's values,
 
-128
-00:08:33.623 --> 00:08:36.740
+126
+00:08:27.808 --> 00:08:30.940
 authenticating with the managed identity.
 
-129
-00:08:40.490 --> 00:08:41.215
+127
+00:08:34.690 --> 00:08:35.415
 Try it.
 
-130
-00:08:41.215 --> 00:08:44.577
+128
+00:08:35.415 --> 00:08:38.777
 Lab 1 runs in the ansible
 folder of the examples,
 
-131
-00:08:44.577 --> 00:08:47.077
+129
+00:08:38.777 --> 00:08:41.277
 on a disposable Linux control node.
 
-132
-00:08:47.077 --> 00:08:50.165
+130
+00:08:41.277 --> 00:08:44.365
 Nothing signs in to Azure
 or contacts a server.
 
-133
-00:08:50.165 --> 00:08:54.052
+131
+00:08:44.365 --> 00:08:48.252
 Step one installs the pinned
 collections from a reviewed source,
 
-134
-00:08:54.052 --> 00:08:57.652
+132
+00:08:48.252 --> 00:08:51.852
 and then points every outbound
 request at a dead local proxy.
 
-135
-00:08:57.652 --> 00:09:00.965
+133
+00:08:51.852 --> 00:08:55.164
 The results on these slides
 are the chapter's Lab 1 text:
 
-136
-00:09:00.965 --> 00:09:04.351
+134
+00:08:55.164 --> 00:08:58.551
 the authors didn't re-run the
 Ansible steps for this path,
 
-137
-00:09:04.351 --> 00:09:08.252
+135
+00:08:58.551 --> 00:09:02.452
 because they download from Galaxy
 and need a Linux control node.
 
-138
-00:09:08.252 --> 00:09:13.318
+136
+00:09:02.452 --> 00:09:07.518
 Step two shows what the CMDB becomes:
 four candidates, app oh two,
 
-139
-00:09:13.318 --> 00:09:18.677
+137
+00:09:07.518 --> 00:09:12.877
 aws oh one, web oh one and win oh one,
 and five servers Ansible patches.
 
-140
-00:09:18.677 --> 00:09:22.502
+138
+00:09:12.877 --> 00:09:16.702
 Aws oh one's tags carry
 both owners as Ansible.
 
-141
-00:09:22.502 --> 00:09:26.814
+139
+00:09:16.702 --> 00:09:21.014
 Step three runs Microsoft's
 role, unchanged, in check mode.
 
-142
-00:09:26.814 --> 00:09:30.390
+140
+00:09:21.014 --> 00:09:24.590
 It fails at Get azcmagent
 status, because there's no agent.
 
-143
-00:09:30.390 --> 00:09:34.447
+141
+00:09:24.590 --> 00:09:28.647
 Run it again verbose, and it shows
 the agent installed fact as true,
 
-144
-00:09:34.447 --> 00:09:37.302
+142
+00:09:28.647 --> 00:09:31.502
 because check mode
 skipped the version check.
 
-145
-00:09:37.302 --> 00:09:39.880
+143
+00:09:31.502 --> 00:09:34.080
 That's the dry run the role can't do.
 
-146
-00:09:43.630 --> 00:09:45.543
+144
+00:09:37.830 --> 00:09:39.743
 Step four plans wave zero.
 
-147
-00:09:45.543 --> 00:09:48.277
+145
+00:09:39.743 --> 00:09:42.477
 The playbook says wave zero is ready:
 
-148
-00:09:48.277 --> 00:09:51.742
+146
+00:09:42.477 --> 00:09:45.942
 one server to connect,
 none blocked in the CMDB.
 
-149
-00:09:51.742 --> 00:09:55.911
+147
+00:09:45.942 --> 00:09:50.111
 Show the newest wave zero plan,
 and it has one row: web oh one,
 
-150
-00:09:55.911 --> 00:10:00.168
+148
+00:09:50.111 --> 00:09:54.368
 in the portal dev resource group,
 in West US 2, in AzureCloud,
 
-151
-00:10:00.168 --> 00:10:04.692
+149
+00:09:54.368 --> 00:09:58.892
 state ready, with the exact tag
 string the connect would write.
 
-152
-00:10:04.692 --> 00:10:10.102
+150
+00:09:58.892 --> 00:10:04.302
 Look at the tags: the configuration item,
 Config Owner set to machine configuration,
 
-153
-00:10:10.102 --> 00:10:13.082
+151
+00:10:04.302 --> 00:10:07.282
 the environment, the
 location, the owning team,
 
-154
-00:10:13.082 --> 00:10:16.531
+152
+00:10:07.282 --> 00:10:10.731
 the patch group, and Patch
 Owner set to Update Manager.
 
-155
-00:10:16.531 --> 00:10:20.655
+153
+00:10:10.731 --> 00:10:14.855
 That's the plan a reviewer reads
 and files before anything runs.
 
-156
-00:10:20.655 --> 00:10:23.755
+154
+00:10:14.855 --> 00:10:17.955
 Step five dry-runs the wave
 with Microsoft's role.
 
-157
-00:10:23.755 --> 00:10:25.055
+155
+00:10:17.955 --> 00:10:19.255
 It exits zero.
 
-158
-00:10:25.055 --> 00:10:29.807
+156
+00:10:19.255 --> 00:10:24.007
 Web oh one reports that it would connect
 to AzureCloud, in that resource group and
 
-159
-00:10:29.807 --> 00:10:34.630
+157
+00:10:24.007 --> 00:10:28.830
 region, authenticating with the managed
 identity, and the connect task is skipped.
 
-160
-00:10:34.630 --> 00:10:38.550
+158
+00:10:28.830 --> 00:10:32.750
 Web oh one doesn't exist, and
 nothing tried to reach it.
 
-161
-00:10:42.300 --> 00:10:46.950
+159
+00:10:36.500 --> 00:10:41.150
 Step six breaks the CMDB on
 purpose, in copies of the export.
 
-162
-00:10:46.950 --> 00:10:49.713
+160
+00:10:41.150 --> 00:10:43.913
 First, mark web oh one as production.
 
-163
-00:10:49.713 --> 00:10:52.993
+161
+00:10:43.913 --> 00:10:47.193
 Wave zero stops: it isn't
 ready, with exit code two,
 
-164
-00:10:52.993 --> 00:10:57.450
+162
+00:10:47.193 --> 00:10:51.650
 and the plan says production server
 in non-production wave zero.
 
-165
-00:10:57.450 --> 00:11:01.888
+163
+00:10:51.650 --> 00:10:56.088
 Second, write update manager as
 one word in a server's patch owner.
 
-166
-00:11:01.888 --> 00:11:06.412
+164
+00:10:56.088 --> 00:11:00.612
 The inventory exits one: line
 three, unknown patch owner.
 
-167
-00:11:06.412 --> 00:11:08.583
+165
+00:11:00.612 --> 00:11:02.783
 We re-ran that one on Windows today,
 
-168
-00:11:08.583 --> 00:11:12.225
+166
+00:11:02.783 --> 00:11:06.425
 and it printed exactly that,
 with the list of known owners.
 
-169
-00:11:12.225 --> 00:11:16.175
+167
+00:11:06.425 --> 00:11:10.375
 Third, clear app oh two's
 patch owner and plan wave two.
 
-170
-00:11:16.175 --> 00:11:20.163
+168
+00:11:10.375 --> 00:11:14.363
 The wave is still ready, with
 one to connect and one blocked:
 
-171
-00:11:20.163 --> 00:11:24.400
+169
+00:11:14.363 --> 00:11:18.600
 win oh one is ready, and app oh two
 is blocked, with no patch owner.
 
-172
-00:11:24.400 --> 00:11:26.400
+170
+00:11:18.600 --> 00:11:20.600
 Step seven runs the tests.
 
-173
-00:11:26.400 --> 00:11:30.804
+171
+00:11:20.600 --> 00:11:25.004
 On the control node, the test
 script runs yamllint, ansible lint,
 
-174
-00:11:30.804 --> 00:11:34.700
+172
+00:11:25.004 --> 00:11:28.900
 a syntax check of six playbooks,
 and ninety tests as root.
 
-175
-00:11:34.700 --> 00:11:37.885
+173
+00:11:28.900 --> 00:11:32.085
 On Windows, the Python
 suite gave seventy-four
 
-176
-00:11:37.885 --> 00:11:41.010
+174
+00:11:32.085 --> 00:11:35.210
 passed and sixteen skipped, re-run today.
 
-177
-00:11:44.760 --> 00:11:47.198
+175
+00:11:38.960 --> 00:11:41.398
 Lab 2 connects one real server.
 
-178
-00:11:47.198 --> 00:11:51.581
+176
+00:11:41.398 --> 00:11:45.781
 You need a commercial test subscription
 in the GCC tenant, a Linux server
 
-179
-00:11:51.581 --> 00:11:56.185
+177
+00:11:45.781 --> 00:11:50.385
 you can rebuild, never production, and
 a control node with a managed identity.
 
-180
-00:11:56.185 --> 00:11:57.950
+178
+00:11:50.385 --> 00:11:52.150
 Create a test resource group,
 
-181
-00:11:57.950 --> 00:12:03.245
+179
+00:11:52.150 --> 00:11:57.445
 and grant the control node's managed identity
 the Azure Connected Machine Onboarding
 
-182
-00:12:03.245 --> 00:12:04.862
+180
+00:11:57.445 --> 00:11:59.062
 role on it, and nothing else;
 
-183
-00:12:04.862 --> 00:12:08.760
+181
+00:11:59.062 --> 00:12:02.960
 that's the role Microsoft Learn's
 Ansible onboarding page names.
 
-184
-00:12:08.760 --> 00:12:12.872
+182
+00:12:02.960 --> 00:12:07.072
 Write a one-server CMDB export
 for the disposable server.
 
-185
-00:12:12.872 --> 00:12:18.498
+183
+00:12:07.072 --> 00:12:12.698
 Then plan, dry-run and connect it, and
 check that its tags equal the CMDB's.
 
-186
-00:12:18.498 --> 00:12:23.334
+184
+00:12:12.698 --> 00:12:17.534
 To back it out, follow the order in Learn's
 pages on azcmagent disconnect and on
 
-187
-00:12:23.334 --> 00:12:26.281
+185
+00:12:17.534 --> 00:12:20.481
 uninstalling the agent:
 remove any extensions,
 
-188
-00:12:26.281 --> 00:12:30.664
+186
+00:12:20.481 --> 00:12:24.864
 disconnect with an identity that
 may delete the resource, because the
 
-189
-00:12:30.664 --> 00:12:35.273
+187
+00:12:24.864 --> 00:12:29.473
 onboarding role can't, uninstall the
 agent, and remove the role assignment.
 
-190
-00:12:35.273 --> 00:12:37.422
+188
+00:12:29.473 --> 00:12:31.622
 The authors haven't run Lab 2.
 
-191
-00:12:37.422 --> 00:12:41.120
+189
+00:12:31.622 --> 00:12:35.320
 Follow Chapter 08's Lab 2, step by step.
 
-192
-00:12:44.870 --> 00:12:46.257
+190
+00:12:39.070 --> 00:12:40.457
 The federal requirement.
 
-193
-00:12:46.257 --> 00:12:51.094
+191
+00:12:40.457 --> 00:12:45.294
 Onboarding to Arc writes each server's
 owners into Azure from the CMDB,
 
-194
-00:12:51.094 --> 00:12:55.846
+192
+00:12:45.294 --> 00:12:50.046
 so the plan, the result and the tags
 are inventory and change evidence.
 
-195
-00:12:55.846 --> 00:12:59.920
+193
+00:12:50.046 --> 00:12:54.120
 The controls are NIST special
 publication eight hundred fifty-three's.
 
-196
-00:12:59.920 --> 00:13:04.920
+194
+00:12:54.120 --> 00:12:59.120
 The CMDB export supports system
 component inventory, CM-8.
 
-197
-00:13:04.920 --> 00:13:07.749
+195
+00:12:59.120 --> 00:13:01.949
 The wave plan, filed
 with the change record,
 
-198
-00:13:07.749 --> 00:13:10.820
+196
+00:13:01.949 --> 00:13:05.020
 supports change control
 and impact analysis.
 
-199
-00:13:10.820 --> 00:13:15.370
+197
+00:13:05.020 --> 00:13:09.570
 The dry run that contacts nothing supports
 testing a change before it's made.
 
-200
-00:13:15.370 --> 00:13:19.223
+198
+00:13:09.570 --> 00:13:13.423
 The stops for production in the
 pilot and for unknown or missing
 
-201
-00:13:19.223 --> 00:13:22.857
+199
+00:13:13.423 --> 00:13:17.057
 owners leave the plan, and a CMDB
 ticket for the missing owner.
 
-202
-00:13:22.857 --> 00:13:26.746
+200
+00:13:17.057 --> 00:13:20.946
 The pinned collections leave the
 requirements file and the snapshot.
 
-203
-00:13:26.746 --> 00:13:31.239
+201
+00:13:20.946 --> 00:13:25.439
 And Lab 2 adds the role assignment
 record, for least privilege,
 
-204
-00:13:31.239 --> 00:13:34.764
+202
+00:13:25.439 --> 00:13:28.964
 and the result file with V
 K ARC oh one and oh seven,
 
-205
-00:13:34.764 --> 00:13:39.170
+203
+00:13:28.964 --> 00:13:33.370
 showing the server is connected
 and its tags equal the CMDB's.
 
-206
-00:13:39.170 --> 00:13:42.618
+204
+00:13:33.370 --> 00:13:36.818
 The KSI column is FedRAMP's
 Key Security Indicators,
 
-207
-00:13:42.618 --> 00:13:46.707
+205
+00:13:36.818 --> 00:13:40.907
 the FedRAMP 20x indicators
 for cloud service providers.
 
-208
-00:13:46.707 --> 00:13:50.640
+206
+00:13:40.907 --> 00:13:44.840
 Which output supports which
 control is this workbook's reading.
 
-209
-00:13:54.390 --> 00:13:56.365
+207
+00:13:48.590 --> 00:13:50.565
 Check yourself with two questions.
 
-210
-00:13:56.365 --> 00:14:01.003
+208
+00:13:50.565 --> 00:13:55.203
 First: Microsoft's role runs in check
 mode on a host without the agent.
 
-211
-00:14:01.003 --> 00:14:02.014
+209
+00:13:55.203 --> 00:13:56.214
 What happens?
 
-212
-00:14:02.014 --> 00:14:05.103
+210
+00:13:56.214 --> 00:13:59.303
 The answer is b: it fails
 at Get azcmagent status,
 
-213
-00:14:05.103 --> 00:14:09.615
+211
+00:13:59.303 --> 00:14:03.815
 and with the version check skipped,
 it decides the agent is installed.
 
-214
-00:14:09.615 --> 00:14:13.748
+212
+00:14:03.815 --> 00:14:07.948
 That's why the kit's playbook doesn't call
 the role at all without the confirm flag,
 
-215
-00:14:13.748 --> 00:14:16.128
+213
+00:14:07.948 --> 00:14:10.328
 and prints what each
 server would get instead.
 
-216
-00:14:16.128 --> 00:14:19.678
+214
+00:14:10.328 --> 00:14:13.878
 Second: the wave zero plan
 finds a production server.
 
-217
-00:14:19.678 --> 00:14:20.689
+215
+00:14:13.878 --> 00:14:14.889
 What happens?
 
-218
-00:14:20.689 --> 00:14:24.695
+216
+00:14:14.889 --> 00:14:18.895
 The answer is b: the plan stops,
 and no server is contacted,
 
-219
-00:14:24.695 --> 00:14:28.265
+217
+00:14:18.895 --> 00:14:22.465
 because waves zero and one
 are for non-production.
 
-220
-00:14:28.265 --> 00:14:30.428
+218
+00:14:22.465 --> 00:14:24.628
 You saw that in step six of the lab.
 
-221
-00:14:30.428 --> 00:14:35.473
+219
+00:14:24.628 --> 00:14:29.673
 The module page has two more questions, on
 the owner typo and on the confirm flag,
 
-222
-00:14:35.473 --> 00:14:38.560
+220
+00:14:29.673 --> 00:14:32.760
 each linked to the
 section that answers it.
 
-223
-00:14:42.310 --> 00:14:43.135
+221
+00:14:36.510 --> 00:14:37.335
 To sum up.
 
-224
-00:14:43.135 --> 00:14:48.399
+222
+00:14:37.335 --> 00:14:42.599
 You read the CMDB into groups and tags with
 both owners, planned a wave a reviewer
 
-225
-00:14:48.399 --> 00:14:53.185
+223
+00:14:42.599 --> 00:14:47.385
 can read before anything runs, and saw
 the dry run Microsoft's role can't do.
 
-226
-00:14:53.185 --> 00:14:56.414
+224
+00:14:47.385 --> 00:14:50.614
 The evidence an ISSO
 keeps: the CMDB export,
 
-227
-00:14:56.414 --> 00:15:00.657
+225
+00:14:50.614 --> 00:14:54.857
 each wave's plan and result
 files with the change record,
 
-228
-00:15:00.657 --> 00:15:04.716
+226
+00:14:54.857 --> 00:14:58.916
 the requirements file and the
 snapshot, and, from Lab 2,
 
-229
-00:15:04.716 --> 00:15:10.435
+227
+00:14:58.916 --> 00:15:04.635
 the role assignment record, V K ARC oh
 one and oh seven, and the back-out record.
 
-230
-00:15:10.435 --> 00:15:13.123
+228
+00:15:04.635 --> 00:15:07.323
 Gate 8's per-wave
 evidence is in the guide.
 
-231
-00:15:13.123 --> 00:15:16.723
+229
+00:15:07.323 --> 00:15:10.923
 Before shipping, work through
 the Chapter 08 checklist.
 
-232
-00:15:16.723 --> 00:15:20.647
+230
+00:15:10.923 --> 00:15:14.847
 Next is Module 7: extend
 Lifecycle Workflows.
 
+231
+00:15:14.847 --> 00:15:18.141
+You'll see what Learn's Logic
+App definition costs a leaver,
+
+232
+00:15:18.141 --> 00:15:20.749
+and run the definition
+that reports honestly,
+
 233
-00:15:20.647 --> 00:15:24.763
-You'll see why Learn's Logic App
-definition costs a GCC High leaver,
-
-234
-00:15:24.763 --> 00:15:29.487
-and run the definition that calls back
-in the right cloud, reports honestly,
-
-235
-00:15:29.487 --> 00:15:33.430
+00:15:20.749 --> 00:15:24.320
 and checks that the leaver blocks
 before the custom task runs.

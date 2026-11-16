@@ -13,7 +13,9 @@ last-reviewed: 2026-11-13
 
 *Part of the [Global Secure Access learning path](index.md). Guide [Step 11](../../books/guides/global-secure-access-implementation.md#step-11-coexistence-and-migration), [Step 12](../../books/guides/global-secure-access-implementation.md#step-12-telemetry-and-evidence), the [RACI](../../books/guides/global-secure-access-implementation.md#raci), [evidence catalog](../../books/guides/global-secure-access-implementation.md#evidence), [metrics](../../books/guides/global-secure-access-implementation.md#metrics) and [rollback](../../books/guides/global-secure-access-implementation.md#rollback). About 40 minutes, plus Lab 2.*
 
-**Watch first:** slides 8, 15 and 16 of the guide's narrated deck (the RACI; rings, rollback and telemetry; dangers and open questions), in its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md).
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_GSA_Module_6_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_GSA_Module_6_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-gsa-module-6) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-6/Training_GSA_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-6/Training_GSA_Module_6_Narrated.vtt). The deck files join the next edition.
+
+, in its [video](../../presentations/watch.html?v=Guide_Global_Secure_Access_Narrated) or its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md).
 
 ## Introduction (3 minutes) {#gsa-m6-intro}
 

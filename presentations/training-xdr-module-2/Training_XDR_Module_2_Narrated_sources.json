@@ -1,0 +1,110 @@
+[
+ {
+  "slide": 2,
+  "title": "Why: configured is not enforced",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Unit 1: which prevention settings have an audit mode",
+  "links": [
+   {
+    "text": "Configure network protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-network-protection"
+   },
+   {
+    "text": "Evaluate network protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-evaluate-network-protection"
+   },
+   {
+    "text": "Configure controlled folder access",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-controlled-folder-access"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Enforce ring by ring, with backout triggers",
+  "links": [
+   {
+    "text": "Configure tamper protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-tamper-protection"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Unit 2: Attack Surface Reduction, audit, warn, block",
+  "links": [
+   {
+    "text": "Test your ASR rules deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-deployment-test"
+   },
+   {
+    "text": "ASR rules overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-overview"
+   },
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Warn is friction, not a safety valve",
+  "links": [
+   {
+    "text": "ASR rules overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-overview"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Unit 3: exclusions, one plane, and the server report",
+  "links": [
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   },
+   {
+    "text": "Test your ASR rules deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-deployment-test"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2, steps 6 to 9: the fleet's events, one step back",
+  "links": [
+   {
+    "text": "Monitor ASR rule activity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-monitor"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The federal requirement and evidence for Module 2",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

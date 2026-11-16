@@ -53,7 +53,7 @@
  },
  {
   "slide": 7,
-  "title": "Unit 3: connect in the tenant's own cloud, GCC first",
+  "title": "Unit 3: connect in GCC, the tenant's own cloud",
   "links": [
    {
     "text": "Microsoft Graph national cloud deployments",
@@ -67,7 +67,7 @@
  },
  {
   "slide": 8,
-  "title": "Where agencies are: each service, cloud by cloud",
+  "title": "Where agencies are: each service in GCC",
   "links": [
    {
     "text": "Microsoft Graph national cloud deployments",
@@ -76,10 +76,6 @@
    {
     "text": "Connect to Exchange Online PowerShell",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#connect-to-exchange-online-powershell"
-   },
-   {
-    "text": "Exchange app-only authentication",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#exchange-app-only-authentication"
    }
   ]
  },

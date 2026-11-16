@@ -1,0 +1,783 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.765
+Welcome to Module 1 of
+Global Secure Access as the
+
+2
+00:00:03.765 --> 00:00:07.662
+Identity-Aware Network:
+decide, design and log first.
+
+3
+00:00:07.662 --> 00:00:13.115
+Global Secure Access is Microsoft's security
+service edge, Entra Internet Access
+
+4
+00:00:13.115 --> 00:00:18.087
+and Entra Private Access, used as the
+agency's identity-aware network layer.
+
+5
+00:00:18.087 --> 00:00:22.011
+This path teaches the twelve
+steps of the Global Secure Access
+
+6
+00:00:22.011 --> 00:00:26.312
+implementation guide in six modules,
+in the order the guide runs them.
+
+7
+00:00:26.312 --> 00:00:30.368
+This first module covers Step
+1, the decision and licensing,
+
+8
+00:00:30.368 --> 00:00:34.837
+Step 2, the reference architecture,
+and the logging half of Step 12.
+
+9
+00:00:34.837 --> 00:00:39.440
+It takes about forty-five minutes,
+plus a lab in your own test tenant.
+
+10
+00:00:43.190 --> 00:00:44.228
+Why start here?
+
+11
+00:00:44.228 --> 00:00:47.677
+Global Secure Access is
+three things under one name.
+
+12
+00:00:47.677 --> 00:00:52.714
+The Microsoft traffic profile comes
+with Entra I D P one or P two.
+
+13
+00:00:52.714 --> 00:00:56.448
+Internet Access and Private
+Access are licensed separately,
+
+14
+00:00:56.448 --> 00:00:58.790
+or come with the Microsoft Entra Suite.
+
+15
+00:00:58.790 --> 00:01:03.640
+Each has its own gate, so the decision is
+made per function, not for the product.
+
+16
+00:01:03.640 --> 00:01:07.818
+And because nothing should block before
+there is a record of what it blocked,
+
+17
+00:01:07.818 --> 00:01:10.802
+the network logs go on before
+the first pilot user does.
+
+18
+00:01:10.802 --> 00:01:14.716
+Every later Validate step in
+this path reads those logs.
+
+19
+00:01:14.716 --> 00:01:19.335
+So in this module you decide each function,
+write the architecture down for your
+
+20
+00:01:19.335 --> 00:01:24.170
+tenant, take the first hashed configuration
+export, and turn on the telemetry.
+
+21
+00:01:27.920 --> 00:01:30.833
+Here's what you'll be able to
+do by the end of this module.
+
+22
+00:01:30.833 --> 00:01:34.457
+You'll explain why the guide runs
+its steps out of numeric order.
+
+23
+00:01:34.457 --> 00:01:37.178
+You'll decide each
+function on its own gate,
+
+24
+00:01:37.178 --> 00:01:41.995
+and record the decision with a dated
+availability quote and exit criteria.
+
+25
+00:01:41.995 --> 00:01:46.758
+You'll name the reference architecture's
+seven zones and planes, and who owns each.
+
+26
+00:01:46.758 --> 00:01:50.239
+You'll export the configuration
+as hashed evidence,
+
+27
+00:01:50.239 --> 00:01:53.720
+and say why the beta network
+access A P I is run by hand.
+
+28
+00:01:53.720 --> 00:01:58.207
+And you'll turn on the four network log
+categories and check that each is fresh.
+
+29
+00:01:58.207 --> 00:02:02.824
+Before you start, read Network and
+Transport, chapter five, for the gates,
+
+30
+00:02:02.824 --> 00:02:08.145
+and skim Security Operations and Telemetry,
+chapter three, for the log categories.
+
+31
+00:02:08.145 --> 00:02:11.660
+The lab runs in a test
+tenant, never production.
+
+32
+00:02:15.410 --> 00:02:16.885
+Unit 1 is the order.
+
+33
+00:02:16.885 --> 00:02:21.689
+The guide's steps are numbered to match
+the twelve network topics of the Zero Trust
+
+34
+00:02:21.689 --> 00:02:25.504
+closure update, but they run in a
+different order, so the logs exist
+
+35
+00:02:25.504 --> 00:02:29.672
+before anything is enforced, and
+nothing blocks before its path exists.
+
+36
+00:02:29.672 --> 00:02:33.497
+First the decision, the architecture,
+and Step twelve's logging.
+
+37
+00:02:33.497 --> 00:02:38.710
+Then the client, Microsoft traffic, the
+compliant network, and tenant restrictions.
+
+38
+00:02:38.710 --> 00:02:42.213
+Then private applications,
+privileged protocols,
+
+39
+00:02:42.213 --> 00:02:44.798
+internet traffic, and T L S inspection.
+
+40
+00:02:44.798 --> 00:02:50.360
+Last, coexistence and migration, and Step
+twelve again, for the evidence package.
+
+41
+00:02:50.360 --> 00:02:52.072
+This path follows that order.
+
+42
+00:02:52.072 --> 00:02:57.647
+One more rule: Microsoft's network access
+A P I's are on the Graph beta endpoint.
+
+43
+00:02:57.647 --> 00:03:00.433
+Learn says beta A P I's
+are subject to change
+
+44
+00:03:00.433 --> 00:03:03.536
+and not supported in
+production applications.
+
+45
+00:03:03.536 --> 00:03:06.402
+So the guide runs
+Learn's requests by hand,
+
+46
+00:03:06.402 --> 00:03:10.197
+as an administrator, and
+keeps each result as evidence.
+
+47
+00:03:10.197 --> 00:03:13.570
+Every lab uses the
+guide's placeholder table.
+
+48
+00:03:17.320 --> 00:03:22.170
+Unit 2 is the decision, one row per
+function, because the gates differ.
+
+49
+00:03:22.170 --> 00:03:27.389
+The Microsoft traffic profile is included
+in P one or P two, and with it come source
+
+50
+00:03:27.389 --> 00:03:32.608
+I P restoration, the compliant network
+check, and universal tenant restrictions.
+
+51
+00:03:32.608 --> 00:03:36.949
+Internet Access needs its own
+license or the Microsoft Entra Suite,
+
+52
+00:03:36.949 --> 00:03:41.833
+and carries web content filtering, threat
+intelligence, and T L S inspection.
+
+53
+00:03:41.833 --> 00:03:47.236
+Private Access is the same: its own
+license or the Suite, for Quick Access,
+
+54
+00:03:47.236 --> 00:03:51.907
+per-app access, private D N S,
+and the domain controller sensors.
+
+55
+00:03:51.907 --> 00:03:56.139
+Branches use remote networks,
+which need at least fifty P one and
+
+56
+00:03:56.139 --> 00:04:00.371
+Internet Access licenses combined,
+and carry no Private Access.
+
+57
+00:04:00.371 --> 00:04:04.420
+For each row, the decision
+record says adopt,
+
+58
+00:04:04.420 --> 00:04:08.695
+retain the current V P N or
+S S E, coexist, or defer.
+
+59
+00:04:08.695 --> 00:04:12.618
+And it carries a dated availability
+quote, the license held,
+
+60
+00:04:12.618 --> 00:04:16.590
+compensating controls, exit
+criteria, and an approver.
+
+61
+00:04:20.340 --> 00:04:21.652
+Where are agencies?
+
+62
+00:04:21.652 --> 00:04:25.693
+Learn's known limitations page
+covers the whole product:
+
+63
+00:04:25.693 --> 00:04:28.616
+Global Secure Access
+is available in G C C.
+
+64
+00:04:28.616 --> 00:04:32.508
+No feature page read for the
+guide narrows or widens that,
+
+65
+00:04:32.508 --> 00:04:35.490
+so the G C C column rests
+on that one sentence.
+
+66
+00:04:35.490 --> 00:04:40.827
+A preview feature, such as the cloud
+firewall for clients or the Explicit Forward
+
+67
+00:04:40.827 --> 00:04:44.412
+Proxy, has a G C C availability
+that is not yet specified,
+
+68
+00:04:44.412 --> 00:04:47.678
+and the guide adopts one
+only by a decision record.
+
+69
+00:04:47.678 --> 00:04:50.847
+The table is as of
+November eleventh, 2026,
+
+70
+00:04:50.847 --> 00:04:54.577
+so re-read the limitations
+page before each ring.
+
+71
+00:04:54.577 --> 00:05:00.021
+And where a row of the decision record
+says retain the current service, or defer,
+
+72
+00:05:00.021 --> 00:05:05.632
+it names its compensating controls: for
+example, the current fed-ramp authorized
+
+73
+00:05:05.632 --> 00:05:11.350
+S S E, per-application V P N access lists,
+and named-location Conditional Access.
+
+74
+00:05:15.100 --> 00:05:19.875
+Unit 3 is the reference architecture,
+the first of the guide's six artifacts.
+
+75
+00:05:19.875 --> 00:05:21.950
+It has seven zones and planes.
+
+76
+00:05:21.950 --> 00:05:27.300
+Managed endpoints carry the Windows client,
+Intune policy and the device identity.
+
+77
+00:05:27.300 --> 00:05:32.912
+Branches send traffic over an I P sec
+tunnel, with no user identity on it.
+
+78
+00:05:32.912 --> 00:05:37.863
+The control plane, Conditional Access,
+decides, and never carries traffic.
+
+79
+00:05:37.863 --> 00:05:42.018
+The policy plane holds the
+forwarding and security profiles,
+
+80
+00:05:42.018 --> 00:05:44.137
+the T L S policies and signaling.
+
+81
+00:05:44.137 --> 00:05:46.742
+The data plane is
+Microsoft's service edge in
+
+82
+00:05:46.742 --> 00:05:49.699
+commercial Azure regions,
+and the provider owns it.
+
+83
+00:05:49.699 --> 00:05:54.242
+The agency's private network holds
+connector groups, private D N S,
+
+84
+00:05:54.242 --> 00:05:58.700
+applications and domain controller
+sensors, all outbound only.
+
+85
+00:05:58.700 --> 00:06:03.025
+And the evidence zone is the workspace,
+Sentinel and the evidence store.
+
+86
+00:06:03.025 --> 00:06:07.346
+Step 2 makes it the agency's: which
+profiles each population gets,
+
+87
+00:06:07.346 --> 00:06:12.889
+how many connector groups and where, with
+two connectors minimum each, the private
+
+88
+00:06:12.889 --> 00:06:18.370
+D N S suffixes, which branches use remote
+networks, and where telemetry lands.
+
+89
+00:06:22.120 --> 00:06:24.845
+Unit 4 is the logs, before the pilot.
+
+90
+00:06:24.845 --> 00:06:30.016
+Learn says the service keeps traffic and
+remote network health logs for thirty days;
+
+91
+00:06:30.016 --> 00:06:33.783
+longer retention needs export
+through diagnostic settings.
+
+92
+00:06:33.783 --> 00:06:38.979
+So a dedicated Entra diagnostic setting
+sends four categories to the workspace:
+
+93
+00:06:38.979 --> 00:06:42.080
+network access traffic
+logs, connection events,
+
+94
+00:06:42.080 --> 00:06:45.570
+remote network health logs,
+and network access alerts.
+
+95
+00:06:45.570 --> 00:06:48.645
+Sign-in and audit logs
+stay on the core setting.
+
+96
+00:06:48.645 --> 00:06:53.803
+A freshness query runs daily, and a
+sudden drop in traffic volume is an alert
+
+97
+00:06:53.803 --> 00:06:58.795
+in itself, because it covers offboarding,
+a disabled profile, or an outage.
+
+98
+00:06:58.795 --> 00:07:00.283
+And there's a federal reason.
+
+99
+00:07:00.283 --> 00:07:04.787
+CISA's Remote User Use Case says that
+as users connect more directly to
+
+100
+00:07:04.787 --> 00:07:10.132
+external services, CISA's visibility must
+be preserved through telemetry sharing.
+
+101
+00:07:10.132 --> 00:07:15.033
+Moving users off a full-tunnel V P N
+moves their telemetry to Microsoft,
+
+102
+00:07:15.033 --> 00:07:18.583
+so agree how it reaches
+CISA with the agency's tick
+
+103
+00:07:18.583 --> 00:07:22.150
+delegates before the V P
+N's web path is retired.
+
+104
+00:07:25.900 --> 00:07:29.079
+The lab runs in a test
+tenant, never production,
+
+105
+00:07:29.079 --> 00:07:32.175
+and the authors haven't
+run it, as the page says.
+
+106
+00:07:32.175 --> 00:07:36.212
+There's no fixture lab in this path,
+because the guide has no kit yet.
+
+107
+00:07:36.212 --> 00:07:39.838
+You need a test tenant with
+Global Secure Access onboarded,
+
+108
+00:07:39.838 --> 00:07:44.500
+an administrator with the Global Secure
+Access Administrator or Security
+
+109
+00:07:44.500 --> 00:07:49.087
+Administrator role activated through
+pim, Graph PowerShell, and Azure C L I.
+
+110
+00:07:49.087 --> 00:07:52.713
+Steps one and two make a lab
+folder, connect with read scopes,
+
+111
+00:07:52.713 --> 00:07:56.338
+and export the licenses and
+the tenant's onboarding status.
+
+112
+00:07:56.338 --> 00:08:00.400
+Compare the licenses by product name
+with Learn's licensing section.
+
+113
+00:08:00.400 --> 00:08:05.274
+Step three takes the baseline
+export: nine Graph requests,
+
+114
+00:08:05.274 --> 00:08:10.250
+each written to a file, then a S
+H A two fifty-six hash manifest.
+
+115
+00:08:10.250 --> 00:08:14.600
+The slide abbreviates; the module
+page has every command in full.
+
+116
+00:08:14.600 --> 00:08:19.251
+The guide's Validate: the tenant shows
+onboarded, the license count covers
+
+117
+00:08:19.251 --> 00:08:24.180
+the pilot and the first ring, and the
+export folder and its manifest exist.
+
+118
+00:08:27.930 --> 00:08:32.693
+Step four turns on the telemetry, in
+Bash, as a Security Administrator.
+
+119
+00:08:32.693 --> 00:08:37.536
+The guide's command puts a diagnostic
+setting named G S A network telemetry on
+
+120
+00:08:37.536 --> 00:08:42.380
+the tenant, pointing at your test workspace,
+with the four categories enabled.
+
+121
+00:08:42.380 --> 00:08:46.992
+This is the lab's first write to
+the tenant, and Module 6 removes it.
+
+122
+00:08:46.992 --> 00:08:49.593
+The GET that follows
+should list the setting,
+
+123
+00:08:49.593 --> 00:08:52.193
+with the four categories
+and your workspace.
+
+124
+00:08:52.193 --> 00:08:54.029
+Step five checks freshness.
+
+125
+00:08:54.029 --> 00:08:58.968
+In the workspace's Logs, run the guide's
+union query across the four tables.
+
+126
+00:08:58.968 --> 00:09:04.017
+The guide's Validate is that each category
+has rows within an hour of pilot traffic.
+
+127
+00:09:04.017 --> 00:09:08.143
+There's no pilot traffic yet,
+so expect few or no rows now.
+
+128
+00:09:08.143 --> 00:09:13.520
+Run the query again after Module 2's
+lab, and keep both results as evidence.
+
+129
+00:09:17.270 --> 00:09:19.881
+The federal requirement, from NIST special
+
+130
+00:09:19.881 --> 00:09:23.145
+publication eight hundred
+fifty-three, revision five.
+
+131
+00:09:23.145 --> 00:09:28.948
+The decision supports P L two, S A nine
+and C A three: each function decided and
+
+132
+00:09:28.948 --> 00:09:35.407
+approved, with its availability, license,
+compensating controls and exit criteria.
+
+133
+00:09:35.407 --> 00:09:39.258
+A decision record isn't mapped
+to a key security indicator.
+
+134
+00:09:39.258 --> 00:09:45.073
+The architecture supports S C seven, A C
+four, C M two and C M eight: boundaries,
+
+135
+00:09:45.073 --> 00:09:48.410
+planes and flows documented and exported,
+
+136
+00:09:48.410 --> 00:09:52.033
+lined up with two fed-ramp
+twenty X indicators.
+
+137
+00:09:52.033 --> 00:09:56.650
+And the telemetry supports A U two,
+A U six, A U twelve and S I four:
+
+138
+00:09:56.650 --> 00:10:02.745
+the network logs exported and fresh,
+lined up with three monitoring indicators.
+
+139
+00:10:02.745 --> 00:10:08.069
+The evidence supports the controls; your
+organization still sets their parameters
+
+140
+00:10:08.069 --> 00:10:12.910
+and owns the policy, and the assessor
+decides whether each is satisfied.
+
+141
+00:10:16.660 --> 00:10:18.635
+Check yourself with two questions.
+
+142
+00:10:18.635 --> 00:10:21.260
+First: a preview feature is in your plan.
+
+143
+00:10:21.260 --> 00:10:24.747
+What is its G C C availability
+in the guide's table?
+
+144
+00:10:24.747 --> 00:10:29.068
+The answer is b: not yet specified,
+because the G C C column rests on
+
+145
+00:10:29.068 --> 00:10:33.797
+Learn's product-wide sentence, and
+that doesn't cover preview features.
+
+146
+00:10:33.797 --> 00:10:37.960
+Second: why does the guide run Step
+twelve's logging before Step three?
+
+147
+00:10:37.960 --> 00:10:42.198
+The answer is b: so the logs
+exist before anything is enforced,
+
+148
+00:10:42.198 --> 00:10:45.673
+and every later Validate
+step has a record to read.
+
+149
+00:10:45.673 --> 00:10:50.940
+The module page has three more questions,
+each linked to the unit that answers it.
+
+150
+00:10:54.690 --> 00:10:55.515
+To sum up.
+
+151
+00:10:55.515 --> 00:10:57.907
+You decided each function on its own gate,
+
+152
+00:10:57.907 --> 00:11:02.690
+wrote the architecture down for your
+tenant, took the first hashed configuration
+
+153
+00:11:02.690 --> 00:11:06.840
+export, and turned on the network
+telemetry before anyone was in a pilot.
+
+154
+00:11:06.840 --> 00:11:09.565
+The evidence an I S S O
+keeps from this module:
+
+155
+00:11:09.565 --> 00:11:13.878
+the decision record with its dated
+availability quote and approver,
+
+156
+00:11:13.878 --> 00:11:18.571
+the license and tenant status exports,
+the architecture record, the export
+
+157
+00:11:18.571 --> 00:11:23.490
+folder with its manifest, the diagnostic
+setting GET, and the freshness result.
+
+158
+00:11:23.490 --> 00:11:28.498
+Next is Module 2, the client and Microsoft
+traffic, where you package the client,
+
+159
+00:11:28.498 --> 00:11:30.733
+count the devices the service sees,
+
+160
+00:11:30.733 --> 00:11:34.340
+and enable the Microsoft
+traffic profile for the pilot.

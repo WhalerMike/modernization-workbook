@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Azure Security Engineering learning path](index.md). Guide [Step 9](../../books/guides/azure-security-implementation.md#step-9-policy-and-drift) and [Step 10](../../books/guides/azure-security-implementation.md#step-10-operations-and-evidence). About 50 minutes, plus the lab.*
 
+**Watch:** the narrated deck for this module (about 11 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_AZS_Module_5_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_AZS_Module_5_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-azs-module-5) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-5/Training_AZS_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-5/Training_AZS_Module_5_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#azs-m5-introduction}
 
 Everything in Modules 1 to 4 can drift: a new public IP in a workload subscription, a WAF switched back to detection, a vault created with public access on. Policy holds the engineering in place and reports what drifted; the operating model gives each control an owner, a cadence and a test; and the evidence catalog turns both into what an assessor can inspect. This module ends the path there.
@@ -64,7 +66,7 @@ Read the guide's [Step 10](../../books/guides/azure-security-implementation.md#s
 
 Built-in definitions and the FedRAMP initiatives change version: look them up where you are, as the lab does. A test that can't run because the cloud doesn't offer the feature is recorded as an environment decision.
 
-**Watch.** The guide's narrated deck covers this module in its last three slides, *policy holds it; exemptions expire*, *owners, cadence, metrics and requirements* and *dangers, open questions and what comes next*. Its video is being exported; until then, read the narration in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
+**Watch.** The guide's narrated deck covers this module in its last three slides, *policy holds it; exemptions expire*, *owners, cadence, metrics and requirements* and *dangers, open questions and what comes next*. [▶ Watch the guide's video](../../presentations/watch.html?v=Guide_Azure_Security_Narrated), or read  in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 
 ## Exercise: Lab 2, a test subscription {#azs-m5-lab-2}
 *Not timed. Not run by the authors. Never production.*

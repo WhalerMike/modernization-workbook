@@ -1,0 +1,831 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.859
+Welcome to Module 3 of Global Secure
+Access as the Identity-Aware Network:
+
+2
+00:00:04.859 --> 00:00:08.013
+the compliant network
+and tenant restrictions.
+
+3
+00:00:08.013 --> 00:00:12.442
+These are the two signals only Microsoft
+Entra can produce from the network,
+
+4
+00:00:12.442 --> 00:00:16.662
+and both come with the Microsoft
+traffic profile you enabled in Module 2.
+
+5
+00:00:16.662 --> 00:00:21.204
+Both can lock people out, so this module
+teaches their failure modes first,
+
+6
+00:00:21.204 --> 00:00:25.075
+and runs them in report-only or
+a pilot before they block anyone.
+
+7
+00:00:25.075 --> 00:00:30.028
+It covers Steps 7 and 8 of the Global
+Secure Access implementation guide,
+
+8
+00:00:30.028 --> 00:00:35.000
+and takes about forty-five minutes,
+plus a lab in your own test tenant.
+
+9
+00:00:38.750 --> 00:00:40.100
+Why do these two matter?
+
+10
+00:00:40.100 --> 00:00:45.019
+The compliant network check binds sign-in
+and token use to the agency's own path,
+
+11
+00:00:45.019 --> 00:00:48.575
+so a token stolen and replayed
+from somewhere else fails.
+
+12
+00:00:48.575 --> 00:00:53.025
+In attack terms, it interrupts
+credential access and defense evasion.
+
+13
+00:00:53.025 --> 00:00:57.088
+Universal tenant restrictions
+keep agency devices from signing
+
+14
+00:00:57.088 --> 00:01:01.150
+in to a personal or hostile tenant,
+which interrupts exfiltration.
+
+15
+00:01:01.150 --> 00:01:04.075
+Both are powerful, and
+both can lock people out.
+
+16
+00:01:04.075 --> 00:01:07.347
+So in this module you learn
+their failure modes first,
+
+17
+00:01:07.347 --> 00:01:11.640
+and you run each in report-only or
+a pilot before it blocks anyone.
+
+18
+00:01:15.390 --> 00:01:18.303
+Here's what you'll be able to
+do by the end of this module.
+
+19
+00:01:18.303 --> 00:01:22.526
+You'll explain what the compliant
+network check denies at authentication,
+
+20
+00:01:22.526 --> 00:01:24.502
+and what it denies in near real time.
+
+21
+00:01:24.502 --> 00:01:27.243
+You'll create the pilot
+policy in report-only,
+
+22
+00:01:27.243 --> 00:01:31.614
+with the emergency access group and
+the Intune applications excluded.
+
+23
+00:01:31.614 --> 00:01:35.700
+You'll list the five failure modes
+and the design response to each,
+
+24
+00:01:35.700 --> 00:01:37.440
+including a service outage.
+
+25
+00:01:37.440 --> 00:01:40.979
+You'll turn on universal tenant
+restrictions after the tenant
+
+26
+00:01:40.979 --> 00:01:44.927
+restrictions version two policy, and
+say which data planes it reaches.
+
+27
+00:01:44.927 --> 00:01:48.340
+And you'll run Learn's four-case
+test and read the block log.
+
+28
+00:01:48.340 --> 00:01:52.979
+You need Module 2, with the Microsoft
+traffic profile and signaling on,
+
+29
+00:01:52.979 --> 00:01:57.778
+and Access and Privilege, appendix C,
+for the tenant restrictions policy.
+
+30
+00:01:57.778 --> 00:02:01.290
+The lab runs in a test
+tenant, never production.
+
+31
+00:02:05.040 --> 00:02:07.553
+Unit 1 is the compliant network check.
+
+32
+00:02:07.553 --> 00:02:12.323
+It passes only for users connected through
+this tenant's Global Secure Access,
+
+33
+00:02:12.323 --> 00:02:14.452
+from the client or a remote network.
+
+34
+00:02:14.452 --> 00:02:18.216
+At authentication, it denies
+a replayed refresh token.
+
+35
+00:02:18.216 --> 00:02:22.318
+And with services that support
+Continuous Access Evaluation,
+
+36
+00:02:22.318 --> 00:02:27.290
+such as Microsoft Graph, it rejects a
+replayed access token in near real time.
+
+37
+00:02:27.290 --> 00:02:32.753
+Turning signaling on creates a named
+location, All Compliant Network locations.
+
+38
+00:02:32.753 --> 00:02:35.460
+The pilot policy blocks all resources,
+
+39
+00:02:35.460 --> 00:02:39.352
+for the pilot group, from
+every location except that one.
+
+40
+00:02:39.352 --> 00:02:44.476
+It excludes the emergency access group,
+and, following Learn, Microsoft Intune
+
+41
+00:02:44.476 --> 00:02:46.683
+Enrollment and Microsoft Intune,
+
+42
+00:02:46.683 --> 00:02:50.152
+to avoid a circular dependency
+where devices enroll.
+
+43
+00:02:50.152 --> 00:02:53.078
+Learn's example sets the
+policy straight to on.
+
+44
+00:02:53.078 --> 00:02:59.240
+The guide, like every library policy, starts
+in report-only, for ten business days.
+
+45
+00:03:02.990 --> 00:03:07.178
+Unit 2 is the failure modes, which
+you learn before you enforce.
+
+46
+00:03:07.178 --> 00:03:11.384
+A disabled or missing client is
+blocked at the next authentication;
+
+47
+00:03:11.384 --> 00:03:14.765
+existing sessions continue
+until reauthentication.
+
+48
+00:03:14.765 --> 00:03:19.603
+The response is to restrict disabling and
+give the help desk a reinstall script.
+
+49
+00:03:19.603 --> 00:03:21.770
+In a Global Secure Access outage,
+
+50
+00:03:21.770 --> 00:03:25.140
+users can't reach the
+resources the check protects.
+
+51
+00:03:25.140 --> 00:03:29.271
+Microsoft's break-glass scripts
+switch these policies to report-only,
+
+52
+00:03:29.271 --> 00:03:33.402
+and the guide rehearses them and
+records them in the contingency plan.
+
+53
+00:03:33.402 --> 00:03:37.117
+Turning signaling off while
+policies are on blocks users,
+
+54
+00:03:37.117 --> 00:03:40.677
+so the rollback order is
+policies first, signaling last.
+
+55
+00:03:40.677 --> 00:03:43.665
+The check isn't supported
+for Private Access apps,
+
+56
+00:03:43.665 --> 00:03:46.652
+which get the per-app
+policies of Module 4 instead.
+
+57
+00:03:46.652 --> 00:03:51.389
+And mobile devices need Defender
+exclusions, outside this Windows pilot.
+
+58
+00:03:51.389 --> 00:03:55.452
+One more piece: Universal
+Continuous Access Evaluation.
+
+59
+00:03:55.452 --> 00:03:59.621
+The Windows client one point
+eight point two thirty-nine or
+
+60
+00:03:59.621 --> 00:04:03.703
+later uses Universal C A E
+tokens, revoked in near real time.
+
+61
+00:04:03.703 --> 00:04:07.969
+Learn's recommendation is not to
+disable C A E for these workloads,
+
+62
+00:04:07.969 --> 00:04:13.460
+and the guide decides strict location
+enforcement per policy, not tenant-wide.
+
+63
+00:04:17.210 --> 00:04:20.223
+Unit 3 is universal tenant restrictions.
+
+64
+00:04:20.223 --> 00:04:24.846
+The tenant restrictions version two
+policy comes first: default block,
+
+65
+00:04:24.846 --> 00:04:30.254
+with partner policies for the agency's own
+other tenants and each approved partner,
+
+66
+00:04:30.254 --> 00:04:32.997
+as Access and Privilege,
+appendix C, sets it.
+
+67
+00:04:32.997 --> 00:04:38.219
+Then tagging applies that policy to devices
+with the client, or on a remote network,
+
+68
+00:04:38.219 --> 00:04:40.753
+without a proxy, so users can sign in only
+
+69
+00:04:40.753 --> 00:04:43.748
+to tenants and applications
+the policy allows.
+
+70
+00:04:43.748 --> 00:04:48.697
+Know its reach: it covers the authentication
+plane and the Microsoft Graph data
+
+71
+00:04:48.697 --> 00:04:51.772
+plane, not the SharePoint
+or Exchange data planes,
+
+72
+00:04:51.772 --> 00:04:54.397
+which only device-side signaling reaches.
+
+73
+00:04:54.397 --> 00:04:59.459
+The setting is tenant-wide, and the pages
+the guide read show no report-only mode.
+
+74
+00:04:59.459 --> 00:05:03.135
+So its pilot is the Microsoft
+traffic profile's assignment,
+
+75
+00:05:03.135 --> 00:05:05.085
+with the block query read daily.
+
+76
+00:05:05.085 --> 00:05:09.040
+The rollback turns tagging
+off; the policy stays.
+
+77
+00:05:12.790 --> 00:05:14.877
+How do you know tenant restrictions work?
+
+78
+00:05:14.877 --> 00:05:19.165
+Learn's four-case test, run from
+a pilot device with the client on.
+
+79
+00:05:19.165 --> 00:05:22.615
+A member of the agency's own
+tenant signs in normally.
+
+80
+00:05:22.615 --> 00:05:25.515
+An account from an allowed
+partner tenant signs in.
+
+81
+00:05:25.515 --> 00:05:28.651
+An account from a tenant that
+isn't allowed is blocked,
+
+82
+00:05:28.651 --> 00:05:32.927
+and Learn's block query finds it by
+error five million two hundred eleven.
+
+83
+00:05:32.927 --> 00:05:36.303
+And a guest in the agency's
+tenant isn't evaluated.
+
+84
+00:05:36.303 --> 00:05:37.877
+Record each outcome.
+
+85
+00:05:37.877 --> 00:05:39.477
+Now, where are agencies?
+
+86
+00:05:39.477 --> 00:05:44.978
+Both features come with Entra I D P one or
+P two and the Microsoft traffic profile,
+
+87
+00:05:44.978 --> 00:05:46.728
+are generally available,
+
+88
+00:05:46.728 --> 00:05:50.728
+and are available in G C C by
+Learn's product-wide statement.
+
+89
+00:05:50.728 --> 00:05:54.017
+Where the Microsoft traffic
+profile isn't adopted yet,
+
+90
+00:05:54.017 --> 00:05:57.599
+the interim path is named-location
+Conditional Access and
+
+91
+00:05:57.599 --> 00:06:01.690
+device-side tenant restrictions
+version two by Group Policy.
+
+92
+00:06:05.440 --> 00:06:07.978
+Here are the two
+How-sections side by side.
+
+93
+00:06:07.978 --> 00:06:13.181
+The audit phase: the compliant network
+policy runs in report-only for ten business
+
+94
+00:06:13.181 --> 00:06:18.155
+days, reading the would-be blocks; tenant
+restrictions have no report-only mode,
+
+95
+00:06:18.155 --> 00:06:22.440
+so the pilot group is the audit phase,
+with the block query read daily.
+
+96
+00:06:22.440 --> 00:06:27.419
+Enforcement: the compliant network policy's
+state goes to enabled for the pilot,
+
+97
+00:06:27.419 --> 00:06:29.079
+then ring groups are added;
+
+98
+00:06:29.079 --> 00:06:33.002
+tenant restrictions widen with
+the Microsoft profile's rings.
+
+99
+00:06:33.002 --> 00:06:38.049
+Rollback: the policy goes back to
+report-only, and in an outage the break-glass
+
+100
+00:06:38.049 --> 00:06:43.415
+script does it; for tenant restrictions,
+tagging is disabled and the policy stays.
+
+101
+00:06:43.415 --> 00:06:48.376
+Exclusions: the emergency access group,
+tested each quarter, and the Intune apps,
+
+102
+00:06:48.376 --> 00:06:52.811
+with service accounts handled by
+workload identity policies instead;
+
+103
+00:06:52.811 --> 00:06:56.043
+tenant restrictions have
+none at the tagging layer,
+
+104
+00:06:56.043 --> 00:07:00.252
+and partner allowances are policies
+with an owner and a review date.
+
+105
+00:07:00.252 --> 00:07:05.249
+Telemetry: the sign-in query and the token
+or device inconsistency alert, and for
+
+106
+00:07:05.249 --> 00:07:08.051
+tenant restrictions
+the block query and the
+
+107
+00:07:08.051 --> 00:07:10.777
+increased external tenant activity alert.
+
+108
+00:07:10.777 --> 00:07:15.414
+On day two, the security monitor watches
+compliant network blocks that didn't come
+
+109
+00:07:15.414 --> 00:07:19.096
+through the service, which are
+either an attack or a broken client,
+
+110
+00:07:19.096 --> 00:07:23.140
+and the identity engineer reviews
+the partner list each quarter.
+
+111
+00:07:26.890 --> 00:07:31.715
+The lab runs in a test tenant, never
+production, and the authors haven't run it.
+
+112
+00:07:31.715 --> 00:07:36.555
+You need Module 2's lab done, the emergency
+access group, a tenant restrictions
+
+113
+00:07:36.555 --> 00:07:40.790
+policy with one allowed partner,
+and test accounts in three tenants.
+
+114
+00:07:40.790 --> 00:07:45.365
+Step one confirms signaling and reads
+the compliant network named location.
+
+115
+00:07:45.365 --> 00:07:49.040
+Step two finds the two Intune
+applications to exclude.
+
+116
+00:07:49.040 --> 00:07:54.553
+Step three creates the pilot policy in
+report-only, with the guide's exact body.
+
+117
+00:07:54.553 --> 00:07:58.052
+Step four reads the would-be
+blocks in the workspace.
+
+118
+00:07:58.052 --> 00:08:02.281
+The guide reads them for ten business
+days; a report-only failure from a
+
+119
+00:08:02.281 --> 00:08:06.802
+sign-in that came through the service
+is a defect to fix before enforcement.
+
+120
+00:08:06.802 --> 00:08:10.914
+In a test tenant the lab shortens
+that; in production, never.
+
+121
+00:08:10.914 --> 00:08:12.965
+Step five proves the block.
+
+122
+00:08:12.965 --> 00:08:17.858
+Confirm your emergency access account
+isn't in the pilot, set the policy on, and
+
+123
+00:08:17.858 --> 00:08:22.903
+on the pilot device disable the client and
+sign in again in a new browser session.
+
+124
+00:08:22.903 --> 00:08:28.100
+Expect "You can't access this right now."
+Then put the policy back in report-only.
+
+125
+00:08:31.850 --> 00:08:36.058
+Step six reads back the tenant
+restrictions version two policy,
+
+126
+00:08:36.058 --> 00:08:39.075
+default and partners,
+and writes both to files.
+
+127
+00:08:39.075 --> 00:08:40.988
+Step seven turns on tagging.
+
+128
+00:08:40.988 --> 00:08:44.806
+Remember it's tenant-wide: it
+acts on everyone the Microsoft
+
+129
+00:08:44.806 --> 00:08:48.701
+traffic profile carries, which
+in this lab is the pilot group.
+
+130
+00:08:48.701 --> 00:08:52.650
+The GET should show network
+packet tagging status enabled.
+
+131
+00:08:52.650 --> 00:08:57.782
+Step eight runs Learn's four-case test
+from the pilot device with the client on:
+
+132
+00:08:57.782 --> 00:09:02.113
+a member, an allowed partner, a tenant
+that isn't allowed, and a guest.
+
+133
+00:09:02.113 --> 00:09:03.687
+Record each outcome.
+
+134
+00:09:03.687 --> 00:09:08.306
+Step nine reads the blocks in the
+workspace, with Learn's query on error
+
+135
+00:09:08.306 --> 00:09:12.687
+five million two hundred eleven;
+case three's sign-in appears there.
+
+136
+00:09:12.687 --> 00:09:16.938
+Keep the compliant network policy
+in report-only and tagging on.
+
+137
+00:09:16.938 --> 00:09:20.580
+Module 6 rolls them back,
+in the guide's order.
+
+138
+00:09:24.330 --> 00:09:26.941
+The federal requirement, from NIST special
+
+139
+00:09:26.941 --> 00:09:30.205
+publication eight hundred
+fifty-three, revision five.
+
+140
+00:09:30.205 --> 00:09:35.889
+The compliant network check supports A C
+three, A C twelve and S C twenty-three:
+
+141
+00:09:35.889 --> 00:09:39.318
+sign-in and token use
+bound to the agency's path.
+
+142
+00:09:39.318 --> 00:09:44.465
+The evidence is the policy export, the
+named location, the report-only results,
+
+143
+00:09:44.465 --> 00:09:48.729
+the disable-and-retry test, and
+the break-glass rehearsal record.
+
+144
+00:09:48.729 --> 00:09:54.043
+Universal tenant restrictions support
+A C twenty, its enhancement one,
+
+145
+00:09:54.043 --> 00:09:58.455
+and A C four: agency devices sign
+in only to approved tenants.
+
+146
+00:09:58.455 --> 00:10:01.569
+The evidence is the tenant
+restrictions exports,
+
+147
+00:10:01.569 --> 00:10:04.380
+the tagging GET, and the
+four-case test record.
+
+148
+00:10:04.380 --> 00:10:10.010
+Each row lines up with fed-ramp twenty X
+indicators, and the program's mapping lines
+
+149
+00:10:10.010 --> 00:10:15.392
+Step 7 up with O M B memo M twenty-two oh
+nine's identity and network verification.
+
+150
+00:10:15.392 --> 00:10:19.560
+The evidence supports the
+controls; the assessor decides.
+
+151
+00:10:23.310 --> 00:10:25.285
+Check yourself with two questions.
+
+152
+00:10:25.285 --> 00:10:30.035
+First: in a Global Secure Access
+outage, what keeps users working?
+
+153
+00:10:30.035 --> 00:10:33.970
+The answer is b: Microsoft's
+break-glass scripts that switch the
+
+154
+00:10:33.970 --> 00:10:38.510
+policies to report-only, rehearsed
+and recorded in the contingency plan.
+
+155
+00:10:38.510 --> 00:10:42.310
+Turning signaling off first
+would block users, not save them.
+
+156
+00:10:42.310 --> 00:10:46.560
+Second: which data planes do
+universal tenant restrictions reach?
+
+157
+00:10:46.560 --> 00:10:49.723
+The answer is b: the
+authentication plane and the
+
+158
+00:10:49.723 --> 00:10:53.360
+Microsoft Graph data plane,
+not SharePoint or Exchange.
+
+159
+00:10:53.360 --> 00:10:58.620
+The module page has three more questions,
+each linked to the unit that answers it.
+
+160
+00:11:02.370 --> 00:11:03.195
+To sum up.
+
+161
+00:11:03.195 --> 00:11:06.366
+You created the compliant
+network policy in report-only,
+
+162
+00:11:06.366 --> 00:11:09.403
+read what it would have blocked,
+proved that it blocks a
+
+163
+00:11:09.403 --> 00:11:12.507
+sign-in without the client,
+and put it back in report-only.
+
+164
+00:11:12.507 --> 00:11:17.308
+Then you turned on universal tenant
+restrictions and tested all four cases.
+
+165
+00:11:17.308 --> 00:11:20.237
+The evidence an I S S O
+keeps from this module:
+
+166
+00:11:20.237 --> 00:11:24.630
+the policy export and the named
+location, the report-only results,
+
+167
+00:11:24.630 --> 00:11:29.593
+the disable-and-retry record, the
+break-glass rehearsal record, the tenant
+
+168
+00:11:29.593 --> 00:11:32.197
+restrictions exports, the tagging GET,
+
+169
+00:11:32.197 --> 00:11:35.370
+the four-case record, and
+the block query result.
+
+170
+00:11:35.370 --> 00:11:39.843
+Next is Module 4, private applications
+and administrative paths,
+
+171
+00:11:39.843 --> 00:11:44.940
+where each application gets its own path
+instead of the V P N's address pool.

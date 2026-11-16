@@ -13,6 +13,8 @@ last-reviewed: 2026-11-13
 
 *Part of the [Defender XDR learning path](index.md). Guide [Step 3](../../books/guides/defender-xdr-implementation.md#step-3-endpoint-prevention) and [Step 4](../../books/guides/defender-xdr-implementation.md#step-4-attack-surface-reduction). About 50 minutes, plus Lab 2.*
 
+**Watch:** the narrated deck for this module (about 13 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_2_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_2_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-2) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-2/Training_XDR_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-2/Training_XDR_Module_2_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#xdr-m2-introduction}
 
 A setting in a policy protects nothing until it is enforced on the device, and enforcing it all at once breaks the applications nobody listed. In this module you learn the order of the prevention settings, which ones have an audit mode, how Attack Surface Reduction moves through audit, warn and block ring by ring, and how to prove each setting on the device rather than trusting a report.

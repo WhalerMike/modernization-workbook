@@ -12,12 +12,12 @@ module.exports = (cfg) => {
   D.pres.title = `Defender XDR learning path — ${cfg.title}`;
 
   // The title slide: the module name, the path, and the units in order.
-  const title = (sec, t, sub, units) => {
+  const title = (sec, t, sub, units, unitsY = 4.75) => {  // unitsY: lower the units when the title runs to three lines
     const s = P.titleSlide(sec, t, sub);
     txt(s, "Units", [
       { text: "DEFENDER XDR ENGINEERING AND OPERATIONS  ·  LEARNING PATH", options: { bold: true, color: HEX.slate, fontSize: 12, breakLine: true } },
       ...units.map((u, k) => ({ text: u, options: { color: k % 2 ? HEX.teal : HEX.navy, bold: true, fontSize: 15, breakLine: k < units.length - 1 } })),
-    ], { x: 0.8, y: 4.75, w: 11.0, h: 1.65, paraSpaceAfter: 2 });
+    ], { x: 0.8, y: unitsY, w: 11.0, h: 6.4 - unitsY, paraSpaceAfter: 2 });
     return s;
   };
 

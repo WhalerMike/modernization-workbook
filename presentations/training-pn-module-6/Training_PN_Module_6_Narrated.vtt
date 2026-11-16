@@ -105,823 +105,823 @@ such as the contacts set
 in Essential Contacts.
 
 23
-00:01:15.465 --> 00:01:22.655
+00:01:15.465 --> 00:01:21.596
 Second, Assured Workloads' supported-products
 page lists Personalized Service Health
 
 24
-00:01:22.655 --> 00:01:28.565
+00:01:21.596 --> 00:01:26.131
 under twenty-five regional packages,
-including US Data Boundary, but not
+including US Data Boundary,
 
 25
-00:01:28.565 --> 00:01:33.490
-under FedRAMP Moderate, FedRAMP High, I
-L 2, I L 4, I L 5, C J I S or I T A R.
+00:01:26.131 --> 00:01:30.078
+but not under FedRAMP Moderate,
+FedRAMP High, C J I S or I T A R.
 
 26
-00:01:33.490 --> 00:01:35.925
+00:01:30.078 --> 00:01:32.513
 A workload in one of those packages has no
 
 27
-00:01:35.925 --> 00:01:38.503
+00:01:32.513 --> 00:01:35.091
 Personalized Service
 Health to read at all.
 
 28
-00:01:38.503 --> 00:01:42.602
+00:01:35.091 --> 00:01:39.190
 Both gaps share a danger: an
 empty list looks like good news.
 
 29
-00:01:42.602 --> 00:01:45.772
+00:01:39.190 --> 00:01:42.360
 So this gate collects
 what Google publishes,
 
 30
-00:01:45.772 --> 00:01:49.390
+00:01:42.360 --> 00:01:45.990
 and writes down, with the
 ISSO, what can't arrive.
 
 31
-00:01:53.140 --> 00:01:56.053
+00:01:49.740 --> 00:01:52.653
 Here's what you'll be able to
 do by the end of this module.
 
 32
-00:01:56.053 --> 00:02:00.852
+00:01:52.653 --> 00:01:57.452
 You'll name the role and the one-time
 A P I enablement the reader needs.
 
 33
-00:02:00.852 --> 00:02:04.991
+00:01:57.452 --> 00:02:01.591
 You'll collect a project's incidents
 and read their products and locations.
 
 34
-00:02:04.991 --> 00:02:08.971
+00:02:01.591 --> 00:02:05.571
 You'll explain why Google Cloud's
 planned maintenance isn't in this gate,
 
 35
-00:02:08.971 --> 00:02:11.265
+00:02:05.571 --> 00:02:07.865
 and where it reaches the project instead.
 
 36
-00:02:11.265 --> 00:02:13.880
+00:02:07.865 --> 00:02:10.480
 You'll say which Assured
 Workloads packages don't
 
 37
-00:02:13.880 --> 00:02:16.877
+00:02:10.480 --> 00:02:13.477
 include Personalized Service
 Health, and what to record.
 
 38
-00:02:16.877 --> 00:02:19.182
+00:02:13.477 --> 00:02:15.782
 And you'll show that the kit refuses an
 
 39
-00:02:19.182 --> 00:02:22.303
+00:02:15.782 --> 00:02:18.903
 unverified call unless
 you pass allow unverified.
 
 40
-00:02:22.303 --> 00:02:26.132
+00:02:18.903 --> 00:02:22.732
 Before you start, finish Module 1,
 on the record and the six kinds,
 
 41
-00:02:26.132 --> 00:02:29.741
+00:02:22.732 --> 00:02:26.341
 and read the honest limits
 section of the provider notices
 
 42
-00:02:29.741 --> 00:02:33.277
+00:02:26.341 --> 00:02:29.877
 chapter in Compliance Automation
 and Day-Two Operations.
 
 43
-00:02:33.277 --> 00:02:37.440
+00:02:29.877 --> 00:02:34.040
 Lab 1 needs PowerShell 7.1
 or later with Pester 5.
 
 44
-00:02:37.440 --> 00:02:38.920
+00:02:34.040 --> 00:02:35.520
 No project.
 
 45
-00:02:42.670 --> 00:02:44.895
+00:02:39.270 --> 00:02:41.495
 Unit 1 is the guide's Step 5.
 
 46
-00:02:44.895 --> 00:02:47.370
+00:02:41.495 --> 00:02:43.970
 The project owner does two things once.
 
 47
-00:02:47.370 --> 00:02:50.022
+00:02:43.970 --> 00:02:46.622
 Enable the Service Health
 A P I on the project,
 
 48
-00:02:50.022 --> 00:02:54.395
+00:02:46.622 --> 00:02:50.995
 and grant the reader's group the
 Personalized Service Health Viewer role.
 
 49
-00:02:54.395 --> 00:02:55.633
+00:02:50.995 --> 00:02:52.233
 Then two steps.
 
 50
-00:02:55.633 --> 00:02:58.963
+00:02:52.233 --> 00:02:55.563
 One: cross-check the list
 with Google's own command,
 
 51
-00:02:58.963 --> 00:03:03.919
+00:02:55.563 --> 00:03:00.519
 G cloud service health events list, for
 the project, in the global location.
 
 52
-00:03:03.919 --> 00:03:07.157
+00:03:00.519 --> 00:03:03.757
 Two: collect, with the
 provider set to Google.
 
 53
-00:03:07.157 --> 00:03:11.832
+00:03:03.757 --> 00:03:08.432
 For a whole organization, set the settings
 file's Google scope to organization,
 
 54
-00:03:11.832 --> 00:03:14.133
+00:03:08.432 --> 00:03:10.733
 and grant the role on the organization.
 
 55
-00:03:14.133 --> 00:03:18.496
+00:03:10.733 --> 00:03:15.096
 Otherwise, grant it at the project:
 the viewer role on the organization,
 
 56
-00:03:18.496 --> 00:03:22.107
+00:03:15.096 --> 00:03:18.707
 for a project read, is more read
 scope than the reader needs.
 
 57
-00:03:22.107 --> 00:03:25.331
+00:03:18.707 --> 00:03:21.931
 The gate validates when products
 and locations come from
 
 58
-00:03:25.331 --> 00:03:28.219
+00:03:21.931 --> 00:03:24.819
 the event's impacts, and
 closed incidents are closed.
 
 59
-00:03:28.219 --> 00:03:31.520
+00:03:24.819 --> 00:03:28.120
 The gate owner is the
 Google Cloud project owner.
 
 60
-00:03:35.270 --> 00:03:37.020
+00:03:31.870 --> 00:03:33.620
 Unit 2 is the reader.
 
 61
-00:03:37.020 --> 00:03:40.714
+00:03:33.620 --> 00:03:37.314
 Google's Event resource has
 the one category, a state,
 
 62
-00:03:40.714 --> 00:03:44.408
+00:03:37.314 --> 00:03:41.008
 a detailed category, relevance,
 impacts and updates.
 
 63
-00:03:44.408 --> 00:03:47.446
+00:03:41.008 --> 00:03:44.046
 Here's what Google leaves to
 you, and what the kit adds.
 
 64
-00:03:47.446 --> 00:03:51.279
+00:03:44.046 --> 00:03:47.879
 With one category, every
 Google notice is an incident,
 
 65
-00:03:51.279 --> 00:03:56.420
+00:03:47.879 --> 00:03:53.020
 and the gap is written down in the guide,
 the chapter and the ISSO's record.
 
 66
-00:03:56.420 --> 00:03:59.526
+00:03:53.020 --> 00:03:56.126
 Impacts come as product
 and location objects;
 
 67
-00:03:59.526 --> 00:04:02.633
+00:03:56.126 --> 00:03:59.233
 they become the record's
 services and regions.
 
 68
-00:04:02.633 --> 00:04:05.112
+00:03:59.233 --> 00:04:01.712
 An event's description is sometimes empty,
 
 69
-00:04:05.112 --> 00:04:07.945
+00:04:01.712 --> 00:04:04.545
 so the kit takes the latest
 update's description.
 
 70
-00:04:07.945 --> 00:04:10.832
+00:04:04.545 --> 00:04:07.432
 There's no field that
 says action is required,
 
 71
-00:04:10.832 --> 00:04:14.890
+00:04:07.432 --> 00:04:11.490
 and the kit adds no action rule
 for Google: an open incident that
 
 72
-00:04:14.890 --> 00:04:18.870
+00:04:11.490 --> 00:04:15.470
 names resources routes by the
 agency's own routing, in Module 7.
 
 73
-00:04:18.870 --> 00:04:23.165
+00:04:15.470 --> 00:04:19.765
 Google's A P I returns a response
 object and G cloud a bare list,
 
 74
-00:04:23.165 --> 00:04:24.883
+00:04:19.765 --> 00:04:21.483
 and the kit accepts both.
 
 75
-00:04:24.883 --> 00:04:26.919
+00:04:21.483 --> 00:04:23.519
 A closed state closes the record,
 
 76
-00:04:26.919 --> 00:04:31.670
+00:04:23.519 --> 00:04:28.270
 and the detailed category and relevance
 are kept as the provider's severity.
 
 77
-00:04:31.670 --> 00:04:34.417
+00:04:28.270 --> 00:04:31.017
 The kit has no separate
 government endpoint for
 
 78
-00:04:34.417 --> 00:04:37.580
+00:04:31.017 --> 00:04:34.180
 Personalized Service
 Health; the cloud is global.
 
 79
-00:04:41.330 --> 00:04:43.193
+00:04:37.930 --> 00:04:39.793
 Two guards make this gate honest.
 
 80
-00:04:43.193 --> 00:04:45.368
+00:04:39.793 --> 00:04:41.968
 First, the organization call.
 
 81
-00:04:45.368 --> 00:04:50.168
+00:04:41.968 --> 00:04:46.768
 Google's REST reference documents it, but
 the G cloud flags for it weren't read.
 
 82
-00:04:50.168 --> 00:04:52.799
+00:04:46.768 --> 00:04:49.399
 So the kit's call list
 marks it unverified,
 
 83
-00:04:52.799 --> 00:04:57.367
+00:04:49.399 --> 00:04:53.967
 and the live invoker refuses to run
 it unless you pass allow unverified.
 
 84
-00:04:57.367 --> 00:04:59.805
+00:04:53.967 --> 00:04:56.405
 The kit doesn't run a command on a guess.
 
 85
-00:04:59.805 --> 00:05:02.980
+00:04:56.405 --> 00:04:59.580
 That's the guide's interim
 path for an organization.
 
 86
-00:05:02.980 --> 00:05:04.567
+00:04:59.580 --> 00:05:01.167
 Second, the gaps.
 
 87
-00:05:04.567 --> 00:05:07.259
+00:05:01.167 --> 00:05:03.859
 Every project records
 that Google's planned
 
 88
-00:05:07.259 --> 00:05:09.805
+00:05:03.859 --> 00:05:06.405
 maintenance doesn't come
 through this A P I.
 
 89
-00:05:09.805 --> 00:05:15.259
+00:05:06.405 --> 00:05:11.486
 And any workload in an Assured Workloads
-FedRAMP or I L package records that it has
+FedRAMP package records that it has no
 
 90
-00:05:15.259 --> 00:05:20.793
-no Personalized Service Health to read;
-the ISSO decides the compensating channel.
+00:05:11.486 --> 00:05:16.643
+Personalized Service Health to read; the
+ISSO decides the compensating channel.
 
 91
-00:05:20.793 --> 00:05:24.926
+00:05:16.643 --> 00:05:20.776
 The guide lists the danger plainly:
 Google maintenance assumed covered,
 
 92
-00:05:24.926 --> 00:05:27.681
+00:05:20.776 --> 00:05:23.531
 and a maintenance window
 lands with nobody told.
 
 93
-00:05:27.681 --> 00:05:30.617
+00:05:23.531 --> 00:05:26.467
 The guard is the gap
 itself, in the record,
 
 94
-00:05:30.617 --> 00:05:34.355
+00:05:26.467 --> 00:05:30.205
 in the digest's provider
 table and in the ISSO's file.
 
 95
-00:05:34.355 --> 00:05:40.120
+00:05:30.205 --> 00:05:35.970
 Until the A P I carries maintenance, it
 reaches the agency by the contacts it sets.
 
 96
-00:05:43.870 --> 00:05:44.595
+00:05:39.720 --> 00:05:40.445
 Try it.
 
 97
-00:05:44.595 --> 00:05:48.642
+00:05:40.445 --> 00:05:44.492
 Lab 1 runs in the provider
 notices folder of the examples,
 
 98
-00:05:48.642 --> 00:05:53.033
+00:05:44.492 --> 00:05:48.883
 in PowerShell 7, for a fictional
 project, contoso example prod.
 
 99
-00:05:53.033 --> 00:05:55.421
+00:05:48.883 --> 00:05:51.271
 Nothing signs in or sends a request.
 
 100
-00:05:55.421 --> 00:05:57.982
+00:05:51.271 --> 00:05:53.832
 Step one lists what Google Cloud needs.
 
 101
-00:05:57.982 --> 00:05:58.970
+00:05:53.832 --> 00:05:54.820
 Two calls.
 
 102
-00:05:58.970 --> 00:06:03.551
+00:05:54.820 --> 00:05:59.401
 The project call needs the Personalized
 Service Health Viewer role on the project,
 
 103
-00:06:03.551 --> 00:06:06.207
+00:05:59.401 --> 00:06:02.057
 for the events list
 permission, and it's verified.
 
 104
-00:06:06.207 --> 00:06:09.965
+00:06:02.057 --> 00:06:05.815
 The organization call needs the
 same role on the organization,
 
 105
-00:06:09.965 --> 00:06:11.194
+00:06:05.815 --> 00:06:07.044
 and it isn't verified.
 
 106
-00:06:11.194 --> 00:06:15.195
+00:06:07.044 --> 00:06:11.045
 Step two collects Google Cloud
 from the day-one fixtures:
 
 107
-00:06:15.195 --> 00:06:19.195
+00:06:11.045 --> 00:06:15.045
 two notices, one open, none
 needing action, both incidents.
 
 108
-00:06:19.195 --> 00:06:21.345
+00:06:15.045 --> 00:06:17.195
 Step three reads the records.
 
 109
-00:06:21.345 --> 00:06:25.059
+00:06:17.195 --> 00:06:20.909
 Cloud SQL connection errors
 in u s east four is open,
 
 110
-00:06:25.059 --> 00:06:27.370
+00:06:20.909 --> 00:06:23.220
 with its product and its location.
 
 111
-00:06:27.370 --> 00:06:31.120
+00:06:23.220 --> 00:06:26.970
 Cloud Storage latency in
 u s central one is closed.
 
 112
-00:06:31.120 --> 00:06:36.098
+00:06:26.970 --> 00:06:31.948
 None needs action by Google's word,
 because Google has no field that says so;
 
 113
-00:06:36.098 --> 00:06:41.360
+00:06:31.948 --> 00:06:37.210
 an open incident that names resources
 is routed by the agency's own rules.
 
 114
-00:06:45.110 --> 00:06:48.972
+00:06:40.960 --> 00:06:44.822
 Step four collects the second
 week, as of November sixteenth.
 
 115
-00:06:48.972 --> 00:06:52.011
+00:06:44.822 --> 00:06:47.861
 The same two incidents,
 and now both are closed.
 
 116
-00:06:52.011 --> 00:06:55.324
+00:06:47.861 --> 00:06:51.174
 The Cloud SQL incident
 ended on November ninth,
 
 117
-00:06:55.324 --> 00:06:59.822
+00:06:51.174 --> 00:06:55.672
 at thirteen hundred U T C, an hour
 after the first week's read saw it open.
 
 118
-00:06:59.822 --> 00:07:04.734
+00:06:55.672 --> 00:07:00.584
 That's the honest limit of a weekly
 read: it sees an incident after the fact.
 
 119
-00:07:04.734 --> 00:07:09.753
+00:07:00.584 --> 00:07:05.603
 The weekly read is for owning and closing
 notices, not for detecting incidents,
 
 120
-00:07:09.753 --> 00:07:13.073
+00:07:05.603 --> 00:07:08.923
 which still reach the desk
 as calls and alerts first.
 
 121
-00:07:13.073 --> 00:07:15.684
+00:07:08.923 --> 00:07:11.534
 Step five groups both weeks by kind.
 
 122
-00:07:15.684 --> 00:07:18.160
+00:07:11.534 --> 00:07:14.010
 Four records, and every one an incident.
 
 123
-00:07:18.160 --> 00:07:20.210
+00:07:14.010 --> 00:07:16.060
 That's not the fixtures being thin.
 
 124
-00:07:20.210 --> 00:07:23.723
+00:07:16.060 --> 00:07:19.573
 It's the A P I: its
 category has one value.
 
 125
-00:07:23.723 --> 00:07:28.358
+00:07:19.573 --> 00:07:24.208
 Maintenance, retirements and security
 notices never come through this A P I,
 
 126
-00:07:28.358 --> 00:07:33.140
+00:07:24.208 --> 00:07:28.990
 whatever the project's estate looks
 like, and that's the gap you write down.
 
 127
-00:07:36.890 --> 00:07:40.627
+00:07:32.740 --> 00:07:36.477
 Step six asks the live invoker
 for the organization call.
 
 128
-00:07:40.627 --> 00:07:45.322
+00:07:36.477 --> 00:07:41.172
 You set the Google scope to organization,
 give a fictional organization number,
 
 129
-00:07:45.322 --> 00:07:49.803
+00:07:41.172 --> 00:07:45.653
 and build a live invoker, skipping the
 sign-in check because nothing will run.
 
 130
-00:07:49.803 --> 00:07:52.691
+00:07:45.653 --> 00:07:48.541
 The kit refuses before G cloud starts.
 
 131
-00:07:52.691 --> 00:07:56.615
+00:07:48.541 --> 00:07:52.465
 The call isn't verified against
 its provider's documentation:
 
 132
-00:07:56.615 --> 00:08:01.310
+00:07:52.465 --> 00:07:57.160
 the G cloud group for organization
 events is listed on the beta reference,
 
 133
-00:08:01.310 --> 00:08:04.928
+00:07:57.160 --> 00:08:00.778
 and its exact flags weren't
 read; the REST call is verified.
 
 134
-00:08:04.928 --> 00:08:07.190
+00:08:00.778 --> 00:08:03.040
 Pass allow unverified to run it.
 
 135
-00:08:07.190 --> 00:08:11.828
+00:08:03.040 --> 00:08:07.678
 That's a decision someone makes on
 purpose, in a test project, not a default.
 
 136
-00:08:11.828 --> 00:08:15.616
+00:08:07.678 --> 00:08:11.466
 Step seven builds the project
 command without running it:
 
 137
-00:08:15.616 --> 00:08:20.589
+00:08:11.466 --> 00:08:16.439
 service health events list, for the
 project, in the global location, as JSON.
 
 138
-00:08:20.589 --> 00:08:22.115
+00:08:16.439 --> 00:08:17.965
 That's the verified call.
 
 139
-00:08:22.115 --> 00:08:26.590
+00:08:17.965 --> 00:08:22.440
 Step eight runs this chapter's
 tests: eight pass, none fail.
 
 140
-00:08:26.590 --> 00:08:28.790
+00:08:22.440 --> 00:08:24.640
 Then delete the output folder.
 
 141
-00:08:32.540 --> 00:08:34.890
+00:08:28.390 --> 00:08:30.740
 Lab 2 reads a real test project.
 
 142
-00:08:34.890 --> 00:08:38.162
+00:08:30.740 --> 00:08:34.012
 You need a Google Cloud test
 project, never production,
 
 143
-00:08:38.162 --> 00:08:41.215
+00:08:34.012 --> 00:08:37.065
 its project owner, and a
 Google group for the reader.
 
 144
-00:08:41.215 --> 00:08:46.353
+00:08:37.065 --> 00:08:42.203
 Enable the A P I, grant the viewer
 role, and sign in as the reader.
 
 145
-00:08:46.353 --> 00:08:49.616
+00:08:42.203 --> 00:08:45.466
 Then cross-check Google's own
 command against the collection.
 
 146
-00:08:49.616 --> 00:08:53.577
+00:08:45.466 --> 00:08:49.427
 The project may have no incidents
 at all, and that's a valid result.
 
 147
-00:08:53.577 --> 00:08:58.452
+00:08:49.427 --> 00:08:54.302
 Then the part that makes this gate
 different: record the gaps with the ISSO.
 
 148
-00:08:58.452 --> 00:09:03.277
+00:08:54.302 --> 00:08:59.334
 Whether the project is in an Assured
-Workloads FedRAMP or I L package, and in
+Workloads FedRAMP package, and in every case,
 
 149
-00:09:03.277 --> 00:09:08.102
-every case, that Google's planned
-maintenance doesn't come through this A P I.
+00:08:59.334 --> 00:09:03.314
+that Google's planned maintenance
+doesn't come through this A P I.
 
 150
-00:09:08.102 --> 00:09:12.639
+00:09:03.314 --> 00:09:07.852
 To back it out, step four removes
 the role binding and deletes the run.
 
 151
-00:09:12.639 --> 00:09:17.528
+00:09:07.852 --> 00:09:12.741
 It leaves the A P I enabled, unless
 the project owner decides otherwise.
 
 152
-00:09:17.528 --> 00:09:19.678
+00:09:12.741 --> 00:09:14.890
 The authors haven't run Lab 2.
 
 153
-00:09:19.678 --> 00:09:23.210
+00:09:14.890 --> 00:09:18.440
 The workbook's Chapter 5
 has the exact commands.
 
 154
-00:09:26.960 --> 00:09:28.347
+00:09:22.190 --> 00:09:23.577
 The federal requirement.
 
 155
-00:09:28.347 --> 00:09:34.404
+00:09:23.577 --> 00:09:29.634
 Gate 5 supports NIST special publication
 eight hundred fifty-three S A nine, part c,
 
 156
-00:09:34.404 --> 00:09:38.858
+00:09:29.634 --> 00:09:34.088
 monitoring external service
 providers on an ongoing basis,
 
 157
-00:09:38.858 --> 00:09:43.311
+00:09:34.088 --> 00:09:38.541
 and S I five, part a, receiving
 security alerts and advisories.
 
 158
-00:09:43.311 --> 00:09:47.327
+00:09:38.541 --> 00:09:42.557
 And recording the gaps supports R
 A three, part f: updating the risk
 
 159
-00:09:47.327 --> 00:09:52.310
+00:09:42.557 --> 00:09:47.540
 assessment when there are significant
 changes to the environment of operation.
 
 160
-00:09:52.310 --> 00:09:57.722
+00:09:47.540 --> 00:09:52.834
 The evidence is the permission list and
 the role binding; the raw Google response,
 
 161
-00:09:57.722 --> 00:10:02.972
+00:09:52.834 --> 00:09:57.971
 the notices and the manifest; the refusal
 of a call nobody verified; and the gaps,
 
 162
-00:10:02.972 --> 00:10:07.010
+00:09:57.971 --> 00:10:01.922
 no maintenance through the A P
 I and no Personalized Service
 
 163
-00:10:07.010 --> 00:10:11.210
-Health in the FedRAMP or I L
-packages, written down with the ISSO.
+00:10:01.922 --> 00:10:05.715
+Health in the FedRAMP packages,
+written down with the ISSO.
 
 164
-00:10:11.210 --> 00:10:14.172
+00:10:05.715 --> 00:10:08.677
 The gate's output is
 evidence for these controls.
 
 165
-00:10:14.172 --> 00:10:17.094
+00:10:08.677 --> 00:10:11.599
 Your organization still
 sets their parameters,
 
 166
-00:10:17.094 --> 00:10:20.235
+00:10:11.599 --> 00:10:14.740
 and the assessor decides
 whether each is satisfied.
 
 167
-00:10:20.235 --> 00:10:24.629
+00:10:14.740 --> 00:10:19.134
 K S I's are FedRAMP twenty X indicators
 for cloud service providers;
 
 168
-00:10:24.629 --> 00:10:29.780
+00:10:19.134 --> 00:10:24.290
 the agency lines its evidence up with
 them, and doesn't report them itself.
 
 169
-00:10:33.530 --> 00:10:35.505
+00:10:28.040 --> 00:10:30.015
 Check yourself with two questions.
 
 170
-00:10:35.505 --> 00:10:38.592
+00:10:30.015 --> 00:10:33.102
 First: why does Gate 5
 cover incidents only?
 
 171
-00:10:38.592 --> 00:10:39.817
+00:10:33.102 --> 00:10:34.327
 The answer is b.
 
 172
-00:10:39.817 --> 00:10:42.531
+00:10:34.327 --> 00:10:37.041
 The A P I's event category has one value,
 
 173
-00:10:42.531 --> 00:10:45.768
+00:10:37.041 --> 00:10:40.278
 incident, and planned
 maintenance isn't in it.
 
 174
-00:10:45.768 --> 00:10:49.242
+00:10:40.278 --> 00:10:43.752
 It isn't the kit filtering
 anything, and it isn't the role.
 
 175
-00:10:49.242 --> 00:10:54.317
+00:10:43.752 --> 00:10:48.827
 Second: a workload is in an Assured
 Workloads FedRAMP Moderate package.
 
 176
-00:10:54.317 --> 00:10:55.792
+00:10:48.827 --> 00:10:50.302
 What does the agency do?
 
 177
-00:10:55.792 --> 00:10:56.718
+00:10:50.302 --> 00:10:51.228
 The answer is b.
 
 178
-00:10:56.718 --> 00:10:58.493
+00:10:51.228 --> 00:10:53.003
 Record the gap with the ISSO.
 
 179
-00:10:58.493 --> 00:11:03.354
+00:10:53.003 --> 00:10:57.864
 Personalized Service Health isn't among
 that package's supported products,
 
 180
-00:11:03.354 --> 00:11:08.292
+00:10:57.864 --> 00:11:02.802
 so the project has nothing to read, and
 relies on the provider's other channels.
 
 181
-00:11:08.292 --> 00:11:13.854
+00:11:02.802 --> 00:11:08.364
 Answer c is the trap this module is about:
 an empty list doesn't mean no incidents.
 
 182
-00:11:13.854 --> 00:11:16.282
+00:11:08.364 --> 00:11:10.792
 The module page has three more questions,
 
 183
-00:11:16.282 --> 00:11:19.140
+00:11:10.792 --> 00:11:13.650
 each linked to the
 section that answers it.
 
 184
-00:11:22.890 --> 00:11:23.715
+00:11:17.400 --> 00:11:18.225
 To sum up.
 
 185
-00:11:23.715 --> 00:11:28.815
+00:11:18.225 --> 00:11:23.325
 You read the reader's role, collected two
 incidents and then saw both close, showed
 
 186
-00:11:28.815 --> 00:11:33.915
+00:11:23.325 --> 00:11:28.425
 that only one kind ever arrives, and watched
 the kit refuse a call nobody verified.
 
 187
-00:11:33.915 --> 00:11:37.994
+00:11:28.425 --> 00:11:32.504
 The evidence an ISSO keeps for
 Gate 5 is the raw Google response,
 
 188
-00:11:37.994 --> 00:11:42.779
+00:11:32.504 --> 00:11:37.289
 the notices as JSON and as a spreadsheet
 file, and the manifest, all dated;
 
 189
-00:11:42.779 --> 00:11:47.800
+00:11:37.289 --> 00:11:42.310
 the role binding; and the written gaps:
 no planned maintenance through the A P I,
 
 190
-00:11:47.800 --> 00:11:52.977
+00:11:42.310 --> 00:11:47.487
 and any workload in a package that doesn't
 include Personalized Service Health.
 
 191
-00:11:52.977 --> 00:11:56.052
+00:11:47.487 --> 00:11:50.562
 Before you ship, work through
 the chapter's checklist.
 
 192
-00:11:56.052 --> 00:11:58.240
+00:11:50.562 --> 00:11:52.750
 That finishes the five providers.
 
 193
-00:11:58.240 --> 00:12:01.365
+00:11:52.750 --> 00:11:55.875
 Next is Module 7: routing to owners.
 
 194
-00:12:01.365 --> 00:12:06.677
+00:11:55.875 --> 00:12:01.187
 It takes the notices every provider produced,
 and gives the ones that need action an
 
 195
-00:12:06.677 --> 00:12:11.580
+00:12:01.187 --> 00:12:06.090
 owner, a severity and a due date, as typed
 tasks in the service desk's front door.

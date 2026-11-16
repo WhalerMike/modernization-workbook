@@ -25,29 +25,11 @@
  },
  {
   "slide": 12,
-  "title": "Where agencies are: one Intune for GCC, one for High",
+  "title": "Where agencies are: GCC follows commercial Intune",
   "links": [
-   {
-    "text": "Intune for US Government",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
-   },
    {
     "text": "Graph national cloud deployments",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
-   }
-  ]
- },
- {
-  "slide": 13,
-  "title": "Autopilot in GCC High and DoD, and interim paths",
-  "links": [
-   {
-    "text": "List windowsAutopilotDeviceIdentities",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-windowsautopilotdeviceidentities"
-   },
-   {
-    "text": "Intune government service",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-intune-for-us-government-gcc-high"
    },
    {
     "text": "Book 05, Ch 04",
@@ -60,7 +42,7 @@
   ]
  },
  {
-  "slide": 14,
+  "slide": 13,
   "title": "The federal requirement and evidence for Intune",
   "links": [
    {

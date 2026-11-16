@@ -13,7 +13,9 @@ last-reviewed: 2026-11-13
 
 *Part of the [Global Secure Access learning path](index.md). Guide [Step 6](../../books/guides/global-secure-access-implementation.md#step-6-private-applications) and [Step 10](../../books/guides/global-secure-access-implementation.md#step-10-privileged-protocols). About 50 minutes, plus Lab 2.*
 
-**Watch first:** slide 13 of the guide's narrated deck (per-app private access and admin paths), in its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md).
+**Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_GSA_Module_4_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_GSA_Module_4_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-gsa-module-4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-4/Training_GSA_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-4/Training_GSA_Module_4_Narrated.vtt). The deck files join the next edition.
+
+, in its [video](../../presentations/watch.html?v=Guide_Global_Secure_Access_Narrated) or its [narration script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md).
 
 ## Introduction (3 minutes) {#gsa-m4-intro}
 
