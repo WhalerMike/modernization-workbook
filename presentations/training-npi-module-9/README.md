@@ -6,7 +6,7 @@
 |---|---|
 | Introduction | Title; why agents add three things to every gate; learning objectives and prerequisites |
 | Concepts | Agent ID's blueprints and agent identities, and their release stage; decision D-N6 as data (AgentId and Fallback modes); the program's rules (N6.1 to N6.7); the checks (NPI-AI-01 to -23) and the ten business days; the agent Conditional Access plan and the separate write path |
-| Lab | Try it: Lab 1 steps 1 to 11: Chapters 01 and 02's runs, Learn's samples, each task's permissions and D-N6 by cloud, the check and its findings, the sponsor fields, the GCC High fallback, the dry run, the apply to the fake and the refused hash, and the tests; Lab 2 in a test tenant (not run by the authors) |
+| Lab | Try it: Lab 1 steps 1 to 10: Chapters 01 and 02's runs, Learn's samples, each task's permissions and D-NP6 by cloud, the check and its findings, the sponsor fields, the dry run, the apply to the fake and the refused hash, and the tests; Lab 2 in a test tenant (not run by the authors) |
 | Check and summary | The federal requirement (the module's evidence table, with SCuBA MS.AAD.9.1v1 and OMB M-25-21) and evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |

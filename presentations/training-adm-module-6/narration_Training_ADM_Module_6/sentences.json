@@ -172,48 +172,6 @@
    "And afterward, the kit's check V K ARC oh seven reports any server machine configuration doesn't own that carries its enforcing assignment."
   ]
  ],
- "5": [
-  [
-   0.05,
-   2.388,
-   "One more piece of the setting: which Azure."
-  ],
-  [
-   2.438,
-   6.013,
-   "The estate this workbook plans for is a Microsoft 365 G C C tenant."
-  ],
-  [
-   8.45,
-   13.662,
-   "Microsoft Learn's page, Planning identity for Azure Government applications, says Office 365 G C C uses Microsoft Entra Public, and an Azure Government subscription can't be associated with a directory there."
-  ],
-  [
-   22.113,
-   11.25,
-   "So a G C C estate's Arc servers go to a commercial subscription, and, as Learn's azcmagent connect reference shows, the agent connects with the AzureCloud cloud, which is the default."
-  ],
-  [
-   33.362,
-   13.912,
-   "G C C High and D O D tenants are different: the same Learn pages, with the Connected Machine agent network requirements, give Microsoft Entra Government and Azure Government, with U S Gov regions and the dot us endpoints."
-  ],
-  [
-   47.275,
-   1.962,
-   "The kit guards this both ways."
-  ],
-  [
-   49.237,
-   8.963,
-   "The wave plan stops a server whose region belongs to the other cloud, and the playbook that uses Microsoft's role refuses any cloud but AzureCloud."
-  ],
-  [
-   58.2,
-   5.6,
-   "For Azure Government, the kit's other onboarding playbook, oh two, spells the steps out."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -326,53 +284,6 @@
    62.95,
    1.9,
    "All three are the kit's design."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   3.6,
-   "The kit's wave plan playbook runs only on the control node."
-  ],
-  [
-   3.65,
-   1.363,
-   "You give it a wave number."
-  ],
-  [
-   5.013,
-   17.525,
-   "It lists the wave's ready servers and the ones the CMDB blocked, and writes a jay-son and a C S V plan under reports: host, configuration item, environment, resource group, region, cloud, both owners, the exact tag string and a state."
-  ],
-  [
-   22.538,
-   16.275,
-   "It stops when no wave is given or the wave has no ready server, when the cloud is wrong or a region belongs to the other cloud, when a production server is planned in wave zero or one, which this workbook's Arc track keeps for non-production, and when a server has no owner."
-  ],
-  [
-   38.812,
-   6.275,
-   "Both onboarding playbooks import it as their first play, so if the plan stops, no server is contacted."
-  ],
-  [
-   45.087,
-   11.312,
-   "The playbook that uses Microsoft's role runs in batches, one canary server, then five, then twenty-five percent, with the batch keywords the Ansible documentation describes."
-  ],
-  [
-   56.4,
-   3.225,
-   "It's in check mode unless you set confirm change to true."
-  ],
-  [
-   59.625,
-   3.775,
-   "Then the role isn't called, and each server prints what it would get."
-  ],
-  [
-   63.4,
-   5.838,
-   "With the flag, the role runs with the CMDB's values, authenticating with the managed identity."
   ]
  ],
  "9": [
@@ -687,6 +598,90 @@
    "The module page has two more questions, on the owner typo and on the confirm flag, each linked to the section that answers it."
   ]
  ],
+ "5": [
+  [
+   0.05,
+   2.388,
+   "One more piece of the setting: which Azure."
+  ],
+  [
+   2.438,
+   6.013,
+   "The estate this workbook plans for is a Microsoft 365 G C C tenant."
+  ],
+  [
+   8.45,
+   11.088,
+   "Microsoft Learn's page, Cloud feature availability for U S Government customers, says Office 365 G C C is paired with Microsoft Entra I D in Azure."
+  ],
+  [
+   19.538,
+   11.25,
+   "So a G C C estate's Arc servers go to a commercial subscription, and, as Learn's azcmagent connect reference shows, the agent connects with the AzureCloud cloud, which is the default."
+  ],
+  [
+   30.788,
+   15.575,
+   "The agent then needs the commercial endpoints, which Learn's Connected Machine agent network requirements list: the sign-in hosts, management dot azure dot com, only to connect or disconnect, and the Arc and guest configuration services, among others."
+  ],
+  [
+   46.362,
+   2.05,
+   "The kit guards the cloud twice."
+  ],
+  [
+   48.413,
+   9.3,
+   "The wave plan stops a server whose region isn't a commercial Azure region, and the playbook that uses Microsoft's role refuses any cloud but AzureCloud."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.6,
+   "The kit's wave plan playbook runs only on the control node."
+  ],
+  [
+   3.65,
+   1.363,
+   "You give it a wave number."
+  ],
+  [
+   5.013,
+   17.525,
+   "It lists the wave's ready servers and the ones the CMDB blocked, and writes a jay-son and a C S V plan under reports: host, configuration item, environment, resource group, region, cloud, both owners, the exact tag string and a state."
+  ],
+  [
+   22.538,
+   16.55,
+   "It stops when no wave is given or the wave has no ready server, when the cloud is wrong or a region isn't a commercial Azure region, when a production server is planned in wave zero or one, which this workbook's Arc track keeps for non-production, and when a server has no owner."
+  ],
+  [
+   39.087,
+   6.275,
+   "Both onboarding playbooks import it as their first play, so if the plan stops, no server is contacted."
+  ],
+  [
+   45.362,
+   11.312,
+   "The playbook that uses Microsoft's role runs in batches, one canary server, then five, then twenty-five percent, with the batch keywords the Ansible documentation describes."
+  ],
+  [
+   56.675,
+   3.225,
+   "It's in check mode unless you set confirm change to true."
+  ],
+  [
+   59.9,
+   3.775,
+   "Then the role isn't called, and each server prints what it would get."
+  ],
+  [
+   63.675,
+   5.838,
+   "With the flag, the role runs with the CMDB's values, authenticating with the managed identity."
+  ]
+ ],
  "15": [
   [
    0.05,
@@ -720,8 +715,8 @@
   ],
   [
    38.388,
-   12.725,
-   "You'll see why Learn's Logic App definition costs a G C C High leaver, and run the definition that calls back in the right cloud, reports honestly, and checks that the leaver blocks before the custom task runs."
+   9.4,
+   "You'll see what Learn's Logic App definition costs a leaver, and run the definition that reports honestly, and checks that the leaver blocks before the custom task runs."
   ]
  ]
 }

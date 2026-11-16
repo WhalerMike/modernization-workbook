@@ -454,68 +454,6 @@
    "That's the pattern for every write in this path: a plan, a reviewed hash, a dry run, then Apply."
   ]
  ],
- "11": [
-  [
-   0.05,
-   2.4,
-   "Step seven builds the rotation plan."
-  ],
-  [
-   2.45,
-   7.737,
-   "It reads seven app registrations and writes seven steps: two findings, three information items, and three writes."
-  ],
-  [
-   10.188,
-   1.175,
-   "Nothing is sent."
-  ],
-  [
-   11.363,
-   1.812,
-   "Step eight reads the plan."
-  ],
-  [
-   13.175,
-   6.475,
-   "Vendor Portal's certificate is due within sixty days and an owner approved, so it's renewed in Key Vault."
-  ],
-  [
-   19.65,
-   6.938,
-   "H R Connector's new certificate was verified, and the seven-day overlap has passed, so the old one is removed."
-  ],
-  [
-   26.587,
-   2.862,
-   "Deploy Bot gets its new certificate attached."
-  ],
-  [
-   29.45,
-   6.088,
-   "Three apps still hold secrets: Legacy Reports, Mail Automation and Payroll Export."
-  ],
-  [
-   35.538,
-   2.188,
-   "Those are replaced, not rotated."
-  ],
-  [
-   37.725,
-   5.263,
-   "Step nine dry-runs the plan, three writes it would send, then applies it to the fake."
-  ],
-  [
-   42.987,
-   6.325,
-   "For Vendor Portal, Key Vault created the next version, and the next plan attaches it, after a new review."
-  ],
-  [
-   49.312,
-   4.15,
-   "Step ten runs every test: five hundred thirteen pass."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -702,6 +640,68 @@
    37.337,
    7.4,
    "Next is Module 5: cut the privilege of service principals, starting with the broad permissions and roles they hold."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.4,
+   "Step seven builds the rotation plan."
+  ],
+  [
+   2.45,
+   7.737,
+   "It reads seven app registrations and writes seven steps: two findings, three information items, and three writes."
+  ],
+  [
+   10.188,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   11.363,
+   1.812,
+   "Step eight reads the plan."
+  ],
+  [
+   13.175,
+   6.475,
+   "Vendor Portal's certificate is due within sixty days and an owner approved, so it's renewed in Key Vault."
+  ],
+  [
+   19.65,
+   6.938,
+   "H R Connector's new certificate was verified, and the seven-day overlap has passed, so the old one is removed."
+  ],
+  [
+   26.587,
+   2.862,
+   "Deploy Bot gets its new certificate attached."
+  ],
+  [
+   29.45,
+   6.088,
+   "Three apps still hold secrets: Legacy Reports, Mail Automation and Payroll Export."
+  ],
+  [
+   35.538,
+   2.188,
+   "Those are replaced, not rotated."
+  ],
+  [
+   37.725,
+   5.263,
+   "Step nine dry-runs the plan, three writes it would send, then applies it to the fake."
+  ],
+  [
+   42.987,
+   6.325,
+   "For Vendor Portal, Key Vault created the next version, and the next plan attaches it, after a new review."
+  ],
+  [
+   49.312,
+   3.888,
+   "Step ten runs every test: five hundred eleven pass."
   ]
  ]
 }

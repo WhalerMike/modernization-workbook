@@ -10,15 +10,15 @@ Why build a pipeline at all? Because three earlier books already say what contin
 
 ## Slide 3 — Why GitHub Actions
 
-Why GitHub Actions? Learn documents two ways to run a scheduled job that signs in to Azure with no stored secret. The chapter picks GitHub Actions for three reasons. Learn publishes complete sample workflows for it, including the US Government sign-in. The sign-in action is Microsoft's own, with its source published. And for the other option, Azure Pipelines, the automatic setup doesn't work in Azure Government. For this estate either would do, but one path that also documents the higher clouds is easier to hand on. And the comparator and packager work the same under either.
+Why GitHub Actions? Learn documents two ways to run a scheduled job that signs in to Azure with no stored secret. The chapter picks GitHub Actions for two reasons. Learn publishes complete sample workflows for it, on one page, and that's where the chapter starts. And the sign-in action is Microsoft's own, with its source and its inputs published. An agency standardized on Azure Pipelines can still use the same comparator, packager and tests; only the workflow file changes.
 
 ## Slide 4 — Which cloud: authority, Graph host, audience
 
-Which cloud matters at every step: the sign-in authority, the Graph host, the Azure environment, the token audience and the Graph PowerShell environment all have to agree. For a GCC tenant like this estate's, Learn says apps keep using the worldwide endpoints. The higher clouds share a government sign-in authority, and here's the trap: the Azure sign-in environment is the same for GCC High and the Defense cloud, but their Graph hosts differ. So the Graph host must come from the cloud profile, never from the sign-in. An unknown cloud name is refused outright.
+Which cloud matters at every step: the sign-in authority, the Graph host, the Azure environment, the token audience and the Graph PowerShell environment all have to agree. For a GCC tenant like this estate's, Learn says apps keep using the worldwide endpoints, so every value on the slide is the worldwide one. Tokens for one cloud don't work in another, so the Graph host comes from the cloud profile, never from the sign-in, and a check in the linter makes the workflow agree with it. An unknown cloud name is refused outright, never mapped to worldwide.
 
 ## Slide 5 — Learn's sample workflows, pinned and linted
 
-Here's what Learn gives you: one page with three workflows. One signs in and runs a single Azure command, one adds PowerShell, and one signs in to Azure Government. Each job asks for exactly one permission, the right to request a sign-in token, and keeps its identifiers in secrets. Before any of it works, the app needs a federated credential that trusts the repository. Those workflows only exist inside the web page, so the repository pins the page and the action's own definition, and a linter checks each workflow offline against twelve rules. Nothing runs, nothing signs in.
+Here's what Learn gives you: one page with three workflows. The two for commercial Azure are the ones a GCC estate uses: one signs in and runs a single Azure command, and one adds PowerShell. Each job asks for exactly one permission, the right to request a sign-in token, and keeps its identifiers in secrets. Before any of it works, the app needs a federated credential that trusts the repository. Those workflows only exist inside the web page, so the repository pins the page and the action's own definition, and a linter checks each workflow offline against twelve rules. Nothing runs, nothing signs in.
 
 ## Slide 6 — What the samples leave to you: schedule and pins
 
@@ -26,7 +26,7 @@ Checking the samples offline shows what they do well, and the pipeline keeps all
 
 ## Slide 7 — What the samples leave to you: subject and scope
 
-The rest of the gaps are about identity and scope. The sample jobs name no environment, so the token's subject changes with the branch or event, and a federated credential matches one subject exactly. The pipeline runs in a named environment, so the subject is fixed. The samples stop right after signing in to Azure: no Graph token, nothing on the higher clouds. They don't stop two runs overlapping. And after sign-in there's nothing at all. The verdict: use Learn's sign-in exactly as published, pin it, schedule it, and put everything else behind it.
+The rest of the gaps are about identity and scope. The sample jobs name no environment, so the token's subject changes with the branch or event, and a federated credential matches one subject exactly. The pipeline runs in a named environment, so the subject is fixed. The samples stop right after signing in to Azure: no Graph token, and nothing ties the Graph host to the cloud. They don't stop two runs overlapping. And after sign-in there's nothing at all. The verdict: use Learn's sign-in exactly as published, pin it, schedule it, and put everything else behind it.
 
 ## Slide 8 — The workflow: one job reads, one job writes
 
@@ -54,11 +54,11 @@ Who's involved? The platform and pipeline engineers who own the scheduled checks
 
 ## Slide 14 — Lab 1: lint the samples, record a baseline
 
-Lab 1 runs on a laptop with Python and no tenant. First, lint Learn's three samples as published: the first two have several findings each, unpinned actions and latest versions among them, and the Government sample fails because it isn't valid at all. Then lint the chapter's own workflow, and it's clean. Print the Defense cloud's profile to see its hosts, and try a cloud name that doesn't exist: refused. Then record the first day's run as a baseline and package it. Note the manifest hash; the next package will point back to it.
+Lab 1 runs on a laptop with Python and no tenant. First, lint Learn's three samples as published: the first two have several findings each, unpinned actions and latest versions among them, and the third fails because it isn't valid at all. Then lint the chapter's own workflow, and it's clean. Print the GCC profile to see its hosts, and try a cloud name the kit doesn't know: refused. Then record the first day's run as a baseline and package it. Note the manifest hash; the next package will point back to it.
 
 ## Slide 15 — Lab 1: the next day, issues, chain, tamper
 
-Now compare the second day with the first. You'll see each kind of result, and one matters most: a check whose read failed with an access-denied error. Its finding isn't resolved; it's unverified, and stays open. Draft the issues and search for a person's name: it isn't there, only the object identifier. Package the second run, chained to the first, and verify it with the pipeline and with the standard tool. Then tamper with one file, and verification fails. Swap the runs, and the comparison refuses. Run the tests, and a hundred and forty-two pass.
+Now compare the second day with the first. You'll see each kind of result, and one matters most: a check whose read failed with an access-denied error. Its finding isn't resolved; it's unverified, and stays open. Draft the issues and search for a person's name: it isn't there, only the object identifier. Package the second run, chained to the first, and verify it with the pipeline and with the standard tool. Then tamper with one file, and verification fails. Swap the runs, and the comparison refuses. Run the tests, and a hundred and thirty-nine pass.
 
 ## Slide 16 — Lab 2: a test tenant, a federated credential
 

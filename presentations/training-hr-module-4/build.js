@@ -1,7 +1,7 @@
 // HR-Driven Identity learning path, Module 4: Assign access from attributes and review what a move leaves — the module's
 // narrated deck. Teaches docs/training/hr-driven-identity/04-access-and-movers.md, Learn-style: objectives, the concepts,
 // "Try it" slides with the real Lab 1 commands and output (run November 2, 2026 in a scratch copy of examples/hr-lifecycle),
-// Lab 2, the GCC High gap, the federal requirement and evidence, a two-question check, and the summary. Every fact comes
+// Lab 2, privileged access, the federal requirement and evidence, a two-question check, and the summary. Every fact comes
 // from the module page, the learning path's verification log, or the kit; the deck adds none.
 // Helpers: ../training-ms-automation-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-hr-module-4/build.js \
@@ -28,13 +28,13 @@ const title = (sec, t, sub, units) => {
 const SI = "Introduction";
 const SC = "Concepts";
 const SL = "Lab";
-const SA = "Government clouds and privilege";
+const SA = "Privileged access";
 const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
   const s = title(SI, "Module 4: Access from attributes, and what a move leaves", "HR-Driven Identity learning path · Gate G4 Access and movers, with workbook Chapter 04",
-    ["Access from attributes  ·  The policy files  ·  The lint  ·  The mover's residual review", "Try it: Lab 1  ·  Lab 2  ·  GCC High and privilege  ·  Evidence"]);
+    ["Access from attributes  ·  The policy files  ·  The lint  ·  The mover's residual review", "Try it: Lab 1  ·  Lab 2  ·  Privileged access  ·  Evidence"]);
   notes(s,
 `Welcome to Module 4 of the HR-Driven Identity learning path: assign access from attributes, and review what a move leaves. This is Gate 4, Access and movers, with Chapter 04 of the developer workbook. Module 3 got a new hire ready on day one, with an onboarding package. Department access comes from this gate. In this module you'll lint access package assignment policies before they reach the tenant, scan the tenant's policies for the member-of operator, and list what a move leaves behind for the manager of record to review. The code runs on your laptop, against a fictional population and a fictional mover. It's illustrative: unit-tested against fixtures, not run against a live tenant.`,
   `${M} — Unit "Introduction"; learning path index.`);
@@ -254,24 +254,20 @@ endModule(SC);
 }
 endModule(SL);
 
-// ================================================================== 12 GCC High and privilege
+// ================================================================== 12 Privileged access
 {
-  const s = content(SA, "GCC High's gap, and privileged access out of rules");
+  const s = content(SA, "Privileged access stays out of rules");
   tag(s, "Who");
-  const l = panel(s, "Gov", 0.6, 1.45, 6.0, null, HEX.navy, HEX.navyTint, "IF YOUR AGENCY IS IN GCC HIGH", "An availability gap", [
-    "Administrative units with dynamic membership rules aren't available in Azure Government",
-    "The guide gives the gap and its interim path in Step 4",
-  ], 13.5);
-  const r = panel(s, "Priv", 6.85, 1.45, 5.9, null, HEX.red, HEX.redTint, "PRIVILEGED ACCESS", "Never assigned by rule (AA-09)", [
+  const r = panel(s, "Priv", 0.6, 1.45, 12.15, null, HEX.red, HEX.redTint, "PRIVILEGED ACCESS", "Never assigned by rule (AA-09)", [
     "HR attributes decide who may request eligibility",
     "The role is activated through PIM",
     "SCuBA MS.AAD.7.5v1: highly privileged roles only through a privileged access management system",
   ], 13.5);
-  callout(s, "Req", Math.max(l, r) + 0.3, 0.85, "FaUserShield", HEX.red, "Required: ",
+  callout(s, "Req", r + 0.3, 0.85, "FaUserShield", HEX.red, "Required: ",
     "MS.AAD.7.5v1 is required under BOD 25-01.");
   sources(s, "Sources: Module 4, Unit 1; \"Introduction\" (the federal requirement); knowledge check answer 3.");
   notes(s,
-`Two things differ by where you are and what you grant. First, government clouds. If your agency is in GCC High, note the gate's availability gap: administrative units with dynamic membership rules aren't available in Azure Government. The guide's Step 4 gives the gap and its interim path. Second, privileged access, wherever you are. A package that grants tier one administrator eligibility to everyone whose organization code matches is the A A oh nine finding. HR attributes should decide who may request eligibility, and the role is activated through PIM. That's what the program's request policy does. CISA's scuba policy seven point five keeps highly privileged roles only in a privileged access management system, and under BOD 25-01 it's required.`,
+`One thing differs by what you grant: privileged access. A package that grants tier one administrator eligibility to everyone whose organization code matches is the A A oh nine finding. HR attributes should decide who may request eligibility, and the role is activated through PIM. That's what the program's request policy does. CISA's scuba policy seven point five keeps highly privileged roles only in a privileged access management system, and under BOD 25-01 it's required.`,
   `${M} — Unit 1 "Access from attributes"; "Introduction" (the federal requirement); Knowledge check answer 3.`);
 }
 endModule(SA);
@@ -335,7 +331,7 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 4 deck", [
   "Module page: docs/training/hr-driven-identity/04-access-and-movers.md (HR-Driven Identity learning path, Module 4): Introduction, objectives, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary. The learning path index: prerequisites, what you need for the labs, and Module 5.",
-  "What the module links for the design and rules: the HR-driven identity implementation guide, Step 4 and its Gate 4 requirements table (with the GCC High gap and interim path); Book 03, Chapter 10 and Chapter 08, Mover; workbook Chapter 04, \"The policy files,\" \"The lint,\" \"The mover's residual review.\"",
+  "What the module links for the design and rules: the HR-driven identity implementation guide, Step 4 and its Gate 4 requirements table; Book 03, Chapter 10 and Chapter 08, Mover; workbook Chapter 04, \"The policy files,\" \"The lint,\" \"The mover's residual review.\"",
   "Kit: examples/hr-lifecycle (README; config/access/*.json; config/calls.json; python/access_assignment.py; tests/fixtures/ch04). Fictional people and policies. Illustrative: unit-tested against fixtures, not run against a live tenant.",
   "Lab output: run November 2, 2026 with Python 3.14.3 in a scratch copy of examples/hr-lifecycle; long commands are wrapped and output is trimmed where the slides say so. The residual classes on the concept slide are the residual.json that step 5 writes. Lab 2 not run by the authors.",
 ]);

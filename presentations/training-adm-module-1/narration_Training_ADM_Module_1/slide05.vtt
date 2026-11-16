@@ -52,30 +52,38 @@ then managers before their reports.
 It has no limit on mass change.
 
 12
-00:00:37.651 --> 00:00:41.064
+00:00:37.651 --> 00:00:41.176
 Its endpoint is hard-coded
 to the worldwide beta host,
 
 13
-00:00:41.064 --> 00:00:45.565
-and Learn's page on Microsoft Graph
-national cloud deployments gives
+00:00:41.176 --> 00:00:43.100
+and its sign-in names no cloud.
 
 14
-00:00:45.565 --> 00:00:49.600
-other hosts for GCC High and DoD,
-so it can't reach them as written.
+00:00:43.100 --> 00:00:48.498
+That works in GCC, which Learn's page on
+Microsoft Graph national cloud deployments
 
 15
-00:00:49.600 --> 00:00:53.153
+00:00:48.498 --> 00:00:50.688
+says uses the worldwide endpoint;
+
+16
+00:00:50.688 --> 00:00:54.912
+the client checks the endpoint
+against its Graph host allow-list.
+
+17
+00:00:54.912 --> 00:00:58.466
 Its sign-in asks for Application
 dot ReadWrite dot All,
 
-16
-00:00:53.153 --> 00:00:55.600
+18
+00:00:58.466 --> 00:01:00.913
 which can change any app in the tenant.
 
-17
-00:00:55.600 --> 00:01:01.390
+19
+00:01:00.913 --> 00:01:06.700
 And each bulk I D is a new random GUID,
 so a batch can't be traced to its inputs.

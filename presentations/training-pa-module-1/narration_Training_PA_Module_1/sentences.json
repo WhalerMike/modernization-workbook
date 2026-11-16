@@ -459,53 +459,6 @@
    "An exception with no owner wouldn't count."
   ]
  ],
- "11": [
-  [
-   0.05,
-   2.312,
-   "Step five shows the reader refusing."
-  ],
-  [
-   2.362,
-   7.175,
-   "You build a reader for the inventory task in G C C, on the fake, and ask it for the Conditional Access policies."
-  ],
-  [
-   9.537,
-   6.688,
-   "That call isn't declared for the inventory task, so it throws, and tells you to add it to the call list with its permission."
-  ],
-  [
-   16.225,
-   4.638,
-   "Then you ask for a cloud called G C C High, with capital letters."
-  ],
-  [
-   20.863,
-   10.088,
-   "The names are case-sensitive on purpose, so that's an unknown cloud, and it throws too: use global, G C C, G C C High or D O D."
-  ],
-  [
-   30.95,
-   1.512,
-   "There's no default cloud."
-  ],
-  [
-   32.462,
-   5.2,
-   "Step six runs the whole test suite, three hundred thirty tests, and all pass."
-  ],
-  [
-   37.663,
-   4.562,
-   "Then delete the output folder, because it names the fixture's privileged holders."
-  ],
-  [
-   42.225,
-   4.588,
-   "Pester prints its summary on several lines; the slide shows it on one."
-  ]
- ],
  "12": [
   [
    0.05,
@@ -662,6 +615,48 @@
    39.25,
    8.262,
    "In Module 2 you check each emergency account against Microsoft Learn's standard, and build the alert that watches them between drills."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.312,
+   "Step five shows the reader refusing."
+  ],
+  [
+   2.362,
+   7.175,
+   "You build a reader for the inventory task in G C C, on the fake, and ask it for the Conditional Access policies."
+  ],
+  [
+   9.537,
+   6.688,
+   "That call isn't declared for the inventory task, so it throws, and tells you to add it to the call list with its permission."
+  ],
+  [
+   16.225,
+   7.062,
+   "Then you ask for a cloud the reader doesn't know, u s gov. It throws too: use global or G C C."
+  ],
+  [
+   23.288,
+   1.512,
+   "There's no default cloud."
+  ],
+  [
+   24.8,
+   5.2,
+   "Step six runs the whole test suite, three hundred thirty tests, and all pass."
+  ],
+  [
+   30.0,
+   4.562,
+   "Then delete the output folder, because it names the fixture's privileged holders."
+  ],
+  [
+   34.562,
+   4.588,
+   "Pester prints its summary on several lines; the slide shows it on one."
   ]
  ]
 }

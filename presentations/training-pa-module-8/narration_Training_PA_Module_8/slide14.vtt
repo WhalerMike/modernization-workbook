@@ -48,25 +48,25 @@ then the whole suite,
 three hundred thirty.
 
 11
-00:00:30.899 --> 00:00:35.875
+00:00:30.899 --> 00:00:36.012
 In the POSIX shell, pytest in the drift
-pipeline: a hundred forty-two pass.
+pipeline: a hundred thirty-nine pass.
 
 12
-00:00:35.875 --> 00:00:40.400
+00:00:36.012 --> 00:00:40.538
 The path's verification log notes that
 this suite needs the whole repository,
 
 13
-00:00:40.400 --> 00:00:42.450
+00:00:40.538 --> 00:00:42.588
 not just the drift pipeline folder.
 
 14
-00:00:42.450 --> 00:00:45.000
+00:00:42.588 --> 00:00:45.137
 Then delete the output
 folder in both places,
 
 15
-00:00:45.000 --> 00:00:48.020
+00:00:45.137 --> 00:00:48.170
 because they hold the
 fixture's privileged holders.

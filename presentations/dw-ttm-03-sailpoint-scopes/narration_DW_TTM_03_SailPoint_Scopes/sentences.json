@@ -218,33 +218,6 @@
    "And creating a workflow needs the workflow manage scope, and on a November ninth re-read, both workflow calls name the org admin user level."
   ]
  ],
- "8": [
-  [
-   0.05,
-   1.413,
-   "And the Graph facts."
-  ],
-  [
-   1.462,
-   12.75,
-   "User dot Read dot All is the least-privileged application permission both to list users and to read one, and the audit needs AuditLog dot Read dot All; both reads are available in the U S Government clouds."
-  ],
-  [
-   14.213,
-   8.775,
-   "One wrinkle: application permissions aren't supported on the manager endpoint, and Learn documents expanding the manager on the users list instead."
-  ],
-  [
-   22.988,
-   8.85,
-   "Microsoft 365 G C C uses the worldwide Graph host; G C C High and the Defense Department cloud have their own."
-  ],
-  [
-   31.837,
-   3.763,
-   "SailPoint's Identity Security Cloud is fed-ramp Moderate."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -519,6 +492,33 @@
    32.0,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.413,
+   "And the Graph facts."
+  ],
+  [
+   1.462,
+   9.113,
+   "User dot Read dot All is the least-privileged application permission both to list users and to read one, and the audit needs AuditLog dot Read dot All."
+  ],
+  [
+   10.575,
+   8.775,
+   "One wrinkle: application permissions aren't supported on the manager endpoint, and Learn documents expanding the manager on the users list instead."
+  ],
+  [
+   19.35,
+   5.0,
+   "Microsoft 365 G C C uses the worldwide Graph host."
+  ],
+  [
+   24.35,
+   3.763,
+   "SailPoint's Identity Security Cloud is fed-ramp Moderate."
   ]
  ]
 }

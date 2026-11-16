@@ -7,18 +7,18 @@
 | Introduction | Title; why the server estate needs its own evidence, and the workbook's server standard; learning objectives and prerequisites |
 | Concepts | Resource Manager versus Graph; Resource Graph's four traps, paging and throttling; machines, extensions and SQL Server; policy enforcement and product lifecycle; the five checks |
 | Lab | Try it: Lab 1 steps 3 and 7: `lifecycle` on the Arc fixture, trimmed, and a Resource Graph query with no scope; Lab 2 in a test subscription with Reader only (not run by the authors) |
-| Where agencies are | The starting state, GCC on commercial Azure and the interim paths; what differs in Azure Government for GCC High and DoD |
+| Where agencies are | The starting state, GCC on commercial Azure and the interim paths |
 | Check and summary | The federal requirement and evidence; two knowledge-check questions with answers; the summary |
 
 | File | Use |
 |---|---|
-| `Training_MS_Automation_Module_4.pptx` | The deck: 15 narrated slides (the title and 14 content slides in Why, What, Who and How order), then a backup section with the sources |
+| `Training_MS_Automation_Module_4.pptx` | The deck: 14 narrated slides (the title and 13 content slides in Why, What, Who and How order), then a backup section with the sources |
 | `Training_MS_Automation_Module_4_Narrated.vtt` | The video's caption track. Held out of git, with the MP4, until both are on a Release: adding it here lists the video on the Watch page (`scripts/generate_video_manifest.py`) |
-| `Training_MS_Automation_Module_4_Narration_Script.md` | The spoken narration, slide by slide (about 2,350 words) |
+| `Training_MS_Automation_Module_4_Narration_Script.md` | The spoken narration, slide by slide (about 2,200 words) |
 | `narration_Training_MS_Automation_Module_4/` | `durations.json` and `sentences.json` (the MP3s are on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition, and the module page says so once the video is on the videos Release. The narration runs about 16 minutes.
+The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition, and the module page says so once the video is on the videos Release. The narration runs about 14 minutes.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-ms-automation-module-4/build.js presentations/training-ms-automation-module-4/Training_MS_Automation_Module_4.pptx`. Then `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, neutrality, and overflow warnings, including the code panel's width and height.
 

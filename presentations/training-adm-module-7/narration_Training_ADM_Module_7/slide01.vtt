@@ -30,34 +30,34 @@ Chapter 05 serves Gates 7
 and 8, after the Gate 5 work.
 
 7
-00:00:25.862 --> 00:00:30.563
+00:00:25.862 --> 00:00:29.855
 You'll see what Learn's Logic App
-definition costs a GCC High leaver, and run
+definition costs a leaver, and run the
 
 8
-00:00:30.563 --> 00:00:35.726
-the definition that fixes it, through
+00:00:29.855 --> 00:00:34.338
+definition that fixes it, through
 transient failures and repeat deliveries.
 
 9
-00:00:35.726 --> 00:00:39.138
+00:00:34.338 --> 00:00:37.750
 You'll build the deployment
 pieces from a reviewed registry,
 
 10
-00:00:39.138 --> 00:00:42.550
+00:00:37.750 --> 00:00:41.162
 and check that the leaver blocks
 before the custom task runs.
 
 11
-00:00:42.550 --> 00:00:43.750
+00:00:41.162 --> 00:00:42.363
 Nothing signs in.
 
 12
-00:00:43.750 --> 00:00:47.622
+00:00:42.363 --> 00:00:46.234
 The code is illustrative: tested
 against fixtures and fakes,
 
 13
-00:00:47.622 --> 00:00:49.780
+00:00:46.234 --> 00:00:48.380
 not against a production tenant.

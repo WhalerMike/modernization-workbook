@@ -33,20 +33,20 @@ met, evidence unbroken met,
 sole source not decided by this code.
 
 8
-00:00:25.799 --> 00:00:31.560
+00:00:25.799 --> 00:00:31.513
 Step seven runs the tests, including the
 chapter's four drift tests and six package
 
 9
-00:00:31.560 --> 00:00:35.117
+00:00:31.513 --> 00:00:35.209
 tests: fifty-seven pass, then
-a hundred and forty-two,
+a hundred and thirty-nine,
 
 10
-00:00:35.117 --> 00:00:37.150
+00:00:35.209 --> 00:00:37.225
 with no tenant and no network.
 
 11
-00:00:37.150 --> 00:00:41.280
+00:00:37.225 --> 00:00:41.350
 Delete the output folder afterwards;
 it holds fictional names.

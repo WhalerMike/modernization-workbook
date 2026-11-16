@@ -155,48 +155,6 @@
    "Let's look at those requirements."
   ]
  ],
- "4": [
-  [
-   0.05,
-   3.625,
-   "FISMA is a staffing requirement as much as a course requirement."
-  ],
-  [
-   3.675,
-   8.113,
-   "The agency head must have enough trained people to comply, and the C I O trains and oversees those with significant security duties."
-  ],
-  [
-   11.787,
-   11.713,
-   "OPM's rule names five audiences, from every user to IT operations staff, and agencies must code their cyber positions to the NICE Framework, nist's vocabulary of work roles."
-  ],
-  [
-   23.5,
-   2.163,
-   "But those codes haven't been reliable."
-  ],
-  [
-   25.663,
-   9.925,
-   "GAO found most agencies had miscoded a share of their IT management positions, so the program treats codes as one roster input, not settled fact."
-  ],
-  [
-   35.587,
-   2.875,
-   "Just as important is what the rules don't require."
-  ],
-  [
-   38.462,
-   7.562,
-   "There's no civilian certification mandate, and the Defense Department's certification program doesn't apply to civilian agencies."
-  ],
-  [
-   46.025,
-   2.475,
-   "Now, what the program actually teaches."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -685,6 +643,48 @@
    56.35,
    0.762,
    "Thank you."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.625,
+   "FISMA is a staffing requirement as much as a course requirement."
+  ],
+  [
+   3.675,
+   8.113,
+   "The agency head must have enough trained people to comply, and the C I O trains and oversees those with significant security duties."
+  ],
+  [
+   11.787,
+   11.713,
+   "OPM's rule names five audiences, from every user to IT operations staff, and agencies must code their cyber positions to the NICE Framework, nist's vocabulary of work roles."
+  ],
+  [
+   23.5,
+   2.163,
+   "But those codes haven't been reliable."
+  ],
+  [
+   25.663,
+   9.925,
+   "GAO found most agencies had miscoded a share of their IT management positions, so the program treats codes as one roster input, not settled fact."
+  ],
+  [
+   35.587,
+   2.875,
+   "Just as important is what the rules don't require."
+  ],
+  [
+   38.462,
+   5.85,
+   "There's no civilian certification mandate, and no annual training number beyond the awareness floor."
+  ],
+  [
+   44.312,
+   2.475,
+   "Now, what the program actually teaches."
   ]
  ]
 }

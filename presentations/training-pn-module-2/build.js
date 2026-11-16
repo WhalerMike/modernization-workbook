@@ -72,7 +72,7 @@ endModule(SI);
   tag(s, "What");
   const b = table(s, "Steps", 1.45, [2.4, 9.75], ["Step", "What the guide asks"], [
     ["Grant the roles", "Reader on each subscription in scope; Service Health Security Reader for security advisories' sensitive fields"],
-    ["Sign in", "In the right cloud: az cloud set --name AzureCloud (AzureUSGovernment for Azure Government), with the resource-graph extension"],
+    ["Sign in", "In the right cloud: az cloud set --name AzureCloud, commercial Azure, with the resource-graph extension"],
     ["Collect", "Invoke-PnCollect.ps1 -Provider azure: the kit's events query and Learn's impacted-resources query"],
     ["Alert at scale", "Plan the built-in policy at the management group, with a remediation task for existing subscriptions"],
   ], { fontSize: 12.5, limit: 4.4 });
@@ -80,7 +80,7 @@ endModule(SI);
     "every subscription's events are listed, and each security advisory has its summary. An empty summary means the reader lacks Service Health Security Reader.");
   sources(s, "Sources: Module 2, Unit 1; the guide, Step 1 and Validate (G1); Subscription versus tenant level events; Security advisories elevated access.");
   notes(s,
-`Unit 1 is the guide's Step 1, in four parts. First, grant the reader its roles: Reader on each subscription in scope is enough to see its Service Health events. But a security advisory's sensitive fields, and its impacted resources, need Service Health Security Reader. Reader and Monitoring Reader can't see them. Second, sign in in the right cloud, with the Resource Graph extension. A GCC agency's subscriptions are commercial Azure, the Azure Cloud setting; Azure Government uses its own. Third, collect, with the kit's events query and Learn's impacted-resources query. And fourth, alert at scale: plan the built-in policy at the management group, with a remediation task. The gate passes when every subscription's events are listed and each security advisory has its summary. An empty summary is the sign that the reader lacks the elevated role.`,
+`Unit 1 is the guide's Step 1, in four parts. First, grant the reader its roles: Reader on each subscription in scope is enough to see its Service Health events. But a security advisory's sensitive fields, and its impacted resources, need Service Health Security Reader. Reader and Monitoring Reader can't see them. Second, sign in in the right cloud, with the Resource Graph extension. A GCC agency's subscriptions are commercial Azure, the Azure Cloud setting. Third, collect, with the kit's events query and Learn's impacted-resources query. And fourth, alert at scale: plan the built-in policy at the management group, with a remediation task. The gate passes when every subscription's events are listed and each security advisory has its summary. An empty summary is the sign that the reader lacks the elevated role.`,
   `${M} — Unit 1: the guide — Step 1, "Validate (G1 Azure Service Health)."`);
 }
 
@@ -115,10 +115,10 @@ endModule(SI);
     ["Anything else (Billing)", "left out", "Counted"],
   ], { fontSize: 12.5, limit: 4.9 });
   callout(s, "Host", b + 0.25, 1.0, "FaCloud", HEX.navy, "Its own host: ",
-    "the source link is the event on the cloud's Resource Manager host, management.azure.com, or management.usgovcloudapi.net for Azure Government. An unknown cloud throws.");
+    "the source link is the event on the Resource Manager host, management.azure.com. An unknown cloud name throws; there is no default.");
   sources(s, "Sources: Module 2, Unit 2; workbook Chapter 01 (The Azure collector); Resource Graph samples for Service Health.");
   notes(s,
-`The Azure collector makes two declared calls: the events query and the impacted-resources query. Each is an Azure Resource Graph query in live mode, and a file in fixture mode. Then it maps each event type to a kind. Service issues are incidents. Planned maintenance is maintenance. A health advisory whose event subtype is Retirement is a retirement, and it's action required by the kit's rule, due at the advisory's end time, which Learn says is its mitigation time. Any other health advisory is an advisory. A security advisory is action required by the kit's rule, with no date, for the ISSO to review. And anything else, such as billing, is left out and counted. Resources come from the impacted-resources rows with the same tracking I D. The source link is the event on the cloud's own Resource Manager host. An unknown cloud name throws; there is no default.`,
+`The Azure collector makes two declared calls: the events query and the impacted-resources query. Each is an Azure Resource Graph query in live mode, and a file in fixture mode. Then it maps each event type to a kind. Service issues are incidents. Planned maintenance is maintenance. A health advisory whose event subtype is Retirement is a retirement, and it's action required by the kit's rule, due at the advisory's end time, which Learn says is its mitigation time. Any other health advisory is an advisory. A security advisory is action required by the kit's rule, with no date, for the ISSO to review. And anything else, such as billing, is left out and counted. Resources come from the impacted-resources rows with the same tracking I D. The source link is the event on the Resource Manager host, management dot azure dot com. An unknown cloud name throws; there is no default.`,
   `${M} — Unit 2: workbook Chapter 01 — "The Azure collector."`);
 }
 
@@ -241,24 +241,24 @@ endModule(SC);
 }
 endModule(SL);
 
-// ================================================================== 12 GCC and Azure Government
+// ================================================================== 12 GCC is commercial Azure
 {
-  const s = content(SS, "GCC is commercial Azure; Azure Government differs");
+  const s = content(SS, "GCC is commercial Azure: name the cloud");
   tag(s, "Who");
   const l = panel(s, "Gcc", 0.6, 1.45, 6.0, null, HEX.teal, HEX.tealTint, "GCC (MODERATE)", "The workbook's baseline", [
     "The settings name the cloud: AzureCloud",
     "Resource Manager management.azure.com",
     "No default: an unknown cloud name throws",
   ], 13);
-  const r = panel(s, "Gov", 6.85, 1.45, 5.9, null, HEX.navy, HEX.navyTint, "AZURE GOVERNMENT (SIDE NOTE)", "GCC High and DoD", [
-    "az cloud set --name AzureUSGovernment; management.usgovcloudapi.net",
-    "Learn's samples link the Azure Government portal; the table's availability there is not yet specified",
+  const r = panel(s, "Gov", 6.85, 1.45, 5.9, null, HEX.navy, HEX.navyTint, "LEARN'S SAMPLES", "Run in commercial Azure", [
+    "az cloud set --name AzureCloud",
+    "Learn's ServiceHealthResources samples run there",
   ], 13);
   callout(s, "Wrong", Math.max(l, r) + 0.3, 1.0, "FaTriangleExclamation", HEX.red, "The wrong cloud looks like a quiet week: ",
-    "Azure Government subscriptions read from the commercial cloud return nothing. The live invoker refuses an Azure CLI set to another cloud.");
-  sources(s, "Sources: Module 2, Unit 1; the guide, Step 1 (Government-cloud availability); workbook Chapter 01 (Dangers); Connect to Azure Government with Azure CLI.");
+    "subscriptions read from another cloud return nothing. The live invoker refuses an Azure CLI set to another cloud.");
+  sources(s, "Sources: Module 2, Unit 1; the guide, Step 1 (Government-cloud availability); workbook Chapter 01 (Dangers); Azure CLI endpoints.");
   notes(s,
-`Which cloud? A GCC Moderate estate's subscriptions are commercial Azure, so the settings name the Azure Cloud, and the source links are on management dot azure dot com. There's no default: an unknown cloud name throws. As a side note for GCC High and DoD estates, Azure Government uses its own cloud setting and its own Resource Manager host, management dot us gov cloud api dot net. Every Service Health sample on Learn links the Azure Government portal as well as the global one, but an explicit availability statement for the table in Azure Government is not yet specified. The danger is a reader in the wrong cloud. Azure Government subscriptions read from the commercial cloud return nothing, and the gate would pass on an empty list. So the live invoker refuses an Azure command line set to another cloud.`,
+`Which cloud? A GCC Moderate estate's subscriptions are commercial Azure, so the settings name the Azure Cloud, and the source links are on management dot azure dot com. There's no default: an unknown cloud name throws. Learn's Service Health samples for Resource Graph run in commercial Azure, with the cloud set to Azure Cloud. The danger is a reader in the wrong cloud. Subscriptions read from another cloud return nothing, and the gate would pass on an empty list. So the settings name the cloud, and the live invoker refuses an Azure command line set to another cloud.`,
   `${M} — Unit 1: the guide — Step 1, "Government-cloud availability"; workbook Chapter 01 — "Dangers."`);
 }
 
@@ -319,7 +319,7 @@ backup();
 sourceSlide("Sources: Module 2 deck", [
   "Module page: docs/training/provider-notices/02-azure-service-health-and-alerts.md (Provider Notices learning path, Module 2): Introduction and its requirement table, objectives, prerequisites, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary.",
   "What the module sends the learner to: Provider Notices: An Implementation Guide, Step 1 (with Government-cloud availability, Interim path and Validate (G1)); workbook Chapter 01, \"What Microsoft gives you,\" \"What it leaves to you,\" \"The Azure collector,\" \"The alert policy,\" \"Dangers,\" \"Federal requirements and evidence,\" Lab 2.",
-  "Microsoft Learn pages they cite: Azure Resource Graph sample queries for Azure Service Health; impacted-resources samples; Subscription versus tenant level events; access to sensitive information in security advisories and elevated access; Deploy Service Health alerts at scale using Azure Policy; Remediate non-compliant resources; Connect to Azure Government with Azure CLI; Azure Service Health FAQ. NIST SP 800-53 Rev. 5 (OSCAL 5.2.0); FedRAMP KSIs.",
+  "Microsoft Learn pages they cite: Azure Resource Graph sample queries for Azure Service Health; impacted-resources samples; Subscription versus tenant level events; access to sensitive information in security advisories and elevated access; Deploy Service Health alerts at scale using Azure Policy; Remediate non-compliant resources; Azure CLI endpoints; Azure Service Health FAQ. NIST SP 800-53 Rev. 5 (OSCAL 5.2.0); FedRAMP KSIs.",
   "Kit: examples/provider-notices (Invoke-PnCollect.ps1; powershell/ProviderNotices; deploy/New-PnAlertPolicy.ps1; tests/fixtures; deploy/tests/fixtures). Lab output: run November 12, 2026 with PowerShell 7.6 and Pester 5.9 in a scratch copy, the same output the page shows; wrapped and trimmed where the slides say so. Lab 2 not run by the authors. Illustrative: tested against fixtures, not run against a live tenant.",
 ]);
 

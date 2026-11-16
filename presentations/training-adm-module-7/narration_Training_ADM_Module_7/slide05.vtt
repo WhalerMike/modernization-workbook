@@ -36,48 +36,53 @@ identity and no secret,
 and the kit keeps that.
 
 8
-00:00:24.238 --> 00:00:28.451
-But it hard-codes the worldwide
-Graph host, and calls back on beta.
+00:00:24.238 --> 00:00:29.408
+But it hard-codes the worldwide Graph host,
+which is right for GCC but fixed in the
 
 9
-00:00:28.451 --> 00:00:30.919
-It uses the callback path as it arrives,
+00:00:29.408 --> 00:00:34.500
+definition, and it calls back on beta,
+which Learn doesn't support in production.
 
 10
-00:00:30.919 --> 00:00:35.625
+00:00:34.500 --> 00:00:36.969
+It uses the callback path as it arrives,
+
+11
+00:00:36.969 --> 00:00:41.675
 so any path appended to the Graph host
 gets a POST with the identity's token.
 
-11
-00:00:35.625 --> 00:00:40.050
+12
+00:00:41.675 --> 00:00:46.100
 It always reports completed, so a
 failed revocation reads as done.
 
-12
-00:00:40.050 --> 00:00:42.539
+13
+00:00:46.100 --> 00:00:48.589
 If work you add before the callback fails,
 
-13
-00:00:42.539 --> 00:00:46.125
+14
+00:00:48.589 --> 00:00:52.175
 no callback is sent, and the task
 waits out the whole timeout.
 
-14
-00:00:46.125 --> 00:00:47.863
+15
+00:00:52.175 --> 00:00:53.913
 It has no idempotency.
 
-15
-00:00:47.863 --> 00:00:51.699
+16
+00:00:53.913 --> 00:00:57.750
 And it carries the subject's
 name and email into run history.
 
-16
-00:00:51.699 --> 00:00:54.694
+17
+00:00:57.750 --> 00:01:00.744
 The verdict: the right
 shape and the right trigger,
 
-17
-00:00:54.694 --> 00:00:58.250
+18
+00:01:00.744 --> 00:01:04.320
 but not safe to run as the
 leaver's revocation as published.

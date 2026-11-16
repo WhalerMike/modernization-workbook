@@ -10,66 +10,77 @@ Lab 1 runs in the dynamic-rules folder
 of the examples, in PowerShell 7.
 
 3
-00:00:05.850 --> 00:00:10.683
-Step one loads the harness, which
-extracts each of Microsoft Learn's sample
+00:00:05.850 --> 00:00:10.738
+Step one lints the program's own rule
+pattern table, this workbook's design.
 
 4
-00:00:10.683 --> 00:00:15.438
-scripts from its pinned page and runs
-it, unmodified, against a fake tenant.
+00:00:10.738 --> 00:00:12.026
+Two rows come back.
 
 5
-00:00:15.438 --> 00:00:17.150
-The tenant has two groups.
+00:00:12.026 --> 00:00:15.548
+The Legal employer pattern
+is a Finding, D R oh five:
 
 6
-00:00:17.150 --> 00:00:19.563
-FIN-LED all members is on.
+00:00:15.548 --> 00:00:19.587
+it reads a display-name attribute
+instead of a coded slot.
 
 7
-00:00:19.563 --> 00:00:23.250
-Held for review was paused
-before the incident, on purpose.
+00:00:19.587 --> 00:00:21.725
+The row exists to show that case.
 
 8
-00:00:23.250 --> 00:00:25.071
-Run Learn's pause all sample,
+00:00:21.725 --> 00:00:24.838
+The Direct reports pattern
+is Info, D R oh three:
 
 9
-00:00:25.071 --> 00:00:28.713
-then its resume noncritical
-sample, and read the states.
+00:00:24.838 --> 00:00:30.492
+Microsoft Learn's page on dynamic membership
+rules says that rule can't be combined
 
 10
-00:00:28.713 --> 00:00:29.887
-Both groups are on.
+00:00:30.492 --> 00:00:33.032
+with any other, so it carries no guards,
 
 11
-00:00:29.887 --> 00:00:33.987
-Held for review was paused on
-purpose, and the resume turned it on.
+00:00:33.032 --> 00:00:36.063
+and the group must not
+grant access on its own.
 
 12
-00:00:33.987 --> 00:00:38.618
-Then run the pause again, with G C C
-High as the answer to the cloud prompt,
+00:00:36.063 --> 00:00:40.319
+Step two evaluates a rule
+against the fictional population:
 
 13
-00:00:38.618 --> 00:00:40.774
-and read the first call's address.
+00:00:40.319 --> 00:00:43.724
+the two guards, and the
+FIN-LED organization code.
 
 14
-00:00:40.774 --> 00:00:45.000
-It starts with graph dot microsoft
-dot com, the worldwide host.
+00:00:43.724 --> 00:00:49.900
+Five members match: u oh one, oh
+two, oh six, oh eight and oh nine.
 
 15
-00:00:45.000 --> 00:00:49.412
-In a G C C High tenant, that run
-would sign in to the wrong cloud.
+00:00:49.900 --> 00:00:53.151
+The guards keep out u oh
+four, who is disabled,
 
 16
-00:00:49.412 --> 00:00:53.880
-The slide trims the setup commands;
-the module page has them in full.
+00:00:53.151 --> 00:00:55.950
+and u oh five, a guest with a copied code.
+
+17
+00:00:55.950 --> 00:01:00.636
+Step three runs the pull request
+check against HEAD: six rules,
+
+18
+00:01:00.636 --> 00:01:05.210
+no findings, no warnings, no
+changed files, and exit code zero.

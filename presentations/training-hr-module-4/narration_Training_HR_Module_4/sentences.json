@@ -526,53 +526,6 @@
    "The authors haven't run Lab 2."
   ]
  ],
- "12": [
-  [
-   0.05,
-   2.875,
-   "Two things differ by where you are and what you grant."
-  ],
-  [
-   2.925,
-   1.875,
-   "First, government clouds."
-  ],
-  [
-   4.8,
-   9.662,
-   "If your agency is in G C C High, note the gate's availability gap: administrative units with dynamic membership rules aren't available in Azure Government."
-  ],
-  [
-   14.463,
-   3.6,
-   "The guide's Step 4 gives the gap and its interim path."
-  ],
-  [
-   18.062,
-   3.15,
-   "Second, privileged access, wherever you are."
-  ],
-  [
-   21.212,
-   8.037,
-   "A package that grants tier one administrator eligibility to everyone whose organization code matches is the A A oh nine finding."
-  ],
-  [
-   29.25,
-   6.188,
-   "H R attributes should decide who may request eligibility, and the role is activated through pim."
-  ],
-  [
-   35.438,
-   2.562,
-   "That's what the program's request policy does."
-  ],
-  [
-   38.0,
-   10.688,
-   "sis-uh's scuba policy seven point five keeps highly privileged roles only in a privileged access management system, and under B O D twenty-five oh-one it's required."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -707,6 +660,33 @@
    26.325,
    7.375,
    "You'll check the certificate-based authentication trust store, and each certificate revocation list, against your cloud's limits."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.3,
+   "One thing differs by what you grant: privileged access."
+  ],
+  [
+   3.35,
+   8.037,
+   "A package that grants tier one administrator eligibility to everyone whose organization code matches is the A A oh nine finding."
+  ],
+  [
+   11.387,
+   6.188,
+   "H R attributes should decide who may request eligibility, and the role is activated through pim."
+  ],
+  [
+   17.575,
+   2.562,
+   "That's what the program's request policy does."
+  ],
+  [
+   20.137,
+   10.688,
+   "sis-uh's scuba policy seven point five keeps highly privileged roles only in a privileged access management system, and under B O D twenty-five oh-one it's required."
   ]
  ]
 }

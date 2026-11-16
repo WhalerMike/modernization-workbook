@@ -46,7 +46,7 @@ Step six reads the conversions: each one's target, its cutover gate, its paralle
 
 ## Slide 12 — Try it: a dry run, the apply, and a refusal
 
-Step seven dry-runs the plan with its approved hash. It would send four writes, in order. First, Disable A D Account for conversion one's legacy account. Disabled, not deleted. Then a post of an application's federated credential to Graph. Then a put of the user-assigned identity, id webfront, to Resource Manager, before a put of its credential. The identity always comes before its credential, one write at a time. Step eight applies the plan to the fake, and all four are sent, in the same order. Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed. Step nine runs every test: five hundred thirteen pass, none fail. Then delete the output folder.
+Step seven dry-runs the plan with its approved hash. It would send four writes, in order. First, Disable A D Account for conversion one's legacy account. Disabled, not deleted. Then a post of an application's federated credential to Graph. Then a put of the user-assigned identity, id webfront, to Resource Manager, before a put of its credential. The identity always comes before its credential, one write at a time. Step eight applies the plan to the fake, and all four are sent, in the same order. Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed. Step nine runs every test: five hundred eleven pass, none fail. Then delete the output folder.
 
 ## Slide 13 — Lab 2: a real exchange, and a real disable
 

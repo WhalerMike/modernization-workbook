@@ -50,7 +50,7 @@ Step nine assembles the period for the ISSO, from the twenty-eighth to the thirt
 
 ## Slide 13 — Try it: break it on purpose, then run the tests
 
-Step ten breaks it on purpose. Append one line to the packaged summary, and verify again. It exits one: the summary doesn't match its hash. Then try to package day one as if it came after day two, chained to day two's manifest. It exits one too: this run isn't later than the previous package. So an edited file and a swapped package are both refused, and that's what lets the ISSO trust the chain without trusting you. The step ends by linting the scheduled workflow, with no findings and no warnings. Step eleven runs the tests in both folders: five hundred thirteen Pester tests pass in PowerShell, and one hundred forty-two pytest tests pass in the drift pipeline. Then delete the output folder in both places.
+Step ten breaks it on purpose. Append one line to the packaged summary, and verify again. It exits one: the summary doesn't match its hash. Then try to package day one as if it came after day two, chained to day two's manifest. It exits one too: this run isn't later than the previous package. So an edited file and a swapped package are both refused, and that's what lets the ISSO trust the chain without trusting you. The step ends by linting the scheduled workflow, with no findings and no warnings. Step eleven runs the tests in both folders: five hundred eleven Pester tests pass in PowerShell, and one hundred thirty-nine pytest tests pass in the drift pipeline. Then delete the output folder in both places.
 
 ## Slide 14 — Lab 2: three changes in your own test tenant
 

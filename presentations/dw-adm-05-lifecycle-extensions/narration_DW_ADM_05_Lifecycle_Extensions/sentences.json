@@ -71,31 +71,31 @@
   ],
   [
    1.462,
-   15.15,
-   "The callback goes to Microsoft Graph, and the host depends on the tenant: a G C C tenant like this estate's keeps the worldwide endpoint, while G C C High and D O D each have their own, and a token for one cloud won't work in another."
+   11.325,
+   "The callback goes to Microsoft Graph, and the host depends on the tenant: a G C C tenant like this estate's keeps the worldwide endpoint, and a token for one cloud won't work in another."
   ],
   [
-   16.613,
+   12.787,
+   6.287,
+   "The resume call is in version one point oh, listed for the global service that G C C uses."
+  ],
+  [
+   19.075,
    1.988,
    "The Logic App's side matters too."
   ],
   [
-   18.6,
-   4.438,
-   "Learn documents the proof-of-possession policy only for commercial Azure."
+   21.062,
+   8.825,
+   "Learn documents the proof-of-possession policy for commercial Azure, the cloud a G C C estate uses, and the builder writes no other values."
   ],
   [
-   23.038,
-   4.812,
-   "For Azure Government it gives nothing, so the builder refuses rather than guess."
+   29.887,
+   4.525,
+   "And Microsoft Entra I D Governance is available in G C C."
   ],
   [
-   27.85,
-   6.938,
-   "Licensing and availability are covered in all the U S clouds, and the tenant limits are the same everywhere."
-  ],
-  [
-   34.788,
+   34.413,
    2.212,
    "Next, Microsoft's own sample."
   ]
@@ -145,21 +145,26 @@
   ],
   [
    11.675,
-   8.725,
-   "But the callback is hard-wired to the worldwide cloud and the beta endpoint, so in G C C High or D O D it simply never arrives."
+   4.35,
+   "But the callback is hard-wired to the worldwide host and the beta endpoint."
   ],
   [
-   20.4,
+   16.025,
+   8.912,
+   "The host happens to be right for G C C, but it's fixed in the definition instead of taken from the tenant's cloud, and beta isn't supported in production."
+  ],
+  [
+   24.938,
    6.662,
    "It trusts whatever path it's handed, which means a forged payload could aim that identity's token anywhere."
   ],
   [
-   27.062,
+   31.6,
    4.225,
    "And it always says the work completed, even when the revocation failed."
   ],
   [
-   31.288,
+   35.825,
    2.862,
    "Each of those has a fix, pinned by a test."
   ]
@@ -428,18 +433,18 @@
   ],
   [
    6.85,
-   9.762,
-   "The linter finds eight problems, and when you run it for a G C C High tenant, the callback heads to the worldwide cloud and the task fails at the end of the wait."
+   2.05,
+   "The linter finds eight problems."
   ],
   [
-   16.613,
-   6.062,
-   "Switch the cloud to worldwide and it completes, which is exactly why the problem is easy to miss."
+   8.9,
+   9.8,
+   "Run it for a G C C tenant and it completes, calling back on the beta endpoint and reporting completed, which is exactly why its problems are easy to miss."
   ],
   [
-   22.675,
-   10.287,
-   "Then the program's definition: a clean lint, and a G C C High run that survives two transient failures, does the work once, and calls back to the right cloud."
+   18.7,
+   13.488,
+   "Then the program's definition: a clean lint, a warning when the retries could outlast a shorter wait, and a G C C run that survives two transient failures, does the work once, and calls back on version one point oh."
   ]
  ],
  "15": [
@@ -465,21 +470,21 @@
   ],
   [
    18.087,
-   5.338,
-   "Then build the deployment files, and watch the builder refuse when you point it at Azure Government."
+   7.225,
+   "Then build the deployment files, and watch the builder refuse when you point it at a cloud Learn gives no policy values for."
   ],
   [
-   23.425,
+   25.312,
    4.1,
    "Break the leaver order in a fixture and the workflow check catches it."
   ],
   [
-   27.525,
-   2.5,
-   "Finally, fifty-five tests pass."
+   29.413,
+   2.2,
+   "Finally, the whole suite passes."
   ],
   [
-   30.025,
+   31.613,
    2.763,
    "Remember, though: fakes aren't a tenant."
   ]

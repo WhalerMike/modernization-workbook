@@ -21,25 +21,21 @@ with a certificate, grant that
 one permission, and run the task.
 
 5
-00:00:15.700 --> 00:00:19.819
+00:00:15.700 --> 00:00:19.794
 Then you watch the token check do
-its job: grant an extra permission
+its job: leave a permission out and
 
 6
-00:00:19.819 --> 00:00:23.938
-and you get a warning, leave one out
-and the run stops before any call.
+00:00:19.794 --> 00:00:23.962
+the run stops before any call, grant
+an extra one and you get a warning.
 
 7
-00:00:23.938 --> 00:00:27.013
-Finally, point it at the
-wrong cloud on purpose.
+00:00:23.962 --> 00:00:28.562
+Optionally, run the same export from
+PowerShell and compare the two folders.
 
 8
-00:00:27.013 --> 00:00:29.947
-Sign-in goes to the government authority,
-
-9
-00:00:29.947 --> 00:00:33.460
-which doesn't hold a GCC
-tenant, so it fails closed.
+00:00:28.562 --> 00:00:32.710
+Then back it all out, because the
+output holds the tenant's policies.

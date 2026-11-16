@@ -1,313 +1,4 @@
 {
- "3": [
-  [
-   0.05,
-   5.225,
-   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
-  ],
-  [
-   5.275,
-   4.838,
-   "You'll name the four dispositions a Kerberos account can have, and what each one needs."
-  ],
-  [
-   10.113,
-   7.75,
-   "You'll explain why a D M S A can't be used for a managed service account, or for an account with unconstrained delegation."
-  ],
-  [
-   17.863,
-   5.0,
-   "You'll read the plan, the island list and the reconciliation for a fictional domain."
-  ],
-  [
-   22.863,
-   5.25,
-   "And you'll show that the write path runs only a plan whose hash was approved, and never deletes."
-  ],
-  [
-   28.113,
-   17.425,
-   "Before you start, finish Module 1, because the lab reads Chapter 1's register, and Module 3, where the matrix sends Kerberos-only accounts to a G M S A or a D M S A. Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone."
-  ],
-  [
-   45.538,
-   0.925,
-   "No tenant."
-  ]
- ],
- "4": [
-  [
-   0.05,
-   1.825,
-   "Unit 1 is the guide's gate."
-  ],
-  [
-   1.875,
-   10.75,
-   "Its Step 5 is the program's guidance: build the target, give it two human owners, run old and new in parallel for thirty days, then disable the legacy account."
-  ],
-  [
-   12.625,
-   1.1,
-   "Never delete it."
-  ],
-  [
-   13.725,
-   3.938,
-   "Step 2 adds the prerequisites for a G M S A."
-  ],
-  [
-   17.663,
-   15.85,
-   "The forest needs one K D S root key, created once: Microsoft Learn calls it a one-time operation in the forest, and its page on creating the key says domain controllers wait up to ten hours after it's created before they allow a G M S A."
-  ],
-  [
-   33.513,
-   5.438,
-   "And a G M S A's name must be unique in the forest, not just the domain."
-  ],
-  [
-   38.95,
-   15.162,
-   "Step 3's seventh step covers the Active Directory side of credentials: Learn's guidance on securing group managed service accounts says Windows changes the password every thirty days by default, and the interval can be set only when the account is created."
-  ],
-  [
-   54.112,
-   6.138,
-   "The rollback for Step 5 is to re-enable the legacy account and revert the application's configuration."
-  ],
-  [
-   60.25,
-   14.3,
-   "A delegated account runs the same thirty days: Learn's overview of delegated managed service accounts recommends waiting four ticket lifetimes, and thirty days covers four seven-day lifetimes, so the program completes a migration only then."
-  ]
- ],
- "7": [
-  [
-   0.05,
-   3.225,
-   "Each account becomes exactly one action in the plan."
-  ],
-  [
-   3.275,
-   6.138,
-   "The G M S A path: create it, once the root key is ready and the retrievers are reviewed."
-  ],
-  [
-   9.412,
-   4.263,
-   "Wait while the server owner installs it and changes the service's identity."
-  ],
-  [
-   13.675,
-   5.75,
-   "Then a thirty-day parallel run, the program's guidance, and only then disable the old account."
-  ],
-  [
-   19.425,
-   5.925,
-   "The D M S A path: create it, if it passes every limit, and start the migration."
-  ],
-  [
-   25.35,
-   3.05,
-   "After the thirty-day parallel run, complete it."
-  ],
-  [
-   28.4,
-   13.088,
-   "Microsoft Learn's overview of delegated managed service accounts says completing disables the old account and moves its S P N's to the D M S A. Set retrievers fixes a list that differs from the reviewed one."
-  ],
-  [
-   41.487,
-   6.625,
-   "Anything else, like island, blocked or handed off, is recorded with its reason, and writes nothing."
-  ],
-  [
-   48.112,
-   7.725,
-   "The plan carries every input's hash, and the same inputs always give the same bytes, so a reviewer approves one hash."
-  ]
- ],
- "12": [
-  [
-   0.05,
-   2.712,
-   "Step eight is the write path's dry run."
-  ],
-  [
-   2.763,
-   7.013,
-   "You take the plan's hash, which in a real run a second person would review and pass to you, and give it to the action script."
-  ],
-  [
-   9.775,
-   4.812,
-   "It reports four would-send lines, one for each write, and sends nothing."
-  ],
-  [
-   14.588,
-   4.312,
-   "Step nine runs the same command with the apply switch, against the fake."
-  ],
-  [
-   18.9,
-   5.35,
-   "Four writes are sent, including the completed migration for svc h r sync."
-  ],
-  [
-   24.25,
-   3.737,
-   "Then you pass a hash of zeros, a hash nobody approved."
-  ],
-  [
-   27.988,
-   6.275,
-   "The script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed."
-  ],
-  [
-   34.263,
-   4.0,
-   "Pasted line by line, your shell carries on after the refusal."
-  ],
-  [
-   38.263,
-   5.025,
-   "Step ten runs every test: five hundred thirteen pass, none fail."
-  ],
-  [
-   43.288,
-   1.837,
-   "Then delete the output folder."
-  ]
- ],
- "13": [
-  [
-   0.05,
-   15.738,
-   "Lab 2 moves to a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, an existing K D S root key, and Chapter 1's Lab 2 run."
-  ],
-  [
-   15.787,
-   3.725,
-   "Make a traditional test account and a test managed service account."
-  ],
-  [
-   19.512,
-   4.425,
-   "Grant the read only the root key's two date attributes, nothing else."
-  ],
-  [
-   23.938,
-   5.287,
-   "Run the check, then apply the plan as a person with Domain Admins or equivalent rights."
-  ],
-  [
-   29.225,
-   5.537,
-   "Start the D M S A migration, and complete it after the thirty-day parallel run."
-  ],
-  [
-   34.763,
-   16.238,
-   "To back it out, step six runs the undo command from Microsoft Learn's page on setting up delegated managed service accounts, by hand, because the code never runs it, re-enables the test account, removes the test objects by hand, and deletes the output folders."
-  ],
-  [
-   51.0,
-   2.15,
-   "The authors haven't run Lab 2."
-  ],
-  [
-   53.15,
-   3.138,
-   "The workbook's Chapter 6 has the exact commands."
-  ]
- ],
- "14": [
-  [
-   0.05,
-   1.387,
-   "The federal requirement."
-  ],
-  [
-   1.438,
-   8.55,
-   "The Kerberos accounts are the on-premises part of Gate 5, and the guide's validate step names I A five, I A nine and A U two."
-  ],
-  [
-   9.988,
-   4.062,
-   "These are nist special publication eight hundred fifty-three controls."
-  ],
-  [
-   14.05,
-   3.638,
-   "The module's table maps each lab step to its evidence."
-  ],
-  [
-   17.688,
-   6.812,
-   "For authenticator management and change control, the plan, with the register's and each input's hash."
-  ],
-  [
-   24.5,
-   2.275,
-   "For account management, the findings."
-  ],
-  [
-   26.775,
-   7.912,
-   "For least privilege and access restrictions for change, the rights each task holds, and the reviewed list of password retrievers."
-  ],
-  [
-   34.688,
-   3.65,
-   "For the inventory, the island list and the reconciliation."
-  ],
-  [
-   38.337,
-   5.9,
-   "And for change control and disabling accounts, the results and manifest in the apply folder."
-  ],
-  [
-   44.237,
-   10.812,
-   "K S I's are fed-ramp twenty X indicators for cloud service providers; the agency lines its evidence up with them, and which file supports which indicator is the program's mapping."
-  ]
- ],
- "16": [
-  [
-   0.05,
-   0.825,
-   "To sum up."
-  ],
-  [
-   0.875,
-   12.838,
-   "You checked nine Kerberos accounts in a fictional domain, read a plan with four writes, an island list and a reconciliation, applied the plan to a fake by its hash, and saw a plan nobody approved refused."
-  ],
-  [
-   13.713,
-   14.338,
-   "The evidence an I S S O keeps for Gate 5 from this module is the plan with its approved hash, the findings, the island list, the reconciliation, and the apply folder's results and manifest, all dated, and the test result."
-  ],
-  [
-   28.05,
-   3.075,
-   "Before you ship, work through the chapter's checklist."
-  ],
-  [
-   31.125,
-   4.275,
-   "Next is Module 9: govern A I agent identities."
-  ],
-  [
-   35.4,
-   10.475,
-   "Agents follow every gate you've done so far, and add three things: an agent can act, a blueprint holds every agent's credentials, and creation has to be gated."
-  ]
- ],
  "1": [
   [
    0.05,
@@ -380,6 +71,43 @@
    54.875,
    5.65,
    "In this module you plan all three, and you see the write path refuse a plan nobody approved."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.225,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
+  ],
+  [
+   5.275,
+   4.838,
+   "You'll name the four dispositions a Kerberos account can have, and what each one needs."
+  ],
+  [
+   10.113,
+   7.75,
+   "You'll explain why a D M S A can't be used for a managed service account, or for an account with unconstrained delegation."
+  ],
+  [
+   17.863,
+   5.0,
+   "You'll read the plan, the island list and the reconciliation for a fictional domain."
+  ],
+  [
+   22.863,
+   5.25,
+   "And you'll show that the write path runs only a plan whose hash was approved, and never deletes."
+  ],
+  [
+   28.113,
+   17.425,
+   "Before you start, finish Module 1, because the lab reads Chapter 1's register, and Module 3, where the matrix sends Kerberos-only accounts to a G M S A or a D M S A. Lab 1 needs PowerShell 7.1 or later with Pester 5, and a clone."
+  ],
+  [
+   45.538,
+   0.925,
+   "No tenant."
   ]
  ],
  "5": [
@@ -489,6 +217,53 @@
    72.388,
    3.6,
    "Oh seven: an account not reconciled with the end state."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.225,
+   "Each account becomes exactly one action in the plan."
+  ],
+  [
+   3.275,
+   6.138,
+   "The G M S A path: create it, once the root key is ready and the retrievers are reviewed."
+  ],
+  [
+   9.412,
+   4.263,
+   "Wait while the server owner installs it and changes the service's identity."
+  ],
+  [
+   13.675,
+   5.75,
+   "Then a thirty-day parallel run, the program's guidance, and only then disable the old account."
+  ],
+  [
+   19.425,
+   5.925,
+   "The D M S A path: create it, if it passes every limit, and start the migration."
+  ],
+  [
+   25.35,
+   3.05,
+   "After the thirty-day parallel run, complete it."
+  ],
+  [
+   28.4,
+   13.088,
+   "Microsoft Learn's overview of delegated managed service accounts says completing disables the old account and moves its S P N's to the D M S A. Set retrievers fixes a list that differs from the reviewed one."
+  ],
+  [
+   41.487,
+   6.625,
+   "Anything else, like island, blocked or handed off, is recorded with its reason, and writes nothing."
+  ],
+  [
+   48.112,
+   7.725,
+   "The plan carries every input's hash, and the same inputs always give the same bytes, so a reviewer approves one hash."
   ]
  ],
  "8": [
@@ -719,6 +494,100 @@
    "svc webfront carries the authorizing official's acceptance from Chapter 3, so it becomes ready once it has an S P N owner."
   ]
  ],
+ "13": [
+  [
+   0.05,
+   15.738,
+   "Lab 2 moves to a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, an existing K D S root key, and Chapter 1's Lab 2 run."
+  ],
+  [
+   15.787,
+   3.725,
+   "Make a traditional test account and a test managed service account."
+  ],
+  [
+   19.512,
+   4.425,
+   "Grant the read only the root key's two date attributes, nothing else."
+  ],
+  [
+   23.938,
+   5.287,
+   "Run the check, then apply the plan as a person with Domain Admins or equivalent rights."
+  ],
+  [
+   29.225,
+   5.537,
+   "Start the D M S A migration, and complete it after the thirty-day parallel run."
+  ],
+  [
+   34.763,
+   16.238,
+   "To back it out, step six runs the undo command from Microsoft Learn's page on setting up delegated managed service accounts, by hand, because the code never runs it, re-enables the test account, removes the test objects by hand, and deletes the output folders."
+  ],
+  [
+   51.0,
+   2.15,
+   "The authors haven't run Lab 2."
+  ],
+  [
+   53.15,
+   3.138,
+   "The workbook's Chapter 6 has the exact commands."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.55,
+   "The Kerberos accounts are the on-premises part of Gate 5, and the guide's validate step names I A five, I A nine and A U two."
+  ],
+  [
+   9.988,
+   4.062,
+   "These are nist special publication eight hundred fifty-three controls."
+  ],
+  [
+   14.05,
+   3.638,
+   "The module's table maps each lab step to its evidence."
+  ],
+  [
+   17.688,
+   6.812,
+   "For authenticator management and change control, the plan, with the register's and each input's hash."
+  ],
+  [
+   24.5,
+   2.275,
+   "For account management, the findings."
+  ],
+  [
+   26.775,
+   7.912,
+   "For least privilege and access restrictions for change, the rights each task holds, and the reviewed list of password retrievers."
+  ],
+  [
+   34.688,
+   3.65,
+   "For the inventory, the island list and the reconciliation."
+  ],
+  [
+   38.337,
+   5.9,
+   "And for change control and disabling accounts, the results and manifest in the apply folder."
+  ],
+  [
+   44.237,
+   10.812,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers; the agency lines its evidence up with them, and which file supports which indicator is the program's mapping."
+  ]
+ ],
  "15": [
   [
    0.05,
@@ -774,6 +643,137 @@
    59.775,
    4.925,
    "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   12.838,
+   "You checked nine Kerberos accounts in a fictional domain, read a plan with four writes, an island list and a reconciliation, applied the plan to a fake by its hash, and saw a plan nobody approved refused."
+  ],
+  [
+   13.713,
+   14.338,
+   "The evidence an I S S O keeps for Gate 5 from this module is the plan with its approved hash, the findings, the island list, the reconciliation, and the apply folder's results and manifest, all dated, and the test result."
+  ],
+  [
+   28.05,
+   3.075,
+   "Before you ship, work through the chapter's checklist."
+  ],
+  [
+   31.125,
+   4.275,
+   "Next is Module 9: govern A I agent identities."
+  ],
+  [
+   35.4,
+   10.475,
+   "Agents follow every gate you've done so far, and add three things: an agent can act, a blueprint holds every agent's credentials, and creation has to be gated."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.825,
+   "Unit 1 is the guide's gate."
+  ],
+  [
+   1.875,
+   10.75,
+   "Its Step 5 is the program's guidance: build the target, give it two human owners, run old and new in parallel for thirty days, then disable the legacy account."
+  ],
+  [
+   12.625,
+   1.1,
+   "Never delete it."
+  ],
+  [
+   13.725,
+   3.938,
+   "Step 2 adds the prerequisites for a G M S A."
+  ],
+  [
+   17.663,
+   15.85,
+   "The forest needs one K D S root key, created once: Microsoft Learn calls it a one-time operation in the forest, and its page on creating the key says domain controllers wait up to ten hours after it's created before they allow a G M S A."
+  ],
+  [
+   33.513,
+   5.438,
+   "And a G M S A's name must be unique in the forest, not just the domain."
+  ],
+  [
+   38.95,
+   15.162,
+   "Step 3's seventh step covers the Active Directory side of credentials: Learn's guidance on securing group managed service accounts says Windows changes the password every thirty days by default, and the interval can be set only when the account is created."
+  ],
+  [
+   54.112,
+   6.138,
+   "The rollback for Step 5 is to re-enable the legacy account and revert the application's configuration."
+  ],
+  [
+   60.25,
+   14.3,
+   "A delegated account runs the same thirty days: Learn's overview of delegated managed service accounts recommends waiting four ticket lifetimes, and thirty days covers four seven-day lifetimes, so the program completes a migration only then."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.712,
+   "Step eight is the write path's dry run."
+  ],
+  [
+   2.763,
+   7.013,
+   "You take the plan's hash, which in a real run a second person would review and pass to you, and give it to the action script."
+  ],
+  [
+   9.775,
+   4.812,
+   "It reports four would-send lines, one for each write, and sends nothing."
+  ],
+  [
+   14.588,
+   4.312,
+   "Step nine runs the same command with the apply switch, against the fake."
+  ],
+  [
+   18.9,
+   5.35,
+   "Four writes are sent, including the completed migration for svc h r sync."
+  ],
+  [
+   24.25,
+   3.737,
+   "Then you pass a hash of zeros, a hash nobody approved."
+  ],
+  [
+   27.988,
+   6.275,
+   "The script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed."
+  ],
+  [
+   34.263,
+   4.0,
+   "Pasted line by line, your shell carries on after the refusal."
+  ],
+  [
+   38.263,
+   4.838,
+   "Step ten runs every test: five hundred eleven pass, none fail."
+  ],
+  [
+   43.1,
+   1.837,
+   "Then delete the output folder."
   ]
  ]
 }

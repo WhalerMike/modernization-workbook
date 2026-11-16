@@ -209,48 +209,6 @@
    "Each tool sees only its own platform."
   ]
  ],
- "6": [
-  [
-   0.05,
-   1.312,
-   "Where are agencies?"
-  ],
-  [
-   1.363,
-   5.062,
-   "Most run more than one platform, and each has its own posture tool on the same spine."
-  ],
-  [
-   6.425,
-   11.3,
-   "For Microsoft three sixty-five G C C and Azure, the workbook's baseline, it's the Zero Trust Assessment, with ScubaGear as the directive's tool for Microsoft three sixty-five."
-  ],
-  [
-   17.725,
-   6.575,
-   "On AWS, it's Security Hub, with its standard for nist eight hundred fifty-three, revision five."
-  ],
-  [
-   24.3,
-   8.688,
-   "In AWS GovCloud, Security Hub is available, with limits on product integrations, some controls, and cross-Region aggregation."
-  ],
-  [
-   32.987,
-   6.025,
-   "On Oracle Cloud Infrastructure, it's Cloud Guard, and on Google Cloud, Security Command Center."
-  ],
-  [
-   39.013,
-   8.613,
-   "The chapter on cloud-native posture in Security Operations and Telemetry compares those two, and how their findings enter the evidence contract."
-  ],
-  [
-   47.625,
-   9.125,
-   "The rule is the same everywhere: each finding is matched to the setting and the control, with one owner, in one row of the reconciliation table."
-  ]
- ],
  "7": [
   [
    0.05,
@@ -650,6 +608,48 @@
    48.2,
    0.762,
    "Thank you."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.312,
+   "Where are agencies?"
+  ],
+  [
+   1.363,
+   5.062,
+   "Most run more than one platform, and each has its own posture tool on the same spine."
+  ],
+  [
+   6.425,
+   11.3,
+   "For Microsoft three sixty-five G C C and Azure, the workbook's baseline, it's the Zero Trust Assessment, with ScubaGear as the directive's tool for Microsoft three sixty-five."
+  ],
+  [
+   17.725,
+   6.575,
+   "On AWS, it's Security Hub, with its standard for nist eight hundred fifty-three, revision five."
+  ],
+  [
+   24.3,
+   7.037,
+   "It runs in the AWS commercial Regions the program uses, so check each Region in scope before collecting from it."
+  ],
+  [
+   31.337,
+   6.025,
+   "On Oracle Cloud Infrastructure, it's Cloud Guard, and on Google Cloud, Security Command Center."
+  ],
+  [
+   37.362,
+   8.613,
+   "The chapter on cloud-native posture in Security Operations and Telemetry compares those two, and how their findings enter the evidence contract."
+  ],
+  [
+   45.975,
+   9.125,
+   "The rule is the same everywhere: each finding is matched to the setting and the control, with one owner, in one row of the reconciliation table."
   ]
  ]
 }

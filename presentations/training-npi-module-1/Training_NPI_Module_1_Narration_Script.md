@@ -42,7 +42,7 @@ Step three runs the inventory against the fictional estate. It reads thirty-five
 
 ## Slide 11 — Try it: the reader refuses, and the hand-off
 
-Step five shows the reader's rules at work. You build a reader for the inventory task, with the fixture invoker standing in for the network, and ask it for a call the task doesn't declare. It refuses before anything is sent, and tells you to add the call to the call list with its permission. Then you ask for the cloud G C C in capitals, and it refuses that too: the cloud names are global, gcc, gcchigh and dod, and it never guesses. Step six reads the hand-off to the Data Platform plan. Two accounts go by their SQL Server service principal names, svc sqlprod and the group managed account gmsa sql, and one, svc ldapbind, goes by its name. Step seven runs every test: five hundred thirteen pass, none fail. Then delete the output folder.
+Step five shows the reader's rules at work. You build a reader for the inventory task, with the fixture invoker standing in for the network, and ask it for a call the task doesn't declare. It refuses before anything is sent, and tells you to add the call to the call list with its permission. Then you ask for the cloud G C C in capitals, and it refuses that too: the cloud names are global and gcc, and it never guesses. Step six reads the hand-off to the Data Platform plan. Two accounts go by their SQL Server service principal names, svc sqlprod and the group managed account gmsa sql, and one, svc ldapbind, goes by its name. Step seven runs every test: five hundred eleven pass, none fail. Then delete the output folder.
 
 ## Slide 12 — Lab 2: inventory your own test tenant
 

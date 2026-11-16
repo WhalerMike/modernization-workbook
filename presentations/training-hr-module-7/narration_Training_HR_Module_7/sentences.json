@@ -506,58 +506,6 @@
    "Finally, the I S S O's own check, with no kit at all: sha256sum, run inside the package folder, reports every file OK."
   ]
  ],
- "12": [
-  [
-   0.05,
-   5.275,
-   "Step six assembles the period, from the first of October to the second of November."
-  ],
-  [
-   5.325,
-   7.312,
-   "Two packages, no chain breaks, no coverage gaps, twenty findings open at the end, and complete is false."
-  ],
-  [
-   12.637,
-   1.25,
-   "Exit code two."
-  ],
-  [
-   13.887,
-   2.513,
-   "Print the period summary and you see why."
-  ],
-  [
-   16.4,
-   2.175,
-   "It scores Gate 7's criteria."
-  ],
-  [
-   18.575,
-   5.5,
-   "The evidence criterion is met: kept outside the directory, with an unbroken chain."
-  ],
-  [
-   24.075,
-   7.463,
-   "But drift is still open, so the first criterion isn't met, and five metrics are out of bounds, so the second isn't either."
-  ],
-  [
-   31.538,
-   4.037,
-   "The fourth, the sole source, isn't decided by this code at all."
-  ],
-  [
-   35.575,
-   6.513,
-   "That's the point of this step: an unbroken chain proves the record is intact, not that the gate is passed."
-  ],
-  [
-   42.087,
-   7.1,
-   "Step seven runs both test suites, fifty-seven and a hundred forty-two tests, and deletes the out folder."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -719,6 +667,58 @@
    38.55,
    5.1,
    "Go back to the learning path, or check your agency's progress against the guide's checklist."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.275,
+   "Step six assembles the period, from the first of October to the second of November."
+  ],
+  [
+   5.325,
+   7.312,
+   "Two packages, no chain breaks, no coverage gaps, twenty findings open at the end, and complete is false."
+  ],
+  [
+   12.637,
+   1.25,
+   "Exit code two."
+  ],
+  [
+   13.887,
+   2.513,
+   "Print the period summary and you see why."
+  ],
+  [
+   16.4,
+   2.175,
+   "It scores Gate 7's criteria."
+  ],
+  [
+   18.575,
+   5.5,
+   "The evidence criterion is met: kept outside the directory, with an unbroken chain."
+  ],
+  [
+   24.075,
+   7.463,
+   "But drift is still open, so the first criterion isn't met, and five metrics are out of bounds, so the second isn't either."
+  ],
+  [
+   31.538,
+   4.037,
+   "The fourth, the sole source, isn't decided by this code at all."
+  ],
+  [
+   35.575,
+   6.513,
+   "That's the point of this step: an unbroken chain proves the record is intact, not that the gate is passed."
+  ],
+  [
+   42.087,
+   7.125,
+   "Step seven runs both test suites, fifty-seven and a hundred thirty-nine tests, and deletes the out folder."
   ]
  ]
 }

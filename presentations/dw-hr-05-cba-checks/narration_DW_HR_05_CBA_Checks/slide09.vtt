@@ -6,41 +6,41 @@ The verified facts, all
 read on November first.
 
 2
-00:00:03.375 --> 00:00:07.950
+00:00:03.375 --> 00:00:08.656
 The CRL limits are generally available:
-twenty and forty-five megabytes
+twenty megabytes for interactive sign-in,
 
 3
-00:00:07.950 --> 00:00:12.525
-for interactive sign-in, a ten-second
-download, and larger service limits.
+00:00:08.656 --> 00:00:11.762
+a ten-second download, and
+a larger service limit.
 
 4
-00:00:12.525 --> 00:00:16.262
+00:00:11.762 --> 00:00:15.499
 Entra checks CRLs up to
 ten CAs toward the root.
 
 5
-00:00:16.262 --> 00:00:20.918
+00:00:15.499 --> 00:00:20.156
 The trust store, the certificate method,
 the strengths and the Conditional Access
 
 6
-00:00:20.918 --> 00:00:25.437
+00:00:20.156 --> 00:00:24.675
 policies are all in Graph version one point
 oh, with the permissions you just saw.
 
 7
-00:00:25.437 --> 00:00:28.230
+00:00:24.675 --> 00:00:27.467
 The certificate method's
 bindings include the
 
 8
-00:00:28.230 --> 00:00:30.951
+00:00:27.467 --> 00:00:30.188
 low-affinity principal
 name and email fields.
 
 9
-00:00:30.951 --> 00:00:34.680
-And both features are available
-in Azure for US Government.
+00:00:30.188 --> 00:00:34.250
+And both features are part of the
+commercial service G C C uses.

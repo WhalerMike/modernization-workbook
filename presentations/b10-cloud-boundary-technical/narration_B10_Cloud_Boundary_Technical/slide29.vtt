@@ -38,15 +38,19 @@ what you run instead and what it misses,
 and where the remaining gap is recorded.
 
 9
-00:00:23.200 --> 00:00:28.057
+00:00:23.200 --> 00:00:28.069
 Also know whose package you're reading:
-GCC inherits from Azure Government,
+the GCC listing says it leverages Azure
 
 10
-00:00:28.057 --> 00:00:31.425
+00:00:28.069 --> 00:00:30.241
+Government as its infrastructure,
+
+11
+00:00:30.241 --> 00:00:33.462
 so your chain runs through
 two packages, plus the SKU.
 
-11
-00:00:31.425 --> 00:00:33.290
+12
+00:00:33.462 --> 00:00:35.330
 Next, keeping it current.

@@ -26,21 +26,11 @@ because one token request
 can only name one resource.
 
 6
-00:00:18.937 --> 00:00:23.174
-The code still calls the cloud "gcc"
-by name, even though it resolves
+00:00:18.937 --> 00:00:23.411
+And the code still calls the cloud "gcc"
+by name, even though it resolves to
 
 7
-00:00:23.174 --> 00:00:27.488
-to the worldwide endpoints, so the
-evidence says what was intended.
-
-8
-00:00:27.488 --> 00:00:32.447
-And watch for a second tenant: if a
-workload ever lands in an Azure Government
-
-9
-00:00:32.447 --> 00:00:37.080
-subscription, it has its own hosts, and
-the run has to be told, never guess.
+00:00:23.411 --> 00:00:28.390
+the worldwide endpoints, so the run's
+evidence says which cloud it was meant for.

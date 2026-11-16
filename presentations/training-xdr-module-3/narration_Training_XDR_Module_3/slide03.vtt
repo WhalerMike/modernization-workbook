@@ -6,54 +6,54 @@ Here's what you'll be able to
 do by the end of this module.
 
 2
-00:00:02.963 --> 00:00:07.029
+00:00:02.963 --> 00:00:06.419
 Say which exposure features
 are available in G C C,
 
 3
-00:00:07.029 --> 00:00:12.087
-G C C High and D O D, and record the
-one that isn't as not applicable.
+00:00:06.419 --> 00:00:09.624
+and record the one that
+isn't as not applicable.
 
 4
-00:00:12.087 --> 00:00:15.722
+00:00:09.624 --> 00:00:13.259
 Prioritize vulnerabilities
 with the guide's interim path,
 
 5
-00:00:15.722 --> 00:00:18.688
+00:00:13.259 --> 00:00:16.225
 and give every device
 group a remediation owner.
 
 6
-00:00:18.688 --> 00:00:21.331
+00:00:16.225 --> 00:00:18.869
 Triage an incident to the severity table,
 
 7
-00:00:21.331 --> 00:00:23.975
+00:00:18.869 --> 00:00:21.512
 pick its containment
 rung, and hand it off.
 
 8
-00:00:23.975 --> 00:00:28.938
+00:00:21.512 --> 00:00:26.475
 And export the open incidents, and one
 incident with its alerts, as evidence.
 
 9
-00:00:28.938 --> 00:00:31.263
+00:00:26.475 --> 00:00:28.800
 You need Module 1's Graph read path.
 
 10
-00:00:31.263 --> 00:00:35.384
+00:00:28.800 --> 00:00:32.922
 Skim the Security Operations
 and Telemetry book's Chapter 06,
 
 11
-00:00:35.384 --> 00:00:40.799
+00:00:32.922 --> 00:00:38.337
 for the remediation program and its clock,
 and Chapter 11, for the response ladder.
 
 12
-00:00:40.799 --> 00:00:44.230
+00:00:38.337 --> 00:00:41.760
 Lab 2 runs in a test
 tenant, never production.

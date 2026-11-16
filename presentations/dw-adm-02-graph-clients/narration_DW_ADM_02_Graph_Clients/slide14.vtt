@@ -6,34 +6,29 @@ Lab 1 needs only a laptop, with
 Python and PowerShell, and no tenant.
 
 2
-00:00:04.775 --> 00:00:08.311
+00:00:04.775 --> 00:00:08.575
 First you run Microsoft's own
-snippets against the stand-ins,
+snippets against the stand-ins.
 
 3
-00:00:08.311 --> 00:00:12.413
-and read the test that proves the
-Python credential gets no authority.
+00:00:08.575 --> 00:00:13.577
+Then you print the endpoints for this
+estate, and see that nothing for GCC is a
 
 4
-00:00:12.413 --> 00:00:17.349
-Then you print the endpoints for this
-estate, and see that nothing for GCC is
+00:00:13.577 --> 00:00:18.500
+dot-u-s host, and that a cloud name the kit
+doesn't know is an error, not a default.
 
 5
-00:00:17.349 --> 00:00:21.887
-a dot-u-s host, and that a misspelled
-cloud name is an error, not a default.
-
-6
-00:00:21.887 --> 00:00:24.718
+00:00:18.500 --> 00:00:21.331
 Then you list a task's
 permissions from its calls,
 
-7
-00:00:24.718 --> 00:00:26.912
+6
+00:00:21.331 --> 00:00:23.525
 and try a call the task never declared.
 
-8
-00:00:26.912 --> 00:00:29.350
+7
+00:00:23.525 --> 00:00:25.970
 It's refused before anything is sent.

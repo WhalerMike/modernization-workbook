@@ -30,7 +30,7 @@ Here's why this matters: the Intune track is every end-user device, not just Win
 
 ## Slide 8 — Windows in a GCC tenant: Autopilot or device preparation
 
-Microsoft now ships two ways to provision Windows. Autopilot device preparation is the newer, simpler one, with near real-time reporting. Classic Autopilot is more feature-rich. The difference that matters most here is registration: device preparation has none, so it has no group tag. In a GCC tenant both are available, because GCC uses the commercial Intune service. The program's default for standard hardware is classic Autopilot, user-driven, with Entra join, because its registration carries the procurement attribute and the purchase order from the vendor to the device before it's ever powered on. Use device preparation where its advantages matter, such as faster provisioning or a tenant that might later move to GCC High. And never use either with hybrid join for new devices.
+Microsoft now ships two ways to provision Windows. Autopilot device preparation is the newer, simpler one, with near real-time reporting. Classic Autopilot is more feature-rich. The difference that matters most here is registration: device preparation has none, so it has no group tag. In a GCC tenant both are available, because GCC uses the commercial Intune service. The program's default for standard hardware is classic Autopilot, user-driven, with Entra join, because its registration carries the procurement attribute and the purchase order from the vendor to the device before it's ever powered on. Use device preparation where its advantages matter, such as a simpler policy, faster provisioning, or mixing Win32 and line-of-business apps in one deployment. And never use either with hybrid join for new devices.
 
 ## Slide 9 — Carrying the purchase order to the device's configuration
 
@@ -114,7 +114,7 @@ Compliance policies decide whether a device is compliant; Conditional Access dec
 
 ## Slide 29 — Windows updates: rings, Autopatch and version currency
 
-Intune manages Windows updates through four policy types, and the rings stage each month's quality update. The ring names follow Windows Autopatch, Test, First, Fast and Broad, from the engineering lab out to everyone else. The values are the program's design. With them, a quality update reaches every online device within about sixteen days of release, and an update that breaks an early ring can be paused before Broad. Autopatch automates all of this, and it's included for GCC customers with G3 or G5, though not in GCC High or DoD. It maintains its own rings, so don't assign yours to its devices. And version currency: 23H2 Enterprise stops receiving updates on November tenth, 2026, so feature updates target 25H2 now.
+Intune manages Windows updates through four policy types, and the rings stage each month's quality update. The ring names follow Windows Autopatch, Test, First, Fast and Broad, from the engineering lab out to everyone else. The values are the program's design. With them, a quality update reaches every online device within about sixteen days of release, and an update that breaks an early ring can be paused before Broad. Autopatch automates all of this, and it's included for GCC customers with G3 or G5. It maintains its own rings, so don't assign yours to its devices. And version currency: 23H2 Enterprise stops receiving updates on November tenth, 2026, so feature updates target 25H2 now.
 
 ## Slide 30 — Reconciling three inventories, and retiring a device in order
 

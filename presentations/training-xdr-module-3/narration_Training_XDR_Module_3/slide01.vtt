@@ -20,31 +20,31 @@ the vulnerabilities waiting for an owner,
 and the incidents waiting for an analyst.
 
 5
-00:00:14.750 --> 00:00:18.343
-In this module you learn what
-Defender adds to the vulnerability
+00:00:14.750 --> 00:00:17.855
+In this module you learn
+what Defender adds to the
 
 6
-00:00:18.343 --> 00:00:21.338
-program in a government cloud,
-and what it can't do there.
+00:00:17.855 --> 00:00:21.263
+vulnerability program in G C
+C, and what it can't do there.
 
 7
-00:00:21.338 --> 00:00:25.996
+00:00:21.263 --> 00:00:25.921
 Then you learn how the security
 operations center triages, contains,
 
 8
-00:00:25.996 --> 00:00:29.837
+00:00:25.921 --> 00:00:29.762
 hands off and closes every
 incident, to a table it can show.
 
 9
-00:00:29.837 --> 00:00:35.112
+00:00:29.762 --> 00:00:35.037
 The module covers Steps 5 and 6 of the
 Defender X D R implementation guide.
 
 10
-00:00:35.112 --> 00:00:39.650
+00:00:35.037 --> 00:00:39.580
 It takes about thirty-five minutes,
 plus Lab 2 in your own test tenant.

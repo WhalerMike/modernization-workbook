@@ -21,29 +21,29 @@ The pipeline runs in a named
 environment, so the subject is fixed.
 
 5
-00:00:16.625 --> 00:00:19.816
+00:00:16.625 --> 00:00:19.659
 The samples stop right
 after signing in to Azure:
 
 6
-00:00:19.816 --> 00:00:22.687
-no Graph token, nothing
-on the higher clouds.
+00:00:19.659 --> 00:00:23.300
+no Graph token, and nothing ties
+the Graph host to the cloud.
 
 7
-00:00:22.687 --> 00:00:24.913
+00:00:23.300 --> 00:00:25.525
 They don't stop two runs overlapping.
 
 8
-00:00:24.913 --> 00:00:26.988
+00:00:25.525 --> 00:00:27.600
 And after sign-in there's nothing at all.
 
 9
-00:00:26.988 --> 00:00:30.401
+00:00:27.600 --> 00:00:31.013
 The verdict: use Learn's
 sign-in exactly as published,
 
 10
-00:00:30.401 --> 00:00:33.860
+00:00:31.013 --> 00:00:34.490
 pin it, schedule it, and put
 everything else behind it.

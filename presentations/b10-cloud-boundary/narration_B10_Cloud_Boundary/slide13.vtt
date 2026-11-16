@@ -45,24 +45,25 @@ the component definitions.
 Know whose package you're reading, too.
 
 10
-00:00:33.812 --> 00:00:35.724
-GCC runs on Azure Government,
+00:00:33.812 --> 00:00:38.881
+The GCC listing says the service leverages
+Azure Government as its infrastructure,
 
 11
-00:00:35.724 --> 00:00:39.787
+00:00:38.881 --> 00:00:42.574
 so the inheritance chain runs
 through two provider packages.
 
 12
-00:00:39.787 --> 00:00:44.934
+00:00:42.574 --> 00:00:47.721
 And a compensating narrative takes just
 four sentences: what the control needs,
 
 13
-00:00:44.934 --> 00:00:49.925
+00:00:47.721 --> 00:00:52.712
 what's unavailable, what runs instead,
 and where the remaining gap is recorded.
 
 14
-00:00:49.925 --> 00:00:52.420
+00:00:52.712 --> 00:00:55.200
 Next, what to ask your provider for.

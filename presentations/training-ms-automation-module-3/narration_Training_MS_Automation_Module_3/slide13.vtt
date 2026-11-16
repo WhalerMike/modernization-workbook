@@ -1,75 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.525
-One discrepancy to know.
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
 
 2
-00:00:01.525 --> 00:00:07.188
-The Graph reference pages for Autopilot
-device identities list the API in the GCC
+00:00:01.437 --> 00:00:06.522
+Every control the checks evidence is in
+the NIST special publication eight hundred
 
 3
-00:00:07.188 --> 00:00:11.019
-High and DoD clouds, while
-Intune's service description
+00:00:06.522 --> 00:00:10.734
+fifty-three Moderate baseline:
+configuration baseline and settings,
 
 4
-00:00:11.019 --> 00:00:14.350
-lists Windows Autopilot
-as not available there.
+00:00:10.734 --> 00:00:14.583
+the component inventory, protection
+of information at rest and
 
 5
-00:00:14.350 --> 00:00:17.920
-The service description decides
-whether the feature can be used;
+00:00:14.583 --> 00:00:18.650
+encryption on mobile devices, and
+flaw remediation for the OS floor.
 
 6
-00:00:17.920 --> 00:00:21.225
-an endpoint that answers doesn't
-make the feature supported.
+00:00:18.650 --> 00:00:24.795
+Through Entra ID, compliance is the
+device-level signal that M-22-09 asks agencies
 
 7
-00:00:21.225 --> 00:00:25.885
-That's an inference, and the kit's call
-list follows the stricter statement,
+00:00:24.795 --> 00:00:27.159
+to consider when authorizing users,
 
 8
-00:00:25.885 --> 00:00:29.475
-so the Autopilot check is for
-GCC and commercial tenants.
+00:00:27.159 --> 00:00:30.625
+and that ScubaGear's
+managed-device policy relies on.
 
 9
-00:00:29.475 --> 00:00:33.564
-The interim paths: run compliance
-coverage until it lists nothing,
+00:00:30.625 --> 00:00:33.788
+ScubaGear has no Intune
+baseline of its own.
 
 10
-00:00:33.564 --> 00:00:36.613
-then change the tenant's
-default to not compliant.
+00:00:33.788 --> 00:00:38.977
+Appendix A of the Zero Trust and
+Assessment book has the M-22-09 mapping,
 
 11
-00:00:36.613 --> 00:00:39.715
-Devices still on Group
-Policy aren't in Intune yet,
+00:00:38.977 --> 00:00:43.188
+and Chapter 10 of Devices and
+Endpoints says what an assessor reads.
 
 12
-00:00:39.715 --> 00:00:43.424
-so track them with the validation
-kit's platform inventory.
+00:00:43.188 --> 00:00:46.796
+The evidence an ISSO keeps:
+each check's dated output,
 
 13
-00:00:43.424 --> 00:00:47.270
-In GCC High or DoD, Chapter
-04 of the Devices and
+00:00:46.796 --> 00:00:51.661
+with its evidences list and the beta
+label; the coverage result and the
 
 14
-00:00:47.270 --> 00:00:52.025
-Endpoints book compares
-Autopilot device preparation.
-
-15
-00:00:52.025 --> 00:00:55.130
-And label the Settings
-Catalog export as beta.
+00:00:51.661 --> 00:00:56.930
+changed default; and encryption findings
+confirmed in Intune's own report.

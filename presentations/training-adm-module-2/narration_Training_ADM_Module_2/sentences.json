@@ -437,58 +437,6 @@
    "That's the path the check prefers, because reading a file never needs the Global Administrator role."
   ]
  ],
- "10": [
-  [
-   0.05,
-   15.088,
-   "Step four shows what a lyve run would ask for: one permission, OnPremDirectorySynchronization dot Read dot All, and the delegated role, Global Administrator, the only role Microsoft Learn's Graph reference lists, with no application permission."
-  ],
-  [
-   15.137,
-   4.987,
-   "Step five confirms the check isn't in a default run: the answer is False."
-  ],
-  [
-   20.125,
-   5.463,
-   "Step six runs the whole kit's tests: two hundred ninety-seven pass, none fail."
-  ],
-  [
-   25.587,
-   3.013,
-   "Step seven makes the check fail for the right reason."
-  ],
-  [
-   28.6,
-   5.35,
-   "You change your copy of the check to read block soft match, a property that doesn't exist."
-  ],
-  [
-   33.95,
-   1.9,
-   "The fail fixture still fails."
-  ],
-  [
-   35.85,
-   6.2,
-   "And the pass fixture, with both blocks on, fails too, because the missing value reads as off."
-  ],
-  [
-   42.05,
-   5.75,
-   "That's the unsafe default doing its job: a wrong property name can't produce a silent Pass."
-  ],
-  [
-   47.8,
-   3.188,
-   "Put the name back, and the pass fixture passes again."
-  ],
-  [
-   50.987,
-   2.6,
-   "Step eight removes the inputs folder."
-  ]
- ],
  "11": [
   [
    0.05,
@@ -680,6 +628,58 @@
    43.625,
    9.05,
    "You'll keep each rule as a reviewed file with tests and a linter, see whom a change adds and removes, and pause and resume safely in an incident."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   15.088,
+   "Step four shows what a lyve run would ask for: one permission, OnPremDirectorySynchronization dot Read dot All, and the delegated role, Global Administrator, the only role Microsoft Learn's Graph reference lists, with no application permission."
+  ],
+  [
+   15.137,
+   4.987,
+   "Step five confirms the check isn't in a default run: the answer is False."
+  ],
+  [
+   20.125,
+   5.4,
+   "Step six runs the whole kit's tests: two hundred ninety-six pass, none fail."
+  ],
+  [
+   25.525,
+   3.013,
+   "Step seven makes the check fail for the right reason."
+  ],
+  [
+   28.538,
+   5.35,
+   "You change your copy of the check to read block soft match, a property that doesn't exist."
+  ],
+  [
+   33.888,
+   1.9,
+   "The fail fixture still fails."
+  ],
+  [
+   35.788,
+   6.2,
+   "And the pass fixture, with both blocks on, fails too, because the missing value reads as off."
+  ],
+  [
+   41.987,
+   5.75,
+   "That's the unsafe default doing its job: a wrong property name can't produce a silent Pass."
+  ],
+  [
+   47.737,
+   3.188,
+   "Put the name back, and the pass fixture passes again."
+  ],
+  [
+   50.925,
+   2.6,
+   "Step eight removes the inputs folder."
   ]
  ]
 }

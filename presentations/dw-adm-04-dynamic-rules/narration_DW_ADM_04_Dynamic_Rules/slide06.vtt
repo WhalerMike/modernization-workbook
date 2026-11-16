@@ -1,49 +1,48 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.936
-The scripts only exist
-inside Learn's pages,
+00:00:00.050 --> 00:00:01.812
+This is the heart of the chapter.
 
 2
-00:00:02.936 --> 00:00:06.703
-so the repository pins the
-pages themselves, unmodified,
+00:00:01.812 --> 00:00:06.325
+Learn's pause script does its job well,
+and the code keeps it as the model.
 
 3
-00:00:06.703 --> 00:00:11.513
-at a known commit, with hashes a test
-checks and a weekly watch for changes.
+00:00:06.325 --> 00:00:08.675
+But it records nothing
+about what it paused.
 
 4
-00:00:11.513 --> 00:00:15.466
-Then a small harness pulls each
-script out of its pinned page
+00:00:08.675 --> 00:00:12.284
+So when you resume, Learn's script
+turns on every paused group,
 
 5
-00:00:15.466 --> 00:00:19.262
-at test time and runs it, as
-published, against a fake tenant.
+00:00:12.284 --> 00:00:16.687
+including one that was deliberately
+frozen before the incident started.
 
 6
-00:00:19.262 --> 00:00:22.958
-Only the things it calls
-outside itself are swapped out:
+00:00:16.687 --> 00:00:20.058
+It also falls back to the
+worldwide cloud, silently,
 
 7
-00:00:22.958 --> 00:00:27.137
-the prompts, the screen output,
-the sleep, and four Graph cmdlets.
+00:00:20.058 --> 00:00:24.713
+on an answer it doesn't know, and
+nothing makes you wait before resuming.
 
 8
-00:00:27.137 --> 00:00:30.257
-That way you can watch
-Microsoft's own scripts behave,
+00:00:24.713 --> 00:00:26.500
+The verdict: during recovery,
 
 9
-00:00:30.257 --> 00:00:32.100
-instead of taking them on trust.
+00:00:26.500 --> 00:00:30.150
+the questions are what did we
+pause, and what was already off.
 
 10
-00:00:32.100 --> 00:00:33.430
-Here's what that showed.
+00:00:30.150 --> 00:00:31.800
+Only a record answers them.

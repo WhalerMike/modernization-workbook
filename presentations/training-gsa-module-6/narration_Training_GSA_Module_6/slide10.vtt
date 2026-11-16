@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.238
+Step five removes the
+security profile's links.
+
+2
+00:00:03.238 --> 00:00:06.738
+The T L S inspection policy
+comes out in Learn's order:
+
+3
+00:00:06.738 --> 00:00:12.112
+unlink it from the pilot profile, delete
+the policy, then remove the certificate.
+
+4
+00:00:12.112 --> 00:00:14.988
+The filtering policy's Conditional Access
+
+5
+00:00:14.988 --> 00:00:17.863
+policy goes to disabled,
+the Step 5 rollback.
+
+6
+00:00:17.863 --> 00:00:21.042
+Step six turns off tenant
+restrictions tagging;
+
+7
+00:00:21.042 --> 00:00:24.063
+the tenant restrictions
+policy itself stays.
+
+8
+00:00:24.063 --> 00:00:27.900
+Step seven takes the groups out
+of each profile's assignments
+
+9
+00:00:27.900 --> 00:00:31.212
+in the admin center, then
+disables the three profiles.
+
+10
+00:00:31.212 --> 00:00:35.862
+In production, the next line of the
+rollback is restoring the V P N route.
+
+11
+00:00:35.862 --> 00:00:41.174
+Step eight turns off signaling, last,
+now that no policy enforces on it.
+
+12
+00:00:41.174 --> 00:00:43.321
+Step nine takes the export again,
+
+13
+00:00:43.321 --> 00:00:48.330
+so the evidence shows the state after
+the rollback: three profiles disabled,
+
+14
+00:00:48.330 --> 00:00:52.225
+signaling and tagging disabled,
+and no test policy enabled.
+
+15
+00:00:52.225 --> 00:00:57.214
+Steps ten to twelve clean up: delete
+the test policies, apps, profile and
+
+16
+00:00:57.214 --> 00:01:02.375
+filtering policy; remove the QUIC
+rule; and delete the telemetry setting.
+
+17
+00:01:02.375 --> 00:01:08.000
+In production, that last one ends the
+evidence trail and happens only by change.
+
+18
+00:01:08.000 --> 00:01:11.620
+Keep the lab folder; it's
+the path's evidence package.

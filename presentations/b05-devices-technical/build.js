@@ -316,7 +316,7 @@ And Windows Server, printers, network gear, IoT and OT aren't Intune platforms. 
     ["More than 25 apps or 10 scripts in setup", "No", "Yes"],
     ["Block the desktop until user config applies", "No", "Yes"],
     ["Uses the Enrollment Status Page", "No", "Yes"],
-    ["GCC High and DoD", "Yes", "No"],
+    ["Available in GCC (commercial Intune)", "Yes", "Yes"],
   ], { fontSize: 12.5 });
   panel(s, "Default", 7.95, 1.45, 4.8, 3.0, HEX.navy, HEX.navyTint, "PROGRAM DEFAULT IN GCC", "Classic, user-driven, Entra join", [
     "OEM or reseller registration with a group tag",
@@ -329,13 +329,13 @@ And Windows Server, printers, network gear, IoT and OT aren't Intune platforms. 
   ], 12.5);
   sources(s, "Sources: Microsoft Learn — compare Autopilot device preparation and Autopilot; device preparation FAQ, overview and requirements; Intune Government Service overview. Book 05, Ch 04.");
   notes(s,
-`Microsoft now ships two Windows provisioning solutions. Windows Autopilot device preparation is a re-architecture with simpler configuration and near real-time reporting; classic Windows Autopilot remains more feature-rich. The rows on the left are the differences that matter. Device preparation needs no registration, so it has no group tag. It can't do hybrid join, pre-provisioning or self-deploying mode. It applies up to 25 apps and ten PowerShell scripts during setup, can't hold the desktop until user configuration lands, and doesn't use the Enrollment Status Page. But it's available in GCC High and DoD, where classic Autopilot isn't.
+`Microsoft now ships two Windows provisioning solutions. Windows Autopilot device preparation is a re-architecture with simpler configuration and near real-time reporting; classic Windows Autopilot remains more feature-rich. The rows on the left are the differences that matter. Device preparation needs no registration, so it has no group tag. It can't do hybrid join, pre-provisioning or self-deploying mode. It applies up to 25 apps and ten PowerShell scripts during setup, can't hold the desktop until user configuration lands, and doesn't use the Enrollment Status Page.
 
-The workbook assumes a Microsoft 365 GCC tenant. Intune has no separate GCC instance: GCC uses the commercial Intune service, so both solutions are available. Only GCC High and DoD use the separate government instance.
+The workbook assumes a Microsoft 365 GCC tenant. Intune has no separate GCC instance: GCC uses the commercial Intune service, so both solutions are available.
 
 The program's default for standard hardware in GCC is classic Windows Autopilot, user-driven, with Entra join, and OEM or reseller registration carrying a group tag. The reason is pillar 2. Classic Autopilot's registration carries the procurement attribute, the group tag and the purchase order ID, from the vendor to the Entra device object before the device is powered on. Device preparation adds devices to a group at enrollment, so the assignment has to come from the procurement mapping table afterward.
 
-Use device preparation where its advantages matter, such as faster provisioning or a tenant that might later move to GCC High. It needs Windows 11 24H2, or 23H2 or 22H2 with KB5035942, and automatic enrollment. And the first user must be allowed to join devices: on that path, the user's own join permission brings the device in. Never use either with hybrid join for new devices.`,
+Use device preparation where its advantages matter, such as a simpler policy, faster provisioning, or mixing Win32 and line-of-business apps in one deployment. It needs Windows 11 24H2, or 23H2 or 22H2 with KB5035942, and automatic enrollment. And the first user must be allowed to join devices: on that path, the user's own join permission brings the device in. Never use either with hybrid join for new devices.`,
   "Book 05, Chapter 04 — Intune-First Onboarding, \"Windows: Autopilot or Autopilot device preparation.\"");
 }
 
@@ -652,7 +652,7 @@ On these estimates the program reaches Phase 7 in roughly thirty-four weeks, wit
 
 Entra dynamic rules for devices can use extension attributes one through fifteen, but the values have to be written to the device object through Microsoft Graph first; they're the device's own set, not the user attributes. The program uses one numbering: one for region, three for department, eleven for security tier, twelve for device role and thirteen for environment, with one fixed spelling per value. Assignments then add exclude groups for break-glass and staging, and assignment filters. The correction that matters: filters can't read extension attributes. A filter on attribute eleven doesn't evaluate. Attribute targeting belongs in the group rule; filters work on Intune properties such as join type, ownership, model and OS edition.
 
-Three Microsoft facts shape every compliance template. Noncompliance actions are scheduled in days, zero to three hundred sixty-five, not hours. Windows supports only three actions: mark noncompliant, email the user, and add to the retire list, which retires nothing by itself. There is no block action; blocking is what Conditional Access does with a noncompliant device. And BitLocker, Secure Boot and code integrity are measured at boot through Device Health Attestation, so a newly encrypted device needs a restart. In GCC, the commercial Intune instance, that service is available; Intune lists it only as planned for GCC High and DoD.
+Three Microsoft facts shape every compliance template. Noncompliance actions are scheduled in days, zero to three hundred sixty-five, not hours. Windows supports only three actions: mark noncompliant, email the user, and add to the retire list, which retires nothing by itself. There is no block action; blocking is what Conditional Access does with a noncompliant device. And BitLocker, Secure Boot and code integrity are measured at boot through Device Health Attestation, so a newly encrypted device needs a restart.
 
 The set: a workstation baseline with a 24H2 floor; a strict Tier 0 policy with a 25H2 floor, a Clear risk score and no grace period; a Tier 2 policy; and a kiosk policy. The server baseline, CP-004, can't be built in Intune, so it moves to Chapter 09.`,
   "Book 05, Chapter 08 — GPO to Intune Policy Migration, \"Policy architecture\" and \"Compliance policies.\"");
@@ -740,7 +740,7 @@ Plan cost by service, not by connection. If the Windows Server licenses carry So
     ["Physical; any other hypervisor", "Supported, with the Connected Machine agent"],
     ["VMware vSphere VMs", "Arc-enabled vSphere: vCenter 8, up to 9,500 VMs; agent in the guest only"],
     ["SCVMM-managed VMs", "Retiring: no new onboarding from Oct. 2026; ends Sept. 2029"],
-    ["AWS EC2, GCP VMs", "Agent, or multicloud connector: AWS; GCP in preview; not in Azure Government"],
+    ["AWS EC2, GCP VMs", "Agent, or multicloud connector: AWS; GCP in preview"],
     ["Azure VMs", "Not Arc: Policy, RBAC and tags apply natively"],
     ["AIX, Solaris, HP-UX, mainframe, network devices", "Not supported: tiers 2 to 4"],
   ], { fontSize: 11 });
@@ -757,7 +757,7 @@ Plan cost by service, not by connection. If the Windows Server licenses carry So
   notes(s,
 `Why this matters: the Arc track is servers wherever they run, and anything neither Intune nor Arc reaches still needs a home in the inventory.
 
-Per Chapter 09, as of October 29, 2026: Windows Server 2016 to 2025 is supported, Desktop Experience and Server Core. Windows Server 2012 got its last new agent version, 1.69, in October 2026, which Microsoft services for 12 months after its release; Windows Server 2012 R2 is still listed for new agent versions, and the ESUs for both ended on October 13. The supported Linux distributions run the agent, though several older versions, such as Red Hat 7, Debian 11 and 12 and Ubuntu 18.04 and 20.04, also got their last new agent version, 1.69, in October 2026, and machine configuration doesn't run on Arm64. Physical servers and VMs on any hypervisor are supported. VMware vSphere VMs come in through Arc-enabled vSphere and vCenter 8, up to 9,500 VMs, with the agent in the guest only; ESXi hosts are discovered as inventory. SCVMM-managed VMs are retiring. AWS EC2 and Google Cloud VMs take the agent or the multicloud connector, which covers AWS, has GCP in preview and isn't available in Azure Government. Azure VMs don't take Arc. And AIX, Solaris, HP-UX, mainframe operating systems and network devices aren't on Microsoft's list.
+Per Chapter 09, as of October 29, 2026: Windows Server 2016 to 2025 is supported, Desktop Experience and Server Core. Windows Server 2012 got its last new agent version, 1.69, in October 2026, which Microsoft services for 12 months after its release; Windows Server 2012 R2 is still listed for new agent versions, and the ESUs for both ended on October 13. The supported Linux distributions run the agent, though several older versions, such as Red Hat 7, Debian 11 and 12 and Ubuntu 18.04 and 20.04, also got their last new agent version, 1.69, in October 2026, and machine configuration doesn't run on Arm64. Physical servers and VMs on any hypervisor are supported. VMware vSphere VMs come in through Arc-enabled vSphere and vCenter 8, up to 9,500 VMs, with the agent in the guest only; ESXi hosts are discovered as inventory. SCVMM-managed VMs are retiring. AWS EC2 and Google Cloud VMs take the agent or the multicloud connector, which covers AWS and has GCP in preview. Azure VMs don't take Arc. And AIX, Solaris, HP-UX, mainframe operating systems and network devices aren't on Microsoft's list.
 
 For everything left out, the program's design guidance is four tiers, with the CMDB as the attribute source outside Intune and Arc. One, managed by Intune or Arc. Two, managed by the platform's own tool with an evidence feed. Three, discovered and monitored only. Four, segmented and isolated, or retired, with a risk acceptance and a date. That's how the inventory supports CM-8: every component, none counted twice. A device in no tier is a finding.`,
   "Book 05, Chapter 09 — Servers Under Azure Arc, \"Which servers Arc reaches\" (Microsoft Learn, checked October 29, 2026); Chapter 03, \"What Intune and Arc don't reach\" (the four tiers, design guidance); Chapter 10 (CM-8). The attribute-driven migration guide, Arc track.");
@@ -792,7 +792,7 @@ For everything left out, the program's design guidance is four tiers, with the C
 
 Use the narrowest built-in roles. Azure Connected Machine Onboarding goes to the onboarding service principal only: it can read and create Arc server resources, but not delete them or manage extensions. Azure Connected Machine Resource Administrator is for the server operations team. And Virtual Machine Administrator Login or User Login are for people who sign in with Entra ID; Owner and Contributor don't confer sign-in. Then remember what extensions can do. They run arbitrary scripts with full privileges, so Microsoft says to treat any Contributor on the Arc resource as an indirect administrator of the server, and the same holds for the Arc-specific role: Azure Connected Machine Resource Administrator includes the permissions to deploy extensions, and the extension manager runs as Local System on Windows and root on Linux, so Contributor, Owner and the resource administrator role can each reach full control of the server through extension deployment. Scope those roles to the resource groups a team owns, and hold them through Privileged Identity Management.
 
-Network: the agent communicates outbound over TCP 443, with no inbound rule. Allow the Azure Active Directory, Traffic Manager, Resource Manager, Arc Infrastructure and Storage service tags and, as of April 2026, Azure Front Door Frontend. A proxy doesn't add security, because the traffic is already encrypted; a private link scope keeps it off public networks. Run azcmagent check from a representative server first, adding the cloud parameter for Azure Government.
+Network: the agent communicates outbound over TCP 443, with no inbound rule. Allow the Azure Active Directory, Traffic Manager, Resource Manager, Arc Infrastructure and Storage service tags and, as of April 2026, Azure Front Door Frontend. A proxy doesn't add security, because the traffic is already encrypted; a private link scope keeps it off public networks. Run azcmagent check from a representative server first.
 
 Tags: one taxonomy at connection time, which drives policy scope, Update Manager's dynamic scoping and cost reporting. They're plain text, so nothing sensitive. A server with SQL Server installed connects its instances to Arc automatically; opt out with a tag when you connect.
 
@@ -887,7 +887,7 @@ Protect with Defender for Servers. Plan 1 centers on endpoint detection and resp
   ], 12.5);
   panel(s, "Signin", 7.1, 1.45, 5.65, 5.05, HEX.teal, HEX.tealTint, "ENTRA ID SIGN-IN, WINDOWS", "Server 2025 with Desktop Experience", [
     "Not Server 2019 or 2022: exception path C",
-    "Azure Global and Azure Government",
+    "Available in Azure Global",
     "Managed identity, then AADLoginForWindows: installing it Entra-joins the server",
     "VM Login roles; member users only, not guests",
     "Conditional Access isn't supported with this extension",
@@ -897,7 +897,7 @@ Protect with Defender for Servers. Plan 1 centers on endpoint detection and resp
   notes(s,
 `Arc is also how many organizations keep end-of-support servers patched while they migrate. As of October twentieth, 2026: the Windows Server 2012 and 2012 R2 ESU period ended on October thirteenth, and Arc ESU licenses deactivated the next day. Any such host still running receives no further security updates through any channel. Treat it as a red finding: migrate, upgrade, or isolate it and record the risk acceptance. Windows Server 2016's end of support is January twelfth, 2027, with ESUs for up to three years; any host that remains is an exception, so connect and enroll it before then. SQL Server 2014 is in its third ESU year, until July 2027, and SQL Server 2016 in its first, until July 2029. ESUs through Arc are billed monthly, need no product keys, and show coverage per server.
 
-Entra ID sign-in. Arc-enabled Windows servers can use Entra ID for Remote Desktop, with Azure RBAC deciding who signs in. It needs Windows Server 2025 or later with Desktop Experience, or Windows 11 24H2; 2019 and 2022 aren't supported, which is exception C from Module 1. It's available in Azure Global and Azure Government. Installing the sign-in extension Entra-joins the server, so it's for servers that won't be domain-joined. Only member users of the same tenant can sign in. And Conditional Access isn't supported with the join extension on Arc servers. That corrects a common assumption: the control you get is RBAC on who may sign in, held through PIM, not workstation Conditional Access. Linux uses SSH through Arc with its own extension and the same roles.
+Entra ID sign-in. Arc-enabled Windows servers can use Entra ID for Remote Desktop, with Azure RBAC deciding who signs in. It needs Windows Server 2025 or later with Desktop Experience, or Windows 11 24H2; 2019 and 2022 aren't supported, which is exception C from Module 1. It's available in Azure Global. Installing the sign-in extension Entra-joins the server, so it's for servers that won't be domain-joined. Only member users of the same tenant can sign in. And Conditional Access isn't supported with the join extension on Arc servers. That corrects a common assumption: the control you get is RBAC on who may sign in, held through PIM, not workstation Conditional Access. Linux uses SSH through Arc with its own extension and the same roles.
 
 Rollback order matters: remove extensions first, because uninstalling the agent leaves them behind; then disconnect, which needs the resource administrator role; then uninstall.`,
   "Book 05, Chapter 09 — Servers Under Azure Arc, \"Extended Security Updates,\" \"Microsoft Entra ID sign-in,\" \"Rollback.\"");
@@ -971,7 +971,7 @@ And on Tier 0, the risk score requirement means a Defender detection on a privil
     { text: "the compliance floor (24H2) rises each year." },
   ], { x: 4.85, y: b + 0.3, w: 2.85, h: 1.3, fontSize: 12.5 });
   panel(s, "Autopatch", 8.0, 1.45, 4.75, 5.05, HEX.teal, HEX.tealTint, "WINDOWS AUTOPATCH", "Use it where licensed", [
-    "Included for GCC with Microsoft 365 G3 GCC or G5 GCC; not supported in GCC High or DoD",
+    "Included for GCC with Microsoft 365 G3 GCC or G5 GCC",
     "Devices Entra joined or hybrid joined; co-managed sliders at Intune or Pilot Intune",
     "It creates and maintains the rings: don't assign your own to its devices",
     "The ring table stays the specification, and what the assessor reads for SI-2",
@@ -982,7 +982,7 @@ And on Tier 0, the risk score requirement means a Defender detection on a privil
 
 Rings stage each month's quality update. The names follow Windows Autopatch, Test, First, Fast and Broad; the values are the program's design. Test is the engineering lab, with no deferral and a two-day deadline. First is the pilot cohort, about five percent. Fast is about a quarter of the fleet. Broad is everyone else, with a seven-day deferral, a seven-day deadline and a two-day grace period. Rings allow deferrals of zero to thirty days, deadlines of two to thirty and grace of zero to seven. With these values a quality update reaches every online device within about sixteen days of release, and an update that breaks Test or First can be paused before Broad. Feature deferral is zero everywhere, because a feature update policy pins the version.
 
-Windows Autopatch automates ring management, sequencing and reporting. For government tenants, it's included for GCC customers with Microsoft 365 G3 GCC or G5 GCC, and isn't supported in GCC High or DoD. Devices must be Entra joined or hybrid joined, and co-managed devices need the update and device configuration workloads at Intune or Pilot Intune. Autopatch creates and maintains its own rings, so don't assign yours to its devices. The program's position: use it where licensed, and keep the ring table as the specification its groups are configured to.
+Windows Autopatch automates ring management, sequencing and reporting. For government tenants, it's included for GCC customers with Microsoft 365 G3 GCC or G5 GCC. Devices must be Entra joined or hybrid joined, and co-managed devices need the update and device configuration workloads at Intune or Pilot Intune. Autopatch creates and maintains its own rings, so don't assign yours to its devices. The program's position: use it where licensed, and keep the ring table as the specification its groups are configured to.
 
 Version currency: 23H2 Enterprise and Education stop receiving updates on November tenth, 2026. So the feature update policy targets 25H2 now, and the compliance floor of 24H2 rises each year.`,
   "Book 05, Chapter 10 — Operating and Evidencing the Fleet, \"Windows updates.\"");
@@ -1061,9 +1061,9 @@ The alerts follow from that. Fleet-wide noncompliance above ten percent comes fr
     ["SI-2 Flaws", "The ring table, quality update compliance per ring, Test and First results, expedites"],
   ], { fontSize: 12.5 });
   panel(s, "GCC", 7.55, 1.45, 5.2, 5.05, HEX.navy, HEX.navyTint, "GCC (MODERATE) BOUNDARY FACTS", null, [
-    "Intune: the same instance as commercial; only GCC High and DoD are separate",
-    "Graph: graph.microsoft.com; GCC High uses graph.microsoft.us",
-    "Defender for Endpoint for US Government, in Azure US Government; portal security.microsoft.com",
+    "Intune: the same instance as commercial",
+    "Graph: the worldwide endpoint, graph.microsoft.com",
+    "Defender for Endpoint for US Government; GCC portal security.microsoft.com",
     "Windows Update for Business reports don't meet GCC compliance: use Intune and Autopatch reports",
     "Keys and LAPS passwords live on the Entra object: export before any delete",
   ], 12);
@@ -1075,7 +1075,7 @@ The alerts follow from that. Fleet-wide noncompliance above ten percent comes fr
 
 CM-2, baseline configuration: the policy library exported from Graph, under version control, with its review history. CM-6, configuration settings: per-setting status, the exception register with approvals, and the Intune audit log of every change. CM-7, least functionality: attack surface reduction in block, the firewall rule set, the Edge extension allow list. CM-8, inventory: the weekly reconciliation. SI-2, flaw remediation: the ring table and per-ring compliance. SI-2's defined period is the organization's parameter, and the ring deadlines are what set it.
 
-Two GCC facts change where data and endpoints live. Intune in a GCC tenant isn't a separate government instance: GCC uses the commercial service and worldwide Graph, and only GCC High and DoD are separate. Defender for Endpoint for US Government is built in Azure US Government, with the GCC portal at security dot microsoft dot com. And Windows Update for Business reports don't meet GCC compliance requirements, so SI-2 evidence comes from Intune and Autopatch reports.
+Two GCC facts change where data and endpoints live. Intune in a GCC tenant isn't a separate government instance: GCC uses the commercial service and worldwide Graph. GCC gets Defender for Endpoint as Defender for Endpoint for US Government, with the GCC portal at security dot microsoft dot com. And Windows Update for Business reports don't meet GCC compliance requirements, so SI-2 evidence comes from Intune and Autopatch reports.
 
 The program also maps this evidence to FedRAMP 20x Key Security Indicators, as its own claim, written for cloud service offerings, not an agency fleet.
 

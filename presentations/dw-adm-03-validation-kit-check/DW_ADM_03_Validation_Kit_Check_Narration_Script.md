@@ -10,7 +10,7 @@ Why this check? Gate 3 of the implementation guide maps attributes through sync,
 
 ## Slide 3 — Which cloud: the Graph host and the read's reach
 
-Next, which cloud. The kit reads Microsoft Graph, and the host depends on the tenant. A GCC tenant sits on the worldwide endpoints, so it reads the same Graph host as a commercial tenant; GCC High and the Defense cloud have their own. The sync read this chapter needs is available in all of them, at version one point oh. And the kit holds the line on hosts: if Graph hands back a next page that points anywhere other than the cloud's own Graph host, the kit refuses it, so the token never leaves.
+Next, which cloud. The kit reads Microsoft Graph, and the host depends on the tenant. A GCC tenant sits on the worldwide endpoints, so it reads the same Graph host as a commercial tenant. The sync read this chapter needs is available there, at version one point oh. And the kit holds the line on hosts: if Graph hands back a next page that points anywhere other than the cloud's own Graph host, the kit refuses it, so the token never leaves.
 
 ## Slide 4 — The anatomy of a check: five parts
 

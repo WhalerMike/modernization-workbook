@@ -96,29 +96,29 @@ checkable, but it doesn't make them.
 Two planning facts for leaders.
 
 21
-00:01:07.000 --> 00:01:11.413
-Microsoft's landing-zone accelerators
-are supported only in public Azure,
+00:01:07.000 --> 00:01:10.469
+Microsoft's landing-zone
+accelerators deploy it from code,
 
 22
-00:01:11.413 --> 00:01:14.900
-so an Azure Government build
-needs the code adapted by hand.
+00:01:10.469 --> 00:01:15.000
+and they're supported for public Azure,
+where the workbook's landing zone runs.
 
 23
-00:01:14.900 --> 00:01:18.709
+00:01:15.000 --> 00:01:18.809
 And the pipeline that builds it is
 part of the boundary question too,
 
 24
-00:01:18.709 --> 00:01:20.750
+00:01:18.809 --> 00:01:20.850
 because its state data is sensitive.
 
 25
-00:01:20.750 --> 00:01:22.913
+00:01:20.850 --> 00:01:23.013
 Plan both; don't discover them.
 
 26
-00:01:22.913 --> 00:01:26.110
+00:01:23.013 --> 00:01:26.210
 Next, what to do when a
 capability is outside.

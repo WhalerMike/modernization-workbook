@@ -1,6 +1,6 @@
 // Microsoft Automation learning path, Module 1: Graph and Azure Foundations — the module's narrated deck.
 // Teaches docs/training/ms-automation-foundations.md, Learn-style: objectives, the concepts, a "Try it" slide with the
-// real Lab 1 commands and output (run November 1, 2026 in examples/ms-automation), government-cloud differences, the
+// real Lab 1 commands and output (run November 1, 2026 in examples/ms-automation), where agencies are, the
 // federal requirement and evidence, a two-question check, and the summary. Every fact comes from the module page or the
 // kit; the deck adds none. Helpers: ./shared.js (the technical deep dive's slides.js and the deeper dive's code panel).
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-ms-automation-module-1/build.js \
@@ -33,7 +33,7 @@ const SS = "Check and summary";
   const s = content(SI, "Why the collector has to be right first");
   tag(s, "Why");
   const b = table(s, "Traps", 1.45, [3.4, 4.6, 4.15], ["What the first collector does", "What goes wrong", "What this module teaches"], [
-    ["Works in a commercial test tenant", "Fails, or sends its token to the wrong host, the day it points at GCC High", "Pick the cloud first"],
+    ["Works in a commercial test tenant", "Fails, or sends its token to the wrong host, the day it gets a URL it didn't expect", "Pick the cloud first"],
     ["Reads the first page of users", "Reports a 100-user tenant and looks correct", "Follow every next link"],
     ["Signs in with a client secret", "Nobody rotates it; ScubaGear says block application passwords", "Sign in as a workload, without a secret"],
     ["Asks for broad permissions", "A compromised job can do more than read", "Least-privileged application permissions"],
@@ -42,14 +42,14 @@ const SS = "Check and summary";
     "a collector that doesn't page, retry and keep delta links produces evidence that looks complete, and isn't.");
   sources(s, "Sources: Module 1, Unit 1 \"Introduction,\" \"The answer in brief\"; Unit 5 \"What this means for the books.\"");
   notes(s,
-`Why start here? Picture your first evidence collector. It works in a commercial test tenant. Then, the day it points at a GCC High tenant, it fails, or worse, sends its token to the wrong host. It reads the first page of users and reports a tenant of a hundred people, and nobody notices because the number looks plausible. It signs in with a client secret that nobody rotates, though ScubaGear says application passwords should be blocked. And it asks for broad permissions, so a compromised job could do more than read. Each of those has a fix, and each fix is a unit in this module. The cost of skipping them is simple: a collector that doesn't page, retry and keep delta links produces evidence that looks complete, and isn't.`,
+`Why start here? Picture your first evidence collector. It works in a commercial test tenant. Then, the day someone gives it a URL it didn't expect, it fails, or worse, sends its token to the wrong host. It reads the first page of users and reports a tenant of a hundred people, and nobody notices because the number looks plausible. It signs in with a client secret that nobody rotates, though ScubaGear says application passwords should be blocked. And it asks for broad permissions, so a compromised job could do more than read. Each of those has a fix, and each fix is a unit in this module. The cost of skipping them is simple: a collector that doesn't page, retry and keep delta links produces evidence that looks complete, and isn't.`,
   `${M} — Unit 1 "Introduction," "The answer in brief"; Unit 5 "What this means for the books."`);
 }
 
 // ================================================================== 3 Objectives
 {
   const s = objectives(SI, "What you'll be able to do in Module 1", [
-    "Choose the sign-in host, Graph host and PowerShell environment for commercial, GCC, GCC High or DoD",
+    "Choose the sign-in host, Graph host and PowerShell environment for a commercial or GCC tenant",
     "Pick a credential for a scheduled script, and say who can consent to its permissions",
     "Find the least-privileged application permission, and what a narrow one hides",
     "Describe the four request patterns and the advanced-query header",
@@ -62,7 +62,7 @@ const SS = "Check and summary";
   ], 85);
   sources(s, "Sources: Module 1, Unit 1 \"Learning objectives,\" \"Prerequisites\"; Training index, \"What you need for the Microsoft Automation labs.\"");
   notes(s,
-`Here's what you'll be able to do by the end of the module, which takes about eighty-five minutes with the lab. You'll choose the right sign-in host, Graph host and PowerShell environment for a commercial, GCC, GCC High or DoD tenant. You'll pick a credential for a scheduled script and know who can consent to its permissions. You'll find the least-privileged permission for a call, and know what a narrow permission hides. You'll describe the four request patterns. And you'll run the example client's checks yourself. For the lab you need Python and PowerShell on a laptop. You don't need a tenant until Lab 2.`,
+`Here's what you'll be able to do by the end of the module, which takes about eighty-five minutes with the lab. You'll choose the right sign-in host, Graph host and PowerShell environment for a commercial or GCC tenant. You'll pick a credential for a scheduled script and know who can consent to its permissions. You'll find the least-privileged permission for a call, and know what a narrow permission hides. You'll describe the four request patterns. And you'll run the example client's checks yourself. For the lab you need Python and PowerShell on a laptop. You don't need a tenant until Lab 2.`,
   `${M} — Unit 1 "Learning objectives," "Prerequisites"; Training index, "What you need for the Microsoft Automation labs."`);
 }
 endModule(SI);
@@ -74,38 +74,34 @@ endModule(SI);
   const b = table(s, "Clouds", 1.45, [2.3, 3.2, 3.15, 1.6, 1.9], ["Tenant", "Sign-in (authority)", "Microsoft Graph", "Graph PS", "Az / CLI"], [
     ["Commercial", "login.microsoftonline.com", "graph.microsoft.com", "Global", "default"],
     ["Microsoft 365 GCC", "login.microsoftonline.com", "graph.microsoft.com", "Global", "default"],
-    ["Microsoft 365 GCC High", "login.microsoftonline.us", "graph.microsoft.us", "USGov", "AzureUSGovernment"],
-    ["Microsoft 365 DoD", "login.microsoftonline.us", "dod-graph.microsoft.us", "USGovDoD", "as GCC High"],
   ], { fontSize: 13, limit: 4.4 });
   callout(s, "GCC", b + 0.3, 1.0, "FaCloud", HEX.navy, "GCC is the worldwide service: ",
-    "Microsoft says a GCC environment should \"continue using the worldwide endpoints.\" GCC High and DoD have their own hosts.");
-  sources(s, "Sources: Module 1, Unit 2: Microsoft Learn, Graph national cloud deployments; Get-MgEnvironment; Azure Government connection guides (Oct. 25, 2026).");
+    "Microsoft says a GCC environment should \"continue using the worldwide endpoints.\" Its Azure subscriptions are commercial Azure.");
+  sources(s, "Sources: Module 1, Unit 2: Microsoft Learn, Graph national cloud deployments; Microsoft Entra authentication and national clouds; Get-MgEnvironment (Oct. 25, 2026).");
   notes(s,
-`Microsoft Graph and Entra ID run as separate national cloud deployments, and a script has to call the hosts of the cloud its tenant lives in. Commercial and Microsoft 365 GCC tenants use the same worldwide hosts: login dot microsoftonline dot com for sign-in and graph dot microsoft dot com for Graph, with the Global environment in Graph PowerShell. Microsoft's own words are that a GCC environment should continue using the worldwide endpoints. GCC High and DoD both sign in at login dot microsoftonline dot U S. GCC High's Graph host is graph dot microsoft dot U S, and DoD's is dod dash graph dot microsoft dot U S. In Graph PowerShell those are the U S Gov and U S Gov DoD environments, and Azure PowerShell and the Azure CLI switch to Azure U S Government.`,
+`Microsoft Graph and Entra ID run as separate national cloud deployments, and a script has to call the hosts of the cloud its tenant lives in. A Microsoft 365 GCC tenant lives in the worldwide service. So commercial and GCC tenants use the same hosts: login dot microsoftonline dot com for sign-in and graph dot microsoft dot com for Graph, with the Global environment in Graph PowerShell. Microsoft's own words are that a GCC environment should continue using the worldwide endpoints. For Azure PowerShell and the Azure CLI, the default is right, because a GCC tenant's subscriptions are commercial Azure. Module 4 covers Azure Resource Manager in detail.`,
   `${M} — Unit 2 "Clouds and endpoints."`);
 }
 
-// ================================================================== 5 Government cloud beyond hosts
+// ================================================================== 5 Beyond the hosts
 {
-  const s = content(SC, "What changes in a government cloud beyond hosts");
+  const s = content(SC, "What a script still has to get right beyond the hosts");
   tag(s, "What");
   const l = panel(s, "Changes", 0.6, 1.45, 7.6, null, HEX.navy, HEX.navyTint, "BEYOND THE HOSTS", null, [
-    "The scope names the cloud: https://graph.microsoft.us/.default for GCC High",
-    "azure-identity signs in to the public cloud unless given the government authority",
-    "Apps are registered per cloud: a commercial app can't read a GCC High tenant",
-    "Graph Explorer isn't supported on the GCC High, DoD or China endpoints",
-    "Every Graph API page has a national cloud table: check it first",
+    "The scope names the resource: https://graph.microsoft.com/.default for worldwide and GCC tenants",
+    "Each Graph API reference page has a national cloud table: check it before relying on an API",
+    "Most Entra APIs in Module 2 are available in the global service, which GCC uses",
   ], 14);
-  panel(s, "Retest", 8.45, 1.45, 4.3, null, HEX.amber, HEX.amberTint, "DESIGN GUIDANCE", "Retest in the real cloud", [
-    "A query proved in Graph Explorer has to be retested against the government endpoint",
-    "GCC's gaps are features, not endpoints: Book 10, Chapter 04",
+  panel(s, "Retest", 8.45, 1.45, 4.3, null, HEX.amber, HEX.amberTint, "FEATURES, NOT ENDPOINTS", "GCC's gaps", [
+    "Some features available in commercial tenants aren't available in GCC",
+    "Book 10, Chapter 04 covers them; Unit 6 says what they mean here",
   ], 13.5);
-  callout(s, "Quote", l + 0.3, 0.9, "FaKey", HEX.navy, "Microsoft: ",
-    "\"Apps can only access organizational data through the national cloud endpoints.\"");
-  sources(s, "Sources: Module 1, Unit 2: Learn, Graph national cloud deployments; national clouds with the Graph SDKs; Azure Identity for Python; List methods (Oct. 25, 2026).");
+  callout(s, "Quote", l + 0.3, 0.9, "FaKey", HEX.navy, "No endpoint change: ",
+    "GCC uses the worldwide endpoints; what it lacks is a feature question, not an endpoint question.");
+  sources(s, "Sources: Module 1, Unit 2: Learn, Get access without a user; List authentication methods (national cloud table) (Oct. 25, 2026); Book 10, Ch 04.");
   notes(s,
-`Beyond the hosts, five things change. The token's scope names the cloud, so app-only tokens for GCC High ask for graph dot microsoft dot U S slash dot default. The Python azure-identity credential signs in to the public cloud unless you give it the Azure Government authority. Apps are registered per cloud: an app registered in a commercial tenant can't read a GCC High tenant's data. Graph Explorer isn't supported on the GCC High, DoD or China endpoints, so a query you proved in Graph Explorer has to be retested against the government endpoint. That's design guidance. And every Graph API reference page has a national cloud table; check it before you rely on an API in a new cloud. GCC needs none of this, but it can lack features, which is the subject of the Federal Modernization Workbook's Cloud Boundary and Landing Zone book.`,
-  `${M} — Unit 2 "Clouds and endpoints," "What changes in a government cloud."`);
+`Beyond the hosts, a script still has two things to get right. The token's scope names the resource. App-only tokens for Graph in worldwide and GCC tenants ask for graph dot microsoft dot com slash dot default, the form Microsoft's client-credentials guide uses. And each API page lists the clouds it works in. Every Graph API reference page has a national cloud table, and most of the Entra APIs in Module 2 are available in the global service, which GCC uses. Check the table before you rely on an API. GCC uses the worldwide endpoints, but some features available in commercial tenants aren't available in GCC. That's a feature question, not an endpoint question. The Federal Modernization Workbook's Cloud Boundary and Landing Zone book covers it, and Unit 6 says what it means for this module.`,
+  `${M} — Unit 2 "Clouds and endpoints."`);
 }
 
 // ================================================================== 6 Signing in as a workload
@@ -216,21 +212,21 @@ endModule(SC);
   tag(s, "How");
   const c = code(s, "Lab", 0.6, 1.45, 12.15, [
     "# Lab 1, steps 2 to 4, in examples/ms-automation (fixtures, no tenant)",
-    "$ python -c \"...from graphkit import endpoints; endpoints('GCCHigh')\"",
-    "ValueError: unknown cloud 'GCCHigh'; one of ['dod', 'gcc', 'gcchigh', 'global']",
+    "$ python -c \"...from graphkit import endpoints; endpoints('usgov')\"",
+    "ValueError: unknown cloud 'usgov'; one of ['gcc', 'global']",
     "$ python -c \"...print(permissions_for(load_calls('stale-users')))\"",
     "['AuditLog.Read.All', 'User.Read.All']",
     "$ python -c \"...GraphClient('gcc', ..., calls=load_calls('ca-export')).request('GET', '/users')\"",
     "PermissionError: undeclared call: GET /v1.0/users; add it to graph-calls.json with its permission",
-    "$ python -c \"...GraphClient('gcchigh', ...).request('GET', 'https://graph.microsoft.com/v1.0/users')\"",
-    "ValueError: refusing to send the token to https://graph.microsoft.com/v1.0/users: not https://graph.microsoft.us",
+    "$ python -c \"...GraphClient('gcc', ...).request('GET', 'https://graph.example.invalid/v1.0/users')\"",
+    "ValueError: refusing to send the token to https://graph.example.invalid/v1.0/users: not https://graph.microsoft.com",
     "$ python -m pytest -q tests/python/test_graphkit_and_tasks.py -k \"paging or ... or delta or advanced\"",
-    "9 passed, 11 deselected",
+    "9 passed, 10 deselected",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 1, 2026", pt: 11 });
-  line(s, "Then", "Then the same rules in PowerShell (Get-FmwCloud, Get-FmwCallPermission, Assert-FmwGraphCall), and the full suites with Module 4's: 94 pytest, 56 Pester.", c + 0.25, 0.65, 14);
+  line(s, "Then", "Then the same rules in PowerShell (Get-FmwCloud, Get-FmwCallPermission, Assert-FmwGraphCall), and the full suites with Module 4's: 86 pytest, 52 Pester.", c + 0.25, 0.65, 14);
   sources(s, "Sources: Module 1, Unit 7 \"Exercise: Lab 1\"; examples/ms-automation: graphkit.py, graph-calls.json, tests/python, tests/powershell.");
   notes(s,
-`Try it. Lab 1 runs on a laptop in the examples folder, against fixtures, with no tenant. Ask for a cloud name the client doesn't know, G C C High with capitals, and you get a value error that lists the four names it accepts. An unknown name is an error, never a default. List the permissions the stale-users task needs, and you get exactly two: AuditLog dot Read dot All and User dot Read dot All, computed from the calls it declares. Make a call the Conditional Access task doesn't declare, and it refuses, telling you to add it to graph-calls dot JSON with its permission. Send a GCC High token to the worldwide Graph host, and it refuses again. Nothing was sent in either case. Then nine tests prove paging, retries, batching, delta and the advanced-query header against a fake transport. The lab repeats the rules in PowerShell, and the full suites pass: ninety-four in pytest and fifty-six in Pester, counting Module 4's Arc tests.`,
+`Try it. Lab 1 runs on a laptop in the examples folder, against fixtures, with no tenant. Ask for a cloud name the client doesn't know, u s gov, and you get a value error that lists the two names it accepts. An unknown name is an error, never a default. List the permissions the stale-users task needs, and you get exactly two: AuditLog dot Read dot All and User dot Read dot All, computed from the calls it declares. Make a call the Conditional Access task doesn't declare, and it refuses, telling you to add it to graph-calls dot JSON with its permission. Send the token to a host that isn't Graph, and it refuses again. Nothing was sent in either case. Then nine tests prove paging, retries, batching, delta and the advanced-query header against a fake transport. The lab repeats the rules in PowerShell, and the full suites pass: eighty-six in pytest and fifty-two in Pester, counting Module 4's Arc tests.`,
   `${M} — Unit 7 "Exercise: Lab 1 (fixtures, no tenant)," steps 2 to 7.`);
 }
 
@@ -256,22 +252,21 @@ endModule(SL);
 
 // ================================================================== 13 Where agencies are
 {
-  const s = content(SA, "Where agencies are: GCC, GCC High and DoD");
+  const s = content(SA, "Where agencies are: GCC with commercial Azure");
   tag(s, "Who");
-  const b = table(s, "Avail", 1.45, [3.4, 3.6, 5.15], ["What the module relies on", "Commercial and GCC", "GCC High and DoD"], [
-    ["App registration", "Worldwide admin center", "In the government cloud itself"],
-    ["Graph Explorer", "Supported", "Not supported"],
-    ["Workload identities", "Available", "Roadmap: GA at FedRAMP High, DoD IL4 and IL5"],
-    ["Managed identity as an app's federated credential", "Audience api://AzureADTokenExchange", "Audience api://AzureADTokenExchangeUSGov"],
+  const b = table(s, "Avail", 1.45, [4.4, 7.75], ["What the module relies on", "Commercial and GCC"], [
+    ["Sign-in and Graph hosts", "login.microsoftonline.com, graph.microsoft.com"],
+    ["App registration", "Worldwide Microsoft Entra admin center"],
+    ["Managed identity as an app's federated credential", "Audience api://AzureADTokenExchange"],
+    ["Each Graph API", "The global service column of the page's national cloud table: check it first"],
   ], { fontSize: 12.5, limit: 4.3 });
   panel(s, "Interim", 0.6, b + 0.25, 12.15, null, HEX.teal, HEX.tealTint, "INTERIM PATHS (DESIGN GUIDANCE)", null, [
     "Scripts on AzureAD or MSOnline: rewrite on Graph PowerShell, and move to app-only sign-in while you're there",
     "A collector that stays on premises: a CA-issued certificate now, a managed identity on Arc later",
-    "A move from GCC to GCC High: a new app registration and a changed cloud name, never a host in the code",
   ], 13);
-  sources(s, "Sources: Module 1, Unit 6: Learn, Graph deployments (Oct. 25, 2026); Azure Government GA roadmap; trust a managed identity (read Nov. 1, 2026).");
+  sources(s, "Sources: Module 1, Unit 6: Learn, Graph deployments (Oct. 25, 2026); trust a managed identity (read Nov. 1, 2026); Book 10, Ch 04.");
   notes(s,
-`Where are agencies? Most on this path run a Microsoft 365 GCC tenant with commercial Azure. Their scripts are often older than the current tools: AzureAD cmdlets, a client secret in a scheduled task, a host name written into the code. Some run GCC High. For what this module relies on: in GCC High and DoD, the app is registered in the government cloud itself, and Graph Explorer isn't supported. Microsoft's Azure Government roadmap lists workload identities as generally available at FedRAMP High and DoD impact levels four and five. And when a managed identity is an app's federated credential, the audience value differs: the U S Gov token exchange audience in the government cloud. The interim paths: rewrite retired-module scripts on Graph PowerShell, use a certificate on premises until the server is on Arc, and treat a GCC High move as a configuration change.`,
+`Where are agencies? This path assumes a civilian agency at FedRAMP Moderate, most often with a Microsoft 365 GCC tenant and commercial Azure. Its scripts are often older than the current tools: AzureAD or MSOnline cmdlets, a client secret in a scheduled task, a host name written into the code. For what this module relies on, GCC is the same as commercial: the worldwide sign-in and Graph hosts, app registration in the worldwide Entra admin center, and the standard token exchange audience when a managed identity is an app's federated credential. For each Graph API, check the global service column of the page's national cloud table. GCC needs no endpoint change, but it can lack features commercial tenants have, and Cloud Boundary and Landing Zone keeps that list. The interim paths: rewrite retired-module scripts on Graph PowerShell, and use a certificate on premises until the server is on Arc.`,
   `${M} — Unit 6 "Where agencies are."`);
 }
 endModule(SA);
@@ -299,7 +294,7 @@ endModule(SA);
 // ================================================================== 15 Check
 {
   const s = check(SS, "Check yourself: two questions on foundations", [
-    { q: "Your tenant is Microsoft 365 GCC. Which Graph host does your collector call?", options: ["a. graph.microsoft.us", "b. graph.microsoft.com", "c. dod-graph.microsoft.us"] },
+    { q: "Your tenant is Microsoft 365 GCC. Which Graph host does your collector call?", options: ["a. https://management.azure.com", "b. https://graph.microsoft.com", "c. https://login.microsoftonline.com"] },
     { q: "A batch returns 200, but two of its 20 requests returned 429. What should the client do?", options: ["a. Treat the batch as successful", "b. Retry the whole batch at once", "c. Check each response, and retry the throttled ones after their wait"] },
   ], "1 b: GCC uses the worldwide endpoints. 2 c: each request in a batch is throttled on its own.");
   sources(s, "Sources: Module 1, Unit 9 \"Knowledge check,\" questions 1 and 5; Unit 2; Unit 5.");
@@ -336,8 +331,8 @@ endModule(SS);
 backup();
 sourceSlide("Sources: Module 1 deck", [
   "Module page: docs/training/ms-automation-foundations.md (Microsoft Automation learning path, Module 1), Units 1 to 10; its footnotes carry each Microsoft Learn page and the date it was read (October 25, 2026; the two Unit 6 availability rows November 1, 2026).",
-  "Microsoft Learn pages the module cites: Microsoft Graph national cloud deployments; Microsoft Entra authentication and national clouds; Get-MgEnvironment; Connect to Azure Government with PowerShell and with Azure CLI; national clouds with the Graph SDKs; Get access without a user; Azure Identity for Python.",
-  "Also: managed identities; Arc-enabled server managed identity; workload identity federation and trust; app registration with a certificate; certificate credentials; tenant-wide admin consent; Graph permissions overview; best practices; Find-MgGraphCommand; Find-MgGraphPermission; List users; Graph SDK install and paging; Azure AD PowerShell deprecation and migration; paging; throttling and throttling limits; JSON batching; delta query; advanced queries; Azure Government GA roadmap; trust a managed identity.",
+  "Microsoft Learn pages the module cites: Microsoft Graph national cloud deployments; Microsoft Entra authentication and national clouds; Get-MgEnvironment; national clouds with the Graph SDKs; Get access without a user; Azure Identity for Python.",
+  "Also: managed identities; Arc-enabled server managed identity; workload identity federation and trust; app registration with a certificate; certificate credentials; tenant-wide admin consent; Graph permissions overview; best practices; Find-MgGraphCommand; Find-MgGraphPermission; List users; Graph SDK install and paging; Azure AD PowerShell deprecation and migration; paging; throttling and throttling limits; JSON batching; delta query; advanced queries; trust a managed identity.",
   "CISA ScubaGear Microsoft Entra ID baseline (aad.md), MS.AAD.5.5v1 and 5.6v1. Federal requirements by link: Book 02, Appendix A (BOD 25-01 and the SCuBA baselines; NIST SP 800-53 Rev. 5 control mapping).",
   "Lab output: examples/ms-automation (graphkit.py, graph-calls.json, powershell/FmwGraph.psm1, tests), run November 1, 2026 with Python 3.14.3 and PowerShell 7.6.9. Lab 2: Book 19, Chapter 02, not run by the authors. Design guidance is labeled on the slides.",
 ]);

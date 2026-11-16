@@ -10,31 +10,30 @@ laptop: no tenant, no network.
 You start with Microsoft's definition.
 
 3
-00:00:06.851 --> 00:00:11.421
-The linter finds eight problems, and
-when you run it for a GCC High tenant,
+00:00:06.851 --> 00:00:08.900
+The linter finds eight problems.
 
 4
-00:00:11.421 --> 00:00:16.612
-the callback heads to the worldwide cloud
-and the task fails at the end of the wait.
+00:00:08.900 --> 00:00:13.720
+Run it for a GCC tenant and it completes,
+calling back on the beta endpoint
 
 5
-00:00:16.612 --> 00:00:19.644
-Switch the cloud to
-worldwide and it completes,
+00:00:13.720 --> 00:00:18.700
+and reporting completed, which is exactly
+why its problems are easy to miss.
 
 6
-00:00:19.644 --> 00:00:22.675
-which is exactly why the
-problem is easy to miss.
+00:00:18.700 --> 00:00:21.493
+Then the program's
+definition: a clean lint,
 
 7
-00:00:22.675 --> 00:00:27.777
-Then the program's definition: a clean
-lint, and a GCC High run that survives
+00:00:21.493 --> 00:00:26.920
+a warning when the retries could outlast a
+shorter wait, and a GCC run that survives
 
 8
-00:00:27.777 --> 00:00:33.020
-two transient failures, does the work
-once, and calls back to the right cloud.
+00:00:26.920 --> 00:00:32.260
+two transient failures, does the work once,
+and calls back on version one point oh.

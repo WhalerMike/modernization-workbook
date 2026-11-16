@@ -491,63 +491,6 @@
    "Only the plan's three write actions ever change anything, and only after review."
   ]
  ],
- "12": [
-  [
-   0.05,
-   3.2,
-   "Step seven dry-runs the plan with its approved hash."
-  ],
-  [
-   3.25,
-   2.312,
-   "It would send four writes, in order."
-  ],
-  [
-   5.562,
-   4.25,
-   "First, Disable A D Account for conversion one's legacy account."
-  ],
-  [
-   9.812,
-   1.775,
-   "Disabled, not deleted."
-  ],
-  [
-   11.588,
-   3.675,
-   "Then a post of an application's federated credential to Graph."
-  ],
-  [
-   15.262,
-   6.825,
-   "Then a put of the user-assigned identity, id webfront, to Resource Manager, before a put of its credential."
-  ],
-  [
-   22.087,
-   4.537,
-   "The identity always comes before its credential, one write at a time."
-  ],
-  [
-   26.625,
-   5.175,
-   "Step eight applies the plan to the fake, and all four are sent, in the same order."
-  ],
-  [
-   31.8,
-   9.85,
-   "Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed."
-  ],
-  [
-   41.65,
-   5.013,
-   "Step nine runs every test: five hundred thirteen pass, none fail."
-  ],
-  [
-   46.663,
-   1.837,
-   "Then delete the output folder."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -749,6 +692,63 @@
    38.688,
    6.787,
    "Next is Module 8: convert Kerberos accounts to group managed and delegated managed service accounts."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.2,
+   "Step seven dry-runs the plan with its approved hash."
+  ],
+  [
+   3.25,
+   2.312,
+   "It would send four writes, in order."
+  ],
+  [
+   5.562,
+   4.25,
+   "First, Disable A D Account for conversion one's legacy account."
+  ],
+  [
+   9.812,
+   1.775,
+   "Disabled, not deleted."
+  ],
+  [
+   11.588,
+   3.675,
+   "Then a post of an application's federated credential to Graph."
+  ],
+  [
+   15.262,
+   6.825,
+   "Then a put of the user-assigned identity, id webfront, to Resource Manager, before a put of its credential."
+  ],
+  [
+   22.087,
+   4.537,
+   "The identity always comes before its credential, one write at a time."
+  ],
+  [
+   26.625,
+   5.175,
+   "Step eight applies the plan to the fake, and all four are sent, in the same order."
+  ],
+  [
+   31.8,
+   9.85,
+   "Then it tries a hash nobody approved, all zeros, and the write path refuses: the plan's hash isn't the approved one, so it won't run a plan nobody reviewed."
+  ],
+  [
+   41.65,
+   4.9,
+   "Step nine runs every test: five hundred eleven pass, none fail."
+  ],
+  [
+   46.55,
+   1.837,
+   "Then delete the output folder."
   ]
  ]
 }

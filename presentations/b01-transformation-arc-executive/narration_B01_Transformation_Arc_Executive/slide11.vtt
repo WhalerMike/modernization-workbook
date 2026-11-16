@@ -41,58 +41,54 @@ and phishing-resistant MFA
 for all users mandatory.
 
 9
-00:00:35.662 --> 00:00:37.804
-FIDO2 keys, passkeys,
+00:00:35.662 --> 00:00:43.013
+FIDO2 keys, passkeys, Windows Hello and
+PIV cards qualify; SMS and voice don't.
 
 10
-00:00:37.804 --> 00:00:43.438
-Windows Hello and PIV or CAC cards
-qualify; SMS and voice don't.
-
-11
-00:00:43.438 --> 00:00:45.963
+00:00:43.013 --> 00:00:45.538
 Two consequences need an executive eye.
 
-12
-00:00:45.963 --> 00:00:49.562
+11
+00:00:45.538 --> 00:00:49.138
 Smart-card sign-in is anchored
 in Active Directory today.
 
-13
-00:00:49.562 --> 00:00:52.458
+12
+00:00:49.138 --> 00:00:52.034
 The card and PIN stay,
 but certificate issuance
 
-14
-00:00:52.458 --> 00:00:55.650
+13
+00:00:52.034 --> 00:00:55.226
 needs a successor before
 Active Directory retires.
 
-15
-00:00:55.650 --> 00:01:00.500
+14
+00:00:55.226 --> 00:01:00.075
 And privilege: every human admin assignment
 becomes eligible and time-bound,
 
-16
-00:01:00.500 --> 00:01:04.062
+15
+00:01:00.075 --> 00:01:03.637
 and emergency accounts are
 tested at least every 90 days.
 
-17
-00:01:04.062 --> 00:01:09.672
+16
+00:01:03.637 --> 00:01:09.248
 The CISO decides: phishing-resistant
 MFA as the end state for everyone,
 
-18
-00:01:09.672 --> 00:01:13.380
+17
+00:01:09.248 --> 00:01:12.956
 Tier 0 administrators
 first, opening in Phase 1,
 
-19
-00:01:13.380 --> 00:01:17.374
+18
+00:01:12.956 --> 00:01:16.950
 and certificate issuance
 moved off AD DS by Gate G4.
 
-20
-00:01:17.374 --> 00:01:18.940
+19
+00:01:16.950 --> 00:01:18.500
 Next, who leads.

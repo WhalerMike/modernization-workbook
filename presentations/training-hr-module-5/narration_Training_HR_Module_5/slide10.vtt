@@ -54,6 +54,15 @@ You'll also see a legacy
 intermediate with no list at all,
 
 12
-00:00:46.350 --> 00:00:49.780
+00:00:46.350 --> 00:00:49.713
 and an issuing authority
 missing from the trust store.
+
+13
+00:00:49.713 --> 00:00:53.000
+Step four runs the
+tests: fifty-seven pass.
+
+14
+00:00:53.000 --> 00:00:54.670
+Then delete the out folder.

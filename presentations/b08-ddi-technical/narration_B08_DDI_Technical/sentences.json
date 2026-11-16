@@ -635,80 +635,6 @@
    "And watch the NXDOMAIN trap: a partner's storage account can lead into your empty zone and fail, which is fixed by enabling fallback to internet on the zone's link."
   ]
  ],
- "19": [
-  [
-   0.05,
-   3.913,
-   "Two rules turn Azure private endpoints into something governed."
-  ],
-  [
-   3.962,
-   2.087,
-   "First, forward the public zone."
-  ],
-  [
-   6.05,
-   13.912,
-   "Every resolver outside Azure, on-premises, in other clouds and at branches, forwards each service's public zone, not the privatelink zone, to the Private Resolver's inbound endpoint or an agency resolver that does."
-  ],
-  [
-   19.962,
-   5.4,
-   "Azure Government uses different names, so a design spanning both clouds needs both sets."
-  ],
-  [
-   25.363,
-   10.525,
-   "Second, build the resolver in the hub as a forwarding bridge, not an authority, so on-premises D N S reaches it by conditional forwarding, never delegation."
-  ],
-  [
-   35.888,
-   2.388,
-   "The slide carries the sizing limits."
-  ],
-  [
-   38.275,
-   9.9,
-   "The traps are worth remembering: don't link a ruleset to the network its own rule points at, or it loops, and don't list a custom resolver beside Azure's built-in one."
-  ]
- ],
- "20": [
-  [
-   0.05,
-   3.237,
-   "The address side has the same problem as the name side."
-  ],
-  [
-   3.288,
-   12.137,
-   "Every cloud and NSX allocates addresses on its own, so a range created in a console can overlap on-premises space or another division, and nobody knows until a conflict appears."
-  ],
-  [
-   15.425,
-   1.925,
-   "Integration depth varies."
-  ],
-  [
-   17.35,
-   10.988,
-   "AWS can hand authority for private address scopes to an external eye-pam, with Infoblox as the book's example, but not in GovCloud, so it doesn't help a GovCloud estate today."
-  ],
-  [
-   28.337,
-   4.338,
-   "Azure and Google Cloud can't hand off, so you mirror and reconcile."
-  ],
-  [
-   32.675,
-   10.975,
-   "The rule: reserve blocks in the enterprise eye-pam before any cloud or NSX network is created, integrate where you can, reconcile where you can't, and monitor sync health."
-  ],
-  [
-   43.65,
-   3.337,
-   "And plan IPv4 and IPv6 together."
-  ]
- ],
  "21": [
   [
    0.05,
@@ -739,53 +665,6 @@
    44.487,
    6.688,
    "For example, resolve one name per namespace from every origin; a public address means a missing rule."
-  ]
- ],
- "22": [
-  [
-   0.05,
-   2.3,
-   "The policy plane isn't one box."
-  ],
-  [
-   2.35,
-   13.637,
-   "It has three parts: an on-premises D N S and DHCP layer that replaces A D D N S, a management plane holding the system of record, and local resolvers that keep answering if management is unreachable."
-  ],
-  [
-   15.988,
-   3.375,
-   "It overlays the cloud services; it doesn't replace them."
-  ],
-  [
-   19.363,
-   7.188,
-   "Changes converge in seconds, not milliseconds, so an emergency block has to be verified where clients are served."
-  ],
-  [
-   26.55,
-   5.5,
-   "Infoblox is the book's example, and its government cloud offering is certified at Moderate."
-  ],
-  [
-   32.05,
-   5.825,
-   "The architecture stays the same in federal clouds; authorization and integrations change."
-  ],
-  [
-   37.875,
-   8.15,
-   "A Moderate plane doesn't cover High systems, so use a service authorized at the right level, or keep the plane inside the agency's boundary."
-  ],
-  [
-   46.025,
-   6.987,
-   "Government regions such as GovCloud host Moderate systems too, so their gaps matter at Moderate, and the slide lists them."
-  ],
-  [
-   53.013,
-   3.4,
-   "The right-hand column is High only, kept for reference."
   ]
  ],
  "23": [
@@ -1055,6 +934,127 @@
    49.438,
    0.762,
    "Thank you."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   3.913,
+   "Two rules turn Azure private endpoints into something governed."
+  ],
+  [
+   3.962,
+   2.087,
+   "First, forward the public zone."
+  ],
+  [
+   6.05,
+   13.912,
+   "Every resolver outside Azure, on-premises, in other clouds and at branches, forwards each service's public zone, not the privatelink zone, to the Private Resolver's inbound endpoint or an agency resolver that does."
+  ],
+  [
+   19.962,
+   6.025,
+   "Use Microsoft's recommended zone names, because records are generated automatically only for those."
+  ],
+  [
+   25.988,
+   10.525,
+   "Second, build the resolver in the hub as a forwarding bridge, not an authority, so on-premises D N S reaches it by conditional forwarding, never delegation."
+  ],
+  [
+   36.513,
+   2.388,
+   "The slide carries the sizing limits."
+  ],
+  [
+   38.9,
+   9.9,
+   "The traps are worth remembering: don't link a ruleset to the network its own rule points at, or it loops, and don't list a custom resolver beside Azure's built-in one."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   3.237,
+   "The address side has the same problem as the name side."
+  ],
+  [
+   3.288,
+   12.137,
+   "Every cloud and NSX allocates addresses on its own, so a range created in a console can overlap on-premises space or another division, and nobody knows until a conflict appears."
+  ],
+  [
+   15.425,
+   1.925,
+   "Integration depth varies."
+  ],
+  [
+   17.35,
+   11.438,
+   "AWS can hand authority for private address scopes to an external eye-pam, with Infoblox as the book's example, in the commercial Regions where the agency's AWS workloads run."
+  ],
+  [
+   28.788,
+   4.338,
+   "Azure and Google Cloud can't hand off, so you mirror and reconcile."
+  ],
+  [
+   33.125,
+   10.975,
+   "The rule: reserve blocks in the enterprise eye-pam before any cloud or NSX network is created, integrate where you can, reconcile where you can't, and monitor sync health."
+  ],
+  [
+   44.1,
+   3.475,
+   "And plan IPv4 and I P version six together."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   2.3,
+   "The policy plane isn't one box."
+  ],
+  [
+   2.35,
+   13.637,
+   "It has three parts: an on-premises D N S and DHCP layer that replaces A D D N S, a management plane holding the system of record, and local resolvers that keep answering if management is unreachable."
+  ],
+  [
+   15.988,
+   3.375,
+   "It overlays the cloud services; it doesn't replace them."
+  ],
+  [
+   19.363,
+   7.188,
+   "Changes converge in seconds, not milliseconds, so an emergency block has to be verified where clients are served."
+  ],
+  [
+   26.55,
+   5.5,
+   "Infoblox is the book's example, and its government cloud offering is certified at Moderate."
+  ],
+  [
+   32.05,
+   5.825,
+   "The architecture stays the same in federal clouds; authorization and integrations change."
+  ],
+  [
+   37.875,
+   8.15,
+   "A Moderate plane doesn't cover High systems, so use a service authorized at the right level, or keep the plane inside the agency's boundary."
+  ],
+  [
+   46.025,
+   9.688,
+   "A Moderate system runs in the commercial regions: G C C Moderate, commercial Azure and the AWS commercial Regions, and the slide lists what changes there."
+  ],
+  [
+   55.712,
+   3.4,
+   "The right-hand column is High only, kept for reference."
   ]
  ]
 }

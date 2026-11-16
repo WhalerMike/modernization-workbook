@@ -453,28 +453,28 @@ Agent identities also appear unplanned: from Copilot Studio, from Foundry projec
 
 // ================================================================== 14 Release stage and clouds
 {
-  const s = content(P1, "What's GA, what's preview, and what each cloud has");
+  const s = content(P1, "What's GA, what's preview, and what GCC has");
   tag(s, "What");
-  const tb = table(s, "Clouds", 1.5, [3.75, 3.0, 2.55, 2.85], ["Capability (as of October 2026)", "Release stage", "GCC", "GCC High and DoD"], [
-    ["Agent ID platform: blueprints, agent identities, sponsors", "GA, April 2026", "Available, with listed gaps", "Not published; treat as unavailable"],
-    ["Agent's user account", "Preview; Frontier tenants only", "None published", "None published"],
-    ["Conditional Access for agents", "Agent targets preview; Block only", "Listed for delegated access", "Not published"],
-    ["ID Protection for agents", "Preview; detections offline", "Listed with Conditional Access", "Not stated; confirm"],
-    ["Sponsor lifecycle workflows; access packages", "Workflows GA, May 2026", "Available", "Not published"],
-    ["Purview audit and DLP, network controls for agents", "—", "Not available", "Not published"],
-    ["Workload identity Conditional Access and risk", "GA; Workload ID Premium", "Available", "Available in Azure Government"],
+  const tb = table(s, "Clouds", 1.5, [4.35, 3.6, 4.2], ["Capability (as of October 2026)", "Release stage", "GCC"], [
+    ["Agent ID platform: blueprints, agent identities, sponsors", "GA, April 2026", "Available, with listed gaps"],
+    ["Agent's user account", "Preview; Frontier tenants only", "Not listed"],
+    ["Conditional Access for agents", "Agent targets preview; Block only", "Listed for delegated access"],
+    ["ID Protection for agents", "Preview; detections offline", "Listed with Conditional Access"],
+    ["Sponsor lifecycle workflows; access packages", "Workflows GA, May 2026", "Available"],
+    ["Purview audit and DLP, network controls for agents", "—", "Not available"],
+    ["Workload identity Conditional Access and risk", "GA; Workload ID Premium", "Confirm in the agency's tenant"],
   ], { fontSize: 12, limit: 5.6 });
   callout(s, "FedRAMP", tb + 0.2, 0.85, "FaCloud", HEX.amber, "FedRAMP status: ",
     "as of Oct. 1, 2026, Agent 365 meets all FedRAMP High controls its assessor reviewed; final authorization is pending.");
-  sources(s, "Sources: Microsoft Learn: Agent 365 service description; Entra feature availability (Azure Government); Conditional Access for agents; Agent 365 CLI for US Gov. Book 17, Ch 04, 06.");
+  sources(s, "Sources: Microsoft Learn: Agent 365 service description; Conditional Access for agents; Agent 365 CLI for US Gov. Book 17, Ch 04, 06.");
   notes(s,
 `The agency's cloud decides what it can use. This is Microsoft's documentation as of October 2026; re-check it before each phase gate.
 
 The Agent ID platform is generally available for all Entra customers. GCC has a documented subset in the Agent 365 service description: the registry, governance actions, access packages, sponsor lifecycle policies, Conditional Access and identity protection for agents with delegated access, and device compliance. Network controls, Purview audit, DLP and most Defender agent detections aren't listed. So a GCC agency can govern agent identity and access, but can't yet get Microsoft's audit and data protection for agent interactions.
 
-GCC High and DoD have no published availability: Entra's Azure Government feature list has no Agent ID entries, and configurable endpoints don't guarantee a feature exists. The program treats agent identities there as unavailable until Microsoft confirms otherwise in writing.
+Microsoft's Agent 365 developer documentation warns that features available commercially might not yet be in GCC. The program treats any agent capability the service description doesn't list for GCC as unavailable until Microsoft confirms otherwise in writing.
 
-Licensing is its own trap. Conditional Access for agents needs Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3; ID Protection for agents needs P2 during preview; workload identity Conditional Access needs Workload ID Premium, which is listed for Azure Government.
+Licensing is its own trap. Conditional Access for agents needs Microsoft 365 E7, or Agent 365 with Entra ID P1 or Microsoft 365 E3; ID Protection for agents needs P2 during preview; workload identity Conditional Access needs Workload ID Premium; confirm it in the agency's tenant.
 
 And authorization is pending: as of October 1, 2026, Agent 365 meets all FedRAMP High controls its assessor reviewed, with final authorization pending, so check current status yourself. The program builds on what's generally available in its own cloud and records preview as watch items. Where agent identities aren't available, the same governance applies to the service principals and managed identities agents run as.`,
   "Book 17, Chapter 04 — \"Release stage, licensing and government clouds\"; Chapter 06 — Credentials, Least Privilege and Access Policy for AI, \"Release stage and government-cloud availability.\"");
@@ -608,7 +608,7 @@ The details matter. Soft-deleted objects restore for 30 days. The cascade runs a
 
 An agent is orphaned when any anchor fails: no sponsor confirmed after a transfer; no owner or owning service; no sign-in over the inactivity window; no inventory record; or a deleted blueprint, which leaves children that can't authenticate but remain. Once the identity governance officer confirms it, a person disables the agent; disabling is never automatic. The sponsoring office then has 30 days to name a sponsor or retire it.
 
-Where agent features aren't available, in GCC High and DoD or for agents on ordinary service principals, the program runs the same lifecycle on application objects: two owners, a reference to the inventory record that names the sponsor, end dates, and a task extension on the sponsor's HR workflows that opens a ticket per agent. Note that governance of people doesn't license governance of agents; those features need Agent 365 or Microsoft 365 E7. That path is weaker, and the package should say so.`,
+Where an agent feature isn't available in GCC, and for agents on ordinary service principals anywhere, the program runs the same lifecycle on application objects: two owners, a reference to the inventory record that names the sponsor, end dates, and a task extension on the sponsor's HR workflows that opens a ticket per agent. Note that governance of people doesn't license governance of agents; those features need Agent 365 or Microsoft 365 E7. That path is weaker, and the package should say so.`,
   "Book 17, Chapter 05 — \"Retirement,\" \"The orphaned agent,\" \"Release stage and government-cloud availability,\" \"Where the agent features aren't available.\"");
 }
 
@@ -793,9 +793,9 @@ Consent: an AI service a user connected through OAuth holds a delegated grant wh
 
 Agents: Defender for Endpoint finds local agents, agentic IDEs and their MCP servers once it observes activity, macOS in preview, and isn't a complete software inventory. Global Secure Access agent discovery, in preview, classes each agent as managed or shadow by whether it's registered with Agent ID. That's the right test, and the program applies it to every source.
 
-Workloads: Defender CSPM's AI posture management finds model endpoints and AI services in the agency's own clouds, including Azure Government.
+Workloads: Defender CSPM's AI posture management finds model endpoints and AI services in the agency's own clouds.
 
-Everything found is reconciled on the identity record key, never a display name. Global Secure Access isn't yet supported in GCC High and DoD. And no tool closes one gap: an agent using a static key produces no identity signal at all.`,
+Everything found is reconciled on the identity record key, never a display name. Global Secure Access is available in GCC. And no tool closes one gap: an agent using a static key produces no identity signal at all.`,
   "Book 17, Chapter 07 — \"Finding what nobody declared,\" \"Release stage and government-cloud availability.\"");
 }
 
@@ -999,8 +999,8 @@ sourceSlide("Sources behind Module 2 — Inventory and kinds of identity", [
   "OMB M-25-21: §§3(b)(i), 3(b)(v), 4(a)–(b); footnotes 11, 21, 22, 29.  ·  NIST SP 800-53 Rev. 5: AC-2, AC-6, AU-12, CA-7, CM-8, IA-4, IA-5, IA-9.",
   "Microsoft Learn: Conditional Access for agents; Target agent identities; Conditional Access: Grant; Conditional Access for workload identities; Workload ID FAQ; Managed identities overview; Workload identity federation.",
   "Microsoft Learn: What are agent identities; What is Entra Agent ID; Governing agent identities; Agent ID design patterns; Agent identities; Agent's user account; Agent 365 identity; agentIdentity resource; Disable agent identities.",
-  "Microsoft Learn: ID Protection for agents; Entra feature availability (Azure Government); Agent 365 service description; Agent 365 CLI for US Government clouds; Entra releases (March–May 2026); Foundry agent identity.",
-  "AWS: Amazon Bedrock AgentCore Identity; AgentCore in AWS GovCloud (US).  ·  Google Cloud: Agent identity overview.",
+  "Microsoft Learn: ID Protection for agents; Agent 365 service description; Agent 365 CLI for US Government clouds; Entra releases (March–May 2026); Foundry agent identity.",
+  "AWS: Amazon Bedrock AgentCore Identity.  ·  Google Cloud: Agent identity overview.",
   "Full footnotes with links and access dates (Oct. 21, 2026): Book 17, Chapters 03–04.",
 ]);
 sourceSlide("Sources behind Module 3 — Owners, credentials and access", [

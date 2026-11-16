@@ -98,21 +98,26 @@
   ],
   [
    2.638,
-   11.475,
-   "Learn's incident samples ask you for the cloud, but if they don't recognize your answer, they fall back to the worldwide endpoint, so a G C C High tenant could be signed in to as the wrong cloud."
+   9.725,
+   "Learn's incident samples ask you for the cloud, but if they don't recognize your answer, such as G C C, they fall back to the worldwide endpoint without saying so."
   ],
   [
-   14.113,
+   12.363,
+   7.025,
+   "That's right for G C C by accident: a typo isn't caught, and nothing records which cloud the run was meant for."
+  ],
+  [
+   19.387,
    4.675,
    "The chapter's code uses the same hosts but refuses a cloud name it doesn't know."
   ],
   [
-   18.788,
-   8.238,
-   "Graph's own rule evaluator is a beta, delegated-only action, listed for the global service and the U S Government clouds."
+   24.062,
+   7.938,
+   "Graph's own rule evaluator is a beta, delegated-only action, listed for the global service, which G C C uses."
   ],
   [
-   27.025,
+   32.0,
    5.763,
    "And the memberOf preview is public cloud only, which is one more reason the library doesn't use it."
   ]
@@ -149,71 +154,7 @@
    "Each script works in two phases, asks before it acts, and asks only for the permissions it needs."
   ]
  ],
- "6": [
-  [
-   0.05,
-   11.463,
-   "The scripts only exist inside Learn's pages, so the repository pins the pages themselves, unmodified, at a known commit, with hashes a test checks and a weekly watch for changes."
-  ],
-  [
-   11.512,
-   7.75,
-   "Then a small harness pulls each script out of its pinned page at test time and runs it, as published, against a fake tenant."
-  ],
-  [
-   19.262,
-   7.875,
-   "Only the things it calls outside itself are swapped out: the prompts, the screen output, the sleep, and four Graph cmdlets."
-  ],
-  [
-   27.137,
-   4.963,
-   "That way you can watch Microsoft's own scripts behave, instead of taking them on trust."
-  ],
-  [
-   32.1,
-   1.275,
-   "Here's what that showed."
-  ]
- ],
  "7": [
-  [
-   0.05,
-   1.762,
-   "This is the heart of the chapter."
-  ],
-  [
-   1.812,
-   4.513,
-   "Learn's pause script does its job well, and the code keeps it as the model."
-  ],
-  [
-   6.325,
-   2.35,
-   "But it records nothing about what it paused."
-  ],
-  [
-   8.675,
-   8.012,
-   "So when you resume, Learn's script turns on every paused group, including one that was deliberately frozen before the incident started."
-  ],
-  [
-   16.688,
-   6.525,
-   "It also falls back to the worldwide cloud on an answer it doesn't know, and nothing makes you wait before resuming."
-  ],
-  [
-   23.212,
-   5.438,
-   "The verdict: during recovery, the questions are what did we pause, and what was already off."
-  ],
-  [
-   28.65,
-   1.6,
-   "Only a record answers them."
-  ]
- ],
- "8": [
   [
    0.05,
    1.9,
@@ -235,7 +176,7 @@
    "If the rule ever lets the wrong person in, a test says so."
   ]
  ],
- "9": [
+ "8": [
   [
    0.05,
    3.525,
@@ -267,7 +208,7 @@
    "It's a test tool, not the engine, and Lab 2 checks it against Graph's."
   ]
  ],
- "10": [
+ "9": [
   [
    0.05,
    2.737,
@@ -299,7 +240,7 @@
    "The linter flags it, and the owner decides."
   ]
  ],
- "11": [
+ "10": [
   [
    0.05,
    3.725,
@@ -326,7 +267,7 @@
    "And the direct reports rule can't carry guards at all, because Learn says it can't be combined with anything, so the linter just notes it."
   ]
  ],
- "12": [
+ "11": [
   [
    0.05,
    1.975,
@@ -349,11 +290,11 @@
   ],
   [
    27.0,
-   4.175,
-   "Seventy tests cover all of it, with no tenant and no network."
+   4.525,
+   "Fifty-seven tests cover all of it, with no tenant and no network."
   ]
  ],
- "13": [
+ "12": [
   [
    0.05,
    1.062,
@@ -395,7 +336,7 @@
    "Pausing administrative units is the heavier one: it needs the Privileged Role Administrator."
   ]
  ],
- "14": [
+ "13": [
   [
    0.05,
    4.138,
@@ -403,31 +344,26 @@
   ],
   [
    4.188,
-   7.362,
-   "First you run Learn's own pause and resume scripts against a fake tenant with two groups, one of them already paused for review."
+   4.1,
+   "First you lint the rule table from the H R-Driven Identity book."
   ],
   [
-   11.55,
-   4.325,
-   "After the resume, both are on: the held group came back to life."
+   8.287,
+   9.575,
+   "Two rows come back: a finding on the rule that reads a display-name attribute instead of a coded slot, and a note on the direct reports rule, which can't carry guards."
   ],
   [
-   15.875,
-   4.175,
-   "Try an unknown cloud name and you'll see it sign in to worldwide."
+   17.863,
+   3.15,
+   "Then you evaluate a rule over the fictional people."
   ],
   [
-   20.05,
-   6.213,
-   "Then you lint the H R-Driven Identity book's table and evaluate a rule over the fictional people."
-  ],
-  [
-   26.262,
-   5.787,
-   "The disabled account and the guest stay out, and the lower-case code gets in, just as Learn says."
+   21.012,
+   7.2,
+   "The disabled account and the guest stay out, because of the guards, and the lower-case code gets in, just as Learn says it will."
   ]
  ],
- "15": [
+ "14": [
   [
    0.05,
    2.362,
@@ -455,11 +391,11 @@
   ],
   [
    24.025,
-   4.287,
-   "Put the clause back, run the whole suite, and seventy tests pass."
+   4.625,
+   "Put the clause back, run the whole suite, and fifty-seven tests pass."
   ]
  ],
- "16": [
+ "15": [
   [
    0.05,
    6.213,
@@ -491,7 +427,7 @@
    "Finally you drill an incident: take the record, pause, resume the critical groups by name, then back everything out."
   ]
  ],
- "17": [
+ "16": [
   [
    0.05,
    6.338,
@@ -518,7 +454,7 @@
    "And one row stays honestly open: agents' accounts, until Learn names the property."
   ]
  ],
- "18": [
+ "17": [
   [
    0.05,
    1.35,
@@ -558,6 +494,43 @@
    30.863,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.762,
+   "This is the heart of the chapter."
+  ],
+  [
+   1.812,
+   4.513,
+   "Learn's pause script does its job well, and the code keeps it as the model."
+  ],
+  [
+   6.325,
+   2.35,
+   "But it records nothing about what it paused."
+  ],
+  [
+   8.675,
+   8.012,
+   "So when you resume, Learn's script turns on every paused group, including one that was deliberately frozen before the incident started."
+  ],
+  [
+   16.688,
+   8.025,
+   "It also falls back to the worldwide cloud, silently, on an answer it doesn't know, and nothing makes you wait before resuming."
+  ],
+  [
+   24.712,
+   5.438,
+   "The verdict: during recovery, the questions are what did we pause, and what was already off."
+  ],
+  [
+   30.15,
+   1.6,
+   "Only a record answers them."
   ]
  ]
 }

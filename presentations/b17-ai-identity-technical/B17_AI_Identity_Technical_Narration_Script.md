@@ -52,9 +52,9 @@ What kind of identity an AI has comes down to one question: whose token does it 
 
 Agent ID adds a small object model. The blueprint is the template, and it holds the credential. The agent identities created from it hold permissions but no credential of their own. The big consequence is that the blueprint is a credential boundary. One credential serves every agent of that kind, and one action on the blueprint reaches all of them, including future ones. Second, what a blueprint declares isn't granted until someone consents, so real access is a sum you have to read. Third, every agent gets a human sponsor at creation. Now, which clouds actually have this?
 
-## Slide 14 — What's GA, what's preview, and what each cloud has
+## Slide 14 — What's GA, what's preview, and what GCC has
 
-Your cloud decides what you can use, and this picture changes monthly. The platform is generally available. GCC has a documented subset: you can govern agent identity and access, but not yet get Microsoft's audit and data protection for agent activity. GCC High and DoD have nothing published, so treat agent identities as unavailable there until Microsoft confirms it in writing. Licensing is its own trap, and the FedRAMP High authorization is still pending. The program's rule is to build on what's generally available in your own cloud, and to treat preview as something you watch. So how do we classify all this?
+Your cloud decides what you can use, and this picture changes monthly. The platform is generally available. GCC has a documented subset: you can govern agent identity and access, but not yet get Microsoft's audit and data protection for agent activity. Anything not listed for GCC, treat as unavailable until Microsoft confirms it in writing. Licensing is its own trap, and the FedRAMP High authorization is still pending. The program's rule is to build on what's generally available in your own cloud, and to treat preview as something you watch. So how do we classify all this?
 
 ## Slide 15 — Six kinds of AI identity, and where the risk sits
 

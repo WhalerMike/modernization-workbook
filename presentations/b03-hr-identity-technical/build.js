@@ -699,7 +699,7 @@ Who writes it depends on mastery. Cloud-only users: the admin center or Graph, b
   panel(s, "CRL", 0.6, 1.5, 5.75, 3.6, HEX.navy, HEX.navyTint, "ENTRA CBA REVOCATION CHECKING", null, [
     "No CRL configured, no revocation check: turn on Require CRL validation",
     "CRLs are cached; delta CRLs carry updates; no OCSP",
-    "Limits: 20 MB interactive, 65 MB service in Azure Global incl. GCC; 45 / 150 MB in Azure Government",
+    "Limits: 20 MB interactive, 65 MB service in Azure Global, which includes GCC",
     "So revoke tokens for an immediate cut-off",
   ], 12.5);
   const sc = { options: { bold: true, color: HEX.red } };
@@ -715,11 +715,11 @@ Who writes it depends on mastery. Cloud-only users: the admin center or Graph, b
     "and remove SCEP assignments before revoking a Cloud PKI certificate by hand, or the device simply requests a new one.");
   sources(s, "Sources: Microsoft Learn — CBA CRL; set up CBA; remove SCEP and PKCS certificates; Cloud PKI overview and monitoring. FIPS 201-3; SP 800-157. Book 03, Ch 09.");
   notes(s,
-`Revocation checking first. Entra ID checks the CRL of the issuing CA and the chain up to the root during CBA sign-in. Three properties decide how fast a PIV revocation takes effect. No CRL, no revocation: if a trusted CA has no CRL configured, revoked certificates still authenticate. Turn on Require CRL validation, and exempt a CA only while its CRL is being fixed. Caching: Entra caches the CRL, so a revocation isn't seen until the cache refreshes with a newer CRL; delta CRLs carry those updates, and Entra doesn't support OCSP. Microsoft advises revoking tokens manually when immediate revocation is critical. Size: in Azure Global, which includes GCC, the download limits are 20 megabytes for interactive sign-in and 65 for the service; in Azure Government, 45 and 150. If Entra can't reach a configured CRL endpoint, CBA fails. Phase 1 checks every issuing CA against those limits.
+`Revocation checking first. Entra ID checks the CRL of the issuing CA and the chain up to the root during CBA sign-in. Three properties decide how fast a PIV revocation takes effect. No CRL, no revocation: if a trusted CA has no CRL configured, revoked certificates still authenticate. Turn on Require CRL validation, and exempt a CA only while its CRL is being fixed. Caching: Entra caches the CRL, so a revocation isn't seen until the cache refreshes with a newer CRL; delta CRLs carry those updates, and Entra doesn't support OCSP. Microsoft advises revoking tokens manually when immediate revocation is critical. Size: in Azure Global, which includes GCC, the download limits are 20 megabytes for interactive sign-in and 65 for the service. If Entra can't reach a configured CRL endpoint, CBA fails. Phase 1 checks every issuing CA against those limits.
 
 So PIV revocation closes CBA eventually, on the CA's schedule; disabling and token revocation close Entra now. Both are needed: one protects every other relying party, the other the tenant.
 
-Device certificates. Intune issues SCEP or PKCS certificates for Wi-Fi and VPN; Microsoft Cloud PKI can be the issuing CA, licensed on top of Intune Plan 1 or 2, available in GCC High but not DoD, with a CRL valid seven days and republished every three and a half. The table is Intune's Windows behavior. Unenroll, wipe, retire, group removal and profile removal revoke and remove. Losing the license, or removing the user from Entra ID, leaves the certificate valid on the device. Hence Microsoft's order: wipe or retire first, then remove the user. And a manual Cloud PKI revocation with an active SCEP assignment just gets reissued at next check-in.`,
+Device certificates. Intune issues SCEP or PKCS certificates for Wi-Fi and VPN; Microsoft Cloud PKI can be the issuing CA, licensed on top of Intune Plan 1 or 2, with a CRL valid seven days and republished every three and a half. The table is Intune's Windows behavior. Unenroll, wipe, retire, group removal and profile removal revoke and remove. Losing the license, or removing the user from Entra ID, leaves the certificate valid on the device. Hence Microsoft's order: wipe or retire first, then remove the user. And a manual Cloud PKI revocation with an active SCEP assignment just gets reissued at next check-in.`,
   "Book 03, Chapter 09, \"Revocation checking,\" \"Derived PIV credentials\" and \"Device certificates: Intune and Microsoft Cloud PKI.\"");
 }
 
@@ -770,7 +770,7 @@ From Lifecycle Workflows: tasks run in sequence, and each task's continueOnError
     "Role-assignable groups are assigned; 500 per tenant",
     "PIM for Groups takes neither dynamic nor synced groups",
     "HR decides eligibility through an access package; PIM activates just in time",
-    "Dynamic AUs: global cloud only, not GCC High or DoD",
+    "Dynamic AUs: the global Azure cloud, which GCC uses",
     "Restricted AUs fall outside PIM, packages, workflows and reviews",
     "Break-glass accounts depend on none of it",
   ], 12);
@@ -780,7 +780,7 @@ From Lifecycle Workflows: tasks run in sequence, and each task's continueOnError
 
 Rule patterns are written against the canonical schema: native attributes where a rule can read them, the three coded slots otherwise, and every access rule excludes disabled accounts and guests explicitly. An agent's user account is a kind of user, so exclude agents from workforce rules too. The direct-reports rule uses the manager's object ID, adds the manager, covers direct reports only and can't be combined with another rule. Limits: 3,072 characters per rule; 15,000 dynamic groups per tenant, and dynamic administrative units count against it. Dynamic membership needs a P1 count covering each unique member user.
 
-Administrative units scope delegation and can't be nested. A dynamic unit needs P1 per administrator and member, and dynamic units exist in the global cloud, not Azure Government; GCC uses the global cloud, GCC High and DoD don't. Restricted management units take their users out of PIM, entitlement management, Lifecycle Workflows and access reviews, so use them for small, chosen populations.
+Administrative units scope delegation and can't be nested. A dynamic unit needs P1 per administrator and member, and dynamic units are available in the global Azure cloud, which GCC tenants use. Restricted management units take their users out of PIM, entitlement management, Lifecycle Workflows and access reviews, so use them for small, chosen populations.
 
 Access packages can name Manager as approver, which reads the HR-fed manager attribute; configure a fallback approver. Reviews can go to managers of users, scoped to exceptions.
 
@@ -1079,7 +1079,7 @@ sourceSlide("Sources behind Module 3 — Lifecycle and credentials", [
   "Microsoft Learn: CBA technical concepts (username bindings, affinity); Set up CBA; Mapping to certificateUserIds; CBA certificate revocation list.",
   "NIST FIPS 201-3 §2.9.1, §2.9.4, §2.10.2; SP 800-63-4 (July 2025); SP 800-157 (Dec. 2014) and SP 800-157 Rev. 1 final public draft (Nov. 2024).  ·  OMB M-22-09.",
   "Microsoft Learn: Remove SCEP and PKCS certificates in Intune; Overview of Microsoft Cloud PKI; Monitoring for Cloud PKI.",
-  "Microsoft Learn: dynamic membership rules and efficient rules; administrative units (dynamic, restricted, FAQ); Planning identity for Azure Government applications.",
+  "Microsoft Learn: dynamic membership rules and efficient rules; administrative units (dynamic, restricted, FAQ); Cloud feature availability for US Government customers.",
   "Microsoft Learn: access package approval settings; create an access review; PIM for Groups; manage emergency access accounts; Conditional Access users and groups.",
   "Workbook research explainer: Certificates, Tokens and Keys Across the Hybrid Estate (certificateUserIds after AD; design guidance).",
   "Full footnotes with links and access dates: Book 03, Chapters 08–10 and Appendix A.",

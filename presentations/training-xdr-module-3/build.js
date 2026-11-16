@@ -1,6 +1,6 @@
 // Defender XDR learning path, Module 3: Exposure and incidents — the module's narrated deck.
 // Teaches docs/training/defender-xdr/03-exposure-and-incidents.md, Learn-style: objectives, the concepts (what Defender
-// adds to vulnerability work in government clouds and what it can't do there; the interim path and owners; one incident
+// adds to vulnerability work in GCC and what it can't do there; the interim path and owners; one incident
 // queue, the severity table, containment and hand-off), Lab 2's exact commands in a test tenant (not run by the authors,
 // as the page says; the path has no Lab 1), the federal requirement and evidence, a two-question check, and the summary.
 // Every fact comes from the module page and the Defender XDR implementation guide it sends the learner to (Steps 5 and 6,
@@ -28,7 +28,7 @@ const W3 = 3.9, G3 = 0.225;
   const s = title(SI, "Module 3: Exposure and incidents", "Defender XDR Engineering and Operations · An owner for every vulnerability, a table for every incident",
     ["Exposure without Exposure Management  ·  The interim path  ·  Owners", "One queue  ·  The severity table  ·  Lab 2 in a test tenant  ·  Evidence"]);
   notes(s,
-`Welcome to Module 3 of Defender X D R Engineering and Operations: exposure and incidents. Two queues decide whether the platform you built is used: the vulnerabilities waiting for an owner, and the incidents waiting for an analyst. In this module you learn what Defender adds to the vulnerability program in a government cloud, and what it can't do there. Then you learn how the security operations center triages, contains, hands off and closes every incident, to a table it can show. The module covers Steps 5 and 6 of the Defender X D R implementation guide. It takes about thirty-five minutes, plus Lab 2 in your own test tenant.`,
+`Welcome to Module 3 of Defender X D R Engineering and Operations: exposure and incidents. Two queues decide whether the platform you built is used: the vulnerabilities waiting for an owner, and the incidents waiting for an analyst. In this module you learn what Defender adds to the vulnerability program in G C C, and what it can't do there. Then you learn how the security operations center triages, contains, hands off and closes every incident, to a table it can show. The module covers Steps 5 and 6 of the Defender X D R implementation guide. It takes about thirty-five minutes, plus Lab 2 in your own test tenant.`,
   `${M} — "Introduction"; learning path index.`);
 }
 
@@ -38,7 +38,7 @@ const W3 = 3.9, G3 = 0.225;
   tag(s, "Why");
   const l = panel(s, "Vuln", 0.6, 1.45, W2, null, HEX.red, HEX.redTint, "THE VULNERABILITY QUEUE", null, [
     "A vulnerability without an owner is a finding against CM-8, not just RA-5",
-    "Attack paths aren't there in US Government clouds",
+    "Attack paths aren't there in GCC",
     "The remediation clock belongs to Security Operations and Telemetry",
   ], 13);
   const r = panel(s, "Inc", 0.6 + W2 + G2, 1.45, W2, null, HEX.navy, HEX.navyTint, "THE INCIDENT QUEUE", null, [
@@ -47,17 +47,17 @@ const W3 = 3.9, G3 = 0.225;
     "Every incident closed with a classification",
   ], 13);
   callout(s, "Point", Math.max(l, r) + 0.3, 0.95, "FaRoute", HEX.teal, "This module: ",
-    "what Defender adds and can't do in a government cloud, the interim path, and an incident table the SOC can show.");
+    "what Defender adds and can't do in GCC, the interim path, and an incident table the SOC can show.");
   sources(s, "Sources: Module 3, \"Introduction\"; Guide, Steps 5 and 6; Security Operations and Telemetry, Chapters 06 and 11.");
   notes(s,
-`Why these two together? Because both are queues, and a queue without an owner is where risk waits. The vulnerability queue: the remediation program, its clock and the Known Exploited Vulnerabilities catalog belong to the Security Operations and Telemetry book. The guide adds what Defender contributes, and its rule that a vulnerability without an owner is a finding against C M eight, the inventory control, not just R A five, vulnerability monitoring. That's the program's risk-based recommendation. And in a U S Government cloud, the attack-path features aren't there. The incident queue: one queue, with Sentinel onboarded to the Defender portal if the agency uses it, a triage window and a containment rung for each severity, and every incident closed with a classification and a determination. The response ladder and device isolation stay in Security Operations and Telemetry; this module fixes severity, triage, evidence and hand-off.`,
+`Why these two together? Because both are queues, and a queue without an owner is where risk waits. The vulnerability queue: the remediation program, its clock and the Known Exploited Vulnerabilities catalog belong to the Security Operations and Telemetry book. The guide adds what Defender contributes, and its rule that a vulnerability without an owner is a finding against C M eight, the inventory control, not just R A five, vulnerability monitoring. That's the program's risk-based recommendation. And in G C C, the attack-path features aren't there. The incident queue: one queue, with Sentinel onboarded to the Defender portal if the agency uses it, a triage window and a containment rung for each severity, and every incident closed with a classification and a determination. The response ladder and device isolation stay in Security Operations and Telemetry; this module fixes severity, triage, evidence and hand-off.`,
   `${M} — "Introduction"; guide, Step 5 (introduction, Ownership), Step 6 (introduction, Prerequisites).`);
 }
 
 // ================================================================== 3 Objectives
 {
   const s = objectives(SI, "What you'll be able to do in Module 3", [
-    "Say which exposure features each government cloud has, and record the missing one",
+    "Say which exposure features GCC has, and record the missing one as not applicable",
     "Prioritize with the interim path, and give every device group an owner",
     "Triage an incident to the severity table, pick its rung and hand it off",
     "Export open incidents, and one incident with its alerts, as evidence",
@@ -68,7 +68,7 @@ const W3 = 3.9, G3 = 0.225;
   ], 35);
   sources(s, "Sources: Module 3, \"Learning objectives,\" \"Prerequisites\"; Exercise: Lab 2.");
   notes(s,
-`Here's what you'll be able to do by the end of this module. Say which exposure features are available in G C C, G C C High and D O D, and record the one that isn't as not applicable. Prioritize vulnerabilities with the guide's interim path, and give every device group a remediation owner. Triage an incident to the severity table, pick its containment rung, and hand it off. And export the open incidents, and one incident with its alerts, as evidence. You need Module 1's Graph read path. Skim the Security Operations and Telemetry book's Chapter 06, for the remediation program and its clock, and Chapter 11, for the response ladder. Lab 2 runs in a test tenant, never production.`,
+`Here's what you'll be able to do by the end of this module. Say which exposure features are available in G C C, and record the one that isn't as not applicable. Prioritize vulnerabilities with the guide's interim path, and give every device group a remediation owner. Triage an incident to the severity table, pick its containment rung, and hand it off. And export the open incidents, and one incident with its alerts, as evidence. You need Module 1's Graph read path. Skim the Security Operations and Telemetry book's Chapter 06, for the remediation program and its clock, and Chapter 11, for the response ladder. Lab 2 runs in a test tenant, never production.`,
   `${M} — "Learning objectives," "Prerequisites."`);
 }
 endModule(SI);
@@ -77,8 +77,8 @@ endModule(SI);
 {
   const s = content(SC, "Unit 1: exposure without Exposure Management");
   tag(s, "Who");
-  const tb = table(s, "Exp", 1.45, [5.2, 6.95], ["Capability", "GCC, GCC High and DoD (Microsoft Learn)"], [
-    ["Security Exposure Management: attack paths, exposure graph, critical assets", { text: "Not available: Public Cloud only, not US Gov", options: { color: HEX.red, bold: true } }],
+  const tb = table(s, "Exp", 1.45, [5.2, 6.95], ["Capability", "GCC (Microsoft Learn)"], [
+    ["Security Exposure Management: attack paths, exposure graph, critical assets", { text: "Not available: Public Cloud only, not GCC", options: { color: HEX.red, bold: true } }],
     ["Defender Vulnerability Management, core and premium", "Available, without report inaccuracy and request CVE support"],
     ["Microsoft Secure Score", "Available; some recommendations aren't"],
   ], { fontSize: 12.5, limit: 3.9 });
@@ -86,7 +86,7 @@ endModule(SI);
     "is not applicable in the tenant's cloud: recorded in the closure register as a disposition, not a failure.");
   sources(s, "Sources: Module 3, Unit 1; Guide, Step 5; Microsoft Learn, What is Microsoft Security Exposure Management?; Defender for Endpoint for US Government customers.");
   notes(s,
-`Unit 1 is the government-cloud fact that shapes this gate. Microsoft Learn's page on Security Exposure Management says it's available in Public Cloud only, not in U S Government clouds. That's the product that holds attack paths, the exposure graph and critical asset management. Learn doesn't name G C C explicitly, but Defender for U S Government customers, G C C included, is built in Azure U S Government, so the guide treats G C C as not available too, and lists that as something it couldn't verify. What the government clouds do have, from Learn's Defender for Endpoint government page: Defender Vulnerability Management, core and premium, without two features, report inaccuracy and request C V E support; and Secure Score, with some recommendations missing. So a Zero Trust Assessment test that needs Exposure Management is recorded as not applicable in the tenant's cloud. It goes in the closure register as a disposition, not a failed control.`,
+`Unit 1 is the fact that shapes this gate in G C C. Microsoft Learn's page on Security Exposure Management says it's available in Public Cloud only. That's the product that holds attack paths, the exposure graph and critical asset management, and it isn't available in G C C. What G C C does have, from Learn's Defender for Endpoint government page: Defender Vulnerability Management, core and premium, without two features, report inaccuracy and request C V E support; and Secure Score, with some recommendations missing. So a Zero Trust Assessment test that needs Exposure Management is recorded as not applicable in the tenant's cloud. It goes in the closure register as a disposition, not a failed control.`,
   `${M} — Unit 1 "Exposure without Exposure Management"; guide, Step 5 ("The government-cloud fact that shapes the gate"), "What couldn't be verified"; Microsoft Learn — "What is Microsoft Security Exposure Management?", "Defender for Endpoint for US Government customers."`);
 }
 
@@ -252,7 +252,7 @@ endModule(SL);
     "the vulnerability query output and queue, the severity table and IR plan version, the monthly incident export, and incidents closed late with the reason.");
   sources(s, "Sources: Module 3, \"Summary\"; learning path index; Module 4.");
   notes(s,
-`To sum up. You recorded Exposure Management as not applicable in a government cloud, and used the interim path instead. You filed the vulnerability and exposure queries, and checked that each exposed device has an owner and a ticket. And you exported the open incidents, and one incident with its alerts, for the record. The evidence an I S S O keeps from this module: the vulnerability query output and the remediation queue; the severity table and the incident response plan's version; the monthly incident export, with alerts, classification and timestamps; and every incident closed outside its window, with the reason. Next is Module 4: hunting, detections as code, and identity and cloud-app signals.`,
+`To sum up. You recorded Exposure Management as not applicable in G C C, and used the interim path instead. You filed the vulnerability and exposure queries, and checked that each exposed device has an owner and a ticket. And you exported the open incidents, and one incident with its alerts, for the record. The evidence an I S S O keeps from this module: the vulnerability query output and the remediation queue; the severity table and the incident response plan's version; the monthly incident export, with alerts, classification and timestamps; and every incident closed outside its window, with the reason. Next is Module 4: hunting, detections as code, and identity and cloud-app signals.`,
   `${M} — "Summary," "Continue the path."`);
 }
 endModule(SS);

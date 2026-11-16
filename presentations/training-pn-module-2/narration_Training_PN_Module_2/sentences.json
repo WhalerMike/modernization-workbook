@@ -125,58 +125,6 @@
    "No tenant."
   ]
  ],
- "4": [
-  [
-   0.05,
-   3.212,
-   "Unit 1 is the guide's Step 1, in four parts."
-  ],
-  [
-   3.263,
-   7.112,
-   "First, grant the reader its roles: Reader on each subscription in scope is enough to see its Service Health events."
-  ],
-  [
-   10.375,
-   6.838,
-   "But a security advisory's sensitive fields, and its impacted resources, need Service Health Security Reader."
-  ],
-  [
-   17.212,
-   2.438,
-   "Reader and Monitoring Reader can't see them."
-  ],
-  [
-   19.65,
-   4.562,
-   "Second, sign in in the right cloud, with the Resource Graph extension."
-  ],
-  [
-   24.212,
-   7.013,
-   "A G C C agency's subscriptions are commercial Azure, the Azure Cloud setting; Azure Government uses its own."
-  ],
-  [
-   31.225,
-   5.412,
-   "Third, collect, with the kit's events query and Learn's impacted-resources query."
-  ],
-  [
-   36.638,
-   6.5,
-   "And fourth, alert at scale: plan the built-in policy at the management group, with a remediation task."
-  ],
-  [
-   43.138,
-   6.5,
-   "The gate passes when every subscription's events are listed and each security advisory has its summary."
-  ],
-  [
-   49.638,
-   4.025,
-   "An empty summary is the sign that the reader lacks the elevated role."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -222,68 +170,6 @@
    48.388,
    3.825,
    "The kit writes a plan file a reviewer can approve before it runs."
-  ]
- ],
- "6": [
-  [
-   0.05,
-   6.062,
-   "The Azure collector makes two declared calls: the events query and the impacted-resources query."
-  ],
-  [
-   6.112,
-   5.05,
-   "Each is an Azure Resource Graph query in live mode, and a file in fixture mode."
-  ],
-  [
-   11.162,
-   2.8,
-   "Then it maps each event type to a kind."
-  ],
-  [
-   13.963,
-   1.863,
-   "Service issues are incidents."
-  ],
-  [
-   15.825,
-   2.15,
-   "Planned maintenance is maintenance."
-  ],
-  [
-   17.975,
-   11.312,
-   "A health advisory whose event subtype is Retirement is a retirement, and it's action required by the kit's rule, due at the advisory's end time, which Learn says is its mitigation time."
-  ],
-  [
-   29.288,
-   2.7,
-   "Any other health advisory is an advisory."
-  ],
-  [
-   31.988,
-   6.963,
-   "A security advisory is action required by the kit's rule, with no date, for the I S S O to review."
-  ],
-  [
-   38.95,
-   3.987,
-   "And anything else, such as billing, is left out and counted."
-  ],
-  [
-   42.938,
-   4.85,
-   "Resources come from the impacted-resources rows with the same tracking I D."
-  ],
-  [
-   47.788,
-   4.463,
-   "The source link is the event on the cloud's own Resource Manager host."
-  ],
-  [
-   52.25,
-   3.438,
-   "An unknown cloud name throws; there is no default."
   ]
  ],
  "7": [
@@ -526,43 +412,6 @@
    "The authors haven't run Lab 2; the workbook's Chapter 1 has the exact commands."
   ]
  ],
- "12": [
-  [
-   0.05,
-   0.9,
-   "Which cloud?"
-  ],
-  [
-   0.95,
-   12.637,
-   "A G C C Moderate estate's subscriptions are commercial Azure, so the settings name the Azure Cloud, and the source links are on management dot azure dot com. There's no default: an unknown cloud name throws."
-  ],
-  [
-   13.588,
-   11.75,
-   "As a side note for G C C High and D O D estates, Azure Government uses its own cloud setting and its own Resource Manager host, management dot us gov cloud api dot net."
-  ],
-  [
-   25.337,
-   11.262,
-   "Every Service Health sample on Learn links the Azure Government portal as well as the global one, but an explicit availability statement for the table in Azure Government is not yet specified."
-  ],
-  [
-   36.6,
-   2.538,
-   "The danger is a reader in the wrong cloud."
-  ],
-  [
-   39.138,
-   6.65,
-   "Azure Government subscriptions read from the commercial cloud return nothing, and the gate would pass on an empty list."
-  ],
-  [
-   45.788,
-   4.612,
-   "So the live invoker refuses an Azure command line set to another cloud."
-  ]
- ],
  "13": [
   [
    0.05,
@@ -692,6 +541,147 @@
    42.975,
    8.075,
    "That's Gate 2, with the workbook's second chapter: two Graph permissions, and why a tenant must be read on its own Graph host."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.212,
+   "Unit 1 is the guide's Step 1, in four parts."
+  ],
+  [
+   3.263,
+   7.112,
+   "First, grant the reader its roles: Reader on each subscription in scope is enough to see its Service Health events."
+  ],
+  [
+   10.375,
+   6.838,
+   "But a security advisory's sensitive fields, and its impacted resources, need Service Health Security Reader."
+  ],
+  [
+   17.212,
+   2.438,
+   "Reader and Monitoring Reader can't see them."
+  ],
+  [
+   19.65,
+   4.562,
+   "Second, sign in in the right cloud, with the Resource Graph extension."
+  ],
+  [
+   24.212,
+   4.875,
+   "A G C C agency's subscriptions are commercial Azure, the Azure Cloud setting."
+  ],
+  [
+   29.087,
+   5.412,
+   "Third, collect, with the kit's events query and Learn's impacted-resources query."
+  ],
+  [
+   34.5,
+   6.5,
+   "And fourth, alert at scale: plan the built-in policy at the management group, with a remediation task."
+  ],
+  [
+   41.0,
+   6.5,
+   "The gate passes when every subscription's events are listed and each security advisory has its summary."
+  ],
+  [
+   47.5,
+   4.025,
+   "An empty summary is the sign that the reader lacks the elevated role."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.062,
+   "The Azure collector makes two declared calls: the events query and the impacted-resources query."
+  ],
+  [
+   6.112,
+   5.05,
+   "Each is an Azure Resource Graph query in live mode, and a file in fixture mode."
+  ],
+  [
+   11.162,
+   2.8,
+   "Then it maps each event type to a kind."
+  ],
+  [
+   13.963,
+   1.863,
+   "Service issues are incidents."
+  ],
+  [
+   15.825,
+   2.15,
+   "Planned maintenance is maintenance."
+  ],
+  [
+   17.975,
+   11.312,
+   "A health advisory whose event subtype is Retirement is a retirement, and it's action required by the kit's rule, due at the advisory's end time, which Learn says is its mitigation time."
+  ],
+  [
+   29.288,
+   2.7,
+   "Any other health advisory is an advisory."
+  ],
+  [
+   31.988,
+   6.963,
+   "A security advisory is action required by the kit's rule, with no date, for the I S S O to review."
+  ],
+  [
+   38.95,
+   3.987,
+   "And anything else, such as billing, is left out and counted."
+  ],
+  [
+   42.938,
+   4.85,
+   "Resources come from the impacted-resources rows with the same tracking I D."
+  ],
+  [
+   47.788,
+   9.075,
+   "The source link is the event on the Resource Manager host, management dot azure dot com. An unknown cloud name throws; there is no default."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   0.9,
+   "Which cloud?"
+  ],
+  [
+   0.95,
+   12.637,
+   "A G C C Moderate estate's subscriptions are commercial Azure, so the settings name the Azure Cloud, and the source links are on management dot azure dot com. There's no default: an unknown cloud name throws."
+  ],
+  [
+   13.588,
+   6.537,
+   "Learn's Service Health samples for Resource Graph run in commercial Azure, with the cloud set to Azure Cloud."
+  ],
+  [
+   20.125,
+   2.538,
+   "The danger is a reader in the wrong cloud."
+  ],
+  [
+   22.663,
+   5.588,
+   "Subscriptions read from another cloud return nothing, and the gate would pass on an empty list."
+  ],
+  [
+   28.25,
+   6.312,
+   "So the settings name the cloud, and the live invoker refuses an Azure command line set to another cloud."
   ]
  ]
 }

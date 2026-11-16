@@ -16,87 +16,86 @@ The Marketplace doesn't
 support that chain.
 
 4
-00:00:11.175 --> 00:00:18.487
+00:00:11.175 --> 00:00:18.787
 Read on October 21, 2026, it lists
-three Microsoft 365 government packages.
+two Microsoft 365 GCC packages.
 
 5
-00:00:18.487 --> 00:00:22.474
+00:00:18.787 --> 00:00:22.774
 The GCC package agencies
 run is certified at Class C,
 
 6
-00:00:22.474 --> 00:00:25.163
+00:00:22.774 --> 00:00:25.463
 Moderate, with 100 authorizations.
 
 7
-00:00:25.163 --> 00:00:30.613
+00:00:25.463 --> 00:00:30.912
 A second package with the identical name
 is In Process at Class D, High, with none.
 
 8
-00:00:30.613 --> 00:00:35.413
-And GCC High is a separate package,
-already certified at Class D.
+00:00:30.912 --> 00:00:33.758
+The Marketplace doesn't
+say how the two relate,
 
 9
-00:00:35.413 --> 00:00:38.813
-The Marketplace doesn't say
-how those first two relate,
-
-10
-00:00:38.813 --> 00:00:42.213
+00:00:33.758 --> 00:00:37.126
 so treat it as a question for
 the provider, not a roadmap.
 
-11
-00:00:42.213 --> 00:00:43.512
+10
+00:00:37.126 --> 00:00:38.425
 Here's the key point.
 
+11
+00:00:38.425 --> 00:00:40.771
+The exclusions are product decisions,
+
 12
-00:00:43.512 --> 00:00:50.238
-Network connectivity is missing in GCC
-High too, and GCC High is already Class D.
+00:00:40.771 --> 00:00:44.363
+published per feature, not
+consequences of an impact level.
 
 13
-00:00:50.238 --> 00:00:53.449
+00:00:44.363 --> 00:00:47.574
 A higher class changes what data
 you may put in the service.
 
 14
-00:00:53.449 --> 00:00:57.562
+00:00:47.574 --> 00:00:51.687
 It doesn't, by itself, restore
 a feature the provider excluded.
 
 15
-00:00:57.562 --> 00:01:01.057
+00:00:51.687 --> 00:00:55.183
 An agency that defers an equivalent
 because High is coming may
 
 16
-00:01:01.057 --> 00:01:04.687
+00:00:55.183 --> 00:00:58.813
 wait for something the certification
 was never going to deliver.
 
 17
-00:01:04.687 --> 00:01:09.002
+00:00:58.813 --> 00:01:03.126
 So plan against the class of the package
 you actually use, and don't hard-code
 
 18
-00:01:09.002 --> 00:01:13.038
+00:01:03.126 --> 00:01:07.162
 Moderate into a multi-year architecture
 either, because that may move.
 
 19
-00:01:13.038 --> 00:01:15.216
+00:01:07.162 --> 00:01:09.341
 The sponsor and CIO own that plan,
 
 20
-00:01:15.216 --> 00:01:18.687
+00:01:09.341 --> 00:01:12.812
 in the current architecture
 and acquisition cycle.
 
 21
-00:01:18.687 --> 00:01:20.780
+00:01:12.812 --> 00:01:14.900
 Next, who owns the boundary.

@@ -11,45 +11,45 @@ Config conformance packs and Security
 Hub's posture checks are the foundation.
 
 3
-00:00:08.975 --> 00:00:13.177
-Both run in GovCloud and in the
-commercial Regions, and either is a valid
+00:00:08.975 --> 00:00:13.415
+They run in the commercial Regions
+where the program's AWS workloads are,
 
 4
-00:00:13.177 --> 00:00:17.450
-home for a Moderate system, but GovCloud
-has differences you need to test.
+00:00:13.415 --> 00:00:18.300
+and you test each remediation action
+before turning on automatic remediation.
 
 5
-00:00:17.450 --> 00:00:22.375
+00:00:18.300 --> 00:00:23.225
 Security Hub keeps findings for only
 ninety days, so copy them out first.
 
 6
-00:00:22.375 --> 00:00:27.558
+00:00:23.225 --> 00:00:28.424
 The big correction is Audit Manager: it
 closed to new customers in April 2026,
 
 7
-00:00:27.558 --> 00:00:32.988
-has no GovCloud endpoint, and its FedRAMP
-framework is still on the old revision.
+00:00:28.424 --> 00:00:32.137
+and its FedRAMP framework is
+still on the old revision.
 
 8
-00:00:32.988 --> 00:00:35.912
+00:00:32.137 --> 00:00:35.063
 Nobody should start a federal
 evidence program on it.
 
 9
-00:00:35.912 --> 00:00:39.431
+00:00:35.063 --> 00:00:38.580
 And the ServiceNow
 connector most agencies used
 
 10
-00:00:39.431 --> 00:00:42.863
+00:00:38.580 --> 00:00:42.012
 loses support in March
 2027, so plan that move now.
 
 11
-00:00:42.863 --> 00:00:44.760
+00:00:42.012 --> 00:00:43.920
 VMware is harder still.

@@ -24,45 +24,40 @@ The ownership run's last
 line is its plan's hash.
 
 6
-00:00:16.462 --> 00:00:20.672
+00:00:16.462 --> 00:00:20.744
 Step two sends Microsoft Learn's
 Agent I D samples to the fake:
 
 7
-00:00:20.672 --> 00:00:25.724
-thirteen pass, none fail, and forty-nine
+00:00:20.744 --> 00:00:25.712
+twelve pass, none fail, and forty-nine
 of the file's other tests aren't run.
 
 8
-00:00:25.724 --> 00:00:28.375
+00:00:25.712 --> 00:00:28.362
 Step three lists what each task needs.
 
 9
-00:00:28.375 --> 00:00:33.075
+00:00:28.362 --> 00:00:33.063
 The read task holds ten read
 permissions, and none ends in ReadWrite.
 
 10
-00:00:33.075 --> 00:00:36.500
+00:00:33.063 --> 00:00:36.487
 The write task holds only
 the two policy permissions.
 
 11
-00:00:36.500 --> 00:00:40.900
+00:00:36.487 --> 00:00:40.887
 Step four reads decision
 D N P six for each cloud.
 
 12
-00:00:40.900 --> 00:00:44.274
+00:00:40.887 --> 00:00:44.262
 The worldwide and G C C
 clouds run in Agent I D mode,
 
 13
-00:00:44.274 --> 00:00:50.263
+00:00:44.262 --> 00:00:50.300
 with agent identities generally available
 and agent Conditional Access in preview.
-
-14
-00:00:50.263 --> 00:00:55.180
-G C C High and D O D run in
-fallback mode: nothing published.

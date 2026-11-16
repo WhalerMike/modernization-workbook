@@ -123,115 +123,6 @@
    "Next, why that gap stays hidden for so long."
   ]
  ],
- "3": [
-  [
-   0.05,
-   1.975,
-   "So why don't people see the gap sooner?"
-  ],
-  [
-   2.025,
-   2.987,
-   "Because it's invisible until a design depends on it."
-  ],
-  [
-   5.013,
-   6.263,
-   "The surfaces are shared: Intune in G C C is the same instance as commercial Intune."
-  ],
-  [
-   11.275,
-   3.712,
-   "The exclusions are scattered, one sentence per feature page."
-  ],
-  [
-   14.988,
-   2.2,
-   "And absence doesn't announce itself."
-  ],
-  [
-   17.188,
-   4.2,
-   "A detection whose input never arrives looks exactly like a quiet day."
-  ],
-  [
-   21.387,
-   14.25,
-   "The book then tests a widely repeated example, that five features are silently missing from G C C. Checked against Microsoft's documentation, only one is: the Locations view of network connectivity in the admin center."
-  ],
-  [
-   35.638,
-   7.925,
-   "The others turn out to be G C C High and DoD gaps, not documented gaps at all, or inside Azure's own scope."
-  ],
-  [
-   43.562,
-   6.7,
-   "The lesson: an unverified boundary story sends an agency off to build compensations it doesn't need."
-  ],
-  [
-   50.263,
-   2.862,
-   "Now, what actually changes across a boundary."
-  ]
- ],
- "4": [
-  [
-   0.05,
-   3.7,
-   "To reason about any boundary, the book uses its own model."
-  ],
-  [
-   3.75,
-   3.913,
-   "A boundary is any surface across which four things change."
-  ],
-  [
-   7.662,
-   3.487,
-   "Telemetry: which signals actually arrive on your side."
-  ],
-  [
-   11.15,
-   10.575,
-   "Identity: who a claim's issuer resolves to, and G C C pairs with Entra ID in commercial Azure, while G C C High and DoD pair with Azure Government."
-  ],
-  [
-   21.725,
-   7.162,
-   "Enforcement: who has to enforce a control, which in G C C often means the agency's own measurements."
-  ],
-  [
-   28.887,
-   4.537,
-   "And provenance: whether a claim is still authoritative, or only derived."
-  ],
-  [
-   33.425,
-   7.55,
-   "Each of these raises its own kind of drift, and detection for them is at different stages; the slide shows where each stands."
-  ],
-  [
-   40.975,
-   1.95,
-   "One more point worth holding onto."
-  ],
-  [
-   42.925,
-   5.513,
-   "fed-ramp's definition of federal customer data excludes the telemetry a provider generates."
-  ],
-  [
-   48.438,
-   2.513,
-   "No certification promises you a signal."
-  ],
-  [
-   50.95,
-   2.163,
-   "Next, what changed at fed-ramp."
-  ]
- ],
  "5": [
   [
    0.05,
@@ -272,110 +163,6 @@
    52.075,
    2.8,
    "Now let's read what G C C actually is."
-  ]
- ],
- "6": [
-  [
-   0.05,
-   4.4,
-   "Chapter 04 reads G C C from Microsoft's own documents."
-  ],
-  [
-   4.45,
-   5.1,
-   "G C C is the worldwide service, minus a published list of exclusions."
-  ],
-  [
-   9.55,
-   1.8,
-   "And that list isn't a ladder."
-  ],
-  [
-   11.35,
-   9.312,
-   "Some features, like network connectivity in the admin center and Adoption Score, are missing in G C C, G C C High and DoD alike."
-  ],
-  [
-   20.663,
-   2.65,
-   "Others reach G C C and stop there."
-  ],
-  [
-   23.312,
-   9.412,
-   "The biggest documented loss is the network connectivity layer: a daily score for each location, with performance attributed to named network providers."
-  ],
-  [
-   32.725,
-   3.837,
-   "A G C C agency has to fund its own measurement instead."
-  ],
-  [
-   36.562,
-   8.863,
-   "On the Marketplace, the G C C package is certified at Class C, Moderate, and a second package with the same name is in process at Class D."
-  ],
-  [
-   45.425,
-   5.25,
-   "But G C C High is already Class D, and it still lacks network connectivity."
-  ],
-  [
-   50.675,
-   3.288,
-   "A higher class doesn't bring back an excluded feature."
-  ],
-  [
-   53.962,
-   1.775,
-   "Next, the landing zone."
-  ]
- ],
- "7": [
-  [
-   0.05,
-   4.675,
-   "The landing zone is where the boundary stops being a diagram and becomes policy."
-  ],
-  [
-   4.725,
-   4.975,
-   "Each workload gets a subscription, placed in a management group that carries its rules."
-  ],
-  [
-   9.7,
-   6.475,
-   "The baseline hierarchy puts an intermediate root under the tenant root, and that's where boundary policy lives."
-  ],
-  [
-   16.175,
-   6.625,
-   "Platform groups hold shared services like security and connectivity; landing zone groups hold the workloads."
-  ],
-  [
-   22.8,
-   5.362,
-   "Make Sandbox the default, so no new subscription lands outside the boundary policy."
-  ],
-  [
-   28.163,
-   9.113,
-   "Each boundary decision then gets a mechanism, from allowed locations and resource types to exemptions that carry an expiry date; the slide maps them."
-  ],
-  [
-   37.275,
-   3.087,
-   "Roll every policy out in audit mode first."
-  ],
-  [
-   40.362,
-   8.675,
-   "One catch: Microsoft's accelerators are supported only in public Azure, so in Azure Government the platform team adapts the code by hand."
-  ],
-  [
-   49.038,
-   1.762,
-   "Next, the address plan."
   ]
  ],
  "8": [
@@ -586,95 +373,6 @@
    "Next, a third path."
   ]
  ],
- "12": [
-  [
-   0.05,
-   7.713,
-   "The third answer is an alternative path: move the workload to a different certified service, and leave the identity plane where it is."
-  ],
-  [
-   7.763,
-   9.488,
-   "Google Workspace and Gemini for Government are separate listings at different classes, so which AI features sit inside which certification is a question for the package."
-  ],
-  [
-   17.25,
-   2.35,
-   "The public record shows both outcomes."
-  ],
-  [
-   19.6,
-   6.8,
-   "One cabinet-level department moved more than 50,000 employees to Google Workspace in 2025."
-  ],
-  [
-   26.4,
-   8.1,
-   "A military department went the other way, ending about 150,000 Google email licenses after an audit found few in use."
-  ],
-  [
-   34.5,
-   3.525,
-   "Whichever way you go, keep Entra ID as the source."
-  ],
-  [
-   38.025,
-   4.487,
-   "Provision users, federate sign-in and apply Conditional Access there."
-  ],
-  [
-   42.513,
-   8.012,
-   "Then close the gaps: Google super administrators sign in outside it, and Google's directory is derived, so report drift."
-  ],
-  [
-   50.525,
-   1.663,
-   "Next, the evidence."
-  ]
- ],
- "13": [
-  [
-   0.05,
-   4.037,
-   "Finally, the boundary has to show up in the agency's own package."
-  ],
-  [
-   4.088,
-   6.125,
-   "The agency never authorizes a cloud service; it authorizes its own system that uses one."
-  ],
-  [
-   10.213,
-   8.5,
-   "So its plan should hold only what the agency is responsible for, and fed-ramp is blunt: don't copy and paste provider controls into it."
-  ],
-  [
-   18.712,
-   12.988,
-   "Instead, write the boundary down once, as a record the system owner keeps, and cite it everywhere: the system description, each external service, each crossing, the POA&M and the component definitions."
-  ],
-  [
-   31.7,
-   2.112,
-   "Know whose package you're reading, too."
-  ],
-  [
-   33.812,
-   5.975,
-   "G C C runs on Azure Government, so the inheritance chain runs through two provider packages."
-  ],
-  [
-   39.788,
-   10.137,
-   "And a compensating narrative takes just four sentences: what the control needs, what's unavailable, what runs instead, and where the remaining gap is recorded."
-  ],
-  [
-   49.925,
-   2.425,
-   "Next, what to ask your provider for."
-  ]
- ],
  "14": [
   [
    0.05,
@@ -762,6 +460,283 @@
    53.85,
    0.762,
    "Thank you."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.975,
+   "So why don't people see the gap sooner?"
+  ],
+  [
+   2.025,
+   2.987,
+   "Because it's invisible until a design depends on it."
+  ],
+  [
+   5.013,
+   6.263,
+   "The surfaces are shared: Intune in G C C is the same instance as commercial Intune."
+  ],
+  [
+   11.275,
+   3.712,
+   "The exclusions are scattered, one sentence per feature page."
+  ],
+  [
+   14.988,
+   2.2,
+   "And absence doesn't announce itself."
+  ],
+  [
+   17.188,
+   4.2,
+   "A detection whose input never arrives looks exactly like a quiet day."
+  ],
+  [
+   21.387,
+   14.25,
+   "The book then tests a widely repeated example, that five features are silently missing from G C C. Checked against Microsoft's documentation, only one is: the Locations view of network connectivity in the admin center."
+  ],
+  [
+   35.638,
+   6.65,
+   "Three of the others aren't documented G C C gaps at all, and the last sits inside Azure's own scope."
+  ],
+  [
+   42.288,
+   6.7,
+   "The lesson: an unverified boundary story sends an agency off to build compensations it doesn't need."
+  ],
+  [
+   48.987,
+   2.862,
+   "Now, what actually changes across a boundary."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.7,
+   "To reason about any boundary, the book uses its own model."
+  ],
+  [
+   3.75,
+   3.913,
+   "A boundary is any surface across which four things change."
+  ],
+  [
+   7.662,
+   3.487,
+   "Telemetry: which signals actually arrive on your side."
+  ],
+  [
+   11.15,
+   11.3,
+   "Identity: who a claim's issuer resolves to, and G C C pairs with Entra I D in commercial Azure, so a trust into a different Microsoft cloud crosses an identity boundary."
+  ],
+  [
+   22.45,
+   7.162,
+   "Enforcement: who has to enforce a control, which in G C C often means the agency's own measurements."
+  ],
+  [
+   29.613,
+   4.537,
+   "And provenance: whether a claim is still authoritative, or only derived."
+  ],
+  [
+   34.15,
+   7.55,
+   "Each of these raises its own kind of drift, and detection for them is at different stages; the slide shows where each stands."
+  ],
+  [
+   41.7,
+   1.95,
+   "One more point worth holding onto."
+  ],
+  [
+   43.65,
+   5.513,
+   "fed-ramp's definition of federal customer data excludes the telemetry a provider generates."
+  ],
+  [
+   49.163,
+   2.513,
+   "No certification promises you a signal."
+  ],
+  [
+   51.675,
+   2.163,
+   "Next, what changed at fed-ramp."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.4,
+   "Chapter 04 reads G C C from Microsoft's own documents."
+  ],
+  [
+   4.45,
+   6.838,
+   "G C C is the worldwide service, minus a published list of exclusions, each one in its own note."
+  ],
+  [
+   11.287,
+   10.637,
+   "Network connectivity in the admin center, Adoption Score, the Office 365 content delivery network and informed network routing are all missing in G C C."
+  ],
+  [
+   21.925,
+   9.412,
+   "The biggest documented loss is the network connectivity layer: a daily score for each location, with performance attributed to named network providers."
+  ],
+  [
+   31.337,
+   3.837,
+   "A G C C agency has to fund its own measurement instead."
+  ],
+  [
+   35.175,
+   8.863,
+   "On the Marketplace, the G C C package is certified at Class C, Moderate, and a second package with the same name is in process at Class D."
+  ],
+  [
+   44.038,
+   8.537,
+   "But a higher class doesn't bring back an excluded feature, because the exclusions are product decisions, not consequences of an impact level."
+  ],
+  [
+   52.575,
+   1.775,
+   "Next, the landing zone."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.675,
+   "The landing zone is where the boundary stops being a diagram and becomes policy."
+  ],
+  [
+   4.725,
+   4.975,
+   "Each workload gets a subscription, placed in a management group that carries its rules."
+  ],
+  [
+   9.7,
+   6.475,
+   "The baseline hierarchy puts an intermediate root under the tenant root, and that's where boundary policy lives."
+  ],
+  [
+   16.175,
+   6.625,
+   "Platform groups hold shared services like security and connectivity; landing zone groups hold the workloads."
+  ],
+  [
+   22.8,
+   5.362,
+   "Make Sandbox the default, so no new subscription lands outside the boundary policy."
+  ],
+  [
+   28.163,
+   9.113,
+   "Each boundary decision then gets a mechanism, from allowed locations and resource types to exemptions that carry an expiry date; the slide maps them."
+  ],
+  [
+   37.275,
+   3.087,
+   "Roll every policy out in audit mode first."
+  ],
+  [
+   40.362,
+   7.338,
+   "Microsoft's accelerators deploy it from code, and they're supported for public Azure, where the workbook's landing zone runs."
+  ],
+  [
+   47.7,
+   1.762,
+   "Next, the address plan."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.713,
+   "The third answer is an alternative path: move the workload to a different certified service, and leave the identity plane where it is."
+  ],
+  [
+   7.763,
+   9.2,
+   "Google Workspace and Gemini for Government are separate listings at different classes, so which A I features sit inside which certification is a question for the package."
+  ],
+  [
+   16.962,
+   10.512,
+   "The public record shows one such move: a cabinet-level department moved more than 50,000 employees to Google Workspace in 2025, on a temporary discount."
+  ],
+  [
+   27.475,
+   3.5,
+   "Whichever way you go, keep Entra I D as the source."
+  ],
+  [
+   30.975,
+   4.487,
+   "Provision users, federate sign-in and apply Conditional Access there."
+  ],
+  [
+   35.462,
+   8.012,
+   "Then close the gaps: Google super administrators sign in outside it, and Google's directory is derived, so report drift."
+  ],
+  [
+   43.475,
+   1.663,
+   "Next, the evidence."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.037,
+   "Finally, the boundary has to show up in the agency's own package."
+  ],
+  [
+   4.088,
+   6.125,
+   "The agency never authorizes a cloud service; it authorizes its own system that uses one."
+  ],
+  [
+   10.213,
+   8.5,
+   "So its plan should hold only what the agency is responsible for, and fed-ramp is blunt: don't copy and paste provider controls into it."
+  ],
+  [
+   18.712,
+   12.988,
+   "Instead, write the boundary down once, as a record the system owner keeps, and cite it everywhere: the system description, each external service, each crossing, the POA&M and the component definitions."
+  ],
+  [
+   31.7,
+   2.112,
+   "Know whose package you're reading, too."
+  ],
+  [
+   33.812,
+   8.762,
+   "The G C C listing says the service leverages Azure Government as its infrastructure, so the inheritance chain runs through two provider packages."
+  ],
+  [
+   42.575,
+   10.137,
+   "And a compensating narrative takes just four sentences: what the control needs, what's unavailable, what runs instead, and where the remaining gap is recorded."
+  ],
+  [
+   52.712,
+   2.425,
+   "Next, what to ask your provider for."
   ]
  ]
 }

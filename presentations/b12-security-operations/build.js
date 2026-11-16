@@ -294,7 +294,7 @@ A scanner authors no state; it measures a gap. Each platform patches with its ow
   tag(s, "What");
   cards(s, "Streams", [
     ["FaArrowsRotate", "Configuration", HEX.amber, HEX.amberTint, ["CM-6 baselines: SCuBA, CIS, vendor guides", "Assign in audit mode first", "Auto-correct hides drift: no record it happened", "Unremediated drift becomes a queue row"]],
-    ["FaCloud", "Cloud posture", HEX.navy, HEX.navyTint, ["An open storage account has no missing patch", "An owned native tool is primary on its platform", "Defender for Cloud doesn't cover Oracle Cloud", "Its AWS connector isn't in Azure Government"]],
+    ["FaCloud", "Cloud posture", HEX.navy, HEX.navyTint, ["An open storage account has no missing patch", "An owned native tool is primary on its platform", "Defender for Cloud doesn't cover Oracle Cloud", "OCI posture: Cloud Guard or a third-party CNAPP"]],
     ["FaLock", "CUI data protection", HEX.teal, HEX.tealTint, ["Two levels: CUI Basic and CUI Specified", "Privacy Act records: Basic; taxpayer data: Specified", "Labels drive DLP on service, endpoint and CASB", "Simulate first, then watch the overrides"]],
   ], 13.5);
   callout(s, "Membership", 5.3, 1.2, "FaTriangleExclamation", HEX.red, "Check queue membership: ",
@@ -303,7 +303,7 @@ A scanner authors no state; it measures a gap. Each platform patches with its ow
   narrate(s,
 `Three more streams share the queue. Configuration first: a patched host that drifts from its baseline isn't remediated. Baselines come from SCuBA for Microsoft 365 and Google Workspace, and from CIS Benchmarks or the vendor's hardening guide for servers and platforms, written as the agency's CM-6 settings. Azure machine configuration's auto-correct mode fixes drift without recording it, so the program keeps it for low-risk settings.
 
-Cloud posture next. A storage account open to the internet has no missing patch, so a scanner never reports it. Each provider's native posture tool is primary for its own platform. Defender for Cloud doesn't cover Oracle Cloud, and its AWS connector isn't available in Azure Government.
+Cloud posture next. A storage account open to the internet has no missing patch, so a scanner never reports it. Each provider's native posture tool is primary for its own platform. Defender for Cloud doesn't cover Oracle Cloud, so OCI posture comes from Cloud Guard or a third-party CNAPP.
 
 Then data. The CUI framework has two levels, Basic and Specified, decided by the authority in the CUI Registry: Privacy Act records are Basic, and federal taxpayer information is Specified. Labels drive data loss prevention on the service, the endpoint and the CASB.
 
@@ -362,7 +362,7 @@ Two roles are easy to forget. The records officer decides disposition, and must 
   ]);
   callout(s, "Fire", 5.25, 1.25, "FaListCheck", HEX.teal, "A rule that can't be shown to fire isn't finished: ",
     "replay a known-bad sample before it ships, keep it alert-only until its false positives are documented, and record the rate when it's promoted.");
-  sources(s, "Sources: Microsoft Learn — Sentinel rule templates, Repositories, scheduled rules and results simulation, auto-disabled rules, service limits, feature availability in Azure Government. Book 12, Chapters 10 and 11.");
+  sources(s, "Sources: Microsoft Learn — Sentinel rule templates, Repositories, scheduled rules and results simulation, auto-disabled rules, service limits, feature availability for US Government customers. Book 12, Chapters 10 and 11.");
   narrate(s,
 `How do detections get built? As code. The rule library lives in version control, and nobody edits a production rule in the portal; a change is a reviewed commit. Every rule has one named owner, a test and a review date.
 

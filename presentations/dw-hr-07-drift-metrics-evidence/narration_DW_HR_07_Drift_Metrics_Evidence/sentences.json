@@ -218,38 +218,6 @@
    "That mapping is design guidance; the assessor decides each control."
   ]
  ],
- "8": [
-  [
-   0.05,
-   3.688,
-   "The facts behind the code, each read on November first."
-  ],
-  [
-   3.737,
-   8.137,
-   "The run's only new Graph read lists users with their leave date, which needs User Read All with the lifecycle info read permission."
-  ],
-  [
-   11.875,
-   10.3,
-   "The Graph host depends on the cloud: graph dot microsoft dot com for G C C, graph dot microsoft dot U S for G C C High, and its D o D variant."
-  ],
-  [
-   22.175,
-   7.987,
-   "Audit and provisioning logs keep thirty days with a premium edition, seven with Free, and Lifecycle Workflows history up to thirty."
-  ],
-  [
-   30.163,
-   4.062,
-   "Reporting and sim connectivity are available in Azure Government."
-  ],
-  [
-   34.225,
-   3.425,
-   "The metrics and classes themselves are the workbook's design."
-  ]
- ],
  "9": [
   [
    0.05,
@@ -442,38 +410,6 @@
    "Then the check an I S S O runs needs nothing but the standard checksum tool: every file in the second package reports OK."
   ]
  ],
- "15": [
-  [
-   0.05,
-   2.15,
-   "Step six assembles the period."
-  ],
-  [
-   2.2,
-   10.537,
-   "Two packages, no chain breaks, no coverage gaps, but it isn't complete: drift is open, five metrics are out of bounds, and transfer-to-review isn't measured."
-  ],
-  [
-   12.738,
-   1.775,
-   "So it exits with code two."
-  ],
-  [
-   14.512,
-   11.287,
-   "The summary lists the controls with their open findings, and scores Gate 7: drift classes and metrics not met, evidence unbroken met, sole source not decided by this code."
-  ],
-  [
-   25.8,
-   11.35,
-   "Step seven runs the tests, including the chapter's four drift tests and six package tests: fifty-seven pass, then a hundred and forty-two, with no tenant and no network."
-  ],
-  [
-   37.15,
-   4.062,
-   "Delete the output folder afterwards; it holds fictional names."
-  ]
- ],
  "16": [
   [
    0.05,
@@ -603,6 +539,65 @@
    27.712,
    1.1,
    "Thanks for watching."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.688,
+   "The facts behind the code, each read on November first."
+  ],
+  [
+   3.737,
+   8.137,
+   "The run's only new Graph read lists users with their leave date, which needs User Read All with the lifecycle info read permission."
+  ],
+  [
+   11.875,
+   12.325,
+   "The Graph host for G C C is graph dot microsoft dot com. Audit and provisioning logs keep thirty days with a premium edition, seven with Free, and Lifecycle Workflows history up to thirty."
+  ],
+  [
+   24.2,
+   4.838,
+   "Reporting and sim connectivity come with the commercial service G C C uses."
+  ],
+  [
+   29.038,
+   3.425,
+   "The metrics and classes themselves are the workbook's design."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.15,
+   "Step six assembles the period."
+  ],
+  [
+   2.2,
+   10.537,
+   "Two packages, no chain breaks, no coverage gaps, but it isn't complete: drift is open, five metrics are out of bounds, and transfer-to-review isn't measured."
+  ],
+  [
+   12.738,
+   1.775,
+   "So it exits with code two."
+  ],
+  [
+   14.512,
+   11.287,
+   "The summary lists the controls with their open findings, and scores Gate 7: drift classes and metrics not met, evidence unbroken met, sole source not decided by this code."
+  ],
+  [
+   25.8,
+   11.425,
+   "Step seven runs the tests, including the chapter's four drift tests and six package tests: fifty-seven pass, then a hundred and thirty-nine, with no tenant and no network."
+  ],
+  [
+   37.225,
+   4.062,
+   "Delete the output folder afterwards; it holds fictional names."
   ]
  ]
 }

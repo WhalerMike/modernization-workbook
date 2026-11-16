@@ -40,26 +40,26 @@ Resource Graph and find
 the rows with no owner.
 
 9
-00:00:26.613 --> 00:00:29.622
-And you'll name what
-differs in Azure Government,
+00:00:26.613 --> 00:00:30.513
+And you'll name what a G C C
+tenant's commercial Azure offers,
 
 10
-00:00:29.622 --> 00:00:34.738
+00:00:30.513 --> 00:00:36.038
 and the equivalent controls on AWS, Google
 Cloud and Oracle Cloud Infrastructure.
 
 11
-00:00:34.738 --> 00:00:39.225
+00:00:36.038 --> 00:00:40.526
 Before you start, skim Chapter 05
 of Cloud Boundary and Landing Zone,
 
 12
-00:00:39.225 --> 00:00:43.312
+00:00:40.526 --> 00:00:44.613
 and the guide's prerequisites:
 the roles, eligible through pim.
 
 13
-00:00:43.312 --> 00:00:46.750
+00:00:44.613 --> 00:00:48.050
 The lab runs in a test
 subscription, never production.

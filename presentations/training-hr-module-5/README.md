@@ -5,19 +5,19 @@
 | Part | Covers |
 |---|---|
 | Introduction | Title; why revocation is the weak link in card sign-in; learning objectives and prerequisites |
-| Concepts | Credentials follow HR events (Unit 1); the CRL limits per cloud; the measurement; the check, CB-01 to CB-13, in two slides (Unit 2) |
-| Lab | Try it: Lab 1 steps 1 and 2 (the reads and the CRL measurement), step 3 (the check for GCC) and step 4 (the same tenant for GCC High, and why CB-05 drops away); Lab 2 in a test tenant (not run by the authors) |
+| Concepts | Credentials follow HR events (Unit 1); the CRL limits for GCC; the measurement; the check, CB-01 to CB-13, in two slides (Unit 2) |
+| Lab | Try it: Lab 1 steps 1 and 2 (the reads and the CRL measurement), step 3 (the check for GCC) and step 4 (the tests); Lab 2 in a test tenant (not run by the authors) |
 | Check and summary | The federal requirement and evidence; two knowledge-check questions with answers; the summary and the next module |
 
 | File | Use |
 |---|---|
-| `Training_HR_Module_5.pptx` | The deck: 15 narrated slides (the title and 14 content slides in Why, What, Who and How order), then a backup section with the sources |
+| `Training_HR_Module_5.pptx` | The deck: 14 narrated slides (the title and 13 content slides in Why, What, Who and How order), then a backup section with the sources |
 | `Training_HR_Module_5_Narrated.vtt` | The video's caption track. Held out of git, with the MP4, until both are on a Release: adding it here lists the video on the Watch page (`scripts/generate_video_manifest.py`) |
-| `Training_HR_Module_5_Narration_Script.md` | The spoken narration, slide by slide (about 1,900 words) |
+| `Training_HR_Module_5_Narration_Script.md` | The spoken narration, slide by slide (about 1,800 words) |
 | `narration_Training_HR_Module_5/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s are on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition. The narration runs about 12 minutes.
+The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition. The narration runs about 11 minutes.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-hr-module-5/build.js presentations/training-hr-module-5/Training_HR_Module_5.pptx`. Then `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, neutrality, and overflow warnings, including the code panel's width and height.
 

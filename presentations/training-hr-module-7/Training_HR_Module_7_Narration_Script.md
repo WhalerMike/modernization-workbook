@@ -46,7 +46,7 @@ Step four writes the next day's run, for the first of November, and it prints th
 
 ## Slide 12 — Try it: assemble the period, and read why it fails
 
-Step six assembles the period, from the first of October to the second of November. Two packages, no chain breaks, no coverage gaps, twenty findings open at the end, and complete is false. Exit code two. Print the period summary and you see why. It scores Gate 7's criteria. The evidence criterion is met: kept outside the directory, with an unbroken chain. But drift is still open, so the first criterion isn't met, and five metrics are out of bounds, so the second isn't either. The fourth, the sole source, isn't decided by this code at all. That's the point of this step: an unbroken chain proves the record is intact, not that the gate is passed. Step seven runs both test suites, fifty-seven and a hundred forty-two tests, and deletes the out folder.
+Step six assembles the period, from the first of October to the second of November. Two packages, no chain breaks, no coverage gaps, twenty findings open at the end, and complete is false. Exit code two. Print the period summary and you see why. It scores Gate 7's criteria. The evidence criterion is met: kept outside the directory, with an unbroken chain. But drift is still open, so the first criterion isn't met, and five metrics are out of bounds, so the second isn't either. The fourth, the sole source, isn't decided by this code at all. That's the point of this step: an unbroken chain proves the record is intact, not that the gate is passed. Step seven runs both test suites, fifty-seven and a hundred thirty-nine tests, and deletes the out folder.
 
 ## Slide 13 — Lab 2: schedule the run in a test tenant
 

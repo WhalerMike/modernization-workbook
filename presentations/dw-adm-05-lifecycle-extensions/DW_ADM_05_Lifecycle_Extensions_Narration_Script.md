@@ -10,7 +10,7 @@ Why does this chapter matter? Microsoft Learn splits the work: inbound provision
 
 ## Slide 3 — Which cloud: Graph host, Azure Resource Manager, license
 
-Now, which cloud. The callback goes to Microsoft Graph, and the host depends on the tenant: a GCC tenant like this estate's keeps the worldwide endpoint, while GCC High and DoD each have their own, and a token for one cloud won't work in another. The Logic App's side matters too. Learn documents the proof-of-possession policy only for commercial Azure. For Azure Government it gives nothing, so the builder refuses rather than guess. Licensing and availability are covered in all the US clouds, and the tenant limits are the same everywhere. Next, Microsoft's own sample.
+Now, which cloud. The callback goes to Microsoft Graph, and the host depends on the tenant: a GCC tenant like this estate's keeps the worldwide endpoint, and a token for one cloud won't work in another. The resume call is in version one point oh, listed for the global service that GCC uses. The Logic App's side matters too. Learn documents the proof-of-possession policy for commercial Azure, the cloud a GCC estate uses, and the builder writes no other values. And Microsoft Entra ID Governance is available in GCC. Next, Microsoft's own sample.
 
 ## Slide 4 — Learn's Logic App definition, pinned and run
 
@@ -18,7 +18,7 @@ Here's what Microsoft gives you. The admin center can create an extension and a 
 
 ## Slide 5 — What it leaves to you: cloud, path and status
 
-Running Learn's definition against the fakes shows what it gets right and what it leaves to you. It gets the identity right: no secret, just the Logic App's managed identity, and the program keeps that. But the callback is hard-wired to the worldwide cloud and the beta endpoint, so in GCC High or DoD it simply never arrives. It trusts whatever path it's handed, which means a forged payload could aim that identity's token anywhere. And it always says the work completed, even when the revocation failed. Each of those has a fix, pinned by a test.
+Running Learn's definition against the fakes shows what it gets right and what it leaves to you. It gets the identity right: no secret, just the Logic App's managed identity, and the program keeps that. But the callback is hard-wired to the worldwide host and the beta endpoint. The host happens to be right for GCC, but it's fixed in the definition instead of taken from the tenant's cloud, and beta isn't supported in production. It trusts whatever path it's handed, which means a forged payload could aim that identity's token anywhere. And it always says the work completed, even when the revocation failed. Each of those has a fix, pinned by a test.
 
 ## Slide 6 — What it leaves to you: failure, repeats and secrets
 
@@ -54,11 +54,11 @@ Who is this for? Developers and identity engineers who build the integrations be
 
 ## Slide 14 — Lab 1: Learn's definition, then the program's
 
-Lab 1 needs only Python on a laptop: no tenant, no network. You start with Microsoft's definition. The linter finds eight problems, and when you run it for a GCC High tenant, the callback heads to the worldwide cloud and the task fails at the end of the wait. Switch the cloud to worldwide and it completes, which is exactly why the problem is easy to miss. Then the program's definition: a clean lint, and a GCC High run that survives two transient failures, does the work once, and calls back to the right cloud.
+Lab 1 needs only Python on a laptop: no tenant, no network. You start with Microsoft's definition. The linter finds eight problems. Run it for a GCC tenant and it completes, calling back on the beta endpoint and reporting completed, which is exactly why its problems are easy to miss. Then the program's definition: a clean lint, a warning when the retries could outlast a shorter wait, and a GCC run that survives two transient failures, does the work once, and calls back on version one point oh.
 
 ## Slide 15 — Lab 1: failures, the build and the read-backs
 
-The second half of Lab 1 is about watching the guards work. Shorten the wait and the linter warns that retries could outlast it. Make the downstream fail every time, and the task is reported failed straight away instead of an hour later. Deliver the same task twice, and the work still happens once. Then build the deployment files, and watch the builder refuse when you point it at Azure Government. Break the leaver order in a fixture and the workflow check catches it. Finally, fifty-five tests pass. Remember, though: fakes aren't a tenant.
+The second half of Lab 1 is about watching the guards work. Shorten the wait and the linter warns that retries could outlast it. Make the downstream fail every time, and the task is reported failed straight away instead of an hour later. Deliver the same task twice, and the work still happens once. Then build the deployment files, and watch the builder refuse when you point it at a cloud Learn gives no policy values for. Break the leaver order in a fixture and the workflow check catches it. Finally, the whole suite passes. Remember, though: fakes aren't a tenant.
 
 ## Slide 16 — Lab 2: a test tenant, a real run, a failure drill
 
