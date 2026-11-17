@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:06.800
+The settings file names GCC and the
+test tenant's ID, with no secret in it.
+
+3
+00:00:06.800 --> 00:00:09.300
+The read row passes in the test tenant.
+
+4
+00:00:09.300 --> 00:00:15.375
+Every role, restricted, P I M and emergency
+row passes, or has a change record.
+
+5
+00:00:15.375 --> 00:00:18.300
+The permissions file is
+filed with the role export.
+
+6
+00:00:18.300 --> 00:00:22.525
+And the run folder is recorded as
+evidence, which Chapter 8 shows.
+
+7
+00:00:22.525 --> 00:00:27.875
+Next, Chapter 2 uses the same read path
+to count the fleet against the inventory.
+
+8
+00:00:27.875 --> 00:00:29.040
+Thanks for watching.

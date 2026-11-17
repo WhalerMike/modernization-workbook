@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:04.531
+A rule with automated
+isolation could contain a
+
+3
+00:00:04.531 --> 00:00:07.612
+server or an emergency
+account by query; it's held.
+
+4
+00:00:07.612 --> 00:00:10.814
+A rule enabled without a
+test is silent or noisy;
+
+5
+00:00:10.814 --> 00:00:13.524
+it's held unless its test passed this run.
+
+6
+00:00:13.524 --> 00:00:17.188
+A rule made in the portal can't
+be traced; it's an orphan.
+
+7
+00:00:17.188 --> 00:00:19.998
+A plan changed after
+approval means the approver
+
+8
+00:00:19.998 --> 00:00:22.876
+signed something else;
+publishing checks the hash.
+
+9
+00:00:22.876 --> 00:00:27.875
+A renamed column makes a rule stop
+firing; the weekly test run catches it.
+
+10
+00:00:27.875 --> 00:00:33.770
+And if the API isn't available in GCC,
+the portal path deploys the same files.

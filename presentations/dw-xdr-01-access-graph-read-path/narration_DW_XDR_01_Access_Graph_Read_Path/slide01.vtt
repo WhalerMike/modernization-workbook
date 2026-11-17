@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.085
+Welcome to the Federal
+Modernization Workbook's
+
+2
+00:00:03.085 --> 00:00:05.750
+developer workbook, Building Defender XDR.
+
+3
+00:00:05.750 --> 00:00:09.625
+This is Chapter 1: access,
+and the Graph read path.
+
+4
+00:00:09.625 --> 00:00:12.775
+Every check in this workbook
+reads through one door.
+
+5
+00:00:12.775 --> 00:00:17.182
+Before anything else, we prove the door
+is the right one, in the right cloud,
+
+6
+00:00:17.182 --> 00:00:21.075
+and that the people behind it hold
+only what the design gave them.
+
+7
+00:00:21.075 --> 00:00:25.737
+We'll start from Microsoft Learn's
+commands, read how the kit declares its
+
+8
+00:00:25.737 --> 00:00:30.400
+calls and checks its roles, and walk
+two labs, the evidence and the dangers.
+
+9
+00:00:30.400 --> 00:00:33.499
+The chapter is a draft
+awaiting the owner's review,
+
+10
+00:00:33.499 --> 00:00:36.960
+and the code is illustrative,
+tested against fixtures.

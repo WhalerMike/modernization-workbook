@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.234
+Welcome to Building Defender XDR,
+
+2
+00:00:02.234 --> 00:00:06.212
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.212 --> 00:00:09.438
+This is Chapter 5: exposure and incidents.
+
+4
+00:00:09.438 --> 00:00:12.872
+A vulnerability without an
+owner is an inventory finding,
+
+5
+00:00:12.872 --> 00:00:15.876
+and an incident without an
+owner is a clock running.
+
+6
+00:00:15.876 --> 00:00:19.788
+Both checks in this chapter ask
+the same question: who has this?
+
+7
+00:00:19.788 --> 00:00:23.813
+We'll start from the guide's queries
+and Learn's incident list, and the
+
+8
+00:00:23.813 --> 00:00:26.976
+government-cloud fact that
+shapes the exposure gate,
+
+9
+00:00:26.976 --> 00:00:29.276
+then read both checks and walk two labs.
+
+10
+00:00:29.276 --> 00:00:31.908
+The chapter is a draft awaiting review;
+
+11
+00:00:31.908 --> 00:00:35.420
+the code is illustrative,
+tested against fixtures.

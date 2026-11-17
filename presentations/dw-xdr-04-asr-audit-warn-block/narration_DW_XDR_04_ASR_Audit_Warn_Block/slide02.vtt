@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.825
+Why does this rollout need code?
+
+2
+00:00:01.825 --> 00:00:04.606
+Because it's fourteen
+rules times five rings,
+
+3
+00:00:04.606 --> 00:00:07.687
+each pair with its own clock
+and its own audit hits.
+
+4
+00:00:07.687 --> 00:00:10.425
+Audit is configured, but protects nothing.
+
+5
+00:00:10.425 --> 00:00:14.793
+By the end of this chapter you can produce
+the rule-by-ring matrix the assessor
+
+6
+00:00:14.793 --> 00:00:17.592
+reads, say which rules each
+ring can move this week,
+
+7
+00:00:17.592 --> 00:00:20.800
+and hand the change board the
+exact value that moves them.
+
+8
+00:00:20.800 --> 00:00:24.568
+It's for the developers, the
+platform owner who owns this gate,
+
+9
+00:00:24.568 --> 00:00:28.412
+and the security operations lead
+who reads the weekly counts.
+
+10
+00:00:28.412 --> 00:00:30.717
+The rule list and the stage lengths,
+
+11
+00:00:30.717 --> 00:00:35.380
+thirty days of audit and fourteen of
+warn, are the Devices book's policy.

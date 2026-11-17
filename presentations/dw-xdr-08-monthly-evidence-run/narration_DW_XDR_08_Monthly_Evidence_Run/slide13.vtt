@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:06.617
+A run with findings read as evidence of
+a control leads to a go on a fleet with
+
+3
+00:00:06.617 --> 00:00:09.200
+gaps; the check result in every record,
+
+4
+00:00:09.200 --> 00:00:12.950
+and a go or no-go that fails
+until the run passes, guard it.
+
+5
+00:00:12.950 --> 00:00:16.950
+A file edited after recording is
+caught by the hashes, by name.
+
+6
+00:00:16.950 --> 00:00:19.138
+A removed record breaks the chain.
+
+7
+00:00:19.138 --> 00:00:24.412
+Advanced hunting only keeps thirty days,
+so the run files results every month.
+
+8
+00:00:24.412 --> 00:00:28.817
+And a metric computed from a field that
+doesn't hold it is a misleading number,
+
+9
+00:00:28.817 --> 00:00:32.020
+so the kit says not computed,
+and where the number lives.

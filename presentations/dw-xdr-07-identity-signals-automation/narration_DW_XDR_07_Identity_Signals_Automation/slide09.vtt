@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.982
+Lab 2 uses a test
+tenant, never production,
+
+2
+00:00:02.982 --> 00:00:07.725
+with Defender for Identity on at
+least one test domain controller.
+
+3
+00:00:07.725 --> 00:00:10.025
+Sign in and run the signals check.
+
+4
+00:00:10.025 --> 00:00:14.476
+In a quiet test tenant the query may
+return no rows, and the check fails:
+
+5
+00:00:14.476 --> 00:00:19.084
+that says no identity or cloud-app
+alert met an endpoint alert this week,
+
+6
+00:00:19.084 --> 00:00:24.238
+not that the sensors are broken; check
+sensor health in the Identities settings.
+
+7
+00:00:24.238 --> 00:00:28.644
+Then copy the two portal pages into the
+template columns: the device groups,
+
+8
+00:00:28.644 --> 00:00:33.263
+and the automated response exclusions
+with their approvers and review dates.
+
+9
+00:00:33.263 --> 00:00:34.863
+Run the automation check.
+
+10
+00:00:34.863 --> 00:00:37.250
+Nothing changed, so you just sign out.

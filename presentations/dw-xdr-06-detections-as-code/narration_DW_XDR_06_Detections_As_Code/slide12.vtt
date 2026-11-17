@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:06.350
+Every rule has a test file, with both
+windows inside the last thirty days.
+
+3
+00:00:06.350 --> 00:00:08.587
+No rule has automated actions.
+
+4
+00:00:08.587 --> 00:00:12.038
+Every enabled rule passed its
+known-bad test in this run.
+
+5
+00:00:12.038 --> 00:00:17.012
+Every orphan has a decision: into the
+repository, or disabled from a file.
+
+6
+00:00:17.012 --> 00:00:19.749
+And the plan's hash is
+recorded with the approval.
+
+7
+00:00:19.749 --> 00:00:24.554
+Next, Chapter 7 sets what Defender may
+do on its own once these rules fire,
+
+8
+00:00:24.554 --> 00:00:28.463
+and joins identity and cloud-app
+signals to the endpoint's.
+
+9
+00:00:28.463 --> 00:00:29.620
+Thanks for watching.

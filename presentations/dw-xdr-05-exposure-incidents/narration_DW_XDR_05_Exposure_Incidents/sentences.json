@@ -1,0 +1,468 @@
+{
+ "1": [
+  [
+   0.05,
+   6.162,
+   "Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   6.213,
+   3.225,
+   "This is Chapter 5: exposure and incidents."
+  ],
+  [
+   9.438,
+   6.438,
+   "A vulnerability without an owner is an inventory finding, and an incident without an owner is a clock running."
+  ],
+  [
+   15.875,
+   3.913,
+   "Both checks in this chapter ask the same question: who has this?"
+  ],
+  [
+   19.788,
+   9.488,
+   "We'll start from the guide's queries and Learn's incident list, and the government-cloud fact that shapes the exposure gate, then read both checks and walk two labs."
+  ],
+  [
+   29.275,
+   6.088,
+   "The chapter is a draft awaiting review; the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.5,
+   "Why put these two together?"
+  ],
+  [
+   1.55,
+   1.938,
+   "Because both ask who has this."
+  ],
+  [
+   3.487,
+   5.438,
+   "A vulnerability with no owner isn't just unpatched; it's a gap in the inventory."
+  ],
+  [
+   8.925,
+   4.25,
+   "And an incident with no owner is a clock running against the severity table."
+  ],
+  [
+   13.175,
+   12.025,
+   "By the end of this chapter you can route every exposed device to an owner, record Security Exposure Management correctly for a G C C tenant, and list every incident that broke the severity table."
+  ],
+  [
+   25.2,
+   7.713,
+   "It's for the developers, the vulnerability manager who owns the exposure gate, and the security operations lead who owns incidents."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.188,
+   "One government-cloud fact shapes the exposure gate."
+  ],
+  [
+   3.237,
+   11.838,
+   "Learn says Microsoft Security Exposure Management, with its attack paths, exposure graph and critical asset management, is available in Public Cloud only, not in U S Government clouds."
+  ],
+  [
+   15.075,
+   6.525,
+   "Defender Vulnerability Management is available in G C C, core and premium, without two features."
+  ],
+  [
+   21.6,
+   5.05,
+   "DeviceInfo still carries exposure level, internet facing, and asset value."
+  ],
+  [
+   26.65,
+   4.763,
+   "And the vulnerability tables stay in Defender; they aren't ingested into Sentinel."
+  ],
+  [
+   31.413,
+   9.988,
+   "So the guide's interim path prioritizes by those columns and Vulnerability Management's recommendations, with the Tier 0 inventory as the critical-asset list."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.0,
+   "What's left to you?"
+  ],
+  [
+   1.05,
+   8.488,
+   "The exposure query returns rows, not owners, so the kit matches each device's group to an owner, and no owner is a finding."
+  ],
+  [
+   9.537,
+   11.838,
+   "Not available is a fact, but a Zero Trust Assessment test that needs Exposure Management would read as a failure, so the kit writes a disposition: skipped, not applicable, with the interim path."
+  ],
+  [
+   21.375,
+   5.438,
+   "An incident export is a list, so each incident is read against the severity table."
+  ],
+  [
+   26.812,
+   5.875,
+   "One filter misses an old incident that's still open, so the kit reads two and merges them."
+  ],
+  [
+   32.688,
+   8.25,
+   "And Graph doesn't record when an incident was first assigned, so the kit reports unowned past its window, and invents no duration."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   10.15,
+   "The exposure check runs the guide's two queries: high and critical vulnerabilities by software and recommended update, and exposed or internet-facing devices."
+  ],
+  [
+   10.2,
+   5.987,
+   "It matches each exposed device's group to a remediation owner from the agency's owners file."
+  ],
+  [
+   16.188,
+   5.237,
+   "A device with no owner is an inventory finding, not just a vulnerability finding."
+  ],
+  [
+   21.425,
+   3.15,
+   "And it writes the disposition for the settings file's cloud."
+  ],
+  [
+   24.575,
+   6.987,
+   "For G C C: not available, skipped, not applicable, with the interim path and the Learn page."
+  ],
+  [
+   31.562,
+   7.95,
+   "That result name is one of the seven the Zero Trust Assessment results kit uses, so the same disposition lands in the closure register."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   9.838,
+   "The incident check reads incidents created in the last thirty days, and every incident still active, with their alerts, using Learn's list call with expand alerts."
+  ],
+  [
+   9.887,
+   1.4,
+   "Each one gets a finding."
+  ],
+  [
+   11.287,
+   2.513,
+   "Triaged: open, with an owner."
+  ],
+  [
+   13.8,
+   4.338,
+   "Untriaged: open, no owner, but inside its window."
+  ],
+  [
+   18.137,
+   4.713,
+   "Overdue triage: no owner, past its window, which fails."
+  ],
+  [
+   22.85,
+   3.862,
+   "Closed: resolved with a classification and a determination."
+  ],
+  [
+   26.712,
+   3.325,
+   "And closed without classification, which also fails."
+  ],
+  [
+   30.038,
+   8.375,
+   "The windows come from the guide's severity table: one hour for high, twenty-four for medium, seventy-two for low and informational."
+  ],
+  [
+   38.413,
+   4.963,
+   "Containment stays on the response ladder; the kit only prints each incident's rung."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   6.575,
+   "The vulnerability manager owns the exposure gate: an owner for every exposed device, and the weekly queue."
+  ],
+  [
+   7.675,
+   7.1,
+   "The security operations lead owns the incident gate: a daily queue review, and every overdue incident owned today."
+  ],
+  [
+   14.775,
+   6.737,
+   "The security officer files the Exposure Management disposition in the closure register, and the inventory gaps."
+  ],
+  [
+   21.512,
+   3.013,
+   "One caution: the incident check only reads."
+  ],
+  [
+   24.525,
+   3.788,
+   "It never assigns, comments on or closes an incident."
+  ],
+  [
+   28.312,
+   6.588,
+   "And the severity strings the exposure query filters on are as the portal shows them; check them in the test tenant."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.1,
+   "Lab 1, in the kit's folder."
+  ],
+  [
+   2.15,
+   2.4,
+   "Step 1 runs the exposure check."
+  ],
+  [
+   4.55,
+   5.112,
+   "Three software rows with nine CVEs between them, and three exposed devices."
+  ],
+  [
+   9.662,
+   1.15,
+   "Two have owners."
+  ],
+  [
+   10.812,
+   6.787,
+   "The third sits in a group no owner covers: the same device Chapter 2 found missing from the inventory."
+  ],
+  [
+   17.6,
+   1.962,
+   "Two findings, one cause."
+  ],
+  [
+   19.562,
+   9.225,
+   "Step 2 reads the Exposure Management record: not available in G C C, skipped, not applicable, and the interim path in one sentence."
+  ],
+  [
+   28.788,
+   3.575,
+   "That's what goes in the closure register, not a failed control."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.325,
+   "Step 3 runs the incident check."
+  ],
+  [
+   2.375,
+   1.262,
+   "Seven incidents."
+  ],
+  [
+   3.638,
+   8.575,
+   "Incident 1002, high severity, has waited three and a half hours with no owner, against a one-hour window: overdue."
+  ],
+  [
+   12.213,
+   5.1,
+   "Incident 1005 was resolved with its classification still unknown."
+  ],
+  [
+   17.312,
+   6.638,
+   "And incident 1003, medium, has no owner yet, but it's inside its twenty-four hours."
+  ],
+  [
+   23.95,
+   6.225,
+   "Step 4 reads the findings as the security operations lead gets them, each with its containment rung."
+  ],
+  [
+   30.175,
+   5.325,
+   "The high one is the gated rung: the playbook prepares, and a named approver releases."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   10.213,
+   "Lab 2 uses a test tenant, never production, with Vulnerability Management data on at least one device and at least one incident; the guide's detection test makes one."
+  ],
+  [
+   10.262,
+   4.713,
+   "Sign in with both read scopes, and run both checks without the fixture path."
+  ],
+  [
+   14.975,
+   2.263,
+   "Then look at the raw vulnerability file."
+  ],
+  [
+   17.238,
+   8.0,
+   "If it's empty in a tenant you know has high vulnerabilities, the severity strings differ from the portal's, and that goes in the verification log."
+  ],
+  [
+   25.238,
+   2.337,
+   "Nothing changed, so you just sign out."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.65,
+   "Here's what these two gates prove, against nist's catalog."
+  ],
+  [
+   3.7,
+   6.125,
+   "Vulnerabilities by software and update support vulnerability monitoring and flaw remediation."
+  ],
+  [
+   9.825,
+   4.888,
+   "Every exposed device owned, or a finding, supports the component inventory."
+  ],
+  [
+   14.713,
+   5.425,
+   "The Exposure Management disposition supports vulnerability monitoring, honestly recorded."
+  ],
+  [
+   20.137,
+   7.95,
+   "Incidents owned inside their windows and closed with a classification support incident handling, incident monitoring, and audit review."
+  ],
+  [
+   28.087,
+   3.812,
+   "And the incident record with its alerts supports the reporting decision."
+  ],
+  [
+   31.9,
+   3.188,
+   "The indicators are fed-ramp's, as the guide maps them."
+  ],
+  [
+   35.087,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   9.838,
+   "Assuming Exposure Management in G C C stalls attack-path work, and makes a Zero Trust Assessment test look failed; the disposition and the interim path guard it."
+  ],
+  [
+   11.287,
+   4.263,
+   "An exposed device with no owner never gets patched; it's a finding."
+  ],
+  [
+   15.55,
+   6.6,
+   "Sentinel queries on the vulnerability tables return nothing, so the kit queries Defender's own advanced hunting."
+  ],
+  [
+   22.15,
+   6.338,
+   "Reading only last month's incidents misses an old one still open, so the active filter is read too."
+  ],
+  [
+   28.488,
+   7.6,
+   "And a time to triage computed from the wrong field is a precise-looking, wrong number, so the kit reports past-window instead."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   3.075,
+   "Every device group has an owner in the owners file."
+  ],
+  [
+   4.475,
+   4.2,
+   "The Exposure Management disposition is filed with the closure register."
+  ],
+  [
+   8.675,
+   2.825,
+   "Every overdue incident has an owner today."
+  ],
+  [
+   11.5,
+   4.713,
+   "Every incident closed without a classification is reopened and classified."
+  ],
+  [
+   16.212,
+   3.138,
+   "And both run folders are recorded as evidence."
+  ],
+  [
+   19.35,
+   7.513,
+   "Next, Chapter 6 keeps the rules that raise these incidents as files: tested, and deployed through Microsoft Graph."
+  ],
+  [
+   26.863,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.913
+Step 1.
+
+2
+00:00:00.913 --> 00:00:05.012
+Sign in to Graph in the Global
+environment, then run the pre-flight.
+
+3
+00:00:05.012 --> 00:00:06.888
+Six checks for the test stage.
+
+4
+00:00:06.888 --> 00:00:09.929
+The settings: the
+environment is the stage,
+
+5
+00:00:09.929 --> 00:00:14.013
+every input is named and exists,
+and the deploy path is set.
+
+6
+00:00:14.013 --> 00:00:16.112
+The Graph module is installed.
+
+7
+00:00:16.112 --> 00:00:20.326
+The session is in the Global environment
+and the tenant the settings name.
+
+8
+00:00:20.326 --> 00:00:24.137
+The granted scopes cover every
+read, and the detection write.
+
+9
+00:00:24.137 --> 00:00:26.237
+A first read of incidents answers.
+
+10
+00:00:26.237 --> 00:00:28.438
+And the output root is writable.
+
+11
+00:00:28.438 --> 00:00:30.438
+Any failure stops the stage.
+
+12
+00:00:30.438 --> 00:00:34.340
+Then record the pre-flight as
+evidence, with the change record.

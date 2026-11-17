@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.050
+Step 4 is the smoke test.
+
+2
+00:00:02.050 --> 00:00:06.736
+Run one synthetic event from the guide's
+table on a ring 0 device, under the
+
+3
+00:00:06.736 --> 00:00:11.500
+change record: the replay behind a
+newly published rule's known-bad window.
+
+4
+00:00:11.500 --> 00:00:15.425
+Within the rule's schedule, an alert
+from a custom detection appears.
+
+5
+00:00:15.425 --> 00:00:18.047
+Re-run the detection
+check, and the plan should
+
+6
+00:00:18.047 --> 00:00:21.013
+hold no create or update
+for the rules you published.
+
+7
+00:00:21.013 --> 00:00:23.700
+Step 5 moves one ring, by hand.
+
+8
+00:00:23.700 --> 00:00:27.872
+The change board takes ring 1's
+next value from Chapter 4's run,
+
+9
+00:00:27.872 --> 00:00:33.212
+the operator puts it in the ring 1 policy
+in Intune, and the plan file is updated.
+
+10
+00:00:33.212 --> 00:00:36.585
+After the devices check in,
+run the A S R check again,
+
+11
+00:00:36.585 --> 00:00:39.360
+and the device checks show the new modes.

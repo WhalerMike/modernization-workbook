@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+Why treat detections as code?
+
+2
+00:00:01.812 --> 00:00:02.850
+Two reasons.
+
+3
+00:00:02.850 --> 00:00:05.763
+A rule that can't be shown
+to fire isn't a control.
+
+4
+00:00:05.763 --> 00:00:08.285
+And a rule that nobody can trace back to a
+
+5
+00:00:08.285 --> 00:00:11.113
+reviewed file isn't a
+change anyone approved.
+
+6
+00:00:11.113 --> 00:00:14.982
+By the end of this chapter you can
+keep custom detections as files,
+
+7
+00:00:14.982 --> 00:00:19.066
+prove each one fires on its known-bad
+event and stays quiet otherwise,
+
+8
+00:00:19.066 --> 00:00:22.863
+and produce a deployment plan that
+an approver signs by its hash.
+
+9
+00:00:22.863 --> 00:00:27.001
+It's for the developers and the
+detection engineer who owns this gate.
+
+10
+00:00:27.001 --> 00:00:31.948
+The rule lifecycle itself, author,
+test, alert-only, promote and review,
+
+11
+00:00:31.948 --> 00:00:37.920
+is the Security Operations book's; this
+chapter builds its test and its deployment.

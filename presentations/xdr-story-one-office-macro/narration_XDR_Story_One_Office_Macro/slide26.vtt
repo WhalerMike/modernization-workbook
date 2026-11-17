@@ -1,0 +1,24 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.775
+Check eight, the last one.
+
+2
+00:00:01.775 --> 00:00:04.841
+The coverage run is
+recorded with intact files,
+
+3
+00:00:04.841 --> 00:00:07.200
+but its own check found five tickets.
+
+4
+00:00:07.200 --> 00:00:10.969
+Does it pass the go or no-go
+because the files are intact,
+
+5
+00:00:10.969 --> 00:00:14.540
+fail, pass with a warning,
+or pass only in production?

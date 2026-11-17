@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.862
+Here's what this gate proves,
+against NIST's control catalog.
+
+2
+00:00:03.862 --> 00:00:07.282
+Each role holding exactly
+its designed permissions,
+
+3
+00:00:07.282 --> 00:00:11.712
+with advanced live response only in
+Tier 0, supports least privilege.
+
+4
+00:00:11.712 --> 00:00:14.266
+Every assignment going
+to a governed group,
+
+5
+00:00:14.266 --> 00:00:18.875
+and no emergency access group in a Defender
+role, supports account management.
+
+6
+00:00:18.875 --> 00:00:21.741
+And a working read path in
+the tenant's own cloud,
+
+7
+00:00:21.741 --> 00:00:26.225
+with its permissions listed, supports
+restricting access to audit tools.
+
+8
+00:00:26.225 --> 00:00:30.413
+The indicators are FedRAMP's, as
+the implementation guide maps them.
+
+9
+00:00:30.413 --> 00:00:34.300
+The records support these controls;
+the assessor decides them.

@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.963
+Validate, test and plan the repository.
+
+3
+00:00:03.963 --> 00:00:09.975
+Our rule finds one row in its known-bad
+window and none on its quiet day: it passes.
+
+4
+00:00:09.975 --> 00:00:12.287
+The plan creates the dump-tool rule,
+
+5
+00:00:12.287 --> 00:00:15.475
+and updates our rule's
+status, and only its status.
+
+6
+00:00:15.475 --> 00:00:19.787
+The admin-share rule is held, because
+it would isolate devices on its own.
+
+7
+00:00:19.787 --> 00:00:22.675
+And a legacy rule that
+was made in the portal,
+
+8
+00:00:22.675 --> 00:00:25.563
+and lives in no file, is
+reported as an orphan.
+
+9
+00:00:25.563 --> 00:00:27.237
+Then read the plan's hash.
+
+10
+00:00:27.237 --> 00:00:29.020
+That's what an approver signs.

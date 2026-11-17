@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.688
+Here are the readiness rules,
+
+2
+00:00:01.688 --> 00:00:05.100
+which are the program's design
+from the Devices book's policy.
+
+3
+00:00:05.100 --> 00:00:09.720
+A rule in audit is ready after thirty
+days, when every audit hit on the
+
+4
+00:00:09.720 --> 00:00:14.175
+ring's devices has an exclusion, a
+fix or a decision in the register.
+
+5
+00:00:14.175 --> 00:00:18.188
+It moves to warn, or straight to
+block if it doesn't support warn.
+
+6
+00:00:18.188 --> 00:00:22.175
+A rule in warn is ready after
+fourteen days with no open hit.
+
+7
+00:00:22.175 --> 00:00:26.791
+A hit is covered by a valid register
+row for its rule, or for every rule,
+
+8
+00:00:26.791 --> 00:00:30.500
+whose path is the same file,
+or a folder that contains it.
+
+9
+00:00:30.500 --> 00:00:32.741
+And the change board, not the kit,
+
+10
+00:00:32.741 --> 00:00:36.430
+puts the next value in
+Intune, under a change record.

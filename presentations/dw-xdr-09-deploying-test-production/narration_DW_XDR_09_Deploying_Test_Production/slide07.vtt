@@ -1,0 +1,42 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.500
+Step 2 is the first scheduled run.
+
+2
+00:00:02.500 --> 00:00:06.184
+It runs every check and the metrics
+into a folder for the month,
+
+3
+00:00:06.184 --> 00:00:10.374
+records each one in the stage's
+evidence folder with the change record,
+
+4
+00:00:10.374 --> 00:00:12.975
+and writes a scheduled-run
+record of its own.
+
+5
+00:00:12.975 --> 00:00:15.073
+In fixture mode, most checks fail,
+
+6
+00:00:15.073 --> 00:00:19.037
+because the fixtures carry each
+chapter's deliberate faults.
+
+7
+00:00:19.037 --> 00:00:23.968
+In a test tenant, each failure is a
+list of findings in its run folder:
+
+8
+00:00:23.968 --> 00:00:26.926
+tickets, plan corrections, role changes.
+
+9
+00:00:26.926 --> 00:00:29.300
+Close them before the go or no-go.

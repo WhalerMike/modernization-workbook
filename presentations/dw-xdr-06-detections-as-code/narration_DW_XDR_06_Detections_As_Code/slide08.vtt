@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.382
+Step 3 reads the plan an
+approver signs: its hash,
+
+2
+00:00:03.382 --> 00:00:07.825
+and the two actions, a post that
+creates and a patch that updates.
+
+3
+00:00:07.825 --> 00:00:10.868
+The update's body holds the
+status and nothing else,
+
+4
+00:00:10.868 --> 00:00:13.838
+because Learn's patch
+supplies only what changes.
+
+5
+00:00:13.838 --> 00:00:19.513
+Step 4 runs the same repository on the
+interim path, with deploy via set to portal.
+
+6
+00:00:19.513 --> 00:00:23.169
+The same plan comes out, as a
+sheet for the Defender portal,
+
+7
+00:00:23.169 --> 00:00:25.037
+each rule with its file's hash.
+
+8
+00:00:25.037 --> 00:00:27.170
+Delete what the lab made when you're done.

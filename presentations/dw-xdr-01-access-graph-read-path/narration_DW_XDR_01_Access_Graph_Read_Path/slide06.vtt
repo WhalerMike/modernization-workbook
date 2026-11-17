@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.675
+The access check writes six kinds of row.
+
+2
+00:00:02.675 --> 00:00:07.287
+Cloud: the settings name a known cloud,
+and the Graph host comes from it.
+
+3
+00:00:07.287 --> 00:00:10.200
+Read: the first read of incidents answers.
+
+4
+00:00:10.200 --> 00:00:14.213
+Role: each designed role exists
+with exactly its permissions,
+
+5
+00:00:14.213 --> 00:00:17.125
+and a role that isn't in
+the design is a warning.
+
+6
+00:00:17.125 --> 00:00:21.838
+Restricted: advanced live response
+is held only by the Tier 0 role.
+
+7
+00:00:21.838 --> 00:00:24.442
+P I M: every group a
+role is assigned to is
+
+8
+00:00:24.442 --> 00:00:27.862
+one that Privileged Identity
+Management governs.
+
+9
+00:00:27.862 --> 00:00:32.301
+And emergency: no emergency access
+group holds a Defender role.
+
+10
+00:00:32.301 --> 00:00:35.975
+The input is a role export the
+operator files from the portal.
+
+11
+00:00:35.975 --> 00:00:39.460
+Learn names no API for those
+roles on the pages read.

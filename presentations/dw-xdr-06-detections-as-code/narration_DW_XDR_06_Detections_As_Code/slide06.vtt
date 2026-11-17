@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:03.754
+The detection engineer owns this gate,
+
+3
+00:00:03.754 --> 00:00:08.563
+writes each rule and its test file,
+and reviews every rule each quarter.
+
+4
+00:00:08.563 --> 00:00:12.512
+The approver reads the plan and
+records its hash in the change record.
+
+5
+00:00:12.512 --> 00:00:17.814
+And the security operations center replays
+each known-bad event on a ring 0 device,
+
+6
+00:00:17.814 --> 00:00:22.337
+under a change record, as the guide's
+synthetic events table describes.
+
+7
+00:00:22.337 --> 00:00:25.750
+One caution: advanced
+hunting keeps thirty days.
+
+8
+00:00:25.750 --> 00:00:30.410
+A known-bad window older than that returns
+nothing, so keep the replay current.

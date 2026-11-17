@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.875
+Stage 2 is production.
+
+2
+00:00:01.875 --> 00:00:07.175
+Its pre-flight adds a seventh check:
+the test stage's go or no-go must pass.
+
+3
+00:00:07.175 --> 00:00:11.100
+In fixture mode, it refuses,
+naming the steps that failed.
+
+4
+00:00:11.100 --> 00:00:15.911
+Once it passes, repeat steps 2 to 6 with
+the production settings, one ring at
+
+5
+00:00:15.911 --> 00:00:20.800
+a time, in the change board's window,
+with the backout triggers the guide sets.
+
+6
+00:00:20.800 --> 00:00:24.310
+The production go or
+no-go also needs exposure,
+
+7
+00:00:24.310 --> 00:00:27.912
+incidents, signals,
+automation and the metrics.
+
+8
+00:00:27.912 --> 00:00:32.401
+Finally, register the scheduled run
+inside the boundary, every four weeks,
+
+9
+00:00:32.401 --> 00:00:36.300
+through Privileged Identity
+Management or a managed identity.
+
+10
+00:00:36.300 --> 00:00:40.680
+The month's metrics, records and
+hashes go to the security officer.

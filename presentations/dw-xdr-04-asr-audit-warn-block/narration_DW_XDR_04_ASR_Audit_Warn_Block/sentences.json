@@ -1,0 +1,488 @@
+{
+ "1": [
+  [
+   0.05,
+   6.162,
+   "Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   6.213,
+   5.5,
+   "This is Chapter 4: attack surface reduction, through audit, warn and block."
+  ],
+  [
+   11.713,
+   2.513,
+   "Audit is configured but protects nothing."
+  ],
+  [
+   14.225,
+   5.388,
+   "A rule is done when it's in block on every ring, or its exception is written down."
+  ],
+  [
+   19.613,
+   4.688,
+   "The code's job is to say which rules can move this week, and why the others can't."
+  ],
+  [
+   24.3,
+   7.463,
+   "We'll start from Learn's modes and syntax, read the rule catalog, the plan and the readiness rules, and walk two labs."
+  ],
+  [
+   31.762,
+   6.088,
+   "The chapter is a draft awaiting review; the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.775,
+   "Why does this rollout need code?"
+  ],
+  [
+   1.825,
+   5.862,
+   "Because it's fourteen rules times five rings, each pair with its own clock and its own audit hits."
+  ],
+  [
+   7.688,
+   2.737,
+   "Audit is configured, but protects nothing."
+  ],
+  [
+   10.425,
+   10.375,
+   "By the end of this chapter you can produce the rule-by-ring matrix the assessor reads, say which rules each ring can move this week, and hand the change board the exact value that moves them."
+  ],
+  [
+   20.8,
+   7.612,
+   "It's for the developers, the platform owner who owns this gate, and the security operations lead who reads the weekly counts."
+  ],
+  [
+   28.413,
+   6.912,
+   "The rule list and the stage lengths, thirty days of audit and fourteen of warn, are the Devices book's policy."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   7.55,
+   "Microsoft Learn gives you the rule modes: zero off, one block, two audit, five not configured, six warn."
+  ],
+  [
+   7.6,
+   5.513,
+   "The custom-profile path in Intune, with one rule GUID equals mode per line."
+  ],
+  [
+   13.113,
+   15.1,
+   "Warn's requirements: Windows 10 1809 or later, two rules that don't support it, the LSASS rule and the Office code-injection rule, and since platform 4.18.26060, Unblock needs an administrator's approval."
+  ],
+  [
+   28.212,
+   4.85,
+   "The rules reference gives each rule's GUID and its advanced hunting action types."
+  ],
+  [
+   33.062,
+   6.638,
+   "And Learn lists a known issue: on Windows Server, a rule can show as compliant without being enforced."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.337,
+   "What does that leave to you?"
+  ],
+  [
+   1.387,
+   6.85,
+   "Nothing ties an event back to its rule and ring, so the kit carries the fourteen rules with their action types."
+  ],
+  [
+   8.238,
+   8.4,
+   "A count can't say whether a hit already has an exclusion, so the per-device query keeps the file path, and each hit is matched to the register."
+  ],
+  [
+   16.637,
+   4.862,
+   "Someone has to count days, so the plan records each stage and its start date."
+  ],
+  [
+   21.5,
+   3.8,
+   "A plan might put a no-warn rule in warn, so that's an error."
+  ],
+  [
+   25.3,
+   4.375,
+   "Fourteen lines per ring by hand invites typos, so the kit writes them."
+  ],
+  [
+   29.675,
+   4.638,
+   "And a compliance report can be wrong on servers, so the device itself is checked."
+  ],
+  [
+   34.312,
+   3.712,
+   "The verdict: keep Learn exactly; build the bookkeeping."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   10.713,
+   "The ASR check reads the plan, the exclusion register, the inventory and the device states, runs the guide's query and its per-device form, and writes five things."
+  ],
+  [
+   10.762,
+   5.088,
+   "The matrix: each rule's stage on each ring, which is what the assessor reads."
+  ],
+  [
+   15.85,
+   9.713,
+   "Readiness: per ring and rule, the stage, days in it, audit hits and open hits, blocks, the next stage, and a status with the reason."
+  ],
+  [
+   25.562,
+   3.85,
+   "The custom-profile value for each ring, now and next."
+  ],
+  [
+   29.413,
+   2.275,
+   "What each device actually enforces."
+  ],
+  [
+   31.688,
+   2.225,
+   "And the exclusions that have expired."
+  ],
+  [
+   33.913,
+   8.125,
+   "A status is ready, hold, done, warn, fail, or not applicable for a rule Windows Server doesn't support."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.05,
+   "Here are the readiness rules, which are the program's design from the Devices book's policy."
+  ],
+  [
+   5.1,
+   9.075,
+   "A rule in audit is ready after thirty days, when every audit hit on the ring's devices has an exclusion, a fix or a decision in the register."
+  ],
+  [
+   14.175,
+   4.013,
+   "It moves to warn, or straight to block if it doesn't support warn."
+  ],
+  [
+   18.188,
+   3.987,
+   "A rule in warn is ready after fourteen days with no open hit."
+  ],
+  [
+   22.175,
+   8.325,
+   "A hit is covered by a valid register row for its rule, or for every rule, whose path is the same file, or a folder that contains it."
+  ],
+  [
+   30.5,
+   5.862,
+   "And the change board, not the kit, puts the next value in Intune, under a change record."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   6.7,
+   "The platform owner owns this gate, keeps the plan and the register, and brings ready rules to the change board."
+  ],
+  [
+   7.8,
+   7.475,
+   "The security operations lead reads blocks per rule per week, and starts any new rule from Microsoft at audit on ring 1."
+  ],
+  [
+   15.275,
+   6.312,
+   "And the help desk is briefed before each warn stage, because Unblock now needs an administrator."
+  ],
+  [
+   21.587,
+   4.125,
+   "One note: Microsoft's own position is lighter than the program's."
+  ],
+  [
+   25.712,
+   4.562,
+   "Learn says standard protection rules can go to block without extensive testing."
+  ],
+  [
+   30.275,
+   5.338,
+   "The program runs all three stages, and the kit enforces the program's stages."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.1,
+   "Lab 1, in the kit's folder."
+  ],
+  [
+   2.15,
+   3.163,
+   "Step 1 lists the rules and which skip warn."
+  ],
+  [
+   5.312,
+   1.775,
+   "Step 2 runs the check."
+  ],
+  [
+   7.088,
+   1.462,
+   "Ring 0 is done."
+  ],
+  [
+   8.55,
+   6.812,
+   "Ring 1 has twelve rules ready for block; the Office child-process rule is held, six of fourteen warn days."
+  ],
+  [
+   15.363,
+   6.1,
+   "Ring 2 is ready to leave audit, except the same Office rule, with one audit hit nobody decided."
+  ],
+  [
+   21.462,
+   6.7,
+   "The PSExec and WMI rule is a warning there, because Configuration Manager manages one device."
+  ],
+  [
+   28.163,
+   5.55,
+   "Ring 3's plan puts the LSASS rule in warn, which it doesn't support: a plan error."
+  ],
+  [
+   33.712,
+   4.45,
+   "And one server enforces none of the thirteen rules its plan puts in audit."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.025,
+   "Step 3 reads why the ring 2 rule is held."
+  ],
+  [
+   3.075,
+   2.675,
+   "Seventeen audit events, one open hit."
+  ],
+  [
+   5.75,
+   9.613,
+   "Two paths fired the rule: the line-of-business helper, which has a per-rule exclusion in the register, and a macro runner in a public tools folder, which has nothing."
+  ],
+  [
+   15.363,
+   4.412,
+   "Someone decides an exclusion or a fix before the rule moves to warn."
+  ],
+  [
+   19.775,
+   3.112,
+   "Step 4 prints the value that moves ring 1."
+  ],
+  [
+   22.887,
+   6.3,
+   "Every rule at one, block, except the Office child-process rule, still at six, warn."
+  ],
+  [
+   29.188,
+   4.338,
+   "That's the exact string the change board pastes into the ring 1 policy."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.875,
+   "Lab 2 uses a test tenant, never production, with the policy assigned to a ring 0 device group in audit."
+  ],
+  [
+   6.925,
+   4.237,
+   "Collect the test device's state, sign in, and run the check liv."
+  ],
+  [
+   11.162,
+   3.725,
+   "The device check should show every rule in audit on the device."
+  ],
+  [
+   14.887,
+   8.125,
+   "A row saying not configured on the device while the plan says audit is either the server issue, or a policy the device hasn't received yet."
+  ],
+  [
+   23.012,
+   3.438,
+   "Compare with Learn's own one-line listing on the device."
+  ],
+  [
+   26.45,
+   1.175,
+   "Nothing changed."
+  ],
+  [
+   27.625,
+   7.95,
+   "If you set a rule locally for an investigation, Learn's cmdlet puts it back in audit, and Intune overwrites it at the next refresh anyway."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.325,
+   "Here's what this gate proves, against nist's catalog."
+  ],
+  [
+   3.375,
+   5.438,
+   "Each rule's stage on each ring, with the date it began, supports least functionality."
+  ],
+  [
+   8.812,
+   5.65,
+   "The value each ring is set to, now and next, supports configuration settings."
+  ],
+  [
+   14.463,
+   5.487,
+   "What devices actually enforce, with blocks per rule, supports malicious code protection."
+  ],
+  [
+   19.95,
+   7.638,
+   "And exclusions with owners and expiry dates, with the expired ones listed, supports configuration settings again."
+  ],
+  [
+   27.587,
+   3.188,
+   "The indicators are fed-ramp's, as the guide maps them."
+  ],
+  [
+   30.775,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   5.713,
+   "A server that reports compliant but enforces nothing; the device check reads the server itself."
+  ],
+  [
+   7.162,
+   7.5,
+   "A rule moved on a calendar, not on its hits, which breaks a line-of-business app; every hit is dispositioned first."
+  ],
+  [
+   14.662,
+   4.35,
+   "A no-warn rule in warn, which acts as block on older Windows."
+  ],
+  [
+   19.012,
+   7.638,
+   "A rule set in both Intune and Group Policy: Group Policy wins by default, and the device check shows the value that won."
+  ],
+  [
+   26.65,
+   4.175,
+   "A folder exclusion that's too wide, so file paths are preferred."
+  ],
+  [
+   30.825,
+   6.7,
+   "And warn treated as a bypass: brief the help desk, and turn repeated needs into exclusions."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   5.088,
+   "The plan matches each ring's Intune policy, with the change record that set it."
+  ],
+  [
+   6.487,
+   2.688,
+   "No rule without warn is planned in warn."
+  ],
+  [
+   9.175,
+   5.362,
+   "Every audit hit has an exclusion, a fix or a decision before its rule moves."
+  ],
+  [
+   14.537,
+   3.025,
+   "Every server's device check matches its plan."
+  ],
+  [
+   17.562,
+   3.275,
+   "No expired exclusion remains in the register."
+  ],
+  [
+   20.837,
+   2.95,
+   "And the run folder is recorded as evidence."
+  ],
+  [
+   23.788,
+   6.95,
+   "Next, Chapter 5 turns from settings to findings: who owns each exposed device, and each incident."
+  ],
+  [
+   30.738,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

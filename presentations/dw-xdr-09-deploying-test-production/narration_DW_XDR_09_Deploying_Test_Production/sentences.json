@@ -1,0 +1,500 @@
+{
+ "1": [
+  [
+   0.05,
+   6.162,
+   "Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   6.213,
+   3.938,
+   "This is Chapter 9: deploying to test and production."
+  ],
+  [
+   10.15,
+   8.162,
+   "The same commands run in both stages; only the settings file changes, and production waits until the test stage's own evidence says go."
+  ],
+  [
+   18.312,
+   4.662,
+   "This chapter is a runbook, not a gate, so it has no labs of its own."
+  ],
+  [
+   22.975,
+   7.388,
+   "Every step is a command, and the outputs on these slides are from fixture mode on November 17, 2026."
+  ],
+  [
+   30.363,
+   5.737,
+   "Nothing in it has been run against a lyve tenant, and the chapter is a draft awaiting the owner's review."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.2,
+   "Why the same commands in both stages?"
+  ],
+  [
+   2.25,
+   4.725,
+   "Because a runbook that differs between test and production isn't tested at all."
+  ],
+  [
+   6.975,
+   5.638,
+   "Only the settings file changes, and production waits until the test stage's own evidence says go."
+  ],
+  [
+   12.613,
+   10.3,
+   "By the end of this chapter you can take the kit to a test tenant, prove it there with evidence, and take it to production under a change record, with a rollback planned before anything is applied."
+  ],
+  [
+   22.913,
+   8.65,
+   "The people who run the change are the platform owner with the operator, the detection engineer for the publish step, and the security officer for the go or no-go."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.587,
+   "Here's the division of labor."
+  ],
+  [
+   1.637,
+   12.938,
+   "The kit reads through Graph, compares every input with its plan, writes the evidence, plans the rollback, and publishes custom detections, but only from an approved plan, with apply and the plan's hash."
+  ],
+  [
+   14.575,
+   16.175,
+   "A person, under the change record, assigns roles through Privileged Identity Management and signs in, moves an attack surface reduction or prevention ring in Intune from the kit's values, approves the plan's hash, and changes device group levels and exclusions in the portal."
+  ],
+  [
+   30.75,
+   2.075,
+   "Only one write is automated."
+  ],
+  [
+   32.825,
+   9.037,
+   "Learn doesn't state the detection A P I's G C C availability, so if a test-tenant call fails, the portal path uses the same files."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.425,
+   "Each environment gets one settings file, copied from the template onto agency storage."
+  ],
+  [
+   5.475,
+   12.588,
+   "Fill every placeholder: the tenant, the output root, the groups that Privileged Identity Management governs, the emergency access groups and accounts, and every input file the earlier chapters use."
+  ],
+  [
+   18.062,
+   7.537,
+   "No secret ever goes in a settings file: the run signs in through Privileged Identity Management, or as a managed identity."
+  ],
+  [
+   25.6,
+   4.15,
+   "The cloud is G C C, the Graph environment is Global."
+  ],
+  [
+   29.75,
+   9.062,
+   "Every step in this runbook has two forms: a fixture form with an environment file, which is what these slides show, and the live form, which leaves it out."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.025,
+   "Who signs what?"
+  ],
+  [
+   1.075,
+   7.175,
+   "The platform owner and the operator run the pre-flight, the scheduled run and each ring change, in the change window."
+  ],
+  [
+   8.25,
+   7.35,
+   "The detection engineer and the approver read the detection plan, and record its hash in the change record before anything is applied."
+  ],
+  [
+   15.6,
+   5.188,
+   "And the security officer signs the go or no-go, from the test stage's own evidence."
+  ],
+  [
+   20.788,
+   4.2,
+   "Remember: nothing in this chapter has been run against a lyve tenant."
+  ],
+  [
+   24.988,
+   3.225,
+   "Every live result is written as an expectation."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   0.863,
+   "Step 1."
+  ],
+  [
+   0.912,
+   4.1,
+   "Sign in to Graph in the Global environment, then run the pre-flight."
+  ],
+  [
+   5.013,
+   1.875,
+   "Six checks for the test stage."
+  ],
+  [
+   6.888,
+   7.125,
+   "The settings: the environment is the stage, every input is named and exists, and the deploy path is set."
+  ],
+  [
+   14.012,
+   2.1,
+   "The Graph module is installed."
+  ],
+  [
+   16.113,
+   4.213,
+   "The session is in the Global environment and the tenant the settings name."
+  ],
+  [
+   20.325,
+   3.812,
+   "The granted scopes cover every read, and the detection write."
+  ],
+  [
+   24.137,
+   2.1,
+   "A first read of incidents answers."
+  ],
+  [
+   26.238,
+   2.2,
+   "And the output root is writable."
+  ],
+  [
+   28.438,
+   2.0,
+   "Any failure stops the stage."
+  ],
+  [
+   30.438,
+   3.85,
+   "Then record the pre-flight as evidence, with the change record."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.45,
+   "Step 2 is the first scheduled run."
+  ],
+  [
+   2.5,
+   10.475,
+   "It runs every check and the metrics into a folder for the month, records each one in the stage's evidence folder with the change record, and writes a scheduled-run record of its own."
+  ],
+  [
+   12.975,
+   6.062,
+   "In fixture mode, most checks fail, because the fixtures carry each chapter's deliberate faults."
+  ],
+  [
+   19.038,
+   7.888,
+   "In a test tenant, each failure is a list of findings in its run folder: tickets, plan corrections, role changes."
+  ],
+  [
+   26.925,
+   2.312,
+   "Close them before the go or no-go."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.763,
+   "Step 3 publishes the detections, dry run first."
+  ],
+  [
+   3.812,
+   8.762,
+   "Without apply, the script writes what it would send: a post that creates the dump-tool rule, and a patch that updates the encoded PowerShell rule's status."
+  ],
+  [
+   12.575,
+   1.675,
+   "Then read the plan's hash."
+  ],
+  [
+   14.25,
+   5.338,
+   "The detection engineer and the approver read the plan and record that hash in the change record."
+  ],
+  [
+   19.587,
+   3.35,
+   "Only then run it again with apply and the approved hash."
+  ],
+  [
+   22.938,
+   2.95,
+   "A plan that changed after approval is refused."
+  ],
+  [
+   25.887,
+   1.988,
+   "Record the publish as evidence."
+  ],
+  [
+   27.875,
+   6.162,
+   "Liv, the script pauses after every ten creates, which is Learn's quota per application per minute."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.0,
+   "Step 4 is the smoke test."
+  ],
+  [
+   2.05,
+   9.45,
+   "Run one synthetic event from the guide's table on a ring 0 device, under the change record: the replay behind a newly published rule's known-bad window."
+  ],
+  [
+   11.5,
+   3.925,
+   "Within the rule's schedule, an alert from a custom detection appears."
+  ],
+  [
+   15.425,
+   5.588,
+   "Re-run the detection check, and the plan should hold no create or update for the rules you published."
+  ],
+  [
+   21.012,
+   2.688,
+   "Step 5 moves one ring, by hand."
+  ],
+  [
+   23.7,
+   9.512,
+   "The change board takes ring 1's next value from Chapter 4's run, the operator puts it in the ring 1 policy in Intune, and the plan file is updated."
+  ],
+  [
+   33.212,
+   6.088,
+   "After the devices check in, run the A S R check again, and the device checks show the new modes."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.0,
+   "Step 6: plan the rollback before you need it."
+  ],
+  [
+   3.05,
+   7.237,
+   "The rollback plan disables every detection rule the stage created or enabled, which is the guide's rollback for detections."
+  ],
+  [
+   10.287,
+   8.475,
+   "And it keeps each ring's attack surface reduction value from the run before the change, so putting it back steps every moved rule back one stage."
+  ],
+  [
+   18.762,
+   5.575,
+   "Applying it works like publishing: a dry run, then apply with the plan's approved hash."
+  ],
+  [
+   24.337,
+   3.288,
+   "The A S R values go back into Intune by hand."
+  ],
+  [
+   27.625,
+   4.713,
+   "And remember Microsoft's advice: an exclusion is better than a step back."
+  ],
+  [
+   32.337,
+   3.725,
+   "A rollback is for a broken change, not one noisy rule."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.912,
+   "The go or no-go comes from the evidence, with one command and the test stage."
+  ],
+  [
+   4.963,
+   7.062,
+   "In fixture mode, after steps 1 to 3: every file matches, thirteen records, chain unbroken."
+  ],
+  [
+   12.025,
+   3.225,
+   "Pre-flight, publish and the scheduled run pass."
+  ],
+  [
+   15.25,
+   6.575,
+   "But access, coverage, prevention, A S R and detections were recorded with their own checks failing."
+  ],
+  [
+   21.825,
+   2.05,
+   "So it's no-go, as it should be."
+  ],
+  [
+   23.875,
+   11.95,
+   "Go needs every row to pass: the test stage's findings closed and the checks run again, the smoke test's alert, the rollback plan filed, and the security officer's signature on the change record."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.825,
+   "Stage 2 is production."
+  ],
+  [
+   1.875,
+   5.3,
+   "Its pre-flight adds a seventh check: the test stage's go or no-go must pass."
+  ],
+  [
+   7.175,
+   3.925,
+   "In fixture mode, it refuses, naming the steps that failed."
+  ],
+  [
+   11.1,
+   9.7,
+   "Once it passes, repeat steps 2 to 6 with the production settings, one ring at a time, in the change board's window, with the backout triggers the guide sets."
+  ],
+  [
+   20.8,
+   7.112,
+   "The production go or no-go also needs exposure, incidents, signals, automation and the metrics."
+  ],
+  [
+   27.913,
+   8.387,
+   "Finally, register the scheduled run inside the boundary, every four weeks, through Privileged Identity Management or a managed identity."
+  ],
+  [
+   36.3,
+   4.312,
+   "The month's metrics, records and hashes go to the security officer."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.812,
+   "Here's what the runbook's steps support, against nist's catalog."
+  ],
+  [
+   3.862,
+   9.113,
+   "The pre-flight supports least privilege, because the session holds only the needed scopes, and change control, because the change is checked before it runs."
+  ],
+  [
+   12.975,
+   2.9,
+   "The scheduled run supports continuous monitoring."
+  ],
+  [
+   15.875,
+   3.487,
+   "Publishing supports change control and system monitoring."
+  ],
+  [
+   19.363,
+   3.6,
+   "The rollback supports change control and incident handling."
+  ],
+  [
+   22.962,
+   5.138,
+   "And the go or no-go supports continuous monitoring and protecting audit information."
+  ],
+  [
+   28.1,
+   3.3,
+   "The indicators are fed-ramp's, from the guide's rows."
+  ],
+  [
+   31.4,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.725,
+   "Last, the dangers and the checklist."
+  ],
+  [
+   2.775,
+   4.9,
+   "Production before the test stage passes: the seventh pre-flight check refuses it."
+  ],
+  [
+   7.675,
+   3.925,
+   "A plan edited after approval: the approved hash refuses it."
+  ],
+  [
+   11.6,
+   4.463,
+   "A session in the wrong tenant: the session check and the plan's tenant check."
+  ],
+  [
+   16.062,
+   6.388,
+   "The detection A P I unavailable in G C C: the portal path, from the same files."
+  ],
+  [
+   22.45,
+   4.287,
+   "And a rollback written during the outage: step 6 plans it before go."
+  ],
+  [
+   26.738,
+   15.75,
+   "The checklist: both settings files filed, the pre-flight recorded, the plan's hash approved, the smoke test's alert, the rollback planned, every go or no-go row passing, the production pre-flight passing, and the first monthly package at the security officer."
+  ],
+  [
+   42.487,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

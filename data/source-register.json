@@ -11553,12 +11553,17 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "Defender for Cloud Apps for US Government"
+    "Defender for Cloud Apps for US Government",
+    "Cloud Apps for US Government"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: Cloud Apps for US Government (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -11587,12 +11592,17 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "Onboard Windows devices by using Intune"
+    "Onboard Windows devices by using Intune",
+    "Onboard Windows devices with Intune"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: Onboard Windows devices with Intune (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -11604,12 +11614,18 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "Troubleshoot Defender for Endpoint onboarding"
+    "Troubleshoot Defender for Endpoint onboarding",
+    "Troubleshoot onboarding",
+    "troubleshoot onboarding"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: Troubleshoot onboarding, troubleshoot onboarding (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -11689,12 +11705,17 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "Configure controlled folder access"
+    "Configure controlled folder access",
+    "Configure CFA"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: Configure CFA (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -11774,12 +11795,18 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "Create custom roles with Defender unified RBAC"
+    "Create custom roles with Defender unified RBAC",
+    "Create custom roles with unified RBAC",
+    "unified RBAC custom roles"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: Create custom roles with unified RBAC, unified RBAC custom roles (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -11791,12 +11818,17 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "Activate Defender unified RBAC"
+    "Activate Defender unified RBAC",
+    "Activate unified RBAC"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: Activate unified RBAC (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -11825,12 +11857,17 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "security: runHuntingQuery"
+    "security: runHuntingQuery",
+    "runHuntingQuery"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: runHuntingQuery (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -11859,12 +11896,17 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "Use the Microsoft Graph security API"
+    "Use the Microsoft Graph security API",
+    "Graph security API, Custom detections"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: Graph security API, Custom detections (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -11910,12 +11952,17 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "Configure automatic attack disruption"
+    "Configure automatic attack disruption",
+    "configure attack disruption"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: configure attack disruption (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -11927,12 +11974,17 @@
    "status": "active",
    "added": "2026-11-12",
    "labels": [
-    "Exclude assets from automated responses"
+    "Exclude assets from automated responses",
+    "attack disruption exclusions"
    ],
    "history": [
     {
      "date": "2026-11-12",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: attack disruption exclusions (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -13255,12 +13307,17 @@
    "status": "active",
    "added": "2026-11-13",
    "labels": [
-    "Tamper protection overview"
+    "Tamper protection overview",
+    "tamper protection"
    ],
    "history": [
     {
      "date": "2026-11-13",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: tamper protection (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -13306,12 +13363,17 @@
    "status": "active",
    "added": "2026-11-13",
    "labels": [
-    "Understand the advanced hunting schema"
+    "Understand the advanced hunting schema",
+    "advanced hunting schema"
    ],
    "history": [
     {
      "date": "2026-11-13",
      "change": "Added: cited on the narrated deck slides"
+    },
+    {
+     "date": "2026-11-17",
+     "change": "Labels added: advanced hunting schema (Defender XDR deck sources lines)"
     }
    ]
   },
@@ -13790,6 +13852,75 @@
     {
      "date": "2026-11-17",
      "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-security-list-detectionrules",
+   "title": "List detectionRule objects",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/security-rulesroot-list-detectionrules?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "List detectionRule objects",
+    "List detectionRule"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited in Building Defender XDR and on its narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "graph-security-update-detectionrule",
+   "title": "Update detectionRule",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/security-detectionrule-update?view=graph-rest-1.0",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Update detectionRule"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited in Building Defender XDR and on its narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "defender-urbac-permissions",
+   "title": "Permissions in Microsoft Defender unified role-based access control (RBAC)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-xdr/custom-permissions-details",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Permissions in Microsoft Defender unified RBAC"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited in Building Defender XDR and on its narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "mde-onboard-configuration-manager",
+   "title": "Onboard Windows devices to Defender for Endpoint with Configuration Manager",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/defender-endpoint/configure-endpoints-sccm",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Onboard Windows devices with Configuration Manager"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited in Building Defender XDR and on its narrated deck slides"
     }
    ]
   }

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:04.704
+A server that reports
+compliant but enforces nothing;
+
+3
+00:00:04.704 --> 00:00:07.163
+the device check reads the server itself.
+
+4
+00:00:07.163 --> 00:00:09.912
+A rule moved on a
+calendar, not on its hits,
+
+5
+00:00:09.912 --> 00:00:14.662
+which breaks a line-of-business app;
+every hit is dispositioned first.
+
+6
+00:00:14.662 --> 00:00:19.012
+A no-warn rule in warn, which
+acts as block on older Windows.
+
+7
+00:00:19.012 --> 00:00:23.675
+A rule set in both Intune and Group
+Policy: Group Policy wins by default,
+
+8
+00:00:23.675 --> 00:00:26.650
+and the device check
+shows the value that won.
+
+9
+00:00:26.650 --> 00:00:30.825
+A folder exclusion that's too
+wide, so file paths are preferred.
+
+10
+00:00:30.825 --> 00:00:34.404
+And warn treated as a
+bypass: brief the help desk,
+
+11
+00:00:34.404 --> 00:00:37.580
+and turn repeated needs into exclusions.

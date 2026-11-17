@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:05.006
+Counting against Defender's
+own list hides every device
+
+3
+00:00:05.006 --> 00:00:08.487
+that never onboarded; the
+inventory is the denominator.
+
+4
+00:00:08.487 --> 00:00:13.788
+An exception that never expires makes a
+gap permanent; an expired one is a ticket.
+
+5
+00:00:13.788 --> 00:00:18.627
+A state string the kit doesn't know could
+make a healthy device look unhealthy,
+
+6
+00:00:18.627 --> 00:00:22.937
+or the reverse; only listed values
+count, and unknown ones are flagged.
+
+7
+00:00:22.937 --> 00:00:26.651
+A renamed column would make
+every device read as empty;
+
+8
+00:00:26.651 --> 00:00:28.713
+a missing column fails the run.
+
+9
+00:00:28.713 --> 00:00:31.353
+And servers aren't proven
+by the client report;
+
+10
+00:00:31.353 --> 00:00:35.230
+the automation kit's Arc task finds
+servers without the extension.

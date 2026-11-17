@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:04.554
+A ring moved to block in
+Intune but not in the plan:
+
+3
+00:00:04.554 --> 00:00:09.288
+every device reports drift, so change
+the plan with the same change record.
+
+4
+00:00:09.288 --> 00:00:11.703
+Defender Antivirus in passive mode:
+
+5
+00:00:11.703 --> 00:00:16.212
+network protection doesn't run; the
+antivirus mode check catches it.
+
+6
+00:00:16.212 --> 00:00:19.004
+Datagram processing on
+a domain controller,
+
+7
+00:00:19.004 --> 00:00:22.550
+the performance risk Learn
+documents for high-UDP roles.
+
+8
+00:00:22.550 --> 00:00:26.763
+Tamper protection turned off
+locally, so settings drift silently.
+
+9
+00:00:26.763 --> 00:00:32.280
+And a device with no state file, which looks
+compliant by absence; the kit lists it.

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Lab 1, in the kit's folder.
+
+2
+00:00:02.150 --> 00:00:07.238
+Step 1 runs the month and records
+every run, with a lab change record.
+
+3
+00:00:07.238 --> 00:00:09.699
+Ten run folders, ten records.
+
+4
+00:00:09.699 --> 00:00:12.778
+Only signals and the metrics
+pass their own checks;
+
+5
+00:00:12.778 --> 00:00:16.663
+every other run found something,
+as the earlier chapters showed.
+
+6
+00:00:16.663 --> 00:00:18.663
+Step 2 reads the metrics.
+
+7
+00:00:18.663 --> 00:00:22.025
+Protected coverage, sixty-four
+point three percent.
+
+8
+00:00:22.025 --> 00:00:25.762
+Two of eleven onboarded devices
+have every rule in block.
+
+9
+00:00:25.762 --> 00:00:28.749
+One of one enabled detection
+has a passing test.
+
+10
+00:00:28.749 --> 00:00:31.462
+Four of five synthetic
+events did what they should.
+
+11
+00:00:31.462 --> 00:00:34.800
+And mean time to triage
+says not computed, and why.

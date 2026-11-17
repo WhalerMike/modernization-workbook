@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Why start here?
+
+2
+00:00:01.088 --> 00:00:04.897
+Because every later chapter
+reads through Microsoft Graph:
+
+3
+00:00:04.897 --> 00:00:09.012
+incidents, advanced hunting
+results and custom detection rules.
+
+4
+00:00:09.012 --> 00:00:12.571
+If the session behind those
+reads is in the wrong tenant,
+
+5
+00:00:12.571 --> 00:00:16.362
+it still answers, and a check
+that reads an empty list passes.
+
+6
+00:00:16.362 --> 00:00:20.812
+So by the end of this chapter you can run
+the kit's access check, read its findings,
+
+7
+00:00:20.812 --> 00:00:24.851
+and say which Graph permission and
+which role each later chapter needs.
+
+8
+00:00:24.851 --> 00:00:29.509
+It's for the developers who maintain the
+kit, the platform owner who owns this gate,
+
+9
+00:00:29.509 --> 00:00:33.190
+and the security officer who
+reviews who holds Defender roles.

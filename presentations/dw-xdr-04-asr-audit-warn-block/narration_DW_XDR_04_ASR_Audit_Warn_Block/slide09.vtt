@@ -1,0 +1,42 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.075
+Step 3 reads why the ring 2 rule is held.
+
+2
+00:00:03.075 --> 00:00:05.750
+Seventeen audit events, one open hit.
+
+3
+00:00:05.750 --> 00:00:10.080
+Two paths fired the rule: the
+line-of-business helper, which has a per-rule
+
+4
+00:00:10.080 --> 00:00:11.694
+exclusion in the register,
+
+5
+00:00:11.694 --> 00:00:15.363
+and a macro runner in a public
+tools folder, which has nothing.
+
+6
+00:00:15.363 --> 00:00:19.775
+Someone decides an exclusion or a
+fix before the rule moves to warn.
+
+7
+00:00:19.775 --> 00:00:22.887
+Step 4 prints the value that moves ring 1.
+
+8
+00:00:22.887 --> 00:00:29.187
+Every rule at one, block, except the Office
+child-process rule, still at six, warn.
+
+9
+00:00:29.187 --> 00:00:33.580
+That's the exact string the change
+board pastes into the ring 1 policy.

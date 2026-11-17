@@ -1,0 +1,406 @@
+{
+ "1": [
+  [
+   0.05,
+   6.162,
+   "Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   6.213,
+   4.513,
+   "This is Chapter 7: identity signals and automation boundaries."
+  ],
+  [
+   10.725,
+   5.55,
+   "The same account seen by the endpoint, the domain controller and a cloud app is one story."
+  ],
+  [
+   16.275,
+   6.638,
+   "What Defender may do about it on its own is a decision the authorizing official made, and the settings have to match it."
+  ],
+  [
+   22.913,
+   7.75,
+   "We'll start from the guide's cross-source query and Learn's automation levels and exclusions, read both checks, and walk two labs."
+  ],
+  [
+   30.663,
+   6.088,
+   "The chapter is a draft awaiting review; the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.337,
+   "Why these two together?"
+  ],
+  [
+   1.387,
+   2.875,
+   "Because they keep detection and response joined up."
+  ],
+  [
+   4.263,
+   4.987,
+   "Detection should see one story across the endpoint, identity and cloud apps."
+  ],
+  [
+   9.25,
+   4.312,
+   "And response should stay inside the boundary the authorizing official set."
+  ],
+  [
+   13.562,
+   13.688,
+   "By the end of this chapter you can show that identity and cloud-app sources are feeding incidents, that Defender's automation matches the response ladder, and that every exclusion is approved, with every emergency access account protected."
+  ],
+  [
+   27.25,
+   5.888,
+   "It's for the developers, the security operations lead who owns both gates, and the platform owner."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.312,
+   "Here's what's already there."
+  ],
+  [
+   1.363,
+   8.55,
+   "For signals, the guide's query joins alert evidence to alert info, and keeps the users with alerts from more than one service in seven days."
+  ],
+  [
+   9.912,
+   8.438,
+   "In G C C, Learn lists App Governance's alerts as roadmap items, and Cloud Apps behaviors aren't available in the behavior table."
+  ],
+  [
+   18.35,
+   8.738,
+   "For automation, each device group has one of five levels, from full remediation to no automated response; Microsoft recommends full."
+  ],
+  [
+   27.087,
+   6.112,
+   "User exclusions are for service and emergency admin accounts, and exclusions reduce protection."
+  ],
+  [
+   33.2,
+   4.662,
+   "Contain User needs the sensor at 10.8470 or later."
+  ],
+  [
+   37.862,
+   8.713,
+   "Attack disruption's G C C availability isn't specified, and the portal holds these settings; Learn names no Graph A P I for them."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.0,
+   "What's left to you?"
+  ],
+  [
+   1.05,
+   10.55,
+   "The query returns users in no order, and can't tell you a source has gone quiet, so the kit sorts a priority list, and fails when no row names a source beyond the endpoint."
+  ],
+  [
+   11.6,
+   10.275,
+   "The portal shows five levels but doesn't know the ladder, so the kit's ladder says workstations get full, the pilot gets semi for all folders, and servers get a semi level."
+  ],
+  [
+   21.875,
+   8.35,
+   "Exclusions sit in the portal unreviewed, so each needs an approver and a review date, and every emergency account must be there."
+  ],
+  [
+   30.225,
+   5.9,
+   "And Contain User silently doesn't run on an old sensor, so each device's version is checked."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   0.963,
+   "Two checks."
+  ],
+  [
+   1.012,
+   4.812,
+   "The signals check runs the guide's cross-source query and writes a priority list."
+  ],
+  [
+   5.825,
+   8.787,
+   "An emergency access account goes first, with one instruction: page the incident response lead, and a human decides any containment."
+  ],
+  [
+   14.613,
+   2.625,
+   "Three or more sources is a priority."
+  ],
+  [
+   17.238,
+   8.85,
+   "The automation check reads three files and calls nothing: the device groups export, the attack disruption exclusions, and the device states."
+  ],
+  [
+   26.087,
+   4.425,
+   "A workstation group below full passes only with a recorded exception."
+  ],
+  [
+   30.512,
+   4.625,
+   "The exports come from two portal pages, copied into the template columns."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   7.013,
+   "The authorizing official decides attack disruption as a class on the response ladder, and approves each exclusion."
+  ],
+  [
+   8.113,
+   6.7,
+   "The security operations lead owns both gates: the weekly hunt, and a quarterly review of the exclusions."
+  ],
+  [
+   14.812,
+   4.588,
+   "The platform owner sets the device group levels with the security operations lead."
+  ],
+  [
+   19.4,
+   7.612,
+   "One note: the ladder's mapping is the program's design, and the authorizing official's attack disruption decision comes first."
+  ],
+  [
+   27.012,
+   3.725,
+   "The kit checks the settings against it; it doesn't make the decision."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.1,
+   "Lab 1, in the kit's folder."
+  ],
+  [
+   2.15,
+   2.375,
+   "Step 1 runs the signals check."
+  ],
+  [
+   4.525,
+   6.275,
+   "The first row is an emergency access account, with identity and cloud-app alerts in the same week."
+  ],
+  [
+   10.8,
+   4.213,
+   "Nobody's playbook touches it; the incident response lead decides."
+  ],
+  [
+   15.012,
+   4.7,
+   "Then a user seen by three sources, a priority, and one seen by two."
+  ],
+  [
+   19.712,
+   5.6,
+   "The last line says identity or cloud-app sources are feeding alerts, so the check passes."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.625,
+   "Step 2 runs the automation check, and finds four things."
+  ],
+  [
+   3.675,
+   5.5,
+   "The ring 3 workstation group sits at a semi level with no exception: off the ladder."
+  ],
+  [
+   9.175,
+   4.237,
+   "The scanner subnet's exclusion passed its review date in October."
+  ],
+  [
+   13.412,
+   6.75,
+   "The second emergency access account isn't in the identity exclusions, so attack disruption could contain it."
+  ],
+  [
+   20.163,
+   6.35,
+   "And one device runs a sensor below 10.8470, so Contain User won't act there."
+  ],
+  [
+   26.512,
+   9.25,
+   "Step 3 reads the ladder the groups are checked against: full for workstations, semi for all folders for the pilot, and any semi level for servers."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.675,
+   "Lab 2 uses a test tenant, never production, with Defender for Identity on at least one test domain controller."
+  ],
+  [
+   7.725,
+   2.3,
+   "Sign in and run the signals check."
+  ],
+  [
+   10.025,
+   14.213,
+   "In a quiet test tenant the query may return no rows, and the check fails: that says no identity or cloud-app alert met an endpoint alert this week, not that the sensors are broken; check sensor health in the Identities settings."
+  ],
+  [
+   24.238,
+   9.025,
+   "Then copy the two portal pages into the template columns: the device groups, and the automated response exclusions with their approvers and review dates."
+  ],
+  [
+   33.263,
+   1.6,
+   "Run the automation check."
+  ],
+  [
+   34.862,
+   2.337,
+   "Nothing changed, so you just sign out."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.362,
+   "Here's what these gates prove, against nist's catalog."
+  ],
+  [
+   3.413,
+   7.65,
+   "Identity and cloud-app alerts correlating with the endpoint's supports system monitoring and correlating audit repositories."
+  ],
+  [
+   11.062,
+   4.5,
+   "Emergency access accounts flagged for a person supports account monitoring."
+  ],
+  [
+   15.562,
+   6.362,
+   "Each device group's level matching the ladder supports automated incident handling and automated response."
+  ],
+  [
+   21.925,
+   8.238,
+   "And exclusions approved and reviewed, with every emergency account excluded, supports automated incident handling done safely."
+  ],
+  [
+   30.163,
+   3.188,
+   "The indicators are fed-ramp's, as the guide maps them."
+  ],
+  [
+   33.35,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   7.912,
+   "Attack disruption containing an emergency access account locks you out during the incident; every emergency account must be excluded."
+  ],
+  [
+   9.363,
+   7.85,
+   "A server group at full means a server remediated or isolated without a person; the ladder allows servers only semi levels."
+  ],
+  [
+   17.212,
+   6.237,
+   "An exclusion nobody reviews quietly withdraws protection; a review date ahead is required."
+  ],
+  [
+   23.45,
+   2.862,
+   "An old sensor means Contain User does nothing."
+  ],
+  [
+   26.312,
+   7.625,
+   "And when the identity sensors stop, the query goes quiet and looks calm, so no source beyond the endpoint is a failure."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.9,
+   "The cross-source query names at least one identity or cloud-app source each week."
+  ],
+  [
+   6.3,
+   4.588,
+   "Every emergency access account in the settings is an identity exclusion."
+  ],
+  [
+   10.887,
+   3.8,
+   "Every device group is at the ladder's level, or has an exception."
+  ],
+  [
+   14.688,
+   3.587,
+   "Every exclusion has an approver and a review date ahead."
+  ],
+  [
+   18.275,
+   4.15,
+   "And every device runs a sensor at or above the Contain User minimum."
+  ],
+  [
+   22.425,
+   8.075,
+   "Next, Chapter 8 runs every check in one command, computes the guide's metrics, and records it all for the security officer."
+  ],
+  [
+   30.5,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

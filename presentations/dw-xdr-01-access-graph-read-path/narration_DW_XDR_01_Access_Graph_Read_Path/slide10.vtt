@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.587
+Lab 2 uses a test
+tenant, never production,
+
+2
+00:00:02.587 --> 00:00:06.915
+licensed for Defender for Endpoint
+Plan 2, with the four roles created,
+
+3
+00:00:06.915 --> 00:00:12.138
+and an account that holds Security Reader
+through Privileged Identity Management.
+
+4
+00:00:12.138 --> 00:00:15.874
+Sign in to Graph in the Global
+environment with the read scopes.
+
+5
+00:00:15.874 --> 00:00:18.663
+Run the access check
+without the fixture path.
+
+6
+00:00:18.663 --> 00:00:23.488
+The read row should pass with up to five
+incidents, or none in a new tenant.
+
+7
+00:00:23.488 --> 00:00:26.162
+An error that names a
+role means the account
+
+8
+00:00:26.162 --> 00:00:28.538
+lacks one of the four roles Learn lists.
+
+9
+00:00:28.538 --> 00:00:32.013
+Every failing role row is a
+change under a change record.
+
+10
+00:00:32.013 --> 00:00:35.710
+The check changed nothing, so
+backing out is just signing out.

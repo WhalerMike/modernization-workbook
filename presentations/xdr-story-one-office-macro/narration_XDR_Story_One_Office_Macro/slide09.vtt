@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.975
+The answer to check two: it's a
+ticket, and an inventory finding.
+
+2
+00:00:03.975 --> 00:00:07.037
+Scene three looks at the
+prevention around our macro.
+
+3
+00:00:07.037 --> 00:00:11.081
+A macro that starts PowerShell often
+reaches out to the network next,
+
+4
+00:00:11.081 --> 00:00:14.487
+and network protection is the
+layer that blocks that call.
+
+5
+00:00:14.487 --> 00:00:16.591
+Ring 0, where our workstation is,
+
+6
+00:00:16.591 --> 00:00:21.201
+enforces network protection and
+controlled folder access in block.
+
+7
+00:00:21.201 --> 00:00:22.975
+Ring 2 is still auditing.
+
+8
+00:00:22.975 --> 00:00:27.400
+But one ring 2 workstation reads
+zero: network protection off.
+
+9
+00:00:27.400 --> 00:00:29.975
+The same macro there
+would meet one less layer.
+
+10
+00:00:29.975 --> 00:00:33.436
+The kit checks every device's
+state against its ring's stage,
+
+11
+00:00:33.436 --> 00:00:37.730
+which supports malicious code
+protection and configuration settings.

@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Lab 1, in the kit's folder.
+
+2
+00:00:02.150 --> 00:00:04.487
+Step 1 runs the coverage check.
+
+3
+00:00:04.487 --> 00:00:09.599
+Nine of fourteen in-scope devices are
+protected: sixty-four point three percent.
+
+4
+00:00:09.599 --> 00:00:11.050
+Ring 0 is whole.
+
+5
+00:00:11.050 --> 00:00:15.481
+Five tickets: a sensor with impaired
+communications, an inactive sensor,
+
+6
+00:00:15.481 --> 00:00:18.804
+a device Defender can see
+but that was never onboarded,
+
+7
+00:00:18.804 --> 00:00:22.127
+a server whose exception
+expired at the end of October,
+
+8
+00:00:22.127 --> 00:00:26.263
+and a device Defender reports that
+the inventory doesn't list at all.
+
+9
+00:00:26.263 --> 00:00:31.820
+The kiosk in the isolated lab isn't a
+ticket: its exception runs into next year.

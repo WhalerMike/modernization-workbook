@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.375
+Step 6 is the one to remember.
+
+2
+00:00:02.375 --> 00:00:06.125
+Append one line to a recorded
+tickets file, and check again.
+
+3
+00:00:06.125 --> 00:00:07.288
+Both checks fail.
+
+4
+00:00:07.288 --> 00:00:09.037
+The sums say the file changed,
+
+5
+00:00:09.037 --> 00:00:12.975
+and the chain says it no longer
+matches its record, naming the file.
+
+6
+00:00:12.975 --> 00:00:16.200
+That's what protects the evidence
+from an edit after the fact.
+
+7
+00:00:16.200 --> 00:00:20.663
+Step 7 runs the evidence
+tests: all pass, none fail.
+
+8
+00:00:20.663 --> 00:00:23.072
+Before step 6, you had a folder whose hash
+
+9
+00:00:23.072 --> 00:00:25.700
+file you could hand to
+the security officer.
+
+10
+00:00:25.700 --> 00:00:27.980
+Delete the output folder when you're done.

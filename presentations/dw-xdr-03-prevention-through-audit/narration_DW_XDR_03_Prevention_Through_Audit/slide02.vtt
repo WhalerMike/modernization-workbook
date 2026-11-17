@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.475
+Why check on the device?
+
+2
+00:00:01.475 --> 00:00:05.975
+Because a value is only right or wrong
+against the stage its ring is at.
+
+3
+00:00:05.975 --> 00:00:10.999
+Network protection reading two, audit, is
+exactly right on a ring still auditing,
+
+4
+00:00:10.999 --> 00:00:13.663
+and drift on a ring that
+should be blocking.
+
+5
+00:00:13.663 --> 00:00:16.550
+By the end of this chapter
+you can say, ring by ring,
+
+6
+00:00:16.550 --> 00:00:20.304
+whether devices enforce the
+prevention settings at the stage
+
+7
+00:00:20.304 --> 00:00:23.625
+the change record set, and list
+every device that doesn't.
+
+8
+00:00:23.625 --> 00:00:27.334
+It's for the developers, the
+platform owner who owns this gate,
+
+9
+00:00:27.334 --> 00:00:31.637
+and the security operations center,
+which reads the events every week.
+
+10
+00:00:31.637 --> 00:00:35.435
+The setting values themselves live
+in the Devices book's policies;
+
+11
+00:00:35.435 --> 00:00:36.980
+this chapter checks them.

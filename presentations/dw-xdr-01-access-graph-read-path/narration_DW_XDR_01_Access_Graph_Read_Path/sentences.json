@@ -1,0 +1,463 @@
+{
+ "1": [
+  [
+   0.05,
+   5.7,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Defender XDR."
+  ],
+  [
+   5.75,
+   3.875,
+   "This is Chapter 1: access, and the Graph read path."
+  ],
+  [
+   9.625,
+   3.15,
+   "Every check in this workbook reads through one door."
+  ],
+  [
+   12.775,
+   8.3,
+   "Before anything else, we prove the door is the right one, in the right cloud, and that the people behind it hold only what the design gave them."
+  ],
+  [
+   21.075,
+   9.325,
+   "We'll start from Microsoft Learn's commands, read how the kit declares its calls and checks its roles, and walk two labs, the evidence and the dangers."
+  ],
+  [
+   30.4,
+   6.5,
+   "The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.038,
+   "Why start here?"
+  ],
+  [
+   1.087,
+   7.925,
+   "Because every later chapter reads through Microsoft Graph: incidents, advanced hunting results and custom detection rules."
+  ],
+  [
+   9.012,
+   7.35,
+   "If the session behind those reads is in the wrong tenant, it still answers, and a check that reads an empty list passes."
+  ],
+  [
+   16.363,
+   8.488,
+   "So by the end of this chapter you can run the kit's access check, read its findings, and say which Graph permission and which role each later chapter needs."
+  ],
+  [
+   24.85,
+   8.275,
+   "It's for the developers who maintain the kit, the platform owner who owns this gate, and the security officer who reviews who holds Defender roles."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.3,
+   "Start from what the guide and Microsoft Learn already give you."
+  ],
+  [
+   3.35,
+   8.525,
+   "Create the custom roles in Defender's unified role-based access control, in four permission groups, assigned to groups and data sources."
+  ],
+  [
+   11.875,
+   4.025,
+   "Activate it per workload, which needs at least Security Administrator."
+  ],
+  [
+   15.9,
+   8.688,
+   "Connect the read path with Connect M G Graph, the Global environment, and two scopes: security incident read, and threat hunting read."
+  ],
+  [
+   24.587,
+   5.15,
+   "Then validate with Learn's own call: list up to five incidents with no permission error."
+  ],
+  [
+   29.738,
+   7.263,
+   "Learn's national cloud page says G C C uses the worldwide Graph endpoint, so the environment is Global."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.337,
+   "What does that leave to you?"
+  ],
+  [
+   1.387,
+   9.175,
+   "A connect line with an environment, but a session left over from another tenant answers too, so the kit refuses a lyve run in the wrong environment or tenant."
+  ],
+  [
+   10.562,
+   9.025,
+   "Permissions page by page, but nobody sees the whole job's needs, so the kit declares every call with its permission, roles and Learn page."
+  ],
+  [
+   19.587,
+   6.4,
+   "A role design in prose, but a portal role list drifts, so the kit compares the export with the design."
+  ],
+  [
+   25.988,
+   5.463,
+   "And a pass on no permission error, so the kit makes the read one result row and keeps going."
+  ],
+  [
+   31.45,
+   3.663,
+   "The verdict: keep Learn's calls; build the checks around them."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.25,
+   "Here's the call list."
+  ],
+  [
+   1.3,
+   9.375,
+   "Three reads: list incidents, run a hunting query, and list custom detection rules, each with the least-privileged read permission Learn names."
+  ],
+  [
+   10.675,
+   4.963,
+   "And two writes, create and update a detection rule, with the read-write permission."
+  ],
+  [
+   15.637,
+   3.3,
+   "Reads go through one function and one of two invokers."
+  ],
+  [
+   18.938,
+   4.263,
+   "The fixture invoker reads a file and sends nothing; that's Lab 1."
+  ],
+  [
+   23.2,
+   7.625,
+   "The live invoker calls Graph on the settings file's cloud, after the session check, and follows next links only on the same host."
+  ],
+  [
+   30.825,
+   2.388,
+   "A write never goes through the read path."
+  ],
+  [
+   33.212,
+   4.838,
+   "Only the runbook's publish and rollback scripts send one, with an approved hash."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.625,
+   "The access check writes six kinds of row."
+  ],
+  [
+   2.675,
+   4.612,
+   "Cloud: the settings name a known cloud, and the Graph host comes from it."
+  ],
+  [
+   7.287,
+   2.913,
+   "Read: the first read of incidents answers."
+  ],
+  [
+   10.2,
+   6.925,
+   "Role: each designed role exists with exactly its permissions, and a role that isn't in the design is a warning."
+  ],
+  [
+   17.125,
+   4.713,
+   "Restricted: advanced live response is held only by the Tier 0 role."
+  ],
+  [
+   21.837,
+   6.025,
+   "P I M: every group a role is assigned to is one that Privileged Identity Management governs."
+  ],
+  [
+   27.863,
+   4.438,
+   "And emergency: no emergency access group holds a Defender role."
+  ],
+  [
+   32.3,
+   3.675,
+   "The input is a role export the operator files from the portal."
+  ],
+  [
+   35.975,
+   3.413,
+   "Learn names no A P I for those roles on the pages read."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   7.35,
+   "The platform owner owns this gate: creates and assigns the roles, and changes them under a change record when a row fails."
+  ],
+  [
+   8.45,
+   7.188,
+   "The security officer reviews who holds Defender roles each quarter, alongside the Privileged Identity Management report."
+  ],
+  [
+   15.637,
+   5.65,
+   "And developers maintain the call list, the invokers and the role check, with their tests."
+  ],
+  [
+   21.288,
+   6.112,
+   "One caution: Lab 1 reads fictional fixtures, and the role export is a file someone makes."
+  ],
+  [
+   27.4,
+   6.062,
+   "Treat the result as a review aid for the security officer, not as the authority on who holds what."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.112,
+   "Lab 1 needs PowerShell 7 with Pester, in the kit's folder."
+  ],
+  [
+   4.162,
+   3.237,
+   "Step 1 runs the access check on the fixtures."
+  ],
+  [
+   7.4,
+   3.638,
+   "The read passes: five incidents, no permission error."
+  ],
+  [
+   11.037,
+   1.75,
+   "Then three rows fail."
+  ],
+  [
+   12.787,
+   8.95,
+   "The detection engineer role holds advanced live response, which only the Tier 0 role may hold, so both its role row and the restricted row fail."
+  ],
+  [
+   21.738,
+   5.987,
+   "And the responder role is also assigned to a standing group that Privileged Identity Management doesn't govern."
+  ],
+  [
+   27.725,
+   6.412,
+   "The legacy role is a warning: it isn't in the design, so someone records a decision or removes it."
+  ],
+  [
+   34.138,
+   2.075,
+   "Fourteen checks, three failed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.987,
+   "Step 2 reads what each call needs: three reads, each with a read permission, and two writes with read-write custom detection."
+  ],
+  [
+   8.037,
+   13.338,
+   "Step 3 reads the manifest: the task, the time, fixture mode, the one call the check made with its permission and Learn page, a hash for every file, and the result Chapter 8's evidence record carries."
+  ],
+  [
+   21.375,
+   2.35,
+   "Step 4 runs the chapter's tests."
+  ],
+  [
+   23.725,
+   1.762,
+   "All pass, none fail."
+  ],
+  [
+   25.488,
+   2.212,
+   "Delete the output folder when you're done."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   12.088,
+   "Lab 2 uses a test tenant, never production, licensed for Defender for Endpoint Plan 2, with the four roles created, and an account that holds Security Reader through Privileged Identity Management."
+  ],
+  [
+   12.137,
+   3.737,
+   "Sign in to Graph in the Global environment with the read scopes."
+  ],
+  [
+   15.875,
+   2.788,
+   "Run the access check without the fixture path."
+  ],
+  [
+   18.663,
+   4.825,
+   "The read row should pass with up to five incidents, or none in a new tenant."
+  ],
+  [
+   23.488,
+   5.05,
+   "An error that names a role means the account lacks one of the four roles Learn lists."
+  ],
+  [
+   28.538,
+   3.475,
+   "Every failing role row is a change under a change record."
+  ],
+  [
+   32.013,
+   3.638,
+   "The check changed nothing, so backing out is just signing out."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.812,
+   "Here's what this gate proves, against nist's control catalog."
+  ],
+  [
+   3.862,
+   7.85,
+   "Each role holding exactly its designed permissions, with advanced live response only in Tier 0, supports least privilege."
+  ],
+  [
+   11.713,
+   7.162,
+   "Every assignment going to a governed group, and no emergency access group in a Defender role, supports account management."
+  ],
+  [
+   18.875,
+   7.35,
+   "And a working read path in the tenant's own cloud, with its permissions listed, supports restricting access to audit tools."
+  ],
+  [
+   26.225,
+   4.188,
+   "The indicators are fed-ramp's, as the implementation guide maps them."
+  ],
+  [
+   30.413,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   6.162,
+   "A Graph session in the wrong tenant: every check reads another estate, or nothing, and passes."
+  ],
+  [
+   7.612,
+   1.75,
+   "The lyve run refuses it."
+  ],
+  [
+   9.363,
+   9.025,
+   "A permission added to a role in the portal: someone can isolate devices or run live response who shouldn't; the role and restricted rows catch it."
+  ],
+  [
+   18.387,
+   5.5,
+   "A role assigned to a standing group: privilege that never expires; the P I M row."
+  ],
+  [
+   23.887,
+   6.362,
+   "An emergency access account in a Defender role, which turns the break-glass account into a daily account."
+  ],
+  [
+   30.25,
+   5.775,
+   "And a write slipped into the read path: the read function refuses any call marked as a write."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   5.4,
+   "The settings file names G C C and the test tenant's I D, with no secret in it."
+  ],
+  [
+   6.8,
+   2.5,
+   "The read row passes in the test tenant."
+  ],
+  [
+   9.3,
+   6.075,
+   "Every role, restricted, P I M and emergency row passes, or has a change record."
+  ],
+  [
+   15.375,
+   2.925,
+   "The permissions file is filed with the role export."
+  ],
+  [
+   18.3,
+   4.225,
+   "And the run folder is recorded as evidence, which Chapter 8 shows."
+  ],
+  [
+   22.525,
+   5.35,
+   "Next, Chapter 2 uses the same read path to count the fleet against the inventory."
+  ],
+  [
+   27.875,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

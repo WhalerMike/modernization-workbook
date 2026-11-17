@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.825
+The answer to check five: skipped,
+not applicable, with the interim path.
+
+2
+00:00:04.825 --> 00:00:07.387
+A disposition, not a failed control.
+
+3
+00:00:07.387 --> 00:00:11.914
+Scene six is the custom detection
+that finds our macro's behavior:
+
+4
+00:00:11.914 --> 00:00:15.601
+encoded PowerShell started
+by Word, Excel or Outlook.
+
+5
+00:00:15.601 --> 00:00:17.532
+It's Learn's own example rule,
+
+6
+00:00:17.532 --> 00:00:21.313
+kept as a file in a repository,
+with a test file beside it.
+
+7
+00:00:21.313 --> 00:00:24.923
+Its known-bad window holds
+a replay on our workstation;
+
+8
+00:00:24.923 --> 00:00:27.250
+its known-good window is a quiet day.
+
+9
+00:00:27.250 --> 00:00:32.237
+It's deployed disabled, and the file
+now says enabled, after a passing test.
+
+10
+00:00:32.237 --> 00:00:35.299
+So the plan updates its
+status, and nothing else.
+
+11
+00:00:35.299 --> 00:00:38.904
+A neighbor rule that would isolate
+devices on its own is held:
+
+12
+00:00:38.904 --> 00:00:40.920
+containment stays with a person.

@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.325
+The answer to check three: drift.
+
+2
+00:00:02.325 --> 00:00:04.850
+Two is audit, and ring 1 should block.
+
+3
+00:00:04.850 --> 00:00:07.573
+Scene four is the rule
+that stopped our macro:
+
+4
+00:00:07.573 --> 00:00:11.400
+block all Office applications
+from creating child processes.
+
+5
+00:00:11.400 --> 00:00:14.670
+In ring 0 it's in block, and
+the fixture's events show
+
+6
+00:00:14.670 --> 00:00:18.100
+it blocked twice on our
+workstation, for the invoice.
+
+7
+00:00:18.100 --> 00:00:21.312
+In ring 1 it's in warn,
+six of fourteen days.
+
+8
+00:00:21.312 --> 00:00:25.674
+In ring 2 it's still auditing, with
+one hit nobody has decided about.
+
+9
+00:00:25.674 --> 00:00:28.450
+There, the same macro
+would only be logged.
+
+10
+00:00:28.450 --> 00:00:31.121
+The kit tracks each rule's stage per ring,
+
+11
+00:00:31.121 --> 00:00:34.925
+says which can move, and writes
+the exact value for Intune.
+
+12
+00:00:34.925 --> 00:00:37.200
+That supports least functionality.

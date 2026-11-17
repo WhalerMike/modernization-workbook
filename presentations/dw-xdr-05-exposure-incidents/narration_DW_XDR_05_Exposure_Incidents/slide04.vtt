@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.050
+What's left to you?
+
+2
+00:00:01.050 --> 00:00:04.233
+The exposure query
+returns rows, not owners,
+
+3
+00:00:04.233 --> 00:00:09.538
+so the kit matches each device's group
+to an owner, and no owner is a finding.
+
+4
+00:00:09.538 --> 00:00:14.318
+Not available is a fact, but a Zero
+Trust Assessment test that needs Exposure
+
+5
+00:00:14.318 --> 00:00:18.491
+Management would read as a failure,
+so the kit writes a disposition:
+
+6
+00:00:18.491 --> 00:00:21.375
+skipped, not applicable,
+with the interim path.
+
+7
+00:00:21.375 --> 00:00:26.813
+An incident export is a list, so each
+incident is read against the severity table.
+
+8
+00:00:26.813 --> 00:00:30.287
+One filter misses an old
+incident that's still open,
+
+9
+00:00:30.287 --> 00:00:32.687
+so the kit reads two and merges them.
+
+10
+00:00:32.687 --> 00:00:36.617
+And Graph doesn't record when
+an incident was first assigned,
+
+11
+00:00:36.617 --> 00:00:40.990
+so the kit reports unowned past its
+window, and invents no duration.

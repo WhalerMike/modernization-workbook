@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.450
+Step 3 reads the records' index.
+
+2
+00:00:02.450 --> 00:00:06.400
+Result is the files' integrity,
+and every record passes.
+
+3
+00:00:06.400 --> 00:00:09.588
+Check result is what the
+run found, and most fail.
+
+4
+00:00:09.588 --> 00:00:15.938
+Step 4 checks the chain: every file matches
+its hash, ten records, chain unbroken.
+
+5
+00:00:15.938 --> 00:00:21.522
+Step 5 runs the production stage's go or
+no-go, and it fails, saying why for each
+
+6
+00:00:21.522 --> 00:00:27.376
+step: no pre-flight record, runs whose own
+checks failed, and no scheduled run yet.
+
+7
+00:00:27.376 --> 00:00:29.975
+Only signals and the metrics pass.
+
+8
+00:00:29.975 --> 00:00:34.370
+The command exits with an error, which
+is what a go or no-go should see.

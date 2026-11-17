@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.775
+Last, the dangers and the checklist.
+
+2
+00:00:02.775 --> 00:00:07.675
+Production before the test stage passes:
+the seventh pre-flight check refuses it.
+
+3
+00:00:07.675 --> 00:00:11.600
+A plan edited after approval:
+the approved hash refuses it.
+
+4
+00:00:11.600 --> 00:00:16.063
+A session in the wrong tenant: the
+session check and the plan's tenant check.
+
+5
+00:00:16.063 --> 00:00:22.450
+The detection API unavailable in GCC:
+the portal path, from the same files.
+
+6
+00:00:22.450 --> 00:00:26.737
+And a rollback written during the
+outage: step 6 plans it before go.
+
+7
+00:00:26.737 --> 00:00:30.847
+The checklist: both settings files
+filed, the pre-flight recorded,
+
+8
+00:00:30.847 --> 00:00:35.108
+the plan's hash approved, the smoke
+test's alert, the rollback planned,
+
+9
+00:00:35.108 --> 00:00:39.064
+every go or no-go row passing,
+the production pre-flight passing,
+
+10
+00:00:39.064 --> 00:00:42.488
+and the first monthly package
+at the security officer.
+
+11
+00:00:42.488 --> 00:00:43.660
+Thanks for watching.

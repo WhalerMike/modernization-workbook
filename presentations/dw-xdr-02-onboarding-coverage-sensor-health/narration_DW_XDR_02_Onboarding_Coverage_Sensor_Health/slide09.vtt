@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.291
+Step 2 reads the tickets
+as the operator gets them,
+
+2
+00:00:03.291 --> 00:00:07.638
+each with its note: the expired
+exception names its reason and date.
+
+3
+00:00:07.638 --> 00:00:12.276
+Step 3 reads the guide's own query
+for the same estate, as counts.
+
+4
+00:00:12.276 --> 00:00:14.520
+It can't say which device is inactive,
+
+5
+00:00:14.520 --> 00:00:17.363
+or that two in-scope
+devices aren't there at all.
+
+6
+00:00:17.363 --> 00:00:21.425
+Step 4 reads one device's state,
+as the collector writes it.
+
+7
+00:00:21.425 --> 00:00:23.925
+Look at tamper protection: false.
+
+8
+00:00:23.925 --> 00:00:25.463
+Chapter 3 finds it.
+
+9
+00:00:25.463 --> 00:00:29.160
+The last step runs the chapter's
+tests, and they all pass.

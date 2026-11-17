@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.575
+The answer to check four: a plan error.
+
+2
+00:00:02.575 --> 00:00:04.550
+That rule doesn't support warn.
+
+3
+00:00:04.550 --> 00:00:06.475
+Scene five is the incident.
+
+4
+00:00:06.475 --> 00:00:09.953
+Defender correlates the
+alerts into incident 1001:
+
+5
+00:00:09.953 --> 00:00:14.725
+encoded PowerShell launched by an
+Office application on one endpoint.
+
+6
+00:00:14.725 --> 00:00:19.489
+High severity, so the guide's table gives
+it a one-hour triage window, and the
+
+7
+00:00:19.489 --> 00:00:24.487
+gated rung: a playbook prepares containment,
+and a named approver releases it.
+
+8
+00:00:24.487 --> 00:00:26.876
+It has an owner, so it's triaged.
+
+9
+00:00:26.876 --> 00:00:30.912
+But another high incident has waited
+three and a half hours with no one.
+
+10
+00:00:30.912 --> 00:00:36.060
+Meanwhile the exposure check records
+Security Exposure Management as
+
+11
+00:00:36.060 --> 00:00:41.020
+not available in GCC: a disposition
+with an interim path, not a failure.

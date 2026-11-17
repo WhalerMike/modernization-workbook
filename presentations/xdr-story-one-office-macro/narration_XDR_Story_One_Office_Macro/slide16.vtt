@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:02.225
+Run the incident check.
+
+3
+00:00:02.225 --> 00:00:08.375
+Our incident, 1001, is high, three
+hours old, with an owner: triaged.
+
+4
+00:00:08.375 --> 00:00:12.448
+Incident 1002, also high,
+three and a half hours,
+
+5
+00:00:12.448 --> 00:00:16.200
+no owner, against a
+one-hour window: overdue.
+
+6
+00:00:16.200 --> 00:00:21.150
+Incident 1003 is medium and still
+inside its twenty-four hours.
+
+7
+00:00:21.150 --> 00:00:25.725
+And 1005 was resolved with its
+classification still unknown.
+
+8
+00:00:25.725 --> 00:00:29.368
+The findings list is what the
+security operations lead gets,
+
+9
+00:00:29.368 --> 00:00:31.262
+each with its containment rung.
+
+10
+00:00:31.262 --> 00:00:35.330
+The high one is gated: a named
+approver releases containment.

@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Lab 1, in the kit's folder.
+
+2
+00:00:02.150 --> 00:00:05.413
+Step 1 reads the plan the
+devices are checked against.
+
+3
+00:00:05.413 --> 00:00:11.199
+Rings 0 and 1 are in block; rings 2,
+3 and the servers are still auditing.
+
+4
+00:00:11.199 --> 00:00:15.113
+Step 2 runs the prevention
+check, and finds three drifts.
+
+5
+00:00:15.113 --> 00:00:18.126
+One device in ring 1 has
+tamper protection off.
+
+6
+00:00:18.126 --> 00:00:22.687
+One in ring 2 has network protection
+off, though its ring should be auditing.
+
+7
+00:00:22.687 --> 00:00:25.812
+And the file server has
+datagram processing on,
+
+8
+00:00:25.812 --> 00:00:28.776
+which Learn says to turn
+off on high-UDP roles.
+
+9
+00:00:28.776 --> 00:00:31.685
+Three inventory devices
+have no state file:
+
+10
+00:00:31.685 --> 00:00:34.900
+the two never onboarded,
+and the excepted kiosk.

@@ -1,0 +1,28 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.862
+Check one.
+
+2
+00:00:00.862 --> 00:00:03.403
+An analyst's Graph session is still signed
+
+3
+00:00:03.403 --> 00:00:06.088
+in to another tenant when
+the live run starts.
+
+4
+00:00:06.088 --> 00:00:09.756
+Does the kit read that tenant
+and pass, refuse the run,
+
+5
+00:00:09.756 --> 00:00:13.338
+sign in again on its own, or
+fall back to the fixtures?
+
+6
+00:00:13.338 --> 00:00:15.460
+The answer opens the next scene.

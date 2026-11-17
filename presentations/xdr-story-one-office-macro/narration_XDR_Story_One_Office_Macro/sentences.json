@@ -1,0 +1,1060 @@
+{
+ "1": [
+  [
+   0.05,
+   7.112,
+   "Welcome to the story deck for Building Defender XDR, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   7.162,
+   4.963,
+   "Instead of nine chapters one at a time, we'll follow one case all the way through."
+  ],
+  [
+   12.125,
+   7.162,
+   "A macro document, an invoice, is opened on a ring 0 workstation, and tries to start encoded PowerShell."
+  ],
+  [
+   19.288,
+   5.7,
+   "An attack surface reduction rule blocks it, an incident opens, and a custom detection finds it."
+  ],
+  [
+   24.988,
+   7.338,
+   "It's fictional: every value comes from the kit's test fixtures, and every output on a slide is what the kit really printed."
+  ],
+  [
+   32.325,
+   7.475,
+   "The workbook is a draft awaiting review, and the code is illustrative, tested against fixtures, not a lyve tenant."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.988,
+   "Here's the route."
+  ],
+  [
+   1.038,
+   2.475,
+   "Scene one asks who may respond to it at all."
+  ],
+  [
+   3.513,
+   3.862,
+   "Scene two, whether the device that opened it is even seen."
+  ],
+  [
+   7.375,
+   2.75,
+   "Scene three, what prevention does around it."
+  ],
+  [
+   10.125,
+   4.8,
+   "Scene four follows the attack surface reduction rule that blocked it, ring by ring."
+  ],
+  [
+   14.925,
+   2.35,
+   "Scene five is the incident it raised."
+  ],
+  [
+   17.275,
+   4.175,
+   "Scene six, the custom detection that finds it, kept as code."
+  ],
+  [
+   21.45,
+   4.6,
+   "Scene seven, who else it touched, and what Defender may do on its own."
+  ],
+  [
+   26.05,
+   2.062,
+   "Scene eight, the month's evidence."
+  ],
+  [
+   28.113,
+   3.312,
+   "And scene nine takes the detection liv, test first."
+  ],
+  [
+   31.425,
+   6.787,
+   "Each scene has a story slide, a try-it slide with real output, and, for the first eight, a one-question check."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.475,
+   "Scene one starts before the macro runs."
+  ],
+  [
+   2.525,
+   6.463,
+   "Whoever triages this incident will read it through Microsoft Graph, on the endpoint G C C uses."
+  ],
+  [
+   8.988,
+   9.575,
+   "And whoever contains it, by isolating the device or running live response, holds that power through a role in Defender's unified role-based access control."
+  ],
+  [
+   18.562,
+   5.975,
+   "The program's design has four roles, and only the Tier 0 role holds advanced live response."
+  ],
+  [
+   24.538,
+   4.237,
+   "Every role goes to a group that Privileged Identity Management governs."
+  ],
+  [
+   28.775,
+   7.787,
+   "So the kit declares every call with its permission, refuses a session in the wrong tenant, and checks the role export against the design."
+  ],
+  [
+   36.562,
+   3.112,
+   "That supports least privilege and account management."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   3.688,
+   "From the kit's folder, run the access check on the fixtures."
+  ],
+  [
+   4.463,
+   3.962,
+   "The read passes: incidents come back with no permission error."
+  ],
+  [
+   8.425,
+   1.725,
+   "Then three failures."
+  ],
+  [
+   10.15,
+   8.95,
+   "The detection engineer role holds advanced live response, which only Tier 0 may hold, so its role row fails and the restricted row fails."
+  ],
+  [
+   19.1,
+   8.488,
+   "And the responder role, the one that would contain our macro's device, is also assigned to a standing group that Privileged Identity Management doesn't govern."
+  ],
+  [
+   27.587,
+   4.713,
+   "The legacy role is a warning: someone records a decision or removes it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   0.812,
+   "Check one."
+  ],
+  [
+   0.863,
+   5.225,
+   "An analyst's Graph session is still signed in to another tenant when the lyve run starts."
+  ],
+  [
+   6.088,
+   7.25,
+   "Does the kit read that tenant and pass, refuse the run, sign in again on its own, or fall back to the fixtures?"
+  ],
+  [
+   13.338,
+   2.05,
+   "The answer opens the next scene."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.95,
+   "The answer to check one: the kit refuses the run."
+  ],
+  [
+   3.0,
+   5.188,
+   "A session in the wrong tenant would read someone else's estate, or nothing, and pass."
+  ],
+  [
+   8.188,
+   4.55,
+   "Scene two asks whether the workstation that opened the invoice is even seen."
+  ],
+  [
+   12.738,
+   6.112,
+   "Defender can only block, or raise an incident, for a device whose sensor is onboarded and active."
+  ],
+  [
+   18.85,
+   8.137,
+   "And coverage is counted against the inventory, not against Defender's own list, because a device that never onboarded would be invisible there."
+  ],
+  [
+   26.988,
+   3.337,
+   "Our workstation is in ring 0, and it's protected."
+  ],
+  [
+   30.325,
+   3.263,
+   "Elsewhere in the estate, five devices are tickets."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   1.462,
+   "Run the coverage check."
+  ],
+  [
+   2.237,
+   4.487,
+   "Ring 0, where our workstation sits, is two of two protected."
+  ],
+  [
+   6.725,
+   6.35,
+   "Across the estate, nine of fourteen in-scope devices are protected, sixty-four point three percent."
+  ],
+  [
+   13.075,
+   12.55,
+   "The tickets: a sensor with impaired communications, an inactive sensor, a device that was never onboarded, a server whose exception expired, and a device Defender reports that the inventory doesn't list."
+  ],
+  [
+   25.625,
+   4.838,
+   "Our macro was on a device the sensor sees, so the next scenes can tell its story."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.825,
+   "Check two."
+  ],
+  [
+   0.875,
+   6.088,
+   "Defender reports a device, onboarded and active, that the system component inventory doesn't list."
+  ],
+  [
+   6.963,
+   7.487,
+   "Is it protected and fine, out of scope, a ticket and an inventory finding, or excepted until someone notices?"
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.925,
+   "The answer to check two: it's a ticket, and an inventory finding."
+  ],
+  [
+   3.975,
+   3.062,
+   "Scene three looks at the prevention around our macro."
+  ],
+  [
+   7.037,
+   7.45,
+   "A macro that starts PowerShell often reaches out to the network next, and network protection is the layer that blocks that call."
+  ],
+  [
+   14.488,
+   6.713,
+   "Ring 0, where our workstation is, enforces network protection and controlled folder access in block."
+  ],
+  [
+   21.2,
+   1.775,
+   "Ring 2 is still auditing."
+  ],
+  [
+   22.975,
+   4.425,
+   "But one ring 2 workstation reads zero: network protection off."
+  ],
+  [
+   27.4,
+   2.575,
+   "The same macro there would meet one less layer."
+  ],
+  [
+   29.975,
+   7.7,
+   "The kit checks every device's state against its ring's stage, which supports malicious code protection and configuration settings."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   1.525,
+   "Run the prevention check."
+  ],
+  [
+   2.3,
+   1.1,
+   "Three drifts."
+  ],
+  [
+   3.4,
+   3.35,
+   "Tamper protection off on a ring 1 workstation."
+  ],
+  [
+   6.75,
+   5.062,
+   "Network protection off on the ring 2 workstation, where its ring should be auditing."
+  ],
+  [
+   11.812,
+   3.025,
+   "And datagram processing on at the file server."
+  ],
+  [
+   14.838,
+   8.838,
+   "Below, the week's events: network protection audited and blocked, controlled folder access audited and blocked, and one tampering attempt."
+  ],
+  [
+   23.675,
+   6.162,
+   "A device with tamper protection off and a tampering attempt in the same week is an incident, not a ticket."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.912,
+   "Check three."
+  ],
+  [
+   0.963,
+   3.388,
+   "Ring 1's plan says network protection is in block."
+  ],
+  [
+   4.35,
+   2.112,
+   "A ring 1 device reads two."
+  ],
+  [
+   6.463,
+   2.4,
+   "Is that correct, because two means on?"
+  ],
+  [
+   8.863,
+   1.012,
+   "Is it drift?"
+  ],
+  [
+   9.875,
+   2.025,
+   "Not applicable on workstations?"
+  ],
+  [
+   11.9,
+   1.25,
+   "Or a server setting?"
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.275,
+   "The answer to check three: drift."
+  ],
+  [
+   2.325,
+   2.525,
+   "Two is audit, and ring 1 should block."
+  ],
+  [
+   4.85,
+   6.55,
+   "Scene four is the rule that stopped our macro: block all Office applications from creating child processes."
+  ],
+  [
+   11.4,
+   6.7,
+   "In ring 0 it's in block, and the fixture's events show it blocked twice on our workstation, for the invoice."
+  ],
+  [
+   18.1,
+   3.212,
+   "In ring 1 it's in warn, six of fourteen days."
+  ],
+  [
+   21.312,
+   4.362,
+   "In ring 2 it's still auditing, with one hit nobody has decided about."
+  ],
+  [
+   25.675,
+   2.775,
+   "There, the same macro would only be logged."
+  ],
+  [
+   28.45,
+   6.475,
+   "The kit tracks each rule's stage per ring, says which can move, and writes the exact value for Intune."
+  ],
+  [
+   34.925,
+   2.225,
+   "That supports least functionality."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   1.75,
+   "Run the A S R check."
+  ],
+  [
+   2.525,
+   3.175,
+   "Ring 0 is done: fourteen rules in block."
+  ],
+  [
+   5.7,
+   5.75,
+   "Ring 1 has twelve ready for block; our rule is held, six of fourteen warn days."
+  ],
+  [
+   11.45,
+   7.125,
+   "Ring 2 is ready to leave audit, except our rule, with one audit hit that has no exclusion or decision."
+  ],
+  [
+   18.575,
+   2.587,
+   "Then print the value that moves ring 1."
+  ],
+  [
+   21.163,
+   6.45,
+   "Every rule goes to one, block, but our rule stays at six, warn, because its days aren't up."
+  ],
+  [
+   27.613,
+   4.338,
+   "That's the exact string the change board pastes into the ring 1 policy."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.912,
+   "Check four."
+  ],
+  [
+   0.963,
+   4.2,
+   "Ring 3's plan puts the LSASS credential-stealing rule in warn."
+  ],
+  [
+   5.162,
+   6.213,
+   "Is it ready for block after fourteen days, a plan error, fine on workstations, or not applicable?"
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.525,
+   "The answer to check four: a plan error."
+  ],
+  [
+   2.575,
+   1.975,
+   "That rule doesn't support warn."
+  ],
+  [
+   4.55,
+   1.925,
+   "Scene five is the incident."
+  ],
+  [
+   6.475,
+   8.25,
+   "Defender correlates the alerts into incident 1001: encoded PowerShell launched by an Office application on one endpoint."
+  ],
+  [
+   14.725,
+   9.762,
+   "High severity, so the guide's table gives it a one-hour triage window, and the gated rung: a playbook prepares containment, and a named approver releases it."
+  ],
+  [
+   24.488,
+   2.388,
+   "It has an owner, so it's triaged."
+  ],
+  [
+   26.875,
+   4.037,
+   "But another high incident has waited three and a half hours with no one."
+  ],
+  [
+   30.913,
+   10.037,
+   "Meanwhile the exposure check records Security Exposure Management as not available in G C C: a disposition with an interim path, not a failure."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   1.45,
+   "Run the incident check."
+  ],
+  [
+   2.225,
+   6.15,
+   "Our incident, 1001, is high, three hours old, with an owner: triaged."
+  ],
+  [
+   8.375,
+   7.825,
+   "Incident 1002, also high, three and a half hours, no owner, against a one-hour window: overdue."
+  ],
+  [
+   16.2,
+   4.95,
+   "Incident 1003 is medium and still inside its twenty-four hours."
+  ],
+  [
+   21.15,
+   4.575,
+   "And 1005 was resolved with its classification still unknown."
+  ],
+  [
+   25.725,
+   5.537,
+   "The findings list is what the security operations lead gets, each with its containment rung."
+  ],
+  [
+   31.262,
+   4.013,
+   "The high one is gated: a named approver releases containment."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   0.938,
+   "Check five."
+  ],
+  [
+   0.988,
+   6.175,
+   "A Zero Trust Assessment test needs Security Exposure Management, in a G C C tenant."
+  ],
+  [
+   7.162,
+   8.488,
+   "Is it a fail, a pass because Vulnerability Management covers it, skipped as not applicable with the interim path, or not recorded at all?"
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   4.775,
+   "The answer to check five: skipped, not applicable, with the interim path."
+  ],
+  [
+   4.825,
+   2.562,
+   "A disposition, not a failed control."
+  ],
+  [
+   7.388,
+   8.213,
+   "Scene six is the custom detection that finds our macro's behavior: encoded PowerShell started by Word, Excel or Outlook."
+  ],
+  [
+   15.6,
+   5.713,
+   "It's Learn's own example rule, kept as a file in a repository, with a test file beside it."
+  ],
+  [
+   21.312,
+   5.938,
+   "Its known-bad window holds a replay on our workstation; its known-good window is a quiet day."
+  ],
+  [
+   27.25,
+   4.987,
+   "It's deployed disabled, and the file now says enabled, after a passing test."
+  ],
+  [
+   32.237,
+   3.062,
+   "So the plan updates its status, and nothing else."
+  ],
+  [
+   35.3,
+   5.55,
+   "A neighbor rule that would isolate devices on its own is held: containment stays with a person."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   3.188,
+   "Validate, test and plan the repository."
+  ],
+  [
+   3.962,
+   6.013,
+   "Our rule finds one row in its known-bad window and none on its quiet day: it passes."
+  ],
+  [
+   9.975,
+   5.5,
+   "The plan creates the dump-tool rule, and updates our rule's status, and only its status."
+  ],
+  [
+   15.475,
+   4.312,
+   "The admin-share rule is held, because it would isolate devices on its own."
+  ],
+  [
+   19.788,
+   5.775,
+   "And a legacy rule that was made in the portal, and lives in no file, is reported as an orphan."
+  ],
+  [
+   25.562,
+   1.675,
+   "Then read the plan's hash."
+  ],
+  [
+   27.238,
+   1.725,
+   "That's what an approver signs."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   1.025,
+   "Check six."
+  ],
+  [
+   1.075,
+   3.775,
+   "A rule file sets automated actions to isolate devices."
+  ],
+  [
+   4.85,
+   6.188,
+   "Does the plan create it because it's faster, hold it, create it disabled, or delete the deployed copy?"
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   2.688,
+   "The answer to check six: the plan holds it."
+  ],
+  [
+   2.737,
+   1.85,
+   "Containment stays with a person."
+  ],
+  [
+   4.588,
+   2.013,
+   "Scene seven asks two things."
+  ],
+  [
+   6.6,
+   1.413,
+   "Who else did this touch?"
+  ],
+  [
+   8.012,
+   9.688,
+   "The guide's cross-source query finds users with alerts from more than one sensor in a week, and an emergency access account goes to the top for the incident response lead."
+  ],
+  [
+   17.7,
+   2.188,
+   "And what may Defender do on its own?"
+  ],
+  [
+   19.887,
+   6.525,
+   "Ring 0's device group is at full remediation, so Defender may clean up our workstation automatically."
+  ],
+  [
+   26.413,
+   1.6,
+   "A server group never is."
+  ],
+  [
+   28.012,
+   7.575,
+   "And every emergency access account must be excluded from attack disruption, so an incident can't lock out the people who fix it."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   1.6,
+   "Run the automation check."
+  ],
+  [
+   2.375,
+   6.638,
+   "Ring 0's workstations are at full, as the ladder says, so our workstation's cleanup can run on its own."
+  ],
+  [
+   9.012,
+   5.2,
+   "Ring 3's workstation group is at a semi level with no exception: off the ladder."
+  ],
+  [
+   14.213,
+   3.288,
+   "The scanner subnet's exclusion passed its review date."
+  ],
+  [
+   17.5,
+   5.562,
+   "The second emergency access account isn't excluded, so attack disruption could contain it."
+  ],
+  [
+   23.062,
+   3.413,
+   "And one device runs a sensor too old for Contain User."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   0.938,
+   "Check seven."
+  ],
+  [
+   0.988,
+   3.487,
+   "The servers device group is set to full remediation."
+  ],
+  [
+   4.475,
+   9.512,
+   "Does it pass because that's Microsoft's recommendation, fail because the ladder allows servers only a semi level, pass in ring 0, or go unchecked?"
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   2.525,
+   "The answer to check seven: it fails."
+  ],
+  [
+   2.575,
+   3.025,
+   "The ladder allows servers only a semi level."
+  ],
+  [
+   5.6,
+   1.55,
+   "Scene eight is the month."
+  ],
+  [
+   7.15,
+   8.825,
+   "One command runs every check, records each run with its controls, indicators and its own result, and computes the guide's metrics."
+  ],
+  [
+   15.975,
+   5.562,
+   "Our detection counts in detection validity: one of one enabled rule with a passing test."
+  ],
+  [
+   21.538,
+   8.812,
+   "Ring 0's two workstations, including ours, are the only devices with every rule in block, so enforcement depth is two of eleven."
+  ],
+  [
+   30.35,
+   4.037,
+   "And if anyone edits a recorded file afterwards, the check names it."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   0.988,
+   "Run the month."
+  ],
+  [
+   1.762,
+   8.075,
+   "Ten records, and only signals and the metrics pass their own checks; every other run found something, as the earlier scenes showed."
+  ],
+  [
+   9.838,
+   8.963,
+   "Read three metrics: protected coverage sixty-four point three percent, enforcement depth two of eleven, and detection validity one of one."
+  ],
+  [
+   18.8,
+   3.938,
+   "Then append one line to a recorded tickets file, and check again."
+  ],
+  [
+   22.738,
+   2.337,
+   "Both checks fail, and name the file."
+  ],
+  [
+   25.075,
+   2.825,
+   "That's what makes this evidence and not a folder."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   1.725,
+   "Check eight, the last one."
+  ],
+  [
+   1.775,
+   5.425,
+   "The coverage run is recorded with intact files, but its own check found five tickets."
+  ],
+  [
+   7.2,
+   7.287,
+   "Does it pass the go or no-go because the files are intact, fail, pass with a warning, or pass only in production?"
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   1.913,
+   "The answer to check eight: no."
+  ],
+  [
+   1.962,
+   4.4,
+   "A step passes only when its files are intact and its own check passed."
+  ],
+  [
+   6.362,
+   3.175,
+   "Scene nine takes our detection liv, test first."
+  ],
+  [
+   9.537,
+   4.975,
+   "The same commands run in test and production; only the settings file changes."
+  ],
+  [
+   14.512,
+   6.05,
+   "The pre-flight checks the session's cloud, tenant and scopes, a first read, and the output root."
+  ],
+  [
+   20.562,
+   2.5,
+   "Publishing runs as a dry run first."
+  ],
+  [
+   23.062,
+   4.763,
+   "The approver signs the plan's hash, and only then is it applied with that hash."
+  ],
+  [
+   27.825,
+   6.725,
+   "The smoke test replays the macro's behavior on a ring 0 device, and the custom detection raises its alert."
+  ],
+  [
+   34.55,
+   2.05,
+   "The rollback is planned before go."
+  ],
+  [
+   36.6,
+   2.737,
+   "None of this has been run against a lyve tenant."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   3.5,
+   "Try it, in fixture mode, as the runbook prints it."
+  ],
+  [
+   3.55,
+   1.387,
+   "Publish without apply."
+  ],
+  [
+   4.938,
+   4.812,
+   "The plan would create the dump-tool rule, and patch our rule, its status only."
+  ],
+  [
+   9.75,
+   1.175,
+   "Nothing is sent."
+  ],
+  [
+   10.925,
+   4.15,
+   "Then read the plan's hash, which the approver records in the change record."
+  ],
+  [
+   15.075,
+   7.188,
+   "Only with apply and that exact hash does anything go to the tenant, and a plan that changed after approval is refused."
+  ],
+  [
+   22.262,
+   8.863,
+   "And the go or no-go after the first run: pre-flight, publish and the scheduled run pass, but five steps fail until their findings close."
+  ],
+  [
+   31.125,
+   1.45,
+   "No-go, as it should be."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   2.013,
+   "That's our macro, end to end."
+  ],
+  [
+   2.062,
+   2.562,
+   "Who may respond, through least privilege."
+  ],
+  [
+   4.625,
+   3.6,
+   "A device the sensor sees, counted against the inventory."
+  ],
+  [
+   8.225,
+   1.788,
+   "Prevention checked by ring."
+  ],
+  [
+   10.012,
+   2.737,
+   "The rule that blocked it, followed ring by ring."
+  ],
+  [
+   12.75,
+   2.4,
+   "An incident owned inside its window."
+  ],
+  [
+   15.15,
+   4.125,
+   "A detection kept as code, shown to fire and to stay quiet."
+  ],
+  [
+   19.275,
+   1.988,
+   "Automation inside the ladder."
+  ],
+  [
+   21.262,
+   1.913,
+   "The month's evidence in a chain."
+  ],
+  [
+   23.175,
+   2.763,
+   "And the detection taken liv, test first."
+  ],
+  [
+   25.938,
+   1.137,
+   "Now it's your turn."
+  ],
+  [
+   27.075,
+   5.6,
+   "Each chapter has a second lab in your own test tenant, never production, with a back-out step."
+  ],
+  [
+   32.675,
+   6.575,
+   "Then go deeper: the chapters and their narrated tours, the learning path, and the implementation guide."
+  ],
+  [
+   39.25,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

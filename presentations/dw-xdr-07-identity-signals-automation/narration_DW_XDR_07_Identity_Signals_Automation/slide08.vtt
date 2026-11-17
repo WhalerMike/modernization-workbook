@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.675
+Step 2 runs the automation
+check, and finds four things.
+
+2
+00:00:03.675 --> 00:00:09.175
+The ring 3 workstation group sits at a semi
+level with no exception: off the ladder.
+
+3
+00:00:09.175 --> 00:00:13.412
+The scanner subnet's exclusion
+passed its review date in October.
+
+4
+00:00:13.412 --> 00:00:17.762
+The second emergency access account
+isn't in the identity exclusions,
+
+5
+00:00:17.762 --> 00:00:20.162
+so attack disruption could contain it.
+
+6
+00:00:20.162 --> 00:00:26.513
+And one device runs a sensor below
+10.8470, so Contain User won't act there.
+
+7
+00:00:26.513 --> 00:00:31.572
+Step 3 reads the ladder the groups are
+checked against: full for workstations,
+
+8
+00:00:31.572 --> 00:00:35.830
+semi for all folders for the pilot,
+and any semi level for servers.

@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:02.375
+Run the automation check.
+
+3
+00:00:02.375 --> 00:00:05.860
+Ring 0's workstations are at
+full, as the ladder says,
+
+4
+00:00:05.860 --> 00:00:09.013
+so our workstation's
+cleanup can run on its own.
+
+5
+00:00:09.013 --> 00:00:14.212
+Ring 3's workstation group is at a semi
+level with no exception: off the ladder.
+
+6
+00:00:14.212 --> 00:00:17.501
+The scanner subnet's exclusion
+passed its review date.
+
+7
+00:00:17.501 --> 00:00:20.689
+The second emergency access
+account isn't excluded,
+
+8
+00:00:20.689 --> 00:00:23.062
+so attack disruption could contain it.
+
+9
+00:00:23.062 --> 00:00:26.540
+And one device runs a sensor
+too old for Contain User.

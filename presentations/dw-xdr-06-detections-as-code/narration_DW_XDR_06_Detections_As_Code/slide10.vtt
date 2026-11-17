@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.375
+Here's what this gate proves,
+against NIST's catalog.
+
+2
+00:00:03.375 --> 00:00:07.606
+Each rule firing on its known-bad
+event and staying quiet otherwise
+
+3
+00:00:07.606 --> 00:00:11.988
+supports system monitoring and audit
+review, analysis and reporting.
+
+4
+00:00:11.988 --> 00:00:14.493
+Each change coming from a reviewed file,
+
+5
+00:00:14.493 --> 00:00:18.288
+in a plan with a hash, supports
+configuration change control.
+
+6
+00:00:18.288 --> 00:00:23.251
+And what's deployed matching the repository,
+with orphans named, supports both.
+
+7
+00:00:23.251 --> 00:00:26.438
+The indicators are FedRAMP's,
+as the guide maps them.
+
+8
+00:00:26.438 --> 00:00:30.310
+The records support these controls;
+the assessor decides them.

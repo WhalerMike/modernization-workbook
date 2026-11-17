@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+What does that leave to you?
+
+2
+00:00:01.387 --> 00:00:03.373
+Seven gates' checks aren't in it,
+
+3
+00:00:03.373 --> 00:00:07.424
+so the kit runs every check into
+its own folder with a manifest.
+
+4
+00:00:07.424 --> 00:00:10.259
+A hash list can be
+regenerated after an edit,
+
+5
+00:00:10.259 --> 00:00:13.250
+so each record holds the
+hash of the one before.
+
+6
+00:00:13.250 --> 00:00:16.550
+Files don't name their
+controls, so each record does.
+
+7
+00:00:16.550 --> 00:00:21.532
+A run that found five tickets hashes as
+cleanly as one that found none, so each
+
+8
+00:00:21.532 --> 00:00:23.825
+record carries the run's own result,
+
+9
+00:00:23.825 --> 00:00:26.988
+and the go or no-go fails
+until the findings close.
+
+10
+00:00:26.988 --> 00:00:30.725
+Someone computes the metrics by
+hand, so the kit writes them.
+
+11
+00:00:30.725 --> 00:00:34.167
+And Graph carries no assignment
+or containment time,
+
+12
+00:00:34.167 --> 00:00:38.690
+so mean time to triage is reported as
+not computed, with where to get it.

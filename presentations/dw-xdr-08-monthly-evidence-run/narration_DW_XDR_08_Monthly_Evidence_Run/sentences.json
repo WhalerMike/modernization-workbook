@@ -1,0 +1,505 @@
+{
+ "1": [
+  [
+   0.05,
+   6.162,
+   "Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   6.213,
+   2.975,
+   "This is Chapter 8: the monthly evidence run."
+  ],
+  [
+   9.188,
+   8.338,
+   "The metrics measure what the controls do, not whether a setting exists, and the evidence is a chain a security officer can check with one command."
+  ],
+  [
+   17.525,
+   12.075,
+   "We'll start from the guide's monthly run, read the one command that replaces it, the metrics and the evidence record, and walk two labs, including one where we change a recorded file and watch the check catch it."
+  ],
+  [
+   29.6,
+   6.088,
+   "The chapter is a draft awaiting review; the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.288,
+   "Why one command, and why a chain?"
+  ],
+  [
+   2.337,
+   8.363,
+   "Because the guide's metrics measure what the controls actually do, not whether a setting exists, and those numbers have to come from the month's real runs."
+  ],
+  [
+   10.7,
+   5.45,
+   "And because evidence the security officer can't verify alone is just a folder of files."
+  ],
+  [
+   16.15,
+   9.488,
+   "By the end of this chapter you can produce the month's evidence package in one command, read the guide's metrics from it, and show the security officer it hasn't changed since."
+  ],
+  [
+   25.637,
+   5.888,
+   "It's for the developers, the platform owner who owns the run, and the security officer who receives it."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.8,
+   "Here's the guide's monthly run."
+  ],
+  [
+   1.85,
+   2.062,
+   "Connect with the two read scopes."
+  ],
+  [
+   3.913,
+   6.938,
+   "Run three hunting queries, coverage, attack surface reduction and prevention, into jay-son files."
+  ],
+  [
+   10.85,
+   6.162,
+   "Export the month's incidents, filtered on created date time, which Learn lists as filterable."
+  ],
+  [
+   17.012,
+   3.75,
+   "And hash the folder, so a re-hash next month must match."
+  ],
+  [
+   20.762,
+   8.8,
+   "The guide also gives seven metric formulas, and an evidence catalog with each artifact's kind, gate and retention, which are the program's design."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.337,
+   "What does that leave to you?"
+  ],
+  [
+   1.387,
+   6.037,
+   "Seven gates' checks aren't in it, so the kit runs every check into its own folder with a manifest."
+  ],
+  [
+   7.425,
+   5.825,
+   "A hash list can be regenerated after an edit, so each record holds the hash of the one before."
+  ],
+  [
+   13.25,
+   3.3,
+   "Files don't name their controls, so each record does."
+  ],
+  [
+   16.55,
+   10.438,
+   "A run that found five tickets hashes as cleanly as one that found none, so each record carries the run's own result, and the go or no-go fails until the findings close."
+  ],
+  [
+   26.988,
+   3.737,
+   "Someone computes the metrics by hand, so the kit writes them."
+  ],
+  [
+   30.725,
+   7.9,
+   "And Graph carries no assignment or containment time, so mean time to triage is reported as not computed, with where to get it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   9.825,
+   "One command runs every check from Chapters 1 to 7, each into its own folder, then the metrics, and with an evidence path, records every folder."
+  ],
+  [
+   9.875,
+   6.562,
+   "A check that throws, a missing input or a refused session, is an error row, and the others still run."
+  ],
+  [
+   16.438,
+   15.475,
+   "Each record holds the time, the environment, the change record, the command, two results, the files' integrity and the run's own check, the steps with their controls and indicators, the claim, every file's hash, and the previous record's hash."
+  ],
+  [
+   31.913,
+   3.175,
+   "The check re-hashes everything and walks the chain."
+  ],
+  [
+   35.087,
+   6.287,
+   "With a stage, it adds a row per step, which passes only with intact files and a passing check."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.788,
+   "Here's where each metric comes from."
+  ],
+  [
+   1.837,
+   4.037,
+   "Protected coverage and exception exposure, from the coverage run."
+  ],
+  [
+   5.875,
+   7.6,
+   "Enforcement depth, devices with every applicable rule in block, from the A S R run against the onboarded count."
+  ],
+  [
+   13.475,
+   8.887,
+   "Prevention effectiveness, blocks per thousand onboarded devices per week, from the prevention events and the A S R events scaled to a week."
+  ],
+  [
+   22.363,
+   1.663,
+   "Expired exclusions."
+  ],
+  [
+   24.025,
+   2.737,
+   "Detection validity, from the detection run."
+  ],
+  [
+   26.762,
+   4.025,
+   "And synthetic-event success, from the quarter's exercise record."
+  ],
+  [
+   30.788,
+   7.662,
+   "Mean time to triage and to contain isn't computed: the kit says to take it from the ticketing system or the Action center history."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   4.25,
+   "The platform owner owns the run, monthly, with the change record."
+  ],
+  [
+   5.35,
+   6.2,
+   "The security officer receives the metrics and the hash file, and re-checks last month's folder this month."
+  ],
+  [
+   11.55,
+   5.875,
+   "The security operations lead runs the quarter's synthetic events and files the exercise record."
+  ],
+  [
+   17.425,
+   8.475,
+   "One caution about Lab 1: the fixtures carry deliberate faults, so most runs record a failed check, and the go or no-go fails."
+  ],
+  [
+   25.9,
+   1.038,
+   "That's the point."
+  ],
+  [
+   26.938,
+   3.737,
+   "Evidence of a finding is still evidence, but it isn't a go."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.1,
+   "Lab 1, in the kit's folder."
+  ],
+  [
+   2.15,
+   5.088,
+   "Step 1 runs the month and records every run, with a lab change record."
+  ],
+  [
+   7.237,
+   2.462,
+   "Ten run folders, ten records."
+  ],
+  [
+   9.7,
+   6.963,
+   "Only signals and the metrics pass their own checks; every other run found something, as the earlier chapters showed."
+  ],
+  [
+   16.663,
+   2.0,
+   "Step 2 reads the metrics."
+  ],
+  [
+   18.663,
+   3.362,
+   "Protected coverage, sixty-four point three percent."
+  ],
+  [
+   22.025,
+   3.737,
+   "Two of eleven onboarded devices have every rule in block."
+  ],
+  [
+   25.762,
+   2.987,
+   "One of one enabled detection has a passing test."
+  ],
+  [
+   28.75,
+   2.712,
+   "Four of five synthetic events did what they should."
+  ],
+  [
+   31.462,
+   3.288,
+   "And mean time to triage says not computed, and why."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.4,
+   "Step 3 reads the records' index."
+  ],
+  [
+   2.45,
+   3.95,
+   "Result is the files' integrity, and every record passes."
+  ],
+  [
+   6.4,
+   3.188,
+   "Check result is what the run found, and most fail."
+  ],
+  [
+   9.588,
+   6.35,
+   "Step 4 checks the chain: every file matches its hash, ten records, chain unbroken."
+  ],
+  [
+   15.938,
+   11.438,
+   "Step 5 runs the production stage's go or no-go, and it fails, saying why for each step: no pre-flight record, runs whose own checks failed, and no scheduled run yet."
+  ],
+  [
+   27.375,
+   2.6,
+   "Only signals and the metrics pass."
+  ],
+  [
+   29.975,
+   4.325,
+   "The command exits with an error, which is what a go or no-go should see."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.325,
+   "Step 6 is the one to remember."
+  ],
+  [
+   2.375,
+   3.75,
+   "Append one line to a recorded tickets file, and check again."
+  ],
+  [
+   6.125,
+   1.163,
+   "Both checks fail."
+  ],
+  [
+   7.287,
+   5.688,
+   "The sums say the file changed, and the chain says it no longer matches its record, naming the file."
+  ],
+  [
+   12.975,
+   3.225,
+   "That's what protects the evidence from an edit after the fact."
+  ],
+  [
+   16.2,
+   4.463,
+   "Step 7 runs the evidence tests: all pass, none fail."
+  ],
+  [
+   20.663,
+   5.037,
+   "Before step 6, you had a folder whose hash file you could hand to the security officer."
+  ],
+  [
+   25.7,
+   2.212,
+   "Delete the output folder when you're done."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.612,
+   "Lab 2 uses a test tenant, never production, with every earlier chapter's Lab 2 inputs named in your settings file."
+  ],
+  [
+   7.662,
+   1.925,
+   "Sign in with the read scopes."
+  ],
+  [
+   9.588,
+   5.425,
+   "Run the month with an evidence path on agency storage and the change record, then check it."
+  ],
+  [
+   15.012,
+   3.625,
+   "Give the metrics and the hash file to the security officer."
+  ],
+  [
+   18.637,
+   5.6,
+   "Next month, run the check again on this month's folder: last month's files must still match."
+  ],
+  [
+   24.238,
+   5.375,
+   "Nothing changed in the tenant, and the evidence stays with its change record, so you just sign out."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.325,
+   "Here's what this gate proves, against nist's catalog."
+  ],
+  [
+   3.375,
+   4.388,
+   "The month's metrics, from the month's runs, support continuous monitoring."
+  ],
+  [
+   7.763,
+   8.6,
+   "Each run recorded with its controls, indicators, check result and hashes supports continuous monitoring and protecting audit information."
+  ],
+  [
+   16.363,
+   3.925,
+   "Kept and unchanged supports audit protection and retention."
+  ],
+  [
+   20.288,
+   4.2,
+   "And the exercise's synthetic events support incident response testing."
+  ],
+  [
+   24.488,
+   3.188,
+   "The indicators are fed-ramp's, as the guide maps them."
+  ],
+  [
+   27.675,
+   5.725,
+   "Each record carries the claim itself: it supports the controls, and the assessor decides them."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   11.5,
+   "A run with findings read as evidence of a control leads to a go on a fleet with gaps; the check result in every record, and a go or no-go that fails until the run passes, guard it."
+  ],
+  [
+   12.95,
+   4.0,
+   "A file edited after recording is caught by the hashes, by name."
+  ],
+  [
+   16.95,
+   2.188,
+   "A removed record breaks the chain."
+  ],
+  [
+   19.137,
+   5.275,
+   "Advanced hunting only keeps thirty days, so the run files results every month."
+  ],
+  [
+   24.413,
+   7.55,
+   "And a metric computed from a field that doesn't hold it is a misleading number, so the kit says not computed, and where the number lives."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   3.462,
+   "The monthly run is scheduled and runs with the change record."
+  ],
+  [
+   4.862,
+   3.163,
+   "The metrics reach the security officer each month."
+  ],
+  [
+   8.025,
+   2.85,
+   "The check passes on last month's folder this month."
+  ],
+  [
+   10.875,
+   3.35,
+   "The quarter's exercise record is named in the settings."
+  ],
+  [
+   14.225,
+   5.2,
+   "And the evidence folder is on agency storage, kept to the evidence catalog's retention."
+  ],
+  [
+   19.425,
+   6.175,
+   "Next, Chapter 9 schedules this run and takes the kit liv, test first, then production."
+  ],
+  [
+   25.6,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

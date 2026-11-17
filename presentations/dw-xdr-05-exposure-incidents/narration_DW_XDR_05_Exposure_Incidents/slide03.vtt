@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.238
+One government-cloud fact
+shapes the exposure gate.
+
+2
+00:00:03.238 --> 00:00:08.066
+Learn says Microsoft Security Exposure
+Management, with its attack paths,
+
+3
+00:00:08.066 --> 00:00:11.103
+exposure graph and
+critical asset management,
+
+4
+00:00:11.103 --> 00:00:15.075
+is available in Public Cloud
+only, not in US Government clouds.
+
+5
+00:00:15.075 --> 00:00:18.957
+Defender Vulnerability
+Management is available in GCC,
+
+6
+00:00:18.957 --> 00:00:21.600
+core and premium, without two features.
+
+7
+00:00:21.600 --> 00:00:26.650
+DeviceInfo still carries exposure level,
+internet facing, and asset value.
+
+8
+00:00:26.650 --> 00:00:31.413
+And the vulnerability tables stay in
+Defender; they aren't ingested into Sentinel.
+
+9
+00:00:31.413 --> 00:00:36.180
+So the guide's interim path prioritizes
+by those columns and Vulnerability
+
+10
+00:00:36.180 --> 00:00:41.450
+Management's recommendations, with the Tier
+0 inventory as the critical-asset list.

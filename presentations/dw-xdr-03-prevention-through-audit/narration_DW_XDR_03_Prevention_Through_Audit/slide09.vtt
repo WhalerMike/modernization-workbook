@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.250
+Lab 2 uses a ring 0 test device in
+a test tenant, never production,
+
+2
+00:00:04.250 --> 00:00:08.288
+with the policies assigned and
+network protection in audit.
+
+3
+00:00:08.288 --> 00:00:11.387
+On the device, collect
+its state, elevated.
+
+4
+00:00:11.387 --> 00:00:15.237
+On your workstation, sign in and
+run the prevention check live.
+
+5
+00:00:15.237 --> 00:00:18.343
+Then test network protection
+the way Learn does:
+
+6
+00:00:18.343 --> 00:00:21.525
+in a browser other than
+Edge, open Learn's test site.
+
+7
+00:00:21.525 --> 00:00:25.895
+In audit mode the site opens
+and event 1125 is logged;
+
+8
+00:00:25.895 --> 00:00:29.350
+in block mode it's
+blocked, with event 1126.
+
+9
+00:00:29.350 --> 00:00:34.038
+Run the check again the next day, and the
+audited event appears in the events file.
+
+10
+00:00:34.038 --> 00:00:35.950
+Nothing changed on the device.

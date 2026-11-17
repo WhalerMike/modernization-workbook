@@ -1,0 +1,42 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.850
+Here's the guide's monthly run.
+
+2
+00:00:01.850 --> 00:00:03.912
+Connect with the two read scopes.
+
+3
+00:00:03.912 --> 00:00:06.515
+Run three hunting queries, coverage,
+
+4
+00:00:06.515 --> 00:00:10.851
+attack surface reduction and
+prevention, into JSON files.
+
+5
+00:00:10.851 --> 00:00:14.823
+Export the month's incidents,
+filtered on created date time,
+
+6
+00:00:14.823 --> 00:00:17.012
+which Learn lists as filterable.
+
+7
+00:00:17.012 --> 00:00:20.762
+And hash the folder, so a
+re-hash next month must match.
+
+8
+00:00:20.762 --> 00:00:25.237
+The guide also gives seven metric
+formulas, and an evidence catalog with
+
+9
+00:00:25.237 --> 00:00:29.620
+each artifact's kind, gate and retention,
+which are the program's design.

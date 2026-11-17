@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.234
+Welcome to Building Defender XDR,
+
+2
+00:00:02.234 --> 00:00:06.212
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.212 --> 00:00:10.151
+This is Chapter 9: deploying
+to test and production.
+
+4
+00:00:10.151 --> 00:00:14.343
+The same commands run in both stages;
+only the settings file changes,
+
+5
+00:00:14.343 --> 00:00:18.312
+and production waits until the
+test stage's own evidence says go.
+
+6
+00:00:18.312 --> 00:00:22.974
+This chapter is a runbook, not a
+gate, so it has no labs of its own.
+
+7
+00:00:22.974 --> 00:00:26.622
+Every step is a command,
+and the outputs on these
+
+8
+00:00:26.622 --> 00:00:30.363
+slides are from fixture
+mode on November 17, 2026.
+
+9
+00:00:30.363 --> 00:00:33.059
+Nothing in it has been
+run against a live tenant,
+
+10
+00:00:33.059 --> 00:00:36.170
+and the chapter is a draft
+awaiting the owner's review.

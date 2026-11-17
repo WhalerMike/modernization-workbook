@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.050
+What's left to you?
+
+2
+00:00:01.050 --> 00:00:05.225
+Nothing checks a rule before it reaches
+the tenant, so the kit validates it.
+
+3
+00:00:05.225 --> 00:00:10.337
+Automated actions in the same body could
+let a rule isolate devices on its own,
+
+4
+00:00:10.337 --> 00:00:13.612
+outside the response ladder,
+so such a rule is held.
+
+5
+00:00:13.612 --> 00:00:19.013
+One test window can't show a rule is both
+sensitive and quiet, so each rule has two.
+
+6
+00:00:19.013 --> 00:00:23.483
+The repository and the tenant
+drift, so the kit plans: create,
+
+7
+00:00:23.483 --> 00:00:27.862
+update only what changed, hold
+what failed, report orphans.
+
+8
+00:00:27.862 --> 00:00:31.651
+A file marked enabled might never
+have been tested, so it's held.
+
+9
+00:00:31.651 --> 00:00:35.600
+And an approved plan could change
+afterwards, so it carries a hash.
+
+10
+00:00:35.600 --> 00:00:40.820
+The verdict: the API deploys anything it's
+given; build the gate in front of it.

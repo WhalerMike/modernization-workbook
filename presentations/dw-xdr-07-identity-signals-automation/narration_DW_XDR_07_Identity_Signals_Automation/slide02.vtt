@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+Why these two together?
+
+2
+00:00:01.387 --> 00:00:04.262
+Because they keep detection
+and response joined up.
+
+3
+00:00:04.262 --> 00:00:09.250
+Detection should see one story across
+the endpoint, identity and cloud apps.
+
+4
+00:00:09.250 --> 00:00:13.562
+And response should stay inside the
+boundary the authorizing official set.
+
+5
+00:00:13.562 --> 00:00:17.986
+By the end of this chapter you can show
+that identity and cloud-app sources are
+
+6
+00:00:17.986 --> 00:00:22.342
+feeding incidents, that Defender's
+automation matches the response ladder,
+
+7
+00:00:22.342 --> 00:00:27.250
+and that every exclusion is approved, with
+every emergency access account protected.
+
+8
+00:00:27.250 --> 00:00:30.231
+It's for the developers,
+the security operations
+
+9
+00:00:30.231 --> 00:00:33.190
+lead who owns both gates,
+and the platform owner.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:02.300
+Run the prevention check.
+
+3
+00:00:02.300 --> 00:00:03.400
+Three drifts.
+
+4
+00:00:03.400 --> 00:00:06.750
+Tamper protection off on
+a ring 1 workstation.
+
+5
+00:00:06.750 --> 00:00:11.812
+Network protection off on the ring 2
+workstation, where its ring should be auditing.
+
+6
+00:00:11.812 --> 00:00:14.837
+And datagram processing
+on at the file server.
+
+7
+00:00:14.837 --> 00:00:18.947
+Below, the week's events: network
+protection audited and blocked,
+
+8
+00:00:18.947 --> 00:00:23.676
+controlled folder access audited and
+blocked, and one tampering attempt.
+
+9
+00:00:23.676 --> 00:00:26.792
+A device with tamper
+protection off and a tampering
+
+10
+00:00:26.792 --> 00:00:29.900
+attempt in the same week is
+an incident, not a ticket.
