@@ -1,0 +1,57 @@
+{
+  "devices": [
+    {
+      "device": "PC-PILOT-01",
+      "collectedAt": "2026-11-16T10:00:00Z",
+      "clientVersion": "2.6.112.0",
+      "hardening": {
+        "HideSignOutButton": 1,
+        "HideDisablePrivateAccessButton": 1,
+        "HideDisableButton": 1,
+        "RestrictNonPrivilegedUsers": 1
+      },
+      "ipv6DisabledComponents": 32,
+      "health": "Connected",
+      "dohPolicy": {
+        "Edge": "off",
+        "Chrome": "off"
+      }
+    },
+    {
+      "device": "PC-PILOT-02",
+      "collectedAt": "2026-11-16T10:05:00Z",
+      "clientVersion": "2.6.112.0",
+      "hardening": {},
+      "ipv6DisabledComponents": 32,
+      "health": "Connected",
+      "dohPolicy": {
+        "Edge": "off",
+        "Chrome": "off"
+      }
+    },
+    {
+      "device": "PC-PILOT-03",
+      "collectedAt": "2026-11-16T10:07:00Z",
+      "clientVersion": "1.7.669.0",
+      "hardening": {},
+      "ipv6DisabledComponents": 0,
+      "health": "Connected",
+      "dohPolicy": {
+        "Edge": "off",
+        "Chrome": "automatic"
+      }
+    },
+    {
+      "device": "PC-PILOT-04",
+      "collectedAt": "2026-11-16T10:09:00Z",
+      "clientVersion": "2.6.112.0",
+      "hardening": {},
+      "ipv6DisabledComponents": 32,
+      "health": "Disconnected",
+      "dohPolicy": {
+        "Edge": "off",
+        "Chrome": "off"
+      }
+    }
+  ]
+}

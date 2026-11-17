@@ -1,0 +1,9 @@
+PS> ./Invoke-GsaCheck.ps1 -Area telemetry -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-telemetry -AsOf 2026-11-16T12:00:00Z
+GSA-LOG-01  Fail  diagnostic setting gsa-network-telemetry: not sent: RemoteNetworkHealthLogs
+GSA-LOG-02  Pass  table NetworkAccessTraffic: 52011 rows; last 2026-11-16T11:52:00Z (0.1 hours before the run)
+GSA-LOG-02  Pass  table NetworkAccessConnectionEvents: 312 rows; last 2026-11-16T11:40:00Z (0.3 hours before the run)
+GSA-LOG-02  Warn  table RemoteNetworkHealthLogs: no rows in the last day
+GSA-LOG-02  Warn  table NetworkAccessAlerts: 2 rows; last 2026-11-15T09:12:00Z (26.8 hours before the run)
+GSA-LOG-03  Warn  CISA telemetry: not yet agreed with the TIC delegates: required before the VPN's web path is retired (ring 3)
+
+telemetry: 6 checks (1 Fail, 2 Pass, 3 Warn). Written to out/check-telemetry: findings.json, findings.csv, manifest.json

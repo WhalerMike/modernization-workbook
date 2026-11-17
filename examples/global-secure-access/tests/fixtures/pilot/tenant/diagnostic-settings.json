@@ -1,0 +1,44 @@
+{
+  "value": [
+    {
+      "name": "entra-core",
+      "properties": {
+        "workspaceId": "/subscriptions/88888888-8888-4888-8888-888888888801/resourceGroups/rg-logs/providers/Microsoft.OperationalInsights/workspaces/law-security",
+        "logs": [
+          {
+            "category": "SignInLogs",
+            "enabled": true
+          },
+          {
+            "category": "AuditLogs",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "gsa-network-telemetry",
+      "properties": {
+        "workspaceId": "/subscriptions/88888888-8888-4888-8888-888888888801/resourceGroups/rg-logs/providers/Microsoft.OperationalInsights/workspaces/law-security",
+        "logs": [
+          {
+            "category": "NetworkAccessTrafficLogs",
+            "enabled": true
+          },
+          {
+            "category": "NetworkAccessConnectionEvents",
+            "enabled": true
+          },
+          {
+            "category": "RemoteNetworkHealthLogs",
+            "enabled": false
+          },
+          {
+            "category": "NetworkAccessAlerts",
+            "enabled": true
+          }
+        ]
+      }
+    }
+  ]
+}

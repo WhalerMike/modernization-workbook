@@ -1536,6 +1536,8 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md
+  - docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md
   - docs/reference/source-register.md
 - path: docs/architecture/gsa-deployment-guide-private-access.md
   url: https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-private-access
@@ -5260,6 +5262,8 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md
+  - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
   - docs/reference/source-register.md
 - path: docs/fundamentals/zero-trust-protect-tenants.md
   url: https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-tenants
@@ -5413,6 +5417,8 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md
+  - docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/concept-internet-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-internet-access
@@ -5568,6 +5574,7 @@ pages:
   - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/concept-universal-conditional-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-universal-conditional-access
@@ -5744,6 +5751,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-configure-cloud-firewall-clients.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-cloud-firewall-clients
@@ -5825,6 +5833,7 @@ pages:
   - docs/books/b02-identity/01-why-identity-matters.md
   - docs/books/b02-identity/_verification/01-02-why.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-configure-explicit-forward-proxy-headers.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-explicit-forward-proxy-headers
@@ -5913,6 +5922,7 @@ pages:
   - data/source-register.json
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-configure-quick-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-quick-access
@@ -6145,6 +6155,7 @@ pages:
   - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
   - docs/books/guides/intune-track-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-list-remote-networks.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-list-remote-networks
@@ -6284,6 +6295,7 @@ pages:
   - docs/books/guides/_verification/zero-trust-assessment-implementation.md
   - docs/books/guides/global-secure-access-implementation.md
   - docs/books/guides/zero-trust-assessment-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-operate-microsoft-traffic.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-microsoft-traffic
@@ -6297,6 +6309,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-operate-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-operate-private-access
@@ -6334,6 +6347,10 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md
+  - docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md
+  - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
+  - docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-palo-alto-coexistence.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-palo-alto-coexistence
@@ -6401,6 +6418,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-sentinel-integration.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-sentinel-integration
@@ -6441,6 +6459,7 @@ pages:
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-target-resource-microsoft-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-microsoft-profile
@@ -6498,6 +6517,7 @@ pages:
   - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-transport-layer-security.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security
@@ -6515,6 +6535,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-universal-tenant-restrictions.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-universal-tenant-restrictions
@@ -6532,6 +6553,7 @@ pages:
   - data/source-register.json
   - docs/books/b09-network/12-microsoft-365-traffic.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-use-private-link-with-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-use-private-link-with-private-access
@@ -6659,6 +6681,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/overview-what-is-global-secure-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/overview-what-is-global-secure-access
@@ -6678,6 +6701,7 @@ pages:
   - docs/books/b09-network/11-field-office-wan-transformation.md
   - docs/books/explainers/hybrid-credentials.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/partner-ecosystems-overview.md
   url: https://learn.microsoft.com/entra/global-secure-access/partner-ecosystems-overview
@@ -6821,7 +6845,13 @@ pages:
   - docs/books/guides/global-secure-access-implementation.md
   - docs/books/guides/intune-track-implementation.md
   - docs/evaluations/sdwan-platform-deep-dive.md
+  - docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md
+  - docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md
+  - docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md
+  - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
+  - docs/project-plans/developer-workbooks/global-secure-access/index.md
   - docs/reference/source-register.md
+  - examples/global-secure-access/config/availability.json
 - path: docs/global-secure-access/reference-daily-health-check.md
   url: https://learn.microsoft.com/entra/global-secure-access/reference-daily-health-check
   title: Global Secure Access daily health check
@@ -7373,6 +7403,7 @@ pages:
   - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/tutorial-internet-access-url-filtering.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-url-filtering
@@ -7408,6 +7439,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-enable-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-enable-profile
@@ -7421,6 +7453,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-introduction.md
   url: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-introduction

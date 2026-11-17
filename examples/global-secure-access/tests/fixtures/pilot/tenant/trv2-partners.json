@@ -1,0 +1,50 @@
+{
+  "value": [
+    {
+      "tenantId": "66666666-6666-4666-8666-666666666601",
+      "tenantRestrictions": {
+        "usersAndGroups": {
+          "accessType": "allowed",
+          "targets": [
+            {
+              "target": "AllUsers",
+              "targetType": "user"
+            }
+          ]
+        },
+        "applications": {
+          "accessType": "allowed",
+          "targets": [
+            {
+              "target": "Office365",
+              "targetType": "application"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tenantId": "66666666-6666-4666-8666-666666666602",
+      "tenantRestrictions": {
+        "usersAndGroups": {
+          "accessType": "allowed",
+          "targets": [
+            {
+              "target": "AllUsers",
+              "targetType": "user"
+            }
+          ]
+        },
+        "applications": {
+          "accessType": "allowed",
+          "targets": [
+            {
+              "target": "AllApplications",
+              "targetType": "application"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

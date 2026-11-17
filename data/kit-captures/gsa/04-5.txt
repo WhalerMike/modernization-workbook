@@ -1,0 +1,8 @@
+PS> ./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -DesiredPath config/desired.lab.json -OutputPath out/plan -AsOf 2026-11-16T12:00:00Z
+PL-01      WouldApply  PATCH internet profile enabled -> disabled
+PL-02      WouldApply  PATCH NET-PA-AdminRDP-PhishingResistant: conditions or controls differ from the reviewed file
+MAN-ASSIGN Manual      Portal: Global Secure Access > Connect > Traffic forwarding > m365 profile > User and group assignments: add 22222222-2222-4222-8222-222222222201 (no Graph request on the pages read)
+MAN-ASSIGN Manual      Portal: Global Secure Access > Connect > Traffic forwarding > private profile > User and group assignments: add 22222222-2222-4222-8222-222222222201 (no Graph request on the pages read)
+
+Plan SHA-256: 2777f111aa45294f53dba4390a5a0764ec78b412ab9a2accb04f7d46707bf224
+Dry run: nothing changed.

@@ -1,0 +1,5 @@
+PS> Import-Csv tests/fixtures/pilot/inputs/exceptions.csv | Where-Object kind -EQ 'custom-bypass' | Format-Table id, target, reason, owner, approver, expires
+id    target                    reason              owner          approver     expires
+--    ------                    ------              -----          --------     -------
+EX-03 *.payroll-partner.example Certificate pinning Platform owner Policy owner 2026-11-01
+EX-04 updates.vendor.example    Large downloads     Platform owner              2027-03-01

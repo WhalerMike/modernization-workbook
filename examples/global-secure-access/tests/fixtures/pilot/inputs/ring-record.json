@@ -1,0 +1,9 @@
+{
+  "ring": "pilot",
+  "started": "2026-11-09",
+  "sev2Open": 1,
+  "helpDeskTickets": 9,
+  "helpDeskThreshold": 10,
+  "emergencyExclusionTestedOn": "2026-11-09",
+  "breakGlassRehearsedOn": "2026-11-06"
+}

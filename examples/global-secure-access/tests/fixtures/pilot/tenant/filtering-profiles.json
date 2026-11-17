@@ -1,0 +1,46 @@
+{
+  "value": [
+    {
+      "id": "55555555-5555-4555-8555-000000000021",
+      "name": "Baseline profile",
+      "state": "enabled",
+      "priority": 65000,
+      "policies": [],
+      "conditionalAccessPolicies": []
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000022",
+      "name": "SP-Pilot",
+      "state": "enabled",
+      "priority": 100,
+      "policies": [
+        {
+          "id": "55555555-5555-4555-8555-000000000023",
+          "priority": 100,
+          "state": "enabled",
+          "loggingState": "enabled",
+          "@odata.type": "#microsoft.graph.networkaccess.filteringPolicyLink",
+          "policy": {
+            "id": "55555555-5555-4555-8555-000000000011"
+          }
+        },
+        {
+          "id": "55555555-5555-4555-8555-000000000024",
+          "priority": 200,
+          "state": "enabled",
+          "loggingState": "enabled",
+          "@odata.type": "#microsoft.graph.networkaccess.tlsInspectionPolicyLink",
+          "policy": {
+            "id": "55555555-5555-4555-8555-000000000031"
+          }
+        }
+      ],
+      "conditionalAccessPolicies": [
+        {
+          "id": "55555555-5555-4555-8555-000000000042",
+          "displayName": "NET-IA-SecurityProfile-Pilot"
+        }
+      ]
+    }
+  ]
+}

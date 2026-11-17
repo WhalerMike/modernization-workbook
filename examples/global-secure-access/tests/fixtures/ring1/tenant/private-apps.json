@@ -1,0 +1,87 @@
+{
+  "value": [
+    {
+      "id": "55555555-5555-4555-8555-000000000101",
+      "appId": "55555555-5555-4555-8555-000000000102",
+      "displayName": "PA-HR-Portal",
+      "kind": "perApp",
+      "connectorGroupId": "55555555-5555-4555-8555-000000000051",
+      "segments": [
+        {
+          "destinationHost": "app01.contoso.example",
+          "destinationType": "fqdn",
+          "ports": [
+            "443-443"
+          ],
+          "protocol": "tcp"
+        }
+      ],
+      "assignments": [
+        {
+          "principalId": "22222222-2222-4222-8222-222222222201",
+          "principalType": "Group"
+        }
+      ]
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000111",
+      "appId": "55555555-5555-4555-8555-000000000112",
+      "displayName": "PA-Finance",
+      "kind": "perApp",
+      "connectorGroupId": "55555555-5555-4555-8555-000000000052",
+      "segments": [
+        {
+          "destinationHost": "fin01.contoso.example",
+          "destinationType": "fqdn",
+          "ports": [
+            "443-443"
+          ],
+          "protocol": "tcp"
+        }
+      ],
+      "assignments": [
+        {
+          "principalId": "22222222-2222-4222-8222-222222222201",
+          "principalType": "Group"
+        }
+      ]
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000121",
+      "appId": "55555555-5555-4555-8555-000000000122",
+      "displayName": "PA-AdminRDP-Tier1",
+      "kind": "perApp",
+      "connectorGroupId": "55555555-5555-4555-8555-000000000051",
+      "segments": [
+        {
+          "destinationHost": "admin01.contoso.example",
+          "destinationType": "fqdn",
+          "ports": [
+            "3389-3389"
+          ],
+          "protocol": "tcp"
+        }
+      ],
+      "assignments": [
+        {
+          "principalId": "22222222-2222-4222-8222-222222222203",
+          "principalType": "Group"
+        }
+      ]
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000131",
+      "appId": "55555555-5555-4555-8555-000000000132",
+      "displayName": "Quick Access",
+      "kind": "quickAccess",
+      "connectorGroupId": "55555555-5555-4555-8555-000000000051",
+      "segments": [],
+      "assignments": [
+        {
+          "principalId": "22222222-2222-4222-8222-222222222201",
+          "principalType": "Group"
+        }
+      ]
+    }
+  ]
+}

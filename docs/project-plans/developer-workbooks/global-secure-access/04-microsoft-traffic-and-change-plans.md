@@ -1,0 +1,359 @@
+---
+title: "Chapter 04 — Microsoft Traffic and Change Plans"
+description: "The guide's Step 4 as code, and the plan every later change uses: checks that the Microsoft traffic profile and signaling are on and that the share of sign-ins carried by the service meets its target, read from the guide's own KQL; then a desired-state file compared with the collection into plan.json, the Graph requests in a safe order plus the portal-only assignment steps, applied only with -Apply, the plan's SHA-256 and a live delegated session. Labs against a fictional tenant's fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-global-secure-access
+part: How
+series-order: 4
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 04 — Microsoft Traffic and Change Plans
+
+*The Microsoft traffic profile is the prerequisite for everything identity-aware the service adds. Turning it on is also the first write, so this chapter builds the plan every later write goes through.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 4: Microsoft traffic](../../../books/guides/global-secure-access-implementation.md#step-4-microsoft-traffic). You start with Learn's Graph tutorial pattern for a forwarding profile, the signaling setting that is both source IP restoration and Conditional Access signaling, and the guide's sign-in query. Then you read the traffic checks GSA-MS-01 to -04 and the plan: a reviewed desired-state file, compared with the collection, written as `plan.json` with a SHA-256 a second person approves. Lab 1 finds the pilot's sign-in share under target and plans the pilot's changes without sending anything. Lab 2 enables the profile and signaling in a test tenant from an approved plan, and backs it out.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can show that a ring's Microsoft 365 and Entra ID traffic goes through the service with its real source address, and you can change the tenant only through a plan file whose hash a reviewer approved.
+
+**Audience.** Developers who build or maintain the kit, the platform owner (network) who runs the changes, and the change advisory board's reviewer. You don't need a tenant until Lab 2.
+
+## Start with Microsoft's documentation
+
+### What Microsoft gives you
+
+The Microsoft traffic profile acquires Microsoft 365 and Entra ID traffic, which only that profile can acquire; Learn's Graph tutorial finds a profile by `trafficForwardingType` and sets its `state` with a PATCH, using `NetworkAccess.ReadWrite.All`.[^gsa04-ia] [^gsa04-ms] Assigning users and groups to the profile is a portal step on the pages read, and needs Application Administrator.[^gsa04-ms] Signaling, set with `PATCH /networkAccess/settings/conditionalAccess` and `signalingStatus`, is source IP restoration and the Conditional Access signal Chapter 05 needs; it is on by default for tenants onboarded after June 2025, and Learn cautions that turning it off while policies depend on it can block users.[^gsa04-sip] [^gsa04-sig] The guide's Validate step is Learn's deployment guide test (a SharePoint sign-in's IP with the client on and off) and a KQL query for the share of sign-ins with `IsThroughGlobalSecureAccess` true.[^gsa04-dg] Learn's change guidance treats enabling a new traffic profile as a major change for the change advisory board.[^gsa04-ops]
+
+### What it leaves to you
+
+Each row is pinned by a test in the `Chapter 04` or `Plans` blocks of `tests/GlobalSecureAccess.Tests.ps1`.
+
+| Learn's material, as published | Why it matters | What the kit adds |
+|---|---|---|
+| One PATCH per change, typed by hand | A change board can't approve a command that isn't written down | `plan.json`: every request with its call ID, method, URI, body and reason, and its SHA-256 |
+| The profile assignment is a portal step | A plan that only lists Graph requests misses it | Portal steps in the plan as `MAN-ASSIGN` lines with the exact click path |
+| "Turning signaling off can block users" | A plan could disable it in the wrong order | The plan sets signaling before the profiles; the rollback plan (Chapter 08) disables it last, only on request |
+| A sign-in query with a percentage per day | No pass or fail | GSA-MS-03 sums the week and compares it with `targets.signinShare` (95% in the guide's metrics) |
+| Nothing ties a profile to its decision | Internet Access can be turned on before anyone decided it | GSA-MS-04 fails an enabled internet or private profile with no approved decision (Chapter 01) |
+
+## The code
+
+### The traffic checks
+
+| Check | What it looks for |
+|---|---|
+| GSA-MS-01 | The `m365` forwarding profile is `enabled` |
+| GSA-MS-02 | `signalingStatus` is `enabled` |
+| GSA-MS-03 | Sign-ins through the service ÷ all sign-ins, over the query's seven days, meets the target |
+| GSA-MS-04 | An enabled internet or private profile has an approved `adopt` or `coexist` decision |
+
+### The plan
+
+`New-GsaPlan` (and `Invoke-GsaPlan.ps1`) reads a collection and a desired-state file such as `config/desired.lab.json`: the three profiles' state, `signalingStatus`, `networkPacketTaggingStatus`, the Conditional Access policy files under `config/policies` (the guide's policies, with placeholders the settings fill), and the profile assignments. It writes the steps that would close the gap, in this order: signaling, then the profiles, then the policies, then tagging; the assignments as manual steps. Its guards, each pinned by a test:
+
+- **New Conditional Access policies are report-only.** A policy carrying a Global Secure Access security profile is the exception, because the guide pilots those with a group-scoped On policy (Chapter 07). Enforcing a report-only policy needs `-AllowEnforce` (Chapter 05).
+- **Every policy excludes the emergency access group,** or it isn't planned.
+- **Tagging waits for a blocking TRv2 default** (Chapter 05).
+- **A changed policy is brought back to its reviewed file,** with a PATCH of its conditions and controls.
+
+`Invoke-GsaPlanSteps` lists the steps as `WouldApply` without `-Apply`. With `-Apply` it refuses unless the collection was read live, the Graph session is the settings' tenant and delegated, and `-ApprovedSha256` equals the plan file's hash; then it sends each step in order and stops at the first error.
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 plans against fixtures and can't apply. The apply path was tested with a stand-in Graph runner, not a live tenant.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/global-secure-access`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: List the traffic reads, and every write a plan can send
+Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+Get-GsaRequiredPermission -Area traffic | Format-Table
+Get-GsaRequiredPermission -Writes | Format-Table
+
+# Step 2: Collect the whole pilot tenant
+./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+
+# Step 3: Run the traffic checks
+./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-traffic -AsOf 2026-11-16T12:00:00Z
+
+# Step 4: Read the guide's sign-in query, day by day
+(Read-GsaCollection -Path out/pilot)['law-query']['signin-share'] | ForEach-Object { [pscustomobject]$_ } | Format-Table TimeGenerated, Total, ThroughGSA, PctThroughGSA
+
+# Step 5: Plan the pilot from its desired state
+./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -DesiredPath config/desired.lab.json -OutputPath out/plan -AsOf 2026-11-16T12:00:00Z
+
+# Step 6: Read the plan's first step in full
+(Read-GsaJson -Path out/plan/plan.json).steps | ForEach-Object { [pscustomobject]$_ } | Select-Object -First 1 | Format-List id, call, method, uri, why
+
+# Step 7: Try to apply it in fixture mode
+./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -DesiredPath config/desired.lab.json -OutputPath out/plan -AsOf 2026-11-16T12:00:00Z -Apply -ApprovedSha256 ('0' * 64)
+
+# Step 8: Run this chapter's tests
+Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 04*', 'Plans*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **List the traffic reads, and every write a plan can send:**
+
+   ```powershell
+   Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+   Get-GsaRequiredPermission -Area traffic | Format-Table
+   Get-GsaRequiredPermission -Writes | Format-Table
+   ```
+
+   <!-- capture:begin 04-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-1.txt))](captures/04-1.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+2. **Collect the whole pilot tenant.** The plan compares against everything:
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 04-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-2.txt))](captures/04-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtu… and what it printed"}
+
+   <!-- capture:end -->
+
+3. **Run the traffic checks:**
+
+   ```powershell
+   ./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-traffic -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 04-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-3.txt))](captures/04-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath tests/fixtures/settings.lab… and what it printed"}
+
+   <!-- capture:end -->
+
+   The profile and signaling are on, but 2,555 of 2,800 sign-ins (91.2%) went through the service, under the 95% target.
+
+4. **Read the guide's sign-in query, day by day,** as the workspace returned it:
+
+   ```powershell
+   (Read-GsaCollection -Path out/pilot)['law-query']['signin-share'] | ForEach-Object { [pscustomobject]$_ } | Format-Table TimeGenerated, Total, ThroughGSA, PctThroughGSA
+   ```
+
+   <!-- capture:begin 04-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-4.txt))](captures/04-4.png){.lightbox fig-alt="Terminal window showing (Read-GsaCollection -Path out/pilot)['law-query']['signin-share'] | ForEach-O… and what it printed"}
+
+   <!-- capture:end -->
+
+5. **Plan the pilot from its desired state:**
+
+   ```powershell
+   ./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -DesiredPath config/desired.lab.json -OutputPath out/plan -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 04-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-5.txt))](captures/04-5.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -Collecti… and what it printed"}
+
+   <!-- capture:end -->
+
+   Two Graph steps: the internet profile goes off, because the pilot's desired state hasn't adopted it yet, and the administrative RDP policy goes back to its reviewed file (Chapter 06 says why). Two portal steps assign the pilot group. The last lines are the plan's SHA-256 and `Dry run: nothing changed.`
+
+6. **Read the plan's first step in full,** as the reviewer does before approving the hash:
+
+   ```powershell
+   (Read-GsaJson -Path out/plan/plan.json).steps | ForEach-Object { [pscustomobject]$_ } | Select-Object -First 1 | Format-List id, call, method, uri, why
+   ```
+
+   <!-- capture:begin 04-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-6.txt))](captures/04-6.png){.lightbox fig-alt="Terminal window showing (Read-GsaJson -Path out/plan/plan.json).steps | ForEach-Object { [pscustomobj… and what it printed"}
+
+   <!-- capture:end -->
+
+7. **Try to apply it in fixture mode.** It is refused before the hash is read:
+
+   ```powershell
+   ./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -DesiredPath config/desired.lab.json -OutputPath out/plan -AsOf 2026-11-16T12:00:00Z -Apply -ApprovedSha256 ('0' * 64)
+   ```
+
+   <!-- capture:begin 04-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-7.txt))](captures/04-7.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -Collecti… and what it printed"}
+
+   <!-- capture:end -->
+
+8. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 04*', 'Plans*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 04-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-8.txt))](captures/04-8.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapt… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `FailedCount` 0. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 04-9 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-9.txt))](captures/04-9.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant with Microsoft Entra ID P1, a pilot group of fictional users and a test device with the client (Chapter 03), never production. **The authors haven't run this lab.** Work in `examples/global-secure-access`. Activate Global Secure Access Administrator and Application Administrator through PIM for the lab only. You'll replace: `<tenant-id>`, `<settings-file>`, `<inputs-folder>`, `<desired-file>` (a copy of `config/desired.lab.json` with `internet` `disabled`, `private` `disabled` and `conditionalAccess` an empty list, so the plan only turns on Microsoft traffic and signaling), `<workspace-guid>`, `<plan-sha256>` (the plan's hash, as a second person approved it) and `<m365-profile-id>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in with the reads and the one write permission
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccess.ReadWrite.All","Policy.Read.All","Directory.ReadWrite.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+
+# Step 2: Collect, then plan
+./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/before -AllowUnverified
+./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/before -DesiredPath <desired-file> -OutputPath out/plan-test
+
+# Step 3: Apply the approved plan
+./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/before -DesiredPath <desired-file> -OutputPath out/plan-test -Apply -ApprovedSha256 <plan-sha256>
+
+# Step 5: Validate
+az monitor log-analytics query --workspace <workspace-guid> --analytics-query "SigninLogs | where TimeGenerated > ago(7d) | summarize Total = count(), ThroughGSA = countif(tostring(IsThroughGlobalSecureAccess) =~ 'true') by bin(TimeGenerated, 1d)" -o table
+./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/after -AllowUnverified
+./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath <settings-file> -CollectionPath out/after -InputsPath <inputs-folder> -OutputPath out/check-traffic-test
+
+# Step 6: Back it out
+Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/beta/networkAccess/forwardingProfiles/<m365-profile-id>" -Body '{"state":"disabled"}' -ContentType "application/json"
+Disconnect-MgGraph
+Remove-Item -Recurse -Force out/before, out/plan-test, out/after, out/check-traffic-test
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in with the reads and the one write permission:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccess.ReadWrite.All","Policy.Read.All","Directory.ReadWrite.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+   ```
+
+2. **Collect, then plan:**
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/before -AllowUnverified
+   ./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/before -DesiredPath <desired-file> -OutputPath out/plan-test
+   ```
+
+   Expect at most two steps (signaling, the Microsoft profile) and the manual assignment. Send `out/plan-test/plan.json` and its hash to the reviewer.
+
+3. **Apply the approved plan:**
+
+   ```powershell
+   ./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/before -DesiredPath <desired-file> -OutputPath out/plan-test -Apply -ApprovedSha256 <plan-sha256>
+   ```
+
+4. **Assign the pilot group in the portal,** as the plan's `MAN-ASSIGN` line says:
+   1. Microsoft Entra admin center > **Global Secure Access** > **Connect** > **Traffic forwarding**.
+   2. **Microsoft traffic profile** > **User and group assignments** > **View**.
+   3. **Add user/group**, select the pilot group, **Assign**.
+
+5. **Validate.** Run Learn's test on the test device (sign in to SharePoint with the client on, then disabled, and compare the IP addresses in the sign-in log), then the guide's query, then collect again and check:
+
+   ```powershell
+   az monitor log-analytics query --workspace <workspace-guid> --analytics-query "SigninLogs | where TimeGenerated > ago(7d) | summarize Total = count(), ThroughGSA = countif(tostring(IsThroughGlobalSecureAccess) =~ 'true') by bin(TimeGenerated, 1d)" -o table
+   ./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/after -AllowUnverified
+   ./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath <settings-file> -CollectionPath out/after -InputsPath <inputs-folder> -OutputPath out/check-traffic-test
+   ```
+
+6. **Back it out** in the guide's order: remove the pilot group from the profile's assignments in the portal (step 4's path, **Remove**), then disable the profile. Leave signaling on unless no policy uses it:
+
+   ```powershell
+   Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/beta/networkAccess/forwardingProfiles/<m365-profile-id>" -Body '{"state":"disabled"}' -ContentType "application/json"
+   Disconnect-MgGraph
+   Remove-Item -Recurse -Force out/before, out/plan-test, out/after, out/check-traffic-test
+   ```
+
+## Verified facts
+
+| Item | Value | GCC | Stage | Source |
+|---|---|---|---|---|
+| Forwarding profile read and update | `GET` and `PATCH /networkAccess/forwardingProfiles`; `NetworkAccess.Read.All` / `NetworkAccess.ReadWrite.All`; `trafficForwardingType` `m365`, `internet`, `private` | Global service | Beta | [^gsa04-fp] [^gsa04-ia] |
+| Profile assignment | Portal only on the pages read; Application Administrator | Available (product-wide) | GA | [^gsa04-ms] |
+| Signaling | `PATCH /networkAccess/settings/conditionalAccess` `signalingStatus`; on by default after June 2025; turning it off can block users | Global service | Beta | [^gsa04-sig] [^gsa04-sip] |
+| Change category | Enabling a new traffic profile is a major change | — | — | [^gsa04-ops] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The Microsoft profile and signaling are on (Lab 1, step 3; Lab 2, step 5) | AC-17 (remote access) | KSI-IAM-ELP | The platform owner |
+| The share of sign-ins carried by the service, with the real source address (Lab 1, steps 3 and 4; Lab 2, step 5) | AU-3 (content of audit records), SI-4 | KSI-MLA-OSM | The security monitor |
+| Each change was planned as a file, approved by its hash and applied in order (Lab 1, steps 5 to 7; Lab 2, steps 2 and 3: `plan.json`, `results.json`, the change record) | CM-3 (configuration change control), CM-4 (impact analyses) | KSI-CMT-LMC, KSI-CMT-VTD | The change record holds the approved hash |
+
+TIC 3.0's Remote User Use Case, Pattern 2, is the guide's reading for this step ([TIC 3.0 alignment](../../../books/guides/global-secure-access-implementation.md#tic-alignment)). The kit's records support these controls; the agency's assessor decides them.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A plan applied that nobody read | A profile turns on for the tenant, not the pilot | The hash; `-Apply` refuses any other; fixture mode never applies |
+| Internet Access enabled before its decision | Users' web traffic changes path without approval | GSA-MS-04; the desired state keeps it off |
+| Signaling turned off with policies on | Users blocked | Plans set it on first; only the rollback plan turns it off, last, on request |
+| A sign-in share read for one day | A bad day passes, or a good week fails | GSA-MS-03 sums the week |
+| An assignment forgotten because it isn't in Graph | The profile is on and carries nobody, or everybody | The plan lists it as a manual step with the click path |
+
+## Checklist
+
+- [ ] The Microsoft traffic profile is on for the ring's group, and signaling is on.
+- [ ] The sign-in share for the ring meets its target over a week.
+- [ ] Every change went through a plan whose SHA-256 a second person approved, filed with the change record.
+- [ ] The manual assignment steps were done and recorded.
+- [ ] Learn's source IP test was run on a test device and recorded.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 03 — The Client and Its Coverage](03-the-client-and-its-coverage.md) · [Workbook index](index.md) · [Next: Chapter 05 — The Compliant Network and Tenant Restrictions →](05-compliant-network-and-tenant-restrictions.md)
+:::
+
+[^gsa04-ia]: Microsoft Learn, "Configure Microsoft Entra Internet Access using Microsoft Graph APIs," Step 1 (forwarding profile), <https://learn.microsoft.com/graph/tutorial-entra-internet-access> (read November 11, 2026, for the guide).
+[^gsa04-ms]: Microsoft Learn, "Tutorial: Enable the Microsoft traffic profile," <https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-enable-profile> (read November 11, 2026, for the guide).
+[^gsa04-fp]: Microsoft Learn, "List forwardingProfiles" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/networkaccess-networkaccessroot-list-forwardingprofiles?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa04-sig]: Microsoft Learn, "Get conditionalAccessSettings" and "Update conditionalAccessSettings" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-get?view=graph-rest-beta> (accessed November 17, 2026) and <https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-update?view=graph-rest-beta> (read November 11, 2026, for the guide).
+[^gsa04-sip]: Microsoft Learn, "Source IP restoration," <https://learn.microsoft.com/entra/global-secure-access/how-to-source-ip-restoration> (read November 11, 2026, for the guide).
+[^gsa04-dg]: Microsoft Learn, "Microsoft Global Secure Access deployment guide for Microsoft Traffic," test and deploy, <https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-microsoft-traffic> (read November 11, 2026, for the guide).
+[^gsa04-ops]: Microsoft Learn, "Common operations for Microsoft Entra Global Secure Access," change management, <https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common> (read November 11, 2026, for the guide).

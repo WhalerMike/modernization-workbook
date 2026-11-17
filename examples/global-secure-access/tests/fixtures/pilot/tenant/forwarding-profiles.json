@@ -1,0 +1,28 @@
+{
+  "value": [
+    {
+      "id": "55555555-5555-4555-8555-000000000001",
+      "name": "Microsoft traffic profile",
+      "trafficForwardingType": "m365",
+      "state": "enabled",
+      "priority": 0,
+      "policies": []
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000002",
+      "name": "Private Access profile",
+      "trafficForwardingType": "private",
+      "state": "enabled",
+      "priority": 1,
+      "policies": []
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000003",
+      "name": "Internet Access profile",
+      "trafficForwardingType": "internet",
+      "state": "enabled",
+      "priority": 2,
+      "policies": []
+    }
+  ]
+}

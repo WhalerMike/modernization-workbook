@@ -25,17 +25,17 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Baseline** | 10 + 1 app. | 340 | 2026-11-15 |
 | **B06** | **[Data Platform: SQL Server Identity](b06-data-platform/index.md)** | **Why is the database where legacy authentication hides?** | **Baseline** | 33 + 3 app. | 315 | 2026-11-15 |
 | **B07** | **[PKI & Certificates](b07-pki/index.md)** | **Why do certificates outlive every migration?** | **Baseline** | 9 + 3 app. | 230 | 2026-11-15 |
-| **B08** | **[DNS, DHCP & IPAM](b08-ddi/index.md)** | **Why is DNS now the control plane?** | **Baseline** | 12 + 3 app. | 215 | 2026-11-15 |
+| **B08** | **[DNS, DHCP & IPAM](b08-ddi/index.md)** | **Why is DNS now the control plane?** | **Baseline** | 12 + 3 app. | 215 | 2026-11-16 |
 | **B09** | **[Network & Transport](b09-network/index.md)** | **Why does physics decide the architecture?** | **Baseline** | 13 + 3 app. | 315 | 2026-11-15 |
-| **B10** | **[Cloud Boundary & Landing Zone](b10-cloud-boundary/index.md)** | **Why does the authorization boundary decide what you can use?** | **Baseline** | 11 + 2 app. | 200 | 2026-11-15 |
+| **B10** | **[Cloud Boundary & Landing Zone](b10-cloud-boundary/index.md)** | **Why does the authorization boundary decide what you can use?** | **Baseline** | 11 + 2 app. | 200 | 2026-11-16 |
 | **B11** | **[Zero Trust & Assessment](b11-zero-trust/index.md)** | **Why is Zero Trust a whole-agency property, not a product?** | **Baseline** | 10 + 1 app. | 165 | 2026-11-13 |
-| **B12** | **[Security Operations & Telemetry](b12-security-operations/index.md)** | **Why can't you defend what you can't see?** | **Draft** | 12 + 2 app. | 345 | 2026-11-15 |
+| **B12** | **[Security Operations & Telemetry](b12-security-operations/index.md)** | **Why can't you defend what you can't see?** | **Draft** | 12 + 2 app. | 345 | 2026-11-16 |
 | **B13** | **[Governance, Drift & Evidence](b13-governance/index.md)** | **Why does compliance decay the day after the audit?** | **Draft** | 14 + 2 app. | 275 | 2026-11-15 |
-| **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 8 app. | 420 | 2026-11-15 |
-| **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 14 + 2 app. | 335 | 2026-11-15 |
-| **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Baseline** | 10 + 1 app. | 200 | 2026-11-15 |
-| **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Baseline** | 10 + 1 app. | 230 | 2026-11-15 |
-| **B18** | **[Application Modernization](b18-application-modernization/index.md)** | **Why is application modernization a portfolio decision, not a rewrite?** | **Draft** | 10 + 1 app. | 185 | 2026-11-15 |
+| **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 8 app. | 420 | 2026-11-16 |
+| **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 14 + 2 app. | 335 | 2026-11-16 |
+| **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Baseline** | 10 + 1 app. | 200 | 2026-11-16 |
+| **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Baseline** | 10 + 1 app. | 230 | 2026-11-16 |
+| **B18** | **[Application Modernization](b18-application-modernization/index.md)** | **Why is application modernization a portfolio decision, not a rewrite?** | **Draft** | 10 + 1 app. | 185 | 2026-11-16 |
 | **B19** | **[Building the Attribute-Driven Migration](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Baseline** | 10 | 385 | 2026-11-16 |
 | **B20** | **[Information Protection & Microsoft Purview](b20-information-protection/index.md)** | **Why does protection have to travel with the data?** | **Draft** | 12 + 1 app. | 200 | 2026-11-13 |
 :::

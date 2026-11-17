@@ -1,0 +1,35 @@
+{
+  "value": [
+    {
+      "id": "55555555-5555-4555-8555-000000000011",
+      "name": "NET-WCF-Block-HighRisk",
+      "action": "block",
+      "policyRules": [
+        {
+          "name": "Categories",
+          "ruleType": "webCategory",
+          "destinations": [
+            {
+              "name": "ArtificialIntelligence"
+            },
+            {
+              "name": "Gambling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000012",
+      "name": "NET-TI-Block-Malicious",
+      "action": "block",
+      "policyRules": [
+        {
+          "name": "Threat intelligence",
+          "ruleType": "threatIntelligence",
+          "destinations": []
+        }
+      ]
+    }
+  ]
+}

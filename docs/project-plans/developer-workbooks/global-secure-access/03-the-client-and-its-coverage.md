@@ -1,0 +1,337 @@
+---
+title: "Chapter 03 — The Client and Its Coverage"
+description: "The guide's Step 3 as code: the device usage summary read through the beta reports API with its least-privileged permission, a read-only device script that records each pilot device's client version, hardening values, IPv4 preference and browser DNS-over-HTTPS policy, and checks GSA-CLI-01 to -07 for coverage against Intune's in-scope count, the minimum version, IPv4 preferred, DNS over HTTPS off, health, hardening from ring 2 on and governed exclusions. Labs against a fictional tenant's fixtures and a test device."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-global-secure-access
+part: How
+series-order: 3
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 03 — The Client and Its Coverage
+
+*Every later policy assumes the client is on the device, connected, current and hard to turn off. This chapter measures that, device by device and across the fleet.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 3: Client deployment](../../../books/guides/global-secure-access-implementation.md#step-3-client-deployment). The guide holds Learn's Intune packaging, detection rule, DNS-over-HTTPS profile and hardening remediation; this chapter doesn't repeat them. It builds the measurement: a device script that reads the guide's Validate values on one device, the beta device usage summary for the fleet, and checks GSA-CLI-01 to -07. Lab 1 finds the pilot's old client, its IPv6-preferred device, a browser still using DNS over HTTPS and a disconnected device. Lab 2 runs the device script on a test device.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can say what share of in-scope devices carry an active client, and for each pilot device whether it runs a current client with IPv4 preferred, DNS over HTTPS off, a healthy connection and, from ring 2, the hardening values, with evidence for each.
+
+**Audience.** Developers who build or maintain the kit, the endpoint engineer who owns the Intune app, and help desk leads. You don't need a tenant until Lab 2.
+
+## Start with Microsoft's documentation
+
+### What Microsoft gives you
+
+Learn's client page gives the prerequisites (a device joined, hybrid joined or registered in the tenant; registered devices carry only Private Access, in preview), the Intune Win32 app values, the DNS-over-HTTPS settings catalog profile, the four hardening registry values with their remediation scripts, and the advice to let users run unrestricted first and restrict non-privileged users later.[^gsa03-client] The guide's Step 3 quotes them and adds the Validate commands: the file version, the hardening values and `DisabledComponents` read on a device. For the fleet, `GET /networkAccess/reports/getDeviceUsageSummary` (beta) returns `totalDeviceCount`, `activeDeviceCount` and `inactiveDeviceCount` with `NetworkAccessPolicy.Read.All`, delegated only; Global Reader and Global Secure Access Log Reader are enough.[^gsa03-usage] The Windows client 1.8.239.0 or later uses Universal Continuous Access Evaluation tokens, which Chapter 05's compliant network check relies on.[^gsa03-limits]
+
+### What it leaves to you
+
+Each row is pinned by a test in the `Chapter 03` block of `tests/GlobalSecureAccess.Tests.ps1`.
+
+| Learn's material, as published | Why it matters | What the kit adds |
+|---|---|---|
+| Validate commands typed on one device | No record a reviewer can compare across devices | `tools/Get-GsaClientState.ps1`: the same reads, read-only, as one JSON client record per device |
+| A device count from the service | The count means nothing without the number that should be there | GSA-CLI-01 divides `activeDeviceCount` by the in-scope count from Intune (the settings file) against the target |
+| Hardening "after users run unrestricted" | A pilot with hardening hides the devices that need to disable the client | GSA-CLI-06 is information in the pilot and a check from ring 2 |
+| A minimum version only for Universal CAE | Older clients quietly lose a protection | GSA-CLI-02 compares each device with `minClientVersion` |
+| Exclusions (Hyper-V external switch, AVD multi-session) in prose | An exclusion without an owner never ends | GSA-CLI-07 checks each `client-exclusion` row in the exception register |
+
+## The code
+
+`Test-GsaClient` reads the collection's device usage summary, the settings (`inScopeDevices`, `minClientVersion`, `targets.clientCoverage`, `ring`) and the client records in `inputs/client-records.json`:
+
+| Check | What it looks for |
+|---|---|
+| GSA-CLI-01 | `activeDeviceCount` ÷ in-scope devices meets `targets.clientCoverage` (98% after ring 3, the guide's target) |
+| GSA-CLI-02 | The device's client is at least `minClientVersion` (1.8.239.0 in the lab, for Universal CAE) |
+| GSA-CLI-03 | `DisabledComponents` is `0x20`, IPv4 preferred, as Learn's install script sets it |
+| GSA-CLI-04 | DNS over HTTPS is `off` in Edge and Chrome |
+| GSA-CLI-05 | Health is `Connected` (read from the tray's health check by a person and passed to the script) |
+| GSA-CLI-06 | The four hardening values are 1, required from ring 2 |
+| GSA-CLI-07 | Each client exclusion has an owner, an approver and an expiry in the future |
+
+The device script reads the browsers' `DnsOverHttpsMode` policy value from the registry; the value the Intune setting writes (`off` for Disabled) is the Chromium policy's, not stated on the Learn page read (research gap 4).
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 reads fixtures; nothing signs in. The device script is read-only and wasn't run on a real device by the authors.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/global-secure-access`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: List what the client area reads
+Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+Get-GsaRequiredPermission -Area client | Format-Table
+
+# Step 2: Read the pilot tenant's device usage summary
+./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -Area client -OutputPath out/client -AsOf 2026-11-16T12:00:00Z
+Read-GsaJson -Path out/client/raw/device-usage.json
+
+# Step 3: Read the four pilot devices' client records
+(Read-GsaInputs -Path tests/fixtures/pilot/inputs).clients | ForEach-Object { [pscustomobject]@{ Device = $_.device; Version = $_.clientVersion; DisabledComponents = $_.ipv6DisabledComponents; Health = $_.health; Hardening = $_.hardening.Count } } | Format-Table
+
+# Step 4: Run the client checks
+./Invoke-GsaCheck.ps1 -Area client -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/client -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-client -AsOf 2026-11-16T12:00:00Z
+
+# Step 5: See the same devices against ring 2's rule
+$s = Read-GsaSettings -Path tests/fixtures/settings.lab.json
+$s.ring = 'ring2'
+Test-GsaClient -Collection (Read-GsaCollection -Path out/client) -Inputs (Read-GsaInputs -Path tests/fixtures/pilot/inputs) -Settings $s -AsOf 2026-11-16 | Where-Object Id -EQ 'GSA-CLI-06' | Format-Table Object, Status, Detail
+
+# Step 6: Read the device script's header
+Get-Content ./tools/Get-GsaClientState.ps1 -TotalCount 11
+
+# Step 7: Run this chapter's tests
+Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 03*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **List what the client area reads:**
+
+   ```powershell
+   Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+   Get-GsaRequiredPermission -Area client | Format-Table
+   ```
+
+   <!-- capture:begin 03-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-1.txt))](captures/03-1.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+2. **Read the pilot tenant's device usage summary:**
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -Area client -OutputPath out/client -AsOf 2026-11-16T12:00:00Z
+   Read-GsaJson -Path out/client/raw/device-usage.json
+   ```
+
+   <!-- capture:begin 03-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-2.txt))](captures/03-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtu… and what it printed"}
+
+   <!-- capture:end -->
+
+   18 devices, 15 active, 3 inactive.
+
+3. **Read the four pilot devices' client records,** as the device script wrote them:
+
+   ```powershell
+   (Read-GsaInputs -Path tests/fixtures/pilot/inputs).clients | ForEach-Object { [pscustomobject]@{ Device = $_.device; Version = $_.clientVersion; DisabledComponents = $_.ipv6DisabledComponents; Health = $_.health; Hardening = $_.hardening.Count } } | Format-Table
+   ```
+
+   <!-- capture:begin 03-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-3.txt))](captures/03-3.png){.lightbox fig-alt="Terminal window showing (Read-GsaInputs -Path tests/fixtures/pilot/inputs).clients | ForEach-Object {… and what it printed"}
+
+   <!-- capture:end -->
+
+4. **Run the client checks:**
+
+   ```powershell
+   ./Invoke-GsaCheck.ps1 -Area client -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/client -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-client -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 03-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-4.txt))](captures/03-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area client -SettingsPath tests/fixtures/settings.lab.… and what it printed"}
+
+   <!-- capture:end -->
+
+   Coverage is 83.3% against 98%. PC-PILOT-03 has an old client, IPv6 preferred and DNS over HTTPS left on in Chrome; PC-PILOT-04 is disconnected. Hardening is information only in the pilot.
+
+5. **See the same devices against ring 2's rule,** where hardening is required:
+
+   ```powershell
+   $s = Read-GsaSettings -Path tests/fixtures/settings.lab.json
+   $s.ring = 'ring2'
+   Test-GsaClient -Collection (Read-GsaCollection -Path out/client) -Inputs (Read-GsaInputs -Path tests/fixtures/pilot/inputs) -Settings $s -AsOf 2026-11-16 | Where-Object Id -EQ 'GSA-CLI-06' | Format-Table Object, Status, Detail
+   ```
+
+   <!-- capture:begin 03-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-5.txt))](captures/03-5.png){.lightbox fig-alt="Terminal window showing $s = Read-GsaSettings -Path tests/fixtures/settings.lab.json and what it printed"}
+
+   <!-- capture:end -->
+
+   Three devices fail: only PC-PILOT-01 has the remediation.
+
+6. **Read the device script's header.** It runs on a Windows device, not here, and only reads:
+
+   ```powershell
+   Get-Content ./tools/Get-GsaClientState.ps1 -TotalCount 11
+   ```
+
+   <!-- capture:begin 03-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-6.txt))](captures/03-6.png){.lightbox fig-alt="Terminal window showing Get-Content ./tools/Get-GsaClientState.ps1 -TotalCount 11 and what it printed"}
+
+   <!-- capture:end -->
+
+7. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 03*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 03-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-7.txt))](captures/03-7.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapt… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `FailedCount` 0. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 03-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-8.txt))](captures/03-8.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test device and tenant
+
+Use one Windows 11 test device joined to Microsoft Entra ID, enrolled in Intune, with the client installed from the guide's Step 3.2 app, in a test tenant. **The authors haven't run this lab.** Work in `examples/global-secure-access`. You'll replace: `<tenant-id>`, `<settings-file>` (your filled copy of `deploy/settings.template.json`, with `inScopeDevices` from Intune's count of in-scope Windows devices), `<inputs-folder>` and `<device-name>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: On the test device, as an administrator, read the client's state
+.\tools\Get-GsaClientState.ps1 -Health Connected | Out-File .\client-<device-name>.json -Encoding utf8
+
+# Step 2: Run the guide's own Validate reads beside it, as a cross-check
+(Get-Item "C:\Program Files\Global Secure Access Client\TrayApp\GlobalSecureAccessClient.exe").VersionInfo.FileVersion
+Get-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters" -Name DisabledComponents
+
+# Step 3: On the administrator workstation, add the record to your inputs
+$rec = Get-Content -Raw .\client-<device-name>.json | ConvertFrom-Json
+@{ devices = @($rec) } | ConvertTo-Json -Depth 5 | Set-Content <inputs-folder>/client-records.json
+
+# Step 4: Read the fleet's count and check
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccessPolicy.Read.All"
+./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -Area client -OutputPath out/client-test
+./Invoke-GsaCheck.ps1 -Area client -SettingsPath <settings-file> -CollectionPath out/client-test -InputsPath <inputs-folder> -OutputPath out/check-client-test
+
+# Step 5: Back it out
+Disconnect-MgGraph
+Remove-Item -Recurse -Force out/client-test, out/check-client-test
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **On the test device, as an administrator, read the client's state.** First open the tray's **Advanced diagnostics** > **Health check** and note whether it reads **Connected**:
+
+   ```powershell
+   .\tools\Get-GsaClientState.ps1 -Health Connected | Out-File .\client-<device-name>.json -Encoding utf8
+   ```
+
+2. **Run the guide's own Validate reads beside it, as a cross-check:**
+
+   ```powershell
+   (Get-Item "C:\Program Files\Global Secure Access Client\TrayApp\GlobalSecureAccessClient.exe").VersionInfo.FileVersion
+   Get-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters" -Name DisabledComponents
+   ```
+
+3. **On the administrator workstation, add the record to your inputs,** as the `devices` list of `<inputs-folder>/client-records.json`:
+
+   ```powershell
+   $rec = Get-Content -Raw .\client-<device-name>.json | ConvertFrom-Json
+   @{ devices = @($rec) } | ConvertTo-Json -Depth 5 | Set-Content <inputs-folder>/client-records.json
+   ```
+
+4. **Read the fleet's count and check:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccessPolicy.Read.All"
+   ./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -Area client -OutputPath out/client-test
+   ./Invoke-GsaCheck.ps1 -Area client -SettingsPath <settings-file> -CollectionPath out/client-test -InputsPath <inputs-folder> -OutputPath out/check-client-test
+   ```
+
+   The device should pass GSA-CLI-02 to -05. If `activeDeviceCount` is 0 with a connected client, record it: the guide's request omits the `trafficType` parameter that Learn's parameter table marks required (research gap 2).
+
+5. **Back it out.** Nothing changed; sign out and delete the outputs, or file them:
+
+   ```powershell
+   Disconnect-MgGraph
+   Remove-Item -Recurse -Force out/client-test, out/check-client-test
+   ```
+
+## Verified facts
+
+| Item | Value | GCC | Stage | Source |
+|---|---|---|---|---|
+| Device usage summary | `GET /networkAccess/reports/getDeviceUsageSummary(startDateTime,endDateTime,activityPivotDateTime)`; `NetworkAccessPolicy.Read.All`, delegated only; Global Reader, Global Secure Access Log Reader | Global service | Beta | [^gsa03-usage] |
+| `trafficType` | The parameter table marks it required (`microsoft365`, `private`, `internet`); the page's example and the guide omit it | — | Beta | [^gsa03-usage] |
+| Client prerequisites | Joined, hybrid joined or registered (Private Access only, preview); local administrator to install; no Hyper-V external switch; IPv4 only; no secure DNS | Available (product-wide) | GA; registered devices preview | [^gsa03-client] [^gsa03-limits] |
+| Hardening values | `HideSignOutButton`, `HideDisablePrivateAccessButton`, `HideDisableButton`, `RestrictNonPrivilegedUsers` under `HKLM:\SOFTWARE\Microsoft\Global Secure Access Client` | — | — | [^gsa03-client] |
+| Universal CAE | Windows client 1.8.239.0 or later | — | — | [^gsa03-limits] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Client coverage against Intune's in-scope count (Lab 1, steps 2 and 4; Lab 2, step 4) | SI-4 (system monitoring); CM-8 | KSI-MLA-EVC, KSI-CNA-RNT | The endpoint engineer; the ISSO keeps the run |
+| Each device's version, IPv4 preference, DNS-over-HTTPS policy and health (Lab 1, steps 3 and 4; Lab 2, steps 1 to 3) | CM-6 (configuration settings) | KSI-MLA-EVC | The endpoint engineer |
+| Users can't silently turn the client off, from ring 2 (Lab 1, step 5) | CM-7 (least functionality) | KSI-CNA-RNT | The endpoint engineer |
+| Client exclusions are owned and expire (Lab 1, step 4: GSA-CLI-07) | CM-6; CM-7 | KSI-MLA-EVC | The policy owner |
+
+The kit's records support these controls; the agency's assessor decides them. The guide's requirements table also names the device inventory expectations of OMB M-22-09, which Book 05 carries.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| Hardening in the pilot | Users who need to disable the client can't, and the pilot learns nothing | GSA-CLI-06 is information until ring 2 |
+| IPv6 preferred | Traffic the client doesn't tunnel bypasses it | GSA-CLI-03 |
+| DNS over HTTPS left on in a browser | The client can't see the names it needs | GSA-CLI-04 |
+| A device count read as coverage | 15 active devices looks fine until you know 18 should be | GSA-CLI-01 divides by Intune's count |
+| An old client | No Universal CAE; Chapter 05's protection is weaker on that device | GSA-CLI-02 |
+
+## Checklist
+
+- [ ] The in-scope device count in the settings file comes from Intune, with its date.
+- [ ] Each pilot device has a client record from the device script, and its health check export is kept.
+- [ ] Coverage meets the ring's target before the ring exits (Chapter 08).
+- [ ] Hardening is deployed from ring 2, not in the pilot.
+- [ ] Every client exclusion has an owner, an approver and a review date.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 02 — The Configuration Export and Logs First](02-configuration-export-and-logs-first.md) · [Workbook index](index.md) · [Next: Chapter 04 — Microsoft Traffic and Change Plans →](04-microsoft-traffic-and-change-plans.md)
+:::
+
+[^gsa03-client]: Microsoft Learn, "Install the Global Secure Access client for Windows," prerequisites, Intune packaging, client settings by remediation scripts, DNS over HTTPS, <https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client> (read November 11, 2026, for the guide).
+[^gsa03-usage]: Microsoft Learn, "reports: getDeviceUsageSummary" (Microsoft Graph beta), permissions, roles, function parameters and example, <https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa03-limits]: Microsoft Learn, "Known limitations for Global Secure Access," Windows client and Universal Continuous Access Evaluation, <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (read November 11, 2026, for the guide).

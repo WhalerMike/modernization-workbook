@@ -1,0 +1,132 @@
+{
+  "signin-share": [
+    {
+      "TimeGenerated": "2026-11-24T00:00:00Z",
+      "Total": 400,
+      "ThroughGSA": 391,
+      "PctThroughGSA": 97.8
+    },
+    {
+      "TimeGenerated": "2026-11-25T00:00:00Z",
+      "Total": 400,
+      "ThroughGSA": 391,
+      "PctThroughGSA": 97.8
+    },
+    {
+      "TimeGenerated": "2026-11-26T00:00:00Z",
+      "Total": 400,
+      "ThroughGSA": 391,
+      "PctThroughGSA": 97.8
+    },
+    {
+      "TimeGenerated": "2026-11-27T00:00:00Z",
+      "Total": 400,
+      "ThroughGSA": 391,
+      "PctThroughGSA": 97.8
+    },
+    {
+      "TimeGenerated": "2026-11-28T00:00:00Z",
+      "Total": 400,
+      "ThroughGSA": 391,
+      "PctThroughGSA": 97.8
+    },
+    {
+      "TimeGenerated": "2026-11-29T00:00:00Z",
+      "Total": 400,
+      "ThroughGSA": 391,
+      "PctThroughGSA": 97.8
+    },
+    {
+      "TimeGenerated": "2026-11-30T00:00:00Z",
+      "Total": 400,
+      "ThroughGSA": 391,
+      "PctThroughGSA": 97.8
+    }
+  ],
+  "cn-report-only": [
+    {
+      "Result": "success",
+      "Through": "true",
+      "count_": 2140
+    },
+    {
+      "Result": "failure",
+      "Through": "false",
+      "count_": 9
+    }
+  ],
+  "trv2-blocks": [
+    {
+      "AppDisplayName": "Office 365 Exchange Online",
+      "ResourceDisplayName": "Office 365 Exchange Online",
+      "ResourceTenantId": "66666666-6666-4666-8666-666666666699",
+      "Blocked": 7
+    }
+  ],
+  "ia-allow-deny": [
+    {
+      "UserPrincipalName": "pilot01@contoso.example",
+      "Allowed": 1204,
+      "Denied": 12
+    },
+    {
+      "UserPrincipalName": "pilot02@contoso.example",
+      "Allowed": 988,
+      "Denied": 3
+    }
+  ],
+  "tls-outcomes": [
+    {
+      "TlsStatus": "Success",
+      "TlsAction": "Intercepted",
+      "Count": 9810,
+      "Share": 98.1
+    },
+    {
+      "TlsStatus": "Success",
+      "TlsAction": "Bypassed",
+      "Count": 140,
+      "Share": 1.4
+    },
+    {
+      "TlsStatus": "Failure",
+      "TlsAction": "Intercepted",
+      "Count": 50,
+      "Share": 0.5
+    }
+  ],
+  "private-sessions": [
+    {
+      "DestinationFqdn": "app01.contoso.example",
+      "UserPrincipalName": "pilot01@contoso.example",
+      "Sessions": 41
+    },
+    {
+      "DestinationFqdn": "admin01.contoso.example",
+      "UserPrincipalName": "admin01@contoso.example",
+      "Sessions": 6
+    }
+  ],
+  "freshness": [
+    {
+      "Table": "NetworkAccessTraffic",
+      "Rows": 52011,
+      "Last": "2026-11-30T11:50:00Z"
+    },
+    {
+      "Table": "NetworkAccessConnectionEvents",
+      "Rows": 312,
+      "Last": "2026-11-30T11:50:00Z"
+    },
+    {
+      "Table": "NetworkAccessAlerts",
+      "Rows": 2,
+      "Last": "2026-11-30T11:50:00Z"
+    },
+    {
+      "Table": "RemoteNetworkHealthLogs",
+      "Rows": 96,
+      "Last": "2026-11-30T11:45:00Z"
+    }
+  ]
+}

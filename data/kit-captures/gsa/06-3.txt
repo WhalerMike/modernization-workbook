@@ -1,0 +1,8 @@
+PS> $c = Read-GsaCollection -Path out/pilot
+PS> $c['connector-groups'].value | ForEach-Object { $g = $_; $c['connector-group-members'][$g.id].value | ForEach-Object { [pscustomobject]@{ Group = $g.name; Connector = $_.machineName; Status = $_.status; Version = $_.version } } } | Format-Table
+Group         Connector             Status   Version
+-----         ---------             ------   -------
+CG-HQ         con01.contoso.example active   1.5.4522.0
+CG-HQ         con02.contoso.example active   1.5.4522.0
+CG-Cloud-East con11.contoso.example active   1.5.3437.0
+CG-Cloud-East con12.contoso.example inactive 1.5.4522.0

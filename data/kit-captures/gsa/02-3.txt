@@ -1,0 +1,2 @@
+PS> (Test-GsaRunFolder -Path out/pilot).Detail
+18 files match the manifest

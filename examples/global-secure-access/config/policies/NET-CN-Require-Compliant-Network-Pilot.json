@@ -1,0 +1,10 @@
+{
+  "displayName": "NET-CN-Require-Compliant-Network-Pilot",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": { "includeGroups": [ "<pilot-group-id>" ], "excludeGroups": [ "<emergency-group-id>" ] },
+    "applications": { "includeApplications": [ "All" ], "excludeApplications": [ "<intune-enrollment-app-id>", "<intune-app-id>" ] },
+    "locations": { "includeLocations": [ "All" ], "excludeLocations": [ "<compliant-location-id>" ] }
+  },
+  "grantControls": { "operator": "OR", "builtInControls": [ "block" ] }
+}
