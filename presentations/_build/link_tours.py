@@ -170,6 +170,9 @@ for wb, rows in tours.items():
                      f"[Narrated]({deck(f'{rel}/{vid}.pptx', top)}) |")
     block = "\n".join(lines)
     k = md.find("\n## ", md.index("## Chapters") + 5)
+    r = md.find("\n<!-- revisions:start", md.index("## Chapters") + 5)
+    if r != -1 and (k == -1 or r < k):  # never inside the generated revision history
+        k = r
     md = insert_marked(md, k + 1, block)
     write(idx, md)
     print(f"{wb}: {len(rows)} tours linked")
