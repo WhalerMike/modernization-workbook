@@ -68,6 +68,14 @@ Built-in definitions and the FedRAMP initiatives change version: look them up wh
 
 **Watch.** The guide's narrated deck covers this module in its last three slides, *policy holds it; exemptions expire*, *owners, cadence, metrics and requirements* and *dangers, open questions and what comes next*. [▶ Watch the guide's video](../../presentations/watch.html?v=Guide_Azure_Security_Narrated), or read  in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 
+## Exercise: Lab 1, fixtures, no subscription {#azs-m5-lab-1}
+
+Run the Lab 1 of this chapter of [*Building Azure Security*](../../project-plans/developer-workbooks/azure-security/index.md), in order. Each is a list of exact commands, run from `examples/azure-security` in PowerShell 7 with Pester 5, against a fictional estate with no subscription, with the output each step prints. They aren't repeated here.
+
+- [Chapter 08, Policy, drift and evidence: Lab 1](../../project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md#lab-1-fixtures-no-subscription): the initiative and its exemptions, two weeks compared, the metrics and the evidence records.
+
+Then come back for the Lab 2, which runs the guide's own checks in a test subscription; each chapter's Lab 2 runs the kit there too.
+
 ## Exercise: Lab 2, a test subscription {#azs-m5-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

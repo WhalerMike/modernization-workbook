@@ -1,0 +1,30 @@
+{
+  "_comment": "The production stage of the fictional Contoso estate. Tests copy this file and point outputRoot and evidencePath at a temporary folder.",
+  "environment": "production",
+  "cloud": "AzureCloud",
+  "tenantId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "tenantRootGroupId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "managementGroup": "contoso",
+  "workspaceId": "/subscriptions/22222222-2222-4222-8222-222222222222/resourceGroups/rg-management/providers/Microsoft.OperationalInsights/workspaces/law-contoso-platform",
+  "connectivitySubscriptionId": "11111111-1111-4111-8111-111111111111",
+  "hubVnetId": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/virtualNetworks/vnet-hub",
+  "workloadSubscriptionIds": [
+    "33333333-3333-4333-8333-333333333333",
+    "44444444-4444-4444-8444-444444444444"
+  ],
+  "requiredAssignments": [
+    "azs-fedramp-mod",
+    "azs-mcsb"
+  ],
+  "securityInitiative": {
+    "assignmentName": "azs-security",
+    "definitionName": "azs-security-set",
+    "identityRole": "Network Contributor",
+    "enforceBy": "2026-11-01"
+  },
+  "location": "eastus2",
+  "outputRoot": "C:/azs/production/runs",
+  "evidencePath": "C:/azs/production/evidence",
+  "testEvidencePath": "C:/azs/test/evidence",
+  "changeRecord": "CHG0012399"
+}

@@ -122,6 +122,23 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 : Building Provider Notices: labs by chapter {.striped .hover}
 
+## Building Azure Security {#azs}
+
+[The workbook](../project-plans/developer-workbooks/azure-security/index.md) · [its implementation guide](../books/guides/azure-security-implementation.md) · [its learning path](azure-security/index.md) · [the code: azure-security-code.zip](../../downloads/azure-security-code.zip)
+
+| Chapter | Lab 1, no tenant | You need | Lab 2 runs in | Module |
+|---|---|---|---|---|
+| [01 The Landing-Zone Baseline](../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md) | [Lab 1](../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md#lab-1-fixtures-no-subscription) · [commands](../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test subscription](../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md#lab-2-a-test-subscription) · [commands](../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md#lab-2-commands) | [Module 1](azure-security/01-the-baseline-and-the-exposure-register.md) |
+| [02 The Public Exposure Register](../project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md) | [Lab 1](../project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md#lab-1-fixtures-no-subscription) · [commands](../project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test subscription](../project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md#lab-2-a-test-subscription) · [commands](../project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md#lab-2-commands) | [Module 1](azure-security/01-the-baseline-and-the-exposure-register.md) |
+| [03 DDoS Protection](../project-plans/developer-workbooks/azure-security/03-ddos-protection.md) | [Lab 1](../project-plans/developer-workbooks/azure-security/03-ddos-protection.md#lab-1-fixtures-no-subscription) · [commands](../project-plans/developer-workbooks/azure-security/03-ddos-protection.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test subscription](../project-plans/developer-workbooks/azure-security/03-ddos-protection.md#lab-2-a-test-subscription) · [commands](../project-plans/developer-workbooks/azure-security/03-ddos-protection.md#lab-2-commands) | [Module 2](azure-security/02-ddos-protection-and-the-waf.md) |
+| [04 The Web Application Firewall](../project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md) | [Lab 1](../project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md#lab-1-fixtures-no-subscription) · [commands](../project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test subscription](../project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md#lab-2-a-test-subscription) · [commands](../project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md#lab-2-commands) | [Module 2](azure-security/02-ddos-protection-and-the-waf.md) |
+| [05 Front Door, Application Gateway and the Origin](../project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md) | [Lab 1](../project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md#lab-1-fixtures-no-subscription) · [commands](../project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test subscription](../project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md#lab-2-a-test-subscription) · [commands](../project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md#lab-2-commands) | [Module 3](azure-security/03-the-edge-and-the-egress.md) |
+| [06 Azure Firewall and Egress](../project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md) | [Lab 1](../project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md#lab-1-fixtures-no-subscription) · [commands](../project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test subscription](../project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md#lab-2-a-test-subscription) · [commands](../project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md#lab-2-commands) | [Module 3](azure-security/03-the-edge-and-the-egress.md) |
+| [07 Private Link, DNS and Key Vault](../project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.md) | [Lab 1](../project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.md#lab-1-fixtures-no-subscription) · [commands](../project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test subscription](../project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.md#lab-2-a-test-subscription) · [commands](../project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.md#lab-2-commands) | [Module 4](azure-security/04-private-link-dns-and-key-vault.md) |
+| [08 Policy, Drift and Evidence](../project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md) | [Lab 1](../project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md#lab-1-fixtures-no-subscription) · [commands](../project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test subscription](../project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md#lab-2-a-test-subscription) · [commands](../project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md#lab-2-commands) | [Module 5](azure-security/05-policy-drift-and-evidence.md) |
+
+: Building Azure Security: labs by chapter {.striped .hover}
+
 ## Microsoft Automation learning path {#ms-automation}
 
 [The learning path](index.md#microsoft-automation-learning-path) · [the code: microsoft-automation-code.zip](../../downloads/microsoft-automation-code.zip)
@@ -180,20 +197,6 @@ The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixt
 | [Module 6: Rings, rollback and the evidence package](global-secure-access/06-rings-rollback-and-the-evidence-package.md) | [Lab 2](global-secure-access/06-rings-rollback-and-the-evidence-package.md#gsa-m6-lab-2) |
 
 : Global Secure Access: labs by module {.striped .hover}
-
-## The Azure Security Engineering learning path {#azs}
-
-[The learning path](azure-security/index.md) · [its implementation guide](../books/guides/azure-security-implementation.md). The guide has no kit or developer workbook yet, so there is no Lab 1: each module's Lab 2 runs the guide's own checks in a test subscription.
-
-| Module | Lab 1, no tenant | Lab 2 |
-|---|---|---|
-| [Module 1: The baseline and the exposure register](azure-security/01-the-baseline-and-the-exposure-register.md) | — | [Lab 2](azure-security/01-the-baseline-and-the-exposure-register.md#azs-m1-lab-2) |
-| [Module 2: DDoS protection and the web application firewall](azure-security/02-ddos-protection-and-the-waf.md) | — | [Lab 2](azure-security/02-ddos-protection-and-the-waf.md#azs-m2-lab-2) |
-| [Module 3: The edge and the egress](azure-security/03-the-edge-and-the-egress.md) | — | [Lab 2](azure-security/03-the-edge-and-the-egress.md#azs-m3-lab-2) |
-| [Module 4: Private Link, DNS and Key Vault](azure-security/04-private-link-dns-and-key-vault.md) | — | [Lab 2](azure-security/04-private-link-dns-and-key-vault.md#azs-m4-lab-2) |
-| [Module 5: Policy, drift and evidence](azure-security/05-policy-drift-and-evidence.md) | — | [Lab 2](azure-security/05-policy-drift-and-evidence.md#azs-m5-lab-2) |
-
-: Azure Security Engineering: labs by module {.striped .hover}
 
 ## What Lab 2 needs {#lab-2-environments}
 

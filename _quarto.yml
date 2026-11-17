@@ -196,6 +196,8 @@ website:
             text: "Building HR-Driven Identity"
           - href: docs/project-plans/developer-workbooks/provider-notices/index.md
             text: "Building Provider Notices"
+          - href: docs/project-plans/developer-workbooks/azure-security/index.md
+            text: "Building Azure Security"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -413,6 +415,10 @@ website:
               href: docs/project-plans/developer-workbooks/provider-notices/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/provider-notices/*-*.md"
+            - section: "Building Azure Security"
+              href: docs/project-plans/developer-workbooks/azure-security/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/azure-security/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

@@ -1,0 +1,87 @@
+{
+  "count": 4,
+  "data": [
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/routeTables/rt-payroll",
+      "name": "rt-payroll",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333",
+      "routes": [
+        {
+          "name": "default",
+          "properties": {
+            "addressPrefix": "0.0.0.0/0",
+            "nextHopType": "VirtualAppliance",
+            "nextHopIpAddress": "10.0.0.4"
+          }
+        }
+      ],
+      "subnets": [
+        {
+          "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/virtualNetworks/vnet-payroll/subnets/snet-app"
+        }
+      ]
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/routeTables/rt-jump",
+      "name": "rt-jump",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444",
+      "routes": [
+        {
+          "name": "default",
+          "properties": {
+            "addressPrefix": "0.0.0.0/0",
+            "nextHopType": "VirtualAppliance",
+            "nextHopIpAddress": "10.9.9.9"
+          }
+        }
+      ],
+      "subnets": [
+        {
+          "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/virtualNetworks/vnet-portal/subnets/snet-jump"
+        }
+      ]
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/routeTables/rt-portal",
+      "name": "rt-portal",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444",
+      "routes": [
+        {
+          "name": "default",
+          "properties": {
+            "addressPrefix": "0.0.0.0/0",
+            "nextHopType": "VirtualAppliance",
+            "nextHopIpAddress": "10.0.0.4"
+          }
+        }
+      ],
+      "subnets": [
+        {
+          "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/virtualNetworks/vnet-portal/subnets/snet-web"
+        }
+      ]
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/routeTables/rt-portal-pe",
+      "name": "rt-portal-pe",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444",
+      "routes": [
+        {
+          "name": "default",
+          "properties": {
+            "addressPrefix": "0.0.0.0/0",
+            "nextHopType": "VirtualAppliance",
+            "nextHopIpAddress": "10.0.0.4"
+          }
+        }
+      ],
+      "subnets": [
+        {
+          "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/virtualNetworks/vnet-portal/subnets/snet-pe"
+        }
+      ]
+    }
+  ],
+  "skip_token": null,
+  "total_count": 4
+}

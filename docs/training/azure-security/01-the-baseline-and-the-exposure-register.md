@@ -77,6 +77,15 @@ Read the guide's [commercial Azure availability](../../books/guides/azure-securi
 
 **Watch.** The guide's narrated deck covers this module in its first eight slides, from *Azure security, engineered one service at a time* to *Steps 1 and 2: baseline in audit, then inventory*. [▶ Watch the guide's video](../../presentations/watch.html?v=Guide_Azure_Security_Narrated), or read  in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 
+## Exercise: Lab 1, fixtures, no subscription {#azs-m1-lab-1}
+
+Run the Lab 1 of these chapters of [*Building Azure Security*](../../project-plans/developer-workbooks/azure-security/index.md), in order. Each is a list of exact commands, run from `examples/azure-security` in PowerShell 7 with Pester 5, against a fictional estate with no subscription, with the output each step prints. They aren't repeated here.
+
+- [Chapter 01, The landing-zone baseline: Lab 1](../../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md#lab-1-fixtures-no-subscription): the baseline check: hierarchy settings, the initiatives in audit, platform logs and Defender plans.
+- [Chapter 02, The public exposure register: Lab 1](../../project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md#lab-1-fixtures-no-subscription): the register, its owners, and what changed a week later.
+
+Then come back for the Lab 2, which runs the guide's own checks in a test subscription; each chapter's Lab 2 runs the kit there too.
+
 ## Exercise: Lab 2, a test subscription {#azs-m1-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

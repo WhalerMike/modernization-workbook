@@ -1,0 +1,5 @@
+PS> ./Invoke-AzsCheck.ps1 -Area waf -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/waf
+Read: 2 WAF policies, 3 internet-facing endpoints. Behind a WAF in Prevention: 1 of 3
+Findings: 3 Finding, 3 Warn, 0 Info
+Plan: plan-prevention.txt holds the reviewed commands to switch to Prevention; none was run.
+Written to out/week1/waf (6 calls, every one a read; manifest.json lists each file's SHA-256)

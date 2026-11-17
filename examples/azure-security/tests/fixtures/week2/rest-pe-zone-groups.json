@@ -1,0 +1,41 @@
+{
+  "/subscriptions/33333333-3333-4333-8333-333333333333/resourcegroups/rg-payroll/providers/microsoft.network/privateendpoints/pe-kv-payroll": {
+    "value": [
+      {
+        "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.Network/privateEndpoints/pe-kv-payroll/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "c",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "/subscriptions/33333333-3333-4333-8333-333333333333/resourcegroups/rg-payroll/providers/microsoft.network/privateendpoints/pe-st-payroll-blob": {
+    "value": [
+      {
+        "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.Network/privateEndpoints/pe-st-payroll-blob/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "c",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "/subscriptions/33333333-3333-4333-8333-333333333333/resourcegroups/rg-payroll/providers/microsoft.network/privateendpoints/pe-st-payroll-queue": {
+    "value": []
+  }
+}

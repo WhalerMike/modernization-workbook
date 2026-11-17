@@ -1,0 +1,410 @@
+---
+title: "Chapter 08 — Policy, Drift and Evidence"
+description: "The guide's Steps 9 and 10 as code: the security initiative's assignment and its enforce-by date, assignments that exclude scopes with notScopes, every exemption's expiry (none, expired and no longer honored, or due soon), and compliance by assignment from Learn's own Resource Graph sample; then two weekly runs compared by finding fingerprint (new, fixed, still open), the guide's metrics computed where the kit can and marked where they come from exercise records, and every run recorded as hashed, chained evidence with its NIST SP 800-53 controls and FedRAMP 20x KSIs. Labs against a fictional estate a week apart and a test subscription."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-azure-security
+part: How
+series-order: 8
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 08 — Policy, Drift and Evidence
+
+*An exemption without an expiry is a decision nobody has to make again. A finding without last week's run beside it is a number nobody can explain.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 9, policy and drift](../../../books/guides/azure-security-implementation.md#step-9-policy-and-drift) and [Step 10, operations and evidence](../../../books/guides/azure-security-implementation.md#step-10-operations-and-evidence). You start with Learn's policy samples for Resource Graph: compliance by assignment, exemptions per assignment and exemptions due to expire. Then you read the kit's policy check, its comparison of two runs, its metrics and its evidence records. Lab 1 runs every area on both weeks of the Contoso estate, compares them, computes the metrics and records the evidence. Lab 2 does it for a test management group.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can check the security initiative and its exemptions every week, say what changed since last week in every area, report the guide's metrics with the numbers behind them, and hand the ISSO an evidence folder whose every file is hashed, whose records form a chain, and whose records name the controls and KSIs each run supports.
+
+**Audience.** Policy owners and ISSOs, who own the initiative, the exemptions and the evidence; platform owners, who run the weekly job; the developers who keep the comparison and the records honest. [Book 13, Chapter 02](../../../books/b13-governance/02-drift-is-the-primary-threat.md) says why drift is the threat; [Book 11, Chapter 10](../../../books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain) holds the closure chain the findings enter.
+
+## Start with Microsoft Learn
+
+### What Learn gives you
+
+Learn's Resource Graph samples for Azure Policy read assignments, exemptions and compliance states from the `PolicyResources` table; "Compliance by policy assignment" gives each assignment's state, percentage and counts; "Policy exemptions that expire within 90 days" lists the ones due.[^azs08-arg-policy] An exemption is *Mitigated* or *Waiver*, can carry `expiresOn`, and an expired one is kept for the record but no longer honored.[^azs08-exemption] `DoNotEnforce` evaluates without enforcing.[^azs08-enforcement] The guide's Step 9 assigns the initiative in `DoNotEnforce`, switches it to `Default` after the compliance review, and exports compliance each month.[^azs08-guide]
+
+### What it leaves to you
+
+| What Learn and the guide give | Why it matters | What the kit adds (pinned by a test) |
+|---|---|---|
+| Exemptions due within 90 days | An exemption with no expiry, or already expired, isn't in that list | AZS-POL-03 (no expiry), AZS-POL-04 (expired), AZS-POL-05 (due within 30 days, `config/baseline.json`) (`Policy (Step 9)` tests) |
+| "Switch to `Default` after the review" | An assignment left in audit for months is a gate nobody closed | AZS-POL-02 after the settings' enforce-by date |
+| "No `notScopes` for convenience" | A sentence | AZS-POL-06 for every assignment that excludes scopes |
+| The monthly compliance export | One month alone can't show whether anything got better | Two runs compared by fingerprint, per area (`Drift` test) |
+| The guide's metrics table | Each metric needs numbers from a different step | `Get-AzsMetric` computes the eight it can from one run, with the numbers behind each, and marks the four that come from exercise records or the workspace (`Metrics` test) |
+| The evidence catalog | A folder of exports doesn't show nothing changed after it was filed, or which control a file supports | Each run recorded with every file's hash, the hash of the record before it, and its controls and KSIs (`Evidence` tests) |
+
+**Why not the drift pipeline.** The workbook's [drift pipeline](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline) compares validation kit runs, and refuses any run that isn't one (it checks `ValidationManifest.json`). This kit's runs have their own manifest, so it compares by its own finding fingerprint, as the provider notices and Zero Trust Assessment results kits do. The record format follows the provider notices kit's.
+
+## The code
+
+### The `policy` area
+
+`Get-AzsPolicyCheck` reads the assignments, the exemptions and Learn's compliance-by-assignment query, as published.
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| AZS-POL-01 | Finding | The security initiative isn't assigned at the intermediate root | *Design guidance* (guide Step 9) |
+| AZS-POL-02 | Warn | Still in `DoNotEnforce` after the settings' enforce-by date | *Design guidance* |
+| AZS-POL-03 | Finding | An exemption with no expiry | *Design guidance*; Learn[^azs08-exemption] |
+| AZS-POL-04 | Finding | An exemption past its expiry: kept, no longer honored | Learn[^azs08-exemption] |
+| AZS-POL-05 | Warn | An exemption due within the warning window | *Design guidance* |
+| AZS-POL-06 | Finding | An assignment with `notScopes` | *Design guidance* (guide Step 9) |
+
+### The comparison
+
+`Invoke-AzsCompare.ps1` takes two runs (two `-Area all` folders, or two folders of one area) and, per area, compares Finding and Warn rows by fingerprint: the rule and the lower-cased resource ID. A fingerprint only in the later run is new; only in the earlier, fixed; in both, still open. It writes `drift.json` and `drift.md`.
+
+### The metrics
+
+`Invoke-AzsMetrics.ps1` reads each area's `summary.json` from one run and writes the guide's twelve metrics. Eight come from the kit: exposure ownership, DDoS coverage, WAF prevention coverage, origin lock-down (by configuration), egress inspection (declared routes), vault posture, policy compliance (the security initiative's) and exemption hygiene. Private PaaS reports the count of public resources, because Resource Graph's list has no denominator. Detection to page, exercise currency and WAF effectiveness come from the exercise records and the workspace, and say so.[^azs08-guide]
+
+### The evidence
+
+`Invoke-AzsEvidence.ps1` records any run folder: an area's check, an `-Area all` run, a comparison, the metrics, or a runbook step. It checks the folder against its manifest, copies it under `runs/`, and writes a record with the time, environment, mode, tenant, command and result; the steps the run covers, from `config/requirements.json`, each with its SP 800-53 controls and KSIs; every file's SHA-256; and the SHA-256 of the record before it. It appends `records.csv` and rewrites `SHA256SUMS`. With `-Check` it re-hashes everything and walks the chain; with `-Stage`, it also requires a passing record from a live run for every step the stage needs. A fixture run is recorded as mode `Fixture` and never counts toward a stage: lab evidence can't promote anything.
+
+Every record says what it supports, not what it proves: "Supports the controls listed; the agency's assessor decides whether a control is satisfied." The step-to-control and control-to-KSI pairs are the guide's requirements table; the evidence, plan and rollback steps reuse the provider notices kit's verified pairs.
+
+Findings from a Zero Trust assessment enter [Book 11's closure chain](../../../books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain); the [Zero Trust Assessment results kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results) files them under its *DDoS, WAF and public exposure* family, whose ready-for-closure evidence is this kit's register, DDoS and WAF runs.
+
+Two tests cover the policy check, one the comparison, one the metrics, three the evidence and three the run folders.
+
+::: {.callout-important}
+## Illustrative code
+The labs run the kit against a fictional estate served from files. Review the code, and run Lab 2 in a test subscription, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no subscription
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/azure-security`. Between the two weeks, Contoso's platform team switched the WAF to Prevention, moved the firewall policy to Deny, routed `snet-web` to the firewall, added the header to `origin-west`, turned on purge protection on `kv-portal`, enforced the security initiative and required authorization for new management groups; a new public IP appeared and the orphan went away.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run every area on the first week
+./Invoke-AzsCheck.ps1 -Area all -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1 -DefenderExposurePath tests/fixtures/defender-exposure.csv
+
+# Step 2: Read the policy findings
+Import-Csv out/week1/policy/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+
+# Step 3: Run every area on the second week, with the first week's register
+./Invoke-AzsCheck.ps1 -Area all -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week2 -AsOf 2026-11-16T12:00:00Z -OutputPath out/week2 -PreviousRegisterPath out/week1/exposure/register.json -DefenderExposurePath tests/fixtures/defender-exposure.csv
+
+# Step 4: Compare the two weeks
+./Invoke-AzsCompare.ps1 -Before out/week1 -After out/week2 -OutputPath out/drift -AsOf 2026-11-16T12:00:00Z
+Get-Content out/drift/drift.md | Where-Object { $_ -like '- *' }
+
+# Step 5: Compute the metrics for the second week
+./Invoke-AzsMetrics.ps1 -RunPath out/week2 -OutputPath out/metrics -AsOf 2026-11-16T12:00:00Z
+
+# Step 6: Record the run, the comparison and the metrics as evidence, and check the folder
+./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/week2 -AsOf 2026-11-16T12:00:00Z
+./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/drift -AsOf 2026-11-16T12:00:00Z
+./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/metrics -AsOf 2026-11-16T12:00:00Z
+./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -Check
+
+# Step 7: See that fixture evidence can't pass a stage
+Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+Test-AzsEvidence -EvidencePath out/evidence -Stage test | Where-Object Check -like 'STEP-*' | ForEach-Object { "{0,-14} {1}  {2}" -f $_.Check, $_.Status, $_.Detail }
+
+# Step 8: Run this chapter's tests
+Invoke-Pester -Path tests/DriftEvidence.Tests.ps1, tests/Areas.Tests.ps1 -FullNameFilter 'Policy*', 'Run folders*', 'Drift*', 'Metrics*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run every area on the first week:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area all -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1 -DefenderExposurePath tests/fixtures/defender-exposure.csv
+   ```
+
+   <!-- capture:begin 08-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/08-1.txt))](captures/08-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCheck.ps1 -Area all -SettingsPath tests/fixtures/settings.lab.jso… and what it printed"}
+
+   <!-- capture:end -->
+
+2. **Read the policy findings:**
+
+   ```powershell
+   Import-Csv out/week1/policy/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+   ```
+
+   <!-- capture:begin 08-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/08-2.txt))](captures/08-2.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/policy/findings.csv | ForEach-Object { '{0} {1,-7} {2}: … and what it printed"}
+
+   <!-- capture:end -->
+
+   An assignment with `notScopes`; one exemption expired on October 31; one with no expiry; one due within 30 days; and the security initiative still in audit after its November 1 enforce-by date.
+
+3. **Run every area on the second week, with the first week's register:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area all -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week2 -AsOf 2026-11-16T12:00:00Z -OutputPath out/week2 -PreviousRegisterPath out/week1/exposure/register.json -DefenderExposurePath tests/fixtures/defender-exposure.csv
+   ```
+
+   <!-- capture:begin 08-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/08-3.txt))](captures/08-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCheck.ps1 -Area all -SettingsPath tests/fixtures/settings.lab.jso… and what it printed"}
+
+   <!-- capture:end -->
+
+4. **Compare the two weeks:**
+
+   ```powershell
+   ./Invoke-AzsCompare.ps1 -Before out/week1 -After out/week2 -OutputPath out/drift -AsOf 2026-11-16T12:00:00Z
+   Get-Content out/drift/drift.md | Where-Object { $_ -like '- *' }
+   ```
+
+   <!-- capture:begin 08-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/08-4.txt))](captures/08-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCompare.ps1 -Before out/week1 -After out/week2 -OutputPath out/dr… and what it printed"}
+
+   <!-- capture:end -->
+
+   Thirteen fixed, four new, all four from the two public IPs that changed.
+
+5. **Compute the metrics for the second week:**
+
+   ```powershell
+   ./Invoke-AzsMetrics.ps1 -RunPath out/week2 -OutputPath out/metrics -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 08-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/08-5.txt))](captures/08-5.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsMetrics.ps1 -RunPath out/week2 -OutputPath out/metrics -AsOf 2026… and what it printed"}
+
+   <!-- capture:end -->
+
+6. **Record the run, the comparison and the metrics as evidence, and check the folder:**
+
+   ```powershell
+   ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/week2 -AsOf 2026-11-16T12:00:00Z
+   ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/drift -AsOf 2026-11-16T12:00:00Z
+   ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/metrics -AsOf 2026-11-16T12:00:00Z
+   ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -Check
+   ```
+
+   <!-- capture:begin 08-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/08-6.txt))](captures/08-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/week2 -AsOf … and what it printed"}
+
+   <!-- capture:end -->
+
+   The first record covers all nine area steps and lists sixteen controls; the chain of three records is unbroken.
+
+7. **See that fixture evidence can't pass a stage:**
+
+   ```powershell
+   Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+   Test-AzsEvidence -EvidencePath out/evidence -Stage test | Where-Object Check -like 'STEP-*' | ForEach-Object { "{0,-14} {1}  {2}" -f $_.Check, $_.Status, $_.Detail }
+   ```
+
+   <!-- capture:begin 08-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/08-7.txt))](captures/08-7.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+   Every step fails: "no passing live record".
+
+8. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/DriftEvidence.Tests.ps1, tests/Areas.Tests.ps1 -FullNameFilter 'Policy*', 'Run folders*', 'Drift*', 'Metrics*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 08-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/08-8.txt))](captures/08-8.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/DriftEvidence.Tests.ps1, tests/Areas.Tests.ps1 -Ful… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** two weeks of findings, what changed between them, the metrics with their numbers, and three chained evidence records that a stage check still refuses.
+
+When you're done, delete `out`:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 08-9 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/08-9.txt))](captures/08-9.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test subscription
+
+Use a test tenant with a test management group and subscription in commercial Azure, never production, with at least one policy assignment and one exemption at the test management group. You need Reader on the test management group, Azure CLI with the `resource-graph` extension, and PowerShell 7. Work in `examples/azure-security`. The authors haven't run this lab.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in to commercial Azure
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az extension add --name resource-graph
+
+# Step 2: Write the test settings file
+$s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+$s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+$s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+$s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+$s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+$s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+$s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+$s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+
+# Step 3: Run every area twice, a few minutes apart, and compare
+./Invoke-AzsCheck.ps1 -Area all -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/run-1 -AllowUnverified
+./Invoke-AzsCheck.ps1 -Area all -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/run-2 -PreviousRegisterPath <output-folder>/run-1/exposure/register.json -AllowUnverified
+./Invoke-AzsCompare.ps1 -Before <output-folder>/run-1 -After <output-folder>/run-2 -OutputPath <output-folder>/drift
+
+# Step 4: Compare the policy rows with the guide's export and Learn's list
+az policy state summarize --management-group <test-mg-id> -o json
+az policy exemption list --management-group <test-mg-id> --filter "atScopeAndBelow()" -o table
+
+# Step 5: Record the second run and check it against the test stage
+./Invoke-AzsEvidence.ps1 -EvidencePath <output-folder>/evidence -RunPath <output-folder>/run-2
+./Invoke-AzsEvidence.ps1 -EvidencePath <output-folder>/evidence -Check
+
+# Step 6: Back it out
+Remove-Item -Recurse -Force <output-folder>/run-1, <output-folder>/run-2, <output-folder>/drift, <output-folder>/evidence
+az logout
+```
+
+:::
+
+<!-- labs:end -->
+
+You'll replace the values of [Chapter 01, Lab 2](01-the-landing-zone-baseline.md#lab-2-a-test-subscription).
+
+1. **Sign in to commercial Azure:**
+
+   ```powershell
+   az cloud set --name AzureCloud
+   az login --tenant <tenant-id>
+   az extension add --name resource-graph
+   ```
+
+2. **Write the test settings file:**
+
+   ```powershell
+   $s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+   $s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+   $s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+   $s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+   $s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+   $s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+   $s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+   $s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+   ```
+
+3. **Run every area twice, a few minutes apart, and compare:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area all -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/run-1 -AllowUnverified
+   ./Invoke-AzsCheck.ps1 -Area all -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/run-2 -PreviousRegisterPath <output-folder>/run-1/exposure/register.json -AllowUnverified
+   ./Invoke-AzsCompare.ps1 -Before <output-folder>/run-1 -After <output-folder>/run-2 -OutputPath <output-folder>/drift
+   ```
+
+   With nothing changed between them, every area should show no new and no fixed rows.
+
+4. **Compare the policy rows with the guide's export and Learn's list:**
+
+   ```powershell
+   az policy state summarize --management-group <test-mg-id> -o json
+   az policy exemption list --management-group <test-mg-id> --filter "atScopeAndBelow()" -o table
+   ```
+
+   Every exemption in the second list should be a row of kind `exemption` in `<output-folder>/run-2/policy/policy.json`, in the state the kit gave it.
+
+5. **Record the second run and check it against the test stage:**
+
+   ```powershell
+   ./Invoke-AzsEvidence.ps1 -EvidencePath <output-folder>/evidence -RunPath <output-folder>/run-2
+   ./Invoke-AzsEvidence.ps1 -EvidencePath <output-folder>/evidence -Check
+   ```
+
+   The record's mode is `Live`. The stage check still lacks the preflight and the scheduled run, which [Chapter 09](09-deploying-to-test-and-production.md) adds.
+
+6. **Back it out.** The lab changed nothing in Azure. Delete what it wrote and sign out:
+
+   ```powershell
+   Remove-Item -Recurse -Force <output-folder>/run-1, <output-folder>/run-2, <output-folder>/drift, <output-folder>/evidence
+   az logout
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Policy in Resource Graph | `PolicyResources`: assignments, exemptions, `Microsoft.PolicyInsights/PolicyStates`; the "Compliance by policy assignment" query, used as published | [^azs08-arg-policy] |
+| Exemptions | *Mitigated* or *Waiver*; `expiresOn`; an expired exemption is kept for the record and no longer honored | [^azs08-exemption] |
+| Listing exemptions | `az policy exemption list --management-group <name> --filter "atScopeAndBelow()"` | [^azs08-cli-exemption] |
+| `DoNotEnforce` | Evaluates without enforcing | [^azs08-enforcement] |
+| The monthly export | `az policy state summarize --management-group`; `az policy state list --filter "complianceState eq 'NonCompliant'"` | [^azs08-guide] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The initiative's enforcement, exemptions with their expiry, compliance by assignment: the `policy` run folder | CM-2, baseline configuration; CM-6, configuration settings; CA-7, continuous monitoring | KSI-SVC-ACM, KSI-CNA-EIS, KSI-MLA-EVC | Policy owner, with the ISSO |
+| What changed since last week, per area: `drift.json`, `drift.md` | CM-6; CA-7 | KSI-SVC-ACM, KSI-MLA-EVC | Platform owner, policy owner |
+| The guide's metrics with the numbers behind them: `metrics.json`, `metrics.csv` | CA-7; AU-6, audit record review, analysis and reporting | KSI-MLA-EVC, KSI-MLA-OSM | The ISSO |
+| Every run hashed, chained and tagged with its controls and KSIs: `records/`, `records.csv`, `SHA256SUMS`, Lab 1 step 6 | CA-7; AU-9, protection of audit information | KSI-MLA-EVC, KSI-MLA-OSM | The ISSO, on agency storage |
+
+The controls are the guide's Step 9 and Step 10 rows (CM-2, CM-6, CA-7; IR-4, CP-4 and AU-6, of which the kit's metrics support AU-6) and their KSIs;[^azs08-guide] AU-9 to KSI-MLA-OSM is the provider notices kit's pair. The exercise, incident and after-action records the guide's Step 10 also asks for are people's work; the evidence folder is where they are filed beside the runs.
+
+## Dangers
+
+| Danger | What goes wrong | The guard |
+|---|---|---|
+| An exemption with no expiry | Non-compliance accepted forever | AZS-POL-03 every week |
+| An expired exemption treated as current | The resource looks exempt in a report that predates the expiry | AZS-POL-04 names it; Learn says it's no longer honored |
+| A comparison across a changed query | A "fixed" row that only disappeared because the query changed | Fingerprints are rule and resource; a changed query shows as many fixed rows at once, which the reviewer reads in `drift.md` |
+| Lab evidence used to promote | Fixture runs pass a go/no-go | Fixture records never count toward a stage |
+| Evidence edited after filing | A record no longer matches what ran | `SHA256SUMS` and the chain fail `-Check` |
+
+## Checklist
+
+- [ ] The security initiative is enforcing, or its enforce-by date is in the future.
+- [ ] Every exemption has an expiry, and none is past it without a renewal decision.
+- [ ] `drift.md` is read at the weekly review, and every new row has an owner.
+- [ ] The metrics report carries the numbers behind each value.
+- [ ] `Invoke-AzsEvidence.ps1 -Check` passes on the evidence folder, which lives on agency storage.
+
+## Continue the book
+
+Next, [Chapter 09](09-deploying-to-test-and-production.md): the runbook that takes all of this to a test subscription, then production. The guide's [Step 9](../../../books/guides/azure-security-implementation.md#step-9-policy-and-drift) and [Step 10](../../../books/guides/azure-security-implementation.md#step-10-operations-and-evidence) hold the initiative's commands, the RACI and the review calendar.
+
+[^azs08-guide]: Azure Security Engineering, [Step 9](../../../books/guides/azure-security-implementation.md#step-9-policy-and-drift), [Step 10](../../../books/guides/azure-security-implementation.md#step-10-operations-and-evidence), [Metrics](../../../books/guides/azure-security-implementation.md#metrics) and [Federal requirements and KSIs](../../../books/guides/azure-security-implementation.md#requirements), with its sources read November 11 and 13, 2026.
+[^azs08-arg-policy]: Microsoft Learn, "Azure Resource Graph sample queries for Azure Policy" ("Compliance by policy assignment"; "Policy exemptions per assignment"; "Policy exemptions that expire within 90 days"), <https://learn.microsoft.com/azure/governance/policy/samples/resource-graph-samples> (accessed Nov 17, 2026).
+[^azs08-exemption]: Microsoft Learn, "Azure Policy exemption structure," <https://learn.microsoft.com/azure/governance/policy/concepts/exemption-structure> (accessed Nov 11, 2026).
+[^azs08-cli-exemption]: Microsoft Learn, Azure CLI reference, "az policy exemption," <https://learn.microsoft.com/cli/azure/policy/exemption> (accessed Nov 13, 2026).
+[^azs08-enforcement]: Microsoft Learn, "Azure Policy assignment structure," section "Enforcement mode," <https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure> (accessed Nov 11, 2026).

@@ -1,0 +1,328 @@
+---
+title: "Chapter 04 — The Web Application Firewall"
+description: "The guide's Step 4 as code: every Azure WAF policy on Application Gateway and Front Door read for the checks Microsoft's Zero Trust recommendations make (prevention mode, request body inspection, the Default Rule Set, bot protection, a rate limit), every internet-facing application gateway and Front Door profile checked for a WAF and its logs, the guide's prevention coverage computed, and the Learn command that switches a Detection policy to Prevention written to a plan the kit never runs. Labs against a fictional estate and a test subscription."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-azure-security
+part: How
+series-order: 4
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 04 — The Web Application Firewall
+
+*A WAF in detection mode is a log with good intentions. The check reads the mode, and the switch to prevention stays a decision a person makes.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 4, the web application firewall](../../../books/guides/azure-security-implementation.md#step-4-web-application-firewall). You start with what Learn gives you: WAF policies on Application Gateway WAF_v2 and Front Door, Microsoft's Zero Trust checks for them, the built-in policies that require a WAF and a mode, and the commands that create and switch a policy. Then you read how the kit checks every policy and every internet-facing endpoint, and why it writes the Prevention switch to a plan instead of sending it. Lab 1 checks Contoso's two policies and three endpoints; Lab 2 checks a test subscription beside the guide's own Validate query.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can check every WAF policy against Microsoft's Zero Trust recommendations, find every internet-facing application gateway and Front Door profile that has no WAF or no logs, compute the guide's WAF prevention coverage, and hand the application owner the exact command that moves a policy to Prevention, without the kit ever sending it.
+
+**Audience.** Application owners and their developers, who tune and switch the WAF; platform owners, who own the policies; security monitors, who read the WAF logs. Read [Chapter 02](02-the-public-exposure-register.md): the register's `waf` and `wafMode` columns come from the same reads.
+
+## Start with Microsoft Learn
+
+### What Learn gives you
+
+Azure WAF runs on Front Door and on Application Gateway WAF_v2 as a policy of managed rules, custom rules and settings; detection mode only logs, and only prevention mode blocks.[^azs04-zt-agw] Microsoft's Zero Trust recommendations for both check prevention mode, request body inspection, the default rule set, the bot protection rule set, rate limiting and diagnostic logging, among others.[^azs04-zt-netsec] Learn recommends the latest Default Rule Set, 2.2 at the guide's reading, validated in log mode before blocking; the CLI's default is 2.1.[^azs04-agw-secure][^azs04-waf-cli] Front Door's managed rules need the Premium tier.[^azs04-afd-cli] Built-in policies require a WAF on each service and a given mode.[^azs04-waf-policy] And Learn documents the switch between Detection and Prevention with `policy-setting update --mode`.[^azs04-waf-403]
+
+### What it leaves to you
+
+| What Learn gives | Why it matters | What the kit adds (pinned by a test) |
+|---|---|---|
+| A Validate query for one policy | An estate has several, on two services, with different property shapes | Every policy on both services, read from Resource Graph, with the same checks (`WAF (Step 4)` tests) |
+| Front Door's `requestBodyCheck` is `Enabled`; Application Gateway's is `true` | Code written for one reads the other as off | Each service's shape read as its own |
+| The built-in policy that requires a WAF | It audits resources that can have a WAF; it doesn't count endpoints | Every internet-facing gateway (one with a public frontend) and every Front Door profile, with or without a WAF, in the guide's coverage metric |
+| A Front Door's WAF lives in a security policy | A profile with no security policy has no WAF, and nothing on the profile says so | Security policies read per profile; AZS-WAF-06 when none holds a WAF policy |
+| The switch to Prevention, as a command | Sent by automation, a switch before tuning blocks legitimate users | The command written to `plan-prevention.txt`, never run; a person runs it after the false-positive review |
+| "Name the version you've validated" | A rule set left at 2.1 drifts behind Learn's recommendation | AZS-WAF-03 as a Warn below the baseline's version (2.2), not a Finding: moving needs validation first |
+
+## The code: the `waf` area
+
+`Get-AzsWafCheck` reads the Application Gateway and Front Door WAF policies, the application gateways, the Front Door profiles with their security policies, and the gateways' and profiles' diagnostic settings. For each policy it records the mode, whether it is enabled, request body inspection, the Default Rule Set version, whether a bot rule set and a rate-limit custom rule are present, and whether it is in prevention (enabled, Prevention, body inspection on).
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| AZS-WAF-01 | Finding | A policy in Detection mode, or disabled | Learn[^azs04-zt-agw] |
+| AZS-WAF-02 | Finding | Request body inspection off | Learn[^azs04-zt-netsec] |
+| AZS-WAF-03 | Warn | No Default Rule Set, or one older than the baseline's | Learn[^azs04-agw-secure] |
+| AZS-WAF-04 | Warn | No bot protection rule set | Learn[^azs04-zt-netsec] |
+| AZS-WAF-05 | Warn | No rate-limit rule | Learn[^azs04-zt-netsec] |
+| AZS-WAF-06 | Finding | An internet-facing application gateway or a Front Door profile with no WAF policy | Learn[^azs04-waf-policy] |
+| AZS-WAF-07 | Finding | That gateway or profile sends no logs to the platform workspace | Learn[^azs04-agw-logs][^azs04-afd-logs] |
+| AZS-WAF-08 | Info | A Front Door WAF policy that isn't Premium, so it can't use managed rule sets | Learn[^azs04-afd-cli] |
+
+Coverage is the endpoints behind a WAF in prevention over all internet-facing endpoints: the guide's "WAF prevention coverage" metric.[^azs04-guide] A gateway with only a private frontend isn't counted. For every Application Gateway policy not in prevention, the check writes the guide's switch command to `plan-prevention.txt`, with the policy's resource group and subscription; for a Front Door policy, a line pointing at the guide. Nothing runs it. Two tests cover this area; another checks the plan file is written only when there is something to switch.
+
+The guide's other Zero Trust checks (the JavaScript challenge, the CAPTCHA on Front Door, the HTTP DDoS rule set on Application Gateway) aren't read yet (research gaps, row 4).
+
+::: {.callout-important}
+## Illustrative code
+The labs run the kit against a fictional estate served from files. Review the code, and run Lab 2 in a test subscription, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no subscription
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/azure-security`. Contoso has two WAF policies: `wafp-portal` on the application gateway `appgw-portal`, and `afdwafportal` on the Front Door profile `afd-portal`. The second profile, `afd-careers`, has none.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the WAF check
+./Invoke-AzsCheck.ps1 -Area waf -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/waf
+
+# Step 2: Read each policy
+Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+(Read-AzsJson -Path out/week1/waf/waf.json) | ForEach-Object { "{0,-13} {1,-6} {2,-11} body: {3,-5} DRS: {4,-4} bot: {5,-5} rate limit: {6}" -f $_.name, $_.kind, $_.mode, $_.requestBodyCheck, $_.defaultRuleSet, $_.botRules, $_.rateLimit }
+
+# Step 3: Read the findings
+Import-Csv out/week1/waf/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+
+# Step 4: Read the plan the kit wrote and didn't run
+Get-Content out/week1/waf/plan-prevention.txt
+
+# Step 5: Run this chapter's tests
+Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'WAF*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the WAF check:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area waf -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/waf
+   ```
+
+   <!-- capture:begin 04-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/04-1.txt))](captures/04-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCheck.ps1 -Area waf -SettingsPath tests/fixtures/settings.lab.jso… and what it printed"}
+
+   <!-- capture:end -->
+
+   One of three internet-facing endpoints is behind a WAF in Prevention.
+
+2. **Read each policy:**
+
+   ```powershell
+   Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+   (Read-AzsJson -Path out/week1/waf/waf.json) | ForEach-Object { "{0,-13} {1,-6} {2,-11} body: {3,-5} DRS: {4,-4} bot: {5,-5} rate limit: {6}" -f $_.name, $_.kind, $_.mode, $_.requestBodyCheck, $_.defaultRuleSet, $_.botRules, $_.rateLimit }
+   ```
+
+   <!-- capture:begin 04-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/04-2.txt))](captures/04-2.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+   `wafp-portal` is still in Detection; `afdwafportal` blocks, but has no bot rule set. Both are on Default Rule Set 2.1.
+
+3. **Read the findings:**
+
+   ```powershell
+   Import-Csv out/week1/waf/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+   ```
+
+   <!-- capture:begin 04-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/04-3.txt))](captures/04-3.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/waf/findings.csv | ForEach-Object { '{0} {1,-7} {2}: {3}… and what it printed"}
+
+   <!-- capture:end -->
+
+   AZS-WAF-01 for `wafp-portal`; AZS-WAF-06 and AZS-WAF-07 for `afd-careers`, with no WAF and no logs. `appgw-intranet` has a private frontend only, so it isn't counted.
+
+4. **Read the plan the kit wrote and didn't run:**
+
+   ```powershell
+   Get-Content out/week1/waf/plan-prevention.txt
+   ```
+
+   <!-- capture:begin 04-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/04-4.txt))](captures/04-4.png){.lightbox fig-alt="Terminal window showing Get-Content out/week1/waf/plan-prevention.txt and what it printed"}
+
+   <!-- capture:end -->
+
+   Learn's switch command for `wafp-portal`, with its resource group and subscription.
+
+5. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'WAF*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 04-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/04-5.txt))](captures/04-5.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'WAF*' -Output None… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** every policy read the same way on both services, the endpoint with no WAF found, and the switch to Prevention as a plan a person runs.
+
+When you're done, delete `out`:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 04-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/04-6.txt))](captures/04-6.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test subscription
+
+Use a test tenant with a test management group and subscription in commercial Azure, never production, with an Application Gateway WAF_v2 and its WAF policy, as the guide's Step 4 builds them in its pilot. You need Reader on the test management group, Azure CLI with the `resource-graph` extension, and PowerShell 7. Work in `examples/azure-security`. The authors haven't run this lab.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in to commercial Azure
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az extension add --name resource-graph
+
+# Step 2: Write the test settings file
+$s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+$s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+$s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+$s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+$s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+$s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+$s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+$s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+
+# Step 3: Run the WAF check, live
+./Invoke-AzsCheck.ps1 -Area waf -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/waf -AllowUnverified
+
+# Step 4: Compare with the guide's Validate query
+az network application-gateway waf-policy show --name <waf-policy> --resource-group <rg> --query "{mode:policySettings.mode, body:policySettings.requestBodyCheck, sets:managedRules.managedRuleSets[].ruleSetType}"
+
+# Step 5: Back it out
+Remove-Item -Recurse -Force <output-folder>/waf
+az logout
+```
+
+:::
+
+<!-- labs:end -->
+
+You'll replace the values of [Chapter 01, Lab 2](01-the-landing-zone-baseline.md#lab-2-a-test-subscription), and `<waf-policy>` and `<rg>` (the test WAF policy and its resource group).
+
+1. **Sign in to commercial Azure:**
+
+   ```powershell
+   az cloud set --name AzureCloud
+   az login --tenant <tenant-id>
+   az extension add --name resource-graph
+   ```
+
+2. **Write the test settings file:**
+
+   ```powershell
+   $s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+   $s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+   $s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+   $s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+   $s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+   $s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+   $s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+   $s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+   ```
+
+3. **Run the WAF check, live:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area waf -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/waf -AllowUnverified
+   ```
+
+4. **Compare with the guide's Validate query:**
+
+   ```powershell
+   az network application-gateway waf-policy show --name <waf-policy> --resource-group <rg> --query "{mode:policySettings.mode, body:policySettings.requestBodyCheck, sets:managedRules.managedRuleSets[].ruleSetType}"
+   ```
+
+   The mode, body inspection and rule sets should match the policy's row in `<output-folder>/waf/waf.json`. If they don't, record which property the Resource Graph row named differently (research gaps, row 5).
+
+5. **Back it out.** The lab changed nothing in Azure, and the plan file wasn't run. Delete what it wrote and sign out:
+
+   ```powershell
+   Remove-Item -Recurse -Force <output-folder>/waf
+   az logout
+   ```
+
+The guide's own test, a benign SQL injection string returning 403 with a matching firewall log row, is the application owner's, after the switch; it isn't part of this lab.
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Detection and prevention | Detection logs and forwards; only prevention blocks | [^azs04-zt-agw] [^azs04-waf-faq] |
+| Zero Trust checks | Prevention mode, request body inspection, default rule set, bot rule set, rate limiting, JavaScript challenge, logging; Application Gateway adds the HTTP DDoS rule set, Front Door a CAPTCHA | [^azs04-zt-netsec] |
+| Default Rule Set | Learn recommends the latest (2.2 at the reading), validated in log mode first; `az network application-gateway waf-policy create` defaults to `Microsoft_DefaultRuleSet` 2.1 | [^azs04-agw-secure] [^azs04-waf-cli] |
+| Front Door managed rules | Need Premium | [^azs04-afd-cli] |
+| Switch the mode | `az network application-gateway waf-policy policy-setting update --mode Prevention --state Enabled --request-body-check true` | [^azs04-waf-403] [^azs04-waf-cli] |
+| Built-in policies | Require a WAF on Front Door and Application Gateway, and a mode; Audit, Deny, Disabled | [^azs04-waf-policy] |
+| Logs | Application Gateway access and firewall logs; Front Door access, health probe and WAF logs, none on by default | [^azs04-agw-logs] [^azs04-afd-logs] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Each WAF policy's mode, body inspection, rule sets and rate limit: `waf.json`, Lab 1 step 2 | SI-10, information input validation; SC-7, boundary protection | KSI-CNA-MAT | Platform owner |
+| Every internet-facing endpoint behind a WAF in prevention, or named: AZS-WAF-06, coverage in `summary.json` | SC-7 | KSI-CNA-RVP | Platform owner, with the application owners |
+| The switch to Prevention reviewed before it is run: `plan-prevention.txt`, never run by the kit | SC-7; the change goes through the guide's change record | KSI-CNA-MAT | Application owner |
+| Logs from every endpoint to the platform workspace: AZS-WAF-07, or none | SC-7 (the WAF's record of what it blocked) | KSI-CNA-RVP | Security monitor |
+
+The controls are the guide's Step 4 row (SC-7, SI-10) and its KSIs; the guide notes KSI-CNA-MAT cites SI-10.[^azs04-guide]
+
+## Dangers
+
+| Danger | What goes wrong | The guard |
+|---|---|---|
+| The WAF left in detection | Attacks are logged and reach the backend | AZS-WAF-01 every week until it switches |
+| Automation that switches to Prevention | Legitimate traffic blocked before tuning | The kit writes the command to a plan; it never sends it |
+| A Front Door profile with no security policy | Its endpoints have no WAF, and nothing on the profile says so | Security policies read per profile; AZS-WAF-06 |
+| Two property shapes | A Front Door policy read as an Application Gateway one shows body inspection off | Each service's shape read on its own; a test covers both |
+
+## Checklist
+
+- [ ] Every internet-facing endpoint is behind a WAF in Prevention, or has a decision record.
+- [ ] Every policy's rule set is the version the application owner validated.
+- [ ] `plan-prevention.txt` was reviewed with the application owner before anyone ran it.
+- [ ] Every endpoint's WAF logs reach the platform workspace.
+
+## Continue the book
+
+Next, [Chapter 05](05-front-door-application-gateway-and-the-origin.md): a WAF only helps if nothing can reach the origin around it. The guide's [Step 4](../../../books/guides/azure-security-implementation.md#step-4-web-application-firewall) holds the commands that create and tune the policy.
+
+[^azs04-guide]: Azure Security Engineering, [Step 4: Web application firewall](../../../books/guides/azure-security-implementation.md#step-4-web-application-firewall), [Metrics](../../../books/guides/azure-security-implementation.md#metrics) and [Federal requirements and KSIs](../../../books/guides/azure-security-implementation.md#requirements), with its sources read November 11, 2026.
+[^azs04-zt-agw]: Microsoft Learn, "Zero Trust recommendations for Application Gateway WAF," <https://learn.microsoft.com/azure/networking/security/zero-trust-application-gateway-waf> (accessed Nov 11, 2026).
+[^azs04-zt-netsec]: Microsoft Learn, "Azure network security Zero Trust recommendations," <https://learn.microsoft.com/azure/networking/security/zero-trust-network-security> (accessed Nov 11, 2026).
+[^azs04-agw-secure]: Microsoft Learn, "Secure your Azure Application Gateway," <https://learn.microsoft.com/azure/application-gateway/secure-application-gateway> (accessed Nov 11, 2026).
+[^azs04-waf-cli]: Microsoft Learn, Azure CLI reference, "az network application-gateway waf-policy," <https://learn.microsoft.com/cli/azure/network/application-gateway/waf-policy> (accessed Nov 11, 2026).
+[^azs04-afd-cli]: Microsoft Learn, "Quickstart: Create an Azure Front Door using Azure CLI," <https://learn.microsoft.com/azure/frontdoor/create-front-door-cli> (accessed Nov 11, 2026).
+[^azs04-waf-policy]: Microsoft Learn, "Azure Web Application Firewall and Azure Policy," <https://learn.microsoft.com/azure/web-application-firewall/shared/waf-azure-policy> (accessed Nov 11, 2026).
+[^azs04-waf-403]: Microsoft Learn, "Troubleshoot Application Gateway WAF blocking legitimate requests," <https://learn.microsoft.com/troubleshoot/azure/application-gateway/troubleshoot-waf-blocking-legitimate-requests-403> (accessed Nov 11, 2026).
+[^azs04-waf-faq]: Microsoft Learn, "Frequently asked questions for Azure Web Application Firewall on Application Gateway," <https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-faq> (accessed Nov 11, 2026).
+[^azs04-agw-logs]: Microsoft Learn, "Diagnostic logs for Application Gateway," <https://learn.microsoft.com/azure/application-gateway/application-gateway-diagnostics> (accessed Nov 11, 2026).
+[^azs04-afd-logs]: Microsoft Learn, "Configure Azure Front Door logs," <https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-logs> (accessed Nov 11, 2026).

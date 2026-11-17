@@ -1,0 +1,12 @@
+{
+  "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa": {
+    "id": "/providers/Microsoft.Management/managementGroups/aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa/settings/default",
+    "type": "Microsoft.Management/managementGroups/settings",
+    "name": "default",
+    "properties": {
+      "tenantId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "defaultManagementGroup": "/providers/Microsoft.Management/managementGroups/contoso-sandbox",
+      "requireAuthorizationForGroupCreation": false
+    }
+  }
+}

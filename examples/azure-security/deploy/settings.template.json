@@ -1,0 +1,19 @@
+{
+  "_comment": "One copy per environment (settings.test.json, settings.production.json), every <placeholder> filled. No secrets: the kit signs in with az login as a Reader (and, for the plan's one write, an identity eligible for Resource Policy Contributor). Keep the filled files, and everything the runs write, inside the agency's boundary.",
+  "environment": "<test-or-production>",
+  "cloud": "AzureCloud",
+  "tenantId": "<tenant-id>",
+  "tenantRootGroupId": "<tenant-root-group-id>",
+  "managementGroup": "<mg-id>",
+  "workspaceId": "<workspace-id>",
+  "connectivitySubscriptionId": "<connectivity-subscription-id>",
+  "hubVnetId": "<hub-vnet-id>",
+  "workloadSubscriptionIds": ["<workload-subscription-id>"],
+  "requiredAssignments": ["<benchmark-assignment-name>", "<fedramp-assignment-name>"],
+  "securityInitiative": { "assignmentName": "azs-security", "definitionName": "<initiative-name>", "identityRole": "<narrowest-role-the-initiative-needs>", "enforceBy": "<yyyy-mm-dd>" },
+  "location": "<location>",
+  "outputRoot": "<folder-outside-any-repository>",
+  "evidencePath": "<evidence-folder>",
+  "testEvidencePath": "<test-stage-evidence-folder-production-only>",
+  "changeRecord": "<change-record-id>"
+}

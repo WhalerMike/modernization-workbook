@@ -1,0 +1,16 @@
+{
+  "count": 1,
+  "data": [
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/natGateways/nat-hub",
+      "name": "nat-hub",
+      "publicIpAddresses": [
+        {
+          "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-nat-egress"
+        }
+      ]
+    }
+  ],
+  "skip_token": null,
+  "total_count": 1
+}

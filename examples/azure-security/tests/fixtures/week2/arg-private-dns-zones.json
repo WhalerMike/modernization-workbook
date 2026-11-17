@@ -1,0 +1,17 @@
+{
+  "count": 2,
+  "data": [
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net",
+      "name": "privatelink.vaultcore.azure.net",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net",
+      "name": "privatelink.blob.core.windows.net",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333"
+    }
+  ],
+  "skip_token": null,
+  "total_count": 2
+}

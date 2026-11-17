@@ -1,0 +1,33 @@
+{
+  "/subscriptions/11111111-1111-4111-8111-111111111111/resourcegroups/rg-edge/providers/microsoft.cdn/profiles/afd-portal": {
+    "value": [
+      {
+        "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Cdn/profiles/afd-portal/securityPolicies/afd-portal-waf",
+        "name": "afd-portal-waf",
+        "properties": {
+          "parameters": {
+            "type": "WebApplicationFirewall",
+            "wafPolicy": {
+              "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/afdwafportal"
+            },
+            "associations": [
+              {
+                "domains": [
+                  {
+                    "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Cdn/profiles/afd-portal/customDomains/portal"
+                  }
+                ],
+                "patternsToMatch": [
+                  "/*"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "/subscriptions/44444444-4444-4444-8444-444444444444/resourcegroups/rg-careers/providers/microsoft.cdn/profiles/afd-careers": {
+    "value": []
+  }
+}

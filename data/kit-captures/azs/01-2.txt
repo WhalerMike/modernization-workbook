@@ -1,0 +1,4 @@
+PS> ./Invoke-AzsCheck.ps1 -Area baseline -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/baseline
+Read: hierarchy settings, 4 policy assignments, 16 platform resources, 4 subscriptions
+Findings: 12 Finding, 0 Warn, 1 Info
+Written to out/week1/baseline (6 calls, every one a read; manifest.json lists each file's SHA-256)

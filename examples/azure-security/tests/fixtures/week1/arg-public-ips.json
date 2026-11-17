@@ -1,0 +1,111 @@
+{
+  "count": 8,
+  "data": [
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-afw-hub",
+      "name": "pip-afw-hub",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111",
+      "resourceGroup": "rg-hub",
+      "ip": "203.0.113.10",
+      "fqdn": "",
+      "sku": "Standard",
+      "ddosMode": "VirtualNetworkInherited",
+      "attachedTo": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/azureFirewalls/afw-hub/azureFirewallIpConfigurations/ipconfig1",
+      "natGateway": "",
+      "owner": "platform-team"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-appgw-portal",
+      "name": "pip-appgw-portal",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111",
+      "resourceGroup": "rg-hub",
+      "ip": "203.0.113.20",
+      "fqdn": "portal-gw.contoso.example",
+      "sku": "Standard",
+      "ddosMode": "VirtualNetworkInherited",
+      "attachedTo": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/applicationGateways/appgw-portal/frontendIPConfigurations/appGwPublicFrontendIp",
+      "natGateway": "",
+      "owner": "portal-team"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-nat-egress",
+      "name": "pip-nat-egress",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111",
+      "resourceGroup": "rg-hub",
+      "ip": "203.0.113.30",
+      "fqdn": "",
+      "sku": "Standard",
+      "ddosMode": "VirtualNetworkInherited",
+      "attachedTo": "",
+      "natGateway": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/natGateways/nat-hub",
+      "owner": "platform-team"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-vpngw",
+      "name": "pip-vpngw",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111",
+      "resourceGroup": "rg-hub",
+      "ip": "203.0.113.40",
+      "fqdn": "",
+      "sku": "Standard",
+      "ddosMode": "VirtualNetworkInherited",
+      "attachedTo": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/virtualNetworkGateways/vng-hub/ipConfigurations/default",
+      "natGateway": "",
+      "owner": "platform-team"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/publicIPAddresses/pip-jump",
+      "name": "pip-jump",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444",
+      "resourceGroup": "rg-portal",
+      "ip": "198.51.100.10",
+      "fqdn": "",
+      "sku": "Standard",
+      "ddosMode": "VirtualNetworkInherited",
+      "attachedTo": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/networkInterfaces/nic-jump/ipConfigurations/ipconfig1",
+      "natGateway": "",
+      "owner": ""
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/publicIPAddresses/pip-lb-portal",
+      "name": "pip-lb-portal",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444",
+      "resourceGroup": "rg-portal",
+      "ip": "198.51.100.20",
+      "fqdn": "",
+      "sku": "Standard",
+      "ddosMode": "VirtualNetworkInherited",
+      "attachedTo": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/loadBalancers/lb-portal/frontendIPConfigurations/fe-public",
+      "natGateway": "",
+      "owner": "portal-team"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/publicIPAddresses/pip-orphan",
+      "name": "pip-orphan",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444",
+      "resourceGroup": "rg-portal",
+      "ip": "198.51.100.30",
+      "fqdn": "",
+      "sku": "Standard",
+      "ddosMode": "VirtualNetworkInherited",
+      "attachedTo": "",
+      "natGateway": "",
+      "owner": ""
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/publicIPAddresses/pip-test-app",
+      "name": "pip-test-app",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444",
+      "resourceGroup": "rg-portal",
+      "ip": "198.51.100.40",
+      "fqdn": "",
+      "sku": "Standard",
+      "ddosMode": "Enabled",
+      "attachedTo": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/networkInterfaces/nic-test-app/ipConfigurations/ipconfig1",
+      "natGateway": "",
+      "owner": "portal-team"
+    }
+  ],
+  "skip_token": null,
+  "total_count": 8
+}

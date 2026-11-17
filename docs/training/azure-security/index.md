@@ -62,17 +62,17 @@ Work through them in order.
 
 | # | Module | Guide steps | Lab | Time |
 |---|---|---|---|---|
-| 1 | [The baseline and the exposure register](01-the-baseline-and-the-exposure-register.md) | 1 and 2 | Lab 2 | 50 min, plus the lab |
-| 2 | [DDoS protection and the web application firewall](02-ddos-protection-and-the-waf.md) | 3 and 4 | Lab 2 | 50 min, plus the lab |
-| 3 | [The edge and the egress](03-the-edge-and-the-egress.md) | 5 and 6 | Lab 2 | 55 min, plus the lab |
-| 4 | [Private Link, DNS and Key Vault](04-private-link-dns-and-key-vault.md) | 7 and 8 | Lab 2 | 50 min, plus the lab |
-| 5 | [Policy, drift and evidence](05-policy-drift-and-evidence.md) | 9 and 10 | Lab 2 | 50 min, plus the lab |
+| 1 | [The baseline and the exposure register](01-the-baseline-and-the-exposure-register.md) | 1 and 2 | Lab 1 (workbook [01](../../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md), [02](../../project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md)) and Lab 2 | 50 min, plus the lab |
+| 2 | [DDoS protection and the web application firewall](02-ddos-protection-and-the-waf.md) | 3 and 4 | Lab 1 (workbook [03](../../project-plans/developer-workbooks/azure-security/03-ddos-protection.md), [04](../../project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md)) and Lab 2 | 50 min, plus the lab |
+| 3 | [The edge and the egress](03-the-edge-and-the-egress.md) | 5 and 6 | Lab 1 (workbook [05](../../project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md), [06](../../project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md)) and Lab 2 | 55 min, plus the lab |
+| 4 | [Private Link, DNS and Key Vault](04-private-link-dns-and-key-vault.md) | 7 and 8 | Lab 1 (workbook [07](../../project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.md)) and Lab 2 | 50 min, plus the lab |
+| 5 | [Policy, drift and evidence](05-policy-drift-and-evidence.md) | 9 and 10 | Lab 1 (workbook [08](../../project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md)) and Lab 2 | 50 min, plus the lab |
 
 : The modules of the Azure Security Engineering learning path {.striped .hover}
 
 **Total time:** about 4 hours 15 minutes of reading, plus the labs, which depend on how much of the guide has been applied in your test subscription.
 
-**Labs.** The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixtures: each module's lab is a **Lab 2** that runs the guide's own **Validate** checks, and its read-only commands, in a test subscription, every step a copy-paste command block. The expected results are the ones the guide's Validate steps state; the authors haven't run the labs, and no lab shows captured output. Only Module 3's failover test writes, and its next step undoes it. The developer workbook, with Lab 1 on fixtures and Lab 2 in a test subscription, is planned. [The Labs page](../labs.md#azs) lists every lab in the path.
+**Labs.** Each module has two. **Lab 1** runs on a laptop with no subscription: it is the Lab 1 of the matching chapters of the developer workbook [*Building Azure Security*](../../project-plans/developer-workbooks/azure-security/index.md), whose read-only kit, [`examples/azure-security`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security), checks a fictional estate and prints what it finds; the module links the chapters rather than repeating their steps. **Lab 2** runs the guide's own **Validate** checks, and its read-only commands, in a test subscription, every step a copy-paste command block; the expected results are the ones the guide's Validate steps state, and the authors haven't run the Lab 2s. Only Module 3's failover test writes, and its next step undoes it. [The Labs page](../labs.md#azs) lists every lab in the path.
 
 ::: {#azs-modules}
 :::
